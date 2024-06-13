@@ -1,59 +1,71 @@
-Return-Path: <devicetree+bounces-75568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA77907C01
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:04:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182DE907C17
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 857F41F241CC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:04:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C3D283237
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981FB14C596;
-	Thu, 13 Jun 2024 19:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21FBD149E0A;
+	Thu, 13 Jun 2024 19:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CVhws3Xc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gzUl1M7v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6560814A619;
-	Thu, 13 Jun 2024 19:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34EA2F50;
+	Thu, 13 Jun 2024 19:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718305471; cv=none; b=mKOenqpnMacr5bdMAgpz2RlccRABQeAaBrkm1qNKzikcWu7sAybQFjwRoVLPUKbO7MRyDw0ep0rsDs/xW5UD10vpE4M66deyrJejStZUBlS4wBBNbKNfZIBBgW5PZlfQwO5H2CgT/4vyt7Bno8tFzPjVr3uX62UVh+5iOlgiLPQ=
+	t=1718306138; cv=none; b=EzuA9AZT/fi1M7WuvgklvfEqFSRnsTpLB2hobTW+XUPt/Ng6E82B+qo4xeMq1FxT3U4JMCzUBcpsf+lWKfLqUuAq03BjfnBBPmZqCzK8gA+pQhqTWtMa3nbEJWp96ligESEBCLUDBjiO8N56H7KqEc8W6tSZxflH6fl+Mt7OgCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718305471; c=relaxed/simple;
-	bh=eFJCCOMe/8pQg9xKxt92o9frt/uAPWdpBDFiT+/xC94=;
+	s=arc-20240116; t=1718306138; c=relaxed/simple;
+	bh=PxaAEnheuEVKucWpehjXgII5Lh2MtTO4KEUYjKFPDkw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R/AizxbKZt9d6tgHjMAKN+/vQksbDN4jhfgoEWmzIZQKHRB23roHsiol6Y1jZmKEHQJDu2rIkPIqHEk8F8kzdpDSb8RJDa9BRb1Hgb8Nm1W1T1pmTTz2On4BYCgTLe1xPnWYx9FLctnShn1d36mbKf4f18jb+Sbkc0ZFRfpFML4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CVhws3Xc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFF4DC2BBFC;
-	Thu, 13 Jun 2024 19:04:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fvhPNU7EhOb67xRf4bsrKXkVYCTuXNrFTyZcLnTTlv0BUR0DUiKT/Bc8hroNU+izhfe27yF3YHo+8zCF3wJdCxWWLw8JZpBEJPIj08A4p89MUwEJ9Kh1Xs9zpRsTVgO/fq8p+WB9TCUAPMzPlPBbCWL03YWYtbu28QxNkz4QmPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gzUl1M7v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08D34C2BBFC;
+	Thu, 13 Jun 2024 19:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718305470;
-	bh=eFJCCOMe/8pQg9xKxt92o9frt/uAPWdpBDFiT+/xC94=;
+	s=k20201202; t=1718306137;
+	bh=PxaAEnheuEVKucWpehjXgII5Lh2MtTO4KEUYjKFPDkw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CVhws3Xc93z4zA+lTYfwS0aTB7Go05UfFXNViphTA463DglTcwGARKyhux9wVDK88
-	 QGux/ZeZkiiWhU6QiPdmD/phuirgIuW2Mcn+oW1Jb55DD59d1CUeWjIWm1tjsIFd7/
-	 /fmKJ9Fk6BcEJZA1qnabsV7LNnwBSk0FJNfW+JGLuD+BxPq2n+Kut+fZbmE3jpTaLG
-	 uA5GFvVbR7bZznG9vPVOeky4Kav+c1uDfn2/aybN1CVtcm5hXORMEbvPoKMmo3/UnC
-	 4YxEA+67CJyUPXwtIzXM3MUv//QyyGqAz7u4hu07rla+IXuIfuVX5n+ZkR8+8pNspo
-	 Mk8J/iSBZwrKg==
-Date: Thu, 13 Jun 2024 13:04:29 -0600
+	b=gzUl1M7vQrd2T8fS4MvHteaVlR1Jg0QGhIBkzYQ8VNBg0lTX2rpjj0pAC/eLgQY/e
+	 6AQ8nRPOww0PlBfjVxVpfPv9MUz/a0mQzYdvhCAdVq8F4IuRuq8llzgQ03mjrSFBMp
+	 +5mY9eOtmwMrpRXlt0ZSoID0xDfxfeHSYywgaxLNGv6CeG735rEWHy6IGMeMIJIypf
+	 oxzJxsAAuj5LA/6v4XLmFfCiKZWRQQi9QIOcrOCZGCcOykdQ8kub+XLk8yPJGzfQuE
+	 hSFCbKTpsZMyLng1o5+VvInMLoNLXzvLGq8w3AV1ghg3gNmXN1ETemlf7jYNXWkpH6
+	 xNhP+d2XQzwLg==
+Date: Thu, 13 Jun 2024 13:15:35 -0600
 From: Rob Herring <robh@kernel.org>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Burton <paulburton@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH v2 6/8] dt-bindings: mfd: Add img,boston-platform-regs
-Message-ID: <20240613190429.GA2309072-robh@kernel.org>
-References: <20240612-boston-syscon-v2-0-9f8e1a07fa63@flygoat.com>
- <20240612-boston-syscon-v2-6-9f8e1a07fa63@flygoat.com>
+	Oded Gabbay <ogabbay@kernel.org>,
+	Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH 3/9] dt-bindings: mailbox: rockchip,rknn: Add bindings
+Message-ID: <20240613191535.GA2319626-robh@kernel.org>
+References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-3-060e48eea250@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,150 +74,175 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240612-boston-syscon-v2-6-9f8e1a07fa63@flygoat.com>
+In-Reply-To: <20240612-6-10-rocket-v1-3-060e48eea250@tomeuvizoso.net>
 
-On Wed, Jun 12, 2024 at 12:56:25PM +0100, Jiaxun Yang wrote:
-> This compatible has been used in arch/mips/boot/dts/img/boston.dts
-> for a while but never documented properly.
-> 
-> Write a new binding for this device.
-> This also covers old img,boston-clock binding so remove that binding.
-> 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+On Wed, Jun 12, 2024 at 03:52:56PM +0200, Tomeu Vizoso wrote:
+> Add the bindings for the Neural Processing Unit IP from Rockchip.
+
+Subject is wrong. Not a mailbox...
+
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 > ---
->  .../devicetree/bindings/clock/img,boston-clock.txt | 31 ---------
->  .../bindings/mfd/img,boston-platform-regs.yaml     | 74 ++++++++++++++++++++++
->  2 files changed, 74 insertions(+), 31 deletions(-)
+>  .../devicetree/bindings/npu/rockchip,rknn.yaml     | 123 +++++++++++++++++++++
+>  1 file changed, 123 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/img,boston-clock.txt b/Documentation/devicetree/bindings/clock/img,boston-clock.txt
-> deleted file mode 100644
-> index 7bc5e9ffb624..000000000000
-> --- a/Documentation/devicetree/bindings/clock/img,boston-clock.txt
-> +++ /dev/null
-> @@ -1,31 +0,0 @@
-> -Binding for Imagination Technologies MIPS Boston clock sources.
-> -
-> -This binding uses the common clock binding[1].
-> -
-> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -The device node must be a child node of the syscon node corresponding to the
-> -Boston system's platform registers.
-> -
-> -Required properties:
-> -- compatible : Should be "img,boston-clock".
-> -- #clock-cells : Should be set to 1.
-> -  Values available for clock consumers can be found in the header file:
-> -    <dt-bindings/clock/boston-clock.h>
-> -
-> -Example:
-> -
-> -	system-controller@17ffd000 {
-> -		compatible = "img,boston-platform-regs", "syscon";
-> -		reg = <0x17ffd000 0x1000>;
-> -
-> -		clk_boston: clock {
-> -			compatible = "img,boston-clock";
-> -			#clock-cells = <1>;
-> -		};
-> -	};
-> -
-> -	uart0: uart@17ffe000 {
-> -		/* ... */
-> -		clocks = <&clk_boston BOSTON_CLK_SYS>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml b/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml
+> diff --git a/Documentation/devicetree/bindings/npu/rockchip,rknn.yaml b/Documentation/devicetree/bindings/npu/rockchip,rknn.yaml
 > new file mode 100644
-> index 000000000000..bf94de38a89f
+> index 000000000000..570a4889c11c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml
-> @@ -0,0 +1,74 @@
+> +++ b/Documentation/devicetree/bindings/npu/rockchip,rknn.yaml
+> @@ -0,0 +1,123 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/mfd/img,boston-platform-regs.yaml#
+> +$id: http://devicetree.org/schemas/npu/rockchip,rknn.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Imagination Technologies Boston Platform Registers
+> +title: Neural Processing Unit IP from Rockchip, based on NVIDIA's NVDLA
 > +
 > +maintainers:
-> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+> +  - Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> +
+> +description: |+
+> +  Rockchip IP for accelerating inference of neural networks, based on NVIDIA's open source NVDLA IP.
+
+Wrap at 80.
+
 > +
 > +properties:
 > +  compatible:
 > +    items:
-> +      - const: img,boston-platform-regs
-> +      - const: syscon
-> +      - const: simple-mfd
+> +      - enum:
+> +          - rockchip,rk3588-rknn
+> +      - const: rockchip,rknn
 
-Why did you add 'simple-mfd'? That's not what is in use.
+Is there any evidence this block is 'the same' on multiple chips?
 
 > +
 > +  reg:
+> +    description: Base registers for NPU cores
+> +    minItems: 1
+> +    maxItems: 20
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 20
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 20
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 20
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 20
+> +
+> +  assigned-clocks:
 > +    maxItems: 1
 > +
-> +  clock:
+> +  assigned-clock-rates:
+> +    maxItems: 1
 
-Really should be 'clock-controller', but if you don't plan to update the 
-DTS, then it is fine as-is.
+You don't need assigned-clocks in schemas.
 
-> +    type: object
 > +
-> +    description: Boston Clock Controller Device Node
-> +      The clock consumer should specify the desired clock by having the clock
-> +      ID in its "clocks" phandle cell.
-> +      See include/dt-bindings/clock/boston-clock.h for the full list of boston
-> +      clock IDs.
+> +  resets:
+> +    minItems: 1
+> +    maxItems: 20
 > +
-> +    properties:
-> +      "#clock-cells":
-> +        const: 1
+> +  reset-names:
+> +    minItems: 1
+> +    maxItems: 20
 > +
-> +      compatible:
-> +        const: img,boston-clock
+> +  power-domains:
+> +    minItems: 1
+> +    maxItems: 20
 > +
-> +    required:
-> +      - "#clock-cells"
-> +      - compatible
+> +  power-domain-names:
+> +    minItems: 1
+> +    maxItems: 20
 > +
-> +    additionalProperties: false
-> +
-> +  syscon-reboot:
-
-Just 'reboot'
-
-> +    $ref: /schemas/power/reset/syscon-reboot.yaml#
+> +  iommus:
+> +    items:
+> +      - description: IOMMU for all cores
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - clock
-> +  - syscon-reboot
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - assigned-clocks
+> +  - assigned-clock-rates
+
+And never should be required.
+
+> +  - resets
+> +  - reset-names
+> +  - power-domains
+> +  - power-domain-names
+> +  - iommus
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/boston-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 > +
-> +    plat_regs: system-controller@17ffd000 {
-> +      compatible = "img,boston-platform-regs", "syscon", "simple-mfd";
-> +      reg = <0x17ffd000 0x1000>;
+> +    bus {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
 > +
-> +      clk_boston: clock {
-> +        compatible = "img,boston-clock";
-> +        #clock-cells = <1>;
-> +      };
-> +
-> +      reboot: syscon-reboot {
-> +        compatible = "syscon-reboot";
-> +        regmap = <&plat_regs>;
-> +        offset = <0x10>;
-> +        mask = <0x10>;
-> +      };
+> +        rknn: npu@fdab0000 {
+> +          compatible = "rockchip,rk3588-rknn", "rockchip,rknn";
+> +          reg = <0x0 0xfdab0000 0x0 0x9000>,
+> +                <0x0 0xfdac0000 0x0 0x9000>,
+> +                <0x0 0xfdad0000 0x0 0x9000>;
+> +          interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                       <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                       <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
+> +          interrupt-names = "npu0_irq", "npu1_irq", "npu2_irq";
+
+'irq' is redundant. Names with the index are also kind of pointless
+unless they can be not contiguous.
+
+> +          clocks = <&scmi_clk 0>, <&cru 1>,
+> +                   <&cru 2>, <&cru 3>,
+> +                   <&cru 4>, <&cru 5>,
+> +                   <&cru 6>, <&cru 7>;
+> +          clock-names = "clk_npu",
+
+'clk_' is redundant.
+
+> +                  "aclk0", "aclk1", "aclk2",
+> +                  "hclk0", "hclk1", "hclk2",
+> +                  "pclk";
+
+Assuming 0, 1, 2 are cores and may vary, put all the fixed clocks first 
+and then better to do "aclk0", "hclk0", "aclk1", "hclk1",...
+
+> +          assigned-clocks = <&scmi_clk 0>;
+> +          assigned-clock-rates = <200000000>;
+> +          resets = <&cru 0>, <&cru 1>, <&cru 2>,
+> +                   <&cru 3>, <&cru 4>, <&cru 5>;
+> +          reset-names = "srst_a0", "srst_a1", "srst_a2",
+> +                        "srst_h0", "srst_h1", "srst_h2";
+
+And similar order here.
+
+> +          power-domains = <&power 0>, <&power 1>, <&power 2>;
+> +          power-domain-names = "npu0", "npu1", "npu2";
+> +          iommus = <&rknpu_mmu>;
+> +          status = "disabled";
+> +        };
 > +    };
+> +...
 > 
 > -- 
-> 2.43.0
+> 2.45.2
 > 
 
