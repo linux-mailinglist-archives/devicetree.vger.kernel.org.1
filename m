@@ -1,134 +1,87 @@
-Return-Path: <devicetree+bounces-75561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF54907BC8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:55:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C296907BCF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:56:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AE1F285C2F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:55:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAC012830D5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8C414B09C;
-	Thu, 13 Jun 2024 18:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68EED14B940;
+	Thu, 13 Jun 2024 18:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e6TxCS+O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HEpBy4AW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA1514B061;
-	Thu, 13 Jun 2024 18:55:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C08D84A48;
+	Thu, 13 Jun 2024 18:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718304953; cv=none; b=gtBlvSyj6UI1LC+aVRZsr9GarQJCIMPoIi7Un0DwYpjgMv3DblqppKuMMQJuvx4wnDc+lbE0eSvlySxY+BkrNyfjglCiu1edWSPNc5Uk6sf9vwY4VVA7FuXiDxuJ40OSmFTXc2/JB32C25DGbXgOEahXOVEi02iKhZCN5LHJSFU=
+	t=1718305005; cv=none; b=j84zK5OWYNbC3roLALFf24bma8pFI/ylz8uC2pRN+eFh0aPZCGy4qkyoRFkpAmnrs+k08mJHN2lSGbr5dK8e6M5qSaS9wE8xIQR9LaXRlirFB2meaqIXj4mj3KqQWTbqyxrHOp/09DiqNZsaHaVgadLeU5FGDQEa/7sZi1t/XIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718304953; c=relaxed/simple;
-	bh=PB2nojLhZzae5rx9ilIWiCyCUZzKIumHsScsPI9lg9I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HzDEbaJfk3yq/twglG5sHNgwwWo7CsZ8QJlbSlzNZcf+VGMPGTXKYILtqVY+eT9s8HkFImuXTwZkeGDx6BG14fxwQ6vqIXosCToqp5VfnJagNwgo48T+GOKnQcVfU7D+CtDwVu3fCEwS0sF4jWMuVE1lBgKb9AzFz0OfD1j908Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e6TxCS+O; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-4e7eadf3668so522239e0c.0;
-        Thu, 13 Jun 2024 11:55:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718304951; x=1718909751; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A8rHVmgvSmGrxOP2jWFGDRV2w5cu6w7bmnQNCKQ1muA=;
-        b=e6TxCS+O9aQfngFVhOYQ1VtJzbOYuRTkNOIAOoyHsr6VsKxS2OUDTqItRzRf1Tsec5
-         n6i1gZTFU0hNGNSqzJM6xuZPgK4ITRWpPP8GhDnn6EXkpnN83dZyClJgP6LbZZh9E0KZ
-         K9AeHRhklbCFceEmczksHsFBdPCrvX9S9wmd6sloo7mKBOcYBHvlHzm5utE/zsfwacGu
-         A7OzF7PL9MK8xeof5hSzyaEMoqAsyU5wJ0DC4UUn8f78JF8+sNrhBOB+dtGdW6NPXh0n
-         JLkjHR5lBhbe4StEGXqYvqJqGDCajErnCPDx4lUB9cADjSTJDJh6woirz58i6q7jtQ79
-         b2fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718304951; x=1718909751;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A8rHVmgvSmGrxOP2jWFGDRV2w5cu6w7bmnQNCKQ1muA=;
-        b=M9PWBVfdEnylx+2KuDfK6il10FMbrGSa8SGJ4ixmWyfnNjxN8fwkDRy01LJFpNeO+o
-         e7zy05zuDWhub62FRyRxRriF6uZi/htbvKPIAKm3E/wBqm5BTHgJftWxmQuCwxKPLHdH
-         pXvFGSESB28cZOX5Ux0HZkNfLZHztVFwlQ7GE9DUD/Pt6wMz2EFYxMOERP2b/m7blLoo
-         rEYr8hOUYUzA+sjDdn8SkO5C8aMMcssQG5fgBC4mYvzD81KrNN3YHT1mMVqDqW3Q7ajS
-         MlLfmG6Z55YBM3XzoNWkVvfsuTvi5aWqQ+FBr0KUmKwB8nqCuASP8pVB8PKd5+SwNpcg
-         pBCw==
-X-Forwarded-Encrypted: i=1; AJvYcCWldhYnrIXjXT5EG3GHlToDc6au+n5QrWu6CQOrgv2oeynwatrLa9TVdye4FtvfDEqBa+ed3UfKhFz6tx8gKviHg8QIXRaVrASxoidSkZOgoaG/Vf/JMWexB6aJIR7hl3/b+gfOny7FnnxDjQGHr6+iZUVvJJ2PK0SBWtSMlXWHkQS3vM3WL1YYifPBFeJIQ7meeht0osryujgdMwjsVBK8k/Q0+D8Z
-X-Gm-Message-State: AOJu0Yxzd6p/4CtMJrFw24Yo20OAmyjGLDLTCenzYilTm6wwg933LIna
-	8u5KT2KoOC5X3Bk9B4/wsbmDtFVUu7X53X7Tg2OTkkBrPwYcuoose0FFJG96ZssxyKP7s8evOzi
-	xYn9rEllVZLRUi+xHtEec5e42XEU=
-X-Google-Smtp-Source: AGHT+IHcW9OQetK9tkbITect2sTp6OO3zxB/F1M+lzzi8s7lswUbebD05U4oMiYA9j3TDmHYe5iR/6Ccln61ys/yBoI=
-X-Received: by 2002:a05:6122:c9f:b0:4ec:fc20:a51a with SMTP id
- 71dfb90a1353d-4ee3e980ac8mr802618e0c.9.1718304949331; Thu, 13 Jun 2024
- 11:55:49 -0700 (PDT)
+	s=arc-20240116; t=1718305005; c=relaxed/simple;
+	bh=uXZ6E3qLulF11MXklHIIJ7cF2VnS2wrgifX9PKqnW/k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=COSDACE9bJZsv6yVSa2JxFOAUlYkE1M1WB4wRgsngl7uoMQRAPa9uCucKraAbSTYtj2l5L11j2kBTtMr6qDRsjACtW9Zer2OBWuqqqX9Fqs1OLqj25Tt/j/tcaMoGeVwU+AYC+yzpD9U2NXeep+Elkq1CjWifcrGe6V6EzoUUug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HEpBy4AW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89072C2BBFC;
+	Thu, 13 Jun 2024 18:56:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718305004;
+	bh=uXZ6E3qLulF11MXklHIIJ7cF2VnS2wrgifX9PKqnW/k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HEpBy4AWf00yasdrAG8ob50nhRdDj6UEr+ZcraYk6G0ghQc92pMgtg+7vHy/8xAgz
+	 Izcz5SHhOYQCAE47ut3D+8wRx6Ub1jicZMwheORS6rPOUXpvC+AnuJxjFZFPawvMqv
+	 Au05q4mikZ4hiTvP0A6LxOgp1CQ/sbG6Ri5Nrst7HSvDp8sJchiwUSiXosYJPYjdm8
+	 qlZp9xWTJTEmkfHqxL9Vhrp/Ht9ATdzfruB00OKrd5FZKHnHBNZLjoBg4AELEHK4lL
+	 iSJA5hDEuAFAOboQdXo8+lodEBNABg2uwQ1qbtCkKLT+tvC37agekMfM70NfD4GKfu
+	 TABcWm6HCf/gg==
+Date: Thu, 13 Jun 2024 12:56:43 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Burton <paulburton@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org
+Subject: Re: [PATCH v2 8/8] dt-bindings: mips: img: Add devices binding
+Message-ID: <20240613185643.GA2286020-robh@kernel.org>
+References: <20240612-boston-syscon-v2-0-9f8e1a07fa63@flygoat.com>
+ <20240612-boston-syscon-v2-8-9f8e1a07fa63@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240610233221.242749-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240610233221.242749-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <6b3fe242-3733-4f16-b727-494dc1d82002@kernel.org> <CA+V-a8vp0qHKqUMvyfy9hQjKyk8Cs0bDTnYh-ChvPi150r5i2g@mail.gmail.com>
- <3d0a7a82-6262-40e6-be25-4a1c4d8df2fe@kernel.org> <CAMuHMdUvtUWdEfN_=gNJWY+qfE6Yw9KdenQ2OkLc=HvmRnB6pw@mail.gmail.com>
-In-Reply-To: <CAMuHMdUvtUWdEfN_=gNJWY+qfE6Yw9KdenQ2OkLc=HvmRnB6pw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 13 Jun 2024 19:55:18 +0100
-Message-ID: <CA+V-a8svpo8FYanyV9gKqmp=tCm+Po5cAi8VPmgFBnyDJyJQWg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 2/4] dt-bindings: clock: Add R9A09G057 core clocks
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240612-boston-syscon-v2-8-9f8e1a07fa63@flygoat.com>
 
-Hi Geert,
+On Wed, Jun 12, 2024 at 12:56:27PM +0100, Jiaxun Yang wrote:
+> Add devices binding for various Imagination Technologies
+> MIPS based Platforms.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> ---
+>  .../devicetree/bindings/mips/img/devices.yaml      | 33 ++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
 
-On Thu, Jun 13, 2024 at 4:15=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Krzysztof,
->
-> On Thu, Jun 13, 2024 at 2:56=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> > On 13/06/2024 11:57, Lad, Prabhakar wrote:
-> > >>> of section 4.4.2 which cannot be controlled by CLKON register.
-> > >>> ---
-> > >>>  include/dt-bindings/clock/r9a09g057-cpg.h | 21 +++++++++++++++++++=
-++
-> > >>>  1 file changed, 21 insertions(+)
-> > >>>  create mode 100644 include/dt-bindings/clock/r9a09g057-cpg.h
-> > >>
-> > >> Missing vendor prefix.
-> > >>
-> > > OK, Is this just for new includes being added, or do you want me to
-> > > rename the existing Renesas specific includes in here which dont have
-> > > vendor prefix?
-> >
-> > Didn't we discuss it?
-> >
-> > I commented only about this binding.
->
-> Yes we did, in the context of the R-Car V4M DT binding definitions,
-> which became include/dt-bindings/clock/renesas,r8a779h0-cpg-mssr.h
-> But Prabhakar was not involved there.
->
-> Note that I also asked to include the vendor prefix, see
-> https://lore.kernel.org/linux-renesas-soc/CAMuHMdU7+O-+v=3D2V83AjQmTWyGy_=
-a-AHgU_nPMDHnVUtYt89iQ@mail.gmail.com/
->
-Oops I missed that review comment.
+Please drop the old bindings or at least the portion covered by 
+this. That's 
+Documentation/devicetree/bindings/mips/img/pistachio-marduk.txt, 
+pistachio.txt, and xilfpga.txt. 
 
-Cheers,
-Prabhakar
+Some of the description can go in here. CPU nodes are documented 
+elsewhere by schemas already and can be dropped. The boot protocol isn't 
+really DT bindings, so that belongs elsewhere if you want to keep it. 
+Documentation/arch/mips/ perhaps?
+
+Rob
 
