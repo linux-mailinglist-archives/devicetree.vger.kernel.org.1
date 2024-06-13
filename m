@@ -1,102 +1,141 @@
-Return-Path: <devicetree+bounces-75314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C12906759
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:46:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87672906763
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 10:47:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BD9C1F2421F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:46:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD7761C228C4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1DF13D88C;
-	Thu, 13 Jun 2024 08:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52AE413E3ED;
+	Thu, 13 Jun 2024 08:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cOQd9B7D"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XXiQmdg+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDBE913D881;
-	Thu, 13 Jun 2024 08:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764DB13E3EF;
+	Thu, 13 Jun 2024 08:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718268336; cv=none; b=o0vpzmU8htPeples0T6j+rQl1qPkYm7S7RXGDxQAkle8qy7NcCuz3RHj0fqbBog+fSGVWLu2TZmh7/XnQqrFbjP+sQ/PTf3io7DK/r6Plr9oOBOtAK+YiGwHF6vJ/Mc93j081CplDBbiCeUP7SEMO5Y9gkNa4GSo7a5o+H5dj1I=
+	t=1718268417; cv=none; b=uJEwKkzgtNub6Q0J2OPjmtIC6yRFV82U0SLPWmgSz1AZJpmpsAj/xQUmecKcMlsl5sKX/213t9SfnEHF/+x/dwLgCrHzahdf/qvtLsxudxbwodSNeHluEnIaEjI8mSpOpwtDUioBwNghKf1XoZtYbQRnjkmmRcYx1zOaJfQ79Bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718268336; c=relaxed/simple;
-	bh=xYpnEqEWPUQlgQ8ob9kgiq9kJ3E0oTxBoQ5rflRhjyE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dJOsR5qkoArD1YJLTSkBIKraZ4gGa+tOHFJUt4uGS/xY9exFNhtdxDkDSlLU4F2flzOWC8Dev/drtpGA7/+b10WqPrsLjGMswoRnW0pj/w9RwGGT74bm/JOqxsC9DJDzLfUjSML321wIroNTjKoyjJpTZdAPIxMmyHiySTdBycM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cOQd9B7D; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ebed33cbafso7852821fa.1;
-        Thu, 13 Jun 2024 01:45:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718268333; x=1718873133; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xYpnEqEWPUQlgQ8ob9kgiq9kJ3E0oTxBoQ5rflRhjyE=;
-        b=cOQd9B7Ds3ziKhooeKlSF4/GLK5w7JExvHZK4QT4xw4iaqqVprUFbn0loB2FJFDC0d
-         X3dMOFPd4an25+q71EZBV0UtHTo9xk6Bx+DfGN43UmYPpVOWRj8oIQlhUh37wSD3k1bW
-         CFGvmf+LZC5rSuF5dPH+Xot0BIrKxepQQfyoQfa7J1JmEzQQgJPw9u9mwEJTnF+k0Nw3
-         cQzMI/HRXNPnDldxiYDUonNIm130NLkSfYtyjgpnJAWUWwM5LPSKS5cIhC6wXDFjHS7E
-         dWtt8jRzZmhdmiWf350XqjBw8bbN1OrlCpcBe01RP1MHeMTtW6hKDB0Educ1J5txp3Vc
-         KY7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718268333; x=1718873133;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xYpnEqEWPUQlgQ8ob9kgiq9kJ3E0oTxBoQ5rflRhjyE=;
-        b=iAcJ+t2bC8H1H3b9Fka9ZPgASYZ9ZEvXssm6Vd/SUA2H1t/kjWBCCyjkRsWmzlTA3m
-         Xo/U5ImfOTvouRX1h2e8OQAdG1RwtpkSbP6fGsP2/uRYycqpRplaz3DCrv+/AbflzrZw
-         c0c8wuKk8DZTRx8SvqIpnDnbHSOGa7eQEA7s58XOGnuZBN2sBzwWzbCAMAJUxGXs/yXK
-         MqEyyu3LgfTaANp2o2Dd520hIu0AMO3J0mr0l5DYF+zLQDmPz1AZfC9xH48aLqPFRBuc
-         tEPnxfopJFEUBipKnVex7EZRkkbgboeP6fxTUU9DerepIADi7O/PG4Z29cDE3d8Q4ISM
-         h31g==
-X-Forwarded-Encrypted: i=1; AJvYcCVihAJEoiwhG05IypGpCL88qOzzCIVS16YYZTuJRmgO8onM6z19OL3aTC4GuK0GEkClik3cP/UcmfOQsyVv1fDPD40mXg09D+F/PdV5S5GbMavK3Gbaa/M/2rKzOZxi2mmKf25C7UPZzLZKZ1qOZBI25ops60JHn5xQ/sOcI+XqKxcKGeE=
-X-Gm-Message-State: AOJu0YwuAbr+/kF6/hWBJalLVqEqB9EfMUN17s+eqNU1WegnCG7gGC2y
-	NaOJuaiakML+7jROFAOJvqDHzAGr5H+8Rz2ay/UXVzg9yzMz1Sn+dC/d4tPg4GbQeN+XHPQXCRz
-	jbpnSejqmcF0H8kqYRNyURHELZ3g=
-X-Google-Smtp-Source: AGHT+IHiQPdfmZveR8HVdHXIhXi5SfxJavyjvc/+pbQfBRC4qpJ6umlHZ/E5Nw2V2Qv/Sr4hR7uapyJy3qJCxR7Yp4Q=
-X-Received: by 2002:a2e:8196:0:b0:2eb:e505:ebda with SMTP id
- 38308e7fff4ca-2ebfc99f605mr26282071fa.42.1718268332651; Thu, 13 Jun 2024
- 01:45:32 -0700 (PDT)
+	s=arc-20240116; t=1718268417; c=relaxed/simple;
+	bh=XJffr/5LB55gXVcg0eSyeFd0VSpe2GwmHjzw48Bdo18=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=u4w8vsD7oL3JpubdojpZXKbed5ZvCIPVieUAUwQQpycySzf3dyiJ4QjuJHsYkW/TFgBZTIbhrd9cxSwKEgMAVYRoChNTrPsBMX8CvLOx9SIXpQux+rhi67PacUqOuX9eIx+HAi+XsjDiLP1Iwjv0RtSgmv4zA27vNx8JgPfVUoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XXiQmdg+; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45D8kkXI025178;
+	Thu, 13 Jun 2024 03:46:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718268406;
+	bh=90NYOlgMHjrlLG8SfZAMFu9wzG/J+xMs17o+vVUT5zg=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=XXiQmdg+ag1PzCv+VWVLutgeq2mfLL19AC1RrJqwvtyLPaDsTCsh978JMFCNG7/QQ
+	 FCwiyEvvecnODl37OvELmwTXvvqJNqCH+o619Jv2PjT+HbBzcIDxJXfeK6Gy+HsInn
+	 hFgLdHI6WK1nV9kf0631LSGP/uKhjCJH6Rh4yL38=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45D8kkUe074431
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 13 Jun 2024 03:46:46 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
+ Jun 2024 03:46:46 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 13 Jun 2024 03:46:45 -0500
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45D8kfOL093985;
+	Thu, 13 Jun 2024 03:46:42 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Devarsh Thakkar
+	<devarsht@ti.com>, Bryan Brattlof <bb@ti.com>,
+        Aradhya Bhatia
+	<a-bhatia1@ti.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Jai
+ Luthra <j-luthra@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/7] arm64: dts: ti: McASP fixes
+Date: Thu, 13 Jun 2024 14:16:38 +0530
+Message-ID: <171826022276.240984.17264900560475914548.b4-ty@ti.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240606-mcasp_fifo_drop-v2-0-8c317dabdd0a@ti.com>
+References: <20240606-mcasp_fifo_drop-v2-0-8c317dabdd0a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240611132134.31269-1-bavishimithil@gmail.com>
- <20240611164951.51754ffc@aktux> <CAGzNGRmoSawz7yHGzHS8PeQwRAsnnORLMPrrNBLupNdaOkUeHw@mail.gmail.com>
-In-Reply-To: <CAGzNGRmoSawz7yHGzHS8PeQwRAsnnORLMPrrNBLupNdaOkUeHw@mail.gmail.com>
-From: Mithil <bavishimithil@gmail.com>
-Date: Thu, 13 Jun 2024 14:15:19 +0530
-Message-ID: <CAGzNGRnnZWJP6CF1X6SXus2QCwUA763=qHUAy6c6Ny6_FFd7GQ@mail.gmail.com>
-Subject: Re: [PATCH v1] ARM: dts: twl6032: Add DTS file for TWL6032 PMIC
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
-	Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Jun 11, 2024 at 8:19=E2=80=AFPM Andreas Kemnade <andreas@kemnade.in=
-fo> wrote:
-> I think the twl6030.dtsi and twl6032.dtsi should be as similar as possibl=
-e.
+Hi Jai Luthra,
 
-Hey the values seem to be different for twl6030.dtsi,
-omap4-epson-embt2ws.dts, and omap4-samsung-espresso-common.dtsi.
-Should we just define the nodes in twl6032.dtsi and let them put
-min/max volts and other properties in the board files?
+On Thu, 06 Jun 2024 13:37:39 +0530, Jai Luthra wrote:
+> Drop McASP AFIFOs for all AM62 based platforms, as the extra buffering
+> is not needed with BCDMA already having internal buffering.
+> 
+> Also fix the pinmux for McASP1 on AM62P.
+> 
+> 
 
---=20
-Best Regards,
-Mithil
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/7] arm64: dts: ti: k3-am62x: Drop McASP AFIFOs
+      commit: 6ee3ca0ec7fabc63603afdb3485da04164dc8747
+[2/7] arm64: dts: ti: k3-am62a7: Drop McASP AFIFOs
+      commit: a931b81072921a11d5bb8e8201b6228b791d40a9
+[3/7] arm64: dts: ti: k3-am62p5: Drop McASP AFIFOs
+      commit: d3fe4b4e2e44de64ed1f1585151bf4a3627adbaf
+[4/7] arm64: dts: ti: k3-am625-beagleplay: Drop McASP AFIFOs
+      commit: 3b4a03357aee07a32a44a49bb6a71f5e82b1ecc1
+[5/7] arm64: dts: ti: k3-am62-verdin: Drop McASP AFIFOs
+      commit: fb01352801f08740e9f37cbd71f73866c7044927
+[6/7] arm64: dts: ti: k3-am625-phyboard-lyra-rdk: Drop McASP AFIFOs
+      commit: 554dd562a5f2f5d7e838f7b229a1c612275678db
+[7/7] arm64: dts: ti: k3-am62p5-sk: Fix pinmux for McASP1 TX
+      commit: e96e36ce1fdcf08a70e3f09cbe2da02b073c58ac
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
