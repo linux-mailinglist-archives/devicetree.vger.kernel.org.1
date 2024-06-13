@@ -1,126 +1,151 @@
-Return-Path: <devicetree+bounces-75240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7BEE906198
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 04:09:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C77B49061BF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 04:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF04A1C210AA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 02:09:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6070C282B9E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 02:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6858812D1F6;
-	Thu, 13 Jun 2024 02:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7297F59B71;
+	Thu, 13 Jun 2024 02:27:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VqVMf8tG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8F5D12B170;
-	Thu, 13 Jun 2024 02:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11DA17C69;
+	Thu, 13 Jun 2024 02:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718244491; cv=none; b=EZwGHSXSiE5Vd8ExacR/v9kIaYo4qPZrOCjloRLh63rH2Nror06dw1Utm+y47UvSdw7KVsSiJ1Yau8NG7Fxyinajv/xT0pv87LEnLvo5DAmUnSRmUvQrQxnFa2vFnziaUqn80zFCfZElwo8m6LC8/ows2gzoG/JSRWsjpsG+GYM=
+	t=1718245655; cv=none; b=pmQS7pY7s13Qywp0aww4gSl2WwpUDELIuaEO32+nGMUyCfsKmZxuhsyBrUOaN7nm5qt8IQIY5gCb7MWykjKub9eo/9hvAU/dGaBQmbOBnQGGUJvigHsN16cACH98Z6x3/zSj4geXrdYvouF3uGpybcqnbZWXUFU2aJwV+ZM1/l8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718244491; c=relaxed/simple;
-	bh=S2lBCY9EvtAQte7nGdlIdh1f9xtxLIBbDYoaJVFJgmY=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References; b=m8PGLKXVBAag++0uTNidMJDahEKjSyUmDuininbexETSgI+HT5/wHTOBBD09iQhuFST2kzie5GGtazxou58/0ZT7OnxhxetBkBMsmg/v8xw+/u8OqNssKkSqEKW+zpPDJax3f0LpQgicd/jCdr8y5z0pWSJxNNeCFQCFO15aBEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4ABCE1A0ABE;
-	Thu, 13 Jun 2024 04:08:08 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id F0D071A0AB5;
-	Thu, 13 Jun 2024 04:08:07 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9C1E2181D0F9;
-	Thu, 13 Jun 2024 10:08:05 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: p.zabel@pengutronix.de,
-	abelvesa@kernel.org,
-	peng.fan@nxp.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	marex@denx.de,
-	linux-clk@vger.kernel.org,
-	imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1718245655; c=relaxed/simple;
+	bh=Nh2RzwaSTxJgbNfHmt3JRc0uEjv3nRlrnUDcdTPlwq8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j3RToR2RuO20+68BSmKwTH/o6gngfxyApY3ktFUNv/JybdAmfzTkq9KKkqnSyfWZ+PoJUoXd/knUiscM4cbi9x6gD0f7LjbA8FosQD9DVPSIfJCIbx9Kc0PDGSbBOFYMh1iIIHA0bSZdwgXNdfg4t9nINKG7rGqVZi42w7njGjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VqVMf8tG; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718245652; x=1749781652;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Nh2RzwaSTxJgbNfHmt3JRc0uEjv3nRlrnUDcdTPlwq8=;
+  b=VqVMf8tGl0GqyXf6C+Zjq2AeJzt1xBJ84PfSOq3v7Y4ep5FX/UYPtzCy
+   wZ6csTKR3JwYsOeY3bqkkvLXN4JrH4bE/Vg0xUlCwISPKqOh4WVoqI0Sl
+   uNy20oVW98cCuOD9N328bD80BkXnt5dtcCuY4Zg4EKQf18J9zLxLqXGTa
+   gsB+s375A3pv965i/g+gcJeH8SIX6uUjm98enI9q6JMdoBMDKpemc5tla
+   du6VocFv4RmgXGT6fae5ZKq4EXCahJTdxuabawLgBAq1I7glE5XgWyPX0
+   AMxTqPMi6YDj1PnyOcQ3fT/IBdPfwPYtDOEnE1bRg/xenBHy3KjFFMQn2
+   w==;
+X-CSE-ConnectionGUID: XxZwVx+tS1yirIUFxQCBqg==
+X-CSE-MsgGUID: ikPWenUVQ22a0doG6kiIbw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14762594"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; 
+   d="scan'208";a="14762594"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2024 19:27:32 -0700
+X-CSE-ConnectionGUID: Hfsi00ypS3ujyFebs+qM4w==
+X-CSE-MsgGUID: ZXcO7e85TC+r/0EEzcI5Aw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; 
+   d="scan'208";a="44371511"
+Received: from lkp-server01.sh.intel.com (HELO 628d7d8b9fc6) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 12 Jun 2024 19:27:26 -0700
+Received: from kbuild by 628d7d8b9fc6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sHaBP-00027m-2g;
+	Thu, 13 Jun 2024 02:27:23 +0000
+Date: Thu, 13 Jun 2024 10:27:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oded Gabbay <ogabbay@kernel.org>,
+	Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: [PATCH v7 5/5] clk: imx: clk-audiomix: Correct parent clock for earc_phy and audpll
-Date: Thu, 13 Jun 2024 09:51:22 +0800
-Message-Id: <1718243482-18552-6-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1718243482-18552-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1718243482-18552-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH 6/9] accel/rocket: Add a new driver for Rockchip's NPU
+Message-ID: <202406131022.1JKNS7me-lkp@intel.com>
+References: <20240612-6-10-rocket-v1-6-060e48eea250@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240612-6-10-rocket-v1-6-060e48eea250@tomeuvizoso.net>
 
-According to Reference Manual of i.MX8MP
-The parent clock of "earc_phy" is "sai_pll_out_div2",
-The parent clock of "audpll" is "osc_24m".
+Hi Tomeu,
 
-Add CLK_GATE_PARENT() macro for usage of specifying parent clock.
+kernel test robot noticed the following build errors:
 
-Fixes: 6cd95f7b151c ("clk: imx: imx8mp: Add audiomix block control")
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/clk/imx/clk-imx8mp-audiomix.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+[auto build test ERROR on 83a7eefedc9b56fe7bfeff13b6c7356688ffa670]
 
-diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
-index 7fd336a96cfe..50ad5873c990 100644
---- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-+++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-@@ -156,6 +156,15 @@ static const struct clk_parent_data clk_imx8mp_audiomix_pll_bypass_sels[] = {
- 		PDM_SEL, 2, 0						\
- 	}
- 
-+#define CLK_GATE_PARENT(gname, cname, pname)						\
-+	{								\
-+		gname"_cg",						\
-+		IMX8MP_CLK_AUDIOMIX_##cname,				\
-+		{ .fw_name = pname, .name = pname }, NULL, 1,		\
-+		CLKEN0 + 4 * !!(IMX8MP_CLK_AUDIOMIX_##cname / 32),	\
-+		1, IMX8MP_CLK_AUDIOMIX_##cname % 32			\
-+	}
-+
- struct clk_imx8mp_audiomix_sel {
- 	const char			*name;
- 	int				clkid;
-@@ -173,14 +182,14 @@ static struct clk_imx8mp_audiomix_sel sels[] = {
- 	CLK_GATE("earc", EARC_IPG),
- 	CLK_GATE("ocrama", OCRAMA_IPG),
- 	CLK_GATE("aud2htx", AUD2HTX_IPG),
--	CLK_GATE("earc_phy", EARC_PHY),
-+	CLK_GATE_PARENT("earc_phy", EARC_PHY, "sai_pll_out_div2"),
- 	CLK_GATE("sdma2", SDMA2_ROOT),
- 	CLK_GATE("sdma3", SDMA3_ROOT),
- 	CLK_GATE("spba2", SPBA2_ROOT),
- 	CLK_GATE("dsp", DSP_ROOT),
- 	CLK_GATE("dspdbg", DSPDBG_ROOT),
- 	CLK_GATE("edma", EDMA_ROOT),
--	CLK_GATE("audpll", AUDPLL_ROOT),
-+	CLK_GATE_PARENT("audpll", AUDPLL_ROOT, "osc_24m"),
- 	CLK_GATE("mu2", MU2_ROOT),
- 	CLK_GATE("mu3", MU3_ROOT),
- 	CLK_PDM,
+url:    https://github.com/intel-lab-lkp/linux/commits/Tomeu-Vizoso/iommu-rockchip-Add-compatible-for-rockchip-rk3588-iommu/20240612-215814
+base:   83a7eefedc9b56fe7bfeff13b6c7356688ffa670
+patch link:    https://lore.kernel.org/r/20240612-6-10-rocket-v1-6-060e48eea250%40tomeuvizoso.net
+patch subject: [PATCH 6/9] accel/rocket: Add a new driver for Rockchip's NPU
+config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20240613/202406131022.1JKNS7me-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240613/202406131022.1JKNS7me-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406131022.1JKNS7me-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/clk.h:13,
+                    from drivers/accel/rocket/rocket_drv.c:4:
+>> drivers/accel/rocket/rocket_drv.c:213:31: error: 'rocket_pm_ops' undeclared here (not in a function); did you mean 'rocket_probe'?
+     213 |                 .pm = pm_ptr(&rocket_pm_ops),
+         |                               ^~~~~~~~~~~~~
+   include/linux/kernel.h:48:44: note: in definition of macro 'PTR_IF'
+      48 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^~~
+   drivers/accel/rocket/rocket_drv.c:213:23: note: in expansion of macro 'pm_ptr'
+     213 |                 .pm = pm_ptr(&rocket_pm_ops),
+         |                       ^~~~~~
+
+
+vim +213 drivers/accel/rocket/rocket_drv.c
+
+   207	
+   208	static struct platform_driver rocket_driver = {
+   209		.probe = rocket_probe,
+   210		.remove_new = rocket_remove,
+   211		.driver	 = {
+   212			.name = "rocket",
+ > 213			.pm = pm_ptr(&rocket_pm_ops),
+   214			.of_match_table = dt_match,
+   215		},
+   216	};
+   217	module_platform_driver(rocket_driver);
+   218	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
