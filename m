@@ -1,120 +1,111 @@
-Return-Path: <devicetree+bounces-75394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3828906D02
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:57:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 396A8906CFE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:57:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E037B251B6
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:57:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D08011F27322
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5708C145B06;
-	Thu, 13 Jun 2024 11:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3076144D12;
+	Thu, 13 Jun 2024 11:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nG3ZGyzs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dEYNDcyU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07AF144D10
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 11:51:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E9F143883;
+	Thu, 13 Jun 2024 11:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718279506; cv=none; b=Flf+YTDtl8PAKV5Lf8MdNi+l7rCfIoMD6GnuYOpxliTQ3ncp85quWYrcmHJNEXyu6+5WXRA6GTPxWDMde6X72JJ6KSJdvO9zklzZ7pzIOEyPVMMBgQhF9Ysimlu5FSKv6LyfpB+v030/3sh6DMpIGnw4Q3Fb2e1nFnQuMzik1Ig=
+	t=1718279504; cv=none; b=MIxmIbUEm+hR+4s7egeAX1UkBqbLBMTGld8n1QrrMJl32dvJ4AdvTNg7XDtiFCwSyXpw3rP57YupO8852xwwojpkK+rzHhj9Dbmu0vFK3nS31Eiq5TEE8swmF4nsiSb+fKv4t/ec4fgT9C15xCFbRxo+vHg42MiILaKqO+CrNGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718279506; c=relaxed/simple;
-	bh=sZEKZfHubIqep01PYDDOG2DiKYyzvbmcvlOdh30m7Us=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mC7jw8f/z4LuCqUsq/WDdbIJFo//cLVpjxG7WaG6/YKT60ndy0594D7BSTdzAdcV8Rv2W8zBUzuZmWwoGMtXhAFlxUje54j8nngdjhbeTQIrBotxtevL/o0KpWVMyG+4rl6Z8W3BLy9w8x8BAgVde2/GaFcqWV5MPdCnOSRKro4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nG3ZGyzs; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-62a2424ed00so11755607b3.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 04:51:44 -0700 (PDT)
+	s=arc-20240116; t=1718279504; c=relaxed/simple;
+	bh=5yq8m+SBGM96rXAdcdQvH/rJPfubuzK0CuGVUXOIVAM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jh9Jh/VGqn08hTE6672OLxDCwyWrW6NMWl4F9BFo6cE9O8ITmaNaQz5+2X9riTbNT0eFG+0gtEtNbzIsxj8HC8avcFebHRdR08BLovC21i+WkiwvoBWmO4c3aatSsXkJfd8d/FOkaFbonxQRGQvuVdFYwgKAKzJWqMIP7YzkcVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dEYNDcyU; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-579fa270e53so1174802a12.3;
+        Thu, 13 Jun 2024 04:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718279504; x=1718884304; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YRvIRe1C8JF7J2k72Eq1IoWCS+jAa2AM8+ph/DDThXs=;
-        b=nG3ZGyzs0+FGeRWMyFqTafgjocV1ZCf4AZaydmP1Gn5Aw47SfjbW9cs6LMFL9Uz4nT
-         8HdsLKEc4nONPnRJ7XrCGPpNLpX5iSySpz9aFPXdO5oNWbfrHTQHaZKoBz1zCYscjoVu
-         s/URdGDMaVoGA0E8+QIE2IG0MAIvVGbTC5dVdJ7mFpycHwdIn54UtMeO4SNHA8ODWoVN
-         qyoKIgQl+4wXQxkwunl64Ep8/WoGjzv+12IUaZVK3JUfBskRaEtUUW9a8OPARY8mh0XF
-         4fV3FsknDPTcjrifA5j3C2nQehltVk4hTM21XtcPxXc4yl6VFEHqTSKgqEHdnEgE7TOi
-         5Klg==
+        d=gmail.com; s=20230601; t=1718279501; x=1718884301; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KJefyQyjkOVfFqQZSnaUeK5Yr2ypYtTp77GMMmsGIZU=;
+        b=dEYNDcyUbhsZ8S9LewhAlZ0r+drK3RWEg6pR20ccdIQF3auoUzCVjRs1Y8iWtwaI3P
+         57pDkUTj/Hy2XaIhGi0lvqR8Lbnty7cTDOr4e2/yzCQgTc5lyP2ljyxlZZsNAKw2sTGq
+         GwalnwqKt7g7vDI2oBoGxdw8bbXmemHXeXnpnlKRiF9QZ/tnMibVhyDDDy8QhUwMpAW5
+         aOD8w5r4KlNVFrN5/taSEOFxhDqy9R+qdg/+7as+z+tqiTc5TGTSLBt00dx9ya1BVDp1
+         3FHic3HWuES5P9dYQO1BNlPGwT6rFm3YgM7xfuvJIy7cZNPtzwzxpTrA4lMRgQ/em41d
+         GZNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718279504; x=1718884304;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YRvIRe1C8JF7J2k72Eq1IoWCS+jAa2AM8+ph/DDThXs=;
-        b=Yneor1/5xkA1AvI0r7YxulwzLsr6B6/WpxJJizq/T9WXo3p3qCyKDKRB6Hhz8/rTsg
-         E0Sk/8ksdRRG9VVpnat5x+3OU5i20nP+CWvjkNkshe24jRGtH8EJu3X3zp7HRmZaFrqL
-         u1K6D/DRKYF0uvCaXEx61RlZxRsikskHkiJ6ga5hmTxVK4a7Q877xba4LIvWIPCjam6k
-         2vAxjf38CdS/6aW/nLyW4qntbigZIfytfUU96iEHl5jfKqXuMlwBuAPa4aHg+RM7VmLd
-         WuaI5RrASnScmZWnmER7AB6H/tlsH2e40tNgjVRkYB2SdkEjIO1z/Sje8Dvt5NTeAP+q
-         pqmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBYS/6BI/ArZhr9LUk1ixN09g++e7Kt94BR2sZY5lzu5iYH4luazXpJd9H3kVdWApuqRmSR4D1pIoBlXIKUPRO7kpyqdVnaXq8pQ==
-X-Gm-Message-State: AOJu0YzDjiQZr33WyrL0shAuPYJ21Px+8WlSFL+ewZLOrVMl+BsMU+Gh
-	JFr+UCGFSrHlgZuER1sRixkPVGmpDyqA2HM4BbiOr9YHYUAf3AIoDsRVkE74xOAa5SO6n1JV5G6
-	5182I/nuUSpqqPx9QgNQfazUonJXNzZ5Y9B+2D7HP7fBa+5TbxSo=
-X-Google-Smtp-Source: AGHT+IHsbTNLvjN8WuDB84rv+zysR6fpgX/dxzhUTfN9xcKd94L2FQdMlBq8iWThBr9t45yXD5czpiz8aOD25S8hU38=
-X-Received: by 2002:a0d:dc84:0:b0:62a:259f:74d1 with SMTP id
- 00721157ae682-62fb847d3a1mr45680067b3.5.1718279503794; Thu, 13 Jun 2024
- 04:51:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718279501; x=1718884301;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KJefyQyjkOVfFqQZSnaUeK5Yr2ypYtTp77GMMmsGIZU=;
+        b=r7UL7MMjz1AIa5W66YcSY31JtsjhShEapBMf3Gm7QFIKil5WPu0revLLsifrTPvT/q
+         QBXdRQ5GMrms87WRWP0kgvoDpMqBN3iyoHL18iJxWhK5skuR34T4oUMlX50lyblxsvgS
+         Tjuo7z7RJWKh5YCnSyaXLWgEkGszJUFCvpXpmn5gTskSLYzRR1kgM37odwBrCyNl2/dv
+         JQwQK0/sZgNgwtEjCksgrOYtev3z3uq607eI63tCZFtBmcNdhzJ45C7UhJsI2XfWQHEl
+         4QsR0NvsuVY0dXelmfH2zS9ro52nnWC/tEldnYz2hByWz0nQ85ZxVFHP3KS+pip1cZJ0
+         OD+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXdRdj05Qcht3uAP+dPfaiKOcLdLxY8dPk66ht4HQYCD6tl6MpW2ZbcDApq85ql95WmBA8gUcMegaDymdCUF4ixiu1rlvIE/tfLWSQzwzZlLt+VJ1GIjjBroCD9JtQG3TutCpN+bXkjGaer1VAjLFbR417FIBeWLCbbkYL6dUVLUg==
+X-Gm-Message-State: AOJu0YxpQZXSA+UdpV8anQeEajXQ5v6MLeXRqNlIqzWGThulQs7XACqX
+	UMXDinc8CVLocw574GJZZkCxO3xwFjfgyiD/xj1puN7wE11OmauC
+X-Google-Smtp-Source: AGHT+IGXMOflSMi6KOV3hqkc/LDkCH7Tx3vmolC5e6vFF/VUI6SVgZ6qSUivVUegzux7CBuHZAnxGQ==
+X-Received: by 2002:a17:906:651:b0:a6f:e15:8163 with SMTP id a640c23a62f3a-a6f47d4ed2bmr336987866b.7.1718279500976;
+        Thu, 13 Jun 2024 04:51:40 -0700 (PDT)
+Received: from skbuf ([188.25.55.166])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56db5bafsm64364566b.50.2024.06.13.04.51.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 04:51:40 -0700 (PDT)
+Date: Thu, 13 Jun 2024 14:51:37 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Martin Schiller <ms@dev.tdt.de>
+Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
+	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 04/12] net: dsa: lantiq_gswip: Use
+ dev_err_probe where appropriate
+Message-ID: <20240613115137.ignzu35jxmmorxys@skbuf>
+References: <20240611135434.3180973-1-ms@dev.tdt.de>
+ <20240611135434.3180973-1-ms@dev.tdt.de>
+ <20240611135434.3180973-5-ms@dev.tdt.de>
+ <20240611135434.3180973-5-ms@dev.tdt.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240524082236.24112-1-quic_kbajaj@quicinc.com>
- <CAA8EJpp9U-ucMAiNmVvWDuupd=OR_fLK9fQ+n21SVmktWMxhmA@mail.gmail.com> <ae289c19-2701-d00f-3f6f-5e87ec37e475@quicinc.com>
-In-Reply-To: <ae289c19-2701-d00f-3f6f-5e87ec37e475@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 13 Jun 2024 14:51:32 +0300
-Message-ID: <CAA8EJpo4v1sfjo2nUEj0-kZ_0rrMh07s67LzhBs8POjkN2Nybg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: qdu/qru1000-idp: Fix the voltage setting
-To: Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Melody Olvera <quic_molvera@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240611135434.3180973-5-ms@dev.tdt.de>
+ <20240611135434.3180973-5-ms@dev.tdt.de>
 
-On Thu, 13 Jun 2024 at 14:43, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
->
->
->
-> On 5/24/2024 2:59 PM, Dmitry Baryshkov wrote:
-> > On Fri, 24 May 2024 at 11:23, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
-> >>
-> >> While adding the USB support, it was found that the configuration
-> >> for regulator smps5 was incorrectly set. Upon cross verifying for
-> >> all the regulators, found that smps4, smps6 and smps8 are also
-> >> incorrectly configured. This patch fixes the same.
-> >
-> > Nit: see Documentation/process/submitting-patches.rst, "This patch..."
->
-> Will update the commit message.
->
-> >
-> >> In particular -
-> >> - smps4 is 1.574V min and 2.04V max
-> >> - smps5 is 1.2V min and 1.4V max
-> >> - smps6 is 0.382V min and 1.12V max
-> >
-> > Just for my understanding, will anything further constraint these values?
->
-> As far as i know, this is going to be final.
+On Tue, Jun 11, 2024 at 03:54:26PM +0200, Martin Schiller wrote:
+> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+> dev_err_probe() can be used to simplify the existing code. Also it means
+> we get rid of the following warning which is seen whenever the PMAC
+> (Ethernet controller which connects to GSWIP's CPU port) has not been
+> probed yet:
+>   gswip 1e108000.switch: dsa switch register failed: -517
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Acked-by: Hauke Mehrtens <hauke@hauke-m.de>
+> ---
 
-Ack
+Needs your sign off.
 
-> currently, usb device is not working without this min/max change.
-
--- 
-With best wishes
-Dmitry
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 
