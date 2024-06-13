@@ -1,107 +1,86 @@
-Return-Path: <devicetree+bounces-75502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58EB907833
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:23:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05F2907845
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:28:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AFA41F23438
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:23:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC4651C2255B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:28:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97F21448E6;
-	Thu, 13 Jun 2024 16:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39241474A8;
+	Thu, 13 Jun 2024 16:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SuMeOK4A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4joEmRu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4D712D757;
-	Thu, 13 Jun 2024 16:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE9C12D757;
+	Thu, 13 Jun 2024 16:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718295780; cv=none; b=DauOiuuBnmoqluIhNDW60fddMRCjYIXUIls2FwDnhIhe1zojxOnYnjxVwREBGki5aMbS2vEV2g+9dbM8eJDBH1x4tUtZtdUMoYBkNh0L5dnY9cZtxkOW9S4pqwYDNkZ0ksOQWlLE+61PT5AKhkjWr/Us4Zo49q7+rv5EXrKrzLY=
+	t=1718296131; cv=none; b=r99auG/MEILIqt7yvdeV+RHxIAVJZ5lUr2wXueLKRrdxzllgdb/Hfxe3eKcG92XFctMEAzleCaEqDI18TGabFa0y/cLHwnnNJph8byU0feFcvo5ZN8Xb8oW971XvoaS0vzBIhyNfrAcFWNNH/fXwRInZlDuvXvbORE0GIjXUj7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718295780; c=relaxed/simple;
-	bh=CaSs0G8SCymztITpnEmaJu4oDolKWOuq3R35mdA3tSw=;
+	s=arc-20240116; t=1718296131; c=relaxed/simple;
+	bh=KYCv3hQWoN1j7XUdm21Zt9d+voXjs1ywP3w3OudzhlI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eo7IqwjOxilw0JY2WrmVLqbnLRFm98apsNRUfK8ap28N2F4inbZyzP9BT56lrewU/Lysfo77XczQA5+7nhsqWqQrmSrTGDSTVhUWY8AoqcpqhpuMPnzh8BS7Z6vACHLCDBhz/s+R9323NNxGBC6Sp3Di250Qx020WkDBgbTn6tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SuMeOK4A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C1E7C2BBFC;
-	Thu, 13 Jun 2024 16:22:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FKc6LZ2OvP5E/rfwPaEhaAPTpDpnh0w+ybFPvK1qXYNYdNzYLWcdtxaEw6SZczggdalOTSnYYGZuHFpDJbJVjZ/o4r8XpDy9u/jH5RgDw0Bu3sIjKYyhrnGJJyvzW/xi+O2Q8jC8lty1vlyEZNyD92okbLFiaC3CaV6lRdJB0ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4joEmRu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 042F3C2BBFC;
+	Thu, 13 Jun 2024 16:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718295780;
-	bh=CaSs0G8SCymztITpnEmaJu4oDolKWOuq3R35mdA3tSw=;
+	s=k20201202; t=1718296131;
+	bh=KYCv3hQWoN1j7XUdm21Zt9d+voXjs1ywP3w3OudzhlI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SuMeOK4Ae2gyFrmprMHhPo1xo6LSMBDurIm+Bhl2d4jtSU0w4XjJe/f4p+SOy8Y5/
-	 IIRYkGMY6ESQcVyoQ2E7FJ5w+fmkG0kPDE2eyNMpwhXsDrcMybCPeg76JbDxT9Z75F
-	 ewMR/WlxiyRkV4LLMj1gYtlNeBTED2qoM1IsmYUoXXnl4cL5ZzdKwycxcu3fbOs0cv
-	 0LjSFS1jZvZkoDWJRL2H7lkoL9qQCJxxEWTjBbFqzKcTb/ZYEN/ny9BYuGp77iM5th
-	 TxiqeYf0got2GZkr7dqpwZgEodLEgTKZuYDEjaMOKaCxfT+nyasLGGVuN7+JKxRPwf
-	 aUl0qkSeb1QPg==
-Date: Thu, 13 Jun 2024 17:22:54 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=H4joEmRucqYlJcLIeksv8iywzdSmaJd9cqa6dJAixBXwVFSpFyzU8YJKhU7pJ+gvG
+	 vLpL8FKNw8KThaS4h2m2IK1K7FlmlKTJvFmstu1DTz23syMuoDKTf6QUkXpAkgLcJc
+	 Jn8jWbVFNAkx7Oj4RdzOfyy5pioXEmc1GkDKRGR+Y85im0LON069CBynHJZofgUHFx
+	 tZEc/Es98a5g1yIRiSZHRPs2Kid8Plcpl08FKCEEsix46V962zyXwnrs6bPZxUWp32
+	 BC+DtiOl/bHQE4ObYTqhqNpnz89c/qkJfiuYyLFZYG8+NqXDjhYP3N1U9eldc1E0dp
+	 /jTk35oN/xJ4g==
+Date: Thu, 13 Jun 2024 10:28:48 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Odelu Kukatla <quic_okukatla@quicinc.com>
+Cc: quic_mdtipton@quicinc.com, linux-arm-msm@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v6 1/6] media: dt-bindings: rk3568-vepu: Add RK3588
- VEPU121
-Message-ID: <20240613-cresting-septum-60086a69f5d0@spud>
-References: <20240613135034.31684-1-sebastian.reichel@collabora.com>
- <20240613135034.31684-2-sebastian.reichel@collabora.com>
+	Bjorn Andersson <andersson@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	"Gustavo A . R . Silva" <gustavoars@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-pm@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+	quic_rlaggysh@quicinc.com, Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Georgi Djakov <djakov@kernel.org>
+Subject: Re: [PATCH v5 3/4] dt-bindings: interconnect: add clock property to
+ enable QOS on SC7280
+Message-ID: <171829612654.1988993.3785634347630091942.robh@kernel.org>
+References: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+ <20240607173927.26321-4-quic_okukatla@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kE+syxWACWgZIXw3"
-Content-Disposition: inline
-In-Reply-To: <20240613135034.31684-2-sebastian.reichel@collabora.com>
-
-
---kE+syxWACWgZIXw3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240607173927.26321-4-quic_okukatla@quicinc.com>
 
-On Thu, Jun 13, 2024 at 03:48:42PM +0200, Sebastian Reichel wrote:
-> From: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
->=20
-> This encoder-only device is present four times on this SoC, and should
-> support everything the rk3568 vepu supports (so JPEG, H.264 and VP8
-> encoding). No fallback compatible has been added, since the operating
-> systems might already support RK3568 VEPU and want to avoid registering
-> four of them separately considering they can be used as a cluster.
->=20
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Fri, 07 Jun 2024 23:09:26 +0530, Odelu Kukatla wrote:
+> Add clock property to enable the clocks required for accessing
+> QoS configuration registers.
+> 
+> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+> ---
+>  .../interconnect/qcom,sc7280-rpmh.yaml        | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
 
---kE+syxWACWgZIXw3
-Content-Type: application/pgp-signature; name="signature.asc"
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmsc3gAKCRB4tDGHoIJi
-0mj7AQCv4rlubtb0cKZKwFzNNoGAdnbist3T9iqEa3NB16WrfAD+Jqf79c6F+HbV
-7Vsb/Cx0dtWN57PjSuAwDRU5t+awIww=
-=BcWx
------END PGP SIGNATURE-----
-
---kE+syxWACWgZIXw3--
 
