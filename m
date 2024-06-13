@@ -1,216 +1,157 @@
-Return-Path: <devicetree+bounces-75558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB542907B60
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ABB2907BC6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:55:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B768285445
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:31:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E302282806
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B5814A0AD;
-	Thu, 13 Jun 2024 18:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D2E14B95B;
+	Thu, 13 Jun 2024 18:55:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cfiC3cRg"
+	dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b="GHZjS+eH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A7714B075
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 18:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE9884A48
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 18:55:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718303493; cv=none; b=LhCBolSj+lf2xpNE4Ge9wT4q5jDeMsFLLnveUbLDp4ribeNWIFaTQTEkD5tmXkSWb75NgmfKiAUOarMOhu2jpGC8MpzpTUhIAA0r6EdBw2SlGOqkwsZFINzYce9tac3FVE1MFr1qd2qQ9hCqbQYwlaLRRp8xmAqQGeOkMRrHoEg=
+	t=1718304907; cv=none; b=TUpueXimaE++uZlQW5Ft+ECBTq7si9WA5T7yImhk811WnEnEx7Ustlve8yZ22bSxXx/q40HU21vskRd7wj+A9lw3tMphL/MueLHTRD4AxkamJLfPw6vkq+8KLCidGP96URFwaBKe0gEm5TWtK1bNblVWsC/GX+NMmzIaxplPcJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718303493; c=relaxed/simple;
-	bh=9nV7hLmfDx/7B3Dty2P3cncxZUHN74Qo/BKpf3QRBuc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Vn8VPrhLJepGYQwqon0NXeNO27CBAupbERfb7jCWY+fu9vITnTJKhLYymxr/+IrUN1mQ/JqfOkvQCVYmUgkVjCOsZxsXkXlswG5r5SpCm2lOLp0zSkm44T0GjaOWG5b6p2fzlqL1LIuKXnOhAqbQQIERICnSn+jCEbzazD4SjNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cfiC3cRg; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-62f86abc8abso14937647b3.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 11:31:32 -0700 (PDT)
+	s=arc-20240116; t=1718304907; c=relaxed/simple;
+	bh=Gt1evT2ZipUP3A+a89FXb11fe3WcAOPmqcd8GjtBsjY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=POeoiQgLFoC5gUAUEqVDfF5PToo5YpCDZoGSkaTnlyjp7+aTrzGEp155G8zW9KrIYTZrvajGh6FIY9x2XEI5kiTHnDznoJRzLxsRi8fu1EXwfwXWehFNtPa489GVOh0HWcbvxYw2KPat2Fz8dg52d2dkWRmbY4IOOHUlmkcTTTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net; spf=none smtp.mailfrom=minyard.net; dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b=GHZjS+eH; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minyard.net
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3d21b3da741so733673b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 11:55:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718303491; x=1718908291; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JXQvrLMUU/ZNamWgnYQjVMOCkiOypt0RodDQ76i6a1I=;
-        b=cfiC3cRgRuDtWqlOIxDIJgmmevpmwzE5hDlegP1hAjKyJYibWcO0iqppTGLOsD3KgV
-         eQ22PEPiFYaeGeOR3oXj7QJYKKTMZeDDso4ysOTnYxFX79aMobfArGeZ6yUaGlhrSCaW
-         U7qAmP7j0EI0LRvbCGhi17LHCB7cEkFdF5birnuKIuiJfaWkleoYzDLPtzx1/MJx21eN
-         6RXQLBHOByZOoze/Hp+M8s8sZIXB9WqqVnjkbxBN1PltolECGUBlRTVsu3c8rnva5W0I
-         X442eqmQNdMesy7mlMGHKyQ1P+1pEmO8Swy74VsKI200QFFAiREiuFH63l4GUww2BZN0
-         8QbQ==
+        d=minyard-net.20230601.gappssmtp.com; s=20230601; t=1718304904; x=1718909704; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ir7jlQ3ukg3Y+MOa/f3FfJkxsyDu68agk9z7RN1WCrk=;
+        b=GHZjS+eH2ab+5fRa8RnB/gVniYwqF38mGtfVcdNdXjMxOiwjJbeUjTdq0yo8QiGM8T
+         1wD53lyZjtcC/wk8kQ3GZUqt3i9Z398+kGkQOXEsJDPgZfdK1omf9anEirt4s7zIvJLW
+         t1cFiIoBRw/ZFUWuhcwVL7eo1LSIlLXWZqnSxUk83FFSKA+GmKFYmVK/6ObNjyy2Yltg
+         fbiVvuCWm/HZJ+J3jGoyODugYbSu4HQTegphG1gotabXLFMbmMkuE26S36Znh+UW59il
+         QN94taaag0B5C7Xpl8QzgHjsLohwNlZkgVSux+PfSkKj+AnYXJeoM9pErWeYKIc92mT+
+         OX5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718303491; x=1718908291;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JXQvrLMUU/ZNamWgnYQjVMOCkiOypt0RodDQ76i6a1I=;
-        b=i4IkTZndebonPkjlJkQtQi5pqIltKgwYBDF1KGLzOeffLWP0GcEfv2dlwL1iIysIZb
-         IvqaVgvukkj2GZccbxZPv03WaCrIFB5qiLIh/qA00Up534MDsXQRXrkD8ZhvLGM69Ndl
-         EdYeok8nDsoYzHO49kX/nCmRuhMxm+bgl2GLhgD0Sskcnzh1dKqYLFgfCfISThfvh1KO
-         W4uJ1MfW71VFVeLNKpZTLGnzhdfQp7ukPcsWU5GSuTRn29WTjhr4z6f1Kr/ov/yPOIlJ
-         W8aJvqqtRzbhwOW608FsGtg96ywP1C1moIkHGZUsoZnExPkI4Hmc8wr/k0+7vMAwRaKo
-         /PBg==
-X-Forwarded-Encrypted: i=1; AJvYcCU60hwT0QvNHbs8Jxx+VxCq3P5ZR31YpgimJqz5pqpSVDvKDaKK9nLVs3mYwCgWcXVyjmqV/WtUYJc0auUFHvBzIRyMOMqCKZdNvA==
-X-Gm-Message-State: AOJu0YyWBkl7IwjwnFrBadOpuFcS+AqhipYGZKibB+NQmHlNzGjMtxCi
-	VCJxvqxbK+9EkkrdZCMfFlCKejM+F0BliAEAJZhC0wYd+ONI5/75+pRoVjuruCRjddg1BZDUolA
-	53YNcQP2oTF7UO2uFJguUGM4eSvRIro3CCT6W4A==
-X-Google-Smtp-Source: AGHT+IGb8ds/chiqYcRHUQd63D995+EL6FV0xR8Fey/wJufK/UDYuEQFsfDNaMSulhpxOJVOwD9VdNJPzFLEFqHCWh8=
-X-Received: by 2002:a0d:f983:0:b0:620:4018:7c67 with SMTP id
- 00721157ae682-6322305171emr2754787b3.27.1718303491189; Thu, 13 Jun 2024
- 11:31:31 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718304904; x=1718909704;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ir7jlQ3ukg3Y+MOa/f3FfJkxsyDu68agk9z7RN1WCrk=;
+        b=wXeAZ+IF0zRinHwmhEF7ZyOBFBxnXJI4VBGi0CLsDeAvCQjl20pC+qS92KQo048/Pq
+         g2Xq9fCtFXrHyYhRAQZN3pOdDc6z2dM0DZQBXDm/MIdTbR9jYHS3hA3oVaJqAWm51EjS
+         crdkXRXilCeZhZ5Lc49bzdW/XN7Bf3G3vqBd7rdWngTEb8IcKoVx8aLGy3rY4Ac5ThBs
+         ifQWkWXgCH4t/9oZDka20ebOhikdg8WA6N64XuAoHaRBZOUTJlrgHkwPPv1x/QHpegU5
+         hRoztVD0/ZXoEChZ6j2FTJ7HfUIoWr/GnObxe05GyojQ02WaPJtSHqm0i82/yTuyBTfA
+         obaA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYPKrVeNbyFTiv8HKMhpRRcYEfIG2dXr+3MpzIdJE4FhEUWg7APiQlGsN69AM0VPdeHSiRu6FF2lEeEfDVoLMki5uu0e/+3UgIUg==
+X-Gm-Message-State: AOJu0YxTnu/Ni1UXTAg8nbGOGzlqNzVq9t3iQWBG3cH2BFb+BQcZ5VC8
+	K3lO8zkmAzdZMCz63ICs2wHl19LKuzW0aNoylwHbtE31re5Nrv19ygAcENB29eI=
+X-Google-Smtp-Source: AGHT+IG9MnlA72bZ18aF5rYF5wl0pr5uFRNrPbLUoHQMtyYlzNhExUV24HDmhv5A6kYfu5h17G7Atw==
+X-Received: by 2002:a05:6808:10d2:b0:3d2:14b5:adf8 with SMTP id 5614622812f47-3d24e8a7ac9mr606995b6e.5.1718304904174;
+        Thu, 13 Jun 2024 11:55:04 -0700 (PDT)
+Received: from mail.minyard.net ([2001:470:b8f6:1b:f695:486a:b518:fdb])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3d2476bb5aesm282578b6e.38.2024.06.13.11.55.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 11:55:03 -0700 (PDT)
+Date: Thu, 13 Jun 2024 13:55:01 -0500
+From: Corey Minyard <corey@minyard.net>
+To: Rob Herring <robh@kernel.org>
+Cc: Potin Lai <potin.lai.pt@gmail.com>, Corey Minyard <minyard@acm.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	openipmi-developer@lists.sourceforge.net,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Patrick Williams <patrick@stwcx.xyz>,
+	Cosmo Chou <cosmo.chou@quantatw.com>,
+	Potin Lai <potin.lai@quantatw.com>
+Subject: Re: [PATCH 1/2] bindings: ipmi: Add property for skipping SBMR boot
+ progress response
+Message-ID: <ZmtAhcviSUKoFLsz@mail.minyard.net>
+Reply-To: corey@minyard.net
+References: <20240612043255.1849007-1-potin.lai.pt@gmail.com>
+ <20240612043255.1849007-2-potin.lai.pt@gmail.com>
+ <20240613175946.GA2085029-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613-dpu-handle-te-signal-v2-0-67a0116b5366@linaro.org>
- <20240613-dpu-handle-te-signal-v2-2-67a0116b5366@linaro.org> <l3esy4ciy4envu35edg35sip5od6ltxpazpddo2w6vwmqomjky@azgqxi4la3hy>
-In-Reply-To: <l3esy4ciy4envu35edg35sip5od6ltxpazpddo2w6vwmqomjky@azgqxi4la3hy>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 13 Jun 2024 21:31:20 +0300
-Message-ID: <CAA8EJpqpBkJZmyhQA6b3Fg1cmY35yptt385weQQvDsq9rGazrA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] drm/msm/dpu: convert vsync source defines to the enum
-To: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240613175946.GA2085029-robh@kernel.org>
 
-On Thu, 13 Jun 2024 at 21:17, Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
->
-> On 2024-06-13 20:05:05, Dmitry Baryshkov wrote:
-> > Add enum dpu_vsync_source instead of a series of defines. Use this enum
-> > to pass vsync information.
-> >
-> > Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, Jun 13, 2024 at 11:59:46AM -0600, Rob Herring wrote:
+> On Wed, Jun 12, 2024 at 12:32:54PM +0800, Potin Lai wrote:
+> > In ARM Server Base Manageability Requirements (SBMR) document, Callers can
+> > choose to not read back Response Data after sending the command "Send Boot
+> > Progress Code".
+> 
+> Got a link to that document?
+> 
+> > Define "arm-sbmr,skip-bootprogress-response" property for skipping the
+> > response of "Send Boot Progress Code" from userspace.
+> 
+> I don't understand why this would be conditional? How can you define in 
+> the BMC what the host behavior is? Doesn't the host side decide 
+> that? So don't you always have to support no response?
+
+Yeah, this doesn't make any sense for two reasons:
+
+What if the host wanted to read back the response?  You make no
+provision for that, as I believe Rob said above.
+
+The BMC should be able to start a new transaction without the previous
+response being read.  So this should be pointless.  If that's not
+happening, it's a bug and should be fixed.  Otherwise an untimely reset
+could hang the SSIF interface.
+
+-corey
+
+> 
+> > 
+> > Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
 > > ---
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  2 +-
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c |  2 +-
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h |  2 +-
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h | 26 ++++++++++++++------------
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h  |  2 +-
-> >  5 files changed, 18 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> > index 119f3ea50a7c..4988a1029431 100644
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> > @@ -747,7 +747,7 @@ static void _dpu_encoder_update_vsync_source(struct dpu_encoder_virt *dpu_enc,
-> >               if (disp_info->is_te_using_watchdog_timer)
-> >                       vsync_cfg.vsync_source = DPU_VSYNC_SOURCE_WD_TIMER_0;
-> >               else
-> > -                     vsync_cfg.vsync_source = DPU_VSYNC0_SOURCE_GPIO;
-> > +                     vsync_cfg.vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
-> >
-> >               hw_mdptop->ops.setup_vsync_source(hw_mdptop, &vsync_cfg);
-> >
-> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
-> > index 225c1c7768ff..96f6160cf607 100644
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
-> > @@ -462,7 +462,7 @@ static int dpu_hw_intf_get_vsync_info(struct dpu_hw_intf *intf,
-> >  }
-> >
-> >  static void dpu_hw_intf_vsync_sel(struct dpu_hw_intf *intf,
-> > -             u32 vsync_source)
-> > +                               enum dpu_vsync_source vsync_source)
-> >  {
-> >       struct dpu_hw_blk_reg_map *c;
-> >
-> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h
-> > index f9015c67a574..ac244f0b33fb 100644
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h
-> > @@ -107,7 +107,7 @@ struct dpu_hw_intf_ops {
-> >
-> >       int (*connect_external_te)(struct dpu_hw_intf *intf, bool enable_external_te);
-> >
-> > -     void (*vsync_sel)(struct dpu_hw_intf *intf, u32 vsync_source);
-> > +     void (*vsync_sel)(struct dpu_hw_intf *intf, enum dpu_vsync_source vsync_source);
-> >
-> >       /**
-> >        * Disable autorefresh if enabled
-> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
-> > index 66759623fc42..a2eff36a2224 100644
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
-> > @@ -54,18 +54,20 @@
-> >  #define DPU_BLEND_BG_INV_MOD_ALPHA   (1 << 12)
-> >  #define DPU_BLEND_BG_TRANSP_EN               (1 << 13)
-> >
-> > -#define DPU_VSYNC0_SOURCE_GPIO               0
-> > -#define DPU_VSYNC1_SOURCE_GPIO               1
-> > -#define DPU_VSYNC2_SOURCE_GPIO               2
-> > -#define DPU_VSYNC_SOURCE_INTF_0              3
-> > -#define DPU_VSYNC_SOURCE_INTF_1              4
-> > -#define DPU_VSYNC_SOURCE_INTF_2              5
-> > -#define DPU_VSYNC_SOURCE_INTF_3              6
-> > -#define DPU_VSYNC_SOURCE_WD_TIMER_4  11
-> > -#define DPU_VSYNC_SOURCE_WD_TIMER_3  12
-> > -#define DPU_VSYNC_SOURCE_WD_TIMER_2  13
-> > -#define DPU_VSYNC_SOURCE_WD_TIMER_1  14
-> > -#define DPU_VSYNC_SOURCE_WD_TIMER_0  15
-> > +enum dpu_vsync_source {
-> > +     DPU_VSYNC_SOURCE_GPIO_0,
-> > +     DPU_VSYNC_SOURCE_GPIO_1,
-> > +     DPU_VSYNC_SOURCE_GPIO_2,
->
-> While at it, rename this to _P / _S / _E to match the other patches/code?
-
-I thought about it, but Abhinav pointed out that DPU docs use this
-kind of naming.
-
->
-> - Marijn
->
-> > +     DPU_VSYNC_SOURCE_INTF_0 = 3,
-> > +     DPU_VSYNC_SOURCE_INTF_1,
-> > +     DPU_VSYNC_SOURCE_INTF_2,
-> > +     DPU_VSYNC_SOURCE_INTF_3,
-> > +     DPU_VSYNC_SOURCE_WD_TIMER_4 = 11,
-> > +     DPU_VSYNC_SOURCE_WD_TIMER_3,
-> > +     DPU_VSYNC_SOURCE_WD_TIMER_2,
-> > +     DPU_VSYNC_SOURCE_WD_TIMER_1,
-> > +     DPU_VSYNC_SOURCE_WD_TIMER_0,
-> > +};
-> >
-> >  enum dpu_hw_blk_type {
-> >       DPU_HW_BLK_TOP = 0,
-> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h
-> > index 6f3dc98087df..5c9a7ede991e 100644
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h
-> > @@ -64,7 +64,7 @@ struct dpu_vsync_source_cfg {
-> >       u32 pp_count;
-> >       u32 frame_rate;
-> >       u32 ppnumber[PINGPONG_MAX];
-> > -     u32 vsync_source;
-> > +     enum dpu_vsync_source vsync_source;
-> >  };
-> >
-> >  /**
-> >
-> > --
-> > 2.39.2
-> >
-
-
-
--- 
-With best wishes
-Dmitry
+> >  Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml b/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+> > index 02b662d780bbb..b21e958efc184 100644
+> > --- a/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+> > +++ b/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+> > @@ -19,6 +19,11 @@ properties:
+> >    reg:
+> >      maxItems: 1
+> >  
+> > +  arm-sbmr,skip-bootprogress-response:
+> 
+> Form is vendor,property-name where vendor is defined in 
+> vendor-prefixes.yaml. 'arm-sbmr' is not a vendor.
+> 
+> > +    type: boolean
+> > +    description:
+> > +      Skipping ARM SBMR “Send Boot Progress Code” response.
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > -- 
+> > 2.31.1
+> > 
 
