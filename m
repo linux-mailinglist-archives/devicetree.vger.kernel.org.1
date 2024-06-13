@@ -1,207 +1,198 @@
-Return-Path: <devicetree+bounces-75578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18048907CA3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:32:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D0F907CB4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:35:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A22CA2820D8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:32:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB292B22428
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8B9136672;
-	Thu, 13 Jun 2024 19:32:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="J+jPP3kU";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="E56+plvU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58181474A8;
+	Thu, 13 Jun 2024 19:35:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout2-smtp.messagingengine.com (fout2-smtp.messagingengine.com [103.168.172.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0AE92F50;
-	Thu, 13 Jun 2024 19:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D034D12C7E3;
+	Thu, 13 Jun 2024 19:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718307128; cv=none; b=R+uZHpMWqn9h4tA32ZNCfpe/yWXfQWQveB7BtsDBFkSwUESQRa8BenAGhdwoRqW5IkxCwi/xg0y0w6sVCVC0orVnQjkWhvPjHN/h8F67wHlJU9b3t49KP7oRu4Yz0gNPqMw4zFe1iQ2yM9rmRaf9oXxHotnlGKL1s6/+vNDs5XY=
+	t=1718307335; cv=none; b=NeU6jLS5ZtQiQzLsKZ4U0/bFqkkryE+lGjkG70jot68qvbzBF/V1koRK+sFCa0lwqBA17l7eF+u8t7bYfG2BPWFN5EBuuF2fXL7Mqk9jnTBcJd1tTCOuiKwNpfOyqM779fx7CJLKeXDuCyqCdr9mE4aRVgJQ/Vv49el2py1R9gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718307128; c=relaxed/simple;
-	bh=7SxxRthBao7cElNlUWiApM5FlMLnMOaKyIDs5ynswf0=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=pIDkRr5wChR1bk9jQpJSnKmjdLZlfbd2ywIOz/6wI9RyGaOdLacf07DqLazF8+q8nc04wpECWO6KN6e6lWrmadi97CF04Xsq3AHt+J82CwEhevh0RrBVGkKEf4NvQ4MhxLlepSRXWDg6q89N/OG0KZLMj/F4O2pSjRjASyVg6k8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=J+jPP3kU; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=E56+plvU; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 1CB9A13800BB;
-	Thu, 13 Jun 2024 15:32:06 -0400 (EDT)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Thu, 13 Jun 2024 15:32:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1718307126;
-	 x=1718393526; bh=Qtdq9rJNyFwVn/RbNhPVjnJth7o/5tp1gNYGUREYPVw=; b=
-	J+jPP3kUiQB+p0OzFv69I7crLebKK0KJTmOseeQZrgu83Emb5ApmO0mXKG42ULu7
-	PlAj4D2UAM4ZD4cV6ulNdlZ7hph+1v4A6Ie+fATkwBjH3TkrHpZl6l41yqM/eBkW
-	K5XoaqW2m75lCmVn289jO8lcP7QPOccSVRGnVW3cy41f7t3cIDyC5L0B7HnohqYw
-	Gcvo8bOeb/tbdi37m7XNMZdBRGVupsFRatCaX48DWeFA/c/1+2AbhgDCBHhdQFOe
-	/ev1H+KAISfBwRKX+X8GAXRCrll6eD1c5RRknwzllVDlRGO8+ZezkawtTsOl/7/a
-	nJMRILl6UDrcqkikMX7+OQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1718307126; x=
-	1718393526; bh=Qtdq9rJNyFwVn/RbNhPVjnJth7o/5tp1gNYGUREYPVw=; b=E
-	56+plvUJ27Zj8HPv789bSPdsiRumPzds6J54ktB4SNqqK23v61XPKVOmDYHZpFrG
-	ujZhP5zWC9Ytn87SMVL+FgwFtFi0h9R6bY2Ytt/0/Ots5B+PD+AdUuJtfRzHd+TZ
-	ajcbSN3FyppWNR/T/JYcgiYtj3MyVWGClXXPS7kqPAuvMwD1PzVCq1fY0oaaRx8k
-	iyLXF1z7uXpkgUCzhoHaMSkhgTrfo660nb/8kqsdeIAvjDJHj4qws08GiJdm9uYM
-	8tGxZFXmOP6rDUL+uFMzeY8AgXjQGJqXyScyitSBZtVTUjnJXKOLOz4e7TVQXJiq
-	HiHFJmAvkf0fS78fj3GTg==
-X-ME-Sender: <xms:NUlrZmwu8udUXVB1tpCehjs1rbV0hfLeND86JgU-6bcZaYNnXuorUQ>
-    <xme:NUlrZiToWBOKkzlGX9jaK5Tg5sYg-rZNI0GhUdG1e7h0KnLFtO6FPL5XL3xjJjvGn
-    B8A-iA-XntPtIK7t-8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedujedgudefhecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
-    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
-    homheqnecuggftrfgrthhtvghrnhepjedutdeuhfdvjeevgfehudeitdehiefgveelheff
-    uddulefhkeeihfehudehgfevnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrgh
-    enucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgr
-    gihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:NUlrZoWH-01odsK7Zl-L6Cyvx_7KHhGAMpMqUu0kmkxPq10C3H2XaQ>
-    <xmx:NUlrZsidWbnC40N5cHcOCMChghCfZJzdvacF8q5YgIadXzHkgjVOTA>
-    <xmx:NUlrZoCijY_ait4cLZBkx0mJQnDaj-t1eSJBSFbr4FjclinJ6njgoA>
-    <xmx:NUlrZtLMM65QDsmKhc_AzoNvF3o5pcb7GYJtmtf7wQdsMe-Xvm0auQ>
-    <xmx:NklrZk1b30NEU0lDy1VRCU1ixKoSHJgHzjKqattoKeOeg2UR4cRAUsD1>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 7992036A0076; Thu, 13 Jun 2024 15:32:05 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-515-g87b2bad5a-fm-20240604.001-g87b2bad5
+	s=arc-20240116; t=1718307335; c=relaxed/simple;
+	bh=s5KKQ0WNyT8RnqJyo/yU0Fv2P20o+Qh11bQpcaR2S40=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ExK5cWSByhn3dRcxl7Fz7bvE8ngIfQxeHsLwdzkUkBNXSgAsLR2TfLQRVv/NDwQJXBsdkwV2In57Pi6fpHIUbzA6568cDC0TqlUZ+VnWM6Re3QsYfi7XsYWHVh6+cNgL8DHBkDtUOE+rKE+ZIQA2BBthS8QWbNSIwVBiBQ9vxMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-631443f1a04so8053647b3.0;
+        Thu, 13 Jun 2024 12:35:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718307327; x=1718912127;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nQG5ooT0PXUjGHQYatw2DQ/Unvuxh0lOAK6d2aZOYtA=;
+        b=dzBcZS6VrtnY1FNPsbeCp8IJsArriBx5TFISKUyd1tEvgUZ4nAflbZSyvBSHXKAe0W
+         iW5akIPWL2G/GL7UC7ivrBfJ16twxgFolK72eiqCbN3qWTwHrGM/Jl4+1FvR5HqQeq3D
+         43dE8BRfVEPOcVpLvacwIp1ubQR5L4Fy/1ksQlxdZx9y7SqCglwTCNIzyC5lQmNbSfvM
+         ETpoKL/R9e3VWoXGQb5XMUVMpsTHmQiBFaC0+IYshaU4+Bbos4cjlecQ4FGTAo5X7Ye9
+         cWVKu0BSTNwLn3r6Q0hy/nHoZUz8id69DnJqwtKHOt51xEjK/voAs9Xu9W1Wna9NpgDy
+         wZjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVdn0AxSBNCRRpYl8zugU3Wnn+XKBTwo4WWOGhwAJ6WOV4/RPVdGkWGHjFN0DzcuMQbJYHKO8n7uw/cgGEkksSHJuciGtKPJffYbPPMzzRpHJU/nTGbI9Wld3Et/a3WNUAWdrkpDC5U4KUmyAzid2sd3n+nte8dCUX8t5296E7fZZSjpieUwjfh7Ro=
+X-Gm-Message-State: AOJu0Yxz0MH1kQWfC10ykaWGzbd2b5FID+/M5/H2xwFiZvRLX5rEEAhi
+	4PXZRmSsKkDshv/9HEGz6uesUjl8tHSgZTji/+eTfdNsFoZSFGYAlHg69MtN
+X-Google-Smtp-Source: AGHT+IEj2IQ15T0RtLrNpkm7Kg831aV9UJTYXbySLiXylTr/zld1XGb77gJz4KEtSJsEF/e315UjlQ==
+X-Received: by 2002:a81:dc08:0:b0:62f:8513:ba7d with SMTP id 00721157ae682-632064dce1emr4680347b3.22.1718307327392;
+        Thu, 13 Jun 2024 12:35:27 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-631183d7cc4sm2646987b3.10.2024.06.13.12.35.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jun 2024 12:35:26 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-631443f1a04so8053307b3.0;
+        Thu, 13 Jun 2024 12:35:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUhQDq944CyeBxubI+bidMm4MhcxvLXdMzM7ZPas/+mxOHYeN5V3+IR/1zYVh5dEuP765SQO2IrBieu+fPu7LwHj8yVoLvh0hry66kMkRyujDXfMrxHDuX6mzG4Nr3srXhC40Futs5uNotl96v3UKdXYmDixjN0JQJ2H1w5WYU5Dk2BoZ3j2HlVJcw=
+X-Received: by 2002:a81:ae15:0:b0:630:163b:46f7 with SMTP id
+ 00721157ae682-630bc5fc133mr20529697b3.6.1718307326451; Thu, 13 Jun 2024
+ 12:35:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <bbbd52c2-aaf2-4777-bee4-855d805923b5@app.fastmail.com>
-In-Reply-To: <20240613190429.GA2309072-robh@kernel.org>
-References: <20240612-boston-syscon-v2-0-9f8e1a07fa63@flygoat.com>
- <20240612-boston-syscon-v2-6-9f8e1a07fa63@flygoat.com>
- <20240613190429.GA2309072-robh@kernel.org>
-Date: Thu, 13 Jun 2024 20:31:46 +0100
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Rob Herring" <robh@kernel.org>
-Cc: "Lee Jones" <lee@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v2 6/8] dt-bindings: mfd: Add img,boston-platform-regs
-Content-Type: text/plain;charset=utf-8
+References: <20240610113124.2396688-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240610113124.2396688-2-niklas.soderlund+renesas@ragnatech.se>
+ <20240610-screen-wolverine-78370c66d40f@spud> <20240610165935.GA382677@ragnatech.se>
+ <20240610-yoga-antler-e6447592de16@spud> <20240611110617.GD382677@ragnatech.se>
+ <20240613165111.GA2005299-robh@kernel.org>
+In-Reply-To: <20240613165111.GA2005299-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 13 Jun 2024 21:35:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUQr0pzhL6Tq=R_TTUSu5wDZO-sWQHkuLg4C=xv9TyoWQ@mail.gmail.com>
+Message-ID: <CAMuHMdUQr0pzhL6Tq=R_TTUSu5wDZO-sWQHkuLg4C=xv9TyoWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: renesas,vin: Add binding for V4M
+To: Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Rob, Conor,
 
-
-=E5=9C=A82024=E5=B9=B46=E6=9C=8813=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=E5=
-=8D=888:04=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
-> On Wed, Jun 12, 2024 at 12:56:25PM +0100, Jiaxun Yang wrote:
->> This compatible has been used in arch/mips/boot/dts/img/boston.dts
->> for a while but never documented properly.
->>=20
->> Write a new binding for this device.
->> This also covers old img,boston-clock binding so remove that binding.
->>=20
->> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
->> ---
->>  .../devicetree/bindings/clock/img,boston-clock.txt | 31 ---------
->>  .../bindings/mfd/img,boston-platform-regs.yaml     | 74 ++++++++++++=
-++++++++++
->>  2 files changed, 74 insertions(+), 31 deletions(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/clock/img,boston-clock=
-.txt b/Documentation/devicetree/bindings/clock/img,boston-clock.txt
->> deleted file mode 100644
->> index 7bc5e9ffb624..000000000000
->> --- a/Documentation/devicetree/bindings/clock/img,boston-clock.txt
->> +++ /dev/null
->> @@ -1,31 +0,0 @@
->> -Binding for Imagination Technologies MIPS Boston clock sources.
->> -
->> -This binding uses the common clock binding[1].
->> -
->> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
->> -
->> -The device node must be a child node of the syscon node correspondin=
-g to the
->> -Boston system's platform registers.
->> -
->> -Required properties:
->> -- compatible : Should be "img,boston-clock".
->> -- #clock-cells : Should be set to 1.
->> -  Values available for clock consumers can be found in the header fi=
-le:
->> -    <dt-bindings/clock/boston-clock.h>
->> -
->> -Example:
->> -
->> -	system-controller@17ffd000 {
->> -		compatible =3D "img,boston-platform-regs", "syscon";
->> -		reg =3D <0x17ffd000 0x1000>;
->> -
->> -		clk_boston: clock {
->> -			compatible =3D "img,boston-clock";
->> -			#clock-cells =3D <1>;
->> -		};
->> -	};
->> -
->> -	uart0: uart@17ffe000 {
->> -		/* ... */
->> -		clocks =3D <&clk_boston BOSTON_CLK_SYS>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/mfd/img,boston-platfor=
-m-regs.yaml b/Documentation/devicetree/bindings/mfd/img,boston-platform-=
-regs.yaml
->> new file mode 100644
->> index 000000000000..bf94de38a89f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.=
-yaml
->> @@ -0,0 +1,74 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/img,boston-platform-regs.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Imagination Technologies Boston Platform Registers
->> +
->> +maintainers:
->> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: img,boston-platform-regs
->> +      - const: syscon
->> +      - const: simple-mfd
+On Thu, Jun 13, 2024 at 6:51=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Tue, Jun 11, 2024 at 01:06:17PM +0200, Niklas S=C3=B6derlund wrote:
+> > On 2024-06-10 22:32:29 +0100, Conor Dooley wrote:
+> > > On Mon, Jun 10, 2024 at 06:59:35PM +0200, Niklas S=C3=B6derlund wrote=
+:
+> > > > On 2024-06-10 17:03:49 +0100, Conor Dooley wrote:
+> > > > > On Mon, Jun 10, 2024 at 01:31:23PM +0200, Niklas S=C3=B6derlund w=
+rote:
+> > > > > > Document support for the VIN module in the Renesas V4M (r8a779h=
+0) SoC.
+> > > > > >
+> > > > > > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@=
+ragnatech.se>
+> > > > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > > > ---
+> > > > > >  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
+> > > > > >  1 file changed, 1 insertion(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/media/renesas,vi=
+n.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > > index 5539d0f8e74d..168cb02f8abe 100644
+> > > > > > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > > @@ -54,6 +54,7 @@ properties:
+> > > > > >                - renesas,vin-r8a77995 # R-Car D3
+> > > > > >                - renesas,vin-r8a779a0 # R-Car V3U
+> > > > > >                - renesas,vin-r8a779g0 # R-Car V4H
+> > > > > > +              - renesas,vin-r8a779h0 # R-Car V4M
+> > > > >
+> > > > > Your driver patch suggests that this is compatible with the g var=
+iant.
+> > > >
+> > > > Currently it is. But that not always be true, I tried to outline th=
+is in
+> > > > to cover letter.
+> > >
+> > > To be honest, I don't usually read cover letters when reviewing bindi=
+ngs.
+> > > Information about why things are/are not compatible should be in a
+> > > commit itself.
+> > >
+> > > >     The V4M capture pipeline is similar to the other Gen4 SoC suppo=
+rted
+> > > >     upstream already V4H. Currently all futures supported for VIN o=
+n V4M are
+> > > >     also supported by V4H and the driver code can be shared. But as=
+ done for
+> > > >     other R-Car IP bindings a new dedicated binding for V4M is crea=
+ted.
+> > > >     This have proved prudent in the past where quirks are found eve=
+n within
+> > > >     the same generation as more advance use-cases are enabled.
+> > >
+> > > I don't understand how this precludes using the g variant as a fallba=
+ck
+> > > compatible. I'm not suggesting that you don't add a specific one for =
+the
+> > > h variant.
+> >
+> > The bindings have been around for a while and currently there are 25 So=
+C
+> > specific compatibles, one for each SoC supported. Each compatible
+> > consist of the SoC model number, not the VIN IP model/version number as
+> > no such versioning schema exist.
+> >
+> > The datasheets are specific for each SoC and there are differences
+> > between almost every SoC. There are of course lots of similarities
+> > between the SoCs and the similarities are cluster around the 3
+> > generations (Gen{2,3,4}) supported.
+> >
+> > Using the g variant as fallback in DTS for h variant even if we also ad=
+d
+> > a specific one for h is confusing. As g and h are two different SoC.
 >
-> Why did you add 'simple-mfd'? That's not what is in use.
+> Why? That is the very definition of how "compatible" is supposed to
+> work.
 >
+> > The g variant is r8a779g0 which is the SoC name/number for V4H.
+> > The h variant is r8a779h0 which is the SoC name/number for V4M.
+> >
+> > I think the core of the problem is that there are no versioning schema
+> > for the individual IP blocks used on each SoC. For better or worse the
+> > bindings for lots of Renesas IPs are centred around SoC name/number and
+> > not the individual IP implementations.
+>
+> We've tried IP version based compatibles before. It doesn't work. Guess
+> what, the IP version changes with nearly every SoC. Chip designers have
+> no discipline.
 
-U-Boot needs this to probe sub-nodes such as reboot and clock :-(
+The R-Car V4M capture pipeline is similar to e.g. the R-Car V4H capture
+pipeline. But it is not identical, hence the different compatible values.
+AFAIU, for the current feature-set, the driver does not need to handle
+the differences.  But that may change later...
 
-I had updated dts in an earlier patch of this series.
+Gr{oetje,eeting}s,
 
-Thanks
->>
+                        Geert
 
 --=20
-- Jiaxun
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
