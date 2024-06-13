@@ -1,171 +1,167 @@
-Return-Path: <devicetree+bounces-75479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C502907624
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:11:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9889790762D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:12:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED51C281BDF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:11:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47AF62836CC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC21D149C5B;
-	Thu, 13 Jun 2024 15:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE27B149C61;
+	Thu, 13 Jun 2024 15:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tx68Lz/j"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AyjHaTj6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA7F149C4B;
-	Thu, 13 Jun 2024 15:11:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422B31474A8;
+	Thu, 13 Jun 2024 15:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718291460; cv=none; b=a3boukS7aZ0hGNRfGOm1asWG4GEbCUqUfCTfV58MrOvpk6Vd8yED9tkkn1ETspPetOpOfNt5BCLZPZeKdEDmkQ+SgW12T7qwAZklIxhx5iuMx5/KeAClDqJ6EG+l6NbcMdpaUtaHebJx4zN+YT2zP6BIimO3oVML14Ng5Jy+AFk=
+	t=1718291512; cv=none; b=UWaIUdHWWx1EAhcj9qoAEtk9vJWImUxsbcJEFDynDCOyL5sFAL/Aqc4NsuKgqDLwE3/PSEy3Ho0W+TuYdlyNyHgKCtY9ikyVLfSjGAGf5OHuXYXHKHXEgI4MkdyguhFTGU4FoPxlEWH0Mv8NDjrNvgHqRZMwvqilKywJ0o9yJLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718291460; c=relaxed/simple;
-	bh=KEXcr6Qoi1UOFLMTPPqZR4F4hcqSnV5GgodnaogfRVQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U9bWK3cEmP7YzrWy9/nJaxmfOASke1mzqCnkOIoHPlAJIvOdKrHHv1M4OwYFvZ5Cyav+2apLTwWxUe/RHqvjePesMBnEM9O06Vpzo61axgDibG4y4gYuB04BFRr7iEZJkRp9SE+eRlGWUqTmSInfCxRk4LqwcPy6Du2x04/T3NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tx68Lz/j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41676C4AF49;
-	Thu, 13 Jun 2024 15:11:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718291460;
-	bh=KEXcr6Qoi1UOFLMTPPqZR4F4hcqSnV5GgodnaogfRVQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tx68Lz/jYiv25eoBL7oqfcUkd0kEGRiwX9e+hvytTB0AU3CYT+0SY55E0Hx1/TXEE
-	 Y4gsftI68RBk+RT6C/Ll0CpHl8u8hs0PQSY+hAkYkAqzuTNRLCLdcyIyvrZhZBcnzS
-	 avA+ZuW/kdYPdbfwEJOsDn/OC5s6WpDk9o7g2LDzEKlD6L8gbpIGF8jvDwOXDjsPDZ
-	 DTv95nHqQLDA7KiNjdXaAqVSV4k9wHFSyI5DoQGolB58QRUYX6no+D2wblqlJRdqRQ
-	 av+qBZHGPedqvjY+o4UYwH/K3pC2E3TDOOR8qQN6AsTZPaFXwRWn64jpC15YrFdvyg
-	 iSuXSbw1oONaQ==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a6f177b78dcso156331966b.1;
-        Thu, 13 Jun 2024 08:11:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVrhM2F/HwWHmn5RZ54Gka2TAQOd/+tBvCPZyvTW/soDacMFYVPu7eO/V8KDCqQb5qyQtoBZ0elsiXeJKH8kFZT8Pn8WzK0629UvM4cPuPVbtl6ydq4ihcqPeDiQJIRaCL50ClEzW9yDLVRYrgQRzJ3qC/ClJtuOcOgi0PEADRDGiGYr1cp3/vGg7/oIuioLxM/oSVf1M6CeJgOOzkGcLY=
-X-Gm-Message-State: AOJu0YwhClA+zZnq0p+9Fi3wmSuGRLgA2CSWE4iWjb6UUV9Ye3vw2/hi
-	XBokq27ZdVY4b1JBB508fFAG4hYfPm3yARlk3HdCSjJ8pS62xPaAnJyjh0V0GeJxSyozy7zodb+
-	zoH1i/FTlp8zfLcdzZUvBw93GgX8=
-X-Google-Smtp-Source: AGHT+IGKNP0sdxhLdeP60+uyQGarAo1kFcz7UY2k9bl7YpOANQuMJ5e0qwSraH31Wrs/+OIKEhu08Ba/9OtrjZJ5cS8=
-X-Received: by 2002:a17:906:b0d9:b0:a6e:f8b9:361f with SMTP id
- a640c23a62f3a-a6f60d1d1bamr3615966b.24.1718291458750; Thu, 13 Jun 2024
- 08:10:58 -0700 (PDT)
+	s=arc-20240116; t=1718291512; c=relaxed/simple;
+	bh=z+795azhnXvc7Z8d96JFT7XZ4xKMWAHclN8bCJF7dyU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Us71fH4zVCILkheG/nsb1i72RjF30PDxxCGVw9rE7TD142d4SmUk1bN4pUI4HxUp90pl0r0ygo31Wxae5NRegaDn+s2mY+r6MX1L3YmBxpkBaO+LSCSqIHe9jk0PSuNjAxP5z7Ivxq0XcvIYHeBtS7wc62uyglcEQ+cciIaOzGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AyjHaTj6; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57a44c2ce80so1255932a12.0;
+        Thu, 13 Jun 2024 08:11:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718291509; x=1718896309; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ZUuL7vfd80QBwFOZreuafWnuEJtkpQEboZUkkpavjoY=;
+        b=AyjHaTj6GPCnc81AsScic4bGJtgR1YkRSG0HxJPM/x5R08rYPh1HwTE3Iiu1M3e4qi
+         rjuqZr2W6AdA4voMwEnjseOK7LHLos7xhWxbWn1TijZ4Susx+WD/qI+/FNSUGNBnEgmn
+         iRk8cWiQbBKMZsOgWB2wRcwbEgCPz146r3i6ODsW7pWJbyMeEKY71hYtyS+ovvxi6Od2
+         U8dGGGW1kkFElMKiS/mvLRgx8AbwfxaKrcrZkUDiVF6WxN7xboYFcliSC5xGIsmfiaAO
+         Q5WEyaezGnq4b1YUQcmQTzemFR1KPdLH+N8PORk3kgAnSUfVIvpIpchfvC2HcYyyJayD
+         P6+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718291509; x=1718896309;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZUuL7vfd80QBwFOZreuafWnuEJtkpQEboZUkkpavjoY=;
+        b=EqzogsAtn/ecv4BlYAXv05JjEAYbBGuR3T2i6j0NR4IYwcYDMiyJf2Nc1wcpnUj+DV
+         D81aoUeOKWrxSfJQbWY6nOA8zDIMED19SQre/55xteSNU47xlK/qyOfLQ3as08xeoC5B
+         NhGIGM28djA1j775Gr63kWc0dq4nUfkrGmaSvf/RBqS1P+s+OJpRkxxZV+Q3IuCPYF3f
+         mJC19bwh3Pevl9nE3uV2J2yfq392KT0cRNfgkHzuGgEIJTD9S6o4sokhgaGQTodsRtWO
+         4EoRcb2apnITmvtWH4MLbAlqnsW4kie+Nlebh3zQ0rJcz2M1WjdPbiWxojCOZu6rI5zB
+         KCow==
+X-Forwarded-Encrypted: i=1; AJvYcCUr512oNZN4BPas6t1ExF92KOs1KnodaqUYpgkAHIo1p39HBp29rSmPULJwgmbR0s7hk4a3Y5Tz/BapDpkLaWgyUW0IqDJaGKxP65A1iaJLoyPR2+EAxMSMQCrgTZCgmCh0PiAQXnJIJhUcY/3KcZ0JTpImM7E9ObZAY44V9WM4TPF12llpIrrn6BY/HKAArcyaURtZG5Gef7ahOaM9/Q==
+X-Gm-Message-State: AOJu0YwNPnzgsCGj3Sl0Q4mWerQw9fKTSOZ2FKAKUNo5/xs7t4LtdoKK
+	p7zmUtygO1DEdtD9plNd0jiUhTgUJA+aJVArq1Kd9Eyj7lg0Lr30
+X-Google-Smtp-Source: AGHT+IHvS3n0XhSSsilqaBsUgJPu+uCF+nXcgUDyisRM+IjvDSTJs6bj4z/Gic9iov+SFd1Ia0o0hw==
+X-Received: by 2002:a17:906:68ca:b0:a6f:59dc:4ed1 with SMTP id a640c23a62f3a-a6f60cf2d33mr4132966b.14.1718291509171;
+        Thu, 13 Jun 2024 08:11:49 -0700 (PDT)
+Received: from nsa.fritz.box ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56f41655sm81149666b.169.2024.06.13.08.11.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 08:11:48 -0700 (PDT)
+Message-ID: <5f0776ba5163578453e26352763ff1b4687bcf87.camel@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add AD4695 and similar ADCs
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Krzysztof Kozlowski
+ <krzk@kernel.org>,  Jonathan Cameron <jic23@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: Michael Hennerich <michael.hennerich@analog.com>, Nuno
+ =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>, Jonathan Corbet <corbet@lwn.net>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Date: Thu, 13 Jun 2024 17:11:48 +0200
+In-Reply-To: <b6b52b1e-847b-44ca-87f9-095a78164771@baylibre.com>
+References: <20240612-iio-adc-ad4695-v1-0-6a4ed251fc86@baylibre.com>
+	 <20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
+	 <94448c2c-e7b2-4191-858c-529b254994f1@kernel.org>
+	 <f765ef30-a777-4dfc-8f93-0f15b46f91ae@baylibre.com>
+	 <e09fecf4-bde2-4feb-8312-22c530c6a960@kernel.org>
+	 <b6b52b1e-847b-44ca-87f9-095a78164771@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613-loongson1-dma-v9-0-6181f2c7dece@gmail.com>
-In-Reply-To: <20240613-loongson1-dma-v9-0-6181f2c7dece@gmail.com>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Thu, 13 Jun 2024 23:10:52 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H4nZqYi4ccsmw=1fmWySVL-kjoZ+_PQU4P9YKSrWGKdDw@mail.gmail.com>
-Message-ID: <CAAhV-H4nZqYi4ccsmw=1fmWySVL-kjoZ+_PQU4P9YKSrWGKdDw@mail.gmail.com>
-Subject: Re: [PATCH v9 0/2] Add support for Loongson1 APB DMA
-To: keguang.zhang@gmail.com
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-mips@vger.kernel.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi, Keguang,
+On Thu, 2024-06-13 at 09:39 -0500, David Lechner wrote:
+> On 6/13/24 9:18 AM, Krzysztof Kozlowski wrote:
+> > On 13/06/2024 15:57, David Lechner wrote:
+> > >=20
+> > > >=20
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: =
+adi,ad4695
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: =
+adi,ad4697-wlcsp
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: =
+adi,ad4697
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # same chips with higher max samp=
+le rate
+> > >=20
+> > > I suppose one could make the argument that the programming model is
+> > > the same on these too, but the maximum sampling frequency does seem
+> > > like an important bit of information so that you don't try to set
+> > > the conversion trigger rate too high.
+> > >=20
+> >=20
+> > which property is that? I don't see differences in the driver, so I
+> > don't get how these wlcsp compatibles allow you to control value of
+> > conversion trigger.
+>=20
+> This comment is unrelated to the package type (WLCSP or LFCSP).
+>=20
+> What I mean is that e.g. AD4695 and AD4696 are virtually identical
+> other than the maximum allowable sample rate (500 kSPS or 1 MSPS).
+>=20
+> So my thinking was that it would make sense to have:
+>=20
+> 	compatible =3D "ad4695";
+>=20
+> for the lower sample rate chip and
+>=20
+> 	compatible =3D "ad4696", "ad4695";
+>=20
+> for the higher sample rate chip since ad4696 can do everything
+> that ad4695 does plus a bit more.
+>=20
 
-On Thu, Jun 13, 2024 at 8:03=E2=80=AFPM Keguang Zhang via B4 Relay
-<devnull+keguang.zhang.gmail.com@kernel.org> wrote:
->
-> Add the driver and dt-binding document for Loongson1 APB DMA.
-I still suggest using ls1x-apb-dma.c as the file name, for consistency
-in the same subsystem. But as I said before, I will also accept some
-of your suggestions, so I use loongson3_cpufreq.c here.
+IMO, that would make sense yes. If the higher sample rate chip fallsback, i=
+t will
+still work but not at full speed. The other way around is the one that we c=
+an't allow
+naturally.
 
-https://lore.kernel.org/loongarch/20240612064205.2041548-1-chenhuacai@loong=
-son.cn/T/#t
+But possibly dumb question now... since both devices will be supported at t=
+he same
+time, do we actually care about having the fallback compatible? My understa=
+nding of
+the fallback story is that we may load a DTS in an older kernel where chip =
+A is
+supported but chip B is not and it is ok for chip B to fallback to chip A. =
+Since
+these devices will be supported at the same time, do we need to care? Unles=
+s out of
+tree stuff enters the equation?
 
-Huacai
->
-> ---
-> Changes in v9:
-> - Fix all the errors and warnings when building with W=3D1 and C=3D1
-> - Link to v8: https://lore.kernel.org/r/20240607-loongson1-dma-v8-0-f9992=
-d257250@gmail.com
->
-> Changes in v8:
-> - Change 'interrupts' property to an items list
-> - Link to v7: https://lore.kernel.org/r/20240329-loongson1-dma-v7-0-37db5=
-8608de5@gmail.com
->
-> Changes in v7:
-> - Change the comptible to 'loongson,ls1*-apbdma' (suggested by Huacai Che=
-n)
-> - Update the title and description part accordingly
-> - Rename the file to loongson,ls1b-apbdma.yaml
-> - Add a compatible string for LS1A
-> - Delete minItems of 'interrupts'
-> - Change patterns of 'interrupt-names' to const
-> - Rename the file to loongson1-apb-dma.c to keep the consistency
-> - Update Kconfig and Makefile accordingly
-> - Link to v6: https://lore.kernel.org/r/20240316-loongson1-dma-v6-0-90de2=
-c3cc928@gmail.com
->
-> Changes in v6:
-> - Change the compatible to the fallback
-> - Implement .device_prep_dma_cyclic for Loongson1 sound driver,
-> - as well as .device_pause and .device_resume.
-> - Set the limitation LS1X_DMA_MAX_DESC and put all descriptors
-> - into one page to save memory
-> - Move dma_pool_zalloc() into ls1x_dma_alloc_desc()
-> - Drop dma_slave_config structure
-> - Use .remove_new instead of .remove
-> - Use KBUILD_MODNAME for the driver name
-> - Improve the debug information
-> - Some minor fixes
->
-> Changes in v5:
-> - Add the dt-binding document
-> - Add DT support
-> - Use DT information instead of platform data
-> - Use chan_id of struct dma_chan instead of own id
-> - Use of_dma_xlate_by_chan_id() instead of ls1x_dma_filter()
-> - Update the author information to my official name
->
-> Changes in v4:
-> - Use dma_slave_map to find the proper channel.
-> - Explicitly call devm_request_irq() and tasklet_kill().
-> - Fix namespace issue.
-> - Some minor fixes and cleanups.
->
-> Changes in v3:
-> - Rename ls1x_dma_filter_fn to ls1x_dma_filter.
->
-> Changes in v2:
-> - Change the config from 'DMA_LOONGSON1' to 'LOONGSON1_DMA',
-> - and rearrange it in alphabetical order in Kconfig and Makefile.
-> - Fix comment style.
->
-> ---
-> Keguang Zhang (2):
->       dt-bindings: dma: Add Loongson-1 APB DMA
->       dmaengine: Loongson1: Add Loongson-1 APB DMA driver
->
->  .../bindings/dma/loongson,ls1b-apbdma.yaml         |  67 +++
->  drivers/dma/Kconfig                                |   9 +
->  drivers/dma/Makefile                               |   1 +
->  drivers/dma/loongson1-apb-dma.c                    | 665 +++++++++++++++=
-++++++
->  4 files changed, 742 insertions(+)
-> ---
-> base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
-> change-id: 20231120-loongson1-dma-163afe5708b9
->
-> Best regards,
-> --
-> Keguang Zhang <keguang.zhang@gmail.com>
->
->
->
+Or is there another usecase that I'm not aware about (or maybe it just make=
+s sense to
+document properly...)?
+
+- Nuno S=C3=A1
+>=20
+
 
