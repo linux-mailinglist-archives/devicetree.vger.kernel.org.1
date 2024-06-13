@@ -1,177 +1,196 @@
-Return-Path: <devicetree+bounces-75600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B607B907DD5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 23:10:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4DBB907E3F
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 23:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C18EA1C224CC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:10:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 549261F25D43
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A3413BAC8;
-	Thu, 13 Jun 2024 21:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D87143741;
+	Thu, 13 Jun 2024 21:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hauke-m.de header.i=@hauke-m.de header.b="sivM0bTx"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="3U5j0THM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A1D139CE2;
-	Thu, 13 Jun 2024 21:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9401F13D246;
+	Thu, 13 Jun 2024 21:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718313016; cv=none; b=R+LgeZeAZeRwqKc6K+P6kZsu/LOY36KsD+hNyJXpcbOhe84sNAIiUz/MrOsrmX8NO3jgY53kBrlLgQhSI6aql9aEghcSlvrLM0aAz43GItNz7X7Y0JvH26qlzstBIZCPeo/6Qa+kjeDOgQrNhvHB9D5M6eavHfWzTZQ6127voO4=
+	t=1718314689; cv=none; b=fgGA6JWGEWZB8va4KXwgPNyqMIqjq2CFwMGSSZNYLIwhGPbErTt8Rq1jaCk+WVdWQPMdG3effF6J9jSOFZj6N7/qQamxCk5b9tYjlM22WPWmrnFM7elSWDv6mdHuF5dHJtH8+0E7Rh1955H/RX3SqrzDv+1mS55EeoBEdKgEifc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718313016; c=relaxed/simple;
-	bh=1J4WLBtZ95L8XtXYwCU1lBJTRVbRe4D591TuQlCYEHM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HnrjlAuleO0nRK4dPAt1Y3F5lKR8qMtYWsNK2Q6HRogDTwDnJay4YN8Lwg9hTlt8xthdTgv9i2nA4eoArFTntde5zGGiFi4o/hf2MuA7Dg6LVCIbNuLLFT7b37xsHs1Uy4iiyXXc+dmqupQlDjEhDQGYAOOthEkzMaZ5c18amuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hauke-m.de; spf=pass smtp.mailfrom=hauke-m.de; dkim=pass (2048-bit key) header.d=hauke-m.de header.i=@hauke-m.de header.b=sivM0bTx; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hauke-m.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hauke-m.de
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	s=arc-20240116; t=1718314689; c=relaxed/simple;
+	bh=wQRJ+B8dKBMEN9aK4yJ8U5SXpzhbb+OTGleMQUKuqZU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RAq81ykO64xqv/IVCaAtAS6vWxanKrlfZU2V7PB1WZ5N8CTuB2+m2901MfDS4zXu6+VzuNklPLanGwyeIfh/QvrM+i0Q0uqoYSidzQ+V+8kIOZuRTntOKlB27kb8mFJn7c0wIZE3w0DMtY3HULowkSUQa32/3pgDkr04xePnEmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=3U5j0THM; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718314684;
+	bh=wQRJ+B8dKBMEN9aK4yJ8U5SXpzhbb+OTGleMQUKuqZU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=3U5j0THMUJ8g3TXgXNLOldlc/L+6S0af1DsD+nf4VruKtFSMI9zfD7UEWckCp6Oe8
+	 xZdSCfQlC3YXT8JdgSZ5UO18t5lpRAfiYVksp8zxTVVRSL429X3chvDThh6rWSF664
+	 O/FDXk+Ieg9s1fDnggez30MDPHvzEN5q6zgAcB0PCbplAgyNUyjqH1gOrfIC4ODqj3
+	 Im14L91ZzI2t/oSZ8T1c5L/GGpCrWjyFEqLuH1NKJl+2qdFQwyZN2HSFjCERToNIuJ
+	 5fRECQaz9HWZAIhveINAE+sdcQ9LjAo4W8RDFS3P57rk06CEq1r8xF8g8qkfkuUnnQ
+	 vigHnKwXkfKYQ==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4W0Zmy33WLz9sPq;
-	Thu, 13 Jun 2024 23:10:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hauke-m.de; s=MBO0001;
-	t=1718313010;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Zf/D0AMDmsG7+mRQtcpHFjZ6BvLst9hXH1WNYtGV8o0=;
-	b=sivM0bTxsqdxmFANQaTA5jst3UhQRRoBhxKaU4DCdHIjOp5u+0tVO/l4/8oPPdfXBuy0su
-	q+0bDukQL6xZ7573zc92yW924ivLssKZ/Q8gC3PFvj28t3GYmeC8IMJGYwB4MoH4LEUsNL
-	l9OC6FT83P2hXD0KbUyBkf3gETKgGWi2HWrwOtOII/lpj250pXPiKG+4xjzlaZ4xTwPSQI
-	0paINADGZDr8vTYHVc6eFPgXFa8L5N1mNNeL8MI7oBI9UE2negABMB8ecTyrhtuM2UYUX3
-	DnxZvp8BhZvWQCqLDhPup9ze6paM7fLaxfvKXM+6k7zHTas63jgmI63sCx6XiA==
-Message-ID: <93428cdd-301a-46d7-84ef-e5c8ad42f495@hauke-m.de>
-Date: Thu, 13 Jun 2024 23:09:55 +0200
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8A2AB37820CD;
+	Thu, 13 Jun 2024 21:38:04 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 046AC10608F7; Thu, 13 Jun 2024 23:38:04 +0200 (CEST)
+Date: Thu, 13 Jun 2024 23:38:03 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Oded Gabbay <ogabbay@kernel.org>, Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH 2/9] iommu/rockchip: Attach multiple power domains
+Message-ID: <vmgk4wmlxbsb7lphq2ep3xnxx3mbv6e6lecihtftxoyp5lidvy@mectcwirrlek>
+References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-2-060e48eea250@tomeuvizoso.net>
+ <ffviz6ak6qsn2reg5y35aerzy7wxfx6fzix6xjyminbhfcguus@clszdjakdcjd>
+ <CAAObsKCx+r5UuESnrPem1Rb1-BF4i8FVwu6uozWhABOWoq+M4Q@mail.gmail.com>
+ <CAAObsKChaBZ2C5ezWsiZ_LoN6R2HFhFA9=UNSRYB6cyeo-jreg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/9] block: partitions: populate fwnode
-To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Jens Axboe <axboe@kernel.dk>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
- Christian Brauner <brauner@kernel.org>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- Al Viro <viro@zeniv.linux.org.uk>, Li Lingfeng <lilingfeng3@huawei.com>,
- Christian Heusel <christian@heusel.eu>, Min Li <min15.li@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Hannes Reinecke <hare@suse.de>, Mikko Rapeli <mikko.rapeli@linaro.org>,
- Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Li Zhijian <lizhijian@fujitsu.com>,
- "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-block@vger.kernel.org
-References: <cover.1717031992.git.daniel@makrotopia.org>
- <3329bf2fa25695934b392944ff977ae95dc8c02d.1717031992.git.daniel@makrotopia.org>
-Content-Language: en-US
-From: Hauke Mehrtens <hauke@hauke-m.de>
-In-Reply-To: <3329bf2fa25695934b392944ff977ae95dc8c02d.1717031992.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4W0Zmy33WLz9sPq
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3uic2ihq2a6l3k3w"
+Content-Disposition: inline
+In-Reply-To: <CAAObsKChaBZ2C5ezWsiZ_LoN6R2HFhFA9=UNSRYB6cyeo-jreg@mail.gmail.com>
 
-Hi Daniel,
 
-On 5/30/24 04:13, Daniel Golle wrote:
-> Let block partitions to be represented by a firmware node and hence
-> allow them to being referenced e.g. for use with blk-nvmem.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->   block/partitions/core.c | 41 +++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 41 insertions(+)
-> 
-> diff --git a/block/partitions/core.c b/block/partitions/core.c
-> index ab76e64f0f6c..93d109409905 100644
-> --- a/block/partitions/core.c
-> +++ b/block/partitions/core.c
-> @@ -10,6 +10,8 @@
->   #include <linux/ctype.h>
->   #include <linux/vmalloc.h>
->   #include <linux/raid/detect.h>
-> +#include <linux/property.h>
-> +
->   #include "check.h"
->   
->   static int (*const check_part[])(struct parsed_partitions *) = {
-> @@ -281,6 +283,43 @@ static ssize_t whole_disk_show(struct device *dev,
->   }
->   static const DEVICE_ATTR(whole_disk, 0444, whole_disk_show, NULL);
->   
-> +static struct fwnode_handle *find_partition_fwnode(struct block_device *bdev)
-> +{
-> +	struct fwnode_handle *fw_parts, *fw_part;
-> +	struct device *ddev = disk_to_dev(bdev->bd_disk);
-> +	const char *partname, *uuid;
-> +	u32 partno;
-> +
-> +	fw_parts = device_get_named_child_node(ddev, "partitions");
-> +	if (!fw_parts)
-> +		fw_parts = device_get_named_child_node(ddev->parent, "partitions");
+--3uic2ihq2a6l3k3w
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Could you please explain why you try to get the node from the device and 
-the parent when it is not available? I think this should go into the 
-commit description.
+Hi,
 
-> +
-> +	if (!fw_parts)
-> +		return NULL;
-> +
-> +	fwnode_for_each_child_node(fw_parts, fw_part) {
-> +		if (!fwnode_property_read_string(fw_part, "uuid", &uuid) &&
-> +		    (!bdev->bd_meta_info || strncmp(uuid,
-> +						    bdev->bd_meta_info->uuid,
-> +						    PARTITION_META_INFO_UUIDLTH)))
+On Thu, Jun 13, 2024 at 11:34:02AM GMT, Tomeu Vizoso wrote:
+> On Thu, Jun 13, 2024 at 11:24=E2=80=AFAM Tomeu Vizoso <tomeu@tomeuvizoso.=
+net> wrote:
+> > On Thu, Jun 13, 2024 at 2:05=E2=80=AFAM Sebastian Reichel
+> > <sebastian.reichel@collabora.com> wrote:
+> > > On Wed, Jun 12, 2024 at 03:52:55PM GMT, Tomeu Vizoso wrote:
+> > > > IOMMUs with multiple base addresses can also have multiple power
+> > > > domains.
+> > > >
+> > > > The base framework only takes care of a single power domain, as some
+> > > > devices will need for these power domains to be powered on in a spe=
+cific
+> > > > order.
+> > > >
+> > > > Use a helper function to stablish links in the order in which they =
+are
+> > > > in the DT.
+> > > >
+> > > > This is needed by the IOMMU used by the NPU in the RK3588.
+> > > >
+> > > > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > > > ---
+> > >
+> > > To me it looks like this is multiple IOMMUs, which should each get
+> > > their own node. I don't see a good reason for merging these
+> > > together.
+> >
+> > I have made quite a few attempts at splitting the IOMMUs and also the
+> > cores, but I wasn't able to get things working stably. The TRM is
+> > really scant about how the 4 IOMMU instances relate to each other, and
+> > what the fourth one is for.
+> >
+> > Given that the vendor driver treats them as a single IOMMU with four
+> > instances and we don't have any information on them, I resigned myself
+> > to just have them as a single device.
+> >
+> > I would love to be proved wrong though and find a way fo getting
+> > things stably as different devices so they can be powered on and off
+> > as needed. We could save quite some code as well.
+>=20
+> FWIW, here a few ways how I tried to structure the DT nodes, none of
+> these worked reliably:
+>=20
+> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-de=
+vices-power/arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1163
+> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-schema-subn=
+odes//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1162
+> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-de=
+vices//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L1163
+> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-io=
+mmus//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=3Dheads#L2669
+>=20
+> I can very well imagine I missed some way of getting this to work, but
+> for every attempt, the domains, iommus and cores were resumed in
+> different orders that presumably caused problems during concurrent
+> execution fo workloads.
+>=20
+> So I fell back to what the vendor driver does, which works reliably
+> (but all cores have to be powered on at the same time).
 
-I think you should check that the uuid provided in the device tree is 
-not longer than PARTITION_META_INFO_UUIDLTH. Same for the volume name.
+Mh. The "6.10-rocket-multiple-iommus" branch seems wrong. There is
+only one iommu node in that. I would have expected a test with
 
-> +			continue;
-> +
-> +		if (!fwnode_property_read_string(fw_part, "partname", &partname) &&
-> +		    (!bdev->bd_meta_info || strncmp(partname,
-> +						    bdev->bd_meta_info->volname,
-> +						    PARTITION_META_INFO_VOLNAMELTH)))
-> +			continue;
-> +
-> +		if (!fwnode_property_read_u32(fw_part, "partno", &partno) &&
-> +		    bdev_partno(bdev) != partno)
-> +			continue;
-> +
-> +		return fw_part;
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
->   /*
->    * Must be called either with open_mutex held, before a disk can be opened or
->    * after all disk users are gone.
-> @@ -355,6 +394,8 @@ static struct block_device *add_partition(struct gendisk *disk, int partno,
->   			goto out_put;
->   	}
->   
-> +	device_set_node(pdev, find_partition_fwnode(bdev));
-> +
->   	/* delay uevent until 'holders' subdir is created */
->   	dev_set_uevent_suppress(pdev, 1);
->   	err = device_add(pdev);
+rknn {
+    // combined device
 
-Hauke
+    iommus =3D <&iommu1>, <&iommu2>, ...;
+};
 
+Otherwise I think I would go with the schema-subnodes variant. The
+driver can initially walk through the sub-nodes and collect the
+resources into the main device, so on the driver side nothing would
+really change. But that has a couple of advantages:
+
+1. DT and DT binding are easier to read
+2. It's similar to e.g. CPU cores each having their own node
+3. Easy to extend to more cores in the future
+4. The kernel can easily switch to proper per-core device model when
+   the problem has been identified
+
+-- Sebastian
+
+--3uic2ihq2a6l3k3w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmZrZrgACgkQ2O7X88g7
++pqvVQ//cIZokM7uuQmsxYEnzeSuLFKCBJ+oWnWgh4a++M1EuS1b/w0P6VZVbhIW
+iEJSHCfTPBss/DPmCD1r7EbFZNZAV4YUo+rk8mwj+BXs2UqekcEFIsyaHoMKvqGo
+i8NJGn2b2vqDx0UJg7vyjE84lETeT1d5MbVF6wPoP8JaUztKLIx4fl80aT88LTdS
+i8gbGH7lSQzRcGm15LRYo63i8jlD5uB+nCoeZ0cVWgCBO0pTFAZd4rcrfl3YubT2
+qozKnZYjsOnsWuoul/3CAqoXSci6wmvnkEQAo3CnIWAjHBW6/ym9qE4WhHM/TTVs
+yeSaIOV6tBrSGM4JOrHRGv3yPNHG+ZitS2Kbu3W8Am0wtKcyzff52LoOvaM8wgVV
+UBxrpXaFg7wuVU9t2wdb8vCwrl6N8zHk/hVUBA2pR+NI64eQ7oCCakzet3ZecegK
+npkoGWt7nX+fihR62gS04M36rL1KPEuvPgp6BpFklhndvXeOxgRlaGI0fDxooHXM
+KIzNF6cHZSDspUenm7oYNGzw5hRfOvy64fuyRXzOTOiNMrNZKS69I76SDqEuC3fw
+k3Y3O9GHR0DwIH7N9OoW0b7YDkUXerqTrghj88+VsEQPU7ObVS/NO+HHWbVAuv40
+weMFQJ5Ceqsm4+9tAMmJKZpoOPubYnRaYD+u8yxwoNVdPb3DEIo=
+=08Xd
+-----END PGP SIGNATURE-----
+
+--3uic2ihq2a6l3k3w--
 
