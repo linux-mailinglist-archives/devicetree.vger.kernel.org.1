@@ -1,101 +1,216 @@
-Return-Path: <devicetree+bounces-75557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F77907B5D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:31:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB542907B60
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 20:31:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECEA41F22AD7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:31:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B768285445
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:31:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CF014C5B5;
-	Thu, 13 Jun 2024 18:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B5814A0AD;
+	Thu, 13 Jun 2024 18:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ifu5bx+2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cfiC3cRg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB10714B075;
-	Thu, 13 Jun 2024 18:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A7714B075
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 18:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718303465; cv=none; b=WgVZKN+ODBW5W9JGpgq6m17qgk25Y5Bxhx7RNF+8GodAylhofACGEXx8fsM5qpdR5CdcaTaLUa0AV03PwpmNWIWpoNf91gw1RWKV4X2maLWKTn8r3y4/Q2DQxAX/suGr0Giy7EUkOQ6sKF7bK4EsUM7GR9tPB3tykyw3x3zH2n8=
+	t=1718303493; cv=none; b=LhCBolSj+lf2xpNE4Ge9wT4q5jDeMsFLLnveUbLDp4ribeNWIFaTQTEkD5tmXkSWb75NgmfKiAUOarMOhu2jpGC8MpzpTUhIAA0r6EdBw2SlGOqkwsZFINzYce9tac3FVE1MFr1qd2qQ9hCqbQYwlaLRRp8xmAqQGeOkMRrHoEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718303465; c=relaxed/simple;
-	bh=SbD+xFGqIOxNc3/m8vp1hOh4RjDlhrkQYNrPi7kWyJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hMDts+3kebQP8kVu309Tk7dzk8v3g7+5ReVIaAX96MaKXzXieKaEvy2Vltr0+LFUZLbuUsWjpj4CLqHDvZoQFo8Z8+p2zWVuTx1Vaf5q2Y6myCiPKNI8TmgZ+SrRKDz5b0LQ6veEtys+3GR2UGCJ1GhxfaBT071L69KXbguCjqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ifu5bx+2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 484B3C4AF60;
-	Thu, 13 Jun 2024 18:30:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718303465;
-	bh=SbD+xFGqIOxNc3/m8vp1hOh4RjDlhrkQYNrPi7kWyJA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ifu5bx+2566LUFmGEIG7+laLHwP4lqzAAHCKfJ+Nvt0gRMTC34O7Pv90k0CH+qR6s
-	 i4cF+ykdxk7YeR0P9ZL5S73xkw51DTWtY1L6BvScZah2q8Gu9cs64C2TAUDzEW+75y
-	 NhCzRDwha+vkLfIOjO2nePO2KzHw+RWrh+PEwbu8HJKmbj/SCguU8bezXaaJdYJNrv
-	 VROnYaTbW0w7fjQH7lwuTAlYUsdaG3sEN7SCHEmPNnlDwzZ74NfI0zEJ9Es6K/Ro6r
-	 Z+S1Svzdrv9yPHk2LYIPSh42LVOmUuWQKo3ZZ9WwgW50LAbkDaNg52EukfSu4Su0EM
-	 Xnhb3H5PBZOpQ==
-Date: Thu, 13 Jun 2024 19:30:56 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dumitru Ceclan via B4 Relay
- <devnull+dumitru.ceclan.analog.com@kernel.org>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Dumitru Ceclan <mitrutzceclan@gmail.com>,
- Conor Dooley <conor.dooley@microchip.com>, Nuno Sa <nuno.sa@analog.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v7 0/9] Add support for AD411x
-Message-ID: <20240613193056.3fa3804c@jic23-huawei>
-In-Reply-To: <20240608173720.29ee4aee@jic23-huawei>
-References: <20240607-ad4111-v7-0-97e3855900a0@analog.com>
-	<20240608173720.29ee4aee@jic23-huawei>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1718303493; c=relaxed/simple;
+	bh=9nV7hLmfDx/7B3Dty2P3cncxZUHN74Qo/BKpf3QRBuc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Vn8VPrhLJepGYQwqon0NXeNO27CBAupbERfb7jCWY+fu9vITnTJKhLYymxr/+IrUN1mQ/JqfOkvQCVYmUgkVjCOsZxsXkXlswG5r5SpCm2lOLp0zSkm44T0GjaOWG5b6p2fzlqL1LIuKXnOhAqbQQIERICnSn+jCEbzazD4SjNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cfiC3cRg; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-62f86abc8abso14937647b3.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 11:31:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718303491; x=1718908291; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JXQvrLMUU/ZNamWgnYQjVMOCkiOypt0RodDQ76i6a1I=;
+        b=cfiC3cRgRuDtWqlOIxDIJgmmevpmwzE5hDlegP1hAjKyJYibWcO0iqppTGLOsD3KgV
+         eQ22PEPiFYaeGeOR3oXj7QJYKKTMZeDDso4ysOTnYxFX79aMobfArGeZ6yUaGlhrSCaW
+         U7qAmP7j0EI0LRvbCGhi17LHCB7cEkFdF5birnuKIuiJfaWkleoYzDLPtzx1/MJx21eN
+         6RXQLBHOByZOoze/Hp+M8s8sZIXB9WqqVnjkbxBN1PltolECGUBlRTVsu3c8rnva5W0I
+         X442eqmQNdMesy7mlMGHKyQ1P+1pEmO8Swy74VsKI200QFFAiREiuFH63l4GUww2BZN0
+         8QbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718303491; x=1718908291;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JXQvrLMUU/ZNamWgnYQjVMOCkiOypt0RodDQ76i6a1I=;
+        b=i4IkTZndebonPkjlJkQtQi5pqIltKgwYBDF1KGLzOeffLWP0GcEfv2dlwL1iIysIZb
+         IvqaVgvukkj2GZccbxZPv03WaCrIFB5qiLIh/qA00Up534MDsXQRXrkD8ZhvLGM69Ndl
+         EdYeok8nDsoYzHO49kX/nCmRuhMxm+bgl2GLhgD0Sskcnzh1dKqYLFgfCfISThfvh1KO
+         W4uJ1MfW71VFVeLNKpZTLGnzhdfQp7ukPcsWU5GSuTRn29WTjhr4z6f1Kr/ov/yPOIlJ
+         W8aJvqqtRzbhwOW608FsGtg96ywP1C1moIkHGZUsoZnExPkI4Hmc8wr/k0+7vMAwRaKo
+         /PBg==
+X-Forwarded-Encrypted: i=1; AJvYcCU60hwT0QvNHbs8Jxx+VxCq3P5ZR31YpgimJqz5pqpSVDvKDaKK9nLVs3mYwCgWcXVyjmqV/WtUYJc0auUFHvBzIRyMOMqCKZdNvA==
+X-Gm-Message-State: AOJu0YyWBkl7IwjwnFrBadOpuFcS+AqhipYGZKibB+NQmHlNzGjMtxCi
+	VCJxvqxbK+9EkkrdZCMfFlCKejM+F0BliAEAJZhC0wYd+ONI5/75+pRoVjuruCRjddg1BZDUolA
+	53YNcQP2oTF7UO2uFJguUGM4eSvRIro3CCT6W4A==
+X-Google-Smtp-Source: AGHT+IGb8ds/chiqYcRHUQd63D995+EL6FV0xR8Fey/wJufK/UDYuEQFsfDNaMSulhpxOJVOwD9VdNJPzFLEFqHCWh8=
+X-Received: by 2002:a0d:f983:0:b0:620:4018:7c67 with SMTP id
+ 00721157ae682-6322305171emr2754787b3.27.1718303491189; Thu, 13 Jun 2024
+ 11:31:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20240613-dpu-handle-te-signal-v2-0-67a0116b5366@linaro.org>
+ <20240613-dpu-handle-te-signal-v2-2-67a0116b5366@linaro.org> <l3esy4ciy4envu35edg35sip5od6ltxpazpddo2w6vwmqomjky@azgqxi4la3hy>
+In-Reply-To: <l3esy4ciy4envu35edg35sip5od6ltxpazpddo2w6vwmqomjky@azgqxi4la3hy>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 13 Jun 2024 21:31:20 +0300
+Message-ID: <CAA8EJpqpBkJZmyhQA6b3Fg1cmY35yptt385weQQvDsq9rGazrA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] drm/msm/dpu: convert vsync source defines to the enum
+To: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sat, 8 Jun 2024 17:37:20 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+On Thu, 13 Jun 2024 at 21:17, Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
+>
+> On 2024-06-13 20:05:05, Dmitry Baryshkov wrote:
+> > Add enum dpu_vsync_source instead of a series of defines. Use this enum
+> > to pass vsync information.
+> >
+> > Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  2 +-
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c |  2 +-
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h |  2 +-
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h | 26 ++++++++++++++------------
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h  |  2 +-
+> >  5 files changed, 18 insertions(+), 16 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > index 119f3ea50a7c..4988a1029431 100644
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > @@ -747,7 +747,7 @@ static void _dpu_encoder_update_vsync_source(struct dpu_encoder_virt *dpu_enc,
+> >               if (disp_info->is_te_using_watchdog_timer)
+> >                       vsync_cfg.vsync_source = DPU_VSYNC_SOURCE_WD_TIMER_0;
+> >               else
+> > -                     vsync_cfg.vsync_source = DPU_VSYNC0_SOURCE_GPIO;
+> > +                     vsync_cfg.vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
+> >
+> >               hw_mdptop->ops.setup_vsync_source(hw_mdptop, &vsync_cfg);
+> >
+> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+> > index 225c1c7768ff..96f6160cf607 100644
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+> > @@ -462,7 +462,7 @@ static int dpu_hw_intf_get_vsync_info(struct dpu_hw_intf *intf,
+> >  }
+> >
+> >  static void dpu_hw_intf_vsync_sel(struct dpu_hw_intf *intf,
+> > -             u32 vsync_source)
+> > +                               enum dpu_vsync_source vsync_source)
+> >  {
+> >       struct dpu_hw_blk_reg_map *c;
+> >
+> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h
+> > index f9015c67a574..ac244f0b33fb 100644
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h
+> > @@ -107,7 +107,7 @@ struct dpu_hw_intf_ops {
+> >
+> >       int (*connect_external_te)(struct dpu_hw_intf *intf, bool enable_external_te);
+> >
+> > -     void (*vsync_sel)(struct dpu_hw_intf *intf, u32 vsync_source);
+> > +     void (*vsync_sel)(struct dpu_hw_intf *intf, enum dpu_vsync_source vsync_source);
+> >
+> >       /**
+> >        * Disable autorefresh if enabled
+> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
+> > index 66759623fc42..a2eff36a2224 100644
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
+> > @@ -54,18 +54,20 @@
+> >  #define DPU_BLEND_BG_INV_MOD_ALPHA   (1 << 12)
+> >  #define DPU_BLEND_BG_TRANSP_EN               (1 << 13)
+> >
+> > -#define DPU_VSYNC0_SOURCE_GPIO               0
+> > -#define DPU_VSYNC1_SOURCE_GPIO               1
+> > -#define DPU_VSYNC2_SOURCE_GPIO               2
+> > -#define DPU_VSYNC_SOURCE_INTF_0              3
+> > -#define DPU_VSYNC_SOURCE_INTF_1              4
+> > -#define DPU_VSYNC_SOURCE_INTF_2              5
+> > -#define DPU_VSYNC_SOURCE_INTF_3              6
+> > -#define DPU_VSYNC_SOURCE_WD_TIMER_4  11
+> > -#define DPU_VSYNC_SOURCE_WD_TIMER_3  12
+> > -#define DPU_VSYNC_SOURCE_WD_TIMER_2  13
+> > -#define DPU_VSYNC_SOURCE_WD_TIMER_1  14
+> > -#define DPU_VSYNC_SOURCE_WD_TIMER_0  15
+> > +enum dpu_vsync_source {
+> > +     DPU_VSYNC_SOURCE_GPIO_0,
+> > +     DPU_VSYNC_SOURCE_GPIO_1,
+> > +     DPU_VSYNC_SOURCE_GPIO_2,
+>
+> While at it, rename this to _P / _S / _E to match the other patches/code?
 
-> On Fri, 07 Jun 2024 17:53:06 +0300
-> Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
-> 
-> > This patch series adds support for the Analog Devices AD4111, AD4112,
-> >  AD4114, AD4115, AD4116 within the existing AD7173 driver.  
-> 
-> Looks good to me.  However given you had lots of good review and
-> it was a Friday afternoon posting, I'm not going to pick it up until
-> Nuno and David have had a day or two to take a look if they want to
-> (and hopefully add a few more tags! :)
-> 
-> If I seem to have lost it (rarely happens now I use patchwork to track
-> things) feel free to give me a poke.
-> 
-> Thanks,
-Ah - I forgot we have a dependency on a fix that went the quick path.
-As a result I'll have to hold this until after a 1st pull request.
+I thought about it, but Abhinav pointed out that DPU docs use this
+kind of naming.
 
-Whilst the merge resolution is trivial i need to do a pull anyway
-to resolve a more complex one.  Hence let's take the easy but
-slightly slower path for this as well.
+>
+> - Marijn
+>
+> > +     DPU_VSYNC_SOURCE_INTF_0 = 3,
+> > +     DPU_VSYNC_SOURCE_INTF_1,
+> > +     DPU_VSYNC_SOURCE_INTF_2,
+> > +     DPU_VSYNC_SOURCE_INTF_3,
+> > +     DPU_VSYNC_SOURCE_WD_TIMER_4 = 11,
+> > +     DPU_VSYNC_SOURCE_WD_TIMER_3,
+> > +     DPU_VSYNC_SOURCE_WD_TIMER_2,
+> > +     DPU_VSYNC_SOURCE_WD_TIMER_1,
+> > +     DPU_VSYNC_SOURCE_WD_TIMER_0,
+> > +};
+> >
+> >  enum dpu_hw_blk_type {
+> >       DPU_HW_BLK_TOP = 0,
+> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h
+> > index 6f3dc98087df..5c9a7ede991e 100644
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h
+> > @@ -64,7 +64,7 @@ struct dpu_vsync_source_cfg {
+> >       u32 pp_count;
+> >       u32 frame_rate;
+> >       u32 ppnumber[PINGPONG_MAX];
+> > -     u32 vsync_source;
+> > +     enum dpu_vsync_source vsync_source;
+> >  };
+> >
+> >  /**
+> >
+> > --
+> > 2.39.2
+> >
 
-Jonathan
-> 
-> Jonathan
-> 
 
+
+-- 
+With best wishes
+Dmitry
 
