@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC2A39072DE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:53:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E88907302
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:57:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C515F1C23F29
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:53:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26F36B21EFF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 12:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284D92F55;
-	Thu, 13 Jun 2024 12:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C682F55;
+	Thu, 13 Jun 2024 12:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLx4LMha"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfDLoKMw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1ACA2CA6;
-	Thu, 13 Jun 2024 12:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B82417FD;
+	Thu, 13 Jun 2024 12:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718283176; cv=none; b=LwiFLlP/nP++jjjZGNiAbSTodks1W/ZwQMNWwwebQ6HWeKQcV+hDkvzj9Vp/8ksZHXSBSNYZoyyNbHY4dfea0DN1OrwZwSPJeYSxwzf22QIsLuris7PRpv9aHeIWTu9CqDdlowITODWakFf1uREK6tcDCdNIfnmDl3jV2tz0mxk=
+	t=1718283230; cv=none; b=DKdqnAg5V8Obgx879+E+UZBaiV/cgG8Ta4f/09YB3w3WAxgALgMMmE9Kf2VGvTpcmZvo1MLMRWainzfDCwBBFhOIqfuPkH4TkE2D5n1V4ZTcfFnjA0wWPvB+yE3Qp5KEBALXqLZVNt91jEvCeGFxN/8XtNinObMmOU39OOKnw6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718283176; c=relaxed/simple;
-	bh=2+dydYk8TPrJavTZgynuaRTEBypmQvsTjbvt51z44U8=;
+	s=arc-20240116; t=1718283230; c=relaxed/simple;
+	bh=/R0ckbW+D1ZBjAcezy02qIHtjZvGa6ZZOI4pz63vCb0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fqZcNmqbpICWLvtmDKsPK89JAaejwybuWt9ZzFJwFOQynYeUe7gZFsLMdebvfVbo7YVTqTBF6x+kAt/APNCmFYJSXSl12nVUElZSFOwwlYZSCWBgzzTixyAWh/JwZnabRyV/YcMdoO6LPAHx6Unhv5nXhZwbI8PRhTnBV56EGJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLx4LMha; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1D90C2BBFC;
-	Thu, 13 Jun 2024 12:52:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DQCe814HdgJbjkSodL7YXzOP5xgyyU4ig/e+UTUrqZ2MQd0yehflxDW0lvfbVVhVH9xZry/FoazA9bZo33XcTfiVmI9QZPYEbSMwHylQr7TWeYuehLaxgVb1trGXrAT6yjpCLU3IJEqMfFtw1rnVAeHlKf+YBHZr8JBhN+bIfNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfDLoKMw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3397DC2BBFC;
+	Thu, 13 Jun 2024 12:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718283175;
-	bh=2+dydYk8TPrJavTZgynuaRTEBypmQvsTjbvt51z44U8=;
+	s=k20201202; t=1718283229;
+	bh=/R0ckbW+D1ZBjAcezy02qIHtjZvGa6ZZOI4pz63vCb0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TLx4LMhaYTEFAdjXms6uMnRmnyDuIsp5wd23GggrIVShfev+7h/RlcD9xZD8lsfFn
-	 WSatdClM28bCaSQ6lXUlpN/uZ1W0NcCD/FPm45ypkx+RKsSg+KoVAoUrm1U2GQ/ZNV
-	 V2+V91OtYYHAlSBoEKFSiZxN/wFEnALzvJtRSj9xLHBomzqxFBrQI47jypo80QrK2F
-	 dIDNt5WbigoaD73Z3UfL+C+Z71sIxc87UA67URxMyjAnS/iI0Yc5H5bcZIJ6iQwfqR
-	 0S/JCimwy5r+QMSXyOYrRPcJx7ky0VGkhIolcsdNoBpCPXHl99n5+ZTB9sOj6YhEj6
-	 aLysvAzOft14w==
-Message-ID: <58e85008-a268-4555-bafb-f948ade16a63@kernel.org>
-Date: Thu, 13 Jun 2024 14:52:46 +0200
+	b=LfDLoKMwvwhROwgzDQTMFZzDK3I2cc8Q2HNOeMzOfXaPgiOvrOmbmGNwijTeqmXoD
+	 HW+lkQikqNhMtYPpqR1ruGBxiMkSFTvKL8DEtaTVYCduTuWrRyWLZInIa/dJxINAj6
+	 4kBRCbfhjn1fLQfusmvIw3TF3JKRnsjXZNsUHiemcWTlP+3OJWlaN1QwQwYmdc/Hrg
+	 JBTM4pA7A5pH3sQ6sXduITKd+XtwvfDMST55LKZ7SD889piJkuvpoXFnJRUdqiwgwt
+	 r5gq+LXXhP7rnFmTk3ul09NSTmELmdDRdjA83YCg3rMMvyXgWTwi5Vc/eKtbQBDFkJ
+	 G4KyPH020ccSg==
+Message-ID: <3858cc71-a43e-40ed-83fe-1ab50859a6fc@kernel.org>
+Date: Thu, 13 Jun 2024 14:53:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: phy: rockchip-emmc-phy: Convert to
- dtschema
-To: Johan Jonker <jbx6244@yandex.com>,
- Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, sebastian.reichel@collabora.com, s.hauer@pengutronix.de,
- cristian.ciocaltea@collabora.com, andy.yan@rock-chips.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- javier.carrasco.cruz@gmail.com
-References: <20240613085812.4020-2-shresthprasad7@gmail.com>
- <cc66cca1-33db-4f30-afcf-d256a959896b@yandex.com>
- <9ce15b81-a8bd-4833-b15e-3e6f240dcf03@kernel.org>
- <495e50aa-6819-457d-8503-00440abc97e3@yandex.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
+To: Hui Wang <hui.wang@canonical.com>, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, gregkh@linuxfoundation.org
+Cc: jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
+References: <20240613082528.22591-1-hui.wang@canonical.com>
+ <609a4713-2bd0-4ebd-aa75-c4ee1a2fabde@kernel.org>
+ <95b28282-c067-4f34-8ddc-1b2b2f0be2a9@canonical.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,70 +104,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <495e50aa-6819-457d-8503-00440abc97e3@yandex.com>
+In-Reply-To: <95b28282-c067-4f34-8ddc-1b2b2f0be2a9@canonical.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/2024 12:33, Johan Jonker wrote:
+On 13/06/2024 12:22, Hui Wang wrote:
 > 
-> 
-> On 6/13/24 12:12, Krzysztof Kozlowski wrote:
->> On 13/06/2024 11:44, Johan Jonker wrote:
->>>> ---
+> On 6/13/24 17:08, Krzysztof Kozlowski wrote:
+>> On 13/06/2024 10:25, Hui Wang wrote:
+>>> In some designs, the chip reset pin is connected to a GPIO, and this
+>>> GPIO needs to be set correctly before probing the driver, so add a
+>>> reset-gpios in the device tree.
 >>>
->>> Add ack request from phy maintainer here.
+>>> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+>> <form letter>
+>> This is a friendly reminder during the review process.
 >>
-> 
->> Why? What do you mean for that? Why phy maintainer needs to ack patches
->> he is going to take?
-> 
-> See my text below:
-> From my past converting phy documents experience asking was needed to smooths things up ...
-> Let me know if things have improved.
-> 
-> grf.yaml can be busy at times. Let Heiko take care of the merge order.
-> Ask for an ack from the phy maintainers in your commit message below a "---"
-> 
+>> It looks like you received a tag and forgot to add it.
 >>
->>>
->>>> Changes in v3:
->>>>     - fix `reg` in example being too long
->>>>
->>>> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
->>>> and `rockchip/rk3399-pinebook-pro.dtb`.
->>>>
->>>>  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
->>>>  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
->>>>  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
->>>>  3 files changed, 80 insertions(+), 44 deletions(-)
->>>>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->>>>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->>>> new file mode 100644
->>>> index 000000000000..85d74b343991
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
->>>> @@ -0,0 +1,79 @@
->>>
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>
->>> You are converting an existing document, so GPL 2 only.
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions, under or above your Signed-off-by tag. Tag is "received", when
+>> provided in a message replied to you on the mailing list. Tools like b4
+>> can help here. However, there's no need to repost patches *only* to add
+>> the tags. The upstream maintainer will do that for tags received on the
+>> version they apply.
 >>
+>> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>> </form letter>
 > 
->> Which copyrightable part was copied? This comment is not correct in
->> general, because conversions are dual-licensed (there are exceptions,
->> but that's the generic rule).
+> Got it. Will add that tag if I need to change sth in the v4 and need to 
+> send the v5. :-) I thought the Ack is for Hugo's explanation rather than 
+> for my 1st patch, I mis-understood it. And I plan to study b4 in the 
+> near future.
 > 
-> Was told to do so in the past by the maintainers(Rob??) for text documents conversions.(Can't find exactly were in lore, must be in one my first conversion patches)
-> If someone was submitting as GPL2 long time ago then the derived/converted work still hold the same license.
-> Let me know if the consensus has changed.
 
-Consensus did not change but I am no sure if you got it right. It was
-about copied copyrightable text. Which part was copied here?
+Please start using b4. There would be no such ambiguity from your side,
+because maintainers know what they do and tool handles it correctly.
 
-I think there is none, so just like with almost all conversions, please
-use dual license.
 
 Best regards,
 Krzysztof
