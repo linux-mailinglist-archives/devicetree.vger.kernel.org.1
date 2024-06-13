@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634CC906428
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:37:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4D1906439
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:39:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECB2928281B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:37:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EC54282C01
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:39:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0149136E3F;
-	Thu, 13 Jun 2024 06:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE744137762;
+	Thu, 13 Jun 2024 06:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aonl2V74"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLPBv4OQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C02DDB1;
-	Thu, 13 Jun 2024 06:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C334A13698D;
+	Thu, 13 Jun 2024 06:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718260618; cv=none; b=t3ZA8mPMq7CQfv3W1vFKqI/Y+GfYOkyaAFhlpVg3XK5q87f+/JLSC38wlMVNODIdtDXknoOzYtEzbshXCvO7DVvt2DcRd2rg3924iZFae+QbqmVcrpIxQpJIN/j9Ra6kYZQPZPMajcwnudFQEYgGTVeztsl6y/KOYUWBxC0/JRM=
+	t=1718260748; cv=none; b=uy1OLi2c4R0QtVvBgC4QiMEm+lhZ0jj4yew50MO+FqyU72Yx56hHYL1k8/qKJfsGLbSAaBzOWeJQT0XgSVbyqXq/rvWangAXeBkte77C3lp3S5mdpN2GQHpu0qmqHVBEb2eTsBNVueBBvLyT5Q36D1LG1onVdB9B3MYjZhq9bU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718260618; c=relaxed/simple;
-	bh=GVyagABn9ByRTItZXOq01td+hwbzLhiwDbfz9ovKlIs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=eQM0NswlCfo+jTY14FktrK1K1l4CXyW3xTydgGZdY6mayC8jUdf6MR3qQ3PxE8KAHnG9VSt2ig8p0YnC+HiYk01sO0EtIm5PvyCDD+q9XSrhNNHQnBSTLW9znufLXkTEb3l42arpMO2dbMJqPMq82EkWeVhhRqyXj1pX7Rhvk/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aonl2V74; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68681C2BBFC;
-	Thu, 13 Jun 2024 06:36:55 +0000 (UTC)
+	s=arc-20240116; t=1718260748; c=relaxed/simple;
+	bh=ez78vgXgt+mw7wyfzSQv5xSpjrESPvGbAClCCIJhXnU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LaaizRORmGMjfhVzOA9uFuCHyBZn/OHRV5cUeWoQGyaP74cAJr336BgOsVYCtNJZj/MEFumN+fhR0RdKQ9ga0SF2fKbc28b8IstjT1Pk3UOc/S5baNb9+TaFg4dUUtmBewFltIioVtZ1DGNKkUfiPtVsFSYe0HA8o83RPt1Ert8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLPBv4OQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7067CC2BBFC;
+	Thu, 13 Jun 2024 06:39:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718260618;
-	bh=GVyagABn9ByRTItZXOq01td+hwbzLhiwDbfz9ovKlIs=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Aonl2V74iR8tRB6WdHVeSabqYVbpJvsI+zUNFq3yxskjmPacfz1u9fU7Y5zoFmCbn
-	 OhNXArfl+vk1OBHOdEG98E7Q/zi/pvIufRBrQTHRzqXzfdjo/YwZ3azTVCynWntxVt
-	 0/K6bESuWXRSz8r+e1o5xHN0jRRsJRCfnzjOJ2ZtcUtbVpZpPRMTmWxpM70G7DALsf
-	 8gEoLomh9C9kVLo6uAGniW2bcm8Lgmlaw5lNgkFBGzqaTnAZMvTxPkAC3ODKWGW4qB
-	 pOH8qBId+hjSMjVfSOG+I3YBZnGcc00RMYQnxEo6BPBTYnZB9U9CblMis6ff9CoCYI
-	 QsTtJ8NbR55+A==
-Message-ID: <2e9d3e6f-ddb3-4dcf-944f-3ea1b4cec694@kernel.org>
-Date: Thu, 13 Jun 2024 08:36:52 +0200
+	s=k20201202; t=1718260748;
+	bh=ez78vgXgt+mw7wyfzSQv5xSpjrESPvGbAClCCIJhXnU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZLPBv4OQevN1KJvNNGjEHtyZvZt7be9Mx2iQRrF2pDgPRsN8cqOCYynKLYpDohrdC
+	 gBa9B15YJVDj3VX2JpvUXl8lgo4IF6SjcAxvyBVscDtFzXPf99u/py/NDQzs6QD0X6
+	 zIL+hvW5X2o5Pd+MG+G9slyPDNwE/cubL6tcpdXUG5QIqFOgy+atOjyJpkYrIxAR/v
+	 VZ9ypOcRHhB+3QilK/TKy6FHgOCEq/mpIRprS5K/eKBQeOPfzq0vCo8MUbavjGGoTM
+	 0WAXGjPW/azxA++7epIoP05LWq0KtPgKaf0XJ9EZ7hkOX1JBRS7/byA//xV8Ouy0/8
+	 ntbpQ3H1XP+CA==
+Message-ID: <36abda0a-9f5f-4469-bd1f-9b2e2777a3e6@kernel.org>
+Date: Thu, 13 Jun 2024 08:39:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,11 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH -next] dt-bindings: mfd: twl: Fix example
-To: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240612134039.1089839-1-andreas@kemnade.info>
+Subject: Re: [PATCH v3] dt-bindings: sound: Convert max98088 to dtschema
+To: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lgirdwood@gmail.com,
+ broonie@kernel.org
+Cc: skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240612163730.515819-1-abdulrasaqolawani@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,18 +103,15 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240612134039.1089839-1-andreas@kemnade.info>
+In-Reply-To: <20240612163730.515819-1-abdulrasaqolawani@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 15:40, Andreas Kemnade wrote:
-> Fix example to also conform to rules specified in the separate
-> not-included gpadc binding.
+On 12/06/2024 18:36, Abdulrasaq Lawani wrote:
+> Convert the max98088 audio codec txt bindings to DT schema.
 > 
-> Fixes: 62e4f3396197 ("dt-bindings: regulator: twl-regulator: convert to yaml")
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
 > ---
->  Documentation/devicetree/bindings/mfd/ti,twl.yaml | 1 +
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
