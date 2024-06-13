@@ -1,234 +1,238 @@
-Return-Path: <devicetree+bounces-75380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1850906B79
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:41:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5518906BB9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:43:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A919A1C21E0A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:41:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A38E1F22E2B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6533E144D09;
-	Thu, 13 Jun 2024 11:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DFA143867;
+	Thu, 13 Jun 2024 11:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VCqKee11"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y/mJtWng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9746F14431C;
-	Thu, 13 Jun 2024 11:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1F2143739;
+	Thu, 13 Jun 2024 11:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718278836; cv=none; b=Nz8YNXBBhOfKwAJjTqlMo5UOIyKBuGxF81faNwxX7D9J9b94QhpOBdVZAKngpCJvp8LMKEkmDbFK+oyNyAWr7GPxXbS0FdLn2RwcfqUp31kARh7YfiIV+WsWLoNJFa/7hlDqfkP/mHyUIwmvbejGFMxL6mZgm7Gh7MvNSH4/G9I=
+	t=1718278995; cv=none; b=XsruuVINglLnZAq9WUkkrfN8l6nRQMFaiVN9fOBcPiKxyWOQFZaaueVZoEF4nWPIE5DjXbZiebiq9A/BSN0cXWiX3skRd4/BnDjftJ6gTogms75c70+RWmgeXfTX1Xf/0WT7jc25VC+C7IaVdgudDqHC2MENS2riJhNQ0Gthua8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718278836; c=relaxed/simple;
-	bh=KfgttE2wxTg7toHcpi3zBXo/ZcfOJEMJto09NGJtn4Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TDxlmvJ5WXNu1u3I0csee3mhdd4l87szOPVSvu8h7mclWxElROyc9PNjbE17rqhSgeeJaIW6RKWOd9OHF6FzAuVGtl6GljEyCWvfkisc63lXJ5xKElFbNX2lmXRST0HiiboaMwCuzDzEYr1RAGm65O+CgGy0IrZqNEPbuKi3sS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VCqKee11; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57c68682d1aso791222a12.3;
-        Thu, 13 Jun 2024 04:40:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718278833; x=1718883633; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q4vjbxP9TzabIkkUf/9mpHdXyF09ggIxO15d4HTT7aY=;
-        b=VCqKee11W0dAlc/vFCQ6tii3UBjYhX2ALqQqzqNwh5koucUDOMEFpO1wJJ0MZ9/5m0
-         6syvcmRTog5AxXkcWBbL4IgQoiV5I5gffQK507bIcwG70D+srMylOEhp2e+iJV9ignf8
-         VCV5yUy4crRtoczQBQ4V73BTKn+O9QLAgmowcLvpLce3r+7eSB4k7dD7uwpC+DnaqwhC
-         UqApjaXWL6UxZaKhvhPE0l0AEV0Uxra9x/AFkKob0lNFsVBiL2D0Q4292hTHegigMvB1
-         rZ9S10VDqj+THBbUO1UxeK6NqrlBlBR9gbsdGJAmklzkdp5+6NdP/hAnJ8Wde3hI3jkv
-         rf4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718278833; x=1718883633;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q4vjbxP9TzabIkkUf/9mpHdXyF09ggIxO15d4HTT7aY=;
-        b=ajbqUbAp1410h42edvwvRgybQsXWi6Wel2kSZ1yxUpPYRoYStaj2+EnNQbe+DCBt44
-         4wVMSm00BUED8TDokWSrSl4Mrl1mXz6uLluptjZiH1JswClvG0TVT4z2DN6cww4msnuI
-         1okjE9KPREZxqOowE84G6AiQmtNTobGTV2PiS6d7yhRbkSMycl4SGwXOg1GOZvuOTtNz
-         EaemExicgxMEIzky9TQ7D22QZayeaUc0TFqoQPSDsA/X1uMWOwV/bDa+AsNwt2TUWoVv
-         i4SjiBBXFr3FCKC50YiNl/M6RYjRgJq/0W9Lz38RP4SvRFWUpaIsPY7jcoacU6299h0I
-         qKpA==
-X-Forwarded-Encrypted: i=1; AJvYcCUKuOGg7/Zuk7KottaKaECeVkfzsNSJiOWKuMaNXE2sgOUask4A5Qqwc8cLR4OWBoBE868/OCGtbPC+PEX68qYQFtaqOW4BADlpmAILFTQ5fJct/euS1MnY6deYboO7djZ8zN+N/LVC3O7bTFs+D9ecBy+CQZR5xsk4sUnvHqIaj4a/Ew==
-X-Gm-Message-State: AOJu0YwPBPuoSSDvF882WXH9yoPoIL2ue10zgoRKSHOaANy/RFGWMpjY
-	ptkINjLwREi+SbC5NipnAIFQ0BYm5uybmEm4vG3c5ic9Uqn2ctOy
-X-Google-Smtp-Source: AGHT+IE+NK03i8O9vgp7i+x3wOWdBENGRA5PbWsY+dN9/g+VVyi3aZeog8Fks4ZoRKUDfFgX+sJrGg==
-X-Received: by 2002:a50:d511:0:b0:57c:5b26:46e2 with SMTP id 4fb4d7f45d1cf-57caa9bad51mr3022527a12.31.1718278832711;
-        Thu, 13 Jun 2024 04:40:32 -0700 (PDT)
-Received: from spiri.. ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cbb05b465sm308861a12.18.2024.06.13.04.40.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 04:40:32 -0700 (PDT)
-From: Alisa-Dariana Roman <alisadariana@gmail.com>
-X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
-To: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Alexandru Tachici <alexandru.tachici@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Subject: [PATCH v4 5/5] iio: adc: ad7192: Add clock provider
-Date: Thu, 13 Jun 2024 14:40:01 +0300
-Message-Id: <20240613114001.270233-6-alisa.roman@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240613114001.270233-1-alisa.roman@analog.com>
-References: <20240613114001.270233-1-alisa.roman@analog.com>
+	s=arc-20240116; t=1718278995; c=relaxed/simple;
+	bh=Sl6Q994P6KdybGgbkrd7+FkQLji0wO4s5jeRzGjmcaI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rlCKv02Havss+kr/nPXpUlNtw1oEcNwy8yvAkHzDXsSTgscg+UwW6XOMuyRtrlpGWlwnZ1dEuxIAkgn0t/6YMKJcWuTe06s/Hmd5BqfKcpDIQqudy8BhdKOpHO7MiNPCd76Uziwsct2C+7+/asLFq6nltHlMohMgL7MsD7OnF8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y/mJtWng; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45D6WXn8001036;
+	Thu, 13 Jun 2024 11:43:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zNHN8uPWdd2diztoGqQ+ipEKFFhFDhhlcgB10an2TG0=; b=Y/mJtWngPxaCHiA6
+	LWUMSO9PSU0Uw8ETAp7qZXrceubKQXnHF/5FWIRPiArLJfPmiTKPQZyvh/CHry3H
+	1nFE8JPPm8dRjWM/nMITB9FYo66ecbRrfyY3nPTJaYAlqjqrar8JqHsWRBMFusoq
+	qirevnUglzSNvbf9eqgnWZvlOKxzdK2BoMaaEASutHeXtOORfCGK78DQX249hBXm
+	KmXiMVheRvApNuugRkWLRcL4ToL6TihoCUmmD32K+WrnU0gsOHiRlvJnSkL+xLNh
+	/po8GnjMeM9WEzVH37QbHg6jJqTShp0YeZakfZwCr2QH9fFivfcsfW0RNUo43RxC
+	U8B7jQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yqukc8sjq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Jun 2024 11:43:08 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45DBh6hS000714
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Jun 2024 11:43:06 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Jun
+ 2024 04:43:03 -0700
+Message-ID: <ae289c19-2701-d00f-3f6f-5e87ec37e475@quicinc.com>
+Date: Thu, 13 Jun 2024 17:13:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2] arm64: dts: qcom: qdu/qru1000-idp: Fix the voltage
+ setting
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Melody
+ Olvera" <quic_molvera@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240524082236.24112-1-quic_kbajaj@quicinc.com>
+ <CAA8EJpp9U-ucMAiNmVvWDuupd=OR_fLK9fQ+n21SVmktWMxhmA@mail.gmail.com>
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <CAA8EJpp9U-ucMAiNmVvWDuupd=OR_fLK9fQ+n21SVmktWMxhmA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SKpvDaWuGHoBarKphQBoBZjq_r8LLgC6
+X-Proofpoint-ORIG-GUID: SKpvDaWuGHoBarKphQBoBZjq_r8LLgC6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-13_03,2024-06-13_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 phishscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
+ spamscore=0 mlxscore=0 suspectscore=0 mlxlogscore=498 clxscore=1015
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406130084
 
-Internal clock of AD719X devices can be made available on MCLK2 pin. Add
-clock provider to support this functionality.
 
-Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
----
- drivers/iio/adc/ad7192.c | 90 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
 
-diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
-index c30ffe47cd70..36e3fe50c455 100644
---- a/drivers/iio/adc/ad7192.c
-+++ b/drivers/iio/adc/ad7192.c
-@@ -8,6 +8,7 @@
- #include <linux/interrupt.h>
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/device.h>
- #include <linux/kernel.h>
- #include <linux/slab.h>
-@@ -203,6 +204,7 @@ struct ad7192_state {
- 	struct regulator		*avdd;
- 	struct regulator		*vref;
- 	struct clk			*mclk;
-+	struct clk_hw			int_clk_hw;
- 	u16				int_vref_mv;
- 	u32				aincom_mv;
- 	u32				fclk;
-@@ -403,6 +405,90 @@ static const char *const ad7192_clock_names[] = {
- 	"mclk"
- };
- 
-+static struct ad7192_state *clk_hw_to_ad7192(struct clk_hw *hw)
-+{
-+	return container_of(hw, struct ad7192_state, int_clk_hw);
-+}
-+
-+static unsigned long ad7192_clk_recalc_rate(struct clk_hw *hw,
-+					    unsigned long parent_rate)
-+{
-+	return AD7192_INT_FREQ_MHZ;
-+}
-+
-+static int ad7192_clk_output_is_enabled(struct clk_hw *hw)
-+{
-+	struct ad7192_state *st = clk_hw_to_ad7192(hw);
-+
-+	return st->clock_sel == AD7192_CLK_INT_CO;
-+}
-+
-+static int ad7192_clk_prepare(struct clk_hw *hw)
-+{
-+	struct ad7192_state *st = clk_hw_to_ad7192(hw);
-+	int ret;
-+
-+	st->mode &= ~AD7192_MODE_CLKSRC_MASK;
-+	st->mode |= AD7192_CLK_INT_CO;
-+
-+	ret = ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-+	if (ret)
-+		return ret;
-+
-+	st->clock_sel = AD7192_CLK_INT_CO;
-+
-+	return 0;
-+}
-+
-+static void ad7192_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct ad7192_state *st = clk_hw_to_ad7192(hw);
-+	int ret;
-+
-+	st->mode &= ~AD7192_MODE_CLKSRC_MASK;
-+	st->mode |= AD7192_CLK_INT;
-+
-+	ret = ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
-+	if (ret)
-+		return;
-+
-+	st->clock_sel = AD7192_CLK_INT;
-+}
-+
-+static const struct clk_ops ad7192_int_clk_ops = {
-+	.recalc_rate = ad7192_clk_recalc_rate,
-+	.is_enabled = ad7192_clk_output_is_enabled,
-+	.prepare = ad7192_clk_prepare,
-+	.unprepare = ad7192_clk_unprepare,
-+};
-+
-+static int ad7192_register_clk_provider(struct ad7192_state *st)
-+{
-+	struct device *dev = &st->sd.spi->dev;
-+	struct clk_init_data init = {};
-+	const char *clk_name;
-+	int ret;
-+
-+	if (!IS_ENABLED(CONFIG_COMMON_CLK))
-+		return 0;
-+
-+	ret = device_property_read_string(dev, "clock-output-names", &clk_name);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to get clock-output-names\n");
-+
-+	init.name = clk_name;
-+	init.ops = &ad7192_int_clk_ops;
-+
-+	st->int_clk_hw.init = &init;
-+	ret = devm_clk_hw_register(dev, &st->int_clk_hw);
-+	if (ret)
-+		return ret;
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+					   &st->int_clk_hw);
-+}
-+
- static int ad7192_clock_setup(struct ad7192_state *st)
- {
- 	struct device *dev = &st->sd.spi->dev;
-@@ -414,6 +500,10 @@ static int ad7192_clock_setup(struct ad7192_state *st)
- 	if (ret < 0) {
- 		st->clock_sel = AD7192_CLK_INT;
- 		st->fclk = AD7192_INT_FREQ_MHZ;
-+
-+		ret = ad7192_register_clk_provider(st);
-+		if (ret)
-+			return ret;
- 	} else {
- 		st->clock_sel = AD7192_CLK_EXT_MCLK1_2 + ret;
- 
--- 
-2.34.1
+On 5/24/2024 2:59 PM, Dmitry Baryshkov wrote:
+> On Fri, 24 May 2024 at 11:23, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>>
+>> While adding the USB support, it was found that the configuration
+>> for regulator smps5 was incorrectly set. Upon cross verifying for
+>> all the regulators, found that smps4, smps6 and smps8 are also
+>> incorrectly configured. This patch fixes the same.
+> 
+> Nit: see Documentation/process/submitting-patches.rst, "This patch..."
 
+Will update the commit message.
+
+> 
+>> In particular -
+>> - smps4 is 1.574V min and 2.04V max
+>> - smps5 is 1.2V min and 1.4V max
+>> - smps6 is 0.382V min and 1.12V max
+> 
+> Just for my understanding, will anything further constraint these values?
+
+As far as i know, this is going to be final.
+currently, usb device is not working without this min/max change.
+
+Thanks
+Komal
+
+> 
+>> - smps8 is fixed at 0.752V
+>>
+>> Fixes: d1f2cfe2f669 ("arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs")
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+>> Changes in v2-
+>> * Updated the commit message as suggested by Krzysztof
+>> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240514131038.28036-1-quic_kbajaj@quicinc.com/
+>> ---
+>>
+>>   arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 16 ++++++++--------
+>>   arch/arm64/boot/dts/qcom/qru1000-idp.dts | 16 ++++++++--------
+>>   2 files changed, 16 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> index 6e129dc123ed..89b84fb0f70a 100644
+>> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> @@ -96,20 +96,20 @@ vreg_s3a_1p05: smps3 {
+>>
+>>                  vreg_s4a_1p8: smps4 {
+>>                          regulator-name = "vreg_s4a_1p8";
+>> -                       regulator-min-microvolt = <1800000>;
+>> -                       regulator-max-microvolt = <1800000>;
+>> +                       regulator-min-microvolt = <1574000>;
+>> +                       regulator-max-microvolt = <2040000>;
+>>                  };
+>>
+>>                  vreg_s5a_2p0: smps5 {
+>>                          regulator-name = "vreg_s5a_2p0";
+>> -                       regulator-min-microvolt = <1904000>;
+>> -                       regulator-max-microvolt = <2000000>;
+>> +                       regulator-min-microvolt = <1200000>;
+>> +                       regulator-max-microvolt = <1400000>;
+>>                  };
+>>
+>>                  vreg_s6a_0p9: smps6 {
+>>                          regulator-name = "vreg_s6a_0p9";
+>> -                       regulator-min-microvolt = <920000>;
+>> -                       regulator-max-microvolt = <1128000>;
+>> +                       regulator-min-microvolt = <382000>;
+>> +                       regulator-max-microvolt = <1120000>;
+>>                  };
+>>
+>>                  vreg_s7a_1p2: smps7 {
+>> @@ -120,8 +120,8 @@ vreg_s7a_1p2: smps7 {
+>>
+>>                  vreg_s8a_1p3: smps8 {
+>>                          regulator-name = "vreg_s8a_1p3";
+>> -                       regulator-min-microvolt = <1352000>;
+>> -                       regulator-max-microvolt = <1352000>;
+>> +                       regulator-min-microvolt = <752000>;
+>> +                       regulator-max-microvolt = <752000>;
+>>                  };
+>>
+>>                  vreg_l1a_0p91: ldo1 {
+>> diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+>> index 2a862c83309e..258483af065b 100644
+>> --- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+>> @@ -96,20 +96,20 @@ vreg_s3a_1p05: smps3 {
+>>
+>>                  vreg_s4a_1p8: smps4 {
+>>                          regulator-name = "vreg_s4a_1p8";
+>> -                       regulator-min-microvolt = <1800000>;
+>> -                       regulator-max-microvolt = <1800000>;
+>> +                       regulator-min-microvolt = <1574000>;
+>> +                       regulator-max-microvolt = <2040000>;
+>>                  };
+>>
+>>                  vreg_s5a_2p0: smps5 {
+>>                          regulator-name = "vreg_s5a_2p0";
+>> -                       regulator-min-microvolt = <1904000>;
+>> -                       regulator-max-microvolt = <2000000>;
+>> +                       regulator-min-microvolt = <1200000>;
+>> +                       regulator-max-microvolt = <1400000>;
+>>                  };
+>>
+>>                  vreg_s6a_0p9: smps6 {
+>>                          regulator-name = "vreg_s6a_0p9";
+>> -                       regulator-min-microvolt = <920000>;
+>> -                       regulator-max-microvolt = <1128000>;
+>> +                       regulator-min-microvolt = <382000>;
+>> +                       regulator-max-microvolt = <1120000>;
+>>                  };
+>>
+>>                  vreg_s7a_1p2: smps7 {
+>> @@ -120,8 +120,8 @@ vreg_s7a_1p2: smps7 {
+>>
+>>                  vreg_s8a_1p3: smps8 {
+>>                          regulator-name = "vreg_s8a_1p3";
+>> -                       regulator-min-microvolt = <1352000>;
+>> -                       regulator-max-microvolt = <1352000>;
+>> +                       regulator-min-microvolt = <752000>;
+>> +                       regulator-max-microvolt = <752000>;
+>>                  };
+>>
+>>                  vreg_l1a_0p91: ldo1 {
+>> --
+>> 2.42.0
+>>
+>>
+> 
+> 
 
