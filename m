@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 906099064A2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:11:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9D99064B5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AD531C22BCA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:11:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8073B2427D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3F21386AB;
-	Thu, 13 Jun 2024 07:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22A74D10A;
+	Thu, 13 Jun 2024 07:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j42W6Jhv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YEUb6Lxt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5DB1384AB;
-	Thu, 13 Jun 2024 07:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704F37FB;
+	Thu, 13 Jun 2024 07:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718262705; cv=none; b=vAckQ0lxy9CkictrV9sdevbzk3IGnp1NQ5ZA3mryRcvF5z8Xtxt4e+LAU1KYaiXziyY501vrLqZw75SpH/IUZdaoY8TCCLrjUBm8J23q4nwsHwiSp07ev1lCy5QmS106oXuF/Yt3reBh0ZFD/0EXQjNKOYEdzQtFZpRB+boUCdk=
+	t=1718262932; cv=none; b=sMtzO2OLpShFMswgOcPh5Az5F/61HS0p90UlmKUQKXv8G2lBA+Eeojo9VwbO6NMMfOE8ofBzR3CWKiloZPUk7Ii+VhU+pa22wlJBTBvl/w8eKUSj5gICLZBs3kIEZkbf+jw7cFtvpevjTQE4DQp44CO4ndVInzp0G1/0qPVtXyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718262705; c=relaxed/simple;
-	bh=OslM3kkku1MDWJpYN4HLaJZ3olMNC5OUngm/2NELu/Q=;
+	s=arc-20240116; t=1718262932; c=relaxed/simple;
+	bh=Tmo/BuogahgR5M93Y4MvIAIRnQBajprod5rkLlc7vm4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CqTErAwt4jYaFO3lubZJqqocWBmhyw+/COhbtL1uLWLg7tcCbL+9P7rAb5ofitjkQOg1IgUWIw5m399v9KnoEjuELh+DpulSf1z4L6rJU6mJC/gU7uiU2wNPuGGsU6NnFXt/uyy2e6RrFtdjHpKo1n3wjBV255sd1el1Y+YYbPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j42W6Jhv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 657AFC2BBFC;
-	Thu, 13 Jun 2024 07:11:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=aTZS62a/Tq6BIxTcS5ufw156HJPfXrtLiOyd3W5NHc+f+ncgp2o9p4dFGblqWhKyfIbjyj8prB3Izjrfb/HIoSSou/sMpNPD9HoABlc0G9MWIygXVz2DRPL1dvVzyI8YpTmYSktQMZe48jdXmpV1K/VonoIvV7EJ2qq8cpenTck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YEUb6Lxt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 125A3C32789;
+	Thu, 13 Jun 2024 07:15:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718262704;
-	bh=OslM3kkku1MDWJpYN4HLaJZ3olMNC5OUngm/2NELu/Q=;
+	s=k20201202; t=1718262932;
+	bh=Tmo/BuogahgR5M93Y4MvIAIRnQBajprod5rkLlc7vm4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j42W6JhvQzwh3evAHkcis301+xm4+w2IsrLOmt83a1O2r5maTl1y1wXlYmji3/Yi+
-	 gYefiRTwdGKNdXW+U6kc7e3iP9DGR2Shhk1pjRS5k6cp5k9qM2wpvnvYOhLnuCm7YA
-	 a/EXe6Q141fxibH/3znijXCqR4YviSISJ5OIy/7Zr/qIXRwpqBOwaEu6dxUv4cNEDf
-	 64aqM4bPsjeI9VcC9e5mwfQQKoqV6Nd8+ADOliDikmz8FserW76ExvSTLnrULIBEQv
-	 2+cbHVE93IULJ6GDvHHcQOAA+1xgfl1ofJxW8SBC22ycDmIxsz0/gNdtJLZrgYGfqK
-	 Wk6FG3TxHSXww==
-Message-ID: <94448c2c-e7b2-4191-858c-529b254994f1@kernel.org>
-Date: Thu, 13 Jun 2024 09:11:37 +0200
+	b=YEUb6LxtH77IDUSV5/8g5JA73JmVYjf5AH9ec4P/xY1ZJFv4k1n0y3CRuzYpmskMS
+	 /BSPVBqQfdiyc0DTpZo8uP3cxQHFGHt3RmPcWxwzlYjTCN6hXnXQJZDyt+HulROKDR
+	 poDhM7eg867xaITURqO0eIrPiAmqRjHqUoKm+wsJtbRPxjcqLErXLZV8eq0KFPSIvO
+	 wZViSBss9HKV6iJmkyIKhvw3QbL0vuMRkxVtKaPFeugJG7FD5AL0C+AI5lTlVN+pPO
+	 Q8t3mHkj6y5FRtgNd+Kf1KK1pYxpYVK5M27SxqctUpM2SvsSNZwykrYkCNjtS48+JC
+	 kmVb+hn0hmGew==
+Message-ID: <e10eda85-68cf-4f66-ba34-3e746d286fa2@kernel.org>
+Date: Thu, 13 Jun 2024 09:15:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add AD4695 and similar ADCs
-To: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add SM4250 pinctrl
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20240612-iio-adc-ad4695-v1-0-6a4ed251fc86@baylibre.com>
- <20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240612-sm4250-lpi-v1-0-f19c33e1cc6e@linaro.org>
+ <20240612-sm4250-lpi-v1-1-f19c33e1cc6e@linaro.org>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -106,178 +104,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
+In-Reply-To: <20240612-sm4250-lpi-v1-1-f19c33e1cc6e@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 21:20, David Lechner wrote:
-> Add device tree bindings for AD4695 and similar ADCs.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 297 +++++++++++++++++++++
->  MAINTAINERS                                        |   9 +
->  2 files changed, 306 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-> new file mode 100644
-> index 000000000000..8ff5bbbbef9f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-> @@ -0,0 +1,297 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4695.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 12/06/2024 13:55, Srinivas Kandagatla wrote:
 > +
-> +title: Analog Devices Easy Drive Multiplexed SAR Analog to Digital Converters
-> +
-> +maintainers:
-> +  - Michael Hennerich <Michael.Hennerich@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
-> +
-> +description: |
-> +  A family of similar multi-channel analog to digital converters with SPI bus.
-> +
-> +  * https://www.analog.com/en/products/ad4695.html
-> +  * https://www.analog.com/en/products/ad4696.html
-> +  * https://www.analog.com/en/products/ad4697.html
-> +  * https://www.analog.com/en/products/ad4698.html
-> +
-> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +description:
+> +  Top Level Mode Multiplexer pin controller in the Low Power Audio SubSystem
+> +  (LPASS) Low Power Island (LPI) of Qualcomm SM4250 SoC.
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - adi,ad4695
-> +          - adi,ad4697
-> +      # same chips in WLCSP package with more pins
-> +      - items:
-> +          - const: adi,ad4695-wlcsp
-
-Usually we do not add compatibles for such differences. Programming
-model is the same. Same for all other wlcsp. Unless something differs?
-
-> +          - const: adi,ad4695
-> +      - items:
-> +          - const: adi,ad4697-wlcsp
-> +          - const: adi,ad4697
-> +      # same chips with higher max sample rate
-> +      - items:
-> +          - const: adi,ad4696
-
-Anyway, keep all fallbacked variants in one entry, so enum with const
-fallback.
-
-> +          - const: adi,ad4695
-> +      - items:
-> +          - const: adi,ad4698
-> +          - const: adi,ad4697
-> +      # same chips with higher max sample rate in WLCSP package
-> +      - items:
-> +          - const: adi,ad4696-wlcsp
-> +          - const: adi,ad4696
-
-That's wrong. ad4696 is compatible with 4695 as stated before. It is not
-compatible with ad4695-wlcsp.
-
-> +          - const: adi,ad4695-wlcsp
-> +          - const: adi,ad4695
-> +      - items:
-> +          - const: adi,ad4698-wlcsp
-> +          - const: adi,ad4698
-> +          - const: adi,ad4697-wlcsp
-> +          - const: adi,ad4697
+> +    const: qcom,sm4250-lpass-lpi-pinctrl
 > +
 > +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 80000000
-> +
-> +  spi-cpol: true
-> +  spi-cpha: true
-> +
-> +  spi-rx-bus-width:
-> +    minimum: 1
-> +    maximum: 4
-> +
-> +  avdd-supply:
-> +    description: A 2.7 V to 5.5 V supply that powers the analog circuitry.
-> +
-> +  ldo-in-supply:
-> +    description: A 2.4 V to 5.5 V supply connected to the internal LDO input.
-> +
-> +  vdd-supply:
-> +    description: A 1.8V supply that powers the core circuitry.
-> +
-> +  vio-supply:
-> +    description: A 1.2V to 1.8V supply for the digital inputs and outputs.
-> +
-> +  ref-supply:
-> +    description: A 2.4 V to 5.1 V supply for the external reference voltage.
-> +
-> +  refin-supply:
-> +    description: A 2.4 V to 5.1 V supply for the internal reference buffer input.
-> +
-> +  com-supply:
-> +    description: Common voltage supply for pseudo-differential analog inputs.
-> +
-> +  adi,no-ref-current-limit:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      When this flag is present, the REF Overvoltage Reduced Current protection
-> +      is disabled.
-> +
-> +  adi,no-ref-high-z:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Enable this flag if the ref-supply requires Reference Input High-Z Mode
-> +      to be disabled for proper operation.
-> +
-> +  cnv-gpios:
-> +    description: The Convert Input (CNV). If omitted, CNV is tied to SPI CS.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: The Reset Input (RESET). Should be configured GPIO_ACTIVE_LOW.
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    items:
-> +      - description:
-> +          Signal coming from the BSY_ALT_GP0 or GP3 pin that indicates a busy
-> +          condition.
-> +      - description:
-> +          Signal coming from the BSY_ALT_GP0 or GP2 pin that indicates an alert
-> +          condition.
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    items:
-> +      - const: busy
-> +      - const: alert
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +    description: |
-> +      The first cell is the GPn number: 0 to 3.
-> +      The second cell takes standard GPIO flags.
-> +
-> +  "#address-cells":
-> +    const: 1
+> +    maxItems: 2
 
-Blank line
-
-> +  "#size-cells":
-> +    const: 0
-> +
-
+Nothing changed.
 
 Best regards,
 Krzysztof
