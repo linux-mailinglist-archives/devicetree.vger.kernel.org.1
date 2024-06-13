@@ -1,302 +1,150 @@
-Return-Path: <devicetree+bounces-75514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2274F9078AF
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:50:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E379078B7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:51:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9CCB283534
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:50:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C57DB284165
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEBB149C6E;
-	Thu, 13 Jun 2024 16:50:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B37E149E16;
+	Thu, 13 Jun 2024 16:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g5WwR13l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RAP1EmdH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 782471494AB;
-	Thu, 13 Jun 2024 16:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 018FA17FD;
+	Thu, 13 Jun 2024 16:51:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718297440; cv=none; b=sRlLFij94Hm0UphuA4Mxdo1SaI3lhVrqOReV+GZL0eifJVpi7j02OJSzOBJd1DDeHkYxtVuaJb9q2x+7mpJcxDYP2YPy1IPsVwwSAJQBBS6hTCVJ0D3XVpAveTnnZgx+KHf2QHmr4+uyBrDP3jYYOwptIkU5cxv2t7iuqMgVqHw=
+	t=1718297474; cv=none; b=eVBColMOK4aSDprXhwMGY4zHJkdaMwc2P5pRwFEElg2T2BjelB49o6zVdIzy4FumrqIWtTZiaSM52thuskSwgu+ZQV9Dmsvh7t6AVeblN1NqN7734ed6qs7Tm3SJGnJfPQzhre7snlVzRk7U6UvnI1pKy5C/ku2pMeOgrnma2hQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718297440; c=relaxed/simple;
-	bh=OWtiegNLK1Tcqw0BVyyMHArsxQwjKbd6/uACxviGS+A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kT40InA/83pPkpdxgZb3S14ttB8okDnX/iPodBfJ9vJKctgTvBe3BlUMnOV6fXLCEm/NnXmgbdHvWKlmwXUQm6d3ioEScrX3kBSDLEUMgSYYf2LluhpwcIr/gnS0vz3i8tE26paRG1+NlRW6Fi1STNb70safj/fZsiCa3KOiB5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g5WwR13l; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45D95r6o017200;
-	Thu, 13 Jun 2024 16:50:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Y9DnqzopY74lghgpM22DtSryF8GbwjQyuBW6cMza16Y=; b=g5WwR13laAOquxj2
-	8Fs8UnmLwQ3sLWApOXSFAYPDkPosirTQrFBOGPLR0tET4/UZEqKZKTp4zjSIORbW
-	gjVHa3DJ4P0mUjTggr25yM2+JepUaG8Yod3NdjyGgTridxUnOwznJSwVe5WyI7SD
-	8FsZq82K0augKHdlYXyz32PR8pJzl+zFYp6GspnC/U5GWq/yNlFyaxxJDud4G8ee
-	0KyrAVVX3WProyZAkDlnYAo9w+GC2S86oRl/7/rL8rISWnMrjLhw4Fy4/8nT2N/7
-	LgbJc7SUJWb9MU/++aCz+3y7PgF0GsHZv8lNBD0I5ErVEcM7nxwpZF43qxv8xQoo
-	/TTZWw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yqe93keaq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Jun 2024 16:50:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45DGoMrZ022261
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Jun 2024 16:50:22 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Jun
- 2024 09:50:10 -0700
-Message-ID: <9d7623fb-be0f-4adf-e9e0-17ac2f7ebaba@quicinc.com>
-Date: Thu, 13 Jun 2024 22:20:07 +0530
+	s=arc-20240116; t=1718297474; c=relaxed/simple;
+	bh=AqclkLgO7O3ZBcq/ORHN2o8G8ZYFtWnr+enwKmSDttQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pvVPGgTHwLyRSlVzyI8FDoRiVZwwiknpJRjPahC5ujsoavfmg89TRvQG613/T9SZnlxj8O9eC46NKc/E3j2BDmExCR3XdzEG7grUHr5FH0XlTmxHopF1Ot7bfC+/ynNk327rs2ORS3FiBcOu2Re9NARiX/DUya/8/Ki7P+VlLsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RAP1EmdH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43B43C3277B;
+	Thu, 13 Jun 2024 16:51:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718297473;
+	bh=AqclkLgO7O3ZBcq/ORHN2o8G8ZYFtWnr+enwKmSDttQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RAP1EmdH6e4rSur0gGQcMy9m++pdFcnJYstl9o+fBm1gU3AeICVzzyjK1F4OBJxO7
+	 JZGun/GoFJd/bM3pASp+hMcLVVifVdQhvbeQcqwCgalOFKtrTpHbPHoaVwZMn9Pthv
+	 FevjeMbQhvHI5CD6ItFAfoLbs0PxFHil9XLueLbtn0DKGOk+qwnWTpqLFmQO6Qo4dM
+	 XMqIbcaYCH5ic+NhejJQjD8TsZchJvFYs+ISpZfIyYAYeQKDKh+Zq15OZci5tESN85
+	 R5TsPinydfVEB+SXT2T4ILJm+/+OlxU/n/frFVKGLmWGPHO+I6bU8IZ8vx6FQP00n8
+	 eMkFD25JQX1pw==
+Date: Thu, 13 Jun 2024 10:51:11 -0600
+From: Rob Herring <robh@kernel.org>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Conor Dooley <conor@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: renesas,vin: Add binding for
+ V4M
+Message-ID: <20240613165111.GA2005299-robh@kernel.org>
+References: <20240610113124.2396688-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240610113124.2396688-2-niklas.soderlund+renesas@ragnatech.se>
+ <20240610-screen-wolverine-78370c66d40f@spud>
+ <20240610165935.GA382677@ragnatech.se>
+ <20240610-yoga-antler-e6447592de16@spud>
+ <20240611110617.GD382677@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: x1e80100: Add fastrpc nodes
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <konrad.dybcio@linaro.org>, <djakov@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <srinivas.kandagatla@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <abel.vesa@linaro.org>
-References: <20240604011157.2358019-1-quic_sibis@quicinc.com>
- <20240604011157.2358019-5-quic_sibis@quicinc.com>
- <wnvet65zg3s6lqnnn5xd4zzx4jwdclbfh3ywy4ut3cal2wmoto@3z3burliivyo>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <wnvet65zg3s6lqnnn5xd4zzx4jwdclbfh3ywy4ut3cal2wmoto@3z3burliivyo>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ysEjr7Gpb6cLantCW7rL3RLsNiC2SstU
-X-Proofpoint-ORIG-GUID: ysEjr7Gpb6cLantCW7rL3RLsNiC2SstU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-13_11,2024-06-13_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 mlxlogscore=794
- impostorscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 adultscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406130121
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240611110617.GD382677@ragnatech.se>
 
-
-
-On 6/6/24 08:15, Bjorn Andersson wrote:
-> On Tue, Jun 04, 2024 at 06:41:57AM GMT, Sibi Sankar wrote:
->> Add fastrpc nodes for ADSP and CDSP on X1E80100 SoC.
->>
+On Tue, Jun 11, 2024 at 01:06:17PM +0200, Niklas Söderlund wrote:
+> On 2024-06-10 22:32:29 +0100, Conor Dooley wrote:
+> > On Mon, Jun 10, 2024 at 06:59:35PM +0200, Niklas Söderlund wrote:
+> > > Hi Conor,
+> > > 
+> > > Thanks for your feedback.
+> > > 
+> > > On 2024-06-10 17:03:49 +0100, Conor Dooley wrote:
+> > > > On Mon, Jun 10, 2024 at 01:31:23PM +0200, Niklas Söderlund wrote:
+> > > > > Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
+> > > > > 
+> > > > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
+> > > > >  1 file changed, 1 insertion(+)
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > index 5539d0f8e74d..168cb02f8abe 100644
+> > > > > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > @@ -54,6 +54,7 @@ properties:
+> > > > >                - renesas,vin-r8a77995 # R-Car D3
+> > > > >                - renesas,vin-r8a779a0 # R-Car V3U
+> > > > >                - renesas,vin-r8a779g0 # R-Car V4H
+> > > > > +              - renesas,vin-r8a779h0 # R-Car V4M
+> > > > 
+> > > > Your driver patch suggests that this is compatible with the g variant.
+> > > 
+> > > Currently it is. But that not always be true, I tried to outline this in 
+> > > to cover letter.
+> > 
+> > To be honest, I don't usually read cover letters when reviewing bindings.
+> > Information about why things are/are not compatible should be in a
+> > commit itself.
+> > 
+> > >     The V4M capture pipeline is similar to the other Gen4 SoC supported
+> > >     upstream already V4H. Currently all futures supported for VIN on V4M are
+> > >     also supported by V4H and the driver code can be shared. But as done for
+> > >     other R-Car IP bindings a new dedicated binding for V4M is created.
+> > >     This have proved prudent in the past where quirks are found even within
+> > >     the same generation as more advance use-cases are enabled.
+> > 
+> > I don't understand how this precludes using the g variant as a fallback
+> > compatible. I'm not suggesting that you don't add a specific one for the
+> > h variant.
 > 
-> This looks pretty unrelated to bwmon, could it not have been sent alone?
-
-lol, I figured that the rest of the series was in decent shape to
-land. Let me resend this one out standalone.
-
--Sibi
-
+> The bindings have been around for a while and currently there are 25 SoC 
+> specific compatibles, one for each SoC supported. Each compatible 
+> consist of the SoC model number, not the VIN IP model/version number as 
+> no such versioning schema exist.
 > 
-> Regards,
-> Bjorn
+> The datasheets are specific for each SoC and there are differences 
+> between almost every SoC. There are of course lots of similarities 
+> between the SoCs and the similarities are cluster around the 3 
+> generations (Gen{2,3,4}) supported.
 > 
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 156 +++++++++++++++++++++++++
->>   1 file changed, 156 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->> index d86c4d3be126..4edabe0ff592 100644
->> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
->> @@ -5567,6 +5567,55 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
->>   				label = "lpass";
->>   				qcom,remote-pid = <2>;
->>   
->> +				fastrpc {
->> +					compatible = "qcom,fastrpc";
->> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
->> +					label = "adsp";
->> +					qcom,non-secure-domain;
->> +					#address-cells = <1>;
->> +					#size-cells = <0>;
->> +
->> +					compute-cb@3 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <3>;
->> +						iommus = <&apps_smmu 0x1003 0x80>,
->> +							 <&apps_smmu 0x1063 0x0>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@4 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <4>;
->> +						iommus = <&apps_smmu 0x1004 0x80>,
->> +							 <&apps_smmu 0x1064 0x0>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@5 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <5>;
->> +						iommus = <&apps_smmu 0x1005 0x80>,
->> +							 <&apps_smmu 0x1065 0x0>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@6 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <6>;
->> +						iommus = <&apps_smmu 0x1006 0x80>,
->> +							 <&apps_smmu 0x1066 0x0>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@7 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <7>;
->> +						iommus = <&apps_smmu 0x1007 0x80>,
->> +							 <&apps_smmu 0x1067 0x0>;
->> +						dma-coherent;
->> +					};
->> +				};
->> +
->>   				gpr {
->>   					compatible = "qcom,gpr";
->>   					qcom,glink-channels = "adsp_apps";
->> @@ -5656,6 +5705,113 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
->>   
->>   				label = "cdsp";
->>   				qcom,remote-pid = <5>;
->> +
->> +				fastrpc {
->> +					compatible = "qcom,fastrpc";
->> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
->> +					label = "cdsp";
->> +					qcom,non-secure-domain;
->> +					#address-cells = <1>;
->> +					#size-cells = <0>;
->> +
->> +					compute-cb@1 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <1>;
->> +						iommus = <&apps_smmu 0x0c01 0x20>,
->> +							 <&apps_smmu 0x0c21 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@2 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <2>;
->> +						iommus = <&apps_smmu 0x0c02 0x20>,
->> +							 <&apps_smmu 0x0c22 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@3 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <3>;
->> +						iommus = <&apps_smmu 0x0c03 0x20>,
->> +							 <&apps_smmu 0x0c23 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@4 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <4>;
->> +						iommus = <&apps_smmu 0x0c04 0x20>,
->> +							 <&apps_smmu 0x0c24 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@5 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <5>;
->> +						iommus = <&apps_smmu 0x0c05 0x20>,
->> +							 <&apps_smmu 0x0c25 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@6 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <6>;
->> +						iommus = <&apps_smmu 0x0c06 0x20>,
->> +							 <&apps_smmu 0x0c26 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@7 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <7>;
->> +						iommus = <&apps_smmu 0x0c07 0x20>,
->> +							 <&apps_smmu 0x0c27 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@8 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <8>;
->> +						iommus = <&apps_smmu 0x0c08 0x20>,
->> +							 <&apps_smmu 0x0c28 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					/* note: compute-cb@9 is secure */
->> +
->> +					compute-cb@10 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <10>;
->> +						iommus = <&apps_smmu 0x0c0c 0x20>,
->> +							 <&apps_smmu 0x0c2c 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@11 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <11>;
->> +						iommus = <&apps_smmu 0x0c0d 0x20>,
->> +							 <&apps_smmu 0x0c2d 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@12 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <12>;
->> +						iommus = <&apps_smmu 0x0c0e 0x20>,
->> +							 <&apps_smmu 0x0c2e 0x20>;
->> +						dma-coherent;
->> +					};
->> +
->> +					compute-cb@13 {
->> +						compatible = "qcom,fastrpc-compute-cb";
->> +						reg = <13>;
->> +						iommus = <&apps_smmu 0x0c0f 0x20>,
->> +							 <&apps_smmu 0x0c2f 0x20>;
->> +						dma-coherent;
->> +					};
->> +				};
->>   			};
->>   		};
->>   	};
->> -- 
->> 2.34.1
->>
+> Using the g variant as fallback in DTS for h variant even if we also add 
+> a specific one for h is confusing. As g and h are two different SoC.
+
+Why? That is the very definition of how "compatible" is supposed to 
+work.
+
+> The g variant is r8a779g0 which is the SoC name/number for V4H.
+> The h variant is r8a779h0 which is the SoC name/number for V4M.
 > 
+> I think the core of the problem is that there are no versioning schema 
+> for the individual IP blocks used on each SoC. For better or worse the 
+> bindings for lots of Renesas IPs are centred around SoC name/number and 
+> not the individual IP implementations.
+
+We've tried IP version based compatibles before. It doesn't work. Guess 
+what, the IP version changes with nearly every SoC. Chip designers have 
+no discipline.
+
+Rob
 
