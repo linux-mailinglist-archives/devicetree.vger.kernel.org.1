@@ -1,74 +1,55 @@
-Return-Path: <devicetree+bounces-75451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C8C907474
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1644D907476
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:58:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0038A1F23D63
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:58:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE6271F2452A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF57145326;
-	Thu, 13 Jun 2024 13:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F7614534A;
+	Thu, 13 Jun 2024 13:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nWQeNOir"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="clhcumvE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CAF139CFE
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 13:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB041448FA;
+	Thu, 13 Jun 2024 13:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718287072; cv=none; b=bY93U/MpKIs3IPbe9iQc+9ndLdg28V3rG3qoKI9llRfMwKtqrBAM3N8qWHADOZBPs8ho9dN2hU2tSY8Qk28r47iOtmq/J6K586WR2HY/Ud/g6pldmcnTQk5ECA7W+n9PmEUDuE/4dqe+RGQ9G7NbxEdI837imI8ij4Sx/PlDlNY=
+	t=1718287073; cv=none; b=B35G4heZNrHB8annJL0W1lQj5FgAZAE+PABf4dxX0vAGU1stxk3F+zuISZm6L2T6aOwi6N4IHDO1kt993uOfQ6yx5kTtWNLoj6LQG3t/9blNE9C0ICBgidseSrSzmdWAy8URp17ig/NTrHKWkT0/kagdXjJFrESvsqOlXTOuWXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718287072; c=relaxed/simple;
-	bh=GrIGi5Raom3cBopM6onz7enFC19BTnxh+2SvPTD5iMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rbRdd3Mm/rdvgrpR2ZjdckA//w188E/SDgWIFaUOsGu60QFNezyjeaG/3oYOoSGUThNSSVbv2DqJQjZDWlMRAVdqztNp/MZawPnobo5TKlZwj6QW0LwAfughkBzFVCn7UGpTMueMpJhzrqlg0HTg30Rk6JoBvuu31KA+Zlj6IDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nWQeNOir; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c9cc681ee4so491300b6e.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 06:57:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718287069; x=1718891869; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yAF//HO0SkiGruVZH/oa4D5CEEiCpOQwdcWhLFwGOe4=;
-        b=nWQeNOirVscLswJy1r0TNhO6laI+1c2Mq2JR2ZUjoyZm61LK44eYujABKkF47ZifkN
-         h0Dl7dMrKQp8m6ER5oymN4q2RIBkgXCHAnCMrkqlvyFgmNbxeo+ZRwsAOC/NGGPWj/i8
-         9C0aMZffQcar89f2mTSTOZ0ucmwJozP72SEUlgzXsUA9nNxQDxIM0OnwksPdBDq7F0aT
-         q4NTe3PxzgRrFMFJ60zh56IV+1Mne7pv8ZKEtpeXao3jVVFKbb6ocCMe8eV+sy6X1IsO
-         MUPThPVxNozvZFT88bHVNK9xkVXVvxXNgMjqbcq1UjYCWFOM+3j5dmluSgcdgBWWUcGM
-         aE/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718287069; x=1718891869;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yAF//HO0SkiGruVZH/oa4D5CEEiCpOQwdcWhLFwGOe4=;
-        b=cySpF4JHI9Fi6rOztppN9UKiFi+wnTOehmdgJC2QkYyKTvSmnuHsLscNfAcou9fL1z
-         oWo7aeM72yfPWARLiX9dSaGrY+Pc+pN906sbgOZ/TLLtEVB5zhGSHmVPVlgdLtdHyRYN
-         48SR7hU8DCt8B67rCrjo2SuuCy7eLQ/uvwsjt2Cjeujowb94Ei7ry/ObuECrQ41mZ5y/
-         wavAGgEjWJCqW9+ibm5uGei7d5EeXLBt28SGk8BFsusyKgAKlVTBQwLUWHA4EUIcdPW6
-         rl6w0E3qG1WlhC0cAISlB22yrvrklqMPsNR/26+1j0xw1ZQ1R7IorWmKoD6Lh+zDRa0b
-         wx3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXPFWRcOqj0czqQfkHjVk84eIer9iNy5/exsyHthKAlHBu1Fwz+MwexRQ/VSYb6WXIKdYWx17LWnLF3iBU79GG6IpX3Vr4fYnBRSA==
-X-Gm-Message-State: AOJu0Yy2/hqGMHwQlw8kuYnqqnuo59FprCi6TT/HN3BLeCyvpSmvf3IX
-	yOUN6667yS2r1N6dYV1IjWLtyAgZfBAh3r3Dc1n/pqMtLCxBwiPsJtPOkl7J2tE=
-X-Google-Smtp-Source: AGHT+IF6bjcZSnWMyEtkHan92hgo9U9vcd8IIa+fICj/3epkw5ppZ2rEbJOtmgyzeuASqb04o0vNwg==
-X-Received: by 2002:a05:6808:d49:b0:3d2:1a26:8a43 with SMTP id 5614622812f47-3d23dfd87d4mr5716375b6e.9.1718287068043;
-        Thu, 13 Jun 2024 06:57:48 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3d2476e31cbsm194695b6e.50.2024.06.13.06.57.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 06:57:47 -0700 (PDT)
-Message-ID: <f765ef30-a777-4dfc-8f93-0f15b46f91ae@baylibre.com>
-Date: Thu, 13 Jun 2024 08:57:46 -0500
+	s=arc-20240116; t=1718287073; c=relaxed/simple;
+	bh=B9iVUMQ7iBXze38SIjww4yo0dWA0ImTuZmCEx2SUH78=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=n49cG20qcV3BpfWi6pQU5sPBGjKGy+8uX1FkcnroS66EFWJKvj44pSFjG4HH8avmjbgPtJH3et0yViC7/Upl1JCmdp4FZNmCn1Jk7gjm9q4lyG5M/dnaU2Er6SWcZ/EovXrQIdJMQjjSqFIkGax27kwg0f6kgVYje6T6QRF8PMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=clhcumvE; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718287069;
+	bh=B9iVUMQ7iBXze38SIjww4yo0dWA0ImTuZmCEx2SUH78=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=clhcumvEQ0/iPFIHMumilHTeupRda3bSPQoO+EK+KvqQFqFcvN56KlAR+nRGIn9gI
+	 2gIHi1sp/et2YyoI0MqHtdDj5xP9lVvrruVhoZwzmMRvyutGXUYe/b4sZdw1NL5gmw
+	 oY/v7KA9DFu2I7vftH4E2+BUsvtz8pXrmbteLat8Aa/qKGOBl2UFjbTcRycyJaK1RS
+	 V7ZAkRkiEUl/tw68f641kOAvCXE9u3XHjcL6FMIIT1h9pWs2pEGT+PwmZSUUl56VwF
+	 6wqPs/w3WpjxQEPxaXMGU6r5G1qp1+OrR3xE/8dN2LSj0MI6J3amlSVO/zmeGAVnsX
+	 GGCAF9wSWRVYQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EE6B337820CD;
+	Thu, 13 Jun 2024 13:57:48 +0000 (UTC)
+Message-ID: <25c8432c-7e2c-4d32-bf5a-225aeaaa809a@collabora.com>
+Date: Thu, 13 Jun 2024 15:57:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,115 +57,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add AD4695 and similar ADCs
-To: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+Subject: Re: [PATCH] MAINTAINERS: ARM: airoha: add entry to cover Airoha SoC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20240612-iio-adc-ad4695-v1-0-6a4ed251fc86@baylibre.com>
- <20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
- <94448c2c-e7b2-4191-858c-529b254994f1@kernel.org>
+ Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+References: <20240613133840.6949-1-krzysztof.kozlowski@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <94448c2c-e7b2-4191-858c-529b254994f1@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20240613133840.6949-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 6/13/24 2:11 AM, Krzysztof Kozlowski wrote:
-> On 12/06/2024 21:20, David Lechner wrote:
->> Add device tree bindings for AD4695 and similar ADCs.
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 297 +++++++++++++++++++++
->>  MAINTAINERS                                        |   9 +
->>  2 files changed, 306 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
->> new file mode 100644
->> index 000000000000..8ff5bbbbef9f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
->> @@ -0,0 +1,297 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4695.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Analog Devices Easy Drive Multiplexed SAR Analog to Digital Converters
->> +
->> +maintainers:
->> +  - Michael Hennerich <Michael.Hennerich@analog.com>
->> +  - Nuno Sá <nuno.sa@analog.com>
->> +
->> +description: |
->> +  A family of similar multi-channel analog to digital converters with SPI bus.
->> +
->> +  * https://www.analog.com/en/products/ad4695.html
->> +  * https://www.analog.com/en/products/ad4696.html
->> +  * https://www.analog.com/en/products/ad4697.html
->> +  * https://www.analog.com/en/products/ad4698.html
->> +
->> +$ref: /schemas/spi/spi-peripheral-props.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - enum:
->> +          - adi,ad4695
->> +          - adi,ad4697
->> +      # same chips in WLCSP package with more pins
->> +      - items:
->> +          - const: adi,ad4695-wlcsp
+Il 13/06/24 15:38, Krzysztof Kozlowski ha scritto:
+> Airoha SoC is not covered by any maintainer entry so relevant patches
+> can be missed.  It seems Mediatek SoC maintainers were covering some
+> parts of Airoha and Airoha itself is subsidiary of Mediatek, so assign
+> the Airoha maintenance to Matthias and AngeloGioacchino.
 > 
-> Usually we do not add compatibles for such differences. Programming
-> model is the same. Same for all other wlcsp. Unless something differs?
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-OK, I will drop all of the -wlcsp stuff. It made the .dts validation
-catch more stuff, but wasn't being used in the driver because there
-really isn't a difference other than some of the pins not being there.
 
-> 
->> +          - const: adi,ad4695
->> +      - items:
->> +          - const: adi,ad4697-wlcsp
->> +          - const: adi,ad4697
->> +      # same chips with higher max sample rate
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I suppose one could make the argument that the programming model is
-the same on these too, but the maximum sampling frequency does seem
-like an important bit of information so that you don't try to set
-the conversion trigger rate too high.
 
->> +      - items:
->> +          - const: adi,ad4696
+> ---
+>   MAINTAINERS | 9 +++++++++
+>   1 file changed, 9 insertions(+)
 > 
-> Anyway, keep all fallbacked variants in one entry, so enum with const
-> fallback.
-> 
->> +          - const: adi,ad4695
->> +      - items:
->> +          - const: adi,ad4698
->> +          - const: adi,ad4697
->> +      # same chips with higher max sample rate in WLCSP package
->> +      - items:
->> +          - const: adi,ad4696-wlcsp
->> +          - const: adi,ad4696
-> 
-> That's wrong. ad4696 is compatible with 4695 as stated before. It is not
-> compatible with ad4695-wlcsp.
-> 
->> +          - const: adi,ad4695-wlcsp
->> +          - const: adi,ad4695
->> +      - items:
->> +          - const: adi,ad4698-wlcsp
->> +          - const: adi,ad4698
->> +          - const: adi,ad4697-wlcsp
->> +          - const: adi,ad4697
->> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fb32a2fe3a79..e7fd595b8f5e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1924,6 +1924,15 @@ F:	include/dt-bindings/reset/actions,*
+>   F:	include/linux/soc/actions/
+>   N:	owl
+>   
+> +ARM/AIROHA SOC SUPPORT
+> +M:	Matthias Brugger <matthias.bgg@gmail.com>
+> +M:	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> +L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
+> +S:	Odd Fixes
+> +F:	arch/arm/boot/dts/airoha/
+> +F:	arch/arm64/boot/dts/airoha/
+> +
+>   ARM/Allwinner SoC Clock Support
+>   M:	Emilio López <emilio@elopez.com.ar>
+>   S:	Maintained
+
 
