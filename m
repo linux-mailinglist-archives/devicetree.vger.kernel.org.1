@@ -1,106 +1,120 @@
-Return-Path: <devicetree+bounces-75392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B04D906CC5
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:53:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3828906D02
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 13:57:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50BA31C22CD1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:53:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E037B251B6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 11:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10EEF144306;
-	Thu, 13 Jun 2024 11:50:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5708C145B06;
+	Thu, 13 Jun 2024 11:51:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VIsCD5+G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nG3ZGyzs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660971428FC;
-	Thu, 13 Jun 2024 11:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07AF144D10
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 11:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718279432; cv=none; b=QbDsp59KWBeDhUDtS8QVamh+tW4SETN5DPLSeDK1d+DjgV2Ymg0Shj0VlaTh6Abkm1Gsb/pRW8Cp4vWW3bPHn/q6KnV/hPGH8z7InL4MdSDv6ejnbmhQq18iDRypmBDFPqqly0Zx5CKunkftmw/mcI/BLmeTEvsup9XekuT4ySs=
+	t=1718279506; cv=none; b=Flf+YTDtl8PAKV5Lf8MdNi+l7rCfIoMD6GnuYOpxliTQ3ncp85quWYrcmHJNEXyu6+5WXRA6GTPxWDMde6X72JJ6KSJdvO9zklzZ7pzIOEyPVMMBgQhF9Ysimlu5FSKv6LyfpB+v030/3sh6DMpIGnw4Q3Fb2e1nFnQuMzik1Ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718279432; c=relaxed/simple;
-	bh=cuDAYDRpgKBgvveJPHQpekBSVAZphUGu4rY+rzPtza0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qUP9uOXZs2pjg5zAIEiuDOcfkdfIocLvULiWYSz6Em1pVeQVmZkWiAY9LHhWiSwJYWPlCceLqWw1tUzm2wt+eDz4ybhhnFcfP2W/Hjxdr7fAduUG+hF7xu6pmLAirhPPiwx0dcZewlPy2wYr05WU28mOAW54TdNbvKg3X7PxRPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VIsCD5+G; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a6ef793f4b8so103504366b.1;
-        Thu, 13 Jun 2024 04:50:30 -0700 (PDT)
+	s=arc-20240116; t=1718279506; c=relaxed/simple;
+	bh=sZEKZfHubIqep01PYDDOG2DiKYyzvbmcvlOdh30m7Us=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mC7jw8f/z4LuCqUsq/WDdbIJFo//cLVpjxG7WaG6/YKT60ndy0594D7BSTdzAdcV8Rv2W8zBUzuZmWwoGMtXhAFlxUje54j8nngdjhbeTQIrBotxtevL/o0KpWVMyG+4rl6Z8W3BLy9w8x8BAgVde2/GaFcqWV5MPdCnOSRKro4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nG3ZGyzs; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-62a2424ed00so11755607b3.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 04:51:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718279429; x=1718884229; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2mzNTSAFdhxdZBP4YhWh4ayQRjsQOOmjzP+ZYg1zBG4=;
-        b=VIsCD5+GBBY62LXppfEuepmZ5PatQGMHp4mOm0BTY5RzyczYh4GIe4k8yTwGz/8G61
-         h8psFLelRAZuSJGs7eqYOIOPoQ3JaOFC+rZBz1KoDhwP8EOfzxUzirPKnSAw+VXv5AtE
-         bvaYhRcA+Gx9E7GNrcoEP2XPKmd4qNEsXW4ARvgRyKBFVIjYODCYe3TchscFWFXuwr8Q
-         vM+h4B9EW+MhEA9Y76TvtxS77Sh3khusxJUyig9hIc9UY/5W4t2iIjWb96uRYfzPUEHv
-         a+ykilfhZ8bFzR6Mi7h1VH4BIaYVMKKkNnS14vmC7/KhOCc4dlsigIWbxtaoKpIFDAGs
-         ZjWQ==
+        d=linaro.org; s=google; t=1718279504; x=1718884304; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=YRvIRe1C8JF7J2k72Eq1IoWCS+jAa2AM8+ph/DDThXs=;
+        b=nG3ZGyzs0+FGeRWMyFqTafgjocV1ZCf4AZaydmP1Gn5Aw47SfjbW9cs6LMFL9Uz4nT
+         8HdsLKEc4nONPnRJ7XrCGPpNLpX5iSySpz9aFPXdO5oNWbfrHTQHaZKoBz1zCYscjoVu
+         s/URdGDMaVoGA0E8+QIE2IG0MAIvVGbTC5dVdJ7mFpycHwdIn54UtMeO4SNHA8ODWoVN
+         qyoKIgQl+4wXQxkwunl64Ep8/WoGjzv+12IUaZVK3JUfBskRaEtUUW9a8OPARY8mh0XF
+         4fV3FsknDPTcjrifA5j3C2nQehltVk4hTM21XtcPxXc4yl6VFEHqTSKgqEHdnEgE7TOi
+         5Klg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718279429; x=1718884229;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2mzNTSAFdhxdZBP4YhWh4ayQRjsQOOmjzP+ZYg1zBG4=;
-        b=TWFlkH5g5SXcApM+wUW7ROGpYbGG7pxpyvT0NaNuRehyW/OO2pRJYPSrtOX/eNRSzc
-         YJKYPVHS1zoHsv4tgmkWFBYgsQ4I9fGtWMvNkfWthif3vJfZbEvRdazD/0AlAyroA/zr
-         ou2daqRGiShRDlEfrnYl71Br/YDAltPzlmgJGkKTegLnfU+FEBtRkDy6jHao5i5t+mCZ
-         CTvI3rYo0n7yYVWYQWrl4mLUlvoFK+fTgnFf8KyF3T4VN1fhy0AGoocNHJJIYLTL9FMl
-         U70xbvhm6FLQR7zPmxRoC0xinr3n9G26JHQ0zl5rN19JgDoQEUVCEppIAzKhqT65lh8n
-         rlnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXA/E4AYuteC80iGzpwmKTnI1qiFuFDeuLQccAfNKms6NaCoT81CdliKPlrgnuFyn9ZL4z9VoYfMCsubITWwkOoUR64gG0Y2V/S/NtCAxTzI/GxN7bn+kbPr7OTaGs8aQ6CFBBR3V1Ktrp94Dvg+5io2AV7QfIyC4y7ig6vWxR10A==
-X-Gm-Message-State: AOJu0Yy3bC1UvmoN8c/5kjidjclOnmg+jHVylIiUDIzGTY/GWiFWCMEr
-	/fIPoqwYvqnXttOFgBfoRZl6lNbavO2muMsagOYYR40ONCuGzjEn
-X-Google-Smtp-Source: AGHT+IHYFnmNJYoOzcg6Gs1u0xP4vzUOCzupuQwsJKi8ak72aleSwHXeg3/eztgg+ZIP7pYRUSi0GA==
-X-Received: by 2002:a17:906:7f19:b0:a6f:5957:7b9b with SMTP id a640c23a62f3a-a6f59577de3mr78886466b.51.1718279428445;
-        Thu, 13 Jun 2024 04:50:28 -0700 (PDT)
-Received: from skbuf ([188.25.55.166])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56ed379esm64929366b.139.2024.06.13.04.50.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 04:50:27 -0700 (PDT)
-Date: Thu, 13 Jun 2024 14:50:25 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Martin Schiller <ms@dev.tdt.de>
-Cc: martin.blumenstingl@googlemail.com, hauke@hauke-m.de, andrew@lunn.ch,
-	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v5 02/12] net: dsa: lantiq_gswip: Only allow
- phy-mode = "internal" on the CPU port
-Message-ID: <20240613115025.2ogzag4p3gp7xf6n@skbuf>
-References: <20240611135434.3180973-1-ms@dev.tdt.de>
- <20240611135434.3180973-3-ms@dev.tdt.de>
+        d=1e100.net; s=20230601; t=1718279504; x=1718884304;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YRvIRe1C8JF7J2k72Eq1IoWCS+jAa2AM8+ph/DDThXs=;
+        b=Yneor1/5xkA1AvI0r7YxulwzLsr6B6/WpxJJizq/T9WXo3p3qCyKDKRB6Hhz8/rTsg
+         E0Sk/8ksdRRG9VVpnat5x+3OU5i20nP+CWvjkNkshe24jRGtH8EJu3X3zp7HRmZaFrqL
+         u1K6D/DRKYF0uvCaXEx61RlZxRsikskHkiJ6ga5hmTxVK4a7Q877xba4LIvWIPCjam6k
+         2vAxjf38CdS/6aW/nLyW4qntbigZIfytfUU96iEHl5jfKqXuMlwBuAPa4aHg+RM7VmLd
+         WuaI5RrASnScmZWnmER7AB6H/tlsH2e40tNgjVRkYB2SdkEjIO1z/Sje8Dvt5NTeAP+q
+         pqmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBYS/6BI/ArZhr9LUk1ixN09g++e7Kt94BR2sZY5lzu5iYH4luazXpJd9H3kVdWApuqRmSR4D1pIoBlXIKUPRO7kpyqdVnaXq8pQ==
+X-Gm-Message-State: AOJu0YzDjiQZr33WyrL0shAuPYJ21Px+8WlSFL+ewZLOrVMl+BsMU+Gh
+	JFr+UCGFSrHlgZuER1sRixkPVGmpDyqA2HM4BbiOr9YHYUAf3AIoDsRVkE74xOAa5SO6n1JV5G6
+	5182I/nuUSpqqPx9QgNQfazUonJXNzZ5Y9B+2D7HP7fBa+5TbxSo=
+X-Google-Smtp-Source: AGHT+IHsbTNLvjN8WuDB84rv+zysR6fpgX/dxzhUTfN9xcKd94L2FQdMlBq8iWThBr9t45yXD5czpiz8aOD25S8hU38=
+X-Received: by 2002:a0d:dc84:0:b0:62a:259f:74d1 with SMTP id
+ 00721157ae682-62fb847d3a1mr45680067b3.5.1718279503794; Thu, 13 Jun 2024
+ 04:51:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240611135434.3180973-3-ms@dev.tdt.de>
+References: <20240524082236.24112-1-quic_kbajaj@quicinc.com>
+ <CAA8EJpp9U-ucMAiNmVvWDuupd=OR_fLK9fQ+n21SVmktWMxhmA@mail.gmail.com> <ae289c19-2701-d00f-3f6f-5e87ec37e475@quicinc.com>
+In-Reply-To: <ae289c19-2701-d00f-3f6f-5e87ec37e475@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 13 Jun 2024 14:51:32 +0300
+Message-ID: <CAA8EJpo4v1sfjo2nUEj0-kZ_0rrMh07s67LzhBs8POjkN2Nybg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: qdu/qru1000-idp: Fix the voltage setting
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Melody Olvera <quic_molvera@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jun 11, 2024 at 03:54:24PM +0200, Martin Schiller wrote:
-> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> Add the CPU port to gswip_xrx200_phylink_get_caps() and
-> gswip_xrx300_phylink_get_caps(). It connects through a SoC-internal bus,
-> so the only allowed phy-mode is PHY_INTERFACE_MODE_INTERNAL.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
-> Acked-by: Hauke Mehrtens <hauke@hauke-m.de>
-> ---
+On Thu, 13 Jun 2024 at 14:43, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>
+>
+>
+> On 5/24/2024 2:59 PM, Dmitry Baryshkov wrote:
+> > On Fri, 24 May 2024 at 11:23, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+> >>
+> >> While adding the USB support, it was found that the configuration
+> >> for regulator smps5 was incorrectly set. Upon cross verifying for
+> >> all the regulators, found that smps4, smps6 and smps8 are also
+> >> incorrectly configured. This patch fixes the same.
+> >
+> > Nit: see Documentation/process/submitting-patches.rst, "This patch..."
+>
+> Will update the commit message.
+>
+> >
+> >> In particular -
+> >> - smps4 is 1.574V min and 2.04V max
+> >> - smps5 is 1.2V min and 1.4V max
+> >> - smps6 is 0.382V min and 1.12V max
+> >
+> > Just for my understanding, will anything further constraint these values?
+>
+> As far as i know, this is going to be final.
 
-Similar thing with the sign off here, and there are a few other patches
-on which I'm not going to comment on individually.
+Ack
+
+> currently, usb device is not working without this min/max change.
+
+-- 
+With best wishes
+Dmitry
 
