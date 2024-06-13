@@ -1,167 +1,132 @@
-Return-Path: <devicetree+bounces-75480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9889790762D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:12:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9899A907656
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:16:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47AF62836CC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:12:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 252A0B21E09
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 15:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE27B149C61;
-	Thu, 13 Jun 2024 15:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AyjHaTj6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3066E145B0B;
+	Thu, 13 Jun 2024 15:15:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422B31474A8;
-	Thu, 13 Jun 2024 15:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B1F1474CE;
+	Thu, 13 Jun 2024 15:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718291512; cv=none; b=UWaIUdHWWx1EAhcj9qoAEtk9vJWImUxsbcJEFDynDCOyL5sFAL/Aqc4NsuKgqDLwE3/PSEy3Ho0W+TuYdlyNyHgKCtY9ikyVLfSjGAGf5OHuXYXHKHXEgI4MkdyguhFTGU4FoPxlEWH0Mv8NDjrNvgHqRZMwvqilKywJ0o9yJLI=
+	t=1718291730; cv=none; b=CFUcGkdcW7MDO1EKoX/YZM78YLEomKR5Q1PT9geiXaGbAst/oVq/1QtXBH3Dse+6u6RabnuaJ6/WLQpamkSa0jadAHx+tjCMXZE6WtGztbQlG/OmuQGr6BUAA8Go0PdeIvSF/d/ZeABTMU5cZlic7fo3pvoi+stucZTZH6UqLbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718291512; c=relaxed/simple;
-	bh=z+795azhnXvc7Z8d96JFT7XZ4xKMWAHclN8bCJF7dyU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Us71fH4zVCILkheG/nsb1i72RjF30PDxxCGVw9rE7TD142d4SmUk1bN4pUI4HxUp90pl0r0ygo31Wxae5NRegaDn+s2mY+r6MX1L3YmBxpkBaO+LSCSqIHe9jk0PSuNjAxP5z7Ivxq0XcvIYHeBtS7wc62uyglcEQ+cciIaOzGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AyjHaTj6; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1718291730; c=relaxed/simple;
+	bh=upw3YZFDSMosNFgE94Z/c8GKTYTwKdjYG5hj/Ti18sQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XWlEMVv+M90SJq8v9Npe7mQmRoqP1OTYYmMBObQq4fifYwVODCRYtvfcPFBfsHKfkOwPq4Sdb3eDf8P/yhGKkL/sC6PudTEZ2FTtGhg8iGxBGRzcXK8IWb2R/Z6gxZOKEapoT0TeW7QLngK2ZFx39LuOESGD125RJU2gTcn3nN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57a44c2ce80so1255932a12.0;
-        Thu, 13 Jun 2024 08:11:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718291509; x=1718896309; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ZUuL7vfd80QBwFOZreuafWnuEJtkpQEboZUkkpavjoY=;
-        b=AyjHaTj6GPCnc81AsScic4bGJtgR1YkRSG0HxJPM/x5R08rYPh1HwTE3Iiu1M3e4qi
-         rjuqZr2W6AdA4voMwEnjseOK7LHLos7xhWxbWn1TijZ4Susx+WD/qI+/FNSUGNBnEgmn
-         iRk8cWiQbBKMZsOgWB2wRcwbEgCPz146r3i6ODsW7pWJbyMeEKY71hYtyS+ovvxi6Od2
-         U8dGGGW1kkFElMKiS/mvLRgx8AbwfxaKrcrZkUDiVF6WxN7xboYFcliSC5xGIsmfiaAO
-         Q5WEyaezGnq4b1YUQcmQTzemFR1KPdLH+N8PORk3kgAnSUfVIvpIpchfvC2HcYyyJayD
-         P6+g==
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-63152a07830so6923307b3.3;
+        Thu, 13 Jun 2024 08:15:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718291509; x=1718896309;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZUuL7vfd80QBwFOZreuafWnuEJtkpQEboZUkkpavjoY=;
-        b=EqzogsAtn/ecv4BlYAXv05JjEAYbBGuR3T2i6j0NR4IYwcYDMiyJf2Nc1wcpnUj+DV
-         D81aoUeOKWrxSfJQbWY6nOA8zDIMED19SQre/55xteSNU47xlK/qyOfLQ3as08xeoC5B
-         NhGIGM28djA1j775Gr63kWc0dq4nUfkrGmaSvf/RBqS1P+s+OJpRkxxZV+Q3IuCPYF3f
-         mJC19bwh3Pevl9nE3uV2J2yfq392KT0cRNfgkHzuGgEIJTD9S6o4sokhgaGQTodsRtWO
-         4EoRcb2apnITmvtWH4MLbAlqnsW4kie+Nlebh3zQ0rJcz2M1WjdPbiWxojCOZu6rI5zB
-         KCow==
-X-Forwarded-Encrypted: i=1; AJvYcCUr512oNZN4BPas6t1ExF92KOs1KnodaqUYpgkAHIo1p39HBp29rSmPULJwgmbR0s7hk4a3Y5Tz/BapDpkLaWgyUW0IqDJaGKxP65A1iaJLoyPR2+EAxMSMQCrgTZCgmCh0PiAQXnJIJhUcY/3KcZ0JTpImM7E9ObZAY44V9WM4TPF12llpIrrn6BY/HKAArcyaURtZG5Gef7ahOaM9/Q==
-X-Gm-Message-State: AOJu0YwNPnzgsCGj3Sl0Q4mWerQw9fKTSOZ2FKAKUNo5/xs7t4LtdoKK
-	p7zmUtygO1DEdtD9plNd0jiUhTgUJA+aJVArq1Kd9Eyj7lg0Lr30
-X-Google-Smtp-Source: AGHT+IHvS3n0XhSSsilqaBsUgJPu+uCF+nXcgUDyisRM+IjvDSTJs6bj4z/Gic9iov+SFd1Ia0o0hw==
-X-Received: by 2002:a17:906:68ca:b0:a6f:59dc:4ed1 with SMTP id a640c23a62f3a-a6f60cf2d33mr4132966b.14.1718291509171;
-        Thu, 13 Jun 2024 08:11:49 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56f41655sm81149666b.169.2024.06.13.08.11.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jun 2024 08:11:48 -0700 (PDT)
-Message-ID: <5f0776ba5163578453e26352763ff1b4687bcf87.camel@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add AD4695 and similar ADCs
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Krzysztof Kozlowski
- <krzk@kernel.org>,  Jonathan Cameron <jic23@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Jonathan Corbet <corbet@lwn.net>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Date: Thu, 13 Jun 2024 17:11:48 +0200
-In-Reply-To: <b6b52b1e-847b-44ca-87f9-095a78164771@baylibre.com>
-References: <20240612-iio-adc-ad4695-v1-0-6a4ed251fc86@baylibre.com>
-	 <20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
-	 <94448c2c-e7b2-4191-858c-529b254994f1@kernel.org>
-	 <f765ef30-a777-4dfc-8f93-0f15b46f91ae@baylibre.com>
-	 <e09fecf4-bde2-4feb-8312-22c530c6a960@kernel.org>
-	 <b6b52b1e-847b-44ca-87f9-095a78164771@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
+        d=1e100.net; s=20230601; t=1718291726; x=1718896526;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3USazagu6cS/+37Hogg/qABAlJZ7SMpYxKFouZ1jhuA=;
+        b=hyaV1QG5xEG+hdcEXr7FWnuZyYbnxCCej4a8XYDqXeBZBbynST+IsD4Fq+ALy+hBO4
+         K/Oo1+BoLKu1YCYL4p84RvtjT2+mlBoQiwAScb2cQSS5qxFFRJnubihW4qJGaMRt5h6D
+         EdJbAjQQb1C0b40Ieo+wW6Vnr7NKA5AWzFEkWsPrPI/5NM9Njlz+Dg5ygyq2iSyrFyz1
+         H84fqxPXkxx2fnF3HvmUbaYciqdXy5QBmKiyp8XqJUPkwHSFqbf7NcyxVVeZnV9Oyb/E
+         6W7uBchuf+cQzEAzs2MaptbN3nJWiwcjGazDaNOAE7OsDNhVK/m5EFZ0mQ98dLb8xurs
+         OevQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVb+I9sfE2o073qznscslnh0mfXT9U+4FoQBKcoYtyqUft1KRiOB4PPAEi1RRi08T02ThKLNRmOtDj+Pwj5a/SzIYZgxzEj86oF4qMJP9b3JiwnjTdie3ZEp8EHpNgTthCsFfdmw90KMxYqu50m3cwpIWDQa/CLOSYbH8aE6eLPIwdgMeIegXOjiwHhZpJMxRiqJJI87+N58YidWMINFoWQAjW6Ece
+X-Gm-Message-State: AOJu0YzHW5NikyqhS2HZ/6ACEjE9qABVyRwtdpFLe8U57GmuCPJNDtPn
+	IsvXgSIzpE8nM8SKWfuiXIApAbZWsEgEsUbjwHCZNHggXlDw8r64/A2F8y/5
+X-Google-Smtp-Source: AGHT+IGagWeXE+WryF70K5ZP2Dq4uP0EZSxpfr05it96YSS/9QVMlIYbu2RV8nmgBgub9iGPg8sICw==
+X-Received: by 2002:a0d:c645:0:b0:615:35e1:e512 with SMTP id 00721157ae682-62fb79c2c01mr48079267b3.0.1718291724927;
+        Thu, 13 Jun 2024 08:15:24 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-631183d7842sm1951217b3.24.2024.06.13.08.15.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jun 2024 08:15:24 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6312dc531d3so8495417b3.0;
+        Thu, 13 Jun 2024 08:15:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWsu8KdoT17RdRLYMieCZAFg+Dz3q244Nc3S7j5QYuA1JpUjRcaHAl8FaR2G9PKkqqq2ubEL5rwkZkyOHpxOUmbOkXTXHMZ5uO/e+Ce5EZibb5sGLh1GqMVAaVy38tIjAaa4sDToTWv/mbuF2XulG9sd93oML0TuvVjH7KWwhRHOgcYOzUrtZjw00BfXy6zUVX270eTrlyQnmbMIZVgaP1eb+/j4Gim
+X-Received: by 2002:a0d:df17:0:b0:62c:f90d:3797 with SMTP id
+ 00721157ae682-62fbc5d7d86mr45329167b3.37.1718291724474; Thu, 13 Jun 2024
+ 08:15:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240610233221.242749-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240610233221.242749-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <6b3fe242-3733-4f16-b727-494dc1d82002@kernel.org> <CA+V-a8vp0qHKqUMvyfy9hQjKyk8Cs0bDTnYh-ChvPi150r5i2g@mail.gmail.com>
+ <3d0a7a82-6262-40e6-be25-4a1c4d8df2fe@kernel.org>
+In-Reply-To: <3d0a7a82-6262-40e6-be25-4a1c4d8df2fe@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 13 Jun 2024 17:15:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUvtUWdEfN_=gNJWY+qfE6Yw9KdenQ2OkLc=HvmRnB6pw@mail.gmail.com>
+Message-ID: <CAMuHMdUvtUWdEfN_=gNJWY+qfE6Yw9KdenQ2OkLc=HvmRnB6pw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/4] dt-bindings: clock: Add R9A09G057 core clocks
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2024-06-13 at 09:39 -0500, David Lechner wrote:
-> On 6/13/24 9:18 AM, Krzysztof Kozlowski wrote:
-> > On 13/06/2024 15:57, David Lechner wrote:
-> > >=20
-> > > >=20
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: =
-adi,ad4695
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: =
-adi,ad4697-wlcsp
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: =
-adi,ad4697
-> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # same chips with higher max samp=
-le rate
-> > >=20
-> > > I suppose one could make the argument that the programming model is
-> > > the same on these too, but the maximum sampling frequency does seem
-> > > like an important bit of information so that you don't try to set
-> > > the conversion trigger rate too high.
-> > >=20
-> >=20
-> > which property is that? I don't see differences in the driver, so I
-> > don't get how these wlcsp compatibles allow you to control value of
-> > conversion trigger.
->=20
-> This comment is unrelated to the package type (WLCSP or LFCSP).
->=20
-> What I mean is that e.g. AD4695 and AD4696 are virtually identical
-> other than the maximum allowable sample rate (500 kSPS or 1 MSPS).
->=20
-> So my thinking was that it would make sense to have:
->=20
-> 	compatible =3D "ad4695";
->=20
-> for the lower sample rate chip and
->=20
-> 	compatible =3D "ad4696", "ad4695";
->=20
-> for the higher sample rate chip since ad4696 can do everything
-> that ad4695 does plus a bit more.
->=20
+Hi Krzysztof,
 
-IMO, that would make sense yes. If the higher sample rate chip fallsback, i=
-t will
-still work but not at full speed. The other way around is the one that we c=
-an't allow
-naturally.
+On Thu, Jun 13, 2024 at 2:56=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+> On 13/06/2024 11:57, Lad, Prabhakar wrote:
+> >>> of section 4.4.2 which cannot be controlled by CLKON register.
+> >>> ---
+> >>>  include/dt-bindings/clock/r9a09g057-cpg.h | 21 +++++++++++++++++++++
+> >>>  1 file changed, 21 insertions(+)
+> >>>  create mode 100644 include/dt-bindings/clock/r9a09g057-cpg.h
+> >>
+> >> Missing vendor prefix.
+> >>
+> > OK, Is this just for new includes being added, or do you want me to
+> > rename the existing Renesas specific includes in here which dont have
+> > vendor prefix?
+>
+> Didn't we discuss it?
+>
+> I commented only about this binding.
 
-But possibly dumb question now... since both devices will be supported at t=
-he same
-time, do we actually care about having the fallback compatible? My understa=
-nding of
-the fallback story is that we may load a DTS in an older kernel where chip =
-A is
-supported but chip B is not and it is ok for chip B to fallback to chip A. =
-Since
-these devices will be supported at the same time, do we need to care? Unles=
-s out of
-tree stuff enters the equation?
+Yes we did, in the context of the R-Car V4M DT binding definitions,
+which became include/dt-bindings/clock/renesas,r8a779h0-cpg-mssr.h
+But Prabhakar was not involved there.
 
-Or is there another usecase that I'm not aware about (or maybe it just make=
-s sense to
-document properly...)?
+Note that I also asked to include the vendor prefix, see
+https://lore.kernel.org/linux-renesas-soc/CAMuHMdU7+O-+v=3D2V83AjQmTWyGy_a-=
+AHgU_nPMDHnVUtYt89iQ@mail.gmail.com/
 
-- Nuno S=C3=A1
->=20
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
