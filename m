@@ -1,143 +1,118 @@
-Return-Path: <devicetree+bounces-75587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B97907D00
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:56:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9669D907D08
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:59:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10BEC283F12
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:56:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CDC81F260BB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2768D78C90;
-	Thu, 13 Jun 2024 19:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB50D78C90;
+	Thu, 13 Jun 2024 19:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CxPKWcuz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lQUc8unz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED2A76F073;
-	Thu, 13 Jun 2024 19:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F28E757E0
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 19:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718308591; cv=none; b=HQW8s8GthebJ+NDkaZhwd3PRSCaO7sBWeZuKzRn3vl/XEIpvzyKpmN3XzPzkoO6lpZEpdThopRt4lIAMRr4VNZIzdcrC8KYzcXMu6fP2sW/MwGPs7Uf+mjxt2yOnF1Ivj1ABXHnLOJ7Pkvk+YhFhPLjunxfR7dnHQgaZZcYCkbc=
+	t=1718308785; cv=none; b=fjR2ANqV2A3xteLJ3TBYkTGWHEkNRpcD/AJupgksnNp8yPyAWmM9Oihf7u7gqwvHM2RhDlGnnJz+YJn0x1Y6myMqnXPT7Ef4DAySSqv6BHQWof33mZK4L4bd6zft+6lyJ7iPya1JdcZthSFYZmVMKFB9enFjDXY4PpXwyEOMOfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718308591; c=relaxed/simple;
-	bh=2CIXLJ7qsPS8dd8m3DCzcakUf78MBjuyDU5bR//RUC8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kfASEtfvUaHz3E2/RQhFi3DZ4uVFOsq33p7SH79QqzBtt4cbR2zYE5FoT5rMGUNWMEhWdpjh173hipO/ZIne3khrq1/QVJq8iWByRPC5ujwlHntk5mVPrmuA+ZSGUCQhCMRTNbI5Fza9jYfdjuAZQIXuRgmKg9Wve8+iMqjlIlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CxPKWcuz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B51AC2BBFC;
-	Thu, 13 Jun 2024 19:56:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718308590;
-	bh=2CIXLJ7qsPS8dd8m3DCzcakUf78MBjuyDU5bR//RUC8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CxPKWcuzwRPjJYc2rwTtmY2L71hz8x9jYNOMTX0r/OhGv2iRbMohECPUsF3o/U7Yz
-	 BTF0PlBqx9mWImPoss+TwiIvob2I0pryGGxO4faeAu6bqGMlpuFVTPJd/+gMVjgDY5
-	 eQFzm/PZ8WjoREBuhg4XfjWkByJDBxa2wzAH/KYz8yQ883jm8d1gz4Zv6pvlzPKxL7
-	 Zmq3Cmas/uaWJYIXl0jr6Dd4aHoBpJOPtgytUU9/4dTCiHn866Rcj1UtPoPwZrL7RN
-	 JebrM8S8tw/dn8wBfSsaskVwFj4iZveY/GVYLzSvn6DtPhnThQkamaPgdbgUw1M8NK
-	 IRz32tDc//pGQ==
-Date: Thu, 13 Jun 2024 13:56:29 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Johan Jonker <jbx6244@yandex.com>,
-	Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
-	kishon@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heiko@sntech.de, sebastian.reichel@collabora.com,
-	s.hauer@pengutronix.de, cristian.ciocaltea@collabora.com,
-	andy.yan@rock-chips.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com
-Subject: Re: [PATCH v3] dt-bindings: phy: rockchip-emmc-phy: Convert to
- dtschema
-Message-ID: <20240613195629.GA2359753-robh@kernel.org>
-References: <20240613085812.4020-2-shresthprasad7@gmail.com>
- <cc66cca1-33db-4f30-afcf-d256a959896b@yandex.com>
- <9ce15b81-a8bd-4833-b15e-3e6f240dcf03@kernel.org>
- <495e50aa-6819-457d-8503-00440abc97e3@yandex.com>
- <58e85008-a268-4555-bafb-f948ade16a63@kernel.org>
+	s=arc-20240116; t=1718308785; c=relaxed/simple;
+	bh=Jge23QH3bHmWTLG1XiUPNWwwwCC2f5vXZnOYx9fuC5g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=lLz7x4mbAk4qtGUpvCOpyp+hQMnYrVrkKvqdEzeYSCayiP/Hrs4iJehwWS3VU+V1tZ9EIRFKt4YPBPe1MmutypyRBuhccqvTkRus+KtTW8fEX3V3l3ujFlgOp+H+i4SDpTgLlITCnoLU2UaU9j2oxeI2wkv1VemHNIi6rMoKp34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lQUc8unz; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a6ef793f4b8so168865966b.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 12:59:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718308782; x=1718913582; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wXQkcMf7K3vGWL79rv8fwtNhHLraJL7yxtnHKTEIGkc=;
+        b=lQUc8unzA1rRPupfnsjZKZLz8ud+vxvmKznc9MhBjbWFFdGNcIRBAld1mb6l9OwGv1
+         oqPeEmMWXEdaCP8wjih6A8pGxut4HRHiHncT2fpFXdPSKa3OjmAXFepvtNHlHwEQDd83
+         cCjnlPnx9zTyeOSUgxLE/vBzUpgRE72kI2yyBOBdtrBw2jtOr/0ZZuWS/y/Zobu7/9vt
+         r0xWDeWM8gDtz+pl0oLadOKVgBkKy0gj7Fg6/45P/+63Byj5tBhgL48+ZQ2qf1SGrY+k
+         CvaIApD9ge19rzW7mbhWwCytZdoOg9HJTT4EE+olXk+r6JOlAYFak3vkOgHlGE5h+fVb
+         /PeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718308782; x=1718913582;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wXQkcMf7K3vGWL79rv8fwtNhHLraJL7yxtnHKTEIGkc=;
+        b=QCkPEeQRzjSUDvyMNJWDW0B3wySQaomdL+2EaKcGl1cCYKW6dZiKnJ48ay/A6HcE0h
+         faVvSagNALIv/kzJNVHVEjLM+6jK9XPWUY3B4uVDpjsVvW9dm3eRtWzdeIUgKAJ0ic11
+         0MryIKXV7VOzJhCkE41zOebI53JU0xJx+KBu9tbOGZ/NN4h2MJM/HAqdvFMZaavcLcsK
+         F+FNAFy4jZhkiUjp/Upc2UN6jIsfn1hgi2WRbdiDNixL2dhPJ+nXBpKdzDIgghan08Jv
+         A/ieyNzqijSNcexp5txFd21+rLlWt/0WpJromaLwIWR8Olftd+tM6/4dUAweAFGBxriM
+         33Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCUy98nt9EJ35/DdbWPor/wi4EdPJhiDeChRAetBHU5JU2pmYWwbFCRxopZEafdhLrrb1Q1rnRr/dsFaxDUKUjzekGyoUuoBZ6hbBA==
+X-Gm-Message-State: AOJu0YyR4LOO3C4b93DnDCFqFVWNPhjQv6mLlVfVc4yajwm3cIEQUvo+
+	frZIIwLBkrwkqp3O6ECWozvSHJFhNlXiyKF9xAFYbmEBU96CtjYkKivdyw==
+X-Google-Smtp-Source: AGHT+IGbxi3EbzRk8sT09GB9OWN57JJRVnLDOjooOUhZQZIgX/n3AQVHTxSPIlOPZ+EnJIp4nwp3fw==
+X-Received: by 2002:a17:906:af08:b0:a6e:f91e:efd0 with SMTP id a640c23a62f3a-a6f60dc56d7mr45513366b.56.1718308782338;
+        Thu, 13 Jun 2024 12:59:42 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56f9c858sm103092566b.206.2024.06.13.12.59.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jun 2024 12:59:41 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Lala Lin <lala.lin@mediatek.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: nvmem: mediatek: efuse: add support for MT7988
+Date: Thu, 13 Jun 2024 21:59:32 +0200
+Message-Id: <20240613195933.31089-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <58e85008-a268-4555-bafb-f948ade16a63@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jun 13, 2024 at 02:52:46PM +0200, Krzysztof Kozlowski wrote:
-> On 13/06/2024 12:33, Johan Jonker wrote:
-> > 
-> > 
-> > On 6/13/24 12:12, Krzysztof Kozlowski wrote:
-> >> On 13/06/2024 11:44, Johan Jonker wrote:
-> >>>> ---
-> >>>
-> >>> Add ack request from phy maintainer here.
-> >>
-> > 
-> >> Why? What do you mean for that? Why phy maintainer needs to ack patches
-> >> he is going to take?
-> > 
-> > See my text below:
-> > From my past converting phy documents experience asking was needed to smooths things up ...
-> > Let me know if things have improved.
-> > 
-> > grf.yaml can be busy at times. Let Heiko take care of the merge order.
-> > Ask for an ack from the phy maintainers in your commit message below a "---"
-> > 
-> >>
-> >>>
-> >>>> Changes in v3:
-> >>>>     - fix `reg` in example being too long
-> >>>>
-> >>>> Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
-> >>>> and `rockchip/rk3399-pinebook-pro.dtb`.
-> >>>>
-> >>>>  .../bindings/phy/rockchip,emmc-phy.yaml       | 79 +++++++++++++++++++
-> >>>>  .../bindings/phy/rockchip-emmc-phy.txt        | 43 ----------
-> >>>>  .../devicetree/bindings/soc/rockchip/grf.yaml |  2 +-
-> >>>>  3 files changed, 80 insertions(+), 44 deletions(-)
-> >>>>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-> >>>>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-> >>>> new file mode 100644
-> >>>> index 000000000000..85d74b343991
-> >>>> --- /dev/null
-> >>>> +++ b/Documentation/devicetree/bindings/phy/rockchip,emmc-phy.yaml
-> >>>> @@ -0,0 +1,79 @@
-> >>>
-> >>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>>
-> >>> You are converting an existing document, so GPL 2 only.
-> >>
-> > 
-> >> Which copyrightable part was copied? This comment is not correct in
-> >> general, because conversions are dual-licensed (there are exceptions,
-> >> but that's the generic rule).
-> > 
-> > Was told to do so in the past by the maintainers(Rob??) for text 
-> > documents conversions.(Can't find exactly were in lore, must be in one my first conversion patches)
-> > If someone was submitting as GPL2 long time ago then the derived/converted work still hold the same license.
-> > Let me know if the consensus has changed.
-> 
-> Consensus did not change but I am no sure if you got it right. It was
-> about copied copyrightable text. Which part was copied here?
+From: Rafał Miłecki <rafal@milecki.pl>
 
-It is derived from the text binding, so strictly speaking that's derived 
-work. Are descriptions (because that's really all we take) enough to be 
-copyrightable? That's another question...
+Add compatible for MT7988 SoC.
 
-I don't know so I err on the side of keep GPL-2.0-only *only*.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Will anyone ever care? Not likely.
+diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+index a773101d8538..32b8c1eb4e80 100644
+--- a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
++++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+@@ -30,6 +30,7 @@ properties:
+               - mediatek,mt7623-efuse
+               - mediatek,mt7981-efuse
+               - mediatek,mt7986-efuse
++              - mediatek,mt7988-efuse
+               - mediatek,mt8173-efuse
+               - mediatek,mt8183-efuse
+               - mediatek,mt8186-efuse
+-- 
+2.35.3
 
-Rob
 
