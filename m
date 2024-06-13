@@ -1,114 +1,520 @@
-Return-Path: <devicetree+bounces-75286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8759906591
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:48:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0701906597
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 09:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 609A51F22814
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:48:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E946B23C01
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 07:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EBD13C8FB;
-	Thu, 13 Jun 2024 07:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F5613C67C;
+	Thu, 13 Jun 2024 07:49:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zISvuQ+Q"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="UBBtEtFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70EF513BC39
-	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 07:48:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0523A13C80A
+	for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 07:49:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718264914; cv=none; b=SZ2B6XoyRgpvOn9vuly7EciXRDtvR6gpmoORYWFiMb04GVC7Fl7U4JVI56HMOzPu5NlxDINpFwiP+z6pUFZALiLDDXIYdRy3EXnzWb+tLdJMieTiQGZ8sH9womkzanKZqDjRhebEuQn+eJ1tAfKS5Rpxr59O4xnM/ImIZAT2sXU=
+	t=1718264952; cv=none; b=J3Tu92xV1A4KOYw/W8zCTCSTT9qXni9kiJRGG9+ub60NAZhVBAtdXYhfxRdOWfHPVwnIqTADngIvYKZR+p7CJdwDv+CSkmXlr7feJ+UAJffqQvPauz4vt4Iez002OtB2dOgzZAbev2Vg+jPrOV42HjquJQnPVy/qXZLM90t3zlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718264914; c=relaxed/simple;
-	bh=4WP+wvpQcfDeRRO9xJK0LLuMXzp+fXt20Q5xyse7NL4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WoC65Os9BPfodbkaqaRR7jAIDClhgqmqtP/2uK1UEPUlYbZGAPQrNn0AvQo2TYJGBwHgHnsisOu8EFtAcX7uaygxb6LX5k0CWxQyHJJ1efVxIQVbN1cugeR3hb8bsxhkfXJfe99jWlunhIYCJ0sxpIH/7gK4JR1Z0co5JyV5FaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zISvuQ+Q; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5295e488248so846509e87.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 00:48:31 -0700 (PDT)
+	s=arc-20240116; t=1718264952; c=relaxed/simple;
+	bh=2Z7A4E5l1RjeVz6mKxzsZcuCxa3yp9htts6LHmphXuU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BZjgMV3gOE4r8OZ3m2qfTztPmv4ThC/3wJ+TAw10+7Rf+UoxWrGCSd1chXcBXtLBRxgOjrYWVxCbPqRdBjsXECHRWmGSucvy8lG67dxsqvrR8FKKqTZzVYnENf7rHeX6LxeHB4to8PftTh/dyoCzFsdDBZbZve5efRbEl3Jzs4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=UBBtEtFw; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4405cf01a7fso213901cf.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jun 2024 00:49:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718264909; x=1718869709; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VdTreM/4CjpbEldQaCtjNolTelGaHpzCWji9mFlJTjk=;
-        b=zISvuQ+QH3dIVH/kACxiA8chwONrMKFXwjbzldw/Kzk9J9tu4S2ulbvMGBIVDkXtBi
-         Qoph+vHwIfGjSXDs/mRZHYVhW+VsqTrfhN8MEpQHhrwxlN7s2Y8hksZ1IBsKFqv79Pqz
-         I/UZ2efQ4ii8Ol2QoUX7jJPOG34IwCCaSkQJhlJwTFpeRkmSCVtdLz7Ps0Nd18oHYBV2
-         2REY65RllXcfht70RNv0bV6wUvhT8pRVB7kigkEhbeTScnYbxRQhMXVaNWEJNdaKb9PA
-         rK8ydZQKCdr9Tw/6HFQ6CXhG0Ui1eV7qNi9h6Z28AswVdrJtYCYusdMC5oPbttJiZFui
-         8dxQ==
+        d=google.com; s=20230601; t=1718264949; x=1718869749; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mW+210sB0KrwK1d7Jj/SvcEcQ3Wl7ocPniJJ8cDYulo=;
+        b=UBBtEtFwQUPU9USuVZd9wBwxLauAVTVgOD6CVjrPZVbQwQGK7nsgfvxygaUD509AYv
+         JbJYohkCaLOrGr4/apemSOvU4BtURE0CHKEkPptG/y16HA8w3z8YV5s9iLd9i7DD/1e+
+         ZH9FxZrN8Fus8eD1DFSBipSFSKkO9EVS+5Fvf0YrhcdoeUV2e3eKDme/1viNekaI99Cp
+         pgAqjvgJBn3fFKIGMJccBcGnD0eHaLEjP3QcPRf9jDuHmjYUO55KsMAbPjawzcmr9qQT
+         Y05P0aiNQMi0I2ixDANX1L9QCiB8QP1cxufSbqXa7Xw5ge724YzAc0fX6/GL9XVr2QLt
+         FQcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718264909; x=1718869709;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VdTreM/4CjpbEldQaCtjNolTelGaHpzCWji9mFlJTjk=;
-        b=rtzAvz1emGA9VqLSt9XAWmYIw8t8tob3LeeRKbaBDKWwf9MjDW+kOPHpumnLzxI32U
-         0bR3ESHmq4z1COZIA++i1CvwBlLma2cq8/oN0uh7NDCXcv2xfDP0vOP4MI0OfaDA4S+K
-         PkhHwAbO28Exm8IF9xEovl0IpWlVjylNVQBbNAJ5uzVDziorW3CH6hYM7ga+r7kVSeuX
-         w1Q0z4Lb8BPGfg+sfaSHLwnBTRj/xqoPIUpbXGjl0/5kED+QDJ7zX2OyJyQrKaQRO3Lq
-         XEfUfr/3XXfHLlEhMaFDj7xcYQnVBW49wjWfLYOxskY7PhFDZ6SSKW2HbcgO4wQPyFcr
-         6F/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWUY67XgG9jOdRIX0koKPHgANCDOdyG6D5klLuclPjKY8z9S73YByIRW6ZCVYQW6SrZuV2pS+ckWeYYgXazeWcB2AZbwlRG/V4naw==
-X-Gm-Message-State: AOJu0Yyh5XE6zPprTWZpdiJNE8hTUsYIpupUTc4BmhxuUiZdTOPZE/ye
-	L5YZ5N9ZMKYl5XohA/RrY8RKegveSsLpaPin4f0p7a4IuW5JAhpYP34XiPdrYhk=
-X-Google-Smtp-Source: AGHT+IF2OVDFCqDLMt5hgTHiYYN2fy6FsGkyibfB0dHYIVclAaNr0xSF3MvK0gmdm1UmC+fM9//mUQ==
-X-Received: by 2002:ac2:418a:0:b0:52c:86de:cb61 with SMTP id 2adb3069b0e04-52c9a3b7977mr1991716e87.10.1718264909540;
-        Thu, 13 Jun 2024 00:48:29 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:900a:a4b1:c71b:4253:8a9f:c478? ([2a00:f41:900a:a4b1:c71b:4253:8a9f:c478])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca287aaf8sm115607e87.194.2024.06.13.00.48.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jun 2024 00:48:29 -0700 (PDT)
-Message-ID: <2b39d763-5b79-4b21-85f9-22fee9f87468@linaro.org>
-Date: Thu, 13 Jun 2024 09:48:26 +0200
+        d=1e100.net; s=20230601; t=1718264949; x=1718869749;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mW+210sB0KrwK1d7Jj/SvcEcQ3Wl7ocPniJJ8cDYulo=;
+        b=Fq32ZuPHEh0fxRK3ejRxs1/nRlSJUfQMcbW4AoxdiVpo7GJxg7pUee5SIYzfSnvkQ+
+         iEtNRzOOQFgsDMmTkdW/jyLtp8NgytSHIJrXvbgzxvqzSPBH269I1O17Aabecmyco7gU
+         mBwSClJzeCCikeuFt8FMBW/aZPiSOb39LTdtxx4VFSPJ+N+TnfaVjUwcrJbxYH6I+mIm
+         w9e7GbmMQ/OyV/8kBoXnzr7n6FB9oJHkTowH5EPsi5NkqDXXVlt9QU3f2/gJ22fuyUES
+         u16Uhy8xuAXu2fnqMlnl6htavYDFAJl7HmgfA2KL/TM22bjQA8uZ74eNGqYA/TUEfPUS
+         gh7w==
+X-Forwarded-Encrypted: i=1; AJvYcCXmB9bZsgo3s6th5WYQRNwIW6b9pwcUNZzlUTXht84/hiu0wR4HlfusI5lDvw2U55QwyYQuDMhhPqdiuzk4vgA//Ric/bHBB2uvrw==
+X-Gm-Message-State: AOJu0YyZyHLYUxyCUqKUCTbVfEKRL+ZQOgVc3XrksnJocZGvLIZDPmVY
+	9YlPJblUwUnuKWC6RmDdHcWvz9rtrd2xYS6DiUolvk9t5oL4InJTR259av9ltboPwQFY6XGCNFi
+	/vDr4TctwqQW3T1d3EiDMKM20lCSpBig5zsVI
+X-Google-Smtp-Source: AGHT+IGVf2K9JItY5o0MH8XoG/6sudso0+9bAw4j2SlXlQx+fykZJyFV+yGywOymAJs9eCMqYVdyDdfVz80o73bs6nA=
+X-Received: by 2002:a05:622a:4206:b0:43a:aa3f:917a with SMTP id
+ d75a77b69052e-441eef3e3a3mr1330781cf.27.1718264948677; Thu, 13 Jun 2024
+ 00:49:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: motorola-falcon: add accelerometer,
- magnetometer
-To: Stanislav Jakubek <stano.jakubek@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <ZmWMh6fuLasvGkR/@standask-GA-A55M-S2HP>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZmWMh6fuLasvGkR/@standask-GA-A55M-S2HP>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240603223811.3815762-1-sboyd@kernel.org> <20240603223811.3815762-3-sboyd@kernel.org>
+In-Reply-To: <20240603223811.3815762-3-sboyd@kernel.org>
+From: David Gow <davidgow@google.com>
+Date: Thu, 13 Jun 2024 15:48:54 +0800
+Message-ID: <CABVgOS=duqR0Lea0i92pWR-618iRGkvvATk30MJrU7RRDR8LPg@mail.gmail.com>
+Subject: Re: [PATCH v5 02/11] of: Add test managed wrappers for of_overlay_apply()/of_node_put()
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, patches@lists.linux.dev, 
+	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, 
+	devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, 
+	Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, 
+	Christian Marangi <ansuelsmth@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Ripard <maxime@cerno.tech>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="000000000000ef48e1061ac0bbf9"
 
+--000000000000ef48e1061ac0bbf9
+Content-Type: text/plain; charset="UTF-8"
 
-
-On 6/9/24 13:05, Stanislav Jakubek wrote:
-> Add the accelerometer and magnetometer that are present on the Motorola
-> Moto G (2013) device.
-> 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+On Tue, 4 Jun 2024 at 06:38, Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Add test managed wrappers for of_overlay_apply() that automatically
+> removes the overlay when the test is finished. This API is intended for
+> use by KUnit tests that test code which relies on 'struct device_node's
+> and of_*() APIs.
+>
+> KUnit tests will call of_overlay_apply_kunit() to load an overlay that's
+> been built into the kernel image. When the test is complete, the overlay
+> will be removed.
+>
+> This has a few benefits:
+>
+>  1) It keeps the tests hermetic because the overlay is removed when the
+>     test is complete. Tests won't even be aware that an overlay was
+>     loaded in another test.
+>
+>  2) The overlay code can live right next to the unit test that loads it.
+>     The overlay and the unit test can be compiled into one kernel module
+>     if desired.
+>
+>  3) We can test different device tree configurations by loading
+>     different overlays. The overlays can be written for a specific test,
+>     and there can be many of them loaded per-test without needing to jam
+>     all possible combinations into one DTB.
+>
+>  4) It also allows KUnit to test device tree dependent code on any
+>     architecture, not just UML. This allows KUnit tests to test
+>     architecture specific device tree code.
+>
+> There are some potential pitfalls though. Test authors need to be
+> careful to not overwrite properties in the live tree. The easiest way to
+> do this is to add and remove nodes with a 'kunit-' prefix, almost
+> guaranteeing that the same node won't be present in the tree loaded at
+> boot.
+>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Saravana Kannan <saravanak@google.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
 > ---
 
-[...]
+This looks good to me.
 
-> +&blsp1_i2c2 {
+I was a little confused at first by some of the wrapper names: in
+particular that of_overlay_fdt_apply_kunit() is applying the overlay
+immediately, and deferring a cleanup action, but of_node_put_kunit()
+is not doing anything immediately, and deferring the put action. My
+feeling is that the ideal thing would be to have wrappers for all of
+the of_* functions which return a node which needs to be 'put', and
+have those wrappers add an of_node_put() action. You could then have
+of_node_put_kunit() provide a way to trigger that action early. But
+that seems like it'd be a lot of work and generate a lot of wrappers
+we otherwise wouldn't need, so this seems an okay compromise to be
+able to keep using the existing of_ functions. The documentation /
+comments help make this more clear, too.
 
-Consider setting a clock-frequency = <>
+So, no actual problems. (Assuming you don't want to put the
+documentation under the devicetree rather than under KUnit -- it can
+go either way.)
 
-With that:
+Reviewed-by: David Gow <davidgow@google.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Thanks,
+-- David
 
-Konrad
+
+>  Documentation/dev-tools/kunit/api/index.rst |  11 ++
+>  Documentation/dev-tools/kunit/api/of.rst    |  13 +++
+>  drivers/of/Makefile                         |   1 +
+>  drivers/of/of_kunit_helpers.c               |  74 +++++++++++++
+>  include/kunit/of.h                          | 115 ++++++++++++++++++++
+>  5 files changed, 214 insertions(+)
+>  create mode 100644 Documentation/dev-tools/kunit/api/of.rst
+>  create mode 100644 drivers/of/of_kunit_helpers.c
+>  create mode 100644 include/kunit/of.h
+>
+> diff --git a/Documentation/dev-tools/kunit/api/index.rst b/Documentation/dev-tools/kunit/api/index.rst
+> index 2d8f756aab56..282befa17edf 100644
+> --- a/Documentation/dev-tools/kunit/api/index.rst
+> +++ b/Documentation/dev-tools/kunit/api/index.rst
+> @@ -9,11 +9,15 @@ API Reference
+>         test
+>         resource
+>         functionredirection
+> +       of
+>
+>
+>  This page documents the KUnit kernel testing API. It is divided into the
+>  following sections:
+>
+> +Core KUnit API
+> +==============
+> +
+>  Documentation/dev-tools/kunit/api/test.rst
+>
+>   - Documents all of the standard testing API
+> @@ -25,3 +29,10 @@ Documentation/dev-tools/kunit/api/resource.rst
+>  Documentation/dev-tools/kunit/api/functionredirection.rst
+>
+>   - Documents the KUnit Function Redirection API
+> +
+> +Driver KUnit API
+> +================
+> +
+> +Documentation/dev-tools/kunit/api/of.rst
+> +
+> + - Documents the KUnit device tree (OF) API
+> diff --git a/Documentation/dev-tools/kunit/api/of.rst b/Documentation/dev-tools/kunit/api/of.rst
+> new file mode 100644
+> index 000000000000..cb4193dcddbb
+> --- /dev/null
+> +++ b/Documentation/dev-tools/kunit/api/of.rst
+> @@ -0,0 +1,13 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +====================
+> +Device Tree (OF) API
+> +====================
+> +
+> +The KUnit device tree API is used to test device tree (of_*) dependent code.
+> +
+> +.. kernel-doc:: include/kunit/of.h
+> +   :internal:
+> +
+> +.. kernel-doc:: drivers/of/of_kunit_helpers.c
+> +   :export:
+> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+> index 251d33532148..2ae909adde49 100644
+> --- a/drivers/of/Makefile
+> +++ b/drivers/of/Makefile
+> @@ -19,6 +19,7 @@ obj-y += kexec.o
+>  endif
+>  endif
+>
+> +obj-$(CONFIG_KUNIT) += of_kunit_helpers.o
+>  obj-$(CONFIG_OF_KUNIT_TEST) += of_test.o
+>
+>  obj-$(CONFIG_OF_UNITTEST) += unittest-data/
+> diff --git a/drivers/of/of_kunit_helpers.c b/drivers/of/of_kunit_helpers.c
+> new file mode 100644
+> index 000000000000..8a09132e32a8
+> --- /dev/null
+> +++ b/drivers/of/of_kunit_helpers.c
+> @@ -0,0 +1,74 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Test managed device tree APIs
+> + */
+> +
+> +#include <linux/of.h>
+> +#include <linux/of_fdt.h>
+> +
+> +#include <kunit/of.h>
+> +#include <kunit/test.h>
+> +#include <kunit/resource.h>
+> +
+> +#if defined(CONFIG_OF_OVERLAY) && defined(CONFIG_OF_EARLY_FLATTREE)
+> +
+> +static void of_overlay_fdt_apply_kunit_exit(void *ovcs_id)
+> +{
+> +       of_overlay_remove(ovcs_id);
+> +}
+> +
+> +/**
+> + * of_overlay_fdt_apply_kunit() - Test managed of_overlay_fdt_apply()
+> + * @test: test context
+> + * @overlay_fdt: device tree overlay to apply
+> + * @overlay_fdt_size: size in bytes of @overlay_fdt
+> + * @ovcs_id: identifier of overlay, used to remove the overlay
+> + *
+> + * Just like of_overlay_fdt_apply(), except the overlay is managed by the test
+> + * case and is automatically removed with of_overlay_remove() after the test
+> + * case concludes.
+> + *
+> + * Return: 0 on success, negative errno on failure
+> + */
+> +int of_overlay_fdt_apply_kunit(struct kunit *test, void *overlay_fdt,
+> +                              u32 overlay_fdt_size, int *ovcs_id)
+> +{
+> +       int ret;
+> +       int *copy_id;
+> +
+> +       copy_id = kunit_kmalloc(test, sizeof(*copy_id), GFP_KERNEL);
+> +       if (!copy_id)
+> +               return -ENOMEM;
+> +
+> +       ret = of_overlay_fdt_apply(overlay_fdt, overlay_fdt_size,
+> +                                  ovcs_id, NULL);
+> +       if (ret)
+> +               return ret;
+> +
+> +       *copy_id = *ovcs_id;
+> +
+> +       return kunit_add_action_or_reset(test, of_overlay_fdt_apply_kunit_exit,
+> +                                        copy_id);
+> +}
+> +EXPORT_SYMBOL_GPL(of_overlay_fdt_apply_kunit);
+> +
+> +#endif
+> +
+> +KUNIT_DEFINE_ACTION_WRAPPER(of_node_put_wrapper, of_node_put, struct device_node *);
+> +
+> +/**
+> + * of_node_put_kunit() - Test managed of_node_put()
+> + * @test: test context
+> + * @node: node to pass to `of_node_put()`
+> + *
+> + * Just like of_node_put(), except the node is managed by the test case and is
+> + * automatically put with of_node_put() after the test case concludes.
+> + */
+> +void of_node_put_kunit(struct kunit *test, struct device_node *node)
+> +{
+> +       if (kunit_add_action(test, of_node_put_wrapper, node)) {
+> +               KUNIT_FAIL(test,
+> +                          "Can't allocate a kunit resource to put of_node\n");
+> +       }
+> +}
+> +EXPORT_SYMBOL_GPL(of_node_put_kunit);
+> diff --git a/include/kunit/of.h b/include/kunit/of.h
+> new file mode 100644
+> index 000000000000..48d4e70c9666
+> --- /dev/null
+> +++ b/include/kunit/of.h
+> @@ -0,0 +1,115 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef _KUNIT_OF_H
+> +#define _KUNIT_OF_H
+> +
+> +#include <kunit/test.h>
+> +
+> +struct device_node;
+> +
+> +#ifdef CONFIG_OF
+> +
+> +void of_node_put_kunit(struct kunit *test, struct device_node *node);
+> +
+> +#else
+> +
+> +static inline
+> +void of_node_put_kunit(struct kunit *test, struct device_node *node)
+> +{
+> +       kunit_skip(test, "requires CONFIG_OF");
+> +}
+> +
+> +#endif /* !CONFIG_OF */
+> +
+> +#if defined(CONFIG_OF) && defined(CONFIG_OF_OVERLAY) && defined(CONFIG_OF_EARLY_FLATTREE)
+> +
+> +int of_overlay_fdt_apply_kunit(struct kunit *test, void *overlay_fdt,
+> +                              u32 overlay_fdt_size, int *ovcs_id);
+> +#else
+> +
+> +static inline int
+> +of_overlay_fdt_apply_kunit(struct kunit *test, void *overlay_fdt,
+> +                          u32 overlay_fdt_size, int *ovcs_id)
+> +{
+> +       kunit_skip(test, "requires CONFIG_OF and CONFIG_OF_OVERLAY and CONFIG_OF_EARLY_FLATTREE for root node");
+> +       return -EINVAL;
+> +}
+> +
+> +#endif
+> +
+> +/**
+> + * __of_overlay_apply_kunit() - Test managed of_overlay_fdt_apply() variant
+> + * @test: test context
+> + * @overlay_begin: start address of overlay to apply
+> + * @overlay_end: end address of overlay to apply
+> + *
+> + * This is mostly internal API. See of_overlay_apply_kunit() for the wrapper
+> + * that makes this easier to use.
+> + *
+> + * Similar to of_overlay_fdt_apply(), except the overlay is managed by the test
+> + * case and is automatically removed with of_overlay_remove() after the test
+> + * case concludes.
+> + *
+> + * Return: 0 on success, negative errno on failure
+> + */
+> +static inline int __of_overlay_apply_kunit(struct kunit *test,
+> +                                          u8 *overlay_begin,
+> +                                          const u8 *overlay_end)
+> +{
+> +       int unused;
+> +
+> +       return of_overlay_fdt_apply_kunit(test, overlay_begin,
+> +                                         overlay_end - overlay_begin,
+> +                                         &unused);
+> +}
+> +
+> +/**
+> + * of_overlay_apply_kunit() - Test managed of_overlay_fdt_apply() for built-in overlays
+> + * @test: test context
+> + * @overlay_name: name of overlay to apply
+> + *
+> + * This macro is used to apply a device tree overlay built with the
+> + * cmd_dt_S_dtbo rule in scripts/Makefile.lib that has been compiled into the
+> + * kernel image or KUnit test module. The overlay is automatically removed when
+> + * the test is finished.
+> + *
+> + * Unit tests that need device tree nodes should compile an overlay file with
+> + * @overlay_name\.dtbo.o in their Makefile along with their unit test and then
+> + * load the overlay during their test. The @overlay_name matches the filename
+> + * of the overlay without the dtbo filename extension. If CONFIG_OF_OVERLAY is
+> + * not enabled, the @test will be skipped.
+> + *
+> + * In the Makefile
+> + *
+> + * .. code-block:: none
+> + *
+> + *     obj-$(CONFIG_OF_OVERLAY_KUNIT_TEST) += overlay_test.o kunit_overlay_test.dtbo.o
+> + *
+> + * In the test
+> + *
+> + * .. code-block:: c
+> + *
+> + *     static void of_overlay_kunit_of_overlay_apply(struct kunit *test)
+> + *     {
+> + *             struct device_node *np;
+> + *
+> + *             KUNIT_ASSERT_EQ(test, 0,
+> + *                             of_overlay_apply_kunit(test, kunit_overlay_test));
+> + *
+> + *             np = of_find_node_by_name(NULL, "test-kunit");
+> + *             KUNIT_EXPECT_NOT_ERR_OR_NULL(test, np);
+> + *             of_node_put(np);
+> + *     }
+> + *
+> + * Return: 0 on success, negative errno on failure.
+> + */
+> +#define of_overlay_apply_kunit(test, overlay_name)             \
+> +({                                                             \
+> +       extern uint8_t __dtbo_##overlay_name##_begin[];         \
+> +       extern uint8_t __dtbo_##overlay_name##_end[];           \
+> +                                                               \
+> +       __of_overlay_apply_kunit((test),                        \
+> +                       __dtbo_##overlay_name##_begin,          \
+> +                       __dtbo_##overlay_name##_end);           \
+> +})
+> +
+> +#endif
+> --
+> https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
+> https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
+>
+
+--000000000000ef48e1061ac0bbf9
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIPqgYJKoZIhvcNAQcCoIIPmzCCD5cCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg0EMIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
+IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
+dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
+6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
+c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
+I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
+AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
+BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
+CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
+AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
+MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
+My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
+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
+JEfDtvHU6wy3MSBE3/TrMFcGA1UdIARQME4wCQYHZ4EMAQUBATBBBgkrBgEEAaAyASgwNDAyBggr
+BgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wDAYDVR0TAQH/
+BAIwADCBmgYIKwYBBQUHAQEEgY0wgYowPgYIKwYBBQUHMAGGMmh0dHA6Ly9vY3NwLmdsb2JhbHNp
+Z24uY29tL2NhL2dzYXRsYXNyM3NtaW1lY2EyMDIwMEgGCCsGAQUFBzAChjxodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcnQwHwYDVR0jBBgw
+FoAUfMwKaNei6x4schvRzV2Vb4378mMwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL2NybC5nbG9i
+YWxzaWduLmNvbS9jYS9nc2F0bGFzcjNzbWltZWNhMjAyMC5jcmwwDQYJKoZIhvcNAQELBQADggEB
+AGwXYwvLVjByVooZ+uKzQVW2nnClCIizd0jfARuMRTPNAWI2uOBSKoR0T6XWsGsVvX1vBF0FA+a9
+DQOd8GYqzEaKOiHDIjq/o455YXkiKhPpxDSIM+7st/OZnlkRbgAyq4rAhAjbZlceKp+1vj0wIvCa
+4evQZvJNnJvTb4Vcnqf4Xg2Pl57hSUAgejWvIGAxfiAKG8Zk09I9DNd84hucIS2UIgoRGGWw3eIg
+GQs0EfiilyTgsH8iMOPqUJ1h4oX9z1FpaiJzfxcvcGG46SCieSFP0USs9aMl7GeERue37kBf14Pd
+kOYIfx09Pcv/N6lHV6kXlzG0xeUuV3RxtLtszQgxggJqMIICZgIBATBoMFQxCzAJBgNVBAYTAkJF
+MRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFzIFIz
+IFNNSU1FIENBIDIwMjACEAFsPHWl8lqMEwx3lAnpufYwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZI
+hvcNAQkEMSIEIAbPdDmqRD62gxomP9jWw3ewngMixgQkIRTjsfETZ2hkMBgGCSqGSIb3DQEJAzEL
+BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDYxMzA3NDkwOVowaQYJKoZIhvcNAQkPMVww
+WjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkq
+hkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBCOMB6
+Ib+gn40t89X60Qu9Z5EJDWy1jsRyPpquSOaOJ+FMyjAnAkrvI+sEYhTeW8s+g3ioEfriFpOggVhI
+kh2wJAczBepTxZc8y+ehGidSltAOY+QDwnHX/y2ChLQC7QwomOIz1lHC7GculzgTu0V7MdS9BAlp
+OoxYI7qti5ni3lWRLmx7ugUmDRpMQFHPLR9zpkx6hnCCenn8qoS123tsldWnAlQxkGBfww9BhLd3
+EAwq/L7NemCNlmNXQPCjz0U9oErAwAofSxQywAV/FQ1eoyVhTJbweOGfxbQq7dDOqyDxkJ71BFsD
+ORRQL545ZzQ8A09UnDDATzEcOHGqUP1J
+--000000000000ef48e1061ac0bbf9--
 
