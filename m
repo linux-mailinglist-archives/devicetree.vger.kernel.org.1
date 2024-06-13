@@ -1,101 +1,103 @@
-Return-Path: <devicetree+bounces-75470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE6E4907566
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:40:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB04907575
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 914A41F234B7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:40:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0408C1F23266
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 14:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F3D146D40;
-	Thu, 13 Jun 2024 14:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7317146010;
+	Thu, 13 Jun 2024 14:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gjtuT8Xc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvNk+DeK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C22145B3F;
-	Thu, 13 Jun 2024 14:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B0A145A12;
+	Thu, 13 Jun 2024 14:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718289596; cv=none; b=mCA2/8N97eYZIxiL1YJe4Peeu+Td4+OD/T54cZDlzyCIRp0iCwyllSBEu+6a4PUZYD7JUx7ZNKuVdU8NheOnU2cKp0Dg/UbOhWPrL6l9SCfruZoYeF/DgB9MzNWovmBYN2jjqDuNPx/vOM72JGy+uWjOBWNorzv84X7zRHB1cWo=
+	t=1718289662; cv=none; b=ZSCdmdNN2JxfzP+hDDZ4PDqd1BVFFEV9wgTJpR03fn5FSe7LFrvm5eVlOtHdbgrG4c3IGAmZULDVG3WNasg57mO3eZTb+Ga4+EWfTweQjKZ4/3sFW56+vYx4OU5VmfgPV9hFOx3WRClLMcK7uEhlQFg9PkwdaRbEUEizedc+I8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718289596; c=relaxed/simple;
-	bh=E524rcct08hz6YUrxdb412RbfB6vmLjWaw3BPmGgUfY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BVl3rb92G6EPGYEV2LyP5z5Gq9vCTZgM5y/7k/vL8JXY7aEkw/RQe7cJMIJ6jYdD0+++uol5FHxoX+8hhnTXP79B2j8SnoGGzpCdOxkW3Psc9LScX1NSxOTkR+DtIff3mV1Q/AM6g1J0KQFuBotikGeJ+WZ3lu4RxCKABlCL71I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gjtuT8Xc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FEF3C4AF4D;
-	Thu, 13 Jun 2024 14:39:50 +0000 (UTC)
+	s=arc-20240116; t=1718289662; c=relaxed/simple;
+	bh=QudiikszfuUSRm1JTVmyxQn35gCQ8PIjI8z2PL0Fa5g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oqxjyt5aOGXf4Nkf22zYxjIEjPlSgCzDF+OzAldg6Vq3nBlpqn5cNrahzXmc58RnT+rdqqOrlC0NpfLLmZLJ599cTj89JNHwkz/NkysH5LcmHN6jlSQND5BKm4SdYMq+zDZXT6i5Sdy6lYIEuzcPMdkjY7yG+VJoaleb9EXBzNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvNk+DeK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1BFEC2BBFC;
+	Thu, 13 Jun 2024 14:40:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718289596;
-	bh=E524rcct08hz6YUrxdb412RbfB6vmLjWaw3BPmGgUfY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=gjtuT8Xcz/yiy2MnxocB2sxoQHKjoPmW/zo//t0zNiZ+atwsq4a2odwxj4K7QUeQb
-	 vdpYwo14D0+Ce4fUCqAcZvmhVEfH9PydKjeIUCEF7Q5GKw9OtQksS0ws/NFGcbHphy
-	 PVyJy+/GPCawa9QHsAbfigFDO3HHS+svFzcF3jun5/nF9e5kGjF4W1Fl+iNXrUeyng
-	 ceMx3dcAlRNqOfHpnC1/xPlXUVoLj1Lu0ID0iWuxhy2dhlYY3Upi7kfr8BJHLwKVkr
-	 D/fNVBbQBi20BKi5EstWse2QH0jQ6TXFLl+bM5Tp5OEQHXr0ip9mq98L3Y3QqId/Xz
-	 KoIFCWN5jlnJA==
-From: Lee Jones <lee@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Andrew Lunn <andrew@lunn.ch>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, UNGLinuxDriver@microchip.com, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Yisen Zhuang <yisen.zhuang@huawei.com>, 
- Salil Mehta <salil.mehta@huawei.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-mips@vger.kernel.org, linux-mtd@lists.infradead.org, 
- netdev@vger.kernel.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20240603131230.136196-2-robh@kernel.org>
-References: <20240603131230.136196-2-robh@kernel.org>
-Subject: Re: (subset) [PATCH v2] dt-bindings: mfd: syscon: Add more simple
- compatibles
-Message-Id: <171828959006.2643902.8308227314531523435.b4-ty@kernel.org>
-Date: Thu, 13 Jun 2024 15:39:50 +0100
+	s=k20201202; t=1718289662;
+	bh=QudiikszfuUSRm1JTVmyxQn35gCQ8PIjI8z2PL0Fa5g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JvNk+DeKUwohEXf2HcghJVK2ISwGC59Kg2oUR4L6l2e34a/gOul8aSiTPUqfoAgFW
+	 f8apKbdebeXia2nTHIAgeqQldDjToUDPysl5NEr0d3VTNCcFu5mp0A5rFo8Gn/GoaM
+	 nVDG9tRVhcn8fn//ryWad9iYqNZBwJpRtSL1udNk7ii0tMocXltDecJXku6yaoS1Cg
+	 /Bl7HfJENXroP0zuSjzEBE7iYKPVCMmUI7srqojPT05SiDrGRz7Pn7uMYQwlRPOZbx
+	 vIp0TDf9Vw3Z8NpEzrjqKNGmq9Dsv7J3UBRT/atm9bPaE1QJTljvaYy9yrlYLTDrF0
+	 6Dka+8PRkVCdQ==
+Date: Thu, 13 Jun 2024 15:40:55 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
+	Andy Chiu <andy.chiu@sifive.com>,
+	Jessica Clarke <jrtc27@jrtc27.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v2 04/13] riscv: Add thead and xtheadvector as a vendor
+ extension
+Message-ID: <20240613-cofounder-curator-81e53a35dcbc@spud>
+References: <20240610-xtheadvector-v2-0-97a48613ad64@rivosinc.com>
+ <20240610-xtheadvector-v2-4-97a48613ad64@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aZez57M5EwwC5uBl"
+Content-Disposition: inline
+In-Reply-To: <20240610-xtheadvector-v2-4-97a48613ad64@rivosinc.com>
 
-On Mon, 03 Jun 2024 08:12:27 -0500, Rob Herring (Arm) wrote:
-> Add another batch of various "simple" syscon compatibles which were
-> undocumented or still documented with old text bindings. Remove the old
-> text binding docs for the ones which were documented.
-> 
-> 
 
-Applied, thanks!
+--aZez57M5EwwC5uBl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1/1] dt-bindings: mfd: syscon: Add more simple compatibles
-      commit: 234db2775b9eff77b8ec2216cc8a286d1dd2cd65
+On Mon, Jun 10, 2024 at 03:56:41PM -0700, Charlie Jenkins wrote:
+> Add support to the kernel for THead vendor extensions with the target of
+> the new extension xtheadvector.
+>=20
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
 
---
-Lee Jones [李琼斯]
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+--aZez57M5EwwC5uBl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmsE9wAKCRB4tDGHoIJi
+0sX3AQCV0JAgjlWHnjFIW32EH6kLNRxnf0K4C7KXnfzG3XGQOQEAp2wE6MnRyV//
++GtJNdRRVkKDTjAnuHMpsdBXy6n+kQQ=
+=VC5A
+-----END PGP SIGNATURE-----
+
+--aZez57M5EwwC5uBl--
 
