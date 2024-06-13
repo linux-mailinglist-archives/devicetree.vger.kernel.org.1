@@ -1,103 +1,153 @@
-Return-Path: <devicetree+bounces-75545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C007D907A3C
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:51:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0EA907A56
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:55:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 229FCB20B8D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:51:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00DFA1F241F1
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A35B149E01;
-	Thu, 13 Jun 2024 17:51:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147C514AD02;
+	Thu, 13 Jun 2024 17:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JOA86mQv"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="SkcOTHGi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3516F06A;
-	Thu, 13 Jun 2024 17:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486CA14A600;
+	Thu, 13 Jun 2024 17:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718301093; cv=none; b=FSCeN9bA5pdmkABwmKfFz2yissGmjHWIuS2IQwoeaksOjp6xlJtK/o0ETZAxIbsyTDO5rvHILxPJwV5zqxOukwErIB2fobKA8TVQm8hAx8U6HLlS/xykTB2kQdZhQMxREogQboTcph1u6dYPdxcOdI2WoE0R0Aho+X4JC0XZXi4=
+	t=1718301323; cv=none; b=LifCl/DiGc5YYJ3ClPGR5f1bc9L5fAcEyROVXTCeRPDVpQO96+SQVm890YuuUOyYPL4G5IbcPGKXdfO1pCd+/ZcvHAvcwYca/5UUlEuhwac7JeWQocUy0maL+RGxaltYOwAXQtCdeIJ6PGB7LT+OXwR1AddjZIWd4qRRkFbEjos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718301093; c=relaxed/simple;
-	bh=dpzc2Mg4UDlix6hhecAybuhuyjOozyNL1r16dty6Svc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kwHTMKDgYdFqRLPdjRUuoGhZzOpP0GlaZ+CQmAlsOH9KDboMcFQ6oHde17f4YAXgH8ZBagt00NGofXK8UN8sWx2deowCQHueFvcqrcLME4pZHAZYC6119on2oOkmD4YVF1PFTHXzQdeQpYsdIfajtXhuWYQWp7+geA9o1Ypq71c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JOA86mQv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05956C2BBFC;
-	Thu, 13 Jun 2024 17:51:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718301093;
-	bh=dpzc2Mg4UDlix6hhecAybuhuyjOozyNL1r16dty6Svc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JOA86mQviTY+2IFDcqJXhpG/d91NUuIsexZRRn+MfSZI4w1sSfJHMLjJThJBrPxMu
-	 ewfcpAV8a/CG8m2pgYVVgboRNL866Bv3faG2DA2XsiIsPy7VRz+rALcDo0bumaEKwQ
-	 j9vaNzlmdv+6ii/ZBBEvg0XKFZhhbQdRajs1PkqbHvEhMjD9a6rTxHBpokD/L6/Ruo
-	 3j8q+yPe/kIngwv8O8FXIoe4xPoXQ0Kd70b3o6KuTXXI2006L8I5pllOaJq7KN9348
-	 s98l0m6kqjY3bhxvRM8l6n/tE3s4UTpT6gn/aeMdPV56N+QDB5egSw486KR9uibtOn
-	 5Gkb2vMe1+gHw==
-Date: Thu, 13 Jun 2024 11:51:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: matthew.gerlach@linux.intel.com
-Cc: Bjorn Helgaas <helgaas@kernel.org>, lpieralisi@kernel.org, kw@linux.com,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, joyce.ooi@intel.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] PCI: altera: support dt binding update
-Message-ID: <20240613175131.GA2070202-robh@kernel.org>
-References: <20240611170410.GA989554@bhelgaas>
- <alpine.DEB.2.22.394.2406120744350.662691@sj-4150-psse-sw-opae-dev2>
+	s=arc-20240116; t=1718301323; c=relaxed/simple;
+	bh=Cm1F7DrFVmLxVeLuslcdarzknUOh0alu2igejGkxoFs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OugAhQF3X4+O41aQWdP4QZT3qLM5Nx/7fjxa/qhB0ZBWdEfQ9XoXDYwW2CS29jfplX+t5jQLjMGQXNGqGzx1xpvYKicOV2xQbRWvT3iUEMuI0lEWs0wBo5VG0d6UDScnqrMCJtaWo/2vjc+XRmiMZCmRASByeY6PZx0J2gleAkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=SkcOTHGi; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45DHBJKq025047;
+	Thu, 13 Jun 2024 12:55:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=/BVJql68tB9ajAkIWj
+	QdkSFeuEec4LfGBBsvoG3oFPs=; b=SkcOTHGih5o+AoVEZp2ayUP6Ns26213Fnm
+	f9GqeZOHKwETT+nT1pPJNbzj5sKWNwRQ/6nEbxkKP9bRnbBd7LIrNzlECAthnvGR
+	LpbTsABkOej+5NCh+ae/NN+tDA9Asiy1YaG6GoX9vVKIkQBvmKSbmwA+viFMqcs9
+	m02mZk+AHUQTP5++wfQcH5xhu3eJhFkyI5uHsypy+TsW9U4yUzcrixL+iafpYV7u
+	HQoDbxv3LUeKJWV/fxdre4SEwtsJet0d1X9/35xFwADC7sIe6vVP7JWiqux18cZC
+	CmNokSh5uyANsVY9yuXQzbsc6ZhubKbDM1/e4ibspH7B8ez9aDXA==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3yqb8ehqea-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 13 Jun 2024 12:55:18 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Jun
+ 2024 18:55:16 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Thu, 13 Jun 2024 18:55:16 +0100
+Received: by ediswmail9.ad.cirrus.com (Postfix, from userid 15641)
+	id 7158A820248; Thu, 13 Jun 2024 17:55:16 +0000 (UTC)
+Date: Thu, 13 Jun 2024 17:55:16 +0000
+From: Paul Handrigan <paulha@opensource.cirrus.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <linux-sound@vger.kernel.org>,
+        <patches@opensource.cirrus.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] ASoC: cs530x: Support for cs530x ADCs
+Message-ID: <ZmsyhKiuRI1Dg8l4@ediswmail9.ad.cirrus.com>
+References: <20240607202708.335752-1-paulha@opensource.cirrus.com>
+ <20240607202708.335752-3-paulha@opensource.cirrus.com>
+ <9876e617-68d1-4e1c-ba9e-2c235a57b0a9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.22.394.2406120744350.662691@sj-4150-psse-sw-opae-dev2>
+In-Reply-To: <9876e617-68d1-4e1c-ba9e-2c235a57b0a9@kernel.org>
+X-Proofpoint-ORIG-GUID: 48Rp6eEWt1eWQhJbVWmtHxlF84atXJKz
+X-Proofpoint-GUID: 48Rp6eEWt1eWQhJbVWmtHxlF84atXJKz
+X-Proofpoint-Spam-Reason: safe
 
-On Wed, Jun 12, 2024 at 08:12:05AM -0700, matthew.gerlach@linux.intel.com wrote:
+On Mon, Jun 10, 2024 at 10:46:26AM +0200, Krzysztof Kozlowski wrote:
+> > +
+> > +	cs530x = devm_kzalloc(&client->dev, sizeof(struct cs530x_priv),
+> 
+> sizeof(*)
+> 
+Ack
+
+> > +
+> > +	if (client->dev.of_node) {
+> > +		const struct of_device_id *match;
+> > +
+> > +		match = of_match_node(cs530x_of_match, client->dev.of_node);
+> > +		if (match == NULL)
+> > +			return -EINVAL;
+> > +		cs530x->devtype = (enum cs530x_type)match->data;
+> 
+> I think you open-coded device_get_match_data
 > 
 > 
-> On Tue, 11 Jun 2024, Bjorn Helgaas wrote:
+> > +	} else {
+> > +		const struct i2c_device_id *id =
+> > +			i2c_match_id(cs530x_i2c_id, client);
+> > +
+> > +		cs530x->devtype = id->driver_data;
+> > +	}
 > 
-> > On Tue, Jun 11, 2024 at 11:35:25AM -0500, matthew.gerlach@linux.intel.com wrote:
-> > > From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> > > 
-> > > Add support for the device tree binding update. As part of
-> > > converting the binding document from text to yaml, with schema
-> > > validation, a device tree subnode was added to properly map
-> > > legacy interrupts. Maintain backward compatibility with previous binding.
-> > 
-> > If something was *added* to the binding, I think it would be helpful
-> > to split that into two patches: (1) convert to YAML with zero
-> > functional changes, (2) add the new stuff.  Adding something at the
-> > same time as changing the format makes it hard to review.
-
-The policy for conversions is changes to match reality are fine, just 
-need to be noted in the commit message. That generally implies no driver 
-or dts changes which is not the case here. 
-
-> Thanks for feedback. It was during the conversion to YAML that a problem
-> with the original binding was discovered. As Rob Herring pointed out in
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240513205913.313592-1-matthew.gerlach@linux.intel.com/
+> and for all of this there is a helper i2c_get_device_match_data.
 > 
-> "Making the PCI host the interrupt parent didn't even work in the kernel
->  until somewhat recently (maybe a few years now). That's why a bunch of PCI
->  hosts have an interrupt-controller child node."
+Ack
+
+> > +	if (ret != 0) {
+> > +		dev_err(dev, "Failed to request supplies: %d\n", ret);
 > 
-> This was an attempt to fix the problem. I can resubmit a conversion to YAML
-> with zero functional changes.
+> return dev_err_probe()
+Ack
 
-I wasn't suggesting you fix it. Just something I noticed looking at 
-the other issue. If no one noticed or cared, why bother? It should work 
-fine for recent kernels.
+> > +	if (ret != 0) {
+> > +		dev_err(dev, "Failed to enable supplies: %d\n", ret);
+> 
+> return dev_err_probe()
+Ack
 
-Rob
+> > +	if (IS_ERR(cs530x->reset_gpio)) {
+> > +		dev_err(dev, "Reset gpio not available\n");
+> 
+> return dev_err_probe()
+Ack
+
+> > +
+> > +	if (cs530x->reset_gpio) {
+> > +		usleep_range(2000, 2100);
+> > +		gpiod_set_value_cansleep(cs530x->reset_gpio, 1);
+> 
+> 1 is to keep device in reset? This looks like you are using logical
+> values inverted.
+Thanks.  The reset pin is active low. I will also change the dt binding
+example to reflect that.
+
+> > +
+> > +	cs530x->dev_dai = devm_kmemdup(dev, &cs530x_dai,
+> > +					sizeof(struct snd_soc_dai_driver),
+> 
+> sizeof(*)
+> 
+Ack
+
+Regards,
+Paul
 
