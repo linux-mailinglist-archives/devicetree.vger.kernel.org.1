@@ -1,87 +1,161 @@
-Return-Path: <devicetree+bounces-75518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B599078E0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:56:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A67B9078F0
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 18:58:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AEF92865FD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:56:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EFC21C233E3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 16:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7626C1494B8;
-	Thu, 13 Jun 2024 16:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I4Xvw7Bg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9781494DF;
+	Thu, 13 Jun 2024 16:58:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4926C146A7B;
-	Thu, 13 Jun 2024 16:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6EC626AF0;
+	Thu, 13 Jun 2024 16:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718297764; cv=none; b=tR+9bOEsDV/Dsc2xG4ywnjpTneyWU0M8I2rXnIKdfxJ3AwBU/VcsSVuUnBjq/BJHm4FDNpCtO2f6fpqCwylMZiW6AWhlyzLZYL0FXoYrEptZuNpDRT4PrYsTLoxc4m0CRFDPCXws6yhQBuDa9FnN8bHX60Kgw7EHwR9QJr23r9M=
+	t=1718297914; cv=none; b=GNXadvduh0xD/5NlahLmrRcbS7mCmhIQYo3/4LsxKBSIDxHzuiubturCl3TdOX6M58Q8phEhiIDLWwib6P1jxKk8J2QGQmk+4lvJd9RoUw5u8Klaw1zoHpW1w+vNxHVpNgO7mIZhK6/VPODwKcN3NR455k1pJROyts0LjcQnrcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718297764; c=relaxed/simple;
-	bh=j9VKT+5uLDR/9V3z3CWPlahYa1LVlU+XKjjYY+mzRPY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p/MX8htWAdV0ikO8YRzX8GSbnuaECO79rXv5gP85GD5rpLPtPJqOxAvzZ5uCFS57WNR64cPT4WXZYkqc8hHIq1ersbmo6Kup15N2lHy5vi8pQlLPLkeTa+tWDA8Lv9a9ZscyiwzHjS4xTQK6EzaSQEkekc8VJmKyECYbGcgoHP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I4Xvw7Bg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA8AC2BBFC;
-	Thu, 13 Jun 2024 16:56:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718297764;
-	bh=j9VKT+5uLDR/9V3z3CWPlahYa1LVlU+XKjjYY+mzRPY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I4Xvw7Bge6TLJ4L6tzwg58eqzAlvAmp3tCERy+VkJBbXTpl+GisshBcA0hwSox2DH
-	 QVMogq717E0lGUPBOzW5oV4XBoqJVDi79siVvbClwp6WKQIxocJZ8bBmPbdpNc4C16
-	 HvvuRJRxPew+X64K965+jkSS5TRhHqG01Pv5qZEBclhgiB154fe4HKcm7X5HmWIxAT
-	 yaGXEMtU2GVKRWl9JWVdo0Dl1yK8P1FK6Kk011hr0GoIneB+GkGrCo1p5t7wC9Qr9B
-	 sgRp3nDLHm/I6AfuYzvgWPoTrH7TA+PkMWAx3yNJU2l1YIeUa/It9UaBxUj+JSi/hE
-	 yJZm7KK//3JFQ==
-Date: Thu, 13 Jun 2024 10:56:02 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: xilinx: Add support for
- function with pins
-Message-ID: <171829776082.2018524.17283616546345596945.robh@kernel.org>
-References: <20240610223550.2449230-1-sean.anderson@linux.dev>
- <20240610223550.2449230-2-sean.anderson@linux.dev>
+	s=arc-20240116; t=1718297914; c=relaxed/simple;
+	bh=bT3sz1RanAtOG0QsxHVOiCO2oCWoAEMKDaJyL0+iMDY=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hxgYcGpErSmBzclRHqSmIJgi7C4XZBSHjckdGQzbxoPP+JLm/0InC+d3Ilr2Js0TElj9d0noEaDbHn/h3zJbMaJS8YRJ9OAy2e/HukR3w3AfOcScOsf2caZp4TTJkA/aTJ8C7uKMFefdKXh8ZvNWiCiJZWty/qP/Ly5JqAme/P0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4W0TBV4jHqz6K6Wl;
+	Fri, 14 Jun 2024 00:58:26 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 9DA3F140A70;
+	Fri, 14 Jun 2024 00:58:28 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 13 Jun
+ 2024 17:58:28 +0100
+Date: Thu, 13 Jun 2024 17:58:26 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Angelo Dureghello <adureghello@baylibre.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<noname.nuno@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <nuno.sa@analog.com>, <lars@metafoo.de>,
+	<Michael.Hennerich@analog.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/6] minor fixes and improvements
+Message-ID: <20240613175826.000040e7@Huawei.com>
+In-Reply-To: <9e21de1f-d0b1-4a00-a73d-9f35d8cedf1b@baylibre.com>
+References: <20240522150141.1776196-1-adureghello@baylibre.org>
+	<751faef385f81f8a2dd0dcc2acd2d4519bebebe5.camel@gmail.com>
+	<20240525180631.13446abc@jic23-huawei>
+	<826c3185-74ca-423c-96f2-4fd4cf2481cb@baylibre.com>
+	<9e21de1f-d0b1-4a00-a73d-9f35d8cedf1b@baylibre.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240610223550.2449230-2-sean.anderson@linux.dev>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
+On Wed, 12 Jun 2024 18:35:32 +0200
+Angelo Dureghello <adureghello@baylibre.com> wrote:
 
-On Mon, 10 Jun 2024 18:35:49 -0400, Sean Anderson wrote:
-> Support specifying the function per-pin. The driver doesn't care
-> whether you use pins or groups for this purpose.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-> ---
-> 
-> Changes in v3:
-> - Express groups/pins exclusivity using oneOf
-> 
->  .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 349 +++++++++---------
->  1 file changed, 180 insertions(+), 169 deletions(-)
-> 
+> Hi Jonathan, Nuno,
+>=20
+> just to be sure, is there something else needed from my side
+> for this patch-set ?
+>=20
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+All good now.  It's queued up and so just a case of me sending a pull reque=
+st
+to Greg KH. If he takes that it'll then be in char-misc and Greg will then =
+send
+pull request to Linus when the merge window opens.
+
+Jonathan
+
+>=20
+> Thanks,
+> regards,
+> angelo
+>=20
+> On 28/05/24 9:16 PM, Angelo Dureghello wrote:
+> > Hi Jonathan,
+> >
+> > On 25/05/24 7:06 PM, Jonathan Cameron wrote: =20
+> >> On Thu, 23 May 2024 14:45:01 +0200
+> >> Nuno S=E1 <noname.nuno@gmail.com> wrote:
+> >> =20
+> >>> On Wed, 2024-05-22 at 17:01 +0200, Angelo Dureghello wrote: =20
+> >>>> From: Angelo Dureghello <adureghello@baylibre.com>
+> >>>>
+> >>>> After testing this driver, add some minor fixes and improvements,
+> >>>> as adding single channel variants support (ad3541r, ad3551r), also=20
+> >>>> as a
+> >>>> preparatory step to bigger future improvements related to fast-rate=
+=20
+> >>>> mode
+> >>>> for this DAC family.
+> >>>>
+> >>>> Previous patches (v1, 3/3)
+> >>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-1-adureghel=
+lo@baylibre.org=20
+> >>>>
+> >>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-2-adureghel=
+lo@baylibre.org/=20
+> >>>>
+> >>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-3-adureghel=
+lo@baylibre.org/=20
+> >>>>
+> >>>>
+> >>>> Angelo Dureghello (6):
+> >>>> =A0=A0 dt-bindings: iio: dac: fix ad3552r gain parameter names
+> >>>> =A0=A0 dt-bindings: iio: dac: add ad35xxr single output variants
+> >>>> =A0=A0 iio: dac: ad3552r: add model data structure
+> >>>> =A0=A0 iio: dac: ad3552r: add support for ad3541r and ad3551r
+> >>>> =A0=A0 iio: dac: ad3552r: change AD3552R_NUM_CH define name
+> >>>> =A0=A0 iio: dac: ad3552r: uniform structure names
+> >>>>
+> >>>> =A0=A0.../bindings/iio/dac/adi,ad3552r.yaml=A0=A0=A0=A0=A0=A0=A0=A0 =
+|=A0 43 ++++--
+> >>>> =A0=A0drivers/iio/dac/ad3552r.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0 | 140=20
+> >>>> ++++++++++++------
+> >>>> =A0=A02 files changed, 128 insertions(+), 55 deletions(-) =20
+> >>> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+> >>> =20
+> >> This series crossed with a series using
+> >> device_for_each_child_node_scoped()
+> >>
+> >> I've rebased on top of that. Was moderately straightforwards but
+> >> given last week I messed a similar change up completely please
+> >> check the testing branch of iio.git!
+> >>
+> >> The mess was all it the patch adding model_data =20
+> >
+> > i tested the driver from the iio testing beranch,
+> > it works as expected.
+> > =20
+> >> Thanks,
+> >>
+> >> Jonathan =20
+> >
+> > Thanks,
+> >
+> > Regards,
+> > angelo
+> >
+> > =20
 
 
