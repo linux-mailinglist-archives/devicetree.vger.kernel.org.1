@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 910D29063DC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:14:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E859063E5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6613B24991
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:14:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 115DBB2262D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5753813776F;
-	Thu, 13 Jun 2024 06:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58ACC13666E;
+	Thu, 13 Jun 2024 06:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p6oOm7ce"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XZ5w158l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B3681369BF;
-	Thu, 13 Jun 2024 06:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4A4EEC8;
+	Thu, 13 Jun 2024 06:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718259244; cv=none; b=TAXAdxTGalqHne2ODjqOBpm3pyKuaOvsFRjSA0JzPWHXx/GJ+Ixv/GAPLfZechZJ/kuFLtaqOUZE187nxc+Iux13/dlVxtawJPwX48r/7wHawyP8n8KA//9oL0t0XDoAwuzrUXme2cg2qTsGfaF0M4AcYONz1QBwXY3V9Dgzu1c=
+	t=1718259456; cv=none; b=TexsEQQQ+ZndRkg2RO1T6S+IkRpzOonBMAw1Auxl6vxW/aF11jOq4Lz2toCJVOGPw+MNLjj2+DwXK+RVj692XmKMJAcsQ8R+6ACvdCeMEaCYeGekXIqRbGBGUsK8FD7RE8LfDq8ySJqkTcSvrBWM4H+icFQSmwjZtuPSquiEZxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718259244; c=relaxed/simple;
-	bh=sNG3UKIpsfSm8/4JJqiv4Qz32HYJ/gfCZQxKzbXJVXE=;
+	s=arc-20240116; t=1718259456; c=relaxed/simple;
+	bh=uihNMKDFDeq6DZWQuossSskGGT4qt/lQSs9ST43sm58=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SrSiF3GSSu8RuhnpreTe41bApyJ81d3IChOp8DO4Y3jqzcIIDDYX0KQLpkaBAT0ZRGnm+ju3dCOshN6kp1EmgT0YxEi9v6/nbJKOdOF0UKmV5Xl6gLOUjfEgPSzrJq4iNYOrJUjYooT9e72+4XGDFi8Qx59CH3y8+mLz3EhtmKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p6oOm7ce; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E104C2BBFC;
-	Thu, 13 Jun 2024 06:13:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kmXJdMIIMNQuoHtsJlWElIjHp9f/mCMuuugnQMoC0eZNOlV1Zp180zUX9k8TNTS1ozaw+iyNOW1qv7O7ZdHh3LSpTEpvZy6Ok8CdCD1nr7rjDeMFA901pzT5NtwfppHswoJzlVebDoL9jwKZV869t+Bsg3PLG/pI4E+EW3s0q0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XZ5w158l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF2C2C2BBFC;
+	Thu, 13 Jun 2024 06:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718259242;
-	bh=sNG3UKIpsfSm8/4JJqiv4Qz32HYJ/gfCZQxKzbXJVXE=;
+	s=k20201202; t=1718259455;
+	bh=uihNMKDFDeq6DZWQuossSskGGT4qt/lQSs9ST43sm58=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=p6oOm7ceSN0NpE13akUvm5my33Wo+pbwL2R9Sg7Nd7RlGFkvR32atCQKkRomz+cpd
-	 G9YwboJdH2fsC+Zye72lgebuuvBFm86GCR7ANV6/uT9GwUx563BMOl0dWbrwUr1dEv
-	 OrBsuo1ByyJVrauAUObfByYNBJMsAvvocf700RVtlO6D9OCD18GcpzaGrB4cZY2eLh
-	 EnihWp/kthxyVf408OYVkVjSo0YRAObFA9DBQSAzChogo9amrNEKVTmw4d563cNr4E
-	 sDOfai4YPljnFAJZU4A2x1fRxwHt7z5js6ajn0zPiryU5z95APb306Zc1i4yjIQCy2
-	 XERrLhPjmJAqA==
-Message-ID: <a752a912-a328-49c8-b887-fa95512785cb@kernel.org>
-Date: Thu, 13 Jun 2024 08:13:54 +0200
+	b=XZ5w158lqgz67H8DBY2CPvY575GUl30o1VHIsZCxgg1USkXbjgrkdUciO6bt9EnNx
+	 mPZn/4eeu0OQ3MZiyZJbT0WSlg6E3eGsAZWKb7fX+h0MAO+WT3pC6MNtwcHLmf0ZPu
+	 ApT5f34799TVvKHRmo7YMLwFROW8hW0xqiS0kbJEh/woUIfJYe40XFzm0nNwhCvLgD
+	 fAY8/HhSqOxIYt/r/kqpeQLHJXtNg7cL3cSJ85mFjVXzOhODuREoW6pdWhRzUSRxa0
+	 RSr7U2jBag31Q1ADiKOE9c5NxdN9evSllnIzcHdmRJtTLho3OZxjGMEf3VYVpqJZH8
+	 uIzRV7k+rC7+g==
+Message-ID: <21cfeb4c-4ce2-487a-bdd5-45c3ed71bf6f@kernel.org>
+Date: Thu, 13 Jun 2024 08:17:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH 1/4] dt-bindings: firmware: secvio: Add device
- tree bindings
-To: Aisheng Dong <aisheng.dong@nxp.com>, Vabhav Sharma
- <vabhav.sharma@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Franck Lenormand <franck.lenormand@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Varun Sethi <V.Sethi@nxp.com>,
- Silvano Di Ninno <silvano.dininno@nxp.com>,
- Pankaj Gupta <pankaj.gupta@nxp.com>, Frank Li <frank.li@nxp.com>,
- Daniel Baluta <daniel.baluta@nxp.com>
-References: <20240509-secvio-v1-0-90fbe2baeda2@nxp.com>
- <20240509-secvio-v1-1-90fbe2baeda2@nxp.com>
- <750f5388-20f9-45a3-a1e6-ceac4b91329f@kernel.org>
- <AS1PR04MB9358A2457AF05553457DE9B0F3FB2@AS1PR04MB9358.eurprd04.prod.outlook.com>
- <1486a1b6-4119-4121-b6df-3da21d06add7@kernel.org>
- <DU0PR04MB929983AB361DB081B44E7AFE80C02@DU0PR04MB9299.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH v4, 1/3] dt-bindings: usb: dwc3: Add snps,p2p3tranok quirk
+To: joswang <joswang1221@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: Thinh.Nguyen@synopsys.com, gregkh@linuxfoundation.org, balbi@kernel.org,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jos Wang <joswang@lenovo.com>
+References: <20240601092646.52139-1-joswang1221@gmail.com>
+ <20240612152347.3192-1-joswang1221@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,51 +103,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <DU0PR04MB929983AB361DB081B44E7AFE80C02@DU0PR04MB9299.eurprd04.prod.outlook.com>
+In-Reply-To: <20240612152347.3192-1-joswang1221@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/06/2024 09:20, Aisheng Dong wrote:
-> Hi Krzysztof
-> 
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 2024年6月7日 15:08
->>
->> On 07/06/2024 06:58, Vabhav Sharma wrote:
->>>>
->>>> Missing SoC compatibles.
->>> Ok, I will use fsl,imx8dxl-sc-secvio
->>>>
->>>> So no, that's just abuse of DT to instantiate driver.
->>>>
->>>> NAK. Drop the binding.
->>> I will detail the dt binding to describe the real hardware
->>
->> Still looks like way just to instantiate driver. Why it cannot be part of existing
->> firmware SCU node?
->>
-> 
-> Technically yes. But SCU case is a little bit complicated as there're many
-> functions and all of them are already added as sub nodes in SCU node
-> for consistency and handling platform difference.
-> 
-> I guess some of them, e.g. rtc, could be part of SCU node (reuse) while
-> some couldn't. e.g. pinctrl
-> Do you want us to only make secvio reuse existing SCU node? 
+On 12/06/2024 17:23, joswang wrote:
+>  
+> +  snps,p2p3tranok-quirk:
+> +    description:
+> +      When set, the controller transitions directly from phy power state
+> +      P2 to P3 or from state P3 to P2. Note that this can only be set
+> +      if the USB3 PHY supports direct p3 to p2 or p2 to p3 conversion.
+> +    type: boolean
 
-Yes
+Hm? You respond to feedback and, without waiting for my answer,
+immediately send new version?
 
-> This might look a bit strange to the existing sub nodes.
-
-Nothing strange/unusual to me.
-
-> 
-> BTW, even we can reuse SCU node for secvio function, we still need update
-> binding doc to add extra property 'nvmem' for secvio.
-
-Sure.
-
-
+No. Read feedback on your previous version. Drop the quirk.
 
 Best regards,
 Krzysztof
