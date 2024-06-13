@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28059063C3
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:09:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32FD99063CA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 08:11:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DCE8B21CDE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:09:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF43F283E1B
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 06:11:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092ED1369A0;
-	Thu, 13 Jun 2024 06:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17ACE1369A7;
+	Thu, 13 Jun 2024 06:11:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l+0pv7QH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iGEc7dtJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD340135A4B;
-	Thu, 13 Jun 2024 06:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE03237C;
+	Thu, 13 Jun 2024 06:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718258968; cv=none; b=N0Dr9p54C4KgYxJGMdrQL3xDzM7Kti+jP+LMOmutNskEQ2eHkoAMAYXZJcWHKrzIV6D4SlczcxHnmVluIJGs+3QiYNENcC2tOzNbf/09m19kBKw1Ls7TQHpDATOMpMm+LwHfifMSUTzDblyu/pspegPtDQg7Mb96w5RPsmK4c/E=
+	t=1718259068; cv=none; b=VxLI+P7VCcxt2ON2OelyhB3qYYgwKP1MC/pZmeOCAQjcUUUVTW7JlOoDzxOhMMX0O/id/ZgBY00+IzoHaIlPvGO2nTGqSjBkvMJNlf3v31BDj0+8KvyW4+9noicWS0P6IfJM+InvvhXoQyPYGCGmAv2+0Iw/6s68Vo1rUD6dylM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718258968; c=relaxed/simple;
-	bh=bbKEWwxPZT1MGbNUJwasQJFcX1zxr/x5+hhhJZnpu2k=;
+	s=arc-20240116; t=1718259068; c=relaxed/simple;
+	bh=JbmWVngXwcaJEHJKElEnPeeTu8Gv+Zs1/2yu+j/TneE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X2cyG1DGFmaCClM2fQrbs3raXtxbWTU+mI+xDskWq+P0lFZzrj3SYU8h7xlrLjQ8W3DsgF4hTptBeo5u9JF33Oua/MHCUyVlwOGTkIs6+BpPL8yKzFDzwyDlu4Ry+tiQoJ6DjVZgEwIoFJ45BW4xjIxuL9kLT1cEPuwxpBtQSOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l+0pv7QH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92148C2BBFC;
-	Thu, 13 Jun 2024 06:09:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NZ5XQW3dFKVSaXqn1gJWPX4reLvaugsm3WDLVXuXqPFFUC8eoWstdrRu/H3uboXSpyeVVa2SLZr3NuoEgpO8mZUssjgZs3dFXpL4A0oPBbrALax8s57aTcI5GsnGOyPx4AL4IxWy2JXPOx0OcvQ1Shdqo940QIHTp9WA9adM8No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iGEc7dtJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EA25C2BBFC;
+	Thu, 13 Jun 2024 06:11:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718258968;
-	bh=bbKEWwxPZT1MGbNUJwasQJFcX1zxr/x5+hhhJZnpu2k=;
+	s=k20201202; t=1718259067;
+	bh=JbmWVngXwcaJEHJKElEnPeeTu8Gv+Zs1/2yu+j/TneE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l+0pv7QHW3Uo1aG1Nam8Rb0tUCcz94L4ehaSclgjQs0By5gn20C+2G3C/VSfpM6hU
-	 XTRg6JQaIuGV9tXr6N4QXUOL5TQKBlSfLy2k02D5lvBXMuH5p6FwPGAZpQJjPCQ5+9
-	 r23/SEQLrdzzdAK4xK6d6Zvs83RZ0N1M4Ucg12mYTT6mNiZYlnwRWvGMbU/9qzqX28
-	 gSQ/TPSShofnZ0WaVywtGDbYzkSep0O3ZRQD9CYbGJ0PCSY/4ahmN2LFj+RwY8l3n2
-	 0BRgIqlCf7/x9r5DLlK9g1OwHtqjhFNWfnjyyLuf8PnUba8wzuVXeW7O5ZWO6Qvn3V
-	 hB/iAA3r57lMA==
-Message-ID: <3275676c-7392-47ac-8345-808681462003@kernel.org>
-Date: Thu, 13 Jun 2024 08:09:22 +0200
+	b=iGEc7dtJIh6HXvyl39LmgZqjGsWuXvaUI1Avje37b9ogUwB2WNyEVWdc2D5/1DI3N
+	 7BR9xBcDQex0HzFbvyegeFSPltG6NOV+TkWHzPUHBtTh7i2Gk1uNcZLSc1XCSjZx8K
+	 8i9TcpEzKbVZ5HgCakQJBf45ZCk5MByJH8Afq4sXDOvGNe35nGZ0wQB0777K8ySU/d
+	 0vx2bkEK7NjRYLu/rl6g0dIHD7qwMrakrYbOJj30GKHKqSL4gZzcLdTgWtWTQJCK5o
+	 FPYVKzQV2grAKg101Hpz1wYRyzFkTYp6lOiORNnz2iVQB9GtGWTdavS0jJJViZa01H
+	 RWRPS+r15jSbA==
+Message-ID: <038eaf17-7806-4be4-b98d-e936afa1001f@kernel.org>
+Date: Thu, 13 Jun 2024 08:11:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2, 1/3] dt-bindings: usb: dwc3: Add snps,p2p3tranok quirk
-To: joswang <joswang1221@gmail.com>
-Cc: Thinh.Nguyen@synopsys.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, balbi@kernel.org, devicetree@vger.kernel.org,
- joswang <joswang@lenovo.com>
-References: <20240601092646.52139-1-joswang1221@gmail.com>
- <20240603130004.25662-1-joswang1221@gmail.com>
- <9c665afe-16d7-469e-ac3e-d0d7388a31b7@kernel.org>
- <CAMtoTm1ojhCSRb4c+MPjuJB+JaeD2ex6B7FpCaJtLvrTj0Q8Cg@mail.gmail.com>
+Subject: Re: [Patch v2 2/2] ASoC: dt-bindings: lpc32xx: Add lpc32xx i2s DT
+ binding
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
+ Russell King <linux@armlinux.org.uk>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Arnd Bergmann <arnd@arndb.de>,
+ Chancel Liu <chancel.liu@nxp.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org
+References: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
+ <20240611094810.27475-2-piotr.wojtaszczyk@timesys.com>
+ <51eeec03-47da-44b5-a21e-f280d0c4b47c@kernel.org>
+ <CAG+cZ06EN4Uw7Cy+kwsiPzu16Kp7tsF19Oit6oN6GUcSe464JQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,62 +111,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAMtoTm1ojhCSRb4c+MPjuJB+JaeD2ex6B7FpCaJtLvrTj0Q8Cg@mail.gmail.com>
+In-Reply-To: <CAG+cZ06EN4Uw7Cy+kwsiPzu16Kp7tsF19Oit6oN6GUcSe464JQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 12/06/2024 16:28, joswang wrote:
-> On Tue, Jun 4, 2024 at 2:33 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 12/06/2024 10:06, Piotr Wojtaszczyk wrote:
+> On Tue, Jun 11, 2024 at 12:45 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>> Changes for v2:
+>>> - Added maintainers field
+>>> - Dropped clock-names
+>>> - Dropped unused unneded interrupts field
 >>
->> On 03/06/2024 15:00, joswang wrote:
->>> From: joswang <joswang@lenovo.com>
->>
->> Is this your full name or known identity you want to use for all kernel
->> contributions? Looks like login...
->>
->>>
->>> There is an issue with the DWC31 2.00a and earlier versions
->>> where the controller link power state transition from
->>> P3/P3CPM/P4 to P2 may take longer than expected, ultimately
->>> resulting in the hibernation D3 entering time exceeding the
->>> expected 10ms.
->>>
->>> Add a new 'snps,p2p3tranok-quirk' DT quirk to dwc3 core
->>> for enable the controller transitions directly from phy
->>> power state P2 to P3 or from state P3 to P2.
->>>
->>> Note that this can only be set if the USB3 PHY supports
->>> direct p3 to p2 or p2 to p3 conversion.
->>>
->>> Signed-off-by: joswang <joswang@lenovo.com>
->>> ---
->>>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
->>>  1 file changed, 7 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>> index 1cd0ca90127d..721927495887 100644
->>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->>> @@ -242,6 +242,13 @@ properties:
->>>        When set, all HighSpeed bus instances in park mode are disabled.
->>>      type: boolean
->>>
->>> +  snps,p2p3tranok-quirk:
->>
->> Why this cannot be deduced from compatible? Which upstream SoCs are
->> affected?
->>
->>
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Thanks for your help in reviewing the code
-> DWC31_USB 2.00a and earlier versions IP bug, regardless of platform.
+>> Does the device has interrupts or not? This should justify decision, not
+>> current usage by drivers.
+> Yes the device has interrupts but feeding data FIFOs is handled by DMA
+> (amba-pl08x.c).
+> Should I declare interrupts despite they are not used in the compatible driver?
 
-So this can be deduced from compatible, then use quirks in the driver
-based on compatible and drop the property.
+Yes.
 
 Best regards,
 Krzysztof
