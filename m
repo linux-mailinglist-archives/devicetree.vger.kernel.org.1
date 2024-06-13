@@ -1,153 +1,115 @@
-Return-Path: <devicetree+bounces-75546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0EA907A56
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:55:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59EBF907A78
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:59:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00DFA1F241F1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:55:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D75C0B21A71
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 17:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147C514AD02;
-	Thu, 13 Jun 2024 17:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8268214A4F5;
+	Thu, 13 Jun 2024 17:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="SkcOTHGi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAXnB4KK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486CA14A600;
-	Thu, 13 Jun 2024 17:55:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7D214A4F0;
+	Thu, 13 Jun 2024 17:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718301323; cv=none; b=LifCl/DiGc5YYJ3ClPGR5f1bc9L5fAcEyROVXTCeRPDVpQO96+SQVm890YuuUOyYPL4G5IbcPGKXdfO1pCd+/ZcvHAvcwYca/5UUlEuhwac7JeWQocUy0maL+RGxaltYOwAXQtCdeIJ6PGB7LT+OXwR1AddjZIWd4qRRkFbEjos=
+	t=1718301588; cv=none; b=kNuMhQdLk7jCPC9beZUlPwabi+j9vbXSrjZx3QFCgG+j1yZHIY7NKJgcqoJfNro1VaW1bggtDq1E4LfcCUx+FeGyodT3IetJ3wYsioOfLzn+wIT0BpJmZRQiksJHslh21C+x2g8/VXBB8b81A18b3bYJZ9xhUSqMvfGKDuLb050=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718301323; c=relaxed/simple;
-	bh=Cm1F7DrFVmLxVeLuslcdarzknUOh0alu2igejGkxoFs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OugAhQF3X4+O41aQWdP4QZT3qLM5Nx/7fjxa/qhB0ZBWdEfQ9XoXDYwW2CS29jfplX+t5jQLjMGQXNGqGzx1xpvYKicOV2xQbRWvT3iUEMuI0lEWs0wBo5VG0d6UDScnqrMCJtaWo/2vjc+XRmiMZCmRASByeY6PZx0J2gleAkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=SkcOTHGi; arc=none smtp.client-ip=67.231.152.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45DHBJKq025047;
-	Thu, 13 Jun 2024 12:55:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=/BVJql68tB9ajAkIWj
-	QdkSFeuEec4LfGBBsvoG3oFPs=; b=SkcOTHGih5o+AoVEZp2ayUP6Ns26213Fnm
-	f9GqeZOHKwETT+nT1pPJNbzj5sKWNwRQ/6nEbxkKP9bRnbBd7LIrNzlECAthnvGR
-	LpbTsABkOej+5NCh+ae/NN+tDA9Asiy1YaG6GoX9vVKIkQBvmKSbmwA+viFMqcs9
-	m02mZk+AHUQTP5++wfQcH5xhu3eJhFkyI5uHsypy+TsW9U4yUzcrixL+iafpYV7u
-	HQoDbxv3LUeKJWV/fxdre4SEwtsJet0d1X9/35xFwADC7sIe6vVP7JWiqux18cZC
-	CmNokSh5uyANsVY9yuXQzbsc6ZhubKbDM1/e4ibspH7B8ez9aDXA==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3yqb8ehqea-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 13 Jun 2024 12:55:18 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 13 Jun
- 2024 18:55:16 +0100
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.9 via Frontend Transport; Thu, 13 Jun 2024 18:55:16 +0100
-Received: by ediswmail9.ad.cirrus.com (Postfix, from userid 15641)
-	id 7158A820248; Thu, 13 Jun 2024 17:55:16 +0000 (UTC)
-Date: Thu, 13 Jun 2024 17:55:16 +0000
-From: Paul Handrigan <paulha@opensource.cirrus.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <linux-sound@vger.kernel.org>,
-        <patches@opensource.cirrus.com>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] ASoC: cs530x: Support for cs530x ADCs
-Message-ID: <ZmsyhKiuRI1Dg8l4@ediswmail9.ad.cirrus.com>
-References: <20240607202708.335752-1-paulha@opensource.cirrus.com>
- <20240607202708.335752-3-paulha@opensource.cirrus.com>
- <9876e617-68d1-4e1c-ba9e-2c235a57b0a9@kernel.org>
+	s=arc-20240116; t=1718301588; c=relaxed/simple;
+	bh=ba5a7SrwKzZox0+DAfJ3tbJfpYcmRULnrBc+3V62Rng=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CLpI8wVQqQyJEcYi0PorW1SkdMzJRIy3EXjdA0dIXUTiV4+P6j3H8yK+rN1GadGx1gA+IZ0cCAJMpSJHKD3w9zPej0mzkidzcZBA7exhfJqynN5OPzQP+RzGm3HBJB6cmxyCN/cn2CHgRr3Pfkc2Bj6ypDKKLD8VVQDfsRHMqUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAXnB4KK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B553EC2BBFC;
+	Thu, 13 Jun 2024 17:59:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718301587;
+	bh=ba5a7SrwKzZox0+DAfJ3tbJfpYcmRULnrBc+3V62Rng=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HAXnB4KKEIeKZoxVRiMkvnv0AqZzQvtowJBSJEy5NC54ajGD+adT0vDwmcxkPEXeg
+	 TqfjfBtyXYJZ2BJP497pWWS6oCUQ/uzLmZykxewe2ZiuMYHtTU2DfP+u60cjU15XxA
+	 bzpwihCtcQAVhogRG/3CP3ZfMa3QDBd20qLzuWibcChfdeOU8Wp/jpO7EaBTeNjyqL
+	 lM0GhdN54G1t2i6+BEdkIHr9vNmn3FnDaY5U8MD+OYmbwGYhkjcqv9sYTNIDyHu2aw
+	 luKgqZx3PxYSaGoLMZIBQRpb7mffXd91Zl8CoiNaF7qeFvicGJJRKe6i0dKj9BqyCQ
+	 AdzgQOcKcKmOA==
+Date: Thu, 13 Jun 2024 11:59:46 -0600
+From: Rob Herring <robh@kernel.org>
+To: Potin Lai <potin.lai.pt@gmail.com>
+Cc: Corey Minyard <minyard@acm.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	openipmi-developer@lists.sourceforge.net,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Patrick Williams <patrick@stwcx.xyz>,
+	Cosmo Chou <cosmo.chou@quantatw.com>,
+	Potin Lai <potin.lai@quantatw.com>
+Subject: Re: [PATCH 1/2] bindings: ipmi: Add property for skipping SBMR boot
+ progress response
+Message-ID: <20240613175946.GA2085029-robh@kernel.org>
+References: <20240612043255.1849007-1-potin.lai.pt@gmail.com>
+ <20240612043255.1849007-2-potin.lai.pt@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9876e617-68d1-4e1c-ba9e-2c235a57b0a9@kernel.org>
-X-Proofpoint-ORIG-GUID: 48Rp6eEWt1eWQhJbVWmtHxlF84atXJKz
-X-Proofpoint-GUID: 48Rp6eEWt1eWQhJbVWmtHxlF84atXJKz
-X-Proofpoint-Spam-Reason: safe
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240612043255.1849007-2-potin.lai.pt@gmail.com>
 
-On Mon, Jun 10, 2024 at 10:46:26AM +0200, Krzysztof Kozlowski wrote:
-> > +
-> > +	cs530x = devm_kzalloc(&client->dev, sizeof(struct cs530x_priv),
-> 
-> sizeof(*)
-> 
-Ack
+On Wed, Jun 12, 2024 at 12:32:54PM +0800, Potin Lai wrote:
+> In ARM Server Base Manageability Requirements (SBMR) document, Callers can
+> choose to not read back Response Data after sending the command "Send Boot
+> Progress Code".
 
-> > +
-> > +	if (client->dev.of_node) {
-> > +		const struct of_device_id *match;
-> > +
-> > +		match = of_match_node(cs530x_of_match, client->dev.of_node);
-> > +		if (match == NULL)
-> > +			return -EINVAL;
-> > +		cs530x->devtype = (enum cs530x_type)match->data;
-> 
-> I think you open-coded device_get_match_data
-> 
-> 
-> > +	} else {
-> > +		const struct i2c_device_id *id =
-> > +			i2c_match_id(cs530x_i2c_id, client);
-> > +
-> > +		cs530x->devtype = id->driver_data;
-> > +	}
-> 
-> and for all of this there is a helper i2c_get_device_match_data.
-> 
-Ack
+Got a link to that document?
 
-> > +	if (ret != 0) {
-> > +		dev_err(dev, "Failed to request supplies: %d\n", ret);
-> 
-> return dev_err_probe()
-Ack
+> Define "arm-sbmr,skip-bootprogress-response" property for skipping the
+> response of "Send Boot Progress Code" from userspace.
 
-> > +	if (ret != 0) {
-> > +		dev_err(dev, "Failed to enable supplies: %d\n", ret);
-> 
-> return dev_err_probe()
-Ack
+I don't understand why this would be conditional? How can you define in 
+the BMC what the host behavior is? Doesn't the host side decide 
+that? So don't you always have to support no response?
 
-> > +	if (IS_ERR(cs530x->reset_gpio)) {
-> > +		dev_err(dev, "Reset gpio not available\n");
 > 
-> return dev_err_probe()
-Ack
+> Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml b/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+> index 02b662d780bbb..b21e958efc184 100644
+> --- a/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+> +++ b/Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+> @@ -19,6 +19,11 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  arm-sbmr,skip-bootprogress-response:
 
-> > +
-> > +	if (cs530x->reset_gpio) {
-> > +		usleep_range(2000, 2100);
-> > +		gpiod_set_value_cansleep(cs530x->reset_gpio, 1);
-> 
-> 1 is to keep device in reset? This looks like you are using logical
-> values inverted.
-Thanks.  The reset pin is active low. I will also change the dt binding
-example to reflect that.
+Form is vendor,property-name where vendor is defined in 
+vendor-prefixes.yaml. 'arm-sbmr' is not a vendor.
 
-> > +
-> > +	cs530x->dev_dai = devm_kmemdup(dev, &cs530x_dai,
-> > +					sizeof(struct snd_soc_dai_driver),
+> +    type: boolean
+> +    description:
+> +      Skipping ARM SBMR “Send Boot Progress Code” response.
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.31.1
 > 
-> sizeof(*)
-> 
-Ack
-
-Regards,
-Paul
 
