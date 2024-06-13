@@ -1,161 +1,137 @@
-Return-Path: <devicetree+bounces-75581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772C5907CC9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:40:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A49A8907CD8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 21:43:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A8101C23AA7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:40:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94CED1C240FA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jun 2024 19:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECBE6149E0A;
-	Thu, 13 Jun 2024 19:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB5C14C59A;
+	Thu, 13 Jun 2024 19:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="50ngkzPY";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nBQvVgh6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p3HiMHlO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout2-smtp.messagingengine.com (fout2-smtp.messagingengine.com [103.168.172.145])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52636134407;
-	Thu, 13 Jun 2024 19:40:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3817814C583;
+	Thu, 13 Jun 2024 19:43:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718307640; cv=none; b=QTpvk1GCTg98nSdkTRRPNYnCNK2JaH6bK9pDPctekFvHt/DxaaN3n1Ajc/XxmhGFDjuhIaqA267TzdNaSpFspE7HrhR/xKLJb5oNZzfcopEvqRBoi4IzbYKNf16+ckY9Qq8gVhwLiJSkQP+7/EN8SiHMswBJFxzdQ57jaXcYuQk=
+	t=1718307806; cv=none; b=L8PfqO7Jw8WWJj2ComnHeIRbn0Hp7POQLjgXWbLUU37ibyxsdpA1hJG/1PHQg2gHo74qZOFLzCIjZftOy2fRty+wkhj3jdd07DXV09hZFXF/7mUQntw7V/XODn2obNXhH1iWdvTSTrvRGkL6aT6NUGCVtldobns6Vsy6L6+Zx84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718307640; c=relaxed/simple;
-	bh=7llpCOFgvcUxbS2cWK7Y5Znfoz9knmpfrFVXwGUPPzE=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=jC/p5a5JSpApDwB3QdNkDK31D1fgGfMcPnbWBC8gl6fSEsTg/WZt/duf6nU34Xto+/ctWsM77UtcUUgl+CzWlgmoDMwpTf/PyNHSCViDzfV88VjXQ0b2nc0GAu/O+vO9Jhgp2pzRSjNovYP/PzXy4uGYPT/KVbMsv3Ke3rVVJcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=50ngkzPY; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nBQvVgh6; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 6DFA41380117;
-	Thu, 13 Jun 2024 15:40:38 -0400 (EDT)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Thu, 13 Jun 2024 15:40:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1718307638;
-	 x=1718394038; bh=oqDoiw11ZfKTk6wjqM+5gp30nptU4jTafY6bPs+rNiQ=; b=
-	50ngkzPYg9dGn8qrvRm3e0z7cizqf7hqRoWfcVKtIKXzw5sERNQ9qXAj4jPIuTjA
-	fYl5mpJ852dDx7HOfUnnRm9pDehlafCLWABp1UZuPJ4jLU6AEEEfU1Hgd9Lgzwa2
-	avYvjWxQfiHJzCOjUb1ZvDVOGBgOVM7TXQooHsgK9njIVQ9KNobdqdwZprRXXCl3
-	hv3uQWQOUB8hzbYtFcwXSxTnnhdN5nQ7ndi76iCS7Z0dZWqFt2OQzk3HQxldixzv
-	iDTzrytSas//9gJ6CWMZHSM5iJSxjV6BvD7VEgUQQhDmOI0svR5BEhpgUJ4nUjh4
-	+YxE3a7nbywKCqy2Q9BYYQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1718307638; x=
-	1718394038; bh=oqDoiw11ZfKTk6wjqM+5gp30nptU4jTafY6bPs+rNiQ=; b=n
-	BQvVgh6xgHey1y+NaXXiINyRF2PFaX8TWQ2Nkse8RfCEIHZsgcnNJ1qEp5hQmEXx
-	qUI2hK3r/smoPOoOxobPdTk/JlBMk153QCCWyXOJ3qb8IbcKm5gCzwQRxZ8kIJgK
-	8UbHYiL36T/HiSLTA13A+3WEvh+k2X3Af1p/3OZMDfaT4f3+L8TeRmxZZC3/r29c
-	T+Q6reUKgYRqWEVMhZs0kNOV7h4ZhTBHwTwPos2UggSW/Q2tFOuoZBYTGbQsOaiZ
-	4JqgUvsnvaHk9BAEWkwWKSe5ylQ/WsTduPOunZwieuFjPRDV7LdkKTRmFAbPLE84
-	AJ7PggshK82cufoXOwbOA==
-X-ME-Sender: <xms:NktrZlMmP2hDaaJYOys3ZPRvDqwDGPnTE4Oi6NCEeN-mXnQ_BaIv3w>
-    <xme:NktrZn__y7Vp4MwAtuCyXJ3XapW_GmMaJ2NieYqWldcqDj6YFMZYxT5WLz8D6KbT3
-    cE2yrhucCoyrimr0Zc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedujedgudefjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
-    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
-    homheqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefh
-    jeeugeevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:NktrZkQ73FG37jYU2gMIz8Q3KODzqfJ2rDG8aDp0nOpJHIK08DgSlg>
-    <xmx:NktrZhvAl5flnedrEm7bMKTIg0uIHYseL1G1mkrWnpkaM5Pk9vIlvw>
-    <xmx:NktrZtfRXKH8UerUl9l96hd0X9WLtmrGVQZtKcoslkE-wnrqUu-Dkg>
-    <xmx:NktrZt0eJ34O60I1qAELCKVd8SgwlVJ_7gA2ItJDNnWVqpzzhC0MoQ>
-    <xmx:NktrZp4dWfb1mVfXD8boMiCJJxFfcx_w-4REuCm4risjKayROIAXHH2F>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 1440136A0074; Thu, 13 Jun 2024 15:40:37 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-515-g87b2bad5a-fm-20240604.001-g87b2bad5
+	s=arc-20240116; t=1718307806; c=relaxed/simple;
+	bh=3qzuHXwUXJC4kkCUpeSCcm2xbDApMYoDwGK0LWJk20E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l8J/T4BPSt1CzvAk3J8YXMT3AkyL5qT25VjLJh932eiC6JRXbYd8/7BXbeYo6Y2yIKh8afnVTTvwnefzPIavUU627fc9wWBLCpyPb6Cb2nu82Cbqb6YYjq8Hw5GGkwIVrlrRRnN1MphxslwWA3aw0NF9Oi+1a1mEmkS9klkSmGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p3HiMHlO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AF99C2BBFC;
+	Thu, 13 Jun 2024 19:43:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718307805;
+	bh=3qzuHXwUXJC4kkCUpeSCcm2xbDApMYoDwGK0LWJk20E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p3HiMHlOXnYU2dP9n7a5VV3QwL33dfCFvq8F5qed1A0yQ0wCsuNDwTPHTPsnluh1b
+	 pYKFSG5MTvUuqHvib2wAw+VOgRO398l/34dMk0SzbPAGmxN5K/qmeIBldxvoIeuz6t
+	 AQU+rZBFAuksis+xsm/9mOu+NZSFd6Nxfwb2dHFT9mK448l4f79UlMn8bjKVJS0i27
+	 6dfqM18+vgpUmfsh1MxuvPB9t7lLNNEp0CrKlxpiE1SpDG9fUblOmD74AS2e3gdwxX
+	 ieI7j3MWHhUUB+QdUal6Vc6vTtDEeuze30Z71qF7ZzeD2bUVYiBGyDwdRKwLmCZNit
+	 yx1NZK8jbAJUA==
+Date: Thu, 13 Jun 2024 13:43:24 -0600
+From: Rob Herring <robh@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add AD4695 and similar ADCs
+Message-ID: <20240613194324.GA2352022-robh@kernel.org>
+References: <20240612-iio-adc-ad4695-v1-0-6a4ed251fc86@baylibre.com>
+ <20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
+ <94448c2c-e7b2-4191-858c-529b254994f1@kernel.org>
+ <f765ef30-a777-4dfc-8f93-0f15b46f91ae@baylibre.com>
+ <e09fecf4-bde2-4feb-8312-22c530c6a960@kernel.org>
+ <b6b52b1e-847b-44ca-87f9-095a78164771@baylibre.com>
+ <5f0776ba5163578453e26352763ff1b4687bcf87.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <dfb545a6-b8c2-4498-aa01-3e851fe0877f@app.fastmail.com>
-In-Reply-To: <20240613185902.GB2286020-robh@kernel.org>
-References: <20240612-boston-syscon-v2-0-9f8e1a07fa63@flygoat.com>
- <20240612-boston-syscon-v2-7-9f8e1a07fa63@flygoat.com>
- <20240612-unstuffed-figure-966c90af52bc@spud>
- <ddb36d6c-b54f-4982-b9ca-48c022ce6eb8@app.fastmail.com>
- <20240613185902.GB2286020-robh@kernel.org>
-Date: Thu, 13 Jun 2024 20:40:18 +0100
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Rob Herring" <robh@kernel.org>
-Cc: "Conor Dooley" <conor@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v2 7/8] du-bindings: mips: cpu: Add img,mips compatible
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5f0776ba5163578453e26352763ff1b4687bcf87.camel@gmail.com>
 
+On Thu, Jun 13, 2024 at 05:11:48PM +0200, Nuno Sá wrote:
+> On Thu, 2024-06-13 at 09:39 -0500, David Lechner wrote:
+> > On 6/13/24 9:18 AM, Krzysztof Kozlowski wrote:
+> > > On 13/06/2024 15:57, David Lechner wrote:
+> > > > 
+> > > > > 
+> > > > > > +          - const: adi,ad4695
+> > > > > > +      - items:
+> > > > > > +          - const: adi,ad4697-wlcsp
+> > > > > > +          - const: adi,ad4697
+> > > > > > +      # same chips with higher max sample rate
+> > > > 
+> > > > I suppose one could make the argument that the programming model is
+> > > > the same on these too, but the maximum sampling frequency does seem
+> > > > like an important bit of information so that you don't try to set
+> > > > the conversion trigger rate too high.
+> > > > 
+> > > 
+> > > which property is that? I don't see differences in the driver, so I
+> > > don't get how these wlcsp compatibles allow you to control value of
+> > > conversion trigger.
+> > 
+> > This comment is unrelated to the package type (WLCSP or LFCSP).
+> > 
+> > What I mean is that e.g. AD4695 and AD4696 are virtually identical
+> > other than the maximum allowable sample rate (500 kSPS or 1 MSPS).
+> > 
+> > So my thinking was that it would make sense to have:
+> > 
+> > 	compatible = "ad4695";
+> > 
+> > for the lower sample rate chip and
+> > 
+> > 	compatible = "ad4696", "ad4695";
+> > 
+> > for the higher sample rate chip since ad4696 can do everything
+> > that ad4695 does plus a bit more.
+> > 
+> 
+> IMO, that would make sense yes. If the higher sample rate chip fallsback, it will
+> still work but not at full speed. The other way around is the one that we can't allow
+> naturally.
+> 
+> But possibly dumb question now... since both devices will be supported at the same
+> time, do we actually care about having the fallback compatible? My understanding of
+> the fallback story is that we may load a DTS in an older kernel where chip A is
+> supported but chip B is not and it is ok for chip B to fallback to chip A. Since
+> these devices will be supported at the same time, do we need to care? Unless out of
+> tree stuff enters the equation?
 
+Yeah, it doesn't really matter much in that case.
 
-=E5=9C=A82024=E5=B9=B46=E6=9C=8813=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=E5=
-=8D=887:59=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
-> On Wed, Jun 12, 2024 at 05:59:24PM +0100, Jiaxun Yang wrote:
->>=20
->>=20
->> =E5=9C=A82024=E5=B9=B46=E6=9C=8812=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=
-=E5=8D=885:39=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
->> > On Wed, Jun 12, 2024 at 12:56:26PM +0100, Jiaxun Yang wrote:
->> >> This compatible is used by boston.dts.
->> >>=20
->> >> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
->> >> ---
->> >> note: This is a wildcard compatible for all MIPS CPUs,
->> >>       I think we should use something like "riscv" for riscv.
->> >
->> > riscv systems, other than simulators etc are not meant to use the
->> > "riscv" compatible. All of the real CPUs use "vendor,cpu", "riscv".
->> > I'd suggest you add specific compatibles for your CPUs.
->>=20
->> Boston can be combined with many different CPUs, thus we need to have
->> such compatibles.
->
-> Then you'll need different DTs. Different h/w, different DT.
+> Or is there another usecase that I'm not aware about (or maybe it just makes sense to
+> document properly...)?
 
-The board have 9 CPU types in total, with hundreds of different possible
-CPU topologies. Maintaining separate DT for them seems impossible in ker=
-nel.
+Somewhat I guess. Perhaps if there's a 3rd chip with higher rate, then 
+it will be more obvious what to do and we don't have to have this 
+discussion again for it. :)
 
-We can potentially patch this in bootloader, but for existing firmware i=
-t's
-being doing like this for years. I can see for RISC-V QEMU generated DTB=
- is
-using a single "riscv" compatible and I do think it's a similar problem.
-
-I think it's better to document it and warn people only to use it in lim=
-ited
-circumstances, instead of keeping such usage in grey area.
-
-Thanks
-
->
-> No way we're taking a generic compatible like this.
->
-> Rob
-
---=20
-- Jiaxun
+Rob
 
