@@ -1,145 +1,192 @@
-Return-Path: <devicetree+bounces-75955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382E89093B9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 23:42:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50119093CB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 23:49:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35C1B1C20FD5
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 21:42:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 599C9281E62
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 21:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB7C184134;
-	Fri, 14 Jun 2024 21:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B32418410B;
+	Fri, 14 Jun 2024 21:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AlXQOVu7"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UpINruS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F01C178CE2
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 21:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE6A13A27E;
+	Fri, 14 Jun 2024 21:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718401340; cv=none; b=qe7RKuKbCzkszcOtFGCSanBfs8SYERpTxMwLk+MxHooTOUxwuiM8gcLj31/BzxB80t50CaFdg/GI26k3EhrIQmWtZ1weBjp5O3T1acy7vLYhmlssroXgpkXLigJCUUN8/CseXvT3p1bFvVGGpuAksugs6rw9YLbDQZ184tKuNrY=
+	t=1718401786; cv=none; b=QwiLvAowCq5x3k/OFwxmw91BGsNgF65ZMz1MW9y94bIygTztmJ6hcIu3k6XbY7MX5YO/qzX7/Js85U8/ReK4Twt6OJREOBjQNX6SimEUU755HMSO1MV9tGibDuG0SLNK376pneaTg1s6iUIqSofS8Aw+KUcfcamDXxQRMztutBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718401340; c=relaxed/simple;
-	bh=faSPDpcL3yqC7PLRvANwHerlzIJ1Baevv3BJdpBQmo4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kRlbE6+GkLzWiqYYGmXWo1buys8J+//D2Jd3E/1G5znWuTmsksoBaYGd1nZSV3HE5Bq1ER//HyQ3Bpj+K8ODqvl/GVUB4F8tb1F1IHZCTZoinO9nsrmJjFQVH52FFMvKHFmW/Ut7nYu5OaBYhUZYH0n7OIh4y//zyr8Vsx6prpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AlXQOVu7; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52bc335e49aso2997437e87.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 14:42:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718401337; x=1719006137; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rfrFywGdxRVKDtBlePZ25waSont2SOCWw4599ELCJWU=;
-        b=AlXQOVu7NEhGuQ0a/O4HIf7ElahCxbZ805Z2rcv7aCX8lcnrMfm9wigZFgqyA+jDAZ
-         Nl21lN56B1oWka0akfreOipWwNxQ6GVBslOpuL5ZlXLDvY4NCPc0AoxO64dZSRuaB9Be
-         S10ESwpjT8KQbMgXEK9B7ARWbLW8jRaQk7cENgHWaJWW2lHQVyp4cJlMMWVcQwIRS9j6
-         0IABzCBi5RNr0HKA09daZFDkByzAfABzhw2SQOwm/xOVv9FjUUO8Dc9IZkt3KyUXkGt5
-         LjOr98crCTDfvfuOLmGzwejNlBhBrkFbtNvGeOnebE+qT2A+PJbCAEevmOq5GxVLTZCM
-         zxzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718401337; x=1719006137;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rfrFywGdxRVKDtBlePZ25waSont2SOCWw4599ELCJWU=;
-        b=O28sSbYGuL+4G9GwbraW2gGY5cUmM4FLr+yQ5Boge3Dhc5oHKHc1uiU7KkdytsEqd7
-         IaBYNzRviBXtXrVUcvQ3WnCGwqFv20utCZKsSWDmSKhGjt0FOWT2f1Z5l81arg96VOkM
-         gyZas2SYdhtA++HXULB4Cj7TfD1Ckw99DDkoIqnNwb3kLizFZdZoMdz1GYanqDp7hPdc
-         Jz/KXAw6kUuZheTRM37WEJbEu09z7x5HqtYvNARbnTqwOSmpJpGJ5PbWo2JTEuMcSZl3
-         VkEtkxyutOfExbAjR7tq2tZsmKNosbQCJ2UrZ/N/5uKERFz1tQt6fRRvtSq9/ipkrnxT
-         NLhg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVlcq3LgJAMsC7w+5HVSVIWIESm8+tPapfzQ+3Vlf73cwgsjYLc1FK4yn6R6sHluqoNbZNh0HL6r7guW7dR1hVmaQAzy8UAz+Gvg==
-X-Gm-Message-State: AOJu0YzVQ4gX0yuMX3+PV1ALkWWMYPrEdmEFXstNzvbHfmXq4slkfHyv
-	AVxSKwcw7WWPKiOODR8Kyn9ERXFhOi5eRcWWVpzEq3sdVcOep6aCuz5p0P4S0iM=
-X-Google-Smtp-Source: AGHT+IGsVkod4fXLOnmg6/ZcW7K93n3FUSjBDvgJc0I4Ni8Y7vOmxBSXmUWJdfTPkDiGDeGmgJ40Yw==
-X-Received: by 2002:a05:6512:4028:b0:52c:9a89:ecee with SMTP id 2adb3069b0e04-52ca6e94220mr3573266e87.52.1718401337253;
-        Fri, 14 Jun 2024 14:42:17 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2825c61sm600737e87.7.2024.06.14.14.42.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jun 2024 14:42:16 -0700 (PDT)
-Date: Sat, 15 Jun 2024 00:42:15 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
-	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, 
-	abel.vesa@linaro.org
-Subject: Re: [PATCH 2/4] soc: qcom: icc-bwmon: Allow for interrupts to be
- shared across instances
-Message-ID: <r6bwmhfa4csubsvetnjlj6gzgovewupxf6hkuygqdconldpk2v@otrs4lhd3baj>
-References: <20240604011157.2358019-1-quic_sibis@quicinc.com>
- <20240604011157.2358019-3-quic_sibis@quicinc.com>
- <5e5f052b-df59-47fb-aed0-10b4f980f151@linaro.org>
- <5df5dc6b-872f-34c5-a6d2-a64f9c881193@quicinc.com>
- <672b6156-e425-4f3b-86f4-02a34cab2b67@linaro.org>
- <122b5418-ca2d-df7d-a1d5-d7682ce0ed5a@quicinc.com>
+	s=arc-20240116; t=1718401786; c=relaxed/simple;
+	bh=/vGDtarLtbLIXdtxJ7bjRjbFnBvP5dZH6i5ZowgGCoI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TSUvzPlHVF3XAKkWJKpdimn2BsAwQMXUN5HxUtvfCSsyk9XQ7pIvzS4emroyP8S9BJ6Y01R54QHiJlGix0BvBpCa+yiUjLE7Bn1wom8TLwY/wBmgcC9+kcd6OxdmYpL0drr09/Bv/qVPNwv6hqE79YmAeLe19NJladBdZL6F5iA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UpINruS3; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ED1223D4;
+	Fri, 14 Jun 2024 23:49:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1718401766;
+	bh=/vGDtarLtbLIXdtxJ7bjRjbFnBvP5dZH6i5ZowgGCoI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UpINruS3aXPk13W8za+nCeDQYMypu/rFrRybcONzGfg4EW1oroJCVsXaVPrWP/81c
+	 plOvVN2VHtcrMFBV1Ejdl/2LYCiFoxKxWZ6WK4/eNtCtIZnVsqtkrnTNOuwgnUg3VA
+	 zOqRs+Qsv7LgtgGyyFBxx8s/hIUUF1umQl/GnOuc=
+Message-ID: <c0fcf014-ddec-4920-8a44-3cefd7e336ad@ideasonboard.com>
+Date: Fri, 14 Jun 2024 22:49:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <122b5418-ca2d-df7d-a1d5-d7682ce0ed5a@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 15/16] media: platform: Add mali-c55 parameters video
+ node
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ laurent.pinchart@ideasonboard.com
+References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+ <20240529152858.183799-16-dan.scally@ideasonboard.com>
+ <ZmyRot1VIBXx3Ab8@valkosipuli.retiisi.eu>
+ <2063cbf3-73b7-4b34-8c3a-9fb530047842@ideasonboard.com>
+ <Zmyx8ZYIQIuTxIUh@valkosipuli.retiisi.eu>
+Content-Language: en-US
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <Zmyx8ZYIQIuTxIUh@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sat, Jun 15, 2024 at 01:49:34AM GMT, Sibi Sankar wrote:
-> 
-> 
-> On 6/14/24 13:54, Krzysztof Kozlowski wrote:
-> > On 13/06/2024 19:02, Sibi Sankar wrote:
-> > > 
-> > > 
-> > > On 6/4/24 12:16, Krzysztof Kozlowski wrote:
-> > > > On 04/06/2024 03:11, Sibi Sankar wrote:
-> > > > > The multiple BWMONv4 instances available on the X1E80100 SoC use the
-> > > > > same interrupt number. Mark them are shared to allow for re-use across
-> > > > > instances.
-> > > 
-> > > Hey Krzysztof,
-> > > 
-> > > Thanks for taking time to review the series :)
-> > > 
-> > > > 
-> > > > Would be nice if you also mention you checked that it is safe to have
-> > > > both devm and shared interrupts (so you investigated possibility of race
-> > > > on exit path).
-> > > 
-> > > I didn't see any problems with devm being used with SHARED when I posted
-> > > it out. After your review comments I went back again to vett the exit
-> > > path for races and ran into an pre-existing splat [1] but the bwmon
-> > > instances work as expected on module removal/re-insertion.
-> > 
-> > Using devm and shared interrupts is in general sign of possible race
-> > issues and should be avoided. Just "not seeing problems" is not an
-> > argument for me, to be honest.
-> 
-> Didn't I go further and say I got it tested though? Also can you
-> elaborate on what race do you think the bwmon will hit rather than
-> being too generic about it?
+Hi Sakari
 
-devm_request_threaded_irq means that the IRQ is freed after the
-bwmon_remove() function returns. Having IRQF_SHARED means that the IRQ
-can still be triggered even though IRQ for this device has been disabled
-in bwmon_disable().
+On 14/06/2024 22:11, Sakari Ailus wrote:
+> Hi Dan,
+>
+> On Fri, Jun 14, 2024 at 09:15:07PM +0100, Dan Scally wrote:
+>>>> +void mali_c55_params_write_config(struct mali_c55 *mali_c55)
+>>>> +{
+>>>> +	struct mali_c55_params *params = &mali_c55->params;
+>>>> +	enum vb2_buffer_state state = VB2_BUF_STATE_DONE;
+>>>> +	struct mali_c55_params_buffer *config;
+>>>> +	struct mali_c55_buffer *buf;
+>>>> +	size_t block_offset = 0;
+>>>> +
+>>>> +	spin_lock(&params->buffers.lock);
+>>>> +
+>>>> +	buf = list_first_entry_or_null(&params->buffers.queue,
+>>>> +				       struct mali_c55_buffer, queue);
+>>>> +	if (buf)
+>>>> +		list_del(&buf->queue);
+>>>> +	spin_unlock(&params->buffers.lock);
+>>>> +
+>>>> +	if (!buf)
+>>>> +		return;
+>>>> +
+>>>> +	buf->vb.sequence = mali_c55->isp.frame_sequence;
+>>>> +	config = vb2_plane_vaddr(&buf->vb.vb2_buf, 0);
+>>>> +
+>>>> +	if (config->total_size > MALI_C55_PARAMS_MAX_SIZE) {
+>>>> +		dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
+>>>> +			config->total_size);
+>>>> +		state = VB2_BUF_STATE_ERROR;
+>>>> +		goto err_buffer_done;
+>>>> +	}
+>>>> +
+>>>> +	/* Walk the list of parameter blocks and process them. */
+>>>> +	while (block_offset < config->total_size) {
+>>>> +		const struct mali_c55_block_handler *block_handler;
+>>>> +		struct mali_c55_params_block_header *block;
+>>>> +
+>>>> +		block = (struct mali_c55_params_block_header *)
+>>>> +			 &config->data[block_offset];
+>>> How do you ensure config->data does hold a full struct
+>>> mali_c33_params_block_header at block_offset (i.e. that the struct does not
+>>> exceed the memory available for config->data)?
+>>
+>> We don't currently...the data buffer is sized specifically to be large
+>> enough to accept a single instance of each possible struct that could be
+>> included, we could keep track of the blocks that we have seen already and
+>> ensure that none are seen twice...and that should guarantee that the
+>> remaining space is sufficient to hold whatever the last block is. Does that
+>> sound ok?
+> Ḯ'd add an explicit check here.
 
-In this particular case such IRQ probably won't cause issues, but at
-least it needs to be validated and probably commented in bwmon_remove().
-Just stating that "you tested and had no problems" usually isn't enough
-for the expected race condition issues.
 
--- 
-With best wishes
-Dmitry
+How would you do the check, sorry?
+
+> It's more simple way to ensure memory
+> safety here: relying on a complex machinery that can't be trivially
+> validated does risk having grave bugs, not only now but later on as well as
+> modifications to the code are done.
+>
+>>>> +
+>>>> +		if (block->type >= MALI_C55_PARAM_BLOCK_SENTINEL) {
+>>>> +			dev_dbg(mali_c55->dev, "Invalid parameters block type\n");
+>>>> +			state = VB2_BUF_STATE_ERROR;
+>>>> +			goto err_buffer_done;
+>>>> +		}
+>>>> +
+>>>> +		block_handler = &mali_c55_block_handlers[block->type];
+>>>> +		if (block->size != block_handler->size) {
+>>> How do you ensure config->data has room for the block?
+>> I think through the same proposal as above.
+> Similarly here. You already even have the size of the blocks available
+> here.
+>
 
