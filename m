@@ -1,73 +1,76 @@
-Return-Path: <devicetree+bounces-75637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E1259082F2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 06:30:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F3C908338
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 07:15:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 331481F22787
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 04:30:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBF331C21CC7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 05:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329D212DD8E;
-	Fri, 14 Jun 2024 04:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D36211482E7;
+	Fri, 14 Jun 2024 05:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uIyWPRf6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qo1GS5QL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C478145B0F;
-	Fri, 14 Jun 2024 04:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7AEE146D6D;
+	Fri, 14 Jun 2024 05:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718339408; cv=none; b=ltE02MFr7846Uv55CqFZaa8IxSV3dKfgd9oKJUaLNN4d9s42wAfd3q2YgsUfzX/mA3K97B2a4iwsVrcZoplRal08CYoDN5N/OZaHdWhX0QzUmLqHSN3+gT4ATrJFM5vT2VvFx+AJniFA72A8NZMGKgPGBSGiwi0W6zALfbASO6U=
+	t=1718342101; cv=none; b=dMyIHUwJw1lpZsn+7ew+RGhF0KRonwzxnT8W+e/1JCxHVU+VTafz1H0lI/zWEIWpRPmbVflgZ/5Ircyg0nEkzojHBuQOX1Ggx34VivFqrWzXoxiGSQ4zcFhy73hnFbzG00l5hGcyv4zNOxZ0FMVv9+tcTm/mZu4eQPLDly0Fo8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718339408; c=relaxed/simple;
-	bh=0UjDZzGCwpS0vEyslgxoX8dO39jPgh2WtXXu/UWyOvs=;
+	s=arc-20240116; t=1718342101; c=relaxed/simple;
+	bh=XUJaffq5gWlrQrUCm8mpwlS/x1y63KiRJJbkpM2PUk4=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y9Wm8aPWXKS4eklS9DGRSqrJKioCuW7tlDnPy4w4eUCSrWXX9hwTU1BvInJ8wrYsb2jj5u7B+malMWQ4toSNUm8/pPZjaqt4yut/gOCOGUCdd3OqSIiujnPoERo3bflvEPWUGNRQPgczDHbXSv4d1IdbgVUXGy4ljdNKDMLDL7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uIyWPRf6; arc=none smtp.client-ip=198.47.19.141
+	 MIME-Version:Content-Type; b=Y5W/b0nvfVdpJ4X2/q0+baiW6TsbI7wKuIbzv0ttqZi3zgy0zK2SCeiEt4Tn20GVa3CxFnUiyq6Xyj03DHDemb3SI75VX9zPJyFHSFVeI7/r1IsHZ/1wIa21uyR32HfcC1uLjJ941rq7rfw6CITUtNZPIHYC1tQ1+71tbLxi+b0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qo1GS5QL; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45E4TuFC071544;
-	Thu, 13 Jun 2024 23:29:56 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45E5EelT016520;
+	Fri, 14 Jun 2024 00:14:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718339396;
-	bh=DxmtcHXwF27jHg8lT0TkaoTdHdPyc/MSkbPHQtr5PhM=;
+	s=ti-com-17Q1; t=1718342080;
+	bh=pLZ+J0Uv5wri3Ffm5wOW0FEKQXP4puGs29LO2x/ZLmo=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=uIyWPRf6BMHsY+YU+ibs9iXl1/u1EkydbBXWyoJRLvLZlD7v4ajb2zGO3fDxWOD6R
-	 uYCKOEJX/MoB5pQCHvG6MiY5Dz5jJ4zmUuEimhiWLJblPqbPhG+4lH+u1JhDv7BDmq
-	 QCyEAD9Uy9F9oJd6ESyoHqRE1qPambC+ccODLmIw=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45E4Tug7092429
+	b=qo1GS5QLlkdt1yh48bAnACPZRm8CyDMRSI+CqMgMn/tdmmlTvF60DKGbTrBtKpcVw
+	 pgbLq95536VNl0FNrXZij5pWrIN43rl90bSxDEofWyiSFeKVDxrM578G38ECW2Jeqz
+	 +/M6DbYf1n/ywQQdp0iC/no3KIzDPFsJxodLMBZ0=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45E5Ee2M129782
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 13 Jun 2024 23:29:56 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Jun 2024 23:29:56 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 14 Jun 2024 00:14:40 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
+ Jun 2024 00:14:39 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Jun 2024 23:29:56 -0500
+ Frontend Transport; Fri, 14 Jun 2024 00:14:40 -0500
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45E4TqWY013799;
-	Thu, 13 Jun 2024 23:29:53 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45E5EZ5N085824;
+	Fri, 14 Jun 2024 00:14:36 -0500
 From: Vignesh Raghavendra <vigneshr@ti.com>
 To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, Siddharth Vadapalli <s-vadapalli@ti.com>
+        <conor+dt@kernel.org>, <francesco@dolcini.it>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
 CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <sabiya.d@ti.com>, <u-kumar1@ti.com>, <danishanwar@ti.com>,
         <srk@ti.com>
-Subject: Re: [PATCH v4] arm64: dts: ti: k3-am62p: use eFuse MAC Address for CPSW3G Port 1
-Date: Fri, 14 Jun 2024 09:59:50 +0530
-Message-ID: <171826022276.240984.17076720942255752570.b4-ty@ti.com>
+Subject: Re: [PATCH v4 0/4] Add PCIe DT support for TI's J784S4-EVM and AM69-SK
+Date: Fri, 14 Jun 2024 10:44:33 +0530
+Message-ID: <171826022277.240984.16790260886500529482.b4-ty@ti.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240604104425.3770037-1-s-vadapalli@ti.com>
-References: <20240604104425.3770037-1-s-vadapalli@ti.com>
+In-Reply-To: <20240529082259.1619695-1-s-vadapalli@ti.com>
+References: <20240529082259.1619695-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,23 +83,28 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 Hi Siddharth Vadapalli,
 
-On Tue, 04 Jun 2024 16:14:25 +0530, Siddharth Vadapalli wrote:
-> Add the "ethernet-mac-syscon" node within "wkup_conf" node corresponding to
-> the CTRLMMR_MAC_IDx registers within the CTRL_MMR space. Assign the
-> compatible "ti,am62p-cpsw-mac-efuse" to enable "syscon_regmap" operations
-> on these registers. The MAC Address programmed in the eFuse is accessible
-> through the CTRLMMR_MAC_IDx registers. The "ti,syscon-efuse" device-tree
-> property points to the CTRLMMR_MAC_IDx registers, allowing the CPSW driver
-> to fetch the MAC Address and assign it to the network interface associated
-> with CPSW3G MAC Port 1.
+On Wed, 29 May 2024 13:52:55 +0530, Siddharth Vadapalli wrote:
+> TI's J784S4 SoC has two x4 Lane and two x2 Lane Gen3 PCIe Controllers.
+> This series adds the device-tree nodes for all 4 PCIe instances in the
+> SoC file (k3-j784s4-main.dtsi). The J784S4-EVM board has only PCIe0 and
+> PCIe1 instances of PCIe brought out while the AM69-SK board has PCIe0,
+> PCIe1 and PCIe3 instances of PCIe brought out. The device-tree overlay
+> to enable PCIe0 and PCIe1 in Endpoint mode of operation on J784S4-EVM is
+> also included in this series.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am62p: use eFuse MAC Address for CPSW3G Port 1
-      commit: 2116f8b73f69a02e42daa89ca3561f367a390e30
+[1/4] arm64: dts: ti: k3-j784s4-main: Add PCIe nodes
+      commit: 8e05ce691af29db0c7f0d468c8d7c6e13273a9e6
+[2/4] arm64: dts: ti: k3-j784s4-evm: Enable PCIe0 and PCIe1 in RC Mode
+      commit: 27ce26fe52d4dcb5bf58cdf5527e2f3a498c1fdf
+[3/4] arm64: dts: ti: k3-j784s4-evm: Add overlay for PCIe0 and PCIe1 EP Mode
+      commit: 7c4270de2806f80c06dc80c2cf2c8d6eb7c44c59
+[4/4] arm64: dts: ti: k3-am69-sk: Add PCIe support
+      commit: 2f79e7408ac1b22ce8abc4a22b92793a57a3077d
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
