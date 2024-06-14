@@ -1,120 +1,127 @@
-Return-Path: <devicetree+bounces-75683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FE9908538
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:40:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92817908577
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:59:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10727282170
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 07:40:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 403D61F25B55
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 07:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BDC7148FF5;
-	Fri, 14 Jun 2024 07:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VyKdxxap"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B451822CA;
+	Fri, 14 Jun 2024 07:59:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701C614659D;
-	Fri, 14 Jun 2024 07:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9C614A09F;
+	Fri, 14 Jun 2024 07:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718350800; cv=none; b=lRRphEopqR86MDgl7jgfD0u+drY0XhJDTdpDiLvRIOEil9XHEFofXJJhboW63GAdpXuN8Qe8dzZuvV3Lq7gr7PsCzHtx1u4sbV5A4/yiLyeye1Vdb5qnvWx2+hFhOGaRShHKbtKfHNQyqM4n0Mwjlzz7WhC10RyWdEmub+T+pAs=
+	t=1718351956; cv=none; b=WNgVNy+3fL/ZoK53iWN4PENEdzs6392pLgz357ZKEaWuiJZ5Ndn6N2l3c9ZwVdq2lF7Pxlqp+eyTyIpAIDNEU1Kcgq8yHN9ytNFggdjbB+NVknGbVSCkYniPJIGpwkbvABk7CTkzZRouBCWRZZvobYFZNRMdcw2R/DMcZuWPEFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718350800; c=relaxed/simple;
-	bh=g/A40lncVMiX2o0k461MBfftcA12NrxdvDlIiNCsmJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qarEM9zPpVEMyITbsDGE8oTHkCoqFL45G32gPR+izlYG/lp2vhebFMXE3fH6THJ3KCG03sp7+lvhuYJumeqBk206o+MvJrc2a29EGYZ8dze6GWBwIA4EZ3hJC+Elf6yXWMxyATqQn5qvMScL9QL2vL70Adaj28p+ecAjrQ7PTw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VyKdxxap; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B389FC2BD10;
-	Fri, 14 Jun 2024 07:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718350799;
-	bh=g/A40lncVMiX2o0k461MBfftcA12NrxdvDlIiNCsmJA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VyKdxxapFVp+oPIIePXmda60YGdtkY0PbtoCU95ERB96HyHAPsSOdR2h+7d3AB0Q8
-	 JVlcMyTklqhm4gq7CT+fpi+MHbKv4Fvm5FdRU4OakrMeKGdQYYJCPzX1MdLH8aDKCB
-	 rG9ma4VylcxNy8iPbm7AP+l3IDDfsK8SDJ6Xqs8n2dHNWgw9sEj5LPwvK+AaJxmNsF
-	 QzTn6nIEt5E4QSYrKVp2PM+W+Yj1slhiMrfOT/yHN9egCB+HW6OuJwgbc8ck2ZQmq4
-	 0FxkZXElEX7N77WMXD6wNsYVyqIlBaNkkbeetW3A+4WRr4Cl8bg4msrjtvbGzoySe5
-	 UoT8SwCjc4yLA==
-Date: Fri, 14 Jun 2024 08:39:54 +0100
-From: Lee Jones <lee@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Das Srinagesh <quic_gurus@quicinc.com>,
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Stephen Boyd <swboyd@chromium.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [GIT v2 PULL] Immutable branch between MFD and Regulator due for the
- v6.11 merge window
-Message-ID: <20240614073954.GA2561462@google.com>
-References: <20240608155526.12996-1-johan+linaro@kernel.org>
+	s=arc-20240116; t=1718351956; c=relaxed/simple;
+	bh=UDi/xLchEAReJ8v4YHO8XkJpGZBWpDf54LawHbbLkwk=;
+	h=From:To:Subject:Date:Message-Id; b=bKSoW8UYAT+ECGwZWr4NheI5aebppynGr0vJxdSjMHThwB2Scikr34gbMYCoW4ohn2vo3Ekq95pOneb1LoKUay8R4+2c/FXtAjhZ6BVtXCYgrez9EY8w1YC25ihSp9gJaCphDlF0VGV5/M0AIaBkhqaTV2MGyaQio1TOLJYAatQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 382991A0599;
+	Fri, 14 Jun 2024 09:59:07 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id ECEC01A184A;
+	Fri, 14 Jun 2024 09:59:06 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 963EE180222F;
+	Fri, 14 Jun 2024 15:59:03 +0800 (+08)
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: p.zabel@pengutronix.de,
+	abelvesa@kernel.org,
+	peng.fan@nxp.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	marex@denx.de,
+	linux-clk@vger.kernel.org,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	shengjiu.wang@gmail.com
+Subject: [PATCH v8 0/5] clk: imx: clk-audiomix: Improvement for audiomix
+Date: Fri, 14 Jun 2024 15:41:58 +0800
+Message-Id: <1718350923-21392-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240608155526.12996-1-johan+linaro@kernel.org>
 
-Let's try this again with the appropriate v6.11 based tag.
+Some improvement for audiomix driver:
+Add CLK_SET_RATE_PARENT flags for clocks
+Correct parent clock for earc_phy and audpll clocks.
+Add reset controller for EARC function, use the auxiliary device
+framework:
+https://lore.kernel.org/lkml/b86c83a520f0c45a60249468fa92b1de.sboyd@kernel.org/
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+changes in v8:
+- drop '_priv' and add 'to_imx8mp_audiomix_reset()' in reset-imx8mp-audiomix.c
+- update to 'select AUXILIARY_BUS if RESET_CONTROLLER'
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+changes in v7:
+- add property "#reset-cells" exist check
+- change the reset driver to be specific for 8MP-audiomix
+  remove the design for general usage.
 
-are available in the Git repository at:
+changes in v6:
+- fix type for "correct"
+- fix coding style for " * adev"
 
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-pm8008-v6.11
+changes in v5:
+- fix miss header issue reported by kernel test robot
+  https://lore.kernel.org/oe-kbuild-all/202405201844.zf7UkDmq-lkp@intel.com/
+- use scoped free
 
-for you to fetch changes up to 11d861d227ed1c4068597289267247aac5ac50fa:
+changes in v4:
+- use auxiliary device framework for reset controller driver.
+- drop syscon and simple-mfd related changes in v3
 
-  regulator: add pm8008 pmic regulator driver (2024-06-13 18:42:21 +0100)
+changes in v3:
+- separate reset driver to driver/reset/
+- add binding doc for reset driver.
+- modify imx8mp.dtsi accordingly
 
-----------------------------------------------------------------
-Immutable branch between MFD and Regulator due for the v6.11 merge window
+changes in v2:
+- add more info in commit messages
 
-----------------------------------------------------------------
-Johan Hovold (11):
-      dt-bindings: mfd: pm8008: Add reset gpio
-      mfd: pm8008: Fix regmap irq chip initialisation
-      mfd: pm8008: Deassert reset on probe
-      mfd: pm8008: Mark regmap structures as const
-      mfd: pm8008: Use lower case hex notation
-      mfd: pm8008: Rename irq chip
-      mfd: pm8008: Drop unused driver data
-      dt-bindings: mfd: pm8008: Drop redundant descriptions
-      dt-bindings: mfd: pm8008: Rework binding
-      mfd: pm8008: Rework to match new DT binding
-      regulator: add pm8008 pmic regulator driver
+Shengjiu Wang (5):
+  dt-bindings: clock: imx8mp: Add #reset-cells property
+  clk: imx: clk-audiomix: Add reset controller
+  reset: imx8mp-audiomix: Add AudioMix Block Control reset driver
+  clk: imx: clk-audiomix: Add CLK_SET_RATE_PARENT flags for clocks
+  clk: imx: clk-audiomix: Correct parent clock for earc_phy and audpll
 
- .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 144 +++++++++------
- drivers/mfd/Kconfig                                |   1 +
- drivers/mfd/qcom-pm8008.c                          | 169 ++++++++++++------
- drivers/regulator/Kconfig                          |   7 +
- drivers/regulator/Makefile                         |   1 +
- drivers/regulator/qcom-pm8008-regulator.c          | 198 +++++++++++++++++++++
- include/dt-bindings/mfd/qcom-pm8008.h              |  19 --
- 7 files changed, 409 insertions(+), 130 deletions(-)
- create mode 100644 drivers/regulator/qcom-pm8008-regulator.c
- delete mode 100644 include/dt-bindings/mfd/qcom-pm8008.h
+ .../bindings/clock/imx8mp-audiomix.yaml       |   3 +
+ drivers/clk/imx/Kconfig                       |   1 +
+ drivers/clk/imx/clk-imx8mp-audiomix.c         |  86 +++++++++++++-
+ drivers/reset/Kconfig                         |   8 ++
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-imx8mp-audiomix.c         | 106 ++++++++++++++++++
+ 6 files changed, 199 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/reset/reset-imx8mp-audiomix.c
 
 -- 
-Lee Jones [李琼斯]
+2.34.1
+
 
