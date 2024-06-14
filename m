@@ -1,317 +1,124 @@
-Return-Path: <devicetree+bounces-75725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02448908709
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:05:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8493D90872B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:16:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F44928440A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:05:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8986E1C23EEC
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6698F19149F;
-	Fri, 14 Jun 2024 09:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB9C81487F6;
+	Fri, 14 Jun 2024 09:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="UmeI5ZUj"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZbEpUPBA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2070.outbound.protection.outlook.com [40.107.249.70])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC54183071;
-	Fri, 14 Jun 2024 09:05:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718355955; cv=fail; b=b4kqCpQIjdM0ZqDpTgfsEF7EddAD18cgHgY6NLs+FtfzwrnsQyNotNaSx3SN8mmk+oNQli3NszHhhSt4BPrQscz+c8FFsNxuUctviHM7j4vtNxUDm9kmcxQRCVwVvv/ZAFpUpJZbsfKfixEWRUNPyGWYYdFsNITFvKzQjxx06UU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718355955; c=relaxed/simple;
-	bh=54+l08JcQHmvxGyxsG2Fdp8DswR3ULfT4f616/UsL4c=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=DaUPnbhqQld8iIHFcG/SoBn9DIeZW7kdF1jkI8Y0rfl7wsqnuUBLsy4MuEEZR/N0VRKQgX67zeSPPNv+L/1wbx8EHM41YXbHRkTHMq1Y5kBGeTzfW1Txlix6BiLue1dr/LQ4cqJQLpjE3l2DuiUlExjECS5K/Pg8lzi1mWzK7Yc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=UmeI5ZUj; arc=fail smtp.client-ip=40.107.249.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ELy1ZAmz3qjravvIcMswYxtqT8cHv+IUDTiesZMxYh9rq3Wp0j6mQx7BrkiwCfsoHLFb8L5WQwDUbBRG/13EKcldPLiarGUO3X51aLcV+N7aotd80G0zVa2asC+xWEt9tY2vHlxSsNztCuYgmg8E7Ds6/YSipTylSqf1IvEzYAKe+rOKHkltAERyeEzoD5zt7PWgSvUY7HI5pO3zeg7WNAjFFO/oXvHXpeWEwRhmn3nx85xCeGE1pKGLMWaP0fVIq0Z3mgK52H2G1GL2NIcBJIlJtHMbJ1F2bT3z1RrHVpJOdI/uC2Y0rKS54hOizipZIqKyH97LDpZSH/MlsNh5aA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DRCiNgoZ5/6rI0dAl7KIm90PxaeKYFOBgLNng0VIq2k=;
- b=WQ7g/Ho3xHXN537U8neIuGBHHNrF2zamwLsjStBnBw9ymzKBfsIbRc3VqefyBwUbADeuMPQvBnwEhUcCC4ZfrtHg9PFe8Q2vPg+smxGiIs5B7AAwJ0rlgo0Vjy4RF6heQ3JNrekwrn36xxCjZB2vIefsfaVBI5OaFwXV+IV4SqccX4UbIhV9xf0OgdJsECX7nls9jpLei96VvaS2LN+ylyEs+WEOuAYQ06QY2JeLfV7HhqXWPKc9PdPm5uDix0BrOONJLSGBY4LIWzwRFtVukV1mLYPn6o/wdOomwEV/OZjtfzTsxUbPE3SQnSYsyWJtdBqGmZSYW1taEmkzaGIZdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DRCiNgoZ5/6rI0dAl7KIm90PxaeKYFOBgLNng0VIq2k=;
- b=UmeI5ZUjnyiBdedMbQ4uBlR23InzTJBH7w9khhj7xnIvYf5m4xTQjfucteouh60I3hAnxB566lkr4g4Kq3R36CIRififpiO/n2Lj3YZLQIF1WBkiSt6Yx7L+7wKyrC2VsdCZXFrnvL5zSFLxL+DCpw6W3NRMqPB6RIrd6Yk+H84=
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
- by AM0PR04MB7171.eurprd04.prod.outlook.com (2603:10a6:208:19c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.25; Fri, 14 Jun
- 2024 09:05:50 +0000
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827%5]) with mapi id 15.20.7677.024; Fri, 14 Jun 2024
- 09:05:49 +0000
-From: Pankaj Gupta <pankaj.gupta@nxp.com>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-CC: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Pengutronix Kernel
- Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Thread-Topic: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Thread-Index: AQHarP9ayLdOqCtfLEqTQR0Rf+AVuLGmMeuAgAAZRgCAAAXWAIAgyBqQ
-Date: Fri, 14 Jun 2024 09:05:49 +0000
-Message-ID:
- <AM9PR04MB86047886B5191D94C3E68C4C95C22@AM9PR04MB8604.eurprd04.prod.outlook.com>
-References: <20240523-imx-se-if-v2-0-5a6fd189a539@nxp.com>
- <20240523-imx-se-if-v2-4-5a6fd189a539@nxp.com>
- <ZlBtNSeh2VyZsVxq@pengutronix.de>
- <AM9PR04MB860424A71753DBB56D2CEF5895F52@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <ZlCHTqJ0Umgh3LCw@pengutronix.de>
-In-Reply-To: <ZlCHTqJ0Umgh3LCw@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|AM0PR04MB7171:EE_
-x-ms-office365-filtering-correlation-id: 2e90997a-5e33-4421-ee7b-08dc8c512fa4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230035|366011|376009|1800799019|7416009|38070700013;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?3F6xUKsIbrfjdu5b2SI6Cvypi6a2j0S+6sBr2P4w/4s6ALo2qOc2b5G2W/Kw?=
- =?us-ascii?Q?UhXi2eMYOiyGvfeEsm0QwCAM4xsJCstqii5SAU2NpqgWIeAD0I5CMHbPCrdy?=
- =?us-ascii?Q?vcAjZ26N2FY2H+y7OHSdTfTuyb/S0UXjJlz66tXsYtiujrzadQQ995GikDKu?=
- =?us-ascii?Q?zIXb9XW4HZjVolqPEpbkTKLhIwK9U1cGPGVvod+kyvM1SckSbDZxuwJW0Do3?=
- =?us-ascii?Q?aCiURV9hteu0gPwHT7IRBHQyJFeSPr6XuEOK2sYZRg7b0EwDNOnsPlBRoZBI?=
- =?us-ascii?Q?mt6/LrXPfsQO8X8Ds2gRZz7I0Bz4l1f1JZ+ngqeKq11PRPx5lnWJ1UuRP4ty?=
- =?us-ascii?Q?1rxbxOPYh1igTbInGpXXRxNgLQZe00RKTT5sVQKwxErT6E+0x7gMnGO+Ib+5?=
- =?us-ascii?Q?HiMWeRILbVJ3/29WwOj9xhYnMsOyTmCVFO43MODByyVa5gihr6w1SwkcIXjo?=
- =?us-ascii?Q?UG0z/bEPDWdlIANtD9+rNpgcE6YoENQ7YKHnH46S0wJfj48v4GBvCBL9SgYg?=
- =?us-ascii?Q?wwCq43ZAmgBpqXKlbjidkytd4/Ke5nZXwwJ7cA+nrpE6yp4yoI55oLt1evEA?=
- =?us-ascii?Q?Fu4/F1Ii8I39hgN6GMDg1yd75U7zuwAE78EurR1U9PwsvEo0I0wn1U095uAU?=
- =?us-ascii?Q?9VOOBDU+VtSU8pz+jME+GWxZSYCHeNFuAYXiDD3bAby1pSLCpZVpy04DudY2?=
- =?us-ascii?Q?8SZUPXq3SR+F684v+1PbGfNLG9Mx5zo+BznzvB8V6s35qffUZt8WX9EIEk9+?=
- =?us-ascii?Q?K4dDHQmUEf+3gYpnBleHzp5NiKxPUGK7odcRF+Ayl9tAL9kbfKGfV5K3mMwg?=
- =?us-ascii?Q?D+Ou+l5TzStNpvXh/71uhl0iQumiEL7mmUQ/zexRrLyIQe9n5yemNPzpsBAe?=
- =?us-ascii?Q?3YoAJzb5xm9LQLRbI1ZeJbWytmpWIii98eOYGkBbekq82I66TYNZwfS7SnRg?=
- =?us-ascii?Q?I5Y33sLRhMNif5AORdMmQFsiI8oy/hOyau3WgyxqqN6893GngkTejj8P9brf?=
- =?us-ascii?Q?f0H2VzItX5gopr+lgd1sDyW6TpIE80e8tc16SVAbbGJcYsQjjE8lq2b4CQfu?=
- =?us-ascii?Q?496CFHzSBtj4f1C3I5QZeLIHBWhw+Ilp+VbwnAG4rlbAQdnQd5X57cv9pIpZ?=
- =?us-ascii?Q?+T/6VsIfbuleokpn2Df/eN1douWRAFVCY4ZMy6jcCDZ2q4xPxEmFQJdnvS4i?=
- =?us-ascii?Q?R1eNaOU58FAEEI+Oyywa8/9Rj/YkheyyHfWxGxZsJAEPK+aXhvcTPHQucHAk?=
- =?us-ascii?Q?ROiMtV526hSHNfaOYbJhZHKm6TuswqOR0NA614qVgeGp5rBuLLVvR31TKbzT?=
- =?us-ascii?Q?NdSzMQPhQbBipDgsr7JzaFdC?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230035)(366011)(376009)(1800799019)(7416009)(38070700013);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?+ej4eAQhntdhORZXeWN53wFMvILO6/kah7D5WQXb48euG8dG/blNRHeo0The?=
- =?us-ascii?Q?GAi+3R9NBtrnrH7W6OsUHqoJGfYn4Lj8DjfWlBpg3KoZMZJjRqqDfRWZgby2?=
- =?us-ascii?Q?aZkL0dyp2S0CyKNNmSutNUsk6AnpGMeUA5ADySyZsn018Y06DVUuJaL/Htpq?=
- =?us-ascii?Q?pv1ZGcoxRTIjVh6hdYn0UGQZEBw548fMhUMsyXKPw+/yGEIN7SRlojHSf06q?=
- =?us-ascii?Q?SxreArXGdE9Y2YFPFE89XPVPpuM7OeHrFD7gxEtt3meiY806riK8XT6LLR7/?=
- =?us-ascii?Q?sDADPolnJ4NWdfdjNs50RaMgtzGo3Jh4ueSSUlI1/5ADEqvnDAn5YWZDzB/y?=
- =?us-ascii?Q?wP5mqn4TKPlBKQOX7Z3jVQsSREGbfg1ahucvuco0etfqbEP7I9oWqSZFk4DL?=
- =?us-ascii?Q?rOMrsMqaCMpuBfMVEiTQ1Y+FwXuUa9Nd+s0ANlfF6fZ8LRpLjXAVYWg5z79v?=
- =?us-ascii?Q?+MJzDZh0xXe+MGXqiO8AYGXxSKSGoCu27SIvExJcH0D+Z9VfuYY6aahXuAen?=
- =?us-ascii?Q?rBHW3thDdlADVT8g95OUI76N2dV5vTKVN/rSzjyFcenS+np0d19WMmdmfTWQ?=
- =?us-ascii?Q?b8nTIKzPlz1J7MHjyFTI9gM7B2nlGDJ/PXZPwrUbYj5Ot5BG1GOZMFUxCzsS?=
- =?us-ascii?Q?Gql/OmDPYdOm/jImdjxsenA4M0lLXNfOH2BRE+gjKju9GbjphvvsWDwEKenC?=
- =?us-ascii?Q?Ova3KAhic0DKfXI8uiFTweByF47Iy0Q9AMuNKor8k0dHkdcmqnenrfzm6Gsg?=
- =?us-ascii?Q?ZTx9Ogdm8MGJ0Z103StsC3XO3pJ7uTVW9bLwI3CijdVSPzgfaHU6v3veWBIi?=
- =?us-ascii?Q?iu8vghxMVyDueynjUAf5w6jKDVjjKAqMbErBbxZYqgboHUDmUVAE1Zg2bg1Q?=
- =?us-ascii?Q?DoDFQqWcI4+iyiapT1jVB4PdfSuKRz7FkiffBQs29fE3KcKASxU1qaTfQjbF?=
- =?us-ascii?Q?3Dq4uE8jqp/4KT+w8COuS12v0SuAOkpypSRMbpXe209+N5UWqGeSwPVy9IZh?=
- =?us-ascii?Q?W11dbG+bcCae35EchF9Qe/EL3iIeg4ibN1k8JRi8yX7TwJMBUS/QNbYc6cQ4?=
- =?us-ascii?Q?wWPUIRFj444QG4V9eTa5XIiqw2DSi8qBTIcrX8lB73ThHevrg+IpFptXfmKs?=
- =?us-ascii?Q?LGrYL58sRMmw2taHB/bBooQaVahJd+7jgYpzIBRB7KS3ZdBbRtx50lyVG0yp?=
- =?us-ascii?Q?J312rk8J8dGajUjh4P83hqEHlJk0UzdR203GgceDb7kH1gDyzcIkNNI7iSex?=
- =?us-ascii?Q?KqV2ne2lIgGhDgm/pzEg/VIKuGhbFh3Ygbe9yHoQyyB6MBEDKvXBGsZ7NINm?=
- =?us-ascii?Q?sRmfpxzsAKG3s3EN1zp4U6i8un/p+fpEnVN08yvIvNRrNRe6UTjUzbAreWAa?=
- =?us-ascii?Q?wEokLrEshPeB1e+mw9pONC50GlMZIl/oJ/ActAsE5HA2oDg3j5ms60Kbec2Q?=
- =?us-ascii?Q?/aq06WQLAkoooHmDhGKe3SAjhGfAi9cRhwTGZj1Qokc8t5soDQUbQsAMDGkE?=
- =?us-ascii?Q?lu1rSQiixLgnHcATWV8tmvWflRU12BgfV5HURN0+h7F/zMDnpWdOpGlnmatV?=
- =?us-ascii?Q?QtVguexkBCTepUS4vRxkVXKY4cQ3tdWJBtzbBxFI?=
-Content-Type: text/plain; charset="us-ascii"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209297E574
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 09:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718356587; cv=none; b=VzyDwSrDfgasuAzb//ixifM6sI7XaPjjWWmOSHcx+BO67SqpN2Bvx2wB8MlMYcKClp58hWgdq+XoKE0suAiheX9cgGD7s4CQZi2Vp8uy5LB2hb5lE8af6FeCXUQW/FoZdOK5eXKum0L49D7ZIk2cwWyhvLgnIXdwbpn5rGLAywM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718356587; c=relaxed/simple;
+	bh=uY7LMAy9M3Xc1LzAtkVESEKP+QJY2N1x6SoYsv+9f8k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=I5xfawT/Kx1PpSG1GB6yEODz/zXHDJOTA8eSEwmULezTdipcDyX/xLYrtLFvQztF8M27JeHYXQu9GVvUdLM0baJsd2ehR/AwPNYhDxs/6SrOvcnA9CycB+2pvlPDs8eKKRs6f4lKlTPg3IdoObFzTapvS4Ke/qZSfUxDIYMQgJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZbEpUPBA; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1718356585;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=skEW245heqx5hhkkxdwGf9ST6lRMIe/inx6ZRzBlNMw=;
+	b=ZbEpUPBAQ3ZcFCKxYvaycIPiIpYiO63vNK+f5bUQfZQX5VNAIoVcad6EB9lJ+0ufF3BST8
+	rs4MbmaqE+Omh2C/miyMms39GO1yZ7G1yceXNAi8R/8z/t0hmHJd+VuUQ+l1PlmM9rBf0y
+	PM2QNlZHUkAr3hnMfPE2ZZywxqgcEOI=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-378-apaxyp7qN26Tr8pzOfRj8g-1; Fri, 14 Jun 2024 05:16:21 -0400
+X-MC-Unique: apaxyp7qN26Tr8pzOfRj8g-1
+Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-36073543200so252400f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 02:16:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718356580; x=1718961380;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:cc:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=skEW245heqx5hhkkxdwGf9ST6lRMIe/inx6ZRzBlNMw=;
+        b=lqSUdnzbRbIWkWjhg5XXGCsinVct6kJHhW4PXwnv6t7pE0RjNzvzNTw6n/OJKmR1k2
+         Z+s6gQgSw3oAOizK+IiHiuM5vGx+RRY5qLtO+Ie4e5Apwte6xV87L4/TsLfmO8Sca928
+         8mADGgVWMBSnhGTLWF1VHJKO1LxFF0i/mDxrhTB/IrSJifqKczU60dEJzs4WWC4yqOx/
+         j4cp5VuD5A/8b5tB4Ve9F7xXBjY6Utl6yHulAMJwVuXICVm3tc1qWy5QWqwBQGX4gE7P
+         3y4n/hW0t3tDhnTvuGq2HWZeIZu09PeAMfMDuqe5dyLCOZgu6M3h+y+gX7UlaFr+pj+n
+         Mbpw==
+X-Forwarded-Encrypted: i=1; AJvYcCU5986ac7o3sZGRGBBw1v+0lovmY4fwlizmNxT/+orEw9pIJwZCJCcJRsV91dwB8OGrMcaofqALz5jvkIB+T4Q5nPkXIl76nmmxpQ==
+X-Gm-Message-State: AOJu0YxGtVIr1o6QX54tMj7MGd2uaVzXKCYjCcc8KsKNmDIeJwj9KbRg
+	trosn06bJzR3m43oDmk81CLyBRp25InAk00evNHKlYBWGKv7muvvGd9ksjNuFQFInQce/ZSns+z
+	dNtRQjLXepZIkDf4q1w8TXzwh7IKm+NJoe+vXLaGgUo8v5VNDD3BxxLUN/YI=
+X-Received: by 2002:a05:6000:144a:b0:360:8461:9f7f with SMTP id ffacd0b85a97d-3608461a24dmr704412f8f.0.1718356580063;
+        Fri, 14 Jun 2024 02:16:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFyamj2gAIJnUVcLMAeBCSOnbvnh5VJZhWDXRe+LbQ9/yzaSuAI0LsGksxNdrRqYJ2kT1vFLQ==
+X-Received: by 2002:a05:6000:144a:b0:360:8461:9f7f with SMTP id ffacd0b85a97d-3608461a24dmr704392f8f.0.1718356579705;
+        Fri, 14 Jun 2024 02:16:19 -0700 (PDT)
+Received: from gerbillo.redhat.com ([2a0d:3341:b083:7210:de1e:fd05:fa25:40db])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075093d41sm3847285f8f.16.2024.06.14.02.16.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jun 2024 02:16:19 -0700 (PDT)
+Message-ID: <a02fac3b21a97dc766d65c4ed2d080f1ed87e87e.camel@redhat.com>
+Subject: Re: [PATCH net-next v5 3/4] net: macb: Add ARP support to WOL
+From: Paolo Abeni <pabeni@redhat.com>
+To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>, 
+ nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev, davem@davemloft.net,
+  edumazet@google.com, kuba@kernel.org, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux@armlinux.org.uk,  vadim.fedorenko@linux.dev, andrew@lunn.ch
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, git@amd.com
+Date: Fri, 14 Jun 2024 11:16:17 +0200
+In-Reply-To: <20240611162827.887162-4-vineeth.karumanchi@amd.com>
+References: <20240611162827.887162-1-vineeth.karumanchi@amd.com>
+	 <20240611162827.887162-4-vineeth.karumanchi@amd.com>
+Autocrypt: addr=pabeni@redhat.com; prefer-encrypt=mutual; keydata=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
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e90997a-5e33-4421-ee7b-08dc8c512fa4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2024 09:05:49.8986
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BHwN3FG3VBxVP8Eafn94DYw2fc+ACivUKk8WVtbq/fL0Ex/lLOVanQ19kJMjsLzcHe7efDpmM+I1qIoG3zKlcQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7171
 
+Hi,
 
+On Tue, 2024-06-11 at 21:58 +0530, Vineeth Karumanchi wrote:
+> @@ -5257,6 +5247,12 @@ static int __maybe_unused macb_suspend(struct devi=
+ce *dev)
+>  		return 0;
+> =20
+>  	if (bp->wol & MACB_WOL_ENABLED) {
+> +		/* Check for IP address in WOL ARP mode */
+> +		ifa =3D rcu_dereference(__in_dev_get_rcu(bp->dev)->ifa_list);
 
-> -----Original Message-----
-> From: Sascha Hauer <s.hauer@pengutronix.de>
-> Sent: Friday, May 24, 2024 5:56 PM
-> To: Pankaj Gupta <pankaj.gupta@nxp.com>
-> Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh+dt@kernel.org>;
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Pengutronix
-> Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> <festevam@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof
-> Kozlowski <krzk+dt@kernel.org>; linux-doc@vger.kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.dev;
-> linux-arm-kernel@lists.infradead.org
-> Subject: Re: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
-> EdgeLock Enclave
->
-> Caution: This is an external email. Please take care when clicking links =
-or
-> opening attachments. When in doubt, report the message using the 'Report
-> this email' button
->
->
-> On Fri, May 24, 2024 at 12:08:14PM +0000, Pankaj Gupta wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Sascha Hauer <s.hauer@pengutronix.de>
-> > > Sent: Friday, May 24, 2024 4:04 PM
-> > > To: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > > Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring
-> > > <robh+dt@kernel.org>; Krzysztof Kozlowski
-> > > <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> > > <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>;
-> Pengutronix
-> > > Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> > > <festevam@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof
-> > > Kozlowski <krzk+dt@kernel.org>; linux-doc@vger.kernel.org; linux-
-> > > kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> > > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org
-> > > Subject: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
-> > > EdgeLock Enclave
-> > >
-> > > Caution: This is an external email. Please take care when clicking
-> > > links or opening attachments. When in doubt, report the message
-> > > using the 'Report this email' button
-> > >
-> > >
-> > > On Thu, May 23, 2024 at 04:19:35PM +0530, Pankaj Gupta wrote:
-> > > > NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE),
-> > > > are embedded in the SoC to support the features like HSM, SHE &
-> > > > V2X, using message based communication interface.
-> > > >
-> > > > The secure enclave FW communicates on a dedicated messaging
-> > > > unit(MU) based interface(s) with application core, where kernel is
-> running.
-> > > > It exists on specific i.MX processors. e.g. i.MX8ULP, i.MX93.
-> > > >
-> > > > This patch adds the driver for communication interface to
-> > > > secure-enclave, for exchanging messages with NXP secure enclave HW
-> > > > IP(s) like EdgeLock Enclave (ELE) from Kernel-space, used by
-> > > > kernel management layers like
-> > > > - DM-Crypt.
-> > > >
-> > > > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > > > ---
-> > > >  drivers/firmware/imx/Kconfig        |  12 +
-> > > >  drivers/firmware/imx/Makefile       |   2 +
-> > > >  drivers/firmware/imx/ele_base_msg.c | 286 +++++++++++++++++++
-> > > > drivers/firmware/imx/ele_base_msg.h |  92 +++++++
-> > > >  drivers/firmware/imx/ele_common.c   | 239 ++++++++++++++++
-> > > >  drivers/firmware/imx/ele_common.h   |  43 +++
-> > > >  drivers/firmware/imx/se_ctrl.c      | 531
-> > > ++++++++++++++++++++++++++++++++++++
-> > > >  drivers/firmware/imx/se_ctrl.h      |  99 +++++++
-> > > >  include/linux/firmware/imx/se_api.h |  14 +
-> > > >  9 files changed, 1318 insertions(+)
-> > > >
-> > >
-> > > > +static int se_probe_if_cleanup(struct platform_device *pdev) {
-> > > > +     struct device *dev =3D &pdev->dev;
-> > > > +     struct se_if_priv *priv;
-> > > > +     int ret =3D 0;
-> > > > +
-> > > > +     priv =3D dev_get_drvdata(dev);
-> > > > +     if (!priv) {
-> > > > +             ret =3D 0;
-> > > > +             dev_dbg(dev, "SE-MU Priv data is NULL;");
-> > > > +             return ret;
-> > > > +     }
-> > > > +
-> > > > +     if (priv->tx_chan)
-> > > > +             mbox_free_channel(priv->tx_chan);
-> > > > +     if (priv->rx_chan)
-> > > > +             mbox_free_channel(priv->rx_chan);
-> > > > +
-> > > > +     /* free the buffer in se remove, previously allocated
-> > > > +      * in se probe to store encrypted IMEM
-> > > > +      */
-> > > > +     if (priv->imem.buf) {
-> > > > +             dmam_free_coherent(dev,
-> > > > +                                ELE_IMEM_SIZE,
-> > > > +                                priv->imem.buf,
-> > > > +                                priv->imem.phyaddr);
-> > > > +             priv->imem.buf =3D NULL;
-> > > > +     }
-> > > > +
-> > > > +     if (priv->flags & RESERVED_DMA_POOL) {
-> > > > +             of_reserved_mem_device_release(dev);
-> > >
-> > > You can call this unconditionally, no need to keep track if you
-> > > called
-> > > of_reserved_mem_device_init() successfully.
-> >
-> > But it will not be called for each SoC.
-> > The memory is not reserved for i.MX95 platforms.
-> > This is required.
->
-> Again: You can call this unconditionally. Look at the code,
-> of_reserved_mem_device_release() won't do anything if you haven't called
-> of_reserved_mem_device_init() before.
+I'm sorry for the late feedback, but:
+- you can use rcu_access_pointer() here instead of rcu_dereference()
+- (much more importantly) __in_dev_get_rcu() can return a NULL pointer,
+you can't unconditionally dereference it.
 
+Thanks!
 
-Agree. Accepted and will removed in v3.
+Paolo
 
->
-
-
-
-> Sascha
->
-> --
-> Pengutronix e.K.                           |                             =
-|
-> Steuerwalder Str. 21                       |
-> http://www.p/
-> engutronix.de%2F&data=3D05%7C02%7Cpankaj.gupta%40nxp.com%7Cead7b9
-> 3ccacb404124bf08dc7beca6b2%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C
-> 0%7C0%7C638521503534570049%7CUnknown%7CTWFpbGZsb3d8eyJWIjoi
-> MC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%
-> 7C%7C%7C&sdata=3DU0BX68CpPzJg%2B9IytihYTcmivJhfn7xbfIQpMp0R8o0%3D
-> &reserved=3D0  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    =
-|
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
-|
 
