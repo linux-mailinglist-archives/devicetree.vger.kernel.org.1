@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-75704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CCEC90864E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:29:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D45E7908655
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:31:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E5CB1C224C0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:29:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6136AB2251A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2678187560;
-	Fri, 14 Jun 2024 08:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C587A190061;
+	Fri, 14 Jun 2024 08:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZvnMrOs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jYWxYDGA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DE01836DE;
-	Fri, 14 Jun 2024 08:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9363718C33D;
+	Fri, 14 Jun 2024 08:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718353749; cv=none; b=XgLBY8bvHlGOqP1Thpmx5xI/Rum1lGG2y6FlbfGRDVQXq8SHN7Rqr7OKlpiuptMA1mART+R0wczsidNFrCTg5si84Ku6ypHujJhSBC8eI9JRobk4XpsKEDSocYeez6DLJmSyVDSVl0tNRwvHdidTpJMgkXlpVLGyrxjlO002TX4=
+	t=1718353907; cv=none; b=BmQ76fQRErURN7kvqA+qsZRmV4o2mNn/ZFEBAgleNMl0lbNPBJ5gH/jBgokq1YInpohWgwXMIbbLwrT9sDKX/z/7QS4BGSNT/+XiIuESz5CU7wzeolyXfDE4ukV+kr102e8w3GuwOPAt+WxBs1n3ahi7ha3sYYWaXec/EYdiTJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718353749; c=relaxed/simple;
-	bh=mcI9kKPGFnxq22R6g7J6/c5S82zMnJWz8Yp5EmkcN3I=;
+	s=arc-20240116; t=1718353907; c=relaxed/simple;
+	bh=awS25sZymywdiVrnMEBt9m5sf9YMdANdzWaR5ZOpKO8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m1rIGG6OM45js5yf9m8X3+Wj2dYnQb4oRed1nLxSXsusSoU+mHoaRJVbinV9YFfzvuofiiL8ABeZwv+blSpofNx+I12f4x/lSrCPv9Vq4J7H3S+oMc6alYcBiD9hG284vApOn6ueGPaUHJue1qDKeNiLWfRT1ot+C4alyoKhSeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZvnMrOs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA429C4AF1D;
-	Fri, 14 Jun 2024 08:29:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=lA+93vVkyAGQoZXL4EerRAz3Zj3z8PjC1zZQAhHvMhQ79VBlhM3KeHg19TOJ/Jc/FOaUJA2E+BDG10KRfMbzH8U9zHlIGJCk9rPeZtO1eVfMbgx/x+6+T6I+SeXpgOtAiZ/WZGv54kmReDsnlIG8eREvvY+nzoi5gvc3bhyIhAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jYWxYDGA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA69C2BD10;
+	Fri, 14 Jun 2024 08:31:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718353749;
-	bh=mcI9kKPGFnxq22R6g7J6/c5S82zMnJWz8Yp5EmkcN3I=;
+	s=k20201202; t=1718353907;
+	bh=awS25sZymywdiVrnMEBt9m5sf9YMdANdzWaR5ZOpKO8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PZvnMrOskC2XUpLyMRs/TbxDjz2znHe/KKzdlH8Ssg/z9Ql1L4DYHjJUF885UFqGi
-	 qXi/fMzXEGZsmoymInjLF6QTrIyDLWWssNZUE5jsh9BgeYmZ380mb1XnG/2l4IIL9C
-	 4zNY4/GfC4+8aC8ekbuDOtFoszbuVX2BdnqfxngJt/HNgMriJZKSm5xPR5AIK5i+R5
-	 Xfss8x+se5k9jPX7cM65JQAvTVvMsmIsQNfjgUgqRcXMD+4dQZiXhr1CcYiNSSWcA4
-	 4QbaaJkLnMTbhPXsj63X5jPohO+FfgWS2ecBC9rSjCE4DI7NRKx1eqfR0VFCceAVTX
-	 8Jx2mMAXCXA9g==
-Message-ID: <f488c3a9-eb08-45da-baff-502ee64aa567@kernel.org>
-Date: Fri, 14 Jun 2024 10:29:02 +0200
+	b=jYWxYDGATDXy0g8u0Q+hVY3m/byoVMjAlqgh/fR02w5RMIbzpLPQjNYtNFy6CNaMo
+	 7oEdCFqqhACRwjc1+qFyHWmyM66RWtmkQ6V9YXMskMoY4E+N3K2D/t2VUIopISzKKD
+	 97EDzRN1/ap3DqvOIe3dSJt0viaZ5vyvIna/waPQ7RzaEb2HrRLm0EnqJAZbyjIKMI
+	 MlA0Kl80HtWgKEcdXX8RImR95fhpe2K+/EvEuYEldaOuWNF8K7H0H7ct/TeGi1aawK
+	 P6RZe5oy0I8aoC6L+lJWCNDQQ2NK/h6w0Py3oEvdhJ1R7vN9ZJ+upZkUiXTYElGh0R
+	 fO+bQbpxDsZ2g==
+Message-ID: <59487896-1ce0-4422-bafb-a0f6f9ef065c@kernel.org>
+Date: Fri, 14 Jun 2024 10:31:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: display: panel-edp-legacy: drop
- several eDP panels
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Douglas Anderson <dianders@chromium.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: realtek,rt5514: Convert to
+ dtschema
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Jeffrey Hugo <quic_jhugo@quicinc.com>, devicetree@vger.kernel.org
-References: <20240614-edp-panel-drop-v4-0-4e0a112eec46@linaro.org>
- <20240614-edp-panel-drop-v4-2-4e0a112eec46@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240614033812.51312-1-animeshagarwal28@gmail.com>
+ <20240614033812.51312-2-animeshagarwal28@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,24 +105,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240614-edp-panel-drop-v4-2-4e0a112eec46@linaro.org>
+In-Reply-To: <20240614033812.51312-2-animeshagarwal28@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/06/2024 02:02, Dmitry Baryshkov wrote:
-> The panel-edp-legacy.yaml includes legacy bindings for several eDP
-> panels which were never used in DT files present in Linux tree and most
-> likely have never been used with the upstream kernel. Drop compatibles
-> for these panels in favour of using a generic "edp-panel" device on the
-> AUX bus.
-> 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 14/06/2024 05:38, Animesh Agarwal wrote:
+> +maintainers:
+> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
 
-Please reverse the order of patches - you cannot have undocumented
-compatible, so first you remove driver support, then bindings.
+Missing ref to spi peri props.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,rt5514
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Master clock to the CODEC
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: The interrupt number to the cpu.
+> +
+> +  realtek,dmic-init-delay-ms:
+> +    description: Set the DMIC initial delay (ms) to wait it ready for I2C.
+
+wakeup-source and maybe other properties. I don't think you tested DTS.
+
+
+unevaluatedProperties: false.
+
+
 
 Best regards,
 Krzysztof
