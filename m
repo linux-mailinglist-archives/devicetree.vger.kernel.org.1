@@ -1,160 +1,159 @@
-Return-Path: <devicetree+bounces-75937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF70190922C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 20:20:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 313E190929A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 20:54:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FE361F24232
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82429B2591E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA6C19ADB3;
-	Fri, 14 Jun 2024 18:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5931A01B6;
+	Fri, 14 Jun 2024 18:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KEW7y6MH"
+	dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b="D1SQpY5Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from www522.your-server.de (www522.your-server.de [195.201.215.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DA51854;
-	Fri, 14 Jun 2024 18:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5B619FA84;
+	Fri, 14 Jun 2024 18:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.215.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718389220; cv=none; b=KJg0pSwR+BqBDBkuYwD7BHNkieDmO7vf41FlfmXFTjvGXsRA0PFhYy01zQRAAdIo0AY9dL+ps4GcQWkQGZmsRFQjM/kpDd3GAMggPuJZrV09/WGDngKyyyYsEqSfviC73HZEGktUukSg/tvD8hjNGqaq1GXYGyQguOtregC31FI=
+	t=1718391233; cv=none; b=DOAJNA+ZleYzPrrThFzs5AtaWs53B/vVL5c9+LUOLws3KnYnI3L8QLo2U+VJn4yzXkmjkIMDHm8bpMJjByLBf2qUI5zDtyWwXfnO84e11TTkQkf1TmLaoletKINU//BK/UQiCYAqFZ4HyV50kgniKCMHETXmFJENN9tLr+6dhrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718389220; c=relaxed/simple;
-	bh=loCV41uufcUxVbIBke73AHmqNwkG7/6xmqlzylzRWQI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MyvWJYeOuodwSvw1OdJUzVxcaznTLQ1OluUTUsmQuHSQXPrzTWLeTVkDn1VF31mae8vEA2rtb/jag4Tju/jbpd3VIZNnAkt+HvsmfFdP6znXzX1RjNj72JEzaWb5jwy1YhYFvUXoP+774GH0NW1z1lrZoepuDmceOBqNB0yf7IM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KEW7y6MH; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718389219; x=1749925219;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=loCV41uufcUxVbIBke73AHmqNwkG7/6xmqlzylzRWQI=;
-  b=KEW7y6MHvboZ4e7wDyesUi+EqHtMXb/z8KeA/g/r0O04caj/AEj5p6VD
-   UOlAuQg58nD+U4KORikOc1ZgKs/gccGd9C7En/c1LOVWTMoYqNe/EdT50
-   MXHgNBJfhv7xfdKHoZlwITvLwtBe4LFpbubkE+g41Cdbe3S66nNr1Kzvv
-   vs4qfkmRBjBK60LXLUFwgBKqoS/vzNa7vRyl0cdWCmmC7V8X97gZhBQ1P
-   3Q8DXgFG+sr0iTJ+4u80+44k2PAojoeftrosyzSMFG7fUmkqiUmwGXXgR
-   s4L5IfF78gu/KyxYHfBK9OnWv7HZR1KNhbwiUWgZ8oIHIjttCUACjf6tV
-   Q==;
-X-CSE-ConnectionGUID: /mGVgu4mSH+JURRMm1hYHg==
-X-CSE-MsgGUID: jsPITykcQA+fvcNi5mUwQg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="32833274"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; 
-   d="scan'208";a="32833274"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 11:20:18 -0700
-X-CSE-ConnectionGUID: NgrLhIalQlyBtIDbxfhV8Q==
-X-CSE-MsgGUID: 3GUQ2JlbS8Wb5b0qMHyZFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; 
-   d="scan'208";a="41253636"
-Received: from lkp-server01.sh.intel.com (HELO 9e3ee4e9e062) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 14 Jun 2024 11:20:14 -0700
-Received: from kbuild by 9e3ee4e9e062 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sIBX2-0001dD-2B;
-	Fri, 14 Jun 2024 18:20:12 +0000
-Date: Sat, 15 Jun 2024 02:20:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Animesh Agarwal <animeshagarwal28@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: realtek,rt5514: Convert to
- dtschema
-Message-ID: <202406150259.fFugFRJx-lkp@intel.com>
-References: <20240614033812.51312-2-animeshagarwal28@gmail.com>
+	s=arc-20240116; t=1718391233; c=relaxed/simple;
+	bh=X4on6X+88uTtA052hLd8IsojhN2ZO9yOasjMNwEvFjo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=CHPL8eQeLcuf+xxTbOFsQfEYrv80dh2pS7Bw3rh3Y2U7xelZtsWtQRVj5295cu8/ZCbIQ6fBlj7hwSBzL8DspQyZnvLxIIvTJUdBS/7SnLmE354EtzlXLU+89bRSw8DpRZ44XbFNKQqrh3FcqSk5MElz+1R7thizGpzNDFQYPZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de; spf=pass smtp.mailfrom=folker-schwesinger.de; dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b=D1SQpY5Q; arc=none smtp.client-ip=195.201.215.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=folker-schwesinger.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=folker-schwesinger.de; s=default2212; h=In-Reply-To:References:To:From:Cc:
+	Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:Mime-Version:
+	Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=QENhb9HFgTzguovvznEeWYIHmMFEH/ZbGTpLCqvvbY0=; b=D1SQpY5Q3iU5y6hS8x3yCA2fCw
+	Xefzm8C0+45Bsx/hdgDkRNbsSx/QEswS5UQ34JGXS6GhfYViD98oyeBpeza3esE6hVmq+sMfSpn8T
+	MJJI+G8UJ9YF3ttwRvN2GliXh7gTihyr1Teipx7qAcKSLC9+xmPwqQ3M4P902G7Q4kAbEikSprWDp
+	e8SrOyC+SUT00xqTD9EEtEC3l5gsMjEhnROTiPfNaL+m4kFPdK9Qw69K0E4pVp5Kbca6f05ZV1gNU
+	Yp3CcMz1SO/a4C5cqCgerfhV3SGCbSYwDnIxP5DmaKdXcDjCMjkPzH9zKrlNe0dUYFb8725cOivwN
+	3AkQUWVQ==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+	by www522.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <dev@folker-schwesinger.de>)
+	id 1sIBkj-000LiY-5F; Fri, 14 Jun 2024 20:34:21 +0200
+Received: from [185.213.155.213] (helo=localhost)
+	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <dev@folker-schwesinger.de>)
+	id 1sIBkh-000GCY-3A;
+	Fri, 14 Jun 2024 20:34:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240614033812.51312-2-animeshagarwal28@gmail.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 14 Jun 2024 18:34:19 +0000
+Message-Id: <D1ZYFRA8S0KC.3GG78DB9BA5AG@folker-schwesinger.de>
+Subject: Re: [PATCH 1/3] phy: rockchip: emmc: Enable pulldown for strobe
+ line
+Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
+ <kishon@kernel.org>, "Chris Ruehl" <chris.ruehl@gtsys.com.hk>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Christopher Obbard" <chris.obbard@collabora.com>, "Doug Anderson"
+ <dianders@chromium.org>, "Brian Norris" <briannorris@chromium.org>, "Jensen
+ Huang" <jensenhuang@friendlyarm.com>, <linux-phy@lists.infradead.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+From: "Folker Schwesinger" <dev@folker-schwesinger.de>
+To: "Alban Browaeys" <alban.browaeys@gmail.com>,
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "Conor Dooley"
+ <conor@kernel.org>
+X-Mailer: aerc 0.17.0-152-g73bcb4661460
+References: <20240326-rk-default-enable-strobe-pulldown-v1-0-f410c71605c0@folker-schwesinger.de> <313d5a24b6cffa1a9160e624bb6855aa7f66589e.camel@gmail.com> <20240411-mushily-pucker-732583c1d340@spud> <2192003.Icojqenx9y@diego> <2427291970ac0962bf56b2455e5cb26e49d42c51.camel@gmail.com>
+In-Reply-To: <2427291970ac0962bf56b2455e5cb26e49d42c51.camel@gmail.com>
+X-Authenticated-Sender: dev@folker-schwesinger.de
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27306/Fri Jun 14 10:28:44 2024)
 
-Hi Animesh,
+Hi Alban,
 
-kernel test robot noticed the following build warnings:
+thanks for aggregating all the background information about the issue.
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on linus/master v6.10-rc3 next-20240613]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Tue Jun 11, 2024 at 9:38 PM CEST, Alban Browaeys wrote:
+>
+> Could you test the enable-strobe property on all the dts that  disabled
+> hs400es due to this new default (I lack the hardware to test the
+> patches).
+> At least arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+> arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+> arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> and ping the board tester for other boards to test if they require
+> "rockchip,enable-strobe-pulldown" for EMMC HS400 write support (read is
+> fine even with the new default).
+>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Animesh-Agarwal/ASoC-dt-bindings-realtek-rt5514-Convert-to-dtschema/20240614-114128
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20240614033812.51312-2-animeshagarwal28%40gmail.com
-patch subject: [PATCH 1/2] ASoC: dt-bindings: realtek,rt5514: Convert to dtschema
-config: arm64-randconfig-051-20240614 (https://download.01.org/0day-ci/archive/20240615/202406150259.fFugFRJx-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-dtschema version: 2024.6.dev1+g833054f
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240615/202406150259.fFugFRJx-lkp@intel.com/reproduce)
+I tested some of the boards that include rk3399-rock-pi-4.dtsi (see
+below).
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406150259.fFugFRJx-lkp@intel.com/
+> On Tue, 2024-02-27 at 10:11 +0000, Folker Schwesinger wrote:
+> > with the following applied, the EMMC related errors are gone. dmesg
+> > only
+> > shows "Purging ... bytes" during my tests:
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> > b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> > index f2279aa6ca9e..ae0fb87e1a8b 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> > @@ -647,8 +647,10 @@ &saradc {
+> >  &sdhci {
+> >         max-frequency =3D <150000000>;
+> >         bus-width =3D <8>;
+> > -       mmc-hs200-1_8v;
+> > +       mmc-hs400-1_8v;
+> > +       mmc-hs400-enhanced-strobe;
+> >         non-removable;
+> > +       rockchip,enable-strobe-pulldown;
+> >         status =3D "okay";
+> >  };
+> >=20
+> > For testing I ran dd three times in a row:
+> >=20
+> > dd if=3D/dev/zero of=3D./zero.bin bs=3D1M count=3D5000
+> >=20
+> > I tested this on both a Rock 4SE board and a Rock Pi 4B+ board with
+> > the
+> > same results.
+>
+> Folker, are you confident "Rock 4SE board and Rock Pi 4B+" were fixed
+> with above patch?
+> Ie the "rockchip,enable-strobe-pulldown;" should be under an
+> "rockchip,rk3399-emmc-phy" compaible node, that is &emmc_phy in
+> arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi, not sdhci.
+>
 
-dtcheck warnings: (new ones prefixed by >>)
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: pcie@0,0: wifi@0,0:interrupts:0:0: 8 is not one of [1, 2, 3, 4]
-   	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: pcie@0,0: wifi@0,0:interrupts:0: [8, 8] is too long
-   	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: usb@fe800000: 'extcon' does not match any of the regexes: '^usb@', 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/usb/rockchip,rk3399-dwc3.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: usb@fe900000: 'extcon' does not match any of the regexes: '^usb@', 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/usb/rockchip,rk3399-dwc3.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /dp@fec00000: failed to match any schema with compatible: ['rockchip,rk3399-cdn-dp']
->> arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: spi2@0: 'spi-max-frequency', 'wakeup-source' do not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/sound/realtek,rt5514.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: da7219@1a: da7219_aad:dlg,jack-det-rate:0: '32ms_64ms' is not one of ['32_64', '64_128', '128_256', '256_512']
-   	from schema $id: http://devicetree.org/schemas/sound/dialog,da7219.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /syscon@ff770000/phy@f780: failed to match any schema with compatible: ['rockchip,rk3399-emmc-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /syscon@ff770000/pcie-phy: failed to match any schema with compatible: ['rockchip,rk3399-pcie-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /phy@ff7c0000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /phy@ff800000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /ppvar-bigcpu: failed to match any schema with compatible: ['vctrl-regulator']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /ppvar-litcpu: failed to match any schema with compatible: ['vctrl-regulator']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dtb: /ppvar-gpu: failed to match any schema with compatible: ['vctrl-regulator']
---
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: pcie@0,0: wifi@0,0:interrupts:0:0: 8 is not one of [1, 2, 3, 4]
-   	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: pcie@0,0: wifi@0,0:interrupts:0: [8, 8] is too long
-   	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: usb@fe800000: 'extcon' does not match any of the regexes: '^usb@', 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/usb/rockchip,rk3399-dwc3.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: usb@fe900000: 'extcon' does not match any of the regexes: '^usb@', 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/usb/rockchip,rk3399-dwc3.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /dp@fec00000: failed to match any schema with compatible: ['rockchip,rk3399-cdn-dp']
->> arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: spi2@0: 'spi-max-frequency', 'wakeup-source' do not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/sound/realtek,rt5514.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: da7219@1a: da7219_aad:dlg,jack-det-rate:0: '32ms_64ms' is not one of ['32_64', '64_128', '128_256', '256_512']
-   	from schema $id: http://devicetree.org/schemas/sound/dialog,da7219.yaml#
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /syscon@ff770000/phy@f780: failed to match any schema with compatible: ['rockchip,rk3399-emmc-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /syscon@ff770000/pcie-phy: failed to match any schema with compatible: ['rockchip,rk3399-pcie-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /phy@ff7c0000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /phy@ff800000: failed to match any schema with compatible: ['rockchip,rk3399-typec-phy']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /ppvar-bigcpu: failed to match any schema with compatible: ['vctrl-regulator']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /ppvar-litcpu: failed to match any schema with compatible: ['vctrl-regulator']
-   arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dtb: /ppvar-gpu: failed to match any schema with compatible: ['vctrl-regulator']
+The above diff was just a quick shot at testing the
+"rockchip,enable-strobe-pulldown" property when I first learned about
+it. I later realized that the property belongs under the &emmc_phy node
+as you suggested. That's what I did in the other patchset I sent a bit
+later, which was accepted and applied:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+https://lists.infradead.org/pipermail/linux-rockchip/2024-March/045723.html
+f720dd9b8b6d8b2160beda789429d5489ce8a099
+c1b1f340dd7db11f273e426e110697551c9f501f
+
+So yes, the Rock 4SE, Rock Pi 4B and Rock Pi 4B+ boards all were fixed
+with the patch. I regularly have the Rock 4SE and Rock 4B running from
+EMMC, always with the patch applied since I sent it.
+
 
