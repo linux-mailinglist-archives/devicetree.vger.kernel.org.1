@@ -1,186 +1,145 @@
-Return-Path: <devicetree+bounces-75954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2C09093B2
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 23:39:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 382E89093B9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 23:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55BB11F21F35
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 21:39:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35C1B1C20FD5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 21:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965AE181CFC;
-	Fri, 14 Jun 2024 21:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB7C184134;
+	Fri, 14 Jun 2024 21:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="TLALYyv4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AlXQOVu7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2047.outbound.protection.outlook.com [40.107.14.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B468E143C7A;
-	Fri, 14 Jun 2024 21:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.14.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718401146; cv=fail; b=QUvxq5IaanetdVK4ZSGCFCnB4M4oq4zVskqVUfca/XCNvB7Z0Th3lezQB76lBvn7SnhhtcpIWEp9bHMj3i7ZJ74hWNw0IcJkLpL+8B0y4pFe5G50V5/WmmsMJfx1LZYme5t856EUl8cs3DY1zOIxfkzxe8thmmiJrXCgTPQIcCg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718401146; c=relaxed/simple;
-	bh=wxN+UPyITBkyNpizflLgeJlO+bj/ytSVVDOAwm0Qub4=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=YZ7UXwr4mLFX5zHp4qCTQP/vtWVuR4cRi5C3ahMKCR/6KBrRc1RfDnW5+bnCtc2xklkktvrFdQ8Gk4O9TZvikNH5S97djZuXv6khRbuWOVo3otS/Z0yJMAMhGTo7tjQ9HKuQJ1d/Pq9ukenOx6/gNqjOrOe1Fd/RjYO0Vt9h4qA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=TLALYyv4; arc=fail smtp.client-ip=40.107.14.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iLY20SDmv+dE37KGi82LrUjLD4xbPqYsVg0blWFe2sJn4A9eR5KKEACxtL95YmJXG0t5ZUf1aKJ4i77FAyU8K+hTS2DU/PENWY6q+vyty+5MQ9HJIV6zoTIuuFzrLkUGbDfYxTKoklubAkOriAfAk5pgNN8leStIVr7ILx3CHLEqgLarCpOersoRwlR2aZQBBnYKYMEWwghGxNSk0veoHlabYZGaThUo2L9eaMTXqHPihLwxZKZbA7OyrQ1e/CHz9CFasjGbbDtLhaabS0lbZQszLjN/f8Y/jgxkhPkjpMC0ePAtC+n54ENtVFA9JGL3nvebFKsLEJz5oG/ep3bO2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N5Y2LtF03k2lnMz4IxvTudZQjoCkHcFx8T9gJ1uQ5uA=;
- b=SlUjJelV4vtsQ8YZy3eQVJ6hhbxQd3JqJiwilKAaQckiiCGeSiasYEZSeSojaqOCohNEhtSSmjxGccO9JCv5XSLdbBDwqD6PR5RNFm6dQ9upyJ0pjyyJdt1WXfAdGTuKDl8l7xw7m8xjanNKDw3JZgSpKZzJiyCLJwWAyOlFh/hMlscopHTM/+SFkya7uWeTdR/b9LVdIMiZbnJ4AJfbefw54ZEyP8+StjiYRduXAIp/S2r3e7FYzyucki1ueANPtB6VYex6V1Z+IW2eG5PrKAU7UR6hLiApeDfJKide6kJAg9qeRXPn/dGVt5CCx4QiOVie/BHowdUntLw+uQ7bjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N5Y2LtF03k2lnMz4IxvTudZQjoCkHcFx8T9gJ1uQ5uA=;
- b=TLALYyv4M4yRrRU+6s4oQGDDAsamSfVUgXpBGhZnEi0x90ZdTNN5NcaGVFRROsc+WlBUs3MH8jv/HARIutYGxg2pLaUUSymYAL3G0NWFREme6jTZZtsPPFAzTY4xrASnXSJhXjm8xrNO2mIV4adsLFQVmpVCrNI9rwG8/sqV40A=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBBPR04MB7867.eurprd04.prod.outlook.com (2603:10a6:10:1e5::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.25; Fri, 14 Jun
- 2024 21:38:54 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7677.024; Fri, 14 Jun 2024
- 21:38:54 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-gpio@vger.kernel.org (open list:GPIO SUBSYSTEM),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: gpio: mpc8xxx: Allow only use 'fsl,qoriq-gpio'
-Date: Fri, 14 Jun 2024 17:38:39 -0400
-Message-Id: <20240614213839.2532061-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR11CA0082.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F01C178CE2
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 21:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718401340; cv=none; b=qe7RKuKbCzkszcOtFGCSanBfs8SYERpTxMwLk+MxHooTOUxwuiM8gcLj31/BzxB80t50CaFdg/GI26k3EhrIQmWtZ1weBjp5O3T1acy7vLYhmlssroXgpkXLigJCUUN8/CseXvT3p1bFvVGGpuAksugs6rw9YLbDQZ184tKuNrY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718401340; c=relaxed/simple;
+	bh=faSPDpcL3yqC7PLRvANwHerlzIJ1Baevv3BJdpBQmo4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kRlbE6+GkLzWiqYYGmXWo1buys8J+//D2Jd3E/1G5znWuTmsksoBaYGd1nZSV3HE5Bq1ER//HyQ3Bpj+K8ODqvl/GVUB4F8tb1F1IHZCTZoinO9nsrmJjFQVH52FFMvKHFmW/Ut7nYu5OaBYhUZYH0n7OIh4y//zyr8Vsx6prpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AlXQOVu7; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52bc335e49aso2997437e87.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 14:42:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718401337; x=1719006137; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rfrFywGdxRVKDtBlePZ25waSont2SOCWw4599ELCJWU=;
+        b=AlXQOVu7NEhGuQ0a/O4HIf7ElahCxbZ805Z2rcv7aCX8lcnrMfm9wigZFgqyA+jDAZ
+         Nl21lN56B1oWka0akfreOipWwNxQ6GVBslOpuL5ZlXLDvY4NCPc0AoxO64dZSRuaB9Be
+         S10ESwpjT8KQbMgXEK9B7ARWbLW8jRaQk7cENgHWaJWW2lHQVyp4cJlMMWVcQwIRS9j6
+         0IABzCBi5RNr0HKA09daZFDkByzAfABzhw2SQOwm/xOVv9FjUUO8Dc9IZkt3KyUXkGt5
+         LjOr98crCTDfvfuOLmGzwejNlBhBrkFbtNvGeOnebE+qT2A+PJbCAEevmOq5GxVLTZCM
+         zxzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718401337; x=1719006137;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rfrFywGdxRVKDtBlePZ25waSont2SOCWw4599ELCJWU=;
+        b=O28sSbYGuL+4G9GwbraW2gGY5cUmM4FLr+yQ5Boge3Dhc5oHKHc1uiU7KkdytsEqd7
+         IaBYNzRviBXtXrVUcvQ3WnCGwqFv20utCZKsSWDmSKhGjt0FOWT2f1Z5l81arg96VOkM
+         gyZas2SYdhtA++HXULB4Cj7TfD1Ckw99DDkoIqnNwb3kLizFZdZoMdz1GYanqDp7hPdc
+         Jz/KXAw6kUuZheTRM37WEJbEu09z7x5HqtYvNARbnTqwOSmpJpGJ5PbWo2JTEuMcSZl3
+         VkEtkxyutOfExbAjR7tq2tZsmKNosbQCJ2UrZ/N/5uKERFz1tQt6fRRvtSq9/ipkrnxT
+         NLhg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVlcq3LgJAMsC7w+5HVSVIWIESm8+tPapfzQ+3Vlf73cwgsjYLc1FK4yn6R6sHluqoNbZNh0HL6r7guW7dR1hVmaQAzy8UAz+Gvg==
+X-Gm-Message-State: AOJu0YzVQ4gX0yuMX3+PV1ALkWWMYPrEdmEFXstNzvbHfmXq4slkfHyv
+	AVxSKwcw7WWPKiOODR8Kyn9ERXFhOi5eRcWWVpzEq3sdVcOep6aCuz5p0P4S0iM=
+X-Google-Smtp-Source: AGHT+IGsVkod4fXLOnmg6/ZcW7K93n3FUSjBDvgJc0I4Ni8Y7vOmxBSXmUWJdfTPkDiGDeGmgJ40Yw==
+X-Received: by 2002:a05:6512:4028:b0:52c:9a89:ecee with SMTP id 2adb3069b0e04-52ca6e94220mr3573266e87.52.1718401337253;
+        Fri, 14 Jun 2024 14:42:17 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2825c61sm600737e87.7.2024.06.14.14.42.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jun 2024 14:42:16 -0700 (PDT)
+Date: Sat, 15 Jun 2024 00:42:15 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
+	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, 
+	abel.vesa@linaro.org
+Subject: Re: [PATCH 2/4] soc: qcom: icc-bwmon: Allow for interrupts to be
+ shared across instances
+Message-ID: <r6bwmhfa4csubsvetnjlj6gzgovewupxf6hkuygqdconldpk2v@otrs4lhd3baj>
+References: <20240604011157.2358019-1-quic_sibis@quicinc.com>
+ <20240604011157.2358019-3-quic_sibis@quicinc.com>
+ <5e5f052b-df59-47fb-aed0-10b4f980f151@linaro.org>
+ <5df5dc6b-872f-34c5-a6d2-a64f9c881193@quicinc.com>
+ <672b6156-e425-4f3b-86f4-02a34cab2b67@linaro.org>
+ <122b5418-ca2d-df7d-a1d5-d7682ce0ed5a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7867:EE_
-X-MS-Office365-Filtering-Correlation-Id: 118b53d7-6f7d-45ee-29c8-08dc8cba633c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230037|366013|376011|52116011|1800799021|38350700011;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?7JRMvwuBLf4qYWveu2Kvt3sVuEFsljn9JmOTKwdeqpMnUF2vi0wL5nGx+7Au?=
- =?us-ascii?Q?hx0dItXsGd/561f3mmKYBPNbH2ezBewByBMBywuERHBubo14K/xlQrYtPO89?=
- =?us-ascii?Q?ky5ul7dSUpmtSi/RbPxzIbdmmKu9hXUOi/6oOYm3rgEZ5/TjB0myRMTv5PoG?=
- =?us-ascii?Q?AyeCnt8Arq2j6Q/g4DLmfvUFQ61PsGbmiAc0ZKdsi4MgwAOGAMb6eB/Nq1jJ?=
- =?us-ascii?Q?asiqVe1yEG7nq1l8nCaOiTZ8x4e989l1/kK2QNA9AuJYLbbE7HurcF55Bbqy?=
- =?us-ascii?Q?qiNvW1Abu1P8CVFG4Pd6VaNyp8CDAw4g85RVrS4JXOS63vlS/nSvE++azI4c?=
- =?us-ascii?Q?RM/5A5WxAAO1JdGV6/jk7DdRDSgZZsa3F/DY8H1y3LTLuTUkdH9DwHnVhVrG?=
- =?us-ascii?Q?xdFonxGRdeu1yVXZrLGPXHsH+kP3jZMm7hKC7k3quECkvaZrsVzZDBjToTF4?=
- =?us-ascii?Q?+uLPcggcIppZ4d9K3IDTb34jUWzS1XPigqbun0dFVFn3FeRyFvmBoYqr0pdQ?=
- =?us-ascii?Q?2on/8UQFTvPeF5Jfca23REHQ/UZpEPdPf7c5tlo4h0lqiv5LfWE8d5UVAH23?=
- =?us-ascii?Q?P/b9PF2iLrTm/zOwjPJoyBzIBejH7r7PETwk01OGUMu4wpVBu/SmM7ZGRBtH?=
- =?us-ascii?Q?5OzBNGZoj8xJlbluDSVBXrYcHeUWnZPUCCl5C+P9yRAgF6wyS9qaeTVZ7FFf?=
- =?us-ascii?Q?rXRzorRTPs0Gmp2bA63lKTH5d9ZKafPCeC0++9FXxMg/4HwdfoPDH4gAwfek?=
- =?us-ascii?Q?qntffH4nDsQeluKk+t6x4xxkfutOyLh21BGGVuW1x2A9CNuXgXLVC0PhCxB4?=
- =?us-ascii?Q?rgm7aslNBAuBnpcmO6CIN7Dc1j9QxQHc3DYUI1hP4F9qQ7H4eg9KCIQF+fV0?=
- =?us-ascii?Q?eBIqXKcakvwnZb5edZSCYfWWA7bxzBuXPzSi9KBW70xnOnlQbCNkCSug7FPI?=
- =?us-ascii?Q?6N5P5qlHtRYcWQFrJ5ksU06yGyO2ktFsouDnttMImCZnDZs5w2Tpn1jWDDNF?=
- =?us-ascii?Q?VeEOzhfTUkU1p++FDJWagmINxZg4GKi/cMcVatPIFGTlnpOyVAjqBJFL12nW?=
- =?us-ascii?Q?xd1YhO9UEPhKgfd8twD16x3VzCom5KjKqUL1dgxZWhmofKumMkQC9DRt8mGU?=
- =?us-ascii?Q?INEgAswrTeIaq7G2sHYJwQ1tZrNAEX7FPe+MpqCtrN0JeT8pHsN9n538ZrJk?=
- =?us-ascii?Q?SZCN5s9G21wYzL+0BP8HclYPwKe+Yv+nJA3UDLtBUdaa5AGVPPxwzic141I+?=
- =?us-ascii?Q?OSk+Y/xAYJU5ieFAoTJqD7O5aXs+dPIyG38l3D3yg0Vey+bQt6iAowu0Lh0o?=
- =?us-ascii?Q?KUtNkwkEMX+nTBdNLQRE0N8PBdZLmBzYelDYxDFgihAAN36vb6Ov59D/bQh0?=
- =?us-ascii?Q?ZHDiRbw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(376011)(52116011)(1800799021)(38350700011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?HqJsh95TCXDyny4STeHGhcvWGsD0PXF1CyQzaFkoUCXRcFnpWRl72XRd/5eR?=
- =?us-ascii?Q?TPJZ7PQgmNtW2jXD+Wd7dU9NArvldGgiR3z7UU3zXmsOktcPrxaBdWr+3GEj?=
- =?us-ascii?Q?JAJeDl/tW9l6TXhHpcKV9U/zeiqSr55Luw5zZub/ShmK3gcpQpcSZDlrviaw?=
- =?us-ascii?Q?8nbAjW+WbQiq6aFd5SPOLejgmUG+krVi0aSryA8GPSkwOsiZVRkUc45qMY+o?=
- =?us-ascii?Q?pFeNygDvLgkbcaSjCfvOqkfx9/AM4iH35Ao/NM/bX5aDMFl6C0HdGL24tCzR?=
- =?us-ascii?Q?CFqZUJbmkmmtFJZAKIJGZB7faeGSAd3vo37izLs1MSIvSecxHvrAnoMk4IaO?=
- =?us-ascii?Q?WxShgEb3KhC6HCwRffeq1BXriCNllfPCZCTEyWt5YwuNNlmSD9bzE6HklUy9?=
- =?us-ascii?Q?YuzWViFYmTWZCdT1upHkdCy5N8GsmoT2aaXLrQKjTB6+4xn090dGS7/7tXpG?=
- =?us-ascii?Q?Dux04+sy60SRlebN9SdT2mJoHJpik/fxAdoEe4qRDy9uG17X1vBtnqpum8VY?=
- =?us-ascii?Q?cUig1NIpij51AsKb/16sNny9wNGrqwRFW8vEnWAu/bzzumAIC1xOUnGdN53e?=
- =?us-ascii?Q?uro0Y21pzgCT0ZyhtcPgsCWbg0NbzQzPo2JSBEG9+PVT0dIbg0aEdR6rFwDs?=
- =?us-ascii?Q?GJN+OkbI7KpYmKqUMWqKtR4v59H/BsyOsjPPFauiZwfPF0lL7xv2PNvIQfHz?=
- =?us-ascii?Q?KoENURSfM/rfhA3IIAEh7oOhB5vntshhzKgis1SwwgiZWb+2bhsfK4OUEYd6?=
- =?us-ascii?Q?wrXPOVgUG69TjXDd5/YZQ+sQmMDQ7jcIC7elQfOrPyVGo5LT4/bCL1yZ8F4u?=
- =?us-ascii?Q?oTfgJ/935Hu0DSn5wKO1tkZ3hdMN/WMpwtX9pRplWhPZzWlK8jvCYu15Rt9+?=
- =?us-ascii?Q?BNyY9yMiIjIANIM7pq4kavg8sipOuXzP9c/s1eR6cvNkX9DeOovgzpM5WCmC?=
- =?us-ascii?Q?0VcLprrgI6JViG1Xs5JYq0Fgsa+YmK9Ov73ksnHIHq291lunuGAVwSFkWhbC?=
- =?us-ascii?Q?magHhLKSdzFoTUhD+M1g0ZjiVHpyIqEO/C6KDQot138IWKUWR2/0Hdsx+jTX?=
- =?us-ascii?Q?ul9EP8BEvjwkNhcxSRx0xdakBd43UTaCB6pkCpDWkCzn+5WI/TM3pMt1z5Yo?=
- =?us-ascii?Q?X8v1XV3y7JSc5t96KH8Sy9TMtJZT9gv0TBnCj7QuKANmsom4juef/6D54b0c?=
- =?us-ascii?Q?4gUhv34qLceaoJPUAsvfpqMdVQKd2DqpAl4+Hj1ai6CAnrNPZGivQxPlxQwD?=
- =?us-ascii?Q?roQtHaRS2j3UAtfyvzkLbdg8GnNMbj68YuLcTrEOKcy3Vl88Mxm1SDO9/MTi?=
- =?us-ascii?Q?NhdGaqbYNHS1CU/lQ/cAyxAaTXnnQ0FK2nXCij5yNzgZf9kqk6WFjkvBHhVm?=
- =?us-ascii?Q?89Jmp6mpAovdet+OIWQIYUaRGQMjfpZ7A67M11VNo0HWHokBJRgE8gWlapoX?=
- =?us-ascii?Q?nYGhts88gxB0YWxTNcQ98qJLUQwlVTeJ1hinZebUOtksHcbXjRgx+J1R7zUF?=
- =?us-ascii?Q?LsdiJEmuy9Yn9Dd5++Tj0FTD0EZYpabt9FmP8fnu+FQpE2L+NoaHIKP7OMB2?=
- =?us-ascii?Q?tphfRnGrhT94n0biIVf47pY0x7cojIBNdN9iOccA?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 118b53d7-6f7d-45ee-29c8-08dc8cba633c
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2024 21:38:54.0902
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xWWHRr7eVyAyLeV7pPsAl46AmK2MPrMqEJiiHvlzGx4hqzQRjBO6II675frRWXlU1pgnWq7f+gJ1hbcT7yh1hg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7867
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <122b5418-ca2d-df7d-a1d5-d7682ce0ed5a@quicinc.com>
 
-Allow only use compatible string 'fsl,qoriq-gpio' in dts to fix below
-warning:
+On Sat, Jun 15, 2024 at 01:49:34AM GMT, Sibi Sankar wrote:
+> 
+> 
+> On 6/14/24 13:54, Krzysztof Kozlowski wrote:
+> > On 13/06/2024 19:02, Sibi Sankar wrote:
+> > > 
+> > > 
+> > > On 6/4/24 12:16, Krzysztof Kozlowski wrote:
+> > > > On 04/06/2024 03:11, Sibi Sankar wrote:
+> > > > > The multiple BWMONv4 instances available on the X1E80100 SoC use the
+> > > > > same interrupt number. Mark them are shared to allow for re-use across
+> > > > > instances.
+> > > 
+> > > Hey Krzysztof,
+> > > 
+> > > Thanks for taking time to review the series :)
+> > > 
+> > > > 
+> > > > Would be nice if you also mention you checked that it is safe to have
+> > > > both devm and shared interrupts (so you investigated possibility of race
+> > > > on exit path).
+> > > 
+> > > I didn't see any problems with devm being used with SHARED when I posted
+> > > it out. After your review comments I went back again to vett the exit
+> > > path for races and ran into an pre-existing splat [1] but the bwmon
+> > > instances work as expected on module removal/re-insertion.
+> > 
+> > Using devm and shared interrupts is in general sign of possible race
+> > issues and should be avoided. Just "not seeing problems" is not an
+> > argument for me, to be honest.
+> 
+> Didn't I go further and say I got it tested though? Also can you
+> elaborate on what race do you think the bwmon will hit rather than
+> being too generic about it?
 
-arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dtb: gpio@2300000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,qoriq-gpio'] is too short
-	'fsl,qoriq-gpio' is not one of ['fsl,mpc5121-gpio', 'fsl,mpc5125-gpio', 'fsl,mpc8349-gpio', 'fsl,mpc8572-gpio', 'fsl,mpc8610-gpio', 'fsl,pq3-gpio']
-	'fsl,qoriq-gpio' is not one of ['fsl,ls1021a-gpio', 'fsl,ls1028a-gpio', 'fsl,ls1043a-gpio', 'fsl,ls1088a-gpio', 'fsl,ls2080a-gpio']
+devm_request_threaded_irq means that the IRQ is freed after the
+bwmon_remove() function returns. Having IRQF_SHARED means that the IRQ
+can still be triggered even though IRQ for this device has been disabled
+in bwmon_disable().
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml | 1 +
- 1 file changed, 1 insertion(+)
+In this particular case such IRQ probably won't cause issues, but at
+least it needs to be validated and probably commented in bwmon_remove().
+Just stating that "you tested and had no problems" usually isn't enough
+for the expected race condition issues.
 
-diff --git a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-index eb046a48a3f59..ef72f569c8387 100644
---- a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-@@ -19,6 +19,7 @@ properties:
-           - fsl,mpc8572-gpio
-           - fsl,mpc8610-gpio
-           - fsl,pq3-gpio
-+          - fsl,qoriq-gpio
-       - items:
-           - enum:
-               - fsl,ls1021a-gpio
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
