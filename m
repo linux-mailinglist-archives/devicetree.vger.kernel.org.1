@@ -1,254 +1,112 @@
-Return-Path: <devicetree+bounces-75728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5908B90873A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:22:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A933290874F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:25:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 727D81C2263E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:22:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60D08283D80
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87C71922EE;
-	Fri, 14 Jun 2024 09:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42761922CE;
+	Fri, 14 Jun 2024 09:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eddZwAv/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iCWTZwRc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88883191497;
-	Fri, 14 Jun 2024 09:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48D918C33A;
+	Fri, 14 Jun 2024 09:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718356929; cv=none; b=ZSnduyMlc94gik8H/eSpde6CiEWtdFntB0yeBGTjUlS1I4c3NV+VN76/FxjbJkjofaMFsoHFZnB77VHHXII3Q3NDrtzjVOtWAW3K7yIjV650aYLdmYudlO8vU3WJLScmOJsHTUCb9+cltnK11wI+cne0FIc7EgoGZdudUWYfkT0=
+	t=1718357099; cv=none; b=JR52a9FIy2Sv46gZk25eaAeCPRCaQ8IW0+3Wy7O+CWwI93HnX3ZS1dXWp1go4dLvt8jjaG/N0tqJNBSsYmEX1yBUe+7c68j7xR095IBYlRUEXIQtHbVW06crHjiddEaN5uYRQ6S+YNc1qf8Og/Rd3erC0tRKvx9yBxwn4hrEmGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718356929; c=relaxed/simple;
-	bh=Q7gy1qqjZ+smCjQs/lR/3S57dKZFxfXG77Ywzt1cdUM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SSsT7RvvKA8JnYaOaZ1EUA0kSwSvH3Bzt/8oTbCuTq8k/hWJu68B9eWQGR430VYB3U+sXNYlvBcxfzliV6ZjpwmkibEdZAKx8z5hPDKHAgReMs+GGlH5uNdgRU1SWq7ReFBYd/ogQQL60qmlRMEmOF2JaAdaN3fHH2viTABXuwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eddZwAv/; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 18A8020007;
-	Fri, 14 Jun 2024 09:21:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1718356919;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ez2HfY1x87bBiR5tU1ndmRD1HXIhQKtusmjdRjvINyc=;
-	b=eddZwAv/wquEluA9pJKGZdXbksACURRWevQ1N6byNcOheTyrgeIOEKGM632e9au9gW12gQ
-	d2IxX2j69f6CaKGOi7zMsIE/c8VglP6S/U+jZH8xfuuktleI2iYtT0rLGs1Ag4CfImo49O
-	ykvT85mdUKaa7LHIXeElrU+UREGO8qXAi4fttIkO8dfY1mKB8PsN+mFWw9f4Hb90xtlkNw
-	2bd9AEFqSEIcYj7GmfcyU6uGyb7q17zQARUK2sl6jjvRKAhWKoscCXefYxXCXRGhu13Pss
-	JH6CDhtFF+dymhpdZuKYBfpN1i80pAuQF/47Qf0w2yxgJxqB1JqrcZpL6TwwUw==
-Date: Fri, 14 Jun 2024 11:21:57 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lee@kernel.org, magnus.damm@gmail.com,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 06/12] rtc: renesas-rtca3: Add driver for RTCA-3
- available on Renesas RZ/G3S SoC
-Message-ID: <2024061409215756e6a10c@mail.local>
-References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
- <20240614071932.1014067-7-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1718357099; c=relaxed/simple;
+	bh=O5kc28lbH4t01HLT1wS8PwFPEcZXeuB0ELq0NAIyPjs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ZUYY+5BvgDd7WLwl+Axzhw2oJZHA6oD0w3fA9m9h/SQWFbmR1TLSiZNUT1f6/lenHkXwoeQId9CwrElno2dcVbt00GKxi2w9A5nX+ygN+4VW7PCGrkyAn6d43zqDCUQOoIxZmncXBnJBlIHNvDyF/GEfMJ9PwS7ghIlGVvRhrwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iCWTZwRc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7030CC2BD10;
+	Fri, 14 Jun 2024 09:24:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718357099;
+	bh=O5kc28lbH4t01HLT1wS8PwFPEcZXeuB0ELq0NAIyPjs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=iCWTZwRcvVCSP21qA/FLhovAdDIulSJl1VwUJPi9ls2quluhGRv7RFqc8UdqZeGRn
+	 DSE/krIOndKxKSEfiATpH4wdS2VGUNrE5Y8Fp8yfiUeorqjGe9CZCbzgxY/U0JRl3Q
+	 /bYPa7k+WT/L/fF/Oddq/H+UeJWSSw8pNZpIYsW9kwOYtngGdSrfpMSrhFtWHZq3il
+	 xXUTRinbRpnLzXAhSRlJ5DSK2uojz3DwIO4LQumLmn1i65MQRfDRbjh1uZ+oN5ag5i
+	 aQzHlUUzkgUtm/g0DGHWJDBSubvWxIJb5CQi5FYm9QkS3/6sTFMJn+JgAeJfr23KGh
+	 W3CtpUP2/DKiA==
+From: Mark Brown <broonie@kernel.org>
+To: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-sunxi@lists.linux.dev, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>, 
+ Chris Morgan <macroalpha82@gmail.com>
+In-Reply-To: <20240418000736.24338-1-andre.przywara@arm.com>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+Subject: Re: (subset) [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
+Message-Id: <171835709508.262359.11220442613835711253.b4-ty@kernel.org>
+Date: Fri, 14 Jun 2024 10:24:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240614071932.1014067-7-claudiu.beznea.uj@bp.renesas.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev-0bd45
 
-Hello Claudiu,
+On Thu, 18 Apr 2024 01:07:31 +0100, Andre Przywara wrote:
+> This is v2 of the fixes to the AXP717 PMIC support series. Lee put the
+> original patches in an immutable branch already, so these here go on top.
+> Patch 1 is new in v2, and adds the IRQ status and acknowledge registers
+> to the writable range. Thanks to Chris for pointing this out.
+> Patch 2 contains fixes to the regulator descriptions: the LDOs had the
+> wrong supply source, and two numbers were wrong. The datasheet describes
+> the voltage ranges and register values differently from what our macros
+> expect, in a way that literally begs for off-by-ones, so here you go.
+> Also there is an actual wrong number in the datasheet, add a comment to
+> document this.
+> I don't know if that's still feasible, but those two patches would be a
+> good candidate to squash into the patches that they fix.
+> 
+> [...]
 
-On 14/06/2024 10:19:26+0300, Claudiu wrote:
-> +static int rtca3_initial_setup(struct rtca3_priv *priv)
-> +{
-> +	unsigned long osc32k_rate;
-> +	u8 pes, tmp, mask;
-> +	u32 sleep_us;
-> +	int ret;
-> +
-> +	osc32k_rate = clk_get_rate(priv->clk);
-> +	if (!osc32k_rate)
-> +		return -EINVAL;
-> +
-> +	sleep_us = DIV_ROUND_UP_ULL(1000000ULL, osc32k_rate) * 6;
-> +
-> +	priv->ppb.ten_sec = DIV_ROUND_CLOSEST_ULL(1000000000ULL, (osc32k_rate * 10));
-> +	priv->ppb.sixty_sec = DIV_ROUND_CLOSEST_ULL(1000000000ULL, (osc32k_rate * 60));
-> +
-> +	/*
-> +	 * According to HW manual (section 22.4.2. Clock and count mode setting procedure)
-> +	 * we need to wait at least 6 cycles of the 32KHz clock after clock was enabled.
-> +	 */
-> +	usleep_range(sleep_us, sleep_us + 10);
-> +
-> +	/* Disable alarm and carry interrupts. */
-> +	mask = RTCA3_RCR1_AIE | RTCA3_RCR1_CIE;
-> +	rtca3_byte_update_bits(priv, RTCA3_RCR1, mask, 0);
-> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR1, tmp, !(tmp & mask),
-> +				 10, RTCA3_DEFAULT_TIMEOUT_US);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Stop the RTC and set to 12 hours mode and calendar count mode.
-> +	 * RCR2.START initial value is undefined so we need to stop here
-> +	 * all the time.
-> +	 */
+Applied to
 
-Certainly not, if you stop the RTC on probe, you lose the time
-information, this must only be done when the RTC has never been
-initialised. The whole goal of the RTC is the keep time across reboots,
-its lifecycle is longer than the system.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Also, why do you insist on 12H-mode? The proper thing to do is to support
-12H-mode on read but always use 24H-mode when setting the time.
+Thanks!
 
-> +	mask = RTCA3_RCR2_START | RTCA3_RCR2_HR24 | RTCA3_RCR2_CNTMD;
-> +	writeb(0, priv->base + RTCA3_RCR2);
-> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR2, tmp, !(tmp & mask),
-> +				 10, RTCA3_DEFAULT_TIMEOUT_US);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Execute reset and wait for reset and calendar count mode to be applied. */
-> +	mask = RTCA3_RCR2_RESET | RTCA3_RCR2_CNTMD;
-> +	writeb(RTCA3_RCR2_RESET, priv->base + RTCA3_RCR2);
-> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR2, tmp, !(tmp & mask),
-> +				 10, RTCA3_RESET_TIMEOUT_US);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * According to HW manual (section 22.6.3. Notes on writing to and reading
-> +	 * from registers) after reset we need to wait 6 clock cycles before
-> +	 * writing to RTC registers.
-> +	 */
-> +	usleep_range(sleep_us, sleep_us + 10);
-> +
-> +	/* Set no adjustment. */
-> +	writeb(0, priv->base + RTCA3_RADJ);
-> +	ret = readb_poll_timeout(priv->base + RTCA3_RADJ, tmp, !tmp, 10,
-> +				 RTCA3_DEFAULT_TIMEOUT_US);
-> +
-> +	/* Start the RTC and enable automatic time error adjustment. */
-> +	mask = RTCA3_RCR2_START | RTCA3_RCR2_AADJE;
-> +	writeb(RTCA3_RCR2_START | RTCA3_RCR2_AADJE, priv->base + RTCA3_RCR2);
-> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR2, tmp, ((tmp & mask) == mask),
-> +				 10, RTCA3_START_TIMEOUT_US);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * According to HW manual (section 22.6.4. Notes on writing to and reading
-> +	 * from registers) we need to wait 1/128 seconds while the clock is operating
-> +	 * (RCR2.START bit = 1) to be able to read the counters after a return from
-> +	 * reset.
-> +	 */
-> +	usleep_range(8000, 9000);
-> +
-> +	/* Set period interrupt to 1/64 seconds. It is necessary for alarm setup. */
-> +	pes = FIELD_PREP(RTCA3_RCR1_PES, RTCA3_RCR1_PES_1_64_SEC);
-> +	rtca3_byte_update_bits(priv, RTCA3_RCR1, RTCA3_RCR1_PES, pes);
-> +	return readb_poll_timeout(priv->base + RTCA3_RCR1, tmp, ((tmp & RTCA3_RCR1_PES) == pes),
-> +				  10, RTCA3_DEFAULT_TIMEOUT_US);
-> +}
-> +
-> +static int rtca3_request_irqs(struct platform_device *pdev, struct rtca3_priv *priv)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	int ret, irq;
-> +
-> +	irq = platform_get_irq_byname(pdev, "alarm");
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "Failed to get alarm IRQ!\n");
-> +
-> +	ret = devm_request_irq(dev, irq, rtca3_alarm_handler, 0, "rtca3-alarm", priv);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to request alarm IRQ!\n");
-> +	priv->wakeup_irq = irq;
-> +
-> +	irq = platform_get_irq_byname(pdev, "period");
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "Failed to get period IRQ!\n");
-> +
-> +	ret = devm_request_irq(dev, irq, rtca3_periodic_handler, 0, "rtca3-period", priv);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to request period IRQ!\n");
-> +
-> +	/*
-> +	 * Driver doesn't implement carry handler. Just get the IRQ here
-> +	 * for backward compatibility, in case carry support will be added later.
-> +	 */
-> +	irq = platform_get_irq_byname(pdev, "carry");
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "Failed to get carry IRQ!\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int rtca3_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rtca3_priv *priv;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(priv->base))
-> +		return PTR_ERR(priv->base);
-> +
-> +	priv->clk = devm_clk_get_enabled(dev, "counter");
-> +	if (IS_ERR(priv->clk))
-> +		return PTR_ERR(priv->clk);
-> +
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	spin_lock_init(&priv->lock);
-> +	atomic_set(&priv->alrm_sstep, RTCA3_ALRM_SSTEP_DONE);
-> +	init_completion(&priv->set_alarm_completion);
-> +
-> +	ret = rtca3_initial_setup(priv);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to setup the RTC!\n");
-> +
-> +	ret = rtca3_request_irqs(pdev, priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	device_init_wakeup(&pdev->dev, 1);
-> +
-> +	priv->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-> +	if (IS_ERR(priv->rtc_dev))
-> +		return PTR_ERR(priv->rtc_dev);
-> +
-> +	priv->rtc_dev->ops = &rtca3_ops;
-> +	priv->rtc_dev->max_user_freq = 256;
-> +	priv->rtc_dev->range_min = mktime64(1999, 1, 1, 0, 0, 0);
-> +	priv->rtc_dev->range_max = mktime64(2098, 12, 31, 23, 59, 59);
+[2/5] regulator: axp20x: AXP717: fix LDO supply rails and off-by-ones
+      commit: 0057222c45140830a7bf55e92fb67f84a2814f67
 
-This very much looks like the range should be 2000 to 2099, why do you
-want to shift it?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
