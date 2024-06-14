@@ -1,487 +1,259 @@
-Return-Path: <devicetree+bounces-75947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0D8090936A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 22:30:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001C3909373
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 22:34:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D1F11C236D1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 20:30:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C3A32888D0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 20:34:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3F6E18410D;
-	Fri, 14 Jun 2024 20:30:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5311A38E6;
+	Fri, 14 Jun 2024 20:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y+Qd+1M+"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="IW7pMZLm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2072.outbound.protection.outlook.com [40.107.20.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4ABF14A4CF;
-	Fri, 14 Jun 2024 20:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718397037; cv=none; b=ZjzJfYB9xzBlsEceHm7X2ryVqn5pqNbOXHnmz4leY1VLFOuVQYuHrVQZAxR2n4WdUre8aWqUc0fLlDsEtkDdtxZCxI2YEpjWfziYILHGhaMAWpBpTEg/g81hUY6b7zwA1a0GfYyJJdJ2hoULbLG0uTvNdV11qrapdo6VSDnbn7s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718397037; c=relaxed/simple;
-	bh=i+GYuBH4deuAMzLbZbJp8k3J9WIWhyDPoULBKiveZIw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=k1VlmIqfWHahtkPIdiH9UkSXXex43+VDJ0vE2pzLg8moHIRNR7YSy0JxJvcKpjuC8Cuo5n5xifPUqHos8oXLD+rHm/nhx9u9ZC0lESqrT2clCjF6LO6O7mvqKGDes9tuTQzDrucmC292274wxXcDf/6+oKcXv6yCOuH2+aa51lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y+Qd+1M+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45E9uBuW001898;
-	Fri, 14 Jun 2024 20:30:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SKZzSnNmBGLvVrFRCMOk90SXf4pI2wqapfbLj3tx9So=; b=Y+Qd+1M+KDsYVK+O
-	h6NxVry6OopR+3aXoyjjqsPjdIjdXwlDi7eChFhbPfA3REeHSbU3AKJCAB2X7XUr
-	ABFc6epVfcakE2KvYriqPmXG53kTGHEdHoHyOcXsES1wke86EFWEOsKgMJGLVsMg
-	N3WkCWFXgFoleDOlcBxEunHiWVZNc4C14ARDYAs9DBcqRDq8ledZFWvKF3n+bBdZ
-	7zGNwrXxuqybaz4le0mx4AJtLZOAXgGvOQLglwrqSjfZcfZNsNTSrM5BuQa+KfB8
-	LThUm3jjznPGozGmFfinM5EsAopvXDCMNTO9WSz37S+KBD4LIq7jZJGbbUlmaYeK
-	NVIkwQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yr6q4jm1d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Jun 2024 20:30:22 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45EKUK5u013412
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Jun 2024 20:30:20 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 14 Jun
- 2024 13:30:16 -0700
-Message-ID: <4d21f140-351e-da3f-57b4-3041fb8684e9@quicinc.com>
-Date: Sat, 15 Jun 2024 02:00:12 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED4618410D;
+	Fri, 14 Jun 2024 20:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718397239; cv=fail; b=DadW077u+QT1yg/u6et1jUMtQ6NAPwm6FrTBKafLaRShdwdRmnizwvHHkQWs2U7W1zA8w8pxOY0bS/h1cD2cPH+8uaCct/Hf3yaNOTcNaMhLIFi0nEYNWKoWyfS40orqqzQc4dnV0hIMNLZVfNlcilXn9jOXotRx8PXGDPwe1yE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718397239; c=relaxed/simple;
+	bh=8nDTcNcR4+75wd5pIcMpZrurG6WlnHMDAX5by4YIlDE=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=P97tzvEvqMtbY62JemBUsFrZHlaPa+PD3f/HiimO6UXUHnhi4i5wfnCyl1PVSDuiiVjDz5lPga6kLQZPw0EmaANL7SwFub1FkWUf2DCMAFZ5yRmOMtwz1SbXc2yFypZn2nqdlrJb2g/3kUlhF8ldQLK5GFsAlLf5ee2Bn+ZUTAo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=IW7pMZLm; arc=fail smtp.client-ip=40.107.20.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JtKj7w7NoaR0gJkwV5oHATxnpWvyYyYjy5lAzkJ+xPIO9Nax9kWdZXXrnGmwUmyjPK6GHwJKttioLlQ2gTzKRpJ3voGhuqhuzzuFtef3Gk1WNamZ5toB4NuTFiB1oBoSfP1B85tuAToLVMcs5aAooBn5HvMzTdwAYS33CNr/21rrkU77jhOydWZF0Kq381mhkJsmDPRtNnsUJA1VlX4h8M22ykXLpGCiYYr/C+tNUq9FVFZkD5iTsizq1SKewXZ2A+Z6szo3hM0E1wvxLs2SezLpgkAwrKp5KSpX+S80Tu7iubBNR0B92w+EmypEU7KYOn8DjEIJ4w1KPTL37e9D7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dhvB16d8BTl0cbi2x7vjUV7k3ZSdbMrZVw36Lc/ZKMA=;
+ b=Kc/L0PaIH/YUPrN7uLZZJ+RlniO5MefFu0kwwAbwBv7sKXATF4Z/8EA/xjrySK99wpAGV+iIY4Bz/e7rNb5NU/C1NNn6DHDuaquciaJR/pN21+eFiXL0kaiRshl1GWIWqfx7TnZKCvxKNbDKR07UYclWwga5SZC1Uwn3CNxR+37H2tg6Yow34fc2KAOnrm+mbhBCgU/FpMbxYb1W5pZ595saGiNpnGqiVQxOvHyuQ5gzfSl06VHz6QvmLsdNT6nt1OQN7g1v46jQ0bD9CaFbmfxzM5oOzkczWsDfJGq6S2Wos0QPA8wQpI8mKSa4wH2yOt5WLH5w7s7xyZSvPCkm8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dhvB16d8BTl0cbi2x7vjUV7k3ZSdbMrZVw36Lc/ZKMA=;
+ b=IW7pMZLmHKrzyuoEKT7w6OZ6dEAVWASlRUDk6YVcdugoZLh9bNnNcXVeR5gvHDRV2eShX8eiyVWL8aZZ3enpTEqvbBDJjFv6HCYmdbHlaeyS/NNH92zktAD7zsSc1aKmXZAyu/FYiExUu5AerSlGtQDM3lxSScj7F6uNerWG8Cc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB10203.eurprd04.prod.outlook.com (2603:10a6:150:1c1::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.25; Fri, 14 Jun
+ 2024 20:33:53 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7677.024; Fri, 14 Jun 2024
+ 20:33:52 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH 0/2] dt-bindings: net: Convert fsl,fman related file to
+ yaml format
+Date: Fri, 14 Jun 2024 16:33:27 -0400
+Message-Id: <20240614-ls_fman-v1-0-cb33c96dc799@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABepbGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDM0MT3Zzi+LTcxDzdVINEcwPT5JTkNCNLJaDqgqLUtMwKsEnRsbW1ACN
+ zp49ZAAAA
+To: Yangbo Lu <yangbo.lu@nxp.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Richard Cochran <richardcochran@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Madalin Bucur <madalin.bucur@nxp.com>, 
+ Sean Anderson <sean.anderson@seco.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718397228; l=3175;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=8nDTcNcR4+75wd5pIcMpZrurG6WlnHMDAX5by4YIlDE=;
+ b=fun/qCNqFTgZpztOEqkZ3CqTruSdsbJHE0GBTQkEzL2I+tJlM6+Pwq41muM90gR7KQkMkqMwf
+ SljS/FxNyGAAMnNpK8jHTDhipZ7TRgpiwX5DpFUohxbSn2hcTrgWqoe
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BYAPR11CA0075.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [RFC V2 1/4] dt-bindings: firmware: Add support for QCOM Vendor
- Protocol
-Content-Language: en-US
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10203:EE_
+X-MS-Office365-Filtering-Correlation-Id: b75b6d3c-e245-4991-fcca-08dc8cb14e1c
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230037|366013|52116011|376011|7416011|1800799021|38350700011|921017;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?RzlyZ0hJNUNFVVNSemxuTndsZUFTd0NWb2FzOHRKbC9Wd29nS2ZNNlUrSC9N?=
+ =?utf-8?B?dXlobVdXQmg0aWdKVUVlaDZhWlVnWlJsbVhGZWZlSHp2R0puRjU3cXdGTzhI?=
+ =?utf-8?B?OEpQVFJSZkd3elN1RzlnM0c1Y20wZkhFSVhBbFp1dzFnN2NVK2Q5elg3MlRo?=
+ =?utf-8?B?WVpaT3JDek5UZVFNTStFR2pjYitJTkNKa0Q5WWk4Sng5cVRCN2o4T0pOV3Iz?=
+ =?utf-8?B?SDFaZGtKalY1bDBnQVhsbXNHWUd5L1Foelc4TTVSbDJMbWhFb1hBTlF5ZlhZ?=
+ =?utf-8?B?M2NWU2wxYTFyWE9rS3k2cnJGVnBlMVFmYzkwR0pvVHUvdmtBSk5UUCtkQ1gz?=
+ =?utf-8?B?OGxrbnhYY0RjMlAvMG9kSEU3K3RHSnU5QnAwdmJETGVoRDZvN2dtZEVHOG9n?=
+ =?utf-8?B?M0Y4d3lTdldGZjRRLzcvT0laWWppL1NuMW1PNC9KRlZzRUZNVmg4NGZwLzFK?=
+ =?utf-8?B?NDNyNjhiNmN4OS9kNUZnRlJnOWxQM2NDVHBtZHNkSEMvSFBNWXZVT1FBS1Na?=
+ =?utf-8?B?ako2VXd2SHIwZGlRdVVQOHJ0TERLa0RkbVllY0ozcHFkTU9XZzU0bnI0T2pn?=
+ =?utf-8?B?OWFTdWZvT1RRQ1o5SzliWFUwUGo3QnhRYzNrQzdiK1VaQlFmK2UvZ1Q5L3lM?=
+ =?utf-8?B?RDBSUWl6c2xtMHhjUlpzWTNGMDlDUFZ6UThOWmh6NEMxNUVRRnRUK2dVc2FQ?=
+ =?utf-8?B?ZTVabXdFVG5Tbm9UdlZXYVEzZnRyNXh5ZGNRWUR5QVJrMSt3QXJLSlNIaFk1?=
+ =?utf-8?B?aVhMcEMvaldMeXZmK2I4VU92Vy8xTU9BbUcvRTN0OU9kWFE2bEJkUkljRnRs?=
+ =?utf-8?B?dUdCV0EyeGFZTkRYQkNETnBvKy91dGZBL0FCeE1jSXZLSHJ6Uk9KZFlzT3ll?=
+ =?utf-8?B?YTZiTStsUlp2UVFxVWI2OVlGMHg2bFV1OURUM0NyTjhidVpNbm1IakVQamVH?=
+ =?utf-8?B?TGNUZmV0R2NkSktBTW8wVFBJZHZmTW1XZWpaRkk5akVsdkxJU1JvSEMwN0d5?=
+ =?utf-8?B?Q3czL3JadDhLd3BYcXNwSzA1OE96eDlPZmwxTWEzNXFwS25MRVFwNThsTCtL?=
+ =?utf-8?B?YlVQZkVmMlp0MGFqQTlkQTdNNHkyMzFmNlVCYmZWbjNuL2ttcjdBVXpwazBE?=
+ =?utf-8?B?VitKRGhOQmtvVzNWaW56eVd6TjBDdllia2IwVTBhenV6QWkyZXg4d2cvWEU4?=
+ =?utf-8?B?MU1vbGhWT2RpOHR4anNMTmozT2lNZmZOWTVMOU1qT0Q0UkpHMUpEWGR3ZnlX?=
+ =?utf-8?B?enIrTlJlbmZ1VEpGRGxndS9yVnNqdm8zcWt1UHMzbDVkcTZHNHNwOUs1QVpv?=
+ =?utf-8?B?YnpmV1h1QitzSXE3Rlh6MzltUzJMdTNaMEpXL1BvYmcxcWRaZys2elEzckM5?=
+ =?utf-8?B?SUVtckxncHVXcVVvS3NyVnU3VjYrd0U5bTFjdUdEY3c0NUhuU3c0bGxNWnBo?=
+ =?utf-8?B?dG42VjNTNWNXRXJOT1ZKOElxV3JPZE1SbXlxZVh2L0dkYkg2alluZ2o0TlVt?=
+ =?utf-8?B?dlZaVWlFUXZmS0RBcFdoeWdiRXhzd2ozSnI5ajRCL21aR0VBMm1tWFAyNHEv?=
+ =?utf-8?B?RWllYlNzd2Z6eU0rWUtwejF0Mk9NdjdDajk0ZXF3QS8xRlIzeXFUQldNL1Z6?=
+ =?utf-8?B?YldaUURTamdKNmRHSmpGTHBscVF2L25jSDhYcnZ0UEZQM0cwbGdQSWhVdTFC?=
+ =?utf-8?B?bjA4bFA3SmtLTnQ0SW1BS3J4N0FFazVXcmtHMDlsd2crMDhjWkgwTXlwa3ov?=
+ =?utf-8?B?bFpzRmEzRjJzcWhEWmZGTWJYZE14SkQxNysyMXFQdGEzL0JVMjh4ejhseUhN?=
+ =?utf-8?B?eUtYczJZTHlGdmYwVklYRTMwY0MyUUhzb0FWS3BmWXAzazh5STRwS0IyUk9U?=
+ =?utf-8?Q?JQygSc0qs4qmr?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(52116011)(376011)(7416011)(1800799021)(38350700011)(921017);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?Nm1ObGNacTZWeC9BbkZFc3o4RWFxMFBETUxQRHFJVmNtZ1RBMkVWdm12dHQv?=
+ =?utf-8?B?NmJhcEpwT2lHL2ZqQjRCZWRQbmV4SWV3TEkzZmNEcnhqVS9mZER1NlhvWFB3?=
+ =?utf-8?B?c0VUT01mNm9nZi9NR21BNFFVbmtKby8renFnemROdGJOTmFkL1JDMjQ3NDFW?=
+ =?utf-8?B?bE1ZejJtejU1bVdqaWEwdjQyMHV3TG1tNi95N0FwL0RGSXhDSWVKMEFlVTA1?=
+ =?utf-8?B?OWpmV2M0REYxTVVqSlN4dWNNREExb2ZpeVpUWHo1WGJmWWlKNlE4SVhOSFFl?=
+ =?utf-8?B?RWlzSnlhb0ZwM3dnOVl6TFFpQ1g4cjlUQ2UvWndGMWRQRjIrT3ZBbWxGMVpo?=
+ =?utf-8?B?eEZJUGZXckJvekhJNFllLzR1NTdqMDVVa1IrQlUxRjdsV3hjUDRlSmxRenRM?=
+ =?utf-8?B?SkdaKzdLcUEwUGEydFI2TkJhSWFQK3dLRUxHMmw1OFFmaElzaHAycTF3TnRv?=
+ =?utf-8?B?MmgwRUJlVDJKcUF1RDlIbStiYTg4WEk2d1ZoQ01lbmppRnp0QnZuTWRzcGNU?=
+ =?utf-8?B?QitvcVRndDE3SytCcy8yM0pCYktucTlva09QRStyYVZBeWtYcnRUeXh6MGho?=
+ =?utf-8?B?am11TlRkM3MzSHp5Y3E5V0JVdWplMCtKbWREeXp6Uk43Y2tTeWFVeWtOVUdm?=
+ =?utf-8?B?T1VkbnFybXBDN3V0L3lXSFUycmhtQlVFZVNSeldHSFJGamZ5K2wxai95Qml0?=
+ =?utf-8?B?SXdHZW5FVUxVNEc5RVRzc01taWFJTDNrYjhyd21MR3ZaY0RXditDOGFjM2to?=
+ =?utf-8?B?dEdpODUwNkFHZ084c2c2WEZDSTNwSlVFbm1oZGN4SHJvWTdrRVc4b3hZN0RO?=
+ =?utf-8?B?NDZudHh2OU1qd0pBRUJKZkt3eWVheXZveDFKNjF4ZVdEdnVVWHh5OTNWemVv?=
+ =?utf-8?B?Y3Z3a2wrbENZNlkxak5nMHlhN2dvcmwwRGxLRGxSMnVJL3NBM0pOcVFGRkhR?=
+ =?utf-8?B?REZuL0JIeGsvTGNrSFdCMVp6VXc5d2V4YnpuTXJJaXc0WlRoeUR6dGhoYzJ5?=
+ =?utf-8?B?RiszRGlra3BKS0Rma0crZGgzc0F3SkFGd3UraEhXT0tOOUxHWVdrU2p5WFU4?=
+ =?utf-8?B?K0hqRG9YWDFjcG9BT3JCME9Zb3M2UFlRUVRUN1NDRHEzMWx1Mm1uVlFPc2hR?=
+ =?utf-8?B?M1BFVFN0OGVGVktGcG9YVmpQOTlsS1JnT0lIaGdFL1hxL09qMDYybWdoRFpM?=
+ =?utf-8?B?NXp0MUJHbllRTk51Qk9vS08rRysvU0I5MmgveEoyTW16UGxoMDFpaXRVZXFK?=
+ =?utf-8?B?eTVVaTRCMHpPMGNzejk4NVJRR2lEZDF0OEh3YlpHZ0VnNENWUTRxOUlwUkEy?=
+ =?utf-8?B?eWJQb21hQlhwbDczc2g3eStEeDBzSnZuOHdPQUpmSTE3V2MxeXNlK0ZSY0VC?=
+ =?utf-8?B?UGJYeW1BaCtLeU8zanVMQkpoY1EvRmRrcWIxRmhKc1lrSThoaVBkalF2RlhV?=
+ =?utf-8?B?eG8yV21SM284R1gyd29tZm9iTUJ2T0hiZFA2VlBudEpuQU91Q3g2eXFUUHFh?=
+ =?utf-8?B?U0lTbzVKckFhS2kwY2xwSTl6SlhLNU5HTVlvbTlmMXZkMzJTRENpYncwWktL?=
+ =?utf-8?B?QjBHVFR2dHowYTMxOWY4ekROVkk0L21mYjN3WXFrS3pPRnM3bERvZHppUy9z?=
+ =?utf-8?B?QWVPS3IvUEZsNGdMV0NDcjllbTJJYzV4OTVhazRZQ24wM0NRMlYwYmFucWhK?=
+ =?utf-8?B?Y1VHQ05LT2NzSlI0dWUwVG10UjlUZ0o0cEN4SHliRkxzanh6QTRsSWJTVGdy?=
+ =?utf-8?B?UnFlWHllTjNyWTVhRlpmTXdxZGpmMTJDWVBxOGZadVY4SmpOQlVkS2RCaWk2?=
+ =?utf-8?B?ZHplRUx6cUNXUXRsMzcvTFh3UHI3RHVrd0JLblZrUWhCVm5VVDFZNWpHME5q?=
+ =?utf-8?B?WE1ya0pLWVpiRnRnQkpBNHJPQzRUdFN5YXEwUDFZeUxBdVdHWWlMaEhReFhu?=
+ =?utf-8?B?NjZRZktRU3JHMzRicHdlR0swb28yeHNxWmtDeWZER3VhTjdDR2swSGp5R0w3?=
+ =?utf-8?B?N2lPSlpCZnB2Y3F6SGhLUmRFY0p4eWlnbVdwUU8xYlczNTFURzRSazdBVEFk?=
+ =?utf-8?B?aUs2RHdGUGF4VjhjRnc5TVB3b1VLUkNFS2VVWHAxczVLQ0hpVnYwaFRUd1pv?=
+ =?utf-8?Q?ERcgF7qbJ3xrWkDVg51eNmpOs?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b75b6d3c-e245-4991-fcca-08dc8cb14e1c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2024 20:33:52.8314
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: meotz5PASFPfoD2DCpXmkv2teJN4ScEtFYHjFeN/ATv78LJDkQivEXdylhV7VqusSTS2DzwR3dyYJSoq0uxHOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10203
+
+Passed dt_binding_check
+Run dt_binding_check: fsl,fman-mdio.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  CHKDT   Documentation/devicetree/bindings
+  LINT    Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/net/fsl,fman-mdio.example.dts
+  DTC_CHK Documentation/devicetree/bindings/net/fsl,fman-mdio.example.dtb
+Run dt_binding_check: fsl,fman-muram.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  CHKDT   Documentation/devicetree/bindings
+  LINT    Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/net/fsl,fman-muram.example.dts
+  DTC_CHK Documentation/devicetree/bindings/net/fsl,fman-muram.example.dtb
+Run dt_binding_check: fsl,fman-port.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  CHKDT   Documentation/devicetree/bindings
+  LINT    Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/net/fsl,fman-port.example.dts
+  DTC_CHK Documentation/devicetree/bindings/net/fsl,fman-port.example.dtb
+Run dt_binding_check: fsl,fman.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  CHKDT   Documentation/devicetree/bindings
+  LINT    Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/net/fsl,fman.example.dts
+  DTC_CHK Documentation/devicetree/bindings/net/fsl,fman.example.dtb
+Run dt_binding_check: ptp-qoriq.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  CHKDT   Documentation/devicetree/bindings
+  LINT    Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/ptp/ptp-qoriq.example.dts
+  DTC_CHK Documentation/devicetree/bindings/ptp/ptp-qoriq.example.dtb
+
+To: Yangbo Lu <yangbo.lu@nxp.com>
 To: Rob Herring <robh@kernel.org>
-CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>
-References: <20240612183031.219906-1-quic_sibis@quicinc.com>
- <20240612183031.219906-2-quic_sibis@quicinc.com>
- <20240613193625.GA2338851-robh@kernel.org>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <20240613193625.GA2338851-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PdPRlAZsWAUlcNRDk2u0id2oyrGaoedN
-X-Proofpoint-GUID: PdPRlAZsWAUlcNRDk2u0id2oyrGaoedN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-14_17,2024-06-14_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0
- bulkscore=0 adultscore=0 clxscore=1015 malwarescore=0 phishscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406140142
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Richard Cochran <richardcochran@gmail.com>
+To: David S. Miller <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Madalin Bucur <madalin.bucur@nxp.com>
+To: Sean Anderson <sean.anderson@seco.com>
+Cc: netdev@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: imx@lists.linux.dev
 
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Frank Li (2):
+      dt-bindings: ptp: Convert ptp-qoirq to yaml format
+      dt-bindings: net: Convert fsl-fman to yaml
 
+ .../devicetree/bindings/net/fsl,fman-mdio.yaml     | 130 +++++
+ .../devicetree/bindings/net/fsl,fman-muram.yaml    |  42 ++
+ .../devicetree/bindings/net/fsl,fman-port.yaml     |  86 ++++
+ .../devicetree/bindings/net/fsl,fman.yaml          | 335 +++++++++++++
+ Documentation/devicetree/bindings/net/fsl-fman.txt | 548 ---------------------
+ .../devicetree/bindings/ptp/ptp-qoriq.txt          |  87 ----
+ .../devicetree/bindings/ptp/ptp-qoriq.yaml         | 148 ++++++
+ 7 files changed, 741 insertions(+), 635 deletions(-)
+---
+base-commit: 03d44168cbd7fc57d5de56a3730427db758fc7f6
+change-id: 20240614-ls_fman-e0a705cdcf29
 
-On 6/14/24 01:06, Rob Herring wrote:
-> On Thu, Jun 13, 2024 at 12:00:28AM +0530, Sibi Sankar wrote:
->> Document the SCMI QCOM Vendor protocol v1.0 bindings and the various memory
->> buses that can be monitored and scaled by memory latency governor hosted
->> on it.
->>
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
 
-Hey Rob,
-
-Thanks for taking time to review the series :)
-
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>
->> v1:
->> * Add missing bindings for the protocol. [Konrad/Dmitry]
->> * Use alternate bindings. [Dmitry/Konrad]
->>
->>   .../bindings/firmware/arm,scmi.yaml           |  21 ++
->>   .../bindings/soc/qcom/qcom,scmi-memlat.yaml   | 243 ++++++++++++++++++
->>   include/dt-bindings/soc/qcom,scmi-vendor.h    |  22 ++
->>   3 files changed, 286 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml
->>   create mode 100644 include/dt-bindings/soc/qcom,scmi-vendor.h
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> index 7de2c29606e5..21e4da53d02c 100644
->> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> @@ -278,6 +278,27 @@ properties:
->>       required:
->>         - reg
->>   
->> +  protocol@80:
->> +    $ref: '#/$defs/protocol-node'
->> +    unevaluatedProperties: false
->> +
->> +    properties:
->> +      reg:
->> +        const: 0x80
->> +
->> +      memlat-dvfs:
-> 
-> I don't see the purpose of this container node.
-
-Thanks, looks like I took a shortcut to show that the memory nodes
-are logically placed with this abstraction. I'll should be able to
-get it removed and achieve the same functionality.
-
-> 
->> +        type: object
->> +        additionalProperties: false
->> +        description:
->> +          The list of all memory buses that can be monitored and scaled by the
->> +          memory latency governor running on the SCMI controller.
->> +
->> +        patternProperties:
->> +          '^memory-[0-9]$':
->> +            type: object
->> +            $ref: /schemas/soc/qcom/qcom,scmi-memlat.yaml#
-> 
-> This schema needs to be at the level of the protocol node. See the i.MX
-> SCMI pinctrl patches for more details on what it should look like.
-
-Thanks will take a look at that.
-
-> 
->> +            unevaluatedProperties: false
->> +
->>   additionalProperties: false
->>   
->>   $defs:
->> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml
->> new file mode 100644
->> index 000000000000..c6e3d163c4a3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,scmi-memlat.yaml
->> @@ -0,0 +1,243 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/soc/qcom/qcom,scmi-memlat.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SCMI Memory Bus nodes
->> +
->> +maintainers:
->> +  - Sibi Sankar <quic_sibis@quicinc.com>
->> +
->> +description: |
-> 
-> Doesn't need '|' if no formatting.
-
-ack
-
-> 
->> +  This binding describes the various memory buses that can be monitored and scaled
->> +  by memory latency governor running on the CPU Control Processor (SCMI controller).
->> +
->> +properties:
->> +  qcom,memory-type:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1, 2]
->> +    description:
-> 
-> Needs a '|' if you want your formatting preserved.
-
-ack
-
-> 
->> +      Memory Bus Identifier
->> +        0 = QCOM_MEM_TYPE_DDR
->> +        1 = QCOM_MEM_TYPE_LLCC
->> +        2 = QCOM_MEM_TYPE_DDR_QOS
->> +
->> +  freq-table-hz:
->> +    items:
->> +      items:
->> +        - description: Minimum frequency of the memory bus in Hz
->> +        - description: Maximum frequency of the memory bus in Hz
->> +
->> +patternProperties:
->> +  '^monitor-[0-9]$':
->> +    type: object
->> +    unevaluatedProperties: false
->> +    description:
->> +      The list of all monitors detecting the memory latency bound workloads using
->> +      various counters.
->> +
->> +    properties:
->> +      qcom,compute-type:
->> +        description:
->> +          Monitors of type compute perform bus dvfs based on a rudimentary CPU
->> +          frequency to memory frequency map.
->> +        type: boolean
->> +
->> +      qcom,ipm-ceil:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description:
->> +          Monitors having this property perform bus dvfs based on the same
->> +          rudimentary table but the scaling is performed only if the calculated
->> +          IPM (Instruction Per Misses) exceeds the given ceiling.
->> +
->> +      qcom,cpulist:
->> +        $ref: /schemas/types.yaml#/definitions/phandle-array
->> +        description:
->> +          List of phandles to the CPUs nodes whose frequency and IPM are to be
->> +          monitored.
-> 
-> We have a standard property for this: cpus
-
-will use ^^ in the next re-spin
-
-> 
->> +
->> +      operating-points-v2: true
->> +      opp-table:
->> +        type: object
->> +
->> +    required:
->> +      - qcom,cpulist
->> +      - operating-points-v2
->> +      - opp-table
->> +
-> 
->> +    allOf:
->> +      - if:
->> +          properties:
->> +            qcom,compute-type: false
->> +        then:
->> +          required:
->> +            - qcom,ipm-ceil
->> +
->> +      - if:
->> +          properties:
->> +            qcom,ipm-ceil: false
->> +        then:
->> +          required:
->> +            - qcom,compute-type
-> 
-> Isn't all this just:
-> 
-> oneOf:
->    - required: [ qcom,compute-type ]
->    - required: [ qcom,ipm-ceil ]
-
-ack, will use ^^ in the next re-spin.
-
--Sibi
-
-> 
-> 
->> +
->> +required:
->> +  - qcom,memory-type
->> +  - freq-table-hz
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/soc/qcom,scmi-vendor.h>
->> +
->> +    firmware {
->> +        scmi {
->> +            compatible = "arm,scmi";
->> +            mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
->> +            mbox-names = "tx", "rx";
->> +            shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
->> +
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            protocol@80 {
->> +                reg = <0x80>;
->> +
->> +                memlat-dvfs {
->> +                    memory-0 {
->> +                        qcom,memory-type = <QCOM_MEM_TYPE_DDR>;
->> +                        freq-table-hz = /bits/ 64 <200000000 4224000000>;
->> +
->> +                        monitor-0 {
->> +                            qcom,ipm-ceil = <20000000>;
->> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
->> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
->> +                            operating-points-v2 = <&memory0_monitor0_opp_table>;
->> +
->> +                            memory0_monitor0_opp_table: opp-table {
->> +                                compatible = "operating-points-v2";
->> +
->> +                                opp-999000000 {
->> +                                    opp-hz = /bits/ 64 <999000000 547000000>;
->> +                                };
->> +
->> +                                opp-1440000000 {
->> +                                    opp-hz = /bits/ 64 <1440000000 768000000>;
->> +                                };
->> +
->> +                                opp-1671000000 {
->> +                                    opp-hz = /bits/ 64 <1671000000 1555000000>;
->> +                                };
->> +
->> +                                opp-2189000000 {
->> +                                    opp-hz = /bits/ 64 <2189000000 2092000000>;
->> +                                };
->> +
->> +                                opp-2516000000 {
->> +                                    opp-hz = /bits/ 64 <2516000000 3187000000>;
->> +                                };
->> +
->> +                                opp-3860000000 {
->> +                                    opp-hz = /bits/ 64 <3860000000 4224000000>;
->> +                                };
->> +                            };
->> +                        };
->> +
->> +                        monitor-1 {
->> +                            qcom,compute-type;
->> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
->> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
->> +                            operating-points-v2 = <&memory0_monitor1_opp_table>;
->> +
->> +                            memory0_monitor1_opp_table: opp-table {
->> +                                compatible = "operating-points-v2";
->> +
->> +                                opp-1440000000 {
->> +                                        opp-hz = /bits/ 64 <1440000000 200000000>;
->> +                                };
->> +
->> +                                opp-2189000000 {
->> +                                        opp-hz = /bits/ 64 <2189000000 768000000>;
->> +                                };
->> +
->> +                                opp-2516000000 {
->> +                                        opp-hz = /bits/ 64 <2516000000 1555000000>;
->> +                                };
->> +
->> +                                opp-3860000000 {
->> +                                        opp-hz = /bits/ 64 <3860000000 4224000000>;
->> +                                };
->> +                            };
->> +                        };
->> +                    };
->> +
->> +                    memory-1 {
->> +                        qcom,memory-type = <QCOM_MEM_TYPE_LLCC>;
->> +                        freq-table-hz = /bits/ 64 <300000000 1067000000>;
->> +
->> +                        monitor-0 {
->> +                            qcom,ipm-ceil = <20000000>;
->> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
->> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
->> +                            operating-points-v2 = <&memory1_monitor0_opp_table>;
->> +
->> +                            memory1_monitor0_opp_table: opp-table {
->> +                                compatible = "operating-points-v2";
->> +
->> +                                opp-999000000 {
->> +                                    opp-hz = /bits/ 64 <999000000 300000000>;
->> +                                };
->> +
->> +                                opp-1440000000 {
->> +                                    opp-hz = /bits/ 64 <1440000000 466000000>;
->> +                                };
->> +
->> +                                opp-1671000000 {
->> +                                    opp-hz = /bits/ 64 <1671000000 600000000>;
->> +                                };
->> +
->> +                                opp-2189000000 {
->> +                                    opp-hz = /bits/ 64 <2189000000 806000000>;
->> +                                };
->> +
->> +                                opp-2516000000 {
->> +                                    opp-hz = /bits/ 64 <2516000000 933000000>;
->> +                                };
->> +
->> +                                opp-3860000000 {
->> +                                    opp-hz = /bits/ 64 <3860000000 1066000000>;
->> +                                };
->> +                            };
->> +                        };
->> +                    };
->> +
->> +                    memory-2 {
->> +                        qcom,memory-type = <QCOM_MEM_TYPE_DDR_QOS>;
->> +                        freq-table-hz = /bits/ 64 <QCOM_DDR_LEVEL_AUTO QCOM_DDR_LEVEL_PERF>;
->> +
->> +                        monitor-0 {
->> +                            qcom,ipm-ceil = <20000000>;
->> +                            qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7
->> +                                            &CPU8 &CPU9 &CPU10 &CPU11>;
->> +                            operating-points-v2 = <&memory2_monitor0_opp_table>;
->> +
->> +                            memory2_monitor0_opp_table: opp-table {
->> +                                compatible = "operating-points-v2";
->> +
->> +                                opp-2189000000 {
->> +                                    opp-hz = /bits/ 64 <2189000000>;
->> +                                    opp-level = <QCOM_DDR_LEVEL_AUTO>;
->> +                                };
->> +
->> +                                opp-3860000000 {
->> +                                    opp-hz = /bits/ 64 <3860000000>;
->> +                                    opp-level = <QCOM_DDR_LEVEL_PERF>;
->> +                                };
->> +                            };
->> +                        };
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
->> diff --git a/include/dt-bindings/soc/qcom,scmi-vendor.h b/include/dt-bindings/soc/qcom,scmi-vendor.h
->> new file mode 100644
->> index 000000000000..7ae8d8d5623b
->> --- /dev/null
->> +++ b/include/dt-bindings/soc/qcom,scmi-vendor.h
->> @@ -0,0 +1,22 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->> +/*
->> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +#ifndef __DT_BINDINGS_QCOM_SCMI_VENDOR_H
->> +#define __DT_BINDINGS_QCOM_SCMI_VENDOR
->> +
->> +/* Memory IDs */
->> +#define QCOM_MEM_TYPE_DDR	0x0
->> +#define QCOM_MEM_TYPE_LLCC	0x1
->> +#define QCOM_MEM_TYPE_DDR_QOS	0x2
->> +
->> +/*
->> + * QCOM_MEM_TYPE_DDR_QOS supports the following states.
->> + *
->> + * %QCOM_DDR_LEVEL_AUTO:	DDR operates with LPM enabled
->> + * %QCOM_DDR_LEVEL_PERF:	DDR operates with LPM disabled
->> + */
->> +#define QCOM_DDR_LEVEL_AUTO	0x0
->> +#define QCOM_DDR_LEVEL_PERF	0x1
->> +
->> +#endif /* __DT_BINDINGS_QCOM_SCMI_VENDOR_H */
->> -- 
->> 2.34.1
->>
 
