@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-75797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77ECD908A86
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:52:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 186E1908AA6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 13:06:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11D9C28448E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:52:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 973B41F255ED
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05E01953A9;
-	Fri, 14 Jun 2024 10:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D2F1946CA;
+	Fri, 14 Jun 2024 11:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MWfBA2WP"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ZS0ss3El"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B201922C1;
-	Fri, 14 Jun 2024 10:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB99214830B
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 11:06:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718362359; cv=none; b=i7wj/V6ZyolW6Elw1xTKX3dRdnXlPaosnBonNek+N+vaHvNZfKZ00toMTVHRiS6FPjIyU2JD/Xmy1fB+N0gcit+wkhLvVa+0H/sEIKwkZXIhJD16CmS2N9rCQ8NB3/4dP+wrk84xrBeP0i++Cs/Xd4+NmbEDcmGOhEnwGn4SEp0=
+	t=1718363206; cv=none; b=RDAWvH4pymmqK5zUuNHJk/bAHURbZWW4/rrkc8RSdDSSMEs///ovO3XRHZnskUav33GOnReXDd8I+lCf6pDb7UtDfMHppJEYNX+a+/D14BzpPjGeTwGcibSO3ddVKSu6dI7g/ZVvC5adO6/b2xNU5KAucvzAboickFmBH7T7CVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718362359; c=relaxed/simple;
-	bh=bjdAe8262D+RJHgD3sLoIDowspHJbi+XMGtijIFkaJs=;
+	s=arc-20240116; t=1718363206; c=relaxed/simple;
+	bh=ITk4Pmw1wElvoJaLQpDB7x++r9MKwh7KfmJ6kjQS1SQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X2xpQP6/QYq2u2tHTn9nYJTlJLrNWkmHrd6rhttmCjoAbx/VmBYCIuEs8UaBfn7jicXLKxBT4OPSylAevKR82RpMo9WmvRXu/ytWiNA9qZfEYfqFAOwFjvUVySREw71/FOA/3ioPzY0ZMrljvYqipWqnxk0dhhD6ic8FrUAVZNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MWfBA2WP; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718362357; x=1749898357;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=bjdAe8262D+RJHgD3sLoIDowspHJbi+XMGtijIFkaJs=;
-  b=MWfBA2WPqj6lKIyTrKhqC1Y6OB84gHaVJWZ4U+H4cd4RPBmCPh8j0U0N
-   51j0M6nixNfZXlFZoDc4PyQHKrp6XKL7qqmSGB46i4uwq5J5+9hi8Roe4
-   E0sPCRnwkWzI8Z4pZq3+EDI3KxTQzagZFH6aluYWueAGUAVNZLdwKjVBb
-   ItKC4qvhQHl7XycBvtgi3SlbKmOZ21hacizT3YbQvvNJNAIrb0olUUItK
-   qidE+NhVuN6+wPe3CVLCUbYZV/zXQUrM2PJtXD8bsOXllp24wretm4P+Y
-   jmoATsV/pTVsTpG3F3PdQIqn9blDmDbWyIJAQvSPjEs4036LCSWvmOseg
-   g==;
-X-CSE-ConnectionGUID: 673lghAFTE+EZALgAncCoA==
-X-CSE-MsgGUID: KKEhE3NvSte+YHx/y4VX1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="15073006"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="15073006"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 03:52:36 -0700
-X-CSE-ConnectionGUID: C8zURk45ToGR4ElJ0KUZug==
-X-CSE-MsgGUID: 5jx/nXZaQyaLXG7UOHdIwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="44836839"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.94.248.10])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 03:52:31 -0700
-Message-ID: <25910cae-b29e-49a5-86d2-6da571664b4a@intel.com>
-Date: Fri, 14 Jun 2024 13:52:26 +0300
+	 In-Reply-To:Content-Type; b=SO9/JthIfS363GREUzyMXhUwTuZMIP3V1D0gH6glE3Ql9KK8ntqbDpjOAdhwCgyHH3XDX0cFfcQayqZTKKdQ9UmyaWWVuCbgPTHFno93HSzO8w5QECleIdZgLmim+zHen+ts6Hgg7Em7Tmban2WeD+GK5+8m394gKGi2YypouH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ZS0ss3El; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52ca342d6f3so1538742e87.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 04:06:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1718363201; x=1718968001; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=r5D80in0TCKF7CT1Ecrry2kBSeVogFVfKvkdHakj/G8=;
+        b=ZS0ss3ElqQML10fu8j8eKaPhMQw1iuTwzguoHoek/Oe8FTuHaFnT4KmHUxH8aAAFUx
+         3vRTiWK6dgDF+yhhras1S1z+/EitG+4GxE9hKx9vmfG2YF8RCDzYHOYqW3Msj19nkJ2+
+         bF7XlyQnH0pxNhP0jibLTkt8fAqpzaNBXTGA/e4hOgDd4UrnIavYp0PlLE+R9cFWWQyG
+         0NRB6aglvZ8hXKBpKxYOn8Uc3tRmHvqpl625gnU3PpaEB60D5ICm65sACbYcRTxKx3Rq
+         8LHzDO9qPDAZNILgX0d4Wd3TfI9a8zqLwUqs6fD5An30HF55Lr+oxSHol+vhmq94R4HH
+         Q3Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718363201; x=1718968001;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=r5D80in0TCKF7CT1Ecrry2kBSeVogFVfKvkdHakj/G8=;
+        b=ma7O3JBHbdvmQVeJwyQXL6RMHAZ4VXrEpijZzlTOJi3rfBC+RKJC0heKHW0KVIz8/I
+         ZEEbF0uWcsR3mM3uDPxIoNEPgGrCNoVNDkV0p2aF/LqcfQWNkzvbBb2ElTcgOthZCM5Z
+         jhFbnqRQjfOe/zTPwtZ7WmxSd77VzIHadYhKKfEsdxtSiroVHdzh3Rd5ohC2WPx37VJm
+         e0crtSMIPcovg0/ZTsKd75eVChHM9LH9cOkDykglpqsyy1+huQK7aynRlrWT1Wrdm2iT
+         +jAMV1D/C4+6t5v8qFesMPm98qTDxHunKovz5CVTiNXF9oQa0toAJMB62IY7EXoOLFvQ
+         2Pjg==
+X-Forwarded-Encrypted: i=1; AJvYcCUpiIDvviUUZaT2LvHHL0Vsw8RK0XKHW1dgwY7NixsPxEY+cuLb4IqWzfaxmh34nggb+w1k4x9lT7n0rTV37nJe6EG0+9uEE8CKSA==
+X-Gm-Message-State: AOJu0YxNJs2GmLzomujEQBCtC6U6jLYAZ7idHJqqYVg9InmYRuX/wlxe
+	kjCkGwkJT5SLVQt6EZKQ2RdtrvapVwRIw9K19O8+82wChxz42Atm7HcMiYe/e3o=
+X-Google-Smtp-Source: AGHT+IH9JHjPbSmLTT+F7xHZJ81IvkKNjZ+2yhkxhvBPp4AqZfmx5Y0pBQzf79FJO58OFQjWNVtaWg==
+X-Received: by 2002:a05:6512:3ca4:b0:52c:8339:d09b with SMTP id 2adb3069b0e04-52ca6e55096mr1765316e87.1.1718363200927;
+        Fri, 14 Jun 2024 04:06:40 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.189])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075104a1bsm4095242f8f.102.2024.06.14.04.06.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jun 2024 04:06:40 -0700 (PDT)
+Message-ID: <4a477079-b4a6-4861-ae24-b3b87adb8ecd@tuxon.dev>
+Date: Fri, 14 Jun 2024 14:06:38 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,395 +76,263 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] mmc: sdhci-of-dwcmshc: add callback functions for
- dwcmshc
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
- jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
- chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
- tingzhu.wang@sophgo.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-References: <cover.1718241495.git.unicorn_wang@outlook.com>
- <2182f65bad83e394a7ffb9259b2c1aa130912961.1718241495.git.unicorn_wang@outlook.com>
+Subject: Re: [PATCH 06/12] rtc: renesas-rtca3: Add driver for RTCA-3 available
+ on Renesas RZ/G3S SoC
 Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <2182f65bad83e394a7ffb9259b2c1aa130912961.1718241495.git.unicorn_wang@outlook.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
+ magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240614071932.1014067-7-claudiu.beznea.uj@bp.renesas.com>
+ <2024061409215756e6a10c@mail.local>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <2024061409215756e6a10c@mail.local>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/06/24 04:43, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+Hi, Alexandre,
+
+On 14.06.2024 12:21, Alexandre Belloni wrote:
+> Hello Claudiu,
 > 
-> The current framework is not easily extended to support new SOCs.
-> For example, in the current code we see that the SOC-level
-> structure `rk35xx_priv` and related logic are distributed in
-> functions such as dwcmshc_probe/dwcmshc_remove/dwcmshc_suspend/......,
-> which is inappropriate.
+> On 14/06/2024 10:19:26+0300, Claudiu wrote:
+>> +static int rtca3_initial_setup(struct rtca3_priv *priv)
+>> +{
+>> +	unsigned long osc32k_rate;
+>> +	u8 pes, tmp, mask;
+>> +	u32 sleep_us;
+>> +	int ret;
+>> +
+>> +	osc32k_rate = clk_get_rate(priv->clk);
+>> +	if (!osc32k_rate)
+>> +		return -EINVAL;
+>> +
+>> +	sleep_us = DIV_ROUND_UP_ULL(1000000ULL, osc32k_rate) * 6;
+>> +
+>> +	priv->ppb.ten_sec = DIV_ROUND_CLOSEST_ULL(1000000000ULL, (osc32k_rate * 10));
+>> +	priv->ppb.sixty_sec = DIV_ROUND_CLOSEST_ULL(1000000000ULL, (osc32k_rate * 60));
+>> +
+>> +	/*
+>> +	 * According to HW manual (section 22.4.2. Clock and count mode setting procedure)
+>> +	 * we need to wait at least 6 cycles of the 32KHz clock after clock was enabled.
+>> +	 */
+>> +	usleep_range(sleep_us, sleep_us + 10);
+>> +
+>> +	/* Disable alarm and carry interrupts. */
+>> +	mask = RTCA3_RCR1_AIE | RTCA3_RCR1_CIE;
+>> +	rtca3_byte_update_bits(priv, RTCA3_RCR1, mask, 0);
+>> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR1, tmp, !(tmp & mask),
+>> +				 10, RTCA3_DEFAULT_TIMEOUT_US);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Stop the RTC and set to 12 hours mode and calendar count mode.
+>> +	 * RCR2.START initial value is undefined so we need to stop here
+>> +	 * all the time.
+>> +	 */
 > 
-> The solution is to abstract some possible common operations of soc
-> as dwcmshc platform data. Each soc implements the corresponding callback
-> function according to its own needs.
-> dwcmshc framework is responsible for calling these callback functions
-> in those dwcmshc_xxx functions at proper positions.
+> Certainly not, if you stop the RTC on probe, you lose the time
+> information, this must only be done when the RTC has never been
+> initialised. The whole goal of the RTC is the keep time across reboots,
+> its lifecycle is longer than the system.
+
+This was also my first thought when I read the HW manual.
+
+It has been done like this to follow the HW manual. According to HW manual
+[1], chapter 22.3.19 RTC Control Register 2 (RCR2), initial value of START
+bit is undefined.
+
+If it's 1 while probing but it has never been initialized, we can falsely
+detect that RTC is started and skip the rest of the initialization steps.
+W/o initialization configuration, the RTC will not be able to work.
+
+Even with this implementation we don't loose the time b/w reboots. Here is
+the output on my board [2]. The steps I did were the following:
+1/ remove the power to the board (I don't have a battery for RTC installed
+   at the moment)
+2/ boot the board and issue hwclock -w
+3/ reboot
+4/ check the systime and rtc time
+5/ poweroff
+6/ poweron
+7/ boot and check systime and RTC time
+
+As you can see the time is not lost but continue to increment. I presume
+the hardware takes into account that time needs to increment when initial
+configuration is executed.
+
+[1]
+https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzg3s-general-purpose-microprocessors-single-core-arm-cortex-a55-11-ghz-cpu-and-dual-core-cortex-m33-250
+[2] https://p.fr33tux.org/585cd6
+
 > 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  drivers/mmc/host/sdhci-of-dwcmshc.c | 143 +++++++++++++++++++---------
->  1 file changed, 99 insertions(+), 44 deletions(-)
+> Also, why do you insist on 12H-mode? The proper thing to do is to support
+> 12H-mode on read but always use 24H-mode when setting the time.
+
+OK, I wasn't aware of this. I think I followed this approach as it looked
+to me the number of operation to update the hardware registers was lower
+for 12h mode.
+
+I'll adjust as proposed.
+
 > 
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index 38ab755aa044..ebae461019f9 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -206,6 +206,7 @@ struct rk35xx_priv {
->  	u8 txclk_tapnum;
->  };
->  
-> +struct dwcmshc_ops;
->  struct dwcmshc_priv {
->  	struct clk	*bus_clk;
->  	int vendor_specific_area1; /* P_VENDOR_SPECIFIC_AREA1 reg */
-> @@ -214,6 +215,20 @@ struct dwcmshc_priv {
->  	void *priv; /* pointer to SoC private stuff */
->  	u16 delay_line;
->  	u16 flags;
-> +
-> +	const struct dwcmshc_ops *ops;
+>> +	mask = RTCA3_RCR2_START | RTCA3_RCR2_HR24 | RTCA3_RCR2_CNTMD;
+>> +	writeb(0, priv->base + RTCA3_RCR2);
+>> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR2, tmp, !(tmp & mask),
+>> +				 10, RTCA3_DEFAULT_TIMEOUT_US);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Execute reset and wait for reset and calendar count mode to be applied. */
+>> +	mask = RTCA3_RCR2_RESET | RTCA3_RCR2_CNTMD;
+>> +	writeb(RTCA3_RCR2_RESET, priv->base + RTCA3_RCR2);
+>> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR2, tmp, !(tmp & mask),
+>> +				 10, RTCA3_RESET_TIMEOUT_US);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * According to HW manual (section 22.6.3. Notes on writing to and reading
+>> +	 * from registers) after reset we need to wait 6 clock cycles before
+>> +	 * writing to RTC registers.
+>> +	 */
+>> +	usleep_range(sleep_us, sleep_us + 10);
+>> +
+>> +	/* Set no adjustment. */
+>> +	writeb(0, priv->base + RTCA3_RADJ);
+>> +	ret = readb_poll_timeout(priv->base + RTCA3_RADJ, tmp, !tmp, 10,
+>> +				 RTCA3_DEFAULT_TIMEOUT_US);
+>> +
+>> +	/* Start the RTC and enable automatic time error adjustment. */
+>> +	mask = RTCA3_RCR2_START | RTCA3_RCR2_AADJE;
+>> +	writeb(RTCA3_RCR2_START | RTCA3_RCR2_AADJE, priv->base + RTCA3_RCR2);
+>> +	ret = readb_poll_timeout(priv->base + RTCA3_RCR2, tmp, ((tmp & mask) == mask),
+>> +				 10, RTCA3_START_TIMEOUT_US);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * According to HW manual (section 22.6.4. Notes on writing to and reading
+>> +	 * from registers) we need to wait 1/128 seconds while the clock is operating
+>> +	 * (RCR2.START bit = 1) to be able to read the counters after a return from
+>> +	 * reset.
+>> +	 */
+>> +	usleep_range(8000, 9000);
+>> +
+>> +	/* Set period interrupt to 1/64 seconds. It is necessary for alarm setup. */
+>> +	pes = FIELD_PREP(RTCA3_RCR1_PES, RTCA3_RCR1_PES_1_64_SEC);
+>> +	rtca3_byte_update_bits(priv, RTCA3_RCR1, RTCA3_RCR1_PES, pes);
+>> +	return readb_poll_timeout(priv->base + RTCA3_RCR1, tmp, ((tmp & RTCA3_RCR1_PES) == pes),
+>> +				  10, RTCA3_DEFAULT_TIMEOUT_US);
+>> +}
+>> +
+>> +static int rtca3_request_irqs(struct platform_device *pdev, struct rtca3_priv *priv)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	int ret, irq;
+>> +
+>> +	irq = platform_get_irq_byname(pdev, "alarm");
+>> +	if (irq < 0)
+>> +		return dev_err_probe(dev, irq, "Failed to get alarm IRQ!\n");
+>> +
+>> +	ret = devm_request_irq(dev, irq, rtca3_alarm_handler, 0, "rtca3-alarm", priv);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to request alarm IRQ!\n");
+>> +	priv->wakeup_irq = irq;
+>> +
+>> +	irq = platform_get_irq_byname(pdev, "period");
+>> +	if (irq < 0)
+>> +		return dev_err_probe(dev, irq, "Failed to get period IRQ!\n");
+>> +
+>> +	ret = devm_request_irq(dev, irq, rtca3_periodic_handler, 0, "rtca3-period", priv);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to request period IRQ!\n");
+>> +
+>> +	/*
+>> +	 * Driver doesn't implement carry handler. Just get the IRQ here
+>> +	 * for backward compatibility, in case carry support will be added later.
+>> +	 */
+>> +	irq = platform_get_irq_byname(pdev, "carry");
+>> +	if (irq < 0)
+>> +		return dev_err_probe(dev, irq, "Failed to get carry IRQ!\n");
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int rtca3_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct rtca3_priv *priv;
+>> +	int ret;
+>> +
+>> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+>> +	if (!priv)
+>> +		return -ENOMEM;
+>> +
+>> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(priv->base))
+>> +		return PTR_ERR(priv->base);
+>> +
+>> +	priv->clk = devm_clk_get_enabled(dev, "counter");
+>> +	if (IS_ERR(priv->clk))
+>> +		return PTR_ERR(priv->clk);
+>> +
+>> +	platform_set_drvdata(pdev, priv);
+>> +
+>> +	spin_lock_init(&priv->lock);
+>> +	atomic_set(&priv->alrm_sstep, RTCA3_ALRM_SSTEP_DONE);
+>> +	init_completion(&priv->set_alarm_completion);
+>> +
+>> +	ret = rtca3_initial_setup(priv);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to setup the RTC!\n");
+>> +
+>> +	ret = rtca3_request_irqs(pdev, priv);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	device_init_wakeup(&pdev->dev, 1);
+>> +
+>> +	priv->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
+>> +	if (IS_ERR(priv->rtc_dev))
+>> +		return PTR_ERR(priv->rtc_dev);
+>> +
+>> +	priv->rtc_dev->ops = &rtca3_ops;
+>> +	priv->rtc_dev->max_user_freq = 256;
+>> +	priv->rtc_dev->range_min = mktime64(1999, 1, 1, 0, 0, 0);
+>> +	priv->rtc_dev->range_max = mktime64(2098, 12, 31, 23, 59, 59);
+> 
+> This very much looks like the range should be 2000 to 2099, why do you
+> want to shift it?
 
-	const struct dwcmshc_data *data;
+2000-2099 was my first option for this but then I saw one of your old
+commits on this topic and, since I'm not very familiar with RTC,
+I took it as example. I'll adjust as you proposed.
 
-> +};
-> +
-> +struct dwcmshc_ops {
-> +	int (*init)(struct device *dev, struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
-> +	void (*postinit)(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
-> +	int  (*clks_enable)(struct dwcmshc_priv *dwc_priv);
-> +	void (*clks_disable)(struct dwcmshc_priv *dwc_priv);
-> +};
-> +
-> +struct dwcmshc_data {
-> +	const struct sdhci_pltfm_data *pdata;
-> +	const struct dwcmshc_ops *ops;
->  };
+commit beee05dfbead
+Author: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Date:   Wed Mar 20 12:30:10 2019 +0100
 
-Currently, ops and pdata values are unique to an individual
-dwcmshc_data, so it is simpler to put it altogether i.e.
+    rtc: sh: set range
 
-struct dwcmshc_data {
-	const struct sdhci_pltfm_data pdata;
-	int (*init)(struct device *dev, struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
-	void (*postinit)(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
-	int  (*clks_enable)(struct dwcmshc_priv *dwc_priv);
-	void (*clks_disable)(struct dwcmshc_priv *dwc_priv);
-};
+    The SH RTC is a BCD RTC with some version having 4 digits for the year.
 
->  
->  /*******************************************************************************
-> @@ -815,6 +830,25 @@ static void rk35xx_postinit(struct sdhci_host *host, struct dwcmshc_priv *dwc_pr
->  	}
->  }
->  
-> +static int rk35xx_clks_enable(struct dwcmshc_priv *dwc_priv)
-> +{
-> +	struct rk35xx_priv *priv = dwc_priv->priv;
-> +	int ret = 0;
-> +
-> +	if (priv)
-> +		ret = clk_bulk_prepare_enable(RK35xx_MAX_CLKS, priv->rockchip_clks);
-> +	return ret;
-> +}
-> +
-> +static void rk35xx_clks_disable(struct dwcmshc_priv *dwc_priv)
-> +{
-> +	struct rk35xx_priv *priv = dwc_priv->priv;
-> +
-> +	if (priv)
-> +		clk_bulk_disable_unprepare(RK35xx_MAX_CLKS,
-> +					   priv->rockchip_clks);
-> +}
-> +
->  static void th1520_sdhci_set_phy(struct sdhci_host *host)
->  {
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> @@ -1167,30 +1201,65 @@ static const struct sdhci_pltfm_data sdhci_dwcmshc_cv18xx_pdata = {
->  	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
->  };
->  
-> +static const struct dwcmshc_ops dwcmshc_rk35xx_ops = {
-> +	.init = rk35xx_init,
-> +	.postinit = rk35xx_postinit,
-> +	.clks_enable = rk35xx_clks_enable,
-> +	.clks_disable = rk35xx_clks_disable,
-> +};
+    The range for the RTCs with only 2 digits for the year was unfortunately
+    shifted to handle 1999 to 2098.
 
-So this becomes:
+    Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+    Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-static const struct dwcmshc_data sdhci_dwcmshc_rk35xx_pdata = {
-	.pdata = {
-		.ops = &sdhci_dwcmshc_rk35xx_ops,
-		.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-			  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
-		.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN |
-			   SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN,
-	},
-	.init = rk35xx_init,
-	.postinit = rk35xx_postinit,
-	.clks_enable = rk35xx_clks_enable,
-	.clks_disable = rk35xx_clks_disable,
-};
 
-etc
+Thank you for your review,
+Claudiu Beznea
 
-> +
-> +static const struct dwcmshc_ops dwcmshc_th1520_ops = {
-> +	.init = th1520_init,
-> +};
-> +
-> +static const struct dwcmshc_data dwcmshc_cv18xx_data = {
-> +	.pdata = &sdhci_dwcmshc_cv18xx_pdata,
-> +};
-> +
-> +static const struct dwcmshc_data dwcmshc_generic_data = {
-> +	.pdata = &sdhci_dwcmshc_pdata,
-> +};
-> +
-> +static const struct dwcmshc_data dwcmshc_rk35xx_data = {
-> +	.pdata = &sdhci_dwcmshc_rk35xx_pdata,
-> +	.ops = &dwcmshc_rk35xx_ops,
-> +};
-> +
-> +static const struct dwcmshc_data dwcmshc_th1520_data = {
-> +	.pdata = &sdhci_dwcmshc_th1520_pdata,
-> +	.ops = &dwcmshc_th1520_ops,
-> +};
-> +
-> +#ifdef CONFIG_ACPI
-> +static const struct dwcmshc_data dwcmshc_bf3_data = {
-> +	.pdata = &sdhci_dwcmshc_bf3_pdata,
-> +};
-> +#endif
-> +
->  static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
->  	{
->  		.compatible = "rockchip,rk3588-dwcmshc",
-> -		.data = &sdhci_dwcmshc_rk35xx_pdata,
-> +		.data = &dwcmshc_rk35xx_data,
->  	},
->  	{
->  		.compatible = "rockchip,rk3568-dwcmshc",
-> -		.data = &sdhci_dwcmshc_rk35xx_pdata,
-> +		.data = &dwcmshc_rk35xx_data,
->  	},
->  	{
->  		.compatible = "snps,dwcmshc-sdhci",
-> -		.data = &sdhci_dwcmshc_pdata,
-> +		.data = &dwcmshc_generic_data,
->  	},
->  	{
->  		.compatible = "sophgo,cv1800b-dwcmshc",
-> -		.data = &sdhci_dwcmshc_cv18xx_pdata,
-> +		.data = &dwcmshc_cv18xx_data,
->  	},
->  	{
->  		.compatible = "sophgo,sg2002-dwcmshc",
-> -		.data = &sdhci_dwcmshc_cv18xx_pdata,
-> +		.data = &dwcmshc_cv18xx_data,
->  	},
->  	{
->  		.compatible = "thead,th1520-dwcmshc",
-> -		.data = &sdhci_dwcmshc_th1520_pdata,
-> +		.data = &dwcmshc_th1520_data,
->  	},
->  	{},
->  };
-> @@ -1200,7 +1269,7 @@ MODULE_DEVICE_TABLE(of, sdhci_dwcmshc_dt_ids);
->  static const struct acpi_device_id sdhci_dwcmshc_acpi_ids[] = {
->  	{
->  		.id = "MLNXBF30",
-> -		.driver_data = (kernel_ulong_t)&sdhci_dwcmshc_bf3_pdata,
-> +		.driver_data = (kernel_ulong_t)&dwcmshc_bf3_data,
->  	},
->  	{}
->  };
-> @@ -1213,18 +1282,17 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  	struct sdhci_pltfm_host *pltfm_host;
->  	struct sdhci_host *host;
->  	struct dwcmshc_priv *priv;
-> -	struct rk35xx_priv *rk_priv = NULL;
-> -	const struct sdhci_pltfm_data *pltfm_data;
-> +	const struct dwcmshc_data *data;
->  	int err;
->  	u32 extra, caps;
->  
-> -	pltfm_data = device_get_match_data(&pdev->dev);
-> -	if (!pltfm_data) {
-> +	data = device_get_match_data(&pdev->dev);
-> +	if (!data) {
->  		dev_err(&pdev->dev, "Error: No device match data found\n");
->  		return -ENODEV;
->  	}
->  
-> -	host = sdhci_pltfm_init(pdev, pltfm_data,
-> +	host = sdhci_pltfm_init(pdev, data->pdata,
->  				sizeof(struct dwcmshc_priv));
->  	if (IS_ERR(host))
->  		return PTR_ERR(host);
-> @@ -1239,6 +1307,7 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  
->  	pltfm_host = sdhci_priv(host);
->  	priv = sdhci_pltfm_priv(pltfm_host);
-> +	priv->ops = data->ops;
-
-Becomes:
-
-	priv->data = data;
-
->  
->  	if (dev->of_node) {
->  		pltfm_host->clk = devm_clk_get(dev, "core");
-> @@ -1269,20 +1338,14 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  	host->mmc_host_ops.hs400_enhanced_strobe = dwcmshc_hs400_enhanced_strobe;
->  	host->mmc_host_ops.execute_tuning = dwcmshc_execute_tuning;
->  
-> -	if (pltfm_data == &sdhci_dwcmshc_rk35xx_pdata) {
-> -		err = rk35xx_init(&pdev->dev, host, priv);
-> -		if (err)
-> -			goto err_clk;
-> -	}
-> -
-> -	if (pltfm_data == &sdhci_dwcmshc_th1520_pdata) {
-> -		err = th1520_init(&pdev->dev, host, priv);
-> +	if (data->ops && data->ops->init) {
-
-Becomes:
-
-	if (data->init) {
-
-etc
-
-> +		err = data->ops->init(&pdev->dev, host, priv);
->  		if (err)
->  			goto err_clk;
->  	}
->  
->  #ifdef CONFIG_ACPI
-> -	if (pltfm_data == &sdhci_dwcmshc_bf3_pdata)
-> +	if (data == &dwcmshc_bf3_data)
->  		sdhci_enable_v4_mode(host);
->  #endif
->  
-> @@ -1308,8 +1371,8 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  		dwcmshc_cqhci_init(host, pdev);
->  	}
->  
-> -	if (rk_priv)
-> -		rk35xx_postinit(host, priv);
-> +	if (data->ops && data->ops->postinit)
-> +		data->ops->postinit(host, priv);
->  
->  	err = __sdhci_add_host(host);
->  	if (err)
-> @@ -1327,9 +1390,8 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  err_clk:
->  	clk_disable_unprepare(pltfm_host->clk);
->  	clk_disable_unprepare(priv->bus_clk);
-> -	if (rk_priv)
-> -		clk_bulk_disable_unprepare(RK35xx_MAX_CLKS,
-> -					   rk_priv->rockchip_clks);
-> +	if (data->ops && data->ops->clks_disable)
-> +		data->ops->clks_disable(priv);
->  free_pltfm:
->  	sdhci_pltfm_free(pdev);
->  	return err;
-> @@ -1340,7 +1402,6 @@ static void dwcmshc_remove(struct platform_device *pdev)
->  	struct sdhci_host *host = platform_get_drvdata(pdev);
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->  	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> -	struct rk35xx_priv *rk_priv = priv->priv;
->  
->  	pm_runtime_get_sync(&pdev->dev);
->  	pm_runtime_disable(&pdev->dev);
-> @@ -1352,9 +1413,8 @@ static void dwcmshc_remove(struct platform_device *pdev)
->  
->  	clk_disable_unprepare(pltfm_host->clk);
->  	clk_disable_unprepare(priv->bus_clk);
-> -	if (rk_priv)
-> -		clk_bulk_disable_unprepare(RK35xx_MAX_CLKS,
-> -					   rk_priv->rockchip_clks);
-> +	if (priv->ops && priv->ops->clks_disable)
-> +		priv->ops->clks_disable(priv);
->  	sdhci_pltfm_free(pdev);
->  }
->  
-> @@ -1364,7 +1424,6 @@ static int dwcmshc_suspend(struct device *dev)
->  	struct sdhci_host *host = dev_get_drvdata(dev);
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->  	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> -	struct rk35xx_priv *rk_priv = priv->priv;
->  	int ret;
->  
->  	pm_runtime_resume(dev);
-> @@ -1383,9 +1442,8 @@ static int dwcmshc_suspend(struct device *dev)
->  	if (!IS_ERR(priv->bus_clk))
->  		clk_disable_unprepare(priv->bus_clk);
->  
-> -	if (rk_priv)
-> -		clk_bulk_disable_unprepare(RK35xx_MAX_CLKS,
-> -					   rk_priv->rockchip_clks);
-> +	if (priv->ops && priv->ops->clks_disable)
-> +		priv->ops->clks_disable(priv);
->  
->  	return ret;
->  }
-> @@ -1395,7 +1453,6 @@ static int dwcmshc_resume(struct device *dev)
->  	struct sdhci_host *host = dev_get_drvdata(dev);
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->  	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> -	struct rk35xx_priv *rk_priv = priv->priv;
->  	int ret;
->  
->  	ret = clk_prepare_enable(pltfm_host->clk);
-> @@ -1408,29 +1465,27 @@ static int dwcmshc_resume(struct device *dev)
->  			goto disable_clk;
->  	}
->  
-> -	if (rk_priv) {
-> -		ret = clk_bulk_prepare_enable(RK35xx_MAX_CLKS,
-> -					      rk_priv->rockchip_clks);
-> +	if (priv->ops && priv->ops->clks_enable) {
-> +		ret = priv->ops->clks_enable(priv);
->  		if (ret)
->  			goto disable_bus_clk;
->  	}
->  
->  	ret = sdhci_resume_host(host);
->  	if (ret)
-> -		goto disable_rockchip_clks;
-> +		goto disable_soc_clks;
->  
->  	if (host->mmc->caps2 & MMC_CAP2_CQE) {
->  		ret = cqhci_resume(host->mmc);
->  		if (ret)
-> -			goto disable_rockchip_clks;
-> +			goto disable_soc_clks;
->  	}
->  
->  	return 0;
->  
-> -disable_rockchip_clks:
-> -	if (rk_priv)
-> -		clk_bulk_disable_unprepare(RK35xx_MAX_CLKS,
-> -					   rk_priv->rockchip_clks);
-> +disable_soc_clks:
-> +	if (priv->ops && priv->ops->clks_disable)
-> +		priv->ops->clks_disable(priv);
->  disable_bus_clk:
->  	if (!IS_ERR(priv->bus_clk))
->  		clk_disable_unprepare(priv->bus_clk);
-
+> 
+> 
 
