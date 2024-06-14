@@ -1,159 +1,184 @@
-Return-Path: <devicetree+bounces-75941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 313E190929A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 20:54:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C1FF909263
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 20:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82429B2591E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:53:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CF001C214FF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:37:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5931A01B6;
-	Fri, 14 Jun 2024 18:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC521A254B;
+	Fri, 14 Jun 2024 18:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b="D1SQpY5Q"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="YJD974pd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www522.your-server.de (www522.your-server.de [195.201.215.122])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5B619FA84;
-	Fri, 14 Jun 2024 18:53:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.215.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD421A2547;
+	Fri, 14 Jun 2024 18:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718391233; cv=none; b=DOAJNA+ZleYzPrrThFzs5AtaWs53B/vVL5c9+LUOLws3KnYnI3L8QLo2U+VJn4yzXkmjkIMDHm8bpMJjByLBf2qUI5zDtyWwXfnO84e11TTkQkf1TmLaoletKINU//BK/UQiCYAqFZ4HyV50kgniKCMHETXmFJENN9tLr+6dhrQ=
+	t=1718390217; cv=none; b=Y76ynjXOPcKWXqDch65bGevYm6rr4PNXl6Ml+f784jEGwvVJwCgKqFBHqso/E/wFNVy44qeSjODNdHj3ws7STMV+Wtp00+AtyakKc+CI0dw0NaE8AzMwJba6elmw4kUHXVQwBzt4DZk+gSB53JKA+5A+zu61bf5vk3EfhtXv140=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718391233; c=relaxed/simple;
-	bh=X4on6X+88uTtA052hLd8IsojhN2ZO9yOasjMNwEvFjo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=CHPL8eQeLcuf+xxTbOFsQfEYrv80dh2pS7Bw3rh3Y2U7xelZtsWtQRVj5295cu8/ZCbIQ6fBlj7hwSBzL8DspQyZnvLxIIvTJUdBS/7SnLmE354EtzlXLU+89bRSw8DpRZ44XbFNKQqrh3FcqSk5MElz+1R7thizGpzNDFQYPZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de; spf=pass smtp.mailfrom=folker-schwesinger.de; dkim=pass (2048-bit key) header.d=folker-schwesinger.de header.i=@folker-schwesinger.de header.b=D1SQpY5Q; arc=none smtp.client-ip=195.201.215.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=folker-schwesinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=folker-schwesinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=folker-schwesinger.de; s=default2212; h=In-Reply-To:References:To:From:Cc:
-	Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:Mime-Version:
-	Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=QENhb9HFgTzguovvznEeWYIHmMFEH/ZbGTpLCqvvbY0=; b=D1SQpY5Q3iU5y6hS8x3yCA2fCw
-	Xefzm8C0+45Bsx/hdgDkRNbsSx/QEswS5UQ34JGXS6GhfYViD98oyeBpeza3esE6hVmq+sMfSpn8T
-	MJJI+G8UJ9YF3ttwRvN2GliXh7gTihyr1Teipx7qAcKSLC9+xmPwqQ3M4P902G7Q4kAbEikSprWDp
-	e8SrOyC+SUT00xqTD9EEtEC3l5gsMjEhnROTiPfNaL+m4kFPdK9Qw69K0E4pVp5Kbca6f05ZV1gNU
-	Yp3CcMz1SO/a4C5cqCgerfhV3SGCbSYwDnIxP5DmaKdXcDjCMjkPzH9zKrlNe0dUYFb8725cOivwN
-	3AkQUWVQ==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-	by www522.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <dev@folker-schwesinger.de>)
-	id 1sIBkj-000LiY-5F; Fri, 14 Jun 2024 20:34:21 +0200
-Received: from [185.213.155.213] (helo=localhost)
-	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <dev@folker-schwesinger.de>)
-	id 1sIBkh-000GCY-3A;
-	Fri, 14 Jun 2024 20:34:20 +0200
+	s=arc-20240116; t=1718390217; c=relaxed/simple;
+	bh=+gUmHx/ZY7x3Xe0H6FUO+/M1RfSsjc2lrOfgaD81jd8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tQDG6siXestmRB7dIh6KkcwV5y/LZMLD0u3pcT7NM35QTZNGDDyodZtrVEhnoA8qPqaC9SSyyN84guzsQfe6kFEcVMA3qdfA1chuU9rlLRd8EOTd8IuXysfPvtVqfPZy1krby9/2rsmGlExmEXFO5yuyNlfSIARl6S9ignK7UeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=YJD974pd; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45EBpu0o011763;
+	Fri, 14 Jun 2024 13:36:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=YLbCV4xTCqcP76ij
+	RvYtVoVP3uBmGuHUKxj5VPQAscg=; b=YJD974pdqhY7MdRrrCUeA4hnosGL+6hA
+	MJbcwQmBaj7L1ivjppR/tWRyNfmv82vQvhFsjziMY7AAqpIspnMMMGyy7iuVrlW7
+	sEvaoeT/MMjGf3Ko3p1OMPKx90sMsGnYWRmWQn6YE2Gh7v0cc/o1CSjxUDUxAaQz
+	V76/VEH13fspFqTztwx9RrL3Tay0104SUBQTrYe+XxcNyQy97usLU/tGMgupnPli
+	9MST1UyQOazJlF/amSzD5XIQige70tkYb352grZN9/j7iPVnlyUUZDy9dMWwWjvv
+	RXT9+Yi1iWv9A2YPuxwNdoV/suYIgZyHdT4vocjpgmPo3brJxnTPbg==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3yqb8ejvqj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Jun 2024 13:36:38 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 14 Jun
+ 2024 19:36:36 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Fri, 14 Jun 2024 19:36:36 +0100
+Received: from paulha.crystal.cirrus.com (paulha.ad.cirrus.com [141.131.145.123])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 223B4820248;
+	Fri, 14 Jun 2024 18:36:35 +0000 (UTC)
+From: Paul Handrigan <paulha@opensource.cirrus.com>
+To: <broonie@kernel.org>, <lgirdwood@gmail.com>, <linux-sound@vger.kernel.org>,
+        <patches@opensource.cirrus.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Paul Handrigan <paulha@opensource.cirrus.com>
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: cirrus,cs530x: Add initial DT binding
+Date: Fri, 14 Jun 2024 13:36:31 -0500
+Message-ID: <20240614183632.861575-1-paulha@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 14 Jun 2024 18:34:19 +0000
-Message-Id: <D1ZYFRA8S0KC.3GG78DB9BA5AG@folker-schwesinger.de>
-Subject: Re: [PATCH 1/3] phy: rockchip: emmc: Enable pulldown for strobe
- line
-Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
- <kishon@kernel.org>, "Chris Ruehl" <chris.ruehl@gtsys.com.hk>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Christopher Obbard" <chris.obbard@collabora.com>, "Doug Anderson"
- <dianders@chromium.org>, "Brian Norris" <briannorris@chromium.org>, "Jensen
- Huang" <jensenhuang@friendlyarm.com>, <linux-phy@lists.infradead.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-From: "Folker Schwesinger" <dev@folker-schwesinger.de>
-To: "Alban Browaeys" <alban.browaeys@gmail.com>,
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "Conor Dooley"
- <conor@kernel.org>
-X-Mailer: aerc 0.17.0-152-g73bcb4661460
-References: <20240326-rk-default-enable-strobe-pulldown-v1-0-f410c71605c0@folker-schwesinger.de> <313d5a24b6cffa1a9160e624bb6855aa7f66589e.camel@gmail.com> <20240411-mushily-pucker-732583c1d340@spud> <2192003.Icojqenx9y@diego> <2427291970ac0962bf56b2455e5cb26e49d42c51.camel@gmail.com>
-In-Reply-To: <2427291970ac0962bf56b2455e5cb26e49d42c51.camel@gmail.com>
-X-Authenticated-Sender: dev@folker-schwesinger.de
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27306/Fri Jun 14 10:28:44 2024)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: Y6fjkybM0V7-ayRv6xUhqZ69Plc4UU3p
+X-Proofpoint-GUID: Y6fjkybM0V7-ayRv6xUhqZ69Plc4UU3p
+X-Proofpoint-Spam-Reason: safe
 
-Hi Alban,
+Add the YAML DT bindings for the cs530x high performance
+audio ADCs.
 
-thanks for aggregating all the background information about the issue.
+Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
+---
+ .../bindings/sound/cirrus,cs530x.yaml         | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
 
-On Tue Jun 11, 2024 at 9:38 PM CEST, Alban Browaeys wrote:
->
-> Could you test the enable-strobe property on all the dts that  disabled
-> hs400es due to this new default (I lack the hardware to test the
-> patches).
-> At least arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-> arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> and ping the board tester for other boards to test if they require
-> "rockchip,enable-strobe-pulldown" for EMMC HS400 write support (read is
-> fine even with the new default).
->
-
-I tested some of the boards that include rk3399-rock-pi-4.dtsi (see
-below).
-
-> On Tue, 2024-02-27 at 10:11 +0000, Folker Schwesinger wrote:
-> > with the following applied, the EMMC related errors are gone. dmesg
-> > only
-> > shows "Purging ... bytes" during my tests:
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> > b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> > index f2279aa6ca9e..ae0fb87e1a8b 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-> > @@ -647,8 +647,10 @@ &saradc {
-> >  &sdhci {
-> >         max-frequency =3D <150000000>;
-> >         bus-width =3D <8>;
-> > -       mmc-hs200-1_8v;
-> > +       mmc-hs400-1_8v;
-> > +       mmc-hs400-enhanced-strobe;
-> >         non-removable;
-> > +       rockchip,enable-strobe-pulldown;
-> >         status =3D "okay";
-> >  };
-> >=20
-> > For testing I ran dd three times in a row:
-> >=20
-> > dd if=3D/dev/zero of=3D./zero.bin bs=3D1M count=3D5000
-> >=20
-> > I tested this on both a Rock 4SE board and a Rock Pi 4B+ board with
-> > the
-> > same results.
->
-> Folker, are you confident "Rock 4SE board and Rock Pi 4B+" were fixed
-> with above patch?
-> Ie the "rockchip,enable-strobe-pulldown;" should be under an
-> "rockchip,rk3399-emmc-phy" compaible node, that is &emmc_phy in
-> arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi, not sdhci.
->
-
-The above diff was just a quick shot at testing the
-"rockchip,enable-strobe-pulldown" property when I first learned about
-it. I later realized that the property belongs under the &emmc_phy node
-as you suggested. That's what I did in the other patchset I sent a bit
-later, which was accepted and applied:
-
-https://lists.infradead.org/pipermail/linux-rockchip/2024-March/045723.html
-f720dd9b8b6d8b2160beda789429d5489ce8a099
-c1b1f340dd7db11f273e426e110697551c9f501f
-
-So yes, the Rock 4SE, Rock Pi 4B and Rock Pi 4B+ boards all were fixed
-with the patch. I regularly have the Rock 4SE and Rock 4B running from
-EMMC, always with the patch applied since I sent it.
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
+new file mode 100644
+index 000000000000..aeecc8e95854
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/cirrus,cs530x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus Logic cs530x family of audio ADCs
++
++maintainers:
++  - Paul Handrigan <paulha@opensource.cirrus.com>
++  - patches@opensource.cirrus.com
++
++description:
++  The CS530X devices are a family of high performance audio ADCs.
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - cirrus,cs5302
++      - cirrus,cs5304
++      - cirrus,cs5308
++
++  reg:
++    maxItems: 1
++
++  '#sound-dai-cells':
++    const: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  vdd-a-supply:
++    description: Analog power supply
++
++  vdd-io-supply:
++    description: Digital IO power supply
++
++  cirrus,in-hiz-pin12:
++    description:
++      Sets input channels one and two to high impedance.
++    type: boolean
++
++  cirrus,in-hiz-pin34:
++    description:
++      Sets input channels three and four to high impedance.
++    type: boolean
++
++  cirrus,in-hiz-pin56:
++    description:
++      Sets input channels five and six to high impedance.
++    type: boolean
++
++  cirrus,in-hiz-pin78:
++    description:
++      Sets input channels seven and eight to high impedance.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        cs5304: cs5304@48 {
++            compatible = "cirrus,cs5304";
++            reg = <0x48>;
++            #sound-dai-cells = <1>;
++            reset-gpios = <&gpio 110 GPIO_ACTIVE_LOW>;
++            vdd-a-supply = <&vreg>;
++            vdd-io-supply = <&vreg>;
++            cirrus,in-hiz-pin34;
++        };
++    };
+-- 
+2.34.1
 
 
