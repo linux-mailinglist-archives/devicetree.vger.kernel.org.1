@@ -1,155 +1,147 @@
-Return-Path: <devicetree+bounces-75711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5DDB90866D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:36:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB05908672
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4F2C1C22232
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:36:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5E2B1F23E43
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D7A8190477;
-	Fri, 14 Jun 2024 08:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3ACA190066;
+	Fri, 14 Jun 2024 08:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E/sD3oTa"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="YW2yeP5p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A0F190072
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 08:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95BDC1849;
+	Fri, 14 Jun 2024 08:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718354142; cv=none; b=YWj+mgKDBkNXwVqBQllQtoKA4i0lDVoPcgwQL7/yhPQrxPCa87XKzn1+HuzUT1oBWXDMtYiFtjxx6wdx9FfA5EMPxbYPDFXVKcyOzooFpdDCrlQLuPmovkyohI33kLNLO1icEdzCdgOifflprOBzKCaPEW25VxbKXHF8hlvFZT8=
+	t=1718354253; cv=none; b=qVpHxb06o/CNv/e/wjbAAra23FA5c9GHQyuDkZ2S4KGl5Rl3Ly/PfLJa2shkh9MN4DhAiCBSiSe9hR4XEGHdCMfYOKKdOzMYrAgBqQd0vw5btQykblkY/PEb1n1UjjJx9SmbpFHkL+e1hRwKM70NcszWAyDIvNTUaOYlwjoLENo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718354142; c=relaxed/simple;
-	bh=5IhnbDeMfhrQJFjppRaXrqKXHovo12yYiCutUlaZxUk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SmrOlg5DxUeRYBLkSpNRDl3TIPHXt2JAnNa5qWSi4aVbqFfgdE3mxu5H8AhE95st5OitkLJkUInmHUC1ce0apji0MUrdH82lsE3ce2i3SFEan/u6oPQCQU08/9tStq/Ri+beHqK/vEpBjv737ny0LlDJ/lGUMRHqVcpiVl38Dqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E/sD3oTa; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52bbf73f334so2153591e87.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 01:35:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718354139; x=1718958939; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9exy3tODP6D6SB8BPoapzrGAVV2VEaTDfn4vpIL8sTA=;
-        b=E/sD3oTaWJ30p835EJX8x0cel0YDP8vnrCERxmBjwOYUFv4LHRto3/VV76tKf99sEa
-         0W7rrmxzPIFd5/PCK5xkY3BtCJPgFOt20uThoJdw1hLar5W4GiIZ4HqUHKw8oZjY2IvT
-         hCAfO6dDB7otuFi3C+8AcA/jtkgYFgCWRSIYVPP1sxiLBp6dMC766IXoowR7e9COcEol
-         TR9Qm4+XESizw4FekknD8mERNK9B2/xH0iTlndb1PHFLJ6p+gVG+Uq7ZxDa2HT9tNAxM
-         hQhponhI5Lenvo7yEZOnxlBGF0JHROKgVWi5LxoCFQ5PJY/seJ2k+SsS8iCCND7dRAXY
-         xJRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718354139; x=1718958939;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9exy3tODP6D6SB8BPoapzrGAVV2VEaTDfn4vpIL8sTA=;
-        b=juVo56OV6op4zWjeRcIlmzb+N7cJs/wWg9D5S4pdULCg8zGVek+/GxqtH/7gnficNY
-         7J+khL4Fr9flFkHqYAABT0fANnA9Ozo0WY5TwjFhJ5WPJQQTSEROh4STXZXqRgjsjFgW
-         HesSPopMT3E3soHziAjrhuebtDOn/kzKIlwYirrfgd1jcbU2RzxETWNg8O7I7eARoIql
-         0Mhku+aVQurCsgqNxnBtR6nmwRAZ5kIMnNXGW8E65QvAz5HnUa3h/zb1khTwU6+exJCq
-         sEuVNs84Y9Fl7S2fCiMV+UR/SC3AD6ieIdjMSyBa6UbUD6QOg0w4+uXydqSGx6N529zt
-         7iAA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+wnMEvVcahH2lf9xWiqlBO7nXzoJrkTpjJpF3B85quW4R5M/NL5fioidDnVggqpPr9HaL3Gq57qxC8YXmHNey2BNfImGUyEfwmA==
-X-Gm-Message-State: AOJu0YwQKAGLPN5lEDg6jgRPKYF2e9kJk64GufPmlFEuXhbaax3H2oRu
-	wE0/C1jLBLCoAXGMc36XPgtdkg8AbgllLj39cHTAnJb9HKiLLNs7rTUw9qGuBM8=
-X-Google-Smtp-Source: AGHT+IHTbmeczb/9lcCgLK16cJp1SreY1FK+nJgmHVIjpUBegYARLy52/Iu4pgHJLW+a67FN2MKxHA==
-X-Received: by 2002:a05:6512:1313:b0:52a:e529:16bd with SMTP id 2adb3069b0e04-52ca6e99a33mr1603420e87.58.1718354138727;
-        Fri, 14 Jun 2024 01:35:38 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca282f1dbsm444776e87.110.2024.06.14.01.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jun 2024 01:35:38 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 14 Jun 2024 11:35:35 +0300
-Subject: [PATCH v2 2/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: drop
- second output clock name
+	s=arc-20240116; t=1718354253; c=relaxed/simple;
+	bh=IE56RPoqKyRQy8bsSYTv0dvMwFiHl4QLf2TB7HaBQLQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iu7t63/NqJwZnhLfduzfD0JvGcSlHoRjgwFni/WMEGnBTrsnKC9qhoGb4R5oqGohz4uLAe/Er3bpRPU/g1RL29c1moApE9nsDK+bK+ihJ8P+d3d69hI7O56VRo76IWi9B02WM65dcCzNYkTSadnp4+kd9YJczXaIEC0q1Y5A3XI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=YW2yeP5p; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718354251; x=1749890251;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IE56RPoqKyRQy8bsSYTv0dvMwFiHl4QLf2TB7HaBQLQ=;
+  b=YW2yeP5pZzSts/P3luQ0AgIei6MKe5tpWM8hJQ+kw8c6ATsNU6apzhIu
+   h7DM5EHCLKgPNQz8clwUulwuJRbIc/Qg2yhzHj6O6JaeBebqclx4mODHV
+   32AAQ5nJIUIBzcKhETJO/sB04O2ysehK8Ptb+1J+YBboh6kfrSdncuFuu
+   3H1/fsocS4RyHltLqWbq2lMRhBB2Er6EHPz2kOHtLJ6CF0TkRS6hUca4o
+   7cDFsxnz0JvYE8LldRGeW1eSVoES9iAwC+pIJ8kSiqgrVdn2KAJiw3d6C
+   pp5q8Bv62572VXlW5kj94xxkeYgq86PPKQxJhDOEYEy3xUKSLNHqnHGMA
+   Q==;
+X-CSE-ConnectionGUID: NG7Mft5MRmOGOwVcOw10MA==
+X-CSE-MsgGUID: T/1ZNyhISGCswnvApzi+sQ==
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
+   d="asc'?scan'208";a="194925024"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2024 01:37:28 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 14 Jun 2024 01:37:19 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 14 Jun 2024 01:37:13 -0700
+Date: Fri, 14 Jun 2024 09:36:55 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Jesse Taube <jesse@rivosinc.com>
+CC: <linux-riscv@lists.infradead.org>, Jonathan Corbet <corbet@lwn.net>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>, Evan Green
+	<evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>, Charlie Jenkins
+	<charlie@rivosinc.com>, Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu
+	<andy.chiu@sifive.com>, Eric Biggers <ebiggers@google.com>, Greentime Hu
+	<greentime.hu@sifive.com>, =?iso-8859-1?Q?Bj=F6rn_T=F6pel?=
+	<bjorn@rivosinc.com>, Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin
+	<costa.shul@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Baoquan
+ He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>, Zong Li
+	<zong.li@sifive.com>, Sami Tolvanen <samitolvanen@google.com>, Ben Dooks
+	<ben.dooks@codethink.co.uk>, Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Erick Archer
+	<erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 4/6] RISC-V: Detect unaligned vector accesses
+ supported.
+Message-ID: <20240614-viral-dinghy-71d5f6585a55@wendy>
+References: <20240613191616.2101821-1-jesse@rivosinc.com>
+ <20240613191616.2101821-5-jesse@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240614-fix-pcie-phy-compat-v2-2-990863ea53bf@linaro.org>
-References: <20240614-fix-pcie-phy-compat-v2-0-990863ea53bf@linaro.org>
-In-Reply-To: <20240614-fix-pcie-phy-compat-v2-0-990863ea53bf@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- devicetree@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1663;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=5IhnbDeMfhrQJFjppRaXrqKXHovo12yYiCutUlaZxUk=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmbADYaE9TZu9NEvq7Nc0XurtFlswavE28Gqrn+
- 08e2niAvR6JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZmwA2AAKCRCLPIo+Aiko
- 1XGACACjyFeiP1G2iAmP7ZCpeanYDEvJ9RCTKWgAuxN/3fxI8NnL5GjK6s93tmLoI+lSflRCXnf
- n7F+5T01SlF3tnRAvYc6sDG9zBqu4po77g1qi7GcncqjtYWemV6rZoOhpvWRvVGQ9Ws17xesRTv
- 9yam18U2ubqTtFp90x/T+WEO0qPZpxSzOoK6nvTJb+moCmQO5mWng9mw3dTexw/bFnFpV41UMBY
- q4o2uD+9aDJXXbrj4Wu4ksmME55R5Tc8o+xDP2PwXEflg85EDZiD+9EEB2y3kuYssYEn0/EmNBx
- EobPu9qSVlDXE2QTaV7Ztvg8MLnfcpsjbJKlXuHeqzwm+VTA
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Ytzm/oHaDkbsSGqU"
+Content-Disposition: inline
+In-Reply-To: <20240613191616.2101821-5-jesse@rivosinc.com>
 
-There is no need to specify exact name for the second (AUX) output
-clock. It has never been used for the lookups based on the system clock
-name. Partially revert commit 72bea132f368 ("dt-bindings: phy:
-qcom,sc8280xp-qmp-pcie-phy: document PHY AUX clock on SM8[456]50 SoCs"),
-returning compatibility with the existing device tree: reduce
-clock-output-names to always contain a single entry.
+--Ytzm/oHaDkbsSGqU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 72bea132f368 ("dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: document PHY AUX clock on SM8[456]50 SoCs")
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml        | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+On Thu, Jun 13, 2024 at 03:16:13PM -0400, Jesse Taube wrote:
+> --- a/arch/riscv/kernel/unaligned_access_speed.c
+> +++ b/arch/riscv/kernel/unaligned_access_speed.c
+> @@ -19,7 +19,8 @@
+>  #define MISALIGNED_BUFFER_ORDER get_order(MISALIGNED_BUFFER_SIZE)
+>  #define MISALIGNED_COPY_SIZE ((MISALIGNED_BUFFER_SIZE / 2) - 0x80)
+> =20
+> -DEFINE_PER_CPU(long, misaligned_access_speed);
+> +DEFINE_PER_CPU(long, misaligned_access_speed) =3D RISCV_HWPROBE_MISALIGN=
+ED_UNKNOWN;
+> +DEFINE_PER_CPU(long, vector_misaligned_access) =3D RISCV_HWPROBE_VEC_MIS=
+ALIGNED_UNSUPPORTED;
+> =20
+>  #ifdef CONFIG_RISCV_PROBE_UNALIGNED_ACCESS
+>  static cpumask_t fast_misaligned_access;
+> @@ -268,12 +269,18 @@ static int check_unaligned_access_all_cpus(void)
+> =20
+>  	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICCLSM)) {
+>  		for_each_online_cpu(cpu) {
+> +#ifdef CONFIG_RISCV_VECTOR_MISALIGNED
+> +			per_cpu(vector_misaligned_access, cpu) =3D RISCV_HWPROBE_VEC_MISALIGN=
+ED_FAST;
+> +#endif
+> +#ifdef CONFIG_RISCV_MISALIGNED
+>  			per_cpu(misaligned_access_speed, cpu) =3D RISCV_HWPROBE_MISALIGNED_FA=
+ST;
+> +#endif
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-index 16634f73bdcf..03dbd02cf9e7 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-@@ -91,8 +91,7 @@ properties:
-   "#clock-cells": true
- 
-   clock-output-names:
--    minItems: 1
--    maxItems: 2
-+    maxItems: 1
- 
-   "#phy-cells":
-     const: 0
-@@ -222,14 +221,10 @@ allOf:
-               - qcom,sm8650-qmp-gen4x2-pcie-phy
-     then:
-       properties:
--        clock-output-names:
--          minItems: 2
-         "#clock-cells":
-           const: 1
-     else:
-       properties:
--        clock-output-names:
--          maxItems: 1
-         "#clock-cells":
-           const: 0
- 
+Can you IS_ENABLED()-ify these two as well please?
 
--- 
-2.39.2
+--Ytzm/oHaDkbsSGqU
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmwBJwAKCRB4tDGHoIJi
+0o83AP4l3yMCtJznhon+dFQUAVsO6wRiQb2NfRzHzaOsUmMyyQEA3rLtvEQrCOU7
+yZz/D4drHvHR3eCHR57Lvgb+yeiQJww=
+=ToT+
+-----END PGP SIGNATURE-----
+
+--Ytzm/oHaDkbsSGqU--
 
