@@ -1,101 +1,116 @@
-Return-Path: <devicetree+bounces-75860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A794908ECC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:34:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC009908ECD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:34:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85440B2C234
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:28:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E388281898
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D60015FA72;
-	Fri, 14 Jun 2024 15:27:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E561591E8;
+	Fri, 14 Jun 2024 15:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uNmdsXPW"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="8ba0C/x7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FDE1158DBC;
-	Fri, 14 Jun 2024 15:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD48E154457;
+	Fri, 14 Jun 2024 15:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718378878; cv=none; b=ZJp0h7fgWLvJDelSdiWsLEwqNm7ozDW7aAsum2zhYz83gimft5IQkq9JRI3lEZBZ76PHTeoPdo1RS6f5CEIT2S6W+hOZvhaO46Hs+ytWxNCytX/+bO9ugrDNE155gOn+SgZJzG+i3ZENLVrRSVgFDJ/A8sGD4jb4IpY53h7GXoQ=
+	t=1718379278; cv=none; b=BcKSd4HsqWqPjGBECwzxDLVfQDrRNrocZhx857RamzB34tx3R5uGWwCiQbSYk1kFczzaNBHYiJMqzYc5Qq5ZGx2fHvc83TpH0r36VzXi9hxEoxXp02gCpOXrsF1+f4mtrL/UIrT12yWYI5fG/AqvToA38g4n/84MfAtauwVh5iQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718378878; c=relaxed/simple;
-	bh=UHL8yEBqBL2xIDcD8jhKMI6KNHOoZnRSFip6JEy6Ddw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tpWVJnxAERpR1d9W5RFaGW4+dH+pwR9ucENKaTXhSG+1yqShEH9tlTy0SltAilepcHXfe0gVN0UMGrF/vocatXPNOyZO4XAZASRZOGgTjR7m59RT82nLDB5xiMgYTYOz/yXKnpjmGTLtnu6hJCshrVfW9FmVsReG7flNVCUU10M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uNmdsXPW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D66BC2BD10;
-	Fri, 14 Jun 2024 15:27:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718378877;
-	bh=UHL8yEBqBL2xIDcD8jhKMI6KNHOoZnRSFip6JEy6Ddw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uNmdsXPWeF7ctjBV9Dbs9fHGscpXxgcjT1Du81hOvRSFGyvEc5QeMaCkxpJ9r913q
-	 eJSnd/K/0GuZqnSdrW6jFI0Nq3OvSwXGXKu7RiqqodhWu2Itaqqb6mv3NxMiWEct/c
-	 +v9ikpMxDbKqqIZpHulN4zvnqacDzcgUYl5FQ8hU85rP91NACX/GvbareWHWIacW5k
-	 Oyt6qwAkbWfdy9vvf53/MF5FkDghebU+1NvnpCjhfsJWm2DXUd54aOsBvHxDCZ4fxV
-	 lcfX8rpcRd1QfcVM7SGcj/4FyAMBCZjRvELW0j4qrcdwoKEm7XX2nB7ozvCDhV/B98
-	 DhMXeiPyyYjKQ==
-Date: Fri, 14 Jun 2024 16:27:52 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charles Wang <charles.goodix@gmail.com>
-Cc: dmitry.torokhov@gmail.com, dan.carpenter@linaro.org,
-	dianders@chromium.org, robh@kernel.org, krzk+dt@kernel.org,
-	jikos@kernel.org, bentiss@kernel.org, hbarnor@chromium.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <20240614-blah-sworn-1e13ec9c0e94@spud>
-References: <20240614121538.236727-1-charles.goodix@gmail.com>
- <20240614121538.236727-3-charles.goodix@gmail.com>
+	s=arc-20240116; t=1718379278; c=relaxed/simple;
+	bh=v18banXTYDVpix+KbeN27Ilvj7iKBjNLDKFcfhurzgI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kkrB0bkE1SGxHMhDC1Hx9ABSQM6unGfS9zmblhDsdjSkNDo3N3KloXWUwXJVQlm/gfKYRYMffcE9UmhvNvQMw6KuoIBHMuWCsdpzr4RA5QEafgHvVIMp0jVfuU6feqen158JOUC9jdzt3q1gv6I1Hg8srnShCz2AYt1l1sywyew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=8ba0C/x7; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45EAWaU2026928;
+	Fri, 14 Jun 2024 17:34:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=7riLuqz+hA84DWBGx6XOwv
+	cbfBzybdq7BcM57HkoHGI=; b=8ba0C/x7jRpXKP5819oyrl616VIvttD7d6J5v9
+	uZmCs2/oH5B2J2y131VZ4vxKo7eI4ZczmOZA8BgtuKI3l4BtiW5Pp4sbptRlU/87
+	zKdU0IKeeZv0wEeS+OnsuEJy1UX4KMrYgxLjvmT2s/yd7CBIlosdZSEU0Plfubox
+	kcIX4jxZ1PLUkLKnYzFHki4xWwzC2E5tOz6fd851+zjO2MhoQ3ClML6ODa8e3cMb
+	9x1GX3fxG8BfpjzUPEe5kg7x068CGB3KB59s3mVi2A4TD8aei++7idxPZfU+OERE
+	ss8ZQy4Rkv97DuO6bv4+939qMwonF90NF/fzaz0gTcTKeQ2g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yrfujae6f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Jun 2024 17:34:23 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 04E884002D;
+	Fri, 14 Jun 2024 17:34:18 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 215AB2171F3;
+	Fri, 14 Jun 2024 17:33:48 +0200 (CEST)
+Received: from localhost (10.48.86.128) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 14 Jun
+ 2024 17:33:47 +0200
+From: Etienne Carriere <etienne.carriere@foss.st.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, "Lee
+ Jones" <lee@kernel.org>,
+        Pascal Paillet <p.paillet@st.com>,
+        Etienne Carriere
+	<etienne.carriere@foss.st.com>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: [PATCH] dt-bindings: mfd: dual licensing for st,stpmic1 bindings
+Date: Fri, 14 Jun 2024 17:33:46 +0200
+Message-ID: <20240614153346.2656871-1-etienne.carriere@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tW7EexHhrd4LQWuH"
-Content-Disposition: inline
-In-Reply-To: <20240614121538.236727-3-charles.goodix@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-14_13,2024-06-14_03,2024-05-17_01
 
+Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv2.0
+only to dual GPLv2.0 or BSD-3-Clause. I have every legitimacy to request
+this change on behalf of STMicroelectronics. This change clarifies that
+this DT binding header file can be shared with software components as
+bootloaders and OSes that are not published under GPLv2 terms.
 
---tW7EexHhrd4LQWuH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+In CC are all the contributors to this header file.
 
-On Fri, Jun 14, 2024 at 08:15:38PM +0800, Charles Wang wrote:
-> The Goodix GT7986U touch controller report touch data according to the
-> HID protocol through the SPI bus. However, it is incompatible with
-> Microsoft's HID-over-SPI protocol.
+Cc: Pascal Paillet <p.paillet@st.com>
+Cc: Lee Jones <lee.jones@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
+---
+ include/dt-bindings/mfd/st,stpmic1.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - goodix,gt7986u
+diff --git a/include/dt-bindings/mfd/st,stpmic1.h b/include/dt-bindings/mfd/st,stpmic1.h
+index 321cd08797d9..957c48300cd4 100644
+--- a/include/dt-bindings/mfd/st,stpmic1.h
++++ b/include/dt-bindings/mfd/st,stpmic1.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
+ /*
+  * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
+  * Author: Philippe Peurichard <philippe.peurichard@st.com>,
+-- 
+2.25.1
 
-> +  goodix,hid-report-addr:
-> +    description: the register address for retrieving HID report data.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-You're also missing an explanation anywhere in the patch for why this
-address varies between gt7986u devices.
-
---tW7EexHhrd4LQWuH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmxheAAKCRB4tDGHoIJi
-0p0WAP0bcvR8lBU9nHpM3WHqK5MvJz4Cu+Rc33nsJemIQuIlCQEAl9PCkGiuPulC
-vPaBvZRIVYfCIyBYcQiKakHRBUeAfAM=
-=U5GX
------END PGP SIGNATURE-----
-
---tW7EexHhrd4LQWuH--
 
