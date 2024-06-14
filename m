@@ -1,76 +1,40 @@
-Return-Path: <devicetree+bounces-75807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 870D0908B1F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 13:56:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CAD7908B3E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 14:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A17DA1C22109
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:56:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8754F1C216AB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9801C199258;
-	Fri, 14 Jun 2024 11:55:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nt3BQkga"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABF9195F0D;
+	Fri, 14 Jun 2024 12:07:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7093195FE1
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 11:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD23811FE;
+	Fri, 14 Jun 2024 12:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718366114; cv=none; b=Wj8jphKFXVeJSJzyE5jl23unV03GKNTxD8bDQYa0W4jqWojEOYjBZTQKOeszDhqFT+3EG3+jurfssQhqdXwXSxqyKaOfxO9sYCCAqJJRK0xwTtfZgSsXqKKY3sRRUBu4QCSdmdK7O0nhVYXA1Cr8j5hcRX/B5mWf33L5F23Kle0=
+	t=1718366859; cv=none; b=bZ4Eh5Oslaj2tftOdNqV+FbFhP5bCN+Bvz1JWOgeQcNhcbSXkqVMeQV6No6zHsGMhyRMakDkqQgunCsGz4cXn12H0tmWt8NjeDsv+ZpvQRze12TpRf+Zmv1SyjJAwjcfWKGWHG0qeKKgNxqqR9TNlmvP12Ldjmr758w+wbJ5QUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718366114; c=relaxed/simple;
-	bh=loyo4OfDGg55+pfKNVS2gYo7AMsPRDMIEmt5JODLFIw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=co/RyonsBbz92nx8kRT5pfDS3b1ZIcpaA2bzsW5ffWG9Q6LT2MgBjAXqOIJ7GkcOTExYCoOqL6/AY/X78lfhU4gU61A3r3vH634uDtANZmshfSencAPsPTc1QsXLjqrjJjricifmFbizxN7dGI5Xg5PJIu3OgHRmaR2w4BvQZcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nt3BQkga; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-421b9068274so20087625e9.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 04:55:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718366111; x=1718970911; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q3dtZU2KLEpU5tzc4kE1SRGR2o6VMlxAQm2p/h33llY=;
-        b=Nt3BQkgaOyImfvinnS3zbfpmS1ISJvwyhqZqizb9ePTN0rJ/REiikALf29cHWg4Rrg
-         awgcusfpMYnW1cjCwKsAFM0SABfWyUkNrjVW3yqOBLxgIr/sxPu4QHBPSs/13PcT1KPx
-         //1BEfdC/FP/yWKw14ELyfgkXWbn7FYMRPGx2OTsi5F08j7Ll8c0DJ0nnRV8YwQOq9sT
-         tDs4aX0NzbUj79LPq7p+NdJpCP0uBprfpEjcu4TZNUWCrKq/RA6vydpfS9VHnleQQSuW
-         lBVoFAPCIYLamkZBhCoL6NdSERRhMDNdfKy8/JpnuUj7lnzX48lRAv1xXBk61OmHhdDq
-         XlaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718366111; x=1718970911;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=q3dtZU2KLEpU5tzc4kE1SRGR2o6VMlxAQm2p/h33llY=;
-        b=GDYfWVYbkjGuJemjrycDQm1rYrnt4mZlSAtPmOqC5awl0bHBpeOpwmYV/n4l6VQdAs
-         wg++du9jf0wdgsJU0PNXUqGTjimBUWzBHFaOgKCvv+AtZincfOJtvzYzfKHuvGulJEfR
-         AUBaJu+IVvdfkANR5fVPD0WGJxnK4Z3YafTXFGUwyriBBczLc6Og7Ex038Ri81rn+8nG
-         hR7dBr/KSwxT9VQFoTsPWKEN7fsKbgcBgnjQXyiBTkG0MHURa8wzCXqH0fEzuFa5y1Z/
-         iASmx9wCqJL+hd3xPXm+YWHeLWdAHY0IsPmhhKp3w9KdeIfej70O+lrTz9laTAAmTuYC
-         gV4A==
-X-Forwarded-Encrypted: i=1; AJvYcCWJayGLDsRoH3KBd3yChnNlcuGI4HJAPZSUYAky79yIyDTuNFN/HLt/jXVVt9Hoh4PtQIn5eMhWllnJlKz/ji7LHjrcBTtQRFpB9g==
-X-Gm-Message-State: AOJu0YyHQgGpHT5IfdVwS+UyXrymjhPBQh3ybD/pyuMJtnzV2IBKIpga
-	mWHBGNhNKyyZ5nlWbZYxqwRxSh1+kLIW48in3EdCvkUVSseVoK8qHnY0+AbdBfU=
-X-Google-Smtp-Source: AGHT+IHe7ilkhLn6brP4Brukvc2iYhEp7yHhu6WJozyi0LPc6EI2rwtIOjbx/c9coBw72bY/68m+jg==
-X-Received: by 2002:a05:600c:3055:b0:421:7e0c:f876 with SMTP id 5b1f17b1804b1-423048607a8mr21288945e9.41.1718366111308;
-        Fri, 14 Jun 2024 04:55:11 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:261a:269e:a3a8:a2cc? ([2a01:e0a:982:cbb0:261a:269e:a3a8:a2cc])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422874e6b63sm96853685e9.39.2024.06.14.04.55.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jun 2024 04:55:10 -0700 (PDT)
-Message-ID: <dde0f627-e486-4ee0-9bd9-950c5a968bc7@linaro.org>
-Date: Fri, 14 Jun 2024 13:55:10 +0200
+	s=arc-20240116; t=1718366859; c=relaxed/simple;
+	bh=Vq6GkNjm49Si+NAnbQlMEolVQ3XwS1Z66jv5HfAMGuU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TcQJU4oqA8B/PivOwt7hp1N87BxsexC+yFO0LKBpspA+MrIzVqVqRLaZ7NL8xJ4kD6AxqKtY6oXH06CQv676nIqMYvXfCUwsLi89mPdN6XmOVEAibgMMD8vxsMvBEfYtz6zo4X4TGQvgNj1ClB+4aeYHEuqBxv64FUWzJvPUXa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E093AFEC;
+	Fri, 14 Jun 2024 05:08:00 -0700 (PDT)
+Received: from [10.57.71.136] (unknown [10.57.71.136])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3DBB43F64C;
+	Fri, 14 Jun 2024 05:07:32 -0700 (PDT)
+Message-ID: <3516994c-7b06-4409-b9a9-975b9f7a60eb@arm.com>
+Date: Fri, 14 Jun 2024 13:07:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,77 +42,124 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: sm8650: drop second clock name
- from clock-output-names
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- devicetree@vger.kernel.org
-References: <20240614-fix-pcie-phy-compat-v3-0-730d1811acf4@linaro.org>
- <20240614-fix-pcie-phy-compat-v3-5-730d1811acf4@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240614-fix-pcie-phy-compat-v3-5-730d1811acf4@linaro.org>
+Subject: Re: [PATCH 2/9] iommu/rockchip: Attach multiple power domains
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-2-060e48eea250@tomeuvizoso.net>
+ <ffviz6ak6qsn2reg5y35aerzy7wxfx6fzix6xjyminbhfcguus@clszdjakdcjd>
+ <CAAObsKCx+r5UuESnrPem1Rb1-BF4i8FVwu6uozWhABOWoq+M4Q@mail.gmail.com>
+ <CAAObsKChaBZ2C5ezWsiZ_LoN6R2HFhFA9=UNSRYB6cyeo-jreg@mail.gmail.com>
+ <vmgk4wmlxbsb7lphq2ep3xnxx3mbv6e6lecihtftxoyp5lidvy@mectcwirrlek>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <vmgk4wmlxbsb7lphq2ep3xnxx3mbv6e6lecihtftxoyp5lidvy@mectcwirrlek>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/06/2024 12:18, Dmitry Baryshkov wrote:
-> There is no need to specify exact name for the second (AUX) output
-> clock. It has never been used for the lookups based on the system
-> clock name. The driver generates it on its own, in order to remain
-> compatible with the older DT. Drop the clock name.
+On 2024-06-13 10:38 pm, Sebastian Reichel wrote:
+> Hi,
 > 
-> Fixes: d00b42f170df ("arm64: dts: qcom: sm8650: remove pcie-1-phy-aux-clk and add pcie1_phy pcie1_phy_aux_clk")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> On Thu, Jun 13, 2024 at 11:34:02AM GMT, Tomeu Vizoso wrote:
+>> On Thu, Jun 13, 2024 at 11:24 AM Tomeu Vizoso <tomeu@tomeuvizoso.net> wrote:
+>>> On Thu, Jun 13, 2024 at 2:05 AM Sebastian Reichel
+>>> <sebastian.reichel@collabora.com> wrote:
+>>>> On Wed, Jun 12, 2024 at 03:52:55PM GMT, Tomeu Vizoso wrote:
+>>>>> IOMMUs with multiple base addresses can also have multiple power
+>>>>> domains.
+>>>>>
+>>>>> The base framework only takes care of a single power domain, as some
+>>>>> devices will need for these power domains to be powered on in a specific
+>>>>> order.
+>>>>>
+>>>>> Use a helper function to stablish links in the order in which they are
+>>>>> in the DT.
+>>>>>
+>>>>> This is needed by the IOMMU used by the NPU in the RK3588.
+>>>>>
+>>>>> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+>>>>> ---
+>>>>
+>>>> To me it looks like this is multiple IOMMUs, which should each get
+>>>> their own node. I don't see a good reason for merging these
+>>>> together.
+>>>
+>>> I have made quite a few attempts at splitting the IOMMUs and also the
+>>> cores, but I wasn't able to get things working stably. The TRM is
+>>> really scant about how the 4 IOMMU instances relate to each other, and
+>>> what the fourth one is for.
+>>>
+>>> Given that the vendor driver treats them as a single IOMMU with four
+>>> instances and we don't have any information on them, I resigned myself
+>>> to just have them as a single device.
+>>>
+>>> I would love to be proved wrong though and find a way fo getting
+>>> things stably as different devices so they can be powered on and off
+>>> as needed. We could save quite some code as well.
+>>
+>> FWIW, here a few ways how I tried to structure the DT nodes, none of
+>> these worked reliably:
+>>
+>> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-devices-power/arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=heads#L1163
+>> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-schema-subnodes//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=heads#L1162
+>> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-devices//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=heads#L1163
+>> https://gitlab.freedesktop.org/tomeu/linux/-/blob/6.10-rocket-multiple-iommus//arch/arm64/boot/dts/rockchip/rk3588s.dtsi?ref_type=heads#L2669
+>>
+>> I can very well imagine I missed some way of getting this to work, but
+>> for every attempt, the domains, iommus and cores were resumed in
+>> different orders that presumably caused problems during concurrent
+>> execution fo workloads.
+>>
+>> So I fell back to what the vendor driver does, which works reliably
+>> (but all cores have to be powered on at the same time).
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 5b8b1d581a13..5df2e00fdb5b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -2474,7 +2474,7 @@ pcie1_phy: phy@1c0e000 {
->   			power-domains = <&gcc PCIE_1_PHY_GDSC>;
->   
->   			#clock-cells = <1>;
-> -			clock-output-names = "pcie1_pipe_clk", "pcie1_phy_aux_clk";
-> +			clock-output-names = "pcie1_pipe_clk";
->   
->   			#phy-cells = <0>;
->   
+> Mh. The "6.10-rocket-multiple-iommus" branch seems wrong. There is
+> only one iommu node in that. I would have expected a test with
 > 
+> rknn {
+>      // combined device
+> 
+>      iommus = <&iommu1>, <&iommu2>, ...;
+> };
+> 
+> Otherwise I think I would go with the schema-subnodes variant. The
+> driver can initially walk through the sub-nodes and collect the
+> resources into the main device, so on the driver side nothing would
+> really change. But that has a couple of advantages:
+> 
+> 1. DT and DT binding are easier to read
+> 2. It's similar to e.g. CPU cores each having their own node
+> 3. Easy to extend to more cores in the future
+> 4. The kernel can easily switch to proper per-core device model when
+>     the problem has been identified
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+It also would seem to permit describing and associating the per-core 
+IOMMUs individually - apart from core 0's apparent coupling to whatever 
+shared "uncore" stuff exists for the whole thing, from the distinct 
+clocks, interrupts, power domains etc. lining up with each core I'd 
+guess those IOMMUs are not interrelated the same way the ISP's 
+read/write IOMMUs are (which was the main justification for adopting the 
+multiple-reg design originally vs. distinct DT nodes like Exynos does). 
+However, practically that would require the driver to at least populate 
+per-core child devices to make DMA API or IOMMU API mappings with, since 
+we couldn't spread the "collect the resources" trick into those 
+subsystems as well.
+
+Thanks,
+Robin.
 
