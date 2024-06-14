@@ -1,161 +1,159 @@
-Return-Path: <devicetree+bounces-75649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B2AD908448
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E0BB908457
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:20:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 252AF1F24117
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 07:18:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C72251F254CD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 07:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE611487DA;
-	Fri, 14 Jun 2024 07:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1C4148FEE;
+	Fri, 14 Jun 2024 07:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VtUqZoPz"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="eZIGcjT/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6C21474BC
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 07:18:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F731487EA
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 07:19:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718349508; cv=none; b=j1jc8DRxBs2fF2bbgX1/bQNycj6tttjJG/qrPkmn+5c/WAKMKfxmQCr9jfDDXm6m8vxgt2Nr2HQuBS3bmKx4o+JX15WfnswKOCRXP1CXerOndT1LCwRSi0IApf0/1aOG8XH+ddnHJTI3Ffuvkt1WClxwCIL1jlNHl3aLRXZwrAQ=
+	t=1718349594; cv=none; b=jRGkjgRIlGUJukt4syigDC4AczGVmlmRW/YwYV5Q5pn24ed3fDcmecKGyRlYNAlUq3vLIdyKaiIzPTnUBdDHhTBIXd5bmpu80CX6MEO+FXKY/shxTlqsAkTwBIRmCHIzF1RzHdAD8NaEk0zey8j+Qlt+DmVdRaJmbyVIz502Gwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718349508; c=relaxed/simple;
-	bh=wqLPYteu3ayqHey69yCKfVVfVBHj/xWhI8yDdx19SLE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R1T6Uu5yirbvgk4M0NSXWcMJ9TYCW/MAsOsA5qtQJyMEklLeGKZ5XWJhUWwK+OOIgPZbq5Q56PNMsftHaOP7vvzRkio32VttD23eBhlJyfcyknahYYzo7fsY+Cvc8MMoWaZIYomiB0NiNDRqU2/8iQIC0YqNWP6rR/0Sz/YLDw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VtUqZoPz; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ebdfe26217so16223241fa.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 00:18:26 -0700 (PDT)
+	s=arc-20240116; t=1718349594; c=relaxed/simple;
+	bh=SV8pS6B5PnXgvU2BmDoZgip50Vyfq6zDGhgylSFBbSM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=AC8tItpjq5oZi/KAB4FMru5kyXuPhJPEVB4pAW9BFXRZHaaUwc+kupQdsM/k5Zuv7W+dhRfCsNL04N0V/xkpU22jOQkng9D6Gbo7yEh6uvgwwYAHUuxp/e8yTEftHgEN3Zh6aduaU3wLVbZpgd3GV65aITZbvdJOpPq1+7b2jDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=eZIGcjT/; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ebe0a81dc8so19656791fa.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 00:19:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718349505; x=1718954305; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wqLPYteu3ayqHey69yCKfVVfVBHj/xWhI8yDdx19SLE=;
-        b=VtUqZoPz1UsOwgW8eYU0udIbjZpUtAcB2DEjl7VEQodjFhu7/wvvGpbvI6G8A5XEwr
-         xWh4T1w8haEgMcE3QAbHDUoSaGDvsH848MTnEIX/HioQTbJILLFrOY11MzBJFSKJfYSM
-         X4wBsKLYUQKgx9KDfvkJfXV35a0ZDqWwYbTS7Ea/KsEqTHHvWo7xjX8gKn+zYmVJyd8T
-         vvpK967izvdPAj/k75XtlZxgoNUOfAVBKTRvSFf2vpyhChn9oVchYGGuspqQHy1RdXdg
-         aCDtGhHr4OUJitR7e3Ei5IpWhwIYvNqutHPGh/nITec4ESfyGzymfnsPS7t9/Lw0IT5R
-         c/Cw==
+        d=tuxon.dev; s=google; t=1718349590; x=1718954390; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7bM7IjO937X8gnabRpqjs0dK731L6r6PD6s0e3tUxWg=;
+        b=eZIGcjT/tXBTDpSFbMnJC7vtJRadnEyPfiFt+suPXtqHaZGkRoFqt+dXBfdZ3rf/3l
+         +zSFJMN7oj3l+Da1XccgzmTmV8+/OiH6B7djTevGYIDjEcEpATa68fWgGztyOYMBUHaQ
+         HNjd+XjDvgKM73ds/nZcRv0J7ZWhHAqq34cScvuXKWdno00CgXE158OGNmEOSOJ22kGA
+         QGk7kowgmlF+bZWoKa/lL7dot9vz3v3CYyS2ANMtv7wyBRc6gdWPzNVxPRrLdk4BxGR0
+         dkhK0RQ3QZqYANI2HuBVUqefNTAogejC9LrYHjWb7+IEwj6+8AAXYSQZbj1T+YfoyUBI
+         h2SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718349505; x=1718954305;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wqLPYteu3ayqHey69yCKfVVfVBHj/xWhI8yDdx19SLE=;
-        b=Q1kjzdfE3kBsLrFYrLdq1NjESxZ8uE4Se2yylCSu9AMZ38PETxL8i2LTUOnyMI67LY
-         UuT/2ZYgyF1GbQF0orsOMFHBPze6E/gdHt0OFNuPc06crTRRxOVwoJbpG90YTCqSk4X/
-         aYLx9860tWU/b/Mfey/ons99zIQ5KL1/6ZNTPcbIrGWdpH4f24R2vALj/ZsEY+lREGWo
-         FZQJYaYJaz+Kum6k8VHtXsyDnpsfSik3WRtkZ0LRyYNOUUCIFqBnR79XZga2alLMeDx0
-         RrJkHE5vSPwjDGxe5DUcipVcaARO/FeQzEw8jbTUgzDsrl17U+SkZ0BgH8hxo5icv/5A
-         f9DA==
-X-Forwarded-Encrypted: i=1; AJvYcCXGNj1JqqYnnSjm0HQudsF8W8M33gSlLSUjsdBXZIVCbpDjeX65NYxbpfEwRSSZBhHtSnfrhs5XNd4kZZjibUtkvHfVX9PaPsL5LQ==
-X-Gm-Message-State: AOJu0YwilrT7UzoEaNziVps3X6AcVDKH2UvniVZ1lg3G3bCms/JVa0f1
-	vo8/7WGVVxjfdtAP6Ijsr0RnZgemVhBks0i5532gD5dDa/KJrNWLZW9bg+VwjEVxvgp0Mhq7keB
-	iD0FeV6BF/esZfv5XCiALiPXPVLB1COCaPJZyzQ==
-X-Google-Smtp-Source: AGHT+IEqAc/IITHR5XH5IcyBzMofjdG67Sdge1uWmTB4/BihRUG9JruUjf29s0w2MnX3meX/UPaZVWsbSfUHTarWmeA=
-X-Received: by 2002:a2e:8886:0:b0:2ec:492:3fee with SMTP id
- 38308e7fff4ca-2ec0e47c209mr11243421fa.30.1718349505123; Fri, 14 Jun 2024
- 00:18:25 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718349590; x=1718954390;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7bM7IjO937X8gnabRpqjs0dK731L6r6PD6s0e3tUxWg=;
+        b=h4Bd1Vn1pKTs3I6U/38ABHjPzfbvm6VxC8lni0fhYa7RF7/SPZ0lVsim5ehD9nnxVx
+         TyORPu1D/lmaN1p32mHURazzWedQvWptQoLZLHORrEOHC5VrlMvJYehXEtOXllox5/cP
+         yX5esEgnfVm7A5S60eDw5Nh8nZaBc93I2zPqs2JXIcuxB52nAN1UIOvmmQB6icZb4PYa
+         XInjZ3K1xwCvIVdgLwW+bOOMGc8AROHrayBFk5WqZkJlhrEsN6NWLs8SjOCk8/SBKr5E
+         75kf4Pq+l2oFO0zVe4zbTHZCX/xzU1Irz/9boxZU6yhrTeedbKZfDYI2w+GlThVlZ2so
+         skKw==
+X-Forwarded-Encrypted: i=1; AJvYcCUaE+kbeJz8IWh2LnbdmOOKAMcxDUDpGCZC5KTHU5tUzII96jkApBxDHfSA785PYzu2dP82ln3HtiuS3hvcjfpL2UziHvJqDdv70g==
+X-Gm-Message-State: AOJu0YwGoFLbqAvzBUxUbJvfAKLyqQT4AgBVHnE1FjYrZm/t+HB9hmJa
+	eq7FmIBeXIWFiRwAj8v6gHlPoeZkKuJdgK6Dq9e5hqf6qvbZxpEQiGmakENMwiA=
+X-Google-Smtp-Source: AGHT+IGl5Xcj09+EojoDFnxVQ2dpJru5796oMr1E1gs027Gp3zcO1lUHT3o5+u878fcFaZ6Msd17pQ==
+X-Received: by 2002:a2e:9894:0:b0:2eb:e865:494c with SMTP id 38308e7fff4ca-2ec0e5d1179mr16614831fa.26.1718349589467;
+        Fri, 14 Jun 2024 00:19:49 -0700 (PDT)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.189])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42286eef9eesm87272555e9.9.2024.06.14.00.19.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jun 2024 00:19:49 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: geert+renesas@glider.be,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lee@kernel.org,
+	alexandre.belloni@bootlin.com,
+	magnus.damm@gmail.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 00/12] Add RTC support for the Renesas RZ/G3S SoC
+Date: Fri, 14 Jun 2024 10:19:20 +0300
+Message-Id: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605122106.23818-1-brgl@bgdev.pl> <20240605122106.23818-2-brgl@bgdev.pl>
- <87h6e6qjuh.fsf@kernel.org> <CAMRc=MdiKxtnN+g92RUTXdOydaPV5M2u5iUdKyE2SNvDkdXAjg@mail.gmail.com>
- <871q5aqiei.fsf@kernel.org> <CAMRc=McacZMP-51hjH+d8=PVe+Wgw4a8xWcv0sRPLJKL_gP=KQ@mail.gmail.com>
- <87sexqoxm9.fsf@kernel.org> <CAMRc=McYAbhL5M1geYtf8LbgJG5x_+ZUFKXRuo7Vff_8ssNoUA@mail.gmail.com>
- <8db01c97-1cb2-4a86-abff-55176449e264@kernel.org> <CAMRc=Mer2HpuBLGiabNtSgSRduzrrtT1AtGoDXeHgYqavWXdrA@mail.gmail.com>
- <87ikyenx5c.fsf@kernel.org> <CAMRc=MdPQu-r4aaeag9apYP1-FoQ2-_GAk_qnHqDz-jWibRDFQ@mail.gmail.com>
-In-Reply-To: <CAMRc=MdPQu-r4aaeag9apYP1-FoQ2-_GAk_qnHqDz-jWibRDFQ@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 14 Jun 2024 09:18:14 +0200
-Message-ID: <CAMRc=Mfsqnfy-Q++QyZNmsYoV72hUoNFEDCW6KZ0H_MEHEe5Rw@mail.gmail.com>
-Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe
- the ath11k on QCA6390
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	ath12k@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 12, 2024 at 2:52=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
->
-> On Wed, Jun 12, 2024 at 2:49=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wro=
-te:
-> >
-> > Bartosz Golaszewski <brgl@bgdev.pl> writes:
-> >
-> > >> >> Sure, I don't need DT but that's not my point. My point is why re=
-quire
-> > >> >> these supplies for _all_ devices having PCI id 17cb:1101 (ie. QCA=
-6390)
-> > >> >> then clearly there are such devices which don't need it? To me th=
-at's
-> > >> >> bad design and, if I'm understanding correctly, prevents use of
-> > >> >> qcom,ath11k-calibration-variant property. To me having the suppli=
-es
-> > >> >> optional in DT is more approriate.
-> > >> >>
-> > >> >
-> > >> > We require them because *they are physically there*.
-> > >>
-> > >> I understand that for all known DT QCA6390 hardware, the supplies sh=
-ould
-> > >> be provided thus they should be required. If in the future we have
-> > >> different design or we represent some pluggable PCI card, then:
-> > >> 1. Probably that PCI card does not need power sequencing, thus no DT
-> > >> description,
-> > >> 2. If still needs power sequencing, you can always amend bindings an=
-d
-> > >> un-require the supplies.
-> > >>
-> > >>
-> > >> Best regards,
-> > >> Krzysztof
-> > >>
-> > >
-> > > Kalle, does the above answer your questions? Are these bindings good =
-to go?
-> >
-> > To me most important is that we are on the same page that in some cases
-> > (eg. with M.2 boards) the supplies can be optional and we can update th=
-e
-> > bindings doc once such need arises (but we don't make any changes right
-> > now). Based on point 2 from Krzysztof I think we all agree, right?
-> >
-> > Just making sure: if we later change the supplies optional does that
-> > create any problems with backwards compatibility? It's important that
-> > updates go smoothly.
->
-> No, you can always relax the requirements alright. It's only when you
-> make them more strict that you'll run into backward compatibility
-> issues.
->
-> Bart
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Kalle,
+Hi,
 
-Is that ok with you? Can we get that queued to avoid the new
-check_dtbs warnings in next when the DTS changes land?
+On the Renesas RZ/G3S SoC the RTC clock is provided by the VBATTB
+IP. A 32 KHz crystall oscillator could be connected to the VBATTB
+input pins. The logic to control this clock (and pass it to RTC)
+is inside the VBATTB IP. For this, the clk-vbattb driver was added
+(patches 01-04/12).
 
-Bart
+Patches 05-06/12 add the RTC driver.
+
+Patches 07-10/12 update the device trees with proper nodes to enable RTC.
+
+Patches 11-12/12 enable proper config flags for RTC to work on RZ/G3S SoC.
+
+Thank you,
+Claudiu Beznea
+
+Claudiu Beznea (12):
+  clk: renesas: r9a08g045: Add clock, reset and power domain support for
+    the VBATTB IP
+  dt-bindings: clock: renesas,rzg3s-vbattb-clk: Document the VBATTB
+    clock driver
+  dt-bindings: mfd: renesas,rzg3s-vbattb: Document VBATTB
+  clk: renesas: clk-vbattb: Add VBATTB clock driver
+  dt-bindings: rtc: renesas,rzg3s-rtc: Document the Renesas RZ/G3S RTC
+  rtc: renesas-rtca3: Add driver for RTCA-3 available on Renesas RZ/G3S
+    SoC
+  arm64: dts: renesas: r9a08g045: Add VBATTB node
+  arm64: dts: renesas: r9a08g045: Add RTC node
+  arm64: dts: renesas: rzg3s-smarc-som: Enable VBATTB clock
+  arm64: dts: renesas: rzg3s-smarc-som: Enable RTC
+  arm64: defconfig: Enable VBATTB clock flag
+  arm64: defconfig: Enable Renesas RTCA-3 flag
+
+ .../clock/renesas,rzg3s-vbattb-clk.yaml       |  90 ++
+ .../bindings/mfd/renesas,rzg3s-vbattb.yaml    |  99 ++
+ .../bindings/rtc/renesas,rzg3s-rtc.yaml       |  60 ++
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  44 +
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |  17 +
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/clk/renesas/Kconfig                   |   4 +
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/clk-vbattb.c              | 202 ++++
+ drivers/clk/renesas/r9a08g045-cpg.c           |   6 +
+ drivers/rtc/Kconfig                           |  10 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-renesas-rtca3.c               | 891 ++++++++++++++++++
+ 14 files changed, 1435 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/renesas,rzg3s-vbattb.yaml
+ create mode 100644 Documentation/devicetree/bindings/rtc/renesas,rzg3s-rtc.yaml
+ create mode 100644 drivers/clk/renesas/clk-vbattb.c
+ create mode 100644 drivers/rtc/rtc-renesas-rtca3.c
+
+-- 
+2.39.2
+
 
