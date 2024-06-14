@@ -1,142 +1,113 @@
-Return-Path: <devicetree+bounces-75875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6935E908F3A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:45:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE76D908F4F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:50:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AE011C20E59
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:45:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60A2B28455C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177F516F0EA;
-	Fri, 14 Jun 2024 15:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD2D412C526;
+	Fri, 14 Jun 2024 15:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jps9P6/I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06BED16C842;
-	Fri, 14 Jun 2024 15:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E4AC2107;
+	Fri, 14 Jun 2024 15:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718379781; cv=none; b=j0EbSY42MoYEz5t6/c6jq2f9qT6BT7TbpO2nyjUaSd2I9DvJchw1mYP5uw2Q1qM+8C555jzdk4hdsaQpsWSPeMBxO79jtDRTB9pjjQ6v6HIR9FyH/InQmBnoCDASYD0BKgNvu6jOiQMu7CV3Z5YBm2SLuzQH+1/GI2UWohXOjLM=
+	t=1718380201; cv=none; b=t2aIKhtMaI+moobqnLJE24z/4qyqvyp/J8LDKHYJBbWe6rgWn0GSLttT5kJHE8SDwVRhaai2+1API4+ULPq73qTKBTD2DGW9eer1MeYm77If8uTSQKiYfZkqamdj6krXBRYlY72L5sqqktHkVt2hb69aSeWBzCigfC9XeplBZcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718379781; c=relaxed/simple;
-	bh=5fJoq1CojbANDMRkNk5LAr4uooT5wOhpwRa0RGIUcEc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=XiasWxmDQOMLTg0KgEVbmI9CtGVjdP4gFLPyRrTzMR85RQj+wYXQV/f7oj5t6SG0S8x3wOEdKHUG8QkSXtHRJKC+R5IvFyFLuJldS78XR1JWUxLVIGKGBpZS5rFaPDC582VrqlLhecacOmhxS8Gq4kyIa9eeqDzPwE+3/15s+IU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.08,238,1712588400"; 
-   d="scan'208";a="207959925"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 15 Jun 2024 00:42:58 +0900
-Received: from localhost.localdomain (unknown [10.226.92.95])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 943A1400B490;
-	Sat, 15 Jun 2024 00:42:54 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	s=arc-20240116; t=1718380201; c=relaxed/simple;
+	bh=YJ+EFdoyuOpNEW4FtSMDEZLjKlxpUCgBoyg6TuEMSHc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RKLfx1QEFVgd1MJlqsVXSnFZ3YdcBFXnhkwvYM6tCs7mKr15Rq0PHJb7sn5G+zu2tfI0YEV1ep9gX6+9CeggqudGhIqFf0mSucW7BhQNHfxRAQfUY8DwpWsyyUsYYxZbHfWG213yEX85pJMW0jAdXKnH//KvwfvIs1NBEAsabXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jps9P6/I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9D4CC2BD10;
+	Fri, 14 Jun 2024 15:49:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718380201;
+	bh=YJ+EFdoyuOpNEW4FtSMDEZLjKlxpUCgBoyg6TuEMSHc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jps9P6/ICpMRqAWPhUlWkOO49LcPbD7VCq+JNHkiMo2wRxg2gN8ZVlV1fYM4VLjUm
+	 ihZCga9heUXbARC41hrlm0DOvYOqbyztYONbBtQUrsKoRP0Su5LHxf+eoeS6suJLd1
+	 HpLw1WlBgKt5WLECAhdVxnhaJUsuamxdLQQcoWsYC5q+PFDzk1OnId5eZIEA2IJkk+
+	 It0UJqrbq1oR6TW71hq/3HjrW7zUDtjk48I77Csaed13ClQoT3VIMupDXLwiFv8Gmy
+	 +kRLxWCnMM0T9k4o3/n1nwqWd4oJOUwUDy0Z4G8ShQRIotqrxOwt84sj+Os3A5tZeM
+	 XQdj1lRBrA4kw==
+Date: Fri, 14 Jun 2024 21:19:47 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v20 2/4] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date: Fri, 14 Jun 2024 16:42:40 +0100
-Message-Id: <20240614154242.419043-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240614154242.419043-1-biju.das.jz@bp.renesas.com>
-References: <20240614154242.419043-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] phy: qcom: qmp-pcie: drop second
+ clock-output-names entry
+Message-ID: <20240614154947.GC59574@thinkpad>
+References: <20240614-fix-pcie-phy-compat-v2-0-990863ea53bf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240614-fix-pcie-phy-compat-v2-0-990863ea53bf@linaro.org>
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
+On Fri, Jun 14, 2024 at 11:35:33AM +0300, Dmitry Baryshkov wrote:
+> While testing the linux-next on SM8450-HDK I noticed that one of the
+> PCIe hosts stays in the deferred state, because the corresponding PHY
+> isn't probed. A quick debug pointed out that while the patches that
+> added support for the PIPE AUX clock to the PHY driver have landed,
+> corresponding DT changes were not picked up for 6.10. Restore the
+> compatibility with the existing DT files by dropping the second entry in
+> the clock-output-names array and always generating the corresponding
+> name on the fly.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Tested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v19->v20:
- * No change.
-v18->v19:
- * No change.
-v17->v18:
- * No change.
-v16->v17:
- * No change.
-v15->v16:
- * No change.
-v14->v15:
- * No change.
-v3->v14:
- * Add Rb tag from Rob.
- * Moved the patch from series[1] to here.
- [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+- Mani
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index d9374144d82d..957cf28b2c4c 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
+> ---
+> Changes in v2:
+> - Fixed generated AUX clock name (Neil)
+> - Link to v1: https://lore.kernel.org/r/20240521-fix-pcie-phy-compat-v1-0-8aa415b92308@linaro.org
+> 
+> ---
+> Dmitry Baryshkov (2):
+>       phy: qcom: qmp-pcie: restore compatibility with existing DTs
+>       dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: drop second output clock name
+> 
+>  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml      | 7 +------
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c                         | 9 +++------
+>  2 files changed, 4 insertions(+), 12 deletions(-)
+> ---
+> base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+> change-id: 20240521-fix-pcie-phy-compat-b0fd4eb46bda
+> 
+> Best regards,
+> -- 
+> Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> 
+
 -- 
-2.25.1
-
+மணிவண்ணன் சதாசிவம்
 
