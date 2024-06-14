@@ -1,160 +1,161 @@
-Return-Path: <devicetree+bounces-75648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E737490842B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:05:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2AD908448
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:18:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 837402829C3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 07:05:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 252AF1F24117
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 07:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA99C1487D6;
-	Fri, 14 Jun 2024 07:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE611487DA;
+	Fri, 14 Jun 2024 07:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="LxF65KUT"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VtUqZoPz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2104.outbound.protection.outlook.com [40.92.102.104])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2DB012FF87;
-	Fri, 14 Jun 2024 07:05:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718348720; cv=fail; b=FIqNzU5bpIOwX3U1Z12f+hG/DGGik92xxibMriwwmoZcbinNKHoMNs0oKvP1wHSLDtMuwQPcjDVNU4a9BnteoPtg9+6DdYbStZCnMDm7LLeBrWSLpXI9mbIJfft88ZdEB6NoMmiE9tB1QTX1cjHaD8yyBkrn/adgkPaKVi7qpBY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718348720; c=relaxed/simple;
-	bh=6gWjo353oZ/i0X+Gm3CxBXqNIuuOMoo6TI9jFc0/EBE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=WoulxN37H/BBYa8S/Bd1RoI4jF24cqzcm5kqeHDeoYaV8+Brtafqd9Rzi8Xj1tT+OuKik66qt0oobR8hahL+zwOp0M4NHmi382xU4OBvjB+9qXjE4xgKGbV4VYHCKp9AqNHTE+rF5XA2Xh6i5hQK32qqQOz8TD3HkJl91h66ap8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=LxF65KUT; arc=fail smtp.client-ip=40.92.102.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I4K1U0N+bdheGn3afld9e0UMw4gFiT2sqL3PO922Zn2csNF+7HVr1nGns8vtvq/vJSmmWbu7x5SFYKL2GGhhjMzBmXDmAis1y7yoFVRarzzic0Qfu9N3wHjWjzjX1sXpAorJakglCf0pt6yUh+WlIrPBb9ioICXQ5NzDWPnTp2W7Uf9Lb8DkGzaIu84nOhysirtNRFqg1I4oQDIBZL3rS2CvSsewgRHSzm4GDyFUFQapirtVATRqzi5GqGbvLUomRPJ/DHFJgNPBMaX8vyJGk2VLs1Tmy7W4VdhoezaCJ1EY96q45dg6/7WKPfik9dYyZbEyt7wZcTS9cVJMhMLUVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6gWjo353oZ/i0X+Gm3CxBXqNIuuOMoo6TI9jFc0/EBE=;
- b=T4pvJ9GRhkJbbsC0wq8xxKdzf6o4/UkOBmummXFcej/PVfrQ5w5oVZ+AvDqDmCn6yWEO2pFyoop2aD7Ix1AphAvmL6k29uKlT8phjyj4M7IzCdpGtGmEzpuIm0N3gIygYlJR4w5Wy3qyoEAm07NW5RzJYqg/DTnJ8EkJBV/om6pL8SRl/cELEUFUxf7ljVQSlOQV1+92Pb4fSAbJ8ecwvL6vc+a/KzWWlDsYgTI7Y4vZzVLypbmrQjKPXxv1T7H3uHdRhbq2k/OZ6GOF9A2/WrZQCUgQ7kOeWlAqB78ySo+TqM4UpaW9iMAbImDSpWuaO+nOhvX0HR30QAvzkbzRLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6gWjo353oZ/i0X+Gm3CxBXqNIuuOMoo6TI9jFc0/EBE=;
- b=LxF65KUT7jwGyrIpQ4RqFUFo8qe6yTSpGKcpIAts77f273Rnw1cYQd7/UNAH76MGnlwp/FKERBVN07VaeNJvcTKhndFxOTpmbSmfgt8gD0BaJ/yU47PX127KG/ur3EZZG1Lhu6BRh3goG8KBPwu4wjiavQPXZI2mM5ET8xMujpPstfxtsOZeV8R4k4Opvw58r90AOCmkgCe4A7ECHgThGGREYzw+LEZPyAOtuHTBYrXMHWD1v8y6c/sojK9+rtFkLXKx/oQTyK7PsvzwD9cuvLY6B5e1AmXQrd4+7ZOxLL0ME1UlETi2DpkMf9/Eoj5GW90Xq8WCUoMZ+jPRF6iWWw==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PNXP287MB0077.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:c4::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.25; Fri, 14 Jun
- 2024 07:05:10 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.7677.024; Fri, 14 Jun 2024
- 07:05:10 +0000
-Message-ID:
- <MA0P287MB2822FAB6825487FEC3756241FEC22@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Fri, 14 Jun 2024 15:05:01 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v16 0/5] riscv: sophgo: add clock support for sg2042
-To: Conor Dooley <conor@kernel.org>
-Cc: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1717661798.git.unicorn_wang@outlook.com>
- <MA0P287MB2822B36985A6EC138C2A97CAFEC12@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <20240613-partly-closure-b473efa8fbce@spud>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20240613-partly-closure-b473efa8fbce@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [3JyLCXtZpAw/f5Sn+BCcTElAUlqo3CNI]
-X-ClientProxiedBy: SI2PR02CA0052.apcprd02.prod.outlook.com
- (2603:1096:4:196::18) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <25e2c5eb-273f-4755-9fc4-e80f96996bca@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6C21474BC
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 07:18:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718349508; cv=none; b=j1jc8DRxBs2fF2bbgX1/bQNycj6tttjJG/qrPkmn+5c/WAKMKfxmQCr9jfDDXm6m8vxgt2Nr2HQuBS3bmKx4o+JX15WfnswKOCRXP1CXerOndT1LCwRSi0IApf0/1aOG8XH+ddnHJTI3Ffuvkt1WClxwCIL1jlNHl3aLRXZwrAQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718349508; c=relaxed/simple;
+	bh=wqLPYteu3ayqHey69yCKfVVfVBHj/xWhI8yDdx19SLE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R1T6Uu5yirbvgk4M0NSXWcMJ9TYCW/MAsOsA5qtQJyMEklLeGKZ5XWJhUWwK+OOIgPZbq5Q56PNMsftHaOP7vvzRkio32VttD23eBhlJyfcyknahYYzo7fsY+Cvc8MMoWaZIYomiB0NiNDRqU2/8iQIC0YqNWP6rR/0Sz/YLDw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VtUqZoPz; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ebdfe26217so16223241fa.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 00:18:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718349505; x=1718954305; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wqLPYteu3ayqHey69yCKfVVfVBHj/xWhI8yDdx19SLE=;
+        b=VtUqZoPz1UsOwgW8eYU0udIbjZpUtAcB2DEjl7VEQodjFhu7/wvvGpbvI6G8A5XEwr
+         xWh4T1w8haEgMcE3QAbHDUoSaGDvsH848MTnEIX/HioQTbJILLFrOY11MzBJFSKJfYSM
+         X4wBsKLYUQKgx9KDfvkJfXV35a0ZDqWwYbTS7Ea/KsEqTHHvWo7xjX8gKn+zYmVJyd8T
+         vvpK967izvdPAj/k75XtlZxgoNUOfAVBKTRvSFf2vpyhChn9oVchYGGuspqQHy1RdXdg
+         aCDtGhHr4OUJitR7e3Ei5IpWhwIYvNqutHPGh/nITec4ESfyGzymfnsPS7t9/Lw0IT5R
+         c/Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718349505; x=1718954305;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wqLPYteu3ayqHey69yCKfVVfVBHj/xWhI8yDdx19SLE=;
+        b=Q1kjzdfE3kBsLrFYrLdq1NjESxZ8uE4Se2yylCSu9AMZ38PETxL8i2LTUOnyMI67LY
+         UuT/2ZYgyF1GbQF0orsOMFHBPze6E/gdHt0OFNuPc06crTRRxOVwoJbpG90YTCqSk4X/
+         aYLx9860tWU/b/Mfey/ons99zIQ5KL1/6ZNTPcbIrGWdpH4f24R2vALj/ZsEY+lREGWo
+         FZQJYaYJaz+Kum6k8VHtXsyDnpsfSik3WRtkZ0LRyYNOUUCIFqBnR79XZga2alLMeDx0
+         RrJkHE5vSPwjDGxe5DUcipVcaARO/FeQzEw8jbTUgzDsrl17U+SkZ0BgH8hxo5icv/5A
+         f9DA==
+X-Forwarded-Encrypted: i=1; AJvYcCXGNj1JqqYnnSjm0HQudsF8W8M33gSlLSUjsdBXZIVCbpDjeX65NYxbpfEwRSSZBhHtSnfrhs5XNd4kZZjibUtkvHfVX9PaPsL5LQ==
+X-Gm-Message-State: AOJu0YwilrT7UzoEaNziVps3X6AcVDKH2UvniVZ1lg3G3bCms/JVa0f1
+	vo8/7WGVVxjfdtAP6Ijsr0RnZgemVhBks0i5532gD5dDa/KJrNWLZW9bg+VwjEVxvgp0Mhq7keB
+	iD0FeV6BF/esZfv5XCiALiPXPVLB1COCaPJZyzQ==
+X-Google-Smtp-Source: AGHT+IEqAc/IITHR5XH5IcyBzMofjdG67Sdge1uWmTB4/BihRUG9JruUjf29s0w2MnX3meX/UPaZVWsbSfUHTarWmeA=
+X-Received: by 2002:a2e:8886:0:b0:2ec:492:3fee with SMTP id
+ 38308e7fff4ca-2ec0e47c209mr11243421fa.30.1718349505123; Fri, 14 Jun 2024
+ 00:18:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PNXP287MB0077:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6bc92fba-e9a8-4a15-93a7-08dc8c40545a
-X-Microsoft-Antispam: BCL:0;ARA:14566002|461199023|3412199020|440099023;
-X-Microsoft-Antispam-Message-Info:
-	yofAFqaTpwyVaMbA32IAKs1hnhSjHPLH8bk4cKFSi4v0+VFqyubfFhcQd0Jz+ddlJESqPp936rEqxt2IC4XrSwx/WpVWL7nxlQbNmxvA4+TS66OYGSJlM3lfCgvsBLQN+8jxLfsOAqzUXxztF7PJl4ysnotvSW7QYb4yL2LPt+XBT+qj9GmAFktgIlekm/lQIusbyh2BfsH1t3j4BUGiXMYa3IHypfF2hHaD/VNu9O8Htkd5wdtXxDhbNIkdyswEWNdnmbLd9VC1eS8VwbxEOX4+G0csx0tqXLp1IdhUOmAWMdAOrsySDeCYQno+LNbqqDjgd8gy/asUGyeJOILw1bbaJSP8nEPHo3gfP7KnOQg0Psldu/B3D5wVcpceT56lR/V0msL3m/GCfeKHMxXUlca0aZlUxBxeKszfUDVu5+ajV7RpZngOqiPP3jVqRJodDVBxjNnCSoZbR5mLEZJRbtNVP9JZWj4hmuOeQK8n/e/QBt9Ctd0/poQfLvv0Fg2KE57IavpFTHn1AqUzVYnJGgpZ06WmFlTx3m1R06VmRcH7aUGr7BianZT0xs8DQk5/
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TGo3TVdlWUZWSVlmb0NlalJKUDZnQ044cGtodTREc2ZlZ2I3cTYxS2tKVTBo?=
- =?utf-8?B?SmFJd2dSSGVSQ1lNcks0bHk4TzIweUFSbkVEVWpxQW9VU09ZYy9rWmdFU2V6?=
- =?utf-8?B?RUY0R29Vd1RqZXRFTVlMYVpXdjMxaWp4V2xNNi9jTXJIOGQ3TU9jNldxWWh1?=
- =?utf-8?B?YVNwOXRWU1E1dEw2Y2VrYVMwUm1CbzBzbjM3dHE4UVN6cmE3YVZjWDY3UWhJ?=
- =?utf-8?B?MVUya0xlRldZOE1CRFIzNmFZV0x0em0rSlR1VTBFL1EvaTMvQ2pLaE0ycTk2?=
- =?utf-8?B?N2VnMGlIWVIrQ1pPamVYemhnejNNWHdUMHR5YmlkSndqRlgzNmY1ek9EVVpn?=
- =?utf-8?B?VmFOT2JDZE5yS0J2a2haMmhoQ2lNdmExUFU2SHBmRWpTU3dzVlJheGc4Z1cy?=
- =?utf-8?B?SzJ1Ri93R1pydDJmcUNuMFZ4SU1WbWorMDNEN3JweXNyc2dpTTAwN2RMRW1C?=
- =?utf-8?B?ZzNJYjk1S08vckMxN2swNWFOSFlIZVJnUGtMMnpGV1U3QU5DU0JHVmFaWjVD?=
- =?utf-8?B?TGhlKzdsc05hUk12TFc2Zk54UVBBQ0VLbmd1SWVuR09CV1BsZ3RONHNpSWpm?=
- =?utf-8?B?b2FoMkNlT0RNVWx5aUtxRzc4Q0xoR255b3VPaVh3S1gvV0lVOTV2K1N6L1hk?=
- =?utf-8?B?dHVxSjd0NmdUUkVaVGFXY3lCK0N5NnZTQzVHbEhFc0V1ellnaU1uL2g2OFlW?=
- =?utf-8?B?eUdHOUk2ZGpxRWJuQW1Rakc0T3NVeUdKVnIxajRaVmJxeStmZTA0WHRLM0xP?=
- =?utf-8?B?eWI0SGZBYlQ2Wk5oRGRtL2J3MW9GOVJpRVNnYWI2UkJaN3ZQRFBDRjdUaWZ5?=
- =?utf-8?B?V3lQdmJISW9RaVN2aTZ0M2FVV25QTHlZdXlNeitkWVpHM1kraXFyQVdRTVk3?=
- =?utf-8?B?QUhaczNwN1M4UFNObzNVTEpuOEpQbFhVV0Fkd1Y2aXRDbmN4TUpCVHB6WkRm?=
- =?utf-8?B?S2dadVZsRTBhaVVYc3ZMK3UvNTdZT3ZDdXNMMFJiUjAvanpHejFDSlVydnpp?=
- =?utf-8?B?cGVPSmdlb1NYTHljNVByUjViS0VpUlRNRlc1Sy9mNThkSk12WUJtbzVBTlNt?=
- =?utf-8?B?ak5WeHJ2TmxodDBIeDlEaGhKeWJDdmE4STdxSGZoV3BackU4OWk4NG1qL2VE?=
- =?utf-8?B?ZTVrd0RVWnZaeldyUEZuNWo1TGMwSU5td0UyZjlVZU14L2s1Y29RMXhoLzRX?=
- =?utf-8?B?dU50YnFtOTJ5dWJhMk4zOWJiSTJPOUM5QmdqWWFVVGlIellOODlnNjBXWmlX?=
- =?utf-8?B?M1RyckF3WHhXa3g2Z1psM0tFdGFiS2VGR0R0emt5dFJaQml5TjFLams0QmVm?=
- =?utf-8?B?Zng0N3o1YUZQZEJQNXNrM09XQmx3ODVrblFVWnpBZUc2Tm4wRlBqc2RLMjZU?=
- =?utf-8?B?ek9HcytuZll5VFgyS01YSm80YnczbGZuRkJ5djYzb3VYUWhpcDYrRk5GUU93?=
- =?utf-8?B?V3A3a3hrNk1nczVGZjh5YU1IZzRSeHJ5RmJ0QjhiRG5qaThSa2dQekVXTkZs?=
- =?utf-8?B?eHF2UEgxUmVOcGpWN2NQS21pM3g3LzZkdUowQ1FhMkkzVnhFVmI3M0pJL0Ft?=
- =?utf-8?B?TEVjcUZqckMxSTMyY2lCU1k3UTdyc2tMb1ByK3E4RjRoL0tJQUZDL3B3T1F4?=
- =?utf-8?B?dGFhLzhrK2szdGJSQkhCam5OK0RqbE5iYmxQSTlsNENEMWE3YW1UZlBnZEF0?=
- =?utf-8?Q?7lzRQ1n9v5HuMH4fCzbL?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6bc92fba-e9a8-4a15-93a7-08dc8c40545a
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2024 07:05:10.3658
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PNXP287MB0077
+References: <20240605122106.23818-1-brgl@bgdev.pl> <20240605122106.23818-2-brgl@bgdev.pl>
+ <87h6e6qjuh.fsf@kernel.org> <CAMRc=MdiKxtnN+g92RUTXdOydaPV5M2u5iUdKyE2SNvDkdXAjg@mail.gmail.com>
+ <871q5aqiei.fsf@kernel.org> <CAMRc=McacZMP-51hjH+d8=PVe+Wgw4a8xWcv0sRPLJKL_gP=KQ@mail.gmail.com>
+ <87sexqoxm9.fsf@kernel.org> <CAMRc=McYAbhL5M1geYtf8LbgJG5x_+ZUFKXRuo7Vff_8ssNoUA@mail.gmail.com>
+ <8db01c97-1cb2-4a86-abff-55176449e264@kernel.org> <CAMRc=Mer2HpuBLGiabNtSgSRduzrrtT1AtGoDXeHgYqavWXdrA@mail.gmail.com>
+ <87ikyenx5c.fsf@kernel.org> <CAMRc=MdPQu-r4aaeag9apYP1-FoQ2-_GAk_qnHqDz-jWibRDFQ@mail.gmail.com>
+In-Reply-To: <CAMRc=MdPQu-r4aaeag9apYP1-FoQ2-_GAk_qnHqDz-jWibRDFQ@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 14 Jun 2024 09:18:14 +0200
+Message-ID: <CAMRc=Mfsqnfy-Q++QyZNmsYoV72hUoNFEDCW6KZ0H_MEHEe5Rw@mail.gmail.com>
+Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe
+ the ath11k on QCA6390
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	ath12k@lists.infradead.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 2024/6/14 0:45, Conor Dooley wrote:
-> On Thu, Jun 13, 2024 at 05:34:03PM +0800, Chen Wang wrote:
->> ping ~~~
-> My suggestion is that you, as platform maintainer for sophgo, apply these
-> patches and send Stephen a pull request. That's usually the best way to
-> expedite patches for clock drivers.
+On Wed, Jun 12, 2024 at 2:52=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
+ wrote:
 >
-> Thanks,
-> Conor.
+> On Wed, Jun 12, 2024 at 2:49=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wro=
+te:
+> >
+> > Bartosz Golaszewski <brgl@bgdev.pl> writes:
+> >
+> > >> >> Sure, I don't need DT but that's not my point. My point is why re=
+quire
+> > >> >> these supplies for _all_ devices having PCI id 17cb:1101 (ie. QCA=
+6390)
+> > >> >> then clearly there are such devices which don't need it? To me th=
+at's
+> > >> >> bad design and, if I'm understanding correctly, prevents use of
+> > >> >> qcom,ath11k-calibration-variant property. To me having the suppli=
+es
+> > >> >> optional in DT is more approriate.
+> > >> >>
+> > >> >
+> > >> > We require them because *they are physically there*.
+> > >>
+> > >> I understand that for all known DT QCA6390 hardware, the supplies sh=
+ould
+> > >> be provided thus they should be required. If in the future we have
+> > >> different design or we represent some pluggable PCI card, then:
+> > >> 1. Probably that PCI card does not need power sequencing, thus no DT
+> > >> description,
+> > >> 2. If still needs power sequencing, you can always amend bindings an=
+d
+> > >> un-require the supplies.
+> > >>
+> > >>
+> > >> Best regards,
+> > >> Krzysztof
+> > >>
+> > >
+> > > Kalle, does the above answer your questions? Are these bindings good =
+to go?
+> >
+> > To me most important is that we are on the same page that in some cases
+> > (eg. with M.2 boards) the supplies can be optional and we can update th=
+e
+> > bindings doc once such need arises (but we don't make any changes right
+> > now). Based on point 2 from Krzysztof I think we all agree, right?
+> >
+> > Just making sure: if we later change the supplies optional does that
+> > create any problems with backwards compatibility? It's important that
+> > updates go smoothly.
+>
+> No, you can always relax the requirements alright. It's only when you
+> make them more strict that you'll run into backward compatibility
+> issues.
+>
+> Bart
 
-Thank you, Conor, I will try this.
+Kalle,
 
-Regards,
+Is that ok with you? Can we get that queued to avoid the new
+check_dtbs warnings in next when the DTS changes land?
 
-Chen
-
-[......]
-
-
+Bart
 
