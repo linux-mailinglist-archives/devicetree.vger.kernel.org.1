@@ -1,237 +1,185 @@
-Return-Path: <devicetree+bounces-75951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 513D990938F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 23:00:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD9C490939D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 23:11:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DB791C214AD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 21:00:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 572E4289030
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 21:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF2913B5AF;
-	Fri, 14 Jun 2024 21:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E9E1494B3;
+	Fri, 14 Jun 2024 21:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VKkGHVxY"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="UjiAL+HO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15B681EB25;
-	Fri, 14 Jun 2024 21:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718398824; cv=none; b=bXd7twWq6PAlKS6bkHwjIVE3y350++BGMmby7byu4O5vlF41yCArRmgplPBGtylcK+O9YVKJVCxKBdhVhtZQPVpnaCG+/0Ym3vEd6OCNgtpx6UONjfiq2/ysuE3/7EU/76j1O3cIGD+XPEmDCzExRcddPWT5IbzqRvcCNrA9EEw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718398824; c=relaxed/simple;
-	bh=oQ6arAMIY4W8JlFuhCva0WASFpdOy6AaDFmh/dcfYng=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=nTvqXLYjzVDi/b5K4tTz1wfyUu54A099KY5OggHRi2/L4O9gNyTTgYl11Qu4ODdmq3Av9DnmAtwYANPUVcmhFgdHMEn5fJ716neVZ5UP3G35BGVGV/O7+rG/JDGFTk11prxIvLjQtVDWzCYW7mrjKOrgzzZ2NHY7JpilZiCdFCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VKkGHVxY; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718398820;
-	bh=oQ6arAMIY4W8JlFuhCva0WASFpdOy6AaDFmh/dcfYng=;
-	h=From:Date:Subject:To:Cc:From;
-	b=VKkGHVxY9SmUApWtxMiW8ZEBIhXb8eOgsRjdZAREYrvedg2cYTfIYkmILJwbKjyLB
-	 CVB0uCFj5pR6xskzzJjI3h2qeng3CMg4+xRrfD5KZOtKlCt6MAY7+SyjyjWPwrOlSq
-	 5lLerL0SDi4nQVKFDnIXEssz/om3YYhM9b4wgVi3OAChLuAsDVMDPBa+xdPlS6qwzX
-	 vhCp3htC5Fb7GzP7GMHnkf9xNauu9tStyXf888EC2Iw5s9FvP3JxX+69jScrJKXzGD
-	 9ywo3pHbpNb6he+j11iq7+AuNixKkIAn1wmZtsvySalgs3M6mi97A3AYKnhtDhNDQ3
-	 pRhTuICunZZBg==
-Received: from [192.168.1.207] (zone.collabora.co.uk [167.235.23.81])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6EFB13C671;
+	Fri, 14 Jun 2024 21:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718399482; cv=pass; b=EMb409p1310szzBERVTr+RdaGLr4KlTJlyTkczuHP//1HaNkOBMTeEzQcxap63SEsZiu+DVPLsJ8AjThS3NamklJjiTi4lVafpS6UGs2ySFQWj1/WkdtvTtR7eO6kxZTVM2X7Ee1LymzL52AifhyLDDd3WEtS7M7qf9PsSgxj0w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718399482; c=relaxed/simple;
+	bh=Q/qN1izoJcq4Q4/thJKSbX2FEUqJD1jIUgM6X/aohsM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gRKdRX9xyYv2MFb9it4RmlK2go+eJj8FjyqSInWzkXna+RGBISCXY6D7D8vqLL+kpssFLl97NHH1GFYaBfCdwnXtOfXKVXKfm3XhHMQvmc7gh+1NBrwkg1kfoFxjEHimiTofxmTqsIjTgjtnOcrLXXQDX+54iONncKK5igZKjKg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=UjiAL+HO; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E00F337804CF;
-	Fri, 14 Jun 2024 21:00:16 +0000 (UTC)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Fri, 14 Jun 2024 16:59:36 -0400
-Subject: [PATCH] arm64: dts: qcom: sc7180-trogdor: Disable pwmleds node
- where unused
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4W1Blm1nk1z49Q0G;
+	Sat, 15 Jun 2024 00:11:16 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1718399476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mB8PptePciwZTHBLBpn6ROe/lR4W3BuJOJvwANVxrYA=;
+	b=UjiAL+HO1UMOqvox3W057EUwzxvxr8g4XuRSYG1kty67HGJLieRwizZkmPsOfw9z73/5fN
+	wgrP3tKYttuAu3AAIIWecnrAibOQzk0ojsKZncCCGkkWKhx5JenWFO7wQMdbWsTWedmMU2
+	hKgoK6Ain6a9J3imP61jRNId19GMOjdF65t3I9z7eeX0KT4pvcdv+gCRySVXZ9fh/upZma
+	bRMFm/21+g57plX3aizfxg9FNcjPADa1ZFjICN/R1EhvMTjWP9MUKlJ08PhG8/Y+HyEv+y
+	lBQss55z2ShRzoLrtnQIg7tej+ac3USLG7QIKc0kkGr5ZHbpkoyoJClavgVtyg==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1718399476; a=rsa-sha256;
+	cv=none;
+	b=LQWm3RfuZ6rngz/eLFaRoDocB/N1OpGZpQC5WgoGNPEJG6XZA42nzdgLySmIaGMyqZ2nPv
+	n43fkoeAvYFadPFOfIVShojECM1kCkrZnUAxdOFVZG1CuBuWeEym5bTsK+4oCdWvFop8B2
+	lkERQwecMoo8XRUsEMVw1YDQKXXKQaZZx1TXzhptnE6UdXe4NppId9gwSAsAzCU0G5khyX
+	M2PBhDm8qwiWTqNT4hC8xkTuCVyrrgG9BP5cEM/C0sBP0ajQIkz+x0Qub7sgle4hwsFGgt
+	BdZomjNdzbS5UEBV/m59emoSWczB4Qp2wYLN8cO4V3qA9c6jOakzmoFgnRQnFw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1718399476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mB8PptePciwZTHBLBpn6ROe/lR4W3BuJOJvwANVxrYA=;
+	b=FhDLrw4JE0QSSfI0c86I5bsaZ9T/on4Wh2WLuq+AxSqTXHzgGwqlRyT2ML1v11xSZny+cM
+	9RQyxW27+ytOMt8BTlz4RPGuHblUcKV/sYDux7KgSQ+GvkoXVX9x4pKoKwWYeGSKTle/0w
+	zKg72eoDMPYKH2NdzqyfUm220+5u7rdxfXWFIoHxB6DNZUfjPyR6GVUsoi97IvpO40o6rw
+	q+6ab+L56LvP9XJ7sOSi6tCZReDrmvLOe7O9V177S0em70hgmM9X8o5GWMU5jjbi2SiS5k
+	zKcj2i6NqgX+COTMGgFYJBx0HF2yKJhORHxoN3rP1amv5zIPYypXon3isqJZFA==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 66182634C93;
+	Sat, 15 Jun 2024 00:11:13 +0300 (EEST)
+Date: Fri, 14 Jun 2024 21:11:13 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Dan Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v5 15/16] media: platform: Add mali-c55 parameters video
+ node
+Message-ID: <Zmyx8ZYIQIuTxIUh@valkosipuli.retiisi.eu>
+References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+ <20240529152858.183799-16-dan.scally@ideasonboard.com>
+ <ZmyRot1VIBXx3Ab8@valkosipuli.retiisi.eu>
+ <2063cbf3-73b7-4b34-8c3a-9fb530047842@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240614-sc7180-pwmleds-probe-v1-1-e2c3f1b42a43@collabora.com>
-X-B4-Tracking: v=1; b=H4sIADevbGYC/x3MTQqAIBBA4avErBtQMYuuEi0qxxroRxyoILp70
- vJbvPeAUGISaIsHEp0sfOwZuixgWoZ9JmSfDUYZq5y2KFOtG4Xx2lbygjEdI6FprKsrP4xBWch
- pTBT4/rdd/74fWbRaKWYAAAA=
-To: cros-qcom-dts-watchers@chromium.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@chromium.org>, 
- Douglas Anderson <dianders@chromium.org>, 
- Stephen Boyd <swboyd@chromium.org>
-Cc: kernel@collabora.com, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.13.0
+In-Reply-To: <2063cbf3-73b7-4b34-8c3a-9fb530047842@ideasonboard.com>
 
-Currently the keyboard backlight is described in the common
-sc7180-trogdor dtsi as an led node below a pwmleds node, and the led
-node is set to disabled. Only the boards that have a keyboard backlight
-enable it.
+Hi Dan,
 
-However, since the parent pwmleds node is still enabled everywhere, even
-on boards that don't have keyboard backlight it is probed and fails,
-resulting in an error:
+On Fri, Jun 14, 2024 at 09:15:07PM +0100, Dan Scally wrote:
+> > > +void mali_c55_params_write_config(struct mali_c55 *mali_c55)
+> > > +{
+> > > +	struct mali_c55_params *params = &mali_c55->params;
+> > > +	enum vb2_buffer_state state = VB2_BUF_STATE_DONE;
+> > > +	struct mali_c55_params_buffer *config;
+> > > +	struct mali_c55_buffer *buf;
+> > > +	size_t block_offset = 0;
+> > > +
+> > > +	spin_lock(&params->buffers.lock);
+> > > +
+> > > +	buf = list_first_entry_or_null(&params->buffers.queue,
+> > > +				       struct mali_c55_buffer, queue);
+> > > +	if (buf)
+> > > +		list_del(&buf->queue);
+> > > +	spin_unlock(&params->buffers.lock);
+> > > +
+> > > +	if (!buf)
+> > > +		return;
+> > > +
+> > > +	buf->vb.sequence = mali_c55->isp.frame_sequence;
+> > > +	config = vb2_plane_vaddr(&buf->vb.vb2_buf, 0);
+> > > +
+> > > +	if (config->total_size > MALI_C55_PARAMS_MAX_SIZE) {
+> > > +		dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
+> > > +			config->total_size);
+> > > +		state = VB2_BUF_STATE_ERROR;
+> > > +		goto err_buffer_done;
+> > > +	}
+> > > +
+> > > +	/* Walk the list of parameter blocks and process them. */
+> > > +	while (block_offset < config->total_size) {
+> > > +		const struct mali_c55_block_handler *block_handler;
+> > > +		struct mali_c55_params_block_header *block;
+> > > +
+> > > +		block = (struct mali_c55_params_block_header *)
+> > > +			 &config->data[block_offset];
+> > How do you ensure config->data does hold a full struct
+> > mali_c33_params_block_header at block_offset (i.e. that the struct does not
+> > exceed the memory available for config->data)?
+> 
+> 
+> We don't currently...the data buffer is sized specifically to be large
+> enough to accept a single instance of each possible struct that could be
+> included, we could keep track of the blocks that we have seen already and
+> ensure that none are seen twice...and that should guarantee that the
+> remaining space is sufficient to hold whatever the last block is. Does that
+> sound ok?
 
-  leds_pwm pwmleds: probe with driver leds_pwm failed with error -22
+Ḯ'd add an explicit check here. It's more simple way to ensure memory
+safety here: relying on a complex machinery that can't be trivially
+validated does risk having grave bugs, not only now but later on as well as
+modifications to the code are done.
 
-as well as a failure in the DT kselftest:
+> 
+> > 
+> > > +
+> > > +		if (block->type >= MALI_C55_PARAM_BLOCK_SENTINEL) {
+> > > +			dev_dbg(mali_c55->dev, "Invalid parameters block type\n");
+> > > +			state = VB2_BUF_STATE_ERROR;
+> > > +			goto err_buffer_done;
+> > > +		}
+> > > +
+> > > +		block_handler = &mali_c55_block_handlers[block->type];
+> > > +		if (block->size != block_handler->size) {
+> > How do you ensure config->data has room for the block?
+> I think through the same proposal as above.
 
-  not ok 45 /pwmleds
+Similarly here. You already even have the size of the blocks available
+here.
 
-Fix this by controlling the status of the parent pwmleds node instead of
-the child led, based on the presence of keyboard backlight. This is what
-is done on sc7280 already.
-
-While at it add a missing blank line before the child node to follow the
-coding style.
-
-Fixes: 7ec3e67307f8 ("arm64: dts: qcom: sc7180-trogdor: add initial trogdor and lazor dt")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts   | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts   | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts   | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi              | 5 +++--
- 9 files changed, 11 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
-index 919bfaea6189..340cb119d0a0 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
-@@ -12,6 +12,6 @@ / {
- 	compatible = "google,lazor-rev1-sku2", "google,lazor-rev2-sku2", "qcom,sc7180";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts
-index eb20157f6af9..d45e60e3eb9e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts
-@@ -17,6 +17,6 @@ &ap_sar_sensor_i2c {
- 	status = "okay";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts
-index 45d34718a1bc..e906ce877b8c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-kb.dts
-@@ -18,6 +18,6 @@ / {
- 	compatible = "google,lazor-sku2", "qcom,sc7180";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts
-index 79028d0dd1b0..4b9ee15b09f6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r10-lte.dts
-@@ -22,6 +22,6 @@ &ap_sar_sensor_i2c {
- 	status = "okay";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts
-index 3459b81c5628..a960553f3994 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts
-@@ -21,6 +21,6 @@ / {
- 		"qcom,sc7180";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts
-index ff8f47da109d..82bd9ed7e21a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts
-@@ -25,6 +25,6 @@ &ap_sar_sensor_i2c {
- 	status = "okay";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-index faf527972977..6278c1715d3f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-@@ -18,6 +18,6 @@ / {
- 	compatible = "google,lazor-rev9-sku2", "qcom,sc7180";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-index d737fd0637fb..0ec1697ae2c9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-@@ -22,6 +22,6 @@ &ap_sar_sensor_i2c {
- 	status = "okay";
- };
- 
--&keyboard_backlight {
-+&pwmleds {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 4d33c3fbedff..74ab321d3333 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -356,10 +356,11 @@ max98360a: audio-codec-0 {
- 		#sound-dai-cells = <0>;
- 	};
- 
--	pwmleds {
-+	pwmleds: pwmleds {
- 		compatible = "pwm-leds";
-+		status = "disabled";
-+
- 		keyboard_backlight: led-0 {
--			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
- 			function = LED_FUNCTION_KBD_BACKLIGHT;
- 			pwms = <&cros_ec_pwm 0>;
-
----
-base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
-change-id: 20240614-sc7180-pwmleds-probe-284675dabf04
-
-Best regards,
 -- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Kind regards,
 
+Sakari Ailus
 
