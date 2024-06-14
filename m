@@ -1,131 +1,182 @@
-Return-Path: <devicetree+bounces-75814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E7B908B90
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 14:23:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC4F908BB8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 14:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B2811F22916
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:23:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6033F1C20A30
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE63719752F;
-	Fri, 14 Jun 2024 12:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D706195807;
+	Fri, 14 Jun 2024 12:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="kPfOofo9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nopoLBWV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CDC619644B
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 12:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A802312D74D;
+	Fri, 14 Jun 2024 12:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718367792; cv=none; b=QXTAgTgKvTNKDtg4g92Ac2LNzIvKfPllKCKN21pvWnu/xsfqZILGSxJEB7CaslL2eQf57yHHtcwfYVn2LMBby7zk9FXRYQN+dS7/GgkLB+f8MJVjaF5NSGZcu6eQT1GLfPcmEej2EeMJAW6nlChX1xl5Slkw2OFt5xrsNMoqdIg=
+	t=1718368334; cv=none; b=dWMUsrhVdMHqog/9lV20iqcrAbav2B7D+/j1lqiAmWW9SpaktICbTFYI7vP1ml3LgrsbQit20CMOO+xFkwVyxKcdIlVP6XMAvjCU+OwoHxWjyd/LTNiYEJGxAkpFhjGn7MKIL+PjApb5S/qH/dQ6O1S98fvs077wLC5x6pyHpmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718367792; c=relaxed/simple;
-	bh=yxhM44O6zp2KBZgEbJ+StQD/YJ38G/9/f+U5EjDvXzA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CsdKFMsaufuKQgN4EYeCBopPujth4kAHYLPYpYlItyqfvHvIYQYqwF9X6zWh6Q42/ZapmyIcLmJaW17wDJGCqaKHFOOd2EDSnKXTqT0EE0VvzBJP39Fua+FCEFEiQVbvTwd38tB+3SPl4CXUCqoNtsJ9RhBsW5GM8sE6FKWkLxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=kPfOofo9; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=gbe4
-	NGoGJzlNtLVKEdopxNLp/BLddKDryG0jqabOz/E=; b=kPfOofo9DujqkJtNJJ0q
-	bC5ll3XMzSVdj9FSEvQ008yd04j5tBE0Edipg8AsmPKLDhnsv7sfUkOQMRaeCRJk
-	w3ROsk5S60Mawss3/1seNJtY+2wPFszE5/AUJ6Ni5lKjDxNIp7g6u3hvHYMGYgzs
-	yzwmDsryoNufbjjMonVbNq55BvFSPgTrj1+Jq+wh5LA/t7wjB0uupViXgdo/Kilp
-	H6BFbk27m/mDI8NPNyVpzhf59izO5mFTVwofkY+i5pFKghVz6A/D1wIg00Xpo1jl
-	ZTbdxIu3N6p82fL19bohOtkAfapZ/DcyND3ATd7ITGH4XZd8B04SsU/MdRu45BKV
-	Sw==
-Received: (qmail 1512454 invoked from network); 14 Jun 2024 14:23:01 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Jun 2024 14:23:01 +0200
-X-UD-Smtp-Session: l3s3148p1@vPs1rdgayLhehh9j
-Date: Fri, 14 Jun 2024 14:23:01 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: drop stale Anson Huang from maintainers
-Message-ID: <20240614122301.vjwzbkrl5grh5dw2@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20240614095927.88762-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1718368334; c=relaxed/simple;
+	bh=d4Bv2ZzuYu1QopJr82AZ6xrYRfuX0NoNXCgdGIEC8Nc=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=HHVZ8apKioEiOszJsF+u4OX3hTdFxLTW8GU8H67pNQp8YLAcHOpIf3TVnnF+zY1xc85KBPr3J2DblNG/YsbNZh+E/vm07k1Jl65FBnfY3EykP9bEoREhof4qlz+TmKEhwSuZyPpm4GNgpfF+4X4GGQKt5lNymEUCtJsNfzOpIaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nopoLBWV; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718368333; x=1749904333;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=d4Bv2ZzuYu1QopJr82AZ6xrYRfuX0NoNXCgdGIEC8Nc=;
+  b=nopoLBWVgSFSExTMBwO/aW4kMJIYsMsdyNQsT72/1dXDRK0NDOW7e2Ri
+   ceuEArmNwdkhMVMd+CN9SiFjRFtSgjkYD6ZA55/XNE48UAEuLU3pjmTif
+   s/M49bCv5Kra3GinF/wHpe3i2Mx9WMMN9yEXRhbofrKv/6XRang1O96Yh
+   FAd6DBoLOAgGWYd5ykOyR9V1jijDYBnyA0S6IBRSQf1L7Wz4ToKz4veHd
+   F7Uu4Veuqa2gnT4s/a9QQGVEButySgp/xXDIdRWqfk3qL8qQKqLXF9WHE
+   VkvljUzRrgdwYCo6suW+yUzPlY/2V14RgaBAUsCHDCouk3JI7alnFOR9r
+   Q==;
+X-CSE-ConnectionGUID: c4nys7iCQhSEjg28/63XYw==
+X-CSE-MsgGUID: knrB/t/5TE6ckMB8gDY8sA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="26366574"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
+   d="scan'208";a="26366574"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 05:32:12 -0700
+X-CSE-ConnectionGUID: tdkimbqMR1mmScCfKZcLzg==
+X-CSE-MsgGUID: KkhV+DFFQ7q2xccIm4rZzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
+   d="scan'208";a="40414794"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.222])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 05:32:04 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 14 Jun 2024 15:32:01 +0300 (EEST)
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+cc: Bjorn Andersson <andersson@kernel.org>, 
+    Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+    Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+    Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org, 
+    bmasney@redhat.com, djakov@kernel.org, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+    linux-pci@vger.kernel.org, vireshk@kernel.org, quic_vbadigan@quicinc.com, 
+    quic_skananth@quicinc.com, quic_nitegupt@quicinc.com, 
+    quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v14 3/4] PCI: Bring the PCIe speed to MBps logic to new
+ pcie_link_speed_to_mbps()
+In-Reply-To: <20240609-opp_support-v14-3-801cff862b5a@quicinc.com>
+Message-ID: <c76624fa-1c07-1bb4-dff0-e35fe072f176@linux.intel.com>
+References: <20240609-opp_support-v14-0-801cff862b5a@quicinc.com> <20240609-opp_support-v14-3-801cff862b5a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="i66amim3x4jzbudd"
-Content-Disposition: inline
-In-Reply-To: <20240614095927.88762-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+
+On Sun, 9 Jun 2024, Krishna chaitanya chundru wrote:
+
+> Bring the switch case in pcie_link_speed_mbps() to new function to
+> the header file so that it can be used in other places like
+> in controller driver.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> ---
+>  drivers/pci/pci.c | 19 +------------------
+>  drivers/pci/pci.h | 22 ++++++++++++++++++++++
+>  2 files changed, 23 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index d2c388761ba9..6e50fa89b913 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -6027,24 +6027,7 @@ int pcie_link_speed_mbps(struct pci_dev *pdev)
+>  	if (err)
+>  		return err;
+>  
+> -	switch (to_pcie_link_speed(lnksta)) {
+> -	case PCIE_SPEED_2_5GT:
+> -		return 2500;
+> -	case PCIE_SPEED_5_0GT:
+> -		return 5000;
+> -	case PCIE_SPEED_8_0GT:
+> -		return 8000;
+> -	case PCIE_SPEED_16_0GT:
+> -		return 16000;
+> -	case PCIE_SPEED_32_0GT:
+> -		return 32000;
+> -	case PCIE_SPEED_64_0GT:
+> -		return 64000;
+> -	default:
+> -		break;
+> -	}
+> -
+> -	return -EINVAL;
+> +	return pcie_link_speed_to_mbps(to_pcie_link_speed(lnksta));
+
+pcie_link_speed_mbps() calls pcie_link_speed_to_mbps(), seems quite 
+confusing to me. Perhaps renaming one to pcie_dev_speed_mbps() would help
+against the almost identical naming.
+
+In general, I don't like moving that code into a header file, did you 
+check how large footprint the new function is (when it's not inlined)?
+
+Unrelated to this patch, it would be nice if LNKSTA register read would 
+not be needed at all here but since cur_bus_speed is what it is currently, 
+it's just wishful thinking.
+
+>  }
+>  EXPORT_SYMBOL(pcie_link_speed_mbps);
+>  
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 1b021579f26a..391a5cd388bd 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -333,6 +333,28 @@ void pci_bus_put(struct pci_bus *bus);
+>  	 (speed) == PCIE_SPEED_2_5GT  ?  2500*8/10 : \
+>  	 0)
+>  
+> +static inline int pcie_link_speed_to_mbps(enum pci_bus_speed speed)
+> +{
+> +	switch (speed) {
+> +	case PCIE_SPEED_2_5GT:
+> +		return 2500;
+> +	case PCIE_SPEED_5_0GT:
+> +		return 5000;
+> +	case PCIE_SPEED_8_0GT:
+> +		return 8000;
+> +	case PCIE_SPEED_16_0GT:
+> +		return 16000;
+> +	case PCIE_SPEED_32_0GT:
+> +		return 32000;
+> +	case PCIE_SPEED_64_0GT:
+> +		return 64000;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
 
 
---i66amim3x4jzbudd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 14, 2024 at 11:59:27AM +0200, Krzysztof Kozlowski wrote:
-> Emails to Anson Huang bounce:
->=20
->   Diagnostic-Code: smtp; 550 5.4.1 Recipient address rejected: Access den=
-ied.
->=20
-> Add IMX platform maintainers for bindings which would become orphaned.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+-- 
+ i.
 
-Acked-by: Wolfram Sang <wsa+renesas@sang-engineering.com> # for I2C
-
-
---i66amim3x4jzbudd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZsNiEACgkQFA3kzBSg
-KbZS8g//XMHYH+AtIpUDIrsnR9uk0/5NUTHI8TztcF7rT4+bRCBiwFY7SplUOupv
-9RK9jS1EA+S4ZyZkD56we02cqUlGBNXgS64vXTGfGIc1N+DMsa1uVyiv4MZsXgad
-PMnoe2emN02LqQCNCbvGvn9lZuYdEOwhfNVZXGVHcJbyQmgFwjUhoC1n2ukJA8AV
-mqSSlW1IVgJyYGhxxDLXh9diA/tcLpSPmgx3kzPVTNRmoS6edCWJcn9zluivL/R7
-4HXGhAw/yEMWvedXNQ54EnDrfVedA0f+xu0KOpQuMPkk0hQqD2JeisYBNTjX7SGq
-22kgrDdPLcyakURakGRVIpRy+iFZk1FzyiIPTRcEicskbaYXyvtu+78iWOB6A14K
-LP0evWM6LmqdKIVCooIOYPwiADx/oJYLYduFsgTWYq4GSpCuHtrHytwyw6j+LTvu
-jFM1zIVcml3rZ8ZieoIDXSqPiMqPE3/4cNuOfkkj4YmzdhLIN8FAJjEq+QepfxIw
-si0mPOGCa7Uuvlb/4n7DQWdoVTWkd6mmp1m/bPmdQqTE6eOVsrYSyDglKBcYCcCQ
-SuYwwUfnsKrX8mb9VIqHlYYtTX2VCECQKXpD84L/g0nO6KRrMqTTr0up3Mrzji5s
-KJJG1eA6JkB3J/1K5nplnklCdnsyY3Hx2aQy/Z6ECSDrUuiYj0E=
-=aS1V
------END PGP SIGNATURE-----
-
---i66amim3x4jzbudd--
 
