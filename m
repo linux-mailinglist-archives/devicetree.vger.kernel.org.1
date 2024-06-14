@@ -1,222 +1,158 @@
-Return-Path: <devicetree+bounces-75694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C04A90859F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0CF89085A5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C67F81F25802
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:02:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47B4C1F22E08
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659B618411C;
-	Fri, 14 Jun 2024 08:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD80314B954;
+	Fri, 14 Jun 2024 08:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HCr1D3bl"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="pU4lSOlz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682A61836D3;
-	Fri, 14 Jun 2024 08:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809F21474CB;
+	Fri, 14 Jun 2024 08:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718352119; cv=none; b=fqswiTahEcZBDY58/iJNYIMzh9nBeLh2dv7/gsoH7Fy5KuhFb+bhJLoYpHAwnYtU9b3Ksh9dxgTxl6je8/HJBrQddgAZVZhLw2cEoguBBAuy/IdVrUcWQY25iIui5iJXJFS7e2uuglCK2rCYsNzzn84ceufrZXNI/LfFt/NR5Fk=
+	t=1718352436; cv=none; b=INla4od6iLQ6HG4uzFRT2b8I6em/y+ZDp3/5TCsW2d4IzjvUSY7zBX/mK2Scfjr7MVDurhLAileqR9BD/5zr7Vkw5K1RGpUU5tkaRQOHtBd2uY4OKgXOV7pEKfx0fvRzSEiViF4IuAz17VR9DJhPBcyLqJDxBS+ss0pPJCi74T8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718352119; c=relaxed/simple;
-	bh=DNloJkCpugxMgXOsQecfvd48tcZUcJDPFTN7cPrQP6c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=swywsZChJkRZch7muze5C9flZZLfgIwEcLH8grwJs2ktjlqnHh4y7n3tp6DEGi3Ke607izNgUyh/MUj0HN3hm8Jfe9Uqzns6Afht17SaBU7U/9/BVkDAE6hWBw1eI7eNdnJEddQuWdkJFKMHx2Z97ba00GlsVaAFffBFPeODDwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HCr1D3bl; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52c815e8e9eso2017293e87.0;
-        Fri, 14 Jun 2024 01:01:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718352115; x=1718956915; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nRWFYP2PnBSqJKVpviuIt+bkDMabc8LZej0hybvhqgM=;
-        b=HCr1D3blzIZOzlhk/hSdEwNlX9awu1hh9OCk9cLfVpGMDqB+OnC8QjL1VnZSWz5S7G
-         Cf40xXrHtyBCKSpsNXOZBCRzdIcX8pqgTgJ8G2BTsV2V67/znFFNibnFEf+3wtBTHUFX
-         dOWf5or6sE4PwiXVWVtVBCuABoO+aNU690yZZLTy1mHBt73a3iJFxOTSrVdn0ESz+ji9
-         f81dweD1eHeqVBbCq8m3zVpE5JQuYFbcotaV5pAxTwRtJCSsTmyxQ2fdukcnbzMC/sbY
-         aeldG+1b2Qhk0gnAS5rYrQ1OICPzBDh3RLihrMKOXowYpnsgf2AUCPa+PofyQ9J3OEl5
-         AwQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718352115; x=1718956915;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nRWFYP2PnBSqJKVpviuIt+bkDMabc8LZej0hybvhqgM=;
-        b=xHKEKQ/FKDgmOPS3UDxvZ0/uKNepBJ78paw2ZGCYGEC2lfj9Mu/UofT8ThjPpQgUup
-         7nU22B1AVfYxGMn3JRekJnsqHVfxrEA4pok210irWiGYgKPOh/ImpnyO8oasXO11fZa+
-         TvHb9WzOvARJehJtn+vVQQbLKLa1E6KdU4tmMqIJSo5s3+mZ6rGmnAqoO1wxDxg4Zjxc
-         QCFYjP3fQEJFpIbpi5hks8uap53TMUrncM5g4aWP2XtAHukYDjFthqXX1bSuXrLpbuEw
-         PRAoaPX+t2Mwb0UCuXivTbdufXGmI1WD5ffDQid3p/oQWY0GcKHHgMa0AcR7e67WVArL
-         FrGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUH3kmfgPgfECDjOmYcwnKGQ0FeqNgiJh88oMizGkho6LsJwnN6vGKz47YFluQpPTzm3qdu5trdd90uGZ19yNwMDObOdpMsf6YDOIK1qouzp819r2RvYdedRaoKqTY8idD8DqppS02L2k1j/ZA63x4Iye+vHCzJSy7IEEptVU+Ib/Xl0t92jlHU
-X-Gm-Message-State: AOJu0YyTwoakUiUMQ5aPbZ40H1oUwUyyrnz2V5auMoWyx7foZhFVpfx6
-	JRXpdmHXtOBNAp9XM7/0HtmxiKrVlGQaHyuIy+b5/ubINK3YjT56
-X-Google-Smtp-Source: AGHT+IHeEQOR6VcQjY6/3rKRzLVKAle1CSEVGl/XgpzmI8h208I/SEeUoNN5Pd4iU+qdGlaKkbLESA==
-X-Received: by 2002:a05:6512:1319:b0:52c:845e:3194 with SMTP id 2adb3069b0e04-52ca6e6d4b3mr1398030e87.29.1718352114995;
-        Fri, 14 Jun 2024 01:01:54 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca282ee91sm437317e87.105.2024.06.14.01.01.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jun 2024 01:01:54 -0700 (PDT)
-Message-ID: <b585d817-da4d-45b1-87b5-2cfdc8b8823b@gmail.com>
-Date: Fri, 14 Jun 2024 11:01:52 +0300
+	s=arc-20240116; t=1718352436; c=relaxed/simple;
+	bh=DMK+CWELdQnDrMQO/JKXFNX+z8myFs0IXh6Wo0q7b5Q=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HOrE56/QzktxFhIG10BlHRiKsHnoo/QV/sHOjSxR0sy8kdyQK9XzDUPl5mF42YhbZreZgUDyp3nXCO/nQdqbuapg9jgMNh3mibsxtX88Sm/5J3Y43U9tBcCke9Hl/RPG5DhvMllQS5VInaMDe4vBH3TGqAJqqMYV4ibpLI+3itQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=pU4lSOlz; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718352433; x=1749888433;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DMK+CWELdQnDrMQO/JKXFNX+z8myFs0IXh6Wo0q7b5Q=;
+  b=pU4lSOlzut6VVA7JXsuFGTlpFTE1wSSNimx9oKzC2IO/x9EAfBrmUwrA
+   dUBz0NVYEvSkXwhrNXrJnOZr+mp2aRV+CdMenPtXowvODmx+jBqj1XrBu
+   wS9sWzPhSmAliBuTosLuX8XAiQ5bDDSIgoHbja/9Hv0RQtG7/a4JRU6Zl
+   cI5OeaXunW1FhXKiowGkmrjfmfySCrRSsbQFr/+BwsPJVTScHzQLTepcw
+   YdBsT517D3XbNHFzvLHkWKbdSDUsjRxh4EjlTj/ad1nu2EeEo0xVj2TGY
+   net5hz4gCoKTMLRf0YSczWNcSucJJ+G3kWK8WOafQeTy9Nhvg8SUEsHG+
+   w==;
+X-CSE-ConnectionGUID: E0Y3hlcORKiEqud2JIoT4A==
+X-CSE-MsgGUID: hXS/9NvCRrK8U4zhnOg3vw==
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
+   d="asc'?scan'208";a="28157199"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2024 01:07:12 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 14 Jun 2024 01:06:43 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 14 Jun 2024 01:06:38 -0700
+Date: Fri, 14 Jun 2024 09:06:20 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Jesse Taube <jesse@rivosinc.com>
+CC: <linux-riscv@lists.infradead.org>, Jonathan Corbet <corbet@lwn.net>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>, Evan Green
+	<evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>, Charlie Jenkins
+	<charlie@rivosinc.com>, Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu
+	<andy.chiu@sifive.com>, Eric Biggers <ebiggers@google.com>, Greentime Hu
+	<greentime.hu@sifive.com>, =?iso-8859-1?Q?Bj=F6rn_T=F6pel?=
+	<bjorn@rivosinc.com>, Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin
+	<costa.shul@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Baoquan
+ He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>, Zong Li
+	<zong.li@sifive.com>, Sami Tolvanen <samitolvanen@google.com>, Ben Dooks
+	<ben.dooks@codethink.co.uk>, Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Erick Archer
+	<erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: riscv: Add Zicclsm ISA extension
+ description.
+Message-ID: <20240614-broaden-bluish-8b2fe892db55@wendy>
+References: <20240613191616.2101821-1-jesse@rivosinc.com>
+ <20240613191616.2101821-3-jesse@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/10] mfd: bd96801: Add ERRB IRQ
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Thomas Gleixner <tglx@linutronix.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-References: <cover.1717486682.git.mazziesaccount@gmail.com>
- <332a2d2429e2ba3c96afd28c1ccc18efc38e1fd3.1717486682.git.mazziesaccount@gmail.com>
- <20240613163249.GN2561462@google.com>
- <21a468c2-7d8f-459a-a5a9-53d8694c3f38@gmail.com>
- <20240614075004.GB2561462@google.com>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240614075004.GB2561462@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6rVBoByRG8F88jlI"
+Content-Disposition: inline
+In-Reply-To: <20240613191616.2101821-3-jesse@rivosinc.com>
 
-On 6/14/24 10:50, Lee Jones wrote:
-> On Fri, 14 Jun 2024, Matti Vaittinen wrote:
-> 
->> On 6/13/24 19:32, Lee Jones wrote:
->>> On Tue, 04 Jun 2024, Matti Vaittinen wrote:
->>>
->>>> The ROHM BD96801 "scalable PMIC" provides two physical IRQs. The ERRB
->>>> handling can in many cases be omitted because it is used to inform fatal
->>>> IRQs, which usually kill the power from the SOC.
->>>>
->>>> There may however be use-cases where the SOC has a 'back-up' emergency
->>>> power source which allows some very short time of operation to try to
->>>> gracefully shut down sensitive hardware. Furthermore, it is possible the
->>>> processor controlling the PMIC is not powered by the PMIC. In such cases
->>>> handling the ERRB IRQs may be beneficial.
->>>>
->>>> Add support for ERRB IRQs.
->>>>
->>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>>> ---
->>>> Revision history:
->>>> v2 =>:
->>>> 	- No changes
->>>> v1 => v2:
->>>> 	- New patch
->>>> ---
->>>>    drivers/mfd/rohm-bd96801.c | 291 ++++++++++++++++++++++++++++++++-----
->>>>    1 file changed, 253 insertions(+), 38 deletions(-)
->>>>
->>>> diff --git a/drivers/mfd/rohm-bd96801.c b/drivers/mfd/rohm-bd96801.c
->>>> index 1c2a9591be7b..b7f073318873 100644
->>>> --- a/drivers/mfd/rohm-bd96801.c
->>>> +++ b/drivers/mfd/rohm-bd96801.c
->>>> @@ -5,13 +5,9 @@
->>>>     * ROHM BD96801 PMIC driver
->>>>     *
->>>>     * This version of the "BD86801 scalable PMIC"'s driver supports only very
->>>> - * basic set of the PMIC features. Most notably, there is no support for
->>>> - * the ERRB interrupt and the configurations which should be done when the
->>>> - * PMIC is in STBY mode.
->>>> - *
->>>> - * Supporting the ERRB interrupt would require dropping the regmap-IRQ
->>>> - * usage or working around (or accepting a presense of) a naming conflict
->>>> - * in debugFS IRQs.
->>>
->>> Why bother adding all that blurb in the first place?
->>
->> Because, I assume there are users who would like to have the ERRB in use.
->> The main purpose of this comment is that any such users could
->> 	a) see this version does not support ERRB.
->> 	b) can find the original RFC with ERRB supportn and a workaround.
->> 	c) know why this version does not work with ERRB and thus fix this
->>
->> It seems this ERRB support may be missing from upstream for a while, hence I
->> think having this note is worthy until (if) this ERRB patch lands in
->> upstream.
-> 
-> What I mean is - you're adding all of these extra lines in patch 3 and
-> removing them in patch 9.
-> 
+--6rVBoByRG8F88jlI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-True. This is because I had a feeling the irqdomain changes might not 
-get merged that fast as it seemed like something that is not completely 
-trivial. This comment is useful if patches 7-10 aren't merged together 
-with 1-6 - which I now also hope is the case XD
+On Thu, Jun 13, 2024 at 03:16:11PM -0400, Jesse Taube wrote:
+> Add description for Zicclsm ISA extension.
+>=20
+> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> ---
+> V1 -> V2:
+>  - New patch
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index cfed80ad5540..9f6aae1f5b65 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -317,6 +317,13 @@ properties:
+>              The standard Zicboz extension for cache-block zeroing as rat=
+ified
+>              in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+> =20
+> +        - const: zicclsm
+> +          description:
+> +            The standard Zicclsm extension for misaligned support for al=
+l regular
+> +            load and store instructions (including scalar and vector) bu=
+t not AMOs
+> +            or other specialized forms of memory access. Defined in the
+> +            RISC-V RVA Profiles Specification.
 
->>>> + * basic set of the PMIC features.
->>>> + * Most notably, there is no support for the configurations which should
->>>> + * be done when the PMIC is in STBY mode.
->>>>     *
->>>>     * Being able to reliably do the configurations like changing the
->>>>     * regulator safety limits (like limits for the over/under -voltages, over
->>>> @@ -23,16 +19,14 @@
->>>>     * be the need to configure these safety limits. Hence it's not simple to
->>>>     * come up with a generic solution.
->>>>     *
->>>> - * Users who require the ERRB handling and STBY state configurations can
->>>> - * have a look at the original RFC:
->>>> + * Users who require the STBY state configurations can  have a look at the
->>>> + * original RFC:
->>>>     * https://lore.kernel.org/all/cover.1712920132.git.mazziesaccount@gmail.com/
->>>> - * which implements a workaround to debugFS naming conflict and some of
->>>> - * the safety limit configurations - but leaves the state change handling
->>>> - * and synchronization to be implemented.
->>>> + * which implements some of the safety limit configurations - but leaves the
->>>> + * state change handling and synchronization to be implemented.
->>>>     *
->>>>     * It would be great to hear (and receive a patch!) if you implement the
->>>> - * STBY configuration support or a proper fix to the debugFS naming
->>>> - * conflict in your downstream driver ;)
->>>> + * STBY configuration support or a proper fix in your downstream driver ;)
->>>>     */
->>
->> ...
->>
->> Thanks for comments Lee. Reworking this will have to wait for the irqdomain
->> name suffix, which I will continue after Hervé has done his part of the
->> irqdomain changes. I will omit this patch from the next re-spin of the
->> series.
-> 
-> I'm in no rush. :)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Well, glad to hear ;) I still usually try to avoid delaying sending the 
-follow-up patches. I am under impression it is easier to review the new 
-revision if the previous revision was not reviewed too long ago... ;)
+> +
+>          - const: zicntr
+>            description:
+>              The standard Zicntr extension for base counters and timers, =
+as
+> --=20
+> 2.43.0
+>=20
 
-I feel it is polite to tell the reviewers there will be some delay when 
-I know it.
+--6rVBoByRG8F88jlI
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Yours,
-	-- Matti
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmv57wAKCRB4tDGHoIJi
+0v0FAP9mwX36VWSnRozk96nyVM3RIf8dHyi71Dw0gJMNUha3GgEA3nQVPysOqYVF
+bZxE5DpI/lku06/oD+G/uESgN8mlDQw=
+=89e4
+-----END PGP SIGNATURE-----
 
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+--6rVBoByRG8F88jlI--
 
