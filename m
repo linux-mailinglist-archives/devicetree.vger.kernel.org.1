@@ -1,298 +1,152 @@
-Return-Path: <devicetree+bounces-75850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31567908E47
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:11:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082CB908E90
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:21:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26E661C22069
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:11:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5ED9B2BB0D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350F619E7EA;
-	Fri, 14 Jun 2024 15:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB3315FA7E;
+	Fri, 14 Jun 2024 15:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="atZux+0d"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KvRjTshn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BB4D19D061;
-	Fri, 14 Jun 2024 15:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A05FC15AAD7;
+	Fri, 14 Jun 2024 15:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718377625; cv=none; b=HwlGrlAufwP6UqWuUQZBNYMHffP/271zjm6Fewiy+t7b9inlzHU3c1HFanthvcLTqGZIr5yhV8vGUHB3AHL6o9/3QIJ+Wagvq3ORK7xXBnKw93WQLnlTHLh8+yZNr+pSAhSccavuQRmwgDh7HPRXfBNzrt2hQ/Br5jX6kkRbm2M=
+	t=1718377873; cv=none; b=fmPeE/DpgvUXb0LmyM5NueKsyO89RBAmz991kQsahC14paN1Uq7S5U4fBu6Za+9tmayZ05d67xJRtlBZV/zlSFTeYIVIsHXcOWIwKc+8dxL5OmSwpITgyfJeBouG+MJwjQ1asyPtfP8OPaht63t0C20ihU5R8LcUoOyGSdH9lG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718377625; c=relaxed/simple;
-	bh=hpoHWJt3egyQFh0Gazxv9GuLmYmR3LEPSoex7+OZMRc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=qkeAz50h8cJkAOG9nymDN8Mx48uQZl5pX8+lYUggQ55v03/9XdKXI3fGCgVwy4ilVCV56eUzSGgVAp+8r6m/lIdfMtsKpjirA8txoNX3WsQVY5PINXkhNhZd4YgpviqwVpgjtS8lwPSOw+QMFLKkUmMfyLHdoy+vhrafN5tDepc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=atZux+0d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFAABC4AF1D;
-	Fri, 14 Jun 2024 15:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718377624;
-	bh=hpoHWJt3egyQFh0Gazxv9GuLmYmR3LEPSoex7+OZMRc=;
-	h=From:Date:Subject:To:Cc:From;
-	b=atZux+0dys4cPdjH4/6iGX8tS7c6crpf2Apwmihrykn+cdJOtu/jMSssn9I9n7X2T
-	 h7nhLdnN49IyE9UoJygQOOnWZf8dTuJr8GH0SPYsi6Liua1nyUkvUCxAhNScA34bhn
-	 N3/1CGzGWrrunvzla9fX2b4nyo1kkPMy7pZOD0rz2v5BQqX0QE5FpcA9pSo4zfM61R
-	 CNs6hYNNvUzaraBZ4am11VnEXn5KDhrRagX8Kgyf1OVZaNddT+Sz2hVJl2r0LNCkS8
-	 v+PuvwobfLYq2KU3ZE0zoxudM5IsqDsu9ZcdVC4QQbeQr+PUqAADp2uavbx0LNO3mI
-	 q2emmGVm5d39w==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Fri, 14 Jun 2024 18:06:42 +0300
-Subject: [PATCH v5] arm64: dts: ti: am642-evm: Add overlay for NAND
- expansion card
+	s=arc-20240116; t=1718377873; c=relaxed/simple;
+	bh=t+p8hRe7ZJaO1YiL/Ey5QrMotfYND+fGv7wrcUgpxyA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iqp3KsuRW+hQwlsn5lf2aBzouqtK9LOYCKjFl0nbfJAayzCkLOv/tEML303ld7HGPGyBvqHqn+whgFp3WLhnFamhgAd8CVdEamgax3ft1YIqVOE5FPAIuM0o8Jy2Rbo2vueM5o1s7w14ri11achv8e/yqmQsxUO/5i8FI2eVZ2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KvRjTshn; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718377871; x=1749913871;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=t+p8hRe7ZJaO1YiL/Ey5QrMotfYND+fGv7wrcUgpxyA=;
+  b=KvRjTshnCJVS4/oaXFsQXcfkOV0qRN+5PvWtRq1uKgU+/xYycOgzFkdk
+   4sTsfALvfgudGnW31TlcOSay8XZG2WIPIP8baIPh287MYErO1PG5Jdiv8
+   ys2zXiUOHLQ79aobZpyjeB3mtfYcvaKTDptbnXI0wjg/BXU5u4Qpa89c/
+   1d019mt8FDPuq2Tue7Va82UxYDGd6z5C+XmnZzCcSEdyJbbAXbjeydsFm
+   ekpIS6wzG2yzdLIk7L31irBU3s0ROw68FMPrIdWSUpzrnKn58yzX84tGm
+   rZj6WmzahMXxGns7Xm6Jd7yAJvJkUWfFittLgnhMDE+CI5GRwZXFuH1lQ
+   w==;
+X-CSE-ConnectionGUID: sOrgkzAtQbCB97EHEvWOEg==
+X-CSE-MsgGUID: sB+N6ngaQ6epyHZ6PCM5pw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="19119124"
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; 
+   d="scan'208";a="19119124"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 08:11:08 -0700
+X-CSE-ConnectionGUID: JEC5FGQ4RVyhmrCQyeMSlw==
+X-CSE-MsgGUID: YxrmvlMCRIymwmM76zQFPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; 
+   d="scan'208";a="71297906"
+Received: from lkp-server01.sh.intel.com (HELO 9e3ee4e9e062) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 14 Jun 2024 08:11:06 -0700
+Received: from kbuild by 9e3ee4e9e062 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sI8Zz-0001RE-1E;
+	Fri, 14 Jun 2024 15:11:03 +0000
+Date: Fri, 14 Jun 2024 23:10:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sebastian Kropatsch <seb-dev@mail.de>, Heiko Stuebner <heiko@sntech.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-rockchip@lists.infradead.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] arm64: dts: rockchip: Improve LEDs on NanoPi R6C/R6S
+Message-ID: <202406142337.SdnyldQ8-lkp@intel.com>
+References: <20240612205056.397204-4-seb-dev@mail.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240614-am642-evm-nand-v5-1-acf760896239@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAIFcbGYC/x3MQQqAIBBA0avErBuwSS26SrSwnGoWWShIEN09a
- fkW/z+QOAonGKoHImdJcoYCU1ew7C5sjOKLgRRpZRuN7rCakPOBwQWPZp2pddRrbzoo0RV5lfs
- fjtP7fs+NdCZgAAAA
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: afd@ti.com, srk@ti.com, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7443; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=hpoHWJt3egyQFh0Gazxv9GuLmYmR3LEPSoex7+OZMRc=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBmbFyNT40p3B72AyVUT8OxMfjQcPPygO85xzRbT
- ySNByUw9mOJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZmxcjQAKCRDSWmvTvnYw
- kwf0EACAFuD1Gx24Ue+BJxG+ZTeNwQhVEQxQWcuBSr/YdMZzLXDmwJFnz1zpK6MwZLEispdosx1
- B1AuR/tsX6gJ9rVwfpCNxddaQ6XwLuIXdoI/j0nfxKxjiLWnTBiT9PNaAJ+K2Qua5j+/vCEMk2N
- 0j6rpTWHTnlf8gTEtZZNDHCqnganTT1sceNm81Kn5vXfGX7BKurGOZERrmhHH19I5vcNBeBY7jk
- r6XWdCW6/JyIiUqJFFh4lHPVa9Ru3YW5ptc74UTmKCeYBr/XDJvCXl5PIYIWWAZB5NHb2JsETFk
- tyscFAhQ5SJghqFhnDt9erIMqHU1KG/0biDW9ulX80FBtQD3YGUmaU0nIBSfZLI1v2vsJ6JZqMc
- WdlTOM0PaW/BwWvlsBRDzpwee+2eiQAMqXFTINikMT3mxgWYKaMQkqPU/cz3UTEAWC2QMyyyFqF
- hNahnPHVNN01xRxyAuWAWhYuVgbtJ3urJaXtOLwKp/ZhfGil2Z4vqpXExYTA8Qr8XVwnluYv+gf
- O6vlY1e7zb97A0q/ziog9zd0bE0Wz3hzcS5xzzbEp3Klr3jf69OzMheFn/XmA+QfGRgEAIBAKnq
- betiqZpY2JdDmpTtTc1UqkyGCcUTU1bFyyVSa2ESaxXubDYbGAocggcLIcaVm4ZC9X88uxU4r8c
- 5s7ouHBWZWJUlaQ==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240612205056.397204-4-seb-dev@mail.de>
 
-The NAND expansion card plugs in over the HSE (High Speed Expansion)
-connector. Add support for it.
+Hi Sebastian,
 
-We add the ranges property to the GPMC node instead of the NAND
-overlay file to prevent below warnings.
+kernel test robot noticed the following build warnings:
 
-/fragment@3/__overlay__: Relying on default #address-cells value
-/fragment@3/__overlay__: Relying on default #size-cells value
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on linus/master v6.10-rc3 next-20240613]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-As GPMC is dedicated for NAND use on this board, it should be OK.
+url:    https://github.com/intel-lab-lkp/linux/commits/Sebastian-Kropatsch/arm64-dts-rockchip-Add-common-definitions-for-NanoPi-R6C-and-R6S/20240613-045639
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20240612205056.397204-4-seb-dev%40mail.de
+patch subject: [PATCH 3/5] arm64: dts: rockchip: Improve LEDs on NanoPi R6C/R6S
+config: arm64-randconfig-051-20240614 (https://download.01.org/0day-ci/archive/20240614/202406142337.SdnyldQ8-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+dtschema version: 2024.6.dev1+g833054f
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240614/202406142337.SdnyldQ8-lkp@intel.com/reproduce)
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
-Changelog:
-v5:
-- Rebased on ti-next/ti-k3-dts-next
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406142337.SdnyldQ8-lkp@intel.com/
 
-v4:
-- Rebased on ti-next/ti-k3-dt-for-v6.9
+dtcheck warnings: (new ones prefixed by >>)
+>> arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dtb: leds: led-1:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+   	'stmmac-0:01:link' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 'kbd-capslock', 'mtd', 'nand-disk', 'none', 'torch', 'usb-gadget', 'usb-host', 'usbport']
+   	'stmmac-0:01:link' does not match '^cpu[0-9]*$'
+   	'stmmac-0:01:link' does not match '^hci[0-9]+-power$'
+   	'stmmac-0:01:link' does not match '^mmc[0-9]+$'
+   	'stmmac-0:01:link' does not match '^phy[0-9]+tx$'
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+>> arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dtb: leds: led-1: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+   arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dtb: leds: led-2:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+   	'r8169-3-3100:00:link' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 'kbd-capslock', 'mtd', 'nand-disk', 'none', 'torch', 'usb-gadget', 'usb-host', 'usbport']
+   	'r8169-3-3100:00:link' does not match '^cpu[0-9]*$'
+   	'r8169-3-3100:00:link' does not match '^hci[0-9]+-power$'
+   	'r8169-3-3100:00:link' does not match '^mmc[0-9]+$'
+   	'r8169-3-3100:00:link' does not match '^phy[0-9]+tx$'
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+   arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dtb: leds: led-2: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+--
+>> arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dtb: leds: led-1:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+   	'stmmac-0:01:link' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 'kbd-capslock', 'mtd', 'nand-disk', 'none', 'torch', 'usb-gadget', 'usb-host', 'usbport']
+   	'stmmac-0:01:link' does not match '^cpu[0-9]*$'
+   	'stmmac-0:01:link' does not match '^hci[0-9]+-power$'
+   	'stmmac-0:01:link' does not match '^mmc[0-9]+$'
+   	'stmmac-0:01:link' does not match '^phy[0-9]+tx$'
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+>> arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dtb: leds: led-1: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+   arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dtb: leds: led-2:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+   	'r8169-3-3100:00:link' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 'kbd-capslock', 'mtd', 'nand-disk', 'none', 'torch', 'usb-gadget', 'usb-host', 'usbport']
+   	'r8169-3-3100:00:link' does not match '^cpu[0-9]*$'
+   	'r8169-3-3100:00:link' does not match '^hci[0-9]+-power$'
+   	'r8169-3-3100:00:link' does not match '^mmc[0-9]+$'
+   	'r8169-3-3100:00:link' does not match '^phy[0-9]+tx$'
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+   arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dtb: leds: led-2: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
+   	from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
 
-v3:
-https://lore.kernel.org/all/20240123201312.23187-1-rogerq@kernel.org/
-- Fix dtc warning by moving ranges property into the GPMC node
-- update licence to GPL-2.0-only OR MIT and Copyright year to 2024
-- don't drop k3-am642-evm.dtb target from Makefile
-
-v2:
-- Don't leave k3-am642-evm-nand.dtbo as an orphan. Make k3-am642-evm-nand.dtb
-with the overlay applied on the base board.
----
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 139 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-evm.dts       |   4 +
- 3 files changed, 145 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index d956372a7163..f5ff9ef6d70c 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -49,6 +49,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac-mii.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-pcie.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-usb3.dtb
-+k3-am642-evm-nand-dtbs := k3-am642-evm.dtb k3-am642-evm-nand.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-gpio-fan.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-new file mode 100644
-index 000000000000..3d1c2111ec88
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-@@ -0,0 +1,139 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT overlay for HSE NAND expansion card on AM642 EVM
-+ *
-+ * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "k3-pinctrl.h"
-+
-+&main_pmx0 {
-+	gpmc0_pins_default: gpmc0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0094, PIN_INPUT, 7) /* (T19) GPMC0_BE1n.GPIO0_36 */
-+
-+			AM64X_IOPAD(0x003c, PIN_INPUT, 0) /* (T20) GPMC0_AD0 */
-+			AM64X_IOPAD(0x0040, PIN_INPUT, 0) /* (U21) GPMC0_AD1 */
-+			AM64X_IOPAD(0x0064, PIN_INPUT, 0) /* (R16) GPMC0_AD10 */
-+			AM64X_IOPAD(0x0068, PIN_INPUT, 0) /* (W20) GPMC0_AD11 */
-+			AM64X_IOPAD(0x006c, PIN_INPUT, 0) /* (W21) GPMC0_AD12 */
-+			AM64X_IOPAD(0x0070, PIN_INPUT, 0) /* (V18) GPMC0_AD13 */
-+			AM64X_IOPAD(0x0074, PIN_INPUT, 0) /* (Y21) GPMC0_AD14 */
-+			AM64X_IOPAD(0x0078, PIN_INPUT, 0) /* (Y20) GPMC0_AD15 */
-+			AM64X_IOPAD(0x0044, PIN_INPUT, 0) /* (T18) GPMC0_AD2 */
-+			AM64X_IOPAD(0x0048, PIN_INPUT, 0) /* (U20) GPMC0_AD3 */
-+			AM64X_IOPAD(0x004c, PIN_INPUT, 0) /* (U18) GPMC0_AD4 */
-+			AM64X_IOPAD(0x0050, PIN_INPUT, 0) /* (U19) GPMC0_AD5 */
-+			AM64X_IOPAD(0x0054, PIN_INPUT, 0) /* (V20) GPMC0_AD6 */
-+			AM64X_IOPAD(0x0058, PIN_INPUT, 0) /* (V21) GPMC0_AD7 */
-+			AM64X_IOPAD(0x005c, PIN_INPUT, 0) /* (V19) GPMC0_AD8 */
-+			AM64X_IOPAD(0x0060, PIN_INPUT, 0) /* (T17) GPMC0_AD9 */
-+			AM64X_IOPAD(0x0098, PIN_INPUT_PULLUP, 0) /* (W19) GPMC0_WAIT0 */
-+			AM64X_IOPAD(0x009c, PIN_INPUT_PULLUP, 0) /* (Y18) GPMC0_WAIT1 */
-+			AM64X_IOPAD(0x00a8, PIN_OUTPUT_PULLUP, 0) /* (R19) GPMC0_CSn0 */
-+			AM64X_IOPAD(0x00ac, PIN_OUTPUT_PULLUP, 0) /* (R20) GPMC0_CSn1 */
-+			AM64X_IOPAD(0x00b0, PIN_OUTPUT_PULLUP, 0) /* (P19) GPMC0_CSn2 */
-+			AM64X_IOPAD(0x00b4, PIN_OUTPUT_PULLUP, 0) /* (R21) GPMC0_CSn3 */
-+			AM64X_IOPAD(0x007c, PIN_OUTPUT, 0) /* (R17) GPMC0_CLK */
-+			AM64X_IOPAD(0x0084, PIN_OUTPUT, 0) /* (P16) GPMC0_ADVn_ALE */
-+			AM64X_IOPAD(0x0088, PIN_OUTPUT, 0) /* (R18) GPMC0_OEn_REn */
-+			AM64X_IOPAD(0x008c, PIN_OUTPUT, 0) /* (T21) GPMC0_WEn */
-+			AM64X_IOPAD(0x0090, PIN_OUTPUT, 0) /* (P17) GPMC0_BE0n_CLE */
-+			AM64X_IOPAD(0x00a0, PIN_OUTPUT_PULLUP, 0) /* (N16) GPMC0_WPn */
-+			AM64X_IOPAD(0x00a4, PIN_OUTPUT, 0) /* (N17) GPMC0_DIR */
-+		>;
-+	};
-+};
-+
-+&main_gpio0 {
-+	gpio0-36 {
-+		gpio-hog;
-+		gpios = <36 0>;
-+		input;
-+		line-name = "GPMC0_MUX_DIR";
-+	};
-+};
-+
-+&elm0 {
-+	status = "okay";
-+};
-+
-+&gpmc0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gpmc0_pins_default>;
-+	#address-cells = <2>;
-+	#size-cells = <1>;
-+
-+	nand@0,0 {
-+		compatible = "ti,am64-nand";
-+		reg = <0 0 64>;		/* device IO registers */
-+		interrupt-parent = <&gpmc0>;
-+		interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
-+			     <1 IRQ_TYPE_NONE>;	/* termcount */
-+		rb-gpios = <&gpmc0 0 GPIO_ACTIVE_HIGH>;	/* gpmc_wait0 */
-+		ti,nand-xfer-type = "prefetch-polled";
-+		ti,nand-ecc-opt = "bch8";	/* BCH8: Bootrom limitation */
-+		ti,elm-id = <&elm0>;
-+		nand-bus-width = <8>;
-+		gpmc,device-width = <1>;
-+		gpmc,sync-clk-ps = <0>;
-+		gpmc,cs-on-ns = <0>;
-+		gpmc,cs-rd-off-ns = <40>;
-+		gpmc,cs-wr-off-ns = <40>;
-+		gpmc,adv-on-ns = <0>;
-+		gpmc,adv-rd-off-ns = <25>;
-+		gpmc,adv-wr-off-ns = <25>;
-+		gpmc,we-on-ns = <0>;
-+		gpmc,we-off-ns = <20>;
-+		gpmc,oe-on-ns = <3>;
-+		gpmc,oe-off-ns = <30>;
-+		gpmc,access-ns = <30>;
-+		gpmc,rd-cycle-ns = <40>;
-+		gpmc,wr-cycle-ns = <40>;
-+		gpmc,bus-turnaround-ns = <0>;
-+		gpmc,cycle2cycle-delay-ns = <0>;
-+		gpmc,clk-activation-ns = <0>;
-+		gpmc,wr-access-ns = <40>;
-+		gpmc,wr-data-mux-bus-ns = <0>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "NAND.tiboot3";
-+				reg = <0x00000000 0x00200000>;	/* 2M */
-+			};
-+			partition@200000 {
-+				label = "NAND.tispl";
-+				reg = <0x00200000 0x00200000>;	/* 2M */
-+			};
-+			partition@400000 {
-+				label = "NAND.tiboot3.backup";	/* 2M */
-+				reg = <0x00400000 0x00200000>;	/* BootROM looks at 4M */
-+			};
-+			partition@600000 {
-+				label = "NAND.u-boot";
-+				reg = <0x00600000 0x00400000>;	/* 4M */
-+			};
-+			partition@a00000 {
-+				label = "NAND.u-boot-env";
-+				reg = <0x00a00000 0x00040000>;	/* 256K */
-+			};
-+			partition@a40000 {
-+				label = "NAND.u-boot-env.backup";
-+				reg = <0x00a40000 0x00040000>;	/* 256K */
-+			};
-+			partition@a80000 {
-+				label = "NAND.file-system";
-+				reg = <0x00a80000 0x3f580000>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index e20e4ffd0f1f..9f691ed97791 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -817,3 +817,7 @@ icssg1_phy1: ethernet-phy@f {
- 		rx-internal-delay-ps = <2000>;
- 	};
- };
-+
-+&gpmc0 {
-+	ranges = <0 0 0x00 0x51000000 0x01000000>; /* CS0 space. Min partition = 16MB */
-+};
-
----
-base-commit: 2f79e7408ac1b22ce8abc4a22b92793a57a3077d
-change-id: 20240614-am642-evm-nand-5fb23a284d57
-
-Best regards,
 -- 
-Roger Quadros <rogerq@kernel.org>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
