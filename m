@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-75778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C248E908995
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:19:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0F1908998
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:19:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51736B28A94
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:19:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83F6F281B8A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1349F1953BB;
-	Fri, 14 Jun 2024 10:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0341F194A70;
+	Fri, 14 Jun 2024 10:18:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="psGXSiCq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ilupk8zK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B278194A4E
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 10:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FAE194A64
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 10:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718360310; cv=none; b=aF0DrCNf8lKZJXN/EDu1uQGZu4buicWvZDjrLL11mRKWlU60r1JRz9bFRwTpoM72m9MpHpOUeHXTqshvozoecSfv0ffrH2UimJB/lopiVReb/AWKYkXJLlUkSgB4EWaGpS7cXVrqBM8gZdl2qsfoVJSx5/msO9WAd7IPH75IDLE=
+	t=1718360311; cv=none; b=csLzi2qnmmCxTE/ByvtU47FSYJVNnTUyMs5PDpegKy38lOvfhtXHnkmpijqoFac5Z3plmMgdeN4ETn4YXvjyvR12OwDd/to4hRXhUaZazOLoRYxZw8fxZX3CJNvv4LFcRVNhtViJ2g3BiVXF/1Ae1lEDBGpKt0uAKkk6bPW83jE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718360310; c=relaxed/simple;
-	bh=T3DjvXEe+sumQ+ecA/DCNSeChO1xZMZY4sezj86K88Y=;
+	s=arc-20240116; t=1718360311; c=relaxed/simple;
+	bh=5IhnbDeMfhrQJFjppRaXrqKXHovo12yYiCutUlaZxUk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iLq2rsprKV5E5t4sYtR8tkjqM2bfVpq8GF7jXlpT7aDk0gu+QHFp81w3/AeEgDC0Yj2+L7srQ0n2LsGVsS4otGFioGyZhjncOPYfVOtpvf/0vtQP25yYsZsQDU2rW1acR7s2ieE442ypc6xb4HGWT2maFa9Ozv81XYa8elVaBA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=psGXSiCq; arc=none smtp.client-ip=209.85.208.182
+	 In-Reply-To:To:Cc; b=t+UAnLJ/gv5b9FA3iK/jYiys4cdL34V2Dd+MuXt7Ze9JmpxiTt/YpwCpTImnOaIyoks9TAME3bFd/pEKKrOEvGc7y675QgP1Tg/Tk6v4O6k8OvYon9bWaIEd6R0/wEUTx8LX51v9gSLgcRMVopWePMSDjFq5pM0oJDuiGiSjGSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ilupk8zK; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2eaafda3b5cso23116831fa.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 03:18:28 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ebec2f11b7so18911921fa.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 03:18:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718360307; x=1718965107; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718360308; x=1718965108; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cu/gvkK5JV8o/AwZTjhXVurT12iJLCtsIO6X1RdbaeU=;
-        b=psGXSiCqlJdAJXx3Si0bBVMweYMoH7xUZoMURwoR42iiGPNalCq6ysGkIj7ToxKnKJ
-         YG3gM37RKjoyLZqDYexh2ueCCF63N6eozCNQSGlvqEGFRpWm+33K9XDqcwEYevg0O5Cs
-         qjV7fF/PUYA5lSUTN49yrgsYORwViHzvQfXC7dWX5eBqBJ/ihH9sqD2YmNZZgS9TR8hk
-         7+vo1ih3IWq0dFUT0pMijSMcLjJc7MP/KC3s2yDHJwtavOVGfmT0eBBcxMubLLWfQCiT
-         WTNzDbz6MGsEtt4vtZvpLfVEaFWBaYNhsBiIjRpfxjLPGShNNicZVTQlvE9y2/3vr009
-         himA==
+        bh=9exy3tODP6D6SB8BPoapzrGAVV2VEaTDfn4vpIL8sTA=;
+        b=ilupk8zKTEEKfknHfyHltZ1UtVyCthM+LEStI1mOCDuwJg7Rg0obBjrUdl8XSUp3SP
+         NH1xa6dYb5o5v/hMSXjjQ0PHLACqolsUq6vlqkWE39eeKCljfoo2UhQkmfo66CdnTodo
+         MODG/HOb/FJDpERWGenc6+j5qG5W1GFXRYEHsJRnBasm/DD0XzYxnzXUh6IWY7wRzyEm
+         Lh/owOEvf9sWLoRj2CQjZk/gbNcOofrLGax9MECpVN0dGElrDw8UIV/aIbdFSt02QraN
+         rG79Xyh612QchCs5vLXkOMjZeT+gTA+fBAsPm7qCGCbWq0EPIIStS661cHWnC3IR9DSR
+         Oj3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718360307; x=1718965107;
+        d=1e100.net; s=20230601; t=1718360308; x=1718965108;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cu/gvkK5JV8o/AwZTjhXVurT12iJLCtsIO6X1RdbaeU=;
-        b=AQ5DjnInm4PNXPA9NnpWverocObHJf0FSdhpHbeMx5ugPUJlafEzoCzi1nLsH52yyp
-         KdefWi1s+z9nHUhEdQq/nnPdsihKH0q6CBRXaR06gjKdNjKdRhXO1muWs1WjoedibWJV
-         xcm62743m8/DDZImkyi+w8dKrVEfSOcUuM2cAC21pt6P5w5dGk8SmtytKhMQUNESuz83
-         d0LtBIACUVwT3BTF+tLUgUEedZNHcpd+VHrllrrWu4RHcyMHtp9gyBnFQxb8oFVRCkGa
-         KlkZ6ULT6lnuKkQWRnSsVAg20eBs9Tk19iPVX7zoU0DAwIuCgN9xLbF/ZR8+hCMXxyXb
-         7HqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/PHVSAWBvIxu4Nw4fm+ifhJbj9GJhu2nYF/B6fa0ugK2Tpl5XfJd+72YxqRl3RiB6BXwYZh9FQ4zwNXg0PbmoDpHSoujHeNJPxw==
-X-Gm-Message-State: AOJu0YxetEVaLbXnRpDWOUd8I7FVRLOAEaAOUcQkbgc1iRBcO5RSrsmH
-	xcv3UpdnGqvHOmq4+wHoc05PC9vVpphO4nRD2UvdF+KPY9Zsd/cu6QTVVxkbi3oLNQOnReA40ld
-	apPg=
-X-Google-Smtp-Source: AGHT+IE9Igf80a9v9jW4+hHgFtvj4dzuHZGTY6Ba0xBnG4L+4RhK36KB+2EyI+LPKREkLy/AmHU+Cg==
-X-Received: by 2002:a2e:7c0e:0:b0:2ec:1334:7ee0 with SMTP id 38308e7fff4ca-2ec1334832bmr9702561fa.38.1718360307264;
-        Fri, 14 Jun 2024 03:18:27 -0700 (PDT)
+        bh=9exy3tODP6D6SB8BPoapzrGAVV2VEaTDfn4vpIL8sTA=;
+        b=WUT8Zp7qiuYGPoROkiT5U4zMP5Zvamiu0dBSLMj9ibjd151FXPiYC3g0ge9kI+7EeC
+         RUTcZt2hjuhR62FBFz7sTZ2VauckHf89zPim3FPEdYdP82jdmIiybHd8pJYsKtTNpQ2h
+         TEvK8WGnDKcGAIwdwDGlvIVcT8YqS/E1fciMufdBwa4kibBAPDOREjCG4cHMDac4uSFT
+         wvw+VaerYelRutcE/ABnnzlferv2jRZWrrctzj9vyxXEo5oW1BBqEEc35EdKsfJWU9Rn
+         yJfdDxKWDWcHAZFayHmb4EED5zE08tyVWTYK5RXQykMquqT27WUWc9QDsyzrCJ5USpOD
+         dowg==
+X-Forwarded-Encrypted: i=1; AJvYcCUFEYVPqKlW5gSM5fOQbBKbyUWoI1zt8oBI7sXvUE8lo2FdWDnmo5b2ZAL7O7Pz1WstKKPlUbSP+celsyLKFRCNPgl5enKbitxlgg==
+X-Gm-Message-State: AOJu0YxkgkvRndmTWzdQIG/HJGmkdl0bEmcO4mQNtoeQIiMGDqSdXgT1
+	dQprq9LGxJqIfRQneDSdoPtmWqSy4Nk4BTgRQWXcKSUXxt+pNnPf7tsh+iMtt7/rj9uOtE2tKKE
+	OVcg=
+X-Google-Smtp-Source: AGHT+IHif8PpMrCNZ7ondZJ4LR6vU61Ku4c2yc3F/h5NwMAY40GaKl1XyS+EGiyfYT9ejdFAgr36yg==
+X-Received: by 2002:a2e:6e17:0:b0:2eb:e023:5178 with SMTP id 38308e7fff4ca-2ec0e600587mr13757311fa.38.1718360308286;
+        Fri, 14 Jun 2024 03:18:28 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05bf44c4sm5000241fa.9.2024.06.14.03.18.26
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05bf44c4sm5000241fa.9.2024.06.14.03.18.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jun 2024 03:18:26 -0700 (PDT)
+        Fri, 14 Jun 2024 03:18:27 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 14 Jun 2024 13:18:24 +0300
-Subject: [PATCH v3 1/5] phy: qcom: qmp-pcie: restore compatibility with
- existing DTs
+Date: Fri, 14 Jun 2024 13:18:25 +0300
+Subject: [PATCH v3 2/5] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: drop
+ second output clock name
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +80,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240614-fix-pcie-phy-compat-v3-1-730d1811acf4@linaro.org>
+Message-Id: <20240614-fix-pcie-phy-compat-v3-2-730d1811acf4@linaro.org>
 References: <20240614-fix-pcie-phy-compat-v3-0-730d1811acf4@linaro.org>
 In-Reply-To: <20240614-fix-pcie-phy-compat-v3-0-730d1811acf4@linaro.org>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -94,57 +94,62 @@ Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  devicetree@vger.kernel.org
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1592;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1663;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=T3DjvXEe+sumQ+ecA/DCNSeChO1xZMZY4sezj86K88Y=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmbBjwWST2vn0/HBi504jSxpaS/FcGYEQXws/0Z
- Li9eCQgMTCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZmwY8AAKCRCLPIo+Aiko
- 1SIhB/4inbA4gW2P2tS7P/P1h40jhnWYgOhODA3nURHZNRa2WbLmoL/QVHztCJmCBE/k+9E5BDX
- cmjO6e9MO2whENnZ/hCIXYdsnH26ykaSADDVq4w+ZdY4M6n61Ey8F0FWppsIjGEq7vFdD+ND1tr
- rvF9yZd1I3yXCuyCEzB/g8Y7WQkjW8qosq2/n1m973uV74+XHx9pXdP60YlaiDwkjdvS0Pb6wIv
- RQHgjSzBkZ2lH+YDnW0dnz6eCpdDsjTMgopujrOiScm3dzlFKcWJOmk+wskNoQQVO17/FVBvIaM
- FUhA9QYgbBiJ80/+mMos1OhMQby4ExOQnUYN5yth2ihXACUz
+ bh=5IhnbDeMfhrQJFjppRaXrqKXHovo12yYiCutUlaZxUk=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmbBjxTDpJm67FOO9iMkWmjTpU8w1Er4FyDsrac
+ 4ANw9FcLIOJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZmwY8QAKCRCLPIo+Aiko
+ 1Qd+CACfpgWna2AH0ACJYVYlQPpNS9ppWj0l0jeTzfUGMMtuPTeWpkOVseRykJvNkdJyi9OXO2n
+ YpCst9+o2wZmeVwGbD7N2VOoBLqgISBUqRyLdBPeUx7kITia9e3sw3JrAPIQUEncPEe8W8y2orx
+ Q3yR35x7+Krg+8gd5I0ZoWiCz8naoM32w7j/SxnvP5CYlWxvX5QAea9FjnfoeOoMlItMTCLu4BE
+ bpTqwOY4k3ZsSR9chkPswI56MAd/Utbk0aq1NFGoXkQR3haqC6N1LYF7KHnUJq/GVIzxFvS5NEq
+ EvVTquA2B6AZds7ZXNfdB9NmGm9kUU5tBgfuaKJLydnewXc4
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Existing device trees specify only a single clock-output-name for the
-PCIe PHYs. The function phy_aux_clk_register() expects a second entry in
-that property. When it doesn't find it, it returns an error, thus
-failing the probe of the PHY and thus breaking support for the
-corresponding PCIe host.
+There is no need to specify exact name for the second (AUX) output
+clock. It has never been used for the lookups based on the system clock
+name. Partially revert commit 72bea132f368 ("dt-bindings: phy:
+qcom,sc8280xp-qmp-pcie-phy: document PHY AUX clock on SM8[456]50 SoCs"),
+returning compatibility with the existing device tree: reduce
+clock-output-names to always contain a single entry.
 
-Follow the approach of the combo USB+DT PHY and generate the name for
-the AUX clocks instead of requiring it in DT.
-
-Fixes: 583ca9ccfa80 ("phy: qcom: qmp-pcie: register second optional PHY AUX clock")
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Fixes: 72bea132f368 ("dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: document PHY AUX clock on SM8[456]50 SoCs")
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml        | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-index 8cb91b9114d6..5b36cc7ac78b 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-@@ -4033,14 +4033,11 @@ static int phy_aux_clk_register(struct qmp_pcie *qmp, struct device_node *np)
- {
- 	struct clk_fixed_rate *fixed = &qmp->aux_clk_fixed;
- 	struct clk_init_data init = { };
--	int ret;
-+	char name[64];
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+index 16634f73bdcf..03dbd02cf9e7 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+@@ -91,8 +91,7 @@ properties:
+   "#clock-cells": true
  
--	ret = of_property_read_string_index(np, "clock-output-names", 1, &init.name);
--	if (ret) {
--		dev_err(qmp->dev, "%pOFn: No clock-output-names index 1\n", np);
--		return ret;
--	}
-+	snprintf(name, sizeof(name), "%s::phy_aux_clk", dev_name(qmp->dev));
+   clock-output-names:
+-    minItems: 1
+-    maxItems: 2
++    maxItems: 1
  
-+	init.name = name;
- 	init.ops = &clk_fixed_rate_ops;
+   "#phy-cells":
+     const: 0
+@@ -222,14 +221,10 @@ allOf:
+               - qcom,sm8650-qmp-gen4x2-pcie-phy
+     then:
+       properties:
+-        clock-output-names:
+-          minItems: 2
+         "#clock-cells":
+           const: 1
+     else:
+       properties:
+-        clock-output-names:
+-          maxItems: 1
+         "#clock-cells":
+           const: 0
  
- 	fixed->fixed_rate = qmp->cfg->aux_clock_rate;
 
 -- 
 2.39.2
