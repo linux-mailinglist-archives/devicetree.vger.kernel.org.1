@@ -1,135 +1,113 @@
-Return-Path: <devicetree+bounces-75898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F473909099
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:40:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 572CC9090AB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFBBF1F241EA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:40:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E92F2282CE5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED23A170847;
-	Fri, 14 Jun 2024 16:40:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D567181B84;
+	Fri, 14 Jun 2024 16:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MJPzMklW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q0OdEN4a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1A919D8B3;
-	Fri, 14 Jun 2024 16:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0156749638;
+	Fri, 14 Jun 2024 16:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718383211; cv=none; b=jj9Yd2uKkmfbSlYgBSkismGttIskmF4touWS0Ez8ZFu1uW79ZZmzWbwAP808L4EsqHdNXlKkJs07QWnbn2qNME4tkYeYz7DaZ5I0kgfqpxQpaYHrU87Pdj4Z+TTX2xOabeeAy8x8H6ThcDAsHW8KAoGTe084yTuyhjxc5Xqz+sQ=
+	t=1718383362; cv=none; b=cn9pFRUBVpQ3zsULaUEdFAqrRluwjTTOUdZ6idY2RqVfQ4cjaiJU/3NVrL8Outj+pz/0L35BPi3DyU4zzsWn0HRD5DXIykTLsi3Q7OzoLKCryRpoMYwGUQwiqklCTcPY8bFS22EpXQuAlTRDVdjPkUpJZ/a0AsKVtX3PQ9kAZDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718383211; c=relaxed/simple;
-	bh=3/EpBHFCwFxGp4rZgZ9kAxejp5oyqD5NlW4xxmoqCBI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lAUlPqOtNjW1Im9Qrqs35p7Dxe5K1KT5xAD+I8ehyu2aX5uTOjlav4Y5ArJT4XdNau7h1nCuhwyiFEjqWnTewJ1zc/mqoAKwPXB62RGovv7VmGD9mJz5h+9e3AteOLY2SR7kB40da3uCwzBwJihrIVQV7DdELCldW1o35uAH9B4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MJPzMklW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45E9m9mU032695;
-	Fri, 14 Jun 2024 16:39:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	euP53KvYb4OJB4lz2pMwCFHlr8WB3Zw8Vqkw9q4K+yU=; b=MJPzMklWEv2QvVr6
-	dDRImL+6abJwTfPmSY59ATFEY6yWKvHotDZJq0Tr+G45fIazFqYz3OwL/LbjCGQD
-	qCTxWMSXB5yLOx098wRnPCjps3B+vNBaGnCtwVk194//KibcL5Kcx+XMdz1AQggw
-	w1Xd+C0VIxsq57iY0VJiTnHH7KRz/89sVs6aU7Upskv1waehrIZjUaScA1F0U0+z
-	MxQDWi32w6eGcUvusWOlAfFdiTvdsPFZ7ByGtbHI0q1k5vL7jppTjCtLE8JC/lS+
-	fWnbJt3/8Gp7ZjWQwoW5GLUpR52VZ9NFyt/O0KhaDTDVwFMypvWw1k7KVdkS3TRN
-	bQbPPQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yr6q2tbcu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Jun 2024 16:39:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45EGdjnX013203
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Jun 2024 16:39:45 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 14 Jun
- 2024 09:39:43 -0700
-Message-ID: <7e32d69f-7024-01d8-a165-fc00ea60fa90@quicinc.com>
-Date: Fri, 14 Jun 2024 10:39:43 -0600
+	s=arc-20240116; t=1718383362; c=relaxed/simple;
+	bh=Tlh8m401RdiRzFymaSJiodIhjjgTmA5lrOXYAZ9uQPY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dB6fl8KVAWRfMhNfXfkhg+zP4c5YuSWtWusjoxjAurRN0AlAv8mJ0vGADXju4h59RFZJRakawRRwtmm8AEvU6wCLWUwwxzUEdgG7CiRjBNRI1Edp5rPadv2G4n+KC3G5apGalY6AvoZCBAlApLM/PCRaa3wt4ypc4fMa1K53jPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q0OdEN4a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AE23C2BD10;
+	Fri, 14 Jun 2024 16:42:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718383361;
+	bh=Tlh8m401RdiRzFymaSJiodIhjjgTmA5lrOXYAZ9uQPY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q0OdEN4aixWpF1EjydlUMQuTgCaVB7opzXf5XtfbWhOWL/5rJkC9DbQy/IKk36npJ
+	 VO2xUxaj17Zam0K3yAqd2B4ugztVtF03BnddXJE598GhRC07J8bVsJhbr02YNtIiVP
+	 KMuSF9Y1tZqg6uJAAP0R+GkuOZ9BbSCGEMDkA/c7JAilgfuGQEOW96H2GsERoesEA6
+	 BNKrYWBlVWNCPUxYjfxJ0Or1bptyOrzsub6cW3goW7BR36i5B0+yNuRlskCPKlaIuh
+	 a9qOBXrltofA9kw6ZGdNZIz3c0wsf6nPUk57dFi0WcWFeYZ7O8X3wEAu6Knm8OM4Ja
+	 K/hpG7ZnE/b2Q==
+Date: Fri, 14 Jun 2024 17:42:35 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Chancel Liu <chancel.liu@nxp.com>, Arnd Bergmann <arnd@arndb.de>,
+	Michael Ellerman <mpe@ellerman.id.au>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org
+Subject: Re: [Patch v2 1/2] ASoC: fsl: Add i2s and pcm drivers for LPC32xx
+ CPUs
+Message-ID: <Zmxy-xA3YDU06Eht@finisterre.sirena.org.uk>
+References: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
+ <Zmgor8accyAiUkUO@finisterre.sirena.org.uk>
+ <CAG+cZ06B+AexqvwZtNP5FX50AmghAFLa=1ebxmKLvMoyVJ529w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 9/9] accel/rocket: Add IOCTLs for synchronizing memory
- accesses
-Content-Language: en-US
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Joerg Roedel <joro@8bytes.org>,
-        Will
- Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Heiko Stuebner
-	<heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Oded Gabbay
-	<ogabbay@kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>,
-        David
- Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-CC: <iommu@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>
-References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
- <20240612-6-10-rocket-v1-9-060e48eea250@tomeuvizoso.net>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20240612-6-10-rocket-v1-9-060e48eea250@tomeuvizoso.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 50nkHqkNt-PDRn_5o0klNCIcppNdnO4M
-X-Proofpoint-ORIG-GUID: 50nkHqkNt-PDRn_5o0klNCIcppNdnO4M
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-14_14,2024-06-14_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=840
- malwarescore=0 mlxscore=0 spamscore=0 suspectscore=0 adultscore=0
- impostorscore=0 bulkscore=0 clxscore=1015 phishscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406140113
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="0Dizksk5Fs8IGsJP"
+Content-Disposition: inline
+In-Reply-To: <CAG+cZ06B+AexqvwZtNP5FX50AmghAFLa=1ebxmKLvMoyVJ529w@mail.gmail.com>
+X-Cookie: Your love life will be... interesting.
 
-On 6/12/2024 7:53 AM, Tomeu Vizoso wrote:
-> diff --git a/include/uapi/drm/rocket_accel.h b/include/uapi/drm/rocket_accel.h
-> index 888c9413e4cd..1539af0af4fe 100644
-> --- a/include/uapi/drm/rocket_accel.h
-> +++ b/include/uapi/drm/rocket_accel.h
-> @@ -12,9 +12,13 @@ extern "C" {
->   #endif
->   
->   #define DRM_ROCKET_CREATE_BO			0x00
-> -#define DRM_ROCKET_SUBMIT			0x01
-> +#define DRM_ROCKET_PREP_BO			0x01
-> +#define DRM_ROCKET_FINI_BO			0x02
-> +#define DRM_ROCKET_SUBMIT			0x03
 
-This looks like a uAPI breaking change.  Shouldn't you have defined 
-SUBMIT as 0x03 from the beginning, or put the new BO ioctls after it?
+--0Dizksk5Fs8IGsJP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Jun 14, 2024 at 06:24:50PM +0200, Piotr Wojtaszczyk wrote:
+> On Tue, Jun 11, 2024 at 12:36=E2=80=AFPM Mark Brown <broonie@kernel.org> =
+wrote:
+
+> > On a quick scan I can't see any architecture dependency for build,
+> > please add an || COMPILE_TEST for improved coverage.  As for all the
+> > other things enabled in this Kconfig file there is no need to explicitly
+> > depend on SND_SOC.
+
+> Ok. Later I will add a sound card driver to phytec3250 board which uses
+> arch/arm/configs/lpc32xx_defconfig config file so that the COMPILE_TEST
+> won't be needed.
+
+Why would a defconfig affect the Kconfig?
+
+--0Dizksk5Fs8IGsJP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZscvoACgkQJNaLcl1U
+h9An6Qf/b4JZLW1fJTJNxCgdIhftN7IpeiRX+esOHEeKQtZw3ozptV88AJharZjX
+XXZEj/+g1xJK4XcZaoGge+ChSerkFOGA8R47dj26SyDq2YdCKR63s4FxELs8g0Io
+uxg/3sS8sltF8LnpH4rEZS8V1yNNAA5WMh8Cxvwf4EX5fJmHPCdpLNtkVOAmvKgU
+arRBgU8EHs2YBeDhQZu+HLGFQXKbd4YmIl4ExA+S6xjJoF6nQQA5fuwZKh7H3MgY
+/OcHiJ1/7M0NLdLk7tf5uFSwbKUcqnAlVx1OZwg04NmfDdWxxf6u0qO7kg4uO9Td
+DHj4z63CGck+G+/Pl0cnpjduUMnsWA==
+=kXhB
+-----END PGP SIGNATURE-----
+
+--0Dizksk5Fs8IGsJP--
 
