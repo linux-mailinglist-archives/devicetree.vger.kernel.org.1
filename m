@@ -1,306 +1,135 @@
-Return-Path: <devicetree+bounces-75896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0B53909087
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:38:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F473909099
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:40:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F8881F230AE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:38:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFBBF1F241EA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD6F21A0AFC;
-	Fri, 14 Jun 2024 16:36:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED23A170847;
+	Fri, 14 Jun 2024 16:40:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TniGD/lv"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MJPzMklW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15E715FD04;
-	Fri, 14 Jun 2024 16:36:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1A919D8B3;
+	Fri, 14 Jun 2024 16:40:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718382983; cv=none; b=ivwVpHg03FYSpy843wAc+g3lnZ6mIG6f9G+t+sZt6XPEVRMopIT2PROeMu8xTnE/N3RLe6+DjrDnkkqByYp/KbxyXm9/tGdTjl4PbMpQ6OmEbh9A9hO45B5Kd6eMojSCJUjEMIfs11VzU5xk60cimKtHi2K5CdYKJAPw1OZbEzM=
+	t=1718383211; cv=none; b=jj9Yd2uKkmfbSlYgBSkismGttIskmF4touWS0Ez8ZFu1uW79ZZmzWbwAP808L4EsqHdNXlKkJs07QWnbn2qNME4tkYeYz7DaZ5I0kgfqpxQpaYHrU87Pdj4Z+TTX2xOabeeAy8x8H6ThcDAsHW8KAoGTe084yTuyhjxc5Xqz+sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718382983; c=relaxed/simple;
-	bh=k4MQdn5qWpovAjgmlRE25dnN8DhrxSbg+12CebdRdY0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EtYUGEy7IsMS7IyYwbPPgRKGKpFOypJVgs8iP/BZnkIciJUE4+PZsCPYZTre9ezH8cS4UM71Cdd0r+0rK9Ljv3ns3wpEgi7Knq3poeoxy2I5ag0dd2Yg1mC6VGdGsykoE0Ho8R1NiIjLZSm7psw75aNFF/O6awMfG/Fb9PcRMHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TniGD/lv; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718382982; x=1749918982;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=k4MQdn5qWpovAjgmlRE25dnN8DhrxSbg+12CebdRdY0=;
-  b=TniGD/lvI4od3j1a0E3Wr2IdFkWvB8z/bbAXt1xMQRFN7u0xW+8Me6Kw
-   P4bdfmDtxjTlnxb9ny7jSrOchH7k4Ls1piT8DVBtoJKBFeLuDoat4IYCU
-   JffGiGgKR4mlcAdzEPAjWetSw2cRnFVQEGj7sTf5sCeCE+djgasJtQtD4
-   e840HkwFHsVzeKdH6BqEKXGCQ48sugTo/W56Uf6iBjlXoq3WzPuNOT6UO
-   Mat7mAUXPQqD5wN3jH27xON/LW9BJJdQl9Cnv3R9Q4EG6tJi1I1ap/IyV
-   mGaMSTRMF/EjVBcyAvmn0aG4DT85EXqw+oZvdxLiScfNqvDZHERiK+ieW
-   w==;
-X-CSE-ConnectionGUID: bWuIyquhQJ+s5f6e7Q3DfA==
-X-CSE-MsgGUID: jilCtJbOTvOyBBKpFHT6Mg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="19102628"
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; 
-   d="scan'208";a="19102628"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 09:36:16 -0700
-X-CSE-ConnectionGUID: IY9CzUfcTCiva/1x1+pc1A==
-X-CSE-MsgGUID: 0/yS/rb6TXqvYCeIuPMjvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,238,1712646000"; 
-   d="scan'208";a="40406137"
-Received: from test2-linux-lab.an.intel.com ([10.122.105.166])
-  by fmviesa007.fm.intel.com with ESMTP; 14 Jun 2024 09:36:14 -0700
-From: matthew.gerlach@linux.intel.com
-To: lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joyce.ooi@intel.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Subject: [PATCH v7] dt-bindings: PCI: altera: Convert to YAML
-Date: Fri, 14 Jun 2024 11:35:20 -0500
-Message-Id: <20240614163520.494047-1-matthew.gerlach@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1718383211; c=relaxed/simple;
+	bh=3/EpBHFCwFxGp4rZgZ9kAxejp5oyqD5NlW4xxmoqCBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lAUlPqOtNjW1Im9Qrqs35p7Dxe5K1KT5xAD+I8ehyu2aX5uTOjlav4Y5ArJT4XdNau7h1nCuhwyiFEjqWnTewJ1zc/mqoAKwPXB62RGovv7VmGD9mJz5h+9e3AteOLY2SR7kB40da3uCwzBwJihrIVQV7DdELCldW1o35uAH9B4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MJPzMklW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45E9m9mU032695;
+	Fri, 14 Jun 2024 16:39:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	euP53KvYb4OJB4lz2pMwCFHlr8WB3Zw8Vqkw9q4K+yU=; b=MJPzMklWEv2QvVr6
+	dDRImL+6abJwTfPmSY59ATFEY6yWKvHotDZJq0Tr+G45fIazFqYz3OwL/LbjCGQD
+	qCTxWMSXB5yLOx098wRnPCjps3B+vNBaGnCtwVk194//KibcL5Kcx+XMdz1AQggw
+	w1Xd+C0VIxsq57iY0VJiTnHH7KRz/89sVs6aU7Upskv1waehrIZjUaScA1F0U0+z
+	MxQDWi32w6eGcUvusWOlAfFdiTvdsPFZ7ByGtbHI0q1k5vL7jppTjCtLE8JC/lS+
+	fWnbJt3/8Gp7ZjWQwoW5GLUpR52VZ9NFyt/O0KhaDTDVwFMypvWw1k7KVdkS3TRN
+	bQbPPQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yr6q2tbcu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Jun 2024 16:39:46 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45EGdjnX013203
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 14 Jun 2024 16:39:45 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 14 Jun
+ 2024 09:39:43 -0700
+Message-ID: <7e32d69f-7024-01d8-a165-fc00ea60fa90@quicinc.com>
+Date: Fri, 14 Jun 2024 10:39:43 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 9/9] accel/rocket: Add IOCTLs for synchronizing memory
+ accesses
+Content-Language: en-US
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Joerg Roedel <joro@8bytes.org>,
+        Will
+ Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Heiko Stuebner
+	<heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Oded Gabbay
+	<ogabbay@kernel.org>,
+        Tomeu Vizoso <tomeu.vizoso@tomeuvizoso.net>,
+        David
+ Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+CC: <iommu@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>
+References: <20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net>
+ <20240612-6-10-rocket-v1-9-060e48eea250@tomeuvizoso.net>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20240612-6-10-rocket-v1-9-060e48eea250@tomeuvizoso.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 50nkHqkNt-PDRn_5o0klNCIcppNdnO4M
+X-Proofpoint-ORIG-GUID: 50nkHqkNt-PDRn_5o0klNCIcppNdnO4M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-14_14,2024-06-14_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=840
+ malwarescore=0 mlxscore=0 spamscore=0 suspectscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 clxscore=1015 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406140113
 
-From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+On 6/12/2024 7:53 AM, Tomeu Vizoso wrote:
+> diff --git a/include/uapi/drm/rocket_accel.h b/include/uapi/drm/rocket_accel.h
+> index 888c9413e4cd..1539af0af4fe 100644
+> --- a/include/uapi/drm/rocket_accel.h
+> +++ b/include/uapi/drm/rocket_accel.h
+> @@ -12,9 +12,13 @@ extern "C" {
+>   #endif
+>   
+>   #define DRM_ROCKET_CREATE_BO			0x00
+> -#define DRM_ROCKET_SUBMIT			0x01
+> +#define DRM_ROCKET_PREP_BO			0x01
+> +#define DRM_ROCKET_FINI_BO			0x02
+> +#define DRM_ROCKET_SUBMIT			0x03
 
-Convert the device tree bindings for the Altera Root Port PCIe controller
-from text to YAML. Update the entries in the interrupt-map field to have
-the correct number of address cells for the interrupt parent.
-
-Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
----
-v7:
- - Keep original example dts, but fix warnings of interrupt-map field.
-
-v6:
- - Fix dt_binding_check warnings by creating interrupt-controller subnode
-   and fixing interrupt-map.
- - Updated filename in MAINTAINERS.
-
-v5:
- - add interrupt-controller #interrupt-cells to required field
- - don't touch original example dts
-
-v4:
- - reorder reg-names to match original binding
- - move reg and reg-names to top level with limits.
-
-v3:
- - Added years to copyright
- - Correct order in file of allOf and unevaluatedProperties
- - remove items: in compatible field
- - fix reg and reg-names constraints
- - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
- - fix entries in ranges property
- - remove device_type from required
-
-v2:
- - Move allOf: to bottom of file, just like example-schema is showing
- - add constraint for reg and reg-names
- - remove unneeded device_type
- - drop #address-cells and #size-cells
- - change minItems to maxItems for interrupts:
- - change msi-parent to just "msi-parent: true"
- - cleaned up required:
- - make subject consistent with other commits coverting to YAML
- - s/overt/onvert/g
----
- .../devicetree/bindings/pci/altera-pcie.txt   | 50 ----------
- .../bindings/pci/altr,pcie-root-port.yaml     | 93 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 94 insertions(+), 51 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
- create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-
-diff --git a/Documentation/devicetree/bindings/pci/altera-pcie.txt b/Documentation/devicetree/bindings/pci/altera-pcie.txt
-deleted file mode 100644
-index 816b244a221e..000000000000
---- a/Documentation/devicetree/bindings/pci/altera-pcie.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--* Altera PCIe controller
--
--Required properties:
--- compatible :	should contain "altr,pcie-root-port-1.0" or "altr,pcie-root-port-2.0"
--- reg:		a list of physical base address and length for TXS and CRA.
--		For "altr,pcie-root-port-2.0", additional HIP base address and length.
--- reg-names:	must include the following entries:
--		"Txs": TX slave port region
--		"Cra": Control register access region
--		"Hip": Hard IP region (if "altr,pcie-root-port-2.0")
--- interrupts:	specifies the interrupt source of the parent interrupt
--		controller.  The format of the interrupt specifier depends
--		on the parent interrupt controller.
--- device_type:	must be "pci"
--- #address-cells:	set to <3>
--- #size-cells:		set to <2>
--- #interrupt-cells:	set to <1>
--- ranges:	describes the translation of addresses for root ports and
--		standard PCI regions.
--- interrupt-map-mask and interrupt-map: standard PCI properties to define the
--		mapping of the PCIe interface to interrupt numbers.
--
--Optional properties:
--- msi-parent:	Link to the hardware entity that serves as the MSI controller
--		for this PCIe controller.
--- bus-range:	PCI bus numbers covered
--
--Example
--	pcie_0: pcie@c00000000 {
--		compatible = "altr,pcie-root-port-1.0";
--		reg = <0xc0000000 0x20000000>,
--			<0xff220000 0x00004000>;
--		reg-names = "Txs", "Cra";
--		interrupt-parent = <&hps_0_arm_gic_0>;
--		interrupts = <0 40 4>;
--		interrupt-controller;
--		#interrupt-cells = <1>;
--		bus-range = <0x0 0xFF>;
--		device_type = "pci";
--		msi-parent = <&msi_to_gic_gen_0>;
--		#address-cells = <3>;
--		#size-cells = <2>;
--		interrupt-map-mask = <0 0 0 7>;
--		interrupt-map = <0 0 0 1 &pcie_0 1>,
--			            <0 0 0 2 &pcie_0 2>,
--			            <0 0 0 3 &pcie_0 3>,
--			            <0 0 0 4 &pcie_0 4>;
--		ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000
--			  0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
--	};
-diff --git a/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-new file mode 100644
-index 000000000000..0aaf5dbcc9cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2015, 2019, 2024, Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera PCIe Root Port
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - altr,pcie-root-port-1.0
-+      - altr,pcie-root-port-2.0
-+
-+  reg:
-+    items:
-+      - description: TX slave port region
-+      - description: Control register access region
-+      - description: Hard IP region
-+    minItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: Txs
-+      - const: Cra
-+      - const: Hip
-+    minItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  interrupt-map-mask:
-+    items:
-+      - const: 0
-+      - const: 0
-+      - const: 0
-+      - const: 7
-+
-+  interrupt-map:
-+    maxItems: 4
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  msi-parent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - "#interrupt-cells"
-+  - interrupt-controller
-+  - interrupt-map
-+  - interrupt-map-mask
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-host-bridge.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    pcie_0: pcie@c00000000 {
-+        compatible = "altr,pcie-root-port-1.0";
-+        reg = <0xc0000000 0x20000000>,
-+              <0xff220000 0x00004000>;
-+        reg-names = "Txs", "Cra";
-+        interrupt-parent = <&hps_0_arm_gic_0>;
-+        interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+        bus-range = <0x0 0xff>;
-+        device_type = "pci";
-+        msi-parent = <&msi_to_gic_gen_0>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        interrupt-map-mask = <0 0 0 7>;
-+        interrupt-map = <0 0 0 1 &pcie_0 0 0 0 1>,
-+                        <0 0 0 2 &pcie_0 0 0 0 2>,
-+                        <0 0 0 3 &pcie_0 0 0 0 3>,
-+                        <0 0 0 4 &pcie_0 0 0 0 4>;
-+        ranges = <0x82000000 0x00000000 0x00000000 0xc0000000 0x00000000 0x10000000>,
-+                 <0x82000000 0x00000000 0x10000000 0xd0000000 0x00000000 0x10000000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a2f416e4a7c6..1fa87de1a1d8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17156,7 +17156,7 @@ PCI DRIVER FOR ALTERA PCIE IP
- M:	Joyce Ooi <joyce.ooi@intel.com>
- L:	linux-pci@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/pci/altera-pcie.txt
-+F:	Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
- F:	drivers/pci/controller/pcie-altera.c
- 
- PCI DRIVER FOR APPLIEDMICRO XGENE
--- 
-2.34.1
+This looks like a uAPI breaking change.  Shouldn't you have defined 
+SUBMIT as 0x03 from the beginning, or put the new BO ioctls after it?
 
 
