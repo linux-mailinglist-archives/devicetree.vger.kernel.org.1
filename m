@@ -1,268 +1,156 @@
-Return-Path: <devicetree+bounces-75825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AED908C72
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:30:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23F4E908CA2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:44:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B6781C2211B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 13:29:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B38DC289F74
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 13:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE63F19A29F;
-	Fri, 14 Jun 2024 13:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0626117D2;
+	Fri, 14 Jun 2024 13:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CHQe+B0L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VPrJ390q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BAD146D77;
-	Fri, 14 Jun 2024 13:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E23863B;
+	Fri, 14 Jun 2024 13:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718371795; cv=none; b=a/mHVRLUJS46O2WCwBUTLG1rDFAtMsiUMEZTYjs5wVawi+owdgejz1QwCzhBLffTzQ2kYOuEraLZ4h0YyoHfeoaG7hVYD1FiTGWL7mybWvbQYHmvNvAmu2ZHSYeNfws3+L8Ch6l4cpU2VhKEPQo/zAOrREcB4EeJ9x3C5NrRO3A=
+	t=1718372656; cv=none; b=jpI5wSykI6d0NYdpmpqlWd5Sj80INwYry0ZOnGuEk40np2gl523IC94YnNhU6iXbVVb8rGSjCwp9lxpDUonkqerFb/wvU3cTpKbmgq7txnyXluuasRId5RWB5S1cPEwDRv/gSE7LdaXMRYyyhYIddedhEsySsSsXWbSDacp0C6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718371795; c=relaxed/simple;
-	bh=hGhr++85Xsy7/ZFbcrK1+gqoOuZlCN2+fgWiO0Iosh8=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=GH+C7rfBi+RYZOyiL34g1MOBpjQ2Acn0qwZTwnIW/CepWW8fn9MasIBVwwQuJGacKp92IwGeXlESzVn1NkK5Ha4bHWqG1K/qa82R73OXJS8CADesPBHYIRx3k4vl1iVtSSXdU1Cq8aYaZLqHkEWcxy9aM4Igv6rYZPYjI1gPVsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CHQe+B0L; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718371794; x=1749907794;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=hGhr++85Xsy7/ZFbcrK1+gqoOuZlCN2+fgWiO0Iosh8=;
-  b=CHQe+B0LG/VIztLiLODekWnwA8Uv6n0WEZ8fw6Zq8HSLEghDhgwquRSA
-   34vZiYB6w4OqCSorevWDaV3WmPPaLR0735OVU6J4ofrG9bCE1TI1vE0+D
-   KgHxpm37xgOvnSQDyZ2fEY1/jlcUusHH0Q2bgC7ceFgCpkXPy7Ik1+5Pe
-   Lvg7BcuAkFWHO+dXF7/JSBiijFrG2LdGpvdTJVWgbLL+Pkxt9y77OOwjO
-   KMKIJKgld2KpbG7rUQd8WCbvjwZUW08dUDUOP18pcpFXowp4BjY5Lgl2H
-   z2Qs6/5CHZwefenIOq0Grew+COSpKCtUhoWxAamWeTIGrvVdyic9lxyh7
-   Q==;
-X-CSE-ConnectionGUID: DsggmpocTdGo5tXDLs7W1w==
-X-CSE-MsgGUID: guBqT96KS/uZolKTY05i7A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="26652305"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="26652305"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 06:29:54 -0700
-X-CSE-ConnectionGUID: PzWo28ocTBKdpxoIE33tFg==
-X-CSE-MsgGUID: TR0IYX1bR3Sorg5VEF4dOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="71689948"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.222])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 06:29:50 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 14 Jun 2024 16:29:47 +0300 (EEST)
-To: daire.mcnamara@microchip.com
-cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com, 
-    robh@kernel.org, bhelgaas@google.com, linux-kernel@vger.kernel.org, 
-    linux-riscv@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v3 2/3] PCI: microchip: Fix inbound address translation
- tables
-In-Reply-To: <20240612112213.2734748-3-daire.mcnamara@microchip.com>
-Message-ID: <7ba2a37a-6012-a0a1-a74f-e9fc83598453@linux.intel.com>
-References: <20240612112213.2734748-1-daire.mcnamara@microchip.com> <20240612112213.2734748-3-daire.mcnamara@microchip.com>
+	s=arc-20240116; t=1718372656; c=relaxed/simple;
+	bh=9d9IzUoE2+eVdkcIPQMk157cYBuCzlq8DwrQXaQ1tfg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tUghxwtD2k144vY935+nbJaGI8wt1tA4/Hzd2vCA/KR0Vh9+8pGzXGmuK6a+fOue4xQNUaU5LKoe4hKln5BxCYB6ZccZXof4aiXJaW1F5+mVU9PRhiQZX2oV28XM75nS0aYMYq2lQRSBzOZZcJz7hFHnJESf6pQWyJ25sjf/TNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VPrJ390q; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-6e4dbca52f0so1621780a12.0;
+        Fri, 14 Jun 2024 06:44:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718372655; x=1718977455; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=9pWt36fA1ImegtbiozNKZ8YlNa/rmVvAUUCSYTJtjCU=;
+        b=VPrJ390qpGZBZtsuCEf3Ch06l8AT/8SeI165EQfEpWoGJGUBGJc0daefo8hYuJI00d
+         eT6k8ByFJCGV7i5B46wEPrahhNkfOV6ZCPVSys7Xvp+4+TCN7eYNP/a0FG4F2ZNXQk7n
+         y63AthdPCZFFEtMfEjJNn/3WlD5FIKoin3fn1Dfv/mdMPDZFjbWChByBhL+2lkUkRBOC
+         BsgGyrkw2WEnXLg9JncXypL/Fx4V/jaot5kUsOKl3QVu+y04qCnOZeOddlD4ANj/ALI7
+         BT/0sgX+cobBpHMVhl8eUSf2IPtHeWt2Sy5v0ZkU7rlmInEC3AO2HX7c2wfvqNW75hJk
+         hOng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718372655; x=1718977455;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9pWt36fA1ImegtbiozNKZ8YlNa/rmVvAUUCSYTJtjCU=;
+        b=RwrXBwWX4ibVpICX3l0ky0D6HSpo9x7i5yViItuJbzFJgXRrVYWzfxIcBAvncFvhDN
+         KMM26R2wmMXWQRLNaAMKRs/RpkdvSLs/c/b1zIAWiwHKWAghpavs2oPlBx4gNMAXArUY
+         eiXOE+sHuy828XaOpN2QYVArdKtrw4pF71o7yYSgtd+DpDsMCLf8/VueIsfL8CRFim1w
+         YqnOSW0bWOlHDdVBFbylW4gKkJZjMGZGY89ilRqDoFFLTkmVPzOK1B1Pij26ffSJeLhv
+         TrjHYeC/nhbfcRmJnnkcn2wKDQmT7VgXMqfrjNmvI38MbIvb5iOwCanykPHGzQZlI8ak
+         4Z9A==
+X-Forwarded-Encrypted: i=1; AJvYcCUjvWbVlhtol0Hv1HDwKvZc2NuXBVy7rseciMMDR619J1pRKHZihcJerCZIf53HLrsMpv3l/LFr80V73p4RLu6IWP7UPKZrn850Kzd9HD1z1J23R2Udv/dGJp0BgWW8TDC7kRWNZai0CQNgxkpBr521TQ1QnwJ2Hp+uNjsdeq+gscv87NJq3RVl
+X-Gm-Message-State: AOJu0YzLDtSWrh8Zr6zKnzl3SAjUIob1vUjSaGXxSxYUCqN2idC74kCo
+	NscRCGu2r0rHpJXLxTGi5mA9GAVRauEVDPKIw9tXfpQxZ1j1W/n2
+X-Google-Smtp-Source: AGHT+IEvP8t2ffSBqYdq92RijhZuEGPaJGqm5YRscjgDlFxxcMkRANPd74CIRHeWieKUTyR2tW/D1w==
+X-Received: by 2002:a05:6a20:2449:b0:1b7:571d:3d03 with SMTP id adf61e73a8af0-1bae8280862mr3143824637.44.1718372654495;
+        Fri, 14 Jun 2024 06:44:14 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4e4a3ba94sm1422591a91.17.2024.06.14.06.44.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jun 2024 06:44:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <36f19569-fa5e-4ec4-a910-5bfbf6ea11da@roeck-us.net>
+Date: Fri, 14 Jun 2024 06:44:12 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] watchdog: ROHM BD96801 PMIC WDG driver
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-watchdog@vger.kernel.org
+References: <cover.1718356964.git.mazziesaccount@gmail.com>
+ <00911b1d1676b828c509e7c39237f9e602b43570.1718356964.git.mazziesaccount@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <00911b1d1676b828c509e7c39237f9e602b43570.1718356964.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Jun 2024, daire.mcnamara@microchip.com wrote:
-
-> From: Daire McNamara <daire.mcnamara@microchip.com>
+On 6/14/24 02:44, Matti Vaittinen wrote:
+> Introduce driver for WDG block on ROHM BD96801 scalable PMIC.
 > 
-> On Microchip PolarFire SoC the PCIe Root Port can be behind one of three
-> general purpose Fabric Interface Controller (FIC) buses that encapsulates
-> an AXI-S bus. Depending on which FIC(s) the Root Port is connected
-> through to CPU space, and what address translation is done by that FIC,
-> the Root Port driver's inbound address translation may vary.
+> This driver only supports watchdog with I2C feeding and delayed
+> response detection. Whether the watchdog toggles PRSTB pin or
+> just causes an interrupt can be configured via device-tree.
 > 
-> For all current supported designs and all future expected designs,
-> inbound address translation done by a FIC on PolarFire SoC varies
-> depending on whether PolarFire SoC in operating in dma-coherent mode or
-> dma-noncoherent mode.
+> The BD96801 PMIC HW supports also window watchdog (too early
+> feeding detection) and Q&A mode. These are not supported by
+> this driver.
 > 
-> The setup of the outbound address translation tables in the root port
-> driver only needs to handle these two cases.
-> 
-> Setup the inbound address translation tables to one of two address
-> translations, depending on whether the rootport is marked as dma-coherent or
-> dma-noncoherent.
-> 
-> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe controller driver")
-> 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> ---
->  drivers/pci/controller/pcie-microchip-host.c | 97 +++++++++++++++++++-
->  1 file changed, 92 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
-> index 853adce24492..d5021333e2aa 100644
-> --- a/drivers/pci/controller/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/pcie-microchip-host.c
-> @@ -30,6 +30,9 @@
->  #define MC_PCIE_BRIDGE_ADDR			(MC_PCIE1_BRIDGE_ADDR)
->  #define MC_PCIE_CTRL_ADDR			(MC_PCIE1_CTRL_ADDR)
->  
-> +#define MC_MAX_NUM_INBOUND_WINDOWS		8
-> +#define MPFS_NC_BOUNCE_ADDR			0x80000000
-> +
->  /* PCIe Bridge Phy Regs */
->  #define PCIE_PCI_IRQ_DW0			0xa8
->  #define  MSIX_CAP_MASK				BIT(31)
-> @@ -105,6 +108,7 @@
->  #define ATR0_AXI4_SLV0_TRSL_PARAM		0x810u
->  #define  PCIE_TX_RX_INTERFACE			0x00000000u
->  #define  PCIE_CONFIG_INTERFACE			0x00000001u
-> +#define  TRSL_ID_AXI4_MASTER_0			0x00000004u
->  
->  #define ATR_ENTRY_SIZE				32
->  
-> @@ -931,6 +935,89 @@ static int mc_pcie_init_irq_domains(struct mc_pcie *port)
->  	return mc_allocate_msi_domains(port);
->  }
->  
-> +static void mc_pcie_setup_inbound_atr(int window_index, u64 axi_addr, u64 pcie_addr, size_t size)
-> +{
-> +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> +	u32 table_offset = window_index * ATR_ENTRY_SIZE;
-> +	u32 atr_sz;
-> +	u32 val;
-> +
-> +	atr_sz = ilog2(size) - 1;
-> +	atr_sz &= GENMASK(5, 0);
-> +	val = lower_32_bits(pcie_addr) & GENMASK(31, 12);
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-ALIGN_DOWN(, SZ_xx) ?
-
-> +	val |= (atr_sz << ATR_SIZE_SHIFT);
-
-This looks like a named define + FIELD_PREP() would be more appropriate 
-here.
-
-> +	val |= ATR_IMPL_ENABLE;
-> +	writel(val, bridge_base_addr + table_offset + ATR0_PCIE_WIN0_SRCADDR_PARAM);
-> +
-> +	writel(upper_32_bits(pcie_addr), bridge_base_addr + table_offset +
-> +	       ATR0_PCIE_WIN0_SRC_ADDR);
-> +
-> +	writel(lower_32_bits(axi_addr), bridge_base_addr + table_offset +
-> +	       ATR0_PCIE_WIN0_TRSL_ADDR_LSB);
-> +	writel(upper_32_bits(axi_addr), bridge_base_addr + table_offset +
-> +	       ATR0_PCIE_WIN0_TRSL_ADDR_UDW);
-> +
-> +	writel(TRSL_ID_AXI4_MASTER_0, bridge_base_addr + table_offset +
-> +	       ATR0_PCIE_WIN0_TRSL_PARAM);
-
-Having a table_addr local variable instead would make these much less 
-repetitive and shorter.
-
-> +}
-> +
-> +static int mc_pcie_setup_inbound_ranges(struct platform_device *pdev, struct mc_pcie *port)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *dn = dev->of_node;
-> +	struct of_range_parser parser;
-> +	struct of_range range;
-> +	int atr_index = 0;
-> +
-> +	/*
-> +	 * MPFS PCIe root port is 32-bit only, behind a Fabric Interface
-> +	 * Controller FPGA logic block which contains the AXI-S interface.
-> +	 *
-> +	 * From the point of view of the PCIe root port, There are only
-> +	 * two supported Root Port configurations
-> +	 *
-> +	 * Configuration 1: for use with fully coherent designs; supports a
-> +	 * window from 0x0 (CPU space) to specified PCIe space.
-> +	 *
-> +	 * Configuration 2: for use with non-coherent designs; supports two
-> +	 * 1 Gb wide windows to CPU space; one mapping cpu space 0 to pcie
-> +	 * space 0x80000000 and mapping cpu space 0x40000000 to pcie
-> +	 * space 0xc0000000. This cfg needs two windows because of how
-> +	 * the MSI space is allocated in the AXI-S range on MPFS.
-> +	 *
-> +	 * The FIC interface outside the PCIe block *must* complete the inbound
-> +	 * address translation as per MCHP MPFS FPGA design guidelines.
-> +	 */
-> +	if (device_property_read_bool(dev, "dma-noncoherent")) {
-> +		/*
-> +		 * Always need same two tables in this case.  Need two tables
-> +		 * due to hardware interactions between address and size.
-> +		 */
-> +		mc_pcie_setup_inbound_atr(0, 0, MPFS_NC_BOUNCE_ADDR, SZ_1G);
-> +		mc_pcie_setup_inbound_atr(1, SZ_1G, MPFS_NC_BOUNCE_ADDR + SZ_1G, SZ_1G);
-> +	} else {
-> +		/* Find any dma-ranges */
-> +		if (of_pci_dma_range_parser_init(&parser, dn)) {
-> +			/* No dma-range property - setup default */
-> +			mc_pcie_setup_inbound_atr(0, 0, 0, SZ_4G);
-> +			return 0;
-> +		}
-> +
-> +		for_each_of_range(&parser, &range) {
-> +			if (atr_index >= MC_MAX_NUM_INBOUND_WINDOWS) {
-> +				dev_err(dev, "too many inbound ranges; %d available tables\n",
-> +					MC_MAX_NUM_INBOUND_WINDOWS);
-> +				return -EINVAL;
-
-You don't need to rollback anything when this error is encountered?
-
-> +			}
-> +			mc_pcie_setup_inbound_atr(atr_index, 0, range.pci_addr, range.size);
-> +			atr_index++;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  				 phys_addr_t axi_addr, phys_addr_t pci_addr,
->  				 u64 size)
-> @@ -962,11 +1049,6 @@ static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  	val = upper_32_bits(pci_addr);
->  	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->  	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
-> -
-> -	val = readl(bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
-> -	val |= (ATR0_PCIE_ATR_SIZE << ATR0_PCIE_ATR_SIZE_SHIFT);
-> -	writel(val, bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
-> -	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
->  }
->  
->  static int mc_pcie_setup_windows(struct platform_device *pdev,
-> @@ -1129,6 +1211,11 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	if (ret)
->  		return ret;
->  
-> +	/* Configure inbound translation tables */
-
-IMO, this comment adds 0 value over what the code tells all by itself so 
-it would be best to drop it.
-
-> +	ret = mc_pcie_setup_inbound_ranges(pdev, port);
-> +	if (ret)
-> +		return ret;
-> +
->  	/* Address translation is up; safe to enable interrupts */
->  	ret = mc_init_interrupts(pdev, port);
->  	if (ret)
-> 
-
--- 
- i.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
 
