@@ -1,133 +1,119 @@
-Return-Path: <devicetree+bounces-75784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F979089B1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:24:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE2BF908A6E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:49:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B875428C380
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:24:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68A9B1F23566
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B171946A0;
-	Fri, 14 Jun 2024 10:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0D19195399;
+	Fri, 14 Jun 2024 10:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZVZqrN1b"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="OeFerS/+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB447194132
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 10:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD57194C8F;
+	Fri, 14 Jun 2024 10:49:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.120
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718360694; cv=none; b=QVSSz20s9lGsMqDkcQco/qifHeS02TH/MUXLFPSRYQR2bZC1CNlGAN5TCXa3ukTmOUM4rVRdlNpiJ3Tea/8mJ0MAt6ardQ0DnXRrh68uhW28ZdGxeUC2E6dXQtu/2eYtnoHEcxqxxsRKqbZ/LnFCCZJPsB/EwkSoWlBu8EYnWsY=
+	t=1718362147; cv=none; b=OmZq1YDhkKi0nrdTBpHzn0LcvjzlxMVzGneP4KMq8M2sr57I4yI+DbJ9Jf5dm7KTU7FYNfMAZq94tvc3ZPBuKcGZykMJgZJVLFlZADMUti/yZB29CRh/55G7dAd1PZ/gaIRn2d/QF6j4z7XiUNDSMlT6zpvmL2ULFYFS/ajIs20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718360694; c=relaxed/simple;
-	bh=ZuwSgi9zLIoNZp877URK5FteNaoBqxpCKd2FeYdrG38=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a5Pf/z+A9zgxvdE31Ha1Oy78F7AD6MEPa8x0WTglAGmTLd6QMY5z8V1t3UEozHczyHYfVTHIV5F0t4D3x0L17xMyN4iESC5MVxLR1hSht5R+scGiFADaF+NgcYA3H+iA7+9qaMH6HXbT6MB6/mLfij2kt7ZkwdUGrNRyeUi0/l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZVZqrN1b; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52c85a7f834so2618371e87.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 03:24:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718360691; x=1718965491; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=efnhjpqQgsmtdaUVLcqkEj44nSpt4V5RfvjPWerlFZk=;
-        b=ZVZqrN1bcVkscnqRfkObQYXi2bS6sEMRFe0GFJamipcs+6ukeqxE86Hgc/RVZfOKa/
-         ZCv4KAN3DAJwAH+Zigx4dimz5aDoBUIhFlkzXZWcZ1zCypnt10DmANYns33SxLm4omOg
-         eiCEMrgV1MHxZvbMcZ9li2buyyvPzmR+4NYXV0z+UVGCFK7hvImpwiSj0SCboHZ5wpTo
-         idF2fQyVdX4wiliiqvet9M+WVQX204+OcpE4EZW/hYEPnoUpwAd2wnJ5yNCjhVK5t8nj
-         V+x9FxyJDLpCvhEQ/iRZmKTYpU4S4ralN62CFSp6uZHs9olw4kfJvGfuZ098ZVF4D0ac
-         zm/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718360691; x=1718965491;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=efnhjpqQgsmtdaUVLcqkEj44nSpt4V5RfvjPWerlFZk=;
-        b=V5mBRFDouYNwST2Q8vs2uucpbn+dJSo0rdEaqxNkEjBgmlWgN0+hDEdik6DVAGXGiU
-         zg/aZZeaJxwZTaxop1fF9dUGl0806YY9Nfs+oQEJXsR+asnp54cRoRc6BtaqwnQz+G2G
-         8JtOlQXc5Yy94GoDqrcQxYK2+k2DTn91VxiFjE84RXU18YHBhdXWnEoKVWqdAmM0BrS1
-         Z8dA/tJC+yJktK8J4399gWtOZYZ2BFfT8S91gTjqSIWKm+iDj7ycOL5kX87I63/MhS4d
-         zFkg12uwWK3J4zRmozRGPLVQXzHBS6k2sR7widYjv1Peqf+ObdrnXqzfSjXwCQoOp0bk
-         dEew==
-X-Forwarded-Encrypted: i=1; AJvYcCXx8B3ZOlA6KDaik5fKC4zoMgtiMdb+hp8xOjRtKyfZ6fgw25smB+5WZFWfyUwcd0I2pUY640uUvS9nzAfG+OioRdPUYvzd5PIM5A==
-X-Gm-Message-State: AOJu0YyMV6QAkdXmuEAycrQIqfwSz6jQtzsURFGq/YQamadiPwZcwVm/
-	JCtb+G5PsiNARh/J5x44MgY7jEZ5nAQfLsejOhQzf9UmaDBDW4LkP43fIBXI5Cc=
-X-Google-Smtp-Source: AGHT+IEWORdeTtr6fZukAQJ2f/JpYbjWtk3eAvDeBEJR863+Icr9nb85v00/m9s9du9B/uAO5LpWzA==
-X-Received: by 2002:a19:914d:0:b0:52c:8a4e:f4bf with SMTP id 2adb3069b0e04-52ca6e90db1mr1229088e87.51.1718360690961;
-        Fri, 14 Jun 2024 03:24:50 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca886e23asm168540e87.270.2024.06.14.03.24.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jun 2024 03:24:50 -0700 (PDT)
-Date: Fri, 14 Jun 2024 13:24:49 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH v6 4/6] power: supply: lenovo_yoga_c630_battery: add
- Lenovo C630 driver
-Message-ID: <s5ykyyczxrn7pblzbiu7st6barn47zrtjr6yn5shbeo7lwqkfk@hdctgjwpqu55>
-References: <20240612-yoga-ec-driver-v6-0-8e76ba060439@linaro.org>
- <20240612-yoga-ec-driver-v6-4-8e76ba060439@linaro.org>
- <r5wjdxqdechzxbyqwbyz7ou6nbxqewb6bruvklvcek2dhspixf@ujavcd3ky7n7>
+	s=arc-20240116; t=1718362147; c=relaxed/simple;
+	bh=0OQ7fAQz268gKpsmJc8+bAZ72791gLCH1pCX1SeyqQQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LL2g8ecEv5TN4CHQGrcN33xqaxJEQYFi8ZglzQ4zJeyIjVDqb1kevyMebeZtQHslkEktfRWliFhH3jvsxoWv1N74i+2Ee00/o110jNA2dJ8BUWr6e6WCB1GN4rUGgRlIm32+WunWtJ1+nxZYbs9VlYwaPTxE+Aa6sVwMTMkKqBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=OeFerS/+; arc=none smtp.client-ip=185.125.188.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from hwang4-ThinkPad-T14s-Gen-2a.conference (unknown [123.112.65.116])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 381B440EED;
+	Fri, 14 Jun 2024 10:32:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718361127;
+	bh=bnS7kqTuI1oofRO47Dt2B1kbXI+rXgnlYIL3KGjU60o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+	b=OeFerS/+6vvsJPCYDQ1QLKW9IBoj5olWVVzfZs8thBePbdpHGc5eCZRHM1ntwxLBG
+	 SGhbYfSV8s8Vl4MQ33vmf9Z1BTA9wiLpx6JWqhrKW0Pb85kuESlYVJvAJwqSGUdMYx
+	 9iQlkbd5111W2D0G2SyWPf3zYBfaiWeoNrNw5du38kjD36IWZEPPTbTqGw++CagIpc
+	 l5H1bzrkcROlos9k11XarB2LJbLvTnOvACcgQyhdOExOb7HiYnz3dAKOHr0eLoX3gc
+	 26NgGM3YfYMrCQDWK6O6AuQHp9AviSXUA99PqmVPxi1YKd/bv0I8LJyikM3+S97Od7
+	 QEI+8VhIjYdQw==
+From: Hui Wang <hui.wang@canonical.com>
+To: linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org
+Cc: jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andy@kernel.org,
+	lech.perczak@camlingroup.com,
+	Maarten.Brock@sttls.nl,
+	hui.wang@canonical.com
+Subject: [PATCH v5 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
+Date: Fri, 14 Jun 2024 18:29:51 +0800
+Message-Id: <20240614102952.679806-1-hui.wang@canonical.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <r5wjdxqdechzxbyqwbyz7ou6nbxqewb6bruvklvcek2dhspixf@ujavcd3ky7n7>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 14, 2024 at 03:35:25AM GMT, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Wed, Jun 12, 2024 at 12:59:35PM GMT, Dmitry Baryshkov wrote:
-> > On the Lenovo Yoga C630 WOS laptop the EC provides access to the adapter
-> > and battery status. Add the driver to read power supply status on the
-> > laptop.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/power/supply/Kconfig                    |   9 +
-> >  drivers/power/supply/Makefile                   |   1 +
-> >  drivers/power/supply/lenovo_yoga_c630_battery.c | 500 ++++++++++++++++++++++++
-> >  3 files changed, 510 insertions(+)
-> > 
-> > diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-> > index 3e31375491d5..55ab8e90747d 100644
-> > --- a/drivers/power/supply/Kconfig
-> > +++ b/drivers/power/supply/Kconfig
-> > @@ -167,6 +167,15 @@ config BATTERY_LEGO_EV3
-> >  	help
-> >  	  Say Y here to enable support for the LEGO MINDSTORMS EV3 battery.
-> >  
-> > +config BATTERY_LENOVO_YOGA_C630
-> > +	tristate "Lenovo Yoga C630 battery"
-> > +	depends on OF && EC_LENOVO_YOGA_C630
-> 
-> The driver should no longer depend on OF. Otherwise LGTM.
-> Thanks for reworking it.
+In some designs, the chip reset pin is connected to a GPIO, and this
+GPIO needs to be set correctly before probing the driver, so add a
+reset-gpios in the device tree.
 
-Ack, I'll post a fixed version once Ilpo announces an immutable branch.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+No change in the v5
 
+ Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-
+diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+index 5dec15b7e7c3..88871480018e 100644
+--- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
++++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+@@ -28,6 +28,9 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  reset-gpios:
++    maxItems: 1
++
+   clock-frequency:
+     description:
+       When there is no clock provider visible to the platform, this
+@@ -91,6 +94,7 @@ unevaluatedProperties: false
+ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -120,6 +124,7 @@ examples:
+             compatible = "nxp,sc16is752";
+             reg = <0x54>;
+             clocks = <&clk20m>;
++            reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+             interrupt-parent = <&gpio3>;
+             interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+             nxp,modem-control-line-ports = <0 1>; /* Ports 0 and 1 as modem control lines */
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
