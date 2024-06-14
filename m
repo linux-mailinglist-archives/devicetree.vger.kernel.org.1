@@ -1,104 +1,213 @@
-Return-Path: <devicetree+bounces-75698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29E79085CA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:12:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8782A9085FB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:17:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 177EA28A938
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:12:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 533531C214D8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C174E183071;
-	Fri, 14 Jun 2024 08:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F171836C9;
+	Fri, 14 Jun 2024 08:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q3fsTfIv"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="FrzuS8rP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 952737318A;
-	Fri, 14 Jun 2024 08:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E31A1836D7
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 08:16:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718352751; cv=none; b=UMzu/uYE7gMPxe915XFlX80a9x/9/jh1R6l0GmnUGBku/vgx45SRN8lz2b/S1mQUjDQp0eIAmXm254RlG4V/RHoqXxgLjqCFFINffAlkeSwGxKh1OSyKUmBH/bEbbBoCtzeY0V+c+QVGvKccWMUE9p8uoSN5RqM7tYUNFT75m3w=
+	t=1718353011; cv=none; b=BqRCMhg9kKGDw0fz1WX15S4kJ7Abe6/l7Akaz9QMip+SDzYDg3x9Dr3RVBU2Rvan91MgkUL09A8Wru4FDc8XeM7V2yyVoehyI08KtMowdFZ1luG7S/xdbhekfTiFY1MP+QEW25fgX15KY3paf4n14iv0qTUHUYZkJbBLmA+TpZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718352751; c=relaxed/simple;
-	bh=tX718joJyIE6B+wV6r1BSs0uMJZFD+gOUjigSrolFiY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BLaNDi59IWMbbGCFiR3V3aGZXSzH431ISS8AHyW8XAG8Z4qRo2RlNDdi3HCA4nIyDKRhJnYP+ZUFcPqJFzbU8j8GAjB213Hnhu6APA+Z9VRqCMdqPDK7GqITsAqui2hmgDUicoKw8AQIu1TBaFsuapBbau444iaO4bmispgQ6cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q3fsTfIv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B34CC2BD10;
-	Fri, 14 Jun 2024 08:12:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718352750;
-	bh=tX718joJyIE6B+wV6r1BSs0uMJZFD+gOUjigSrolFiY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q3fsTfIvzWfbjqgMWimZHz75wRji/1p+IJN4Uta/5jtv3SIeuWh2de3Ff4Y+MAC0T
-	 NBMI+3DPozioudUgj0jlSWM+nPk7alc/rELse2FejAns9ESLW4u4OQE4JAgvxPalcm
-	 cfxwqnpt1ehFW+O+aRZra8342KQZ/J/c74Z2r5sv98qTgcC+uq1uypK+TKNbegUrVO
-	 Z6aQKhQfgFXzbrLaEljBoOH7SuPv2mIwmSo7ZslgOlbzucv97viCU9PrcykJUpqhq9
-	 +b9P99z8ZmrNY3pGqkNld8EnhTh13xB1kxOjLU1ZGCErelU076sgl5UdhpxhSJa12F
-	 WQhSAZhHeqMiw==
-Date: Fri, 14 Jun 2024 09:12:24 +0100
-From: Lee Jones <lee@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH v2 2/5] regulator: axp20x: AXP717: fix LDO supply rails
- and off-by-ones
-Message-ID: <20240614081224.GD2561462@google.com>
-References: <20240418000736.24338-1-andre.przywara@arm.com>
- <20240418000736.24338-3-andre.przywara@arm.com>
- <f685b49a-36b1-46c9-a0a3-734bca8bd968@arm.com>
+	s=arc-20240116; t=1718353011; c=relaxed/simple;
+	bh=nwE7qH3et0xBAyB0MTDxfmgBc8lMSr+/9XrUUisIykQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Oa9aKPwyuovdznhOch5Lv2bwbzA6kAkZXlOCBr/3Usb8vYj6/foeBjysy3yw0E8mD+dl5nJ7xxv6jgPq6wXwchDUpUXRhAYx3eEjZP7xXW3KSVwuDhFKnrbe5M3tZhymdDb8cHCulk6znkobA2FlJrOl5w35sHlkeB58oV1PA4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=FrzuS8rP; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2eaea28868dso25400521fa.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 01:16:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1718353007; x=1718957807; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eGmOzn1R1K16dkDMQJjEQ6wgWuo7/3DN6CTKOSNpNgg=;
+        b=FrzuS8rPAQXu5iSoydjMExSyF0JG+sUoXV2L9KKhAr3STgNHLgSQy3RJ9DFISFD2jh
+         RJIaamNFcx6y3QzFGFgMkyXtZyCs3N/Yd4Ri0WILV4SqrgR6wM5wx5icfRFqrqDfCBE8
+         GAZMoQdOeh1DYaZH/6ezzQCTaZPlDO/Xbj3lX3VijjB919wqP/MjTs56z4GU9mYxD394
+         swGKG+ChzC/dgP+gb1DZ2njamktxwk17e3LYy/vZJqeZxD2GiFgoVdwvgeNk9ewvYBGy
+         bZ5MXFrOwPGAf9etp/CNI0NbjA01Pwt7qNSRL8k73q1bkneRy6TvuZp5RQrUdyxbzua6
+         Wg9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718353007; x=1718957807;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eGmOzn1R1K16dkDMQJjEQ6wgWuo7/3DN6CTKOSNpNgg=;
+        b=U/WTrT4DJRI79WdG/hEpAWrQ3IqVPB55BhQNKy0yyaquDzskqjfYMjqUAysHp8rWqT
+         P1mNZs7tz1/ew41lLj5hy3MCbTBWw68p8ucFt9fg4WpT9sc1SLOt5TbuTgvF8NcKcOxe
+         gEWU4Un1731vL2MktEZiaM1tjIQeV1QvmSZ4igpZBonUBorwji9l3P9CsBxBKF5JoiQY
+         Z089MSTn3wo2dIitNK8cigHF843Y7eRRfzPWEtbndBIs3jHnB/p66XdWBQFYLaH+9rqP
+         R/nXMKuESmdCkQ7n/+oPK8vqZDFhxEMvE3T3mnoNOr2USsxy7hq05lcp0GsM86KqN4sl
+         40Pw==
+X-Forwarded-Encrypted: i=1; AJvYcCVNXUfl8LqeGwHsK/Z5Kb796faHMi95YReJ9BLnzFytFOXA+LfMly2yN1ockmPjMKmPU6grErNb7HSWP5iYT+/2o4sHf9Qi7YuRrg==
+X-Gm-Message-State: AOJu0YwBPJn9uLRMz0s7zACcqM0e8+75Vc/UmhrvdF47oy3JDaDc+/YL
+	44ldxB16VRD1Lnm/Hsd80DwzxBcgRwq7uHKdL0XkfLtznh2Bk7wkA6gOWSUXDgI=
+X-Google-Smtp-Source: AGHT+IGdVz9wnYuErYpbzpZPBaxajSeBzfE2NEQMkvFihFynmrdBmCln5caVCr3TFMsMNsUcb/jj1Q==
+X-Received: by 2002:a2e:7d03:0:b0:2eb:e56c:c90a with SMTP id 38308e7fff4ca-2ec0e5c8c3dmr14354061fa.43.1718353006713;
+        Fri, 14 Jun 2024 01:16:46 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.189])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f6127c6fsm51121795e9.24.2024.06.14.01.16.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jun 2024 01:16:46 -0700 (PDT)
+Message-ID: <d6b4e0cc-c16e-4ea7-bbc4-ddbaaadc9a25@tuxon.dev>
+Date: Fri, 14 Jun 2024 11:16:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f685b49a-36b1-46c9-a0a3-734bca8bd968@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/12] dt-bindings: rtc: renesas,rzg3s-rtc: Document the
+ Renesas RZ/G3S RTC
+Content-Language: en-US
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "lee@kernel.org"
+ <lee@kernel.org>,
+ "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>
+Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240614071932.1014067-6-claudiu.beznea.uj@bp.renesas.com>
+ <TY3PR01MB113464811F43F19115FCF62A786C22@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <TY3PR01MB113464811F43F19115FCF62A786C22@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 12 Jun 2024, Andre Przywara wrote:
+Hi, Biju,
 
-> Hi Broonie,
+On 14.06.2024 10:53, Biju Das wrote:
+> Hi Claudiu,
 > 
-> On 18/04/2024 01:07, Andre Przywara wrote:
-> > The X-Powers AXP717 PMIC has separate input supply pins for each group
-> > of LDOs, so they are not all using the same DCDC1 input, as described
-> > currently.
-> > 
-> > Replace the "supply" member of each LDO description with the respective
-> > group supply name, so that the supply dependencies can be correctly
-> > described in the devicetree.
-> > 
-> > Also fix two off-by-ones in the regulator macros, after some double
-> > checking the numbers against the datasheet. This uncovered a bug in the
-> > datasheet: add a comment to document this.
-> > 
-> > Fixes: d2ac3df75c3a ("regulator: axp20x: add support for the AXP717")
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Thanks for the patch.
 > 
-> Can you please take (at least) this one patch as a fix for 6.10? Applies
-> cleanly on top of v6.10-rc3. The changes are not super-critical, but worth
-> fixing nevertheless.
+>> -----Original Message-----
+>> From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On Behalf Of Claudiu
+>> Sent: Friday, June 14, 2024 8:19 AM
+>> Subject: [PATCH 05/12] dt-bindings: rtc: renesas,rzg3s-rtc: Document the Renesas RZ/G3S RTC
+>>
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Document the RTC IP (RTCA-3) available on the Renesas RZ/G3S SoC.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>  .../bindings/rtc/renesas,rzg3s-rtc.yaml       | 60 +++++++++++++++++++
+>>  1 file changed, 60 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/rtc/renesas,rzg3s-rtc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/rtc/renesas,rzg3s-rtc.yaml
+>> b/Documentation/devicetree/bindings/rtc/renesas,rzg3s-rtc.yaml
+>> new file mode 100644
+>> index 000000000000..0e17f8a36155
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/rtc/renesas,rzg3s-rtc.yaml
+>> @@ -0,0 +1,60 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/rtc/renesas,rzg3s-rtc.yaml#
+> 
+> Please make it generic renesas,rtca3-rtc.yaml. Future SoCs may use this IP.
+> So use IP name instead.
 
-FWIW, I have no idea what's going on with this set now.
+From what I know the file name should correspond with the compatible that
+file was introduced with, and this one shouldn't be generic but SoC specific.
 
-Once all of the necessary patches have been expedited, please gather
-together what's left and I'll take them via MFD.
+Thank you,
+Claudiu Beznea
 
--- 
-Lee Jones [李琼斯]
+> 
+> Cheers,
+> Biju
+> 
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Real Time Clock for Renesas RZ/G3S SoC
+>> +
+>> +maintainers:
+>> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: renesas,rzg3s-rtc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 3
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: alarm
+>> +      - const: period
+>> +      - const: carry
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: RTC counter clock
+>> +
+>> +  clock-names:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - interrupt-names
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    rtc: rtc@1004ec00 {
+>> +        compatible = "renesas,rzg3s-rtc";
+>> +        reg = <0x1004ec00 0x400>;
+>> +        interrupts = <GIC_SPI 315 IRQ_TYPE_LEVEL_HIGH>,
+>> +                     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
+>> +                     <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
+>> +        interrupt-names = "alarm", "period", "carry";
+>> +        clocks = <&vbattclk>;
+>> +        clock-names = "counter";
+>> +        status = "disabled";
+>> +    };
+>> --
+>> 2.39.2
+>>
+> 
 
