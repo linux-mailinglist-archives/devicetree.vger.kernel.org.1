@@ -1,116 +1,160 @@
-Return-Path: <devicetree+bounces-75861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC009908ECD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:34:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DC89908F03
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:40:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E388281898
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:34:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1D881C25636
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 15:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E561591E8;
-	Fri, 14 Jun 2024 15:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9313A157A47;
+	Fri, 14 Jun 2024 15:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="8ba0C/x7"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="4Wt1PtHi";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="GwtxQTfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from wfhigh5-smtp.messagingengine.com (wfhigh5-smtp.messagingengine.com [64.147.123.156])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD48E154457;
-	Fri, 14 Jun 2024 15:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8FD249FF;
+	Fri, 14 Jun 2024 15:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.156
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718379278; cv=none; b=BcKSd4HsqWqPjGBECwzxDLVfQDrRNrocZhx857RamzB34tx3R5uGWwCiQbSYk1kFczzaNBHYiJMqzYc5Qq5ZGx2fHvc83TpH0r36VzXi9hxEoxXp02gCpOXrsF1+f4mtrL/UIrT12yWYI5fG/AqvToA38g4n/84MfAtauwVh5iQ=
+	t=1718379621; cv=none; b=VdQts3hryxy2xS3XjycJe/rWkWmCWZgIwW6Sv7FFMHUDaJJZis3/CmjoHyE0yd1lI57iPu+rCGxg9JOj+nCEhv89PD5UNHoExUPf6qNsXePEPOiXYFhu5ATllhpAtLeeu89c5V4ybo8dxYtbBHmTFaajaL5UpW38fZyoaWHU0/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718379278; c=relaxed/simple;
-	bh=v18banXTYDVpix+KbeN27Ilvj7iKBjNLDKFcfhurzgI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kkrB0bkE1SGxHMhDC1Hx9ABSQM6unGfS9zmblhDsdjSkNDo3N3KloXWUwXJVQlm/gfKYRYMffcE9UmhvNvQMw6KuoIBHMuWCsdpzr4RA5QEafgHvVIMp0jVfuU6feqen158JOUC9jdzt3q1gv6I1Hg8srnShCz2AYt1l1sywyew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=8ba0C/x7; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45EAWaU2026928;
-	Fri, 14 Jun 2024 17:34:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=selector1; bh=7riLuqz+hA84DWBGx6XOwv
-	cbfBzybdq7BcM57HkoHGI=; b=8ba0C/x7jRpXKP5819oyrl616VIvttD7d6J5v9
-	uZmCs2/oH5B2J2y131VZ4vxKo7eI4ZczmOZA8BgtuKI3l4BtiW5Pp4sbptRlU/87
-	zKdU0IKeeZv0wEeS+OnsuEJy1UX4KMrYgxLjvmT2s/yd7CBIlosdZSEU0Plfubox
-	kcIX4jxZ1PLUkLKnYzFHki4xWwzC2E5tOz6fd851+zjO2MhoQ3ClML6ODa8e3cMb
-	9x1GX3fxG8BfpjzUPEe5kg7x068CGB3KB59s3mVi2A4TD8aei++7idxPZfU+OERE
-	ss8ZQy4Rkv97DuO6bv4+939qMwonF90NF/fzaz0gTcTKeQ2g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yrfujae6f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 14 Jun 2024 17:34:23 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 04E884002D;
-	Fri, 14 Jun 2024 17:34:18 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 215AB2171F3;
-	Fri, 14 Jun 2024 17:33:48 +0200 (CEST)
-Received: from localhost (10.48.86.128) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 14 Jun
- 2024 17:33:47 +0200
-From: Etienne Carriere <etienne.carriere@foss.st.com>
-To: <linux-kernel@vger.kernel.org>
-CC: <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, "Lee
- Jones" <lee@kernel.org>,
-        Pascal Paillet <p.paillet@st.com>,
-        Etienne Carriere
-	<etienne.carriere@foss.st.com>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH] dt-bindings: mfd: dual licensing for st,stpmic1 bindings
-Date: Fri, 14 Jun 2024 17:33:46 +0200
-Message-ID: <20240614153346.2656871-1-etienne.carriere@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1718379621; c=relaxed/simple;
+	bh=EZf0lUnELN2GWQaIJ6nDvEZTqExvv3t6/H3YbZP8zlI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JKQkQDVOkjm2nuawVr/2ESwLZ8HmojLg/ydV7WKXOnD7JMLlKO+k+1Wk92pn8SswbehRoFSZFvYArfvkenEzE0TLNSApgm0f+qLFdbJqon0QJ65q93a2Pi9aNdBDVEP4kpTdtP9fj0GRpYYJAmP06nMR30bfA73gDntGFqvQyUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=4Wt1PtHi; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=GwtxQTfL; arc=none smtp.client-ip=64.147.123.156
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
+	by mailfhigh.west.internal (Postfix) with ESMTP id 986A1180014A;
+	Fri, 14 Jun 2024 11:40:17 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute7.internal (MEProxy); Fri, 14 Jun 2024 11:40:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm2; t=1718379617; x=1718466017; bh=Ga
+	O+yIwWZyZ40p7yxj6bdxp1mbhr5lltwIpK9CcOxIg=; b=4Wt1PtHimXGBKHPitr
+	FlLcoEeXsQH3BwaAd8ppBL0uS4D9ZD9BpPG9iLPE0mv1GDKWj4rZMbj83hsPYSBN
+	1Im6tXyhm9FdnDSwTIoVlE0MR/i3VcF8NQAmgpoqH4Icr0odqGfcOAtwxdyuKGfx
+	TNy37z/zhSuU1iKq+YTxiugLEOJQ8Dv0mtF4jO3Vpd0JMwN9gumwc8l74qh9jbEU
+	scCr2mucE9MWnzlFcgfyRPX5ZBEkB/hOrvie37uHLvQRUn4d1zHfNl3JVLlhG6LS
+	CGQr2JXJKmmIkRy5yH0t4OQjGQ9nh/k5eU0nKrJURtscdo0qrN1aZyFK8DBH0EKh
+	x1iA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1718379617; x=1718466017; bh=GaO+yIwWZyZ40
+	p7yxj6bdxp1mbhr5lltwIpK9CcOxIg=; b=GwtxQTfLb84xlPp4DzQ+u/h3fAkXO
+	iZ64xFHORVpUJSFhsurg5IOHAtHrY5q82WhAkp5zD0gv0WER5KTUWLDQI1R1ssu+
+	htuAo/aM9F+ZJ9mI93J4IP/bwMVJiPWfkSs+n4uo54LpD9gPepvBOTRtX2JkAEza
+	wBHdd32voUMREZAcQ/tPNbO3jY/+HIU5ROsCShFvyN/bo5kH47XOwFJjQ+DlHj6m
+	xgV6al1mHrqfb0dPbAL+TQFIt8Q2LFtjROF1DiLAZ95B6kwcj2Ov27L/TY0Vw9ut
+	dHpVwRMaXc7oaWCsM2ishOeIEOGW+LGkT0pQn0mEPaUUpHZYncmaBtL9Q==
+X-ME-Sender: <xms:YGRsZlEDuvFGxpy5BXX3XdjvrbG2NozZnxS7BTNNpA6mXOpkGbcujg>
+    <xme:YGRsZqVL0J88I2aGjg3REshcX19v9qi_nBz34oh7ZsPcvTzwRH99ji-o8SgLwnCvt
+    vCkR1Y93cnAuamBVpo>
+X-ME-Received: <xmr:YGRsZnLLIvn8EWaIBadJzdiwSsDuqiujyChecLzcQKvvukkSejGpxBQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeduledgleduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffufffkgggtgffvvefosehtjeertdertdejnecuhfhrohhmpeflihgrgihu
+    nhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqnecugg
+    ftrfgrthhtvghrnhepudffffffhfeuheevhffgleevkeeugeetfeegieeijeehfeekheek
+    veduveeigeeunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:YGRsZrF3lARW-ovoc5eOCKQLoUIhKKl26ytU-zdjpQ-a9FR-umEWqw>
+    <xmx:YGRsZrXAL2g2YSJEn4ZKQCjbsjTmiMOKqTQ45SyoBBk1AvsyOjxv3A>
+    <xmx:YGRsZmNHOmEz8jW5obK9gyiKAvRD39CBRYOki9yDfT6xmjLAVonK4g>
+    <xmx:YGRsZq3o1N2P5Qxaaq_IUc6DF4hrdDVD9NSpn9luHZW3XcPrBdXzfw>
+    <xmx:YWRsZktu8PElbVNPUh9Qx6xBYdwQfgai0OglCXA9fsMWPEi22gf8j2kc>
+Feedback-ID: ifd894703:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 14 Jun 2024 11:40:14 -0400 (EDT)
+From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH 00/10] MIPS: Loongson64: Loongson-2K1000 fixes
+Date: Fri, 14 Jun 2024 16:40:08 +0100
+Message-Id: <20240614-ls3k-mips-v1-0-7614340ace7d@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-14_13,2024-06-14_03,2024-05-17_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFhkbGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDM0Nj3Zxi42zd3MyCYl1To9Qk47Qk41RLQ3MloPqCotS0zAqwWdGxtbU
+ AhPKejVsAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Qing Zhang <zhangqing@loongson.cn>, Binbin Zhou <zhoubinbin@loongson.cn>, 
+ Huacai Chen <chenhuacai@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1729;
+ i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
+ bh=EZf0lUnELN2GWQaIJ6nDvEZTqExvv3t6/H3YbZP8zlI=;
+ b=owGbwMvMwCXmXMhTe71c8zDjabUkhrSclLhzix+fUaz+em3JB6fDE15tfhXM81nNLmXPTJbFv
+ +ad8Ki411HKwiDGxSArpsgSIqDUt6Hx4oLrD7L+wMxhZQIZwsDFKQAT+WvMyLDLPbixRJ/H8sXP
+ iYfeyD3p+r89OnGSjv2tpV+i78cLBr1j+MNpxNNx14y9KdZF6hV3wENfUZvJyyaI5e3bwMab9NC
+ glx0A
+X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
+ fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
 
-Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv2.0
-only to dual GPLv2.0 or BSD-3-Clause. I have every legitimacy to request
-this change on behalf of STMicroelectronics. This change clarifies that
-this DT binding header file can be shared with software components as
-bootloaders and OSes that are not published under GPLv2 terms.
+Hi all,
 
-In CC are all the contributors to this header file.
+This series fixed various problems I meet when I was trying to
+boot kernel on my Loongson-2K PI2 system.
 
-Cc: Pascal Paillet <p.paillet@st.com>
-Cc: Lee Jones <lee.jones@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
+Although most of the series are taged for stable, please apply
+it to mips-next tree as it has dependency to commits in next
+and I'm not in rush to get them into linus tree. I have some
+future works planed based on this series that may get into this
+cycle.
+
+Thanks
+- Jiaxun
+
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 ---
- include/dt-bindings/mfd/st,stpmic1.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Jiaxun Yang (10):
+      MIPS: Loongson64: Remove memory node for builtin-dtb
+      MIPS: dts: loongson: Fix liointc IRQ polarity
+      MIPS: dts: loongson: Fix ls2k1000-rtc interrupt
+      MIPS: dts: loongson: Fix GMAC phy node
+      MIPS: dts: loongson: Add ISA node
+      MIPS: Loongson64: Test register availability before use
+      platform: mips: cpu_hwmon: Disable driver on unsupported hardware
+      MIPS: Loongson64: reset: Prioritise firmware service
+      MIPS: Loongson64: sleeper: Pass ra and sp as arguments
+      MIPS: Loongson64: env: Hook up Loongsson-2K
 
-diff --git a/include/dt-bindings/mfd/st,stpmic1.h b/include/dt-bindings/mfd/st,stpmic1.h
-index 321cd08797d9..957c48300cd4 100644
---- a/include/dt-bindings/mfd/st,stpmic1.h
-+++ b/include/dt-bindings/mfd/st,stpmic1.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0 */
-+/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
- /*
-  * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
-  * Author: Philippe Peurichard <philippe.peurichard@st.com>,
+ arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 65 +++++++++++-----------
+ arch/mips/include/asm/mach-loongson64/boot_param.h |  2 +
+ arch/mips/loongson64/env.c                         |  8 +++
+ arch/mips/loongson64/reset.c                       | 38 ++++++-------
+ arch/mips/loongson64/sleeper.S                     |  8 ++-
+ arch/mips/loongson64/smp.c                         | 23 +++++++-
+ drivers/platform/mips/cpu_hwmon.c                  |  3 +
+ 7 files changed, 89 insertions(+), 58 deletions(-)
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240613-ls3k-mips-52eb3fb3e917
+
+Best regards,
 -- 
-2.25.1
+Jiaxun Yang <jiaxun.yang@flygoat.com>
 
 
