@@ -1,125 +1,241 @@
-Return-Path: <devicetree+bounces-75715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733A090869C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:41:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CBCA9086B9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:49:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28C921F2142D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:41:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 207961C224BF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:49:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A28188CD3;
-	Fri, 14 Jun 2024 08:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F5F1922D6;
+	Fri, 14 Jun 2024 08:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HJ7die3K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jvsehxwu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5F4186E4B;
-	Fri, 14 Jun 2024 08:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C1D191493;
+	Fri, 14 Jun 2024 08:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718354512; cv=none; b=AD5qQkB1hC2HaIb/E+s6aMi/4pvONndku983mi/NSECDbkIVf3UlYQIt7QuEkd+Vx68maThe5niW4Jh8ioPgImNe7j8bam5+KLCOFWRlOPVLZO1vE4YfXQT/cONOWbmpIIF5CmjuWrbca4FJylIrxey2jilZGaDg+8MmUBYQB2Q=
+	t=1718354956; cv=none; b=eIi0icAgcMPWn/PB0fx8mrX7fgn9/JijZkoTpq+Hli8eFfSWTPr0f+egmUmfWOJPev5RJBJBv5fnIJ88ZGPUM/dgBkIcTO3i2CGxP6ZQbsPXirKBg0BLJhde7cYPL3LyQ5N5TFHYCr70EdyLJaOTatbbwoqdYmsFPBIhqGGFWPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718354512; c=relaxed/simple;
-	bh=On7Y/DDU3GkgnfqvHOUglKP6bFOHQHpoQr+HpbT+xLA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HyoYn395rz8v5H1SFp/GLSlgcK4Im1mv5lgD+yjIprLpcq9mR01HUE9K0HFiaeneX1pPSMqLWIiQ3BSK19bUlRd+ZUSAwOFiNVKb8oKMIyYmC2gec+zOywbtYbgSLqOy59RhlgWSH0jS4T4c5p1MIqJkADK7WaihZTbR41ZfWzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HJ7die3K; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45E8febQ012182;
-	Fri, 14 Jun 2024 03:41:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718354500;
-	bh=1fUXeG+uZBVXVqCXgr832W2bhJnWN9uWXVLoh5IRUgo=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=HJ7die3KmTRIGSSZAOoItyfhcviiCwZb4mvpkbdcQ36L/eEKKmbLD7rS8F+aoYBYg
-	 MQfr3+a/QwDlnexioZr7TIfy1uQziVxIeGO4fX7VnUySYlBlUqsgH3PgvLIrs6mlBJ
-	 k2f469vYP5cVQhydZa/T1v71JoOfFZFsl/XdkOfg=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45E8feuE102641
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 14 Jun 2024 03:41:40 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
- Jun 2024 03:41:40 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 14 Jun 2024 03:41:40 -0500
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45E8fddN044560;
-	Fri, 14 Jun 2024 03:41:39 -0500
-Date: Fri, 14 Jun 2024 14:11:38 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Jayesh Choudhary <j-choudhary@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <robh@kernel.org>, <u-kumar1@ti.com>, <kristo@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j722s-evm: Enable analog audio
- support
-Message-ID: <4jf5dh54yc3jvvhacdcx52nfsk2uhuab7dvbnjulm45uqp4dse@artxmi5a2ebu>
-References: <20240612051246.41117-1-j-choudhary@ti.com>
+	s=arc-20240116; t=1718354956; c=relaxed/simple;
+	bh=RTH0ZCUoVW8qlR2oSlZ0Oz37XH6P2imgZDfO/NIGbs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZJmaSjbKIxTVj2FXIyzEDadCFhj7iKBPP9nCB2cZ6dWABqAovLtxEFqasFYTVgddjgSAc7NMKdl2WyysNRSoNR9sTZOV6b7d/ti2DZeIBlRwb5NyMwR/ApYfyQ/ZdAPVxFr0wjXYdNU3AF/D9BPOf3Y2U0RhaWu7PEcDIFekPGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jvsehxwu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 340C7C2BD10;
+	Fri, 14 Jun 2024 08:49:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718354955;
+	bh=RTH0ZCUoVW8qlR2oSlZ0Oz37XH6P2imgZDfO/NIGbs8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JvsehxwuXFOz/NeUh1oBN7B5Yfx0y4ponesNfKwFjMNl9iprWFcDAJDVig03XTCay
+	 4zoFAmK5D6A29ZHKKnqTc3kebMMu6I5zhVnHT+OBmCUn86UsxMnO+l/txtn1UrIWqU
+	 RZFORqlhlKQEPBAHwRzGPKiD9QLVpmUnq38942wWn3o3fZ14CFgt8gUsEgfjhme7KH
+	 yRmfMPp41ZDjKZ/9akg6iLkUT2IJ0r2s++xgXYfBkPfqQntwQGMBoI6vXNFW9n0Yac
+	 x6ETaDjEqNaVCdmRqGHFVciN05hdOUwVAOTV/yw7A/UPHwoOwwlWgE38ftXKmut7lU
+	 h1DlXZLNe9bzQ==
+Message-ID: <afb7551e-404e-440b-92c5-6927c61417ab@kernel.org>
+Date: Fri, 14 Jun 2024 10:49:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240612051246.41117-1-j-choudhary@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: thermal: convert hisilicon-thermal.txt to
+ dt-schema
+To: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>, rafael@kernel.org,
+ daniel.lezcano@linaro.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
+ javier.carrasco.cruz@gmail.com
+References: <20240613224204.185844-1-abdulrasaqolawani@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240613224204.185844-1-abdulrasaqolawani@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jayesh,
-
-Thanks for the patch.
-
-On Jun 12, 2024 at 10:42:46 +0530, Jayesh Choudhary wrote:
-> The audio support on J722S-EVM is using TLV320AIC3106[0] codec
-> connected to McASP1 serializers.
+On 14/06/2024 00:42, Abdulrasaq Lawani wrote:
+> Convert the hisilicon SoCs tsensor txt bindings to dt-schema
 > 
-> - Add the nodes for sound-card, audio codec and McASP1.
-> - Add hog for TRC_MUX_SEL to select between McASP and TRACE signals
-> - Add hogs for GPIO_AUD_RSTn and MCASP1_FET_SEL which is used to
->   switch between HDMI audio and codec audio.
-> - Add pinmux for MCASP1 and AUDIO_EXT_REFCLK1.
-> - Add syscon node for audio_refclk1 to set the enable bit in
->   CTRL_MMR reg and select the parent clock for the external clock.
-> 
-> [0]: <https://www.ti.com/lit/gpn/TLV320AIC3106>
-> 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-
-Reviewed-By: Jai Luthra <j-luthra@ti.com>
-
+> Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
 > ---
-> 
-> This patch depends upon the bcdma driver fix posted upstream:
-> <https://lore.kernel.org/all/20240607-bcdma_chan_cnt-v2-1-bf1a55529d91@ti.com/>
-> 
-> v1 patch:
-> <https://lore.kernel.org/all/20240611082820.17442-1-j-choudhary@ti.com/>
-> 
-> Changelog v1->v2:
-> - Fix dtb warning for pin-muxing
-> 
->  arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 121 ++++++++++++++++++++++++
->  1 file changed, 121 insertions(+)
-> 
-[...]
+> Validated with dtschema and tested against `hi3660-hikey960.dts`
 > 
 
--- 
-Thanks,
-Jai
 
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
+> diff --git a/Documentation/devicetree/bindings/thermal/hisilicon-thermal.yaml b/Documentation/devicetree/bindings/thermal/hisilicon-thermal.yaml
+> new file mode 100644
+> index 000000000000..56ded6ebe1b2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/hisilicon-thermal.yaml
+
+Filename: hisilicon,tsensor.yaml
+
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/hisilicon-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Temperature Sensor on hisilicon SoCs
+> +
+> +maintainers:
+> +  - Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+> +
+
+Missing $ref to thermal-sensor.yaml#
+
+> +properties:
+> +  compatible:
+> +    items:
+
+No need for items
+
+> +      - enum:
+> +          - hisilicon,tsensor
+> +          - hisilicon,hi3660-tsensor
+> +
+> +  reg:
+> +    description: physical base address of thermal sensor and length of memory mapped region.
+
+Drop description, pointless.
+
+> +    minItems: 1
+> +    maxItems: 2
+
+Instead you need to list items and describe them. But don't repeat
+redundant parts like "physical base address". Just say which block is this.
+
+Or... it's just wrong. Why two items?
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: thermal_clk
+> +
+> +  interrupts:
+> +    description:
+> +      The interrupt number to the cpu. Defines the interrupt used
+> +      by /SOCTHERM/tsensor.
+
+No need for description, it's redudant.
+
+> +    maxItems: 1
+> +
+> +  # See Documentation/devicetree/bindings/thermal/thermal-sensor.yaml for details
+
+Drop
+
+> +  '#thermal-sensor-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - '#thermal-sensor-cells'
+> +
+> +additionalProperties: false
+
+unevaluatedProperties instead (after adding ref)
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/hi6220-clock.h>
+> +
+> +     // for Hi6220:
+> +     tsensor: tsensor@0,f7030700 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +     compatible = "hisilicon,tsensor";
+> +     reg = <0x0 0xf7030700 0x0 0x1000>;
+
+Oh man...  get this past your mentors first.
+
+1. Messed indentation.
+2. 0, unit address looks unnecessary.
+
+
+> +     interrupts = <0 7 0x4>;
+
+Use proper defines for both common constants. There is a reason you
+included arm-gic header, right?
+
+> +     clocks = <&sys_ctrl HI6220_TSENSOR_CLK>;
+> +     clock-names = "thermal_clk";
+> +     #thermal-sensor-cells = <1>;
+> +     };
+> +
+> +     // for Hi3660:
+> +     tsensor1: tsensor@fff30000 {
+
+Drop entire node. One example is enough.
+
+
+Best regards,
+Krzysztof
+
 
