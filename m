@@ -1,108 +1,109 @@
-Return-Path: <devicetree+bounces-75793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F06908A37
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:39:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E54C5908A71
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:50:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 587EB1C26972
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:39:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D96E1F21E88
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FDC1946B4;
-	Fri, 14 Jun 2024 10:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDBCA1957E4;
+	Fri, 14 Jun 2024 10:50:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bgmLQJO1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9B3146582;
-	Fri, 14 Jun 2024 10:39:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653F61946BB;
+	Fri, 14 Jun 2024 10:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718361551; cv=none; b=YiTpxdkY7uWHaLh7pNuGs7k7awRLYHzLXRoEv6OnBPfICvExulPJX5NkO4BjluJQcUHckIjhnVYkSsIqLXx5+8tMdUEMIRrnpvF7qrWbojc9P4lQKF0TRELMcbByXFNo5JNqIq8VXPypMvZ8MTiqz6vxdYPdIwlgmEyWe5BLjmk=
+	t=1718362208; cv=none; b=Kw/Jz1FtjGpo6UP8ukzgy/rPZ13TMrO365osKVOIfRLaH1ZmHxwL4z/7sYR4lx9lsQoXn3iwUr7PPiLCjpTtW+KBxAsRqKQXUF7ntMtcz1EOCQpFoPTR95NXkgEcGk85++SUWHa4CRsKlD/Y1StRw7uYlwzF9BCQRtqAbZCFn+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718361551; c=relaxed/simple;
-	bh=MzEWoe38FXzvY+La24fBRxcnr5ToM6ROB3BhzshL6mc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Pr/C5gBnaFFXXmnJKk4YyZypVZi6Zdp7dYmsaBcpHoo60UaySH+quONDF7OH5yMrl8X6JqMHuvy+/di+UClklL6mJu96ffeOKA8Jk2WvK+9kDwjlUj7qbmGuL58J63st3kRfZjNO76rku+XdaM4IUT0WN46JGSKWpqevgGXfmmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b9c.versanet.de ([83.135.91.156] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sI4K2-00030e-NX; Fri, 14 Jun 2024 12:38:18 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Guillaume La Roque <glaroque@baylibre.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Amit Kucheria <amitk@kernel.org>,
- Niklas =?ISO-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
- Biju Das <biju.das.jz@bp.renesas.com>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- zhanghongchen <zhanghongchen@loongson.cn>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
- linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Florian Fainelli <f.fainelli@gmail.com>,
- linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH 14/22] dt-bindings: thermal: rockchip: reference thermal-sensor
- schema
-Date: Fri, 14 Jun 2024 12:38:16 +0200
-Message-ID: <4870406.JsnAkG3lO3@diego>
-In-Reply-To:
- <20240614-dt-bindings-thermal-allof-v1-14-30b25a6ae24e@linaro.org>
-References:
- <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
- <20240614-dt-bindings-thermal-allof-v1-14-30b25a6ae24e@linaro.org>
+	s=arc-20240116; t=1718362208; c=relaxed/simple;
+	bh=QXp0E+fwmVtC+dLdV29MGtpRInQu8wHVNWt3UcAzTaw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RwNibRdrCMuKPj5PCaqK2HAFVHe04WZYxBG7wkVOukrWGIBYcnBSmkA5x81uCYBIPST6gtMF1dFmlU3fu7d1w9gQFmbVJpWn4NYrIQsf4XarK2HM0DT8IfftLNDqeBDXyvFOpwEYMPqLMiH0RuL44FE/0++k1ZM2xjkJBuSufp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bgmLQJO1; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1f70a87fd16so1226755ad.3;
+        Fri, 14 Jun 2024 03:50:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718362207; x=1718967007; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FN3vsCtnCbhfEWE7YOMqnwUF4qxuxOyYlc2ZbCQATK8=;
+        b=bgmLQJO1SJCFM4kcPshjwqO23xIlOZkZDye5AeMajHZLHySPsw6SvYl4ycDJY881u+
+         TgohWduWOskTa9PQIygyNI5uurI36idypVqNOHw1IFFLto1N1mE8CXBHInnlAI43kvc3
+         0xXgmyJ5cxNCHdUo3lq0jkMLxHEp5MkssuDAOSPXSQ2z+Trb6sDAact+4VoaDnGgHDsv
+         PllifQKdMVDRqiI4vP3x8lH9I6Qcn2IwS0SH2gGQXLRv4upCSIS/VwlkOO+3Xx1+oEIv
+         hWnRf1seHA27Syfr9IvwpNWwvn/ZVPKZuUGpQtcgsmvfSpex9NwRGAEn4YnFMS+luQZX
+         1AUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718362207; x=1718967007;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FN3vsCtnCbhfEWE7YOMqnwUF4qxuxOyYlc2ZbCQATK8=;
+        b=SYw4ld0awjB+nwz3Qw6rLG7EzUXMKtr5eD3STUa6lZQwIvyL3r+o9UegUuYf5BU00J
+         7VIgnI723Dr313sa5/Hfx74yoH2yUHpTqHOSgpo8Q/cyKGEuQjv0SHUAYL6+r5J2UZoG
+         XcExBBKPk0nTNLugnQkANXqZvcS0UzmJIi03eV6UHTLHLXLvRfD8zvoYY4yfT6OJACOR
+         d+fKRUpqFRvwtRk/gOlIym66S6FGfwmmcERJ6yQjXCZrPt8FVkeZ5AY7RFvtKfyjEOOv
+         IUgD2kojtF70bWJXPA0nC2Mp2Wm0pNlulm1cp0mwPl7Vy4ZKLYzwv0A04MoAVekq0puw
+         ZXtw==
+X-Forwarded-Encrypted: i=1; AJvYcCXEynbhh8RTPTmQRJE/Njtez11bHkBOrkIJarbUjoFqfVL3TnJJ8Z3Gu12qhQwaRXfLQlfeQ9LHrIjVNKlny1n//cc2QwfzswYG+eEMbwRLknpvt8uLXWTpZ9lX/qKIdyyx9wII3gQ4mvcc5nkv4atRiIQLRK0DC8aLNaLtwSsu7/CQarK1VYNUoWCRv+Y0pqkZ7fKRzvKi5ZDHKkRvNuVPrnZNB9U5Xu/ej0a8oMBua6rsVTQG97dBdQFJdQSaUTinUfAnWdwylQhqwn3X81FohK/Fd/P25R8udGTKKrNG56ubKRXng7o7I1MlMn2uwfpfNWlT34I3gRIUoTKX2HqEhiA1aubpfL+Gxwt3aWl1YcKKN39t5NM6M+f9pcWj+cTxsPC2aesgFPvkodw21XLmEhnHUNTjdY9nhNIa7czIEviq3qeA
+X-Gm-Message-State: AOJu0YwO+KYJk9DvygpILIdZ28Sq8UeQIDFkzlqZ77KL79AV7lGqtRLQ
+	b5r1aq3DjWuXL2QCHdlod0HIM/iioM2E5rb6hs2K3hsNMJLRfBXE+SlcD6SgQUUkhp3fnyVepfC
+	RCbuqeoRYKfaLPmAqgSgiPHWHbXI=
+X-Google-Smtp-Source: AGHT+IHgArd11Sr3/cVVDrQnQwI2RDLcgIn6oK4LnKR6wQe/sXzVwQkyN3JryAftKxLHPTfJ0mLrINTYXizbakdH1hU=
+X-Received: by 2002:a05:6a21:9988:b0:1b7:571d:3d02 with SMTP id
+ adf61e73a8af0-1bae841ec0bmr2723114637.5.1718362206628; Fri, 14 Jun 2024
+ 03:50:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20240614095927.88762-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240614095927.88762-1-krzysztof.kozlowski@linaro.org>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 14 Jun 2024 07:49:54 -0300
+Message-ID: <CAOMZO5Br98929LM-r8YnbFnPOUSusamMZoaMDvEHYBSmSqhGhQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: drop stale Anson Huang from maintainers
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Freitag, 14. Juni 2024, 11:46:13 CEST schrieb Krzysztof Kozlowski:
-> Device is a thermal sensor and it requires '#thermal-sensor-cells', so
-> reference the thermal-sensor.yaml to simplify it and bring the
-> common definition of '#thermal-sensor-cells' property.
-> 
+Hi Krzysztof,
+
+On Fri, Jun 14, 2024 at 6:59=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Emails to Anson Huang bounce:
+>
+>   Diagnostic-Code: smtp; 550 5.4.1 Recipient address rejected: Access den=
+ied.
+>
+> Add IMX platform maintainers for bindings which would become orphaned.
+>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
