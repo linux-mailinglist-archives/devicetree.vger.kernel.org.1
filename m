@@ -1,120 +1,98 @@
-Return-Path: <devicetree+bounces-75902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 818529090C7
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:52:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BDC99090D3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 19:00:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35B25B22FE4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:51:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E58D1F225AB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8663B195F28;
-	Fri, 14 Jun 2024 16:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CC4194ACB;
+	Fri, 14 Jun 2024 17:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CpFq6UCC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZjuNH7Qp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55218192B8F;
-	Fri, 14 Jun 2024 16:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E2CDDDF;
+	Fri, 14 Jun 2024 17:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718383907; cv=none; b=B4LmFz6WdbxatcA/Ktt/IJnr2HgnCfNNg8QoIRlMeZ/Vsu+axXdAKdzTr987OhetzIJ5i1daGXfm2MgltPeKA0nai7sDyco8vgi+HcjRTAOBolKC2ouyQd+zObQ/3/3NGTtIl+lYpWfYPuOc7KGB301gXUMgfsbbFA9ZS9X4XrY=
+	t=1718384435; cv=none; b=tPOXRCUcLxEnKRXyhmiUOtlK+N2ZEKE1uKNbF0uNgJzqc4anE+yLWUhNr7e50C6P3kOO1IFyURXHotqe2gKluhQzg6UAsyuBUa4wDT1utv7fQilxRu7WkzZHx4/0oQvK53b3PCLyCzhl5xQ0+hz0q1X/PpFTg1WlWMdOSDwj5GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718383907; c=relaxed/simple;
-	bh=fPlz7/O4CHKldDLCxbpg3ui9wtblMgB3TXnLBn0vSI8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l801Rwft44lIalZOt+gT1av2H9JI48NGgFErXYueja3KlP4kvw2w9SYERe/YoNxBLWufC9H2uiM/bBG77fQISLS5tcbVVWnbhLZ4alU31B9GGKkNfN4RUO+pP+FYuN+KzEg7jq56JnySgT1gUDqeKlzwyhGgVkR3A1uwaeculw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CpFq6UCC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29068C2BD10;
-	Fri, 14 Jun 2024 16:51:45 +0000 (UTC)
+	s=arc-20240116; t=1718384435; c=relaxed/simple;
+	bh=I1pahDc43KhXSDhbubXfPSzmxs7edlK0S8v9NiUrnNI=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=dkYImxX9pcqMKgyTDCUZhbzbPKyht3LStyyVFycFmaQyJvRzEO4o3mbbjC46Qzn1vEZ2uXsZjqlzTmGUrFgk8TRu9DVA/ftuasK4mrDoVpeLlujo+q31FJxcb4KyEBKeVo25iWna+oUeHDkcHJq7gDQc7zoQPF6HsP90AOfsGok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZjuNH7Qp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 26C7DC4AF1A;
+	Fri, 14 Jun 2024 17:00:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718383907;
-	bh=fPlz7/O4CHKldDLCxbpg3ui9wtblMgB3TXnLBn0vSI8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CpFq6UCC7cqq4TL2Q4voaO/eWCDtFrzYqrhpIB1METf7ygd32ZxG5reEb08aI2/2l
-	 EOxJV0ZJspzfFvIBXYmPTqrYT27w3rTiKkm+0qK4iCpyuG7O8YAUweHKhCa8wqWvjd
-	 cjod0053tLA2spwX/oQuoY0BJCQ8ikbCbbKxI3lw3enf1LhXAA6RU9YT5281LMbTRV
-	 BM47sjqNEhDV2l7quJAsEP4p/QiQyrdWTMeDPgyTL6Vqsm+ScmxescTGkW2jxGxXvb
-	 /Uf4o81uIhzqasU0dnRZVZ0nFTzxCL9yCWfUrzi+KZa3C2Rw0AIU1tMb3tNPV6KEG3
-	 lW5zitAlFmhCw==
-Date: Fri, 14 Jun 2024 17:51:43 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Chancel Liu <chancel.liu@nxp.com>, Arnd Bergmann <arnd@arndb.de>,
-	Michael Ellerman <mpe@ellerman.id.au>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [Patch v2 1/2] ASoC: fsl: Add i2s and pcm drivers for LPC32xx
- CPUs
-Message-ID: <Zmx1H5MyjWvoRdwz@finisterre.sirena.org.uk>
-References: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
- <Zmgor8accyAiUkUO@finisterre.sirena.org.uk>
- <CAG+cZ06B+AexqvwZtNP5FX50AmghAFLa=1ebxmKLvMoyVJ529w@mail.gmail.com>
- <Zmxy-xA3YDU06Eht@finisterre.sirena.org.uk>
- <CAG+cZ05KomezPn0bAuZWrfO=rbyLdCU8_Xx11oEihUaD97gF8w@mail.gmail.com>
+	s=k20201202; t=1718384435;
+	bh=I1pahDc43KhXSDhbubXfPSzmxs7edlK0S8v9NiUrnNI=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=ZjuNH7QpiPpsQ4kezsHwZ006hvXZxFvKREnzdndYduzl3BsMR533JZ3wMtKoVRJYt
+	 2dDczpofhZ3nZII1YFDogIZazt6Yj1hAKCXZNprCkefRqaJIUNXNe/V0SPPf4NDdB0
+	 ubVZ3Km8QviVJ/iwf0HFGq+AJga6zbrazt+WrRpJknduIiqFI/Q0FJ12s8RKC5AFlv
+	 qNyFh313lG6pu26z/qdSYCXeUGtjt/AqrOq6Z90d0s9hYmUijuYvrauP6F/1BIpL29
+	 TDRkcR0NSbrxL1hdRXyAH/DhanN9ipgUaYyQaE85NLj2HOQg+CynvsPEANuM+2l6bI
+	 IpnLCuczHJa4Q==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 03360C43616;
+	Fri, 14 Jun 2024 17:00:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7aeyEfJwNjSnCeXl"
-Content-Disposition: inline
-In-Reply-To: <CAG+cZ05KomezPn0bAuZWrfO=rbyLdCU8_Xx11oEihUaD97gF8w@mail.gmail.com>
-X-Cookie: Your love life will be... interesting.
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4 0/2] Bluetooth: btnxpuart: Update firmware names
+From: patchwork-bot+bluetooth@kernel.org
+Message-Id: 
+ <171838443500.31311.6625085900814188876.git-patchwork-notify@kernel.org>
+Date: Fri, 14 Jun 2024 17:00:35 +0000
+References: <20240614084941.6832-1-neeraj.sanjaykale@nxp.com>
+In-Reply-To: <20240614084941.6832-1-neeraj.sanjaykale@nxp.com>
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc: marcel@holtmann.org, luiz.dentz@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-bluetooth@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amitkumar.karwar@nxp.com, rohit.fule@nxp.com,
+ sherry.sun@nxp.com, ziniu.wang_1@nxp.com, haibo.chen@nxp.com,
+ LnxRevLi@nxp.com
+
+Hello:
+
+This series was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+
+On Fri, 14 Jun 2024 14:19:39 +0530 you wrote:
+> This patch series updates the BT firmware file names in BTNXPUART
+> driver, while maintaining backward compatibility by requesting old
+> firmware file name if new firmware file not found.
+> 
+> A new optional firmware-name device tree property has been added to help
+> override the firmware file names hardcoded in the driver.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v4,1/2] dt-bindings: net: bluetooth: nxp: Add firmware-name property
+    https://git.kernel.org/bluetooth/bluetooth-next/c/3a8decfc6350
+  - [v4,2/2] Bluetooth: btnxpuart: Update firmware names
+    https://git.kernel.org/bluetooth/bluetooth-next/c/2c4d9d8e879b
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
---7aeyEfJwNjSnCeXl
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jun 14, 2024 at 06:46:46PM +0200, Piotr Wojtaszczyk wrote:
-> On Fri, Jun 14, 2024 at 6:42=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
-rote:
-> > On Fri, Jun 14, 2024 at 06:24:50PM +0200, Piotr Wojtaszczyk wrote:
-
-> > > Ok. Later I will add a sound card driver to phytec3250 board which us=
-es
-> > > arch/arm/configs/lpc32xx_defconfig config file so that the COMPILE_TE=
-ST
-> > > won't be needed.
-
-> > Why would a defconfig affect the Kconfig?
-
-> I guess when lpc32xx_defconfig enables the SND_SOC_FSL_LPC3XXX then the
-> COMPILE_TEST won't be needed or does it?
-
-The whole point of COMPILE_TEST is to allow the driver to be covered
-when people aren't building for whatever specific platform would
-actually use it.
-
---7aeyEfJwNjSnCeXl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZsdR4ACgkQJNaLcl1U
-h9CNrQf/QOGnPQlIqhyNGJmHt+OTyAKxvU02FdwW1IOOW6yQBj4UO9d4k7nblhEn
-F7Vtbh6YUxU664IKdVLn2n6JwvOzBu2sPuLmm0JQgsZnlOB23KNWgw7yoZdgPL9m
-tKbUe6KCBHoMU/LJe+m2nm9qhAlTXlL4Uf1xgJQ3TK9c2neuko0efOtWy97OE8Oc
-PxHGfc5fFxAjEtnOQq47Nj0/fKCzXF3HLOseOx+KibzpUMgVZJTdVilroWPHOGXa
-u9aMHOWsdypZIO6rRaAjhslOpENc0zW4+v4gaWtRD8mmsiKzvQuZTB6zo/vMTTfA
-GUx5oQKpFeCMxaFkBGj6dCVLbitmgQ==
-=r/9i
------END PGP SIGNATURE-----
-
---7aeyEfJwNjSnCeXl--
 
