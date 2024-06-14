@@ -1,193 +1,198 @@
-Return-Path: <devicetree+bounces-75834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09D4F908D8E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:36:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13746908DB2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A8011F23BC8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 14:36:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C7181C21522
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 14:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33F0DDA5;
-	Fri, 14 Jun 2024 14:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2751317552;
+	Fri, 14 Jun 2024 14:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yu788xU+"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JX0T1pnH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAC218E0E
-	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 14:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827E317BB6;
+	Fri, 14 Jun 2024 14:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718375806; cv=none; b=Pfd7Ux+LCDIk205ppnF8+fQ2QoIWRET/7+UASBESlAAD706AUARnVOvtRgXayRsrS7cDFlvwMu24pUHHwsmYFypdNT4YsgASB8t22AevkCJ9PceaUUmq7E9Kfoxq7iWpkc+SsHMO4Zom2/v3yLOlNwLGTAdw9drl3wtnwob7Hug=
+	t=1718376193; cv=none; b=kyYmCMWYbGofiNZBo1srCBOmjVVANAJttp1OwHtAPx0bqQJG8tkFi0M9glx24MLqifLEmR3I09V/OfDIor275ua7wz6em75XqRIjmgk/VunegrBoietKM1/62Obw2Jr1j9xeBixj53dT1H0uEAXTYWAdKB+x8kM58gHYyGPVieI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718375806; c=relaxed/simple;
-	bh=i+2swah0zZgVXbkTe0iYaiZCqnlKaxQhq77fv0zxHYg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=D1Uad/7L2lHPl3wOFqf+9XrH/xtpGm9q79Eqdqzvn5/uCrI2XuOaxaoAlgqpoPRy5nETmKUDzytIZ9uICAVg4a5YNR5J9HHEKuy/WA2aEBGfn8hBllf8np/coMuVas7HiKSMTUaixjsq9Ge8qR2kYwH7sm9YvBM4wT7yVtu3reE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yu788xU+; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42198492353so18356995e9.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 07:36:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718375803; x=1718980603; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9pjHA27KSDFDPJxgz/w9YGYzEfUAZs5JLmVszAQFE64=;
-        b=Yu788xU+ImZuRg0jMvRS4JRm6usITv3JKkwnjZ5/JZwrhyfXTlSooPlDtKiiDRZl4d
-         4KSioArFHhraoEP1ZEnw4T5jieEjU6jA5btwyCA4B5rRz/WXLRw1t9uhyLTPtss+3hoi
-         B3V25qbYdetozLPf0YbENEhu98Y51ypCCKSfmGbrEJQIfdVX99Ljzb/v8C3XKNQBadFK
-         ranqmJpYAuQyXjCyzYaImLWuaqGAFrmxO++pXYMLxw7bQAgped/IGD4snFdt6+sRF+g6
-         o72jNL2A/TvN6DGh5uqsopF3W2Ml1PrIY1bGHYt2G83duYjdjsN31eVqR8LtOfzY6Sp6
-         p+uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718375803; x=1718980603;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9pjHA27KSDFDPJxgz/w9YGYzEfUAZs5JLmVszAQFE64=;
-        b=YGjC7sKtNGMOqhho5aXKDKTN+duoJBkCU4EC7C3cYplfX4rWApZHme381E22tqCAra
-         i9/tTgsp524lHBggvP0ecKtPQlxB5R8DZY+/RSyM1CdWgn2XLvA/czdesxIliOQiSZqW
-         /23LJ0/rT+mmsKTCexwVlF0B+1E2IjYEzB9VoVwdd3GVSknggieVHvfSihMKadumRT+1
-         ES2MNCkTNQEPW8AhFGHWvsB1uxPr30eEG2DoqWLEdZW6b3+NAE7VySgcQz73Bamo43IS
-         MzETP6ORcNtFoCEfoyPK8TYpkuABb+SrrcJdcZlxjjob2BXH4bco1dGjJ0z3DElKimmO
-         Vzxw==
-X-Forwarded-Encrypted: i=1; AJvYcCVfdKhZCmIBGnYBwLTJuxzyZAcmn+1C1tY22vKtJcC9Lt6F/5u/kQAq9F+dhwsUhYBMUSa+MavoR+NNreOx5BCnmPZVyqjZ9wz6Og==
-X-Gm-Message-State: AOJu0YxX3Gb8ZaXov/WO7icnVdTKGm++iviStJB4eHx2bns2I5jRo1u7
-	ftVzwEfEnBwLVBU7ZZpUbgFPwp+HWS1r3if850zPaK00zvjiA4WmM+AKL0+PTIY=
-X-Google-Smtp-Source: AGHT+IEzMKgUi8Y9YIfJCmkgzt1+FWf2beN5X++98O6QozELkl3Svx/Pv/K8danURzS2F0IaAL6yBw==
-X-Received: by 2002:a05:600c:1f92:b0:421:7407:d778 with SMTP id 5b1f17b1804b1-423048272eamr23600425e9.14.1718375803117;
-        Fri, 14 Jun 2024 07:36:43 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:261a:269e:a3a8:a2cc? ([2a01:e0a:982:cbb0:261a:269e:a3a8:a2cc])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42285574e33sm44341635e9.1.2024.06.14.07.36.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jun 2024 07:36:42 -0700 (PDT)
-Message-ID: <966d2474-57ea-4eca-baac-4b448c76fbf4@linaro.org>
-Date: Fri, 14 Jun 2024 16:36:39 +0200
+	s=arc-20240116; t=1718376193; c=relaxed/simple;
+	bh=2Mm4o+0/5Q+FxRwCZ5j72NsmFJaPx4lp4liZ9IiL+B0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HP0p8EQnWrabq+HPCJFOTF6BLIlr5w8xZdvSvsHUFDdtlcR9blA98Rf9I/L0C3Gvz9Qcmex+dKQFoP4dtU+1vohOLEpbxBM528AZg2THA1uZ9R9533h6ZeBTsK2fl7QtJSRhvc87i85Xs+I2LJAfg8q1qIEUh765qKakBfJgglA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JX0T1pnH; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 577FF2E0;
+	Fri, 14 Jun 2024 16:42:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1718376174;
+	bh=2Mm4o+0/5Q+FxRwCZ5j72NsmFJaPx4lp4liZ9IiL+B0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JX0T1pnHQTq1dT3dHjsdQJWX9axFEh0RCtT/qRXDMIK0zdDry4iAYraihPEa31OA4
+	 jCEEHsL4kg5r97DlJx2XokbFqZFjelM1lsINw1FIAVHkPDp4uCOUSyJ+DWgFNsd0Xq
+	 0q+oPotxXSCbUSmLfOmdYJopWwIl1/px6WH4DdUU=
+Date: Fri, 14 Jun 2024 17:42:48 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Phi-bang Nguyen <pnguyen@baylibre.com>,
+	Florian Sylvestre <fsylvestre@baylibre.com>,
+	Andy Hsieh <andy.hsieh@mediatek.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 3/5] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 sensor interface
+Message-ID: <20240614144248.GA20136@pendragon.ideasonboard.com>
+References: <20240110141443.364655-1-jstephan@baylibre.com>
+ <20240110141443.364655-4-jstephan@baylibre.com>
+ <3c2bee40-3792-409c-b42f-f8b013ff641c@collabora.com>
+ <CAEHHSvaT_U+HNzWQUoK9EuqGuqEd11+Lu0CLz_rL7uQf0Q5isw@mail.gmail.com>
+ <53838e76-bfa4-41f5-a015-a37472e98991@collabora.com>
+ <CAEHHSvaRqZM9c8oD05WKkhOHdjKLBkR6tXp2Q1b8OMiDxDsDhQ@mail.gmail.com>
+ <20240614123345.GN6019@pendragon.ideasonboard.com>
+ <CAEHHSvaWO7m=n5_f0BM7gwuDMfh_GMX=x3DknG28PnmtZbrGQw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 02/22] dt-bindings: thermal: amlogic: reference
- thermal-sensor schema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Guillaume La Roque <glaroque@baylibre.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Amit Kucheria <amitk@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>,
- Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- zhanghongchen <zhanghongchen@loongson.cn>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
- linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Florian Fainelli <f.fainelli@gmail.com>,
- linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
- <20240614-dt-bindings-thermal-allof-v1-2-30b25a6ae24e@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-2-30b25a6ae24e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAEHHSvaWO7m=n5_f0BM7gwuDMfh_GMX=x3DknG28PnmtZbrGQw@mail.gmail.com>
 
-On 14/06/2024 11:46, Krzysztof Kozlowski wrote:
-> Device is a thermal sensor and all in-tree DTS provide
-> '#thermal-sensor-cells', so reference the thermal-sensor.yaml to
-> simplify it, bring the common definition of '#thermal-sensor-cells'
-> property and require it.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> index 01fccdfc4178..e52fc40e215d 100644
-> --- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> @@ -11,6 +11,8 @@ maintainers:
->   
->   description: Binding for Amlogic Thermal
->   
-> +$ref: thermal-sensor.yaml#
-> +
->   properties:
->     compatible:
->       oneOf:
-> @@ -44,7 +46,7 @@ required:
->     - clocks
->     - amlogic,ao-secure
->   
-> -additionalProperties: false
-> +unevaluatedProperties: false
->   
->   examples:
->     - |
-> 
+Hi Julien,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Fri, Jun 14, 2024 at 04:14:52PM +0200, Julien Stephan wrote:
+> Le ven. 14 juin 2024 à 14:34, Laurent Pinchart a écrit :
+> > On Fri, Jun 14, 2024 at 12:38:15PM +0200, Julien Stephan wrote:
+> > > Le mer. 12 juin 2024 à 10:06, AngeloGioacchino Del Regno a écrit :
+> > > >
+> > > > Il 10/06/24 16:39, Julien Stephan ha scritto:
+> > > [...]
+> > > > >>
+> > > > >>> +     writel(0x10001, input->base + SENINF_TG1_SEN_CK);
+> > > > >>
+> > > > >> Unroll this one... this is the TG1 sensor clock divider.
+> > > > >>
+> > > > >> CLKFL GENMASK(5, 0)
+> > > > >> CLKRS GENMASK(13, 8)
+> > > > >> CLKCNT GENMASK(21,16)
+> > > > >>
+> > > > >> Like this, I don't get what you're trying to set, because you're using a fixed
+> > > > >> sensor clock rate, meaning that only a handful of camera sensors will be usable.
+> > > > >>
+> > > > >> Is this 8Mhz? 16? 24? what? :-)
+> > > > >>
+> > > > >> Two hints:
+> > > > >>    - sensor_clk = clk_get_rate(isp_clk) / (tg1_sen_ck_clkcnt + 1);
+> > > > >>    - int mtk_seninf_set_sensor_clk(u8 rate_mhz);
+> > > > >>
+> > > > >> Please :-)
+> > > > >
+> > > > > Hi Angelo,
+> > > > >
+> > > > > I think I get your point about not hardcoding the sensor rate, but I
+> > > > > am not sure how to use
+> > > > > a mtk_seninf_set_sensor_clk(u8 rate_mhz); function.
+> > > > >
+> > > > > Where would it be called? How is it exposed to the user?
+> > > > >
+> > > >
+> > > > As for where: setup, streaming start, resolution change (which may be covered
+> > > > by streaming start anyway, as a change should be calling stop->start anyway).
+> > > >
+> > > > And for the how is it exposed to the user - well, depends what you mean for user,
+> > > > but it's all standard V4L2 API :-)
+> > > >
+> > > > Last but not least, I can give you another hint....
+> > > >
+> > > > struct media_entity *entity = (something_here);
+> > > > struct media_pad *mpad;
+> > > > struct v4l2_subdev *cam_subdev;
+> > > > struct v4l2_ctrl *ctl;
+> > > > s64 link_frequency, pixel_clock;
+> > > >
+> > > > if (entity->pads[0].flags & MEDIA_PAD_FL_SINK)
+> > > >     return -E_NOT_A_CAMERA_SENSOR_WE_IGNORE_THIS_ONE;
+> > > >
+> > > > pad = media_pad_remote_pad_first(&entity->pads[0]);
+> > > > if (!pad)
+> > > >    return -ENOENT;
+> > > >
+> > > > if (!is_media_entity_v4l2_subdev(pad->entity))
+> > > >    return -ENOENT;
+> > > >
+> > > > if (pad->entity->function != MEDIA_ENT_F_CAM_SENSOR)
+> > > >    return -ENOENT;
+> > > >
+> > >
+> > > Hi Angelo,
+> > >
+> > > Thank you for the detailed explanation :)
+> > > However, I can't make it work because in my case, seninf is connected
+> > > to an external ISP
+> > > so pad->entity->function == MEDIA_ENT_F_PROC_VIDEO_ISP.
+> > >
+> > > How can I get the pad corresponding to the sensor?
+> >
+> > You don't have to. You can drop that check, and get the link frequency
+> > of the source subdev with v4l2_get_link_freq(), whatever it is.
+> >
+> > > > cam_subdev = media_entity_to_v4l2_subdev(pad->entity);
+> > > > ctl = v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_PIXEL_RATE);
+> > >
+> > > Is this mandatory to implement V4L2_CID_PIXEL_RATE ?
+> > > Should I return an error if not found?
+> >
+> > Does SENINF need to know both the pixel rate and link frequency ?
+> > V4L2_CID_PIXEL_RATE is very ill-defined, at the moment it only makes
+> > sense as a value relative to the sensor pixel array, and doesn't really
+> > apply further down in the pipeline. What information do you need to
+> > program the SENINF ?
+> 
+> Hi Laurent,
+> 
+> I need to know the clock divider for the sensor
+
+Could you provide some details on how the SENINF uses that divisor ?
+What does it control, and what are the constraints ?
+
+> > > > /* multiplier is usually bits per pixel, divider is usually num of lanes */
+> > > > link_frequency = v4l2_get_link_freq(cam_subdev->ctrl_handler, multiplier, divider);
+> > > > pixel_clock = v4l2_ctrl_g_ctrl_int64(ctl);
+> > >
+> > > How to know the sensor clock given link_frequency and pixel_clock?
+> > > Can you point me to drivers doing something similar?
+> > >
+> > > >
+> > > > ....now you know what the sensor wants, set the seninf sensor clock accordingly.
+> > > >
+> > > > Cheers
+> > > > Angelo
+> > > >
+> > > [...]
+
+-- 
+Regards,
+
+Laurent Pinchart
 
