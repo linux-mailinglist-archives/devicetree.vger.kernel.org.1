@@ -1,96 +1,138 @@
-Return-Path: <devicetree+bounces-75696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DFD9085A9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:08:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 795619085AF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB5D51C20ACB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:08:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0725E2892A8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 08:10:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204A2157A43;
-	Fri, 14 Jun 2024 08:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02BDB1836FE;
+	Fri, 14 Jun 2024 08:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qudhw7rV"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="CpGYsKCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C0314A092;
-	Fri, 14 Jun 2024 08:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AAB11836DE;
+	Fri, 14 Jun 2024 08:09:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718352506; cv=none; b=Yj+i/Lh9GWqGvCnKKxEE6y9gxh575MOZkDYTsvmglkrPQv6AqqYWH7UvOyAEQKTtaP8ZyGL9jY/amWoyOev1E1meOhFnQull0bwRKYk1MEN3rXzK98zSVnkqVwg6SAIbV56DjlCpHrSKovo1mcfkv6il5maW1/NKA5fU6p4MExE=
+	t=1718352598; cv=none; b=PBsPWHx0S5m8nFiTC43JuNmPFmQLkhC05QODi+wnbdnrbedMt7bey2zTwTrUjEsSEg5ki/+Z+ZL+dqj7THP6OmznYmhRt5Pm2Csd+pgFSz96C41CNp3bsOU4hI5stvSVTLs2a3xZYsDZQPTyw+FzIGJBFiN/LWSNWzKDVkKBmd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718352506; c=relaxed/simple;
-	bh=stiFEj7Xn6Q5bImGM9v2ZHAiGPH3T9twAQI/vbuXJZQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XVMZLx5i1EzhO2D/Uaqy3yGt76+XjAbLr7C7UfR8ra2ddvKKzU+VXAzoIi/OsdlOY9ZOpyNAsQtOE6/1wIk2aDiQX6JLNenQocsVZj6tUZqfMM8cBz5VVCQcwXixV126PT74I3gQBidy2lbsfpaf9L+LSTpnfOsZJtFagBwAMB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qudhw7rV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46097C2BD10;
-	Fri, 14 Jun 2024 08:08:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718352505;
-	bh=stiFEj7Xn6Q5bImGM9v2ZHAiGPH3T9twAQI/vbuXJZQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qudhw7rVVhs5wc7ZIZZVTlxc6u7D+19Lh54ZauDJg6enkc8Y3S/iiev0wA2g8VcYi
-	 IvIiFfpCD8NO7gTcVQezHPG9Vv1RrQQ4qcSKrmv1AQyVQPB8VkvapQOFajN2bJ6aeQ
-	 OmnkjmZJ+d0K7GZpahnvJ8+UxA9KyaMMQa9a12XnBKhqOhs9TGDzeaadLabGohUGSo
-	 skw83vyEHj8y8ImZawCffqvoXw4shgrGBQs1h2bHEPYss5yozf01FrnZfXVSzm/X9E
-	 hCkU6QfDYQcgppHK+KNaS+p0IX31BUOvm7EcFOm9QirUuMattjXFMYpfRJ1CEMy0jx
-	 hm94UW2VOtM2w==
-Date: Fri, 14 Jun 2024 09:08:20 +0100
-From: Lee Jones <lee@kernel.org>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	broonie@kernel.org, jeff@labundy.com, patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 3/5] mfd: cs40l50: Add support for CS40L50 core driver
-Message-ID: <20240614080820.GC2561462@google.com>
-References: <20240605135249.361082-1-jogletre@opensource.cirrus.com>
- <20240605135249.361082-4-jogletre@opensource.cirrus.com>
+	s=arc-20240116; t=1718352598; c=relaxed/simple;
+	bh=tdyxMi9MCtjeyNj6V3YguqessosZYjypEXDKgngR3k4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pQaqpjaspWA92HgrpAkmLqCoWeb6BJUcJUUCWHea1pegZIn8qc6D+4ntVS2Y/SyjKgkye31L37ZNw5fW/rh/6Zb5/B+EE+7G2dSDQThoM+TgKOC3aaZTWpt1DUDhkPQ+mfdd3v1OjN+J74eTq8EGXY2HR5fQ+m449XklB8hAZ08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=CpGYsKCo; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718352596; x=1749888596;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tdyxMi9MCtjeyNj6V3YguqessosZYjypEXDKgngR3k4=;
+  b=CpGYsKCoW4PGUZpLpT7vHazzPvsz70Vi+l44fuLr234xepsHKyQJGlyM
+   NsgcbgvwJwEAgMKvr11Fa4fcCAhePZHKD9ME7jEpTZYmafq0aHzi4vWFJ
+   yva9mD2X9zAL8rcNhLNpUCzAWhpFDfo0Xw/WhorH85quBqMaUb22xgJFr
+   QUsjL1n0HEoxqNMWTqvE+cVLXfeHdowDaa+h+43i7xoAAQsX3W0LRRJmT
+   pJb7kYsdujmXacIlfnhh9GvBpTpqMmDBTEyhV0n5KlDpLH5FFwHCvF+M4
+   BotzoBLk6PmnEmldqkngkJEzBAEIlxI/U6mJfadA6M45AS6Bkj//0vuQX
+   w==;
+X-CSE-ConnectionGUID: MPaymeoARIu6VK5pumub+w==
+X-CSE-MsgGUID: Uq74KbUuSymUnT1JBSATOA==
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
+   d="asc'?scan'208";a="29987298"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2024 01:09:54 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 14 Jun 2024 01:09:38 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 14 Jun 2024 01:09:33 -0700
+Date: Fri, 14 Jun 2024 09:09:15 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Jesse Taube <jesse@rivosinc.com>
+CC: <linux-riscv@lists.infradead.org>, Jonathan Corbet <corbet@lwn.net>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>, Evan Green
+	<evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>, Charlie Jenkins
+	<charlie@rivosinc.com>, Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu
+	<andy.chiu@sifive.com>, Eric Biggers <ebiggers@google.com>, Greentime Hu
+	<greentime.hu@sifive.com>, =?iso-8859-1?Q?Bj=F6rn_T=F6pel?=
+	<bjorn@rivosinc.com>, Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin
+	<costa.shul@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Baoquan
+ He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>, Zong Li
+	<zong.li@sifive.com>, Sami Tolvanen <samitolvanen@google.com>, Ben Dooks
+	<ben.dooks@codethink.co.uk>, Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Erick Archer
+	<erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/6] RISC-V: Add Zicclsm to cpufeature and hwprobe
+Message-ID: <20240614-oyster-ditch-80e8f00fd91b@wendy>
+References: <20240613191616.2101821-1-jesse@rivosinc.com>
+ <20240613191616.2101821-2-jesse@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="OQKmvcs8HRT7+PY2"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240605135249.361082-4-jogletre@opensource.cirrus.com>
+In-Reply-To: <20240613191616.2101821-2-jesse@rivosinc.com>
 
-On Wed, 05 Jun 2024, James Ogletree wrote:
+--OQKmvcs8HRT7+PY2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
-> 
-> The MFD component registers and initializes the device.
-> 
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
-> ---
->  MAINTAINERS                 |   2 +
->  drivers/mfd/Kconfig         |  30 ++
->  drivers/mfd/Makefile        |   4 +
->  drivers/mfd/cs40l50-core.c  | 570 ++++++++++++++++++++++++++++++++++++
->  drivers/mfd/cs40l50-i2c.c   |  68 +++++
->  drivers/mfd/cs40l50-spi.c   |  68 +++++
->  include/linux/mfd/cs40l50.h | 137 +++++++++
->  7 files changed, 879 insertions(+)
->  create mode 100644 drivers/mfd/cs40l50-core.c
->  create mode 100644 drivers/mfd/cs40l50-i2c.c
->  create mode 100644 drivers/mfd/cs40l50-spi.c
->  create mode 100644 include/linux/mfd/cs40l50.h
+On Thu, Jun 13, 2024 at 03:16:10PM -0400, Jesse Taube wrote:
+> > Zicclsm Misaligned loads and stores to main memory regions with both
+> > the cacheability and coherence PMAs must be supported.
+> > Note:
+> > This introduces a new extension name for this feature.
+> > This requires misaligned support for all regular load and store
+> > instructions (including scalar and vector) but not AMOs or other
+> > specialized forms of memory access. Even though mandated, misaligned
+> > loads and stores might execute extremely slowly. Standard software
+> > distributions should assume their existence only for correctness,
+> > not for performance.
+>=20
+> Detecing zicclsm allows the kernel to report if the
+> hardware supports misaligned accesses even if support wasn't probed.
+>=20
+> This is useful for usermode to know if vector misaligned accesses are
+> supported.
+>=20
+> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
 
-This is good to go now.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Ping me once you have all your other Acks and I'll merge the set.
+--OQKmvcs8HRT7+PY2
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Lee Jones [李琼斯]
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZmv6qwAKCRB4tDGHoIJi
+0mzaAP9YBq9BuQ1DEPPsxpTTaIEq91WxQdesurCAlXQCERPNnQEA5hS94j7obJ9J
+hv52wvk6In81vYzmCTh9UFDBJVVc9gw=
+=TSBq
+-----END PGP SIGNATURE-----
+
+--OQKmvcs8HRT7+PY2--
 
