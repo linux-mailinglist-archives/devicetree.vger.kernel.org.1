@@ -1,116 +1,137 @@
-Return-Path: <devicetree+bounces-75878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3914908F76
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:01:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 700E3908F82
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 18:02:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A86AD1C209BF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:01:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17CA31F216B0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 16:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E05F503;
-	Fri, 14 Jun 2024 16:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34F562E83F;
+	Fri, 14 Jun 2024 16:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AQ8slOoI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E72946C;
-	Fri, 14 Jun 2024 16:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966F11642B;
+	Fri, 14 Jun 2024 16:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718380891; cv=none; b=Gb+A9sJzmNyDQ5K5dljjAo+3iSgY42jBwqRJ3CV39eppMuy9nRAhw0/qB5lwazOSpARmUnMRo+JPbUDEaMybOWIcFRFbd4isJDj312wcAzz1MXSWm3S3KcYujupqDYDtJIo7tQvJBRmVeHy4ZyNZd+SaSNf1rgupI7g5MSghx2k=
+	t=1718380972; cv=none; b=LvSiyPrqKynHMoX+Gq4SVLWoM9UyNf1xU66Zy/HdeTRrHT+okHKoEDpZgmRnTlRufw1zRYTgcGupKazEkkY9psQwZE4JFbSXYt8p9dMYwnyjmixhMUBg/z+RMMKPTb3/dshVYSssnZt0qEqPrb4udugdiRJ+l0BB8t20x68ZIso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718380891; c=relaxed/simple;
-	bh=PF06UVAUwNRTBfsiJ21LK7Zw9YpeWoI6dp0UuAuGFXs=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iC9DD7Y5sI8QiQFqt1PxpR9o3/UEZcFw7hZ33EqpZjm0oXuvuYD6E+HY71yjJt4AOZK80fcSogk34PReVfAVGLVBTFAVKgeeoQ6T0d/9bbIWSCYAxubRTQrGsBbwejU3NfLhU/kZg9BW3/FVqYVAUTqgM6u3lVTgGxH36LwQegY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4W13rc72Q9z6H7Wv;
-	Sat, 15 Jun 2024 00:00:00 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 690CF140D26;
-	Sat, 15 Jun 2024 00:01:25 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 14 Jun
- 2024 17:01:24 +0100
-Date: Fri, 14 Jun 2024 17:01:23 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Abel Vesa
-	<abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, Frank Li
-	<Frank.Li@nxp.com>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<linux-pwm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>, <linux-watchdog@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: drop stale Anson Huang from maintainers
-Message-ID: <20240614170123.00002e0f@Huawei.com>
-In-Reply-To: <20240614095927.88762-1-krzysztof.kozlowski@linaro.org>
-References: <20240614095927.88762-1-krzysztof.kozlowski@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1718380972; c=relaxed/simple;
+	bh=HkdMIKqNfvcTwn+IKkOt/8EtqNClu1g458NTivnDlH4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=B2uahYJdgbkV8vPidvPEyGdVannS/iWN5Z+x+9DZf7IkMllJ5VHa3HnCvBlspVCH6m3fEyK7siNjcMIAdWm486B4HP+eXFa8N/jpBRBYBFIX98PO7GTe5kBZPXyVcqiFzhPkAXvM9NQYdxoE3Dofsv4IAMNs31er0dsVtagO0Tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AQ8slOoI; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3F36C20009;
+	Fri, 14 Jun 2024 16:02:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1718380967;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dWy7tRAFgD9nXufUCRB9bCovDr6IUDCrTC7tiwkWhJM=;
+	b=AQ8slOoI9tBNorobg7xYlv4klLsuKAQ+5Un+ClwHxt5sl5Lg0twSXFhu1GFWv9IYSuoC6i
+	70vHXye2LAVqPq7LozdhpjzEU8S34cmN2uan/12y860EplybS4NpWhAmMtz2pXBbTNfUmG
+	OGEzfm/IO9yKD6ZG5gx2acPfk+2Ic5Zn06xATKgEjnRXJW+R7cd2PMBZ2GqNoPolaZdCEx
+	W8RXm5djvXsWdHih/827IDJ2ijNvIEbFIm8O2aXZBYo9m/U8pqCwnYKv8aT8QbMIxoVNzB
+	XUR+ej4UHLHFZkQHCCAPxp1MOD2O9V4id7PsKhj9VvevfQT/WplbHHMYDpYiRA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500005.china.huawei.com (7.191.163.240) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Date: Fri, 14 Jun 2024 18:02:47 +0200
+From: Kamel BOUHARA <kamel.bouhara@bootlin.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Marco Felsch
+ <m.felsch@pengutronix.de>, Jeff LaBundy <jeff@labundy.com>,
+ catalin.popescu@leica-geosystems.com, mark.satterthwaite@touchnetix.com,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Gregory Clement
+ <gregory.clement@bootlin.com>, bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v13 3/3] Input: Add TouchNetix axiom i2c touchscreen
+ driver
+In-Reply-To: <ZmIq9jmkZtEaGw19@google.com>
+References: <20240603153929.29218-1-kamel.bouhara@bootlin.com>
+ <20240603153929.29218-4-kamel.bouhara@bootlin.com>
+ <Zl5ZmYyntq7OJOvZ@google.com> <20240605124746.GA57733@tpx1.home>
+ <7ca4a22f903313128de5c0f65a49b319@bootlin.com> <ZmIq9jmkZtEaGw19@google.com>
+Message-ID: <410b683ee96573b57b3f8f2bf8e35c29@bootlin.com>
+X-Sender: kamel.bouhara@bootlin.com
+Organization: Bootlin
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-On Fri, 14 Jun 2024 11:59:27 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> Emails to Anson Huang bounce:
+Le 2024-06-06 23:32, Dmitry Torokhov a écrit :
+> On Wed, Jun 05, 2024 at 03:48:20PM +0200, Kamel BOUHARA wrote:
+>> [...]
+>> 
+>> > > > +
+>> > > > +	error = devm_request_threaded_irq(dev, client->irq, NULL,
+>> > > > +					  axiom_irq, IRQF_ONESHOT, dev_name(dev), ts);
+>> > > > +	if (error) {
+>> > > > +		dev_info(dev, "Request irq failed, falling back to polling mode");
+>> > >
+>> > > I do not think you should fall back to polling mode if you fail to get
+>> > > interrupt. If it was not specified (client->irq) then I can see that
+>> > > we
+>> > > might want to fall back, but if the system configured for using
+>> > > interrupt and you can not get it you should bail out.
+>> > >
+>> >
+>> > Yes, clear, the polling mode can be decorrelated to the irq not provided
+>> > case.
+>> 
+>> Just to make sure I understood, is this what you propose ?
+>> 
+>> if (client->irq) {
+>>         error = devm_request_threaded_irq(...)
+>>         if (error) {
+>> 		dev_warn(dev, "failed to request IRQ\n");
+>> 		client->irq = 0;
+>>          }
+>> }
+>> 
+>> if(!client->irq) {
+>>     // setup polling stuff
+>>     ...
+>> }
 > 
->   Diagnostic-Code: smtp; 550 5.4.1 Recipient address rejected: Access denied.
+> No, if you fail to acquire interrupt that was described in ACPI/DT it
+> should be treated as an error, like this:
 > 
-> Add IMX platform maintainers for bindings which would become orphaned.
-That doesn't make much sense for the magnetometer which has nothing to do with
-imx.
-
-Make that one my problem under my jic23@kernel.org address.
-
-Thanks,
-
-Jonathan
-
-
+> 	if (client->irq) {
+> 		error = devm_request_threaded_irq(...)
+> 		if (error)
+> 			return dev_err_probe(...);
+> 	} else {
+> 		.. set up polling ..
+> 	}
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> This also makes sure that if interrupt controller is not ready and
+> requests probe deferral we will not end up with device in polling mode.
+> 
 
-> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/fsl,mag3110.yaml b/Documentation/devicetree/bindings/iio/magnetometer/fsl,mag3110.yaml
-> index 6b54d32323fc..467002a5da43 100644
-> --- a/Documentation/devicetree/bindings/iio/magnetometer/fsl,mag3110.yaml
-> +++ b/Documentation/devicetree/bindings/iio/magnetometer/fsl,mag3110.yaml
-> @@ -7,7 +7,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+OK, thanks for the clarification, this is fixed in v14.
 
-Not sure the new maintainers make sense here.
-
-Flip it to me if no one else volunteers.
-
->  title: Freescale MAG3110 magnetometer sensor
->  
->  maintainers:
-> -  - Anson Huang <Anson.Huang@nxp.com>
-> +  - Shawn Guo <shawnguo@kernel.org>
-> +  - Sascha Hauer <s.hauer@pengutronix.de>
-> +  - Fabio Estevam <festevam@gmail.com>
->  
->  properties:
->    compatible:
-
-
+Greetings,
+--
+Kamel Bouhara, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
