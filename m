@@ -1,155 +1,225 @@
-Return-Path: <devicetree+bounces-75732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33E8B9087A9
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:39:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C613F9087BB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:42:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D6031C2256F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:39:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DE871F23863
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA741922FA;
-	Fri, 14 Jun 2024 09:39:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452AE192B65;
+	Fri, 14 Jun 2024 09:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nHxVw/il"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QbVnHaI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E04B146D60;
-	Fri, 14 Jun 2024 09:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B1518413A;
+	Fri, 14 Jun 2024 09:42:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718357980; cv=none; b=e/nln9TaXupiwXGDS6ufoTj1OxuoGLoRxBEjRGRl31SPF4Y/ARlPAH6Z0wSfuFmeSAChbmiPP8rlA3taZvmaYMbxqSzhKXdZ8yXgaRbFxXHsgIxObSZszz96Rwsq69XtI/YzPPI1Kl6pYNV2MlgtSqj/dy7LhuaztT/ZqHC3PuM=
+	t=1718358174; cv=none; b=mxgi9qjE6R9ZJo5n060Dq4exVBmtgkSMSLe7O522+MDBkZUVuPDhO9jzF/S3P+xdJT8al29tIk2DgbvcS7PwVHBiwc85gEYJtHNXZ05ZjcZNGsQfjUhS2DnD5UZ+SqTJP1ceo3srhVWQWXux2PJ9y8SKFIxa/AGWGdgogTn83F0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718357980; c=relaxed/simple;
-	bh=aHsuGDceh1SMMPY2DbZoInR++E/rZZ8+cC+vYKo1Eto=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=foqA0+9KITxmDCYeWFzxaJiMvTI8HdbEUj7ojKhSFf6PZCqXKeTPJwsU4P+7U6K9RePXji3VxnArhBh/5GXE5lfWhskhlI+1hnCANl4HSZzZmfsYzRACI/qkdXFJNM1glZP+Ko6HmjW1CLOnldUMFai8kYo2aMFxHOuPxzs7of0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nHxVw/il; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718357977;
-	bh=aHsuGDceh1SMMPY2DbZoInR++E/rZZ8+cC+vYKo1Eto=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nHxVw/il4wiHGljkF3skTUS2640bGADQVrIwyi4YEwxJFl+T2L4BcEXEFhLO+V0oZ
-	 WakDFMqZ/uvmbqQqYzMEi4TrJZyJ5I2r/Hp8M60jbcMxuZfVcyQcMsScvaQZeZXFV2
-	 NHQtaqWmbvBvD8sewC3A04UiRa8t5mL+IDNKlhp5Di+R5sADY/tmHDeDCNbwH8h9Jh
-	 7Ht+YUmNxiHqISJSo3EgYOsFiJs2bgpflBb7qVmuKqi7jERZ8Ftpe2ARMBJZi26ARH
-	 GI5l/7xszBbuzJ50Fp4SjDB8/3O3UPFS77lkFuSLxeGkqy4ue9dSqdNcNqjHLkCW7q
-	 3PsFqN8EfcsEA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 132C53782139;
-	Fri, 14 Jun 2024 09:39:36 +0000 (UTC)
-Message-ID: <b8026db3-6893-4609-8ead-b78f9b9eb40b@collabora.com>
-Date: Fri, 14 Jun 2024 11:39:35 +0200
+	s=arc-20240116; t=1718358174; c=relaxed/simple;
+	bh=czkOTYkZLTIQaApiczrsdIbe9LXXVyIz+FMdRAHJ+Jw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=h7FWGzH9H9amzoeRDi2LMRKSQovXsZPhw0W/AlDJlaSAVUVKifl5TBVJWk998Mxo6CMt8ZdYXBayK4tGXm80jxBKiB8SEtYo2iJUGgmHtJiKZVBIk5zupTXpBu7EbzazxH8tvBZG9s0see9eicE87Z/q5tTvclVaR5KEMQwIDSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QbVnHaI9; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52bc0a9cea4so1745425e87.0;
+        Fri, 14 Jun 2024 02:42:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718358170; x=1718962970; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t2iOzSAnOwkGstzhGfNY8EkOug1CltGdGxTCzaoAIQ0=;
+        b=QbVnHaI97/ZknHETU5MfyVOwb3rZL3KuqE7UBxkJ5knjJ9JMQwNHi5BQ7Ul1eyrsYa
+         EZlnBCyFvciTbQtcb2N0uv2JvIlmHxbjlSU3zhZDWTuVxJ3KFtRwJYHUng+Yze5CzIV7
+         MGDCMYlu4TksEiQNFWWPjPiPXHo3vIw+XYR4qA6/gBfI02XqF4NX/ZZsHgj/ovofJlCA
+         nZV3i28S8UP31XaYd6Dp2nxxIE7ovqNAh3hYRHHUv1Qm7rct9NLuQ+EI6bm77/fWT5lq
+         9du0WRDoYVAEhaArg4vYOodF7pi1rsmHZI3aU7NiVNfTGXQ01krMhqJaXDbEANws8SdG
+         Pk3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718358170; x=1718962970;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t2iOzSAnOwkGstzhGfNY8EkOug1CltGdGxTCzaoAIQ0=;
+        b=walLIDw+VmD1ofgC54FFALaf7x6BBe5045pNlN5gcOQrRvMaveGMJXxn3mDbb0Wazj
+         YbpnFIT2HGZeszyv9oA3Cubx9R/u44VhkT46PXq0GJoUaN8zQmT23+BwOci/Z/p6Wnnb
+         +h4b26MTvRY1945i0xkVgrBpBPdpzoS7MLCrFjTsWFaZUrAC4pygZKMN2uhlVY27crle
+         vqx5E9HpBBUmPn1tdVNSxhOoUa4VU5YfiQ9e/jvf+Rm6Fp7xbZBM4tLQ/6Um6AtNz/M7
+         VUG/kC8hvwpnhZJedT+vy9s8z9EIenFmkubReRl5rnAbyZQdTI70IIa3UmuVjSuSeO+Y
+         Daeg==
+X-Forwarded-Encrypted: i=1; AJvYcCWNpPxx3Y1I79qpTPpJmcQOEukh1z6ZS8Z8nk/P3ct9grCICIcl3w7iNUGCV7GHE3BRSYdgHuct9D6LTs7Cv+VDO6NTiFtNiNRVxHArculuHLmAka7xkodwXPV4MQ7tFxGi9hJ65d/yNQq3YnTRVAldquf2gvk/OWah+G2B+HALuSOa4uCLXL35
+X-Gm-Message-State: AOJu0YzJWtDxeQHJcCAJmIJnLLTIJEdW5gtQL+8wK70H0EUXPRFCcZVA
+	ozZIMJOT6HPO5F0GdPhm7xOD5ndx+DRwISUWiLtvWBXMYV16hiSL
+X-Google-Smtp-Source: AGHT+IGzfmH4S6WCBjgVdp0NETN5VubedAyIvEhYyV2QfmBM0+tnl6e1Wwf1tSWGIvD2o2CLzJEGMw==
+X-Received: by 2002:a05:6512:2346:b0:52c:939a:d70a with SMTP id 2adb3069b0e04-52ca689051fmr829685e87.0.1718358170109;
+        Fri, 14 Jun 2024 02:42:50 -0700 (PDT)
+Received: from fedora ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca287affcsm455573e87.232.2024.06.14.02.42.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jun 2024 02:42:49 -0700 (PDT)
+Date: Fri, 14 Jun 2024 12:42:35 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: [PATCH v4 0/6] Support ROHM BD96801 Scalable PMIC
+Message-ID: <cover.1718356964.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
-To: Georgi Djakov <djakov@kernel.org>, broonie@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
- gustavoars@kernel.org, henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com, wenst@chromium.org, amergnat@baylibre.com
-References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
- <d5b593f6-1764-43f0-9697-78d586239c23@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <d5b593f6-1764-43f0-9697-78d586239c23@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Il 13/06/24 14:38, Georgi Djakov ha scritto:
-> On 10.06.24 11:57, AngeloGioacchino Del Regno wrote:
->> Changes in v6:
->>   - Fixed build with clang (thanks Nathan!)
->>   - Removed unused mtk_rmw() macro in mtk-dvfsrc.c
->>   - Added MODULE_DESCRIPTION() to mtk-dvfsrc-regulator.c
->>
-> [..]
->>
->> AngeloGioacchino Del Regno (7):
->>    dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
->>    dt-bindings: interconnect: Add MediaTek EMI Interconnect bindings
->>    dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
->>    soc: mediatek: Add MediaTek DVFS Resource Collector (DVFSRC) driver
->>    regulator: Remove mtk-dvfsrc-regulator.c
->>    regulator: Add refactored mtk-dvfsrc-regulator driver
->>    interconnect: mediatek: Add MediaTek MT8183/8195 EMI Interconnect
->>      driver
-> 
-> Thanks Angelo! I have picked patches 2 and 7. Patch 2 is also available
-> in my icc-mtk stable branch. Feel free to pull it to resolve the schema
-> dependency for patch 3.
-> 
-
-Thank you Georgi!
-
-I have to wait until Mark takes the regulator bindings and commits, then I will
-be able to pick the soc bindings and driver. :-)
-
-Cheers,
-Angelo
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="OFgH1s8YHkdjEScU"
+Content-Disposition: inline
 
 
+--OFgH1s8YHkdjEScU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> BR,
-> Georgi
-> 
->>
->>   .../interconnect/mediatek,mt8183-emi.yaml     |  51 ++
->>   .../mediatek,mt6873-dvfsrc-regulator.yaml     |  43 ++
->>   .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  |  83 +++
->>   drivers/interconnect/Kconfig                  |   1 +
->>   drivers/interconnect/Makefile                 |   1 +
->>   drivers/interconnect/mediatek/Kconfig         |  29 +
->>   drivers/interconnect/mediatek/Makefile        |   5 +
->>   drivers/interconnect/mediatek/icc-emi.c       | 153 +++++
->>   drivers/interconnect/mediatek/icc-emi.h       |  40 ++
->>   drivers/interconnect/mediatek/mt8183.c        | 143 +++++
->>   drivers/interconnect/mediatek/mt8195.c        | 339 +++++++++++
->>   drivers/regulator/mtk-dvfsrc-regulator.c      | 248 ++++----
->>   drivers/soc/mediatek/Kconfig                  |  11 +
->>   drivers/soc/mediatek/Makefile                 |   1 +
->>   drivers/soc/mediatek/mtk-dvfsrc.c             | 545 ++++++++++++++++++
->>   .../interconnect/mediatek,mt8183.h            |  23 +
->>   .../interconnect/mediatek,mt8195.h            |  44 ++
->>   include/linux/soc/mediatek/dvfsrc.h           |  36 ++
->>   include/linux/soc/mediatek/mtk_sip_svc.h      |   3 +
->>   19 files changed, 1666 insertions(+), 133 deletions(-)
->>   create mode 100644 
->> Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
->>   create mode 100644 
->> Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
->>   create mode 100644 
->> Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.yaml
->>   create mode 100644 drivers/interconnect/mediatek/Kconfig
->>   create mode 100644 drivers/interconnect/mediatek/Makefile
->>   create mode 100644 drivers/interconnect/mediatek/icc-emi.c
->>   create mode 100644 drivers/interconnect/mediatek/icc-emi.h
->>   create mode 100644 drivers/interconnect/mediatek/mt8183.c
->>   create mode 100644 drivers/interconnect/mediatek/mt8195.c
->>   create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
->>   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8183.h
->>   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8195.h
->>   create mode 100644 include/linux/soc/mediatek/dvfsrc.h
->>
-> 
+Support ROHM BD96801 Scalable PMIC
+
+The ROHM BD96801 is automotive grade PMIC, intended to be usable in
+multiple solutions. The BD96801 can be used as a stand-alone, or together
+with separate 'companion PMICs'. This modular approach aims to make this
+PMIC suitable for various use-cases.
+
+This series brings only limited support. The more complete set of
+features was sent in the RFC:
+https://lore.kernel.org/lkml/cover.1712058690.git.mazziesaccount@gmail.com/
+
+The v3: implemented also support for ERRB interrupt and setting a name
+suffix to IRQ domains. That work was postponed and will be continued
+after some unrelated changes to irqdomain code are completed as
+discussed here:
+https://lore.kernel.org/all/87plst28yk.ffs@tglx/
+
+Revision history still tries to summarize changes from the RFC for the
+reviewers.
+
+Revision history:
+v3 =3D> v4:
+ - Drop patches 7 to 10 (inclusive) until preparatory irqdomain changes
+   are done.
+ - Cleanups as suggested by Lee.
+	- Change the regulator subdevice name. (MFD and regulators).
+	- Minor styling in MFD driver
+
+v2 =3D> v3: Mostly based on feedback from Thomas Gleixner
+	- Added acks from Krzysztof and Mark
+	- Rebased on v6.10-rc2
+	- Drop name suffix support for legacy IRQ domains (both
+	  irqdomain and regmap)
+	- Improve the commit message for patch 7/10
+
+v1 =3D> v2:
+	- Add support for setting a name suffix for fwnode backed IRQ domains.
+	- Add support for setting a domain name suffix for regmap-IRQ.
+	- Add handling of ERRB IRQs.
+	- Small fixes based on feedback.
+
+RFCv2 =3D> v1:
+	- Drop ERRB IRQ from drivers (but not DT bindings).
+	- Drop configuration which requires STBY - state.
+	- Fix the register lock race by moving it from the regulator
+	  driver to the MFD driver.
+
+RFCv1 =3D> RFCv2:
+	- Tidying code based on feedback form Krzysztof Kozlowski and
+	  Lee Jones.
+	- Documented undocumented watchdog related DT properties.
+	- Added usage of the watchdog IRQ.
+	- Use irq_domain_update_bus_token() to work-around debugFS name
+	  collision for IRQ domains.
+
+---
 
 
+Matti Vaittinen (6):
+  dt-bindings: ROHM BD96801 PMIC regulators
+  dt-bindings: mfd: bd96801 PMIC core
+  mfd: support ROHM BD96801 PMIC core
+  regulator: bd96801: ROHM BD96801 PMIC regulators
+  watchdog: ROHM BD96801 PMIC WDG driver
+  MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries
 
+ .../bindings/mfd/rohm,bd96801-pmic.yaml       | 173 ++++
+ .../regulator/rohm,bd96801-regulator.yaml     |  63 ++
+ MAINTAINERS                                   |   4 +
+ drivers/mfd/Kconfig                           |  13 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/rohm-bd96801.c                    | 273 ++++++
+ drivers/regulator/Kconfig                     |  12 +
+ drivers/regulator/Makefile                    |   2 +
+ drivers/regulator/bd96801-regulator.c         | 908 ++++++++++++++++++
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/bd96801_wdt.c                | 416 ++++++++
+ include/linux/mfd/rohm-bd96801.h              | 215 +++++
+ include/linux/mfd/rohm-generic.h              |   1 +
+ 14 files changed, 2095 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic=
+=2Eyaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd9680=
+1-regulator.yaml
+ create mode 100644 drivers/mfd/rohm-bd96801.c
+ create mode 100644 drivers/regulator/bd96801-regulator.c
+ create mode 100644 drivers/watchdog/bd96801_wdt.c
+ create mode 100644 include/linux/mfd/rohm-bd96801.h
+
+
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+--=20
+2.45.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--OFgH1s8YHkdjEScU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmZsEIYACgkQeFA3/03a
+ocX58Af/e4WoONr6xXqNo5iiqJocjHn5lMOCw3ZvjpGsSrlbhc5HCnkw3wUv+hiO
+7YUrdyoppjodh+tklX7Unk8Y7GrIJbZuxLDweXYh2KB8ac76sSWfFIV38QXSuuqe
+7xlqxBfhYwWTAhXQ409wnk/aoK2pI2u0ppl/MMZsF8TPLyyPDnziV9gKDLXrjlcI
+PMGrpnxNKvn2mfB3SqVnMdViPjXon9ynePBLxpA0JLZCFk+Q27z8pwH+Y6i1prbN
+vLt/WMQuxNaP6sd5UerCZWvG+FDSNSXkkIOrIQ9EgfhT+bqniBFjOQZqMgsBHisD
+rvQWkfbfgt8j1ocCYPR7KY5SEIt6xA==
+=TFGg
+-----END PGP SIGNATURE-----
+
+--OFgH1s8YHkdjEScU--
 
