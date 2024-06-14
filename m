@@ -1,190 +1,163 @@
-Return-Path: <devicetree+bounces-75776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB9690898D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A94F908992
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:19:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AED9BB286F4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:18:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63344B28A25
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 10:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA75119308C;
-	Fri, 14 Jun 2024 10:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E8C194A5D;
+	Fri, 14 Jun 2024 10:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lNn9FC6X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KeGAn1nU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 216EB19306F;
-	Fri, 14 Jun 2024 10:18:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7ED194A49
+	for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 10:18:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718360294; cv=none; b=RtWyfNQf+yhQg4/j1uRMYTOjQTG8eDfymXTgEytDEexa/C6+zg42x1YqqH9/n9Yw+uMvp2o3es/AjCcCJld1DjCWZ/RygmEGwerYYvpcbNDQI87Np9lCu/8nRa8+O9yLVUuKoGBwmoRGAZ3J3+ig0T70OkWIlNqvDGlslunaq04=
+	t=1718360309; cv=none; b=MxCHDg/2Jx2zTCA09ZkdvW5gRwChnrQImQnDzlv4dvOV7qsL9p0jP7UyaaUnryiHlpIEkOUKuXfm8raSuXlrzWzQ/tJFCY+mCm68u5VuysfeuIW3DlhQ1UXx4WxjDzybGUtS1z9BAyDO+1xWxS7J+hjYD1u72CpMefVbMQ7ND54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718360294; c=relaxed/simple;
-	bh=rsjNKga057lxo1XVRcy2gjW1eYFbc5euagAfaj+eo1o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OfwG61XEXszTn28woMaBZqk3mWZs9Uq587BftHvGrBSl0lXc7txZ/QRZxKQWsyzLdB1NHHDyLQJgSHt9GRqLOsz2jPDHQmk6mBlWQl6aHfo+tLfXaMrPxF+E9+w/lLdV9SRO7RZO9x09SmTkmuhuyO5m5OnRPwoVjsAStFJU8KI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lNn9FC6X; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718360293; x=1749896293;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=rsjNKga057lxo1XVRcy2gjW1eYFbc5euagAfaj+eo1o=;
-  b=lNn9FC6X7PlsloO9HQP1w4CAfmIApXoscoynpZsGAXFljrNdLTXSJR+s
-   Bsf0yCDFPseSNoxx5x/NsRD/BC/FWqkZzzs1KPy4C96qAhQabck26q++g
-   5T65u+adt2489VwsSIuz9NExx1eIWAV25iH0J8Fr3s45nDOHHL/mFt+9e
-   NH/25qdG8aGUGgfi+ulyUx53EONmDi17xBcaPkLLbJvvkhvYZTBXhxkJ1
-   Jd75Xtz9svUyefUF9CvpzuFygGZ60YF5eKZTpUpPWzmonIjajiuyv+r7a
-   qVQBZglTnF4oPmYKT/FOGlcVUovRBdbs0GArOoM3ZEeoGt5LD4QAm/UDX
-   g==;
-X-CSE-ConnectionGUID: ymFEY7fQTHeB8TF41W+5Jg==
-X-CSE-MsgGUID: sMNHZiCTTz22upuhwj/sXg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="25814555"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="25814555"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 03:18:13 -0700
-X-CSE-ConnectionGUID: IxGmMnBWTwCqgjP42e+cfw==
-X-CSE-MsgGUID: P7V4Y22hQCugBq6u7VIyzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="71228888"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.94.248.10])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 03:18:07 -0700
-Message-ID: <aff10a8c-bac8-49ba-af0b-3681961eff80@intel.com>
-Date: Fri, 14 Jun 2024 13:18:02 +0300
+	s=arc-20240116; t=1718360309; c=relaxed/simple;
+	bh=e/vS57MZRDtlro2SWvpS0gu0uEi42A6fSDn9ZPw9edg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XCsatUPdH3ejPtZ08lpi/t/3fwCBKyXEODmwZzkEPUvBcwCemjWwZKOxSHi+ysqtI4DXsluAAPvw3tqtyJxE+ERDDr4dRg49MMEVaQh6kNt/ly2agZOhHhuu5BLJBZ5LYUZuRl5GgNE75whNiyn/dgV3ilPFpMbT5ZcqEeATyjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KeGAn1nU; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ebe6495aedso18226201fa.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Jun 2024 03:18:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718360306; x=1718965106; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JYj+vYlav0P5TSwPVqUtIz1j4klkYA9AbEcUeqORsg0=;
+        b=KeGAn1nUQF6+CVbZjIK4zqzqB5zouZA3VWCcH0K7MdjX93hAE1t0fYh2vpIxeqlGi8
+         rv/Gr1ZLhEnd4onknKztBsJoGvrqI3uUn4HjtMmWnV40MMLJKw3ip9H/M1OJBY6rrp04
+         0jB2H17cvRxm0Hynq0SvHguxlRXnzeHcGqHygzDeWzwlF1tHny5j7JR3bOqOfAjDTGT0
+         5E3RsK6mdbpKgyhvjcMEunLE4KZtqzdgLjswcx0u149zhwBnFDE5eoDXe3Nz09Ln/6tU
+         BxH1R8Hy3dPz2WughcJIOqy21DbD04FOH89NMq3qK98me/hEIB4GthDJ3vCi3ts3X+0G
+         k9wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718360306; x=1718965106;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JYj+vYlav0P5TSwPVqUtIz1j4klkYA9AbEcUeqORsg0=;
+        b=pLR9xkJMQGl/OEFY65cq0IYPuiuEuKgrTgX+86GSz6gUQoklTcTCtC4mLWAgYW14HT
+         yLOz8Pcc+UAONuMLrCeB7URNXpiLvjNN/xWBbKQVuVQpQrC08x2L1XPe5vG2vaaQboJo
+         eHTh6Y4opk3O66+YYK4VeXsbwHOXeqy3oQKBeeEe0OI5cC6cv1Hym4DsfHcbpGClLXX7
+         P7rB0pFgKdiXt7SafiG3DEjXq5bnXGJjP4sg4D7AYIc2jNkteEpQtnfbW4JgUpDTu5U/
+         unB/zDxfdhl8NbzeP/AKTd9TCq7K3tHD6D3Qo5W7/ZGXLo0N6HXjFPBSh8wjkh09RMER
+         pfkw==
+X-Forwarded-Encrypted: i=1; AJvYcCVTGu433WIERVQ8FpXFPj+wyJFbcUsnil6uQw4ZpDZfe4aBeWXkBTJigKH1BZW3601RuXQl5B5VV6QUmjenHPEWA3cWargGuU73QQ==
+X-Gm-Message-State: AOJu0YzxEfKoQewbYegelW+HlbIXVPJSO0w/KpB6bI8g8jDFwq+opB45
+	6gUWIaAmDz/aA33s+eoIHwYSjvHG4azEZkbHfMltQ87jCHUhsP509sZvC+GBQkM=
+X-Google-Smtp-Source: AGHT+IH4H3K8j6QfiGJlv35cF2UfdUw7daGofG712v461wn4hJojqEJ1PEJFBhgsfwpiXRogE71/Vw==
+X-Received: by 2002:a2e:878a:0:b0:2ec:48c:8ae2 with SMTP id 38308e7fff4ca-2ec0e5d0b88mr14261061fa.23.1718360306362;
+        Fri, 14 Jun 2024 03:18:26 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05bf44c4sm5000241fa.9.2024.06.14.03.18.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jun 2024 03:18:25 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 0/5] phy: qcom: qmp-pcie: drop second clock-output-names
+ entry
+Date: Fri, 14 Jun 2024 13:18:23 +0300
+Message-Id: <20240614-fix-pcie-phy-compat-v3-0-730d1811acf4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] mmc: sdhci-of-dwcmshc: unify the naming of soc
- helper functions
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
- jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
- chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
- tingzhu.wang@sophgo.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-References: <cover.1718241495.git.unicorn_wang@outlook.com>
- <91adce8d020faa22a97719e8774dda01a58333e7.1718241495.git.unicorn_wang@outlook.com>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <91adce8d020faa22a97719e8774dda01a58333e7.1718241495.git.unicorn_wang@outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO8YbGYC/33NzQqDMAzA8VeRnpfRL0V32nuMHVqNGthsaaVMx
+ Hdf9TIGY8d/SH5ZWcRAGNmlWFnARJHclEOdCtaOZhoQqMvNJJeal1JATy/wLSH4cYHWPb2ZwfK
+ +02h1ZTvD8qUPmNcO9XbPPVKcXViOJ0ns0/9eEsChNkaL0jZS8fr6oMkEd3ZhYDuY5AephP6Ny
+ Iw0Da8rhaZUtv9Ctm17A/nORbv8AAAA
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ devicetree@vger.kernel.org
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2468;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=e/vS57MZRDtlro2SWvpS0gu0uEi42A6fSDn9ZPw9edg=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmbBjwQrd5js8BXipsqsF5cpu5SbQHYqeKPfwwD
+ JdYmlmoThyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZmwY8AAKCRCLPIo+Aiko
+ 1agVB/9WS3uiu3HZIel16w7kPNn4LdNLQX7XqhyLY9sHu6oe1PD1PpxqXReCWlgn3W3g9Kcxtpz
+ H9+ur40bZ2unxnckJ1e3Go1juItrgf9O4RrIgGblqqeaxdBfTcwSItG8XQaYothSKlb9IcYNiKA
+ e5wCnDgFfa+pqqsLs8GCiJkjM87kb6KQPh0JHRaTUiS4ZcAvPvMO8sITHlRqU+hNkQynETq/uiP
+ SGot13W3gfp9bU95srZco4aCiYPufBAGNKktkk928d1nNVLbdv5HRdboy+oIM2sAxhfk/uwufAI
+ sOClMbo24MaYPpyVH8ifUcs7lBJ5lHN/uHrGz0zic1Ps1r52
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On 13/06/24 04:42, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> Continue another patch: "mmc: sdhci-of-dwcmshc: adjust positions
-> of helper routines".
-> 
-> The helper functions at the dwcmshc level are all prefixed with
-> "dwcmshc_", which is easier to identify, while the functions at
-> the soc level are more confusing. Now they are uniformly prefixed
-> with the soc type string, such as "rk35xx_", "th1520_", etc.
+While testing the linux-next on SM8450-HDK I noticed that one of the
+PCIe hosts stays in the deferred state, because the corresponding PHY
+isn't probed. A quick debug pointed out that while the patches that
+added support for the PIPE AUX clock to the PHY driver have landed,
+corresponding DT changes were not picked up for 6.10. Restore the
+compatibility with the existing DT files by dropping the second entry in
+the clock-output-names array and always generating the corresponding
+name on the fly.
 
-This does not seem to be necessary.
+To: Vinod Koul <vkoul@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Unnecessarily churning the code makes backports more difficult and
-complicates the code history, so it should be avoided in general.
+Changes in v3:
+- Also added DT bits to remove DT warning
+- Link to v2: https://lore.kernel.org/r/20240614-fix-pcie-phy-compat-v2-0-990863ea53bf@linaro.org
 
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  drivers/mmc/host/sdhci-of-dwcmshc.c | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index a68818f53786..346d2d323a05 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -193,7 +193,7 @@
->  					 SDHCI_TRNS_BLK_CNT_EN | \
->  					 SDHCI_TRNS_DMA)
->  
-> -enum dwcmshc_rk_type {
-> +enum rk35xx_type {
->  	DWCMSHC_RK3568,
->  	DWCMSHC_RK3588,
->  };
-> @@ -202,7 +202,7 @@ struct rk35xx_priv {
->  	/* Rockchip specified optional clocks */
->  	struct clk_bulk_data rockchip_clks[RK35xx_MAX_CLKS];
->  	struct reset_control *reset;
-> -	enum dwcmshc_rk_type devtype;
-> +	enum rk35xx_type devtype;
->  	u8 txclk_tapnum;
->  };
->  
-> @@ -621,7 +621,7 @@ static unsigned int rk35xx_get_max_clock(struct sdhci_host *host)
->  	return clk_round_rate(pltfm_host->clk, ULONG_MAX);
->  }
->  
-> -static void dwcmshc_rk3568_set_clock(struct sdhci_host *host, unsigned int clock)
-> +static void rk3568_set_clock(struct sdhci_host *host, unsigned int clock)
->  {
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->  	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-> @@ -749,7 +749,7 @@ static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
->  	sdhci_reset(host, mask);
->  }
->  
-> -static int dwcmshc_rk35xx_init(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv)
-> +static int rk35xx_init(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv)
->  {
->  	int err;
->  	struct rk35xx_priv *priv = dwc_priv->priv;
-> @@ -790,7 +790,7 @@ static int dwcmshc_rk35xx_init(struct sdhci_host *host, struct dwcmshc_priv *dwc
->  	return 0;
->  }
->  
-> -static void dwcmshc_rk35xx_postinit(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv)
-> +static void rk35xx_postinit(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv)
->  {
->  	/*
->  	 * Don't support highspeed bus mode with low clk speed as we
-> @@ -1062,7 +1062,7 @@ static const struct sdhci_ops sdhci_dwcmshc_ops = {
->  };
->  
->  static const struct sdhci_ops sdhci_dwcmshc_rk35xx_ops = {
-> -	.set_clock		= dwcmshc_rk3568_set_clock,
-> +	.set_clock		= rk3568_set_clock,
->  	.set_bus_width		= sdhci_set_bus_width,
->  	.set_uhs_signaling	= dwcmshc_set_uhs_signaling,
->  	.get_max_clock		= rk35xx_get_max_clock,
-> @@ -1243,7 +1243,7 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  
->  		priv->priv = rk_priv;
->  
-> -		err = dwcmshc_rk35xx_init(host, priv);
-> +		err = rk35xx_init(host, priv);
->  		if (err)
->  			goto err_clk;
->  	}
-> @@ -1300,7 +1300,7 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  	}
->  
->  	if (rk_priv)
-> -		dwcmshc_rk35xx_postinit(host, priv);
-> +		rk35xx_postinit(host, priv);
->  
->  	err = __sdhci_add_host(host);
->  	if (err)
+Changes in v2:
+- Fixed generated AUX clock name (Neil)
+- Link to v1: https://lore.kernel.org/r/20240521-fix-pcie-phy-compat-v1-0-8aa415b92308@linaro.org
+
+---
+Dmitry Baryshkov (5):
+      phy: qcom: qmp-pcie: restore compatibility with existing DTs
+      dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: drop second output clock name
+      arm64: dts: qcom: sm8450: drop second clock name from clock-output-names
+      arm64: dts: qcom: sm8550: drop second clock name from clock-output-names
+      arm64: dts: qcom: sm8650: drop second clock name from clock-output-names
+
+ .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml      | 7 +------
+ arch/arm64/boot/dts/qcom/sm8450.dtsi                             | 2 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                             | 2 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi                             | 2 +-
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c                         | 9 +++------
+ 5 files changed, 7 insertions(+), 15 deletions(-)
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240521-fix-pcie-phy-compat-b0fd4eb46bda
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
