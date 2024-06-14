@@ -1,182 +1,185 @@
-Return-Path: <devicetree+bounces-75815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC4F908BB8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 14:32:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BCC2908BC4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 14:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6033F1C20A30
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:32:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CD5128738E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 12:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D706195807;
-	Fri, 14 Jun 2024 12:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6C4198E89;
+	Fri, 14 Jun 2024 12:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nopoLBWV"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wfalRvyS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A802312D74D;
-	Fri, 14 Jun 2024 12:32:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794DE197A90;
+	Fri, 14 Jun 2024 12:34:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718368334; cv=none; b=dWMUsrhVdMHqog/9lV20iqcrAbav2B7D+/j1lqiAmWW9SpaktICbTFYI7vP1ml3LgrsbQit20CMOO+xFkwVyxKcdIlVP6XMAvjCU+OwoHxWjyd/LTNiYEJGxAkpFhjGn7MKIL+PjApb5S/qH/dQ6O1S98fvs077wLC5x6pyHpmg=
+	t=1718368449; cv=none; b=atS+0H7xlX8+6Cirzpl3DPn5E8FE1boS/ye/CxIYf18rW4vpi/8Q3ba+3jme7atjDo+d5I7cg1XtMNjHnSyk9GCZKKxZGPXjHPZdOxrp2IJgTfw8UNDo+hzrHafNP5iOc6RDs8JO8JjbmTbdv2krNKIJmwPVSR2905mjNJQLzCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718368334; c=relaxed/simple;
-	bh=d4Bv2ZzuYu1QopJr82AZ6xrYRfuX0NoNXCgdGIEC8Nc=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=HHVZ8apKioEiOszJsF+u4OX3hTdFxLTW8GU8H67pNQp8YLAcHOpIf3TVnnF+zY1xc85KBPr3J2DblNG/YsbNZh+E/vm07k1Jl65FBnfY3EykP9bEoREhof4qlz+TmKEhwSuZyPpm4GNgpfF+4X4GGQKt5lNymEUCtJsNfzOpIaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nopoLBWV; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718368333; x=1749904333;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=d4Bv2ZzuYu1QopJr82AZ6xrYRfuX0NoNXCgdGIEC8Nc=;
-  b=nopoLBWVgSFSExTMBwO/aW4kMJIYsMsdyNQsT72/1dXDRK0NDOW7e2Ri
-   ceuEArmNwdkhMVMd+CN9SiFjRFtSgjkYD6ZA55/XNE48UAEuLU3pjmTif
-   s/M49bCv5Kra3GinF/wHpe3i2Mx9WMMN9yEXRhbofrKv/6XRang1O96Yh
-   FAd6DBoLOAgGWYd5ykOyR9V1jijDYBnyA0S6IBRSQf1L7Wz4ToKz4veHd
-   F7Uu4Veuqa2gnT4s/a9QQGVEButySgp/xXDIdRWqfk3qL8qQKqLXF9WHE
-   VkvljUzRrgdwYCo6suW+yUzPlY/2V14RgaBAUsCHDCouk3JI7alnFOR9r
-   Q==;
-X-CSE-ConnectionGUID: c4nys7iCQhSEjg28/63XYw==
-X-CSE-MsgGUID: knrB/t/5TE6ckMB8gDY8sA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="26366574"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="26366574"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 05:32:12 -0700
-X-CSE-ConnectionGUID: tdkimbqMR1mmScCfKZcLzg==
-X-CSE-MsgGUID: KkhV+DFFQ7q2xccIm4rZzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; 
-   d="scan'208";a="40414794"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.222])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2024 05:32:04 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 14 Jun 2024 15:32:01 +0300 (EEST)
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-cc: Bjorn Andersson <andersson@kernel.org>, 
-    Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-    Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
-    Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org, 
-    bmasney@redhat.com, djakov@kernel.org, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    linux-pci@vger.kernel.org, vireshk@kernel.org, quic_vbadigan@quicinc.com, 
-    quic_skananth@quicinc.com, quic_nitegupt@quicinc.com, 
-    quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
-Subject: Re: [PATCH v14 3/4] PCI: Bring the PCIe speed to MBps logic to new
- pcie_link_speed_to_mbps()
-In-Reply-To: <20240609-opp_support-v14-3-801cff862b5a@quicinc.com>
-Message-ID: <c76624fa-1c07-1bb4-dff0-e35fe072f176@linux.intel.com>
-References: <20240609-opp_support-v14-0-801cff862b5a@quicinc.com> <20240609-opp_support-v14-3-801cff862b5a@quicinc.com>
+	s=arc-20240116; t=1718368449; c=relaxed/simple;
+	bh=B2nOjYL3lFg4bp1IsZgH4scpFXv01qJzfqLMfIueunY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K7XyJcVCFKJIkqeHNfW7qZFRDrK1mqKGWGYzhbs9Lq/odAO3gANTH1MZ4C/z9F1Rg1XsjPHRIiNGxMJrJr3FMKuwOJjkNYy7ksjov/P+DLn1kCziXYvAhPWW9V4ml0eP4PdWli+8JoV34Po7GNJpt6mV68uwmigAvw6e3xL9T4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wfalRvyS; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A86A17047;
+	Fri, 14 Jun 2024 14:33:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1718368430;
+	bh=B2nOjYL3lFg4bp1IsZgH4scpFXv01qJzfqLMfIueunY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=wfalRvyS2jqZaU2aTE1qzDFVqvw+JjmEL4BWenYU2ak8p855BAIf301hhF72gYjeD
+	 tmBqjnpSmcZ8VcP/ZNyfhERe6jDNPMfhKlUhOE+iITaPA0/rbKnaffGNDt66mg4wAc
+	 ctes+j4do1WRWp4aECKVv0LRmTGKC62ESHXis1GA=
+Date: Fri, 14 Jun 2024 15:33:45 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Phi-bang Nguyen <pnguyen@baylibre.com>,
+	Florian Sylvestre <fsylvestre@baylibre.com>,
+	Andy Hsieh <andy.hsieh@mediatek.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 3/5] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 sensor interface
+Message-ID: <20240614123345.GN6019@pendragon.ideasonboard.com>
+References: <20240110141443.364655-1-jstephan@baylibre.com>
+ <20240110141443.364655-4-jstephan@baylibre.com>
+ <3c2bee40-3792-409c-b42f-f8b013ff641c@collabora.com>
+ <CAEHHSvaT_U+HNzWQUoK9EuqGuqEd11+Lu0CLz_rL7uQf0Q5isw@mail.gmail.com>
+ <53838e76-bfa4-41f5-a015-a37472e98991@collabora.com>
+ <CAEHHSvaRqZM9c8oD05WKkhOHdjKLBkR6tXp2Q1b8OMiDxDsDhQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAEHHSvaRqZM9c8oD05WKkhOHdjKLBkR6tXp2Q1b8OMiDxDsDhQ@mail.gmail.com>
 
-On Sun, 9 Jun 2024, Krishna chaitanya chundru wrote:
-
-> Bring the switch case in pcie_link_speed_mbps() to new function to
-> the header file so that it can be used in other places like
-> in controller driver.
+On Fri, Jun 14, 2024 at 12:38:15PM +0200, Julien Stephan wrote:
+> Le mer. 12 juin 2024 à 10:06, AngeloGioacchino Del Regno a écrit :
+> >
+> > Il 10/06/24 16:39, Julien Stephan ha scritto:
+> [...]
+> > >>
+> > >>> +     writel(0x10001, input->base + SENINF_TG1_SEN_CK);
+> > >>
+> > >> Unroll this one... this is the TG1 sensor clock divider.
+> > >>
+> > >> CLKFL GENMASK(5, 0)
+> > >> CLKRS GENMASK(13, 8)
+> > >> CLKCNT GENMASK(21,16)
+> > >>
+> > >> Like this, I don't get what you're trying to set, because you're using a fixed
+> > >> sensor clock rate, meaning that only a handful of camera sensors will be usable.
+> > >>
+> > >> Is this 8Mhz? 16? 24? what? :-)
+> > >>
+> > >> Two hints:
+> > >>    - sensor_clk = clk_get_rate(isp_clk) / (tg1_sen_ck_clkcnt + 1);
+> > >>    - int mtk_seninf_set_sensor_clk(u8 rate_mhz);
+> > >>
+> > >> Please :-)
+> > >
+> > > Hi Angelo,
+> > >
+> > > I think I get your point about not hardcoding the sensor rate, but I
+> > > am not sure how to use
+> > > a mtk_seninf_set_sensor_clk(u8 rate_mhz); function.
+> > >
+> > > Where would it be called? How is it exposed to the user?
+> > >
+> >
+> > As for where: setup, streaming start, resolution change (which may be covered
+> > by streaming start anyway, as a change should be calling stop->start anyway).
+> >
+> > And for the how is it exposed to the user - well, depends what you mean for user,
+> > but it's all standard V4L2 API :-)
+> >
+> > Last but not least, I can give you another hint....
+> >
+> > struct media_entity *entity = (something_here);
+> > struct media_pad *mpad;
+> > struct v4l2_subdev *cam_subdev;
+> > struct v4l2_ctrl *ctl;
+> > s64 link_frequency, pixel_clock;
+> >
+> > if (entity->pads[0].flags & MEDIA_PAD_FL_SINK)
+> >     return -E_NOT_A_CAMERA_SENSOR_WE_IGNORE_THIS_ONE;
+> >
+> > pad = media_pad_remote_pad_first(&entity->pads[0]);
+> > if (!pad)
+> >    return -ENOENT;
+> >
+> > if (!is_media_entity_v4l2_subdev(pad->entity))
+> >    return -ENOENT;
+> >
+> > if (pad->entity->function != MEDIA_ENT_F_CAM_SENSOR)
+> >    return -ENOENT;
+> >
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> ---
->  drivers/pci/pci.c | 19 +------------------
->  drivers/pci/pci.h | 22 ++++++++++++++++++++++
->  2 files changed, 23 insertions(+), 18 deletions(-)
+> Hi Angelo,
 > 
-> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> index d2c388761ba9..6e50fa89b913 100644
-> --- a/drivers/pci/pci.c
-> +++ b/drivers/pci/pci.c
-> @@ -6027,24 +6027,7 @@ int pcie_link_speed_mbps(struct pci_dev *pdev)
->  	if (err)
->  		return err;
->  
-> -	switch (to_pcie_link_speed(lnksta)) {
-> -	case PCIE_SPEED_2_5GT:
-> -		return 2500;
-> -	case PCIE_SPEED_5_0GT:
-> -		return 5000;
-> -	case PCIE_SPEED_8_0GT:
-> -		return 8000;
-> -	case PCIE_SPEED_16_0GT:
-> -		return 16000;
-> -	case PCIE_SPEED_32_0GT:
-> -		return 32000;
-> -	case PCIE_SPEED_64_0GT:
-> -		return 64000;
-> -	default:
-> -		break;
-> -	}
-> -
-> -	return -EINVAL;
-> +	return pcie_link_speed_to_mbps(to_pcie_link_speed(lnksta));
+> Thank you for the detailed explanation :)
+> However, I can't make it work because in my case, seninf is connected
+> to an external ISP
+> so pad->entity->function == MEDIA_ENT_F_PROC_VIDEO_ISP.
+> 
+> How can I get the pad corresponding to the sensor?
 
-pcie_link_speed_mbps() calls pcie_link_speed_to_mbps(), seems quite 
-confusing to me. Perhaps renaming one to pcie_dev_speed_mbps() would help
-against the almost identical naming.
+You don't have to. You can drop that check, and get the link frequency
+of the source subdev with v4l2_get_link_freq(), whatever it is.
 
-In general, I don't like moving that code into a header file, did you 
-check how large footprint the new function is (when it's not inlined)?
+> > cam_subdev = media_entity_to_v4l2_subdev(pad->entity);
+> > ctl = v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_PIXEL_RATE);
+> 
+> Is this mandatory to implement V4L2_CID_PIXEL_RATE ?
+> Should I return an error if not found?
 
-Unrelated to this patch, it would be nice if LNKSTA register read would 
-not be needed at all here but since cur_bus_speed is what it is currently, 
-it's just wishful thinking.
+Does SENINF need to know both the pixel rate and link frequency ?
+V4L2_CID_PIXEL_RATE is very ill-defined, at the moment it only makes
+sense as a value relative to the sensor pixel array, and doesn't really
+apply further down in the pipeline. What information do you need to
+program the SENINF ?
 
->  }
->  EXPORT_SYMBOL(pcie_link_speed_mbps);
->  
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 1b021579f26a..391a5cd388bd 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -333,6 +333,28 @@ void pci_bus_put(struct pci_bus *bus);
->  	 (speed) == PCIE_SPEED_2_5GT  ?  2500*8/10 : \
->  	 0)
->  
-> +static inline int pcie_link_speed_to_mbps(enum pci_bus_speed speed)
-> +{
-> +	switch (speed) {
-> +	case PCIE_SPEED_2_5GT:
-> +		return 2500;
-> +	case PCIE_SPEED_5_0GT:
-> +		return 5000;
-> +	case PCIE_SPEED_8_0GT:
-> +		return 8000;
-> +	case PCIE_SPEED_16_0GT:
-> +		return 16000;
-> +	case PCIE_SPEED_32_0GT:
-> +		return 32000;
-> +	case PCIE_SPEED_64_0GT:
-> +		return 64000;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-
+> > /* multiplier is usually bits per pixel, divider is usually num of lanes */
+> > link_frequency = v4l2_get_link_freq(cam_subdev->ctrl_handler, multiplier, divider);
+> > pixel_clock = v4l2_ctrl_g_ctrl_int64(ctl);
+> 
+> How to know the sensor clock given link_frequency and pixel_clock?
+> Can you point me to drivers doing something similar?
+> 
+> >
+> > ....now you know what the sensor wants, set the seninf sensor clock accordingly.
+> >
+> > Cheers
+> > Angelo
+> >
+> [...]
 
 -- 
- i.
+Regards,
 
+Laurent Pinchart
 
