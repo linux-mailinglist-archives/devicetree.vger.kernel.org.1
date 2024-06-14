@@ -1,195 +1,155 @@
-Return-Path: <devicetree+bounces-75731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22755908785
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:33:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E8B9087A9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 11:39:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96C42B21025
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:33:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D6031C2256F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 09:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B157192B86;
-	Fri, 14 Jun 2024 09:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA741922FA;
+	Fri, 14 Jun 2024 09:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1vCKPlT"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nHxVw/il"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22E813BAC8;
-	Fri, 14 Jun 2024 09:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E04B146D60;
+	Fri, 14 Jun 2024 09:39:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718357607; cv=none; b=ZayZTL7pzwehh1666p4AmS+iD4M+Um0rC6l9xFyqicyNLErVMQkQLu1xi+RtWAZwtbh70yZNFJKVx1pMrhWyiL0OOPoMz2ljV4jVT6JRUUg1kvsxNp4fJkvCCweeETlpuarJ/lmRqxDGJHX1WcIjmMcr51uNm7jvGtOiwin1Qlg=
+	t=1718357980; cv=none; b=e/nln9TaXupiwXGDS6ufoTj1OxuoGLoRxBEjRGRl31SPF4Y/ARlPAH6Z0wSfuFmeSAChbmiPP8rlA3taZvmaYMbxqSzhKXdZ8yXgaRbFxXHsgIxObSZszz96Rwsq69XtI/YzPPI1Kl6pYNV2MlgtSqj/dy7LhuaztT/ZqHC3PuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718357607; c=relaxed/simple;
-	bh=oz5dCPGNYaLUB049MlZo5T8NjvnUrFW7EiDM8XybnpQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F9TbGZ/R/V966CaUVkRnIOBHduKDiZdkJFHkEmwpFkuX+emrwibvVWCwbwWy6+Jvd3EdlSFtvmKqSnJy+aVABS4oUHBspdJ6N96mWy1UqSeYVHyaJF6QEIF/yelMq/cRuOXQDe314nTYZxrFZ+crxDsPLwTOZv3QnOwiholw1BU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1vCKPlT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9511DC2BD10;
-	Fri, 14 Jun 2024 09:33:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718357606;
-	bh=oz5dCPGNYaLUB049MlZo5T8NjvnUrFW7EiDM8XybnpQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c1vCKPlTictAs/u2emvfdVKILP14kIPakQWrc+wjNSycsVakMDyJqrBccq4brHzem
-	 L9FV3NfbuhEn/Jy03MPw5cWst13n85Z4WmWgNBrV5dvACBlYCWix4Ch/FjS8i5AEjx
-	 yyrhXSF8JtDqlUpVJkwkLh8fHMdmAacGWclLP6+CcJOTuGLkdSLAE9hpnLwDFwiFrn
-	 edCVh5Spc46wy4XQZ/xbI6b5zFZXeR6+S75WESYpdkSErAF7o/j95f/5qKMfC8of6A
-	 3rvrs/TlibGQ0qlMo/kjMgGgfwiuRE1408PAlD6XsKTlU0XNRIhcRLWDoRBBjiXlEG
-	 /wzNXyFg1FO7Q==
-Date: Fri, 14 Jun 2024 10:33:21 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v3 09/10] mfd: bd96801: Add ERRB IRQ
-Message-ID: <20240614093321.GE3029315@google.com>
-References: <cover.1717486682.git.mazziesaccount@gmail.com>
- <332a2d2429e2ba3c96afd28c1ccc18efc38e1fd3.1717486682.git.mazziesaccount@gmail.com>
- <20240613163249.GN2561462@google.com>
- <21a468c2-7d8f-459a-a5a9-53d8694c3f38@gmail.com>
- <20240614075004.GB2561462@google.com>
- <b585d817-da4d-45b1-87b5-2cfdc8b8823b@gmail.com>
+	s=arc-20240116; t=1718357980; c=relaxed/simple;
+	bh=aHsuGDceh1SMMPY2DbZoInR++E/rZZ8+cC+vYKo1Eto=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=foqA0+9KITxmDCYeWFzxaJiMvTI8HdbEUj7ojKhSFf6PZCqXKeTPJwsU4P+7U6K9RePXji3VxnArhBh/5GXE5lfWhskhlI+1hnCANl4HSZzZmfsYzRACI/qkdXFJNM1glZP+Ko6HmjW1CLOnldUMFai8kYo2aMFxHOuPxzs7of0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nHxVw/il; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718357977;
+	bh=aHsuGDceh1SMMPY2DbZoInR++E/rZZ8+cC+vYKo1Eto=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nHxVw/il4wiHGljkF3skTUS2640bGADQVrIwyi4YEwxJFl+T2L4BcEXEFhLO+V0oZ
+	 WakDFMqZ/uvmbqQqYzMEi4TrJZyJ5I2r/Hp8M60jbcMxuZfVcyQcMsScvaQZeZXFV2
+	 NHQtaqWmbvBvD8sewC3A04UiRa8t5mL+IDNKlhp5Di+R5sADY/tmHDeDCNbwH8h9Jh
+	 7Ht+YUmNxiHqISJSo3EgYOsFiJs2bgpflBb7qVmuKqi7jERZ8Ftpe2ARMBJZi26ARH
+	 GI5l/7xszBbuzJ50Fp4SjDB8/3O3UPFS77lkFuSLxeGkqy4ue9dSqdNcNqjHLkCW7q
+	 3PsFqN8EfcsEA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 132C53782139;
+	Fri, 14 Jun 2024 09:39:36 +0000 (UTC)
+Message-ID: <b8026db3-6893-4609-8ead-b78f9b9eb40b@collabora.com>
+Date: Fri, 14 Jun 2024 11:39:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
+To: Georgi Djakov <djakov@kernel.org>, broonie@kernel.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
+ gustavoars@kernel.org, henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com, wenst@chromium.org, amergnat@baylibre.com
+References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
+ <d5b593f6-1764-43f0-9697-78d586239c23@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <d5b593f6-1764-43f0-9697-78d586239c23@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b585d817-da4d-45b1-87b5-2cfdc8b8823b@gmail.com>
 
-On Fri, 14 Jun 2024, Matti Vaittinen wrote:
-
-> On 6/14/24 10:50, Lee Jones wrote:
-> > On Fri, 14 Jun 2024, Matti Vaittinen wrote:
-> > 
-> > > On 6/13/24 19:32, Lee Jones wrote:
-> > > > On Tue, 04 Jun 2024, Matti Vaittinen wrote:
-> > > > 
-> > > > > The ROHM BD96801 "scalable PMIC" provides two physical IRQs. The ERRB
-> > > > > handling can in many cases be omitted because it is used to inform fatal
-> > > > > IRQs, which usually kill the power from the SOC.
-> > > > > 
-> > > > > There may however be use-cases where the SOC has a 'back-up' emergency
-> > > > > power source which allows some very short time of operation to try to
-> > > > > gracefully shut down sensitive hardware. Furthermore, it is possible the
-> > > > > processor controlling the PMIC is not powered by the PMIC. In such cases
-> > > > > handling the ERRB IRQs may be beneficial.
-> > > > > 
-> > > > > Add support for ERRB IRQs.
-> > > > > 
-> > > > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > > > > ---
-> > > > > Revision history:
-> > > > > v2 =>:
-> > > > > 	- No changes
-> > > > > v1 => v2:
-> > > > > 	- New patch
-> > > > > ---
-> > > > >    drivers/mfd/rohm-bd96801.c | 291 ++++++++++++++++++++++++++++++++-----
-> > > > >    1 file changed, 253 insertions(+), 38 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/mfd/rohm-bd96801.c b/drivers/mfd/rohm-bd96801.c
-> > > > > index 1c2a9591be7b..b7f073318873 100644
-> > > > > --- a/drivers/mfd/rohm-bd96801.c
-> > > > > +++ b/drivers/mfd/rohm-bd96801.c
-> > > > > @@ -5,13 +5,9 @@
-> > > > >     * ROHM BD96801 PMIC driver
-> > > > >     *
-> > > > >     * This version of the "BD86801 scalable PMIC"'s driver supports only very
-> > > > > - * basic set of the PMIC features. Most notably, there is no support for
-> > > > > - * the ERRB interrupt and the configurations which should be done when the
-> > > > > - * PMIC is in STBY mode.
-> > > > > - *
-> > > > > - * Supporting the ERRB interrupt would require dropping the regmap-IRQ
-> > > > > - * usage or working around (or accepting a presense of) a naming conflict
-> > > > > - * in debugFS IRQs.
-> > > > 
-> > > > Why bother adding all that blurb in the first place?
-> > > 
-> > > Because, I assume there are users who would like to have the ERRB in use.
-> > > The main purpose of this comment is that any such users could
-> > > 	a) see this version does not support ERRB.
-> > > 	b) can find the original RFC with ERRB supportn and a workaround.
-> > > 	c) know why this version does not work with ERRB and thus fix this
-> > > 
-> > > It seems this ERRB support may be missing from upstream for a while, hence I
-> > > think having this note is worthy until (if) this ERRB patch lands in
-> > > upstream.
-> > 
-> > What I mean is - you're adding all of these extra lines in patch 3 and
-> > removing them in patch 9.
-> > 
+Il 13/06/24 14:38, Georgi Djakov ha scritto:
+> On 10.06.24 11:57, AngeloGioacchino Del Regno wrote:
+>> Changes in v6:
+>>   - Fixed build with clang (thanks Nathan!)
+>>   - Removed unused mtk_rmw() macro in mtk-dvfsrc.c
+>>   - Added MODULE_DESCRIPTION() to mtk-dvfsrc-regulator.c
+>>
+> [..]
+>>
+>> AngeloGioacchino Del Regno (7):
+>>    dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
+>>    dt-bindings: interconnect: Add MediaTek EMI Interconnect bindings
+>>    dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
+>>    soc: mediatek: Add MediaTek DVFS Resource Collector (DVFSRC) driver
+>>    regulator: Remove mtk-dvfsrc-regulator.c
+>>    regulator: Add refactored mtk-dvfsrc-regulator driver
+>>    interconnect: mediatek: Add MediaTek MT8183/8195 EMI Interconnect
+>>      driver
 > 
-> True. This is because I had a feeling the irqdomain changes might not get
-> merged that fast as it seemed like something that is not completely trivial.
-> This comment is useful if patches 7-10 aren't merged together with 1-6 -
-> which I now also hope is the case XD
+> Thanks Angelo! I have picked patches 2 and 7. Patch 2 is also available
+> in my icc-mtk stable branch. Feel free to pull it to resolve the schema
+> dependency for patch 3.
 > 
-> > > > > + * basic set of the PMIC features.
-> > > > > + * Most notably, there is no support for the configurations which should
-> > > > > + * be done when the PMIC is in STBY mode.
-> > > > >     *
-> > > > >     * Being able to reliably do the configurations like changing the
-> > > > >     * regulator safety limits (like limits for the over/under -voltages, over
-> > > > > @@ -23,16 +19,14 @@
-> > > > >     * be the need to configure these safety limits. Hence it's not simple to
-> > > > >     * come up with a generic solution.
-> > > > >     *
-> > > > > - * Users who require the ERRB handling and STBY state configurations can
-> > > > > - * have a look at the original RFC:
-> > > > > + * Users who require the STBY state configurations can  have a look at the
-> > > > > + * original RFC:
-> > > > >     * https://lore.kernel.org/all/cover.1712920132.git.mazziesaccount@gmail.com/
-> > > > > - * which implements a workaround to debugFS naming conflict and some of
-> > > > > - * the safety limit configurations - but leaves the state change handling
-> > > > > - * and synchronization to be implemented.
-> > > > > + * which implements some of the safety limit configurations - but leaves the
-> > > > > + * state change handling and synchronization to be implemented.
-> > > > >     *
-> > > > >     * It would be great to hear (and receive a patch!) if you implement the
-> > > > > - * STBY configuration support or a proper fix to the debugFS naming
-> > > > > - * conflict in your downstream driver ;)
-> > > > > + * STBY configuration support or a proper fix in your downstream driver ;)
-> > > > >     */
-> > > 
-> > > ...
-> > > 
-> > > Thanks for comments Lee. Reworking this will have to wait for the irqdomain
-> > > name suffix, which I will continue after Hervé has done his part of the
-> > > irqdomain changes. I will omit this patch from the next re-spin of the
-> > > series.
-> > 
-> > I'm in no rush. :)
+
+Thank you Georgi!
+
+I have to wait until Mark takes the regulator bindings and commits, then I will
+be able to pick the soc bindings and driver. :-)
+
+Cheers,
+Angelo
+
+
+
+> BR,
+> Georgi
 > 
-> Well, glad to hear ;) I still usually try to avoid delaying sending the
-> follow-up patches. I am under impression it is easier to review the new
-> revision if the previous revision was not reviewed too long ago... ;)
+>>
+>>   .../interconnect/mediatek,mt8183-emi.yaml     |  51 ++
+>>   .../mediatek,mt6873-dvfsrc-regulator.yaml     |  43 ++
+>>   .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  |  83 +++
+>>   drivers/interconnect/Kconfig                  |   1 +
+>>   drivers/interconnect/Makefile                 |   1 +
+>>   drivers/interconnect/mediatek/Kconfig         |  29 +
+>>   drivers/interconnect/mediatek/Makefile        |   5 +
+>>   drivers/interconnect/mediatek/icc-emi.c       | 153 +++++
+>>   drivers/interconnect/mediatek/icc-emi.h       |  40 ++
+>>   drivers/interconnect/mediatek/mt8183.c        | 143 +++++
+>>   drivers/interconnect/mediatek/mt8195.c        | 339 +++++++++++
+>>   drivers/regulator/mtk-dvfsrc-regulator.c      | 248 ++++----
+>>   drivers/soc/mediatek/Kconfig                  |  11 +
+>>   drivers/soc/mediatek/Makefile                 |   1 +
+>>   drivers/soc/mediatek/mtk-dvfsrc.c             | 545 ++++++++++++++++++
+>>   .../interconnect/mediatek,mt8183.h            |  23 +
+>>   .../interconnect/mediatek,mt8195.h            |  44 ++
+>>   include/linux/soc/mediatek/dvfsrc.h           |  36 ++
+>>   include/linux/soc/mediatek/mtk_sip_svc.h      |   3 +
+>>   19 files changed, 1666 insertions(+), 133 deletions(-)
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.yaml
+>>   create mode 100644 drivers/interconnect/mediatek/Kconfig
+>>   create mode 100644 drivers/interconnect/mediatek/Makefile
+>>   create mode 100644 drivers/interconnect/mediatek/icc-emi.c
+>>   create mode 100644 drivers/interconnect/mediatek/icc-emi.h
+>>   create mode 100644 drivers/interconnect/mediatek/mt8183.c
+>>   create mode 100644 drivers/interconnect/mediatek/mt8195.c
+>>   create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
+>>   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8183.h
+>>   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8195.h
+>>   create mode 100644 include/linux/soc/mediatek/dvfsrc.h
+>>
+> 
 
-I'm used to it.  Old reviews are cached locally.
 
-> I feel it is polite to tell the reviewers there will be some delay when I
-> know it.
 
-I wouldn't lose any sleep over it. :)
-
--- 
-Lee Jones [李琼斯]
 
