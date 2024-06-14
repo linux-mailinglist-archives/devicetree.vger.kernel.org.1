@@ -1,109 +1,124 @@
-Return-Path: <devicetree+bounces-75934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62FAE9091CD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 19:39:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C22D090920F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 19:58:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1EA328CC09
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:39:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A4061F23FE5
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jun 2024 17:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D091B372F;
-	Fri, 14 Jun 2024 17:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA9419D093;
+	Fri, 14 Jun 2024 17:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="T+mQ/YfD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oXzhxdDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DAE1B29AA;
-	Fri, 14 Jun 2024 17:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0015017BCC;
+	Fri, 14 Jun 2024 17:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718386389; cv=none; b=XZFkIi/QQ7ld2lMC/Qe4pk+Khomnl2Bp/m7RovCk/hMoIRpm1hwDcPxJuOxikpsobdcHtiNtuKuptPt5ZOkRKyo/Zzvjy5LX/f07cjriRxBtYgUi4F5huMUczxTWs4sobOwqrMAdORzexqV0KCn7Yv5eVEcJUWEFrm4SWJGeDTE=
+	t=1718387914; cv=none; b=XYZ8Gej2jBL+W9qOYB4Y49BTCI3nlbTJ7aDKch88reUGsUu9Ej7rinsx99GvDtWKygCf7FyXjVtLo8OSC9eCATVxdTeOAmbjHopxAqNL21Q/nI7FFuHTF2lfO1O3hT1kTtmDv9U8bmijqS27xInxIxdXM+Bdqv4h/+4jYicqx2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718386389; c=relaxed/simple;
-	bh=CFOBUXD7jTvQ0DUMWL0UDE8CpiU/yP+TFleNjxWwLxs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hQZLjWqbuLAM9imCb7PyxEbq17oZMSSri/gV9j5WvLTxJNDWYSGNNY0vqfV3whvLJZnD4e1JC7PcHRWAjB0/sqdR4+7L1M274SCSfKJxM0Qav8QzRI6JnLJ0qcvBNOV37lzDXKThp1g3AnUrHnacm5WSlsARrcE8zwhZjgn5klo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=T+mQ/YfD; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 2C54AFF811;
-	Fri, 14 Jun 2024 17:33:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1718386385;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JtCflf5DaqbhOm9L/XxD0yo5M1odlrsrVmdrUVelr04=;
-	b=T+mQ/YfDW76Ir33ovd2mMbE/wy/n+Lioh//KKzIjrcUfQ+YWbPCBJJrN3TSzvNE/ZKAQ6q
-	oDJ6ais8BaG6r0qxRkjs82DqIeSyqEMu6zJUTxWDI+sxIEs3pAaKFTrlyjfosvaUTGuKVI
-	LPO3z2+qbyxyUM4/Ps7CNml66YUyGBTVpJtD8B4EGT1k4WtyeaMq/5k2+7fHhIS5B9KKu9
-	k1DQTwKQy7+xfEW8vyjfkYne6wvaLt7I4NTdSAICcX9Lu9dNlCusETzRm5OQ9InqfjQo0j
-	BhV9u2/tRY43ouYgUyQHVWsx5GgM/gFFTzLSKOylqw+JJ3b8GrtJCPZCYNh0eQ==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Weinberger <richard@nod.at>,
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Marc Zyngier <maz@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-um@lists.infradead.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH 23/23] MAINTAINERS: Add the Microchip LAN966x OIC driver entry
-Date: Fri, 14 Jun 2024 19:32:24 +0200
-Message-ID: <20240614173232.1184015-24-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20240614173232.1184015-1-herve.codina@bootlin.com>
-References: <20240614173232.1184015-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1718387914; c=relaxed/simple;
+	bh=hX6/vwcDgDP9auvxBpQzIAeam1ik3AqwsVBLxy+OLi0=;
+	h=MIME-Version:Content-Type:Date:Message-ID:To:CC:Subject:From:
+	 References:In-Reply-To; b=V/MCFXHd5vG5Rvcg0s+gX5wMN46YNMs6e3axFuJlnfJbghFwAm8vt6ZoRqw9i/seqghaiEpr0CpLyyL3ZHZxG/9ilupbll6jXDIN5ZY6GOXmIu2Vfexfw3vN8BAznz1HRuO4mCQp+YcIDmZPbuIqF5htg8v7vh5+Ia4E3oI/fWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oXzhxdDB; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45EHwMTc074684;
+	Fri, 14 Jun 2024 12:58:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718387902;
+	bh=MUF9XJqMkmkQjexFkfnks2orcYMhPl0ETqT57VwcVjo=;
+	h=Date:To:CC:Subject:From:References:In-Reply-To;
+	b=oXzhxdDBBN6Z7mAKkQRbcBdaAdn6UOWQDBkwBt4nVrAf4qa3npVEYqzTSr2sz6EVg
+	 dI8PntyPmFLoiZ+Cir9Ekf8g0I8TCo8FpSHR+NNmbHcBjUDotQ4487NkdDdJIn3b/E
+	 HFKc95i4HWN8j68E2KnqZvxe4aipItW+enuzZQbs=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45EHwMOO024310
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 14 Jun 2024 12:58:22 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
+ Jun 2024 12:58:22 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 14 Jun 2024 12:58:22 -0500
+Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45EHwMHt118346;
+	Fri, 14 Jun 2024 12:58:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 14 Jun 2024 12:58:22 -0500
+Message-ID: <D1ZXO8F3XN2I.3CTTE245I0TYY@ti.com>
+To: Devarsh Thakkar <devarsht@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <praneeth@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>
+Subject: Re: [PATCH 0/3] Add global CMA reserve area
+From: Randolph Sapp <rs@ti.com>
+X-Mailer: aerc 0.17.0
+References: <20240613150902.2173582-1-devarsht@ti.com>
+In-Reply-To: <20240613150902.2173582-1-devarsht@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-After contributing the driver, add myself as the maintainer for the
-Microchip LAN966x OIC driver.
+On Thu Jun 13, 2024 at 10:08 AM CDT, Devarsh Thakkar wrote:
+> Add global CMA reserve area for AM62x, AM62A and AM62P SoCs.
+> These SoCs do not have MMU and hence require contiguous memory pool to
+> support various multimedia use-cases.
+>
+> Brandon Brnich (1):
+>   arm64: dts: ti: k3-am62p5-sk: Reserve 576 MiB of global CMA
+>
+> Devarsh Thakkar (2):
+>   arm64: dts: ti: k3-am62x-sk-common: Reserve 128MiB of global CMA
+>   arm64: dts: ti: k3-am62a7-sk: Reserve 576MiB of global CMA
+>
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 9 +++++++++
+>  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 7 +++++++
+>  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 8 ++++++++
+>  3 files changed, 24 insertions(+)
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+I'm still a little torn about putting this allocation into the device tree
+directly as the actual required allocation size depends on the task.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d6c90161c7bf..baeb307344cd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14727,6 +14727,12 @@ L:	netdev@vger.kernel.org
- S:	Maintained
- F:	drivers/net/ethernet/microchip/lan966x/*
- 
-+MICROCHIP LAN966X OIC DRIVER
-+M:	Herve Codina <herve.codina@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/interrupt-controller/microchip,lan966x-oic.yaml
-+F:	drivers/irqchip/irq-lan966x-oic.c
-+
- MICROCHIP LCDFB DRIVER
- M:	Nicolas Ferre <nicolas.ferre@microchip.com>
- L:	linux-fbdev@vger.kernel.org
--- 
-2.45.0
+If it's allowed though, this series is fine for introducing those changes. =
+This
+uses the long-tested values we've been using on our tree for a bit now. The=
+ only
+thing that's a little worrying is the missing range definitions for devices=
+ with
+more than 32bits of addressable memory as Brandon has pointed out. Once tha=
+t's
+addressed:
 
+Reviewed-by: Randolph Sapp <rs@ti.com>
+
+Specifying these regions using the kernel cmdline parameter via u-boot was
+brought up as a potential workaround. This is fine until you get into distr=
+o
+boot methods which will almost certainly attempt to override those. I don't
+know. Still a little odd. Curious how the community feels about it.
+
+Technically the user or distro can still override it with the cmdline param=
+eter
+if necessary, so this may be the best way to have a useful default.
 
