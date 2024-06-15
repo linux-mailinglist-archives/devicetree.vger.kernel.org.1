@@ -1,153 +1,123 @@
-Return-Path: <devicetree+bounces-76054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E9C9098B4
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 16:49:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 782A79098B0
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 16:43:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D55F1C20CA2
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:49:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6754B2184F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0514A47F5F;
-	Sat, 15 Jun 2024 14:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E044426ACB;
+	Sat, 15 Jun 2024 14:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uoT0Ppcl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A611DFEA;
-	Sat, 15 Jun 2024 14:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1A01DFD2;
+	Sat, 15 Jun 2024 14:43:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718462974; cv=none; b=XmUtvcTi6tNtB1k7lGOnsE6JyZK6isl69PRE9GynGM52lEbpu7oWn2xyt3ZB3zlwvjPTUlM5Ops3XZ6N/RIifrTW8iTkmLxc78h/pCcPsEkDiQu+yOkq/ErEdztZ8LMaw7lBbaWnMDxiDV+S7syPeACRzqhw3hJCZn0aXGahOGA=
+	t=1718462630; cv=none; b=McVHNdpAzJFmFcELkyJRE3CneOgS84ReslC4kbr7WWAjF9pDfRTf3x+3TZdSbtdlPgooItBUwTGOvSl9NZCNjlZtlVf1rpvFhki7lqYjpnKJcP/CvgYLNy3AoYZXW96iSR+Xiy4V/0c3FOa2yCj3TzDEE29vWd7JedbRXfGRGJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718462974; c=relaxed/simple;
-	bh=76LIfSrMxlpIj4d0bev9L7y98p2HjHo5ZQ+5a2BpE/I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PVaw8pCQhajOT/O5SEwixc2isgR3Usx3Yftq1AFneqgN/eLG2rh59ijBe6Zpu44Fb4BuPxbKtSoNKhlOks5BU6fkFJMo8ziLnKDCzARRAjZC5H9oG7r13fRZkjhblpl1T9DIV4NUNwQpn17ojnx9x//s7gxsVP0sQee6zWadFrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.97.1)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sIUTJ-00000000661-10GU;
-	Sat, 15 Jun 2024 14:33:37 +0000
-Date: Sat, 15 Jun 2024 15:33:30 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: John Thomson <git@johnthomson.fastmail.com.au>, andrew@lunn.ch,
-	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC net-next] net: dsa: generate port ifname if exists or
- invalid
-Message-ID: <Zm2mOZGPuPstMdlB@makrotopia.org>
-References: <20240608014724.2541990-1-git@johnthomson.fastmail.com.au>
- <20240608014724.2541990-1-git@johnthomson.fastmail.com.au>
- <20240613114314.jxmjkdbycqqiu5wn@skbuf>
+	s=arc-20240116; t=1718462630; c=relaxed/simple;
+	bh=8RJiP7FCS0sZfvR0laSimR4Ji9IM/l5QeRHx0jchhYg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HyiiPKTq2AwDPKqJQRNKQ1ahxZE+ruWxciKdQ3tD3Cl9BtTNPAZcGxPh1Yo9Jr+Z72qfBPIw4PKAo4zVbClIDzvILdDB4HYL/XL7Ip1zS4QWRYDk0psskS9EIRUHRZXmje+oj9I1dehxQQLDIhOO7z+Lr6k5mkm73Vc7b9f5z7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uoT0Ppcl; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45FEhhBR001041;
+	Sat, 15 Jun 2024 09:43:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718462623;
+	bh=ZyID5zbcPnMF1p3meO7TvGheIaJkcI0vPW1j4oZrrTo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=uoT0PpclgzKfRb3UTM6Iss229Y4eOow6uMDmwMgAYgFj/ILc5wbL1UC3OotfhsII7
+	 K+GBAhqJbfEay9OeNFvdlSQiHfQaq2nsRt7Z4jdF1MuoovWp7K/9MMoevQBpmiDOky
+	 PJUpRMVTqoT+ysyxe9PPHYYuMJNOjKohcomXOgC0=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45FEhheE128645
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 15 Jun 2024 09:43:43 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 15
+ Jun 2024 09:43:42 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 15 Jun 2024 09:43:42 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45FEhgaZ022894;
+	Sat, 15 Jun 2024 09:43:42 -0500
+Date: Sat, 15 Jun 2024 09:43:42 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar
+	<viresh.kumar@linaro.org>, Lee Jones <lee@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Vibhore Vardhan
+	<vibhore@ti.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 3/5] dt-bindings: mfd: syscon: add TI's opp table
+ compatible
+Message-ID: <20240615144342.5gjgp3rt3ewfbfu2@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20240612-ti-opp-updates-v2-0-422b6747a254@ti.com>
+ <20240612-ti-opp-updates-v2-3-422b6747a254@ti.com>
+ <faf04961-f8ac-446c-a558-42ef6e98b3ac@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20240613114314.jxmjkdbycqqiu5wn@skbuf>
+In-Reply-To: <faf04961-f8ac-446c-a558-42ef6e98b3ac@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Vladimir,
-
-On Thu, Jun 13, 2024 at 02:43:14PM +0300, Vladimir Oltean wrote:
-> On Sat, Jun 08, 2024 at 11:47:24AM +1000, John Thomson wrote:
-> > RFC:
-> > Not a full solution.
+On June 13, 2024 thus sayeth Krzysztof Kozlowski:
+> On 13/06/2024 01:17, Bryan Brattlof wrote:
+> > The JTAG_USER_ID_USERCODE efuse address, which is located inside the
+> > WKUP_CTRL_MMR0 range holds information to identify the speed grades of
+> > various components on TI's K3 SoCs. Add a compatible to allow the
+> > cpufreq driver to obtain the data to limit the maximum frequency for the
+> > CPUs under Linux control.
 > > 
-> > Not sure if supported, I cannot see any users in tree DTS,
-> > but I guess I would need to skip these checks (and should mark as
-> > NEM_NAME_ENUM) if port->name contains '%'.
+> > Signed-off-by: Bryan Brattlof <bb@ti.com>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 > > 
-> > name is also used in alloc_netdev_mqs, and I have not worked out if any
-> > of the functionality between alloc_netdev_mqs and the register_netdevice
-> > uses name, so I added these test early, but believe without a rntl lock,
-> > a colliding name could still be allocated to another device between this
-> > introduced test, and where this device does lock and register_netdevice
-> > near the end of this function.
-> > To deal with this looks to require moving the rntl_lock before
-> > these tests, which would lock around significantly more.
-> > 
-> > As an alternative, could we possibly always register an enumerated name,
-> > then (if name valid) dev_change_name (not exported), while still within
-> > the lock after register_netdevice?
-> > 
-> > Or could we introduce a parameter or switch-level DTS property that forces
-> > DSA to ignore port labels, so that all network devices names can be
-> > managed from userspace (using the existing port DSA label as intended name,
-> > as this still seems the best place to define device labels, even if the
-> > driver does not use this label)?
+> > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > index 7ed12a938baa3..ab1fcbe2148f7 100644
+> > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > @@ -88,6 +88,7 @@ properties:
+> >                - rockchip,rv1126-qos
+> >                - starfive,jh7100-sysmain
+> >                - ti,am62-usb-phy-ctrl
+> > +              - ti,am62-opp-efuse-table
 > 
-> Why not just _not_ use the 'label' device tree property, and bring
-> a decent udev implementation into OpenWrt which can handle persistent
-> naming according to the labels on the box? Even within DSA, it is
-> considered better practice to use udev rather than 'label'. Not to
-> mention that once available, udev is a uniform solution for all network
-> interfaces, unlike 'label'.
-
-Sounds fine generally. Where would you store the device-specific renaming
-rules while making sure you don't need to carry the rules for all devices
-onto every single device? Would you generate a device-specific rootfs for
-each and every device? For obvious reasons this is something we'd very
-much like to avoid, as building individual filesystems for ~ 1000 devices
-would be insane compared to having a bunch (< 100) of generic filesystems
-which some of them fitting a large group (ie. same SoC) of boards.
-Most OpenWrt devices out there are based on the same SoCs, so currently
-the devices in the popular targets like MT7621 or IPQ40xx all share the
-same target-wide kernel **and rootfs**.
-
-tl;dr: The good thing about the 'label' property is certainly that such
-board- specific details are kept in DT, and hence a generic rootfs can
-deal with it.
-
-As having the 'label' property applied also for non-DSA netdevs by the
-kernel has been rejected we did come up with a simple userland
-implementation:
-
-https://git.openwrt.org/?p=openwrt/openwrt.git;a=commit;h=2a25c6ace8d833cf491a66846a0b9e7c5387b8f0
-
-For interfaces added at a later stage at boot, ie. by loading kernel modules
-or actual hotplug, we could do the same in a hotplug script.
-
-So yes, dropping support for dealing with the 'label' property in kernel
-entirely would also fix it for us, because then we would just always deal
-with it in userland (still using the same property in DT, just not applied
-by the kernel).
-
-> 
-> Full disclosure: I myself tried for about 30 minutes to convert the udev
-> rules below into an /etc/hotplug.d script that procd would run, before
-> getting the impression it's never going to work as intended, because by
-> the time all relevant "add" actions run (built-in drivers), user space
-> hasn't even loaded, and thus hasn't got a chance to run any hooks.
-> I haven't actually opened the source code to compare how other uevent
-> handlers deal with this.
-> 
-> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p0", NAME="swp0"
-> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p1", NAME="swp1"
-> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p2", NAME="swp2"
-> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p3", NAME="swp3"
-> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p4", NAME="swp4"
-> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p5", NAME="swp5"
+> These are ordered alphabetically.
 > 
 
-Yes, this is a problem in general. We will need better coldplug support,
-right now only devices added after procd is launched are taken care of.
+Ha! I guess I don't know how to spell after all :)
 
-
-Cheers
-
-
-Daniel
+~Bryan
 
