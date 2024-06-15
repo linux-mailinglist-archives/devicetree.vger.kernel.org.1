@@ -1,78 +1,195 @@
-Return-Path: <devicetree+bounces-76002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4410C9096C2
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 10:08:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5EEB9096C6
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 10:11:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF014B225FD
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 08:08:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E08A3281305
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 08:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8C21BC2A;
-	Sat, 15 Jun 2024 08:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A924A18052;
+	Sat, 15 Jun 2024 08:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="cSpa9X0I"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="y0fF29Kl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D332F182B3;
-	Sat, 15 Jun 2024 08:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C04218037
+	for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 08:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718438892; cv=none; b=dXwQb90p/M7QKsNanAMGdnhPOCJbU4sv5zjitFDJTGnr4fdAen4CvAnbtQ258EHLDk7iZtRWJw7EjhWCr0+ZO6XNzGdoH4tiM7devostRF8bKpYqzNn2GyU+/V6ScdxsS6/Y89rR0VOcVYRy9KrW9KKGYQU2Uwi7oZ8SMjlQUqk=
+	t=1718439105; cv=none; b=ZCcj/Io07Yq7H4R+r4hkzCROEIpDwhHwKeV9d25GOynz27fUBMIWTj3teHoatnSFMBFXteFc5V/wQ23jjVdIKQLrpQOMS5gbUVMOdNkXkIaAPFicOkW3Mg1T5+AAYRyQAGuZjG4KB7ipg+jpV+EJ3kjViJyJrKIra3p6RUM8qbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718438892; c=relaxed/simple;
-	bh=rPgCc9oeqCVfNZ8wHQbb4DAAw3Bq7+5vbSGwXTvp2p8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gCDeLVDiUjPHgVcwLnToC+NRufherqkmk9lUt6qxOoVPAUOlUQtnWb/beYZVeQy1X65jvMBS/NjCKAEd9rp2Om2g4IM4NwODbldV317DNFw+2wvyUaKL4P6PZ8RDzL6zlrHwmLwUn8xmJj4aR5cTdV5tSbAMsDxrUv31arRcaBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=cSpa9X0I; arc=none smtp.client-ip=123.58.177.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=/iKjibvMsxezGFlPSNPKpOBNVsf+6rthH3pcb2WX1No=;
-	b=cSpa9X0IMbQKAzcN/yz/8EXPeA/EMwh8Ujy3dqSwaVMna++cJGjIHFOptHf+pT
-	4OwVYNQvrDW4ylikwSuEoMdEBaja2yNLBdrQeet2c8KZV3ppNxuzEidY6I1ew8Dq
-	NjL6q5HtOm1NOl+gl86hUdbqGZ/2nmmKXNjvlyMGhOS/Q=
-Received: from dragon (unknown [114.216.76.201])
-	by smtp2 (Coremail) with SMTP id C1UQrACHjxDRS21mwOK0CA--.43334S3;
-	Sat, 15 Jun 2024 16:07:46 +0800 (CST)
-Date: Sat, 15 Jun 2024 16:07:45 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, dmitry.baryshkov@linaro.org
-Subject: Re: [PATCH] arm: dts: imx53-qsb-hdmi: Disable panel instead of
- deleting node
-Message-ID: <Zm1L0fyKupDFDOUX@dragon>
-References: <20240514030718.533169-1-victor.liu@nxp.com>
+	s=arc-20240116; t=1718439105; c=relaxed/simple;
+	bh=VLOfu2sHlSblRVxS7M24YOwUMCWmyAxHORa4eJ1jtGE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gIjgB4iB6mvcHLeKJHT3rXvfU2Ig68b4rLj4KerVUmGfRCO1uKr4z7OxLGLPxv1fGg/VCd+USwSQliSB0bVsREQumuJioiOeiWvw6bW5nE4SRQx4lx3E/D6BeYCuD3ogmlGNr97uB9vFLpKv6blmRRaCI0w/ZJCn32KkVkyB9jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=y0fF29Kl; arc=none smtp.client-ip=167.172.40.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1718439068;
+ bh=KD9XMEsUfvBdMg6V4GnJ0Xmth7fRvLlwhgghB2MFr/I=;
+ b=y0fF29KlmtPU2HFDuFwRWA4MhxHmNZxGVUD/h5xkUSYQC1AHBRVFTqCjt5avCPyhtrAe6BYnG
+ Fxj0B9vKfIC6vnQtvKf4D1BT5tfmbSGwMJnGErYk3xtmM9N2oyCx5BqpKM2LjMg9qeQPPyFJsyj
+ L0zFvwFR95a60P7FEJ0wOYgCsO7XAQ6R1Fs3qHN+MxLZ91tKKrRqvAHagXzRBGRtdJSQUDF0jDV
+ bHpkYl1CZkiLTJeLhCIVOjIaGbemeTWsJHgB+zNgJSz6970n6xlnHlCIww/CwERqJbkOsfwRwcR
+ Yzc1z7cKv018sN4XvgzIPDndgdrLxU4Lrd/doa8FVxeA==
+Message-ID: <442bbb41-40ed-4e6c-b854-02b636f09fc3@kwiboo.se>
+Date: Sat, 15 Jun 2024 10:11:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240514030718.533169-1-victor.liu@nxp.com>
-X-CM-TRANSID:C1UQrACHjxDRS21mwOK0CA--.43334S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUswZ2UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBRL+ZVsVCphcKQAAsl
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] media: dt-bindings: rockchip: Document RK3588 Video
+ Decoder 2 bindings
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, Dragan Simic
+ <dsimic@manjaro.org>, Alexey Charkov <alchark@gmail.com>, Cristian
+ Ciocaltea <cristian.ciocaltea@collabora.com>, Diederik de Haas
+ <didi.debian@cknow.org>, Andy Yan <andy.yan@rock-chips.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-staging@lists.linux.dev
+References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
+ <20240615015734.1612108-3-detlev.casanova@collabora.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20240615015734.1612108-3-detlev.casanova@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 167.172.40.54
+X-ForwardEmail-ID: 666d4c9a01f41f7e8a2106cd
 
-On Tue, May 14, 2024 at 11:07:18AM +0800, Liu Ying wrote:
-> We cannot use /delete-node/ directive to delete a node in a DT
-> overlay.  The node won't be deleted effectively.  Instead, set
-> the node's status property to "disabled" to achieve something
-> similar.
+Hi Detlev,
+
+On 2024-06-15 03:56, Detlev Casanova wrote:
+> Document the Rockchip RK3588 Video Decoder 2 bindings.
+
+Why the need for a new schema file and not just extending existing
+rockchip,vdec.yaml with a new compatible and the new clock?
+
 > 
-> Fixes: eeb403df953f ("ARM: dts: imx53-qsb: add support for the HDMI expander")
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  .../bindings/media/rockchip,vdec2.yaml        | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/rockchip,vdec2.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec2.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec2.yaml
+> new file mode 100644
+> index 000000000000..e54891b46986
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec2.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/rockchip,vdec2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip Video Decoder 2 (VDec2)
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description: |-
+> +  The Rockchip rk3588 has a stateless Video Decoder that can decodes H.264,
+> +  HEVC, VP9 and AVS2 streams.
+> +
+> +properties:
+> +  compatible:
+> +    const: rockchip,rk3588-vdec2
 
-Applied, thanks!
+I fail to see the need to call this vdec2 instead of established vdec.
+
+Suggest this is changed to rockchip,rk3588-vdec.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: The Video decoder AXI interface clock
+> +      - description: The Video decoder AHB interface clock
+> +      - description: The Video decoder core clock
+> +      - description: The Video decoder CABAC clock
+> +      - description: The Video decoder HEVC CABAC clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: axi
+> +      - const: ahb
+> +      - const: core
+> +      - const: cabac
+> +      - const: hevc_cabac
+> +
+> +  assigned-clocks: true
+> +
+> +  assigned-clock-rates: true
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/power/rk3588-power.h>
+> +
+> +    vdec2: video-codec@fdc38100 {
+> +        compatible = "rockchip,rk3588-vdec2";
+> +        reg = <0x0 0xfdc38100 0x0 0x500>;
+> +        interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        clocks = <&cru ACLK_RKVDEC0>, <&cru HCLK_RKVDEC0>, <&cru CLK_RKVDEC0_CORE>,
+> +                 <&cru CLK_RKVDEC0_CA>, <&cru CLK_RKVDEC0_HEVC_CA>;
+> +        clock-names = "axi", "ahc", "core",
+> +                      "cabac", "hevc_cabac";
+> +        assigned-clocks = <&cru ACLK_RKVDEC0>, <&cru CLK_RKVDEC0_CORE>,
+> +                          <&cru CLK_RKVDEC0_CA>, <&cru CLK_RKVDEC0_HEVC_CA>;
+> +        assigned-clock-rates = <800000000>, <600000000>,
+> +                               <600000000>, <1000000000>;
+> +        power-domains = <&power RK3588_PD_RKVDEC0>;
+
+iommus and resets seem to be missing?
+
+Regards,
+Jonas
+
+> +    };
+> +
+> +...
 
 
