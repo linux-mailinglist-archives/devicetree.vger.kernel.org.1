@@ -1,76 +1,101 @@
-Return-Path: <devicetree+bounces-76068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EBB990999F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 20:49:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D91B9099A1
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 20:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72D181C20E74
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 18:49:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD803B209E2
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 18:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BAD326AED;
-	Sat, 15 Jun 2024 18:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E972C3F9CC;
+	Sat, 15 Jun 2024 18:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UYXEjMw/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eovqLs4J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2ED1DA2F
-	for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 18:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1354437;
+	Sat, 15 Jun 2024 18:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718477363; cv=none; b=klomgyEDosJRadlG3JFOAsTmhiJqaTVOuWypAsLqnJscEOAawNAjTr4r6Dj9QQCn3MhsTRa4HVhdytmJCGV+ADsOs9fNrQxEb5bWEFxktXx6XAUj3f2tWT+ooVDy8naYu5X/I7J9y7DT+qS314Fvjf1C2kXGjIBJI6gXoICSpZ4=
+	t=1718477539; cv=none; b=ryVhTz/bnDwhoI4Gzv+LdkaQsQdLm+A4GO42P8UI7UoYe1Or1UDgV/h4/HZkTBcDzRrd72U16LfwR9consKNg1O0q7qNkEG3YdmdRb0zA9NXbGpnkcP65XMBzd+aucUkpWFOdpHxQ+OEi2nmwXe3nboYqVYg52QVVAkM4r235E4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718477363; c=relaxed/simple;
-	bh=2UFS+G15YQb63hu8LpWAEUeKauwNQ3gIuqSdcJidqJ4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a8GlDh1gTzOdU0GxdqqEuWycu698qf0Bcdt+Hum/k1wVcRPv20VWGEzW/wy3B+Ce9997Vstsddp9VW0sp0Ty1UuOcnsK7t/BEXMh1pN5d0G0kESRVl6nDHxw9Kkpmg/rKIqgRuy/mVbF7u96O4/H/ax+TZzWF1whLNHaFjGOS8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UYXEjMw/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A84DDC116B1;
-	Sat, 15 Jun 2024 18:49:21 +0000 (UTC)
+	s=arc-20240116; t=1718477539; c=relaxed/simple;
+	bh=enrBKJyKrU9vC5DRQWn1UK9WzDWEr1TxDOe1KX2Jmd4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=MdTFmQ7dnC6+Bh9vdpMfepGE2q1hBBOrucBLqyvCBYWnXXJCARGX7hNOLBpwGFQw2VEaQTd5h/1s7k1f2Ho6vlh8Y3ds5F5CaLc3zKEnvk31eHZWzSFWdmtxbDnYF+ouamh8SUezUI5LavzKQmSDrUUoouf+t0WnZHmyYNgRwmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eovqLs4J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B506C116B1;
+	Sat, 15 Jun 2024 18:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718477362;
-	bh=2UFS+G15YQb63hu8LpWAEUeKauwNQ3gIuqSdcJidqJ4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UYXEjMw/WNPKKLRHyp6R+kcO03OHxzA1i8kiL/UHm2M+ByRERA26imlKwyVwsM7pC
-	 20SxSSbNmCRhTID7gkblYNwTsn1lPRQsr+ME8YkFAtwbOOA9dEUzmxBL0IDGxXfPH9
-	 uJgWgNoDK9QlgVhO4BV54B5ucC27tJyyZOMv4GHPHYHweOh2HFUQwbhzjIPLDiQJKJ
-	 tGGcVOW9WNepklT3t3SzKayfmMUc31bjvfKt+TTWN8HEOHswk6HM5wmn9gy/LhFugv
-	 fW64hl3E3XUvgxlUYx0EyRRlv4gx/e9zb2vq0VfVbGQCQ9zj4ADDlZ6SHGLsimdkqZ
-	 /H7SUISGExowg==
-Date: Sun, 16 Jun 2024 00:19:18 +0530
+	s=k20201202; t=1718477539;
+	bh=enrBKJyKrU9vC5DRQWn1UK9WzDWEr1TxDOe1KX2Jmd4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=eovqLs4JeCzg6zV8iHc7O76k2SjW6YtkXUFva2ahd71eDgraXPVoCtYe99mPcLscK
+	 SSgf1MzRPQWW87w0F/q3JvJdZVLOeKe8xTtBFcVZF4Ok8P+rIj3biwRBLHnAlMwgxi
+	 3JxW/CUtjQwapSoXXA488w/JHO7GZ+2bc4CTaw+CMVWnjJ3ojvoWQqUAQx3cIkGdBH
+	 wlkWlCS1Yue4zfOJ3hSIgSTEXIEUeno+4fhmqm2xcVunEQbO+9HZo8LY1V4QAtdMzR
+	 aPEMPftu0gZFWGI35hXJW5OlB5j2kR0t716DiWOYUhp+hSJDocl2pzIeoX1UPwKALK
+	 VcI2TSotcDHew==
 From: Vinod Koul <vkoul@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-phy@lists.infradead.org, kishon@kernel.org,
-	lorenzo.bianconi83@gmail.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
-	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
-	amitsinght@marvell.com
-Subject: Re: [PATCH v3 0/4] Introduce PCIe PHY driver for EN7581 SoC
-Message-ID: <Zm3iLkeu27E4Qn8w@matsya>
-References: <cover.1716031610.git.lorenzo@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240614-fix-pcie-phy-compat-v3-0-730d1811acf4@linaro.org>
+References: <20240614-fix-pcie-phy-compat-v3-0-730d1811acf4@linaro.org>
+Subject: Re: [PATCH v3 0/5] phy: qcom: qmp-pcie: drop second
+ clock-output-names entry
+Message-Id: <171847753469.716119.16988871542371189941.b4-ty@kernel.org>
+Date: Sun, 16 Jun 2024 00:22:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1716031610.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On 18-05-24, 13:31, Lorenzo Bianconi wrote:
-> Add support for Airoha PCIe PHY controller available in the EN7581 SoC.
 
-This fails build tests on x86 etc, please make sure you compile in idff
-arch with W=1 and C=1 and submit again
+On Fri, 14 Jun 2024 13:18:23 +0300, Dmitry Baryshkov wrote:
+> While testing the linux-next on SM8450-HDK I noticed that one of the
+> PCIe hosts stays in the deferred state, because the corresponding PHY
+> isn't probed. A quick debug pointed out that while the patches that
+> added support for the PIPE AUX clock to the PHY driver have landed,
+> corresponding DT changes were not picked up for 6.10. Restore the
+> compatibility with the existing DT files by dropping the second entry in
+> the clock-output-names array and always generating the corresponding
+> name on the fly.
+> 
+> [...]
 
+Applied, thanks!
+
+[1/5] phy: qcom: qmp-pcie: restore compatibility with existing DTs
+      commit: 912cee11c14376a6f707d72fcaf343a40bff48e8
+[2/5] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: drop second output clock name
+      commit: 7cd3e586068aca123ff244fc259ba62ba96b6d31
+[3/5] arm64: dts: qcom: sm8450: drop second clock name from clock-output-names
+      (no commit info)
+[4/5] arm64: dts: qcom: sm8550: drop second clock name from clock-output-names
+      (no commit info)
+[5/5] arm64: dts: qcom: sm8650: drop second clock name from clock-output-names
+      (no commit info)
+
+Best regards,
 -- 
-~Vinod
+Vinod Koul <vkoul@kernel.org>
+
 
