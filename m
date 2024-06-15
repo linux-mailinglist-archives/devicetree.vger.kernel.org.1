@@ -1,103 +1,143 @@
-Return-Path: <devicetree+bounces-76024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB2E909779
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 11:47:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 896D190977C
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 11:48:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACA85282122
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:47:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CB5AB21D20
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF781F946;
-	Sat, 15 Jun 2024 09:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A1F2576B;
+	Sat, 15 Jun 2024 09:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="FfU28HE/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uE71K+fA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C71310A11;
-	Sat, 15 Jun 2024 09:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632CE10A11;
+	Sat, 15 Jun 2024 09:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718444833; cv=none; b=BLCnw0DX2H7v52FiOE25esjpVJuPdejHgBYxB1sOa4qQ2GTfVMKBRMkCIHMTJANO2M5C8/3wqK28BatR1+07KoNPlFs5SIdJocvMNdhsyqJvlLaCbJg5QECh6y3iWAZQ+rNhXj19DxYFLPWaeGsEy7SyW03P07uIiV9ItFJAdNM=
+	t=1718444907; cv=none; b=G8dAwr1aR2jVqoyfGJWicagbO7XVw0RdzY/2x4E+4GKLLB+MwCO8eVw/B5iNIfNmx0SzdDNkl+KlR5kv1CNE8IzcH9B5OxoJrGZOK9VbH0cS72S5dJ1vb1Xde2VdzjAAndqd//QDt0rjqdJU4Xc4YS0fjihGbXX8cPfd4MZ6lZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718444833; c=relaxed/simple;
-	bh=viOTgnhH9sLs8uink14M8hv2p6dbnzZafeKqWltRrHU=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=dZ1K8AW1+V/N9j1nRmMbhqLMSqQJcolUVpp+TrWhdE36U5pIQJgG0L1km4YSBq3xFLHowXBirFr+OKjMpR7gbKdwKX+1oge+1kzbzo0H+WYTp8qhOxV5N6VI5EM2G/+3iNBTh0fN/pDEeTEuxwT3h59rmoLYkN55kBqFr1456wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=FfU28HE/; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-X-Virus-Scanned: SPAM Filter at disroot.org
+	s=arc-20240116; t=1718444907; c=relaxed/simple;
+	bh=5lgczmI4KHA3a8/JLhs3fR7zSsRky2Mlj8Fi75mmJOA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TZAvlOddY2xlL5R5K4NoZuW5IGxDrorN/kfhZ7zj6iHXtOqpMBdL7BS+eDFcWCN96yoKH0Nux+4gZ4wMtqb30lnVAdKhxMYLTZxzINlJ2qD7JLJB/cCpXd+hXQK6zDJF3OpVv75UvYFLZHRuALQxcE7RsnK5gKkYXrK1b51jItg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uE71K+fA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3142DC3277B;
+	Sat, 15 Jun 2024 09:48:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718444906;
+	bh=5lgczmI4KHA3a8/JLhs3fR7zSsRky2Mlj8Fi75mmJOA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uE71K+fAudxqLKfjENxfU+kPkSSVjyj4k1cJWYQhLrZgunhJlh8YsX4cRjW7y6Xrm
+	 P+5QqBkuH7B3WsmTRG9x1Y3xi87gdjiRFEmvv8u862kcCrcUrO795yQEkxCAPt+F4N
+	 3mCMeC1sk3Jvto6+2mb5habzrOyNFIGb/+w2iRvFsGfUG7VEigPvOTrbHm/W8C38wf
+	 aW68Y6ntRo8zzTfvxK74DbHB/1RNww8vIWh7KRVEgvZMCC9NiKER0U+Mu3BMsXTYKj
+	 jk5nQdD47fLqWCLFSnQhucsy445wk1eg6IEywapX8Yf6LaaSVKdF4xzzqD9oTAxH6L
+	 kKWOi4KEJIX6Q==
+Message-ID: <7c2d1e2b-6abc-4941-8270-c2b19601fe3e@kernel.org>
+Date: Sat, 15 Jun 2024 11:48:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1718444820; bh=viOTgnhH9sLs8uink14M8hv2p6dbnzZafeKqWltRrHU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=FfU28HE/Ap/9qJfDWU1wKYeYYafRzKHKriVj3rAo1od0YPA6NOIZZqgbTd2qmT/6N
-	 fOAt2yS9wGrH81olKJI3az6moiaKBTHmyR6oo4rIq+rF34I+ItXed18DrYPHSHU2bk
-	 E4M4QxIn1rCvtb+BEIZaMPofbTNQUmTJqtFUgnQbQyvo2e7XEXmog/R+RGORlZusxe
-	 +Co/sXlvU0daj0rKtlNT8kUDiZfk+nv+UjaB3GHTELaRYsFdgU0hPAjmfU3DDyZKjE
-	 /gVbjpMLt/qdRPht7vbNT3tJSJR3Y4JyVAmB9QjV8qh0uMzbf4OZHkunkntGJ3KqGK
-	 U3WEN3AJM99CQ==
-Date: Sat, 15 Jun 2024 09:46:59 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-iio@vger.kernel.org, jic23@kernel.org, denis.ciocca@st.com,
- devicetree@vger.kernel.org, linus.walleij@linaro.org, robh+dt@kernel.org,
- kauschluss@disroot.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: iio: st-sensors: add LIS2DS12
- accelerometer
-In-Reply-To: <20240611-reassign-eliminate-b05e4a302cfb@spud>
-References: <20240611160821.13941-1-kauschluss@disroot.org>
- <20240611160821.13941-2-kauschluss@disroot.org>
- <20240611-reassign-eliminate-b05e4a302cfb@spud>
-Message-ID: <56ab50d7c542356b7e377023b84a6018@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] dt-bindings: gpio: mpc8xxx: Allow only use
+ 'fsl,qoriq-gpio'
+To: Frank Li <Frank.Li@nxp.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "open list:GPIO SUBSYSTEM"
+ <linux-gpio@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240614213839.2532061-1-Frank.Li@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240614213839.2532061-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2024-06-11 18:17, Conor Dooley wrote:
-> On Tue, Jun 11, 2024 at 09:35:53PM +0530, Kaustabh Chakraborty wrote:
->> Add compatible for LIS2DS12 accelerometer by STMicroelectronics.
+On 14/06/2024 23:38, Frank Li wrote:
+> Allow only use compatible string 'fsl,qoriq-gpio' in dts to fix below
+> warning:
 > 
-> I can see that! Your commit message should mention why this device
-> is not compatible with existing variants.
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dtb: gpio@2300000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['fsl,qoriq-gpio'] is too short
+> 	'fsl,qoriq-gpio' is not one of ['fsl,mpc5121-gpio', 'fsl,mpc5125-gpio', 'fsl,mpc8349-gpio', 'fsl,mpc8572-gpio', 'fsl,mpc8610-gpio', 'fsl,pq3-gpio']
+> 	'fsl,qoriq-gpio' is not one of ['fsl,ls1021a-gpio', 'fsl,ls1028a-gpio', 'fsl,ls1043a-gpio', 'fsl,ls1088a-gpio', 'fsl,ls2080a-gpio']
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+> index eb046a48a3f59..ef72f569c8387 100644
+> --- a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+> @@ -19,6 +19,7 @@ properties:
+>            - fsl,mpc8572-gpio
+>            - fsl,mpc8610-gpio
+>            - fsl,pq3-gpio
+> +          - fsl,qoriq-gpio
 
-Sure, is adding the WhoAmI value enough? Or do I also have to
-explain the different registers and sensor settings.
+No, this does not look like correct fix. You rather miss specific
+compatibles.
 
-> 
-> Thanks,
-> Conor.
-> 
->> 
->> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> ---
->>  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
->> index fff7e3d83a02..71c1ee33a393 100644
->> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
->> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
->> @@ -26,6 +26,7 @@ properties:
->>            - st,lis2dw12
->>            - st,lis2hh12
->>            - st,lis2dh12-accel
->> +          - st,lis2ds12
->>            - st,lis302dl
->>            - st,lis331dl-accel
->>            - st,lis331dlh-accel
->> -- 
->> 2.45.1
->> 
->>
+Best regards,
+Krzysztof
+
 
