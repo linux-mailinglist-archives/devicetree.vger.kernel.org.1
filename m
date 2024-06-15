@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-75998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C125490969F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:46:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD2F49096AC
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 10:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48A55B21E3F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 07:46:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E8771F234FD
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 08:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E998E179AA;
-	Sat, 15 Jun 2024 07:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473A2171B0;
+	Sat, 15 Jun 2024 08:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="kyosWaoH"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="hS2AiECz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A462918637;
-	Sat, 15 Jun 2024 07:46:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CAC18037
+	for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 08:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718437573; cv=none; b=PuuyRr5/9fefShLjXmS+4wta5k8GuQiaoJs6i5SiQkC1jdr2DQ9vzTnH49hqYOCAr8IHz5dJITWYst8HckMJ3aE8bFsUuGSqybCgf+qGin2I5FnrknHm9sevULcdJip7sXi2Tciqdnh8IBqLmfiAGlSuK9fNlbPSDXL8oNisRx0=
+	t=1718438553; cv=none; b=Opt3XvF8jJzyjkYrHtfGgsg1FzXw7qfSxFiEktHiosaOsKcxkS6aFFNEG0jrzX8T8IYw8wCW/JR3Wg+vXngemN61fErBQg0X6kvrUI3WmFo1Op58YbPdvlxqPSLW85xQxhiooAXbZAXceu3P+0gbtKVQ3urBOMOhTMB0yrIFyKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718437573; c=relaxed/simple;
-	bh=bjAnfxAKraU6w0krIFxQG5nUe9bH28xeF7hl20BTRVc=;
+	s=arc-20240116; t=1718438553; c=relaxed/simple;
+	bh=x2pxlxEiUhAarspns6CWBqh3UBaSsxStNYgipW6PNok=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NuVQqfkovQ5t24kIZgLNIYtyZId7m+h4OI3dHL+onqAJkUlwd7lUAft58cceNor+Rwq9X8N7ur/JaP9nvS+oCfqZOx+vF+f/i1TObMqUUrYCdCFK519SpvlhJuNdB5ri2OvXGfhUGW4WW/vEwGCKEyIG9d6aPCjznqWMGjGmfg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=kyosWaoH; arc=none smtp.client-ip=123.58.177.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=T8MvILU/zS1nPJ1XcHW3D7JxjadIe90AUZ2xnriJHrFiYgEx5kkM4HG8lw4I3bM++bS6ndJT3r9jYMUZbb2LiKmJsnibKNhKR8MwgdzFulx7YVTYzrelZTgKVj9YAxz+iwqI55VJC/IfQCynV43glwPWbh90ouKPVwbGUAMg9I0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=hS2AiECz; arc=none smtp.client-ip=123.58.177.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=vAMzuaqK+J9poADICBuElUkeKnUjf36cUnhsxL765ds=;
-	b=kyosWaoHuFkBOF1dUn086EvuBAQfawLL5V/111L32c7VvMT+KVsG0GG6F0Plk3
-	oP1xvUIR4kTgSGOC24DAxSZP2s1gYmK4RH4iZLOvTWuZlhM+95+VDJobAVllw9h7
-	LujSs9Hw8xD9yTyZtzJF3p4297Jc7j5zg/qe9IgQx6xoU=
+	Content-Type; bh=wz/HDpQ1Wcm2r9gVMmqQ23mmKsaL2wCwcHzLe2aqIRI=;
+	b=hS2AiECzTKSuAk50RcYDOKyg6ZCSTcCIl5ikYG3LRjPYleEeyFaPPobioQjpib
+	VtxouwX1y8hiQk0NXyhq9XCZObGl24euzyi2kTTiXhJqw31j6XXjx/3qvjCgYkmQ
+	5ib1gU8mQvDbkZ3IFFyOVNLdd5L6pyxiOEMgPlUdJOfRk=
 Received: from dragon (unknown [114.216.76.201])
-	by smtp1 (Coremail) with SMTP id ClUQrABHr_uORm1m9cLxBw--.33886S3;
-	Sat, 15 Jun 2024 15:45:19 +0800 (CST)
-Date: Sat, 15 Jun 2024 15:45:18 +0800
+	by smtp2 (Coremail) with SMTP id C1UQrAD334xrSm1mgdS0CA--.18715S3;
+	Sat, 15 Jun 2024 16:01:48 +0800 (CST)
+Date: Sat, 15 Jun 2024 16:01:46 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] ARM: dts: imx: align panel timings node name with
- dtschema
-Message-ID: <Zm1GjqbtPfU6DhMr@dragon>
-References: <20240509104838.216773-1-krzysztof.kozlowski@linaro.org>
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, kernel@dh-electronics.com
+Subject: Re: [PATCH] arm64: dts: imx8mp: Fix TC9595 input clock on DH i.MX8M
+ Plus DHCOM SoM
+Message-ID: <Zm1KambxKo9QquZW@dragon>
+References: <20240513020454.127584-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,23 +62,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240509104838.216773-1-krzysztof.kozlowski@linaro.org>
-X-CM-TRANSID:ClUQrABHr_uORm1m9cLxBw--.33886S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUswIDUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw-+ZVnxc0gsowAAsH
+In-Reply-To: <20240513020454.127584-1-marex@denx.de>
+X-CM-TRANSID:C1UQrAD334xrSm1mgdS0CA--.18715S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrAr1UXr48Aw4UWr4rXr43Jrb_yoWxWwb_Xa
+	n3AF12kr95Gw18KwnIyF4Yqr4kC3sxCry5J397trs3Gan7KF98Z34Fqr1Svr1jq3y3Kr1D
+	WFn7Wa18JrZxZjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8P73PUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw-+ZVnxc0gsowABsG
 
-On Thu, May 09, 2024 at 12:48:34PM +0200, Krzysztof Kozlowski wrote:
-> DT schema expects panel timings node to follow certain pattern,
-> dtbs_check warnings:
+On Mon, May 13, 2024 at 04:04:39AM +0200, Marek Vasut wrote:
+> The IMX8MP_CLK_CLKOUT2 supplies the TC9595 bridge with 13 MHz reference
+> clock. The IMX8MP_CLK_CLKOUT2 is supplied from IMX8MP_AUDIO_PLL2_OUT.
+> The IMX8MP_CLK_CLKOUT2 operates only as a power-of-two divider, and the
+> current 156 MHz is not power-of-two divisible to achieve 13 MHz.
 > 
->   imx6dl-gw54xx.dtb: display-timings: 'hsd100pxn1' does not match any of the regexes: '^timing', 'pinctrl-[0-9]+'
+> To achieve 13 MHz output from IMX8MP_CLK_CLKOUT2, set IMX8MP_AUDIO_PLL2_OUT
+> to 208 MHz, because 208 MHz / 16 = 13 MHz.
 > 
-> Linux drivers do not care about node name, so this should not have
-> effect on Linux.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: 20d0b83e712b ("arm64: dts: imx8mp: Add TC9595 bridge on DH electronics i.MX8M Plus DHCOM")
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Applied all, thanks!
+Applied, thanks!
 
 
