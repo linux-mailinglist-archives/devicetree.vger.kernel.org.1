@@ -1,202 +1,333 @@
-Return-Path: <devicetree+bounces-75994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1299909656
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 08:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0B090968E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:34:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0ABF2B220CD
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 06:38:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5921B22D0A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 07:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C695914F70;
-	Sat, 15 Jun 2024 06:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F3E016415;
+	Sat, 15 Jun 2024 07:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZqRx9WEW"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ItY4KuKs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F1A3D60;
-	Sat, 15 Jun 2024 06:38:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C042A13FEE;
+	Sat, 15 Jun 2024 07:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718433489; cv=none; b=TIm32EBYSwS4i7xNjk7zcUuB4csIIXOL2vPoOtR5ILmqEDrUAjnNA0n3JgneaTf0OIGUMVLyGszkjXyQqictNrTeYl+Mm/vLwjXZnIrdEwfq2cIXW1gtL46h7ELSYVCvAgVs6na7MH3lqhJ+J8PpI3httV4gPvHDgbM3YhsuxrU=
+	t=1718436891; cv=none; b=m6pOxBf+BFhOoA0qOaUejDkxq3xjEX0U1LQijvyZmGj6QOxa7INrEhvUXOLtdzEoFSnGQ4JGMauiRXFueQdyC2+5K3V7deMn45YllajpWDkVccHRd8ieSJYlt3eht4XEM1MAwjxICvTq2WHxFca5sD6oS9EOTCH/2S5/Wn6XHhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718433489; c=relaxed/simple;
-	bh=3KCfEoLSbRk49SE6hTMUSazt4vE30jZwifvmCko0MxI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=J+HkJrq66N69ray4HfiFjLl1eJtCjoNJtPwN3JOZ7SP+LNH6RBI6OqCLY+Ink1JZHffHoKDStDSqDK/rIUyAm+ixGx3P0lxE/llgdAOHnhTRAU5BvjmC+OG+EXvfaXPfNavOiUPh/QCO3H+xbqsxK+/OMGuDDyjHOqA638Q4ZIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZqRx9WEW; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240615063802epoutp03937665879767c7bb38a494fd9922b629~ZGiW7zCER1672516725epoutp03U;
-	Sat, 15 Jun 2024 06:38:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240615063802epoutp03937665879767c7bb38a494fd9922b629~ZGiW7zCER1672516725epoutp03U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1718433482;
-	bh=vIwSYtTFXPS3sO38FNNQ6oJ71Y0bLvlrMHrlSuad46E=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=ZqRx9WEWTrFB0xPY+AKKfrl5bDsclQ3TWzUHUdAxvTY441omquggL+KXasoOMm0vb
-	 TT+Pz6KIgcBpV+kxr0393uI0VDMBX9ZwbarTNJXaWh2vxCh9xsvWvGFQaMHx8xlyGI
-	 iz4oghNbkk5GDaB2b8OoCpIX7Wn+XVPM7Cal+B2Q=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-	20240615063801epcas5p14a1910659716b444f56195a7b2ec983b~ZGiWWyQ_Y0633306333epcas5p1F;
-	Sat, 15 Jun 2024 06:38:01 +0000 (GMT)
-Received: from epcpadp4 (unknown [182.195.40.18]) by epsnrtp4.localdomain
-	(Postfix) with ESMTP id 4W1RKj3gpKz4x9Px; Sat, 15 Jun 2024 06:38:01 +0000
-	(GMT)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240614142920epcas5p15f5887136072ebf6c2e23275dd872861~Y5Uk66YwW0344703447epcas5p15;
-	Fri, 14 Jun 2024 14:29:20 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240614142920epsmtrp2e40951f54cedb283a63bd26a75890a5d~Y5Uk39wd62550925509epsmtrp2Y;
-	Fri, 14 Jun 2024 14:29:20 +0000 (GMT)
-X-AuditID: b6c32a2a-73fff70000004a71-de-666c53c04e95
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	FD.07.19057.0C35C666; Fri, 14 Jun 2024 23:29:20 +0900 (KST)
-Received: from INBRO002756 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240614142913epsmtip17b1c18bda36c53de5d30099c1e4afd13~Y5UeC7Xu-3016230162epsmtip1U;
-	Fri, 14 Jun 2024 14:29:13 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Daniel
- Lezcano'" <daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
-	"'Lukasz Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Guillaume La Roque'"
-	<glaroque@baylibre.com>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
-	"'Vasily Khoruzhick'" <anarsoul@gmail.com>, "'Chen-Yu Tsai'"
-	<wens@csie.org>, "'Jernej Skrabec'" <jernej.skrabec@gmail.com>, "'Samuel
- Holland'" <samuel@sholland.org>, "'Shawn Guo'" <shawnguo@kernel.org>,
-	"'Sascha Hauer'" <s.hauer@pengutronix.de>, "'Pengutronix	Kernel Team'"
-	<kernel@pengutronix.de>, "'Fabio Estevam'" <festevam@gmail.com>, "'Anson
- Huang'" <Anson.Huang@nxp.com>, "'Thierry Reding'"
-	<thierry.reding@gmail.com>, "'Jonathan Hunter'" <jonathanh@nvidia.com>,
-	"'Dmitry	Baryshkov'" <dmitry.baryshkov@linaro.org>, "'Amit Kucheria'"
-	<amitk@kernel.org>, =?utf-8?Q?'Niklas_S=C3=B6derlund'?=
-	<niklas.soderlund@ragnatech.se>, "'Heiko	Stuebner'" <heiko@sntech.de>,
-	"'Biju Das'" <biju.das.jz@bp.renesas.com>, "'Orson	Zhai'"
-	<orsonzhai@gmail.com>, "'Baolin Wang'" <baolin.wang@linux.alibaba.com>,
-	"'Chunyan Zhang'" <zhang.lyra@gmail.com>, "'Alexandre Torgue'"
-	<alexandre.torgue@foss.st.com>, "'Pascal Paillet'" <p.paillet@foss.st.com>,
-	"'Keerthy'" <j-keerthy@ti.com>, "'Broadcom internal kernel review list'"
-	<bcm-kernel-feedback-list@broadcom.com>, "'Florian Fainelli'"
-	<florian.fainelli@broadcom.com>, "'Scott Branden'" <sbranden@broadcom.com>,
-	"'zhanghongchen'" <zhanghongchen@loongson.cn>, "'Matthias Brugger'"
-	<matthias.bgg@gmail.com>, "'AngeloGioacchino Del Regno'"
-	<angelogioacchino.delregno@collabora.com>, "'Bjorn Andersson'"
-	<andersson@kernel.org>, "'Geert Uytterhoeven'" <geert+renesas@glider.be>
-Cc: <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <imx@lists.linux.dev>,
-	<linux-tegra@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-renesas-soc@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, "'Florian Fainelli'"
-	<f.fainelli@gmail.com>, <linux-rpi-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <cpgs@samsung.com>
-In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-1-30b25a6ae24e@linaro.org>
-Subject: RE: [PATCH 01/22] dt-bindings: thermal: samsung,exynos: specify
- cells
-Date: Fri, 14 Jun 2024 19:59:11 +0530
-Message-ID: <1891546521.01718433481489.JavaMail.epsvc@epcpadp4>
+	s=arc-20240116; t=1718436891; c=relaxed/simple;
+	bh=traNFPsD0OSWdhWhNH+YM/+QHoruzMtRAGom3oFUD3Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dCVdbuApapIVea8bLeXv5/dVbSDtgvS1CeCZG0lPd5KLy1A8EOWbej8P1M8dJqOzY7hD0u6r1H7v7Kgg3+PdTQ27BMZZ9Nfz3izzM2pvZQVR4Nw3ekWnhA/dDSdcjvlBAe4tLzbpRoqR+q8YVTey01K/M9Pi6gAEDeBTHseo8EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ItY4KuKs; arc=none smtp.client-ip=123.58.177.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Qf3RN1WnE/NE5Lv+4iMkt0dPuEaZVm2V5AuMT5u6lrU=;
+	b=ItY4KuKs/IbXYaZavq516eIkeIsI5rRIXzbm4oZqdudx8s/6oeRUwJlFY57aM1
+	Q2JXnLyGiEu99icyCiyjmCgAjegGc/Z/7AKTuTe2g1hCOJW90JgzvOHxE0ZoDn5x
+	0WwE/YxX0h1wnQXCZCPjF40tqHCW18TU5vfsq+Qh6tuVM=
+Received: from dragon (unknown [114.216.76.201])
+	by smtp1 (Coremail) with SMTP id ClUQrAD3f3XwQ21mf6HxBw--.62088S3;
+	Sat, 15 Jun 2024 15:34:11 +0800 (CST)
+Date: Sat, 15 Jun 2024 15:34:08 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx93-11x11-evk: reoder lpi2c2 and lpi2c3
+ label
+Message-ID: <Zm1D8CsF/ggZtQzs@dragon>
+References: <20240509015709.3668405-1-joy.zou@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGhCdcVAXQc0tvKk5x9QOKQ/J0WewGh/L0BAiWHCW6yHH4lsA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUxTdxTG97+9vbfQ1ZSXyQUFTaPZgJXBNtlxGLLgy+6mEYxzyUwUGriC
-	jJbaikPjMuhaMmA4wAn2dhRQxgoUcDBoQd5Sist0QMTZzTgQkAJdE/BtaN2gA7otfPudc57n
-	OefD4XF89UQQ77jsJKOQSTJEhDfe3i8KEfcdzDgWWdPnAy5HGYL+ymzQXJtG0P7FDhipo8Ck
-	TQZ39zUEjUUDOOjNCxgYu4cwcFhCQf84GCqtQ1woGXYR8HzOSsLE7Xhoah/jQIWuFEH1+QoC
-	3JNOLmjHNARcN6kwmKlsQqBmL+FQf6EDBwc7RkC3s42EKh0fWu7bltN6B0m41fkNAbc+v4ng
-	cZEVQZtjDoNH424OlNy9QsLF4R4MCmxTXPi6p5OA/CcsAdUqNQkq9RvwY9k5LpQ/0CHos5/H
-	wd1lJmFq4hwBi6YWHGYm8wmYa5hCMPtDALg69Ti4LMMYfDfeScKCzcR55y3aqDciev43DUnX
-	zepImr03SNDm0RpEX5ls4NL2r9pIumRQTHewoyR9ucuB0S31+QT9u62LoDsmttOtNZ/Rs61a
-	ROeqLmEJQYe9d6QwGcdPMYrXYpO80yomj8ivCrK1PY2cHKTmFyAvHiV8kypW9RMr7Cu8iqie
-	waOe/gbq1++LSQ/7UXVLM8vsvayZRlRtccmqgRCKKfPlPGJl4C80rqOeOn9eLTjCP3Cqdc7A
-	9VgmEPW3NhdfsXgJ91P6R2pshf1WuHBqtY8Lt1JLzabVfQLhdupGo/Zf9qF+0no0HGE4Zb9j
-	/59rq50cz32bKZe9dnkZb/mMOCq3GfNIAijHgJUsRn7smiR2TRK7JoldY6lCeD0KZORKaapU
-	GSV/XcZ8EqGUSJVZstSI5ExpC1p94bAwM+qqfxBhQRgPWRDF44j8BWx1+jFfQYrk9BlGkZmo
-	yMpglBa0gYeLAgQLzqIUX2Gq5CTzMcPIGcV/U4znFZSDiQsTbvzlGnCM2y9aXnSx3dh6d7D6
-	thR921tqijm4N6r29FhDsnSbIeTILxttWXuHN/Gt9HO+7NShkS7/P63vvvrpfLugPjXOp9v8
-	5QvwbGuVMyx8PPSjs+u8AqufGD7Aoj8M7Y8/Ec8e2FnObrHmtRXMzHTwRfO2QEfMdHJ4+qH7
-	0YbBhUneotEwlLfNELm060xp2tMmjbJVoyPfbiu7uSt9T8zRVyLxu2HiskJL9Nl7vUEJUnq9
-	vfA6P1E8nXnBbizdnb14J5jYJHsWm4UnvfRQRJa35ry/f+dS/3ujMXHNcjIEP6yPzdVAxImR
-	Lfucs/LNOvW+AxUPX87anZS4MUOEK9MkUWEchVLyD7bfoqExBAAA
-X-CMS-MailID: 20240614142920epcas5p15f5887136072ebf6c2e23275dd872861
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-X-CPGSPASS: Y
-X-Hop-Count: 3
-X-CMS-RootMailID: 20240614094638epcas5p115d52130f45e130652b6f1d946358d19
-References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
-	<CGME20240614094638epcas5p115d52130f45e130652b6f1d946358d19@epcas5p1.samsung.com>
-	<20240614-dt-bindings-thermal-allof-v1-1-30b25a6ae24e@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240509015709.3668405-1-joy.zou@nxp.com>
+X-CM-TRANSID:ClUQrAD3f3XwQ21mf6HxBw--.62088S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW3Gw4UWw4kAFyfKF4rGw4DJwb_yoWxGryrpa
+	9xZrsrCrs3AFyfJw45Ga1ak3Z8WrnYkasxuwn5ZFWFyrWUt3ZrJrnFkr4rA3WrJwn7Zw4Y
+	vFWI9ryxKFnFg3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j5739UUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDhP+ZVszYrcxsQAAs7
 
-Hi Krzysztof,
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Friday, June 14, 2024 3:16 PM
-> To: Daniel Lezcano <daniel.lezcano@linaro.org
-.stormreply.com;
-> Subject: [PATCH 01/22] dt-bindings: thermal: samsung,exynos: specify cell=
-s
->=20
-> All Samsung Exynos SoCs Thermal Management Units have only one sensor, so
-> make '#thermal-sensor-cells' fixed at 0.
->=20
-This is not entirely true, there are SoCs which have multiple temp sensors.
-It is true that currently only one sensor support is added though.
-
-So we can leave this as is or you suggest to make it to support only one se=
-nsor
-(to match the current DT support), and later (in near future) change it aga=
-in to
-match what HW actually support?
-
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Thu, May 09, 2024 at 09:57:08AM +0800, Joy Zou wrote:
+> Reorder lpi2c2 and lpi2c3 label in alphabetical order.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 > ---
->  Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml | =
-3
-> ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/thermal/samsung,exynos-
-> thermal.yaml b/Documentation/devicetree/bindings/thermal/samsung,exynos-
-> thermal.yaml
-> index 1344df708e2d..29a08b0729ee 100644
-> --- a/Documentation/devicetree/bindings/thermal/samsung,exynos-
-> thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.y
-> +++ aml
-> @@ -61,7 +61,8 @@ properties:
->            TRIMINFO at 0x10068000 contains data for TMU channel 2
->      minItems: 1
->=20
-> -  '#thermal-sensor-cells': true
-> +  '#thermal-sensor-cells':
-> +    const: 0
->=20
->    vtmu-supply:
->      description: The regulator node supplying voltage to TMU.
->=20
-> --
-> 2.43.0
+>  .../boot/dts/freescale/imx93-11x11-evk.dts    | 217 +++++++++---------
+>  1 file changed, 105 insertions(+), 112 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> index d400d85f42a9..6be1eb920c02 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> @@ -105,6 +105,104 @@ &mu2 {
+>  	status = "okay";
+>  };
+>  
+> +&lpi2c2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&pinctrl_lpi2c2>;
+> +	pinctrl-1 = <&pinctrl_lpi2c2>;
+> +	status = "okay";
+> +
+> +	pcal6524: gpio@22 {
+> +		compatible = "nxp,pcal6524";
+> +		reg = <0x22>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pcal6524>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	pmic@25 {
+> +		compatible = "nxp,pca9451a";
+> +		reg = <0x25>;
+> +		interrupt-parent = <&pcal6524>;
+> +		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		regulators {
+> +			buck1: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <610000>;
+> +				regulator-max-microvolt = <950000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck2: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <670000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck4: BUCK4{
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <1620000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5: BUCK5{
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <1620000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <1060000>;
+> +				regulator-max-microvolt = <1140000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1620000>;
+> +				regulator-max-microvolt = <1980000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <840000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>  &lpi2c3 {
+>  	#address-cells = <1>;
+>  	#size-cells = <0>;
+> @@ -113,6 +211,13 @@ &lpi2c3 {
+>  	pinctrl-0 = <&pinctrl_lpi2c3>;
+>  	status = "okay";
+>  
+> +	pcf2131: rtc@53 {
+> +		compatible = "nxp,pcf2131";
+> +		reg = <0x53>;
+> +		interrupt-parent = <&pcal6524>;
+> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +	};
+> +
+>  	ptn5110: tcpc@50 {
 
+The child devices with @unit-address should be order in the
+unit-address.
 
+Shawn
+
+>  		compatible = "nxp,ptn5110", "tcpci";
+>  		reg = <0x50>;
+> @@ -304,118 +409,6 @@ &wdog3 {
+>  	status = "okay";
+>  };
+>  
+> -&lpi2c2 {
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -	clock-frequency = <400000>;
+> -	pinctrl-names = "default", "sleep";
+> -	pinctrl-0 = <&pinctrl_lpi2c2>;
+> -	pinctrl-1 = <&pinctrl_lpi2c2>;
+> -	status = "okay";
+> -
+> -	pcal6524: gpio@22 {
+> -		compatible = "nxp,pcal6524";
+> -		reg = <0x22>;
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&pinctrl_pcal6524>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -		interrupt-parent = <&gpio3>;
+> -		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+> -	};
+> -
+> -	pmic@25 {
+> -		compatible = "nxp,pca9451a";
+> -		reg = <0x25>;
+> -		interrupt-parent = <&pcal6524>;
+> -		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+> -
+> -		regulators {
+> -			buck1: BUCK1 {
+> -				regulator-name = "BUCK1";
+> -				regulator-min-microvolt = <610000>;
+> -				regulator-max-microvolt = <950000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -				regulator-ramp-delay = <3125>;
+> -			};
+> -
+> -			buck2: BUCK2 {
+> -				regulator-name = "BUCK2";
+> -				regulator-min-microvolt = <600000>;
+> -				regulator-max-microvolt = <670000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -				regulator-ramp-delay = <3125>;
+> -			};
+> -
+> -			buck4: BUCK4{
+> -				regulator-name = "BUCK4";
+> -				regulator-min-microvolt = <1620000>;
+> -				regulator-max-microvolt = <3400000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck5: BUCK5{
+> -				regulator-name = "BUCK5";
+> -				regulator-min-microvolt = <1620000>;
+> -				regulator-max-microvolt = <3400000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			buck6: BUCK6 {
+> -				regulator-name = "BUCK6";
+> -				regulator-min-microvolt = <1060000>;
+> -				regulator-max-microvolt = <1140000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo1: LDO1 {
+> -				regulator-name = "LDO1";
+> -				regulator-min-microvolt = <1620000>;
+> -				regulator-max-microvolt = <1980000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo4: LDO4 {
+> -				regulator-name = "LDO4";
+> -				regulator-min-microvolt = <800000>;
+> -				regulator-max-microvolt = <840000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -
+> -			ldo5: LDO5 {
+> -				regulator-name = "LDO5";
+> -				regulator-min-microvolt = <1800000>;
+> -				regulator-max-microvolt = <3300000>;
+> -				regulator-boot-on;
+> -				regulator-always-on;
+> -			};
+> -		};
+> -	};
+> -};
+> -
+> -&lpi2c3 {
+> -	clock-frequency = <400000>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&pinctrl_lpi2c3>;
+> -	status = "okay";
+> -
+> -	pcf2131: rtc@53 {
+> -		compatible = "nxp,pcf2131";
+> -		reg = <0x53>;
+> -		interrupt-parent = <&pcal6524>;
+> -		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> -	};
+> -};
+> -
+>  &iomuxc {
+>  	pinctrl_eqos: eqosgrp {
+>  		fsl,pins = <
+> -- 
+> 2.37.1
+> 
 
 
