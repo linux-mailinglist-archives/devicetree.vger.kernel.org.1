@@ -1,115 +1,189 @@
-Return-Path: <devicetree+bounces-76063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37D7909962
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 19:49:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B57E1909977
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 19:55:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83228283360
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 17:49:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6327228330C
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 17:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85C65338D;
-	Sat, 15 Jun 2024 17:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670514F5FB;
+	Sat, 15 Jun 2024 17:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gQrcO3lP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GqxzWzhh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC6D26AE7
-	for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 17:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DD04AECE;
+	Sat, 15 Jun 2024 17:55:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718473751; cv=none; b=LwTVIcn3CwFA5GPSt4e+ZB/F/pRNhoww677yl/chAE21WXX2kIiHEBK9cxXnxtBie+8ZWD46s6bv6/LAbpWUBhvkAhEcJYwGlPEfLHWktJV/cpGvLqASWE9GDAsYtLVdk4W+kXy9dwoJ5kQgUpOzT/89wXHVuizR7SBE5o84zjM=
+	t=1718474124; cv=none; b=qWEwgd+JwTe4TIzA/K95KW0F5p5FYF7KsX6IZeWC1I2nH05cMi1mA4j7T6Fz/rHRrmcWq/JyYBNcfbJGhXyTgmmbJaLVmd9cgTRIvr1bzZZPEgUnzEvPdJSpf5OKHDshjUZbJL3ys0D207pkDcDk8xfNhe7lLttIxfO2DWjbaiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718473751; c=relaxed/simple;
-	bh=oGBKPT1M0XiRJNpVabQalPfRMu14bYm1uul2tPOLwKc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SAWZjPYsUG97RSK1QYaTTGsbdMS4FB/2Yykt0DBQmWAVpQaTEmBLmbsUbU62Yxsy1BC/CG+rlIhIe00GvRwR8BVUch0S0l8QHUR+AmxZZlfu6MtYVKWHbOzweCLvugaFCKFi7798q+4notBDl8976HGMKaLN+/sYhQbDR+Vfymg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gQrcO3lP; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57cd26347d3so379969a12.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 10:49:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718473747; x=1719078547; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sQTdAZk+xkTaWcpSjHpauNVsk4RuoZYN9xg1Bzump2k=;
-        b=gQrcO3lPZ1BSKptChDDOMB4LLap3KNy5uchXwU6iJx7aiuThMLthLDA1oJAcn+uTEd
-         XBn26wARdb5U6cnuXTiq28zRGDWpW9B4PAXQOLdyIoWvidy59C0H82RFWk9fT94kJ4nf
-         4DGB4/qE8LJZn0Re+Z8+hxIbJcX1z4q7Idfs/pb9N32RhbBIBdoqZ5Cb9ibo2gqVQioX
-         HPYPkHXIpoRJyUroB4DwaOhNJb7uyGFqiqiQ5E911dte5aIUsiYpTWNDGUFT7SwwFEvO
-         BcARFRcVUQVH+LiWGv8rq01QLYkZR/6OFh9uYieEaLcq5jKnLajrbtO8D4UXUq7dxHIw
-         iBvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718473747; x=1719078547;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sQTdAZk+xkTaWcpSjHpauNVsk4RuoZYN9xg1Bzump2k=;
-        b=H7AtGQ/3bae1fReRvohRgZXs9A8nBo4LGpyleYPUOl158E39+QrEa+SvEmI3nVKHbF
-         7CzGzK3UHHhqE5X9JDWEUukCKtAfVwP6VDR3caYDX0HMwRzacd8wfAC7SYSgGLoUfAT2
-         C6Vb8YLnM3fj7oqqEA7lMcsNftdo3Y8yUVox4cFVqLsEXOLvC2++XaRW3abwjxEALPct
-         Z9yHq3FfJXDo8Nb9F33kdCgnz0pvp7c5Xa6NzRt2C7VTAd4uCmnt5SOJJ4oksSh/Cukh
-         Ri9Ow1HMDwnkXhA3qJooqC7IdaS8+/E6vlQ6ca+DxxwyUUCwSJSZYB9rfRBsflZgwBLX
-         UIhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbWXlnCyZ2dYkJrW4f062GFeGM8OhzOWNMcvubQq0OYHM/UWvTU3Pj1rkbJZxKMRijP6HSuR6Gg281SFnmzR8wtxoqf1RnjqRspw==
-X-Gm-Message-State: AOJu0Yzj7qj1DSUuo0cYbOVkfAGha+QorZ4b/raw4zxIqRoy5YM4YV+N
-	KkmtNYx5wMxOscrJhKrcXy2weO1sPj/BXh9mugOtIDPk7lCLM0zUmsuXe+p15TE=
-X-Google-Smtp-Source: AGHT+IHI9wdR5yttuPe5CPAFwyWHcSWXRKDzT5MKecRnY8k+A4gMwRIgI941SC35XAKMmBHxxAe/6A==
-X-Received: by 2002:a50:cd91:0:b0:57c:8c45:74ff with SMTP id 4fb4d7f45d1cf-57cbd8e8182mr2812346a12.41.1718473746710;
-        Sat, 15 Jun 2024 10:49:06 -0700 (PDT)
-Received: from krzk-bin.. ([78.10.207.147])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72e992dsm3942946a12.48.2024.06.15.10.49.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jun 2024 10:49:06 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Tony Lindgren <tony@atomide.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH] ARM: dts: omap am5729-beagleboneai: drop unneeded ti,enable-id-detection
-Date: Sat, 15 Jun 2024 19:49:04 +0200
-Message-ID: <20240615174904.39012-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1718474124; c=relaxed/simple;
+	bh=YZDyQV5KHWh5QtJ2JUl+NV+uqA9/jKP/Y9UoVxDbkxU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fPmNr4iofCf5r9r4xmDaOxChOPJljptMMBxmJKIFk5XEma75JVnfeSsTFLoBr0OE4k+NGY6jtsh9DYtrLHUvn2cK/ebvdHTuC95I8iYg9QL+50eOZmj/vX7yYyBJwa7dj3UDeIl548+K+zsdaP05SoMdJkH652sRhcYnn8A8MLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GqxzWzhh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0242C116B1;
+	Sat, 15 Jun 2024 17:55:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718474124;
+	bh=YZDyQV5KHWh5QtJ2JUl+NV+uqA9/jKP/Y9UoVxDbkxU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=GqxzWzhhunrVgA1lBhPJKkDRUXevtpMtbS0Hu9iBpJPR+NL0bsrVkKUJxNkBaJsMU
+	 AgcZ3zk4kqwd6IuqjYdpLg0w8hw+hqWeFwLDJAoVSrZM/SMfsyC6zIqRJjRavgsT8u
+	 +3pVzJFFO2CmsSfYEiCIFKVD4ossdvkeP95WiS/XO7R6khWqHoOLO1IVJTxaeWv0IM
+	 QAHsn18E6Rizi0eUqC/3xHysrovX8KPTDk1nqeTO0Kw9rJ8VSXd/Fx9vxEIDqBX+S+
+	 aPHDhNPR/YYt2WEacAmRhxnKpCVdhL3aR+swtAATEBiCP8wboAsZnCtGN+41yO9vQl
+	 p5LV2fpXTAxAg==
+Date: Sat, 15 Jun 2024 18:55:16 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Hennerich
+ <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add AD4695 and similar ADCs
+Message-ID: <20240615185516.61346425@jic23-huawei>
+In-Reply-To: <2d9a1405-4b8d-401b-99c4-434ac4b57f6e@baylibre.com>
+References: <20240612-iio-adc-ad4695-v1-0-6a4ed251fc86@baylibre.com>
+	<20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
+	<20240615134106.40e55e16@jic23-huawei>
+	<2d9a1405-4b8d-401b-99c4-434ac4b57f6e@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-There is a ti,enable-id-detection property in the Extcon Palmas
-(extcon-palmas), but not in the Extcon USB GPIO binding and driver.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202406152004.F2fNnorG-lkp@intel.com/
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts | 1 -
- 1 file changed, 1 deletion(-)
+> >> +
+> >> +      adi,pin-pairing:
+> >> +        description: |
+> >> +          The input pin pairing for the negative input. This can be:
+> >> +          - REFGND, normally 0V (single-ended)
+> >> +          - COM, normally V_REF/2, see com-supply (pseudo-differential)
+> >> +          - For even numbered pins, the next odd numbered pin (differential)
+> >> +        $ref: /schemas/types.yaml#/definitions/string
+> >> +        enum: [refgnd, com, next]  
+> > 
+> > Next is full on differential, just provide both channels via
+> > diff-channels. You can constrain the particular combinations in the binding.
+> > 
+> > Refcnd is normal single ended.  Probably want to use the new single-channel
+> > property for that as we are mixing differential and single ended channels
+> > so reg is pretty much just an index.
+> > 
+> > Hmm. For comm we haven't had done a recent binding for a chip with the option
+> > of pseudo differential that is per channel, they've been whole device only.
+> > That feels like it will be common enough we need to support it cleanly
+> > with a 'general' scheme.  
+> 
+> I think we have. :-)
+> 
+> https://lore.kernel.org/linux-iio/adc6cba9-2e79-475f-9c24-039fe9d3345d@baylibre.com/T/#mcbc1ce3a2541db502bf7870b7ea8574626a46312
+> 
 
-diff --git a/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts b/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts
-index eb1ec85aba28..e6a18954e449 100644
---- a/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts
-+++ b/arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts
-@@ -196,7 +196,6 @@ brcmf_pwrseq: brcmf_pwrseq {
- 
- 	extcon_usb1: extcon_usb1 {
- 		compatible = "linux,extcon-usb-gpio";
--		ti,enable-id-detection;
- 		id-gpios = <&gpio3 13 GPIO_ACTIVE_HIGH>;
- 	};
- };
--- 
-2.43.0
+My goldfish like memory strikes again. Had completely forgotten that :)
+
+> > 
+> > Problem is I know someone will have a chip with 2 vincom pins and selecting
+> > between them, so we can't just have pseudo-differential as a boolean and adc.yaml
+> > 
+> > There are horrible solutions like a magic channel number that changes the
+> > meaning of diff-channels but that's ugly.
+> > Maybe pseudo-differential for now and we have to later we add
+> > pseudo-differential-comm  = <0> etc?
+> >   
+> 
+> I was trying to keep things simple with 1 property instead of 3, but we
+> can drop adi,pin-pairing and use the standard diff-channels, single-channel
+> and common-mode-channel properties.
+Sounds good.
+
+> 
+> >> +examples:
+> >> +  - |
+> >> +    #include <dt-bindings/gpio/gpio.h>
+> >> +
+> >> +    spi {
+> >> +        #address-cells = <1>;
+> >> +        #size-cells = <0>;
+> >> +
+> >> +        adc@0 {
+> >> +            compatible = "adi,ad4695";
+> >> +            reg = <0>;
+> >> +            spi-cpol;
+> >> +            spi-cpha;
+> >> +            spi-max-frequency = <80000000>;
+> >> +            avdd-supply = <&supply_2_5V>;
+> >> +            vdd-supply = <&supply_1_8V>;
+> >> +            vio-supply = <&supply_1_2V>;
+> >> +            ref-supply = <&supply_5V>;
+> >> +            reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+> >> +
+> >> +            #address-cells = <1>;
+> >> +            #size-cells = <0>;
+> >> +  
+> 
+> Using the standard adc.yaml properties, these would now be:
+> 
+> >> +            /* Differential channel between IN0 and IN1. */
+> >> +            channel@0 {
+> >> +                reg = <0>;  
+> 
+>                     diff-channels = <0>, <1>;
+> 
+> >> +                bipolar;
+> >> +            };
+> >> +
+> >> +            /* Single-ended channel between IN2 and REFGND. */
+> >> +            channel@2 {
+> >> +                reg = <2>;  
+> 
+>                     single-channel = <2>;
+> 		    common-mode-channel = <0>;
+
+I wonder if we count ground ad default and so don't necessarily
+specify this? 
+
+I don't really mind either way though.  Maybe just default to 0 works.
+
+
+> 
+> >> +            };
+> >> +
+> >> +            /* Pseudo-differential channel between IN3 and COM. */
+> >> +            channel@f {
+> >> +                reg = <3>;  
+> 
+>                     single-channel = <3>;
+>                     common-mode-channel = <1>;
+> 
+> >> +                bipolar;
+> >> +            };
+> >> +        };
+> >> +    };  
+> >   
+> 
+> And I will add a header file with macros for the common mode
+> channel values.
+
+Great
+
+Jonathan
+
+> 
 
 
