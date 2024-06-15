@@ -1,60 +1,55 @@
-Return-Path: <devicetree+bounces-76001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FAC9096BA
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 10:06:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4410C9096C2
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 10:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B89E01F22FDF
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 08:06:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF014B225FD
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 08:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30BDF17C8D;
-	Sat, 15 Jun 2024 08:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8C21BC2A;
+	Sat, 15 Jun 2024 08:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="EoTs6NzW"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="cSpa9X0I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8532117C6B;
-	Sat, 15 Jun 2024 08:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D332F182B3;
+	Sat, 15 Jun 2024 08:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718438809; cv=none; b=H7l14aQ8yqeTyqs1T9OT22GkbuXQKKgAQNYYP30lnwBXXjuVAphnR1z8428SP6qR01cBpmu3w2X10w+QkMryCZ+IkZwTrXQegMoIXAntvtMlwqq42f4ec0YqDeePWx47aj08fsfRMRpLdMG+tSv8pX3V7GMQTnigTokmcizmecg=
+	t=1718438892; cv=none; b=dXwQb90p/M7QKsNanAMGdnhPOCJbU4sv5zjitFDJTGnr4fdAen4CvAnbtQ258EHLDk7iZtRWJw7EjhWCr0+ZO6XNzGdoH4tiM7devostRF8bKpYqzNn2GyU+/V6ScdxsS6/Y89rR0VOcVYRy9KrW9KKGYQU2Uwi7oZ8SMjlQUqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718438809; c=relaxed/simple;
-	bh=GxAOZy0x9WrDZ/LeK+PwkuiwAQ2MR0JWNopsCLd6u4w=;
+	s=arc-20240116; t=1718438892; c=relaxed/simple;
+	bh=rPgCc9oeqCVfNZ8wHQbb4DAAw3Bq7+5vbSGwXTvp2p8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K1OVuHY3afBpGjrUqaanY1/gofmfF3rBlt8PHxWpYn/CtdBKUVOvgeQSR+dcUVedPlzpnDkDXm4kV18FPXSIutRvMkUDdzf0SczDilVToVfJ0HF4dPqqIxSdU0awP7gI5thMbQb/e04rAUcdF9Mec6S9sRrZkgQe+Z6U/extgXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=EoTs6NzW; arc=none smtp.client-ip=123.58.177.132
+	 Content-Type:Content-Disposition:In-Reply-To; b=gCDeLVDiUjPHgVcwLnToC+NRufherqkmk9lUt6qxOoVPAUOlUQtnWb/beYZVeQy1X65jvMBS/NjCKAEd9rp2Om2g4IM4NwODbldV317DNFw+2wvyUaKL4P6PZ8RDzL6zlrHwmLwUn8xmJj4aR5cTdV5tSbAMsDxrUv31arRcaBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=cSpa9X0I; arc=none smtp.client-ip=123.58.177.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=nBIxbGV2M/V9F3VVH2qGA1ziJ7K7maeJDL9DDy8Cg9E=;
-	b=EoTs6NzW5+SbMEggtvXAVYbG9U9bsMTyrqb4pLuj6K0WRrjBrVOqaiTRqfKKdx
-	y1iWKsIMSw0jdP2uf9z3eNuhA0ijGibqKT4DwWHSMKc5fm4goRzC00PAk9jbgPbO
-	QtE/WEk0MSPapD/L7TiehVBCeEHZSdRfXQnyaFsb4KFtY=
+	Content-Type; bh=/iKjibvMsxezGFlPSNPKpOBNVsf+6rthH3pcb2WX1No=;
+	b=cSpa9X0IMbQKAzcN/yz/8EXPeA/EMwh8Ujy3dqSwaVMna++cJGjIHFOptHf+pT
+	4OwVYNQvrDW4ylikwSuEoMdEBaja2yNLBdrQeet2c8KZV3ppNxuzEidY6I1ew8Dq
+	NjL6q5HtOm1NOl+gl86hUdbqGZ/2nmmKXNjvlyMGhOS/Q=
 Received: from dragon (unknown [114.216.76.201])
-	by smtp2 (Coremail) with SMTP id C1UQrABXH+J0S21m4t60CA--.4800S3;
-	Sat, 15 Jun 2024 16:06:14 +0800 (CST)
-Date: Sat, 15 Jun 2024 16:06:12 +0800
+	by smtp2 (Coremail) with SMTP id C1UQrACHjxDRS21mwOK0CA--.43334S3;
+	Sat, 15 Jun 2024 16:07:46 +0800 (CST)
+Date: Sat, 15 Jun 2024 16:07:45 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, kernel@dh-electronics.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2
- and PDK3
-Message-ID: <Zm1LdFyxYJ1+UIgY@dragon>
-References: <20240514010706.245874-1-marex@denx.de>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH] arm: dts: imx53-qsb-hdmi: Disable panel instead of
+ deleting node
+Message-ID: <Zm1L0fyKupDFDOUX@dragon>
+References: <20240514030718.533169-1-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +58,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240514010706.245874-1-marex@denx.de>
-X-CM-TRANSID:C1UQrABXH+J0S21m4t60CA--.4800S3
+In-Reply-To: <20240514030718.533169-1-victor.liu@nxp.com>
+X-CM-TRANSID:C1UQrACHjxDRS21mwOK0CA--.43334S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIco7DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw-+ZVnxc0gsowACsF
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUswZ2UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBRL+ZVsVCphcKQAAsl
 
-On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
-> Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
-> I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
-> of HDMI DDC mode to permit connection of other I2C devices on those buses.
-> The pinctrl_hdmi node is part of the SoM DTSI already.
+On Tue, May 14, 2024 at 11:07:18AM +0800, Liu Ying wrote:
+> We cannot use /delete-node/ directive to delete a node in a DT
+> overlay.  The node won't be deleted effectively.  Instead, set
+> the node's status property to "disabled" to achieve something
+> similar.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Fixes: eeb403df953f ("ARM: dts: imx53-qsb: add support for the HDMI expander")
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 
 Applied, thanks!
 
