@@ -1,174 +1,443 @@
-Return-Path: <devicetree+bounces-76046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74900909852
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:31:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F08909858
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:41:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13F391F21CAC
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 12:31:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFB12283333
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 12:41:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4671E861;
-	Sat, 15 Jun 2024 12:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29AC21E867;
+	Sat, 15 Jun 2024 12:41:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gjx6HHiN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BYHgRhxn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DBA8D53B;
-	Sat, 15 Jun 2024 12:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E866D10A11;
+	Sat, 15 Jun 2024 12:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718454714; cv=none; b=kbROH5tqWHM+5FEy37/GQETqIWnz9r9hyznGZm2H1AIEsHk5SUZJzZV+XG6s3ugTcXv1yI65CRbC1PRTppPW34aZs4A/uIGoAfpWP8cRjX1xSn9WpN+nswAkN8MFqI8iVVSuF5auE9xwFhRXak9Lrmco0dgPunzeo5VpBFOxyuo=
+	t=1718455276; cv=none; b=Ji8J4MZWikiOUoM6eM8CungVMa5NOE630ehUFJ5R7DO5KBGqwbGV1a7aeg+GOvYf4UX79OA9Unc+hsQQBhCAUf3C5WKQkGexLXbjsf8qp3ynwUcmtIYNVqFfm+aNQzaRgRw08QXpquKQuy0jPzy6+O2LdgCqMRvPdycNPjpr8HA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718454714; c=relaxed/simple;
-	bh=ChOsz5Prpt2kmPetgz63MyP/4cgSlQ4sFxq+D3hI9O0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Uw9H9Ez7djPOjZKx3rlRSCw7cpN/I0sN3qVSuIN4K43e0FBCm7gJ9Kq9X6EGCfSlej3khTF6DB8rA1Rjqg1F5nuUemA+Ch7K09B3jJs2gZAnshxln50MsnfWKi3njdalVYCCMe+S81p4VUISX3UONxxtUbVXp8TDHnI2qgyJGmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gjx6HHiN; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-630640c1e14so37675267b3.1;
-        Sat, 15 Jun 2024 05:31:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718454712; x=1719059512; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0J36wE6b4n7qYMEp0NDKveqjJUdZ2UEb0nYa/HH/nTM=;
-        b=gjx6HHiNgex9ePAPci9eYlGdiKuc+NjuVeWxatKi6LA7gxDQ49AhdijKkzPFhQFrwa
-         nNWm4eDehJc8twULM9TSBwlbBjVxSjqpCrvcuFUdDO80dtOrINc2e4CXV6RTRCJyv5vd
-         wglyYZH6ecSYab3ncZ9YNzbUiqqou4AzM7KfoZoFKs3a7yMX2PczpJwAjMFR6Dsz8b52
-         HeU1kzKUVl6YPy1xERhp3HfqzYaxpy2VHmGoQuAeLBOqEuXH67XI46kBELAWYyUR3yvg
-         icmMeEdxIBEMj4E6EYvuARoHCaxW3rnmq+ERVxAcRaipWPorXpUPNDGVnkAaKGJH3yKT
-         rNuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718454712; x=1719059512;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0J36wE6b4n7qYMEp0NDKveqjJUdZ2UEb0nYa/HH/nTM=;
-        b=Va8kRCE2anvyAPZz0Fq3gmp3u5vjYWGHH1tNzwS15sAdf+3MMtyWJRQC0mzcjZKJlb
-         Ardx41anNS0cLLjjoQUOUQGvuGMKb2uWw1tw+vkBROHHUvkbDYvRIEyRuLFkkdN+uUwp
-         x8x5K8LAz1oXop5Bc8wWlqDgtAjGnFPee9/8gPMuI1fB7jPVtJnCer0YuKkwAXD8IlNX
-         rFBVna27R7dmftgXclh++XiJx6tnmil+7ZHQtbUQaB7WtfO+U14V9eNfbGPcPlhU7UtS
-         3Td9CcioOEKr/w7nFpdK8t6dbYBm9MWGnEjwP3G9yUZq5/P6YlwPZey0bSnjJi1r5Qgz
-         5+WA==
-X-Forwarded-Encrypted: i=1; AJvYcCW9MboJv4fBvqUn4j5WF1zYx2BfEKXdX8lt7jGko/Kd/3jmBaLiPmdbm14Rgo7hZzXHHwjxTOXkqgWkHaX/FelcTBoDo3kUgkBQyFoS19WC14B21P/C/2RUFSgiJOzYMHP+l3roqw==
-X-Gm-Message-State: AOJu0YxUzl+Qb8Nw3jwRXmO4QN08BVXFsA26LpyM9NotYGPcuLYowGqY
-	0uhZFCoq47Fs9thlQKI9QAc/F7PBSj4wwC8qnPowv/DfZPD2W9U5FUKKpKjpx0q/ZpNCARiTtGc
-	Y8i4jCYn1OovkGISSoq+Lo8obj8o=
-X-Google-Smtp-Source: AGHT+IEc9Vgb7cAlh15eM+4S5w50+0KC+qZwBciCyJ4XzMPGsUAxR/DiAHijKkveG5RTC5/yj3a28JH1VolMn34rsrY=
-X-Received: by 2002:a0d:f703:0:b0:61b:9369:ef37 with SMTP id
- 00721157ae682-6322441a7b7mr46690077b3.46.1718454712215; Sat, 15 Jun 2024
- 05:31:52 -0700 (PDT)
+	s=arc-20240116; t=1718455276; c=relaxed/simple;
+	bh=ytTZO/5oUgCiBXsiJTJMB65kjRXhDWV2N1/kQ8qgIwI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oQTRkjjazIcSPqsGcRm5O9Wp86mbIYV/2g18f0Nn5M2HsIWREKGqrr9mYme42iIbcb29NcMIWmUgWyvxcbdmFTiCng7HA0twIXW/UQLMndn5WE6goYLFrbYU4lsIv0SpJ2XpNh9vrn00VnYwp3ADnqwUhWuzWtnLoM0LIAQ/nh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BYHgRhxn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F57DC116B1;
+	Sat, 15 Jun 2024 12:41:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718455275;
+	bh=ytTZO/5oUgCiBXsiJTJMB65kjRXhDWV2N1/kQ8qgIwI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BYHgRhxnRgajieLPyUgZhNScTlYciCDoRzeXcBcNUuHsEvnBDYiY621tnsmRU29iC
+	 eZCjcKI7VklED2SnlMoUqwuLpy0ydSGxww6SWy03jRfn1Yk4v1uCMXJFonQLibaZXb
+	 wSYIFZ4COXsg2C4+Ud84lyx+Tw4anIfaY12l2ES5moHIA60k+ujl4t2yNpdSycmocp
+	 7C1z4DwSKmyrh38n+NupLKsq+PWzMWykpOaTS6gR6cDroK/jNylkbfD8+EfIbnfSa0
+	 B761yhhbKpZUAdgK2JQRsw4qXygC5/vN/qXEmuqTsiS+f7pvYPw0nn/RJuJzXUX2U2
+	 wMBxwXqolJRSg==
+Date: Sat, 15 Jun 2024 13:41:06 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Hennerich
+ <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add AD4695 and similar ADCs
+Message-ID: <20240615134106.40e55e16@jic23-huawei>
+In-Reply-To: <20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
+References: <20240612-iio-adc-ad4695-v1-0-6a4ed251fc86@baylibre.com>
+	<20240612-iio-adc-ad4695-v1-1-6a4ed251fc86@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1716795485.git.zhoubinbin@loongson.cn>
-In-Reply-To: <cover.1716795485.git.zhoubinbin@loongson.cn>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Sat, 15 Jun 2024 20:31:41 +0800
-Message-ID: <CAMpQs4L=JV_tSQN_LgcwzAUjKvQ-vt8zcJO9OaKQha6zCztw6w@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] pwm: Introduce pwm driver for the Loongson family chips
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@loongson.cn>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 27, 2024 at 3:51=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Hi all:
->
-> This patchset introduce a generic PWM framework driver for Loongson famil=
+On Wed, 12 Jun 2024 14:20:40 -0500
+David Lechner <dlechner@baylibre.com> wrote:
+
+> Add device tree bindings for AD4695 and similar ADCs.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 297 +++++++++++++++=
+++++++
+>  MAINTAINERS                                        |   9 +
+>  2 files changed, 306 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
+> new file mode 100644
+> index 000000000000..8ff5bbbbef9f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
+> @@ -0,0 +1,297 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4695.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices Easy Drive Multiplexed SAR Analog to Digital Conve=
+rters
+> +
+> +maintainers:
+> +  - Michael Hennerich <Michael.Hennerich@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
+> +
+> +description: |
+> +  A family of similar multi-channel analog to digital converters with SP=
+I bus.
+> +
+> +  * https://www.analog.com/en/products/ad4695.html
+> +  * https://www.analog.com/en/products/ad4696.html
+> +  * https://www.analog.com/en/products/ad4697.html
+> +  * https://www.analog.com/en/products/ad4698.html
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - adi,ad4695
+> +          - adi,ad4697
+> +      # same chips in WLCSP package with more pins
+> +      - items:
+> +          - const: adi,ad4695-wlcsp
+> +          - const: adi,ad4695
+> +      - items:
+> +          - const: adi,ad4697-wlcsp
+> +          - const: adi,ad4697
+> +      # same chips with higher max sample rate
+> +      - items:
+> +          - const: adi,ad4696
+> +          - const: adi,ad4695
+> +      - items:
+> +          - const: adi,ad4698
+> +          - const: adi,ad4697
+> +      # same chips with higher max sample rate in WLCSP package
+> +      - items:
+> +          - const: adi,ad4696-wlcsp
+> +          - const: adi,ad4696
+> +          - const: adi,ad4695-wlcsp
+> +          - const: adi,ad4695
+> +      - items:
+> +          - const: adi,ad4698-wlcsp
+> +          - const: adi,ad4698
+> +          - const: adi,ad4697-wlcsp
+> +          - const: adi,ad4697
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 80000000
+> +
+> +  spi-cpol: true
+> +  spi-cpha: true
+> +
+> +  spi-rx-bus-width:
+> +    minimum: 1
+> +    maximum: 4
+> +
+> +  avdd-supply:
+> +    description: A 2.7 V to 5.5 V supply that powers the analog circuitr=
 y.
-> Each PWM has one pulse width output signal and one pulse input signal to =
-be measured.
->
-> It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips=
-.
->
-> Thanks.
->
-> -------
-> V4:
-> patch (2/2):
->  - Rebase on pwm/for-next;
->  - Addressed Uwe's review comments, thanks.
->    - Make use of devm_pwmchip_alloc() function;
->    - Add Limitations description;
->    - Add LOONGSON_ prefix for Loongson pwm register defines;
->    - Keep regs written only once;
->    - Rewrite duty/period calculation;
->    - Add dev_err_probe() in .probe();
->    - Put the parameters used by PM into a separate
->      structure(pwm_loongson_suspend_store);
->    - Fix some code style.
->
-> Link to V3:
-> https://lore.kernel.org/linux-pwm/cover.1713164810.git.zhoubinbin@loongso=
-n.cn/
 
-Hi Uwe:
+I'm a cynic.  Do we care about the supported voltages in this binding doc?
+Feels just somewhere we might make a mistake.
 
-Gentle ping.
-I seem to have addressed your review comments for the v3 patchset,
-please review it when you have time.
+> +
+> +  ldo-in-supply:
+> +    description: A 2.4 V to 5.5 V supply connected to the internal LDO i=
+nput.
+> +
+> +  vdd-supply:
+> +    description: A 1.8V supply that powers the core circuitry.
+> +
+> +  vio-supply:
+> +    description: A 1.2V to 1.8V supply for the digital inputs and output=
+s.
+> +
+> +  ref-supply:
+> +    description: A 2.4 V to 5.1 V supply for the external reference volt=
+age.
+> +
+> +  refin-supply:
+> +    description: A 2.4 V to 5.1 V supply for the internal reference buff=
+er input.
+> +
+> +  com-supply:
+> +    description: Common voltage supply for pseudo-differential analog in=
+puts.
 
-Thanks.
-Binbin
->
-> V3:
-> patch (1/2):
->  - Add Reviewed-by tag from Krzysztof, thanks.
-> patch (2/2):
->  - Several code stlye adjustments, such as line breaks.
->
-> Link to V2:
-> https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
->
-> v2:
-> - Remove the dts-related patches and update dts at once after all
-> relevant drivers are complete.
-> patch (1/2):
->  - The dt-binding filename should match compatible, rename it as
->    loongson,ls7a-pwm.yaml;
->  - Update binding description;
->  - Add description for each pwm cell;
->  - Drop '#pwm-cells' from required, for pwm.yaml makes it required alread=
-y.
->
-> Link to v1:
-> https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongso=
-n.cn/
->
-> Binbin Zhou (2):
->   dt-bindings: pwm: Add Loongson PWM controller
->   pwm: Add Loongson PWM controller support
->
->  .../bindings/pwm/loongson,ls7a-pwm.yaml       |  66 ++++
->  MAINTAINERS                                   |   7 +
->  drivers/pwm/Kconfig                           |  12 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-loongson.c                    | 295 ++++++++++++++++++
->  5 files changed, 381 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-p=
-wm.yaml
->  create mode 100644 drivers/pwm/pwm-loongson.c
->
-> --
-> 2.43.0
->
+These last few have more info in them so definitely good to have the descri=
+ptions
+
+> +
+> +  adi,no-ref-current-limit:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      When this flag is present, the REF Overvoltage Reduced Current pro=
+tection
+> +      is disabled.
+> +
+> +  adi,no-ref-high-z:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Enable this flag if the ref-supply requires Reference Input High-Z=
+ Mode
+> +      to be disabled for proper operation.
+> +
+> +  cnv-gpios:
+> +    description: The Convert Input (CNV). If omitted, CNV is tied to SPI=
+ CS.
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: The Reset Input (RESET). Should be configured GPIO_ACTI=
+VE_LOW.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description:
+> +          Signal coming from the BSY_ALT_GP0 or GP3 pin that indicates a=
+ busy
+> +          condition.
+> +      - description:
+> +          Signal coming from the BSY_ALT_GP0 or GP2 pin that indicates a=
+n alert
+> +          condition.
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: busy
+> +      - const: alert
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +    description: |
+> +      The first cell is the GPn number: 0 to 3.
+> +      The second cell takes standard GPIO flags.
+> +
+> +  "#address-cells":
+> +    const: 1
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-9a-f]$":
+> +    type: object
+> +    $ref: adc.yaml
+> +    unevaluatedProperties: false
+> +    description:
+> +      Describes each individual channel. In addition the properties defi=
+ned
+> +      below, bipolar from adc.yaml is also supported.
+> +
+> +    properties:
+> +      reg:
+> +        maximum: 15
+> +        description: Input pin number (INx).
+
+I'd drop this description as the pin pairing makes it messy.
+If you switch to diff-channels etc, just leave it as a index value not
+connected to the pin numbers.
+
+> +
+> +      adi,pin-pairing:
+> +        description: |
+> +          The input pin pairing for the negative input. This can be:
+> +          - REFGND, normally 0V (single-ended)
+> +          - COM, normally V_REF/2, see com-supply (pseudo-differential)
+> +          - For even numbered pins, the next odd numbered pin (different=
+ial)
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum: [refgnd, com, next]
+
+Next is full on differential, just provide both channels via
+diff-channels. You can constrain the particular combinations in the binding.
+
+Refcnd is normal single ended.  Probably want to use the new single-channel
+property for that as we are mixing differential and single ended channels
+so reg is pretty much just an index.
+
+Hmm. For comm we haven't had done a recent binding for a chip with the opti=
+on
+of pseudo differential that is per channel, they've been whole device only.
+That feels like it will be common enough we need to support it cleanly
+with a 'general' scheme.
+
+Problem is I know someone will have a chip with 2 vincom pins and selecting
+between them, so we can't just have pseudo-differential as a boolean and ad=
+c.yaml
+
+There are horrible solutions like a magic channel number that changes the
+meaning of diff-channels but that's ugly.
+Maybe pseudo-differential for now and we have to later we add
+pseudo-differential-comm  =3D <0> etc?
+
+
+> +        default: refgnd
+> +
+> +      adi,no-high-z:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description: |
+
+Do we need the | given not really formatted?
+
+> +          Enable this flag if the input pin requires the Analog Input Hi=
+gh-Z
+> +          Mode to be disabled for proper operation.
+> +
+> +    required:
+> +      - reg
+> +
+> +    allOf:
+> +      # only even number pins can be paired with the next pin
+> +      - if:
+> +          properties:
+> +            reg:
+> +              not:
+> +                multipleOf: 2
+> +        then:
+> +          properties:
+> +            adi,pin-pairing:
+> +              enum: [refgnd, com]
+> +      # bipolar mode is not supported with REFGND pairing
+> +      - if:
+> +          not:
+> +            required:
+> +              - adi,pin-pairing
+> +        then:
+> +          properties:
+> +            bipolar: false
+> +        else:
+> +          if:
+> +            properties:
+> +              adi,pin-pairing:
+> +                const: refgnd
+> +          then:
+> +            properties:
+> +              bipolar: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - avdd-supply
+> +  - vio-supply
+> +
+> +allOf:
+> +  - oneOf:
+> +      - required:
+> +          - ref-supply
+> +      - required:
+> +          - refin-supply
+> +
+> +  - oneOf:
+> +      - required:
+> +          - ldo-in-supply
+> +      - required:
+> +          - vdd-supply
+> +
+> +  # LFSCP package has fewer pins, so a few things are not valid in that =
+case
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              pattern: -wlcsp$
+> +    then:
+> +      properties:
+> +        refin-supply: false
+> +        spi-rx-bus-width:
+> +          maximum: 2
+> +
+> +  # the internal reference buffer always requires high-z mode
+> +  - if:
+> +      required:
+> +        - refin-supply
+> +    then:
+> +      properties:
+> +        adi,no-ref-high-z: false
+> +
+> +  # limit channels for 8-channel chips
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ad4697
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-7]$":
+> +          properties:
+> +            reg:
+> +              maximum: 7
+> +        "^channel@[8-9a-f]$": false
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@0 {
+> +            compatible =3D "adi,ad4695";
+> +            reg =3D <0>;
+> +            spi-cpol;
+> +            spi-cpha;
+> +            spi-max-frequency =3D <80000000>;
+> +            avdd-supply =3D <&supply_2_5V>;
+> +            vdd-supply =3D <&supply_1_8V>;
+> +            vio-supply =3D <&supply_1_2V>;
+> +            ref-supply =3D <&supply_5V>;
+> +            reset-gpios =3D <&gpio 1 GPIO_ACTIVE_LOW>;
+> +
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +
+> +            /* Differential channel between IN0 and IN1. */
+> +            channel@0 {
+> +                reg =3D <0>;
+> +                adi,pin-pairing =3D "next";
+> +                bipolar;
+> +            };
+> +
+> +            /* Single-ended channel between IN2 and REFGND. */
+> +            channel@2 {
+> +                reg =3D <2>;
+> +            };
+> +
+> +            /* Pseudo-differential channel between IN3 and COM. */
+> +            channel@f {
+> +                reg =3D <3>;
+> +                adi,pin-pairing =3D "com";
+> +                bipolar;
+> +            };
+> +        };
+> +    };
+
 
