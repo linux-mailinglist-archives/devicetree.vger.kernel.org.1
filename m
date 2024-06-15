@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 896D190977C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 11:48:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F48B909780
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 11:51:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CB5AB21D20
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:48:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2DCB283B55
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A1F2576B;
-	Sat, 15 Jun 2024 09:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DACC25777;
+	Sat, 15 Jun 2024 09:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uE71K+fA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kgh6yvqV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632CE10A11;
-	Sat, 15 Jun 2024 09:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D8A10A11;
+	Sat, 15 Jun 2024 09:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718444907; cv=none; b=G8dAwr1aR2jVqoyfGJWicagbO7XVw0RdzY/2x4E+4GKLLB+MwCO8eVw/B5iNIfNmx0SzdDNkl+KlR5kv1CNE8IzcH9B5OxoJrGZOK9VbH0cS72S5dJ1vb1Xde2VdzjAAndqd//QDt0rjqdJU4Xc4YS0fjihGbXX8cPfd4MZ6lZM=
+	t=1718445071; cv=none; b=eCPBTinr6pJhPE05Or5cAxBW8O16ZYAKe6pDGEPzKMtRXjy/zvLUBfg+vhXFVt0Ad0ge/zwI9PcvWqR5/FDLKCwDBiON4cnSmVlqrM1cYit/vetJLLDRm5umluruUkPyPN1ansn2/ZOoKF74s3Z1udITkp9plbXc4RlzVg0mqmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718444907; c=relaxed/simple;
-	bh=5lgczmI4KHA3a8/JLhs3fR7zSsRky2Mlj8Fi75mmJOA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TZAvlOddY2xlL5R5K4NoZuW5IGxDrorN/kfhZ7zj6iHXtOqpMBdL7BS+eDFcWCN96yoKH0Nux+4gZ4wMtqb30lnVAdKhxMYLTZxzINlJ2qD7JLJB/cCpXd+hXQK6zDJF3OpVv75UvYFLZHRuALQxcE7RsnK5gKkYXrK1b51jItg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uE71K+fA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3142DC3277B;
-	Sat, 15 Jun 2024 09:48:23 +0000 (UTC)
+	s=arc-20240116; t=1718445071; c=relaxed/simple;
+	bh=X0Tb6xhpZ7h4KnIWi4p0qF1oLUZO+Ady1pb51qXfdSM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Ypvf4M0hjFjgPLdrGK1NJ4JX3GBaNWEWvf2DTGKEIb+j8oZKp9FpiYXPm2b2gHAWKizfsY39w5qr7CQnH7Jt4wXHF5G3BI3jE5HKnGjO8m3LN1mk0XYvW1Qk6XitQ50N/NMa1Fjyrcvwlu26f5VKjeoozvGX4ZLQkHt1MEobCa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kgh6yvqV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24CB4C116B1;
+	Sat, 15 Jun 2024 09:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718444906;
-	bh=5lgczmI4KHA3a8/JLhs3fR7zSsRky2Mlj8Fi75mmJOA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uE71K+fAudxqLKfjENxfU+kPkSSVjyj4k1cJWYQhLrZgunhJlh8YsX4cRjW7y6Xrm
-	 P+5QqBkuH7B3WsmTRG9x1Y3xi87gdjiRFEmvv8u862kcCrcUrO795yQEkxCAPt+F4N
-	 3mCMeC1sk3Jvto6+2mb5habzrOyNFIGb/+w2iRvFsGfUG7VEigPvOTrbHm/W8C38wf
-	 aW68Y6ntRo8zzTfvxK74DbHB/1RNww8vIWh7KRVEgvZMCC9NiKER0U+Mu3BMsXTYKj
-	 jk5nQdD47fLqWCLFSnQhucsy445wk1eg6IEywapX8Yf6LaaSVKdF4xzzqD9oTAxH6L
-	 kKWOi4KEJIX6Q==
-Message-ID: <7c2d1e2b-6abc-4941-8270-c2b19601fe3e@kernel.org>
-Date: Sat, 15 Jun 2024 11:48:22 +0200
+	s=k20201202; t=1718445070;
+	bh=X0Tb6xhpZ7h4KnIWi4p0qF1oLUZO+Ady1pb51qXfdSM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Kgh6yvqVe6DwE1TqZ28s2WRF0pJdt6V14od4MbMi3jBpvhm18hwEtiM68Y5hcEyRd
+	 Bd3OY6BllKoDVPKzPGk0okT98pggXtF++lyADXPtozICBAfStV5cVPFFwciI5JMaMs
+	 TfJWnZfQqVME9HQzpuFTEwc8izqpmoQLC//Qp5uh9Mj79O2KayykO9srf/o6vAOyem
+	 DlEUVTn2OYodrQlUs2ZGcr+2hV+swDqhEbwZPd7aXh2ieWbJ+fL9R1EuNHie8/+zow
+	 XVVdagYfLS8g4T3y1kBcdXP+K7xoLQhNijJCVTvWhloKqO3bYd0sYbDHv1wlu1pEcX
+	 dGuIJN6QL10fw==
+Message-ID: <709292bc-e4ce-47e8-a8fc-2c91f72fdb8e@kernel.org>
+Date: Sat, 15 Jun 2024 11:51:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: gpio: mpc8xxx: Allow only use
- 'fsl,qoriq-gpio'
-To: Frank Li <Frank.Li@nxp.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "open list:GPIO SUBSYSTEM"
- <linux-gpio@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240614213839.2532061-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: cirrus,cs530x: Add initial DT
+ binding
+To: Paul Handrigan <paulha@opensource.cirrus.com>, broonie@kernel.org,
+ lgirdwood@gmail.com, linux-sound@vger.kernel.org,
+ patches@opensource.cirrus.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20240614183632.861575-1-paulha@opensource.cirrus.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,36 +102,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240614213839.2532061-1-Frank.Li@nxp.com>
+In-Reply-To: <20240614183632.861575-1-paulha@opensource.cirrus.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/06/2024 23:38, Frank Li wrote:
-> Allow only use compatible string 'fsl,qoriq-gpio' in dts to fix below
-> warning:
+On 14/06/2024 20:36, Paul Handrigan wrote:
+> Add the YAML DT bindings for the cs530x high performance
+> audio ADCs.
 > 
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dtb: gpio@2300000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,qoriq-gpio'] is too short
-> 	'fsl,qoriq-gpio' is not one of ['fsl,mpc5121-gpio', 'fsl,mpc5125-gpio', 'fsl,mpc8349-gpio', 'fsl,mpc8572-gpio', 'fsl,mpc8610-gpio', 'fsl,pq3-gpio']
-> 	'fsl,qoriq-gpio' is not one of ['fsl,ls1021a-gpio', 'fsl,ls1028a-gpio', 'fsl,ls1043a-gpio', 'fsl,ls1088a-gpio', 'fsl,ls2080a-gpio']
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-> index eb046a48a3f59..ef72f569c8387 100644
-> --- a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
-> @@ -19,6 +19,7 @@ properties:
->            - fsl,mpc8572-gpio
->            - fsl,mpc8610-gpio
->            - fsl,pq3-gpio
-> +          - fsl,qoriq-gpio
 
-No, this does not look like correct fix. You rather miss specific
-compatibles.
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        cs5304: cs5304@48 {
+
+What happened here? This was different.
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+audio-codec? audio-adc? adc?
 
 Best regards,
 Krzysztof
