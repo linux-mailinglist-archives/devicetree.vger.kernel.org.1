@@ -1,79 +1,90 @@
-Return-Path: <devicetree+bounces-75979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210F4909575
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 03:59:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17D4590959E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 04:15:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC2DB1F21873
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 01:59:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC5521F21CA4
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 02:15:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9AD4437;
-	Sat, 15 Jun 2024 01:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D3CB1FAA;
+	Sat, 15 Jun 2024 02:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="xX7O7lql"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SaVZDjNm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9EF107A0;
-	Sat, 15 Jun 2024 01:58:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B751396;
+	Sat, 15 Jun 2024 02:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718416710; cv=none; b=OIDkWjcCATH8yr0BiNn7WOh3x5tiN9Pl/7oZKZelDpnCyQU738FIKC21RasIbf4XbgbEEoTkSwCg8R/bV9A+xBCKVEUP2wIVs30egeTdgoi/7Cn1z/UmIbD0phXhqxOeBcT4dmnSA7QflpK1A0g+ZgJaLOxwtdE4jaqR8QxnkNs=
+	t=1718417722; cv=none; b=cw9MFixvZtpyv6hI0g7gli/M42QVcVo7p1QaANyV3P810cLAvghLTYJHP/IH5wHCNENg0VBNnGPa3O83d5TIzlX9qkj5N91Hb4/xIc1tN05JOS9JwMrX55NgkDYg267JCZ2VgDHs4bd+/HnbjQGng+bCGutomUX6bhPFwMTtYtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718416710; c=relaxed/simple;
-	bh=lk/SGaXH3eWpr32pis0Vh/iqYeLju2pSXUZws1AEuts=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cpHcvLdGjTa864nrFhNfbIsc4oREdYzqeLbQMQjuyo1yltjUA5tQV0Zuy6IDt/YuMdfIZon/Az2Wz6I6HIMYzXYXzghhqQ9+EMnOJA9S1FbOkY5AXazweTkKkRMd4VLjfXv4JAGH/5ETqMkRwR7lEXtcw6q2Qg4W4+OE4+eaNok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=xX7O7lql; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718416707;
-	bh=lk/SGaXH3eWpr32pis0Vh/iqYeLju2pSXUZws1AEuts=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=xX7O7lqlEpm3V8Y+fTQ0jjcCZVt3BsOgSg/Mpcpbtx2FBJ02E0eCC7ntl8vyKmJWv
-	 We6bEMBmijAKJxMQm5wa+rEbie3bWk969L9S3Ys888TCm9EMN/4QBWgQGvFrJ2FNwj
-	 10fxgLq9RbQj+ijOquaYrw+ZOTZaObiI0gnm2N5asz45PssmvkokvTpHSncNCd226c
-	 bFx/RgDBQ8fow5a3SFv5eKleg5H7/4JWV4TquHryVFXEdNDv2P20lYk5j5yY2BU2zd
-	 aTXnNc25K6eKd0YD/Wtr0UiaTD3dADSVUiyu0MHvg8XgAjNu2uRTkJzTrrUanKM/Tt
-	 s+goGcga1ZXyg==
-Received: from arisu.hitronhub.home (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5187E37821C7;
-	Sat, 15 Jun 2024 01:58:24 +0000 (UTC)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	s=arc-20240116; t=1718417722; c=relaxed/simple;
+	bh=SPsKWeIizp08t7cz/YkDNPJdR0L1WQwASGhsGsLDECc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QMxAjwqud0n4mmYG3OTq2o3BQdqEMWDmXKZRlLsJzN33YCYG34D98OgxelCckJu6MCpr6TqP3d130Q88ZhcTtWdC/ZKMbMivVcpYmdVC+tou6kFuIklyIknpgPVpDKMNRI/FN3ebnvAE4ZV6sa9KzT4/Ldftmy0m+wbrpGl8sYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SaVZDjNm; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7046e87e9afso2312689b3a.0;
+        Fri, 14 Jun 2024 19:15:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718417720; x=1719022520; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o7u6FwRIze0mtb1uqHOlNNmcMAkHqxJeY/UMRB19/D0=;
+        b=SaVZDjNmQmWuDA5XmQ6OmVIN2EOlwM4y6blhppFC7XMlFfzSRsfzWuuDr7R28jKiIZ
+         IyXn/kBPWCrdKF+zTFGb9bugOphnskyqilaOSIXtni5zQtLfpuRan2V2KV3zpjm81QWJ
+         nEvmFWMZfwYrys6If9JDsrX3mmc0sOuOqlEZT7baKI9b1l2O03yOdt6LnNI7HL/9MAcQ
+         0K1LB++nK5kv/WdqpKUQzr16fIf5jam4w761x5UoKSMzux9RuG0uV/sXzcvPQcmbO+m/
+         SRyc7d7KFbvvcu2QZ70rJRfDP1K09osTiU25J9SPcQrh8at+y/bEqII7A1ze5k7xlmgh
+         Ks8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718417720; x=1719022520;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o7u6FwRIze0mtb1uqHOlNNmcMAkHqxJeY/UMRB19/D0=;
+        b=v8PcCfXIfjUcLZhr45G2+tXkSbpXd2FPkLdt/frFJJbJ4jsjj8Y60vmUe/Pd/mcI1Q
+         sGuNmd3oojIn+ueEowZNKVUFA0Yz1n2r1b9o5s0eTGo5vKaSGSNhgQzUdyIq2g0j0Zkh
+         Kt3ESGzKdRnyfCHz7sO/BpsRg3K/kaQCtPUBslNWRl6yUv2NuuHLeThVYzvuDaT66nva
+         gpbrvK0C+Rc2J/jIz/R3SRzQP6gnP9u7cU92IhjJQPyymnebHrIwHBTXJu/CYCBH4Ut3
+         oCSB8KpNc+ikOMAliOWYZMgp3R0Yc871rqPAKjnXWMbz2hfcue15kvMzbwtyJQ9+oebh
+         l0aw==
+X-Forwarded-Encrypted: i=1; AJvYcCXa2u9Ws44apHO2iW6ns0lVD7KRYwnRN90591FjF/pkQ1xGyni7eE2VtYEkTrlXhgsbkCik0SXmcnUtw8PnEf8vwaDF5M1sc0DUvTvDAn398ZMnSXpiZ912cU9QIjv8yA2kbfFjGyaPiA==
+X-Gm-Message-State: AOJu0YwdaTv3NyEWCzizHui2wJwYeUco85/Ib9ay0wKJsDpfwyEPrFA8
+	5YvBIfF72UP+rAN9CvDg+KtIbmEjchMAw57NjGWS60XwMnYoQ/8W
+X-Google-Smtp-Source: AGHT+IFb+XtAj0x7xV2hM6qD+3rb1K/g9G0r0SHeazDyGKQXtVdqRoNXUtEHvMz+q5gidKnOdai+oQ==
+X-Received: by 2002:a05:6a00:22cc:b0:705:9f03:abbe with SMTP id d2e1a72fcca58-705d71d249dmr5373091b3a.33.1718417720337;
+        Fri, 14 Jun 2024 19:15:20 -0700 (PDT)
+Received: from ga401ii.. ([2401:4900:1c28:4b16:65cf:ef28:5753:2be4])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-705ccb3d2acsm3717839b3a.124.2024.06.14.19.15.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jun 2024 19:15:19 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+To: 
+Cc: kanakshilledar111@protonmail.com,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Alexey Charkov <alchark@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	linux-media@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-staging@lists.linux.dev,
-	Detlev Casanova <detlev.casanova@collabora.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add rkvdec2 Video Decoder on rk3588(s)
-Date: Fri, 14 Jun 2024 21:56:29 -0400
-Message-ID: <20240615015734.1612108-4-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240615015734.1612108-1-detlev.casanova@collabora.com>
-References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
+	linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [RESEND v4 0/2] dt-bindings: interrupt-controller: riscv,cpu-intc
+Date: Sat, 15 Jun 2024 07:45:02 +0530
+Message-ID: <20240615021507.122035-1-kanakshilledar@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,83 +93,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the rkvdec2 Video Decoder to the RK3588s devicetree.
+This series of patches converts the RISC-V CPU interrupt controller to
+the newer dt-schema binding.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      |  4 ++++
- .../boot/dts/rockchip/rk3588s-orangepi-5.dts  |  4 ++++
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 19 +++++++++++++++++++
- 3 files changed, 27 insertions(+)
+Patch 1:
+This patch is currently at v4 as it has been previously rolled out.
+Contains the bindings for the interrupt controller.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index c551b676860c..965322c24a65 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -503,6 +503,10 @@ &pwm1 {
- 	status = "okay";
- };
- 
-+&rkvdec0 {
-+	status = "okay";
-+};
-+
- &saradc {
- 	vref-supply = <&avcc_1v8_s0>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-index feea6b20a6bf..2828fb4c182a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-@@ -321,6 +321,10 @@ typec5v_pwren: typec5v-pwren {
- 	};
- };
- 
-+&rkvdec0 {
-+	status = "okay";
-+};
-+
- &saradc {
- 	vref-supply = <&avcc_1v8_s0>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 0fecbf46e127..09672636dcea 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -3034,6 +3034,9 @@ system_sram2: sram@ff001000 {
- 		ranges = <0x0 0x0 0xff001000 0xef000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-+		rkvdec0_sram: rkvdec-sram@0 {
-+			reg = <0x0 0x78000>;
-+		};
- 	};
- 
- 	pinctrl: pinctrl {
-@@ -3103,6 +3106,22 @@ gpio4: gpio@fec50000 {
- 			#interrupt-cells = <2>;
- 		};
- 	};
-+
-+	rkvdec0: video-decoder@fdc38100 {
-+		compatible = "rockchip,rk3588-vdec2";
-+		reg = <0x0 0xfdc38100 0x0 0x500>;
-+		interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RKVDEC0>, <&cru HCLK_RKVDEC0>, <&cru CLK_RKVDEC0_CORE>,
-+			 <&cru CLK_RKVDEC0_CA>, <&cru CLK_RKVDEC0_HEVC_CA>;
-+		clock-names = "axi", "ahb", "core",
-+			      "cabac", "hevc_cabac";
-+		assigned-clocks = <&cru ACLK_RKVDEC0>, <&cru CLK_RKVDEC0_CORE>,
-+				  <&cru CLK_RKVDEC0_CA>, <&cru CLK_RKVDEC0_HEVC_CA>;
-+		assigned-clock-rates = <800000000>, <600000000>,
-+				       <600000000>, <1000000000>;
-+		power-domains = <&power RK3588_PD_RKVDEC0>;
-+		status = "disabled";
-+	};
- };
- 
- #include "rk3588s-pinctrl.dtsi"
+Patch 2:
+This patch is currently at v4.
+Contains the reference to the above interrupt controller. Thus, making
+all the RISC-V interrupt controller bindings in a centralized place.
+
+These patches are interdependent.
+Fixed the patch address mismatch error by changing DCO to @gmail.com
+
+Kanak Shilledar (3):
+  dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dtschema
+  dt-bindings: riscv: cpus: add ref to interrupt-controller
+  dt-bindings: serial: vt8500-uart: convert to json-schema
+
+ .../interrupt-controller/riscv,cpu-intc.txt   | 52 -------------
+ .../interrupt-controller/riscv,cpu-intc.yaml  | 73 +++++++++++++++++++
+ .../devicetree/bindings/riscv/cpus.yaml       | 21 +-----
+ .../bindings/serial/via,vt8500-uart.yaml      | 46 ++++++++++++
+ .../bindings/serial/vt8500-uart.txt           | 27 -------
+ 5 files changed, 120 insertions(+), 99 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/via,vt8500-uart.yaml
+ delete mode 100644 Documentation/devicetree/bindings/serial/vt8500-uart.txt
+
+
+base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
 -- 
-2.44.2
+2.45.2
 
 
