@@ -1,100 +1,86 @@
-Return-Path: <devicetree+bounces-76083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E355D9099FC
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 23:16:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED49909A37
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 00:25:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E2AA1F21DBD
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 21:16:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57D221C20E6F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 22:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE091C68E;
-	Sat, 15 Jun 2024 21:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9633B5FDA5;
+	Sat, 15 Jun 2024 22:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fuKySHuw"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GZ8gRDmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2DD637
-	for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 21:16:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A2E17C74;
+	Sat, 15 Jun 2024 22:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718486181; cv=none; b=m9uCgwD09aigB7AUmMhHqiraVvvBB3r6YxdQVDu5Yfnx4CMrJdB8/HShBKdEu5Wgx01zLaCeGe4r2wQx262MZNuozI2hqMTYmvPyvGZ+/uGvjry8jw+mFr2gsMOfxJUESPi14gsUIxOhgxg6ITXRJyaE+m/fV/80Y5F2m4Q2yk0=
+	t=1718490308; cv=none; b=EW6H2ybXP2lUdvpSFFuH62NQ0VnxhXD5/bbo1U7mF7mpdQI+oMLYGqflW0ZdaZfI2A25ygRE+LOeocdMuxSM5ogGdGNEB1SRaRLSqIi0QacC6OTIBFGmKm8cFIayA7SX9kNo9oS6ophIQYqS4O1vU0GvJa8zrvpRSwpd7n9aXo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718486181; c=relaxed/simple;
-	bh=Ei3xb2tn6MotVLfGlVMycCcgvxSaZ1QDM3tqgfK9vv4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=j+4K6d+3kktmNUmfSNxULyudm5KPrc2GFuDg3IE96rDb7f5GZDC56j/TaeB+IY1TV3RoH+dD74xB3gcwhGQMZoW4OWSbxUwOZPBJTHpqH9RXZ+swvir8OcyoKdpGVbe7NOKF+iPkpZBSaDlVXXUuEurJ2PuNEyzJM8e7iHISWcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fuKySHuw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB5D7C116B1;
-	Sat, 15 Jun 2024 21:16:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718486181;
-	bh=Ei3xb2tn6MotVLfGlVMycCcgvxSaZ1QDM3tqgfK9vv4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fuKySHuwo0SuLMdlFAgF+bRSK9aaPI8KKMW86GrjvETVYvI0aUYdJ/3FjcU56wKwz
-	 ySyHTFRpPQOwP3s6WX0Tt9V0WKrWTrzG40FboeMF3kumRxN+N9RJWY8OwsyF3rTo6X
-	 tsxvRIYsNJEZOrYVhfdwNxhe5MS2Ktsxc5HzdUQXWBCJsPVFSbKd3FwkaSOU2W7BEn
-	 FtzZave/KdLINN/t+3VW+TAwkvd+ZJV88UKjrZSdU7I9k2EPhRrdsfiQxh1LQVIjWa
-	 pUHUQQdz3R6pVaxXe4UyhRAz7oH8lSPKspybnshGddizCpJ9/YUlW38ldpOCFskv0N
-	 AMsvmUpLc6U8w==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-phy@lists.infradead.org
-Cc: vkoul@kernel.org,
-	kishon@kernel.org,
-	lorenzo.bianconi83@gmail.com,
-	conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	amitsinght@marvell.com
-Subject: [PATCH v4 3/3] arm64: defconfig: Enable Airoha pcie phy driver
-Date: Sat, 15 Jun 2024 23:15:43 +0200
-Message-ID: <ecd38790c8cf5193507421458f0eda853ff58609.1718485860.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <cover.1718485860.git.lorenzo@kernel.org>
-References: <cover.1718485860.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1718490308; c=relaxed/simple;
+	bh=DF0mGyVb2ch10JLEOTK+vaR3v2RXWZJObNDqqoXwVpM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GKL+3CnLwYz114Ca0SPTwvFu7DbwbZGVvet2Jj1kfu08EDPxQNFotee2p5f5GzGjqdJhPLviHLWimwv0DDnO3Ue8co6oltNUHXG8118/Vvl9tfYChaEc3GGdgALL6dsMR6yE+dd0FhkCLkpC7peEsfLBajDXTgi9MlB4UTCA0Ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GZ8gRDmD; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718490305;
+	bh=DF0mGyVb2ch10JLEOTK+vaR3v2RXWZJObNDqqoXwVpM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GZ8gRDmDUEff4jpkGY7Qy7Gfmm2/4xB90nA7YAOZpcj+v7T3oASQLLv5JulrqPXIt
+	 EGkgp02QzHjkbe7uYrVMYVz79vnpZXG281NpHyFknU3c2ckzfCDWLSDwMX2IwwbfPL
+	 A59jfWVuQeAYMpUB+h/vpNc/RLUfAW0EPFdLtSTf0g4KYaL5Ctw6x7+o11Y38SFyt3
+	 MBBlUzqMcLdh/ojyBWau4DubLtSOEq7Qa7hX8AiwJ4V5g+p5Jaal6I1OZ0HOMAW2yn
+	 RX9ukhSRfVDQhi0F6+YqBirSgplj+w+J5gURKb1yJ+2hpwvTbhzadwcDLiu/4GPaAo
+	 9A/Kr2V+9mf4Q==
+Received: from [100.109.49.129] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dmitry.osipenko)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B87663780575;
+	Sat, 15 Jun 2024 22:25:03 +0000 (UTC)
+Message-ID: <09db1c27-b802-4cf5-95f0-d08611a5cd74@collabora.com>
+Date: Sun, 16 Jun 2024 01:24:59 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Alexey Charkov <alchark@gmail.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Diederik de Haas <didi.debian@cknow.org>, Andy Yan
+ <andy.yan@rock-chips.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev
+References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
+ <20240615015734.1612108-2-detlev.casanova@collabora.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240615015734.1612108-2-detlev.casanova@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enables the PHY_AIROHA_PCIE config by default.
+On 6/15/24 04:56, Detlev Casanova wrote:
+> +int a = sizeof(struct rkvdec2_rps);
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 57a9abe78ee4..b338a9675c34 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1497,6 +1497,7 @@ CONFIG_RESET_QCOM_AOSS=y
- CONFIG_RESET_QCOM_PDC=m
- CONFIG_RESET_RZG2L_USBPHY_CTRL=y
- CONFIG_RESET_TI_SCI=y
-+CONFIG_PHY_AIROHA_PCIE=m
- CONFIG_PHY_XGENE=y
- CONFIG_PHY_CAN_TRANSCEIVER=m
- CONFIG_PHY_SUN4I_USB=y
--- 
-2.45.1
-
+Remove this
 
