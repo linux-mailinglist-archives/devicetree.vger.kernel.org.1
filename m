@@ -1,54 +1,57 @@
-Return-Path: <devicetree+bounces-75997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-75998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166A9909695
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:38:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C125490969F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 09:46:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A371E2833BB
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 07:38:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48A55B21E3F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 07:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05CC01799F;
-	Sat, 15 Jun 2024 07:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E998E179AA;
+	Sat, 15 Jun 2024 07:46:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZqosBIKI"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="kyosWaoH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA509460;
-	Sat, 15 Jun 2024 07:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A462918637;
+	Sat, 15 Jun 2024 07:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718437130; cv=none; b=K2RbMNZRbd/XhHGM5cQwbPyeltH3ul/WC47ttxCizCDowKX9+IM8T3iNoQuUJnRndtyhbJxCzhAx9MzJ+es9kKhhlFKU4OXABp94Hs+B2jRJ2m2ILdubLpzZ1a2Mn17GpS0OdiGoLoaybh7KhRrYqejL1HBpK5zHjYAIZe3R3VY=
+	t=1718437573; cv=none; b=PuuyRr5/9fefShLjXmS+4wta5k8GuQiaoJs6i5SiQkC1jdr2DQ9vzTnH49hqYOCAr8IHz5dJITWYst8HckMJ3aE8bFsUuGSqybCgf+qGin2I5FnrknHm9sevULcdJip7sXi2Tciqdnh8IBqLmfiAGlSuK9fNlbPSDXL8oNisRx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718437130; c=relaxed/simple;
-	bh=VtscccgBqPZ9Al4kyY/5E64fLc7TJp+Nx04NWxp9nTQ=;
+	s=arc-20240116; t=1718437573; c=relaxed/simple;
+	bh=bjAnfxAKraU6w0krIFxQG5nUe9bH28xeF7hl20BTRVc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QdVcFKrDL8uReUPmymCpPPlkBXHDAlsvQ2WOdoFlbvC8Kuiv7gHcXMYNywk1KWgFDU0OOSvYdwWwbamgn/N1Ontoft3JgiX/HoxmRTv7SQjhSOx8mgZqxff5bk6hHwSlDxM3QBBuDHxM7e/otueV8kO3JpC3wAcEkRS9iXsGUJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZqosBIKI; arc=none smtp.client-ip=123.58.177.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=NuVQqfkovQ5t24kIZgLNIYtyZId7m+h4OI3dHL+onqAJkUlwd7lUAft58cceNor+Rwq9X8N7ur/JaP9nvS+oCfqZOx+vF+f/i1TObMqUUrYCdCFK519SpvlhJuNdB5ri2OvXGfhUGW4WW/vEwGCKEyIG9d6aPCjznqWMGjGmfg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=kyosWaoH; arc=none smtp.client-ip=123.58.177.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=OXJBh4XRa9tXn6n19F9dZpPyn9bj5wawMCr1I33Nqxo=;
-	b=ZqosBIKIsIUFOigT6BUEVs0LUvTK09H/2l3gc3hV3rN1ttp6ovncDA9CMhXCjA
-	Y+wyBKdTcxXlWtsBkqkVR9svH10ZxihRDmxXOofAcZOWY7j2qLN4N1AHu0ff574A
-	rYOOoD76a4Y4RjT7DkQfjWrnEfOF9O/WZxHEgPK/AVXLg=
+	Content-Type; bh=vAMzuaqK+J9poADICBuElUkeKnUjf36cUnhsxL765ds=;
+	b=kyosWaoHuFkBOF1dUn086EvuBAQfawLL5V/111L32c7VvMT+KVsG0GG6F0Plk3
+	oP1xvUIR4kTgSGOC24DAxSZP2s1gYmK4RH4iZLOvTWuZlhM+95+VDJobAVllw9h7
+	LujSs9Hw8xD9yTyZtzJF3p4297Jc7j5zg/qe9IgQx6xoU=
 Received: from dragon (unknown [114.216.76.201])
-	by smtp1 (Coremail) with SMTP id ClUQrACHbfbvRG1m3q7xBw--.33414S3;
-	Sat, 15 Jun 2024 15:38:25 +0800 (CST)
-Date: Sat, 15 Jun 2024 15:38:23 +0800
+	by smtp1 (Coremail) with SMTP id ClUQrABHr_uORm1m9cLxBw--.33886S3;
+	Sat, 15 Jun 2024 15:45:19 +0800 (CST)
+Date: Sat, 15 Jun 2024 15:45:18 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: Re: [PATCH 0/2] arm64: dts: imx8mp-evk: support bt-sco sound card
-Message-ID: <Zm1E74loyi3a4CPA@dragon>
-References: <1715231698-451-1-git-send-email-shengjiu.wang@nxp.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] ARM: dts: imx: align panel timings node name with
+ dtschema
+Message-ID: <Zm1GjqbtPfU6DhMr@dragon>
+References: <20240509104838.216773-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,19 +60,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1715231698-451-1-git-send-email-shengjiu.wang@nxp.com>
-X-CM-TRANSID:ClUQrACHbfbvRG1m3q7xBw--.33414S3
+In-Reply-To: <20240509104838.216773-1-krzysztof.kozlowski@linaro.org>
+X-CM-TRANSID:ClUQrABHr_uORm1m9cLxBw--.33886S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUI2Q6DUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBRH+ZVsVCphLrwAAs3
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUswIDUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw-+ZVnxc0gsowAAsH
 
-On Thu, May 09, 2024 at 01:14:56PM +0800, Shengjiu Wang wrote:
-> support bt-sco sound card
+On Thu, May 09, 2024 at 12:48:34PM +0200, Krzysztof Kozlowski wrote:
+> DT schema expects panel timings node to follow certain pattern,
+> dtbs_check warnings:
 > 
-> Shengjiu Wang (2):
->   arm64: dts: imx8mp: Initialize audio PLLs from audiomix subsystem
->   arm64: dts: imx8mp-evk: add bt-sco sound card support
+>   imx6dl-gw54xx.dtb: display-timings: 'hsd100pxn1' does not match any of the regexes: '^timing', 'pinctrl-[0-9]+'
+> 
+> Linux drivers do not care about node name, so this should not have
+> effect on Linux.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied both, thanks!
+Applied all, thanks!
 
 
