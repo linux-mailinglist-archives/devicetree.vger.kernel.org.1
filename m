@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-76038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 651EE90981D
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:11:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 956CB909826
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:14:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06D1328218B
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 12:11:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 490D71F2124A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 12:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE21446DC;
-	Sat, 15 Jun 2024 12:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E80845020;
+	Sat, 15 Jun 2024 12:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qiCOtB+B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DOSocQWJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A634A3D;
-	Sat, 15 Jun 2024 12:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0485C4A3D;
+	Sat, 15 Jun 2024 12:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718453469; cv=none; b=V9gOJnTQZlXUKUcoEhFNJSzIXfKrSOD/u+CAEur4bJmXXCgULuQSYxIggQagnwY457Yn4MaOre2VFGyHHpKPH2hkEARoK9fBxewJGJUXLvL4OkWQhgfnxUrzaEV+jCN7pfS8+QUNlK2x6IGof2effLwpNugtnp6s3S5KieF2WjY=
+	t=1718453693; cv=none; b=FTT7Rs5FotGsbpBqqBmdOj4clTXjK4yL2HGDCBof0qnp4GSsUsxmDWLt4lmBHeRMIgy37m4PpE6DKL77YRyuNKNygTTFeZT1va7VzdqNJjMvC1t4mRRyaakMs09udOp7q27J65g0IGOnNDqVB2H5b/VuP8MIue14hYG40Xw8vgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718453469; c=relaxed/simple;
-	bh=YH+odpFULabpJU7aqXqApLDVXyYv+Y2IFr46RtpYOIA=;
+	s=arc-20240116; t=1718453693; c=relaxed/simple;
+	bh=/LLZqW6NRPMIgHsf4D4yiEdXEyv0x9KmjvDXqN9rvPU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IxWWJBoNtlGQeCCk6O2YmFYbVdgK6+NjJNxKAqXfjKvTstTXSqhpsKrN5YXpKMJHFBW6oOJQSrcdGhQj47JeczoCG/ahdBmF2ELsEYMCOW0K1QE+AV4K0dsW+PpEqX3wRQPJ6VQcf6MtXPm2LSUoIvMyqS6sHK+G8QLHCXRnH1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qiCOtB+B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10161C116B1;
-	Sat, 15 Jun 2024 12:11:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nDbV29Jl1pnn8eG/81OJ3Jtqq4zCKTeOEjUCWtglR/NLZUZ+Qyf9gDRmUHBaOUo7qtcBbxYbO45Fbrm6b1bVXuSYJvMEMj3fhmXcHMYZTkIiT1WujX79vMtBnKgRyXqQ/DJdzU6Am3qM3VHQYG/ChJNqAqcgxqHxcji8MTS2yP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DOSocQWJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4A1DC116B1;
+	Sat, 15 Jun 2024 12:14:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718453468;
-	bh=YH+odpFULabpJU7aqXqApLDVXyYv+Y2IFr46RtpYOIA=;
+	s=k20201202; t=1718453692;
+	bh=/LLZqW6NRPMIgHsf4D4yiEdXEyv0x9KmjvDXqN9rvPU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qiCOtB+Bg0I1YxN2iSUhJ9GpEwAdmGE0lzrAFyKiYsjoSCp4AUb/HPrBvlwRnpdj2
-	 UqdsOMCtPbUrn6mXLG9daRt59zp5KKMQnjMLTAQ4UW8Ny5i1L2Aed8kiKKCIL+ajO/
-	 oVc6GgL6SEYqEkGZ+YBnXKHERWAF9WImvTpmgwGloOWpuJwnvXFJ3U5a1pi3UPzT0T
-	 3Pzfa3bjIe3OHbRCYFX1qG27/moAYnnay9HbQE7PvzrPo3LvDFI+aOemw8FkcVcUXP
-	 lN7eg4YpApeCr4p/5gQPVVwJuMk1oWeYn67nf1wRJGnr4D98Z1IkX9NbANrNjoqYHv
-	 ANco+4CIxkYdA==
-Date: Sat, 15 Jun 2024 13:11:04 +0100
+	b=DOSocQWJgYuaU85qCoTzrQOouNRLjRV/D1FycJymW9L5a62sAH8NqX0ukgj4ZfEO8
+	 7DAKtwAZbxH1nVCr0GwVLDDyeEWPLvmO/NCD+na1r4oU4ki1YvgAyk1dk4piI9oDMT
+	 ZVZ0/wAL4TWKxGE4PaLLIuMJWjF1R15rGSgyTtlWPdTG3/dpFa3c/sQUjMOUGe0u9m
+	 5Izk5n96LJ3k0GDrF6LD9KD2WSMVDWaNs9sJRQVYTc+ycbDyN5sbAxpU4yjFl3QfNg
+	 aZwU1CjlvJDC4B10pwmHRkJ3BiOUde99wndg5ACrwGX6NuzUVOIWky6hv6i+YJ5Tc4
+	 hgP4bsufWXGFQ==
+Date: Sat, 15 Jun 2024 13:14:48 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: linux-iio@vger.kernel.org, jic23@kernel.org, denis.ciocca@st.com,
-	devicetree@vger.kernel.org, linus.walleij@linaro.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: iio: st-sensors: add LIS2DS12
- accelerometer
-Message-ID: <20240615-urgent-mammogram-3eb5ca127239@spud>
-References: <20240611160821.13941-1-kauschluss@disroot.org>
- <20240611160821.13941-2-kauschluss@disroot.org>
- <20240611-reassign-eliminate-b05e4a302cfb@spud>
- <56ab50d7c542356b7e377023b84a6018@disroot.org>
+To: Etienne Carriere <etienne.carriere@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
+	Pascal Paillet <p.paillet@st.com>, Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH] dt-bindings: mfd: dual licensing for st,stpmic1 bindings
+Message-ID: <20240615-booted-spoon-f538994dec8f@spud>
+References: <20240614153346.2656871-1-etienne.carriere@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,43 +59,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Gb03HWEHd/0r06Zb"
+	protocol="application/pgp-signature"; boundary="r431OI/sWd8v5ceD"
 Content-Disposition: inline
-In-Reply-To: <56ab50d7c542356b7e377023b84a6018@disroot.org>
+In-Reply-To: <20240614153346.2656871-1-etienne.carriere@foss.st.com>
 
 
---Gb03HWEHd/0r06Zb
+--r431OI/sWd8v5ceD
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 15, 2024 at 09:46:59AM +0000, Kaustabh Chakraborty wrote:
-> On 2024-06-11 18:17, Conor Dooley wrote:
-> > On Tue, Jun 11, 2024 at 09:35:53PM +0530, Kaustabh Chakraborty wrote:
-> >> Add compatible for LIS2DS12 accelerometer by STMicroelectronics.
-> >=20
-> > I can see that! Your commit message should mention why this device
-> > is not compatible with existing variants.
+On Fri, Jun 14, 2024 at 05:33:46PM +0200, Etienne Carriere wrote:
+> Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv2.0
+> only to dual GPLv2.0 or BSD-3-Clause. I have every legitimacy to request
+> this change on behalf of STMicroelectronics. This change clarifies that
+> this DT binding header file can be shared with software components as
+> bootloaders and OSes that are not published under GPLv2 terms.
 >=20
-> Sure, is adding the WhoAmI value enough? Or do I also have to
-> explain the different registers and sensor settings.
+> In CC are all the contributors to this header file.
+>=20
+> Cc: Pascal Paillet <p.paillet@st.com>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
+> ---
+>  include/dt-bindings/mfd/st,stpmic1.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/include/dt-bindings/mfd/st,stpmic1.h b/include/dt-bindings/m=
+fd/st,stpmic1.h
+> index 321cd08797d9..957c48300cd4 100644
+> --- a/include/dt-bindings/mfd/st,stpmic1.h
+> +++ b/include/dt-bindings/mfd/st,stpmic1.h
+> @@ -1,4 +1,4 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
 
-The whoami isn't sufficient, but if there's registers that behave
-differently etc, please mention those.
+The usual dual license for bindings is BSD-2-Clause, was there a
+specific request for the 3 version?
 
-Thanks,
-Conor.
+>  /*
+>   * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
+>   * Author: Philippe Peurichard <philippe.peurichard@st.com>,
+> --=20
+> 2.25.1
+>=20
 
---Gb03HWEHd/0r06Zb
+--r431OI/sWd8v5ceD
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm2E2AAKCRB4tDGHoIJi
-0tMOAQDmSwRtYBwPeSLPrnX/LWpQKFNlmA0/jUyZF/ydJEiH/AD+LWBIX0Iot+C/
-7dqyjMvJJtg2LAfjEKkRFMB2r7qbOwg=
-=BQzc
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm2FuAAKCRB4tDGHoIJi
+0qU+AP9iFoNZNW+d5nIKaZnmqqhGLVRuf0oOYDQjVwO4tsBr0QD/VWwcj6LPsoPt
+quIwpaRqzIzpaqShIvphrfgrY/wQKw4=
+=/GST
 -----END PGP SIGNATURE-----
 
---Gb03HWEHd/0r06Zb--
+--r431OI/sWd8v5ceD--
 
