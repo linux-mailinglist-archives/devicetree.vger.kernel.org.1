@@ -1,90 +1,54 @@
-Return-Path: <devicetree+bounces-76052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A44A590988D
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 15:55:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E9C9098B4
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 16:49:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44882283112
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 13:55:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D55F1C20CA2
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AFF4655D;
-	Sat, 15 Jun 2024 13:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ai/hAGqb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0514A47F5F;
+	Sat, 15 Jun 2024 14:49:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D425944F;
-	Sat, 15 Jun 2024 13:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A611DFEA;
+	Sat, 15 Jun 2024 14:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718459725; cv=none; b=I59QbSQhJbKbMMs0hvoRz8YFOBWyivRo5kKB38SeVKE5iKO0FfmrJVnrGAySN3Sj93JmLtrqqrQkdFdWLY5K/KToI2byE3cPe6iC4RSY5SBN7JSWFIBbY3WKfgQsB4xY0dWLdLZ+ArBYg3LbsiJu7BYc6FZlRVaHoQoYS3yGXZU=
+	t=1718462974; cv=none; b=XmUtvcTi6tNtB1k7lGOnsE6JyZK6isl69PRE9GynGM52lEbpu7oWn2xyt3ZB3zlwvjPTUlM5Ops3XZ6N/RIifrTW8iTkmLxc78h/pCcPsEkDiQu+yOkq/ErEdztZ8LMaw7lBbaWnMDxiDV+S7syPeACRzqhw3hJCZn0aXGahOGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718459725; c=relaxed/simple;
-	bh=o2zni6lmU6brxTe62oPbpr/wNnVyUniYuEMKpQZnOmQ=;
+	s=arc-20240116; t=1718462974; c=relaxed/simple;
+	bh=76LIfSrMxlpIj4d0bev9L7y98p2HjHo5ZQ+5a2BpE/I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TyThjsJbVeGzzov0u1EcC3EPJJjZtaS1ygsYdAKVOI32eMwj4Zrj4lKz6cqFn7VrKQ+jxrblm0TQZ3aGXjrV78kNqyMp2vNErLTUzKdO7Mv0tgdsWQiS4MoAMXzySxY50eQgxbPvR5Lg5mzoaWu+haCXmylZws2k0awHKdzsTWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ai/hAGqb; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718459723; x=1749995723;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o2zni6lmU6brxTe62oPbpr/wNnVyUniYuEMKpQZnOmQ=;
-  b=ai/hAGqbww4RcVptOnfayU1o+TDDLZZsSD2kJGDZKhDLB381oDeJrkzX
-   /X+23SO772j7Bhb/uSk5N2TfYq2OZeqUZNCYEf6avaIMDxC5j2yY7khBI
-   TEoguSNFzTUIOSUxHstQqeXAkyvCT3oGYjtMKL27mJ0oVCz3ehHHLOQzQ
-   EpC8ZK7M+9JY+xZTLh2u0QLa+yW676bMXriI/Ic9QdXDY5ZH2sD9uzUR3
-   JwEVBoqveeKeSX1FYlDjEVvakSJhpVsx22UfuxQfpg4mYSJ7NT7kN5agM
-   T2WNla0s0Nb5wYzo7nyHk6FVWW9JuhPJwDnASgQcYOMsHlLt18Krle/FM
-   Q==;
-X-CSE-ConnectionGUID: ebqFZ+r4QYuAPFkovE2KeA==
-X-CSE-MsgGUID: NR3OeXq0TT2okG3fNIxdjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11104"; a="40760307"
-X-IronPort-AV: E=Sophos;i="6.08,240,1712646000"; 
-   d="scan'208";a="40760307"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2024 06:55:22 -0700
-X-CSE-ConnectionGUID: Z1nASWauRT2SWTLC7u9Yow==
-X-CSE-MsgGUID: AAqhFvwAQbO9qsOphaSZhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,240,1712646000"; 
-   d="scan'208";a="40630041"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 15 Jun 2024 06:55:19 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sITsC-00005N-21;
-	Sat, 15 Jun 2024 13:55:16 +0000
-Date: Sat, 15 Jun 2024 21:55:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-media@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Alexey Charkov <alchark@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev,
-	Detlev Casanova <detlev.casanova@collabora.com>
-Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-Message-ID: <202406152129.dV4K8R5k-lkp@intel.com>
-References: <20240615015734.1612108-2-detlev.casanova@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PVaw8pCQhajOT/O5SEwixc2isgR3Usx3Yftq1AFneqgN/eLG2rh59ijBe6Zpu44Fb4BuPxbKtSoNKhlOks5BU6fkFJMo8ziLnKDCzARRAjZC5H9oG7r13fRZkjhblpl1T9DIV4NUNwQpn17ojnx9x//s7gxsVP0sQee6zWadFrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.97.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sIUTJ-00000000661-10GU;
+	Sat, 15 Jun 2024 14:33:37 +0000
+Date: Sat, 15 Jun 2024 15:33:30 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: John Thomson <git@johnthomson.fastmail.com.au>, andrew@lunn.ch,
+	f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC net-next] net: dsa: generate port ifname if exists or
+ invalid
+Message-ID: <Zm2mOZGPuPstMdlB@makrotopia.org>
+References: <20240608014724.2541990-1-git@johnthomson.fastmail.com.au>
+ <20240608014724.2541990-1-git@johnthomson.fastmail.com.au>
+ <20240613114314.jxmjkdbycqqiu5wn@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,69 +57,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240615015734.1612108-2-detlev.casanova@collabora.com>
+In-Reply-To: <20240613114314.jxmjkdbycqqiu5wn@skbuf>
 
-Hi Detlev,
+Hi Vladimir,
 
-kernel test robot noticed the following build errors:
+On Thu, Jun 13, 2024 at 02:43:14PM +0300, Vladimir Oltean wrote:
+> On Sat, Jun 08, 2024 at 11:47:24AM +1000, John Thomson wrote:
+> > RFC:
+> > Not a full solution.
+> > 
+> > Not sure if supported, I cannot see any users in tree DTS,
+> > but I guess I would need to skip these checks (and should mark as
+> > NEM_NAME_ENUM) if port->name contains '%'.
+> > 
+> > name is also used in alloc_netdev_mqs, and I have not worked out if any
+> > of the functionality between alloc_netdev_mqs and the register_netdevice
+> > uses name, so I added these test early, but believe without a rntl lock,
+> > a colliding name could still be allocated to another device between this
+> > introduced test, and where this device does lock and register_netdevice
+> > near the end of this function.
+> > To deal with this looks to require moving the rntl_lock before
+> > these tests, which would lock around significantly more.
+> > 
+> > As an alternative, could we possibly always register an enumerated name,
+> > then (if name valid) dev_change_name (not exported), while still within
+> > the lock after register_netdevice?
+> > 
+> > Or could we introduce a parameter or switch-level DTS property that forces
+> > DSA to ignore port labels, so that all network devices names can be
+> > managed from userspace (using the existing port DSA label as intended name,
+> > as this still seems the best place to define device labels, even if the
+> > driver does not use this label)?
+> 
+> Why not just _not_ use the 'label' device tree property, and bring
+> a decent udev implementation into OpenWrt which can handle persistent
+> naming according to the labels on the box? Even within DSA, it is
+> considered better practice to use udev rather than 'label'. Not to
+> mention that once available, udev is a uniform solution for all network
+> interfaces, unlike 'label'.
 
-[auto build test ERROR on rockchip/for-next]
-[also build test ERROR on robh/for-next linus/master v6.10-rc3 next-20240613]
-[cannot apply to media-tree/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Sounds fine generally. Where would you store the device-specific renaming
+rules while making sure you don't need to carry the rules for all devices
+onto every single device? Would you generate a device-specific rootfs for
+each and every device? For obvious reasons this is something we'd very
+much like to avoid, as building individual filesystems for ~ 1000 devices
+would be insane compared to having a bunch (< 100) of generic filesystems
+which some of them fitting a large group (ie. same SoC) of boards.
+Most OpenWrt devices out there are based on the same SoCs, so currently
+the devices in the popular targets like MT7621 or IPQ40xx all share the
+same target-wide kernel **and rootfs**.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Detlev-Casanova/media-rockchip-Introduce-the-rkvdec2-driver/20240615-100124
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20240615015734.1612108-2-detlev.casanova%40collabora.com
-patch subject: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240615/202406152129.dV4K8R5k-lkp@intel.com/config)
-compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240615/202406152129.dV4K8R5k-lkp@intel.com/reproduce)
+tl;dr: The good thing about the 'label' property is certainly that such
+board- specific details are kept in DT, and hence a generic rootfs can
+deal with it.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406152129.dV4K8R5k-lkp@intel.com/
+As having the 'label' property applied also for non-DSA netdevs by the
+kernel has been rejected we did come up with a simple userland
+implementation:
 
-All errors (new ones prefixed by >>):
+https://git.openwrt.org/?p=openwrt/openwrt.git;a=commit;h=2a25c6ace8d833cf491a66846a0b9e7c5387b8f0
 
-   drivers/staging/media/rkvdec2/rkvdec2-h264.c: In function 'rkvdec2_write_regs':
->> drivers/staging/media/rkvdec2/rkvdec2-h264.c:563:9: error: implicit declaration of function '__iowrite32_copy_full'; did you mean '__iowrite32_copy'? [-Werror=implicit-function-declaration]
-     563 |         __iowrite32_copy_full(rkvdec->regs + OFFSET_COMMON_REGS,
-         |         ^~~~~~~~~~~~~~~~~~~~~
-         |         __iowrite32_copy
-   cc1: some warnings being treated as errors
+For interfaces added at a later stage at boot, ie. by loading kernel modules
+or actual hotplug, we could do the same in a hotplug script.
+
+So yes, dropping support for dealing with the 'label' property in kernel
+entirely would also fix it for us, because then we would just always deal
+with it in userland (still using the same property in DT, just not applied
+by the kernel).
+
+> 
+> Full disclosure: I myself tried for about 30 minutes to convert the udev
+> rules below into an /etc/hotplug.d script that procd would run, before
+> getting the impression it's never going to work as intended, because by
+> the time all relevant "add" actions run (built-in drivers), user space
+> hasn't even loaded, and thus hasn't got a chance to run any hooks.
+> I haven't actually opened the source code to compare how other uevent
+> handlers deal with this.
+> 
+> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p0", NAME="swp0"
+> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p1", NAME="swp1"
+> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p2", NAME="swp2"
+> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p3", NAME="swp3"
+> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p4", NAME="swp4"
+> ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:00.5", DRIVERS=="mscc_felix", ATTR{phys_port_name}=="p5", NAME="swp5"
+> 
+
+Yes, this is a problem in general. We will need better coldplug support,
+right now only devices added after procd is launched are taken care of.
 
 
-vim +563 drivers/staging/media/rkvdec2/rkvdec2-h264.c
+Cheers
 
-   557	
-   558	static void rkvdec2_write_regs(struct rkvdec2_ctx *ctx)
-   559	{
-   560		struct rkvdec2_dev *rkvdec = ctx->dev;
-   561		struct rkvdec2_h264_ctx *h264_ctx = ctx->priv;
-   562	
- > 563		__iowrite32_copy_full(rkvdec->regs + OFFSET_COMMON_REGS,
-   564				      &h264_ctx->regs.common,
-   565				      sizeof(h264_ctx->regs.common));
-   566		__iowrite32_copy_full(rkvdec->regs + OFFSET_CODEC_PARAMS_REGS,
-   567				      &h264_ctx->regs.h264_param,
-   568				      sizeof(h264_ctx->regs.h264_param));
-   569		__iowrite32_copy_full(rkvdec->regs + OFFSET_COMMON_ADDR_REGS,
-   570				      &h264_ctx->regs.common_addr,
-   571				      sizeof(h264_ctx->regs.common_addr));
-   572		__iowrite32_copy_full(rkvdec->regs + OFFSET_CODEC_ADDR_REGS,
-   573				      &h264_ctx->regs.h264_addr,
-   574				      sizeof(h264_ctx->regs.h264_addr));
-   575		__iowrite32_copy_full(rkvdec->regs + OFFSET_POC_HIGHBIT_REGS,
-   576				      &h264_ctx->regs.h264_highpoc,
-   577				      sizeof(h264_ctx->regs.h264_highpoc));
-   578	}
-   579	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Daniel
 
