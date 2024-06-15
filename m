@@ -1,164 +1,197 @@
-Return-Path: <devicetree+bounces-76033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B94929097F6
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 13:35:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C524909809
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 13:58:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 537751F222B5
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 11:35:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B76D1C21037
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 11:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C613BBC2;
-	Sat, 15 Jun 2024 11:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3216C3EA71;
+	Sat, 15 Jun 2024 11:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RYesBidx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lsHqUmPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59E338FA6
-	for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 11:35:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126CB10A1E;
+	Sat, 15 Jun 2024 11:58:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718451322; cv=none; b=P6v2zdFbHSuEsDnrUfJWIZSV2rXfW4fikc6G/Z1c4a04JWpsCgHrQ3IXUKGxer2lhvkYVLcncbipxNgksf00GYox04gsKmWL2npIQl5WNl9nleq5UNo4UZyi+Fzi5vlG5TtWk1g2JU8H6zqBz/AUs02xWWht/NwtDrIxhPMP6Rg=
+	t=1718452711; cv=none; b=qMCrHCr43Z/lqdhMRO7cmCZloak8a32BkIH7vSFOrS90QWJ/Werb3oOLciNASOOF/gThAkho0V+lebyb//8xf+XRhJf5Vh3hY7dM76nNsgPiSO8TR84cvDQ7xDEOFI4zJK/zJdGL8fSR4pd/Ns+zHitQrsozfhQw7x7Pspblkfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718451322; c=relaxed/simple;
-	bh=tLO7KpJDrzqyh2zSvtWqa0QwpIG3l5jMKJ+aGcXxDuw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zasn6vj2MDLrV5HPNb+UP0C3SF/SOevIgadXY/CDr8OP50zcKMGS31AXTKHOJjQT1MGP9x2WXVhcZokE2InJv1z4lTxwy3bRbRK2lxVABac3J/5Bdp5Ep2QB2K1uCr08MnfhoX6qi9OIOtsBRAuThR3Q6q1GZY32+pvYMYlUKiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RYesBidx; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57c6011d75dso3555014a12.3
-        for <devicetree@vger.kernel.org>; Sat, 15 Jun 2024 04:35:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718451319; x=1719056119; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=g7wFfKDpHYr518y8B83MibP+Xg904Kq4FW2NcicEKr0=;
-        b=RYesBidxGycC53n63c3Sxk025AUcMduxmtLqh3VDFUITxggFrqD4gUCCcPUpkLRX47
-         o6JxFtSAcibrVf6Bnm6rYrLIZ0+bK/G8oO6htWrbSA7Z7E6+oHv+imPqxwCnu31CYPg9
-         HrSOg25759j67oh3xHJtk+bIkBZM3XPSHLgvy8O6Chc6m4HTNOPkq59lLhHdlOUPHDng
-         U4b5ng2aaOj6kmJLAE+SlOAXMmnIy1F6sEYxz2n9YAErO3GafU5Ot46yuMYsl0HELRxv
-         7l/GaAikWDnQh4HolNyTj1l2w91Z02R5h5toYg4bl9i8k61igk+jvXIn3bWeUmP1faBX
-         0jaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718451319; x=1719056119;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g7wFfKDpHYr518y8B83MibP+Xg904Kq4FW2NcicEKr0=;
-        b=SbNfpLrBeioe49bC3xfJrPFZFcIH6LRdzlYVRwtmtJ04ZZKAM9TV5dgLisbD4j0Kkr
-         G9x8xXokSE+f801yJMJ4a5dtU9332ZiUwO4etVzXvmMQdSMqY0nau+SjN5x/HCwve6dd
-         6pOD09I8UBkjpYwhQrCH0bHIBE5UU8FObmyKQZFTAA2dWOjEJvexkaRHJiHzsbP+7Yff
-         D4NW92ciDVK4fioFsdwb+P7pU4EoHOBBD9Q8+6pTSCh80qQdPdz57ajI9945lG8xbESX
-         fHGODCxgJQTX3AmcWBV4GCVbBXshn0KjD1gTPSHIwHaTCq2FVp8axncBwk9X7w/00MG7
-         seeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX630F2VlqShhR659g2NTGItEyWItD2ndWVqxbnwBJwjbSmyr19hFdMa66HScjLEe7DEGFCdxf3qnEWvfx2x9ESPjDgmMOhckV+lw==
-X-Gm-Message-State: AOJu0Yxlmq+I67rS7ppLFx/IzPdIp9PCbgkuVvge+DN8IuSgiamzknI2
-	l6iHHwTAOBmygrMmJ/eD7IyVZTPIJXIDmJohLJIktclEruZE2IVe7o2cbd2ysbs=
-X-Google-Smtp-Source: AGHT+IH29YMt7AAI//ExkGgnM/yNcocHMtAeyVVrRvZ5lZHaQZakXs9ppP9gqjDRt6uuHITbjhcXFA==
-X-Received: by 2002:a17:906:7c9:b0:a68:a800:5f7e with SMTP id a640c23a62f3a-a6f60cefe50mr364726666b.10.1718451318981;
-        Sat, 15 Jun 2024 04:35:18 -0700 (PDT)
-Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56ecdd2asm296807866b.141.2024.06.15.04.35.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jun 2024 04:35:18 -0700 (PDT)
-Message-ID: <b6676951-33a2-4c3a-bb29-0d1ea7ad33d2@linaro.org>
-Date: Sat, 15 Jun 2024 13:35:15 +0200
+	s=arc-20240116; t=1718452711; c=relaxed/simple;
+	bh=8g8K29UGvZQZHmDBFTXU6XG095tGQcdkWR/9aqXmYHE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NaMIhdFTSQ4mrBV0LTktzLHInKn6rhFtwz/2U6DLxzHEWtbIZGz+UMBAoXZb1LhE71C8BwtTWq1d6IDeBACCUrmxxL9iXR5B8/fcP5tWm9ki0iLgNU4h49DOvkBu/VUIeDFYhh075RzR2KkYoiDnKLnsBKqWL8ok5DMPNl+nEDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lsHqUmPu; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718452709; x=1749988709;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8g8K29UGvZQZHmDBFTXU6XG095tGQcdkWR/9aqXmYHE=;
+  b=lsHqUmPut815oKAcbqwEC0RvhNCAFb2HZQ3UG530M1XWEBbbl4Yda35s
+   EDY1j2hTWYqdKTVljOBU8c/8BYZox2sKGajFGQkyZaG9MyehmPCRuhP91
+   mGEgRILSzCmFOxHgaYfm4/Cv2jgrdaETANGCHJ2b/wlmFHOPI/Hs/o6b5
+   lBLKs4dq56EFbAAr5CgS3zSRsrpbmyXlYLpmqE9vnjoGrPqy5mPKgcqIk
+   7NqnKTTRfo7oWDlnskLTp+VQkJFOK4Gc54bPKtDZwuPyRFpkf11uyPaxP
+   ygNEcH0Vp30lQAqB9YYyZm6veM5YFe5I6tesTcVjSsFBpIJyOFS/5LKrO
+   Q==;
+X-CSE-ConnectionGUID: I63yF81RSK2EPeLbT1vPgw==
+X-CSE-MsgGUID: fn5NyWw5TDqQGFSs0BxIVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="32885222"
+X-IronPort-AV: E=Sophos;i="6.08,240,1712646000"; 
+   d="scan'208";a="32885222"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2024 04:58:28 -0700
+X-CSE-ConnectionGUID: 5BS+34LDQeKsmKaIhRi90A==
+X-CSE-MsgGUID: Kw1yrEcpS9C0GUXo69gFqw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,240,1712646000"; 
+   d="scan'208";a="40859755"
+Received: from lkp-server01.sh.intel.com (HELO 0bcb674f05cd) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 15 Jun 2024 04:58:25 -0700
+Received: from kbuild by 0bcb674f05cd with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sIS35-00008s-0h;
+	Sat, 15 Jun 2024 11:58:23 +0000
+Date: Sat, 15 Jun 2024 19:57:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Charles Wang <charles.goodix@gmail.com>, dmitry.torokhov@gmail.com,
+	dan.carpenter@linaro.org
+Cc: oe-kbuild-all@lists.linux.dev, dianders@chromium.org, robh@kernel.org,
+	krzk+dt@kernel.org, jikos@kernel.org, bentiss@kernel.org,
+	hbarnor@chromium.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Charles Wang <charles.goodix@gmail.com>
+Subject: Re: [PATCH v4 1/2] HID: hid-goodix: Add Goodix HID-over-SPI driver
+Message-ID: <202406151920.jSO2jara-lkp@intel.com>
+References: <20240614121538.236727-2-charles.goodix@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>
-References: <20240613-hdmi-tx-v4-0-4af17e468699@freebox.fr>
- <20240613-hdmi-tx-v4-4-4af17e468699@freebox.fr>
- <348e16f1-0a1b-4cad-a3f0-3f7979a99a02@linaro.org>
- <pprbxhow6gl6bqlhzoiozz7ymwqk5uwuyuwclviulie4ucyjok@xv34zrzw72oz>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <pprbxhow6gl6bqlhzoiozz7ymwqk5uwuyuwclviulie4ucyjok@xv34zrzw72oz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240614121538.236727-2-charles.goodix@gmail.com>
 
-On 14.06.2024 12:33 PM, Dmitry Baryshkov wrote:
-> On Fri, Jun 14, 2024 at 01:55:46AM GMT, Konrad Dybcio wrote:
->>
->>
+Hi Charles,
 
-[...]
+kernel test robot noticed the following build warnings:
 
->> GCC_HDMI_CLKREF_CLK is a child of xo, so you can drop the latter.
->> It would also be worth confirming whether it's really powering the
->> PHY and not the TX.. You can test that by trying to only power on the
->> phy (e.g. call the phy_power_on or whatever APIs) with and without the
->> clock
-> 
-> I'd prefer to keep it. I think the original DT used one of LN_BB clocks
-> here, so it might be that the HDMI uses CXO2 / LN_BB instead of the main
-> CXO.
-> 
-> If somebody can check, which clock is actually used for the HDMI, it
-> would be really great.
+[auto build test WARNING on hid/for-next]
+[also build test WARNING on dtor-input/next dtor-input/for-linus robh/for-next linus/master v6.10-rc3 next-20240613]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-+CC jhugo - could you please take a look?
+url:    https://github.com/intel-lab-lkp/linux/commits/Charles-Wang/HID-hid-goodix-Add-Goodix-HID-over-SPI-driver/20240614-201949
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git for-next
+patch link:    https://lore.kernel.org/r/20240614121538.236727-2-charles.goodix%40gmail.com
+patch subject: [PATCH v4 1/2] HID: hid-goodix: Add Goodix HID-over-SPI driver
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240615/202406151920.jSO2jara-lkp@intel.com/config)
+compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240615/202406151920.jSO2jara-lkp@intel.com/reproduce)
 
-Konrad
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406151920.jSO2jara-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/input.h:19,
+                    from include/linux/hid.h:24,
+                    from drivers/hid/hid-goodix-spi.c:9:
+   drivers/hid/hid-goodix-spi.c: In function 'goodix_spi_read':
+>> drivers/hid/hid-goodix-spi.c:147:34: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'unsigned int' [-Wformat=]
+     147 |                 dev_err(ts->dev, "read data len exceed limit %ld",
+         |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/hid/hid-goodix-spi.c:147:17: note: in expansion of macro 'dev_err'
+     147 |                 dev_err(ts->dev, "read data len exceed limit %ld",
+         |                 ^~~~~~~
+   drivers/hid/hid-goodix-spi.c:147:64: note: format string is defined here
+     147 |                 dev_err(ts->dev, "read data len exceed limit %ld",
+         |                                                              ~~^
+         |                                                                |
+         |                                                                long int
+         |                                                              %d
+   drivers/hid/hid-goodix-spi.c: In function 'goodix_spi_write':
+   drivers/hid/hid-goodix-spi.c:181:34: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'unsigned int' [-Wformat=]
+     181 |                 dev_err(ts->dev, "write data len exceed limit %ld",
+         |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:154:56: note: in expansion of macro 'dev_fmt'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/hid/hid-goodix-spi.c:181:17: note: in expansion of macro 'dev_err'
+     181 |                 dev_err(ts->dev, "write data len exceed limit %ld",
+         |                 ^~~~~~~
+   drivers/hid/hid-goodix-spi.c:181:65: note: format string is defined here
+     181 |                 dev_err(ts->dev, "write data len exceed limit %ld",
+         |                                                               ~~^
+         |                                                                 |
+         |                                                                 long int
+         |                                                               %d
+
+
+vim +147 drivers/hid/hid-goodix-spi.c
+
+   137	
+   138	static int goodix_spi_read(struct goodix_ts_data *ts, u32 addr,
+   139				   void *data, size_t len)
+   140	{
+   141		struct spi_device *spi = to_spi_device(&ts->spi->dev);
+   142		struct spi_transfer xfers;
+   143		struct spi_message spi_msg;
+   144		int error;
+   145	
+   146		if (GOODIX_SPI_READ_PREFIX_LEN + len > sizeof(ts->xfer_buf)) {
+ > 147			dev_err(ts->dev, "read data len exceed limit %ld",
+   148				sizeof(ts->xfer_buf) - GOODIX_SPI_READ_PREFIX_LEN);
+   149			return -EINVAL;
+   150		}
+   151	
+   152		/* buffer format: 0xF1 + addr(4bytes) + dummy(3bytes) + data */
+   153		ts->xfer_buf[0] = GOODIX_SPI_READ_FLAG;
+   154		put_unaligned_be32(addr, ts->xfer_buf + GOODIX_SPI_TRANS_PREFIX_LEN);
+   155	
+   156		spi_message_init(&spi_msg);
+   157		memset(&xfers, 0, sizeof(xfers));
+   158		xfers.tx_buf = ts->xfer_buf;
+   159		xfers.rx_buf = ts->xfer_buf;
+   160		xfers.len = GOODIX_SPI_READ_PREFIX_LEN + len;
+   161		spi_message_add_tail(&xfers, &spi_msg);
+   162	
+   163		error = spi_sync(spi, &spi_msg);
+   164		if (error)
+   165			dev_err(ts->dev, "spi transfer error: %d", error);
+   166		else
+   167			memcpy(data, ts->xfer_buf + GOODIX_SPI_READ_PREFIX_LEN, len);
+   168	
+   169		return error;
+   170	}
+   171	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
