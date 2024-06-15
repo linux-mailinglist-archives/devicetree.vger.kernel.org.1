@@ -1,57 +1,74 @@
-Return-Path: <devicetree+bounces-76039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 956CB909826
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:14:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B884B90982B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 14:16:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 490D71F2124A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 12:14:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D51C51C211CC
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jun 2024 12:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E80845020;
-	Sat, 15 Jun 2024 12:14:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB1544C68;
+	Sat, 15 Jun 2024 12:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DOSocQWJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mrB4kDMm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0485C4A3D;
-	Sat, 15 Jun 2024 12:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60BB45020;
+	Sat, 15 Jun 2024 12:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718453693; cv=none; b=FTT7Rs5FotGsbpBqqBmdOj4clTXjK4yL2HGDCBof0qnp4GSsUsxmDWLt4lmBHeRMIgy37m4PpE6DKL77YRyuNKNygTTFeZT1va7VzdqNJjMvC1t4mRRyaakMs09udOp7q27J65g0IGOnNDqVB2H5b/VuP8MIue14hYG40Xw8vgA=
+	t=1718453792; cv=none; b=J5TdKdrRTchUHDLV34f1tOO2tyrv7GfVSQv4huRgVLgm6iey7yqn05EM/Aq6Snxt2HdaGa3gM4zbjmYHb74zdnSKF+vil11qdUKkUEg6nTwzhAmVHpWUUurHhG9NWoz8wNBblMMKJtNTPS2T+8IssllWozHh4sD030Uw1lVELZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718453693; c=relaxed/simple;
-	bh=/LLZqW6NRPMIgHsf4D4yiEdXEyv0x9KmjvDXqN9rvPU=;
+	s=arc-20240116; t=1718453792; c=relaxed/simple;
+	bh=fIa7Fu5rfI4MXQKrG+JnjbyVR+srNml2BpZ8EMMTVxQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nDbV29Jl1pnn8eG/81OJ3Jtqq4zCKTeOEjUCWtglR/NLZUZ+Qyf9gDRmUHBaOUo7qtcBbxYbO45Fbrm6b1bVXuSYJvMEMj3fhmXcHMYZTkIiT1WujX79vMtBnKgRyXqQ/DJdzU6Am3qM3VHQYG/ChJNqAqcgxqHxcji8MTS2yP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DOSocQWJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4A1DC116B1;
-	Sat, 15 Jun 2024 12:14:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SYA2245R8iybNI+XqM+zQzD0xplkCqd7lI1k4Hd++QIRzTBZ8gO4Zvsk7K/7y8z67uaNb2vBzgo1181RvXWrwPMxpxYHj8FPhBz6DJNLrLvcQ1kt0xeX22ywNfwu4hk+7cmf5eplM3B1BkvNoos31LnSNMUPRsEJjEtmWYkCj70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mrB4kDMm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7662C116B1;
+	Sat, 15 Jun 2024 12:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718453692;
-	bh=/LLZqW6NRPMIgHsf4D4yiEdXEyv0x9KmjvDXqN9rvPU=;
+	s=k20201202; t=1718453792;
+	bh=fIa7Fu5rfI4MXQKrG+JnjbyVR+srNml2BpZ8EMMTVxQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DOSocQWJgYuaU85qCoTzrQOouNRLjRV/D1FycJymW9L5a62sAH8NqX0ukgj4ZfEO8
-	 7DAKtwAZbxH1nVCr0GwVLDDyeEWPLvmO/NCD+na1r4oU4ki1YvgAyk1dk4piI9oDMT
-	 ZVZ0/wAL4TWKxGE4PaLLIuMJWjF1R15rGSgyTtlWPdTG3/dpFa3c/sQUjMOUGe0u9m
-	 5Izk5n96LJ3k0GDrF6LD9KD2WSMVDWaNs9sJRQVYTc+ycbDyN5sbAxpU4yjFl3QfNg
-	 aZwU1CjlvJDC4B10pwmHRkJ3BiOUde99wndg5ACrwGX6NuzUVOIWky6hv6i+YJ5Tc4
-	 hgP4bsufWXGFQ==
-Date: Sat, 15 Jun 2024 13:14:48 +0100
+	b=mrB4kDMmJTeiuyQOOkCj4Q1LDTg4yuNd0/ZYAsOv8J0waSVa1ZXik2Bpm2P4CK4rf
+	 YbcrrqGPDTKuwAvoo0Hes0ybEH1p8RdUfg2WjrdtedCpK9UeFZtOsXjeCuOxK6IDeZ
+	 s7cvjwzbYhS/QTkz614TYaOT4ab00my2nxTtvQ55BZgrLZKOgynNA/3p+BQ5RQvi03
+	 WW4kobYsc/6i0tNLMEnDhQe6k9BUn2JOzdn/CKL3u3ihIzwO+qFJgpH8RLwG4HmpdF
+	 H3p5uK6C6WjN4UFeAC69RiaY9PUL5gYmHJZd6Heef94qATd7ocJGPNLaFQpmsa5fGM
+	 cHVCMxPnoflIA==
+Date: Sat, 15 Jun 2024 13:16:26 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Etienne Carriere <etienne.carriere@foss.st.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
-	Pascal Paillet <p.paillet@st.com>, Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH] dt-bindings: mfd: dual licensing for st,stpmic1 bindings
-Message-ID: <20240615-booted-spoon-f538994dec8f@spud>
-References: <20240614153346.2656871-1-etienne.carriere@foss.st.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "Claudiu.Beznea" <claudiu.beznea@tuxon.dev>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>,
+	"sboyd@kernel.org" <sboyd@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"lee@kernel.org" <lee@kernel.org>,
+	"alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+	"magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH 05/12] dt-bindings: rtc: renesas,rzg3s-rtc: Document the
+ Renesas RZ/G3S RTC
+Message-ID: <20240615-unwell-hardcover-e95af7c4a43b@spud>
+References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240614071932.1014067-6-claudiu.beznea.uj@bp.renesas.com>
+ <TY3PR01MB113464811F43F19115FCF62A786C22@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <d6b4e0cc-c16e-4ea7-bbc4-ddbaaadc9a25@tuxon.dev>
+ <TY3PR01MB113468BB7BC53E43F41C6D65386C22@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,62 +76,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="r431OI/sWd8v5ceD"
+	protocol="application/pgp-signature"; boundary="clAPQ20Y+OV8szeS"
 Content-Disposition: inline
-In-Reply-To: <20240614153346.2656871-1-etienne.carriere@foss.st.com>
+In-Reply-To: <TY3PR01MB113468BB7BC53E43F41C6D65386C22@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
 
---r431OI/sWd8v5ceD
+--clAPQ20Y+OV8szeS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 14, 2024 at 05:33:46PM +0200, Etienne Carriere wrote:
-> Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv2.0
-> only to dual GPLv2.0 or BSD-3-Clause. I have every legitimacy to request
-> this change on behalf of STMicroelectronics. This change clarifies that
-> this DT binding header file can be shared with software components as
-> bootloaders and OSes that are not published under GPLv2 terms.
->=20
-> In CC are all the contributors to this header file.
->=20
-> Cc: Pascal Paillet <p.paillet@st.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
-> ---
->  include/dt-bindings/mfd/st,stpmic1.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/include/dt-bindings/mfd/st,stpmic1.h b/include/dt-bindings/m=
-fd/st,stpmic1.h
-> index 321cd08797d9..957c48300cd4 100644
-> --- a/include/dt-bindings/mfd/st,stpmic1.h
-> +++ b/include/dt-bindings/mfd/st,stpmic1.h
-> @@ -1,4 +1,4 @@
-> -/* SPDX-License-Identifier: GPL-2.0 */
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
+On Fri, Jun 14, 2024 at 08:22:57AM +0000, Biju Das wrote:
 
-The usual dual license for bindings is BSD-2-Clause, was there a
-specific request for the 3 version?
-
->  /*
->   * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
->   * Author: Philippe Peurichard <philippe.peurichard@st.com>,
-> --=20
-> 2.25.1
+> > >> +$id: http://devicetree.org/schemas/rtc/renesas,rzg3s-rtc.yaml#
+> > >
+> > > Please make it generic renesas,rtca3-rtc.yaml. Future SoCs may use th=
+is IP.
+> > > So use IP name instead.
+> >=20
+> > From what I know the file name should correspond with the compatible th=
+at file was introduced with,
+> > and this one shouldn't be generic but SoC specific.
 >=20
+> I maybe wrong, I was under the impression, we should use "vendor,ipname" =
+for the filename
+> and compatible should use vendor,ipname as generic compatible.
+> If there are differences between SoCs, then use SoC specific compatible.
+>=20
+> Currently there is one device, so not sure??
 
---r431OI/sWd8v5ceD
+The usual policy for new files is "filename matching a compatible".
+
+--clAPQ20Y+OV8szeS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm2FuAAKCRB4tDGHoIJi
-0qU+AP9iFoNZNW+d5nIKaZnmqqhGLVRuf0oOYDQjVwO4tsBr0QD/VWwcj6LPsoPt
-quIwpaRqzIzpaqShIvphrfgrY/wQKw4=
-=/GST
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm2GGgAKCRB4tDGHoIJi
+0ihkAP42Coh08F/VL7TmA4JWvrf8daBenjco1rVFZ1mSY5Q7iAD8COSVRjBudGDs
+xPkSHl85M/MiNRb4aFC6H8d+g8qECAY=
+=P/zh
 -----END PGP SIGNATURE-----
 
---r431OI/sWd8v5ceD--
+--clAPQ20Y+OV8szeS--
 
