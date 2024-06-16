@@ -1,147 +1,109 @@
-Return-Path: <devicetree+bounces-76207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09303909F1E
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 20:23:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62CD8909F39
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 20:35:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09E121C219BE
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 18:23:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16E8E1F23958
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 18:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAFD4879B;
-	Sun, 16 Jun 2024 18:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823A41CA85;
+	Sun, 16 Jun 2024 18:35:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHHohNSk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V7bp7BwV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A2424B34;
-	Sun, 16 Jun 2024 18:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D8149632;
+	Sun, 16 Jun 2024 18:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718562203; cv=none; b=t28hxoPcIXRzZaNEciISrjjHUTsSWwYiSLhBvKgiEBrhJFNIdVqlzyQV8Vtt/CvsVFTuodg0BW2Y0OYbbhFz5NOtWH7qjl4FLK4L1+30kY1MeJF5/E/RtgPSYj2oHydRtpujTXJIsQsFwpee1kHWX0OLg8/20oWJoxQi/50ZQzE=
+	t=1718562934; cv=none; b=bGDJiHTtGNySHLyJsY54G8fAbfOczl07rRQjMUqKyEYiLgGQm213dole9cKkssJ/EqJ9uW6LKFF7qzT9CIZWAsA/b2/1YwisVr6ZzFif4ZEy0Dh03T/hVWAYtTGgrTQdpx01MK6SExLTaN5jrgCDm58yq65NDLwDa//OKrrIQ+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718562203; c=relaxed/simple;
-	bh=2/D3y84MWExMUe/+ohdAcL5JtZ0TFzz2ZC4d4ub2oGU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=I0pNU/AtW17BrRRado7Ht2InQGD/gOzdr6+xA8ZYBxsv+fHyylmhTQTINCWA0ayNM4zhRA1mXQRUj+f/bSoQyWzgyfXy6Q+b23fmQw2O89oEUzBjhq72rL3Wg+NICbuxrxuvGJ4wa95eQIYzK+KlK9uh0KreVDXgpaviYmfqLaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHHohNSk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 516FDC4AF50;
-	Sun, 16 Jun 2024 18:23:23 +0000 (UTC)
+	s=arc-20240116; t=1718562934; c=relaxed/simple;
+	bh=cCKxq9tl4NR2OLs8Y2/gZJnVAyUm8QjK2yLyN/vAu8A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DcUlKhUmmfrb6bKANizKZskAejWAHW20aze1CRPY8hrBETY/4zDOr5hoBMZ86IehrMYAag8vCiv00hX6tcfjFjeJL/BU1qXnnb23kLUcMpxsWVI1ededmeqYDankBtb1yfrCnFl2Y76pbQc2sSOkWHN3NW9BN7UCaa+MVMek9SM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V7bp7BwV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4654FC2BBFC;
+	Sun, 16 Jun 2024 18:35:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718562203;
-	bh=2/D3y84MWExMUe/+ohdAcL5JtZ0TFzz2ZC4d4ub2oGU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=FHHohNSk3kpLoximLWynHYzSgNS2SE7/Jx1n9Wqi3oUsSda+7yecoHZtlpI8zLAKx
-	 Cc38hDQPHLAkeCY3t93x4uRTDP597vOMErylAve8efMVXeyJVjAu8rxUjWcIZSPdOO
-	 In7o+2tV8jZri09Up18WzNs/izIiwlMfLwuXOrB8CP83NQLoO3l3h3xWxBrsFwlC1G
-	 ANyoroJasa8yU24JNXN+rYxS8IZZQSxzd5l9xaNV1yYC+xtHw+98TT84qtHWWiYHx/
-	 TKq+t2+JfSlvrtrDQgviyQxBAmJrv/p1gmLeBIwtXbgYCy0+4S54MG4ofPF7BgW66n
-	 /7WAvZlOop41Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 426E7C2BA18;
-	Sun, 16 Jun 2024 18:23:23 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Sun, 16 Jun 2024 20:22:54 +0200
-Subject: [PATCH v4 3/3] arm64: dts: qcom: msm8939-longcheer-l9100: Add rear
- flash
+	s=k20201202; t=1718562933;
+	bh=cCKxq9tl4NR2OLs8Y2/gZJnVAyUm8QjK2yLyN/vAu8A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V7bp7BwVBB+vOxSNNOqc7w2dV0jNV26la3je0nwV8+sOGAfTTTSN6fWzPbOZ1r9LN
+	 F5YDnRrFg/9VqG2pQ5kSXyp5SFUti5qSJmKACyDsEoJkFfth8j1rpkrl0kKH7L+Wcc
+	 K+zAsBuCfGvqbzCK5OodepGgGt/ZfKu2N7/uikAJ0r4qDnpYxgAxMOLopxik5AewCb
+	 CMlEUkR18HKUnS//JSaWImZtEqqn02KAo0H6Jhaf3ThjSXySyUUoTZSUoerLAykQPh
+	 +CqyiSBJscTVpketohBAOVWXUTG6uXGow0zuEzBe5aTaKxbQhLW2WOWScoLBvrwFhZ
+	 KhZckyCD1a4tg==
+Date: Sun, 16 Jun 2024 19:35:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jesse Taube <jesse@rivosinc.com>
+Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+Message-ID: <20240616-exorcism-computing-e11e26084a62@spud>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240616-sy7802-v4-3-789994180e05@apitzsch.eu>
-References: <20240616-sy7802-v4-0-789994180e05@apitzsch.eu>
-In-Reply-To: <20240616-sy7802-v4-0-789994180e05@apitzsch.eu>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- Trilok Soni <quic_tsoni@quicinc.com>, Kees Cook <kees@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718562205; l=1408;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=5PZFGehTShxKe3OFkYq1lO6OPdXhGy4wNq5owjXoJG0=;
- b=Nj99GFC0tfIYypxlnWwCOUeS13ePOV+czdmMfwwxrWIv1lDgy+lga+RvH6mw5ZKUMVPuvdONk
- oX5PwuKtblYAbVBVqV7WIHOXnlbgBFR9GaFDN2t3IcvgcDxeH542cNb
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
-
-From: André Apitzsch <git@apitzsch.eu>
-
-The phone has a Silergy SY7802 flash LED controller.
-
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-index e3404c4455cf..528737929274 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-@@ -159,6 +159,25 @@ led@2 {
- 			};
- 		};
- 	};
-+
-+	flash-led-controller@53 {
-+		compatible = "silergy,sy7802";
-+		reg = <0x53>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_rear_flash_default>;
-+		pinctrl-names = "default";
-+
-+		led@0 {
-+			reg = <0>;
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+			led-sources = <0>, <1>;
-+		};
-+	};
- };
- 
- &blsp_i2c3 {
-@@ -318,6 +337,13 @@ camera_front_flash_default: camera-front-flash-default-state {
- 		bias-disable;
- 	};
- 
-+	camera_rear_flash_default: camera-rear-flash-default-state {
-+		pins = "gpio9", "gpio16", "gpio51";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
- 		pins = "gpio20";
- 		function = "gpio";
-
--- 
-2.45.2
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hyrkTx1xiIXK1tLb"
+Content-Disposition: inline
+In-Reply-To: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
 
 
+--hyrkTx1xiIXK1tLb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
+
+>  .../sifive,plic-1.0.0.yaml                    |   5 +-
+>  .../devicetree/bindings/riscv/cpus.yaml       |   1 +
+>  .../devicetree/bindings/riscv/spacemit.yaml   |  24 ++
+>  .../bindings/timer/sifive,clint.yaml          |   4 +-
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/riscv/Kconfig.socs                       |   5 +
+>  arch/riscv/boot/dts/Makefile                  |   1 +
+>  arch/riscv/boot/dts/spacemit/Makefile         |   2 +
+>  arch/riscv/boot/dts/spacemit/bananapi-f3.dts  |  19 ++
+>  arch/riscv/boot/dts/spacemit/k1.dtsi          | 281 ++++++++++++++++++
+>  arch/riscv/configs/defconfig                  |   1 +
+
+No MAINTAINERS update, so I figure that means you don't want to maintain
+it going forwards? If there's someone out that that does care about the
+spacemit k1 (Jesse maybe?), then I'd be more than happy to have them
+look after it.
+
+Thanks,
+Conor.
+
+
+--hyrkTx1xiIXK1tLb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm8wcQAKCRB4tDGHoIJi
+0ullAPwIwHO7QvY8o2OTJfZuxL1RvaJtHCpIEcjp5JGF6SHaDQEAyVpJmVs0wZpq
+20DChxYrgBQSB7yAGtbtrfsQI4j+5gE=
+=dj44
+-----END PGP SIGNATURE-----
+
+--hyrkTx1xiIXK1tLb--
 
