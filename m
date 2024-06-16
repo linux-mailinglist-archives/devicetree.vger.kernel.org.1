@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-76180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9357909E9B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 18:39:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3279909EAC
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 19:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A98A1C2084D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 16:39:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DE571F2113A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 17:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E291BC4E;
-	Sun, 16 Jun 2024 16:39:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA67E1CA84;
+	Sun, 16 Jun 2024 17:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="LRYU4Ya/"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="sW/I5ZkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from out203-205-221-192.mail.qq.com (out203-205-221-192.mail.qq.com [203.205.221.192])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5081217BA0;
-	Sun, 16 Jun 2024 16:39:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E63F412E7E;
+	Sun, 16 Jun 2024 17:19:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.192
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718555970; cv=none; b=SWK/hTjJuHpnSE8ZE3hLyUeTPFsI0sM97daRM8FD/7f0Qeyk9/d7hDAgH4ElFtCyTiGivHxB6hllidFBI5LgikPiwMFZIYd1sXXolZ+Iay4rD57JNToc8VdAoT8mPNiMqU1CZVKFgvYkxwgqB0xxnlb8K17/SxNGAwM3xU5kyC4=
+	t=1718558350; cv=none; b=KNmTclpzATWi30ejK29wRrRJRN/2OJa/0Zrl2syx7hVy08LdPDiSYYmswQ6VAUhjOPHfYcL6wtzA4NoyUs92NTB+5QDq8AfDwI3XrxCONcAURY/hotgHGhSrssnar0HjUoHZ/uK6vVZkpwjWx7MYbPX7XQfnorFZ/jkF6Tc1nZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718555970; c=relaxed/simple;
-	bh=Ve8yIU93CqGV39jXDILXAr1Dw2HZhuoVS9gFsFaAPjY=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=V8fA+vnXFjuRBVWl5+gIc/+lJMcXHrnb23q1kQgd0Rq4/kQfQVdIErX6b5dSZp4jyPiRcWA1/fN+k1Ht+y+MgVsYu0uCfkiDXuB/hg0rGk4R4pukcX1RF6eShV5LKSsHRjbf7aAYEZq5tpwLVBP1x0lfWIxHXxTmJbiyBP230vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=LRYU4Ya/; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1718555939; x=1719160739; i=markus.elfring@web.de;
-	bh=wudiCjAOYzPYvYnle3vZvnR9d5fYg6NR06qnTJaJVK0=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=LRYU4Ya/NlKd7Ue3BC6ogTAICvgU+RRa9ZKQIFZKyE6ST0eN7mG+GQ1UXVW/5X9f
-	 T2JQvdVjDcBE7uXeG3jpRDpP/kVpgUMz7Ol1bAUnvViSiah5tapnoJesX2WqTq/wU
-	 zKCdtkDq7k19BiLMPyCZj0G97IMITHKS2g330UAos3y2NXzRs0vvS8wrFw0hhqPkY
-	 vHfKBMxboFRt5E0mRkGifg4go1jSLaNfmd8IE9FICzmoJLgU2uuRB1dP2Fg/BBnq9
-	 BcYh2J4oHr6kfmj5HTIK4A72iBe2dJd4NUrE3p6QacJ0KulLMNvekKCcRyTDKB1E1
-	 rWnlWsAwxpy1884N9Q==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1M7Nmq-1sJyJD2UqS-00FC0k; Sun, 16
- Jun 2024 18:38:59 +0200
-Message-ID: <6e1dd5d1-8c5d-44f5-99e8-f42cfbdeee04@web.de>
-Date: Sun, 16 Jun 2024 18:38:58 +0200
+	s=arc-20240116; t=1718558350; c=relaxed/simple;
+	bh=19G1J8ZnkoXJsDkgERRYUzgb7CPmA8BJJ7qmlahKLmM=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=PALWZymDXm3ftPOen4CuwlqobZdVQY+ES42eHe3yHOUqxJ5nHYqQ0H2Q6IUhD6Pgi0oU9fiSGkbC9Y0b+E9pos8ggywauhz+64r1G6loanIgJBser1muWdsNdX3kvujnB5TDt0s3m6hQFo9/TTtg4qUxMQ4QbOZ5jXciLGl27qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=sW/I5ZkR; arc=none smtp.client-ip=203.205.221.192
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1718558344; bh=jJ9Igh0peCp3hD61YPVPtVN+YWS56XTwc+sXFzKDOKo=;
+	h=From:To:Cc:Subject:Date;
+	b=sW/I5ZkRAhhBdauS/bOYBU0VZFVKKOQ/29trNSJYsKa/Aooko8xc8bGuWA+OzD1qp
+	 lWh/GImpIPZPO3w+m5yEO0W2ruaOzrwdreZ0wnHQtHQgqlvt8CkHgV/0W7YV2baTCr
+	 ZrRXnwne88vm+TQjGaZHqqweVXs8UMLgKVaiHzJo=
+Received: from cyy-pc.lan ([240e:379:2260:ed00:cd33:e8cf:d8f9:bed3])
+	by newxmesmtplogicsvrsza10-0.qq.com (NewEsmtp) with SMTP
+	id 4C03E806; Mon, 17 Jun 2024 01:19:00 +0800
+X-QQ-mid: xmsmtpt1718558340ts5w4gw51
+Message-ID: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+X-QQ-XMAILINFO: MSPab3JKqisNu/J589iYOw3sGBU5TouEdZaUsX9QtkV5yGQBb/Ox4LxkgOENk6
+	 oIindeAOoyurwVY774zMfvHVHOpgbcGHXtfQ4K5dJwNPaHmhqT2fWTYIn4CxswKGxDrx99dRkgRB
+	 CTXCaN2rwdoFiTMuPlI1jpUSWiZiBMd8g9GPthbS5RMpae8Jp59ghRrBz6LUy0Y9ZlXMq9bFsdnB
+	 nKODH5WP/nrq47fMfMsLx1mPR8lpbTo5QT/8Y4rx2c4n55a2tBk5XTjS1kYUxrPE7DjiM7Iyen4G
+	 BUzXn1IbGfqAP7wyHTcgJ5X8zQq+fCbjz0nOq5Yn4WMps4QEGAlOHtwYigOJio5V+Wa8BH51ZLIT
+	 /07YDz/pt1MhXXVNpjkKAp6lgLY0o/gBhzCDHbHPXm6PEP2pUvVJNs4SorrUEyvVdO9gx1MfXsXf
+	 w+yM0bWefvcZtv+bUSGaF0blDOPaj5i4HDoaQO2zrfjc5RfJMf9DYM41cASOA1UkCYjXKZZPPbhd
+	 8h9FBJ6lap2WjWAIVgJrDuOaeJv5ZEEI9bTxF9DZiPpijEV4Qi82NA7Hs8n1+fcaCq3hEfnKzjk8
+	 NkaMUrnZKl1EdvPwjrDOmjshOdfGdG/frJwH9f1alr3SJn8kPb8O3IY5Jfnc1JpH8L3JuoN4peSZ
+	 9maXCOu+bZ0hv4/XoZxSzYxiBtJ33xgmd2UQqzzRFx2wYZlTpwFEvj2bfSqQXAjI/6OqQezE4eGR
+	 54IFG3vHZqFPHfRz2+R6b0vzFFEKNIA7xd/2jTrEPogfRJlzysLfDZA9DNxH+ATzp23AojaDtmTB
+	 cgHqPX50Jz6UHt4DB9i2t5qy55yZEQOH3ekB+3xZZ5k8EQxEcujX0bl1ZuEGQJmeDZVeERQQ4wK4
+	 /6tuCNkkIhw1zvKR/PadnRcfBJyal+c2mYcV+3OFRQ2Ji3kCF6FlKEj3dxlbe9yCAH9CPTN+ltQu
+	 0g881itcy7jTYZt/m3okons20gmlUvsgBJQNXVOgODk7H3rJ2Cu/pjgmW1Dqx+gejaKGVeG/YyGs
+	 5An/V/eMKQxva58m9+DR+rm+ZNmscM0GPMVU5gMeRcHxI4g/Oa
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+From: Yangyu Chen <cyy@cyyself.name>
+To: linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup.patel@wdc.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+Date: Mon, 17 Jun 2024 01:18:52 +0800
+X-OQ-MSGID: <20240616171852.3074283-1-cyy@cyyself.name>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
- Prasad Kumpatla <quic_pkumpatl@quicinc.com>, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Banajit Goswami <bgoswami@quicinc.com>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Takashi Iwai <tiwai@suse.com>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Rohit kumar <quic_rohkumar@quicinc.com>
-References: <20240611074557.604250-4-quic_mohs@quicinc.com>
-Subject: Re: [PATCH v6 3/7] ASoC: codecs: wcd937x: add wcd937x codec driver
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240611074557.604250-4-quic_mohs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:DxjFdTY6dURt0KEX55cU8ZQXbycMmIZXVImma0+UYHSWLc+e/Fp
- uofnWVfLZSwRA42OKWA49bvBypqU2bLZmL5Tm4RfVjZqJxGSma6umsikvlaSwdwT8STBOOU
- bjLAq/o/pt5Onqa0XiaTx8dR9gytaRtyQgPG73b6wYLQqpF8wC6XkfwZzgt2X9xQTxexBAl
- pzJTx6Xwd/XWG8QcYuBgQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:yMyHnsAA4Lw=;9MPvPvd28adjFquP7iieLl71KLY
- hT3k0TZ40I8hMXmZBOihrEGMPtQdxP/3gRIeK2aFeBy21jjAqqdFNf4JzUm2K8F9ZZhNMUaw+
- a1y1ld9aGoEMJTeF5+R9XwoqX4+qaebaxPxH9AdFs5x7rC2MQZryUcBwuMuuqTustPY3Z30Ni
- Rp9KB1sVGS+fjKUEcU4gmdbKx/3EU4fMQTnUjAGqzXNAepC3L40LXzUIakmKQ4Uvz5vYcM0FV
- FeFjkbB2urvG7h+9yHN54jFxtYVgYQJPMKQxLM+3AadJ65jeIEw2HfgIp8miRF7UBeqFnWAfw
- w5k8SVVn7t08yvg+6G0TFeEGnCthuTl3XTOqg8rKO5vg5Jkllo1A4nJqyIhi0QOaTITdw5h/Z
- HVL7aqyDsK1w5aG3jKzsQ4IDW0pfyl86GmTsbZox3pg6vgwwEKUSuuzxIDI7rC/hYGx018pjT
- M7TKifdfxCX+PUR33Ms01abxgv9DMewmbQRqZEk/aXmtcWkPpSpwo0m6pXnrZSXHs6FGysld2
- le2swTUllZ9P4Tq9b2D9eeEurFeabzr72abDmO2hNdVIYzIhA9eZUS5KUabjqgFe9XduGKmkm
- pDmtUs7SEImSX+Gyb951McPqMj0xa/7Y0wQbr85bmiX55j3f1TXolY0tYkwZaIxdNHUpSd/at
- gXC4QYo+mA+VRKNitlQzquM2omOtvyeBEmrG8/l3irWT/KToHycR9wrWhF0a8lrhUNxOfsJlP
- fJDG4406/B50iLFYVDy96tORt3OFSlypS1v9I4MXWMdtGxCMjCnr4dF+Xr8Wo7OnjNIwB45nk
- 82hlsm102bNohgtfzb/tLtxPo/ZNw1/GAIw5LSktA+tzQ=
+Content-Transfer-Encoding: 8bit
 
-> This patch adds basic SoundWire codec driver to support for
-> WCD9370/WCD9375 TX and RX devices.
-=E2=80=A6
+SpacemiT K1 is an ideal chip for some new extension such as RISC-V Vector
+1.0 and Zicond evaluation now. Add initial support for it to allow more
+people to participate in building drivers to mainline for it.
 
-Please improve such a change description with an imperative wording.
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
-cumentation/process/submitting-patches.rst?h=3Dv6.10-rc3#n94
+This kernel has been tested upon Banana Pi BPI-F3 board on vendor U-Boot
+bootflow generated by Armbian SDK[1] and patched OpenSBI[2] to enable
+Zicboz, which does not in the vendor dts on its U-Boot. Then successfully
+booted to busybox on initrd with this log[3].
 
+[1] https://github.com/BPI-SINOVOIP/armbian-build/tree/v24.04.30
+[2] https://gist.github.com/cyyself/a07096e6e99c949ed13f8fa16d884402
+[3] https://gist.github.com/cyyself/a2201c01f5c8955a119641f97b7d0280
 
-=E2=80=A6
-> +++ b/sound/soc/codecs/wcd937x.c
-> @@ -0,0 +1,1677 @@
-=E2=80=A6
-> +static int wcd937x_mbhc_micb_adjust_voltage(struct snd_soc_component *c=
-omponent,
-> +					    int req_volt, int micb_num)
-> +{
-=E2=80=A6
-> +	mutex_lock(&wcd937x->micb_lock);
-> +	/*
-> +	 * If requested micbias voltage is same as current micbias
-=E2=80=A6
-> +exit:
-> +	mutex_unlock(&wcd937x->micb_lock);
-> +	return ret;
-> +}
-=E2=80=A6
+Yangyu Chen (9):
+  dt-bindings: vendor-prefixes: add spacemit
+  dt-bindings: riscv: Add SpacemiT X60 compatibles
+  dt-bindings: riscv: add SpacemiT K1 bindings
+  dt-bindings: timer: Add SpacemiT K1 CLINT
+  dt-bindings: interrupt-controller: Add SpacemiT K1 PLIC
+  riscv: add SpacemiT SOC family Kconfig support
+  riscv: dts: add initial SpacemiT K1 SoC device tree
+  riscv: dts: spacemit: add Banana Pi BPI-F3 board device tree
+  riscv: defconfig: enable SpacemiT SoC
 
-Would you become interested to apply a statement like =E2=80=9Cguard(mutex=
-)(&wcd937x->micb_lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.10-rc3/source/include/linux/mutex.h#L1=
-96
+ .../sifive,plic-1.0.0.yaml                    |   5 +-
+ .../devicetree/bindings/riscv/cpus.yaml       |   1 +
+ .../devicetree/bindings/riscv/spacemit.yaml   |  24 ++
+ .../bindings/timer/sifive,clint.yaml          |   4 +-
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/riscv/Kconfig.socs                       |   5 +
+ arch/riscv/boot/dts/Makefile                  |   1 +
+ arch/riscv/boot/dts/spacemit/Makefile         |   2 +
+ arch/riscv/boot/dts/spacemit/bananapi-f3.dts  |  19 ++
+ arch/riscv/boot/dts/spacemit/k1.dtsi          | 281 ++++++++++++++++++
+ arch/riscv/configs/defconfig                  |   1 +
+ 11 files changed, 343 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/riscv/spacemit.yaml
+ create mode 100644 arch/riscv/boot/dts/spacemit/Makefile
+ create mode 100644 arch/riscv/boot/dts/spacemit/bananapi-f3.dts
+ create mode 100644 arch/riscv/boot/dts/spacemit/k1.dtsi
 
-Regards,
-Markus
+-- 
+2.45.1
+
 
