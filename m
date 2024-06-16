@@ -1,102 +1,77 @@
-Return-Path: <devicetree+bounces-76261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D4C90A08D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 00:42:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4A490A094
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 00:48:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E489DB2136B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:42:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E2051F21B11
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7368E6FE07;
-	Sun, 16 Jun 2024 22:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D4271B52;
+	Sun, 16 Jun 2024 22:48:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A8F761FE4
-	for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 22:42:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE7D61FDB;
+	Sun, 16 Jun 2024 22:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718577763; cv=none; b=UyusM2rkOlI8tTz6qXT3iOFkyN3MF8hDodNmDra0XVOMZii/PmWPGeNylLbejht2Ccfk1PJjWBL3WWSkVmmlP/beAfruauzTBe4P7WQk7ko/SEtR52TjPjF+e6bBxrSbCNJVw3wn3JFcNB2fe92vFeePqFoRR/RyqUbC2Dq/YDI=
+	t=1718578111; cv=none; b=Az1fZwCyaorCtKlGuNOyvfRPqp0yO/xnzZBsljzwK3tZtmrMPOUp4khNwVL6YqbE6hUKnrToMUwZpe23D3d7VeIjZpidL5GbsCizdo2sz4yqFhRuiCKX294GQs4rf1LjqUJI3bOH4/gE1P0TQA1AlgbVFmIODabqO78utPZUeQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718577763; c=relaxed/simple;
-	bh=KN6x5172i7v7EwvBGvN87892PPVUUaEyccgKl7iZ1Hc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OZC2CcCygMqyvOd7o2Z/ZUylZgujTk4KYQ/si9UsPwAhaEu+HMBDO97qJHaNZgf/Q9eNuPqmmj+4DyIhup4mVMG0bEbjz9nu6gXlolm1TMvH/RCzQIz/+stVLklrEYSGqTgsyTvIf6FZ0VG/nfrQe8GFu8+Cf08gCKtjtgPlWbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6A8D015BF;
-	Sun, 16 Jun 2024 15:43:06 -0700 (PDT)
-Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9F3083F73B;
-	Sun, 16 Jun 2024 15:42:39 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1718578111; c=relaxed/simple;
+	bh=EdQVkTfH5pxx4y4UjUTm/ZyoIl3VmTB5HZXmOYMau9s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=us/inZfUb6H4bvbBz6AXf/5Hu7yrm/7cOS9j8G3vW7JbkSI1m5gpBENthNV38UGpfKxgbyG3SOEI8cSV4WR5phber9S7zt8xgc7LaOoqAKRAznkxeyUU7GPjkTykROWUD3bI9C+dvrfjbiwVUx2qWPZXDU3hcj9d/k9O+UShO4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Sun, 16 Jun 2024 22:48:11 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Yangyu Chen <cyy@cyyself.name>, linux-riscv@lists.infradead.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Cc: Chris Morgan <macromorgan@hotmail.com>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 5/5] arm64: dts: allwinner: h616: add IOMMU node
-Date: Sun, 16 Jun 2024 23:40:56 +0100
-Message-Id: <20240616224056.29159-6-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.39.4
-In-Reply-To: <20240616224056.29159-1-andre.przywara@arm.com>
-References: <20240616224056.29159-1-andre.przywara@arm.com>
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jesse Taube <jesse@rivosinc.com>
+Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+Message-ID: <20240616224811.GC3983622@ofsar>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <20240616-exorcism-computing-e11e26084a62@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240616-exorcism-computing-e11e26084a62@spud>
 
-The Allwinner H616 contains a scatter-gather IOMMU connected to some
-video related devices. It's almost compatible to the one used in the H6,
-though with minor incompatibilities.
+Hi Conor
+ Thanks for bringing this up
 
-Add the DT node describing its resources, so that devices like the video
-or display engine can connect to it.
+On 19:35 Sun 16 Jun     , Conor Dooley wrote:
+> On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
+> 
+> No MAINTAINERS update, so I figure that means you don't want to maintain
+> it going forwards? If there's someone out that that does care about the
+> spacemit k1 (Jesse maybe?), then I'd be more than happy to have them
+> look after it.
+Yangyu kind of has limited time, too many stuff for him..
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+I'd volunteered to help on this if it can fill the gap
+Also I'd be more than happy if anyone willing step forward to co-maintain..
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 187663d45ed72..8367b31d03ac0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -305,6 +305,15 @@ x32clk_fanout_pin: x32clk-fanout-pin {
- 			};
- 		};
- 
-+		iommu: iommu@30f0000 {
-+			compatible = "allwinner,sun50i-h616-iommu";
-+			reg = <0x030f0000 0x10000>;
-+			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_IOMMU>;
-+			resets = <&ccu RST_BUS_IOMMU>;
-+			#iommu-cells = <1>;
-+		};
-+
- 		gic: interrupt-controller@3021000 {
- 			compatible = "arm,gic-400";
- 			reg = <0x03021000 0x1000>,
 -- 
-2.39.4
-
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
