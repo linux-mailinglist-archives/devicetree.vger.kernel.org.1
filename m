@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-76195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9E7909ED4
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 19:35:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78B4C909ECE
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 19:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFF631F22758
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 17:35:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBB7BB224F5
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 17:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32308224F2;
-	Sun, 16 Jun 2024 17:35:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C641946B;
+	Sun, 16 Jun 2024 17:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="j3z+7iTo"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="X4/vZyTo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-251-84.mail.qq.com (unknown [203.205.251.84])
+Received: from qq.com (ec2-54-164-151-162.compute-1.amazonaws.com [54.164.151.162])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9821BC57;
-	Sun, 16 Jun 2024 17:35:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE20039FD6;
+	Sun, 16 Jun 2024 17:30:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.164.151.162
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718559345; cv=none; b=Y8VtMwdSdPrCtNjY5Dh2T4g3v+A2THt5rj/uPuveHPeAecUYjc1PnO7cVqph5R3mdyWwkdzr9fmmIVJ5Q8LbvF6H9l6LhiIyQuDviJtJQzIxkYCdoGd77pjW+W/nBEcLdIfJjvSzcLX6SuBVIde+dEFMPPRb7g7v38DD0qaTYCI=
+	t=1718559053; cv=none; b=cx6ecbMlB1WwpPt0nh72THvWFGyxoJ3pj28sFM3M7qeH51jVSTzpBWeb5N0iKhnEJSHN77AC5cePi7B5U+5YgKW0lVAVeF3j7272DGoOfqBeaIARPoYKARdKnjNNT9ES7X/VY9YgXJBeM76Ry4sHKA00mjdfWaJweVKaXA5ernE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718559345; c=relaxed/simple;
+	s=arc-20240116; t=1718559053; c=relaxed/simple;
 	bh=bXpVnWeSf5VmKroUsye8C62KCLYhk+Diz1lcCWrS+Hk=;
 	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=qjEoWIxNGyoUq1HI/vQUHUivKjc2SBBEvO94QDX0UjA7ecVyWdjXj/JgDnDqgqycdv4id0lZ1mRliYsrE/gQY67IIHnd+7ZmMfPUXxb/qq3q3PPeC10NMQRA494WlebrGhppIOlZz6tEEkSYiieqB4JcKFCXh6PGqbjvgn8cjd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=j3z+7iTo; arc=none smtp.client-ip=203.205.251.84
+	 MIME-Version; b=FbzWr2ns5VnLumtZcxYw3m7jkEeNb6CmFT+SSal6wzVj9oxVRybPSY6m+1rG+r3+Kq/SG8R9NTE5+aiwrQXQN8yibIz9G0Fx0BI8hkZZiY/QTpzRw6zdUy8M23Uj2+yXwr1CJmofSqWW+tJeNthwtsoUJyf7FDBwWqRVO0UBlMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=X4/vZyTo; arc=none smtp.client-ip=54.164.151.162
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1718559340; bh=QCxFDA+QkmRBdRZGcgiXjLaq5q8XoSrYlBKMg+3T/tc=;
+	t=1718559046; bh=QCxFDA+QkmRBdRZGcgiXjLaq5q8XoSrYlBKMg+3T/tc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=j3z+7iTocqcbOZnovZ9+Ssue5i2JPESucA8M+OEDSazHCj49ckeEHrp/UYIkOLDWb
-	 VZHE5YFc1qmxj+PL7aHVfMWsMnz4jDytxVo3++Vs4j6IvMUOE36a+SMHl3BGbNym+Z
-	 2yX567oFdKzZy6KQc5SwjG95okS+/dKYqEZWha7s=
+	b=X4/vZyTo/9wRfJUCu41es42DN7ZRNwPbVifTDls2Uuk4PVGfTZZPC9Tmvhm8YU8M1
+	 zgEueGVLNAUIDcwKqJfoF7K3FPJB2ZsuZhob0l88bb4R++4Ypx5Oy8sHDt0ZAKAizH
+	 SdDtLpu00MfoOj6so3bH9AorKFvy51joVqFwARss=
 Received: from cyy-pc.lan ([240e:379:2260:ed00:cd33:e8cf:d8f9:bed3])
 	by newxmesmtplogicsvrszb9-0.qq.com (NewEsmtp) with SMTP
 	id 5452D659; Mon, 17 Jun 2024 01:21:05 +0800
