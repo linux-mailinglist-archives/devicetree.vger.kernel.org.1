@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-76214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4737909F8E
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 21:40:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28C5909F99
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE8982836C0
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 19:40:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26461281BD0
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 20:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562BC4964C;
-	Sun, 16 Jun 2024 19:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFB5481DB;
+	Sun, 16 Jun 2024 20:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQdtDkP3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m2YuFlF4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49291B27D;
-	Sun, 16 Jun 2024 19:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA603611A;
+	Sun, 16 Jun 2024 20:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718566833; cv=none; b=kL5M0r/LxTkzahmmKRB01JeplbQFjfG+0pJFSe5ww81S20z2KuOU2dFo5LZBHuqucET81o1TFv7SMfVP7nG0gunkPMUhxDPBb9OEA1tACuglc923lMAoI52/oKDRG0y+G1RpMQZpp9WQQvPV0AQGahXvEgV7PmcyOawsopr5m2s=
+	t=1718568281; cv=none; b=DsfQkOEBVJ7aoMnZ2Ogh2fYbDJFYcC6nd0hXnypeqgvKSOkGQFS7TTaz4MOY9NkJLIrZh+Ejqdh+Ye1QDJCAGtafP+JSiKQgqvXHw5RHBAhto73jD0s6gD0qgwMzCH6nBjxOr4vMv12ljN14Zwz/M02HXvMb05O618+J9GDVMsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718566833; c=relaxed/simple;
-	bh=uHa5e+oni+iICefqSKjxWNXM0XkjCJyrTpLjB8rULjw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=dnpJ9ghc0zxF7Tw9u3pSn6Ceygflcdry0HvV+IR6XdUVXiEBo8Fk6UiOjqP92JRvfJlvb7fd1kONT/vsMrYSAqwFLzRGYRSiztPYflKQVF+5ketn60os1Va28P4FUcT4BgIxGF+hTBhntI/YTYpNiIKpGOSX7I/F3EbWU/mmtMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JQdtDkP3; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a6f7720e6e8so80593366b.3;
-        Sun, 16 Jun 2024 12:40:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718566830; x=1719171630; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C6L3NCeGT4sGFh8kYG/GxPyDNO15JRCaWpkmIRoOQZw=;
-        b=JQdtDkP3bxBcWnsFXCILwYV9Qi40BvqS5dAAHCQ6ybN93kj2Xu2Zzg3iz+QQ6qO6aV
-         vpAPvnkhrKSq1RkKctaN2tDnBUU9IRCkzrN4mgo6/0tU/2dxJ31Kva1BwktH108fC3zo
-         jE1Q/L+shaMxBYo6ZBRt7dW/VRiKlcgC4so69wi9IDNMvgZsTrql6JLx4wwc/uEdBdBc
-         mM98UMw037O2ZJQw5rFtw3bwIbdAaeNRqfyVCqe/MafwS3l7V/t19gOqqgDSFPkmhdLB
-         ci+qt2lYE+rVdaxG5ay7t0B8Xg0R4E6xacO6uBxZ2+IlcTmcHfVVQxitT6hkmDTXKuAz
-         g8lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718566830; x=1719171630;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C6L3NCeGT4sGFh8kYG/GxPyDNO15JRCaWpkmIRoOQZw=;
-        b=O4lhpJ6kDG1N3bJpF6ENBl3Gj7imKO/NqUqxGjcyzBVj10zYJhvA8dxeduX0MgZgxP
-         SDg7mBB1cMRyLGaDKDuLK/tNqmR97KAZ6DipqKf5mldnxqvLVTM7HE9Ma2DlDkjXZ3bH
-         rlekZgtEglmZPX0NkitdX8GeErMlwDdo9LB8c7APiXrD4xkt8jpGQ/w+k1By4cE7Jk8E
-         SBXQWijLkqSRFL13iVQrlJBPHt0Lec2QBS2kJGCb63jV68D5EWBj9szHf0oO3D/4ZFXU
-         VFUBAGF7+DPFscDgQ5kNM8k0iXxN+wQ4bFastKoC4nb9+webb1nJg4h99CnHWc6iY3iv
-         x98A==
-X-Forwarded-Encrypted: i=1; AJvYcCVzrXJoIyXRr/R/+VwfbwLghJ52YmYsK37jQnJcwYnJubBYLp1omyYFDvAvCdeMgrS6bxqSF5hvjme18VSU7c3/eh5QHW8aFptZ5EVcTUIIuqvelUuhB6nuC5yDXgXZt7ooFWz0r2kwWw==
-X-Gm-Message-State: AOJu0YyavLnVQoh5KPrtae7CirG4ycqiJeeh9kkVk4BaVOFbEACvbBSD
-	JREEjJ5z8CwihSnKCQInw4y+m89rKn/VUwhCy1FVOGu07tinaq/e
-X-Google-Smtp-Source: AGHT+IE46LpZ9yhJLkMRZbMAo1colG/V6YVZKIMF31xeNH4cSnUuv0VMS2ak7aMdSYN2R76SpvECnQ==
-X-Received: by 2002:a17:906:fa15:b0:a6f:48b2:aad4 with SMTP id a640c23a62f3a-a6f60dc89a5mr716461366b.50.1718566829403;
-        Sun, 16 Jun 2024 12:40:29 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56f4182fsm441530366b.178.2024.06.16.12.40.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Jun 2024 12:40:29 -0700 (PDT)
-Date: Sun, 16 Jun 2024 21:40:27 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	s=arc-20240116; t=1718568281; c=relaxed/simple;
+	bh=QWRC2D1H2zURtP0smss7txlGTYwCW8TFD++F2R+yQuw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DKfZNkLB9I7LNJ8y4rTL4OeiwS7eHXz1jEQFm2S7UhPCOOzy9po9zC6/12YqYp9SHXMbOSx/FZJLQNc7NnblFEj5r1svRVCePlNj7S/zZNGrMS2qDPFEzWIPhm9y6IzCisrSnEdmjzqn9XQ7WEsgjvrdKGFUioOB47PTMRdfZqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m2YuFlF4; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718568278; x=1750104278;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QWRC2D1H2zURtP0smss7txlGTYwCW8TFD++F2R+yQuw=;
+  b=m2YuFlF4V/ZD40M7UBygQvgL2fgf8K4BSzGMAIVtPtvemR6ZGWBznt/p
+   F5lzktlR8B4Bhn2FdmQY02HbVJxNGK4cN/OC/NEHny+jR67ABKDnVuBqr
+   OGiralCr9FVFiBboZozMlKymUv5IyiReXzZspeB6TSROJAkwt06CyWvtp
+   dJsMsGUihbfDVuhFFZs+aCXl7sS2UHaGFGoO3N996H7TVQEriMpsBzH6w
+   afhj4KJehyBzf23LDbTMrhT3Qu8Dk0St+mAGd9s9JeTklKjk22KsSmOEc
+   WQzwb3CO2MHHWEIpcdPSzQ1B+T9+uWjS7wPSsGWcBcR6P9mhXDVx0feI+
+   A==;
+X-CSE-ConnectionGUID: LKGdcqCaSpWMf143CCVwOg==
+X-CSE-MsgGUID: 3UZbZ9W1SGi695ZsWv/WyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11105"; a="26511258"
+X-IronPort-AV: E=Sophos;i="6.08,243,1712646000"; 
+   d="scan'208";a="26511258"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2024 13:04:38 -0700
+X-CSE-ConnectionGUID: FSbR0r2qRVu6njUTKVBMEw==
+X-CSE-MsgGUID: 4aaZq+W0Sdy2/n9jqsyfUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,243,1712646000"; 
+   d="scan'208";a="40943438"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 16 Jun 2024 13:04:35 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sIw77-0003EI-0K;
+	Sun, 16 Jun 2024 20:04:33 +0000
+Date: Mon, 17 Jun 2024 04:04:17 +0800
+From: kernel test robot <lkp@intel.com>
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: hwmon: ti,tmp108: document V+ supply, add short
- description
-Message-ID: <Zm8/qxGc8fvi/tuE@standask-GA-A55M-S2HP>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v1 2/7] ARM: dts: aspeed: Harma: add VR device
+Message-ID: <202406170350.zQo7bJdX-lkp@intel.com>
+References: <20240613152425.1582059-3-peteryin.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,57 +83,133 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240613152425.1582059-3-peteryin.openbmc@gmail.com>
 
-TMP108 is powered by its V+ supply, document it.
-While at it, add a short description with a link to its datasheets.
+Hi Peter,
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Not entirely sure of the "v+-supply" name, but the datasheet only ever
-refers to it as "V+" or simply as the "supply voltage".
-Only other name I've seen is in the schematic for the msm8226-based
-motorola-falcon smartphone, where it's called "V_POS".
+kernel test robot noticed the following build warnings:
 
- .../devicetree/bindings/hwmon/ti,tmp108.yaml          | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.10-rc3 next-20240613]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
-index 8b5307c875ff..71d3b51d24d1 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
-@@ -9,6 +9,14 @@ title: TMP108 temperature sensor
- maintainers:
-   - Krzysztof Kozlowski <krzk@kernel.org>
- 
-+description: |
-+  The TMP108 is a digital-output temperature sensor with a
-+  dynamically-programmable limit window, and under- and overtemperature
-+  alert functions.
-+
-+  Datasheets:
-+    https://www.ti.com/product/TMP108
-+
- properties:
-   compatible:
-     enum:
-@@ -24,6 +32,8 @@ properties:
-   "#thermal-sensor-cells":
-     const: 0
- 
-+  v+-supply: true
-+
- required:
-   - compatible
-   - reg
-@@ -45,6 +55,7 @@ examples:
-             interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-             pinctrl-names = "default";
-             pinctrl-0 = <&tmp_alrt>;
-+            v+-supply = <&supply>;
-             #thermal-sensor-cells = <0>;
-         };
-     };
+url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Yin/ARM-dts-aspeed-Harma-revise-hsc-chip/20240613-232915
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240613152425.1582059-3-peteryin.openbmc%40gmail.com
+patch subject: [PATCH v1 2/7] ARM: dts: aspeed: Harma: add VR device
+config: arm-randconfig-051-20240614 (https://download.01.org/0day-ci/archive/20240617/202406170350.zQo7bJdX-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
+dtschema version: 2024.6.dev1+g833054f
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240617/202406170350.zQo7bJdX-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406170350.zQo7bJdX-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+>> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts:409.21-412.6: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@63: I2C bus unit address format error, expected "61"
+   arch/arm/boot/dts/aspeed/aspeed-g6.dtsi:655.36-659.7: Warning (unique_unit_address_if_enabled): /ahb/apb/lpc@1e789000/reset-controller@98: duplicate unit-address (also used in node /ahb/apb/lpc@1e789000/uart-routing@98)
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /: spi-gpio: {'status': ['okay'], 'compatible': ['spi-gpio'], '#address-cells': [[1]], '#size-cells': [[0]], 'gpio-sck': [[58, 203, 0]], 'gpio-mosi': [[58, 204, 0]], 'gpio-miso': [[58, 205, 0]], 'num-chipselects': [[1]], 'cs-gpios': [[58, 200, 1]], 'tpmdev@0': {'compatible': ['infineon,slb9670', 'tcg,tpm_tis-spi'], 'spi-max-frequency': [[33000000]], 'reg': [[0]]}} is not of type 'array'
+   	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+   	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not match '^ethernet(@.*)?$'
+   	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
+--
+   	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: serial@1e78d000: pinctrl-0: True is not of type 'array'
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: serial@1e78f000: pinctrl-0: True is not of type 'array'
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@80/pwm@5e: failed to match any schema with compatible: ['max31790']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@180/pwm@5e: failed to match any schema with compatible: ['max31790']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/power-monitor@69: failed to match any schema with compatible: ['pmbus']
+>> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@61: failed to match any schema with compatible: ['isil,isl69260']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@62: failed to match any schema with compatible: ['isil,isl69260']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@63: failed to match any schema with compatible: ['isil,isl69260']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/ipmb@10: failed to match any schema with compatible: ['ipmb-dev']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: spi-gpio: $nodename:0: 'spi-gpio' does not match '^spi(@.*|-([0-9]|[1-9][0-9]+))?$'
+   	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+
+vim +/61 +409 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+
+   387	
+   388	&i2c13 {
+   389		status = "okay";
+   390	
+   391		i2c-mux@70 {
+   392			compatible = "nxp,pca9545";
+   393			reg = <0x70>;
+   394			#address-cells = <1>;
+   395			#size-cells = <0>;
+   396	
+   397			imux28: i2c@0 {
+   398				#address-cells = <1>;
+   399				#size-cells = <0>;
+   400				reg = <0>;
+   401				power-monitor@61 {
+   402					compatible = "isil,isl69260";
+   403					reg = <0x61>;
+   404				};
+   405				power-monitor@62 {
+   406					compatible = "isil,isl69260";
+   407					reg = <0x62>;
+   408				};
+ > 409				power-monitor@63 {
+   410					compatible = "isil,isl69260";
+   411					reg = <0x61>;
+   412				};
+   413				power-monitor@64 {
+   414					compatible = "infineon,xdpe152c4";
+   415					reg = <0x64>;
+   416				};
+   417				power-monitor@66 {
+   418					compatible = "infineon,xdpe152c4";
+   419					reg = <0x66>;
+   420				};
+   421				power-monitor@68 {
+   422					compatible = "infineon,xdpe152c4";
+   423					reg = <0x68>;
+   424				};
+   425			};
+   426			imux29: i2c@1 {
+   427				#address-cells = <1>;
+   428				#size-cells = <0>;
+   429				reg = <1>;
+   430				//MB FRU
+   431				eeprom@54 {
+   432					compatible = "atmel,24c64";
+   433					reg = <0x54>;
+   434				};
+   435			};
+   436			imux30: i2c@2 {
+   437				#address-cells = <1>;
+   438				#size-cells = <0>;
+   439				reg = <2>;
+   440			};
+   441			imux31: i2c@3 {
+   442				#address-cells = <1>;
+   443				#size-cells = <0>;
+   444				reg = <3>;
+   445			};
+   446		};
+   447	};
+   448	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
