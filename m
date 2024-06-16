@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B294909DD1
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 15:52:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D15909DDA
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 15:58:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21D5B1C21086
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 13:52:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6267B2813EB
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 13:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602063232;
-	Sun, 16 Jun 2024 13:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A229879F4;
+	Sun, 16 Jun 2024 13:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tAEOI2cv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6rVutT2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36071DDA3;
-	Sun, 16 Jun 2024 13:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B13479DC;
+	Sun, 16 Jun 2024 13:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718545914; cv=none; b=e6RzvoeqMdXtbDcfqfeSNPoqX4Rnes/721PBRtE8EXJ0kR9i6S4x57cwfJEN6z/iJFBTyX5l8LiM9oJ2wajeCX49LR5hxWdJhuDJu/IjB76fdqc7FhcRRJEWTFVmfYSQHJ7DuR8WowuQAyf+2oijL1BMJ5yI9Lc/JkJKn8GZjgI=
+	t=1718546322; cv=none; b=nVvnEQV0SFFxjpJEO8ELucwfRyHar9kt/Q5ThCWgItYZIT4t1YZaPGaMkDFkrxLDre15a++MgHa5qO8MyxqEDx03EHLjDfef+EyybRrRv6LIBC2hmFPhMijZ0kJtdoiJKuP0mdqspL3qylHRxmJONaWPZBl9iRnHwYsgnDNXpbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718545914; c=relaxed/simple;
-	bh=eeBcXGlovIiAYBLdL3Wv5hq6ul9+SM6onswUDoJA8yw=;
+	s=arc-20240116; t=1718546322; c=relaxed/simple;
+	bh=bzDMSi+KPj5dWKgND4vnJtkmUJkrU//LHJVmtaQDBjk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ACZkSEMwqZsqzCzuHzbWFDJQ/2KHVQ3jhehIYKTCkDWjcXOr17zU6RlOnW3AHH22uMjL6mfFPKe9sjvD0LIrajpfW2rtFQvl8Od50f+nrIhD31d83MtJlvVWqmFn5wfDskFCY4DGU0l8lcTRwQQ+16mlR/V1onQWn/NrDfyVJBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tAEOI2cv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95687C2BBFC;
-	Sun, 16 Jun 2024 13:51:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HFubdNDtlD2jYbT+1xizqkgr9JIs7q7w01CyiltViHm7+pFsL2j/aEFbwcBj0QKZJZMe/cCeA5X+LsGk2uTcdhhuLOF4o1UtTP4vHgg17bXlojGDimAQCrTnmZHrgngQx6pEmtF9NvupWqsi5RCoh7r57sMev7BxKkGVEmGLU4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r6rVutT2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A9F9C2BBFC;
+	Sun, 16 Jun 2024 13:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718545913;
-	bh=eeBcXGlovIiAYBLdL3Wv5hq6ul9+SM6onswUDoJA8yw=;
+	s=k20201202; t=1718546321;
+	bh=bzDMSi+KPj5dWKgND4vnJtkmUJkrU//LHJVmtaQDBjk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tAEOI2cvSERxUFH8u9ZxbQBSkUN1Ic7fLoV4NrGZv4jy1BFdchHhtN5KE374OxhH6
-	 9MODQH4jbSgkgTZyJ6DPYZ97kpQomj6nZKNSx96VMGfZpdCdeCsrzVK4oXU4fE2V/2
-	 Cv0VRF7BSAuo/FYu9xzT71rgIwzCTQpZeiwVjLzzBHiTzubBHU1r1px1gnTZADXr+9
-	 bdkqBhJJbel6i+qPz7EiN6EcLtc13bEMgO1jSx4k3blwSn2X65x555llttFcIQFi0B
-	 Wh39Y5EiPETgBjH2CyW1XfU1c6kqqaM45qxPqHJMV/40Ajg36ZmGIRIywwIFa1WX16
-	 /jG/wb+JLoO/A==
-Message-ID: <ef61b881-6617-4519-90af-15c5497e64e8@kernel.org>
-Date: Sun, 16 Jun 2024 15:51:47 +0200
+	b=r6rVutT2jxf99d+BT+VgV7RSStW/iRoePcDm5AT1Ezw2HvdFMxs84Bsq8Dz+LXnxY
+	 41w1oFgsNleBuzc0xaObNjMmN3GB7/nckTtSWPajQCEU78Fah5AzuuJuKDZGuuBXzt
+	 folCy6ZAfSoPUXMuR01Shq5SKp/Zg7e4Fd/SmCLvUeR/yLKtffbeF6H7CHywEG1Ytf
+	 rtWRB9h6nlOD8HJ2TjDkxiFRNneRY+xCCpzIjct3cQhfdVt1MOgJIq2kxHotOjXCBV
+	 RPoMA3AkIRllq2PxCvK/rFGX4WddNLXb1BvxAKKx1wyoN+/QDipWAnbgqgmyYePHvC
+	 ShvwisVmV5IrQ==
+Message-ID: <699ab73b-8fc5-4d31-a261-5b6f99609464@kernel.org>
+Date: Sun, 16 Jun 2024 15:58:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl:
- Document USB VBUS regulator
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Biju Das <biju.das.au@gmail.com>
-References: <20240616105402.45211-1-biju.das.jz@bp.renesas.com>
- <20240616105402.45211-2-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: realtek,rt5631: Convert to
+ dtschema
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240616074936.151267-1-animeshagarwal28@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,18 +104,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240616105402.45211-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240616074936.151267-1-animeshagarwal28@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/06/2024 12:53, Biju Das wrote:
-> The VBUS enable can be controlled by the VBOUT bit of the VBUS control
-> register. This register is part of usbphy-ctrl IP.
+On 16/06/2024 09:49, Animesh Agarwal wrote:
+> Convert the ALC5631/RT5631 audio CODEC bindings to DT Schema.
 > 
-> Document the USB VBUS regulator object.
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
 
 
 Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
