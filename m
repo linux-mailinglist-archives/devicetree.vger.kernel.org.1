@@ -1,216 +1,140 @@
-Return-Path: <devicetree+bounces-76213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF76909F8C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 21:39:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4737909F8E
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 21:40:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CCDD1F23087
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 19:39:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE8982836C0
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 19:40:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6012945978;
-	Sun, 16 Jun 2024 19:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562BC4964C;
+	Sun, 16 Jun 2024 19:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="OtG5ggWs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQdtDkP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920BC1B27D;
-	Sun, 16 Jun 2024 19:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49291B27D;
+	Sun, 16 Jun 2024 19:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718566768; cv=none; b=H0F0D75yshUBtsa8Yv+cUzc5WMvZlteA//oiV8Ykllz/ld+jMwRSFJxdHSnyvpdR2mVZcwfxs8Rp6s1AiPUsDY9FhuIH30xQ1qIs1PlhqkQjIIK4fGw0Wnhv6UtLeGR7NfXS/NdUhSXDqDUGq6N3HXRS0aFblp6jxXA8TkENdXU=
+	t=1718566833; cv=none; b=kL5M0r/LxTkzahmmKRB01JeplbQFjfG+0pJFSe5ww81S20z2KuOU2dFo5LZBHuqucET81o1TFv7SMfVP7nG0gunkPMUhxDPBb9OEA1tACuglc923lMAoI52/oKDRG0y+G1RpMQZpp9WQQvPV0AQGahXvEgV7PmcyOawsopr5m2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718566768; c=relaxed/simple;
-	bh=2m/5QEYEdi3O2P0lDiY6WGoFB3JhPXaqvMmDWs7BEM4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BmsdDkprye5XgorQ/KIs1SIbXxiMbSQRH7Qnym2c/gaiao7hjYJYMLWyzBzec2EhMYbEFo89SnpFWFRgIpMawuXGKW/xMgJ2cvPldVNfpgbgQreYL/3rv5iAU821GiwsyJTEx1ymZ7/zNWBZSuaAVDWw8B3XoC1sYqB0ZHTlTYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=OtG5ggWs; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 18E87581;
-	Sun, 16 Jun 2024 21:39:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1718566746;
-	bh=2m/5QEYEdi3O2P0lDiY6WGoFB3JhPXaqvMmDWs7BEM4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OtG5ggWssiTD1gFqEW5n26A6SEoHLnJfcmad0MJQk8g9sppZs0GAXidcRI+7r4eTG
-	 44E3KU2z7O4/IDptuFAmoFvoLaa/J22pyeOZxrYvRoPl6p7dlQoukzxd9XqDLpObW5
-	 KICHF2CT/dcD5cKwo0tiO6pz9dYgGFVVbezN7tw0=
-Date: Sun, 16 Jun 2024 22:39:01 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Dan Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	sakari.ailus@iki.fi
-Subject: Re: [PATCH v5 05/16] media: mali-c55: Add Mali-C55 ISP driver
-Message-ID: <20240616193901.GA10964@pendragon.ideasonboard.com>
-References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
- <20240529152858.183799-6-dan.scally@ideasonboard.com>
- <20240530001507.GG10586@pendragon.ideasonboard.com>
- <6d0be0cf-ff77-4943-8505-f78ad922e3fb@ideasonboard.com>
+	s=arc-20240116; t=1718566833; c=relaxed/simple;
+	bh=uHa5e+oni+iICefqSKjxWNXM0XkjCJyrTpLjB8rULjw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=dnpJ9ghc0zxF7Tw9u3pSn6Ceygflcdry0HvV+IR6XdUVXiEBo8Fk6UiOjqP92JRvfJlvb7fd1kONT/vsMrYSAqwFLzRGYRSiztPYflKQVF+5ketn60os1Va28P4FUcT4BgIxGF+hTBhntI/YTYpNiIKpGOSX7I/F3EbWU/mmtMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JQdtDkP3; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a6f7720e6e8so80593366b.3;
+        Sun, 16 Jun 2024 12:40:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718566830; x=1719171630; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C6L3NCeGT4sGFh8kYG/GxPyDNO15JRCaWpkmIRoOQZw=;
+        b=JQdtDkP3bxBcWnsFXCILwYV9Qi40BvqS5dAAHCQ6ybN93kj2Xu2Zzg3iz+QQ6qO6aV
+         vpAPvnkhrKSq1RkKctaN2tDnBUU9IRCkzrN4mgo6/0tU/2dxJ31Kva1BwktH108fC3zo
+         jE1Q/L+shaMxBYo6ZBRt7dW/VRiKlcgC4so69wi9IDNMvgZsTrql6JLx4wwc/uEdBdBc
+         mM98UMw037O2ZJQw5rFtw3bwIbdAaeNRqfyVCqe/MafwS3l7V/t19gOqqgDSFPkmhdLB
+         ci+qt2lYE+rVdaxG5ay7t0B8Xg0R4E6xacO6uBxZ2+IlcTmcHfVVQxitT6hkmDTXKuAz
+         g8lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718566830; x=1719171630;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C6L3NCeGT4sGFh8kYG/GxPyDNO15JRCaWpkmIRoOQZw=;
+        b=O4lhpJ6kDG1N3bJpF6ENBl3Gj7imKO/NqUqxGjcyzBVj10zYJhvA8dxeduX0MgZgxP
+         SDg7mBB1cMRyLGaDKDuLK/tNqmR97KAZ6DipqKf5mldnxqvLVTM7HE9Ma2DlDkjXZ3bH
+         rlekZgtEglmZPX0NkitdX8GeErMlwDdo9LB8c7APiXrD4xkt8jpGQ/w+k1By4cE7Jk8E
+         SBXQWijLkqSRFL13iVQrlJBPHt0Lec2QBS2kJGCb63jV68D5EWBj9szHf0oO3D/4ZFXU
+         VFUBAGF7+DPFscDgQ5kNM8k0iXxN+wQ4bFastKoC4nb9+webb1nJg4h99CnHWc6iY3iv
+         x98A==
+X-Forwarded-Encrypted: i=1; AJvYcCVzrXJoIyXRr/R/+VwfbwLghJ52YmYsK37jQnJcwYnJubBYLp1omyYFDvAvCdeMgrS6bxqSF5hvjme18VSU7c3/eh5QHW8aFptZ5EVcTUIIuqvelUuhB6nuC5yDXgXZt7ooFWz0r2kwWw==
+X-Gm-Message-State: AOJu0YyavLnVQoh5KPrtae7CirG4ycqiJeeh9kkVk4BaVOFbEACvbBSD
+	JREEjJ5z8CwihSnKCQInw4y+m89rKn/VUwhCy1FVOGu07tinaq/e
+X-Google-Smtp-Source: AGHT+IE46LpZ9yhJLkMRZbMAo1colG/V6YVZKIMF31xeNH4cSnUuv0VMS2ak7aMdSYN2R76SpvECnQ==
+X-Received: by 2002:a17:906:fa15:b0:a6f:48b2:aad4 with SMTP id a640c23a62f3a-a6f60dc89a5mr716461366b.50.1718566829403;
+        Sun, 16 Jun 2024 12:40:29 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56f4182fsm441530366b.178.2024.06.16.12.40.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Jun 2024 12:40:29 -0700 (PDT)
+Date: Sun, 16 Jun 2024 21:40:27 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: hwmon: ti,tmp108: document V+ supply, add short
+ description
+Message-ID: <Zm8/qxGc8fvi/tuE@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6d0be0cf-ff77-4943-8505-f78ad922e3fb@ideasonboard.com>
 
-Hi Dan,
+TMP108 is powered by its V+ supply, document it.
+While at it, add a short description with a link to its datasheets.
 
-On Fri, Jun 14, 2024 at 11:13:29AM +0100, Daniel Scally wrote:
-> On 30/05/2024 01:15, Laurent Pinchart wrote:
-> > On Wed, May 29, 2024 at 04:28:47PM +0100, Daniel Scally wrote:
-> >> Add a driver for Arm's Mali-C55 Image Signal Processor. The driver is
-> >> V4L2 and Media Controller compliant and creates subdevices to manage
-> >> the ISP itself, its internal test pattern generator as well as the
-> >> crop, scaler and output format functionality for each of its two
-> >> output devices.
-> >>
-> >> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> >> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> >> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> >> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> >> ---
-> >> Changes in v5:
-> >>
-> >> 	- Reworked input formats - previously we allowed representing input data
-> >> 	  as any 8-16 bit format. Now we only allow input data to be represented
-> >> 	  by the new 20-bit bayer formats, which is corrected to the equivalent
-> >> 	  16-bit format in RAW bypass mode.
-> >> 	- Stopped bypassing blocks that we haven't added supporting parameters
-> >> 	  for yet.
-> >> 	- Addressed most of Sakari's comments from the list
-> >>
-> >> Changes not yet made in v5:
-> >>
-> >> 	- The output pipelines can still be started and stopped independently of
-> >> 	  one another - I'd like to discuss that more.
-> >> 	- the TPG subdev still uses .s_stream() - I need to rebase onto a tree
-> >> 	  with working .enable_streams() for a single-source-pad subdevice.
-> >>
-> >> Changes in v4:
-> >>
-> >> 	- Reworked mali_c55_update_bits() to internally perform the bit-shift
-> >
-> > I really don't like that, it makes the code very confusing, even more so
-> > as it differs from regmap_update_bits().
-> >
-> > Look at this for instance:
-> >
-> > 	mali_c55_update_bits(mali_c55, MALI_C55_REG_MCU_CONFIG,
-> > 			     MALI_C55_REG_MCU_CONFIG_OVERRIDE_MASK,
-> > 			     MALI_C55_REG_MCU_CONFIG_OVERRIDE_MASK);
-> >
-> > It only works by change because MALI_C55_REG_MCU_CONFIG_OVERRIDE_MASK is
-> > BIT(0).
-> >
-> > Sorry, I know it will be painful, but this change needs to be reverted.
-> 
-> I'd like to argue for keeping this, on the grounds that it's better. I got lazy in the change you 
-> reference there, and because BIT(0) is the same as 0x01 didn't bother changing it. I agree that 
-> that's confusing but I think it would be better to keep the change and just update all the call 
-> sites properly. The benefits as I see them are two:
-> 
-> 
-> 1. This method ensures sane consistent calling of the function. Without the internal shift you have 
-> to shift the values at the call site, but there's no reason to do that if the value you're setting 
-> is 0x00 or if the field you're targeting in the register starts at bit 0, so I think writing code 
-> naturally we'd have a mix of situations like so:
-> 
-> 
-> #define REG_1 0xfc00
-> 
-> #define REG_2 0xff
-> 
-> mali_c55_update_bits(mali_c55, 0x1234, REG_1, 0x02 << 10);
-> 
-> mali_c55_update_bits(mali_c55, 0x1234, REG_1, 0x00);
-> 
-> mali_c55_update_bits(mali_c55, 0x1234, REG_2, 0x02);
->
-> And I think that the mixture is more confusing than the difference with regmap_update_bits(). We 
-> could include the bitshifting for consistencies sake despite it being unecessary, but it's extra 
-> work for no real reason and itself "looks wrong" if the field starts at bit(0)...it would look less 
-> wrong with an offset macro that defines the number of bits to shift as 0 but then we're on to 
-> advantage #2...
-> 
-> 2. It makes the driver far cleaner. Without it we either have magic numbers scattered throughout 
-> (and sometimes have to calculate them with extra variables where the write can target different 
-> places conditionally) or have macros defining the number of bits to shift, or have to do (ffs(mask) 
-> - 1) everywhere, and that tends to make the call sites a lot messier - this was the original reason 
-> I moved it internal actually.
-> 
-> What do you think?
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+Not entirely sure of the "v+-supply" name, but the datasheet only ever
+refers to it as "V+" or simply as the "supply voltage".
+Only other name I've seen is in the schematic for the msm8226-based
+motorola-falcon smartphone, where it's called "V_POS".
 
-All register values (possibly with the exception of 0) should have
-macros. The callers will thus not need to perform shifts manually, they
-will all be handled in the register fields macros. From a caller point
-of view, not handling the shifts inside mali_c55_update_bits() will not
-make a difference.
+ .../devicetree/bindings/hwmon/ti,tmp108.yaml          | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-It's the first time I notice a driver trying to shift internally in its
-update_bits function. I think that's really confusing, especially given
-that it departs from how regmap operates. I still strongly favour
-handling the shifts in the register macros.
-
-> >> 	- Reworked the resizer to allow cropping during streaming
-> >> 	- Fixed a bug in NV12 output
-> >>
-> >> Changes in v3:
-> >>
-> >> 	- Mostly minor fixes suggested by Sakari
-> >> 	- Fixed the sequencing of vb2 buffers to be synchronised across the two
-> >> 	  capture devices.
-> >>
-> >> Changes in v2:
-> >>
-> >> 	- Clock handling
-> >> 	- Fixed the warnings raised by the kernel test robot
-> >>
-> >>   drivers/media/platform/Kconfig                |   1 +
-> >>   drivers/media/platform/Makefile               |   1 +
-> >>   drivers/media/platform/arm/Kconfig            |   5 +
-> >>   drivers/media/platform/arm/Makefile           |   2 +
-> >>   drivers/media/platform/arm/mali-c55/Kconfig   |  18 +
-> >>   drivers/media/platform/arm/mali-c55/Makefile  |   9 +
-> >>   .../platform/arm/mali-c55/mali-c55-capture.c  | 951 ++++++++++++++++++
-> >>   .../platform/arm/mali-c55/mali-c55-common.h   | 266 +++++
-> >>   .../platform/arm/mali-c55/mali-c55-core.c     | 767 ++++++++++++++
-> >>   .../platform/arm/mali-c55/mali-c55-isp.c      | 611 +++++++++++
-> >>   .../arm/mali-c55/mali-c55-registers.h         | 258 +++++
-> >>   .../arm/mali-c55/mali-c55-resizer-coefs.h     | 382 +++++++
-> >>   .../platform/arm/mali-c55/mali-c55-resizer.c  | 779 ++++++++++++++
-> >>   .../platform/arm/mali-c55/mali-c55-tpg.c      | 402 ++++++++
-> >>   14 files changed, 4452 insertions(+)
-> >>   create mode 100644 drivers/media/platform/arm/Kconfig
-> >>   create mode 100644 drivers/media/platform/arm/Makefile
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/Kconfig
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/Makefile
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-capture.c
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-common.h
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-core.c
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-isp.c
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-registers.h
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer-coefs.h
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
-> >>   create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-tpg.c
-
-[snip]
-
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+index 8b5307c875ff..71d3b51d24d1 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+@@ -9,6 +9,14 @@ title: TMP108 temperature sensor
+ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
+ 
++description: |
++  The TMP108 is a digital-output temperature sensor with a
++  dynamically-programmable limit window, and under- and overtemperature
++  alert functions.
++
++  Datasheets:
++    https://www.ti.com/product/TMP108
++
+ properties:
+   compatible:
+     enum:
+@@ -24,6 +32,8 @@ properties:
+   "#thermal-sensor-cells":
+     const: 0
+ 
++  v+-supply: true
++
+ required:
+   - compatible
+   - reg
+@@ -45,6 +55,7 @@ examples:
+             interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+             pinctrl-names = "default";
+             pinctrl-0 = <&tmp_alrt>;
++            v+-supply = <&supply>;
+             #thermal-sensor-cells = <0>;
+         };
+     };
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
 
