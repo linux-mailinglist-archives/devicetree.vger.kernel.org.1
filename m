@@ -1,131 +1,88 @@
-Return-Path: <devicetree+bounces-76158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41F3909D28
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 13:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4B1909D6C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 14:21:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 053071C20909
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 11:55:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 210C91C208F7
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 12:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73139187332;
-	Sun, 16 Jun 2024 11:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D17186E44;
+	Sun, 16 Jun 2024 12:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="lp8NiBCn"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IuJizTRy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A8616DED7;
-	Sun, 16 Jun 2024 11:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFD116FF41;
+	Sun, 16 Jun 2024 12:21:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718538933; cv=none; b=DpANXl9AV3b1XLQiI4JLeQMYWVkA/LlQ1zp2EwOJa33TjG1jGB+WPJrwCILexrltG0M7awvlz6x2bSDT2K/qaSKtYMI1cCi2eTbM7bvynCBgpMx60PYoBUNdnDqdEOQv6/3+PAGofHk9wYxMEPwLRiT8VZDK856L7ztcLWzE5VI=
+	t=1718540483; cv=none; b=GAv13/xuBnTiOVHhYwgEHvr6J8tG9DIiweG3S2BJgBIslCAtO4Tfl3W6oC7UJQQ4YSNorePXHtV/OnbQpdJWNRqak1ExryKtByU+0ZPhzk2zsj1MuiB3RLBed6ZrO40w3i+5RGpZLmm/7PNGewrOdliHMg0KgPdeGFV2SgHXvdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718538933; c=relaxed/simple;
-	bh=FvTVuelNwNx9cbWw7NNoHn9o1aAt7UuF/J0KxqWgJt8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=UOxPx0Z2rURAROj+u3ieBzyeWaoemzs9tq9Dvip/6WLyl7A7Eln6mv7DUqAJ8PnEo51eqxSzy/n7aMHk9PS7PHnwNNokIxtbY83gi/+INAzcr1bXN2APTCr7NgU/W7OFHOoC8MFQB6zQ1BMq4sDbn0BfUoOpGrYgyLxgvY8857g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=lp8NiBCn; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1718540483; c=relaxed/simple;
+	bh=SCQXPdgSipHDPN4YthpZu0919XATC8K3N/zDDamI43Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VoR6pFuw2u67oYodWBx2Hdm02VuNyI3l5LJzUnC8C0sSR6ot+TXB/zUgUoHFD02FMgKevUChNSesGCM9Kwc5cztmgKIt0ZJLRCt6AOT/nk4memVfkWsIhueKrXHQwbhE6O3eNOPQPUOEpBE9xGhNQSDMk/YwfmYW9GUkifHPgaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IuJizTRy; arc=none smtp.client-ip=123.58.177.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=irFNwU641pAaOKt3xuRSaqFXQYVHXJpdtESTK70JdsY=;
+	b=IuJizTRyTxeAS6FfixGqE5mUBGKioReVf7OYZur68PFtDyJXzUeNxuOf978IXO
+	pzBPV526CsqCmntb+LXNJU3Qtx8+xfbqhnASKN/Gt6gbxEY0qxtIbCl2srwg4aN2
+	PYBEaPmPUUDTJRKYv8w5SUlmgNH4tyo9+MBUuw/1ia+EQ=
+Received: from dragon (unknown [114.216.76.201])
+	by smtp1 (Coremail) with SMTP id ClUQrACX_vqK2G5myI8CCA--.40222S3;
+	Sun, 16 Jun 2024 20:20:29 +0800 (CST)
+Date: Sun, 16 Jun 2024 20:20:26 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: max.oss.09@gmail.com
+Cc: Max Krummenacher <max.krummenacher@toradex.com>,
+	Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: freescale: imx8mm-verdin: enable
+ hysteresis on slow input pin
+Message-ID: <Zm7YiipkuWRpSG7H@dragon>
+References: <20240603140103.3845905-1-max.oss.09@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1718538921;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o/mVBey1pUUAnezlicmXpXgXj8Qwj9yoReY/ospObPs=;
-	b=lp8NiBCnAttf4fU8LXw3j5OaeEoGWaQYQsnjPLe/cvcoGDXEQvIKZkK9oyjD352fcL9zhl
-	R4ihgLmZMENLAFKITuFMnXgPHWKmTwmRodzzs8ciZnOGUD5OuQHvH+ShL+6z/qW6nOH0Jt
-	hydAKz4ELF8p5g+r2u8aDTZQk/O46NG5IyxGIIPdMhuXa4/naOcq9MTkPj/5++TwoOwqOd
-	VsOBszOE3gkpAq37w1+vJ3CWsR9PsH2UCBpDlIDcGj5egvKjv7uCXolPHYy3WUDq6NESro
-	IExMsXqfAZz3U1dW/VohVUj6Zny5g9m1DotU38/6yBgyP2gQun9o9FCebHRsig==
-Date: Sun, 16 Jun 2024 13:55:19 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Detlev Casanova <detlev.casanova@collabora.com>,
- linux-kernel@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Sebastian Reichel
- <sebastian.reichel@collabora.com>, Alexey Charkov <alchark@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Diederik de Haas
- <didi.debian@cknow.org>, Andy Yan <andy.yan@rock-chips.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-staging@lists.linux.dev
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add rkvdec2 Video Decoder on
- rk3588(s)
-In-Reply-To: <f4c140a3-2b11-405c-bfd4-32e50180f6b7@kwiboo.se>
-References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
- <20240615015734.1612108-4-detlev.casanova@collabora.com>
- <944c4296-8dd2-4ffd-b430-1839ff3a3ed2@kwiboo.se> <3666279.iZASKD2KPV@arisu>
- <f4c140a3-2b11-405c-bfd4-32e50180f6b7@kwiboo.se>
-Message-ID: <7f649d79666a175da7c9d9fd9377a687@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240603140103.3845905-1-max.oss.09@gmail.com>
+X-CM-TRANSID:ClUQrACX_vqK2G5myI8CCA--.40222S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUa8nYUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw0AZVnxc0sL2wAAsn
 
-Hello all,
-
-On 2024-06-16 11:17, Jonas Karlman wrote:
-> On 2024-06-15 21:55, Detlev Casanova wrote:
->> On Saturday, June 15, 2024 4:25:27 A.M. EDT Jonas Karlman wrote:
->>> On 2024-06-15 03:56, Detlev Casanova wrote:
->>>> Add the rkvdec2 Video Decoder to the RK3588s devicetree.
->>>> 
->>>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
->>>> ---
->>>> 
->>>>  .../boot/dts/rockchip/rk3588-rock-5b.dts      |  4 ++++
->>>>  .../boot/dts/rockchip/rk3588s-orangepi-5.dts  |  4 ++++
->>>>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 19 
->>>> +++++++++++++++++++
->>>>  3 files changed, 27 insertions(+)
->>>> 
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>>> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
->>>> c551b676860c..965322c24a65 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>>> @@ -503,6 +503,10 @@ &pwm1 {
->>>> 
->>>>  	status = "okay";
->>>> 
->>>>  };
->>>> 
->>>> +&rkvdec0 {
->>>> +	status = "okay";
->>>> +};
->>> 
->>> Enable of rkvdec0 should probably be split out from the patch that 
->>> adds
->>> the rkvdec0 node to soc dtsi.
->> 
->> Ack
->> 
->>> Also why is rkvdec0 only enabled on rock-5b and orangepi-5?
->> 
->> I only could test on those two but I can enable it on all rk3588 
->> devices.
+On Mon, Jun 03, 2024 at 04:00:45PM +0200, max.oss.09@gmail.com wrote:
+> From: Max Krummenacher <max.krummenacher@toradex.com>
 > 
-> Because the decoder is an integrated part of the SoC the default should
-> probably be that the IP is enabled, i.e. no status prop required for 
-> the
-> vdec and related mmu nodes in rk3588s.dtsi.
+> SODIMM 17 can be used as an edge triggered interrupt supplied from an
+> off board source.
+> 
+> Enable hysteresis on the pinmuxing to increase immunity against noise
+> on the signal.
+> 
+> Fixes: 60f01b5b5c7d ("arm64: dts: imx8mm-verdin: update iomux configuration")
+> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 
-Agreed, the decoder is a SoC feature.  As such, it should be enabled on
-the SoC level, instead of having it enabled on the board level.
+Applied, thanks!
+
 
