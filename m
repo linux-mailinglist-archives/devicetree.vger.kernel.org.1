@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-76166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8897909DA4
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 15:20:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8234F909DA6
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 15:20:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAE1D1C2173A
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 13:20:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC102B21135
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 13:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BB718F2D3;
-	Sun, 16 Jun 2024 13:19:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C40918F2ED;
+	Sun, 16 Jun 2024 13:19:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sVGcm/js"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uCt++RHt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21D5A18C32E
-	for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 13:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D2FF18F2C0
+	for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 13:19:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718543982; cv=none; b=cuSH1W42nB2H4lzm6IPVOrR+v+fwqleUcJOFgs3DgX1m3KsAdM9yNOAoCxv8gZz9aq1zSS2phIVHnPU8qsNWEtZgC7NikU8GWhiWumdkT+OAxZuekBHtRvkONCm8FHgZuehJfvXLBxOlaeTbECAIQozbIzynA/19OIxd0N/Bd7o=
+	t=1718543984; cv=none; b=emsqaJX8pRiFuKwce6LxqKdTYAvQVz1iYpWNjlOx+jhcjUHwl4e1X9SP5IKGb41+G5aWy+6CIGie1WatQKNaiFWOQAuPIIoBd39QKzkFTVJa/NHnLzas805sB4FZ+QiuQ7wYRJWU7HNy0PR93KVbTxWwN8jbUgdo3BV0J6784pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718543982; c=relaxed/simple;
-	bh=U6AmwKP+N/F9FNv1bT3SMtoH8ZjiVmeYNelKJnyt4oU=;
+	s=arc-20240116; t=1718543984; c=relaxed/simple;
+	bh=2G0rLi4cLmhzl8ZJMSFvOy5W9L4JVSO3sWW9FraSLfY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cHQ6W/ygklBA+qMNnDq5ebclzMDaGJSNZDo/x0LAIAheBj0XOw9F8Hkud7lQO3Fr7iV0Th8VF0DkQ3ou3xvB1G57cwrmaxWOJgT62xtpl3cSEzQdStDvURafJ6tkHD0Wrcbhux+4x1RIrv5sP8SPZrLFaMYDvZH8NN8mJQS8FHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sVGcm/js; arc=none smtp.client-ip=209.85.208.41
+	 In-Reply-To:To:Cc; b=NujK6bqnFKVH8R9Z0Q2sM8lkQzuueVlO6Mi/PjXRPfODEt0KED6kVfFUqP1nHOaX3+wCU7XJjhamw3xupKpcr9LqEtmY6ZFaaRAuDAsKE0fhhGVqP5nQrAg5jOVXiEEBj3mkflhLuOg9gmcPBzjO/C4Vjq9OBOV8FrdawbGZUQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uCt++RHt; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-57ccd1111b0so634526a12.3
-        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 06:19:40 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-57c68c3f8adso4281946a12.1
+        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 06:19:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718543979; x=1719148779; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718543981; x=1719148781; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mInVLHOlqqVVQJezxSVPVAQ/ObgVPbGWs0w1ykk8K+4=;
-        b=sVGcm/jstel936faEAOperrHnZ2LbIAPNZPtDqC4n7roSr7BPsgSJ1xMKeNxLB9Aj3
-         HICy1SWj9YsurgCR7hzjA4IOvTNhZzcmQExbCMiFIlVYtfds520sN+aC+YVCVgKfF3Ly
-         5hMNirOmC5jxAYF2xzj9l6aqs8WIOKL25P40/KNtXeg/pjhR5rKTJskTs1XyoMIpvBqt
-         q2IYKZsDbCrUnvtCHhojeQUJQ21ZNadzOZy2boNvhCR6/6kDzRrpqOj6I2kHSvcW6omE
-         Nhg5SjsPAMyUZMg+/izpeDPXlVzWHx7FrZM0TEaO7gFDCdTcU33QZy/8hmhqhPd3Q9+Y
-         jNCw==
+        bh=LDxj3dPqBsikHw3COW9fzyU/UFgyyuz6MU/96w6Q9SQ=;
+        b=uCt++RHtmsmBoF8h5pAxU2GeS+Ox7+znKKaq+etq04cmVVUZbeNDWOIvUkpizPPWF1
+         Uk0j55so3oNAtfySLgN6XFo40yuIU+fVNOdyMZbJOGeadxenKfQcwDRmBytqRaL9/FHt
+         obc1frhB7n/ZcBjSfd7AAC6QnIZifgsR6iVebiHAnwLPOYy74pKOL5f+jASq1TcVeAXU
+         9XZCTPLEDrDv3RMRqLG4Kd9whRoClfDQvNzFozTSVpYCeePaAd9rKZ7n3yHd7E7fAXlI
+         TTxpn4zJ3OW3NrvYqW3XmJwXzrtWfyQaong+X4GnBM6nTF/l3aHpi2nGqRAq5d3kODL2
+         Ax9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718543979; x=1719148779;
+        d=1e100.net; s=20230601; t=1718543981; x=1719148781;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mInVLHOlqqVVQJezxSVPVAQ/ObgVPbGWs0w1ykk8K+4=;
-        b=Y+6f5sr8gl7NQOvUqwjObPA8eKuOBkxg86G9LaUl3Bp6zvt1CwXtUCyyb/9AN0HgTZ
-         4+JT29TVBTJTz6iljee9AAJm4eIwvXBynBpX7aj878vaRqjFLbwFQSKx3kdBUaejQtLY
-         ZyaL4TADpw/gAaWAnSfQkSeayNMiXKuIH7JWWZ9pIvnMTWf0ocPWSN8rVKC0TDew4wf8
-         FCNrxY6quSIbPt3cwnIhxJR5CR+FQ3kemFVP6Ys0iw75OylJEH7wVAIIKpayK9ixShJ3
-         CXu4vIL50jvG9TRabfCgOhTev8s8pkuEVN63yjf0rcEt7mRBs3aAl0S/0DsOtTbwajUm
-         s92g==
-X-Forwarded-Encrypted: i=1; AJvYcCX3mTYI71sp2ZWKZG/06BBwc2zWts+QnI478UGZC7qcQ4JCgzHSJNO17NwsdEN0+hb314iI4kI4ZO/QP+6YYmUJ7XMWW09wsBltow==
-X-Gm-Message-State: AOJu0YzzdDGUCREXlAPPwaIsbkES/C6DkF2teLIAF4KMSnN2sp5+kKFu
-	CsBI+iiacWYShvz0T1q71YYGppb4rRoyLEO7BVqlEpEt6nKSZk+OgFISUGfJWk4=
-X-Google-Smtp-Source: AGHT+IE1IZgGoLbi+AV+zctjjPIPycm90dwqlre2plCiolym+rEY150IZRR1oN0wAi38iw8IO6vr+Q==
-X-Received: by 2002:a50:d48e:0:b0:57c:8e57:c3f0 with SMTP id 4fb4d7f45d1cf-57cbd685122mr5918029a12.16.1718543979240;
-        Sun, 16 Jun 2024 06:19:39 -0700 (PDT)
+        bh=LDxj3dPqBsikHw3COW9fzyU/UFgyyuz6MU/96w6Q9SQ=;
+        b=mbIL/HV5c5fya9PtZdUHhh3WdlH9mZHvREKBEZDjR4Ln3hxIRIgTcjvyEUNIAzfGHf
+         tSthC55KStvc4ZWMDvQbpjA6fnkhdAFLu09KqZq0eGiCgYDVXuYr0qz/5h3PheUnlrdc
+         t0+wk3HeL4t5ajrnIh4gxs8NRLAToQi5CKQeU/TjDKNU4XmGS9pTJuGbM0RC2FRWYNvX
+         SK09wrivdNC+kt9lHAB5/aA8ya1WPKpXtr/yAUQ6eskdM9PQKXzXOyt+Or5uP0d81Boz
+         33rSl7VMCDQsyImAyGzMMZlsJWQ2jIT/ojpbYnNbtdape3p1tsxb/W7jcz+R1y4QJSQL
+         qQkw==
+X-Forwarded-Encrypted: i=1; AJvYcCX7rE5jCq2hIJqpmenmt0TYj2byi1Wjbmp8S3DZDLi74ddxVDYJGbA8yoP9pWptX+rcLXu23vqIDywgxskfJNSis0ISl+zcXhZRYQ==
+X-Gm-Message-State: AOJu0YwWLuo78RogBYr7kcvAp9sSOL45o/sA1PfAbPGdFwkyWUVLU/wR
+	NfH9JFAmi+cwSniKSIRsYMhGoFKLzGBOAd86RolfNQkv79NrVbuUt4k68eR4UjQ=
+X-Google-Smtp-Source: AGHT+IGXkj91rCNRNjyM3+Ufq9rMUAVmp/bvUxrcipMwwyyQmCi9zjaLfs3liz7jMElLGmjYr+sppQ==
+X-Received: by 2002:aa7:c419:0:b0:57c:cba1:444e with SMTP id 4fb4d7f45d1cf-57ccba144dbmr3519556a12.13.1718543980893;
+        Sun, 16 Jun 2024 06:19:40 -0700 (PDT)
 Received: from [127.0.1.1] ([78.10.207.147])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb7438815sm5099603a12.80.2024.06.16.06.19.37
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb7438815sm5099603a12.80.2024.06.16.06.19.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Jun 2024 06:19:38 -0700 (PDT)
+        Sun, 16 Jun 2024 06:19:40 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Sun, 16 Jun 2024 15:19:23 +0200
-Subject: [PATCH v2 3/7] dt-bindings: soc: intel: lgm-syscon: Move to
- dedicated schema
+Date: Sun, 16 Jun 2024 15:19:24 +0200
+Subject: [PATCH v2 4/7] dt-bindings: soc: microchip: sparx5-cpu-syscon:
+ Move to dedicated schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240616-dt-bindings-mfd-syscon-split-v2-3-571b5850174a@linaro.org>
+Message-Id: <20240616-dt-bindings-mfd-syscon-split-v2-4-571b5850174a@linaro.org>
 References: <20240616-dt-bindings-mfd-syscon-split-v2-0-571b5850174a@linaro.org>
 In-Reply-To: <20240616-dt-bindings-mfd-syscon-split-v2-0-571b5850174a@linaro.org>
 To: Orson Zhai <orsonzhai@gmail.com>, 
@@ -100,29 +100,30 @@ Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
  linux-mediatek@lists.infradead.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2724;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2802;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=U6AmwKP+N/F9FNv1bT3SMtoH8ZjiVmeYNelKJnyt4oU=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmbuZgZGoeLCSo5prKUN7qBIVwMLpdtch4to7B+
- bGnm4BFVbWJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZm7mYAAKCRDBN2bmhouD
- 12QwEACCPZJ1clXIYpSrNCstqF44Etkra5SMnYNsNPs15tD1DJx+pyWnQ242EiwHk06S++GFzku
- PvWYLACCHV5ljKCUPQIyX+TH6+X0x18GN2/bx27Z6UZlY+pQ69EDk+fY7Pb+dcGXkysajkJBPHU
- mCi5LH3if5ljHv8hn5uRjlsM7AaK2dWyrM+5BT18usBLsVQyy6a9nMtxh+RSxI46yNrIAhz94xb
- dzH5JoUtj8oxAx83TebXSyyaG6ReyGTGw0pHWTeHFlQXbiid+4AJez+3JhwWoq5ZIAh2XgXnTgM
- U8QG87JiapvKgf9Y9zZ0Y+M8k1LfVZ/sAUQhoDSD8eLJoSK0qWdyx9lwX6tSO9ia1v41MbXEqaq
- ajfRa7iipPymAcnN+dnPwGGLfebTRJHFI4a05d/X0//cFOJUl5ssKp3VWNJV5XR0fRSGHgGbRy9
- QhnA2PO9A38x1aNTqsN3bj6zUXxKziD5/j4OAnV4g9YvcG2GxLzLEzDXomek/hA9HlI9VGGHBm/
- YFAkgjCvZ7qmFEVKsqFCI3W93si/9ojM645JJRws93+uSL4r/z7SP8R2+qT31qLWsz4AxIy+QBw
- oGLWcf8KhTt35EPV73wRBU/pVgD7WIpLUGogmUex3wdg1c3UtBNRkt8C/i6U20+Q0JUWQUTr79C
- /qpEo3hw6LfXa+A==
+ bh=2G0rLi4cLmhzl8ZJMSFvOy5W9L4JVSO3sWW9FraSLfY=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBmbuZhfXHBzv30HPqvVvXuckFpOfUc2X2zBRfAc
+ HNczWTgBAKJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZm7mYQAKCRDBN2bmhouD
+ 1xgID/9ZhhA79JtYTQgEYo+AFhkXlRrTae7kFOvzLQw9hC5Png0N364hNVUaPL23p8dsFP0eOoJ
+ Lejso+pHq488mcN0YcLMs+a/Gdqfkfc/21EBbKF/zMTy4tgetv6a2QVs0XODLwau3K/tArM9jfP
+ 2VADzB9BFviR66voHsVe0rhu2lMHef5awGV3Y8unnbwTNjrRPfdCbbqdm+W/TaQiXQUONW9Z9Kf
+ rzXf99Nx9jB+KbxKHvk4rRwtP47eN0YHYDdvp4ezsGNhi7lbhMinMDKyc08MYq7nuyiUDUo49kK
+ O89f2SD3G8UA6P8DSlsTxaVQtCewQblZmLrMDjDC7csET/s574e3N6UTefNOJZmhP7XHwdKUhbo
+ EGoNiOJgkszXzQRyfHEfnrri9QYexs1dQzWMGzfEZV/1UlAc/oNFyWzW7Sdek5uTTVwvIKKz/zP
+ r03hu6jhn7QdQLJBtRdm1c4wp3RqY8iR7xA/c5CRmU442GJPey5nDDnYKYsw0qc4TFBah12e7RB
+ 19K+ToU38Jub5zigxStNHNuzNqbgODXFv6GkGb+8RjfSKrBuDraKca6byqyMyQlMFdSjtW38+95
+ tJZY9QdDegJNpdAQ2GWR9zhv/FrVlYD5AH99v7faN0hOKx6/g8NciFccgvjiNgm2C/PxGA/BPrm
+ LJqTwU2MlcHBwbw==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-intel,lgm-syscon is not a simple syscon device - it has children - thus
-it should be fully documented in its own binding.
+microchip,sparx5-cpu-syscon is not a simple syscon device - it has
+children and implements simple-mfd compatible - thus it should be fully
+documented in its own binding.
 
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
 
 Context might depend on patch in Lee's MFD tree:
@@ -130,81 +131,74 @@ https://lore.kernel.org/all/171828959006.2643902.8308227314531523435.b4-ty@kerne
 and also further patches here depend on this one.
 ---
  Documentation/devicetree/bindings/mfd/syscon.yaml  |  1 -
- .../bindings/soc/intel/intel,lgm-syscon.yaml       | 56 ++++++++++++++++++++++
- 2 files changed, 56 insertions(+), 1 deletion(-)
+ .../soc/microchip/microchip,sparx5-cpu-syscon.yaml | 49 ++++++++++++++++++++++
+ 2 files changed, 49 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index af442767aa96..b9bf5bc05e92 100644
+index b9bf5bc05e92..abd3debe5faf 100644
 --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
 +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -77,7 +77,6 @@ properties:
-               - hisilicon,pcie-sas-subctrl
-               - hisilicon,peri-subctrl
-               - hpe,gxp-sysreg
--              - intel,lgm-syscon
-               - loongson,ls1b-syscon
-               - loongson,ls1c-syscon
-               - lsi,axxia-syscon
-diff --git a/Documentation/devicetree/bindings/soc/intel/intel,lgm-syscon.yaml b/Documentation/devicetree/bindings/soc/intel/intel,lgm-syscon.yaml
+@@ -95,7 +95,6 @@ properties:
+               - microchip,lan966x-cpu-syscon
+               - microchip,sam9x60-sfr
+               - microchip,sama7g5-ddr3phy
+-              - microchip,sparx5-cpu-syscon
+               - mscc,ocelot-cpu-syscon
+               - mstar,msc313-pmsleep
+               - nuvoton,ma35d1-sys
+diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,sparx5-cpu-syscon.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,sparx5-cpu-syscon.yaml
 new file mode 100644
-index 000000000000..0a73b7616a60
+index 000000000000..1f0b542d2296
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/intel/intel,lgm-syscon.yaml
-@@ -0,0 +1,56 @@
++++ b/Documentation/devicetree/bindings/soc/microchip/microchip,sparx5-cpu-syscon.yaml
+@@ -0,0 +1,49 @@
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/soc/intel/intel,lgm-syscon.yaml#
++$id: http://devicetree.org/schemas/soc/microchip/microchip,sparx5-cpu-syscon.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Intel Lightning Mountain(LGM) Syscon
++title: Microchip Sparx5 CPU Syscon
 +
 +maintainers:
-+  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
 +
 +properties:
 +  compatible:
 +    items:
-+      - const: intel,lgm-syscon
++      - const: microchip,sparx5-cpu-syscon
 +      - const: syscon
++      - const: simple-mfd
 +
 +  reg:
 +    maxItems: 1
 +
-+  ranges: true
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  "^emmc-phy@[0-9a-f]+$":
-+    $ref: /schemas/phy/intel,lgm-emmc-phy.yaml#
++  mux-controller:
++    $ref: /schemas/mux/reg-mux.yaml#
 +
 +required:
 +  - compatible
 +  - reg
-+  - "#address-cells"
-+  - "#size-cells"
++  - mux-controller
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    chiptop@e0200000 {
-+        compatible = "intel,lgm-syscon", "syscon";
-+        reg = <0xe0200000 0x100>;
-+        ranges = <0x0 0xe0200000 0x100>;
-+        #address-cells = <1>;
++    soc {
++        #address-cells = <2>;
 +        #size-cells = <1>;
 +
-+        emmc-phy@a8 {
-+            compatible = "intel,lgm-emmc-phy";
-+            reg = <0x00a8 0x10>;
-+            clocks = <&emmc>;
-+            #phy-cells = <0>;
++        syscon@600000000 {
++            compatible = "microchip,sparx5-cpu-syscon", "syscon",
++                         "simple-mfd";
++            reg = <0x6 0x00000000 0xd0>;
++
++            mux: mux-controller {
++                compatible = "mmio-mux";
++                #mux-control-cells = <1>;
++                mux-reg-masks = <0x88 0xf0>;
++            };
 +        };
 +    };
 
