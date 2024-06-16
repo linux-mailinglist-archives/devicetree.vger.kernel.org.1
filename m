@@ -1,267 +1,232 @@
-Return-Path: <devicetree+bounces-76148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F17D909CC0
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 11:18:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A547909CDD
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 11:52:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6CEC1F20F44
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 09:18:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA0801F21517
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 09:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1DF16D9C9;
-	Sun, 16 Jun 2024 09:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75EF018410E;
+	Sun, 16 Jun 2024 09:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="Ltf3uKcD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJAI7oGz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A992F26
-	for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 09:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.172.40.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F034E16D9B5;
+	Sun, 16 Jun 2024 09:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718529506; cv=none; b=JF64m1XvUoanjJUDLH4GCGHg9c0A57jOvsGhKGv0XlQLqwQSvzszc2uzDV+SRIxGj7/tAmBBOacOQM/FsHOtTLcv0+BTFNyqluWPKp3FEK7DzPJ/op+borwsKrUtUu4bGgDEChA7pX3CsDIrtVA49x0uoWQbc/G5/MdyGZ2+svg=
+	t=1718531559; cv=none; b=kVQz8H2Xvxy/HPQhwDUvkz5IUcT+5+5bYIf2ND/+dBoKsG0/fAy75ckyuJiux+1ibHFhtE+zzduWpHpF2JGxTZCuJhGJ9MKDhEfoItoxmXPvJ/79+xrkz+opIsP7lA907Da7Y5/nF1SWb5+qDrHe9SwysMuN+TahiKpC3aInv5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718529506; c=relaxed/simple;
-	bh=ag+2nKDejAdKP/tTF6EOOl6aEisffVKXG/FrSiyZcn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J+XblQlwd1MhA/TFu9EOk00mJ94e2uWSEaDnxFci/E9+s3hFAAxtzrEEih0ejyRvbBcn2/+Q22tuuX6PiiXXfHCASIfJSRmcHnn2x0L7kIHzs27FloUKZXvqi3Q09D6XO0e81wpIhSa0cZiB13nUXg5dA0drR4Ect+a7xhceYNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=Ltf3uKcD; arc=none smtp.client-ip=167.172.40.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1718529464;
- bh=quuud/7bt9D8sRiX3GKp+NZMy2JyHR57uIHev3qjeFs=;
- b=Ltf3uKcDhpLdLINdUS93ApD3HN3oob/51s/ZiX/u/dVjy5WTI9cCiwS8+OFbKZkopaRX/IBXJ
- 1lq3I1Z3kt4aLFg4NwUXDDLdNVhw8TXtYNtAQiTSElKV5uv565YcJoHEuf4RuSH53VbK5n0Vkov
- nD6vJXQW7KdJ6BhHDtCf2+DCjyN/x9yUH/2Xkr1RiXB6g81hs+4aOGVLjjdgSSBFDirxgCQzH1r
- ULoE1g8DQUFbLmGmttQbtsxsoVsEB/eCT4+HotfxIk4eTfG2qgASjEynF+Xeg9V0zuLVKa8TeOW
- jgiuzmCDClcKLm+QCVxNq39N/2ZWmBhOG5F5iNOsXCJw==
-Message-ID: <f4c140a3-2b11-405c-bfd4-32e50180f6b7@kwiboo.se>
-Date: Sun, 16 Jun 2024 11:17:31 +0200
+	s=arc-20240116; t=1718531559; c=relaxed/simple;
+	bh=YZHKZATojJ2HK+Z+DAwC+6Oa+5yLu6I/Vp6L8JR97K8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t3DuM6f2FKFw2hW5qGZ/2GMbfY/GCYXhZCPjd4XJJ/gwF0OJqgvV2tQhe1mIcqKX9IzwvVdwiwtX5AK1TQkGn2/EtE1meTPdvRD4E5NKsflwOc1Kzfoy4NSw/ONyuYG6Qwbo+mFtFgD5gk3trEnJ0Lq/IWzjqXNymqBxogA9y5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nJAI7oGz; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7042a8ad9f5so2998946b3a.0;
+        Sun, 16 Jun 2024 02:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718531557; x=1719136357; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GKTZuZsWgG4U6fxLMx1cgYwrM7Q/BtT3yyk8jGRBk/s=;
+        b=nJAI7oGz+L7oP1RPvFqw2Mnl08cW8DDj1j4FLDeJqFwX3l1VwWxPQw1Q2wbXNVlEPo
+         HNdlSvFLZzPN9YDnlw+F0F3jHyaDVhWj3an23iP01bR8SyFFP5zCUqXdlWPbEdIhm3rv
+         rVfpbbcnYg5RJTs62lh6m0ZOmB163mMRcfYG0fzrU539Tnbi83AwKCqYlS5EFF+WMCFR
+         k82xF3A+o3Yv6+037JYuzmbY7gmsg0QaMCGBPB1pAbnX02lsu9LTTuukT0fh+Lymoak6
+         ylu3sQmyEU4h3v1jyB/FKBDPRPZMqWO6pCitwtE2fcaJtBYAmTP55ffur5B1bqBjFN+M
+         2UpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718531557; x=1719136357;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GKTZuZsWgG4U6fxLMx1cgYwrM7Q/BtT3yyk8jGRBk/s=;
+        b=uQOFCFT62zircLiv6JSv4+Di6jX7gpLbieFylDFfpYJGhn8nZ1ZCllsUF1xfIIoQ1l
+         TO7hJwvMfgnsG900tRIQossNPb73VKLhXemNFHHkTlD9u7Ej2mykVzexL0WZ1GFN0bms
+         mc4M2vHHi6hv859Efho6Ei6tBc7svTo5x0gPmmvDdxvx1/75323woe1nZ8Rq8Oeqfkx7
+         dpKme1bjz66Th3EnObrKcQXizzScmjC3Dm1Eq9gR6wnxMPF6sPrVP4VpJovHc2bSrC+7
+         6rUfNdfm7IT55h42PlboZ8u/qr3updGLnAPKa2emIGEXfeC85LlTENqahL/ndl717CmO
+         XkZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXkoMTB6XtshD9mK1RfXnHYmAfxUaXslHB4MtSc0KLdsMKUShvZAN0Kv8p8/sptZyaw/JRN2K0Qq1zMVyqtJ1rAdZtaeTil8eEigC4+NZdFCKOHKLcOkNdUMSqDmwcuWXVVSw2e6qvOUdaP7GVVuNLGPLr3uxVxIsvHjpMfIQnv0gYF92mv
+X-Gm-Message-State: AOJu0YyWPMaKqSK/Ffa+/IHX3Utb1L+RMSJrgA2DWvRAPwr1HmBVsP5k
+	NBcs1bDuM+3e9RKwKpRvR8z9xfusolC4UUG/0NiuwPc2Jw/Vw2+N
+X-Google-Smtp-Source: AGHT+IG1Q+D08Au94XxXFGiSSXNSz13KorAKbPoqOdVlM3M321xVm8e12/BOIt5uWsNmrVCA/VqVlw==
+X-Received: by 2002:a05:6a21:7887:b0:1b6:a7c5:4fad with SMTP id adf61e73a8af0-1bae800c9d4mr11339816637.26.1718531557033;
+        Sun, 16 Jun 2024 02:52:37 -0700 (PDT)
+Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705cc9891b9sm5891275b3a.95.2024.06.16.02.52.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Jun 2024 02:52:36 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: realtek,rt5514: Convert to dtschema
+Date: Sun, 16 Jun 2024 15:22:19 +0530
+Message-ID: <20240616095223.260786-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add rkvdec2 Video Decoder on
- rk3588(s)
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>, Dragan Simic
- <dsimic@manjaro.org>, Alexey Charkov <alchark@gmail.com>, Cristian
- Ciocaltea <cristian.ciocaltea@collabora.com>, Diederik de Haas
- <didi.debian@cknow.org>, Andy Yan <andy.yan@rock-chips.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-staging@lists.linux.dev
-References: <20240615015734.1612108-1-detlev.casanova@collabora.com>
- <20240615015734.1612108-4-detlev.casanova@collabora.com>
- <944c4296-8dd2-4ffd-b430-1839ff3a3ed2@kwiboo.se> <3666279.iZASKD2KPV@arisu>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <3666279.iZASKD2KPV@arisu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 167.172.40.54
-X-ForwardEmail-ID: 666eadb2b23880544d1fe7f5
+Content-Transfer-Encoding: 8bit
 
-Hi Detlev,
+Convert the RT5514 audio CODEC bindings to DT Schema. Make bindings
+complete by adding 'spi-max-frequency', 'wakeup-source' properties.
 
-On 2024-06-15 21:55, Detlev Casanova wrote:
-> On Saturday, June 15, 2024 4:25:27 A.M. EDT Jonas Karlman wrote:
->> Hi Detlev,
->>
->> On 2024-06-15 03:56, Detlev Casanova wrote:
->>> Add the rkvdec2 Video Decoder to the RK3588s devicetree.
->>>
->>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
->>> ---
->>>
->>>  .../boot/dts/rockchip/rk3588-rock-5b.dts      |  4 ++++
->>>  .../boot/dts/rockchip/rk3588s-orangepi-5.dts  |  4 ++++
->>>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 19 +++++++++++++++++++
->>>  3 files changed, 27 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts index
->>> c551b676860c..965322c24a65 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> @@ -503,6 +503,10 @@ &pwm1 {
->>>
->>>  	status = "okay";
->>>  
->>>  };
->>>
->>> +&rkvdec0 {
->>> +	status = "okay";
->>> +};
->>
->> Enable of rkvdec0 should probably be split out from the patch that adds
->> the rkvdec0 node to soc dtsi.
-> 
-> Ack
-> 
->> Also why is rkvdec0 only enabled on rock-5b and orangepi-5?
-> 
-> I only could test on those two but I can enable it on all rk3588 devices.
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
 
-Because the decoder is an integrated part of the SoC the default should
-probably be that the IP is enabled, i.e. no status prop required for the
-vdec and related mmu nodes in rk3588s.dtsi.
+---
+Changes in v2:
+  - Added ref to spi-peripheral-props.yaml and dai-common.yaml.
+  - Added missing properties 'spi-max-frequency' and 'wakeup-source'
+  - Moved maintainers list abouve description.
+---
+ .../bindings/sound/realtek,rt5514.yaml        | 70 +++++++++++++++++++
+ .../devicetree/bindings/sound/rt5514.txt      | 37 ----------
+ 2 files changed, 70 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5514.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/rt5514.txt
 
-> 
->>> +
->>>
->>>  &saradc {
->>>  
->>>  	vref-supply = <&avcc_1v8_s0>;
->>>  	status = "okay";
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
->>> b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts index
->>> feea6b20a6bf..2828fb4c182a 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
->>> @@ -321,6 +321,10 @@ typec5v_pwren: typec5v-pwren {
->>>
->>>  	};
->>>  
->>>  };
->>>
->>> +&rkvdec0 {
->>> +	status = "okay";
->>> +};
->>> +
->>>
->>>  &saradc {
->>>  
->>>  	vref-supply = <&avcc_1v8_s0>;
->>>  	status = "okay";
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi index
->>> 0fecbf46e127..09672636dcea 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> @@ -3034,6 +3034,9 @@ system_sram2: sram@ff001000 {
->>>
->>>  		ranges = <0x0 0x0 0xff001000 0xef000>;
->>>  		#address-cells = <1>;
->>>  		#size-cells = <1>;
->>
->> Blank line is missing.
->>
->>> +		rkvdec0_sram: rkvdec-sram@0 {
->>> +			reg = <0x0 0x78000>;
->>> +		};
->>>
->>>  	};
->>>  	
->>>  	pinctrl: pinctrl {
->>>
->>> @@ -3103,6 +3106,22 @@ gpio4: gpio@fec50000 {
->>>
->>>  			#interrupt-cells = <2>;
->>>  		
->>>  		};
->>>  	
->>>  	};
->>>
->>> +
->>> +	rkvdec0: video-decoder@fdc38100 {
-
-To match prior generations the symbol should probably be called vdec0.
-
->>> +		compatible = "rockchip,rk3588-vdec2";
->>> +		reg = <0x0 0xfdc38100 0x0 0x500>;
->>> +		interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH 0>;
->>> +		clocks = <&cru ACLK_RKVDEC0>, <&cru HCLK_RKVDEC0>, 
-> <&cru
->>> CLK_RKVDEC0_CORE>, +			 <&cru 
-> CLK_RKVDEC0_CA>, <&cru
->>> CLK_RKVDEC0_HEVC_CA>;
->>> +		clock-names = "axi", "ahb", "core",
->>> +			      "cabac", "hevc_cabac";
->>> +		assigned-clocks = <&cru ACLK_RKVDEC0>, <&cru 
-> CLK_RKVDEC0_CORE>,
->>> +				  <&cru CLK_RKVDEC0_CA>, <&cru 
-> CLK_RKVDEC0_HEVC_CA>;
->>> +		assigned-clock-rates = <800000000>, <600000000>,
->>> +				       <600000000>, <1000000000>;
->>> +		power-domains = <&power RK3588_PD_RKVDEC0>;
->>
->> iommus and resets should probably be added.
->>
->>> +		status = "disabled";
->>> +	};
->>
->> The iommu node for rkvdec0_mmu seem to be missing, is it not required to
->> be able to use memory >4GiB as decoding buffers?
-> 
-> I need to check if the current rockchip iommu driver will work for this 
-> decoder. I remember that the iommu code for AV1 was a bit different, not sure 
-> about this rkvdec.
-
-The device tree should describe the HW not what drivers are capable of.
-
-If there are substantial differences in iommu IP a new compatible should
-probably be added for that iommu.
-
-> 
->> I would also consider adding the rkvdec1 node(s), if I am understanding
->> correctly they can both be used in a cluster or completely independent.
-> 
-> They can be used independently, yes. I'll add rkvdec1 for rk3588 devices 
-> (rk3588s only has  1 core)
-
-I do not think that is true, the rk3588s variant should also include two
-decoder and two encoder cores.
-
-However, the rk3582/rk3583 variants (rk3588s with one or more bad cores)
-may have 0-2 cores working for the decoder and/or encoder.
-
-E.g on my rk3582 boards I have following different ip-state in otp:
-- 1 bad cpu core (ip-state: 10 00 00)
-- 1 bad decoder core (ip-state: 00 80 00)
-- 1 bad encoder core (ip-state: 00 00 04)
-
-The general idea is that bootloader will disable or delete the offending
-nodes in the device tree to correctly describe the HW for the OS.
-
-Regards,
-Jonas
-
-> 
-> Regards,
-> Detlev.
-> 
->> Also on RK3582/RK3583 one (or both) of the decoder cores may be marked
->> as bad, yet the remaining one can still be used independently. The idea
->> will be that bootloader fixup the DT and disabled/delete-node the bad
->> core(s).
->>
->> Regards,
->> Jonas
->>
->>>  };
->>>  
->>>  #include "rk3588s-pinctrl.dtsi"
-> 
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5514.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5514.yaml
+new file mode 100644
+index 000000000000..7fbf7739c371
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,rt5514.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,rt5514.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RT5514 audio CODEC
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++description: |
++  This device supports both I2C and SPI.
++
++  Pins on the device (for linking into audio routes) for I2C:
++    * DMIC1L
++    * DMIC1R
++    * DMIC2L
++    * DMIC2R
++    * AMICL
++    * AMICR
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: realtek,rt5514
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Master clock to the CODEC
++
++  clock-names:
++    items:
++      - const: mclk
++
++  interrupts:
++    maxItems: 1
++    description: The interrupt number to the cpu.
++
++  realtek,dmic-init-delay-ms:
++    description: Set the DMIC initial delay (ms) to wait it ready for I2C.
++
++  spi-max-frequency: true
++
++  wakeup-source:
++    type: boolean
++    description: Flag to indicate this device can wake system (suspend/resume).
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@57 {
++            compatible = "realtek,rt5514";
++            reg = <0x57>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/rt5514.txt b/Documentation/devicetree/bindings/sound/rt5514.txt
+deleted file mode 100644
+index d2cc171f22f2..000000000000
+--- a/Documentation/devicetree/bindings/sound/rt5514.txt
++++ /dev/null
+@@ -1,37 +0,0 @@
+-RT5514 audio CODEC
+-
+-This device supports both I2C and SPI.
+-
+-Required properties:
+-
+-- compatible : "realtek,rt5514".
+-
+-- reg : the I2C address of the device for I2C, the chip select
+-        number for SPI.
+-
+-Optional properties:
+-
+-- clocks: The phandle of the master clock to the CODEC
+-- clock-names: Should be "mclk"
+-
+-- interrupts: The interrupt number to the cpu. The interrupt specifier format
+-	      depends on the interrupt controller.
+-
+-- realtek,dmic-init-delay-ms
+-  Set the DMIC initial delay (ms) to wait it ready for I2C.
+-
+-Pins on the device (for linking into audio routes) for I2C:
+-
+-  * DMIC1L
+-  * DMIC1R
+-  * DMIC2L
+-  * DMIC2R
+-  * AMICL
+-  * AMICR
+-
+-Example:
+-
+-rt5514: codec@57 {
+-	compatible = "realtek,rt5514";
+-	reg = <0x57>;
+-};
+-- 
+2.45.2
 
 
