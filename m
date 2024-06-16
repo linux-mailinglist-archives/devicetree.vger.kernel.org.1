@@ -1,215 +1,215 @@
-Return-Path: <devicetree+bounces-76215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28C5909F99
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:04:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AD04909FB0
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:26:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26461281BD0
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 20:04:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A39231C21163
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 20:26:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFB5481DB;
-	Sun, 16 Jun 2024 20:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E874F881;
+	Sun, 16 Jun 2024 20:26:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m2YuFlF4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UQdTJOcY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA603611A;
-	Sun, 16 Jun 2024 20:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D0754660;
+	Sun, 16 Jun 2024 20:26:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718568281; cv=none; b=DsfQkOEBVJ7aoMnZ2Ogh2fYbDJFYcC6nd0hXnypeqgvKSOkGQFS7TTaz4MOY9NkJLIrZh+Ejqdh+Ye1QDJCAGtafP+JSiKQgqvXHw5RHBAhto73jD0s6gD0qgwMzCH6nBjxOr4vMv12ljN14Zwz/M02HXvMb05O618+J9GDVMsI=
+	t=1718569595; cv=none; b=Z9den03t2kuBMsH+BUSiNTdIHBlGg3vixkIP4e9Eza7us45VUGgjPnGHjVpzmOuqAm86fnx/2q9d4EI/RDZqyy5GfGasxslnF0WHSNh7JvZtwf5+Z6tPshFqyQ9ldJ6F/+xMesuwEI7W4EFQYX/mrPf5wSqx5X2fXUwaFX9cD4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718568281; c=relaxed/simple;
-	bh=QWRC2D1H2zURtP0smss7txlGTYwCW8TFD++F2R+yQuw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DKfZNkLB9I7LNJ8y4rTL4OeiwS7eHXz1jEQFm2S7UhPCOOzy9po9zC6/12YqYp9SHXMbOSx/FZJLQNc7NnblFEj5r1svRVCePlNj7S/zZNGrMS2qDPFEzWIPhm9y6IzCisrSnEdmjzqn9XQ7WEsgjvrdKGFUioOB47PTMRdfZqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m2YuFlF4; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718568278; x=1750104278;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QWRC2D1H2zURtP0smss7txlGTYwCW8TFD++F2R+yQuw=;
-  b=m2YuFlF4V/ZD40M7UBygQvgL2fgf8K4BSzGMAIVtPtvemR6ZGWBznt/p
-   F5lzktlR8B4Bhn2FdmQY02HbVJxNGK4cN/OC/NEHny+jR67ABKDnVuBqr
-   OGiralCr9FVFiBboZozMlKymUv5IyiReXzZspeB6TSROJAkwt06CyWvtp
-   dJsMsGUihbfDVuhFFZs+aCXl7sS2UHaGFGoO3N996H7TVQEriMpsBzH6w
-   afhj4KJehyBzf23LDbTMrhT3Qu8Dk0St+mAGd9s9JeTklKjk22KsSmOEc
-   WQzwb3CO2MHHWEIpcdPSzQ1B+T9+uWjS7wPSsGWcBcR6P9mhXDVx0feI+
-   A==;
-X-CSE-ConnectionGUID: LKGdcqCaSpWMf143CCVwOg==
-X-CSE-MsgGUID: 3UZbZ9W1SGi695ZsWv/WyA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11105"; a="26511258"
-X-IronPort-AV: E=Sophos;i="6.08,243,1712646000"; 
-   d="scan'208";a="26511258"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2024 13:04:38 -0700
-X-CSE-ConnectionGUID: FSbR0r2qRVu6njUTKVBMEw==
-X-CSE-MsgGUID: 4aaZq+W0Sdy2/n9jqsyfUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,243,1712646000"; 
-   d="scan'208";a="40943438"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 16 Jun 2024 13:04:35 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sIw77-0003EI-0K;
-	Sun, 16 Jun 2024 20:04:33 +0000
-Date: Mon, 17 Jun 2024 04:04:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v1 2/7] ARM: dts: aspeed: Harma: add VR device
-Message-ID: <202406170350.zQo7bJdX-lkp@intel.com>
-References: <20240613152425.1582059-3-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1718569595; c=relaxed/simple;
+	bh=GxHq1I1yK4ushy+cbVDTnikWctzsVLN0jARxQzbhmAE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aAsWaAwl/33EKEXLxbb3qT5d7hkjJ+qpYIVOc1neCyoEIVa2/RifmakwQHCmrUn/f0AktJL74J7yUJY6L3bS9MsIk87IK8A3jlAyPApm5EELyiUQAGbCdmDd6GJuPAsnRWhNhQyQA3KPKpdT/miduYP3YbjA502wYJQKn9DdWCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UQdTJOcY; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-707040e3017so717711a12.3;
+        Sun, 16 Jun 2024 13:26:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718569592; x=1719174392; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=rzZNLXZyAad49lqyEMwbFZUTxKz2TWCABxME8TyuxUY=;
+        b=UQdTJOcYuqZJ8PZxKWB89xAG2Qt7Wee05o8j1FWvPQjE+Pv8tYv8wc3nnTjIAvd4zv
+         FgJ2XB3tHT+brw9L39Meo3B00CtuNWSWF5aDZZ89eiStmz4JbMrnwU7s2GUqe7ehJ+gQ
+         2LKOqxnBiiWFaM/cC497aPs4RSMFKxQoXTPnRzuvW9QfA3bTjGvkXSCDyajp6iWU7E7Q
+         zTb2SLz8X8UfJCYWrYenD6+KLXtWobR4XVmicqhqLUwij2AvH+F/aaLx3qPASEn/0t/D
+         eEmk2Kc5T/CHHS9QHdrgEBMTCBYiqoeVN4P1wWbcJ09mLOGulNphgLnu80dOAOZzYmcM
+         45ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718569592; x=1719174392;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rzZNLXZyAad49lqyEMwbFZUTxKz2TWCABxME8TyuxUY=;
+        b=qmhluW2GyVomikbDn7dHQq1Nh4wnsGyOORHNiSt5n6Vg5NMVk+eoZbO1vwj/dhqVOP
+         Kg3GNVKqvAEuS6VuD5ZtkG0I3/Zfq6WnIfGFlf1GWwTxD1/wd7PYBVLg9Pbdth5qIsHI
+         rNguRKdlFhQw52f7i6miydKwn0uh99u7KVq76UTZzQQRMaUgLT5eDARyeEJGJECymay1
+         JZ6EMXbiq8zya0nP5yLyRYDJJR5dA5qgzZuL07h2NzeGukNZiTh8ku6tha6G2ArYBKvB
+         p+6hu/cFnVNNjGyT/YPFN6em/AsTeQ1ld1JcgVHY5zC7rqZeNo3HxkzD0VIPLD4dGkBx
+         /K+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWhqHdnxG4A022HWZYRA7oGyWKZ2g9jSipAkRyPTtfon13iqQKzXf+XUMMveRX0UiBi8JNnpkQK+T4PGH5B47Tnoc8K4JdB4UN1VrFwi8mo8ql0gluFmArfI+6mpMpW/Pxjcdyh3Jh1+hg/w0EyVHZu3fxU7HWD4u8KF22XnE/Ce+uCuHun
+X-Gm-Message-State: AOJu0YynFzdlQdR6YFZAuqgDQ2QN5wLS1+NBLH5ivShsmB0osiOyVlq4
+	Vj7uYptYmhnF47Ryn7EdPgvUf/6VvMayS4ZB92sP9PF0oenQilKU
+X-Google-Smtp-Source: AGHT+IEkv9TFVryZMuRXnrW9c7YuK4/7rSSgV4AcCArj1ccOtH/22/ytdQGihbdr31j/txPe/Mzfvw==
+X-Received: by 2002:a17:902:c20c:b0:1f8:44f8:a366 with SMTP id d9443c01a7336-1f8627ce3dfmr74464955ad.16.1718569592414;
+        Sun, 16 Jun 2024 13:26:32 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855f1a4fdsm67179965ad.233.2024.06.16.13.26.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Jun 2024 13:26:31 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d2ba6ed1-3a6a-4481-9f43-265eee78c0c1@roeck-us.net>
+Date: Sun, 16 Jun 2024 13:26:29 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240613152425.1582059-3-peteryin.openbmc@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFT PATCH] hwmon: (spd5118) Add support for Renesas/ITD SPD5118
+ hub controllers
+To: Armin Wolf <W_Armin@gmx.de>, linux-hwmon@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Stephen Horvath <s.horvath@outlook.com.au>,
+ Paul Menzel <pmenzel@molgen.mpg.de>, Sasha Kozachuk <skozachuk@google.com>,
+ John Hamrick <johnham@google.com>
+References: <20240614185924.604672-1-linux@roeck-us.net>
+ <2046d2c3-bbf6-4842-bc51-b2f567f33c0a@gmx.de>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <2046d2c3-bbf6-4842-bc51-b2f567f33c0a@gmx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Peter,
+Hi Armin,
 
-kernel test robot noticed the following build warnings:
+On 6/16/24 11:09, Armin Wolf wrote:
+> Am 14.06.24 um 20:59 schrieb Guenter Roeck:
+> 
+>> The SPD5118 specification says, in its documentation of the page bits
+>> in the MR11 register:
+>>
+>> "
+>> This register only applies to non-volatile memory (1024) Bytes) access of
+>> SPD5 Hub device.
+>> For volatile memory access, this register must be programmed to '000'.
+>> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>> "
+>>
+>> Renesas/ITD SPD5118 hub controllers take this literally and disable access
+>> to volatile memory if the page selected in MR11 is != 0. Since the BIOS or
+>> ROMMON will access the non-volatile memory and likely select a page != 0,
+>> this means that the driver will not instantiate since it can not identify
+>> the chip. Even if the driver instantiates, access to volatile registers
+>> is blocked after a nvram read operation which selects a page other than 0.
+>>
+>> To solve the problem, add initialization code to select page 0 during
+>> probe. Before doing that, use basic validation to ensure that this is
+>> really a SPD5118 device and not some random EEPROM. Explicitly select
+>> page 0 when accessing the volatile register space, and protect volatile
+>> register access against nvmem access using the device mutex.
+> 
+> Hi,
+> 
+> maybe we can use struct regmap_range_cfg so the paged register accesses are being
+> done by the regmap code itself?
+> 
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.10-rc3 next-20240613]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+In theory that might work, but regmap does not permit a selector register to
+be part of another range. The first range would be the non-volatile registers,
+and the selector register is part of that for all ranges.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Yin/ARM-dts-aspeed-Harma-revise-hsc-chip/20240613-232915
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240613152425.1582059-3-peteryin.openbmc%40gmail.com
-patch subject: [PATCH v1 2/7] ARM: dts: aspeed: Harma: add VR device
-config: arm-randconfig-051-20240614 (https://download.01.org/0day-ci/archive/20240617/202406170350.zQo7bJdX-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-dtschema version: 2024.6.dev1+g833054f
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240617/202406170350.zQo7bJdX-lkp@intel.com/reproduce)
+I tried the following ranges configuration.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406170350.zQo7bJdX-lkp@intel.com/
+static const struct regmap_range_cfg spd5118_regmap_range_cfg[] = {
+         {
+         .selector_reg     = SPD5118_REG_I2C_LEGACY_MODE,
+         .selector_mask    = SPD5118_LEGACY_PAGE_MASK,
+         .selector_shift   = 0,
+         .window_start     = 0,
+         .window_len       = SPD5118_PAGE_SIZE,
+         .range_min        = 0,
+         .range_max        = SPD5118_PAGE_SIZE - 1,
+         },
+         {
+         .selector_reg     = SPD5118_REG_I2C_LEGACY_MODE,
+         .selector_mask    = SPD5118_LEGACY_PAGE_MASK,
+         .selector_shift   = 0,
+         .window_start     = SPD5118_PAGE_SIZE,
+         .window_len       = SPD5118_PAGE_SIZE,
+         .range_min        = SPD5118_PAGE_SIZE,
+         .range_max        = 9 * SPD5118_PAGE_SIZE - 1,
+         },
+};
 
-dtcheck warnings: (new ones prefixed by >>)
->> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts:409.21-412.6: Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@63: I2C bus unit address format error, expected "61"
-   arch/arm/boot/dts/aspeed/aspeed-g6.dtsi:655.36-659.7: Warning (unique_unit_address_if_enabled): /ahb/apb/lpc@1e789000/reset-controller@98: duplicate unit-address (also used in node /ahb/apb/lpc@1e789000/uart-routing@98)
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /: spi-gpio: {'status': ['okay'], 'compatible': ['spi-gpio'], '#address-cells': [[1]], '#size-cells': [[0]], 'gpio-sck': [[58, 203, 0]], 'gpio-mosi': [[58, 204, 0]], 'gpio-miso': [[58, 205, 0]], 'num-chipselects': [[1]], 'cs-gpios': [[58, 200, 1]], 'tpmdev@0': {'compatible': ['infineon,slb9670', 'tcg,tpm_tis-spi'], 'spi-max-frequency': [[33000000]], 'reg': [[0]]}} is not of type 'array'
-   	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-   	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not match '^ethernet(@.*)?$'
-   	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
---
-   	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: serial@1e78d000: pinctrl-0: True is not of type 'array'
-   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: serial@1e78f000: pinctrl-0: True is not of type 'array'
-   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@80/pwm@5e: failed to match any schema with compatible: ['max31790']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@180/pwm@5e: failed to match any schema with compatible: ['max31790']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/power-monitor@69: failed to match any schema with compatible: ['pmbus']
->> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@61: failed to match any schema with compatible: ['isil,isl69260']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@62: failed to match any schema with compatible: ['isil,isl69260']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/i2c-mux@70/i2c@0/power-monitor@63: failed to match any schema with compatible: ['isil,isl69260']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/ipmb@10: failed to match any schema with compatible: ['ipmb-dev']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: spi-gpio: $nodename:0: 'spi-gpio' does not match '^spi(@.*|-([0-9]|[1-9][0-9]+))?$'
-   	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+This results in
 
-vim +/61 +409 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+spd5118 0-0050: Range 0: selector for 1 in window
+spd5118 0-0050: error -EINVAL: regmap init failed
 
-   387	
-   388	&i2c13 {
-   389		status = "okay";
-   390	
-   391		i2c-mux@70 {
-   392			compatible = "nxp,pca9545";
-   393			reg = <0x70>;
-   394			#address-cells = <1>;
-   395			#size-cells = <0>;
-   396	
-   397			imux28: i2c@0 {
-   398				#address-cells = <1>;
-   399				#size-cells = <0>;
-   400				reg = <0>;
-   401				power-monitor@61 {
-   402					compatible = "isil,isl69260";
-   403					reg = <0x61>;
-   404				};
-   405				power-monitor@62 {
-   406					compatible = "isil,isl69260";
-   407					reg = <0x62>;
-   408				};
- > 409				power-monitor@63 {
-   410					compatible = "isil,isl69260";
-   411					reg = <0x61>;
-   412				};
-   413				power-monitor@64 {
-   414					compatible = "infineon,xdpe152c4";
-   415					reg = <0x64>;
-   416				};
-   417				power-monitor@66 {
-   418					compatible = "infineon,xdpe152c4";
-   419					reg = <0x66>;
-   420				};
-   421				power-monitor@68 {
-   422					compatible = "infineon,xdpe152c4";
-   423					reg = <0x68>;
-   424				};
-   425			};
-   426			imux29: i2c@1 {
-   427				#address-cells = <1>;
-   428				#size-cells = <0>;
-   429				reg = <1>;
-   430				//MB FRU
-   431				eeprom@54 {
-   432					compatible = "atmel,24c64";
-   433					reg = <0x54>;
-   434				};
-   435			};
-   436			imux30: i2c@2 {
-   437				#address-cells = <1>;
-   438				#size-cells = <0>;
-   439				reg = <2>;
-   440			};
-   441			imux31: i2c@3 {
-   442				#address-cells = <1>;
-   443				#size-cells = <0>;
-   444				reg = <3>;
-   445			};
-   446		};
-   447	};
-   448	
+If you have an idea how to configure the ranges differently,
+please let me know.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Guenter
+
 
