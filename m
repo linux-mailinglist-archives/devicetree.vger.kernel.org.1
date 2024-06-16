@@ -1,35 +1,35 @@
-Return-Path: <devicetree+bounces-76264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB6D90A09C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 00:53:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D9E90A0B5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 01:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79B61282440
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:53:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26F1C1C20EAD
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 23:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8791271742;
-	Sun, 16 Jun 2024 22:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE8F73459;
+	Sun, 16 Jun 2024 23:06:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DB14D13F;
-	Sun, 16 Jun 2024 22:53:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C817344E;
+	Sun, 16 Jun 2024 23:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718578414; cv=none; b=TCmSB++4tKdXbtlGdGYzVR5V99V/FWwV7T96nBYouQoExdUTnmuUEGbfmAhW5yqPzx41m7n/oxDfQi7D080KjXgwvzdLccixNMMuR1MQW84Xcy+NLSUUCmymGi5HewDY5cZL1WXpI1TtkENBS7NzWhXuKVP18288nhU58XZZn/0=
+	t=1718579206; cv=none; b=iOjo0SMEP0svrQyxA+M6F6yGQAQd+Mnt64Ue4Rv+Eb0SDp4Jn5Cnq40pro/BpJCY3rTZSHUfC377nYO7H5gYYJQmrPnuxyJx/5/UEXhGZQcOHhEkoWgDI0XDsVYrMPuE8MFmv2gyHSzd8/6I05NT2Eol0H3d/i00f+7wvE6kBI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718578414; c=relaxed/simple;
-	bh=EHAngz4Pb351ADPg/GJDmja1Ezjv0UDBmrqAOfjKEfA=;
+	s=arc-20240116; t=1718579206; c=relaxed/simple;
+	bh=h/o2TvAiUoDg/AJSZIzo+CF9lcdlDpEl0QYRkwVqvQk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BeZARYFGFOktmz6Y9hYYBSmuv5zjlKr+zVyVox40jAPCtEcPtKq1gxwpzSIBrVlh4Q3/Sps7Y+xyYr3z9az6I3Efe+Cinue6BOErkd6XnCyfIS99NSdyCxTw/YvEaz3o3oib+8sSU8nAnlhVF5TBeESFF1GCc16/AZrzkUuJmCM=
+	 Content-Type:Content-Disposition:In-Reply-To; b=OikCoH9TuLHgQAYqFMIYWgBBQPiDipQVfSgVLpj5Chx8c+64dCYtHfGR5PH+ovSRWXRtuxMPVjYp47j3aifACZpCEt1WsvlTr8dv+tGwvzO3JyCWjfCkcCjsWJcpb/LegZ/1/FPUuBheITTczvpcM8ZT3f54p91szq38XLzlzNA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Sun, 16 Jun 2024 22:53:14 +0000
+Date: Sun, 16 Jun 2024 23:06:33 +0000
 From: Yixun Lan <dlan@gentoo.org>
 To: Yangyu Chen <cyy@cyyself.name>
 Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
@@ -39,11 +39,10 @@ Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
 	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 7/9] riscv: dts: add initial SpacemiT K1 SoC device
- tree
-Message-ID: <20240616225314.GA3988639@ofsar>
+Subject: Re: [PATCH v1 6/9] riscv: add SpacemiT SOC family Kconfig support
+Message-ID: <20240616230633.GB3988639@ofsar>
 References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
- <tencent_701082E2DAE48E2FB857316321778D737C08@qq.com>
+ <tencent_D935633C42BE1A7BF8C80553B5571C737009@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,27 +51,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <tencent_701082E2DAE48E2FB857316321778D737C08@qq.com>
+In-Reply-To: <tencent_D935633C42BE1A7BF8C80553B5571C737009@qq.com>
 
 On 01:20 Mon 17 Jun     , Yangyu Chen wrote:
-> Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
-> 
-.. snip
-> +		uart0: serial@d4017000 {
-> +			compatible = "intel,xscale-uart";
-are you sure the uart IP is fully compatible with xscale?
-otherwise I'd suggest to introduce a vendor specific one..
 
-> +			reg = <0x0 0xd4017000 0x0 0x100>;
-> +			interrupts = <42>;
-> +			clock-frequency = <14000000>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			status = "disabled";
-> +		};
-> +	};
-> +};
-it's better to also add other uart nodes, I feel it's more complete
+> The first SoC in the SpacemiT series is K1, which contains 8 RISC-V
+> cores with RISC-V Vector v1.0 support.
+> 
+> Link: https://www.spacemit.com/en/spacemit-key-stone-2/
+> 
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> ---
+>  arch/riscv/Kconfig.socs | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index f51bb24bc84c..8a5775586845 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -24,6 +24,11 @@ config ARCH_SOPHGO
+>  	help
+>  	  This enables support for Sophgo SoC platform hardware.
+>  
+> +config ARCH_SPACEMIT
+
+should this be SOC_SPACEMIT? as it contradict with patch [9/9]
+> +	bool "Sophgo SoCs"
+> +	help
+> +	  This enables support for SpacemiT SoC platform hardware.
+> +
+>  config ARCH_STARFIVE
+>  	def_bool SOC_STARFIVE
+>  
+> -- 
+> 2.45.1
+> 
 
 -- 
 Yixun Lan (dlan)
