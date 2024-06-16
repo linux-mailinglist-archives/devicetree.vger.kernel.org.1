@@ -1,107 +1,132 @@
-Return-Path: <devicetree+bounces-76210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ACFE909F47
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 20:42:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 449F8909F53
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 20:49:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC7292824EE
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 18:42:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E5141C20F75
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 18:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4BE47A62;
-	Sun, 16 Jun 2024 18:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DFFF42AB6;
+	Sun, 16 Jun 2024 18:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nfVi1Spq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="coDx3fTC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214C11CA85;
-	Sun, 16 Jun 2024 18:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70611C2A5;
+	Sun, 16 Jun 2024 18:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718563322; cv=none; b=d/XIvBSOKH9TJwu/W0QfU4JSS0GQ2b4pf9t4IqVdK4M2biTTS0Eo8e2cbV8H1d5uzThKvMKRXqZj8EIq94g4JtJq0V5pljd/bA3wUUDFXdyAMLUuPTkJE6SftyF4jqtOkg1i2Cu0rswl6ucKVfs6seTSsmb/8Vu2T+WdBqeVAAk=
+	t=1718563791; cv=none; b=olkF2yzwmXB3xJNfFSM0Ox0kVNY/KxIlsSPQOk3uYnwkR9vHaEO0kZnS+CdjUwvyoMEGqTq+caDdIpMC9LVQrFa4vnJVGMx8/JUwZw/WUbGoXQKUh/XCtt/jbB5QKM5/3nhSShp7m7cvi/s/tcSaTHWHADl3VWuwp3fFwMhoXaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718563322; c=relaxed/simple;
-	bh=CsM4DGKZqITnSBvF9KRlVOZ+BrnA9Rcyy2NY/zVK/6g=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=REOZZso+jm6qYFDGKgMPmXAmYug0qP2T9Y39OqZYt8YAUKqYLRJgjuiIDa+HIpH1eUKxrFele6o6LmZOx9V3a3csrossD3LEzjn12cVbeQTWxGb4X+nvDbhI9L8TNhYBLqOskHNYWjpWb7cYvhC2EmaGsBwmBPkejleMaT1JlpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nfVi1Spq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86A42C2BBFC;
-	Sun, 16 Jun 2024 18:42:01 +0000 (UTC)
+	s=arc-20240116; t=1718563791; c=relaxed/simple;
+	bh=osjHdpENVIPZkE6xIPy2V4BuG0sO5GBaRhifuE5x2O0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=goSxK1S8naC00aieWRlZwOH3S1DIehCsvMjhg6hQSLDYN4DS0PmeNgec6H1vrB0Giie6DqL2fR22bhm7+4pNEIOUzt04ZvmwkAeoGEv4nu1KoZ+IopU8Ndii0Hk/h2/KE1cjS/9he4BfdHhjKpKeUaqO5J0jS16JmqfZB0UTHEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=coDx3fTC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DF56C2BBFC;
+	Sun, 16 Jun 2024 18:49:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718563321;
-	bh=CsM4DGKZqITnSBvF9KRlVOZ+BrnA9Rcyy2NY/zVK/6g=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=nfVi1Spq3O8TwowZ+vuXDDMSYKmcpzSwehCL6EsX5rme/5Rs0qC/j207G32eUK6+I
-	 Q5kPW2vCz4AbBp0dC1RE446//AmvLTnAKiw8UeFWUNR2lu/syMupXPeDQyXHztv9uO
-	 lEv7XmArJhFOd9KER6aJ8eVuPJcPKLWE7YPTFTdfro5F+bFwr8dt9GvGyXAc2RLl3H
-	 FYsx8nnS0mfExHNBr2V2uxZQ1ll7kwXBKyjfLku//pZXK7bBff7QR9n8G9k+/XGww6
-	 guhtUxmsX066+TSLbNhm9UEQ3jP4GZAhQfL73bnKxwF0l/Z3/sVB993oZljwrF1sP0
-	 p8EbJM/El1Y2g==
-Date: Sun, 16 Jun 2024 12:42:00 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1718563790;
+	bh=osjHdpENVIPZkE6xIPy2V4BuG0sO5GBaRhifuE5x2O0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=coDx3fTCDyHCwcx4phLEdKPE4EnO0+r5shya/UDwFe1tr2yNK3DD5+11me8gnjfCo
+	 gcgxjn1nhU11+GPNDlr70AY4FsCrONmAuiz2j8aTXJdQbIHEw7/IF/cnHnan8oigXy
+	 tvq9Y/l6Ls0ceOSLpTlOmbdCRh68+btlPNA2k4EMVCSGTLrHAurqhFLet/O9WE3ewA
+	 ULmnLzGKFayh2LHgHDLw2ANYsfHGD5rv6QbpyeYy91sjm5K5YywxT3CpwHu0T8N3EE
+	 FB5mtdDSfIDYwlg1L/vpD0Dt4nRhV1TbTtB3DeC2Xgpm2Z/P2OyDdyPM5d7b0emAHE
+	 c6dz3vR4/Ppkg==
+Date: Sun, 16 Jun 2024 19:49:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Guillaume La Roque <glaroque@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vasily Khoruzhick <anarsoul@gmail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Anson Huang <Anson.Huang@nxp.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	zhanghongchen <zhanghongchen@loongson.cn>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
+	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 00/22] dt-bindings: thermal: few cleanups
+Message-ID: <20240616-immovably-washboard-5eff43888e6f@spud>
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yangyu Chen <cyy@cyyself.name>
-Cc: devicetree@vger.kernel.org, Samuel Holland <samuel.holland@sifive.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, linux-riscv@lists.infradead.org, 
- Anup Patel <anup.patel@wdc.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, linux-kernel@vger.kernel.org
-In-Reply-To: <tencent_D3577BC67116D732862BE4A7B187EF4ED005@qq.com>
-References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
- <tencent_D3577BC67116D732862BE4A7B187EF4ED005@qq.com>
-Message-Id: <171856332052.2487659.8752285245461346812.robh@kernel.org>
-Subject: Re: [PATCH v1 3/9] dt-bindings: riscv: add SpacemiT K1 bindings
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="kOA5/bYAEVq+jUn/"
+Content-Disposition: inline
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
 
 
-On Mon, 17 Jun 2024 01:20:48 +0800, Yangyu Chen wrote:
-> Add DT binding documentation for the SpacemiT K1 Soc[1] and the Banana
-> Pi BPi-F3 board[2] which used it.
-> 
-> [1] https://www.spacemit.com/en/spacemit-key-stone-2/
-> [2] https://docs.banana-pi.org/en/BPI-F3/BananaPi_BPI-F3
-> 
-> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-> ---
->  .../devicetree/bindings/riscv/spacemit.yaml   | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/spacemit.yaml
-> 
+--kOA5/bYAEVq+jUn/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Fri, Jun 14, 2024 at 11:45:59AM +0200, Krzysztof Kozlowski wrote:
+>=20
+> Few cleanups witout practical impact, except maybe the Amlogic schema
+> (bringing required cells).
 
-yamllint warnings/errors:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/spacemit.yaml: 'maintainers' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+--kOA5/bYAEVq+jUn/
+Content-Type: application/pgp-signature; name="signature.asc"
 
-doc reference errors (make refcheckdocs):
+-----BEGIN PGP SIGNATURE-----
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/tencent_D3577BC67116D732862BE4A7B187EF4ED005@qq.com
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm8zwgAKCRB4tDGHoIJi
+0ttlAQCXZrCE/f+fR0kZEWAkq+YZfRQhwyqkNPYsIPr3O9xqAAD+NmeiOYPzL4/8
+zTg9dNEipYzGNeR396Pg5r09PcUJDQM=
+=AUoM
+-----END PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--kOA5/bYAEVq+jUn/--
 
