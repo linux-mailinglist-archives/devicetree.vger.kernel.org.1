@@ -1,226 +1,124 @@
-Return-Path: <devicetree+bounces-76143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F3DD909C5C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 09:49:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1428E909C6C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 10:07:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 818111F214F3
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 07:49:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 257351C20A32
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 08:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C91180A96;
-	Sun, 16 Jun 2024 07:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22EB0181CFA;
+	Sun, 16 Jun 2024 08:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="teZHHJsX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LYhUVOqx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EE817B41E
-	for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 07:49:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715C3163AA7
+	for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 08:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718524182; cv=none; b=OGdFhX07QH2maY7sK+DHH1kEXwK5o5h1V/DIY2d9fMy6VBu385xe1mS18MyE6yW05pKhEIjLvA3df/6O5DqEJCGO906lF8u0ZcTNcEpOhfpVT4c6xb/mR/13ury3adGAhUh/sNw2LQwHN9WOtfC3VZdzhJvEFDyeKCi2EGWBPEc=
+	t=1718525226; cv=none; b=jLJyFci7BgEayklO2tysUJRR56tXx0G5kDAO1rbRYwZx13QQro0rR4EK0DrRrIUzS/Bch9HvRtNsCOhhS29WlTfnNfJsGc0QMP2VlScYG3+X6Jg1olnY5tdW4V65SNt5IT7wIBXqaUKcpOGGMgf5pKMTrsxQ4SSawTh06YNTIUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718524182; c=relaxed/simple;
-	bh=HejHULBzGymitulylESro3rXLowj2YYTSXNJaJtgz9M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N9Egpd2mmtYLVnjVnOQBw/PvSx3Y4xeASwYhpu5nExNPaHpLPZQTwurtDCNRor+f0iDGRU4UDJh687zk0kxJ33GoAsL/eFDqrIpNw4YoPHzRCT7/AyIqK98sFc0L5HegGFTZb8eCul1Ot+fItKBlSDHttA50xgRuS7LNJdnDIlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=teZHHJsX; arc=none smtp.client-ip=209.85.208.49
+	s=arc-20240116; t=1718525226; c=relaxed/simple;
+	bh=NMqn47xTcZUZtwmPaIuc3UPEQIWpCFeoW4y6K898tQg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZPB6OkTLmKstM/H27fZSdq7BARwYuvb2d4QbF6RQBNyf7U7NlMpKfsIsK9ZH44g3lDI+jHs7i4W52w5OjVmUPljv2gGdotR82gLgj3+arCfvhIQ2JCo6jL2XjKdexrJOoQO3xUQmBXQo8TrVUOngIdjRH5PBli6urtThZvHIAi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LYhUVOqx; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57a44c2ce80so4033268a12.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 00:49:39 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-579fa270e53so5158614a12.3
+        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 01:07:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718524178; x=1719128978; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QwgXZsM35RnKSk3KbXQFEg1LMCCqtXq5AS0doiK9cKg=;
-        b=teZHHJsXtSVcKGupegFtUap8/Uz0JZPNgwigg+unSjQpdHsLX0K0I6sHvOojhb3uR7
-         EMY3WWxKa4PIlDYcF90YbewloI9CtkW6VAWytEKRN55GgCMmJs/WdzRRmzxYp19NFdvw
-         kmVhVpW6ZAJMXYCFi1ysp7qoFfqOkq+v+fXay5wsyxEkDxAtZa0uJ5JIQ8Ym3Pa29WJk
-         Y3osfheOW56qhQ3xCeZJnF2cxfcYFIC/N0IeK/kT5XS9r2NKnDU5f5kbA3jodS83PEb5
-         OC2ocyfB768xm0JoOcTGI7Qsg6nCMaRyCZa3a3qZQHEmJGAzd2GopoG4XvkAJaYtodvQ
-         yxvQ==
+        d=linaro.org; s=google; t=1718525223; x=1719130023; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=40sPRExwP3s/3ZijtGHfQupkdXxmU+DCpAvlWfd+DeA=;
+        b=LYhUVOqxejydiFfbCdwojhZuV7d36fyWHmqjrwMhAJzK3HIxNttdskTBK+fk+gv25c
+         OyX4IugI09D85Jfum5RZrZxvW+rYFJDl6kZB4EPC0fJ+oZoJTWWMZqfqa9WUHfGDf6lv
+         Fv5Zp+2znXxotWtqZ3b/qbMyhZqQSL/dqpvBkt+iiYlUczIxrOob6VU8dHRxcQtvVoPH
+         vSbo995vW+Ae9D5AIvIG26zbAf0dg9rAxAQlSPQXbvXJS8Zf956sPRxsWq82HaQbm7Pm
+         /RYPc1viDeNAVhtgN5pAX4AFzCckmLxr7qZwAiVyF98YWPZy87FLDgd6ESW7uGvmfVau
+         on1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718524178; x=1719128978;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1718525223; x=1719130023;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QwgXZsM35RnKSk3KbXQFEg1LMCCqtXq5AS0doiK9cKg=;
-        b=C1/upBBqCrUW1HXb6sEyY080dJiYTnT7XO1bN+c3mHKEmIB3gGcGfKIwViqJMP+tn0
-         xA0BH0pKv/lkbO4kLciFdNBxoXrOAFDdxLNQMw/QQvaSiQ7Nn332s4qHcCrhANH1xhgF
-         LW5ijjnpnNeV1Mp6hOfJjvxQmRmrLnscPFqY1jme8i56bfoKTVE/VNwJjIr/Ijg403zt
-         tnWft2lesmJ3rfRaxJSBtcP9/afkJZVh9sDkEgLZZmkhxsW4s8U/yAL+oVFSN81ksvaJ
-         Omx+R9R4D40JDxhNuJ5Uy6sDucifCqDGKi7dEY4lwKCgsrouiDevukVh1/GB+6EsY69I
-         qsfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWBupY20eJOHpWlDFnXx5krb4eJLa87qrVD0PfDt7LZcgAignM7FCEniTqk692uts04SrTyMYbrzHMQsV8obFMkLJIcBQPgVU2llg==
-X-Gm-Message-State: AOJu0Ywz2xMHjatVIoQ8kQxZ2WF3tUwJI+CvrXzMy4JHZhWKcmcKHyVE
-	voUbbBUfm0mHy7IQWBF/QkhK+/+kvAOuUIhIwCTpU1h4cY179003coS5VmikN0s=
-X-Google-Smtp-Source: AGHT+IFXLyAxLYNUuQ0pk9G3q8JrkH0kIoDvGpD5TyjLj49AH6DlH5p1ronmgiZsyFu1Q2OaiLYBEQ==
-X-Received: by 2002:a50:8746:0:b0:573:5c4f:27a8 with SMTP id 4fb4d7f45d1cf-57cbd8e7144mr4654273a12.35.1718524178136;
-        Sun, 16 Jun 2024 00:49:38 -0700 (PDT)
-Received: from [192.168.0.18] ([78.10.207.147])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72ce2b3sm4704451a12.14.2024.06.16.00.49.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Jun 2024 00:49:37 -0700 (PDT)
-Message-ID: <7ed1a911-ee75-4fb4-9223-c79fa5d3a293@linaro.org>
-Date: Sun, 16 Jun 2024 09:49:36 +0200
+        bh=40sPRExwP3s/3ZijtGHfQupkdXxmU+DCpAvlWfd+DeA=;
+        b=sNHKYdrCbIIKBrRIQjNzgjc7g4fin+xh/NL1tjQ2/4Z295SJVJ45o99VuNp3RtZN3o
+         BbZ67/RrGzzawGiJreJ/kCg7UhYBWY/FrOyGz/EKgP3xarpXaoCgCMFYJywKLZFdFibO
+         ZK6MaqtzHgoqhrjtiZZki0cLIHX8NYPA5yCuREptSWB88CWP2qh4wQclv9miCEBFRY7p
+         YY/zqVuDLfQzhWVW/eJEdV9EULYEKrjiYMx/JoPk3ZPQ7aRS3v9AxkCzhJguEa7cwICP
+         HLVvu/azvg5dgaWRLQYF7D64ILhWw7lgYbyxNUJocEXV596jAWxMJk/qvDlxE4/Lu5hj
+         y54g==
+X-Forwarded-Encrypted: i=1; AJvYcCXhpVbUXB9EyWHfx2RxG/cPoyPnr0pJIjW8qnUEt/KwF0QRNpBiUVKh2i7Fx9UfZoZFaWlwItHx469OJL/L9XBXBrt/vW5Bc20bFw==
+X-Gm-Message-State: AOJu0YzAHreCJnvep7119Glq272xawHQLoMomW0lQUVm038qNfMIwUXh
+	Mr4PINwwKZU6yG5C/UQP0qwa2nbDFJ+o3lI8Io/BYXp2g1gBMTpYOPEquQ3KRTE=
+X-Google-Smtp-Source: AGHT+IEWqzaL4rz2SQto4mPk3yipJY71jqGFV2WhkQttfBqISZrqBKrS2Uxip+JUE2MkM/v/hkOMEA==
+X-Received: by 2002:a17:906:5f9a:b0:a68:b73d:30d0 with SMTP id a640c23a62f3a-a6f60d13d2emr555195466b.6.1718525222766;
+        Sun, 16 Jun 2024 01:07:02 -0700 (PDT)
+Received: from krzk-bin.. ([78.10.207.147])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56db620csm383485566b.71.2024.06.16.01.07.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Jun 2024 01:07:02 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: mfd: Explain lack of child dependency in simple-mfd
+Date: Sun, 16 Jun 2024 10:06:59 +0200
+Message-ID: <20240616080659.8777-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] clk: qcom: lpassaudiocc-sc7280: Add support for LPASS
- resets for QCM6490
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- quic_jkona@quicinc.com, quic_imrashai@quicinc.com, devicetree@vger.kernel.org
-References: <20240531102252.26061-1-quic_tdas@quicinc.com>
- <20240531102252.26061-3-quic_tdas@quicinc.com>
- <9eb80c39-562c-49de-b4fd-61d138247b7f@linaro.org>
- <7a0c9bbe-d499-428a-bfb4-deea45a345ce@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7a0c9bbe-d499-428a-bfb4-deea45a345ce@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/06/2024 12:03, Taniya Das wrote:
-> 
-> 
-> On 5/31/2024 9:56 PM, Krzysztof Kozlowski wrote:
->> On 31/05/2024 12:22, Taniya Das wrote:
->>> On the QCM6490 boards the LPASS firmware controls the complete clock
->>> controller functionalities. But the LPASS resets are required to be
->>> controlled from the high level OS. The Audio SW driver should be able to
->>> assert/deassert the audio resets as required. Thus in clock driver add
->>> support for the same.
->>>
->>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>> ---
->>>   drivers/clk/qcom/lpassaudiocc-sc7280.c | 28 ++++++++++++++++++++++++++
->>>   1 file changed, 28 insertions(+)
->>>
->>> diff --git a/drivers/clk/qcom/lpassaudiocc-sc7280.c b/drivers/clk/qcom/lpassaudiocc-sc7280.c
->>> index c43d0b1af7f7..7fdfd07c111c 100644
->>> --- a/drivers/clk/qcom/lpassaudiocc-sc7280.c
->>> +++ b/drivers/clk/qcom/lpassaudiocc-sc7280.c
->>> @@ -1,6 +1,7 @@
->>>   // SPDX-License-Identifier: GPL-2.0-only
->>>   /*
->>>    * Copyright (c) 2021, The Linux Foundation. All rights reserved.
->>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>>    */
->>>   
->>>   #include <linux/clk-provider.h>
->>> @@ -869,10 +870,36 @@ static struct platform_driver lpass_aon_cc_sc7280_driver = {
->>>   	},
->>>   };
->>>   
->>> +static const struct of_device_id lpass_audio_cc_qcm6490_match_table[] = {
->>> +	{ .compatible = "qcom,qcm6490-lpassaudiocc" },
->>> +	{ }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, lpass_audio_cc_qcm6490_match_table);
->>> +
->>> +static int lpass_audio_cc_qcm6490_probe(struct platform_device *pdev)
->>> +{
->>> +	lpass_audio_cc_sc7280_regmap_config.name = "lpassaudio_cc_reset";
->>> +	lpass_audio_cc_sc7280_regmap_config.max_register = 0xc8;
->>> +
->>> +	return qcom_cc_probe_by_index(pdev, 1, &lpass_audio_cc_reset_sc7280_desc);
->>> +}
->>> +
->>> +static struct platform_driver lpass_audio_cc_qcm6490_driver = {
->>> +	.probe = lpass_audio_cc_qcm6490_probe,
->>> +	.driver = {
->>> +		.name = "lpass_audio_cc-qcm6490",
->>> +		.of_match_table = lpass_audio_cc_qcm6490_match_table,
->>> +	},
->>> +};
->>> +
->>>   static int __init lpass_audio_cc_sc7280_init(void)
->>>   {
->>>   	int ret;
->>>   
->>> +	ret = platform_driver_register(&lpass_audio_cc_qcm6490_driver);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>>   	ret = platform_driver_register(&lpass_aon_cc_sc7280_driver);
->> Why this is a new platform driver?  There should be just one driver with
->> different match data.
->>
-> 
-> The main problem for me is that the current board(QCM6490) needs to be 
-> only support a subset of the entire(only resets) functionality the 
-> SC7280. If I redesign the probe function to pick the match data then I 
-> might accidentally break the existing functionalities on SC7280 boards.
+Common mistake of usage of 'simple-mfd' compatible is a dependency of
+children on resources acquired and managed by the parent, e.g. clocks.
+Extend the simple-mfd documentation to cover this case.
 
-That's not a reason to not implement changes. Test your changes first.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/mfd/mfd.txt | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-> 
-> Hence I thought to have a separate driver registration which looked a 
-> cleaner approach to go away from the "of_device_is_compatible".
-
-No. You over complicate simple case introducing unusual pattern.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mfd/mfd.txt b/Documentation/devicetree/bindings/mfd/mfd.txt
+index 336c0495c8a3..98b4340b65f3 100644
+--- a/Documentation/devicetree/bindings/mfd/mfd.txt
++++ b/Documentation/devicetree/bindings/mfd/mfd.txt
+@@ -18,12 +18,13 @@ A typical MFD can be:
+ Optional properties:
+ 
+ - compatible : "simple-mfd" - this signifies that the operating system should
+-  consider all subnodes of the MFD device as separate devices akin to how
+-  "simple-bus" indicates when to see subnodes as children for a simple
+-  memory-mapped bus. For more complex devices, when the nexus driver has to
+-  probe registers to figure out what child devices exist etc, this should not
+-  be used. In the latter case the child devices will be determined by the
+-  operating system.
++  consider all subnodes of the MFD device as separate and independent devices
++  akin to how "simple-bus" indicates when to see subnodes as children for a
++  simple memory-mapped bus. "Independent devices" means that children do not
++  need any resources to be provided by the parent device.
++  For more complex devices, when the nexus driver has to probe registers to
++  figure out what child devices exist etc, this should not be used. In the
++  latter case the child devices will be determined by the operating system.
+ 
+ - ranges: Describes the address mapping relationship to the parent. Should set
+   the child's base address to 0, the physical address within parent's address
+-- 
+2.43.0
 
 
