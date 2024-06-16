@@ -1,135 +1,114 @@
-Return-Path: <devicetree+bounces-76255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F99B90A083
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 00:32:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 148A290A088
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 00:42:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9B2B281BD0
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:32:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5723128242D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 22:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FE63BBCC;
-	Sun, 16 Jun 2024 22:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A473361FE4;
+	Sun, 16 Jun 2024 22:42:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4420F9457;
-	Sun, 16 Jun 2024 22:32:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D1314292
+	for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 22:42:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718577129; cv=none; b=RsSLq+4C8slmYEHWzuWXHNsyCb2GZbp6c4eKNcdGrr8OjJuiq/KYkKsDQowcQLkSOK5A1cHN6LkbJAd5oM65So1LvyzHyY7Dqv96QYmCN9GB87S9rGZOsSaxmHC+gbN1+uy4CVdFTlBSQMOas7a9uEigN5+kDOrCBNBYWzo0isc=
+	t=1718577752; cv=none; b=W/w8h3revg+nws12K2Z3KObRJ05dYbU1NCiv9VE/g7VxuzMaNcg3Bs+ac6Fe2juESNPEIUNcmN1r+5koDfzg7S/UFhNDHo1w/E03dbomZCyHuEAiJ7at9glF51fPFGKU1cSKQMHliAqliMQ9DK1UaF7EWCeTg0R1hOLJnUpwlAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718577129; c=relaxed/simple;
-	bh=q/pYDRryyAux8mIybOIZ8peVxVmWKVYIzONwSMo9SnY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SlYoeq98xvvl6TBx/8ztbG+6fhPBp/PRmiy+11TT5cCfLnFfs4IRu0e7EtjG0IoXQgO/bChihlxic7dqN3NzqsTY4iGe8o72unmnsyVZOZTVPOcdYhM1T/2HoU/cyxPQMkH7l8jAihnlEurRjdY8Fx3LScO3rZ7I7zEQPz0ztf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Sun, 16 Jun 2024 22:31:49 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Yangyu Chen <cyy@cyyself.name>
-Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1718577752; c=relaxed/simple;
+	bh=5CDWZaMP44AkRBZmWKu0xjffFBosSFrJxoi6TrM1SoY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=e2GrxOxgVrdUW19aSe6suNGQs+raDs51O6OLxF9V3DbD5duu+LlDYw7NpyaTFlVSKxPquQDMXYAEvFD8hrmmiownSE8sr3Upfte9mxDziDe1N6W332CgP/JjUk4HkfDUpjprfiKCVF7DFLQuXQWvSH/iy2He2GvR/0Ln+kTvjmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90B99DA7;
+	Sun, 16 Jun 2024 15:42:54 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C60A13F73B;
+	Sun, 16 Jun 2024 15:42:27 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 8/9] riscv: dts: spacemit: add Banana Pi BPI-F3 board
- device tree
-Message-ID: <20240616223149.GB3983622@ofsar>
-References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
- <tencent_904B1050FBC0B10A172C263924BD518F8F05@qq.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Cc: Chris Morgan <macromorgan@hotmail.com>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/5] iommu: sun50i: Add Allwinner H616 support
+Date: Sun, 16 Jun 2024 23:40:51 +0100
+Message-Id: <20240616224056.29159-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.39.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <tencent_904B1050FBC0B10A172C263924BD518F8F05@qq.com>
+Content-Transfer-Encoding: 8bit
 
-Hi
+Version two of this series adds a check that no physical address larger
+than 4GB makes it into the PTEs: the map_pages() function returns an
+error and prints a warning into dmesg to give users a clue why this
+failed. I haven't tested whether this really happens, or whether the
+32-bit DMA mask of the master devices already prevents this. In the
+worst case this might fail on devices with 4GB of DRAM, but would always
+work on smaller devices, which are arguably under bigger pressure to
+find contiguous PA ranges. Changelog below.
+===========================================
 
-On 01:20 Mon 17 Jun     , Yangyu Chen wrote:
-> Banana Pi BPI-F3 [1] is a industrial grade RISC-V development board, it
-> design with SpacemiT K1 8 core RISC-V chip [2].
-> 
-> Currently only support booting into console with only uart enabled,
-> other features will be added soon later.
-> 
-> [1] https://docs.banana-pi.org/en/BPI-F3/BananaPi_BPI-F3
-> [2] https://www.spacemit.com/en/spacemit-key-stone-2/
-> 
-> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-> ---
->  arch/riscv/boot/dts/Makefile                 |  1 +
->  arch/riscv/boot/dts/spacemit/Makefile        |  2 ++
->  arch/riscv/boot/dts/spacemit/bananapi-f3.dts | 19 +++++++++++++++++++
->  3 files changed, 22 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/spacemit/Makefile
->  create mode 100644 arch/riscv/boot/dts/spacemit/bananapi-f3.dts
-> 
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index fdae05bbf556..bff887d38abe 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -5,6 +5,7 @@ subdir-y += microchip
->  subdir-y += renesas
->  subdir-y += sifive
->  subdir-y += sophgo
-> +subdir-y += spacemit
->  subdir-y += starfive
->  subdir-y += thead
->  
-> diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-> new file mode 100644
-> index 000000000000..5c512f4e297d
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/spacemit/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_SPACEMIT) += bananapi-f3.dtb
-Can we have "k1" prefix at least? so k1-bananapi-f3.dtb
-it's much clear to let people know the board has k1 SoC,
-in case vendor has more chip series..
+The Allwinner H616 contains an IOMMU almost compatible to the one used
+in the H6. The differing default reset value of the bypass register
+makes the two technically incompatible, so use a new DT compatible
+string to be on the safe side.
+The required driver changes can be applied to both variants, so the driver
+is ignorant of the differences between the two for now.
 
-> diff --git a/arch/riscv/boot/dts/spacemit/bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/bananapi-f3.dts
-> new file mode 100644
-> index 000000000000..023274189b49
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/spacemit/bananapi-f3.dts
-> @@ -0,0 +1,19 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-> + */
-> +
-> +#include "k1.dtsi"
-> +
-> +/ {
-> +	model = "Banana Pi BPI-F3";
-> +	compatible = "bananapi,bpi-f3", "spacemit,k1";
-> +
-> +	chosen {
-> +		stdout-path = "serial0";
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> -- 
-> 2.45.1
-> 
+Change the driver to cope with the new variant in patch 1/5 and 2/5,
+then apply the required devicetree and binding changes in the remaining
+patches.
+
+I could just verify that the driver probes and allocates the page table
+from below 4 GB. Others have verified that the driver works with the
+(not yet upstream) video decoder engine, but more tests are surely
+welcome.
+
+Cheers,
+Andre.
+
+Changelog v1 .. v2:
+- return error for too large PA in map_pages()
+- add Krzysztof's ACK to the binding patch
+
+Andre Przywara (4):
+  iommu: sun50i: allocate page tables from below 4 GiB
+  dt-bindings: iommu: add new compatible strings
+  iommu: sun50i: Add H616 compatible string
+  arm64: dts: allwinner: h616: add IOMMU node
+
+Jernej Skrabec (1):
+  iommu: sun50i: clear bypass register
+
+ .../bindings/iommu/allwinner,sun50i-h6-iommu.yaml |  7 ++++++-
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi    |  9 +++++++++
+ drivers/iommu/sun50i-iommu.c                      | 15 +++++++++++++--
+ 3 files changed, 28 insertions(+), 3 deletions(-)
 
 -- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+2.39.4
+
 
