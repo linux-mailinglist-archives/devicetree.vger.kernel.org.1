@@ -1,124 +1,263 @@
-Return-Path: <devicetree+bounces-76174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB0BF909DDC
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 15:59:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0176F909DE8
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 16:15:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3251CB20C9E
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 13:59:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF7481C2084D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jun 2024 14:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F218821;
-	Sun, 16 Jun 2024 13:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21ECD52F;
+	Sun, 16 Jun 2024 14:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KHrn17qf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l4H8jRIZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A162079F0;
-	Sun, 16 Jun 2024 13:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB93525D;
+	Sun, 16 Jun 2024 14:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718546360; cv=none; b=PF6BN6wl1nLuYwrsC/xkIVPcoLpiCgfK8DfBbpINTfPDCm78Bp8+hxNsCJxFWCviRfLcR6wqVKe3EwIvgwMjG3P2m7oKVCdjgurk5TjlW/AdO8puek6vIi6Bae+nYM3nsVB/aWo0btLoahN1Q7b8nGuuTjmqYMfgJGVbQ/yUJ2M=
+	t=1718547353; cv=none; b=vBiYiTlelCNBiy1yGv/HJ3F8wxVQo1mtibAHSTRCL1kVfQkZvGvMwT8ych8xjKgn0MQ5jC5cpLmrFoZewttXNd9+lvbyYoF+hJSO4Xouo/+zDGYCqnYLW+OXezlBsMb0eMtX9Sr+aUDmd0j4McEeuzts3Kr4apY1pQ3SmERnQZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718546360; c=relaxed/simple;
-	bh=jcqLvrcvn4Jpu7Fgm/KN3CKd1xe/oU329rPnBCS92k0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SM0zRHrgBny8/+IMwCzLiGmhimgUfWqaaj3dxjudjZrpEX6gl1VPuOrnz9zclS3brYa44tH6WtF2QznaeTIHMcmF6QvfIxFwSJyMAUgrCyxBV/ZpbjWT/BFnrMGAolYy0RzpJbO+yvW3+4uTIBKKOpYihwtWbE5MRK5qFGF6Wq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KHrn17qf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97158C2BBFC;
-	Sun, 16 Jun 2024 13:59:17 +0000 (UTC)
+	s=arc-20240116; t=1718547353; c=relaxed/simple;
+	bh=TsiqY5ghTt6zNS7is2HIehRASQyN6+nUzZNoGJEVlqg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ux1+dq5BpOWQDaFJ3jDyONf0yolCLLxTg7ssR5SRcciC1MPfQF4MaVTkn0bShRurrJcy08tNCkZL1USW7ysEaaVicyw1FtoTJOqjQsTQDtvHOVxkg5qE7L0233qkHVQ0LW0rw3LT186N9EfVPFbK28B1lLXSRpBXzEAfEp+e9i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l4H8jRIZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BCF38C2BBFC;
+	Sun, 16 Jun 2024 14:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718546360;
-	bh=jcqLvrcvn4Jpu7Fgm/KN3CKd1xe/oU329rPnBCS92k0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KHrn17qfH8LgO7OI/tFCBlKXmCdY67L2Rrhk4IOTqzFunFuSzRqxJ7d0lKruY77z1
-	 VAsGb3u7UzIZCOJd2Wo8HZNQkm+E23UDHJt44X5W9bpL+VI98dgeI0qsFR2JBElXcG
-	 GrnzAe/kreNDE8EJBcByVjVWMWyWuaKwGpsnK8iKpjuDujSzbL6E4FLxul5j6o2GNg
-	 8N658moqnTQVxoIKQ9iHu2eAXxFWzoTUHv+87abxN361rjPcHU/VGud8Jv1QAXxBYn
-	 WOnD2OvKDNBy8M1x7E19fzdO8upDyWw69JSy3IB1hokilhR2tjuuErXnuC9/vAHoaK
-	 CYxSP9fbJWJNw==
-Message-ID: <130eec5c-5f90-4dd4-9d75-63698835f10c@kernel.org>
-Date: Sun, 16 Jun 2024 15:59:16 +0200
+	s=k20201202; t=1718547352;
+	bh=TsiqY5ghTt6zNS7is2HIehRASQyN6+nUzZNoGJEVlqg=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=l4H8jRIZnD6PJV6t+JXDSt4nEn629qeP/R7K1vL5YKIchvpqsfREE8WTmqHDITy+B
+	 Pj5tZsJzQ4nSaToAmyNmssNW1yFH/zncjIprmzd/iRImhYTcOCw/ykEdZ7PsZzCpJ6
+	 Uq22CSCNIhhmlYPgYD4eX7cujzGGvc2lH3n9CGXY525VOxmONhwsDnyu1JIYAtTlDQ
+	 JRCkgkEIsz2ENnD/jRY/2NR2tUCIjhPqVFQw49j+9bDIL7sX68SQg7X3b/cYvzYzQe
+	 INlVY3oNX5LDIf+iSrOApHkEGDUi4WpXbBGHbgI7dm/Z9BactcSei3iceG6fYgpJ3W
+	 3kG7rcTAbE3oQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A2132C27C53;
+	Sun, 16 Jun 2024 14:15:52 +0000 (UTC)
+From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
+Date: Sun, 16 Jun 2024 16:15:45 +0200
+Subject: [PATCH] ARM: dts: qcom: msm8926-motorola-peregrine: Add
+ accelerometer, magnetometer, regulator
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: realtek,rt5514: Convert to
- dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240616095223.260786-1-animeshagarwal28@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240616095223.260786-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240616-peregrine-v1-1-85d14ae1a11a@apitzsch.eu>
+X-B4-Tracking: v=1; b=H4sIAJDzbmYC/x3MQQqAIBBG4avIrBNU0kVXiRZlfzYbkxEikO6et
+ Pzg8RpVCKPSpBoJbq585Q47KIrnmhM0793kjBtNsEEXCJJwhg6IHi5s1iNS74vg4Od/zcv7fu4
+ y4albAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718547355; l=4379;
+ i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
+ bh=fAaRpnS34tfTExhh2XisZxapKdoWeOZI5ZaxJ4uIxC0=;
+ b=TsGnsIqG+BESQgTILEz3JVRyswhIQ43+1QR+8irCA1StScDthFMgV6jNYbBp9qeaRMF/fZ7KY
+ IDtHYY8zb7LC7S3Me07s09pIr/K1wONbrIB/dsmKDI4NmbAIyrfnTqL
+X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
+ pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
+X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
+ auth_id=142
+X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Reply-To: git@apitzsch.eu
 
-On 16/06/2024 11:52, Animesh Agarwal wrote:
-> Convert the RT5514 audio CODEC bindings to DT Schema. Make bindings
-> complete by adding 'spi-max-frequency', 'wakeup-source' properties.
-> 
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+From: André Apitzsch <git@apitzsch.eu>
 
+Add the accelerometer, magnetometer and regulator that are present on
+the Motorola Moto G 4G (2013) device.
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+While at it, update framebuffer supplies and temperature sensor.
+
+Signed-off-by: André Apitzsch <git@apitzsch.eu>
+---
+ .../dts/qcom/qcom-msm8926-motorola-peregrine.dts   | 121 +++++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-motorola-peregrine.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-motorola-peregrine.dts
+index 0cbe2d2fbbb1..376a33125941 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8926-motorola-peregrine.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8926-motorola-peregrine.dts
+@@ -29,6 +29,10 @@ framebuffer0: framebuffer@3200000 {
+ 			height = <1280>;
+ 			stride = <(720 * 3)>;
+ 			format = "r8g8b8";
++			vsp-supply = <&reg_lcd_pos>;
++			vsn-supply = <&reg_lcd_neg>;
++			vdd-supply = <&pm8226_l28>;
++			vddio-supply = <&vddio_disp_vreg>;
+ 		};
+ 	};
+ 
+@@ -51,6 +55,18 @@ key-volume-up {
+ 		};
+ 	};
+ 
++	vddio_disp_vreg: regulator-vddio-disp {
++		compatible = "regulator-fixed";
++		regulator-name = "vddio_disp";
++		gpio = <&tlmm 34 GPIO_ACTIVE_HIGH>;
++		startup-delay-us = <300>;
++		enable-active-high;
++		regulator-boot-on;
++		vin-supply = <&pm8226_l8>;
++		pinctrl-0 = <&disp_vddio_default>;
++		pinctrl-names = "default";
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -68,12 +84,67 @@ smem_region: smem@fa00000 {
+ 	};
+ };
+ 
++&blsp1_i2c2 {
++	clock-frequency = <100000>;
++	status = "okay";
++
++	magnetometer@c {
++		compatible = "asahi-kasei,ak8963";
++		reg = <0xc>;
++		interrupts-extended = <&tlmm 38 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&tlmm 62 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&pm8226_l19>;
++		pinctrl-0 = <&mag_int_default &mag_reset_default>;
++		pinctrl-names = "default";
++	};
++
++	accelerometer@18 {
++		compatible = "st,lis3dh-accel";
++		reg = <0x18>;
++		interrupts-extended = <&tlmm 1 IRQ_TYPE_EDGE_FALLING>;
++		vdd-supply = <&pm8226_l19>;
++		pinctrl-0 = <&accel_int_default>;
++		pinctrl-names = "default";
++		st,drdy-int-pin = <1>;
++	};
++};
++
+ &blsp1_i2c3 {
++	clock-frequency = <400000>;
+ 	status = "okay";
+ 
++	regulator@3e {
++		compatible = "ti,tps65132";
++		reg = <0x3e>;
++		pinctrl-0 = <&reg_lcd_default>;
++		pinctrl-names = "default";
++
++		reg_lcd_pos: outp {
++			regulator-name = "outp";
++			regulator-min-microvolt = <4000000>;
++			regulator-max-microvolt = <6000000>;
++			regulator-active-discharge = <1>;
++			regulator-boot-on;
++			enable-gpios = <&tlmm 31 GPIO_ACTIVE_HIGH>;
++		};
++
++		reg_lcd_neg: outn {
++			regulator-name = "outn";
++			regulator-min-microvolt = <4000000>;
++			regulator-max-microvolt = <6000000>;
++			regulator-active-discharge = <1>;
++			regulator-boot-on;
++			enable-gpios = <&tlmm 33 GPIO_ACTIVE_HIGH>;
++		};
++	};
++
+ 	sensor@48 {
+ 		compatible = "ti,tmp108";
+ 		reg = <0x48>;
++		interrupts-extended = <&tlmm 13 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-0 = <&temp_alert_default>;
++		pinctrl-names = "default";
++		#thermal-sensor-cells = <0>;
+ 	};
+ };
+ 
+@@ -278,6 +349,56 @@ &smbb {
+ 	status = "okay";
+ };
+ 
++&tlmm {
++	accel_int_default: accel-int-default-state {
++		pins = "gpio1";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-disable;
++	};
++
++	disp_vddio_default: disp-vddio-default-state {
++		pins = "gpio34";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-high;
++	};
++
++	mag_int_default: mag-int-default-state {
++		pins = "gpio38";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-disable;
++	};
++
++	mag_reset_default: mag-reset-default-state {
++		pins = "gpio62";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-high;
++	};
++
++	reg_lcd_default: reg-lcd-default-state {
++		pins = "gpio31", "gpio33";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-high;
++	};
++
++	temp_alert_default: temp-alert-default-state {
++		pins = "gpio13";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-disable;
++	};
++};
++
+ &usb {
+ 	extcon = <&smbb>;
+ 	dr_mode = "peripheral";
+
+---
+base-commit: c71189547381bb5f176c6b22a9edc3414f1837b9
+change-id: 20240616-peregrine-6ec5e26b15ec
 
 Best regards,
-Krzysztof
+-- 
+André Apitzsch <git@apitzsch.eu>
+
 
 
