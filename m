@@ -1,115 +1,100 @@
-Return-Path: <devicetree+bounces-76748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E2B90BCEF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 23:30:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56DD690BD15
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 23:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA5BB283689
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 21:30:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8526284DCA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 21:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5ABA190042;
-	Mon, 17 Jun 2024 21:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 529BE197A62;
+	Mon, 17 Jun 2024 21:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E0tAakol"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ulk5lNO+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22C0163A97;
-	Mon, 17 Jun 2024 21:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39B519047C;
+	Mon, 17 Jun 2024 21:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718659825; cv=none; b=NUEs49NPO3BuEa9FUb/Ooux4wObAI+nZvi/Esjb/x+cDG96op3X+PdN4qpispf9XXNmJV0wTMNeVuxAgSqJN7Mr+G7zoVDl4GavIUonnQk1rd61A6Bz4yG6g3riNl9erV0EgepTonUvrMqewMuQWrz8WXuOxOa1UxRQm9BtYG6Q=
+	t=1718661387; cv=none; b=qEpPIYUyqNTIZerdmGgjK4bm/GkwKrBA/EU3VKgHvGRLfbbqocqRlpwArUcfeiAtPnGCZI7IhxWGIjMHYyhjLWRT7KkqGH8O58vP+v84vgJU/xVRBA7u1IK1jzqlIopG+R5typNYoy8NqIgzqTRkc3DH45yY92R5IyEFHrVG83A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718659825; c=relaxed/simple;
-	bh=j1KCV27yNbGjdb+9lMBc1aIP5sKVrx02spTkpZzT0nU=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=bn/CA5nPDvWRWaegdNA1pnwSjviF6u9yQ81VHKPVyJO9HfXOs5Vh9p/1EJRSlISFjYHlFrZfX5rxFnObDIppcpCB8FXldl46d29tESGOw41RAK+XcCZayogM6wodAiuQI7wGpPhcQ6F2z/FFwa8wDjk2B61Bgp0Pc3NdcH2xF58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E0tAakol; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C537C2BD10;
-	Mon, 17 Jun 2024 21:30:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718659825;
-	bh=j1KCV27yNbGjdb+9lMBc1aIP5sKVrx02spTkpZzT0nU=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=E0tAakolevv8B09S6xnSohGo99lveg4RVPsDyvInPbJafmUFtuP37HWer+dIQSfwn
-	 sCa9IYwMO1faH+xNDXVRryfz1cHKK6ltxp4kGK8IejizgYEWHxNGUXEQwRXZyMIMNE
-	 /QH8i1jZSVvEZ4gD3nJXekOkE6U05P1/8LQacOPRTPUrJduVhYbafQC3Njg6oR0BSq
-	 HtIjidgJiWBy8zEGflbHo0A9ZD/rbQXtZmThydXRvqClsC6UTDGJPhOd8CFsFhDPRQ
-	 mFryI4ZKyTfy8zUJGHbPB60HDI2BhmOqPgG5FvoCrRhWsTQa/VIGGXElLd1U0lWev8
-	 3CLN4VlcDAH2A==
-Date: Mon, 17 Jun 2024 15:30:24 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718661387; c=relaxed/simple;
+	bh=h9GZ/qG3QPBcnFqXga6bKtFiBGaWDKmKZeDAnSF4EKQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=D/QUDaJPsUyfgdakUDvS28BLYQzls25vfzz+d2ULNQHOg8bAaVEx2+svVvZrx/v+M1eXiuJaw4EtHhd1SvLbNrmAOtVva5pUnV2CLx/KUEG2MaWvVch6BYb8qx+YEING2u6EotklChbUYmJv+UqdQfeStXhom2vXeBmIFN/2QYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ulk5lNO+; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718661383;
+	bh=h9GZ/qG3QPBcnFqXga6bKtFiBGaWDKmKZeDAnSF4EKQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Ulk5lNO+pvY7yTBe3kUU9+eg6wh7xxfwkR5lRHIEHUqZgFe/FjTuLG4DhxMj4XOM7
+	 79KpRGGe33qEdVHiUlDMm0y9Yc9UvERD7EL569Yb7TuIpomYZNzjSeh4/85FZOFgbP
+	 FgFZkGuhgysz3i0XYm7HQXNMMsmWyv2DhpNeii/RrpiQLMqa7q59jg4xUYI18eMlqt
+	 Z6GxquoQkNL9bPUol4KKCSjWKnVRTdHsdM2FYARWy1CbEhcOpUCBI2CoIXurdurIg+
+	 S/jqDeIEnIk5PG/5pSq27z3F7+3TuNoyu6rVf9xQ88+Xb8mJ3GXfL8mtzYHTEOfyQU
+	 hJn3LNAbQnJcw==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7CFBD37804B2;
+	Mon, 17 Jun 2024 21:56:23 +0000 (UTC)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH 0/4] Add clock provider support to Rockchip RK3588 HDMI TX
+ PHY
+Date: Tue, 18 Jun 2024 00:48:08 +0300
+Message-Id: <20240618-rk3588-hdmiphy-clkprov-v1-0-80e4aa12177e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-doc@vger.kernel.org, Michael Hennerich <michael.hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-In-Reply-To: <20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com>
-References: <20240617-iio-adc-ad4695-v2-0-63ef6583f25d@baylibre.com>
- <20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com>
-Message-Id: <171865982439.3455065.3692466445202658610.robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: iio: adc: add AD4695 and similar
- ADCs
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABivcGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDM0Nz3aJsY1MLC92MlNzMgoxK3eSc7IKi/DLdNAPTNEMz08RkAyNLJaD
+ mgqLUtMwKsMHRsbW1ANtf0uhoAAAA
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14-dev-f7c49
 
+The HDMI PHY PLL can be used as an alternative clock source to RK3588
+SoC CRU. Since it provides more accurate clock rates, it can be used by
+VOP2 to improve display modes handling, such as supporting non-integer
+refresh rates.
 
-On Mon, 17 Jun 2024 14:53:13 -0500, David Lechner wrote:
-> Add device tree bindings for AD4695 and similar ADCs.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
-> 
-> v2 changes:
-> * Drop *-wlcsp compatible strings
-> * Don't use fallback compatible strings
-> * Reword supply descriptions
-> * Use standard channel properties instead of adi,pin-pairing
-> * Fix unnecessary | character
-> * Fix missing blank line
-> * Add header file with common mode channel macros
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 290 +++++++++++++++++++++
->  MAINTAINERS                                        |  10 +
->  include/dt-bindings/iio/adi,ad4695.h               |   9 +
->  3 files changed, 309 insertions(+)
-> 
+The first two patches in the series provide a couple of fixes and
+improvements to the existing HDPTX PHY driver, while the next two add
+the necessary changes to support the clock provider functionality.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Cristian Ciocaltea (4):
+      phy: phy-rockchip-samsung-hdptx: Explicitly include pm_runtime.h
+      phy: phy-rockchip-samsung-hdptx: Enable runtime PM at PHY core level
+      dt-bindings: phy: rockchip,rk3588-hdptx-phy: Add #clock-cells
+      phy: phy-rockchip-samsung-hdptx: Add clock provider support
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml: single-channel: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml: common-mode-channel: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+ .../bindings/phy/rockchip,rk3588-hdptx-phy.yaml    |   3 +
+ drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c  | 208 +++++++++++++++++----
+ 2 files changed, 174 insertions(+), 37 deletions(-)
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240617-rk3588-hdmiphy-clkprov-f05f165ac029
 
 
