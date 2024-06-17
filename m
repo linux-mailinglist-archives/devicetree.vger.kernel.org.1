@@ -1,217 +1,193 @@
-Return-Path: <devicetree+bounces-76629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B19C790B5B9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:04:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29ACA90B5BB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:04:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 563A81F223EE
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB981282214
 	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563C31757E;
-	Mon, 17 Jun 2024 16:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7478A1D9516;
+	Mon, 17 Jun 2024 16:04:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="BjVjdL1r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89218134D1
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 16:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6818BDDC5;
+	Mon, 17 Jun 2024 16:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718640206; cv=none; b=Hk9Cq4Plu5mrnUZn4E1eo+aRKaKM0asaNTr4awvF7wAxcQif6DDsjGiW9ahkmmV5qBz498SSAo3j2ZynbbOtwXaGMh211qMH2w/BcWbEabNhlVRCqI3V+IQ7r2/R1usBtpJhCP/wyjZ1ouUhegJEoT0kdf3e40qnFEV/TkshJI0=
+	t=1718640254; cv=none; b=h9DHUWH8K9FRLDosCh77FC+lrua8iPkFQEv1uCsr6j48En0v9bpKLDuTG1VwWUCIP7GLXtFmLCH7MMy6DDSJr+YCrYzcyN1102wTwEoXvh/sMV1+AqoWSeR7FIMNLfuswiUg7LazqDEqVnHVAH2PYJKmy8hWM4ZbrknmJxDwBGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718640206; c=relaxed/simple;
-	bh=hdAHrOmfJbbA3HLv4KsjK24535wZVzjHPtnCDKKpyjc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ikaYGKoqrQSJS3FudV1fivMYjNWfUv9Ywrd/kU4T3umW6yTT2EaMHH8MLfPYVLRVwBNUH3dgjSt3JFhX7mmfzdK1KK34vREJgZg7yMdelppmElUCTnPfRRuWsrnyWFACQh6Gp+YFur5XKDthiW4CzCFD6KWlWi6mWiiPtFsrPwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-	by ns.iliad.fr (Postfix) with ESMTP id 2E0022049C;
-	Mon, 17 Jun 2024 18:03:14 +0200 (CEST)
-Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
-	by ns.iliad.fr (Postfix) with ESMTP id 00BC32029A;
-	Mon, 17 Jun 2024 18:03:13 +0200 (CEST)
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Date: Mon, 17 Jun 2024 18:03:02 +0200
-Subject: [PATCH 4/4] drm: bridge: simple-bridge: add tdp158 support
+	s=arc-20240116; t=1718640254; c=relaxed/simple;
+	bh=GmmYM7vNNaeCHG1jEj+OorYsbTxJScrKvbDrY/K4AkU=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=b0vQnQUgerZdhpQSWTimqE6aDsk/EzeaUBKu5+Upy9hX3vUxhn9FXwxD/q3nmCLHTBzsVu+xAaCDFDcX7RvaTZJdye3WNt971wuhp6S33U0a3ZAIBO3m0iJVWZox+fw8KwY2pM1IuOCAhPsUAC40qmFW179rNCMuGcC2DS8HW3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=BjVjdL1r; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=j2pmUlpI2u+AjQgIsNfOJvPybGVS23JJGLDfX9a99p8=; b=BjVjdL1rpX88mnMasOOJimovNf
+	3lZglu2V8vrDbHOm8JdnytgEhydBsoRJwnwGviSSKGj/VTDTrnd5KCtj7Q3h3B1VcB5D9KyDdvoRb
+	GPsRxn5IP5TIyYfDNlH92H4fm4h+T/fyFyg4L4nSaVW/Uralvv+ANnq3PvcSS1B83UI8=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:42184 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sJEq0-0007Bw-T8; Mon, 17 Jun 2024 12:04:09 -0400
+Date: Mon, 17 Jun 2024 12:03:47 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hui Wang <hui.wang@canonical.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
+Message-Id: <20240617120347.907e8e1e8eae5824930dcc48@hugovil.com>
+In-Reply-To: <20240614102952.679806-2-hui.wang@canonical.com>
+References: <20240614102952.679806-1-hui.wang@canonical.com>
+	<20240614102952.679806-2-hui.wang@canonical.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240617-tdp158-v1-4-df98ef7dec6d@freebox.fr>
-References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
-In-Reply-To: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Marc Gonzalez <mgonzalez@freebox.fr>
-X-Mailer: b4 0.13.0
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -1.4 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v5 2/2] serial: sc16is7xx: hardware reset chip if
+ reset-gpios is defined in DT
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-The TI TDP158 is an AC-Coupled HDMI signal to TMDS Redriver supporting
-DVI 1.0 and HDMI 1.4b and 2.0b output signals.
+On Fri, 14 Jun 2024 18:29:52 +0800
+Hui Wang <hui.wang@canonical.com> wrote:
 
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- drivers/gpu/drm/bridge/simple-bridge.c | 64 ++++++++++++++++++++++++++++++++--
- 1 file changed, 61 insertions(+), 3 deletions(-)
+Hi Hui,
 
-diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
-index f1e458a15882f..745d253e55f7e 100644
---- a/drivers/gpu/drm/bridge/simple-bridge.c
-+++ b/drivers/gpu/drm/bridge/simple-bridge.c
-@@ -6,6 +6,8 @@
-  * Maxime Ripard <maxime.ripard@free-electrons.com>
-  */
- 
-+#include <linux/i2c.h>
-+#include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -32,6 +34,7 @@ struct simple_bridge {
- 	const struct simple_bridge_info *info;
- 
- 	struct drm_bridge	*next_bridge;
-+	struct regulator	*vcc;
- 	struct regulator	*vdd;
- 	struct gpio_desc	*enable;
- };
-@@ -142,8 +145,16 @@ static void simple_bridge_enable(struct drm_bridge *bridge)
- 	struct simple_bridge *sbridge = drm_bridge_to_simple_bridge(bridge);
- 	int ret;
- 
-+	if (sbridge->vcc) {
-+		ret = regulator_enable(sbridge->vcc);
-+		msleep(100);
-+		if (ret)
-+			DRM_ERROR("Failed to enable vcc regulator: %d\n", ret);
-+	}
-+
- 	if (sbridge->vdd) {
- 		ret = regulator_enable(sbridge->vdd);
-+		msleep(100);
- 		if (ret)
- 			DRM_ERROR("Failed to enable vdd regulator: %d\n", ret);
- 	}
-@@ -159,6 +170,9 @@ static void simple_bridge_disable(struct drm_bridge *bridge)
- 
- 	if (sbridge->vdd)
- 		regulator_disable(sbridge->vdd);
-+
-+	if (sbridge->vcc)
-+		regulator_disable(sbridge->vcc);
- }
- 
- static const struct drm_bridge_funcs simple_bridge_bridge_funcs = {
-@@ -167,16 +181,14 @@ static const struct drm_bridge_funcs simple_bridge_bridge_funcs = {
- 	.disable	= simple_bridge_disable,
- };
- 
--static int simple_bridge_probe(struct platform_device *pdev)
-+static int common_probe(struct device *dev, struct simple_bridge **res)
- {
--	struct device *dev = &pdev->dev;
- 	struct simple_bridge *sbridge;
- 	struct device_node *remote;
- 
- 	sbridge = devm_kzalloc(dev, sizeof(*sbridge), GFP_KERNEL);
- 	if (!sbridge)
- 		return -ENOMEM;
--	platform_set_drvdata(pdev, sbridge);
- 
- 	sbridge->info = of_device_get_match_data(dev);
- 
-@@ -203,6 +215,15 @@ static int simple_bridge_probe(struct platform_device *pdev)
- 		dev_dbg(dev, "No vdd regulator found: %d\n", ret);
- 	}
- 
-+	sbridge->vcc = devm_regulator_get_optional(dev, "vcc");
-+	if (IS_ERR(sbridge->vcc)) {
-+		int ret = PTR_ERR(sbridge->vcc);
-+		if (ret == -EPROBE_DEFER)
-+			return -EPROBE_DEFER;
-+		sbridge->vcc = NULL;
-+		dev_dbg(dev, "No vcc regulator found: %d\n", ret);
-+	}
-+
- 	sbridge->enable = devm_gpiod_get_optional(dev, "enable",
- 						  GPIOD_OUT_LOW);
- 	if (IS_ERR(sbridge->enable))
-@@ -213,10 +234,27 @@ static int simple_bridge_probe(struct platform_device *pdev)
- 	sbridge->bridge.funcs = &simple_bridge_bridge_funcs;
- 	sbridge->bridge.of_node = dev->of_node;
- 	sbridge->bridge.timings = sbridge->info->timings;
-+	*res = sbridge;
- 
- 	return devm_drm_bridge_add(dev, &sbridge->bridge);
- }
- 
-+static int simple_bridge_probe(struct platform_device *pdev)
-+{
-+	struct simple_bridge *sbridge = NULL;
-+	int err = common_probe(&pdev->dev, &sbridge);
-+	platform_set_drvdata(pdev, sbridge);
-+	return err;
-+}
-+
-+static int i2c_probe(struct i2c_client *client)
-+{
-+	struct simple_bridge *sbridge = NULL;
-+	int err = common_probe(&client->dev, &sbridge);
-+	i2c_set_clientdata(client, sbridge);
-+	return err;
-+}
-+
- /*
-  * We assume the ADV7123 DAC is the "default" for historical reasons
-  * Information taken from the ADV7123 datasheet, revision D.
-@@ -298,6 +336,26 @@ static struct platform_driver simple_bridge_driver = {
- };
- module_platform_driver(simple_bridge_driver);
- 
-+static const struct of_device_id i2c_match_table[] = {
-+	{
-+		.compatible = "ti,tdp158",
-+		.data = &(const struct simple_bridge_info) {
-+			.connector_type = DRM_MODE_CONNECTOR_HDMIA,
-+		},
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, i2c_match_table);
-+
-+static struct i2c_driver i2c_simple_bridge_driver = {
-+	.probe = i2c_probe,
-+	.driver = {
-+		.name = "i2c-simple-bridge",
-+		.of_match_table = i2c_match_table,
-+	},
-+};
-+module_i2c_driver(i2c_simple_bridge_driver);
-+
- MODULE_AUTHOR("Maxime Ripard <maxime.ripard@free-electrons.com>");
- MODULE_DESCRIPTION("Simple DRM bridge driver");
- MODULE_LICENSE("GPL");
+> Some boards connect a GPIO to the reset pin, and the reset pin needs
+> to be set up correctly before accessing the chip.
+> 
+> Add a function to handle the chip reset. If the reset-gpios is defined
+> in the DT, do hardware reset through this GPIO, otherwise do software
+> reset as before.
+> 
+> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> ---
+> in the V5:
+>  - change setup to set up in the commit header
+>  - change othwerwise to otherwise in the commit header
+>  - change usleep_range(5, 10) to fsleep(5)
+> 
+> drivers/tty/serial/sc16is7xx.c | 34 +++++++++++++++++++++++++++++++---
+>  1 file changed, 31 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index bf0065d1c8e9..eefa40006c71 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/delay.h>
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/gpio/driver.h>
+>  #include <linux/idr.h>
+>  #include <linux/kthread.h>
+> @@ -1467,6 +1468,32 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
+>  	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
+>  };
+>  
+> +/* Reset device, purging any pending irq / data */
+> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
+> +{
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	/*
+> +	 * The reset input is active low, and flag GPIOD_OUT_HIGH ensures the
+> +	 * GPIO is low once devm_gpiod_get_optional returns a valid gpio_desc.
+> +	 */
+
+I would replace all the above comments with:
+
+  /* Assert reset GPIO if defined and valid. */
+
+The correct polarity is already defined by the device
+tree reset-gpios entry, and can be high or low depending on the design
+(ex: there can be an inverter between the CPU and the chip reset input,
+etc).
+
+
+> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
+> +
+> +	if (reset_gpio) {
+> +		/* The minimum reset pulse width is 3 us. */
+> +		fsleep(5);
+> +		gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
+> +	} else {
+> +		/* Software reset */
+> +		regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
+> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  		    struct regmap *regmaps[], int irq)
+>  {
+> @@ -1536,9 +1563,9 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  	}
+>  	sched_set_fifo(s->kworker_task);
+>  
+> -	/* reset device, purging any pending irq / data */
+> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
+> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
+> +	ret = sc16is7xx_reset(dev, regmaps[0]);
+> +	if (ret)
+> +		goto out_kthread;
+>  
+>  	/* Mark each port line and status as uninitialised. */
+>  	for (i = 0; i < devtype->nr_uart; ++i) {
+> @@ -1663,6 +1690,7 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  			uart_remove_one_port(&sc16is7xx_uart, &s->p[i].port);
+>  	}
+>  
+> +out_kthread:
+>  	kthread_stop(s->kworker_task);
+>  
+>  out_clk:
+> -- 
+> 2.34.1
+> 
+
+I could not test the validity of the 3us delay since I do not have an
+oscilloscope, but testing with a 10s delay instead and a
+multimeter showed that it works ok. You can add my Tested-by tag:
+
+Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+
+And if you modify the comment as I suggested above, then you can add my
+R-b tag:
+
+Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+
 
 -- 
-2.34.1
-
+Hugo Villeneuve
 
