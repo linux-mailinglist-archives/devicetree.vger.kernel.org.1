@@ -1,77 +1,127 @@
-Return-Path: <devicetree+bounces-76336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E5390A2CA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 05:13:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8507190A2D3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 05:19:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 125781C21243
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:13:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28AE3B20AEB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1797E17BB38;
-	Mon, 17 Jun 2024 03:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D9F17B412;
+	Mon, 17 Jun 2024 03:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="lthuXdck"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="lTRQLKfR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED2F17BB18;
-	Mon, 17 Jun 2024 03:13:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199872AD39
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 03:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718594006; cv=none; b=eqfKEGwHt++dbpW2NKVksGoyp1xu0hH26KDCe4d4UJFGskivO7G+2Fpvu3bK1A+p9vQ/ct81t4TMo8qyAyPuB+DQwdN/6FZCqZ88x9qx1LTvCjjkWZkuLDMiZas+lcQ5vn9EZERYe5ON0O9bXARFP1EffZZOYWXZc7li8MTj9kA=
+	t=1718594344; cv=none; b=up5ehgCKPcSjuHfifQmfPaaYMnUjcm12v+OKwlaS3me1TiLLF1ZS/quG5IWwMVTD7xjkeN07wOeVhS9c/oM5a3X21zFLBGeR2n7n3qriJ762DshfglI6QwuhpCE9QVxxIb4HNX2vBnUpPqtUZtxmB1Ko1mmF9p6Th0lwul330EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718594006; c=relaxed/simple;
-	bh=zj/fqqcObenxYpX0qz9FYtu/tltE0vWw6FSWiUkxYZc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NB7trMIZK+y2nmjNBP8Pl7Yq5NVzgC8CGYKuLhjuDzLPZGHmG6lAlhgEzECd3L+ZBViH/EI4koNMDxwkHnw5oB004Nr5pVN2pB8QRJ8DTfjNLY2K8ojRtCVsiiPhkLwg+B9YteL29uI1OMpeY344ffxXs9zQfRPXDNH/NGdvwlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=lthuXdck; arc=none smtp.client-ip=123.58.177.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Elo/3F/DKvAhetW3CuNDbc+tEfHM8u7qL4S3xO4cKOU=;
-	b=lthuXdckltaT6StJ2NUBkR1X6QTCPMJFxlsoVTrnCY7UgNFBhv+45ok6FY9OE6
-	+ArWZ92Sne7E3CiNXx/6HX9bx/QZHqmLivc7jYuJndOo62WY20UBe/nxbV+zKz7G
-	rC/xIuvCiXh9jDb+gLJQAKb7H69DWjB29KK43K8gKa6uI=
-Received: from dragon (unknown [114.216.76.201])
-	by smtp2 (Coremail) with SMTP id C1UQrAC3Hxm3qW9mycHOCA--.4193S3;
-	Mon, 17 Jun 2024 11:12:56 +0800 (CST)
-Date: Mon, 17 Jun 2024 11:12:55 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH V3 1/2] dt-bindings: arm: fsl: add i.MX93 9x9 QSB board
-Message-ID: <Zm+pt+gg4I9YOp9Y@dragon>
-References: <20240617031145.20057-1-peng.fan@oss.nxp.com>
+	s=arc-20240116; t=1718594344; c=relaxed/simple;
+	bh=LIVdduXifgv3JAoanTudcOcNqQVugPjPMGS36yvusW4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KpNy87eELS26i0ciQ0G9PCNeJiOYZq9vuL4GBppJyPplrpE3J7kE2qnaa4m7OVXw6s6QpqFzxRw1oUBjyOsiZxw11gzDn0k3PXa4ek1iBoQgfMuskhYkVga0m4JaQFEXuaXRV0e4U7jzTnzLkA4gZ/wEPd+QIavDYF5AYbJRAzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=lTRQLKfR; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dff302847a8so1358745276.0
+        for <devicetree@vger.kernel.org>; Sun, 16 Jun 2024 20:19:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1718594342; x=1719199142; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LIVdduXifgv3JAoanTudcOcNqQVugPjPMGS36yvusW4=;
+        b=lTRQLKfR6nY3DFhQfufek6AUIfJ5+5TS3LrSJIXJPyrbX5P74zZZOXf5jXxnaa/OLk
+         is9uZbTvntHRgPoy+ldzdwm0f3Q4r4Z30ySY8Hy19SaVCRi0Z9K5Y8FSdCsWVVwrfpI3
+         /nxbCwIz+dEyn/Ff1AaMT5fLrhcjUS5dCxXdSmtLN25IqKG0CxwZYlEQO6x+kUG72Kbl
+         m5Oli6c2jwgqZaipeJAkPJzOiNBsViCaWRwVUgxrOJ8OoQXn6BeX3slrJ6mL+SvFSOBf
+         yzLjGaIpApWE1Mfkfsfeat9jKnnS1fmykNGmly5B2QiKRtVfMBE6aBZPRvNsvrSHvHlv
+         NB7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718594342; x=1719199142;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LIVdduXifgv3JAoanTudcOcNqQVugPjPMGS36yvusW4=;
+        b=uevBA+6Iph84spaDMTwMl0aMHEga38XeIf8JzutoZCfc2xcgqDW+yGRXehHtZbunja
+         urV3wQ6wsGaUeo20rdglfKMkn5WVitEL/2AzreinK1ukfcrn+ocAVp5zDyx8hsFXiXl9
+         WWWSC/iXuNp2Qo6DpIUFM7zs5GTjcM0NQXg8h3zv06la9LwsyTbqtsS2grEpOTdW2rJy
+         3053Nq6W0clPTl6g2ifPYztI/Tobg5hPDRqXbQmZNED2fkSk9IHWX3uca2bUCMbtgevj
+         xHnG0hNayVqx1GhlaOv9hxeNQS4qQO0RbDXNeDyecFWn74/kERNHGBV2Gc4VvKkqZ2Ix
+         1Vbw==
+X-Forwarded-Encrypted: i=1; AJvYcCW4F6IqQL1pBhR+1cr1OXdaNl0msMjanWvSgMjVcqjMmDZiXwrROKT7jJbo2CiL4WuVggaIGq9ddCr+iPCJKjLtzhYF5Pe2UtivtQ==
+X-Gm-Message-State: AOJu0Yykh2V6VkFchDh8QAkFLZEMhS/FnAiV1fQettd8+vF/jN4qg4vn
+	46+4enHsS35GyHqMR9cz4+W/f5b1VpnP1Fv2RGtTcKQdLkUa2GBSbVAb/fTbBZTQydaVMuibuOU
+	R9UbtxW3MzzQe8Rd1hXkq61DxoVAKlJBvgW7ncA==
+X-Google-Smtp-Source: AGHT+IHQBV4IwupBpori4XbWjSbGIJPFyF5FKlAKUEJsi6jBrWepsvJOB+hZdB1NKM0GIIV+IxEU2bAJZtz5lcsABYo=
+X-Received: by 2002:a25:bc82:0:b0:dfa:527d:d91e with SMTP id
+ 3f1490d57ef6-dff150dce30mr7958870276.0.1718594342086; Sun, 16 Jun 2024
+ 20:19:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240617031145.20057-1-peng.fan@oss.nxp.com>
-X-CM-TRANSID:C1UQrAC3Hxm3qW9mycHOCA--.4193S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUIku4UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBQgBZVsVCpzaawABsB
+References: <20240613191616.2101821-1-jesse@rivosinc.com> <20240613191616.2101821-2-jesse@rivosinc.com>
+ <20240614-oyster-ditch-80e8f00fd91b@wendy>
+In-Reply-To: <20240614-oyster-ditch-80e8f00fd91b@wendy>
+From: Andy Chiu <andy.chiu@sifive.com>
+Date: Mon, 17 Jun 2024 11:18:51 +0800
+Message-ID: <CABgGipXKY0JPT8Z+U0g=KkFHFPyL3grd=1_GjQHNLbWehN-seg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] RISC-V: Add Zicclsm to cpufeature and hwprobe
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Jesse Taube <jesse@rivosinc.com>, linux-riscv@lists.infradead.org, 
+	Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
+	Evan Green <evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>, 
+	Charlie Jenkins <charlie@rivosinc.com>, Xiao Wang <xiao.w.wang@intel.com>, 
+	Eric Biggers <ebiggers@google.com>, Greentime Hu <greentime.hu@sifive.com>, 
+	=?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@rivosinc.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin <costa.shul@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Baoquan He <bhe@redhat.com>, 
+	Anup Patel <apatel@ventanamicro.com>, Zong Li <zong.li@sifive.com>, 
+	Sami Tolvanen <samitolvanen@google.com>, Ben Dooks <ben.dooks@codethink.co.uk>, 
+	Alexandre Ghiti <alexghiti@rivosinc.com>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	Erick Archer <erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 17, 2024 at 11:11:44AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add compatible string for i.MX93 9x9 Quick Start Board.
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On Fri, Jun 14, 2024 at 4:09=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
+>
+> On Thu, Jun 13, 2024 at 03:16:10PM -0400, Jesse Taube wrote:
+> > > Zicclsm Misaligned loads and stores to main memory regions with both
+> > > the cacheability and coherence PMAs must be supported.
+> > > Note:
+> > > This introduces a new extension name for this feature.
+> > > This requires misaligned support for all regular load and store
+> > > instructions (including scalar and vector) but not AMOs or other
+> > > specialized forms of memory access. Even though mandated, misaligned
+> > > loads and stores might execute extremely slowly. Standard software
+> > > distributions should assume their existence only for correctness,
+> > > not for performance.
+> >
+> > Detecing zicclsm allows the kernel to report if the
+> > hardware supports misaligned accesses even if support wasn't probed.
+> >
+> > This is useful for usermode to know if vector misaligned accesses are
+> > supported.
+> >
+> > Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Applied both, thanks!
-
+Reviewed-by: Andy Chiu <andy.chiu@sifive.com>
 
