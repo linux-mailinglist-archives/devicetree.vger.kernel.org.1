@@ -1,67 +1,88 @@
-Return-Path: <devicetree+bounces-76409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C36390A7FF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:00:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 510BC90A805
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 406051F23CDB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:00:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 565771C24AC1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B15171AD;
-	Mon, 17 Jun 2024 08:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CEE190052;
+	Mon, 17 Jun 2024 08:01:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="klsYUveL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ttu1Fob0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E54256A;
-	Mon, 17 Jun 2024 08:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3E1C256A
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 08:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718611233; cv=none; b=OYpNT6cDBH5/fpR0m/w4p2Jgv76Sr7lzkb3FioRHQafrYe5I5lFO/zXMTqe+pFLhF7a/sZqxoypbBgUSijf1DX2j22JqtBnayk8tu2ot0f2EWaZhDSJIfv00btQ3zJ/UmJ0Pdp2EwGLTtDoX+h9vWCFTgt0gDDOfYEQmEPPpB10=
+	t=1718611279; cv=none; b=TvKkPt4pjqlLTgr+gCNVo7sOKhbZI7L/zGMkNbop7T1dZerEEEEEszOOZPDOyHKKqkOYInf5vWIwCrlH9xEpHUpVyZRq6Bnwu8mNmqcJ1Fa6kSq+nCXEfQJFAv8dMaLp8TXxU4yRi2mZlNFE9qbXXBGZINs2VaTIc8RMo/SqU1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718611233; c=relaxed/simple;
-	bh=uV9MpsrDI3F3OJ/6TsLxAXJsBp+2RFNu+1nGc5NktBg=;
+	s=arc-20240116; t=1718611279; c=relaxed/simple;
+	bh=vuhA+mIQJ2RSX99AvGZDj+nJCxG/WKXFPdCWspBnQ4o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oYvIlFlM8mhc6T6wZ8jB/HfLS6iYTskjjbtzecQdiSQfU9ubI7b7xDWjKB1ZZIA1kaPbE5Gs6lUlHBBxJ8Oq+MY/3ZebuAIpA54ZS+A4WcjAmXH/HLdy1pJRWOyOJXE7850M3bidLfoYZQZXd7UMvswuaZy1g5PHoTLfeUisAy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=klsYUveL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79517C2BD10;
-	Mon, 17 Jun 2024 08:00:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718611233;
-	bh=uV9MpsrDI3F3OJ/6TsLxAXJsBp+2RFNu+1nGc5NktBg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=klsYUveLquhL1BuiQ1Vdtl2kLHyzicEazwfIMeCjVQj/GeAGO530gpLmZI8AJCvBa
-	 leQ3+LJP79Nw4WMaymPePQkC8ow61VtmUyoXGxs7p5CvcDB71l0+mVLbuR+R9ZGUYU
-	 s3OjJXE8c7pziBwME3h8RGltHLf7Rt0iZ2AmRxum4XC8TtA+iKxP6pjRX46c1N9/wY
-	 s7V5IP+zBnD20WZjK5/M6n+nt07VdrVLzXZFWTqmxfUjAYStvXxlAbRNAAJ180ckIB
-	 QyNlVLlAIxXwXb/Pf3KoZqiTSeSIinEq1jGR6S7aVXRnEIfSYjZgujX0X3swp0I/o3
-	 JhVWSj0vO7Erw==
-Date: Mon, 17 Jun 2024 10:00:26 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 00/13] PCI: dw-rockchip: Add endpoint mode support
-Message-ID: <Zm_tGknJe5Ttj9mC@ryzen.lan>
-References: <20240607-rockchip-pcie-ep-v1-v5-0-0a042d6b0049@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=m1ygymD0Eg6A3edsh9KcjWEmIAqJpOpjIst8jxRTTNDQEeD4yvecUojoeZ/wfkQRHF1UNNsvpj2ESzEXQrGzq5KLyg/zhp3Th7jcE/4QpBvKA5kqJ8mVgqVhax+mTgo/8d1cONC3I/CxGBmvcs+8SIjxEhfX47RRgK4BNyq/Eak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ttu1Fob0; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52cc129c78fso28186e87.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 01:01:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718611275; x=1719216075; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IQ/lnoLnxwCnySxytQb9nQ5xYtOeT14sXw+lATiwThw=;
+        b=ttu1Fob0SogLsviZMpJWehzESO7MkINj54O/uV4UrjfKY8zGLixhccbCHK+XR4sTwU
+         rsZajLUcTyLOnAS6tkrpzSF+znIIAiKlaFj1nHSjA8LBsimR97X2UqQuPwx2FYgf3JqC
+         nbTJ4e/dbPS9disTbUOk3S/vLzeYdS3Aby+R5ye1VYw3KorYuLbvnGY7dYhBxyszE6/Z
+         AxuYRvJm0Cm9fLtk50fEG8rElKX64aB6L8lgM9HU+5Iu06r3rGKwnoOPbWMAu+G8k+Ma
+         S7TO+0V1ZsxSwxGSbFYvHrEFrCHsbsdLOXEgjDE5Y38spdDCgYrNhygA7kWij6O3vi7s
+         KZdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718611275; x=1719216075;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IQ/lnoLnxwCnySxytQb9nQ5xYtOeT14sXw+lATiwThw=;
+        b=sSFzlH1FxQofw7DUWMSucjZVWehxPrSWE+QksaqbKZ4Pk6uTRCg8SSix3ZyMllAK8n
+         7IE3x6WBY2TidLRP9/1pt3Fc4F+CSCEcyPpTyy4msBl7oqU0oMKDcCFDbpwoP/s4x/h5
+         1byrTLG07NYpDGMMIZcLj+PAxYBBnAovl3BaFABGpexT3fEvxSfkreidGE1xb1Pv64Hf
+         iwDoR7f1lGX/kueDnKbS5DRlXFD4Jddk9/18LM30j/s+/6JYfv5Oz3l9rV7jciup9tUP
+         WyAIJHu7ApwjrH2VHsSobj/dBbvXzNnFrq4BNgUct1cLFTzsLDHkFdudebqjQYu82msN
+         zikg==
+X-Forwarded-Encrypted: i=1; AJvYcCUcALnJtVzjhFeD7YqlIXsCrb75FXktOev0V0MpNxlLpag5/MCdG6HPwgKMIEfWGQA6JJAffxggQ6dhu8WSTnpLqUurmWiwyQ2fIw==
+X-Gm-Message-State: AOJu0YyTqTJkIKWbp5KsyAIA+rdCXXVfbrRK6v6PQn53HmhhYer86jnV
+	eNZ4XyA80jUW+yZ7UE59Mlthjepoho+VwR4Rk558eL3NR/so3rIcESAXKddMI9U=
+X-Google-Smtp-Source: AGHT+IG71054E0fvJQuGC+hqCqYraV8STNLzGUuueTN+wKbvGZ5vdciJje61F+fQ08XOpku4G9g32Q==
+X-Received: by 2002:a19:f703:0:b0:51b:214c:5239 with SMTP id 2adb3069b0e04-52ca6e9f465mr5226032e87.62.1718611274876;
+        Mon, 17 Jun 2024 01:01:14 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2826269sm1169293e87.61.2024.06.17.01.01.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 01:01:14 -0700 (PDT)
+Date: Mon, 17 Jun 2024 11:01:12 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	andersson@kernel.org, ebiggers@google.com, neil.armstrong@linaro.org, 
+	srinivas.kandagatla@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	robh+dt@kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	kernel@quicinc.com, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	quic_omprsing@quicinc.com, quic_nguyenb@quicinc.com, bartosz.golaszewski@linaro.org, 
+	konrad.dybcio@linaro.org, ulf.hansson@linaro.org, jejb@linux.ibm.com, 
+	martin.petersen@oracle.com, mani@kernel.org, davem@davemloft.net, 
+	herbert@gondor.apana.org.au, psodagud@quicinc.com, quic_apurupa@quicinc.com, 
+	sonalg@quicinc.com
+Subject: Re: [PATCH v5 07/15] ufs: core: support wrapped keys in ufs core
+Message-ID: <dk4y53xrkn3jv46mpr4n62yl5yqbql5gwn3c2syyvai3simcph@s767oanivria>
+References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
+ <20240617005825.1443206-8-quic_gaurkash@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,32 +91,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240607-rockchip-pcie-ep-v1-v5-0-0a042d6b0049@kernel.org>
+In-Reply-To: <20240617005825.1443206-8-quic_gaurkash@quicinc.com>
 
-On Fri, Jun 07, 2024 at 01:14:20PM +0200, Niklas Cassel wrote:
-> Hello all,
+On Sun, Jun 16, 2024 at 05:51:02PM GMT, Gaurav Kashyap wrote:
+> Since wrapped keys are not part of the UFS specifications,
+> it needs to be treated as a supported quirk of the UFS
+> controller. This way, based on the quirk set during a host
+> probe, UFS crypto can choose to register either standard or
+> wrapped keys with block crypto profile.
+
+No. It is the user who must be able to select whether to use HW-wrapped
+keys or not. The hardware / driver can only specify whether HW-wrapped
+keys are supported or not.
+
 > 
-> This series adds PCIe endpoint mode support for the rockchip rk3588 and
-> rk3568 SoCs.
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> ---
+>  drivers/ufs/core/ufshcd-crypto.c | 24 ++++++++++++++++--------
+>  include/ufs/ufshcd.h             |  6 ++++++
+>  2 files changed, 22 insertions(+), 8 deletions(-)
 > 
-> This series is based on: pci/next
-> (git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git)
-> 
-> This series can also be found in git:
-> https://github.com/floatious/linux/commits/rockchip-pcie-ep-v5
-> 
-> Testing done:
-> This series has been tested with two rock5b:s, one running in RC mode and
-> one running in EP mode. This series has also been tested with an Intel x86
-> host and rock5b running in EP mode.
-
-(snip)
-
-Hello PCI maintainers,
-
-If there is anything more I can do to get this picked up, please tell me.
 
 
-Kind regards,
-Niklas
+-- 
+With best wishes
+Dmitry
 
