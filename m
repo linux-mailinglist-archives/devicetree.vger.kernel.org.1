@@ -1,134 +1,272 @@
-Return-Path: <devicetree+bounces-76357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D377C90A61D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:52:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9971690A620
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:53:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05DCF1C25D1B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 06:52:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B41441C25CFF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 06:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E2F1862A1;
-	Mon, 17 Jun 2024 06:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9851862B2;
+	Mon, 17 Jun 2024 06:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tx5agyCN"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="bf5Zk+IG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE54817C7B3;
-	Mon, 17 Jun 2024 06:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718607115; cv=none; b=uwgZql+vvlUoRIiKTHiot98Uaf3brLSMvb12GuEMZnITZs7rbuIb1sOLra2H/HWPylRk3CgP3Lmoq3J7OqcgvptXbGT+zJ27cjwn/toiG38RdXfABbfEtpjvUwuKRFKiLBSKx4nrXcHtYNgUcabo85rHPDBKW9XmtM8kjHc0wU0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718607115; c=relaxed/simple;
-	bh=FFM49CAkXNNvaZUx80G8n8QuEBTDMPUgo9jiPgoJxzE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ew7w/ER9E3ev6H4yvP5Ezp6hSPJXdXjqvPwSP5fwL2NAJeFp06V4d+CAL3Ljuw0+kb/OmVTrkR7iO6lBAuBnm62kNC7vdJe5iA5/YOZ2FD4fPLOtnwhJz/wBbKwPaH2zvBJXYauxaRFW0XWpcNOKKrYu9oMp12/qKh7aIjhZDYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tx5agyCN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DFEBC2BD10;
-	Mon, 17 Jun 2024 06:51:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718607115;
-	bh=FFM49CAkXNNvaZUx80G8n8QuEBTDMPUgo9jiPgoJxzE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tx5agyCND+Nk6dP2kn5l84VkgIikaUFEFQ+uMwHPdIQsQZuWH+O3B5LrU9bp/2P4N
-	 uzArg071uHdIe5EctdtW54whUN3sk2yXUdEEoOh3YjEBem3VFMcTTmiIRgnVOci8pV
-	 7dKoQGEvIMZyDK2DSldAEE0oD9I7LFXF0aGI24k5auYvMoP/EbaSFcE9JYuVZkWMzm
-	 HP1BFkj/QXx33X6MyX0nRccxccN7Vmfd5qX/F3PTWKVvwbkRckMf1f+5a5pHtCVnvy
-	 XJ/NYLdxehVvnhnhnIvTEtLXopwrX5UT1hLl2wGTgEXfTguD1QPuJqvn0TqbkzNcKE
-	 Lf00BYL6urjPg==
-Message-ID: <4f1c3add-6939-4fc0-bb92-4b5c7a715e75@kernel.org>
-Date: Mon, 17 Jun 2024 08:51:49 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870EB39FFB;
+	Mon, 17 Jun 2024 06:53:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718607197; cv=pass; b=pne4f2Ngriu4h/DJFy4XdxSmioxpyYX2hxntuEmucKXhHINdkr4O26IWPnxQrV/aSUtwu/zbdgtiYlb09+rIRfm5mYrpn80UeK5ZU1HJ5bIZ/hRuN2n25ddqdtnBifW/mUmoKxVzR2CGP6YSC2+UJWvldPnHOCqgMoKJG5H2odM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718607197; c=relaxed/simple;
+	bh=W6o5OFHPV903s3p/dxPKCzEI3sKGQY/2nQbvsZRxpLo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YoINhJ32+sSJAvwElXt0coffBjn4Njzs+RaJ39YlEYWJL1+RQHsaJxIoIZsOnjzK0VyVBLpee+D1u5HsQGxkGU3KOhyeorMdJVFCcic+67FbnGtxAROnXdYy0N6/b7NAxDpWCd3IY7W538xWaKlyS0H18JGZLA2Plcl5/Rozw5E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=bf5Zk+IG; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4W2gZD47h7z49Q4J;
+	Mon, 17 Jun 2024 09:53:08 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1718607189;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6uM9bQS23wS/E3Smjz6I8J48DsYFyEmhgCN++2bd06U=;
+	b=bf5Zk+IGlVR0GCuS1tBR4o1xKV3iJLFAHkqQafKJit6IzQn/WHnZUmB+Seq5p/vg79KZ6t
+	q1WkXJ/UbNpZcw5McY2aWelByD8RKxomDKquZgZl1PmYXBX3FzD5eVsMZd4vWumRPshiZs
+	p4rjPqA9Afne5H0TQjPxWluqEMC+fn5sCLEA4/xv41qgPf4ROqIjFxezneiB4cVuOamijl
+	D8jZC0sU3a5eMyBjvQI9LIs//262p9XQOODO8ePaR2zzKk7w3wHGWluoE7DLALHgZwRquA
+	DCowO4CHF/vDI1n0jIkGSm5d1MqgAh+/4chewekQ0mWvwd7Z7HuyxHczqoDEQQ==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1718607189; a=rsa-sha256;
+	cv=none;
+	b=lOJd2AbRGWco3YqNfFGvOISmSbFKfXt+p9SXblLenZH5NkO3pl8Hmo30HrlNm22ILxEFpl
+	lFXXd8VBufe/0N+/41bKT2NgmGGxKyrSW30vOtm95++jVnm3LrXBnvuwOr7iKc38wmlW/y
+	r08ef1rzLID2XnJ5HyqGFMr9IJBWY4H2m6+R1dhO54y6C2qzddpNWTpdYUMKB//1fbuzsz
+	HbvcuBp3fxziOqoF+1Dy4jC2lwUYZBZJyT0h0E47btlF2b7sg4ikTqhQBffm0MvVJESJa7
+	6X47BbLKW9uGy2Uzse/TVWQ2GvM4EfHWfXdfukxjqkXWRkBxirlyt0TB7ougyA==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1718607189;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6uM9bQS23wS/E3Smjz6I8J48DsYFyEmhgCN++2bd06U=;
+	b=TEL/6PRiT3valJJGt2sCzkeYA4ZyeqI8x3JS7I88MFtssakG4OQW2KW+GGk33820jMXyDu
+	8WV2+c1EXR1SBtsL5Jg9Mti13bX3s6isS8wQsqSg77hTodt4P2mVhblImDeY2SaxWcAp2F
+	2FKmeXJctCQRLI3VaW5EZN5yyKWK+NQt0U1TvB2WvGyf7jXCwLZomO2JMX6plnyaZnLJij
+	8GLar7wMF7UbqVYPG1bdz7yjvJBdtx4aMqOFX0CaOAIdO8rZKUVagD/lxSvT9wcE2Kc+hL
+	IshEn/Fi4gOpe7ZWWTb8kKfv6E96mlln70Vp9E+SZ2eyt1FLgPXqdA1ny4yOPQ==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 3BC6D634C93;
+	Mon, 17 Jun 2024 09:53:07 +0300 (EEST)
+Date: Mon, 17 Jun 2024 06:53:07 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, nayden.kanchev@arm.com,
+	robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
+Subject: Re: [PATCH v5 05/16] media: mali-c55: Add Mali-C55 ISP driver
+Message-ID: <Zm_dU6LQE1SgVMj-@valkosipuli.retiisi.eu>
+References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+ <20240529152858.183799-6-dan.scally@ideasonboard.com>
+ <20240530001507.GG10586@pendragon.ideasonboard.com>
+ <20240530214348.GA5213@pendragon.ideasonboard.com>
+ <ygr7rhp23gjc4ywmcdy7d5coh4wubxlvkdxcvwgdpk4j343pnd@h4if5jtz7mop>
+ <20240606175306.GB26663@pendragon.ideasonboard.com>
+ <afe76b3c-8e75-4c70-bcc2-9ee5f57d70b7@ideasonboard.com>
+ <ZmVKANYj7uD3IFmy@valkosipuli.retiisi.eu>
+ <20240616203807.GB10964@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: crypto: sun8i-ce: Add compatible for
- H616
-To: Andre Przywara <andre.przywara@arm.com>,
- Corentin Labbe <clabbe.montjoie@gmail.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S . Miller" <davem@davemloft.net>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-References: <20240616220719.26641-1-andre.przywara@arm.com>
- <20240616220719.26641-2-andre.przywara@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240616220719.26641-2-andre.przywara@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240616203807.GB10964@pendragon.ideasonboard.com>
 
-On 17/06/2024 00:07, Andre Przywara wrote:
-> The Allwinner H616 has a crypto engine very similar to the one in the
-> H6, although all addresses in the DMA descriptors are shifted by 2 bits,
-> to accommodate for the larger physical address space. That makes it
-> incompatible to the H6 variant, and thus requires a new compatible
-> string. Clock wise it relies on the internal oscillator for the TRNG,
-> so needs all four possible clocks specified.
+Hi Laurent,
+
+On Sun, Jun 16, 2024 at 11:38:07PM +0300, Laurent Pinchart wrote:
+> On Sun, Jun 09, 2024 at 06:21:52AM +0000, Sakari Ailus wrote:
+> > On Thu, Jun 06, 2024 at 10:10:14PM +0300, Tomi Valkeinen wrote:
+> > > On 06/06/2024 20:53, Laurent Pinchart wrote:
+> > > > > > > > +			return -EINVAL;
+> > > > > > > > +		}
+> > > > > > > > +
+> > > > > > > > +		active_sink = route->sink_pad;
+> > > > > > > > +	}
+> > > > > > > > +	if (active_sink == UINT_MAX) {
+> > > > > > > > +		dev_err(rzr->mali_c55->dev, "One route has to be active");
+> > > > > > > > +		return -EINVAL;
+> > > > > > > > +	}
+> > > > > >
+> > > > > > The recommended handling of invalid routing is to adjust the routing
+> > > > > > table, not to return errors.
+> > > > >
+> > > > > How should I adjust it ? The error here is due to the fact multiple
+> > > > > routes are set as active, which one should I make active ? the first
+> > > > > one ? Should I go and reset the flags in the subdev_route for the one
+> > > > > that has to be made non-active ?
+> > > >
+> > > > The same way you would adjust an invalid format, you can pick the route
+> > > > you consider should be the default.
+> > > > 
+> > > > I'd like Sakari's and Tomi's opinions on this, as it's a new API and the
+> > > > behaviour is still a bit in flux.
+> > > 
+> > > Well... My opinion is that the driver adjusting the given config parameters
+> > > (for any ioctl) is awful and should be deprecated. If the user asks for X,
+> > > and the driver adjusts it and returns Y, then the user has two options:
+> > > fail, because it didn't get X (after possibly laborious field by field
+> > > checks), or shrug it's virtual shoulders and accept Y and hope that things
+> > > still work even though it wanted X.
+> > 
+> > This is still often the only way to tell what the hardware can do as the
+> > limitations in different cases (cropping and scaling for instance) can be
+> > arbitrary. The other option is that the user space has to know the hardware
+> > capabilities without them being available from the kernel.
 > 
-> Add the compatible string to the list of recognised names, and add the
-> H616 to list of devices requiring all four clocks.
+> For some parameters that make sense (we don't have a try mechanism for
+> ISP parameters buffers for instance), but when it comes to configuring a
+> pipeline, I think a parameters adjustment model is needed when we don't
+> have means to expose constraints in a generic way to userspace. The
+> question is in which category routing falls.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > There could be cases of IOCTLs where returning an error if what was
+> > requested can't be performed exactly is workable in general, but then again
+> > having consistency across IOCTL behaviour is very beneficial as well.
+> > 
+> > If you need something exactly, then I think you should check after the
+> > IOCTL that this is what you also got, beyond the IOCTL succeeding.
+> 
+> I do agree with Tomi that this kind of check can be annoying for
+> applications. In cases where checking the result would be complex, and
+> where there is very little use case for receiving anything but the exact
+> configuration you asked for, adjusting the parameters could increase the
+> implementation complexity on both the kernel side and userspace side for
+> no or very little benefit.
+> 
+> > > But maybe that was an answer to a question you didn't really ask =).
+> > > 
+> > > I think setting it to default routing in case of an error is as fine as any
+> > > other "fix" for the routing. It won't work anyway.
+> > > 
+> > > But if the function sets default routing and returns 0 here, why would it
+> > > return an error from v4l2_subdev_routing_validate()? Should it just set
+> > > default routing in that case too? So should set_routing() ever return an
+> > > error, if we can just set the default routing?
+> 
+> That's a good point. I asked myself the same question after sending my
+> previous e-mail, and wondered if anyone else would notice too :-)
+> 
+> > S_ROUTING is a bit special as it deals with multiple routes and the user
+> > space does have a way to add them incrementally.
+> > 
+> > Perhaps we should document better what the driver is expected to to correct
+> > the routes?
+> 
+> We should document the expected behaviour clearly. After agreeing on the
+> expected behaviour, that is.
+> 
+> > I'd think routes may be added by the driver (as some of them cannot be
+> > disabled for instance) but if a requested route cannot be created, that
+> > should probably be an error.
+> > 
+> > I've copied my current (with all the pending patches) documentation here
+> > <URL:https://www.retiisi.eu/~sailus/v4l2/tmp/streams-doc/userspace-api/media/v4l/dev-subdev.html#streams-multiplexed-media-pads-and-internal-routing>.
+> >
+> > The text does not elaborate what exactly a driver could or should do, apart
+> > from specifying the condition for EINVAL. I think we should specify this in
+> 
+> I don't see mentions of EINVAL related to streams there, am I missing
+> something ?
+> 
+> > greater detail. My original thought wws the adjustment would be done by
+> > adding static routes omitted by the caller, not trying to come up with e.g.
+> > valid pad/stream pairs when user provided invalid ones.
+> > 
+> > Could this correction functionality be limited to returning static routes?
+> 
+> That would make userspace a tad simpler, and wouldn't be hard to do in
+> the kernel, but I wonder if departing from the rule that invalid routing
+> tables result in an error is worth it for such a small gain.
 
+I'm just referring to our previous decision on the matter. :-)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Of course an application can do G_ROUTING, toggle the routes it needs to
+and call S_ROUTING again, in order to be (fairly) certain it'll succeed.
 
-Best regards,
-Krzysztof
+Say, if an application wants to enable an embedded data route, then it'll
+be required to supply the route for the image data as well, even if there's
+no configuration that could be made for that route.
 
+I'm thinking of fairly generic code here, if a device requires special
+routing setup, it'll need the user space to be aware of it.
+
+> 
+> > > In the VIDIOC_SUBDEV_S_ROUTING doc we do list some cases where EINVAL or
+> > > E2BIG is returned. But only a few, and I think
+> > > v4l2_subdev_routing_validate() will return errors for many other cases too.
+> > > 
+> > > For what it's worth, the drivers I have written just return an error. It's
+> > > simple for the driver and the user and works. If the consensus is that the
+> > > drivers should instead set the default routing, or somehow mangle the given
+> > > routing to an acceptable form, I can update those drivers accordingly.
+> > > 
+> > > But we probably need to update the docs too to be a bit more clear what
+> > > VIDIOC_SUBDEV_S_ROUTING will do (although are the other ioctls any
+> > > clearer?).
+> > > 
+> > > All that said, I think it's still a bit case-by-case. I don't think the
+> > > drivers should always return an error if they get a routing table that's not
+> > > 100% perfect. E.g. if a device supports two static routes, but the second
+> > > one can be enabled or disabled, the driver should still accept a routing
+> > > table from the user with only the first route present. Etc.
+> > > 
+> > > For the specific case in this patch... I'd prefer returning an error, or if
+> > > that's not ok, set default routing.
+> > 
+> > Not modifying the routing table is another option as well but it may
+> > require separating validating user-provided routes and applying the routes
+> 
+> I'm not sure to follow you here. By not modifying the routing table, do
+> you mean returning an error ? Why would that require separation of
+> validation and configuration ?
+
+If a driver has already made changes to its routing table, it's a bad idea
+to return an error to the user. In this case changes shouldn't be made.
+
+> 
+> > to the sub-device state. The default could be useful in principle, too, for
+> > routing-unaware applications but they won't be calling S_ROUTING anyway.
+> 
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
