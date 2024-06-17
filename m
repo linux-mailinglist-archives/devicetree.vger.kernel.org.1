@@ -1,539 +1,135 @@
-Return-Path: <devicetree+bounces-76651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8F890B6FB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:49:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64BBF90B70F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 563D31F235EA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:49:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD936285FE3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11EE161904;
-	Mon, 17 Jun 2024 16:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911F51662EB;
+	Mon, 17 Jun 2024 16:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zxH3gaZu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368D617C8;
-	Mon, 17 Jun 2024 16:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF828146D7D
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 16:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718642939; cv=none; b=kG99nCvAwbxBRI9E9bnO7hFJYSaBEpZH3AJ/ela0rBgDK8VKiEM5QM2hNwAF8Ha2P64kg8oY6X2qxVVQoQRBSjFEi6qyNuZ0cVCt9Mf99iuBGTe5eR6+q5zNw8ONxvsXRQh4autscEUEOPOwVX+AH/zDW4KejlKVfmGbo7GRl/g=
+	t=1718643149; cv=none; b=OZgZKW1mafjcVcpsaPTr1z8yGhr8fSmybpL6nUApaLhCgEGyUo91lw0nJbBs4Duoxbe0ynhwQSvMWdMIjVeK0o+UY305H4wiypQuOPXNF+NtPPg+Lem0NsdhEeRcQfil9R2j6RwRr1Ojy8doJlNNMiYdiL2jlhP1YcYaFxsahQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718642939; c=relaxed/simple;
-	bh=Sw4WMbh4MR37Sjul7GaT+1B0IUYI69+si4+4QmM1hIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cy3Ebwq1XyWGp5UQMtskIrboKcDHQjiqdaYMPzxULZKaRpu5ENFFv0rEsI2DOSWtQwcJ+ZPHi3OD+76D07U4eiGJYzlxhX5vZI2uKLxDNw/l7NKmvI/aiMUjwG6DGQIC7tZ56yauAHl+DMiEUiGHwT1Q3xoUaqIB5mvUyNFGYRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A45ADA7;
-	Mon, 17 Jun 2024 09:49:20 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8BE663F64C;
-	Mon, 17 Jun 2024 09:48:53 -0700 (PDT)
-Date: Mon, 17 Jun 2024 17:48:51 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/6] firmware: arm_scmi: add initial support for i.MX
- BBM protocol
-Message-ID: <ZnBo84P1Av0pZ324@pluto>
-References: <20240524-imx95-bbm-misc-v2-v4-0-dc456995d590@nxp.com>
- <20240524-imx95-bbm-misc-v2-v4-3-dc456995d590@nxp.com>
+	s=arc-20240116; t=1718643149; c=relaxed/simple;
+	bh=QlFWWrphdJLUKrnqdX/WA0FmGEy2H4QxLEAk/Rlk/Ts=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=r0Gzbd3sNlCvM5XSlEKgxuUyadz+oCOTZkPlgMvBRqgPUmnI4lktnPe6QdUGWXt304n0HqwaZ1x3DO2SG3sTc2sFefZd9jf5769YEaNZwDHuHb90hzTlWojOo8wbYBOX7FnXDUX4ZeU5WNytpYU3iMJRWnkWx7mHd/dI9cI9JJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zxH3gaZu; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6e349c0f2bso588754266b.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 09:52:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718643146; x=1719247946; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2SXqfMqzsmgi60tzvZSO8Ci7JwFaQflPhy4e9Xx/RRA=;
+        b=zxH3gaZuO2hl7boyhtUD01r5UkeNqAlviSKD/SKNqWbel76bBSOTBaH8wplVVpZW+b
+         7Bn+YUddHxLaLUDxjizruL0P5QgHnccxsUpFM/0HHqefzQiQUHlZlZrXbrHk4lpstx/t
+         4oa1hfuAfREVfetR3YO3j44xsYs5UfQT5EVw6kXIqW1AVybYfUmCnSGeemqf1OVz4U/2
+         2spEXHv9KoC++qpzHRGQrEgqRSPwCoSpZC+0byI6hD/oGNxhNZ4fGom30APHmNFFhr+J
+         h82wFFNEC1dlsy37OUA/JdMsYEeuQq0y/FjgIKOydUdiw89aHJVXw3wQ8wubPx0ATGUH
+         KunQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718643146; x=1719247946;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2SXqfMqzsmgi60tzvZSO8Ci7JwFaQflPhy4e9Xx/RRA=;
+        b=Z8f66LalvXVlnOJZrOybrCCLE4sXpK0WyRIaNZ+/pPK4ZNOoAybeIv38m0jZaKb2oY
+         oQpw1b2Y5Jck5o8+fPJ0cOYTRAJ8jSezeibLAhWPdTEWuTaRn2xK0P2jvhmCvSaFaLr4
+         lqh3myo+77HnnIqwIktE8y4zrvv3JDIDW5Uvtf7/Co6UiHod2qh7UIsTLd3zCZpO7GqT
+         301Xe58WydZgLvc+1q+O6xIr2cqbYqFVYHZCQcf6WtoBr3zp2aJtUzD5hcQTZxkeCi6s
+         hxQLpeSO71juowLlo2e/QTBNvDOaOqia3TSorIKE301BD6tEw16Jruq7PTSKDOXl1Nvx
+         9kNA==
+X-Forwarded-Encrypted: i=1; AJvYcCViXblR3UJ0ZOoqC5uD5GJUCUQwBS0QqsjaXvx7927K0crrfqM3pk+ceZdAM0EVC3e7V7vc9R+3W/AlwP30cm5M0NdVtGzsNP13OQ==
+X-Gm-Message-State: AOJu0YxcjYRQM4aEnaivM+/0KoZs0v8TjZ+KY7NUt39/zfQlBTTOrfoe
+	UtmiaGscAO++obxQkk9xPEhKpHWRkp6zyjdkuQLIeum6+UtPsZ8B+ru1P6JrJII=
+X-Google-Smtp-Source: AGHT+IGdOXSsdt9wpeM+S7PJouIKDjRGTea/R3paOf2QC08kw74Op/Ef1S4OlA1jnZ9Lbhjly1OS5g==
+X-Received: by 2002:a17:906:3c05:b0:a6f:1cf9:9b56 with SMTP id a640c23a62f3a-a6f60cef3bdmr659622966b.9.1718643146286;
+        Mon, 17 Jun 2024 09:52:26 -0700 (PDT)
+Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f8176eea5sm190176766b.88.2024.06.17.09.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 09:52:25 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Date: Mon, 17 Jun 2024 17:52:18 +0100
+Subject: [PATCH] arm64: dts: exynos: gs101-oriole: add regulators for USB
+ phy
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240524-imx95-bbm-misc-v2-v4-3-dc456995d590@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240617-gs101-usb-regulators-in-dt-v1-1-e2242542c518@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAMFpcGYC/x3MSwqEMAwA0KtI1hNoix/0KjKL1sYakCqJDgPi3
+ S0u3+ZdoCRMCkN1gdCPlbdcYD8VTIvPiZBjMTjjatPaDpNaY/HUgELpXP2xiSJnjAeGGMJE3jU
+ z9VCCXWjm/5uP3/t+ABWWvJ9sAAAA
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, 
+ kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.13.0
 
-On Fri, May 24, 2024 at 04:56:45PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX95 has a battery-backed module(BBM), which has persistent storage (GPR),
-> an RTC, and the ON/OFF button. The System Manager(SM) firmware use SCMI vendor
-> protocol(SCMI BBM) to let agent be able to use GPR, RTC and ON/OFF
-> button.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/firmware/arm_scmi/Kconfig          |   2 +
->  drivers/firmware/arm_scmi/Makefile         |   1 +
->  drivers/firmware/arm_scmi/imx/Kconfig      |  14 ++
->  drivers/firmware/arm_scmi/imx/Makefile     |   2 +
->  drivers/firmware/arm_scmi/imx/imx-sm-bbm.c | 380 +++++++++++++++++++++++++++++
->  include/linux/scmi_imx_protocol.h          |  42 ++++
->  6 files changed, 441 insertions(+)
-> 
-> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
-> index aa5842be19b2..79846cbaf71b 100644
-> --- a/drivers/firmware/arm_scmi/Kconfig
-> +++ b/drivers/firmware/arm_scmi/Kconfig
-> @@ -180,4 +180,6 @@ config ARM_SCMI_POWER_CONTROL
->  	  called scmi_power_control. Note this may needed early in boot to catch
->  	  early shutdown/reboot SCMI requests.
->  
-> +source "drivers/firmware/arm_scmi/imx/Kconfig"
-> +
+The USB phy requires various power supplies to work.
 
-It could be that we fold all the Vendor drivers under
-drivers/firmware/arm_scmi/vendors once it is merged...but we will take
-care of this reowrk/refctor...still not sure about this details.
+While we don't have a PMIC driver yet, they should still be added to
+the DT. Do so.
 
->  endmenu
-> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
-> index fd59f58ce8a2..fb9407fef60c 100644
-> --- a/drivers/firmware/arm_scmi/Makefile
-> +++ b/drivers/firmware/arm_scmi/Makefile
-> @@ -16,6 +16,7 @@ scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
->  
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-module.o
-> +obj-$(CONFIG_ARM_SCMI_PROTOCOL) += imx/
->  
->  obj-$(CONFIG_ARM_SCMI_POWER_CONTROL) += scmi_power_control.o
->  
-> diff --git a/drivers/firmware/arm_scmi/imx/Kconfig b/drivers/firmware/arm_scmi/imx/Kconfig
-> new file mode 100644
-> index 000000000000..4b6ac7febe8f
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/imx/Kconfig
-> @@ -0,0 +1,14 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +menu "ARM SCMI NXP i.MX Vendor Protocols"
-> +
-> +config IMX_SCMI_BBM_EXT
-> +	tristate "i.MX SCMI BBM EXTENSION"
-> +	depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
-> +	default y if ARCH_MXC
-> +	help
-> +	  This enables i.MX System BBM control logic which supports RTC
-> +	  and BUTTON.
-> +
-> +	  This driver can also be built as a module.
-> +
-> +endmenu
-> diff --git a/drivers/firmware/arm_scmi/imx/Makefile b/drivers/firmware/arm_scmi/imx/Makefile
-> new file mode 100644
-> index 000000000000..a7dbdd20dbb9
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/imx/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_IMX_SCMI_BBM_EXT) += imx-sm-bbm.o
-> diff --git a/drivers/firmware/arm_scmi/imx/imx-sm-bbm.c b/drivers/firmware/arm_scmi/imx/imx-sm-bbm.c
-> new file mode 100644
-> index 000000000000..3f8321d247ae
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/imx/imx-sm-bbm.c
-> @@ -0,0 +1,380 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * System Control and Management Interface (SCMI) NXP BBM Protocol
-> + *
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#define pr_fmt(fmt) "SCMI Notifications BBM - " fmt
-> +
-> +#include <linux/bits.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/scmi_imx_protocol.h>
-> +
-> +#include "../protocols.h"
-> +#include "../notify.h"
-> +
-> +#define SCMI_PROTOCOL_SUPPORTED_VERSION		0x10000
-> +
-> +enum scmi_imx_bbm_protocol_cmd {
-> +	IMX_BBM_GPR_SET = 0x3,
-> +	IMX_BBM_GPR_GET = 0x4,
-> +	IMX_BBM_RTC_ATTRIBUTES = 0x5,
-> +	IMX_BBM_RTC_TIME_SET = 0x6,
-> +	IMX_BBM_RTC_TIME_GET = 0x7,
-> +	IMX_BBM_RTC_ALARM_SET = 0x8,
-> +	IMX_BBM_BUTTON_GET = 0x9,
-> +	IMX_BBM_RTC_NOTIFY = 0xA,
-> +	IMX_BBM_BUTTON_NOTIFY = 0xB,
-> +};
-> +
-> +#define GET_RTCS_NR(x)	le32_get_bits((x), GENMASK(23, 16))
-> +#define GET_GPRS_NR(x)	le32_get_bits((x), GENMASK(15, 0))
-> +
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_UPDATED		BIT(2)
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_ROLLOVER	BIT(1)
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_ALARM		BIT(0)
-> +
-> +#define SCMI_IMX_BBM_RTC_ALARM_ENABLE_FLAG	BIT(0)
-> +
-> +#define SCMI_IMX_BBM_NOTIFY_RTC_FLAG	\
-> +	(SCMI_IMX_BBM_NOTIFY_RTC_UPDATED | SCMI_IMX_BBM_NOTIFY_RTC_ROLLOVER | \
-> +	 SCMI_IMX_BBM_NOTIFY_RTC_ALARM)
-> +
-> +#define SCMI_IMX_BBM_EVENT_RTC_MASK		GENMASK(31, 24)
-> +
-> +struct scmi_imx_bbm_info {
-> +	u32 version;
-> +	int nr_rtc;
-> +	int nr_gpr;
-> +};
-> +
-> +struct scmi_msg_imx_bbm_protocol_attributes {
-> +	__le32 attributes;
-> +};
-> +
-> +struct scmi_imx_bbm_set_time {
-> +	__le32 id;
-> +	__le32 flags;
-> +	__le32 value_low;
-> +	__le32 value_high;
-> +};
-> +
-> +struct scmi_imx_bbm_get_time {
-> +	__le32 id;
-> +	__le32 flags;
-> +};
-> +
-> +struct scmi_imx_bbm_alarm_time {
-> +	__le32 id;
-> +	__le32 flags;
-> +	__le32 value_low;
-> +	__le32 value_high;
-> +};
-> +
-> +struct scmi_msg_imx_bbm_rtc_notify {
-> +	__le32 rtc_id;
-> +	__le32 flags;
-> +};
-> +
-> +struct scmi_msg_imx_bbm_button_notify {
-> +	__le32 flags;
-> +};
-> +
-> +struct scmi_imx_bbm_notify_payld {
-> +	__le32 flags;
-> +};
-> +
-> +static int scmi_imx_bbm_attributes_get(const struct scmi_protocol_handle *ph,
-> +				       struct scmi_imx_bbm_info *pi)
-> +{
-> +	int ret;
-> +	struct scmi_xfer *t;
-> +	struct scmi_msg_imx_bbm_protocol_attributes *attr;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, PROTOCOL_ATTRIBUTES, 0, sizeof(*attr), &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	attr = t->rx.buf;
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	if (!ret) {
-> +		pi->nr_rtc = GET_RTCS_NR(attr->attributes);
-> +		pi->nr_gpr = GET_GPRS_NR(attr->attributes);
-> +	}
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int scmi_imx_bbm_notify(const struct scmi_protocol_handle *ph,
-> +			       u32 src_id, int message_id, bool enable)
-> +{
-> +	int ret;
-> +	struct scmi_xfer *t;
-> +
-> +	if (message_id == IMX_BBM_RTC_NOTIFY) {
-> +		struct scmi_msg_imx_bbm_rtc_notify *rtc_notify;
-> +
-> +		ret = ph->xops->xfer_get_init(ph, message_id,
-> +					      sizeof(*rtc_notify), 0, &t);
-> +		if (ret)
-> +			return ret;
-> +
-> +		rtc_notify = t->tx.buf;
-> +		rtc_notify->rtc_id = cpu_to_le32(0);
-> +		rtc_notify->flags =
-> +			cpu_to_le32(enable ? SCMI_IMX_BBM_NOTIFY_RTC_FLAG : 0);
-> +	} else if (message_id == IMX_BBM_BUTTON_NOTIFY) {
-> +		struct scmi_msg_imx_bbm_button_notify *button_notify;
-> +
-> +		ret = ph->xops->xfer_get_init(ph, message_id,
-> +					      sizeof(*button_notify), 0, &t);
-> +		if (ret)
-> +			return ret;
-> +
-> +		button_notify = t->tx.buf;
-> +		button_notify->flags = cpu_to_le32(enable ? 1 : 0);
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +	return ret;
-> +}
-> +
-> +static enum scmi_imx_bbm_protocol_cmd evt_2_cmd[] = {
-> +	IMX_BBM_RTC_NOTIFY,
-> +	IMX_BBM_BUTTON_NOTIFY
-> +};
-> +
-> +static int scmi_imx_bbm_set_notify_enabled(const struct scmi_protocol_handle *ph,
-> +					   u8 evt_id, u32 src_id, bool enable)
-> +{
-> +	int ret, cmd_id;
-> +
-> +	if (evt_id >= ARRAY_SIZE(evt_2_cmd))
-> +		return -EINVAL;
-> +
-> +	cmd_id = evt_2_cmd[evt_id];
-> +	ret = scmi_imx_bbm_notify(ph, src_id, cmd_id, enable);
-> +	if (ret)
-> +		pr_debug("FAIL_ENABLED - evt[%X] dom[%d] - ret:%d\n",
-> +			 evt_id, src_id, ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static void *scmi_imx_bbm_fill_custom_report(const struct scmi_protocol_handle *ph,
-> +					     u8 evt_id, ktime_t timestamp,
-> +					     const void *payld, size_t payld_sz,
-> +					     void *report, u32 *src_id)
-> +{
-> +	const struct scmi_imx_bbm_notify_payld *p = payld;
-> +	struct scmi_imx_bbm_notif_report *r = report;
-> +
-> +	if (sizeof(*p) != payld_sz)
-> +		return NULL;
-> +
-> +	if (evt_id == SCMI_EVENT_IMX_BBM_RTC) {
-> +		r->is_rtc = true;
-> +		r->is_button = false;
-> +		r->timestamp = timestamp;
-> +		r->rtc_id = le32_get_bits(p->flags, SCMI_IMX_BBM_EVENT_RTC_MASK);
-> +		r->rtc_evt = le32_get_bits(p->flags, SCMI_IMX_BBM_NOTIFY_RTC_FLAG);
-> +		dev_dbg(ph->dev, "RTC: %d evt: %x\n", r->rtc_id, r->rtc_evt);
-> +		*src_id = r->rtc_evt;
-> +	} else if (evt_id == SCMI_EVENT_IMX_BBM_BUTTON) {
-> +		r->is_rtc = false;
-> +		r->is_button = true;
-> +		r->timestamp = timestamp;
-> +		dev_dbg(ph->dev, "BBM Button\n");
-> +		*src_id = 0;
-> +	} else {
-> +		WARN_ON_ONCE(1);
-> +		return NULL;
-> +	}
-> +
-> +	return r;
-> +}
-> +
-> +static const struct scmi_event scmi_imx_bbm_events[] = {
-> +	{
-> +		.id = SCMI_EVENT_IMX_BBM_RTC,
-> +		.max_payld_sz = sizeof(struct scmi_imx_bbm_notify_payld),
-> +		.max_report_sz = sizeof(struct scmi_imx_bbm_notif_report),
-> +	},
-> +	{
-> +		.id = SCMI_EVENT_IMX_BBM_BUTTON,
-> +		.max_payld_sz = sizeof(struct scmi_imx_bbm_notify_payld),
-> +		.max_report_sz = sizeof(struct scmi_imx_bbm_notif_report),
-> +	},
-> +};
-> +
-> +static const struct scmi_event_ops scmi_imx_bbm_event_ops = {
-> +	.set_notify_enabled = scmi_imx_bbm_set_notify_enabled,
-> +	.fill_custom_report = scmi_imx_bbm_fill_custom_report,
-> +};
-> +
-> +static const struct scmi_protocol_events scmi_imx_bbm_protocol_events = {
-> +	.queue_sz = SCMI_PROTO_QUEUE_SZ,
-> +	.ops = &scmi_imx_bbm_event_ops,
-> +	.evts = scmi_imx_bbm_events,
-> +	.num_events = ARRAY_SIZE(scmi_imx_bbm_events),
-> +	.num_sources = 1,
-> +};
-> +
-> +static int scmi_imx_bbm_protocol_init(const struct scmi_protocol_handle *ph)
-> +{
-> +	u32 version;
-> +	int ret;
-> +	struct scmi_imx_bbm_info *binfo;
-> +
-> +	ret = ph->xops->version_get(ph, &version);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_info(ph->dev, "NXP SM BBM Version %d.%d\n",
-> +		 PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
-> +
-> +	binfo = devm_kzalloc(ph->dev, sizeof(*binfo), GFP_KERNEL);
-> +	if (!binfo)
-> +		return -ENOMEM;
-> +
-> +	ret = scmi_imx_bbm_attributes_get(ph, binfo);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return ph->set_priv(ph, binfo, version);
-> +}
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+Note that this patch depends on the updated DT binding from
+https://lore.kernel.org/r/20240617-usb-phy-gs101-v3-0-b66de9ae7424@linaro.org
+---
+ arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-I would move this init down below, right before the scmi_imx_bbm and
-after the proto_ops definition,  for consistency and readability.
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+index 5e8ffe065081..1a79d9ab3be0 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
++++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+@@ -145,6 +145,13 @@ &usbdrd31_dwc3 {
+ };
+ 
+ &usbdrd31_phy {
++	/* TODO: Update these once PMIC is implemented */
++	pll-supply = <0>;
++	dvdd-usb20-supply = <0>;
++	vddh-usb20-supply = <0>;
++	vdd33-usb20-supply = <0>;
++	vdda-usbdp-supply = <0>;
++	vddh-usbdp-supply = <0>;
+ 	status = "okay";
+ };
+ 
 
-> +
-> +static int scmi_imx_bbm_rtc_time_set(const struct scmi_protocol_handle *ph,
-> +				     u32 rtc_id, u64 sec)
-> +{
-> +	struct scmi_imx_bbm_info *pi = ph->get_priv(ph);
-> +	struct scmi_imx_bbm_set_time *cfg;
-> +	struct scmi_xfer *t;
-> +	int ret;
-> +
-> +	if (rtc_id >= pi->nr_rtc)
-> +		return -EINVAL;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, IMX_BBM_RTC_TIME_SET, sizeof(*cfg), 0, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg = t->tx.buf;
-> +	cfg->id = cpu_to_le32(rtc_id);
-> +	cfg->flags = 0;
-> +	cfg->value_low = cpu_to_le32(lower_32_bits(sec));
-> +	cfg->value_high = cpu_to_le32(upper_32_bits(sec));
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int scmi_imx_bbm_rtc_time_get(const struct scmi_protocol_handle *ph,
-> +				     u32 rtc_id, u64 *value)
-> +{
-> +	struct scmi_imx_bbm_info *pi = ph->get_priv(ph);
-> +	struct scmi_imx_bbm_get_time *cfg;
-> +	struct scmi_xfer *t;
-> +	int ret;
-> +
-> +	if (rtc_id >= pi->nr_rtc)
-> +		return -EINVAL;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, IMX_BBM_RTC_TIME_GET, sizeof(*cfg),
-> +				      sizeof(u64), &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg = t->tx.buf;
-> +	cfg->id = cpu_to_le32(rtc_id);
-> +	cfg->flags = 0;
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	if (!ret)
-> +		*value = get_unaligned_le64(t->rx.buf);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int scmi_imx_bbm_rtc_alarm_set(const struct scmi_protocol_handle *ph,
-> +				      u32 rtc_id, u64 sec)
-> +{
-> +	struct scmi_imx_bbm_info *pi = ph->get_priv(ph);
-> +	struct scmi_imx_bbm_alarm_time *cfg;
-> +	struct scmi_xfer *t;
-> +	int ret;
-> +
-> +	if (rtc_id >= pi->nr_rtc)
-> +		return -EINVAL;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, IMX_BBM_RTC_ALARM_SET, sizeof(*cfg), 0, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfg = t->tx.buf;
-> +	cfg->id = cpu_to_le32(rtc_id);
-> +	cfg->flags = SCMI_IMX_BBM_RTC_ALARM_ENABLE_FLAG;
-> +	cfg->value_low = cpu_to_le32(lower_32_bits(sec));
-> +	cfg->value_high = cpu_to_le32(upper_32_bits(sec));
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int scmi_imx_bbm_button_get(const struct scmi_protocol_handle *ph, u32 *state)
-> +{
-> +	struct scmi_xfer *t;
-> +	int ret;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, IMX_BBM_BUTTON_GET, 0, sizeof(u32), &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	if (!ret)
-> +		*state = get_unaligned_le32(t->rx.buf);
-> +
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct scmi_imx_bbm_proto_ops scmi_imx_bbm_proto_ops = {
-> +	.rtc_time_get = scmi_imx_bbm_rtc_time_get,
-> +	.rtc_time_set = scmi_imx_bbm_rtc_time_set,
-> +	.rtc_alarm_set = scmi_imx_bbm_rtc_alarm_set,
-> +	.button_get = scmi_imx_bbm_button_get,
-> +};
-> +
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240617-gs101-usb-regulators-in-dt-bdbbcea25fe9
 
-...just here the init
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
 
-> +static const struct scmi_protocol scmi_imx_bbm = {
-> +	.id = SCMI_PROTOCOL_IMX_BBM,
-> +	.owner = THIS_MODULE,
-> +	.instance_init = &scmi_imx_bbm_protocol_init,
-> +	.ops = &scmi_imx_bbm_proto_ops,
-> +	.events = &scmi_imx_bbm_protocol_events,
-> +	.supported_version = SCMI_PROTOCOL_SUPPORTED_VERSION,
-> +	.vendor_id = "NXP",
-> +	.sub_vendor_id = "i.MX95 EVK",
-> +};
-> +
-
-Beside this, LGTM.
-
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-
-Thanks,
-Cristian
 
