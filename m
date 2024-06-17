@@ -1,109 +1,120 @@
-Return-Path: <devicetree+bounces-76721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C4290BB92
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 21:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8573190BB98
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 21:59:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0A20283924
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:58:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F080A285D3C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5AA190056;
-	Mon, 17 Jun 2024 19:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB7A19068D;
+	Mon, 17 Jun 2024 19:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="h4FM0aEF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u/wAAKi8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08E019939D
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 19:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B6118F2D3
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 19:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718654241; cv=none; b=SLBS01XOeyqlBk6Ueitz4BSmfvGRLBCNHGpv6JmltMJPXcm7vhfcGMVsExWRgoDpP89a8to3lQM9kcrL/BJ3pxiOXj7GfyamwNviBrUM82xUeup0WjqjKZwn0FnVV78y17wY9t5Z7LYfiP9JOGlsBVdeT4Tg/vDTMI05CefTHao=
+	t=1718654314; cv=none; b=heaOee6ZTPQgZ1u96Lu1vDOw6m0GBm402LTGNYWGjJuHauKNT3yORx8DqfUEky+YGopMQtd9hZBGJMUYkXVAAfMh5F5LsMLjQqk5uzgfcZDdliwwmRlUhGcpzMytmcUAfehdPQDCagZGTsVo7xTX4YeKzHrWBOpGn6vv7KrOExc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718654241; c=relaxed/simple;
-	bh=BPGfBSXIDGz7yjzlZ4GzjDeNK36NgkAUkgVC//2x3N0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ryp+Xi17y/UTEqC8SqYENvcMaZmM41cx3AtUhPpcf7iMVN7+NooO9VYhH/5Lfx9mOUvua0JsiBD6Osxlxsn0gALOYHuSMDs+fzntL8fOx6GoqhWD/y+6tGpITodFczPQ/Oo26GriArb6bZuG0O1vluAW0/nvzbbHRjsyF/C3uEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=h4FM0aEF; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ebe0a81dc8so51753941fa.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 12:57:19 -0700 (PDT)
+	s=arc-20240116; t=1718654314; c=relaxed/simple;
+	bh=bZpxC50zZBluEA/iujXmLqmlU7SsoVluLarJkO9NX2c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EOpx+btFIRsbI/lxFm018q+zKnoywRsQYwpNb5MO6l49+TJvmy9xnbIhNiRQ0DHJYs59cY+hwx91NcKt+G3Bdv7EFMIh7sbRClb6ZAN8/ig5k2WAH9Rb7iY9MoAxMQ6EXtRsSPE8a0l4fwjLlBAVFba3BU7shJroVfgryZ4OjdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u/wAAKi8; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52bc121fb1eso5597781e87.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 12:58:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718654238; x=1719259038; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BPGfBSXIDGz7yjzlZ4GzjDeNK36NgkAUkgVC//2x3N0=;
-        b=h4FM0aEFGHuZ0mu5fvJrmnRpR3162gXoaJGMrkX81jmsyAci13rhwTkbeFsWavsE02
-         8yRakAgqttTM3w+YPaGNNj+UcPEvhXAP97o7d5Vzja6D2KdhG7n10PkEhGjHXZC5nrY0
-         99xUYF/bi3g7EYeyRgp6CySYNoXoNSSTaPypyLgxz38XnVC2mrniq8SgmZAGUBjtwzGB
-         0FZkTLDWL6fkLtPrN7ivm3MEMoRNd04Vgctw3ugRCTpMnAuN+vRVLzoQFvf8+0mpephf
-         do8uDIyOtOhhwrg0nLgGD8DosjgKWjeT/2viBvXaX6MwRisdviQv/Y+M/XLulNcipKNf
-         CaCA==
+        d=linaro.org; s=google; t=1718654311; x=1719259111; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dt8gOXtAJsyKtG9aDgL57FXHSeZZBpHcJmuelSwD1xE=;
+        b=u/wAAKi8nAnCDLTGVmCri/G7HsBxrBNFdXRKRMq4Pi6x5i18Il4OY27HwgEIHu8IT8
+         cOyFvWsMqV3HPTrkPbWVbbsimbl5BLwfrb5U8lLV8+sm3DoULBF9c70Squsa8/YUFEUR
+         p3KovDYYtVY/gRwQI/3n8Thstd8JKMqM49hGtU0wY7ByNAhi/G1Zc8aFJvSBwIx4Vabl
+         RfwESzYT1MXtO2f7RsmQ69Q3CbBwMUDQmQS9Hfxq7lKWMIpIj1u3Hw8TnhYu1yvJEpab
+         qvUhuDFpV5MaeUQrPoYtu29TuuzM/oEJ/KhGZw7xmGtytJJA7JxkzgMQy1AXasGGd6IS
+         fEPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718654238; x=1719259038;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BPGfBSXIDGz7yjzlZ4GzjDeNK36NgkAUkgVC//2x3N0=;
-        b=DABXIzr/pdAERxX1bg2uGG0Oj1AVjU0GyaXtlBTnjF5r9d+CphAw8m1bhU1ZZG5tK+
-         bme9XYlut0KukJqu8EbaMFLoadWPH0s9ElfOB3FSFYlPDxGNTbORjEF9HRwYnfaQTAVT
-         kZY7Z6h+NGl2rKEu1aZrb9D6A2nb8OICGih10VN4Viri/sIqa1O1IMQwnh1GG+QtM0Np
-         XQvewB7d9U9GHrGWQgiZsCw1WaUx63JtZzQhFBSpt8lpLf0KO4KfD8wXFwvrmyqZmIgb
-         MH+xiw34FEw28sP91QQBtWrCL13D8CsWIMiU4vcaAbLTZ+PZplkGbIcfnl2ntZc2CWzc
-         0Dgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVKOK0TqHCJPLcLWwUS0s+B/OvnsOTjxpYY+F9htiL6EiAf+AGLri08tUMUFYY/VcGIr6lADIYI/3miYghBorYkO4xZwOfZYuOjPA==
-X-Gm-Message-State: AOJu0YzKKIz9DjvbTiqIenVAngzqguLWl/kDekiP7cRry7DOXUwvZAv0
-	U9lWGu62sDI+eO6HMO7pu5tG2IsRFsf/PVsDjPB8UrGjAHh8ji6C5/EAaugRrPbGprBnysn9M52
-	MqwypK7cJQSqL/dL6B9tNplbNAhEatWfCdjsVWQ==
-X-Google-Smtp-Source: AGHT+IHTU7Jh6DU7VGE9POXczJ3FUWDY9c7qjW478IAmZHY0i+2WVDCPuGCN/ls9eDDXzEL66B9bz2LR8Y6OPn0iPqc=
-X-Received: by 2002:a2e:87da:0:b0:2ec:1dd1:b3ae with SMTP id
- 38308e7fff4ca-2ec1dd1b5e3mr59198141fa.32.1718654237778; Mon, 17 Jun 2024
- 12:57:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718654311; x=1719259111;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dt8gOXtAJsyKtG9aDgL57FXHSeZZBpHcJmuelSwD1xE=;
+        b=esckdSPcpyNMYBVaDcxv3OHCbaCEww3Kn6qm9NJosKEbxctF9BqBKO5IzxixpcyCxV
+         eQKmEHJHC/9i/DOGcrm7B/6tGN8iGWSizjXn1q00o7xjsj+KtS5g9A8xJZl615C+8Vaa
+         rbt8ZBgmNFoKHXfNxM3gK4TBN1ccGCRo8W1uob3Y2fP9XW+1qshiPB7/A7TV3YRpIUgB
+         /FkdcvBRAETDjq7CDzhd1LC/s4tJAXzQjbzWRf1fD6nbP5RA5+F3HxbjYgiMzn2zjOTM
+         YgQMYQOPm+PS7g9pA5tg8800qOVwgpGju4QZKlXcJJda98YgBTP8bGswatRBhHIMhkRP
+         b+vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXdORUfeodZBuilIWMoKah++vNoeaTedweRjI/g4xauOrhC62GhtlgbLHb+X87fyRWnpbJNf98pkiiSIIJRWvm2JbQPFsOxuXbCcA==
+X-Gm-Message-State: AOJu0YxZKWNqcKyZvOeBE8ughC+QA0JhBCaAw2f8wbii7TlOPI3XLyUo
+	djyBdzZBv2o87zvfv18e08U2+DFEZSx37lkFeXByjSbW+NvHYHLORpDieZwbJm0=
+X-Google-Smtp-Source: AGHT+IGgD7APk54YXCS3zR67bSlvd9lT2U7OUsokuRECk7zCt1gIA8J1/z9B6AcqGUIbtP5nCBnDGQ==
+X-Received: by 2002:a05:6512:536:b0:52b:c2eb:2d with SMTP id 2adb3069b0e04-52cc628b041mr50934e87.39.1718654311052;
+        Mon, 17 Jun 2024 12:58:31 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:cb2:a9df:5ff5:5bcf:651f:66f5? ([2a00:f41:cb2:a9df:5ff5:5bcf:651f:66f5])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2872749sm1323169e87.164.2024.06.17.12.58.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jun 2024 12:58:30 -0700 (PDT)
+Message-ID: <55685d92-8f5a-4b23-a7a0-7dcdea5baaea@linaro.org>
+Date: Mon, 17 Jun 2024 21:58:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240527-shm-bridge-v10-0-ce7afaa58d3a@linaro.org>
-In-Reply-To: <20240527-shm-bridge-v10-0-ce7afaa58d3a@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 17 Jun 2024 21:57:06 +0200
-Message-ID: <CAMRc=McQDBywMqu43vG=UXyEH6V6w1REyYAtEPQuogH7C=Sj-Q@mail.gmail.com>
-Subject: Re: [PATCH v10 00/15] firmware: qcom: implement support for and
- enable SHM bridge
-To: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Maximilian Luz <luzmaximilian@gmail.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Elliot Berman <quic_eberman@quicinc.com>, Alex Elder <elder@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@quicinc.com, Andrew Halaney <ahalaney@redhat.com>, 
-	Deepti Jaggi <quic_djaggi@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: qcom: msm8926-motorola-peregrine: Add
+ accelerometer, magnetometer, regulator
+To: git@apitzsch.eu, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20240616-peregrine-v1-1-85d14ae1a11a@apitzsch.eu>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240616-peregrine-v1-1-85d14ae1a11a@apitzsch.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 27, 2024 at 2:56=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
->
-> SCM calls that take memory buffers as arguments require that they be
-> page-aligned, physically continuous and non-cachable. The same
-> requirements apply to the buffer used to pass additional arguments to SCM
-> calls that take more than 4.
->
+
+
+On 6/16/24 16:15, André Apitzsch via B4 Relay wrote:
+> From: André Apitzsch <git@apitzsch.eu>
+> 
+> Add the accelerometer, magnetometer and regulator that are present on
+> the Motorola Moto G 4G (2013) device.
+> 
+> While at it, update framebuffer supplies and temperature sensor.
+
+That's a bit too much for a "while at it" ;) Please create separate commits
 
 [...]
 
-It's been three weeks. Ping?
+>   	sensor@48 {
+>   		compatible = "ti,tmp108";
+>   		reg = <0x48>;
+> +		interrupts-extended = <&tlmm 13 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-0 = <&temp_alert_default>;
+> +		pinctrl-names = "default";
+> +		#thermal-sensor-cells = <0>;
 
-Bart
+FWIW the current driver doesn't seem to care about interrupts, perhaps
+you could extend it
+
+
+Konrad
 
