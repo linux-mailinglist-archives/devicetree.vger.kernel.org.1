@@ -1,169 +1,399 @@
-Return-Path: <devicetree+bounces-76405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA0990A78A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:41:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7626D90A7C6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:54:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7DAE1F23D34
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:41:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E309B1F23D32
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:54:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA7C19005A;
-	Mon, 17 Jun 2024 07:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A5218FDBD;
+	Mon, 17 Jun 2024 07:54:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="OveYK393"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ykf/fZac"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C6818FC99;
-	Mon, 17 Jun 2024 07:41:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861D838396
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:54:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718610093; cv=none; b=Qwi4Xc+u2L+te1otZgVcFZWh9QoMjUs7qcom12ktfoigUXiIs2HqUSXxCKl4g6xpZC3cS1uFASyOqMViMcByEZIiX1J8D5DXB9ZA2+gqm7VFpS7HCN0MM50IzrlVcBEXfRfh1lYF0rV+jQarm3kZtic/QBwYy/nWPQr9nRPpB3g=
+	t=1718610887; cv=none; b=g6JiaCJ/zx1CTgvBHbLws5KEYfU2HMGzsuQ+lC1DrbUpaxw5U8F3JgcNI0fMHmF8ej2pfdJ0YuNGsNrbC6rcwhmDRLUCaAoTxKOaKtjYoNFSvQeYLNjTREa75WPDjDVAUTqeQlHWpkTK86zVPuhIaZF1Qb7urZdF53koTkKR/ZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718610093; c=relaxed/simple;
-	bh=gjozgmj5PXuXIp5WIMI+3tl/AexBgymhhdMPg4hky8k=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=I7fYubK2nsrudu/UTxOrDpE67XB0f3ilLU9fUDfYB43ld+FoUItSwul6MBsrNwheVbtDAxZC/OfHjXQN7F+9hXNGB0Tbp+i3oAxRl7vMaj6W3RktVZPc0/TeUf7AU9ICUbnDc2WRNckqGjSft82yiaKqDQy8GEljKKQCpAw8D3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=OveYK393; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp118-210-79-194.adl-adc-lon-bras32.tpg.internode.on.net [118.210.79.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E152D2014F;
-	Mon, 17 Jun 2024 15:41:27 +0800 (AWST)
+	s=arc-20240116; t=1718610887; c=relaxed/simple;
+	bh=pkiVzCiXOsb8Fmyy5UeV55lfclFZglq4ojL/Y0M1LIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ru/bvyDqXO5QvwO7ebaKFUDlc4G/Q0c7S75xTo4xhk0l+WCGtnQstK3ODBiJ0o7EmSiHd67LDlTJjjOSSH8oVRppqksHm1XDG0uSz/vJZJKMVjvUIQlCH8/ptEomYipF2QEtNidCO+dgPSRNOtSsvoak6MTPAkzfYrvxvs3IWno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ykf/fZac; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ec002caeb3so54318901fa.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:54:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1718610088;
-	bh=x9+zAFyMZm/7B6EtHFsboC7Irgy20gXAvPeF+y2R7t8=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=OveYK393V8uvj6JEsiSZT7QZl4vPieX0Ju+ZLvf5kbShLas6hXj4+QG7Dxwmt/92Y
-	 H5iBzJlEahDYzQN2ilXXMdTYKofCyR997WswNQyaLjNrChXHXfefaytfdtnQaoRnyc
-	 ZoQoOxgtLM70vjfv7lojCmbd2OTXZcUYLv9hZpYQUKR0bbvGHX2zvYP9Ooy+qO2t/k
-	 a4UkFuKUSKcLo7ZQhZgEficn/6k/jIf6SbHT5EBCz+6aTkJ+ZWsCp9+nKjxfJTtiX8
-	 JRWNJNYjUtF6FXOsJcPdpb3ni+CxTlsrInu/ubsTR/5GGups2Xrtk8EyFJvo26/+kx
-	 RZ17kajnCs9aQ==
-Message-ID: <643e0e9bbab98d442add8e6ef0c39c923942e9d0.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1 7/7] ARM: dts: aspeed: Harma: remove pca9546
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Mon, 17 Jun 2024 17:11:27 +0930
-In-Reply-To: <20240613152425.1582059-8-peteryin.openbmc@gmail.com>
-References: <20240613152425.1582059-1-peteryin.openbmc@gmail.com>
-	 <20240613152425.1582059-8-peteryin.openbmc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=linaro.org; s=google; t=1718610884; x=1719215684; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mvHTWZh3SokmdNjxkdtSNtzGeiXleD8xQv+taJV8T10=;
+        b=ykf/fZacCMdOBMK+Nictq8RmgBED0A8pKaH3bgaEr3Bq7tc7FvmSA1s/S36JaKFkzy
+         3xakFAaJdOk1Z3FspX3UmetPjjmC/Bd/vBP5S5C3nzgBQLXOtpGKs8sujjRWdqXqdvp1
+         A8CZF9QDrwlMoUVSU3eTJqMuzmWNU4+AX6b8/DhrMVWA7Wb4Qgmcxw/oEfVwPmnoUAns
+         P137yPKpITSkB+xr68O36GaPJjKnkok7Ou2naHKhLTGnrGS+mpv7hcZNSuWTXts9VAHe
+         RdE1Ot6ni373SRMVnHNAOZLtF8wFSHGcyxCL5i++56gHwS2UWsqaF3/KhlmcUTr7rj3f
+         ep5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718610884; x=1719215684;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mvHTWZh3SokmdNjxkdtSNtzGeiXleD8xQv+taJV8T10=;
+        b=Q9bCuu/MJuqmklBfe3qYW5KSEs/2hovQQgLRZGbb26ocAJOTmRgBycLZWtRnr7Qvrf
+         qDwna9+tSn/emzC9QrmIiXrvHG+RD/w65R7+fvu9NDo13AJ8eWzyoUEYFI5sNp5MHXCf
+         QoG/ldNvGKjZcZFZevv89ZsVAwO1H7R5NEQ5fRHbr5oX1rDBBH3wVNF6gadsZozvjI4u
+         ODDBMl3EVyznrvdZjYehFVhUt4FRXX3aEigl1GRT4jGUGqwWyfafo2NKRXexrSyW2I3k
+         SSBdVy4Fo6eQCx1nWGxMZIR3ZxYx1eizzYIAMUMHVp80SiUg2qLsIRE62SJSplpI97ve
+         wcDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUaccIzppCh1P48xZkM/1bJf/M4Ao0qW6HfGN6DMhm9LiCBxbR0D86wpoPYYqsDJKn5GTahZ8DWpUuXAMOaCPJRuhMUI5Bt9DEaZg==
+X-Gm-Message-State: AOJu0Ywy0ZW6WTnWiT6lpNaSILTwQfyBHpZUYtHtZps1fJ3+TIJDmmDI
+	kIAbee3rvAqxeva0Kiki6fHh9PXJztG/CbD8nhN5Vjqrbn3A7jbijnaq020gxnU=
+X-Google-Smtp-Source: AGHT+IEVZgF7GuqCy2gMgL5vTvx4VTzWWZjwFflwFmRAPAD+6Lhdke8DJW2mMtdoRuiYOwZ5VzZWpw==
+X-Received: by 2002:a2e:a415:0:b0:2ec:1c95:ff02 with SMTP id 38308e7fff4ca-2ec1c9600c0mr45719121fa.7.1718610883660;
+        Mon, 17 Jun 2024 00:54:43 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05c89a1fsm12615441fa.106.2024.06.17.00.54.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 00:54:43 -0700 (PDT)
+Date: Mon, 17 Jun 2024 10:54:41 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	andersson@kernel.org, ebiggers@google.com, neil.armstrong@linaro.org, 
+	srinivas.kandagatla@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	robh+dt@kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	kernel@quicinc.com, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	quic_omprsing@quicinc.com, quic_nguyenb@quicinc.com, bartosz.golaszewski@linaro.org, 
+	konrad.dybcio@linaro.org, ulf.hansson@linaro.org, jejb@linux.ibm.com, 
+	martin.petersen@oracle.com, mani@kernel.org, davem@davemloft.net, 
+	herbert@gondor.apana.org.au, psodagud@quicinc.com, quic_apurupa@quicinc.com, 
+	sonalg@quicinc.com
+Subject: Re: [PATCH v5 04/15] soc: qcom: ice: add hwkm support in ice
+Message-ID: <3eehkn3cdhhjfqtzpahxhjxtu5uqwhntpgu22k3hknctrop3g5@f7dhwvdvhr3k>
+References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
+ <20240617005825.1443206-5-quic_gaurkash@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617005825.1443206-5-quic_gaurkash@quicinc.com>
 
-Hi Peter,
-
-On Thu, 2024-06-13 at 23:24 +0800, Peter Yin wrote:
-> remove pca9546 and add Aegis fru device
-
-Is there some relationship between these two things? Can you elaborate?
-
-You also add a couple of GPIO expanders that aren't mentioned here?
-
-Andrew
-
->=20
-> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+On Sun, Jun 16, 2024 at 05:50:59PM GMT, Gaurav Kashyap wrote:
+> Qualcomm's ICE (Inline Crypto Engine) contains a proprietary
+> key management hardware called Hardware Key Manager (HWKM).
+> This patch integrates HWKM support in ICE when it is
+> available. HWKM primarily provides hardware wrapped key support
+> where the ICE (storage) keys are not available in software and
+> protected in hardware.
+> 
+> When HWKM software support is not fully available (from Trustzone),
+> there can be a scenario where the ICE hardware supports HWKM, but
+> it cannot be used for wrapped keys. In this case, standard keys have
+> to be used without using HWKM. Hence, providing a toggle controlled
+> by a devicetree entry to use HWKM or not.
+> 
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
 > ---
->  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 56 +++++++++----------
->  1 file changed, 25 insertions(+), 31 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arc=
-h/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> index d892e646fced..4ff9e0104bbe 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> @@ -20,10 +20,6 @@ aliases {
->  		i2c21 =3D &imux21;
->  		i2c22 =3D &imux22;
->  		i2c23 =3D &imux23;
-> -		i2c24 =3D &imux24;
-> -		i2c25 =3D &imux25;
-> -		i2c26 =3D &imux26;
-> -		i2c27 =3D &imux27;
->  		i2c28 =3D &imux28;
->  		i2c29 =3D &imux29;
->  		i2c30 =3D &imux30;
-> @@ -391,33 +387,6 @@ gpio@31 {
->  		"","","","";
->  	};
-> =20
-> -	i2c-mux@71 {
-> -		compatible =3D "nxp,pca9546";
-> -		reg =3D <0x71>;
-> -		#address-cells =3D <1>;
-> -		#size-cells =3D <0>;
-> -
-> -		imux24: i2c@0 {
-> -			#address-cells =3D <1>;
-> -			#size-cells =3D <0>;
-> -			reg =3D <0>;
-> -		};
-> -		imux25: i2c@1 {
-> -			#address-cells =3D <1>;
-> -			#size-cells =3D <0>;
-> -			reg =3D <1>;
-> -		};
-> -		imux26: i2c@2 {
-> -			#address-cells =3D <1>;
-> -			#size-cells =3D <0>;
-> -			reg =3D <2>;
-> -		};
-> -		imux27: i2c@3 {
-> -			#address-cells =3D <1>;
-> -			#size-cells =3D <0>;
-> -			reg =3D <3>;
-> -		};
-> -	};
->  	// PTTV FRU
->  	eeprom@52 {
->  		compatible =3D "atmel,24c64";
-> @@ -427,6 +396,31 @@ eeprom@52 {
-> =20
->  &i2c11 {
->  	status =3D "okay";
+>  drivers/soc/qcom/ice.c | 153 +++++++++++++++++++++++++++++++++++++++--
+>  include/soc/qcom/ice.h |   1 +
+>  2 files changed, 150 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c
+> index 6f941d32fffb..d5e74cf2946b 100644
+> --- a/drivers/soc/qcom/ice.c
+> +++ b/drivers/soc/qcom/ice.c
+> @@ -26,6 +26,40 @@
+>  #define QCOM_ICE_REG_FUSE_SETTING		0x0010
+>  #define QCOM_ICE_REG_BIST_STATUS		0x0070
+>  #define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
+> +#define QCOM_ICE_REG_CONTROL			0x0
+> +/* QCOM ICE HWKM registers */
+> +#define QCOM_ICE_REG_HWKM_TZ_KM_CTL			0x1000
+> +#define QCOM_ICE_REG_HWKM_TZ_KM_STATUS			0x1004
+> +#define QCOM_ICE_REG_HWKM_BANK0_BANKN_IRQ_STATUS	0x2008
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_0			0x5000
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_1			0x5004
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_2			0x5008
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_3			0x500C
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_4			0x5010
 > +
-> +	gpio@30 {
-> +		compatible =3D "nxp,pca9555";
-> +		reg =3D <0x30>;
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
-> +	};
-> +	gpio@31 {
-> +		compatible =3D "nxp,pca9555";
-> +		reg =3D <0x31>;
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
+> +/* QCOM ICE HWKM reg vals */
+> +#define QCOM_ICE_HWKM_BIST_DONE_V1		BIT(16)
+> +#define QCOM_ICE_HWKM_BIST_DONE_V2		BIT(9)
+> +#define QCOM_ICE_HWKM_BIST_DONE(ver)		QCOM_ICE_HWKM_BIST_DONE_V##ver
 > +
-> +		gpio-line-names =3D
-> +		"","","","",
-> +		"","","presence-cmm","",
-> +		"","","","",
-> +		"","","","";
-> +	};
+> +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V1		BIT(14)
+> +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V2		BIT(7)
+> +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE(v)		QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V##v
 > +
-> +	// Aegis FRU
-> +	eeprom@52 {
-> +		compatible =3D "atmel,24c64";
-> +		reg =3D <0x52>;
-> +	};
+> +#define QCOM_ICE_HWKM_BOOT_CMD_LIST1_DONE		BIT(2)
+> +#define QCOM_ICE_HWKM_BOOT_CMD_LIST0_DONE		BIT(1)
+> +#define QCOM_ICE_HWKM_KT_CLEAR_DONE			BIT(0)
+> +
+> +#define QCOM_ICE_HWKM_BIST_VAL(v)	(QCOM_ICE_HWKM_BIST_DONE(v) |		\
+> +					QCOM_ICE_HWKM_CRYPTO_BIST_DONE(v) |	\
+> +					QCOM_ICE_HWKM_BOOT_CMD_LIST1_DONE |	\
+> +					QCOM_ICE_HWKM_BOOT_CMD_LIST0_DONE |	\
+> +					QCOM_ICE_HWKM_KT_CLEAR_DONE)
+> +
+> +#define QCOM_ICE_HWKM_V1_STANDARD_MODE_VAL	(BIT(0) | BIT(1) | BIT(2))
+> +#define QCOM_ICE_HWKM_V2_STANDARD_MODE_MASK	GENMASK(31, 1)
+> +#define QCOM_ICE_HWKM_DISABLE_CRC_CHECKS_VAL	(BIT(1) | BIT(2))
+> +#define QCOM_ICE_HWKM_RSP_FIFO_CLEAR_VAL	BIT(3)
+>  
+>  /* BIST ("built-in self-test") status flags */
+>  #define QCOM_ICE_BIST_STATUS_MASK		GENMASK(31, 28)
+> @@ -34,6 +68,9 @@
+>  #define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK	0x2
+>  #define QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK	0x4
+>  
+> +#define QCOM_ICE_HWKM_REG_OFFSET	0x8000
+> +#define HWKM_OFFSET(reg)		((reg) + QCOM_ICE_HWKM_REG_OFFSET)
+> +
+>  #define qcom_ice_writel(engine, val, reg)	\
+>  	writel((val), (engine)->base + (reg))
+>  
+> @@ -46,6 +83,9 @@ struct qcom_ice {
+>  	struct device_link *link;
+>  
+>  	struct clk *core_clk;
+> +	u8 hwkm_version;
+> +	bool use_hwkm;
+> +	bool hwkm_init_complete;
 >  };
-> =20
->  &i2c12 {
+>  
+>  static bool qcom_ice_check_supported(struct qcom_ice *ice)
+> @@ -63,8 +103,21 @@ static bool qcom_ice_check_supported(struct qcom_ice *ice)
+>  		return false;
+>  	}
+>  
+> -	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
+> -		 major, minor, step);
+> +	if (major >= 4 || (major == 3 && minor == 2 && step >= 1))
+> +		ice->hwkm_version = 2;
+> +	else if (major == 3 && minor == 2)
+> +		ice->hwkm_version = 1;
+> +	else
+> +		ice->hwkm_version = 0;
+> +
+> +	if (ice->hwkm_version == 0)
+> +		ice->use_hwkm = false;
+> +
+> +	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d, HWKM v%d\n",
+> +		 major, minor, step, ice->hwkm_version);
+> +
+> +	if (!ice->use_hwkm)
+> +		dev_info(dev, "QC ICE HWKM (Hardware Key Manager) not used/supported");
+>  
+>  	/* If fuses are blown, ICE might not work in the standard way. */
+>  	regval = qcom_ice_readl(ice, QCOM_ICE_REG_FUSE_SETTING);
+> @@ -113,27 +166,106 @@ static void qcom_ice_optimization_enable(struct qcom_ice *ice)
+>   * fails, so we needn't do it in software too, and (c) properly testing
+>   * storage encryption requires testing the full storage stack anyway,
+>   * and not relying on hardware-level self-tests.
+> + *
+> + * However, we still care about if HWKM BIST failed (when supported) as
+> + * important functionality would fail later, so disable hwkm on failure.
+>   */
+>  static int qcom_ice_wait_bist_status(struct qcom_ice *ice)
+>  {
+>  	u32 regval;
+> +	u32 bist_done_val;
+>  	int err;
+>  
+>  	err = readl_poll_timeout(ice->base + QCOM_ICE_REG_BIST_STATUS,
+>  				 regval, !(regval & QCOM_ICE_BIST_STATUS_MASK),
+>  				 50, 5000);
+> -	if (err)
+> +	if (err) {
+>  		dev_err(ice->dev, "Timed out waiting for ICE self-test to complete\n");
+> +		return err;
+> +	}
+>  
+> +	if (ice->use_hwkm) {
+> +		bist_done_val = ice->hwkm_version == 1 ?
+> +				QCOM_ICE_HWKM_BIST_VAL(1) :
+> +				QCOM_ICE_HWKM_BIST_VAL(2);
+> +		if (qcom_ice_readl(ice,
+> +				   HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_STATUS)) !=
+> +				   bist_done_val) {
+> +			dev_err(ice->dev, "HWKM BIST error\n");
+> +			ice->use_hwkm = false;
+> +			err = -ENODEV;
+> +		}
+> +	}
+>  	return err;
+>  }
+>  
+> +static void qcom_ice_enable_standard_mode(struct qcom_ice *ice)
+> +{
+> +	u32 val = 0;
+> +
+> +	/*
+> +	 * When ICE is in standard (hwkm) mode, it supports HW wrapped
+> +	 * keys, and when it is in legacy mode, it only supports standard
+> +	 * (non HW wrapped) keys.
 
+I can't say this is very logical.
+
+standard mode => HW wrapped keys
+legacy mode => standard keys
+
+Consider changing the terms.
+
+> +	 *
+> +	 * Put ICE in standard mode, ICE defaults to legacy mode.
+> +	 * Legacy mode - ICE HWKM slave not supported.
+> +	 * Standard mode - ICE HWKM slave supported.
+
+s/slave/some other term/
+
+Is it possible to use both kind of keys when working on standard mode?
+If not, it should be the user who selects what type of keys to be used.
+Enforcing this via DT is not a way to go.
+
+> +	 *
+> +	 * Depending on the version of HWKM, it is controlled by different
+> +	 * registers in ICE.
+> +	 */
+> +	if (ice->hwkm_version >= 2) {
+> +		val = qcom_ice_readl(ice, QCOM_ICE_REG_CONTROL);
+> +		val = val & QCOM_ICE_HWKM_V2_STANDARD_MODE_MASK;
+> +		qcom_ice_writel(ice, val, QCOM_ICE_REG_CONTROL);
+> +	} else {
+> +		qcom_ice_writel(ice, QCOM_ICE_HWKM_V1_STANDARD_MODE_VAL,
+> +				HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_CTL));
+> +	}
+> +}
+> +
+> +static void qcom_ice_hwkm_init(struct qcom_ice *ice)
+> +{
+> +	/* Disable CRC checks. This HWKM feature is not used. */
+> +	qcom_ice_writel(ice, QCOM_ICE_HWKM_DISABLE_CRC_CHECKS_VAL,
+> +			HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_CTL));
+> +
+> +	/*
+> +	 * Give register bank of the HWKM slave access to read and modify
+> +	 * the keyslots in ICE HWKM slave. Without this, trustzone will not
+> +	 * be able to program keys into ICE.
+> +	 */
+> +	qcom_ice_writel(ice, GENMASK(31, 0), HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_0));
+> +	qcom_ice_writel(ice, GENMASK(31, 0), HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_1));
+> +	qcom_ice_writel(ice, GENMASK(31, 0), HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_2));
+> +	qcom_ice_writel(ice, GENMASK(31, 0), HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_3));
+> +	qcom_ice_writel(ice, GENMASK(31, 0), HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_4));
+> +
+> +	/* Clear HWKM response FIFO before doing anything */
+> +	qcom_ice_writel(ice, QCOM_ICE_HWKM_RSP_FIFO_CLEAR_VAL,
+> +			HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BANKN_IRQ_STATUS));
+> +	ice->hwkm_init_complete = true;
+> +}
+> +
+>  int qcom_ice_enable(struct qcom_ice *ice)
+>  {
+> +	int err;
+> +
+>  	qcom_ice_low_power_mode_enable(ice);
+>  	qcom_ice_optimization_enable(ice);
+>  
+> -	return qcom_ice_wait_bist_status(ice);
+> +	if (ice->use_hwkm)
+> +		qcom_ice_enable_standard_mode(ice);
+> +
+> +	err = qcom_ice_wait_bist_status(ice);
+> +	if (err)
+> +		return err;
+> +
+> +	if (ice->use_hwkm)
+> +		qcom_ice_hwkm_init(ice);
+> +
+> +	return err;
+>  }
+>  EXPORT_SYMBOL_GPL(qcom_ice_enable);
+>  
+> @@ -149,6 +281,10 @@ int qcom_ice_resume(struct qcom_ice *ice)
+>  		return err;
+>  	}
+>  
+> +	if (ice->use_hwkm) {
+> +		qcom_ice_enable_standard_mode(ice);
+> +		qcom_ice_hwkm_init(ice);
+> +	}
+>  	return qcom_ice_wait_bist_status(ice);
+>  }
+>  EXPORT_SYMBOL_GPL(qcom_ice_resume);
+> @@ -156,6 +292,7 @@ EXPORT_SYMBOL_GPL(qcom_ice_resume);
+>  int qcom_ice_suspend(struct qcom_ice *ice)
+>  {
+>  	clk_disable_unprepare(ice->core_clk);
+> +	ice->hwkm_init_complete = false;
+>  
+>  	return 0;
+>  }
+> @@ -205,6 +342,12 @@ int qcom_ice_evict_key(struct qcom_ice *ice, int slot)
+>  }
+>  EXPORT_SYMBOL_GPL(qcom_ice_evict_key);
+>  
+
+Documentation?
+
+> +bool qcom_ice_hwkm_supported(struct qcom_ice *ice)
+> +{
+> +	return ice->use_hwkm;
+
+I see that use_hwkm can change during runtime. Will it have an impact on
+a driver that calls this first?
+
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_ice_hwkm_supported);
+> +
+>  static struct qcom_ice *qcom_ice_create(struct device *dev,
+>  					void __iomem *base)
+>  {
+> @@ -239,6 +382,8 @@ static struct qcom_ice *qcom_ice_create(struct device *dev,
+>  		engine->core_clk = devm_clk_get_enabled(dev, NULL);
+>  	if (IS_ERR(engine->core_clk))
+>  		return ERR_CAST(engine->core_clk);
+> +	engine->use_hwkm = of_property_read_bool(dev->of_node,
+> +						 "qcom,ice-use-hwkm");
+
+DT bindings should come before driver changes.
+
+>  
+>  	if (!qcom_ice_check_supported(engine))
+>  		return ERR_PTR(-EOPNOTSUPP);
+> diff --git a/include/soc/qcom/ice.h b/include/soc/qcom/ice.h
+> index 9dd835dba2a7..1f52e82e3e1c 100644
+> --- a/include/soc/qcom/ice.h
+> +++ b/include/soc/qcom/ice.h
+> @@ -34,5 +34,6 @@ int qcom_ice_program_key(struct qcom_ice *ice,
+>  			 const struct blk_crypto_key *bkey,
+>  			 u8 data_unit_size, int slot);
+>  int qcom_ice_evict_key(struct qcom_ice *ice, int slot);
+> +bool qcom_ice_hwkm_supported(struct qcom_ice *ice);
+>  struct qcom_ice *of_qcom_ice_get(struct device *dev);
+>  #endif /* __QCOM_ICE_H__ */
+> -- 
+> 2.43.0
+> 
+
+-- 
+With best wishes
+Dmitry
 
