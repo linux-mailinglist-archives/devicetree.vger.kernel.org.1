@@ -1,283 +1,150 @@
-Return-Path: <devicetree+bounces-76697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F84890B9BD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:32:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD3690B9FB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B69241C22D78
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:32:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4653C1C22C4D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774E6194AF6;
-	Mon, 17 Jun 2024 18:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE65B198A05;
+	Mon, 17 Jun 2024 18:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="XQdeQGeG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eEoUSeql"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005B2364BE;
-	Mon, 17 Jun 2024 18:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1EE441F;
+	Mon, 17 Jun 2024 18:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718649154; cv=none; b=V/+KUT+LjwUSwEXUGlBbPbXgu21xntaKKgZlPNjoAl5+FMbXBJ4X/3gxbsWV0HnarJUqimmA4SbvRu1FwVifroyJ17VmnCg1+E2h22eqg8C/7YyWaDo76EWVJOfeOdlYH/UGRGjVjPAvZAGobtnhzycwDNHJCkfwpMIumGJktiM=
+	t=1718649960; cv=none; b=oBjH2LE9WbuVRdhP7Df7f5mdSGDkWLNwmAHCcVacUz4lADXyZhrvZM4JCNk63dDdGx+31AxNI+5Te1a9L38sR78KTy33kuXpAX7VdZVvXZkast9hifZqfTwc5Zo7EAJ1Iu6faxuUnjyOR0JNwMmegOv+x3kYuMfsH7mfHi+JA1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718649154; c=relaxed/simple;
-	bh=P2wdIP0uG4dkAQoGvXpaeCBMIlNZeaWaFsz2yUMEZCE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lCssyfvQWNGpDjC61BG/koN9Va7qaGuMHSo7M9nV4jgxINTO2p9byC86ajfqOQ5obR7T3weF/9js4xWz+u7Ms4slcQmqS1vmu8IVYMDCR6cLsczyVZLYO7mwAqtLoVPyunkQwD19XqZ2ZP0xnk9XtSHUra74boLl3UAWZr3XA6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=XQdeQGeG; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 0B0E41F9D9;
-	Mon, 17 Jun 2024 20:32:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1718649142;
-	bh=jpkd5bGIuhY5z6UHD0UtFi3x8Uchmz6Nlu3roTK2w/w=; h=From:To:Subject;
-	b=XQdeQGeGI8h2e9Hpr2g85F2t1huGD4smCQCCInN3HAgwPG0orYF+Rak6unbaQr7g5
-	 FhFQEMOqr6HIPSlATMY11BIjbek6xNBSlt8p4CFHASK/zT9jqVks2EkFqbt3hZX5ja
-	 mPe5o7gXFXLs52oy4xbKmAd2vaOFVBWMH6IIPgl49yL4nzw6jduvnK4MAxg8DqQ9H0
-	 1ST3tEjKbLdxRjywkBKGRk83lbr/P7w+ul/0ZdnbFp/z9NhxxXeN6Qa1eiVMo9O6GZ
-	 KpgduggkXyhsAsQ1QIF/rldZIAWqkqVvX2IAzQyV6pHGOz2K76Rvw28qVnnxNyfT/b
-	 qouYoA51JQk8w==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Francesco Dolcini <francesco@dolcini.it>,
-	=?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+	s=arc-20240116; t=1718649960; c=relaxed/simple;
+	bh=6kWQpS9eLM072jgzABjjZKWSIyTdU2QIJ0UNEyUE0bM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XZWiWzwQDh94yJW8MtHXwiuw3dGDqyFkz1dmDmY425dlJOrxeaSd9X5B727Vx6QYgZUOx55Cl4PlN0BDXSubUr1/yJmJENLlCVQLUcA48i0RlozCFBL8UguJO8RjZnPimehsc97HZl+MJJubSDWNKYdX5Y5y9LMaJqUtdVlxVM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eEoUSeql; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-354b722fe81so4230285f8f.3;
+        Mon, 17 Jun 2024 11:45:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718649957; x=1719254757; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RNDprGsvBjQ5lpg+8nT0XkdPxAQlru1DaA56wCGwcSM=;
+        b=eEoUSeqlVjUQKjal769EFVcCBW348V93cIm9JrrTWrNHFJ/cpB7UTFCF1tfml3s9/7
+         krGqOHBPQ84rtFErBnXdAS96CPDC3xyuEijg5X61R85ttqf+KFnv8fAUUx6ulPCp6gu7
+         pC6PKeyrDlW5xO3TV5uJ0RhNywAgvAGl4Zpk5myb/Ryo6A4H8o/ZjTS1XqWzVvoEYB3E
+         ebrC8EI3SSKerOELiyPZe0Sfmml30vzUyA3lJ29vMA4N3UgT37N+E3z4sEzUQ5Ida2zM
+         WF6lndasD2oa349zD8Mj19YVxHyXMQWq6VIcElDoJRTSaWXHXZk7fJ/rNu3UXTi2/Dr1
+         7BRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718649957; x=1719254757;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RNDprGsvBjQ5lpg+8nT0XkdPxAQlru1DaA56wCGwcSM=;
+        b=F4mbt1YOZO1kGcCt4EzEMKi8VxMxlkInTjLUxSZ2PSVMFWvYJu/vjzYKPjxELx4/wz
+         f0MmQbW5UCVsQ4ztMNnvJc+CD/7mNG9VkSv+Zc/JMInc+OBVUJoNmzzSkD0xbt4UTTWp
+         oFo/slOeg02U3GPdSI/aUPMN08mUQ2M3TNB2hVRCzkXzfa63tka1e3GVVZcV//6IF2sX
+         AIcoAfDb9YQzbNk3ItvtKdFFdEuEa5Elqp7+64hXHv7/0KopNLof6ToC1g6MAjhTcnB5
+         y34qaHYFQA8dOIet56rS2KX3+J2TJvph62qfVpOL9dZb0LD5t5ebGvtm9t2++MKTUSU6
+         BKUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUtb0EWRNphJGGVnQcOfs4TPoBhWvAa07v3YoUnH27eTjzW8oRM8n1kmcMlaUpwa/lQRHqwSFnHWx1xBFTM8aX0iz/iPY4HKQqa12/I/4rDjHU3uhEidMT5zV+7vxjaMger5UJFgCcJPCbEaJH18bvMTTrhf0s3LzOBFCwpHrHmLht9
+X-Gm-Message-State: AOJu0Yzb7NJwys5j350fPFowX4z+8nWmBy3Jv6VKq7RL+fBkU1jZm0HO
+	8+i3SCfKiOd4i15NncLA6dVtd5sP9dbNxwg5hFDiOtDQI9uEyO/+
+X-Google-Smtp-Source: AGHT+IEfr0TY7yXXoteO4w7tww2cogvFqswv9L2uCG4Ka71RmqqqN/X2AtgALlXI49v+50ryBr/SnQ==
+X-Received: by 2002:a5d:468a:0:b0:360:709c:5040 with SMTP id ffacd0b85a97d-3607a736520mr7972239f8f.2.1718649957041;
+        Mon, 17 Jun 2024 11:45:57 -0700 (PDT)
+Received: from debian.fritz.box ([93.184.186.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-360750f249csm12410327f8f.75.2024.06.17.11.45.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 11:45:56 -0700 (PDT)
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: 
+Cc: Sebastian Reichel <sre@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-	linux-iio@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 1/2] dt-bindings: iio: adc: add ti,ads1119
-Date: Mon, 17 Jun 2024 20:32:14 +0200
-Message-Id: <20240617183215.4080-2-francesco@dolcini.it>
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas@t-8ch.de>,
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: [PATCH v4 0/2] power: supply: add support for MAX1720x standalone fuel
+Date: Mon, 17 Jun 2024 20:45:02 +0200
+Message-Id: <20240617184504.304211-1-dima.fedrau@gmail.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240617183215.4080-1-francesco@dolcini.it>
-References: <20240617183215.4080-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+Changes to max1721x_battery.c:
+  - reading manufacturer, model name and serial number is only possible
+    when SBS functions of the IC are enabled.(nNVCfg0.enSBS) Factory
+    default is off. Manufacturer is "Maxim Integrated" and the model name
+    can be derived by register MAX172XX_DEV_NAME. Serial number is not
+    available anymore.
+  - According to the datasheet MAX172XX_BAT_PRESENT is at BIT(3) not
+    BIT(4). Furthermore the naming is misleading, when BIT(3) is set the
+    battery is not present.
+  - Removed DeviceName, ManufacturerName and SerialNumber from struct
+    max17211_device_info
 
-Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
-with I2C interface.
+Changes in V2:
+  - Changed E-Mail in Patch (2/2) Signed-Off
 
-Datasheet: https://www.ti.com/lit/gpn/ads1119
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
-v3:
- - add avdd and dvdd supplies
- - add Reviewed-by: Conor Dooley <conor.dooley@microchip.com
+Changes in V3:
+  - Changed E-Mail in Patch (2/2) Author
 
-v2:
- - add diff-channels and single-channel
- - add XOR check to make diff/single channel property required 
- - add interrupts, reset-gpios and vref-supply to the example 
- - fix missing additionalProperties/unevaluatedProperties warning in channels
- - remove ti,gain and ti,datarate as they aren't fixed hw properties
- - remove unnecessary | 
----
- .../bindings/iio/adc/ti,ads1119.yaml          | 155 ++++++++++++++++++
- MAINTAINERS                                   |   7 +
- 2 files changed, 162 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+Changes in V4:
+  - add compatibles "maxim,max17201, "maxim,max17205" in bindings
+  - use generic node name fuel-gauge@36 instead of max17201@36 in bindings
+  - remove status in bindings
+  - fix spelling mistakes in commit message
+  - fix indentation in Kconfig
+  - fix typos in max1720x_battery.c
+  - Drop bat and bat_desc from info struct.
+  - MAX172XX_DEV_NAME and MAX172XX_DESIGN_CAP aren't volatile, adjust regmap
+  - constify max1720x_manufacturer, max17201_model, max17205_model
+  - constify max1720x_battery_props
+  - Remove braces around reg in max172xx_current_to_voltage
+  - Skip initialization of reg_val in max1720x_battery_get_property
+  - Remove braces around FIELD_GET() in max1720x_battery_get_property
+  - In case POWER_SUPPLY_PROP_PRESENT there is an early return if ret < 0.
+    Return 0 if regmap_read fails, device is not responding in case
+    battery is not inserted
+  - Implement multi-byte readings instead of i2c_smbus_read_word_data
+  - Drop ancillary from info
+  - Drop both calls to i2c_set_clientdata in max1720x_probe
+  - Get rid of max1720x_remove
+  - Remove comma after sentinel in max1720x_of_match
+  - Fix alignment of max1720x_i2c_driver
+  - Fix return value of dev_err_probe after max1720x_probe_sense_resistor
+    to use ret instead of PTR_ERR(info->bat)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-new file mode 100644
-index 000000000000..ba6850ab1f90
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-@@ -0,0 +1,155 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads1119.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments ADS1119 ADC
-+
-+maintainers:
-+  - João Paulo Gonçalves <jpaulo.silvagoncalves@gmail.com>
-+
-+description:
-+  The TI ADS1119 is a precision 16-bit ADC over I2C that offers single-ended and
-+  differential measurements using a multiplexed input. It features a programmable
-+  gain, a programmable sample rate, an internal oscillator and voltage reference,
-+  and a 50/60Hz rejection filter.
-+
-+properties:
-+  compatible:
-+    const: ti,ads1119
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  avdd-supply: true
-+  dvdd-supply: true
-+
-+  vref-supply:
-+    description:
-+      ADC external reference voltage (VREF).
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - avdd-supply
-+  - dvdd-supply
-+
-+patternProperties:
-+  "^channel@([0-6])$":
-+    $ref: adc.yaml
-+    type: object
-+    properties:
-+      reg:
-+        minimum: 0
-+        maximum: 6
-+
-+      diff-channels:
-+        description:
-+          Differential input channels AIN0-AIN1, AIN2-AIN3 and AIN1-AIN2.
-+        oneOf:
-+          - items:
-+              - const: 0
-+              - const: 1
-+          - items:
-+              - const: 2
-+              - const: 3
-+          - items:
-+              - const: 1
-+              - const: 2
-+
-+      single-channel:
-+        description:
-+          Single-ended input channels AIN0, AIN1, AIN2 and AIN3.
-+        minimum: 0
-+        maximum: 3
-+
-+    oneOf:
-+      - required:
-+          - diff-channels
-+      - required:
-+          - single-channel
-+
-+    required:
-+      - reg
-+
-+    unevaluatedProperties: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@40 {
-+            compatible = "ti,ads1119";
-+            reg = <0x40>;
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-+            reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+            avdd-supply = <&reg_avdd_ads1119>;
-+            dvdd-supply = <&reg_dvdd_ads1119>;
-+            vref-supply = <&reg_vref_ads1119>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            #io-channel-cells = <1>;
-+
-+            channel@0 {
-+                reg = <0>;
-+                single-channel = <0>;
-+            };
-+
-+            channel@1 {
-+                reg = <1>;
-+                diff-channels = <0 1>;
-+            };
-+
-+            channel@2 {
-+                reg = <2>;
-+                single-channel = <3>;
-+            };
-+
-+            channel@3 {
-+                reg = <3>;
-+                single-channel = <1>;
-+            };
-+
-+            channel@4 {
-+                reg = <4>;
-+                single-channel = <2>;
-+            };
-+
-+            channel@5 {
-+                reg = <5>;
-+                diff-channels = <1 2>;
-+            };
-+
-+            channel@6 {
-+                reg = <6>;
-+                diff-channels = <2 3>;
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bff979a507ba..8acc2c83605c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22390,6 +22390,13 @@ M:	Robert Richter <rric@kernel.org>
- S:	Odd Fixes
- F:	drivers/gpio/gpio-thunderx.c
- 
-+TI ADS1119 ADC DRIVER
-+M:	Francesco Dolcini <francesco@dolcini.it>
-+M:	João Paulo Gonçalves <jpaulo.silvagoncalves@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-+
- TI ADS7924 ADC DRIVER
- M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
- L:	linux-iio@vger.kernel.org
+Dimitri Fedrau (2):
+  dt-bindings: power: supply: add support for MAX17201/MAX17205 fuel
+    gauge
+  power: supply: add support for MAX1720x standalone fuel gauge
+
+ .../bindings/power/supply/maxim,max1720x.yaml |  55 +++
+ drivers/power/supply/Kconfig                  |  12 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/max1720x_battery.c       | 363 ++++++++++++++++++
+ 4 files changed, 431 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
+ create mode 100644 drivers/power/supply/max1720x_battery.c
+
 -- 
 2.39.2
 
