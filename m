@@ -1,400 +1,184 @@
-Return-Path: <devicetree+bounces-76368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A083090A67A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:08:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC45B90A689
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ACC12811D8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:08:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C83A283D40
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5D0186E47;
-	Mon, 17 Jun 2024 07:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iQWCdB8M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6980188CAE;
+	Mon, 17 Jun 2024 07:11:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2129.outbound.protection.outlook.com [40.107.215.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C098879D3;
-	Mon, 17 Jun 2024 07:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718608088; cv=none; b=UUatXDrmsy9ZO2cJZBelq6dUNRYE4nAfj6EqL4Zi9aXKPbMZuYZZSHjuzlAZ82fUHr8WmSW9rDdiKJWxa3L4BB8ZQ7DvvS6Tb1zaEHSpsyNGX9t06ErOfXPS1qhZ5mweil1fbYkmLbeUlbqiWdP0bv4rQoK1SZsrT4nOgv5l0kk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718608088; c=relaxed/simple;
-	bh=/hV02jB8gmWed00h4zs5eMEP9wSXXhMK13AogFlkfCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Kl8hFptudHDiAr/AIz6o1HoH5+f3T6Y76mb/9pgM7V8tF2TonNSWdht5mMUG7cO+1ZTsM9URBA3PsNAyY0QXEcab1AY795CKfqoica5ktkv/tneE2tPlCJmRCDNFtsgv2AvGbYn1M47MngTeR4XzxFU8fNNoWHbaE7v1CnlC70o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iQWCdB8M; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ebeefb9a7fso55554451fa.0;
-        Mon, 17 Jun 2024 00:08:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718608085; x=1719212885; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FoCW1BgGcZMuZF9y7iRf3s0Ub7Hp0RCpNkgiGwon8YY=;
-        b=iQWCdB8M5gun4aICacS0jtzpq0isVDal6E/lHA0oLmbspn//MqFSl+lhRxVE3x4xLr
-         rS7I7aTTdZvo+C2m13G9xKQaw+yPgIe4HreePQly7wtVRuVcAEe+mPmMPip6D0djbHZQ
-         xTtGXYtswBCWXUtWWgyFeo9hrHIN/nxi+iWEFpH3DD8cDE4p86CDs/5ZU82+jg/aKEQo
-         JgN+PYnGVWci1q7njWjCBgo//XRvG3FUKkK16/WV0uXMjruERmN9QuW3IVv3XZA4w6OK
-         6fvOoQu0+XJJgyfNHGaBSafLLAAWgOUyeSkLPBfF/OuErA0ur7PyS/eFr5mBER7l/sGK
-         8Gug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718608085; x=1719212885;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FoCW1BgGcZMuZF9y7iRf3s0Ub7Hp0RCpNkgiGwon8YY=;
-        b=E8780z5CK7lANnX06TCLoJLNdcklqmso8cXYJzPr0xU2G0xD8Hr/UCTQ+VRyVb9rCU
-         +E2tt6A/lMDv3C7aVobqR1T7v5m4kQ7zgZlIxGJ9J7u+Q8pOuLXnVyhSfFSAaCV3rQ/w
-         y+AfTsu1InBM23n1UfjsbBTXixwWZsZP78/8U2NZrpaD9oFU+NVowuV3ZjlVK4OrFxfO
-         CTfrRaVilZM7Q9cRMq8hEgPncKq9BMu5L1rz/YZtOQG26uZqgpqe0ApSlKVF25JrcUMr
-         1NfHwAi/3EiD9Icft1NvW5hhYaMexQ09QCE7ASGH7VLcLEvseBClOAiFuzs51RY5NIgU
-         d7EA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRJxjMYvIQTaQbArPLJ1qvRZczZkDkAhohOvwsR/IHwwsuYYM/9ZyYJDw6cVjz7qeT7i0baCPnyvLtviH9D69ew6p/62RqJteh4jWtw6rL2dEt1Z2lkKsUS0uOn/KMqxdgCffuT9+dlqInQXEOW7FsddabGn0Vq0i9iRgMPm3wnhNckw==
-X-Gm-Message-State: AOJu0Ywytk/wv/7TfhbJ+3hvJXp1lIFrR0+R/DponBmFPuU6iSM3jXPq
-	Mo+cT2JwCOUG2ENMRdQFHDB+FmkWdixnQjcsAcMdk1NRimqFDWVe
-X-Google-Smtp-Source: AGHT+IEzUUQR0RzGjaGn8edp82oyyXNbVghZFfR9mpmISEbYy2bhxagrMqm1ut1LrBI2Vqi+7pRteA==
-X-Received: by 2002:a05:6512:2384:b0:52c:8a39:83d7 with SMTP id 2adb3069b0e04-52ca6e9073amr7286523e87.52.1718608084312;
-        Mon, 17 Jun 2024 00:08:04 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd? ([2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca28723d1sm1158340e87.131.2024.06.17.00.08.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 00:08:03 -0700 (PDT)
-Message-ID: <6e5d6734-eae0-49fd-a1ed-beda00e37209@gmail.com>
-Date: Mon, 17 Jun 2024 10:08:02 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD24181CE1;
+	Mon, 17 Jun 2024 07:11:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718608289; cv=fail; b=XhAaEqHZfXoeT0zoTUXjfCZn+f+xUnwi5A4fNF4ljIzIMgmzIwQ+MNRBR7k91D9YDFwM4D8Lxh9tjxk+pBUGvzvElDvmk5tUTG/oqybxpRUVY0tMNq33SW8oMT1Z/Id9a5NgVynqzsKhrFpKLlr1Y+KJy8rOn4MLPv6NdUaxJXs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718608289; c=relaxed/simple;
+	bh=DearOktLtxNzn+LmqnF1d9mQroFjAZU/obxx66cg0bk=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=hQJ05V+n30SGzaBcJyLp5wQFTnNILIeIworWFnVVeymtneS+vfe5PbUi3T3GI8HcxU9KaAesoxmY+62jVjVZLtnrF8n3kAG+9lnomE0HT9if9/gDuV5YWfSKwwiXVUj1su/wyPMCTPBfR90ThdEVV/MpWa/nh1f/TNqKF34BJ/s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.215.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aTtzuPlm9DHu9xYLlwyVYhdzBDUjx5k6SheeL/QI+YrRi0/pr+932HC4IP4QwS1ekVo4M0YIi/3Ivk4+UqcZbDUG9ju2H0MbP/pKGKtcGzM2+08n92b309XDmq+8xgALR/+vZ354IYFHn5KObHK0bNyxoXKCvK7JoonMURyIggSnwOl9mdBxmprvWjOu+0T3LSn0lXP7DWYjfT0ZkJzE83OsduMHjgF1UD/orqgtKN5NwK0zuZh0upLJLpGXgVWgNEaKt3cdFr91n93UDdXKysrHTTMuXk1MR6Zs18no4QGASdn3ZDasUguQUkYXWWrZMK6ZmrSXmGgArgfomLK+0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ccZBzCiztifQu6aaEgEHa8HADASEjhUj0bWe6OYnMTE=;
+ b=KeezgYDHJNeVvCxElGk/AezNGDVj9QY0YSafMz3Q5qXe3MJo11MOB3dzn8IJqnr0C61yVPIc1XoEYi9ad3yOgLc/ipvPIpeLGxSPl7UDP0U4W0jVCKeDS/sbkI7gFdFogQVmRyaTkVsdgHPxX//Ccj9PuOVCvUU+QrgbRBWIzsjh/hNnKPEDIe32Vsb9evS4Et6xPVrzQA06QAu0pG6Xy7nwESo9IcAEeLlBDkwKXLbCPi9VPfFCWHQgNNavqY9wJTWJF+90znAB24kjb9UCSXCuFICtli/YnE72Y7WWkb2aZ7bcCq0w6FMJRv53SS891arQRlMpLGe505kcZDjgRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
+ by SG2PR03MB6705.apcprd03.prod.outlook.com (2603:1096:4:1d0::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Mon, 17 Jun
+ 2024 07:11:23 +0000
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7677.029; Mon, 17 Jun 2024
+ 07:11:23 +0000
+From: Jacobe Zang <jacobe.zang@wesion.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de
+Cc: nick@khadas.com,
+	efectn@protonmail.com,
+	jagan@edgeble.ai,
+	dsimic@manjaro.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jacobe Zang <jacobe.zang@wesion.com>
+Subject: [PATCH v2 0/5] arm64: dts: Add board support for Khadas Edge2
+Date: Mon, 17 Jun 2024 15:11:07 +0800
+Message-Id: <20240617071112.3133101-1-jacobe.zang@wesion.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR06CA0017.apcprd06.prod.outlook.com
+ (2603:1096:4:186::15) To TYZPR03MB7001.apcprd03.prod.outlook.com
+ (2603:1096:400:26a::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] iio: light: ROHM BH1745 colour sensor
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
- Mudit Sharma <muditsharma.info@gmail.com>, lars@metafoo.de,
- krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
- ivan.orlov0322@gmail.com, javier.carrasco.cruz@gmail.com,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,
- "Haikola, Heikki" <Heikki.Haikola@fi.rohmeurope.com>,
- "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>
-References: <20240606162948.83903-1-muditsharma.info@gmail.com>
- <20240606162948.83903-2-muditsharma.info@gmail.com>
- <20240608172227.17996c75@jic23-huawei>
- <CANhJrGM9czj0RL3OLCgRHEKc2QOjG9P0AZTrZxvYUk65TCpHRg@mail.gmail.com>
- <20240611181407.00003f61@Huawei.com>
- <c9c0d585-617d-4181-afa2-c5743848f5c9@gmail.com>
- <20240615192348.182eb1b8@jic23-huawei>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240615192348.182eb1b8@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|SG2PR03MB6705:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49a8ccdc-790a-48e0-da14-08dc8e9cb1e6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230037|376011|7416011|1800799021|366013|52116011|38350700011;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?h8ZbzVYmWIOBybv06+xj2jhM+Elshw85QRoZQ/tVW584QBP2YhBDQ+ZPgwhI?=
+ =?us-ascii?Q?GSdOIrDn0gi/hKB0m82ASy/p2zgjjaF/XyjBcNmlZDZs7WhhhoVDgCoG3stG?=
+ =?us-ascii?Q?M1rtHeG2Uqoy/Nkrpfs1sMAFScTt14CouN2kBWr03QlS3ZDY/sQeVyovL6Xe?=
+ =?us-ascii?Q?dR61Zs/ZE2uYLtlCAl4XsVhCKUB9MN5hAWRFcEtvhWTVkH9ZsZ55+oOntUfL?=
+ =?us-ascii?Q?ncykzHNL5SrAujSi+U6W7Uc8XcTCHt6+cWnldJuQsclCY23NC3gep6lpPisX?=
+ =?us-ascii?Q?xy7mRWpmrZv6Fpr7w7Vo28O+the04/8Amnm6DJ5PnEk/HqPuJoQpG4gvcaB9?=
+ =?us-ascii?Q?8wWzPrT/WgVWSTXHK0+/twS1wexTdGQFSleMpehys6tcnPmcGnCcBe4/qgTs?=
+ =?us-ascii?Q?oTCRixmXXMAkaA7xbOFZWej2uXHCjiQiUEDUiB80ygFsOrwu79JdZq35XwRx?=
+ =?us-ascii?Q?cYgHhnXU2w3iQcHcub8H4hTWtvSHmyomXPHVAVdc5mbrRqRxG/t2giBJff41?=
+ =?us-ascii?Q?GAvdHZuKb1HX7odCWRptgoZb82Z++rkNBnrcoeJ9p8VezQ/3xLPa6NDwfsv+?=
+ =?us-ascii?Q?MeyuT2M1hkmo36WqEzwzf4xOckkCvAm315Qy+5Ovc2wkxQVX4cMIj0lAjD+P?=
+ =?us-ascii?Q?C/qAi3W7xtHWi0s7/kYEnROB5J1xWaZNNVVecI4MDfegbQ5++FXMlsu2mFBZ?=
+ =?us-ascii?Q?xL39IzoYiKf6xQy89wMa4SJ4vTjvueUV9r5WMg/VgXSgzK1SnOiDHfj3njRI?=
+ =?us-ascii?Q?yiks+Co3Xv5HlmaN69GNtRAUvH/oRc+PMSAWsjKh5ROigkjHKI3gvJlRQ7Mz?=
+ =?us-ascii?Q?iqkcevMEd2H4y3NHHU6aG+Win8jYg2PQ6r/GlYOQ833b2YVPs8HNJn50kgvl?=
+ =?us-ascii?Q?cRIVRhCgoUNNR/QFjVOGMWp2ubkCHYm7XNRmqTIsOcRLcCZl7aV/kAhFuWFC?=
+ =?us-ascii?Q?fiOpKbgI4wK2mOyM4rzr5rVSmomTnY9HASHOyeknO7LpoSMEwDl289iNiuhH?=
+ =?us-ascii?Q?wEt5FLlQ2Dbeq95kddBpxcHCAA1Wea5wIIx4ErRmU9hp9tt5h2svQPO2dChM?=
+ =?us-ascii?Q?ECjcrR4WaW68Q+Z+JGH2tMqOHCwSGs02idngNOwcBKZjLTP+xAn7OrRn/2Zy?=
+ =?us-ascii?Q?WsNJOHpsg9bxEaW1eiV4J1Mr8GBLn5aCJXGF+60/MHjP2rsigExzUmjsNpKv?=
+ =?us-ascii?Q?+S8XynCh/e1F95ETM3TcfkXLD1/7yiippKIjONQfFD65YJ9M3EnO4SaJk/Q+?=
+ =?us-ascii?Q?IMizg8zofJslv7DiIkR7rbjs6aHduLqwGNKGIfcTrc37Q0QUFPDOkeGzGJuF?=
+ =?us-ascii?Q?djM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(376011)(7416011)(1800799021)(366013)(52116011)(38350700011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gkAAz0wIq5pvCgQJeXYCK8kv5TaGh6peJS1vLD1L8MQOT1G3mYkV35ntoMnV?=
+ =?us-ascii?Q?54QZfs9tjwOgCgawT8vNmFqu2VSo6PtTmXiZu70Qx34umEXKbmyb3+yDeaW+?=
+ =?us-ascii?Q?mYIQZOL8tj+fYCRFmhZZxSe0A3ASXkvDhlyEIf81k0evLCczlhLmhWDe07bl?=
+ =?us-ascii?Q?UTAjatQVrVZ+XeQAL0KxY/p/lFouZGMzCviipzTY47J7aUSs9AHKO+H9cYQZ?=
+ =?us-ascii?Q?e4rdy7LHHWCP6qXA3fqkRPGVdpR5esrybLCT8g75jQC+RIQAgsYLXd9pGxjZ?=
+ =?us-ascii?Q?j175zIQ2bWYh+yN1tUTW3dzgmpwNnnCiOvyjRt3+PTCJWiUsNsrKHwqoiOqS?=
+ =?us-ascii?Q?8yloeynEdEFefif4oACZnQnVhrxw63tC2GfrIpqmtFZY5L5sEeVQd7ZbBoK6?=
+ =?us-ascii?Q?90wTKK6WV5W0joDATQKhMISgorhTFVbA+DCu8vLRmdGW1h6vB9f5VvDtxVe4?=
+ =?us-ascii?Q?DOOdlwY2tA8BfoVprnCN3YGkTdiToGV360CLIpWkp34wreynkbOkcSr7+Q6E?=
+ =?us-ascii?Q?XpwSJLvQWjqmLd8Q1uEd7/Val7mFYeQv2QV7Hin+y256PyDgEiSd3ICmxmlv?=
+ =?us-ascii?Q?RKol/WKFq294NBWSC7ufoJ8GjzxrHcNa3Y4oIoP+O7P1SZE+eu0peBiLFz1O?=
+ =?us-ascii?Q?gwQqkhZVUJAHyYn8en/7cc/v9x8KtYEy1ThX5MI/KTIQtnIdL+6bNOpb1+NC?=
+ =?us-ascii?Q?ZRXb9eOPFKqZvf4H48RjucS9QyF0PNIvUV3FYollBjK3Xajfb+FRrU/y0CsS?=
+ =?us-ascii?Q?wTO3ufiAfK0kXKrAdjzzEID65hd8Pm4s3/qnAAXRFq2fXc1fbH6aXQLo5brH?=
+ =?us-ascii?Q?d8/bEfD5wKM1fjz0uH6FPNR+wMfdsbRON/SIdapV7+Wj6VecfXhnT9Hj/9gk?=
+ =?us-ascii?Q?0TxNs3t9SzeG/IGEeCNxlGFnATAeOL1Z0P+5WXlkOPGnNbkaMMrt8z3ywQC1?=
+ =?us-ascii?Q?b5LuIAB/o24V51YF0/+5ZS9ao3qr4y0WflI5kyVVjoC0Mh8GKqFqlCBMCqHj?=
+ =?us-ascii?Q?LVXaeK1qBXUGj+kMQ/OotxhrjczDnZh8CXYf+g8cqkNVqHE0v4dAKKSAB8Xm?=
+ =?us-ascii?Q?66jXoqTAvkFyJBQzYzyLDwwwVmft2qilZHXx6coXokf7VywM41rzCVMsw+eO?=
+ =?us-ascii?Q?IjqxOmw3z2jtUnDAkkQgLykOB2X+Q16wDeeX2s7bLVEfKKKV5ym7542nX5YB?=
+ =?us-ascii?Q?H/fLdnAIk1P1KZe2PkKtVj+0YGmG0vOIvMUDjCSDTFZAzDx/SpVtId2faEnr?=
+ =?us-ascii?Q?EuyTPqW9YabDsQrkDzoifiTCCVPQwSEPAcJllnVbynKsI9tthQ4TInHgMM2+?=
+ =?us-ascii?Q?Pq+GgzWci6ViPl+/82blUrryda67h9lIcwXBjzd296pYk2DCKDyxOjbmAtJv?=
+ =?us-ascii?Q?F/ga7xTYPXIQ4W4wF5ymdw//bhc02UQeuKHznAcXDlBYhOT+mVomze0hcbag?=
+ =?us-ascii?Q?aWd8nukhWh0/oDqDTR9WgJfg4urmekN623AUqbrLvWj7vRjKictfhMFh4r9A?=
+ =?us-ascii?Q?/p3Ck/L5HS88j6Yhw7rjptCG3NBkseIRxgJqvdBX8erwCByed6xdotuF1n57?=
+ =?us-ascii?Q?cdAhw9yJ2K1f5vwAKNSwlcCDGLhjHmtqIxSA4vxMelUBBonyCdSC46gVfQzl?=
+ =?us-ascii?Q?bQ=3D=3D?=
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49a8ccdc-790a-48e0-da14-08dc8e9cb1e6
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2024 07:11:23.2570
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GbJEx+Rl2pV02nPnJzJEAJl1cW80oFBBRVpWFw1y+Rs3aiLx8NAFzGqmlSsyqmTirmhStUKwvHqcvOlKSP/QUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB6705
 
-On 6/15/24 21:23, Jonathan Cameron wrote:
-> On Wed, 12 Jun 2024 09:07:01 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> On 6/11/24 20:14, Jonathan Cameron wrote:
->>> On Mon, 10 Jun 2024 08:58:44 +0300
->>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>>    
->>>> la 8. kesäk. 2024 klo 19.22 Jonathan Cameron (jic23@kernel.org) kirjoitti:
->>>>>
->>>>> On Thu,  6 Jun 2024 17:29:42 +0100
->>>>> Mudit Sharma <muditsharma.info@gmail.com> wrote:
->>>>>      
->>>>>> Add support for BH1745, which is an I2C colour sensor with red, green,
->>>>>> blue and clear channels. It has a programmable active low interrupt
->>>>>> pin. Interrupt occurs when the signal from the selected interrupt
->>>>>> source channel crosses set interrupt threshold high or low level.
->>>>>>
->>>>>> This driver includes device attributes to configure the following:
->>>>>> - Interrupt pin latch: The interrupt pin can be configured to
->>>>>>     be latched (until interrupt register (0x60) is read or initialized)
->>>>>>     or update after each measurement.
->>>>>> - Interrupt source: The colour channel that will cause the interrupt
->>>>>>     when channel will cross the set threshold high or low level.
->>>>>>
->>>>>> This driver also includes device attributes to present valid
->>>>>> configuration options/values for:
->>>>>> - Integration time
->>>>>> - Interrupt colour source
->>>>>> - Hardware gain
->>>>>>      
->>>>   
->>>>>> +
->>>>>> +#define BH1745_CHANNEL(_colour, _si, _addr)                                   \
->>>>>> +     {                                                                     \
->>>>>> +             .type = IIO_INTENSITY, .modified = 1,                         \
->>>>>> +             .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),                 \
->>>>>> +             .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN) | \
->>>>>
->>>>> Provide _SCALE instead of HARDWAREGAIN
->>>>> As it's an intensity channel (and units are tricky for color sensors given
->>>>> frequency dependence etc) all you need to do is ensure that if you halve
->>>>> the _scale and measure the same light source, the computed
->>>>> _RAW * _SCALE value remains constant.
->>>>
->>>> ...Which is likely to cause also the integration time setting to
->>>> impact the SCALE.
->>>>
->>>> You may or may not want to see the GTS-helpers
->>>> (drivers/iio/industrialio-gts-helper.c) - which have their own tricky
->>>> corners. I think Jonathan once suggested to me to keep the
->>>> HARDWAREGAIN as a read-only attribute to ease seeing what is going on.
->>>> For the last couple of days I've been reworking the BU27034 driver to
->>>> work with the new sensor variant - and I can definitely see the value
->>>> of the read-only HARDWAREGAIN when we have per channel gain settings +
->>>> integration time setting which all contribute to the scale...
->>>
->>> I'm wondering if that was good advice, but it's definitely better
->>> than letting userspace control the gain and integration time separately
->>
->> I woke up last night at 03.14 AM thinking of this :rolleyes:
-> 
-> Ah.  I'm one for failing to get to sleep due to late night musing.
-> No idea if I muse because I'm not sleeping, or not sleep because
-> of musing!
+These patches add board support as following:
 
-Either way, not getting sleep at night is rarely amusing. :/ Sometimes 
-it is actually one of the early signs of a burn out.
+ - 2x TYPE-C port
+ - BCM43438 bluetooth
+ - 1x HDMI port
+ - AP6275P Wi-Fi module
+ - Adjust CPU frequency
 
->>> as there is no sensible way to know how to control that beyond -
->>
->> I agree and disagree :)
->> I agree that it is simpler to just change the scale when readings get
->> saturated - or when more accuracy is needed. Hence, implementing the
->> scale change as is done now makes very much sense.
->>
->> However, I can imagine that sometimes the measurement time plays a role
->> - and people would like to have more fine grained control over things.
->> In that case, if driver only allows changing things via the scale, then
->> the driver is probably doing autonomous choices regarding the
->> integration time - which may not be optimal for all cases (*citation
->> needed).
-> 
-> Agreed even without the complexity you mention later- there will be cases
-> where people want ugly (noisy) data quickly so will crank the gain up
-> to reduce the integration time.
-> How often they apply to light sensors is an interesting question.
-> 
->>
->> As you may remember, I implemented the ROHM RGB and ALS sensors (the
->> BU270xx series) so that the integration time can be set as well as the
->> gain. These sensors (at least the BU27034, don't remember all the dirty
->> details of the RGB sensors) had per-channel gain and a global
->> integration time settings. Hence, the scale can be set separately for
->> each channel. I invented a restriction that setting the per-channel
->> scale tried to maintain the integration time and change the gain - but
->> if it was not possible, the scale change changes also the integration
->> time in order to yield the desired scale.
->>
->> Problem was that the integration time was a global setting, and changing
->> it for one channel results scale change also on the other channel(s).
->>
->> To mitigate such side-effects I implemented logic that the scale change
->> for other channels (caused by the integration time change) is
->> compensated by changing the gain for these unrelated channels. Eg, if
->> scale change for channel #1 required doubling the integration time -
->> which effectively doubled the "gain contributed by integration time"
->> also for the channel #2 and #3 - then the HARDWAREGAIN for the unrelated
->> channels #2 and #3 is halved in order to keep their scale unchanged. Great.
->>
->> Except that this is not always possible. The HWGAIN for these unrelated
->> channels may have been already set to the other extreme, and further
->> reducing/increasing is not possible. Or, there may be unsupported
->> multipliers (gaps) in the gain range, so that setting the hardwaregain
->> to required value is not possible.
->>
->> Here I just decided to return an error to caller and disallow such scale
->> change.
->>
->> This is very much annoying solution but I ran out of good ideas. Adding
->> more logic to the driver to work around this felt like asking for a
->> nose-bleed. I was sure I ended up adding a bug or two, and resulting
->> code that was so hairy I could never look at it again :) We can call
->> that as an unmaintainable mess.
->>
-> 
-> Yeah. I vaguely recall this one was a bit nasty and result wasn't
-> entirely satisfying.
-> 
->> Still, what makes this even more annoying is that it might be possible
->> to support the requested scale by selecting yet another integration
->> time. Eg, imagine a situation where we have 2 channels. Both channels
->> support gains
->>
->> 1x, 2x, 8x, 16x, 32x. 4x is not supported.
->>
->> Let's further say we have integration times 50mS 100mS, 200mS, 400mS -
->> causing "effective gains" 1x, 2x, 4x and, 8x
->>
->> Now, say channel #1 is using gain 2x, channel #2 is using 8x.
->> Integration time is set to 400mS.
->>
->> Assume the user would like to double the scale for channel #2. This
->> means the "total gain" should be halved. The HWGAIN can't be halved
->> because 8x => 4x is not supported, so driver decides to drop the
->> integration time from 400mS to 200mS instead. That'd do the trick.
->>
->> Then the driver goes to check if the channel #1 can maintain the scale
->> with this integration time. Gain caused by integration time is now
->> halved so HWGAIN for channel #1 should be doubled to mitigate the
->> effect. Well, the new gain for channel #1 should now go from 2x => 4x -
->> which is not supported, and the driver returns error and rejects the change.
->>
->> Still, the hardware could be set-up to use integration time 50mS
->> (dropping the gain for channels from 8x => 1x eg. 8 times smaller), and
->> channel #2 HWGAIN go from 8x => 2x (4 times smaller) thus doubling the
->> scale. The channel #1 wants to maintain scale, so HWGAIN for channel #1
->> should go 8 times greater, from 2x => 16x which is possible.
->>
->> To make this even more annoying - the available_scales lists the 'halved
->> scale' for the channel #1 as supported because there is a way to achieve
->> it. So, the user can't really easily figure out what went wrong. Having
->> the read-only HARDWAREGAIN and knowing the gains sensor's channels
->> support would give a hint - but this is far from obvious. listing the
->> supported hardwaregains might make things a bit better - but using the
->> standard "available" entry in sysfs might make user to assume setting
->> the hardwaregain is possible.
-> 
-> That would be an odd bit of interface indeed.
-> 
->>
->> We may invent a new entry to list the supported hardwaregains - and I
->> believe adding the logic to find supported gain-timing combinations is
->> then easier (and less error-prone) in user-land applications than it is
->> in driver - but I am wondering if it actually would be better just allow
->> setting both the hardwaregain and integration time individually for
->> those applications which may care... Well, I am probably just missing
->> some culprit supporting setting the hardwaregain causes.
-> 
-> We could do something similar to what we did recently for a power mode
-> switch on an IMU.  The interface is also less than ideal though but
-> was exploring a similar problem:
-> [PATCH v4 2/2] iio: imu: inv_icm42600: add support of accel low-power mode
-> https://lore.kernel.org/all/20240605195949.766677-3-inv.git-commit@tdk.com/
+Changes in v2:
+ - Removed unrelated parts in Wi-Fi patch.
+ - Fix indent error in USB-C patch.
 
-I took a quick look at this. So, changing the "power-mode" enum enables 
-doing the not-so-standard changes.
+ - Link to v1: https://patchwork.kernel.org/project/linux-rockchip/cover/20240617030537.3112356-1-jacobe.zang@wesion.com/
 
-> That was much simpler than this. The device has two power modes
-> (trading off power vs noise).  The lowest sampling frequencies only
-> worked in low power mode and the highest only in low noise mode.
-> A few in the middle were available in both modes.  We defaulted to
-> choosing low power if available.  The aim was to design an interface
-> where everything worked as normal if you didn't grab the 'expert'
-> controls. So it defaults to a preference for low power (here
-> equivalent would be defaults to lowest hardware gain) but we provided
-> an ability to override - if possible. So you could specify what you
-> wanted the gain to be and if that was possible whilst retaining the
-> sampling frequency (here that would be the scale) then the change
-> would be made. If not it wouldn't an reading the mode back (here
-> that would be reading hardware gain) would return the actual setting
-> achieved.  In that case the power mode setting isn't sticky. To enter
-> the low noise mode you have to be at a sampling frequency where it
-> is supported.  That sort of restriction might not work here.
-> 
-> In that case the control grabbed to override the power mode is not
-> standard ABI so we an be fairly sure no normal software will tweak
-> it but in the rare occasion where a user needs it the tweak is
-> available.
-> 
-> Here we might need a similar 'out of ABI' trick to make it clear that
-> scale is the main control to use.
+---
+Jacobe Zang (5):
+  arm64: dts: rockchip: Add USB-C to Khadas Edge 2
+  arm64: dts: rockchip: Add bluetooth rfkill to Khadas Edge2
+  arm64: dts: rockchip: Add HDMI & VOP2 to Khadas Edge 2
+  arm64: dts: rockchip: Add AP6275P wireless support to Khadas Edge 2
+  arm64: dts: rockchip: Add cpufreq support to Khadas Edge2
 
-Thank you for the ideas. Adding a entry to enable 'not standard 
-settings' definitely sounds like a way to explore. I think I'll return 
-to this later :)
-
->> I believe there are many use-cases where it would work if we just
->> allowed the channel #1 scale to change as a side-effect of changing
->> channel #1 scale. Still, I am very reluctant to do this as there could
->> be different type of data coming from these channels, and different
->> consumers for this data. Allowing another application to unintentionally
->> change the data for other app would in my opinion be very nasty.
-> 
-> You've lost me here.
-
-Sorry. I did not really manage to explain it too well.
-
-Basically, I just further pondered handling the the case where:
-- a requested change of channel #A scale could not be done purely by 
-changing the gain but would require an integration time change.
-AND
-- the channel #B gain change caused by integration time change could not 
-be compensated by changing #B hardwaregain.
-
-I was just saying that allowing this channel #A scale change even though 
-it would also impact the scale of channel #B would probably be Ok for 
-many users. I think that a few of the users could be prepared for other 
-channels to change as well, and go read back all channels' scales after 
-changing one.
-
-Then I was further speculating that there might be cases where channel 
-#A data and channel #B data were consumed by different applications. It 
-was all just speculation. For example, the original BU27034 had two 
-channels for visible light and one for IR. So I built an imaginary 
-device which ran two different user applications, one interested on 
-visible light for darkening my sunglasses and the other interested on IR 
-channel and then toggling the cooling fan to keep my vacation drinks at 
-optimum temperature. :)
-
-Here, if the sunglasses application changing the scale for visible light 
-caused also the scale of the IR channel to change, my fan-application 
-would unexpectedly start pick up differently scaled values and the 
-temperature of my drinks would be all wrong.
-
->> The problem is not exactly urgent though and I am not working on an
->> application suffering from it. But it managed to interrupt my glymphatic
->> system while it was cleaning-up my brains last night. I will use it as
->> an excuse if you find any errors from this babbling :)
-> 
-> For this complexity I definitely want a known user who cares.
-> It's complex and we'd need to construct the userspace to use it.
-
-Agreed. It's nice someone drops me back on earth when I start drifting 
-too far :) Thanks!
-
-> Gut feeling is normally people are actually cranking scaling of light
-> channels up and down together as hopefully they are approximately balanced
-> for 'white' giving similar scales on all sensors (by filters or fixed gains)
-
-I appreciate your insight on how people usually use these devices :) 
-It's very valuable to me.
-
-> and people would only need to care if they were trying to measure a weak
-> blue signal in a red world. If we have a case that doesn't work well
-> for that sort of global scaling (I can sort of see that as a possible
-> problem due to the transition states not being possible) then we
-> should make sure that one works!
-
-Yes. I think some users will eventually hit to a scale transition which 
-will be NACKed by the driver. Also, I don't think this problem will be 
-specific to the BU27034 sensor, but in some form this will be possible 
-for many gain-time-scale type devices. I just don't have a good generic 
-solution in my mind right now.
-
-Oh, besides, it seems raining stopped. Time to turn off my computer and 
-go out to the yard :)
-
-Yours,
-	-- Matti
+ .../dts/rockchip/rk3588s-khadas-edge2.dts     | 200 +++++++++++++++++-
+ 1 file changed, 197 insertions(+), 3 deletions(-)
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.34.1
 
 
