@@ -1,169 +1,153 @@
-Return-Path: <devicetree+bounces-76653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD7690B72E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:58:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7D590B745
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:02:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B0792860B7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:58:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 408D21F220DE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39744166306;
-	Mon, 17 Jun 2024 16:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E16168481;
+	Mon, 17 Jun 2024 17:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ju6HrgnM"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="KM4OWEYX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out203-205-221-242.mail.qq.com (out203-205-221-242.mail.qq.com [203.205.221.242])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE3A1EB46;
-	Mon, 17 Jun 2024 16:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD034157A41;
+	Mon, 17 Jun 2024 17:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.242
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718643479; cv=none; b=lLWbzwaHF56yiqjLs788FXRlMF/hUQ/LVsxy54QvjmMBfm6IQz9mCzJazFU4zB0OZNLdaCfsaXbqWqWVWxL/+WcUnVEq5OyWiMegYu/FFdFAYjDLDtEtd9+vXDsYhFPo5DU2My6LHBpw6kWIcaXJl2zOjImSH3EzSshRPnV5BOU=
+	t=1718643720; cv=none; b=guP0OBykLZ/Ne7maQSwYTjRkxt1jSf6uZRuYrqo46AXW5/zlSFgFqOH14EQguB9vTJ16ZoDoVcYUTHBc1m+UD9MRry8CBzpPakgyU2mljso84iNtM4V//ilNTf0A9aD+4fHFIaJDy8RhARVWrldZQ+ylNnU638xhtXZIBGCVRDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718643479; c=relaxed/simple;
-	bh=EYhhFEKPUKJ3A9IrkQKwCZDAWmChwoTv2GvWJZl4HTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=imZmdj4ryEINtLUkDzErn0Ypo1qfLNoAQKXmslftyw9vOjzfjS359aXdP3yt9kjbzyaZV2X+wWsVkCoPGXkWCkaBM87Qcrhs0autllpP9mxC6UHHcctVQ/Afy00fsOnFw7whXd5Ir68joY8YV6O5lc0vaaLNxxzI6qil2Z5NKNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ju6HrgnM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06D28C2BD10;
-	Mon, 17 Jun 2024 16:57:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718643478;
-	bh=EYhhFEKPUKJ3A9IrkQKwCZDAWmChwoTv2GvWJZl4HTQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ju6HrgnMDQT8HCJ1gUVvsZkxpNmMPkxNK3n1ac+FHNzr28r23Kig+IKENMFY/aoli
-	 sCrEBTKypzLwmzOOTIIQ+dJZ1hNc1oWeFMO8ZDC9sIZ1xs5d4o4htq1Hr5BEYXThIr
-	 MJUPZNtOOzFe+09X+N9PnxFMDSiqPq5nw/V3EV7PtVk5XCTtgGvm+KUr0/4Ra7GtfR
-	 imIYZJIek4IdcKtIEL1CznqlsG6budKqedaqWnzWXO98umXX3H+q/CqeSrRqsyHS3o
-	 JuUlB1M/H7vLhAoi3Dh8Qb9g5rFbtITo1p8GxN8KVLUwAV276fyW9cW0u26TaUn7F/
-	 EzOjz/socuMBA==
-Date: Mon, 17 Jun 2024 17:57:53 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Viacheslav <adeep@lexina.in>
-Cc: Rob Herring <robh@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
- amlogic,meson-gx-ao-secure: add secure-monitor property
-Message-ID: <20240617-sulfate-posture-1619f1cdf090@spud>
-References: <20240610084032.3096614-1-adeep@lexina.in>
- <20240610084032.3096614-4-adeep@lexina.in>
- <20240610-dropout-compress-6d6a9b749524@spud>
- <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
- <20240611-undying-earthy-00236ac251aa@spud>
- <20240613164244.GA1999034-robh@kernel.org>
- <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
+	s=arc-20240116; t=1718643720; c=relaxed/simple;
+	bh=wtL6BUiOyxgQMb6ipUZusWcyMpN5m6U1Y2uACLuLyJs=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=VKJySc6SVLYNIaMIViI9Qf06huD28Pj/cCBdJs4X1/AYN/avTZFEIas6BJOczw5+x6wJQckst+P2LI3gIPiXv4757BTSIe2m2oDWOb8plYnBesHScs6+H9RK/m51eQlZNQt7lBIxrfPq/s16n/Xmy0O6WbYjiiL65hA9TRoo65M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=KM4OWEYX; arc=none smtp.client-ip=203.205.221.242
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1718643708; bh=ptOjrwdiruXfiPRbkPbyESZEkYeF5JqwOz+w8fsnr24=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=KM4OWEYXz2pBIQ0/Jx6HuePCjow4lZ4OFfv106kYW+ESlxRbiMlsMkaQ/NFnjA4CS
+	 iV2gIx3qJXvdKlQACJu32IHCV5bpZskrDzoASv4zaQ0uB7vsHYYvUqPVVWWdq/s944
+	 licaDwYHex6zsB1bGRw9vpu3KPe8R1iai6JUtg5U=
+Received: from smtpclient.apple ([2408:8207:18a1:9700:9c85:7ae:3ee:45fe])
+	by newxmesmtplogicsvrszc19-0.qq.com (NewEsmtp) with SMTP
+	id 6DA4896; Tue, 18 Jun 2024 01:01:45 +0800
+X-QQ-mid: xmsmtpt1718643705t949zch05
+Message-ID: <tencent_296E424C52C850A3095F8CA0B07698E30D06@qq.com>
+X-QQ-XMAILINFO: MziGzrjZeogZA2yb15PwWH+GJ01zzp4/qBKBYADeYSFB8UC7ogZnJZFUk1XMIj
+	 fih8FkF7TT7M+PokWHjQ+iIhxR/+qoTffjDIEMjMoEzqo7jGzuqdabu0VDlSAPnGqhHExikl/WJm
+	 RHdW9NR2HI89ird6Ekd9TDkVw5zR4OptUmXIG0PJ9lBT2OcVnLKVYRMbapT3rvkR2jhGDCWn7cnf
+	 ooZX4xHSJP9fNRxJ/hE9ya7YZD+U4oz6MR1H1juPcqubzrqfTUMdaWHSuh+nkmShdxmtxDtkDSSw
+	 si5vSgZMtHK/DhN3fbDzD4eG/mj0f53Xq2phMP7KJXTQnXa/rl15fXH/lvPmagjfuqRVXfRwl/Ok
+	 +VDn/ISoVl04oW6uawIujzNLWptS1tIjchCy7d5su8KCUnPAofKUw3AdHfXZMINibQiWSFm7BVjx
+	 qXQj09HHv4FNFcZTRzfce0FWsawWaz7KQEpVrNpESJDk9nLCIVvbMxu7Cl6IutueRxoJls1thVqw
+	 lF9gyHeP6qFZzFzkEACeVDtP4KEu//50fhpDEDrw8Q/BM9C4N/d0tTJTiYCgGSUfasR2zBR/Gm6d
+	 hWAKZpJfSTCc5XqWjTctvYXLwOv18ZUQou2WOEZ99BZhaKEcPtimU67T1B0rW7BJUayuG/tbN/3u
+	 mrz7OZdG94YDFlTbJ8+EQG5zOW/EDwaHlO5u9SIo3d0134R+sZkh3FyhhwCFo1dpBeOYnBXu5ood
+	 G6F3xy4GLIyzFTawgNCm7Rm7axjRGjodn3ZdZyMEuvn7nRGhvQ/ewQnkvPe53rVRs1WVnY20w0NP
+	 oqautRdBiA5t0kxF++fr2XyfLLn6MKdhuyNkMh6W7dLb7lO0+deYAQCqOGWFg9avHVOHCt8d808s
+	 n6bBVtLtTsl6lVuSt+ty/TJ4vXve1BHiMaYWqr3xmWDaacT9od3aNfizhr5koBU7CamalxoMmnwN
+	 aArNIcH6DDhWDYMNzIFu2ZdODtE72Ed8N+7b5sCjpuAm+P3RHwPetpK7WwDqzWqy4Bxs0gPgo=
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NNsmTeGnFTom/65N"
-Content-Disposition: inline
-In-Reply-To: <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
-
-
---NNsmTeGnFTom/65N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
+Subject: Re: [PATCH v1 7/9] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <ZnA6pZLkI2StP8Hh@xhacker>
+Date: Tue, 18 Jun 2024 01:01:32 +0800
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ linux-riscv@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Anup Patel <anup.patel@wdc.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ devicetree@vger.kernel.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Transfer-Encoding: quoted-printable
+X-OQ-MSGID: <BD2E7EB4-6525-4274-88D0-35005AFB32B1@cyyself.name>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <tencent_701082E2DAE48E2FB857316321778D737C08@qq.com>
+ <ZnAw9QrSD-svYqQ5@xhacker> <20240617-carat-poise-ee63ed6a224e@wendy>
+ <ZnA6pZLkI2StP8Hh@xhacker>
+To: Jisheng Zhang <jszhang@kernel.org>
+X-Mailer: Apple Mail (2.3774.600.62)
 
-On Mon, Jun 17, 2024 at 11:21:30AM +0300, Viacheslav wrote:
-> Thanks for review.
+
+
+> On Jun 17, 2024, at 21:31, Jisheng Zhang <jszhang@kernel.org> wrote:
 >=20
-> 13/06/2024 19.42, Rob Herring wrote:
-> > On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
-> > > On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
-> > > > Hi!
-> > > >=20
-> > > > 10/06/2024 19.08, Conor Dooley wrote:
-> > > > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wro=
-te:
-> > > > > > Add secure-monitor property to schema for meson-gx-socinfo-sm d=
-river.
-> > > > >=20
-> > > > > "bindings are for hardware, not drivers". Why purpose does the "s=
-ecure
-> > > > > monitor" serve that the secure firmware needs a reference to it?
-> > > >=20
-> > > > This driver is an extension to the meson-gx-socinfo driver: it supp=
-lements
-> > > > information obtained from the register with information from the
-> > > > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the mod=
-ule
-> > > > loading order, we cannot do away with meson-gx-socinfo, as it is us=
-ed for
-> > > > platform identification in some drivers. Therefore, the extended in=
-formation
-> > > > is formatted as a separate driver, which is loaded after the secure=
--monitor
-> > > > driver.
-> > >=20
-> > > Please stop talking about drivers, this is a binding which is about
-> > > hardware. Please provide, in your next version, a commit message that
-> > > justifies adding this property without talking about driver probing
-> > > order etc, and instead focuses on what service the "secure monitor"
-> > > provides etc.
-> >=20
-> > To put it another way, how many secure monitors does 1 system have?
+> On Mon, Jun 17, 2024 at 02:29:46PM +0100, Conor Dooley wrote:
+>> On Mon, Jun 17, 2024 at 08:49:57PM +0800, Jisheng Zhang wrote:
+>>> On Mon, Jun 17, 2024 at 01:20:52AM +0800, Yangyu Chen wrote:
+>>>> Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+>>>>=20
+>>>> Key features:
+>>>> - 4 cores per cluster, 2 clusters on chip
+>>>> - UART IP is Intel XScale UART
+>>>>=20
+>>>> Some key considerations:
+>>>> - ISA string is inferred from vendor documentation[2]
+>>>> - Cluster topology is inferred from datasheet[1] and L2 in vendor =
+dts[3]
+>>>> - No coherent DMA on this board
+>>>>    Inferred by taking vendor ethernet and MMC drivers to the =
+mainline
+>>>>    kernel. Without dma-noncoherent in soc node, the driver fails.
+>>>> - No cache nodes now
+>>>>    The parameters from vendor dts are likely to be wrong. It has =
+512
+>>>>    sets for a 32KiB L1 Cache. In this case, each set is 64B in =
+size.
+>>>>    When the size of the cache line is 64B, it is a directly mapped
+>>>>    cache rather than a set-associative cache, the latter is =
+commonly
+>>>>    used. Thus, I didn't use the parameters from vendor dts.
+>>>>=20
+>>>> Currently only support booting into console with only uart, other
+>>>> features will be added soon later.
+>>>=20
+>>> Hi Yangyu,
+>>>=20
+>>> Per recent practice of cv1800b and th1520 upstream, I think a =
+complete
+>>> initial support would include pinctrl, clk and reset, I have =
+received
+>>> the complains from the community. So can you please bring the =
+pinctrl
+>>> clk  and reset at the same time?
+>>=20
+>> What sort of complaints have you got? That the support is too minimal =
+to
+>> be useful?
 >=20
-> One per system in current device tree.
-
-One per system, or one is currently described per system, but more might
-be added later?
-
-> > What do you do if the property is not present? You didn't make it
-> > required which is good because that would be an ABI break.
+> For example =
+https://lore.kernel.org/linux-riscv/95c20c6c-66cd-4f87-920b-5da766317e19@s=
+ifive.com/
 >=20
-> We need an indication of the ability to use the secure-monitor to obtain
-> additional information within the soc driver. It seemed to me that using =
-an
-> explicit reference to the secure-monitor is the best choice.
->=20
-> >=20
-> > You only need a link in DT if there are different possible providers or
-> > some per consumer information to describe (e.g. an interrupt number or
-> > clock ID). You don't have the latter and likely there is only 1 possible
-> > provider.
->=20
-> Would replacing the reference to sm with an option, for example,
-> use-secure-monitor =3D <1>; look more appropriate in this case?
+> Now, I think it's better to "model the clocks/resets/other =
+dependencies"
+> in the initial support. So lacking of pinctrl, clk and reset doesn't
+> fully describe the hardware.
 
-Perhaps a silly question, but (provided there's only one per system, why
-can't the secure-monitor driver expose a function that you can call to get
-a reference to the system-monitor? I did something similar before with
-a call to in mpfs_sys_controller_get() mpfs_rng_probe(). Granted,
-mpfs-rng is probed from software so it's slightly different to your
-case, but the principle is the same and it's not unheard of for code in
-drivers/soc to expose interfaces to other drivers like this. You can
-just call a function like that, and know whether there's a secure
-monitor, without having to retrofit a DT property.
+Sound like a good idea. In this case, we don't need to change the
+dts repeatedly after a new soc driver is supported.=
 
-Thanks,
-Conor.
-
---NNsmTeGnFTom/65N
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBrEQAKCRB4tDGHoIJi
-0t04AP9IZpDaZr0ZUw5JP/PZ+mfLbOJbqMfSkCUHR55GfiYSjQEAsopLOy9vwxux
-yt1njFci5qcGHtd4l6xcHFxdHYq+XQ0=
-=0Ywh
------END PGP SIGNATURE-----
-
---NNsmTeGnFTom/65N--
 
