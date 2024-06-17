@@ -1,89 +1,112 @@
-Return-Path: <devicetree+bounces-76402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E1590A783
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:41:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B56FB90A770
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:37:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 179FFB2E90F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:36:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9FDC1C244D9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A5518754D;
-	Mon, 17 Jun 2024 07:36:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="TikU2bPn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A572518C34E;
+	Mon, 17 Jun 2024 07:37:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106DBE554;
-	Mon, 17 Jun 2024 07:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94AB618754D;
+	Mon, 17 Jun 2024 07:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718609781; cv=none; b=ew5H5Qaenj/DiL6Vhj29yG7q2qeCtRb2NyQOp9oJQUhCFYP2OSVDYHyMTCSMjKXd5rgw4pcsi6xZdsEyXDH5tA/l/8P90yb2P/VMH72Amv/aGUsR4UhaqTkqF7XwrDG5nyA8aasJQalnn+t9lI2LXvk+iha95eAWcylHaBNUUzg=
+	t=1718609853; cv=none; b=oazrnA05qBYqkYJT2RwYrKlvZPEkz7iTAS3izEi3tPyO/stIVfrsws3+D52z4PP6AlXe6Are+uBmyW5vhRJxxJX9yYeI25Ur2U48KKVTZMPnx+kL68ozomFOwXaBad2jIRrN7bkH3+dN31JzXAYV/9R4stCIBHUYGlhjB6KiVFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718609781; c=relaxed/simple;
-	bh=iOiT9XbaETPh/FvCvqtFzcLzSYCSL59RFQR96l/c+sY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=p3GuYSR3qclm/ujGiXdFaq24VgRo1kCWhx7XyTfdjue2u9Xu6rlrghTzhtObvI998UL0dsBZODw4xbblyKXhCrW2aw0TNWMr4ElI7iijdVsYE8IKZm7SjyKu40tmguc/w3eR8SBWD/PXlD+j+qvd3xaefMte/iU0WbeDlAKK/XY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=TikU2bPn; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp118-210-79-194.adl-adc-lon-bras32.tpg.internode.on.net [118.210.79.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 242482014A;
-	Mon, 17 Jun 2024 15:36:17 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1718609777;
-	bh=iOiT9XbaETPh/FvCvqtFzcLzSYCSL59RFQR96l/c+sY=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=TikU2bPnSvNMKifTDiW9nN2PW7diSyrEPF2VcwSk0Gc75oNTixqOtJue9r6SQp9YT
-	 m/Ils3hmxFlKoIdOFroZMBwAFEL2B8hNR27a9Ma2I5lHcrnuKDfjLOWXok4Fn0OKhj
-	 3bvcfXScHtyjk7h8Uf+vOZua7UMu/tQBI6uVzyca7G78KgmRZp38EyO89tYS9w9f8i
-	 RCoAK/OVhGm1bga7v/ZjJCOSxpqjPw7JtaUOXCnmmLIiFEzTtdFi/bQ5ga+FfuQRA7
-	 gfUWDjoHmvuDSYOLiq52zuuaXFa2xAWYpV+eaqe2RF6pTWDp1pNB10FWF9rAA55t99
-	 GWufr9eYjWttg==
-Message-ID: <28297cafdf748dd3e2da3e6b54012bf3c88a1be1.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 0/3] dt-bindings: pinctrl: aspeed: Define missing
- functions and groups
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- linux-aspeed@lists.ozlabs.org,  openbmc@lists.ozlabs.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Mon, 17 Jun 2024 17:06:16 +0930
-In-Reply-To: <CACRpkdanSAkR-czs=OUKLh6dpiRk0QDLR-T0ECrG-Y4cY9=Vmg@mail.gmail.com>
-References: 
-	<20240531-dt-warnings-gpio-ast2600-pinctrl-funcs-groups-v1-0-a6fe2281a1b8@codeconstruct.com.au>
-	 <CACRpkdanSAkR-czs=OUKLh6dpiRk0QDLR-T0ECrG-Y4cY9=Vmg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1718609853; c=relaxed/simple;
+	bh=aRWdFzLVfZURJmJduJBKPPGYnq9whgbZmBnQ57F0zTM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F3Ln+uF9ezQYbiHrhzEDNl73bovLVbayx0TmZMClm/tOYz4Y/mCTsapdse3n5+XnwN7AnoHqraoW5o31tl8maoK0P8myDZptvy8thslI0v3VJ7YlgssHtdcVNzjuO/OHWqHnCMpj3lnr5HagKaJ8MAuoqnYRxC//LnpwLxXigy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6316253dc52so29589607b3.0;
+        Mon, 17 Jun 2024 00:37:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718609849; x=1719214649;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CkULF+2ESB/U0wrTn2s5lPj+LcRpJ2ZK8TfZlI/6LPY=;
+        b=f934UQyjVNcCPF4GR4SDiieo6Xy+jEAlWdl8L82GsU6CUr6XspvLW2pQCmZ8W/D1A8
+         v+obOKbG38GnHcBh7uFH1tZ03cbeT7yNHIxp8rI1ZwdxjMup/H6aWGREhd2h12qQH+GY
+         NxwEfUDQaAWl293Cu2e0oGbx//eEXT13lsnsysuHvlx6NvZt9e1lr7tVle/HTNvDNXdp
+         oQEJ3N2CVUToQQRSdk9Q3MMlqitfUm2ilfzXTLJyNOt1Uhl4Hq8KP2Xb82k+XaUHJSjr
+         SaPoDi96cAg2m/tkGPbNKzOW68WOXbbYNm0oykS7z5yXyq6bir55V/aVM0aY/wwz4o4m
+         Bzcg==
+X-Forwarded-Encrypted: i=1; AJvYcCWvUNmcDdDagaHtP/n88+55ALkMJZ9sKzFNVDB6cfaSFdqVer7wuOxKz63cOBx+lFsJhUkDLypBnKouCXj3eC9F6nnKtRy2iMTfYmOIxL7AXsxaIrKXR8jZbp6ohpEa8+QTSjw6PVl0iedZQy1fh7ZTGwSCcWEMpaGDgfy27hmzKdRt3I6NzUGJ4cDi5TYfzCk9Mdxvl6FkKcsnNpTQyRVb4TOey2Da
+X-Gm-Message-State: AOJu0YyfbfTZAcw/tjLFWK+e/RfD48hsFn8sfg7OV8zsgcAXdepdb1ES
+	bShj4ywNa6P7hSROcI2UMGxdpkeknLAcNapTDqxfYkI/fyfTnTStOuTx9mWJ
+X-Google-Smtp-Source: AGHT+IETGMetluZrPaT0awRlvXhyTyrX5WNulhjzR+Nda40pF+TWY1wP0Rgo4p284EQMNm+qX7IX4A==
+X-Received: by 2002:a0d:dec7:0:b0:61a:d21f:a131 with SMTP id 00721157ae682-63223a411ecmr76150057b3.37.1718609849210;
+        Mon, 17 Jun 2024 00:37:29 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6311a446193sm13559347b3.78.2024.06.17.00.37.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jun 2024 00:37:28 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dff2df7de4aso1326349276.2;
+        Mon, 17 Jun 2024 00:37:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXls+8+6IjFdC1g/TnJjWD4AVUceWYBnMMoIDt64xmIJ1QFINsXJqIphnMFre6oQQJ9hii1bwUYdePVr7CcbcYx4BkyzVyPS41GUhmB6p1N77FAtvTx98kgF+J1fYSuuVz87wFPxT6p6VvhSZpiQNinoTcii3FwdGfYgUzSU29fxHOGZ/Q9TVGCEaSb4do5fpYViofBy/N1BwGhBuLwkGS0Keg7V2MB
+X-Received: by 2002:a25:ad48:0:b0:dfb:6d6:a542 with SMTP id
+ 3f1490d57ef6-dff153a66damr5859831276.28.1718609848585; Mon, 17 Jun 2024
+ 00:37:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240613091721.525266-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240613091721.525266-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240613091721.525266-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 17 Jun 2024 09:37:16 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXVF+Lk+biS02zo9L3j5R6OSSdsFig9dtm+oFc__63g_w@mail.gmail.com>
+Message-ID: <CAMuHMdXVF+Lk+biS02zo9L3j5R6OSSdsFig9dtm+oFc__63g_w@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/3] mmc: tmio: Use MMC core APIs to control the
+ vqmmc regulator
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2024-06-17 at 09:34 +0200, Linus Walleij wrote:
-> On Fri, May 31, 2024 at 5:03=E2=80=AFAM Andrew Jeffery
-> <andrew@codeconstruct.com.au> wrote:
->=20
-> > This short series cleans up a collection of binding warnings concerning
-> > use of undefined pinctrl functions and groups. Together they make a
-> > reasonable dent in the volume of output from `make dtbs_check` for the
-> > Aspeed devicetrees.
->=20
-> All patches applied.
->=20
-> Thanks Andrew!
+On Thu, Jun 13, 2024 at 11:17=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Use the mmc_regulator_enable_vqmmc() and mmc_regulator_disable_vqmmc() AP=
+Is
+> to enable/disable the vqmmc regulator.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-That was quick! Thanks!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Andrew
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
