@@ -1,50 +1,49 @@
-Return-Path: <devicetree+bounces-76604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 451E090B51D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:50:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 748ED90B520
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:50:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 431ED1C22C60
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:50:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF984284E9A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA0C15B55E;
-	Mon, 17 Jun 2024 15:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8199615B57E;
+	Mon, 17 Jun 2024 15:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="kepDV1/3"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="CHqgnA5e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B50C615B0F7
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8173A15B15A
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637758; cv=none; b=ex2TAtOul8JVLlr9IRAm14Odtmw5n6BNVPFdLsct11uF38t/2twymBxm0KXfYQVnOl44Uwl235coMJEz4Or/kn7rBiC/manV7g3r2Ix31WDGw/CxJceV3nGsiKTxCAl0LAH83bmR9W+wJ6UJibbAQTff1qxmFfgZRTalg90EuIQ=
+	t=1718637759; cv=none; b=F7JXnWlh6B5sTzMdrr82IPbQCIv1UZ3IryfkssaY4Ynx3gE9+WaJbH77jgA1xs4zfimlyg8WMDc8359Hj09OBVoi3qe1db2JI9+/jv9ypmUJ88FNylqznK5/RksftZPMJ/o+P4mady7LVIOqtKKs5f8kLgE0wHAmrJg712IEy94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637758; c=relaxed/simple;
-	bh=JdeJqrlg8CfqPk2aFFrPUXdjz8LMnLs/ckxgdkPntHg=;
+	s=arc-20240116; t=1718637759; c=relaxed/simple;
+	bh=wJNV/42HjLFWQUYppiDPj8EoEZINZLRmNLoQPS7mZ2A=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nE4pZrRo60vBS+2HX4QwHG4bFRGHyEhSG6u3Npoq0Tkw8a5Y7lE0SbXSL2KCvZjrO/+x/Tg0x6s7BX5yPuzNg2m3BeeMbgZwhT+x1HBMduHcU3icsM6gBCbbJ9AE2S58o7q20DPHVqe8Kp/re5JkTtWU5IXwfhNI3SdlMmFfJPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=kepDV1/3; arc=none smtp.client-ip=185.136.65.226
+	 In-Reply-To:To:Cc; b=WPb8VqS3OnrO98l8V5V9ioILxFXDIETJ/X0MI84DQ+c+ceXNCdCIEJfR5AdTIVL/1hsis/+byem41IzLYtVpeUgno1AvdmGf9hJg6nftHRU2Y7bbyftShPeIEA3ZiwR7ZpTBUcRKGNbERAp2pvwusz05iVGXhTYEng9KcWAh1qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=CHqgnA5e; arc=none smtp.client-ip=185.136.65.226
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 202406171522266c63bfe1879a448e87
+Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 202406171522286e0987f2070c1685b7
         for <devicetree@vger.kernel.org>;
-        Mon, 17 Jun 2024 17:22:26 +0200
+        Mon, 17 Jun 2024 17:22:28 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
  d=siemens.com; i=diogo.ivo@siemens.com;
  h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=Fxp6XouXtcm6HEHNTUrhXH4PgJrnOGuaFeg/ybdFDmQ=;
- b=kepDV1/3ozToSVeN5YAbn800RaJw+ckTHES+KIyaAeDJ1GPVB0Y+Is7QiewUefDa+YnpMa
- F+XlNg2me3TRcXCj5D7BfXU1t6VRy/zsMDyPuqIbObykaEBCYjlRQe0b99HzU8GxQ9SsZyvy
- mEPjMhDUw1VbpVMqI6TW0cV+dhsW8=;
+ bh=/EABjvlbPLsARyzJ4KZzxhNg4k6Cnivu4GX/GT6Rja0=;
+ b=CHqgnA5e3RNIn2wxD3FM4gITg26Mo6RhpPOKUXfVmxxGQ0giG1HPFAW4A1Lu9plm4XkDA+
+ XDKKfm3zP5xYi/a7havgREJM6ize6FMdh2C850HzkGhJfQ4H0NSDSqyjiNMWUtuwAM6G9rL0
+ JgQvaPHp6mtt1RC/+cGH4ADvv7I4Y=;
 From: Diogo Ivo <diogo.ivo@siemens.com>
-Date: Mon, 17 Jun 2024 16:21:41 +0100
-Subject: [PATCH net-next v4 2/5] net: ti: icss-iep: Remove spinlock-based
- synchronization
+Date: Mon, 17 Jun 2024 16:21:42 +0100
+Subject: [PATCH net-next v4 3/5] dt-bindings: net: Add IEP interrupt
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +52,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240617-iep-v4-2-fa20ff4141a3@siemens.com>
+Message-Id: <20240617-iep-v4-3-fa20ff4141a3@siemens.com>
 References: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
 In-Reply-To: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
 To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
@@ -67,114 +66,46 @@ To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>,
 Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Diogo Ivo <diogo.ivo@siemens.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718637740; l=3238;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718637741; l=1034;
  i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
- bh=JdeJqrlg8CfqPk2aFFrPUXdjz8LMnLs/ckxgdkPntHg=;
- b=2HxZqi6sESfK5Wqxb9jateLja5oygdPcYT309hPE+AzVRLLKPa2c+CXq8/M4uxMZjCVIaM0xN
- p0qSrKiag1cCVcbfFAovNRky7+uioDC0sfNJrWOl+xPtBN84RxqP4Sq
+ bh=wJNV/42HjLFWQUYppiDPj8EoEZINZLRmNLoQPS7mZ2A=;
+ b=6wsqJo9kwhlrVNl3BTDdfJCSIJGUy1Qdt5j4AIV6Y3fJQ2Y9J07WynWqqDx9Tl05Y07CkBZrZ
+ DlYEMMn/vKHCbtN5G0goMFL03s6Oanml5qeRkeykqbaVBB/WAoee2x9
 X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
  pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
 X-Flowmailer-Platform: Siemens
 Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-As all sources of concurrency in hardware register access occur in
-non-interrupt context eliminate spinlock-based synchronization and
-rely on the mutex-based synchronization that is already present.
+The IEP interrupt is used in order to support both capture events, where
+an incoming external signal gets timestamped on arrival, and compare
+events, where an interrupt is generated internally when the IEP counter
+reaches a programmed value.
 
 Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
 ---
- drivers/net/ethernet/ti/icssg/icss_iep.c | 14 --------------
- 1 file changed, 14 deletions(-)
+ Documentation/devicetree/bindings/net/ti,icss-iep.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
-index 3025e9c18970..d52e42fa64f2 100644
---- a/drivers/net/ethernet/ti/icssg/icss_iep.c
-+++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
-@@ -110,7 +110,6 @@ struct icss_iep {
- 	struct ptp_clock_info ptp_info;
- 	struct ptp_clock *ptp_clock;
- 	struct mutex ptp_clk_mutex;	/* PHC access serializer */
--	spinlock_t irq_lock; /* CMP IRQ vs icss_iep_ptp_enable access */
- 	u32 def_inc;
- 	s16 slow_cmp_inc;
- 	u32 slow_cmp_count;
-@@ -192,14 +191,11 @@ static void icss_iep_update_to_next_boundary(struct icss_iep *iep, u64 start_ns)
-  */
- static void icss_iep_settime(struct icss_iep *iep, u64 ns)
- {
--	unsigned long flags;
--
- 	if (iep->ops && iep->ops->settime) {
- 		iep->ops->settime(iep->clockops_data, ns);
- 		return;
- 	}
+diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
+index f5c22d6dcaee..e36e3a622904 100644
+--- a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
++++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
+@@ -28,6 +28,15 @@ properties:
+     maxItems: 1
+     description: phandle to the IEP source clock
  
--	spin_lock_irqsave(&iep->irq_lock, flags);
- 	if (iep->pps_enabled || iep->perout_enabled)
- 		writel(0, iep->base + iep->plat_data->reg_offs[ICSS_IEP_SYNC_CTRL_REG]);
- 
-@@ -210,7 +206,6 @@ static void icss_iep_settime(struct icss_iep *iep, u64 ns)
- 		writel(IEP_SYNC_CTRL_SYNC_N_EN(0) | IEP_SYNC_CTRL_SYNC_EN,
- 		       iep->base + iep->plat_data->reg_offs[ICSS_IEP_SYNC_CTRL_REG]);
- 	}
--	spin_unlock_irqrestore(&iep->irq_lock, flags);
- }
- 
- /**
-@@ -546,7 +541,6 @@ static int icss_iep_perout_enable_hw(struct icss_iep *iep,
- static int icss_iep_perout_enable(struct icss_iep *iep,
- 				  struct ptp_perout_request *req, int on)
- {
--	unsigned long flags;
- 	int ret = 0;
- 
- 	mutex_lock(&iep->ptp_clk_mutex);
-@@ -559,11 +553,9 @@ static int icss_iep_perout_enable(struct icss_iep *iep,
- 	if (iep->perout_enabled == !!on)
- 		goto exit;
- 
--	spin_lock_irqsave(&iep->irq_lock, flags);
- 	ret = icss_iep_perout_enable_hw(iep, req, on);
- 	if (!ret)
- 		iep->perout_enabled = !!on;
--	spin_unlock_irqrestore(&iep->irq_lock, flags);
- 
- exit:
- 	mutex_unlock(&iep->ptp_clk_mutex);
-@@ -575,7 +567,6 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
- {
- 	struct ptp_clock_request rq;
- 	struct timespec64 ts;
--	unsigned long flags;
- 	int ret = 0;
- 	u64 ns;
- 
-@@ -589,8 +580,6 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
- 	if (iep->pps_enabled == !!on)
- 		goto exit;
- 
--	spin_lock_irqsave(&iep->irq_lock, flags);
--
- 	rq.perout.index = 0;
- 	if (on) {
- 		ns = icss_iep_gettime(iep, NULL);
-@@ -607,8 +596,6 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
- 	if (!ret)
- 		iep->pps_enabled = !!on;
- 
--	spin_unlock_irqrestore(&iep->irq_lock, flags);
--
- exit:
- 	mutex_unlock(&iep->ptp_clk_mutex);
- 
-@@ -853,7 +840,6 @@ static int icss_iep_probe(struct platform_device *pdev)
- 
- 	iep->ptp_info = icss_iep_ptp_info;
- 	mutex_init(&iep->ptp_clk_mutex);
--	spin_lock_init(&iep->irq_lock);
- 	dev_set_drvdata(dev, iep);
- 	icss_iep_disable(iep);
- 
++  interrupts:
++    maxItems: 1
++    description:
++      Interrupt specifier for capture/compare IRQ.
++
++  interrupt-names:
++    items:
++      - const: iep_cap_cmp
++
+ required:
+   - compatible
+   - reg
 
 -- 
 2.45.2
