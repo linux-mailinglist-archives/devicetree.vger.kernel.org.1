@@ -1,203 +1,182 @@
-Return-Path: <devicetree+bounces-76340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 128BA90A2E8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 05:37:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E49790A30A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 06:14:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 918E01F2212F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:37:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2874A2827B8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 04:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A9F2BD18;
-	Mon, 17 Jun 2024 03:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BBEF16C6AF;
+	Mon, 17 Jun 2024 04:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="hnVd7ayY"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="mNwvb+GZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2103.outbound.protection.outlook.com [40.92.19.103])
+Received: from out203-205-221-173.mail.qq.com (out203-205-221-173.mail.qq.com [203.205.221.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03085DDA3;
-	Mon, 17 Jun 2024 03:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.103
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718595415; cv=fail; b=P7KbZ5xYUYnnVG6WQO7eRC5hL6/l/asCnv0pNKnpHc4dx3aeYPiJomAoRzIDGSAg7FelEhCbtJ18qvXsuEdho8OKfkVbsQiO94S1ppICrXXLVPmMPyl8RZlIqtUC68ItUC2SF6YEdg1K7S5a1+Qf3lso0QiQisHeXBix03WSBns=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718595415; c=relaxed/simple;
-	bh=Rb0tDMjA3Uih/lGlMPnT7tF6Rye7RJh2wWiplIAp7NE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=LXGmqTzJTsNBo9/Uz5BgDiqdl+3ZET1rMLon1fejHie3EgUzp1hYt3j1BHTVu6lGNdPwAwHZlE4ZP0drBiCq/HwQNoQUcYTSEFRQinYZ3d6lk89gtXLWmkbt7BK2PDa1cAHacSGHQYBSxU7Hi2tcLmMtahVh0IeQjYbWUNX4gNY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=hnVd7ayY; arc=fail smtp.client-ip=40.92.19.103
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=brV7gbBKE3VbgXc7EAYlAKgabdRGCNb+LH6XDmIWWeXwnFfWFGUlv8ZO3fKQNR6kORNSZ8JoikDiXYJvHpaVszodS9Ih3bXpq5OCKbwtg2tdWvfd+gJHtCdfcd0l4pNLr02LXScisHNLYGKG36s+nh9+pSR3eyA+Ju0DB5fxOrfz12LLpMZLpTcIlDY2hn4nKX5v2DwjMBSD21hNx4v+sFIkn50CYy93CTiLCXhwVIidTE4Nzk1NdzeqSvC3VTMmdDngmAtnTYakFTzY8ZL27B/NtmzluGKQqsbn1kCKk2agBUULu8C9kKorCcUb+N+mBb5bD7TKj+uuyCEESJYskg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PLDYYt94R3SBx75IkHRdr9goWcLkGiL0nQP9KpGgdf4=;
- b=RC8luhbW61GC5FAuBmkmPqRJbz3PJbOv0e+6VHlwVsbLya4WU1VoS8aZgVyjXuf6AHBrqU3szJ6SiMkelTOafXhLCtlbPWt2X+D3dlMnuYR3Ebte5ehVXhDYnr16R6nGCM92N97rhIUZ65KTyF8eiafAkeiGRrD2kuQXVkXobunqiHXjqt0yX6paYl3ohxkOXzCHiDinBQRE04uXbwFUVNs5ngrYf9EOqh5q41/FVWu+lQ+pzcF+uK9LcGwCKGBwfsLgn9vK1yXbHfac/9zn9rUUd7vDDwtTqEofKnzmyFYdTBrKL3AsOTWUKvQY5Nb0CWw8aSkgvwBNpwPnRGo62g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PLDYYt94R3SBx75IkHRdr9goWcLkGiL0nQP9KpGgdf4=;
- b=hnVd7ayY0xx9DUvQeIyD+YFolOU9cr4Is/TkGQ1v7hd+5EkpTGjp2vY+4MCsXujN9mvhrBwKLULVsblfTTgpXv/JRsuLR5vMJhLFHfimZvsLN7RZRm0ArWu12DHTIzYQMBqOKrJwZuZomhUmNJvISHa+nrIHILy8B1HvTqdERayWieWk52pmmmyHA7QuJCRqRVd9lW6gldJgXUEKu5gvw94rryX00g2s04GRGvXT1AvQRDuEP/SGxp8cABU21/lKaGcBHrwLWYhe8TqLWNRvKr+7S8FjwuIJtTCn+o4CVRRJyLTM1C4Lju5TJj7RFFjWyyYzoPZWS8UyHnrF3OqIyA==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH8PR20MB6366.namprd20.prod.outlook.com (2603:10b6:510:25a::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Mon, 17 Jun
- 2024 03:36:48 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7677.030; Mon, 17 Jun 2024
- 03:36:47 +0000
-Date: Mon, 17 Jun 2024 11:36:32 +0800
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Yixun Lan <dlan@gentoo.org>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Inochi Amaoto <inochiama@outlook.com>, 
-	Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Chen Wang <unicorn_wang@outlook.com>, 
-	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/6] riscv: dts: sophgo: Put sdhci compatible in dt of
- specific SoC
-Message-ID:
- <IA1PR20MB4953B4A44227ED6431888709BBCD2@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <20240612-sg2002-v2-0-19a585af6846@bootlin.com>
- <20240612-sg2002-v2-1-19a585af6846@bootlin.com>
- <IA1PR20MB49534C9E29E86B478205E4B3BBC02@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20240616235829.GA4000183@ofsar>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240616235829.GA4000183@ofsar>
-X-TMN: [teVdx8pYKGkwsWmTL89gu1C9pc2RdzW7AcsQoxpcJvQ=]
-X-ClientProxiedBy: TYWP286CA0008.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:178::11) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <zpijoyh5okdqmhexlcn5fr2mbfnwlrfejfixxeox6myh43ku5b@4zcwrvyqssp5>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996EC10A2A
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 04:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718597664; cv=none; b=rCTUDPZVB2Um8L9ISDttWRtV9f07OekEE0g140KXEyWVJA2ClDzPeMqDITmj+ZOujFaBtic59qngu0nk6wdkRUl9FVEJQq8g3+G5i9yOTA4j//j0o0+/F+O2z518rxy9cx3zadzzX/rxVNQvt5bPQuiMmETMI5d+K0524wY1QZM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718597664; c=relaxed/simple;
+	bh=1RuUYRVEo2TW3uv1NQ1XR3wba8cpg5dcXcDlfoCsgK8=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=rjDddGtXUKR0TOz9wzkVVXj2ZtcFMDu5kcPu6Dggi+74FLfbpBfcfxB4l2WFU4dnjKt3YXX2ndGwDiSQCwRg0czbhcET8AmDhTt44LSpNKbAhdumZPp+IAlWkx9NtX7Q47aJZdYlbJ3Dxa1sdRJ8mSc5E7PQ5cchCCBpqedUpCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=mNwvb+GZ; arc=none smtp.client-ip=203.205.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1718597648; bh=WLuBvzPzs9880RmsTEuF2wkZmJzMU1EtiXxCBZNBcSU=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=mNwvb+GZBmEfzYnytqbJ5y+2/NT9/CDOYJBc0JVukwo35ARqnuYqhcrnIMCIzZ4nw
+	 HFBrUHLOqRc3MomAf+JLycQZejFy6SIVxYagz3NMo0UgIWIq0IxDghceyGs3nLYsYh
+	 9Gl+D8cr9cXLzG4+gw+dabycJP1uQtEdU8uhuOx8=
+Received: from smtpclient.apple ([2409:8929:821:8f06:b09c:7026:3108:2c0d])
+	by newxmesmtplogicsvrszc19-0.qq.com (NewEsmtp) with SMTP
+	id 373B8C89; Mon, 17 Jun 2024 12:13:51 +0800
+X-QQ-mid: xmsmtpt1718597631tbx1uelq5
+Message-ID: <tencent_4419DAC48EBDB803316521148D887C8D8208@qq.com>
+X-QQ-XMAILINFO: NMGzQWUSIfvT9rbrqOsVAj9/aRWrSEBe9NhraLBupeBo8FMpWpnaWvqqDzxPwM
+	 osFFzaj1HJgUOB86x9ovrMAWJ9DvXLCKRDp4i/mMsgfhvqIl72amL0kRoP3+3CRT1hkjfVj0t1wF
+	 ORUwuZeUDoDJm1OxYSt9MdipEXMoFVO0qRcOvf3F7BVNQe9SJwfK7vxuQ68hNh3SxfdVUaEBAAfe
+	 6maOe28NWX9MHE4F80TNuCgKpzAqGId54Zx+eJQUJ3KHI1hx2gAHcljEBep0jNydq5vTEjn7HAqf
+	 cafm1AXGP5b4UnQbODUCfzp83pjM8dUR7r0bEaCIDsmUvfrLF5bxrClkc6SY0uxfbc5EVcxWuM7n
+	 bzl+xHgq1j5thLpk1glY0qgHNCEMc88/Dwe3jzTKcG5Kmx/KXxeg0PLKsGAXD+eMIrImvsIv11Mv
+	 efrNYuAlHlthKMImPW0TIcPI55sK5HqGNpDMCjNrQzNq66qc0ivsQsM9rDJ3gOXJYfIJKQrTAFJr
+	 Va4m9Vvid29aavZKlG27X19iotGcE2zcKze7HqsGFeSdgo0X0V+M95npRLmI7/kJ8Pb3qI2OIQy2
+	 5q4Qv9V4m8Tjf2TOFgH+8ptcpACZ+uIK4Iip+k4xBag9KMcVSpGnmpKABJx8iR3SBdcyhUlW4D6a
+	 84O2dKvrpjeRoyxzrRY+ivBnR0zckefW+8RldTl3R4OHE4UWEDQuvxRJskdbYkCmt17NiFtOHdTl
+	 vwvCaBoZX6oUsWaoTff/ievkDvR9/jH/WtZ73JDFW0haaehEAyISt58mfkiHo3tEnA6np3R+xK1H
+	 ootg9E9XGCpihbxXYlR0pLMOEwpKnCKvm0N26fGU7lTJZL2CRXs1q8Q7xmXLirdv/wndW21zknSE
+	 1fID546Ad8Tk9IFK2LdMkWK6TV5FUhz0mNJJRpUEVMF+KiEItJf6Yohsf0+bsWt18MEFyNEekfa0
+	 HCVs3tUZ2x5G16lIrjYJ9h2sWJ+bS1AqRMZcnRBGk2aAfebDzXYdWj4bzVKMjB
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH8PR20MB6366:EE_
-X-MS-Office365-Filtering-Correlation-Id: c00157c3-1fb7-4bdc-a254-08dc8e7eb788
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199025|3412199022|440099025|1710799023;
-X-Microsoft-Antispam-Message-Info:
-	L0dhNuWsDzx08Fr7TUks/6ApOuddRbr1C4z8MpBk9ljKvchlqrOp1CoehAklRNlXd4BdSvVAY1s2j8bbXguEDfQdCm6h3jSBMSm+vp6mu6YLg5cR+J23Ha5WxCNOL1JT+cimtSN1Ojkpg9HQGccX3GEZ9VWrBD92JY+qN0vOaXJBJf/ZlpD9GzHMPa5m5E5Vh4VDG7DK1I1QMc+eVLgOmxBDiLO74oQh8BTonirwH+W+XcRdRKRhMU2zmvdtOl83AVkB5HGSLoR2Bm974JT12KELxcL1RI/rHq30Xa4dmXFyqVwy39L98odF5baZc+qgl4vSWTjBzozZKXj/kCx4dEbz9D3K7lYjppO1mQs/2lMGFYN3AXMTvqpkbWQZyRF/PMw/+stU32/+QMHAFfLmelX+VBCL4b0y/9aMCR7ZzWe/GbRaYCkvbxghiCqjktp/x0Xux9auFBqs6DOcQDa0bqht8LalR2KpJ25iD7VRUPw10Qd9gYTdQ6lqPLup6G9398//GarCqwKUe4m4Z7Kmvs0/VF0HZm5GhQ43QuEDWD5uGTHTfLoRL7qeDGMAXBk3vzNBB24Wwg76WYOx2zhuvYTGlGgEXA8CejAkTXYJVco8okoxPX9ZbI7yZ6nMT2vG
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?hwf1Kvj645Ts1UamDiqqitVMqK23jRPYDECb7BRIF8GYBcT34yY1YXe+CrkP?=
- =?us-ascii?Q?6CE9wJ4cNadjqb1bifMJ6IujWv/nm/70sBJJeRn3j2+3s+fj8nFBSlb8g7On?=
- =?us-ascii?Q?ZQT0ZrobH4I3+PRrCKY7hLHk0Ejm7Kl39Zk//V3muo0x7/G1iG/zaEzZr6gA?=
- =?us-ascii?Q?DZr9Pnl4Vnm5ZB29YAFiqZ5fRk0YUIjOrzttWIlhsglODP4b+0liP1N/MvHa?=
- =?us-ascii?Q?1jQixbQJkyJp4dKsiNysOtp6OFYy0qa8izXJGCaqWV0eGgolu85oriYIfytT?=
- =?us-ascii?Q?yo2P6Wi5h2woU3hxDvMob/eRDRd6CWDrttJk1m05i3zMnjDFSQnqJxVoOwh9?=
- =?us-ascii?Q?74leQy9XoG+PzI1pRMQVV2Q1WI1ichld2fRK5AqIGWjPjDIEp2D2xGFnT101?=
- =?us-ascii?Q?1QTscydMTTcRv69bwT75gYEmlAeF1pX4CgOubJoGHbjA+iEveAjZ6o0M9zzJ?=
- =?us-ascii?Q?Zw2A0X1PYHNCk1qz4tOu/qZul2iHzAaXuJ7VkrcjzrEWm3Bu0yB2iJh5kHGs?=
- =?us-ascii?Q?RqE2xGhG5+0+ff+rcTICCu30jbbG8+CyBGoS9A327mFZtnaBinXuqVnW1T9P?=
- =?us-ascii?Q?UUviIyWt3T2GjkTm5b30y/CP/Yyv62T+2TyKwfpEHgbpiyb80PzceR5D7ydW?=
- =?us-ascii?Q?zK/gPug/uEhx5gyP+63Jysjd9cgoj083HJR3XhsFtuP4ni4ChbQS/hN62XkT?=
- =?us-ascii?Q?HvjxkY13WqGDOY5wd7zstQWFsbHumbdWtzRB1uNBKFWRvl1vh+oskgYTsO/c?=
- =?us-ascii?Q?0WWXeHXJrJVhMjzTji2jlapbwcwdTdqPGLfJQofCzBNa+1HR5F8Ny7q5vIYj?=
- =?us-ascii?Q?lPyyUklyQrbpIONULgavcdI/lR79MuFj2XBhcL5umt3Tc8BjsMU8lTwNCJ1p?=
- =?us-ascii?Q?kZ+pEqrdTZ2SMFlo0F5Sjv1sUalgK3ZqgvOfeZB2QtqSW/4kt/UGLrOrKHjM?=
- =?us-ascii?Q?BYLIug6YploID44ljq2mkTMD/Fb3pRAXtlICoPoQBig6fsQJ4QwVB2/mWP9D?=
- =?us-ascii?Q?a8qRG1l1VyJvjcCjPdSZRBePGTAsyb582aI6mkRNbArXlio0EuyLNATCSC9X?=
- =?us-ascii?Q?yGoEUPZ0/HtGvQi+9bk+qZUonzF1NRlP2cFYGbMQJR1YEoWLB0aPuIg1CPih?=
- =?us-ascii?Q?aDMP0FbMxYvYVTfQ7DledYyRvsTUu1bna4Crc8fiDvQ83ZT6nvb9cVckK7Xd?=
- =?us-ascii?Q?udJNHCtuXM2X3yekd7QXgc9LgcWTHqkz0yw60rB3ElZvwka/cFJS85PZwtSS?=
- =?us-ascii?Q?6Yoj0FYxJ4aUc7Upuw/C?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c00157c3-1fb7-4bdc-a254-08dc8e7eb788
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2024 03:36:47.8199
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR20MB6366
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
+Subject: Re: [PATCH v1 8/9] riscv: dts: spacemit: add Banana Pi BPI-F3 board
+ device tree
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <20240616223149.GB3983622@ofsar>
+Date: Mon, 17 Jun 2024 10:16:29 +0800
+Cc: linux-riscv@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Anup Patel <anup.patel@wdc.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+X-OQ-MSGID: <D2594566-12B8-4E81-9FA4-CA217ECE54CD@cyyself.name>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <tencent_904B1050FBC0B10A172C263924BD518F8F05@qq.com>
+ <20240616223149.GB3983622@ofsar>
+To: Yixun Lan <dlan@gentoo.org>
+X-Mailer: Apple Mail (2.3774.600.62)
 
-On Sun, Jun 16, 2024 at 11:58:29PM GMT, Yixun Lan wrote:
+
+
+> On Jun 17, 2024, at 06:31, Yixun Lan <dlan@gentoo.org> wrote:
+>=20
 > Hi
-> 
-> On 18:47 Wed 12 Jun     , Inochi Amaoto wrote:
-> > On Wed, Jun 12, 2024 at 10:02:31AM GMT, Thomas Bonnefille wrote:
-> > > Remove SDHCI compatible for CV1800b from common dtsi file to put it in
-> > > the specific dtsi file of the CV1800b.
-> > > This commits aims at following the same guidelines as in the other nodes
-> > > of the CV18XX family.
-> is there any URL of guideline? or did I miss anything
-> couldn't find any discussion about this in v1
-> 
+>=20
+> On 01:20 Mon 17 Jun     , Yangyu Chen wrote:
+>> Banana Pi BPI-F3 [1] is a industrial grade RISC-V development board, =
+it
+>> design with SpacemiT K1 8 core RISC-V chip [2].
+>>=20
+>> Currently only support booting into console with only uart enabled,
+>> other features will be added soon later.
+>>=20
+>> [1] https://docs.banana-pi.org/en/BPI-F3/BananaPi_BPI-F3
+>> [2] https://www.spacemit.com/en/spacemit-key-stone-2/
+>>=20
+>> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+>> ---
+>> arch/riscv/boot/dts/Makefile                 |  1 +
+>> arch/riscv/boot/dts/spacemit/Makefile        |  2 ++
+>> arch/riscv/boot/dts/spacemit/bananapi-f3.dts | 19 +++++++++++++++++++
+>> 3 files changed, 22 insertions(+)
+>> create mode 100644 arch/riscv/boot/dts/spacemit/Makefile
+>> create mode 100644 arch/riscv/boot/dts/spacemit/bananapi-f3.dts
+>>=20
+>> diff --git a/arch/riscv/boot/dts/Makefile =
+b/arch/riscv/boot/dts/Makefile
+>> index fdae05bbf556..bff887d38abe 100644
+>> --- a/arch/riscv/boot/dts/Makefile
+>> +++ b/arch/riscv/boot/dts/Makefile
+>> @@ -5,6 +5,7 @@ subdir-y +=3D microchip
+>> subdir-y +=3D renesas
+>> subdir-y +=3D sifive
+>> subdir-y +=3D sophgo
+>> +subdir-y +=3D spacemit
+>> subdir-y +=3D starfive
+>> subdir-y +=3D thead
+>>=20
+>> diff --git a/arch/riscv/boot/dts/spacemit/Makefile =
+b/arch/riscv/boot/dts/spacemit/Makefile
+>> new file mode 100644
+>> index 000000000000..5c512f4e297d
+>> --- /dev/null
+>> +++ b/arch/riscv/boot/dts/spacemit/Makefile
+>> @@ -0,0 +1,2 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +dtb-$(CONFIG_ARCH_SPACEMIT) +=3D bananapi-f3.dtb
+> Can we have "k1" prefix at least? so k1-bananapi-f3.dtb
+> it's much clear to let people know the board has k1 SoC,
+> in case vendor has more chip series..
+>=20
 
-No, it seems like that this is a new change from Thomas.
+Sounds like a good idea. I searched other references to "Banana Pi"
+in Kernel dts and found they have the prefix of soc name.
 
-> > > 
-> > > Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> > > ---
-> > >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 4 ++++
-> > >  arch/riscv/boot/dts/sophgo/cv18xx.dtsi  | 1 -
-> > >  2 files changed, 4 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > > index ec9530972ae2..b9cd51457b4c 100644
-> > > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > > @@ -25,3 +25,7 @@ &clint {
-> > >  &clk {
-> > >  	compatible = "sophgo,cv1800-clk";
-> > >  };
-> > > +
-> > > +&sdhci0 {
-> > > +	compatible = "sophgo,cv1800b-dwcmshc";
-> > > +};
-> > > diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> > > index 891932ae470f..7247c7c3013c 100644
-> > > --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> > > +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> > > @@ -288,7 +288,6 @@ uart4: serial@41c0000 {
-> > >  		};
-> > >  
-> > >  		sdhci0: mmc@4310000 {
-> > > -			compatible = "sophgo,cv1800b-dwcmshc";
-> > >  			reg = <0x4310000 0x1000>;
-> > >  			interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
-> > >  			clocks = <&clk CLK_AXI4_SD0>,
-> > > 
-> > > -- 
-> > > 2.45.2
-> > > 
-> > 
-> > Hi, Jisheng,
-> > 
-> > Is this change necessary? IIRC, the sdhci is the same across 
-> > the whole series.
-> I tend to agree with Inochi here, if it's same across all SoC, then no bother to
-> split, it will cause more trouble to maintain..
-> 
-> > 
-> > Regards,
-> > Inochi
-> 
-> -- 
+>> diff --git a/arch/riscv/boot/dts/spacemit/bananapi-f3.dts =
+b/arch/riscv/boot/dts/spacemit/bananapi-f3.dts
+>> new file mode 100644
+>> index 000000000000..023274189b49
+>> --- /dev/null
+>> +++ b/arch/riscv/boot/dts/spacemit/bananapi-f3.dts
+>> @@ -0,0 +1,19 @@
+>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>> +/*
+>> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+>> + */
+>> +
+>> +#include "k1.dtsi"
+>> +
+>> +/ {
+>> + model =3D "Banana Pi BPI-F3";
+>> + compatible =3D "bananapi,bpi-f3", "spacemit,k1";
+>> +
+>> + chosen {
+>> + stdout-path =3D "serial0";
+>> + };
+>> +};
+>> +
+>> +&uart0 {
+>> + status =3D "okay";
+>> +};
+>> --=20
+>> 2.45.1
+>>=20
+>=20
+> --=20
 > Yixun Lan (dlan)
 > Gentoo Linux Developer
 > GPG Key ID AABEFD55
+
 
