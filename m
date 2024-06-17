@@ -1,163 +1,157 @@
-Return-Path: <devicetree+bounces-76461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0F790AAF2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:22:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2C790AB06
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B342B2EA0E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:37:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFA9BB2491A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4EFD194AF1;
-	Mon, 17 Jun 2024 09:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76DEC1946BC;
+	Mon, 17 Jun 2024 09:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E9iVFzS6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nnz8xJWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401301940B9;
-	Mon, 17 Jun 2024 09:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43AFC194133;
+	Mon, 17 Jun 2024 09:38:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718616960; cv=none; b=oXOVPJmifOGHp09E84PcozAQP/Z4BOGGZLqYBq+BuDw5C+D3r4LgO4fizVWcTqvAHx+07lbX13SbSZ5fDtsnyfdIJ0vjOH+yeB0+xdotGlPN9QE7Nn9oB0Zk555A5Xuh5AtYze7TKMeQTp9nv5ztX1wEXWnG30AQ8CsvnB6nx+E=
+	t=1718617104; cv=none; b=sxz+JFgc4wEHWDeuh+dTMoCgTeJUndyXAeLmOyQMBIiAWO+2WfbFxUiN5wnaVLHQUgyuPMGJn9msi4K178MF1tIcwItwsbtgvIw6d/ZgOWKcFsuF/1SA9al5zP8ID2IDtqgri3sQeqJDOBjMjOyfbOKgc3cYlqObZNMmHLcrSn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718616960; c=relaxed/simple;
-	bh=ci2/fwb/ESVvkzh4G1Jj0Z+5xcYFSQ4vum1bYkwnW0E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KtM972i4vht7dobk7ma2LGbhANBVwtgKZqev5XSS8fNT9xz+FbjKk5A/Gn+QOfBbK5TvUeLPdo+GUa8OJEf9vVYTuECDYq2KwOyJI62rnmta9uLlXTLbpBkE4uvUzf5LNb0BgPJibYekKyCtseKgosJdGReE8WODAlNj3IdZ+Bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=E9iVFzS6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45H0kddE008599;
-	Mon, 17 Jun 2024 09:35:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VBmxvmcWo4A0c+cTMLkp/mM6HExYTUV2++NUJHhy6x8=; b=E9iVFzS65j5MJ++Z
-	2kGJVXc+btPOI25D5NHKpgfejl2cE4X2lyPVskwuIY+aX+tvUSnvj+cw0tgMVMQC
-	5bYVXMOAv5dfJII4ER/+vUrXlvJ3FF/wqtXIAwibISiMFdqL9NJ/6rnH15qVRytD
-	0Dn+y8gxQjcDN20e/hXPJhYyA89wHolQDDXcO7r2fPPgQejlei2048coI6Zd78++
-	v3WNJb3ZLgMPjbZLcPxQOw3etzKsZ1SWUiWt+/BMYt50A5utBzlyMHkTyO7Hbhbk
-	yOUusB2xCaoS5yy9zUgZ6HG7BiXk20Zy/lSFvKeky+RWuMKQnMmv9FLrcHnJZt/q
-	SyZG/g==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ys1y6u99h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Jun 2024 09:35:55 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45H9Zs6H003088
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Jun 2024 09:35:54 GMT
-Received: from hu-nainmeht-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 17 Jun 2024 02:35:50 -0700
-From: Naina Mehta <quic_nainmeht@quicinc.com>
-To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konrad.dybcio@linaro.org>, <manivannan.sadhasivam@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_nainmeht@quicinc.com>
-Subject: [PATCH v2 4/5] arm64: dts: qcom: sdx75: Add remoteproc node
-Date: Mon, 17 Jun 2024 15:04:27 +0530
-Message-ID: <20240617093428.3616194-5-quic_nainmeht@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240617093428.3616194-1-quic_nainmeht@quicinc.com>
-References: <20240617093428.3616194-1-quic_nainmeht@quicinc.com>
+	s=arc-20240116; t=1718617104; c=relaxed/simple;
+	bh=3Q2bRQKoQu0LqnylJP2cSZjMQXfgAIE/N3cWrJixn1M=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=s6yGb5LNLPlF9Ql44NNwB0MrwhbAZByY/afPuTF8nijTxoqHjb0ZeUDz6LHT/5/eYoZHIaKOmSUGrFetycjmk7D/o0UtuoNzA3t0SBlLWKl1+omRHuYgxZrF2gFuXP6O2DC+JYSw46RRz/eMRCSyPNhn24PhWqEHH/tb0sGCbzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nnz8xJWn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 24350C4DDEC;
+	Mon, 17 Jun 2024 09:38:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718617104;
+	bh=3Q2bRQKoQu0LqnylJP2cSZjMQXfgAIE/N3cWrJixn1M=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=Nnz8xJWnXiB4YNsmlmclW5nWGuEbYMPMivNIqLoP5QGmO0DyGkvJcb4a4s2QY76aE
+	 WdoA6Pw5C9ghdm9AshjJ/YDEsLmtjW2KXJ4sdAxQc4coyR7QM/8n+UaTS93KAzTQ8l
+	 iaygKQUtA69bnncTjbvL0Q3vx4H6doMSX9KdNEfJ7mY8sABmD5y/5dGYqINOFpPuss
+	 wNHteJkNQfrDN4kb1F93DWd2V7J+ZV08ROZGVKI3aeIrT7Bn3rx4vtpz+aBX3H8tXi
+	 d8ugvKDGH+tzEaqLzUtKYBTQ/GktAjWQIEKgQm/R1HigCz28F0CUJ166cgA6eKyRFz
+	 LUl6hrSjy/xGA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 183FEC2BA18;
+	Mon, 17 Jun 2024 09:38:24 +0000 (UTC)
+From: Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
+Date: Mon, 17 Jun 2024 12:36:46 +0300
+Subject: [PATCH v10 12/38] dt-bindings: pwm: Add Cirrus EP93xx
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: iifP_49_xVWUu307k74eir_EWq_GdFvQ
-X-Proofpoint-ORIG-GUID: iifP_49_xVWUu307k74eir_EWq_GdFvQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-17_08,2024-06-14_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 impostorscore=0 mlxscore=0 bulkscore=0 clxscore=1015
- lowpriorityscore=0 spamscore=0 mlxlogscore=776 suspectscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406170072
+Message-Id: <20240617-ep93xx-v10-12-662e640ed811@maquefel.me>
+References: <20240617-ep93xx-v10-0-662e640ed811@maquefel.me>
+In-Reply-To: <20240617-ep93xx-v10-0-662e640ed811@maquefel.me>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13-dev-e3e53
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718617100; l=1848;
+ i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
+ bh=z+2yOwm4hvQxzJhJWQahTMtiq2gz+415iGkW4eGQ8Eg=;
+ b=CRV13sYmrmwzQgHe+Z5xUUu5g1+/MVhrjswJppoRx9OFYCKsp0DWNQJXjApeTIE8nonr9+lP/B2J
+ V9tuykN/Bwl3QAbiLrh+lObNxkI479WXr855R+wRLeHvmakHm/0Z
+X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
+ pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
+X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718
+ with auth_id=65
+X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
+Reply-To: nikita.shubin@maquefel.me
 
-Add MPSS remoteproc node for SDX75 SoC.
+From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
+Add YAML bindings for ep93xx SoC PWM.
+
+Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdx75.dtsi | 47 +++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ .../devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml | 53 ++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-index afe84270b84c..db042ec2640e 100644
---- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-@@ -890,6 +890,53 @@ tcsr: syscon@1fc0000 {
- 			reg = <0x0 0x01fc0000 0x0 0x30000>;
- 		};
- 
-+		remoteproc_mpss: remoteproc@4080000 {
-+			compatible = "qcom,sdx75-mpss-pas";
-+			reg = <0 0x04080000 0 0x4040>;
+diff --git a/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
+new file mode 100644
+index 000000000000..903210ef9c31
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/cirrus,ep9301-pwm.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/cirrus,ep9301-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			interrupts-extended = <&intc GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_modem_in 3 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_modem_in 7 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack",
-+					  "shutdown-ack";
++title: Cirrus Logic ep93xx PWM controller
 +
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "xo";
++maintainers:
++  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
++  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
-+			power-domains = <&rpmhpd RPMHPD_CX>,
-+					<&rpmhpd RPMHPD_MSS>;
-+			power-domain-names = "cx",
-+					     "mss";
++allOf:
++  - $ref: pwm.yaml#
 +
-+			memory-region = <&mpssadsp_mem>, <&q6_mpss_dtb_mem>,
-+					<&mpss_dsm_mem>, <&mpss_dsm_mem_2>,
-+					<&qlink_logging_mem>;
++properties:
++  compatible:
++    oneOf:
++      - const: cirrus,ep9301-pwm
++      - items:
++          - enum:
++              - cirrus,ep9302-pwm
++              - cirrus,ep9307-pwm
++              - cirrus,ep9312-pwm
++              - cirrus,ep9315-pwm
++          - const: cirrus,ep9301-pwm
 +
-+			qcom,qmp = <&aoss_qmp>;
++  reg:
++    maxItems: 1
 +
-+			qcom,smem-states = <&smp2p_modem_out 0>;
-+			qcom,smem-state-names = "stop";
++  clocks:
++    items:
++      - description: SoC PWM clock
 +
-+			status = "disabled";
++  "#pwm-cells":
++    const: 3
 +
-+			glink-edge {
-+				interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
-+							     IPCC_MPROC_SIGNAL_PING
-+							     IRQ_TYPE_EDGE_RISING>;
-+				mboxes = <&ipcc IPCC_CLIENT_MPSS
-+						IPCC_MPROC_SIGNAL_PING>;
-+				label = "mpss";
-+				qcom,remote-pid = <1>;
-+			};
-+		};
++required:
++  - compatible
++  - reg
++  - clocks
 +
- 		sdhc: mmc@8804000 {
- 			compatible = "qcom,sdx75-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x0 0x08804000 0x0 0x1000>;
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
++    pwm@80910000 {
++        compatible = "cirrus,ep9301-pwm";
++        reg = <0x80910000 0x10>;
++        clocks = <&syscon EP93XX_CLK_PWM>;
++        #pwm-cells = <3>;
++    };
+
 -- 
-2.34.1
+2.43.2
+
 
 
