@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-76553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEBE90B000
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD6E90B0B1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12F501C2120B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 13:49:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E99D1C22FF7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079081CB32B;
-	Mon, 17 Jun 2024 13:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC724185E7F;
+	Mon, 17 Jun 2024 13:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FVh9Wvbc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0rbeIdh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EFC1CB327;
-	Mon, 17 Jun 2024 13:24:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8383C185E7A;
+	Mon, 17 Jun 2024 13:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718630652; cv=none; b=lL4mbjwGVH+lXqjN1go1Lr/IZZF9BDpO4KKJtvn65ACyyfRnxpyJHhFKWWFkDveYOMHtDQtsvfO1YEQ82PLoXsZ3sdYkQY1Kpuri9bf+oE4BrbrOnQbMJApKIMhxfRobKDqjadBOMo7WmmS+tHdNB9rxIASWrDUnzxAreuWgErY=
+	t=1718630744; cv=none; b=LLq/RhYz5zhHtoNGH5gTS6AGpV9wmj7bEBdVkZ1qE0gINRGJcy82gjxy+f6itG0OJz4TFyl3GUHZnbQ/K/WlpuMm7HGQj3I0dCawwtqdyag+QunsYRMnD614oNLUFw5Xi+wN2yHj+M1IfHdGAg9Ya3VMUoGGB6+fDF5wix3qxKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718630652; c=relaxed/simple;
-	bh=nviM6bhDNEd4yNfGYvf45ThFRNd+LR9OFqQiivpetJo=;
+	s=arc-20240116; t=1718630744; c=relaxed/simple;
+	bh=gSg7e7ssiabuaXE0c2Hnfh+p9orUESGxXNpTL+xWLAw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HkohXMEXj2BFf86jB52eBpxcmf3MGuYVFH0FaBHZjCBcZxg6G1GA3hxgyipVGJGfOwse77NWDAc9hI3xjy6dVFePhdLzvnHT7Srho6gcCLpZOVvgN+25PFL2V0S4w3vDK9JRsKNBxNzTXWAlsZGD2JAcdiGJjw8mW7ZzYnLz0kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FVh9Wvbc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BE5C2BD10;
-	Mon, 17 Jun 2024 13:24:11 +0000 (UTC)
+	 MIME-Version; b=XFYszwolWwrIi74AquENi5iasLjus6wsNnnu1tBkiRVB3rsktdNnuu6Rvwq5opBRos6LEB5Q2ABWqkFi0xGw6t6Q2MJf4jRbkgr57Pw29Y75sXLFsi1yElSo052dTRD2inkS9scTZeGsz8qK7cIlLNFN3BiRR2fXsAqHzr0nFMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0rbeIdh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9C3C4AF4D;
+	Mon, 17 Jun 2024 13:25:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718630652;
-	bh=nviM6bhDNEd4yNfGYvf45ThFRNd+LR9OFqQiivpetJo=;
+	s=k20201202; t=1718630744;
+	bh=gSg7e7ssiabuaXE0c2Hnfh+p9orUESGxXNpTL+xWLAw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FVh9Wvbcg2itz4vhLVF5nsdJX+lnTZlq6hdEEHfqgTE/jJWqIkNoGg8jnYlqrKGNI
-	 rjMf0PmwYzweLQSMsH4G9wY42Ncm7/dXhaGFIrXbSj/2V/JiLXNOmIC+UbC2nmnTcj
-	 AJcPKUDkjl4yNew1D0Cj3v8EBmrlYPu69i1DPgLEgoqTPMGiH0sarnsclCkuDb2EwH
-	 RhMa7l2Gvkr218UQaaI1Bw+6Q3l4rnZx4Z7XsRYcKQHHcGSXfpRh7Bi8nfsX1jGzyH
-	 ckL0EbrKXPUxGKJxFgRNB+q/2vYdqIMPbN/RFi0yTtPdGVyl7kJwhNhN9rlI/ikNz6
-	 FGo5De1ZLzGlw==
+	b=g0rbeIdhm66ErgHl0zHv9EgIKzOjdl8uIZd3GbYNcDeX4yuNjq3/otaRoqXP7tLR4
+	 DEoS4ZFtok/DK+52SYs4Ku8ZRyhX8IAs9jZOgOauNyB4iQbfOW+aRwjaC0Kju3WaEF
+	 JKwat2otiGSX6zLQR5f6lj6QaQCJxliz5LZV1jGp73Zf5jjuvnNeJa/rBE46iMmRH+
+	 DcCpEPimgNQ9Bi4iRPj7mEyf0wB3q6zBaPZ6tkUfI8yKLMYlFv/kgVIa3rwnI8J81b
+	 /fK7nyLfXefoc7OhJetSGY3ja3OV8CNG+VosArkrnym6l9n8L2rPwSbpNg/UCcw2Nb
+	 40Q3voobt/g9Q==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -50,12 +50,12 @@ Cc: "Rob Herring (Arm)" <robh@kernel.org>,
 	Sasha Levin <sashal@kernel.org>,
 	saravanak@google.com,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 25/35] of/irq: Factor out parsing of interrupt-map parent phandle+args from of_irq_parse_raw()
-Date: Mon, 17 Jun 2024 09:22:23 -0400
-Message-ID: <20240617132309.2588101-25-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 22/29] of/irq: Factor out parsing of interrupt-map parent phandle+args from of_irq_parse_raw()
+Date: Mon, 17 Jun 2024 09:24:26 -0400
+Message-ID: <20240617132456.2588952-22-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240617132309.2588101-1-sashal@kernel.org>
-References: <20240617132309.2588101-1-sashal@kernel.org>
+In-Reply-To: <20240617132456.2588952-1-sashal@kernel.org>
+References: <20240617132456.2588952-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,7 +64,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.34
+X-stable-base: Linux 6.1.94
 Content-Transfer-Encoding: 8bit
 
 From: "Rob Herring (Arm)" <robh@kernel.org>
@@ -89,7 +89,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 77 insertions(+), 51 deletions(-)
 
 diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index 174900072c18c..462375b293e47 100644
+index 2bac44f09554b..38ceb29b15f5e 100644
 --- a/drivers/of/irq.c
 +++ b/drivers/of/irq.c
 @@ -25,6 +25,8 @@
@@ -286,10 +286,10 @@ index 174900072c18c..462375b293e47 100644
  	return rc;
  }
 diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index f38397c7b5824..21f8f5e80917d 100644
+index fb6792d381a6b..ee09d7141bcf8 100644
 --- a/drivers/of/of_private.h
 +++ b/drivers/of/of_private.h
-@@ -158,6 +158,9 @@ extern void __of_sysfs_remove_bin_file(struct device_node *np,
+@@ -151,6 +151,9 @@ extern void __of_sysfs_remove_bin_file(struct device_node *np,
  extern int of_bus_n_addr_cells(struct device_node *np);
  extern int of_bus_n_size_cells(struct device_node *np);
  
