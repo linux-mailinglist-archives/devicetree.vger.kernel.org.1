@@ -1,177 +1,170 @@
-Return-Path: <devicetree+bounces-76417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9989D90A83D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:15:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E1BC90A850
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:22:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D918AB225E1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:15:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC7A2283AE7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60E218C35F;
-	Mon, 17 Jun 2024 08:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396D619046D;
+	Mon, 17 Jun 2024 08:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="LhQDYkLR"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="isu0i9O1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mx.adeep.su (mx.adeep.su [185.250.0.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091307492;
-	Mon, 17 Jun 2024 08:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718612151; cv=pass; b=VfZs/2qWS/5PUJ5G7T7M7naS8qOhTdIfX5s/h3DfmLHKw4NF3OYm3+sv3/SsujycQMP0OFkvxMCenCH67QTwClOsPnXyDwPDHY294JGeWWHpXrWXkTn8r8e0GRU1ycn/pQwoN6BIK5LE3IBFXD75R5U13mlw21UByuBXoYs5Tiw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718612151; c=relaxed/simple;
-	bh=oEw09u6puwEe1Nbazpi+FHtU6JyGgtK0P587AGGRiXE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CJlJEfL7jyMvkuS1kpDc7qLNHRuq3xy4gzI+fl+0a6TcWQYHW5GaWuDFinZWPGN3JeNDNCc8Qu0Nk28yZpCyw3pS04iFlamDeUCqIqaPDC7r+6bAPEl597zoUMjPxkjDFYKC0kqHuHmH4KN42CjiR6DO/e4B1fESCvhxkkqmO2k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=LhQDYkLR; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1718612132; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=bGcBqaIfCHRKICOs3rvbDy12lUk9nOlPk6eMD/0DFh7XP/Vhb4GMMUEOJ0DrwlCrlfBrhK7EXrtVzFFtmcc/1msp+h3bJ4Z3SZ0dEZvZ9XEDKMQNNGO46P4GsfuZ+NyCFAf45aD6jK3IACYJXbo4/fg5u2VK4FND1Cnq1IR61rM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1718612132; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=oEw09u6puwEe1Nbazpi+FHtU6JyGgtK0P587AGGRiXE=; 
-	b=D2SzVnPXEf4IGkJECZ6ycJwSvArQCAh6UntfciC9i6XptbdCPk66KDgqrFDG/a/Lv4I6s/y3xOqWzfj0E62pZifgAmJ/zufdJmwbpvkFEpQ23i45vhYudeVprvVHeXxlqla88C34gqJSRzJuw1gJtRw87K50QlFbzSVtnWGQgoI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1718612132;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=oEw09u6puwEe1Nbazpi+FHtU6JyGgtK0P587AGGRiXE=;
-	b=LhQDYkLRsNYhoyW+O7FQz6xPOO9x0ur4QOCLqgXaETHdqkjBBoGZqDPNcdYAYXv6
-	CXe7/HkHDcdU8zlDlCAMdFzZpuzuZDYXogHTgGBfL7eEXpI6PPEa0yRgW1Xvw9GkveB
-	sV5IqQbz136iu55t4LTJ9ILjV1h32EjvW6QKN6KQdI+H1Qe/5DKNJUjMHA+S8fS+3Ch
-	82asOB9xMwQkwEvQkyzbV89SaFD8LrqRna8gdLzLjUox8Kq7XvL+H/iPypO4MSpSXs8
-	eqdKidOldX8snJfkT6ibvY/2fzmamPNC/Gmr6LEehwHwiKUzoVIL7GF+fduRyz5K1hx
-	ZGKev4fJtQ==
-Received: by mx.zohomail.com with SMTPS id 1718612130295190.36232977173415;
-	Mon, 17 Jun 2024 01:15:30 -0700 (PDT)
-Message-ID: <60e610782212128d73dab9b1120708d81d809680.camel@icenowy.me>
-Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Yangyu Chen <cyy@cyyself.name>, Conor Dooley <conor@kernel.org>
-Cc: Yixun Lan <dlan@gentoo.org>, linux-riscv@lists.infradead.org, Conor
- Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul
- Walmsley <paul.walmsley@sifive.com>, Samuel Holland
- <samuel.holland@sifive.com>, Anup Patel <anup.patel@wdc.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Jesse Taube <jesse@rivosinc.com>
-Date: Mon, 17 Jun 2024 16:15:25 +0800
-In-Reply-To: <tencent_2ABAC5E885F8354EF1F9084A6B5B398EE00A@qq.com>
-References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
-	 <20240616-exorcism-computing-e11e26084a62@spud>
-	 <20240616224811.GC3983622@ofsar>
-	 <tencent_2ABAC5E885F8354EF1F9084A6B5B398EE00A@qq.com>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F10190464;
+	Mon, 17 Jun 2024 08:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.250.0.168
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718612521; cv=none; b=cgtrzs3CtyrkuclhV0QPGECzLNchF5Jeeu7nk0aH4sGkS68XyD4A5Ot3sgf1vR+mkzlXt2bVecTvfalImlA5rYmDA1Zg/76yzNJ9gS0eTR3cGfRb0798+cN2gOmzq5adik7qgxSL6eHMCV7H/IwAS+2nTaUNYycHF70+49RJRbQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718612521; c=relaxed/simple;
+	bh=m7ezWA4EapccuJHFsnN/X8zAkfEKsVddEeDHIkp3DSs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=haJxkvyFnt8gci44TNyeKlgh9WBWT1AqXb+wWfZxZC2RfARmxVs/467iuTXqIKA/w9No75i9aLdY8wjCJQVN5lNpU8xbmKHgdTuXi3qto1hgtlUTUAIDeudbfTTwa+0T7q14FBWxTYfTZ9gNF0yD//x2U9qQ1/rZdiHl0DWZSCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in; spf=pass smtp.mailfrom=lexina.in; dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b=isu0i9O1; arc=none smtp.client-ip=185.250.0.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lexina.in
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9A7506A800;
+	Mon, 17 Jun 2024 11:21:30 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1718612506; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
+	bh=BwuhUxOR0latqkY8rTzfYsXbbsUhulcTI88pJ+A5+2s=;
+	b=isu0i9O1jaU5xq9RCrKEsKPD1NzFaKbYiNezBKRHU5mUrOpvjpGUI38yeACbwzr3hRQVQ2
+	VTAQlxBYCsX2QBr0JDt3v8nKXd/7JSBDAMGM6UsrXDRi7zOZnufnzHVfCoxGbgh83FvvsQ
+	jEwFynmgv0WVwcqn+4XOjRo3wl9PgE+SUshbjn+Hx3ZGVSYCjscqvCB8A0baN2Eb5mnVBU
+	i5HL0kVHyHNLe3PLGdMAZ0wk91S18aIxdPMDzJgLqP29qrfdkWTDreY5lLaTRu/F0stglH
+	yE+uW8cuhVG/daFy67r7EMx+HiA/pFyf0xSLc65XGEyAPQI5HuITKREkNxyRYQ==
+Message-ID: <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
+Date: Mon, 17 Jun 2024 11:21:30 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+From: Viacheslav <adeep@lexina.in>
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
+ amlogic,meson-gx-ao-secure: add secure-monitor property
+To: Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20240610084032.3096614-1-adeep@lexina.in>
+ <20240610084032.3096614-4-adeep@lexina.in>
+ <20240610-dropout-compress-6d6a9b749524@spud>
+ <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+ <20240611-undying-earthy-00236ac251aa@spud>
+ <20240613164244.GA1999034-robh@kernel.org>
+Content-Language: ru, en-US
+Autocrypt: addr=adeep@lexina.in; keydata=
+ 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
+In-Reply-To: <20240613164244.GA1999034-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-=E5=9C=A8 2024-06-17=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:00 +0800=EF=BC=
-=8CYangyu Chen=E5=86=99=E9=81=93=EF=BC=9A
->=20
-> > On Jun 17, 2024, at 06:48, Yixun Lan <dlan@gentoo.org> wrote:
-> >=20
-> > Hi Conor
-> > Thanks for bringing this up
-> >=20
-> > On 19:35 Sun 16 Jun=C2=A0=C2=A0=C2=A0=C2=A0 , Conor Dooley wrote:
-> > > On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
-> > >=20
-> > > No MAINTAINERS update, so I figure that means you don't want to
-> > > maintain
-> > > it going forwards? If there's someone out that that does care
-> > > about the
-> > > spacemit k1 (Jesse maybe?), then I'd be more than happy to have
-> > > them
-> > > look after it.
->=20
-> Actually, I don=E2=80=99t know how to be a maintainer. Should I have to
-> provide a new git tree and all the new patches merged to my tree
-> and then submit a git pull? Or reuse the RISC-V mailing list and
-> just give a review, and the patches come to soc misc tree? I would
-> like the latter one.
+Thanks for review.
 
-Well I think for these SoCs the latter is the case.
+13/06/2024 19.42, Rob Herring wrote:
+> On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
+>> On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
+>>> Hi!
+>>>
+>>> 10/06/2024 19.08, Conor Dooley wrote:
+>>>> On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wrote:
+>>>>> Add secure-monitor property to schema for meson-gx-socinfo-sm driver.
+>>>>
+>>>> "bindings are for hardware, not drivers". Why purpose does the "secure
+>>>> monitor" serve that the secure firmware needs a reference to it?
+>>>
+>>> This driver is an extension to the meson-gx-socinfo driver: it supplements
+>>> information obtained from the register with information from the
+>>> SM_GET_CHIP_ID secure monitor call. Due to the specifics of the module
+>>> loading order, we cannot do away with meson-gx-socinfo, as it is used for
+>>> platform identification in some drivers. Therefore, the extended information
+>>> is formatted as a separate driver, which is loaded after the secure-monitor
+>>> driver.
+>>
+>> Please stop talking about drivers, this is a binding which is about
+>> hardware. Please provide, in your next version, a commit message that
+>> justifies adding this property without talking about driver probing
+>> order etc, and instead focuses on what service the "secure monitor"
+>> provides etc.
+> 
+> To put it another way, how many secure monitors does 1 system have?
 
-BTW I could volunteer as a maintainer, or at least a reviewer here.
+One per system in current device tree.
 
->=20
-> > Yangyu kind of has limited time, too many stuff for him..
-> >=20
->=20
-> True. Maybe I can have a review and test the patch in one week.
-> However, providing a review and test in 2-3 days is sometimes hard
-> for me.
->=20
-> > I'd volunteered to help on this if it can fill the gap
-> > Also I'd be more than happy if anyone willing step forward to co-
-> > maintain..
-> >=20
->=20
-> Thanks. Really appreciate it.
->=20
-> Should I provide a diff like this:
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d6c90161c7bf..718d30996f12 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19306,6 +19306,7 @@ F:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 arch/riscv/boot/=
-dts/
-> =C2=A0X:=C2=A0=C2=A0=C2=A0=C2=A0 arch/riscv/boot/dts/allwinner/
-> =C2=A0X:=C2=A0=C2=A0=C2=A0=C2=A0 arch/riscv/boot/dts/renesas/
-> =C2=A0X:=C2=A0=C2=A0=C2=A0=C2=A0 arch/riscv/boot/dts/sophgo/
-> +X:=C2=A0=C2=A0=C2=A0=C2=A0 arch/riscv/boot/dts/spacemit/
-> =C2=A0
-> =C2=A0RISC-V PMU DRIVERS
-> =C2=A0M:=C2=A0=C2=A0=C2=A0=C2=A0 Atish Patra <atishp@atishpatra.org>
-> @@ -21004,6 +21005,13 @@ W:=C2=A0=C2=A0=C2=A0=C2=A0 https://linuxtv.org
-> =C2=A0Q:=C2=A0=C2=A0=C2=A0=C2=A0 http://patchwork.linuxtv.org/project/lin=
-ux-media/list/
-> =C2=A0F:=C2=A0=C2=A0=C2=A0=C2=A0 drivers/media/dvb-frontends/sp2*
-> =C2=A0
-> +SPACEMIT DEVICETREES and DRIVERS
-> +M:=C2=A0=C2=A0=C2=A0=C2=A0 Yangyu Chen <cyy@cyyself.name>
-> +M:=C2=A0=C2=A0=C2=A0=C2=A0 Yixun Lan <dlan@gentoo.org>
-> +S:=C2=A0=C2=A0=C2=A0=C2=A0 Maintained
-> +F:=C2=A0=C2=A0=C2=A0=C2=A0 Documentation/devicetree/bindings/riscv/space=
-mit.yaml
-> +F:=C2=A0=C2=A0=C2=A0=C2=A0 arch/riscv/boot/dts/spacemit/
-> +
-> =C2=A0SPANISH DOCUMENTATION
-> =C2=A0M:=C2=A0=C2=A0=C2=A0=C2=A0 Carlos Bilbao <carlos.bilbao.osdev@gmail=
-.com>
-> =C2=A0R:=C2=A0=C2=A0=C2=A0=C2=A0 Avadhut Naik <avadhut.naik@amd.com>
->=20
-> Thanks,
-> Yangyu Chen
->=20
-> > --=20
-> > Yixun Lan (dlan)
-> > Gentoo Linux Developer
-> > GPG Key ID AABEFD55
->=20
->=20
+
+> 
+> What do you do if the property is not present? You didn't make it
+> required which is good because that would be an ABI break.
+
+We need an indication of the ability to use the secure-monitor to obtain 
+additional information within the soc driver. It seemed to me that using 
+an explicit reference to the secure-monitor is the best choice.
+
+> 
+> You only need a link in DT if there are different possible providers or
+> some per consumer information to describe (e.g. an interrupt number or
+> clock ID). You don't have the latter and likely there is only 1 possible
+> provider.
+
+Would replacing the reference to sm with an option, for example, 
+use-secure-monitor = <1>; look more appropriate in this case?
+
+
+> 
+> Rob
+> 
+> 
 > _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
+-- 
+Viacheslav
 
