@@ -1,131 +1,142 @@
-Return-Path: <devicetree+bounces-76485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B370790AA4E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:55:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC09B90AA5E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:57:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C777E1C25BDB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:55:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5284528265A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3AE196C9F;
-	Mon, 17 Jun 2024 09:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6711194C8E;
+	Mon, 17 Jun 2024 09:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KxCFO+Mu"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="wp1ZL5bJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B761190686;
-	Mon, 17 Jun 2024 09:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371C6194093
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 09:53:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718617665; cv=none; b=CNv2nQwNO8kr7Y+HPrklVmdmJ/B9aA8XS44BJwKru4nOhWv7FpV41sFUzH26JGjfq1sGl/9POdnAhHuS/3JkD1vtGZ/QWxxSRw1uimecYYglby9DW/BowRAwcsQOe/aTxuGIt+HLe/83VfIDyP44Or3TsJ8sKbm3BoufjbiYmXM=
+	t=1718618021; cv=none; b=u7kPl1tMYhCw3416U2CnsJuPyyPWr6mVqs38eciK9cVCVWN502Xer+1gAgZLwDvRhfZYzIpAOXUafiHBGGbZIK28TW1vviqVjJV4lHBvnInOYNjsJeMGQU7bmLw7TUsGgbrurbxBoF09CQ4qNCFsDzet86+wEbDoFXxza50NXzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718617665; c=relaxed/simple;
-	bh=8RBdNog9v6i7Y12AFGORLNl5FaRMz/KfSoh+ctsLO0s=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JTQ188wSLnlbiH/MBAmjRwBXyRUo0FwL+VsCs/i5BDcgQv+CDsuwDRPHB22duts6zbYRwE1WOTEWIWOz4UorSvvW78XeiAJCusV6J/iyUTSBoIfm+UZh1Ibe9V4uEmxxCUQ7QKFeLCCS3Pr7VprDN8Za59JDL9GQl86wSJEvWt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KxCFO+Mu; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-6e41550ae5bso2949795a12.3;
-        Mon, 17 Jun 2024 02:47:43 -0700 (PDT)
+	s=arc-20240116; t=1718618021; c=relaxed/simple;
+	bh=EwVLuVeHp2g3G1fblt/MpM+4+1Yf8xjMAvh3KYBPdkA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hjjPKbPEZ7W/5A+LsjkXKZnNDARiNsEJAjgwe1WMv9cOdqB8FP/4XyMWA5crp3dlM+e5fJhIYwOcUrTHWlEuWNPBif/Xhk3v02K3Ez3jwBJ46qdmAmzhPhXDEtOVk36CIC1/47IwKx8yUxGbadKYPO1chVqGkEHl1cGTj+M7PjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=wp1ZL5bJ; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52c82101407so6983595e87.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 02:53:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718617663; x=1719222463; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718618018; x=1719222818; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=usGpbKfnBPC6WUjY1RuxzYU4ZgAbIRTvzZTlT0vlyVY=;
-        b=KxCFO+MuRjXB39G79ciTJyojqXlgoFQNLxKaDQPv1qmT1ydBNKzoNG+7jOIHvRVfGB
-         YgXUryZHl8E+tsvmJyHG79xLL/gLmy/LUmXd72iYaL48Mj2o/3FgyEpIeeSPgpAWigOw
-         PfhzlZhVi+2m1Zkjwdt18Ia2yAWeNaSMJc5Q1lORe16DGsvzzLe6kXjTGKQ43ahhuwpk
-         kL6wA6jVQWGswD+IYYA3sWGWfpO+hKL2DO1e70H8HvZueEbhvox0hqF6FLnZhF4xh/2a
-         r7hFkmFblgSZum/R00mPZHoU7f7dA4YPlXzQL+WTsT7gfWyrxFB9wfS91pNevZpOU+va
-         r8HQ==
+        bh=Ow/bdqViiq77vsNYuMh0FoiQ44/aFS2ozFtxuSsTOHw=;
+        b=wp1ZL5bJrsLei/Pnp2GfaICtok3bK8z9Tqn+GodXcLOIV4oHwV8IYVhB7Du47oPYXI
+         E2WCWdC+E+ttcPdSwjpeSgzqEHiiiw5nWWn2qRt5OIt/EjCdFJTR0lzVYFj2w8QKfNF/
+         2LgT9rdP37eUZo6GhmLgQTtzz8FPeeLXli5iwa+52ert/0vNLkMK9pSaCmiRYHnVQd/G
+         kvTHfnL9KbTm9azu+AjCM0Lsi8sQ5JVy8DcS2mWD1r9JORL7iY21DQHmrkQt2U1Ms7kY
+         ZZXBGA1aiS5n4mmmh365Y64XwK8YD/xt0Ep6zK8kRNihUEo8D/tpnAbHVvuCdZ2h5a+b
+         hvCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718617663; x=1719222463;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1718618018; x=1719222818;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=usGpbKfnBPC6WUjY1RuxzYU4ZgAbIRTvzZTlT0vlyVY=;
-        b=AoUUxi4CwIRQ10B2sabqgn+ol86e/u9fQHbyr70J3QQ9Ny59zA/VGb3620eXr/3VjV
-         vyFs2WgHG2LA8QxH6YBjJs+rfjsbCqKGR58kGI8jw0wjgDdcZFsowprkTRrs6BmPJgs3
-         U94GyuM9Lb7ZyLW25bhC1MDG0NzjumX/cNL5jxfNHXhNUQKvyB3eAcrxO5hLfRIkJAHH
-         L/SZRGNeWsQ1LHZbNalefWmmgw/v0ylRLdKD4LyD6NiH/YeOnEZAWO3WFx/T83uxpCbf
-         rAEw+YbRSHq355o7FdH3IWQYUrbk//BRF+foMxKZPUYDhr4cfb5zbZnefgqFDIxSYRhq
-         hBMw==
-X-Forwarded-Encrypted: i=1; AJvYcCVDyCcAgEYOKuaamd6pB9LTqzQ0DmdFjxzOva4LddHMmlDE2PTBkGjp1L1WdgcuzJgmDhKaldA1eYUQeeSFydnf/4HKnKZhqTQvnVJP3cIStWT67ZzQTV04aNqad8CJJ4QWfXpXI0rRpoV/ygtkDJ771e1TyPKFbD9NCwjB5BTtfYLVhOde
-X-Gm-Message-State: AOJu0Yw2rzjnpMi0cuNpKxlzOdLHngbGEQZ4ekDh1CWbwvRKYmfdaF1J
-	zQ+GqoL/YAsoiqY4AiFxxQM/lOrAZw+I4OCVtOKqmUi99tAnnU5V
-X-Google-Smtp-Source: AGHT+IFyxj6DeLjbzNAUMQS9A9wQr543YPl1rLY7vjP9jo76xxnmD/MsXV8euv4MDQM0ooApWPY5Kw==
-X-Received: by 2002:a05:6a20:da92:b0:1b5:b214:efcc with SMTP id adf61e73a8af0-1bae82fd317mr10638457637.53.1718617662752;
-        Mon, 17 Jun 2024 02:47:42 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.133.99])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4c46701absm8576488a91.40.2024.06.17.02.47.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 02:47:42 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: detlev.casanova@collabora.com
-Cc: alchark@gmail.com,
-	andy.yan@rock-chips.com,
-	conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	devicetree@vger.kernel.org,
-	didi.debian@cknow.org,
-	dsimic@manjaro.org,
-	gregkh@linuxfoundation.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-staging@lists.linux.dev,
-	mchehab@kernel.org,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com
-Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-Date: Mon, 17 Jun 2024 17:47:34 +0800
-Message-Id: <20240617094735.27928-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240615015734.1612108-2-detlev.casanova@collabora.com>
-References: <20240615015734.1612108-2-detlev.casanova@collabora.com>
+        bh=Ow/bdqViiq77vsNYuMh0FoiQ44/aFS2ozFtxuSsTOHw=;
+        b=X7pg/Al4fahKGFYFWqILMtAatFuhzTyUEdkEvuj9GerQCT0+bQrejHK8Tl8Ak6q/n1
+         zHo1UElOpqUklSH6VoqHs+tAMEXyDk5PtOu+2xLM3PGcpYUlMqAGxqQNGAGPoGpFPryX
+         1fnh27EWe1hGNqW8DJVQxD4vwKECD+D7JhGkZkMwTvRzpQdDBXOMQPYT3otyzFMW8Bor
+         OyQd2E6AePZrdb8DSxqJzpGeql9vbAc9ELwHDRYTlDhP5qg2+CiHg/w5JYzWJTD5VNdJ
+         8XRdAu/rn9LqDjlkQHeoXkgUVSd4PqgjcrgGpnN/3wNF7PpetFwA2SnukwwdJqWl0z65
+         ecFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVyDsKeodRma4mj/iFttbfmDTAIxYmT45NODmhBn+PxehHpKMu2XfH3oKek0yW/GNzkWzDGXdm5DOkhgNdm92vrIeovWGZEVjiJuQ==
+X-Gm-Message-State: AOJu0YwttDuIeT/4k2GOT4JVaWXdJMLdSevvNb6SL/xypQoGnvt56LKT
+	vEoY5kmWVXfCN+7Gd8JFKw7tWLyYvywqmMr1aXymbVvLS2htZE+7onwPwLbvJUDGowGvTRNdtVC
+	raWhlGsrDhNBA1TxNPoqvCJdra7WlHO0kqdulDFUgyXRIgqgJ
+X-Google-Smtp-Source: AGHT+IFTgY07RrDts8kCSgZpcdeNkbbio2oxZYTF1W4ol0ipTL0MLFFayU3iO9ZhdfbwSWYFxpptD8C1Ao9fcwSlw5k=
+X-Received: by 2002:ac2:420a:0:b0:52b:bf92:bcd with SMTP id
+ 2adb3069b0e04-52ca6e67674mr6832479e87.22.1718618018212; Mon, 17 Jun 2024
+ 02:53:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240605122729.24283-1-brgl@bgdev.pl> <20240605122729.24283-2-brgl@bgdev.pl>
+ <m2ocalmjfiitgr2ziqtegll4gzs5l5hykgx57fzz2n7u45szje@faa2xxfmksm4>
+In-Reply-To: <m2ocalmjfiitgr2ziqtegll4gzs5l5hykgx57fzz2n7u45szje@faa2xxfmksm4>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 17 Jun 2024 11:53:27 +0200
+Message-ID: <CAMRc=MchOAwNR0i-_x13Y60gXGJHtnmVvmCet17u+TKUgrZ33A@mail.gmail.com>
+Subject: Re: [PATCH v9 1/4] arm64: dts: qcom: sm8550-qrd: add the Wifi node
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Amit Pundir <amit.pundir@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Detlev,
+On Mon, Jun 17, 2024 at 11:32=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Wed, Jun 05, 2024 at 02:27:26PM GMT, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Describe the ath12k WLAN on-board the WCN7850 module present on the
+> > board.
+> >
+> > [Neil: authored the initial version of the change]
+> >
+> > Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Tested-by: Amit Pundir <amit.pundir@linaro.org>
+> > Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 97 +++++++++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/sm8550.dtsi    |  2 +-
+> >  2 files changed, 98 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts=
+/qcom/sm8550.dtsi
+> > index c55a818af935..c9d3c0549ab5 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > @@ -1784,7 +1784,7 @@ pcie0: pcie@1c00000 {
+> >
+> >                       status =3D "disabled";
+> >
+> > -                     pcie@0 {
+> > +                     pcieport0: pcie@0 {
+>
+> Ideally this should come as a separate commit, with proper Fixes tag,
+> changing all pcie ports at once.
+>
 
-Thanks a lot for your work! I try to use rkvdec2 with chromium but it
-can't play h264 video. Here is the log of chromium:
+Why? this is not a bug, we didn't need this label until now.
 
-[5799:5873:0617/171224.850061:VERBOSE2:video_decoder_pipeline.cc(473)] Initialize(): config: codec: h264, profile: h264 high, level: not available, alpha_mode: is_opaque, coded size: [1920,1080], visible rect: [0,0,1920,1080], natural size: [1920,1080], has extra data: true, encryption scheme: Unencrypted, rotation: 0°, flipped: 0, color space: {primaries:BT709, transfer:BT709, matrix:BT709, range:LIMITED}
-[5799:5886:0617/171224.850915:VERBOSE2:v4l2_video_decoder.cc(182)] V4L2VideoDecoder():
-[5799:5886:0617/171224.851218:VERBOSE1:v4l2_device.cc(128)] Open(): No devices supporting H264 for type: 0
-[5799:5886:0617/171224.851346:VERBOSE4:v4l2_queue.cc(1069)] This queue does  support requests.: No such file or directory (2)
-[5799:5886:0617/171224.851426:VERBOSE1:v4l2_video_decoder.cc(476)] InitializeBackend(): Using a stateless API for profile: h264 high and fourcc: S264
-[5799:5886:0617/171224.851687:VERBOSE1:v4l2_video_decoder.cc(598)] SetupInputFormat(): Input (OUTPUT queue) Fourcc: S264
-[5799:5886:0617/171224.851797:VERBOSE1:v4l2_video_decoder.cc(636)] AllocateInputBuffers(): Requesting: 17 OUTPUT buffers of type V4L2_MEMORY_MMAP
-[5799:5886:0617/171224.867687:VERBOSE1:v4l2_queue.cc(1511)] Streamon(): (OUTPUT_MPLANE) VIDIOC_STREAMON failed: Invalid argument (22)
-[5799:5886:0617/171224.867902:VERBOSE1:v4l2_video_decoder.cc(937)] StartStreamV4L2Queue(): Failed to streamon V4L2 queue.
-[5799:5886:0617/171224.868009:VERBOSE1:v4l2_video_decoder.cc(1377)] SetState(): Error occurred, stopping queues.
-[5799:5886:0617/171224.868105:ERROR:v4l2_video_decoder.cc(120)] StartStreamV4L2Queue failed at Decode@media/gpu/v4l2/v4l2_video_decoder.cc:915
-[5799:5886:0617/171224.871898:WARNING:v4l2_video_decoder_backend_stateless.cc(126)] There is/are 0 pending CAPTURE queue buffers pending dequeuing. This might be fine or a problem depending on the destruction semantics (of theclient code.
+Bart
 
-Here is the chromium code failed when calling VIDIOC_STREAMON:
-https://github.com/chromium/chromium/blob/125.0.6422.60/media/gpu/v4l2/v4l2_queue.cc#L1508
-
-I'm running chromium v125.0.6422.60 and I can decode 1080p h264 with
-hantro g1 decoder on rk3588.
-
-Best regards,
-Jianfeng
+> >                               device_type =3D "pci";
+> >                               reg =3D <0x0 0x0 0x0 0x0 0x0>;
+> >                               bus-range =3D <0x01 0xff>;
+> > --
+> > 2.40.1
+> >
+>
+> --
+> With best wishes
+> Dmitry
 
