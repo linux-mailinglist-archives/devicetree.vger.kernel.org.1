@@ -1,194 +1,128 @@
-Return-Path: <devicetree+bounces-76617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D89990B58A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:59:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7499F90B597
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35C451C21B38
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:59:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 606651C21433
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FEB14D2B6;
-	Mon, 17 Jun 2024 15:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D6114F100;
+	Mon, 17 Jun 2024 15:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ODTYBWUY"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="MZ+kQN7y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C47C14D2A7;
-	Mon, 17 Jun 2024 15:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548BA14EC62;
+	Mon, 17 Jun 2024 15:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718639329; cv=none; b=WXqac/HtM3fxRDmF5iDOfbqV8Vow//aWcHBRQ+lc3F131y2z0G7Io9eJ72bEmBhEw1k3Df31ZDOqnXyfNFB0TSHXQM0BwDj4zPoWeHqnAquREcItH/enI/by6IenFsQN6ZslBJlk0PzploQS73iDhWL7wGaQrWopneoHmqEEFr8=
+	t=1718639387; cv=none; b=tfMIMkWpm670k/cKMArsOZXFHXgCt4zHxQjWZMCsx1rhIweov5xIOD8wdzmgLcNeT0MgBsYkEqo04pdY6BhR2/BVMffubdXtTjNHbvp9ZM1zDBNHR0lt+GY7bUEDVyJ5VLHpC9cXGqUJsAp/E/85g0lQRr9/frFiJdN9z+Ss320=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718639329; c=relaxed/simple;
-	bh=fDi6yPRqLiM+HLfGb+FlpnVc+ukGfMsFd2U9nCeH7kE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JtKGjpy8h3QvW5z2pIVhrB8E6LLnRBF2iYLmqoZ6tGyxqeJfC4q9Om0qg+VGfhpfT6DmTlE0wdofhJThOL2OZu/itJu0SqqkqeMdhpu6qysfzoRIngG0cDK4qD+Ht2PfMKlCcYle0IKwgQQxJlGyGee5ij3101mRPYfQc+LXz98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ODTYBWUY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90D6FC2BD10;
-	Mon, 17 Jun 2024 15:48:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718639329;
-	bh=fDi6yPRqLiM+HLfGb+FlpnVc+ukGfMsFd2U9nCeH7kE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ODTYBWUYbq4jF+ultQNT00YqzCbp79CdB5JGWTpbMaN4MV6cyVY2+6SUYKyDBvw6m
-	 cO/UAzhRG43/2vgV17BosUoUj09EgcV+lvj7SP+ExfPOsle0N+1ka4sh6T86JU3GdD
-	 oYnOX4nbNHTVqAdV9z+wsyc9fx44DJZBU4COrh1kPX9CKiE8mXuYnrRM6P6tqBhlBo
-	 ptB5VS7vR3kgZou+8AngXp0OK6RbpTODj5X2DqDZ1A7YapKT7Mf4e8QcFO9yrzdQLK
-	 3Iyk+al0Ii/i/Nfdb4qkgcPlndwgnsX1JxHQM7Tx93Iy4FoCDRD+YnX1lKEfEY2c78
-	 m29L86quDoZOw==
-Message-ID: <2fe7ba36-05b9-42c7-8726-ea891cfc7afc@kernel.org>
-Date: Mon, 17 Jun 2024 17:48:42 +0200
+	s=arc-20240116; t=1718639387; c=relaxed/simple;
+	bh=PfgonVgFYp61t/c8MZcCMIQbGRvfn27Xsd4DtpDziwQ=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=p/DxtGsoKco6LmeC5rrC1q3/Xfz7f2ok8iySMauZB6NbLy0eGR4dMEtzqPtKni+DcIfFrGINrLrhZHrVE8k1sOfEAhHeSXiyB4U0/8a0MFDOGfF1VZ/cvMh5BbUiQww3UHDxiUUiTEWNRLS1/ghYuRkxfvs836yypPMzSjhAqBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=MZ+kQN7y; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=pajbFnbgEHmNkP9OmvMt+YaCSM1Vfl2Psgvjwr2BIfk=; b=MZ+kQN7yQoQBm+Se75WsLfLfg0
+	I09oaBimbkGffo1m20hJbQRIKR1yButSr8+LQ3M/fW9/icPX/ZxQFY3YZJRRJGUC348OFS/RIRs9m
+	WCIAJLR+6eQYJdCBWB3gmplBhKRdmWpL4MQ/lN/CJaIFDiPLkYADiwqejlyOTScYg+pw=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:56466 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sJEbw-000781-HN; Mon, 17 Jun 2024 11:49:36 -0400
+Date: Mon, 17 Jun 2024 11:49:14 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hui Wang <hui.wang@canonical.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
+Message-Id: <20240617114914.329fb547ff82776b1c03e4e9@hugovil.com>
+In-Reply-To: <20240614102952.679806-1-hui.wang@canonical.com>
+References: <20240614102952.679806-1-hui.wang@canonical.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] ASoC: dt-bindings: lpc32xx: Add lpc32xx i2s DT
- binding
-To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
- Russell King <linux@armlinux.org.uk>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, "J.M.B. Downing"
- <jonathan.downing@nautel.com>, Arnd Bergmann <arnd@arndb.de>,
- Chancel Liu <chancel.liu@nxp.com>, Michael Ellerman <mpe@ellerman.id.au>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org
-References: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
- <20240614163500.386747-1-piotr.wojtaszczyk@timesys.com>
- <20240614163500.386747-2-piotr.wojtaszczyk@timesys.com>
- <83cbf43e-c927-449f-8b7e-5c8d3ee8cece@kernel.org>
- <CAG+cZ06EeXUDiLsDXkz+6EHqJwpvv2MWwfpvB8AYw0=ZhUkTfQ@mail.gmail.com>
- <83a45f7c-d90b-44d3-b57e-9dad21045e27@kernel.org>
- <CAG+cZ06kzikieaD_JCBybwWk8XKZQjJxa34Cg4QHxrxpT+j0eA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAG+cZ06kzikieaD_JCBybwWk8XKZQjJxa34Cg4QHxrxpT+j0eA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -1.4 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v5 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On 17/06/2024 16:04, Piotr Wojtaszczyk wrote:
->>
->>> It's used by snd_soc_dai_init_dma_data() in [PATCH v3 4/4] to give the
->>> dmaengine a
->>> hint which dma config to use. The LPC32xx doesn't have yet a dmamux driver like
->>
->> and if I change driver platform data to foo and bar, does the DTS work? No.
+On Fri, 14 Jun 2024 18:29:51 +0800
+Hui Wang <hui.wang@canonical.com> wrote:
+
+> In some designs, the chip reset pin is connected to a GPIO, and this
+> GPIO needs to be set correctly before probing the driver, so add a
+> reset-gpios in the device tree.
 > 
-> They shouldn't change the same way as expected dma-names shouldn't change.
-> Lots of drivers expect the dma-names to be "rx", "tx"
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> ---
+> No change in the v5
 > 
->>
->>> lpc18xx-dmamux.c therefore it still uses platform data entries for
->>> pl08x dma channels
->>> and 'SND_DMAENGINE_PCM_FLAG_NO_DT | SND_DMAENGINE_PCM_FLAG_COMPAT'
->>> flags in the devm_snd_dmaengine_pcm_register().
->>> Typically instead of this platform data you would use regular 'dma'
->>> and 'dma-names' if it had
->>> proper dmamux driver like lpc18xx-dmamux.c
->>
->> Exactly. Use these.
+>  Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> Then I need to write a lpc32xx dma mux driver, device tree binding for
-> it and adjust the
-> LPC32xx I2S driver for it. Is this a hard requirement to accept this
-> patch set for the
-> legacy LPC32xx SoC?
-
-I do not see at all analogy with dma-names. dma-names are used ONLY by
-the consumer to pick up proper property "dmas" from DT. They are not
-passed to DMA code. They are not used to configure DMA provider at all.
-
-You parse string from DT and pass it further as DMA filtering code. This
-is abuse of hardware description for programming your driver and their
-dependencies.
-
-Why you cannot hard-code them?
-
-Sorry, to be clear: NAK
-
+> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+> index 5dec15b7e7c3..88871480018e 100644
+> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+> @@ -28,6 +28,9 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+>    clock-frequency:
+>      description:
+>        When there is no clock provider visible to the platform, this
+> @@ -91,6 +94,7 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+>      i2c {
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> @@ -120,6 +124,7 @@ examples:
+>              compatible = "nxp,sc16is752";
+>              reg = <0x54>;
+>              clocks = <&clk20m>;
+> +            reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+>              interrupt-parent = <&gpio3>;
+>              interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+>              nxp,modem-control-line-ports = <0 1>; /* Ports 0 and 1 as modem control lines */
+> -- 
+> 2.34.1
 > 
->>
->>>
->>>>
->>>> Drop.
->>>>
->>>>
->>>>> +
->>>>> +  "#sound-dai-cells":
->>>>> +    const: 0
->>>>> +
->>>
->>> The "dai-common.yam" doesn't declare a default value for this so
->>
->> Where is my comment to which you refer to? Please do not drop context
->> from replies. I have no clue what you want to discuss here.
-> Well I didn't remove the context, you said:
-> "
-> Drop.
-> (...)
-> +  "#sound-dai-cells":
-> +    const: 0
-> "
-> So I'm confused whether the "#sound-dai-cells" should be in the dt
-> binding or not.
 
-??? Drop is above the text so why do you refer to dai cells? We use here
-text-based mailing list style of discussions, not corporate MS Office.
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+ 
+-- 
+Hugo Villeneuve
 
