@@ -1,138 +1,134 @@
-Return-Path: <devicetree+bounces-76592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B856690B611
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D0B90B5C5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:07:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FA8DB45B70
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:43:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 095FBB2D546
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4916156886;
-	Mon, 17 Jun 2024 15:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3ED158DCD;
+	Mon, 17 Jun 2024 15:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DK3bqfLX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ILov2p6V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB818156875;
-	Mon, 17 Jun 2024 15:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3A2158DB6;
+	Mon, 17 Jun 2024 15:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637232; cv=none; b=mvmuoBpisd9r8LLMWQfAHrNoneC69FJNBQBkg8k8XYG3yyD8Jy1k5+b/bZZ/n+fTP76sCST7k3wLx8ZWqoXcV2wi+EvTVsMIb4dCOqZHpf3cDfE911q8GATZxuWpH3Exz1Xxf52wTeu3QdcBZ+k8JznmM0SNjwAQCDrOaVXsOKw=
+	t=1718637694; cv=none; b=hyZOGPGzaa7pJAAJAsQU9pJgsgbbNDKtJPuIRc/+wuylPqYrSD7obUg4Ddh+y4cNkx7F6P0GRTicJdeRqj3AwczW7KiEfOfjW0/Gqonq5hRFsWU7taL3yfz2AnZRLXuo6HkgdvSEJX6GkYgTBaOFrvenys/a/IIO0ywcTceER9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637232; c=relaxed/simple;
-	bh=hIWzbXsh4mRighfIgGhRcgmXvHJgCqDvgPH9Ldm/Ioc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cguCEDKFwqs20KVEjHHrNURFzj+vNVdEtq7F6TWLwQSK1kLbjmWa2GY18rMMYpob3Vce5w9fZrQ+mwBjE88OpSZqgfSvo16V2gwFKM5K48z2n7Z+8JWoLU05U4FEMY/mWxfg0xHAT6EUrz2sWSeHsLSriklcr4dsr68+tFv/g6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DK3bqfLX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57F2FC4AF1D;
-	Mon, 17 Jun 2024 15:13:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718637232;
-	bh=hIWzbXsh4mRighfIgGhRcgmXvHJgCqDvgPH9Ldm/Ioc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DK3bqfLX0WxhffXPr5lbsmxoeHwQMsu+flSjBg8PWwwTJKZxnKGEo8YNAd90sgEqP
-	 Zs5j/ab+R7s1TRE+6QDbmCWZSojGojXmTSMNuXzotxzOmEKRlNFHZyBzKhVHxyfCHc
-	 JYQtGxatwp1DlQdbgPNVOHyoyKcM/a9OD5l9lhApRu3oO8El55tVrlsySaA45ZHhF8
-	 +riQ7+R3GZgDqyxqRHcimWsXH6b/8gZBDtV20TcOxAdNFGh2CwRe1tPCJ1lKD/Sd9R
-	 Phwm86BRC/DwPRz8r/HwlYGLkLUcpkYFIudTp9jSSyCspfG5eAjsKHqvT9mlDVLRP7
-	 KGbONMEOjopAg==
-Date: Mon, 17 Jun 2024 16:13:48 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Etienne CARRIERE - foss <etienne.carriere@foss.st.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
-	Pascal PAILLET-LME <p.paillet@st.com>,
-	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH v2] dt-bindings: mfd: dual licensing for st,stpmic1
- bindings
-Message-ID: <20240617-shaky-amenity-5727816e00e1@spud>
-References: <20240617092016.2958046-1-etienne.carriere@foss.st.com>
- <15b20cdd8b9148559352fdb2f02e4e53@foss.st.com>
+	s=arc-20240116; t=1718637694; c=relaxed/simple;
+	bh=5Wn7SBadF1voQ3s8lFOjrITjw/7NasFYsMiD4rEzIT8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=o9aRDDIryuS/MrpmfLY70lR6KRRAgAKFPIMFeY3hvSsbYBGJm+zn2Cu8WldSydn42O8FZRomeKhX1+II2MW2V24mkLqW3Q2B98Fla469NwS25nkpff4mJfMRgOrSXY6egjD8hKJOOccN0cGn/4riagPbCW6p5TEVUZ+4+fHf01g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ILov2p6V; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-70435f4c330so3574814b3a.1;
+        Mon, 17 Jun 2024 08:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718637693; x=1719242493; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=00MR3ut2aMx7bMI2LS9yReBsbwXpambIHWaVlb3riis=;
+        b=ILov2p6V69cMgt7VzMLFPZxZfPHDH00CNYayZkqXCFeqZq13i0yGaeODRhQ+vxiQtj
+         9Rv2zwZIhmD4zbAepTF5mN1QxBeGr6RFuN7WNTkzvTkTocW9K2Vsb0iRpsA1h0l/EiLp
+         vrbUIHsxcQDTxJOkcXflPophscGB5+FdEaSAJlPssmNqRaj2DwkLphB45Az9h8Rhamuv
+         9JSHiDQ1h3PeadwNeeZF4hULBPNrXtesFNL/H/vbNqb+XNZvDh0XE/VET5MZ46cnXoZe
+         lYxmV7GQPpbhfaV2wM0+x9Qry7olwxgzMMwU91Ijabl62iMk9tizzQbcLxYwPLnZCC5k
+         N/gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718637693; x=1719242493;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=00MR3ut2aMx7bMI2LS9yReBsbwXpambIHWaVlb3riis=;
+        b=H+DmYbOYpRHZiKLCk/y83hJVm3aFPLRHMgtSPCZb+SKY1HkZbaO1PtTcsG55QtbK3K
+         WGXnmCKSEaSJLT6G1pU3Em7JOvCOULuDSv9f0kbC06vQDt3h+fG+RgVALdBTlI0NklDs
+         eExDoO4wjT5CYc4OW01KaZj0ckGTc5WWNp6JLFd/WeJxMiR64UY5BNO6weX4elmANWtw
+         nPl+9pICnQ8y6gno+QBp0i2T+bNJfz+yrpBopmfVBrPRVyptYF9H06jLnoucA+AxlFhM
+         HgnGUV0IHiSAAoOiKj0J2DbSPSAfDSD6iRGwnOkQwkjzJ/0cYTRYiKIJPK9bYqhfk5aJ
+         pc/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWfidXvBepByAWkV34Y/WhohrSKCCEsfh/zFaK1ByAz7mqTHC+hda9sj6TV8cRhCkWfkTBHmi9yN/K/4tjnmzNnygRse9XU/JppuW1Kb1b9DkTcccp4xnh0tY3QD9b8KnjwDATdkFYCxfs6pFO4bXYo6hTqtQGEjLbaR4JdX7abC20gsVl5
+X-Gm-Message-State: AOJu0YwTBkMum6rWrvkSSIEtT6JPikeCU33UWpYdOwm41jxkKVsM2pjm
+	IKA4iZYqzvp2yBdPsV3IRjpRM7D9DZDD++NjLqgiiahY2u56NICh
+X-Google-Smtp-Source: AGHT+IHBHAhCvnxr/UkOTrgt6uZtW2TW6zVduT+0n5X0O7AEH43lwuvAseCDAnFPI71RKlft3Z+Kkw==
+X-Received: by 2002:a05:6a20:3c91:b0:1b6:5b3a:9a55 with SMTP id adf61e73a8af0-1bae7eb2d92mr9897841637.14.1718637692784;
+        Mon, 17 Jun 2024 08:21:32 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.133.99])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-70a36b6954dsm1760558a12.84.2024.06.17.08.21.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 08:21:32 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: nicolas@ndufresne.ca
+Cc: alchark@gmail.com,
+	andy.yan@rock-chips.com,
+	conor+dt@kernel.org,
+	cristian.ciocaltea@collabora.com,
+	detlev.casanova@collabora.com,
+	devicetree@vger.kernel.org,
+	didi.debian@cknow.org,
+	dsimic@manjaro.org,
+	gregkh@linuxfoundation.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	liujianfeng1994@gmail.com,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com
+Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
+Date: Mon, 17 Jun 2024 23:21:18 +0800
+Message-Id: <20240617152118.30684-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <f295f41ef1c9ee920ac3ac8e70ccf672ba7c9648.camel@ndufresne.ca>
+References: <f295f41ef1c9ee920ac3ac8e70ccf672ba7c9648.camel@ndufresne.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nDhD1gxr6ZJ9vEJW"
-Content-Disposition: inline
-In-Reply-To: <15b20cdd8b9148559352fdb2f02e4e53@foss.st.com>
+Content-Transfer-Encoding: 8bit
 
+Hi Nicolas,
 
---nDhD1gxr6ZJ9vEJW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 17 Jun 2024 10:04:59 -0400, Nicolas Dufresne wrote:
+>> [5799:5886:0617/171224.851218:VERBOSE1:v4l2_device.cc(128)] Open(): No devices supporting H264 for type: 0
+>> [5799:5886:0617/171224.851346:VERBOSE4:v4l2_queue.cc(1069)] This queue does  support requests.: No such file or directory (2)
+>
+>This one indicates that V4L2_BUF_CAP_SUPPORTS_REQUESTS might be missing in the
+>REQBUFS implementation. I suspect GStreamer simply assumes this today for driver
+>exposing stateless formats (which is fair, its not a compliance test, and we
+>don't have a codec compliance yet).
+>
+>I'd suggest to check and fix this one, and retry, might only be noise, might be
+>the main cause, we cannot tell.
 
-On Mon, Jun 17, 2024 at 09:21:13AM +0000, Etienne CARRIERE - foss wrote:
-> Hello Conor,
->=20
-> >
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Saturday, June 15, 2024 2:14 PM
-> >
-> > On Fri, Jun 14, 2024 at 05:33:46PM +0200, Etienne Carriere wrote:
-> > > Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv2.0
-> > > only to dual GPLv2.0 or BSD-3-Clause. I have every legitimacy to requ=
-est
-> > > this change on behalf of STMicroelectronics. This change clarifies th=
-at
-> > > this DT binding header file can be shared with software components as
-> > > bootloaders and OSes that are not published under GPLv2 terms.
-> > >
-> > > In CC are all the contributors to this header file.
-> > >
-> > > Cc: Pascal Paillet <p.paillet@st.com>
-> > > Cc: Lee Jones <lee.jones@linaro.org>
-> > > Cc: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
-> > > ---
-> > >  include/dt-bindings/mfd/st,stpmic1.h | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/include/dt-bindings/mfd/st,stpmic1.h b/include/dt-bindin=
-gs/mfd/st,stpmic1.h
-> > > index 321cd08797d9..957c48300cd4 100644
-> > > --- a/include/dt-bindings/mfd/st,stpmic1.h
-> > > +++ b/include/dt-bindings/mfd/st,stpmic1.h
-> > > @@ -1,4 +1,4 @@
-> > > -/* SPDX-License-Identifier: GPL-2.0 */
-> > > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
-> >
-> > The usual dual license for bindings is BSD-2-Clause, was there a
-> > specific request for the 3 version?
->=20
-> My mistake. Thanks for spotting that.
-> I have my company agreement for the 2 dual models: "OR BSD-2-Clause" and =
-"OR BSD-3-Clause".
-> We expect to conform to DT bindings preferred licensing model. Indeed the=
- kernel documentation explicitly mention "GPL-2.0-only OR BSD-2-Clause".
-> We prefer to conform with it. I'll update my patch.
->=20
-> By the way, I'll fix Lee Jones e-mail address that is deprecated.
+This log doesn't harm chromium decoding. I can also see it when using
+hantro g1 decoder. The issue is "VIDIOC_STREAMON failed" later causing 
+decode failed.
 
-I figure this is a send-email mistake cos you have to do something
-god-forsaken to send plaintext mail from the st mail system.
+>Are you using minigbm ? Because if you do, we don't have minigbm code for this
+>driver (and have no plan to do so, since we don't aim for ChromeOS support).
 
---nDhD1gxr6ZJ9vEJW
-Content-Type: application/pgp-signature; name="signature.asc"
+I'm using patched chromium which can use mesa's libgbm to render NV12.
+Robert Mader has showed me patches from this mesa's merge request[1].
 
------BEGIN PGP SIGNATURE-----
+[1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23214
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBSrAAKCRB4tDGHoIJi
-0haXAQDscqmPiNOh0Bh+PkIiCfAxILuu6s2z2D2dalTF/DcSyAEA9mSKKJhCsVH1
-gd9VVgFw5ZfTa4bXLVuLmNkIF+8wxwU=
-=Nc3K
------END PGP SIGNATURE-----
-
---nDhD1gxr6ZJ9vEJW--
+Best regards,
+Jianfeng
 
