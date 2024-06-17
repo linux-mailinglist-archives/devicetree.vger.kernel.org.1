@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-76384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F101290A6FC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:26:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79CF290A709
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D7F01F23F89
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:26:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03C03281800
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25273187322;
-	Mon, 17 Jun 2024 07:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D526188CCE;
+	Mon, 17 Jun 2024 07:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="oW3VgMqQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tslcc1DX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800AC18C320
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:25:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABEAE18734A
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:27:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718609158; cv=none; b=WW5XazA+ZM3kXekq8A5+js00je6tx9TpqnpLTho++2L6ImEy523P8yBtdVlbV+/W/GX7zpJ1BrCmqAVH25sA6cWTJ8jBY7QVOWqKmXIWmsRknxB6PJIoh079A5aBMbgEibiA3nk+Bae5aFHxf99ThpJ8lFJhVLd7EjrsmyD6r/Q=
+	t=1718609250; cv=none; b=n1pIde37cx5/LlwLWpORJ4KMF7CKSvp/OunA8/Q2a7VnZXNhhaLm5sm6irtiKyVmVVhjIiASeOJ1467cA0cZtjJ1P+jCaWOyzYzofF+I94inWnUGWoOsrWt9F+AADCqfUKglwfrf4lwmaxHfshQIrggMMUzpfAnF0Tt7U2ccdag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718609158; c=relaxed/simple;
-	bh=01nt3v2c8G2IiILApGwbkBZuWwC/TMiw7VCqBF9jxWE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=e3767Rm23PUyrXUE7lXMuC0s1qPm+/7+5e8pkFZxCvqFHyorGqEl9hajU6OqJ8lYen1NCaMAQZVLa2tJJ4RQEGK+xckgTIkaR+KQm4qz2+oCRCIzzK+k9XIEbpU7fxIPNnpTFFLb6OVbAa0oA0f1tb2SZmUAWsqTD68ezPyPxnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=oW3VgMqQ; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42172ab4b60so35833875e9.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:25:56 -0700 (PDT)
+	s=arc-20240116; t=1718609250; c=relaxed/simple;
+	bh=l6EXHT8moxb9IOOPxR9jNaR3YmY6OrdA8+NL59K+qwk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CMOOmpcskq+im5+y2L8tnSQYF1FIFhoanGiw3TwB/qJTVbhU2pQEG3LpBdIQrRMv8CZ5+oGZsvwNeLqWCCdO5g3dOraW7Zm1FusFakzSD/r3VvSDErFZB8uwWs/CvIZcf69OzZOmo+w1LMq21tjz4c+6r0kv4kExvW/BT+kWwSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Tslcc1DX; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so496290866b.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1718609155; x=1719213955; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VAGQjlSoVmUhRRPnFle/Cilr5/xRtzCzsi0PLTzdHq4=;
-        b=oW3VgMqQNtSiePkY2uDEjluvv23KE1a0AxzDMX3/uZcdHiIxEEPRtsw56j2i4n/HBX
-         QAEig5e+seANcvLv4032NifwT4NUB5nSsS+N+4CR/6JNgsJ5xktwAC0zlr8t/OM8xqtT
-         BGuaRi0pBczOrfZWavRb4ukmbB6DDU/rZymTqi/7VV5Ja5X3gEl4CMCAVUVwHezGYrrc
-         v1qXhbFWV0d5nPdy5HNYU4c+wf05WGYKsU679QLfRepYvPxg/W9XY/CS47KgD9fVzmyS
-         N0ST04PIPWdJlpykW93WrWtu9VrCXarvyuTZ4UNggM9QnuyObwj5u2yT87+ZDb7OSgX1
-         GKug==
+        d=linaro.org; s=google; t=1718609247; x=1719214047; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EuYxtY6j33Xmhdf578gv73N2zuipaut5w8KeOq7kRrU=;
+        b=Tslcc1DXTGhWayucYI6UVpfT12ETQqqCMBLL4dQ0E8aRAi680bm4uBBb4vlr6DHRxY
+         ryldh4JyLfewnhxtb8ZAQsv7QonA8/vXwsXPL67UgGy719CHrny4OV6L11TyEJzjRG/a
+         zoa2xGB+ZFSURNZn5yRXC0i7iqXIU6G9vZDzQlFFZxCYG9t5pzchMm+zR2Ihe50XlotG
+         xOqnPRyRMVlcZ/+NVJGMifytjWZ+bmciLuRiAWFEPXSBQ0npwXQxB26o7cQo08fH+Tgg
+         I7sDnQRsQa4GfF55iUlil0wyXi3wIRBzYHehZMX4ubFEBw2J7lXwhW6PQE7xfK6/FVhG
+         ayWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718609155; x=1719213955;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VAGQjlSoVmUhRRPnFle/Cilr5/xRtzCzsi0PLTzdHq4=;
-        b=CVOyCFFJQvN0Fv65ey2K+60YkF/t2sKmfeEiFdr5apJsbSftxQfKPFGhhxnezDQu5B
-         sSTGPmY8FSLyBC6wQdj8DGV21NEGX1viAq3E7CaqWr61Lz/PaGTt70luaCPOi07PMqjU
-         z69BOENi1eqzj7VFoyCzEhGTt74kgovEYSo8wMjSfb0kratxA+t530+1Z4vML1WCEmut
-         2xzBW/dRYmao8Ybq0/751RDJPOBY3pTH2vNooz8+PnqU7VGDGzr3N0ibZLWXnWnXVoNJ
-         PJcQwUxgYe8bQ2/Z4SCr/XBSvHSdjqt10omRx35/nUHFIUZLN1U2KISp29VJ2Dgl9Iy1
-         DfPA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEgLNKxgSfPBQL/1aIRIUYtj5xkl4TFAvLRrgBsJIGRTle1p5P7g1IcepL86W63vhSisjXghY06ximgpTv3wSeaOmc4+H9J+qrFg==
-X-Gm-Message-State: AOJu0Ywu5cJjiq09UfSDgEAStZadsJZVClYnTy/ONtErgW824eCUVo3a
-	kcqswBAEMz82Zw+V7AQCU1Hb0JP6a8mz4uT2Vf1IH9rQQI3czEcoKkNocsNVLUM=
-X-Google-Smtp-Source: AGHT+IHGTLig64RZScCxEgxVs7DaULrPVWEgwJ03TPdeRQTj+7cL+VH6g1Og+GMfyv9gu7deldJu4w==
-X-Received: by 2002:a05:600c:3107:b0:423:499:a1ce with SMTP id 5b1f17b1804b1-42304d934c4mr82449965e9.32.1718609154783;
-        Mon, 17 Jun 2024 00:25:54 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.189])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f641a64bsm151553735e9.46.2024.06.17.00.25.53
+        d=1e100.net; s=20230601; t=1718609247; x=1719214047;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EuYxtY6j33Xmhdf578gv73N2zuipaut5w8KeOq7kRrU=;
+        b=ZGn4U5oRIC65sDyK78tsE3LtKGKzkvw57kt5rYI6jVXVL6xV9zxK4aEQYvl/rG1ZgO
+         S5SaFK1g6QG+0vN0bNB6CT+I1X6O3MpKXXtaUplk7rV2hxG1l5wWXyyrC01I+mOHiPcq
+         NcekcdQR0wuwcDaQtG3K2q9aZ2qQ7hjQLIYNt/MYMBOpZWyffJxKGcp84H8mmtsRNaVq
+         cDg22KDiUtpuOsyba1Tg+MToCfuBhiJvQgai5v8TxqqjjquBZXe5JpWGSmcFwV9q4FW/
+         1AfEXwmTPxG+nIhe++ZhGJkL8M2Srsdb7iO9GrUXQ7UY2LhKM7zZ7X9q+oGtsVAoVMAT
+         4itA==
+X-Forwarded-Encrypted: i=1; AJvYcCVeMDU9JU+TN9P3St0XHXuR6vP90j9/T/1rk1w8DWDOwo/CtEsQLzUk+ZyW7YPSAPNn3UFS/BDKU0HX5a5aaD6sJrWar5toGqCCsA==
+X-Gm-Message-State: AOJu0YwbyVwdYcLEhlXqYj9hBuyVpjMysja2ZGN+khhVzBsKQpJfqrXO
+	Rpy3PoR8A5LKNl9nAbnD34jXnQARIGzwy817/psjkP/ovpldqKze17hb+mOvsCA1dDFc6UJwB+/
+	T
+X-Google-Smtp-Source: AGHT+IH5A6uolPaYfONK5JYnUughksjTsVqBEyLwJRyqdNoxko+8aHRaBZAJH6nzQy85QyjF7lZrLQ==
+X-Received: by 2002:a17:907:a80e:b0:a6f:6d98:d4bc with SMTP id a640c23a62f3a-a6f6d98d6bemr550014166b.61.1718609246914;
+        Mon, 17 Jun 2024 00:27:26 -0700 (PDT)
+Received: from [192.168.0.18] ([78.10.207.147])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72e9921sm6015291a12.52.2024.06.17.00.27.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 00:25:54 -0700 (PDT)
-Message-ID: <f0f77eda-b7f4-4a3b-a0e6-a3d5a78419fb@tuxon.dev>
-Date: Mon, 17 Jun 2024 10:25:52 +0300
+        Mon, 17 Jun 2024 00:27:26 -0700 (PDT)
+Message-ID: <d1ecbb02-41d6-430a-a22f-22709048ba95@linaro.org>
+Date: Mon, 17 Jun 2024 09:27:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,126 +78,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/12] dt-bindings: mfd: renesas,rzg3s-vbattb: Document
- VBATTB
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: ak4619: Add initial DT binding
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Linux-ALSA <alsa-devel@alsa-project.org>, devicetree@vger.kernel.org,
+ Khanh Le <khanh.le.xr@renesas.com>
+References: <877ceotnrg.wl-kuninori.morimoto.gx@renesas.com>
+ <874j9stnpk.wl-kuninori.morimoto.gx@renesas.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-To: Krzysztof Kozlowski <krzk@kernel.org>, geert+renesas@glider.be,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
- alexandre.belloni@bootlin.com, magnus.damm@gmail.com
-Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
- <20240614071932.1014067-4-claudiu.beznea.uj@bp.renesas.com>
- <936beb9a-2701-476c-8f5a-4b6b06d4f87d@kernel.org>
- <c882bac6-9cb9-4ba2-9bc4-967c03fcb031@tuxon.dev>
-In-Reply-To: <c882bac6-9cb9-4ba2-9bc4-967c03fcb031@tuxon.dev>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <874j9stnpk.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 17/06/2024 02:30, Kuninori Morimoto wrote:
+> This patch add ak4619 DT binding
 
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-On 17.06.2024 10:16, claudiu beznea wrote:
-> 
-> 
-> On 16.06.2024 10:38, Krzysztof Kozlowski wrote:
->> On 14/06/2024 09:19, Claudiu wrote:
->>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->>> +
->>> +maintainers:
->>> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - const: renesas,rzg3s-vbattb
->>> +      - const: syscon
->>> +      - const: simple-mfd
->>
->> No, mfd does no look good. That's not a simple device anymore and you
->> claim here child does not need vbat bclk, power domains and resets? That
->> would be a big surprise, although technically possible.
-> 
-> I wasn't sure how this MFD will be received by the Renesas maintainers so I
-> kept it simple for this version.
-> 
-> In theory the VBAT clk, power domain and resets are specific to VBAT module
-> itself but, indeed, the child cannot work w/o these.
-> 
->>
->> Please clarify: which of parent resources are needed for children?
-> 
-> VBAT clock, power domain are needed. Reset, too. In the current
-> implementation the reset is deasserted though parent by calling the
-> syscon_node_to_regmap(np->parent) in the clock driver.
-> 
->>
->> ...
->>
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +
->>> +    vbattb: vbattb@1005c000 {
->>> +        compatible = "renesas,rzg3s-vbattb", "syscon", "simple-mfd";
->>> +        reg = <0x1005c000 0x1000>;
->>> +        ranges = <0 0 0x1005c000 0 0x1000>;
->>> +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
->>> +        interrupt-names = "tampdi";
->>> +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>;
->>> +        clock-names = "bclk";
->>> +        power-domains = <&cpg>;
->>> +        resets = <&cpg R9A08G045_VBAT_BRESETN>;
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +        status = "disabled";
->>
->> Drop
-> 
-> Could you please clarify this? Would you want me to drop the full node
-> (same for clock-controller node)?
-
-Looking at your review on patch 05/12 from this series I noticed you're
-taking about the status = "disabled" lines.
-
-I'll drop it as suggested.
-
-Thank you,
-Claudiu Beznea
+Just "Add Asahi Kasei AK4619 audio codec bindings.". With the full stop.
 
 > 
-> Can you point me an example that you are thinking about?
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/ak4619.yaml     | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ak4619.yaml
+
+Missing vendor prefix. Filenames use compatible syntax.
+
 > 
-> Thank you,
-> Claudiu Beznea
-> 
->>
->>> +
->>> +        vbattclk: clock-controller@1c {
->>> +            compatible = "renesas,rzg3s-vbattb-clk";
->>> +            reg = <0 0x1c 0 0x10>;
->>> +            clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&vbattb_xtal>;
->>> +            clock-names = "bclk", "vbattb_xtal";
->>> +            #clock-cells = <0>;
->>> +            power-domains = <&cpg>;
->>> +            status = "disabled";
->>
->> Drop
->>
->>> +        };
->>> +    };
->>> +
->>> +...
->>
->> Best regards,
->> Krzysztof
->>
+> diff --git a/Documentation/devicetree/bindings/sound/ak4619.yaml b/Documentation/devicetree/bindings/sound/ak4619.yaml
+> new file mode 100644
+> index 0000000000000..b6afc008f745e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ak4619.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ak4619.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AK4619 I2C transmitter
+> +
+> +maintainers:
+> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> +  - Khanh Le <khanh.le.xr@renesas.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: asahi-kasei,ak4619
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  ports:
+> +    $ref: audio-graph-port.yaml#/definitions/ports
+> +
+> +  port:
+> +    $ref: audio-graph-port.yaml#
+> +    unevaluatedProperties: false
+
+Why do you have both ports and port?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        ak4619: codec@10 {
+> +            compatible = "asahi-kasei,ak4619";
+> +            reg = <0x10>;
+
+Make the example complete - include all properties.
+
+
+Best regards,
+Krzysztof
+
 
