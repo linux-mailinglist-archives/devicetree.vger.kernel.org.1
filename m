@@ -1,196 +1,125 @@
-Return-Path: <devicetree+bounces-76392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211CE90A72C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:32:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AE2990A758
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BADA1F21045
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:32:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 618531C252AF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5438A18F2C2;
-	Mon, 17 Jun 2024 07:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954CE190479;
+	Mon, 17 Jun 2024 07:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="c7amUsqB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hsw5egON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C7A181D1F
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:31:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C01F18F2C3
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718609517; cv=none; b=WvmBV/7R2LNZXsLVKmBiX81etPy6XCIyXHQL0edVkofs//rEbRmtWQqXuXZwgXmVIFDzD91H3IucBReGJQ7fbwOcKarIL1uk1TCHtGQjw/iEukNFbZh7DBPuR/OTTDqrVHrERFjDri9MWsdiTKa8m2uaNeV8y1BK+LkXlCbiHiE=
+	t=1718609644; cv=none; b=masft6+eOFecEKtO7I2Za4ZU5cdhALKdusMDZQ3w59XKhPN2I+JRcHov5N8cKeuxIfBZcusGo7D2s/KhIw2qZTAVwL+I9fKJrVGNifaCUY/GqOdFw0cI5Xkt7gxF1OVROqSQixZJ5XEVwmbBP8Gs003TYqy3PQ3i/bYSvjlhPz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718609517; c=relaxed/simple;
-	bh=4cab+l+3ErFnVYNsjfbxHKynnX0kIO0LOP4jbY4dtIw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SWWqDzyNVMPTZcmkPG6dVHosD16ZBszl5tpQ5QIOw9yc/IzZynkBE5Ot16E5u/7hookzO+wly6/eAyMGydbRUQlwI2adwSJob98gHH0in4+PXCCHw060UUhd8GpL8C9sngSXulGHF5u9zVLO7hRJef6f2j12ifNO0Ve3098qI7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=c7amUsqB; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ec2f4966a2so4457481fa.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:31:55 -0700 (PDT)
+	s=arc-20240116; t=1718609644; c=relaxed/simple;
+	bh=ZFmi+yUTc9Zjr/M0kxKvyOleY7JfCQGrFTVa2o2QNlU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dHPMS7rotvOVjdu75Sou+fzi6gHHUN3Y6Vft/u8dpTjqA9vFucyQbG+xhOdWaFwF696KF/b75PfwsijL9wXisDcTw96tDE6bXUX+K2Itm89Cf7gxqjJql5/FOdTTcJSXUbEnU9KCAPbDFYnYJYlFocVlsAzUGC8LkTtkYWzM22k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hsw5egON; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52c819f6146so5640461e87.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:34:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1718609513; x=1719214313; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qi5kSVv+9tuno5ifh0iY5wU3dPT3z2QMr3DXugcnBOU=;
-        b=c7amUsqBGVZKVyOHb8Xes3t5yalH1b51vgpmmk49Mk/RBpgLGwvMo0jNUJGCWYWUGp
-         M5LGMSQpY7vN8NMdOtHyUT5qetFsO7If7UcZT8eNYvQ8Ufv5Wh8Q3fRvwVYYsOn3VJ1D
-         HYottQMNhLAE0hHCkYyZEIvYo/XvZL2qPWy0nMjkoipNa5C2tkhQ5Ybh2VNq0mKhufc+
-         yOAgM1RGm6/tdbhp5dcir84XALmNnvcDwsffOeyK3Z+6hU6H7VcASC5xwCNnK+WdJV2E
-         KK8lXzrdZvU6xidBj1ItIj9W/jnMjT+loR0xAIyHRQkHeXTF1+ygPDtdnhj/GjuBmtRn
-         +XEg==
+        d=linaro.org; s=google; t=1718609640; x=1719214440; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=aBphVFOrP22wHUL3UOKiauwrKM/dUJgf2+E0bXR1o6w=;
+        b=Hsw5egONtdB5Rv2L3vDgQHy8VYNd9jfISdm5F+7cb8oHPb9XwczHqXAePc7TwkcvQ3
+         UCw+Zl7HsGbOKvGxEidU0G4K5www6wsNN1Hh2/y51FruMM5yF8ST8GAaqXj6kFcJxIku
+         b5gyS9IJJIEUy4Ut7sWE8ZW8YPFyMnl1T6qHsnwHI5nx0fNUXWL+biDLcuYLkcKAbXnU
+         8bpD10ZtT35jgr7taKWIKF6zjBfD/m2QqH+RqySm0614DE+53PjXG9Wy7kHFMx6if2Vd
+         2bGJY/OaLfkGmMjAIjmx8M6TwpbO/VsKYR+Jn0JjW2orK1wfEQjlbawyk4QiqbSR6210
+         HCyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718609513; x=1719214313;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qi5kSVv+9tuno5ifh0iY5wU3dPT3z2QMr3DXugcnBOU=;
-        b=DNn3P9nXf0VHbo1jTdHIXdBEotmw5ynJ/CaQjf0GDejLUd/1Vtk75Yno2tXhBtxSXy
-         Gdcd3MPXdVklPyCXsR/iMVkLTjPoXxitTIDNy2Dfwb7zedfkLiSs0tJaCAWxtbftOx2v
-         dadCWpBKJz9DVXEWP7ucBVPFDKKxMKTKOhxsnTSxClCT8tCy8glaPstrjqMHVxCKaPpq
-         4powW9vi2GJKxKbiVymFQ9hn9phN00lFHvrHMN5yCpJLxay0mOsSWIqmoRApnCOhX4FO
-         L0i6wEVGJdzTcMbfbLOgpgiUVQubwN72Nh8K/PFTFOhJSYlmaJjdIvJmVNelUPlfSoXs
-         Va7g==
-X-Forwarded-Encrypted: i=1; AJvYcCWvgiZ7+FYOMdhC3p+eUN0zgZktfaBRDFwow2kfBt4RuLL6WrSfjXx8VrjAJ7OHCdyG5tq6/fEy31k1JJ4eGyISZnotSFfdEYVzog==
-X-Gm-Message-State: AOJu0YxW9q9dg0P6d2N5bhktolMHdcz20DxfaEGiB+ceaNSfJEfjoZ52
-	x+UuhXmJAzieW4oAC/i6+c/jMdNW8MmSvk3EIPAR8AjdKQzrOtVs3CDNN8sYGb4=
-X-Google-Smtp-Source: AGHT+IG6NUWe4l16T9e0fiJ0Sljl3qaxM46VXB2+kbWXexuNwB4kN0H3QGjj6j8BQ10yhKbClCkMvg==
-X-Received: by 2002:a2e:990b:0:b0:2ec:26a9:d5bc with SMTP id 38308e7fff4ca-2ec26a9d704mr28756001fa.18.1718609513397;
-        Mon, 17 Jun 2024 00:31:53 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.189])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422870e986asm191491115e9.27.2024.06.17.00.31.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 00:31:52 -0700 (PDT)
-Message-ID: <f3584295-b396-455a-b988-099443b58dba@tuxon.dev>
-Date: Mon, 17 Jun 2024 10:31:51 +0300
+        d=1e100.net; s=20230601; t=1718609640; x=1719214440;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aBphVFOrP22wHUL3UOKiauwrKM/dUJgf2+E0bXR1o6w=;
+        b=SLTnTBFVZHWi/HzmzhTe9FrXOl+DdN/DtlOuV9GT5y/bnJ5DQFgNLR0oJy/JdUSOQs
+         2tH7Sf/gx89AIU76bbTDiTiogaYC2YHW8QkjKrA0ruBLB6OG+ULgGBTvBpt9MqYVFBcA
+         HOocXLzoJ4yS/697Mo/3Z8dJF46LANCx9L6JC5VRQZ2pOAvGoT/If8z82IVsV01ozFrV
+         5YyfoIyhq9vmDB9ksdBeozPMci4Ca0MidoZFYSo8zqKVixvxlYBkEX1NyLTiFmM9Is3I
+         1bjE4h9cFReolKdq4XiBZAMuu47imDV71yZFVJz61nCRh5qbjuL9t05ySnbH+LzmHEyG
+         ctqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGy0eqpzMIKqQypK6SI10B62aZ/qTbKr0W22FifSKmoFKnZSXRVdvb6VdFtWUfsFHkhvbn4X8gPA7nuCvi/LHMOqcAbw6NeIEDqQ==
+X-Gm-Message-State: AOJu0Yz2mtvNbl36bj2aGLNfV52GRs8dwbZSilZXdVWX3MY0ysiPNOBE
+	MH/W7zMAVylGAjLdw6bnEZt9fafV6jzfTY27TV/AzD1o2vlVV0uPVgh37UGcGa0=
+X-Google-Smtp-Source: AGHT+IF8TZ85wRS0H2kr1KtmiIH/CU55Vp03UXdrbqOj8557e44sDO8j3EJKyLPHPMMhkL8bWOcIHQ==
+X-Received: by 2002:a05:6512:3093:b0:52c:bd36:b8c7 with SMTP id 2adb3069b0e04-52cbd36b937mr1561115e87.53.1718609640435;
+        Mon, 17 Jun 2024 00:34:00 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca282f112sm1161208e87.89.2024.06.17.00.33.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 00:34:00 -0700 (PDT)
+Date: Mon, 17 Jun 2024 10:33:58 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	andersson@kernel.org, ebiggers@google.com, neil.armstrong@linaro.org, 
+	srinivas.kandagatla@linaro.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	robh+dt@kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	kernel@quicinc.com, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	quic_omprsing@quicinc.com, quic_nguyenb@quicinc.com, bartosz.golaszewski@linaro.org, 
+	konrad.dybcio@linaro.org, ulf.hansson@linaro.org, jejb@linux.ibm.com, 
+	martin.petersen@oracle.com, mani@kernel.org, davem@davemloft.net, 
+	herbert@gondor.apana.org.au, psodagud@quicinc.com, quic_apurupa@quicinc.com, 
+	sonalg@quicinc.com
+Subject: Re: [PATCH v5 02/15] qcom_scm: scm call for deriving a software
+ secret
+Message-ID: <gidy3f2b7lfh3nl366vt3ytx75s6xcqx77ahay2yvwn7wnli3p@tdxw3zomvvwr>
+References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
+ <20240617005825.1443206-3-quic_gaurkash@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/12] rtc: renesas-rtca3: Add driver for RTCA-3 available
- on Renesas RZ/G3S SoC
-Content-Language: en-US
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
- magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
- <20240614071932.1014067-7-claudiu.beznea.uj@bp.renesas.com>
- <2024061409215756e6a10c@mail.local>
- <4a477079-b4a6-4861-ae24-b3b87adb8ecd@tuxon.dev>
- <20240617072551acf731aa@mail.local>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240617072551acf731aa@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617005825.1443206-3-quic_gaurkash@quicinc.com>
 
+On Sun, Jun 16, 2024 at 05:50:57PM GMT, Gaurav Kashyap wrote:
+> Inline storage encryption may require deriving a software
+> secret from storage keys added to the kernel.
+> 
+> For non-wrapped keys, this can be directly done in the kernel as
+> keys are in the clear.
+> 
+> However, hardware wrapped keys can only be unwrapped by the wrapping
+> entity. In case of Qualcomm's wrapped key solution, this is done by
+> the Hardware Key Manager (HWKM) from Trustzone.
+> Hence, adding a new SCM call which in the end provides a hook
+> to the software secret crypto profile API provided by the block
+> layer.
+> 
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> ---
+>  drivers/firmware/qcom/qcom_scm.c       | 65 ++++++++++++++++++++++++++
+>  drivers/firmware/qcom/qcom_scm.h       |  1 +
+>  include/linux/firmware/qcom/qcom_scm.h |  2 +
+>  3 files changed, 68 insertions(+)
+> 
 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-On 17.06.2024 10:25, Alexandre Belloni wrote:
-> On 14/06/2024 14:06:38+0300, claudiu beznea wrote:
->>>> +	/*
->>>> +	 * Stop the RTC and set to 12 hours mode and calendar count mode.
->>>> +	 * RCR2.START initial value is undefined so we need to stop here
->>>> +	 * all the time.
->>>> +	 */
->>>
->>> Certainly not, if you stop the RTC on probe, you lose the time
->>> information, this must only be done when the RTC has never been
->>> initialised. The whole goal of the RTC is the keep time across reboots,
->>> its lifecycle is longer than the system.
->>
->> This was also my first thought when I read the HW manual.
->>
->> It has been done like this to follow the HW manual. According to HW manual
->> [1], chapter 22.3.19 RTC Control Register 2 (RCR2), initial value of START
->> bit is undefined.
->>
->> If it's 1 while probing but it has never been initialized, we can falsely
->> detect that RTC is started and skip the rest of the initialization steps.
->> W/o initialization configuration, the RTC will not be able to work.
->>
->> Even with this implementation we don't loose the time b/w reboots. Here is
->> the output on my board [2]. The steps I did were the following:
->> 1/ remove the power to the board (I don't have a battery for RTC installed
->>    at the moment)
->> 2/ boot the board and issue hwclock -w
->> 3/ reboot
->> 4/ check the systime and rtc time
->> 5/ poweroff
->> 6/ poweron
->> 7/ boot and check systime and RTC time
->>
->> As you can see the time is not lost but continue to increment. I presume
->> the hardware takes into account that time needs to increment when initial
->> configuration is executed.
-> 
-> I don't think so, I guess it stops ticking but the registers are not
-> reset so when ts starts ticking again, you are not too far from the time
-> that it should report.
-
-I'll double check with hardware team on this and return with an answer.
-
-Thank you for your review,
-Claudiu Beznea
-
-> 
->>
->> [1]
->> https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzg3s-general-purpose-microprocessors-single-core-arm-cortex-a55-11-ghz-cpu-and-dual-core-cortex-m33-250
->> [2] https://p.fr33tux.org/585cd6
->>
->>>
->>> Also, why do you insist on 12H-mode? The proper thing to do is to support
->>> 12H-mode on read but always use 24H-mode when setting the time.
->>
->> OK, I wasn't aware of this. I think I followed this approach as it looked
->> to me the number of operation to update the hardware registers was lower
->> for 12h mode.
-> 
-> How come, using 12H-mode implies testing for the AM/PM bit and doing and
-> addition while 24H-mode would simply be a read?
-> 
->>>> +	priv->rtc_dev->ops = &rtca3_ops;
->>>> +	priv->rtc_dev->max_user_freq = 256;
->>>> +	priv->rtc_dev->range_min = mktime64(1999, 1, 1, 0, 0, 0);
->>>> +	priv->rtc_dev->range_max = mktime64(2098, 12, 31, 23, 59, 59);
->>>
->>> This very much looks like the range should be 2000 to 2099, why do you
->>> want to shift it?
->>
->> 2000-2099 was my first option for this but then I saw one of your old
->> commits on this topic and, since I'm not very familiar with RTC,
->> I took it as example. I'll adjust as you proposed.
->>
->> commit beee05dfbead
->> Author: Alexandre Belloni <alexandre.belloni@bootlin.com>
->> Date:   Wed Mar 20 12:30:10 2019 +0100
->>
->>     rtc: sh: set range
->>
->>     The SH RTC is a BCD RTC with some version having 4 digits for the year.
->>
->>     The range for the RTCs with only 2 digits for the year was unfortunately
->>     shifted to handle 1999 to 2098.
->>
->>     Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->>     Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> 
-> This is because the sh driver predated the introduction of the range and
-> was already shifting it.
-> 
-> 
+-- 
+With best wishes
+Dmitry
 
