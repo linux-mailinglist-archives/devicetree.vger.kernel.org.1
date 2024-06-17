@@ -1,57 +1,67 @@
-Return-Path: <devicetree+bounces-76612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629F890B547
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:53:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B2190B54C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:53:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 067852810E9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:53:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A962A283C9D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C524E811FE;
-	Mon, 17 Jun 2024 15:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38A95135A40;
+	Mon, 17 Jun 2024 15:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NrbvDZL1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aX78jsrw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE1153A9;
-	Mon, 17 Jun 2024 15:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8BF12F373;
+	Mon, 17 Jun 2024 15:36:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718638502; cv=none; b=b1SbdtZ9F/lNJW85apyjRVS4xGFSiEnI5YRBCzrPKsI8yRono3WE7GrFNo183vx1MYhWKz7odU5T8DzbSeSzb4+178bry+r2MZW4oI+YHbvkJF8hU/yA2FAB8bVpYw3Fb/PCnD751RbKqaFbVUy2J79DxZBrF2RevTpglxf4bI8=
+	t=1718638562; cv=none; b=bJf+TENF0ZvKLmsCxoCGScFuT4Xiae2naD1ZugzpmEKmeg+lMdkLv6T1uClWJnVnr6QJ0lbJ1yrfZG3/9G/8UXPNRUvDTvyprugYQkzYKu4njZFI70I6erVIDpgygsMxqZhQxjIlq2hQbkoHfa1DoIiLRrM2pE5JliEi0jSF5bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718638502; c=relaxed/simple;
-	bh=grR1s7RKpWZF13XxMA4FtYCxgLp3SDkiH+HdqW2aTRU=;
+	s=arc-20240116; t=1718638562; c=relaxed/simple;
+	bh=oKkY8DUJHqJi7aq4RzMoPZQz16x9vtWfrZmff64niHc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pCyvRZIcFZeIsz5uX0AbGJtQ3pzxzIlqdZ8lK/fiTO2HLWTWbWaLJBiPhsnhETGG0xuWy8+TWehRM0N41QPHii091OLOFbBM2s/WpM1+38QHa8FrtF0JcRWJCl7Cmo2TdskMq8mE9lL8CIkX6lVkTbllyPEiFP1GHnYddkgJCBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NrbvDZL1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82637C2BD10;
-	Mon, 17 Jun 2024 15:35:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HgfpXfbdw7F4lRgr1rO4bUkGziyxaSAR+ugnztPbvujMa/7LxK4fSZ6f0ETpud2FvQ9Ui1kE7fjw9AZgT7FO+3qo7diSpeUhajNDMMd9jidqcfkOMnUb183GY27k3p8vWAhhnVmT+4yEUN968msPgzvy+jazbGhRgqz2q8ifgPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aX78jsrw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 922FEC4AF1D;
+	Mon, 17 Jun 2024 15:35:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718638502;
-	bh=grR1s7RKpWZF13XxMA4FtYCxgLp3SDkiH+HdqW2aTRU=;
+	s=k20201202; t=1718638561;
+	bh=oKkY8DUJHqJi7aq4RzMoPZQz16x9vtWfrZmff64niHc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NrbvDZL1FByS8PJzARaNP/hjLo6drwAbQ4xt9kDqTK1T6+TnR04c72ORjW2kBzTPh
-	 lYewQVbK+gmlx9uUnd9tk9qnkAemR3cHgnPTQKOKaorwG/wsDrOfe8d9fp4bJLGr5Z
-	 UZXC4K8kKTNgvNHheXAa8ub+WBUZtR+DVWdDN7/DYSmtWnmXxsbXfUxhdSO+vatlhV
-	 ZIINXQY819csOavUVe1nyQTS2AfYJlslQKjrVJdB2fmDigbH8mD7yTusjt5yPoF7Wb
-	 0X2Di82fPHWRn1fDVK0yOFwk0X9FIHpr52CgYdGvwWE4IRCMEbr8jbXF99wscqrdc0
-	 wKCMR8rHUqp1w==
-Date: Mon, 17 Jun 2024 16:34:58 +0100
+	b=aX78jsrwC+Iubhy0j5Twmwszbgt+IQ4rh0xY7VOQlt/7Q8167saErxNEwaYeanoBj
+	 GK3FzWq1cvzggYHLlRZHWO7tONlD9s1WwlTVW5kWVzNXQj0760Fd610oLn/ksssEYk
+	 Ikd48iBggZhQ7ZlzkGkh6mejRrpQaRZD17TKZAWdYHb5uNV4KTaHSP4JGcUxuurxVh
+	 rrrTmD9i8zKFFQ7s3ys9QI3IbGHXPc146KYS0VIeMlS4Ol1/uP7jgsau3FHYch/XRY
+	 88Mft3cJ0sF4vGVbaZpXFgG3k6gUpTE8Poljvfqi+3xElrForLMEhLQsn20wp8JZfC
+	 qpamPkyMLa5jA==
+Date: Mon, 17 Jun 2024 16:35:54 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Diogo Ivo <diogo.ivo@siemens.com>
+Cc: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: Explain lack of child dependency in
- simple-mfd
-Message-ID: <20240617-paternity-subdivide-a0613f609a3d@spud>
-References: <20240616080659.8777-1-krzysztof.kozlowski@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jan Kiszka <jan.kiszka@siemens.com>,
+	Jacob Keller <jacob.e.keller@intel.com>,
+	Simon Horman <horms@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v4 3/5] dt-bindings: net: Add IEP interrupt
+Message-ID: <20240617-buzz-balancing-c2168d853a6c@spud>
+References: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
+ <20240617-iep-v4-3-fa20ff4141a3@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,35 +69,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gsj6t7Q5c2e6Vkqz"
+	protocol="application/pgp-signature"; boundary="3pdF+DqPTBZylhD/"
 Content-Disposition: inline
-In-Reply-To: <20240616080659.8777-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240617-iep-v4-3-fa20ff4141a3@siemens.com>
 
 
---gsj6t7Q5c2e6Vkqz
+--3pdF+DqPTBZylhD/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jun 16, 2024 at 10:06:59AM +0200, Krzysztof Kozlowski wrote:
-> Common mistake of usage of 'simple-mfd' compatible is a dependency of
-> children on resources acquired and managed by the parent, e.g. clocks.
-> Extend the simple-mfd documentation to cover this case.
+On Mon, Jun 17, 2024 at 04:21:42PM +0100, Diogo Ivo wrote:
+> The IEP interrupt is used in order to support both capture events, where
+> an incoming external signal gets timestamped on arrival, and compare
+> events, where an interrupt is generated internally when the IEP counter
+> reaches a programmed value.
 >=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---gsj6t7Q5c2e6Vkqz
+--3pdF+DqPTBZylhD/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBXogAKCRB4tDGHoIJi
-0tbOAQDXJwLF1nqecw8UoRRNUVWYrYdaiKCPro3pn9ArMNWKkQEA2Ng8VHqlAK+2
-0sIPvf2BnMO5vyAlwORx4SRSFYOTfgw=
-=RQg7
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBX2gAKCRB4tDGHoIJi
+0sCPAP4mFlD9F3AigFkn1v2kp8M9jRDptuUlm1pj5CqYi+/BPgEArpsowjrWpJ8j
+9KuM1nqEckGmX8RSrxcfMPxJgEAhAwg=
+=kcYr
 -----END PGP SIGNATURE-----
 
---gsj6t7Q5c2e6Vkqz--
+--3pdF+DqPTBZylhD/--
 
