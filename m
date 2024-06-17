@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-76297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD95290A1AA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:20:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09AC190A1BA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:25:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 599BAB20F9E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 01:20:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CF9E2815E0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 01:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA89633E7;
-	Mon, 17 Jun 2024 01:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B97F79F3;
+	Mon, 17 Jun 2024 01:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Kz6p00gP"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="lUtLWQRN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21EDAEC2;
-	Mon, 17 Jun 2024 01:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9553D51D;
+	Mon, 17 Jun 2024 01:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718587232; cv=none; b=a3OGqj7oPaz3M0be9UiwyQ83UB2JIMIDUrRqwtdTZQ55zt+pEnBgL0kGls7uD7fmJEp0R/cthT00AhK8FDxpfVzz0D567mCeuRm5jybx0FNsYcRnH8GKXK1SPzYcdGO7ViAW2NTXonnPNgrBybBYbOzGQ/+HjHrG2sm9tJU0DZA=
+	t=1718587514; cv=none; b=YkcLJ4rAK/MLpSmN9mZLPu3rXePwdoWsgjrLJyKO02JbIdDXdLJtpGifPxF5r/AT5O4zaWSM3Xg0RQNVCwv3znkeW/sk9s4M9VHXCC9OZ1x9b47JtCPKm+4VQOUiEoMHIj2e5Oqg+dppKpJuBClaSPWXGzmg6TZsj4Ck/YLr5J4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718587232; c=relaxed/simple;
-	bh=IWhyn77NhL9p2n0L7x6uS8RyPsjaZElXzod/unlkziI=;
+	s=arc-20240116; t=1718587514; c=relaxed/simple;
+	bh=v2WyN5hsd/SDOOWKMgtEcNSlCk38BGFecwfqBqSHfyM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UaJ8kUGoi3URFFLa9Jul5yRjnpolLTYh4b2dutTNMvrIf1F2A8qzqI0Pk/IqaNZxJIzN+kY7XJJtYkb9k9RD10W3m19+7tl2PVMrZUxTDIM5CqGp2QokB+tuwzDSb66ca90yxob4h3XsRDK8Yi1jfXTYpQpDG6si9YH8NXzAVBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Kz6p00gP; arc=none smtp.client-ip=123.58.177.132
+	 Content-Type:Content-Disposition:In-Reply-To; b=RfWaUNAdvpsDMn74oSfiZl19aBXyfAA2hkRaHfU8Omm5Tchif1IfWTrmdEMzhRWs/AuhhTf6yBF8U7x/fIVHFoTAap4UDHZlU+T7ljdkgl4pJFb4YMiL/s5uELsfcVpVy7VtiYcGknUdlksiSYNDdkW7WcLWFDin5M1sTE4bj1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=lUtLWQRN; arc=none smtp.client-ip=123.58.177.132
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=LyRaKTwcSbpX4+h/vcbOMfO4SU63utEUz5JhEM/Q7Y4=;
-	b=Kz6p00gPY1egIvYjGxUe5KXOuKrCwUPq4WyFIFx5B0Ak4qYw5Ts05Ez8JLh2v2
-	ed67yq+2H7j5h+yEv8or12NWKyulaet1VWyi6cfZ35981G26Tthcqnac6cxmFhaI
-	z5L72QaoNlOUg+3hD5XwgFnvcEXdzpFGhvPfzc7a1TkPc=
+	Content-Type; bh=xGIE5wxMU/VErauUWUxFIqCNjSnwPNhIWMkm5TpYWDc=;
+	b=lUtLWQRNvbsKf/kfKMHOPjDpS8FFyE+XPBcffc4fEvxeZg5URJYrIv0HisK2cc
+	IXBu2uqdfEW7OQa15QjrxrDNkYFbcv5w29iHGdIQEmO4oPbwdIKdaCSdghE5S7YG
+	oltIkvi3HqReuEZlkTIADT1kKJj6/uBVDMgvvo+HuaU/k=
 Received: from dragon (unknown [114.216.76.201])
-	by smtp2 (Coremail) with SMTP id C1UQrAD3XxlIj29mFzjNCA--.4024S3;
-	Mon, 17 Jun 2024 09:20:10 +0800 (CST)
-Date: Mon, 17 Jun 2024 09:20:08 +0800
+	by smtp2 (Coremail) with SMTP id C1UQrACH7hdikG9mH0nNCA--.3602S3;
+	Mon, 17 Jun 2024 09:24:52 +0800 (CST)
+Date: Mon, 17 Jun 2024 09:24:50 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH 1/3] arm64: dts: freescale: use defines for interrupts
-Message-ID: <Zm+PSA8Rpo+fbbEC@dragon>
-References: <20240605153020.104717-1-krzysztof.kozlowski@linaro.org>
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8dxl-evk: add imx8dxl_cm4, lsio mu5,
+ related memory region
+Message-ID: <Zm+QYpb+FJCGGr2B@dragon>
+References: <20240605202703.1220203-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +62,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240605153020.104717-1-krzysztof.kozlowski@linaro.org>
-X-CM-TRANSID:C1UQrAD3XxlIj29mFzjNCA--.4024S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUswZ2UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw0BZVnxc0xPZwABsY
+In-Reply-To: <20240605202703.1220203-1-Frank.Li@nxp.com>
+X-CM-TRANSID:C1UQrACH7hdikG9mH0nNCA--.3602S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJr4ftw15XryUGF4xJw4fZrb_yoW8tr4fpr
+	90ka15WFZ2vF17G3sxJr4DKrn8Jan5CFykury7CrW0krWaqrnrKw13Gr4fGr4DJF4UJwsI
+	vFnFvFy2kwnIg3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j1KZXUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw0BZVnxc0xPZwACsb
 
-On Wed, Jun 05, 2024 at 05:30:18PM +0200, Krzysztof Kozlowski wrote:
-> Replace hard-coded interrupt parts (GIC, flags) with standard defines
-> for readability.  No changes in resulting DTBs.
+On Wed, Jun 05, 2024 at 04:27:03PM -0400, Frank Li wrote:
+> Add imx8dxl_cm4, lsio mu5 and related memory region.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> index 4ac96a0586294..c5e601b98cf8f 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> @@ -24,6 +24,19 @@ chosen {
+>  		stdout-path = &lpuart0;
+>  	};
+>  
+> +	imx8dxl-cm4 {
+> +		compatible = "fsl,imx8qxp-cm4";
+> +		clocks = <&clk_dummy>;
+> +		mbox-names = "tx", "rx", "rxdb";
+> +		mboxes = <&lsio_mu5 0 1 &lsio_mu5 1 1 &lsio_mu5 3 1>;
+> +		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
+> +				<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>;
+> +		power-domains = <&pd IMX_SC_R_M4_0_PID0>, <&pd IMX_SC_R_M4_0_MU_1A>;
+> +		fsl,resource-id = <IMX_SC_R_M4_0_PID0>;
+> +		fsl,entry-address = <0x34fe0000>;
+> +	};
+> +
+> +
+>  	memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x00000000 0x80000000 0 0x40000000>;
+> @@ -51,6 +64,37 @@ linux,cma {
+>  			alloc-ranges = <0 0x98000000 0 0x14000000>;
+>  			linux,cma-default;
+>  		};
+> +
+> +		vdev0vring0: memory0@90000000 {
+> +			reg = <0 0x90000000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring1: memory@90008000 {
+> +			reg = <0 0x90008000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev1vring0: memory@90010000 {
+> +			reg = <0 0x90010000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev1vring1: memory@90018000 {
+> +			reg = <0 0x90018000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		rsc_table: memory-rsc-table@900ff000 {
+> +			reg = <0 0x900ff000 0 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdevbuffer: memory-vdevbuffer {
 
-Applied all, thanks!
+As kernel test robot reported, unit-address is missing here?
+
+Shawn
+
+> +			compatible = "shared-dma-pool";
+> +			reg = <0 0x90400000 0 0x100000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	m2_uart1_sel: regulator-m2uart1sel {
+> @@ -505,6 +549,10 @@ &lpuart1 {
+>  	status = "okay";
+>  };
+>  
+> +&lsio_mu5 {
+> +	status = "okay";
+> +};
+> +
+>  &flexcan2 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_flexcan2>;
+> -- 
+> 2.34.1
+> 
 
 
