@@ -1,315 +1,166 @@
-Return-Path: <devicetree+bounces-76303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8424A90A218
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:52:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECBF790A246
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 04:01:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23427282C2F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 01:52:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02E041F252F9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 02:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ECC017D365;
-	Mon, 17 Jun 2024 01:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A87E25761;
+	Mon, 17 Jun 2024 02:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZIR0v1lI"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="HLH4wQDU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0EB4176ACB;
-	Mon, 17 Jun 2024 01:51:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
+Received: from out203-205-221-221.mail.qq.com (out203-205-221-221.mail.qq.com [203.205.221.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E29214292;
+	Mon, 17 Jun 2024 02:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718589110; cv=none; b=k2vBesbdf+yTv8NecS7sEMcPz8ZtxON/1+jp5LEK/UaDMlr2TmyXt/6V0352DrZBd95fw9sQVuOUGBn/4GJlUnUEdFOWSPqupXPQ++A3Kxdc3hvjjwhbZtDizTViJF1HsNAV4BuRzBCWV4X8bE95bC8jlO1ZHWM/qc7TAugDYk0=
+	t=1718589654; cv=none; b=Qv6SgrLJH8NN44ke2bNYkgU/achstb49SZnSZqhGOULrFMlHAJVsxN5fO+1nLZAghtFdUdrK6JT/ufvmux4pAYP+3XYrGrtBWp9b2dy4nc7+Zm8Ldb/Ugci0qlzG6rw+1AZlxUa/C6YNYyKafoS+ulh7E2L9y2DrlNuWaqhKRgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718589110; c=relaxed/simple;
-	bh=ngDwTY3j1nXwAIQv0mUkX7nrrF23O7NJyWWHubE4Roc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rrOqUQRtsGd/tkh4PA8cl57PGmbaC0ZjhiEYtAuCt6iSw9KH2ZttwEVEG5krC/AhE0Eh4Sko8Y7dyGlF4X1i0Yyj4HD1uqRDbttAyamGgTtEVh3gmULnvLtdtFjl53TU4dds/G2WKYDXZtwZsJsgH4u6ITKTphLO6ejlB8Veksw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZIR0v1lI; arc=none smtp.client-ip=123.58.177.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=yjhnsYCfAeoBAabQvKZBv+okYUIYqBnLVfnV+eVmD54=;
-	b=ZIR0v1lICYJG3iQZmi9ehNMCButpVAOYVX2BJCxyciLhVEcCLlGUH032xYs8+u
-	gQSL8KEfAEvhaTjKqWLppanByLvwe9JnttAJdWBFqXeFnhBNBUsYAODFwJEftq4s
-	LKf/QXGKg0utTFt4oF2QB/4CQjrF92w+WjdhvtBPZtwTs=
-Received: from dragon (unknown [114.216.76.201])
-	by smtp1 (Coremail) with SMTP id ClUQrAD3XfqYlm9mFcsLCA--.41569S3;
-	Mon, 17 Jun 2024 09:51:21 +0800 (CST)
-Date: Mon, 17 Jun 2024 09:51:20 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Michael Walle <mwalle@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, Li Yang <leoyang.li@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Priit Laes <plaes@plaes.org>,
-	Michael Grzeschik <m.grzeschik@pengutronix.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 13/13] ARM: dts: imx6qdl-kontron-samx6i: add actual
- device trees
-Message-ID: <Zm+WmDvhXJsprfar@dragon>
-References: <20240606090206.2021237-1-mwalle@kernel.org>
- <20240606090206.2021237-14-mwalle@kernel.org>
+	s=arc-20240116; t=1718589654; c=relaxed/simple;
+	bh=xY6EdERcFdzyNAMKkFcyvUjxYXnOp6YVs3LCpTmmsFg=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=J70F/q7Gd8HgltDG0EAM8wqQ8mX77aeGBt1WS1RrAz514FNasG4gMfaf+RtGPinXd4Vee89H/YwrTHrVoZ0BeF7jiHCz6ehtaGh7Aw1bhlSKtvIVIAjXZEyti6l5DVG99qOckAW5BpF/4491jzuGs+4nQZz1eQUOwXk7VLr/WIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=HLH4wQDU; arc=none smtp.client-ip=203.205.221.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1718589647; bh=dmN8w5lvDABL/jRmeeyfuJVRMrvYcjC38E/Re9ZnOA0=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=HLH4wQDUDrmaZV+RlUwByqgqN6frxhjCKmEgFfhT7NTHpgdwqXUngDnOgfcJPp00o
+	 FXQ3Z39aS+3WVAMNV7rMtvQiBgXxdi2mAr1jYVZM+2g6Oo5QKLUcwpqIBjDHzfZsRn
+	 LBrJAnU2+d6SnO//2QNqM9WMZCA8TN5CePcjCWdg=
+Received: from smtpclient.apple ([2409:8929:843:88d1:dc81:b668:28ec:a360])
+	by newxmesmtplogicsvrszb16-1.qq.com (NewEsmtp) with SMTP
+	id 2B1D8F3; Mon, 17 Jun 2024 10:00:43 +0800
+X-QQ-mid: xmsmtpt1718589643tpc4joxcu
+Message-ID: <tencent_2ABAC5E885F8354EF1F9084A6B5B398EE00A@qq.com>
+X-QQ-XMAILINFO: N/WmRbclY25Gg9vSwwFthgrvTbwpz3NxSuSAGiSJ0OsHx1aEr6wSqGtvRecWDU
+	 96gAAjThu0UmEyWsk89edyCwqWJ/4OuSmvSDIQNZ7NXeJHSqelrTi4Cf0iPIB2EF1ic4mjqGdvyh
+	 Kj/i2ugDtcScxhgVY9+8WCpMsGOH83aqjXbtdw2nqIfJQqPR5ob+dzhk1ubQr9hmhadjSFFF05Wg
+	 q2mtwSiHxung2k4oYGP0iyZYOD5mv6J/qPNRMLXD298cig/c1H4LGWBTLgvBdWz2EmphmQOkMgnX
+	 bAzvR99/kz7ORtPKTZ4N8vyjRZdDDSHsci2s1UyuX7DgD4cNNV3PdYs+KqclMS7Aysm2ilz/ZO3n
+	 cGq7Nxq2s67YfBcs8I5vXYT2O4foKJZhMKF9NQ8+CPx3V5a+WWvyyWPlaP+0JkLnYbWvhhg0pZBQ
+	 iSP0b3QKkGAS06K14joB9xfuZc55O+izvCdzR9pVduxPfkHHlTHZK7Dxi0b1bkBK85RP0wSgnH2Q
+	 iJGlskwBfGs+wyoGLSqhtjjH8RXkwfOCwcxZ53R9wsNnbb0/yp16K834PiMt4D2a+tTJaU9Xg5jE
+	 bb7kRe8ePuyLPdMPwWipS5MA1lSmFkZ81iaHRgpFV5zz9GFMAXJ2UZSeGqkrS6Q24Y657Bt7jmAg
+	 N51Sa/KS1PMu1hfkO0TN3PM5dmdn8PPUjmdo9RoFTUVvnHi8jqw+liyO0wkoNum08SftpViIeO03
+	 +IqRjByS7S0q4kU9jnJ/4bbCrxYUeqYsMYF7p08zxCWIOrBC1hybPTGtlk4hv1SxzweMGZPvA7/4
+	 9yy61W5vVKcVi23wJ2p+txavTBl2GY2jJsmhdwbRF3mh4ISjwQDnBRrHyDhKpgWw4Vj1xq8MxjLf
+	 jhK77dAShBadVwola43ibQfafTW7fOYZ4KoCzZ7OdoEIVM1yfpbRfaOc70RXYkuZCitGXyMzEV96
+	 piNn5kbPN01ZwOAbOWG1crsUvCm8zqU4/WYr3AJ0AsHIN1/a/JiS+FmUSWFKOGYi9xQOv4Xa8Mms
+	 HQ3Q1/IqQ4XOYbmUTrdfxGwF4wPA0=
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240606090206.2021237-14-mwalle@kernel.org>
-X-CM-TRANSID:ClUQrAD3XfqYlm9mFcsLCA--.41569S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW3JF15ZFy8Zw4Utr1fAF18Krg_yoWxGFy7pa
-	s7GFsxWF4xCw1xK34DXryUKF4UAw4DCasI9rn8Ja40yFZ7u3ZrGr9akw15C3W5Jrs5Cw43
-	KF92vr1xtwsrXaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jf6pPUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDhkBZVszYrt7JgAAsf
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
+Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <20240616224811.GC3983622@ofsar>
+Date: Mon, 17 Jun 2024 10:00:32 +0800
+Cc: Yixun Lan <dlan@gentoo.org>,
+ linux-riscv@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Anup Patel <anup.patel@wdc.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ devicetree@vger.kernel.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Jesse Taube <jesse@rivosinc.com>
+Content-Transfer-Encoding: quoted-printable
+X-OQ-MSGID: <B3951194-7F51-4D44-A643-FB29533119E4@cyyself.name>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <20240616-exorcism-computing-e11e26084a62@spud>
+ <20240616224811.GC3983622@ofsar>
+To: Conor Dooley <conor@kernel.org>
+X-Mailer: Apple Mail (2.3774.600.62)
 
-On Thu, Jun 06, 2024 at 11:02:06AM +0200, Michael Walle wrote:
-> For now, there wasn't any in-tree users of the dtsi files for the
-> Kontron SMARC-sAMX6i board. Let's add device trees, for this board on a
-> Kontron SMARC Eval 2.0 Carrier.
-> 
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
->  arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
->  .../nxp/imx/imx6dl-kontron-samx6i-ads2.dts    |  12 ++
->  .../dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts |  12 ++
->  .../nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi  | 148 ++++++++++++++++++
->  4 files changed, 174 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts
->  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts
->  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-> index 231c0d73a53e..92e291603ea1 100644
-> --- a/arch/arm/boot/dts/nxp/imx/Makefile
-> +++ b/arch/arm/boot/dts/nxp/imx/Makefile
-> @@ -99,6 +99,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
->  	imx6dl-icore.dtb \
->  	imx6dl-icore-mipi.dtb \
->  	imx6dl-icore-rqs.dtb \
-> +	imx6dl-kontron-samx6i-ads2.dtb \
->  	imx6dl-lanmcu.dtb \
->  	imx6dl-mamoj.dtb \
->  	imx6dl-mba6a.dtb \
-> @@ -207,6 +208,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
->  	imx6q-icore-ofcap10.dtb \
->  	imx6q-icore-ofcap12.dtb \
->  	imx6q-icore-rqs.dtb \
-> +	imx6q-kontron-samx6i-ads2.dtb \
->  	imx6q-kp-tpc.dtb \
->  	imx6q-logicpd.dtb \
->  	imx6q-marsboard.dtb \
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts
-> new file mode 100644
-> index 000000000000..6a0c53f23a15
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i-ads2.dts
-> @@ -0,0 +1,12 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +
-> +/dts-v1/;
-> +
-> +#include "imx6dl.dtsi"
-> +#include "imx6qdl-kontron-samx6i.dtsi"
-> +#include "imx6qdl-kontron-samx6i-ads2.dtsi"
-> +
-> +/ {
-> +	model = "Kontron SMARC-sAMX6i Dual-Lite/Solo on SMARC Eval 2.0 carrier";
-> +	compatible = "kontron,imx6dl-samx6i-ads2", "kontron,imx6dl-samx6i", "fsl,imx6dl";
-> +};
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts b/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts
-> new file mode 100644
-> index 000000000000..94c395cc020e
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i-ads2.dts
-> @@ -0,0 +1,12 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +
-> +/dts-v1/;
-> +
-> +#include "imx6q.dtsi"
-> +#include "imx6qdl-kontron-samx6i.dtsi"
-> +#include "imx6qdl-kontron-samx6i-ads2.dtsi"
-> +
-> +/ {
-> +	model = "Kontron SMARC-sAMX6i Quad/Dual on SMARC Eval 2.0 carrier";
-> +	compatible = "kontron,imx6q-samx6i-ads2", "kontron,imx6q-samx6i", "fsl,imx6q";
-> +};
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi
-> new file mode 100644
-> index 000000000000..15a87ee4159d
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i-ads2.dtsi
-> @@ -0,0 +1,148 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree include for the Kontron SMARC-sAMX6i board on a SMARC Eval
-> + * 2.0 carrier (ADS2).
-> + *
-> + */
-> +
-> +/ {
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	sound {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,bitclock-master = <&dailink_master>;
-> +		simple-audio-card,frame-master = <&dailink_master>;
-> +		simple-audio-card,widgets =
-> +			"Headphone", "Headphone Jack",
-> +			"Line", "Line Out Jack",
-> +			"Microphone", "Microphone Jack",
-> +			"Line", "Line In Jack";
-> +		simple-audio-card,routing =
-> +			"Line Out Jack", "LINEOUTR",
-> +			"Line Out Jack", "LINEOUTL",
-> +			"Headphone Jack", "HPOUTR",
-> +			"Headphone Jack", "HPOUTL",
-> +			"IN1L", "Line In Jack",
-> +			"IN1R", "Line In Jack",
-> +			"Microphone Jack", "MICBIAS",
-> +			"IN2L", "Microphone Jack",
-> +			"IN2R", "Microphone Jack";
-> +
-> +		simple-audio-card,cpu {
-> +			sound-dai = <&ssi1>;
-> +		};
-> +
-> +		dailink_master: simple-audio-card,codec {
-> +			sound-dai = <&wm8904>;
-> +		};
-> +	};
-> +
-> +	reg_codec_mic: regulator-codec-mic {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_3V3_MIC";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	reg_codec_1p8v: regulator-codec-1p8v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "V_1V8_S0_CODEC";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&audmux {
-> +	status = "okay";
-> +};
-> +
-> +&can1 {
-> +	status = "okay";
-> +};
-> +
-> +&can2 {
-> +	status = "okay";
-> +};
-> +
-> +&ecspi4 {
-> +	flash@1 {
-> +		compatible = "jedec,spi-nor";
-> +		m25p,fast-read;
-> +		spi-max-frequency = <100000000>;
-> +		reg = <1>;
 
-compatible
-reg
-spi-max-frequency (generic properties)
-m25p,fast-read (device or vendor specific ones)
+> On Jun 17, 2024, at 06:48, Yixun Lan <dlan@gentoo.org> wrote:
+>=20
+> Hi Conor
+> Thanks for bringing this up
+>=20
+> On 19:35 Sun 16 Jun     , Conor Dooley wrote:
+>> On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
+>>=20
+>> No MAINTAINERS update, so I figure that means you don't want to =
+maintain
+>> it going forwards? If there's someone out that that does care about =
+the
+>> spacemit k1 (Jesse maybe?), then I'd be more than happy to have them
+>> look after it.
 
-> +	};
-> +};
-> +
-> +&fec {
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +
-> +	wm8904: audio-codec@1a {
-> +		#sound-dai-cells = <0>;
-> +		compatible = "wlf,wm8904";
-> +		reg = <0x1a>;
+Actually, I don=E2=80=99t know how to be a maintainer. Should I have to
+provide a new git tree and all the new patches merged to my tree
+and then submit a git pull? Or reuse the RISC-V mailing list and
+just give a review, and the patches come to soc misc tree? I would
+like the latter one.
 
-Move #sound-dai-cells here?
+> Yangyu kind of has limited time, too many stuff for him..
+>=20
 
-Shawn
+True. Maybe I can have a review and test the patch in one week.
+However, providing a review and test in 2-3 days is sometimes hard
+for me.
 
-> +		clocks = <&clks IMX6QDL_CLK_CKO2>;
-> +		clock-names = "mclk";
-> +		AVDD-supply = <&reg_codec_1p8v>;
-> +		CPVDD-supply = <&reg_codec_1p8v>;
-> +		DBVDD-supply = <&reg_codec_1p8v>;
-> +		DCVDD-supply = <&reg_codec_1p8v>;
-> +		MICVDD-supply = <&reg_codec_mic>;
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	eeprom@57 {
-> +		compatible = "atmel,24c64";
-> +		reg = <0x57>;
-> +		pagesize = <32>;
-> +	};
-> +};
-> +
-> +&pcie {
-> +	status = "okay";
-> +};
-> +
-> +&ssi1 {
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	status = "okay";
-> +};
-> +
-> +&uart5 {
-> +	status = "okay";
-> +};
-> +
-> +&usbh1 {
-> +	status = "okay";
-> +};
-> +
-> +&usbotg {
-> +	status = "okay";
-> +};
-> +
-> +&usdhc3 {
-> +	status = "okay";
-> +};
-> -- 
-> 2.39.2
-> 
+> I'd volunteered to help on this if it can fill the gap
+> Also I'd be more than happy if anyone willing step forward to =
+co-maintain..
+>=20
+
+Thanks. Really appreciate it.
+
+Should I provide a diff like this:
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d6c90161c7bf..718d30996f12 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19306,6 +19306,7 @@ F:      arch/riscv/boot/dts/
+ X:     arch/riscv/boot/dts/allwinner/
+ X:     arch/riscv/boot/dts/renesas/
+ X:     arch/riscv/boot/dts/sophgo/
++X:     arch/riscv/boot/dts/spacemit/
+=20
+ RISC-V PMU DRIVERS
+ M:     Atish Patra <atishp@atishpatra.org>
+@@ -21004,6 +21005,13 @@ W:     https://linuxtv.org
+ Q:     http://patchwork.linuxtv.org/project/linux-media/list/
+ F:     drivers/media/dvb-frontends/sp2*
+=20
++SPACEMIT DEVICETREES and DRIVERS
++M:     Yangyu Chen <cyy@cyyself.name>
++M:     Yixun Lan <dlan@gentoo.org>
++S:     Maintained
++F:     Documentation/devicetree/bindings/riscv/spacemit.yaml
++F:     arch/riscv/boot/dts/spacemit/
++
+ SPANISH DOCUMENTATION
+ M:     Carlos Bilbao <carlos.bilbao.osdev@gmail.com>
+ R:     Avadhut Naik <avadhut.naik@amd.com>
+
+Thanks,
+Yangyu Chen
+
+> --=20
+> Yixun Lan (dlan)
+> Gentoo Linux Developer
+> GPG Key ID AABEFD55
 
 
