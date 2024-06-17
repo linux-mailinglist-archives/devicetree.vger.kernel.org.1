@@ -1,187 +1,187 @@
-Return-Path: <devicetree+bounces-76598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C91F490B4FD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C03890B517
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:49:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CC4C1F22F89
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:46:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46BE91F21855
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F8D158A2D;
-	Mon, 17 Jun 2024 15:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C6E15B139;
+	Mon, 17 Jun 2024 15:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QcD6Akg1"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="CB/FVxKo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mta-65-227.siemens.flowmailer.net (mta-65-227.siemens.flowmailer.net [185.136.65.227])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FD4B22083;
-	Mon, 17 Jun 2024 15:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5E415ADB7
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.227
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637576; cv=none; b=D15Jh/NuWrXwWM7Ow7X9rs091YGiuhgthDO4UHI4Did+UbB3mS1fJ4xL+zQNVefmr5RHTjj1Ovty/TMTWpGUXI7dC1TOO1pAiAtElFH3JqofpwsGNVTldBTl9cBDMeIagUHhO6628htrv7g7dCDOPMIDDmu7+NfPPlTLRp5hloA=
+	t=1718637756; cv=none; b=rmLdWfDQ8x0GS99q+QK4xVH6HhR44PBU2wObJ7LmksEiD/2qVXTsOvy7faN11XdOU5pM0LqC27cKGrZX3d8OLts44MPjVYSiAHipOVkksbixty2DCKamHHG9q2H2dQ8Bp/X51CTPmLm+Jt11kVs0dgrp2gNfOodzTu6smVlTucc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637576; c=relaxed/simple;
-	bh=naIpIa1Kqns2NPV2ho5gEYD9eBsk6s5vBFjFML3y3gY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ttQ4L65tQpVMV6fjDmCFAx1wKiaWFKeNC9KSfiNDIOR9PtkcFVSpekNHDSq8ue39xjDrYMJSw64J23ml9PQ970cWmVjyoOIcHuJMbiW+b8IgVp/n+lA8SAD01pmD3i8eC+LaQ66Tg4WK9VGkdi8i3hzP/vgJKUNUH2UQnI0qvRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QcD6Akg1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B61E1C2BD10;
-	Mon, 17 Jun 2024 15:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718637576;
-	bh=naIpIa1Kqns2NPV2ho5gEYD9eBsk6s5vBFjFML3y3gY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QcD6Akg1FReoE8UPj/9zF6jZ1yON9EcKYgTCgFyPoyQ9Wte08cmcGhBeGg10nC+52
-	 O07VNeU9KgWCAhkTidcKUHPuLZVhNLLHF7Q2CVLDMy96838Aq1knZ40LRDYWYRw9h7
-	 wRFVHZzx65ta+Hy8nTLvQW+TchUfJ9RzIAW8G9NnlcHxNMURuZ77x09vgNM2ZJoAVH
-	 B/9g1CHT4IbzAUQLyY1zCq9Q0DAdAZMfnRVNwzKAta163AL8eRs5wW5Xu6D7Y6LSYz
-	 9R9F+CYDa8ySAitMzmOL9BByawEiEH6S/JI+Lqni/isTureAiD5nlUV0rBD+3sZzUh
-	 WskH6GRMGuisw==
-Date: Mon, 17 Jun 2024 16:19:30 +0100
-From: Conor Dooley <conor@kernel.org>
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lee@kernel.org, alexandre.belloni@bootlin.com,
-	magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 02/12] dt-bindings: clock: renesas,rzg3s-vbattb-clk:
- Document the VBATTB clock driver
-Message-ID: <20240617-subsoil-creed-04bf5f13d081@spud>
-References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
- <20240614071932.1014067-3-claudiu.beznea.uj@bp.renesas.com>
- <20240615-angler-occupier-6188a3187655@spud>
- <3d9ed0ec-ca9a-45b4-a633-8f7051d13cff@tuxon.dev>
+	s=arc-20240116; t=1718637756; c=relaxed/simple;
+	bh=gVkjhihYssjxx3HmUUIcdEn5ObHN127myBwzSS6vJW0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=C2BWOAO+LRUgGu0wkFEVCUddnAQ8KyhWGP94EM0fyjwYTxiVc4filtUQtkIHmDb6TKhUZnPDmue5qc23FtIPNmX4f1ou0j6tSVvs7uR+vzVYW0iYulxYsuiwZt7+CA9zPKBwXNie/kgfgGiVbUvmQ7YIK/uJemrng8tRpom9oNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=CB/FVxKo; arc=none smtp.client-ip=185.136.65.227
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-65-227.siemens.flowmailer.net with ESMTPSA id 20240617152224859ece809855031454
+        for <devicetree@vger.kernel.org>;
+        Mon, 17 Jun 2024 17:22:25 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=x4YRkE+XFm1D29pl4Ld17TEKG1sVow5yeZQG9PSUP5I=;
+ b=CB/FVxKoMjqGYkzbJv1QQWSgwJSKYYp+NUVIIuZ7inV8aYM48zBQZJwFvHbvAibvMIRldV
+ Si2JRv3IT+ILGEQkH4XgGbm3oxJtWEiXZuw60kecwmikaF5VdE4Qpv+kjL/KHq+4hvNG+4dM
+ kMw3mtLQtxWUDqgi254VUbb0i0D2w=;
+From: Diogo Ivo <diogo.ivo@siemens.com>
+Date: Mon, 17 Jun 2024 16:21:40 +0100
+Subject: [PATCH net-next v4 1/5] net: ti: icssg-prueth: Enable PTP
+ timestamping support for SR1.0 devices
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="56coL768YMNwi762"
-Content-Disposition: inline
-In-Reply-To: <3d9ed0ec-ca9a-45b4-a633-8f7051d13cff@tuxon.dev>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240617-iep-v4-1-fa20ff4141a3@siemens.com>
+References: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
+In-Reply-To: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
+To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>, 
+ Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Diogo Ivo <diogo.ivo@siemens.com>, 
+ Wojciech Drewek <wojciech.drewek@intel.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718637740; l=3143;
+ i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
+ bh=gVkjhihYssjxx3HmUUIcdEn5ObHN127myBwzSS6vJW0=;
+ b=Ne4QQFK6QP2v+OQaF2Mwx32o+Eu/500f6KJ6QoKnoUYpnbEN6uIgN3kbTR1HVyy9gq1wudeuy
+ PZeFyR9AFhID9sIi0AcbI9ElMgQOirT0djR07GcwdRh9A/tRbGYsiMf
+X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
+Enable PTP support for AM65x SR1.0 devices by registering with the IEP
+infrastructure in order to expose a PTP clock to userspace.
 
---56coL768YMNwi762
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
+Reviewed-by: Wojciech Drewek <wojciech.drewek@intel.com>
+Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+---
+ drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c | 51 +++++++++++++++++++++++-
+ 1 file changed, 50 insertions(+), 1 deletion(-)
 
-On Mon, Jun 17, 2024 at 10:02:47AM +0300, claudiu beznea wrote:
->=20
->=20
-> On 15.06.2024 15:17, Conor Dooley wrote:
-> > On Fri, Jun 14, 2024 at 10:19:22AM +0300, Claudiu wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock that feeds
-> >> the RTC and the tamper detector. Add documentation for the VBATTB clock
-> >> driver.
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >> ---
-> >>  .../clock/renesas,rzg3s-vbattb-clk.yaml       | 90 +++++++++++++++++++
-> >>  1 file changed, 90 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,rz=
-g3s-vbattb-clk.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/clock/renesas,rzg3s-vba=
-ttb-clk.yaml b/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb=
--clk.yaml
-> >> new file mode 100644
-> >> index 000000000000..ef52a0c0f874
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk=
-=2Eyaml
-> >> @@ -0,0 +1,90 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/clock/renesas,rzg3s-vbattb-clk.yam=
-l#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Renesas VBATTB clock
-> >> +
-> >> +maintainers:
-> >> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >> +
-> >> +description:
-> >> +  Renesas VBATTB module is an always on powered module (backed by bat=
-tery) which
-> >> +  generates a clock (VBATTCLK). This clocks feeds the RTC and the tam=
-per detector
-> >> +  modules.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: renesas,rzg3s-vbattb-clk
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  clocks:
-> >> +    items:
-> >> +      - description: VBATTB module clock
-> >> +      - description: VBATTB input xtal
-> >> +
-> >> +  clock-names:
-> >> +    items:
-> >> +      - const: bclk
-> >> +      - const: vbattb_xtal
-> >> +
-> >> +  '#clock-cells':
-> >> +    const: 0
-> >> +
-> >> +  power-domains:
-> >> +    maxItems: 1
-> >> +
-> >> +  renesas,vbattb-load-nanofarads:
-> >> +    description: load capacitance of the on board xtal
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    enum: [ 4000, 7000, 9000, 12500 ]
-> >> +
-> >> +  renesas,vbattb-osc-bypass:
-> >> +    description: set when external clock is connected to RTXOUT pin
-> >> +    type: boolean
-> >=20
-> > When you say "external clock", is that an input or an output?
->=20
-> I took that statement from the HW manual. As of the HW manual [1], table
-> 42.2, that would be an input.
+diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c b/drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c
+index 7b3304bbd7fc..fa98bdb11ece 100644
+--- a/drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c
++++ b/drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c
+@@ -1011,16 +1011,44 @@ static int prueth_probe(struct platform_device *pdev)
+ 	dev_dbg(dev, "sram: pa %llx va %p size %zx\n", prueth->msmcram.pa,
+ 		prueth->msmcram.va, prueth->msmcram.size);
+ 
++	prueth->iep0 = icss_iep_get_idx(np, 0);
++	if (IS_ERR(prueth->iep0)) {
++		ret = dev_err_probe(dev, PTR_ERR(prueth->iep0),
++				    "iep0 get failed\n");
++		goto free_pool;
++	}
++
++	prueth->iep1 = icss_iep_get_idx(np, 1);
++	if (IS_ERR(prueth->iep1)) {
++		ret = dev_err_probe(dev, PTR_ERR(prueth->iep1),
++				    "iep1 get failed\n");
++		goto put_iep0;
++	}
++
++	ret = icss_iep_init(prueth->iep0, NULL, NULL, 0);
++	if (ret) {
++		dev_err_probe(dev, ret, "failed to init iep0\n");
++		goto put_iep;
++	}
++
++	ret = icss_iep_init(prueth->iep1, NULL, NULL, 0);
++	if (ret) {
++		dev_err_probe(dev, ret, "failed to init iep1\n");
++		goto exit_iep0;
++	}
++
+ 	if (eth0_node) {
+ 		ret = prueth_netdev_init(prueth, eth0_node);
+ 		if (ret) {
+ 			dev_err_probe(dev, ret, "netdev init %s failed\n",
+ 				      eth0_node->name);
+-			goto free_pool;
++			goto exit_iep;
+ 		}
+ 
+ 		if (of_find_property(eth0_node, "ti,half-duplex-capable", NULL))
+ 			prueth->emac[PRUETH_MAC0]->half_duplex = 1;
++
++		prueth->emac[PRUETH_MAC0]->iep = prueth->iep0;
+ 	}
+ 
+ 	if (eth1_node) {
+@@ -1033,6 +1061,8 @@ static int prueth_probe(struct platform_device *pdev)
+ 
+ 		if (of_find_property(eth1_node, "ti,half-duplex-capable", NULL))
+ 			prueth->emac[PRUETH_MAC1]->half_duplex = 1;
++
++		prueth->emac[PRUETH_MAC1]->iep = prueth->iep1;
+ 	}
+ 
+ 	/* register the network devices */
+@@ -1091,6 +1121,19 @@ static int prueth_probe(struct platform_device *pdev)
+ 		prueth_netdev_exit(prueth, eth_node);
+ 	}
+ 
++exit_iep:
++	icss_iep_exit(prueth->iep1);
++exit_iep0:
++	icss_iep_exit(prueth->iep0);
++
++put_iep:
++	icss_iep_put(prueth->iep1);
++
++put_iep0:
++	icss_iep_put(prueth->iep0);
++	prueth->iep0 = NULL;
++	prueth->iep1 = NULL;
++
+ free_pool:
+ 	gen_pool_free(prueth->sram_pool,
+ 		      (unsigned long)prueth->msmcram.va, msmc_ram_size);
+@@ -1138,6 +1181,12 @@ static void prueth_remove(struct platform_device *pdev)
+ 		prueth_netdev_exit(prueth, eth_node);
+ 	}
+ 
++	icss_iep_exit(prueth->iep1);
++	icss_iep_exit(prueth->iep0);
++
++	icss_iep_put(prueth->iep1);
++	icss_iep_put(prueth->iep0);
++
+ 	gen_pool_free(prueth->sram_pool,
+ 		      (unsigned long)prueth->msmcram.va,
+ 		      MSMC_RAM_SIZE_SR1);
 
-Forgive me for not wanting to open the zip etc and find the information
-in the document, but why do you need an extra property? Is it not
-something you can determine from the clocks/clock-names properties?
-It sounds like an additional clock from your description, is it actually
-different way to provide the second clock you mention above?
+-- 
+2.45.2
 
->=20
-> [1]
-> https://www.renesas.com/us/en/products/microcontrollers-microprocessors/r=
-z-mpus/rzg3s-general-purpose-microprocessors-single-core-arm-cortex-a55-11-=
-ghz-cpu-and-dual-core-cortex-m33-250
->=20
-
---56coL768YMNwi762
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBUAgAKCRB4tDGHoIJi
-0rZQAQCewakzSyZHrcYUH8+d8xIo+9/OP7zyCp6sCDIWB4L7sAEAzqCsVwlD4cn+
-2oxxeZnpGsG3xJ+EYOZM76MqaXgtQwQ=
-=GLxB
------END PGP SIGNATURE-----
-
---56coL768YMNwi762--
 
