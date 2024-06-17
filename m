@@ -1,242 +1,248 @@
-Return-Path: <devicetree+bounces-76773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF00C90BFE8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 01:50:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E3190BFF3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 01:57:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 277811F22693
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 23:50:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61D38B21E16
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 23:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1830619925A;
-	Mon, 17 Jun 2024 23:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA4C199EAB;
+	Mon, 17 Jun 2024 23:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="iPs6tjZE"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="nnTQ7oYZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8BA4194A52;
-	Mon, 17 Jun 2024 23:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC85288BD
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 23:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718668239; cv=none; b=PMJV6Kxt2ANWb4ZSv1HYSlZ5Kz4ybBdW2cFjO6leE6+apFw2nPyGD2SrgzxXG6tvMaP1hI6B7i9U6Ig+bCGYVzPIWn0RHs1xEkB5OrmIT1C7BLRmaPehmb7KgXwJ4VNarkoO7HrMkeM3WktKB2O6MZiTxIf+h6cJeP83qH6hDrk=
+	t=1718668626; cv=none; b=oBzPDZSEMu8b966wAWBnE7c2ehbLYhDfhjam0o81+j1NmRuTddcFWI3V3h/a8AAe3i//CteWjliwm0g1cQCA59cbFS/PeTErSORau2AcUf5H57W3+GMddHE/8IrUxj84yuBHGN0ETHOhgTO8e5eMQ6vV/bmhfUP0Pqsk1/mbOt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718668239; c=relaxed/simple;
-	bh=D/Uozen3NJBtfW2IaXMiqxQRvZkxJFeTt28xXjOSTfQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Q6vlLRxKzPV2xu13d2pcPc0jph/jBEZ/R7I4jga91JuswwwS/mWLfl4j6S0biFRh5c51nVHeUQBN+PssOvtXSi0Q/EoMSUXMyWEzAcZGG3t0/NZxDZ8MDrr+j+C6SL3Jifo6wUEbQM6ilRXsf0tLOua4yxIMNT8OgjwMNZ5Ov7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=iPs6tjZE; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp118-210-79-194.adl-adc-lon-bras32.tpg.internode.on.net [118.210.79.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 2C3522012B;
-	Tue, 18 Jun 2024 07:50:30 +0800 (AWST)
+	s=arc-20240116; t=1718668626; c=relaxed/simple;
+	bh=nzBwBVqIm92hzymlIVx5EWehH89tPmsDDm0vrypcfxc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jmPN8/LKvQ+AlVEYAVLLUBzOmE8bMMI4BgTYrSzF5MtzYFvA8btciIKQ59KXAaCilniKJZzFp8FmchlkaDnfTrKSYXOrGuT3IF9shlb0jF4VwgkmJ7umbYCAR3T99ECQomo1EdU9/vyPAx3vFciSOEoLdAPmj3CVFcr8S3C9zkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=nnTQ7oYZ; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-703ed15b273so3677114b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 16:57:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1718668234;
-	bh=5H2azwNMw/NKvZISY+AJYUwrGQoNGdx8yOayGYYjxdM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=iPs6tjZEkhMY3FV1OUzn8COHOIis1ne27apJzEnF+9CPL+nYcTNkaHS1hmsdJ5Qt1
-	 xx+h4N6BUdMZN5iiCcAzqVCbCgtIuoj+kTrWIn57bWVRjfqlTi2cFuWMAQnmnS6XD2
-	 QeCAV4hnjCDc5N+LN00rlL3NqZVbmzzyDp2ACMncUb7C3d+IlmPSumF8RDNceiSYh7
-	 l+hYGf8xdnE40BnX/rtM6Qb57q6O7qRdsXF0tIa06muoXBOhcZdB0DA12U/buQl6kr
-	 5BltwGkjzeL4f/Gm+atqwRIrFW0n0cr45+QUYYFXov5s65Jgw4nzvNyTOXXRKLKR1e
-	 viaNQ6Kc8SYpQ==
-Message-ID: <41922538da690d52122edea4f4095f45886acd33.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1 6/7] ARM: dts: aspeed: Harma: remove multi-host
- property
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: kernel test robot <lkp@intel.com>, Peter Yin
- <peteryin.openbmc@gmail.com>,  patrick@stwcx.xyz
-Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
- Stanley <joel@jms.id.au>,  devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,  linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-Date: Tue, 18 Jun 2024 09:20:30 +0930
-In-Reply-To: <202406180305.hrffmKGn-lkp@intel.com>
-References: <20240613152425.1582059-7-peteryin.openbmc@gmail.com>
-	 <202406180305.hrffmKGn-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718668623; x=1719273423; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Pv6YgUgx26x13lU94kELKKeYzK6q+bXz++7xQqcQ+U=;
+        b=nnTQ7oYZQ/U/AI0IVFxZTylcSgm7y8xmGZTC+WTpHQXXZFcNiM+VtYlMtq0pvRQWHR
+         m1AoTjkHcSpDbMsXpqiBioPkEZhtCeQylafBjaQjuIacWnMv/cU39ohhfBQsFd6ZXkeh
+         MoYU/ghZCuhs3oWKVvbRiqy6JEg8KDmebpd87I/RpAim8tiMSALBvV6ravGmADL0MDax
+         SKEoYgtbolvYWYFn1YLika12O6cZl8dHqzDKcMqFB1/L9NZbZPq1ltelY1t2Eo6V180B
+         PFYHotwRXYGvt2bAA9E3rvpo72aZ00ES9Eu08NrsmZUNUj+cMUf/J4BAykhD5V3s9OIC
+         Lm5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718668623; x=1719273423;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Pv6YgUgx26x13lU94kELKKeYzK6q+bXz++7xQqcQ+U=;
+        b=IWTZ0MiNU+CcXHTVGZc3yGcTqVOXsuw9Pw6Ab0GHCRMjWcldfepK5qlsXVyTN/Xd4A
+         WEqhWFxUgiGFm0KSFzbqGn+2G+LS2Gx3ZDC+rOJc99f8BWyrQUifvZeI4XekntguWr/7
+         d/pG51aG7UuXPDF1Jwr4mkvaSAvTzjvMI7uBH8DMiR565cu6X4gX3JOv98J+OU/ge1/i
+         /4AlVAPcdeTU7S/DTsHxRhatxHNGy1J77MJAKRkGZdfCtkH4fXR/3eHBRs7793JersbA
+         Y7ghPp9Qbwe5h46FAgmTFTKxON+ARDJToIMhFN+zjuZnSeV5i4RRx45uZHNqUAhopNLz
+         UJOA==
+X-Forwarded-Encrypted: i=1; AJvYcCXsM8USdXxwtDAZlh6z2ah0slFJllW+OlPOIU+vkWXniLWqoAHWRTBXUwknhb4VkuBigUjZulyj4R0rMEJaPSTyaVIsShZwapbrrA==
+X-Gm-Message-State: AOJu0YzCJ8Wgaa3eD3wDM0X651X5WaWLFbXHSWFb304FeNE1PQwF3aT+
+	bvU3LA5SmXw1JEhIQkWoXYe05NSL1Tuu/YE7YkyAUzLi57+NJMrUOvIbH5ZY4m0=
+X-Google-Smtp-Source: AGHT+IEiXrAB7cuxRppsU6GQJ6vHl6ukNvL8RrXB7zAYcQWc3ujHmluc9BRM9R7AWGZu0MBlcMUoWw==
+X-Received: by 2002:aa7:9f4b:0:b0:705:d805:214c with SMTP id d2e1a72fcca58-705d8052532mr11634053b3a.3.1718668623238;
+        Mon, 17 Jun 2024 16:57:03 -0700 (PDT)
+Received: from ghost ([2601:647:5700:6860:3b3e:f51e:252a:6811])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6fee3c9ed1fsm5985863a12.83.2024.06.17.16.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 16:57:02 -0700 (PDT)
+Date: Mon, 17 Jun 2024 16:56:58 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Jesse Taube <jesse@rivosinc.com>, linux-riscv@lists.infradead.org,
+	Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu <andy.chiu@sifive.com>,
+	Eric Biggers <ebiggers@google.com>,
+	Greentime Hu <greentime.hu@sifive.com>,
+	=?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Costa Shulyupin <costa.shul@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Baoquan He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>,
+	Zong Li <zong.li@sifive.com>,
+	Sami Tolvanen <samitolvanen@google.com>,
+	Ben Dooks <ben.dooks@codethink.co.uk>,
+	Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Erick Archer <erick.archer@gmx.com>,
+	Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] RISC-V: Check scalar unaligned access on all CPUs
+Message-ID: <ZnDNSthEVSSXpJnC@ghost>
+References: <20240613191616.2101821-1-jesse@rivosinc.com>
+ <20240613191616.2101821-4-jesse@rivosinc.com>
+ <20240614-padded-mammal-d956735c1293@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240614-padded-mammal-d956735c1293@wendy>
 
-Hi Peter,
+On Fri, Jun 14, 2024 at 09:22:47AM +0100, Conor Dooley wrote:
+> On Thu, Jun 13, 2024 at 03:16:12PM -0400, Jesse Taube wrote:
+> > Originally, the check_unaligned_access_emulated_all_cpus function
+> > only checked the boot hart. This fixes the function to check all
+> > harts.
+> 
+> This seems like it should be split out and get a Fixes: tag & a cc:
+> stable.
 
-On Tue, 2024-06-18 at 03:18 +0800, kernel test robot wrote:
-> Hi Peter,
->=20
-> kernel test robot noticed the following build warnings:
->=20
-> [auto build test WARNING on robh/for-next]
-> [also build test WARNING on linus/master v6.10-rc4 next-20240613]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->=20
-> url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Yin/ARM-dts-=
-aspeed-Harma-revise-hsc-chip/20240613-232915
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git fo=
-r-next
-> patch link:    https://lore.kernel.org/r/20240613152425.1582059-7-peteryi=
-n.openbmc%40gmail.com
-> patch subject: [PATCH v1 6/7] ARM: dts: aspeed: Harma: remove multi-host =
-property
-> config: arm-randconfig-051-20240614 (https://download.01.org/0day-ci/arch=
-ive/20240618/202406180305.hrffmKGn-lkp@intel.com/config)
-> compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-> dtschema version: 2024.6.dev1+g833054f
-> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
-ve/20240618/202406180305.hrffmKGn-lkp@intel.com/reproduce)
->=20
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > Closes: https://lore.kernel.org/oe-kbuild-all/202406180305.hrffmKGn-lkp=
-@intel.com/
->=20
-> dtcheck warnings: (new ones prefixed by >>)
->=20
+These changes are great Jesse! I agree with Conor, please split these
+changes into two different patches with a fixes tag for
+71c54b3d169d ("riscv: report misaligned accesses emulation to hwprobe").
 
-*snip*
 
->=20
->    arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: pinctrl: i3c2_=
-default:function:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11',=
- 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6'=
-, 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI=
-2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', '=
-GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPI=
-U3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12',=
- 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6'=
-, 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', =
-'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1',=
- 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'N=
-CTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR=
-1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', =
-'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWA=
-KE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', =
-'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', '=
-RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'R=
-XD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SAL=
-T14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SAL=
-T7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'S=
-IOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'S=
-IOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2=
-', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TAC=
-H15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9=
-', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UAR=
-T10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'US=
-BAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB2BH', 'VB', 'VGAHS', 'VG=
-AVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
->    	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600=
--pinctrl.yaml#
->    arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: pinctrl: i3c2_=
-default:groups:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', '=
-ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', =
-'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMCG1', 'EMMCG4', 'EMMCG8', 'ESPI', 'ES=
-PIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0',=
- 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'G=
-PIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'HVI3C3', 'HVI=
-3C4', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16'=
-, 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', '=
-I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', =
-'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4'=
-, 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', '=
-NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDT=
-R1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'N=
-RTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10G0', 'PW=
-M10G1', 'PWM11G0', 'PWM11G1', 'PWM12G0', 'PWM12G1', 'PWM13G0', 'PWM13G1', '=
-PWM14G0', 'PWM14G1', 'PWM15G0', 'PWM15G1', 'PWM2', 'PWM3', 'PWM4', 'PWM5', =
-'PWM6', 'PWM7', 'PWM8G0', 'PWM8G1', 'PWM9G0', 'PWM9G1', 'QSPI1', 'QSPI2', '=
-RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', =
-'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10G0', 'SALT10G1', 'SALT11G0'=
-, 'SALT11G1', 'SALT12G0', 'SALT12G1', 'SALT13G0', 'SALT13G1', 'SALT14G0', '=
-SALT14G1', 'SALT15G0', 'SALT15G1', 'SALT16G0', 'SALT16G1', 'SALT2', 'SALT3'=
-, 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9G0', 'SALT9G1', 'SD1',=
- 'SD2', 'SD3', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', '=
-SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1A=
-BR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', '=
-TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3'=
-, 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', '=
-THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART1=
-2G0', 'UART12G1', 'UART13G0', 'UART13G1', 'UART6', 'UART7', 'UART8', 'UART9=
-', 'USBA', 'USBB', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3',=
- 'WDTRST4']
->    	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600=
--pinctrl.yaml#
->    arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: pinctrl: usb11=
-bhid_default:function:0: 'USB11BHID' is not one of ['ADC0', 'ADC1', 'ADC10'=
-, 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC=
-5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'F=
-SI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', =
-'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GP=
-IU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11'=
-, 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C=
-5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM'=
-, 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', '=
-MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', '=
-MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDC=
-D4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4'=
-, 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCC=
-LK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14',=
- 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', '=
-RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', =
-'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SAL=
-T13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SA=
-LT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', '=
-SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', '=
-SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1'=
-, 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TAC=
-H14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH=
-8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'T=
-XD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'U=
-ART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB2BH', 'VB', 'V=
-GAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
->    	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600=
--pinctrl.yaml#
->    arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: pinctrl: usb2a=
-d_default:function:0: 'USB2AD' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC=
-11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'A=
-DC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', =
-'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2=
-', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', =
-'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C=
-12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I=
-2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHP=
-D', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLIN=
-K1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4'=
-, 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', '=
-NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI=
-1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', '=
-PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM1=
-5', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1=
-', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1'=
-, 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', =
-'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', =
-'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2'=
-, 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5'=
-, 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI=
-2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', =
-'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'T=
-ACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', =
-'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9',=
- 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB2BH', 'VB', 'VGAHS',=
- 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
->=20
+- Charlie
 
-FYI these pinctrl binding issues should be resolved on linux-
-pinctrl.git devel as of yesterday. The new issue that was picked up
-(snipped out of the text above) should be addressed though.
+> 
+> > Check for Zicclsm before checking for unaligned access. This will
+> > greatly reduce the boot up time as finding the access speed is no longer
+> > necessary.
+> > 
+> > Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> > ---
+> > V1 -> V2:
+> >  - New patch
+> > ---
+> >  arch/riscv/kernel/traps_misaligned.c       | 23 ++++++----------------
+> >  arch/riscv/kernel/unaligned_access_speed.c | 23 +++++++++++++---------
+> >  2 files changed, 20 insertions(+), 26 deletions(-)
+> > 
+> > diff --git a/arch/riscv/kernel/traps_misaligned.c b/arch/riscv/kernel/traps_misaligned.c
+> > index b62d5a2f4541..8fadbe00dd62 100644
+> > --- a/arch/riscv/kernel/traps_misaligned.c
+> > +++ b/arch/riscv/kernel/traps_misaligned.c
+> > @@ -526,31 +526,17 @@ int handle_misaligned_store(struct pt_regs *regs)
+> >  	return 0;
+> >  }
+> >  
+> > -static bool check_unaligned_access_emulated(int cpu)
+> > +static void check_unaligned_access_emulated(struct work_struct *unused)
+> >  {
+> > +	int cpu = smp_processor_id();
+> >  	long *mas_ptr = per_cpu_ptr(&misaligned_access_speed, cpu);
+> >  	unsigned long tmp_var, tmp_val;
+> > -	bool misaligned_emu_detected;
+> >  
+> >  	*mas_ptr = RISCV_HWPROBE_MISALIGNED_UNKNOWN;
+> >  
+> >  	__asm__ __volatile__ (
+> >  		"       "REG_L" %[tmp], 1(%[ptr])\n"
+> >  		: [tmp] "=r" (tmp_val) : [ptr] "r" (&tmp_var) : "memory");
+> > -
+> > -	misaligned_emu_detected = (*mas_ptr == RISCV_HWPROBE_MISALIGNED_EMULATED);
+> > -	/*
+> > -	 * If unaligned_ctl is already set, this means that we detected that all
+> > -	 * CPUS uses emulated misaligned access at boot time. If that changed
+> > -	 * when hotplugging the new cpu, this is something we don't handle.
+> > -	 */
+> > -	if (unlikely(unaligned_ctl && !misaligned_emu_detected)) {
+> > -		pr_crit("CPU misaligned accesses non homogeneous (expected all emulated)\n");
+> > -		while (true)
+> > -			cpu_relax();
+> > -	}
+> > -
+> > -	return misaligned_emu_detected;
+> >  }
+> >  
+> >  bool check_unaligned_access_emulated_all_cpus(void)
+> > @@ -562,8 +548,11 @@ bool check_unaligned_access_emulated_all_cpus(void)
+> >  	 * accesses emulated since tasks requesting such control can run on any
+> >  	 * CPU.
+> >  	 */
+> > +	schedule_on_each_cpu(check_unaligned_access_emulated);
+> > +
+> >  	for_each_online_cpu(cpu)
+> > -		if (!check_unaligned_access_emulated(cpu))
+> > +		if (per_cpu(misaligned_access_speed, cpu)
+> > +		    != RISCV_HWPROBE_MISALIGNED_EMULATED)
+> >  			return false;
+> >  
+> >  	unaligned_ctl = true;
+> > diff --git a/arch/riscv/kernel/unaligned_access_speed.c b/arch/riscv/kernel/unaligned_access_speed.c
+> > index a9a6bcb02acf..70c1588fc353 100644
+> > --- a/arch/riscv/kernel/unaligned_access_speed.c
+> > +++ b/arch/riscv/kernel/unaligned_access_speed.c
+> > @@ -259,23 +259,28 @@ static int check_unaligned_access_speed_all_cpus(void)
+> >  	kfree(bufs);
+> >  	return 0;
+> >  }
+> > +#endif /* CONFIG_RISCV_PROBE_UNALIGNED_ACCESS */
+> >  
+> >  static int check_unaligned_access_all_cpus(void)
+> >  {
+> > -	bool all_cpus_emulated = check_unaligned_access_emulated_all_cpus();
+> > +	bool all_cpus_emulated;
+> > +	int cpu;
+> >  
+> > +	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICCLSM)) {
+> > +		for_each_online_cpu(cpu) {
+> > +			per_cpu(misaligned_access_speed, cpu) = RISCV_HWPROBE_MISALIGNED_FAST;
+> > +		}
+> > +		return 0;
+> > +	}
+> > +
+> > +	all_cpus_emulated = check_unaligned_access_emulated_all_cpus();
+> > +
+> > +#ifdef CONFIG_RISCV_PROBE_UNALIGNED_ACCESS
+> 
+> Can we make this an IS_ENABLED() please?
+> 
+> 
+> Thanks,
+> Conor.
+> 
+> >  	if (!all_cpus_emulated)
+> >  		return check_unaligned_access_speed_all_cpus();
+> > +#endif
+> >  
+> >  	return 0;
+> >  }
+> > -#else /* CONFIG_RISCV_PROBE_UNALIGNED_ACCESS */
+> > -static int check_unaligned_access_all_cpus(void)
+> > -{
+> > -	check_unaligned_access_emulated_all_cpus();
+> > -
+> > -	return 0;
+> > -}
+> > -#endif
+> >  
+> >  arch_initcall(check_unaligned_access_all_cpus);
+> > -- 
+> > 2.43.0
+> > 
 
-Andrew
+
 
