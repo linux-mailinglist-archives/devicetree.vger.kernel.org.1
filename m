@@ -1,147 +1,101 @@
-Return-Path: <devicetree+bounces-76595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9EA90B4E5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:44:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA78A90B4EF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:45:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 836751F22C8E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:44:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB9A31C218DD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9F1383A9;
-	Mon, 17 Jun 2024 15:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBC7157E73;
+	Mon, 17 Jun 2024 15:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CRZl9kIp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tOkmJLck"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AE928F3;
-	Mon, 17 Jun 2024 15:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39EE028F3;
+	Mon, 17 Jun 2024 15:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637356; cv=none; b=qNG5QW77SImJKbExcDJBuFnZpzWU6nNMG4fN7gQEpX2PjQEHvFPixzOy47zsNEvXUgb2m+icoLtpwFHSRpRIiYA3s//y5zN2ku3XJxU6EVAGg32rhlvW5A6gA4RkFPqNy5bIFuGVy1tvmzb2fBQEbQRN3f1Pofxfp19tSSIYrSY=
+	t=1718637439; cv=none; b=ZMSUxmoMc4jQQOwFTeSSIbZDhNbHiLIPqoN0GUkkqTXcPMF2fqsuklYNJPmYj5ps9nKB5h1FCm1OXmENyiSVf9KjdAdTyX1iJwgjVfJAIVLmr0ED9mHkAtmb0LJrek61xwVEB+r6zP+aGHhRyMmLI5U/1mHI8VKJOcynYtDquTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637356; c=relaxed/simple;
-	bh=QmJ3aVwAViSIqgxOAxftmSPyWcZ6L9f2BtcyPa3y1x0=;
+	s=arc-20240116; t=1718637439; c=relaxed/simple;
+	bh=j/ICI7Yq4Ovs9RcOtASdlDvF1NTyk5EhUxXvqJdSzZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jgjO314gtTnF2nyfEW+IA5gRcjP8TzMisj/1uNLQxS+ATnsOt+HGjMrRcW5c23/rIv2VJkWFfTQtGJj9C1jT8EiiOHZ+x2WIQHlt+7esQKdfIar+/qzL43psk5JCdtGB7RDAuikC2FXKjWKNLV7XvbqgUIPjPGQJse8oLrxFdPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CRZl9kIp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0C6C4AF1C;
-	Mon, 17 Jun 2024 15:15:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SiXMFYTkad33mnCz8sks65Q2kghQD0L0G4jhWaE+pBRiKKBTA3B1WpnsSoF0ydejXk9Fgy4iHhOEU7lQvyZCYEkpwisqzogFYZ9+zj4xvigUTnJGBTcPNCH8TS7uQvBUbNdB4bXEpPpu+bVGDp/kXgcxWoZV4DDTYz6OuBQbYOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tOkmJLck; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98028C2BD10;
+	Mon, 17 Jun 2024 15:17:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718637356;
-	bh=QmJ3aVwAViSIqgxOAxftmSPyWcZ6L9f2BtcyPa3y1x0=;
+	s=k20201202; t=1718637438;
+	bh=j/ICI7Yq4Ovs9RcOtASdlDvF1NTyk5EhUxXvqJdSzZA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CRZl9kIpv4MuNy3RiRdGncDI35HIuaw/aYjmjoNIOrUHwE8BAEtI2N0aBJ5MU+mwk
-	 DYHlof4ocpRGZS/QtJSZmv3oFMWX2zVRaxSeYYOWUxyuzgXwWxvrCCFEj//S7q/6Ve
-	 6cJksg6gZcKwbHqECnWNz6bJfTdLNlSRXDAO5NEkJkC2t4iOljRNLoHCeNMWMk6v4q
-	 vD3Gv90VJvK1Erec4vi7zzenow+poaVtL47jkAQ1xD2hmlX+FbI/mlULCRYZvHxHwW
-	 CkDQ+RlVBtS0Mo844cU4yBZtAuBSDO9ZGV46y8jzimUEzcmj4JNTaQK/aQpK+q94ls
-	 xyuNmRPj+qJBA==
-Date: Mon, 17 Jun 2024 16:15:52 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Etienne CARRIERE - foss <etienne.carriere@foss.st.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
-	Pascal PAILLET-LME <p.paillet@st.com>,
-	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH v2] dt-bindings: mfd: dual licensing for st,stpmic1
- bindings
-Message-ID: <20240617-provolone-dubiously-b572b6b92a67@spud>
-References: <20240617092016.2958046-1-etienne.carriere@foss.st.com>
- <15b20cdd8b9148559352fdb2f02e4e53@foss.st.com>
- <20240617-shaky-amenity-5727816e00e1@spud>
+	b=tOkmJLckwpXrWq5QiVdZI4ydJyka2LiM7oXyMcqK/TOUBwUS3jKkTvpRQ6OBFtvAr
+	 ZrStizh31wlf2osxmhWWTY2qKM2zaQQr4B1fRbS2vCwzeb0mSmxYSxfAvVFmsfC46L
+	 MrUJL6dkcy3Ml7ii7swuEm0iT0D3i0yXtB+P7vJ7SmlI0MswoWEQoAgpNEGB/cTLdH
+	 wMVF0DYkts3dZYGbVeKe/JNdG5VaIcB+2eufYn3d2hi1e7qcAyxO6xjXg3ACj3zdeS
+	 4VfS+Bpeb17nnw6yVDNe9AtNUgXiWDSXc2yXhI0LBSrUL2lU/qfPGhKi6JdR3gBghc
+	 KIRjNyupivc9A==
+Date: Mon, 17 Jun 2024 16:17:13 +0100
+From: Simon Horman <horms@kernel.org>
+To: Kamil =?utf-8?B?SG9yw6Fr?= - 2N <kamilh@axis.com>
+Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach
+ link modes
+Message-ID: <20240617151713.GW8447@kernel.org>
+References: <20240617113841.3694934-1-kamilh@axis.com>
+ <20240617113841.3694934-5-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nHrgKeoucDqHGyar"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240617-shaky-amenity-5727816e00e1@spud>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240617113841.3694934-5-kamilh@axis.com>
 
+On Mon, Jun 17, 2024 at 01:38:41PM +0200, Kamil Horák - 2N wrote:
+> Implement single-pair BroadR-Reach modes on bcm5481x PHY by Broadcom.
+> Create set of functions alternative to IEEE 802.3 to handle configuration
+> of these modes on compatible Broadcom PHYs.
+> 
+> Signed-off-by: Kamil Horák - 2N <kamilh@axis.com>
 
---nHrgKeoucDqHGyar
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Mon, Jun 17, 2024 at 04:13:48PM +0100, Conor Dooley wrote:
-> On Mon, Jun 17, 2024 at 09:21:13AM +0000, Etienne CARRIERE - foss wrote:
-> > Hello Conor,
-> >=20
-> > >
-> > > From: Conor Dooley <conor@kernel.org>
-> > > Sent: Saturday, June 15, 2024 2:14 PM
-> > >
-> > > On Fri, Jun 14, 2024 at 05:33:46PM +0200, Etienne Carriere wrote:
-> > > > Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv=
-2.0
-> > > > only to dual GPLv2.0 or BSD-3-Clause. I have every legitimacy to re=
-quest
-> > > > this change on behalf of STMicroelectronics. This change clarifies =
-that
-> > > > this DT binding header file can be shared with software components =
-as
-> > > > bootloaders and OSes that are not published under GPLv2 terms.
-> > > >
-> > > > In CC are all the contributors to this header file.
-> > > >
-> > > > Cc: Pascal Paillet <p.paillet@st.com>
-> > > > Cc: Lee Jones <lee.jones@linaro.org>
-> > > > Cc: Rob Herring <robh@kernel.org>
-> > > > Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
-> > > > ---
-> > > >  include/dt-bindings/mfd/st,stpmic1.h | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/include/dt-bindings/mfd/st,stpmic1.h b/include/dt-bind=
-ings/mfd/st,stpmic1.h
-> > > > index 321cd08797d9..957c48300cd4 100644
-> > > > --- a/include/dt-bindings/mfd/st,stpmic1.h
-> > > > +++ b/include/dt-bindings/mfd/st,stpmic1.h
-> > > > @@ -1,4 +1,4 @@
-> > > > -/* SPDX-License-Identifier: GPL-2.0 */
-> > > > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause */
-> > >
-> > > The usual dual license for bindings is BSD-2-Clause, was there a
-> > > specific request for the 3 version?
-> >=20
-> > My mistake. Thanks for spotting that.
-> > I have my company agreement for the 2 dual models: "OR BSD-2-Clause" an=
-d "OR BSD-3-Clause".
-> > We expect to conform to DT bindings preferred licensing model. Indeed t=
-he kernel documentation explicitly mention "GPL-2.0-only OR BSD-2-Clause".
-> > We prefer to conform with it. I'll update my patch.
-> >=20
-> > By the way, I'll fix Lee Jones e-mail address that is deprecated.
->=20
-> I figure this is a send-email mistake cos you have to do something
-> god-forsaken to send plaintext mail from the st mail system.
+> +/**
+> + * lre_update_link - update link status in @phydev
+> + * @phydev: target phy_device struct
+> + *
+> + * Description: Update the value in phydev->link to reflect the
+> + *   current link value.  In order to do this, we need to read
+> + *   the status register twice, keeping the second value.
+> + *   This is a genphy_update_link modified to work on LRE registers
+> + *   of BroadR-Reach PHY
+> + */
 
-"this" being that you sent a v1 reply in the thread of the v2, before
-then sending it again against v1.
+Hi Kamil,
 
+A minor nit from my side:
 
+Please consider adding a "Returns:" section to this kernel doc.
+Doing so as a follow-up would be fine IMHO.
 
---nHrgKeoucDqHGyar
-Content-Type: application/pgp-signature; name="signature.asc"
+Flagged by kernel-doc -none -Wall
 
------BEGIN PGP SIGNATURE-----
+> +static int lre_update_link(struct phy_device *phydev)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBTJwAKCRB4tDGHoIJi
-0i8IAQCzn/8d+y9j/xoe6e+dTeApGgYrRn5RV0JLgNvLQk8x7AEAp74HmuIN4/5z
-w96zqtOzK7ZLgdUm9nZYOXa7YIa3igE=
-=LcBY
------END PGP SIGNATURE-----
-
---nHrgKeoucDqHGyar--
+...
 
