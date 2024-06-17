@@ -1,153 +1,150 @@
-Return-Path: <devicetree+bounces-76763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5327F90BD5A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 00:06:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59CC890BD88
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 00:28:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 320501C20CD2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 22:06:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAEB0B2299E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 22:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2FD519924B;
-	Mon, 17 Jun 2024 22:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F1E19922D;
+	Mon, 17 Jun 2024 22:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wE5y9/cW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vgjS8Ldr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A13D196C86
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 22:06:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490B1187575
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 22:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718661994; cv=none; b=iGscZ+MdGb0Byl9V8yxQCpmvy+0mjG2/F7d+G3uLztEvRcHV+zeK5Qb4HZ+4/r9d+YwDClW+HYytJ/hpCf4q+3FxSUfH0hZKIFNHRZ1pSI5lsYaT2D5JhCSB/bkN3VxKDuuuU1pWBu2uLKTSvlyhYZ+Am7jVuvK4Sd52sFbnB0E=
+	t=1718663296; cv=none; b=OtKxPNchdGHIouNkg+DXYT9o6tOWP7BvGFVa/ye4BHtxd9li52gcYBXyGNbq7elgrgH0yqRMdNnvC+vHs6A/BVfR7ntX/V8mVmSbGRiZVNbYiXyZXe9mm326zx9rvtB/VaoDhipD+Nc6RvNSBX8Mo5M4axGBrNT6DbSupQo++cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718661994; c=relaxed/simple;
-	bh=tIyamNXa6tz8ejQbRuDu5e+MvelcKNwLxIvKpXCtWQk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XnAnkZAYSAj2reBEuKSmrsK2j6sl1NHl9s84ZzIHW/pUAciZyaLKoz8qHUxRDny1Awl/r+/n5kkeN4cccb1l+YD1cSjjJ5ZTXjAg5+fQ0h3KI109gMCzbxZkoPEEQEZkPZk5WZ+wr/HWAJk1qJFt96pAYQ0bHjTnndtEWfnDkXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wE5y9/cW; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6f971cb3c9cso2714688a34.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:06:31 -0700 (PDT)
+	s=arc-20240116; t=1718663296; c=relaxed/simple;
+	bh=y7YZWdeQfo5TzLQd7i197bpQ3oe1W8yJVm/HzCLyuZs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NzakaDEQwKiMcWb66NzzPxcQQFWmj458XAQOCizmVugT1yMxNyg3NCTmP9+rbfaTsIC8VzrlCsWIxOF9sBT8Hx0Lz88PGwqH8jPJhBBZsqud5ZmIJNQVKEXvlCbyk+2xOzOCfVYG6bScEdTN8lMa+mN+mBsXSP3j7dVQvmlKL/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vgjS8Ldr; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52b7ffd9f6eso4757614e87.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:28:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718661990; x=1719266790; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XF9Wi3widohQqYKmTsBWFBb17VuT3MEixtc9IGoIIpU=;
-        b=wE5y9/cWk0b+wgSx91Sh/vY/BidJPkHZAgtkFsEmOOaBq8DvrPVfAJqxnxReX0HiQV
-         IqH6O858EBb5BaKrYuIjnKtO7dyx7o/BREilUxCacLkFieBWyuuiJH4rS8NySTvOP3aR
-         Vk9Zze9JDuXv07U9zSRpRmH6SQgbaRkSuWp2gLcyozPCUs2yYreI3ULpjyY/H4C6vFki
-         /XoTgz+IFUNLUqb1v2N+QAsqAnQY+Aduv1wUn/0+41mQY4qV2DwjCV/jxww/vWKA55qp
-         fOLNfjiwDmSlDXmnzyY7J82dyBsHbxAyYYtl1L/eyJoU3PjjN4n3D+nkAIB+Sy4Ekde5
-         bugQ==
+        d=linaro.org; s=google; t=1718663292; x=1719268092; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=J0iER+AoYp/pYl5IC7iX81NqnRqAb0NqRg5uJ+M7o3M=;
+        b=vgjS8LdrzaEmrfQ9frJYUU3KQ57B2rf66vXkC2YMUn9IPrF3wl+tx6vB/jvnc7NVk9
+         6xNtxz61YbDBQ34Gmo8a5Dme3K1jk7MCVSpEGDBZgAYkWgfb60M9f/7m7jP1A0X9Y5JO
+         GFyTxCFsjnSVa1Vfk3UhUwwCWP3x/xZdQTH0Yh162i7y56y1OYvbWdIN93qoIiyW+jP1
+         JKzup98IJrR0VOUdtxaQsRQqThnfXF0EoinCUFr1tZT6kBs7tBQxvnOgPW4iHNnE/j7Z
+         kIkvIfeHlGSvQSvy1xGr08B0tTzutaytW+eHn3FyyXDN3DPPNWLmDh9bW05VNQqM15Zk
+         dWlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718661990; x=1719266790;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XF9Wi3widohQqYKmTsBWFBb17VuT3MEixtc9IGoIIpU=;
-        b=shVU8qRcnNYBNPLj1Vpfx0JL2bX5inJyxG2s3ytRkcQgUfcCkvgHscsUKPetJ3tJ4P
-         1wWrE0pq/0clv1pgbybgJYv+Tkd5yhcRU3PWhzdtvc++MMwi2UwX6THmb4iXwIVJ2L/Q
-         o2VZIWhg1YpOORSC6t9eVKp6eWOL64VM2qCbeqIzvkdKnX3UPS4Z/dbnx20jTZcE5LRx
-         RTXGKigxXltfH5m1Ou/DnblYeuHIn/0zsT2PBr0UA0NGrvKKRE8bbijYgVBwSaCkbqyD
-         KDW2dK6obqPf8y/2mgAYEscMyzOXT2BaOc/SzQkU6dEyQUjkDiC1HhLOOkmx+dc7Ie4K
-         1Tfg==
-X-Forwarded-Encrypted: i=1; AJvYcCVsxzJGIC3eNIE8CqOIlEeNo6Tnc/kVn76iufRfSNZ0YSGAEu0F+wajbLs47FwCh/cnsVzOpAwA5ZXzzwKRb1djUqn6Dj7zV/uhCw==
-X-Gm-Message-State: AOJu0YzBiSUkn6xF4pHw+A8UR6MyloItrACymAQhQiGfR9XTczMrOHgH
-	Ea4VIXs1wmYdTIBsewPSc1bwfl0eu9Zf8csGmaEzjXmFh2u2PhvK3kTpcdToB7XysM5miuLcKoy
-	H
-X-Google-Smtp-Source: AGHT+IE75SHCMWvDYQLrp6u3YCWArtUacqZgbyNMxMD3rVRg2JMJAssMRMdQpEH1lQInz5P2xqzTwA==
-X-Received: by 2002:a9d:6c53:0:b0:6f9:9e11:e7ca with SMTP id 46e09a7af769-6fb9375cfd9mr9479894a34.11.1718661990596;
-        Mon, 17 Jun 2024 15:06:30 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6fb5b1e3c0esm1678596a34.41.2024.06.17.15.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 15:06:29 -0700 (PDT)
-Message-ID: <993ef797-51e8-4a57-adf3-1599d9fccba6@baylibre.com>
-Date: Mon, 17 Jun 2024 17:06:29 -0500
+        d=1e100.net; s=20230601; t=1718663292; x=1719268092;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J0iER+AoYp/pYl5IC7iX81NqnRqAb0NqRg5uJ+M7o3M=;
+        b=k9XxI+cIjmxDkzCKo9Z6GUDndggJO/ucfawG3WoJZmHDc7juHhqYR6DoEg9+21hWqG
+         EkLowabdgH2NpuXc+JcrvRdgEOMVNKI8OthmgWdUVVJbId1rPZlN6T0aVqi/Ttos7Fj8
+         kpugqRDahoIsFAYe3nxoMGSITQMhZcoWScc7cgwrWHT2ncYjHqyR+tX8gf+NVpmapBQU
+         vedOciK9vEIu+C8zS8l/N1aLAaGdKSn2TG3TlKRSroIhbJvjC+kMdLRrNgxpSp1lkUM8
+         vV/MlRYK+ONh8h1atssueWgeTKKMbKgbkTB30Lmb1evLM7cuf1G91+28N7d3JZgLOdjz
+         utAw==
+X-Forwarded-Encrypted: i=1; AJvYcCXjtwwNu6ZKWuZ7UCSSKWc6WJJPg2/zo2K4u4vVLeBBZMaDJfKK4uw8PZCzWREDaWnMIRuqq3oB8EgOAl2DK8HJbSHoCTcMbSawGA==
+X-Gm-Message-State: AOJu0YxuQsuA0vA59yd0FxA8nfCKoQxT33KmoFOKE096OGMo9UsVpfQV
+	LMpgRLt9hDf5r2DmWi7E5Bav11oYtXhOiigySo9LPl10L3kYIfwikyAJ9/L2qQE=
+X-Google-Smtp-Source: AGHT+IExoeqK+FXtO8sD+xh9qR9LnDH2/EwcCxojSWh3ywjle5iOXhHXGJHAM0pgnstW0qMzXBZhIA==
+X-Received: by 2002:a19:6a02:0:b0:52c:81fc:eba2 with SMTP id 2adb3069b0e04-52ca6e91456mr6586273e87.44.1718663292293;
+        Mon, 17 Jun 2024 15:28:12 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2884064sm1402377e87.242.2024.06.17.15.28.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 15:28:11 -0700 (PDT)
+Date: Tue, 18 Jun 2024 01:28:10 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>
+Subject: Re: [PATCH 3/4] drm: bridge: simple-bridge: use only devm* in probe
+Message-ID: <deirqqoap7ta3iwmmvg6uxzalfe22yirjp6et2a74ffh5ybi64@vekr6l7sl22c>
+References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
+ <20240617-tdp158-v1-3-df98ef7dec6d@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: iio: adc: add AD4695 and similar ADCs
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Jonathan Cameron
- <jic23@kernel.org>, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-References: <20240617-iio-adc-ad4695-v2-0-63ef6583f25d@baylibre.com>
- <20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com>
- <171865982439.3455065.3692466445202658610.robh@kernel.org>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <171865982439.3455065.3692466445202658610.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617-tdp158-v1-3-df98ef7dec6d@freebox.fr>
 
-On 6/17/24 4:30 PM, Rob Herring (Arm) wrote:
+On Mon, Jun 17, 2024 at 06:03:01PM GMT, Marc Gonzalez wrote:
+> Once probe uses only devm functions, remove() becomes unnecessary.
+
+Breves vibrantesque sententiae
+
+With the hope of getting an expanded commit message:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+
 > 
-> On Mon, 17 Jun 2024 14:53:13 -0500, David Lechner wrote:
->> Add device tree bindings for AD4695 and similar ADCs.
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>
->> v2 changes:
->> * Drop *-wlcsp compatible strings
->> * Don't use fallback compatible strings
->> * Reword supply descriptions
->> * Use standard channel properties instead of adi,pin-pairing
->> * Fix unnecessary | character
->> * Fix missing blank line
->> * Add header file with common mode channel macros
->> ---
->>  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 290 +++++++++++++++++++++
->>  MAINTAINERS                                        |  10 +
->>  include/dt-bindings/iio/adi,ad4695.h               |   9 +
->>  3 files changed, 309 insertions(+)
->>
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>  drivers/gpu/drm/bridge/simple-bridge.c | 12 +-----------
+>  1 file changed, 1 insertion(+), 11 deletions(-)
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
+> diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
+> index d672e34970e18..f1e458a15882f 100644
+> --- a/drivers/gpu/drm/bridge/simple-bridge.c
+> +++ b/drivers/gpu/drm/bridge/simple-bridge.c
+> @@ -214,16 +214,7 @@ static int simple_bridge_probe(struct platform_device *pdev)
+>  	sbridge->bridge.of_node = dev->of_node;
+>  	sbridge->bridge.timings = sbridge->info->timings;
+>  
+> -	drm_bridge_add(&sbridge->bridge);
+> -
+> -	return 0;
+> -}
+> -
+> -static void simple_bridge_remove(struct platform_device *pdev)
+> -{
+> -	struct simple_bridge *sbridge = platform_get_drvdata(pdev);
+> -
+> -	drm_bridge_remove(&sbridge->bridge);
+> +	return devm_drm_bridge_add(dev, &sbridge->bridge);
+>  }
+>  
+>  /*
+> @@ -300,7 +291,6 @@ MODULE_DEVICE_TABLE(of, simple_bridge_match);
+>  
+>  static struct platform_driver simple_bridge_driver = {
+>  	.probe	= simple_bridge_probe,
+> -	.remove_new = simple_bridge_remove,
+>  	.driver		= {
+>  		.name		= "simple-bridge",
+>  		.of_match_table	= simple_bridge_match,
 > 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml: single-channel: missing type definition
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml: common-mode-channel: missing type definition
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
+> -- 
+> 2.34.1
 > 
 
-I think the problem is that I don't have a well-known commit as the
-base-commit in my cover letter (oversight on my part).
-
-single-channel and common-mode-channel are recent additions to the
-common iio/adc.yaml so the types are defined there.
-
-make dt_binding_check did pass for me locally before sending the series.
+-- 
+With best wishes
+Dmitry
 
