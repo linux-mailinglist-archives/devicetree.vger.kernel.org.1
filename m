@@ -1,167 +1,163 @@
-Return-Path: <devicetree+bounces-76567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84AE490B314
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:58:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A1290B32C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:00:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3963B1F2594F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:58:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93F76281E21
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B8578C96;
-	Mon, 17 Jun 2024 14:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF61813B299;
+	Mon, 17 Jun 2024 14:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="3ePdo4cD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g0Lz19i7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E9217764E
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 14:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C923513B285
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 14:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718633103; cv=none; b=A6LkyrOCTpaxwhKtiHRl7IVDzacBWsve3uiKzd2jPk1wGIc4Y48Z3vlCZAPj2MPD+WF+F5h7eDMyLm86h0Qnox1zuAwaLoqp9j85spfe/YPD7fNru0o+dqkHs9mv/IIYnGt/MfCjb4JXyzG+jc0zwKPZEyqkCHdWLi1AMBPWywE=
+	t=1718633326; cv=none; b=mKW7XC8QxXNlfefo4l5yqDB32Os6YrChrYbpbRkdMe2h2ghkmYfsfltU7KV3zP2mIAN4O7hccj4UBILQ9e2PmvpLR+YObUDOEH4OgzHIkWQ2sXBM/Fra9xc3m3zUiuHLFAhdcZFYl8BCObGCCYLx2488JB37NA25eJnT2UuXb6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718633103; c=relaxed/simple;
-	bh=Zm/QwU2rpGsbu0eOFvD6iNkDmhJOG975MRanNZtbJZ8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=u82TUee4VworZM/fZG1n4lkDqS8uDYNvvdPNnonhGwmt8cKag6xiWaFy6DyUfxXT1UmrgI8BxVdh1ekwwhvlNDAPrAn6cpn4HkvMB2iJxorSIuQ34R+daLDObfK9RN9HM1zQc7wfeGbNelPx0rFqVqHwKROwVVFfGeVzemRdKCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=3ePdo4cD; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-797e2834c4eso368227485a.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:05:02 -0700 (PDT)
+	s=arc-20240116; t=1718633326; c=relaxed/simple;
+	bh=6mBQ9sxPm1+L1muWwT/oZLH3YefinaTlBp76n9Qq3EY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=pOFRKmbSMNdZOd/6WibML8OJKLJ9pROFee6hVyvn4HxJuGSpDnGyhcEbTYfl7ucVbQ74GnI9ivqyFVCK2qyIZPoD5jVtWDG88FdCRlepUm/KzRHhIuXKooOPAyrGfiJnIc2ERIgf+xcdQFvESAVLF4qcxCIxjve2G1/72qoSmb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g0Lz19i7; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5295e488248so4960426e87.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:08:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1718633101; x=1719237901; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VYuchBzcVq+nntl0rByVP4I0/xMFrP/odXfBrhxA/v4=;
-        b=3ePdo4cDb1pLWtSEQnGyNZqYiC74GZ9aru+O2qwjphZCNZpj+e0HcyOHowQeC2vl52
-         O7wPIr0SRo6teM4XqHcKVvMikmF9J4f7Jib4ZMXqMwf9UR1DiFM4C2gRfKy8/vaipRKb
-         Km7kDMDz1tH569gYMP4jrifl/euglp/fU84jNK1Jr2hyS6JsNAXEPhj5nj8JucAw+zUL
-         472lO5k9GzHFnP6z4YD7+SO7Jjw6dfmEB5IM9vntZR+aDkA6bfyeJSWRRYkwW0F6SN6k
-         Oh5DTT7zhPBUV9xpcQoQoNBja0VnBnbMGI4jVl9pdAfY6yTMbrynSSLtly5AhtlSR96k
-         su/g==
+        d=linaro.org; s=google; t=1718633323; x=1719238123; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ut1uDZxGaHU7Y1Co+4s4ECfaXa9r8CDK31+uMSSSBQA=;
+        b=g0Lz19i7JNUpp+a+M+0n38TfdaU+hj+eO0Xky1W1Hsm+yC80uOnD5Bf8NGY/NweFZ1
+         O0IxT2SMPmKUTxFFgPWxACCjtm7vjq8ew+TOL4wes5HbV2oQcYaKWZFHnax28UtwweU2
+         JFCkka1X8600fTY/63SVBWZDypm43H24/rJssLtczhAG1jq025a4vH5w4wcwx8zMI+7m
+         HGB2UC0lpcLAsY3h3w/vz7K+T+8VOFGgXBAJpF6FWsopk7k4JBIEnI1pm57U3AXrzrq0
+         dJQq6gcU1ezoUeXf14K1gG2WjF7uvsiY0n7g4LBH/Adtfa79h9fmWydb2LWIi+TdD2WY
+         zmBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718633101; x=1719237901;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VYuchBzcVq+nntl0rByVP4I0/xMFrP/odXfBrhxA/v4=;
-        b=RIOXeWi3XFlT6c9saz0lpBh9X0jITpPos5RQXXTyu9qBw4diXqS67ZQ7XxahLaWvwR
-         /DMN5Mei+fjtlCDMX9gsVULUInhWgOyjH+67XbC1QFKrn0pJB1LViS8s0F42f1CrwyDe
-         NqFJHJF+EpEqWwvdV4fKSAkWpxfr88LFrO22wl0kZgm8R9FkWOHGz42Utx/XTnOgxi8D
-         wUNJ+RuRF4//DGwM7Gh433GcIumqF8pPXgMj+ocVNGhkyBp0qXfsd0VibhqkINE804WI
-         hosEGqBbVexMUIWDmNyYDNftqo3FM9l+vtbqxZAtZE5AzPnTRvj/IAJ+tnrvSCyfobZO
-         XZXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXvXevG1qLSVAnpwEzwYXu8byxKqoqH4D2/dWljDDCC202G+fvFjnVZOpa9Cwr1pcmFb6TjppkDIk2BAL4NWfiigxfft8Mt0IECsA==
-X-Gm-Message-State: AOJu0YyTr1GK7Wg7sMHlBgYEonqMQvHkcMxGGlbtyRz5u5wtI+sMbRu8
-	BRPXt89IVRfoRGwQLjhxh60RU73b+QF0tqI/0vvgDOREIYApzw5Ozye8PXtHsac=
-X-Google-Smtp-Source: AGHT+IFk6OpTSQ6HI1XE/Anmj9+FlmPZSHzWjQ2P2c9rtwWOS09Hy7PV7JVncckLBidfUl/d/TkDUg==
-X-Received: by 2002:a05:620a:29c1:b0:798:d789:c494 with SMTP id af79cd13be357-798d789c9c6mr1428684685a.29.1718633101025;
-        Mon, 17 Jun 2024 07:05:01 -0700 (PDT)
-Received: from nicolas-tpx395.lan ([2606:6d00:15:57da::7a9])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-798abe6a973sm429001985a.128.2024.06.17.07.05.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 07:05:00 -0700 (PDT)
-Message-ID: <f295f41ef1c9ee920ac3ac8e70ccf672ba7c9648.camel@ndufresne.ca>
-Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>, detlev.casanova@collabora.com
-Cc: alchark@gmail.com, andy.yan@rock-chips.com, conor+dt@kernel.org, 
-	cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org, 
-	didi.debian@cknow.org, dsimic@manjaro.org, gregkh@linuxfoundation.org, 
-	heiko@sntech.de, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev, 
-	mchehab@kernel.org, robh@kernel.org, sebastian.reichel@collabora.com
-Date: Mon, 17 Jun 2024 10:04:59 -0400
-In-Reply-To: <20240617094735.27928-1-liujianfeng1994@gmail.com>
-References: <20240615015734.1612108-2-detlev.casanova@collabora.com>
-	 <20240617094735.27928-1-liujianfeng1994@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
+        d=1e100.net; s=20230601; t=1718633323; x=1719238123;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ut1uDZxGaHU7Y1Co+4s4ECfaXa9r8CDK31+uMSSSBQA=;
+        b=UBcrcp/QB0/4YNu9qb+7BwekpGjx02q/1sAUbjQVOIZfJBgsfemzD+y8s5opkdgMIm
+         h+rkIAMQQB98jCmGZzFMOtQvN+z8x5Yrb4WJyG/OmDc3nVfGduCKGXdp5GCE5GLSk4qg
+         s65Xj6ivlpfojKIB3lVfKtrz4+K1ZNhXXvPR7LOtyN/p7QdVwCLiB2iaNXsuPW8LKRHf
+         pNkoVmUX6eAo9DciTlcWLsDoPQJU7cZ7XjlSpaREZ9YACbVOY/8VGAEqptNUihNGVnAQ
+         4rXjQQTpyHdDLbRfox1KWwbdOM1Y6uZTALnsiFSpleYSK9ffO1aah41YpC7cK8vo7aop
+         hiAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUWxwPeHWkKALkZMOfVQqZV0DhLt/vZCEWmIpa25a7f9QR2k3cHdfc0xCxB8p+HB4n3JdMCC9gNcAepORJM9+gppvJTCxXr7UH57A==
+X-Gm-Message-State: AOJu0YzOp5v5l4fuZpt6sClpLIgOj/4RHk/WIkk+d/sb3S1mCV4IVLrd
+	B69aN+m7PRKppeFmwxRo/bpAKXiqWzRQWKscU67z2fpDPTGEyaNH+AWGkeJrtxs=
+X-Google-Smtp-Source: AGHT+IGf9az8bnelhhdQwXy6LIcfqWaXA9MCm6Bpzt1+j6XVLA3GxRhXjKny8rZdplSvoN+HlphXCw==
+X-Received: by 2002:ac2:46e3:0:b0:52b:7d16:2c7a with SMTP id 2adb3069b0e04-52ca6e55d4bmr6687102e87.3.1718633322602;
+        Mon, 17 Jun 2024 07:08:42 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7f86:d83c:9278:7757? ([2a01:e0a:982:cbb0:7f86:d83c:9278:7757])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075104b74sm11893173f8f.107.2024.06.17.07.08.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jun 2024 07:08:42 -0700 (PDT)
+Message-ID: <11999928-b536-4257-980d-f98ca55285d6@linaro.org>
+Date: Mon, 17 Jun 2024 16:08:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2] dt-bindings: iommu: qcom,iommu: Add MSM8953 GPU IOMMU
+ to SMMUv2 compatibles
+To: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>
+Cc: linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20240606-topic-sm8953-upstream-smmu-gpu-v2-1-67be88007d87@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240606-topic-sm8953-upstream-smmu-gpu-v2-1-67be88007d87@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-Le lundi 17 juin 2024 =C3=A0 17:47 +0800, Jianfeng Liu a =C3=A9crit=C2=A0:
-> Hi Detlev,
->=20
-> Thanks a lot for your work! I try to use rkvdec2 with chromium but it
-> can't play h264 video. Here is the log of chromium:
->=20
-> [5799:5873:0617/171224.850061:VERBOSE2:video_decoder_pipeline.cc(473)] In=
-itialize(): config: codec: h264, profile: h264 high, level: not available, =
-alpha_mode: is_opaque, coded size: [1920,1080], visible rect: [0,0,1920,108=
-0], natural size: [1920,1080], has extra data: true, encryption scheme: Une=
-ncrypted, rotation: 0=C2=B0, flipped: 0, color space: {primaries:BT709, tra=
-nsfer:BT709, matrix:BT709, range:LIMITED}
-> [5799:5886:0617/171224.850915:VERBOSE2:v4l2_video_decoder.cc(182)] V4L2Vi=
-deoDecoder():
-> [5799:5886:0617/171224.851218:VERBOSE1:v4l2_device.cc(128)] Open(): No de=
-vices supporting H264 for type: 0
-> [5799:5886:0617/171224.851346:VERBOSE4:v4l2_queue.cc(1069)] This queue do=
-es  support requests.: No such file or directory (2)
+On 06/06/2024 15:15, Neil Armstrong wrote:
+> Add MSM8953 compatible string with "qcom,msm-iommu-v2" as fallback
+> for the MSM8953 GPU IOMMU which is compatible with Qualcomm's secure
+> fw "SMMU v2" implementation.
 
-This one indicates that V4L2_BUF_CAP_SUPPORTS_REQUESTS might be missing in =
-the
-REQBUFS implementation. I suspect GStreamer simply assumes this today for d=
-river
-exposing stateless formats (which is fair, its not a compliance test, and w=
-e
-don't have a codec compliance yet).
+Gentle ping !
 
-I'd suggest to check and fix this one, and retry, might only be noise, migh=
-t be
-the main cause, we cannot tell.
+Thanks,
+Neil
 
-> [5799:5886:0617/171224.851426:VERBOSE1:v4l2_video_decoder.cc(476)] Initia=
-lizeBackend(): Using a stateless API for profile: h264 high and fourcc: S26=
-4
-> [5799:5886:0617/171224.851687:VERBOSE1:v4l2_video_decoder.cc(598)] SetupI=
-nputFormat(): Input (OUTPUT queue) Fourcc: S264
-> [5799:5886:0617/171224.851797:VERBOSE1:v4l2_video_decoder.cc(636)] Alloca=
-teInputBuffers(): Requesting: 17 OUTPUT buffers of type V4L2_MEMORY_MMAP
-> [5799:5886:0617/171224.867687:VERBOSE1:v4l2_queue.cc(1511)] Streamon(): (=
-OUTPUT_MPLANE) VIDIOC_STREAMON failed: Invalid argument (22)
-> [5799:5886:0617/171224.867902:VERBOSE1:v4l2_video_decoder.cc(937)] StartS=
-treamV4L2Queue(): Failed to streamon V4L2 queue.
-> [5799:5886:0617/171224.868009:VERBOSE1:v4l2_video_decoder.cc(1377)] SetSt=
-ate(): Error occurred, stopping queues.
-> [5799:5886:0617/171224.868105:ERROR:v4l2_video_decoder.cc(120)] StartStre=
-amV4L2Queue failed at Decode@media/gpu/v4l2/v4l2_video_decoder.cc:915
-> [5799:5886:0617/171224.871898:WARNING:v4l2_video_decoder_backend_stateles=
-s.cc(126)] There is/are 0 pending CAPTURE queue buffers pending dequeuing. =
-This might be fine or a problem depending on the destruction semantics (of =
-theclient code.
->=20
-> Here is the chromium code failed when calling VIDIOC_STREAMON:
-> https://github.com/chromium/chromium/blob/125.0.6422.60/media/gpu/v4l2/v4=
-l2_queue.cc#L1508
->=20
-> I'm running chromium v125.0.6422.60 and I can decode 1080p h264 with
-> hantro g1 decoder on rk3588.
-
-Are you using minigbm ? Because if you do, we don't have minigbm code for t=
-his
-driver (and have no plan to do so, since we don't aim for ChromeOS support)=
-.
-
-Nicolas
-
->=20
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> [1] https://lore.kernel.org/all/20240523-topic-sdm450-upstream-tbx605f-v1-0-e52b89133226@linaro.org/
+> ---
+>   Documentation/devicetree/bindings/iommu/qcom,iommu.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml b/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml
+> index a74eb899c381..571e5746d177 100644
+> --- a/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/qcom,iommu.yaml
+> @@ -25,6 +25,7 @@ properties:
+>             - const: qcom,msm-iommu-v1
+>         - items:
+>             - enum:
+> +              - qcom,msm8953-iommu
+>                 - qcom,msm8976-iommu
+>             - const: qcom,msm-iommu-v2
+>   
+> 
+> ---
+> base-commit: ee78a17615ad0cfdbbc27182b1047cd36c9d4d5f
+> change-id: 20240606-topic-sm8953-upstream-smmu-gpu-2b582c34bcb6
+> 
 > Best regards,
-> Jianfeng
->=20
 
 
