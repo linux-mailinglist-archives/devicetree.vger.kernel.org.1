@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-76298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09AC190A1BA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:25:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB0B90A1D4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 03:39:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CF9E2815E0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 01:25:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64D3F1F217A8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 01:39:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B97F79F3;
-	Mon, 17 Jun 2024 01:25:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E596AA1;
+	Mon, 17 Jun 2024 01:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="lUtLWQRN"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="SHU5LOIO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9553D51D;
-	Mon, 17 Jun 2024 01:25:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
+Received: from mail-177131.yeah.net (mail-177131.yeah.net [123.58.177.131])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF26610C;
+	Mon, 17 Jun 2024 01:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718587514; cv=none; b=YkcLJ4rAK/MLpSmN9mZLPu3rXePwdoWsgjrLJyKO02JbIdDXdLJtpGifPxF5r/AT5O4zaWSM3Xg0RQNVCwv3znkeW/sk9s4M9VHXCC9OZ1x9b47JtCPKm+4VQOUiEoMHIj2e5Oqg+dppKpJuBClaSPWXGzmg6TZsj4Ck/YLr5J4=
+	t=1718588393; cv=none; b=O++V7wAmq3H3EloJJPZevoS3n2K7Q2m4yeMbcCRMWYPL2ioiahugrk4sqvS/0/uG04P9L5eUUZF4/pZOy/In7ReRaYBm2jx2rdEJHNzwff0/1+Ci+UTuGyKVwd82l8medg/ieHDwYUlstAT0Lz38/S2vhaEcGW+fzZFEsfQcaPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718587514; c=relaxed/simple;
-	bh=v2WyN5hsd/SDOOWKMgtEcNSlCk38BGFecwfqBqSHfyM=;
+	s=arc-20240116; t=1718588393; c=relaxed/simple;
+	bh=chHB4K5e/KhG9RamBUJG4lk7r5XF+mO524wLBWR0oWM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RfWaUNAdvpsDMn74oSfiZl19aBXyfAA2hkRaHfU8Omm5Tchif1IfWTrmdEMzhRWs/AuhhTf6yBF8U7x/fIVHFoTAap4UDHZlU+T7ljdkgl4pJFb4YMiL/s5uELsfcVpVy7VtiYcGknUdlksiSYNDdkW7WcLWFDin5M1sTE4bj1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=lUtLWQRN; arc=none smtp.client-ip=123.58.177.132
+	 Content-Type:Content-Disposition:In-Reply-To; b=Izh4Lb/lfb0g30INBFTuXRhmhd6RCfXtm8uLCkEyiFmoMJVCu/9B6G4sPkLsg3W0LbS3gTzbYKzdJN+Sr43gQdOD1V20TwRVZc1cfaxjgG4MJ74M1nzYtbdiFB8IHmZ8S8C13GiGcIJLkwG1UZg2LsSpTrlKxV3nfIdaXdpB4HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=SHU5LOIO; arc=none smtp.client-ip=123.58.177.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=xGIE5wxMU/VErauUWUxFIqCNjSnwPNhIWMkm5TpYWDc=;
-	b=lUtLWQRNvbsKf/kfKMHOPjDpS8FFyE+XPBcffc4fEvxeZg5URJYrIv0HisK2cc
-	IXBu2uqdfEW7OQa15QjrxrDNkYFbcv5w29iHGdIQEmO4oPbwdIKdaCSdghE5S7YG
-	oltIkvi3HqReuEZlkTIADT1kKJj6/uBVDMgvvo+HuaU/k=
+	Content-Type; bh=nmo4LZa4f+ke849HrHa0sDohJipa88iAo1w8uLmnG2Y=;
+	b=SHU5LOIOQqerZVdPpmCPmDkCpwnCMYz3ChViEcfacPcNvTGk44m1imtZDG3MaW
+	iX/KgHz5YkFtAGB/ePFi/iFFa1EDXOePd446Ko4lAtqcSktuRVsACt736o/IclWm
+	Jyij00hDU7kMDrX3ylib7VaKkz1w7cUJtfBxuJXJGopO0=
 Received: from dragon (unknown [114.216.76.201])
-	by smtp2 (Coremail) with SMTP id C1UQrACH7hdikG9mH0nNCA--.3602S3;
-	Mon, 17 Jun 2024 09:24:52 +0800 (CST)
-Date: Mon, 17 Jun 2024 09:24:50 +0800
+	by smtp1 (Coremail) with SMTP id ClUQrABnzvrOk29mF54LCA--.41752S3;
+	Mon, 17 Jun 2024 09:39:27 +0800 (CST)
+Date: Mon, 17 Jun 2024 09:39:25 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
+To: Michael Walle <mwalle@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>, Li Yang <leoyang.li@nxp.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8dxl-evk: add imx8dxl_cm4, lsio mu5,
- related memory region
-Message-ID: <Zm+QYpb+FJCGGr2B@dragon>
-References: <20240605202703.1220203-1-Frank.Li@nxp.com>
+	Fabio Estevam <festevam@gmail.com>, Priit Laes <plaes@plaes.org>,
+	Michael Grzeschik <m.grzeschik@pengutronix.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 01/13] ARM: dts: imx6qdl-kontron-samx6i: fix phy-mode
+Message-ID: <Zm+TzS6+ZByF3MHt@dragon>
+References: <20240606090206.2021237-1-mwalle@kernel.org>
+ <20240606090206.2021237-2-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,102 +62,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240605202703.1220203-1-Frank.Li@nxp.com>
-X-CM-TRANSID:C1UQrACH7hdikG9mH0nNCA--.3602S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJr4ftw15XryUGF4xJw4fZrb_yoW8tr4fpr
-	90ka15WFZ2vF17G3sxJr4DKrn8Jan5CFykury7CrW0krWaqrnrKw13Gr4fGr4DJF4UJwsI
-	vFnFvFy2kwnIg3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j1KZXUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDw0BZVnxc0xPZwACsb
+In-Reply-To: <20240606090206.2021237-2-mwalle@kernel.org>
+X-CM-TRANSID:ClUQrABnzvrOk29mF54LCA--.41752S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrtFy3XFyfAFW5Xw1fArykGrg_yoWkXrg_ua
+	yxWan5Aa10qF98XryUJr18JF13Kr1UWr93tr1avFnrZFyav3WxXasIgayjyr45GFW5KrZ8
+	XwsxZr4Yyr1I9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8BnQUUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDg8BZVszYrtxowAAsG
 
-On Wed, Jun 05, 2024 at 04:27:03PM -0400, Frank Li wrote:
-> Add imx8dxl_cm4, lsio mu5 and related memory region.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> index 4ac96a0586294..c5e601b98cf8f 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> @@ -24,6 +24,19 @@ chosen {
->  		stdout-path = &lpuart0;
->  	};
->  
-> +	imx8dxl-cm4 {
-> +		compatible = "fsl,imx8qxp-cm4";
-> +		clocks = <&clk_dummy>;
-> +		mbox-names = "tx", "rx", "rxdb";
-> +		mboxes = <&lsio_mu5 0 1 &lsio_mu5 1 1 &lsio_mu5 3 1>;
-> +		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
-> +				<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>;
-> +		power-domains = <&pd IMX_SC_R_M4_0_PID0>, <&pd IMX_SC_R_M4_0_MU_1A>;
-> +		fsl,resource-id = <IMX_SC_R_M4_0_PID0>;
-> +		fsl,entry-address = <0x34fe0000>;
-> +	};
-> +
-> +
->  	memory@80000000 {
->  		device_type = "memory";
->  		reg = <0x00000000 0x80000000 0 0x40000000>;
-> @@ -51,6 +64,37 @@ linux,cma {
->  			alloc-ranges = <0 0x98000000 0 0x14000000>;
->  			linux,cma-default;
->  		};
-> +
-> +		vdev0vring0: memory0@90000000 {
-> +			reg = <0 0x90000000 0 0x8000>;
-> +			no-map;
-> +		};
-> +
-> +		vdev0vring1: memory@90008000 {
-> +			reg = <0 0x90008000 0 0x8000>;
-> +			no-map;
-> +		};
-> +
-> +		vdev1vring0: memory@90010000 {
-> +			reg = <0 0x90010000 0 0x8000>;
-> +			no-map;
-> +		};
-> +
-> +		vdev1vring1: memory@90018000 {
-> +			reg = <0 0x90018000 0 0x8000>;
-> +			no-map;
-> +		};
-> +
-> +		rsc_table: memory-rsc-table@900ff000 {
-> +			reg = <0 0x900ff000 0 0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		vdevbuffer: memory-vdevbuffer {
+On Thu, Jun 06, 2024 at 11:01:54AM +0200, Michael Walle wrote:
+> The iMX.6 cannot add any RGMII delays. The PHY has to add both the RX
 
-As kernel test robot reported, unit-address is missing here?
+s/iMX.6/i.MX6?
 
 Shawn
 
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0x90400000 0 0x100000>;
-> +			no-map;
-> +		};
->  	};
->  
->  	m2_uart1_sel: regulator-m2uart1sel {
-> @@ -505,6 +549,10 @@ &lpuart1 {
->  	status = "okay";
->  };
->  
-> +&lsio_mu5 {
-> +	status = "okay";
-> +};
-> +
->  &flexcan2 {
+> and TX delays on the RGMII interface. Fix the interface mode. While at
+> it, use the new phy-connection-type property name.
+> 
+> Fixes: 5694eed98cca ("ARM: dts: imx6qdl-kontron-samx6i: move phy reset into phy-node")
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
+> ---
+>  arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi
+> index 85aeebc9485d..d8c1dfb8c9ab 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-kontron-samx6i.dtsi
+> @@ -259,7 +259,7 @@ smarc_flash: flash@0 {
+>  &fec {
 >  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_flexcan2>;
+>  	pinctrl-0 = <&pinctrl_enet>;
+> -	phy-mode = "rgmii";
+> +	phy-connection-type = "rgmii-id";
+>  	phy-handle = <&ethphy>;
+>  
+>  	mdio {
 > -- 
-> 2.34.1
+> 2.39.2
 > 
 
 
