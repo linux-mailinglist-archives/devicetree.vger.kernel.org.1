@@ -1,131 +1,150 @@
-Return-Path: <devicetree+bounces-76508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E2490ACA6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 13:12:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C168F90AB14
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 347CDB225A3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:12:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 779521F209A5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043E21946A9;
-	Mon, 17 Jun 2024 11:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F491922CA;
+	Mon, 17 Jun 2024 10:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dmJNxc9E"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="XIFVl6Lb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0022753AD;
-	Mon, 17 Jun 2024 11:12:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5793817F4E4
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 10:30:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718622766; cv=none; b=geD///BmbbA3KsIIswCmBqhdi1/R8TaeZNkwZqHub3vlfxaFgPNTCUF3SqcS2O/tMZixH6hB6DzhKBrhht2XJ991sbGbI4l0Xkac5+kGLAKMVu7HR4hls3Ty9U2to+k+HAbUpQPVsg2j36BRNyQ8OInfx87uZgXw1Y+WiAlycoY=
+	t=1718620222; cv=none; b=jELLRlaK5GyVCp2fx+oY8g31LILLAKMiMdPZRpA34o4jE17qxQ/M+pmzCygJ9GhUe7WOoYs5Dlc4IdeZUrR7Fo8TOh7dLbT7kg1ZN2cS5+VNglShdKFLmPRfX24Rr5fXI8JmoF6+8+w16mF9UvsOCFWZX3G3b4CT9bhJ2emqfCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718622766; c=relaxed/simple;
-	bh=/q1tmGRlV2b94HWtvWzP/RQIoEDOOCF6WdK86KGM5kw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=dxfBmkfNvHjWjktCFnzi+z+VGZbLTycnxvxAHVwVWVZ495VflKBc13H+yMdCQIeWRLztldbEz6JXhB7wlF9dcvJ4HQByOtfaxGWRfcrVx0ShpEstopiTjx1NCQwQJMH+d2oQa5JGfvoXewg+gfiFOXJlqp89grxZh+4QT1qvoRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dmJNxc9E; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45HAMafd108445;
-	Mon, 17 Jun 2024 05:22:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718619756;
-	bh=BELgjrJN+w9ID7lAyyjagN60DA04mZRsSAuLmcMGPok=;
-	h=From:Date:Subject:To:CC;
-	b=dmJNxc9E2I8a1ykhfp2pyDeZURjntkNiGgDfFidBzN/K6lwB3+BLk+xSDqoCaRdFH
-	 6fBBg0zlHJtUdh1Khno1Idi0nhFYrwSUtaeBDyyG5Qd38Y8eaiW6O3n+1TLA+bkODT
-	 wnNOodVzhTEnJfWMCni1J7rxIDD161twfYxfwbrI=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45HAMaMC014661
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 17 Jun 2024 05:22:36 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 17
- Jun 2024 05:22:36 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 17 Jun 2024 05:22:35 -0500
-Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45HAMZG7062219;
-	Mon, 17 Jun 2024 05:22:35 -0500
-From: Kamlesh Gurudasani <kamlesh@ti.com>
-Date: Mon, 17 Jun 2024 15:52:10 +0530
-Subject: [PATCH] arm64: dts: ti: k3-am62a-main: Enable crypto accelerator
+	s=arc-20240116; t=1718620222; c=relaxed/simple;
+	bh=4dr/5RGvdC0Nfp5firD/kLIKNMYxrIUHZGW7UJo/T0o=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=coXQHeAyVwmcOlf3xNW/zsc7/fUl4cryn3gY6eGxbYQkt0kRL9FbJPeZH8PhI6uoak5ZyTEXwzX+JNW3ywVeYIXN0INWOc/XHe+aIuTnbf8ajT+dDDATVG3rBVHjpeeH55fuUEdXA5FePJ++P7Z839nFoahhGBC2/ldyqpc/poc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=XIFVl6Lb; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com [209.85.167.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CFA633F1AF
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 10:30:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718620217;
+	bh=MXAKt8EKETZvadP49CyuSOUePneOkznNxCX+hfllm1k=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=XIFVl6Lbsbpi3RjF8o6AaipErUuyNbZic+D3RJ733ZOHRMfoSyimVPg+V9x6YBosS
+	 RvXhGSaIWkT2oryPbyMFl2+5sqboQKWiWrkU7U5H8tghc7OMmpIKWGeJi8z6iiXwXE
+	 12iSfIOmyAbaGipS985FiCBJG4FSNrpk6vrtqf5LeQiKUBUNKUJC1tfVc0MNL5yef3
+	 1DLesWS/67Xfh+fqZ75O2f8cBaa8BGmLmC+A1bOfGC4jrfWsB+MZ46DAsKzowWrV7H
+	 StvCK3bHmNeFq6v9YjIg5TJ8GlHQ01Po16rXUGwMkgBTGVsj9Lpx7PNvh7pO0miaUh
+	 Om5K3VRSHHGtg==
+Received: by mail-oi1-f199.google.com with SMTP id 5614622812f47-3d2277c5982so4371407b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 03:30:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718620216; x=1719225016;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MXAKt8EKETZvadP49CyuSOUePneOkznNxCX+hfllm1k=;
+        b=iC6bZzEBU/hH/qVKXmZQM4XS/Mbsnsoh4oMlsCtrhJonHJVDFo38wt0GxoTeh1TfXr
+         Hvvo4aBfWLeF5xkwPDaC2Ldblp+kxvvWkt1c0UrMIXmivuwJi1ImSHpm0LHfPYKnUCfk
+         vmK6hcKQm0kjsxa2QtUzW4O63YQIuk92wn3BnjVhV+VrLNtQmkmIcQW5su2Pc+8bjnJF
+         6OaVIpsvA5FsXZRwfUQZXtaqdWXcHq2zRJua0aRcot+Ymw7MOpDr9CJwfMU0zjpmSSkv
+         b5TSgMMbnzeYDtg5tzLMK0jqDAoOaVMMHLr1lZQ1xJWxnAr7GUiojcCiCagovNGFrDka
+         o68w==
+X-Forwarded-Encrypted: i=1; AJvYcCWSFkkVK/tPYdWElk1oCiv8Nq5jSeG/GL0tz/wptldAYBfcrWGRjZjcE6P93X6DpgHRwPe7esEQcbay+fiUR9fTKZu1ygMaaPFR3A==
+X-Gm-Message-State: AOJu0Yy5bJxiechQ5cGM7koYoREIvWx67+iiOMDTFpr/dvctmicUqPlH
+	M2d2Bjh6zeV/cReVP8C4X7M5Xk3KaeZCPDka2TPqK9l4ZBAMGss2PA+f99ID5l0hPJnK7imS/7p
+	h0KeDRCzhMWqxFcJp+JjtW4W6DCUWxxKgka4j2QA0+v7hgvcHRPOR0IWeSaJe9AE2xghW6SXmcE
+	irwvt/r5G/vZRUKdQpS0BPjwdKdUKUqScmhwVZBtN3MCCMf4/+zw==
+X-Received: by 2002:a05:6808:178e:b0:3d2:277e:45e3 with SMTP id 5614622812f47-3d24e8ce5a3mr10656438b6e.13.1718620216473;
+        Mon, 17 Jun 2024 03:30:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF+9wQA5vwfPc+PCiFhPHOS+btBOsojBilQG1Cz2k1uXktyifoa7BZcR5yZNh9VDUC79iFyorh+9SwK/IhPV5I=
+X-Received: by 2002:a05:6808:178e:b0:3d2:277e:45e3 with SMTP id
+ 5614622812f47-3d24e8ce5a3mr10656422b6e.13.1718620216111; Mon, 17 Jun 2024
+ 03:30:16 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 17 Jun 2024 06:30:15 -0400
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20240613005817.1485-2-naoki@milkv.com>
+References: <20240613005817.1485-1-naoki@milkv.com> <20240613005817.1485-2-naoki@milkv.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240617-crytpo-am62a-v1-1-ddb719aed71b@ti.com>
-X-B4-Tracking: v=1; b=H4sIAFEOcGYC/x2NQQqDQAwAvyI5N+BuZRf6ldJDsk1rDq6SSLGIf
- +/a4zAMs4OLqTjcuh1MPuo61wbh0kEZqb4F9dkYYh+HPoWMxb7rMiNNKRIyJ84hDddSMrSEyQX
- ZqJbxjCbyVewUi8lLt//n/jiOHwN2oBJ3AAAA
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jayesh Choudhary <j-choudhary@ti.com>,
-        Kamlesh Gurudasani <kamlesh@ti.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718619754; l=1194;
- i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
- bh=/q1tmGRlV2b94HWtvWzP/RQIoEDOOCF6WdK86KGM5kw=;
- b=TNVi2y7uh3tYafIIJ1Yi8dgneltwOXnWXnzGfis/4VTTSW2okYU913sE2frv+4N+8DE8Gh0Ho
- GbkVPJPOvsqBE25wlpzZ+HS2K3j++7x0lFit5KAIfDjUbWm6lIoudGD
-X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
- pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Mime-Version: 1.0
+Date: Mon, 17 Jun 2024 06:30:15 -0400
+Message-ID: <CAJM55Z_j8gWFyKvsiu-oGDV7Hacr4Amt5FdkHdjKnhZwZgxncA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] riscv: dts: starfive: enable heartbeat LED for Milk-V Mars
+To: FUKAUMI Naoki <naoki@hdr-nlb4-0bbd2e21834cb637.elb.us-east-2.amazonaws.com>, 
+	kernel@esmil.dk
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-Add the node for sa3ul crypto accelerator.
+FUKAUMI Naoki wrote:
+> Milk-V Mars has a green LED to show system load. This patch enables
+> a green LED as a heartbeat LED.
+>
+> Signed-off-by: FUKAUMI Naoki <naoki@milkv.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+> index fa0eac78e0ba..4f4bbf64dbe4 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+> @@ -4,11 +4,24 @@
+>   */
+>
+>  /dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include "jh7110-common.dtsi"
+>
+>  / {
+>  	model = "Milk-V Mars";
+>  	compatible = "milkv,mars", "starfive,jh7110";
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			linux,default-trigger = "heartbeat";
+> +			function = LED_FUNCTION_HEARTBEAT;
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Hi Naoki,
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index ce4a2f105630..298d0c91fc0a 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -216,6 +216,18 @@ k3_reset: reset-controller {
- 		};
- 	};
- 
-+	crypto: crypto@40900000 {
-+		compatible = "ti,am62-sa3ul";
-+		reg = <0x00 0x40900000 0x00 0x1200>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
-+
-+		dmas = <&main_pktdma 0xf501 0>, <&main_pktdma 0x7506 0>,
-+		       <&main_pktdma 0x7507 0>;
-+		dma-names = "tx", "rx1", "rx2";
-+	};
-+
- 	secure_proxy_sa3: mailbox@43600000 {
- 		compatible = "ti,am654-secure-proxy";
- 		#mbox-cells = <1>;
+Thank you for the patch! I know the JH7100 boards are a bad example but
+normally we don't assign triggers/functions to LEDs unless they have a clearly
+marked purpose on the board. Otherwise we'll let userspace assign their
+function (usually with udev rules).
+As far as I can tell this line is marked "STS_PWR" in the schematic, the LED
+itself is just marked "Green", and the silkscreen doesn't seem to indicate that
+this LED should be a heartbeat. So I'd prefer just describing the LED and let
+it be up to users or pre-cooked images to assign the function.
 
----
-base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
-change-id: 20240617-crytpo-am62a-bb6b71643cc7
+/Emil
 
-Best regards,
--- 
-Kamlesh Gurudasani <kamlesh@ti.com>
-
+> +		};
+> +	};
+>  };
+>
+>  &gmac0 {
+> --
+> 2.43.0
+>
 
