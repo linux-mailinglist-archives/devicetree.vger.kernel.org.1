@@ -1,110 +1,119 @@
-Return-Path: <devicetree+bounces-76736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D105790BC4A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 22:44:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 311FE90BC60
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 22:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A17EB20E9F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:44:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C975328444B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:52:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A73718FC6A;
-	Mon, 17 Jun 2024 20:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC1C18FC8A;
+	Mon, 17 Jun 2024 20:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bYVquqPq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z/7qWNWb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F406DDD7;
-	Mon, 17 Jun 2024 20:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90688480;
+	Mon, 17 Jun 2024 20:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718657059; cv=none; b=no92sUFWTEsx3GKnIBGqDF6rJS6i+lfiWZs03yKO3D1LWPxKeBSdyAFo9MR5rOZqfgpybAPON3YwtMNpI712X4pqPF++QEW9DcCXM67NcMKCYMz1QXy+S2eIMhpHJm/VlA/1gMk/7L0HqSOhHQ5ZcSd3EsggWYhtoHnzYo6oZRs=
+	t=1718657523; cv=none; b=TFZfZkdLfNUvoDqHKFdY86c0OAVHujp+EimipIq8Z0grYNWTfkGMJ91q6U3gmQaWQ5p3mv/0xElk+zaa68O3IYk7renMJOjE9STZdqvzMrhbs/VwStEfgeqbEgR0CPIgsje7NcDOlaMZkLeAQzY+djq9EEDoQm6bRZZVK6OF04o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718657059; c=relaxed/simple;
-	bh=W8iIc5qhkqkINfKQNN/EjMnm6fnzz724bCAZOq4GB6A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OspTHJwPxW7b2bc/LgA6A5imkJcn9XsjzgQIyJa3Dz5l7A4QmP3InusVtxkfN8Em7AwhgHUUSDHQaBPQttUHzbolIMeKbAfmoCvZc7JVXEvTvhdJJ1PQIy7WxpcFoJGgyYv9HVBBZ7NOddkUbwDL1Y4ixatjwi9V8keG/mvLfqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bYVquqPq; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ec17eb4493so53757471fa.2;
-        Mon, 17 Jun 2024 13:44:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718657056; x=1719261856; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W8iIc5qhkqkINfKQNN/EjMnm6fnzz724bCAZOq4GB6A=;
-        b=bYVquqPqAdJheeZT71tls1SYvGDKMwpmsTULfkIIVeL6KcSDlHcklkBM9Fzc3BIHAI
-         MkvmfSZ/bOldOn/OnHe7A4JsrtMV/vNZHydO8jRayvVhaiOtbvpc+LEnu8SzksXcYCjY
-         dmf8vgGdz65HU3LoRkMRfC7w3oYo8th98zOHLwxkUKpXSS7VdvOoVqaXQomaHwAewyH3
-         OWicyre0ZhUcmbR0n3xPdmbDU1+hjE2kS/TQxVKgLlDobJTHDA7X7G+cDevO0wWk6sNS
-         qo7ND4IF20vpuIIIAnvKHN3FD5Dxf8f6AhnY8pqHVh79x98XkPud+03CEHdY+AAYE4pe
-         goSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718657056; x=1719261856;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W8iIc5qhkqkINfKQNN/EjMnm6fnzz724bCAZOq4GB6A=;
-        b=dA+pDw6Orqdl7noPLx7p8aE0QE1OukawR4NHSj0oXZvb+ORWwuE3EabhkMWQr+mV3P
-         Nnml+39dXNoLgxUNKVJkiohwFFNKLeDArr7ZzzrHMlQcWKK2uBraLMgfSKXJ0Qk0gJtT
-         jBOI3U3H53uhW9sw+hQIBJeqeQnKlE35U8HMQonV+J825vNOkMRerc584N5P24qeMaZp
-         NaR3iroeY0I0otd2L5FwxNfHt46V9ldN09LhxAOb+seZ5UAbtlKhA3ekWXh73gFybZir
-         7Uw+qsoEXpU2jOVarrAmUwYJhR+8BC0It0zBxO+JWA96P6OLcw6tPRVy6LbjGokdDhl2
-         cpLw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdZ7D4uxHkAiBxE1TySH4gIIV0bEoxADMegi1QCs2BzGh13Gmk85n6ZsEYfBuRNpROTEE+lRMf6dP7qa5uSX4lJo1NlkKJ3YjOYHT4zDF+C7tnf4f42n6seYy0SDOgYO779XddG+pZZQ==
-X-Gm-Message-State: AOJu0Yz/zc9C35UH7IDKqVs6DtqaU99gnnnCZXBEhfcJErKwqGbDuMMB
-	A38sSwOO1Dkacl6L26N602gFSLlNuZsj1HiJQT5lNmmRJUdCkzYyvfa3Ump5rvRWfrjI2J1fIYJ
-	4spwDaae8ov1R1N9IPBoROwBvSSk=
-X-Google-Smtp-Source: AGHT+IE4RZo3/SD0sNa5Y0pH0ocAVmsUWsfs8YhWunn+YJsNin9DjD9ZIKp0Oo2hXdLOTP4QvA+OrGx310R4ntSil9c=
-X-Received: by 2002:a2e:968c:0:b0:2eb:d963:d8cc with SMTP id
- 38308e7fff4ca-2ec0e5c9e20mr80476691fa.49.1718657055314; Mon, 17 Jun 2024
- 13:44:15 -0700 (PDT)
+	s=arc-20240116; t=1718657523; c=relaxed/simple;
+	bh=78UK3o8feX6Y7vSvvuFi39TkdLBuDUlzUZXhfqvyxgU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tro/zNkozGnh1Nvc/bVC/JmSVUfLTUUnAs6WBkSKLgNwVRiiPqeNVeqi76DJeQbWq4aS97FSvFvI86cTP8XJbkxbKq6IrRrAlBbMGZ+wMswrDvrzDQOKJLwqaFXWdxu1bQ7NbmbiQR8LshUv0n9BfbLigcUmesv16tPhKciYZsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z/7qWNWb; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45HKpqEN014045;
+	Mon, 17 Jun 2024 15:51:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718657512;
+	bh=gVyhdQ3l/BMW/aSJ9pkHk1DqLXx6HQtVfXYapVE9KcI=;
+	h=From:To:CC:Subject:Date;
+	b=Z/7qWNWbK+2Q99PgsbJhsnOPeC3X2+rImAtJlvEghCKXXWUxRA5t6axhIyWo2hhdH
+	 4d67W9fK0S8QAo+YcNjdPOYdLD6n3SZOO/SlLsKf1eI7fKAkJYTGoPFhHB08vskbWx
+	 lfDDO2dySfp/QMGrqYqBIe4HJ/jFztAX7TjDYvqw=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45HKpq1r024561
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 17 Jun 2024 15:51:52 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 17
+ Jun 2024 15:51:52 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 17 Jun 2024 15:51:52 -0500
+Received: from localhost (udb0321960.dhcp.ti.com [128.247.81.241])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45HKpq0x005527;
+	Mon, 17 Jun 2024 15:51:52 -0500
+From: Jonathan Humphreys <j-humphreys@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Andrew Davis <afd@ti.com>,
+        Jonathan Humphreys <j-humphreys@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am642-evm/sk: Set serial console settings for stdout-path
+Date: Mon, 17 Jun 2024 15:51:43 -0500
+Message-ID: <20240617205143.3147509-1-j-humphreys@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240614102952.679806-1-hui.wang@canonical.com>
- <20240614102952.679806-2-hui.wang@canonical.com> <20240617120347.907e8e1e8eae5824930dcc48@hugovil.com>
- <274b7ed0-28fd-4348-adfe-c4302fea0c09@camlingroup.com>
-In-Reply-To: <274b7ed0-28fd-4348-adfe-c4302fea0c09@camlingroup.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 17 Jun 2024 22:43:38 +0200
-Message-ID: <CAHp75VeGnpqKNKaK_nUm+HXuqqTX3SzbkjgH4ki6-m=j2O-YbQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] serial: sc16is7xx: hardware reset chip if
- reset-gpios is defined in DT
-To: Lech Perczak <lech.perczak@camlingroup.com>
-Cc: Hugo Villeneuve <hugo@hugovil.com>, Hui Wang <hui.wang@canonical.com>, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org, 
-	Maarten.Brock@sttls.nl
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Jun 17, 2024 at 6:49=E2=80=AFPM Lech Perczak
-<lech.perczak@camlingroup.com> wrote:
-> W dniu 17.06.2024 o 18:03, Hugo Villeneuve pisze:
-> On Fri, 14 Jun 2024 18:29:52 +0800
-> Hui Wang <hui.wang@canonical.com> wrote:
+Set serial console UART settings in the DT so that generic distros will
+work even if the OS loader doesn't explicitly pass it.
 
-...
+Signed-off-by: Jonathan Humphreys <j-humphreys@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts | 2 +-
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-> My hardware doesn't connect this line to the CPU's GPIOs, so I couldn't t=
-est this properly - but you can at least have my R-b tag.
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+index e20e4ffd0f1f..d63293d85d5f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+@@ -18,7 +18,7 @@ / {
+ 	model = "Texas Instruments AM642 EVM";
+ 
+ 	chosen {
+-		stdout-path = &main_uart0;
++		stdout-path = "serial2:115200n8";
+ 	};
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+index 5b028b3a3192..c23730c395b5 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+@@ -18,7 +18,7 @@ / {
+ 	model = "Texas Instruments AM642 SK";
+ 
+ 	chosen {
+-		stdout-path = &main_uart0;
++		stdout-path = "serial2:115200n8";
+ 	};
+ 
+ 	aliases {
+-- 
+2.34.1
 
-Lech, you need to provide a formal tag as it's described in Submitting Patc=
-hes.
-
-
---=20
-With Best Regards,
-Andy Shevchenko
 
