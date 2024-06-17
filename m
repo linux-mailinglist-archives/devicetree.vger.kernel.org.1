@@ -1,155 +1,142 @@
-Return-Path: <devicetree+bounces-76635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E186390B658
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:30:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C9990B691
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:36:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 814131F2298E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:30:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3516A1F240DC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A418B155A46;
-	Mon, 17 Jun 2024 16:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7D415F40E;
+	Mon, 17 Jun 2024 16:36:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b="N7NxbYhr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U0CyRYxv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA03B1553BB
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 16:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023C215F3F1;
+	Mon, 17 Jun 2024 16:36:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718641814; cv=none; b=nlURNYWlO01p7HdJNNFzCaTQ/jwaIqZq+L4qeC4fs8jJ/7she4YrkvGPkBseGw4S5U1UYCw3oYfRgVK+IKrsuHvJr7s/04/9tyFRJRA+Gk1DavwW5t8dDJFpZkEVAcTtDN0J9L6nQdDMpshYCVs2MxONFOuIPC4bUv4EzxnNXEc=
+	t=1718642195; cv=none; b=XDm6n9s5GBH/3vuWLiPXpcUm33C8y9ayGUz/PklpoPmI/CvAaCAdQytjIeaBLy5LHeqdz6zpAr05nXNmsl+P7kuFKYuRQdWGJO1tSTMSHvPMHKgZb+5777buYs8ZdwogR8pl0Pd1Vvub9UyP9gJEP8KqjCEkg+FtD0GUpDtzlEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718641814; c=relaxed/simple;
-	bh=c4CGIueJgo3FyF0lUSOsJIiD5YkmHOWg5+dfrNt3KDo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aLcdBk6UNDofFREJHMW/9s/zV9oPRgdA7NOJZKLrQp2oAgmU5n6m/+m94mQmdcSay/67Y1PsB6DDk5I7AQsN+xicPYSFb1Vb0mKCidMDNxMBm6cNBHtexIIVIcPAQKU3oXlS05TDYztf7elyc8WUDp4QMrixQSkpqRbTXk2rk4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com; spf=pass smtp.mailfrom=timesys.com; dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b=N7NxbYhr; arc=none smtp.client-ip=209.85.210.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timesys.com
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6fa0edb64bdso2486228a34.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 09:30:12 -0700 (PDT)
+	s=arc-20240116; t=1718642195; c=relaxed/simple;
+	bh=PafAoQuauL2uDpvEMoalA/IWpx3Yh86pLH0rQoSNF/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=m5mo3Znm+IiAIr5cwlQJGQraNu7Nfl2YLHgt2G0HAwNM20vJDI+lZE4+X1OPWqfNFXhvuuZ999mqpXil29p0thuOI+S0ijfhLl0883EwMzyOcKxQjlC/9V0IeyzQjXBuifi3HmMkT/JdgK4LuZBbram/K6pFJnQyxIN8mP//4eY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U0CyRYxv; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57c60b13a56so5442093a12.0;
+        Mon, 17 Jun 2024 09:36:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=timesys-com.20230601.gappssmtp.com; s=20230601; t=1718641812; x=1719246612; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c4CGIueJgo3FyF0lUSOsJIiD5YkmHOWg5+dfrNt3KDo=;
-        b=N7NxbYhrov6FonSL8kq5eMGaoZxAxl6xARpHiRBgYaQtIOoguDLis8pHRwk0SQ1qHg
-         qn/JR+Cct81n0cXXCc7RipLG4koJiBlrymDDhqfSuoc13VTyODG8nPGiI27plS3KARfm
-         xpNLcIjXx2fzS2HGJqxJzIolNjy9a9vFbcgktwe8I5KMCTZ2Pu5LcAw0oY00DRVwxIZk
-         SuqyGl1ravsuHilfk3hGPaIDC66/ZcA960oIFwKp5gevAFUieCyiHBSx9b485N742IaX
-         8RzqMrj54TciTjBty9G53+bq2EH3Tw7+bzIDs6nJCCwUR/iV6PWqm3EZyCmPOuEcnaDb
-         ArvA==
+        d=gmail.com; s=20230601; t=1718642192; x=1719246992; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RX68X2X3/LgY/l3MYixd+6MA7bxPaVTf3PwZWrV/Y9Q=;
+        b=U0CyRYxvXMytLI7M8yXo3wCut0trPpVPo0VEEa8Ysr6fh1cYCE/CvuW3R3Mz18yftq
+         LaVym8irWG0YxN7kTZ2yjraDNNfNi/EDDBRYNAowFIc3Q6hW84AxV/JrKCAjGhXkaRTV
+         QQcP++6pQpefZLIkdwt4kA4P/Ckhu8KrAlrXmrV8fZIWafnV5wSrfOJL+XFaOZJrPNUi
+         Gb3sDc0Ygr090Y7Xzr3Gg0AJ9PnyQv2ULzScRM4aGMXbuUHBo9SknkJ0VbD2jYUX0GEo
+         6PnYdju0Pm/SZ46ovKwCeM2mP59N6mlChxjPMPXFM8hw9dLqdj0GwUf4T12uK2AhuvI1
+         DehQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718641812; x=1719246612;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c4CGIueJgo3FyF0lUSOsJIiD5YkmHOWg5+dfrNt3KDo=;
-        b=OCss5oaOh7dWAcuzTczfkH6eP+SigWn3hQO8rb4u4PerP1yQgcOtOVvBZ7Yp3vkWYh
-         hIpuyTBS6XBMoom0L1WFxdwBwrQyAu14LaDDF5yWv00OT+sQocPRjKDFwx/vP/cnzRRH
-         Km9tR6160NKlDcMNkZRzp2KASMrj/YZZXnHPYklbVNkwPqndGqZXDiv8U4x7/0qoIa2o
-         MQdQ/of9zwGU3ob7YC7eYSt/oKqvZoEVjFnCO9WE5NF3YC1JnxsIpzJCCEvlwbNhBPmP
-         f36MQ4/w7MeztAyjI2FRjFhBpvGlRbgW55ReFRTIWdKQAmihe9OUSMl2/0Ixzl3qvYEh
-         QzWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZ1OVdPjGNo7hQcgD7NmvAoMrf7Uybs7t7BpIPCRUQSg0Bx4yy102EN1ZxQq3HqcMJnv/0PfrOmWZzIN3CGS//+oKBuhDp7eXHDA==
-X-Gm-Message-State: AOJu0Yyfa38qTAFH3JLG8iTf5+es+IyHG5hGJnub+Gsm1ju1FmJ+Mqbg
-	iPODfipBYOedqE4eagAUuU6sY/sgPHweRaLW+pgsurwzFDTAcX8y6XEphW2+t6ZITKfiN+HiYTN
-	t+rm+/4iZePFfKuniNxR3Gytxtp/f64zBogYM1Q==
-X-Google-Smtp-Source: AGHT+IHjzvlrr838N1DpEkEeLzzIsELYsb2zHrhaAqxCRJTNhyRbdCIQiZBSmvhFuWqlSzeRBTrPNi1jOBSJAcQmjjA=
-X-Received: by 2002:a9d:62ca:0:b0:6fd:5445:c6cc with SMTP id
- 46e09a7af769-6fd5445c914mr6508564a34.23.1718641811875; Mon, 17 Jun 2024
- 09:30:11 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718642192; x=1719246992;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RX68X2X3/LgY/l3MYixd+6MA7bxPaVTf3PwZWrV/Y9Q=;
+        b=Lu0rFRudfL/PMr8biqctIDVKhJalrq66GqBtKqNAa8ysgyYcMJE2gjz/Zu+3xoCnPm
+         ekLe7OhUpLcINeaiq4emNIq+FmXQ5xMo2xFRSQYvENvji1rpu83HKgItgo6MdrP1YzL0
+         mj23vKAqr1gvlspqhQ4fy8hBfYjBSJ2rrW2pTfFBMQsqgxu1wgKl5vj4VRI51iegjsCW
+         2xOHEGq+UxUlb9yd+s5RYbhJAUZP7+54ucbe8NW5HC8lNePgXKdDpZ0JUBRvQN2xITRl
+         6OZhHXJrlACCO/m0AbEfeEf7HgDTygd7QSnv7aWk15xHPyk+bVwjpGzunf1acThbS33p
+         UtCg==
+X-Forwarded-Encrypted: i=1; AJvYcCUC2wA/K00+wdbKkFiMSqMTdIScsvPxV730/RAZJpyYCVMbDgj0vtoOzxI6MCiLPkHOI6OoR1Vtt8gPqxa1cyURhtLe1Gy6w3ezxHO9yvZNAkgoTxQbhskb4MjnI3pPvycQNPCTw2psrw==
+X-Gm-Message-State: AOJu0YxtnCwK8oLqVuKUJnLMVu6WzXfRxw/31kBcHlurXjtR1JcQ32WB
+	f7zRvpuhSzpuv9YrjWzmouZzVqNOROmdoPAtw3MG2Dp2niY1S1tLw4jf5A==
+X-Google-Smtp-Source: AGHT+IH71gzLrAlo2d/fCViNvMGwCFnTsuGXcX3WVOzNheI0BHq7kjsmP+W4eSqwxgAmyFq1J/kUtg==
+X-Received: by 2002:aa7:d294:0:b0:57c:cab3:407f with SMTP id 4fb4d7f45d1cf-57ccab34137mr4262219a12.9.1718642191987;
+        Mon, 17 Jun 2024 09:36:31 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb743b032sm6618545a12.92.2024.06.17.09.36.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 09:36:31 -0700 (PDT)
+Date: Mon, 17 Jun 2024 18:36:29 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: hwmon: ti,tmp108: document V+ supply, add
+ short description
+Message-ID: <ZnBmDXfnDQXNXz3k@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
- <20240614163500.386747-1-piotr.wojtaszczyk@timesys.com> <20240614163500.386747-2-piotr.wojtaszczyk@timesys.com>
- <83cbf43e-c927-449f-8b7e-5c8d3ee8cece@kernel.org> <CAG+cZ06EeXUDiLsDXkz+6EHqJwpvv2MWwfpvB8AYw0=ZhUkTfQ@mail.gmail.com>
- <83a45f7c-d90b-44d3-b57e-9dad21045e27@kernel.org> <CAG+cZ06kzikieaD_JCBybwWk8XKZQjJxa34Cg4QHxrxpT+j0eA@mail.gmail.com>
- <2fe7ba36-05b9-42c7-8726-ea891cfc7afc@kernel.org>
-In-Reply-To: <2fe7ba36-05b9-42c7-8726-ea891cfc7afc@kernel.org>
-From: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-Date: Mon, 17 Jun 2024 18:30:00 +0200
-Message-ID: <CAG+cZ06XNV=ZZ8Ag00kaz1xWitXDN-yezUoc7M9JwQ5MUu7hTA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] ASoC: dt-bindings: lpc32xx: Add lpc32xx i2s DT binding
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vladimir Zapolskiy <vz@mleia.com>, Russell King <linux@armlinux.org.uk>, Jaroslav Kysela <perex@perex.cz>, 
-	Takashi Iwai <tiwai@suse.com>, "J.M.B. Downing" <jonathan.downing@nautel.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Chancel Liu <chancel.liu@nxp.com>, 
-	Michael Ellerman <mpe@ellerman.id.au>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org, 
-	linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Mon, Jun 17, 2024 at 5:48=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 17/06/2024 16:04, Piotr Wojtaszczyk wrote:
-> >>
-> >>> It's used by snd_soc_dai_init_dma_data() in [PATCH v3 4/4] to give th=
-e
-> >>> dmaengine a
-> >>> hint which dma config to use. The LPC32xx doesn't have yet a dmamux d=
-river like
-> >>
-> >> and if I change driver platform data to foo and bar, does the DTS work=
-? No.
-> >
-> > They shouldn't change the same way as expected dma-names shouldn't chan=
-ge.
-> > Lots of drivers expect the dma-names to be "rx", "tx"
-> >
-> >>
-> >>> lpc18xx-dmamux.c therefore it still uses platform data entries for
-> >>> pl08x dma channels
-> >>> and 'SND_DMAENGINE_PCM_FLAG_NO_DT | SND_DMAENGINE_PCM_FLAG_COMPAT'
-> >>> flags in the devm_snd_dmaengine_pcm_register().
-> >>> Typically instead of this platform data you would use regular 'dma'
-> >>> and 'dma-names' if it had
-> >>> proper dmamux driver like lpc18xx-dmamux.c
-> >>
-> >> Exactly. Use these.
-> >
-> > Then I need to write a lpc32xx dma mux driver, device tree binding for
-> > it and adjust the
-> > LPC32xx I2S driver for it. Is this a hard requirement to accept this
-> > patch set for the
-> > legacy LPC32xx SoC?
->
-> I do not see at all analogy with dma-names. dma-names are used ONLY by
-> the consumer to pick up proper property "dmas" from DT. They are not
-> passed to DMA code. They are not used to configure DMA provider at all.
->
-> You parse string from DT and pass it further as DMA filtering code. This
-> is abuse of hardware description for programming your driver and their
-> dependencies.
->
-> Why you cannot hard-code them?
->
-> Sorry, to be clear: NAK
+TMP108 is powered by its V+ supply, document it. The property is called
+"vcc-supply" since the plus sign (+) is not an expected character.
+While at it, add a short description with a link to its datasheets.
 
-That's fine, clear answers are always good.
-I considered to hardcode this as it was in the first version of the patch s=
-et
-but LPC32XX has two I2S interfaces which use different DMA signals
-and mux settings and I really didn't want to pick the virtual DMA channel
-name based on hardcoded I2S node name therefore I thought having a DT
-property to select proper dma channel is a better solution.
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+Changes in V2:
+  - rename "v+-supply" to "vcc-supply"
+  - add a short description clarifying that vcc is actually V+
+  - update commit message to reflect this change
 
---=20
-Piotr Wojtaszczyk
-Timesys
+ .../devicetree/bindings/hwmon/ti,tmp108.yaml         | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+index 8b5307c875ff..0ad10d43fac0 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+@@ -9,6 +9,14 @@ title: TMP108 temperature sensor
+ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
+ 
++description: |
++  The TMP108 is a digital-output temperature sensor with a
++  dynamically-programmable limit window, and under- and overtemperature
++  alert functions.
++
++  Datasheets:
++    https://www.ti.com/product/TMP108
++
+ properties:
+   compatible:
+     enum:
+@@ -24,6 +32,9 @@ properties:
+   "#thermal-sensor-cells":
+     const: 0
+ 
++  vcc-supply:
++    description: phandle to the regulator that provides the V+ supply
++
+ required:
+   - compatible
+   - reg
+@@ -45,6 +56,7 @@ examples:
+             interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+             pinctrl-names = "default";
+             pinctrl-0 = <&tmp_alrt>;
++            vcc-supply = <&supply>;
+             #thermal-sensor-cells = <0>;
+         };
+     };
+-- 
+2.34.1
+
 
