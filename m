@@ -1,171 +1,128 @@
-Return-Path: <devicetree+bounces-76529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B4490AD92
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:05:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 855B790ADAB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6DDEB26051
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:02:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63549B22337
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1EB2194ADA;
-	Mon, 17 Jun 2024 12:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D818194C6C;
+	Mon, 17 Jun 2024 12:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="H8V4wQ7p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5FE517FAA2;
-	Mon, 17 Jun 2024 12:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B4017FAA2;
+	Mon, 17 Jun 2024 12:08:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718625754; cv=none; b=U3vt4K7qxq8vvZGBj6R0GwXxU/BLdZ3H/yGSPrAOCpUovzxM6rb3S3D2Ts6GlsSfAU59ltYeprPVespQqY/8RI9tSV475vcC9u4N8vTBEcnsblqhvzQb8ds4P3GB+tahgQfSf4v4G1GC6gFV9/pRB0m7xdPZsj04LL9IdV/Tp40=
+	t=1718626106; cv=none; b=KTudOzHTXcBh7HDKQ3UgBhSmPhhfFMBJVjcBcZ60lIfehZW7I6Z4NU4GUHjOKLR7MQfyIdNb8ewKT2s0uTzS74znbEqt8GJD/DhSswqzlastxXdfNng/fxQavsA71gxi3zN8vhyXQW10rLVLWoonaXAZi/jzqS37Iz+mZPxGG/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718625754; c=relaxed/simple;
-	bh=dtNkuBV2A349eNviC6SuKzrMSB8wD5WUXwBXkHuTxOA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lyyHcg/LNa/KQB2gWxMUVuYOOXT8SEAbNsBMphVvMEPQfsNRkKgUb+v5jyZjcB93UdFFmpYIHG7wLD8u9dKD6zlW8rnEWyq/rZXwr9eV4bzDKlfVFWUdH/Csx50dEZLcJiKBEtde2uZaHhsa//HN3dJTHrB54pYlsaLUotc+cWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dff302847a8so1751644276.0;
-        Mon, 17 Jun 2024 05:02:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718625751; x=1719230551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=j0ex/OBXkM0YaYw4ebPeo5bpa3LK+wkN4LK4vxw7MQc=;
-        b=PKh1CCp2WG61YSn5wbyClfyKwldXw+dD7+7tvEk71C7+xLwtCsOf77jNlQC3vUiTjy
-         EuSdWFMuBpeqcYdJCcWp955vbUufwv/k8G6AzI5KX0xtxBkQ1AQKu92B57s+6Btth53o
-         dwpKrx1FCswevo56duK7ygPwtWTK3BKZY8ejVMwvqenf1a9nlpVYNG7dAnIAKRT6n9gm
-         Wl0gmbfU2Gus0vaa8RSNrW0A1z6BEw6OdNZ/gBHC4C2OXwbx7/bbAnIuhL/HprlbNHoT
-         BCOD0DpgL2akoSL2EDmy0V+bRrLg+Sk18VuvLuRSXAm/MnuoysWusTE+/HE9co4R00jY
-         DvpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUyjoEWdUbA+ajgcCwOJIzvFRZ+fNYxPEQKriu4eFV87ZiiI4Y2WGPzDZFSpNgv8+q4cSjOPM0f7ypkwLZeNxITFC/5rbeg+wbIYboKhFR9SIHSudaAehfJPIlt3AUaczhAM4AvWfebVNszP6YuM+xmJtyIQFBTKGI0thuYvuq2Sj30siGDrlDxSzCJBa/SjjKILO63ytdkYCbjlLkZmddrbPQ6VhPh9w==
-X-Gm-Message-State: AOJu0Yx7+rB+EohnSK4/D15hDDUK1UDBEmzk79pypOiO6ViE1IRis6sO
-	DTyTtzeUKaRSTXnJpGOgrI6OkI743ovBbNFHpzk7XfZ+tOt4Ht9vefVpPpK7
-X-Google-Smtp-Source: AGHT+IHZaTv+Be3x/sQ8URZD3zng9ZoU2KUE2qdsdzXf5bttFdVaQmYiarXPIAtHrLec72Qaxg+6gA==
-X-Received: by 2002:a25:4c81:0:b0:dfa:ac81:38eb with SMTP id 3f1490d57ef6-dff153b1745mr8176615276.27.1718625750837;
-        Mon, 17 Jun 2024 05:02:30 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-dff048bd22csm1880974276.34.2024.06.17.05.02.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 05:02:30 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dff36345041so1246397276.3;
-        Mon, 17 Jun 2024 05:02:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXDrCt2qPFZ3NwLkL1AeCvOLDZvIGraaPomTHIXcyJVusQc3ZbMDbKakrg6yLRNhlweQ5BzZB3C7y7gSTbDvyy43SdAOQN3TaQdSlGHtqfTXrFfboLhiNJqqzvulfydDG8KrpgN08Xp+QU+0QfarY22ymrao3FtYlEZJteyZutz8GVv12qKLs8Zm/6l0X4p84r5u9NzfLoIon5uPD7A3+aZX+3o/5Likw==
-X-Received: by 2002:a25:a285:0:b0:dff:2d99:9c3c with SMTP id
- 3f1490d57ef6-dff2d99a245mr5109438276.57.1718625750352; Mon, 17 Jun 2024
- 05:02:30 -0700 (PDT)
+	s=arc-20240116; t=1718626106; c=relaxed/simple;
+	bh=PsqCvI9iYJBn0w58OPhyl9OmctKHOFcdmv3uZUmC09A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=D7SU2ym3iFnWeE4xvutSc0bP1GQQxe2k0jesfugOBGHhULtIPixk0JCS9Nz3FQ4uPgz0Ot3dlfTk5Y8/xXjAywZSHSor6sqlTqp9fNbOEyCsy9Zp1CIS1hmtwbfAveyhC/U/PMnv55Zb0KgYNGFIqcJKmgDmWx1QW4BCjP07wpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=H8V4wQ7p; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 7C3904000E;
+	Mon, 17 Jun 2024 12:08:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1718626101;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=GuKdc1xKXRp/qhXALkelzw1dzBSmgkA1O3cnHePaipU=;
+	b=H8V4wQ7przmplXIacmPrH7kYoIPUsHhItcpsoiVJZrKxDNCVu4JQWHMh/Tli+FtaM218kV
+	+nBREQhpYDYU+oAlJFGgUGm0kWJv+n+vMuhXYvA8vfc/u/ssARV/WvUhLJzfyrd8NuDt6E
+	my+0iuoFvD4jL/T+xaxHsTjqJBszpu9HZ8F68fAg5flS6CTg8YsOTBou/CNbWg5m4Gqb5W
+	8CbGc6hov8ljgvvFknDxjtY/6URYCuFR3Jhn8KXv/6E0Od0QEJ8pylplCkDxDIMArooGVv
+	M+zpZmHBg5/21+41x4BEh76cIFFRk+CaDcJXhbyyXEj24YBK1T7KGUT7Hlaaqw==
+From: Bastien Curutchet <bastien.curutchet@bootlin.com>
+To: Peter Rosin <peda@axentia.se>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Korsgaard <peter.korsgaard@barco.com>,
+	Wolfram Sang <wsa@kernel.org>
+Cc: linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Christopher Cordahi <christophercordahi@nanometrics.ca>,
+	Bastien Curutchet <bastien.curutchet@bootlin.com>
+Subject: [PATCH v3 0/3] i2c: mux: gpio: Add 'settle-time-us' property
+Date: Mon, 17 Jun 2024 14:08:15 +0200
+Message-ID: <20240617120818.81237-1-bastien.curutchet@bootlin.com>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240611113204.3004-1-paul.barker.ct@bp.renesas.com> <20240611113204.3004-3-paul.barker.ct@bp.renesas.com>
-In-Reply-To: <20240611113204.3004-3-paul.barker.ct@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 17 Jun 2024 14:02:17 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXe8aaweQJ2=V7ksKTqcJCnqewKhSrrO4h7X924Vbk-_Q@mail.gmail.com>
-Message-ID: <CAMuHMdXe8aaweQJ2=V7ksKTqcJCnqewKhSrrO4h7X924Vbk-_Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/9] pinctrl: renesas: rzg2l: Clean up and refactor OEN
- read/write functions
-To: Paul Barker <paul.barker.ct@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: bastien.curutchet@bootlin.com
 
-Hi Paul,
+Hi all,
 
-On Tue, Jun 11, 2024 at 1:33=E2=80=AFPM Paul Barker
-<paul.barker.ct@bp.renesas.com> wrote:
-> The variable naming in the various OEN functions has been confusing. We
-> were passing the _pin & bit variables from rzg2l_pinctrl_pinconf_get()
-> and rzg2l_pinctrl_pinconf_set() as the offset & pin argument to the
-> read_oen() and write_oen() functions. This doesn't make sense, the first
-> of these isn't actually an offset and the second is not needed for
-> RZ/V2H but leads to confusion with the bit variable used within these
-> functions.
->
-> To tidy this up, instead pass the _pin variable directly to the
-> read_oen() and write_oen() functions with consistent naming. Then
-> rzg3s_read_oen() and rzg3s_write_oen() can use macros to get the port
-> and pin numbers it needs.
->
-> Also, merge rzg3s_oen_is_supported() into rzg3s_pin_to_oen_bit() to give
-> a single translation function which returns an error if the pin doesn't
-> support OEN. While we're here, remove an unnecessary branch and clarify
-> the variable naming.
->
-> Signed-off-by: Paul Barker <paul.barker.ct@bp.renesas.com>
-> ---
-> Changes v1->v2:
->   * Merged patches 1 & 2 from the previous series, updated to be
->     compatible with recent patches adding RZ/V2H support.
+The i2c-gpio-mux can be used to describe a multiplexer built upon
+several i2c isolators having an enable pin (such as LTC4310):
 
-Thanks for your patch!
+ +---------------+                     +------+  +------+
+ | +-----------+ |                     | dev  |  | dev  |
+ | | GPIO_EN_A |-|-----------|         +------+  +------+
+ | +-----------+ |     +-----+---+         |         |
+ |               |  |--| isol. A |---------+---------+
+ |     +-----+   |  |  +---------+
+ | SOC | I2C |---|--|
+ |     +-----+   |  |  +---------+
+ |               |  |--| isol. B |------+---------+---------+
+ | +-----------+ |     +-----+---+      |         |         |
+ | | GPIO_EN_B |-|-----------|      +------+  +------+  +------+
+ | +-----------+ |                  | dev  |  | dev  |  | dev  |
+ +---------------+                  +------+  +------+  +------+
 
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+These isolators often need some time between their enable pin's
+assertion and the first i2c transfer. If the first i2c transfer
+happens before this enabling time is reached, transfer fails.
 
-> @@ -994,53 +994,43 @@ static bool rzg2l_ds_is_supported(struct rzg2l_pinc=
-trl *pctrl, u32 caps,
->         return false;
->  }
->
-> -static bool rzg3s_oen_is_supported(u32 caps, u8 pin, u8 max_pin)
-> +static int rzg3s_pin_to_oen_bit(const struct rzg2l_hwcfg *hwcfg, u32 cap=
-s, u32 port, u8 pin)
->  {
-> -       if (!(caps & PIN_CFG_OEN))
-> -               return false;
-> +       u8 bit =3D pin * 2;
->
-> -       if (pin > max_pin)
-> -               return false;
-> +       if (!(caps & PIN_CFG_OEN) || pin > hwcfg->oen_max_pin)
-> +               return -EINVAL;
->
-> -       return true;
-> +       if (port =3D=3D hwcfg->oen_max_port)
-> +               bit +=3D 1;
-> +
-> +       return bit;
->  }
->
-> -static u8 rzg3s_pin_to_oen_bit(u32 offset, u8 pin, u8 max_port)
-> +static u32 rzg3s_read_oen(struct rzg2l_pinctrl *pctrl, u32 caps, unsigne=
-d int _pin)
->  {
-> -       if (pin)
-> -               pin *=3D 2;
-> +       u32 port =3D RZG2L_PIN_ID_TO_PORT(_pin);
-> +       u8 pin =3D RZG2L_PIN_ID_TO_PIN(_pin);
+There is no available option to configure such a time in the
+i2c-gpio-mux driver.
 
-It's OK to use RZG2L_PIN_ID_TO_PIN() unconditionally, as RZ/G3S does
-not have any dedicated pins with the OEN capability, right?
+Add a optional property in the bindings called 'transition-delay-us'.
+If present, driver waits for this delay every time a new bus is
+selected, i.e. before returning from the bus_select() callback.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Changes in v2:
+ * Rewrite bindings' commit log
+ * Express the 'transition delay' in us instead of ms
 
-Gr{oetje,eeting}s,
+Changes in v3:
+ * Rename DT property to 'settle-time-us'
+ * Use fsleep instead of udelay
 
-                        Geert
+[v1] : https://lore.kernel.org/all/20240527113908.127893-1-bastien.curutchet@bootlin.com/
+[v2] : https://lore.kernel.org/all/20240529091739.10808-1-bastien.curutchet@bootlin.com/
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Bastien Curutchet (3):
+  dt-bindings: i2c: gpio: Add 'settle-time-us' property
+  i2c: mux: gpio: Re-order #include to match alphabetic order
+  i2c: mux: gpio: Add support for the 'settle-time-us' property
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+ .../devicetree/bindings/i2c/i2c-mux-gpio.yaml      |  3 +++
+ drivers/i2c/muxes/i2c-mux-gpio.c                   | 14 ++++++++++----
+ include/linux/platform_data/i2c-mux-gpio.h         |  2 ++
+ 3 files changed, 15 insertions(+), 4 deletions(-)
+
+-- 
+2.45.0
+
 
