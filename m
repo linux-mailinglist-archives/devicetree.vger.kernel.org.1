@@ -1,50 +1,49 @@
-Return-Path: <devicetree+bounces-76601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7CC90B5C4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:07:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7EC990B702
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:50:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C93CFB27C4C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:48:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91403B4732F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB4015A857;
-	Mon, 17 Jun 2024 15:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5360415B137;
+	Mon, 17 Jun 2024 15:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="B4TM6ofX"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="PPK0kgPl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19C215A49F
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5B015B0EC
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.225
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637750; cv=none; b=SsIP956oXT/Y7r0ZECAxYuCN8nHb4segbKEAmZG0s5O53Z0tlhsr0wePsJu32PE/aoSm5pyBjAASTh6aMWxqSJ6YCMLxqKMqsJSS1P+Y4GgWaTUXExT0utUPDlVHyjvJKhSIDHgO3FyXLQXsi23HsqVPnpo6OAN0u7RlHFXk/gI=
+	t=1718637756; cv=none; b=Xc8dVy78PimWlWS9YgFjW15ltZVvPFHfdQeTDbKdCrJVTdZsD75viEgsLNlFN+Hh0FDBunrP8c3QylHSAt7tvuVWJwhYD6zaF4JKFE8b2gwGz7wO3OxETziO0qy2CGUkrFq2r+Ax+e9JwDIKgW9hy/IET7poeWlNe5gcTCuxvzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637750; c=relaxed/simple;
-	bh=sg5qrRLMgV+5Rd79tG8DOD89TmOPOBc48So8jR20CzI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jUs0/1VUrQ3UkeA6l7UnDcIXVH35gSFIbVQfiv60BYlHpkeP8r0swIgGNNqhrNttgrpOruQAi8VJlMqNbLf3xMkIKIrnfa/WESSpCQtB6mch1bkCYEUb6JL40yODLqFreVX/qr0obMfOb54QBIt0JTm0L5KyBlry5igacNki3W8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=B4TM6ofX; arc=none smtp.client-ip=185.136.64.225
+	s=arc-20240116; t=1718637756; c=relaxed/simple;
+	bh=fO1eAsDw//HX2p9KxidsmYOgQKS3QAodQl/810m/2AY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=rJUZEgqM2okrNhFZHOGYpd21MHcvseXoNqX7khQxs5mFnJomGGLcRRIr1YSbDQoT5BJrsyvGgVLoa9C4OUAXcL3yJgZq2rykZbhg+B3HKe4p95XBPeEnvhhIb/zWrPmgljIBrs2klMJ9tToxgpXS5/kv2JKCb6mmBmiECNqN5kA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=PPK0kgPl; arc=none smtp.client-ip=185.136.64.225
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20240617152222ecd72c572722909224
+Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20240617152230521bda08fc3a598ef9
         for <devicetree@vger.kernel.org>;
-        Mon, 17 Jun 2024 17:22:23 +0200
+        Mon, 17 Jun 2024 17:22:30 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
  d=siemens.com; i=diogo.ivo@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=fHWwCnEEzxb5x9fgBwa1bofIh1XbeYWIAnnLCU2FiVk=;
- b=B4TM6ofXf907ezC4l9DjfnBIiQ2Qt1MI02YZWecAUOnXX1rceDwOmTNDnvMOC4jGH4X45u
- iVWVNG7Yg50F6aQqFlCeGBpQHo/4QMZoyo1AkXc4kybTqSNj6DT7TgTQrKl2izJOYVwk8aYj
- s+jxUihi/fV304hSDZgtdnv02fL74=;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=57dUQPLvnS8ZYgZDKTpi5rNWIAVWWGiuIo2qscKtvtg=;
+ b=PPK0kgPl2PmHQT914CoAaKQoU9FxwYMxlRbCO9LmBo+tVGs274t4q6r/CiCzgeqguWC/2O
+ TsGbNXLq42PsqQFU6V6frZFrTAwzPd584iKzPfZqA+H6xAgwuPbJuSt1a7Yz8wuCCa/1VU/9
+ DvvLr1HnuYIZl1VDEkVf+98sSVofA=;
 From: Diogo Ivo <diogo.ivo@siemens.com>
-Subject: [PATCH net-next v4 0/5] Enable PTP timestamping/PPS for AM65x
- SR1.0 devices
-Date: Mon, 17 Jun 2024 16:21:39 +0100
-Message-Id: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
+Date: Mon, 17 Jun 2024 16:21:43 +0100
+Subject: [PATCH net-next v4 4/5] net: ti: icss-iep: Enable compare events
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,10 +52,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAINUcGYC/2XMQQ6DIBCF4asY1qWBAQG76j2aLgCnlUXRiDE2x
- ruX4KI1XU7efP9KEo4BE7lUKxlxDin0MR/yVBHf2fhEGtp8E2AgWQ0NDThQ45y0wruGKUPy5zD
- iIyylciMRJxpxmcg9L11IUz++S37mZT+UZk4Z1aCFZ7puoBXXFPCFMZ19/yqFGb5KMbkryAqtQ
- e6ZrZVR/0r8Kr0rkZU0IAEkZ7XzR7Vt2wc9RAv8DgEAAA==
+Message-Id: <20240617-iep-v4-4-fa20ff4141a3@siemens.com>
+References: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
+In-Reply-To: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
 To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
@@ -69,89 +67,157 @@ Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Diogo Ivo <diogo.ivo@siemens.com>, 
  Wojciech Drewek <wojciech.drewek@intel.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718637740; l=3378;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718637741; l=4428;
  i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
- bh=sg5qrRLMgV+5Rd79tG8DOD89TmOPOBc48So8jR20CzI=;
- b=ft2pcbfBtSt7xPuY8+Ze7XzsA/tEgT+g3/HWFb9JuBvF7HFl8d5jGSAwxanu6b8D1J0m1eBGn
- gH6pXeHQ3QECY+5YCUI/GiVyV2knoM7EHqq0rCnRL46FCJc7XKArYXp
+ bh=fO1eAsDw//HX2p9KxidsmYOgQKS3QAodQl/810m/2AY=;
+ b=iMQ7miuewdgkUjwbfheQtTO0XmunnIbQk0W6zNLcK5l/tmDITDomUUgQu3M77vVJepsIBAWkZ
+ isO/GJs6ihBBabB4yi7Z5LmI4uDjS2ouwhrqT00AJgwMkXEB21PqndW
 X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
  pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
 X-Flowmailer-Platform: Siemens
 Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-This patch series enables support for PTP in AM65x SR1.0 devices.
+The IEP module supports compare events, in which a value is written to a
+hardware register and when the IEP counter reaches the written value an
+interrupt is generated. Add handling for this interrupt in order to
+support PPS events.
 
-This feature relies heavily on the Industrial Ethernet Peripheral
-(IEP) hardware module, which implements a hardware counter through
-which time is kept. This hardware block is the basis for exposing
-a PTP hardware clock to userspace and for issuing timestamps for
-incoming/outgoing packets, allowing for time synchronization.
-
-The IEP also has compare registers that fire an interrupt when the
-counter reaches the value stored in a compare register. This feature
-allows us to support PPS events in the kernel.
-
-The changes are separated into five patches:
- - PATCH 01/05: Register SR1.0 devices with the IEP infrastructure to
-		expose a PHC clock to userspace, allowing time to be
-		adjusted using standard PTP tools. The code for issuing/
-		collecting packet timestamps is already present in the
-		current state of the driver, so only this needs to be
-		done.
- - PATCH 02/05: Remove unnecessary spinlock synchronization.
- - PATCH 03/05: Document IEP interrupt in DT binding.
- - PATCH 04/05: Add support for IEP compare event/interrupt handling
-		to enable PPS events.
- - PATCH 05/05: Add the interrupts to the IOT2050 device tree.
-
-Currently every compare event generates two interrupts, the first
-corresponding to the actual event and the second being a spurious
-but otherwise harmless interrupt. The root cause of this has been
-identified and has been solved in the platform's SDK. A forward port
-of the SDK's patches also fixes the problem in upstream but is not
-included here since it's upstreaming is out of the scope of this
-series. If someone from TI would be willing to chime in and help
-get the interrupt changes upstream that would be great!
-
+Reviewed-by: Wojciech Drewek <wojciech.drewek@intel.com>
+Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
 Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
 ---
-Changes in v4:
-- Remove unused 'flags' variables in patch 02/05
-- Add patch 03/05 describing IEP interrupt in DT binding
-- Link to v3: https://lore.kernel.org/r/20240607-iep-v3-0-4824224105bc@siemens.com
+ drivers/net/ethernet/ti/icssg/icss_iep.c | 74 ++++++++++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
 
-Changes in v3:
-- Collect Reviewed-by tags
-- Add patch 02/04 removing spinlocks from IEP driver
-- Use mutex-based synchronization when accessing HW registers
-- Link to v2: https://lore.kernel.org/r/20240604-iep-v2-0-ea8e1c0a5686@siemens.com
+diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
+index d52e42fa64f2..003668dee738 100644
+--- a/drivers/net/ethernet/ti/icssg/icss_iep.c
++++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
+@@ -17,6 +17,7 @@
+ #include <linux/timekeeping.h>
+ #include <linux/interrupt.h>
+ #include <linux/of_irq.h>
++#include <linux/workqueue.h>
+ 
+ #include "icss_iep.h"
+ 
+@@ -121,6 +122,7 @@ struct icss_iep {
+ 	int cap_cmp_irq;
+ 	u64 period;
+ 	u32 latch_enable;
++	struct work_struct work;
+ };
+ 
+ /**
+@@ -563,6 +565,57 @@ static int icss_iep_perout_enable(struct icss_iep *iep,
+ 	return ret;
+ }
+ 
++static void icss_iep_cap_cmp_work(struct work_struct *work)
++{
++	struct icss_iep *iep = container_of(work, struct icss_iep, work);
++	const u32 *reg_offs = iep->plat_data->reg_offs;
++	struct ptp_clock_event pevent;
++	unsigned int val;
++	u64 ns, ns_next;
++
++	mutex_lock(&iep->ptp_clk_mutex);
++
++	ns = readl(iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
++	if (iep->plat_data->flags & ICSS_IEP_64BIT_COUNTER_SUPPORT) {
++		val = readl(iep->base + reg_offs[ICSS_IEP_CMP1_REG1]);
++		ns |= (u64)val << 32;
++	}
++	/* set next event */
++	ns_next = ns + iep->period;
++	writel(lower_32_bits(ns_next),
++	       iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
++	if (iep->plat_data->flags & ICSS_IEP_64BIT_COUNTER_SUPPORT)
++		writel(upper_32_bits(ns_next),
++		       iep->base + reg_offs[ICSS_IEP_CMP1_REG1]);
++
++	pevent.pps_times.ts_real = ns_to_timespec64(ns);
++	pevent.type = PTP_CLOCK_PPSUSR;
++	pevent.index = 0;
++	ptp_clock_event(iep->ptp_clock, &pevent);
++	dev_dbg(iep->dev, "IEP:pps ts: %llu next:%llu:\n", ns, ns_next);
++
++	mutex_unlock(&iep->ptp_clk_mutex);
++}
++
++static irqreturn_t icss_iep_cap_cmp_irq(int irq, void *dev_id)
++{
++	struct icss_iep *iep = (struct icss_iep *)dev_id;
++	const u32 *reg_offs = iep->plat_data->reg_offs;
++	unsigned int val;
++
++	val = readl(iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
++	/* The driver only enables CMP1 */
++	if (val & BIT(1)) {
++		/* Clear the event */
++		writel(BIT(1), iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
++		if (iep->pps_enabled || iep->perout_enabled)
++			schedule_work(&iep->work);
++		return IRQ_HANDLED;
++	}
++
++	return IRQ_NONE;
++}
++
+ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
+ {
+ 	struct ptp_clock_request rq;
+@@ -591,6 +644,8 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
+ 		ret = icss_iep_perout_enable_hw(iep, &rq.perout, on);
+ 	} else {
+ 		ret = icss_iep_perout_enable_hw(iep, &rq.perout, on);
++		if (iep->cap_cmp_irq)
++			cancel_work_sync(&iep->work);
+ 	}
+ 
+ 	if (!ret)
+@@ -764,6 +819,8 @@ int icss_iep_init(struct icss_iep *iep, const struct icss_iep_clockops *clkops,
+ 	if (iep->ops && iep->ops->perout_enable) {
+ 		iep->ptp_info.n_per_out = 1;
+ 		iep->ptp_info.pps = 1;
++	} else if (iep->cap_cmp_irq) {
++		iep->ptp_info.pps = 1;
+ 	}
+ 
+ 	if (iep->ops && iep->ops->extts_enable)
+@@ -804,6 +861,7 @@ static int icss_iep_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct icss_iep *iep;
+ 	struct clk *iep_clk;
++	int ret, irq;
+ 
+ 	iep = devm_kzalloc(dev, sizeof(*iep), GFP_KERNEL);
+ 	if (!iep)
+@@ -814,6 +872,22 @@ static int icss_iep_probe(struct platform_device *pdev)
+ 	if (IS_ERR(iep->base))
+ 		return -ENODEV;
+ 
++	irq = platform_get_irq_byname_optional(pdev, "iep_cap_cmp");
++	if (irq == -EPROBE_DEFER)
++		return irq;
++
++	if (irq > 0) {
++		ret = devm_request_irq(dev, irq, icss_iep_cap_cmp_irq,
++				       IRQF_TRIGGER_HIGH, "iep_cap_cmp", iep);
++		if (ret) {
++			dev_info(iep->dev, "cap_cmp irq request failed: %x\n",
++				 ret);
++		} else {
++			iep->cap_cmp_irq = irq;
++			INIT_WORK(&iep->work, icss_iep_cap_cmp_work);
++		}
++	}
++
+ 	iep_clk = devm_clk_get(dev, NULL);
+ 	if (IS_ERR(iep_clk))
+ 		return PTR_ERR(iep_clk);
 
-Changes in v2:
-- Collect Reviewed-by tags
-- PATCH 01/03: Limit line length to 80 characters
-- PATCH 02/03: Proceed with limited functionality if getting IRQ fails,
-	       limit line length to 80 characters
-- Link to v1: https://lore.kernel.org/r/20240529-iep-v1-0-7273c07592d3@siemens.com
-
----
-Diogo Ivo (5):
-      net: ti: icssg-prueth: Enable PTP timestamping support for SR1.0 devices
-      net: ti: icss-iep: Remove spinlock-based synchronization
-      dt-bindings: net: Add IEP interrupt
-      net: ti: icss-iep: Enable compare events
-      arm64: dts: ti: iot2050: Add IEP interrupts for SR1.0 devices
-
- .../devicetree/bindings/net/ti,icss-iep.yaml       |  9 +++
- .../boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 12 +++
- drivers/net/ethernet/ti/icssg/icss_iep.c           | 88 ++++++++++++++++++----
- drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c   | 51 ++++++++++++-
- 4 files changed, 145 insertions(+), 15 deletions(-)
----
-base-commit: 2f0e3f6a6824dfda2759225326d9c69203c06bc8
-change-id: 20240529-iep-8bb4a3cb9068
-
-Best regards,
 -- 
-Diogo Ivo <diogo.ivo@siemens.com>
+2.45.2
 
 
