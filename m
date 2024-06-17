@@ -1,305 +1,184 @@
-Return-Path: <devicetree+bounces-76554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD6E90B0B1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D34B90B1A9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:23:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E99D1C22FF7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:00:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2786D1C211C8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC724185E7F;
-	Mon, 17 Jun 2024 13:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43014199E9C;
+	Mon, 17 Jun 2024 13:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0rbeIdh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hhTGVFmw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8383C185E7A;
-	Mon, 17 Jun 2024 13:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A76194A43;
+	Mon, 17 Jun 2024 13:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718630744; cv=none; b=LLq/RhYz5zhHtoNGH5gTS6AGpV9wmj7bEBdVkZ1qE0gINRGJcy82gjxy+f6itG0OJz4TFyl3GUHZnbQ/K/WlpuMm7HGQj3I0dCawwtqdyag+QunsYRMnD614oNLUFw5Xi+wN2yHj+M1IfHdGAg9Ya3VMUoGGB6+fDF5wix3qxKU=
+	t=1718631041; cv=none; b=bhHHcEQ+jJdygTH2Z1f+jvhDtzxznKM8WewYDbVLdxfxmc0xB1iwRt4oPv6e17Pj0XDieFAho36udRb/YxMz7Rka0iMC+jPqLsqHUY5Nka5LPHRgwfe/LZsJ0MorJ9HsQeZ3FkU212SMAVQfyWgOXJecMMZZPjlk1x5hVrfIp0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718630744; c=relaxed/simple;
-	bh=gSg7e7ssiabuaXE0c2Hnfh+p9orUESGxXNpTL+xWLAw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XFYszwolWwrIi74AquENi5iasLjus6wsNnnu1tBkiRVB3rsktdNnuu6Rvwq5opBRos6LEB5Q2ABWqkFi0xGw6t6Q2MJf4jRbkgr57Pw29Y75sXLFsi1yElSo052dTRD2inkS9scTZeGsz8qK7cIlLNFN3BiRR2fXsAqHzr0nFMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0rbeIdh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9C3C4AF4D;
-	Mon, 17 Jun 2024 13:25:43 +0000 (UTC)
+	s=arc-20240116; t=1718631041; c=relaxed/simple;
+	bh=K1d1FkkEzlQ/UT9ihqbOKIjtW36wnnFLcT/ZvMOVYFM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AfGxZMQspP33BvPE5w313y1e6g4HUDaD2qoDqOxwGttC4PGQZvDWWvV/xckiaqFY9ac4er+RORU/oclwGlQfNkQ28BSrG1UCpfiGi866ucXg44x8oM9zoKRjI5Y3R/Wo27ORlieOIqSZC60CsZfNH+4dfeE+4AcDMGaEtpTn+pE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hhTGVFmw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D209EC2BD10;
+	Mon, 17 Jun 2024 13:30:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718630744;
-	bh=gSg7e7ssiabuaXE0c2Hnfh+p9orUESGxXNpTL+xWLAw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=g0rbeIdhm66ErgHl0zHv9EgIKzOjdl8uIZd3GbYNcDeX4yuNjq3/otaRoqXP7tLR4
-	 DEoS4ZFtok/DK+52SYs4Ku8ZRyhX8IAs9jZOgOauNyB4iQbfOW+aRwjaC0Kju3WaEF
-	 JKwat2otiGSX6zLQR5f6lj6QaQCJxliz5LZV1jGp73Zf5jjuvnNeJa/rBE46iMmRH+
-	 DcCpEPimgNQ9Bi4iRPj7mEyf0wB3q6zBaPZ6tkUfI8yKLMYlFv/kgVIa3rwnI8J81b
-	 /fK7nyLfXefoc7OhJetSGY3ja3OV8CNG+VosArkrnym6l9n8L2rPwSbpNg/UCcw2Nb
-	 40Q3voobt/g9Q==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: "Rob Herring (Arm)" <robh@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Sasha Levin <sashal@kernel.org>,
-	saravanak@google.com,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 22/29] of/irq: Factor out parsing of interrupt-map parent phandle+args from of_irq_parse_raw()
-Date: Mon, 17 Jun 2024 09:24:26 -0400
-Message-ID: <20240617132456.2588952-22-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240617132456.2588952-1-sashal@kernel.org>
-References: <20240617132456.2588952-1-sashal@kernel.org>
+	s=k20201202; t=1718631040;
+	bh=K1d1FkkEzlQ/UT9ihqbOKIjtW36wnnFLcT/ZvMOVYFM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hhTGVFmwyz+fliyEfsQwaIqR+ib5wkuWod8Xw3Xd/q/GBJP141ALpYUx3SINa51Sj
+	 fogpyLoW6Mi5ApaXiy6PxD5l4ilE7gQ46/LwMOO/4sxJnrAsOnBRcZF6xEYFNr5mVi
+	 DIVXZkX8BYLy8ikwhnkKsXFH8VteP+w/QZlyFN6XjzktWaT29cfOUoPewHiSfHgdlX
+	 w+N29UD7JhPaXjW8lmBpIRsYlzfyeQV85MizgwCneZIgUtURBMmUYPW5JUdBnBpDUi
+	 wnzapWZrPwOUszAFMV4zm8tL3FUcPJBCljoHV5+me/19eQw+vLWS7SjwREOgYujxaY
+	 sWoEv1U4NZp9A==
+Date: Mon, 17 Jun 2024 21:16:43 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Yixun Lan <dlan@gentoo.org>, Inochi Amaoto <inochiama@outlook.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/6] riscv: dts: sophgo: Put sdhci compatible in dt of
+ specific SoC
+Message-ID: <ZnA3O14HOiV1SBPV@xhacker>
+References: <20240612-sg2002-v2-0-19a585af6846@bootlin.com>
+ <20240612-sg2002-v2-1-19a585af6846@bootlin.com>
+ <IA1PR20MB49534C9E29E86B478205E4B3BBC02@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240616235829.GA4000183@ofsar>
+ <c75601a1-1389-400e-90b9-99c1e775a866@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.1.94
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c75601a1-1389-400e-90b9-99c1e775a866@bootlin.com>
 
-From: "Rob Herring (Arm)" <robh@kernel.org>
+On Mon, Jun 17, 2024 at 11:16:32AM +0200, Thomas Bonnefille wrote:
+> 
+> 
+> On 6/17/24 1:58 AM, Yixun Lan wrote:
+> > Hi
+> > 
+> > On 18:47 Wed 12 Jun     , Inochi Amaoto wrote:
+> > > On Wed, Jun 12, 2024 at 10:02:31AM GMT, Thomas Bonnefille wrote:
+> > > > Remove SDHCI compatible for CV1800b from common dtsi file to put it in
+> > > > the specific dtsi file of the CV1800b.
+> > > > This commits aims at following the same guidelines as in the other nodes
+> > > > of the CV18XX family.
+> > is there any URL of guideline? or did I miss anything
+> > couldn't find any discussion about this in v1
+> > 
+> 
+> Not explicitly, the fact is that I had to use a specific compatible on
+> SG2002 for the sdhci (it is already defined mainline), I had to choose
+> between :
+> 
+> 1. cv18xx.dtsi : compatible cv1800b-dwcmshc
+>    cv1800b.dtsi : no redefined compatible
+>    sg2002.dtsi : overwrite the previous compatible to use sg2002-dwcmshc
+> 
+> 2. cv18xx.dtsi : no compatible
+>    cv1800b.dtsi : compatible for cv1800b-dwcmshc
+>    sg2002.dtsi : compatible for sg2002-dwcmshc
+> 
+> As in the plic and clint controllers, the second option was chosen I
+> consider this as a "guideline" and reformat the dtsis accordingly.
+> 
+> > > > 
+> > > > Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> > > > ---
+> > > >   arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 4 ++++
+> > > >   arch/riscv/boot/dts/sophgo/cv18xx.dtsi  | 1 -
+> > > >   2 files changed, 4 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > > > index ec9530972ae2..b9cd51457b4c 100644
+> > > > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > > > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > > > @@ -25,3 +25,7 @@ &clint {
+> > > >   &clk {
+> > > >   	compatible = "sophgo,cv1800-clk";
+> > > >   };
+> > > > +
+> > > > +&sdhci0 {
+> > > > +	compatible = "sophgo,cv1800b-dwcmshc";
+> > > > +};
+> > > > diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> > > > index 891932ae470f..7247c7c3013c 100644
+> > > > --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> > > > +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> > > > @@ -288,7 +288,6 @@ uart4: serial@41c0000 {
+> > > >   		};
+> > > >   		sdhci0: mmc@4310000 {
+> > > > -			compatible = "sophgo,cv1800b-dwcmshc";
+> > > >   			reg = <0x4310000 0x1000>;
+> > > >   			interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
+> > > >   			clocks = <&clk CLK_AXI4_SD0>,
+> > > > 
+> > > > -- 
+> > > > 2.45.2
+> > > > 
+> > > 
+> > > Hi, Jisheng,
+> > > 
+> > > Is this change necessary? IIRC, the sdhci is the same across
+> > > the whole series.
 
-[ Upstream commit 935df1bd40d43c4ee91838c42a20e9af751885cc ]
+Hi,
 
-Factor out the parsing of interrupt-map interrupt parent phandle and its
-arg cells to a separate function, of_irq_parse_imap_parent(), so that it
-can be used in other parsing scenarios (e.g. fw_devlink).
+sorry for being late, I was busy in the past 2.5 month. Per my
+understanding, the sdhci in cv1800b is the same as the one in
+sg200x. Maybe I'm wrong, but this was my impression when I cooked
+the sdhci driver patch for these SoCs.
 
-There was a refcount leak on non-matching entries when iterating thru
-"interrupt-map" which is fixed.
+> > I tend to agree with Inochi here, if it's same across all SoC, then no bother to
+> > split, it will cause more trouble to maintain..
+> > 
+> 
+> To be honest, I agree with this to, but as a specific compatible for the
+> SG2002 was created in commit 849e81817b9b, I thought that the best practice
+> was to use it.
 
-Tested-by: Marc Zyngier <maz@kernel.org>
-Tested-by: Anup Patel <apatel@ventanamicro.com>
-Link: https://lore.kernel.org/r/20240529-dt-interrupt-map-fix-v2-1-ef86dc5bcd2a@kernel.org
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/irq.c        | 125 ++++++++++++++++++++++++----------------
- drivers/of/of_private.h |   3 +
- 2 files changed, 77 insertions(+), 51 deletions(-)
+I'd like to take this chance to query DT maintainers: FWICT, in the past
+even if the PLIC is the same between SoCs, adding a new compatible for
+them seems a must. So when time goes on, the compatbile list would be
+longer and longer, is it really necessary? Can we just use the existing
+compatible string?
+DT maintainers may answered the query in the past, if so, sorry for
+querying again.
 
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index 2bac44f09554b..38ceb29b15f5e 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -25,6 +25,8 @@
- #include <linux/string.h>
- #include <linux/slab.h>
- 
-+#include "of_private.h"
-+
- /**
-  * irq_of_parse_and_map - Parse and map an interrupt into linux virq space
-  * @dev: Device node of the device whose interrupt is to be mapped
-@@ -96,6 +98,57 @@ static const char * const of_irq_imap_abusers[] = {
- 	NULL,
- };
- 
-+const __be32 *of_irq_parse_imap_parent(const __be32 *imap, int len, struct of_phandle_args *out_irq)
-+{
-+	u32 intsize, addrsize;
-+	struct device_node *np;
-+
-+	/* Get the interrupt parent */
-+	if (of_irq_workarounds & OF_IMAP_NO_PHANDLE)
-+		np = of_node_get(of_irq_dflt_pic);
-+	else
-+		np = of_find_node_by_phandle(be32_to_cpup(imap));
-+	imap++;
-+
-+	/* Check if not found */
-+	if (!np) {
-+		pr_debug(" -> imap parent not found !\n");
-+		return NULL;
-+	}
-+
-+	/* Get #interrupt-cells and #address-cells of new parent */
-+	if (of_property_read_u32(np, "#interrupt-cells",
-+					&intsize)) {
-+		pr_debug(" -> parent lacks #interrupt-cells!\n");
-+		of_node_put(np);
-+		return NULL;
-+	}
-+	if (of_property_read_u32(np, "#address-cells",
-+					&addrsize))
-+		addrsize = 0;
-+
-+	pr_debug(" -> intsize=%d, addrsize=%d\n",
-+		intsize, addrsize);
-+
-+	/* Check for malformed properties */
-+	if (WARN_ON(addrsize + intsize > MAX_PHANDLE_ARGS)
-+		|| (len < (addrsize + intsize))) {
-+		of_node_put(np);
-+		return NULL;
-+	}
-+
-+	pr_debug(" -> imaplen=%d\n", len);
-+
-+	imap += addrsize + intsize;
-+
-+	out_irq->np = np;
-+	for (int i = 0; i < intsize; i++)
-+		out_irq->args[i] = be32_to_cpup(imap - intsize + i);
-+	out_irq->args_count = intsize;
-+
-+	return imap;
-+}
-+
- /**
-  * of_irq_parse_raw - Low level interrupt tree parsing
-  * @addr:	address specifier (start of "reg" property of the device) in be32 format
-@@ -112,12 +165,12 @@ static const char * const of_irq_imap_abusers[] = {
-  */
- int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- {
--	struct device_node *ipar, *tnode, *old = NULL, *newpar = NULL;
-+	struct device_node *ipar, *tnode, *old = NULL;
- 	__be32 initial_match_array[MAX_PHANDLE_ARGS];
- 	const __be32 *match_array = initial_match_array;
--	const __be32 *tmp, *imap, *imask, dummy_imask[] = { [0 ... MAX_PHANDLE_ARGS] = cpu_to_be32(~0) };
--	u32 intsize = 1, addrsize, newintsize = 0, newaddrsize = 0;
--	int imaplen, match, i, rc = -EINVAL;
-+	const __be32 *tmp, dummy_imask[] = { [0 ... MAX_PHANDLE_ARGS] = cpu_to_be32(~0) };
-+	u32 intsize = 1, addrsize;
-+	int i, rc = -EINVAL;
- 
- #ifdef DEBUG
- 	of_print_phandle_args("of_irq_parse_raw: ", out_irq);
-@@ -176,6 +229,9 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- 
- 	/* Now start the actual "proper" walk of the interrupt tree */
- 	while (ipar != NULL) {
-+		int imaplen, match;
-+		const __be32 *imap, *oldimap, *imask;
-+		struct device_node *newpar;
- 		/*
- 		 * Now check if cursor is an interrupt-controller and
- 		 * if it is then we are done, unless there is an
-@@ -216,7 +272,7 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- 
- 		/* Parse interrupt-map */
- 		match = 0;
--		while (imaplen > (addrsize + intsize + 1) && !match) {
-+		while (imaplen > (addrsize + intsize + 1)) {
- 			/* Compare specifiers */
- 			match = 1;
- 			for (i = 0; i < (addrsize + intsize); i++, imaplen--)
-@@ -224,48 +280,17 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- 
- 			pr_debug(" -> match=%d (imaplen=%d)\n", match, imaplen);
- 
--			/* Get the interrupt parent */
--			if (of_irq_workarounds & OF_IMAP_NO_PHANDLE)
--				newpar = of_node_get(of_irq_dflt_pic);
--			else
--				newpar = of_find_node_by_phandle(be32_to_cpup(imap));
--			imap++;
--			--imaplen;
--
--			/* Check if not found */
--			if (newpar == NULL) {
--				pr_debug(" -> imap parent not found !\n");
--				goto fail;
--			}
--
--			if (!of_device_is_available(newpar))
--				match = 0;
--
--			/* Get #interrupt-cells and #address-cells of new
--			 * parent
--			 */
--			if (of_property_read_u32(newpar, "#interrupt-cells",
--						 &newintsize)) {
--				pr_debug(" -> parent lacks #interrupt-cells!\n");
--				goto fail;
--			}
--			if (of_property_read_u32(newpar, "#address-cells",
--						 &newaddrsize))
--				newaddrsize = 0;
--
--			pr_debug(" -> newintsize=%d, newaddrsize=%d\n",
--			    newintsize, newaddrsize);
--
--			/* Check for malformed properties */
--			if (WARN_ON(newaddrsize + newintsize > MAX_PHANDLE_ARGS)
--			    || (imaplen < (newaddrsize + newintsize))) {
--				rc = -EFAULT;
-+			oldimap = imap;
-+			imap = of_irq_parse_imap_parent(oldimap, imaplen, out_irq);
-+			if (!imap)
- 				goto fail;
--			}
- 
--			imap += newaddrsize + newintsize;
--			imaplen -= newaddrsize + newintsize;
-+			match &= of_device_is_available(out_irq->np);
-+			if (match)
-+				break;
- 
-+			of_node_put(out_irq->np);
-+			imaplen -= imap - oldimap;
- 			pr_debug(" -> imaplen=%d\n", imaplen);
- 		}
- 		if (!match) {
-@@ -287,11 +312,11 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- 		 * Successfully parsed an interrupt-map translation; copy new
- 		 * interrupt specifier into the out_irq structure
- 		 */
--		match_array = imap - newaddrsize - newintsize;
--		for (i = 0; i < newintsize; i++)
--			out_irq->args[i] = be32_to_cpup(imap - newintsize + i);
--		out_irq->args_count = intsize = newintsize;
--		addrsize = newaddrsize;
-+		match_array = oldimap + 1;
-+
-+		newpar = out_irq->np;
-+		intsize = out_irq->args_count;
-+		addrsize = (imap - match_array) - intsize;
- 
- 		if (ipar == newpar) {
- 			pr_debug("%pOF interrupt-map entry to self\n", ipar);
-@@ -300,7 +325,6 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- 
- 	skiplevel:
- 		/* Iterate again with new parent */
--		out_irq->np = newpar;
- 		pr_debug(" -> new parent: %pOF\n", newpar);
- 		of_node_put(ipar);
- 		ipar = newpar;
-@@ -310,7 +334,6 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- 
-  fail:
- 	of_node_put(ipar);
--	of_node_put(newpar);
- 
- 	return rc;
- }
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index fb6792d381a6b..ee09d7141bcf8 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -151,6 +151,9 @@ extern void __of_sysfs_remove_bin_file(struct device_node *np,
- extern int of_bus_n_addr_cells(struct device_node *np);
- extern int of_bus_n_size_cells(struct device_node *np);
- 
-+const __be32 *of_irq_parse_imap_parent(const __be32 *imap, int len,
-+				       struct of_phandle_args *out_irq);
-+
- struct bus_dma_region;
- #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
- int of_dma_get_range(struct device_node *np,
--- 
-2.43.0
-
+> 
+> > > 
+> > > Regards,
+> > > Inochi
+> > 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
