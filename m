@@ -1,135 +1,169 @@
-Return-Path: <devicetree+bounces-76652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64BBF90B70F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD7690B72E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:58:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD936285FE3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:52:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B0792860B7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911F51662EB;
-	Mon, 17 Jun 2024 16:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39744166306;
+	Mon, 17 Jun 2024 16:57:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zxH3gaZu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ju6HrgnM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF828146D7D
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 16:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE3A1EB46;
+	Mon, 17 Jun 2024 16:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718643149; cv=none; b=OZgZKW1mafjcVcpsaPTr1z8yGhr8fSmybpL6nUApaLhCgEGyUo91lw0nJbBs4Duoxbe0ynhwQSvMWdMIjVeK0o+UY305H4wiypQuOPXNF+NtPPg+Lem0NsdhEeRcQfil9R2j6RwRr1Ojy8doJlNNMiYdiL2jlhP1YcYaFxsahQo=
+	t=1718643479; cv=none; b=lLWbzwaHF56yiqjLs788FXRlMF/hUQ/LVsxy54QvjmMBfm6IQz9mCzJazFU4zB0OZNLdaCfsaXbqWqWVWxL/+WcUnVEq5OyWiMegYu/FFdFAYjDLDtEtd9+vXDsYhFPo5DU2My6LHBpw6kWIcaXJl2zOjImSH3EzSshRPnV5BOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718643149; c=relaxed/simple;
-	bh=QlFWWrphdJLUKrnqdX/WA0FmGEy2H4QxLEAk/Rlk/Ts=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=r0Gzbd3sNlCvM5XSlEKgxuUyadz+oCOTZkPlgMvBRqgPUmnI4lktnPe6QdUGWXt304n0HqwaZ1x3DO2SG3sTc2sFefZd9jf5769YEaNZwDHuHb90hzTlWojOo8wbYBOX7FnXDUX4ZeU5WNytpYU3iMJRWnkWx7mHd/dI9cI9JJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zxH3gaZu; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6e349c0f2bso588754266b.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 09:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718643146; x=1719247946; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2SXqfMqzsmgi60tzvZSO8Ci7JwFaQflPhy4e9Xx/RRA=;
-        b=zxH3gaZuO2hl7boyhtUD01r5UkeNqAlviSKD/SKNqWbel76bBSOTBaH8wplVVpZW+b
-         7Bn+YUddHxLaLUDxjizruL0P5QgHnccxsUpFM/0HHqefzQiQUHlZlZrXbrHk4lpstx/t
-         4oa1hfuAfREVfetR3YO3j44xsYs5UfQT5EVw6kXIqW1AVybYfUmCnSGeemqf1OVz4U/2
-         2spEXHv9KoC++qpzHRGQrEgqRSPwCoSpZC+0byI6hD/oGNxhNZ4fGom30APHmNFFhr+J
-         h82wFFNEC1dlsy37OUA/JdMsYEeuQq0y/FjgIKOydUdiw89aHJVXw3wQ8wubPx0ATGUH
-         KunQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718643146; x=1719247946;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2SXqfMqzsmgi60tzvZSO8Ci7JwFaQflPhy4e9Xx/RRA=;
-        b=Z8f66LalvXVlnOJZrOybrCCLE4sXpK0WyRIaNZ+/pPK4ZNOoAybeIv38m0jZaKb2oY
-         oQpw1b2Y5Jck5o8+fPJ0cOYTRAJ8jSezeibLAhWPdTEWuTaRn2xK0P2jvhmCvSaFaLr4
-         lqh3myo+77HnnIqwIktE8y4zrvv3JDIDW5Uvtf7/Co6UiHod2qh7UIsTLd3zCZpO7GqT
-         301Xe58WydZgLvc+1q+O6xIr2cqbYqFVYHZCQcf6WtoBr3zp2aJtUzD5hcQTZxkeCi6s
-         hxQLpeSO71juowLlo2e/QTBNvDOaOqia3TSorIKE301BD6tEw16Jruq7PTSKDOXl1Nvx
-         9kNA==
-X-Forwarded-Encrypted: i=1; AJvYcCViXblR3UJ0ZOoqC5uD5GJUCUQwBS0QqsjaXvx7927K0crrfqM3pk+ceZdAM0EVC3e7V7vc9R+3W/AlwP30cm5M0NdVtGzsNP13OQ==
-X-Gm-Message-State: AOJu0YxcjYRQM4aEnaivM+/0KoZs0v8TjZ+KY7NUt39/zfQlBTTOrfoe
-	UtmiaGscAO++obxQkk9xPEhKpHWRkp6zyjdkuQLIeum6+UtPsZ8B+ru1P6JrJII=
-X-Google-Smtp-Source: AGHT+IGdOXSsdt9wpeM+S7PJouIKDjRGTea/R3paOf2QC08kw74Op/Ef1S4OlA1jnZ9Lbhjly1OS5g==
-X-Received: by 2002:a17:906:3c05:b0:a6f:1cf9:9b56 with SMTP id a640c23a62f3a-a6f60cef3bdmr659622966b.9.1718643146286;
-        Mon, 17 Jun 2024 09:52:26 -0700 (PDT)
-Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f8176eea5sm190176766b.88.2024.06.17.09.52.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 09:52:25 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Mon, 17 Jun 2024 17:52:18 +0100
-Subject: [PATCH] arm64: dts: exynos: gs101-oriole: add regulators for USB
- phy
+	s=arc-20240116; t=1718643479; c=relaxed/simple;
+	bh=EYhhFEKPUKJ3A9IrkQKwCZDAWmChwoTv2GvWJZl4HTQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=imZmdj4ryEINtLUkDzErn0Ypo1qfLNoAQKXmslftyw9vOjzfjS359aXdP3yt9kjbzyaZV2X+wWsVkCoPGXkWCkaBM87Qcrhs0autllpP9mxC6UHHcctVQ/Afy00fsOnFw7whXd5Ir68joY8YV6O5lc0vaaLNxxzI6qil2Z5NKNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ju6HrgnM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06D28C2BD10;
+	Mon, 17 Jun 2024 16:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718643478;
+	bh=EYhhFEKPUKJ3A9IrkQKwCZDAWmChwoTv2GvWJZl4HTQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ju6HrgnMDQT8HCJ1gUVvsZkxpNmMPkxNK3n1ac+FHNzr28r23Kig+IKENMFY/aoli
+	 sCrEBTKypzLwmzOOTIIQ+dJZ1hNc1oWeFMO8ZDC9sIZ1xs5d4o4htq1Hr5BEYXThIr
+	 MJUPZNtOOzFe+09X+N9PnxFMDSiqPq5nw/V3EV7PtVk5XCTtgGvm+KUr0/4Ra7GtfR
+	 imIYZJIek4IdcKtIEL1CznqlsG6budKqedaqWnzWXO98umXX3H+q/CqeSrRqsyHS3o
+	 JuUlB1M/H7vLhAoi3Dh8Qb9g5rFbtITo1p8GxN8KVLUwAV276fyW9cW0u26TaUn7F/
+	 EzOjz/socuMBA==
+Date: Mon, 17 Jun 2024 17:57:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Viacheslav <adeep@lexina.in>
+Cc: Rob Herring <robh@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
+ amlogic,meson-gx-ao-secure: add secure-monitor property
+Message-ID: <20240617-sulfate-posture-1619f1cdf090@spud>
+References: <20240610084032.3096614-1-adeep@lexina.in>
+ <20240610084032.3096614-4-adeep@lexina.in>
+ <20240610-dropout-compress-6d6a9b749524@spud>
+ <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
+ <20240611-undying-earthy-00236ac251aa@spud>
+ <20240613164244.GA1999034-robh@kernel.org>
+ <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240617-gs101-usb-regulators-in-dt-v1-1-e2242542c518@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAMFpcGYC/x3MSwqEMAwA0KtI1hNoix/0KjKL1sYakCqJDgPi3
- S0u3+ZdoCRMCkN1gdCPlbdcYD8VTIvPiZBjMTjjatPaDpNaY/HUgELpXP2xiSJnjAeGGMJE3jU
- z9VCCXWjm/5uP3/t+ABWWvJ9sAAAA
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, 
- kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NNsmTeGnFTom/65N"
+Content-Disposition: inline
+In-Reply-To: <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
 
-The USB phy requires various power supplies to work.
 
-While we don't have a PMIC driver yet, they should still be added to
-the DT. Do so.
+--NNsmTeGnFTom/65N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
-Note that this patch depends on the updated DT binding from
-https://lore.kernel.org/r/20240617-usb-phy-gs101-v3-0-b66de9ae7424@linaro.org
----
- arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Mon, Jun 17, 2024 at 11:21:30AM +0300, Viacheslav wrote:
+> Thanks for review.
+>=20
+> 13/06/2024 19.42, Rob Herring wrote:
+> > On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
+> > > On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
+> > > > Hi!
+> > > >=20
+> > > > 10/06/2024 19.08, Conor Dooley wrote:
+> > > > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov wro=
+te:
+> > > > > > Add secure-monitor property to schema for meson-gx-socinfo-sm d=
+river.
+> > > > >=20
+> > > > > "bindings are for hardware, not drivers". Why purpose does the "s=
+ecure
+> > > > > monitor" serve that the secure firmware needs a reference to it?
+> > > >=20
+> > > > This driver is an extension to the meson-gx-socinfo driver: it supp=
+lements
+> > > > information obtained from the register with information from the
+> > > > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the mod=
+ule
+> > > > loading order, we cannot do away with meson-gx-socinfo, as it is us=
+ed for
+> > > > platform identification in some drivers. Therefore, the extended in=
+formation
+> > > > is formatted as a separate driver, which is loaded after the secure=
+-monitor
+> > > > driver.
+> > >=20
+> > > Please stop talking about drivers, this is a binding which is about
+> > > hardware. Please provide, in your next version, a commit message that
+> > > justifies adding this property without talking about driver probing
+> > > order etc, and instead focuses on what service the "secure monitor"
+> > > provides etc.
+> >=20
+> > To put it another way, how many secure monitors does 1 system have?
+>=20
+> One per system in current device tree.
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 5e8ffe065081..1a79d9ab3be0 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -145,6 +145,13 @@ &usbdrd31_dwc3 {
- };
- 
- &usbdrd31_phy {
-+	/* TODO: Update these once PMIC is implemented */
-+	pll-supply = <0>;
-+	dvdd-usb20-supply = <0>;
-+	vddh-usb20-supply = <0>;
-+	vdd33-usb20-supply = <0>;
-+	vdda-usbdp-supply = <0>;
-+	vddh-usbdp-supply = <0>;
- 	status = "okay";
- };
- 
+One per system, or one is currently described per system, but more might
+be added later?
 
----
-base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
-change-id: 20240617-gs101-usb-regulators-in-dt-bdbbcea25fe9
+> > What do you do if the property is not present? You didn't make it
+> > required which is good because that would be an ABI break.
+>=20
+> We need an indication of the ability to use the secure-monitor to obtain
+> additional information within the soc driver. It seemed to me that using =
+an
+> explicit reference to the secure-monitor is the best choice.
+>=20
+> >=20
+> > You only need a link in DT if there are different possible providers or
+> > some per consumer information to describe (e.g. an interrupt number or
+> > clock ID). You don't have the latter and likely there is only 1 possible
+> > provider.
+>=20
+> Would replacing the reference to sm with an option, for example,
+> use-secure-monitor =3D <1>; look more appropriate in this case?
 
-Best regards,
--- 
-André Draszik <andre.draszik@linaro.org>
+Perhaps a silly question, but (provided there's only one per system, why
+can't the secure-monitor driver expose a function that you can call to get
+a reference to the system-monitor? I did something similar before with
+a call to in mpfs_sys_controller_get() mpfs_rng_probe(). Granted,
+mpfs-rng is probed from software so it's slightly different to your
+case, but the principle is the same and it's not unheard of for code in
+drivers/soc to expose interfaces to other drivers like this. You can
+just call a function like that, and know whether there's a secure
+monitor, without having to retrofit a DT property.
 
+Thanks,
+Conor.
+
+--NNsmTeGnFTom/65N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBrEQAKCRB4tDGHoIJi
+0t04AP9IZpDaZr0ZUw5JP/PZ+mfLbOJbqMfSkCUHR55GfiYSjQEAsopLOy9vwxux
+yt1njFci5qcGHtd4l6xcHFxdHYq+XQ0=
+=0Ywh
+-----END PGP SIGNATURE-----
+
+--NNsmTeGnFTom/65N--
 
