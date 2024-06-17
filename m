@@ -1,128 +1,151 @@
-Return-Path: <devicetree+bounces-76620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7499F90B597
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:00:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B11790B593
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 606651C21433
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:00:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F7521C22C60
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D6114F100;
-	Mon, 17 Jun 2024 15:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B93713A88F;
+	Mon, 17 Jun 2024 15:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="MZ+kQN7y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MQ2APQT+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548BA14EC62;
-	Mon, 17 Jun 2024 15:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B85EAC5;
+	Mon, 17 Jun 2024 15:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718639387; cv=none; b=tfMIMkWpm670k/cKMArsOZXFHXgCt4zHxQjWZMCsx1rhIweov5xIOD8wdzmgLcNeT0MgBsYkEqo04pdY6BhR2/BVMffubdXtTjNHbvp9ZM1zDBNHR0lt+GY7bUEDVyJ5VLHpC9cXGqUJsAp/E/85g0lQRr9/frFiJdN9z+Ss320=
+	t=1718639376; cv=none; b=S7aEgw8sgbsgZG6o83Id1CFSxLGpP9xpISVuP6XiCOzQpmVUWRYqGoxHUxyjegnbJXaCXJh5C5ItVzASnt4xgE/B518kXNGQmDgOsHK27AhTh0XbV88NbPDCMqaPk2pS7Jnzc4TnrZzoczxwPYR1kHAlt9wxjCDh8uiSeU2kTdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718639387; c=relaxed/simple;
-	bh=PfgonVgFYp61t/c8MZcCMIQbGRvfn27Xsd4DtpDziwQ=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=p/DxtGsoKco6LmeC5rrC1q3/Xfz7f2ok8iySMauZB6NbLy0eGR4dMEtzqPtKni+DcIfFrGINrLrhZHrVE8k1sOfEAhHeSXiyB4U0/8a0MFDOGfF1VZ/cvMh5BbUiQww3UHDxiUUiTEWNRLS1/ghYuRkxfvs836yypPMzSjhAqBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=MZ+kQN7y; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=pajbFnbgEHmNkP9OmvMt+YaCSM1Vfl2Psgvjwr2BIfk=; b=MZ+kQN7yQoQBm+Se75WsLfLfg0
-	I09oaBimbkGffo1m20hJbQRIKR1yButSr8+LQ3M/fW9/icPX/ZxQFY3YZJRRJGUC348OFS/RIRs9m
-	WCIAJLR+6eQYJdCBWB3gmplBhKRdmWpL4MQ/lN/CJaIFDiPLkYADiwqejlyOTScYg+pw=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:56466 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1sJEbw-000781-HN; Mon, 17 Jun 2024 11:49:36 -0400
-Date: Mon, 17 Jun 2024 11:49:14 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Hui Wang <hui.wang@canonical.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
-Message-Id: <20240617114914.329fb547ff82776b1c03e4e9@hugovil.com>
-In-Reply-To: <20240614102952.679806-1-hui.wang@canonical.com>
-References: <20240614102952.679806-1-hui.wang@canonical.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1718639376; c=relaxed/simple;
+	bh=9jxoacm0VNzafJu9FOapUXFOnY1Zd94cS5szpcO+6Zg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VrVuZWPxS80t77K7rIGRMHBI99hc21jSEur0EE9AiBMccC/8ZdHd3JbsJdY/pp+6yNnoaiNbpwI1/wHC1+jqCO/HkiqxQSV8zS9a2IjD5252lufZlb/i7MF0ECSz4ai5Hdvd/4i8HpwkDWzNQOagsj1QhPR0QIPxfxqmk+29VGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MQ2APQT+; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1f717608231so34377225ad.2;
+        Mon, 17 Jun 2024 08:49:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718639374; x=1719244174; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fHo927smNjkpt0+sCP+aYgix3Q+5w0hosKdaxQjMOgQ=;
+        b=MQ2APQT+iO+Eh0DXJQkI4uU+NnoTm57gpAHrOcGq3sb/q0iBES4aesC9E7BAFWyvzE
+         /8pP5TIM+H0bGTfECCMxrG+ru7qGjPZcaHg4lRspd5PFTw1i6TCPTqGBjeYIJqe4gUyw
+         bGEW7bwtLS7seet9zfDkBgk7GPiL/ZHitZJ5zDJ/W3+RFXdV/5pCZbPOL8/jFlOnej8Y
+         nXevDfIwy+xipH7Ixf3rgdIMOrDolXxI4hOhJIbNIcvFl1B2SGYrZQipwW+AahrSpmTV
+         CMdJfkzBeG0ZS6zSq0vAUq3Fz4p1ZLUIsl2W6WMOQ3ted8ttgmmEXPSsteZnvzHisi7W
+         30rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718639374; x=1719244174;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fHo927smNjkpt0+sCP+aYgix3Q+5w0hosKdaxQjMOgQ=;
+        b=XtuurV6AnhqW08ikfC/v7F/AbLBgYiLnbi0E6nyKKeG0W52yiCAPIF4VzcSpOGHAUd
+         BL6qjOjwdP7Q3Z/qdA3A6HiOhbgyxXArVjLIjBpJ15weTHE0HyqAn4OiXHgbOkU5RTFY
+         mBZePZQc6p3S4jmL74wD8liEoqtKe8jbAVjECUdHlDjWbTvJM4j9WpqjVkTlMKqaA0MR
+         7NZTYOZEvHkec/KwlhaoUA5qeBMUfgAbJDQbbKbUBS7kpUB4uq8oJ2J6Y1rfKDpiDryT
+         /7J4+Wjrqlx3dWIN2BnMxK6O6JBhRXnDtAuq3FAcNT1PFtlJZwLSacLMP7wZzYedJATn
+         L9Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCXXaikpSaFCDI9IPmEQp+B2Fuw0OK18xie+Y9nrweBdSv8FemS+CcEIahVP0k5R9oUHgSEEkdetK2dpo9a7DlJ7bzBoxYz/dVvqCx1V40NxyVF7MLKWszEbHKbUIpWMrjO/Doz2Cb41vnOSNxWXLOWEXQwY77azFCjvloA2ZXr6Yl13Fg==
+X-Gm-Message-State: AOJu0YzTJm0htyL7hociH7PmG0sWSf6Pc9oN3qGf94rzBXxIqETVBwCX
+	HaqKJq+yH3P9PTrVvf3wZj2uA0I29JXnMeGiQg6GIYO1Vi0AZEXw
+X-Google-Smtp-Source: AGHT+IGNbnjCGTfKI07a4UNbGPXQuG49aaEGA13NJD7JLoGUMWXHzLxcA414MUCJx0aBqKwSDo3jQQ==
+X-Received: by 2002:a17:902:e889:b0:1f7:4021:508a with SMTP id d9443c01a7336-1f8627c7d14mr158688035ad.33.1718639373888;
+        Mon, 17 Jun 2024 08:49:33 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855ee8349sm80467885ad.120.2024.06.17.08.49.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 08:49:32 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 17 Jun 2024 08:49:30 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Paul Menzel <pmenzel@molgen.mpg.de>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	=?iso-8859-1?Q?Ren=E9?= Rebe <rene@exactcode.de>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Armin Wolf <W_Armin@gmx.de>,
+	Stephen Horvath <s.horvath@outlook.com.au>
+Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
+Message-ID: <4e09b843-3d2d-46d7-a8e1-2eabc4382dc7@roeck-us.net>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-6-linux@roeck-us.net>
+ <a5aa120d-8497-4ca8-9752-7d800240b999@molgen.mpg.de>
+ <efb77b37-30e5-48a8-b4af-eb9995a2882b@roeck-us.net>
+ <33f369c1-1098-458e-9398-30037bd8c5aa@molgen.mpg.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-	* -1.4 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v5 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <33f369c1-1098-458e-9398-30037bd8c5aa@molgen.mpg.de>
 
-On Fri, 14 Jun 2024 18:29:51 +0800
-Hui Wang <hui.wang@canonical.com> wrote:
+Hi Paul,
 
-> In some designs, the chip reset pin is connected to a GPIO, and this
-> GPIO needs to be set correctly before probing the driver, so add a
-> reset-gpios in the device tree.
+On Mon, Jun 17, 2024 at 04:42:47PM +0200, Paul Menzel wrote:
+[ ... ]
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Hui Wang <hui.wang@canonical.com>
-> ---
-> No change in the v5
+> I applied your patch
 > 
->  Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>     $ git log --oneline --no-decorate -2
+>     00058a6 eeprom: Add basic spd5118 support
+>     a0e5865 i2cdetect: only use "newer" I2C_FUNC_* flags if they exist
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> index 5dec15b7e7c3..88871480018e 100644
-> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
-> @@ -28,6 +28,9 @@ properties:
->    clocks:
->      maxItems: 1
->  
-> +  reset-gpios:
-> +    maxItems: 1
-> +
->    clock-frequency:
->      description:
->        When there is no clock provider visible to the platform, this
-> @@ -91,6 +94,7 @@ unevaluatedProperties: false
->  examples:
->    - |
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
->      i2c {
->          #address-cells = <1>;
->          #size-cells = <0>;
-> @@ -120,6 +124,7 @@ examples:
->              compatible = "nxp,sc16is752";
->              reg = <0x54>;
->              clocks = <&clk20m>;
-> +            reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
->              interrupt-parent = <&gpio3>;
->              interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
->              nxp,modem-control-line-ports = <0 1>; /* Ports 0 and 1 as modem control lines */
-> -- 
-> 2.34.1
+> but reading eeprom fails:
 > 
+>     $ sudo ./eeprom/decode-dimms
 
-Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
- 
--- 
-Hugo Villeneuve
+decode-dimms does not need sudo, but that should not make a difference.
+
+>     Cannot read /sys/bus/i2c/drivers/spd5118/0-0050/eeprom at
+> ./eeprom/decode-dimms line 2465.
+> 
+Well, it _is_ a hack ;-), but that specific operation should not fail.
+
+Please try the following:
+
+ls -l /sys/bus/i2c/drivers/spd5118/0-0050/eeprom
+cp /sys/bus/i2c/drivers/spd5118/0-0050/eeprom /tmp
+od -t x1 /sys/bus/i2c/drivers/spd5118/0-0050/eeprom
+sudo i2cdump -y -f 0 0x50
+
+All those should work, and the size of /tmp/eeprom should be
+1024 bytes. The output of i2cdump should start with something like
+
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: 51 18 0a 86 32 03 32 00 00 00 00 07 ff 7f 00 00    Q???2?2......?..
+                                     ^^
+
+and with
+
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: 51 18 0a 86 32 03 32 00 00 00 00 00 ff 7f 00 00    Q???2?2......?..
+                                     ^^
+
+after executing the "sensors" command.
+
+Other than that, I can see that your system is an Intel system,
+meaning the i2c controller would be i801, not piix4. I wonder
+if that makes a difference. Has anyone else seeing this tested
+eeprom access with i801 (or any other controller besides piix4),
+by any chance ?
+
+Thanks,
+Guenter
 
