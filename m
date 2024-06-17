@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3960690ADA6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:09:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B667190ADB3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:11:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8D7C28480C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:09:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC8621C22D8E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:11:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFDA194C75;
-	Mon, 17 Jun 2024 12:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3529F194C82;
+	Mon, 17 Jun 2024 12:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nKGYSbZr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hPLCzLpA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F198194AD4;
-	Mon, 17 Jun 2024 12:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C7F194C78;
+	Mon, 17 Jun 2024 12:11:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718626146; cv=none; b=f0SK8ymarUFuwyYzZBlXmrSybivlvF3C6eTMlLo7xr4RYHUpxd9t64Hj6M7aIWofOExcOzcq7/nWMrlumOm1LgEIhPBtt8pPMy2w/5Mdo+1tEgf4MBhDwgISCn6VXIJgqlKfYNpbZuwDcWX0CQQEYT9bO6ZbsbfyO5PC9sIh/RU=
+	t=1718626287; cv=none; b=Cc7NN2yIBNR6+LzzPK8qB0csFEwN5/Noik1VtK96SqsJAkcDnWJZwUADwEXojtNfYz5sn3W8Ks2PZgaBENkShkZdBk1Ua27vBy0cfpt0r3qIeobV3MRsYS2QPfx6H/DN6uto8H8Nkd6H3SJfl933mKvw3TxqP9tzx/MiqdFmuxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718626146; c=relaxed/simple;
-	bh=LfluWw7DYm39LFePXaV2AcWOiTCAf18yVmNfxU7hQis=;
+	s=arc-20240116; t=1718626287; c=relaxed/simple;
+	bh=qPKRH/m+0WU62ekkJ5fsgl1vqOCrHGJhT9fzRyzgO6s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZsZpka8h7ts41802E9K6MKWA64NWu6+oFf4DJuVEtnvbIVvkJohKG5dkBxMGFtbHD2o5HY0v7zgpWUJfnoBIPZ9vmF6Rm0F8vWmh0boypnl1nqBux+QdJjTeJeh8f7RqTnGQsopiBVsDUQRP0cGRWJQu2uRM7hhrjEi+FXmz658=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nKGYSbZr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E301EC2BD10;
-	Mon, 17 Jun 2024 12:09:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AxpuGC1WNttG2/yFCoki99Eo0UQpLM6mwin9dmY6LkQeU72nxcuXeO1w7cSXy5EP1JEjti9aWpe8GeweA1Q0bk2POcCjPgpV/kN58s0hzocYyJP1UtGthPeeWJWdncr7F4/d6oEi9VLtYGoJmZpL0NbfWrIWBA7V4txhmMIszVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hPLCzLpA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA3E7C2BD10;
+	Mon, 17 Jun 2024 12:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718626146;
-	bh=LfluWw7DYm39LFePXaV2AcWOiTCAf18yVmNfxU7hQis=;
+	s=k20201202; t=1718626286;
+	bh=qPKRH/m+0WU62ekkJ5fsgl1vqOCrHGJhT9fzRyzgO6s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nKGYSbZrGsaEEzMIHLPTw1SZSXyYotHDxWq5ZEXrPZIv5FmY0aWKvEiZglgAEuTgK
-	 4IFYYi3x8nYoi6TP577n5kjOp8Td9QjKCGYCqA+9J9R+C/6dXKtIw631WZkgue69Zb
-	 ZmwBSoyLGsqnU68sLKG0G/sclshVWaEu12r8E82q7BFdixcojIZbEFL9wk4Nqvqz/N
-	 56I4l2mgIUp/DvvBhl5pJWzL7/Su+dl1df9gvtYJ6Or5Nt+ne0wECCN3A4XhgqmJYr
-	 E2RyTIvBmoAW0QTNpuRf1tVpi+zBX+p7BBHRZQW1KG9sdu8WRu6DsYLEUY9H6rulK/
-	 vQHi7NTQfRgCQ==
-Message-ID: <316c0751-17dd-4fc8-b424-bc8e875aaf83@kernel.org>
-Date: Mon, 17 Jun 2024 14:09:00 +0200
+	b=hPLCzLpAOJkge6FvgefvE1OipNdVhLalb3LtuSsmbfbAXxBL3wsMj77hhG3sgSkA7
+	 pkD6S2QKrdQJt4uGxgoWA7IA07lE1RNBmVdz3fnrrN/0vs4mOJRwHrl85wIN4JypHQ
+	 XLYz2gwNkhUGTRxCrF0Cj06E8CQUYw6iOng8QdgLWmZkVmay/GOJPniNV44khsh1Yr
+	 wKkMCZb/kGj4+J/Fa06f0322YZT/m+K5/C4YIZZapPG/Lv3C8hBWkl+UxlQugM5Grc
+	 HBEsddfw38nQ7VxaQ8cgEv/bAv5kmaHXGOIPFhEfl4sr9RZ4FvyMlq1xN0whhcXuW3
+	 3gMgYkqui5dxg==
+Message-ID: <1f8dd436-1f01-48f5-b2f5-2ba9d998be3b@kernel.org>
+Date: Mon, 17 Jun 2024 14:11:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] ASoC: dt-bindings: Convert realtek CODEC bindings to
- DT schema
-To: Daniel Baluta <daniel.baluta@gmail.com>
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/4] dt-bindings: firmware: secvio: Add device tree
+ bindings
+To: Aisheng Dong <aisheng.dong@nxp.com>, Vabhav Sharma
+ <vabhav.sharma@nxp.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240614033812.51312-1-animeshagarwal28@gmail.com>
- <b214c9db-fd82-4d5f-9cc2-96857da1bef5@kernel.org>
- <CAEnQRZBPv+OAmNBHe8fWziw8zJKFkH8vd-oe_G-e3OVSX_sTRQ@mail.gmail.com>
+ <conor+dt@kernel.org>, Franck Lenormand <franck.lenormand@nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Varun Sethi <V.Sethi@nxp.com>,
+ Silvano Di Ninno <silvano.dininno@nxp.com>,
+ Pankaj Gupta <pankaj.gupta@nxp.com>, Frank Li <frank.li@nxp.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>
+References: <20240509-secvio-v1-0-90fbe2baeda2@nxp.com>
+ <20240509-secvio-v1-1-90fbe2baeda2@nxp.com>
+ <750f5388-20f9-45a3-a1e6-ceac4b91329f@kernel.org>
+ <AS1PR04MB9358A2457AF05553457DE9B0F3FB2@AS1PR04MB9358.eurprd04.prod.outlook.com>
+ <1486a1b6-4119-4121-b6df-3da21d06add7@kernel.org>
+ <DU0PR04MB929983AB361DB081B44E7AFE80C02@DU0PR04MB9299.eurprd04.prod.outlook.com>
+ <a752a912-a328-49c8-b887-fa95512785cb@kernel.org>
+ <DU0PR04MB9299FB3B70920CF85CA2FB6B80C12@DU0PR04MB9299.eurprd04.prod.outlook.com>
+ <f6515498-ffc4-45b0-a19c-82204e4c83c0@kernel.org>
+ <DU0PR04MB92994DFA6AA23B7521B20B2680CD2@DU0PR04MB9299.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,34 +122,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAEnQRZBPv+OAmNBHe8fWziw8zJKFkH8vd-oe_G-e3OVSX_sTRQ@mail.gmail.com>
+In-Reply-To: <DU0PR04MB92994DFA6AA23B7521B20B2680CD2@DU0PR04MB9299.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 17/06/2024 13:18, Daniel Baluta wrote:
-> On Fri, Jun 14, 2024 at 11:32 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 14/06/2024 05:38, Animesh Agarwal wrote:
->>> Hey all,
->>> This patch series converts two of the thirteen realtek audio codec
->>> bindings which are still in txt format to DT schema. I have chosen
->>> these bindings as they have in tree DTS files.
->>
->> ... and the point of DTS is?
->>
->> To validate the DTS against bindings and see if they match.
->>
->> You received such feedback already.
+On 17/06/2024 12:11, Aisheng Dong wrote:
+> Hi Krzystof,
 > 
-> Hi Krzysztof,
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 2024年6月16日 15:34
+>> On 13/06/2024 10:48, Aisheng Dong wrote:
+>>> Hi Krzysztof,
+>>>
+>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>>>> Sent: 2024年6月13日 14:14
+>>>>
+>>>> On 12/06/2024 09:20, Aisheng Dong wrote:
+>>>>> Hi Krzysztof
+>>>>>
+>>>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>>>>>> Sent: 2024年6月7日 15:08
+>>>>>>
+>>>>>> On 07/06/2024 06:58, Vabhav Sharma wrote:
+>>>>>>>>
+>>>>>>>> Missing SoC compatibles.
+>>>>>>> Ok, I will use fsl,imx8dxl-sc-secvio
+>>>>>>>>
+>>>>>>>> So no, that's just abuse of DT to instantiate driver.
+>>>>>>>>
+>>>>>>>> NAK. Drop the binding.
+>>>>>>> I will detail the dt binding to describe the real hardware
+>>>>>>
+>>>>>> Still looks like way just to instantiate driver. Why it cannot be
+>>>>>> part of existing firmware SCU node?
+>>>>>>
+>>>>>
+>>>>> Technically yes. But SCU case is a little bit complicated as
+>>>>> there're many functions and all of them are already added as sub
+>>>>> nodes in SCU node for consistency and handling platform difference.
+>>>>>
+>>>>> I guess some of them, e.g. rtc, could be part of SCU node (reuse)
+>>>>> while some couldn't. e.g. pinctrl Do you want us to only make secvio
+>>>>> reuse existing SCU node?
+>>>>
+>>>> Yes
+>>>>
+>>>
+>>> Digging a bit more on the implementation. It seems there will be a
+>>> 'parent depends on child' issue when reusing the parent SCU node for secvio.
+>>> Considering the defer probe support and ocotop could be modules, I'm
+>>> still thinking If any solution. Do you have a good suggestion?
+>>
+>> I don't see any problem there. You will have even worse if making it children
+>> and using populate - unpredictable order.
 > 
-> I'm afraid I don't understand your comment here.
+> Sorry I didn't find a good solution without making OCOTP node to be party of SCU
+> node too which we can't due to extra required properties of nvmem properties. 
+> E.g. #addr/size-cells.
 > 
-> Animesh is saying that we are now looking only on bindings that are
-> actually used in the dts files.
+> I think the key problem is OCOTP is already a child node and there's a mismatch issue
+> If only making secvio, which depends on OCOTP, re-use their parent SCU node.
+> Maybe you have a good idea. Would you mind share a bit more?
+> 
+> BTW, I don't understand the order problem if making secvio a children as all
+> child nodes are Individual function devices and supports defer probe well.
 
-Yes and then one should compare the DTS with the binding, because old
-bindings are often incomplete.
+You keep talking about drivers but what does it have to do with bindings
+at all?
+
+You can order your probe however you wish regardless of bindings. You
+can handle or not handle deferred probe. You can create circular
+dependencies or break them. All regardless of the bindings.
 
 Best regards,
 Krzysztof
