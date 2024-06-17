@@ -1,144 +1,126 @@
-Return-Path: <devicetree+bounces-76584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31CB890B425
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:26:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A230B90B43E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:28:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D03F11F277F9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:26:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BFA2284878
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0360B1553BB;
-	Mon, 17 Jun 2024 14:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C152376A;
+	Mon, 17 Jun 2024 14:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gYsAcGKV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SNhrEXRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA48B1D953C;
-	Mon, 17 Jun 2024 14:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51C61E52A;
+	Mon, 17 Jun 2024 14:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718636071; cv=none; b=TZopY1VnAKwFmH1tlsLw/sWkiGwS9ygbJLUQ1Ou+m+Ndj3YNFmk7rC04WXfLOI+fP1wEfPUeBh2XEzV85Dpig4+0V5e4QscgNuME1mSkUOYWQEjWz22Rm20+CNlTT5I1KpsoLOvWrfFA7fg8XC4Au1yiElLdVd+qU+QzJq0MIFo=
+	t=1718636306; cv=none; b=XfeEYZl1GiW4eVjE3otygH8/4eNM26XFvT5k/sFHCWuWS39uv7ryK9hJ8Xu2kNXMFr+1vyGg0O2SkRn3LsgPxIHTwax6LHAkPdgUpm4NETvK7HQC3N00rcMKhZx0dmN0aTEFgd/TusefvtXjEqwcOdmcm2P34AVB5eiPHBlkbfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718636071; c=relaxed/simple;
-	bh=4gU3Vhk04r3mpE2uHIQ2qrgsd7MKyC6zHoaY3ZF7uHI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UdDage5KpEyLquggO7dRvpd+9Oh4eKqpWA1zdHt3RdNbalQBd1ICe7iVP461QVb/G1FgvfvTKJ4LJhw0VAPDgq5ZHPJQR5Bmm8Nl2CQHOfpfQdyKINlB9t5kg2bw0WumsJ+bAeKve7rKrmrhxs8do94FN32dC2sdJdHYhqDk3oA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gYsAcGKV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2086CC2BD10;
-	Mon, 17 Jun 2024 14:54:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718636070;
-	bh=4gU3Vhk04r3mpE2uHIQ2qrgsd7MKyC6zHoaY3ZF7uHI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gYsAcGKVVT/jxqyTS3QpfePE6RFceQ3280eGVPrQ79O7DudQFEp2wO/DT3RHI6Fvh
-	 KhkxtxmXvnqbI3nAQXjVIEfz6QY60v4gyqj9nGJi+45C+b2hla1zjpNueiba72WyZa
-	 /Qzqle10ShGN/qLflPwX02lyvNcguh8VQ4X9geVSL3BmeOrFGhA609PuEhNGatYz+q
-	 3T+hgqR++KX6AFHjPSH/HXk3CX22QitutNZK4zBlcArOOw5m+WFzC2ci4leOgzbN+8
-	 rU9/aHDN+9kyfLGbKhm9S3DPY3Fi2YKR/FKSeHaZvZT9NDtoLYX1pXdVTybgjgHIld
-	 i0bx6fSPS/HZQ==
-Message-ID: <71b58547-545e-4953-baa0-f3c6c8c3d2f9@kernel.org>
-Date: Mon, 17 Jun 2024 16:54:25 +0200
+	s=arc-20240116; t=1718636306; c=relaxed/simple;
+	bh=0NknL9LnSVCalS3Fn4EcfTLwKDeYzCw2PnnM3Ze4rkk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pCkkFCSCioXoEAxvDSwNStg4/qyBw1y1Zl+V43bWfC3igBLTroJ7FsUOQJTem4kFKC5RauBZSgaSqDHHNZFMPspKcdCiuzr5nowvEgNkcVbK3vzn4xYNON9kQjR09T2JuCb2D/b/jqIDqAxCllFil9sqPrCqIcdBuciiKMftSGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SNhrEXRj; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-70413de08c7so3172542b3a.0;
+        Mon, 17 Jun 2024 07:58:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718636304; x=1719241104; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hWJgXFUyRh246Z7TzUCiKOM3xG0BIQKAjl/1uq2WWqk=;
+        b=SNhrEXRjgZoqIILwd/PauDZ7qOZSYOj0z9C7zIugAP5e2yrbe3UTiQLWDHC+r6F98b
+         YO4d7/Z2NVc4AWNGz0eEwIvtN3VCWvG6RFPw3q4/sl9mlh4blMAxcDc2lRNnreIcLQj3
+         khcijXv/4b4DA13BXGJtKQFKJxKgtrwKJo6ZXxyEXpeeZwOXdOKRN/dd6sbI7wMy4Eae
+         GvxBNoLQwKfQsOAK1LKu3b+koGmoNS8Rf0VVGgX6Bmb55dspZSQMpJU5oBceUvjNEaT2
+         soiyHbuUdpTeGbvSmX+cg8nrvcrVhHO6dx7q82c4CKL0pVKI2KQUW91PLdj0KKyZbED+
+         8K1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718636304; x=1719241104;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hWJgXFUyRh246Z7TzUCiKOM3xG0BIQKAjl/1uq2WWqk=;
+        b=qHEU2OsnIFD9kiTIa5PkxIUliSdetVHVBM59o6dAD9Io2uZhFFYOlPGAVsP/4EnsL4
+         mwI0fXm7gPdZNLvVS1Yl5JCLyD4D9VH/PFQ0uvr4mJnkX1/JL2YiKJN8XnsrpN9z2Da9
+         wcPEaULfZGoMQcc7qGacupYsfboz2nZCaxeRWOy2FYHFGfkRF+NCX51raDldzeAAKTux
+         T1ULNZ+anY1DTs36//bEKCg/3TGf1RjnbE/dVf5BgZU3m2RuDTKdl2qkRIbKIwdkC97j
+         M6h8ovWEDpyNsAmMMMvRxNtfX/DIjA5LLSFffDf5bMk4orUaa7ftSuGvMFNJIcJkflAA
+         JQQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXLbhM1hVr0ZXQbgG29j3kvbemL+T+gQCfi+NrngBj4HUk6rjjbVDKvnPnBfEMVSGJKYAO8MTmWqdxjD19zlkUK/q9xdUWEQAdOMz4G3dQgGOK9NjC2rJBHfh5RPceZ/38VVWePDNNf9VybZ4h9Mxvq6l5T45o8b+mY+3ZeqT6Jf29XIg==
+X-Gm-Message-State: AOJu0YxEQXWLpVN+JGgBGYmccnToCdpAIcfuV2gha9LqYDYLNGhsDjL8
+	LQXK8W3FmUVxo2v+32po5b/IqoM6KLgMkv/6sK76ctcxK4QGK76L
+X-Google-Smtp-Source: AGHT+IFHkSLCIBhImDWV7Pb8641rGAtIQ7noDvkKP1bDy97GQQN7sQBDM4krNl7f4fRPzmgUWszMYg==
+X-Received: by 2002:a05:6a20:d488:b0:1b5:d10a:1b65 with SMTP id adf61e73a8af0-1bae8224fa0mr10696463637.49.1718636303874;
+        Mon, 17 Jun 2024 07:58:23 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855f2e281sm80115165ad.254.2024.06.17.07.58.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 07:58:22 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 17 Jun 2024 07:58:21 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Armin Wolf <W_Armin@gmx.de>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	=?iso-8859-1?Q?Ren=E9?= Rebe <rene@exactcode.de>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Stephen Horvath <s.horvath@outlook.com.au>,
+	Paul Menzel <pmenzel@molgen.mpg.de>,
+	Sasha Kozachuk <skozachuk@google.com>,
+	John Hamrick <johnham@google.com>
+Subject: Re: [RFT PATCH] hwmon: (spd5118) Add support for Renesas/ITD SPD5118
+ hub controllers
+Message-ID: <90f20e62-9200-4169-9415-3b74da92d640@roeck-us.net>
+References: <20240614185924.604672-1-linux@roeck-us.net>
+ <2046d2c3-bbf6-4842-bc51-b2f567f33c0a@gmx.de>
+ <d2ba6ed1-3a6a-4481-9f43-265eee78c0c1@roeck-us.net>
+ <da7c9855-ff4b-4e80-99b8-b2fe24a9a9d9@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: thermal: convert hisilicon-thermal.txt to
- dt-schema
-To: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240617-hisilicon-thermal-dt-bindings-conversion-v3-1-6d8d44f0fd74@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240617-hisilicon-thermal-dt-bindings-conversion-v3-1-6d8d44f0fd74@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <da7c9855-ff4b-4e80-99b8-b2fe24a9a9d9@gmx.de>
 
-On 17/06/2024 16:17, Abdulrasaq Lawani wrote:
-> Convert the hisilicon SoCs tsensor txt bindings to dt-schema
+On Mon, Jun 17, 2024 at 12:50:41AM +0200, Armin Wolf wrote:
+[ ... ]
+> > 
+> > This results in
+> > 
+> > spd5118 0-0050: Range 0: selector for 1 in window
+> > spd5118 0-0050: error -EINVAL: regmap init failed
+> > 
+> > If you have an idea how to configure the ranges differently,
+> > please let me know.
+> > 
+> > Thanks,
+> > Guenter
+> > 
+> Oh, i did not think of this. In this case we indeed cannot use regmap here. I will test the patch tomorrow.
 > 
-> Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
 
-...
+That would be great. As for using regmap for paging, it actually
+works if I remove the selector restrictions. I'll try to get the
+restrictions removed or relaxed, but that will take some time. I'd
+like to keep this patch separate from that effort. If it succeeds,
+I'll send a follow-up patch to introduce regmap based paging.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - '#thermal-sensor-cells'
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/hi6220-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +     temperature-sensor@f7030700 {
-> +        compatible = "hisilicon,tsensor";
-
-Still not correct indentation. See writing-schema document.
-
-Use 4 spaces for example indentation.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Guenter
 
