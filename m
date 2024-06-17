@@ -1,276 +1,129 @@
-Return-Path: <devicetree+bounces-76427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A8490A8D2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:56:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF1EF90A91B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:09:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55DD61F224B8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:56:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E0DBB238EF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3B1190660;
-	Mon, 17 Jun 2024 08:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15C5190683;
+	Mon, 17 Jun 2024 09:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f2odm/ET"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z/W5sT9X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F54C171B0;
-	Mon, 17 Jun 2024 08:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F6C1836FC;
+	Mon, 17 Jun 2024 09:09:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718614579; cv=none; b=qhMQLimfMOr5J2ARiUJY5OUxU2vtkV/ah9zMDDBxVdVIGvtgnFqOa+GHAQORQR6KF6tOnYjioKsO/HsPqZ9MxTX2kJGC8if0u/vxhX9jLgwM2/of2MUAKfp4yZVT3bibSjui6ho3Atb83ALNSiGLwsVnChMFKsHjEmhN7Payl4Q=
+	t=1718615348; cv=none; b=vE+3koCsr6iOtI6dip6hJ4SsIY48CuQepI+M2DBgfWrSY99V2kkSmDB+R2dNgTiN+QLALKlZdN2KYmJUPFQScpp7bdPdU+ln2TkxEc31ZOkt8ZYrXu5qpz1zXZ+5AUr/QnHyj/YJ1KgezgcaqE0xlmepWfJSgpmxo9JYtFGnjm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718614579; c=relaxed/simple;
-	bh=Oui3HoXK55nnW0IUGIdFKPDnIg/Y9ztYiH1xOpz6wYA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nb7nADuDfp8lBEaV0thx6rOyDb9/MrckZXXFyJ2jj4V0M/KBx1Gb/2KX79lGc+mRriQ1mraXqWsHG+a5GzllSJNg4xEBg0xfWY6I3+XKLLx+r+UJmg+95fiJbalrAgI6BkOtxrMUJfccCJ5qTssgmZQ3S/cneABDEDORLRyNyHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f2odm/ET; arc=none smtp.client-ip=209.85.214.170
+	s=arc-20240116; t=1718615348; c=relaxed/simple;
+	bh=cXXNE+/7w55i14XhydNETn2Xywxi8u/c5hsjE7hRYsI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kn2qg7OAWtf/xCHoo/uOC6M83454unp1Y9cpZM6/WKFasRaXgzEtt43z0v/dbb0wDL40AK+A1CfEYc5UXvtiJLz85QQkTIfSDTFpORRAJ3jKCvDQpe7mLvvfenvmeqBnLMMZ50ZHiLBZfZnrAVVDlVytiHKXOGDoPZpPl+RQrhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z/W5sT9X; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1f44b5b9de6so32597755ad.3;
-        Mon, 17 Jun 2024 01:56:18 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52bbdb15dd5so4729504e87.3;
+        Mon, 17 Jun 2024 02:09:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718614578; x=1719219378; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Px2F5O/xlFYH5rKqkkkLF6gjhpLOgiX0YoFm/7eZqRY=;
-        b=f2odm/ET1zOHL8QADMp0lEn9Q2LE86N2blYnkH2zxLUDN2oQUS/IdqucHwCaUdz/81
-         xNM5L8caHDcehNEGl8MUW39CKtXoQdNEgt+MerPy7Pnw+oN6JUPWakoqRRtwZXqk/PLi
-         KpkN9y2XmeiSc3wMGCurhfTcELaXE4wOVEYizYX2R0KcE8qXHSPDVdGNube43HF3nYje
-         CTm0YEnFuYN2oyKM7cRsZE/oaGkOlBQWRvYN4kA8M6yHCTlTKz4BGwNWNihmVjUtpoiQ
-         EBDr5QZ8lHD72wboiRey3c1a1vgKunCmhdG90QqrnpMEXOJ0pxZbQBEUzcoUCSVKsed1
-         TDpQ==
+        d=gmail.com; s=20230601; t=1718615345; x=1719220145; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tHualuQcrcR9FOndaPpRpoW37XnDcV8gKD4pHsnrc4s=;
+        b=Z/W5sT9X7APzG+yGuNPY5Ek5W3hniignONtip2sjqOyVKntD7Uh7U7IZRFiv231gLe
+         fOESf4zbdxsjTz6+jxlBhslmjR87MMXMJSsT0eb2dMSznHkvQtMT7t0RgRyxFUDDLuak
+         bp5vAa+nNHcj7fHjJ+N+gG1C3NdAnI0/RcKU4DIKBTxe3bHnYeNNi3cR0620HWdOwfnP
+         27lH+5hBqeGh1fEXKzJOBt+C8rwK8ftzHLJZKIkDhdKYiUNquGv0KcvHT4l2oiE4G5+p
+         gJRP1KPYIY4Y+5SNuA8bTuh+3c+mmefVHpptyRt7O8ENk+ccIqpGpKX1DWiQGdkWC+a1
+         t+nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718614578; x=1719219378;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Px2F5O/xlFYH5rKqkkkLF6gjhpLOgiX0YoFm/7eZqRY=;
-        b=NlLGaabVzGEo44pFfp7oDpyGEmhEKm12QrDD0R3PddNIfhN8gJdzbaRS1M+Yxi/cNi
-         S46qXgNIGavMzG71JC9nSgyPfar/cKn6DzNFK4oMjZsVn78pZhCeliq5TUI0TV6pSCCG
-         6vXN5xhDWo6Lo7zSzoEBuwwAqLNmwcuGnmA3JDqVA5SluRxHaFNajoJzVNbyxzSaKkGD
-         2JgIVTwJr7VWBW0cQIGM1hCJ2FKt0t9F++EznN4XltHg+22n8HzxI071yoYrga3xgRjb
-         0qRc+htIby6kCva3/CGK9Z4EuyP38sJfyMZY+/0P2OYOevVnD440SIruqVWSLikmHVJv
-         aYsA==
-X-Forwarded-Encrypted: i=1; AJvYcCXgsdktkWlo48d5fl62RMXan+Th2rhjYUsrXL+KX037ErQgAiqWVRPrSu/1pTGc9PQnD4rlgjSIL9+kLGJ+IDlpQq3eNyTbkVwAOtijNR5nB/RKv1BT+xQ1jazq2ZsKtfFiNXLkQpo/9A==
-X-Gm-Message-State: AOJu0YyMxt8Gl1ZNNXwGtBGp9cE2lFrVcotRxIIkV4ntQ0Cgs62jfUTS
-	FQhGwqKj8DBmKi9IzZJ81ifgd4NuLvj/J3q+sZ9U+SV2MW9gZ80n
-X-Google-Smtp-Source: AGHT+IHeVjWVii646asJCpvxGnP4VmV3AlDIExZwWwDrivS9N4JaJa0DteWgOnOA+8uSzFbLsrsErQ==
-X-Received: by 2002:a17:903:22c5:b0:1f7:e32f:f067 with SMTP id d9443c01a7336-1f862a1694emr96194705ad.50.1718614577443;
-        Mon, 17 Jun 2024 01:56:17 -0700 (PDT)
-Received: from localhost.localdomain ([122.161.50.215])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855f28fd8sm75407295ad.252.2024.06.17.01.56.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 01:56:16 -0700 (PDT)
-From: Shresth Prasad <shresthprasad7@gmail.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	sebastian.reichel@collabora.com,
-	andy.yan@rock-chips.com,
-	s.hauer@pengutronix.de,
-	jbx6244@yandex.com
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	javier.carrasco.cruz@gmail.com,
-	skhan@linuxfoundation.org,
-	Shresth Prasad <shresthprasad7@gmail.com>
-Subject: [PATCH v4] dt-bindings: phy: rockchip-emmc-phy: Convert to dtschema
-Date: Mon, 17 Jun 2024 14:23:42 +0530
-Message-ID: <20240617085341.34332-2-shresthprasad7@gmail.com>
-X-Mailer: git-send-email 2.45.2
+        d=1e100.net; s=20230601; t=1718615345; x=1719220145;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tHualuQcrcR9FOndaPpRpoW37XnDcV8gKD4pHsnrc4s=;
+        b=VFMDbttYP/2qHdvFQp3PlmXAbC+z2ArOCbudu1Az6v8q/BxQRzb6TlSSXDkSlp2Vjv
+         WirP8VT8j7FmaMYeOWLjyHyHtE1CmIsreiM/66bZG2CTpyaHTsS7SGxyskJGEYHffD3w
+         akxItWUO0nmBHtWnx5nvpVtyS7ExGehPXLWaw0FTVgJb8ifAfChYniEvFY7opzm1B6eG
+         P8hsUNkG6zcdjEYDdpWw+sJyhc+FJstBOu4f9mGl+DNZW2uZjIDsvLCPJJ9piET93CMA
+         eqTLv706fzD50QyPyfm6PSsnf4kbMtdMTU6jA7jGsIlgaPdEK2VZ/PTnrBCz/VTy4AFw
+         SQbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlNG9A9DWf0QgDn5WicOU+M2n4q8zuav8zdNg7V7GTMsZxNZzMcZ9pX4Tl7M3rMzaywHeXqc2zx/b77H9q9cGbVsaOacYE44aSaiGw49BkMgpMHzGxyMZdMW4LsDMXSwpyaAVun+qdLw==
+X-Gm-Message-State: AOJu0YyEy84Ru00ozWT3hA1bUD1ld7V2wRkHQXmWsZy+OByIfLOkA/dt
+	kfGWdLPZPIciHQZyw2mL3aPwB6ZS2b5WRVgO7cJSl/olag6OCd99
+X-Google-Smtp-Source: AGHT+IFHVBJp/VFqtV++c4t0//VCdL0P9LDVu7JUn+qUbTIRnLIdZCE653CJVQBQ1vaa46S79Eeekw==
+X-Received: by 2002:ac2:555e:0:b0:52c:9a1f:52e7 with SMTP id 2adb3069b0e04-52ca6e988a6mr5758312e87.58.1718615344901;
+        Mon, 17 Jun 2024 02:09:04 -0700 (PDT)
+Received: from ?IPV6:2001:8f8:183b:6864:7071:8881:6a51:3e82? ([2001:8f8:183b:6864:7071:8881:6a51:3e82])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f6127d6dsm154008765e9.26.2024.06.17.02.09.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jun 2024 02:09:04 -0700 (PDT)
+Message-ID: <8ae179e6-3aee-415b-9dc4-298e162fbcad@gmail.com>
+Date: Mon, 17 Jun 2024 13:09:00 +0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] arm64: dts: rockchip: Add cpufreq support to
+ Khadas Edge2
+Content-Language: en-GB
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, Jacobe Zang <jacobe.zang@wesion.com>
+Cc: nick@khadas.com, efectn@protonmail.com, jagan@edgeble.ai,
+ dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240617071112.3133101-1-jacobe.zang@wesion.com>
+ <20240617071112.3133101-6-jacobe.zang@wesion.com> <5475817.tWeucmBOSa@diego>
+From: Alexey Charkov <alchark@gmail.com>
+In-Reply-To: <5475817.tWeucmBOSa@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
-for validation.
 
-Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
----
-Request for an Ack from the PHY maintainers, so that the DT maintainer Heiko 
-can merge it to grf.yaml in the order that he likes.
+On 17/06/2024 11:33, Heiko Stübner wrote:
+> Hi Jacobe Zang,
+>
+> Am Montag, 17. Juni 2024, 09:11:12 CEST schrieb Jacobe Zang:
+>> This adjust CPU nodes on Khadas Edge2.
+>>
+>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+>> ---
+>>   .../arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts | 12 ++++++++++--
+>>   1 file changed, 10 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
+>> index 7d7cc3e76838c..5fb15d3dc23e9 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
+>> @@ -160,34 +160,42 @@ vdd_3v3_sd: vdd-3v3-sd-regulator {
+>>   
+>>   &cpu_b0 {
+>>   	cpu-supply = <&vdd_cpu_big0_s0>;
+>> +	mem-supply = <&vdd_cpu_big0_mem_s0>;
+> as far as I remember there has not been any binding merged that declares
+> this supply. Thankfully following the double phandle below, the Edge2 is
+> designed to use the same regulator for the mem-supply, so special handling
+> isn't even needed.
 
-Changes in v4:
-    - change license to `GPL-2.0-only`
-    - change dt-binding file name
-    - remove descriptions
-    - move `#phy-cells` to the bottom
-    - add Heiko to maintainers
-    - fix `patternProperties` regex in grf.yaml
-    - change `description` to `$ref` in grf.yaml
+Indeed, currently there isn't any user in the mainline tree (neither 
+bindings nor drivers) for this separate regulator. Mainline cpufreq-dt 
+only expects a single regulator, and as Heiko pointed out Edge2 uses the 
+same physical regulator to power both the CPU core and its SRAM, so 
+adding a separate mem-supply here isn't helpful.
 
-Tested against `rockchip/rk3399-firefly.dtb`, `rockchip/rk3399-orangepi.dtb`
-and `rockchip/rk3399-pinebook-pro.dtb`.
----
- .../phy/rockchip,rk3399-emmc-phy.yaml         | 72 +++++++++++++++++++
- .../bindings/phy/rockchip-emmc-phy.txt        | 43 -----------
- .../devicetree/bindings/soc/rockchip/grf.yaml |  9 ++-
- 3 files changed, 78 insertions(+), 46 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3399-emmc-phy.yaml
- delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-
-diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3399-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3399-emmc-phy.yaml
-new file mode 100644
-index 000000000000..e61ba2b0abcd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/rockchip,rk3399-emmc-phy.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/rockchip,rk3399-emmc-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip EMMC PHY
-+
-+maintainers:
-+  - Heiko Stuebner <heiko@sntech.de>
-+  - Shresth Prasad <shresthprasad7@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: rockchip,rk3399-emmc-phy
-+
-+  reg:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: emmcclk
-+
-+  clocks:
-+    maxItems: 1
-+
-+  drive-impedance-ohm:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Specifies the drive impedance in Ohm.
-+    enum: [33, 40, 50, 66, 100]
-+    default: 50
-+
-+  rockchip,enable-strobe-pulldown:
-+    type: boolean
-+    description: |
-+      Enable internal pull-down for the strobe
-+      line.  If not set, pull-down is not used.
-+
-+  rockchip,output-tapdelay-select:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Specifies the phyctrl_otapdlysec register.
-+    default: 0x4
-+    maximum: 0xf
-+
-+  "#phy-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    grf: syscon@ff770000 {
-+      compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
-+      reg = <0xff770000 0x10000>;
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+
-+      emmcphy: phy@f780 {
-+        compatible = "rockchip,rk3399-emmc-phy";
-+        reg = <0xf780 0x20>;
-+        clocks = <&sdhci>;
-+        clock-names = "emmcclk";
-+        drive-impedance-ohm = <50>;
-+        #phy-cells = <0>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-deleted file mode 100644
-index 57d28c0d5696..000000000000
---- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--Rockchip EMMC PHY
-------------------------
--
--Required properties:
-- - compatible: rockchip,rk3399-emmc-phy
-- - #phy-cells: must be 0
-- - reg: PHY register address offset and length in "general
--   register files"
--
--Optional properties:
-- - clock-names: Should contain "emmcclk".  Although this is listed as optional
--		(because most boards can get basic functionality without having
--		access to it), it is strongly suggested.
--		See ../clock/clock-bindings.txt for details.
-- - clocks: Should have a phandle to the card clock exported by the SDHCI driver.
-- - drive-impedance-ohm: Specifies the drive impedance in Ohm.
--                        Possible values are 33, 40, 50, 66 and 100.
--                        If not set, the default value of 50 will be applied.
-- - rockchip,enable-strobe-pulldown: Enable internal pull-down for the strobe
--                                    line.  If not set, pull-down is not used.
-- - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec register.
--                                    If not set, the register defaults to 0x4.
--                                    Maximum value 0xf.
--
--Example:
--
--
--grf: syscon@ff770000 {
--	compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
--	#address-cells = <1>;
--	#size-cells = <1>;
--
--...
--
--	emmcphy: phy@f780 {
--		compatible = "rockchip,rk3399-emmc-phy";
--		reg = <0xf780 0x20>;
--		clocks = <&sdhci>;
--		clock-names = "emmcclk";
--		drive-impedance-ohm = <50>;
--		#phy-cells = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 79798c747476..6e1b1cdea680 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -176,9 +176,12 @@ allOf:
-             Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
- 
-       patternProperties:
--        "phy@[0-9a-f]+$":
--          description:
--            Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
-+        "^phy@[0-9a-f]+$":
-+          type: object
-+
-+          $ref: /schemas/phy/rockchip,rk3399-emmc-phy.yaml#
-+
-+          unevaluatedProperties: false
- 
-   - if:
-       properties:
--- 
-2.45.2
+Best regards, Alexey
 
 
