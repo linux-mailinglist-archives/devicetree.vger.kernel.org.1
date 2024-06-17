@@ -1,359 +1,137 @@
-Return-Path: <devicetree+bounces-76753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 080FB90BD1D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 23:57:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D2890BD3E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 00:06:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E1AC282622
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 21:57:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DD781F222E0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 22:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3078B19A297;
-	Mon, 17 Jun 2024 21:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793871991AF;
+	Mon, 17 Jun 2024 22:06:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EoeSEaXH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jeXignhI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7105B199E80;
-	Mon, 17 Jun 2024 21:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38797492;
+	Mon, 17 Jun 2024 22:06:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718661392; cv=none; b=bforn0Qr3YC5kNr64qXYFMVyZJrXv6GIUkgVYnAWNFfWJcjTH3jSoEocP1QnJp+TFfvWmD2UvkvQhGRF/8Oi766ea43b/10n/nx4AEhpuhqv4QC8MwMf9e41an2AIn0ILK3MbqbX0MYOHNonwA+HwO+fkWueyCr52+0QMP9tSxw=
+	t=1718661963; cv=none; b=LF/PLNSSChYzCGBoYkL6KFP1+ND7DnEK51WlDSuohBT5MlPlDBxVFUthetHmDDUls6k4ZioIsSunRi2izy7Vk5dKmzAA93gkmzj0QXN/yRaLAn/mQF2XGNeSbvq/K63aiWE6CTDuaSDaDz4mCoFQ4P0m+w4hUqdsAMT3qEra9Qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718661392; c=relaxed/simple;
-	bh=PJqnn1xMk/vyTcI7+A/mSlNl/s10hJkFyTUCDiHLlLQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ftze+aIgtXZ8A9V3ZrewyMzU7muOd5Uzwicz6o3P+3358KkTShSTOeNOzb48AJQE+SKiCqjZ79gfFiklC6s6G16yIaJbU6mcXejplzRNrhIlBjnI7xeVtovUhCECJM0p/J82GK3HI4ri+vAz4MwyZJaMQVQeCg0WZCkaOuQR97o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EoeSEaXH; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718661388;
-	bh=PJqnn1xMk/vyTcI7+A/mSlNl/s10hJkFyTUCDiHLlLQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=EoeSEaXHD95nl/EmSAh75MlfIbNTFm82Mb1sQmIwwLYLI4KBbYwt1Lpd0GvJ3omZ+
-	 czgo+iO1EDSLl3wEYGVlkrvzwP4pHW4YPlgIvc3SBHVJ+7SMTvTsVO4bfS0kIfBrjy
-	 /eHVDWyHTB2/6wtHQUrH5CFedrSe8vog/CotNbGkg4UUH28nDenoh+n9gnw4wHjd7M
-	 3u/FP+++Iqs+WQfQICWyMYvjDRAoX7i0B8CcQ+oWOAua7QQ0NVCa2hQ5pbu9FG3FVt
-	 Ynbcm+t2lxP8EatqDlcT0sb9l+DoKOBYTyFBGQC1vm9efLFde+BqI6pt2r0B62iq2o
-	 KBBc7inHUqzLw==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5A56D378217B;
-	Mon, 17 Jun 2024 21:56:28 +0000 (UTC)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Tue, 18 Jun 2024 00:48:12 +0300
-Subject: [PATCH 4/4] phy: phy-rockchip-samsung-hdptx: Add clock provider
- support
+	s=arc-20240116; t=1718661963; c=relaxed/simple;
+	bh=/hWPDOnmI2yUJYDl5gQyCSpT+WA3huxuW9NK3NL7qIU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=G07agkY9YrrqI9s5jVayZZkH7t4qNy7Vd8+X69QoV8Vxw34aTIZ4E2Gonk/nlQK68vYDvSfg9IrPBWMJAYpW5Giwevh8H2u/gPQjthgZGDAOq95NkLo4YkZzLMJlubjS8K2eOZJ3fgyWeg4lMVilXw8WBc69KP4dxtnmUIPqcfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jeXignhI; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-250ca14422aso2670408fac.0;
+        Mon, 17 Jun 2024 15:06:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718661961; x=1719266761; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r/Su6zOhJKHHuZVcMf95zxNGwUW/D3aqWfw+kVjdFyg=;
+        b=jeXignhI5iwKigMsJ0zWKjYKfdGVi5EU0fTlYToCpGD7GCv++CceVg+feHT/jdb/Wc
+         9/o3uAdvDkpwc8fD8mFqA42H1GI81oCK8LqVf5SuZPydFPzwK44CEu6g7+r+OXfSakif
+         6FUbv9C2w7vW2QTcwfglzSnuh3dA5FRSdVqJulGBRaeusPzOn5tGgq6WMgaZ6CiIgA/C
+         JPqQkESZlck+JA6G9JRA9cTSx7RRDb9sBZqgRJD30Qjt7qT2v6qstT5XtZL8M2mErTJk
+         bUUKq8BLf2mTx2dw5wvSs1kUKB7ae5wB2gnEZl/UcWAZPD+cM84IOEU5Oc6BOaM/LdNa
+         vQ7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718661961; x=1719266761;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r/Su6zOhJKHHuZVcMf95zxNGwUW/D3aqWfw+kVjdFyg=;
+        b=nHxXRYRPHs6TF7Cpe74Bqh7zHR0Z430dgRG1GVxOYJKrHCjd5stFLT2hQBdg/133ap
+         9O/t/oyGU3wgLYxrR9UKo4jx/H0zE9vipGP047rpdDqstv8qqknbiw1WU0mHl8Wdo8m1
+         7z5vBDKm9XpV1qd1v8X164jmIDryawBBagpVcOwekUvdQAsW0HBAddy9PINpEf8eWWnK
+         EQLnP1gfDgj974ji2ITP/UGMBuFDeqhTMve0zeeScumiK9uKWELhY7/4kefjdWhoxJaj
+         58pRCCnkcuOG73sn0z9uMilTl6voMceI3aygcbwmLgnvHAY0EVWHh/UtxZAsS1hQ4BRV
+         IZeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWYOkptTrVhtTY+4OJrTk2JBlHhonSxTsKgmDAmGXbNj1H52y+ejf1esMtOqH1bPKN8MjAxpox/XEDSs6NFVMqSMG8HZBplusdINYm1FTpePlOpqvzXmFWVXpqCnL3MMu6cSpr1zg==
+X-Gm-Message-State: AOJu0YyjZI5Zjz3J2GJ5KKnifWuwpoHvYmWeCb8lFlkpBaQE27P9Dto3
+	toTgKY9FCe4MiVLwfsNGgjVIQLEHtR8mPp7bNahCyHMiP0a0gyzP
+X-Google-Smtp-Source: AGHT+IGTkEJLjAQsBDyPVepbzS96rgjLZUNQCfs/a/TVEyMYrXfJ/EQuJc6ranGmaMtM25H5ZoBEcw==
+X-Received: by 2002:a05:6871:5c9:b0:24f:ee90:4556 with SMTP id 586e51a60fabf-25842552a80mr12620848fac.0.1718661960812;
+        Mon, 17 Jun 2024 15:06:00 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6fb5b1b0fa8sm1664232a34.28.2024.06.17.15.06.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 15:06:00 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-sunxi@lists.linux.dev
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	broonie@kernel.org,
+	lee@kernel.org,
+	samuel@sholland.org,
+	jernej.skrabec@gmail.com,
+	sre@kernel.org,
+	wens@csie.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	lars@metafoo.de,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/8] Add Battery and USB Supply for AXP717
+Date: Mon, 17 Jun 2024 17:05:27 -0500
+Message-Id: <20240617220535.359021-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240618-rk3588-hdmiphy-clkprov-v1-4-80e4aa12177e@collabora.com>
-References: <20240618-rk3588-hdmiphy-clkprov-v1-0-80e4aa12177e@collabora.com>
-In-Reply-To: <20240618-rk3588-hdmiphy-clkprov-v1-0-80e4aa12177e@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14-dev-f7c49
+Content-Transfer-Encoding: 8bit
 
-The HDMI PHY PLL can be used as an alternative dclk source to RK3588 SoC
-CRU. It provides more accurate clock rates required by VOP2 to improve
-existing support for display modes handling, which is known to be
-problematic when dealing with non-integer refresh rates, among others.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-It is worth noting this only works for HDMI 2.0 or below, e.g. cannot be
-used to support HDMI 2.1 4K@120Hz mode.
+Add support for monitoring the USB charger and battery charger on the
+AXP717 PMIC. This required some driver refactoring of the axp20x USB
+and battery charger as the AXP717 is somewhat different but can still
+benefit from some common elements.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c | 189 +++++++++++++++++++---
- 1 file changed, 167 insertions(+), 22 deletions(-)
+Note that as of now the charging current now value may be incorrect as
+the scale and offsets were not documented in the datasheet. I suspect
+the scale is 1 and the offset is somewhere around 450mA though.
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-index 72de287282eb..ad3fd4084377 100644
---- a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-+++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-@@ -8,6 +8,7 @@
-  */
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
-@@ -191,6 +192,8 @@
- #define LN3_TX_SER_RATE_SEL_HBR2	BIT(3)
- #define LN3_TX_SER_RATE_SEL_HBR3	BIT(2)
- 
-+#define HDMI20_MAX_RATE			600000000
-+
- struct lcpll_config {
- 	u32 bit_rate;
- 	u8 lcvco_mode_en;
-@@ -273,6 +276,12 @@ struct rk_hdptx_phy {
- 	struct clk_bulk_data *clks;
- 	int nr_clks;
- 	struct reset_control_bulk_data rsts[RST_MAX];
-+
-+	/* clk provider */
-+	struct clk_hw hw;
-+	unsigned long rate;
-+
-+	atomic_t usage_count;
- };
- 
- static const struct ropll_config ropll_tmds_cfg[] = {
-@@ -760,6 +769,8 @@ static int rk_hdptx_ropll_tmds_cmn_config(struct rk_hdptx_phy *hdptx,
- 	struct ropll_config rc = {0};
- 	int i;
- 
-+	hdptx->rate = rate * 100;
-+
- 	for (i = 0; i < ARRAY_SIZE(ropll_tmds_cfg); i++)
- 		if (rate == ropll_tmds_cfg[i].bit_rate) {
- 			cfg = &ropll_tmds_cfg[i];
-@@ -823,19 +834,6 @@ static int rk_hdptx_ropll_tmds_cmn_config(struct rk_hdptx_phy *hdptx,
- static int rk_hdptx_ropll_tmds_mode_config(struct rk_hdptx_phy *hdptx,
- 					   unsigned int rate)
- {
--	u32 val;
--	int ret;
--
--	ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &val);
--	if (ret)
--		return ret;
--
--	if (!(val & HDPTX_O_PLL_LOCK_DONE)) {
--		ret = rk_hdptx_ropll_tmds_cmn_config(hdptx, rate);
--		if (ret)
--			return ret;
--	}
--
- 	rk_hdptx_multi_reg_write(hdptx, rk_hdtpx_common_sb_init_seq);
- 
- 	regmap_write(hdptx->regmap, LNTOP_REG(0200), 0x06);
-@@ -857,10 +855,66 @@ static int rk_hdptx_ropll_tmds_mode_config(struct rk_hdptx_phy *hdptx,
- 	return rk_hdptx_post_enable_lane(hdptx);
- }
- 
-+static int rk_hdptx_phy_consumer_get(struct rk_hdptx_phy *hdptx,
-+				     unsigned int rate)
-+{
-+	u32 status;
-+	int ret;
-+
-+	if (atomic_inc_return(&hdptx->usage_count) > 1)
-+		return 0;
-+
-+	ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &status);
-+	if (ret)
-+		goto dec_usage;
-+
-+	if (status & HDPTX_O_PLL_LOCK_DONE)
-+		dev_warn(hdptx->dev, "PLL locked by unknown consumer!\n");
-+
-+	if (rate) {
-+		ret = rk_hdptx_ropll_tmds_cmn_config(hdptx, rate);
-+		if (ret)
-+			goto dec_usage;
-+	}
-+
-+	return 0;
-+
-+dec_usage:
-+	atomic_dec(&hdptx->usage_count);
-+	return ret;
-+}
-+
-+static int rk_hdptx_phy_consumer_put(struct rk_hdptx_phy *hdptx)
-+{
-+	u32 status;
-+	int ret;
-+
-+	ret = atomic_dec_return(&hdptx->usage_count);
-+	if (ret > 0)
-+		return 0;
-+
-+	if (ret < 0) {
-+		dev_warn(hdptx->dev, "Usage count underflow!\n");
-+		ret = -EINVAL;
-+	} else {
-+		ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &status);
-+		if (!ret) {
-+			if (status & HDPTX_O_PLL_LOCK_DONE)
-+				rk_hdptx_phy_disable(hdptx);
-+			return 0;
-+		}
-+	}
-+
-+	atomic_inc(&hdptx->usage_count);
-+	return ret;
-+}
-+
- static int rk_hdptx_phy_power_on(struct phy *phy)
- {
- 	struct rk_hdptx_phy *hdptx = phy_get_drvdata(phy);
- 	int bus_width = phy_get_bus_width(hdptx->phy);
-+	int ret;
-+
- 	/*
- 	 * FIXME: Temporary workaround to pass pixel_clk_rate
- 	 * from the HDMI bridge driver until phy_configure_opts_hdmi
-@@ -871,20 +925,18 @@ static int rk_hdptx_phy_power_on(struct phy *phy)
- 	dev_dbg(hdptx->dev, "%s bus_width=%x rate=%u\n",
- 		__func__, bus_width, rate);
- 
--	return rk_hdptx_ropll_tmds_mode_config(hdptx, rate);
-+	ret = rk_hdptx_phy_consumer_get(hdptx, rate);
-+	if (!ret)
-+		ret = rk_hdptx_ropll_tmds_mode_config(hdptx, rate);
-+
-+	return ret;
- }
- 
- static int rk_hdptx_phy_power_off(struct phy *phy)
- {
- 	struct rk_hdptx_phy *hdptx = phy_get_drvdata(phy);
--	u32 val;
--	int ret;
--
--	ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &val);
--	if (ret == 0 && (val & HDPTX_O_PLL_LOCK_DONE))
--		rk_hdptx_phy_disable(hdptx);
- 
--	return ret;
-+	return rk_hdptx_phy_consumer_put(hdptx);
- }
- 
- static const struct phy_ops rk_hdptx_phy_ops = {
-@@ -893,6 +945,99 @@ static const struct phy_ops rk_hdptx_phy_ops = {
- 	.owner	   = THIS_MODULE,
- };
- 
-+static struct rk_hdptx_phy *to_rk_hdptx_phy(struct clk_hw *hw)
-+{
-+	return container_of(hw, struct rk_hdptx_phy, hw);
-+}
-+
-+static int rk_hdptx_phy_clk_prepare(struct clk_hw *hw)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	return rk_hdptx_phy_consumer_get(hdptx, hdptx->rate / 100);
-+}
-+
-+static void rk_hdptx_phy_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	rk_hdptx_phy_consumer_put(hdptx);
-+}
-+
-+static unsigned long rk_hdptx_phy_clk_recalc_rate(struct clk_hw *hw,
-+						  unsigned long parent_rate)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	return hdptx->rate;
-+}
-+
-+static long rk_hdptx_phy_clk_round_rate(struct clk_hw *hw, unsigned long rate,
-+					unsigned long *parent_rate)
-+{
-+	u32 bit_rate = rate / 100;
-+	int i;
-+
-+	if (rate > HDMI20_MAX_RATE)
-+		return rate;
-+
-+	for (i = 0; i < ARRAY_SIZE(ropll_tmds_cfg); i++)
-+		if (bit_rate == ropll_tmds_cfg[i].bit_rate)
-+			break;
-+
-+	if (i == ARRAY_SIZE(ropll_tmds_cfg) &&
-+	    !rk_hdptx_phy_clk_pll_calc(bit_rate, NULL))
-+		return -EINVAL;
-+
-+	return rate;
-+}
-+
-+static int rk_hdptx_phy_clk_set_rate(struct clk_hw *hw, unsigned long rate,
-+				     unsigned long parent_rate)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	return rk_hdptx_ropll_tmds_cmn_config(hdptx, rate / 100);
-+}
-+
-+static const struct clk_ops hdptx_phy_clk_ops = {
-+	.prepare = rk_hdptx_phy_clk_prepare,
-+	.unprepare = rk_hdptx_phy_clk_unprepare,
-+	.recalc_rate = rk_hdptx_phy_clk_recalc_rate,
-+	.round_rate = rk_hdptx_phy_clk_round_rate,
-+	.set_rate = rk_hdptx_phy_clk_set_rate,
-+};
-+
-+static int rk_hdptx_phy_clk_register(struct rk_hdptx_phy *hdptx)
-+{
-+	struct device *dev = hdptx->dev;
-+	const char *name, *pname;
-+	struct clk *refclk;
-+	int ret, id;
-+
-+	refclk = devm_clk_get(dev, "ref");
-+	if (IS_ERR(refclk))
-+		return dev_err_probe(dev, PTR_ERR(refclk),
-+				     "Failed to get ref clock\n");
-+
-+	id = of_alias_get_id(dev->of_node, "hdptxphy");
-+	name = id > 0 ? "clk_hdmiphy_pixel1" : "clk_hdmiphy_pixel0";
-+	pname = __clk_get_name(refclk);
-+
-+	hdptx->hw.init = CLK_HW_INIT(name, pname, &hdptx_phy_clk_ops,
-+				     CLK_GET_RATE_NOCACHE);
-+
-+	ret = devm_clk_hw_register(dev, &hdptx->hw);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register clock\n");
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &hdptx->hw);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to register clk provider\n");
-+	return 0;
-+}
-+
- static int rk_hdptx_phy_runtime_suspend(struct device *dev)
- {
- 	struct rk_hdptx_phy *hdptx = dev_get_drvdata(dev);
-@@ -987,7 +1132,7 @@ static int rk_hdptx_phy_probe(struct platform_device *pdev)
- 	reset_control_deassert(hdptx->rsts[RST_CMN].rstc);
- 	reset_control_deassert(hdptx->rsts[RST_INIT].rstc);
- 
--	return 0;
-+	return rk_hdptx_phy_clk_register(hdptx);
- }
- 
- static const struct dev_pm_ops rk_hdptx_phy_pm_ops = {
+Please note that this patch series relies on the following series being
+applied first [1].
+
+[1]: https://lore.kernel.org/linux-sunxi/20240418000736.24338-1-andre.przywara@arm.com/
+
+Chris Morgan (8):
+  dt-bindings: iio: adc: Add AXP717 compatible
+  power: supply: axp20x_usb_power: Add support for AXP717
+  power: supply: axp20x_battery: add support for AXP717
+  mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
+  iio: adc: axp20x_adc: add support for AXP717 ADC
+  power: supply: axp20x_usb_power: Add support for AXP717
+  power: supply: axp20x_battery: add support for AXP717
+  arm64: dts: allwinner: h700: Add charger for Anbernic RG35XX
+
+ .../bindings/iio/adc/x-powers,axp209-adc.yaml |  10 +
+ .../x-powers,axp20x-battery-power-supply.yaml |   7 +
+ .../x-powers,axp20x-usb-power-supply.yaml     |   6 +
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      |  21 +
+ drivers/iio/adc/axp20x_adc.c                  | 167 ++++-
+ drivers/mfd/axp20x.c                          |  30 +-
+ drivers/power/supply/axp20x_battery.c         | 580 ++++++++++++++++--
+ drivers/power/supply/axp20x_usb_power.c       | 350 +++++++++--
+ drivers/regulator/axp20x-regulator.c          |   2 +-
+ include/linux/mfd/axp20x.h                    |  26 +-
+ 10 files changed, 1102 insertions(+), 97 deletions(-)
 
 -- 
-2.45.2
+2.34.1
 
 
