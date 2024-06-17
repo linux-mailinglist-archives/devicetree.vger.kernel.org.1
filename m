@@ -1,265 +1,280 @@
-Return-Path: <devicetree+bounces-76681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACACA90B9B6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:32:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8192F90B933
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:12:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 566EBB2ABA8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:07:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A9041C23AA3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:12:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF1F19AD5F;
-	Mon, 17 Jun 2024 18:03:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F754199251;
+	Mon, 17 Jun 2024 18:09:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Oc8S0ZQP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ku6VU/Ao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2069.outbound.protection.outlook.com [40.107.21.69])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C628319AD5A;
-	Mon, 17 Jun 2024 18:03:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718647382; cv=fail; b=qFB/C6vMyX6NtzY5U3YbeUU8SZIASD15eNSA01SSJyvoloH9PmIAa6o6RYhuFBIsXaMaOhVQ367xUr1nrk/5Og4H2j7G9Eg1KgSY8imjQvfGf9tSbYqP5Yvz+tfj1UZyDiygr+DyC0hsL2D+a42uq17aufvz5j/XaPVOaVMAleU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718647382; c=relaxed/simple;
-	bh=1sTDjxtBNCYgA010Dk3F/8eEkxfKsEvZRLCSRcz/n/o=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=uBhE4BrDFs29HjfSiyXbkxqA/yjaE7fyldOA3ZErgSYo8IH5MkyBhuAO8uwiYtD7aDHs2S/CXFkOlcVnGdF3/M9deQ5sDZ/lQ/Qxexf7EiQGUHMcXruzEvYrNp9c1IQRBuebA09KYYwkqrd+2t5iGI8l9osAoC6mHvFyM6Buh5A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Oc8S0ZQP; arc=fail smtp.client-ip=40.107.21.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fykxPq/U/nl8Fl2QzbHBjJwrBtYarNvll3ey+Ze9emc2MBIptu4mcPVFAM3akuVDKDVUxamWby7NwJFSW/15T3c7ti48TPkW5/5XOOBoIqdZyJLO3+HHPVOhKdmmvKOFGgd8niI57R7dF6t2tVlmNwArdVxe0gwFWi4Gwg7jGSczSjkXrLMMtNprnlSjcTVz+DXqHuuicHJF3JQLRW4gbWSYem5uZJgzoTSqys4FGbdR0/1IeSmOg+KgXJCl/z/WDmHqIJOQuHLCU5wKolQ2bONfad6YXzH1WaWKs91bvFfHbXiipgEBkNzoVh/Pw7EJXrxvvt70TcGtxHUiD5IfXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oZhflHKkhPx1x+CqBA76QfJJ4EN9TwtIEAuyXSjIkBI=;
- b=oevF8XH/gfifZpwkn4i8aOL8BsY3arngEiQjRkBPzHOJOUW8lNdsxv58+mHiw/gJqaNB0glP8AzkPRePp3YmotB7wPB15HASm4FUP2IF2HEwcGycj3niciIjMzIzPxs2Ok0wILHdlY4xhEG2hI8iCjxa9YeNWUxifO03gudVfCArEyFdngj7UrdNFAU7alExjgFz5sinLVkkHxYvGA/s92av6qyM/t1y9DJnMgg+iPXIKUkyJ4gjmVA0RWWZcCuKR+K4JjhJTuebKHieIvGViKZUfJCeB338HVvzhFl6cppsafPhyJMSTPpWMcllnO+5F3aRR6YeBQfYQyq5ODfs+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oZhflHKkhPx1x+CqBA76QfJJ4EN9TwtIEAuyXSjIkBI=;
- b=Oc8S0ZQPB9G5lG1al04zf260UMHMLbTrf/9GIPrPT9Snmerd23i3UYrvJHNl6aWSLTG4QJQvGRGd7p/RegmPIWQG4nq0KlDWNlqBFNMKN+vvEvUqMkWJZfpKGWMGsagzspyPNKfIw0QXieHZUKgAAK63g6mvjRPaJbf/GMIov/8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS5PR04MB9972.eurprd04.prod.outlook.com (2603:10a6:20b:682::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Mon, 17 Jun
- 2024 18:02:57 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7677.030; Mon, 17 Jun 2024
- 18:02:57 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-ide@vger.kernel.org (open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: ata: ahci-fsl-qoriq: convert to yaml format
-Date: Mon, 17 Jun 2024 14:02:40 -0400
-Message-Id: <20240617180241.901377-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY5PR20CA0020.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E339B1993A5;
+	Mon, 17 Jun 2024 18:09:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718647780; cv=none; b=Y23/sf3jUZj+K3GQokj0q2J5waljGHCF64jKcxpwd6a7OK1auL6/bayX6vV6ArljZ4f7k54G/ftxO919SI3K3kyMkbOfkNyrp1j0vJLNaF4UJ7/DP6i/lSQdOOyaqaiEwok1u8LbRvqL+yZ8N4KNevGwsGMLF12Nq+JQ1gRlvTg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718647780; c=relaxed/simple;
+	bh=BgaGJHJM8e0w3ayyh4Gy75kBov3Jf6uhGK/GjAr+ss4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HIF9BKj0i+9XYw0IgvL14SRaZWtaOft6Poyzdri3hWJ9cRhfgxrCme8ffcGKvUL5PzOcRfVF7VZ+ctfonPTUoiZf2GTJb1dq5kUduhpP9MOJ0gZfxpK/u8cNy5oMYLDbsxJH0ZOvpHz9MvGeIIst3tXxRIXyFJlFmSCRdI2P8LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ku6VU/Ao; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45HAetPo007945;
+	Mon, 17 Jun 2024 18:09:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ib0UBtopQ7Vlu5fIvwkd65iDqdQlVjR9uW1C9htA5NA=; b=Ku6VU/Aozk+Gg6la
+	AGOrUAbYcZCpxaJyfVwNKjYlq1+IwXRma0OgmNoQvn5WJLupdg+YAJ8x2LjR8F53
+	1vLzztQ1/MVETXu+GiIngbc70KZuKmDYuoMfn1TB1UNqEFaG7rN50fiWEo9p+YbL
+	4+c2ZfFMNcLN35JDE4FiiM920umxZ71r3P4JUjStOrLW4VXgpkB51Bu1mouT/ITB
+	8n95Qd5/yN2bPQieLdbb9hL/AkAwVCPZ2+HZgblvRlj2KbrYKcK43Luee+YOG8Bk
+	bf1sibk4gzZohu2peGvwIM1Q2JKG/ZT8UzPD1aEaCrlk3r5+3cGzBy3365/2v/PG
+	8//Yww==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ys0nfcqn7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Jun 2024 18:09:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45HI9MqO018146
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Jun 2024 18:09:22 GMT
+Received: from [10.110.42.69] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 17 Jun
+ 2024 11:09:21 -0700
+Message-ID: <3e45ed90-aacd-46ec-bb8b-408bc1a66883@quicinc.com>
+Date: Mon, 17 Jun 2024 11:09:21 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS5PR04MB9972:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9db0494a-91d3-4a64-9a62-08dc8ef7b7d9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230037|376011|1800799021|52116011|366013|38350700011;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?WTBgkwG2ZFTpeQMMZCAu4gi8SUN/VZywLl0B9gbRAfy6482+RTCFLuzwes8i?=
- =?us-ascii?Q?QLUNztxfctuEikUNBT52rXPJ5xJMMyMiIH+5Xz+IJjwfBbj7l4jF8WYp8OxE?=
- =?us-ascii?Q?u1YCiINHbfCjQNGrp1cqAwWqxGUUyQfQ0u0ivw8WKocdYfQMCPnFhVmX2Lxz?=
- =?us-ascii?Q?yeJVdlQoP8csUWO6RXWjSas9mETJXDLk8230hehmIlwHzyswDbLBvsktOXJL?=
- =?us-ascii?Q?Hzwy/O4Cvy+JO0VHKh8qWJMCdmcyhpWJHFTwB3u/gRhHOxINhPFshFA6P7Hk?=
- =?us-ascii?Q?xTeBQ4Wm4oLaqA85hp5hPTrjStVyPYpv/ugrgm0FlSTC7Mf9yvOnPEDqR6yo?=
- =?us-ascii?Q?o4FA1Z4afBSB/3kwArRtlMkOP3qSvYV2DDLht/8zbfmixTX0qsi7XssDjivz?=
- =?us-ascii?Q?CH+YYJXxKJu4R6eY5JLMfzZwRpsBlyBgvoVD1kEPnRLpGXOOSclVHQeF0Q3q?=
- =?us-ascii?Q?F91BCqK5nB3ZJTXmdhHtiCBGIR3xEN1r6pw9KEIKyR9WxgvYcgUGn3m/pz8P?=
- =?us-ascii?Q?UmfxzN2ceOf+bRG2gAhMPIp6nsMHcJae2fIBoIp8wnmLmwVD6QjsPAcBKYj+?=
- =?us-ascii?Q?7qkt1QO6nnbqM63GIB4D1K6ULtTuj7Za0rxjXMsbQ9jbkJYYeiYnhRM9RS8x?=
- =?us-ascii?Q?H5SAehOdFrBb15B4/mDk8fu4jbPT81iMzQzBlqyKnlI/0BJzeM7aEy4nJlle?=
- =?us-ascii?Q?8umdTMmNZN8r/DYwNv3EYYVLQe29QNlu5WbxnB9jhI5GFZW+BXEtWoOXeWfx?=
- =?us-ascii?Q?mwZzrLRmGIMmkfeU7P0yCIZ/Fu41zhtBB9AEmGLPww/I6+1NhY86rilTsu4O?=
- =?us-ascii?Q?ku1Esi+fNeaJwGNucEOPxiP5PNCXKENfsWUWdTW5rykewwvu1HnoJ9QHD0Qw?=
- =?us-ascii?Q?ddAZIdlFjBLG2/t4ZiWEj/BIC32FKDYHip1FnZb5N2I6hvDZNje7HXE4YWu9?=
- =?us-ascii?Q?v0kk9eOnzl31t02mpOuMv06scXtI3MJCn/CIJx21pyOfRsmkKjIJxX0q+s1j?=
- =?us-ascii?Q?OopFsPanQZIpvJIKfFRYxs7ErVqZlWPkCsrK2J5PGGVFovC6156TMLo4z/z0?=
- =?us-ascii?Q?SUnEkKFFo8WO+ujS6pmNbTyxtna+U6Ii1RyE4slvUFmXTSslqiH1E6x30GTB?=
- =?us-ascii?Q?qFAiDmOhM/dKOotlPet8athR0XE9sr704BnWwLo/K+RVJD9wams/3GqWZrrX?=
- =?us-ascii?Q?YAQdg89Vyyy1wmUaVv4Pw3zqwAJRmTcEuiWDiIf5XDNT9GR0PYG1kSQc7UwJ?=
- =?us-ascii?Q?PgMUjd3snmCy3ohZ7kwvy78NDOv2Vb/+T/wgL2zjIoOMrAg1QagkblbHb6+A?=
- =?us-ascii?Q?qJhG69iF3oog8UHgS70cB3fx?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(376011)(1800799021)(52116011)(366013)(38350700011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?2QTO5YP0pzsMWDp3c7v8T5XbFRB/9Diw9sbEizwlsPZw7Px5QK9t3WIKMyry?=
- =?us-ascii?Q?/ZhXwKY6/fl/P4bG6yK2JkHawRxaLI9p6+sa3AZu6ub9YCanlyIRn+tpiBBd?=
- =?us-ascii?Q?fb42A+19s3LxzuA/O6qRrIFHqsAGRpDToeUOV9n4p05RaMcoiJovQJnz3KIi?=
- =?us-ascii?Q?+N4BWaxXBX3UtBfE4uCCPf5vsWJ9FuDm0yu+nAD5B6mr8uBH2Qf+DtE1lWQU?=
- =?us-ascii?Q?56Zx3tubnNKgXjXvWyEnBPxtCKdvCwtJexX2VT1etY+9k7Ku6CYXiboYD1cU?=
- =?us-ascii?Q?Je+KzTEn6Xg39JiDS2sTJh4fUs5FgibGR1Hcw0mIQBg1EVKReBb/PHzjiRoq?=
- =?us-ascii?Q?DeH+H8o3WCXi49mjQjtX05f5wG3YzPKAPP8ybovTs8qDAgR0By4gJ37ahksy?=
- =?us-ascii?Q?VvWvtlF11KZ1URavIzn3qF2eOL255qEbJuSoZI/4EMEABsdzspJQWSNmNaP9?=
- =?us-ascii?Q?3vL++lqAk+mrVie16OFrbPAiC4Ij9YC8rRhoiRrRdpjsjdA6oKLeKbT+UBx5?=
- =?us-ascii?Q?zeBqaL4a9A5GQlXX6LKwgpLctcL2RJZKkyCrFNzKJGibfzkJRUErderHZHWw?=
- =?us-ascii?Q?+vojTfdkPXntS+5r/GQz6Zmpt/yF8X2AVxqWN3jn59kIHXi1lKTh4Xa0C7Xe?=
- =?us-ascii?Q?2lQomokIAF0xEpO+LP9S1Yi1gIxr5fAzHUdfQ8G4C4xhiZuxjuQmeaS8e7ep?=
- =?us-ascii?Q?ZKDKvEWYUzdtSi+q/NIvSrfEK1agcQzRGuoX3osJzk6/vS+2cg7SXAJRJ0+o?=
- =?us-ascii?Q?Q8BLGAmtSQPXqsuVmAvJfXD0B5Ju7s0dOYY8H/0Gb9aZbklcaYHh2Ky5oyfQ?=
- =?us-ascii?Q?V6JVJy+eUDEC9cG4yEJzgf7r582rMMquhZhmc/0PHcB5ElGIxIVU0o/rOIBa?=
- =?us-ascii?Q?9nAXBJTbrNpD1KrgTlbzWmGWhd9WyfYu5l7GRFg7aNtK2ujygUEV/+MyUmmK?=
- =?us-ascii?Q?UAnKNRv3moY+JnSKhRf7QujkL0ooWZovtj0e1zYLVz1f0RHEX/kEL2nMLjA/?=
- =?us-ascii?Q?ku3V//KxnDpowmCol8ydx2cU5nZz3RyvfOy2wdXTUxIdyLWRKx3rZvrE4jmY?=
- =?us-ascii?Q?cdOi7Lweb1L6AQZmWs6Umnxm3PH2dTCgGUXcnQt59FzpNOqNQGCKlcNSJEqK?=
- =?us-ascii?Q?TCv6rUBMY7bitX2TJKVIP79PDorcZdaved+itYJm766/791OhlBBrC7haZX9?=
- =?us-ascii?Q?fQPY9CgwxTmO0eDiN5k8hyGZpONIcMTXpYTPVJLMMyZyJUwFu1mwh2JDQkP6?=
- =?us-ascii?Q?fRrdhTMhT1Ekq0MTtWeXKrGjsbpByrUB30HPKpxFpAv66rbdaCMwSU3kYAND?=
- =?us-ascii?Q?PKOOEqPBEjonuu2jW6nTVl81SXFpuWrPJmwAaQhLQKU48xqZalu2nNTKFN9p?=
- =?us-ascii?Q?1FaPqGWrH13fpJF9G58VCS+ibIjLe2Bdih36oLERNJh4jljimp+Br+vc2c5w?=
- =?us-ascii?Q?xMmR/kS2lQw5T+DiwwketkLUJGQUg2PnWwvXuRFrex9hSRaboLbVUN45qiyG?=
- =?us-ascii?Q?DrjPaNZwHQ3AipEf1cIhGoT11t+uPObzrlX98cJSWT7E+eUgKHqU9Ur5cSR/?=
- =?us-ascii?Q?Awy39qKaMdXq1jxNHCZ1dBUKVmKWA/xJIkUs5nmh?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9db0494a-91d3-4a64-9a62-08dc8ef7b7d9
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2024 18:02:57.4034
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kb2t2SVAC4rb4yiwkasrhJSBdceG9ftMJoIUa38IzIZ/CkaiTJQShQkhOAjrLMMTVrZRQBSKGktIhgM8FMmpIQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9972
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/2] PCI: Add Qualcomm PCIe ECAM root complex driver
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Rob Herring <robh@kernel.org>, <linux-pci@vger.kernel.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_ramkri@quicinc.com>,
+        <quic_nkela@quicinc.com>, <quic_shazhuss@quicinc.com>,
+        <quic_msarkar@quicinc.com>, <quic_nitegupt@quicinc.com>
+References: <1712257884-23841-3-git-send-email-quic_mrana@quicinc.com>
+ <20240405052918.GA2953@thinkpad>
+ <e2ff3031-bd71-4df7-a3a4-cec9c2339eaa@quicinc.com>
+ <20240406041717.GD2678@thinkpad>
+ <0b738556-0042-43ab-80f2-d78ed3b432f7@quicinc.com>
+ <20240410165829.GA418382-robh@kernel.org>
+ <c623951e-1b47-4e0b-bfa4-338672a5eeb9@quicinc.com>
+ <ee4c0b2b-7a3b-43d1-90b6-369be2194a65@quicinc.com>
+ <20240606023952.GA3481@thinkpad>
+ <ab551d96-c27e-40b7-9534-9e4b3c8a5a3c@quicinc.com>
+ <20240612061454.GF2645@thinkpad>
+Content-Language: en-US
+From: Mayank Rana <quic_mrana@quicinc.com>
+In-Reply-To: <20240612061454.GF2645@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ulhjlBKLiFF30fI3tGSGwY1eClQGkPzn
+X-Proofpoint-ORIG-GUID: ulhjlBKLiFF30fI3tGSGwY1eClQGkPzn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-17_14,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 clxscore=1015 suspectscore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 impostorscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406170141
 
-Convert ahci-fsl-qoirq DT binding to yaml format.
 
-Additional changes:
-- Add reg-names list, ahci and sata-ecc
-- Add fsl,ls1028a-ahci and fsl,lx2060a-ahci
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../bindings/ata/ahci-fsl-qoriq.txt           | 21 -------
- .../devicetree/bindings/ata/fsl,ahci.yaml     | 58 +++++++++++++++++++
- 2 files changed, 58 insertions(+), 21 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
- create mode 100644 Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+On 6/11/2024 11:14 PM, Manivannan Sadhasivam wrote:
+> On Mon, Jun 10, 2024 at 10:17:31AM -0700, Mayank Rana wrote:
+>>
+>> On 6/5/2024 7:39 PM, Manivannan Sadhasivam wrote:
+>>> On Fri, May 31, 2024 at 03:47:24PM -0700, Mayank Rana wrote:
+>>>> Hi Rob / Mani
+>>>>
+>>>> On 4/15/2024 4:30 PM, Mayank Rana wrote:
+>>>>> Hi Rob
+>>>>>
+>>>>> Excuse me for late response on this (was OOO).
+>>>>> On 4/10/2024 9:58 AM, Rob Herring wrote:
+>>>>>> On Mon, Apr 08, 2024 at 11:57:58AM -0700, Mayank Rana wrote:
+>>>>>>> Hi Mani
+>>>>>>>
+>>>>>>> On 4/5/2024 9:17 PM, Manivannan Sadhasivam wrote:
+>>>>>>>> On Fri, Apr 05, 2024 at 10:41:15AM -0700, Mayank Rana wrote:
+>>>>>>>>> Hi Mani
+>>>>>>>>>
+>>>>>>>>> On 4/4/2024 10:30 PM, Manivannan Sadhasivam wrote:
+>>>>>>>>>> On Thu, Apr 04, 2024 at 12:11:24PM -0700, Mayank Rana wrote:
+>>>>>>>>>>> On some of Qualcomm platform, firmware
+>>>>>>>>>>> configures PCIe controller into
+>>>>>>>>>>> ECAM mode allowing static memory allocation for
+>>>>>>>>>>> configuration space of
+>>>>>>>>>>> supported bus range. Firmware also takes care of
+>>>>>>>>>>> bringing up PCIe PHY
+>>>>>>>>>>> and performing required operation to bring PCIe
+>>>>>>>>>>> link into D0. Firmware
+>>>>>>>>>>> also manages system resources (e.g.
+>>>>>>>>>>> clocks/regulators/resets/ bus voting).
+>>>>>>>>>>> Hence add Qualcomm PCIe ECAM root complex driver
+>>>>>>>>>>> which enumerates PCIe
+>>>>>>>>>>> root complex and connected PCIe devices.
+>>>>>>>>>>> Firmware won't be enumerating
+>>>>>>>>>>> or powering up PCIe root complex until this
+>>>>>>>>>>> driver invokes power domain
+>>>>>>>>>>> based notification to bring PCIe link into D0/D3cold mode.
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> Is this an in-house PCIe IP of Qualcomm or the same
+>>>>>>>>>> DWC IP that is used in other
+>>>>>>>>>> SoCs?
+>>>>>>>>>>
+>>>>>>>>>> - Mani
+>>>>>>>>> Driver is validated on SA8775p-ride platform using PCIe DWC IP for
+>>>>>>>>> now.Although this driver doesn't need to know used PCIe
+>>>>>>>>> controller and PHY
+>>>>>>>>> IP as well programming sequence as that would be taken
+>>>>>>>>> care by firmware.
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>> Ok, so it is the same IP but firmware is controlling the
+>>>>>>>> resources now. This
+>>>>>>>> information should be present in the commit message.
+>>>>>>>>
+>>>>>>>> Btw, there is an existing generic ECAM host controller driver:
+>>>>>>>> drivers/pci/controller/pci-host-generic.c
+>>>>>>>>
+>>>>>>>> This driver is already being used by several vendors as
+>>>>>>>> well. So we should try
+>>>>>>>> to extend it for Qcom usecase also.
+>>>>>>
+>>>>>> I would take it a bit further and say if you need your own driver, then
+>>>>>> just use the default QCom driver. Perhaps extend it to support ECAM.
+>>>>>> Better yet, copy your firmware setup and always configure the QCom h/w
+>>>>>> to use ECAM.
+>>>>> Good suggestion. Although here we are having 2 set of requirements:
+>>>>> 1. ECAM configuration
+>>>>> 2. Managing PCIe controller and PHY resources and programming from
+>>>>> firmware as well
+>>>>> Hence it is not feasible to use default QCOM driver.
+>>>>>> If you want to extend the generic driver, that's fine, but we don't need
+>>>>>> a 3rd.
+>>>>> I did consider this part before coming up with new driver. Although I
+>>>>> felt that
+>>>>> below mentioned functionality may not look more generic to be part of
+>>>>> pci-host-generic.c driver.
+>>>>>>> I did review pci-host-generic.c driver for usage. although there
+>>>>>>> are more
+>>>>>>> functionalityneeded for use case purpose as below:
+>>>>>>> 1. MSI functionality
+>>>>>>
+>>>>>> Pretty sure the generic driver already supports that.
+>>>>> I don't find any MSI support with pci-host-generic.c driver.
+>>>>>>> 2. Suspend/Resume
+>>>>>>
+>>>>>> Others might want that to work as well.
+>>>>> Others firmware won't have way to handle D3cold and D0 functionality
+>>>>> handling as
+>>>>> needed here for supporting suspend/resume as I don't find any interface
+>>>>> for pci-host-generic.c driver to notify firmware. here we are having way
+>>>>> to talk to firmware using GenPD based power domain usage to communicate
+>>>>> with firmware.
+>>>>>
+>>>>>>> 3. Wakeup Functionality (not part of current change, but would be added
+>>>>>>> later)
+>>>>>>
+>>>>>> Others might want that to work as well.
+>>>>> possible if suspend/resume support is available or used.
+>>>>>>> 4. Here this driver provides way to virtualized PCIe controller.
+>>>>>>> So VMs only
+>>>>>>> talk to a generic ECAM whereas HW is only directed accessed by
+>>>>>>> service VM.
+>>>>>>
+>>>>>> That's the existing driver. If if doesn't work for a VM, fix the VM.
+>>>>> Correct.
+>>>>>>> 5. Adding more Auto based safety use cases related implementation
+>>>>>>
+>>>>>> Now that's just hand waving.
+>>>>> Here I am trying to provide new set of changes plan to be added as part
+>>>>> of required functionality.
+>>>>>
+>>>>>>> Hence keeping pci-host-generic.c as generic driver where above
+>>>>>>> functionality
+>>>>>>> may not be needed.
+>>>>>>
+>>>>>> Duplicating things to avoid touching existing drivers is not how kernel
+>>>>>> development works.
+>>>>> I shall try your suggestion and see how it looks in terms of code
+>>>>> changes. Perhaps then we can have more clarity in terms of adding more
+>>>>> functionality into generic or having separate driver.
+>>>> I just learnt that previously dwc related PCIe ECAM driver and MSI
+>>>> controller driver tried out as:
+>>>>
+>>>> https://lore.kernel.org/linux-pci/20170821192907.8695-1-ard.biesheuvel@linaro.org/
+>>>>
+>>>> Although there were few concerns at that time. Due to that having dwc
+>>>> specific MSI functionality based driver was dropped, and pci-host-generic.c
+>>>> driver is being updated using with dwc/snps specific ECAM operation.
+>>>>
+>>>> In current discussion, it seems that we are discussing to have identical
+>>>> approach here.
+>>>>
+>>>> Atleast on Qualcomm SA8775p platform, I don't have any other way to support
+>>>> MSI functionality i.e. extended SPI or ITS/LPI based MSI or using GICv2m
+>>>> functionality are not supported.
+>>>>
+>>>> I don't see any other approach other than MSI based implementation within
+>>>> pci-host-generic.c driver for dwc/snps based MSI controller.
+>>>>
+>>>> Do you have any suggestion on this ?
+>>>>
+>>>
+>>> Since this ECAM driver is going to be used in newer Qcom SoCs, why can't you use
+>>> GICv3 for MSI handling?
+>> Yes, that is plan further as look like we have limitation on just SA8775.
+>> So I see two options here:
+>> 1. Update pcie-host-generic.c without MSI based functionality, and leave
+>> with MSI functionality differently on SA8775
+>> 2. Also possible to make pcie-host-designware.c based MSI functionality as
+>> separate driver, and try to use with pcie-host-generic.c driver. That way we
+>> would still use existing MSI related code base, and able to use with ECAM
+>> driver.
+>>
+>> Do you see using above option 2 as good way to allow SNPS/DWC based MSI
+>> controller functionality with ECAM and Non-ECAM driver ?
+>>
+> 
+> IMO, it is not worth splitting the code just for one platform since you said the
+> future ECAM based platforms will not require DWC MSI.
+> 
+> But if you have a strong requirement to use upstream DWC MSI for SA8775, then
+> you can do the split.
+I feel it is better to have DWC MSI mechanism available in split fashion 
+so other driver like ECAM
+driver can utilize. So will update patchset here for review purpose.
 
-diff --git a/Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt b/Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
-deleted file mode 100644
-index 7c3ca0e13de05..0000000000000
---- a/Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
-+++ /dev/null
-@@ -1,21 +0,0 @@
--Binding for Freescale QorIQ AHCI SATA Controller
--
--Required properties:
--  - reg: Physical base address and size of the controller's register area.
--  - compatible: Compatibility string. Must be 'fsl,<chip>-ahci', where
--    chip could be ls1021a, ls1043a, ls1046a, ls1088a, ls2080a etc.
--  - clocks: Input clock specifier. Refer to common clock bindings.
--  - interrupts: Interrupt specifier. Refer to interrupt binding.
--
--Optional properties:
--  - dma-coherent: Enable AHCI coherent DMA operation.
--  - reg-names: register area names when there are more than 1 register area.
--
--Examples:
--	sata@3200000 {
--		compatible = "fsl,ls1021a-ahci";
--		reg = <0x0 0x3200000 0x0 0x10000>;
--		interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&platform_clk 1>;
--		dma-coherent;
--	};
-diff --git a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
-new file mode 100644
-index 0000000000000..162b3bb5427ed
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/fsl,ahci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale QorIQ AHCI SATA Controller
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,ls1021a-ahci
-+      - fsl,ls1043a-ahci
-+      - fsl,ls1028a-ahci
-+      - fsl,ls1088a-ahci
-+      - fsl,ls2080a-ahci
-+      - fsl,lx2160a-ahci
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: ahci
-+      - const: sata-ecc
-+    minItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dma-coherent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    sata@3200000 {
-+        compatible = "fsl,ls1021a-ahci";
-+        reg = <0x3200000 0x10000>;
-+        interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&platform_clk 1>;
-+        dma-coherent;
-+    };
--- 
-2.34.1
-
+> - Mani
+> 
 
