@@ -1,149 +1,228 @@
-Return-Path: <devicetree+bounces-76703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F78F90BA20
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:53:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E297990BA42
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:57:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8E65282EEE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:53:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EF441F22646
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:57:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DBD198A0D;
-	Mon, 17 Jun 2024 18:53:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C241990C0;
+	Mon, 17 Jun 2024 18:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d7JQ83Cd"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="SdByaSaS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5057B17E900;
-	Mon, 17 Jun 2024 18:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC2801D952E;
+	Mon, 17 Jun 2024 18:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718650380; cv=none; b=Q5yLoAzzkEsusKV16gE/cZ0Yl4l9OnMjX14iaQa7aKGoamSm7/R5yuffy+TS0oXrbxnA6ADWMTWwgJfgVLWtJ+GdtV5DOjXVfNie43xp+TtM5o9HRsV68MZGRH1/Bw73PpVay9HkJagPtwCsU8i1UxihezXOFriWNpM0sqz5LFE=
+	t=1718650617; cv=none; b=lCklPYTLEdom54SEErwu/JmP221io/0tBd8cFxG3iv7ir5LgOukeJofR3JYLNfiW/9V1ubkUqRfzCQYkhxw8obpHaDUI7hQvuSh5CZHCsI6MGqiV3cQcRkJB4xc3oAG+yGQGiZ/UYkOgN+Uw6e2uCwtcwoLnoljiwf9RJPbdSrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718650380; c=relaxed/simple;
-	bh=BF7uZaD7lnxQyh3lTTyTsD3+XLVYTQ9pmJnwOpGPQ8A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EO+hppNHo861hG5UNg2jb1BK85PemIL+vp4oc96mcr3UD8vnc+51z8KoRy2npHAERin6NtwzRDS8qTQXSXoQXfOnFRBKgDjFE2OjXXZHmKcLHk1j9kiyEqbmXN09RdWCkXWZ/4XMEHaoXoPaz1qYBtONbYYCNUTQTDyQHd0ilCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d7JQ83Cd; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4210aa00c94so39137275e9.1;
-        Mon, 17 Jun 2024 11:52:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718650378; x=1719255178; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fWjJjq4VyTBxkY0C45AnzzK9M0qUU4Vb28GUzKrZrOA=;
-        b=d7JQ83Cd6V7hafzuV2kuB7Qx6tZN/rM96Vv7M0LlczqKYSusiyx82AUzp0n1F+81Kz
-         yUzxyjBWcWCFVy9/xIRRgHg99n3D8xwU3X/rD9uwQHb8k3gIfE+FX5+ULkeYq3Nwu7pj
-         Ut7UK2ZJbq1EIBg0t1h8Gizn63owp1zIwHK57L21ODCUJ6zaZMLg2DpCkluGYtroChrR
-         rReUwGN2grRAD0vpt7uE/aGmdwwzQ4G4GPkR+Dnxqvos0R8X5gia9Rnz8JDsqD29aLbO
-         WLJSwM6RTiBIH4nRCvzwCT35YBsNeNysk2ZTaExasSdXbaMwUOQ+UVDd0XT9d6J8jMiE
-         0DRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718650378; x=1719255178;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fWjJjq4VyTBxkY0C45AnzzK9M0qUU4Vb28GUzKrZrOA=;
-        b=p+ZzP1Up4s1a5euAnjKwPrejjy6iaQ3A2/h4BW4CC8sWiuzP9WddcRXGmcXIbdXEiH
-         vqzCD9jh+NnTEEwsrBnxOotJn1CrixRC1vRqHghBEA+9EQzxFc27NzI+aJQQQ3JnhL0j
-         kk7WmJF04fRdwuhLmrUW3vDB/HlqiIQZMcCbXZk93zxTXLUeBO8baq8DQkEGBUbvWbh0
-         tC38zF7jiXlPQMxP3mpRNMhMteRnnykKQxZ8m47nrUfFJd0qiwbBRJ3g4nUSSomRe3hF
-         G8jEXp5PhCKUm05S9GtO9dM3qHSiQomkET2GGsmCpISHlKjxShAKP+ii494htDcZTBjY
-         gmhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWVTk6zjL0Jo+WjWDL8xlwcrDzhKsfNniSftnW+ivYlEycZNfEtYcnywLdNzBLOSqtAxo5Jmlzfkp1dggx1jrQR3iTwtC0823KEuDwf9dfZ5NITKt/hPhjL9mNWmWr8GTyIVcyR/tC8itk+x0yHZuZm7JBixmaMuCiXv5C8kfd3wT+L7w==
-X-Gm-Message-State: AOJu0YwT9/T5DS9xfH9FBGX2vbqdKhfSEJ3pVUN/LnXp8NncK9uZoCVI
-	8agH2HEuHBmrLGSHSbnpSoQt3yebWmeIZgxyn2Ez7RpkuBYWz38/yMMSxdXyUrs=
-X-Google-Smtp-Source: AGHT+IEBX8FFSyOXx4+xGG3tRDdpRsim+ngLzm0BcsFL0VXYQ8+dulSMhJRQsFQ8jsYTKklolvx5vA==
-X-Received: by 2002:a05:600c:5492:b0:421:d8d4:75e3 with SMTP id 5b1f17b1804b1-4230485bac2mr69041565e9.40.1718650377596;
-        Mon, 17 Jun 2024 11:52:57 -0700 (PDT)
-Received: from ?IPV6:2a10:d582:37c5:0:ed15:7e1f:11e6:9a9a? ([2a10:d582:37c5:0:ed15:7e1f:11e6:9a9a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075093d58sm12439436f8f.4.2024.06.17.11.52.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 11:52:57 -0700 (PDT)
-Message-ID: <67dca4c3-bb86-4cd4-b80b-733ba93547b9@gmail.com>
-Date: Mon, 17 Jun 2024 19:52:55 +0100
+	s=arc-20240116; t=1718650617; c=relaxed/simple;
+	bh=BRemcaz06OxIPU0q1LIwEJBbCuP2ZiyClmC65QoF9/E=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=LKsbQjCn2Juk045e6denHQmpmcTs1SwtBuPCPbykuh16c5s8WbS5ymigB+F/syYllpffoKonTlc0jxKCPzC2p2z93K9+wCMGUU41kC7J4II7PPYA6Hikq7LSbYKYFaZmIgPjaztLr61RrbJDExcOpSQWL4J6KaHeMRjZdE/wQDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=SdByaSaS; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] iio: light: ROHM BH1745 colour sensor
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org,
- robh@kernel.org, ivan.orlov0322@gmail.com, javier.carrasco.cruz@gmail.com,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240606162948.83903-1-muditsharma.info@gmail.com>
- <20240606162948.83903-2-muditsharma.info@gmail.com>
- <20240608172227.17996c75@jic23-huawei>
- <CANhJrGM9czj0RL3OLCgRHEKc2QOjG9P0AZTrZxvYUk65TCpHRg@mail.gmail.com>
-Content-Language: en-US
-From: Mudit Sharma <muditsharma.info@gmail.com>
-In-Reply-To: <CANhJrGM9czj0RL3OLCgRHEKc2QOjG9P0AZTrZxvYUk65TCpHRg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1718650605;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BeHab2EB/im2VzcJZs7uIHbMUrPfY1ASvmg3ai5d4lg=;
+	b=SdByaSaSguR0ZacLrEThlgoEA1RMADl9oYL7qPU+siL3TzhpVwg6OnnQxXkXomObctXTjF
+	+IQGsXHgvND+i9YvSCUWHUzMqdflF7sZM4PN6Tfj/+YFFAGLTlgfkZ/RN9VaKjxVoEJD71
+	Wl8U9OwP80ENfJMEs5E5WoB6Vosk1IkGv9jbo+HSqsOksghpzbiHrMFWqEAAa7DAa5QFf0
+	krEh/ALdp+RDTLpTmBiAaCJtyT/ZfAj5CMfUYfrv6MvVtg36Zrj/BLPztMIEdqTnbJV4Zh
+	KhuqAiM6zFUJA4jPcMsxBMP+yVDdqnHRkfw6W8q06BzaxlUCxmhs6MK6+yx4JQ==
+Date: Mon, 17 Jun 2024 20:56:45 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
+ Tsai <wens@kernel.org>, Diederik de Haas <didi.debian@cknow.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/8] RK3588 and Rock 5B dts additions: thermal, OPP and
+ fan
+In-Reply-To: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
+References: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
+Message-ID: <8840a521e248ba006e65e77f1a9be0a9@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 10/06/2024 06:58, Matti Vaittinen wrote:
-> la 8. kesäk. 2024 klo 19.22 Jonathan Cameron (jic23@kernel.org) kirjoitti:
->>
->> On Thu,  6 Jun 2024 17:29:42 +0100
->> Mudit Sharma <muditsharma.info@gmail.com> wrote:
->>
->>> Add support for BH1745, which is an I2C colour sensor with red, green,
->>> blue and clear channels. It has a programmable active low interrupt
->>> pin. Interrupt occurs when the signal from the selected interrupt
->>> source channel crosses set interrupt threshold high or low level.
->>>
->>> This driver includes device attributes to configure the following:
->>> - Interrupt pin latch: The interrupt pin can be configured to
->>>    be latched (until interrupt register (0x60) is read or initialized)
->>>    or update after each measurement.
->>> - Interrupt source: The colour channel that will cause the interrupt
->>>    when channel will cross the set threshold high or low level.
->>>
->>> This driver also includes device attributes to present valid
->>> configuration options/values for:
->>> - Integration time
->>> - Interrupt colour source
->>> - Hardware gain
->>>
+Hello Alexey,
+
+On 2024-06-17 20:28, Alexey Charkov wrote:
+> This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
+> active cooling on Radxa Rock 5B via the provided PWM fan.
 > 
->>> +
->>> +#define BH1745_CHANNEL(_colour, _si, _addr)                                   \
->>> +     {                                                                     \
->>> +             .type = IIO_INTENSITY, .modified = 1,                         \
->>> +             .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),                 \
->>> +             .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN) | \
->>
->> Provide _SCALE instead of HARDWAREGAIN
->> As it's an intensity channel (and units are tricky for color sensors given
->> frequency dependence etc) all you need to do is ensure that if you halve
->> the _scale and measure the same light source, the computed
->> _RAW * _SCALE value remains constant.
+> Some RK3588 boards use separate regulators to supply CPUs and their
+> respective memory interfaces, so this is handled by coupling those
+> regulators in affected boards' device trees to ensure that their
+> voltage is adjusted in step.
 > 
-> ...Which is likely to cause also the integration time setting to
-> impact the SCALE.
+> This also enables the built-in thermal sensor (TSADC) for all boards
+> that don't currently have it enabled, using the default CRU based
+> emergency thermal reset. This default configuration only uses on-SoC
+> devices and doesn't rely on any external wiring, thus it should work
+> for all devices (tested only on Rock 5B though).
 > 
-> You may or may not want to see the GTS-helpers
-> (drivers/iio/industrialio-gts-helper.c) - which have their own tricky
-> corners. I think Jonathan once suggested to me to keep the
+> The boards that have TSADC_SHUT signal wired to the PMIC reset line
+> can choose to override the default reset logic in favour of GPIO
+> driven (PMIC assisted) reset, but in my testing it didn't work on
+> Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
+> support PMIC assisted reset after all.
+> 
+> Fan control on Rock 5B has been split into two intervals: let it spin
+> at the minimum cooling state between 55C and 65C, and then accelerate
+> if the system crosses the 65C mark - thanks to Dragan for suggesting.
+> This lets some cooling setups with beefier heatsinks and/or larger
+> fan fins to stay in the quietest non-zero fan state while still
+> gaining potential benefits from the airflow it generates, and
+> possibly avoiding noisy speeds altogether for some workloads.
 
-Hi Matti,
+I should be able to test an RK3588 cooling setup with a really beefy
+heatsink in the near future, so we'll see how well the "silent zone"
+performs in practice and not just in theory. :)
 
-Thank you for the recommendation here.
+> OPPs help actually scale CPU frequencies up and down for both cooling
+> and performance - tested on Rock 5B under varied loads. I've dropped
+> those OPPs that cause frequency reductions without accompanying 
+> decrease
+> in CPU voltage, as they don't seem to be adding much benefit in day to
+> day use, while the kernel log gets a number of "OPP is inefficient" 
+> lines.
+> 
+> Note that this submission doesn't touch the SRAM read margin updates or
+> the OPP calibration based on silicon quality which the downstream 
+> driver
+> does and which were mentioned in [1]. It works as it is (also confirmed 
+> by
+> Sebastian in his follow-up message [2]), and it is stable in my testing 
+> on
+> Rock 5B, so it sounds better to merge a simple version first and then
+> extend when/if required.
+> 
+> This patch series has been rebased on top of Heiko's recent for-next 
+> branch
+> with Dragan's patch [3] which rearranges the .dtsi files for 
+> per-variant OPPs.
+> As a result, it now includes separate CPU OPP tables for RK3588(s) and 
+> RK3588j.
 
-Looking into GTS-helper for v5.
+Thanks for the current iteration of this series!  I'll review it
+in detail and perform thorough stress testing on my ROCK 5B as soon
+as possible.
 
-Best regards,
-Mudit Sharma
+> GPU OPPs have also been split out to accommodate for the difference in 
+> RK3588j.
+> 
+> [1] 
+> https://lore.kernel.org/linux-rockchip/CABjd4YzTL=5S7cS8ACNAYVa730WA3iGd5L_wP1Vn9=f83RCORA@mail.gmail.com/
+> [2] 
+> https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd2kwkbguiolmozntjuiajrb@gvq4nupzna4o/
+> [3] 
+> https://lore.kernel.org/linux-rockchip/9ffedc0e2ca7f167d9d795b2a8f43cb9f56a653b.1717923308.git.dsimic@manjaro.org/
+> 
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+> Changes in v5:
+> - Rebased against linux-rockchip/for-next with Dragan's .dtsi 
+> reshuffling on top
+> - Added separate OPP values for RK3588j (these also apply to RK3588m)
+> - Separated GPU OPP values for RK3588j (RK3588m ones differ slightly,
+> not included here)
+> - Dragan's patch:
+> https://lore.kernel.org/linux-rockchip/9ffedc0e2ca7f167d9d795b2a8f43cb9f56a653b.1717923308.git.dsimic@manjaro.org/
+> - Link to v4:
+> https://lore.kernel.org/r/20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com
+> 
+> Changes in v4:
+> - Rebased against linux-rockchip/for-next
+> - Reordered DT nodes alphabetically as pointed out by Diederik
+> - Moved the TSADC enablement to per-board .dts/.dtsi files
+> - Dropped extra "inefficient" OPPs (same voltage - lower frequencies)
+> - Dropped second passive cooling trips altogether to keep things simple
+> - Added a cooling map for passive GPU cooling (in a separate patch)
+> - Link to v3:
+> https://lore.kernel.org/r/20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com
+> 
+> Changes in v3:
+> - Added regulator coupling for EVB1 and QuartzPro64
+> - Enabled the TSADC for all boards in .dtsi, not just Rock 5B (thanks 
+> ChenYu)
+> - Added comments regarding two passive cooling trips in each zone
+> (thanks Dragan)
+> - Fixed active cooling map numbering for Radxa Rock 5B (thanks Dragan)
+> - Dropped Daniel's Acked-by tag from the Rock 5B fan patch, as there's
+> been quite some
+>   churn there since the version he acknowledged
+> - Link to v2:
+> https://lore.kernel.org/r/20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com
+> 
+> Changes in v2:
+> - Dropped the rfkill patch which Heiko has already applied
+> - Set higher 'polling-delay-passive' (100 instead of 20)
+> - Name all cooling maps starting from map0 in each respective zone
+> - Drop 'contribution' properties from passive cooling maps
+> - Link to v1:
+> https://lore.kernel.org/r/20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com
+> 
+> ---
+> Alexey Charkov (8):
+>       arm64: dts: rockchip: add thermal zones information on RK3588
+>       arm64: dts: rockchip: enable thermal management on all RK3588 
+> boards
+>       arm64: dts: rockchip: add passive GPU cooling on RK3588
+>       arm64: dts: rockchip: enable automatic fan control on Rock 5B
+>       arm64: dts: rockchip: Add CPU/memory regulator coupling for 
+> RK3588
+>       arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
+>       arm64: dts: rockchip: Add OPP data for CPU cores on RK3588j
+>       arm64: dts: rockchip: Split GPU OPPs of RK3588 and RK3588j
+> 
+>  .../boot/dts/rockchip/rk3588-armsom-sige7.dts      |   4 +
+>  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 197 
+> +++++++++++++++++----
+>  .../dts/rockchip/rk3588-edgeble-neu6a-common.dtsi  |   4 +
+>  arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts   |  16 ++
+>  arch/arm64/boot/dts/rockchip/rk3588-ok3588-c.dts   |   4 +
+>  arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi       | 190 
+> ++++++++++++++++++++
+>  .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts |  12 ++
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  34 +++-
+>  .../arm64/boot/dts/rockchip/rk3588-toybrick-x0.dts |   4 +
+>  .../arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi |   4 +
+>  arch/arm64/boot/dts/rockchip/rk3588.dtsi           |   1 +
+>  arch/arm64/boot/dts/rockchip/rk3588j.dtsi          | 141 
+> +++++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts   |   4 +
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi          |   1 +
+>  14 files changed, 577 insertions(+), 39 deletions(-)
+> ---
+> base-commit: 5cc74606bf40a2bbaccd3e3bb2781f637baebde5
+> change-id: 20240124-rk-dts-additions-a6d7b52787b9
+> 
+> Best regards,
 
