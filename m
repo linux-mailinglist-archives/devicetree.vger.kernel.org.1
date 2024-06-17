@@ -1,256 +1,272 @@
-Return-Path: <devicetree+bounces-76768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0227890BDAE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 00:32:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E2CE90BDB0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 00:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE6301C217C7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 22:32:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1F012821F0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 22:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BE119A2A4;
-	Mon, 17 Jun 2024 22:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D045187339;
+	Mon, 17 Jun 2024 22:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="PNJKapMu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oulmC+67"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2063.outbound.protection.outlook.com [40.107.8.63])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFA8199EB0;
-	Mon, 17 Jun 2024 22:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718663494; cv=fail; b=qtCfYIDDT1g9l8KldVgGE3VZbutblpw4vbImf9OzJNdRIpLGo5uytBEqa6SEAP8mNhc8dWKpH/c9dffLtkNwfIqzjk64QRHkqATe+mZ+hYXVBtStiiUs3IDxj8jLTQW/lG2LP2zaey3EqhxNeP/+nfTvTDCxM4sj/JHIQhfFnlM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718663494; c=relaxed/simple;
-	bh=aWDpo3yVmNeiLhMXiP+wURDxPwhWKdoeRk7hHuCD7cE=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=M8yU0z2otnKoLlpJvR1BkwLlZThzFj7sWvzCx9hKtpI0temUihWeJwvK5sIs/PoLzWrom1K2Pv27CzoqwHDvaK9VT4uApLD8D95MAe59IeMxSDZRY69tLBa+qcDIdwdLuXNwVsELuPPC4UbW65PsubBEMaJ1DhxA2X3TQx2D+WI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=PNJKapMu; arc=fail smtp.client-ip=40.107.8.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OnFls3Qq8yoYnyIbhoX0jnlQqoQ80MmlEMUvSDQbm1bIdIVEzkl8kiAibkmXoibNryp0UMgNP1nDnRbThbUk1AASikbUyso2Hrg14qtnuATp5d10fpU/Em0hGxP5v2E34q1r87CHhkdjjfh3zW8dn+gXiZiXqdYgl9sM7RP77bxZN1G2hWZvkKuoDnzq27xj7p7kBUW/touKmDqVspp8fwpNWNsxZhV2bT85zydMqPG1P9ko+REow8GgpOs4wtyr7kIfkgIodozbHa37Oi5BGZphq8CJekbGQMx8N7M3YQBUKOqpW9appRMR3n4+oxoAStI5huVaI/YYc1Kevcu5CQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jAs3SASkx3OsIDq9HO38EGEqAkQ3Iy8fKd4VxoMDeUg=;
- b=YsPJT62o5umNQuz5uO2m/KXF6aGQV0uCMX0iSn6uz9JfY9u07nGD5w7hQWgZ9Zg/kfCZPLXv+h2Yh4zj/HMyoR4jIouuz3kkM9GTsi5EWB0lEimT9LxKb/XaUMCus79Omg0jrVjvvPyMmfaVfGxg24BueM5/Gpp+zrGHNF10vfr6QIAyaoy/mpup5GBePtE2kYqhBO9hLIuv8HJMc1YHSzbV77+zFuQJyiIBFBpLcx+wHSiBGA48qZeIj26TuwIpjAnjalfuhifLhP1vDfbHlHkXgNmDeY9wwxVtAuMx3mXsU3MXfdgJ0C22hA97SvKi5/tdlvY1qNjbgx4I8kJ8hg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jAs3SASkx3OsIDq9HO38EGEqAkQ3Iy8fKd4VxoMDeUg=;
- b=PNJKapMuyKtPXd258xtLlAgvaavfWDJMmQvVB9qbFQRkcr/dJ8LMFlcevaRP1vpBGFgFtH3ju4rFFeUkt+mYr0vlqgN/n+wLv+juhJTsBR+LT5TP4l7OQzHQLg1PJVJzCLMweDWy/qG2Bvwyc68GOLIyWce1XK2ju4KHS/cOt+0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8150.eurprd04.prod.outlook.com (2603:10a6:20b:3f0::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Mon, 17 Jun
- 2024 22:31:32 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7677.030; Mon, 17 Jun 2024
- 22:31:32 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 4/4] arm64: dts: imx95-19x19-evk: add PCIe[0,1] support
-Date: Mon, 17 Jun 2024 18:31:00 -0400
-Message-Id: <20240617223100.1539796-4-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240617223100.1539796-1-Frank.Li@nxp.com>
-References: <20240617223100.1539796-1-Frank.Li@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0032.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::7) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 543E21D953B
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 22:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718663638; cv=none; b=jEATk8TcH7PUkRl6mFyIgsGdguv+89sdYW2J05w/94ytVqb2wD7AC3eGpmY5oaMpdUiCPwnIr+V5Hw2hrViOgzMs69HKt5nOFDanTOR3eSLkCE6JT7tTptj4jGCHed48FULAYTkitWOOshEuswO87nhyPRzqX9+pDEQ8POBSTMM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718663638; c=relaxed/simple;
+	bh=yfs3Yyb1t7IrOKkav6Ig+48ITwx+o4Pei9gLyGax1b8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bFiBwf2b1ED0T6rWYEKYTwktOvKtkniM20S9IvO6OATxmKAXz2klTD0+ZSor4brx5nyQKRGsqMO5B80CQ9G9wWbja1UWoA/ptlw/vBjDwz8FGK0ZZRx8AkLaCcSQSaeXvDDnNTLsWMAU2KVnoc7JlAIKrKWYqwyCgVUS7c+tZRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oulmC+67; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ebf961e504so52493121fa.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:33:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718663634; x=1719268434; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pMbrpDKp1fhP8ilsI7JJlavTaNcVpIQgEw9/CSB8wj8=;
+        b=oulmC+67AcqRBGwVGo3DWhycGB0avFrPBR51vC2evJuue1Dm5Ngpv5EsdWomee465m
+         FUNqHm3NZffdvVQlrsCGLLTcn6iL6txYTOIbZXk7TP92/01JgPKpU8M/nbZN2pC8/RQ8
+         FuOeQShjwvcTv2BwZGo1a1IkGDGAP5P6DPZAtakUGW9pLUqfTkDZZV7CDcjvrGwngAZd
+         ik3RVx1AVFijgqcGU0ltknGCAbGLderMUZcdZXejoW0gq371H/ugfUVbkBU8t3qGKfCL
+         cVF/QAv2W9ozGZ2/SPAdY9msPUSdUHUVQPWXJrjFswgZqvkKX+0yl0sBcueNSGxujkfW
+         oGqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718663634; x=1719268434;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pMbrpDKp1fhP8ilsI7JJlavTaNcVpIQgEw9/CSB8wj8=;
+        b=NBehztM6AuHYJyCwS+IC6HOl5wT/u8/HEoR3vDGx6EOLBH8nPMkSDFi2pCGmwxrWEQ
+         InsQAgkQPmRKXcvrMguqrDlcTvSDt4G2ytIdpAm+rfxUvWLv7uoKRAhyn3kwsdvZsvqK
+         F1YXgRudPdnzA7615CYdBbnrAC3grnWW99ZwbikgcPx5ErapeankZZrhmRjJLJgZwX44
+         OsOrCVvOCfXXDJKys9LDcFOOCGA0KjG5YAX4TQPD2BcWB36m80mBJ7VzeaHi/8g42xRC
+         Dyff4dpQx4Dw0qEL6Bp2mBQQGbswSCn2Ne6p6L8YCUyNiYLXc7RUu4smgiUMBHCG0BgO
+         HP2g==
+X-Forwarded-Encrypted: i=1; AJvYcCVP8E21dfIL2yBCCeb4uOSAlH6t0Hf0hus3eXfYm75pJ1Bf8X4MfaNaoSPR8G4aqgxpDDpVccDNPZAwHJFMSPUNoXYSXWk8pfFxlA==
+X-Gm-Message-State: AOJu0YwrBs0RyGkw9nNr8GoLV8B6RfWilUZziIZHKAN5GLx6UoEy3FXc
+	kw5nikWFna8EkHIamwHBv270I1yKtUECVKNe40attgmjLxu3OWJTNM9EubQFrs0=
+X-Google-Smtp-Source: AGHT+IEwGNLkbEdSrwc6kD6Y806aXzDyPgo++IYUP1PgrBlAjQfX6C0uka9xwdpkw/8wS+Me0EqH8Q==
+X-Received: by 2002:a2e:b013:0:b0:2ec:27e6:39b7 with SMTP id 38308e7fff4ca-2ec27e63cf0mr38979811fa.37.1718663634399;
+        Mon, 17 Jun 2024 15:33:54 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05c89903sm14830601fa.102.2024.06.17.15.33.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 15:33:53 -0700 (PDT)
+Date: Tue, 18 Jun 2024 01:33:52 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>
+Subject: Re: [PATCH 4/4] drm: bridge: simple-bridge: add tdp158 support
+Message-ID: <hdhy5pnq4vsdn2axgu3t5vyhwqrqcrvpveeyai2lyvwadr7rbb@te6fucdqclez>
+References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
+ <20240617-tdp158-v1-4-df98ef7dec6d@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8150:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78324751-02eb-43de-634a-08dc8f1d3d01
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230037|1800799021|7416011|52116011|366013|376011|38350700011|921017;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?xQ2YkOJpEzhbg6UWVcuqsZn5jF21FPWZ0ZsLgF3Jp94S91UKKyOYzatIY5vR?=
- =?us-ascii?Q?zGIx4OSyHGey/0vCseAIl8JUdK3LHc6H5Rd9VhkjKd8WDEsi6f330DrO0Ong?=
- =?us-ascii?Q?/TbWoesLfyeCgSQQOYGU8OA9MmYkP2psYbNeO5FCUeJqXVALlzqv7LCG7qDl?=
- =?us-ascii?Q?WpfDro52xEQotLNIuVWqEALn8yMMv2rPOWE6YrBz8XIyZqePBWVRvcXnjIh3?=
- =?us-ascii?Q?V3GfE0jPw2af1XmZBBPY7RoEZ6hbWbUeiZ97IaLX4o/+ZLdYwPQDVUjlKRUW?=
- =?us-ascii?Q?m+3shtO6Xz7EPf7ikZXPx4NKDIbSL1cyt/32knaFk6j3q1u59rUGc1Q2rirj?=
- =?us-ascii?Q?XOn/Pf63TRUwGgo4/jMjvBdeROXLNfhsb84N3GexIzca1O97NXoqakO0VOiQ?=
- =?us-ascii?Q?klDYKwDM6V9zBXXX1h+Es18/QIWTtRRJQdhkc6amQoGpkjtHZj3BYcBubajq?=
- =?us-ascii?Q?xFTrBVYkBq1iwDWv8rEnwmzkmwF/JKMY0ohjS9h7AqOrNvgrN2FBSKxj7ZNU?=
- =?us-ascii?Q?ATX/B5c50wlHuS7N/ocE0TlqdljCi/XiMoMVp5kCCNz34N+lISL55zCh8+yw?=
- =?us-ascii?Q?2nCMBh4XBg/MDbcpSZ7jKy4xD8VXsmS+WWF6/u/xEupKQv2rBkyy+U97M/TD?=
- =?us-ascii?Q?Ce2uvixe/Xyv9v4UedBHgMlmY/RFizibCBA1Su/24jfGjvO8pgmnF7wQfCiK?=
- =?us-ascii?Q?y/qPK6teEd4F7bSDi+P+Q+7ACgXd7IRoaWJqHy2c2+0ba0L7e+jH4yv78s21?=
- =?us-ascii?Q?2NakIAkKb0IvZHxQ1PNtgzmsxDzocq/BOiEV0gataajSfOSJH3yuo5T/wg14?=
- =?us-ascii?Q?me8EjzDt/hsZy0nKN9TIVbFd7QsKxzo3L1GGA3Yc/rXZOogc2NkqtFzreKYU?=
- =?us-ascii?Q?Jo/Np0ySIwpuEa52jrWQIbBNiNwCUNbknR4MlAkambpOzHlBkxoipw2sgl/o?=
- =?us-ascii?Q?WAcLgKa7A25Y79Js5aiZe5Jwmhoot+bsa1t6JoiZjx5MKMm/qGFbXTaYgXZA?=
- =?us-ascii?Q?zAafJFNN7dRvPba4jkrwgeLHwpJFONwXGk7aV6HOBUeFmRvhQlJQ0C0LPXLQ?=
- =?us-ascii?Q?JP5LoH0hcah2qJ7KAbyh17uL0MQ+u6VtgTaNkIZLFjZ95TK4Tp6Fo4gn2/2n?=
- =?us-ascii?Q?33WY6lu3KMPyzpa+ZzMr07bq8NKDLgPR44jkV3I5fr/I6UQXPt0c9xEUx2Qv?=
- =?us-ascii?Q?lfq5B49liCYFQE2pF2Xy6HkAWL/90+AncpZpzvNhJI5x9IQE+V927dLe7YY4?=
- =?us-ascii?Q?3Tq5BzeoqZ31Ags1+vDkElW9KdBmnpl3WN015xIeLZ8aY0tdqkh9gvr3blcR?=
- =?us-ascii?Q?5lwxCsZylZz6Pz2yv5lM9PzyDs7z8ws2IAuoYSK71yIyxLPupwN5a9IVyAT+?=
- =?us-ascii?Q?ZRprEML9otPjazLNuvK4paNmBBuO?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(7416011)(52116011)(366013)(376011)(38350700011)(921017);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?G33nHlHVQ+cU4IR+LPN4gi9zm/opddBYlsuF+Gea5g0KpTaxugTToGdf3fJB?=
- =?us-ascii?Q?+PhDkBwkUjg/eEogxKhNCsaak9R1xPm0FdKZTQaGOfTKOXtTKXoiWQRtK2/4?=
- =?us-ascii?Q?IcHC9jbPMuga4qrgcwSVtMceqPkSpVaLqks+OR4y77mBKkHEVwOBR+dIWIWM?=
- =?us-ascii?Q?Kj6kTeIr1qp+Ql3VYe5C8VreVE5rN/2q1XS2uj7uBpVYQ03whwZn1M4bCkcb?=
- =?us-ascii?Q?qev72lGuhcvIDE2eXrKIN8v07hN3J8lCwvKrORf/j+KqN7KNnzidCgFI5OQj?=
- =?us-ascii?Q?8ZCAEGqGOD8QLB/nTmHN8sdVrDGcAEVIQ6wkTjVjaXgn1NFvBepxXap/9NQ0?=
- =?us-ascii?Q?P0BEw09hsZgn5eYxr3jAB/cj3jg1yoMgMp/uUwKJ/L+CIO6NdGsBqGc2ftJw?=
- =?us-ascii?Q?NTm/k1jgX+w6h9QqNPF708w1lpjyY7G1wze9j5QU4uyu+rWqg+9PyxGuNRqk?=
- =?us-ascii?Q?BE5+NJ1nfMbG8P9OwHoFy3RzbApTSrwcDHhdWHsMNI31wGXg4SCDn9ac2Rfv?=
- =?us-ascii?Q?BuXBfa7P22ab2ICfQK09afESKxotLphohsFGP8FLSy+F2NCE4TiFrEdMEG/6?=
- =?us-ascii?Q?JNhHDF/S+g+CvCj4JA7QiAdn8Jz85VxRPhthgOYIRsRATSh4AXjSQzGz7yB5?=
- =?us-ascii?Q?Zl8zIM6KYJ58m29fcaiEBsxVuHl/2XC2eds0BJPmYMMNn2cYiGd2tGiCQE6m?=
- =?us-ascii?Q?+irQD0suWC9vNTgrD+wyOpgWCWwhAtca8MgQl52x1NHTn7P25qrGz8rjvmEp?=
- =?us-ascii?Q?ng8AoObKI8/dpoSZ1bqGEEtfOdUDYbp9rIgtXDjqNulNjGS4uQ9WnBZzoSHn?=
- =?us-ascii?Q?3ZjTZL2ZniPyPR7oY3u8fdGZGCI5FbZrwF7w8XFyDsdsnnJSf5UPUT9A077l?=
- =?us-ascii?Q?KVllIcOvxsgFQTGd6wxt0hHeL3jFGMsqIR+Hlz3AbUT50TbmL4Xg54HlUvXs?=
- =?us-ascii?Q?hukFgXFubKRO0TnnyJ0vhEZKYduZMBafxYoX0hsPcksALK/v7n5gKmP28Od+?=
- =?us-ascii?Q?pgXJI4nMnOVf0khWAGJvSwfK7Ag6Z1zHbhN4IWSG22a0epi5RTUKwUgKWu8A?=
- =?us-ascii?Q?izaBoLdQ8g6hLSoMcnkknyuYdXBI0RezMqHXSyxEsWuvd4DWh9sE3kMx8g4n?=
- =?us-ascii?Q?gWCH+oBBmeUWcHer2YlKRN8lpwVbo//lHHDQm9/bBbH2fBkTeJvxp5EIlUIV?=
- =?us-ascii?Q?BHeQw6mIHAdKEjYGC8qJjXzQYApGds5hYqWZbzCV+jaPHMvXoNhO5ayn7cxP?=
- =?us-ascii?Q?oLNlg9uiUtUBJLGume9ApMr6zVq7N8zyVeXdB8FAspChyj3rVwT4nLcfYkie?=
- =?us-ascii?Q?rijRjWoob5y1mpeGp6CEW1kZ8ObVtuYYJP1SSgIt3yqze/zfVwvj1tZkjGdq?=
- =?us-ascii?Q?ado89TbJjwNhORS2VoWweBwO0nxZcYfmyRsljO9rTfAyOICVZAp/EGRiHAlo?=
- =?us-ascii?Q?o8XjLBDE8WiMtuDszfXhWV0Qp980qgcdXUsHtBkxRiV+EMLcCkdyPFDBIf0d?=
- =?us-ascii?Q?A3zeCDI2mMuLKTqdkLEp8L8LXLC9rd3eiNwFffE0LkcgrgGCENrIodmrifM0?=
- =?us-ascii?Q?HM6+PQGw7bv38kDf13U=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78324751-02eb-43de-634a-08dc8f1d3d01
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2024 22:31:32.1459
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZeZB3P7lqVMPpzEhoLJ6wHi9xSDdyKJHkjbQivR/vC3QudOcgqNoh+VN4mtwed/uths7VMXTx205r/92CWvFmw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8150
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617-tdp158-v1-4-df98ef7dec6d@freebox.fr>
 
-Add PCIe[0,1] and all dependent nodes.
+On Mon, Jun 17, 2024 at 06:03:02PM GMT, Marc Gonzalez wrote:
+> The TI TDP158 is an AC-Coupled HDMI signal to TMDS Redriver supporting
+> DVI 1.0 and HDMI 1.4b and 2.0b output signals.
+> 
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>  drivers/gpu/drm/bridge/simple-bridge.c | 64 ++++++++++++++++++++++++++++++++--
+>  1 file changed, 61 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
+> index f1e458a15882f..745d253e55f7e 100644
+> --- a/drivers/gpu/drm/bridge/simple-bridge.c
+> +++ b/drivers/gpu/drm/bridge/simple-bridge.c
+> @@ -6,6 +6,8 @@
+>   * Maxime Ripard <maxime.ripard@free-electrons.com>
+>   */
+>  
+> +#include <linux/i2c.h>
+> +#include <linux/delay.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> @@ -32,6 +34,7 @@ struct simple_bridge {
+>  	const struct simple_bridge_info *info;
+>  
+>  	struct drm_bridge	*next_bridge;
+> +	struct regulator	*vcc;
+>  	struct regulator	*vdd;
+>  	struct gpio_desc	*enable;
+>  };
+> @@ -142,8 +145,16 @@ static void simple_bridge_enable(struct drm_bridge *bridge)
+>  	struct simple_bridge *sbridge = drm_bridge_to_simple_bridge(bridge);
+>  	int ret;
+>  
+> +	if (sbridge->vcc) {
+> +		ret = regulator_enable(sbridge->vcc);
+> +		msleep(100);
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../boot/dts/freescale/imx95-19x19-evk.dts    | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
+At least this should be documented or explained in the commit message.
+Is it absolutely necessary? Can you use regulator-enable-ramp-delay or
+any other DT property instead?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 636907c852e78..e6f748181aeec 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -40,6 +40,36 @@ linux_cma: linux,cma {
- 		};
- 	};
- 
-+	reg_m2_pwr: regulator-m2-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "M.2-power";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&i2c7_pcal6524 20 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_pcie0: regulator-pcie {
-+		compatible = "regulator-fixed";
-+		regulator-name = "PCIE_WLAN_EN";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_m2_pwr>;
-+		gpio = <&i2c7_pcal6524 6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	reg_slot_pwr: regulator-slot-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "PCIe slot-power";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&i2c7_pcal6524 14 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2 {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-@@ -85,6 +115,22 @@ &mu7 {
- 	status = "okay";
- };
- 
-+&pcie0 {
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	pinctrl-names = "default";
-+	reset-gpio = <&i2c7_pcal6524 5 GPIO_ACTIVE_LOW>;
-+	vpcie-supply = <&reg_pcie0>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	pinctrl-0 = <&pinctrl_pcie1>;
-+	pinctrl-names = "default";
-+	reset-gpio = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
-+	vpcie-supply = <&reg_slot_pwr>;
-+	status = "okay";
-+};
-+
- &usdhc1 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
- 	pinctrl-0 = <&pinctrl_usdhc1>;
-@@ -129,6 +175,18 @@ IMX95_PAD_GPIO_IO09__LPI2C7_SCL			0x40000b9e
- 		>;
- 	};
- 
-+	pinctrl_pcie0: pcie0grp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO32__HSIOMIX_TOP_PCIE1_CLKREQ_B		0x4000031e
-+		>;
-+	};
-+
-+	pinctrl_pcie1: pcie1grp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO35__HSIOMIX_TOP_PCIE2_CLKREQ_B		0x4000031e
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			IMX95_PAD_UART1_RXD__AONMIX_TOP_LPUART1_RX      0x31e
+> +		if (ret)
+> +			DRM_ERROR("Failed to enable vcc regulator: %d\n", ret);
+> +	}
+> +
+>  	if (sbridge->vdd) {
+>  		ret = regulator_enable(sbridge->vdd);
+> +		msleep(100);
+>  		if (ret)
+>  			DRM_ERROR("Failed to enable vdd regulator: %d\n", ret);
+>  	}
+> @@ -159,6 +170,9 @@ static void simple_bridge_disable(struct drm_bridge *bridge)
+>  
+>  	if (sbridge->vdd)
+>  		regulator_disable(sbridge->vdd);
+> +
+> +	if (sbridge->vcc)
+> +		regulator_disable(sbridge->vcc);
+>  }
+>  
+>  static const struct drm_bridge_funcs simple_bridge_bridge_funcs = {
+> @@ -167,16 +181,14 @@ static const struct drm_bridge_funcs simple_bridge_bridge_funcs = {
+>  	.disable	= simple_bridge_disable,
+>  };
+>  
+> -static int simple_bridge_probe(struct platform_device *pdev)
+> +static int common_probe(struct device *dev, struct simple_bridge **res)
+>  {
+> -	struct device *dev = &pdev->dev;
+>  	struct simple_bridge *sbridge;
+>  	struct device_node *remote;
+>  
+>  	sbridge = devm_kzalloc(dev, sizeof(*sbridge), GFP_KERNEL);
+>  	if (!sbridge)
+>  		return -ENOMEM;
+> -	platform_set_drvdata(pdev, sbridge);
+
+I think this call can get dropped together with the remove() being
+gone...
+
+>  
+>  	sbridge->info = of_device_get_match_data(dev);
+>  
+> @@ -203,6 +215,15 @@ static int simple_bridge_probe(struct platform_device *pdev)
+>  		dev_dbg(dev, "No vdd regulator found: %d\n", ret);
+>  	}
+>  
+> +	sbridge->vcc = devm_regulator_get_optional(dev, "vcc");
+> +	if (IS_ERR(sbridge->vcc)) {
+> +		int ret = PTR_ERR(sbridge->vcc);
+> +		if (ret == -EPROBE_DEFER)
+> +			return -EPROBE_DEFER;
+> +		sbridge->vcc = NULL;
+> +		dev_dbg(dev, "No vcc regulator found: %d\n", ret);
+> +	}
+> +
+>  	sbridge->enable = devm_gpiod_get_optional(dev, "enable",
+>  						  GPIOD_OUT_LOW);
+>  	if (IS_ERR(sbridge->enable))
+> @@ -213,10 +234,27 @@ static int simple_bridge_probe(struct platform_device *pdev)
+>  	sbridge->bridge.funcs = &simple_bridge_bridge_funcs;
+>  	sbridge->bridge.of_node = dev->of_node;
+>  	sbridge->bridge.timings = sbridge->info->timings;
+> +	*res = sbridge;
+>  
+>  	return devm_drm_bridge_add(dev, &sbridge->bridge);
+>  }
+>  
+> +static int simple_bridge_probe(struct platform_device *pdev)
+> +{
+> +	struct simple_bridge *sbridge = NULL;
+> +	int err = common_probe(&pdev->dev, &sbridge);
+> +	platform_set_drvdata(pdev, sbridge);
+
+... so, this becomes unnecessary...
+
+> +	return err;
+> +}
+> +
+> +static int i2c_probe(struct i2c_client *client)
+> +{
+> +	struct simple_bridge *sbridge = NULL;
+> +	int err = common_probe(&client->dev, &sbridge);
+> +	i2c_set_clientdata(client, sbridge);
+
+... and this too.
+
+> +	return err;
+> +}
+> +
+>  /*
+>   * We assume the ADV7123 DAC is the "default" for historical reasons
+>   * Information taken from the ADV7123 datasheet, revision D.
+> @@ -298,6 +336,26 @@ static struct platform_driver simple_bridge_driver = {
+>  };
+>  module_platform_driver(simple_bridge_driver);
+>  
+> +static const struct of_device_id i2c_match_table[] = {
+> +	{
+> +		.compatible = "ti,tdp158",
+> +		.data = &(const struct simple_bridge_info) {
+> +			.connector_type = DRM_MODE_CONNECTOR_HDMIA,
+> +		},
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, i2c_match_table);
+> +
+> +static struct i2c_driver i2c_simple_bridge_driver = {
+> +	.probe = i2c_probe,
+
+i2c_simple_bridge_probe, or better simple_bridge_i2c_probe. Same applies
+to to the driver name and i2c_driver struct name.
+
+> +	.driver = {
+> +		.name = "i2c-simple-bridge",
+> +		.of_match_table = i2c_match_table,
+> +	},
+> +};
+> +module_i2c_driver(i2c_simple_bridge_driver);
+
+Does this work if the driver is built as a module?
+
+> +
+>  MODULE_AUTHOR("Maxime Ripard <maxime.ripard@free-electrons.com>");
+>  MODULE_DESCRIPTION("Simple DRM bridge driver");
+>  MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.34.1
+> 
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
