@@ -1,101 +1,162 @@
-Return-Path: <devicetree+bounces-76666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4E590B7FF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:27:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0CAA90B80F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:29:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D389F1C2365C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:27:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93A471F21854
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A6B1741C2;
-	Mon, 17 Jun 2024 17:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF7216F0EB;
+	Mon, 17 Jun 2024 17:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8VsfgaB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGCUiSVe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F72171E71;
-	Mon, 17 Jun 2024 17:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6488E16EB56;
+	Mon, 17 Jun 2024 17:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718645201; cv=none; b=f2u9/AQs9iGHuotxTirciI4s323OFSCDAV5thpuG+3OOkAE0+oALZa8uDZF/ehB5p4RmbMBknosde5XJoVtOxY3S+ReOuklS9h8tDtOlKrUV254zca4dxv0YKMMDhk7YTUVXRPieXVMXi5FKfrqVaHvCr+iLuTV78EosJeJTE+w=
+	t=1718645383; cv=none; b=uONDwdYsnEhmbHJeVnwG6gAYItish/PRWQN3UsbAL1a6qMcrm/r8VA49NVWWrHegepGnv6BOo9DHDpYK6oY3AsMpT7b+xWG16qcJlaEaEA7viDKOPaoUizGQFxZP5DMi+Cb7ht+UoGQDk4LsbF2IxLi8r5NAnH0+cyOrZlgtups=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718645201; c=relaxed/simple;
-	bh=71HffJ+XEI3ngVEa42GGtWC/vp+0n+DShaElYCkRY/k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=N7zeL4ObczNP451VmitBGQB1n97GRCYjFtclN/PFnb4ox+hrWNfPpnZSIIH1fV2+pjdN0uaGhZlmbdCyWtGiwKnH2kSsfSf2hj/hMl6n5YaGtLEG0YBecqYRndAXvMmBvAZWPrM5ZDAGE2gzXZo+B4+UVlC1jzE6ONnhPmv55Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8VsfgaB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 979BDC4AF4D;
-	Mon, 17 Jun 2024 17:26:38 +0000 (UTC)
+	s=arc-20240116; t=1718645383; c=relaxed/simple;
+	bh=kbW/gR+NRs7jHRgq3FS7wDstTPhoeqGbtN28unwmbg0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mwbmAp+uGPAe17NaR082qtYQX9qe8or+RRKoPPnmUP23sdzRtwg2EuqSq11C6sQ4FDSKjWIB3uneY3aKrpXbDQ5ZrMRqdZ8bcshiZiT1nvNKO2CDD2uMBvxI93NBpN2nssPELySIpwC4Xk0WO6RjB3Z0Zp93bDSwKBBu4JySWqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGCUiSVe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA4D3C2BD10;
+	Mon, 17 Jun 2024 17:29:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718645201;
-	bh=71HffJ+XEI3ngVEa42GGtWC/vp+0n+DShaElYCkRY/k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=H8VsfgaB2WEFCGtJBEAV4TMvnIXtCZPDMf5LGnmf2ZfcYLgdLZ/m3hOhDd0qtExM+
-	 hlM+QhC5/eCWoTYWREuNrhHwIfszfMvcSNnyBllsvcN4pfw5vngUXkCdOI2fAnTFeJ
-	 AssS+fLY3x8M0AS3L++wspOvfdM1Ee8xzrgcfXB14qNhv2YsJTPbdoihg10AtZfDky
-	 cb83OM95ELpw9AICQSAX4C95b/F/SSGxiA7Y2M9QGx31c4s2VnALlQPUBwkixdieAZ
-	 vguQOaJodrB4CPNoIGZXcqT7WI5KO3fg1PXr1aj6RoycH3kteAeFp7bvxjydWtjKcF
-	 SVCJ/wMzAGCrQ==
-From: Mark Brown <broonie@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240616095223.260786-1-animeshagarwal28@gmail.com>
-References: <20240616095223.260786-1-animeshagarwal28@gmail.com>
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: realtek,rt5514: Convert to
- dtschema
-Message-Id: <171864519820.209755.15379676298751564791.b4-ty@kernel.org>
-Date: Mon, 17 Jun 2024 18:26:38 +0100
+	s=k20201202; t=1718645382;
+	bh=kbW/gR+NRs7jHRgq3FS7wDstTPhoeqGbtN28unwmbg0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WGCUiSVehiciSz7Ww0nqIsyJsddAw+NFMrcR0rUTInw2TLrVUDQfXowSruEy+Rv0N
+	 phvU/pBbYQJfsKKOg2KDjmSEf3ID0/V8eYNxfquJ08XYOM4WJ4hwd9tTQibYuUTHXh
+	 iSAqVN3Gw/CNnlSBB/ERj/K9aKDzMFVvB2b3QN51MHkRbnVKtcC5cQJUgNw1uA9ueG
+	 6l31PRZp4T4eABb+8ql21aSnJ24bDgy0Oy25/U50fVIiYcPcr+3vlBxhAovn2Stwrp
+	 ksQrzUethG+Isvx4i5Y/z9a7dicg+yjvXzZd8lCRY1mPR6ozpLrzPZECoMjnGwKAji
+	 WGKlrerbS9/jw==
+Message-ID: <c9070805-3432-41f8-af1e-dc5e6f81df5c@kernel.org>
+Date: Mon, 17 Jun 2024 19:29:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: power: supply: add support for
+ MAX17201/MAX17205 fuel gauge
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240615203352.164234-1-dima.fedrau@gmail.com>
+ <20240615203352.164234-2-dima.fedrau@gmail.com>
+ <ee0cd414-206c-48c9-aee2-06e24e0b981c@kernel.org>
+ <20240617125955.GA292946@debian>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240617125955.GA292946@debian>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev-d4707
 
-On Sun, 16 Jun 2024 15:22:19 +0530, Animesh Agarwal wrote:
-> Convert the RT5514 audio CODEC bindings to DT Schema. Make bindings
-> complete by adding 'spi-max-frequency', 'wakeup-source' properties.
+On 17/06/2024 14:59, Dimitri Fedrau wrote:
+> Am Sun, Jun 16, 2024 at 09:27:21AM +0200 schrieb Krzysztof Kozlowski:
+>> On 15/06/2024 22:33, Dimitri Fedrau wrote:
+>>> Adding documentation for MAXIMs MAX17201/MAX17205 fuel gauge.
+>>>
+>>
+>> Three patchsets within 30 minutes. No changelog et all.
+>>
+> Sorry, had to fix my mail address in the commit message. Changelog was
+> in the cover letter. Anyway, could have fixed that in a later version.
+
+There was no cover letter attached to this patchset. If you do not send
+cover letter to interested parties, then it does not count.
+
 > 
-> 
+>> Slow down (one posting per 24h) to give people chances to review. Then
+>> provide changelog under --- and describe what happened.
+>>
+> [...]
+>>> +maintainers:
+>>> +  - Dimitri Fedrau <dima.fedrau@gmail.com>
+>>> +
+>>> +properties:
+>>> +      - description: ModelGauge m5 registers
+>>> +      - description: Nonvolatile registers
+>>> +
+>>> +  reg-names:
+>>> +    items:
+>>> +      - const: m5
+>>> +      - const: nvmem
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>
+>> This is incomplete. Missing battery and probably more... Look how other
+>> bindings are written.
+>>
+> Some fuel gauges used monitored-battery and/or power-supplies others none
+> of them(mitsumi,mm8013.yaml). I'm not sure when to use them.
 
-Applied to
+Look at your hardware, datasheet if it is available. Then look at
+monitored battery properties. If you see anything in common, then that's
+a sign.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+I did not get your driver changes, so I cannot help here. Kind of your call.
 
-Thanks!
-
-[1/2] ASoC: dt-bindings: realtek,rt5514: Convert to dtschema
-      commit: 2618b2ec8d140951588e4b4c8dd745676427d2cb
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+Krzysztof
 
 
