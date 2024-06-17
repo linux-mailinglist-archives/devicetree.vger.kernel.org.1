@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5422890A542
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:18:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EF490A54B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B09E1C23A3C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 06:18:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 480D91C24C64
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 06:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6FA1850B4;
-	Mon, 17 Jun 2024 06:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D36244C97;
+	Mon, 17 Jun 2024 06:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L42Wd3C3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJhrJo3z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE6D185089;
-	Mon, 17 Jun 2024 06:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C39222089;
+	Mon, 17 Jun 2024 06:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718604987; cv=none; b=BqXjcDxwKNoiVHlGTtJa7w3+6rhkf/Ut2qRBoWhrmO43VM01eN3UHtTpLEFNmuZzaTxdVcs0IdH4tJni828nakMWSht4ES3Zo1BJ+UPNmGRKn0sGd8HGUGbHwRppOlMMW8x7VzixdUaPXUSxAgQ0F/2hMUBkAPjAmEam2kFTfJ8=
+	t=1718605140; cv=none; b=n7prfH0pP4mhQ01tea61I/X9+FZXIHSM1SZdfDfiSVVcLcyk4eJykEKxZeWpyIeO46LGa87Vm4JClobPe2CzhfH1fp7ztXciGWRNlc8LcLIalbqEaJyJrjOhpr3iciexuQv//k6j3OrDdFYzFnEECaMVlI3PeVIyqOnWtNE0fgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718604987; c=relaxed/simple;
-	bh=xnKpAidf5yJRHsGR7e7UNXSdcW+rnTfw1pW+zBytFmw=;
+	s=arc-20240116; t=1718605140; c=relaxed/simple;
+	bh=rZA4FLzEkYyfBa4KOcKr9fp8upbXd7mmB9ZsSaFT4hg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=skEIl/L80DI1bZQO2ai53fFfh9V/AFfn35SGbwrYWlD4z/oc/xu/Q/vIpS/tgRNp/zeXkZHNegO5avRDl2QV7G/AOmMo/ZQ3jbw2TeM35cXZ/7FOO5AN7kXIF4mK+qEJ5hVwQxUn8MYpxtHeV1WXLb+cfHQ0PqwII41+OpllnTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L42Wd3C3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8D38C2BD10;
-	Mon, 17 Jun 2024 06:16:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cZe3uTcwZwMi5RkJn6lGW07YnOWYLayhYbR1byvQC0X7iwD7j6Wj0EVirIDQNLz4z/NYOzwwrFHjMsjtVnvEqCjK7htsbMyz/kgb0wO7DdayfsJ1BUM5X1K2Hod3yUpC/JoIFfiy2kJGyvTSzJzPmk1Nj6SSQGHRMAeMvK7c7IA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJhrJo3z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B170AC2BD10;
+	Mon, 17 Jun 2024 06:18:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718604987;
-	bh=xnKpAidf5yJRHsGR7e7UNXSdcW+rnTfw1pW+zBytFmw=;
+	s=k20201202; t=1718605139;
+	bh=rZA4FLzEkYyfBa4KOcKr9fp8upbXd7mmB9ZsSaFT4hg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L42Wd3C3jiMaIC0TCNmUeMB9D152DFsdrcJtxM3Br1YhkTQZIu97blHZqNIHNIyQ4
-	 EF9oT8p7PXlYLbLPWnqSmyVU3bOpst9tbqNihHJrCrl7tZeZ/qu3b8n5hLWcRMu2Ym
-	 uQvtVCk3mJn3sSMSH9Lpx5N/maP+8Izs5x1aAjuiZkdFtJqJU4GTBT74wT7I98MVX7
-	 ehKdr0UwbZNAZzpZW25fBT3WjCpCPL6lNq17nJZ/W/ONMFv8fB8jNH4RMIGjWfRuRf
-	 b8xezawcaRfhAPkdiOdgr3DRI4LnfD7ftVPnk4xQXeNFBAtiSrZs4riN0IYuWea+bm
-	 sMOSXdpuw6fpw==
-Message-ID: <312d0bf2-3a17-44df-8a42-0168b2e3640a@kernel.org>
-Date: Mon, 17 Jun 2024 08:16:22 +0200
+	b=gJhrJo3zWxMmxdKE8JKFQEu66nZIVjUZ5/zH7wTIyvfDJDv7yt0PQ2lOY1TReFuYV
+	 eQNg1YEaRUOHEXLbIxuXOFKM/wz6eGPr6oxuSJ2kfJXIgLLRYrS66zR9SQ9Yg1Tb0z
+	 +3dAFF+zzaovDoYoIOjTo97/uVypm9FIx50b4byTfDKvoQEt33nitnsINzz/cP3enj
+	 CgdalSQtdTjyzz5cVRxOMYNj4k7ot2fmQAnA0Lcv6rYEzmW3t/PP8TYwwRoO1sICy1
+	 0bXVOBDvtPtLlmz0+edetyvY9oj4SFi+9gFO2nPACUEC2y4Tw3HJ85sDWGYFqJZze4
+	 SYGY8p15bvxdg==
+Message-ID: <bbd04c56-451a-4a5f-938c-2ce4ccec7253@kernel.org>
+Date: Mon, 17 Jun 2024 08:18:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: ti,tmp108: document V+ supply, add
- short description
-To: Stanislav Jakubek <stano.jakubek@gmail.com>,
- Guenter Roeck <linux@roeck-us.net>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <Zm8/qxGc8fvi/tuE@standask-GA-A55M-S2HP>
- <f75635d8-4199-4bbe-9fba-a1d2ed206966@roeck-us.net>
- <Zm/FF2xX/rhwmLZ6@standask-GA-A55M-S2HP>
+Subject: Re: [PATCH v1] dt-bindings: net: wireless: BCM4329 binding: add
+ pci14e4,449d
+To: Jacobe Zang <jacobe.zang@wesion.com>, kvalo@kernel.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: nick@khadas.com, arend@broadcom.com, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240617024341.3106240-1-jacobe.zang@wesion.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,38 +104,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Zm/FF2xX/rhwmLZ6@standask-GA-A55M-S2HP>
+In-Reply-To: <20240617024341.3106240-1-jacobe.zang@wesion.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/06/2024 07:09, Stanislav Jakubek wrote:
-> On Sun, Jun 16, 2024 at 01:43:08PM -0700, Guenter Roeck wrote:
->> On 6/16/24 12:40, Stanislav Jakubek wrote:
->>> TMP108 is powered by its V+ supply, document it.
->>> While at it, add a short description with a link to its datasheets.
->>>
->>> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
->>> ---
->>> Not entirely sure of the "v+-supply" name, but the datasheet only ever
->>> refers to it as "V+" or simply as the "supply voltage".
->>> Only other name I've seen is in the schematic for the msm8226-based
->>> motorola-falcon smartphone, where it's called "V_POS".
->>>
->>
->> Guess one has to praise the ability of datasheet writers to come up
->> with different names.
->>
->> The datasheet for tmp117 also uses the V+ term, yet the supply name
->> is "vcc-supply". I would personally very much prefer to stick with that,
->> but that is just my personal opinion.
->>
->> Guenter
->>
-> 
-> I'm okay with that. I'll keep this for a few days to see if anyone else
-> has anything to say, then I'll send a V2 with it changed to vcc.
+On 17/06/2024 04:43, Jacobe Zang wrote:
+> It's a Broadcom Wi-Fi module connected via the PCIe interface and also
+> add prefix in vendor-prefix.yaml
 
-vcc. Anyway + is not an expected character.
+You do not add prefix here. Drop unrelated parts of commit msg.
+
+> 
+> Link:https://lore.kernel.org/linux-devicetree/20240617023517.3104427-1-jacobe.zang@wesion.com/T/#u
+
+Link also does not seem to be really relevant to the commit. No point to
+keep it in the git log. You can always provide additional information in
+the changelog section (---).
+
+
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> ---
+>  .../devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
+
 
 Best regards,
 Krzysztof
