@@ -1,117 +1,228 @@
-Return-Path: <devicetree+bounces-76678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76B1890B864
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:44:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5A790B8E5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 20:04:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88EB01C228FB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:44:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FD431C23E84
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C45918A92A;
-	Mon, 17 Jun 2024 17:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB930198E9D;
+	Mon, 17 Jun 2024 18:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="YFtRy7uX"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="AKOPosEB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-58-211.mail.qq.com (out162-62-58-211.mail.qq.com [162.62.58.211])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3134C18A922;
-	Mon, 17 Jun 2024 17:44:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.58.211
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB76198E87;
+	Mon, 17 Jun 2024 18:01:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718646258; cv=none; b=hOeeGCrbdkrERY6Q85q6rlk2zp969ea3KcE1x1L5dlQQuDRHwWVJKy5u3crVkUMOx4ms9lqBC9ry3Q7UH+ZCwGoWqSknMK00twSR0Z1ZHBfSq4RR+wgXCFg0CDweXb1XouwbchowuMCr+Zsw6ytZF6TgiozyqRUo9AEDq0xqf7c=
+	t=1718647309; cv=none; b=YCvmufKjI6nO69iFiMd8W8Ohn0BkvSpZT8BeVfmnH2EfANOz+y3ufydgcSMs1OUQcsxaCliae2bwLXP6eCCkxvLsTwZW/Z6fFbwmQjic9ZksUALI2cwnm3226isRGZENY4jV1mmgcI0gtaNsCCAYFYQSvoU5FQ84DoO2KrCHJAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718646258; c=relaxed/simple;
-	bh=ZW81xIG74/pws4gnTAm5H30wvlITx6Vaz7+uqpMz3WA=;
-	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
-	 Date:Cc:References:To; b=oyL4gpB34pG6HtPQjJI2CWDstX0+RErgEExNpUxvxVI46QboGV9d/oaHVUXAL0QQW4qdwrDCs1ujpc1UZ9y4bGrzXU5x790cU/LS/95mL6S2Otlo+o8aC+rBgqx16hOPCAj7/kIFQTp+tl806UnzJcAnAoS2kXkMIVimrNtsUq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=YFtRy7uX; arc=none smtp.client-ip=162.62.58.211
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1718646244; bh=lSfFb7+k557rhRi20IR9VIL7t+SDEJaWgmE3dAg5WgI=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To;
-	b=YFtRy7uXqOal+oMCijajPrRyCIdSP3JEBrtHG5sNJB4NBC8jnLQ7DzUE3ZUk+e8td
-	 6+R7eETeMsCj41KPxsAsb3SkE1W4UlgSJYYlsCJ8SYtNtZeV+oTSN04EDzLtKgwjpK
-	 Zki9Yot2tg+RcCSrA04/WxqWGzz+KqhtPYsdEaoI=
-Received: from smtpclient.apple ([2408:8207:18a1:9700:9c85:7ae:3ee:45fe])
-	by newxmesmtplogicsvrszb16-1.qq.com (NewEsmtp) with SMTP
-	id AAE8FC0D; Tue, 18 Jun 2024 01:42:46 +0800
-X-QQ-mid: xmsmtpt1718646166t17e0u07v
-Message-ID: <tencent_53226D39C76ADCAA1883109DC6213E5EC107@qq.com>
-X-QQ-XMAILINFO: OKKHiI6c9SH39YSGtA2DuQ1+IsvjerQWoRzDVzuacvLBMv26KpHergvu9Ti+QK
-	 /xNryMTLRsr8MZTplkDQJXfxq8QGCo8ChBXf9pacuNdnNyVHnUbSNdzDWvHBL7gyO9cDrAf9b3C+
-	 6T6VkSaIN6bsywuMTy/hVi3HP15/6mC6EK7en0iKYX8jD+bTYA1Fgg3aaBUIVqZmAoOj9II/vHHT
-	 4GlKtbgWE+EgBxPMJz6eSXSiTE67eItWvyUqLhmsV5FItVlhZrzP1LYHkR8J4qQCqWxeR6NIekfW
-	 o9gJNfmfeyLY6+qaHchOK9iOsqoTdv3CjeK2a5ibIenncxr/W1xBqas9nUomJ5u3GKe5OsMQK6wB
-	 9Wml9CYCTvUO5b89aVue/R/csfWfS1s5qkgZH9YOskAevqFkKnDrrzlcfFEDaQbdsUIWhKVM9iar
-	 QiQMb/PHK+1mWIRM6WBjQVNR7NunK+y0N5skHnJBKV1dapCuA0ckWctCMuwZAEpvrE6LcBMi3Mfh
-	 +MDl//+Lvazr71vT/Tmshup5BkGPIS//K43W9gG1W6JlfIf0ylof7Pbdr5FDNE++PJCeRGPihUOT
-	 Ak/cZd5ZjcYO3dq37EfkDPce8ANQITJb5UPsEvxJeRWhS1wl/6EeMRdX5v/8WGr9eyM3Ej06MCQO
-	 aw65nIBCfE8JW1Ho+SAmMoK48KG4KNu7zlZqtthvwGKmFTb9b3rvO6AB11LwmcXfbwNzkAYNwoko
-	 5BlHPs+P/Riv8eWtuITwmDDTbNrskgGMHGFzRFplLs+p6QuFOxOsLa4WOo8SoHvPwkRrcWIDyGM/
-	 x2EdqohEPCOf07CDnBGmpEvil6/gwwBj1T/52EFZGI33h9XF/sMHNoNSfR0q0JvP0JOFAAsFF8Hy
-	 gSuy5M3KOyZHWd2d01f659w5pDisw7yvgaVDQ7uqID/Xj70xCwEuQ/AkTloih4Vau0AtzVhGrqcJ
-	 EGV6P6W5HkzVuifQxtKL9+79zXfjAdo+ln+NRBSXbN1MA7kcUqBYipJa+jbAn8svfXwzIhp1U=
-X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1718647309; c=relaxed/simple;
+	bh=7GRFpuN+7pAX/fY1FhybaRDLqr9EDJaNQq18Ywgc9RY=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=iTMdkoMpx/6p+gVL25aN0utyOS6UW0Mys6JVQQI+0luTMgERcKXM09RtC8s/E/BcE+bIA2w0VF7cC9xhCfKLZC7Na/wVtoU50Smo2snKT+DIh0NsF/OE/xgWGUISC+QekyIjHtYNAwAeIuwvapDb0Nj/zJ0S8/+YzpH6wFWS5qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=AKOPosEB; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=3ahKqWqY39omHevjl7wSJNdYFIXYIUBOZqU3mUeM6oo=; b=AKOPosEBFWOUyOeznhhM7koty+
+	+1Gq6irnV4W906bVgTlh+uLxYqAUNApg8xD1fb9rTCt5FFQDnfMZKtVW+c4GFzBE1xCnesS10Tqlf
+	kjO1gzpAo5+lF3jrZVCX85vRhC8y2NZNi9izORy7dB/VhcbT3GrHPflsLWvoOzniNJJ4=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:52516 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1sJGfl-000840-Ur; Mon, 17 Jun 2024 14:01:42 -0400
+Date: Mon, 17 Jun 2024 14:01:20 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Lech Perczak <lech.perczak@camlingroup.com>
+Cc: Hui Wang <hui.wang@canonical.com>, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, hvilleneuve@dimonoff.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ Maarten.Brock@sttls.nl
+Message-Id: <20240617140120.e2ad6ffb8df327e5bb461efb@hugovil.com>
+In-Reply-To: <274b7ed0-28fd-4348-adfe-c4302fea0c09@camlingroup.com>
+References: <20240614102952.679806-1-hui.wang@canonical.com>
+	<20240614102952.679806-2-hui.wang@canonical.com>
+	<20240617120347.907e8e1e8eae5824930dcc48@hugovil.com>
+	<274b7ed0-28fd-4348-adfe-c4302fea0c09@camlingroup.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
-Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <20240617-connected-avoid-82f0bdc05cdf@spud>
-Date: Tue, 18 Jun 2024 01:42:34 +0800
-Cc: Jisheng Zhang <jszhang@kernel.org>,
- Yixun Lan <dlan@gentoo.org>,
- linux-riscv@lists.infradead.org,
- Conor Dooley <conor+dt@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Anup Patel <anup.patel@wdc.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Jesse Taube <jesse@rivosinc.com>
-Content-Transfer-Encoding: 7bit
-X-OQ-MSGID: <99CEE9EB-EEC2-4538-9378-D9AAD8CD240B@cyyself.name>
-References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
- <20240616-exorcism-computing-e11e26084a62@spud>
- <20240616224811.GC3983622@ofsar> <ZnBEBQjTQtFs-fXt@xhacker>
- <20240617-synapse-carmaker-0a59c7c6edb7@spud>
- <tencent_26E7381EE1F6C5188428359AF3F908CA680A@qq.com>
- <20240617-connected-avoid-82f0bdc05cdf@spud>
-To: Conor Dooley <conor@kernel.org>
-X-Mailer: Apple Mail (2.3774.600.62)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+	* -1.4 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v5 2/2] serial: sc16is7xx: hardware reset chip if
+ reset-gpios is defined in DT
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
+On Mon, 17 Jun 2024 18:49:30 +0200
+Lech Perczak <lech.perczak@camlingroup.com> wrote:
 
-
-> On Jun 18, 2024, at 01:14, Conor Dooley <conor@kernel.org> wrote:
+> Hello,
 > 
-> On Tue, Jun 18, 2024 at 12:39:30AM +0800, Yangyu Chen wrote:
->> 
->> The vendor uses a special intel pxa uart driver, marked deprecated
->> in the kernel and incompatible with ns16550. If we use ns16550 in
->> the dt, the behavior of uart is like the uart has no interrupt and
->> stops working permanently when fifo overruns, making many developers
->> not know how to start unless they use the SBI HVC console, which
->> needs to turn on CONFIG_NONPORTABLE.
+> W dniu 17.06.2024 o 18:03, Hugo Villeneuve pisze:
+> > On Fri, 14 Jun 2024 18:29:52 +0800
+> > Hui Wang <hui.wang@canonical.com> wrote:
+> >
+> > Hi Hui,
+> >
+> >> Some boards connect a GPIO to the reset pin, and the reset pin needs
+> >> to be set up correctly before accessing the chip.
+> >>
+> >> Add a function to handle the chip reset. If the reset-gpios is defined
+> >> in the DT, do hardware reset through this GPIO, otherwise do software
+> >> reset as before.
+> >>
+> >> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+> >> ---
+> >> in the V5:
+> >>  - change setup to set up in the commit header
+> >>  - change othwerwise to otherwise in the commit header
+> >>  - change usleep_range(5, 10) to fsleep(5)
+> >>
+> >> drivers/tty/serial/sc16is7xx.c | 34 +++++++++++++++++++++++++++++++---
+> >>  1 file changed, 31 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> >> index bf0065d1c8e9..eefa40006c71 100644
+> >> --- a/drivers/tty/serial/sc16is7xx.c
+> >> +++ b/drivers/tty/serial/sc16is7xx.c
+> >> @@ -14,6 +14,7 @@
+> >>  #include <linux/delay.h>
+> >>  #include <linux/device.h>
+> >>  #include <linux/export.h>
+> >> +#include <linux/gpio/consumer.h>
+> >>  #include <linux/gpio/driver.h>
+> >>  #include <linux/idr.h>
+> >>  #include <linux/kthread.h>
+> >> @@ -1467,6 +1468,32 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
+> >>       .delay_rts_after_send = 1,      /* Not supported but keep returning -EINVAL */
+> >>  };
+> >>
+> >> +/* Reset device, purging any pending irq / data */
+> >> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
+> >> +{
+> >> +     struct gpio_desc *reset_gpio;
+> >> +
+> >> +     /*
+> >> +      * The reset input is active low, and flag GPIOD_OUT_HIGH ensures the
+> >> +      * GPIO is low once devm_gpiod_get_optional returns a valid gpio_desc.
+> >> +      */
+> > I would replace all the above comments with:
+> >
+> >   /* Assert reset GPIO if defined and valid. */
+> >
+> > The correct polarity is already defined by the device
+> > tree reset-gpios entry, and can be high or low depending on the design
+> > (ex: there can be an inverter between the CPU and the chip reset input,
+> > etc).
+> Seconded - this way it's clear for the reader.
+> >> +     reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> >> +     if (IS_ERR(reset_gpio))
+> >> +             return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
+> >> +
+> >> +     if (reset_gpio) {
+> >> +             /* The minimum reset pulse width is 3 us. */
+> >> +             fsleep(5);
+> >> +             gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
+> >> +     } else {
+> >> +             /* Software reset */
+> >> +             regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
+> >> +                          SC16IS7XX_IOCONTROL_SRESET_BIT);
+> >> +     }
+> >> +
+> >> +     return 0;
+> >> +}
+> >> +
+> >>  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+> >>                   struct regmap *regmaps[], int irq)
+> >>  {
+> >> @@ -1536,9 +1563,9 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+> >>       }
+> >>       sched_set_fifo(s->kworker_task);
+> >>
+> >> -     /* reset device, purging any pending irq / data */
+> >> -     regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
+> >> -                  SC16IS7XX_IOCONTROL_SRESET_BIT);
+> >> +     ret = sc16is7xx_reset(dev, regmaps[0]);
+> >> +     if (ret)
+> >> +             goto out_kthread;
+> >>
+> >>       /* Mark each port line and status as uninitialised. */
+> >>       for (i = 0; i < devtype->nr_uart; ++i) {
+> >> @@ -1663,6 +1690,7 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+> >>                       uart_remove_one_port(&sc16is7xx_uart, &s->p[i].port);
+> >>       }
+> >>
+> >> +out_kthread:
+> >>       kthread_stop(s->kworker_task);
+> >>
+> >>  out_clk:
+> >> --
+> >> 2.34.1
+> >>
+> > I could not test the validity of the 3us delay since I do not have an
+> > oscilloscope, but testing with a 10s delay instead and a
+> > multimeter showed that it works ok. You can add my Tested-by tag:
+> >
+> > Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> My hardware doesn't connect this line to the CPU's GPIOs, so I couldn't test this properly - but you can at least have my R-b tag.
+
+Hi Lech,
+just to mention that on my hardware the SC16 reset line is also not
+connected to the CPU, so I only tested the GPIO assert/deassert logic.
+
+Hugo.
+
+
+
+> >
+> > And if you modify the comment as I suggested above, then you can add my
+> > R-b tag:
+> >
+> > Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> >
+> >
+> > --
+> > Hugo Villeneuve
+> >
+> > ___
+> > This email originated from outside of Camlin Group. Do not click on links or open attachments unless you are confident they are secure. If in doubt, please raise a security incident via the following portal: Camlin Helpdesk – Report an Information Security Incident/Non-Conformance <https://camlin-helpdesk.atlassian.net/servicedesk/customer/portal/2/group/34/create/62>
 > 
-> This I just do not understand. Why did they use this IP? Is it free?
-> Did they use it before for something else? It's a rather strange design
-> choice to me.
+> -- 
+> Pozdrawiam/With kind regards,
+> Lech Perczak
+> 
+> Sr. Software Engineer
+> Camlin Technologies Poland Limited Sp. z o.o.
+> Strzegomska 54,
+> 53-611 Wroclaw
+> Tel:     (+48) 71 75 000 16
+> Email:   lech.perczak@camlingroup.com
+> Website: http://www.camlingroup.com
 
-I don't know either. However, PXA is a subfamily of XScale. The
-kernel also probed the UART as an XScale. So, using XScale compatible
-string is OK.
 
+-- 
+Hugo Villeneuve
 
