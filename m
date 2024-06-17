@@ -1,221 +1,105 @@
-Return-Path: <devicetree+bounces-76423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FC1990A88B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:34:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2B790A8AA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 642621C20BB3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:34:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03C4284178
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:40:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85798190672;
-	Mon, 17 Jun 2024 08:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48170190497;
+	Mon, 17 Jun 2024 08:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="MWyS7qU/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PuP+TKaF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A20717F5;
-	Mon, 17 Jun 2024 08:33:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D93A53AD
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 08:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718613240; cv=none; b=B/QOwqRFHIXfqjM3cpePV0qAdiCoCV/5MhX/3vGCAj1NnX0EaMfn84gU/a+b73RSESKT+M/Om9eqMEVOVbnbnGtnzUVKPE7FYGv8B5jEGItuFKCJE0h/6QKgaY06/LzMpngrfGPXTP2UWI1cvRMqpOBBW0HxR+b1cGU8/E4KPSE=
+	t=1718613634; cv=none; b=ZlLT5kOCRq/ZKT0yYp7SdkHnMeBIGTPhgvLsfO5El4Sxp2E+aYTdZFtGdHiVmXoVBvPLf+PJdow1iSKq6L8qxZA8tCX+EUc+31jkH2Ri5VfhLUmBlUmpPYxmOL7H4F8WdLDf2xqJaLF78h2TLc9tLbqWJ15Y+YzjHhEooowV+1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718613240; c=relaxed/simple;
-	bh=+6wl04oLhPpSDJmE7ASj9/nNTOu1MjHLRoHDOiR7cTU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QvnvkNlLeP8d/vB46pBLr4Fb9+vHmqRwGV77NiDxVF4LHmqDLF74jKDh7Leq0yZqBeDaaENtzdTeCXEKl64lLXqbbT+EbkoiImtEMD9h8Iw1BJsLsgza5Fw1G/8vfCDUeQmuQKtLW4jufMzCjgDdOGXfMIXjXix5Wg+xhe5jjdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=MWyS7qU/; arc=none smtp.client-ip=80.237.130.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
-	Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
-	In-Reply-To:References; bh=rgwoDle0VCjUgkksnE/DxlmcEtuf5f9KQBQjSoWR2uI=;
-	t=1718613238; x=1719045238; b=MWyS7qU/vMPj7MQgM+W/z10GYMFJ9jvjXQEBOcjTEmeR4l6
-	zVRFELDvEKDmCba2if94kP9aUXOmAGbEjFdEQq3q+JRJZcXacdvH3CnAUwg5z4LhWhobem+/3rR+B
-	omq2lEqJBzE9IYeprhOgacWAgCqQEyeg/AQ3FG6u3KcGEaR8BMSol6yuHkKyLpymDYGanfUNsmdAr
-	c9sXzAGmWiNhPDS2S9GTceoWHRarAN3Sm4Jp+OIudZ1cCqrVL+kLNl+cnUVsGprhwlyaj9FhjLcoZ
-	KEZnO+TXqHTB/9HaBdjPa7mtBQnmQ+Fm7GTuSp12vNqpS39o6A5jJn91o/apHBUA==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1sJ7oF-0004hN-11; Mon, 17 Jun 2024 10:33:51 +0200
-Message-ID: <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
-Date: Mon, 17 Jun 2024 10:33:50 +0200
+	s=arc-20240116; t=1718613634; c=relaxed/simple;
+	bh=X5VHLKuA91ZpUWQy97LJXKuQHjNSzTP1qecAbqNklDs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oJko9+V4qExFUOoOojXRH9gjDxVBkleXEWLKyXto2vJCSj7WJ6FUsMjmQ/fuk2FqxTV8Pae0xQbgMG0KOvMNYciST4xTYhsiePDtuS+g90YK0AkNEmMT6BsVLFnKYtNtn1gX2MzcrBVvhz9eB34p4G3RYPuw9pb2Q2VImQyox7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PuP+TKaF; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52cc14815c3so10674e87.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 01:40:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718613629; x=1719218429; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X5VHLKuA91ZpUWQy97LJXKuQHjNSzTP1qecAbqNklDs=;
+        b=PuP+TKaFcoQZXfKfG0enBeRcQa3/YXmPpyclJc0D3DMnV36/HLwgxJqZA378yJEzs0
+         K9EONNM0A/Z6qkgq+RMNZaRLadKUwdk9QiXGnRW2uG8yLkGDJVVZ3jYXKkfantl8JGkU
+         PCzYt9NMBYTJHl1pUmndVmn8qjaPFNoLqprY8yEDyM2Y/aQJN4EgSA8LezjmS3hTiNiR
+         Jn7qfwsXqjTLPmwBuLKGbUfd4SB3AqOGHuRso8ZB34xQWhE3iXJAFm1dtBizoEirkyof
+         gkzRo6kBi9+wHMx9gFZSdMRLyLeIrg65zQ/oWvFNbNWwoI6mgj0PhV2IiyeaHdwIu5mW
+         c2CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718613629; x=1719218429;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=X5VHLKuA91ZpUWQy97LJXKuQHjNSzTP1qecAbqNklDs=;
+        b=RiSmasAjEE/s61TG05VNUqarO/zAtVhR1r9Q+JguBjsEnkS2I3MWZ8UfnmhZe/igXr
+         CWTcpcug/C9RqFJ5Dty/+LeDSXZAQvnaNiRqc0hS4PdZDeW3pHmFtPe/DgVtlvoy/bFg
+         t70/za50StaIJ+hokdbnYbaPgzXv2WpvSEl3plPARUhNcBHe3wMnfrLF0bLzMlCj8tCS
+         0MbQm2xv6BZeQAkfXzLCWhjv9lV0gsga4C0LpB/CqPBPHWGD6+RvCRUpVksf3MOS7ca5
+         vSShcXA6iw/7zgC62S7zM5zh8GYxWMQQSKJkYQJCkwl8Q/7nJZZKPpgl6BXZsKLq0Mq4
+         +B8g==
+X-Forwarded-Encrypted: i=1; AJvYcCUBy7g5ZSemUFmxhsurbJ8/wpHDy2N9vSl8QyIUQ05iZVFV/y/inDI/HUI5HXm8HA6TDDfkbuApboV0X1LFim6b+Sr3M1UPCRumMQ==
+X-Gm-Message-State: AOJu0YyTORynejl6AjB5PqcJG2fQP0zRHaqhywH//kulvIOWnER2gq0a
+	1nQvbFZjKeAjCn4lw9rmWUwNgBnJY1AMLi68BD9Oe5QImvellrJ/1d5IjDJCpWn5o4A4SOFsNhz
+	Zz4m2qkAlnrBFPWgxA8iCExGjNmBuuwIerQyJ7g==
+X-Google-Smtp-Source: AGHT+IHENtu6w62klaIyhfrUf1JcZGXfaS8EPrhivXycsqfsmezoTTmR2Ssl5Ad4Ty6uSMvA0yU1itjnM3xuW+u1I6Y=
+X-Received: by 2002:ac2:4e04:0:b0:52c:ab2c:19d0 with SMTP id
+ 2adb3069b0e04-52cab2c243bmr5978403e87.1.1718613629599; Mon, 17 Jun 2024
+ 01:40:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- Frank Wunderlich <linux@fw-web.de>, Paolo Abeni <pabeni@redhat.com>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
- <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
- <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
- <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
- <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
- <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
- <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-In-Reply-To: <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1718613238;e08520a9;
-X-HE-SMSGID: 1sJ7oF-0004hN-11
+References: <20240606072814.3572965-1-primoz.fiser@norik.com> <20240606072814.3572965-3-primoz.fiser@norik.com>
+In-Reply-To: <20240606072814.3572965-3-primoz.fiser@norik.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 17 Jun 2024 10:40:18 +0200
+Message-ID: <CACRpkdaFiGhsytjLKpvGU3T7F+pshYOsB6T5ez7Mk_NtPnNRkg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/panel: simple: Add PrimeView PM070WL4 support
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This thread/fixing the regressions looks stalled again, let me jump in
-here with a further comment below.
+On Thu, Jun 6, 2024 at 9:28=E2=80=AFAM Primoz Fiser <primoz.fiser@norik.com=
+> wrote:
 
-On 11.06.24 20:15, Arınç ÜNAL wrote:
-> On 11/06/2024 16:03, AngeloGioacchino Del Regno wrote:
->> Il 11/06/24 14:56, Arınç ÜNAL ha scritto:
->>> On 11/06/2024 15:28, AngeloGioacchino Del Regno wrote:
->>>> Il 11/06/24 13:38, Arınç ÜNAL ha scritto:
->>>>> On 11/06/2024 14:30, Thorsten Leemhuis wrote:
->>>>>> On 07.06.24 16:15, Thorsten Leemhuis wrote:
->>>>>>> On 07.06.24 16:03, Paolo Abeni wrote:
->>>>>>>> On Thu, 2024-06-06 at 10:26 +0200, Thorsten Leemhuis wrote:
->>>>>>>>> On 31.05.24 08:10, Arınç ÜNAL wrote:
->>>>>>>>>> On 31/05/2024 08.40, Thorsten Leemhuis wrote:
->>>>>>>>>>> [adding Paolo, who committed the culprit]
->>>>>>>>>
->>>>>>>>> /me slowly wonders if the culprit should be reverted for now
->>>>>>>>> (see below)
->>>>>>>>> and should be reapplied later together with the matching
->>>>>>>>> changes from
->>>>>>>>> Arınç ÜNAL.
->>>>>>>>
->>>>>>>> FWIS I think a revert should be avoided, given that a fix is
->>>>>>>> available
->>>>>>>> and nicely small.
->>>>>>>
->>>>>>> Yeah, on one hand I agree; but on the other it seems that the
->>>>>>> maintainers that would have to take care of the dt changes to fix
->>>>>>> this
->>>>>>> until now remained silent in this thread, apart from Rob who sent
->>>>>>> the
->>>>>>> mail regarding the warnings.
->>>>>>>
->>>>>>> I put those maintainers in the To: field of this mail, maybe that
->>>>>>> might
->>>>>>> lead to some reaction.
->>>>>>
->>>>>> Still no reply from the DRS folks or any other progress I noticed.
->>>>>> Guess
->>>>>> that means I will soon have no other choice than to get Linus
->>>>>> involved,
->>>>>> as this looks stuck. :-( #sigh
->>>>>
->>>>> Does it have to be Linus that needs to apply "[PATCH 0/2] Set PHY
->>>>> address
->>>>> of MT7531 switch to 0x1f on MediaTek arm64 boards"? Aren't there
->>>>> any other
->>>>> ARM maintainers that can apply the fix to their tree?
->>>>>
->>>>> Arınç
->>>>
->>>> You have feedback from two people on the series that you mentioned,
->>>> and noone
->>>> is going to apply something that needs to be fixed.
->>>>
->>>> I'm giving you the possibility of addressing the comments in your
->>>> patch, but
->>>> I don't want to see any mention of the driver previously ignoring
->>>> this or that
->>>> as this is irrelevant for a hardware description. Devicetree only
->>>> describes HW.
->>>>
->>>> Adding up, in commit 868ff5f4944a ("net: dsa: mt7530-mdio: read PHY
->>>> address of switch from device tree"),
->>>> you have created a regression.
->>>>
->>>> Regressions should be fixed - as in - if the driver did work before
->>>> with the old
->>>> devicetrees, it shall still work. You can't break ABI. Any changes
->>>> that you do
->>>> to your driver must not break functionality with old devicetrees.
->>>>
->>>> So...
->>>>
->>>> ------> Fix the driver that you broke <------
->>>
->>> The device tree ABI before the change on the driver:
->>>
->>> The reg value represents the PHY address of the switch.
->>>
->>> The device tree ABI after the change on the driver:
->>>
->>> The reg value represents the PHY address of the switch.
->>>
->>> I see no device tree ABI breakage. What I see instead is the driver
->>> starting enforcing the device tree ABI. No change had been made on the
->>> device tree ABI so any non-Linux driver that controls this switch
->>> continues
->>> to work.
->>>
->>> These old device tree source files in question did not abide by the
->>> device
->>> tree ABI in the first place, which is why they don't work anymore as the
->>> Linux driver now enforces the ABI. Device tree source files not
->>> conforming
->>> to the ABI is not something to maintain but to fix. The patch series
->>> that
->>> fixes them are already submitted.
->>
->> As I said, the devicetree MUST describe the hardware correctly, and on
->> that I do
->> agree, and I, again, said that I want to take the devicetree fix.
->>
->> However, the driver regressed, and this broke functionality with old
->> device trees.
->> Old device trees might have been wrong (and they are, yes), but
->> functionality was
->> there and the switch was working.
->>
->> I repeat, driver changes MUST be retro-compatible with older device
->> trees, and your
->> driver changes ARE NOT; otherwise, this wouldn't be called *regression*.
-> 
-> I'm going to argue that what caused the regression is the broken device
-> tree. The recent change on the driver only worked towards exposing the
-> broken device tree.
+> Add support for PrimeView PM070WL4 7.0" (800x480) TFT-LCD panel.
+> Datasheet can be found at [1].
+>
+> [1] https://www.beyondinfinite.com/lcd/Library/Pvi/PM070WL4-V1.0.pdf
+>
+> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
 
-Well, for the kernel that does not matter much: due to our "no
-regressions" rule and how Linus handles it the author of that "recent
-change" (e.g. you) is responsible to fix regressions a change exposed --
-or that change is reverted (I might be wrong, but I think there are
-quotes from Linus in
-https://docs.kernel.org/process/handling-regressions.html to back this
-up). So in the end a revert in a week or two is likely the outcome,
-unless you or someone else fixes it in a way that pleases
-AngeloGioacchino et. at.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Ciao, Thorsten
+Yours,
+Linus Walleij
 
