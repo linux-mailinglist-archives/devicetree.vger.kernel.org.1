@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EF490A54B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:19:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C0790A566
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 08:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 480D91C24C64
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 06:19:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2BDC1F22F83
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 06:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D36244C97;
-	Mon, 17 Jun 2024 06:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C641822F3;
+	Mon, 17 Jun 2024 06:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJhrJo3z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgCxtIyd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C39222089;
-	Mon, 17 Jun 2024 06:18:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6728814AA0;
+	Mon, 17 Jun 2024 06:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718605140; cv=none; b=n7prfH0pP4mhQ01tea61I/X9+FZXIHSM1SZdfDfiSVVcLcyk4eJykEKxZeWpyIeO46LGa87Vm4JClobPe2CzhfH1fp7ztXciGWRNlc8LcLIalbqEaJyJrjOhpr3iciexuQv//k6j3OrDdFYzFnEECaMVlI3PeVIyqOnWtNE0fgA=
+	t=1718605397; cv=none; b=CNAjd5miwRQXvAykcq+CPyEsF8Y2vfy0Sw9u0X/Ld/hmKULDF7k4Xf0GXzBv3uKLn9b5ooIcEqrNeocFGX6D+BGUmDPPtbfQJsXuuGDuS/V8HXFTCDqIK1z5+1+mJNZ6d9QUNoYvXnEmixVeBEiZ9PZt52U0hEYnADNTY7p671w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718605140; c=relaxed/simple;
-	bh=rZA4FLzEkYyfBa4KOcKr9fp8upbXd7mmB9ZsSaFT4hg=;
+	s=arc-20240116; t=1718605397; c=relaxed/simple;
+	bh=Bj9KOQlYYb/E4BUJciYwOXA2xQLANZigFJhFDkyVzUc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cZe3uTcwZwMi5RkJn6lGW07YnOWYLayhYbR1byvQC0X7iwD7j6Wj0EVirIDQNLz4z/NYOzwwrFHjMsjtVnvEqCjK7htsbMyz/kgb0wO7DdayfsJ1BUM5X1K2Hod3yUpC/JoIFfiy2kJGyvTSzJzPmk1Nj6SSQGHRMAeMvK7c7IA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJhrJo3z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B170AC2BD10;
-	Mon, 17 Jun 2024 06:18:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hOyV/yJRDbNaa0Zi8Yvcffljaph2UvkR1wv2c2GGLr5eD4Um29hQB6nkQBcyyakjEDawB/8acf1r19h6jiJgzq6Yz9m998CARboegxPA62bS18ndctQKGOail8zbtQm0EqgQODhmH8UZad2nKS4gwS+skcu6t4YpGh7MdoaxhR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgCxtIyd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D03FC2BD10;
+	Mon, 17 Jun 2024 06:23:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718605139;
-	bh=rZA4FLzEkYyfBa4KOcKr9fp8upbXd7mmB9ZsSaFT4hg=;
+	s=k20201202; t=1718605397;
+	bh=Bj9KOQlYYb/E4BUJciYwOXA2xQLANZigFJhFDkyVzUc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gJhrJo3zWxMmxdKE8JKFQEu66nZIVjUZ5/zH7wTIyvfDJDv7yt0PQ2lOY1TReFuYV
-	 eQNg1YEaRUOHEXLbIxuXOFKM/wz6eGPr6oxuSJ2kfJXIgLLRYrS66zR9SQ9Yg1Tb0z
-	 +3dAFF+zzaovDoYoIOjTo97/uVypm9FIx50b4byTfDKvoQEt33nitnsINzz/cP3enj
-	 CgdalSQtdTjyzz5cVRxOMYNj4k7ot2fmQAnA0Lcv6rYEzmW3t/PP8TYwwRoO1sICy1
-	 0bXVOBDvtPtLlmz0+edetyvY9oj4SFi+9gFO2nPACUEC2y4Tw3HJ85sDWGYFqJZze4
-	 SYGY8p15bvxdg==
-Message-ID: <bbd04c56-451a-4a5f-938c-2ce4ccec7253@kernel.org>
-Date: Mon, 17 Jun 2024 08:18:53 +0200
+	b=PgCxtIydDp01LnsPLoVMeIoHcjSQMaiIUChkjbWulETDiXmqKhrsOvR+pPVoAsvbz
+	 8uXt/4EXD0ydIbd6vtG+wva7MXAn7HctJbx7+LAgaVYDQ2oerXwqVCc89U6CAu4yvR
+	 Gy+5mH7IWj3jNXsCoDQgzYcqONP7E9DgXvmRapJIS4Xutnz1ywIpeoYT6bb6Ea0LBO
+	 zZXVA49u4nPPUqpaP6XKVUY6U3p2AT1pGULzLUF8IeqUyi+XvkPxmWYInd4W6zbIiT
+	 QUoYQM6kAVh7g1jxuEAI792+Nzo2vwDXA7nOuBuGelrlC6mS3Z3nlOivQZfTMZi2Xh
+	 rLA6pfb3Ki/Eg==
+Message-ID: <b859c506-9910-43a6-923c-2a9ee26c4f19@kernel.org>
+Date: Mon, 17 Jun 2024 08:23:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: net: wireless: BCM4329 binding: add
- pci14e4,449d
-To: Jacobe Zang <jacobe.zang@wesion.com>, kvalo@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: nick@khadas.com, arend@broadcom.com, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v1] dt-bindings: vendor-prefixes: Add a pci14e4 entry
+To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: nick@khadas.com, heiko.stuebner@cherry.de, neil.armstrong@linaro.org,
+ macromorgan@hotmail.com, sre@kernel.org, hvilleneuve@dimonoff.com,
+ andre.przywara@arm.com, michael.riesch@wolfvision.net,
+ linus.walleij@linaro.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240617024341.3106240-1-jacobe.zang@wesion.com>
+References: <20240617023517.3104427-1-jacobe.zang@wesion.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,28 +104,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240617024341.3106240-1-jacobe.zang@wesion.com>
+In-Reply-To: <20240617023517.3104427-1-jacobe.zang@wesion.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/06/2024 04:43, Jacobe Zang wrote:
-> It's a Broadcom Wi-Fi module connected via the PCIe interface and also
-> add prefix in vendor-prefix.yaml
-
-You do not add prefix here. Drop unrelated parts of commit msg.
-
+On 17/06/2024 04:35, Jacobe Zang wrote:
+> Add Broadcom pci14e4 prefix for PCIe Wi-Fi module in dts.
 > 
-> Link:https://lore.kernel.org/linux-devicetree/20240617023517.3104427-1-jacobe.zang@wesion.com/T/#u
-
-Link also does not seem to be really relevant to the commit. No point to
-keep it in the git log. You can always provide additional information in
-the changelog section (---).
-
-
 > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
 > ---
->  .../devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml      | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index fbf47f0bacf1a..d0db6df57bfe5 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1112,6 +1112,8 @@ patternProperties:
+>      description: Parade Technologies Inc.
+>    "^parallax,.*":
+>      description: Parallax Inc.
+> +  "^pci14e4,.*":
+> +    description: Broadcom Corporation
+
+I think this is not needed. We do not document PCI or USB prefixes.
 
 
 Best regards,
