@@ -1,150 +1,152 @@
-Return-Path: <devicetree+bounces-76499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C168F90AB14
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:30:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E5C790ABCD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:45:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 779521F209A5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:30:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36D121F273D5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 10:45:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F491922CA;
-	Mon, 17 Jun 2024 10:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10F5194A7E;
+	Mon, 17 Jun 2024 10:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="XIFVl6Lb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GU+DrT2E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5793817F4E4
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 10:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F8F91940B3;
+	Mon, 17 Jun 2024 10:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718620222; cv=none; b=jELLRlaK5GyVCp2fx+oY8g31LILLAKMiMdPZRpA34o4jE17qxQ/M+pmzCygJ9GhUe7WOoYs5Dlc4IdeZUrR7Fo8TOh7dLbT7kg1ZN2cS5+VNglShdKFLmPRfX24Rr5fXI8JmoF6+8+w16mF9UvsOCFWZX3G3b4CT9bhJ2emqfCA=
+	t=1718620998; cv=none; b=kyoVgUuV9ppf/nDC3t+CIaHr8b6S7xGJRpVODfXoeg13RSaA7ZWPg5PrHW9nPXiIGHMSSKSvcBPqzckNLXCEB6ZAcQ67Ug7WUhLyWMlXYggne6QLcu6xkGyNPMXOEKY+51b+2vv1wxADLkBVXorCdDnbRMGm6HZUGz5CCjOiLQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718620222; c=relaxed/simple;
-	bh=4dr/5RGvdC0Nfp5firD/kLIKNMYxrIUHZGW7UJo/T0o=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=coXQHeAyVwmcOlf3xNW/zsc7/fUl4cryn3gY6eGxbYQkt0kRL9FbJPeZH8PhI6uoak5ZyTEXwzX+JNW3ywVeYIXN0INWOc/XHe+aIuTnbf8ajT+dDDATVG3rBVHjpeeH55fuUEdXA5FePJ++P7Z839nFoahhGBC2/ldyqpc/poc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=XIFVl6Lb; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com [209.85.167.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CFA633F1AF
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 10:30:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1718620217;
-	bh=MXAKt8EKETZvadP49CyuSOUePneOkznNxCX+hfllm1k=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=XIFVl6Lbsbpi3RjF8o6AaipErUuyNbZic+D3RJ733ZOHRMfoSyimVPg+V9x6YBosS
-	 RvXhGSaIWkT2oryPbyMFl2+5sqboQKWiWrkU7U5H8tghc7OMmpIKWGeJi8z6iiXwXE
-	 12iSfIOmyAbaGipS985FiCBJG4FSNrpk6vrtqf5LeQiKUBUNKUJC1tfVc0MNL5yef3
-	 1DLesWS/67Xfh+fqZ75O2f8cBaa8BGmLmC+A1bOfGC4jrfWsB+MZ46DAsKzowWrV7H
-	 StvCK3bHmNeFq6v9YjIg5TJ8GlHQ01Po16rXUGwMkgBTGVsj9Lpx7PNvh7pO0miaUh
-	 Om5K3VRSHHGtg==
-Received: by mail-oi1-f199.google.com with SMTP id 5614622812f47-3d2277c5982so4371407b6e.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 03:30:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718620216; x=1719225016;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MXAKt8EKETZvadP49CyuSOUePneOkznNxCX+hfllm1k=;
-        b=iC6bZzEBU/hH/qVKXmZQM4XS/Mbsnsoh4oMlsCtrhJonHJVDFo38wt0GxoTeh1TfXr
-         Hvvo4aBfWLeF5xkwPDaC2Ldblp+kxvvWkt1c0UrMIXmivuwJi1ImSHpm0LHfPYKnUCfk
-         vmK6hcKQm0kjsxa2QtUzW4O63YQIuk92wn3BnjVhV+VrLNtQmkmIcQW5su2Pc+8bjnJF
-         6OaVIpsvA5FsXZRwfUQZXtaqdWXcHq2zRJua0aRcot+Ymw7MOpDr9CJwfMU0zjpmSSkv
-         b5TSgMMbnzeYDtg5tzLMK0jqDAoOaVMMHLr1lZQ1xJWxnAr7GUiojcCiCagovNGFrDka
-         o68w==
-X-Forwarded-Encrypted: i=1; AJvYcCWSFkkVK/tPYdWElk1oCiv8Nq5jSeG/GL0tz/wptldAYBfcrWGRjZjcE6P93X6DpgHRwPe7esEQcbay+fiUR9fTKZu1ygMaaPFR3A==
-X-Gm-Message-State: AOJu0Yy5bJxiechQ5cGM7koYoREIvWx67+iiOMDTFpr/dvctmicUqPlH
-	M2d2Bjh6zeV/cReVP8C4X7M5Xk3KaeZCPDka2TPqK9l4ZBAMGss2PA+f99ID5l0hPJnK7imS/7p
-	h0KeDRCzhMWqxFcJp+JjtW4W6DCUWxxKgka4j2QA0+v7hgvcHRPOR0IWeSaJe9AE2xghW6SXmcE
-	irwvt/r5G/vZRUKdQpS0BPjwdKdUKUqScmhwVZBtN3MCCMf4/+zw==
-X-Received: by 2002:a05:6808:178e:b0:3d2:277e:45e3 with SMTP id 5614622812f47-3d24e8ce5a3mr10656438b6e.13.1718620216473;
-        Mon, 17 Jun 2024 03:30:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF+9wQA5vwfPc+PCiFhPHOS+btBOsojBilQG1Cz2k1uXktyifoa7BZcR5yZNh9VDUC79iFyorh+9SwK/IhPV5I=
-X-Received: by 2002:a05:6808:178e:b0:3d2:277e:45e3 with SMTP id
- 5614622812f47-3d24e8ce5a3mr10656422b6e.13.1718620216111; Mon, 17 Jun 2024
- 03:30:16 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 17 Jun 2024 06:30:15 -0400
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20240613005817.1485-2-naoki@milkv.com>
-References: <20240613005817.1485-1-naoki@milkv.com> <20240613005817.1485-2-naoki@milkv.com>
+	s=arc-20240116; t=1718620998; c=relaxed/simple;
+	bh=i3uW3NOlbKjP4qf5Axhnm99g5Mt2/WaSNm74QRBZhrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DYIB36JFbcfDYSzO4pC8Tjs7HszQLb7KezKbatwZ66WefUv6/dgSIt7FcKOc1HctK1QCB/defWSk23gOhKYVgvaU5cPd/ZgSexj/C1H7PuXScWXPbR5jN2J1kXx5/VPp1HH5olXWVCLEfBs7XyaM01C339KBuyQAWoQl0/3ILbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GU+DrT2E; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45HAV4AN022722;
+	Mon, 17 Jun 2024 10:43:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Bdp0i5ngaQ4+E3qeMMivqEtEmbMZP+Ab6cxXPFCoqi4=; b=GU+DrT2EFZYzEdN9
+	PfiCUEpuzSe7po74u5oQyoo/MFz91HLLm2XDVZkg4+uNi/nhgjfFtCW7/W040n0e
+	BV1vwfwE0sXoXRVQ+elan9KRofQmQcBlxhbPUc2XdHoqqBedIgeBtmul1i2F5xjP
+	eM3V4LJxtCNk/Uy1eUZglE936MHUbxujFE7IIDkczqLCuh25uxjBipWH6CZ3yCnT
+	fhQSh9+W2LRgzsoZVKcW1cN2Drt6A0puwAR68wOcktuQsmfoVZtMPJApkiGJZcBO
+	1asxBWDvl/V2MAx89YJiu+fuqH7gbMYapuQEQuUMfkN4lDWTD0XMaQ+3QlftVRMV
+	KgzLKw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ys44ju8e4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Jun 2024 10:43:09 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45HAgpTl004802
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Jun 2024 10:42:51 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 17 Jun
+ 2024 03:42:44 -0700
+Message-ID: <d997f42d-0616-4180-ae36-9d2ebd60d15f@quicinc.com>
+Date: Mon, 17 Jun 2024 18:42:42 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Mon, 17 Jun 2024 06:30:15 -0400
-Message-ID: <CAJM55Z_j8gWFyKvsiu-oGDV7Hacr4Amt5FdkHdjKnhZwZgxncA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] riscv: dts: starfive: enable heartbeat LED for Milk-V Mars
-To: FUKAUMI Naoki <naoki@hdr-nlb4-0bbd2e21834cb637.elb.us-east-2.amazonaws.com>, 
-	kernel@esmil.dk
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/2] arm64: qcom: Add BWMON support for SA8775p
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <krzysztof.kozlowski@linaro.org>, <djakov@kernel.org>, <robh@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240617092940.1724962-1-quic_tengfan@quicinc.com>
+ <yb3ni6o22zdm2lqodj7utdb2dlg3jkbwzutxhmljxle3syoe5y@op2prslmri4y>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <yb3ni6o22zdm2lqodj7utdb2dlg3jkbwzutxhmljxle3syoe5y@op2prslmri4y>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mEQjeyQ3u3zLNnSMTaiIYoE__gGc83dK
+X-Proofpoint-ORIG-GUID: mEQjeyQ3u3zLNnSMTaiIYoE__gGc83dK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-17_09,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 mlxlogscore=976 spamscore=0 lowpriorityscore=0
+ adultscore=0 phishscore=0 mlxscore=0 clxscore=1015 bulkscore=0
+ malwarescore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2405170001 definitions=main-2406170082
 
-FUKAUMI Naoki wrote:
-> Milk-V Mars has a green LED to show system load. This patch enables
-> a green LED as a heartbeat LED.
->
-> Signed-off-by: FUKAUMI Naoki <naoki@milkv.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> index fa0eac78e0ba..4f4bbf64dbe4 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> @@ -4,11 +4,24 @@
->   */
->
->  /dts-v1/;
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
->  #include "jh7110-common.dtsi"
->
->  / {
->  	model = "Milk-V Mars";
->  	compatible = "milkv,mars", "starfive,jh7110";
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			linux,default-trigger = "heartbeat";
-> +			function = LED_FUNCTION_HEARTBEAT;
 
-Hi Naoki,
 
-Thank you for the patch! I know the JH7100 boards are a bad example but
-normally we don't assign triggers/functions to LEDs unless they have a clearly
-marked purpose on the board. Otherwise we'll let userspace assign their
-function (usually with udev rules).
-As far as I can tell this line is marked "STS_PWR" in the schematic, the LED
-itself is just marked "Green", and the silkscreen doesn't seem to indicate that
-this LED should be a heartbeat. So I'd prefer just describing the LED and let
-it be up to users or pre-cooked images to assign the function.
+On 6/17/2024 5:43 PM, Dmitry Baryshkov wrote:
+> On Mon, Jun 17, 2024 at 05:29:38PM GMT, Tengfei Fan wrote:
+>> Add CPU and LLCC BWMON nodes and their corresponding OPP tables for
+>> SA8775p SoC.
+> 
+> This series is marked as RFC, Request For Comments. What kind of
+> comments are expected for the series?
+> 
 
-/Emil
+I found that the BWMON patch for x1e80100[1] is currently under review. 
+There are upstream comments suggesting that we reference the same shared 
+OPP table from all the BWMONs that share the same OPP table. However, 
+there will be some DTBS CHECK warnings[2] if we do reference the same 
+shared OPP table.
 
-> +		};
-> +	};
->  };
->
->  &gmac0 {
-> --
-> 2.43.0
->
+Therefore, I pushed this patch series to collect some comments on 
+whether we can have separate OPP tables for each BWMON, as the OPP table 
+of "pmu@90b5400" and "pmu@90b6400" in this patch series.
+
+[1] 
+https://lore.kernel.org/lkml/4ef1d9a9-6a0e-4324-b6d5-2ae225855b03@linaro.org/
+
+[2]
+arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: pmu@90b5400: 'opp-table' is a 
+required property from schema $id:
+http://devicetree.org/schemas/interconnect/qcom,msm8998-bwmon.yaml#
+
+>>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>>
+>> This patch series depends on patch series:
+>> "[PATCH 2/4] soc: qcom: icc-bwmon: Allow for interrupts to be shared across instances"
+>> https://lore.kernel.org/lkml/20240604011157.2358019-3-quic_sibis@quicinc.com/
+>>
+>> Tengfei Fan (2):
+>>    dt-bindings: interconnect: qcom-bwmon: Document SA8775p bwmon
+>>      compatibles
+>>    arm64: dts: qcom: sa8775p: Add CPU and LLCC BWMON
+>>
+>>   .../interconnect/qcom,msm8998-bwmon.yaml      |   2 +
+>>   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 115 ++++++++++++++++++
+>>   2 files changed, 117 insertions(+)
+>>
+>>
+>> base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+>> -- 
+>> 2.25.1
+>>
+> 
+
+-- 
+Thx and BRs,
+Tengfei Fan
 
