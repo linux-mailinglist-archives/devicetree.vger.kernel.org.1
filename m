@@ -1,89 +1,98 @@
-Return-Path: <devicetree+bounces-76484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 590E990AA4D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:55:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B370790AA4E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:55:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC950289C54
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:55:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C777E1C25BDB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F8519643C;
-	Mon, 17 Jun 2024 09:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3AE196C9F;
+	Mon, 17 Jun 2024 09:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XBXH8NFY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KxCFO+Mu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861AB196C75
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 09:46:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B761190686;
+	Mon, 17 Jun 2024 09:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718617614; cv=none; b=PqdPknowEL0TXylPXTA04PEsvAOb6JDD22Y6rDKX/h9XPBU49s0wkv/5UOYYoDTno7sqchTnzlchYekdn9XyAjJ49Ubaq5Su7EGvfuUoVzgtH5AYDpZv/Ps8y67jBbnAjP/YdeGXzD3Of4B569WS4U0biiDO+1WsdB0oXI8gOXo=
+	t=1718617665; cv=none; b=CNv2nQwNO8kr7Y+HPrklVmdmJ/B9aA8XS44BJwKru4nOhWv7FpV41sFUzH26JGjfq1sGl/9POdnAhHuS/3JkD1vtGZ/QWxxSRw1uimecYYglby9DW/BowRAwcsQOe/aTxuGIt+HLe/83VfIDyP44Or3TsJ8sKbm3BoufjbiYmXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718617614; c=relaxed/simple;
-	bh=AOXR1hDpTMAi5A67tDb98XY7rzBYi6SPL21QH0Px5mA=;
+	s=arc-20240116; t=1718617665; c=relaxed/simple;
+	bh=8RBdNog9v6i7Y12AFGORLNl5FaRMz/KfSoh+ctsLO0s=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rAeCmK2g509Ne5jgG6mgqomjnbC4C6VX0yGSd3rvUk8DTHd7qdVmZh9b9VwQkkR1HFaH8lYm1CPYUkRJbhCicUel8SikyobzPGT9/dIreSZdiEva6HNpiXQV7Fv51CPqHgyvsfBE5tU7xlQTu10UhLnLx88DysfOGQEPKTMANuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XBXH8NFY; arc=none smtp.client-ip=209.85.208.52
+	 MIME-Version:Content-Type; b=JTQ188wSLnlbiH/MBAmjRwBXyRUo0FwL+VsCs/i5BDcgQv+CDsuwDRPHB22duts6zbYRwE1WOTEWIWOz4UorSvvW78XeiAJCusV6J/iyUTSBoIfm+UZh1Ibe9V4uEmxxCUQ7QKFeLCCS3Pr7VprDN8Za59JDL9GQl86wSJEvWt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KxCFO+Mu; arc=none smtp.client-ip=209.85.215.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57c76497cefso4854313a12.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 02:46:52 -0700 (PDT)
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-6e41550ae5bso2949795a12.3;
+        Mon, 17 Jun 2024 02:47:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718617611; x=1719222411; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1718617663; x=1719222463; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pYR8nPowvx0FVmVRxf+D8yDNGq/8/7xaLOVhmi9JDr8=;
-        b=XBXH8NFYk2FJEPrqn2gwHQeJCKdybw/r8EsvzFCOi/B/Y0aOEi3GRG8p6l3cDI7L0o
-         b+hl0v3Eu3ZmnMthV6q1XBEN5S1Naitp0UjMbO8DlIoOF8XOUHW95smNDhJiAbPP2kQa
-         PaaEB2g0aFIl2JUfXnjtvlKeMVpLGK+VrlSddL+c6w8MsCmtz1ULEUZVoHdMw85ckk4I
-         crCvv1q/ESyMrR8bINCToSnjH74hrtKvlqLkA2rmPiC21dKdYqPGKZJRHf40S2w3BWT/
-         Fq3EV2ozsBhRlRHI25a3ULLIZI3uQK1ISttyoyx84cEmf6J7juk2WcwJO5hsmft5byqm
-         nObg==
+        bh=usGpbKfnBPC6WUjY1RuxzYU4ZgAbIRTvzZTlT0vlyVY=;
+        b=KxCFO+MuRjXB39G79ciTJyojqXlgoFQNLxKaDQPv1qmT1ydBNKzoNG+7jOIHvRVfGB
+         YgXUryZHl8E+tsvmJyHG79xLL/gLmy/LUmXd72iYaL48Mj2o/3FgyEpIeeSPgpAWigOw
+         PfhzlZhVi+2m1Zkjwdt18Ia2yAWeNaSMJc5Q1lORe16DGsvzzLe6kXjTGKQ43ahhuwpk
+         kL6wA6jVQWGswD+IYYA3sWGWfpO+hKL2DO1e70H8HvZueEbhvox0hqF6FLnZhF4xh/2a
+         r7hFkmFblgSZum/R00mPZHoU7f7dA4YPlXzQL+WTsT7gfWyrxFB9wfS91pNevZpOU+va
+         r8HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718617611; x=1719222411;
+        d=1e100.net; s=20230601; t=1718617663; x=1719222463;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pYR8nPowvx0FVmVRxf+D8yDNGq/8/7xaLOVhmi9JDr8=;
-        b=q2mzR98qShRAXgLu25nZRX4eA8kre8Cl6J3UPu0mrwHrFjxCwGY9AHVCJ5a2wNSLSt
-         aMh/KV8SxVlJOVab3Wle1uBEv3SnZkw5yABynz1WOZK9PFJibYDP8Y3j/KK2rsRF3Hgk
-         xE4O8jTEyNx2s3xhMLr6ygbeZ8fNh2uK2Ke4fI7pziD9kQQWAuoTqaed/mdPMuV6Zn++
-         PMeJCvlE7gt4Ui54cUCCK6dtIvLswRMOzVR12CFqdEoU3IC5YZASYlgpj1lFtYNFcT7G
-         v8ROwGgZ74xvUoeRe8a6EPNp87MpuozJeSJ6ncuWlA4nlQhA4RiXxX5RNFpOJnYSI9+9
-         QAHA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnhF8cALHOMyFKojlFFp2p7VnGve0oqov9IRCU34hXD9gGpBMrrXBncIkcbuYVFjNtaX9JQ4xc/5Fg0QIyaM1Ub+gDQLSWYvQPiA==
-X-Gm-Message-State: AOJu0YyyB4fx81Px++n7Uys33YETBnsLFlHoiMxAt5FA8UjMB/5Z+Hd7
-	ZjAV1PdB6yfEKBxM0OBzHhQX+2A57xLMkvx1MgwXXrMLTwyg+OJ1
-X-Google-Smtp-Source: AGHT+IGNBqfbEy7gtwzJveWmAq6LUwMFqf1e5/wf22AKAgwzgLy8euB9aKLPKh5PbgSi9eNou4NOZw==
-X-Received: by 2002:a50:8a97:0:b0:572:7bda:1709 with SMTP id 4fb4d7f45d1cf-57cbd649655mr6027283a12.9.1718617610447;
-        Mon, 17 Jun 2024 02:46:50 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72da790sm6141318a12.35.2024.06.17.02.46.49
+        bh=usGpbKfnBPC6WUjY1RuxzYU4ZgAbIRTvzZTlT0vlyVY=;
+        b=AoUUxi4CwIRQ10B2sabqgn+ol86e/u9fQHbyr70J3QQ9Ny59zA/VGb3620eXr/3VjV
+         vyFs2WgHG2LA8QxH6YBjJs+rfjsbCqKGR58kGI8jw0wjgDdcZFsowprkTRrs6BmPJgs3
+         U94GyuM9Lb7ZyLW25bhC1MDG0NzjumX/cNL5jxfNHXhNUQKvyB3eAcrxO5hLfRIkJAHH
+         L/SZRGNeWsQ1LHZbNalefWmmgw/v0ylRLdKD4LyD6NiH/YeOnEZAWO3WFx/T83uxpCbf
+         rAEw+YbRSHq355o7FdH3IWQYUrbk//BRF+foMxKZPUYDhr4cfb5zbZnefgqFDIxSYRhq
+         hBMw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDyCcAgEYOKuaamd6pB9LTqzQ0DmdFjxzOva4LddHMmlDE2PTBkGjp1L1WdgcuzJgmDhKaldA1eYUQeeSFydnf/4HKnKZhqTQvnVJP3cIStWT67ZzQTV04aNqad8CJJ4QWfXpXI0rRpoV/ygtkDJ771e1TyPKFbD9NCwjB5BTtfYLVhOde
+X-Gm-Message-State: AOJu0Yw2rzjnpMi0cuNpKxlzOdLHngbGEQZ4ekDh1CWbwvRKYmfdaF1J
+	zQ+GqoL/YAsoiqY4AiFxxQM/lOrAZw+I4OCVtOKqmUi99tAnnU5V
+X-Google-Smtp-Source: AGHT+IFyxj6DeLjbzNAUMQS9A9wQr543YPl1rLY7vjP9jo76xxnmD/MsXV8euv4MDQM0ooApWPY5Kw==
+X-Received: by 2002:a05:6a20:da92:b0:1b5:b214:efcc with SMTP id adf61e73a8af0-1bae82fd317mr10638457637.53.1718617662752;
+        Mon, 17 Jun 2024 02:47:42 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.133.99])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4c46701absm8576488a91.40.2024.06.17.02.47.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 02:46:50 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Sean Wang <sean.wang@mediatek.com>,
+        Mon, 17 Jun 2024 02:47:42 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: detlev.casanova@collabora.com
+Cc: alchark@gmail.com,
+	andy.yan@rock-chips.com,
+	conor+dt@kernel.org,
+	cristian.ciocaltea@collabora.com,
 	devicetree@vger.kernel.org,
+	didi.debian@cknow.org,
+	dsimic@manjaro.org,
+	gregkh@linuxfoundation.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] ARM: dts: mediatek: mt7623: fix efuse fallback compatible
-Date: Mon, 17 Jun 2024 11:46:34 +0200
-Message-Id: <20240617094634.23173-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240617094634.23173-1-zajec5@gmail.com>
-References: <20240617094634.23173-1-zajec5@gmail.com>
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com
+Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
+Date: Mon, 17 Jun 2024 17:47:34 +0800
+Message-Id: <20240617094735.27928-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240615015734.1612108-2-detlev.casanova@collabora.com>
+References: <20240615015734.1612108-2-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,37 +102,30 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Detlev,
 
-Fix following validation error:
-arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: efuse@10206000: compatible: 'oneOf' conditional failed, one must be fixed:
-        ['mediatek,mt7623-efuse', 'mediatek,mt8173-efuse'] is too long
-        'mediatek,mt8173-efuse' was expected
-        'mediatek,efuse' was expected
-        from schema $id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: efuse@10206000: Unevaluated properties are not allowed ('compatible' was unexpected)
-        from schema $id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
+Thanks a lot for your work! I try to use rkvdec2 with chromium but it
+can't play h264 video. Here is the log of chromium:
 
-Fixes: 43c7a91b4b3a ("arm: dts: mt7623: add efuse nodes to the mt7623.dtsi file")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/mediatek/mt7623.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[5799:5873:0617/171224.850061:VERBOSE2:video_decoder_pipeline.cc(473)] Initialize(): config: codec: h264, profile: h264 high, level: not available, alpha_mode: is_opaque, coded size: [1920,1080], visible rect: [0,0,1920,1080], natural size: [1920,1080], has extra data: true, encryption scheme: Unencrypted, rotation: 0°, flipped: 0, color space: {primaries:BT709, transfer:BT709, matrix:BT709, range:LIMITED}
+[5799:5886:0617/171224.850915:VERBOSE2:v4l2_video_decoder.cc(182)] V4L2VideoDecoder():
+[5799:5886:0617/171224.851218:VERBOSE1:v4l2_device.cc(128)] Open(): No devices supporting H264 for type: 0
+[5799:5886:0617/171224.851346:VERBOSE4:v4l2_queue.cc(1069)] This queue does  support requests.: No such file or directory (2)
+[5799:5886:0617/171224.851426:VERBOSE1:v4l2_video_decoder.cc(476)] InitializeBackend(): Using a stateless API for profile: h264 high and fourcc: S264
+[5799:5886:0617/171224.851687:VERBOSE1:v4l2_video_decoder.cc(598)] SetupInputFormat(): Input (OUTPUT queue) Fourcc: S264
+[5799:5886:0617/171224.851797:VERBOSE1:v4l2_video_decoder.cc(636)] AllocateInputBuffers(): Requesting: 17 OUTPUT buffers of type V4L2_MEMORY_MMAP
+[5799:5886:0617/171224.867687:VERBOSE1:v4l2_queue.cc(1511)] Streamon(): (OUTPUT_MPLANE) VIDIOC_STREAMON failed: Invalid argument (22)
+[5799:5886:0617/171224.867902:VERBOSE1:v4l2_video_decoder.cc(937)] StartStreamV4L2Queue(): Failed to streamon V4L2 queue.
+[5799:5886:0617/171224.868009:VERBOSE1:v4l2_video_decoder.cc(1377)] SetState(): Error occurred, stopping queues.
+[5799:5886:0617/171224.868105:ERROR:v4l2_video_decoder.cc(120)] StartStreamV4L2Queue failed at Decode@media/gpu/v4l2/v4l2_video_decoder.cc:915
+[5799:5886:0617/171224.871898:WARNING:v4l2_video_decoder_backend_stateless.cc(126)] There is/are 0 pending CAPTURE queue buffers pending dequeuing. This might be fine or a problem depending on the destruction semantics (of theclient code.
 
-diff --git a/arch/arm/boot/dts/mediatek/mt7623.dtsi b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-index 9c5a52ce9351..748f9b366897 100644
---- a/arch/arm/boot/dts/mediatek/mt7623.dtsi
-+++ b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-@@ -328,7 +328,7 @@ sysirq: interrupt-controller@10200100 {
- 
- 	efuse: efuse@10206000 {
- 		compatible = "mediatek,mt7623-efuse",
--			     "mediatek,mt8173-efuse";
-+			     "mediatek,efuse";
- 		reg = <0 0x10206000 0 0x1000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--- 
-2.35.3
+Here is the chromium code failed when calling VIDIOC_STREAMON:
+https://github.com/chromium/chromium/blob/125.0.6422.60/media/gpu/v4l2/v4l2_queue.cc#L1508
 
+I'm running chromium v125.0.6422.60 and I can decode 1080p h264 with
+hantro g1 decoder on rk3588.
+
+Best regards,
+Jianfeng
 
