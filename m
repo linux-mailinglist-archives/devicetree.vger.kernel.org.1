@@ -1,193 +1,140 @@
-Return-Path: <devicetree+bounces-76630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29ACA90B5BB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:04:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 326FB90B614
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:18:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB981282214
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:04:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3D89283253
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7478A1D9516;
-	Mon, 17 Jun 2024 16:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091911798F;
+	Mon, 17 Jun 2024 16:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="BjVjdL1r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D1J+/GhH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6818BDDC5;
-	Mon, 17 Jun 2024 16:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9894175AA
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 16:18:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718640254; cv=none; b=h9DHUWH8K9FRLDosCh77FC+lrua8iPkFQEv1uCsr6j48En0v9bpKLDuTG1VwWUCIP7GLXtFmLCH7MMy6DDSJr+YCrYzcyN1102wTwEoXvh/sMV1+AqoWSeR7FIMNLfuswiUg7LazqDEqVnHVAH2PYJKmy8hWM4ZbrknmJxDwBGY=
+	t=1718641104; cv=none; b=NQKOiV71M5medgfhlUwtSbcTOXqTiIQCfblM4b85+aW8miQ5YPsgn32ypMKpOZZysvM9UZhholgulVRdZCoCd6xjZNuwSj1Q7sHw0lH9qWRgeRykJ4ZEj5S6bBm5xdiXGBTE3k831F3aWGndPsYPMJRaYxhlcdPFcUBwBdAQB4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718640254; c=relaxed/simple;
-	bh=GmmYM7vNNaeCHG1jEj+OorYsbTxJScrKvbDrY/K4AkU=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=b0vQnQUgerZdhpQSWTimqE6aDsk/EzeaUBKu5+Upy9hX3vUxhn9FXwxD/q3nmCLHTBzsVu+xAaCDFDcX7RvaTZJdye3WNt971wuhp6S33U0a3ZAIBO3m0iJVWZox+fw8KwY2pM1IuOCAhPsUAC40qmFW179rNCMuGcC2DS8HW3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=BjVjdL1r; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=j2pmUlpI2u+AjQgIsNfOJvPybGVS23JJGLDfX9a99p8=; b=BjVjdL1rpX88mnMasOOJimovNf
-	3lZglu2V8vrDbHOm8JdnytgEhydBsoRJwnwGviSSKGj/VTDTrnd5KCtj7Q3h3B1VcB5D9KyDdvoRb
-	GPsRxn5IP5TIyYfDNlH92H4fm4h+T/fyFyg4L4nSaVW/Uralvv+ANnq3PvcSS1B83UI8=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:42184 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1sJEq0-0007Bw-T8; Mon, 17 Jun 2024 12:04:09 -0400
-Date: Mon, 17 Jun 2024 12:03:47 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Hui Wang <hui.wang@canonical.com>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
- lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
-Message-Id: <20240617120347.907e8e1e8eae5824930dcc48@hugovil.com>
-In-Reply-To: <20240614102952.679806-2-hui.wang@canonical.com>
-References: <20240614102952.679806-1-hui.wang@canonical.com>
-	<20240614102952.679806-2-hui.wang@canonical.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1718641104; c=relaxed/simple;
+	bh=EY+4UcdN3SJN/tw5GnFXIR6zPGfQZjIPes1lgtjBBcQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WZaVwOO0r+iNTadNZm0U8EeuexWnx1Y7r19z7HdWUfT1+fsm842pTN8Uy8PQb+gkgiIINgwwbTxL1MrvS/iM1WkkXGF9YanoJ06aAafeX6G+URXQfBbpdNZHr6ZMtrRefxJbo7r4JNb3xdePXn3qutoqLYIOsTWClYjTXtovo44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D1J+/GhH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C98C2BD10;
+	Mon, 17 Jun 2024 16:18:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718641104;
+	bh=EY+4UcdN3SJN/tw5GnFXIR6zPGfQZjIPes1lgtjBBcQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D1J+/GhH0m4XyRUQNnSuU3Kxibw7tmYI+Waa/ntddVGlbtdwgGBeq6oN1dpWNvdc7
+	 FmRYCGr1TlcBPDaJIz5JWtKB3CjeMzGuTJrw90/MbW8lfmzqcRvvjutifiUL66yCgD
+	 I2u5y36wMELOfIu3MLJ9FXlCE6RGQ+WjKWlP2oHhJYTgH8qtE/YtGtFPnCqMXoNDOJ
+	 5wkaxsWpZUpmMtobwDUuIljwwduUsmfqviY6ANfjfO6L1LyHlT4a4kYx1woyFHQ2c1
+	 KfCb/m+eGSo7F/d1O6wjn3A6lWFxwC5+UDn0jAquWmMxV1edmyyXrOZ7ZMmdBD1rMA
+	 yumfdjJeiV6Dg==
+Date: Mon, 17 Jun 2024 17:18:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 1/4] dt-bindings: display: simple-bridge: add ti,tdp158
+Message-ID: <20240617-daydream-query-906923e8b12f@spud>
+References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
+ <20240617-tdp158-v1-1-df98ef7dec6d@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-	* -1.4 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v5 2/2] serial: sc16is7xx: hardware reset chip if
- reset-gpios is defined in DT
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NgEG+8ha7KOidoBa"
+Content-Disposition: inline
+In-Reply-To: <20240617-tdp158-v1-1-df98ef7dec6d@freebox.fr>
 
-On Fri, 14 Jun 2024 18:29:52 +0800
-Hui Wang <hui.wang@canonical.com> wrote:
 
-Hi Hui,
+--NgEG+8ha7KOidoBa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Some boards connect a GPIO to the reset pin, and the reset pin needs
-> to be set up correctly before accessing the chip.
-> 
-> Add a function to handle the chip reset. If the reset-gpios is defined
-> in the DT, do hardware reset through this GPIO, otherwise do software
-> reset as before.
-> 
-> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+On Mon, Jun 17, 2024 at 06:02:59PM +0200, Marc Gonzalez wrote:
+> In default mode, this device works transparently.
+
+Please explain what makes this device incompatible with the existing
+ones. For example, why not make the new compatible fall back to
+ti,ths8134?
+
+>=20
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
 > ---
-> in the V5:
->  - change setup to set up in the commit header
->  - change othwerwise to otherwise in the commit header
->  - change usleep_range(5, 10) to fsleep(5)
-> 
-> drivers/tty/serial/sc16is7xx.c | 34 +++++++++++++++++++++++++++++++---
->  1 file changed, 31 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-> index bf0065d1c8e9..eefa40006c71 100644
-> --- a/drivers/tty/serial/sc16is7xx.c
-> +++ b/drivers/tty/serial/sc16is7xx.c
-> @@ -14,6 +14,7 @@
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/export.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/gpio/driver.h>
->  #include <linux/idr.h>
->  #include <linux/kthread.h>
-> @@ -1467,6 +1468,32 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
->  	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
->  };
->  
-> +/* Reset device, purging any pending irq / data */
-> +static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
-> +{
-> +	struct gpio_desc *reset_gpio;
+>  Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml | 4 =
+++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/simple-brid=
+ge.yaml b/Documentation/devicetree/bindings/display/bridge/simple-bridge.ya=
+ml
+> index 43cf4df9811a5..5f0c9687538bf 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
+> @@ -31,6 +31,7 @@ properties:
+>            - ti,opa362
+>            - ti,ths8134
+>            - ti,ths8135
+> +          - ti,tdp158
+> =20
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+> @@ -52,6 +53,9 @@ properties:
+>      maxItems: 1
+>      description: GPIO controlling bridge enable
+> =20
+> +  vcc-supply:
+> +    description: Power supply for the bridge
 > +
-> +	/*
-> +	 * The reset input is active low, and flag GPIOD_OUT_HIGH ensures the
-> +	 * GPIO is low once devm_gpiod_get_optional returns a valid gpio_desc.
-> +	 */
-
-I would replace all the above comments with:
-
-  /* Assert reset GPIO if defined and valid. */
-
-The correct polarity is already defined by the device
-tree reset-gpios entry, and can be high or low depending on the design
-(ex: there can be an inverter between the CPU and the chip reset input,
-etc).
-
-
-> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
-> +
-> +	if (reset_gpio) {
-> +		/* The minimum reset pulse width is 3 us. */
-> +		fsleep(5);
-> +		gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
-> +	} else {
-> +		/* Software reset */
-> +		regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
-> +			     SC16IS7XX_IOCONTROL_SRESET_BIT);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  		    struct regmap *regmaps[], int irq)
->  {
-> @@ -1536,9 +1563,9 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  	}
->  	sched_set_fifo(s->kworker_task);
->  
-> -	/* reset device, purging any pending irq / data */
-> -	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
-> -		     SC16IS7XX_IOCONTROL_SRESET_BIT);
-> +	ret = sc16is7xx_reset(dev, regmaps[0]);
-> +	if (ret)
-> +		goto out_kthread;
->  
->  	/* Mark each port line and status as uninitialised. */
->  	for (i = 0; i < devtype->nr_uart; ++i) {
-> @@ -1663,6 +1690,7 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
->  			uart_remove_one_port(&sc16is7xx_uart, &s->p[i].port);
->  	}
->  
-> +out_kthread:
->  	kthread_stop(s->kworker_task);
->  
->  out_clk:
-> -- 
+>    vdd-supply:
+>      description: Power supply for the bridge
+> =20
+>=20
+> --=20
 > 2.34.1
-> 
+>=20
 
-I could not test the validity of the 3us delay since I do not have an
-oscilloscope, but testing with a 10s delay instead and a
-multimeter showed that it works ok. You can add my Tested-by tag:
+--NgEG+8ha7KOidoBa
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+-----BEGIN PGP SIGNATURE-----
 
-And if you modify the comment as I suggested above, then you can add my
-R-b tag:
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBhyQAKCRB4tDGHoIJi
+0qQ2AQCtC7E2W++0bkEZqIyJfhekP6rN7C44pryIrjtcn7BHLwD/bthwuO4+enY6
+60JTVuWhPa9fXCQ3sJeDHBZSXZiVrwM=
+=rdsD
+-----END PGP SIGNATURE-----
 
-Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-
-
--- 
-Hugo Villeneuve
+--NgEG+8ha7KOidoBa--
 
