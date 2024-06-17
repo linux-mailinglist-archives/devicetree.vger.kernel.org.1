@@ -1,92 +1,119 @@
-Return-Path: <devicetree+bounces-76507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6A5F90AC9F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 13:10:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C61DE90ACAA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 13:13:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E7401F23E1F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:10:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7739428327B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15C6D194158;
-	Mon, 17 Jun 2024 11:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4701B1946CC;
+	Mon, 17 Jun 2024 11:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhrnY53u"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TWun6Tz0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A322575A;
-	Mon, 17 Jun 2024 11:09:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95BE5194120;
+	Mon, 17 Jun 2024 11:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718622597; cv=none; b=GlocitvCny2GwW9w9CIT16hVgTpNQ3mJPySAshQTwQtDk8uGRvZsh7l7c2wY5m+J0JN5y8OH6YUbiswAQy1lIbsibO0II3hMfXMH9S5ECdxl3XLd0GL4TUCE2gve6h+xVTijAUP6y/bTiMZfWQBLvl94H0VWQvn5zvJ34qbHcF0=
+	t=1718622782; cv=none; b=AyRFyY2YfySpAGEjBFaVJISK+CY/EfQNKrKjSOekmIeW5SNyFIxr8i/IDkrUxSTfpMyQtgSEgHKigpDPW3ALRyXkc7+jUri6UHSyuBaIyjiIHOC9dPCsiMzJZ2t41Xuf8iWLkwHy9M/gUde6u9mAXfC3LJO/W+fCVEtKASiOF+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718622597; c=relaxed/simple;
-	bh=0jlLTUdOHjWXlIemi6q/5eFkjO9PpJlfhxc4JTOGzho=;
-	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:References:To:
-	 Cc:Message-ID:Date; b=lgOujOe6F0dG34PybtrpCEpnGi3h7RPEQcmEfOXSUzJUlpsJfVCuSotyuZSRbPP3AvY2Z+eaXumtJ8gqB80ZmEAIkcdOQO0/1XgIOcW3v2+Vr7O/7lIwwxw3/uKez7DwGifbL1X/hw92YmqUPxKkvrrYTHciQpHqqv6brg5opG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhrnY53u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA1F7C2BD10;
-	Mon, 17 Jun 2024 11:09:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718622596;
-	bh=0jlLTUdOHjWXlIemi6q/5eFkjO9PpJlfhxc4JTOGzho=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=OhrnY53ukmxxgRmX831WZcuAYGNQ+cK/LObFXIuh21G7CzW+wCqIoIOzr6GWbb/Kf
-	 M8BZM6VOHlvdKmNvTuMJXvYIwnygd79LW0njFXFLbhsew6Jp6XElLgPf5PQ/i8fEzm
-	 OYZEICH3w0ujOTDAUwceudneu53wvBZgYSWXmgothV7Iu7ETMZCyOqgtHrnUyrmRwZ
-	 ECRC32gUo+cWnuZ3lCdA5+eDjZ7FXEADSm8meen/mU4hHhe0plPcaQMvQ/kSKu5WqZ
-	 k1QSPCQE6JhqXQbsSG0MWsRIB9zs3BEUIzAJMuZAnbHHlu2mzbavvHOtfy5EkkfD4F
-	 XMN7aG3FBiNMg==
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1718622782; c=relaxed/simple;
+	bh=/L6WYMxSMfjTIoWr9t9k/aRtdxtiTotpKJC0bwZmths=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C3VinOnlC0USxFk4saZMyno8Ffpdc9MCU09NGAB2YNVw9J+bZaBe6DIA/LVYOVpNb9ztWVJ/Ew/iRHSunqxzlqSM52rVGe2CGFfx68Oaz1EdvI6EQ87bsxUPlkRaqDpZrmE3XbKTdcN0Y36vKpt2BS5JBMFXJk2ow35Cs2zrDjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TWun6Tz0; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718622778;
+	bh=/L6WYMxSMfjTIoWr9t9k/aRtdxtiTotpKJC0bwZmths=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TWun6Tz0mrFyu0Doh3GSFs5086lVufoWIuFjkxiKsPZHUQOo5/kxB2MOvTdkHoK4M
+	 l4YUhTOvHS6iKdIwIxJr+SYFYE4R3tSubri3gpAKeg6QauwUwxk8RGrhWTgKsJRkga
+	 WmuEAq1gxUD4FXTikNClu2mpX/GqqqZR9v0VNhWXWVooGlwaZSnITzWYVtrWMAdY/Q
+	 Gc1Sy3KP5c8iVAVzEodL3ey7mM4zKdz2E7c0MAl9n4oWfGTO9aciNFSPuXhlGTSJ4A
+	 mnRmhAVp0wQ90eRATO9s4OC6Pw0gg5PJ3Gn/yeXaoaNP+Ktue2EHgnAsiuTtPDUH6E
+	 goMQ1PX6AMUzA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 42DB93780480;
+	Mon, 17 Jun 2024 11:12:55 +0000 (UTC)
+Message-ID: <33aac6a0-7bdf-48d3-bf79-0f3bf60394f2@collabora.com>
+Date: Mon, 17 Jun 2024 13:12:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 21/22] dt-bindings: thermal: simplify few bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Amit Kucheria <amitk@kernel.org>,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>,
+ Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ zhanghongchen <zhanghongchen@loongson.cn>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ linux-rpi-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org>
+ <20240614-dt-bindings-thermal-allof-v1-21-30b25a6ae24e@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-21-30b25a6ae24e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe
- the
- ath11k on QCA6390
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240605122106.23818-2-brgl@bgdev.pl>
-References: <20240605122106.23818-2-brgl@bgdev.pl>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
- ath12k@lists.infradead.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <171862259099.4124983.18069958656274980613.kvalo@kernel.org>
-Date: Mon, 17 Jun 2024 11:09:52 +0000 (UTC)
 
-Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-
-> Add a PCI compatible for the ATH11K module on QCA6390 and describe the
-> power inputs from the PMU that it consumes.
+Il 14/06/24 11:46, Krzysztof Kozlowski ha scritto:
+> Simplify few bindings which already reference thermal-sensor.yaml schema
+> by dropping unneeded requiring of '#thermal-sensor-cells' and dropping
+> assigned-clocks properties (core schema allows it if 'clocks' are
+> there).
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-2 patches applied to ath-next branch of ath.git, thanks.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-71839a929d9e dt-bindings: net: wireless: qcom,ath11k: describe the ath11k on QCA6390
-aa17d384971b dt-bindings: net: wireless: describe the ath12k PCI module
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240605122106.23818-2-brgl@bgdev.pl/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
