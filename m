@@ -1,223 +1,142 @@
-Return-Path: <devicetree+bounces-76602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EC990B702
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:50:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9085E90B77C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:08:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91403B4732F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:49:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AE681F2232F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:08:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5360415B137;
-	Mon, 17 Jun 2024 15:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5411916A932;
+	Mon, 17 Jun 2024 17:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="PPK0kgPl"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="QoXrIrvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5B015B0EC
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.225
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B611684BF;
+	Mon, 17 Jun 2024 17:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637756; cv=none; b=Xc8dVy78PimWlWS9YgFjW15ltZVvPFHfdQeTDbKdCrJVTdZsD75viEgsLNlFN+Hh0FDBunrP8c3QylHSAt7tvuVWJwhYD6zaF4JKFE8b2gwGz7wO3OxETziO0qy2CGUkrFq2r+Ax+e9JwDIKgW9hy/IET7poeWlNe5gcTCuxvzw=
+	t=1718644124; cv=none; b=bo4Lxg5U/HMP/vrsVCKOeHRko75PiMxuzgqCduFxviyi+VC9+xAesAMwIjXEB9fwfM0WCn2wjPI2f2NWZrzq8WD6ZA3AT776CORFSRzoI9a6yjNAS66NwRpwUoCRiMSYEGSa1giZBvjiXaOgnjG5qItDjmy1s929Oy1e2ZQlHIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637756; c=relaxed/simple;
-	bh=fO1eAsDw//HX2p9KxidsmYOgQKS3QAodQl/810m/2AY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rJUZEgqM2okrNhFZHOGYpd21MHcvseXoNqX7khQxs5mFnJomGGLcRRIr1YSbDQoT5BJrsyvGgVLoa9C4OUAXcL3yJgZq2rykZbhg+B3HKe4p95XBPeEnvhhIb/zWrPmgljIBrs2klMJ9tToxgpXS5/kv2JKCb6mmBmiECNqN5kA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=PPK0kgPl; arc=none smtp.client-ip=185.136.64.225
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20240617152230521bda08fc3a598ef9
-        for <devicetree@vger.kernel.org>;
-        Mon, 17 Jun 2024 17:22:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
- d=siemens.com; i=diogo.ivo@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=57dUQPLvnS8ZYgZDKTpi5rNWIAVWWGiuIo2qscKtvtg=;
- b=PPK0kgPl2PmHQT914CoAaKQoU9FxwYMxlRbCO9LmBo+tVGs274t4q6r/CiCzgeqguWC/2O
- TsGbNXLq42PsqQFU6V6frZFrTAwzPd584iKzPfZqA+H6xAgwuPbJuSt1a7Yz8wuCCa/1VU/9
- DvvLr1HnuYIZl1VDEkVf+98sSVofA=;
-From: Diogo Ivo <diogo.ivo@siemens.com>
-Date: Mon, 17 Jun 2024 16:21:43 +0100
-Subject: [PATCH net-next v4 4/5] net: ti: icss-iep: Enable compare events
+	s=arc-20240116; t=1718644124; c=relaxed/simple;
+	bh=gx/vBZHRvUmIyCzLBrHv7A/uxP4nVY5Z8aEFxljAWec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NKTpRm7VMHnzDUbx/ySspF7xk4eaVls0GeSAajAamrAcRTuEV9Wy/gIQmQ+Fpaudx8pKTXpYYcFLLc9Pnry3f3f92j8Tfeto8I6J59oW+ZdOWU4ree9JZQJkh05RAlhKdD1rU3DROXRLL8v/k+k3Q7ZLcnMQXT7Uz8eXkt+7pag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=QoXrIrvn; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 9BABF8826E;
+	Mon, 17 Jun 2024 19:08:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1718644120;
+	bh=1LdYSyTBSDGBxuQ70W3AP01Rdne8htwL8v2sMMNqG24=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QoXrIrvnzwtvEIa5aEXKzpiB/7KC8fX4ff4gWB4XiB6kASzmH7iWchHIaoCNVsSSI
+	 a6Ed+fjXdLjMjOaGYHlBaEQzEGWC7yfboVKGuboE0TNt8bd5o1vr84Pl/bTttFqCVw
+	 yOWIfODbtdURahcifJTTNFIgSjqH2M/VZ79+UpYO0Ek0H9tCN7HBuoTqEgPgFMzASM
+	 tpfL35qrR4V/T7VievY9GSZttD7Ud+At6XtS7VgB6nPQM2mrTGq50fWV9tLrm+Kn2A
+	 O8+MoG45HM+qRmm5tfmaogYFiUKMLC95kVM0xIMnDeGv6YPfaiJ8x2iCgi3n2T1anG
+	 3GiBCrxdJxB0Q==
+Message-ID: <39d35f6d-4f82-43af-883b-a574b8a67a1a@denx.de>
+Date: Mon, 17 Jun 2024 17:57:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240617-iep-v4-4-fa20ff4141a3@siemens.com>
-References: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
-In-Reply-To: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
-To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>, 
- Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Diogo Ivo <diogo.ivo@siemens.com>, 
- Wojciech Drewek <wojciech.drewek@intel.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718637741; l=4428;
- i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
- bh=fO1eAsDw//HX2p9KxidsmYOgQKS3QAodQl/810m/2AY=;
- b=iMQ7miuewdgkUjwbfheQtTO0XmunnIbQk0W6zNLcK5l/tmDITDomUUgQu3M77vVJepsIBAWkZ
- isO/GJs6ihBBabB4yi7Z5LmI4uDjS2ouwhrqT00AJgwMkXEB21PqndW
-X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
- pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-1320519:519-21489:flowmailer
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next,PATCH 2/2] net: stmmac: dwmac-stm32: stm32: add
+ management of stm32mp25 for stm32
+To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240614130812.72425-1-christophe.roullier@foss.st.com>
+ <20240614130812.72425-3-christophe.roullier@foss.st.com>
+ <4c2f1bac-4957-4814-bf62-816340bd9ff6@denx.de>
+ <09010b02-fb55-4c4b-9d0c-36bd0b370dc8@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <09010b02-fb55-4c4b-9d0c-36bd0b370dc8@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-The IEP module supports compare events, in which a value is written to a
-hardware register and when the IEP counter reaches the written value an
-interrupt is generated. Add handling for this interrupt in order to
-support PPS events.
+On 6/17/24 1:23 PM, Christophe ROULLIER wrote:
 
-Reviewed-by: Wojciech Drewek <wojciech.drewek@intel.com>
-Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
----
- drivers/net/ethernet/ti/icssg/icss_iep.c | 74 ++++++++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+Hi,
 
-diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
-index d52e42fa64f2..003668dee738 100644
---- a/drivers/net/ethernet/ti/icssg/icss_iep.c
-+++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
-@@ -17,6 +17,7 @@
- #include <linux/timekeeping.h>
- #include <linux/interrupt.h>
- #include <linux/of_irq.h>
-+#include <linux/workqueue.h>
- 
- #include "icss_iep.h"
- 
-@@ -121,6 +122,7 @@ struct icss_iep {
- 	int cap_cmp_irq;
- 	u64 period;
- 	u32 latch_enable;
-+	struct work_struct work;
- };
- 
- /**
-@@ -563,6 +565,57 @@ static int icss_iep_perout_enable(struct icss_iep *iep,
- 	return ret;
- }
- 
-+static void icss_iep_cap_cmp_work(struct work_struct *work)
-+{
-+	struct icss_iep *iep = container_of(work, struct icss_iep, work);
-+	const u32 *reg_offs = iep->plat_data->reg_offs;
-+	struct ptp_clock_event pevent;
-+	unsigned int val;
-+	u64 ns, ns_next;
-+
-+	mutex_lock(&iep->ptp_clk_mutex);
-+
-+	ns = readl(iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
-+	if (iep->plat_data->flags & ICSS_IEP_64BIT_COUNTER_SUPPORT) {
-+		val = readl(iep->base + reg_offs[ICSS_IEP_CMP1_REG1]);
-+		ns |= (u64)val << 32;
-+	}
-+	/* set next event */
-+	ns_next = ns + iep->period;
-+	writel(lower_32_bits(ns_next),
-+	       iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
-+	if (iep->plat_data->flags & ICSS_IEP_64BIT_COUNTER_SUPPORT)
-+		writel(upper_32_bits(ns_next),
-+		       iep->base + reg_offs[ICSS_IEP_CMP1_REG1]);
-+
-+	pevent.pps_times.ts_real = ns_to_timespec64(ns);
-+	pevent.type = PTP_CLOCK_PPSUSR;
-+	pevent.index = 0;
-+	ptp_clock_event(iep->ptp_clock, &pevent);
-+	dev_dbg(iep->dev, "IEP:pps ts: %llu next:%llu:\n", ns, ns_next);
-+
-+	mutex_unlock(&iep->ptp_clk_mutex);
-+}
-+
-+static irqreturn_t icss_iep_cap_cmp_irq(int irq, void *dev_id)
-+{
-+	struct icss_iep *iep = (struct icss_iep *)dev_id;
-+	const u32 *reg_offs = iep->plat_data->reg_offs;
-+	unsigned int val;
-+
-+	val = readl(iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
-+	/* The driver only enables CMP1 */
-+	if (val & BIT(1)) {
-+		/* Clear the event */
-+		writel(BIT(1), iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
-+		if (iep->pps_enabled || iep->perout_enabled)
-+			schedule_work(&iep->work);
-+		return IRQ_HANDLED;
-+	}
-+
-+	return IRQ_NONE;
-+}
-+
- static int icss_iep_pps_enable(struct icss_iep *iep, int on)
- {
- 	struct ptp_clock_request rq;
-@@ -591,6 +644,8 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
- 		ret = icss_iep_perout_enable_hw(iep, &rq.perout, on);
- 	} else {
- 		ret = icss_iep_perout_enable_hw(iep, &rq.perout, on);
-+		if (iep->cap_cmp_irq)
-+			cancel_work_sync(&iep->work);
- 	}
- 
- 	if (!ret)
-@@ -764,6 +819,8 @@ int icss_iep_init(struct icss_iep *iep, const struct icss_iep_clockops *clkops,
- 	if (iep->ops && iep->ops->perout_enable) {
- 		iep->ptp_info.n_per_out = 1;
- 		iep->ptp_info.pps = 1;
-+	} else if (iep->cap_cmp_irq) {
-+		iep->ptp_info.pps = 1;
- 	}
- 
- 	if (iep->ops && iep->ops->extts_enable)
-@@ -804,6 +861,7 @@ static int icss_iep_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct icss_iep *iep;
- 	struct clk *iep_clk;
-+	int ret, irq;
- 
- 	iep = devm_kzalloc(dev, sizeof(*iep), GFP_KERNEL);
- 	if (!iep)
-@@ -814,6 +872,22 @@ static int icss_iep_probe(struct platform_device *pdev)
- 	if (IS_ERR(iep->base))
- 		return -ENODEV;
- 
-+	irq = platform_get_irq_byname_optional(pdev, "iep_cap_cmp");
-+	if (irq == -EPROBE_DEFER)
-+		return irq;
-+
-+	if (irq > 0) {
-+		ret = devm_request_irq(dev, irq, icss_iep_cap_cmp_irq,
-+				       IRQF_TRIGGER_HIGH, "iep_cap_cmp", iep);
-+		if (ret) {
-+			dev_info(iep->dev, "cap_cmp irq request failed: %x\n",
-+				 ret);
-+		} else {
-+			iep->cap_cmp_irq = irq;
-+			INIT_WORK(&iep->work, icss_iep_cap_cmp_work);
-+		}
-+	}
-+
- 	iep_clk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(iep_clk))
- 		return PTR_ERR(iep_clk);
+>>> +static int stm32mp2_configure_syscfg(struct plat_stmmacenet_data 
+>>> *plat_dat)
+>>> +{
+>>> +    struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
+>>> +    u32 reg = dwmac->mode_reg;
+>>> +    int val = 0;
+>>> +
+>>> +    switch (plat_dat->mac_interface) {
+>>> +    case PHY_INTERFACE_MODE_MII:
+>>> +        break;
+>>
+>> dwmac->enable_eth_ck does not apply to MII mode ? Why ?
+> 
+> It is like MP1 and MP13, nothing to set in syscfg register for case MII 
+> mode wo crystal.
 
--- 
-2.45.2
+Have a look at STM32MP15xx RM0436 Figure 83. Peripheral clock 
+distribution for Ethernet.
 
+If RCC (top-left corner of the figure) generates 25 MHz MII clock 
+(yellow line) on eth_clk_fb (top-right corner), can I set 
+ETH_REF_CLK_SEL to position '1' and ETH_SEL[2] to '0' and feed ETH 
+(right side) clk_rx_i input with 25 MHz clock that way ?
+
+I seems like this should be possible, at least theoretically. Can you 
+check with the hardware/silicon people ?
+
+As a result, the MII/RMII mode would behave in a very similar way, and 
+so would GMII/RGMII mode behave in a very similar way. Effectively you 
+would end up with this (notice the fallthrough statements):
+
++	case PHY_INTERFACE_MODE_RMII:
++		val = SYSCFG_ETHCR_ETH_SEL_RMII;
++		fallthrough;
++	case PHY_INTERFACE_MODE_MII:
++		if (dwmac->enable_eth_ck)
++			val |= SYSCFG_ETHCR_ETH_REF_CLK_SEL;
++		break;
++
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++		val = SYSCFG_ETHCR_ETH_SEL_RGMII;
++		fallthrough;
++	case PHY_INTERFACE_MODE_GMII:
++		if (dwmac->enable_eth_ck)
++			val |= SYSCFG_ETHCR_ETH_CLK_SEL;
++		break;
+
+[...]
 
