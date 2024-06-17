@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-76619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B11790B593
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:00:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A9D90B59E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F7521C22C60
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:00:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAC6A1F21A01
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B93713A88F;
-	Mon, 17 Jun 2024 15:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD9B1D9533;
+	Mon, 17 Jun 2024 15:51:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MQ2APQT+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kS7Ag5JA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B85EAC5;
-	Mon, 17 Jun 2024 15:49:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE10F510;
+	Mon, 17 Jun 2024 15:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718639376; cv=none; b=S7aEgw8sgbsgZG6o83Id1CFSxLGpP9xpISVuP6XiCOzQpmVUWRYqGoxHUxyjegnbJXaCXJh5C5ItVzASnt4xgE/B518kXNGQmDgOsHK27AhTh0XbV88NbPDCMqaPk2pS7Jnzc4TnrZzoczxwPYR1kHAlt9wxjCDh8uiSeU2kTdo=
+	t=1718639514; cv=none; b=UXjaV6dHxpEgxtMkSotdwRdVpVmp8pS2kC2sYc9qIxAtLBFNpckP6sarNn2FlK1Tf3hjRqdgOTQ4Suokci98qJ6Q19Kem8UNk/GH6wVYuaOZ6Jz9pFgeOs2i/QG2eV0U39PJixLkxt7cCTnLWVoSdf5ISRml6j1k9hq6W7oMRAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718639376; c=relaxed/simple;
-	bh=9jxoacm0VNzafJu9FOapUXFOnY1Zd94cS5szpcO+6Zg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VrVuZWPxS80t77K7rIGRMHBI99hc21jSEur0EE9AiBMccC/8ZdHd3JbsJdY/pp+6yNnoaiNbpwI1/wHC1+jqCO/HkiqxQSV8zS9a2IjD5252lufZlb/i7MF0ECSz4ai5Hdvd/4i8HpwkDWzNQOagsj1QhPR0QIPxfxqmk+29VGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MQ2APQT+; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1f717608231so34377225ad.2;
-        Mon, 17 Jun 2024 08:49:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718639374; x=1719244174; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fHo927smNjkpt0+sCP+aYgix3Q+5w0hosKdaxQjMOgQ=;
-        b=MQ2APQT+iO+Eh0DXJQkI4uU+NnoTm57gpAHrOcGq3sb/q0iBES4aesC9E7BAFWyvzE
-         /8pP5TIM+H0bGTfECCMxrG+ru7qGjPZcaHg4lRspd5PFTw1i6TCPTqGBjeYIJqe4gUyw
-         bGEW7bwtLS7seet9zfDkBgk7GPiL/ZHitZJ5zDJ/W3+RFXdV/5pCZbPOL8/jFlOnej8Y
-         nXevDfIwy+xipH7Ixf3rgdIMOrDolXxI4hOhJIbNIcvFl1B2SGYrZQipwW+AahrSpmTV
-         CMdJfkzBeG0ZS6zSq0vAUq3Fz4p1ZLUIsl2W6WMOQ3ted8ttgmmEXPSsteZnvzHisi7W
-         30rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718639374; x=1719244174;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fHo927smNjkpt0+sCP+aYgix3Q+5w0hosKdaxQjMOgQ=;
-        b=XtuurV6AnhqW08ikfC/v7F/AbLBgYiLnbi0E6nyKKeG0W52yiCAPIF4VzcSpOGHAUd
-         BL6qjOjwdP7Q3Z/qdA3A6HiOhbgyxXArVjLIjBpJ15weTHE0HyqAn4OiXHgbOkU5RTFY
-         mBZePZQc6p3S4jmL74wD8liEoqtKe8jbAVjECUdHlDjWbTvJM4j9WpqjVkTlMKqaA0MR
-         7NZTYOZEvHkec/KwlhaoUA5qeBMUfgAbJDQbbKbUBS7kpUB4uq8oJ2J6Y1rfKDpiDryT
-         /7J4+Wjrqlx3dWIN2BnMxK6O6JBhRXnDtAuq3FAcNT1PFtlJZwLSacLMP7wZzYedJATn
-         L9Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCXXaikpSaFCDI9IPmEQp+B2Fuw0OK18xie+Y9nrweBdSv8FemS+CcEIahVP0k5R9oUHgSEEkdetK2dpo9a7DlJ7bzBoxYz/dVvqCx1V40NxyVF7MLKWszEbHKbUIpWMrjO/Doz2Cb41vnOSNxWXLOWEXQwY77azFCjvloA2ZXr6Yl13Fg==
-X-Gm-Message-State: AOJu0YzTJm0htyL7hociH7PmG0sWSf6Pc9oN3qGf94rzBXxIqETVBwCX
-	HaqKJq+yH3P9PTrVvf3wZj2uA0I29JXnMeGiQg6GIYO1Vi0AZEXw
-X-Google-Smtp-Source: AGHT+IGNbnjCGTfKI07a4UNbGPXQuG49aaEGA13NJD7JLoGUMWXHzLxcA414MUCJx0aBqKwSDo3jQQ==
-X-Received: by 2002:a17:902:e889:b0:1f7:4021:508a with SMTP id d9443c01a7336-1f8627c7d14mr158688035ad.33.1718639373888;
-        Mon, 17 Jun 2024 08:49:33 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855ee8349sm80467885ad.120.2024.06.17.08.49.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 08:49:32 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 17 Jun 2024 08:49:30 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Paul Menzel <pmenzel@molgen.mpg.de>
-Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	=?iso-8859-1?Q?Ren=E9?= Rebe <rene@exactcode.de>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Armin Wolf <W_Armin@gmx.de>,
-	Stephen Horvath <s.horvath@outlook.com.au>
-Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
-Message-ID: <4e09b843-3d2d-46d7-a8e1-2eabc4382dc7@roeck-us.net>
-References: <20240604040237.1064024-1-linux@roeck-us.net>
- <20240604040237.1064024-6-linux@roeck-us.net>
- <a5aa120d-8497-4ca8-9752-7d800240b999@molgen.mpg.de>
- <efb77b37-30e5-48a8-b4af-eb9995a2882b@roeck-us.net>
- <33f369c1-1098-458e-9398-30037bd8c5aa@molgen.mpg.de>
+	s=arc-20240116; t=1718639514; c=relaxed/simple;
+	bh=5QFl/yJfLVgwYffcsjQSQFsX7p/eAa/o4WYPHgRlXbM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gkV/1QDdtEynbaSK8UC9rmZhH6BzyOTile9/0c+qDOk276Fn+TcHlln5EwDP7AH5w6vsqsaMSMueSr+w6/LO02LuwbB4JNyuyxEDlOIQRhf2hoaZ0OvPcqwQxFt4tcBw2g10GC1EtEKxoxsVihH9z+EZ+fMdACc7K4DNoeaGxEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kS7Ag5JA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7F6FC2BD10;
+	Mon, 17 Jun 2024 15:51:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718639513;
+	bh=5QFl/yJfLVgwYffcsjQSQFsX7p/eAa/o4WYPHgRlXbM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kS7Ag5JAkC85Oz8erQj3i8AmM1mYhhZtMBZeGrAVwekr6dO4DN1DBg+S4ld4h/QWP
+	 PUi7SoM4scMZtakzp1EPrIDjhcmT5wWviriW+NgE39u/qOfKmrIh2citTxUGgvP7NK
+	 W4TfJEo/De6/mgvNZBE+TuiudxZHm4LL1BtqTo5fZj1+l+iAqQ44+1hBBjqH14QcUl
+	 xgKQcGT6v1/o+ckjJwhAMpUtX2YzFDwOmaDx8MN/doTaW6f28V3SNxtiA9UeUYKB5w
+	 ADq73i/3p/T00Dm7j6KR29xMsd1PPZwtJXTDgCH1QtP3fTDM7MiMplzS8mBzFva73g
+	 luHnoi3O3s4vg==
+Message-ID: <d7eb6b3b-13b5-4587-a2f1-83fe3b30dc21@kernel.org>
+Date: Mon, 17 Jun 2024 17:51:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <33f369c1-1098-458e-9398-30037bd8c5aa@molgen.mpg.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a-main: Enable crypto accelerator
+To: Kamlesh Gurudasani <kamlesh@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jayesh Choudhary <j-choudhary@ti.com>
+References: <20240617-crytpo-am62a-v1-1-ddb719aed71b@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240617-crytpo-am62a-v1-1-ddb719aed71b@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Paul,
-
-On Mon, Jun 17, 2024 at 04:42:47PM +0200, Paul Menzel wrote:
-[ ... ]
+On 17/06/2024 12:22, Kamlesh Gurudasani wrote:
+> Add the node for sa3ul crypto accelerator.
 > 
-> I applied your patch
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
->     $ git log --oneline --no-decorate -2
->     00058a6 eeprom: Add basic spd5118 support
->     a0e5865 i2cdetect: only use "newer" I2C_FUNC_* flags if they exist
-> 
-> but reading eeprom fails:
-> 
->     $ sudo ./eeprom/decode-dimms
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> index ce4a2f105630..298d0c91fc0a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> @@ -216,6 +216,18 @@ k3_reset: reset-controller {
+>  		};
+>  	};
+>  
+> +	crypto: crypto@40900000 {
+> +		compatible = "ti,am62-sa3ul";
+> +		reg = <0x00 0x40900000 0x00 0x1200>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
 
-decode-dimms does not need sudo, but that should not make a difference.
+Why do you need ranges? No children here.
 
->     Cannot read /sys/bus/i2c/drivers/spd5118/0-0050/eeprom at
-> ./eeprom/decode-dimms line 2465.
-> 
-Well, it _is_ a hack ;-), but that specific operation should not fail.
+Anyway, keep the order as in DTS coding style.
 
-Please try the following:
 
-ls -l /sys/bus/i2c/drivers/spd5118/0-0050/eeprom
-cp /sys/bus/i2c/drivers/spd5118/0-0050/eeprom /tmp
-od -t x1 /sys/bus/i2c/drivers/spd5118/0-0050/eeprom
-sudo i2cdump -y -f 0 0x50
+Best regards,
+Krzysztof
 
-All those should work, and the size of /tmp/eeprom should be
-1024 bytes. The output of i2cdump should start with something like
-
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
-00: 51 18 0a 86 32 03 32 00 00 00 00 07 ff 7f 00 00    Q???2?2......?..
-                                     ^^
-
-and with
-
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
-00: 51 18 0a 86 32 03 32 00 00 00 00 00 ff 7f 00 00    Q???2?2......?..
-                                     ^^
-
-after executing the "sensors" command.
-
-Other than that, I can see that your system is an Intel system,
-meaning the i2c controller would be i801, not piix4. I wonder
-if that makes a difference. Has anyone else seeing this tested
-eeprom access with i801 (or any other controller besides piix4),
-by any chance ?
-
-Thanks,
-Guenter
 
