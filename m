@@ -1,147 +1,203 @@
-Return-Path: <devicetree+bounces-76659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42FA890B792
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:14:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 356CA90B80C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 19:29:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE39283133
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:14:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B313B22616
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA06E16A95F;
-	Mon, 17 Jun 2024 17:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E35D16A959;
+	Mon, 17 Jun 2024 17:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dlKjsyvn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oV1WSX39"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289FA16A954;
-	Mon, 17 Jun 2024 17:14:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EDA16A954;
+	Mon, 17 Jun 2024 17:14:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718644480; cv=none; b=dM8+vrAVxmROOlYmReEva50EJ4w8+bprgIO61/Fs+waIuFWLCmezwFFRM6YPd+oZ9rh5uMuIxYsws7lcOtxedHe0OIgcxT7c4WelW7XRfvHF9/l4ykJlMJrv4iCTjAr2VqXoQU6sKgr0gj1e0L1N9B4Tk33uQI8GQpxjLMH0t1k=
+	t=1718644464; cv=none; b=RXS9QMKgGZqLOwmWISMjMqJZxq5BF0LKlGAMRusAYxy2k76N+VTLYmVdrechu1PNjy4lb52wKIxjEEfRCuGKyU14MpWlvBfUNjwiSVF1GVrXYMuW7FK2WIFkoygrvZmYoievNv4Lx2K9rZvg0i2zjMm6ATgPjXS05ea8HHnMaHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718644480; c=relaxed/simple;
-	bh=GCcw5hlFjsov7vU25ey+lZsb4laxgU4CrkT8OCyG/GM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=f9y0KqYFD/AL6VTUBZQZdzp6DbZpu52GTr83DNchQCQNyngL1mjeQMs4lOjSTfrAR6vhus+VIk3LXabe6rMwBkGxPllvIaT2+umHtQF0aCqM2nJtRZspAOKnkq3u2lr0z6WZAlTpbialyp1PikNiEpLMoPkueCG3ygBrA9u9sWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dlKjsyvn; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45HAgu99032598;
-	Mon, 17 Jun 2024 17:14:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qHW2sipXV38cUjoce1vWKeKDVq6sQZZynA2UDf4+2II=; b=dlKjsyvn2o5OJZrF
-	gCjlFZRnHUN1QlQ8hwX5YMPqoawxqH0fwtjXfHpWCOdmBcLNea9fRpTf8dTDJCo5
-	VbulNChl/zPy10oPr9rYvkFKDTmeQq1EExa6yXhZs9jK3Tdd0uoky/+FofurPF1D
-	A19GFW5WNAtzLgbdw8P2Rk1WLWrE++HC08IlFlJqqBiTew06HXzMbRiISPE/QNzB
-	uBuQM/uNKa9HZoHzp8QM0O17Jya7QLZ2GXqoKG8UCH8h4vjCCCgf+p5SCgsCxNjd
-	JlPPKez0o70gQNQ28YsHL+PXe2UVHOSdSAaaRztinP1E3JgLxJTxhuq/uRGCQFzd
-	mwJO/g==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ys0an4f1t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Jun 2024 17:14:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45HHEJlY002735
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Jun 2024 17:14:19 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 17 Jun
- 2024 10:14:17 -0700
-Message-ID: <c18c3acc-8f08-1384-0d99-509ffd663879@quicinc.com>
-Date: Mon, 17 Jun 2024 11:14:16 -0600
+	s=arc-20240116; t=1718644464; c=relaxed/simple;
+	bh=MmA+hwtBmtjHSiMtd3wx1Z1tyvk5MSxoK0Na7DKEAQw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AERZKxY8VXN6w1eT/eXoLqANI6mOPmB45/srXuut3khLfJa2tzVtqxiCK/Fes5wB/8ITgGpgBBOSsmU+wggaV3BxNRx+Ljw2wA/pisQLjxw03PXKLggZ6o2s6bP0H3o/pfvuQUKjqER84XosMd+kTbvKbXyLHSP20ohsu6ukRjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oV1WSX39; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9538C2BD10;
+	Mon, 17 Jun 2024 17:14:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718644463;
+	bh=MmA+hwtBmtjHSiMtd3wx1Z1tyvk5MSxoK0Na7DKEAQw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oV1WSX39l0oXYDodwVcnNGu6g4yMk+A7cNev9LZ6awpIJ9xMX9gDzkjzVyiiA+9sg
+	 Vet+IFaG3NPnPFjcwM4+83gYFJemwOCgodSuD+cCV4Gtlh1C2lrz2ERg+1GtQJFFm0
+	 T3dacB3gT9y6Ose1tIMAGQ2DZaW6ul4KAem+/dbDAtXFnLFPGR7r+hWL59SPK7yAsn
+	 tqcTBN3yuhpVGuSn0OVOCEYJ/sMnJwZc7nDM/mUCrS3QmfPgXgkJA8/nUB28gCqmol
+	 XouT25EtxDkGVmoYLbZmYVA22YNeBpe+GzWI/aOyCW5l6wdCSBVkqfUjIDukQhrPFg
+	 05YaqubP+3MEg==
+Date: Mon, 17 Jun 2024 18:14:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	Jesse Taube <jesse@rivosinc.com>
+Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+Message-ID: <20240617-connected-avoid-82f0bdc05cdf@spud>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <20240616-exorcism-computing-e11e26084a62@spud>
+ <20240616224811.GC3983622@ofsar>
+ <ZnBEBQjTQtFs-fXt@xhacker>
+ <20240617-synapse-carmaker-0a59c7c6edb7@spud>
+ <tencent_26E7381EE1F6C5188428359AF3F908CA680A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Marc Gonzalez <mgonzalez@freebox.fr>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, "Arnaud
- Vrac" <avrac@freebox.fr>,
-        Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <20240613-hdmi-tx-v4-0-4af17e468699@freebox.fr>
- <20240613-hdmi-tx-v4-4-4af17e468699@freebox.fr>
- <348e16f1-0a1b-4cad-a3f0-3f7979a99a02@linaro.org>
- <pprbxhow6gl6bqlhzoiozz7ymwqk5uwuyuwclviulie4ucyjok@xv34zrzw72oz>
- <b6676951-33a2-4c3a-bb29-0d1ea7ad33d2@linaro.org>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <b6676951-33a2-4c3a-bb29-0d1ea7ad33d2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IyvUU1bNab2aZg9p9Kc3nauTBhv-hJ07
-X-Proofpoint-ORIG-GUID: IyvUU1bNab2aZg9p9Kc3nauTBhv-hJ07
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-17_14,2024-06-17_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- bulkscore=0 impostorscore=0 priorityscore=1501 spamscore=0 clxscore=1011
- suspectscore=0 mlxscore=0 adultscore=0 lowpriorityscore=0 mlxlogscore=829
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406170133
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Jrl5+92C90Kbr+Af"
+Content-Disposition: inline
+In-Reply-To: <tencent_26E7381EE1F6C5188428359AF3F908CA680A@qq.com>
 
-On 6/15/2024 5:35 AM, Konrad Dybcio wrote:
-> On 14.06.2024 12:33 PM, Dmitry Baryshkov wrote:
->> On Fri, Jun 14, 2024 at 01:55:46AM GMT, Konrad Dybcio wrote:
->>>
->>>
-> 
-> [...]
-> 
->>> GCC_HDMI_CLKREF_CLK is a child of xo, so you can drop the latter.
->>> It would also be worth confirming whether it's really powering the
->>> PHY and not the TX.. You can test that by trying to only power on the
->>> phy (e.g. call the phy_power_on or whatever APIs) with and without the
->>> clock
->>
->> I'd prefer to keep it. I think the original DT used one of LN_BB clocks
->> here, so it might be that the HDMI uses CXO2 / LN_BB instead of the main
->> CXO.
->>
->> If somebody can check, which clock is actually used for the HDMI, it
->> would be really great.
-> 
-> +CC jhugo - could you please take a look?
-> 
-> Konrad
 
-Documentation is not great but it looks like CXO from what little I can 
-find.
+--Jrl5+92C90Kbr+Af
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--Jeff
+On Tue, Jun 18, 2024 at 12:39:30AM +0800, Yangyu Chen wrote:
+>=20
+>=20
+> > On Jun 17, 2024, at 23:32, Conor Dooley <conor@kernel.org> wrote:
+> >=20
+> > On Mon, Jun 17, 2024 at 10:11:17PM +0800, Jisheng Zhang wrote:
+> >> On Sun, Jun 16, 2024 at 10:48:11PM +0000, Yixun Lan wrote:
+> >>> Hi Conor
+> >>> Thanks for bringing this up
+> >>>=20
+> >>> On 19:35 Sun 16 Jun     , Conor Dooley wrote:
+> >>>> On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
+> >>>>=20
+> >>>> No MAINTAINERS update, so I figure that means you don't want to main=
+tain
+> >>>> it going forwards? If there's someone out that that does care about =
+the
+> >>>> spacemit k1 (Jesse maybe?), then I'd be more than happy to have them
+> >>>> look after it.
+> >>> Yangyu kind of has limited time, too many stuff for him..
+> >>>=20
+> >>> I'd volunteered to help on this if it can fill the gap
+> >>> Also I'd be more than happy if anyone willing step forward to co-main=
+tain..
+> >>=20
+> >> Does maintainership work like this? Is willing to do enough?
+> >> FWICT, maintainership involves active patch contributing, reviewing and
+> >> maintaining the whole SoC. It is better to take over the maintainership
+> >> after showing enough patch contributions and understanding of the SoC.
+> >=20
+> > I was going to reply to your other patch about providing more complete
+> > "basic" support for the SoC, but I guess I'll reply here and address
+> > both points. After the k230 and th1520, which were both merged with very
+> > basic support and have made very little progress towards being a useful
+> > platform, I'm pretty reluctant to merge another platform in a super
+> > basic state. I was going to make this point before you brought it up,
+> > but it's good to know I am not the only one with that view. To be clear,
+> > I'm not pointing blame for those platforms, I'd just like to avoid a
+> > repeat. If Yangyu doesn't have time to do any development work on the
+> > platform, I'd like to see someone else (and as I mentioned Jesse is
+> > interested) take on getting some of the basic driver patches written and
+> > merge only when those are accepted. Having no in-tree clock and pinctrl
+> > drivers is definitely a hindrance to other people doing parallel
+> > development of drivers and I'd like to avoid that.
+> >=20
+>=20
+> That's also my concern for the first time when I submitted initial
+> support for K230. However, for SpacemiT K1, things went differently
+> for its UART, and the vendor patched OpenSBI with their NOC-based
+> HSM. They didn't use CLINT-MSWI as SBI HSM driver.
+>=20
+> The vendor uses a special intel pxa uart driver, marked deprecated
+> in the kernel and incompatible with ns16550. If we use ns16550 in
+> the dt, the behavior of uart is like the uart has no interrupt and
+> stops working permanently when fifo overruns, making many developers
+> not know how to start unless they use the SBI HVC console, which
+> needs to turn on CONFIG_NONPORTABLE.
+
+This I just do not understand. Why did they use this IP? Is it free?
+Did they use it before for something else? It's a rather strange design
+choice to me.
+
+> For the OpenSBI, the vendor does not provide enough ISA string,
+> which their chip might support, such as Zicboz. Thus, the OpenSBI
+> does not correctly set up the corresponding M-Mode CSR, making the
+> kernel panic when the ISA string contains this extension.
+>=20
+> These two things takes me about one week to get the initial mainline
+> kernel with full ISA extension and UART to work. Providing this
+> information in the commit message helps attract more developers to
+> start developing quickly.
+>=20
+> I don't mind whether this series patch will be merged or not. The
+> meaning of this series is just providing these informations. However,
+> I think some details about bringing up a very basic kernel are
+> essential to attract more developers. If a platform has already
+> attracted some developer's attention. Providing initial support
+> with the commit message to show how to bring it up is not bad.
+>=20
+
+> The point is that if a developer like me has already done this but
+> does not have much time to do further development, should the
+> developer become the maintainer? If not, should a developer submit
+> patches like this to the mailing list to provide this information
+> in the commit message and make it easier for other developers to
+> do further development?
+
+I think, as you did, sending patches for this state is very valuable.
+I'd just like to see someone expand on it before it gets applied, so
+that the initial platform support in the kernel is in a better state.
+
+> > Getting back to your point in this mail, whoever gets the platform to
+> > that state is well suited to looking after it going forwards. Some other
+> > interested parties could also join as reviewers. I don't want to see
+> > people joining as maintainers that are not going to have an interest
+> > in the platform going forward, as that'll just end up with me as the
+> > defacto maintainer.
+> >=20
+>=20
+> I agree. I also have no confidence in joining as a maintainer.
+> That's why I didn't change the MAINTAINERS for the first time.
+
+Yeah, that's fine. Consider this part of the thread my attempt to
+solicit people to maintain the platform, rather than bashing you. I
+appreciate the work you've done :)
+
+Thanks,
+Conor.
+
+--Jrl5+92C90Kbr+Af
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBu6gAKCRB4tDGHoIJi
+0uZNAP9ElcW1Moz3oegHyyj66hfSZofUB2/kWuP+yKNFSIUIBQD/SuEPeV1sBsSV
+lRZoUY0kp5uFGyWIOuzqEQgBdKSxLAo=
+=3m3H
+-----END PGP SIGNATURE-----
+
+--Jrl5+92C90Kbr+Af--
 
