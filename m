@@ -1,136 +1,104 @@
-Return-Path: <devicetree+bounces-76400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A6390A75C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:35:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E7B90A763
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:35:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F12D9281F31
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:35:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 890DE289AF5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD21E18FDAE;
-	Mon, 17 Jun 2024 07:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B8718FDD3;
+	Mon, 17 Jun 2024 07:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="CD1ALidB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mNphIsM/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3212618FC9D
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BA518FDC4
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718609657; cv=none; b=ZujW1VGI272UbsyEATNcKHraAzzMBTod3bXtgXBZNcVAAv9axlV3autX118Nog728Ps6QjAtGmJj+sNnICyhxLAgw3zPpV5JGg37E8+bCPItlHHj8iR21/xoOl6Xfm7uWlsgYakWCg90QnLh+SQ6TPMzVwh6+FT3eiLidhd+YW0=
+	t=1718609685; cv=none; b=g8gPMAk9ypj6mIp6Helb1pDKuahMF0qLn+DiXm/kbBVcjWp+ewkrf78wKGaX4BFLYQzadtvweP7HYjQWXU5LZUg6NL6gG+1wNMZOIKN6vk8Gx2dBHzFzDdWwOL9YBET7yPz+Xam3v5aWpmBbNDQXcg7w67xOhMopVIZAzre4Sdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718609657; c=relaxed/simple;
-	bh=zeWiuilCPHFFpyWvuMbpXBQefcVonCeBKJtUM5B3kRo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gh5dOZ37c2erDov9YldcofS2E7HqqT6FRu3SDvakpALKQA28mSsl35qyWyjnum+LFcrj/COuet55iEpO/hJoivxnYSER8WSV5A/UW3EWPcRagVabteXbKNEfIBeRV6oT8EFWJGgSMj9qcGTTFAa69PW/NHIVtT3xGUauo7WthrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=CD1ALidB; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52b7ffd9f6eso4014126e87.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:34:15 -0700 (PDT)
+	s=arc-20240116; t=1718609685; c=relaxed/simple;
+	bh=Xoq4EUAvhohkGeVSJqSuDIOlvwFj9GujMdx8Xhlpyd4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e1OHwTHhGXYQsWs8paBmhtw7jOw9BXRYEIxIDDtqZs72EnPmUT6Rii9uEay4ZiHWBdH/nawgt2KdDRb19wK963usQf+aOI05nkmAoXa6YQv1o1XBpsMJZgZU+m6xtXaGTCWbWQ84rcF6WcJyfDjyOYLGJl5DD/dG+EwXjZ9CxhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mNphIsM/; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52bd48cf36bso4776758e87.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1718609654; x=1719214454; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AClyXU1pi3aF85OV5YDv3ie7wh1G6ZH8NgIWnD9i/jI=;
-        b=CD1ALidB2NBE+jyz18WgTrkyh1PcGsIpx0OD1yxDjw8IhXyMEC9nW9gzCqJNKMgAFy
-         b2tM/7cMPIlzx3cDlRx9vIEZyuxazR0Cmm5F30Tps65sxf9BXKk9QyXLBV5qIyeVEQ82
-         8avBt4ggoF0IobsaHiK2Wn7ZU999KDtOKmrC5xaWLLUuBuqLjDrBpkoVNluj6zZEI7TL
-         3r10AC84w9zLhG0FFKhWGILoJdPlj50nAIewh4kv+1QaNZ8hIUSj8GUSk9hSAKRmE+/R
-         viyKPF1SsmQxglIgBB5Yee3FHsMH3IgbLkUtRxEJpmj+K4QyGTjl03GsdnQa/TYCl3re
-         npWg==
+        d=linaro.org; s=google; t=1718609682; x=1719214482; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xoq4EUAvhohkGeVSJqSuDIOlvwFj9GujMdx8Xhlpyd4=;
+        b=mNphIsM/hoVzAEnpb0VtBzw4GG0kCULFsFxvBVPMa9nu3Ay0yXAzxFcQ+Au+C4LCtl
+         YTmXzI5MR5j8KUWcWkWKFuaHeM5Q6HkBhfzCNyRkETCOah3EU6esgE89oU5N7mid0WYG
+         +KZCeKKPZqr+Zn2rzXm0GhPsRPZVazf81+zF8jjeojdJfpCf36RYS1v2olQTGL3SxwJ/
+         Fa3OZfqJmAObPnDwnyZlZl2yWdFJJWQpt0q8vyX+ESzZTs2fp+SZzaFd1Q4/qU0D7R/+
+         b3/CxuWfl4becH4m5AP3q6y32TM5c5qHJvAvaHoro1mCVQF5+RIF8e65ZB/DpJO/MZCj
+         P8Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718609654; x=1719214454;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AClyXU1pi3aF85OV5YDv3ie7wh1G6ZH8NgIWnD9i/jI=;
-        b=mK0SL9AFV4QMvssaNh9v1P25ucaSo5FjLtQp5jMUEXTXYpPVmPe8wp7dsF3IXIj7VH
-         Cqo4RtJUf0aQ7gvSSCQT2wkIjFB2S1anNv+6rB5DjxZMuCQFN+PdAD37LjJaE4WO5lF4
-         eKFSMMz2w6A8t+rwYQb1fSCdkvKbN40YrSl+rcyq/U41mAvwqJ9rJnEFw4t3+pzsEFnr
-         4oPbrBcQiHH/NRnu1oFQzqAoDBZ01CNjtNdEnHHQiqhRhu3WDNrz3lFnoVWYlR2ldvDP
-         imZLIfYn/44FJPG8dTVZjNzSm6V74z3lnG/aSTuWwJNtNPQ5GP82p5vLOBOhXJQ7j1bN
-         itDw==
-X-Forwarded-Encrypted: i=1; AJvYcCWtqwWaB/XdDosgWIE3jKBZJhlSuQL/keiaCGjUQqHaCYxU9UAG2wjGi7ydsBe0gs3WdUVSMqEOCOZrKL57mZpWcs1tg94smd+cOg==
-X-Gm-Message-State: AOJu0YzkkPQUSMxS751o+x/1lZVTEKkIhN3yvBqel40rFr72dkXHmOsO
-	X8SIrs9kUmnG6n+PpdeRsOl+x40LYgxGGq4XmJhiJgywlXlY5W80OCgetveYJ+0=
-X-Google-Smtp-Source: AGHT+IHUlZ9yVF0/d21oqhr/RhfPE4nfbgHcDlIeSpz0UE5KNmeRW7vE44kzi3qUrQ4kCBqjj8nN7Q==
-X-Received: by 2002:a19:6a02:0:b0:52c:81fc:eba2 with SMTP id 2adb3069b0e04-52ca6e91456mr5494441e87.44.1718609654566;
-        Mon, 17 Jun 2024 00:34:14 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.189])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-360751037b6sm11240074f8f.98.2024.06.17.00.34.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 00:34:14 -0700 (PDT)
-Message-ID: <035457e2-c1ea-4a9d-9bbe-486f74074cdb@tuxon.dev>
-Date: Mon, 17 Jun 2024 10:34:12 +0300
+        d=1e100.net; s=20230601; t=1718609682; x=1719214482;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Xoq4EUAvhohkGeVSJqSuDIOlvwFj9GujMdx8Xhlpyd4=;
+        b=pgscVupr+REN5wTC5bzKXXU4JTWA1UYUL7ODFmHwnOgEhjP/bilQV6Yw2IC3wf93+w
+         3howVe9Jt8+dPxk6CHp/G7UqzJvRqIuT/0jOlVNh/pdmeCE74WjU36DvZ/woWlg5qrcb
+         2JQLQLFR4uW0EXj7GlCvLB+JJ2370SYX3libYBqG6O+pVRR5utNqh1nvgtCkCP+lKfIB
+         Hk2Rw5v9mTnHM+iV04IrtjMkwnlhTPUKxQZEXgpT3Q0vMd6H3chp5yu7GVkM2toLB54x
+         G3ZKskN2Xaaqa9dEbefLzga59ri7lEIxx1Usdqj8z3vo9lMzfK1EY1hLYT7KaqTXZnAT
+         pcag==
+X-Forwarded-Encrypted: i=1; AJvYcCUm266u2yZnD4UsnHIG368rtWjQsds4D+s1bev4RW1MmRD6Ddp/yzAvrfF+2b1hXJ03kLDo039qen6xbGcIa0Og4trPYckHEjTUjA==
+X-Gm-Message-State: AOJu0YznzF8Mi6kye19Xt5+LD9ddow3firUlsrSSk/4iQL+SsThYiOfq
+	puvufDpophUUr0RLqZZNhNpJNprqJEw+gnDpWnX5XyqHWPE3AsS4EUmB80k3Q8WwgYvIY6z6FBT
+	e0R+zHx5PmQy1XFFpVGrSVMlRprx4rqYGFVlaoGtFxM9g5Qvl
+X-Google-Smtp-Source: AGHT+IGqIDqoMDiWUnJbMVSGr1EJQQ4GFqNlfiC0YOW4DAh8bCGdlwiNhRqn/j5asJGjevkFUoLeA+A2JuGUQ9QeAF8=
+X-Received: by 2002:a05:6512:3c97:b0:52c:adff:4bcb with SMTP id
+ 2adb3069b0e04-52cadff4c84mr5977471e87.53.1718609682402; Mon, 17 Jun 2024
+ 00:34:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/12] dt-bindings: clock: renesas,rzg3s-vbattb-clk:
- Document the VBATTB clock driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, geert+renesas@glider.be,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
- alexandre.belloni@bootlin.com, magnus.damm@gmail.com
-Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
- <20240614071932.1014067-3-claudiu.beznea.uj@bp.renesas.com>
- <dfb0680e-7592-48dc-b4a3-5aec3a6bb188@kernel.org>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <dfb0680e-7592-48dc-b4a3-5aec3a6bb188@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240531-dt-warnings-gpio-ast2600-pinctrl-funcs-groups-v1-0-a6fe2281a1b8@codeconstruct.com.au>
+In-Reply-To: <20240531-dt-warnings-gpio-ast2600-pinctrl-funcs-groups-v1-0-a6fe2281a1b8@codeconstruct.com.au>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 17 Jun 2024 09:34:31 +0200
+Message-ID: <CACRpkdanSAkR-czs=OUKLh6dpiRk0QDLR-T0ECrG-Y4cY9=Vmg@mail.gmail.com>
+Subject: Re: [PATCH 0/3] dt-bindings: pinctrl: aspeed: Define missing
+ functions and groups
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org, 
+	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, May 31, 2024 at 5:03=E2=80=AFAM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
 
+> This short series cleans up a collection of binding warnings concerning
+> use of undefined pinctrl functions and groups. Together they make a
+> reasonable dent in the volume of output from `make dtbs_check` for the
+> Aspeed devicetrees.
 
-On 16.06.2024 10:38, Krzysztof Kozlowski wrote:
-> On 14/06/2024 09:19, Claudiu wrote:
->> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    vbattb: vbattb@1005c000 {
->> +        compatible = "renesas,rzg3s-vbattb", "syscon", "simple-mfd";
->> +        reg = <0x1005c000 0x1000>;
->> +        ranges = <0 0 0x1005c000 0 0x1000>;
->> +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
->> +        interrupt-names = "tampdi";
->> +        clocks = <&cpg CPG_MOD R9A08G045_VBAT_BCLK>;
->> +        clock-names = "bclk";
->> +        power-domains = <&cpg>;
->> +        resets = <&cpg R9A08G045_VBAT_BRESETN>;
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +        status = "disabled";
-> 
-> Drop.
+All patches applied.
 
-OK.
+Thanks Andrew!
 
-> 
-> And keep only one complete example, instead of two. See other complex
-> devices as example.
-Do you have in mind an example that you can point me to?
-
-Thank you,
-Claudiu Beznea
-
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Yours,
+Linus Walleij
 
