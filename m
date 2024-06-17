@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-76591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC7DC90B4DB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:43:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63CAB90B4E4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:44:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 758A1285690
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:43:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 236832863C2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73FB155750;
-	Mon, 17 Jun 2024 15:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1BCE156F3A;
+	Mon, 17 Jun 2024 15:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aFh0vSlj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tTDSqNl6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBA915573F;
-	Mon, 17 Jun 2024 15:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9217156F31;
+	Mon, 17 Jun 2024 15:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637139; cv=none; b=WzzsUki5iYM8Gbtry3MOWpfe2OQMPx5++e54EZVGb+0qy36brlTKwJYMydrpNc1x/0NN8ySFySd3gkxzjibjOjmpxllI9GydCJMIQ/tC3+LlF/kYTmAa8P7ZfrrMPqZUiDe12mZJkVaYttey4lLc8m+0tA0Qx80CcbhPJNxYDzY=
+	t=1718637320; cv=none; b=RMV/UVjQYXZ4nxhdIo/egSfC3h9m8LXQ9QEr09SgV2IAC29G3fI/PrcyjT4+CzDFYFkY6/mMjPh1c/pCoFXxgoqxFvCKrQ18oIU8UbMWUTE2gEzf+N8CmURGrnCyibcxD9htHe7Cz2tAuIzSWr06oRFOmOEUq6UKqa4QzvZBr98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637139; c=relaxed/simple;
-	bh=heEcD7jP+9sbk2WYP48DwhYQ31/7MqNBiwMnGgFNoos=;
+	s=arc-20240116; t=1718637320; c=relaxed/simple;
+	bh=WHkOQwgQ0OkCBXBRQiaSNopJdYpyKdAicFRU5wIC1SQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F3VSq2zNR14qxU5PLXFGj77em+emKGH9Kn3gau0EHCk5sZbi9bhZNiovHUW8TKl2lpARvc2EJoVCLeaGIXDPYczTtUDpSOJu1fYkslrsAQ1e3UfMUi2viXSCoWZaBm3Piy1VcYmSwQKBTUxvpxnZWjw+uqpm/Qw5g80nVl474zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aFh0vSlj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66083C2BD10;
-	Mon, 17 Jun 2024 15:12:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZpG0T9YavOcbEn3NgZSeSU/JlqO9ZFKxMpYRGUcj98KZahv91VNHUA1x9cLskLBZ8yCv3f8b9+u+2PnYh8rItVeLbVatB1XB37jS0qy7S+415kCY3oQHsqfjpTlUWvc60KNiEij5lUDj2JSbRicUTqqE2DnsbEjPRGGF4NdD6J0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tTDSqNl6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF4FC4AF1D;
+	Mon, 17 Jun 2024 15:15:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718637139;
-	bh=heEcD7jP+9sbk2WYP48DwhYQ31/7MqNBiwMnGgFNoos=;
+	s=k20201202; t=1718637320;
+	bh=WHkOQwgQ0OkCBXBRQiaSNopJdYpyKdAicFRU5wIC1SQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aFh0vSljOiT3mLP4VuA9fmWsEfm3G8wYGAttwWhHIkApQxTJbt8ZfWE8uikq+8QIT
-	 umPSlhJ+qjHRRaecJy3sPS3A6qidL+hA7NkXJ5uAGaNnIyARSUmIP+u421f0pB83ro
-	 S119pBD+xmYsXOe7VevwgsSaTqMIlKmNPzxGjyFUlKLACP6Ci4PEUVLAyaCDorNrC5
-	 NyNfWZE4rHJKI028XLHld5/6WIz6yPoTVqPafoUuzQ/5mG6FmmwM26zfhsmws+DvUK
-	 eXI/0R9uRlxQVRJman/9IH/ZTf2OThbfdUFTV2NMq6Rdbg7mqBGItws0APwDkjOCUV
-	 tH0gXur7Res1Q==
-Date: Mon, 17 Jun 2024 16:12:14 +0100
+	b=tTDSqNl6jdkQtMK7cX4KvwKmvrBJb0KCpntchLkDEBpXVtz9ZsmfVQxHWSh5mN5z+
+	 aVyoZ3f/+5/qbSwFd98WTmEA7DvU4/Xg7wVF7KoZ8vx/VkgmimhKuf6+sQWFuKHiKF
+	 cy5DkUrz32DOkakoe8npzIfF6Lb3+vccSr1XWfpRCByMEnge/d8mx8C8aDFh7Ot4Rc
+	 du0vaGJDecUhWxZdzrG/75SYdzOx7NSPrOjtAAhBg2aVx6+VbtwG41y2Fi9qTyl3ic
+	 GORXm32SmliFyw7N3vj+KMQkoSxh6GNgfuR4Ir+bPVT4mf4Sorm43SZUUgyiIr5iq/
+	 Uv0uqk7dNXr8w==
+Date: Mon, 17 Jun 2024 16:15:16 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
+To: Etienne Carriere <etienne.carriere@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, skhan@linuxfoundation.org,
-	javier.carrasco.cruz@gmail.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: thermal: convert hisilicon-thermal.txt
- to dt-schema
-Message-ID: <20240617-latter-recovery-b7ef60fdf9f8@spud>
-References: <20240617-hisilicon-thermal-dt-bindings-conversion-v2-1-5eea9bc59c77@gmail.com>
+	Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
+	Pascal Paillet <p.paillet@st.com>,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2] dt-bindings: mfd: dual licensing for st,stpmic1
+ bindings
+Message-ID: <20240617-schilling-unfreeze-1151ed3ffe3c@spud>
+References: <20240617092016.2958046-1-etienne.carriere@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,43 +61,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="y2bjfCNhCmua7HYd"
+	protocol="application/pgp-signature"; boundary="lGPyMPYHL/8mRCAF"
 Content-Disposition: inline
-In-Reply-To: <20240617-hisilicon-thermal-dt-bindings-conversion-v2-1-5eea9bc59c77@gmail.com>
+In-Reply-To: <20240617092016.2958046-1-etienne.carriere@foss.st.com>
 
 
---y2bjfCNhCmua7HYd
+--lGPyMPYHL/8mRCAF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 17, 2024 at 10:20:52AM -0400, Abdulrasaq Lawani wrote:
-> Convert the hisilicon SoCs tsensor txt bindings to dt-schema
+On Mon, Jun 17, 2024 at 11:20:16AM +0200, Etienne Carriere wrote:
+> Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv2.0
+> only to dual GPLv2.0 or BSD-2-Clause. I have every legitimacy to request
+> this change on behalf of STMicroelectronics. This change clarifies that
+> this DT binding header file can be shared with software components as
+> bootloaders and OSes that are not published under GPLv2 terms.
 >=20
-> Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+> In CC are all the contributors to this header file.
+>=20
+> Cc: Pascal Paillet <p.paillet@st.com>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
 > ---
-> Changes in v2:
-> - Remove extra node in example.
-> - Use standard node name in example.
-> - Include additional defines from includes.
-> - Add reference to thermal-sensor.yaml.
-> - Remove redundant properties and comments.
+> Changes since v1:
+> - Change request license from "GPL-2.0-only OR BSD-3-Clause" to
+>   "GPL-2.0-only OR BSD-2-Clause".
+> - Update Lee's e-mail address.
+> ---
+>  include/dt-bindings/mfd/st,stpmic1.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> - Link to v1: https://lore.kernel.org/all/20240613224204.185844-1-abdulra=
-saqolawani@gmail.com
+> diff --git a/include/dt-bindings/mfd/st,stpmic1.h b/include/dt-bindings/m=
+fd/st,stpmic1.h
+> index 321cd08797d9..9dd15b9c743e 100644
+> --- a/include/dt-bindings/mfd/st,stpmic1.h
+> +++ b/include/dt-bindings/mfd/st,stpmic1.h
+> @@ -1,4 +1,4 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+>  /*
+>   * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
+>   * Author: Philippe Peurichard <philippe.peurichard@st.com>,
+> --=20
+> 2.25.1
+>=20
 
-Why did I get sent a v2 of this 3 minutes after I got sent the v3?
-
---y2bjfCNhCmua7HYd
+--lGPyMPYHL/8mRCAF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBSTgAKCRB4tDGHoIJi
-0nJ8AQDi+q3L2R7LqolMueilkU8RIIcJOEtwkOSf3PX6Dia8RAEA+M9ZnwhwyGZa
-Cpi9Fe03nanVH4KljShDO2MMYWPHXQQ=
-=b5RI
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBTBAAKCRB4tDGHoIJi
+0qIWAPkBJ9q1i4xsdPxz3hLLu+JG/FRYZ1wTgLB3J64D5AYvrwEA8FkkvfvaQHtM
+/MSFQyC8O7LR6GsPUulaf3eF0NkDXwc=
+=80iE
 -----END PGP SIGNATURE-----
 
---y2bjfCNhCmua7HYd--
+--lGPyMPYHL/8mRCAF--
 
