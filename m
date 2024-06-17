@@ -1,270 +1,140 @@
-Return-Path: <devicetree+bounces-76557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 983B390B1AF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:23:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C8C90B1A6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 16:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FA2F1F29731
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:23:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E60071C2293E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A110C19884A;
-	Mon, 17 Jun 2024 13:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5DC1A0B0C;
+	Mon, 17 Jun 2024 13:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b="Q7r8/ReF"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="e53mt5Pg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8D519A289;
-	Mon, 17 Jun 2024 13:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4264199E9E;
+	Mon, 17 Jun 2024 13:30:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718631234; cv=none; b=FeYeXWGXoYjMunwpZEJfoyKN6DTNBwwoI9PybiEnUUXWeGzWh/S/2SXisrljF5fW0bC2hGUb4WEHYbwXa3HuGlFpNLriHuEZsFIWI7Sc+jV/Wcmjj8eDV86/1m0sjjhB5sItFL3jJKUb1rwijJmxmeX74WyWi8EdbRpGfCjzmSg=
+	t=1718631016; cv=none; b=qkR48AdCcFJfsoAFH7Vw9JpepKvqAGuG6woF7mAkkxlIqwwUThI2LaQG+/cRjG0QU7YLuFztedWPgzEakHk8Ta4eNMbpuk3wjMmhCqCFDGozcJJBAejIIbIHsgkl5L3ddGXvDe+UHOI+zcUHLRh6ymen614cPWxbOe6ijeset6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718631234; c=relaxed/simple;
-	bh=EPUP2P2rkyMTmnSsXy3vgtNnCWIN0xxM5+rBzw/2SoI=;
-	h=Content-Type:Date:Message-Id:From:To:Subject:Cc:References:
-	 In-Reply-To; b=FEmF8B3JUsolUDYiYWKIBi5aC2yUFEQRTPE9Zxb8I7Y4Tt1CizG6ipEarjy1JqWAtvEAzGhVBg0+dI4C1KOlLHFdcvIjFER3WTNyFay1cFaaahhz41uaKe6OjagmUeqMY9N71C7ck5Bml2pin2WGF+EkJlreyYQhZG5/HE+1HHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc; spf=pass smtp.mailfrom=walle.cc; dkim=pass (2048-bit key) header.d=walle.cc header.i=@walle.cc header.b=Q7r8/ReF; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=walle.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [213.135.10.150])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 96978230;
-	Mon, 17 Jun 2024 15:24:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-	t=1718630690;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
-	 references:references; bh=XGdpwMen/VgLH0fpEvgI0LtL3f1BjG5LVb+4IVUtO6g=;
-	b=Q7r8/ReFl6eYZ20WbkLEG4pnme+d5/YemdIP1r/VSRiuZSaXALnMwSvEQtfBQmGIeuKwli
-	7IgsDxezpqkFORBSDX/00zj6LMUQdhJ1w10ODWF1zincbDxWWJ3bVWuMJEnm3AfA99e0Ko
-	qk6C6Uz3D4jyGQHsxN4V7+zfscZia/PyhnxM5gAdkvqwrH8iGaG27oNv13rR14i6Dh717S
-	FDS+sXX/et9Mh92whUvH31TlnkcsyDREwLFoRXtKYwBWubvVpUXqlrAh9UUST/HEVkOwyZ
-	8UD4+YUy77ZcBJFWpYlTWmnXl2ERnMkHGXqoivpF0lvyD8hP+5Aw8VlG5ckeTQ==
-Content-Type: multipart/signed;
- boundary=cd73275ec8ec08f02789c22d654dfdbdccd7e263beb5db59c37f41efc36e;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 17 Jun 2024 15:24:39 +0200
-Message-Id: <D22BQAOFJWVJ.2Y9FKAAR57BHK@walle.cc>
-From: "Michael Walle" <michael@walle.cc>
-To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
- <chunkuang.hu@kernel.org>
-Subject: Re: [PATCH v7 3/3] drm/mediatek: Implement OF graphs support for
- display paths
-Cc: <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
- <conor+dt@kernel.org>, <p.zabel@pengutronix.de>, <airlied@gmail.com>,
- <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
- <mripard@kernel.org>, <tzimmermann@suse.de>, <matthias.bgg@gmail.com>,
- <shawn.sung@mediatek.com>, <yu-chang.lee@mediatek.com>,
- <ck.hu@mediatek.com>, <jitao.shi@mediatek.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
- <linux-arm-kernel@lists.infradead.org>, <wenst@chromium.org>,
- <kernel@collabora.com>, <sui.jinfeng@linux.dev>, "Alexandre Mergnat"
- <amergnat@baylibre.com>
-X-Mailer: aerc 0.16.0
-References: <20240612065634.26569-1-angelogioacchino.delregno@collabora.com>
- <20240612065634.26569-4-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240612065634.26569-4-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1718631016; c=relaxed/simple;
+	bh=KSb3mRso17rcUhqb1Oro4xaRLDBSd9Y8je7X+EGQxKI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JAalEoGnUyNnNps7/L8KRBxyy9TwV8mSoi5NTPkz3bVvkQBvGLD08Q2sSMv9OpD95NTgaGpcspiUlyYsOeYVeenyd0wsxNn8/9/tjTgBDRUPdAHyOaTZ+I/b3iAkcZNH3XA//IOY2R8Aggiw4KYnD40O6VkJM/X7X/fsyzNE0TQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=e53mt5Pg; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718631014; x=1750167014;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KSb3mRso17rcUhqb1Oro4xaRLDBSd9Y8je7X+EGQxKI=;
+  b=e53mt5PgulIomW5ZRO2a1Kr5zgEdNHWwCLemuc+aHDPDmFLp3qQ8ppo6
+   hmcCNarB031kIGHXq3GELT4jZjfWKNphrqHBKUkpzq3nQmKMANGQJCoHV
+   xn3fO4WBG7L6iwIFkEuVI36hlwnYbEOL/2n5rFKQhsvI7shSyo577r2Im
+   URXoISN6ji9wSs856g93ptj3KaGAlPaJTUroJZipSCDFkWxXeIhnpIoHU
+   ZOvQgNs0RQlW7tLcLFF922GtDBTZfBO43ebvcjdAxpyJSASwcVxjssTQb
+   3sJNHHfrYwfLUukRhh/5kPfYe6O7k5RuEbuhdTt4VOkZS/bvtg54mF+h9
+   w==;
+X-CSE-ConnectionGUID: vs/KqhXwTIKMnwb8mVJ4mg==
+X-CSE-MsgGUID: jnR8qmdfSTeSCRZB+zW6Sg==
+X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; 
+   d="asc'?scan'208";a="28519325"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2024 06:30:13 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 17 Jun 2024 06:30:06 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 17 Jun 2024 06:30:04 -0700
+Date: Mon, 17 Jun 2024 14:29:46 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Jisheng Zhang <jszhang@kernel.org>
+CC: Yangyu Chen <cyy@cyyself.name>, <linux-riscv@lists.infradead.org>, Conor
+ Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Samuel Holland
+	<samuel.holland@sifive.com>, Anup Patel <anup.patel@wdc.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 7/9] riscv: dts: add initial SpacemiT K1 SoC device
+ tree
+Message-ID: <20240617-carat-poise-ee63ed6a224e@wendy>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <tencent_701082E2DAE48E2FB857316321778D737C08@qq.com>
+ <ZnAw9QrSD-svYqQ5@xhacker>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oT9/HnCyP3m+8Cht"
+Content-Disposition: inline
+In-Reply-To: <ZnAw9QrSD-svYqQ5@xhacker>
 
---cd73275ec8ec08f02789c22d654dfdbdccd7e263beb5db59c37f41efc36e
-Mime-Version: 1.0
+--oT9/HnCyP3m+8Cht
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-Hi Angelo,
+On Mon, Jun 17, 2024 at 08:49:57PM +0800, Jisheng Zhang wrote:
+> On Mon, Jun 17, 2024 at 01:20:52AM +0800, Yangyu Chen wrote:
+> > Banana Pi BPI-F3 motherboard is powered by SpacemiT K1[1].
+> >=20
+> > Key features:
+> > - 4 cores per cluster, 2 clusters on chip
+> > - UART IP is Intel XScale UART
+> >=20
+> > Some key considerations:
+> > - ISA string is inferred from vendor documentation[2]
+> > - Cluster topology is inferred from datasheet[1] and L2 in vendor dts[3]
+> > - No coherent DMA on this board
+> >     Inferred by taking vendor ethernet and MMC drivers to the mainline
+> >     kernel. Without dma-noncoherent in soc node, the driver fails.
+> > - No cache nodes now
+> >     The parameters from vendor dts are likely to be wrong. It has 512
+> >     sets for a 32KiB L1 Cache. In this case, each set is 64B in size.
+> >     When the size of the cache line is 64B, it is a directly mapped
+> >     cache rather than a set-associative cache, the latter is commonly
+> >     used. Thus, I didn't use the parameters from vendor dts.
+> >=20
+> > Currently only support booting into console with only uart, other
+> > features will be added soon later.
+>=20
+> Hi Yangyu,
+>=20
+> Per recent practice of cv1800b and th1520 upstream, I think a complete
+> initial support would include pinctrl, clk and reset, I have received
+> the complains from the community. So can you please bring the pinctrl
+> clk  and reset at the same time?
 
-> +/**
-> + * mtk_drm_of_ddp_path_build_one - Build a Display HW Pipeline for a CRT=
-C Path
-> + * @dev:          The mediatek-drm device
-> + * @cpath:        CRTC Path relative to a VDO or MMSYS
-> + * @out_path:     Pointer to an array that will contain the new pipeline
-> + * @out_path_len: Number of entries in the pipeline array
-> + *
-> + * MediaTek SoCs can use different DDP hardware pipelines (or paths) dep=
-ending
-> + * on the board-specific desired display configuration; this function wa=
-lks
-> + * through all of the output endpoints starting from a VDO or MMSYS hard=
-ware
-> + * instance and builds the right pipeline as specified in device trees.
-> + *
-> + * Return:
-> + * * %0       - Display HW Pipeline successfully built and validated
-> + * * %-ENOENT - Display pipeline was not specified in device tree
-> + * * %-EINVAL - Display pipeline built but validation failed
-> + * * %-ENOMEM - Failure to allocate pipeline array to pass to the caller
-> + */
-> +static int mtk_drm_of_ddp_path_build_one(struct device *dev, enum mtk_cr=
-tc_path cpath,
-> +					 const unsigned int **out_path,
-> +					 unsigned int *out_path_len)
-> +{
-> +	struct device_node *next, *prev, *vdo =3D dev->parent->of_node;
-> +	unsigned int temp_path[DDP_COMPONENT_DRM_ID_MAX] =3D { 0 };
-> +	unsigned int *final_ddp_path;
-> +	unsigned short int idx =3D 0;
-> +	bool ovl_adaptor_comp_added =3D false;
-> +	int ret;
-> +
-> +	/* Get the first entry for the temp_path array */
-> +	ret =3D mtk_drm_of_get_ddp_ep_cid(vdo, 0, cpath, &next, &temp_path[idx]=
-);
-> +	if (ret) {
-> +		if (next && temp_path[idx] =3D=3D DDP_COMPONENT_DRM_OVL_ADAPTOR) {
-> +			dev_err(dev, "Adding OVL Adaptor for %pOF\n", next);
-> +			ovl_adaptor_comp_added =3D true;
-> +		} else {
-> +			if (next)
-> +				dev_err(dev, "Invalid component %pOF\n", next);
-> +			else
-> +				dev_err(dev, "Cannot find first endpoint for path %d\n", cpath);
-> +
-> +			return ret;
-> +		}
-> +	}
-> +	idx++;
-> +
-> +	/*
-> +	 * Walk through port outputs until we reach the last valid mediatek-drm=
- component.
-> +	 * To be valid, this must end with an "invalid" component that is a dis=
-play node.
-> +	 */
-> +	do {
-> +		prev =3D next;
-> +		ret =3D mtk_drm_of_get_ddp_ep_cid(next, 1, cpath, &next, &temp_path[id=
-x]);
-> +		of_node_put(prev);
-> +		if (ret) {
-> +			of_node_put(next);
-> +			break;
-> +		}
-> +
-> +		/*
-> +		 * If this is an OVL adaptor exclusive component and one of those
-> +		 * was already added, don't add another instance of the generic
-> +		 * DDP_COMPONENT_OVL_ADAPTOR, as this is used only to decide whether
-> +		 * to probe that component master driver of which only one instance
-> +		 * is needed and possible.
-> +		 */
-> +		if (temp_path[idx] =3D=3D DDP_COMPONENT_DRM_OVL_ADAPTOR) {
-> +			if (!ovl_adaptor_comp_added)
-> +				ovl_adaptor_comp_added =3D true;
-> +			else
-> +				idx--;
-> +		}
-> +	} while (++idx < DDP_COMPONENT_DRM_ID_MAX);
-> +
-> +	/*
-> +	 * The device component might not be disabled: in that case, don't
+What sort of complaints have you got? That the support is too minimal to
+be useful?
 
-Sorry there was a typo in my proposal, This should either be
-"not be enabled" or "be disabled".
-
-> +	 * check the last entry and just report that the device is missing.
-> +	 */
-> +	if (ret =3D=3D -ENODEV)
-> +		return ret;
-> +
-
-..
-
-> +static int mtk_drm_of_ddp_path_build(struct device *dev, struct device_n=
-ode *node,
-> +				     struct mtk_mmsys_driver_data *data)
-> +{
-> +	struct device_node *ep_node;
-> +	struct of_endpoint of_ep;
-> +	bool output_present[MAX_CRTC] =3D { false };
-> +	bool valid_output_found =3D false;
-> +	int ret;
-> +
-> +	for_each_endpoint_of_node(node, ep_node) {
-> +		ret =3D of_graph_parse_endpoint(ep_node, &of_ep);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret, "Cannot parse endpoint\n");
-> +			break;
-> +		}
-> +
-> +		if (of_ep.id >=3D MAX_CRTC) {
-> +			ret =3D dev_err_probe(dev, -EINVAL,
-> +					    "Invalid endpoint%u number\n", of_ep.port);
-> +			break;
-> +		}
-> +
-> +		output_present[of_ep.id] =3D true;
-> +	}
-> +
-> +	if (ret) {
-> +		of_node_put(ep_node);
-> +		return ret;
-> +	}
-> +
-> +	if (output_present[CRTC_MAIN]) {
-> +		ret =3D mtk_drm_of_ddp_path_build_one(dev, CRTC_MAIN,
-> +						    &data->main_path, &data->main_len);
-> +		if (ret =3D=3D 0)
-> +			valid_output_found =3D true;
-> +		else if (ret !=3D -ENODEV)
-> +			return ret;
-> +	}
-> +
-> +	if (output_present[CRTC_EXT]) {
-> +		ret =3D mtk_drm_of_ddp_path_build_one(dev, CRTC_EXT,
-> +						    &data->ext_path, &data->ext_len);
-> +		if (ret =3D=3D 0)
-> +			valid_output_found =3D true;
-> +		else if (ret !=3D -ENODEV)
-> +			return ret;
-> +	}
-> +
-> +	if (output_present[CRTC_THIRD]) {
-> +		ret =3D mtk_drm_of_ddp_path_build_one(dev, CRTC_THIRD,
-> +						    &data->third_path, &data->third_len);
-> +		if (ret =3D=3D 0)
-> +			valid_output_found =3D true;
-> +		else if (ret !=3D -ENODEV)
-> +			return ret;
-> +	}
-> +
-> +	if (!valid_output_found)
-> +		return -ENODEV;
-
-This doesn't work. My proposal just ignored the ENODEV error. Now
-you'll return ENODEV if there is no output for a given mmsys. In my
-case, that is true for the first mmsys. Subsequent mmsys's doesn't
-get probed in that case, it seems.
-
-Anyway, you shouldn't return ENODEV here because disabled just
-means not available, i.e. it should be treated the same as
-"output_present[] =3D=3D false".
-
--michael
-
---cd73275ec8ec08f02789c22d654dfdbdccd7e263beb5db59c37f41efc36e
+--oT9/HnCyP3m+8Cht
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iKcEABMJAC8WIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZnA5GREcbWljaGFlbEB3
-YWxsZS5jYwAKCRASJzzuPgIf+ASJAYC5JN+RTspgt+HYGXjHGvvwdfLZI0lFGsC8
-Wfx4Gsm/0IQYKRPLKUPUGvw/uRVNvC8BgM5HLmpkNhLtPn53MJEf34RxT+WAajRa
-cRfle3/fAZq7yCb+dvJXI3q8ygyun07X5Q==
-=1Wb1
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnA6SgAKCRB4tDGHoIJi
+0na7AP9um0KeWsttwnNSGE2JtwpFCri+BagSptLaplA4idDWBgD/a2Bs8pedwuex
+lnoPGQJ1Ty98RoIrkROV8cur2alHbQU=
+=LKni
 -----END PGP SIGNATURE-----
 
---cd73275ec8ec08f02789c22d654dfdbdccd7e263beb5db59c37f41efc36e--
+--oT9/HnCyP3m+8Cht--
 
