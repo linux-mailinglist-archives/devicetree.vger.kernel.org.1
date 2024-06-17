@@ -1,122 +1,139 @@
-Return-Path: <devicetree+bounces-76481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E138E90AA3B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:52:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C17A90AA49
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 11:54:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 019401C235A7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:52:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F0CC1C25182
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E1A195960;
-	Mon, 17 Jun 2024 09:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB187196442;
+	Mon, 17 Jun 2024 09:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dkQbIRKV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YRQK8qMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530201957E2
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 09:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6168195FE2;
+	Mon, 17 Jun 2024 09:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718617440; cv=none; b=vCVgpF5AcCMphgy00eHG/HpinYfPGFMrfljBvM04Zrlxe4gbp+WQst8kCCGwd7QV51bkZqdtvJ/JfybVdn1P8gY0f5qSrzTHg5VV6GOqMjULW20AKhUZHBYs99JCh1CvMgM39I7/sdHcHuYV/FPQW+VRGJKR3PCZWlYdfTrytkU=
+	t=1718617502; cv=none; b=nU3/DKSktaeN+P609HhTsV5Wc73YboDLNYk7p1ECelnIxug4Z88z0TZoMB2IWZKwpLtWM2B34kTgkrmsV2edgnTtgSnRV0xGr8LstlPL5Xrh9tPfvFUogxOw2gRA8jA18mQkaOAr32zn9mubAjoTmB31ykacrZ+qj3bQy7Im3gE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718617440; c=relaxed/simple;
-	bh=AVM91SFjOeJ4EGJwdJF//dJ0wQhrEY8K0R6MrRTgXNo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rAiaMXw4VlX5vWFbqPhJEMlR/QTcwLC4Fx7gb2rjjPS3AwoQ+RT6nirV17kROcMaR1/J0FdAHaKvPktroe1TE2xvPPxKm6sC9yKmlfiZ9Ezyod1GWuPud1P4tQXKHEBctug26ePWu9X7Q8wzyN5OXuoIreFCqz3gUjB5HCY/gJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dkQbIRKV; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ec1e5505abso14301581fa.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 02:43:58 -0700 (PDT)
+	s=arc-20240116; t=1718617502; c=relaxed/simple;
+	bh=ulYGpQplI6j1LKMsfjUp+t3ELw7gic7cyJ0yseY/H9A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b9AJjCA7dGP9cQuXJ+7As6L38p2wVTxjnqBV6NKn2p5L5AQS7gw4uWS5kSlukmfY4Q8R2EAsKCVNqMBjPJ1d6KtUb4krh4BYPRNi6MhJ8zrD3cb+RGlMgAGlIDRcq5FLmLeKd87hvtJxvGGpVd+6nN3OTH0fhC5m15avq1NGuzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YRQK8qMG; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-57a44c2ce80so4862858a12.0;
+        Mon, 17 Jun 2024 02:45:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718617436; x=1719222236; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0qyV5BhT+hOakoBNP7VkHyuuQ8+FmrIcBOKbyWvL0zk=;
-        b=dkQbIRKVtICmLyeBDhbRP8iA3bdg9Tgc03Tb1bKmyCDYPq2xAIAB9P2dEkSLKGN1zW
-         5SxI4GENtopPvhgTcRmrLt0lJISGWA5Hk5vvXTOA7OZu14a9YXmxTHTZ9BUj0p3pXFbP
-         EglPFCncl43MbFgBucnx+X0QwBpfUPpUMzMocKHWWGRc+cGNWIyiyNFkugTZP1B0nh/8
-         N2TazHZsb8DVpc1DBuhHEkpipWFzsB5/jRehPD1fjE0buX5OjES/OAT7LevYPCBEZESj
-         shYIbyZnApClONUM0busq3YygLQinAqT4PrvcwZqniubkHSCtWdf0KihRtAAyizl9pRP
-         P7YA==
+        d=gmail.com; s=20230601; t=1718617499; x=1719222299; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X97SzOogYwfV1kCh1JrbnYsGiZ69at2aW20xoDHZcwM=;
+        b=YRQK8qMG10Tu118PKZMGKDW9RjYukT6APWdm9ILfAJy9KTum4UdmI6kiQbbavH7B3M
+         aTDa2R244OMWgzCnAM5KbdLTxMboiYDRfCqOePETZcbE225fzXhKFZN7o4YfUjHeMKdT
+         cl2N8L3xDC2E9ZOBKHgF7fvxQ/EvY1+snOh8hcoTHs4M1RMY8eUEe/arZQAtMUxkdvvm
+         OdY/K+grdVN9Tw5KZuh9QkYNM6r7Ckj8Ubeejfcld0syOJFieIJ0DG0JfD9hu43hQsfp
+         avu6nKySL599b5BkUNllIgkao9T0ITmmOuWYGAPk7Na1GgB5qyLSrGAXM6HkBwMwCYfq
+         SEkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718617436; x=1719222236;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0qyV5BhT+hOakoBNP7VkHyuuQ8+FmrIcBOKbyWvL0zk=;
-        b=qn4ypQsgNhJCJzcOZO2/EhKdLFEW6wTYxlf7x7ixivf+nL3T3YiKLVUpVvBy8DgCyZ
-         i/VkQHVQcUDtkKTnkzkqyopK1GdzbRSW24I6FPFaGbNGJdhVA3YtmTJNjr+AND4uJ7YD
-         ihI8obSHKVZ0m5iLNa1qKuDs6OJJiiQ1BJnau+PWpPYrWD/10sVAlo0N2XC/FNjA7AGL
-         2V89jVHzK7Di3crT4F/cwC0YqJja18B4mhi8OniasHVd0DG1ndJeoahkde6DL2hTpn/D
-         77DTKHKxwC4WCcl6kN4BCIMougT6lSD9v8B1OYogNqN1XX5KWq0JLohsffxEs/Y9wQ+w
-         hbvg==
-X-Forwarded-Encrypted: i=1; AJvYcCViF7HcLLXpgY5nsb+JtUrzTqaPHFlSx73zAjIqGwxDsfNDX7X0CofJz6AuyttS0NjdtCt7A9LuleYA1WooQ+NAbLVJgn6mazIUzA==
-X-Gm-Message-State: AOJu0YwjpUGYiMjMSNTviwVC4u0q4TYqh4tnWB00HIe2CMZ0dE/Y8re/
-	+AVesCy/wfQ5Vr2o1f18hnNrI9Fr87dNJOBUpXW2IHfgkk89y9pRU9iyv6Je3hM=
-X-Google-Smtp-Source: AGHT+IEumQAyN+NZWW67TMH9LyQluGdcRlBDdjBbMCwrlGr6EisNhuKiAvNKwlD27RooS6SV7iqrbA==
-X-Received: by 2002:a2e:b794:0:b0:2ec:254d:4fdd with SMTP id 38308e7fff4ca-2ec254d5052mr13784491fa.15.1718617436480;
-        Mon, 17 Jun 2024 02:43:56 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05c16f00sm12903251fa.61.2024.06.17.02.43.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 02:43:56 -0700 (PDT)
-Date: Mon, 17 Jun 2024 12:43:54 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: krzysztof.kozlowski@linaro.org, djakov@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [RFC PATCH 0/2] arm64: qcom: Add BWMON support for SA8775p
-Message-ID: <yb3ni6o22zdm2lqodj7utdb2dlg3jkbwzutxhmljxle3syoe5y@op2prslmri4y>
-References: <20240617092940.1724962-1-quic_tengfan@quicinc.com>
+        d=1e100.net; s=20230601; t=1718617499; x=1719222299;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X97SzOogYwfV1kCh1JrbnYsGiZ69at2aW20xoDHZcwM=;
+        b=dwTdagVhdRIuwgJ1UuNb75h9mqn38B5pE68+CR0WrnySfn9dPAxsZDkrFWEZUE/VSA
+         FV0FeoFaNbY40pmmeDEOFAcEFqD0wLk6bNum1e/wEQ0ycoXXYtW8I8AXSBhQaEd/D5AV
+         16n5JezK3rsg5vdsCZedJPM947aCWRtwIoTavNSa+LYoY1PhRfNykl38GOnFQoXAJwN0
+         va4iPd6EASMtFz90faOnX/6SRW9qGnJnCLuoH7Pr3icBs25+C9OYC9xQcvptCmmr1UGc
+         LNWT/hFX5OKWbqJlIGSTCgq5GJ4WB2ZpNqtzPiE5c02aCzbaYgpsJHPXXT7+SdzIAM/7
+         dsbg==
+X-Forwarded-Encrypted: i=1; AJvYcCU428HcEjyAzo5OJgjKx0djqzAhI41PIhmsZpu49Wh4QqHLzV07W0PaF0lFtHEl6TymZHFqQEYpnqGT7MdbRdC5WtKXhKGLwgFhW57Fx05CQnlcoeGQlm0Xnh/4FUSs0EwDXrlFpjfwJQ==
+X-Gm-Message-State: AOJu0Yz6I9gJ3GRwP4mWznN9SwIwG++gbumguQ56vLAyjklwq4ZNKxhV
+	x5GtK8iqcPGU+kTDj6Em3E5N2SZ9c4DnyDh4oE6GW+5AKVEKA8ln
+X-Google-Smtp-Source: AGHT+IFS75We8HO8dxXBT7VUWU1ReVIHpzlJDr8M/osvVnkMD+fe6bx8ReOw1WyqfmavqcTI87RW1Q==
+X-Received: by 2002:a50:cdd5:0:b0:57a:2a46:701 with SMTP id 4fb4d7f45d1cf-57cbd68e23emr5766447a12.19.1718617498862;
+        Mon, 17 Jun 2024 02:44:58 -0700 (PDT)
+Received: from ?IPV6:2001:8f8:183b:6864:7071:8881:6a51:3e82? ([2001:8f8:183b:6864:7071:8881:6a51:3e82])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb743ada1sm6149470a12.96.2024.06.17.02.44.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jun 2024 02:44:58 -0700 (PDT)
+Message-ID: <feeb8dcd-661f-415e-be08-afe175d0102e@gmail.com>
+Date: Mon, 17 Jun 2024 13:44:54 +0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240617092940.1724962-1-quic_tengfan@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] arm64: dts: rockchip: Add AP6275P wireless support
+ to Khadas Edge 2
+Content-Language: en-GB
+To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de
+Cc: nick@khadas.com, efectn@protonmail.com, jagan@edgeble.ai,
+ dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240617071112.3133101-1-jacobe.zang@wesion.com>
+ <20240617071112.3133101-5-jacobe.zang@wesion.com>
+From: Alexey Charkov <alchark@gmail.com>
+In-Reply-To: <20240617071112.3133101-5-jacobe.zang@wesion.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 17, 2024 at 05:29:38PM GMT, Tengfei Fan wrote:
-> Add CPU and LLCC BWMON nodes and their corresponding OPP tables for
-> SA8775p SoC.
 
-This series is marked as RFC, Request For Comments. What kind of
-comments are expected for the series?
-
-> 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+On 17/06/2024 10:11, Jacobe Zang wrote:
+> Khadas Edge2 uses the PCI-e Ampak AP6275P 2T2R Wi-Fi 6 module.
+>
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
 > ---
-> 
-> This patch series depends on patch series:
-> "[PATCH 2/4] soc: qcom: icc-bwmon: Allow for interrupts to be shared across instances"
-> https://lore.kernel.org/lkml/20240604011157.2358019-3-quic_sibis@quicinc.com/
-> 
-> Tengfei Fan (2):
->   dt-bindings: interconnect: qcom-bwmon: Document SA8775p bwmon
->     compatibles
->   arm64: dts: qcom: sa8775p: Add CPU and LLCC BWMON
-> 
->  .../interconnect/qcom,msm8998-bwmon.yaml      |   2 +
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 115 ++++++++++++++++++
->  2 files changed, 117 insertions(+)
-> 
-> 
-> base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
-> -- 
-> 2.25.1
-> 
+>   .../boot/dts/rockchip/rk3588s-khadas-edge2.dts  | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
+> index 233bab17bffd2..7d7cc3e76838c 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
+> @@ -365,6 +365,23 @@ &pcie2x1l2 {
+>   	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
+>   	vpcie3v3-supply = <&vcc3v3_pcie_wl>;
+>   	status = "okay";
+> +
+> +	pcie@0,0 {
+> +		reg = <0x400000 0 0 0 0>;
+> +		#address-cells = <3>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		device_type = "pci";
+> +		bus-range = <0x40 0x4f>;
+> +
+> +		wifi: wifi@0,0 {
+> +			compatible = "pci14e4,449d";
 
--- 
-With best wishes
-Dmitry
+This doesn't seem to be listed in the bindings, nor is there a mainline 
+driver that would match either this compatible or PCI ID 14e4:449d. 
+Maybe submit either or both of those first, to make sure they are 
+reviewed and acceptable for mainline inclusion, before this change lands 
+in DTS and becomes part of the ABI?
+
+I'm also wondering why would adding a DT node for a PCI device be needed 
+in the first place, given that PCI supports device discovery? Does it 
+require some sort of boot-time fixup by the bootloader? If so, it might 
+be helpful to state that in comments.
+
+Best regards,
+
+Alexey
+
 
