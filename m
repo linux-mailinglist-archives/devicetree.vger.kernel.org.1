@@ -1,235 +1,455 @@
-Return-Path: <devicetree+bounces-76374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF84A90A69F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:13:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6384490A6B6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:14:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67A841F24857
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:13:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D58911F212D8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7389A18FDB5;
-	Mon, 17 Jun 2024 07:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D24F2187545;
+	Mon, 17 Jun 2024 07:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tNOPXzD9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2127.outbound.protection.outlook.com [40.107.117.127])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2B3518FC87;
-	Mon, 17 Jun 2024 07:11:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.127
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718608300; cv=fail; b=Zhz3xyso09ItM2ZhJhpgFTL8Nch+7AVAnxkr/411fOLajG5ryB+zp/vqCn5lG06m73V50YIY2ZcoJEHpwa/RQNvOGORndRYM1jpa154OguS4CJmS+Clro63JuGV/XjlGw44UJQsKsGm0M1y204eSZ18MzehykdtIB8Cm+foI2xM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718608300; c=relaxed/simple;
-	bh=RTUQ5wihoXzDoWetdR+PnyBNl861AYMb4jjU4Gp793o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qYxld5i1fMm497pllYWSOFtzdl9VPY1PMXFp7oGUWdYUGxZviPMwC1a5ppUFS2wEwb0VTn2kEkj2Fn65Zn2+SuVwQHdRlKMf8ncrf66QUPD0YI5lX11OGOphl/r0zDDckUnaWeiSmf8gA+2qj3nd6YZHpJvJqhdgMhwfmcfGeGk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.117.127
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oVcjF88zYewM/N25kisMM6wKYGcHr+/0hH4zopTvMaOdkMnR/rgpIVzeyhGGPUTWse+ZJsxtHj148dWU4iv3qcP6ZVSgg8ndiJ0k4JO2Yp7I3NQzZ6ERYUOUa9/dKJRmfHNvFdoLOTf91y7ovntMTlEUr8C8HsCAG46zC/4bHN7lfN2zlYGDFQAN2veeovuEoe1jagAilOkS+2+3q3nu230Dt/hjccA8iUpD1KpXTbx/VhBDoYEOs4wpXAz/sLwFB5hJm7hKUFDryCM6+2qQRC5r6rq8NARzA1GJ4UUFvFf+x4gE1rC9ok81/SeMh2CzVwSDhy5xzFAIx3sy5TZH3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zpovuagVKrldqpdu9kaWlX4cHVi+n3y77eRANlmMoRc=;
- b=iOSk3QUYHmJWoqobiSs2Vs2GY6rT7FECugitO9Dh+GiXwT/zmAL1wsmMDA551CwVCH6uiyk3yKwsTB84gcvuzYRoJP7tVNECuVE/ZBLsct1le2hH1Pagn+HbLh5qYPE7O89GoWiZEjLqvvaJBaZweuB1hft8Wjo15KktG2bFZm+tp7kqLXgjFp8o21VrmMNNbqYTx7/c9plzMwk7WmFipVbWDSVjc9H8/uSbCkuSbH8hXAU5ss45IBoH4t4sbp5muiVs79mWu4j3U5v9YD/wxS5RQVsw1TiZAot8zWfEEzbcK7/ni3ffH1ChudaJyCV1YtFN+9QItTyxd8BURhTgAw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
- dkim=pass header.d=wesion.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wesion.com;
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
- by SEYPR03MB7968.apcprd03.prod.outlook.com (2603:1096:101:168::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Mon, 17 Jun
- 2024 07:11:34 +0000
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7677.029; Mon, 17 Jun 2024
- 07:11:34 +0000
-From: Jacobe Zang <jacobe.zang@wesion.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Cc: nick@khadas.com,
-	efectn@protonmail.com,
-	jagan@edgeble.ai,
-	dsimic@manjaro.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jacobe Zang <jacobe.zang@wesion.com>
-Subject: [PATCH v2 5/5] arm64: dts: rockchip: Add cpufreq support to Khadas Edge2
-Date: Mon, 17 Jun 2024 15:11:12 +0800
-Message-Id: <20240617071112.3133101-6-jacobe.zang@wesion.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240617071112.3133101-1-jacobe.zang@wesion.com>
-References: <20240617071112.3133101-1-jacobe.zang@wesion.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR06CA0017.apcprd06.prod.outlook.com
- (2603:1096:4:186::15) To TYZPR03MB7001.apcprd03.prod.outlook.com
- (2603:1096:400:26a::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A273C187323;
+	Mon, 17 Jun 2024 07:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718608452; cv=none; b=uPQVspn/Kc1iNdtGFmQi4cpmiJNe5ZqdKYR9FHh2ehoZdfy4pja+U9YAMdC2sibt82MrdS7nqW4NUwrlbhrlB/VWV+MZvrz6mv1TyFrOE6VkZReyAkKHoX1JScYnxsnP4TUXmyrBMFHOMWK22NF/5oKwpIxs8Vpv8zpU+mBkZo0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718608452; c=relaxed/simple;
+	bh=Ae70p2sXlx6ci2KzZWwD32nBpBJFBokZOQZpnUOCWCU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SuHUKKKodN6SQ8cbHV3pB01YY1p46UimT6vWoJlC/4Ie27ifMyf6uZTSgEjf2UJ7UFp9ZEt08kfT++6bV4IyQklPHs3qmLXOAeEuYia9RFoqh86AxE4S21c5PSpwLYQKHlSeZSD6tvul/F/so4ezARBeTJAtpyB2ROqh2rEFM9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tNOPXzD9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2228C2BD10;
+	Mon, 17 Jun 2024 07:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718608452;
+	bh=Ae70p2sXlx6ci2KzZWwD32nBpBJFBokZOQZpnUOCWCU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tNOPXzD9Wh+YJyvCSalSmouf/Gz6bkWk7Kuywt3gSi1ypgW5lzo2VVK17F/7vJv0+
+	 JKjYJK1V7FdUlu1tQARGH7+1eUwVqDbn6J4hG3CnrxHC+ahOVB/FsCj43aMpYr9PGg
+	 8DfdY0mLm2fyiZaj2VbgfrMVarE5+VJeavFOW9+AZzZ37ZmD4Ct7JfbB8TqBW0FgD9
+	 nu2poJr7f2mYjVaPITBGS1wm+mdim+7qD0nqeAFQJLnx429lPwxcm8HVRco7Tfm0FK
+	 DOnrRZVeAjJuNqaNoyaoRNlhDHU7vot4Fodie069MWTVTutbQH2QK8C8NT+/9Ke3k8
+	 PlIQzlDejJx7g==
+Message-ID: <a71bf75f-8c2c-44cc-baeb-3feabd1757b9@kernel.org>
+Date: Mon, 17 Jun 2024 09:14:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|SEYPR03MB7968:EE_
-X-MS-Office365-Filtering-Correlation-Id: a1d6ecb6-e983-4ee1-6557-08dc8e9cb856
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230037|1800799021|52116011|376011|7416011|366013|38350700011;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?lX20fmEiwdTXIVe49RZi3C8cjn6FCG+/mUetGIl5lFodbyfTiY/VzAhZLEzc?=
- =?us-ascii?Q?0tZx4EsJTxpQAmNcKKowK7MvHX9lrFXSWUh3+P3hpdJGexQ1A+sMd9CcdI6c?=
- =?us-ascii?Q?EeBwN762GjwFmmvHWJLuiJiInasJH3wVZSaE8gzVCmFX65vEeMYXos6c/L/Z?=
- =?us-ascii?Q?RZFksBWsMyFClBjolqFCgXfX+pPKPS4lhmMK9eTagN+YOaGRCD+gxd3MuxXE?=
- =?us-ascii?Q?WsX37XSqWZgvejK7DwR7D9VVmBop+SZ7iBi676k8wEOrZk0sXDzP52uMEavj?=
- =?us-ascii?Q?RlE5TrxGLXlg7dHM0XIo8RboiNFY7ulrcPK7QVtg4CDpympEKKoQSNUOCcx2?=
- =?us-ascii?Q?vZ47TisypYHVcJtxBiE6mwz37lgGdEPuePKYLD6HG6M+yHI7DiPQr2U0UWHD?=
- =?us-ascii?Q?Tkh2oYIOI4gDoIHRxFowrn8CBInH6Klegt4WHMqbmg77GmP+/83JyMTErZ84?=
- =?us-ascii?Q?xsJPG7EQUkqUcjZPtVCmUyCAQTGsGW8FI1K2kx3nKpjYcEVUojyIYX8M1YVe?=
- =?us-ascii?Q?2q4VFQv1LVJ89AtApLTx23eI5xOL0iM0IEwo+JwoHJbCqgrSVOg9HVOjsxgF?=
- =?us-ascii?Q?zQNtsdfrMsB0SI6spTQAXcQuD7Tv3j7BhIj0PGaIaLvqAdQi9NaP9cSpWzqy?=
- =?us-ascii?Q?PhhDcYVbQTYUf73mVGkmrEpXjNba49fv/7hSCmxvDKF7ux4DI5DomTcO2rMS?=
- =?us-ascii?Q?dzB93UeNWX//q3i2sSefsEnrGXkwZVZHPnssyQPAcsrY2kImCx/QGh3Y3RI9?=
- =?us-ascii?Q?Uakc9U1HRxP8w8+qM+8jqC7BCys1TSeM5sPz3qv2nabkUw66qdOmeG1LE5KY?=
- =?us-ascii?Q?3vweJVlZa9RuAxfHrP0q11kpWLCneckvznY9Ae75AlvbVLvw+/RUYpMCxJH9?=
- =?us-ascii?Q?HBoixkQ64Wp1VLbzxpt8cNtO+RwYUUvZ0VLsBce6gkCs+JRQQxevHpNsm0JT?=
- =?us-ascii?Q?LrcACu+EtkMTqNxw0JCt7f9JSZJk6+5fqX11VFLVCcaO1CbrI2zpFNOMQ1gk?=
- =?us-ascii?Q?D0w5yutUWWKX4VSNx7gOUKdw/crQ2xpL+gIRtMtqcQx8dpHcGo7KLptYpkKk?=
- =?us-ascii?Q?7XVw89SWh5MPAZXyWUxZVAN7DVEnCkbyzCM7vXzkTtCcUgD2tFQullkdqQx7?=
- =?us-ascii?Q?Rem9KcgBQVlZ72Lrng8S0rACDiDKANBXPZxFpDcODT2ulErpc3fD5qxjR3zO?=
- =?us-ascii?Q?u+Nw1NM13lv86wr6PiJ4XXpSCGCpl5MZn/8XpxkxaCdEEQX6z+psYZ4zEPcS?=
- =?us-ascii?Q?y6HHv/xPyshor8S2IHbAv6cb5ry4qpA1+rDdraTKyMMacg7cEGK4XQbiHbnT?=
- =?us-ascii?Q?mNpS6maR/ThspjgxQHf22LFjZoD90/KIVZmx8zUgku+keBzb41B2oFkbAE5K?=
- =?us-ascii?Q?SMWoYHM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(52116011)(376011)(7416011)(366013)(38350700011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?prSfRsiFGbKUqbnZ7UlcQkdJUfcTeF9ELgxw4vWvdi3qkXmIzCeLX2p70Ogn?=
- =?us-ascii?Q?IiTI3EobuhEMSRLRHePL5GyzmPCtG9SNpjoMVd8Je+uq17AOVIu551WLCNoo?=
- =?us-ascii?Q?lPc19OyMZPitkdLR0sjNyTnS4US07BBgIBdmPdzhsuK6aYtHUfQsGx+fxck/?=
- =?us-ascii?Q?lX/Gi6jgg7taIGdWnkSu7fThqyAYSssTn5KRf/NjBAxqKoaXhHd0Yez35zTi?=
- =?us-ascii?Q?7QyaJthsgMw9pHWOQuwaxxiMZs7iSBsMCfeDx6mWa+bQ9Yu/RwZCXrYIEc05?=
- =?us-ascii?Q?1Ddfklsp452ilPI/z6AoaOnsH4d0ljHjm85rB3QJLPFJqKmjsMwU97Bbe8Vi?=
- =?us-ascii?Q?s0jblbYibI/zNc/mxa9Nl7JWEjXaEALTf13DCQu0JIR6i01PTg28uKDkcAnu?=
- =?us-ascii?Q?eS0gieKmtipjDahxssS/18iFrzN/M6XR75Ja2RCDKFYZqQxq4VpxkLvTlMSc?=
- =?us-ascii?Q?wwRt/Jpy5pHWqQ7OxzK7PnlAC9PTVyNzivmRNMsNf7E8RPstPwOT8YV3/Q9b?=
- =?us-ascii?Q?sfiF7Ltsl143CTlpymlUX1uql5Dn9Id6DnE40sRd4jtRd/EhiTMZYbq+tz6g?=
- =?us-ascii?Q?FU31fTd+DDuVbKRWb8WgzbopQlNlHBYbntbYqeM0myAksiTTB9Cnu/+llKSh?=
- =?us-ascii?Q?t2EsHNScNF1JTV4bjt4AmTNiWlU9KWEVQp6G1pTeV9v41bqfNTVrh0O4gdJ9?=
- =?us-ascii?Q?KcN0Sp7gUL9tMEW760p3WQhVNhrMvJw+eVj0spByoUbkfMmpSwCQ2FuoQyEu?=
- =?us-ascii?Q?e7HtVMQaH8oiID0AfvEIQgosYsH5xmLU7qMue1q5VUQ18I0RH2wDx2lBMen+?=
- =?us-ascii?Q?YEtDTy1G1PE2vFxGXf4bVpGR+4GesrP65ugWUGWSmyHLTvt9cgkxOjJ1z04m?=
- =?us-ascii?Q?hKfnspp4JNSAutEHBzesyveBZKtXOx0Pr9a+GbF9AuCM8tnSL/4VZR294uJj?=
- =?us-ascii?Q?3sASXbB4Cej681sVPQios2vxJsYDKRszkkwM2D6WuFkq2d0hYlcH2Hs1u0Cn?=
- =?us-ascii?Q?KfsGNLv8tUik6M56hrqSjJp+zgKJA0h5WoBJjaoi1VVTHE3obu9FbqMy9d5Z?=
- =?us-ascii?Q?L8vXyKfZ6E4XHl8d4ehq+p1qbc2+GVc9LHd7KJND0BwRZWeI/DOdShMMOHQh?=
- =?us-ascii?Q?nZ4HLI9g2mFaBPsDxwF1b7qBW0F+EzUXsD+bQOm7/LWqYNLf8MbhoBLuDCoR?=
- =?us-ascii?Q?DUuHSr/4ZAqUVkpnXhEI2xxeJwJaUny2Rbi8/N2Lxv3cMO2ipqS5i5kHV9+b?=
- =?us-ascii?Q?FsLvwuqPvpUS8h242gqvCezN3XKf0nb2o+h7gcul1I8HperLMQp/72X6NrOR?=
- =?us-ascii?Q?xsVr0FXl/AibgNgmZ3DdhGMTAAicF2ldJDHazuCJ5jcrBFdMlnsnS9Umkv6/?=
- =?us-ascii?Q?+siaKw9w/GbVTh2m7g0TvQ9M+78Gx7VKwsC7D6f4yUGhAWuJyKESZBKbVkTz?=
- =?us-ascii?Q?5FrhhgscVoRBrYEGOEKOIUC57f4cssUg2l1xs2PI3pKuA/D0W9YxrIliFiMP?=
- =?us-ascii?Q?iLMK/YmCKLuHsBBjsssJCEKq+9P7+EZIe/wE33vKbxGSp0IWDHuNJWFJNbyl?=
- =?us-ascii?Q?4CIaV2xXmKr1E05i8WpTqRZTOmS+ihBjc6k1tPgBY4AaEVKHOCv97f1Jjiqe?=
- =?us-ascii?Q?jg=3D=3D?=
-X-OriginatorOrg: wesion.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1d6ecb6-e983-4ee1-6557-08dc8e9cb856
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2024 07:11:33.9973
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HC6B839YeWQPLag9doHM26o3sem8uD0FozAmYCSyubJC+xpSm2iVvBLrCTQmOrSmqjSxnRsY2fDQZjNzqXhzvQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7968
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: net: Convert fsl-fman to yaml
+To: Frank Li <Frank.Li@nxp.com>, Yangbo Lu <yangbo.lu@nxp.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Madalin Bucur <madalin.bucur@nxp.com>, Sean Anderson <sean.anderson@seco.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev
+References: <20240614-ls_fman-v1-0-cb33c96dc799@nxp.com>
+ <20240614-ls_fman-v1-2-cb33c96dc799@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240614-ls_fman-v1-2-cb33c96dc799@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This adjust CPU nodes on Khadas Edge2.
+On 14/06/2024 22:33, Frank Li wrote:
+> Convert fsl-fman from txt to yaml format and split it fsl,fman.yam,
+> fsl,fman-port.yaml, fsl-muram.yaml, fsl-mdio.yaml.
 
-Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
----
- .../arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-index 7d7cc3e76838c..5fb15d3dc23e9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-@@ -160,34 +160,42 @@ vdd_3v3_sd: vdd-3v3-sd-regulator {
- 
- &cpu_b0 {
- 	cpu-supply = <&vdd_cpu_big0_s0>;
-+	mem-supply = <&vdd_cpu_big0_mem_s0>;
- };
- 
- &cpu_b1 {
- 	cpu-supply = <&vdd_cpu_big0_s0>;
-+	mem-supply = <&vdd_cpu_big0_mem_s0>;
- };
- 
- &cpu_b2 {
- 	cpu-supply = <&vdd_cpu_big1_s0>;
-+	mem-supply = <&vdd_cpu_big1_mem_s0>;
- };
- 
- &cpu_b3 {
- 	cpu-supply = <&vdd_cpu_big1_s0>;
-+	mem-supply = <&vdd_cpu_big1_mem_s0>;
- };
- 
- &cpu_l0 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
- };
- 
- &cpu_l1 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
- };
- 
- &cpu_l2 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
- };
- 
- &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
- };
- 
- &combphy0_ps {
-@@ -208,7 +216,7 @@ &i2c0 {
- 	pinctrl-0 = <&i2c0m2_xfer>;
- 	status = "okay";
- 
--	vdd_cpu_big0_s0: regulator@42 {
-+	vdd_cpu_big0_s0: vdd_cpu_big0_mem_s0: regulator@42 {
- 		compatible = "rockchip,rk8602";
- 		reg = <0x42>;
- 		fcs,suspend-voltage-selector = <1>;
-@@ -225,7 +233,7 @@ regulator-state-mem {
- 		};
- 	};
- 
--	vdd_cpu_big1_s0: regulator@43 {
-+	vdd_cpu_big1_s0: vdd_cpu_big1_mem_s0: regulator@43 {
- 		compatible = "rockchip,rk8603", "rockchip,rk8602";
- 		reg = <0x43>;
- 		fcs,suspend-voltage-selector = <1>;
--- 
-2.34.1
+> +  clocks:
+> +    items:
+> +      - description: A reference to the input clock of the controller
+> +          from which the MDC frequency is derived.
+> +
+> +  clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Specifies the external MDC frequency, in Hertz, to
+> +      be used. Requires that the input clock is specified in the
+> +      "clocks" property. See also: mdio.yaml.
+
+Drop entire property. Comes from mdio.yaml.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  fsl,fman-internal-mdio:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Fman has internal MDIO for internal PCS(Physical
+> +      Coding Sublayer) PHYs and external MDIO for external PHYs.
+> +      The settings and programming routines for internal/external
+> +      MDIO are different. Must be included for internal MDIO.
+> +
+
+...
+
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description: |
+> +  FMan Internal memory - shared between all the FMan modules.
+> +  It contains data structures that are common and written to or read by
+> +  the modules.
+> +
+> +  FMan internal memory is split into the following parts:
+> +    Packet buffering (Tx/Rx FIFOs)
+> +    Frames internal context
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,fman-muram
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ranges: true
+
+That's odd. Why do you need ranges without children?
+
+> +
+> +required:
+> +  - compatible
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    muram@0 {
+> +        compatible = "fsl,fman-muram";
+> +        ranges = <0 0x000000 0x0 0x28000>;
+> +    };
+
+
+> diff --git a/Documentation/devicetree/bindings/net/fsl,fman-port.yaml b/Documentation/devicetree/bindings/net/fsl,fman-port.yaml
+> new file mode 100644
+> index 0000000000000..7e69cf02bd024
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/fsl,fman-port.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/fsl,fman-port.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Frame Manager Port Device
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description: |
+> +  The Frame Manager (FMan) supports several types of hardware ports:
+> +    Ethernet receiver (RX)
+> +    Ethernet transmitter (TX)
+> +    Offline/Host command (O/H)
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,fman-v2-port-oh
+> +      - fsl,fman-v2-port-rx
+> +      - fsl,fman-v2-port-tx
+> +      - fsl,fman-v3-port-oh
+> +      - fsl,fman-v3-port-rx
+> +      - fsl,fman-v3-port-tx
+> +
+> +  cell-index:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Specifies the hardware port id.
+> +      Each hardware port on the FMan has its own hardware PortID.
+> +      Super set of all hardware Port IDs available at FMan Reference
+> +      Manual under "FMan Hardware Ports in Freescale Devices" table.
+> +
+> +      Each hardware port is assigned a 4KB, port-specific page in
+> +      the FMan hardware port memory region (which is part of the
+> +      FMan memory map). The first 4 KB in the FMan hardware ports
+> +      memory region is used for what are called common registers.
+> +      The subsequent 63 4KB pages are allocated to the hardware
+> +      ports.
+> +      The page of a specific port is determined by the cell-index.
+> +
+> +  reg:
+> +    items:
+> +      - description: There is one reg region describing the port
+> +          configuration registers.
+> +
+> +  fsl,fman-10g-port:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: The default port rate is 1G.
+> +      If this property exists, the port is s 10G port.
+> +
+> +  fsl,fman-best-effort-port:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: The default port rate is 1G.
+> +      Can be defined only if 10G-support is set.
+> +      This property marks a best-effort 10G port (10G port that
+> +      may not be capable of line rate).
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - cell-index
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    port@a8000 {
+> +        compatible = "fsl,fman-v2-port-tx";
+> +        reg = <0xa8000 0x1000>;
+> +        cell-index = <0x28>;
+> +    };
+
+Just keep one example.
+
+> +
+> +    port@88000 {
+> +        cell-index = <0x8>;
+> +        compatible = "fsl,fman-v2-port-rx";
+> +        reg = <0x88000 0x1000>;
+> +    };
+> +
+> +    port@81000 {
+> +        cell-index = <0x1>;
+> +        compatible = "fsl,fman-v2-port-oh";
+> +        reg = <0x81000 0x1000>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/fsl,fman.yaml b/Documentation/devicetree/bindings/net/fsl,fman.yaml
+> new file mode 100644
+> index 0000000000000..dfd403f9a7c9d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/fsl,fman.yaml
+> @@ -0,0 +1,335 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/fsl,fman.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Frame Manager Device
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  Due to the fact that the FMan is an aggregation of sub-engines (ports, MACs,
+> +  etc.) the FMan node will have child nodes for each of them.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,fman
+> +    description:
+> +      FMan version can be determined via FM_IP_REV_1 register in the
+> +      FMan block. The offset is 0xc4 from the beginning of the
+> +      Frame Processing Manager memory map (0xc3000 from the
+> +      beginning of the FMan node).
+> +
+> +  cell-index:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Specifies the index of the FMan unit.
+> +
+> +      The cell-index value may be used by the SoC, to identify the
+> +      FMan unit in the SoC memory map. In the table below,
+> +      there's a description of the cell-index use in each SoC:
+> +
+> +      - P1023:
+> +      register[bit]      FMan unit  cell-index
+> +      ============================================================
+> +      DEVDISR[1]      1    0
+> +
+> +      - P2041, P3041, P4080 P5020, P5040:
+> +      register[bit]      FMan unit  cell-index
+> +      ============================================================
+> +      DCFG_DEVDISR2[6]    1    0
+> +      DCFG_DEVDISR2[14]    2    1
+> +        (Second FM available only in P4080 and P5040)
+> +
+> +      - B4860, T1040, T2080, T4240:
+> +      register[bit]      FMan unit  cell-index
+> +      ============================================================
+> +      DCFG_CCSR_DEVDISR2[24]    1    0
+> +      DCFG_CCSR_DEVDISR2[25]    2    1
+> +        (Second FM available only in T4240)
+> +
+> +      DEVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
+> +      the specific SoC "Device Configuration/Pin Control" Memory
+> +      Map.
+> +
+> +  reg:
+> +    items:
+> +      - description: BMI configuration registers.
+> +      - description: QMI configuration registers.
+> +      - description: DMA configuration registers.
+> +      - description: FPM configuration registers.
+> +      - description: FMan controller configuration registers.
+> +    minItems: 1
+> +
+> +  ranges: true
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fmanclk
+> +
+> +  interrupts:
+> +    items:
+> +      - description: The first element is associated with the event interrupts.
+> +      - description: the second element is associated with the error interrupts.
+> +
+> +  fsl,qman-channel-range:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      Specifies the range of the available dedicated
+> +      channels in the FMan. The first cell specifies the beginning
+> +      of the range and the second cell specifies the number of
+> +      channels
+> +    items:
+> +      - description: The first cell specifies the beginning of the range.
+> +      - description: |
+> +          The second cell specifies the number of channels.
+> +          Further information available at:
+> +          "Work Queue (WQ) Channel Assignments in the QMan" section
+> +          in DPAA Reference Manual.
+> +
+> +  fsl,qman:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: See soc/fsl/qman.txt
+> +
+> +  fsl,bman:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: See soc/fsl/bman.txt
+> +
+> +  fsl,erratum-a050385:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: A boolean property. Indicates the presence of the
+> +      erratum A050385 which indicates that DMA transactions that are
+> +      split can result in a FMan lock.
+> +
+> +  "#address-cells": true
+> +
+> +  "#size-cells": true
+
+Make both const.
+
+> +
+> +patternProperties:
+> +  '^muram@[a-f0-9]+$':
+> +    $ref: fsl,fman-muram.yaml
+> +
+> +  '^port@[a-f0-9]+$':
+> +    $ref: fsl,fman-port.yaml
+> +
+> +  '^ethernet@[a-f0-9]+$':
+> +    $ref: fsl,fman-dtsec.yaml
+> +
+> +  '^mdio@[a-f0-9]+$':
+> +    $ref: fsl,fman-mdio.yaml
+> +
+> +  '^ptp\-timer@[a-f0-9]+$':
+> +    $ref: /schemas/ptp/ptp-qoriq.yaml
+> +
+> +required:
+> +  - compatible
+> +  - cell-index
+> +  - reg
+> +  - ranges
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - fsl,qman-channel-range
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    fman@400000 {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        cell-index = <1>;
+> +        compatible = "fsl,fman";
+
+Compatible is always the first property. reg follows, third ranges.
+
+> +        ranges = <0 0x400000 0x100000>;
+> +        reg = <0x400000 0x100000>;
+> +        clocks = <&fman_clk>;
+> +        clock-names = "fmanclk";
+> +        interrupts = <96 2>,
+> +                     <16 2>;
+
+Use proper defines for flags.
+
+
+
+Best regards,
+Krzysztof
 
 
