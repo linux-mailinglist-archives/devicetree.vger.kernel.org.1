@@ -1,159 +1,187 @@
-Return-Path: <devicetree+bounces-76387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC1390A712
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:28:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C60F790A719
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:29:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B14D41F216C6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:28:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46FF1282826
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 07:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595BE18FC84;
-	Mon, 17 Jun 2024 07:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D162190054;
+	Mon, 17 Jun 2024 07:29:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Cn6yD3BX"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ph1k+oPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1BDA18C33C
-	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 07:28:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72681188CC2;
+	Mon, 17 Jun 2024 07:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718609318; cv=none; b=a6VY98fc4BbqsLOs3ovvV0B93VKZQZHsxAcKkz+n3ZkJhhNOo5Knz8xrssmWa544ZcT82FD3i7MPr4ke/2EdifJDN8SAr1mCM9AgiC4VU140VNY+kIYJ+U7rRw9Jg86PhX8sCPr7A1edf//6PBPcYwb0SqGjDL+9HSNbxku07K4=
+	t=1718609358; cv=none; b=NbJizANCpWSWIvS0aUoXQH6zWT/Z822FuuJ25Vq48TqJaPJId/RwFfRr8QkU4uJuCvBHMLN4+87aYm+P4sI2Ur+jCD2YBauEUpgDiSqfdlR+AZGKDbdgbFZepeA6eEfhpc05pqCIj/OYNGrQ4MhdmDZ6nIWlhprMn9s2h5TaVFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718609318; c=relaxed/simple;
-	bh=LbcaeO7g+XXyhIaUIw2LMzHvMLsMS1SLl4XS875bxSQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=AQAvc1+jvdBqhrQgSKPXTaA2k+N7dHKhAZ/1HTKqSweJiygaq1KDA1HazYiUglm6HJBNFUv4DE2ndJnuCkklgjgXgS6GsIRn51sXu8lXKdswHmKlIou7qgGHSXvKI7YLUFAZZrRYqwCQ09FLNwQkfRtYFLF0GNqk6pQLDLlfSVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Cn6yD3BX; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a6f11a2d18aso525499666b.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 00:28:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1718609314; x=1719214114; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tHyISATt+WJttxke6EIQCpnTGfj4Yi4w9h5lYCsDGOA=;
-        b=Cn6yD3BXNbUHuD6e8UeUFwPued5uoqrTSdRLwLV5djzNp37k3xsuocbuXKhvnDbA5s
-         tQdheveSiI/PGMn1LiNJKKbdUniLY3wbu89tMrMmzqcG2DQWmPrVeLv26GvY4yWS3IhA
-         yByf7bwqOWlCIKujKZOwEUaCcv67kCoX5HBEvVJkbSUM2fRR3ut/pv4UPJBMEctNvyPn
-         RjgZYKjosxuAKp+FdnFlmkItY8F3VTDePg3GP604BBDpHAEW6WV0Zbr/3/2DE6VtLi1f
-         GS6jP0IehEUZUKpy27BaDfQtrYhqOG2oXwKAYruKLFGqo0ou75MWmWmfUWBJoj/UIfDy
-         8LjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718609314; x=1719214114;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tHyISATt+WJttxke6EIQCpnTGfj4Yi4w9h5lYCsDGOA=;
-        b=tRTfMejAp/vlOd/hLgsZb/wBbGPaO5UOu75UZlj04Ib0uSOPzFUci3yf+/7wcWUbC8
-         F8a8k8udoRuAw6r6rm33BDkYyo9I1/A6azeoTi6ch5tHr0Nizqs9HyAprCroqdrmsXmL
-         aIlOTrEFjUgwNII4uKUxLov3h0GJly+IdbeVP62I2gJC8YvL3FDza2KHNtMkSCWo8u1r
-         hfQfVLXM6uEUPWI/JYloluVZs52VuwcHdu2aR/uWS3QB15qJTxGVDCVWwoyQiwd5soz4
-         +yBEzHRgK4dXGwVbearH7WpC4doZ0QYthmc0oqN1LPNvSWDc3KlnlzDq7HkyQqMznN6c
-         kRiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUIQSR7mXIn4SqwQqOH6M+DznVjGQJnSjH96OH5DphcPDRdbNWiLYQNu8bNteEcUNKA4WGTWA1SU0bDqyQrK6uVUwfCf0azJ7hqMw==
-X-Gm-Message-State: AOJu0Yz/o1uhjO29iTWWwoWHsi4YZamu2X0h5KtJJQyugY0EC+09RDoJ
-	U4YoqIBqxj1kLid1fuTfDRBsGe2KY7i8MlW7hIfK06sVHnWnvkfqY4z2VfxZZZI=
-X-Google-Smtp-Source: AGHT+IE/Y4LqXgdNZ0zcQVhr3sQUeAw8IWyATC1u6ONvFcRL9KXrD7KEcyjfA0ImOde2Km0XLQNqxA==
-X-Received: by 2002:a17:907:c081:b0:a6f:77bb:1713 with SMTP id a640c23a62f3a-a6f77bb1889mr294286966b.9.1718609313862;
-        Mon, 17 Jun 2024 00:28:33 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56da328csm494948466b.12.2024.06.17.00.28.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jun 2024 00:28:33 -0700 (PDT)
+	s=arc-20240116; t=1718609358; c=relaxed/simple;
+	bh=/LyDENuvfYDBXxhDzgEz448XxUjV1uQrB6Iyg0sw2yc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z9qjEXPzYXMi0zSSAkwTe5/2YHUAfXUIYWMWDA1Nhc25Xk4U+k9oMIJi0L9VTRHRxHTZmeE6+mdj/4dw6T/fjXHw2JXXjX7SrfP8tTtfFOw/KTn6pwZv61fUaE8jm1F4PFtrLqIN0eotr3hQumAd5gLzkrP16fv7FLG2tYJc368=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ph1k+oPf; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718609355; x=1750145355;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/LyDENuvfYDBXxhDzgEz448XxUjV1uQrB6Iyg0sw2yc=;
+  b=ph1k+oPfcoFKcdhOnAANf4n86RQJ04Oj7ssSTzKyuSpy4szlpKB/Rs5d
+   9xuz+hP7+kckhrF/0bbGUl2ylQyNalBVWh536ljWOQ0eJ2w54FhViCll0
+   RgptoImv/77w2TUey1LW1nBejc9T2aT49NeaiTLzySqHWRf0TmukV63Js
+   zTPuTwddkoWNHO3T0oLtdCaZnVPIo0T7yf0AaVvhwBaC/1AhB7feXovBH
+   TdLBkdQ0GYQ5nYUf7j95CAd3s2vk60eyBbloNZNMYXP5JJ3lArTYpOse4
+   ACoZ3s2pA3dQutkn/c6TiRwBZwIGxquHXpaKmFGC4tikxdDoxqrO769MG
+   A==;
+X-CSE-ConnectionGUID: BQubg5HpRrqbLaHVDWvPoA==
+X-CSE-MsgGUID: Dt7ztb1mQzeZfIUWRBkoQg==
+X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; 
+   d="asc'?scan'208";a="28483707"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2024 00:29:14 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 17 Jun 2024 00:29:02 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 17 Jun 2024 00:28:59 -0700
+Date: Mon, 17 Jun 2024 08:28:41 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Yangyu Chen <cyy@cyyself.name>
+CC: Conor Dooley <conor@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	<linux-riscv@lists.infradead.org>, Conor Dooley <conor+dt@kernel.org>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup.patel@wdc.com>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, Linux Kernel Mailing List
+	<linux-kernel@vger.kernel.org>, Jesse Taube <jesse@rivosinc.com>
+Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+Message-ID: <20240617-margarita-alongside-255cbb09ef59@wendy>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <20240616-exorcism-computing-e11e26084a62@spud>
+ <20240616224811.GC3983622@ofsar>
+ <tencent_2ABAC5E885F8354EF1F9084A6B5B398EE00A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sUdZtwqJCkgb0H8C"
+Content-Disposition: inline
+In-Reply-To: <tencent_2ABAC5E885F8354EF1F9084A6B5B398EE00A@qq.com>
+
+--sUdZtwqJCkgb0H8C
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 17 Jun 2024 09:28:32 +0200
-Message-Id: <D2245MXG8CS1.11EGKFJQLYPTI@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>,
- "Stanimir Varbanov" <stanimir.k.varbanov@gmail.com>, "Vikash Garodia"
- <quic_vgarodia@quicinc.com>, "Bryan O'Donoghue"
- <bryan.odonoghue@linaro.org>, "Mauro Carvalho Chehab" <mchehab@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] media: dt-bindings: qcom,sc7280-venus: Allow one
- IOMMU entry
-X-Mailer: aerc 0.17.0
-References: <20240412-sc7280-venus-bindings-v2-1-48ca8c2ec532@fairphone.com>
- <D1Q6CMZM78VI.ABYGRRV5E61B@fairphone.com>
-In-Reply-To: <D1Q6CMZM78VI.ABYGRRV5E61B@fairphone.com>
 
-On Mon Jun 3, 2024 at 8:39 AM CEST, Luca Weiss wrote:
-> On Fri Apr 12, 2024 at 4:19 PM CEST, Luca Weiss wrote:
-> > Some SC7280-based boards crash when providing the "secure_non_pixel"
-> > context bank, so allow only one iommu in the bindings also.
->
-> Hi all,
->
-> This patch is still pending and not having it causes dt validation
-> warnings for some qcom-sc7280 boards.
+On Mon, Jun 17, 2024 at 10:00:32AM +0800, Yangyu Chen wrote:
+>=20
+> > On Jun 17, 2024, at 06:48, Yixun Lan <dlan@gentoo.org> wrote:
+> >=20
+> > Hi Conor
+> > Thanks for bringing this up
+> >=20
+> > On 19:35 Sun 16 Jun     , Conor Dooley wrote:
+> >> On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
+> >>=20
+> >> No MAINTAINERS update, so I figure that means you don't want to mainta=
+in
+> >> it going forwards? If there's someone out that that does care about the
+> >> spacemit k1 (Jesse maybe?), then I'd be more than happy to have them
+> >> look after it.
+>=20
+> Actually, I don=E2=80=99t know how to be a maintainer. Should I have to
+> provide a new git tree and all the new patches merged to my tree
+> and then submit a git pull?
 
-Hi Rob,
+Yeah, in the ideal case :) I wrote a document with information as to
+how this all works for new platform maintainers:
+https://docs.kernel.org/process/maintainer-soc.html#information-for-new-sub=
+maintainers
 
-Could you please pick up this patch? Mauro seems to ignore this patch
-either on purpose or by accident and I'd like for this dtbs_check
-failure to finally be fixed.
+> Or reuse the RISC-V mailing list and
+> just give a review, and the patches come to soc misc tree? I would
+> like the latter one.
 
-Regards
-Luca
+If you don't have the time/interest/whatever in having a tree, then
+sure, I can apply the patches for it. I'd rather have someone look after
+a tree themselves, but this option is better than me growing another
+platform to look after.
 
->
-> Regards
-> Luca
->
-> >
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> > Reference:
-> > https://lore.kernel.org/linux-arm-msm/20231201-sc7280-venus-pas-v3-2-bc=
-132dc5fc30@fairphone.com/
-> > ---
-> > Changes in v2:
-> > - Pick up tags
-> > - Otherwise just a resend, v1 was sent in January
-> > - Link to v1: https://lore.kernel.org/r/20240129-sc7280-venus-bindings-=
-v1-1-20a9ba194c60@fairphone.com
-> > ---
-> >  Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.=
-yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> > index 8f9b6433aeb8..10c334e6b3dc 100644
-> > --- a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> > +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> > @@ -43,6 +43,7 @@ properties:
-> >        - const: vcodec_bus
-> > =20
-> >    iommus:
-> > +    minItems: 1
-> >      maxItems: 2
-> > =20
-> >    interconnects:
-> >
-> > ---
-> > base-commit: 9ed46da14b9b9b2ad4edb3b0c545b6dbe5c00d39
-> > change-id: 20240129-sc7280-venus-bindings-6e62a99620de
-> >
-> > Best regards,
+> > Yangyu kind of has limited time, too many stuff for him..
+> >=20
+>=20
+> True. Maybe I can have a review and test the patch in one week.
+> However, providing a review and test in 2-3 days is sometimes hard
+> for me.
 
+It would be unreasonable to expect a 2-3 day turnaround :)
+
+> > I'd volunteered to help on this if it can fill the gap
+> > Also I'd be more than happy if anyone willing step forward to co-mainta=
+in..
+> >=20
+>=20
+> Thanks. Really appreciate it.
+>=20
+> Should I provide a diff like this:
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d6c90161c7bf..718d30996f12 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19306,6 +19306,7 @@ F:      arch/riscv/boot/dts/
+>  X:     arch/riscv/boot/dts/allwinner/
+>  X:     arch/riscv/boot/dts/renesas/
+>  X:     arch/riscv/boot/dts/sophgo/
+> +X:     arch/riscv/boot/dts/spacemit/
+
+If you don't want to apply patches, drop this hunk.
+
+>  RISC-V PMU DRIVERS
+>  M:     Atish Patra <atishp@atishpatra.org>
+> @@ -21004,6 +21005,13 @@ W:     https://linuxtv.org
+>  Q:     http://patchwork.linuxtv.org/project/linux-media/list/
+>  F:     drivers/media/dvb-frontends/sp2*
+> =20
+> +SPACEMIT DEVICETREES and DRIVERS
+> +M:     Yangyu Chen <cyy@cyyself.name>
+> +M:     Yixun Lan <dlan@gentoo.org>
+
+Jesse mentioned on IRC she was interested in the platform, so maybe she
+would like to be involved too.
+
+Thanks,
+Conor.
+
+--sUdZtwqJCkgb0H8C
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZm/lpQAKCRB4tDGHoIJi
+0rjzAQDObDEqhK4rTAoVhenfAwjYqm4LfpWxPSOh3FiikvWIoQD/QzjEI0jSU9iU
+eybCR5sSqTxdUVDBKVOrOoamqv6EQA4=
+=6IiD
+-----END PGP SIGNATURE-----
+
+--sUdZtwqJCkgb0H8C--
 
