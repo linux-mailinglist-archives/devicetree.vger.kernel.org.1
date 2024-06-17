@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9177290ADCF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:19:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE3C90ADD9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 14:22:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D50DB23ACA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:19:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654F7284FA9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8479919539A;
-	Mon, 17 Jun 2024 12:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBD2195809;
+	Mon, 17 Jun 2024 12:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewq8Bv1C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g+PJZR8z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584BF195386;
-	Mon, 17 Jun 2024 12:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3ACA6F06E;
+	Mon, 17 Jun 2024 12:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718626770; cv=none; b=CekYAptNcH6PQKpjBhk6qSyVdjZgaxoVRAqbVu7LxJO+6sno0xeYN+kT3bb/6sg4XzjMpjEyfGIqWNv2j1lzQQQYqBJYjCKHVw6aLiN1+RwVHTus427ajWVk0YaD/GtrRC3xDPPQ9AdTFvpbIuz14UUWWCHvVSZeJ5frj8A3Kwg=
+	t=1718626964; cv=none; b=q6L9WHU+veQ4Fm617u/ed2L3e7UpeVp8rC40Rhod9Ldmx6C7iCnysRHFKClR25CJUSDyBoJKQIiXezXSAuNEJiaOpmLT7RATu8HkeRVqxDa5jjd/F7XCJYG9nHHZHo2WXVuT3QS6zS4sJO4sMvxpoiQh/jV4KLC1WiotlUR1dOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718626770; c=relaxed/simple;
-	bh=h5PxWqH9ucbjKDnZEDd4HQzXa+YZ5VEbvvpQf2xrB/Q=;
+	s=arc-20240116; t=1718626964; c=relaxed/simple;
+	bh=lkKxpNaSV6lfi6nDNdBeaY7vVrJ14XqmL3LuVo6pHtY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uPAIee1iFDuLa/EsTdq3WPoF6Y/zTKigUvRqAn8mDTMTN5FH4VlA4bidRq9z6tkmP4lL4Q/U8m2XHi0oaOlxGnjTlJOIWg3QyCLlLCJuHbftJudXxbs4ARZ9+oYrJ7jl5Esriw95K6C8frininahC25dTIQkNLu4z9qXBTq8Wiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewq8Bv1C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5ADDC4AF1C;
-	Mon, 17 Jun 2024 12:19:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uRV2PYhYvK0kC0rg/zEMTG2ZoNN7yhroZUvNExr5pl0VUY51BxSvrdrfnhbHhhMD+oSDPXsJ/G7wNjsLArgsLM+S/4IlH3uKtFXtiA2m/rZayPn8MlD1eIhM8TbNytFEC8tLluklb8kvW2VxVeRu6fbEYMNzWLzyzOwM8HRyics=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+PJZR8z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4C09C2BD10;
+	Mon, 17 Jun 2024 12:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718626770;
-	bh=h5PxWqH9ucbjKDnZEDd4HQzXa+YZ5VEbvvpQf2xrB/Q=;
+	s=k20201202; t=1718626963;
+	bh=lkKxpNaSV6lfi6nDNdBeaY7vVrJ14XqmL3LuVo6pHtY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ewq8Bv1CxNEg660xFTVDJHCsLEQ4BcOJQq0fQamAppNKGo6HegEJ+k/u9422c0Xsm
-	 u++pwtpeA2gdWHAxjYYUqDdOau0UmWp6YHQcT+on1mKQcKrs1yLKix2XT5s8YDfUML
-	 yqM4JXnp+HCZHyttxNXiLm0jsRqsgj9gFh0N1vpwdUPPgdGBqoDCe50j8w0Z+M3Mzr
-	 OWiZ9d7v/hs4Kw1ZrxNugRT2jlSR2HON30ZvBKCC2jOiynuzu+XXkqVJ2BWQg4BOCt
-	 swWyAJ0s8NA3QyN9Q8h9NTiiJeP1mOeMfTwLKdDlduKFA46T8m/h/SVRvqsXSnKdKt
-	 +A8FWYSCBdYPQ==
-Message-ID: <8ab9535d-5f93-4e98-b2d8-d3f80a9c80fe@kernel.org>
-Date: Mon, 17 Jun 2024 14:19:22 +0200
+	b=g+PJZR8zked5ZXgE9a8J+vqgm+V+cVfxWuJY+wf5ccDRmgq+/fIm2sm1cx2mpDjLE
+	 msuMcvvzU4pbZHn/YAP1UMpG8vnoExHS6xIfje6iHiZUJx7Gbd6Fd8UCjAiaTuR7lA
+	 kBZPCWWh/mF5G2P3N3pUgQ6nTJsd/Z86DLmcSv0ayWAfAMMPdK8sGo+JEeAgRTFUfh
+	 ouWNmeWltiDh8m/n0VyA1WrfEztdTXz2mk05/Tydp9POhN/43akEow4U3kS4qn9Yfz
+	 DCLq03rjv4N5iDoOgheHP55p98/FYRFL3651cMr87QRkxBqEkPqx5b0gYrNHCDCATu
+	 jXoLJAWc6NdJA==
+Message-ID: <57568cd3-51de-4df6-bfc6-4036df3393d5@kernel.org>
+Date: Mon, 17 Jun 2024 14:22:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: gpio: Add 'settle-time-us'
- property
-To: Bastien Curutchet <bastien.curutchet@bootlin.com>,
- Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Peter Korsgaard <peter.korsgaard@barco.com>, Wolfram Sang <wsa@kernel.org>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>,
- Christopher Cordahi <christophercordahi@nanometrics.ca>
-References: <20240617120818.81237-1-bastien.curutchet@bootlin.com>
- <20240617120818.81237-2-bastien.curutchet@bootlin.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: qcom,sm8550-pas: document
+ the SDX75 PAS
+To: Naina Mehta <quic_nainmeht@quicinc.com>, andersson@kernel.org,
+ mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, konrad.dybcio@linaro.org,
+ manivannan.sadhasivam@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240617093428.3616194-1-quic_nainmeht@quicinc.com>
+ <20240617093428.3616194-2-quic_nainmeht@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,21 +105,15 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240617120818.81237-2-bastien.curutchet@bootlin.com>
+In-Reply-To: <20240617093428.3616194-2-quic_nainmeht@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/06/2024 14:08, Bastien Curutchet wrote:
-> I2C MUXes described by the i2c-gpio-mux sometimes need a significant
-> amount of time to switch from a bus to another. When a new bus is
-> selected, the first I2C transfer can fail if it occurs too early. There
-> is no way to describe this transition delay that has to be waited before
-> starting the first I2C transfer.
+On 17/06/2024 11:34, Naina Mehta wrote:
+> Document the MPSS Peripheral Authentication Service on SDX75 platform.
 > 
-> Add a 'settle-time-us' property that indicates the delay to be
-> respected before doing the first i2c transfer.
-> 
-> Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
+> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
+> ---
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
