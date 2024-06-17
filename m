@@ -1,117 +1,105 @@
-Return-Path: <devicetree+bounces-76588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A078290B45F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:31:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7DC90B4DB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:43:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8C511C21DF3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:31:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 758A1285690
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A0813AD38;
-	Mon, 17 Jun 2024 15:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73FB155750;
+	Mon, 17 Jun 2024 15:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B/mwJID7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aFh0vSlj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D8E173537;
-	Mon, 17 Jun 2024 15:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBA915573F;
+	Mon, 17 Jun 2024 15:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718636876; cv=none; b=Tf2Vg7S+Q8Yh8XFcDE6DKBENwxNwEP78tLzQyKjSWWI73OfRZZ/JvxLTGANEku30BUMVF3+qHF5vHk+5JkCui7TGJIco7S7I7gwcLutQ3KVtJwOclUNggZUnBK7DCNkTQPOzq2yHiEZeko8V22aBeBtxQizwe7uF3zUwdlN9QE0=
+	t=1718637139; cv=none; b=WzzsUki5iYM8Gbtry3MOWpfe2OQMPx5++e54EZVGb+0qy36brlTKwJYMydrpNc1x/0NN8ySFySd3gkxzjibjOjmpxllI9GydCJMIQ/tC3+LlF/kYTmAa8P7ZfrrMPqZUiDe12mZJkVaYttey4lLc8m+0tA0Qx80CcbhPJNxYDzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718636876; c=relaxed/simple;
-	bh=Wvq7JB2dJkIxaCc+ZHbqsZ5qCkHja7eq8kCPglPhfzI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OYUa3n1/T+UEwnjsDM7PVlw2yBHgTYNI06W9qi39cE+7oFmTymXseYgmbm4hCSz49UXwtZJywUnJuPnF0NcnhGSmwY++vRNF/N6XHg3D15W7O5D5oseOvfNtw1uk6zcvb1iedt70BxJD9es2E4J3Sd6lAd6jf7ptCwA+q8k58Eg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B/mwJID7; arc=none smtp.client-ip=209.85.215.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-6e5fd488d9fso3327945a12.3;
-        Mon, 17 Jun 2024 08:07:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718636875; x=1719241675; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wvq7JB2dJkIxaCc+ZHbqsZ5qCkHja7eq8kCPglPhfzI=;
-        b=B/mwJID7VBU8o2NpO29Y4Jn14TAIaixH2u4EdtLlMRIvd9gbuzreyKqBn8BEwPQfaw
-         PXyk6qDr38HeZtXHLvVbl3z2JiW8fMXECNPr/zOL3l7PwdgI8htVdHdpQP5efXkaPODm
-         kPZaGK1tGCnPfXLAWSrJWLaulIL+jK4VkA42U8IP5RwbOmp2aYZsyuu87srydcFZVN2y
-         f+tQNN9HI4p/Gd2uZQYBRb+6hORvGbrBAG7BNkUqGGL6UHK+iEHkvyki8vXDLbYsw2sd
-         NRupv9roJMJ8C892/Vx70Ip40QZfl9mR2raF3gNkQ1oL8QxWJFX7m7rrVCeQAlXQGhMJ
-         1HfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718636875; x=1719241675;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wvq7JB2dJkIxaCc+ZHbqsZ5qCkHja7eq8kCPglPhfzI=;
-        b=cGjzbPhBCL9dhmmRY+UlsGg57WyJz7cI7zy/61iF4GMG4zstHzvcojLWOH2Rad8VK4
-         hU/+DqtWuZevYF3nngPq6STFa/OEBdg3vu8djkZmTtj/XlfBuAQTi8B3KKuUz0G8k8Op
-         u/IKRCfLiroqAkRxQ2XUu7+k/TFs7zqUPechEjFLRrOpOIzbQvDXUMaqOfaXSJI12bM8
-         oZxaQwZuII9fjOyosswTwsCwWvYujMc9WlwfCK01fCbawOjZTC/XsDVdleJN2Aqdvu4a
-         vtjGAG7tuALjceU31WNkgw++YkAsGiG2DImiGMcr1A3co1BCk0FaJHLyochOMkk/9bOK
-         obqg==
-X-Forwarded-Encrypted: i=1; AJvYcCUrAOQ6jb5lNIk7opFD5mkW1YxVCm9fkPrrlzY6bBhf2FwK5U/BZUsDmaq/K78AxWAZaIWCmoIXv5lWq0RsYgA2u2akdwT6zRjJSQMCYU9yU9VtgeT02NBWlXfX25E61tQhsqrAQPfL2XrcEebfRhvA6SZGLqYo/yC00mVy72j+d9K+eorM
-X-Gm-Message-State: AOJu0YwU4W/A+UXnuVFwRR/YFHdbC0VXyeJKpZAzTXFhsCHvF7QNTtRA
-	obyeGUmjoPXqYUe2qWml2vzx0lWsF0kckZIP/OAUL0w/KZn7Xcz9M89jzmPmRkEFIw==
-X-Google-Smtp-Source: AGHT+IHkOj1mqBJ6M3NCIXSRb5efgDKM2OF6jZQG2tUY2qPdc4XHOeJfP5NrohBZfsLvlXiRw32fzw==
-X-Received: by 2002:a17:903:41ce:b0:1f6:3721:bca with SMTP id d9443c01a7336-1f8625ce609mr140905675ad.15.1718636874744;
-        Mon, 17 Jun 2024 08:07:54 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.133.99])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855ee81a6sm79939815ad.148.2024.06.17.08.07.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 08:07:54 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: sebastian.reichel@collabora.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	ezequiel@vanguardiasur.com.ar,
-	frattaroli.nicolas@gmail.com,
-	heiko@sntech.de,
-	kernel@collabora.com,
-	krzk+dt@kernel.org,
-	linkmauve@linkmauve.fr,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	nicolas.dufresne@collabora.com,
-	p.zabel@pengutronix.de,
-	robh@kernel.org
-Subject: Re: [PATCH v6 4/6] media: hantro: Add RK3588 VEPU121
-Date: Mon, 17 Jun 2024 23:07:43 +0800
-Message-Id: <20240617150743.30382-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <o6iccgurpi7sraq7plxaccz37i44te4jaqicnp2nqbke2qtskh@4kboulg3zywx>
-References: <o6iccgurpi7sraq7plxaccz37i44te4jaqicnp2nqbke2qtskh@4kboulg3zywx>
+	s=arc-20240116; t=1718637139; c=relaxed/simple;
+	bh=heEcD7jP+9sbk2WYP48DwhYQ31/7MqNBiwMnGgFNoos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F3VSq2zNR14qxU5PLXFGj77em+emKGH9Kn3gau0EHCk5sZbi9bhZNiovHUW8TKl2lpARvc2EJoVCLeaGIXDPYczTtUDpSOJu1fYkslrsAQ1e3UfMUi2viXSCoWZaBm3Piy1VcYmSwQKBTUxvpxnZWjw+uqpm/Qw5g80nVl474zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aFh0vSlj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66083C2BD10;
+	Mon, 17 Jun 2024 15:12:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718637139;
+	bh=heEcD7jP+9sbk2WYP48DwhYQ31/7MqNBiwMnGgFNoos=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aFh0vSljOiT3mLP4VuA9fmWsEfm3G8wYGAttwWhHIkApQxTJbt8ZfWE8uikq+8QIT
+	 umPSlhJ+qjHRRaecJy3sPS3A6qidL+hA7NkXJ5uAGaNnIyARSUmIP+u421f0pB83ro
+	 S119pBD+xmYsXOe7VevwgsSaTqMIlKmNPzxGjyFUlKLACP6Ci4PEUVLAyaCDorNrC5
+	 NyNfWZE4rHJKI028XLHld5/6WIz6yPoTVqPafoUuzQ/5mG6FmmwM26zfhsmws+DvUK
+	 eXI/0R9uRlxQVRJman/9IH/ZTf2OThbfdUFTV2NMq6Rdbg7mqBGItws0APwDkjOCUV
+	 tH0gXur7Res1Q==
+Date: Mon, 17 Jun 2024 16:12:14 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, skhan@linuxfoundation.org,
+	javier.carrasco.cruz@gmail.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: thermal: convert hisilicon-thermal.txt
+ to dt-schema
+Message-ID: <20240617-latter-recovery-b7ef60fdf9f8@spud>
+References: <20240617-hisilicon-thermal-dt-bindings-conversion-v2-1-5eea9bc59c77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="y2bjfCNhCmua7HYd"
+Content-Disposition: inline
+In-Reply-To: <20240617-hisilicon-thermal-dt-bindings-conversion-v2-1-5eea9bc59c77@gmail.com>
 
-Hi,
 
-On Mon, 17 Jun 2024 13:30:52 +0200, Sebastian Reichel wrote:
->> rk3568_vpu_variant is decoder's data, typo?
->
->See first sentence of the commit message.
+--y2bjfCNhCmua7HYd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I know you want a different compatible string for this VEPU121 beacause
-of multi cores. But rk3568_vpu_variant is data for VDPU121. I applied this
-patch and from output of command:
-v4l2-ctl -l -d 3
-I see h264/vp8 decoder, which is wrong. vtl2-ctl output of this device
-should be JPEG endoer.
+On Mon, Jun 17, 2024 at 10:20:52AM -0400, Abdulrasaq Lawani wrote:
+> Convert the hisilicon SoCs tsensor txt bindings to dt-schema
+>=20
+> Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+> ---
+> Changes in v2:
+> - Remove extra node in example.
+> - Use standard node name in example.
+> - Include additional defines from includes.
+> - Add reference to thermal-sensor.yaml.
+> - Remove redundant properties and comments.
+>=20
+> - Link to v1: https://lore.kernel.org/all/20240613224204.185844-1-abdulra=
+saqolawani@gmail.com
 
-Best regards,
-Jianfeng
+Why did I get sent a v2 of this 3 minutes after I got sent the v3?
+
+--y2bjfCNhCmua7HYd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBSTgAKCRB4tDGHoIJi
+0nJ8AQDi+q3L2R7LqolMueilkU8RIIcJOEtwkOSf3PX6Dia8RAEA+M9ZnwhwyGZa
+Cpi9Fe03nanVH4KljShDO2MMYWPHXQQ=
+=b5RI
+-----END PGP SIGNATURE-----
+
+--y2bjfCNhCmua7HYd--
 
