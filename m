@@ -1,235 +1,154 @@
-Return-Path: <devicetree+bounces-76454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB8390AABD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:05:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9878F90AAD7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 12:14:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F0CCB2FC63
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:31:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C148B27505
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 09:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31B2193062;
-	Mon, 17 Jun 2024 09:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C76C192B82;
+	Mon, 17 Jun 2024 09:34:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ATOquYO5"
+	dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b="cMEnLm7d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A11D192B89;
-	Mon, 17 Jun 2024 09:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E941922FD
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 09:33:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718616630; cv=none; b=I+flLY5sty3R0yG13UpUVRwWQnvfqfs6e9Ucen1EV/8Q36+kGfYbucX7XMT6sIKm8UjAZWH6RZhRvqDa8jTEpQlYAVsV3PLiI4J4CW1j6j84ffSRsLceOmGQ5MUWFVzpJi20dBVDJVRg8VJTfcr6WEhNM1nFn+/9tW77Eo1I1Cs=
+	t=1718616841; cv=none; b=oJ3M44ZsvbgtokBJ9AM6U2gLES72wSfB+VEW04VIWbPfWfj3g7UYBGDd0xK5b2app5i8PskOHhVlOyemUhOFz1ply138Hh/8JQbm8xmEJ4aIE742p+5LTODpYMSBsqmwqMN25QGMvw4ls8OBfc90vwY3eegad5hkRmCF3/j0JkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718616630; c=relaxed/simple;
-	bh=iUCBdlDmmb+nqxTj4dotDfey/IiKx/n1xfkM7M9qntU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qmnVtSvVgYCnPAeB9f/5+DHHt/2hnc+i4eAo1HxchCGgVLSanMwWf5DJWtOCpjAcQ/JVgag+jMpTwS+nYBkh6MrBnYVvtqsxBxGMD9IRMR9W4jdMRDDIaht4vCJjEx+i/M8L5cfHWcbrJiRdRjlPmxBF8nJZk2riSxA5lfpE6PA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ATOquYO5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45GNdmIq010949;
-	Mon, 17 Jun 2024 09:30:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KKp2Tcgz4byEiMIaGTwhjSTwZLE9rDd6TB5GY0oAGiQ=; b=ATOquYO59oVFxAz/
-	gn2BYRTpdMc2zQUhc/8seESvatrJfg+A5Z7vJ5AoDvHlA5hFR8wRQUiDbDQqf8/L
-	wVzWKHo6kYDeNuBHxnqbsBGo88fsifzTZV7/OMtZbBn9YPq9e57wPU5DRAEzvMna
-	drq7j+qc7jceo+G50JZ4x21R/Z+VYWHUXC8DghC9mqV1JbnR0DCFCEhxsm+/BYT+
-	IMeHeA4mf/lOd0uKPIxUA0zb2Rj/ZvSzJ73gSPKSuOYIznNHjzvTbFpGy2ITMIaM
-	v2vhaa48uzrWm/KXZnOVydEMEbK5r6qGdAMJT+lHb1Pyr/LQFoltl13qYCkISntQ
-	ocddfQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ys1wr38hk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Jun 2024 09:30:25 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45H9U8rJ013883
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Jun 2024 09:30:08 GMT
-Received: from tengfan-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 17 Jun 2024 02:30:02 -0700
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-To: <krzysztof.kozlowski@linaro.org>, <djakov@kernel.org>, <robh@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Tengfei Fan <quic_tengfan@quicinc.com>
-Subject: [RFC PATCH 2/2] arm64: dts: qcom: sa8775p: Add CPU and LLCC BWMON
-Date: Mon, 17 Jun 2024 17:29:40 +0800
-Message-ID: <20240617092940.1724962-3-quic_tengfan@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240617092940.1724962-1-quic_tengfan@quicinc.com>
-References: <20240617092940.1724962-1-quic_tengfan@quicinc.com>
+	s=arc-20240116; t=1718616841; c=relaxed/simple;
+	bh=7NSvCXohwZLOOlJWIUDNVZNNLgZsT49wKsS05NVWjKs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QSD7YZUp45mRO7ZOGpxzegbc92d8EpeeIzkM5QcM5zY0FNWlnSDd1XbJTX770LofjLULgJW+/ubWQ6t6fpcz0u4hcVHM+8evoYVUSEwrgdnYQHizpoFcruIaJYWWRMfwivf9fU6KZPfYGseKpQI85KEDrVpy+VpzB8tUHxnh/Og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com; spf=pass smtp.mailfrom=timesys.com; dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b=cMEnLm7d; arc=none smtp.client-ip=209.85.222.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timesys.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-79767180a15so292412485a.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 02:33:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=timesys-com.20230601.gappssmtp.com; s=20230601; t=1718616838; x=1719221638; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dwjk23maxDbhwXR6knY3QoiO7g9DUPuAbXWMaxi9WAo=;
+        b=cMEnLm7d6rQXhTRW5L2AZ7V5TKBCztTO8KfFVrdF/clZ8fsAx8wMA56OQAuSsJ1GTf
+         S1SlRlKjbU+mBs4ArY0kAghfr/raUNz/EQUTYSnYCgLqrnK9wjzV1AYbXrK+ObCTk6fA
+         IfRq/QPSJL1GEPInW4UtjBDtHndx1u1LDWOv8cbgftXz/esjc8ArW7MxPVoIg+zvxKyu
+         yJ1Ub9KUiPflSMCCRcFIL23KY4GJqkl9pvpANkSTXLiRIZKrJ0udfrUBJI/UHMtpnDnK
+         zyoBFWhiOTFAVeUylZ6R6THjQfF7RydR0aR1Apu/Lhn1XOat0LPYPx/gmUCw4pqc6Xio
+         RY+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718616838; x=1719221638;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dwjk23maxDbhwXR6knY3QoiO7g9DUPuAbXWMaxi9WAo=;
+        b=YTbIkGCfzqZAQABDaoR2NYYIywTJQRTMRFApgjIqmEIJF6usSu/ZfufiSeqUqFeNi8
+         0M1hNvvkBz/OZklasA0OpZtt6FFaTWEiyXmntu/8LFaXBnx4zEaVCGcvKsBOKbVZJ7kD
+         TA+DRr9TecsqrjAUacGV7nVTxKMYqROhD8rGT1nmLqC9v2kvZBIKz8Tit/pj5fVhytoS
+         f41rFYqIlI4bv6/QaBC7uVrHMt3oUZ5bgZhO51vnqsmUE4rSGAsmeDbjUyJJ6omVmIst
+         +/YcMjVeEosX5wUh+zO284vBKAsImbGJqjGLXG3i6ArXhsZ4xn3Sg3MCfYAqjQIDjId3
+         W6IA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZLeU3C9xXB0jdV96KoW2Cxc40BmJUHbvQfUf3c/W4ufIG07ACqwXppehjRso+ayoja+wdmhRc8c43U5SBFCs/UHtp4taGNoLZaQ==
+X-Gm-Message-State: AOJu0YxzsjHOCbpOmXCy7wX+g17oLqzLHJ+UcUVG+35XWUPXHCSXR9/a
+	UV9E76QtCdigr5t3qIzBU3tuKBJHe4qbxcPngxNZlXwjNtWOMQMIUl/1ymSnJ7iipeXJjvzw03f
+	8+HjN7/PLQAYdvwJTaq6/k0EI8n+BLUBLedi6Bg==
+X-Google-Smtp-Source: AGHT+IEAX5KtNwSxz024jCUDuTs+t2XcQ1Uu/1Qu8JcsorpEu10yK9me2YfmiTGJCyrzuk8/c2n+Pk4pb6M+8oQC+gs=
+X-Received: by 2002:a0c:fbc2:0:b0:6b2:9c0d:4849 with SMTP id
+ 6a1803df08f44-6b2afb7bb5cmr87920016d6.0.1718616838197; Mon, 17 Jun 2024
+ 02:33:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ekKIriM3Su_5dhI88FyXeQJzAWSoxnSV
-X-Proofpoint-ORIG-GUID: ekKIriM3Su_5dhI88FyXeQJzAWSoxnSV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-17_08,2024-06-14_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- lowpriorityscore=0 mlxlogscore=810 adultscore=0 spamscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 mlxscore=0 phishscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406170073
+References: <20240611094810.27475-1-piotr.wojtaszczyk@timesys.com>
+ <20240614163500.386747-1-piotr.wojtaszczyk@timesys.com> <20240614163500.386747-2-piotr.wojtaszczyk@timesys.com>
+ <83cbf43e-c927-449f-8b7e-5c8d3ee8cece@kernel.org>
+In-Reply-To: <83cbf43e-c927-449f-8b7e-5c8d3ee8cece@kernel.org>
+From: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Date: Mon, 17 Jun 2024 11:33:47 +0200
+Message-ID: <CAG+cZ06EeXUDiLsDXkz+6EHqJwpvv2MWwfpvB8AYw0=ZhUkTfQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] ASoC: dt-bindings: lpc32xx: Add lpc32xx i2s DT binding
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Russell King <linux@armlinux.org.uk>, Jaroslav Kysela <perex@perex.cz>, 
+	Takashi Iwai <tiwai@suse.com>, "J.M.B. Downing" <jonathan.downing@nautel.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Chancel Liu <chancel.liu@nxp.com>, 
+	Michael Ellerman <mpe@ellerman.id.au>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org, 
+	linuxppc-dev@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add CPU and LLCC BWMON nodes and their corresponding opp tables for
-SA8775p SoC.
-SA8775p has two cpu clusters, with each cluster having a set of
-CPU-to-LLCC BWMON registers. Consequently, there are two sets of
-CPU-to-LLCC registers.
+On Sat, Jun 15, 2024 at 12:01=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+> Do not attach (thread) your patchsets to some other threads (unrelated
+> or older versions). This buries them deep in the mailbox and might
+> interfere with applying entire sets.
 
-Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 115 ++++++++++++++++++++++++++
- 1 file changed, 115 insertions(+)
+I'm sorry about that, it won't happen again.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 3808fafd6bec..32dd9fc7c532 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -2885,6 +2885,121 @@ serdes1: phy@8902000 {
- 			status = "disabled";
- 		};
- 
-+		pmu@9091000 {
-+			compatible = "qcom,sa8775p-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
-+			reg = <0x0 0x9091000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 620 IRQ_TYPE_LEVEL_HIGH>;
-+			interconnects = <&mc_virt MASTER_LLCC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
-+
-+			operating-points-v2 = <&llcc_bwmon_opp_table>;
-+
-+			llcc_bwmon_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-0 {
-+					opp-peak-kBps = <762000>;
-+				};
-+
-+				opp-1 {
-+					opp-peak-kBps = <1720000>;
-+				};
-+
-+				opp-2 {
-+					opp-peak-kBps = <2086000>;
-+				};
-+
-+				opp-3 {
-+					opp-peak-kBps = <2601000>;
-+				};
-+
-+				opp-4 {
-+					opp-peak-kBps = <2929000>;
-+				};
-+
-+				opp-5 {
-+					opp-peak-kBps = <5931000>;
-+				};
-+
-+				opp-6 {
-+					opp-peak-kBps = <6515000>;
-+				};
-+
-+				opp-7 {
-+					opp-peak-kBps = <7984000>;
-+				};
-+
-+				opp-8 {
-+					opp-peak-kBps = <10437000>;
-+				};
-+
-+				opp-9 {
-+					opp-peak-kBps = <12195000>;
-+				};
-+			};
-+		};
-+
-+		pmu@90b5400 {
-+			compatible = "qcom,sa8775p-cpu-bwmon", "qcom,sdm845-bwmon";
-+			reg = <0x0 0x90b5400 0x0 0x600>;
-+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+
-+			operating-points-v2 = <&cpu_cluster0_bwmon_opp_table>;
-+
-+			cpu_cluster0_bwmon_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-0 {
-+					opp-peak-kBps = <9155000>;
-+				};
-+
-+				opp-1 {
-+					opp-peak-kBps = <12298000>;
-+				};
-+
-+				opp-2 {
-+					opp-peak-kBps = <14236000>;
-+				};
-+
-+				opp-3 {
-+					opp-peak-kBps = <16265000>;
-+				};
-+			};
-+
-+		};
-+
-+		pmu@90b6400 {
-+			compatible = "qcom,sa8775p-cpu-bwmon", "qcom,sdm845-bwmon";
-+			reg = <0x0 0x90b6400 0x0 0x600>;
-+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ACTIVE_ONLY>;
-+
-+			operating-points-v2 = <&cpu_cluster1_bwmon_opp_table>;
-+
-+			cpu_cluster1_bwmon_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-0 {
-+					opp-peak-kBps = <9155000>;
-+				};
-+
-+				opp-1 {
-+					opp-peak-kBps = <12298000>;
-+				};
-+
-+				opp-2 {
-+					opp-peak-kBps = <14236000>;
-+				};
-+
-+				opp-3 {
-+					opp-peak-kBps = <16265000>;
-+				};
-+			};
-+		};
-+
- 		llcc: system-cache-controller@9200000 {
- 			compatible = "qcom,sa8775p-llcc";
- 			reg = <0x0 0x09200000 0x0 0x80000>,
--- 
-2.25.1
+> > +  dma-vc-names:
+>
+> Missing vendor prefix... but I don't really get what's the point of this
+> property.
 
+Is "nxp,lpc3xxx-dma-vc-names" acceptable?
+
+>
+> > +    $ref: /schemas/types.yaml#/definitions/string-array
+> > +    description: |
+> > +      names of virtual pl08x dma channels for tx and rx
+> > +      directions in this order.
+> > +    minItems: 2
+> > +    maxItems: 2
+>
+> What part of hardware or board configuration this represents?
+>
+> It wasn't here and nothing in changelog explained it.
+
+That's information which DMA signal and mux setting an I2S interface uses.
+It's a name (bus_id field) of platform data entry from phy3250.c in
+[PATCH v3 3/4].
+It's used by snd_soc_dai_init_dma_data() in [PATCH v3 4/4] to give the
+dmaengine a
+hint which dma config to use. The LPC32xx doesn't have yet a dmamux driver =
+like
+lpc18xx-dmamux.c therefore it still uses platform data entries for
+pl08x dma channels
+and 'SND_DMAENGINE_PCM_FLAG_NO_DT | SND_DMAENGINE_PCM_FLAG_COMPAT'
+flags in the devm_snd_dmaengine_pcm_register().
+Typically instead of this platform data you would use regular 'dma'
+and 'dma-names' if it had
+proper dmamux driver like lpc18xx-dmamux.c
+
+>
+> Drop.
+>
+>
+> > +
+> > +  "#sound-dai-cells":
+> > +    const: 0
+> > +
+
+The "dai-common.yam" doesn't declare a default value for this so
+isn't it required? It's declared in others yaml files like:
+Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+
+
+--
+Piotr Wojtaszczyk
+Timesys
 
