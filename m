@@ -1,134 +1,157 @@
-Return-Path: <devicetree+bounces-76599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D0B90B5C5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7CC90B5C4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 18:07:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 095FBB2D546
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:47:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C93CFB27C4C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3ED158DCD;
-	Mon, 17 Jun 2024 15:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB4015A857;
+	Mon, 17 Jun 2024 15:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ILov2p6V"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="B4TM6ofX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3A2158DB6;
-	Mon, 17 Jun 2024 15:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19C215A49F
+	for <devicetree@vger.kernel.org>; Mon, 17 Jun 2024 15:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.225
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718637694; cv=none; b=hyZOGPGzaa7pJAAJAsQU9pJgsgbbNDKtJPuIRc/+wuylPqYrSD7obUg4Ddh+y4cNkx7F6P0GRTicJdeRqj3AwczW7KiEfOfjW0/Gqonq5hRFsWU7taL3yfz2AnZRLXuo6HkgdvSEJX6GkYgTBaOFrvenys/a/IIO0ywcTceER9c=
+	t=1718637750; cv=none; b=SsIP956oXT/Y7r0ZECAxYuCN8nHb4segbKEAmZG0s5O53Z0tlhsr0wePsJu32PE/aoSm5pyBjAASTh6aMWxqSJ6YCMLxqKMqsJSS1P+Y4GgWaTUXExT0utUPDlVHyjvJKhSIDHgO3FyXLQXsi23HsqVPnpo6OAN0u7RlHFXk/gI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718637694; c=relaxed/simple;
-	bh=5Wn7SBadF1voQ3s8lFOjrITjw/7NasFYsMiD4rEzIT8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=o9aRDDIryuS/MrpmfLY70lR6KRRAgAKFPIMFeY3hvSsbYBGJm+zn2Cu8WldSydn42O8FZRomeKhX1+II2MW2V24mkLqW3Q2B98Fla469NwS25nkpff4mJfMRgOrSXY6egjD8hKJOOccN0cGn/4riagPbCW6p5TEVUZ+4+fHf01g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ILov2p6V; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-70435f4c330so3574814b3a.1;
-        Mon, 17 Jun 2024 08:21:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718637693; x=1719242493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=00MR3ut2aMx7bMI2LS9yReBsbwXpambIHWaVlb3riis=;
-        b=ILov2p6V69cMgt7VzMLFPZxZfPHDH00CNYayZkqXCFeqZq13i0yGaeODRhQ+vxiQtj
-         9Rv2zwZIhmD4zbAepTF5mN1QxBeGr6RFuN7WNTkzvTkTocW9K2Vsb0iRpsA1h0l/EiLp
-         vrbUIHsxcQDTxJOkcXflPophscGB5+FdEaSAJlPssmNqRaj2DwkLphB45Az9h8Rhamuv
-         9JSHiDQ1h3PeadwNeeZF4hULBPNrXtesFNL/H/vbNqb+XNZvDh0XE/VET5MZ46cnXoZe
-         lYxmV7GQPpbhfaV2wM0+x9Qry7olwxgzMMwU91Ijabl62iMk9tizzQbcLxYwPLnZCC5k
-         N/gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718637693; x=1719242493;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=00MR3ut2aMx7bMI2LS9yReBsbwXpambIHWaVlb3riis=;
-        b=H+DmYbOYpRHZiKLCk/y83hJVm3aFPLRHMgtSPCZb+SKY1HkZbaO1PtTcsG55QtbK3K
-         WGXnmCKSEaSJLT6G1pU3Em7JOvCOULuDSv9f0kbC06vQDt3h+fG+RgVALdBTlI0NklDs
-         eExDoO4wjT5CYc4OW01KaZj0ckGTc5WWNp6JLFd/WeJxMiR64UY5BNO6weX4elmANWtw
-         nPl+9pICnQ8y6gno+QBp0i2T+bNJfz+yrpBopmfVBrPRVyptYF9H06jLnoucA+AxlFhM
-         HgnGUV0IHiSAAoOiKj0J2DbSPSAfDSD6iRGwnOkQwkjzJ/0cYTRYiKIJPK9bYqhfk5aJ
-         pc/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWfidXvBepByAWkV34Y/WhohrSKCCEsfh/zFaK1ByAz7mqTHC+hda9sj6TV8cRhCkWfkTBHmi9yN/K/4tjnmzNnygRse9XU/JppuW1Kb1b9DkTcccp4xnh0tY3QD9b8KnjwDATdkFYCxfs6pFO4bXYo6hTqtQGEjLbaR4JdX7abC20gsVl5
-X-Gm-Message-State: AOJu0YwTBkMum6rWrvkSSIEtT6JPikeCU33UWpYdOwm41jxkKVsM2pjm
-	IKA4iZYqzvp2yBdPsV3IRjpRM7D9DZDD++NjLqgiiahY2u56NICh
-X-Google-Smtp-Source: AGHT+IHBHAhCvnxr/UkOTrgt6uZtW2TW6zVduT+0n5X0O7AEH43lwuvAseCDAnFPI71RKlft3Z+Kkw==
-X-Received: by 2002:a05:6a20:3c91:b0:1b6:5b3a:9a55 with SMTP id adf61e73a8af0-1bae7eb2d92mr9897841637.14.1718637692784;
-        Mon, 17 Jun 2024 08:21:32 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.133.99])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-70a36b6954dsm1760558a12.84.2024.06.17.08.21.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jun 2024 08:21:32 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: nicolas@ndufresne.ca
-Cc: alchark@gmail.com,
-	andy.yan@rock-chips.com,
-	conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	detlev.casanova@collabora.com,
-	devicetree@vger.kernel.org,
-	didi.debian@cknow.org,
-	dsimic@manjaro.org,
-	gregkh@linuxfoundation.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-staging@lists.linux.dev,
-	liujianfeng1994@gmail.com,
-	mchehab@kernel.org,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com
-Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
-Date: Mon, 17 Jun 2024 23:21:18 +0800
-Message-Id: <20240617152118.30684-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <f295f41ef1c9ee920ac3ac8e70ccf672ba7c9648.camel@ndufresne.ca>
-References: <f295f41ef1c9ee920ac3ac8e70ccf672ba7c9648.camel@ndufresne.ca>
+	s=arc-20240116; t=1718637750; c=relaxed/simple;
+	bh=sg5qrRLMgV+5Rd79tG8DOD89TmOPOBc48So8jR20CzI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jUs0/1VUrQ3UkeA6l7UnDcIXVH35gSFIbVQfiv60BYlHpkeP8r0swIgGNNqhrNttgrpOruQAi8VJlMqNbLf3xMkIKIrnfa/WESSpCQtB6mch1bkCYEUb6JL40yODLqFreVX/qr0obMfOb54QBIt0JTm0L5KyBlry5igacNki3W8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=B4TM6ofX; arc=none smtp.client-ip=185.136.64.225
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20240617152222ecd72c572722909224
+        for <devicetree@vger.kernel.org>;
+        Mon, 17 Jun 2024 17:22:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=fHWwCnEEzxb5x9fgBwa1bofIh1XbeYWIAnnLCU2FiVk=;
+ b=B4TM6ofXf907ezC4l9DjfnBIiQ2Qt1MI02YZWecAUOnXX1rceDwOmTNDnvMOC4jGH4X45u
+ iVWVNG7Yg50F6aQqFlCeGBpQHo/4QMZoyo1AkXc4kybTqSNj6DT7TgTQrKl2izJOYVwk8aYj
+ s+jxUihi/fV304hSDZgtdnv02fL74=;
+From: Diogo Ivo <diogo.ivo@siemens.com>
+Subject: [PATCH net-next v4 0/5] Enable PTP timestamping/PPS for AM65x
+ SR1.0 devices
+Date: Mon, 17 Jun 2024 16:21:39 +0100
+Message-Id: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAINUcGYC/2XMQQ6DIBCF4asY1qWBAQG76j2aLgCnlUXRiDE2x
+ ruX4KI1XU7efP9KEo4BE7lUKxlxDin0MR/yVBHf2fhEGtp8E2AgWQ0NDThQ45y0wruGKUPy5zD
+ iIyylciMRJxpxmcg9L11IUz++S37mZT+UZk4Z1aCFZ7puoBXXFPCFMZ19/yqFGb5KMbkryAqtQ
+ e6ZrZVR/0r8Kr0rkZU0IAEkZ7XzR7Vt2wc9RAv8DgEAAA==
+To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>, 
+ Jacob Keller <jacob.e.keller@intel.com>, Simon Horman <horms@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Diogo Ivo <diogo.ivo@siemens.com>, 
+ Wojciech Drewek <wojciech.drewek@intel.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718637740; l=3378;
+ i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
+ bh=sg5qrRLMgV+5Rd79tG8DOD89TmOPOBc48So8jR20CzI=;
+ b=ft2pcbfBtSt7xPuY8+Ze7XzsA/tEgT+g3/HWFb9JuBvF7HFl8d5jGSAwxanu6b8D1J0m1eBGn
+ gH6pXeHQ3QECY+5YCUI/GiVyV2knoM7EHqq0rCnRL46FCJc7XKArYXp
+X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-Hi Nicolas,
+This patch series enables support for PTP in AM65x SR1.0 devices.
 
-On Mon, 17 Jun 2024 10:04:59 -0400, Nicolas Dufresne wrote:
->> [5799:5886:0617/171224.851218:VERBOSE1:v4l2_device.cc(128)] Open(): No devices supporting H264 for type: 0
->> [5799:5886:0617/171224.851346:VERBOSE4:v4l2_queue.cc(1069)] This queue does  support requests.: No such file or directory (2)
->
->This one indicates that V4L2_BUF_CAP_SUPPORTS_REQUESTS might be missing in the
->REQBUFS implementation. I suspect GStreamer simply assumes this today for driver
->exposing stateless formats (which is fair, its not a compliance test, and we
->don't have a codec compliance yet).
->
->I'd suggest to check and fix this one, and retry, might only be noise, might be
->the main cause, we cannot tell.
+This feature relies heavily on the Industrial Ethernet Peripheral
+(IEP) hardware module, which implements a hardware counter through
+which time is kept. This hardware block is the basis for exposing
+a PTP hardware clock to userspace and for issuing timestamps for
+incoming/outgoing packets, allowing for time synchronization.
 
-This log doesn't harm chromium decoding. I can also see it when using
-hantro g1 decoder. The issue is "VIDIOC_STREAMON failed" later causing 
-decode failed.
+The IEP also has compare registers that fire an interrupt when the
+counter reaches the value stored in a compare register. This feature
+allows us to support PPS events in the kernel.
 
->Are you using minigbm ? Because if you do, we don't have minigbm code for this
->driver (and have no plan to do so, since we don't aim for ChromeOS support).
+The changes are separated into five patches:
+ - PATCH 01/05: Register SR1.0 devices with the IEP infrastructure to
+		expose a PHC clock to userspace, allowing time to be
+		adjusted using standard PTP tools. The code for issuing/
+		collecting packet timestamps is already present in the
+		current state of the driver, so only this needs to be
+		done.
+ - PATCH 02/05: Remove unnecessary spinlock synchronization.
+ - PATCH 03/05: Document IEP interrupt in DT binding.
+ - PATCH 04/05: Add support for IEP compare event/interrupt handling
+		to enable PPS events.
+ - PATCH 05/05: Add the interrupts to the IOT2050 device tree.
 
-I'm using patched chromium which can use mesa's libgbm to render NV12.
-Robert Mader has showed me patches from this mesa's merge request[1].
+Currently every compare event generates two interrupts, the first
+corresponding to the actual event and the second being a spurious
+but otherwise harmless interrupt. The root cause of this has been
+identified and has been solved in the platform's SDK. A forward port
+of the SDK's patches also fixes the problem in upstream but is not
+included here since it's upstreaming is out of the scope of this
+series. If someone from TI would be willing to chime in and help
+get the interrupt changes upstream that would be great!
 
-[1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23214
+Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+---
+Changes in v4:
+- Remove unused 'flags' variables in patch 02/05
+- Add patch 03/05 describing IEP interrupt in DT binding
+- Link to v3: https://lore.kernel.org/r/20240607-iep-v3-0-4824224105bc@siemens.com
+
+Changes in v3:
+- Collect Reviewed-by tags
+- Add patch 02/04 removing spinlocks from IEP driver
+- Use mutex-based synchronization when accessing HW registers
+- Link to v2: https://lore.kernel.org/r/20240604-iep-v2-0-ea8e1c0a5686@siemens.com
+
+Changes in v2:
+- Collect Reviewed-by tags
+- PATCH 01/03: Limit line length to 80 characters
+- PATCH 02/03: Proceed with limited functionality if getting IRQ fails,
+	       limit line length to 80 characters
+- Link to v1: https://lore.kernel.org/r/20240529-iep-v1-0-7273c07592d3@siemens.com
+
+---
+Diogo Ivo (5):
+      net: ti: icssg-prueth: Enable PTP timestamping support for SR1.0 devices
+      net: ti: icss-iep: Remove spinlock-based synchronization
+      dt-bindings: net: Add IEP interrupt
+      net: ti: icss-iep: Enable compare events
+      arm64: dts: ti: iot2050: Add IEP interrupts for SR1.0 devices
+
+ .../devicetree/bindings/net/ti,icss-iep.yaml       |  9 +++
+ .../boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 12 +++
+ drivers/net/ethernet/ti/icssg/icss_iep.c           | 88 ++++++++++++++++++----
+ drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c   | 51 ++++++++++++-
+ 4 files changed, 145 insertions(+), 15 deletions(-)
+---
+base-commit: 2f0e3f6a6824dfda2759225326d9c69203c06bc8
+change-id: 20240529-iep-8bb4a3cb9068
 
 Best regards,
-Jianfeng
+-- 
+Diogo Ivo <diogo.ivo@siemens.com>
+
 
