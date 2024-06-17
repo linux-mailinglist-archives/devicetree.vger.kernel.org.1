@@ -1,67 +1,74 @@
-Return-Path: <devicetree+bounces-76613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B2190B54C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:53:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6657490B55E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 17:55:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A962A283C9D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:53:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D6E01C20C47
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jun 2024 15:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38A95135A40;
-	Mon, 17 Jun 2024 15:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BA3913B5A0;
+	Mon, 17 Jun 2024 15:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aX78jsrw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BXPal40q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8BF12F373;
-	Mon, 17 Jun 2024 15:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42EFB13AD0F;
+	Mon, 17 Jun 2024 15:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718638562; cv=none; b=bJf+TENF0ZvKLmsCxoCGScFuT4Xiae2naD1ZugzpmEKmeg+lMdkLv6T1uClWJnVnr6QJ0lbJ1yrfZG3/9G/8UXPNRUvDTvyprugYQkzYKu4njZFI70I6erVIDpgygsMxqZhQxjIlq2hQbkoHfa1DoIiLRrM2pE5JliEi0jSF5bo=
+	t=1718638855; cv=none; b=Zqo2hMbfQ5682K52MhU1od0MD6nuEVU5M28CEMHsKkLzLJHG4YSXhEmKvUl3WisHeNjyGMY2X2o6N67yEBv5R1riwuMMrbl5nUiLoYOEofoSRjTUcbStNpheDh3prqmSR47dMggcSFoirQMuZJxxw4xZnDJRmA23pv3E1+XXMu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718638562; c=relaxed/simple;
-	bh=oKkY8DUJHqJi7aq4RzMoPZQz16x9vtWfrZmff64niHc=;
+	s=arc-20240116; t=1718638855; c=relaxed/simple;
+	bh=42hDqBHzInQELIWlWJ6Z/FBQrQe2GH5qVRKdgXovl2k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HgfpXfbdw7F4lRgr1rO4bUkGziyxaSAR+ugnztPbvujMa/7LxK4fSZ6f0ETpud2FvQ9Ui1kE7fjw9AZgT7FO+3qo7diSpeUhajNDMMd9jidqcfkOMnUb183GY27k3p8vWAhhnVmT+4yEUN968msPgzvy+jazbGhRgqz2q8ifgPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aX78jsrw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 922FEC4AF1D;
-	Mon, 17 Jun 2024 15:35:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tm3YI8IiotnKsvdHjr0pu4GRl52E1tU4KgWOzmCyR7NlbTD5Qk2X2Iw5xIhRwEIqI2FZoOrpBaDQ9QNwl4EC3PVY/NAK0hfH6PwS4HNqqNavU4HmXVIjoTHbeztUGXfIyCQa3HiUrL0CgVzrNYYWxbnBgPhkaMcjCQrTMN0U/d0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BXPal40q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B63FBC2BD10;
+	Mon, 17 Jun 2024 15:40:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718638561;
-	bh=oKkY8DUJHqJi7aq4RzMoPZQz16x9vtWfrZmff64niHc=;
+	s=k20201202; t=1718638854;
+	bh=42hDqBHzInQELIWlWJ6Z/FBQrQe2GH5qVRKdgXovl2k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aX78jsrwC+Iubhy0j5Twmwszbgt+IQ4rh0xY7VOQlt/7Q8167saErxNEwaYeanoBj
-	 GK3FzWq1cvzggYHLlRZHWO7tONlD9s1WwlTVW5kWVzNXQj0760Fd610oLn/ksssEYk
-	 Ikd48iBggZhQ7ZlzkGkh6mejRrpQaRZD17TKZAWdYHb5uNV4KTaHSP4JGcUxuurxVh
-	 rrrTmD9i8zKFFQ7s3ys9QI3IbGHXPc146KYS0VIeMlS4Ol1/uP7jgsau3FHYch/XRY
-	 88Mft3cJ0sF4vGVbaZpXFgG3k6gUpTE8Poljvfqi+3xElrForLMEhLQsn20wp8JZfC
-	 qpamPkyMLa5jA==
-Date: Mon, 17 Jun 2024 16:35:54 +0100
+	b=BXPal40qQwXg9yBesIIsPIrSQU6dPocxlDznXC5WIw+h/lK+NrfL/Y+5UEDM6sf4z
+	 ne0VGv/pBIe8ridyIR95LpL8M8owUAc2lWmfBTi1BrkwNFRSb8ZMbzmf9cKTvOXe+h
+	 hwJzj8ASQlc7i64FQwbsp9VqoQ6lDzC/dINSIz5YyD/+Lf1HEWsgYycmT7zDGymzwV
+	 xV0GHRKUNoscXTlOEfFA8dH4db8ETiJFWpK7cl0Z8ijIUm4a/RidmdcKSbv75xQp+B
+	 FMWstlfXlxvBqpQflidLqtuIutF3KQbqhiYV+ZyrEuivPiMzcQu2wF9bKrW9Ka/jn+
+	 AaC4WTDm+0xOQ==
+Date: Mon, 17 Jun 2024 16:40:48 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Diogo Ivo <diogo.ivo@siemens.com>
-Cc: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Yixun Lan <dlan@gentoo.org>, Inochi Amaoto <inochiama@outlook.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jan Kiszka <jan.kiszka@siemens.com>,
-	Jacob Keller <jacob.e.keller@intel.com>,
-	Simon Horman <horms@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 3/5] dt-bindings: net: Add IEP interrupt
-Message-ID: <20240617-buzz-balancing-c2168d853a6c@spud>
-References: <20240617-iep-v4-0-fa20ff4141a3@siemens.com>
- <20240617-iep-v4-3-fa20ff4141a3@siemens.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/6] riscv: dts: sophgo: Put sdhci compatible in dt of
+ specific SoC
+Message-ID: <20240617-exuberant-protegee-f7d414f0976d@spud>
+References: <20240612-sg2002-v2-0-19a585af6846@bootlin.com>
+ <20240612-sg2002-v2-1-19a585af6846@bootlin.com>
+ <IA1PR20MB49534C9E29E86B478205E4B3BBC02@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20240616235829.GA4000183@ofsar>
+ <c75601a1-1389-400e-90b9-99c1e775a866@bootlin.com>
+ <ZnA3O14HOiV1SBPV@xhacker>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,36 +76,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3pdF+DqPTBZylhD/"
+	protocol="application/pgp-signature"; boundary="6tC78+3mmqFBDz9z"
 Content-Disposition: inline
-In-Reply-To: <20240617-iep-v4-3-fa20ff4141a3@siemens.com>
+In-Reply-To: <ZnA3O14HOiV1SBPV@xhacker>
 
 
---3pdF+DqPTBZylhD/
+--6tC78+3mmqFBDz9z
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 17, 2024 at 04:21:42PM +0100, Diogo Ivo wrote:
-> The IEP interrupt is used in order to support both capture events, where
-> an incoming external signal gets timestamped on arrival, and compare
-> events, where an interrupt is generated internally when the IEP counter
-> reaches a programmed value.
+On Mon, Jun 17, 2024 at 09:16:43PM +0800, Jisheng Zhang wrote:
+> On Mon, Jun 17, 2024 at 11:16:32AM +0200, Thomas Bonnefille wrote:
+> > On 6/17/24 1:58 AM, Yixun Lan wrote:
+> > > On 18:47 Wed 12 Jun     , Inochi Amaoto wrote:
+
+> > > > Is this change necessary? IIRC, the sdhci is the same across
+> > > > the whole series.
+
+> sorry for being late, I was busy in the past 2.5 month. Per my
+> understanding, the sdhci in cv1800b is the same as the one in
+> sg200x. Maybe I'm wrong, but this was my impression when I cooked
+> the sdhci driver patch for these SoCs.
 >=20
-> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+> > > I tend to agree with Inochi here, if it's same across all SoC, then n=
+o bother to
+> > > split, it will cause more trouble to maintain..
+> > >=20
+> >=20
+> > To be honest, I agree with this to, but as a specific compatible for the
+> > SG2002 was created in commit 849e81817b9b, I thought that the best prac=
+tice
+> > was to use it.
+>=20
+> I'd like to take this chance to query DT maintainers: FWICT, in the past
+> even if the PLIC is the same between SoCs, adding a new compatible for
+> them seems a must. So when time goes on, the compatbile list would be
+> longer and longer, is it really necessary? Can we just use the existing
+> compatible string?
+> DT maintainers may answered the query in the past, if so, sorry for
+> querying again.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+For new integrations of an IP, yes, new specific compatibles please. New
+integrations may have different bugs etc, even if the IP itself is the
+same. If there's different SoCs that are the same die, but with elements
+fused off, then sure, use the same compatible.
 
---3pdF+DqPTBZylhD/
+I expect the list of compatibles in the binding to grow rather large, but
+that is fine. No one SoC is going to do anything other than something like
+compatible =3D "renesas,$soc-plic", "andestech,corecomplex-plic", "riscv,pl=
+ic";
+which I think is perfectly fine.
+
+
+--6tC78+3mmqFBDz9z
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBX2gAKCRB4tDGHoIJi
-0sCPAP4mFlD9F3AigFkn1v2kp8M9jRDptuUlm1pj5CqYi+/BPgEArpsowjrWpJ8j
-9KuM1nqEckGmX8RSrxcfMPxJgEAhAwg=
-=kcYr
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnBZAAAKCRB4tDGHoIJi
+0l7HAP47j2HyEc+VKIMCrgYDBYv2vBXJXmUQgX5EoSTWn2eiggD9HUVWmEdowlqP
+9Cn3abEuvtkfKb4yr9voKsKLFHWBsQM=
+=hwsr
 -----END PGP SIGNATURE-----
 
---3pdF+DqPTBZylhD/--
+--6tC78+3mmqFBDz9z--
 
