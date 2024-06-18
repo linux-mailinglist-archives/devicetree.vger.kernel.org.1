@@ -1,130 +1,126 @@
-Return-Path: <devicetree+bounces-77260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3D390DDB0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 22:47:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51BA490DDB4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 22:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44B571C2318C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 20:47:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D43A9283F0D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 20:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387801891BA;
-	Tue, 18 Jun 2024 20:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9650017838D;
+	Tue, 18 Jun 2024 20:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fwD1UANX"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="PZ3z2vaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25DF11849CB
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 20:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E79F61741FF;
+	Tue, 18 Jun 2024 20:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718743534; cv=none; b=lE/sc4kL1qlkJWQggWck3xl1nIH0PN1GMi+Ld4cD8AKypfZecIpqSAG3JI2Ye+BAiKdw/psVuZnVbCW5jsku0PHldXclUkSrf9ou54Meq0lKZaXQvcecPw27LzdSsIp5PwKgx7Vv2HPfFILeQNnfvx7IcOlMmK8JRNBogFD4Nys=
+	t=1718743633; cv=none; b=MJDqsze8VpmD0HZzVF5f3RjwZ+DW0snxxNCxkYBy0MGIljUObQoGmj/yHxvvGd2rIjZEpTFFHO32QEuVE5VE+gOU3SSDD33rloEAUoiE+zvYK50/irP2dFT7MjUDGsAAOZqYXBUHao/09kTuL834eSj4/kHuowbbVoi+zk9sUzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718743534; c=relaxed/simple;
-	bh=OTr12Bi8/NXL7P/8SsOisfRk21WzJPQ5t6rWot8jDSk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FmcgWsMsLh4nZzp1kgyZCOxGiidaOuTDFxQj+f95Ew9cijPzcfKRom/7BajZhXZEFYtW2EtPc4gPxQ4kBHolp0vKWq0S8DnPq3XqV7uaTsX0ZU2dvKMx9q1X+V2FpQTg4yQFprTT1plsrzhdzqq+DndH579XzQLc7iJcDmrrcqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fwD1UANX; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-70089223245so70989a34.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 13:45:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718743530; x=1719348330; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=An62MJeGUMiGGgvWvJTRH6LH32AiZhil1QbTJRqvu4k=;
-        b=fwD1UANXPhuQFNeXn3tyjKPmjRgb0RzjMolQ5d+F8KZyOdw1ybhQ7kbI28aoLCxeUk
-         se5th8eZJ/O9caG/Z5Rvt/Bv32NwRX3cg/QNEiV6gsHJvEm2n6yP13eFGYFoyiHaYtFH
-         Cwx/he5GGrhUQ6qTez3iPi9xBh00e8smX0UTEPqmJeNSySSWFECVX8BXIjcdovHfEcAE
-         YwUDDYZopGHj//69Qdjy8B8o2yH79W8/SGuhDWfC9xFCPEdB5D5/P+Y5VHyL4eK5+Jzp
-         d0zwSwXHpAvjRpHbg93M94OmDdkR1SzLupirHUVnCS/thwvaWaJbMdwjiRmOfFDZKbVx
-         VGfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718743530; x=1719348330;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=An62MJeGUMiGGgvWvJTRH6LH32AiZhil1QbTJRqvu4k=;
-        b=a/PKu6njiZxLC12K5MU9dAOaqCKMPrBjsU+g7X84hethDIn93IlFIE6560HBW0zuWk
-         FxPmrlNFI4Gs20SYZIchbEidR/GZqmTeU94kjHZkf8lJHlb2M8lFWjZnUjPLVjdtnlOB
-         k1wgrJPEFFIXwINTVLBFe+cF3BzmIyKnINfnwvK2CpUxHS+SUMQNx3VxQ96kMIE97a+x
-         f7KguSzydl0zKAAhqYcFQkM24mcj76GvB+8qJXPwEn9gDuvZR+wNNw1Z0VY4S5u+tomF
-         Bucpz4VzJK8hvgDAU9gfopyYLTtzlDj9k2L2uzjBkg8ljtjcuCYfl0qAmlOV4WCjRjkp
-         tGHw==
-X-Forwarded-Encrypted: i=1; AJvYcCXPt7VxPP2F+lAUL+ZO7CRWYHCNtkTkjuGOhkXuJNVUw3xc97YA7qPXDxPj1Q7ko9EAdL6H+8fX7cdx7ASFP9sqxjAmvEo/yrCAew==
-X-Gm-Message-State: AOJu0Yy/PHECoK+cNzSxeRothxl/IaSFrWZvef25eMZHw+tYWsSk4g+P
-	9R8AQWwTYgSsZQKZgyppbCjpU92c5eTL4ZXOhFKYzfK5teVENn6tjSfj3OOTZ6I=
-X-Google-Smtp-Source: AGHT+IF/wZnyEwlmp014WzzyEzK86air2V/fRVppB5R1D3+8KBOP7B7VGADdvbG4uR9hRt+kJZiG5w==
-X-Received: by 2002:a9d:7d05:0:b0:6f9:72ca:fdcb with SMTP id 46e09a7af769-70075a7530bmr843183a34.36.1718743530058;
-        Tue, 18 Jun 2024 13:45:30 -0700 (PDT)
-Received: from localhost ([136.62.192.75])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6fb5b1e3adesm1931562a34.36.2024.06.18.13.45.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 13:45:29 -0700 (PDT)
-From: Sam Protsenko <semen.protsenko@linaro.org>
-To: =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] arm64: dts: exynos850: Enable TRNG
-Date: Tue, 18 Jun 2024 15:45:23 -0500
-Message-Id: <20240618204523.9563-8-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240618204523.9563-1-semen.protsenko@linaro.org>
-References: <20240618204523.9563-1-semen.protsenko@linaro.org>
+	s=arc-20240116; t=1718743633; c=relaxed/simple;
+	bh=VRiPPn+VTLkhAiQA9Zh7a1/UmbTAaW9I7g5e9G74OBs=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=A8YoVwuqQHDzeZXZVp+6HXezEGyoMIHaCdhDOVMVHw/5LaNrwSG9pNNQKxJdlo7wLqgSQpHcNMWfOF7U4tmIpDFbMt2L9Uk5tJfVlx0OISlJ07yuUX/CULlU+pPZAiwS8m0c2nU+aShth+CEZnoeo29udv6i98aozuLrfERffgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=PZ3z2vaQ; arc=none smtp.client-ip=212.227.15.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1718743596; x=1719348396; i=markus.elfring@web.de;
+	bh=7SVn046GRXwum9/obUlRK64bfmhFkYAqL+r0he2hVC8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=PZ3z2vaQG9aupKmIeFv80UHAofhbRE8SzMWlvGyOLT4JTk2ms2xfY/Etd1Wuj20R
+	 yFFWFpw2H05Mh3HYyeeU3oqdqe1NbQbv8VPEHCANs4yWb4+S/9TEKhKLTCtZaASDn
+	 mvoToayBJyRR1BrQX+gbCJ3zEvt9UR1Lk+H1MISn0JDQrZt+5AJbHtNz+Qj+rZDMY
+	 KdSB1qdaiYgVXDx5JqosFb+57JfafH35oZtWOQD9r30jd7b+nfVTGleSAit+FvOfT
+	 B5qHopxqzJ+N2psyBrMZZ8m8nWezDxF7nDXx9CKOyRD5sWn989kXI8BJo3n7K0WGd
+	 nxkbZ55Zjnx37REdwA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N6sBv-1sROvz2ip5-00wTNH; Tue, 18
+ Jun 2024 22:46:36 +0200
+Message-ID: <2fed4937-e9ea-4635-a061-5c5a0533b152@web.de>
+Date: Tue, 18 Jun 2024 22:46:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: David Huang <d-huang@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>,
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ Aradhya Bhatia <a-bhatia1@ti.com>, Brandon Brnich <b-brnich@ti.com>,
+ Darren Etheridge <detheridge@ti.com>, Jai Luthra <j-luthra@ti.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Nicolas Dufresne <nicolas@ndufresne.ca>, Nishanth Menon <nm@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Prasanth Mantena <p-mantena@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Vijay Pothukuchi <vijayp@ti.com>
+References: <20240618193651.2771478-3-devarsht@ti.com>
+Subject: Re: [PATCH v14 2/6] media: imagination: Add E5010 JPEG Encoder driver
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240618193651.2771478-3-devarsht@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:wzwXm8OOJj/8pn6nEtnfr8d1OPM87N8PKLZGrJG7AtRwShPkJfv
+ goefJPjAshUT3KsMHaSIJQDd0ojyS5GvAIHdR4fEZg8oMnlhxgvA1C0Kp+/7GyLJcG4BmUN
+ AlRXIpUfvfLdxf5hn/SCicFgPKGdKOfDHCA7TNkkTDjXRjDrAOS9JjvNMmTJ6CUtdVorwKz
+ K+2rGUcvcssXRacxWf/nQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:at3o+ErF39k=;WGKgmK/fxWBBs7JOx1gu5uwL1Fg
+ w3dEk/evutMPDtSR9ATEgVKc6CMn8or+qhyyNtFQvevcSpMgGWPLm5DO6MiLJs/OqF+Evpdly
+ 6Mglv6FhKARWZuckuOr9Iybh5x4MqrVczmAvFNXh7WMgAepf0SSeKvU9OWhn4yNeUViLqRiwm
+ A2+NpVJOL25KIkZtDY1LeSLkG6a/9cHTBBCNIEsQL/m9vg7U6UMmill9pFUxYRwNXkqKXhWOv
+ xNhV7P82jnNjzhVXn8pddKZ4yPb8nutPAV3tB0r3CdMYUUVrfuhXQSFZ2qrA3eR6ZiN3XQJJy
+ jNbbxHc710Y136fB2lylt8WVp4c8WBVNYF0E9HLHDz67vCcqqE2zaUTtL2Pe2KJnFI+5D1Gfb
+ 92ULx7M26WSsCvN34Bzegc5ZlXneYuI0EAU46kKbTlriaJjnrsbIgG519xAsIa6aM5UBotDLm
+ L3pL4g0USy30zNYJFkdZMDhMdVbgAjgMF2UY+S0AHR5sq6O40vwwX3jxLS3oXuobDf2IDQAUG
+ jkiECxQvpUlndBVrVaSoPGp/eTFgyCuY9oxb3V9AxT9oV+Qbv6rjIydlOXcMBcdUcfyzH+vNs
+ 6EIYp5rx+WBeEVGrYUdCpXEW0KqpPbWH5EMXB1oPsj6Tc1ILlGh4XHE0ZOTGDYeQJS5qDyO7e
+ Si4782B0anEsqxL9qaKWRUJ//15GUlRcXnVM88qA0olrQ/4Bxmzbc9hJgIhLXaFEbLKZkTdZt
+ ZWjyqmK4lVqx4M97OU/0MZg2mW7bn0gBGthEgmQ/5q4gnXFLUCf7zKxuZykOVvBZD3sD2AGSb
+ yEEj4nCVqkAqSKcHHjMY6TaSLA3vooQmF06pjR9HljAY0l90sChdu9rf/Qi9oATSAf
 
-Add True Random Number Generator (TRNG) node to Exynos850 SoC dtsi.
+=E2=80=A6
+> +++ b/drivers/media/platform/imagination/e5010-jpeg-enc.c
+> @@ -0,0 +1,1741 @@
+=E2=80=A6
+> +static int e5010_release(struct file *file)
+> +{
+=E2=80=A6
+> +	mutex_lock(&e5010->mutex);
+> +	v4l2_ctrl_handler_free(&ctx->ctrl_handler);
+=E2=80=A6
+> +	kfree(ctx);
+> +	mutex_unlock(&e5010->mutex);
+> +
+> +	return 0;
+> +}
+=E2=80=A6
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
-Changes in v2:
-  - (no changes)
+Would you become interested to apply a statement like =E2=80=9Cguard(mutex=
+)(&e5010->mutex);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.10-rc4/source/include/linux/mutex.h#L1=
+96
 
- arch/arm64/boot/dts/exynos/exynos850.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-index 0706c8534ceb..f1c8b4613cbc 100644
---- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-@@ -416,6 +416,14 @@ pinctrl_core: pinctrl@12070000 {
- 			interrupts = <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		trng: rng@12081400 {
-+			compatible = "samsung,exynos850-trng";
-+			reg = <0x12081400 0x100>;
-+			clocks = <&cmu_core CLK_GOUT_SSS_ACLK>,
-+				 <&cmu_core CLK_GOUT_SSS_PCLK>;
-+			clock-names = "secss", "pclk";
-+		};
-+
- 		pinctrl_hsi: pinctrl@13430000 {
- 			compatible = "samsung,exynos850-pinctrl";
- 			reg = <0x13430000 0x1000>;
--- 
-2.39.2
-
+Regards,
+Markus
 
