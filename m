@@ -1,129 +1,244 @@
-Return-Path: <devicetree+bounces-77129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8BDB90D920
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:24:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECFF90D8CC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B3F6B23D0C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:30:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84A93B2D5C8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BF32E85E;
-	Tue, 18 Jun 2024 15:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0901304A3;
+	Tue, 18 Jun 2024 15:43:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="sLM3Shlt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R2TyZkR+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 226BD4A35;
-	Tue, 18 Jun 2024 15:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD5D7D401;
+	Tue, 18 Jun 2024 15:43:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718724622; cv=none; b=V5DJVghLEjmzwix0u7nY6ASae0yrXET+oux+rczBQRIuBhivN7oBEqV489Wj7Y22Oj02k+zKPLZJde2i/DBRXjxRGvb/KF680NeUdKf5DBHAijGML8YpCnG1RhpW+yUQexTvufU74A3xMle7L1ORemImUBJy/vECsN1zH5bJ29E=
+	t=1718725427; cv=none; b=ZOWFnGZqjr6PvWnL/KyrYMQfwwOUSl2oixh1hWFFzdjyFXnuc+vsfM3k8pml/k86cOTHSWONm03+CSgVSIIyMUlGiJZkVwWEqz97U9xKQJyp6Tqw9Lh0SuCAsRCPcjAhPj3txZERAkSY/egw+kRfif8QfHBIDNS9oKnMl/J5/04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718724622; c=relaxed/simple;
-	bh=+3+WEWy9yRWcbnapoHm1Wuk132/d/aeQzbXgYGX4PEY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B8NxuHKMDao31f4qh2Je85sIMZw/T0ghNYT6KF7YCKV/zltGkhcEcCzTirb0ufcW5Bfg/C/Id3ViEBb4Gp1CotK4kfFK6UXEY8GgNTfVEsjMC49VPOC/QEsybK5kCrQqSsyWJzUCryFJa8f1BChA4VXfdDiCTNHxaUlB+xFDlEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=sLM3Shlt; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 339BF882EF;
-	Tue, 18 Jun 2024 17:30:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1718724618;
-	bh=nhLaeYCPpeb5WH3lwke9ZKW0zsxGr0EgQUIFEEETETk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sLM3ShltpeRBYmZqreax/4suIoG+bBj7tlHfRhC9IFldcP0z5L4vX0yxSlgX8p53d
-	 6ABrMbCTTSVR0bUQAPIZ3M/1fDBJtuMGSJJTHOuzpJrmXogyTlqEjwQMegZ1AuhgoR
-	 IQlWy6ehQiZwO7s31znp3kKHEHpWrfnlAgmU3KlR03ZjCYqdcgNKns51/yu4sQ84/S
-	 2XecyvmCEAOMrI5Sl2phtaWQVb5Sbsta8ph4T+8pzM2jJ4aZJqi4f/ze19MY2xKQJi
-	 YEH7IDKlyn5gXHAJI4C+KoEmpFAlYiUpYm+kUfpxH1aG2cvqpnuBcNDRaDQL1HkyYw
-	 KPaCiQuVCx1Jg==
-Message-ID: <3dee3c8a-12f0-42bd-acdf-8008da795467@denx.de>
-Date: Tue, 18 Jun 2024 17:00:33 +0200
+	s=arc-20240116; t=1718725427; c=relaxed/simple;
+	bh=1iyvyvdlNcpQgO68rGlstK2TPWgSviLBiSjlN5hjUcg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kSL3zp42qms3oz2ccyl3WqPtnldbhbC0GFr8iTpiqseGIu+38rjuEUdFLaYfTvxbWUf/KFjLtyiOhO3+Bml0maxnXLMa/nsKojCwIr9VwSerTNl0cAoYPV6hakNO/WGoUs9CtRcMTO7ZrincZ/LJonpkCsdwnp3lAp7K7CBRzP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=R2TyZkR+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45IBuea3018642;
+	Tue, 18 Jun 2024 15:43:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DmqfayM9s7xgTIVNPfY+wGeEaUtQTuZQkA9EwVbSZFo=; b=R2TyZkR+bEkdSxlD
+	4t0Le0sjQJ8AyE0qtNaHQge1ACltCkISaQnKC5W+76oPLhL8rxQCP5enbrgOlBRc
+	c3dTJFdWywZpcaRPXKKzr+ypAcEJFlWPLul4fBAfZ+HwC5ah3lF8/NK+p+k5csge
+	eufdKmi/maVneSEa9yE+STh4JmbJNoZuTlnoQ5Lm7F/koPWAKNYcVO5aJhhwteVr
+	Ha24B3pjodQcWclSHceTTCeJSTjH1NeUXRdlo2S8JCTT74wYI/eI1IN3rhaXzton
+	V3TTPP0pC7oHWK412GS7RYonakWxk4JvvfauO0Vculq3SrmNgg5P47ZdAuOIy1A1
+	qhJoLQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yu22gsq1m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 15:43:41 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45IFhelr016882
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 15:43:40 GMT
+Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 18 Jun 2024 08:43:35 -0700
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <djakov@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <srinivas.kandagatla@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+        <quic_sibis@quicinc.com>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <abel.vesa@linaro.org>
+Subject: [PATCH V2 3/3] arm64: dts: qcom: x1e80100: Add BWMONs
+Date: Tue, 18 Jun 2024 21:13:06 +0530
+Message-ID: <20240618154306.279637-4-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240618154306.279637-1-quic_sibis@quicinc.com>
+References: <20240618154306.279637-1-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH 2/2] net: stmmac: dwmac-stm32: stm32: add
- management of stm32mp25 for stm32
-To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240614130812.72425-1-christophe.roullier@foss.st.com>
- <20240614130812.72425-3-christophe.roullier@foss.st.com>
- <4c2f1bac-4957-4814-bf62-816340bd9ff6@denx.de>
- <09010b02-fb55-4c4b-9d0c-36bd0b370dc8@foss.st.com>
- <39d35f6d-4f82-43af-883b-a574b8a67a1a@denx.de>
- <8c3f1696-d67c-4960-ad3a-90461c896aa5@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <8c3f1696-d67c-4960-ad3a-90461c896aa5@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -eGVITtBTPpmMSsNrRYd3YO9Eu9-W3WZ
+X-Proofpoint-GUID: -eGVITtBTPpmMSsNrRYd3YO9Eu9-W3WZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ clxscore=1015 malwarescore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ adultscore=0 impostorscore=0 phishscore=0 mlxlogscore=916 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2406180118
 
-On 6/18/24 11:09 AM, Christophe ROULLIER wrote:
+Add the CPU and LLCC BWMONs on X1E80100 SoCs.
 
-Hi,
+Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+---
 
->>>>> +static int stm32mp2_configure_syscfg(struct plat_stmmacenet_data 
->>>>> *plat_dat)
->>>>> +{
->>>>> +    struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
->>>>> +    u32 reg = dwmac->mode_reg;
->>>>> +    int val = 0;
->>>>> +
->>>>> +    switch (plat_dat->mac_interface) {
->>>>> +    case PHY_INTERFACE_MODE_MII:
->>>>> +        break;
->>>>
->>>> dwmac->enable_eth_ck does not apply to MII mode ? Why ?
->>>
->>> It is like MP1 and MP13, nothing to set in syscfg register for case 
->>> MII mode wo crystal.
->>
->> Have a look at STM32MP15xx RM0436 Figure 83. Peripheral clock 
->> distribution for Ethernet.
->>
->> If RCC (top-left corner of the figure) generates 25 MHz MII clock 
->> (yellow line) on eth_clk_fb (top-right corner), can I set 
->> ETH_REF_CLK_SEL to position '1' and ETH_SEL[2] to '0' and feed ETH 
->> (right side) clk_rx_i input with 25 MHz clock that way ?
->>
->> I seems like this should be possible, at least theoretically. Can you 
->> check with the hardware/silicon people ?
-> No it is not possible (it will work if speed (and frequency) is fixed 
-> 25Mhz=100Mbps, but for speed 10Mbps (2,5MHz) it will not work.
+v2:
+* Allow for opp-tables to be optional on X1E cpu-bwmon instances. [Konrad]
+* Use consistent numbering of the opps across instances. [Shiv]
+* Use ICC_TAG_ACTIVE_ONLY instead of magic numbers. [Konrad]
 
-Could the pll4_p_ck or pll3_q_ck generate either 25 MHz or 2.5 MHz as 
-needed in that case ? Then it would work, right ?
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 120 +++++++++++++++++++++++++
+ 1 file changed, 120 insertions(+)
 
-> (you can 
-> see than diviser are only for RMII mode)
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 9944c654851e..d8b972c2bc3e 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -5299,6 +5299,126 @@ frame@1780d000 {
+ 			};
+ 		};
+ 
++		pmu@24091000 {
++			compatible = "qcom,x1e80100-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
++			reg = <0 0x24091000 0 0x1000>;
++
++			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++
++			interconnects = <&mc_virt MASTER_LLCC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
++
++			operating-points-v2 = <&llcc_bwmon_opp_table>;
++
++			llcc_bwmon_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-0 {
++					opp-peak-kBps = <800000>;
++				};
++
++				opp-1 {
++					opp-peak-kBps = <2188000>;
++				};
++
++				opp-2 {
++					opp-peak-kBps = <3072000>;
++				};
++
++				opp-3 {
++					opp-peak-kBps = <6220800>;
++				};
++
++				opp-4 {
++					opp-peak-kBps = <6835200>;
++				};
++
++				opp-5 {
++					opp-peak-kBps = <8371200>;
++				};
++
++				opp-6 {
++					opp-peak-kBps = <10944000>;
++				};
++
++				opp-7 {
++					opp-peak-kBps = <12748800>;
++				};
++
++				opp-8 {
++					opp-peak-kBps = <14745600>;
++				};
++
++				opp-9 {
++					opp-peak-kBps = <16896000>;
++				};
++			};
++		};
++
++		pmu@240b3400 {
++			compatible = "qcom,x1e80100-cpu-bwmon", "qcom,sdm845-bwmon";
++			reg = <0 0x240b3400 0 0x600>;
++
++			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
++
++			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ACTIVE_ONLY>;
++
++			operating-points-v2 = <&cpu_bwmon_opp_table>;
++
++			cpu_bwmon_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-0 {
++					opp-peak-kBps = <4800000>;
++				};
++
++				opp-1 {
++					opp-peak-kBps = <7464000>;
++				};
++
++				opp-2 {
++					opp-peak-kBps = <9600000>;
++				};
++
++				opp-3 {
++					opp-peak-kBps = <12896000>;
++				};
++
++				opp-4 {
++					opp-peak-kBps = <14928000>;
++				};
++
++				opp-5 {
++					opp-peak-kBps = <17064000>;
++				};
++			};
++		};
++
++		pmu@240b5400 {
++			compatible = "qcom,x1e80100-cpu-bwmon", "qcom,sdm845-bwmon";
++			reg = <0 0x240b5400 0 0x600>;
++
++			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
++
++			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ACTIVE_ONLY>;
++
++			operating-points-v2 = <&cpu_bwmon_opp_table>;
++		};
++
++		pmu@240b6400 {
++			compatible = "qcom,x1e80100-cpu-bwmon", "qcom,sdm845-bwmon";
++			reg = <0 0x240b6400 0 0x600>;
++
++			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
++
++			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ACTIVE_ONLY>;
++
++			operating-points-v2 = <&cpu_bwmon_opp_table>;
++		};
++
+ 		system-cache-controller@25000000 {
+ 			compatible = "qcom,x1e80100-llcc";
+ 			reg = <0 0x25000000 0 0x200000>,
+-- 
+2.34.1
 
-Do you refer to /2 and /20 dividers to the left of mac_speed_o[0] ?
 
