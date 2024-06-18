@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C6B490C3D0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:42:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24E4B90C3D5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:42:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D2371C2139B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:41:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C33651F244C5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:42:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971454F881;
-	Tue, 18 Jun 2024 06:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3AD15589B;
+	Tue, 18 Jun 2024 06:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iahL1CXW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YpJCjIC6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B68219F6;
-	Tue, 18 Jun 2024 06:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF4B4F20C;
+	Tue, 18 Jun 2024 06:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718692916; cv=none; b=TKW/soyLaTQb+YZ08zHgHuSUTbCdY3BLFdrQA3PGDQJanWTyehNRwVCB7RO2UI32fyUm4FSiLQY54dhzlh4zjb1duFR+4i2JniaNOJ2rlPI8Rf+sr2JRjpcjIVnVOSnnUK02vLgNTH9bH8SH8mT1sh2q+cvB8oUNV4A8N5Alpbs=
+	t=1718692946; cv=none; b=mn05KsUY6FGwWwBElAylQF+Zf+T82buRhLU399dZfkyAw8QjyKwLtLl6daEVky+gHC4dkU9aLjN6G4QAf4NjHIjMSAru/r+HunYFTJb3cvEqdMbPWh1cL4zY4aFdabMPWzI+uYIWzfOMGkBJwazUfxn6lqIOiTghZBd2algkY9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718692916; c=relaxed/simple;
-	bh=fORBXY4rt20nRkmJvDmkj9LeAp2C5Z9Pt75NRddyEWY=;
+	s=arc-20240116; t=1718692946; c=relaxed/simple;
+	bh=b4G0M+0SDXvu/gr/P6DTgGODddDAWFkgwimbWQ/CUz8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kNQzBmx/zEccRqcmmkDHpvV7oSbSY/1cJasnQ9k+OZf8QOYOCodTUwotI89b2t3RyYw6HW2ETQjy+lb0SZVWkqzZSAOidI5OmCmqAxhC1GyKFBVOT9mHHSnj3hUsk8si5AyMtEjyjnqWsTwY630dvavoyGnb23IaIkDmGLflFf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iahL1CXW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 789DAC4AF1D;
-	Tue, 18 Jun 2024 06:41:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jFvgdnPQwhZO3PZpEhFNXPXMc+V9OEpHpHMjTQkXmmfhOQiH9j/HqxDFxxIHDuQzhwyHCjmI307SpNE7FkzYQTAqypRjMxGeuejBmp3a2Gyu2nzpLO/lSmm831q37HpJuo7l/sMWOd4kI06i7BtVYYMUUpD7XiplB5eYcj41MVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YpJCjIC6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A6F0C4AF1D;
+	Tue, 18 Jun 2024 06:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718692916;
-	bh=fORBXY4rt20nRkmJvDmkj9LeAp2C5Z9Pt75NRddyEWY=;
+	s=k20201202; t=1718692946;
+	bh=b4G0M+0SDXvu/gr/P6DTgGODddDAWFkgwimbWQ/CUz8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iahL1CXWqr8Q79CvCrx80RxqywRXcTwLi4tnzUmKCx1GBK30ioqniw5+c9ZB0Jrt6
-	 hZy3zXxZ8zio7gRjxFuHu817C7Mdpy2RIH9U5wsj5zzM8BdFCpLh52Vfsi9Ydx+W8d
-	 D2ncLiGl18Zai4IjZ3hLMFTIF1UdBWtbb/LTK8jUZ0IIP6ktdNHhkdukOz7syMeM1Z
-	 WwCS4JHlJvZE4r4RyQYqVJufP3znGHJbPbl3YZMzwJv9YtRIIpjX0iqwdGf5pM6R4o
-	 5raEyYAnZyN62BGa1XQvzF+iDwmLr8EgnW0PdGAG5cSKQ+3dE45RKxX2Ql9Cf2iaZe
-	 Cxpo3eI6T05uQ==
-Message-ID: <66630521-1d9d-440e-b3ec-bae8fe48920d@kernel.org>
-Date: Tue, 18 Jun 2024 08:41:49 +0200
+	b=YpJCjIC6hNrHVALlQs2FR/7rlX/G/Jo7sH+9YCItIZ4Dq6xM0oB2tU4U3/PyNSSa4
+	 cILLnHE04Pbga2EzN5+5CJ/JqRMPbUnNNmWtyk7uTCA+rEWSvgSn4Qc9OcTdublFt0
+	 x1M664h0iurnKP56jKvRsdGq0PlNCC8APcEEgoLaYwkLvshyuLL7PoM1rbjN4co4VL
+	 jf9eCEs8uWqiyHEJfelnE9OzxB+jVT8VI0e8CW4f3MnlmOOR7XVq1VwthV7VnissgW
+	 opY2aQfxevaX16VFBeGNcTOS9dPuncu7ZDfHzUlVSQ/CSUriIqLtVCyIPA0ItpFnhy
+	 7edfAJlfYK/qQ==
+Message-ID: <fc5ebd40-56a8-4ed7-ab8d-bda734224d23@kernel.org>
+Date: Tue, 18 Jun 2024 08:42:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-bindings: iio: adc: Add AXP717 compatible
-To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
- samuel@sholland.org, jernej.skrabec@gmail.com, sre@kernel.org,
- wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- lars@metafoo.de, Chris Morgan <macromorgan@hotmail.com>
-References: <20240617220535.359021-1-macroalpha82@gmail.com>
- <20240617220535.359021-2-macroalpha82@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 3/4] dt-bindings: phy: rockchip,rk3588-hdptx-phy: Add
+ #clock-cells
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240618-rk3588-hdmiphy-clkprov-v1-0-80e4aa12177e@collabora.com>
+ <20240618-rk3588-hdmiphy-clkprov-v1-3-80e4aa12177e@collabora.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,16 +107,15 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240617220535.359021-2-macroalpha82@gmail.com>
+In-Reply-To: <20240618-rk3588-hdmiphy-clkprov-v1-3-80e4aa12177e@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2024 00:05, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 17/06/2024 23:48, Cristian Ciocaltea wrote:
+> The HDMI PHY can be used as a clock provider on RK3588 SoC, hence add
+> the necessary '#clock-cells' property.
 > 
-> Add compatible binding for the axp717.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
