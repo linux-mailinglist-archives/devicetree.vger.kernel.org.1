@@ -1,120 +1,122 @@
-Return-Path: <devicetree+bounces-76947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 804E390CB8A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:21:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C1190CB1B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:08:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BA681C227CD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:21:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F954B2A946
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A93B1991A5;
-	Tue, 18 Jun 2024 11:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF44913AA41;
+	Tue, 18 Jun 2024 11:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="blHbx35h"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="kuPNntk1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25034158A33;
-	Tue, 18 Jun 2024 11:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8867E139D11;
+	Tue, 18 Jun 2024 11:27:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718708956; cv=none; b=WMnZMrZEwZ2qKEjOyZK2bKmfdwAex4cNmbqm8fnYF+JP/UcAYHQJaapQyUrMHaVZAhDBbRqma+4s6SiPTx64SO8rnUtJFO42VhiXKoZYuwXZYZGoEc1BtluYa4jVyWb31pLZ/4OAPDXLEWoxOqPgMME7p9ud/KR0/KdFA/RpYks=
+	t=1718710080; cv=none; b=hVo/64bwWMwyy7tCLoVMGmyjoKmgUvkYBHjvE3F47FFAOQaUwsjy+l6/+HJER1OzH/LVhb1qp+RFQ3L/t9wNQCLcWQmqd0i6Dj/QaHfgSW9V8ul7qFhTVyxFfvzcYbS+lVdZPPiLsY+GffC2M+dEFk7DixxH86DCvhHjEJ+kGBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718708956; c=relaxed/simple;
-	bh=tyB2je5H5jbXyJKO679uCQvKxGsjbPFrgqR1yhBwIoc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c0JzLtn0BzFUwyWsnr70D80lubwiIBSjLXbOR5x4GK3o60PuofsxdTO0YzI7ywtxjxivg1OMM1GUDx6vEWdxdne1kwOAS7l2zCYIn7vdZW0jDjxe2SQ43LDky5adgJlRIOGfp4IhHzRDX1s9MhLN+4amM/fRUFhjH2A5u6oJbEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=blHbx35h; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-705cffc5bcfso4784918b3a.3;
-        Tue, 18 Jun 2024 04:09:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718708954; x=1719313754; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iG1TCVG1MSplKguOPsRkz4XSFyOd0ncEb7510ZBmig8=;
-        b=blHbx35hjxVxj2wU2bW82m1aVFniqGGxE08QxyV6sDR6rjJ+GWUmufBnFhGd2qCFmm
-         86jUVqTUPlAdaL3LTitjNtPUJIBsOdxEh3T+bgQWixg/oHu3golJiy4qsRUEhxI8LTL7
-         Tu8WPC7R+tSR3EnLtD0qj0+9+UwBGUVqDIYmknnjXp8enqQnd4Y3jOYhoblWHIYqEVol
-         idnqXvbfoBDf+QrSPO1T5W66diXWIOkcXBb1bjcdKwNxZ54N2y1lErWtfahM3Ox7dC2V
-         557gS8VGzZQsmwHs4Vfvus8lKb0wshh6ThIUwzrI2TX/6uz+7zkn5dZJmwO3L3N0Ge0I
-         yMYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718708954; x=1719313754;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iG1TCVG1MSplKguOPsRkz4XSFyOd0ncEb7510ZBmig8=;
-        b=bpq3t5J+RUJQ8pzqLOyuS+V/hfc94mJ+hs+k8ULFgWV4Jy3CPJFXhCzkzW7BgT9dzF
-         rfkTGVPfwmldyJf805FFyw36lBZi2cQw3lcdm5Fnb/bXZICgLb0rvDCB/d5oQqhA83ec
-         vxyRJ51cl1tKt0j356WvY0aprHViQ1oYKKxCW75R4C4EKsoQ6C9vq4RZ2A/G39JbnSTD
-         h2pyYPTv2deQKzFYsdy66oJ5oI6XMEMOy8+/JrL/QBbwSIjdNIROSGDCvoXShsMpsX+B
-         G/YCRpo9/lgjh/BC5nu9VYC2Q55MRZxGHRzRU+rtDKc68zj0j3vLbJJORRgQxkF54DfU
-         5fdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXb7wpkHQ72m2dwOgmKcT0XC6fWZo076o0ZibLaucUqsUKkSNEMztGXvLC0MHNkwcLHesOhhn6MAbxw2MmATLw3s+vy8d4zlwF9XiV3dv9n0kVQXC56+iRZSsods0mZslbOWwhnO00h3J8PpY90pmqwG3JNq4phDtxuAiEI1eQQd7H4R1CuJZ3my5QsHkjgaAZL1d/WMZIPa23oC3h1HYuP
-X-Gm-Message-State: AOJu0YxmhWEVue3sTjApDg3qVm6W0Z8tT10xYUyZ3cUNvfgpo6I/j74e
-	IF3DFXw4tlc/4NOhc/A8lj1bs3Yy9NKxNW+7Mox4pqu7pXGApLLF
-X-Google-Smtp-Source: AGHT+IHn570jSC8mLa207ZZVoJ1a8SWyy+Vg9tFXV+t5mTPomgDIdr4p3GNRxtFtvUJjDKmZNzb2Hg==
-X-Received: by 2002:a05:6a21:3213:b0:1b7:edc9:be56 with SMTP id adf61e73a8af0-1bae8001f55mr15760048637.40.1718708954298;
-        Tue, 18 Jun 2024 04:09:14 -0700 (PDT)
-Received: from [10.176.68.61] ([192.19.176.250])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4a75cdec7sm12969595a91.3.2024.06.18.04.09.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jun 2024 04:09:13 -0700 (PDT)
-Message-ID: <b6b06a15-b7de-4351-ab9e-5234d2b91496@gmail.com>
-Date: Tue, 18 Jun 2024 13:09:07 +0200
+	s=arc-20240116; t=1718710080; c=relaxed/simple;
+	bh=9cakxw16MG1Is2XYxq435WdMffeoOQdzvmvP9zz7Jv4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=k47ZzN4o2N2I87jRgZWj8WqC3KQ13B/uAxXofH+vUfyWrsFxtFls8BBy5R6tgmxBxu3v8Y4sbRSqq4hfzOlaGcJiGmc06v/f/PwFNHfKARh/srQdRZHaA+WT1j8ly1C0KQRk/b2kcmB5mCsxLZspIrVVfDz8z52E/TGOhHyeHfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=kuPNntk1; arc=none smtp.client-ip=185.125.188.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from hwang4-ThinkPad-T14s-Gen-2a.conference (unknown [123.112.65.116])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 15ED33F1E5;
+	Tue, 18 Jun 2024 11:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718710075;
+	bh=MevBdRTfcD5TvScobUERArql+8UMb7ptftVJJxjWRKA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+	b=kuPNntk1ecl6ISDOmdh3CSO4M/FJWNrb52Y2tCJUFXHtrgR9QMrpkk8EIvqQugz21
+	 9Y8uvEdNbxTfuGcjuhvrBSD5WW9GeJLnhVsd3mEdvBu2CX6ae7wLfYpWGdGrO+dbxT
+	 8Jm8A4n70xuEvPR0k74uadgtErr7STUSGbCwEX25PjYUXPHAwmIUqxL3ZRxHIde+aR
+	 C39itLrAqF0TELAE3628LdJW1Xjf5IrxlwwXJ0zxXFERJNVcXyBMoSB/1fvZ9DR6XQ
+	 vPqBDuSJF5MFMMvrkwcDvBMphzxdizJ7I5PwsVPUue3iC5Ixs3TnFPcfNyBLy+6Nop
+	 cmXn9oXdUo8MA==
+From: Hui Wang <hui.wang@canonical.com>
+To: linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org
+Cc: jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andy@kernel.org,
+	lech.perczak@camlingroup.com,
+	Maarten.Brock@sttls.nl,
+	hui.wang@canonical.com
+Subject: [PATCH v6 1/2] dt-bindings: serial: sc16is7xx: add reset-gpios
+Date: Tue, 18 Jun 2024 19:26:19 +0800
+Message-Id: <20240618112620.152848-1-hui.wang@canonical.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: net: wireless: BCM4329 binding: add
- pci14e4,449d
-To: Jacobe Zang <jacobe.zang@wesion.com>, kvalo@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: nick@khadas.com, arend@broadcom.com, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240617024341.3106240-1-jacobe.zang@wesion.com>
-Content-Language: en-US
-From: Arend Van Spriel <aspriel@gmail.com>
-In-Reply-To: <20240617024341.3106240-1-jacobe.zang@wesion.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 6/17/2024 4:43 AM, Jacobe Zang wrote:
-> It's a Broadcom Wi-Fi module connected via the PCIe interface and also
-> add prefix in vendor-prefix.yaml
-> 
-> Link:https://lore.kernel.org/linux-devicetree/20240617023517.3104427-1-jacobe.zang@wesion.com/T/#u
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> ---
->   .../devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml      | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> index e564f20d8f415..0477566acd72a 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> @@ -53,6 +53,7 @@ properties:
->             - pci14e4,4488  # BCM4377
->             - pci14e4,4425  # BCM4378
->             - pci14e4,4433  # BCM4387
-> +          - pci14e4,449d  # BCM4329
+In some designs, the chip reset pin is connected to a GPIO, and this
+GPIO needs to be set correctly before probing the driver, so add a
+reset-gpios in the device tree.
 
-I can not find that device id. Can you provide more information where 
-you came across this device. The BCM4329 as I know it is an 802.11n 
-*SDIO* device. Not a PCI device.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+No change in the v6
 
-Regards,
-Arend
+ Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+index 5dec15b7e7c3..88871480018e 100644
+--- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
++++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+@@ -28,6 +28,9 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  reset-gpios:
++    maxItems: 1
++
+   clock-frequency:
+     description:
+       When there is no clock provider visible to the platform, this
+@@ -91,6 +94,7 @@ unevaluatedProperties: false
+ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -120,6 +124,7 @@ examples:
+             compatible = "nxp,sc16is752";
+             reg = <0x54>;
+             clocks = <&clk20m>;
++            reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+             interrupt-parent = <&gpio3>;
+             interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+             nxp,modem-control-line-ports = <0 1>; /* Ports 0 and 1 as modem control lines */
+-- 
+2.34.1
+
 
