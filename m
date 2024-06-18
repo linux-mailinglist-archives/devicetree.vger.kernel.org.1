@@ -1,106 +1,106 @@
-Return-Path: <devicetree+bounces-77104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D46390D68E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:07:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8F690D693
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:07:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 334202869B5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:06:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6F701F23C15
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019BF18C22;
-	Tue, 18 Jun 2024 15:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AB91CD1B;
+	Tue, 18 Jun 2024 15:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TcPgzO3d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBn+y6qV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7191C6A7;
-	Tue, 18 Jun 2024 15:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43B018C22;
+	Tue, 18 Jun 2024 15:07:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718723183; cv=none; b=aDok0JVA8f3R3p69dF6kazJTBRNNM82o9CV3Xs4xKnGECoOyrRSVCkQyeQtStcBIV6VAxYHkiMrK1OEF6coLElEzhG9FI7mDqxehkQdyWhlgaq00mV7q9WbP90RJlFIJyizr9eRGH+N4onrC0Lk1HlcsahzPYyoUByK92FGRp60=
+	t=1718723259; cv=none; b=heEhWFd9p/tFZMPd1AdvqXbG1/BOhYJKkaO3/oLKQFkJWpsp6c4t7u4VUoQ/kw0fE7VJ5YlUATm02AsB0w3AelCyv43Cg/nPOQX7RnXkbGS/4yJ+HjNmZeIFaPp+2ooJzjlIrxGzsGuVeoVsKx03x14Dxmqkhp0/xQZQRoyAMnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718723183; c=relaxed/simple;
-	bh=cTbpVT23FE/WdzJQYZy+vAP+uyhaBpAzNVPE9fPplag=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uy4JiiLo2e35fDnOYUUHHfMXTiW2jnJgVYBSC88De0D6A46BbOPD1NfeK9tO2zCc27sy1xG4lSnpFeRawLNc/RfKawatwSl/VohbMUOR31Af2xOEQre4P1SNQlJb51jDkwUKDt64FCcBrqEn3DmkBKe66vXI4IarwWbCt5DfPuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TcPgzO3d; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718723180;
-	bh=cTbpVT23FE/WdzJQYZy+vAP+uyhaBpAzNVPE9fPplag=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TcPgzO3deaTccIkpgSR4l5GHYEa1/1Nd/6rbe9PZsM/lscs+kHQ7+CMyuvks22NPd
-	 Hv75ZTy4yYSjkUrFAhuWMSZBM6E5rh7rWKi3Vr+MBRwQokslmEoG5i+gCUfbu9hK29
-	 AQpboHeiI+5/7qG4V84zS7a5j8GUQCkYGtyqZzh/sY+XUCr+QgkBTqGP0TbkZtYBoV
-	 rvCv/iDSbdXlNVZbkR2of/lKC0YJmIexUGYLa01iu7vK8AkpmAI0BzuWAidx6llUhe
-	 ueOu2igMvTSj/CHuxPbLFZlMHTCgYLwLa5VXfap1hPbDaENnntCgXdiyqGZs+jC7UN
-	 7BoRo9W+njIrw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 541B73780844;
-	Tue, 18 Jun 2024 15:06:19 +0000 (UTC)
-Message-ID: <dd33eae5-4d5d-4210-aac1-69d1c0339911@collabora.com>
-Date: Tue, 18 Jun 2024 17:06:18 +0200
+	s=arc-20240116; t=1718723259; c=relaxed/simple;
+	bh=+IisjZ/vwsQQqOhs55PDsJvjMV1+QCnMyVuLEP0+W3E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B/0x7wrVB3rFAKz/jzERZ/CK0rQ2Fyyf5On6f95pwh0p7JG17vgEjfFPm5gzKcTdZ/6IwcipLfwM1NEnkTd21NdbsHwoV7l6kRLmtLeFdcZuZHbGVi44WEN1eI850FL5Pl3Ae6I/7o+5aez9Q4bJFdbsEzGE9Ov8PHnyFs2wd04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBn+y6qV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D87DC3277B;
+	Tue, 18 Jun 2024 15:07:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718723259;
+	bh=+IisjZ/vwsQQqOhs55PDsJvjMV1+QCnMyVuLEP0+W3E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JBn+y6qVIcXviQNpCAyo4OzNFOKjQ8ZtnoAmRCN7NYXTl7ai+K/7wx1hUeIhKuhbM
+	 R19Ff+RTpp+QPbVD4gOtRGSZ4llSCrm9TtfBfUvJiaBQxTEZ9BytLLMBfTO0NvBX8W
+	 nWMAvvSjJ5HlHz4FCv3BzjZ2AAjWkUvhpCQjlLuV7BjD3gyV7/iOybq27KcYAeCB0B
+	 2wxaq6BmWLR3mHCXCkQGoY76WfrbBaxk2zD84dPHyCGP5ZNFUU7xrErD2JPLKt2lKz
+	 Ywdt4mhsTOQe0/cUHqi7EqOCVrD49gLkeDceOj4B8yYNrUyQ48fe4wLQjXKJqeWftP
+	 t7bZYqYauHxkQ==
+Date: Tue, 18 Jun 2024 16:07:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v5 2/6] dt-bindings: iio: adc: ad7192: Update clock config
+Message-ID: <20240618-crushed-courier-87d55930c377@spud>
+References: <20240618142138.520192-1-alisa.roman@analog.com>
+ <20240618142138.520192-3-alisa.roman@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Disable pwmleds node
- where unused
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rob Clark <robdclark@chromium.org>,
- Douglas Anderson <dianders@chromium.org>, Stephen Boyd <swboyd@chromium.org>
-Cc: kernel@collabora.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240614-sc7180-pwmleds-probe-v1-1-e2c3f1b42a43@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240614-sc7180-pwmleds-probe-v1-1-e2c3f1b42a43@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Il 14/06/24 22:59, Nícolas F. R. A. Prado ha scritto:
-> Currently the keyboard backlight is described in the common
-> sc7180-trogdor dtsi as an led node below a pwmleds node, and the led
-> node is set to disabled. Only the boards that have a keyboard backlight
-> enable it.
-> 
-> However, since the parent pwmleds node is still enabled everywhere, even
-> on boards that don't have keyboard backlight it is probed and fails,
-> resulting in an error:
-> 
->    leds_pwm pwmleds: probe with driver leds_pwm failed with error -22
-> 
-> as well as a failure in the DT kselftest:
-> 
->    not ok 45 /pwmleds
-> 
-> Fix this by controlling the status of the parent pwmleds node instead of
-> the child led, based on the presence of keyboard backlight. This is what
-> is done on sc7280 already.
-> 
-> While at it add a missing blank line before the child node to follow the
-> coding style.
-> 
-> Fixes: 7ec3e67307f8 ("arm64: dts: qcom: sc7180-trogdor: add initial trogdor and lazor dt")
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KAga6Hd/EkXMCEbV"
+Content-Disposition: inline
+In-Reply-To: <20240618142138.520192-3-alisa.roman@analog.com>
 
 
+--KAga6Hd/EkXMCEbV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jun 18, 2024 at 05:21:34PM +0300, Alisa-Dariana Roman wrote:
+> There are actually 4 configuration modes of clock source for AD719X
+> devices. Either a crystal can be attached externally between MCLK1 and
+> MCLK2 pins, or an external CMOS-compatible clock can drive the MCLK2
+> pin. The other 2 modes make use of the 4.92MHz internal clock.
+>=20
+> To configure external clock as either a crystal or a CMOS-compatible
+> clock, changing the register settings is necessary. Therefore, add clock
+> name xtal alongside mclk. By selecting one or the other, the register is
+> configured.
+>=20
+> The presence of an external clock source is optional, not required. When
+> absent, internal clock is used. Modify required property accordingly.
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+--KAga6Hd/EkXMCEbV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnGitgAKCRB4tDGHoIJi
+0k4iAP4+h+s4TpgwEVQfUaCwVH0YiL3KWHazuBDJTtBRyaFsKAEA7yXZKkZ1UDgT
+zC+Yor9D5dTaftVPsPNLyCSrtvH79gA=
+=VLUD
+-----END PGP SIGNATURE-----
+
+--KAga6Hd/EkXMCEbV--
 
