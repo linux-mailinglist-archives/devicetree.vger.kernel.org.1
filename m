@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-76913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C955A90C831
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:02:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5D990C834
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:02:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95F8C1C22A9B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:02:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F6AB28A467
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAA7205E17;
-	Tue, 18 Jun 2024 09:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1383205E3C;
+	Tue, 18 Jun 2024 09:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NF3bGn28"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MDtNs3mg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9941E15821A
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 09:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106D61586C7
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 09:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718703592; cv=none; b=Xjw3FInpZlYzG4TtZik2FJpuRoxDuEL05TgrjjZW15rqeQ0GDuA2Z60UaOoX7e0n8wDZbJvpxlVT+EDos/Lkr287mlv1xHC4D4vzfwBflTBZWP8h6coK7lSxT/ehte3b7QfZ4mW3sRNiL19lhkyLfzsA4yt7qcMlY0ckbzk7P5M=
+	t=1718703656; cv=none; b=jOw+YCa3yZ1TAYy0TUSRDHly7OtzOlZj6FY78sZAw2O2APZesTU9IuqMEluXlMepesnKjQlGmvYj5Q5LYuQ2yhiy+s1TLobCZL5KCQ4X3W0wYkyEd8NPbHrN3mweq7Y47a81V+ZgkXXVf0PWr13HJMcMqz8sP/3bUwPEBq4sGB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718703592; c=relaxed/simple;
-	bh=zerNUBbbfzHJenHr/SN3LbkjQWhye2rIWAeV8ZvfACo=;
+	s=arc-20240116; t=1718703656; c=relaxed/simple;
+	bh=33e3Ihd5f40K6c24G0nShy9Rg94fJg63CaJ6eSr53bk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YLaLL7WRFp4TbOpoAFaErtfGUe8KxDFd8uEn4uToBL6L12NTEx0qZUuZAXHYvrsFUWeUAf8PeAU9Au3T4woGzO222q0XfBw6djTeL7f18cbEn5lVJUNuXf+m5mFQ11KAcLrlOQkayJEsLBOH53VYQ8rn8HNhJcjK8f25XoV1qus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NF3bGn28; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=JqpCW5UMxAZri4lkQIEguAj0LEtBkuztr/YXuCwS/B0BoKuMv9jQEYUcVPHQxf93yGjPiKueodgA60P571pLyOAZ29dv6RcoZced2dKGyrFdgN4dUgd2yXLnTo0h6AAkBn2ii+6GHmD/yAL+PBUMcn0YVaUFr6Sc5XFlwlKq5ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MDtNs3mg; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-421f4d1c057so41356495e9.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 02:39:50 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52caebc6137so2842804e87.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 02:40:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718703589; x=1719308389; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718703653; x=1719308453; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ogriNGL3I569ecmDfsnIo+MYh0IZdFTbiFXWHmgjV4k=;
-        b=NF3bGn282Mc2d0vtxlTKHcRvwy3wA+uKEOp1ZYPO/XQQwASgOEiaWJvM1Qx50gY463
-         cvR4lQji+Bq9NrI0snbfbzq/vYTR3pgSMtnrBaRkTlhP8seyAbReM1iJZILSf1L9qM0p
-         QZRgDA0KSYMUdtNz6lDQT1lAQF4g0fFxJmLZIz9CGz9XenYyAmUOflTPETwX6N9ORMNm
-         KJIdcNGSTfusPFTLzyljoiTXAQ0UuYK4eOdODpy81gkrblrv5hstRbPlb4a/Z5HEQzrv
-         3fpneJDB/ng3A9ZJLBpcgfXvuImYZ5L9MTNhz1ySN7KuJ4uG8/c14rSj6i5O2mwzdfP4
-         lrXg==
+        bh=Q1dUAwLlzqf/kLhtXAP0bzcDfhg1+v3m5zpzjEvnZvI=;
+        b=MDtNs3mggdVouNpqDU60+H3JixK706UbVesqull81s8P2PR6dT1FT1GZuQLR2qRDf6
+         8prNIY+A2SHEWwNYa8PdBA/pUWqT472oHyf2JbwKKG5VRwdYwWEASrDsJ+2F3/iiRq5O
+         5kg6MtEHS7jG4OmKdkT5YikqWgTvzrnHLMmAgfu48R1iN7kLI40IlY3pCj4+a6o2kaMx
+         uCJD5PI+dHrCguyos3mCm7Cjp4OULFonT2nVvYPkzXv8cXnHccQmrt+vUR3tYtO13shI
+         yLic5v7xxwrhYf7QhzKmrxOVm/S7KnX+cyLykwuGuFL475iCrOq/odO5n34fAxkHb2mJ
+         M4dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718703589; x=1719308389;
+        d=1e100.net; s=20230601; t=1718703653; x=1719308453;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ogriNGL3I569ecmDfsnIo+MYh0IZdFTbiFXWHmgjV4k=;
-        b=XyeXD2Cu+7whr0beJatevC0NzSR+s/3O/Tepb4AaYKrI0/vyu8hAlzeJbwomuSREh6
-         M1lL4pSkyoY84UL4Y0F6Kn+ljPCGyqHdtfotQIn4LLo3qm3FWXJaECzuf25nNxrQ9mg7
-         DFZlTqrbEwLLPeBSC2HvHXmL9QQEkxM5QUcB28Zj8BJsqrN8AMOYiRxuVTIfo/HFOKl1
-         Vh2YqeD3Iw8Sm7TbV2Vt9o7NFH1Hu0CqR3gwj9BfuGFRrZlNwJEbuhjSwZ0d/ucwgviz
-         utkXvadPURvnDhogh0MCKw8Dru1bQlRTKxe2VIYKgple/vmtEXQx3Y/wxyaPhf6/YO/e
-         z+8w==
-X-Forwarded-Encrypted: i=1; AJvYcCWAWWT1RnA5dHxq8LPv13Y27ZB/m6+qPt+2IgzhMDp4KZr/Xw530j/KMUfyRguHmA/R6DK0JDTe4ibad0dBtxS8R+WMWYAkhfzO2Q==
-X-Gm-Message-State: AOJu0YydG3XzfL2rxEdROQdw3whlh9RhNDWt7vpZZ4SWiQd0P10I53ze
-	CcirUClenPMq3y1CL5VxuPbDot/o5/Hn/mHBKW4hyCffNRLrJbtgAEXK+tWmfx8=
-X-Google-Smtp-Source: AGHT+IEIN6tp7RT4XFF4v3F4al0ZGpML4l/gRVmowPIaegfQ/SdPPLlcj0SnPLkBHuNsyN/gwFkSkg==
-X-Received: by 2002:a05:600c:510e:b0:423:b672:9d64 with SMTP id 5b1f17b1804b1-423b6729f5cmr56726995e9.18.1718703588911;
-        Tue, 18 Jun 2024 02:39:48 -0700 (PDT)
+        bh=Q1dUAwLlzqf/kLhtXAP0bzcDfhg1+v3m5zpzjEvnZvI=;
+        b=bSNmfmp25C+sYdUOK1/p8DOVLbWUezGejtV6CIEM4nIJF9UOYuWUUZnFxPBRfujnoX
+         UKPDJ1dlg8GvTNSfRpibbuEngn6fe44uRk4Ol3ySfYKZTSIH6LcMNsmNubWo+963Wlhl
+         plYtIA75uSGvnLU/qZ6vpKy0M1rrxP1hND7u6KNSho+M2lI7U5yBuh1zrbJUYo3/QjWD
+         x1TU7i7HvO8lms3h0JK2oNBWn3HSNaZ8qQku/rSB6Shk8c8eY63AnirjIxaqhHoDZtI1
+         0KkQ3o8qxuTCi8SnSECFHr6q5d7tmCFnoG6qvzoJoE2bnsgJ9BE4Wb7ePap1+5I/9AXX
+         wAaw==
+X-Forwarded-Encrypted: i=1; AJvYcCUc3PUoy02q4da7hP07pEaLeBZfmkjIP+CaOuCLysSZ22bOMZiBuhOHBpE5m90yh00EVwgeBWm0Eus+r4SkSNcJl9VY7829VPDDBw==
+X-Gm-Message-State: AOJu0YyPFMLzAp0IrYd5wTaPxq5EHogJPIf58/88qsSE71fI+twTzE6G
+	lkH83Ryewdn0OwwOIy7aYQHIW4fe5sQk4uWYSN2N/uo4Pwt3uEPM5QT5SiFetMs=
+X-Google-Smtp-Source: AGHT+IFW4Mx2N85kJ7p6HdOoFLfWozgy2f4xtgZ+uqGFT3wZK0oboBOmMnX4YcNUGqA3hYiDQhDaZg==
+X-Received: by 2002:a19:2d1c:0:b0:52c:a5d6:2f27 with SMTP id 2adb3069b0e04-52ca6e9035emr6828300e87.50.1718703653227;
+        Tue, 18 Jun 2024 02:40:53 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075104954sm13703780f8f.99.2024.06.18.02.39.46
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f602f620sm182613095e9.19.2024.06.18.02.40.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jun 2024 02:39:48 -0700 (PDT)
-Message-ID: <6e5ad808-f4ee-45c3-a1cc-009f2f1010b9@linaro.org>
-Date: Tue, 18 Jun 2024 11:39:45 +0200
+        Tue, 18 Jun 2024 02:40:52 -0700 (PDT)
+Message-ID: <bb6036e2-613c-4d36-bcbc-3a407e3c727b@linaro.org>
+Date: Tue, 18 Jun 2024 11:40:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo
- SG2042 support
+Subject: Re: [PATCH v4 4/4] riscv: dts: add mmc controllers for Sophgo SG2042
+ SoC
 To: Chen Wang <unicornxw@gmail.com>, adrian.hunter@intel.com,
  aou@eecs.berkeley.edu, conor+dt@kernel.org, guoren@kernel.org,
  inochiama@outlook.com, jszhang@kernel.org,
@@ -90,7 +90,7 @@ To: Chen Wang <unicornxw@gmail.com>, adrian.hunter@intel.com,
  tingzhu.wang@sophgo.com
 Cc: Chen Wang <unicorn_wang@outlook.com>
 References: <cover.1718697954.git.unicorn_wang@outlook.com>
- <dcc060c3ada7a56eda02b586c16c47f0a0905c61.1718697954.git.unicorn_wang@outlook.com>
+ <e2d3b19e06fa29116b8032addc70c8dc1ec3866e.1718697954.git.unicorn_wang@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,147 +137,82 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <dcc060c3ada7a56eda02b586c16c47f0a0905c61.1718697954.git.unicorn_wang@outlook.com>
+In-Reply-To: <e2d3b19e06fa29116b8032addc70c8dc1ec3866e.1718697954.git.unicorn_wang@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2024 10:38, Chen Wang wrote:
+On 18/06/2024 10:39, Chen Wang wrote:
 > From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> SG2042 use Synopsys dwcnshc IP for SD/eMMC controllers.
-> 
-> SG2042 defines 3 clocks for SD/eMMC controllers.
-> - AXI_EMMC/AXI_SD for aclk/hclk(Bus interface clocks in DWC_mshc)
->   and blck(Core Base Clock in DWC_mshc), these 3 clocks share one
->   source, so reuse existing "core".
-> - 100K_EMMC/100K_SD for cqetmclk(Timer clocks in DWC_mshc), so reuse
->   existing "timer" which was added for rockchip specified.
-> - EMMC_100M/SD_100M for cclk(Card clocks in DWC_mshc), add new "card".
-> 
-> Adding example for sg2042.
+> SG2042 has two MMC controller, one for emmc, another for sd-card.
 > 
 > Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 > ---
->  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 69 +++++++++++++------
->  1 file changed, 49 insertions(+), 20 deletions(-)
+>  .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 17 ++++++++++
+>  arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 32 +++++++++++++++++++
+>  2 files changed, 49 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> index 4d3031d9965f..b53f20733f79 100644
-> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> @@ -21,6 +21,7 @@ properties:
->        - snps,dwcmshc-sdhci
->        - sophgo,cv1800b-dwcmshc
->        - sophgo,sg2002-dwcmshc
-> +      - sophgo,sg2042-dwcmshc
->        - thead,th1520-dwcmshc
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> index 49b4b9c2c101..164db23586e0 100644
+> --- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> @@ -14,6 +14,23 @@ chosen {
+>  	};
+>  };
 >  
->    reg:
-> @@ -29,25 +30,6 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> -  clocks:
-
-Widest constraints stay here.
-
-> -    minItems: 1
-> -    items:
-> -      - description: core clock
-> -      - description: bus clock for optional
-> -      - description: axi clock for rockchip specified
-> -      - description: block clock for rockchip specified
-> -      - description: timer clock for rockchip specified
-> -
-> -
-> -  clock-names:
-> -    minItems: 1
-
-Widest constraints stay here.
-
-> -    items:
-> -      - const: core
-> -      - const: bus
-> -      - const: axi
-> -      - const: block
-> -      - const: timer
-> -
->    resets:
->      maxItems: 5
->  
-> @@ -63,6 +45,43 @@ properties:
->      description: Specify the number of delay for tx sampling.
->      $ref: /schemas/types.yaml#/definitions/uint8
->  
-> +if:
-
-This should be under allOf block and move the allOf to expected place
-like in example schema. So after required: block.
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: sophgo,sg2042-dwcmshc
-> +then:
-> +  properties:
-> +    clocks:
-> +      items:
-> +        - description: core clock
-> +        - description: timer clock
-> +        - description: card clock
-
-What is the card clock? It's suspicious to see new clock not matching
-anything from previous ones.
-
+> +&emmc {
+> +	bus-width = <4>;
+> +	no-sdio;
+> +	no-sd;
+> +	non-removable;
+> +	wp-inverted;
+> +	status = "okay";
+> +};
 > +
-> +    clock-names:
-> +      items:
-> +        - const: core
-> +        - const: timer
-> +        - const: card
-> +else:
-> +  properties:
-> +    clocks:
-> +      minItems: 1
-> +      items:
-> +        - description: core clock
-> +        - description: bus clock for optional
-> +        - description: axi clock for rockchip specified
-> +        - description: block clock for rockchip specified
-> +        - description: timer clock for rockchip specified
+> +&sd {
+> +	bus-width = <4>;
+> +	no-sdio;
+> +	no-mmc;
+> +	wp-inverted;
+> +	status = "okay";
+> +};
 > +
-> +    clock-names:
-> +      minItems: 1
-> +      items:
-> +        - const: core
-> +        - const: bus
-> +        - const: axi
-> +        - const: block
-> +        - const: timer
->  
->  required:
->    - compatible
-> @@ -96,5 +115,15 @@ examples:
->        #address-cells = <1>;
->        #size-cells = <0>;
->      };
-> -
-> +  - |
-> +    mmc@bb0000 {
-> +      compatible = "sophgo,sg2042-dwcmshc";
-> +      reg = <0xcc000 0x1000>;
-> +      interrupts = <0 25 0x4>;
+>  &uart0 {
+>  	status = "okay";
+>  };
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> index 81fda312f988..bfdfd6f32912 100644
+> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> @@ -346,5 +346,37 @@ uart0: serial@7040000000 {
+>  			resets = <&rstgen RST_UART0>;
+>  			status = "disabled";
+>  		};
+> +
+> +		emmc: mmc@704002a000 {
+> +			compatible = "sophgo,sg2042-dwcmshc";
+> +			reg = <0x70 0x4002A000 0x0 0x1000>;
 
-Use defines... or actually drop entire example, no point to keep growing
-them.
+Lowercase hex.
 
-> +      clocks = <&cru 17>, <&cru 18>, <&cru 19>;
-> +      clock-names = "core", "timer", "card";
-> +      bus-width = <8>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +    };
->  ...
+> +			interrupt-parent = <&intc>;
+> +			interrupts = <134 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =
+
+Odd wrapping. Don't. See DTS coding style.
+
+> +				<&clkgen GATE_CLK_AXI_EMMC>,
+> +				<&clkgen GATE_CLK_100K_EMMC>,
+> +				<&clkgen GATE_CLK_EMMC_100M>;
+> +			clock-names =
+
+Ditto
+
+> +				"core",
+> +				"timer",
+> +				"card";
+> +			status = "disabled";
+
 
 Best regards,
 Krzysztof
