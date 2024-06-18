@@ -1,1273 +1,498 @@
-Return-Path: <devicetree+bounces-77272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE82A90DEC0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 23:55:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8091090DEF3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 00:07:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DBB3B21CE1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 21:55:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 022EF1F2202A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 22:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B02188CBE;
-	Tue, 18 Jun 2024 21:54:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2AAF178370;
+	Tue, 18 Jun 2024 22:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="PiERpuY3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fZmnRh7T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2052.outbound.protection.outlook.com [40.107.104.52])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C181849F9;
-	Tue, 18 Jun 2024 21:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718747656; cv=fail; b=UBgazvhcYea+FSrvngoL/BNctCAoIr9A8wbMJ8Bu3McwygL/A3yJVcBcM1WhyCbGCyVtVKfRjhezGgFCSwaClaGFW4tzdfTeygQT807B6TMXeRvEg8VCJgp3TItI9MPBxo1+wYNDcndGYnnwB8DFViNJ3f0fEwDKpuhwJ9gRATU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718747656; c=relaxed/simple;
-	bh=y+AGv642+cjvVIlm1YYGdrJXgyEzPHH4My0jZF3TceM=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=lzi01MWWR/HTFITdQqPHDfWMvGbRwqQGYx9KoXjXbtvMx9+mTsRKMfpwKJN7h2URTrpLp9oxBK7fpPfL35f78c3k1y+/3EI6JDW3j+mWI7pSwkIfFTieGSKU7iX10LhK/T9pu8VAcuvfI+gDssopn8MhszuOOFcvxevO5Wj5V6U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=PiERpuY3; arc=fail smtp.client-ip=40.107.104.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XZUrO8U/GUp1/LkcF1yHY9tepfM8M9/CzLvPy51g81G1Ddv2bEvKx2TkMizqUWgr8OSNx+atAZ/gpDGdaq/0nRWuY6GXOamQWrw30G0ayyD8Tn0EE3L4iMFjJS97LyEKRA9KaoccUO+wW2X4bhYsJw5XvBxvwx8VB1qjJbu6J0AqVDBQ5Lt3AHIQswc08BQwtbLMSAkRLNMdV3xnUmGcWIUvWpTAr/OJBi9nKPdw1Ysy0yA7dc8KwNQyCVT8tOUlhkPD4vUpxNpvXsWtvnLZ9s8NwbQ6kYDP3x7+rqtU8sPfvZlz67hrOO/42EFPW9SDSw1cx/ab0XdgM9pxX4VbMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8K/evLQlTA+kCcmXthRa4tT32k7EbFByQpMvdjulQd8=;
- b=Z9n5d6nBWGByYZ7jfOUHIjGHQpTnSLFGP6wYClGeemzLnLPV9ReDZeTka0HYbeRTDFwnVjwAMipEowtzzk9EV/vg/Tsfi+Mq9f9YFqPAlxkw3AwX4TxY/NnChW+P+CYOoTpcHkKo5BiBSbMSU3G0JylGA7qdYFqc8ld+jcPqMxTHYwXyJSwhyb8SQAWANiWjk0CGqeTlCEZcUHgbug7kIFQTSDU3/C+TZTG3q+CJgJ6yftbly902r0Vbe8TBPqx4r4iZeOjX/6w0UpVVh6hswMuy+X1aVWeYxMAqlD9w3f84mZqWvhKzMln8mZapqNVDtlA7WxtgvpNwK0FSru08IA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8K/evLQlTA+kCcmXthRa4tT32k7EbFByQpMvdjulQd8=;
- b=PiERpuY3CJq9sYRLDJxN1yNGgQIn8cIfwqnw0y2EC0My3uT1h39tDau+LtrVMGpevEN+Yx8rusvcvtUv3CRgTKOCN00rfmKV4eyXp5CZx5R7G8brt4sBqUJ+M2jYtVWDvfJaB+hYJDmGBa8MTTveY9r92PLf95kMzoLg1AFVwT0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU4PR04MB11008.eurprd04.prod.outlook.com (2603:10a6:10:58d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Tue, 18 Jun
- 2024 21:54:11 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
- 21:54:11 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Tue, 18 Jun 2024 17:53:46 -0400
-Subject: [PATCH v2 2/2] dt-bindings: net: Convert fsl-fman to yaml
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240618-ls_fman-v2-2-f00a82623d8e@nxp.com>
-References: <20240618-ls_fman-v2-0-f00a82623d8e@nxp.com>
-In-Reply-To: <20240618-ls_fman-v2-0-f00a82623d8e@nxp.com>
-To: Yangbo Lu <yangbo.lu@nxp.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Madalin Bucur <madalin.bucur@nxp.com>, 
- Sean Anderson <sean.anderson@seco.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-e586c
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718747639; l=31822;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=y+AGv642+cjvVIlm1YYGdrJXgyEzPHH4My0jZF3TceM=;
- b=8D3fFwftBWTGd/ITgJRU2pBvnzvJpmVPKiXTPzS7l00WGt83IJ3FhuOO8fgnFxsxCnROfV01y
- 28ehjRgbWg3DeINaBSPa2VnxDkCCJQKg5L526n8huFWBciFWJCZqDMW
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: BY5PR17CA0004.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0281C2BD;
+	Tue, 18 Jun 2024 22:07:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718748461; cv=none; b=YKdCZgcecNXQCHSoLbUZcF5+P+ldMyiuII/TLnzT4lfXRQiVWeqBPmWYxbcsg/giVKxzJc1KT1SlMgjYKctnJQGOe23x16zCNrgHv/+/kW5EApX8DFH49jqrA/RzvG0tAf93ZHzlyFxOJKaJ6v6L5dHGYhs8xmN/xyexdN0XJ2Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718748461; c=relaxed/simple;
+	bh=vshtYJ6auOWRkjWkQysHLBE7xhnTPobPLeAKIUjR0ak=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=FlTMyc6hD60yaWfVBFf8U68x74AuycRaKAtl4rs8/UqALlyquqSegTPDLYfSdYyeTdhHigQl/033ky4/ZDJxFlDR/9LnDy6bFAEstp2GBGsJkryf7aoDiLM17yAvOWip50ojkCvwVxe8BgPVPqM2wJcNwhN335gVRTL3Yz3E8nE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fZmnRh7T; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ILbUud007757;
+	Tue, 18 Jun 2024 22:07:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	e4GxQEU865+I+Ap5uFV4RigVEcUPLczIXhdKtfPyRfw=; b=fZmnRh7T8Bces6zh
+	SsmrVvD2sbd0FJBuvv7L25zhSmbsSHJpc3rUvUH+tghqLRqbsuLBIBb1w2dMYjXa
+	B0MqsyuuXOAFo8iKV/Gio76o5fHBlf19LfZ3fJkMh56PT4MK9iIQ0RgFe4oHTboZ
+	xOZCjwAhPfQGaJSE0pG8FFaN8or1x8kZm6xO25BsqSh2Ms74B+nKQQE3Z0io2bgF
+	iv0YnrEK+bzgHEgkG3xlQAh+Z4z502y7XWavxoCIl3Tw3m8QVEllDha32gOmKie0
+	lunmlayQz75GzskBfE/iuToj5b5sAs688IH7/4Q6HNXGXxA3M1rvm9UamcDeHJpK
+	RsZ/cw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yujag01jf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 22:07:19 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45IM7Ivf005763
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 22:07:18 GMT
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 18 Jun 2024 15:07:14 -0700
+Received: from nalasex01a.na.qualcomm.com ([fe80::62ba:cee1:5495:c89]) by
+ nalasex01a.na.qualcomm.com ([fe80::62ba:cee1:5495:c89%4]) with mapi id
+ 15.02.1544.009; Tue, 18 Jun 2024 15:07:14 -0700
+From: "Gaurav Kashyap (QUIC)" <quic_gaurkash@quicinc.com>
+To: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        "Gaurav
+ Kashyap (QUIC)" <quic_gaurkash@quicinc.com>
+CC: "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        "ebiggers@google.com"
+	<ebiggers@google.com>,
+        "neil.armstrong@linaro.org"
+	<neil.armstrong@linaro.org>,
+        srinivas.kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        kernel
+	<kernel@quicinc.com>,
+        "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "Om Prakash Singh (QUIC)"
+	<quic_omprsing@quicinc.com>,
+        "Bao D. Nguyen (QUIC)"
+	<quic_nguyenb@quicinc.com>,
+        bartosz.golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        "konrad.dybcio@linaro.org"
+	<konrad.dybcio@linaro.org>,
+        "ulf.hansson@linaro.org"
+	<ulf.hansson@linaro.org>,
+        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+        "mani@kernel.org"
+	<mani@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        Prasad Sodagudi
+	<psodagud@quicinc.com>,
+        Sonal Gupta <sonalg@quicinc.com>
+Subject: RE: [PATCH v5 04/15] soc: qcom: ice: add hwkm support in ice
+Thread-Topic: [PATCH v5 04/15] soc: qcom: ice: add hwkm support in ice
+Thread-Index: AQHawFGQ2Cb4IdeC1UawBk8ySHD6CrHMC+2AgAKAhjA=
+Date: Tue, 18 Jun 2024 22:07:14 +0000
+Message-ID: <96e2ce4b154a4f918be0bc2a45011e6d@quicinc.com>
+References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
+ <20240617005825.1443206-5-quic_gaurkash@quicinc.com>
+ <3eehkn3cdhhjfqtzpahxhjxtu5uqwhntpgu22k3hknctrop3g5@f7dhwvdvhr3k>
+In-Reply-To: <3eehkn3cdhhjfqtzpahxhjxtu5uqwhntpgu22k3hknctrop3g5@f7dhwvdvhr3k>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU4PR04MB11008:EE_
-X-MS-Office365-Filtering-Correlation-Id: f76b1992-e377-4b5a-60f3-08dc8fe12f94
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230037|366013|376011|52116011|1800799021|7416011|921017|38350700011;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?UEhCU1F1U21OaXFpYkMxdmtIbkRCWDF2U1UvV0R2b3o0bmxBVVZpS0YyL2pl?=
- =?utf-8?B?MWQzTUVCQVdrYWR6cmVHRVRyd0t6QVNPOFFnMGVHMjc3TGVCenpsdlFMSFdJ?=
- =?utf-8?B?V2pDNXhpWEw2ODFuMDZOME95T0JKWmVPb1NKU2xORWgvQzAzSmlWYlVrdWZx?=
- =?utf-8?B?T0ZIdUJxOERadVgzdEk5SE9tbXNsZ1ZOM3gwWTFzYTZGMVpzT3U3UE9MTE9W?=
- =?utf-8?B?ck96N2tTUlprTGRnNXR4b20ybEIzTDFhUVpCU1FnbHJ5d3ZWa0JDY0VkY0c0?=
- =?utf-8?B?cVVxOCtubTlHRU03MmdlM2Rhem5TclFnNUJDbXdJT0tna3ZrQUt6VnlxUUlp?=
- =?utf-8?B?alpCNDNoclI5dTJFL3dxMWhGRXJDOFRYb0lldG01VGtBQXNIM2dmbG5kVDkv?=
- =?utf-8?B?ZjRoZ1ZORmpHN2pIdHFPZnRieFlNNnMyNzVKN3gzV3ZvQVZZNzlVNkVtTGlt?=
- =?utf-8?B?ZlQ4cVNrTlNPQTdSbUt1RFhFN01RTVJORWlWbjVWMVBQcGQrTVZDWm5vZkhL?=
- =?utf-8?B?dlZwNytYc3pBUlo5VnUwZlpXNkZxV2tkaUp2Tm5WaDVjV1hRR2ZVeUlZVlNL?=
- =?utf-8?B?dHhITUMyMEdjRHVQQ0QwWkhqdnRKdlM2NkMvcDN4RDZobTFyV2VKRGxSTjdJ?=
- =?utf-8?B?dWluZmF1V3ZyVENSRjZHa3M2a1hqM3A0Q2ZrOTFuNXQzU3hGaDkxMk95ZWpT?=
- =?utf-8?B?ekZvSWIrTXlRU2wxd2xMckVidFBHMXl5anJmY1I4U09JZGlYV1NGTlJrZkZs?=
- =?utf-8?B?aHFWbUpNbjIzdkhQaUg4WUkraUdNaFNLWjRHYXNRd3djT2o4Ti8rWDNpeDZZ?=
- =?utf-8?B?dDRmaUdBaHd0eEVrdXpRT1FyL1Y3dytkVHc1WWN0RzZzR3drQkpYa285VFdT?=
- =?utf-8?B?R05oTGF0ajdiVU1yWTloZVdWMnJLSFl0NTgyVHN1enhGVXlSckUwNjFCbEZD?=
- =?utf-8?B?ck9xclRFb3NNV0dZWGV3bE9Gc1BrOWhyenhyZU8rMjJlR2piR3ZWdHA5VGND?=
- =?utf-8?B?elA1VzZJdjhQS1IrdmxuaVJZQVY4NFQzb0pvVFJYT0RpTm4wUlBDeFYrcEJR?=
- =?utf-8?B?Qjd2YzdCNEZLcjFqNTFqNSt5ZlFzSEZEN0llZ1VORWp1VVBEbTZJRnBGaUs4?=
- =?utf-8?B?eVF4dHZBV1JLVUR2THZMOG03SVEwaE80VkJ1ZW04c1pMVDZjaTNyRVNSNVBu?=
- =?utf-8?B?OUdzMVBzRlFSL1pzZzdYWnpwbFViUDZHeThZMHhwU2tsSUZ0QU9STWI3LzZz?=
- =?utf-8?B?UVFNOHczYWRWajJ2V0JNYkZJSnFhOEtUUDN3aUNEbEozRmxnY0dKakJMYmdr?=
- =?utf-8?B?WTNqaEVobTFPWTVHby9xNStSMEJLakxVWTJmb09kcEpxSzVhdHlUczZrNWRM?=
- =?utf-8?B?VUpIaHRZSmRiTG04TkdxVTEyZFlpUjFTNmFnUVZEM1RycERVNkJuZHdBWEdT?=
- =?utf-8?B?SVh5aGNEMmdBZzkwM1J4M3lqZ0NQb3cxRzM3aVo1QkdTZFdEa25mSHozMGw1?=
- =?utf-8?B?SUFkc25CeVJrbXFRRnRjMjkxaGcvNzFKeXd3V042WDNCQWdlR3JaOEl2akpp?=
- =?utf-8?B?UzFWVjZ4QVlrVktTL1Jvb0tHRlpQbVRMRzVpOTBJM2Z6TkhQc3RDemxjdGV2?=
- =?utf-8?B?b2F0b0poK3RjRjgyeEpPU1lhV1RsRHF6eDFIVy9CdnJ5Mytzek12eWtDMGtR?=
- =?utf-8?B?OGsxVm1QYjFJdjBTQ0dsUXJHQnN0RFVHb0ZqdzA3ZDZOb1NJVitubHFxWUUy?=
- =?utf-8?B?Qy9MZWRIeUxPR0pmOTFoNG1jS3RRdlg0K0NZbzVzd0dmRnZYbTU5ZkVnMjBH?=
- =?utf-8?B?eXZaUUlKbGVSQjIrUUdDdz09?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(376011)(52116011)(1800799021)(7416011)(921017)(38350700011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?SUdFS3VDa2NHeHZvU3ZmUW4zd0M2UFUyY1dJQWw0TFRsSEV0T1p1QU5xakkw?=
- =?utf-8?B?bmhjT2FIVVRoK0s0SmZvcUV4M1Q1MENmc0x3QzVVOC94U3VUckxOTHlGWVA0?=
- =?utf-8?B?Ulo1b1Y2ZW40dEo4UHNtRDVEOWx2NENGZlZrMWFZSG53UnBIeFBIU3VnbFg1?=
- =?utf-8?B?Qjl4OFQ3US9EMUVVZTF2L1hsWUtXc2FENzJlNlV4ZkZNUjVYblBaOWZzUWc4?=
- =?utf-8?B?OTFDdnRhOVd0WGRERVVqOXBzN2VPYVF6dnAyNHVEK24vUHBkRElwMDVKZE9k?=
- =?utf-8?B?cFhUL1BSdjREZ2VzdjVNcXUyUm9EODNQOXFpNzd6aC8vZ0UrY3VXOUFEUlEz?=
- =?utf-8?B?cVAxKy80QW9zQnRVeUtWVitWY0hYWWJ3VVZ3MHZnMXprYjZNWnpHakdlZGpv?=
- =?utf-8?B?YmJSQXdLRlZsdkhES201b0YwWFQ4MXFROE9NODVvbjJjTHRSbWR3bFBvL21T?=
- =?utf-8?B?Y1pCR3h6VUF3ckZOZURHbmRQcUprSkptVVpPQ3A2SmJaUTNqd25WeXpMZFR4?=
- =?utf-8?B?YnNkOEc5clZsN0ZKSUVpZHdOQ1BxMytmNTJTNSsyRHg2bFFPNVhjekJIWk84?=
- =?utf-8?B?UHI0R096UloveFhaTmxmTExRRGgyZHFGY2hCMzRseVVQc05mczY3b1UzVTg5?=
- =?utf-8?B?Z0VobXN2TG1vMDhwTXJ3RXJBQnRNVTRRZFBjaWFyNXd1OFhmN3ZtaVg2QllR?=
- =?utf-8?B?cjVLZUI2SHMxZUdNZ1ZnTThvd3A2d2lLdWVVRXRRTnBIWENNWHI4TWJrN3FS?=
- =?utf-8?B?MGFBS2cwTVQvSmxVZWhaV042Q2tRSU5JRmhMUlJuZHVDSEozVU5kYk5yckhS?=
- =?utf-8?B?NEJDNjl3Qk5WS1VXZGdLOFhNeFhmMjcwNnc2KytHU09KdzBPK3hOSnlSTDlr?=
- =?utf-8?B?eSs1WGoycXA4MjdQYzhJVnJDOGxzSWZKUEUxYjlSK1ZaUktGNlVoMVc4aXFw?=
- =?utf-8?B?dU4vVFNXS3ZYSCs5bG13bDRXMm9CR0IrczAzSmRCK050b3BCczZMczhyVlEw?=
- =?utf-8?B?UzFIOWh1YzV0bXdrMDZCdHRlaG00eUpnRm1qc0IyNVVEVGNoTmdwSFdYSXQ4?=
- =?utf-8?B?S2U5QUhmbGxVUms2YTlPd2xmL1VVTitOUWt2cHk5anVJVnlGMFdvdmR3Tmlv?=
- =?utf-8?B?OGYyWjRPRCtGdStVZjNhTC90NXlIeCt3Y2Z5YmIxYndPSXVpckVqTlZmeUtq?=
- =?utf-8?B?M0o4cFNndlNPeUVHb2ZhYStScFpSWHVxNnFwdU1BK2NuMTN5T3dqNUcrT2gr?=
- =?utf-8?B?ZWRMS3pyUEJqMHRRVUEwN0dpTG9ibjdkelVhWFV4cjZBa0RRY3kxNVpsM29i?=
- =?utf-8?B?b1dkUmJ6R1g1dllwek4ySmo5WFplNW1NUzFOaVhld25kdmtSaWhjazRPZU4r?=
- =?utf-8?B?S1Y2bHVOUXc3bG4wTmZVNXI1Y1A3UGxUZWplM0psVWp0L0Fkc3RqUU9yckh1?=
- =?utf-8?B?RGR6ODVSeFMvTUhNMUhoQ3V4WCtJd3NFSXNneG41dGtQQkpjTlozL1R6RFRF?=
- =?utf-8?B?R3RWVWVONXg0T3hsWTh4V0p0RGlicm1MdlJwSTgzbitJY1ZmVmQwdWhLbitv?=
- =?utf-8?B?UnE0NEdUN1BWb2o1aXhvZnNqVlU3ZGhwcER5ajZlSTd5clhsaWNQd2JzL0VZ?=
- =?utf-8?B?SGp0Q0FmUkppeHpvVzdmNVA2REJTZFdBRlpNTkErTklPRWdvWTNEWDBESG11?=
- =?utf-8?B?TXk2dTlTWG9QQTRlS2ZIU3hwOURndzY4ZFhqdFRHaFYxRys0ZFMyOUgyNy9y?=
- =?utf-8?B?TE5Hcy9hUXpIVlRQZzRGUFczVnAvNEhSMTZCN2s5eWVuVzZrSTNHdkM0eHlX?=
- =?utf-8?B?THV1Lzl6Y2xUZVZLaXZ3a2wyWnZ5R3FkTkJXb1IwWXlSQnhnY0Z4dDg2QjMr?=
- =?utf-8?B?S2doNzJkTmlvMFczcStUNkxnZElSMk91N1hkQUxpTEJaNjZuWkVWUTVmQW1U?=
- =?utf-8?B?OG90RDZCMEJqZ0RlT211cXlkUVQ3OS8vOTRobjRsWVEzTm5iSU9UY21RQTNW?=
- =?utf-8?B?bFZobUtIMERtNXFpbk03aXFWQmlscVFiTzBSaEpyTWdaWHAvdEoyd3BPS0tM?=
- =?utf-8?B?bTVGbDZaQjBOYnI1bDg2WkN6Z0RESjlocVNYVlNtdHZFL2xUZlZOcC9ENjFR?=
- =?utf-8?Q?Y6mIwP1ywAnnXYEYme5J2x2/v?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f76b1992-e377-4b5a-60f3-08dc8fe12f94
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 21:54:11.0783
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NOblCrtdBY+km20kuVAVa2qD+/ITFqgVTHGhIrXWWFicTnWmsLlJcb+d0Ym5DKWdhIru1Aa08aMbJk7nGNDweQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11008
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 51Uig091LoehcODDGFqcphBcAsS3zefx
+X-Proofpoint-ORIG-GUID: 51Uig091LoehcODDGFqcphBcAsS3zefx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_04,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 mlxscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
+ spamscore=0 bulkscore=0 malwarescore=0 clxscore=1011 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406180162
 
-Convert fsl-fman from txt to yaml format and split it fsl,fman.yam,
-fsl,fman-port.yaml, fsl-muram.yaml, fsl-mdio.yaml.
+Hello Dmitry,
 
-Addition changes:
-fsl,fman.yaml:
-  - Fixed interrupts in example.
-  - Fixed ethernet@e8000 miss } in example.
-  - ptp-timer add label in example.
-  - Ref to new fsl,fman*.yaml.
-  - Reorder property in example.
-  - Keep only one example.
-  - Add const for #address-cells and #size-cells.
-  - Use defined interrupt type.
-  - ptp example use node name phc.
+On 06/17/2024 12:55 AM PDT, Dmitry Baryshkov wrote:
+> On Sun, Jun 16, 2024 at 05:50:59PM GMT, Gaurav Kashyap wrote:
+> > Qualcomm's ICE (Inline Crypto Engine) contains a proprietary key
+> > management hardware called Hardware Key Manager (HWKM).
+> > This patch integrates HWKM support in ICE when it is available. HWKM
+> > primarily provides hardware wrapped key support where the ICE
+> > (storage) keys are not available in software and protected in
+> > hardware.
+> >
+> > When HWKM software support is not fully available (from Trustzone),
+> > there can be a scenario where the ICE hardware supports HWKM, but it
+> > cannot be used for wrapped keys. In this case, standard keys have to
+> > be used without using HWKM. Hence, providing a toggle controlled by a
+> > devicetree entry to use HWKM or not.
+> >
+> > Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> > ---
+> >  drivers/soc/qcom/ice.c | 153
+> +++++++++++++++++++++++++++++++++++++++--
+> >  include/soc/qcom/ice.h |   1 +
+> >  2 files changed, 150 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c index
+> > 6f941d32fffb..d5e74cf2946b 100644
+> > --- a/drivers/soc/qcom/ice.c
+> > +++ b/drivers/soc/qcom/ice.c
+> > @@ -26,6 +26,40 @@
+> >  #define QCOM_ICE_REG_FUSE_SETTING            0x0010
+> >  #define QCOM_ICE_REG_BIST_STATUS             0x0070
+> >  #define QCOM_ICE_REG_ADVANCED_CONTROL                0x1000
+> > +#define QCOM_ICE_REG_CONTROL                 0x0
+> > +/* QCOM ICE HWKM registers */
+> > +#define QCOM_ICE_REG_HWKM_TZ_KM_CTL                  0x1000
+> > +#define QCOM_ICE_REG_HWKM_TZ_KM_STATUS                       0x1004
+> > +#define QCOM_ICE_REG_HWKM_BANK0_BANKN_IRQ_STATUS     0x2008
+> > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_0                       0x5000
+> > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_1                       0x5004
+> > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_2                       0x5008
+> > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_3                       0x500C
+> > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_4                       0x5010
+> > +
+> > +/* QCOM ICE HWKM reg vals */
+> > +#define QCOM_ICE_HWKM_BIST_DONE_V1           BIT(16)
+> > +#define QCOM_ICE_HWKM_BIST_DONE_V2           BIT(9)
+> > +#define QCOM_ICE_HWKM_BIST_DONE(ver)
+> QCOM_ICE_HWKM_BIST_DONE_V##ver
+> > +
+> > +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V1            BIT(14)
+> > +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V2            BIT(7)
+> > +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE(v)
+> QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V##v
+> > +
+> > +#define QCOM_ICE_HWKM_BOOT_CMD_LIST1_DONE            BIT(2)
+> > +#define QCOM_ICE_HWKM_BOOT_CMD_LIST0_DONE            BIT(1)
+> > +#define QCOM_ICE_HWKM_KT_CLEAR_DONE                  BIT(0)
+> > +
+> > +#define QCOM_ICE_HWKM_BIST_VAL(v)
+> (QCOM_ICE_HWKM_BIST_DONE(v) |           \
+> > +                                     QCOM_ICE_HWKM_CRYPTO_BIST_DONE(v)=
+ |     \
+> > +                                     QCOM_ICE_HWKM_BOOT_CMD_LIST1_DONE=
+ |     \
+> > +                                     QCOM_ICE_HWKM_BOOT_CMD_LIST0_DONE=
+ |     \
+> > +                                     QCOM_ICE_HWKM_KT_CLEAR_DONE)
+> > +
+> > +#define QCOM_ICE_HWKM_V1_STANDARD_MODE_VAL   (BIT(0) | BIT(1)
+> | BIT(2))
+> > +#define QCOM_ICE_HWKM_V2_STANDARD_MODE_MASK
+> GENMASK(31, 1) #define
+> > +QCOM_ICE_HWKM_DISABLE_CRC_CHECKS_VAL (BIT(1) | BIT(2))
+> > +#define QCOM_ICE_HWKM_RSP_FIFO_CLEAR_VAL     BIT(3)
+> >
+> >  /* BIST ("built-in self-test") status flags */
+> >  #define QCOM_ICE_BIST_STATUS_MASK            GENMASK(31, 28)
+> > @@ -34,6 +68,9 @@
+> >  #define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK  0x2  #define
+> > QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK  0x4
+> >
+> > +#define QCOM_ICE_HWKM_REG_OFFSET     0x8000
+> > +#define HWKM_OFFSET(reg)             ((reg) +
+> QCOM_ICE_HWKM_REG_OFFSET)
+> > +
+> >  #define qcom_ice_writel(engine, val, reg)    \
+> >       writel((val), (engine)->base + (reg))
+> >
+> > @@ -46,6 +83,9 @@ struct qcom_ice {
+> >       struct device_link *link;
+> >
+> >       struct clk *core_clk;
+> > +     u8 hwkm_version;
+> > +     bool use_hwkm;
+> > +     bool hwkm_init_complete;
+> >  };
+> >
+> >  static bool qcom_ice_check_supported(struct qcom_ice *ice) @@ -63,8
+> > +103,21 @@ static bool qcom_ice_check_supported(struct qcom_ice *ice)
+> >               return false;
+> >       }
+> >
+> > -     dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
+> > -              major, minor, step);
+> > +     if (major >=3D 4 || (major =3D=3D 3 && minor =3D=3D 2 && step >=
+=3D 1))
+> > +             ice->hwkm_version =3D 2;
+> > +     else if (major =3D=3D 3 && minor =3D=3D 2)
+> > +             ice->hwkm_version =3D 1;
+> > +     else
+> > +             ice->hwkm_version =3D 0;
+> > +
+> > +     if (ice->hwkm_version =3D=3D 0)
+> > +             ice->use_hwkm =3D false;
+> > +
+> > +     dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d,
+> HWKM v%d\n",
+> > +              major, minor, step, ice->hwkm_version);
+> > +
+> > +     if (!ice->use_hwkm)
+> > +             dev_info(dev, "QC ICE HWKM (Hardware Key Manager) not
+> > + used/supported");
+> >
+> >       /* If fuses are blown, ICE might not work in the standard way. */
+> >       regval =3D qcom_ice_readl(ice, QCOM_ICE_REG_FUSE_SETTING); @@
+> > -113,27 +166,106 @@ static void qcom_ice_optimization_enable(struct
+> qcom_ice *ice)
+> >   * fails, so we needn't do it in software too, and (c) properly testin=
+g
+> >   * storage encryption requires testing the full storage stack anyway,
+> >   * and not relying on hardware-level self-tests.
+> > + *
+> > + * However, we still care about if HWKM BIST failed (when supported)
+> > + as
+> > + * important functionality would fail later, so disable hwkm on failur=
+e.
+> >   */
+> >  static int qcom_ice_wait_bist_status(struct qcom_ice *ice)  {
+> >       u32 regval;
+> > +     u32 bist_done_val;
+> >       int err;
+> >
+> >       err =3D readl_poll_timeout(ice->base + QCOM_ICE_REG_BIST_STATUS,
+> >                                regval, !(regval & QCOM_ICE_BIST_STATUS_=
+MASK),
+> >                                50, 5000);
+> > -     if (err)
+> > +     if (err) {
+> >               dev_err(ice->dev, "Timed out waiting for ICE self-test
+> > to complete\n");
+> > +             return err;
+> > +     }
+> >
+> > +     if (ice->use_hwkm) {
+> > +             bist_done_val =3D ice->hwkm_version =3D=3D 1 ?
+> > +                             QCOM_ICE_HWKM_BIST_VAL(1) :
+> > +                             QCOM_ICE_HWKM_BIST_VAL(2);
+> > +             if (qcom_ice_readl(ice,
+> > +
+> HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_STATUS)) !=3D
+> > +                                bist_done_val) {
+> > +                     dev_err(ice->dev, "HWKM BIST error\n");
+> > +                     ice->use_hwkm =3D false;
+> > +                     err =3D -ENODEV;
+> > +             }
+> > +     }
+> >       return err;
+> >  }
+> >
+> > +static void qcom_ice_enable_standard_mode(struct qcom_ice *ice) {
+> > +     u32 val =3D 0;
+> > +
+> > +     /*
+> > +      * When ICE is in standard (hwkm) mode, it supports HW wrapped
+> > +      * keys, and when it is in legacy mode, it only supports standard
+> > +      * (non HW wrapped) keys.
+>=20
+> I can't say this is very logical.
+>=20
+> standard mode =3D> HW wrapped keys
+> legacy mode =3D> standard keys
+>=20
+> Consider changing the terms.
+>=20
 
-fsl,fman-port:
-  - Keep only one example.
+Ack, will make this clearer
 
-fsl,fman-mdio:
-  - Add little-endian property.
-  - Add ref to mdio.yaml.
-  - Remove suppress-preamble.
-  - Add #address-cells and #size-cells in example.
-  - Remove clock-frequency, which already describe in mmio.yaml.
+> > +      *
+> > +      * Put ICE in standard mode, ICE defaults to legacy mode.
+> > +      * Legacy mode - ICE HWKM slave not supported.
+> > +      * Standard mode - ICE HWKM slave supported.
+>=20
+> s/slave/some other term/
+>=20
+Ack - will address this.
 
-fsl,muram.yaml:
-  - Add reg property.
-  - Remove range property.
-  - Use reg instead of range in example.
+> Is it possible to use both kind of keys when working on standard mode?
+> If not, it should be the user who selects what type of keys to be used.
+> Enforcing this via DT is not a way to go.
+>=20
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Unfortunately, that support is not there yet. When you say user, do you mea=
+n to have it as a filesystem
+mount option?
 
----
-Change from v1 to v2
-- Fix make refcheckdocs warning.
-- remove ranges in fsl,muram.yaml and all examples.
-- Only keep one example
-- Add const for #address-cells and #size-cells.
-- Compatible is always the first property. reg follows, third ranges.
-- Using define interrupt type
----
- .../devicetree/bindings/net/fsl,fman-mdio.yaml     | 123 +++++
- .../devicetree/bindings/net/fsl,fman-muram.yaml    |  40 ++
- .../devicetree/bindings/net/fsl,fman-port.yaml     |  75 +++
- .../devicetree/bindings/net/fsl,fman.yaml          | 204 ++++++++
- Documentation/devicetree/bindings/net/fsl-fman.txt | 548 ---------------------
- MAINTAINERS                                        |   2 +-
- 6 files changed, 443 insertions(+), 549 deletions(-)
+The way the UFS/EMMC crypto layer is designed currently is that, this infor=
+mation
+is needed when the modules are loaded.
+https://lore.kernel.org/all/20231104211259.17448-2-ebiggers@kernel.org/#Z31=
+drivers:ufs:core:ufshcd-crypto.c
 
-diff --git a/Documentation/devicetree/bindings/net/fsl,fman-mdio.yaml b/Documentation/devicetree/bindings/net/fsl,fman-mdio.yaml
-new file mode 100644
-index 0000000000000..6b2c0aa407a23
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/fsl,fman-mdio.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/fsl,fman-mdio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Frame Manager MDIO Device
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description: FMan MDIO Node.
-+  The MDIO is a bus to which the PHY devices are connected.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,fman-mdio
-+      - fsl,fman-xmdio
-+      - fsl,fman-memac-mdio
-+    description:
-+      Must include "fsl,fman-mdio" for 1 Gb/s MDIO from FMan v2.
-+      Must include "fsl,fman-xmdio" for 10 Gb/s MDIO from FMan v2.
-+      Must include "fsl,fman-memac-mdio" for 1/10 Gb/s MDIO from
-+      FMan v3.
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: A reference to the input clock of the controller
-+          from which the MDC frequency is derived.
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  fsl,fman-internal-mdio:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Fman has internal MDIO for internal PCS(Physical
-+      Coding Sublayer) PHYs and external MDIO for external PHYs.
-+      The settings and programming routines for internal/external
-+      MDIO are different. Must be included for internal MDIO.
-+
-+  fsl,erratum-a009885:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: Indicates the presence of the A009885
-+      erratum describing that the contents of MDIO_DATA may
-+      become corrupt unless it is read within 16 MDC cycles
-+      of MDIO_CFG[BSY] being cleared, when performing an
-+      MDIO read operation.
-+
-+  fsl,erratum-a011043:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Indicates the presence of the A011043 erratum
-+      describing that the MDIO_CFG[MDIO_RD_ER] bit may be falsely
-+      set when reading internal PCS registers. MDIO reads to
-+      internal PCS registers may result in having the
-+      MDIO_CFG[MDIO_RD_ER] bit set, even when there is no error and
-+      read data (MDIO_DATA[MDIO_DATA]) is correct.
-+      Software may get false read error when reading internal
-+      PCS registers through MDIO. As a workaround, all internal
-+      MDIO accesses should ignore the MDIO_CFG[MDIO_RD_ER] bit.
-+
-+      For internal PHY device on internal mdio bus, a PHY node should be created.
-+      See the definition of the PHY node in booting-without-of.txt for an
-+      example of how to define a PHY (Internal PHY has no interrupt line).
-+      - For "fsl,fman-mdio" compatible internal mdio bus, the PHY is TBI PHY.
-+      - For "fsl,fman-memac-mdio" compatible internal mdio bus, the PHY is PCS PHY.
-+        The PCS PHY address should correspond to the value of the appropriate
-+        MDEV_PORT.
-+
-+  little-endian:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      IP block is little-endian mode. The default endian mode is big-endian.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: mdio.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    mdio@f1000 {
-+        compatible = "fsl,fman-xmdio";
-+        reg = <0xf1000 0x1000>;
-+        interrupts = <101 2 0 0>;
-+    };
-+
-+  - |
-+    mdio@e3120 {
-+        compatible = "fsl,fman-mdio";
-+        reg = <0xe3120 0xee0>;
-+        fsl,fman-internal-mdio;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tbi-phy@8 {
-+            reg = <0x8>;
-+            device_type = "tbi-phy";
-+        };
-+    };
-+
-+  - |
-+    mdio@f1000 {
-+        compatible = "fsl,fman-memac-mdio";
-+        reg = <0xf1000 0x1000>;
-+        fsl,fman-internal-mdio;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pcsphy6: ethernet-phy@0 {
-+            reg = <0x0>;
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/net/fsl,fman-muram.yaml b/Documentation/devicetree/bindings/net/fsl,fman-muram.yaml
-new file mode 100644
-index 0000000000000..aa71acc7fa5b5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/fsl,fman-muram.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/fsl,fman-muram.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Frame Manager MURAM Device
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description: |
-+  FMan Internal memory - shared between all the FMan modules.
-+  It contains data structures that are common and written to or read by
-+  the modules.
-+
-+  FMan internal memory is split into the following parts:
-+    Packet buffering (Tx/Rx FIFOs)
-+    Frames internal context
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,fman-muram
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    muram@0 {
-+        compatible = "fsl,fman-muram";
-+        reg = <0x0 0x28000>;
-+    };
-diff --git a/Documentation/devicetree/bindings/net/fsl,fman-port.yaml b/Documentation/devicetree/bindings/net/fsl,fman-port.yaml
-new file mode 100644
-index 0000000000000..9de445307830d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/fsl,fman-port.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/fsl,fman-port.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Frame Manager Port Device
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description: |
-+  The Frame Manager (FMan) supports several types of hardware ports:
-+    Ethernet receiver (RX)
-+    Ethernet transmitter (TX)
-+    Offline/Host command (O/H)
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,fman-v2-port-oh
-+      - fsl,fman-v2-port-rx
-+      - fsl,fman-v2-port-tx
-+      - fsl,fman-v3-port-oh
-+      - fsl,fman-v3-port-rx
-+      - fsl,fman-v3-port-tx
-+
-+  cell-index:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Specifies the hardware port id.
-+      Each hardware port on the FMan has its own hardware PortID.
-+      Super set of all hardware Port IDs available at FMan Reference
-+      Manual under "FMan Hardware Ports in Freescale Devices" table.
-+
-+      Each hardware port is assigned a 4KB, port-specific page in
-+      the FMan hardware port memory region (which is part of the
-+      FMan memory map). The first 4 KB in the FMan hardware ports
-+      memory region is used for what are called common registers.
-+      The subsequent 63 4KB pages are allocated to the hardware
-+      ports.
-+      The page of a specific port is determined by the cell-index.
-+
-+  reg:
-+    items:
-+      - description: There is one reg region describing the port
-+          configuration registers.
-+
-+  fsl,fman-10g-port:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: The default port rate is 1G.
-+      If this property exists, the port is s 10G port.
-+
-+  fsl,fman-best-effort-port:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: The default port rate is 1G.
-+      Can be defined only if 10G-support is set.
-+      This property marks a best-effort 10G port (10G port that
-+      may not be capable of line rate).
-+
-+required:
-+  - compatible
-+  - reg
-+  - cell-index
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    port@a8000 {
-+        compatible = "fsl,fman-v2-port-tx";
-+        reg = <0xa8000 0x1000>;
-+        cell-index = <0x28>;
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/net/fsl,fman.yaml b/Documentation/devicetree/bindings/net/fsl,fman.yaml
-new file mode 100644
-index 0000000000000..7908f67413dea
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/fsl,fman.yaml
-@@ -0,0 +1,204 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/fsl,fman.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Frame Manager Device
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description:
-+  Due to the fact that the FMan is an aggregation of sub-engines (ports, MACs,
-+  etc.) the FMan node will have child nodes for each of them.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,fman
-+    description:
-+      FMan version can be determined via FM_IP_REV_1 register in the
-+      FMan block. The offset is 0xc4 from the beginning of the
-+      Frame Processing Manager memory map (0xc3000 from the
-+      beginning of the FMan node).
-+
-+  cell-index:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Specifies the index of the FMan unit.
-+
-+      The cell-index value may be used by the SoC, to identify the
-+      FMan unit in the SoC memory map. In the table below,
-+      there's a description of the cell-index use in each SoC:
-+
-+      - P1023:
-+      register[bit]      FMan unit  cell-index
-+      ============================================================
-+      DEVDISR[1]      1    0
-+
-+      - P2041, P3041, P4080 P5020, P5040:
-+      register[bit]      FMan unit  cell-index
-+      ============================================================
-+      DCFG_DEVDISR2[6]    1    0
-+      DCFG_DEVDISR2[14]    2    1
-+        (Second FM available only in P4080 and P5040)
-+
-+      - B4860, T1040, T2080, T4240:
-+      register[bit]      FMan unit  cell-index
-+      ============================================================
-+      DCFG_CCSR_DEVDISR2[24]    1    0
-+      DCFG_CCSR_DEVDISR2[25]    2    1
-+        (Second FM available only in T4240)
-+
-+      DEVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
-+      the specific SoC "Device Configuration/Pin Control" Memory
-+      Map.
-+
-+  reg:
-+    items:
-+      - description: BMI configuration registers.
-+      - description: QMI configuration registers.
-+      - description: DMA configuration registers.
-+      - description: FPM configuration registers.
-+      - description: FMan controller configuration registers.
-+    minItems: 1
-+
-+  ranges: true
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: fmanclk
-+
-+  interrupts:
-+    items:
-+      - description: The first element is associated with the event interrupts.
-+      - description: the second element is associated with the error interrupts.
-+
-+  fsl,qman-channel-range:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      Specifies the range of the available dedicated
-+      channels in the FMan. The first cell specifies the beginning
-+      of the range and the second cell specifies the number of
-+      channels
-+    items:
-+      - description: The first cell specifies the beginning of the range.
-+      - description: |
-+          The second cell specifies the number of channels.
-+          Further information available at:
-+          "Work Queue (WQ) Channel Assignments in the QMan" section
-+          in DPAA Reference Manual.
-+
-+  fsl,qman:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: See soc/fsl/qman.txt
-+
-+  fsl,bman:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: See soc/fsl/bman.txt
-+
-+  fsl,erratum-a050385:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: A boolean property. Indicates the presence of the
-+      erratum A050385 which indicates that DMA transactions that are
-+      split can result in a FMan lock.
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+patternProperties:
-+  '^muram@[a-f0-9]+$':
-+    $ref: fsl,fman-muram.yaml
-+
-+  '^port@[a-f0-9]+$':
-+    $ref: fsl,fman-port.yaml
-+
-+  '^ethernet@[a-f0-9]+$':
-+    $ref: fsl,fman-dtsec.yaml
-+
-+  '^mdio@[a-f0-9]+$':
-+    $ref: fsl,fman-mdio.yaml
-+
-+  '^phc@[a-f0-9]+$':
-+    $ref: /schemas/ptp/fsl,ptp.yaml
-+
-+required:
-+  - compatible
-+  - cell-index
-+  - reg
-+  - ranges
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - fsl,qman-channel-range
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    fman@400000 {
-+        compatible = "fsl,fman";
-+        reg = <0x400000 0x100000>;
-+        ranges = <0 0x400000 0x100000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        cell-index = <1>;
-+        clocks = <&fman_clk>;
-+        clock-names = "fmanclk";
-+        interrupts = <96 IRQ_TYPE_EDGE_FALLING>,
-+                     <16 IRQ_TYPE_EDGE_FALLING>;
-+        fsl,qman-channel-range = <0x40 0xc>;
-+
-+        muram@0 {
-+            compatible = "fsl,fman-muram";
-+            reg = <0x0 0x28000>;
-+        };
-+
-+        port@81000 {
-+            cell-index = <1>;
-+            compatible = "fsl,fman-v2-port-oh";
-+            reg = <0x81000 0x1000>;
-+        };
-+
-+        fman1_rx_0x8: port@88000 {
-+            cell-index = <0x8>;
-+            compatible = "fsl,fman-v2-port-rx";
-+            reg = <0x88000 0x1000>;
-+        };
-+
-+        fman1_tx_0x28: port@a8000 {
-+            cell-index = <0x28>;
-+            compatible = "fsl,fman-v2-port-tx";
-+            reg = <0xa8000 0x1000>;
-+        };
-+
-+        ethernet@e0000 {
-+            compatible = "fsl,fman-dtsec";
-+            cell-index = <0>;
-+            reg = <0xe0000 0x1000>;
-+            ptp-timer = <&ptp_timer>;
-+            fsl,fman-ports = <&fman1_rx_0x8 &fman1_tx_0x28>;
-+            tbi-handle = <&tbi5>;
-+        };
-+
-+        ptp_timer: phc@fe000 {
-+            compatible = "fsl,fman-ptp-timer";
-+            reg = <0xfe000 0x1000>;
-+            interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
-+        };
-+
-+        mdio@f1000 {
-+            compatible = "fsl,fman-xmdio";
-+            reg = <0xf1000 0x1000>;
-+            interrupts = <101 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/fsl-fman.txt b/Documentation/devicetree/bindings/net/fsl-fman.txt
-deleted file mode 100644
-index 5e02b4b286f67..0000000000000
---- a/Documentation/devicetree/bindings/net/fsl-fman.txt
-+++ /dev/null
-@@ -1,548 +0,0 @@
--=============================================================================
--Freescale Frame Manager Device Bindings
--
--CONTENTS
--  - FMan Node
--  - FMan Port Node
--  - FMan MURAM Node
--  - FMan dTSEC/XGEC/mEMAC Node
--  - FMan IEEE 1588 Node
--  - FMan MDIO Node
--  - Example
--
--=============================================================================
--FMan Node
--
--DESCRIPTION
--
--Due to the fact that the FMan is an aggregation of sub-engines (ports, MACs,
--etc.) the FMan node will have child nodes for each of them.
--
--PROPERTIES
--
--- compatible
--		Usage: required
--		Value type: <stringlist>
--		Definition: Must include "fsl,fman"
--		FMan version can be determined via FM_IP_REV_1 register in the
--		FMan block. The offset is 0xc4 from the beginning of the
--		Frame Processing Manager memory map (0xc3000 from the
--		beginning of the FMan node).
--
--- cell-index
--		Usage: required
--		Value type: <u32>
--		Definition: Specifies the index of the FMan unit.
--
--		The cell-index value may be used by the SoC, to identify the
--		FMan unit in the SoC memory map. In the table below,
--		there's a description of the cell-index use in each SoC:
--
--		- P1023:
--		register[bit]			FMan unit	cell-index
--		============================================================
--		DEVDISR[1]			1		0
--
--		- P2041, P3041, P4080 P5020, P5040:
--		register[bit]			FMan unit	cell-index
--		============================================================
--		DCFG_DEVDISR2[6]		1		0
--		DCFG_DEVDISR2[14]		2		1
--			(Second FM available only in P4080 and P5040)
--
--		- B4860, T1040, T2080, T4240:
--		register[bit]			FMan unit	cell-index
--		============================================================
--		DCFG_CCSR_DEVDISR2[24]		1		0
--		DCFG_CCSR_DEVDISR2[25]		2		1
--			(Second FM available only in T4240)
--
--		DEVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
--		the specific SoC "Device Configuration/Pin Control" Memory
--		Map.
--
--- reg
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: A standard property. Specifies the offset of the
--		following configuration registers:
--		- BMI configuration registers.
--		- QMI configuration registers.
--		- DMA configuration registers.
--		- FPM configuration registers.
--		- FMan controller configuration registers.
--
--- ranges
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: A standard property.
--
--- clocks
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: phandle for the fman input clock.
--
--- clock-names
--		usage: required
--		Value type: <stringlist>
--		Definition: "fmanclk" for the fman input clock.
--
--- interrupts
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: A pair of IRQs are specified in this property.
--		The first element is associated with the event interrupts and
--		the second element is associated with the error interrupts.
--
--- fsl,qman-channel-range
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: Specifies the range of the available dedicated
--		channels in the FMan. The first cell specifies the beginning
--		of the range and the second cell specifies the number of
--		channels.
--		Further information available at:
--		"Work Queue (WQ) Channel Assignments in the QMan" section
--		in DPAA Reference Manual.
--
--- fsl,qman
--- fsl,bman
--		Usage: required
--		Definition: See soc/fsl/qman.txt and soc/fsl/bman.txt
--
--- fsl,erratum-a050385
--		Usage: optional
--		Value type: boolean
--		Definition: A boolean property. Indicates the presence of the
--		erratum A050385 which indicates that DMA transactions that are
--		split can result in a FMan lock.
--
--=============================================================================
--FMan MURAM Node
--
--DESCRIPTION
--
--FMan Internal memory - shared between all the FMan modules.
--It contains data structures that are common and written to or read by
--the modules.
--FMan internal memory is split into the following parts:
--	Packet buffering (Tx/Rx FIFOs)
--	Frames internal context
--
--PROPERTIES
--
--- compatible
--		Usage: required
--		Value type: <stringlist>
--		Definition: Must include "fsl,fman-muram"
--
--- ranges
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: A standard property.
--		Specifies the multi-user memory offset and the size within
--		the FMan.
--
--EXAMPLE
--
--muram@0 {
--	compatible = "fsl,fman-muram";
--	ranges = <0 0x000000 0x28000>;
--};
--
--=============================================================================
--FMan Port Node
--
--DESCRIPTION
--
--The Frame Manager (FMan) supports several types of hardware ports:
--	Ethernet receiver (RX)
--	Ethernet transmitter (TX)
--	Offline/Host command (O/H)
--
--PROPERTIES
--
--- compatible
--		Usage: required
--		Value type: <stringlist>
--		Definition: A standard property.
--		Must include one of the following:
--			- "fsl,fman-v2-port-oh" for FManV2 OH ports
--			- "fsl,fman-v2-port-rx" for FManV2 RX ports
--			- "fsl,fman-v2-port-tx" for FManV2 TX ports
--			- "fsl,fman-v3-port-oh" for FManV3 OH ports
--			- "fsl,fman-v3-port-rx" for FManV3 RX ports
--			- "fsl,fman-v3-port-tx" for FManV3 TX ports
--
--- cell-index
--		Usage: required
--		Value type: <u32>
--		Definition: Specifies the hardware port id.
--		Each hardware port on the FMan has its own hardware PortID.
--		Super set of all hardware Port IDs available at FMan Reference
--		Manual under "FMan Hardware Ports in Freescale Devices" table.
--
--		Each hardware port is assigned a 4KB, port-specific page in
--		the FMan hardware port memory region (which is part of the
--		FMan memory map). The first 4 KB in the FMan hardware ports
--		memory region is used for what are called common registers.
--		The subsequent 63 4KB pages are allocated to the hardware
--		ports.
--		The page of a specific port is determined by the cell-index.
--
--- reg
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: There is one reg region describing the port
--		configuration registers.
--
--- fsl,fman-10g-port
--		Usage: optional
--		Value type: boolean
--		Definition: The default port rate is 1G.
--		If this property exists, the port is s 10G port.
--
--- fsl,fman-best-effort-port
--		Usage: optional
--		Value type: boolean
--		Definition: Can be defined only if 10G-support is set.
--		This property marks a best-effort 10G port (10G port that
--		may not be capable of line rate).
--
--EXAMPLE
--
--port@a8000 {
--	cell-index = <0x28>;
--	compatible = "fsl,fman-v2-port-tx";
--	reg = <0xa8000 0x1000>;
--};
--
--port@88000 {
--	cell-index = <0x8>;
--	compatible = "fsl,fman-v2-port-rx";
--	reg = <0x88000 0x1000>;
--};
--
--port@81000 {
--	cell-index = <0x1>;
--	compatible = "fsl,fman-v2-port-oh";
--	reg = <0x81000 0x1000>;
--};
--
--=============================================================================
--FMan dTSEC/XGEC/mEMAC Node
--
--Refer to Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
--
--============================================================================
--FMan IEEE 1588 Node
--
--Refer to Documentation/devicetree/bindings/ptp/fsl,ptp.yaml
--
--=============================================================================
--FMan MDIO Node
--
--DESCRIPTION
--
--The MDIO is a bus to which the PHY devices are connected.
--
--PROPERTIES
--
--- compatible
--		Usage: required
--		Value type: <stringlist>
--		Definition: A standard property.
--		Must include "fsl,fman-mdio" for 1 Gb/s MDIO from FMan v2.
--		Must include "fsl,fman-xmdio" for 10 Gb/s MDIO from FMan v2.
--		Must include "fsl,fman-memac-mdio" for 1/10 Gb/s MDIO from
--		FMan v3.
--
--- reg
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: A standard property.
--
--- clocks
--		Usage: optional
--		Value type: <phandle>
--		Definition: A reference to the input clock of the controller
--		from which the MDC frequency is derived.
--
--- clock-frequency
--		Usage: optional
--		Value type: <u32>
--		Definition: Specifies the external MDC frequency, in Hertz, to
--		be used. Requires that the input clock is specified in the
--		"clocks" property. See also: mdio.yaml.
--
--- suppress-preamble
--		Usage: optional
--		Value type: <boolean>
--		Definition: Disable generation of preamble bits. See also:
--		mdio.yaml.
--
--- interrupts
--		Usage: required for external MDIO
--		Value type: <prop-encoded-array>
--		Definition: Event interrupt of external MDIO controller.
--
--- fsl,fman-internal-mdio
--		Usage: required for internal MDIO
--		Value type: boolean
--		Definition: Fman has internal MDIO for internal PCS(Physical
--		Coding Sublayer) PHYs and external MDIO for external PHYs.
--		The settings and programming routines for internal/external
--		MDIO are different. Must be included for internal MDIO.
--
--- fsl,erratum-a009885
--		Usage: optional
--		Value type: <boolean>
--		Definition: Indicates the presence of the A009885
--		erratum describing that the contents of MDIO_DATA may
--		become corrupt unless it is read within 16 MDC cycles
--		of MDIO_CFG[BSY] being cleared, when performing an
--		MDIO read operation.
--
--- fsl,erratum-a011043
--		Usage: optional
--		Value type: <boolean>
--		Definition: Indicates the presence of the A011043 erratum
--		describing that the MDIO_CFG[MDIO_RD_ER] bit may be falsely
--		set when reading internal PCS registers. MDIO reads to
--		internal PCS registers may result in having the
--		MDIO_CFG[MDIO_RD_ER] bit set, even when there is no error and
--		read data (MDIO_DATA[MDIO_DATA]) is correct.
--		Software may get false read error when reading internal
--		PCS registers through MDIO. As a workaround, all internal
--		MDIO accesses should ignore the MDIO_CFG[MDIO_RD_ER] bit.
--
--For internal PHY device on internal mdio bus, a PHY node should be created.
--See the definition of the PHY node in booting-without-of.txt for an
--example of how to define a PHY (Internal PHY has no interrupt line).
--- For "fsl,fman-mdio" compatible internal mdio bus, the PHY is TBI PHY.
--- For "fsl,fman-memac-mdio" compatible internal mdio bus, the PHY is PCS PHY.
--  The PCS PHY address should correspond to the value of the appropriate
--  MDEV_PORT.
--
--EXAMPLE
--
--Example for FMan v2 external MDIO:
--
--mdio@f1000 {
--	compatible = "fsl,fman-xmdio";
--	reg = <0xf1000 0x1000>;
--	interrupts = <101 2 0 0>;
--};
--
--Example for FMan v2 internal MDIO:
--
--mdio@e3120 {
--	compatible = "fsl,fman-mdio";
--	reg = <0xe3120 0xee0>;
--	fsl,fman-internal-mdio;
--
--	tbi1: tbi-phy@8 {
--		reg = <0x8>;
--		device_type = "tbi-phy";
--	};
--};
--
--Example for FMan v3 internal MDIO:
--
--mdio@f1000 {
--	compatible = "fsl,fman-memac-mdio";
--	reg = <0xf1000 0x1000>;
--	fsl,fman-internal-mdio;
--
--	pcsphy6: ethernet-phy@0 {
--		reg = <0x0>;
--	};
--};
--
--=============================================================================
--Example
--
--fman@400000 {
--	#address-cells = <1>;
--	#size-cells = <1>;
--	cell-index = <1>;
--	compatible = "fsl,fman"
--	ranges = <0 0x400000 0x100000>;
--	reg = <0x400000 0x100000>;
--	clocks = <&fman_clk>;
--	clock-names = "fmanclk";
--	interrupts = <
--		96 2 0 0
--		16 2 1 1>;
--	fsl,qman-channel-range = <0x40 0xc>;
--
--	muram@0 {
--		compatible = "fsl,fman-muram";
--		reg = <0x0 0x28000>;
--	};
--
--	port@81000 {
--		cell-index = <1>;
--		compatible = "fsl,fman-v2-port-oh";
--		reg = <0x81000 0x1000>;
--	};
--
--	port@82000 {
--		cell-index = <2>;
--		compatible = "fsl,fman-v2-port-oh";
--		reg = <0x82000 0x1000>;
--	};
--
--	port@83000 {
--		cell-index = <3>;
--		compatible = "fsl,fman-v2-port-oh";
--		reg = <0x83000 0x1000>;
--	};
--
--	port@84000 {
--		cell-index = <4>;
--		compatible = "fsl,fman-v2-port-oh";
--		reg = <0x84000 0x1000>;
--	};
--
--	port@85000 {
--		cell-index = <5>;
--		compatible = "fsl,fman-v2-port-oh";
--		reg = <0x85000 0x1000>;
--	};
--
--	port@86000 {
--		cell-index = <6>;
--		compatible = "fsl,fman-v2-port-oh";
--		reg = <0x86000 0x1000>;
--	};
--
--	fman1_rx_0x8: port@88000 {
--		cell-index = <0x8>;
--		compatible = "fsl,fman-v2-port-rx";
--		reg = <0x88000 0x1000>;
--	};
--
--	fman1_rx_0x9: port@89000 {
--		cell-index = <0x9>;
--		compatible = "fsl,fman-v2-port-rx";
--		reg = <0x89000 0x1000>;
--	};
--
--	fman1_rx_0xa: port@8a000 {
--		cell-index = <0xa>;
--		compatible = "fsl,fman-v2-port-rx";
--		reg = <0x8a000 0x1000>;
--	};
--
--	fman1_rx_0xb: port@8b000 {
--		cell-index = <0xb>;
--		compatible = "fsl,fman-v2-port-rx";
--		reg = <0x8b000 0x1000>;
--	};
--
--	fman1_rx_0xc: port@8c000 {
--		cell-index = <0xc>;
--		compatible = "fsl,fman-v2-port-rx";
--		reg = <0x8c000 0x1000>;
--	};
--
--	fman1_rx_0x10: port@90000 {
--		cell-index = <0x10>;
--		compatible = "fsl,fman-v2-port-rx";
--		reg = <0x90000 0x1000>;
--	};
--
--	fman1_tx_0x28: port@a8000 {
--		cell-index = <0x28>;
--		compatible = "fsl,fman-v2-port-tx";
--		reg = <0xa8000 0x1000>;
--	};
--
--	fman1_tx_0x29: port@a9000 {
--		cell-index = <0x29>;
--		compatible = "fsl,fman-v2-port-tx";
--		reg = <0xa9000 0x1000>;
--	};
--
--	fman1_tx_0x2a: port@aa000 {
--		cell-index = <0x2a>;
--		compatible = "fsl,fman-v2-port-tx";
--		reg = <0xaa000 0x1000>;
--	};
--
--	fman1_tx_0x2b: port@ab000 {
--		cell-index = <0x2b>;
--		compatible = "fsl,fman-v2-port-tx";
--		reg = <0xab000 0x1000>;
--	};
--
--	fman1_tx_0x2c: port@ac0000 {
--		cell-index = <0x2c>;
--		compatible = "fsl,fman-v2-port-tx";
--		reg = <0xac000 0x1000>;
--	};
--
--	fman1_tx_0x30: port@b0000 {
--		cell-index = <0x30>;
--		compatible = "fsl,fman-v2-port-tx";
--		reg = <0xb0000 0x1000>;
--	};
--
--	ethernet@e0000 {
--		compatible = "fsl,fman-dtsec";
--		cell-index = <0>;
--		reg = <0xe0000 0x1000>;
--		fsl,fman-ports = <&fman1_rx_0x8 &fman1_tx_0x28>;
--		tbi-handle = <&tbi5>;
--	};
--
--	ethernet@e2000 {
--		compatible = "fsl,fman-dtsec";
--		cell-index = <1>;
--		reg = <0xe2000 0x1000>;
--		fsl,fman-ports = <&fman1_rx_0x9 &fman1_tx_0x29>;
--		tbi-handle = <&tbi6>;
--	};
--
--	ethernet@e4000 {
--		compatible = "fsl,fman-dtsec";
--		cell-index = <2>;
--		reg = <0xe4000 0x1000>;
--		fsl,fman-ports = <&fman1_rx_0xa &fman1_tx_0x2a>;
--		tbi-handle = <&tbi7>;
--	};
--
--	ethernet@e6000 {
--		compatible = "fsl,fman-dtsec";
--		cell-index = <3>;
--		reg = <0xe6000 0x1000>;
--		fsl,fman-ports = <&fman1_rx_0xb &fman1_tx_0x2b>;
--		tbi-handle = <&tbi8>;
--	};
--
--	ethernet@e8000 {
--		compatible = "fsl,fman-dtsec";
--		cell-index = <4>;
--		reg = <0xf0000 0x1000>;
--		fsl,fman-ports = <&fman1_rx_0xc &fman1_tx_0x2c>;
--		tbi-handle = <&tbi9>;
--
--	ethernet@f0000 {
--		cell-index = <8>;
--		compatible = "fsl,fman-xgec";
--		reg = <0xf0000 0x1000>;
--		fsl,fman-ports = <&fman1_rx_0x10 &fman1_tx_0x30>;
--	};
--
--	ptp-timer@fe000 {
--		compatible = "fsl,fman-ptp-timer";
--		reg = <0xfe000 0x1000>;
--	};
--
--	mdio@f1000 {
--		compatible = "fsl,fman-xmdio";
--		reg = <0xf1000 0x1000>;
--		interrupts = <101 2 0 0>;
--	};
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 322e89b13c843..7204a81b86930 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8862,7 +8862,7 @@ M:	Madalin Bucur <madalin.bucur@nxp.com>
- R:	Sean Anderson <sean.anderson@seco.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/net/fsl-fman.txt
-+F:	Documentation/devicetree/bindings/net/fsl-fman.yaml
- F:	drivers/net/ethernet/freescale/fman
- 
- FREESCALE QORIQ PTP CLOCK DRIVER
+I am thinking of a way now to do this with DT, but without having a new ven=
+dor property.
+Is it acceptable to use the addressable range as the deciding factor? Say u=
+se legacy mode of ICE
+when the addressable size is 0x8000 and use HWKM mode of ICE when the addre=
+ssable size is
+0x10000.
 
--- 
-2.34.1
+> > +      *
+> > +      * Depending on the version of HWKM, it is controlled by differen=
+t
+> > +      * registers in ICE.
+> > +      */
+> > +     if (ice->hwkm_version >=3D 2) {
+> > +             val =3D qcom_ice_readl(ice, QCOM_ICE_REG_CONTROL);
+> > +             val =3D val & QCOM_ICE_HWKM_V2_STANDARD_MODE_MASK;
+> > +             qcom_ice_writel(ice, val, QCOM_ICE_REG_CONTROL);
+> > +     } else {
+> > +             qcom_ice_writel(ice,
+> QCOM_ICE_HWKM_V1_STANDARD_MODE_VAL,
+> > +                             HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_CTL))=
+;
+> > +     }
+> > +}
+> > +
+> > +static void qcom_ice_hwkm_init(struct qcom_ice *ice) {
+> > +     /* Disable CRC checks. This HWKM feature is not used. */
+> > +     qcom_ice_writel(ice, QCOM_ICE_HWKM_DISABLE_CRC_CHECKS_VAL,
+> > +                     HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_CTL));
+> > +
+> > +     /*
+> > +      * Give register bank of the HWKM slave access to read and modify
+> > +      * the keyslots in ICE HWKM slave. Without this, trustzone will n=
+ot
+> > +      * be able to program keys into ICE.
+> > +      */
+> > +     qcom_ice_writel(ice, GENMASK(31, 0),
+> HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_0));
+> > +     qcom_ice_writel(ice, GENMASK(31, 0),
+> HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_1));
+> > +     qcom_ice_writel(ice, GENMASK(31, 0),
+> HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_2));
+> > +     qcom_ice_writel(ice, GENMASK(31, 0),
+> HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_3));
+> > +     qcom_ice_writel(ice, GENMASK(31, 0),
+> > + HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_4));
+> > +
+> > +     /* Clear HWKM response FIFO before doing anything */
+> > +     qcom_ice_writel(ice, QCOM_ICE_HWKM_RSP_FIFO_CLEAR_VAL,
+> > +
+> HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BANKN_IRQ_STATUS));
+> > +     ice->hwkm_init_complete =3D true;
+> > +}
+> > +
+> >  int qcom_ice_enable(struct qcom_ice *ice)  {
+> > +     int err;
+> > +
+> >       qcom_ice_low_power_mode_enable(ice);
+> >       qcom_ice_optimization_enable(ice);
+> >
+> > -     return qcom_ice_wait_bist_status(ice);
+> > +     if (ice->use_hwkm)
+> > +             qcom_ice_enable_standard_mode(ice);
+> > +
+> > +     err =3D qcom_ice_wait_bist_status(ice);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     if (ice->use_hwkm)
+> > +             qcom_ice_hwkm_init(ice);
+> > +
+> > +     return err;
+> >  }
+> >  EXPORT_SYMBOL_GPL(qcom_ice_enable);
+> >
+> > @@ -149,6 +281,10 @@ int qcom_ice_resume(struct qcom_ice *ice)
+> >               return err;
+> >       }
+> >
+> > +     if (ice->use_hwkm) {
+> > +             qcom_ice_enable_standard_mode(ice);
+> > +             qcom_ice_hwkm_init(ice);
+> > +     }
+> >       return qcom_ice_wait_bist_status(ice);  }
+> > EXPORT_SYMBOL_GPL(qcom_ice_resume);
+> > @@ -156,6 +292,7 @@ EXPORT_SYMBOL_GPL(qcom_ice_resume);
+> >  int qcom_ice_suspend(struct qcom_ice *ice)  {
+> >       clk_disable_unprepare(ice->core_clk);
+> > +     ice->hwkm_init_complete =3D false;
+> >
+> >       return 0;
+> >  }
+> > @@ -205,6 +342,12 @@ int qcom_ice_evict_key(struct qcom_ice *ice, int
+> > slot)  }  EXPORT_SYMBOL_GPL(qcom_ice_evict_key);
+> >
+>=20
+> Documentation?
+>=20
+> > +bool qcom_ice_hwkm_supported(struct qcom_ice *ice)
+> > +{
+> > +     return ice->use_hwkm;
+>=20
+> I see that use_hwkm can change during runtime. Will it have an impact on
+> a driver that calls this first?
+>=20
+> > +}
+> > +EXPORT_SYMBOL_GPL(qcom_ice_hwkm_supported);
+> > +
+> >  static struct qcom_ice *qcom_ice_create(struct device *dev,
+> >                                       void __iomem *base)
+> >  {
+> > @@ -239,6 +382,8 @@ static struct qcom_ice *qcom_ice_create(struct
+> device *dev,
+> >               engine->core_clk =3D devm_clk_get_enabled(dev, NULL);
+> >       if (IS_ERR(engine->core_clk))
+> >               return ERR_CAST(engine->core_clk);
+> > +     engine->use_hwkm =3D of_property_read_bool(dev->of_node,
+> > +                                              "qcom,ice-use-hwkm");
+>=20
+> DT bindings should come before driver changes.
+>=20
+> >
+> >       if (!qcom_ice_check_supported(engine))
+> >               return ERR_PTR(-EOPNOTSUPP);
+> > diff --git a/include/soc/qcom/ice.h b/include/soc/qcom/ice.h
+> > index 9dd835dba2a7..1f52e82e3e1c 100644
+> > --- a/include/soc/qcom/ice.h
+> > +++ b/include/soc/qcom/ice.h
+> > @@ -34,5 +34,6 @@ int qcom_ice_program_key(struct qcom_ice *ice,
+> >                        const struct blk_crypto_key *bkey,
+> >                        u8 data_unit_size, int slot);
+> >  int qcom_ice_evict_key(struct qcom_ice *ice, int slot);
+> > +bool qcom_ice_hwkm_supported(struct qcom_ice *ice);
+> >  struct qcom_ice *of_qcom_ice_get(struct device *dev);
+> >  #endif /* __QCOM_ICE_H__ */
+> > --
+> > 2.43.0
+> >
+>=20
+> --
+> With best wishes
+> Dmitry
 
+Regards,
+Gaurav
 
