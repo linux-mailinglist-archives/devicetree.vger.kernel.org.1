@@ -1,110 +1,126 @@
-Return-Path: <devicetree+bounces-77087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D580A90D5E4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:46:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4841990D5EE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:48:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76CC7288097
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:46:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F311D1F23EE6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17527139CF6;
-	Tue, 18 Jun 2024 14:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3E7153582;
+	Tue, 18 Jun 2024 14:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NfnNCPUO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RNSBxOqJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D08127E0D
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 14:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171CF15356B
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 14:39:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718721403; cv=none; b=CQJUhyqXPH2V3pqlxLs7GSg7QK9TopWTluHhM4ddfWT2dHoamxLeJ3pL2u/aUzVgwlG1x8NxDDKlXapGYzBcxaegqTgJuw5uC1iv/gupyi6w3MM6tONVDAou5+U0ClLktly1wXGgZ6LtJznMJPSSZmcgJese/axuVgeFyNZL9OY=
+	t=1718721556; cv=none; b=sm0FAbOGsm/hXbdk6UTLCBMXxs8KmnSCqxSaFt8QByRa6caMIExXQr7LnJZkhzVr8937zXkyDoUXVuGJXKPtXsHyIQ7dZuDoMyy/Jhg0gDJbDwsw+6O/fDhx94pzEMtxpOYU7mtKMGCd5K26AbKIi73rJgnse+QFPZ3Alm5RlJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718721403; c=relaxed/simple;
-	bh=TemdYJYTYnKGcbzKQlINdrNuRC9BBhSSn/lMK6ZyzEM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DCzqPqJc64bq8aNA5wJ3bl9mxZD/0IjWt7M+BTuwwl1BNd01XoBSRlUqKbWtMLO7SFUokDIgY457k6TotJlpjbMZILN8m6sVQseZZ9gaHagUlxn/s0Yk7GQg2W5HtSPh8++pYHWG4BTwreiRWGdQ4n2bBke/xfrlTiJY1i6xHo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NfnNCPUO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC3C4C3277B;
-	Tue, 18 Jun 2024 14:36:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718721402;
-	bh=TemdYJYTYnKGcbzKQlINdrNuRC9BBhSSn/lMK6ZyzEM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NfnNCPUO/eeZdPUIalzDchxV8DRA6ydEqKO074R+lnNCPeJIhpHIwcA797TXYZ4ZC
-	 B6c+XIK3iIUZ4p3kOOQxzLuScni0Tl1zBBazbZKH4vOueuBq8QFJGmjvPToNz2BoUH
-	 l5JJrllzudxTU94YDop8oBLiRAaYeofPJ46k9yzNNrcyveCnLp9DRTFCE3l3JUFw0e
-	 t8vSFHmxAW+BD8ZfhOG/7XOXMZ/602l+FJzdzQw6BrwDqm+gkQMZcCqKdMx2fGCDYT
-	 8H1XIed7OAKJVVn0lppr/uiAAQ571PTQcbxS5OnZ4SON3omrbIdIw6G98XbKcgx++k
-	 9ABkE4KrBW7OA==
-Date: Tue, 18 Jun 2024 16:36:39 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH 0/4] Basic support for TI TDP158
-Message-ID: <20240618-impetuous-passionate-jaguarundi-d7bcc1@houat>
-References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
- <fac01fa5-f257-488a-854e-716bd2634d85@freebox.fr>
+	s=arc-20240116; t=1718721556; c=relaxed/simple;
+	bh=zrVZtKOw1wtm34lfpGY8EB2vsDosS6TKH8DIDwhCmGo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EKWSwPTklTBrIW9AqttNCBsBkah4TDaSRwZQDNSUkXnyc8W8b8ILxeMQ1uEfv6xsYJ0JAOpBC/QMt6W+9xXC+BSgcsENorF0VdG0oizPy0JFBvQ84tEodaQ/F4yOi6gIE4lvcxjg8kJmuOjdriCwzeGKJN4fDPugkHEzaj2CpB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RNSBxOqJ; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ebf961e504so60619631fa.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 07:39:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718721553; x=1719326353; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wdAgFpCSfsBaoK3eiN4GlXTRiQPusSTXTIM+J24lOEM=;
+        b=RNSBxOqJIstc+XUQn7OUh9Bzi6stsMnI/6slcpqBKEn7bZUrrQF/20HJ5ivM63PoVV
+         NtY4EHFLUMMEkCn+qsNclFFnPPgvCgaIZ4upkeSFBARyTQcTXdtl23DYNoJqRmw1MFki
+         /ievN6j5MR9ui71olGFCmpk5WyrzBmK51TNKJV/iMeXQY++kAQK/ibOEI/j/ytGwcHf0
+         njFz3XdUhoZrZLaTw/6mBGuOvOJAygSGU3FfGvfG98La7cUsbh54LvLEZznEzcQqemge
+         mcJgu2BMrCZc/XZuKn7avqQ+b+Es4SxryLQc+/wet1a4zLbEz85UZLQkLZlr9bNFH207
+         f00Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718721553; x=1719326353;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wdAgFpCSfsBaoK3eiN4GlXTRiQPusSTXTIM+J24lOEM=;
+        b=MQLbbhIXBm+P9ZzjLVe1TUjEPGIHx+ZJ2/ahFR0uE/D2djh+f085qZC2qbkQiSXaY5
+         o5jhAdJIDJRHlWK2fpkzUoV12YQgIZrA2dhILh8eguPmp0lBSJvuzfX8uWaCtDMeFLZT
+         jU/SKRmsaPttUT54wujPcwfRvNwtgesrZEu/4u/ZqNZyoda5FBLp21glouFedrqEzRq5
+         azAA7Hll5ufoiCSN/ugtJwWlqZbNshtS16V0VzTF9+85UKMw5PxNHq7VtZGOSWsWkGYO
+         94RWNTV8nswVLBKARJeVR+piAZ842h1lPdxkEPLaXmJxgX9TeqJLvuIviRv52UtympZx
+         K3bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUUhcVJ9DU1aIVcH9ittrLznyIAJwTfUX2dhBFazIXOhg7aLW0B9jxfqQRPlMBglHXxffzot5h4dZYwhq/xaZBhWTNJ04SIRniCbQ==
+X-Gm-Message-State: AOJu0YyaOIjsp0qgx6CyvHNQVxARMMqoLto6jGc92OLCxOs4GD2nU+k3
+	2REoD/qo2zufbw+8UnS4eC2M2n9/Ehl6cCAYODmSa59cHHKFRcr8Nj1pde/3sSE=
+X-Google-Smtp-Source: AGHT+IFpKUjGdBUk/w3QFo4wFb49hKoT3v+xxZtiuL1ieNzPlljX7lEbvTogCzQzGRTD99k7+qiidw==
+X-Received: by 2002:a2e:a317:0:b0:2eb:d924:43fb with SMTP id 38308e7fff4ca-2ec3cfe9ee8mr277231fa.41.1718721553229;
+        Tue, 18 Jun 2024 07:39:13 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:9028:9df3:4fb7:492b:2c94:7283? ([2a00:f41:9028:9df3:4fb7:492b:2c94:7283])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05c0605bsm17294671fa.47.2024.06.18.07.39.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jun 2024 07:39:12 -0700 (PDT)
+Message-ID: <7395f6ca-31d7-4ebc-b846-6c68e2ae2efe@linaro.org>
+Date: Tue, 18 Jun 2024 16:39:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="auo766chcwhbxk2f"
-Content-Disposition: inline
-In-Reply-To: <fac01fa5-f257-488a-854e-716bd2634d85@freebox.fr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] arm64: dts: qcom: x1e80100: Enable bwmon and fastrpc
+ support
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ djakov@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ srinivas.kandagatla@linaro.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org,
+ dmitry.baryshkov@linaro.org, abel.vesa@linaro.org
+References: <20240604011157.2358019-1-quic_sibis@quicinc.com>
+ <be2dc908-c8d3-4739-9f46-8f8daf0f328e@linaro.org>
+ <24d2d3b3-d676-8e86-bae4-c3538b7b9981@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <24d2d3b3-d676-8e86-bae4-c3538b7b9981@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---auo766chcwhbxk2f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 18, 2024 at 03:07:16PM GMT, Marc Gonzalez wrote:
-> On 17/06/2024 18:02, Marc Gonzalez wrote:
->=20
-> > Marc Gonzalez (4):
-> >       dt-bindings: display: simple-bridge: add ti,tdp158
-> >       drm: bridge: simple-bridge: use dev pointer in probe
-> >       drm: bridge: simple-bridge: use only devm* in probe
-> >       drm: bridge: simple-bridge: add tdp158 support
-> >=20
-> >  .../bindings/display/bridge/simple-bridge.yaml     |  4 +
-> >  drivers/gpu/drm/bridge/simple-bridge.c             | 85 ++++++++++++++=
-+++-----
-> >  2 files changed, 71 insertions(+), 18 deletions(-)
->=20
-> Series has been NACKed.
+On 6/13/24 19:27, Sibi Sankar wrote:
+> 
+> 
+> On 6/6/24 16:00, Konrad Dybcio wrote:
+>> On 4.06.2024 3:11 AM, Sibi Sankar wrote:
+>>> This patch series enables bwmon and fastrpc support on X1E80100 SoCs.
+>>>
+>>> This series applies on:
+>>> next-20240603 + https://lore.kernel.org/lkml/20240603205859.2212225-1-quic_sibis@quicinc.com/
+>>>
+>>
+>> Going back to [1], is memlat-over-scmi not enough to give us good numbers
+>> without OS intervention? Does probing bwmon and making some decisions in
+>> Linux actually help here?
+> 
+> Memlat and bwmon are meant to cover to different use cases. Though
+> they have a big overlap on when they get triggered bwmon is specifically
+> meant to address cases where band-width aggregation is required (meaning
+> if other peripherals already have a avg bw vote on active LLCC/DDR, the
+> vote from bwmon would be an additional request on top of that). However
+> to make use of this we should vote for avg-kbps in addition to peak from
+> icc-bwmon driver which we don't currently do (Shiv was planning on
+> sending a fix for it).
 
-That's a gross misrepresentation. It wasn't NAK'd, changes were requested.
+Great, thanks for confirming
 
-Maxime
-
---auo766chcwhbxk2f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZnGbdgAKCRDj7w1vZxhR
-xW3tAQC0G2P2v2IA4YXDoDQcvzowCTVlw9WiKP8yb/JmhiiSFwEAnwSATQToNNCP
-OXgrBEFxwljYuZjXStcJ7XjZDG4OqwI=
-=evAI
------END PGP SIGNATURE-----
-
---auo766chcwhbxk2f--
+Konrad
 
