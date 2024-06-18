@@ -1,249 +1,106 @@
-Return-Path: <devicetree+bounces-76926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C9A690C913
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:22:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E72190C915
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:22:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 439131C22AA1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:22:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C527D1C22AD3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9127F74405;
-	Tue, 18 Jun 2024 10:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339031E863;
+	Tue, 18 Jun 2024 10:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BhaMCSSq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v3Gw0NZX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79941CD1F;
-	Tue, 18 Jun 2024 10:12:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBE973460
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 10:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718705526; cv=none; b=j9lTEDEXZ87pctdZc6I3zoPRlxeqU0yU/Ji0jFCpWBLI9iY3M17yWpVJnuluQrRCvC4rBVPRopx0w2zIUSoRsv27wt0T6UbiFiJu/+S16yP04lgYDeVRPLWLdWsDrVG9IBjajwqU/VcAPMse//buw9LjOvzWv3NyweVnGWz5jNE=
+	t=1718705573; cv=none; b=PVo3Ry6zLLlUjc4DcIpRjKZet42weW152eWkfTDdduTQouLoHYgpCcvu654oK0sKxYZ7W/NS7ydfsO7agUbWW5ZyPJ/cjmXqQmRtQnCB03YA/DjhiUcoiBl5XLkpc1DGi73BnvgWlP9Izw0dpvPr9sZT64yLxDIPDeejpuM8Hyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718705526; c=relaxed/simple;
-	bh=O/EAoVUt9eXyteTRE0f7erLyiFd8Rhykm2y2gRwb5u8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kCmNzzwka418bcsOFRoVt74XHEEDv5/c1yuJRXcEgvhszkIjLbAoNjXNYJWUSmRkxMAnGYyKN9I90+wvGkkqZ15pR5p+c2hValyBCaeJrGFuws4j8dt4wgGSd9tiahrYIv31YISWIpnbQTpwBMGHMDCUk6pSuSpkJ1PzViLcNN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BhaMCSSq; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718705522;
-	bh=O/EAoVUt9eXyteTRE0f7erLyiFd8Rhykm2y2gRwb5u8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BhaMCSSqT8lXNt9j+6vAyZlMWxv07bF70aWz4VUIyxiHK+ylW6jb5in6r1FmCNAKe
-	 RW4ywTEjt8Hh1YeKsdAAW42o1x4rtyrC03NzEdRiiKF4//Y+ungSvlS2ftsus+ujV8
-	 d3v1z4dgBVBjnE/K/DGwvizQrvimxhqYPVUbG4oOk8lJdLlG2rg6Fo4REI+9COJMBZ
-	 y0c3N0i6QFkOUs2Umg6e1mwhXf5Y+U8YzLSwQi/Of+VZmeC88QL78FemYYDlZUVVcA
-	 C7ws4NtTG0Zxz1Bng7v4dE1gwMUMZNK7BrxP8XlB2L1dBJCdcH5hQDGINOAbWSlj3q
-	 u5u1f248X5q2A==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 56A4E37811D1;
-	Tue, 18 Jun 2024 10:12:01 +0000 (UTC)
-Message-ID: <5f4adbb9-d6ae-4dfd-80e0-4d2680a92f59@collabora.com>
-Date: Tue, 18 Jun 2024 12:12:00 +0200
+	s=arc-20240116; t=1718705573; c=relaxed/simple;
+	bh=6mJGdO91RXcGUUmpTMS5iulnchhEDhRErBL2SBn7y1Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mcfV25UDwbjoBbvupX+GwqjqKwr2q+jHSLSZn8B77G8J7VvNuRSN3pbehjNw62xHtxYKqlAHUoIDsgEBiEUQsoHeF1R/cE8YRclhx6ycjs50hXA0wrWfetQEOE3C+zsHkOportH2IMde7KpvOXXgKFHzCtvVDu2aIW91WGftK7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v3Gw0NZX; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52cc14815c3so1107383e87.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 03:12:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718705569; x=1719310369; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6mJGdO91RXcGUUmpTMS5iulnchhEDhRErBL2SBn7y1Y=;
+        b=v3Gw0NZXO1jsVwmU74+EYrvst9h0EqYrhmWX5XckwBNSX8bEpBKScxgslTCZj7dG0v
+         u1dHJZmM54Jk0gqL14R5aibdDgOj+Sq1dVwI/3DtNB3LgbqoAJnUM8YoHR57FkhrIgAV
+         3aeuzBrTav4PW02t7xL9LqU71plj1zZ8kaxnUL0JIbgvckbK7WBWkwmDaH+mD+1Q5rSf
+         xAiIIraUqzUuqbp6CutiWzQVHkZgC0WARo3r011HZMsjkduFGO9pVCwE3B74mCedffKH
+         pMLq06RiKXPkW7h+Gr6LbY/KKxfMfLW++jhbL/aIv2QyAVyPVxRxeXD7dCz2ABC29Cwu
+         ZCtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718705569; x=1719310369;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6mJGdO91RXcGUUmpTMS5iulnchhEDhRErBL2SBn7y1Y=;
+        b=TKn5gKMsCl7X+d2C33jCryYvjfwa79IDkbVqa3jECu1Z0c5blwMP1zSY5aE3QR68qb
+         j0A3fk3r3DFHPKK4d6497APKABRPVrj0ntovmgKTlpTtB8elWe1uVjrV3qaYDGt9IOev
+         hQh/s1fjMomh3wUb2Pqk3/Nd8VFjdMcCw2zwQaSjPCkIQejhvZ2Dhij4g4LrfEU1hXi3
+         zYGX0vKSSxtBkUIRAUz7T94cXle7w6Az0axDzmWPZ7U3oZdHKNTahG1dCbJ10kZL9rhC
+         az1uTAtMPEnwIfd7f+7/NZDr681DL0fpyv+0BZ54tKU1ghxMWcEvOqoAoUFUln1Uc0DJ
+         hyUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCViIIsL8F7F8ltUpwlQ1cV/rPgHZmfcenjtpsfNb7SNey6t/Za1oM1uunsLqnHVLuOlb7WykH9BRv3y4ZL67mAhPAQE0sbrb9daSQ==
+X-Gm-Message-State: AOJu0YxkGINZSGmIv/SlDpd+r0b8NavV9upo2ZYGqnccWOxqed5SdX4z
+	vF9RwZb0YrM7zM9XhGfZu+dYkh5n8SQ/YLzi7OZuYrgBE5W9aWiEW/AVAqIUFZB3QdCz/vAQmTC
+	SSrXY4ZVvn9uPHUb88y23usntoByZ7T2uCWNhtw==
+X-Google-Smtp-Source: AGHT+IEKxSYIL7tUGgByZhiLAFjBAQVY6s4nNE+5nGraekK5gKASUp0MAAKFzLc/2g9E9O4NH5x6/Qwg+Tbi7p1WJE4=
+X-Received: by 2002:a05:6512:ad2:b0:52c:9468:c991 with SMTP id
+ 2adb3069b0e04-52ca6e55dfbmr8037884e87.14.1718705569563; Tue, 18 Jun 2024
+ 03:12:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] drm/mediatek: Implement OF graphs support for
- display paths
-To: Michael Walle <michael@walle.cc>, chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com, sui.jinfeng@linux.dev,
- Alexandre Mergnat <amergnat@baylibre.com>
-References: <20240612065634.26569-1-angelogioacchino.delregno@collabora.com>
- <20240612065634.26569-4-angelogioacchino.delregno@collabora.com>
- <D22BQAOFJWVJ.2Y9FKAAR57BHK@walle.cc>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <D22BQAOFJWVJ.2Y9FKAAR57BHK@walle.cc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240521-pinctrl-scmi-imx95-v1-0-9a1175d735fd@nxp.com>
+ <CACRpkdbpL=HUXj0hFAo+JNki_RA9aix2sW1cg13g9=89d93PZw@mail.gmail.com> <AM6PR04MB5941328E3343E5263C87528D88C12@AM6PR04MB5941.eurprd04.prod.outlook.com>
+In-Reply-To: <AM6PR04MB5941328E3343E5263C87528D88C12@AM6PR04MB5941.eurprd04.prod.outlook.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 18 Jun 2024 12:12:37 +0200
+Message-ID: <CACRpkdYprmc2vm8fVHBSYD+LtJavZ1tj7uQyTeVGkSv88RYF=Q@mail.gmail.com>
+Subject: Re: [PATCH 0/3] pinctrl: scmi: support i.MX95 OEM extensions with
+ fsl,pins property
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Aisheng Dong <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 17/06/24 15:24, Michael Walle ha scritto:
-> Hi Angelo,
-> 
->> +/**
->> + * mtk_drm_of_ddp_path_build_one - Build a Display HW Pipeline for a CRTC Path
->> + * @dev:          The mediatek-drm device
->> + * @cpath:        CRTC Path relative to a VDO or MMSYS
->> + * @out_path:     Pointer to an array that will contain the new pipeline
->> + * @out_path_len: Number of entries in the pipeline array
->> + *
->> + * MediaTek SoCs can use different DDP hardware pipelines (or paths) depending
->> + * on the board-specific desired display configuration; this function walks
->> + * through all of the output endpoints starting from a VDO or MMSYS hardware
->> + * instance and builds the right pipeline as specified in device trees.
->> + *
->> + * Return:
->> + * * %0       - Display HW Pipeline successfully built and validated
->> + * * %-ENOENT - Display pipeline was not specified in device tree
->> + * * %-EINVAL - Display pipeline built but validation failed
->> + * * %-ENOMEM - Failure to allocate pipeline array to pass to the caller
->> + */
->> +static int mtk_drm_of_ddp_path_build_one(struct device *dev, enum mtk_crtc_path cpath,
->> +					 const unsigned int **out_path,
->> +					 unsigned int *out_path_len)
->> +{
->> +	struct device_node *next, *prev, *vdo = dev->parent->of_node;
->> +	unsigned int temp_path[DDP_COMPONENT_DRM_ID_MAX] = { 0 };
->> +	unsigned int *final_ddp_path;
->> +	unsigned short int idx = 0;
->> +	bool ovl_adaptor_comp_added = false;
->> +	int ret;
->> +
->> +	/* Get the first entry for the temp_path array */
->> +	ret = mtk_drm_of_get_ddp_ep_cid(vdo, 0, cpath, &next, &temp_path[idx]);
->> +	if (ret) {
->> +		if (next && temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
->> +			dev_err(dev, "Adding OVL Adaptor for %pOF\n", next);
->> +			ovl_adaptor_comp_added = true;
->> +		} else {
->> +			if (next)
->> +				dev_err(dev, "Invalid component %pOF\n", next);
->> +			else
->> +				dev_err(dev, "Cannot find first endpoint for path %d\n", cpath);
->> +
->> +			return ret;
->> +		}
->> +	}
->> +	idx++;
->> +
->> +	/*
->> +	 * Walk through port outputs until we reach the last valid mediatek-drm component.
->> +	 * To be valid, this must end with an "invalid" component that is a display node.
->> +	 */
->> +	do {
->> +		prev = next;
->> +		ret = mtk_drm_of_get_ddp_ep_cid(next, 1, cpath, &next, &temp_path[idx]);
->> +		of_node_put(prev);
->> +		if (ret) {
->> +			of_node_put(next);
->> +			break;
->> +		}
->> +
->> +		/*
->> +		 * If this is an OVL adaptor exclusive component and one of those
->> +		 * was already added, don't add another instance of the generic
->> +		 * DDP_COMPONENT_OVL_ADAPTOR, as this is used only to decide whether
->> +		 * to probe that component master driver of which only one instance
->> +		 * is needed and possible.
->> +		 */
->> +		if (temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
->> +			if (!ovl_adaptor_comp_added)
->> +				ovl_adaptor_comp_added = true;
->> +			else
->> +				idx--;
->> +		}
->> +	} while (++idx < DDP_COMPONENT_DRM_ID_MAX);
->> +
->> +	/*
->> +	 * The device component might not be disabled: in that case, don't
-> 
-> Sorry there was a typo in my proposal, This should either be
-> "not be enabled" or "be disabled".
-> 
+On Thu, Jun 13, 2024 at 8:30=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
 
-I even noticed the typo and fixed it, then sent the *not* fixed version. Argh.
+> Just checked your repo in git.kernel.org, not see the patches.
+> No big deal, just wonder if they got forgotten.
 
->> +	 * check the last entry and just report that the device is missing.
->> +	 */
->> +	if (ret == -ENODEV)
->> +		return ret;
->> +
-> 
-> ..
-> 
->> +static int mtk_drm_of_ddp_path_build(struct device *dev, struct device_node *node,
->> +				     struct mtk_mmsys_driver_data *data)
->> +{
->> +	struct device_node *ep_node;
->> +	struct of_endpoint of_ep;
->> +	bool output_present[MAX_CRTC] = { false };
->> +	bool valid_output_found = false;
->> +	int ret;
->> +
->> +	for_each_endpoint_of_node(node, ep_node) {
->> +		ret = of_graph_parse_endpoint(ep_node, &of_ep);
->> +		if (ret) {
->> +			dev_err_probe(dev, ret, "Cannot parse endpoint\n");
->> +			break;
->> +		}
->> +
->> +		if (of_ep.id >= MAX_CRTC) {
->> +			ret = dev_err_probe(dev, -EINVAL,
->> +					    "Invalid endpoint%u number\n", of_ep.port);
->> +			break;
->> +		}
->> +
->> +		output_present[of_ep.id] = true;
->> +	}
->> +
->> +	if (ret) {
->> +		of_node_put(ep_node);
->> +		return ret;
->> +	}
->> +
->> +	if (output_present[CRTC_MAIN]) {
->> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_MAIN,
->> +						    &data->main_path, &data->main_len);
->> +		if (ret == 0)
->> +			valid_output_found = true;
->> +		else if (ret != -ENODEV)
->> +			return ret;
->> +	}
->> +
->> +	if (output_present[CRTC_EXT]) {
->> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_EXT,
->> +						    &data->ext_path, &data->ext_len);
->> +		if (ret == 0)
->> +			valid_output_found = true;
->> +		else if (ret != -ENODEV)
->> +			return ret;
->> +	}
->> +
->> +	if (output_present[CRTC_THIRD]) {
->> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_THIRD,
->> +						    &data->third_path, &data->third_len);
->> +		if (ret == 0)
->> +			valid_output_found = true;
->> +		else if (ret != -ENODEV)
->> +			return ret;
->> +	}
->> +
->> +	if (!valid_output_found)
->> +		return -ENODEV;
-> 
-> This doesn't work. My proposal just ignored the ENODEV error. Now
-> you'll return ENODEV if there is no output for a given mmsys. In my
-> case, that is true for the first mmsys. Subsequent mmsys's doesn't
-> get probed in that case, it seems.
-> 
-> Anyway, you shouldn't return ENODEV here because disabled just
-> means not available, i.e. it should be treated the same as
-> "output_present[] == false".
-> 
+I had to figure out some bureaucracy around the git branches, it should
+be there now.
 
-Right. Okay, v8 will fix that.
-
-Thanks,
-Angelo
+Yours,
+Linus Walleij
 
