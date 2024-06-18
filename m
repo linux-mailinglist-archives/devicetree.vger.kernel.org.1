@@ -1,269 +1,217 @@
-Return-Path: <devicetree+bounces-76973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59B4A90CB19
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:07:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F4490CB1F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:08:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D46CC1F270A5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:07:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABCC71C237A6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3757BB14;
-	Tue, 18 Jun 2024 12:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D4113A89B;
+	Tue, 18 Jun 2024 12:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="KVm2sfvO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lFOpr0VI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2033.outbound.protection.outlook.com [40.92.23.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178D92139AF;
-	Tue, 18 Jun 2024 12:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718712327; cv=fail; b=Nqxd7oKEMv55juzPwFyPbIR4MavK8MLacFneEf/izS5BMEDGiPozeJx4Qconx9SKBs4M0+OJ4HLejI5xZ2xThWbfA27O1rwgU9bxQNW5sPrDCFNa9p7t/+KI+livG0CNXz7vOip58mZH6944D4QuXY0d/vwjD7Otj4gNfXEfkV0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718712327; c=relaxed/simple;
-	bh=AU/tAjqJbGUN2h1c7ekJ+CYla+AobS07/Hm8JIYxjlU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=CNfh1b1Q1krFnpAQWVRtH/SAtJHrJeAE/DbCYcyuCHHjFQcBtC8mKvaucOzkPN4kRvZZshQyW3ry7kpdBkCrwPbnxaZHe4Z2KHVgoJyCj4mAFw18OgngVAn2yeXsHOlKztNMeD4AT10W3QeAXs8W2Oj0B31N8wgoa2VYiaJ2jX8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=KVm2sfvO; arc=fail smtp.client-ip=40.92.23.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FQbZtpoQ+PSQn7pkwGwZkRHXFQKf6+jhh4e/51aOBwAU4fUWfWSd1V5C+9MxkzRa1LJJC32ZoJveFPPZA4l+ab1iWZcbgXdoVWuHeHfHs8HNA7K5C7aOG0U0cMkhuFPpfd6Nuepjpc0MpIRToJgKE1K4WqYwxIQpOUBh7KGqFSRZs+fHjYPACHu5h1DHoswLcDh6Zx/sf0JG9W5cthuOTN+HArpvvMtK7VcZ6y+ZrRtKymRnSr/kpLpM4iumTFN7ZpCjn/6J7doZpmfLa9B2LHCb9eUcugpIkItIkcy4TWTEzuFMWrC9gVMEQM37OX4vQcKg2ABLOBowPXHJxzXZ9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1zXH04wzzGel1jsED1gLaXtxLrZ7HCf4x2tq0XT3oQ0=;
- b=Pl1AYCou69em+9YSq64ulQzYdNQUl8dixko3MnMPetfV5HT9V+11gCdt9XKhSXWLFKtI6BTAbE7vKCYxxNr7WLJgnU3Qhfw8cgaukw+V08ek7HEoze9ua9pSl5hzZJlNgKqeSJynYEoR3fa/UrHpsLvTVltpblQpnOZJxmXVNWYYll6yHweHbbKYR6fjR02HswGC/xs5ksLV8eP8d23S4iV60a5LUHDdrqvLCUzOt3lyFyH2h6tHsJ9tAS26AsSRis6yn4RKked31LAsBEDTbv0e++n5+GUKLNUZl6X5/lRDZCzXfiqr4JMdmK8Q5JPvxL4llqDAnS5BopceK5KEog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1zXH04wzzGel1jsED1gLaXtxLrZ7HCf4x2tq0XT3oQ0=;
- b=KVm2sfvO5aWfh8OR3iqCyRvZTe7oVdDmnnEYNtyu1N/k6F+l1xTfwJlVH8f+DFgg7sgeGtVI5Aa0DDQliaCeRnG+mrO9I7VM32Gc5oaAJ047KkPNti8TEqOuCY4nVMoEdZhwxXn3pICaP8gCUrpMHzs+XJ2yGqLU26l1GCblsL2xpLHQ8dwmxBxkRtefPbmgZ1ZssGoIC/xeU5h4/KMYrGiblI1vs8oscmPNNIs4Zp3DRvPwgC0lVmNfjLd157Xnqi72+BiZLCse/1kwJb70rSwE4dw2P0ojVT88jviutL2eltm1Z38TF9idCHdZ9VdmnJilghirpbUdHD1AcUfRsg==
-Received: from SN7PR12MB8101.namprd12.prod.outlook.com (2603:10b6:806:321::7)
- by CH3PR12MB8660.namprd12.prod.outlook.com (2603:10b6:610:177::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Tue, 18 Jun
- 2024 12:05:22 +0000
-Received: from SN7PR12MB8101.namprd12.prod.outlook.com
- ([fe80::fdb:e120:f99c:c899]) by SN7PR12MB8101.namprd12.prod.outlook.com
- ([fe80::fdb:e120:f99c:c899%5]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
- 12:05:22 +0000
-Message-ID:
- <SN7PR12MB810159A22C9814AA7FC1AB96A4CE2@SN7PR12MB8101.namprd12.prod.outlook.com>
-Date: Tue, 18 Jun 2024 20:05:13 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] iio:proximity:hx9023s: Add TYHX HX9023S sensor
- driver
-To: Jonathan Cameron <jic23@kernel.org>, kernel test robot <lkp@intel.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- Yasin Lee <yasin.lee.x@gmail.com>
-References: <SN7PR12MB8101D4BC788B5954608D677DA4CC2@SN7PR12MB8101.namprd12.prod.outlook.com>
- <202406171946.qe83Tde0-lkp@intel.com> <20240617202248.35994484@jic23-huawei>
-Content-Language: en-US
-From: Yasin Lee <yasin.lee.x@outlook.com>
-In-Reply-To: <20240617202248.35994484@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [tcurI1lzZRfz6zIKdzWFDEGMHflUqkMuVVIe2J5drZ//L7lZ+pe4fzNxfOIQz6bk]
-X-ClientProxiedBy: SG2PR02CA0101.apcprd02.prod.outlook.com
- (2603:1096:4:92::17) To SN7PR12MB8101.namprd12.prod.outlook.com
- (2603:10b6:806:321::7)
-X-Microsoft-Original-Message-ID:
- <bc4fd213-78b3-4bf8-bfb6-b31b60965d54@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53749210FB
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 12:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718712365; cv=none; b=jdKVJSkeeQ6EOOmPBz2cbmC3omk8hvaU6UiuQL0LsNVIUCItopzs2iiK2Gb3TOFr1q0IDBjeFuw+RCMJOSIPj0JJ8TiFZPXVlAHjFFsi4tW0WmUvTn/+CxV0OvLTka+B3YrFyysCNJJ98tgKDLpv3naE9edspshqTNmpgi26ZJU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718712365; c=relaxed/simple;
+	bh=LTjkkuhKTDIyrTDh3hB32HSBOCrNVJIJPRFbCQjMbTE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=aEp6pXqvzChV5Y5aw++NdCi61QPDcTqyXimijhVQHTH6qRiiPk0y63tws0DOzwcJ1+GJv+QIDFWDzYPmwlmerwUTZweoM8ezRpY/Jw0QJ1JT72xjkPcFlekDRG0P4ZS0pxFKl2J+2rCFZe7D5vo24l/qmfwhH3fQcNufl7L0J+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lFOpr0VI; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-362bc731810so107021f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 05:06:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718712362; x=1719317162; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qPtxiv3tl6wuHTI39GVYFLYTokiECBWO0QIFe11OMMw=;
+        b=lFOpr0VIMUD0wSqoBSMWASk6CJEyIzhnMjXhgQHUwsuUe83vHnOgTB0tUpn7je615X
+         pyUcL8Yag2fkX27+Js7MwYed42Pmn5LHSfMNPP6bbt2Ut8wQ/pkIge564Bn2piqfzVIW
+         e6/xU/8lixiLzlSyUKSwysbIYlNxj47I1VIHN5N0hmS9LAg0+hEpb1fIhlfX/IO5lpwI
+         Kqju4q97zRlr50J2KKMVS/GrW5xGKwXy0/oyey/ihHQgzeF9K9FBkS9OJ/fl8wV52KFB
+         t3PkVnMKenyZ+uBF0y+OOA0b/wHxMxdM9SIY1XXpB8e/ZO50/LZXwnQDhJqj3ZVhCpZt
+         Q30g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718712362; x=1719317162;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=qPtxiv3tl6wuHTI39GVYFLYTokiECBWO0QIFe11OMMw=;
+        b=iDGE45DSq+uEvCjXHoSmE6gjCfFP4rjWeLGE7i43NAm5QFi6zsl693QiOlDPIXCjgl
+         f7nDoJ+oJ7D5X5cZmtyGxCvlqn8B8nujVoQE8lFDYSRiEPhZpvTgBC0aNWyWUqnOcX+v
+         b6pFPuykO+qoCK5VvKw6JcYOaHi1zrPeL+6J9C3MvZ4I3sk1lM6ox9HZjIOHbO1mNwBS
+         rWv5nzXLYAlJs3s53B7smcNfXckniCo5nl/74q49HXFZMilCawLoykYwMuw7uGDg4ZSU
+         kb0ROp2nId2SySPrSoP/znR6Sp19J94cAjKM8gSpb0ya76FaBw2vMaeu6zFSueANFe4i
+         WTpg==
+X-Forwarded-Encrypted: i=1; AJvYcCV9L7FrGXfYUq7xyUtG4x4xLgjDJ+1CB25uYTm/pjQXXEPr9lUO+aSFBGYi/B4sI2AwHvZq6ZN6XVOXCDaieQ/PleEj6M8N1QTfeA==
+X-Gm-Message-State: AOJu0YyXYUAAJv1BkD93JNNrGMDsmkuHEyCd6GeO9WlL4kktM81EjbP4
+	2DWfSj267H5NFY61D7CUJOk71ePwJEKM/cmn17rGPZUQwsTcwqnoga5cOyd9wz4=
+X-Google-Smtp-Source: AGHT+IG90roO//BzFS/LxXz6pXUjfZqWIPwKWMesZ23zGPMdpOaAM0AQIhxz7p+hTMWeAeB46qf/HA==
+X-Received: by 2002:adf:f143:0:b0:361:dd0c:678 with SMTP id ffacd0b85a97d-361dd0c06f7mr1412800f8f.36.1718712361517;
+        Tue, 18 Jun 2024 05:06:01 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:7f31:be49:5b98:50cd? ([2a01:e0a:982:cbb0:7f31:be49:5b98:50cd])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-362cd0d79fdsm126864f8f.77.2024.06.18.05.05.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jun 2024 05:06:01 -0700 (PDT)
+Message-ID: <eb50b8d3-b56d-42b2-a277-02a255b2d6c0@linaro.org>
+Date: Tue, 18 Jun 2024 14:05:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8101:EE_|CH3PR12MB8660:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9745ef0e-8e92-4f7d-507c-08dc8f8eee39
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199025|3412199022|4302099010|440099025|1602099009;
-X-Microsoft-Antispam-Message-Info:
-	EehFTZ7jyWP/io5+d5iZiGotlGlekvmai0POcnxv70mAM44daEWROvVXWHPgiyBB0IwuXJniPIrrqAIeARLx4viSYFMFVb4g0NhuXHAu8L5ytJL0ezZyC6HSKg5fHV9Yc8CHCnw4dKrs2oWoshxNBQqKUAckiSWWlX+j1ASch0LlTNf0ZgVRnBdxoRWNimA81p9xjOMVkVRQjc2G3iPWqjcRNDxQxrbCMJPxmrYQyzWfYEj2ZoX6du/ANIZtS/iuwHnP4o4mtg1D9V+i6J76D6TM2snu2lPSiidCFrOCz34o+uydq/HRQT83VfGzyj1IqY81SAiQQNrzPSprpkW9fHvEzBoUpNZ+3jdoEu3vzWfPxb5+Yzw2s4ShuochH293KVmzMy7asoQ1aLoRTFTSAa85za3DUTMvRrdg8/rruDysbMqdKZKCYe+xf70RVNmH5r79PKh/Cf8uXWNBYxXMI6SRtXfK/WG9mfGzlpglNREg6J3hGz+lF/DBCzqW1/ZwnHX8vGBngoo7r1wEoNmto3mXNUXT3QbFp703BhTvcKBJGyOrJe/b/rC5USCSUJcPt2ZiTKShI+uVL4cj0bOAOQWsGSIgKfVwL6UJ6LWLIG8sxoiAt7KAfDiacsCbSywZTd42F53hk8ugWUCONPSpoJL6CPodfVRM8YXViknpoNhacvzQ3RurV9fePG5IIhr0IpfZ+XY+IQOFUX3YwJv/FQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MEZSeFQwSm15VGpkWFhQMnd0dW5PZk1mNGpJaGNZSVNubkN5VW53eWV1Nzcv?=
- =?utf-8?B?ZDI0S0xiRlNHZWVIT3B3MlVyQnMwV1F1MGhleDZEYVY3VGwySE5rbU1kckcy?=
- =?utf-8?B?WURISXhjeWxuWUxZZkZXekxFSC9ZMlp4TEp4c1dORFZnOVBxWXpvOVM4eXo2?=
- =?utf-8?B?eFFTUWxuaUJCQTU5d25YNGNnaEx5eWZlaXJPV292MFd2bGdUaVFoc3BqNnFn?=
- =?utf-8?B?eHJaTmF3VGxFZXZHZmp4SzBsdlFRVUdwaDZqUDNmSXMxenlwNGkrQTM4WXZT?=
- =?utf-8?B?djV1VkRjclQ0eU54V1d2bFZ4aWFqLzc0dWlDNG1qM1J5aXh1SGNxOGJZSHdL?=
- =?utf-8?B?T2pMTzczY0E4bGJqMDNWMkt1ZmJ3Vm0yV05KaHpiekxWMjVYbDIzaEpnRXJv?=
- =?utf-8?B?Mk4vdkVmaEpsbVBIRU1KREUrVnhGdHhzakZyUUlua0pMQ1RnOGk3WWFRd3hU?=
- =?utf-8?B?d1VkK0d6UWE2bnhBcEZRaUcvT1QzWjhQMVNPeS8wbU5TYWFocWNuY25BTUtP?=
- =?utf-8?B?ZXNhTnhwdW1rSUdaVWFESC9qd0w0WHBOWVMvcVA4bGpuRlZpUmpRdlRvbVJk?=
- =?utf-8?B?c0pBVVZLNERIdEtoUmtJNS8yYW1pdVVZWUZxQ3hTM3lkZWYyS2pxV0p4OE00?=
- =?utf-8?B?NG4zRmZINEJUNjhuR2hxTHJCT1FHOWdRR3Y0eFovNDdxSk5LMnpWYTRzZ2NB?=
- =?utf-8?B?YVJHYXFPWEVTano3TTFxamNUM3pKbFBCY0xmSVV2aWtMVEJaZjlqYmh2RHRz?=
- =?utf-8?B?Z2YxeHFwMy8xYS9GcFBnRkU2a1JxUlRrQ1JDL01XaTBvTFU3SEUyZTBtaDha?=
- =?utf-8?B?eXBleFR0NVI0Q0ZLWm1iQ0VmbFF3RjI0VWFqSXpKeEdSSzU2dkgzcGZNeUs5?=
- =?utf-8?B?VjZzYmNqNi9wbjhQTExIVzlZaFZEMU56aHdyUkZJd2FnN2hTbzlWdnFaS2Zx?=
- =?utf-8?B?ZDQvczN1SjJad2RXR3NhVS9DNGJEN3h3Vnc5V1lBbU5Yc2pvVjlNNGRHamRW?=
- =?utf-8?B?TXBUTk1FNVB0TUtMWE1DWlNqcnN1YjFKaEFncWdJOE5tYytFNll3Vk1YZUpV?=
- =?utf-8?B?Rk1iSzE2cG5kUUtNUllXVllRemV1M1k5NXlIZHdIbnUyeFpXTkZVMEExREk2?=
- =?utf-8?B?K0Nkc1FjZkx1US9QZGhVZnEraWNLNjFGUnd2ejJkU1lwVXljbk9QRU9XQk9Y?=
- =?utf-8?B?SXU5UllyTmNpMzBkM2NKNEw5THZ0U05BQW40WVlRVVlpd01LUnNleUlWaWRt?=
- =?utf-8?B?czBGTmJFT0xXSGkyU1JERUowMVU0Q2J2d3h6azhwS0dqSDBJUnljUDJOOWl3?=
- =?utf-8?B?MlFidm10K010RFk3bEpOR1JlNk80YkNRZlRiWTZSbDVxUytjSmZCSjFSbzBN?=
- =?utf-8?B?RkFWZkJxbUVRSDlNTlk2UVMraG1wemdHRjJiTFVwdkxxNURmZ1dNak1QR3o5?=
- =?utf-8?B?RktuZGhvSnUzSFZ3QlJCTGtSS0E5QTJUL0tiYm5wUDFabUVOQmsxc3Mvc2t6?=
- =?utf-8?B?MUxnV0RzNGVBY2l1enNxNGZvaHJMZldWd1RXckNVeUhFb3B5aFNFL0dHR2Yv?=
- =?utf-8?B?QjkrSGoyL2xzUml6QVZmTklWY1FXdnpueHBjMmdGMzRmelZiNDlqQkE2TUl2?=
- =?utf-8?B?OCtMazVNRU5pS2JnY0VYZm5UVDlid29rMTdrbDQ4U2dtZ2RKY2ZkRlBpZ0FE?=
- =?utf-8?B?azR4Q0NDN0VwYnp2VXpyaGpMWVpMcndhRFZjcTlEKzlKaC91MGZ1bysvVnJt?=
- =?utf-8?Q?qHTN92AWwGxelc3gCWWjrENlbosiIEPOARxsQkz?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9745ef0e-8e92-4f7d-507c-08dc8f8eee39
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 12:05:22.8253
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8660
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
+ panel
+To: Conor Dooley <conor.dooley@microchip.com>,
+ Maxime Ripard <mripard@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, Ryan Walklin <ryan@testtoast.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>,
+ Chris Morgan <macroalpha82@gmail.com>,
+ Andre Przywara <andre.przywara@arm.com>, John Watts <contact@jookia.org>
+References: <20240530211415.44201-1-ryan@testtoast.com>
+ <20240530211415.44201-3-ryan@testtoast.com>
+ <20240606-intelligent-aromatic-magpie-80a7a4@houat>
+ <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
+ <20240606-refreshing-cinnamon-ibex-a0fe73@houat>
+ <20240606-authentic-mongoose-9485904a91a1@spud>
+ <20240618-silky-holistic-oyster-bf59fe@houat>
+ <20240618-reverse-kinship-7f8df8c8e111@wendy>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240618-reverse-kinship-7f8df8c8e111@wendy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On 2024/6/18 03:22, Jonathan Cameron wrote:
-> On Mon, 17 Jun 2024 19:34:30 +0800
-> kernel test robot <lkp@intel.com> wrote:
->
->> Hi Yasin,
+On 18/06/2024 13:13, Conor Dooley wrote:
+> On Tue, Jun 18, 2024 at 11:04:09AM +0200, Maxime Ripard wrote:
+>> Hi Conor,
 >>
->> kernel test robot noticed the following build warnings:
+>> Sorry, I missed the news of you becoming a DT maintainer, so most of my
+>> previous points are obviously bogus. And congrats :)
+> 
+> I've been doing it for over a year, so news travels to some corners slowly
+> I guess. I'm not just being a pest in dozens of subsystems for fun!
+> 
+>> On Thu, Jun 06, 2024 at 12:51:33PM GMT, Conor Dooley wrote:
+>>> On Thu, Jun 06, 2024 at 01:23:03PM +0200, Maxime Ripard wrote:
+>>>> On Thu, Jun 06, 2024 at 11:37:31AM GMT, Neil Armstrong wrote:
+>>>>> On 06/06/2024 11:32, Maxime Ripard wrote:
+>>>>>> On Fri, May 31, 2024 at 09:12:14AM GMT, Ryan Walklin wrote:
+>>>>>>> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in a
+>>>>>>> number of handheld gaming devices made by Anbernic. By consensus a
+>>>>>>> vendor prefix is not provided as the panel OEM is unknown.
+>>>>>>
+>>>>>> Where has this consensus been found?
+>>>>>>
+>>>>>> I had a look at the previous discussions, and I can't find any consensus
+>>>>>> being reached there. And for that kind of thing, having the ack or
+>>>>>> review of any of the DT maintainers would have been great.
+>>>>>
+>>>>> There was a consensus with Conor, this is why he acked v2, see
+>>>>> https://lore.kernel.org/all/20240525-velvet-citable-a45dd06847a7@spud/
+>>>>
+>>>> It's probably a matter of semantics here, but if it's with only one
+>>>> person, it's not a consensus but an agreement.
+>>>>
+>>>>> ```
+>>>>> I think if we genuinely do not know what the vendor is then we just
+>>>>> don't have a prefix.
+>>>>> ```
+>>>>
+>>>> And even then, I don't interpret Conor's statement as a formal agreement
+>>>> but rather an acknowledgment of the issue.
+>>>
+>>> I mean, I specifically left an r-b below that line in v2:
+>>> https://lore.kernel.org/all/20240530-satchel-playgroup-e8aa6937b8b9@spud/
+>>>
+>>> I'm not a displays guy, so my sources were limited to what I could find
+>>> from search engines, but I spent some time looking for an actual vendor
+>>> of the panel and could not. All I found was various listings on places
+>>> like AliExpress that did not mention an manufacturer. I'd rather not
+>>> invent a vendor because we could not find the actual vendor of the
+>>> panel & it seemed rather unreasonable to block support for the device
+>>> on the basis of not being able to figure out the vendor. If you, as
+>>> someone knowledgeable on displays, can figure the vendor out, then
+>>> yeah we should definitely add it.
 >>
->> [auto build test WARNING on jic23-iio/togreg]
->> [also build test WARNING on robh/for-next linus/master v6.10-rc4 next-20240613]
->> [If your patch is applied to the wrong git tree, kindly drop us a note.
->> And when submitting patch, we suggest to use '--base' as documented in
->> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>> It's still a bit surprising to me. We've merged[1][2][3][4], and are still
+>> merging[5], panels from this particular vendor that have no clearly
+>> identified OEMs. Just like any other panel, really. We almost *never*
+>> have the actual OEM, we just go with whatever is the easiest to identify
+>> it.
+> 
+> It wasn't (isn't?) clear to me that Abernic is even the vendor of the
+> panel, just that it works for their devices. If there's an established
+> policy here of making up vendors for these panels, then sure, override
+> me and use them as the prefix.
+> 
+>> Plus, if there ever is another WL-355608-A8 part from a completely
+>> unrelated vendor, then you'll have a naming clash with no clear
+>> indication about which is which.
+
+Not sure we can say there's an established policy ongoing here, we try to
+use the marking we find on the panel when possible and when not possible
+we use the vendor + name of the device in last ressort.
+
+Neil
+
 >>
->> url:    https://github.com/intel-lab-lkp/linux/commits/Yasin-Lee/dt-bindings-iio-proximity-Add-hx9023s-binding/20240616-154122
->> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
->> patch link:    https://lore.kernel.org/r/SN7PR12MB8101D4BC788B5954608D677DA4CC2%40SN7PR12MB8101.namprd12.prod.outlook.com
->> patch subject: [PATCH v5 3/3] iio:proximity:hx9023s: Add TYHX HX9023S sensor driver
->> config: arm64-randconfig-r132-20240617 (https://download.01.org/0day-ci/archive/20240617/202406171946.qe83Tde0-lkp@intel.com/config)
->> compiler: aarch64-linux-gcc (GCC) 13.2.0
->> reproduce: (https://download.01.org/0day-ci/archive/20240617/202406171946.qe83Tde0-lkp@intel.com/reproduce)
->>
->> If you fix the issue in a separate patch/commit (i.e. not just a new version of
->> the same patch/commit), kindly add following tags
->> | Reported-by: kernel test robot <lkp@intel.com>
->> | Closes: https://lore.kernel.org/oe-kbuild-all/202406171946.qe83Tde0-lkp@intel.com/
->>
->> sparse warnings: (new ones prefixed by >>)
->>>> drivers/iio/proximity/hx9023s.c:955:44: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 @@     got int diff @@
->>     drivers/iio/proximity/hx9023s.c:955:44: sparse:     expected restricted __be16
->>     drivers/iio/proximity/hx9023s.c:955:44: sparse:     got int diff
->>
->> vim +955 drivers/iio/proximity/hx9023s.c
->>
->>     931	
->>     932	static irqreturn_t hx9023s_trigger_handler(int irq, void *private)
->>     933	{
->>     934		struct iio_poll_func *pf = private;
->>     935		struct iio_dev *indio_dev = pf->indio_dev;
->>     936		struct hx9023s_data *data = iio_priv(indio_dev);
->>     937		struct device *dev = regmap_get_device(data->regmap);
->>     938		int ret;
->>     939		unsigned int bit, i = 0;
->>     940	
->>     941		guard(mutex)(&data->mutex);
->>     942		ret = hx9023s_sample(data);
->>     943		if (ret) {
->>     944			dev_warn(dev, "sampling failed\n");
->>     945			goto out;
->>     946		}
->>     947	
->>     948		ret = hx9023s_get_prox_state(data);
->>     949		if (ret) {
->>     950			dev_warn(dev, "get prox failed\n");
->>     951			goto out;
->>     952		}
->>     953	
->>     954		for_each_set_bit(bit, indio_dev->active_scan_mask, indio_dev->masklength)
->>   > 955			data->buffer.channels[i++] = data->ch_data[indio_dev->channels[bit].channel].diff;
->>     956	
-> This looks very odd.  Diff is an int filled with get_unaligned_le16()
-> which you then write to a __be16 here.
->
-> It should remain little endian, if that is appropriate, throughout.
->
-> Also, very long line. Use a local variable for
-> indio_dev->channels[bit].channel.
-Hi Jonathan,
+>> 1: https://lore.kernel.org/all/20230426143213.4178586-1-macroalpha82@gmail.com/
+>> 2: https://lore.kernel.org/all/20231003163355.143704-1-macroalpha82@gmail.com/
+>> 3: https://lore.kernel.org/all/20231117202536.1387815-1-macroalpha82@gmail.com/
+>> 4: https://lore.kernel.org/all/20231208154847.130615-1-macroalpha82@gmail.com/
+>> 5: https://lore.kernel.org/dri-devel/20240618081515.1215552-1-kikuchan98@gmail.com/
+> 
+> 
 
-I reviewed the code and saw that data->buffer.channels[i] needs to be 
-filled with the MSB and LSB of the diff data register. I can read the 
-two bytes of diff data using regmap_bulk_read and fill 
-data->buffer.channels[i]. However, the diff data register in this chip 
-is multiplexed with the low pass data register. Thus, in some cases, 
-diff data can't be directly read and must be calculated as the 
-difference between low pass data and baseline data. Therefore, I can't 
-directly store the register value in data->buffer.channels[i]. I plan to 
-make the following changes to the code. Do you think this is feasible?
-
-@@ -141,7 +141,7 @@ struct hx9023s_data {
-         bool trigger_enabled;
-
-         struct {
--               __be16 channels[HX9023S_CH_NUM];
-+               __le16 channels[HX9023S_CH_NUM];
-                 s64 ts __aligned(8);
-         } buffer;
-
-@@ -936,7 +936,7 @@ static irqreturn_t hx9023s_trigger_handler(int irq, 
-void *private)
-         struct hx9023s_data *data = iio_priv(indio_dev);
-         struct device *dev = regmap_get_device(data->regmap);
-         int ret;
--       unsigned int bit, i = 0;
-+       unsigned int bit, index, i = 0;
-
-         guard(mutex)(&data->mutex);
-         ret = hx9023s_sample(data);
-@@ -951,8 +951,10 @@ static irqreturn_t hx9023s_trigger_handler(int irq, 
-void *private)
-                 goto out;
-         }
-
--       for_each_set_bit(bit, indio_dev->active_scan_mask, 
-indio_dev->masklength)
--               data->buffer.channels[i++] = 
-data->ch_data[indio_dev->channels[bit].channel].diff;
-+       for_each_set_bit(bit, indio_dev->active_scan_mask, 
-indio_dev->masklength) {
-+               index = indio_dev->channels[bit].channel;
-+               data->buffer.channels[i++] = 
-cpu_to_le16(data->ch_data[index].diff);
-+       }
-
-         iio_push_to_buffers_with_timestamp(indio_dev, &data->buffer, 
-pf->timestamp);
-
-Best regards,
-Yasin Lee
->>     957		iio_push_to_buffers_with_timestamp(indio_dev, &data->buffer, pf->timestamp);
->>     958	
->>     959	out:
->>     960		iio_trigger_notify_done(indio_dev->trig);
->>     961	
->>     962		return IRQ_HANDLED;
->>     963	}
->>     964	
->>
 
