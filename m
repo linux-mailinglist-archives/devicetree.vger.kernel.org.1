@@ -1,99 +1,88 @@
-Return-Path: <devicetree+bounces-76890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A2290C745
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:40:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A11990C751
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:41:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82855284659
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:40:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ED491C21EB3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4358D1B0104;
-	Tue, 18 Jun 2024 08:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A86152793;
+	Tue, 18 Jun 2024 08:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PPJk9Yyx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wao62wT0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22281BF38;
-	Tue, 18 Jun 2024 08:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A23841C71;
+	Tue, 18 Jun 2024 08:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718699972; cv=none; b=VZOanuChLmHO7HWKZvdK+sAY3rCrbTMg1I6b4ukTt5cwzemaFVi6Fjb4r9w+EXkzSU5+BLKzMJj67MMV+lK7MDrgWwNfIHg6rSMkQESDGHgYiTuSN4D53R9RKpp6hNz82lm7NA69qKPSo4MxrKJiePK5qU8kjYpJMmQTpqJ/qMc=
+	t=1718700321; cv=none; b=BPzA5d/icyVLvlN460EBFs5Sa7m7U95I2t6nJk7GxPIPUxrESaUIm1Zg/glzu/nexebv+hJ0sJp3jKR9XVSMzolw3hjzRvslT6s18YFfp9+7+7eYE0ziWnQ3rP1J0xBWKwRs2qT2d8yJED2i96YKL2pAfR41IwBfarFSavXG0Ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718699972; c=relaxed/simple;
-	bh=WYq2OHBK0AdgEaVT9jkh0Es0lUwnAC4FuwB4yD1Lrnk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=j/nsrS7OT60kuBMH/OB8rHJTtvFKm8Bowq31lX1qzN4f+dWR/O8819HVBqgSRveU3DZypktqfmuwvLr3ImFdFgO7ykK7QE7ERjWnxtO6m50zz6dpQ6FFKlblr6ZdVDpb8ppiq+y20Nehpebo+awSwXDkVbqldYkKsWI1PqjIL+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PPJk9Yyx; arc=none smtp.client-ip=209.85.210.53
+	s=arc-20240116; t=1718700321; c=relaxed/simple;
+	bh=kpiQvaQ2ZnnLK5Xsby0sRe0KylNedZz1Emu3YYp3ZQ0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O0dHtgfyFOWtlK4NWjhNp3MC3HVwWVutQpBa4WN0nDq8te8urIhApSEihakEzYG6emQWINAsclE3sH2jk4JGrucsTH1MPFOWM/rgDM3XzKUPK3DN+a4qAG/pq8QJCRJUbkNknRFRwF45NKKVMpw0rvxnZm537zNgjmGjrgRtuUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wao62wT0; arc=none smtp.client-ip=209.85.160.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6f986b92acaso2973853a34.2;
-        Tue, 18 Jun 2024 01:39:30 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-24c0dbd2866so2714897fac.0;
+        Tue, 18 Jun 2024 01:45:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718699970; x=1719304770; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fcoMCm+enNSGbUuJXoL2d96+fYWSHPTojOmLTIxiMc4=;
-        b=PPJk9YyxdrgzyAPjoaudZS4nn30J56Yip3AZP7FPaPpJ3IZGpqxfzi5aWCNK/byuQI
-         kaBzBxTH/TIyLtQiAnVgc8r0LTkAaGi6a70jt6anabW6AVmnY/Z7+KxQQeCrL5nlSx7B
-         IwwQB9m8XNqX7zBT4O1miL/yToYXwFMtX3AKzq5mS1uS2sxZV/j0u7v4bNVtNOb5vwPW
-         5O2pW7AnYaUpH358eO9YfZbJB4bYeJQoWYU9Bu4gBICFglkxnNwh9HDy0S5OdfXj7DOR
-         qEIRsFQfluiAN64IAoKpjv/iebNVHbobvZ01k93DqaGboB92lzPwN6PuuAnHQMIMI890
-         uOBg==
+        d=gmail.com; s=20230601; t=1718700319; x=1719305119; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yPYUtELosA8xnl39GhJPcApPe0HIs0EBkpVaQuScTEU=;
+        b=Wao62wT0SaznPme4jDiiMwuV37ekYfclE92SNQzRpt+c7biY8792E9rsQBnPnFHCX+
+         Pm0/IEv/Osb2ke4pba31mCZt1dEkaLl9BJ09frhbfomc8fm+iuXlVfU//OBv2nr/8da5
+         T0GOsBgQFs+AeT20j2R/u5RWWZIAd0LBWp2RCP7j0Rf2/oa77gx6fKwcbeoLlni8a1Vb
+         8o13e4SwT8Ch5l2/19D7lnNSpogZ9eorf+dygWPpsHz7G6sW7BSG/Qxu6GsWNVIZSQM1
+         77nNMcwhxN0s8bdybSEcnUpFxHUqFh2EOM9TFvAD+ccDQ/WhTpJVr74P26qpC85ymNGu
+         1rQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718699970; x=1719304770;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fcoMCm+enNSGbUuJXoL2d96+fYWSHPTojOmLTIxiMc4=;
-        b=qtqxz4rVEZVvCa01wWRVFVbNtvo8tLJh3wbC/Itu0cZIvB2IXXHSbWt5h4M3zyWxqz
-         XOfncTvQhWVwEJq0sEPly8ZCR2byY0eTPkQAhVSaD9YXG4hwXE9/nzUNaLoXDIySjYgX
-         zoaOqFyNoAcIXWPrs/XcdG+6GFyctTBzzrpoTdZ5gnh5LvGnhCIGY0UqlU9Qym631wf2
-         iknDETBsIDzXqaQ9Oa44G1hO4niefIl3cjXgUC6PHGhyMgx/RWPCQW9bu2+5GM/vSS1p
-         HwGXm7/NcScNhjXq3uZWTvhqICsqt9wmcX6IEZhbeJLaeLjHY7iyAvVqr66qgSWnrzt7
-         VbUw==
-X-Forwarded-Encrypted: i=1; AJvYcCWNnkasyr37sjBu4Z9gzfoKOvS8TLzxCJJihv2vkhl2aOpFGzJSIr+5wCRWb/ZRqwCMXhz9KMw21U1IJPdDLshtQKvI3gm7+veLY9zEIB0mGxDom2CNFyTKVP9i3JbIuWCb0SlJxajZByhWga6MNJZtUuR2RRBVIwiAh/yEVD/kM7EhuA==
-X-Gm-Message-State: AOJu0YxG8mo6WPIYVxL66ivhTG2rlA7VuCBL/hx8+F4VLjeoaKUQ21KN
-	EqPO8MQp8Rc768NsL0Kco1cChdbuGhUw45492HYYBQsARU5rewC6
-X-Google-Smtp-Source: AGHT+IFcy1nbT2issyZB1cEgm/lfGKAVteBPOb6Fg8eo1DnNX6U9jgGHQwHqqALGVpgz4hatJydTPA==
-X-Received: by 2002:a05:6830:43a9:b0:6f9:90ba:6646 with SMTP id 46e09a7af769-6fb939f328bmr15303711a34.26.1718699969712;
-        Tue, 18 Jun 2024 01:39:29 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6fb5b75563csm1770804a34.66.2024.06.18.01.39.26
+        d=1e100.net; s=20230601; t=1718700319; x=1719305119;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yPYUtELosA8xnl39GhJPcApPe0HIs0EBkpVaQuScTEU=;
+        b=J/+BGl9NmGYBM8MW9CsJV37fP6H4aqp+SgMV+nCqMFmb3RS6oxAWJ9bQy+MBDAIyFN
+         bEHo1T/X7uwcO+hgt0GPcm6Vd8OnMisc3/sKCoMw3r5gMCoc+XvLbDPJmNt6wwZMfcap
+         lPdMxT5TVGqnDYMxkr5ZaAv/pylHEb5tZARgkh6slpxEcdXxD2Ei9ImHrQtDLd6fwPSV
+         W+TLFVmFfiElyUZTWuuckOkuiRroFNYRbnuPDnhpUuUlZoEASIbW/PC3CnknkXLW0BpN
+         qZnoWY9DC+rU3/pPtN2ybcRvdsAXiOHFKbXflIZ8pAuWBJU21moJnlooXKGXvMShD3Vi
+         lvkg==
+X-Forwarded-Encrypted: i=1; AJvYcCVGNK2ghZ6uaCg08ij21HyM7GNxNcfTkpZEpITJ5DmhPDILpX+SAWDq1bGlLA586RKH77rsqEZ5m5eQNrRFt0GFLUlCRjnCL5snPJx6erqt+9ZHC2XYluOeRlKySFuLf++DoI2plamBV/ux7opjJGnhsOXgslpV7Myt8df8IJoSUrPq8wor
+X-Gm-Message-State: AOJu0Yy07hRHFPChzicyRhv5+YSHl76DAP6uoD6Q7COb0KNdN4oVgdEB
+	HWqqZqI55ATV7xyubxYMz8NlrVsEZmo8ezeziArhtSQNTXAW4O+l
+X-Google-Smtp-Source: AGHT+IF3uENCwWKypgIUCO9FrGgaFoeFk9JoeBqoSGbpjuPy6usbJUCO3x1MbLPHVs4AfJyYCLQK/g==
+X-Received: by 2002:a05:6870:440e:b0:24f:c715:a4d4 with SMTP id 586e51a60fabf-25842ba206fmr13076694fac.40.1718700319126;
+        Tue, 18 Jun 2024 01:45:19 -0700 (PDT)
+Received: from ux-UP-WHL01.. (mailgw01.goodix.com. [45.117.96.243])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705ccb6b4efsm8512152b3a.151.2024.06.18.01.45.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 01:39:28 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: adrian.hunter@intel.com,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	guoren@kernel.org,
-	inochiama@outlook.com,
-	jszhang@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh@kernel.org,
-	ulf.hansson@linaro.org,
+        Tue, 18 Jun 2024 01:45:18 -0700 (PDT)
+From: Charles Wang <charles.goodix@gmail.com>
+To: dmitry.torokhov@gmail.com,
+	dan.carpenter@linaro.org,
+	conor@kernel.org,
+	robh@kernel.org
+Cc: dianders@chromium.org,
+	krzk+dt@kernel.org,
+	jikos@kernel.org,
+	bentiss@kernel.org,
+	hbarnor@chromium.org,
+	linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	tingzhu.wang@sophgo.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-Subject: [PATCH v4 4/4] riscv: dts: add mmc controllers for Sophgo SG2042 SoC
-Date: Tue, 18 Jun 2024 16:39:20 +0800
-Message-Id: <e2d3b19e06fa29116b8032addc70c8dc1ec3866e.1718697954.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1718697954.git.unicorn_wang@outlook.com>
-References: <cover.1718697954.git.unicorn_wang@outlook.com>
+	Charles Wang <charles.goodix@gmail.com>
+Subject: [PATCH v5 0/2] HID: add initial support for Goodix HID-over-SPI touchscreen
+Date: Tue, 18 Jun 2024 16:44:52 +0800
+Message-ID: <20240618084455.1451461-1-charles.goodix@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,87 +91,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Chen Wang <unicorn_wang@outlook.com>
+This patch introduces a new driver to support the Goodix GT7986U
+touch controller. This device is not compatible with Microsoft's
+HID-over-SPI protocol and therefore needs to implement its own
+flavor. The data reported is packaged according to the HID
+protocol but uses SPI for communication to improve speed. This
+enables the device to transmit not only coordinate data but also
+corresponding raw data that can be accessed by user-space programs
+through the hidraw interface. The raw data can be utilized for
+functions like palm rejection, thereby improving the touch experience.
 
-SG2042 has two MMC controller, one for emmc, another for sd-card.
+Key features:
+- Device connection confirmation and initialization
+- IRQ-based event reporting to the input subsystem
+- Support for HIDRAW operations (GET_REPORT and SET_REPORT)
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+Signed-off-by: Charles Wang <charles.goodix@gmail.com>
 ---
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 17 ++++++++++
- arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 32 +++++++++++++++++++
- 2 files changed, 49 insertions(+)
+Changes in v5:
+- Add additional descriptive information to the dt-binding file.
+- Fixed build warnings reported by kernel test robot.
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-index 49b4b9c2c101..164db23586e0 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-@@ -14,6 +14,23 @@ chosen {
- 	};
- };
- 
-+&emmc {
-+	bus-width = <4>;
-+	no-sdio;
-+	no-sd;
-+	non-removable;
-+	wp-inverted;
-+	status = "okay";
-+};
-+
-+&sd {
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	wp-inverted;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 81fda312f988..bfdfd6f32912 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -346,5 +346,37 @@ uart0: serial@7040000000 {
- 			resets = <&rstgen RST_UART0>;
- 			status = "disabled";
- 		};
-+
-+		emmc: mmc@704002a000 {
-+			compatible = "sophgo,sg2042-dwcmshc";
-+			reg = <0x70 0x4002A000 0x0 0x1000>;
-+			interrupt-parent = <&intc>;
-+			interrupts = <134 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks =
-+				<&clkgen GATE_CLK_AXI_EMMC>,
-+				<&clkgen GATE_CLK_100K_EMMC>,
-+				<&clkgen GATE_CLK_EMMC_100M>;
-+			clock-names =
-+				"core",
-+				"timer",
-+				"card";
-+			status = "disabled";
-+		};
-+
-+		sd: mmc@704002b000 {
-+			compatible = "sophgo,sg2042-dwcmshc";
-+			reg = <0x70 0x4002B000 0x0 0x1000>;
-+			interrupt-parent = <&intc>;
-+			interrupts = <136 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks =
-+				<&clkgen GATE_CLK_AXI_SD>,
-+				<&clkgen GATE_CLK_100K_SD>,
-+				<&clkgen GATE_CLK_SD_100M>;
-+			clock-names =
-+				"core",
-+				"timer",
-+				"card";
-+			status = "disabled";
-+		};
- 	};
- };
+Changes in v4:
+- Allocate memory based on the report information.
+- Added a new function goodix_get_event_report() to retrieve report data,
+  reducing memory copy operations and avoiding the use of reg_rw_lock.
+- Add low power control operations.
+- Implemented power management operations.
+- Introduced GOODIX_HID_STARTED to record the current device operating state.
+- Add OF match table.
+
+Changes in v3:
+- Renamed the driver file to hid-goodix-spi.c.
+- Mentioned in the commit message that this implementation is not compatible with
+  Microsoft's HID-over-SPI protocol.
+- Modified the driver to fetch the GOODIX_HID_REPORT_ADDR from device properties.
+- Add a lock to prevent concurrent hid feature request operations.
+- Optimized the SPI read/write functions by reducing the number of malloc calls.
+
+Changes in v2:
+- Fixed build warnings reported by kernel test robot
+
+---
+Charles Wang (2):
+  HID: hid-goodix: Add Goodix HID-over-SPI driver
+  dt-bindings: input: Goodix SPI HID Touchscreen
+
+ .../bindings/input/goodix,gt7986u.yaml        |  72 ++
+ drivers/hid/Kconfig                           |   6 +
+ drivers/hid/Makefile                          |   1 +
+ drivers/hid/hid-goodix-spi.c                  | 811 ++++++++++++++++++
+ 4 files changed, 890 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
+ create mode 100644 drivers/hid/hid-goodix-spi.c
+
 -- 
-2.25.1
+2.43.0
 
 
