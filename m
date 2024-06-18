@@ -1,145 +1,159 @@
-Return-Path: <devicetree+bounces-77205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08A4790DB16
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 19:52:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C81B90DB32
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 20:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8721F24FC5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:52:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 520631F22CBA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3760013F003;
-	Tue, 18 Jun 2024 17:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E9514F108;
+	Tue, 18 Jun 2024 18:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="EQtmLmB5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SO9JXZWJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FAC1CAB3;
-	Tue, 18 Jun 2024 17:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CAE14D718;
+	Tue, 18 Jun 2024 18:00:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718733163; cv=none; b=SrmuztITD7mlaL5QYgd4/2nYPPHDGFQrg1NUuSb3PEoMyBUIeaC0rhAhNoR4/50X6XG0i7iSA570ANKTkhgeGV5esG4vxJoaamRDMR2NNYOw7Ifi2M05kbNPGvYdaZMCTF2uQYXBe/6Nxw/Hpa4rbeYZGJ/zvcu+eTU00idLVMo=
+	t=1718733608; cv=none; b=oPWFrmbQ9rxIGdtC56Yps3GA+A0/Lq1sLxooPSp+k3YyfrUcPIiZoOqS8ofTiGM+w9bEHZuZ92SWlsgpSzxpPlqy+6YWK6Sk3XEfyUrfH2FMi7xogAHMZwtQ368Y+H2kh4j/v7aespubaY8tpIhwXO9U7XRUUU/YiCSQpN1dqFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718733163; c=relaxed/simple;
-	bh=0cexaMOCCe5o8jbSfBi41x60WbuHR244aFJcYgBY7rs=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ngRMOBbIfiQLhHfnorIHwD34UzBomunl9Xcx4vckEu/tGzFymLACZKfZx4NA3q8UtFf3K9m1MdPaHn64Uktxqqbf/PmTeMfsTzg/x4r3p88V8FRzrxt7KiglYrLW2H9D0gNXrz9ZpwlacSHbSdKPp/YE+4rKYZ5XoY1na1T1eBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=EQtmLmB5; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 61459100016;
-	Tue, 18 Jun 2024 20:52:29 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 61459100016
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1718733149;
-	bh=5TjeYJIhyXVCbtW4EgmHOFsDZbAMP7EgSVrBNOOHR9g=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=EQtmLmB5bWg+RdiajBbBReyay3nqp9amTcITVHIb67cFVUMJ4A98E4o2rHTid60ki
-	 rie8Nxts2xJbLTDMyQF8HTYYk26uyG1DjGgww1SSuYAs1ii05wWfTqH/D0NNgW7P7f
-	 SAZik9tWWBPOW+6o8gkoOCzK7//aTbf5Z3ljR1LYluQog3za0huJWYtqLBS6baCEEw
-	 MygAPEEM4VjdQDmd59pUasIGcGrITG+An3k4HrryRQhXUlRrfPqW55V2kKIj7rQeid
-	 UBhxfJS6IiUf1bdoIHa8gRVhD5+lkUisRstIo6AEJoCi46IMMSGvpptdb9breuMRM2
-	 yRiXN7HVz1d/g==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 18 Jun 2024 20:52:29 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 18 Jun
- 2024 20:52:28 +0300
-Date: Tue, 18 Jun 2024 20:52:28 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-CC: Kevin Hilman <khilman@baylibre.com>, Arnd Bergmann <arnd@kernel.org>, Arnd
- Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jerome Brunet
-	<jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Igor Prusov
-	<ivprusov@salutedevices.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: ad402: move thermal-zones to top
- node
-Message-ID: <20240618175134.bzw22uthyvw55rfc@CAB-WSD-L081021>
-References: <20240528133215.2266419-1-arnd@kernel.org>
- <171766520046.3911343.14113541266786791367.b4-ty@linaro.org>
+	s=arc-20240116; t=1718733608; c=relaxed/simple;
+	bh=vdLqYT3yxGwrogUijhrPQGbsyui/K4rhU6ujDIkV/qY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lxz5t3ug6dGj72tvY+2yJh5zOkLrw0ewueSYAcnmVkTRKwKUdx8sTbHfvpX8lBrsQULX3sKFQWE85IkvLtYu7+B29yAueZHZmX/QFG14T9qJdDIeq6DAebdqfY60U7wHuk59GVDO9+mQPRjiB+cEQEU8CIP2K75TYkdgpk3L2uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SO9JXZWJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B0B0C4AF1A;
+	Tue, 18 Jun 2024 18:00:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718733607;
+	bh=vdLqYT3yxGwrogUijhrPQGbsyui/K4rhU6ujDIkV/qY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SO9JXZWJ4Cfc9gwWhkxjzs/Yl3HTaFP1N/qXTDNuvLU4EBOfQYgB7rQzAm3tBqMnY
+	 4mqcay6bgLTj5HmYFrEd0Ct3vqG/jDGIHEcStkxHYouTUjzgWWF8Uk8iZfeqmjwOei
+	 MH6QDazUYIhDGYEJqMlyCrygE9dA537nNwSdiEFSWL9yZKRK7wD8JCMDMoLlUiDDQN
+	 sP23FbV0SdxfGOyDJeLhnt9lrn0+65vVjXoWZTBmjXA0H46bjhFzdrCfuabTVj08Ix
+	 +Z4atmlqRLUYlDaRYmtg0/uoVrVB6GrDZHbyBfmM3DkHnGHhtIJMReX4ug0QhXcit/
+	 NIAZYpZo6IEyw==
+Date: Tue, 18 Jun 2024 19:00:03 +0100
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: iio: adc: add AD4695 and similar ADCs
+Message-ID: <20240618-hexagram-clamp-e716d5bcaa12@spud>
+References: <20240617-iio-adc-ad4695-v2-0-63ef6583f25d@baylibre.com>
+ <20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com>
+ <171865982439.3455065.3692466445202658610.robh@kernel.org>
+ <993ef797-51e8-4a57-adf3-1599d9fccba6@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TuAqhHoboYrfF8LU"
 Content-Disposition: inline
-In-Reply-To: <171766520046.3911343.14113541266786791367.b4-ty@linaro.org>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185993 [Jun 18 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;git.kernel.org:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/06/18 16:18:00
-X-KSMG-LinksScanning: Clean, bases: 2024/06/18 16:17:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/18 16:19:00 #25649051
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <993ef797-51e8-4a57-adf3-1599d9fccba6@baylibre.com>
 
-On Thu, Jun 06, 2024 at 11:13:20AM +0200, Neil Armstrong wrote:
-> Hi,
-> 
-> On Tue, 28 May 2024 15:31:59 +0200, Arnd Bergmann wrote:
-> > It appears that this accidentally got added into the spi node, causing
-> > a warning.
-> > 
-> > arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts:119.16-161.4: Warning (spi_bus_reg): /soc/spi@fd000400/thermal-zones: missing or empty reg property
-> > 
-> > 
-> 
-> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
-> 
-> [1/1] arm64: dts: amlogic: ad402: move thermal-zones to top node
->       https://git.kernel.org/amlogic/c/6c9b5ba73ca77ef3863cda6560856fdfe7dc237a
-> 
-> These changes has been applied on the intermediate git tree [1].
-> 
-> The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-> for inclusion in their intermediate git branches in order to be sent to Linus during
-> the next merge window, or sooner if it's a set of fixes.
-> 
-> In the cases of fixes, those will be merged in the current release candidate
-> kernel and as soon they appear on the Linux master branch they will be
-> backported to the previous Stable and Long-Stable kernels [2].
-> 
-> The intermediate git branches are merged daily in the linux-next tree [3],
-> people are encouraged testing these pre-release kernels and report issues on the
-> relevant mailing-lists.
-> 
-> If problems are discovered on those changes, please submit a signed-off-by revert
-> patch followed by a corrective changeset.
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-My apologies for any confusion, it seems like these are artifacts from
-the merge process...
+--TuAqhHoboYrfF8LU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Thank you,
-Dmitry
+On Mon, Jun 17, 2024 at 05:06:29PM -0500, David Lechner wrote:
+> On 6/17/24 4:30 PM, Rob Herring (Arm) wrote:
+> >=20
+> > On Mon, 17 Jun 2024 14:53:13 -0500, David Lechner wrote:
+> >> Add device tree bindings for AD4695 and similar ADCs.
+> >>
+> >> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> >> ---
+> >>
+> >> v2 changes:
+> >> * Drop *-wlcsp compatible strings
+> >> * Don't use fallback compatible strings
+> >> * Reword supply descriptions
+> >> * Use standard channel properties instead of adi,pin-pairing
+> >> * Fix unnecessary | character
+> >> * Fix missing blank line
+> >> * Add header file with common mode channel macros
+> >> ---
+> >>  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 290 ++++++++++++=
++++++++++
+> >>  MAINTAINERS                                        |  10 +
+> >>  include/dt-bindings/iio/adi,ad4695.h               |   9 +
+> >>  3 files changed, 309 insertions(+)
+> >>
+> >=20
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >=20
+> > yamllint warnings/errors:
+> >=20
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/iio/adc/adi,ad4695.yaml: single-channel: missing type definition
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/iio/adc/adi,ad4695.yaml: common-mode-channel: missing type definition
+> >=20
+> > doc reference errors (make refcheckdocs):
+> >=20
+> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2024=
+0617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com
+> >=20
+> > The base for the series is generally the latest rc1. A different depend=
+ency
+> > should be noted in *this* patch.
+> >=20
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> >=20
+> > pip3 install dtschema --upgrade
+> >=20
+> > Please check and re-submit after running the above command yourself. No=
+te
+> > that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> > your schema. However, it must be unset to test all examples with your s=
+chema.
+> >=20
+>=20
+> I think the problem is that I don't have a well-known commit as the
+> base-commit in my cover letter (oversight on my part).
+
+I think for his bot it needs, as written above, to be "in *this* patch".
+I'm not sure if that's to allow for manual review, or something the bot
+does automagically however.
+
+> single-channel and common-mode-channel are recent additions to the
+> common iio/adc.yaml so the types are defined there.
+>=20
+> make dt_binding_check did pass for me locally before sending the series.
+
+--TuAqhHoboYrfF8LU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnHLIwAKCRB4tDGHoIJi
+0k9oAQDJh9OUEoMBxT+qaoCB8mzhkxI04SBsm0hizJ307u2OuAEAv3hQnhWROWsi
+GyEp3ufS78WPrPocqXjzHWIV5dpJCQY=
+=/fov
+-----END PGP SIGNATURE-----
+
+--TuAqhHoboYrfF8LU--
 
