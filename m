@@ -1,153 +1,158 @@
-Return-Path: <devicetree+bounces-76903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9125390C7BD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:52:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6E490C7C5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:53:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 617A5281CDA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:52:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6B41B22C06
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED2F1C230F;
-	Tue, 18 Jun 2024 09:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDC3156250;
+	Tue, 18 Jun 2024 09:17:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+D8twzo"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ugTD0KnE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2100.outbound.protection.outlook.com [40.92.107.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1859A155CBE;
-	Tue, 18 Jun 2024 09:14:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718702044; cv=none; b=fN+NZsb4HuODlP40DUCEmcn1f3N2r+61HDjSNVfhR2CUeayhIKDZkhRkg/RlUWgGLZbBOuQK3hAAqkFGjhcX4wjE9KU99r0n5X28sLYjpFYuz9ELI7+qtu2qCuJeeny4dLdXXsL+owRWsqsYzXWJO/TthuSZsis1s70nupSzNwc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718702044; c=relaxed/simple;
-	bh=ttYN9V7Bv0xdEUu9yvXJ2Kb1OFzdBlAYZwrbDTsO7FI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TQl1Fl/vziVpGdP4oAdkKMwYwub10OsKdb1b5+6QocBrlLwTHhyxoMR79byjuAQ/3bSGyhGaGsNcdajJFL1vxI8wPRo7M1BvMczGIO6UkYblZP+l0cWKosERUo6DN4rpTEK4ApcnbZjDp9xTR3k/EBA7ytgxCYRJNBnx+7KcoZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+D8twzo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C196C3277B;
-	Tue, 18 Jun 2024 09:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718702043;
-	bh=ttYN9V7Bv0xdEUu9yvXJ2Kb1OFzdBlAYZwrbDTsO7FI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C+D8twzoSvvGoWOZwivYtyP5feM5zLG61KgFlipYdDyKEU8NLYzTatHWDSpxYHf3S
-	 3kEvuMJ19ajA2An6lx+jDXSFsnb2EDI1Q6WSj4Qeo230r7R7w2lUmRpuFUbuBqko7I
-	 e2h/hRuz7y4t/uVkTPkqE5yi/X7tUzVcJzeXNa9OrZ2ZCRiSqJEtnHE0SEl2PQr3uK
-	 1xlgWUMGfDrK+lP6CYeu98f4LrdJ3l8quXoD3asIdQ5PYQ4dS2beKnBerTy+s5W6/i
-	 0M6uxuJmAVzVlX+QzIuPudK2RkNejBIKyzJOu5UQ4rd379w2RLrT0EMAbsI+yltSG7
-	 qoX/xmI+iit5Q==
-Message-ID: <bfda328d-572e-4eca-b451-8e7a112c2f48@kernel.org>
-Date: Tue, 18 Jun 2024 11:13:54 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C2915534B;
+	Tue, 18 Jun 2024 09:17:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.100
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718702230; cv=fail; b=VbtKDLNZGiYit6gtk4n20y5taLCe9pnHPHRp27QX+lf0Po7WP/9qT/Q7bVww4oxduS5pudI6/FT+GI9ciDS9VAWJGorWs0BbCjO5AL1TpWpDZepp2t6yvIJgAh35wqRKh6c8uVEYvOKFwmoOzl0qNLtygedG8RnXMWjv/dhtTi0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718702230; c=relaxed/simple;
+	bh=xFmLypzc+gzaJ1XtfAmnvldHr3Zvuvl7Vht56zHhGV4=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=C4G0dp+zPF2DUbvLhAD5gSGSGfI78J5Te0Ir4ImWySqawsU6ap5JRdN/rlEP+siayRwtVvP98F3yv0Vo2X8gZfVjA8ZN05B3e/7NLUNm/YhFsL/Y/COO6lcq/+k1V3AJPL89Dmibjn+GLW1++V8saTGlsXqOFJZD+BPc4wP+ssY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ugTD0KnE; arc=fail smtp.client-ip=40.92.107.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZOGxTsngQDZ8k9IYk+BiDybgQfq8e0rtiQqeEtQ+p/y/PvkNohDwoVZ3K9FF5nIjmCVnh6rnV5ptlUf9+l758QihhECGCJ8bBDvYhRnqhFbpwOxJsEr/q7AUvafHuIeG9tLYkXvPZe3OFdCIXHgqmj1vgqBXoCNan657DZaQkT9iYFASKl7iZp8N41QsNZwx8e3UUAdamuy1dbHiOeuMjpQo7wWA+7OCs2ZNrRX0GZPQSHgpHj9M4/wntL8nHXdtwSZ5bXxhKC8DJ2ikTG+Uzr4zABDhzIFZDKiF5YHa5q/H/AiePiDKeUasHOvln8lifi2d/165BBnE9/4NRkFIYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L9gFX9PH8ymN0VhgCGvJdAp6CGOs9TymHUHRfKVkU8k=;
+ b=dyM2MpK1qn7o/g2KulfNUCW7HFApycJTpqfhkNXiC7KqNlNYNdYKBXzLdJNYPHsnWz6L7zjN7CKkpjYDFx3K4ZZJjHATTMtLLo8ZALN+pQjC12gtNybFq/XiV73ys88iTAC23liPRrNYliFm/vkoWMXZB4in3dBYiSUGZnf0PgX+ViqzTpLUUjjajCB1oum6f6WCIMmkND7kwahblA6xLic8ZW9p0aVuQKKrfKXAE4peZ/BAM1/zixx6fgIhAWzIxAS3qi1sKqLhjPL9BVqfjuXjsAXJY3g621HhO4hQtia8mH4TV61e0+6lYXqct8K4JLTqLuPv8CeedCwG9Eb8Tw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L9gFX9PH8ymN0VhgCGvJdAp6CGOs9TymHUHRfKVkU8k=;
+ b=ugTD0KnEAQwU/K1ohw2g2z16rO+m/dm/+maGBVp3hMFzc5Za8fF2LbofULW1v28snfx5cDhst9hUJaQreY5Uw4JWkMWY3oceSoHvZpYun486ZjWu450ozRBlhsm1DRcrnWBIMfIafqfY8UldIxcJmzVnnyFWQD9oxL2RjYvs7mUjGVZPBsoOuFM2lO2Z3XWcn2rtifop0fq1kdRO4vR0i5Jxdjrn3ejEGzsS1gY//4klmHHF/aveB/bODsdbGDpGCGblumGxE4pRfsakCxa6rBGii4EOCI9NZGiic7qucwCeTQG6/B1/FGArgAUgF/FJPh6/QIjFgPuIhrFqzI3lfQ==
+Received: from SEYPR01MB4221.apcprd01.prod.exchangelabs.com
+ (2603:1096:101:56::12) by PUZPR01MB5211.apcprd01.prod.exchangelabs.com
+ (2603:1096:301:11e::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Tue, 18 Jun
+ 2024 09:17:04 +0000
+Received: from SEYPR01MB4221.apcprd01.prod.exchangelabs.com
+ ([fe80::b674:8f70:6e29:3756]) by SEYPR01MB4221.apcprd01.prod.exchangelabs.com
+ ([fe80::b674:8f70:6e29:3756%4]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
+ 09:17:04 +0000
+From: Haylen Chu <heylenay@outlook.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>,
+	Drew Fustini <dfustini@baylibre.com>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] riscv: dts: sophgo: disable write-protection for milkv duo
+Date: Tue, 18 Jun 2024 09:16:14 +0000
+Message-ID:
+ <SEYPR01MB4221943C7B101DD2318DA0D3D7CE2@SEYPR01MB4221.apcprd01.prod.exchangelabs.com>
+X-Mailer: git-send-email 2.45.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [jkxzcdSKutfol9wnu4B+aRkhLwJkKbPd]
+X-ClientProxiedBy: TYXPR01CA0064.jpnprd01.prod.outlook.com
+ (2603:1096:403:a::34) To SEYPR01MB4221.apcprd01.prod.exchangelabs.com
+ (2603:1096:101:56::12)
+X-Microsoft-Original-Message-ID: <20240618091613.6221-2-heylenay@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: ata: ahci-fsl-qoriq: convert to yaml
- format
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Frank Li <Frank.Li@nxp.com>, Damien Le Moal <dlemoal@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)"
- <linux-ide@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev
-References: <20240617180241.901377-1-Frank.Li@nxp.com>
- <ZnCKlj_Gp60_2otI@ryzen.lan>
- <09fad8cc-ff9e-48b4-b954-4f84c61f3ffc@kernel.org>
- <ZnFJINOphiD1BWyR@ryzen.lan>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZnFJINOphiD1BWyR@ryzen.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEYPR01MB4221:EE_|PUZPR01MB5211:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7cabb948-67a8-4f1d-b9d0-08dc8f776af0
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199025|440099025|3412199022|1710799023;
+X-Microsoft-Antispam-Message-Info:
+	IatyqEZaUFZGSm1cSGenRXyQzZkV6sy1Ti8eOzj1l2mmPQafyxwXshd370Y0GiZkVq19ZdLModyInwLmc6KtOK7toLhw0Z+wdQi4PtU1GRbS/tDhAyEZgLjyXPnyNqy6gDW58bf0I9Pp0wt4VtQI+i3deUhHO3V13LpP5dLOgkYQrXciJMCZGtMIT+W2ZbNg6QeS19UYV7o1fSXTkBsieS7YCZ7E7l9wE2i1+921Kl0PfLOSYBcOvfrIac0mGceNAuuGDhxb6/b96dVwyBQ7fXbVbkQkFfHhhFWlxKoOh1hnfrTlGUs0FTpS8ksX/u3jls+1hDTfftE9xuqQp4O5Syb7wrcbK6F/ZTTVrk6kNJDKZrfbHbBcvsv0+5ygEJAIFIM+eZy7BMs9PI6ADV+0ctr6/GpWJgnLg/nh9kU79ggjoF7G0AgooKICvwE1JwuZ1O3oLtEDIu4o60l/qsJ1HkQel16LEv8Y+rS/SbnNJwIpxMaH564e4OVvP+IapM/3hhQvXI9Z0g5r1UEq/iotLq3Z3Rjbczbjcf9dVk803szcVbo5xez0lJjsANQpJ/n+tPMN8b5imenL2DOnq5xM2AuYiwEwlBpB3RYr7y/hZGg=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?rNhztLSCu/ecAGaA5mtlH6/u2ITUndf82z6iHD8CMYbiSJmiDoZBT9xs7PNR?=
+ =?us-ascii?Q?HeDquWhkkwHMaUUFbdA8e8qPYYhNW1tqvg+pdaz+g/6Wss1JqKLpfRksl1Gy?=
+ =?us-ascii?Q?m6XeU69DpRcPAKA1aKiK3JB5zy8obYLAWkvxiGHJ9Cjlj2VLM3ZLJ3sL5Duf?=
+ =?us-ascii?Q?t0e6Z3yw0wIqQJx88e5InSfkKTnlQMwuKlJF5x1/Mq3N6/m2iaFT0dWXBrwF?=
+ =?us-ascii?Q?Lb91CC6J2WOk9+1o6e+pYh/Qd6cE3TAXrAKiGGOYxRzBJ9lk2SXhUd44BTAx?=
+ =?us-ascii?Q?+7zUjQ8cLmyR/ak6DkeQ4L/FvbxC0E1tYKPj/GT08cv+5oBQ5AXwrG674DLO?=
+ =?us-ascii?Q?OKhD/S7OWfHQnF/r7Ot1COD3AQb7O/AEi0nrBFER0+1H9asMhHERxSVOGDf2?=
+ =?us-ascii?Q?DoTSeKLfFuRMhM2dB4YIK86n3xu3cLU09kHFyeTuxPA+hHrA4RknZ4KzzlvE?=
+ =?us-ascii?Q?BMuqLLzdKR45ji9DrdIrUmmG7qQJE0f9AC9YBOUMDi+iFjEu18BQ83uLUloy?=
+ =?us-ascii?Q?1nj6EotUsCaMHIu2gb3/G7WFVxff/884FS48zj5VKQpM14rcZsO1kKcx7rTz?=
+ =?us-ascii?Q?BEk4/KdeJSibvsJQ8EapWdCFDWJjdn51XO+6m17jArcTPPrlljCgs4NMlhRP?=
+ =?us-ascii?Q?MSwdVGH5yyiUfJoSQUgrUbxGpz7aAeX90AJTFRwRmZ8Dwz6bwT6H85N/raBP?=
+ =?us-ascii?Q?Qm2nCRAxz7FAiELYS3uwOSEZrqBM+NFWI5s8Jd43odGkJoMWViLoHYfLNxW0?=
+ =?us-ascii?Q?45lZEzN/PhOT22NOoVtJetCm3WOCNkEJhh7Rd3BvtiDRAUqsVm2OPr/XXsdH?=
+ =?us-ascii?Q?9wL7YCrq9HxnVSAFNQ/mDs1TfjuCJHBkG971Y0M3jhHyH0ySAHCtr+idZtZt?=
+ =?us-ascii?Q?3cj3JUBUSJIDLa5iyVX6EiX2FYC3D0lRZ0yvi+Bo3G3xJHgNzHtO1FeAwqqh?=
+ =?us-ascii?Q?N6LDpOGlAEvb4W87aY/tf3iP/a7xGgdRGe5abodaQhZFfqeBnwoFVfx2+O77?=
+ =?us-ascii?Q?bLIPrDN7ZSrBYPrr9Rww/oVyNleItuI19sOND9pvp+xSQaIMWi0VDp/rD1B2?=
+ =?us-ascii?Q?8qbhsgD0XIcBouRCoL1bY/XaqVNpmcg4/vgpvR8USdvx43HaQn85UH2SevBa?=
+ =?us-ascii?Q?2jq+t2Xr9+iPka1pAelLuBL3lk/MiQayFC3ioDLvIlUTdLx/NsYDTe0oG33n?=
+ =?us-ascii?Q?JSf3e/LH0TqPMLYRxJTQAVutdeHnZcpMRNNl4T2J8SUw1R7en1+HmtnE5t0?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7cabb948-67a8-4f1d-b9d0-08dc8f776af0
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR01MB4221.apcprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 09:17:04.1521
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR01MB5211
 
-On 18/06/2024 10:45, Niklas Cassel wrote:
-> On Tue, Jun 18, 2024 at 09:42:03AM +0200, Krzysztof Kozlowski wrote:
->> On 17/06/2024 21:12, Niklas Cassel wrote:
->>> On Mon, Jun 17, 2024 at 02:02:40PM -0400, Frank Li wrote:
->>>> Convert ahci-fsl-qoirq DT binding to yaml format.
->>>>
->>>> Additional changes:
->>>> - Add reg-names list, ahci and sata-ecc
->>>> - Add fsl,ls1028a-ahci and fsl,lx2060a-ahci
->>>>
->>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>>> ---
->>>>  .../bindings/ata/ahci-fsl-qoriq.txt           | 21 -------
->>>>  .../devicetree/bindings/ata/fsl,ahci.yaml     | 58 +++++++++++++++++++
->>>>  2 files changed, 58 insertions(+), 21 deletions(-)
->>>>  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
->>>>  create mode 100644 Documentation/devicetree/bindings/ata/fsl,ahci.yaml
->>>
->>> Should this file perhaps be called:
->>> fsl,qoriq-ahci.yaml ?
->>>
->>> Would be nice with some input from DT maintainers on this.
->>
->> This should be rather compatible.
-> 
-> Considering that you gave your Reviewed-by tag, I interpret this sentence
-> as that you are happy with the filename used (fsl,ahci.yaml) in this patch.
-> 
+Milkv Duo does not have a write-protect pin, so disable write protect
+to prevent SDcards misdetected as read-only.
 
-Yes, maybe indeed fsl,qoriq-ahci or compatible-based would be better,
-but probably I provided a bit different review on other patch, so don't
-want to block useful conversion.
+Fixes: 89a7056ed4f7 ("riscv: dts: sophgo: add sdcard support for milkv duo")
+Signed-off-by: Haylen Chu <heylenay@outlook.com>
+---
+ arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+index cd013588adc0..375ff2661b6e 100644
+--- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
++++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+@@ -45,6 +45,7 @@ &sdhci0 {
+ 	no-1-8-v;
+ 	no-mmc;
+ 	no-sdio;
++	disable-wp;
+ };
+ 
+ &uart0 {
+-- 
+2.45.2
 
 
