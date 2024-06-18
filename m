@@ -1,147 +1,167 @@
-Return-Path: <devicetree+bounces-77096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC26290D62F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:54:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC41990D648
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:56:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 972C31F2163F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:54:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA38B1C249C2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:56:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0487514BF85;
-	Tue, 18 Jun 2024 14:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01FA382869;
+	Tue, 18 Jun 2024 14:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FEbEx+UZ"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="WspiMbRv";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="uSdJsRMC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from wflow4-smtp.messagingengine.com (wflow4-smtp.messagingengine.com [64.147.123.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD282139C1;
-	Tue, 18 Jun 2024 14:48:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F93F2139AC;
+	Tue, 18 Jun 2024 14:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718722083; cv=none; b=oPNbFNjqTodqmy6Ur4LyuaL7N5rEpC4Lc8tBTosiHCUbjtJr5vxZJ64nqG8R5l85AlZWdqo3ifHpVPDg+Lgxz4rni9uNgdotJZ18f3Zo/8PV6Vrg21SA/SvcvKVV0PHKMbK/y9LXAidWN7+Sk6MGqVCY1nDI1qhmh38RwOUp594=
+	t=1718722436; cv=none; b=UKuzgySjuOxw5gurUeId6BMOt+1Np0GCurZp3/telG3nQy6+aOnY/c3GiD2uCqcRdrLAkD2JJ5jvsACqHCWhHQffgn9S4Cl+tJR5UeWO05/IkGleMcyVC6zRWMzM5lnz8BGNezbAGVLasGCl+pP6tLz+GQCA6MxkHcZ5lM9eH4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718722083; c=relaxed/simple;
-	bh=AptMB+YIiD2q53qVWsQoJqIp+iSh1nUp7RFHH6Hf/ik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PY+C86f19fnMpYAK3uWWLSu2Kqh0wgHPeQK8M2aTwZHwMnC/dUuqeiawS0ElUc7pO3td+LIwrWkvPoU0OyGXNXiXAwJXTxperJ/bgbME95RWEJYoAE7S/J5OxDoyW1Rrc1hvbf8C04NlNdhL98+/BGeEoyD83f3OSo5uzsu9SzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FEbEx+UZ; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718722080;
-	bh=AptMB+YIiD2q53qVWsQoJqIp+iSh1nUp7RFHH6Hf/ik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FEbEx+UZSasLc7cTDBrhO6RxoZODD2ORZ/GcdPip5l5O1vtkDrBkWHydICrYy80cZ
-	 AkgZIln2jKxEU8mSYvmtCtHSoUMn3Vt2KzOTPVe5BSgh5dDOh1XBoQyOIKTFVYDFZL
-	 f5ulw1hxHi/tpLIyrWit4RzFFzUZLrv3dv8WGi88112JMtorTp9LhO8xfM/cKk58vl
-	 b8o034LkaZdrDSz7PbB2inMB/sbFCoNaQ/er1LVNoM8IIxKGvhX51n08wApd/P0A1k
-	 l0BWdgmScyVvQjDD1rEDESKSuEGhvR5SVdo3zgsGxZw96/FLCn5a8dL0dnVBBAzEJJ
-	 66x0QI/ESyvDw==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 35C6B3780629;
-	Tue, 18 Jun 2024 14:48:00 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id D25721060734; Tue, 18 Jun 2024 16:47:59 +0200 (CEST)
-Date: Tue, 18 Jun 2024 16:47:59 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Arend Van Spriel <aspriel@gmail.com>
-Cc: Jacobe Zang <jacobe.zang@wesion.com>, kvalo@kernel.org, 
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nick@khadas.com, 
-	arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: net: wireless: BCM4329 binding: add
- pci14e4,449d
-Message-ID: <si3gjsfqcixdrwzf4nmxvugpcbrhglchxxm5vwnr52rhsvuflc@5r2g4g2xd7au>
-References: <20240617024341.3106240-1-jacobe.zang@wesion.com>
- <b6b06a15-b7de-4351-ab9e-5234d2b91496@gmail.com>
+	s=arc-20240116; t=1718722436; c=relaxed/simple;
+	bh=0UMGObr4c/PBQHn9Sn0+mxPAO48JSjyOWOHPtEQMc6w=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=ZlM1WlOxsLwntvlEXf9Y6KN6qtiIyxVHKPl4INpDgRNmWQxZ9hxh28bamMmGM8s7c5dmjaadPVxGeE1X4TdBCsoXCqUcUO6cy6exg0RNKOHYFQ5mNl1o/80eQeF3GPo7xXpVEOdGrjBOlXZAvDE1jTkx+4qTi1tPBqgfFZ8NkKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=WspiMbRv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=uSdJsRMC; arc=none smtp.client-ip=64.147.123.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailflow.west.internal (Postfix) with ESMTP id 2BF1B2CC008B;
+	Tue, 18 Jun 2024 10:53:52 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Tue, 18 Jun 2024 10:53:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1718722431;
+	 x=1718729631; bh=kcbpkU2iZLW5TZK6Y8fCG83H86YT8jkb38ChT7Si83Q=; b=
+	WspiMbRvMrVrg++N2gk/7bMfurwgpyJQrB/7lc+1YEwlRfvr4+qL9B0ikSP8MiwZ
+	bOf/1288yHNN7pUb2/ZXFD8tcsgG1tOO4q93G+RKxziKKZTHDaaWUaMkeyMGJgHP
+	VC+llVVnYIIO81/+4OHhhqHZXKu2vrLiTwlfOEgPZsaAijneWDt4g2DkxVByalVf
+	vVcCURoBNMdgH7jsLAbvCzVHSD1HBJ5VsfqEA5CQlFBwkPSgQFN60dbdGKHQ502k
+	lbLmzPIY5v8Rf5CKlUcCbyCB5BvQawKfsyPQz4zHMfHmtwDYwfuJtvP8xv2gkstM
+	Jwx6N0nhZNqHpbSlbg2t9g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1718722431; x=
+	1718729631; bh=kcbpkU2iZLW5TZK6Y8fCG83H86YT8jkb38ChT7Si83Q=; b=u
+	SdJsRMCljw9dO6nRoqCRSbf3v1s9J8J5tOv4uHC2y8Cq6yNQu9DuoFSmo+hn8+27
+	Gnjf7YDeIpmK+v6RVeRnUVrWpVHDzDec8Vnn7OcYN4GGhV43IAW4ZzM8Lu80yqpc
+	FLoBRsdIjjQUvYiKUXlcAxocWkX5woTqsidcHIN/LCV6x+oOQm4Vs/Z7S5Rbc8Uu
+	+lTlCMygk0vqoy0R6aXMtxUDDSxPBgPf0XpPrgKlvSFD0TUH/3U15WeoPxKn0cJl
+	uuN2liSFCvgABbntR+rfWipIQYpwtix+ygKcBSDlhxdw+2yjXkWRy1hcwjO61/Nh
+	a946buU4gjAzI+icNiv7g==
+X-ME-Sender: <xms:f59xZgWKesXdDDG9K0Vrq96WT5Oy7q7o8pUvafCCOmZ43RoRB0UvNQ>
+    <xme:f59xZklevwcfy6odWy_nPKhGPoibZW-_74-6smhGai-UNWVe1R-YdGsvvvT-KxJrT
+    Gy_Gths9f98TOTfu-k>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedvkedghedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
+    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:f59xZkYT3Wv9xpWIF_mEBkOGqxDRYSAjUTMUVwrEsnCGtHPFZBtUNg>
+    <xmx:f59xZvWE3UnO86LAHE9USvBALm8vQFXpk_cY9ZN0D_LcK8RUHCnJJQ>
+    <xmx:f59xZql-5bziqCYF6a0PJwLdsUXs224hiyD-x4D2I_NuvMLZjO4HMA>
+    <xmx:f59xZkdgNXCSsGCNxjscUkN_nfCuq7Y3_NWXXZB5RqmJHufWP3VRew>
+    <xmx:f59xZqt7fQC9zayGrAg38J0AEHme73ZScxYPO6YvwoTaBdM6eYpM1Jjl>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 25A2AB60092; Tue, 18 Jun 2024 10:53:50 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-522-ga39cca1d5-fm-20240610.002-ga39cca1d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bqocjo5pd32uxgd2"
-Content-Disposition: inline
-In-Reply-To: <b6b06a15-b7de-4351-ab9e-5234d2b91496@gmail.com>
-
-
---bqocjo5pd32uxgd2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Message-Id: <b685d5e5-09d3-4916-ad0b-d329c166e149@app.fastmail.com>
+In-Reply-To: <20240527161450.326615-2-herve.codina@bootlin.com>
+References: <20240527161450.326615-1-herve.codina@bootlin.com>
+ <20240527161450.326615-2-herve.codina@bootlin.com>
+Date: Tue, 18 Jun 2024 16:53:30 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Herve Codina" <herve.codina@bootlin.com>,
+ "Simon Horman" <horms@kernel.org>,
+ "Sai Krishna Gajula" <saikrishnag@marvell.com>,
+ "Thomas Gleixner" <tglx@linutronix.de>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>, "Lee Jones" <lee@kernel.org>,
+ "Horatiu Vultur" <horatiu.vultur@microchip.com>,
+ UNGLinuxDriver@microchip.com, "Andrew Lunn" <andrew@lunn.ch>,
+ "Heiner Kallweit" <hkallweit1@gmail.com>,
+ "Russell King" <linux@armlinux.org.uk>,
+ "Saravana Kannan" <saravanak@google.com>,
+ "Bjorn Helgaas" <bhelgaas@google.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>,
+ "Lars Povlsen" <lars.povlsen@microchip.com>,
+ "Steen Hegelund" <Steen.Hegelund@microchip.com>,
+ "Daniel Machon" <daniel.machon@microchip.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ "Allan Nielsen" <allan.nielsen@microchip.com>,
+ "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ "Clement Leger" <clement.leger@bootlin.com>
+Subject: Re: [PATCH v2 01/19] mfd: syscon: Add reference counting and device managed
+ support
+Content-Type: text/plain;charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Mon, May 27, 2024, at 18:14, Herve Codina wrote:
+> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+>
+> Syscon releasing is not supported.
+> Without release function, unbinding a driver that uses syscon whether
+> explicitly or due to a module removal left the used syscon in a in-use
+> state.
+>
+> For instance a syscon_node_to_regmap() call from a consumer retrieve a
+> syscon regmap instance. Internally, syscon_node_to_regmap() can create
+> syscon instance and add it to the existing syscon list. No API is
+> available to release this syscon instance, remove it from the list and
+> free it when it is not used anymore.
+>
+> Introduce reference counting in syscon in order to keep track of syscon
+> usage using syscon_{get,put}() and add a device managed version of
+> syscon_regmap_lookup_by_phandle(), to automatically release the syscon
+> instance on the consumer removal.
+>
+> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-On Tue, Jun 18, 2024 at 01:09:07PM GMT, Arend Van Spriel wrote:
-> On 6/17/2024 4:43 AM, Jacobe Zang wrote:
-> > It's a Broadcom Wi-Fi module connected via the PCIe interface and also
-> > add prefix in vendor-prefix.yaml
-> >=20
-> > Link:https://lore.kernel.org/linux-devicetree/20240617023517.3104427-1-=
-jacobe.zang@wesion.com/T/#u
-> > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> > ---
-> >   .../devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml      | 1 +
-> >   1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm432=
-9-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-f=
-mac.yaml
-> > index e564f20d8f415..0477566acd72a 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.=
-yaml
-> > +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.=
-yaml
-> > @@ -53,6 +53,7 @@ properties:
-> >             - pci14e4,4488  # BCM4377
-> >             - pci14e4,4425  # BCM4378
-> >             - pci14e4,4433  # BCM4387
-> > +          - pci14e4,449d  # BCM4329
->=20
-> I can not find that device id. Can you provide more information where you
-> came across this device. The BCM4329 as I know it is an 802.11n *SDIO*
-> device. Not a PCI device.
+This all looks correct from an implementation perspective,
+but it does add a lot of complexity if now every syscon user
+feels compelled to actually free up their resources again,
+while nothing else should actually depend on this.
 
-It's the device id used by AP6275P, see this discussion from half a
-year ago [0]. It is used by Rockchip's RK3588 evaluation board, which
-apparently resulted in some RK3588 boards using the same chip.
+The only reference I found in your series here is the
+reset controller, and it only does a single update to
+the regmap in the probe function.
 
-[0] https://patchwork.kernel.org/project/linux-wireless/patch/c7b331edd65b6=
-6521a6605177d654e55051568a3.camel@toradex.com/
+Would it be possible to just make the syscon support in
+the reset driver optional and instead poke the register
+in the mfd driver itself when this is used as a pci device?
+Or do you expect to see the syscon get used in other
+places in the future for the PCI case?
 
-Greetings,
-
--- Sebastian
-
---bqocjo5pd32uxgd2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmZxnhEACgkQ2O7X88g7
-+prHZA/+PhQDVUsUiui4n/4jAvQYSZ6Q5SB7dV1JndGlFwxfs+u8IuBLfSRxID3U
-nAkQTcdiC1cPj1g7NPcoI15IM8Xjejt3x9yF+sd7Vx9QqAikJpyT2K/tZynMnikc
-2z5LOkNkEBTbGSOWTglD4WsLhz3WDYZRkEGE5ff6WmqODuNwRbJdC2FvgVOkHcn2
-hlSSiNeRXW7w6x7HpqHpZZSerauuTIDYSfUMsbnxW8QCKsKv41UwLDWaLy/rplOx
-yIUSrHFcgVvhGpB+cAQnjLcGOqrThJ3fuFghn7a9kIdfnj2Wes98kV8nbewMCLd/
-c+2hRA61BsNNtfli2xHRShQhkmYuzL+/koO4D4Z6rRnxEftLZx0oITarlTkdOChh
-K4pfyQegkK6FM4RJgEwrJh8JrurEwNp3kaVS5nO5S6bHRlrl2R6hZD1B56W70amg
-SChGzcyz4mDl8vIEMhWnLh1jAUCtupJtYpNbWJNvD71ouCMgBmyQQrYVSl5nTM6V
-K+GTtv4Fr8HlvECgQpU7GbqW/RdNz4y7VOyN1ZWkvfu6ilARR7sr+d3LcKRGwm3+
-Ke/Tbjr2VCRy2oUG/T7JO+JutPQABDx9tqhdO7Tzezbp6KZUDnQiz8dKr4YpP4bU
-2N3GcDORymGCwqL3ZwnfU4eWcvRQkgGjuT7iJUPPtsr7LGWQG5s=
-=UN5E
------END PGP SIGNATURE-----
-
---bqocjo5pd32uxgd2--
+      Arnd
 
