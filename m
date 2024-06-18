@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-76861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4A290C647
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:18:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1799B90C64C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:18:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5FB9B22B0F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:18:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30AA31C21D62
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A3513B598;
-	Tue, 18 Jun 2024 07:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061A813A407;
+	Tue, 18 Jun 2024 07:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mtfk84k0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zBvDKs7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934B9446AF
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 07:45:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FA22AE6C
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 07:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718696730; cv=none; b=Rmzi4MWWm2IGkGOpVH3HEWJG5B79sQDjLwmjF1QOGYprR6ZxSTAJ1whcKZ695dHXng1otQXXhQxuLfPkhHfDfIWpcuPL0a8Bb+Z7jXuzKaZynn9Dkuf/i6Ko7JUptql96bYqyoKPhmWtoLLecmL+Zm/4hDhjCFzTmt6tRAtxu2k=
+	t=1718696782; cv=none; b=B9L/MHDizlxiMR6GAr9u8lCceKSXmd/HY+0TlaHZPk3mBMVjEPS3PLMl8jfr8k3IzhH2rv6s4/Ecm9O5Ou9URpBAVXf1pN0kl28BMZOrdWLfs4uK80yc90mZv6mNgviQuXBafSpH7BjqSCLmCtDR2YyscGD2IGTDapSPwgpdn1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718696730; c=relaxed/simple;
-	bh=Ab59u20NrNQ+uF4hqX6azwaqctg5fthXLNtJ2VVPaY4=;
+	s=arc-20240116; t=1718696782; c=relaxed/simple;
+	bh=Gm3ZwBhJ6fX8XxypQaEDUg8Vv2S/8m6ZIR3jI2bu9PA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jCnKJyhmAZl59Jbpgc4YCF8HW6LN7SnooUg8SKF5IBkAQGGScHArxTMm+Ti3pG0j/mnr4PXOnqDQpcgKcQI24LiA7G61J8fn2OGujMLoIBhyYF+C5r7rF93/0RH6FUuFTtz5V2qdkflgeaB3yvEgZvg8p5z7vw/WMLDdWDoKYJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mtfk84k0; arc=none smtp.client-ip=209.85.208.51
+	 In-Reply-To:Content-Type; b=TclCvqJw7aGs1uAwjsOvnfZ98G9AL8MCWe8Q09z2Ws45Al8aNSzIi5nmQqlG9B6WGJ0q/FxfoD4k3yUyDf4GLS6UaPo+slTMc6XBTVfa1X7lqLGxdEkyBa1B934Ui2TUmB1rp3gyf9tmjxflIETL0toF7O+4z3MD7BGpXY3UlU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zBvDKs7D; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-57c7ec8f1fcso6032771a12.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 00:45:28 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a6f85f82ffeso223225666b.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 00:46:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718696727; x=1719301527; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718696779; x=1719301579; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ORuiSvO1a0ISdw62Fl/ug35usqH1cIyMdPxcbofZt50=;
-        b=mtfk84k0GotlBk05R/JZJj4GlViUD5cS4KNfHMHg6HxtaQWNb7NXlSCNzGkL2JRG9w
-         AW+xhLLaJwYrunlI57nl/6zm1Ntk/xhogFXnvFQi8VblJ7/LWTkQF6uJlmHgcXaMimhx
-         M86nLL6uhpcuh9WqTeSVl7AFGb8LMvY9KmU45Ku6nEPHasjc349jOGLpBNqTeeY4qZnW
-         ixG4+phRr2bWpig4/tra+ytuUontpt5d6o12kkdSQsQYy45YCBPiSOZWpQzIH1AGmIQi
-         N7CYquOFiIAw0KVF5e6+fUfj0LCFN36sWGXDy9hW1MkSbtUgICDe83UO901JsnZQVEeB
-         KIZw==
+        bh=fekTkyFaD9Cv/E1dvtfjbFfW2ucB9R196K1VOAX2URQ=;
+        b=zBvDKs7DdOJiEoQ5WoABuFvXwqepcVsMpazKSErJ/ItKjTmf/fqz6fypILkx/3pOeU
+         TOgji1ubFZTP5kwZO6xbXMo0Gspkhz2Tz8CACZfopdoWnknQy8urxn8B0vbf8kITDSS0
+         bEXU9jBzmP8pulM1e1MB906Jmoh73vMGN3+wn8xup+ChNmlCBCURFXVBZ9D4iglCccoe
+         pJVkzGT3nYSrh2K9wwyxDA5qNs70+MrQXz4MA7jN8xHoPxno/0f4ub8RyXywX2kmX8V4
+         lM64bArJsA+quRMg1whdykiqKsOMGt0hpPdav58HsMiFKK2GfqS5+CrzEJGYmuvBj6n3
+         CFrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718696727; x=1719301527;
+        d=1e100.net; s=20230601; t=1718696779; x=1719301579;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ORuiSvO1a0ISdw62Fl/ug35usqH1cIyMdPxcbofZt50=;
-        b=baffhUBwRnsjlNzYkXxYaoDVHi5aBifChKFmBL6Z1RYRZwEyIv7Iuzr86lszopWNio
-         h2yzE6wB9SRLQJmuv9RUFK/bRklFf+L0ccVSIbBJwVkAf3Jr/buCAhCjJKP73uHTC9Rc
-         6sOzKE7f4RyggN7qZngsGxkeZ0dQkoMU5sJ8QFhGjZaDufcssG/2Subc+zRIMqhcOPYj
-         mFB5tbdagbGyn950dU7O8YEnEU5EiyU3CjBe4r6B2oEDYIsSt1Bfd7zDtcsGGI4T/LAz
-         VKBqCEv8VC/gATIYbKdaNPwLDbCBnrYwL+3lzbKfW0/8iu7cXDez2yFbZQU1mLCl+fGP
-         GZHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVxtL3Jif+f9A2EaqptMQbQwJGZbUQjUdQpr6c1reVbSxQYxCKnMgi12yjJpWXdn1cggk79NbvH99VEk6fY4zibbpqRrI+vriFrHA==
-X-Gm-Message-State: AOJu0YwGsrP3izYVB8EJb5jt/QozjUj+PAJ0WouWbYKzli0KbMhy8bns
-	eZaCxZjwxueqo/nVNa5BD6Ox+016Hwy/L1ElKtSerk3GNmfdjtjmFybZL5yxPVI=
-X-Google-Smtp-Source: AGHT+IHsDdMpxeivsw/oHsNvLcTuaRl+mvnt9o5Y31j4pAvNeWqgijoSXWco+cRdPCS0wjiKC/LPqA==
-X-Received: by 2002:a50:cd0e:0:b0:57c:aab2:7319 with SMTP id 4fb4d7f45d1cf-57cbd6527d1mr6691843a12.4.1718696726566;
-        Tue, 18 Jun 2024 00:45:26 -0700 (PDT)
+        bh=fekTkyFaD9Cv/E1dvtfjbFfW2ucB9R196K1VOAX2URQ=;
+        b=BurDSP0cAz6tGWOCBB7BNEGr1n+Kiw997ziwUAU1hNju3V3aDqVY7RZysw7kgkLShc
+         01zB7/79mYYavmYrqwv9gMMDGjyHNWQHJYeSOoRvI8eovl4mexacoGXA+ztOUNgkYZ5p
+         ZNWjm3z6io5Fh8WytEdcTQfWaX8jWRbL+cVy1Aca9n4aZuudWVDNMtDEnVKgHLpTu8n8
+         HSu61l7VO4PPhs3NDMgC32cYI6+Jyr1UvZoxYvzGXIgiIDudZDS3vwkvh9DvOaHBUl0m
+         doS4FpnRRsl6clUxTqMu5/fyFbh3fPXm4kjdIJyfHs0bbCD/UBAH3MhENjkDOUKaEl4p
+         f0xw==
+X-Forwarded-Encrypted: i=1; AJvYcCX1v7zRJU7F+2Al0WZAthhABuv5SixD+dIzT2dq0y4Rb8BD7N88IrH13s+YsL1I358qVbRJ3Oulq04P8qB8BfNhXHfNErjHJls9sw==
+X-Gm-Message-State: AOJu0Yw44/XoYghEY8DpIVspoHX6T2iZOn8WbVjT9aO8l1d4gD+wJyJ8
+	KqnhW0M6GnkrwE+wG0Ra87cfykDi7erX2WN5Zf8psiEYZWmLpetqRIZ/bF/dSvM=
+X-Google-Smtp-Source: AGHT+IECl6k0M4I+JFjF5DBsaChddhGxrk7ffkn/eRXPbMpV/vHpY/4KE6rEN2GJMAIrBCkA2FuerA==
+X-Received: by 2002:a17:906:6a02:b0:a6f:5f5d:e924 with SMTP id a640c23a62f3a-a6f60cef67cmr950729366b.6.1718696779334;
+        Tue, 18 Jun 2024 00:46:19 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72ea3b2sm7472634a12.55.2024.06.18.00.45.25
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56db62c3sm591119166b.76.2024.06.18.00.46.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jun 2024 00:45:26 -0700 (PDT)
-Message-ID: <67c0b5b0-0e76-4e8c-be65-6f13e234448c@linaro.org>
-Date: Tue, 18 Jun 2024 09:45:24 +0200
+        Tue, 18 Jun 2024 00:46:18 -0700 (PDT)
+Message-ID: <44f5f1eb-8cff-4cbd-91b6-4e8a008f6e10@linaro.org>
+Date: Tue, 18 Jun 2024 09:46:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] ASoC: dt-bindings: ak4619: Add initial DT binding
+Subject: Re: [PATCH 1/5] ASoC: dt-bindings: rename ak4118.txt to
+ asahi-kasei,ak4118.txt
 To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
  Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Linux-ALSA <alsa-devel@alsa-project.org>, devicetree@vger.kernel.org,
- Khanh Le <khanh.le.xr@renesas.com>
-References: <87frtb3x4k.wl-kuninori.morimoto.gx@renesas.com>
- <87cyof3x3q.wl-kuninori.morimoto.gx@renesas.com>
+Cc: Linux-ALSA <alsa-devel@alsa-project.org>, devicetree@vger.kernel.org
+References: <87sexb3yfo.wl-kuninori.morimoto.gx@renesas.com>
+ <87r0cv3yf6.wl-kuninori.morimoto.gx@renesas.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,21 +131,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <87cyof3x3q.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87r0cv3yf6.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2024 02:36, Kuninori Morimoto wrote:
-> Add Asahi Kasei ak4619 audio codec bindings.
-> 
+On 18/06/2024 02:08, Kuninori Morimoto wrote:
 > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
->  .../bindings/sound/asahi-kasei,ak4619.yaml    | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4619.yaml
-> 
+>  .../bindings/sound/{ak4118.txt => asahi-kasei,ak4118.txt}         | 0
+>  1 file changed, 0 insertions(+), 0 deletions(-)
+>  rename Documentation/devicetree/bindings/sound/{ak4118.txt => asahi-kasei,ak4118.txt} (100%)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No need to rename TXT files. This just causes conflicts.
 
 Best regards,
 Krzysztof
