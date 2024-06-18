@@ -1,158 +1,145 @@
-Return-Path: <devicetree+bounces-77204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38AA790DB09
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 19:51:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A4790DB16
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 19:52:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BE731C216DB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:51:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8721F24FC5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBFAB14A08F;
-	Tue, 18 Jun 2024 17:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3760013F003;
+	Tue, 18 Jun 2024 17:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UZbjvGBi"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="EQtmLmB5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D3B146A88
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 17:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FAC1CAB3;
+	Tue, 18 Jun 2024 17:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718733063; cv=none; b=YQ8sV4gyI61HPM89bV8Qdx2BwuFPiLQIVVGlj+8xEcXd7I+6K3EwpGlftxRbq534d7inuXFnbUsCxgW2A/y5Zmz9uTG10y8ygRMhP1RZz1UDXkPPPHzwT175+sl61vnJcmBd/JK9lP7UtkHzGvE7rPXRWKTKGCkAVmLYyZbPjV0=
+	t=1718733163; cv=none; b=SrmuztITD7mlaL5QYgd4/2nYPPHDGFQrg1NUuSb3PEoMyBUIeaC0rhAhNoR4/50X6XG0i7iSA570ANKTkhgeGV5esG4vxJoaamRDMR2NNYOw7Ifi2M05kbNPGvYdaZMCTF2uQYXBe/6Nxw/Hpa4rbeYZGJ/zvcu+eTU00idLVMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718733063; c=relaxed/simple;
-	bh=d3mOZkwzhQUitJ9p5NHqTux2I2OqtKSPIYhdsh5PmW0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sI+52p6wogMFbVfuiFf1+Ro4b894hAGDPSpOFSLPj9k3w4WifpNQHO6Ba4dgBJ/UXJD2p55A0LaxRpm4o7bP1PzP1mQWyjsWAloeSP1aC8UvsAIJaSDB1sA+FcFefycMrILcHpsmXV2Ad5vZ2zcJqsCduAYLIZcl/+tGAt8el+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UZbjvGBi; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ebd95f136bso64729351fa.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 10:51:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718733060; x=1719337860; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jdrPsOFRH9tibJcIwTVDIHrvX0et09f9Ar+HQWRvLZQ=;
-        b=UZbjvGBibP5eUYTkPaNxof/tkbNC8npO5YOvD3hQ4EtX1wH25FASo/SB13vTt+Rffx
-         FvZTPnWMvGFaWZSF3ry5vXYjC8RLeF5SU0gqaNoM2MMlDHlXcVOpT22HMh4mUZgpjset
-         gny+T5ZxSPjtbqBcELArMFbmZ4XICJl23MclKGrnMxm5xZptuKdYa+ovy+qi+yIQ4XiQ
-         FP4TNqGI5IgNzGlPsYveXlh0A4fqIthbYniUNqLC7sDn5XBj0DBFX0rTNpQnz0IvwFAd
-         3zPAwC/0kmTBHvsqH5zMEXCE49MrcAngFo4cqar0NuEPJU+a84CxoRcMIFrTXgksySPO
-         44YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718733060; x=1719337860;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jdrPsOFRH9tibJcIwTVDIHrvX0et09f9Ar+HQWRvLZQ=;
-        b=L/alcP70nj2lMPltb9ja+RPkXLoZiN/hJUPoB80IyT3UFPMupy2JFEwgFPE674vONk
-         9g2BKJ8l8P0jWfaodIaZnYXZYPLiKrloYk7+IbvcBEFzXAAEDcj51g3vRNYbInuXZhgu
-         ZPbb41/HEV7J5egrF95JF5ypbVvUt/wYaZczZ1E6ieeqnRGbqU+1lt32SSnWVw5c64+Y
-         DYWnNP0fqB1Fs3UeiIO7wHNr0HtNix/YRuAm7dP2odvtuXKnptYZ0qlVck1+cvpelNXr
-         eYnyxrkP04jP1FICWo8NrVsbb3iBCCGlJJedrxm21Jw2wFnxyNvkQnhMtAGIl8wiRUIj
-         9wLA==
-X-Forwarded-Encrypted: i=1; AJvYcCVNxQ0fWT++xyCeNU3hSBJVYWvIeIeebgjfJLkGpuuV2eNJyPXP8t3ezNmal4U6hOWMPGIQtEPt4frDBOdxzueagwC2I/PPk/tM2A==
-X-Gm-Message-State: AOJu0YxjEChtQUK6VrRAOeNanZNUGKy3Lji8qL8CQW9RsO51cCUEkULz
-	O3d8x4tsntef9ueRMuVvmjv+G7CUQKqO74dsmEOjqKLIeuUjxQIlSXpITv66J4s=
-X-Google-Smtp-Source: AGHT+IGM/U45FeUpxxsmNAsTgVBSD3mO9NOKixFEiUXqhhF6IJuZRODRDq1PxwN+t2vV3hmMxogugA==
-X-Received: by 2002:a2e:2416:0:b0:2ec:eee:f19e with SMTP id 38308e7fff4ca-2ec3cfe5a12mr3314651fa.37.1718733059948;
-        Tue, 18 Jun 2024 10:50:59 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec3d00ae2bsm499111fa.51.2024.06.18.10.50.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 10:50:59 -0700 (PDT)
-Date: Tue, 18 Jun 2024 20:50:58 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, phone-devel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v3 02/23] gcc-sdm845: Add rates to the GP clocks
-Message-ID: <wnf3mfgdm4p4f5wrxdtlx4wccnizdvohc7iiyu5t22eeb67r57@xun3r73hksrg>
-References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
- <20240618-starqltechn_integration_upstream-v3-2-e3f6662017ac@gmail.com>
+	s=arc-20240116; t=1718733163; c=relaxed/simple;
+	bh=0cexaMOCCe5o8jbSfBi41x60WbuHR244aFJcYgBY7rs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ngRMOBbIfiQLhHfnorIHwD34UzBomunl9Xcx4vckEu/tGzFymLACZKfZx4NA3q8UtFf3K9m1MdPaHn64Uktxqqbf/PmTeMfsTzg/x4r3p88V8FRzrxt7KiglYrLW2H9D0gNXrz9ZpwlacSHbSdKPp/YE+4rKYZ5XoY1na1T1eBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=EQtmLmB5; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 61459100016;
+	Tue, 18 Jun 2024 20:52:29 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 61459100016
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1718733149;
+	bh=5TjeYJIhyXVCbtW4EgmHOFsDZbAMP7EgSVrBNOOHR9g=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=EQtmLmB5bWg+RdiajBbBReyay3nqp9amTcITVHIb67cFVUMJ4A98E4o2rHTid60ki
+	 rie8Nxts2xJbLTDMyQF8HTYYk26uyG1DjGgww1SSuYAs1ii05wWfTqH/D0NNgW7P7f
+	 SAZik9tWWBPOW+6o8gkoOCzK7//aTbf5Z3ljR1LYluQog3za0huJWYtqLBS6baCEEw
+	 MygAPEEM4VjdQDmd59pUasIGcGrITG+An3k4HrryRQhXUlRrfPqW55V2kKIj7rQeid
+	 UBhxfJS6IiUf1bdoIHa8gRVhD5+lkUisRstIo6AEJoCi46IMMSGvpptdb9breuMRM2
+	 yRiXN7HVz1d/g==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 18 Jun 2024 20:52:29 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
+ (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 18 Jun
+ 2024 20:52:28 +0300
+Date: Tue, 18 Jun 2024 20:52:28 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+CC: Kevin Hilman <khilman@baylibre.com>, Arnd Bergmann <arnd@kernel.org>, Arnd
+ Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Igor Prusov
+	<ivprusov@salutedevices.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: ad402: move thermal-zones to top
+ node
+Message-ID: <20240618175134.bzw22uthyvw55rfc@CAB-WSD-L081021>
+References: <20240528133215.2266419-1-arnd@kernel.org>
+ <171766520046.3911343.14113541266786791367.b4-ty@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240618-starqltechn_integration_upstream-v3-2-e3f6662017ac@gmail.com>
+In-Reply-To: <171766520046.3911343.14113541266786791367.b4-ty@linaro.org>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185993 [Jun 18 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;git.kernel.org:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/06/18 16:18:00
+X-KSMG-LinksScanning: Clean, bases: 2024/06/18 16:17:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/06/18 16:19:00 #25649051
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Tue, Jun 18, 2024 at 04:59:36PM GMT, Dzmitry Sankouski wrote:
-> sdm845 has "General Purpose" clocks that can be muxed to
-> SoC pins.
+On Thu, Jun 06, 2024 at 11:13:20AM +0200, Neil Armstrong wrote:
+> Hi,
 > 
-> Those clocks may be used as e.g. PWM sources for external peripherals.
-> Add more frequencies to the table for those clocks so it's possible
-> for arbitrary peripherals to make use of them.
+> On Tue, 28 May 2024 15:31:59 +0200, Arnd Bergmann wrote:
+> > It appears that this accidentally got added into the spi node, causing
+> > a warning.
+> > 
+> > arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts:119.16-161.4: Warning (spi_bus_reg): /soc/spi@fd000400/thermal-zones: missing or empty reg property
+> > 
+> > 
 > 
-> See also: bf8bb8eaccf(clk: qcom: gcc-msm8916: Add rates to the GP clocks)
+> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
+> 
+> [1/1] arm64: dts: amlogic: ad402: move thermal-zones to top node
+>       https://git.kernel.org/amlogic/c/6c9b5ba73ca77ef3863cda6560856fdfe7dc237a
+> 
+> These changes has been applied on the intermediate git tree [1].
+> 
+> The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+> for inclusion in their intermediate git branches in order to be sent to Linus during
+> the next merge window, or sooner if it's a set of fixes.
+> 
+> In the cases of fixes, those will be merged in the current release candidate
+> kernel and as soon they appear on the Linux master branch they will be
+> backported to the previous Stable and Long-Stable kernels [2].
+> 
+> The intermediate git branches are merged daily in the linux-next tree [3],
+> people are encouraged testing these pre-release kernels and report issues on the
+> relevant mailing-lists.
+> 
+> If problems are discovered on those changes, please submit a signed-off-by revert
+> patch followed by a corrective changeset.
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-Each time I look at the table attached to the GP CLK, I feel that it's
-plain wrong. In the end the GPCLK can in theory have arbitrary value
-depending on the usecase.
-
-Bjorn, Konrad, maybe we should add special clk_ops for GP CLK which
-allow more flexibility than a default clk_rcg2_ops?
-
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
->  drivers/clk/qcom/gcc-sdm845.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/gcc-sdm845.c b/drivers/clk/qcom/gcc-sdm845.c
-> index ea4c3bf4fb9b..0efd3364e8f5 100644
-> --- a/drivers/clk/qcom/gcc-sdm845.c
-> +++ b/drivers/clk/qcom/gcc-sdm845.c
-> @@ -283,7 +283,21 @@ static struct clk_rcg2 gcc_sdm670_cpuss_rbcpr_clk_src = {
->  	},
->  };
->  
-> +/*
-> + * This is a frequency table for "General Purpose" clocks.
-> + * These clocks can be muxed to the SoC pins and may be used by
-> + * external devices. They're often used as PWM source.
-> + *
-> + * See comment in gcc-mam8916.c at ftbl_gcc_gp1_3_clk.
-> + */
->  static const struct freq_tbl ftbl_gcc_gp1_clk_src[] = {
-> +	F(10000,   P_BI_TCXO,    16,  1, 120),
-> +	F(20000,   P_BI_TCXO,    16,  1, 60),
-> +	F(100000,  P_BI_TCXO,    16,  1,  12),
-> +	F(500000,  P_GPLL0_OUT_EVEN, 12, 1, 100),
-> +	F(1000000, P_GPLL0_OUT_EVEN, 12, 1, 50),
-> +	F(2500000, P_GPLL0_OUT_EVEN, 12, 1, 10),
-> +	F(5000000, P_GPLL0_OUT_EVEN, 12, 1, 5),
->  	F(19200000, P_BI_TCXO, 1, 0, 0),
->  	F(25000000, P_GPLL0_OUT_EVEN, 12, 0, 0),
->  	F(50000000, P_GPLL0_OUT_EVEN, 6, 0, 0),
-> 
-> -- 
-> 2.39.2
-> 
+My apologies for any confusion, it seems like these are artifacts from
+the merge process...
 
 -- 
-With best wishes
+Thank you,
 Dmitry
 
