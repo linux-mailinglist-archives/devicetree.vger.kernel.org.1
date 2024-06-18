@@ -1,118 +1,126 @@
-Return-Path: <devicetree+bounces-76955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57E4B90CA66
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:52:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B9C490CA83
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:54:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03ACF1F23C0B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:52:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57C921C217EB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E77014A0A7;
-	Tue, 18 Jun 2024 11:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB7C15252D;
+	Tue, 18 Jun 2024 11:37:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="btHUdzlO"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="trGnVFtx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534AC1482FA;
-	Tue, 18 Jun 2024 11:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333A6152530
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 11:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718710363; cv=none; b=gWZBvZatQ0W6DOf6H/e28GYoOKoltsDpWBNgbs+kJvSID8S/v/gJ2pg/xkKYoEM2t92nh5KzrK+dFtAMyPbq64Kfbi0cEHEMOEAegQG/4erYmfvw3u7Y6KQ0PiCKQUwW9Tr8F9DDWcby/N7h4xgyiuxqYxvHvzLHjUhO0KM22LY=
+	t=1718710640; cv=none; b=KTKUpXTNUhSIPGx0R78pO0O/h0RGHRHFK2NbdNhaF/VKlPJER22fcba+Ak6uF9eqP27ROM26WWaxgviyzpG6Av34jz86FLnB50s8Po3BPfZsSPt0WJC9nTF9CgpAmJjNRoewY2KVD8CJqOzYeszEUX5nmRUuaR46WxZFuUZ0cJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718710363; c=relaxed/simple;
-	bh=wpiKeO63IemTjXmi+1WwztXiYOdPdtVXvk0tyn5Fhoc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=pGIuyCzMwU6LN2gJI7Bn57jHm9rMHIumZYgZpFIbV8cyTfydDr20wCaMmXiz3673d2+ZQ7bhyPy4npp2GMMjBj0ucWvGpU455RNkFNPb+doOURPYBdQpQHJweFYAeDpa3or8ZLElz0QiUHj+wcRMTIKmwtqcvlUEoLS2KvJHxuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=btHUdzlO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 081D7C4AF48;
-	Tue, 18 Jun 2024 11:32:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718710363;
-	bh=wpiKeO63IemTjXmi+1WwztXiYOdPdtVXvk0tyn5Fhoc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=btHUdzlOT+VIyKTe3je22pK3+5vLZQ9K23c0u0il69gOCNjGuR7SvF/1Eje2MfJCp
-	 TWZyP45WcdqzYLuIz1RsT+JtydlkyZOia/SCXgY2bX2FMmNFDE8ijJx/Pm70v57ghV
-	 kRgSslxat16tz4K5jrY04W+U9ixvCDHydDequFp7qfpc7C/3SDZymFckE5oS28M4vY
-	 zfrKO01134c/qC7LCNfFMpD708yMBZLo8MBT5zkmvuDn8fCLbZfHVVjOzzM4rfZbQp
-	 NmPh/trp4K+QiUbc9/2ira4SQYWfZFIaD4pivLgTX3pu2Ip65un+covBoOCsh5Szb5
-	 tswRK/LL0CfbA==
-Date: Tue, 18 Jun 2024 05:32:42 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718710640; c=relaxed/simple;
+	bh=HBavAFMGNXFPQuEZJctmiA+u/ZSzWkB2G1t4ZpxtkAU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fCO8IJK4MEqfygJm6E6YP1h6c25OX/OJbkSfxTPpV90BfEXMn71cVt6kFUlhDSjJqJLKlXHIaWfPRC+2xERBrVzHPAmJuSSE4Vyf117vpkJfZBsNA35GwCWKKKj60FdoLduocSUj4qEiV8FO0/KmFdEsny9H6tsBNCj3P3VB4aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=trGnVFtx; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4217926991fso47726575e9.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 04:37:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1718710636; x=1719315436; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MNFhFsMuCR3JzVpbfDPPfZyD9hhD06jT8f7Cvk9VHLU=;
+        b=trGnVFtxWrrvOe04TgnmMKqlElMWuQX/+AENI+jU36lkkKVABVKqeYs7RgU6a66+xM
+         KCqs8Aw3Cd3oVdhEecRPAudPGb12WKNbv3npQsmCKFPueW5KcS9BH8GkLR0dX0D5Qwd8
+         NW0CNgz3UUnyjpj4/WrI5m6j1nBEvDcIoOoRNscFwYZkRgqHalMf1LEW5w/j7tOhMMtp
+         k9+BDW1D0sq9uR8NCjqD6QUDi7SC2AkOHskK4BO3kyTpRQOMZHz/u0k2A6bwXV5J2bDm
+         76m923SK/wsp/cxVRVVlHm0v9Ky/nkwtiNQU+jq98BwW2s0W0am1W60P9UzmoqvfqUSU
+         9/Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718710636; x=1719315436;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MNFhFsMuCR3JzVpbfDPPfZyD9hhD06jT8f7Cvk9VHLU=;
+        b=B280qI58AnQRkSDma7dPyBfS+etnmtm+N+hg9jhTiPVouqd/+szwRWefXw+0AK/XTD
+         Y3HCSXTv/+HkNgTjuLJE5adAq3Ty8RAmGnIsUj/7fpnbzV519lZn2H2a3IAzP9GuhSE1
+         hHB3w4h3HwNliV1FF2OwaIb3NzUifnjpojxEZ7lsctYKFBEDUcMtlh7gK+Iosm21kMrC
+         HceM4Y2k0dfjnSYjxgkQjFB2HhNYb/U403ceMgmqJYTD6a2xRHL+cab9Y56CptLWb7kj
+         D1zGKki9do2Yk1DQPp54rEKc6eYXDf/tAcbxjNSr9dDtRk8hbCGr4PR6HBzuNIQwiLcf
+         a4nw==
+X-Forwarded-Encrypted: i=1; AJvYcCVfn2xTj7Cwofn8qTA11THkalOEehpigW/K6C+wsXPVW4urD19+lGfqvxJLRE1wHEaPuYxy/VWbsYSaD6U4PSt5+abd0HMbNE72uA==
+X-Gm-Message-State: AOJu0YxRWTi9/A9XGj014YLjqWxe6IuPv75kDwCc/TG+kEfGZFq8Hxm0
+	wlSnnAaEZcF0d3uO8YPi6oL/pBWp8+6DzQfwcQ0WFlUqX71E2AQZbQG3rnjm1JY=
+X-Google-Smtp-Source: AGHT+IEkKPX6JB+CVD4NP2W7dGUx1o04BJP6SVB5Vk6qEZ79NuxuyGaMjWKm/C/X6sMP5ctfytwVVw==
+X-Received: by 2002:a05:600c:4706:b0:422:384e:4365 with SMTP id 5b1f17b1804b1-42304821335mr101579035e9.2.1718710636358;
+        Tue, 18 Jun 2024 04:37:16 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f6127c1esm185260555e9.23.2024.06.18.04.37.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jun 2024 04:37:15 -0700 (PDT)
+Message-ID: <82c982ad-20ae-4f36-8797-440828317d32@freebox.fr>
+Date: Tue, 18 Jun 2024 13:37:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: lorenzo.bianconi83@gmail.com, robh+dt@kernel.org, upstream@airoha.com, 
- conor+dt@kernel.org, edumazet@google.com, conor@kernel.org, 
- davem@davemloft.net, pabeni@redhat.com, devicetree@vger.kernel.org, 
- catalin.marinas@arm.com, linux-arm-kernel@lists.infradead.org, 
- linux-clk@vger.kernel.org, rkannoth@marvell.com, 
- benjamin.larsson@genexis.eu, kuba@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, angelogioacchino.delregno@collabora.com, 
- sgoutham@marvell.com, will@kernel.org, netdev@vger.kernel.org, 
- andrew@lunn.ch, nbd@nbd.name
-In-Reply-To: <ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org>
-References: <cover.1718696209.git.lorenzo@kernel.org>
- <ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org>
-Message-Id: <171871036213.1272776.17317814792121610122.robh@kernel.org>
-Subject: Re: [PATCH v2 net-next 1/2] dt-bindings: net: airoha: Add EN7581
- ethernet controller
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] drm: bridge: simple-bridge: use only devm* in probe
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
+ <20240617-tdp158-v1-3-df98ef7dec6d@freebox.fr>
+ <deirqqoap7ta3iwmmvg6uxzalfe22yirjp6et2a74ffh5ybi64@vekr6l7sl22c>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <deirqqoap7ta3iwmmvg6uxzalfe22yirjp6et2a74ffh5ybi64@vekr6l7sl22c>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 18/06/2024 00:28, Dmitry Baryshkov wrote:
 
-On Tue, 18 Jun 2024 09:49:02 +0200, Lorenzo Bianconi wrote:
-> Introduce device-tree binding documentation for Airoha EN7581 ethernet
-> mac controller.
+> On Mon, Jun 17, 2024 at 06:03:01PM GMT, Marc Gonzalez wrote:
+>
+>> Once probe uses only devm functions, remove() becomes unnecessary.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
-> This patch is based on the following one not applied yet on clk tree:
-> dt-bindings: clock: airoha: Add reset support to EN7581 clock binding
-> https://patchwork.kernel.org/project/linux-clk/patch/ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org/
-> ---
->  .../bindings/net/airoha,en7581.yaml           | 106 ++++++++++++++++++
->  1 file changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581.yaml
+> Breves vibrantesque sententiae
 > 
+> With the hope of getting an expanded commit message:
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I'm not quite sure what else to say.
 
-yamllint warnings/errors:
+Using only devm* functions in probe, the remove() callback is
+no longer needed, since devm unwind will free all resources.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/airoha,en7581.example.dts:27:18: fatal error: dt-bindings/reset/airoha,en7581-reset.h: No such file or directory
-   27 |         #include <dt-bindings/reset/airoha,en7581-reset.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/net/airoha,en7581.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+Is that better?
 
-doc reference errors (make refcheckdocs):
+NB: this patch is not *required* but I thought "might as well
+change it while I'm in the code".
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Regards
 
 
