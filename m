@@ -1,155 +1,288 @@
-Return-Path: <devicetree+bounces-76835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C15890C412
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:54:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B41BB90C491
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 09:46:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6781C23309
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:54:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E66AB283A4D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 07:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99B74D8DC;
-	Tue, 18 Jun 2024 06:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F6413CFAC;
+	Tue, 18 Jun 2024 06:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fdXB65nX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kwQzBYzv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EC4210F8;
-	Tue, 18 Jun 2024 06:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0704413C9B3;
+	Tue, 18 Jun 2024 06:59:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718693667; cv=none; b=aT5TBnNX2ig2uLzQHMeOGTkcRPEbsxxDNviAJr2qh/fkrcng6oVwXUcsLAYAsrIos8XbP5Du2IlcB9znDSSvJJ2T3+BNRUAeYWdu+eqzGTwvdVaELuf6b0tc35TLyDTX+BX++KTfbAPdnevMixLag6ESuZmmzONBOFTHcx32MIk=
+	t=1718693944; cv=none; b=HrHyeBF14um6zPdRge0ojunZb49VTYMJLfnOEPyzueWUgTkKQocHsPBzw6E8UpSXj4Beu/hddbEGdyvARPdcaE9pl2FyVpq8itxckBEPcbUVEUhe2zECwbwEEqhjpi8B0bFSMRjJVkvfxjuOyGJ5j5NiOMjwgl30wcAgl7YyXYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718693667; c=relaxed/simple;
-	bh=4SApKPo6r2T2yqAQ1YtMPdKRofGXHQggS2kC0nhaOWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lr9Hrk08YuoXOKh1UYxVMvb0PZDHVAxWOnjFX81gTMglMdGFQEpz/Av8n3VukmzE1P7Z7PkfID3PcMJ7PdsCEvo53PaIsiuZ+AcUv+gDJKFFLOgrdo6fBuO+XfxqHd0X6KY7h86FDt0Wcnu8pBNkvLMv5SKuyB0uJwHlnPpCLNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fdXB65nX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F2EC3277B;
-	Tue, 18 Jun 2024 06:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718693666;
-	bh=4SApKPo6r2T2yqAQ1YtMPdKRofGXHQggS2kC0nhaOWM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fdXB65nX1cCh95uS+AbuUQMrB7QwQPbYqKMtjEkF02o3rzDi6d6XIgsHQPKWphsCP
-	 yTUEYb2xE05MIJtB3ErtKerNJ43aXQPyf9LZ5uGdPtxd3xX5vQWCDZAW8URM9465AO
-	 s4MOPXFGXBQd9y7P1YugH7koSDBL9Zd2KKNGFnq7gHOCgHADdYlUbkeHl3wEHsDqgO
-	 OzvmuK2lWO5z5ARHNFpNdJCKe8bC9LibZLIumLe3Kb8//MsuFStVuwRojrUZrKoEq2
-	 CZlvsawahBo4R7GkIN9brWSljbBfIHKcEhh7X8Sx9veL5uhxhAC1qPNkOtir+nC3if
-	 d6Ofdv4V00uZA==
-Message-ID: <11d19894-b068-49cb-afe6-b87f47cd4426@kernel.org>
-Date: Tue, 18 Jun 2024 08:54:21 +0200
+	s=arc-20240116; t=1718693944; c=relaxed/simple;
+	bh=t9F6u6IJmEFG4P2YU5LD36dj4+mI/cyeimKQjVCUWlE=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=AHzNDc2KHb6otiF6rKlDMW31c7REgHtG2XL71CjSdNEeWAptDHubcV15au/2OzltCEW0qTsTlc5k2WEVSGjk+1I89WbmGYpQERb56HJq/wg+rY1l+XlbiaNgP13u3LOPpXqQhbAWTl5+yZpsY5oyyWd3wFLq8rjqtAsIvwA6StE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kwQzBYzv; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-70601bcfddcso1455994b3a.3;
+        Mon, 17 Jun 2024 23:59:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718693942; x=1719298742; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t9F6u6IJmEFG4P2YU5LD36dj4+mI/cyeimKQjVCUWlE=;
+        b=kwQzBYzvSTWNLRTU4ko1+EBrdqwnyeewOV4vNV5sQSFB34Wh5Vj/5OmLXMGd+S1/X7
+         Saq+0ct6ZEiIbfBQ99aNJLUJstH+r+nACnk7uVAwpMn/+QdrWYAIww8NgEbJoBNI/8qg
+         57Gk5v6NRi3JAYlF7RL+XnzCm0uK6XGclHwOAnsneM5ORK5nAYjITnGIpgBxaif1+zNZ
+         4TfhsNpEGnVLEIErM1ksH+WK+tWf9m/hayBemt+56V6FOFzg1HuFtkjBPNmvRBmlVhip
+         2jF/Ck4mbFGCOlLcPHpVKcpbnStqpQw6HRcff5aLyhyhAn8WxGujYL/tMoBybRx3vUBF
+         wJbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718693942; x=1719298742;
+        h=content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:from:date:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=t9F6u6IJmEFG4P2YU5LD36dj4+mI/cyeimKQjVCUWlE=;
+        b=Ff9QWyDnHC5m06LQiBHryWd5+zKjZh5QPfovzgmbj+UkUY5sXiKEr8Se6hyBQFGHtZ
+         /JDTnTi7Sup4oFSh/Yubf49TDGRdDRw3w6SNTkkP+wpqGaqC9VyCHd1zS/QzTOe0F8Ie
+         DVNFH18VbUpqQHqzRiY0Jb/ge4glmhWZbwMLbXSV/7zdcUMbJalrImpA82z1y/K62fYP
+         7krLovOhYmbEKxIPtG9r2nP5USbtjvpjhWlI5dSimwIIQVdG/14o1IbECXRTpaBQfTp1
+         sy75Z47rZn/KwWtF/Xb/VlgoFboWVN5V/DIH3QvCVHvbc4+xDHQZv2AcNp6A1I8y1laP
+         K4Cw==
+X-Forwarded-Encrypted: i=1; AJvYcCUCs90810W2a9LMKZnBB0LDm+uQfRgWZsIcT1JGV1cSVRkAfvmAm5CFO3WLEIzjI6Owh1y/soI6JBnTVe01sGLKMVP/VQQXYaW03i5sMCQbIzuqKKhugU2kOgkfM9eZ6vWQ9y3jXZB12A==
+X-Gm-Message-State: AOJu0Ywd+0Uj45w6xvafPHWLIPSg1C6TMLm0NsBVjPmLkGRva3oPBGBC
+	uDXG8FGGWTC8SO2vpcJlH5fyx3SoTylrIpYKFMQGATt0xSZGBYFm
+X-Google-Smtp-Source: AGHT+IEX9TfGGQ/S5B0tqGgdQQ9ZVCt+0dUpnuU5ru1HCrVIQoO7l66wIP5ByO9l79JqEaPnUT5ODg==
+X-Received: by 2002:a05:6a20:3946:b0:1b6:dffa:d6ec with SMTP id adf61e73a8af0-1bae823dbd6mr14600662637.46.1718693942175;
+        Mon, 17 Jun 2024 23:59:02 -0700 (PDT)
+Received: from [127.0.0.1] ([122.161.50.215])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f993eae952sm6720865ad.267.2024.06.17.23.58.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jun 2024 23:59:01 -0700 (PDT)
+Date: Tue, 18 Jun 2024 12:28:48 +0530 (GMT+05:30)
+From: Shresth Prasad <shresthprasad7@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, heiko@sntech.de,
+	sebastian.reichel@collabora.com, andy.yan@rock-chips.com,
+	s.hauer@pengutronix.de, jbx6244@yandex.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	javier.carrasco.cruz@gmail.com, skhan@linuxfoundation.org
+Message-ID: <b7363a2e-7c49-4716-a43b-41d420a10438@gmail.com>
+In-Reply-To: <79f3ae72-e733-433c-a577-e0092e3ce20e@kernel.org>
+References: <20240617085341.34332-2-shresthprasad7@gmail.com> <f691c7f9-cd81-4bdf-a794-95118cb26686@kernel.org> <CAE8VWiLqBUq=-PzT2XVKB_C9nvEERM0x-maWU5qt0+aK1Rd-kg@mail.gmail.com> <79f3ae72-e733-433c-a577-e0092e3ce20e@kernel.org>
+Subject: Re: [PATCH v4] dt-bindings: phy: rockchip-emmc-phy: Convert to
+ dtschema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: power: supply: add support for
- MAX17201/MAX17205 fuel gauge
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <thomas@t-8ch.de>
-References: <20240617184504.304211-1-dima.fedrau@gmail.com>
- <20240617184504.304211-2-dima.fedrau@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240617184504.304211-2-dima.fedrau@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Correlation-ID: <b7363a2e-7c49-4716-a43b-41d420a10438@gmail.com>
 
-On 17/06/2024 20:45, Dimitri Fedrau wrote:
-> Adding documentation for MAXIMs MAX17201/MAX17205 fuel gauge.
-> 
-> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
-> ---
->  .../bindings/power/supply/maxim,max1720x.yaml | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
-> new file mode 100644
-> index 000000000000..52467af5388a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/maxim,max1720x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim MAX1720x fuel gauge
-> +
-> +maintainers:
-> +  - Dimitri Fedrau <dima.fedrau@gmail.com>
-> +
-> +allOf:
-> +  - $ref: power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max17201
-> +      - maxim,max17205
+18 June 2024 11:50:41=E2=80=AFam Krzysztof Kozlowski <krzk@kernel.org>:
 
-Your driver suggests these are compatible, so express it in the bindings
-(oneOf with list and fallback).
+> On 17/06/2024 20:14, Shresth Prasad wrote:
+>=20
+>>>> +examples:
+>>>> +=C2=A0 - |
+>>>> +=C2=A0=C2=A0=C2=A0 grf: syscon@ff770000 {
+>>>=20
+>>> Drop label... actually entire node looks not needed.
+>>=20
+>> From what I understand, this `phy` node should be a sub-node of a `grf`
+>> node which is why it is part of the example.
+>>=20
+>>>=20
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "rockchip,rk3399-grf", =
+"syscon", "simple-mfd";
+>>>=20
+>>> Drop
+>>>=20
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0xff770000 0x10000>;
+>>>=20
+>>> Drop
+>>=20
+>> Removing `reg` causes the following warning:
+>> Warning (unit_address_vs_reg): /example-0/syscon@ff770000: node has a
+>> unit name, but no reg or ranges property
+>>=20
+>> Please let me know what the prefered solution would be here.
+>=20
+> Obviously you need to drop entire node... You cannot just drop reg and
+> leave unit address.
+>=20
+>>=20
+>>>=20
+>>>=20
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <1>;
+>>>> +
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 emmcphy: phy@f780 {
+>>>=20
+>>> Drop label
+>>>=20
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "rockchip,r=
+k3399-emmc-phy";
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0xf780 0x20>;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&sdhci>;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "emmcclk";
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drive-impedance-ohm =3D <5=
+0>;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #phy-cells =3D <0>;
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+>>>> +=C2=A0=C2=A0=C2=A0 };
+>>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.t=
+xt b/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+>>>> deleted file mode 100644
+>>>> index 57d28c0d5696..000000000000
+>>>> --- a/Documentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+>>>> +++ /dev/null
+>>>> @@ -1,43 +0,0 @@
+>>>> -Rockchip EMMC PHY
+>>>> ------------------------
+>>>> -
+>>>> -Required properties:
+>>>> - - compatible: rockchip,rk3399-emmc-phy
+>>>> - - #phy-cells: must be 0
+>>>> - - reg: PHY register address offset and length in "general
+>>>> -=C2=A0=C2=A0 register files"
+>>>> -
+>>>> -Optional properties:
+>>>> - - clock-names: Should contain "emmcclk".=C2=A0 Although this is list=
+ed as optional
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 (because most boards can get basic functionality without having
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 access to it), it is strongly suggested.
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 See ../clock/clock-bindings.txt for details.
+>>>> - - clocks: Should have a phandle to the card clock exported by the SD=
+HCI driver.
+>>>> - - drive-impedance-ohm: Specifies the drive impedance in Ohm.
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Possi=
+ble values are 33, 40, 50, 66 and 100.
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 If no=
+t set, the default value of 50 will be applied.
+>>>> - - rockchip,enable-strobe-pulldown: Enable internal pull-down for the=
+ strobe
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 line.=C2=
+=A0 If not set, pull-down is not used.
+>>>> - - rockchip,output-tapdelay-select: Specifies the phyctrl_otapdlysec =
+register.
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 If not s=
+et, the register defaults to 0x4.
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Maximum =
+value 0xf.
+>>>> -
+>>>> -Example:
+>>>> -
+>>>> -
+>>>> -grf: syscon@ff770000 {
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "rockchip,rk3399-grf", "sysco=
+n", "simple-mfd";
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <1>;
+>>>> -
+>>>> -...
+>>>> -
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0 emmcphy: phy@f780 {
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 compatible =3D "rockchip,rk3399-emmc-phy";
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 reg =3D <0xf780 0x20>;
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 clocks =3D <&sdhci>;
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 clock-names =3D "emmcclk";
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 drive-impedance-ohm =3D <50>;
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 #phy-cells =3D <0>;
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0 };
+>>>> -};
+>>>> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b=
+/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>>> index 79798c747476..6e1b1cdea680 100644
+>>>> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>>> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+>>>> @@ -176,9 +176,12 @@ allOf:
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
+>>>>=20
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 patternProperties:
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "phy@[0-9a-f]+$":
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description:
+>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Do=
+cumentation/devicetree/bindings/phy/rockchip-emmc-phy.txt
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "^phy@[0-9a-f]+$":
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 type: object
+>>>> +
+>>>=20
+>>> Drop blank line
+>>>=20
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas=
+/phy/rockchip,rk3399-emmc-phy.yaml#
+>>>> +
+>>>=20
+>>> Drop blank line
+>>=20
+>> The rest of the document also has these blank lines, which is why I've
+>> also kept them here. Are you sure I should remove them?
+>=20
+> Yes
+>=20
+>>=20
+>>>=20
+>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unevaluatedPro=
+perties: false
+>>>>=20
+>>>> =C2=A0=C2=A0 - if:
+>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+>>>=20
+>>> Nothing in example? Isn't the example for 3399?
+>>>=20
+>>> We want only one complete example of such multi-children devices, so th=
+e
+>>> example can be moved and included in existing one here.
+>>=20
+>> The example in this file is actually for `rockchip,rk3399-usb2phy` and
+>> not `rockchip,rk3399-emmc-phy` which is why I haven't touched it.
+>=20
+> What? That's gref, not usb2phy.
+>=20
+> This patch and your explanations are very confusing.
+>=20
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
-https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
+Sorry about this, I'm still quite new to doing this.
+I ask that you be a bit more patient with me, I'm still trying to learn
+how things work here...
 
-Best regards,
-Krzysztof
-
+Regards,
+Shresth
 
