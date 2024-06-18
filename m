@@ -1,141 +1,171 @@
-Return-Path: <devicetree+bounces-76816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BAFD90C2E0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:34:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4764590C2CC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACD0CB2191E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 04:34:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0D8B1F22058
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 04:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FFC1804E;
-	Tue, 18 Jun 2024 04:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9EC47A5C;
+	Tue, 18 Jun 2024 04:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gTi7MVJl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jz81jFZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92DA1C01;
-	Tue, 18 Jun 2024 04:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82DC63AE;
+	Tue, 18 Jun 2024 04:26:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718685255; cv=none; b=aOsn4/54SLnuuwBx0J/ov/QDNBtvCT7Byh4QAcp2zzbEMY6VJvZbJOz6xI89Q2kA1zV800X46mI8JDz6gDERWZdqHi3z6oto2z40S+ip7jAzM8uptlgARdzYJSNCJH4R0ySg6GmccuUOe/XvFfgehkz7pg58/ZX7cdUFPjNFMdQ=
+	t=1718684797; cv=none; b=Xx+zkDJGSgLNn3rqeQn1ESNrUAJYACb998usQkIjVVc4PsX6Qj3MUcXJy7mIqbO+r+lAaH+UY+clYZJ8nFwANLFcWia+TBl1Hv1DVojhxU0JhjyaUxr8ugGsHBM33GkjeYElpZclJBhWbUZyakX9QmZenFIdjljXr6UYNndLi9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718685255; c=relaxed/simple;
-	bh=cVWaqdmlVB3MhB8ZS2KfEGlzyVZFQobqyrEiIiYPoSA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TI8YZGGnW7dD6DlGFuSSUzQcdZu77t2JwfsQxUsz7DnxeFVIoDqTvfYHJPAqjnhjBZ3LMooPfiEbI3jqILTUpPO+1hh7RgCFc4aVyP2cGOuNvsBI+JIF4OuYzXiEWOAn/g5keTBP6GAbIWdryGygRuGQGGeqA9ktpf+XfcTTzrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gTi7MVJl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 812B6C3277B;
-	Tue, 18 Jun 2024 04:34:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718685255;
-	bh=cVWaqdmlVB3MhB8ZS2KfEGlzyVZFQobqyrEiIiYPoSA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gTi7MVJlvd3DqJpnKOKwG1xNN9+M3Gsd6MebltbzdgYOGnNyiv6Qeq+xhqfRbROut
-	 SMeCl95OGHDBKyeXsKqzjZiu8nRdzT8VF3nwmPVGyANifUQ4IVXBEyLiZbRBuA+r0p
-	 kkJXl0ojinTkXRpSpsx3wYcxcPeHcuHbPZKbHXToNiDVwXn/Rz1XfUQPLNhFqQRota
-	 Ji/Wh9lpLMGRuNhNmj0DSutuZbOngGorasQOGUjC3tgjSPUjrrJ+nW6aPnlpo7rFMl
-	 BobHJwR5iAtT1Vvtyk20SeGII31d7mB1TqYIv6xVcD0QEwS+Lp2lQuDtie5Zzz8Zc+
-	 WZdChbx6OiHBA==
-Date: Tue, 18 Jun 2024 12:20:13 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Yixun Lan <dlan@gentoo.org>, Inochi Amaoto <inochiama@outlook.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v2 1/6] riscv: dts: sophgo: Put sdhci compatible in dt of
- specific SoC
-Message-ID: <ZnEK_cg1xLbKOUAD@xhacker>
-References: <20240612-sg2002-v2-0-19a585af6846@bootlin.com>
- <20240612-sg2002-v2-1-19a585af6846@bootlin.com>
- <IA1PR20MB49534C9E29E86B478205E4B3BBC02@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20240616235829.GA4000183@ofsar>
- <c75601a1-1389-400e-90b9-99c1e775a866@bootlin.com>
- <ZnA3O14HOiV1SBPV@xhacker>
- <20240617-exuberant-protegee-f7d414f0976d@spud>
- <6a993b58-3d9e-4f92-bf47-7692c9639314@sifive.com>
+	s=arc-20240116; t=1718684797; c=relaxed/simple;
+	bh=1j6EHgbnaeEoxUDtFTjZfx0qzbM1+6oLEzsVID/Qu4M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zn7vxbl0JdIqCmWzM0OMWRk2E+ar1Rzhsdb9i6Byin3wEPkir3Q7najaqkJXsvcprcfWDZJDX1pcaFU+CN5e+u9nFyBinlknQInDfQuO1fEeIyEr3XT96DpVnqJ420Hf0URTAHew3yh49p6i1hNEtTyfQrSE5mFG6Wr12Uy33YQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jz81jFZW; arc=none smtp.client-ip=209.85.161.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5baf982f56dso2986048eaf.3;
+        Mon, 17 Jun 2024 21:26:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718684795; x=1719289595; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KEMaT1TlaEmcm8Kdg8m3ufqBtJYJy4jB0+SosRoAgvY=;
+        b=jz81jFZWoMrhuP0VMBveeI5gp2CAHTHCCbNB/nI6tLCRjbbzzWjZazFlrCAKhUHYgQ
+         KH7JJIJL095RGBNInD7pumTkXf3lDRSGSZXdt9hq62kShroxqzGy+P9Gk7XP21YjBba3
+         XcKG5dDuZc5eN8ZrNGMT8J75OJcotebVvG+qgs1IOHqBiDZJfsxzXZVifM7DhG7ERKlK
+         OIAQp2/hkguI2ZNiz7oHNUNetmVLYi0Mlbi06t9EiG5toIZaRwRQB/j7vSH0HYBCIHRg
+         XFNYrH6Rm7mGLvsw5utilJfz+hG7csQBheKRl4QYxDwTAwMQ3ekIFdKM7c3qn9cXl1Ao
+         CWnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718684795; x=1719289595;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KEMaT1TlaEmcm8Kdg8m3ufqBtJYJy4jB0+SosRoAgvY=;
+        b=gvoK7I1Nl1pNrsGR60b1bEtMWVY2seQzqf49ZVdQ+lZWnSNfjcqEEwpOnGmQMAYMb1
+         bYJop8AeDvnyruCGijD+9tEhX0m4+7/mPKz6rfXEX86l3MN5fQ6A1gydBA3YAmJJHhiS
+         dqIknMCprqcCvZLyssRAZ4aw6OlF+psgBT+uDpMIjiBX3k6dTe3NsGp19Udq2diZhvN3
+         pVjpWYbjANaEsos0mP9UmL2Va8VEzmOid23buW1pX1beD+SbmoQcDkybhe8LYIt0XUW2
+         BF+LMl+ZbDwkBKKdp4cBqH+PMLTtMVnG+g9ga0TwCAbyVN/xKf89KDBekwTyXgoZrLmi
+         Z0vQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW6WIg+tRnGQUbXrZX+B2cwyKYF3e09i1oq0Nr5wqbA4zhoW8mREObHugH8IQond+6Z2EN7PhVA5fUX0JjweDc5TgQOX1puqCGPj2rdVeTUdicdXhUegpwjzhnKpiFC00SVSLpRJrZVFgrvW9J8pq81gtAoc4z3DZXT5i9NU4SRNphsItsTpQouplXy87s8ARJYtdEtC/wB12w3IcHcFoWDdALTsn6TgkiB
+X-Gm-Message-State: AOJu0YxHQ2PhvFmGlo5Nhu53YgLcmzcSc+vsY95q2eAnvIk+DJNSbiNu
+	FKDZT6AqlHSqL63MqL87XNxy9hxs7cC3PCRzFyCKTdDshj6V+IYytGyW7JALB0RAza/OIAbNcgh
+	J14hDTzkmTDzQESf3PF3TGll7eohTX73t
+X-Google-Smtp-Source: AGHT+IF+6ZHdp1vXryGnLrg4Z1+4ufKKFh1FZggdKzi7824NQ4NQwCLJWiNAN6LMB5TnJe0MHOkZqr45TC6yCcUF66k=
+X-Received: by 2002:a05:6820:554:b0:5ba:ea6f:acb8 with SMTP id
+ 006d021491bc7-5bdadbdecefmr11947268eaf.3.1718684794716; Mon, 17 Jun 2024
+ 21:26:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <6a993b58-3d9e-4f92-bf47-7692c9639314@sifive.com>
+References: <20240618003743.2975-1-semen.protsenko@linaro.org> <20240618003743.2975-5-semen.protsenko@linaro.org>
+In-Reply-To: <20240618003743.2975-5-semen.protsenko@linaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 18 Jun 2024 09:56:19 +0530
+Message-ID: <CANAwSgSaYip=oqtLfTzFMq_HWGJMMbEXOqKWC8ANzxNZmBFXTw@mail.gmail.com>
+Subject: Re: [PATCH 4/7] hwrng: exynos: Implement bus clock control
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jun 17, 2024 at 10:57:54AM -0500, Samuel Holland wrote:
-> Hi Jisheng, Thomas,
-> 
-> On 2024-06-17 10:40 AM, Conor Dooley wrote:
-> > On Mon, Jun 17, 2024 at 09:16:43PM +0800, Jisheng Zhang wrote:
-> >> On Mon, Jun 17, 2024 at 11:16:32AM +0200, Thomas Bonnefille wrote:
-> >>> On 6/17/24 1:58 AM, Yixun Lan wrote:
-> >>>> On 18:47 Wed 12 Jun     , Inochi Amaoto wrote:
-> > 
-> >>>>> Is this change necessary? IIRC, the sdhci is the same across
-> >>>>> the whole series.
-> > 
-> >> sorry for being late, I was busy in the past 2.5 month. Per my
-> >> understanding, the sdhci in cv1800b is the same as the one in
-> >> sg200x. Maybe I'm wrong, but this was my impression when I cooked
-> >> the sdhci driver patch for these SoCs.
-> >>
-> >>>> I tend to agree with Inochi here, if it's same across all SoC, then no bother to
-> >>>> split, it will cause more trouble to maintain..
-> >>>>
-> >>>
-> >>> To be honest, I agree with this to, but as a specific compatible for the
-> >>> SG2002 was created in commit 849e81817b9b, I thought that the best practice
-> >>> was to use it.
-> >>
-> >> I'd like to take this chance to query DT maintainers: FWICT, in the past
-> >> even if the PLIC is the same between SoCs, adding a new compatible for
-> >> them seems a must. So when time goes on, the compatbile list would be
-> >> longer and longer, is it really necessary? Can we just use the existing
-> >> compatible string?
-> >> DT maintainers may answered the query in the past, if so, sorry for
-> >> querying again.
-> > 
-> > For new integrations of an IP, yes, new specific compatibles please. New
-> > integrations may have different bugs etc, even if the IP itself is the
-> > same. If there's different SoCs that are the same die, but with elements
-> > fused off, then sure, use the same compatible.
-> > 
-> > I expect the list of compatibles in the binding to grow rather large, but
-> > that is fine. No one SoC is going to do anything other than something like
-> > compatible = "renesas,$soc-plic", "andestech,corecomplex-plic", "riscv,plic";
-> > which I think is perfectly fine.
-> 
-> And you can do the same thing here for the SDHCI controller: if you think sg200x
-> has the same controller (and integration! e.g. number of clocks/resets) as
-> cv1800b, then you should keep sophgo,cv1800b-dwcmshc as a fallback compatible
-> string. Then the driver doesn't need any changes until/unless you eventually
-> find some reason they are not compatible.
-> 
-> It's better to have a SoC-specific compatible string in the DT and not need it,
-> than find out later you need one and not have it. :)
+Hi Sam,
 
-Good idea, this solution looks better! Thanks for the suggestion
+On Tue, 18 Jun 2024 at 06:08, Sam Protsenko <semen.protsenko@linaro.org> wrote:
+>
+> Some SoCs like Exynos850 might require the SSS bus clock (PCLK) to be
+> enabled in order to access TRNG registers. Add and handle optional PCLK
+> clock accordingly to make it possible.
+>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  drivers/char/hw_random/exynos-trng.c | 22 ++++++++++++++++++++--
+>  1 file changed, 20 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_random/exynos-trng.c
+> index 88a5088ed34d..4520a280134c 100644
+> --- a/drivers/char/hw_random/exynos-trng.c
+> +++ b/drivers/char/hw_random/exynos-trng.c
+> @@ -47,7 +47,8 @@
+>  struct exynos_trng_dev {
+>         struct device   *dev;
+>         void __iomem    *mem;
+> -       struct clk      *clk;
+> +       struct clk      *clk;   /* operating clock */
+> +       struct clk      *pclk;  /* bus clock */
+>         struct hwrng    rng;
+>  };
+>
+> @@ -141,10 +142,23 @@ static int exynos_trng_probe(struct platform_device *pdev)
+>                 goto err_clock;
+>         }
+>
+> +       trng->pclk = devm_clk_get_optional(&pdev->dev, "pclk");
 
-> 
-> Regards,
-> Samuel
-> 
+Use devm_clk_get_optional_enabled to avoid clk_prepare_enable
+
+> +       if (IS_ERR(trng->pclk)) {
+> +               ret = dev_err_probe(&pdev->dev, PTR_ERR(trng->pclk),
+> +                                   "cannot get pclk");
+> +               goto err_clock;
+> +       }
+> +
+> +       ret = clk_prepare_enable(trng->pclk);
+> +       if (ret) {
+> +               dev_err(&pdev->dev, "Could not enable the pclk.\n");
+> +               goto err_clock;
+> +       }
+> +
+>         ret = clk_prepare_enable(trng->clk);
+
+Use devm_clk_get_enabled for this clock
+
+>         if (ret) {
+>                 dev_err(&pdev->dev, "Could not enable the clk.\n");
+> -               goto err_clock;
+> +               goto err_clock_enable;
+>         }
+>
+>         ret = devm_hwrng_register(&pdev->dev, &trng->rng);
+> @@ -160,6 +174,9 @@ static int exynos_trng_probe(struct platform_device *pdev)
+>  err_register:
+>         clk_disable_unprepare(trng->clk);
+>
+> +err_clock_enable:
+> +       clk_disable_unprepare(trng->pclk);
+> +
+>  err_clock:
+>         pm_runtime_put_noidle(&pdev->dev);
+>
+> @@ -174,6 +191,7 @@ static void exynos_trng_remove(struct platform_device *pdev)
+>         struct exynos_trng_dev *trng = platform_get_drvdata(pdev);
+>
+>         clk_disable_unprepare(trng->clk);
+> +       clk_disable_unprepare(trng->pclk);
+>
+>         pm_runtime_put_sync(&pdev->dev);
+>         pm_runtime_disable(&pdev->dev);
+> --
+> 2.39.2
+>
+>
+
+Thanks
+-Anand
 
