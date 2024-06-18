@@ -1,179 +1,166 @@
-Return-Path: <devicetree+bounces-76915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EF6F90C83E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:03:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A7690C864
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:07:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1645F28B6B3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:03:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DA5F1C20C21
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9D215884E;
-	Tue, 18 Jun 2024 09:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZTdiwBh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B2C204EEB;
+	Tue, 18 Jun 2024 09:47:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B599B158216;
-	Tue, 18 Jun 2024 09:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1205818036;
+	Tue, 18 Jun 2024 09:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718703871; cv=none; b=RSSlxhVrCXMDy8BQ1JbygOA2qCFUNasTN07dGndqxEdUjZEW37/9LEiMOr1OKz+8d2uiN799QMcCuDvYuvD7teYXjb6rsr+toxhFxQO5x4XYBZSlDyvc1bx1zNezy2mY+Df5O/bwmMB83dYL/hQB/+cOn5Vs8OKlLQ8YivW9HZk=
+	t=1718704059; cv=none; b=KULPBsrTHyLTJ3v2CJivA47W5JvZL68giyvxIMNzsDVHYG4qWOYqHu2J46WYk9s4ZLlOXpvmHiSVVyiRvm9FYQCHAz0kIQsEbhHcORetur/zj9gC67yskolFMa2FYOiOp488LCN/cdzrbHahGedEiW4W9abH1mJepeAaT7m4Pw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718703871; c=relaxed/simple;
-	bh=3oAxYZunFcgJip6AK4A73PGRCJ7aIiU6dscSL48J7rY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jSmagKrvY3w5YG5PQVxYWFd5O/q9pWgR4WN3ArVwYtY6JW2cvBb05SQNTpaekypdYwC3uY+k43pG4IzM813CjoNptH1lbGjzgVfrOZTzjnzpYHjZjyvR0TGUE9KBlVwz0Sfvh107IzKFy/WIn2IhiXvydqw3OmqT9n+jyd/ZGdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lZTdiwBh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06F6AC3277B;
-	Tue, 18 Jun 2024 09:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718703871;
-	bh=3oAxYZunFcgJip6AK4A73PGRCJ7aIiU6dscSL48J7rY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lZTdiwBhX+9KSjDhSjnNqL+CrDUhMwCPPBpLP36PtsBK7q2iOrR5ViF+3jku6yg/t
-	 uXc46+MI3Z/s7cd2VtKfwtQU7w/ZcTa2gLR44n8btdWUVD1EW0Qc6cbLBgHIgJv4Mr
-	 8Bf9OxOL9kH6X3E+i96C/xs23kox4bl62v2a46hC2EqWGYXxxnEvff3gJzJiO/3rIA
-	 FDwQpE7jNnt+aJIof4HrtmVDIOkEWO1eT6uYtQwpfSh0uw3FcIx6YpiazJXNtmE8BJ
-	 HGMd4EXJ79ktmuBgko1M4nh8G77tpLnEM1oeCcXsgoGAj9XVTbqEmwUqXbDlbYrB1n
-	 mMf1oT9CpfMSA==
-Date: Tue, 18 Jun 2024 11:44:25 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" <linux-ide@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: ata: ahci-fsl-qoriq: convert to yaml
- format
-Message-ID: <ZnFW-d1ktgWTZutZ@ryzen.lan>
-References: <20240617180241.901377-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1718704059; c=relaxed/simple;
+	bh=bvydH7RjBestTLmNs2zaUNf93eKOltBy+ZSBAHcAorQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I5Z8b6Vl4pY8ZA+bbOpzwV3SCz5OfQAlIcscVFARJDgA7+23FVp7j5hy1q/qS7unAyaz32WCXQaumZxBuaLjzaUjMLBI612zMobNxTtrD0+MN4qIhuCviQpePpo4YyK/QzFfh1l4iPP421wLisZKJfOKTYgg2V134FI1cPeDSjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D198DDA7;
+	Tue, 18 Jun 2024 02:48:00 -0700 (PDT)
+Received: from [10.57.72.20] (unknown [10.57.72.20])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AB13B3F64C;
+	Tue, 18 Jun 2024 02:47:32 -0700 (PDT)
+Message-ID: <243098a9-296b-4cbc-9f48-d37ab3b94153@arm.com>
+Date: Tue, 18 Jun 2024 10:47:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240617180241.901377-1-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/3] Add coresight slave register driver to support
+ data filter function
+Content-Language: en-GB
+To: Jie Gan <quic_jiegan@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>,
+ Song Chai <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ andersson@kernel.org, quic_yijiyang@quicinc.com, quic_yuanjiey@quicinc.com,
+ quic_liuxin@quicinc.com, quic_yanzl@quicinc.com, quic_xinlon@quicinc.com,
+ quic_xueqnie@quicinc.com, quic_sijiwu@quicinc.com
+References: <20240618072726.3767974-1-quic_jiegan@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20240618072726.3767974-1-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 17, 2024 at 02:02:40PM -0400, Frank Li wrote:
-> Convert ahci-fsl-qoirq DT binding to yaml format.
+On 18/06/2024 08:27, Jie Gan wrote:
+> The Coresight Slave Register(CSR) device hosts miscellaneous configuration
+> registers to control various features related to TMC ETR device.
 > 
-> Additional changes:
-> - Add reg-names list, ahci and sata-ecc
-> - Add fsl,ls1028a-ahci and fsl,lx2060a-ahci
+> The CSR device works as a helper device physically connected to the TMC ETR device.
+> ---------------------------------------------------------
+>               |ETR0|             |ETR1|
+>                . \                 / .
+>                .  \               /  .
+>                .   \             /   .
+>                .    \           /    .
+> ---------------------------------------------------
+> ETR0ATID0-ETR0ATID3     CSR     ETR1ATID0-ETR1ATID3
+> ---------------------------------------------------
+> Each ETR has four ATID registers with 128 bits long in total.
+> e.g. ETR0ATID0-ETR0ATID3 registers are used by ETR0 device.
+
+What is the maximum number of connections possible for CSR ? 2 ETRs ?
+
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../bindings/ata/ahci-fsl-qoriq.txt           | 21 -------
->  .../devicetree/bindings/ata/fsl,ahci.yaml     | 58 +++++++++++++++++++
->  2 files changed, 58 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
->  create mode 100644 Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> Based on the trace id which is programed in CSR ATID register of
+> specific ETR, trace data with that trace id can get into ETR's buffer
+
+How do you handle cases where there are multiple TraceIDs in a the 
+stream ? e.g., perf tracing a multi-threaded app ? Each ETM will have
+a distinct traceid. Is there way to disable filtering by CSR ?
+
+Side note, with James's trace id allocation per sink series makes this
+easier for the ETR to know the trace ids allocated for the current
+session. Works only for perf though.
+
+
+> while other trace data gets ignored. CSR may contain several ATID registers.
+> Each ATID register is associated with an ETR device.
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt b/Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
-> deleted file mode 100644
-> index 7c3ca0e13de05..0000000000000
-> --- a/Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -Binding for Freescale QorIQ AHCI SATA Controller
-> -
-> -Required properties:
-> -  - reg: Physical base address and size of the controller's register area.
-> -  - compatible: Compatibility string. Must be 'fsl,<chip>-ahci', where
-> -    chip could be ls1021a, ls1043a, ls1046a, ls1088a, ls2080a etc.
-> -  - clocks: Input clock specifier. Refer to common clock bindings.
-> -  - interrupts: Interrupt specifier. Refer to interrupt binding.
-> -
-> -Optional properties:
-> -  - dma-coherent: Enable AHCI coherent DMA operation.
-> -  - reg-names: register area names when there are more than 1 register area.
-> -
-> -Examples:
-> -	sata@3200000 {
-> -		compatible = "fsl,ls1021a-ahci";
-> -		reg = <0x0 0x3200000 0x0 0x10000>;
-> -		interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-> -		clocks = <&platform_clk 1>;
-> -		dma-coherent;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
-> new file mode 100644
-> index 0000000000000..162b3bb5427ed
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/fsl,ahci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale QorIQ AHCI SATA Controller
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,ls1021a-ahci
-> +      - fsl,ls1043a-ahci
-> +      - fsl,ls1028a-ahci
-> +      - fsl,ls1088a-ahci
-> +      - fsl,ls2080a-ahci
-> +      - fsl,lx2160a-ahci
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: ahci
-> +      - const: sata-ecc
-> +    minItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  dma-coherent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    sata@3200000 {
-> +        compatible = "fsl,ls1021a-ahci";
-> +        reg = <0x3200000 0x10000>;
-> +        interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&platform_clk 1>;
-> +        dma-coherent;
-> +    };
-> -- 
-> 2.34.1
+> To achieve this function, the trace id is obtained and stored in the related
+> ETR device's driver data just before enabling the CSR. Then, the CSR
+> device can easily obtain the trace ID from the ETR's driver data because the
+> ETR's driver data is passed to the CSR's enable/disable functions.
+> 
+> Ensure that every source device has already allocated a trace ID in its probe
+> session because the sink device should always be the first device to
+
+How is that possible ? We are going backwards in the trace id allocation
+with your proposal. What is the purpose of this hardware when you could 
+use a replicator with trace filtering based on masks ?
+
+> enable when operating coresight_enable_path function. As a helper device of the
+> ETR, the CSR device will program the ATID register of a specific ETR according to
+> the trace id to enable data filter function at a very early stage. Without the
+> correct trace ID, the enablement session will not work.
+> 
+> Each CSR's enable session will set one bit in the ATID register.
+
+So is this a bitmap of "enable/disable" ATID ? I really don't see the
+usecase of the CSR "device" yet. Please could you share "usecase" ?
+
+Suzuki
+
+
+> Every CSR's disbale seesion will reset all bits of the ATID register.
+> 
+> This patch only supports sysfs mode. I will send the perf mode part patch
+> once it is ready.
+> 
+> Looking forward to receiving comments as this is a new driver.
+> 
+> Thanks!
+> 
+> Jie Gan (3):
+>    dt-bindings: arm: Add binding document for Coresight Slave Register
+>      device.
+>    coresight: Add coresight slave register driver to support data filter
+>      function in sysfs mode
+>    arm64: dts: qcom: Add CSR and ETR nodes for SA8775p
+> 
+>   .../bindings/arm/arm,coresight-tmc.yaml       |   8 +
+>   .../bindings/arm/qcom,coresight-csr.yaml      |  49 +++
+>   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 167 ++++++++++
+>   drivers/hwtracing/coresight/Kconfig           |   6 +
+>   drivers/hwtracing/coresight/Makefile          |   1 +
+>   drivers/hwtracing/coresight/coresight-core.c  |   6 +-
+>   drivers/hwtracing/coresight/coresight-csr.c   | 315 ++++++++++++++++++
+>   drivers/hwtracing/coresight/coresight-csr.h   |  24 ++
+>   .../coresight/coresight-etm4x-core.c          |   1 +
+>   drivers/hwtracing/coresight/coresight-stm.c   |  50 ---
+>   drivers/hwtracing/coresight/coresight-sysfs.c |  45 ++-
+>   .../hwtracing/coresight/coresight-tmc-core.c  |   1 +
+>   drivers/hwtracing/coresight/coresight-tmc.h   |   2 +
+>   include/linux/coresight-stm.h                 |  44 +++
+>   14 files changed, 665 insertions(+), 54 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
+>   create mode 100644 drivers/hwtracing/coresight/coresight-csr.c
+>   create mode 100644 drivers/hwtracing/coresight/coresight-csr.h
 > 
 
-Applied:
-https://git.kernel.org/pub/scm/linux/kernel/git/libata/linux.git/log/?h=for-6.11
 
