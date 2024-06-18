@@ -1,129 +1,139 @@
-Return-Path: <devicetree+bounces-76977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8774890CB28
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:09:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1EB90CB61
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:14:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3B11289917
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:09:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7458D1F252E5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9923918040;
-	Tue, 18 Jun 2024 12:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1FE13AA51;
+	Tue, 18 Jun 2024 12:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="j/rTMOoD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kmWBQGSf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560EE1C2A3
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 12:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8291081725;
+	Tue, 18 Jun 2024 12:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718712520; cv=none; b=cbyGiEgjBiqxV9JGIX/3q/8UYU+lTegCmvj+rBTXX8V8cAvXF3Epc+g1DGCUffHd/pj5wOVPI1rxBfI48u8I/QIrvNJ5MuK5nVko4MTvXzbhuIyZWUr+DyUYSPdZv5ts4WLwq2RxuarM/o3sL4PDOfdfOhE4/Fh+TV9I94cux4g=
+	t=1718712716; cv=none; b=KxM1SoehPoOMRK/xMhCmVwzI2LAAHXbNO2UYBquicL9lrBbR/YM70cq875B89Z4TAxp+KplJYVdBIWX6ElTFzfad1En4xDo2xrY+5fDUouvhwc8tuqD1B+tEUkj9HiVqyEIs4WvivGUW/zrX68cmEU/rx2tRyZnKZYL5fmAmek8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718712520; c=relaxed/simple;
-	bh=Yckx3myiIKBg0+WTmA44vy1MYQpPyh6BkmCRseR89ec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hGORwmXmaZJt0qU0jr1IT6jQdwKy7j653EB/GL/mXDbHAxbXS3v6ulm2FqC6vOUoK/hoYsNTLtoPfzCWDuCVoKtC+BSWaGMjPG1BtDJjjTDDBXZGp+KAqVaZOJ8dt/7CJlBhI2+CQRuAiu5XNeXJa7VvEnvw0Jiu0whiCgOBKvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=j/rTMOoD; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Envelope-To: angelogioacchino.delregno@collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1718712516;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yaKJZwFY6wd1XllaZI8jJVrOqSqeE2cUrM2G+oq1sR8=;
-	b=j/rTMOoDPWYTSlPp2VdJOuT37Q5uAFN8Tsg2EsV4sQIiUaqK5GIq+iAvEYNMRfLEBFuDbP
-	LlqVT/U0m+nFky/pdYKC+SbgxAKwWl3f41XmPGY67FTxWMB4Lu+6+7yUqjrK8WTXY4OUj3
-	UpgZf3YfifUlrEGqe1S6OLCQ/0McQeM=
-X-Envelope-To: chunkuang.hu@kernel.org
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: krzysztof.kozlowski+dt@linaro.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: p.zabel@pengutronix.de
-X-Envelope-To: airlied@gmail.com
-X-Envelope-To: daniel@ffwll.ch
-X-Envelope-To: maarten.lankhorst@linux.intel.com
-X-Envelope-To: mripard@kernel.org
-X-Envelope-To: tzimmermann@suse.de
-X-Envelope-To: matthias.bgg@gmail.com
-X-Envelope-To: shawn.sung@mediatek.com
-X-Envelope-To: yu-chang.lee@mediatek.com
-X-Envelope-To: ck.hu@mediatek.com
-X-Envelope-To: jitao.shi@mediatek.com
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: dri-devel@lists.freedesktop.org
-X-Envelope-To: linux-mediatek@lists.infradead.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: wenst@chromium.org
-X-Envelope-To: kernel@collabora.com
-X-Envelope-To: michael@walle.cc
-X-Envelope-To: amergnat@baylibre.com
-Message-ID: <dc1b40ed-0f8f-40c9-8c32-e35e296b37da@linux.dev>
-Date: Tue, 18 Jun 2024 20:08:25 +0800
+	s=arc-20240116; t=1718712716; c=relaxed/simple;
+	bh=tkkmd7e83SLx6wWZRPA2+oL9p5SIi1EfrihV/aj5aNU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PLNtv5LUjz/BTViUA7K6g5u3Zh2m20T051WmcP3loo0LLpKDYyK8uhhz5fXTOmkJUzTlMuXTeQc80Notwjdr0gGNCbSsyXtj/tsrZH0kNLaZO0oFwikNcMQre7wetjgSxWiLrmaTY+s7BJXIrVIA8p6yyAQmwytJPF3XJE6cXHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kmWBQGSf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I3D4L8011398;
+	Tue, 18 Jun 2024 12:11:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	I8QJeXfloRrBSZk5mn02oFEFrNdkTUucnuv4dy6+P3U=; b=kmWBQGSfh7VSXDtZ
+	dk0M+HQerYn4zHGQsssrCP3WrhKcVeUo3zLGO+c2dboW2IfEODo5DLUWSC5Gu7/B
+	EDrUL7/CuTFp/N6NItE//9XYgbJigME2buNMCQcNtWU/UuX6ytSw0rYZsZeuONMo
+	+YPThcdJvU380XBoTVKY2mY9RlSdxPirUUIuGvRMSlQ+Rri/4WS5HRdUo/ke0Vhg
+	y8Q4v95DXND2IVqSixFrxL7DNZolW5idj1JnBRWjK2riruXl0CqfHFIYM8g8V2tL
+	/PnropZtbQEw4Af5KLmASp7OVfXT16Qw2jz8sKYJ9hZL8bsoIzk+LI+jCW7x85v/
+	geHG+g==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yu24n15x9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 12:11:49 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45ICBmxR015711
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 12:11:48 GMT
+Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Jun
+ 2024 05:11:45 -0700
+Message-ID: <7bcb66c1-39a0-4296-aadf-4889475d6ba6@quicinc.com>
+Date: Tue, 18 Jun 2024 17:41:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v8 3/3] drm/mediatek: Implement OF graphs support for
- display paths
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com, michael@walle.cc,
- Alexandre Mergnat <amergnat@baylibre.com>
-References: <20240618101726.110416-1-angelogioacchino.delregno@collabora.com>
- <20240618101726.110416-4-angelogioacchino.delregno@collabora.com>
-Content-Language: en-US, en-AU
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <20240618101726.110416-4-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH][RFT] arm64: dts: qcom: sm8550: Change camcc power domain
+ from MMCX to MXC
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20240612214812.1149019-1-vladimir.zapolskiy@linaro.org>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <20240612214812.1149019-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -kwfyTtl-q2s6lBccDq9idjJnM9_tM81
+X-Proofpoint-ORIG-GUID: -kwfyTtl-q2s6lBccDq9idjJnM9_tM81
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ lowpriorityscore=0 mlxscore=0 mlxlogscore=737 impostorscore=0
+ priorityscore=1501 malwarescore=0 spamscore=0 clxscore=1011 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406180090
 
-Hi,
 
 
-On 6/18/24 18:17, AngeloGioacchino Del Regno wrote:
-> It is impossible to add each and every possible DDP path combination
-> for each and every possible combination of SoC and board: right now,
-> this driver hardcodes configuration for 10 SoCs and this is going to
-> grow larger and larger, and with new hacks like the introduction of
-> mtk_drm_route which is anyway not enough for all final routes as the
-> DSI cannot be connected to MERGE if it's not a dual-DSI, or enabling
-> DSC preventively doesn't work if the display doesn't support it, or
-> others.
+On 6/13/2024 3:18 AM, Vladimir Zapolskiy wrote:
+> Any attempt to enable titan_top_gdsc on SM8550-QRD fails and produces
+> an error message that the gdsc is stuck at 'off' state.
 > 
-> Since practically all display IPs in MediaTek SoCs support being
-> interconnected with different instances of other, or the same, IPs
-> or with different IPs and in different combinations, the final DDP
-> pipeline is effectively a board specific configuration.
+> However if MMCX power domain is simply replaced to MXC one, it allows
+> to turn titan_top_gdsc on successfully, even if MMCX is remained off
+> according to /sys/kernel/debug/pm_genpd/pm_genpd_summary report.
 > 
-> Implement OF graphs support to the mediatek-drm drivers, allowing to
-> stop hardcoding the paths, and preventing this driver to get a huge
-> amount of arrays for each board and SoC combination, also paving the
-> way to share the same mtk_mmsys_driver_data between multiple SoCs,
-> making it more straightforward to add support for new chips.
+> Note that at the moment qcom,sm8450-camcc.yaml gives a definite comment
+> that the supply power domain should be MMCX, and it may be needed in
+> some certain cases, but at the moment they are not unveiled on SM8550
+> platform.
 > 
-> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-> Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Fixes: e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock controller")
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
 
-Acked-by: Sui Jingfeng <sui.jingfeng@linux.dev>
+Thanks Vladimir for reporting this. I will check on this issue 
+internally and will get back on this.
+
+Thanks,
+Jagadeesh
+
+>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 4234c92aafe3..a429115524a6 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -2754,7 +2754,7 @@ camcc: clock-controller@ade0000 {
+>   				 <&bi_tcxo_div2>,
+>   				 <&bi_tcxo_ao_div2>,
+>   				 <&sleep_clk>;
+> -			power-domains = <&rpmhpd SM8550_MMCX>;
+> +			power-domains = <&rpmhpd SM8550_MXC>;
+>   			required-opps = <&rpmhpd_opp_low_svs>;
+>   			#clock-cells = <1>;
+>   			#reset-cells = <1>;
 
