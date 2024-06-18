@@ -1,114 +1,203 @@
-Return-Path: <devicetree+bounces-76920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3E6090C897
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:10:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9E190C8A9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:12:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89A621F218D1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:10:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E33A81F21EAC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314B0209759;
-	Tue, 18 Jun 2024 09:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2060120B348;
+	Tue, 18 Jun 2024 09:56:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0CC20974C;
-	Tue, 18 Jun 2024 09:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C0DD20B335;
+	Tue, 18 Jun 2024 09:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718704529; cv=none; b=tDz+vMIcqkn61ttVdnIOA2l+HEnOuzw/8z5+yPyy7++kWmLxxL/9B65RVxxH44rhF+Kvpd86p0QUXNN8CULZrcf0i8GFYHd3Gw6Q8jaBAPP8RT/uKWJMdHN9OZc2rNF4g5HfENHSv2OvWLMtqW6gvU+xXfJbcELE/1+PT35WmFo=
+	t=1718704584; cv=none; b=nNt14gPsD1bZMdpU1BczIsRuJ+sxj6HrD6RynGQ+gUi/TAHRAAqylHZAfcYe0I3uZlUyRZmZHHJYRo3MxzuAxWL8Jf+uqAra0SNGF8v55J3pESOyzUZGm+re3sjSLHUWXM8V/GHSP9Z9CLuq74j8uXWLQFNcKvxcuooOLTSuMbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718704529; c=relaxed/simple;
-	bh=CUFBO/w85ZfNhHyUDj48ojyn4AZ07NGXPwsFh+G/1nA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e5I91X1KrPOisUWonHzeCnNZjDPLeJT/sK6JHA72J0akgQCMUKkdqBrxCkMbUfmhpnbsB49OxDmCZykA/RlZshk3SkKgg5tw5aPT/O3y9fCT5KLIqBZ2am6FvLkZAjj8qOWa2XM3Xl3FW6AtF8KvPZb3YuB5ZBJdEhQLAhqDz9Y=
+	s=arc-20240116; t=1718704584; c=relaxed/simple;
+	bh=p4eu6ZcMWmIUI/+gU4HHJ/vfCsmXfLgKSV4vK6dSLQo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kLpJmOJwp/zLjEPWZy7QaFYVLd6ADPHmNCvGj4+Ov3LsB4mdzE1CWGoIRKJwonlh12/xVmJC5KKpynYO2iPxIMeOG082aDojSUL2LwWv+ZMFYBELjUdDRyfAj3gNXoO2ZH9X0EODYGXZ7/mZpfdbeDmcX+4MBn7Lb2vUrUouiOM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F3FFBDA7;
-	Tue, 18 Jun 2024 02:55:50 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3EB8B3F6A8;
-	Tue, 18 Jun 2024 02:55:24 -0700 (PDT)
-Date: Tue, 18 Jun 2024 10:55:21 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 6/6] firmware: imx: add i.MX95 MISC driver
-Message-ID: <ZnFZiV9JzU_7agjW@pluto>
-References: <20240524-imx95-bbm-misc-v2-v4-0-dc456995d590@nxp.com>
- <20240524-imx95-bbm-misc-v2-v4-6-dc456995d590@nxp.com>
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 735FFDA7;
+	Tue, 18 Jun 2024 02:56:46 -0700 (PDT)
+Received: from [10.57.72.20] (unknown [10.57.72.20])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A28453F6A8;
+	Tue, 18 Jun 2024 02:56:17 -0700 (PDT)
+Message-ID: <67e6d553-80fe-41c0-9e7a-f809d11ae9bd@arm.com>
+Date: Tue, 18 Jun 2024 10:56:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240524-imx95-bbm-misc-v2-v4-6-dc456995d590@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: arm: Add binding document for
+ Coresight Slave Register device.
+Content-Language: en-GB
+To: Jie Gan <quic_jiegan@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>,
+ Song Chai <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ andersson@kernel.org, quic_yijiyang@quicinc.com, quic_yuanjiey@quicinc.com,
+ quic_liuxin@quicinc.com, quic_yanzl@quicinc.com, quic_xinlon@quicinc.com,
+ quic_xueqnie@quicinc.com, quic_sijiwu@quicinc.com
+References: <20240618072726.3767974-1-quic_jiegan@quicinc.com>
+ <20240618072726.3767974-2-quic_jiegan@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20240618072726.3767974-2-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, May 24, 2024 at 04:56:48PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 18/06/2024 08:27, Jie Gan wrote:
+> Add binding document for Coresight Slave Register device.
+
+Is this a made up name of the driver ? CoreSight Slave Register
+device sounds nowhere near to what it does. If you have a proper
+name for the "IP" please use that.
+
 > 
-> The i.MX95 System manager exports SCMI MISC protocol for linux to do
-> various settings, such as set board gpio expander as wakeup source.
+> Add a new property to TMC, qcom,csr-atid-offset, to indicate which
+> ATID registers will be used by the TMC ETR. Each TMC ETR device is
+> associated with four ATID registers that are continuous in address.
 > 
-> The driver is to add the support.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
 > ---
->  drivers/firmware/imx/Makefile   |   1 +
->  drivers/firmware/imx/sm-misc.c  | 108 ++++++++++++++++++++++++++++++++++++++++
->  include/linux/firmware/imx/sm.h |  33 ++++++++++++
->  3 files changed, 142 insertions(+)
+>   .../bindings/arm/arm,coresight-tmc.yaml       |  8 ++
+>   .../bindings/arm/qcom,coresight-csr.yaml      | 76 +++++++++++++++++++
+>   2 files changed, 84 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
 > 
-> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
-> index fb20e22074e1..cb9c361d9b81 100644
-> --- a/drivers/firmware/imx/Makefile
-> +++ b/drivers/firmware/imx/Makefile
-> @@ -2,3 +2,4 @@
->  obj-$(CONFIG_IMX_DSP)		+= imx-dsp.o
->  obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
->  obj-${CONFIG_IMX_SCMI_BBM_EXT}	+= sm-bbm.o
-> +obj-${CONFIG_IMX_SCMI_MISC_EXT}	+= sm-misc.o
-> diff --git a/drivers/firmware/imx/sm-misc.c b/drivers/firmware/imx/sm-misc.c
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> index cb8dceaca70e..295641a96c21 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> @@ -82,6 +82,14 @@ properties:
+>       $ref: /schemas/types.yaml#/definitions/uint32
+>       maximum: 15
+>   
+> +  qcom,csr-atid-offset:
+> +    description:
+> +      Offset to the coresight slave register component's ATID register
+> +      that is used by specific TMC ETR. The ATID register can be programed according
+> +      to the trace id to filter out specific trace data which gets through the ETR
+> +      to the downstream components.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Why do we need this ? Could this not be inferred from the "input port" 
+to which this ETR is connected on the CSR ?
+
+e.g., input-0 : Offset 0
+       input-1 : Offset for Bank1
+
+
+
+
+> +
+>     in-ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+>       additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
 > new file mode 100644
-> index 000000000000..22c1a5819425
+> index 000000000000..16f97cbe3d4b
 > --- /dev/null
-> +++ b/drivers/firmware/imx/sm-misc.c
-> @@ -0,0 +1,108 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2024 NXP.
-> + */
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom,coresight-csr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/firmware/imx/sm.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/scmi_imx_protocol.h>
+> +title: CoreSight Slave Register
 > +
-> +static const struct scmi_imx_misc_proto_ops *imx_misc_ctrl_ops;
-> +static struct scmi_protocol_handle *ph;
+> +maintainers:
+> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> +  - Jie Gan <quic_jiegan@quicinc.com>
+> +
+> +description:
+> +  The Coresight Slave Register controls various Coresight behaviors.
+> +  Used to enable/disable ETR’s data filter function based on trace ID.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,coresight-csr
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    maxItems: 1
+> +    items:
+> +      - const: apb_pclk
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csr-base
+> +
+> +  in-ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    patternProperties:
+> +      '^port(@[0-7])?$':
+> +        description: Input connections from CoreSight Trace bus
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - in-ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@10001000 {
+> +        compatible = "qcom,coresight-csr";
+> +        reg = <0x0 0x10001000 0x0 0x1000>;
+> +        reg-names = "csr-base";
+> +
+> +        in-ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +                csr_in_port0: endpoint {
+> +                    remote-endpoint = <&etr0_out_port>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                csr_in_port1: endpoint {
+> +                    remote-endpoint = <&etr1_out_port>;
+> +                };
+> +            };
+> +        };
+> +    };
 
-Same comments as n V1 ... please have a look :P
-
-Thanks,
-Cristian
 
