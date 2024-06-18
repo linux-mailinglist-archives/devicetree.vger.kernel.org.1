@@ -1,303 +1,125 @@
-Return-Path: <devicetree+bounces-76882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1E090C709
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:33:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FBB890C71B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:35:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1BEB2817B2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:33:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 106091F25B54
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3521A8C1E;
-	Tue, 18 Jun 2024 08:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D781514DD;
+	Tue, 18 Jun 2024 08:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="FXrbh14D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BHKhujOM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2897FF;
-	Tue, 18 Jun 2024 08:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEEFE14EC53;
+	Tue, 18 Jun 2024 08:28:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718698919; cv=none; b=HcL/2nBqXvOnQ98hzSS6cW1Tfe84iVaqseQ+CuI/DA3CLRJLS+eDCCCWWCC+opv0+Pt7KAR4k/Z53IsXtohJLlllAejtIZEVP/s9pnhlBwkBcBlLbSk+FZQF57ifcsAEXSiShOP9xn8EW9IeaKhNxmuUCW06qrqZQNoVph8wOOk=
+	t=1718699300; cv=none; b=jhoiqIo1O4JcuhVMVJOOBnKVMQh9sXEtPua6cB+pxBa6lLamMxKekPis/oYVwZE/db83ORGO8yDCZcQRUsNiV6oHBQboqVbbAxwaxh9DduADOspfmOssDsiX/ouqyxtNFBhy8WOo5WqhrmCDGd0NatZPJuQZQ0iWndw0Im50T+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718698919; c=relaxed/simple;
-	bh=WTcjz+kLmqdGjNTrc+wuOeHFHrMBaccRRn/Bx9/5lGY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l2+Hbgg2jOCVl9yq3E+ie4MxwkXhP66i3isRoNM3XjIVx2KcWeFqTMRY/7HFqjQgbDPOjHW74SxeMHcwsWm5OIow2kL9pgjTQACq1qX1xoGhsIUQdjYRgsL5vG5Knklr+JAr8uzjIOJFT4VwxWzKaxmUjzUM47Cna1F1y4Djun8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=FXrbh14D; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I62swv007835;
-	Tue, 18 Jun 2024 04:20:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=uVKdw
-	jb9hVSWzd7+J6ihvLGOJF39wp19/Q1b+7sUI1k=; b=FXrbh14DGjPHdTo/jh/zz
-	f84IzIgcOXiR+xtU+WWumvl6I/9zh2VSpzh6ARSiuARFoO0qYfhHsm4hZzHPmhDM
-	VhuT/tI2WcN5yIcQs/ysJhVcWmEH5h2IQBBQxyyMnE4AD6Sqg2MbOufFXFWP+7xb
-	QQP1m/1i0TH/WdgPFGUcmAwbm2FKAR11K77gpgDvw897dL3Gcde1T8lfwJdUoSLy
-	KyMOxOSzJbgkAJDToagtJHV6CF6XU3QCU31VrWZrMiD9460lNqYrYNWM+a5vAGEt
-	EN97Go7K3nfPeXXcp7astZz4An1ihO3IH2IHfsGrlxF1vb/VFJjruC//1fKZmB7Y
-	A==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3ys7v31tmv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 04:20:46 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 45I8KeJq062808
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 18 Jun 2024 04:20:40 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 18 Jun 2024 04:20:39 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 18 Jun 2024 04:20:39 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 18 Jun 2024 04:20:39 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.163])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 45I8KJEW004234;
-	Tue, 18 Jun 2024 04:20:30 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        "Jonathan Cameron" <jic23@kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v5 2/2] iio: frequency: adf4350: add clk provider
-Date: Tue, 18 Jun 2024 11:20:07 +0300
-Message-ID: <20240618082012.4496-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240618082012.4496-1-antoniu.miclaus@analog.com>
-References: <20240618082012.4496-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1718699300; c=relaxed/simple;
+	bh=fDuBcP24asbSAJrbRE20Sf3+CUeZSdW/nBC+/MiaXAA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZXfLBPco8D3hCyauSWdGXqy+BLD623bQxhTQ+bylzFQovtJWtR4DDHlmRYS0/KHFD1GeeYQ/fuViC8gSDMYVOHzSdEXx2UCaqoCLw0lGUvJtfis5X62kktc0MsZZH+vhosy4p6V1kiZ561tuxd2N0ghOY8U1+dgdoZ1zhY0pJQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BHKhujOM; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a6f0dc80ab9so780907266b.2;
+        Tue, 18 Jun 2024 01:28:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718699297; x=1719304097; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rLTxPv/nsWe7Zfu/tZSlFHX0jN4s9uxiYT3UOnjGPnE=;
+        b=BHKhujOMsSoSJDs16AquPldkxTKu1jVtTuT9aFENoKhQ4Str1oukaTPuDzJsTAg58n
+         Hp1YuGw9UFYL1B9+8a6xznhplVNysrmSCZYCH0G7U3DbDDtl2CioeENH1kSSon8uVMvG
+         rL0/qetDLIolOVx86l2/tN2xh1KDOCpNDNx+dwKHUWSRl/HUsnLdj7JzCco/Y9yDs6Qd
+         twBGuErboaMtKLsMisnh6ZuSZHiA0H2oAAY01AucFFVuAZn7T5qVuEkmMMceeEPHgvXQ
+         z0xF9/af1TJ70J//NjOvoIGPahiHEM3MYNH/gThBfMYoteb1LHBLv9epQ1AC/CQs85kk
+         XZiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718699297; x=1719304097;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rLTxPv/nsWe7Zfu/tZSlFHX0jN4s9uxiYT3UOnjGPnE=;
+        b=ZHSE2AgblgAw1BNoRzIX39FixwOeSllbz2ZyFb4wE5YSqM2GAoPkKEjpGNOooIQDy3
+         PRbESpHCygWc+6uCxfndkW1cC/53HR2FcfWgM4zfER4S6TaC0XNPrxQJqj2po570LvTH
+         UnGBiw5YaVLUOSgDDvHoBgOx14aRge4/ZTKmkTX8DZPLgFnnVtIcSJ5b+lsqwDM4Zqdr
+         f2gcnTs+AvrPDTliHt9lru7IBwPPVFuB9nvycy/YLCqlUASogSMkpCxTetMYUZP2eOlT
+         ahqLpDTxOL8zwEmQp+hJHyTwk/391crij4G52V8tWwSLFY+62oYCioFrxLo1uneQyGMx
+         kHtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQRbXRa0LAbn+GUiMi1CIekYXI0qNJ5zpi9fhIvqQ8jAEDxIin9ZmpfUc7ucadAgMr+Dp3T7IZoBZ16ZwA9LswjUzAgqELSHg1P0o2ybOWxOBCovEeVhBxxEWc+d/PUnj+Jda0pK3JznvWiwgptOeq4ktvgJGH08An/vbBYtwdfBSX5sg1
+X-Gm-Message-State: AOJu0Yy+F74+1TkHAsKyNanEodfczxzJAWge1TgDXt7gHnYjP0r+fewd
+	xBMFlQyLAskSADgjllxlLu6nCm+U+cMSwBEdjRhzWQWIJIRPCrM=
+X-Google-Smtp-Source: AGHT+IHte2kNPklKy0uooT0+VxtXAAzQyiEKdtDQzWdgV/PwLMIcBTFXQgeo3rhoneTxxDcXK0uRew==
+X-Received: by 2002:a17:906:5da:b0:a6f:5dfa:b27a with SMTP id a640c23a62f3a-a6f60d402b1mr699663966b.35.1718699296129;
+        Tue, 18 Jun 2024 01:28:16 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:e5d5:17e7:54e8:5475? ([2a02:810b:f40:4600:e5d5:17e7:54e8:5475])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f99a09fe8sm47580966b.9.2024.06.18.01.28.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jun 2024 01:28:15 -0700 (PDT)
+Message-ID: <2e98128f-39f8-4800-91f6-c1cfa21fa0a6@gmail.com>
+Date: Tue, 18 Jun 2024 10:28:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: Hswh6EdkeCOn9o41uh8zX96e_NxOs_7g
-X-Proofpoint-GUID: Hswh6EdkeCOn9o41uh8zX96e_NxOs_7g
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- phishscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0 spamscore=0
- bulkscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406180061
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/6] media: hantro: Add RK3588 VEPU121
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ ezequiel@vanguardiasur.com.ar, frattaroli.nicolas@gmail.com,
+ heiko@sntech.de, kernel@collabora.com, krzk+dt@kernel.org,
+ linkmauve@linkmauve.fr, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, robh@kernel.org
+References: <20240613135034.31684-5-sebastian.reichel@collabora.com>
+ <20240617025022.25122-1-liujianfeng1994@gmail.com>
+ <o6iccgurpi7sraq7plxaccz37i44te4jaqicnp2nqbke2qtskh@4kboulg3zywx>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <o6iccgurpi7sraq7plxaccz37i44te4jaqicnp2nqbke2qtskh@4kboulg3zywx>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add clk provider feature for the adf4350.
+Am 17.06.24 um 13:30 schrieb Sebastian Reichel:
+> Hi,
+> 
+> On Mon, Jun 17, 2024 at 10:50:22AM GMT, Jianfeng Liu wrote:
+>> Hi Sebastian,
+>>
+>> Thu, 13 Jun 2024 15:48:45 +0200, Sebastian Reichel wrote:
+>>> +	{ .compatible = "rockchip,rk3588-vepu121", .data = &rk3568_vpu_variant, },
+>>
+>> rk3568_vpu_variant is decoder's data, typo?
+> 
+> See first sentence of the commit message.
+> 
+I think, what Jianfeng meant, is that you are incorrectly using
+rk3568_vpu_variant for the newly added "rockchip,rk3588-vepu121"
+compatible: rk3568_vpu_variant is for the decoder (confusing, I know:
+should actually be rk3568_vdpu_variant) - you want to use
+rk3568_vepu_variant instead for it instead.
 
-Even though the driver was sent as an IIO driver in most cases the
-device is actually seen as a clock provider.
-
-This patch aims to cover actual usecases requested by users in order to
-completely control the output frequencies from userspace.
-
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-changes in v5:
- - add error handling for dt properties parse.
- - drop all IIO channels if driver acts as clock provider.
- drivers/iio/frequency/adf4350.c | 129 +++++++++++++++++++++++++++++++-
- 1 file changed, 127 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/iio/frequency/adf4350.c b/drivers/iio/frequency/adf4350.c
-index 4abf80f75ef5..d0791a21e65c 100644
---- a/drivers/iio/frequency/adf4350.c
-+++ b/drivers/iio/frequency/adf4350.c
-@@ -19,6 +19,7 @@
- #include <linux/gpio/consumer.h>
- #include <asm/div64.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- 
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
-@@ -36,6 +37,9 @@ struct adf4350_state {
- 	struct gpio_desc		*lock_detect_gpiod;
- 	struct adf4350_platform_data	*pdata;
- 	struct clk			*clk;
-+	struct clk			*clkout;
-+	const char			*clk_out_name;
-+	struct clk_hw			hw;
- 	unsigned long			clkin;
- 	unsigned long			chspc; /* Channel Spacing */
- 	unsigned long			fpfd; /* Phase Frequency Detector */
-@@ -61,6 +65,8 @@ struct adf4350_state {
- 	__be32				val __aligned(IIO_DMA_MINALIGN);
- };
- 
-+#define to_adf4350_state(_hw) container_of(_hw, struct adf4350_state, hw)
-+
- static struct adf4350_platform_data default_pdata = {
- 	.channel_spacing = 10000,
- 	.r2_user_settings = ADF4350_REG2_PD_POLARITY_POS |
-@@ -381,6 +387,115 @@ static const struct iio_info adf4350_info = {
- 	.debugfs_reg_access = &adf4350_reg_access,
- };
- 
-+static void adf4350_clk_del_provider(void *data)
-+{
-+	struct adf4350_state *st = data;
-+
-+	of_clk_del_provider(st->spi->dev.of_node);
-+}
-+
-+static unsigned long adf4350_clk_recalc_rate(struct clk_hw *hw,
-+					     unsigned long parent_rate)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+	unsigned long long tmp;
-+
-+	tmp = (u64)(st->r0_int * st->r1_mod + st->r0_fract) * st->fpfd;
-+	do_div(tmp, st->r1_mod * (1 << st->r4_rf_div_sel));
-+
-+	return tmp;
-+}
-+
-+static int adf4350_clk_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	if (parent_rate == 0 || parent_rate > ADF4350_MAX_FREQ_REFIN)
-+		return -EINVAL;
-+
-+	st->clkin = parent_rate;
-+
-+	return adf4350_set_freq(st, rate);
-+}
-+
-+static int adf4350_clk_prepare(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	st->regs[ADF4350_REG2] &= ~ADF4350_REG2_POWER_DOWN_EN;
-+
-+	return adf4350_sync_config(st);
-+}
-+
-+static void adf4350_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	st->regs[ADF4350_REG2] |= ADF4350_REG2_POWER_DOWN_EN;
-+
-+	adf4350_sync_config(st);
-+}
-+
-+static int adf4350_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	return (st->regs[ADF4350_REG2] & ADF4350_REG2_POWER_DOWN_EN);
-+}
-+
-+static const struct clk_ops adf4350_clk_ops = {
-+	.recalc_rate = adf4350_clk_recalc_rate,
-+	.set_rate = adf4350_clk_set_rate,
-+	.prepare = adf4350_clk_prepare,
-+	.unprepare = adf4350_clk_unprepare,
-+	.is_enabled = adf4350_clk_is_enabled,
-+};
-+
-+static int adf4350_clk_register(struct adf4350_state *st)
-+{
-+	struct spi_device *spi = st->spi;
-+	struct clk_init_data init;
-+	struct clk *clk;
-+	const char *parent_name;
-+	int ret;
-+
-+	if (!device_property_present(&spi->dev, "#clock-cells"))
-+		return 0;
-+
-+	init.name = devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-+				   fwnode_get_name(dev_fwnode(&spi->dev)));
-+	if (!init.name)
-+		return -ENOMEM;
-+
-+	if (device_property_read_string(&spi->dev, "clock-output-names",
-+					&init.name))
-+		init.name = spi->dev.of_node->name;
-+
-+	parent_name = of_clk_get_parent_name(spi->dev.of_node, 0);
-+	if (!parent_name)
-+		return -EINVAL;
-+
-+	init.ops = &adf4350_clk_ops;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+	init.flags = CLK_SET_RATE_PARENT;
-+
-+	st->hw.init = &init;
-+	clk = devm_clk_register(&spi->dev, &st->hw);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	ret = of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_get, clk);
-+	if (ret)
-+		return ret;
-+
-+	st->clkout = clk;
-+
-+	return devm_add_action_or_reset(&spi->dev, adf4350_clk_del_provider, st);
-+}
-+
- static struct adf4350_platform_data *adf4350_parse_dt(struct device *dev)
- {
- 	struct adf4350_platform_data *pdata;
-@@ -522,8 +637,6 @@ static int adf4350_probe(struct spi_device *spi)
- 
- 	indio_dev->info = &adf4350_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->channels = &adf4350_chan;
--	indio_dev->num_channels = 1;
- 
- 	mutex_init(&st->lock);
- 
-@@ -551,6 +664,18 @@ static int adf4350_probe(struct spi_device *spi)
- 			return ret;
- 	}
- 
-+	ret = adf4350_clk_register(st);
-+	if (ret)
-+		return ret;
-+
-+	if (st->clkout) {
-+		indio_dev->channels = NULL;
-+		indio_dev->num_channels = 0;
-+	} else {
-+		indio_dev->channels = &adf4350_chan;
-+		indio_dev->num_channels = 1;
-+	}
-+
- 	ret = devm_add_action_or_reset(&spi->dev, adf4350_power_down, indio_dev);
- 	if (ret)
- 		return dev_err_probe(&spi->dev, ret,
--- 
-2.45.2
+Alex
+> -- Sebastian.
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
 
