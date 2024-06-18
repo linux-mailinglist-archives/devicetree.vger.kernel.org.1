@@ -1,178 +1,112 @@
-Return-Path: <devicetree+bounces-77149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC4590D7F5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:01:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B83D790D7FF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AA8F1F2306C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:01:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 177E1283CA9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DAA4437F;
-	Tue, 18 Jun 2024 16:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5149B482C6;
+	Tue, 18 Jun 2024 16:02:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="JlXSdu2D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NqgYgMbC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C861CAB3
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 16:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7B146B83
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 16:02:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718726469; cv=none; b=Kav79Ae+Z1dNpKKensIAaW8zh+9q+jww2Y64B0hCO9iYIyDRnZTNqit0yU7rkXcP1QjbiYWFPEt4y2XjI5waOTiei9pASID/qqsMcxUTIbJycGUiA4IKpAkg963oio1h/Nox3NrgUS3fuMRainvG6NXg+Mvgy+ley5fPNwT0kPs=
+	t=1718726541; cv=none; b=DfvwZNG261CTXMRVGdkZVwkDDYMciNpbb++WIu9Exz9IbBgLlHnqtf8qrREIhu77gKOVSIjCxYO8G8t9vBQJ0J/7FpfLxcxDYjusBW/e7dTlJzGH12e94vkDUFuKu6QI+QvuM+8szxriVQzKh0j18wtI9kIXvgfF9k2lpJ/4IAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718726469; c=relaxed/simple;
-	bh=Kr+mpgkFzhgcN2nbg6yc92bgCnksPgG4sYwCq1No1bc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kd2RdTNc3pEFtzuss+1durr5mLCkaAFbKBCiaNKTHqidh74/jf4JU9D4KGHz4r8JTHhSF2LGaE/iyYHIdwiLMxSgMGZMhocdXUBcoDBW3LVCq65vKIo1N30pYWU9aLc5PyczQgS91KWnZucCH28q/ZhwLQbh6AKJKqpoK12ZZ0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=JlXSdu2D; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ec17eb4493so67107691fa.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 09:01:07 -0700 (PDT)
+	s=arc-20240116; t=1718726541; c=relaxed/simple;
+	bh=x2PiSU9LX7PP8SgWlE3EbW7kJbvIktv1zVvHYBCMABM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EjuEuSVyPIMpOuoMT8LEW4PtkTzmbjfhQeDt8M9F3pO8KVkmuw97Y7YDgggmdgS4dpm/hyMhihBbQgtyeMJmiTRxTi+5wYklrouWrs6cxRfE/SG7FefskxZzyJpQPQNT9oa73ksgm96imvR0eRjTA0IYG4H8tlJwIrTBU/1Qr6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NqgYgMbC; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52c815e8e9eso5550754e87.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 09:02:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1718726466; x=1719331266; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=fyzfPw7nPta0nrq7+bn54u/zAMzgFZf2R3n+jsxGbyE=;
-        b=JlXSdu2DV0XlfGecqKq4GeSpcQruhVWpCo+9XmjrlDA7SEhfVHYmN+6zTCLxuxdBX/
-         qOqHACAYTxMehV1Tg+m1A0g99LVXObZcwRRwh3SukoWE2+O7PDTE3c1NyKCHqddZHmL4
-         /QknMoi891Q1wm0KbF/hvrXGauemhFG5L2PxqCG/51gaZcsUcpUHwGzZSE0ZMqlfyvMU
-         cbCadmD9hogC5x8SGeY1ZIeTic2IExB23noMkYqk7MlOZixl0fCkRvJHeb4MNOc/tceF
-         JnG5BiR7YYNA9d6c3GDg3NyPrbMJhr369RNFvjMGw3jNWN/U2nUC+lnyVbn4zNxC3i9E
-         w8Pg==
+        d=linaro.org; s=google; t=1718726538; x=1719331338; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=752RRs86IaRqV5X/Zk2O6e+xuNg1lXOleBt1pgXq+cM=;
+        b=NqgYgMbCmtl7nAdAV5xOv+RloRJ8xu0Jv3KAYLTBwD7Ci28rkjj80GIQouhYBp6iQE
+         CAt7I6aOC89MIaM9RcHSkOyll+KAnK003xvQjwCza3Fk0lQg6ttJztTH+2Wh5eoBNLDa
+         2gS3DzF78vv3xM3hxFRCN7MniXrbC9JEQHKVRxg7Ruc2NWooPtRh5eVW7zkgEP4Rh5oA
+         ajOSN6ZVPUlDvTrefivqFn0pWsD/RB0V0QegxGSGT1Km1+cYG7v1/ff7fsQ5fi5Ko4Q+
+         ppXEVGS7hbd9P3pxEULF5j5Xm+yEv1ZqKDIr0lRnjA8JeR92UuxuCDmXg/wEITa8QJrF
+         3Ybg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718726466; x=1719331266;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1718726538; x=1719331338;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fyzfPw7nPta0nrq7+bn54u/zAMzgFZf2R3n+jsxGbyE=;
-        b=N+3189u+nGwLbKStrbXxmQZOHOpAF8Hq3SmNGy5Kbgddhhf2KpTuhYBAPada9d0Pbc
-         e+WB5YiqSyArpZPUvR4u+iOJtgr4B9CcDUZ9MNYw7BtX4/8shFaLuDtDWi6FitqlsMUM
-         9lOQf2mX1JUElgyFuDGAICT+K/hIESUlf6ZIL3hOLXVkYOCE+v0VcWFB7baL/BXXrn5r
-         xNimeOcOKwjeG28/Pqfo79h49w4m+T41DBxFe3N0qoB8Q2DImeLvT/oc3sLu+q3UocML
-         tH0ysIBbML8u/9WFC6i7XzjBzOGEu0m9w9f/wh5zNEhL1Dc0vI/0Q4bHHRlAvkMbeEgX
-         pe6A==
-X-Forwarded-Encrypted: i=1; AJvYcCWt2ob3NXLm/PQxwq0n0k7HjG4O6G08chgtGjOtM6gco/wuDlvDAOEA07OBpy5qmvBFtmxhZuAvSDPfF2aI+tZ/KCXnMveh6UkqBA==
-X-Gm-Message-State: AOJu0Yw3gvDnyLn/A+6ajiX0pKX9XX9B82nzKL/jJnwdUrsk77GsaT4p
-	F/QTOFyEwG0sDYQzqwbInvnX0Q/UaPyDtNqB61pyZwo1bgvqyi30+5kC9Y85sCQ=
-X-Google-Smtp-Source: AGHT+IFmf/CsJAFZdTKuErQLaJl7XiTQDH7Dq7mcT8jSDcNOvwHuMJ/sgNY5CXbzTxSRvpqJhpeLHQ==
-X-Received: by 2002:a2e:9210:0:b0:2de:8697:e08b with SMTP id 38308e7fff4ca-2ec3ced12bdmr2211131fa.26.1718726465742;
-        Tue, 18 Jun 2024 09:01:05 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422874e6b63sm231018715e9.39.2024.06.18.09.01.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 09:01:05 -0700 (PDT)
-Date: Tue, 18 Jun 2024 18:01:04 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, conor.dooley@microchip.com, anup@brainfault.org, 
-	atishp@atishpatra.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, christoph.muellner@vrull.eu, heiko@sntech.de, 
-	charlie@rivosinc.com, David.Laight@aculab.com, parri.andrea@gmail.com, 
-	luxu.kernel@bytedance.com
-Subject: Re: [PATCH v3 4/6] riscv: hwprobe: export Zawrs ISA extension
-Message-ID: <20240618-581fb4c20b4fe05d76eafa44@orel>
-References: <20240426100820.14762-8-ajones@ventanamicro.com>
- <20240426100820.14762-12-ajones@ventanamicro.com>
- <d0abe3e0-af0f-4693-b943-57ea3fc2189f@rivosinc.com>
+        bh=752RRs86IaRqV5X/Zk2O6e+xuNg1lXOleBt1pgXq+cM=;
+        b=VLcx/1lBbB26ogZ4T4+mmthWk7HwgpDiBmt18SNW4x5JC88pmddEHM6692rzReArLW
+         hxuZy7DhQV/zuuMVKQVKNuZzuvgtw1AZKL9xkfMZ7kJUhW/CfA6AyXtBK8tmt5HmeuLd
+         k58hduCDj3BLPl0rI+/gPQ2ASTow5eAFdwHvyx1R7ygpkWx6e/VZOh2BFMfI8ht/vy9J
+         875CMEWlRAJseqGGBm/WmvnRH/X83iPjor78IVf9KSDDRfvTGoqEolsVJ27528vXP6Fs
+         06AfmqaY2zZgElpi9RS9mZKdXQkaiLzkMwcFzlweW0xuBNXr0npkETKS89MeRYUoUV0V
+         zjeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9Nqye6te1mrA2LWZR4QG41rnhp5C5Z0ahkuLChMy62/lClI/sALJhxl3M08n03PepD+knOdah7+lBA7T2uJ8l5MEYkXjSkO1fCQ==
+X-Gm-Message-State: AOJu0YwgjdyNVJsV6ZgenYLkoiKzDHyq71nuPfxoOlZZqYI2Vw4KoiD6
+	QM1B9TmEI6IgKmQ0q7+KH1sTIvk9z6lzAw21bT6tkSskOSGGrRkZQTi455e29gg=
+X-Google-Smtp-Source: AGHT+IFI6pzMjgCbLBoQAWrp4XZXRVfgnVptha58SDpLfkJeq9xe2VdrhCoCQ5WsAeY36aPV7rhK5A==
+X-Received: by 2002:a05:6512:70:b0:52c:8932:27bd with SMTP id 2adb3069b0e04-52ccaa38052mr32213e87.41.1718726537649;
+        Tue, 18 Jun 2024 09:02:17 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:9028:9df3:9346:6881:423d:1381? ([2a00:f41:9028:9df3:9346:6881:423d:1381])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2888c2esm1551297e87.300.2024.06.18.09.02.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jun 2024 09:02:17 -0700 (PDT)
+Message-ID: <d09aa84c-dc75-48c6-b91e-c0dbe3d2e06f@linaro.org>
+Date: Tue, 18 Jun 2024 18:02:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d0abe3e0-af0f-4693-b943-57ea3fc2189f@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/3] dt-bindings: interconnect: qcom,msm8998-bwmon: Add
+ X1E80100 BWMON instances
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ djakov@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ srinivas.kandagatla@linaro.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org,
+ dmitry.baryshkov@linaro.org, abel.vesa@linaro.org
+References: <20240618154306.279637-1-quic_sibis@quicinc.com>
+ <20240618154306.279637-2-quic_sibis@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240618154306.279637-2-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 18, 2024 at 03:48:59PM GMT, Clément Léger wrote:
+
+
+On 6/18/24 17:43, Sibi Sankar wrote:
+> Document X1E80100 BWMONs, which has multiple (one per cluster) BWMONv4
+> instances for the CPU->LLCC path and one BWMONv5 instance for LLCC->DDR
+> path. Also make the opp-table optional for the X1E cpu-bwmon instances,
+> since they use the same opp-table between them.
 > 
-> 
-> On 26/04/2024 12:08, Andrew Jones wrote:
-> > Export Zawrs ISA extension through hwprobe.
-> > 
-> > Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> > ---
-> >  Documentation/arch/riscv/hwprobe.rst  | 4 ++++
-> >  arch/riscv/include/uapi/asm/hwprobe.h | 1 +
-> >  arch/riscv/kernel/sys_hwprobe.c       | 1 +
-> >  3 files changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-> > index b2bcc9eed9aa..e072ce8285d8 100644
-> > --- a/Documentation/arch/riscv/hwprobe.rst
-> > +++ b/Documentation/arch/riscv/hwprobe.rst
-> > @@ -188,6 +188,10 @@ The following keys are defined:
-> >         manual starting from commit 95cf1f9 ("Add changes requested by Ved
-> >         during signoff")
-> >  
-> > +  * :c:macro:`RISCV_HWPROBE_EXT_ZAWRS`: The Zawrs extension is supported as
-> > +       ratified in commit 98918c844281 ("Merge pull request #1217 from
-> > +       riscv/zawrs") of riscv-isa-manual.
-> > +
-> >  * :c:macro:`RISCV_HWPROBE_KEY_CPUPERF_0`: A bitmask that contains performance
-> >    information about the selected set of processors.
-> >  
-> > diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-> > index 9f2a8e3ff204..a5fca3878a32 100644
-> > --- a/arch/riscv/include/uapi/asm/hwprobe.h
-> > +++ b/arch/riscv/include/uapi/asm/hwprobe.h
-> > @@ -59,6 +59,7 @@ struct riscv_hwprobe {
-> >  #define		RISCV_HWPROBE_EXT_ZTSO		(1ULL << 33)
-> >  #define		RISCV_HWPROBE_EXT_ZACAS		(1ULL << 34)
-> >  #define		RISCV_HWPROBE_EXT_ZICOND	(1ULL << 35)
-> > +#define		RISCV_HWPROBE_EXT_ZAWRS		(1ULL << 36)
-> >  #define RISCV_HWPROBE_KEY_CPUPERF_0	5
-> >  #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
-> >  #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
-> > diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-> > index 8cae41a502dd..b86e3531a45a 100644
-> > --- a/arch/riscv/kernel/sys_hwprobe.c
-> > +++ b/arch/riscv/kernel/sys_hwprobe.c
-> > @@ -111,6 +111,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
-> >  		EXT_KEY(ZTSO);
-> >  		EXT_KEY(ZACAS);
-> >  		EXT_KEY(ZICOND);
-> > +		EXT_KEY(ZAWRS);
-> >  
-> >  		if (has_vector()) {
-> >  			EXT_KEY(ZVBB);
-> 
-> AFAIU, when used in userspace, this will actually "stall" the processor
-> until an interrupt/timeout happens, so the current process will keep
-> occupying the processor doing nothing (up to the next interrupt/timeout)
-> right ?
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
 
-Yes, but of course the OS can always preempt the task as well.
+I think we can just drop the opp-table child node from required altogether,
+bindings shouldn't care about where the OPP table (which is referenced in
+the operating-points-v2 property) comes from
 
-> 
-> BTW, the spec also states that "When the TW (Timeout Wait) bit in
-> mstatus is set and WRS.NTO is executed in any privilege mode other than
-> M mode, and it does not complete within an implementation-specific
-> bounded time limit, the WRS.NTO instruction will cause an illegal
-> instruction exception." so I guess the process will be killed in this case ?
-
-We don't expect mstatus.TW to be set. If it is, then wfi would likely kill
-the kernel before wrs.nto gets a chance to, but one or the other will
-certainly ensure usermode never gets a chance to try it :-)
-
-We have a handful of these assumptions about how M-mode has configured
-things prior to Linux starting. It'd be good if we documented them all
-somewhere.
-
-> 
-> If this is not a concern:
-> 
-> Reviewed-by: Clément Léger <cleger@rivosinc.com>
-
-Thanks,
-drew
+Konrad
 
