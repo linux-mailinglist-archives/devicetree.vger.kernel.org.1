@@ -1,202 +1,159 @@
-Return-Path: <devicetree+bounces-76942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A0C90CA84
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:54:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D76B490C9DA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:40:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B04DEB2B27E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:39:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7E541C20CCD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13FBD17B40E;
-	Tue, 18 Jun 2024 10:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202AB13D61D;
+	Tue, 18 Jun 2024 10:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="T3sDvnow"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1ZTi43O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F92417A926;
-	Tue, 18 Jun 2024 10:53:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5AB7DDDA;
+	Tue, 18 Jun 2024 10:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718708019; cv=none; b=K8ucNthweuyOc8bFjRKWHEaYQPcrirY2m5c4BvMFxX8Exq9IWMcVPi2fZYdp60H7jyhUil6bjl6j8Gl/NwMFzqp8G//+F5BPLgiPD80LaBSsM3EyS6vCBj42UI21MQG6Kh8AdnT1HNo48AvOPoi9lQ0wMWxWbbDCLuNjOxz/jBg=
+	t=1718708226; cv=none; b=JTbZDBrbmi29nS/6AG5r6FYNUJZLFHJzTiaFRz+ITnA384fFkvbRZ6bMaV5o9byYLfTIQnDiNN7jTY3zUwjTwx4sZqncXZcJ6W2FmuolhUFEG1cbpLTbo8wiRdBplNa3oJBK/04HpEzMvYnqUSyracWA8erJ2HyOYXpR+tHt2f0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718708019; c=relaxed/simple;
-	bh=TKqnk7jdCrlyYi8lHm4Cy6BpCu+PEPISCKnloXabxsI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h+TL5vKaaY+6R2BGvBrnK/xA/i94vcqG+srhb/5uf5Jrr/3L54Qw75R2IuwLOK4/tj1gGbApZckqb86BF4Q2hdt9zSp9rHzshPKtFVevxD9CVpldBkLEMoNBVDwsrM07uDN4tz3fT/zshcXhvqt0cCiC930Q0BbYOi6g1Vdnjds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T3sDvnow; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718708009;
-	bh=TKqnk7jdCrlyYi8lHm4Cy6BpCu+PEPISCKnloXabxsI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T3sDvnowOuc5j5SAyXkZYuRQqtjLCzeuWXDNu7JM6UfW/5aAEUGEmcGCnl/+1Dzu2
-	 e1NcDsb5dMNpo7tCs1zonM0kgbCKK4EnshAYLhBUeitHge+f0tRWbyvgY8lPhNsIgW
-	 eUqe69fgQOrCQghppGrnFYBrq94GUIa62Hhvz2oi+ihsNPD71DLErz1xNYodqdAtk2
-	 68RbHixeRono48IWOIuho6U1ECDo2zkPXTY65E8vBeIyhtCm4it8idgS7WKM5skXUl
-	 nRq7etEn7hdrTlwoL17snOv7f7nSkZJiCFtUDXNCgqxUg3sV3Rvp4c+TLOvr634fSR
-	 beUrZULdrfjtQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id BC8443781183;
-	Tue, 18 Jun 2024 10:53:28 +0000 (UTC)
-Message-ID: <51b7bb8d-801b-4c2f-8650-40162bf08e13@collabora.com>
-Date: Tue, 18 Jun 2024 12:53:28 +0200
+	s=arc-20240116; t=1718708226; c=relaxed/simple;
+	bh=XG0My1/c07ozmDk65TvEOPJoQ8jeo+r+3UR7UrRFX9Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fDIuflyw/02VwP3rwS2OMfWVTqEuEFc8hqmLaGyszto8/5z3K8d09gklzMfXh+ua3GlHD4mj+T8fpD/iQ8jyNYH/ypdgIR7jDa1444PABOu3SnKTtio2DPW/xoFCGZSt0v4+JLEdCM0K9bRN/G5h0VHPHHzwpkDbcmBtwuiZCUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1ZTi43O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97AEDC4AF48;
+	Tue, 18 Jun 2024 10:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718708225;
+	bh=XG0My1/c07ozmDk65TvEOPJoQ8jeo+r+3UR7UrRFX9Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o1ZTi43OV4DFMNq83eALZBNS3qIlWr5eADtosWX4DgtESBzUNdTR/d2EzaJmsu/bO
+	 cnMqrA0Ud+oRE5gVAefVlysGPl7G7oSxTN6bepTEZBfDUmO0Jlpb7FU80CWs+LcjLI
+	 BiASfcHx02cUPHf15TKw0hKk3Rp+mhHAxq45ZCKz5VUiDeFkuqE0oL8QEiGlw4p73A
+	 t39OEeM3WlcMTMZaDOftM2hoeGgbGwtN2HytKqCDaLMHt/Y5GCh9th8sfOXzUhvKQJ
+	 EPXVN7uLfojG1BRJvKdq+b9SfOWltzE8MgxKt+eJJ9LY02fZzf7sTfd974GDmXeKTx
+	 mjfcSoil3sgiA==
+Date: Tue, 18 Jun 2024 11:56:59 +0100
+From: Simon Horman <horms@kernel.org>
+To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux@armlinux.org.uk, vadim.fedorenko@linux.dev, andrew@lunn.ch,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, git@amd.com
+Subject: Re: [PATCH net-next v6 3/4] net: macb: Add ARP support to WOL
+Message-ID: <20240618105659.GL8447@kernel.org>
+References: <20240617070413.2291511-1-vineeth.karumanchi@amd.com>
+ <20240617070413.2291511-4-vineeth.karumanchi@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: mt6358: Convert to dtschema
-To: Kartik Agarwala <agarwala.kartik@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240617-mt6358-v2-0-5d9f0e99941e@gmail.com>
- <20240617-mt6358-v2-1-5d9f0e99941e@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240617-mt6358-v2-1-5d9f0e99941e@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617070413.2291511-4-vineeth.karumanchi@amd.com>
 
-Il 17/06/24 14:28, Kartik Agarwala ha scritto:
-> Convert from txt to dtschema
-> ---
->   .../devicetree/bindings/sound/mediatek,mt6358.yaml | 51 ++++++++++++++++++++++
->   Documentation/devicetree/bindings/sound/mt6358.txt | 26 -----------
->   2 files changed, 51 insertions(+), 26 deletions(-)
+On Mon, Jun 17, 2024 at 12:34:12PM +0530, Vineeth Karumanchi wrote:
+> Extend wake-on LAN support with an ARP packet.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
-> new file mode 100644
-> index 000000000..336d2d969
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mediatek,mt6358.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT6358 Audio Codec
-
-title: MediaTek MT6358/MT6366 Audio Codec
-
-> +
-> +maintainers:
-> +  - Kartik Agarwala <agarwala.kartik@gmail.com>
-
-   - Jiaxin Yu <jiaxin.yu@mediatek.com>
-
-
-> +
-> +description:
-> +  The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
-> +  For more detail, please visit Mediatek PMIC wrapper documentation.
-> +  Must be a child node of PMIC wrapper.
-> +
-
-   The communication between MT6358 or MT6366 and SoC happens through
-   the MediaTek PMIC Wrapper.
-   For more detail, please visit MediaTek PMIC wrapper documentation:
-   Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
-   Must be a child node of a PMIC.
-
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: mediatek,mt6358-sound
-> +      - const: mediatek,mt6366-sound
-
-This should be an enum.
-
-> +      - items:
-> +          - const: mediatek,mt6366-sound
-> +          - const: mediatek,mt6358-sound
-> +
-> +  Avdd-supply:
-> +    description: power source of AVDD
-> +
-> +  mediatek,dmic-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Indicates how many data pins are used to transmit two channels of PDM
-> +      signal. 0 means two wires, 1 means one wire. Default value is 0.
-> +    default: 0
-> +    enum:
-
-enum: [ 0, 1 ]
-
-> +      - 0
-> +      - 1
-> +
-
-Regards,
-Angelo
-
-> +required:
-> +  - compatible
-> +  - Avdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    audio-codec {
-> +        compatible = "mediatek,mt6366-sound";
-> +        Avdd-supply = <&mt6358_vaud28_reg>;
-> +        mediatek,dmic-mode = <0>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/sound/mt6358.txt b/Documentation/devicetree/bindings/sound/mt6358.txt
-> deleted file mode 100644
-> index fbe9e55c6..000000000
-> --- a/Documentation/devicetree/bindings/sound/mt6358.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -Mediatek MT6358 Audio Codec
-> -
-> -The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
-> -For more detail, please visit Mediatek PMIC wrapper documentation.
-> -
-> -Must be a child node of PMIC wrapper.
-> -
-> -Required properties:
-> -
-> -- compatible - "string" - One of:
-> -    "mediatek,mt6358-sound"
-> -    "mediatek,mt6366-sound"
-> -- Avdd-supply : power source of AVDD
-> -
-> -Optional properties:
-> -- mediatek,dmic-mode : Indicates how many data pins are used to transmit two
-> -	channels of PDM signal. 0 means two wires, 1 means one wire. Default
-> -	value is 0.
-> -
-> -Example:
-> -
-> -mt6358_snd {
-> -	compatible = "mediatek,mt6358-sound";
-> -	Avdd-supply = <&mt6358_vaud28_reg>;
-> -	mediatek,dmic-mode = <0>;
-> -};
+> Currently, if PHY supports WOL, ethtool ignores the modes supported
+> by MACB. This change extends the WOL modes with MACB supported modes.
 > 
+> Advertise wake-on LAN supported modes by default without relying on
+> dt node. By default, wake-on LAN will be in disabled state.
+> Using ethtool, users can enable/disable or choose packet types.
+> 
+> For wake-on LAN via ARP, ensure the IP address is assigned and
+> report an error otherwise.
+> 
+> Co-developed-by: Harini Katakam <harini.katakam@amd.com>
+> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
+> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+
+...
+
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+
+...
+
+> @@ -84,8 +85,7 @@ struct sifive_fu540_macb_mgmt {
+>  #define GEM_MTU_MIN_SIZE	ETH_MIN_MTU
+>  #define MACB_NETIF_LSO		NETIF_F_TSO
+>  
+> -#define MACB_WOL_HAS_MAGIC_PACKET	(0x1 << 0)
+> -#define MACB_WOL_ENABLED		(0x1 << 1)
+> +#define MACB_WOL_ENABLED		(0x1 << 0)
 
 
+nit: BIT() could be used here
 
+>  
+>  #define HS_SPEED_10000M			4
+>  #define MACB_SERDES_RATE_10G		1
+
+...
+
+> @@ -5290,6 +5289,14 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>  		macb_writel(bp, TSR, -1);
+>  		macb_writel(bp, RSR, -1);
+>  
+> +		tmp = (bp->wolopts & WAKE_MAGIC) ? MACB_BIT(MAG) : 0;
+> +		if (bp->wolopts & WAKE_ARP) {
+> +			tmp |= MACB_BIT(ARP);
+> +			/* write IP address into register */
+> +			tmp |= MACB_BFEXT(IP,
+> +					 (__force u32)(cpu_to_be32p((uint32_t *)&ifa->ifa_local)));
+
+Hi Vineeth and Harini,
+
+I guess I must be reading this wrong, beause I am confused
+by the intent of the endeness handling above.
+
+* ifa->ifa_local is a 32-bit big-endian value
+
+* It's address is cast to a 32-bit host-endian pointer
+
+  nit: I think u32 would be preferable to uint32_t; this is kernel code.
+
+* The value at this address is then converted to a host byte order value.
+
+  nit: Why is cpu_to_be32p() used here instead of the more commonly used
+       cpu_to_be32() ?
+
+  More importantly, why is a host byte order value being converted from
+  big-endian to host byte order?
+
+* The value returned by cpu_to_be32p, which is big-endian, because
+  that is what that function does, is then cast to host-byte order.
+
+
+So overall we have:
+
+1. Cast from big endian to host byte order
+2. Conversion from host byte order to big endian
+   (a bytes-swap on litte endian hosts; no-op on big endian hosts)
+3. Cast from big endian to host byte oder
+
+All three of these steps seem to warrant explanation.
+And the combination is confusing to say the least.
+
+
+> +		}
+> +
+>  		/* Change interrupt handler and
+>  		 * Enable WoL IRQ on queue 0
+
+...
 
