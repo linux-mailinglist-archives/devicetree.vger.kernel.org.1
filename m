@@ -1,55 +1,65 @@
-Return-Path: <devicetree+bounces-77090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9293890D608
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:50:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F5F90D617
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A318A1C24671
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:50:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DC53283E8B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BAC15D5A3;
-	Tue, 18 Jun 2024 14:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B260315F3E9;
+	Tue, 18 Jun 2024 14:44:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jmCoO3SI"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="A6tRO4Zt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0A515CD72;
-	Tue, 18 Jun 2024 14:43:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224B7157E91;
+	Tue, 18 Jun 2024 14:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718721819; cv=none; b=YSlmnqEQ2FbVIh43/enoUj3OcGyjisqrtGbuTfeulk7FNltzCWvWYUyRGc9gLcujoGnyXW08bG80zkrwV0nVeOL/IODBWzFn4qy8YbXuA67wNVIQKFEeH6Z8Ai/GpWUyTCt8PMK875M3AkXl+p266wIcKFIsYHptYQuGzJVXWaA=
+	t=1718721859; cv=none; b=X7ouAl+a5MgBRZ6Hk7sXhQgaSNV3RWvGzdDrI/vmGdgs16/q2yQd+R7kkCQEspZc/tzUGe6tfD9aVP3r94ReqEg1HjNbtm35q4jxpJovOu2Qv9zwU/JTi4AKYqols0Fam13WVgW9StexKw9j+o0LnBvoOZjeKHr8fC1yPoaDGG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718721819; c=relaxed/simple;
-	bh=AZX3jLOJVEnToDsGXuWNi9vG2dyKEdoxx4/ojvn22zA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ogp+q/YZyBa/ru3ObenxjYf/UybqQn9tSQKLbYYS8CZ4v7LZF/ROeOn9D4wSBJXssfFTTAP6I3jZoP6fGz9vvdEN/T41yvPaa48IUsp7Lt/vd3Q8IOq9fvhDoGLLHNvGlbFD4g+T1j8IMXlqASOv5/oMlKqwgZpcjo5iOaBTcA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jmCoO3SI; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718721816;
-	bh=AZX3jLOJVEnToDsGXuWNi9vG2dyKEdoxx4/ojvn22zA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jmCoO3SIi6oHxg0EKZjZGZyaCG7LiZU6f1I3SGvaglMFAtJQ7Mwcjjve669cWFx/C
-	 bhMWSEfjyebzfgV7SXQ/bklAWdZneVHuDoJci07mY9ZUdgakx25wPRZ/ofUntv/j9W
-	 +KatqSgywWZGJwHqZuA5A8Gq/DeDC7JRzIgJvaNwdjHIuohBgyVQYPF2nVRx/yhOLz
-	 4x+8CXrg5xhaQkMpoyPOzuMapk2yQJjH24+i93HjAFIexsHpY8ABnw/k7y4njovqdy
-	 vuHn983rA/cEnzda4SrkmT3P0Hz9812PJdx6RTU3zPSFUTTCHIoF0MroWxwjXOPoPk
-	 YoD1wvA/DtKTg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A25873780629;
-	Tue, 18 Jun 2024 14:43:34 +0000 (UTC)
-Message-ID: <03662a3e-6a66-4541-9435-98f809f1c617@collabora.com>
-Date: Tue, 18 Jun 2024 16:43:34 +0200
+	s=arc-20240116; t=1718721859; c=relaxed/simple;
+	bh=ovCGauVmn3lKF6NgVuUQdBGvIudD+1VlbLHa5xu7eNA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bbZD06AgLYwrNurRlTl4zqPSBLgJeWnN2j2Yq3klxgB061cRipVWSscL+sevm++SF6DICIPr3SzOwQz0YljQHGQb+pbJkFOJTuReHoSV9g5FXG0kUq6Yg3HSA5PU/U1EyYSQ9JWwxFuki46SFSsilXN1G0Bjj3AJpEAiWC9d2tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=A6tRO4Zt; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I5jYj2001893;
+	Tue, 18 Jun 2024 09:44:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	PODMain02222019; bh=AkDy6jOuZmWamxJaf6wDXCbAw3AX/x9x8lvPXSDPrkg=; b=
+	A6tRO4Zt+JCBjD0FNUkinJd1cOq6WGqPslviAza8P7F9ZEctKGKGgt7bHE9HJAeJ
+	VZFiVMypTcqv1PShPBH+WhTYNEXXjtvWucnVolwhJiZlXduqU9ZPJJoKOl0OMsxy
+	JVMQGvczVI+d06/3ByDCA3wr5UNOS2GyZnh1VVOpMarZPo1l8j2WEhle2y8l/EOS
+	AA2WOm5UtPCnLrWe9R7uGLck2o6J3oJX3uXeLpORjd5+dCLYAIukqfEOFPtqLOdy
+	EAA7s3Io2nAQC7ovWnrNIEEEUdAO5wXAQ6kyaFxOGj4yyUutF3Tosskq0srWu8VR
+	BzfnP4BaoF7URLR/wIcjcw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ys8by3ew9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 09:44:01 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Jun
+ 2024 15:43:59 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Tue, 18 Jun 2024 15:43:59 +0100
+Received: from [198.90.208.18] (ediswws06.ad.cirrus.com [198.90.208.18])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 800B6820248;
+	Tue, 18 Jun 2024 14:43:59 +0000 (UTC)
+Message-ID: <36dae588-5f01-4e27-b054-8db49388e21b@opensource.cirrus.com>
+Date: Tue, 18 Jun 2024 15:43:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,55 +67,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v5 00/16] Add audio support for the MediaTek Genio
- 350-evk board
-To: Alexandre Mergnat <amergnat@baylibre.com>, Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
- Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Nicolas Belin <nbelin@baylibre.com>
-References: <20240226-audio-i350-v5-0-54827318b453@baylibre.com>
- <ZmwODkYov79VHznK@finisterre.sirena.org.uk>
- <85e9451d-2cd0-457f-a246-017433757fff@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <85e9451d-2cd0-457f-a246-017433757fff@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 2/2] ASoC: cs530x: Support for cs530x ADCs
+To: Mark Brown <broonie@kernel.org>
+CC: Paul Handrigan <paulha@opensource.cirrus.com>, <lgirdwood@gmail.com>,
+        <linux-sound@vger.kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+References: <20240617190102.1010597-1-paulha@opensource.cirrus.com>
+ <20240617190102.1010597-2-paulha@opensource.cirrus.com>
+ <96162ff4-8c54-4efa-b06a-dc20e358e712@sirena.org.uk>
+ <4e192a95-bb3d-41d4-b83f-176f0f8aba6b@opensource.cirrus.com>
+ <24e1df82-bcad-4b8c-9743-a5ea213807d5@sirena.org.uk>
+Content-Language: en-GB
+From: Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <24e1df82-bcad-4b8c-9743-a5ea213807d5@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: YCmQWdJZh3lDl1xtf4ueFdnxIRlRBMZA
+X-Proofpoint-GUID: YCmQWdJZh3lDl1xtf4ueFdnxIRlRBMZA
+X-Proofpoint-Spam-Reason: safe
 
-Il 17/06/24 10:05, Alexandre Mergnat ha scritto:
+On 18/06/2024 15:25, Mark Brown wrote:
+> On Tue, Jun 18, 2024 at 03:23:07PM +0100, Richard Fitzgerald wrote:
+>> On 18/06/2024 15:18, Mark Brown wrote:
+>>> On Mon, Jun 17, 2024 at 02:01:02PM -0500, Paul Handrigan wrote:
 > 
+>>>> +	case CS530X_DEVID:
+>>>> +	case CS530X_REVID:
 > 
-> On 14/06/2024 11:31, Mark Brown wrote:
->> On Fri, Jun 14, 2024 at 09:27:43AM +0200, Alexandre Mergnat wrote:
->>> This serie aim to add the following audio support for the Genio 350-evk:
->>> - Playback
->>>    - 2ch Headset Jack (Earphone)
->>>    - 1ch Line-out Jack (Speaker)
->>>    - 8ch HDMI Tx
->>
->> I seem to remember you had review comments that needed addressing from
->> AngeloGioacchino, why resend without addressing those?
+>>> Are these really volatile?  I would expect them to have no defaults so
+>>> they must be read from the device, but once read I'd expect we could
+>>> cache the values.
 > 
-> I don't see any comment:
-> https://lore.kernel.org/lkml/20240226-audio-i350-v5-0-e7e2569df481@baylibre.com/
+>> If you mark a register non-volatile but without default, a
+>> regcache_sync() will write it back out to the device. While that
+>> doesn't necessarily do any harm, that depends on what these
+>> registers do on write. Generally it makes me nervous to have
+>> cache syncs writing to registers we don't want to write to.
 > 
+> Marking the register as read only should DTRT there, if not then that's
+> a regmap bug which should be fixed.
 
-Mark, the review comments were on the v4 of this series :-)
-
-I'll review this version probably tomorrow, or anyway this week.
-
-Cheers,
-Angelo
+True but now we're adding extra callbacks and complexity just to
+avoid marking a register volatile for some reason. The driver doesn't
+need it to be cached, so why bother?
 
