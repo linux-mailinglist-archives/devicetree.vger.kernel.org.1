@@ -1,403 +1,227 @@
-Return-Path: <devicetree+bounces-77277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5549090DF1D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 00:24:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D0E90DF26
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 00:34:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58CAA1C2354A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 22:24:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26ECF1C220E3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 22:34:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25581849CB;
-	Tue, 18 Jun 2024 22:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4871741C9;
+	Tue, 18 Jun 2024 22:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K50RuArS"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="lKXAPa9u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04olkn2033.outbound.protection.outlook.com [40.92.47.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB2B178CC8;
-	Tue, 18 Jun 2024 22:24:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718749468; cv=none; b=LRjLdDBUzhfh4kNKgCuX2eqMfP0Sr4BZxpQmurSpvE65FYYOeRRGyFK/25SqunZXSyaqq5ZXNjalLsPYLxS8vubb5dBhGtq+etxDJhu/owWT/1/zzZMoRjf3c3F5Ag4oKZDrch7gvY5JTWrtlGqHbXwwDf0LUYVBV3KH4gDJJrA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718749468; c=relaxed/simple;
-	bh=PnupujgC1qwoaNcANVP4xnijpN+a90U657o7R3krZfo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nkI4yHljBZm48go78izxjPCOgzx1UYrYogVHYPyN/UKn9fcIfNZ7V3gELRK33g44FePk7SvGFgyYsHLH9qZwRFIqOiblf7wmWmD5gyCbm3nYSNXRBbfaS5H0RnwmHm26egiUAx0wTyDXzlnl6rY+5l8pkJDHant1Sqb4TYiIxNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K50RuArS; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42165f6645fso48567465e9.2;
-        Tue, 18 Jun 2024 15:24:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718749465; x=1719354265; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VNPn8c71MIw9w3GH/klPVoaZ0Vb/hed/fABHhKRDv9k=;
-        b=K50RuArS5K/io7YqaLouckDm1BxrLvgWszBa3UX4KHnnHfni2/194mBjP4AtFE8Dmp
-         h7eiHkEMCTJrP9UID+2SZEdFq1QR2fzApCZwZLAE0ItbU1vrd9gjosJ/fu0X18quw/pq
-         bm30wA+jAceRYirFdWDCfo5F3D9fQLMjFLC4fG5NEAMH9Yt2RRPAFub7igQzBJoY1Cut
-         JKFvaekA5PGkkq6nPw2Ve/ognqdKFNG8jSWtNVtALCov2ob7VNr8x/AhlagDfpTUh0Xp
-         +Y8jAR2TYytmOBLt36GPphUKeBcyY9I+zKgXJGQ4KmDEQwsuZ502ZmeY/FvH0v0VVxZB
-         c87A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718749465; x=1719354265;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VNPn8c71MIw9w3GH/klPVoaZ0Vb/hed/fABHhKRDv9k=;
-        b=LCkDzfm6TJCWfm1y1nJdlXFHID7PhfwpYsulaFjjhq9m5fKhuDJv+GioLnGuGPYmw1
-         k/dGGe7zp+jNSEniF8U5Oh+j5V30K4ah25jEUkqMvUV2it4s9mokDQ9ZBgpSGJPMsgZj
-         iD3OspzXMaI4r6saYMzF9zaVZ30Ykb1HKScTZ9zv7PKKnLxa86P35Z/zPaU5DQa2TJrm
-         zx0B5Zs5DBi4xUqysb7K7y368WhBPiUPTFXN/BVN8o47vGr+VrnhcJKA6sqxyoLHp5K6
-         nnb18lpvj4Cy7UjRGMv4mYcjM3b7rdVBq3N+z8oAVEoalTW0fB8KsGoDG5HIdxxsO6zx
-         lgYA==
-X-Forwarded-Encrypted: i=1; AJvYcCX4FctD8sUYVvsUW6THhuHzsp7diCPeQ7ZPmqWvJu9hcbeGEbGMRBAgDsSGzahpZdNPDnDrAtr+mf7KdMj1QxHCD/EBAYMgsBuh63LrmNylN4KFp/4s8MqWmwFaKS8WCGcr5b2BrOURFS8Ptyy3UfRmdGngGSMPUlg52kPXb6iP9QqiTrrPgGavC1lr
-X-Gm-Message-State: AOJu0YyoHLGnnAdZqrNOo6oh1AyYZvS2M2yvLIGXOnIOec+w6fa4ko6v
-	Ogv1nQtiZN/5k8KcnoNt0Eh1p/aa3AUO8g5BcM/gk8EnRdceilOn
-X-Google-Smtp-Source: AGHT+IGwFhge1wDpB8liES4gpZ7RHYk/LtG2saq+l9DiSnX+qmcoIK8X7oTf2n+AU0gFqi1RWd9/ag==
-X-Received: by 2002:a7b:c355:0:b0:422:44b2:b295 with SMTP id 5b1f17b1804b1-42475293d5fmr5199035e9.25.1718749465115;
-        Tue, 18 Jun 2024 15:24:25 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2500:a01:d6f0:b448:a40c:81a7])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075104b74sm15189697f8f.107.2024.06.18.15.24.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 15:24:23 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] watchdog: Add Watchdog Timer driver for RZ/V2H(P)
-Date: Tue, 18 Jun 2024 23:24:03 +0100
-Message-Id: <20240618222403.464872-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240618222403.464872-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240618222403.464872-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CA074AEF0;
+	Tue, 18 Jun 2024 22:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.47.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718750039; cv=fail; b=XMNijqVsFgFmgeybYRMeX+UgDtB0bm7qPpQ9uuY2W3rQXuTdJPvwWBSGfirnSZLUFztKa9l8DDBNXQUFqlBejAzTPHX/STmjRQOgNxzdl4c6WRxNhNE6Cs+bnOmrY40muU1Je/pni4pYp9G6sK66Me2BKQfqbt+A+jLJ26JJ2WQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718750039; c=relaxed/simple;
+	bh=J1WqkkfCHrpUQ+uf9t9gSnaI24IJOsi2HsYoPgaz0is=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=GMUilEEQunVFjs4LiTWBJv8CgCD2moqGLU94SNRVRPQPPVXxYt1S0YeWFXfTfOdjAQeXJkKgcdGZlYS04dbwVJTqYSe1FJNqmM2yD4/vnBzmf+2XnlbnBFdog3mrjY80iyvw7SlDqcIHn9C/I+p+jng8L7KMAbkJHBXtI2wCyJE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=lKXAPa9u; arc=fail smtp.client-ip=40.92.47.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PNzTk5htxZyF1cVdSxwGObPEHaz0kJsm1NeiyccHABcuSyrO8OdkITK0IpCfpmT/YBwMYVnaAgE1txpTRJ0CUsGCD60xIc3w2UeaMrpeo5gAPa2/gSFgzCChYI8nksMvDO37NA1DfVWtMZLnuseU6tMcEv468XhtwdsaZGdLhSRQyf6P3rILa5cZ2q+ibrXxXDMbdpaDz/9s1dC/9+D7+UPBs/XUUJwSGyjMEXgVEuradmsYz6xQ/1+RE6cHh6pKHjS4Vta74sfFCSx1XHEhn9zr/jzXr0Q1o1klDETTOVBKuq9zaW9WM2kmniS+KlJI6aMEXbVCg12uVBbCDtNJcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/bCvbQac4zUF0boVxXFZY6A4wsuE06t5V22NGuixqwI=;
+ b=Vh99zr0pCOP2ZO4DG26PYksSywXEKB8MYBslwcfDwekSJkU5REil4mx6Te0PUQuGTBuIIUEZ8/xk/sbJ0I3dkiaHJ12YL2yj4CQZiUe/p1UCXwLs2CKxDNNBRca815Py5jAIWZFpzY8yRtWI4OLW7JdzHo31mQ2s37XQTMMk20+Hl0AOui+M1sLTgrPhxGLuVrrAPDV10u0ZwK/kKEKz1hXUVsBNbqH+0FNxlPjJiVcaWBKfZoc4kbxyWo2p3tMI3zqvFdpnIwYN4T7LcN+F1XDn8bG4/NhSya74OEdlCpTtGyrXkBjcPardJLFbJMAXIdvQ0r4W4mRJvKy2zxlvcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/bCvbQac4zUF0boVxXFZY6A4wsuE06t5V22NGuixqwI=;
+ b=lKXAPa9udinmcXa7moG67OgyVwyq50q1kKlhIbOK1hfO/7l4kz78FxLmDlVl3+dBEzr69zcl9opo3P4OVEHsaYFle3moWuQ0iPUN5XBb7BFTHN0jr8I2odqG7uAaGZyQzIGYNIr/qF6Io5DAHXKuQA00fqN5IB1XyIPfhOTQwQXy9ySB9Zz1ENs7inzgLrjWmAFjU4XOyzUH5s31f0bEtCkNgRJFOc6LWWXsINhrHMNzOgYUgeYf+vRUEWVSoFvCLLNA51TRoSx7spm2AuMidI6OH8dgXGl7ymu1GuBT5ORrE58KyK1hQXUMbvPmkAhUAInFemh1ILtfJzCkdWlwtg==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SJ0PR20MB4535.namprd20.prod.outlook.com (2603:10b6:a03:3ee::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.30; Tue, 18 Jun
+ 2024 22:33:51 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%6]) with mapi id 15.20.7698.017; Tue, 18 Jun 2024
+ 22:33:51 +0000
+Date: Wed, 19 Jun 2024 06:33:35 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Yuntao Dai <d1581209858@live.com>, jassisinghbrar@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	unicorn_wang@outlook.com, inochiama@outlook.com, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: mailbox: add Sophgo cv18x SoCs mailbox
+Message-ID:
+ <IA1PR20MB49531E9C016A91E52F5D59C4BBCE2@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <SYBP282MB2238DE0DA19C6EF411B2356CC4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+ <SYBP282MB22389FD1E07BBDC6FE1D90A0C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SYBP282MB22389FD1E07BBDC6FE1D90A0C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+X-TMN: [1zWz3WTqylNaZvBLXmBPtPVXCnEah1RO9bmSegFqH6A=]
+X-ClientProxiedBy: TYWP286CA0017.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:178::10) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <naeg6dzxevwsmkzy5jkzp3e46rk5fzxvb5urf2uxocanshur5i@ash6c2crcyfr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SJ0PR20MB4535:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b412d67-4024-429f-b394-08dc8fe6ba39
+X-MS-Exchange-SLBlob-MailProps:
+	RlF2DIMZ1qWqSQaTqn7+1FJ7I9anhJr8hA5zuZwi1/vDPNkHUJa5POy/oBwsmbpoYJy1MKJcaoJwV0WVY0O30qK/uuC9VstnE/eyBfPpt0151ysE04sWRQ/Kq0+4WRQXCY2v7gI/pOehoD4F9t23FE8Hfw1iLvCpZRxdbdZjV4HTHdpkkz38u5n15BmlkeOvjy5IMn3IZvRhX9CeAdRc87tH6RZtfUYaw5i6GWCLYhvdlXSUA7N1Gw83W09IEeL4d00USb7CaIKtI9/NEOLQ6N655zF7Um+u52x3FupkT3ZzT5wmd4ZEQWd24DFkyMlkCEzbop2VcgZb/3p+UQaRPoHYZlAF568JKFJvlurqARbcFiKS9ai5+mc7Dnaw6wA1lsXYsLwq2uPizMu1dCKUk1OnSU5nyq8SzuVK2wSVBA2hE51ierKuqDyEAx2mXFc5z14P3FubXxKlGFwMp45FDElIDhaueWDNY9RIreHEgdigZ3GXfZx4ULFNH7Kp8LWnNh6xWezjkIdJ8AgY5JLUCy5vEMGwFdsQ+8Li5w/zmU3EpAurC2UKlJ+NMX0T21accfk6/6sfk1kkpcfZtZuuWFuyRlJeBUCSvgUUNHUwN6UJHgRo8TJppfGsjZqSHcfrDsThPzsNGJhSuYVHDghwJs5uQ4/jJWFUyohvm497Oq5ZQkgBrlGY8LJYc7kfi/64cn6N05V4W4Xh24bZppuNcB4aG1YQuTwkA85stM2RfpZMILTBJnm7MXy3yx0t8kYTbg7BB/MRFVa0Z/n8Uk5bbe+AyvyCLx0oSvWN7+dmiLcc3C7nwP1GrLuggW1kxV5RFkBUrPjbR7C4Dwzm+OapZlt3EyFA60fi
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199025|1602099009|440099025|3412199022|4302099010|1710799023;
+X-Microsoft-Antispam-Message-Info:
+	sh5cPvXd5uaC4jwykH+Jxb8+4ESkcVq8yyRYq1PZNQiPOgw2dEYJRB9C3e8LYTOdc6m4UqdiHMKjAhktIarVIAg0FEhT7LSzL+BbSV+ZSBoujkR/EGYxf87Sk0mAl7B+91sfYo3ebrjWEP7mgwb2BV71uYUioNRTROalb0G8h2Qc4nDIRbPrmJAu5j4T1uI1wo5E+Rt2ukBHCu7OdVRWrxnm430LHeNkpN+mhPuWKrzAbzuArOmAVKte29urita7yz2iA5l+raaIfYP46h7+fp91spHN3H9oxYTpWyFILgpZSyscLgESkcqgVN7SMRnfgTvn+1zdH9olEjuhlQkkMtTL+RAgX1qrBPYEuiMgx+GaBKlqbeVwEUL0jCHdTwD0763y0Hax+PWy2g2DRGkD/wy9fRWnV+Yb7zNQ/dVIlp8QU6pvQfCvtHmF5Z/EVXhLFiU5rHs8nzP3/7W9KrKM3SOoL+OF9W7DSgyfTtFXdg+aBj3Mxx6Tre/PigxvP4jMh13BQEJTCl3a4mppgonfLMkIfuzkRVblA/ff/2rTh8i2rQ1PEPYiUZgHxrm4ccz6Xufl1IVPPOce+MfjVxZikhUG+YIY0rvBAn7mCoDp9tqZx2y9jyGi3OhfqBzXa0O5lw2EIvHpo5AnQEX7vT3c+h32kpBFg+IUMehhOCK7e95vZuWDg/AUzlBfXWNSWbIBh6f3nXttDOM7w1Gmq/bY/nsLKttSqL0aWj925zX5d6E=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?+EzkMybyVR/2Xuy1Ho1+W2G1hG6M19ONhj5N/T+GQ3YOL7r4kPah/Yj6/U/7?=
+ =?us-ascii?Q?QaIsPd52fxK1hTTe4B57CNPj2aDXM+B/czmG68Ph9rCUoW0NlfK/39TxWCpn?=
+ =?us-ascii?Q?zagC4xqpoTtyGyy0QSNcavvAtYF8IKd6ORaD0S+eYk79ubniuQsJwMuScogo?=
+ =?us-ascii?Q?LQtXXh34y13Tdm8hQ5beM4owU+jn09lc4/QFxygnJlo0nLTyKVkD5CsRJXju?=
+ =?us-ascii?Q?KFc7RopZKVlX0ahCUtVqbkT1NirY6F45HfPD/t/eJOXaZTbOmm8SiE++Qfdh?=
+ =?us-ascii?Q?y+HXY/+MkfHFZ8NLEDrDgiEXfcOn5RLtnVRBkEw2n3bpA2a5tLknVIEjNBGd?=
+ =?us-ascii?Q?5/8MfOkMwYwUTIsurlYYx8SoRoVyQaHXN+L6Oio9Gd6YcJdWutOpaMbfoLHI?=
+ =?us-ascii?Q?mpwF67PFvThI+rhZJsBEgPQa26ShE4t/tbVhW+Hh97HgZq1s5+BGDZf6Elcj?=
+ =?us-ascii?Q?2WJxJvh+IXgHLkkLo8vyKre7xOH4aybESTgUFP5mPIPr4sLVTuEzxv0RqL2N?=
+ =?us-ascii?Q?rfrlKFZ3hE7L/RvppUbM47jgGmOOEq53LYbvf6qeikPKaEAjJIJ97S0f55r8?=
+ =?us-ascii?Q?neBDkR3UsKxujm5tmjHpbWYrQjMpt0VU/OxMl3xK68Quollc/hmeVIFNHF9G?=
+ =?us-ascii?Q?e8im6YcdWP7zK3RFiQxttMYed4ALWiHMJiK5nsXhDIm345ET3/1r27KQ2BYk?=
+ =?us-ascii?Q?qlw9rj1CGy0oHXDHOzG1FydI48zHNYq3OerQfx+QKPdcnbwvMWorqhZi34Pg?=
+ =?us-ascii?Q?UiID0VDSX7RXag/52mAidfHKIZNTGdYooVWzIgXqcoKe0LBr/9wfeon35bSB?=
+ =?us-ascii?Q?GEJtZ8fHyxbOnprwvnNpVz78ktUj2NPj4xe0n7fdiahdbzzRMFkWh2NVuOQs?=
+ =?us-ascii?Q?zKonGl05SUSRS++TsbokoRPLoPj6//Zy0VzNnOVKacE7aV3Qk3kxylAxUt9Q?=
+ =?us-ascii?Q?aGRwWZBJZQ0kIX33Tj1Tux4mlG15hjAXHX59rgaDZMBCXAM1MLT/USIstWlq?=
+ =?us-ascii?Q?HMTdUpnPw27EQU7p5Fdi8Iosagltzkfw7J+ooSsRLfCZZfceJLhkPQXreXMx?=
+ =?us-ascii?Q?a93l8PpRvF8Ge7pLRMsBccwduCIwla77pOojAloJs1/6y1qdC4rMhtGboYQG?=
+ =?us-ascii?Q?S//xjt3UZVX/rsmAcR/2xZecYGnZKSoLOWk1iztNVW9Yno1FxtMmITdqWYLC?=
+ =?us-ascii?Q?ySC+kUYCCdPEzNoXoYCu3mvX/2fit68xVem/hRgCC0l2b/TSVWX8nDT44wSr?=
+ =?us-ascii?Q?lS4xOdquUhWb3JqNIUet?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b412d67-4024-429f-b394-08dc8fe6ba39
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 22:33:51.2093
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR20MB4535
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Jun 18, 2024 at 11:12:33PM GMT, Yuntao Dai wrote:
+> Add devicetree bindings documentation for Sophgo cv18x SoCs mailbox
+> 
+> Signed-off-by: Yuntao Dai <d1581209858@live.com>
+> ---
+>  .../mailbox/sophgo,cv1800b-mailbox.yaml       | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml
+> new file mode 100644
+> index 000000000..e1868aaf2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/sophgo,cv1800b-mailbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sophgo cv1800b mailbox controller
+> +
+> +maintainers:
+> +  - Yuntao Dai <d1581209858@live.com>
+> +
+> +description:
+> +  The Sophgo cv18x SoCs mailbox has 8 channels and 8 bytes per channel for
+> +  different processors. Any processer can write data in a channel, and
+> +  set co-responding register to raise interrupt to notice another processor,
+> +  and it is allowed to send data to itself.
+> +  Sophgo cv18x SoCs has 3 processors and numbered as
+> +  <1> C906L
+> +  <2> C906B
+> +  <3> 8051
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sophgo,cv1800b-mailbox
 
-Add Watchdog Timer driver for RZ/V2H(P) SoC.
+"sophgo,cv1800-mailbox" please.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- drivers/watchdog/Kconfig     |   8 ++
- drivers/watchdog/Makefile    |   1 +
- drivers/watchdog/rzv2h_wdt.c | 248 +++++++++++++++++++++++++++++++++++
- 3 files changed, 257 insertions(+)
- create mode 100644 drivers/watchdog/rzv2h_wdt.c
-
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 85eea38dbdf4..3f7bcc10ccc2 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -938,6 +938,14 @@ config RENESAS_RZG2LWDT
- 	  This driver adds watchdog support for the integrated watchdogs in the
- 	  Renesas RZ/G2L SoCs. These watchdogs can be used to reset a system.
- 
-+config RENESAS_RZV2HWDT
-+	tristate "Renesas RZ/V2H(P) WDT Watchdog"
-+	depends on ARCH_RENESAS || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	help
-+	  This driver adds watchdog support for the integrated watchdogs in the
-+	  Renesas RZ/V2H(P) SoCs. These watchdogs can be used to reset a system.
-+
- config ASPEED_WATCHDOG
- 	tristate "Aspeed BMC watchdog support"
- 	depends on ARCH_ASPEED || COMPILE_TEST
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 2d1117564f5b..295909a1b3b9 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -86,6 +86,7 @@ obj-$(CONFIG_RENESAS_WDT) += renesas_wdt.o
- obj-$(CONFIG_RENESAS_RZAWDT) += rza_wdt.o
- obj-$(CONFIG_RENESAS_RZN1WDT) += rzn1_wdt.o
- obj-$(CONFIG_RENESAS_RZG2LWDT) += rzg2l_wdt.o
-+obj-$(CONFIG_RENESAS_RZV2HWDT) += rzv2h_wdt.o
- obj-$(CONFIG_ASPEED_WATCHDOG) += aspeed_wdt.o
- obj-$(CONFIG_STM32_WATCHDOG) += stm32_iwdg.o
- obj-$(CONFIG_UNIPHIER_WATCHDOG) += uniphier_wdt.o
-diff --git a/drivers/watchdog/rzv2h_wdt.c b/drivers/watchdog/rzv2h_wdt.c
-new file mode 100644
-index 000000000000..08f97b4bab7f
---- /dev/null
-+++ b/drivers/watchdog/rzv2h_wdt.c
-@@ -0,0 +1,248 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Renesas RZ/V2H(P) WDT Watchdog Driver
-+ *
-+ * Copyright (C) 2024 Renesas Electronics Corporation.
-+ */
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/reset.h>
-+#include <linux/units.h>
-+#include <linux/watchdog.h>
-+
-+#define WDTRR			0x00	/* RW, 8  */
-+#define WDTCR			0x02	/* RW, 16 */
-+#define WDTRCR			0x06	/* RW, 8  */
-+
-+#define WDTCR_TOPS_1024		0x00
-+#define WDTCR_TOPS_16384	0x03
-+
-+#define WDTCR_CKS_CLK_1		0x00
-+#define WDTCR_CKS_CLK_256	0x50
-+
-+#define WDTCR_RPES_0		0x300
-+#define WDTCR_RPES_75		0x000
-+
-+#define WDTCR_RPSS_25		0x00
-+#define WDTCR_RPSS_100		0x3000
-+
-+#define WDTRCR_RSTIRQS         BIT(7)
-+
-+#define CLOCK_DIV_BY_256	256
-+
-+#define WDT_DEFAULT_TIMEOUT	60U
-+
-+static bool nowayout = WATCHDOG_NOWAYOUT;
-+module_param(nowayout, bool, 0);
-+MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-+		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-+
-+struct rzv2h_wdt_priv {
-+	void __iomem *base;
-+	struct watchdog_device wdev;
-+	struct reset_control *rstc;
-+	unsigned long oscclk_rate;
-+};
-+
-+static u32 rzv2h_wdt_get_cycle_usec(struct rzv2h_wdt_priv *priv,
-+				    unsigned long cycle,
-+				    u16 wdttime)
-+{
-+	int clock_division_ratio;
-+	u64 timer_cycle_us;
-+
-+	clock_division_ratio = CLOCK_DIV_BY_256;
-+
-+	timer_cycle_us = clock_division_ratio * (wdttime + 1) * MICRO;
-+
-+	return div64_ul(timer_cycle_us, cycle);
-+}
-+
-+static int rzv2h_wdt_ping(struct watchdog_device *wdev)
-+{
-+	struct rzv2h_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	unsigned long delay;
-+
-+	writeb(0x0, priv->base + WDTRR);
-+	writeb(0xFF, priv->base + WDTRR);
-+
-+	/*
-+	 * Refreshing the down-counter requires up to 4 cycles
-+	 * of the signal for counting
-+	 */
-+	delay = 4 * rzv2h_wdt_get_cycle_usec(priv, priv->oscclk_rate, 0);
-+	udelay(delay);
-+
-+	return 0;
-+}
-+
-+static void rzv2h_wdt_setup(struct watchdog_device *wdev, u16 wdtcr)
-+{
-+	struct rzv2h_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+
-+	writew(wdtcr, priv->base + WDTCR);
-+
-+	/* LSI needs RSTIRQS to be cleared */
-+	writeb(readb(priv->base + WDTRCR) & ~WDTRCR_RSTIRQS, priv->base + WDTRCR);
-+}
-+
-+static int rzv2h_wdt_start(struct watchdog_device *wdev)
-+{
-+	pm_runtime_get_sync(wdev->parent);
-+
-+	/*
-+	 * WDTCR
-+	 * - CKS[7:4] - Clock Division Ratio Select - 0101b: oscclk/256
-+	 * - RPSS[13:12] - Window Start Position Select - 11b: 100%
-+	 * - RPES[9:8] - Window End Position Select - 11b: 0%
-+	 * - TOPS[1:0] - Timeout Period Select - 11b: 16384 cycles (3FFFh)
-+	 */
-+	rzv2h_wdt_setup(wdev, WDTCR_CKS_CLK_256 | WDTCR_RPSS_100 |
-+			WDTCR_RPES_0 | WDTCR_TOPS_16384);
-+
-+	rzv2h_wdt_ping(wdev);
-+
-+	return 0;
-+}
-+
-+static int rzv2h_wdt_stop(struct watchdog_device *wdev)
-+{
-+	struct rzv2h_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+
-+	pm_runtime_put(wdev->parent);
-+	reset_control_reset(priv->rstc);
-+
-+	return 0;
-+}
-+
-+static const struct watchdog_info rzv2h_wdt_ident = {
-+	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
-+	.identity = "Renesas RZ/V2H WDT Watchdog",
-+};
-+
-+static int rzv2h_wdt_restart(struct watchdog_device *wdev,
-+			     unsigned long action, void *data)
-+{
-+	rzv2h_wdt_stop(wdev);
-+
-+	pm_runtime_get_sync(wdev->parent);
-+
-+	/*
-+	 * WDTCR
-+	 * - CKS[7:4] - Clock Division Ratio Select - 0000b: oscclk/1
-+	 * - RPSS[13:12] - Window Start Position Select - 00b: 25%
-+	 * - RPES[9:8] - Window End Position Select - 00b: 75%
-+	 * - TOPS[1:0] - Timeout Period Select - 00b: 1024 cycles (03FFh)
-+	 */
-+	rzv2h_wdt_setup(wdev, WDTCR_CKS_CLK_1 | WDTCR_RPSS_25 |
-+			WDTCR_RPES_75 | WDTCR_TOPS_1024);
-+
-+	rzv2h_wdt_ping(wdev);
-+
-+	return 0;
-+}
-+
-+static const struct watchdog_ops rzv2h_wdt_ops = {
-+	.owner = THIS_MODULE,
-+	.start = rzv2h_wdt_start,
-+	.stop = rzv2h_wdt_stop,
-+	.ping = rzv2h_wdt_ping,
-+	.restart = rzv2h_wdt_restart,
-+};
-+
-+static void rzv2h_wdt_reset_assert(void *data)
-+{
-+	struct reset_control *rstc = data;
-+
-+	reset_control_assert(rstc);
-+}
-+
-+static int rzv2h_wdt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct rzv2h_wdt_priv *priv;
-+	struct clk *oscclk;
-+	unsigned long rate;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	/* Get watchdog oscclk clock */
-+	oscclk = clk_get(&pdev->dev, "oscclk");
-+	if (IS_ERR(oscclk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(oscclk),
-+				     "no oscclk");
-+
-+	priv->oscclk_rate = clk_get_rate(oscclk);
-+	clk_put(oscclk);
-+	if (!priv->oscclk_rate)
-+		return dev_err_probe(&pdev->dev, -EINVAL, "oscclk rate is 0");
-+
-+	priv->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
-+	if (IS_ERR(priv->rstc))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->rstc),
-+					"failed to get cpg reset");
-+
-+	ret = reset_control_deassert(priv->rstc);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to deassert");
-+	ret = devm_add_action_or_reset(&pdev->dev,
-+				       rzv2h_wdt_reset_assert,
-+				       priv->rstc);
-+	if (ret < 0)
-+		return ret;
-+
-+	rate = priv->oscclk_rate / 256;
-+	priv->wdev.max_hw_heartbeat_ms = (1000 * 16383) / rate;
-+	dev_dbg(dev, "max hw timeout of %dms\n",
-+		priv->wdev.max_hw_heartbeat_ms);
-+
-+	priv->wdev.min_timeout = 1;
-+	priv->wdev.timeout = WDT_DEFAULT_TIMEOUT;
-+	priv->wdev.info = &rzv2h_wdt_ident;
-+	priv->wdev.ops = &rzv2h_wdt_ops;
-+	priv->wdev.parent = dev;
-+	watchdog_set_drvdata(&priv->wdev, priv);
-+	watchdog_set_nowayout(&priv->wdev, nowayout);
-+	watchdog_stop_on_unregister(&priv->wdev);
-+
-+	ret = watchdog_init_timeout(&priv->wdev, 0, dev);
-+	if (ret)
-+		dev_warn(dev, "Specified timeout invalid, using default");
-+
-+	ret = devm_pm_runtime_enable(&pdev->dev);
-+	if (ret)
-+		return ret;
-+
-+	return devm_watchdog_register_device(&pdev->dev, &priv->wdev);
-+}
-+
-+static const struct of_device_id rzv2h_wdt_ids[] = {
-+	{ .compatible = "renesas,r9a09g057-wdt", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, rzv2h_wdt_ids);
-+
-+static struct platform_driver rzv2h_wdt_driver = {
-+	.driver = {
-+		.name = "rzv2h_wdt",
-+		.of_match_table = rzv2h_wdt_ids,
-+	},
-+	.probe = rzv2h_wdt_probe,
-+};
-+module_platform_driver(rzv2h_wdt_driver);
-+MODULE_AUTHOR("Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>");
-+MODULE_DESCRIPTION("Renesas RZ/V2H(P) WDT Watchdog Driver");
--- 
-2.34.1
-
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    const: mailbox
+> +
+> +  recvid:
+> +    maxItems: 1
+> +    description:
+> +      This cell indicates the mailbox controller is running on which processor
+> +
+> +  sendto:
+> +    maxItems: 1
+> +    description:
+> +      This cell indicates the message sends to which processor
+> +
+> +
+> +  "#mbox-cells":
+> +    const: 1
+> +    description:
+> +      This cell indicates which channel is used
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - recvid
+> +  - sendto
+> +  - "#mbox-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    mailbox: mailbox@1900000 {
+> +        compatible = "sophgo,cv1800b-mailbox";
+> +        reg = <0x01900000 0x1000>;
+> +        interrupts = <101 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "mailbox";
+> +        interrupt-parent = <&plic>;
+> +        recvid = <1>;
+> +        sendto = <2>;
+> +        #mbox-cells = <1>;
+> +    };
+> -- 
+> 2.17.1
+> 
 
