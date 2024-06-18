@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0C390C3C2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:39:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D02190C3C7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:40:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13B00B22D8B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:39:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DCF21C208C6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C47461FCE;
-	Tue, 18 Jun 2024 06:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598264EB37;
+	Tue, 18 Jun 2024 06:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K/iU2yGS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SIoEibkP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3629150285;
-	Tue, 18 Jun 2024 06:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D46954918;
+	Tue, 18 Jun 2024 06:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718692758; cv=none; b=sEKR/LaNNmqiXRQOpV7FSBCrNFmn2OlrqOiLP9PMitTeFR1wqLPiSk0xSeKE2W0IOU1QI3Sh10yhHXaDamKninSHLCyLU0YeThfWylykLYnJFVoKoC1VF72EPT6dMPBP47sUcEnx2xmKVXAR/w28zxC+zqoLmL2DXXEMAA7Z9HY=
+	t=1718692856; cv=none; b=oA+oeFMB0+cGiJUtr2JjQJMJlaFTiSeZ4LB/c1Fp1Eo6HCHjFgSDn2vVljZGNXCBr41HdlR6OXKJD5H8kuL0P+9ffaSqO+d0CvPn5uTF0k3/WXMFeluZzKFZqCRRHUu7qJuA7cSKg6ylxx07YqVJlLZh8NMpS7QSk8YZ+xIN6e4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718692758; c=relaxed/simple;
-	bh=etFrlf2PYqV0eSgRzTXNnsDE4NLFvh1oNzyCmytsCNo=;
+	s=arc-20240116; t=1718692856; c=relaxed/simple;
+	bh=peLHRG4LIk49bmOqiVY3ocL7r5PwX4fx2iLil5MMWwU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cCTmr9RSJmQgem9xy2UDvTYICrmAUjx/ZQEQ8TiGuex3k+IJzEX6uMq+LlDc8uVwLBXX63Zn1qAXP9sg5lZMpYQdUOBzjlCdIvjSuaZax2S7vyxi+YRUFoqv5z9+PGqQ6Y9LxUqI0GgB3Hp9xFHNlHUo+pdib4MIFJfYujyuwik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K/iU2yGS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76E08C4AF1C;
-	Tue, 18 Jun 2024 06:39:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZeMz3L2fJ82r7Q299KW4BTtpfA1pk6p5p3zP2y7VM2DtOM09GQG9xDseQiqRYMwvIADRDXNKM4Wp1w68cMesfAiWFYFaL1S/XGc4DKT9EOUVpril/UIHdVebkyFp0IObNGapbBVhkTdxDeCyts0ekw1BN+sI0/m/tjVUNhNVA4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SIoEibkP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED44CC3277B;
+	Tue, 18 Jun 2024 06:40:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718692757;
-	bh=etFrlf2PYqV0eSgRzTXNnsDE4NLFvh1oNzyCmytsCNo=;
+	s=k20201202; t=1718692855;
+	bh=peLHRG4LIk49bmOqiVY3ocL7r5PwX4fx2iLil5MMWwU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K/iU2yGSg4URsowg0dyKTU5qaq3Fp1htc1Kp7b6iMkw9QEmjvw9s97uG68dQ2SQZ0
-	 rMtjjxF8VO2+NpoDn/18PZUpZfz9t8vAUYPemM1ghEaEfQvrKSP4qFOye639gz1tdy
-	 nyKDfahwAtiSqeRy7srZMl6Tr7BR7I/JKPV7bNwJ4f/kIHWSI4NTA6MKdGdZ3z9i15
-	 VLJqg0BQu9raHqJ+ZlTNZ12hSgiNxibCYYOX7KnUZ+8/l7bb1xVNJGwagqzSujLeyV
-	 0XA669TFvZ5rAqNXLRGq3YyuIcSm4/MAQZ2WX7sgBxYRyhbP1Ww7gKpmFyQmdcvqmA
-	 1OaWDqDxa5iAw==
-Message-ID: <94d50353-15ba-4769-bd98-57f4430f5fc2@kernel.org>
-Date: Tue, 18 Jun 2024 08:39:10 +0200
+	b=SIoEibkP9cCj5busg8l6zKqeen+MMo5hXfP7wf7tvzQ5jNqN1lNDYXdWrxjoctcTJ
+	 5oVQoi1dbehCRwh9VQRJG7utcYf3ti3OFQGKDJHSsYohLXz762SIA1BD5Ok2tQWoj1
+	 UwydLWkRtSt+ZodlG9s2j7zqh9VIti996kHzTNU2ysUOUiTr7dBwpy/HEGWz4QFMgL
+	 IeJ3QT4PotMaGvMhOsuzie54x6T8N3FUq7rTt/VGsOo43YSLeFf6+1lb8i9v9ard98
+	 QMN0F2Aeqe7OMRn2ZVsQgfvYwY3x3kASqvIu8KWxW3C+q+blFlEM1ig3ZYUl7F9JDG
+	 3JGGotL9PL8RA==
+Message-ID: <85f846db-7a5e-4221-8791-eba3c47d449e@kernel.org>
+Date: Tue, 18 Jun 2024 08:40:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] hwrng: exynos: Enable Exynos850 support
-To: Sam Protsenko <semen.protsenko@linaro.org>,
- =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Alim Akhtar <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org,
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240618003743.2975-1-semen.protsenko@linaro.org>
- <20240618003743.2975-7-semen.protsenko@linaro.org>
+Subject: Re: [PATCH 2/8] power: supply: axp20x_usb_power: Add support for
+ AXP717
+To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
+ samuel@sholland.org, jernej.skrabec@gmail.com, sre@kernel.org,
+ wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ lars@metafoo.de, Chris Morgan <macromorgan@hotmail.com>
+References: <20240617220535.359021-1-macroalpha82@gmail.com>
+ <20240617220535.359021-3-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,34 +105,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240618003743.2975-7-semen.protsenko@linaro.org>
+In-Reply-To: <20240617220535.359021-3-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2024 02:37, Sam Protsenko wrote:
-> Add Exynos850 compatible and its driver data. It's only possible to
-> access TRNG block via SMC calls in Exynos850, so specify that fact using
-> QUIRK_SMC in the driver data.
+On 18/06/2024 00:05, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  drivers/char/hw_random/exynos-trng.c | 3 +++
->  1 file changed, 3 insertions(+)
+> Add support for the AXP717. It has BC 1.2 detection like the AXP813
+> and uses ADC channels like all other AXP devices, but otherwise is
+> very different requiring new registers for most functions.
 > 
-> diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_random/exynos-trng.c
-> index 98b7a8ebb909..3368a08df9ce 100644
-> --- a/drivers/char/hw_random/exynos-trng.c
-> +++ b/drivers/char/hw_random/exynos-trng.c
-> @@ -333,6 +333,9 @@ static DEFINE_SIMPLE_DEV_PM_OPS(exynos_trng_pm_ops, exynos_trng_suspend,
->  static const struct of_device_id exynos_trng_dt_match[] = {
->  	{
->  		.compatible = "samsung,exynos5250-trng",
-> +	}, {
-> +		.compatible = "samsung,exynos850-trng",
-> +		.data = (void *)QUIRK_SMC,
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-Probably this (and in previous patch) should be called flags, not
-quirks. Quirks are for work-arounds.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
 
 Best regards,
 Krzysztof
