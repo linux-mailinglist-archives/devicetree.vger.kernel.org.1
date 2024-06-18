@@ -1,94 +1,122 @@
-Return-Path: <devicetree+bounces-77134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F142E90D789
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:40:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2617490D792
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23C4A1C21B14
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:40:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4651E283EFE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:43:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA864437F;
-	Tue, 18 Jun 2024 15:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9177444C76;
+	Tue, 18 Jun 2024 15:43:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddDwqEe2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z/T0Q6No"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A431CD29;
-	Tue, 18 Jun 2024 15:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE3A047A74;
+	Tue, 18 Jun 2024 15:43:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718725250; cv=none; b=uZJ5VYMsayoUCBLNVVprdwcZvZsnm30s1dRG73xxnpZ0cUZitFsghaTbh+RyV4oWUHWB4Ma3S1J8ZDAX7TQ1iHGIQPdxQlH3MycJ35e0slfzL+sccP0yhT/mdfe/GVuHg/eG5YgYHB3VFU9vDS2L21crqPk7ktvCyS0xK5ys43o=
+	t=1718725412; cv=none; b=LjdTmtJuCbcd8WC6UxRDEO/iyZrT3lLee/KshTSHOqPD7AOMmTirXSVplD281HRk0H63mTzP7a/te66zdpYcPpvjFEPFRWGtPk91+zaqx4AS2oyRsr5EqbNBRdmH97X5HT+GsO3P4mTQIs3//HEegg/hH96n01yiUAGnl7iy/A8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718725250; c=relaxed/simple;
-	bh=PBBvM5f39oe5lUF+K9oON8xgoBZj4J0hB6vuUXqrQLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mNTgEGGRGFFcfGNhj4loYRMdndy/0kfP2zqZF8m3ATeKDdcm57eQkIpFYWIxzf/UtxCbtfMa8vRc75pcxiZ9Poi+1ldt1RdcQ72FbGei77JxLcGZcF3ZNUuiSQAA1Z2cNSKjbQ+XsxcI0vn4GlE21x2QAjGFbqUw+yKMlOzWk/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddDwqEe2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D49DC3277B;
-	Tue, 18 Jun 2024 15:40:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718725250;
-	bh=PBBvM5f39oe5lUF+K9oON8xgoBZj4J0hB6vuUXqrQLU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ddDwqEe2gkFMjXA4MyFBt1yGVnOByf9vxk0E0rkQ4fd0jWXlTvzDHbxGhlLl7Xw9D
-	 EEUjsP1Prjoz8f4Xc+yWjzhMgkslAaTNUX2poZCVpUrTJySXSqa/ZUOd7R/QS83ZLF
-	 BNzGt2QeemNKNVg45Q5jwawe4HoJpeAFOp8GXioveszJYbR0ZrSyIgpkfIIf3GEsy+
-	 jxmORm3j8U5PUtrc4Ff+N8WlH0a7FezZ4bzTabZxVHUHms9jE0bLiBPg2HbvmdDteV
-	 BcFFK3Pa1r0a2KXqpA+D9fSyDJmUx7qnAzF6vn7S5vRR3iHvu9xFtMC5OqGulmbcKS
-	 qu2fJLklgyXpA==
-Date: Tue, 18 Jun 2024 16:40:46 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yangyu Chen <cyy@cyyself.name>
-Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 4/9] dt-bindings: timer: Add SpacemiT K1 CLINT
-Message-ID: <20240618-backlands-flaring-f8b8b603868c@spud>
-References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
- <tencent_2A51312A21F88DDB7C7D82A2DA8E8EE7B808@qq.com>
+	s=arc-20240116; t=1718725412; c=relaxed/simple;
+	bh=ebpbN/dNpywtDLCB8DP9glpqyeM0ApP6XhSkY8+iOqo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=c+HBd8iwVpbmlSG8zzebmlPjPBtQ8COfJwrdy6IaFSbuX+19dFbavxE4ERiG1SmrUI+3JiI1wGVBEVexpldMdyNoO2YIFk+Qp9gXsxvSY9OtvN74dp6Jq89SsYOrg7oaRt6LE54VQ3HxNdRs5JXQVptgC/3Wi+MPKSjGTXYrGHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z/T0Q6No; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45IBCq9C005316;
+	Tue, 18 Jun 2024 15:43:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=OqODJXPbx60YyCH10yYajv
+	QGq9at/EuxoeSseHwNRC8=; b=Z/T0Q6NomxomoptUYjg6H3EEsw7o3e7rlO2lWq
+	79uhgxu6d8uNCiXAYQ6gL3osN6NbxGJKFEPOeLUn+Y/tJkaJRH6nxhENSxX1iXGx
+	jYUEWmZZYcvkm+LqRMZmTkjc66pMs8lXHE/fxrcI4T4CAH6bvED/gvWRP6Kw1JHz
+	/3fhVMR6vrAELQd85KEyGuXmzVmKXP6ciLs5qPlcRjyrzXIGn3pCZqne7CN1ethW
+	olfY7/7VP1pui/P9LlNBHWyR+4zb7iiensLoG+Q7+1N6m4dQkO1SJIQ0nZksIzuj
+	+pTM7SIcq1/KMsyi64Vtz6q0hqG0F8venv7hckOxsuT9zDmg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yu95rgqpy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 15:43:27 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45IFhPxh016645
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 15:43:25 GMT
+Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 18 Jun 2024 08:43:20 -0700
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <djakov@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <srinivas.kandagatla@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+        <quic_sibis@quicinc.com>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <abel.vesa@linaro.org>
+Subject: [PATCH V2 0/3] arm64: dts: qcom: x1e80100: Enable bwmon support
+Date: Tue, 18 Jun 2024 21:13:03 +0530
+Message-ID: <20240618154306.279637-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5X0OydBZoMElPKXW"
-Content-Disposition: inline
-In-Reply-To: <tencent_2A51312A21F88DDB7C7D82A2DA8E8EE7B808@qq.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kBnSRCW1KWj95IMeLd0QO4y1wlHAoiVt
+X-Proofpoint-ORIG-GUID: kBnSRCW1KWj95IMeLd0QO4y1wlHAoiVt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 mlxscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ spamscore=0 phishscore=0 mlxlogscore=957 suspectscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406180118
 
+This patch series enables bwmon support on X1E80100 SoCs.
 
---5X0OydBZoMElPKXW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+V2:
+* Allow for opp-tables to be optional on X1E cpu-bwmon instances. [Konrad]
+* Drop Rb from Krzysztof due to more bindings changes.
+* Use explicit request/free irq and add comments regarding the race
+  introduced when adding the IRQF_SHARED flag. [Krzysztof/Dmitry]
+* Use consistent numbering of the opps across instances. [Shiv]
+* Use ICC_TAG_ACTIVE_ONLY instead of magic numbers. [Konrad]
+* Drop fastrpc enablement patch. [Bjorn]
 
-On Mon, Jun 17, 2024 at 01:20:49AM +0800, Yangyu Chen wrote:
-> Add compatible string for SpacemiT K1 CLINT.
->=20
-> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+tag: next-20240617
+base-commit: 76db4c64526c5e8ba0f56ad3d890dce8f9b00bbc
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Sibi Sankar (3):
+  dt-bindings: interconnect: qcom,msm8998-bwmon: Add X1E80100 BWMON
+    instances
+  soc: qcom: icc-bwmon: Allow for interrupts to be shared across
+    instances
+  arm64: dts: qcom: x1e80100: Add BWMONs
 
---5X0OydBZoMElPKXW
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../interconnect/qcom,msm8998-bwmon.yaml      |  14 +-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi        | 120 ++++++++++++++++++
+ drivers/soc/qcom/icc-bwmon.c                  |  14 +-
+ 3 files changed, 144 insertions(+), 4 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.34.1
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnGqfQAKCRB4tDGHoIJi
-0pgEAQDITBy4C94fWL4Zq9cGY4dK9mpYG6qHmYAJRQiGswCVSgEAi0g3XPr0hKbi
-Cv1izHT7Bm+ZfLed0aUww0mLqrERMQo=
-=Ua7v
------END PGP SIGNATURE-----
-
---5X0OydBZoMElPKXW--
 
