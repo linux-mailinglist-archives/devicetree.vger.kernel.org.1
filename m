@@ -1,171 +1,145 @@
-Return-Path: <devicetree+bounces-76815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4764590C2CC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:26:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A48390C2EE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0D8B1F22058
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 04:26:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0AD2B21A7D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 04:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9EC47A5C;
-	Tue, 18 Jun 2024 04:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8718C134BD;
+	Tue, 18 Jun 2024 04:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jz81jFZW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bh6Na5MH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82DC63AE;
-	Tue, 18 Jun 2024 04:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF7C53A9;
+	Tue, 18 Jun 2024 04:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718684797; cv=none; b=Xx+zkDJGSgLNn3rqeQn1ESNrUAJYACb998usQkIjVVc4PsX6Qj3MUcXJy7mIqbO+r+lAaH+UY+clYZJ8nFwANLFcWia+TBl1Hv1DVojhxU0JhjyaUxr8ugGsHBM33GkjeYElpZclJBhWbUZyakX9QmZenFIdjljXr6UYNndLi9I=
+	t=1718686107; cv=none; b=gvD/YlOrPwp7FlCEH0yNCTn5sswcYNLtyrAEOwXEohskf9p68P8JA7VAf5K1KW8Pisy/zmPontjSATo5kIs+Nye1EQo3Jo0BE4vQ2fh+MReuWSwIjcl0AkVyIYQ3swgfXTBerLYyNEk3ho+jv+OAgd+yJ5oS+/WIyrM8bV8yH50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718684797; c=relaxed/simple;
-	bh=1j6EHgbnaeEoxUDtFTjZfx0qzbM1+6oLEzsVID/Qu4M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zn7vxbl0JdIqCmWzM0OMWRk2E+ar1Rzhsdb9i6Byin3wEPkir3Q7najaqkJXsvcprcfWDZJDX1pcaFU+CN5e+u9nFyBinlknQInDfQuO1fEeIyEr3XT96DpVnqJ420Hf0URTAHew3yh49p6i1hNEtTyfQrSE5mFG6Wr12Uy33YQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jz81jFZW; arc=none smtp.client-ip=209.85.161.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5baf982f56dso2986048eaf.3;
-        Mon, 17 Jun 2024 21:26:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718684795; x=1719289595; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KEMaT1TlaEmcm8Kdg8m3ufqBtJYJy4jB0+SosRoAgvY=;
-        b=jz81jFZWoMrhuP0VMBveeI5gp2CAHTHCCbNB/nI6tLCRjbbzzWjZazFlrCAKhUHYgQ
-         KH7JJIJL095RGBNInD7pumTkXf3lDRSGSZXdt9hq62kShroxqzGy+P9Gk7XP21YjBba3
-         XcKG5dDuZc5eN8ZrNGMT8J75OJcotebVvG+qgs1IOHqBiDZJfsxzXZVifM7DhG7ERKlK
-         OIAQp2/hkguI2ZNiz7oHNUNetmVLYi0Mlbi06t9EiG5toIZaRwRQB/j7vSH0HYBCIHRg
-         XFNYrH6Rm7mGLvsw5utilJfz+hG7csQBheKRl4QYxDwTAwMQ3ekIFdKM7c3qn9cXl1Ao
-         CWnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718684795; x=1719289595;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KEMaT1TlaEmcm8Kdg8m3ufqBtJYJy4jB0+SosRoAgvY=;
-        b=gvoK7I1Nl1pNrsGR60b1bEtMWVY2seQzqf49ZVdQ+lZWnSNfjcqEEwpOnGmQMAYMb1
-         bYJop8AeDvnyruCGijD+9tEhX0m4+7/mPKz6rfXEX86l3MN5fQ6A1gydBA3YAmJJHhiS
-         dqIknMCprqcCvZLyssRAZ4aw6OlF+psgBT+uDpMIjiBX3k6dTe3NsGp19Udq2diZhvN3
-         pVjpWYbjANaEsos0mP9UmL2Va8VEzmOid23buW1pX1beD+SbmoQcDkybhe8LYIt0XUW2
-         BF+LMl+ZbDwkBKKdp4cBqH+PMLTtMVnG+g9ga0TwCAbyVN/xKf89KDBekwTyXgoZrLmi
-         Z0vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6WIg+tRnGQUbXrZX+B2cwyKYF3e09i1oq0Nr5wqbA4zhoW8mREObHugH8IQond+6Z2EN7PhVA5fUX0JjweDc5TgQOX1puqCGPj2rdVeTUdicdXhUegpwjzhnKpiFC00SVSLpRJrZVFgrvW9J8pq81gtAoc4z3DZXT5i9NU4SRNphsItsTpQouplXy87s8ARJYtdEtC/wB12w3IcHcFoWDdALTsn6TgkiB
-X-Gm-Message-State: AOJu0YxHQ2PhvFmGlo5Nhu53YgLcmzcSc+vsY95q2eAnvIk+DJNSbiNu
-	FKDZT6AqlHSqL63MqL87XNxy9hxs7cC3PCRzFyCKTdDshj6V+IYytGyW7JALB0RAza/OIAbNcgh
-	J14hDTzkmTDzQESf3PF3TGll7eohTX73t
-X-Google-Smtp-Source: AGHT+IF+6ZHdp1vXryGnLrg4Z1+4ufKKFh1FZggdKzi7824NQ4NQwCLJWiNAN6LMB5TnJe0MHOkZqr45TC6yCcUF66k=
-X-Received: by 2002:a05:6820:554:b0:5ba:ea6f:acb8 with SMTP id
- 006d021491bc7-5bdadbdecefmr11947268eaf.3.1718684794716; Mon, 17 Jun 2024
- 21:26:34 -0700 (PDT)
+	s=arc-20240116; t=1718686107; c=relaxed/simple;
+	bh=uQRT705hswxV4eHkecwYH5nnl/fTVa9ZyWh6LbZP3oM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KPacbMyM3YsPwIzmOxDnVcO9MzLKlghrKaL02VWhaG8OBG2Fm1ZJ0nw+gF4F2aWWEyaaK01qqJn5LxO42oATLIleoCStXbA+7FZRolQAflXDhMcT8pmU+yqE6x7QnK/s/cPFjA/W9ATbZvPYLuYylnH6TNfZvZXlTpqfnx4/sxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bh6Na5MH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92685C3277B;
+	Tue, 18 Jun 2024 04:48:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718686107;
+	bh=uQRT705hswxV4eHkecwYH5nnl/fTVa9ZyWh6LbZP3oM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bh6Na5MHc3JrAvMbsJpyCpZKvDy2XEoJrEmyR5EvCKzupYOrvNfZogz7BJtaibGlm
+	 fYBMJkQONTPddF47mFqhUbUTi/T832VplagecpzuDma3vWQnxjImCiAxuk4n516Zfx
+	 ueMvb1lpkIBFBTmtdXj8CSo1lf9btx8mnO4JDrofcdsCyUJN/KG9ohJ5Wa6qc3mdx7
+	 8FhaxrQz87M3Vh+dRwj6vVA/3vmqFvZkovmoqYNCrUJYpChnLGj3fWI4g2nnqdfWtH
+	 V1FhxpfJT5gGQ4nwmXEzFsg++64f6qdQSzLAqyE9PylKgo9sAlYumN4wghb2pk6MCU
+	 LMG/+hx82la7w==
+Date: Tue, 18 Jun 2024 12:34:27 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Yixun Lan <dlan@gentoo.org>, Yangyu Chen <cyy@cyyself.name>,
+	linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jesse Taube <jesse@rivosinc.com>
+Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+Message-ID: <ZnEOU7D00J8Jzy-1@xhacker>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <20240616-exorcism-computing-e11e26084a62@spud>
+ <20240616224811.GC3983622@ofsar>
+ <ZnBEBQjTQtFs-fXt@xhacker>
+ <20240617-synapse-carmaker-0a59c7c6edb7@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240618003743.2975-1-semen.protsenko@linaro.org> <20240618003743.2975-5-semen.protsenko@linaro.org>
-In-Reply-To: <20240618003743.2975-5-semen.protsenko@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 18 Jun 2024 09:56:19 +0530
-Message-ID: <CANAwSgSaYip=oqtLfTzFMq_HWGJMMbEXOqKWC8ANzxNZmBFXTw@mail.gmail.com>
-Subject: Re: [PATCH 4/7] hwrng: exynos: Implement bus clock control
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240617-synapse-carmaker-0a59c7c6edb7@spud>
 
-Hi Sam,
+On Mon, Jun 17, 2024 at 04:32:59PM +0100, Conor Dooley wrote:
+> On Mon, Jun 17, 2024 at 10:11:17PM +0800, Jisheng Zhang wrote:
+> > On Sun, Jun 16, 2024 at 10:48:11PM +0000, Yixun Lan wrote:
+> > > Hi Conor
+> > >  Thanks for bringing this up
+> > > 
+> > > On 19:35 Sun 16 Jun     , Conor Dooley wrote:
+> > > > On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
+> > > > 
+> > > > No MAINTAINERS update, so I figure that means you don't want to maintain
+> > > > it going forwards? If there's someone out that that does care about the
+> > > > spacemit k1 (Jesse maybe?), then I'd be more than happy to have them
+> > > > look after it.
+> > > Yangyu kind of has limited time, too many stuff for him..
+> > > 
+> > > I'd volunteered to help on this if it can fill the gap
+> > > Also I'd be more than happy if anyone willing step forward to co-maintain..
+> > 
+> > Does maintainership work like this? Is willing to do enough?
+> > FWICT, maintainership involves active patch contributing, reviewing and
+> > maintaining the whole SoC. It is better to take over the maintainership
+> > after showing enough patch contributions and understanding of the SoC.
+> 
+> I was going to reply to your other patch about providing more complete
+> "basic" support for the SoC, but I guess I'll reply here and address
+> both points. After the k230 and th1520, which were both merged with very
 
-On Tue, 18 Jun 2024 at 06:08, Sam Protsenko <semen.protsenko@linaro.org> wrote:
->
-> Some SoCs like Exynos850 might require the SSS bus clock (PCLK) to be
-> enabled in order to access TRNG registers. Add and handle optional PCLK
-> clock accordingly to make it possible.
->
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  drivers/char/hw_random/exynos-trng.c | 22 ++++++++++++++++++++--
->  1 file changed, 20 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_random/exynos-trng.c
-> index 88a5088ed34d..4520a280134c 100644
-> --- a/drivers/char/hw_random/exynos-trng.c
-> +++ b/drivers/char/hw_random/exynos-trng.c
-> @@ -47,7 +47,8 @@
->  struct exynos_trng_dev {
->         struct device   *dev;
->         void __iomem    *mem;
-> -       struct clk      *clk;
-> +       struct clk      *clk;   /* operating clock */
-> +       struct clk      *pclk;  /* bus clock */
->         struct hwrng    rng;
->  };
->
-> @@ -141,10 +142,23 @@ static int exynos_trng_probe(struct platform_device *pdev)
->                 goto err_clock;
->         }
->
-> +       trng->pclk = devm_clk_get_optional(&pdev->dev, "pclk");
+When I saw k230 a few minutes ago, I assumed you mean k210 since I
+didn't found k230 support in linus tree now. After searching the
+maillist, I found oh there is a k230 series which is similar to this
+series, no pinctrl, no clk, no reset. Since the incomplete K230 initial
+series hasn't been merged into Linus tree now, is it possible to drop
+it so that we can avoid the same mistake for k230.
 
-Use devm_clk_get_optional_enabled to avoid clk_prepare_enable
+> basic support and have made very little progress towards being a useful
+> platform, I'm pretty reluctant to merge another platform in a super
+> basic state. I was going to make this point before you brought it up,
+> but it's good to know I am not the only one with that view. To be clear,
+> I'm not pointing blame for those platforms, I'd just like to avoid a
 
-> +       if (IS_ERR(trng->pclk)) {
-> +               ret = dev_err_probe(&pdev->dev, PTR_ERR(trng->pclk),
-> +                                   "cannot get pclk");
-> +               goto err_clock;
-> +       }
-> +
-> +       ret = clk_prepare_enable(trng->pclk);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "Could not enable the pclk.\n");
-> +               goto err_clock;
-> +       }
-> +
->         ret = clk_prepare_enable(trng->clk);
+Yep previously I thought it was fine to use a fixed clock or dummy clock
+during the initial patches, but I changed my mind now, especially after
+Samuel complained the cv1800b reset dt changes.
 
-Use devm_clk_get_enabled for this clock
+> repeat. If Yangyu doesn't have time to do any development work on the
+> platform, I'd like to see someone else (and as I mentioned Jesse is
+> interested) take on getting some of the basic driver patches written and
+> merge only when those are accepted. Having no in-tree clock and pinctrl
+> drivers is definitely a hindrance to other people doing parallel
+> development of drivers and I'd like to avoid that.
+> 
+> Getting back to your point in this mail, whoever gets the platform to
+> that state is well suited to looking after it going forwards. Some other
 
->         if (ret) {
->                 dev_err(&pdev->dev, "Could not enable the clk.\n");
-> -               goto err_clock;
-> +               goto err_clock_enable;
->         }
->
->         ret = devm_hwrng_register(&pdev->dev, &trng->rng);
-> @@ -160,6 +174,9 @@ static int exynos_trng_probe(struct platform_device *pdev)
->  err_register:
->         clk_disable_unprepare(trng->clk);
->
-> +err_clock_enable:
-> +       clk_disable_unprepare(trng->pclk);
-> +
->  err_clock:
->         pm_runtime_put_noidle(&pdev->dev);
->
-> @@ -174,6 +191,7 @@ static void exynos_trng_remove(struct platform_device *pdev)
->         struct exynos_trng_dev *trng = platform_get_drvdata(pdev);
->
->         clk_disable_unprepare(trng->clk);
-> +       clk_disable_unprepare(trng->pclk);
->
->         pm_runtime_put_sync(&pdev->dev);
->         pm_runtime_disable(&pdev->dev);
-> --
-> 2.39.2
->
->
+The person who can bring the platfrom support to a well-moduled state,
+IE, proper clk, pinctrl, reset drivers shows the passion, the code
+contribution and solid understanding of the SoC, sure he/she is
+definitely suited to maintain the SoC. I just don't think it's 
+a good practice a person can became maintainer even w/o one LoC
+contrubition to the SoC, because IMHO code contribution matters
+for maintainership.
 
-Thanks
--Anand
+> interested parties could also join as reviewers. I don't want to see
+> people joining as maintainers that are not going to have an interest
+> in the platform going forward, as that'll just end up with me as the
+> defacto maintainer.
+
+> 
+> Thanks,
+> Conor.
+
+
 
