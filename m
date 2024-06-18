@@ -1,244 +1,133 @@
-Return-Path: <devicetree+bounces-77084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E2D90D5CA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:44:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D51390D5E9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:47:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4850D289D48
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:44:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3AC4B29011
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF8115821A;
-	Tue, 18 Jun 2024 14:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4279E158A3A;
+	Tue, 18 Jun 2024 14:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X5ocSYpJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FXXxyAH+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0476A1586C7;
-	Tue, 18 Jun 2024 14:31:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591D213CFBD
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 14:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718721092; cv=none; b=M/34CnS4UPY9PVtfs0zL4fg//15ep546gYyothGhwFU/LJ+bmcBZhb+uNo8SaAwMlpGmSuL6deQO9AGQ7EKgVrpImhUT5GjUcGqINxe7JqjWz0gkZrOGWUy0WAEtOLF1RQw4g87aP0W+3uQ9ZGMdb17IKyn3X9w43YTzxyEjZh8=
+	t=1718721192; cv=none; b=p+NU44jY1G3tCIE44EMQnREOOep0K9gvTQ1V7Xz+3ytz00/GRFOALUPjbtnGXYNuVtC21ZnsEWImpqjO8xogYrtmWtneqt/KsBaE5WgHt0tyhcY2bX3Ju3WHIz3TCLDPVkm94+Q49NGLYtXhwVBrSHdBA1SQ+aazakk6eiZ45XQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718721092; c=relaxed/simple;
-	bh=s4vPJGYWZCq+Cc2fZQWHmYxr1kYfC6dNufjoTd7Y6TM=;
+	s=arc-20240116; t=1718721192; c=relaxed/simple;
+	bh=1uclk27162No5C6YVhRORLMRgBplWKGOIFoaR7DHLpc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a64T0/O3jVX/N86zfCC+MoHSC6hwkzTZR7690dg20q8Fi8bYpQFRrYvTS01h91MFq2AT+DjcMat8DC7IJxcWXFvdmaBEbFf/QkhLuJuOQzf0jtAns7BiPXsqX9nQPocyeSweASdvntI0MwPIzHLUXC/W/1v7ZwRveZppoMYo4z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X5ocSYpJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 953B0C4AF1C;
-	Tue, 18 Jun 2024 14:31:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718721090;
-	bh=s4vPJGYWZCq+Cc2fZQWHmYxr1kYfC6dNufjoTd7Y6TM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X5ocSYpJ0jkKRdDS6HTT6shzfyaklzJSIT1k5TgV8wpFrw8OhUTMkrLOFvDA4u9h2
-	 Vv4HVgRbKZaQ2ox1YTpa1P/PX/+ERbL6rBQbymCvE4lsVniYP9e/vxeB5La28wdIrL
-	 4kixtBFfa3jGwWnnqBnyo44/3x5yd/ukuKv8+dgd77LjU11GaHtMpfV+qY5QEAK2Fh
-	 kJC6380d2D7Bpv9K5kfCwxXWiOTxb9Ms0LlInW8rNVmampiWcJlFAoSztpDD2f6qjl
-	 ZwKzQVdZFEEP2BRNTqsI0KiCUfS0lbrvw4wZxzas/Ova1j+Umz6TKROyzHAeU4+m8h
-	 tXR4FeAVy+mUQ==
-Date: Tue, 18 Jun 2024 15:31:26 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: renesas,vin: Add binding for
- V4M
-Message-ID: <20240618-author-unwrapped-519359da5161@spud>
-References: <20240610113124.2396688-1-niklas.soderlund+renesas@ragnatech.se>
- <20240610113124.2396688-2-niklas.soderlund+renesas@ragnatech.se>
- <20240610-screen-wolverine-78370c66d40f@spud>
- <20240610165935.GA382677@ragnatech.se>
- <20240610-yoga-antler-e6447592de16@spud>
- <20240611110617.GD382677@ragnatech.se>
- <20240613165111.GA2005299-robh@kernel.org>
- <CAMuHMdUQr0pzhL6Tq=R_TTUSu5wDZO-sWQHkuLg4C=xv9TyoWQ@mail.gmail.com>
- <20240618135753.GQ382677@ragnatech.se>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZbxmvYGsFVIF9HqzpCXZ0RR80hQUaDr4B65ufF++pU3HUI55lAOBT+SZkYi9vSmaaO9Fwfb+23vUWkaErjlN7YhZ8j8CLFNwKPo8f22fiiBz5MjBq51tAdTeUUyYSLMSDbviNnMLs46kxBztH847X3ZQEdPlLkIlTeWKN1kMsww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FXXxyAH+; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52cc671f170so690868e87.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 07:33:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718721188; x=1719325988; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MeKlo2c/wPe7HMPiv6tGRU6PP+qdrCpRbKZmuqxx74A=;
+        b=FXXxyAH+Me9S0YFVmz8a0E1WOy09yqJUpEbAuI5HG9MLBOnPS6dKPXI/m6vh3dZDp4
+         Ea/EEq/JEFD+lCQNIC0DBBD/NKTUI98BS4nffnSbsoWdMESq88ZsFjW+nfPCfYEvRroa
+         t92khjbXP4iHPbgdcVeqFbappadc1k8yGjJW/FjelKsJHj/sbwf5Rgy8rOOvL9upDH1B
+         wyq6OLPP+58/spwch/aKw0Wpzil7BtHnpXtY+Ogb3QbB3bZQwWuseQsyTA8cCECdXT8o
+         LtQzk5LHXWsqZBns9XEG8vkVN8S/uGRCvet0gDGNAGo+NRyNnMYUMbvmb5EgsZceNHVN
+         tPGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718721188; x=1719325988;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MeKlo2c/wPe7HMPiv6tGRU6PP+qdrCpRbKZmuqxx74A=;
+        b=bhVGLxQ3JeUfIou445y5vsgTQjlGPyJi9ghAHmBW2jXEl/t2strTuBI6ETfHE8SmZZ
+         d5U5GicAY4+0mXfFSUF1tB5MBKgr/1e2PCBvm28/DNy/+TRP1aSHQcgSVBh0SEeT0g6Y
+         f447IGiX5aeKJlQ//N0eylPd5jrVefbJLuW4UalHid7nXg1Lp9JKJuOXB9Kugzr8u7mU
+         xvQSqTbaSJf6PS6oFPJ6i6q0rkz02Qb1sDcpO/m9hf3sMhEaTh3ObtLJACu9tImkt9o0
+         SiZOIZeivv1jW8NdTGfCIOPce92vg+q7cEdFLZ+sl5V5vSxJOYm6ogeHpOFCT42FaxyF
+         kbVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVbFLfYgnSmne5SuSGWlFEfhoWIVb7wxlzQnWhsyJenlfGsLogsPlXoBrYK9ivjQbEa6bEskGyQEzd6AvUF4kHORP0xGs8vN/KHjQ==
+X-Gm-Message-State: AOJu0Yz+0NXOhrzz2gkPe94KAbAer4U1/aib2AsSF0nFbIwJTMe+T0D0
+	De0X6NASXwcuUKTklgeRjx2owgqQPVQymya4dXEqWTEDmdzW3S4UhpAgcNJn8w0=
+X-Google-Smtp-Source: AGHT+IEpc4WisyaLGnyyDP2DsG3mH6xTLPLHzgbkfUQ6D8wsp4gW1Eyt6iWP6o9lJ0JWRyoGq1IN6A==
+X-Received: by 2002:a05:6512:2034:b0:52b:96b0:4e1e with SMTP id 2adb3069b0e04-52cc47d4770mr660841e87.13.1718721188557;
+        Tue, 18 Jun 2024 07:33:08 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca288804dsm1563550e87.262.2024.06.18.07.33.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jun 2024 07:33:08 -0700 (PDT)
+Date: Tue, 18 Jun 2024 17:33:06 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: neil.armstrong@linaro.org
+Cc: Jagadeesh Kona <quic_jkona@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, 
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>
+Subject: Re: [PATCH V4 8/8] arm64: dts: qcom: sm8650: Add video and camera
+ clock controllers
+Message-ID: <fr4j6gignu7ll4nhur65asj35rbsbzr3w4xtxq55jxcfcmb5nh@l6l3qyhk7qmw>
+References: <20240602114439.1611-1-quic_jkona@quicinc.com>
+ <20240602114439.1611-9-quic_jkona@quicinc.com>
+ <3ad2d00f-6b5f-46c5-b95c-c8d68e8be736@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CkYNxKz40gnO5wVW"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240618135753.GQ382677@ragnatech.se>
+In-Reply-To: <3ad2d00f-6b5f-46c5-b95c-c8d68e8be736@linaro.org>
 
+On Tue, Jun 18, 2024 at 02:17:23PM GMT, neil.armstrong@linaro.org wrote:
+> On 02/06/2024 13:44, Jagadeesh Kona wrote:
+> > Add device nodes for video and camera clock controllers on Qualcomm
+> > SM8650 platform.
+> > 
+> > Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> > Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sm8650.dtsi | 26 ++++++++++++++++++++++++++
+> >   1 file changed, 26 insertions(+)
+> > 
 
---CkYNxKz40gnO5wVW
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[...]
 
-On Tue, Jun 18, 2024 at 03:57:53PM +0200, Niklas S=C3=B6derlund wrote:
-> Hi All,
->=20
-> On 2024-06-13 21:35:13 +0200, Geert Uytterhoeven wrote:
-> > Hi Rob, Conor,
-> >=20
-> > On Thu, Jun 13, 2024 at 6:51=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> > > On Tue, Jun 11, 2024 at 01:06:17PM +0200, Niklas S=C3=B6derlund wrote:
-> > > > On 2024-06-10 22:32:29 +0100, Conor Dooley wrote:
-> > > > > On Mon, Jun 10, 2024 at 06:59:35PM +0200, Niklas S=C3=B6derlund w=
-rote:
-> > > > > > On 2024-06-10 17:03:49 +0100, Conor Dooley wrote:
-> > > > > > > On Mon, Jun 10, 2024 at 01:31:23PM +0200, Niklas S=C3=B6derlu=
-nd wrote:
-> > > > > > > > Document support for the VIN module in the Renesas V4M (r8a=
-779h0) SoC.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+rene=
-sas@ragnatech.se>
-> > > > > > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > > > > > ---
-> > > > > > > >  Documentation/devicetree/bindings/media/renesas,vin.yaml |=
- 1 +
-> > > > > > > >  1 file changed, 1 insertion(+)
-> > > > > > > >
-> > > > > > > > diff --git a/Documentation/devicetree/bindings/media/renesa=
-s,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > > > > > > index 5539d0f8e74d..168cb02f8abe 100644
-> > > > > > > > --- a/Documentation/devicetree/bindings/media/renesas,vin.y=
-aml
-> > > > > > > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.y=
-aml
-> > > > > > > > @@ -54,6 +54,7 @@ properties:
-> > > > > > > >                - renesas,vin-r8a77995 # R-Car D3
-> > > > > > > >                - renesas,vin-r8a779a0 # R-Car V3U
-> > > > > > > >                - renesas,vin-r8a779g0 # R-Car V4H
-> > > > > > > > +              - renesas,vin-r8a779h0 # R-Car V4M
-> > > > > > >
-> > > > > > > Your driver patch suggests that this is compatible with the g=
- variant.
-> > > > > >
-> > > > > > Currently it is. But that not always be true, I tried to outlin=
-e this in
-> > > > > > to cover letter.
-> > > > >
-> > > > > To be honest, I don't usually read cover letters when reviewing b=
-indings.
-> > > > > Information about why things are/are not compatible should be in a
-> > > > > commit itself.
-> > > > >
-> > > > > >     The V4M capture pipeline is similar to the other Gen4 SoC s=
-upported
-> > > > > >     upstream already V4H. Currently all futures supported for V=
-IN on V4M are
-> > > > > >     also supported by V4H and the driver code can be shared. Bu=
-t as done for
-> > > > > >     other R-Car IP bindings a new dedicated binding for V4M is =
-created.
-> > > > > >     This have proved prudent in the past where quirks are found=
- even within
-> > > > > >     the same generation as more advance use-cases are enabled.
-> > > > >
-> > > > > I don't understand how this precludes using the g variant as a fa=
-llback
-> > > > > compatible. I'm not suggesting that you don't add a specific one =
-for the
-> > > > > h variant.
-> > > >
-> > > > The bindings have been around for a while and currently there are 2=
-5 SoC
-> > > > specific compatibles, one for each SoC supported. Each compatible
-> > > > consist of the SoC model number, not the VIN IP model/version numbe=
-r as
-> > > > no such versioning schema exist.
-> > > >
-> > > > The datasheets are specific for each SoC and there are differences
-> > > > between almost every SoC. There are of course lots of similarities
-> > > > between the SoCs and the similarities are cluster around the 3
-> > > > generations (Gen{2,3,4}) supported.
-> > > >
-> > > > Using the g variant as fallback in DTS for h variant even if we als=
-o add
-> > > > a specific one for h is confusing. As g and h are two different SoC.
-> > >
-> > > Why? That is the very definition of how "compatible" is supposed to
-> > > work.
-> > >
-> > > > The g variant is r8a779g0 which is the SoC name/number for V4H.
-> > > > The h variant is r8a779h0 which is the SoC name/number for V4M.
-> > > >
-> > > > I think the core of the problem is that there are no versioning sch=
-ema
-> > > > for the individual IP blocks used on each SoC. For better or worse =
-the
-> > > > bindings for lots of Renesas IPs are centred around SoC name/number=
- and
-> > > > not the individual IP implementations.
-> > >
-> > > We've tried IP version based compatibles before. It doesn't work. Gue=
-ss
-> > > what, the IP version changes with nearly every SoC. Chip designers ha=
-ve
-> > > no discipline.
-> >=20
-> > The R-Car V4M capture pipeline is similar to e.g. the R-Car V4H capture
-> > pipeline. But it is not identical, hence the different compatible value=
-s.
-> > AFAIU, for the current feature-set, the driver does not need to handle
-> > the differences.  But that may change later...
->=20
-> How can I best move forward here? The proposed compatible is not a IP=20
-> block specific one, but a SoC specific one. This is the design used for=
-=20
-> the R-Car video capture pipeline and we already use 25 of them to=20
-> support different SoCs in the R-Car Gen1, Gen2, Gen3 and Gen4 families=20
-> using the schema proposed in this patch.
->=20
-> If I understand the feedback correctly there is not so much an issue=20
-> with adding this new compatible. Rather that the driver do not use a=20
-> fallback compatible as currently the compatible added by this patch, as=
-=20
-> the driver currently treats it the same as another SoC in the R-Car Gen4=
-=20
-> family. Have I understand the issue correctly?
+> 
+> And add the missing required-opps for the clock controllers like
+> dispcc.
 
-Yes, there's __nothing__ wrong with a specific compatible (in fact they
-are encouraged), it's the adding of a specific compatible without a
-fallback when the driver change indicates that a fallback is suitable.
+Unless the opps is required because cmd-db has lower level than
+required for the functioning of the device, there should be no need to
+add the required-opps.
 
-> If so, then yes the driver currently treats it the same as another Gen4=
-=20
-> SoC. But we already know there are differences between the video capture=
-=20
-> pipeline in these SoCs, however the driver do not yet cover these parts. =
-=20
-> So going the fallback compatible route now could create comp ability=20
-> issues down the road. Is it not better to do the specific thing now and=
-=20
-> avoid that issue all together?
+> 
+> Thanks,
+> Neil
+> 
+> 
+> > +
+> >   		mdss: display-subsystem@ae00000 {
+> >   			compatible = "qcom,sm8650-mdss";
+> >   			reg = <0 0x0ae00000 0 0x1000>;
+> 
 
-It entirely depends on what the variances are. If the H variant adds
-some new features that the G one does not have, then there's not gonna
-be a compatibility issue down the road. If it is the other way around,
-or both variants have unique elements, then the fallback wouldn't be
-suitable. The onus would be is on you to explain why in your commit
-message for the binding if it one of the latter two cases.
-
---CkYNxKz40gnO5wVW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnGaPgAKCRB4tDGHoIJi
-0goSAQDB30pTQe/uM99qDjfjBg9xOfXS23DmZYdbCxWyvQeyqQEAp22Gh9b3dK37
-v5WXntCmnV+Kyjk9R0kgFMi+iVYd1Ao=
-=knxP
------END PGP SIGNATURE-----
-
---CkYNxKz40gnO5wVW--
+-- 
+With best wishes
+Dmitry
 
