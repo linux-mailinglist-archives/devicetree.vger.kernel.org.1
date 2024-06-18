@@ -1,221 +1,223 @@
-Return-Path: <devicetree+bounces-77029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C271A90D3B4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:11:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B3890D3BD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:12:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 539D52869B8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:11:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DE9F1C25261
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F2413B79B;
-	Tue, 18 Jun 2024 13:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE49155744;
+	Tue, 18 Jun 2024 13:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="EeqgOsBk";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="tdzCR9j/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k36UooHe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA2014EC51;
-	Tue, 18 Jun 2024 13:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F8B1553BB;
+	Tue, 18 Jun 2024 13:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718719081; cv=none; b=r/4ByWkoFD/0Ptq/HpfBMKRIdxTC0jf4d/KHStVNU/K6QpSR+nHc7JhG9V0Uuj7elVvwRlZmi59g27e9UDSUhYeRvua5zmeuqCGZgYshHisaBpCxxMmATAWdbTrf9s0TB/9tot5yLNwysLLhPzDkn93FAQSdMqGTpNoS8WLlV94=
+	t=1718719191; cv=none; b=pT8n3wR7vIetnW/n/TRGTVJB/mivYwKc54p3PjdoKXVn89B/jcBgXX/ce7I/RspYde7/WzX/fX1QvDHBbs3L/AxtEsWePrk6vNRqg2hrDSWz67Rc0U550bvojlYa9EoeOQ/l3gygLMcjemAae0pj+yeBucEjU9ta+1xsOl+C8Xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718719081; c=relaxed/simple;
-	bh=rzsqE1D7VkqsWf9I4B8YvfpxsM+ZgF02Nz3TWMDravc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fKHfm/HTLFYcNGkT6X8OWb3QBO23tNQGaive5BoKPnehzQAfdavPlPXSvTlm/SqQANDhTYAq+q0VwaVQAv3s1N7wJJrhkdJhYPDIEKpyp+qZ+cpp9K3UdF3HzPGFmArN1wDBAXmGmJ1Hh4MEUX3DfNv7Hv3ecOfuHgdLOc2Mng8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=EeqgOsBk; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=tdzCR9j/; arc=none smtp.client-ip=103.168.172.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id A6FE31140270;
-	Tue, 18 Jun 2024 09:57:56 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Tue, 18 Jun 2024 09:57:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1718719076;
-	 x=1718805476; bh=NToRqhzCizf7uTTXzhxvLeBaN6sx9H8Z+41x2Ds80ck=; b=
-	EeqgOsBkI1cUKAuNonVIc2zTyNtvRacTlzhjI2/wn6Kab9457mHtFZ0VUWm011Ro
-	SEqaJqfi8RIAZXoXbAWTZl3jvMIxmNRZbvzqxz73RfqnXZKlF8Gf98WkuRrU05nl
-	kktV5hYX3REhMZWMTLQBGjkngH9pshZU48gVU+PRViyDA9GmBiLP2cn3/FAbpc6K
-	hRvJery1MOyzlA7yb9aj8JZZyhsyi00bIkmowLIAZYuERp6LUanPJcq52kfRSX0I
-	u1C1ccuOpPvUqtrSKhwGBLLDO74U4omWle+wkB1C3D7o+JVkNKDGcX9ArZ9zNqB7
-	XRD+5M+BkqgYNmX2w6WVBw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1718719076; x=
-	1718805476; bh=NToRqhzCizf7uTTXzhxvLeBaN6sx9H8Z+41x2Ds80ck=; b=t
-	dzCR9j/bLDuA4RkDPGE745/6Pq1MzxVb+3RuByRJPWqDPer+Arz4JCvUvlRCGf+4
-	vlatN3tW9YpE9pq5jZHZuRw3BjZATclrxXsm54As6zh/Hv8u+CL+BhgZf6F0D9CX
-	W8Fh789gso9WX+Dr2uayodA3I9b3U6BYcKTlnVMJ6kZcbtb9IGcnqDvRjY/zU51l
-	jWGSERe/pGEXFI+4EDcySv0w232XVXf9mlUFKq+Zfu0EHYHX7ctmticdjMi1Mnpg
-	yMSjxdUwUTdNflqZRpoQIlaOoXsD44/jEOLrGe9NDmHZhnNL5pekc5qJJXfIfeXQ
-	gT8sdvkKih5horT5XLKow==
-X-ME-Sender: <xms:ZJJxZsCiDrIWWjJUIctwLFPhT9yGtVEoPvA4KsjFd_QrlmOYUnyP2w>
-    <xme:ZJJxZujnacfv07yCEADmfb3_BiuecuHUGq2bw1Msaor9YMPSGLQZtOPca3IAFahdh
-    WnszbbteGGm4saAK9w>
-X-ME-Received: <xmr:ZJJxZvmFsv-a1jPzmG6Lwjcpd6B4QLOeSaN36wgh2px48UXBcZ802JCymIBhZmoxigoy2d9f_-nmSktnHCQn1I9IBT647VE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedvkedggeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhk
-    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
-    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeefhfellefh
-    ffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvdelieenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggv
-    rhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
-X-ME-Proxy: <xmx:ZJJxZiwt0PcsdeuVWbvnYjdCz3jw6hLgZfZsOzjNBzveAfG7l-MXGg>
-    <xmx:ZJJxZhSIDJXAlGuS2-1qfCVJCGqQqtON7Va2f0N3ESMo1doL3omlMA>
-    <xmx:ZJJxZtaE7gMTFWKpVWLEVEvob3BTAQrAWDE3Jneo5_YxRaGXXJEiyw>
-    <xmx:ZJJxZqRkzHMCvPBbkQnGGXXNUdHhPYTbrT6QcUH8tTxuoxrMA2T0yw>
-    <xmx:ZJJxZmJHtaofSTIeDss6SVlNCN1ZbNdNd6v3XyFlxt5BacHde2vtAFOZ>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 18 Jun 2024 09:57:55 -0400 (EDT)
-Date: Tue, 18 Jun 2024 15:57:53 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: renesas,vin: Add binding for
- V4M
-Message-ID: <20240618135753.GQ382677@ragnatech.se>
-References: <20240610113124.2396688-1-niklas.soderlund+renesas@ragnatech.se>
- <20240610113124.2396688-2-niklas.soderlund+renesas@ragnatech.se>
- <20240610-screen-wolverine-78370c66d40f@spud>
- <20240610165935.GA382677@ragnatech.se>
- <20240610-yoga-antler-e6447592de16@spud>
- <20240611110617.GD382677@ragnatech.se>
- <20240613165111.GA2005299-robh@kernel.org>
- <CAMuHMdUQr0pzhL6Tq=R_TTUSu5wDZO-sWQHkuLg4C=xv9TyoWQ@mail.gmail.com>
+	s=arc-20240116; t=1718719191; c=relaxed/simple;
+	bh=NSipSLp2nG6EjiX/c5tUJTeTkiL6bf1l/S7iaC8WvW0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N8t5MzQ0f3Wqsw8zVI+4jTr4KHHY1dxV76fuA72wlFLG6U50CGmCtRaom3wD/2BeFBYZI3SeJkETg3UCYlD/5artVCzwIY1bgysUBIlz0akgPGdJSPAC0O2Z43kwggAIbv8rnN3dj9tsNaCpqmA9JwmPe7XCL0VloR1sc7GlVRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k36UooHe; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57d06101d76so58990a12.3;
+        Tue, 18 Jun 2024 06:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718719188; x=1719323988; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Adi2wWb7CQgdnxLc6JlMBQCMQ7TabQhjqNcj/v5iN0I=;
+        b=k36UooHeJsTzPzoUQkRKYHspmF+qjBs70zwjpj6VGnnlq/Td7A4NJLAnc72Vez5e81
+         dHGuKFrKUI6x9rTurN1oP/xJCdl2R1ymgBb2wd1UL5Whc8ZFTReerZbS4zwyHF+WhoWU
+         5+hitBYr0xyTmGN4RxC2RWgYmUJDDyzB8Vik7J7xz3e/h/6wavFtEitdA5nLuoPfECwV
+         ZlDQeWA7Nv9dC6ZJ6YeYcs9xxhKQfIdim4Qx9SXY5kbSLczMKwp9sGLgp3/jszzPELT8
+         QPpQuo4LmupEB0qu+hwvR6dGbz+U85pRKoKOWzaLf6uteq+Mn268f+isRXbYQoG96lEt
+         cvoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718719188; x=1719323988;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Adi2wWb7CQgdnxLc6JlMBQCMQ7TabQhjqNcj/v5iN0I=;
+        b=hLG6LKtr2t1iFVXMT3/5qfKKxW849qYE3nfwxz3aehWVXxAEXAzsEcflNu/oexWP/Q
+         g1W+A8+F68nKFAIE4LG9BkZpmEh4aY7VLFQvdfpjk9/rl/rYqA9IgWh3K7JhPxAkSjnH
+         uh4jeWiCehjEDZf/1/E4eJ+H5aFbuhGmuz68zUQ785fbufx2kQ/cq5ZolPFgG0BBA4dt
+         76BuiQtuvDjw7NxKoVBDr6xFkT7lUKxqq37ds6S/2LIrIT04Z8sWycrs5wmOtSAaui0P
+         8+hHBIQzxx359AGYQV2OhfpcwQkbbQqHnZrUpGitEm6FVcYHpy9gvNMupndGWkZ+l8Zr
+         foPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUqpiFRUSJomeHWzoFHBkqyqX1mTywGAWRu+vOomHyyD1DDnoy479eYAMsUf32sgv2LJqbZyOgLJPM72xodXuyFh1t8TWqZkRMzx6Ob36GPAsyx2LLlUUd/Pi8RJvhw1EYssh+vcwCu2GfBdeUq3b1XOsFMEvXa1OUa9j8e1b4tWKEijT66SYTPgz2pDvlfXX44vn3WyKxRXmgGO2wwPY2NaI/ONhoh/lo33MH77ikJJfuRBRjoCYsfFEH1JKfmVFt/o07GeU/MQzedAr202bqtKpR/9GUBofHoQ21bXcCfpnoin2O7XBjXVTgb3Y9FuUuHDdV/FJT3VT5aNubqL+G2xC4G4MKh5Jbn6SqUbarOk5Lg82Qr8CkQuPmquH9Khr7mAgh/7b6iF4E6OG5FulcugS9gz1yb
+X-Gm-Message-State: AOJu0YzW2x+xDevQnVd+y2gzWRGwYwzNtsbwWBDCRx15Lnb+lwxm7Sha
+	Qq7JWgy4NMLYqz74S6ujYeetJz3jnnI7LEYVHuwYDLUThgTqExH4
+X-Google-Smtp-Source: AGHT+IHkXZgoTKxIUb0ylYKUXiHMUMsGLjdaUUwhyfeBvSUWkw++uYmoTYRWLAznXRQEGKmegPpZkA==
+X-Received: by 2002:a05:6402:2c5:b0:57d:5e:83f0 with SMTP id 4fb4d7f45d1cf-57d005e8481mr820906a12.14.1718719187201;
+        Tue, 18 Jun 2024 06:59:47 -0700 (PDT)
+Received: from [127.0.1.1] (mm-167-232-122-178.mgts.dynamic.pppoe.byfly.by. [178.122.232.167])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72da156sm7731278a12.22.2024.06.18.06.59.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jun 2024 06:59:46 -0700 (PDT)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: [PATCH v3 00/23] This is continued work on Samsung S9(SM-9600)
+ starqltechn
+Date: Tue, 18 Jun 2024 16:59:34 +0300
+Message-Id: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUQr0pzhL6Tq=R_TTUSu5wDZO-sWQHkuLg4C=xv9TyoWQ@mail.gmail.com>
+X-B4-Tracking: v=1; b=H4sIAMaScWYC/x2N0QrCMAxFf2Xk2ULddA5/RWSkNVsDNc60E2Hs3
+ w0+ngP33A0KKVOBa7OB0ocLv8SgOzQQE8pMjh/G0Pr25PvjxZWK+s6VYpKRpdKsWG0zrkupSvh
+ 0IQ79cPahnagDywQs5IKixGQhWXM2uShN/P3/3u77/gNgLEi3hwAAAA==
+To: Sebastian Reichel <sre@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, phone-devel@vger.kernel.org
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
+ linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ Dzmitry Sankouski <dsankouski@gmail.com>, Rose Hudson <rose@krx.sh>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718719184; l=5095;
+ i=dsankouski@gmail.com; s=20240618; h=from:subject:message-id;
+ bh=NSipSLp2nG6EjiX/c5tUJTeTkiL6bf1l/S7iaC8WvW0=;
+ b=Sr8pA2ujQFTHIDig3qhFg2f1KEeBbgU4VxItfHedbfa6oxlb7f4Sec7x5JgfHjY52G/css65m
+ KY4otbWl+7dB0CpeN2Z/x/SuDr4cWH2saHT22U9tDUZGj+70EOppvtS
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=6pMMVVDDReSiRgPCbMOUauN5nS3ty4Sf5b7a2gi4x0M=
 
-Hi All,
+Add support for new features:
+- sound (headphones and mics only)
+- gpu
+- panel
+- buttons
+- MAX77705 MFD:
+  - charger
+  - fuelgauge
+  - haptic
+  - led
 
-On 2024-06-13 21:35:13 +0200, Geert Uytterhoeven wrote:
-> Hi Rob, Conor,
-> 
-> On Thu, Jun 13, 2024 at 6:51 PM Rob Herring <robh@kernel.org> wrote:
-> > On Tue, Jun 11, 2024 at 01:06:17PM +0200, Niklas Söderlund wrote:
-> > > On 2024-06-10 22:32:29 +0100, Conor Dooley wrote:
-> > > > On Mon, Jun 10, 2024 at 06:59:35PM +0200, Niklas Söderlund wrote:
-> > > > > On 2024-06-10 17:03:49 +0100, Conor Dooley wrote:
-> > > > > > On Mon, Jun 10, 2024 at 01:31:23PM +0200, Niklas Söderlund wrote:
-> > > > > > > Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
-> > > > > > >
-> > > > > > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > > > > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > > > > ---
-> > > > > > >  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
-> > > > > > >  1 file changed, 1 insertion(+)
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > > > > > index 5539d0f8e74d..168cb02f8abe 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > > > > > @@ -54,6 +54,7 @@ properties:
-> > > > > > >                - renesas,vin-r8a77995 # R-Car D3
-> > > > > > >                - renesas,vin-r8a779a0 # R-Car V3U
-> > > > > > >                - renesas,vin-r8a779g0 # R-Car V4H
-> > > > > > > +              - renesas,vin-r8a779h0 # R-Car V4M
-> > > > > >
-> > > > > > Your driver patch suggests that this is compatible with the g variant.
-> > > > >
-> > > > > Currently it is. But that not always be true, I tried to outline this in
-> > > > > to cover letter.
-> > > >
-> > > > To be honest, I don't usually read cover letters when reviewing bindings.
-> > > > Information about why things are/are not compatible should be in a
-> > > > commit itself.
-> > > >
-> > > > >     The V4M capture pipeline is similar to the other Gen4 SoC supported
-> > > > >     upstream already V4H. Currently all futures supported for VIN on V4M are
-> > > > >     also supported by V4H and the driver code can be shared. But as done for
-> > > > >     other R-Car IP bindings a new dedicated binding for V4M is created.
-> > > > >     This have proved prudent in the past where quirks are found even within
-> > > > >     the same generation as more advance use-cases are enabled.
-> > > >
-> > > > I don't understand how this precludes using the g variant as a fallback
-> > > > compatible. I'm not suggesting that you don't add a specific one for the
-> > > > h variant.
-> > >
-> > > The bindings have been around for a while and currently there are 25 SoC
-> > > specific compatibles, one for each SoC supported. Each compatible
-> > > consist of the SoC model number, not the VIN IP model/version number as
-> > > no such versioning schema exist.
-> > >
-> > > The datasheets are specific for each SoC and there are differences
-> > > between almost every SoC. There are of course lots of similarities
-> > > between the SoCs and the similarities are cluster around the 3
-> > > generations (Gen{2,3,4}) supported.
-> > >
-> > > Using the g variant as fallback in DTS for h variant even if we also add
-> > > a specific one for h is confusing. As g and h are two different SoC.
-> >
-> > Why? That is the very definition of how "compatible" is supposed to
-> > work.
-> >
-> > > The g variant is r8a779g0 which is the SoC name/number for V4H.
-> > > The h variant is r8a779h0 which is the SoC name/number for V4M.
-> > >
-> > > I think the core of the problem is that there are no versioning schema
-> > > for the individual IP blocks used on each SoC. For better or worse the
-> > > bindings for lots of Renesas IPs are centred around SoC name/number and
-> > > not the individual IP implementations.
-> >
-> > We've tried IP version based compatibles before. It doesn't work. Guess
-> > what, the IP version changes with nearly every SoC. Chip designers have
-> > no discipline.
-> 
-> The R-Car V4M capture pipeline is similar to e.g. the R-Car V4H capture
-> pipeline. But it is not identical, hence the different compatible values.
-> AFAIU, for the current feature-set, the driver does not need to handle
-> the differences.  But that may change later...
+Changes in version 2:
+- s2dos05 regulator:
+  - hex to decimal in regulator values
+  - fix compatible value
+  - remove interrupt specific code, because it's
+    empty in vendor kernel, and I cannot test it on
+    available hardware anyway.
 
-How can I best move forward here? The proposed compatible is not a IP 
-block specific one, but a SoC specific one. This is the design used for 
-the R-Car video capture pipeline and we already use 25 of them to 
-support different SoCs in the R-Car Gen1, Gen2, Gen3 and Gen4 families 
-using the schema proposed in this patch.
+Changes in version 3:
+Version 3 has significant changes:
+- more drivers added
+- s2dos05 driver converted to MFD
+- disable crypto patch removed(disabled on distro level)
+- dts framebuffer node along with related patches removed,
+because panel driver added
+- fix 'make O=.output_arm64 CHECK_DTBS=y qcom/sdm845-samsung-starqltechn.dtb'
+errors, but it still complains on 'monitored-battery' and
+'power-supplies' though I have 'power-supply.yaml' link in charger
+and fuel gauge bindings.
 
-If I understand the feedback correctly there is not so much an issue 
-with adding this new compatible. Rather that the driver do not use a 
-fallback compatible as currently the compatible added by this patch, as 
-the driver currently treats it the same as another SoC in the R-Car Gen4 
-family. Have I understand the issue correctly?
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+---
+Dzmitry Sankouski (23):
+      power: supply: add undervoltage health status property
+      gcc-sdm845: Add rates to the GP clocks
+      dt-bindings: panel: add Samsung s6e3ha8
+      dt-bindings: mfd: add maxim,max77705
+      dt-bindings: input: add maxim,max77705-haptic
+      dt-bindings: power: supply: add maxim,max77705 charger
+      dt-bindings: power: supply: add maxim,max77705
+      dt-bindings: led: add maxim,max77705-leds
+      dt-bindings: mfd: add samsung,s2dos05
+      dt-bindings: regulator: add samsung,s2dos05
+      drm/panel: Add support for S6E3HA8 panel driver
+      mfd: Add new driver for MAX77705 PMIC
+      input: add max77705 haptic driver
+      power: supply: max77705: Add charger driver for Maxim 77705
+      power: supply: max77705: Add fuel gauge driver for Maxim 77705
+      leds: max77705: Add LEDs support
+      mfd: add s2dos series core driver
+      regulator: add s2dos05 regulator support
+      power: supply: s2dos05: Add fuel gauge driver for s2dos05
+      arm64: dts: qcom: starqltechn: remove wifi
+      arm64: dts: qcom: starqltechn: remove framebuffer
+      arm64: dts: qcom: starqltechn: fix usb regulator mistake
+      arm64: dts: qcom: starqltechn: add new features
 
-If so, then yes the driver currently treats it the same as another Gen4 
-SoC. But we already know there are differences between the video capture 
-pipeline in these SoCs, however the driver do not yet cover these parts.  
-So going the fallback compatible route now could create comp ability 
-issues down the road. Is it not better to do the specific thing now and 
-avoid that issue all together?
+ .../bindings/display/panel/samsung,s6e3ha8.yaml    |  76 ++
+ .../devicetree/bindings/input/maxim,max77705.yaml  |  31 +
+ .../devicetree/bindings/leds/maxim,max77705.yaml   |  45 ++
+ .../devicetree/bindings/mfd/maxim,max77705.yaml    | 112 +++
+ .../devicetree/bindings/mfd/samsung,s2dos05.yaml   |  89 +++
+ .../power/supply/maxim,max77705-charger.yaml       |  30 +
+ .../bindings/power/supply/maxim,max77705-fg.yaml   |  35 +
+ .../bindings/regulator/samsung,s2dos05.yaml        |  36 +
+ MAINTAINERS                                        |  15 +
+ .../boot/dts/qcom/sdm845-samsung-starqltechn.dts   | 607 +++++++++++++++-
+ drivers/clk/qcom/gcc-sdm845.c                      |  14 +
+ drivers/gpu/drm/panel/Kconfig                      |   7 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-samsung-s6e3ha8.c      | 426 ++++++++++++
+ drivers/input/misc/Kconfig                         |  11 +
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/max77705-haptic.c               | 378 ++++++++++
+ drivers/leds/Kconfig                               |   6 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-max77705.c                       | 166 +++++
+ drivers/mfd/Kconfig                                |  25 +
+ drivers/mfd/Makefile                               |   3 +
+ drivers/mfd/max77705-core.c                        | 278 ++++++++
+ drivers/mfd/max77705-irq.c                         | 299 ++++++++
+ drivers/mfd/s2dos-core.c                           | 141 ++++
+ drivers/power/supply/Kconfig                       |  21 +
+ drivers/power/supply/Makefile                      |   3 +
+ drivers/power/supply/max77705_charger.c            | 772 +++++++++++++++++++++
+ drivers/power/supply/max77705_fuelgauge.c          | 624 +++++++++++++++++
+ drivers/power/supply/s2dos05-fg.c                  | 427 ++++++++++++
+ drivers/regulator/Kconfig                          |   8 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/s2dos05-regulator.c              | 362 ++++++++++
+ include/linux/mfd/max77705-private.h               | 281 ++++++++
+ include/linux/mfd/max77705.h                       |  20 +
+ include/linux/mfd/max77705_charger.h               | 225 ++++++
+ include/linux/mfd/s2dos05.h                        | 123 ++++
+ include/linux/mfd/samsung/s2dos-core.h             |  21 +
+ include/linux/mfd/samsung/s2dos05.h                | 115 +++
+ include/linux/power/max77705_fuelgauge.h           | 107 +++
+ include/linux/power_supply.h                       |   1 +
+ 41 files changed, 5927 insertions(+), 17 deletions(-)
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240617-starqltechn_integration_upstream-bc86850b2fe3
 
+Best regards,
 -- 
-Kind Regards,
-Niklas Söderlund
+Dzmitry Sankouski <dsankouski@gmail.com>
+
 
