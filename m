@@ -1,147 +1,268 @@
-Return-Path: <devicetree+bounces-76851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4008790C485
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 09:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 456FD90C4D2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:19:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E80D52839CD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 07:41:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 367152826B1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38533481D7;
-	Tue, 18 Jun 2024 07:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8DB14F11A;
+	Tue, 18 Jun 2024 07:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nS5BBQVw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nV9RiH/f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C926F4EB;
-	Tue, 18 Jun 2024 07:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076ED13A899;
+	Tue, 18 Jun 2024 07:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718695865; cv=none; b=byifz8BAqePowpmjT/IFN8r9p6vYHX8sbxdbXOHd8meOE2Lk28mA6lKs2jy4jLiZM5LfY9E4rV8UEW3QPk8A9Au1zNvxcnSR1XkI+KvNR3hva/ZJyXew3BzGYRBVYnhCPNVW8ISvhycl92hEEj2rP5ObeZ2NSj72BFZymip2JqI=
+	t=1718695354; cv=none; b=kZoJSArKVViD6gX7ZR6TYgFkbkKQFP/H3E+jIfomdLh7nAUT+lipf0GcQ50RJOhbl+waKUAq3oad2/oHl4MRFyXButJ29H3ScJc5GpL6iNX94XGRH/P3e9nE0n0ed4bL0lzkIZnQc8wxSwh7+mm8Bsfd9pw6+yhFiDHXaplvts0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718695865; c=relaxed/simple;
-	bh=A4KaJLUkFLBPzaobrNvTVqqaFSfOtX8gEubMGY+5R1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Dw6oDuNq2JNcRmCyml465mUFaGfeEYIn8S+YzPHnTnJ1CEWp5WMM9za/DFeedo5YWzJVmYUViSNqFfnl/1Bkd0Ed0RUmcAmLBZn6XKxnnESaP5Xs5xfGqKyK6pngsaZsZqoXg8WE2lt8LMCC9PyVmba1A2hc8ALTjGiUdDKxyWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nS5BBQVw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82D1EC3277B;
-	Tue, 18 Jun 2024 07:31:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718695864;
-	bh=A4KaJLUkFLBPzaobrNvTVqqaFSfOtX8gEubMGY+5R1k=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=nS5BBQVwQ68/SzhSHbZAq33PaR8jAJKCOFJhDmifCTIZGNvctcsK+CE1FyapdhNN2
-	 dVj4/CS3r+vnVcAbzWCQt2JRtWTGL55Qh+Bu+kvw5MhhYxiZWgdsJwsWaqKGQxMZF+
-	 VGtNd4dvgyqZMwEuHUcKPaXh7xeKFU4yHyu0UDeXoVxDwD5Bf9WUG5JZJVGwu7C3jV
-	 qr2YjHSAqxQVi331U0Z0KMUKGZ9VPxYqUY3HUCamGgBV3x3WYpg5b2DeadagN2Jqwj
-	 YbVOk8TGlKjQKfepSD4LO/Y5k0cp1frcOGREXI8ZvYvmBrFk6LUA6m4YU+3F4anwrx
-	 DfNIBAhGOGqVg==
-Message-ID: <0c59482e-ce40-450c-af6b-91d19f647775@kernel.org>
-Date: Tue, 18 Jun 2024 09:30:59 +0200
+	s=arc-20240116; t=1718695354; c=relaxed/simple;
+	bh=9DAgUIuFVOElWSND21t3bONcKg4ll2vl9TNDna6oRQY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iXAirPpw2Ssv/Vlk5ZqpEJi4TcJihy/+WJd50sXaodXgWDpSJRJGUhZLkQmmaf7ZVZyIbAXGYua5tgXS2oXj2h4b8E0C5znJoZdET4/CHLotS3Afb1b920/mscyMep9YcLo+RIiM2lp2puZjgrR77V8xZdo57TzUfMwA+4b0mLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nV9RiH/f; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45HLh92Z030331;
+	Tue, 18 Jun 2024 07:22:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=okuEunB0CZqbDIx9SXzeMH
+	wZ0COiv+XvO+JxfWiFvJI=; b=nV9RiH/f4UGbc/5wF+ouAcbody1PpxwYx1J/eq
+	YlanJf48MLFkI+p38whh0CtaCq3TD1Qm/7n6LqipVzFc0zd4oGv8mKjfDmiIz6u4
+	I0PZiJuQsLYCwqUjTp+HzUpP66cCdn6FyA7ZsAI2MtHeya9Qqx+XMBNiIzZGIa1l
+	r/fg2h4i/FXiRP/K54v8VxdecFtA9tgH4JJlXRp0RJbaSPtAlc12x+mtEiU4Dz3F
+	tBm77RN0vlRo/Qt9wX+VGlc2ZEQgL+E/ydFwnzroE14Ru5bn+qRkmji/sg4//v1Z
+	+qwVOJq2LOtDhlALjO2Xd2gbRJfkH7horz/n91RL8e+iv6gA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ytwa2gvcx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 07:22:28 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45I7MQ9f023051
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 07:22:27 GMT
+Received: from tengfan-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 18 Jun 2024 00:22:20 -0700
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>
+Subject: [PATCH v10 0/4] arm64: dts: qcom: aim300: add AIM300 AIoT
+Date: Tue, 18 Jun 2024 15:21:58 +0800
+Message-ID: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: cirrus,cs530x: Add initial DT
- binding
-To: Paul Handrigan <paulha@opensource.cirrus.com>, broonie@kernel.org,
- lgirdwood@gmail.com, linux-sound@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- patches@opensource.cirrus.com
-References: <20240617190102.1010597-1-paulha@opensource.cirrus.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240617190102.1010597-1-paulha@opensource.cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: IiO7n51OyEUI5_kpNQSOfZUmQDiQA3DR
+X-Proofpoint-ORIG-GUID: IiO7n51OyEUI5_kpNQSOfZUmQDiQA3DR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=999 bulkscore=0 adultscore=0
+ impostorscore=0 priorityscore=1501 spamscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406180051
 
-On 17/06/2024 21:01, Paul Handrigan wrote:
-> Add the YAML DT bindings for the cs530x high performance
-> audio ADCs.
-> 
-> Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
-> ---
+Add AIM300 AIoT support along with usb, ufs, regulators, serial, PCIe,
+and PMIC functions.
+AIM300 Series is a highly optimized family of modules designed to
+support AIoT applications. It integrates QCS8550 SoC, UFS and PMIC
+chip etc.
+Here is a diagram of AIM300 AIoT Carrie Board and SoM
+ +--------------------------------------------------+
+ |             AIM300 AIOT Carrier Board            |
+ |                                                  |
+ |           +-----------------+                    |
+ |power----->| Fixed regulator |---------+          |
+ |           +-----------------+         |          |
+ |                                       |          |
+ |                                       v VPH_PWR  |
+ | +----------------------------------------------+ |
+ | |                          AIM300 SOM |        | |
+ | |                                     |VPH_PWR | |
+ | |                                     v        | |
+ | |   +-------+       +--------+     +------+    | |
+ | |   | UFS   |       | QCS8550|     |PMIC  |    | |
+ | |   +-------+       +--------+     +------+    | |
+ | |                                              | |
+ | +----------------------------------------------+ |
+ |                                                  |
+ |                    +----+          +------+      |
+ |                    |USB |          | UART |      |
+ |                    +----+          +------+      |
+ +--------------------------------------------------+
+The following functions have been verified:
+  - uart
+  - usb
+  - ufs
+  - PCIe
+  - PMIC
+  - display
+  - adsp
+  - cdsp
+  - tlmm
 
-Where is the changelog? It's v3 but what happened here? No explanation
-here, no cover letter.
+Documentation for qcs8550[1] and sm8550[2]
+[1] https://docs.qualcomm.com/bundle/publicresource/87-61717-1_REV_A_Qualcomm_QCS8550_QCM8550_Processors_Product_Brief.pdf
+[2] https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-8-Gen-2-Product-Brief.pdf
 
-If you are going to send any new version, provide detailed changelog
-(see Submitting patches).
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 ---
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+v9 -> v10:
+  - update the patch commit message and some code comments
+  - use *_dtbs.mbn instead of *_dtbs.elf
+  - use "te-default-state" instead of "te-active-state" and
+    "te-suspend-state"
+v8 -> v9:
+  - Update the patch commit message and some code comments
+v7 -> v8:
+  - rebase patch series on top of:
+    https://lore.kernel.org/linux-arm-msm/20240502-topic-sm8x50-upstream-pcie-1-phy-aux-clk-v5-0-10c650cfeade@linaro.org/
+  - add pinctrl configurations for pcie0 and pcie1 in AIM300 SOM dtsi
+  - move some common usb node settings to SoC dtsi
+  - verified with dtb check, and result is expected, because those
+    warnings are not introduced by current patch series.
+    arch/arm64/boot/dts/qcom/sm8550.dtsi:3037.27-3092.6: Warning
+    (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000: unnecessary
+    #address-cells/#size-cells without "ranges" or child "reg" property
+v6 -> v7:
+  - correct typos in the commit message
+  - move mdss_dsi0, mdss_dsi0_phy, pcie0_phy, pcie1_phy and usb_dp_qmpphy
+    vdda supply to qcs8550-aim300.dtsi
+  - move the perst and wake gpio settings of pcie0 and pcie1 to
+    qcs8550-aim300.dtsi
+  - move the clock frequency settings of pcie_1_phy_aux_clk, sleep_clk
+    and xo_board to qcs8550-aim300.dtsi
+  - verified with dtb check, and result is expected, because those
+    warnings are not introduced by current patch series.
+    arch/arm64/boot/dts/qcom/sm8550.dtsi:3037.27-3092.6: Warning
+    (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000: unnecessary
+    #address-cells/#size-cells without "ranges" or child "reg" property
+    arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dtb:
+    phy@1c0e000: clock-output-names: ['pcie1_pipe_clk'] is too short
+        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
+    arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dtb: phy@1c0e000: #clock-cells:0:0: 1 was expected
+        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
+v5 -> v6:
+  - move qcs8550 board info bebind sm8550 boards info in qcom.yaml
+v4 -> v5:
+  - "2023-2024" instead of "2023~2024" for License
+  - update patch commit message to previous comments and with an updated
+    board diagram
+  - use qcs8550.dtsi instead of qcm8550.dtsi
+  - remove the reserved memory regions which will be handled by
+    bootloader
+  - remove pm8550_flash, pm8550_pwm nodes, Type-C USB/DP function node,
+    remoteproc_mpss function node, audio sound DTS node, new patch will
+    be updated after respective team's end to end full verification
+  - address comments to vph_pwr, move vph_pwr node and related
+    references to qcs8550-aim300-aiot.dts
+  - use "regulator-vph-pwr" instead of "vph_pwr_regulator"
+  - add pcie0I AND pcie1 support together
+  - the following patches were applied, so remove these patches from new
+    patch series:
+      - https://lore.kernel.org/linux-arm-msm/20240119100621.11788-3-quic_tengfan@quicinc.com
+      - https://lore.kernel.org/linux-arm-msm/20240119100621.11788-4-quic_tengfan@quicinc.com
+  - verified with dtb check, and result is expected, because those
+    warnings are not introduced by current patch series.
+    DTC_CHK arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dtb
+    arch/arm64/boot/dts/qcom/sm8550.dtsi:3015.27-3070.6: Warning
+    (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000: unnecessary
+    #address-cells/#size-cells without "ranges" or child "reg" property
+    arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dtb:
+    opp-table: opp-75000000:opp-hz:0: [75000000, 0, 0, 75000000, 0, 0, 0, 0] is too long
+        from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+    arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dtb:
+    opp-table: opp-150000000:opp-hz:0: [150000000, 0, 0, 150000000, 0, 0, 0, 0] is too long
+        from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+    arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dtb:
+    opp-table: opp-300000000:opp-hz:0: [300000000, 0, 0, 300000000, 0, 0, 0, 0] is too long
+        from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+    arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dtb:
+    opp-table: Unevaluated properties are not allowed ('opp-150000000', 'opp-300000000', 'opp-75000000' were unexpected)
+        from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+v3 -> v4:
+  - use qcm8550.dtsi instead of qcs8550.dtsi, qcs8550 is a QCS version
+    of qcm8550, another board with qcm8550 will be added later
+  - add AIM300 AIoT board string in qcom.yaml file
+  - add sm8550 and qcm8550 fallback compatible
+  - add qcm8550 SoC id
+  - add reserved memory map codes in qcm8550.dtsi
+  - pm8010 and pmr73d are splited into carrier board DTS file. Because
+    the regulators which in pm8550, pm8550ve and pm8550vs are present
+    on the SoM. The regulators which in pm8010 and pmr73d are present
+    on the carrier board.
+  - stay VPH_PWR at qcs8550-aim300.dtsi file
+      VPH_PWR is obtained by vonverting 12v voltage into 3.7 voltage
+      with a 3.7v buck. VPH_PWR is power supply for regulators in AIM300
+      SOM. VPH_PWR regulator is defined in AIM300 SOM dtsi file.
+v2 -> v3:
+  - introduce qcs8550.dtsi
+  - separate fix dtc W=1 warning patch to another patch series
+v1 -> v2:
+  - merge the splited dts patches into one patch
+  - update dts file name from qcom8550-aim300.dts to qcs8550-aim300 dts
+  - drop PCIe1 dts node due to it is not enabled
+  - update display node name for drop sde characters
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+previous discussion here:
+[1] v9: https://lore.kernel.org/linux-arm-msm/20240529100926.3166325-1-quic_tengfan@quicinc.com
+[2] v8: https://lore.kernel.org/linux-arm-msm/20240513090735.1666142-1-quic_tengfan@quicinc.com
+[3] v7: https://lore.kernel.org/linux-arm-msm/20240424024508.3857602-1-quic_tengfan@quicinc.com
+[4] v6 RESEND: https://lore.kernel.org/linux-arm-msm/20240401093843.2591147-1-quic_tengfan@quicinc.com
+[5] v6: https://lore.kernel.org/linux-arm-msm/20240308070432.28195-1-quic_tengfan@quicinc.com
+[6] v5: https://lore.kernel.org/linux-arm-msm/20240301134113.14423-1-quic_tengfan@quicinc.com
+[7] v4: https://lore.kernel.org/linux-arm-msm/20240119100621.11788-1-quic_tengfan@quicinc.com
+[8] v3: https://lore.kernel.org/linux-arm-msm/20231219005007.11644-1-quic_tengfan@quicinc.com
+[9] v2: https://lore.kernel.org/linux-arm-msm/20231207092801.7506-1-quic_tengfan@quicinc.com
+[10] v1: https://lore.kernel.org/linux-arm-msm/20231117101817.4401-1-quic_tengfan@quicinc.com
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+Tengfei Fan (4):
+  dt-bindings: arm: qcom: Document QCS8550 SoC and the AIM300 AIoT board
+  arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
+  arm64: dts: qcom: add base AIM300 dtsi
+  arm64: dts: qcom: aim300: add AIM300 AIoT
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/arm/qcom.yaml         |   8 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/qcs8550-aim300-aiot.dts     | 315 ++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi  | 405 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs8550.dtsi         | 162 +++++++
+ 5 files changed, 891 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
+
+
+base-commit: 76db4c64526c5e8ba0f56ad3d890dce8f9b00bbc
+-- 
+2.25.1
 
 
