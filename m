@@ -1,106 +1,198 @@
-Return-Path: <devicetree+bounces-76927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E72190C915
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB81090C918
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:22:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C527D1C22AD3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:22:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE1391C22EF0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339031E863;
-	Tue, 18 Jun 2024 10:12:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4875D13B5AE;
+	Tue, 18 Jun 2024 10:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v3Gw0NZX"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="0H5wjngi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBE973460
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 10:12:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12D9677104;
+	Tue, 18 Jun 2024 10:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718705573; cv=none; b=PVo3Ry6zLLlUjc4DcIpRjKZet42weW152eWkfTDdduTQouLoHYgpCcvu654oK0sKxYZ7W/NS7ydfsO7agUbWW5ZyPJ/cjmXqQmRtQnCB03YA/DjhiUcoiBl5XLkpc1DGi73BnvgWlP9Izw0dpvPr9sZT64yLxDIPDeejpuM8Hyg=
+	t=1718705823; cv=none; b=LSqbacQohPGLsQ4/xD1oqcWq0q34OshDdZwivaZr8baPhGbcgKbNHzXzATwmqGfoW3tPiKkB8KWrLwUDl4rc4G0WNmdOR3Ac8yLRr5q7xcFho8bnMipw4WEVSnJII++EFZ+/b8BjGSEL7A06u23nv1G/LalkeivZeKlnYnHB5MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718705573; c=relaxed/simple;
-	bh=6mJGdO91RXcGUUmpTMS5iulnchhEDhRErBL2SBn7y1Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mcfV25UDwbjoBbvupX+GwqjqKwr2q+jHSLSZn8B77G8J7VvNuRSN3pbehjNw62xHtxYKqlAHUoIDsgEBiEUQsoHeF1R/cE8YRclhx6ycjs50hXA0wrWfetQEOE3C+zsHkOportH2IMde7KpvOXXgKFHzCtvVDu2aIW91WGftK7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v3Gw0NZX; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52cc14815c3so1107383e87.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 03:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718705569; x=1719310369; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6mJGdO91RXcGUUmpTMS5iulnchhEDhRErBL2SBn7y1Y=;
-        b=v3Gw0NZXO1jsVwmU74+EYrvst9h0EqYrhmWX5XckwBNSX8bEpBKScxgslTCZj7dG0v
-         u1dHJZmM54Jk0gqL14R5aibdDgOj+Sq1dVwI/3DtNB3LgbqoAJnUM8YoHR57FkhrIgAV
-         3aeuzBrTav4PW02t7xL9LqU71plj1zZ8kaxnUL0JIbgvckbK7WBWkwmDaH+mD+1Q5rSf
-         xAiIIraUqzUuqbp6CutiWzQVHkZgC0WARo3r011HZMsjkduFGO9pVCwE3B74mCedffKH
-         pMLq06RiKXPkW7h+Gr6LbY/KKxfMfLW++jhbL/aIv2QyAVyPVxRxeXD7dCz2ABC29Cwu
-         ZCtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718705569; x=1719310369;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6mJGdO91RXcGUUmpTMS5iulnchhEDhRErBL2SBn7y1Y=;
-        b=TKn5gKMsCl7X+d2C33jCryYvjfwa79IDkbVqa3jECu1Z0c5blwMP1zSY5aE3QR68qb
-         j0A3fk3r3DFHPKK4d6497APKABRPVrj0ntovmgKTlpTtB8elWe1uVjrV3qaYDGt9IOev
-         hQh/s1fjMomh3wUb2Pqk3/Nd8VFjdMcCw2zwQaSjPCkIQejhvZ2Dhij4g4LrfEU1hXi3
-         zYGX0vKSSxtBkUIRAUz7T94cXle7w6Az0axDzmWPZ7U3oZdHKNTahG1dCbJ10kZL9rhC
-         az1uTAtMPEnwIfd7f+7/NZDr681DL0fpyv+0BZ54tKU1ghxMWcEvOqoAoUFUln1Uc0DJ
-         hyUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCViIIsL8F7F8ltUpwlQ1cV/rPgHZmfcenjtpsfNb7SNey6t/Za1oM1uunsLqnHVLuOlb7WykH9BRv3y4ZL67mAhPAQE0sbrb9daSQ==
-X-Gm-Message-State: AOJu0YxkGINZSGmIv/SlDpd+r0b8NavV9upo2ZYGqnccWOxqed5SdX4z
-	vF9RwZb0YrM7zM9XhGfZu+dYkh5n8SQ/YLzi7OZuYrgBE5W9aWiEW/AVAqIUFZB3QdCz/vAQmTC
-	SSrXY4ZVvn9uPHUb88y23usntoByZ7T2uCWNhtw==
-X-Google-Smtp-Source: AGHT+IEKxSYIL7tUGgByZhiLAFjBAQVY6s4nNE+5nGraekK5gKASUp0MAAKFzLc/2g9E9O4NH5x6/Qwg+Tbi7p1WJE4=
-X-Received: by 2002:a05:6512:ad2:b0:52c:9468:c991 with SMTP id
- 2adb3069b0e04-52ca6e55dfbmr8037884e87.14.1718705569563; Tue, 18 Jun 2024
- 03:12:49 -0700 (PDT)
+	s=arc-20240116; t=1718705823; c=relaxed/simple;
+	bh=gx5XNpX9FgJu98i8CWmHAYRyuGCEFHvQShWetZfMZMk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HHulMumhYi41xDIurI/VJMMzUF7OSBsPVWQbkpcVykMuiwXM9UczvriHziG3vho5gRrrqjhfd9VI0JrCFKef3RzWyF+r9U4Si+TFdmkJeSGM2Us/Z3QUqG2rVi0A3FXs8EBzLgMxfESA+uZnp40slY2Us0KAEUjLLKxqmNLU/kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=0H5wjngi; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718705821; x=1750241821;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gx5XNpX9FgJu98i8CWmHAYRyuGCEFHvQShWetZfMZMk=;
+  b=0H5wjngiS/dWh90CUW5R0m01syYMj0uhnSix3qOfk+4AfEHtNG2yI9vJ
+   agaAd4gp5avwcDn+bTYBv7Dv11hDozStt8+BfGUdANcd+ka7yHUTPe1Lf
+   vFTkuKysQp+TGzElUI6OPaoldxU/dZ5MbXS5sA1/PkjPR2kFsfetNpfkh
+   kpokRS81DHi8oCfSlg92b9Qwf6gBu3Cquoq5S13HEz75MYk6txuZ3DQsn
+   wY26vqAeFRqSkWD1u5XEYH/s54dQ+UZz4U/ke7hGQpDzhs02nftYDrwEt
+   EmS3pqHeSh0JDov3ipE7gqD0YnWUK7YOikekDoO1VOsdKxZw9oUhaGywX
+   w==;
+X-CSE-ConnectionGUID: o2SKGVjbQSiEKU8bW2iCXQ==
+X-CSE-MsgGUID: 7ZBDQuLCQhWCJdZiKrs8Rg==
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
+   d="asc'?scan'208";a="195429902"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Jun 2024 03:16:53 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 18 Jun 2024 03:16:49 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Tue, 18 Jun 2024 03:16:46 -0700
+Date: Tue, 18 Jun 2024 11:16:28 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Jisheng Zhang <jszhang@kernel.org>
+CC: Conor Dooley <conor@kernel.org>, Yixun Lan <dlan@gentoo.org>, Yangyu Chen
+	<cyy@cyyself.name>, <linux-riscv@lists.infradead.org>, Conor Dooley
+	<conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, Anup
+ Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Jesse Taube <jesse@rivosinc.com>
+Subject: Re: [PATCH v1 0/9] riscv: add initial support for SpacemiT K1
+Message-ID: <20240618-hardwood-footrest-ab5ec5bce3cf@wendy>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <20240616-exorcism-computing-e11e26084a62@spud>
+ <20240616224811.GC3983622@ofsar>
+ <ZnBEBQjTQtFs-fXt@xhacker>
+ <20240617-synapse-carmaker-0a59c7c6edb7@spud>
+ <ZnEOU7D00J8Jzy-1@xhacker>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240521-pinctrl-scmi-imx95-v1-0-9a1175d735fd@nxp.com>
- <CACRpkdbpL=HUXj0hFAo+JNki_RA9aix2sW1cg13g9=89d93PZw@mail.gmail.com> <AM6PR04MB5941328E3343E5263C87528D88C12@AM6PR04MB5941.eurprd04.prod.outlook.com>
-In-Reply-To: <AM6PR04MB5941328E3343E5263C87528D88C12@AM6PR04MB5941.eurprd04.prod.outlook.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 18 Jun 2024 12:12:37 +0200
-Message-ID: <CACRpkdYprmc2vm8fVHBSYD+LtJavZ1tj7uQyTeVGkSv88RYF=Q@mail.gmail.com>
-Subject: Re: [PATCH 0/3] pinctrl: scmi: support i.MX95 OEM extensions with
- fsl,pins property
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Aisheng Dong <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ls0dFZComN3YRvgQ"
+Content-Disposition: inline
+In-Reply-To: <ZnEOU7D00J8Jzy-1@xhacker>
+
+--ls0dFZComN3YRvgQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 13, 2024 at 8:30=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+On Tue, Jun 18, 2024 at 12:34:27PM +0800, Jisheng Zhang wrote:
+> On Mon, Jun 17, 2024 at 04:32:59PM +0100, Conor Dooley wrote:
+> > On Mon, Jun 17, 2024 at 10:11:17PM +0800, Jisheng Zhang wrote:
+> > > On Sun, Jun 16, 2024 at 10:48:11PM +0000, Yixun Lan wrote:
+> > > > Hi Conor
+> > > >  Thanks for bringing this up
+> > > >=20
+> > > > On 19:35 Sun 16 Jun     , Conor Dooley wrote:
+> > > > > On Mon, Jun 17, 2024 at 01:18:52AM +0800, Yangyu Chen wrote:
+> > > > >=20
+> > > > > No MAINTAINERS update, so I figure that means you don't want to m=
+aintain
+> > > > > it going forwards? If there's someone out that that does care abo=
+ut the
+> > > > > spacemit k1 (Jesse maybe?), then I'd be more than happy to have t=
+hem
+> > > > > look after it.
+> > > > Yangyu kind of has limited time, too many stuff for him..
+> > > >=20
+> > > > I'd volunteered to help on this if it can fill the gap
+> > > > Also I'd be more than happy if anyone willing step forward to co-ma=
+intain..
+> > >=20
+> > > Does maintainership work like this? Is willing to do enough?
+> > > FWICT, maintainership involves active patch contributing, reviewing a=
+nd
+> > > maintaining the whole SoC. It is better to take over the maintainersh=
+ip
+> > > after showing enough patch contributions and understanding of the SoC.
+> >=20
+> > I was going to reply to your other patch about providing more complete
+> > "basic" support for the SoC, but I guess I'll reply here and address
+> > both points. After the k230 and th1520, which were both merged with very
+>=20
+> When I saw k230 a few minutes ago, I assumed you mean k210 since I
+> didn't found k230 support in linus tree now. After searching the
+> maillist, I found oh there is a k230 series which is similar to this
+> series, no pinctrl, no clk, no reset. Since the incomplete K230 initial
+> series hasn't been merged into Linus tree now, is it possible to drop
+> it so that we can avoid the same mistake for k230.
 
-> Just checked your repo in git.kernel.org, not see the patches.
-> No big deal, just wonder if they got forgotten.
+Yeah, I think you're right there and I should drop the k230 stuff from
+for-next. I forgot that it was not already in, because I had sent it for
+6.10 and Arnd didn't like some of the inter-branch dependencies that my
+PR had and told me to drop it. If nobody really cares for getting the
+platform to a reasonably usable state, then I guess we will just not
+support it. And it seems like there's little interest in it, despite
+being the first system you could buy with ratified vector. It's not a
+great platform to work with documentation wise, at least as a non-Chinese
+speaker like myself nor is the U-Boot M-Mode -> OpenSBI -> Linux vendor
+boot flow good for iterating on kernels.
 
-I had to figure out some bureaucracy around the git branches, it should
-be there now.
+> > basic support and have made very little progress towards being a useful
+> > platform, I'm pretty reluctant to merge another platform in a super
+> > basic state. I was going to make this point before you brought it up,
+> > but it's good to know I am not the only one with that view. To be clear,
+> > I'm not pointing blame for those platforms, I'd just like to avoid a
+>=20
+> Yep previously I thought it was fine to use a fixed clock or dummy clock
+> during the initial patches, but I changed my mind now, especially after
+> Samuel complained the cv1800b reset dt changes.
+>=20
+> > repeat. If Yangyu doesn't have time to do any development work on the
+> > platform, I'd like to see someone else (and as I mentioned Jesse is
+> > interested) take on getting some of the basic driver patches written and
+> > merge only when those are accepted. Having no in-tree clock and pinctrl
+> > drivers is definitely a hindrance to other people doing parallel
+> > development of drivers and I'd like to avoid that.
+> >=20
+> > Getting back to your point in this mail, whoever gets the platform to
+> > that state is well suited to looking after it going forwards. Some other
+>=20
+> The person who can bring the platfrom support to a well-moduled state,
+> IE, proper clk, pinctrl, reset drivers shows the passion, the code
+> contribution and solid understanding of the SoC, sure he/she is
+> definitely suited to maintain the SoC. I just don't think it's=20
+> a good practice a person can became maintainer even w/o one LoC
+> contrubition to the SoC, because IMHO code contribution matters
+> for maintainership.
 
-Yours,
-Linus Walleij
+Right, and the th1520 is suffering a bit from that at the moment, the
+maintainers other than yourself haven't sent a single LoC for it, and
+have not gotten involved after you have become unable to spend time on
+it. I do know that things are likely to change there soon, which is
+good.
+
+Thanks,
+Conor.
+
+--ls0dFZComN3YRvgQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnFefAAKCRB4tDGHoIJi
+0njCAQDRmhJBRDXSxo9jmNwWNsNOWf+p+Of21MpteeW5PvqBYQD+PRRpSWRtgdSR
+MTHkDx0FRVW1eds3JwR/x3zZL4n7/Ak=
+=BGK6
+-----END PGP SIGNATURE-----
+
+--ls0dFZComN3YRvgQ--
 
