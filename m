@@ -1,172 +1,162 @@
-Return-Path: <devicetree+bounces-76788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B5290C034
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 02:13:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2501E90C039
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 02:13:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 289C61F2300E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 00:13:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4F26282975
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 00:13:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBA328F7;
-	Tue, 18 Jun 2024 00:12:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C996F1367;
+	Tue, 18 Jun 2024 00:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MRyY4Yn9"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="WBgEgdTK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2045.outbound.protection.outlook.com [40.92.103.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F7D14A32;
-	Tue, 18 Jun 2024 00:12:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718669572; cv=none; b=cIsngI/L8lj9Pk9+UX39L5VCXtBhXeiQZLNEWI+Y0JEQZ4x68eyC+/ZK00A7sdeeysOXhHJkRhUpUBifRF0cnDmLsnq77US018Sgp7Uf+qkJgPa1rJczbav5PF7nQX306zAbmB1XL5OhG7rbsjm/bTBW9xQWouV1adt4dwLC+Jc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718669572; c=relaxed/simple;
-	bh=ZssrfLhGo7qeCAZkP0oTbUOoz0gnwOHAEKILuErktGk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tw5Ru6v4ka6nGjjq3FGACeJYVI868uI0RUozQn5428ByY+mBZAmYRhHYv35eWhMSxK2N8h+wePE/MFvkm0+/CFqczUxA8mHGwLeJTgpvhkrfoKabQUBHhMYYoUXfHde2pNw9b6dPJWGEC0XKDAG9EIl+VU2bbTz572JEO5p+T8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MRyY4Yn9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45HHwNA3014973;
-	Tue, 18 Jun 2024 00:12:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	D/eU246qe6pmI10E2leuVzYg6Wzmy58R9WJLAW2mwJc=; b=MRyY4Yn9mruKyAIg
-	FV/sJKk3SeQTrOEjtC45UXFrwFX4sj9e5xXim3VqiDL+HXcVlssXMmK0jn3AL3V6
-	5eFZHILFc2KplLewAUs9lHSmHF6N0ixcQi+0ilNfaM8YPas+N6alMdH7iLMUf+v5
-	Tkeq/SqwpNxTX1fZ3I+73MqfPVNB4Dsmmkocoy0u1aeZhCszWCe9lQZaTEPEvNTx
-	NZp8gIu6OY2LS8PMYzcYc3QAwiCcHILsPTaMSJBS0vAl+RcZMPDoDkNhwRymd9Ji
-	A/9YM7XxZ5cn246mpYPNtylQkTFuU2+A3lwUFZj8w1nXbic2RxisXwA0gZrIVFVV
-	vOMrdQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ytt0trq0q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 00:12:38 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45I0Cbtg001808
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 00:12:37 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 17 Jun
- 2024 17:12:31 -0700
-Message-ID: <6f0d6ef8-fc15-43f5-8106-8b96d5045243@quicinc.com>
-Date: Tue, 18 Jun 2024 08:12:29 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56A917753;
+	Tue, 18 Jun 2024 00:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718669604; cv=fail; b=cwKH5hgH7lzqFmbzvlhm0FufqBqpg2YUdMH1Ex08m1X9YvDTgQw0/eicGvGBjusQLhnNoy+DBFxvDblnKrtNQQQ0j1rgEszwCcUvkrSbelZv3DPHGy4JQnfwSNDmmAisGDI8aLPY5dF3dnN1MiqMjYLbJ6XDnZODY5lHa+Sv2K8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718669604; c=relaxed/simple;
+	bh=FkHLLGHfovyYPWmn7eD1NpIodXCD69EPIXZQH2qrxU4=;
+	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=FI8x86IOYlcLbAkYo84k4FgfoZ7Mj4L4+WiYD/AG1sfpVyK4AVN8sh6u5MPRZyyWjSqvh8Me/6EY+1Utkhseg0cok7Ttkfd6BG94n1SznsLDf06krrfzd4Iu71mMPqkQV1ASv4eTfh/gua8lr7D4AwoWlIwqlkbVQ6rhT/W9prg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=WBgEgdTK; arc=fail smtp.client-ip=40.92.103.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fIpaJlyZrLq/zJ3yRDQbByLm4TMyZ0/smlxtBuEK8Ly7LGem6JdEnxM8yvYZzHJPgI06rmTNB9asaFTXJhi3ggfu6klQlWoF6WovTtA4QcrvWbLxvAhkjMo7yzfvOsCTYHGggHcCObLOiqc53M4EmjD9i6vncsVxOJNP4FLZGzHWvNB6f72gYIallB45nbwlT0BFHvef9s4Rwfubn95GVc6DK7bCaaR6zMtlAvZioC16mpsZRLEHYNbu82tHR5c55sVhWJfaG0TSUExxRj26jHPXCa3WV6FdfkJPUJi9sHpsDysqX021PPY3GWEqOFmeF0ynnorohbrPXTfhoUVhSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FkHLLGHfovyYPWmn7eD1NpIodXCD69EPIXZQH2qrxU4=;
+ b=IK8+DIv/PihYiwOLewo8ge87lQckZdC/mxityjK+3eg+Z23r5wnLLp9zyZFuWCwwZPQc0peMQaMaJ9F5UzVh5Ts5ilUiiU8F57yntkVs5i2aWzyb1In9+g4Abdd7ejCLqF1O85lpoIDkgUvmdQo9un4WTuB9zx4E6ApjmtRt5E2wkHd2KeITj1JZ77VypaXaB/3DJPGUXc5CD5s9/TYu/7qGrDOGydlOeTI48hwhNlpvNuYJazc9bDSEmPs4nviZOu0BTIb3TGWZh6/XUNkKNDTIL5PebdgkMQszTHlAY6CcejwkNJI+Qo6x5Bzr/1aX0o4FBeo4CiJg1qDyClzxHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FkHLLGHfovyYPWmn7eD1NpIodXCD69EPIXZQH2qrxU4=;
+ b=WBgEgdTKN6LPVDQkeKzWQKNOfRO7CgJ1Vdrpw7+u6sY6Oxm9z6sql4n4cIY3eoM5A7DA+AAKdWqoIhnavXcIkz5SmqjmHX0u80LoWEIGJ512nlgdNXu0H2euZdmQTKbUhVpAVS71H639+8iSYpxec0nLawp10wwnSkthkVQ8sjbxNwPMOQoHVOxmXzlRwUcB09g8nDmKWVSB6+fHf0+CUH5a1Q4y0L6MHLExcXZFwQr11zJQCZU8NVb/NR6aAhUGPLiN1GlrLkNjcgtWmka0D3Y/AUtRfEx9ZAGWN/a7tmpXuh2mtZMm6WLfATA2z6NaUIuD+f07UnXUkbnjpjz2mg==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by MA0P287MB1497.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:f3::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.31; Tue, 18 Jun
+ 2024 00:13:14 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
+ 00:13:14 +0000
+Message-ID:
+ <MA0P287MB2822987797BDC01D4FFBF8C6FECE2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Tue, 18 Jun 2024 08:13:09 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] mmc: sdhci-of-dwcmshc: unify the naming of soc
+ helper functions
+To: Adrian Hunter <adrian.hunter@intel.com>, Chen Wang <unicornxw@gmail.com>,
+ aou@eecs.berkeley.edu, conor+dt@kernel.org, guoren@kernel.org,
+ inochiama@outlook.com, jszhang@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+ paul.walmsley@sifive.com, robh@kernel.org, ulf.hansson@linaro.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
+ chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
+ tingzhu.wang@sophgo.com
+References: <cover.1718241495.git.unicorn_wang@outlook.com>
+ <91adce8d020faa22a97719e8774dda01a58333e7.1718241495.git.unicorn_wang@outlook.com>
+ <aff10a8c-bac8-49ba-af0b-3681961eff80@intel.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <aff10a8c-bac8-49ba-af0b-3681961eff80@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [uIaCLE2P745TRVTWqKT5u9+T3hyrBVd7]
+X-ClientProxiedBy: SI2PR02CA0027.apcprd02.prod.outlook.com
+ (2603:1096:4:195::14) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <937f52f6-0b52-40f3-a350-af9e03e49323@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/2] arm64: qcom: Add BWMON support for SA8775p
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <krzysztof.kozlowski@linaro.org>, <djakov@kernel.org>, <robh@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20240617092940.1724962-1-quic_tengfan@quicinc.com>
- <yb3ni6o22zdm2lqodj7utdb2dlg3jkbwzutxhmljxle3syoe5y@op2prslmri4y>
- <d997f42d-0616-4180-ae36-9d2ebd60d15f@quicinc.com>
- <3yrji5rrzrfj3j4bekvhos36mgafbdcufsslk5daqfn7y5k2qz@k3nrrlbnlsmb>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <3yrji5rrzrfj3j4bekvhos36mgafbdcufsslk5daqfn7y5k2qz@k3nrrlbnlsmb>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: EFXOKuuUp6XqD6QDz4FmZd3LcKPXj2Ch
-X-Proofpoint-GUID: EFXOKuuUp6XqD6QDz4FmZd3LcKPXj2Ch
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-17_14,2024-06-17_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 clxscore=1015 mlxlogscore=999 lowpriorityscore=0
- phishscore=0 priorityscore=1501 spamscore=0 mlxscore=0 suspectscore=0
- adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406180000
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB1497:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8269813d-a585-489a-b5d6-08dc8f2b7269
+X-Microsoft-Antispam: BCL:0;ARA:14566002|461199025|3412199022|440099025;
+X-Microsoft-Antispam-Message-Info:
+	PSJeaka95z3dEuj/vZWo6YoYnsNjWc6vFurA2N6y4qFg8lJrvo+0dsy8r2a8nFACuiv9CnI98OhjkWh8G45a9+3bDJCwzzIIyiCIwJ4lwzMv3LkOIrjANYQpFLn3r8M/Du5t944Z50q27aOsB1dN0lf1W8l2AabjgIowI0WA+i7ty9cLBrB/kttiwCEogdmEDowekn338fGkzMzYsNoX8niwgPXzG1qsenkBNNTEtsoD8qQXFAKUMTA9A9qvOosj4AQhCJvvqxDS26d70efHvmf0XXgnFD7bGWdPTa5mElZl2AtYwyljJdxJ0QIW6Z5DQxLL0iY6YY0lD9VJ1aD7eFPaMJaJWRGuySLJw2QQjWUhhsgvJ9SjQlZeJ6Vkf5rgckgTfJVQMh1dIYiV9n9Bo2ziYryjN+oNu4X/AJ2lwBIXM0rpF8EX3zE2gf7PAXl4GiJfrrL/NPhViKnJYKQUYUDuBoFVTBfYz2+l2CKJd7cPp57k7plzusEVSyEf8vSRAAdK5GXbsEnMvr+iKlK6rjwplLy9v2ytl2JsdtLR2K86IGBjibpWMRhWGPU/82nO
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?KysvUkpvYlI2UnZxTDhaN2l2RHJFMjQxbVFwTnZkVXJLbVZSOVMxbFIreE9H?=
+ =?utf-8?B?N2dWMit1VCtsdmJrRUhITmtWdlhGR1ExbzdaU1htQWlLZmp1L2xCc254WmtZ?=
+ =?utf-8?B?dTlCKy9XZnY1ZGliRTNPNm52UzVKRDZCb1RQVktIdk4yRW8yVUh5QTlldVkw?=
+ =?utf-8?B?M0JUU3JJeEU3OFo0TUw3U2tvTDFGdnpUV0xoMkFZMmpjcmpsTHI0OHNWeUpU?=
+ =?utf-8?B?bkpabUVzeVJtdUNYZUxiVDRJTEZRcFEyZ2FnUkRDbjNoUHNwWWhVUkpMZHJK?=
+ =?utf-8?B?L0VtZFgybzE4UDZ6MFVLdWFnMVZSM21iaTdCRi9DQjVTbWIrQUlsVnN4QXU2?=
+ =?utf-8?B?amlSYmtmZTk2UldsZ0c1dTVNSVk3OWVKMjNtUkJmY0VGUUhDdzVyT2sveXMy?=
+ =?utf-8?B?akxueXlDYVNwRTc3ZFU2Qy9oUWU5R0FWSU04QWRjV2w3YlBqczNzdWcxUEc2?=
+ =?utf-8?B?S09KSWxjUGIyZXpmUlhyR0ZLaGlMSFhKc3AwNDlsZjhtVDM0aWZUdHZXY0Vh?=
+ =?utf-8?B?VHNMWlNzQnNoWURmZW15QU40WmUzNHZacndrejlVVHFZNlZFNmhVT29BZmVF?=
+ =?utf-8?B?QVVLUFQ1bml0Q001VHBjOTVlRHVHYUVjN1BVblRaRktxN3JQRDBUSkEvVEhP?=
+ =?utf-8?B?QzJndytaSmg2RGRybUllOS90WlNsMC80WHVhdjA0QzZjMlZxSHFkUUxxV1Ns?=
+ =?utf-8?B?Ukw5Q2w2WnRqZFBHQk1pYmEvOTBETDE3ZjlMc0pkaCt6VTJNMGcvREtBVnJ2?=
+ =?utf-8?B?c0Y1WUdPWWwxS3lKOW5aZ2R0QmFNOXVlVzZoc01PQnpqazVQVWlUUXBHS1l6?=
+ =?utf-8?B?VXIzVG5SSzFyOHB4SC94cFdwRlVPcjRWVHBsWC9vK2pBWWZ5TThQTGx0YW04?=
+ =?utf-8?B?c3BNbTBnbVFGeGFRQnVHQmVzbmgvR3pmdURMdmp6RlhzOGlYNS9yTWZyYUIx?=
+ =?utf-8?B?UXhONXBXcTQ0ZWxqd3RDNmJVaVd5QTVidmpFWllMQmM3R3BCYW5lU2UxYjlJ?=
+ =?utf-8?B?TUY4NTNvNW9HbHRuRE00STlsN3dkSG1WcmtYams5NW50UHlCM2JtdmdUVW05?=
+ =?utf-8?B?VWlxaU1KSFFQbjVYSC80RG9wdTgrR0loRElGc2lMb1VVVVNMaW51NEhuRFhS?=
+ =?utf-8?B?T2dmT0tSRzVBbG1HUWNCK3N4NVJCWGUvSUNkZTZLQkJsWmxVdDBBWGRSNkx6?=
+ =?utf-8?B?WGFsMnpQRkZvdmtTT0VnaTFjSVNrYTBYL1dGY04wNFJMblNrMGFtd3NXZzdV?=
+ =?utf-8?B?bWJHV3UwMGVNNXEvQzhPRzZjTUxrZFl0UjZsdCswZ2JrcE9Vd0pUVDhjRGlB?=
+ =?utf-8?B?TTRLb0RMbkRyY1MyOUVFZDdGT3o2cTZIL1FGV2hlVWxsMjAwRHp6TERUQUFD?=
+ =?utf-8?B?Z0d4aFBYMXNiUVNqcUVZeVAwR1BvUGw0eDUwSEUzTXVwa2NBa09YUlg2aUtH?=
+ =?utf-8?B?U1daQmhyMXcrcmNEcitFbzluR3B1eEdZS0JOZnE0MlBKQk16c0oxMk83STc3?=
+ =?utf-8?B?Z3dqdWFHeE4wRkV5ZVYvZlg0Z1kvTllkMzVvSDdNWXFKNVJKL1hncmRVM21o?=
+ =?utf-8?B?cEgyb1h4TnN1RFF4R2FDSjFHNE5VTCtCaE4yaFJJQjgwZEVBRm02WXVzdVI5?=
+ =?utf-8?B?SmE4ZTdqUnB3VTYyU21wSnBPWHVpb1EvQUprOFZmc01hV3JiRHVkY1lCdmdP?=
+ =?utf-8?Q?R27Wm+GlmtnkSbyFyapW?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8269813d-a585-489a-b5d6-08dc8f2b7269
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 00:13:14.7307
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1497
 
 
+On 2024/6/14 18:18, Adrian Hunter wrote:
+> On 13/06/24 04:42, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> Continue another patch: "mmc: sdhci-of-dwcmshc: adjust positions
+>> of helper routines".
+>>
+>> The helper functions at the dwcmshc level are all prefixed with
+>> "dwcmshc_", which is easier to identify, while the functions at
+>> the soc level are more confusing. Now they are uniformly prefixed
+>> with the soc type string, such as "rk35xx_", "th1520_", etc.
+> This does not seem to be necessary.
+>
+> Unnecessarily churning the code makes backports more difficult and
+> complicates the code history, so it should be avoided in general.
 
-On 6/17/2024 7:00 PM, Dmitry Baryshkov wrote:
-> On Mon, Jun 17, 2024 at 06:42:42PM GMT, Tengfei Fan wrote:
->>
->>
->> On 6/17/2024 5:43 PM, Dmitry Baryshkov wrote:
->>> On Mon, Jun 17, 2024 at 05:29:38PM GMT, Tengfei Fan wrote:
->>>> Add CPU and LLCC BWMON nodes and their corresponding OPP tables for
->>>> SA8775p SoC.
->>>
->>> This series is marked as RFC, Request For Comments. What kind of
->>> comments are expected for the series?
->>>
->>
->> I found that the BWMON patch for x1e80100[1] is currently under review.
->> There are upstream comments suggesting that we reference the same shared OPP
->> table from all the BWMONs that share the same OPP table. However, there will
->> be some DTBS CHECK warnings[2] if we do reference the same shared OPP table.
->>
->> Therefore, I pushed this patch series to collect some comments on whether we
->> can have separate OPP tables for each BWMON, as the OPP table of
->> "pmu@90b5400" and "pmu@90b6400" in this patch series.
-> 
-> Thank you for the explanation. Now why wasn't this a part of the cover
-> letter?
+Accepted.
 
-I think I previously had some misunderstandings about the cover letter. 
-I mistakenly thought that certain information should not be included in 
-the cover letter. In the future, I will make an effort to include 
-complete information in cover letter.
+[......]
 
-> 
->>
->> [1]
->> https://lore.kernel.org/lkml/4ef1d9a9-6a0e-4324-b6d5-2ae225855b03@linaro.org/
->>
->> [2]
->> arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: pmu@90b5400: 'opp-table' is a
->> required property from schema $id:
->> http://devicetree.org/schemas/interconnect/qcom,msm8998-bwmon.yaml#
->>
->>>>
->>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>> ---
->>>>
->>>> This patch series depends on patch series:
->>>> "[PATCH 2/4] soc: qcom: icc-bwmon: Allow for interrupts to be shared across instances"
->>>> https://lore.kernel.org/lkml/20240604011157.2358019-3-quic_sibis@quicinc.com/
->>>>
->>>> Tengfei Fan (2):
->>>>     dt-bindings: interconnect: qcom-bwmon: Document SA8775p bwmon
->>>>       compatibles
->>>>     arm64: dts: qcom: sa8775p: Add CPU and LLCC BWMON
->>>>
->>>>    .../interconnect/qcom,msm8998-bwmon.yaml      |   2 +
->>>>    arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 115 ++++++++++++++++++
->>>>    2 files changed, 117 insertions(+)
->>>>
->>>>
->>>> base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
->>>> -- 
->>>> 2.25.1
->>>>
->>>
->>
->> -- 
->> Thx and BRs,
->> Tengfei Fan
-> 
-
--- 
-Thx and BRs,
-Tengfei Fan
 
