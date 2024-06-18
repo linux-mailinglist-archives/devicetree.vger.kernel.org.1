@@ -1,128 +1,165 @@
-Return-Path: <devicetree+bounces-76952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E4DB90CA50
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:50:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 122A890CABC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:58:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBAE01F23967
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:50:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D760B29D85
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E31217F489;
-	Tue, 18 Jun 2024 11:25:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52F113AD09;
+	Tue, 18 Jun 2024 11:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AACNMWpJ"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="m4qIfuH3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DBA36BFAA;
-	Tue, 18 Jun 2024 11:25:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93351139D11;
+	Tue, 18 Jun 2024 11:28:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718709920; cv=none; b=ken1O9m6sDEtLjh4EdO3uivu6fzmh6aygcw5j5kuAs74/oPyh9akmyUd62GHHhze5AdA9OTT6P83G0V97euYCnEAPl76/gnBKlAVaQBAGCUjPwkhGQqTLz0fIBXjAwgcnCTead5lFDfnmom5JX/PjQlYqDER87jDZ9ZX8lgqdzI=
+	t=1718710087; cv=none; b=Pk0AT9mjiFcgQWDXcMp2y3hXspl68ojtrg7Q87ilJfRPqoR4Chx4IF15SPzgmKHsTwjR2jHMMDC8+NjEe0YfqIiAom3zVfEZIHYSVPKD+Vf9SQ5EMWp400CEJCy0L0xCnGwyFDWEx6liG+LUUDnNslA9nUtDnQRaDCaqCLD0g3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718709920; c=relaxed/simple;
-	bh=laBbGW8u+C3wkt52DJVoyFfKIQuH6xetOZoiKmaKf20=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jK+60FguZjwjhZNd5nOjvAsh1LM1tqeO6x0p5/qp5Z6Sk5sCmf3kVg/Y5Bc92g1mwnlYz20AUzvVaMQW6xeuwBXKEtOFokusTa7qriqdXxxFJMg53+F9AmQUQYtOaRJdfpVAehWZujvqpNM8rOwgezZmY3W6KDRwbBRNZdA2cK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AACNMWpJ; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718709917;
-	bh=laBbGW8u+C3wkt52DJVoyFfKIQuH6xetOZoiKmaKf20=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AACNMWpJM4WRVJIsfDww72SFiSALFZZ5AdyZm+2NGuGCfsy5fYf8cOVvYQ3wAU3Qo
-	 L/xCpy6rAKSFMNimFaCXcfttYFR++8IRzmk6NE8jtBPMosoFk4JF5bRUfqXY0HOXW8
-	 NdDfVGxF5nqJ1KCkNhJSnvCdvIO6pHRlByaVagXDs8ARYVIj7RQmUwCBFM1arQYMsy
-	 9hRlIUexe4XcwuG6oSlkBaP97yTc4ZoETNJAumFMvo/wAKAQH3Rn7c7oidVyR+TLAq
-	 NLJQB5k1XXrl2cORp7Bfkedr+OdLGe+iSqVYH/oyLZNV9ijARWvO4iz+JHc5VnszGr
-	 YCefW+0Mj5opQ==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	s=arc-20240116; t=1718710087; c=relaxed/simple;
+	bh=liqIQf/51gU0hCkHyFFUyrlyRfkSWPW0/N0Yi+ZfDcI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Ce4keZk3mYwg5xRqQlXsO5xdrPcfc9oamcjmUE0dTRlbNdcjpqe2M6uC0+10eg0q43Wvrhstd+2YpvXxd/ezGJXg5bfufQo16Wc8bnVhiREvla2BHFye43KLFgVi8BZn5EaAHqhvzMqxrxAE+NTPje0h6Di0OKQswpbBd3YFcJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=m4qIfuH3; arc=none smtp.client-ip=185.125.188.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from hwang4-ThinkPad-T14s-Gen-2a.conference (unknown [123.112.65.116])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D33A5378217B;
-	Tue, 18 Jun 2024 11:25:16 +0000 (UTC)
-Message-ID: <af51905f-f249-4f4e-8aae-82ff5b585c87@collabora.com>
-Date: Tue, 18 Jun 2024 14:25:16 +0300
+	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 9A7E04087E;
+	Tue, 18 Jun 2024 11:27:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718710082;
+	bh=EuA5G7ftWh/W73RPr/IVD057SZHjTDVJktOyJiM2CIg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version;
+	b=m4qIfuH3MKe+j/BXGdj3BV9+Rzttew9kgDSdgMX1eRM7e4dsBYRK1dyOJ2yHWcAOp
+	 sHVqdYUlkxk5urYWsCnOKmQgr8jAwRYxz/AjxZWitE98rnN8flAcZnWena5NTMjwTt
+	 rJIvYe49gk/AQJ9VRQhAtaPAGDbVIUIbVy+2dCNdMNn+5EVKf0hVDxPwXC/m6epvbe
+	 eiBPL0UTC2lcsQ/hZsiqhgrC1ATh9PMhQsaqqLkFgST9MCejgmLjQ5gYwc1aVRSMEA
+	 YN+PRMlsexkRZHSo5GTue44TD2MjIF+PdNXk8/7sMrBYIr3aB/VX8jG9x0azu7fERQ
+	 4OQ/d5a6+FpPQ==
+From: Hui Wang <hui.wang@canonical.com>
+To: linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org
+Cc: jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andy@kernel.org,
+	lech.perczak@camlingroup.com,
+	Maarten.Brock@sttls.nl,
+	hui.wang@canonical.com
+Subject: [PATCH v6 2/2] serial: sc16is7xx: hardware reset chip if reset-gpios is defined in DT
+Date: Tue, 18 Jun 2024 19:26:20 +0800
+Message-Id: <20240618112620.152848-2-hui.wang@canonical.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240618112620.152848-1-hui.wang@canonical.com>
+References: <20240618112620.152848-1-hui.wang@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] phy: phy-rockchip-samsung-hdptx: Add clock provider
- support
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Algea Cao <algea.cao@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240618-rk3588-hdmiphy-clkprov-v1-0-80e4aa12177e@collabora.com>
- <20240618-rk3588-hdmiphy-clkprov-v1-4-80e4aa12177e@collabora.com>
- <2910644.FA0FI3ke8A@diego>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <2910644.FA0FI3ke8A@diego>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 6/18/24 10:55 AM, Heiko Stübner wrote:
-> Am Montag, 17. Juni 2024, 23:48:12 CEST schrieb Cristian Ciocaltea:
->> The HDMI PHY PLL can be used as an alternative dclk source to RK3588 SoC
->> CRU. It provides more accurate clock rates required by VOP2 to improve
->> existing support for display modes handling, which is known to be
->> problematic when dealing with non-integer refresh rates, among others.
->>
->> It is worth noting this only works for HDMI 2.0 or below, e.g. cannot be
->> used to support HDMI 2.1 4K@120Hz mode.
->>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>  drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c | 189 +++++++++++++++++++---
->>  1 file changed, 167 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
->> index 72de287282eb..ad3fd4084377 100644
->> --- a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
->> +++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-> 
->>  static int rk_hdptx_phy_power_on(struct phy *phy)
->>  {
->>  	struct rk_hdptx_phy *hdptx = phy_get_drvdata(phy);
->>  	int bus_width = phy_get_bus_width(hdptx->phy);
->> +	int ret;
->> +
->>  	/*
->>  	 * FIXME: Temporary workaround to pass pixel_clk_rate
->>  	 * from the HDMI bridge driver until phy_configure_opts_hdmi
->> @@ -871,20 +925,18 @@ static int rk_hdptx_phy_power_on(struct phy *phy)
->>  	dev_dbg(hdptx->dev, "%s bus_width=%x rate=%u\n",
->>  		__func__, bus_width, rate);
->>  
->> -	return rk_hdptx_ropll_tmds_mode_config(hdptx, rate);
->> +	ret = rk_hdptx_phy_consumer_get(hdptx, rate);
->> +	if (!ret)
->> +		ret = rk_hdptx_ropll_tmds_mode_config(hdptx, rate);
-> 
-> I think this will need a put if _mode_config fails?
+Some boards connect a GPIO to the reset pin, and the reset pin needs
+to be set up correctly before accessing the chip.
 
-Indeed, a forced put variant would be required to ignore any
-regmap_read() errors and keep usage_count decremented.  This should be
-also used in rk_hdptx_phy_clk_unprepare(), since ->unprepare() callback
-cannot fail.
+Add a function to handle the chip reset. If the reset-gpios is defined
+in the DT, do hardware reset through this GPIO, otherwise do software
+reset as before.
 
-Will get this fixed in v2.
+Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+In the v6:
+ - change the comment "The reset input is active low, and flag
+   GPIOD_OUT_HIGH ensures the GPIO is low once devm_gpiod_get_optional
+   returns a valid gpio_desc" to "Assert reset GPIO if defined and
+   valid"
 
-Thanks for reviewing!
+ drivers/tty/serial/sc16is7xx.c | 31 ++++++++++++++++++++++++++++---
+ 1 file changed, 28 insertions(+), 3 deletions(-)
 
-Cristian
+diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+index bf0065d1c8e9..c79dcd7c8d1a 100644
+--- a/drivers/tty/serial/sc16is7xx.c
++++ b/drivers/tty/serial/sc16is7xx.c
+@@ -14,6 +14,7 @@
+ #include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/export.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/gpio/driver.h>
+ #include <linux/idr.h>
+ #include <linux/kthread.h>
+@@ -1467,6 +1468,29 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
+ 	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
+ };
+ 
++/* Reset device, purging any pending irq / data */
++static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
++{
++	struct gpio_desc *reset_gpio;
++
++	/* Assert reset GPIO if defined and valid. */
++	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(reset_gpio))
++		return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
++
++	if (reset_gpio) {
++		/* The minimum reset pulse width is 3 us. */
++		fsleep(5);
++		gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
++	} else {
++		/* Software reset */
++		regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
++			     SC16IS7XX_IOCONTROL_SRESET_BIT);
++	}
++
++	return 0;
++}
++
+ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+ 		    struct regmap *regmaps[], int irq)
+ {
+@@ -1536,9 +1560,9 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+ 	}
+ 	sched_set_fifo(s->kworker_task);
+ 
+-	/* reset device, purging any pending irq / data */
+-	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
+-		     SC16IS7XX_IOCONTROL_SRESET_BIT);
++	ret = sc16is7xx_reset(dev, regmaps[0]);
++	if (ret)
++		goto out_kthread;
+ 
+ 	/* Mark each port line and status as uninitialised. */
+ 	for (i = 0; i < devtype->nr_uart; ++i) {
+@@ -1663,6 +1687,7 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+ 			uart_remove_one_port(&sc16is7xx_uart, &s->p[i].port);
+ 	}
+ 
++out_kthread:
+ 	kthread_stop(s->kworker_task);
+ 
+ out_clk:
+-- 
+2.34.1
+
 
