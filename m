@@ -1,108 +1,96 @@
-Return-Path: <devicetree+bounces-77147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A38F490D8F1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:20:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B62E90D81E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:05:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CDF8B367C0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:54:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA64F1F238C9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898CD4F5EA;
-	Tue, 18 Jun 2024 15:53:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="liKcmHch"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F9D048788;
+	Tue, 18 Jun 2024 16:05:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E074595D;
-	Tue, 18 Jun 2024 15:53:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FD95024E;
+	Tue, 18 Jun 2024 16:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718726014; cv=none; b=MkE6lEQlQMroi1xpaLi7nKm2GSviNcqrYHWgU5dylmyQlgTNBRIUszijsmtmNRiYxr/tMGa+KmUE55wUFAXRDTaTa5GJYTQoLs3JpZ+wz3Zsb+IHljPo1OP5oGkXDhzb2oV3/tTpSeKbbHq6gVKiC1hW6oxJhavGXifynfs6ojU=
+	t=1718726701; cv=none; b=bjjrOl+/QWuyq27DEEF0K48h5wJv/dsb5NdcRqthN1GQ8H2s+sEtZEAA729KHOc7Ho8FrWQBgHmyx2nCYZQchGymINNuQB6MhkeO1bGA+PocWQ0l7TYlIVbEc6ZZDhKlt2CvLF+SWaSNg1ZMClXjQpFOSB2X8p/zB0/oJj/qm5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718726014; c=relaxed/simple;
-	bh=8j9kZpWYFKPJ17/JFfrQ8rAerVTi3N6sqkeVogOAF5Y=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=WG9nbaMh/V0RsPd9W6p/yAVNG1vceI5TQ/qP3juyq5QeQmgMf9J1MyBGqVCwKz89zusDTvr9hGTQbPFNXytzGFL/Q+fu220WNkT7IbaaJsfFtsLR0MTySOqp15CZK6DQDCDQ1A3yW/fNUWBsEoQXQsDPrZoGfGkndvJ+0KoRJlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=liKcmHch; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A25CC3277B;
-	Tue, 18 Jun 2024 15:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718726014;
-	bh=8j9kZpWYFKPJ17/JFfrQ8rAerVTi3N6sqkeVogOAF5Y=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=liKcmHchZywAUJiiUirezQREET7vPhK/wCFZlVIDs7jnonsq3Kh17hLXJw825F4UP
-	 NtGShLSrljqguoliTg9Qdseg9Nm+yyru3mLT8HRfDfrdGyghRK7u42TBtv93Hj+/oE
-	 FL+7xS3Wmd6vMJlo3iDLKOXFkKDRtYBgnkSClVh6vkKNqkXXpj44H4rn7GNBuw2FEi
-	 fZwrVy/2K/3Rks1gcw1oCjOy1FY12CHsN/qVdu899FUyX+O+9fw4MHhMAcdm7rjI3d
-	 2mB+QsoBcAi9EK1M71M7mNDk/8K2PCH4KDTCvVqrKrecmwRtxkjk6rZAHdz8zaf6fY
-	 f1ds39dCJ9gAQ==
-Date: Tue, 18 Jun 2024 09:53:33 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718726701; c=relaxed/simple;
+	bh=1s7vqofYqI9LHjoQBC3wRUH/YTaQ8aq9oY96lCWv8jQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rQ2t5+S8VFy9o4ZgD6djWWaOQ3rsB/SrqkWnvOJPkuoGxXINN/m67F4pvECrNPyaarm0Up2m34KkVmM+ScUiNXgWo0770h2uj8Uw8elp8xaiJYNsnP/QG1GVdsvqrDm5M6e+2rsQVyf2KH5tJnF1iBYmBZPcwH99E1XICJfeNCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3245BDA7;
+	Tue, 18 Jun 2024 09:05:20 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.101.20])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 45AD13F6A8;
+	Tue, 18 Jun 2024 09:04:54 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	devicetree@vger.kernel.org,
+	Jun Wu <jun.wu@arm.com>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: cpus: Add new Cortex and Neoverse names
+Date: Tue, 18 Jun 2024 17:04:50 +0100
+Message-Id: <20240618160450.3168005-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- linux-fbdev@vger.kernel.org, jstephan@baylibre.com, 
- Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- dlechner@baylibre.com, Beniamin Bia <beniamin.bia@analog.com>, 
- Stefan Popa <stefan.popa@analog.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Michael Hennerich <Michael.Hennerich@analog.com>
-In-Reply-To: <20240618-cleanup-ad7606-v1-5-f1854d5c779d@baylibre.com>
-References: <20240618-cleanup-ad7606-v1-0-f1854d5c779d@baylibre.com>
- <20240618-cleanup-ad7606-v1-5-f1854d5c779d@baylibre.com>
-Message-Id: <171872601308.2592859.9209680647249959738.robh@kernel.org>
-Subject: Re: [PATCH 5/9] dt-bindings: iio: adc: adi,ad7606: add conditions
+Content-Transfer-Encoding: 8bit
 
+Add compatible strings for the Arm Cortex-A725 and Cortex-A925 CPUs, as
+well as new Neoverse cores: Arm Neoverse N3, Neoverse V2, Neoverse V3,
+and Neoverse V3AE.
 
-On Tue, 18 Jun 2024 14:02:37 +0000, Guillaume Stols wrote:
-> Since the driver supports several parts that present differences in
-> their layout and behaviour, it is necessary to describe the differences
-> from one chip to another.
-> 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7606.yaml    | 50 +++++++++++++++++++++-
->  1 file changed, 48 insertions(+), 2 deletions(-)
-> 
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+ Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad7606.example.dtb: adc@0: adi,sw-mode: False schema does not allow True
-	from schema $id: http://devicetree.org/schemas/iio/adc/adi,ad7606.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240618-cleanup-ad7606-v1-5-f1854d5c779d@baylibre.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index cc5a21b47e26a..f308ff6c3532e 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -147,6 +147,7 @@ properties:
+       - arm,cortex-a710
+       - arm,cortex-a715
+       - arm,cortex-a720
++      - arm,cortex-a725
+       - arm,cortex-m0
+       - arm,cortex-m0+
+       - arm,cortex-m1
+@@ -161,10 +162,15 @@ properties:
+       - arm,cortex-x2
+       - arm,cortex-x3
+       - arm,cortex-x4
++      - arm,cortex-x925
+       - arm,neoverse-e1
+       - arm,neoverse-n1
+       - arm,neoverse-n2
++      - arm,neoverse-n3
+       - arm,neoverse-v1
++      - arm,neoverse-v2
++      - arm,neoverse-v3
++      - arm,neoverse-v3ae
+       - brcm,brahma-b15
+       - brcm,brahma-b53
+       - brcm,vulcan
+-- 
+2.25.1
 
 
