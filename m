@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-77122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2415B90D6F4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:19:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F89D90D6F7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EACE1F24774
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:19:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACD762890F3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:19:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4D34D8A2;
-	Tue, 18 Jun 2024 15:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667221581F4;
+	Tue, 18 Jun 2024 15:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b="QJ/s0Hbb"
+	dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b="Tu2/F0Kl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AUS01-ME3-obe.outbound.protection.outlook.com (mail-me3aus01olkn2141.outbound.protection.outlook.com [40.92.63.141])
+Received: from AUS01-SY4-obe.outbound.protection.outlook.com (mail-sy4aus01olkn2172.outbound.protection.outlook.com [40.92.62.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88EAD4D599;
-	Tue, 18 Jun 2024 15:13:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.63.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B824EB3F;
+	Tue, 18 Jun 2024 15:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.62.172
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718723590; cv=fail; b=eW7ezhBetvRhMk6C6vvWiJcXFT+vJgi47GbbQYy9J6OM7cD/LDadItVruHyEDHcGnDKsYIghwlGcYLc6EdSYCGPgl23SydqHoWTPtTgX6JFsFzM54ytNpnWBoJETBDrX7CaxznTdZ3Ox24LvkxkMo+z/zaA0FNNgbCXsMuChPjc=
+	t=1718723594; cv=fail; b=Mm4qySdxT7xBiFw7wI4bBfRhrzpGvTiPXFliLIoCbRpeHDIuK4oHtFYvf8ReymAQaXQ9vR+o4gtvLMzxblL2FzAOpZGZY99VQymUl+bPO54JAmcUlQbfaZPqVInMq2L4uY3Jhyi/Mm3Qbp5W7d6FRMqPcVzo2fOxgXHCfrywsew=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718723590; c=relaxed/simple;
-	bh=aM6zulsjhqf5OyjgnMz15UgjaDjLA1y6pf0utKpZsr4=;
+	s=arc-20240116; t=1718723594; c=relaxed/simple;
+	bh=vUqdlBycTfE1cObDnng+E0qYuMon6YgEEyVbv/QSBOc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hojzP5JOMjuA+z1CDlKqMW0Id8eiZb9Z+WSDP+EwG4URa6z8QIX+bz+wKpemD7Vw2wY0gEYJxoHt4YuI6RR8/kg7B8jW2MlIMD/aOsBIUW0mYuwcK/tpcUaNsXUQS4tFRB2F6KofF4iNfseh+vhDtHEbLlSrDRGj6Yab0aU4HJ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com; spf=pass smtp.mailfrom=live.com; dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b=QJ/s0Hbb; arc=fail smtp.client-ip=40.92.63.141
+	 Content-Type:MIME-Version; b=jcld1d/stMtlfzbribSCw653dUQWyBE/v78lD2kba9jzB8vPvbIU7H/m9f/ajslp9oB2moliPqUjhcEe/wbgCJWfa6wiWuvWVpNPq9KHA7SmbwxVHH8P3YxVrBL1g4w7pK6VEtW8V6FiaC6ci5DJjG0BocPkdOVLnBJ2koY7m18=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com; spf=pass smtp.mailfrom=live.com; dkim=pass (2048-bit key) header.d=live.com header.i=@live.com header.b=Tu2/F0Kl; arc=fail smtp.client-ip=40.92.62.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=live.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=live.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E91G3qBiW7Aeo/jHIc8LMiO0vZQxgIO80zwU3216e/byIulmtDXHPltLLcuBF67is1BMJK0yA7xRZOg5oSsQV4jx5LThX6CDEPsG6nM8LsE7058Jaig8Gc6pdunjvjJTt6dYhNClr/NJuraDx9N9NDC8AWuY13VNvWckVwe6oo1Jc34hgNoSQUg1jIJui/LYSWeUAVQ+i+qo3pdqUrIHOIckpE5C91OmWlNIXFCne1n+w4qwznfXfBDKctj7qssq4PGkESTlzRm+IwwkaTzX4fghkUT75oK6sYe1h/E1qbdprd+wCmdGE+oLzd7NVpC9JRAOmaNft+kYZBzRnwi1aQ==
+ b=Gh0hpBBxvz6snPCLEBOBI9myDv4IlDf7NA4WCYJh1dtSyRY9E9dRHnW9qGrmFwjBBhYRAc5ZzdGpfnPQ/wuixIwxpBIV8+lpLij5m7zMxUY3sS4BtSvTZjMcvJfVgr4UTNTmQWbpqvrgtgc26dkHIWywNT6mh93TAHZhOpT1t+D9Y3PzSQZGxJx9+SAYbLrNvYjihViXLOnwJIHBJsLWs+s0b0JhHJTO1Lnplh7rXb/NQ2iyzunk4/6Pk3BRSTeAx10nJ6egGg79PI+8CCfA/MN+9CaKY3jCnm8faFWKj1vGHhOSEUlXI9IPxRIjP5tW06Bn1zNEY8tqpmT8BQ1bUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oKTCwDIG8pgERnO8qAnoPLFo+Gwfzux11mjqdeBWce4=;
- b=SeZXUJJzo+XhtRdg9V8Q0uKb/2XSGxhmO3Hi4IzLovEjxfCnWt2gYiV6ivLDUdDcN7BdpB3RHf6i+4jtPxSAWLlGU4zaLuTCCWeceP8D5kQDGsQcrUr2ZuWNTDMrUPHr1ie0HgSUbqmcfDwnsWhK4Eq572WfHXPCDZb6xkedFfM9PAqwPjSwIqVWrSLRaQ/MjXl8TUto/X0gUISaa6mmsibIijSJnaXVVdzSSA9+TVGZ3lHygckMZ4/0+qUyHxSa9u08HQw7ThnCyl2OlFdNe2IxBrDhepNmCCEpH8Sz4R2SanQUq1ZQrK+OOVsXa5tr3T0NBwtQqg8NuCGJtOf2Ng==
+ bh=IX1D+I5IhkXeMvlbXxgultj/wTl/ZQhlfXJeiK5f66o=;
+ b=hoZDw19Ac6AUhYknx4O+/G40GQPPbEafbytxgVPGOzXmumWe7W9NDbpw7isEabAHt9o+Zw+CgA7hHY9Q72rMYVGsc76fwD370wNqkKaIdoQUAiMtpE0mUAk2nfeR8tK2xZuQizOFDl9XZlsRM3okeA/Oe5HUgZTdcCLxL6XuLsPJcaAd7t3C+nY31mEkLxTOMB7BGAelUb8eBTui4GohnBKicuL80fJTImUK8wzXGmlDxgVP4wfEqK9kru5rSUMEbFnImCvwpaAEvC27Fq8u26cDBXjmA5O/C2v8uTIZg39C/tWOGZB4zEIvaZE9awKq0a6ekgRilFVr2+3V4nMctQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oKTCwDIG8pgERnO8qAnoPLFo+Gwfzux11mjqdeBWce4=;
- b=QJ/s0HbbSmALNm0Yshrft3KLuVEHpKNwcdSskPY7SK1DPakxHHmnTYdQHFBsSmEfmi4XdHTBtBLd9Q2XvTXpeB768mpyt88lr1N8faZaUB70SakNpmBfTsNvjtQAJGuWWN+9+jLfW9KYoUE9cx51+WsbFFqtvVlNGZgnfuq0riVJueLNBT7/bdCtwqelUgzJstilsUv0q1h4tJD/j4C9aLuzvpNIM+TMUl1fj5h/cxrY02nDX2MFnGzEE234hF3Ieii+vYCOV/a20GQYFcpTD7sq3eN+hAnfVO3eg07xIyx8SlXsZ4F6n2Z6k4ONxsjeK7VdujiqFFkuZ6AKWCG8Vw==
+ bh=IX1D+I5IhkXeMvlbXxgultj/wTl/ZQhlfXJeiK5f66o=;
+ b=Tu2/F0KliI7ttM8o7J40hJzdsHkIscMd8aW05lP1rO3q6Hl0b2aHoz2EgZ9ZhlPNVoEIwhvhzjt5DCrtBEa1OEMj51+XuuFF5vlPS84RboeXR2xp1c4tgN2Lz1oq6le/VV6h7n5UcmLpKokEGYqpvJleZwKOr+imhxFRuUlvx3vaalLSVcHOc2Ax1w6nI9bpkNV/ckxHmLT/luKr4xclcql7OAGmLzDcwVGevyUQiygOYgyy7Iht8h4oAlEmdBGtLcw43pjAoViomRvohAoQS1h7IijffZCd1oHbhXmRS58AjClsZwYTw6KG1XH/J6iebBlsZZ/FtQUu+/ploacczg==
 Received: from SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:9b::8) by
  SY7P282MB5268.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:2a9::13) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7677.31; Tue, 18 Jun 2024 15:13:03 +0000
+ 15.20.7677.31; Tue, 18 Jun 2024 15:13:07 +0000
 Received: from SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
  ([fe80::ac24:7d2b:92fe:20c3]) by SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
  ([fe80::ac24:7d2b:92fe:20c3%2]) with mapi id 15.20.7677.030; Tue, 18 Jun 2024
- 15:13:03 +0000
+ 15:13:07 +0000
 From: Yuntao Dai <d1581209858@live.com>
 To: jassisinghbrar@gmail.com,
 	robh@kernel.org,
@@ -66,19 +66,19 @@ Cc: linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	Yuntao Dai <d1581209858@live.com>
-Subject: [PATCH 1/3] dt-bindings: mailbox: add Sophgo cv18x SoCs mailbox
-Date: Tue, 18 Jun 2024 23:12:33 +0800
+Subject: [PATCH 2/3] riscv: dts: add mailbox for Sophgo cv18x SoCs
+Date: Tue, 18 Jun 2024 23:12:34 +0800
 Message-ID:
- <SYBP282MB22389FD1E07BBDC6FE1D90A0C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+ <SYBP282MB2238D8347CB829735C695B28C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <SYBP282MB2238DE0DA19C6EF411B2356CC4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
 References: <SYBP282MB2238DE0DA19C6EF411B2356CC4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
 Content-Type: text/plain
-X-TMN: [ya4n5REVWOzKP9qb85v9Qjesqs2FEZkm]
+X-TMN: [lYFp8H3WIKmqU1bEb8cQ6qVe/6dFhDgo]
 X-ClientProxiedBy: TYCP286CA0266.JPNP286.PROD.OUTLOOK.COM
  (2603:1096:400:455::19) To SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
  (2603:10c6:10:9b::8)
-X-Microsoft-Original-Message-ID: <20240618151235.5846-1-d1581209858@live.com>
+X-Microsoft-Original-Message-ID: <20240618151235.5846-2-d1581209858@live.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,40 +88,40 @@ MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SYBP282MB2238:EE_|SY7P282MB5268:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5afa7c5c-eba5-474b-f3c6-08dc8fa925ca
+X-MS-Office365-Filtering-Correlation-Id: 9a6ddff0-d055-4cf4-7fe0-08dc8fa928a5
 X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199025|3412199022|440099025|4302099010|1602099009|1710799023;
+	BCL:0;ARA:14566002|461199025|3412199022|440099025|1710799023;
 X-Microsoft-Antispam-Message-Info:
-	A69YsiXfAwnkK2REcDdL3iBqSrLwxZiqpomZwJWxOS85yoFXysMOu40XbHZExopnEk+wTRUE/w8NVfmZN0vF0ATRFhg33raoZrYkZzYitJiuAzHhGmS0aCXcEkgUJcYpNhQrAacFvotQfLN1LS9HgtWCWi0r1t3VAzmaxSkxjR7H404n50yzqJHuCNyH/Dis6W2nFNBi56f507be2j0Zg8effjnB5Au/DLh8EsVlNMvWlYT0GjIRe+AkjDVpaK1YBGbMQBl746fo8kvQA8An/CC8+UY+LjV6SoSGrEx4HKS3/udrRCea4AUIWPwEqN2AHeHAb1dVrl/NUfh3doPK0ndAR0dyiJWgOXZNOODZHuas4n69uTQWa2FdwN4+SSpxX7n5SD7iLGI6eeyTCsqwoeJexCY4jEXJj2ZUkEtUzcIKGqqIYLjGn2whUgPNDqNE2JAIP29+AIBRcNZJezpi1S2t+js2Gh280GzaCjBHTRNfjlJjbuDVQvI9FoRnkwP/Ep5OB/cDROTlpr2zxM+giOyaHIbLKo0p0ssmTBeSweqd2N6fdCHVw6ytRzpxJq/kbH+fPl1DPjlp1v39pvrbp40fPT/Ns/BOFXlVz5vk4CadQDpX9KZyhOr3ttTjFaXCkAZbCi6hO3PHgU3M1XcryA/lQYWqytPsxyuw7WTIoCsJbN0U7hfKId/UM54ojZmitBNu2jg/ZH0SurlsyCpUjwVOZ1FBFlUoIDyOE9381lA=
+	RcpI6mHHDHxOCwUHboeddy8DqbgnQ2ZmloNavYG++e6g+1XItlz0ngcGjnzOKVi/NwLcHl/rLxmocbH+WVvphufyKaawAQHMrBMAtkA+XdTKyEoHC7y3gFQNJQcpTBnUCGpTsFnEEWcyX7wrwKzhUa/Y3rh0wPSHBmf0tHqk9sB7Q64sUA8UitqV5iehH0q94H4a6y4FZxnKX5a091Ut/bKDYJxe9bvhgfvZJltV5sW3oRqDKK0tCBNj3TWz++5EJalyEbtUbso2NfeBPEjnH77KDKTNCvpWFbsk5ISNqYnuNpgVSy76bLMcqIalElwfZV1nxaXN7+X3pJNubGTEAggoEcpped1Sp1yIBkvNoquBKQ3Mn89x7eLzxqRRycm8DfqkBiAV++Wd4ab6b1UvPopdvCj4sZpDoaUslVOCaUkO+UaXdIkt7VFcAe6v3HMxkexzCQSOFrPh6rYLYVwQOCOP5CqyYuOJcTTBaRPUzLHXPLniJ/9lEqRILAl/pGgDHw3lO8DgL8jTbPkhIlnCaGQbuNEudXm84DYfekxKcTfwm0tflg1BFiSkt2A9dch1h64V82RXPM9HjnI//fnB8G9khXzcsrQ9hnM9gu4DV4WAtCUWkhD2WDcMNP2A7URF
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?e5Obq+QQMaaIeLMKpCq/jL2PJEf59tHjleMwN+dpu35S94YBRNcwZ4KUpWDQ?=
- =?us-ascii?Q?K1o1Dqth3bE+Kv7nVUiSXiHBUsMjW2ubUY/uo8GWygtjkHNg44KRmL+W2Rom?=
- =?us-ascii?Q?w6V7Z7PW8Kg1JrCk5/4uFZhfZA7MQd0azaovg+fV4abex6hnmHp6n4/M4ibJ?=
- =?us-ascii?Q?Jz66Xsmv1pKBInEk0nxnixgUeHfjgy4jmwfAM71AYbAzWrmlzEuc02//SbCl?=
- =?us-ascii?Q?fNthah+cuwclyLJiUEQwI4uM3TCyTskY844tWCL9EcQbqwo3Ov4AUk4S4O7F?=
- =?us-ascii?Q?dDmcG0Fw1Ixa35suOLw+B7l28VZiThyuEYS+XPQCq/nKZV6bWJeG3XV1cUx4?=
- =?us-ascii?Q?1Os8KvtxhTQqgg4VA4KbxyzJfoXOnR1mwUaBcnEhoB41d12pzg8cisMuGa+t?=
- =?us-ascii?Q?PJP2rrHt4dIKlON39B7BuTirxgfQTs5GgjIiEOUr1sIEQa/fEYsqEVtELz44?=
- =?us-ascii?Q?FQW9U72dhJ5fWHM2+LMNmaeEPT+RzxkR9Y7v0Ymyp9rBUtQEnY/HmXWq2Wyt?=
- =?us-ascii?Q?Qw11gteTyXMCVHwrvXnkuB0Rz7z8sYnmRDnduSKdnn0ly8cE0I69f6+JvBzR?=
- =?us-ascii?Q?AowwKvhwlYZBycllQ/y5SPp/CiWjFsneXX+tGhip6gNqrB7zrg6ZHn285Q7c?=
- =?us-ascii?Q?A4KSCHq7QZm9m7jrgFHrxc3Vadvfdv8ao3DET3p1VAgTs4gIT86lqik1Vozg?=
- =?us-ascii?Q?6XKPxk2Y0HV7zejOPpI+5JX8AOUq+HQRODcD9em9vjPlOAEteLRWlC6xzWzC?=
- =?us-ascii?Q?rtNecY6D5jr3x67ZH/j9cfIJP6ZAf5YY4SpFC+ptdrcKl9cmwXEkvHofxby6?=
- =?us-ascii?Q?d7gJvsG+ZTNw0nSu0aOXqsFRvyQBaofgnXiGYmdi8fiQ1BPXyyE5uqeoHBu4?=
- =?us-ascii?Q?O/zVIoPxWgshGGQQnZeDg5NXHpJ7fQ8jM68LB0SJyo0OfiWy0lDY5o1yNYa7?=
- =?us-ascii?Q?8+5qlKfDaaoGwo0qOIPj3A/vqx/RIOx382LyAIclBbXgIqCujYyNpAXx7uuu?=
- =?us-ascii?Q?5LuW0lPsADOBjxBywzvofas+OfQTek4Kg5xLcqJftZZ73KMkJFT0NLglHH0A?=
- =?us-ascii?Q?nChtYnekn3KeSBY1qTgS61rdsaYGIN6WxWHj2f7+Pewr7XfzX11tIBK45MF4?=
- =?us-ascii?Q?2VbPrfJs8oaVSDM1N7FQcRUKipHnEMmnj3IRVtDnu0mTddCaMUUojiPzmSs+?=
- =?us-ascii?Q?4qExuemIMr0Il2Dt/qObEjt5ajtTRW0vxEoQ+cBzP6WcbCtQVdpw5cpBGi4?=
+	=?us-ascii?Q?pfNWeR2x0mxd4xIHkYj1dvmWGmIDwT0TVu0SXzBOZBMJJGflfC+GBdL++O5/?=
+ =?us-ascii?Q?Z9AwmZfasf6jqS9S7YkiuXxr+TPDTTWcFGiJeucrqcCYUqF5sEtWkvqmD2G7?=
+ =?us-ascii?Q?U/aXpS4FZI4vzxXkbQXbSRkmh+ecGY8L+kY85S0tYuZXLZjm4xnQwi3vTGnE?=
+ =?us-ascii?Q?PnOkuw36n282havm9NWlAkDGEV0lUguMMh8jTynx7kp/o+AHBC47+AJBqqJf?=
+ =?us-ascii?Q?UEJV7q3KH1yxPvWOW/Qc6PKGh4rOq4ryC1TFbWG9s8ALx+S4vP4+U/LC9jn8?=
+ =?us-ascii?Q?DEPBlPJXfLiC+Z1SPTKSRP1s912YZijoHuq3gS/FqsgfZVN9UuR5o6xMWpmh?=
+ =?us-ascii?Q?o9MrEoZpVeWwNEbdVZdkPHbXbZZEC57Kl4d2lrcTT99hX1MrktJD2vz8re6q?=
+ =?us-ascii?Q?MKAvHK7fTp11Y8nJNpi80nDQ9HuCQGVTjK5mtY6BMYXfHg1J9QcM0kcJvnkH?=
+ =?us-ascii?Q?hcbvQjD8qjGJ2aWbtLcJqyz3iiXx4QEMajkDncKgAcvEqL1+i1ThbustDShW?=
+ =?us-ascii?Q?Nu+iaZf3fJS0h7hStVLX4SRqLLRCpJ4VkY8Re13jasTQ3KB5KCd7Lb4fsgDK?=
+ =?us-ascii?Q?gYBRAXNJgBKlRJhc5xRyNLtQh04JUHgBmo7Pcyf+vFZ+oCgHahHCaZ5TbF8t?=
+ =?us-ascii?Q?/FhJsGUGVIQ8TIWExYFgRmVS/ZwPupRiIJErVxg68NKeTEXwQKf7oTwKIRZs?=
+ =?us-ascii?Q?7eyLJLBO4ouRKEf7ovDWo35lElFz9FT5qMX7T8q0y5ZwXgzvch1yem5hTooo?=
+ =?us-ascii?Q?JhjcOmoQn58aN8fnBugheVlIok3NeFJSG3GDxG+gjLgkKfigbHxAfaO7IPzV?=
+ =?us-ascii?Q?wk7NQ4KL3ALRPXRAfWxf5iNYdRKOeSjEsW79lt2NFQHslU+EyL60Fy5kj1bJ?=
+ =?us-ascii?Q?u6JWFjgvykBlCiYRse5VreAOINGLBYJrLjl/SMIRFVBSnK1tEYWYHo0M1RYD?=
+ =?us-ascii?Q?XjQRek7LdVfJ2ubl68RDWphdgOS5W1jqkLUnyLywHpa96ckat/eZbFC4LexT?=
+ =?us-ascii?Q?TXu70Ud8WJhCz+gtABtvA/b3L+YcWVpJwzZK2hKZ3gM/krADequD5n/WL3jm?=
+ =?us-ascii?Q?UdIYbheqzC5CoSEXA+zmEdt6vmuIsBIt27ElVn3alFKJ1pAMYu5tRU1ghIql?=
+ =?us-ascii?Q?FM7AcVhZKcfCFVuvmq4z+fbvtGsxi8OCK+ZI13XGDo+qWBDRYLlt4XwGkM/g?=
+ =?us-ascii?Q?uutDXONlLPfFyTYlNUNdxHGX0MOxa3DD2eTBBXGveLukKDiR7qI38mUXudk?=
  =?us-ascii?Q?=3D?=
 X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-746f3.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5afa7c5c-eba5-474b-f3c6-08dc8fa925ca
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a6ddff0-d055-4cf4-7fe0-08dc8fa928a5
 X-MS-Exchange-CrossTenant-AuthSource: SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 15:13:02.8511
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2024 15:13:07.7980
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
@@ -129,95 +129,34 @@ X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
 	00000000-0000-0000-0000-000000000000
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY7P282MB5268
 
-Add devicetree bindings documentation for Sophgo cv18x SoCs mailbox
+Add mailbox node for Sophgo cv18x SoCs
 
 Signed-off-by: Yuntao Dai <d1581209858@live.com>
 ---
- .../mailbox/sophgo,cv1800b-mailbox.yaml       | 75 +++++++++++++++++++
- 1 file changed, 75 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml
+ arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml
-new file mode 100644
-index 000000000..e1868aaf2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/sophgo,cv1800b-mailbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+index 891932ae4..48f309bfa 100644
+--- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+@@ -310,5 +310,16 @@
+ 			reg = <0x74000000 0x10000>;
+ 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
+ 		};
 +
-+title: Sophgo cv1800b mailbox controller
-+
-+maintainers:
-+  - Yuntao Dai <d1581209858@live.com>
-+
-+description:
-+  The Sophgo cv18x SoCs mailbox has 8 channels and 8 bytes per channel for
-+  different processors. Any processer can write data in a channel, and
-+  set co-responding register to raise interrupt to notice another processor,
-+  and it is allowed to send data to itself.
-+  Sophgo cv18x SoCs has 3 processors and numbered as
-+  <1> C906L
-+  <2> C906B
-+  <3> 8051
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sophgo,cv1800b-mailbox
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    const: mailbox
-+
-+  recvid:
-+    maxItems: 1
-+    description:
-+      This cell indicates the mailbox controller is running on which processor
-+
-+  sendto:
-+    maxItems: 1
-+    description:
-+      This cell indicates the message sends to which processor
-+
-+
-+  "#mbox-cells":
-+    const: 1
-+    description:
-+      This cell indicates which channel is used
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - recvid
-+  - sendto
-+  - "#mbox-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    mailbox: mailbox@1900000 {
-+        compatible = "sophgo,cv1800b-mailbox";
-+        reg = <0x01900000 0x1000>;
-+        interrupts = <101 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "mailbox";
-+        interrupt-parent = <&plic>;
-+        recvid = <1>;
-+        sendto = <2>;
-+        #mbox-cells = <1>;
-+    };
++		mailbox: mailbox@1900000 {
++			compatible = "sophgo,cv1800b-mailbox";
++			reg = <0x01900000 0x1000>;
++			interrupts = <101 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "mailbox";
++			interrupt-parent = <&plic>;
++			recvid = <1>;
++			sendto = <2>;
++			#mbox-cells = <1>;
++		};
+ 	};
+ };
 -- 
 2.17.1
 
