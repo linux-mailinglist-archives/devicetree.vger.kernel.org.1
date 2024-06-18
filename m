@@ -1,148 +1,142 @@
-Return-Path: <devicetree+bounces-76906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22FA490C7D3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:54:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A29290C7F1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:56:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D016B1F27594
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:54:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B96D91F277A5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8DD1CB309;
-	Tue, 18 Jun 2024 09:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FCB157480;
+	Tue, 18 Jun 2024 09:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N3eSqpzq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QqxZPbTX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C471CB306;
-	Tue, 18 Jun 2024 09:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C1E156960;
+	Tue, 18 Jun 2024 09:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718702432; cv=none; b=n+FFfJYHeNeeYjABN4q1h47NKHVE7lvIAPxNCh/xc6QBXmzwkafQZkyBVddBtzNHcc8X8B3YEyOCVSjlG7rIHGgZvcrpTXnB15OYiSdtOs5GOaSdJQbeiqpySQMXktTXcun18s3yRzftQ2u/gpA/4Kq5nF4kmpBbga6mcaUZMUU=
+	t=1718702855; cv=none; b=NyvPZoCivEWzsTIE7GicGZ1UpoCeXr1K9PTFpdTkI2xhHX8DouXNw3SBp/zJqrbZpByWLh7bWaA3Rm4wPqQCfC8Cqmx9c9tV19Ofco0cOVteeuR4HWDorDaI4B6RLzazvUtIQyaonQzZGgPMpkO3DxZbJqdEQGUViEiGkLhSJkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718702432; c=relaxed/simple;
-	bh=vIFhwnIZEubFvJ3kvhDrto/wuAS+Z3gu3O4MQYZKIQc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R3CtiMvUzlW7YgdnhDrBFre9ZBpVNGmssvYRARXULb2cI1M7gfk/50hF8TmSPweI4vOZYRguab759S8B54rBS9m0Z6S4Qm4FchyctxUx2oAYq8Mkf5/3NPXTgLWDSv/JtA4BDqQj4gDKVrluejyDt7aBI/mVq+cPfSdM2cnzlq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N3eSqpzq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F0C1C4AF1D;
-	Tue, 18 Jun 2024 09:20:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718702431;
-	bh=vIFhwnIZEubFvJ3kvhDrto/wuAS+Z3gu3O4MQYZKIQc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N3eSqpzqiFFqPbcjoYUG3B9g+XOosfCcKg2etM8aYGmdwNYom5sivOfdGIGD+/+jd
-	 dnaoovGGr08ikrUY/ZFwlftN7N/fdtX1XjPeP4Qx5KUe3Qxnc3qcTVehcLz9VXdAZN
-	 BqgYJ1Ad/zj2zsJSxO8pet3mGgPDjo9mDjjtyylSzsmKZM7/bDzFt3SZHSoTjdbniJ
-	 u+cQ4nMhgj6KKkv6xBQ62unhTE/9z42/9scgIrLJpKdwPlRVArRpfLYeqElU7ZU6Vz
-	 r2GtxN8WZjGoJGjh+3yk7kT4EyBuy30F3d3uHGLCWVbankGL9yZTi8twwssvWWikWr
-	 lbKTu1hT3UzwA==
-Message-ID: <7abe0097-8a19-47a5-85d2-b7cedcb31b75@kernel.org>
-Date: Tue, 18 Jun 2024 11:20:20 +0200
+	s=arc-20240116; t=1718702855; c=relaxed/simple;
+	bh=92lysn2R3TIjIHZA1as52NSzVBrlCHxTHK1HkSwRBUY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZQINwuUCbAeUYMzU6TLWgnZD1Xa4FjRpxelL+nFQpwLVF7ZckIrpNkG6NKsDsNdM4E8YkZx2t4qHGqoc5xZXHejk6bFGP/4AgWZy5r1vsFA11cqlPDVpyp9E82IiQqaK9xiFhNgNYmXBUZBlm3Ui/mm5D0wqUleDaht5pwHjllk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QqxZPbTX; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I7vMiJ008963;
+	Tue, 18 Jun 2024 09:27:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=5CKTMwQnyrlDmzFvHrNQaY
+	QUXSiVWWEFF/dJG0musOI=; b=QqxZPbTX8DW2F07q0R85ktyd+AjgsJii1aUd1/
+	Its4Xy+lPzxQ8Ofk/2/+VY1S2pYO7WvgGDtbbs2DJYb7/Cc8LI5lRu/hidkBm+sT
+	G83Kq9zEut77oeBTjJGrxjvl+KyiYjdN7H2Gv3bKdBnukjGUwwpo1agp8LYnVt80
+	SyQ9YLyRkEP4psbHNZ5Tjzfvg/Zm71IKzJQ8wiZbq+BnHas2hPuxZWtyDZbB/ODp
+	s3ukjXxUXJfzZnXRVOK/13xKTS/580Y+jowBc4OBLLrKPOySDQgjdd8VCjkyrXtW
+	Q5BhNAaFsYdBAxifI/JoGIjMgZg05O5x5xWcRACmsXx8JY0w==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ytuav9h4h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 09:27:31 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45I9RUqP017084
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 09:27:30 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 18 Jun 2024 02:27:26 -0700
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Komal Bajaj <quic_kbajaj@quicinc.com>
+Subject: [PATCH v3] arm64: dts: qcom: qdu1000: Add secure qfprom node
+Date: Tue, 18 Jun 2024 14:57:11 +0530
+Message-ID: <20240618092711.15037-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] drm/panel: st7701: Add support for SPI for
- configuration
-To: Hironori KIKUCHI <kikuchan98@gmail.com>, linux-kernel@vger.kernel.org
-Cc: Jagan Teki <jagan@amarulasolutions.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20240618081515.1215552-1-kikuchan98@gmail.com>
- <20240618081515.1215552-3-kikuchan98@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240618081515.1215552-3-kikuchan98@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PPXyRw7Fmpa7M7Mg7JA3JSsgOPQb3-6b
+X-Proofpoint-ORIG-GUID: PPXyRw7Fmpa7M7Mg7JA3JSsgOPQb3-6b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=798
+ suspectscore=0 mlxscore=0 phishscore=0 adultscore=0 clxscore=1015
+ spamscore=0 impostorscore=0 lowpriorityscore=0 priorityscore=1501
+ bulkscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406180069
 
-On 18/06/2024 10:15, Hironori KIKUCHI wrote:
-> The ST7701 supports not only MIPI DSI, but also SPI as an interface
-> for configuration. To support a panel connected via RGB parallel
-> interface, add support for SPI using MIPI DBI helpers.
-> 
-> Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+Add secure qfprom node and also add properties for multi channel
+DDR. This is required for LLCC driver to pick the correct LLCC
+configuration.
 
+Fixes: 6209038f131f ("arm64: dts: qcom: qdu1000: Add LLCC/system-cache-controller")
+Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+---
+Changes in v3:
+* Addressed comment by Konrad
+* Added Fixes tag in commit message as suggested by Dmitry
+* Link to v2: https://lore.kernel.org/linux-arm-msm/20240612063424.2494-1-quic_kbajaj@quicinc.com/
 
-...
+Changes in v2:
+* Minor correction in commit message
+* Link to v1: https://lore.kernel.org/linux-arm-msm/20240607113445.2909-1-quic_kbajaj@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-> +
-> +static int st7701_spi_probe(struct spi_device *spi)
-> +{
-> +	struct st7701 *st7701;
-> +	struct gpio_desc *dc;
-> +	int err;
-> +
-> +	err = st7701_probe(&spi->dev, DRM_MODE_CONNECTOR_DPI);
-> +	if (err)
-> +		return err;
-> +
-> +	st7701 = dev_get_drvdata(&spi->dev);
-> +	st7701->write_command = st7701_dbi_write;
-> +
-> +	dc = devm_gpiod_get_optional(&spi->dev, "dc", GPIOD_OUT_LOW | GPIOD_FLAGS_BIT_NONEXCLUSIVE);
+diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+index 7a77f7a55498..27f9fc87079c 100644
+--- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
++++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+@@ -1584,6 +1584,21 @@ system-cache-controller@19200000 {
+ 			reg-names = "llcc0_base",
+ 				    "llcc_broadcast_base";
+ 			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
++
++			nvmem-cells = <&multi_chan_ddr>;
++			nvmem-cell-names = "multi-chan-ddr";
++		};
++
++		sec_qfprom: efuse@221c8000 {
++			compatible = "qcom,qdu1000-sec-qfprom", "qcom,sec-qfprom";
++			reg = <0 0x221c8000 0 0x1000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			multi_chan_ddr: multi-chan-ddr@12b {
++				reg = <0x12b 0x1>;
++				bits = <0 2>;
++			};
+ 		};
+ 	};
 
-Nope, you cannot use GPIOD_FLAGS_BIT_NONEXCLUSIVE outside of regulators.
-I don't see any code for ensuring proper simultaneus access.
-
-Best regards,
-Krzysztof
+--
+2.42.0
 
 
