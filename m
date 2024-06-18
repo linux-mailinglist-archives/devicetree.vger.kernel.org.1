@@ -1,167 +1,106 @@
-Return-Path: <devicetree+bounces-77097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC41990D648
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:56:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C40390D64D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:57:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA38B1C249C2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:56:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63CD6292F03
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01FA382869;
-	Tue, 18 Jun 2024 14:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7E713CF82;
+	Tue, 18 Jun 2024 14:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="WspiMbRv";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="uSdJsRMC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIysFqfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wflow4-smtp.messagingengine.com (wflow4-smtp.messagingengine.com [64.147.123.139])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F93F2139AC;
-	Tue, 18 Jun 2024 14:53:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7486A13B5B8;
+	Tue, 18 Jun 2024 14:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718722436; cv=none; b=UKuzgySjuOxw5gurUeId6BMOt+1Np0GCurZp3/telG3nQy6+aOnY/c3GiD2uCqcRdrLAkD2JJ5jvsACqHCWhHQffgn9S4Cl+tJR5UeWO05/IkGleMcyVC6zRWMzM5lnz8BGNezbAGVLasGCl+pP6tLz+GQCA6MxkHcZ5lM9eH4Y=
+	t=1718722447; cv=none; b=S84TyKN4jQvfamERjggjOOTPmp2zeac79GZFlJ9f1oGDE6pAt2Qdh1GLptVOeaVnuGGAdF+eMh8ky5Dy28WvpffwPMnyaAHmQGIxNBQ9d1VnUmvMDU6FKXrZmyIUjBWX3HiTMHxX6XW7HQ9qUGXNt7ZhVgmumTehPpVJPx90FWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718722436; c=relaxed/simple;
-	bh=0UMGObr4c/PBQHn9Sn0+mxPAO48JSjyOWOHPtEQMc6w=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=ZlM1WlOxsLwntvlEXf9Y6KN6qtiIyxVHKPl4INpDgRNmWQxZ9hxh28bamMmGM8s7c5dmjaadPVxGeE1X4TdBCsoXCqUcUO6cy6exg0RNKOHYFQ5mNl1o/80eQeF3GPo7xXpVEOdGrjBOlXZAvDE1jTkx+4qTi1tPBqgfFZ8NkKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=WspiMbRv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=uSdJsRMC; arc=none smtp.client-ip=64.147.123.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailflow.west.internal (Postfix) with ESMTP id 2BF1B2CC008B;
-	Tue, 18 Jun 2024 10:53:52 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Tue, 18 Jun 2024 10:53:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1718722431;
-	 x=1718729631; bh=kcbpkU2iZLW5TZK6Y8fCG83H86YT8jkb38ChT7Si83Q=; b=
-	WspiMbRvMrVrg++N2gk/7bMfurwgpyJQrB/7lc+1YEwlRfvr4+qL9B0ikSP8MiwZ
-	bOf/1288yHNN7pUb2/ZXFD8tcsgG1tOO4q93G+RKxziKKZTHDaaWUaMkeyMGJgHP
-	VC+llVVnYIIO81/+4OHhhqHZXKu2vrLiTwlfOEgPZsaAijneWDt4g2DkxVByalVf
-	vVcCURoBNMdgH7jsLAbvCzVHSD1HBJ5VsfqEA5CQlFBwkPSgQFN60dbdGKHQ502k
-	lbLmzPIY5v8Rf5CKlUcCbyCB5BvQawKfsyPQz4zHMfHmtwDYwfuJtvP8xv2gkstM
-	Jwx6N0nhZNqHpbSlbg2t9g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1718722431; x=
-	1718729631; bh=kcbpkU2iZLW5TZK6Y8fCG83H86YT8jkb38ChT7Si83Q=; b=u
-	SdJsRMCljw9dO6nRoqCRSbf3v1s9J8J5tOv4uHC2y8Cq6yNQu9DuoFSmo+hn8+27
-	Gnjf7YDeIpmK+v6RVeRnUVrWpVHDzDec8Vnn7OcYN4GGhV43IAW4ZzM8Lu80yqpc
-	FLoBRsdIjjQUvYiKUXlcAxocWkX5woTqsidcHIN/LCV6x+oOQm4Vs/Z7S5Rbc8Uu
-	+lTlCMygk0vqoy0R6aXMtxUDDSxPBgPf0XpPrgKlvSFD0TUH/3U15WeoPxKn0cJl
-	uuN2liSFCvgABbntR+rfWipIQYpwtix+ygKcBSDlhxdw+2yjXkWRy1hcwjO61/Nh
-	a946buU4gjAzI+icNiv7g==
-X-ME-Sender: <xms:f59xZgWKesXdDDG9K0Vrq96WT5Oy7q7o8pUvafCCOmZ43RoRB0UvNQ>
-    <xme:f59xZklevwcfy6odWy_nPKhGPoibZW-_74-6smhGai-UNWVe1R-YdGsvvvT-KxJrT
-    Gy_Gths9f98TOTfu-k>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfedvkedghedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:f59xZkYT3Wv9xpWIF_mEBkOGqxDRYSAjUTMUVwrEsnCGtHPFZBtUNg>
-    <xmx:f59xZvWE3UnO86LAHE9USvBALm8vQFXpk_cY9ZN0D_LcK8RUHCnJJQ>
-    <xmx:f59xZql-5bziqCYF6a0PJwLdsUXs224hiyD-x4D2I_NuvMLZjO4HMA>
-    <xmx:f59xZkdgNXCSsGCNxjscUkN_nfCuq7Y3_NWXXZB5RqmJHufWP3VRew>
-    <xmx:f59xZqt7fQC9zayGrAg38J0AEHme73ZScxYPO6YvwoTaBdM6eYpM1Jjl>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 25A2AB60092; Tue, 18 Jun 2024 10:53:50 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-522-ga39cca1d5-fm-20240610.002-ga39cca1d
+	s=arc-20240116; t=1718722447; c=relaxed/simple;
+	bh=a8Kjl5Sc9s+kYLMmM63LyQQJLQ21S9FnZ/zdTcyxi8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZsJmcJY9sb2B9iPpuV8LjYzZMhK7rZA8aQ3IfxC7rX8SMtgfE+EnXRPNT0HVIy5TbdQCeZ6D6+WbRrQo9yk0y/Szr50snWLqIqOIXtTEjX1g+bDGfp52vaXdSdHkqGNN9ue5A7rxF0qCrtLFKse3dKLoN/57fhgVe/mROkAt/nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIysFqfU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC3EEC3277B;
+	Tue, 18 Jun 2024 14:53:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718722447;
+	bh=a8Kjl5Sc9s+kYLMmM63LyQQJLQ21S9FnZ/zdTcyxi8s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fIysFqfUWeJ7Wf1nAjV+viUbuM4wea/lbybTSonrv3tWWiRD2l/CLSNiDSmbbY/2Y
+	 ADP62E85knZPLFGYhQrGMKn3EKpY0lyKg8p5HjC15bHf8jU3DyzJ0PTyYCarbAR7CV
+	 bauS/Ez5ie6a0ISIa4QzA9M15SAEdPlR7sfd9l0mO9mXW3sqvRTHFE6FUS0emcZO7X
+	 IzgP7baEfnGJMze6SIQPQMTvG7EdbHqtDBY1KWSszaOfDeTmRIndrLHU5sI0e3Wfdc
+	 l9ocDErR1SxSq9vUJI6jg3R99eZrgBrb69uDw6vfYz/1atcY+qTNY4niFPoYEk8ef+
+	 ZLg5gL9I8wb6g==
+Date: Tue, 18 Jun 2024 15:53:46 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc: Paul Handrigan <paulha@opensource.cirrus.com>, lgirdwood@gmail.com,
+	linux-sound@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	patches@opensource.cirrus.com
+Subject: Re: [PATCH v3 2/2] ASoC: cs530x: Support for cs530x ADCs
+Message-ID: <aa3eefdd-75cb-4772-aeca-1b98c62297ae@sirena.org.uk>
+References: <20240617190102.1010597-1-paulha@opensource.cirrus.com>
+ <20240617190102.1010597-2-paulha@opensource.cirrus.com>
+ <96162ff4-8c54-4efa-b06a-dc20e358e712@sirena.org.uk>
+ <4e192a95-bb3d-41d4-b83f-176f0f8aba6b@opensource.cirrus.com>
+ <24e1df82-bcad-4b8c-9743-a5ea213807d5@sirena.org.uk>
+ <36dae588-5f01-4e27-b054-8db49388e21b@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <b685d5e5-09d3-4916-ad0b-d329c166e149@app.fastmail.com>
-In-Reply-To: <20240527161450.326615-2-herve.codina@bootlin.com>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
- <20240527161450.326615-2-herve.codina@bootlin.com>
-Date: Tue, 18 Jun 2024 16:53:30 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Herve Codina" <herve.codina@bootlin.com>,
- "Simon Horman" <horms@kernel.org>,
- "Sai Krishna Gajula" <saikrishnag@marvell.com>,
- "Thomas Gleixner" <tglx@linutronix.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Lee Jones" <lee@kernel.org>,
- "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- UNGLinuxDriver@microchip.com, "Andrew Lunn" <andrew@lunn.ch>,
- "Heiner Kallweit" <hkallweit1@gmail.com>,
- "Russell King" <linux@armlinux.org.uk>,
- "Saravana Kannan" <saravanak@google.com>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Lars Povlsen" <lars.povlsen@microchip.com>,
- "Steen Hegelund" <Steen.Hegelund@microchip.com>,
- "Daniel Machon" <daniel.machon@microchip.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- "Allan Nielsen" <allan.nielsen@microchip.com>,
- "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
- "Clement Leger" <clement.leger@bootlin.com>
-Subject: Re: [PATCH v2 01/19] mfd: syscon: Add reference counting and device managed
- support
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Fuj6WTz8QPr+0UxV"
+Content-Disposition: inline
+In-Reply-To: <36dae588-5f01-4e27-b054-8db49388e21b@opensource.cirrus.com>
+X-Cookie: If you can read this, you're too close.
 
-On Mon, May 27, 2024, at 18:14, Herve Codina wrote:
-> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
->
-> Syscon releasing is not supported.
-> Without release function, unbinding a driver that uses syscon whether
-> explicitly or due to a module removal left the used syscon in a in-use
-> state.
->
-> For instance a syscon_node_to_regmap() call from a consumer retrieve a
-> syscon regmap instance. Internally, syscon_node_to_regmap() can create
-> syscon instance and add it to the existing syscon list. No API is
-> available to release this syscon instance, remove it from the list and
-> free it when it is not used anymore.
->
-> Introduce reference counting in syscon in order to keep track of syscon
-> usage using syscon_{get,put}() and add a device managed version of
-> syscon_regmap_lookup_by_phandle(), to automatically release the syscon
-> instance on the consumer removal.
->
-> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-This all looks correct from an implementation perspective,
-but it does add a lot of complexity if now every syscon user
-feels compelled to actually free up their resources again,
-while nothing else should actually depend on this.
+--Fuj6WTz8QPr+0UxV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The only reference I found in your series here is the
-reset controller, and it only does a single update to
-the regmap in the probe function.
+On Tue, Jun 18, 2024 at 03:43:59PM +0100, Richard Fitzgerald wrote:
+> On 18/06/2024 15:25, Mark Brown wrote:
 
-Would it be possible to just make the syscon support in
-the reset driver optional and instead poke the register
-in the mfd driver itself when this is used as a pci device?
-Or do you expect to see the syscon get used in other
-places in the future for the PCI case?
+> > Marking the register as read only should DTRT there, if not then that's
+> > a regmap bug which should be fixed.
 
-      Arnd
+> True but now we're adding extra callbacks and complexity just to
+> avoid marking a register volatile for some reason. The driver doesn't
+> need it to be cached, so why bother?
+
+Well, moving the volatile callback to be a readable callback.  If
+nothing else it avoids anyone reading the code and having to wonder why
+the ID registers are volatile.
+
+--Fuj6WTz8QPr+0UxV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZxn3kACgkQJNaLcl1U
+h9Bpfwf8C56mxWCyThKjJ1O5zVJsOieVgy+3sgl89QnlnpRJ7D2RWEQLvg28tNa4
+6cPpCVbRkfiwrtPbvzYwrUDjoCtRBzxJjn3iBi2umEhNXacuFbH5lwy0HOMU8AJ5
+E7kKNkdGyko5bCU2Z8fdtqSZq2IZNrjhSHh2CQc4BR4JWpodm5FKZ2ORy/Q3UsdN
+mNjh4bddIo6laigK9+kqTuEW0w6iHiOn5JI5snw453tU7R7D0Tlo9xgydB0jwrBN
+AWuuK2BIhCMWyzHN5HHkDucrk86IqGlZDOhQ4HucWhMGsEaYwPifbppuGZZyzD6x
+mciPItYTBD2cJtNKyi+p+tXNy0gz9w==
+=UT//
+-----END PGP SIGNATURE-----
+
+--Fuj6WTz8QPr+0UxV--
 
