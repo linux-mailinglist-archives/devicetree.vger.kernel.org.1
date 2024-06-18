@@ -1,127 +1,190 @@
-Return-Path: <devicetree+bounces-76885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2AA690C72E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:37:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD32B90C735
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4987C1F26AF0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:37:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06012B246D0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38ACF1AC444;
-	Tue, 18 Jun 2024 08:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659B91AD9F3;
+	Tue, 18 Jun 2024 08:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="B1u1g1qO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WWAUSi5T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3490813B5B5;
-	Tue, 18 Jun 2024 08:35:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E8D1AD9E8;
+	Tue, 18 Jun 2024 08:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718699752; cv=none; b=onywxCu3/sCpjdiLVE4EyONQkL6faK+ySsBbgPTTZ8EevH4PMslqIdFJ+3T/qZti4X3rcdyTZ2p5fGw7dTpfp3BWKs3tNYkKESOyRpH83cCk19t7GOPWgfHsyACltpgYFokVDcgrE7erAf1QiX/T7jFFR+/aJ8E+VCgTnormwb8=
+	t=1718699857; cv=none; b=rpwp3t3834NrJy25zcjo4eOqI41dy8GCeicd6h+gyDTtJZnfYRBeH/4LO60PMQyrFzGciQTBM2Lx17l3zzXHUogQaVCzjIO4yLSet+slBirFtm0vFTITr3LqEfGGhzfZyPeh52GRZePVa11Ligqs8RpXd9KYMjV4koo9t0JRbag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718699752; c=relaxed/simple;
-	bh=nYvoxFAcUSVYJxLnDXRVnyZjqM6DX0X3xxOLqPkbgB4=;
-	h=From:Date:To:cc:Subject:Message-ID:MIME-Version:Content-Type; b=H/5VSqBHAeuRagf1DmAxxGGQua2AT109VLX8P2A244nI7cC/Wo2P+Bw3fUHMBWwNO3avE65lozJRdTsQRZlAYJUHUOU2RXZT2YfUTLKCkntNC0AzUgqz2if8LnHRNloilhmpLtZ2POaPGaGqYLnOXGO3lgrvp0OH3xPxVy0vKms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=B1u1g1qO; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718699750; x=1750235750;
-  h=from:date:to:cc:subject:message-id:mime-version;
-  bh=nYvoxFAcUSVYJxLnDXRVnyZjqM6DX0X3xxOLqPkbgB4=;
-  b=B1u1g1qOfU+BjU3qOiM6+bWo0tow7hIwNOrtCToAky8KQQInbiP0OBL6
-   3U9XggqgUOnY/FR8Q4pRdSImZSkUsarSfsXgWgV/JhHsRokjtMqgepLjR
-   xPvZvtInNSuq0sVuviXRTlFqymnCx2yXZvg6bV/SJruf++bbY62p2G1bf
-   UtWnwR4k0+oC97i/6U20Els5dKhiwT9Ixz+MaeODXcYXYoqXN3bz+gQjV
-   SHRRY4R7k6aWZ6J0oPOripP8CVROuFYNgSNBRsbdRwBNnqyx8K5GcN0Q7
-   ADpZm7W07a2fiQOqjueOvYhMIdyD0fQ9bOVnd+9XJnqSwKTsegc2lvoeE
-   g==;
-X-CSE-ConnectionGUID: p/ZJXP0hQ1W61Ok03odo4A==
-X-CSE-MsgGUID: X9tizdnxQLS6gzzKI7a7ig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="38082591"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
-   d="scan'208";a="38082591"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2024 01:35:50 -0700
-X-CSE-ConnectionGUID: CmK7bRVETQ6TvX+2UQKiDw==
-X-CSE-MsgGUID: mhYCFdATQl62EEBY3AIHHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
-   d="scan'208";a="64700456"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.7])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2024 01:35:44 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 18 Jun 2024 11:35:40 +0300 (EEST)
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-    Sebastian Reichel <sre@kernel.org>, 
-    Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-    Hans de Goede <hdegoede@redhat.com>, 
-    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-    Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, 
-    linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [GIT PULL] Immutable branch between pdx86 lenovo c630 branch,
- power/supply and USB
-Message-ID: <e999261e-cba8-740e-430b-4a4e702fd609@linux.intel.com>
+	s=arc-20240116; t=1718699857; c=relaxed/simple;
+	bh=ofhnaPVNg2qs87WnUKL3NVwbpwdHWn2ssq1pcOARm/Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Oegu+14pJRJUHqQwrHGqay11zcozZW3AwGOdEjcYQIrIFND2PimYv6Hr82I3t0ttGvt+rpcOnb1gPYqorOjx4Ut9IjajjWCoRYSE1WDvmXq+yzujajjwKG9h4P4X/3IkNZDuNFZTT0D0MS0e/eZLxzvf+QshcO8JVa+whhZveHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WWAUSi5T; arc=none smtp.client-ip=209.85.160.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-254871388d3so2675903fac.1;
+        Tue, 18 Jun 2024 01:37:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718699855; x=1719304655; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JFsReauRW7BnbGOq0QDl+qJ280PvXf5SBObURVpdknI=;
+        b=WWAUSi5TuJ6EzUwt37PfkTqG4MhbrwpqMkxw/xt+B3iV2V7Nu0IIPzk844PdYStLuc
+         0otkoraoCOz0e2Wd1K6LiQhzEVpXxRRPlInjfOKO5egrXf3OG/WZ6y4ZSH89FvxYiAh6
+         YY5KV2jZr9SHX/LN0gl+aJpKsy4dKTyv1mbzBqz+w0TL15avupUndF02TXphPhTb8G1P
+         6N5f8piVf59abf6sh0r7pDSzVnE878cRNdp9ntD6/Wze0TmkO7rCVCW3L9/DqVjlxCUa
+         YIbZ+hMpE2cVHHISc2JNrtL4GaKBgAbmVAEqRPbWQWyUnPdEwzC3ptvBWQICCt7uohfD
+         5uiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718699855; x=1719304655;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JFsReauRW7BnbGOq0QDl+qJ280PvXf5SBObURVpdknI=;
+        b=vFxjnFxt3yrsSoci+J0PnXu7VK4ME5EbzDWG9wSELcdml4KfxX1zmQi8L/fMSGRqdG
+         7MOux4Oe4eFo5pbiOU330Erxa+XAlEBn+9uKXbq9NCS8AR67upf2XgvYiuK2EkeJGe8G
+         z4G23tv036hm6gRfXB1Y9LfRsVsLyzwZAZr29oLEifBRtt+73gRnu+6UAXDyiZhhLSbp
+         nr4azSKTk0HjLMkm9htM88sIF2wktR8WnrvdC3SvZQuAhGKqHVn7BLKZWgaF1AUsqjss
+         vhfyolj6/O8Cttfvo3nySUE4U7Yx1bpnhiLLYLPZIlNFJh+O8UsSvgA9lgBNO0rdOMSu
+         u+fA==
+X-Forwarded-Encrypted: i=1; AJvYcCWnb59smSYiNFgjp6VnGm0aklBGwqwPDP3RGRgr5VpDkCF/XrKRTEBpsWXX6BEYzV34VR9JIHx2DCNG9Y2xWRFkebvBmHlB4i3I5M75p7+A8t2OWoiBQvxQRUKN0FbI4KPjjkuxCxXMzhUoWQZuwZU7K2yPeDt5H+Xc4eqCM80xVfUY0A==
+X-Gm-Message-State: AOJu0YwnfUR3rPdsFEOC94wfreZEFc4U7r8O8SJ5hGczP9cxr1TFW7Lu
+	XQg5eazUgsnRe2fOcFcEFyWOTDSg3i+F85KnpXqYwvNQ7z4XJ4PN
+X-Google-Smtp-Source: AGHT+IGnRWRr2o+oA3EM/VynZOBdxxp9ijkn0OKBKLyHSsXT40cOAd4QJXajBgNbKMlE+nu9v5KLMw==
+X-Received: by 2002:a05:6870:c095:b0:254:7cd4:9092 with SMTP id 586e51a60fabf-258428eb176mr11682004fac.20.1718699854751;
+        Tue, 18 Jun 2024 01:37:34 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-256993a0d23sm3052169fac.58.2024.06.18.01.37.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jun 2024 01:37:24 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: adrian.hunter@intel.com,
+	aou@eecs.berkeley.edu,
+	conor+dt@kernel.org,
+	guoren@kernel.org,
+	inochiama@outlook.com,
+	jszhang@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh@kernel.org,
+	ulf.hansson@linaro.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	tingzhu.wang@sophgo.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH v4 0/4] mmc: sdhci-of-dwcmshc: Add Sophgo SG2042 support
+Date: Tue, 18 Jun 2024 16:37:08 +0800
+Message-Id: <cover.1718697954.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Chen Wang <unicorn_wang@outlook.com>
 
-Here is the IB containing the platform patches (1-2) the other patches in 
-the Lenovo C630 series depend on (Dmitry was going to do a minor update on 
-the remaining patches before they are ready to be merged).
+This patchset is composed of two parts:
+- one is the improvement of the sdhci-of-dwcmshc framework,
+- the other is the support for sg2042 based on the improvement of the
+  framework.
+The reason for merging the two parts into one patchset is mainly to
+facilitate review, especially to facilitate viewing why we need to
+improve the framework and what benefits it will bring to us.
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+When I tried to add a new soc(SG2042) to sdhci-of-dwcmshc, I found
+that the existing driver code could be optimized to facilitate expansion
+for the new soc. Patch 1 "mmc: sdhci-of-dwcmshc: add callback functions
+for dwcmshc" is for this.
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+Patch 2 ~ 3 are adding support for the mmc controller for Sophgo SG2042.
+Adding corresponding new compatible strings, and implement
+custom callbacks for SG2042 based on new framework.
 
-are available in the Git repository at:
+Patch 4 is the change for DTS.
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git tags/platform-drivers-x86-ib-lenovo-c630-v6.11
+By the way, although I believe this patch only optimizes the framework
+of the code and does not change the specific logic, simple verification
+is certainly better. Since I don't have rk35xx/th1520 related hardware,
+it would be greatly appreciated if someone could help verify it.
+Note, the DTS change has dependency on clock changes for SG2042, which
+has not been merged in master/upstream, so if you want to test this
+new sdhci-of-dwcmshc driver for other hardware except SG2042, don't
+pick patch 4.
 
-for you to fetch changes up to 5e5f2f92cccc29f356422d3cbc104f7f42430f22:
+---
 
-  platform: arm64: add Lenovo Yoga C630 WOS EC driver (2024-06-14 12:51:30 +0300)
+Changes in v4:
 
-----------------------------------------------------------------
-Immutable branch between pdx86 lenovo c630 branch, power/supply and USB
-subsystems due for the v6.11 merge window.
+  The patch series is based on latest 'next' branch of [mmc-git].
 
-platform-drivers-x86-ib-lenovo-c630-v6.11:
-  v6.10-rc1 + platform-drivers-x86-lenovo-c630
-for merging into the power/supply and USB subsystems for v6.11.
+  Improved the dirvier code as per comments from Adrian Hunter, drop moving
+  position and renaming for some helper functions.
 
-----------------------------------------------------------------
-Bjorn Andersson (1):
-      dt-bindings: platform: Add Lenovo Yoga C630 EC
+  Put the sg2042 support as part of this series, improve the bindings and code
+  as per comments from last review.
 
-Dmitry Baryshkov (1):
-      platform: arm64: add Lenovo Yoga C630 WOS EC driver
+Changes in v3:
+  
+  The patch series is based on latest 'next' branch of [mmc-git]. You can simply
+  review or test the patches at the link [3].
 
- .../bindings/platform/lenovo,yoga-c630-ec.yaml     |  83 ++++++
- drivers/platform/arm64/Kconfig                     |  14 +
- drivers/platform/arm64/Makefile                    |   1 +
- drivers/platform/arm64/lenovo-yoga-c630.c          | 291 +++++++++++++++++++++
- include/linux/platform_data/lenovo-yoga-c630.h     |  44 ++++
- 5 files changed, 433 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/platform/lenovo,yoga-c630-ec.yaml
- create mode 100644 drivers/platform/arm64/lenovo-yoga-c630.c
- create mode 100644 include/linux/platform_data/lenovo-yoga-c630.h
+  Improved the dirvier code as per comments from Adrian Hunter.
+  Define new structure for dwcmshc platform data/ops. In addition, I organized
+  the code and classified the helper functions.
+
+  Since the file changes were relatively large (though the functional logic did
+  not change much), I split the original patch into four for the convenience of
+  review.
+
+Changes in v2:
+
+  Rebased on latest 'next' branch of [mmc-git]. You can simply review or test the
+  patches at the link [2].
+
+Changes in v1:
+
+  The patch series is based on v6.9-rc1. You can simply review or test the
+  patches at the link [1].
+
+Link: git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc.git [mmc-git]
+Link: https://lore.kernel.org/linux-mmc/cover.1713257181.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-mmc/cover.1714270290.git.unicorn_wang@outlook.com/ [2]
+Link: https://lore.kernel.org/linux-mmc/cover.1718241495.git.unicorn_wang@outlook.com/ [3]
+
+---
+
+Chen Wang (4):
+  mmc: sdhci-of-dwcmshc: add callback functions for dwcmshc
+  dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo SG2042 support
+  mmc: sdhci-of-dwcmshc: Add support for Sophgo SG2042
+  riscv: dts: add mmc controllers for Sophgo SG2042 SoC
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  69 ++-
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |  17 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  32 ++
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 499 ++++++++++++------
+ 4 files changed, 447 insertions(+), 170 deletions(-)
+
+
+base-commit: d6cd1206ffaaa890e81f5d1134856d9edd406ec6
+-- 
+2.25.1
+
 
