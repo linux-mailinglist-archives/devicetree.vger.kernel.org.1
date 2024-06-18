@@ -1,101 +1,124 @@
-Return-Path: <devicetree+bounces-77126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C528B90D6FF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:20:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E422590D72F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BF401F2493F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:20:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 976D928768D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:26:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08D074063;
-	Tue, 18 Jun 2024 15:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JHP2taep"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2857417BB5;
+	Tue, 18 Jun 2024 15:25:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C2E46450;
-	Tue, 18 Jun 2024 15:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4380323759;
+	Tue, 18 Jun 2024 15:25:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718723637; cv=none; b=N/Z0ziRvpgasSfzQGG5iv7ueVuo3GVtnPyUvI4mAVo9AnNjP63LX9f7JbfM5mHPC7LZ76a8Z6+rQNebxL+3kKiHYqXFhwIYW4MdNlgD7adfT/zkFB4ccbJjmjeGY3m9OlI5FxciGNBPLMic9/kIm4rZlgrxLZZbIWUQZkeGtS/M=
+	t=1718724358; cv=none; b=gn2Jh9BOjgalI3RpOEH9L5Fk+NAXeOVvH9sX8eH19Gn3y8keno2YXMCphaOU+lBKiLWmYgHRFhtTyuuOYGFR9kUg7P4JJjq+HXjqYBLjSbuZMmxVcVlOfhJas+l4iIxVQjpXCoTAt5o9dD7TlzphY0rXAOKfGyaTrI9zAyyc5EQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718723637; c=relaxed/simple;
-	bh=kWLzasd2Jv00eh2+ymMa0JXWplIZ46GqFdb45PLJiMs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e5aCnSILlS5h9aMKCToku/5XbaHIKTtOBarJPq0LR7byjHpGEZA0LfFKyNWl4TY2dwxwH0PhsV+9J84VCU/WKfpczHv85zDpDhnflWgVC9q9cc3DWLBtawK/1fy5U9ST6UMhBuDl5ZcpTRcktCwyx11XxaInXHXNyfFeBgtkHBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JHP2taep; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47C53C3277B;
-	Tue, 18 Jun 2024 15:13:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718723637;
-	bh=kWLzasd2Jv00eh2+ymMa0JXWplIZ46GqFdb45PLJiMs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JHP2taepLHd1qo2ZO3Fqo5kv42Y7HWK3Hvd4M9y2nQyamYsR5YFzzeg2qxzZaGeZB
-	 7ZdRPOggnESPB72uGTfHtxrMYHUu9VivKEp62sFDgqw7t40OShbPhAyEmDwSujTM8L
-	 jlpJkJIwACiMEUKiXkgrJQS2ImsfaBlG+vo6JUZgmmw/lV7Tg1gZIUY4HFTjPIb/Xu
-	 UntfmSZN5WNXqR1Es9Jto/136eADuj73gdLn4T7FL3k9ui8XrhCxUm86sueii4+W/r
-	 4Va9iKPlphFGvUY/fnde6a6Ahqk1mQxQRXUSHs0ZoEeLJo/FfhR8SRt6a7bbMF/DSc
-	 Cfl1P7hqIRE+g==
-Date: Tue, 18 Jun 2024 16:13:52 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Beniamin Bia <beniamin.bia@analog.com>,
-	Stefan Popa <stefan.popa@analog.com>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	jstephan@baylibre.com, dlechner@baylibre.com
-Subject: Re: [PATCH 5/9] dt-bindings: iio: adc: adi,ad7606: add conditions
-Message-ID: <20240618-oval-parish-d3fa2925a52a@spud>
-References: <20240618-cleanup-ad7606-v1-0-f1854d5c779d@baylibre.com>
- <20240618-cleanup-ad7606-v1-5-f1854d5c779d@baylibre.com>
+	s=arc-20240116; t=1718724358; c=relaxed/simple;
+	bh=/jGyBaftRhGd7bK/ZcKOcC+QqJpdWcC7EYoVm/cOc60=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m9IkhJ2tSd97PJ6vpvW02u0KfDt2avZuWraX+/MRbwvJHE4dYPJV8zSpth8C/WIO8mkuAr4ChyQ08eN0Rhy4BIP2D4NaD5x8Ov0fUuW+3U5HAKxFqlmkQ1HzJsusu8qORlFVDKW4SrhRj1t4u32ApCVNh1erXUTea9WXfCLH8nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
+Received: from [141.14.220.45] (g45.guest.molgen.mpg.de [141.14.220.45])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: pmenzel)
+	by mx.molgen.mpg.de (Postfix) with ESMTPSA id D32C161E5FE05;
+	Tue, 18 Jun 2024 17:25:13 +0200 (CEST)
+Message-ID: <5b9379f4-5ccd-402c-8502-8895acc0cdb8@molgen.mpg.de>
+Date: Tue, 18 Jun 2024 17:25:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5RfIUh1XSeALXwP5"
-Content-Disposition: inline
-In-Reply-To: <20240618-cleanup-ad7606-v1-5-f1854d5c779d@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Armin Wolf <W_Armin@gmx.de>, Stephen Horvath <s.horvath@outlook.com.au>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-6-linux@roeck-us.net>
+ <a5aa120d-8497-4ca8-9752-7d800240b999@molgen.mpg.de>
+ <efb77b37-30e5-48a8-b4af-eb9995a2882b@roeck-us.net>
+ <33f369c1-1098-458e-9398-30037bd8c5aa@molgen.mpg.de>
+ <4e09b843-3d2d-46d7-a8e1-2eabc4382dc7@roeck-us.net>
+ <f20ea816-5165-401e-948f-6e77682a2d1b@molgen.mpg.de>
+ <975af7e5-b1b0-400e-a1c3-6d9140421f25@roeck-us.net>
+ <8719fc64-2b51-4b79-ba52-0a3b9216f2db@molgen.mpg.de>
+ <f76a4d07-887b-4efb-b20e-52979db31216@roeck-us.net>
+ <fd8868ef-6179-45a7-8249-ee17994a8e78@molgen.mpg.de>
+ <dc73070a-d266-47ca-bb11-77c2d9d6dece@roeck-us.net>
+Content-Language: en-US
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <dc73070a-d266-47ca-bb11-77c2d9d6dece@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Dear Guenter,
 
 
---5RfIUh1XSeALXwP5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am 18.06.24 um 17:10 schrieb Guenter Roeck:
+> On 6/18/24 07:59, Paul Menzel wrote:
+> [ ... ]
+> 
+>> I did
+>>
+>>      $ tail -3 /etc/sensors3.conf
+>>      chip "spd5118-*"
+>>          set temp1_max 56000
+>>          set temp1_crit 84000
+>>
+>> but it stays with the defaults:
+>>
+>> ```
+>> $ sensors
+>> spd5118-i2c-0-53
+>> Adapter: SMBus I801 adapter at efa0
+>> temp1:        +20.8°C  (low  =  +0.0°C, high = +55.0°C)
+>>                         (crit low =  +0.0°C, crit = +85.0°C)
+>>
+> 
+> You'd have to write directly into the attribute files.
+> For example, if you have
+> 
+> $ grep . /sys/class/hwmon/*/name
+> /sys/class/hwmon/hwmon0/name:nvme
+> /sys/class/hwmon/hwmon1/name:nct6687
+> /sys/class/hwmon/hwmon2/name:k10temp
+> /sys/class/hwmon/hwmon3/name:spd5118
+> /sys/class/hwmon/hwmon4/name:spd5118
+> /sys/class/hwmon/hwmon5/name:spd5118
+> /sys/class/hwmon/hwmon6/name:spd5118
+> /sys/class/hwmon/hwmon7/name:mt7921_phy0
+> /sys/class/hwmon/hwmon8/name:amdgpu
+> 
+> you could run
+> 
+> sudo bash -c 'echo 56000 > /sys/class/hwmon/hwmon3/temp1_max'
 
-On Tue, Jun 18, 2024 at 02:02:37PM +0000, Guillaume Stols wrote:
-> Since the driver supports several parts that present differences in
-> their layout and behaviour, it is necessary to describe the differences
-> from one chip to another.
->=20
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+     $ sudo bash -c 'echo 56000 > /sys/class/hwmon/hwmon3/temp1_max'
+     bash: line 1: echo: write error: No such device or address
 
-Didn't check the datasheets etc, but the idea seems fine.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---5RfIUh1XSeALXwP5
-Content-Type: application/pgp-signature; name="signature.asc"
+Kind regards,
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnGkMAAKCRB4tDGHoIJi
-0uuRAQDKe7NGr+QttzraeOK/Mn2fd3DeTWHkSvdEF08jeWiJrQEAq3JGceQRF1er
-TIsn2ohwSS8GsuZvboHa/TJMt53V2As=
-=jxd4
------END PGP SIGNATURE-----
-
---5RfIUh1XSeALXwP5--
+Paul
 
