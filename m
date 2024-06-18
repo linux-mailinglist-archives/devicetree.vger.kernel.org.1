@@ -1,132 +1,141 @@
-Return-Path: <devicetree+bounces-77226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1EB590DBF6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 20:56:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CBDE90DC07
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 20:57:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B6EA1F2363F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:56:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA919281A1F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2520315ECED;
-	Tue, 18 Jun 2024 18:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2044015ECDF;
+	Tue, 18 Jun 2024 18:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GeRU7INo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UztlCJuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58B1215ECCE
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 18:56:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B0A14BF92;
+	Tue, 18 Jun 2024 18:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718736962; cv=none; b=p3kmWW5CmvMHSD/ZMAfuCT5HVwVwj2HHEUyrC5MltMbCB3Jo+vcUBhh8Oq2BUYXX+E2BQRGwlVi1N45DaSJ0Lvv7R4rM56hh3+vjyhYbk3L1FY3t1KU97MR5tAibevjJRqh5PXcop2BpitY55jH/tyj/P1MlxQytvo5JIVp4MGY=
+	t=1718737041; cv=none; b=bUpUKAUVAACuK5Q0v7NOIUMmQSzOvcQZEDFrLPKO+LLwnCmCfqGaWNPwLei3kZEksG59v18DRSjrnCNPWC4a+X4jMQKVQNEzGOnWCEpdlQa//MFozPBFMgthVrQ6QJNRl0cXZF0CVscllb3Gazi7ON0cBj9mbMz3R7x+5VtYp14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718736962; c=relaxed/simple;
-	bh=GZ8cNz7HxzJEA3fctUo9rko9xv2fpo9Fak4LOEr1XU4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WjABf9Epc0ofnNnS8G5i1bct++gvM/q/oshEtSDq7sniBz/Sor9thw7vgaGurG67LjQSUfoHRqy9BI71on+3xT+dDdQoVb+39WRxaaRs5c/oDghUpdt4JSTTTBruXYSeZIgx5nhnDxKxLf0/x9Qw23IY+aF3EeAV4nKZNcEk+CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GeRU7INo; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2eae5b2ddd8so1192771fa.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 11:56:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718736958; x=1719341758; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YzQHQlKHxgZaRZfXLT1ynkXMYrdCKCTUr57+vqG9rY0=;
-        b=GeRU7INomSFeMNtL8EVDnQzIoAcfn6UJYd5inJkPB/uTioDG3tZY+aL9ES/3jONXhQ
-         M2RgMsLS9L6v9zVuxPtjDo2uwnUvN6acbIaAmgnyL9vMNO9Yv7Ec+a7HSdisdyCo6Hw8
-         ek/T0XJ0VuSDm+O31+Sy7ltYOeJYPFGs7908IhiBw96qdYtaDtMnXVgtDJZxXSy5ssZR
-         ZIrc1jO3QP3Asb1rIDCW5W5MQP629lz19+618mYuqgLBxVRaX7bv5rZpTo45pU8RWqii
-         6C5Sg749OFNPe4BxTDVWKonOE/7HBYSyEbGvfaueQEtwi5ORNuvowcBV7LvQb+39C8Yz
-         TJxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718736958; x=1719341758;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YzQHQlKHxgZaRZfXLT1ynkXMYrdCKCTUr57+vqG9rY0=;
-        b=bcBXrS79HmjDEpsff+e9uI5YK/NOIL4cMRdK66l90B/8PU2u8LCwi9Df1iZZIZHGTk
-         YF07OKQBLgjCIdFYlh541S5in5iSw+dsEPY30OVA1MEJx5RyZq38M8hTX6KlKZQfFSFP
-         CXi3RjQ8dSwsi2aB/Pbd9pEaPifUBHVbGGEpooocV3GoevB3gphVXOHWVpX0L0V3c/my
-         tOABXN84VEOlvUUwsRStj+lIaJvl0aY5D3RDfxsTk2C4O+y5F0DXOHyPF7qTu69aVo68
-         tfr/uBUa+B+zU08v+cuAyYrSB8OFLITAmo4k4FiziFaqQjDMCYDVUfo3ZY2mZKKXaBra
-         d5WA==
-X-Forwarded-Encrypted: i=1; AJvYcCWi4hGyeUtzFxyhdO4Wj6gznLCJ+Y683CtzCEIlPCZG4LgG65e60/I2uzheeufqu2NttUBYimUD19v9a7um8snfXfb68JRuN5v6Fg==
-X-Gm-Message-State: AOJu0YzxFMt+COfbgh2cST/PmYYzFzSoEqn7yXO25K0jMgFWCiY6Gp+7
-	PtcrhqTLfqIM9RbmSsFIkFtcoKQujMQdkEHtZYfLq2V7FmM3iNeOf0HsgJshp7g=
-X-Google-Smtp-Source: AGHT+IGC5OJR3gZ0AgVkD1dpAKYbvhHSigXJJVNaqgqzU/pJEsxEJFZWPzPeEkSJ7Z7mUZbZszMNQQ==
-X-Received: by 2002:a2e:9257:0:b0:2eb:fcea:2f18 with SMTP id 38308e7fff4ca-2ec3ce7dfdbmr2013211fa.2.1718736958673;
-        Tue, 18 Jun 2024 11:55:58 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec07126057sm17344181fa.59.2024.06.18.11.55.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 11:55:58 -0700 (PDT)
-Date: Tue, 18 Jun 2024 21:55:56 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Dzmitry Sankouski <dsankouski@gmail.com>, 
-	Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	phone-devel@vger.kernel.org, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v3 02/23] gcc-sdm845: Add rates to the GP clocks
-Message-ID: <lwrz4rvn6ogseea5v6j7plc3yi3xnzo76dvrsl3muat3iswlkb@zmwa3xo3xgw4>
-References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
- <20240618-starqltechn_integration_upstream-v3-2-e3f6662017ac@gmail.com>
- <wnf3mfgdm4p4f5wrxdtlx4wccnizdvohc7iiyu5t22eeb67r57@xun3r73hksrg>
- <ad04e203-4244-4cd3-9c9a-fae002962990@linaro.org>
+	s=arc-20240116; t=1718737041; c=relaxed/simple;
+	bh=c+/c9FLDJnL3Ta+QVzbWgUNS2/GAvTls4vNC6buevl0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jOrCN6jrtVpEhrwswLAVBP+uBP7iuz7QoJz8oQAkOkfVDvs+kz2ZQSJuiOzV9d9ISeoiAkPTawk3Ii4NWoevqcURyvHjmqhw5GUjLMLFdhgibNQVRxzBuh2DyfBicJpjrQUPm7JuPXBRniLZOF8CEZ7/rG8IMOVYf2Df40MlzdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UztlCJuZ; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45IIv5gn023119;
+	Tue, 18 Jun 2024 13:57:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718737025;
+	bh=JhzGH4hdp0MF05nChSMa0dk6h+PwXRQQ1wDR6XavthA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=UztlCJuZiFG54Ui/IsUuWw85U0mxDBXLCXb4eAdHCzxDTefu9dQvkcl6vXDAz29kQ
+	 Gb+6F3Abj+oaofQBcADQ0hPF7hl6MKHNCWS7aXbwDN88ddDMn1C0tWOIXxs5t8Tm5u
+	 yCjpEihHAUaUh11+iC4L5faZo0YBY5ir4ek5Sj/8=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45IIv5lJ096388
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Jun 2024 13:57:05 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 18
+ Jun 2024 13:57:05 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 18 Jun 2024 13:57:04 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45IIv5L4083546;
+	Tue, 18 Jun 2024 13:57:05 -0500
+Date: Tue, 18 Jun 2024 13:57:05 -0500
+From: Nishanth Menon <nm@ti.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
+        Linus
+ Walleij <linus.walleij@linaro.org>,
+        Tony Lindgren <tony@atomide.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: pinctrl-single: Define a max count
+ for "pinctrl-single,gpio-range"
+Message-ID: <20240618185705.5fwevm7drphgvwl2@dilation>
+References: <20240618165102.2380159-1-nm@ti.com>
+ <171873566448.3500109.16734660300499772836.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ad04e203-4244-4cd3-9c9a-fae002962990@linaro.org>
+In-Reply-To: <171873566448.3500109.16734660300499772836.robh@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Jun 18, 2024 at 08:50:52PM GMT, Konrad Dybcio wrote:
+On 12:34-20240618, Rob Herring wrote:
 > 
-> 
-> On 6/18/24 19:50, Dmitry Baryshkov wrote:
-> > On Tue, Jun 18, 2024 at 04:59:36PM GMT, Dzmitry Sankouski wrote:
-> > > sdm845 has "General Purpose" clocks that can be muxed to
-> > > SoC pins.
-> > > 
-> > > Those clocks may be used as e.g. PWM sources for external peripherals.
-> > > Add more frequencies to the table for those clocks so it's possible
-> > > for arbitrary peripherals to make use of them.
-> > > 
-> > > See also: bf8bb8eaccf(clk: qcom: gcc-msm8916: Add rates to the GP clocks)
+> On Tue, 18 Jun 2024 11:51:02 -0500, Nishanth Menon wrote:
+> > "pinctrl-single,gpio-range" allows us to define a dis-contiguous
+> > range of pinctrl registers that can have different mux settings for
+> > GPIO mode of operation. However, the maxItems seem to be set to 1 in
+> > processed schema for some reason. This is incorrect. For example:
+> > arch/arm64/boot/dts/hisilicon/hi6220.dtsi and others have more than
+> > one dis-contiguous range.
 > > 
-> > Each time I look at the table attached to the GP CLK, I feel that it's
-> > plain wrong. In the end the GPCLK can in theory have arbitrary value
-> > depending on the usecase.
+> > Arbitrarily define a max 100 count to override the defaults.
 > > 
-> > Bjorn, Konrad, maybe we should add special clk_ops for GP CLK which
-> > allow more flexibility than a default clk_rcg2_ops?
+> > Signed-off-by: Nishanth Menon <nm@ti.com>
+> > ---
+> > I am not sure if I should call this RFC or not.. and if this is even the
+> > right solution.. I am on 2024.05 dt-schema for this check.
+> > 
+> > I noticed this when adding gpio-ranges for am62p platform:
+> > https://gist.github.com/nmenon/7019cd2f24be47997640df5db60a7544
+> > 
+> > It is possible that this is a bug in dt-schema, but I have'nt been able
+> > to track it down either.
+> > 
+> > behavior seen is the following:
+> > pinctrl-single,gpio-range = <&mcu_pmx_range 0 21 7>;
+> > generates no warning
+> > However,
+> > pinctrl-single,gpio-range = <&mcu_pmx_range 0 21 7>, <&mcu_pmx_range 32 2 7>;
+> > 
+> > generates "is too long" warning.
+> > 
+> > 
+> >  Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
 > 
-> If we can somehow get max m/n/d values for all possible parents, sure
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml: properties:pinctrl-single,gpio-range: {'description': 'Optional list of pin base, nr pins & gpio function', '$ref': '/schemas/types.yaml#/definitions/phandle-array', 'maxItems': 100, 'items': [{'items': [{'description': 'phandle of a gpio-range node'}, {'description': 'pin base'}, {'description': 'number of pins'}, {'description': 'gpio function'}]}]} should not be valid under {'required': ['maxItems']}
+> 	hint: "maxItems" is not needed with an "items" list
+> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
 
-Calculate them at runtime?
+yes, I had expected the same, but processed schema indicates a maxItems
+of 1 for reasons I am unable to make sense of.. will be great to have
+some additional eyes:
 
+https://gist.github.com/nmenon/7019cd2f24be47997640df5db60a7544#file-processed-schema-pinctrl
 
+next-20240617 baseline
 -- 
-With best wishes
-Dmitry
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
