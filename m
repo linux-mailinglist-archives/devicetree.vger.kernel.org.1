@@ -1,155 +1,492 @@
-Return-Path: <devicetree+bounces-76897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C4C290C773
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:44:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D5290C781
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D0EC1C228BB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:44:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 048FE1F23040
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD201B5832;
-	Tue, 18 Jun 2024 08:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA791BB68D;
+	Tue, 18 Jun 2024 08:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LkHidpyr"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eMPbv+Rn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E1115279F;
-	Tue, 18 Jun 2024 08:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F0E1552EB;
+	Tue, 18 Jun 2024 08:58:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718700826; cv=none; b=PXHdEQ0n6DVbOioUAbdXttct4Xsu+KpBCm8XL6uycL/f8yIkDmAgamfKxIVlLBKZKhZiHEEQIWEFdeDj0CPermDHeLOca7jt7idAi0IzpxkMXh0u/5txDyjxJrLXqepgvE1Dy0g5pgKJwRsXQ53n6ZEMRHkAzWCuyp/OUuJlZ3c=
+	t=1718701093; cv=none; b=rzMIP9tTZEoS7gvs4Becj1lmglAiUqxmIr2l/+KRzK/pn9+iregk1aRFMivpshzFZiAnBRCCFWY21h8n1lEDJ3MiFh7m+3K7zIgzekklxvpAmvygMygJLqNlRtmP9AF/T8E4fliWK9YUF11t82Gd/HenPVXdnKjssRjZQyKffjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718700826; c=relaxed/simple;
-	bh=inLr6KbNt1wpmZgzN3mepJkqLnEzfLgSGYhEPkdbx3k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=USOQfHSuagyWY5LOWMjaWhIQHpZy1DlL1VDTEAWQDwVeFwOqEL4J/TFIw2VSPFlTEHOGwI6DJnrAMXUWhviOPQjlb1TzbgDSmd8sjepVXzd9//95gL5DT4lprZRvgX5kv6WnT+AjegKDc09yd0tMTZnOA0URTidoF2rSIWQyZVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LkHidpyr; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718700825; x=1750236825;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=inLr6KbNt1wpmZgzN3mepJkqLnEzfLgSGYhEPkdbx3k=;
-  b=LkHidpyrFFcmB/zUkNQ01+hnERxOceurz/faaq3kwn+EvAdh1z2AxPEg
-   GBrZ5p1c5fQOp1ecZVaNR5tnlG85j7em0GvzoByVKK0hmBhyRn9oJkI+C
-   37VB+UL2oSm05tYaAvBuigc8yf8+7Ah4xwqsBwz1bjh69ghzcpcTgozNQ
-   5mFIiUOu42sbJsqHyxrKSd3pX5TrHeAHYRAYSZlrKmDAEsTzBoJmdKD1w
-   5G7rIEWIfXJsvwxpzc1EkIAUZYGEiSGWI1jbYI9IvNGOl7IZJqfF6QoMO
-   XFWz2+NSqbbfpR4gUV+BlFqwjvQHm7vaBiGj8njB8j6O8pq0JIYGG6Mg/
-   A==;
-X-CSE-ConnectionGUID: D7bc8lImRliyT1owQL55EQ==
-X-CSE-MsgGUID: t49OyltLT+OBuGjkUWI/GQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="19381975"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
-   d="scan'208";a="19381975"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2024 01:53:44 -0700
-X-CSE-ConnectionGUID: ofTvMbN6RG+m3RtFFOMdwg==
-X-CSE-MsgGUID: ghl7bUNaRCi9CD8O20IdFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
-   d="scan'208";a="46605639"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 18 Jun 2024 01:53:40 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sJUav-0005LJ-2z;
-	Tue, 18 Jun 2024 08:53:37 +0000
-Date: Tue, 18 Jun 2024 16:53:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, robin.murphy@arm.com,
-	broonie@kernel.org, conor@kernel.org, nathan@kernel.org,
-	robh@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, catalin.marinas@arm.com,
-	devicetree@vger.kernel.org, hch@lst.de, iommu@lists.linux.dev,
-	kernel@quicinc.com, linux-kernel@vger.kernel.org,
-	m.szyprowski@samsung.com, quic_obabatun@quicinc.com,
-	saravanak@google.com, will@kernel.org
-Subject: Re: [PATCH] of: reserved_mem: Restructure code to call reserved mem
- init functions earlier
-Message-ID: <202406181626.126X1Nbz-lkp@intel.com>
-References: <20240617193357.3929092-1-quic_obabatun@quicinc.com>
+	s=arc-20240116; t=1718701093; c=relaxed/simple;
+	bh=3W21+/H7uqXSeUl2bt/Yf5odrWTi0tOATJxnwNClTSM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RnA4Vo2I9KEeqeKsPpXaaBmobyj1vikWE5aJIRLHezHGIXlJcbxBfRc52dgTefV4mLRdC8N16wirxsF4fb3yqWQmRh28AMuMtgVVbkq/yhXwzvfQa0PsNipPU+fzAUFBtRL84cqPINawnraPw6lYj7o+hqo/QWG2v4q4DeG4DB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eMPbv+Rn; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I3ZZNw029915;
+	Tue, 18 Jun 2024 08:58:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FOCmB1tNzN+HF0fTxu3qndThVQYt4zFG9ozhTsAp/BA=; b=eMPbv+Rn8+BWp44a
+	iTFCqy8ryHYHzfuimMBy3YhTps/HOMSsuSepPeoJO/aoGl/pYtiPmvDQm8RThn53
+	SYgljCqRFiGjuSx4xxfDsmdL71bY56UCXW/U77LxuqAFmqBZwBkxVVwD72GuSB7l
+	Z/EZZh4KpeJVFvm6nnd+XWseS6JDjjgYjm/aITaYA8g+v5ullym8KARdbrmfcwlu
+	PCul3Tba2ePcqt0QWqKnuwiBaVehj+n/wEgciYwLA66UHwWA1PGh1YjXaYcTiThE
+	7ECFTJmfytWfkB9+deYCLeWchf5VERBiSD/0lFrAsg/MaB6qEOKE+pSuIiznHe6a
+	4KtEOw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ytfut37pe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 08:58:07 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45I8w6wJ029547
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 08:58:06 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Jun
+ 2024 01:58:00 -0700
+Message-ID: <0c10b451-792d-4f71-943e-16511f9d2a3d@quicinc.com>
+Date: Tue, 18 Jun 2024 16:57:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240617193357.3929092-1-quic_obabatun@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 4/4] arm64: dts: qcom: aim300: add AIM300 AIoT
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Qiang Yu <quic_qianyu@quicinc.com>,
+        Ziyue Zhang
+	<quic_ziyuzhan@quicinc.com>
+References: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
+ <20240618072202.2516025-5-quic_tengfan@quicinc.com>
+ <qck3nuenuizs46an3kd2akhmadu6dwumxsv5jrg4uwk53ke4l2@vt47suphknyq>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <qck3nuenuizs46an3kd2akhmadu6dwumxsv5jrg4uwk53ke4l2@vt47suphknyq>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FxSsyrT-LB7t5rafO8ZyfwlM4KmvXrKw
+X-Proofpoint-GUID: FxSsyrT-LB7t5rafO8ZyfwlM4KmvXrKw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
+ suspectscore=0 priorityscore=1501 impostorscore=0 phishscore=0 mlxscore=0
+ adultscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2406180066
 
-Hi Oreoluwa,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on next-20240617]
-[cannot apply to linus/master v6.10-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Oreoluwa-Babatunde/of-reserved_mem-Restructure-code-to-call-reserved-mem-init-functions-earlier/20240618-033815
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240617193357.3929092-1-quic_obabatun%40quicinc.com
-patch subject: [PATCH] of: reserved_mem: Restructure code to call reserved mem init functions earlier
-config: i386-buildonly-randconfig-001-20240618 (https://download.01.org/0day-ci/archive/20240618/202406181626.126X1Nbz-lkp@intel.com/config)
-compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240618/202406181626.126X1Nbz-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406181626.126X1Nbz-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/of/of_reserved_mem.c:551: warning: Function parameter or struct member 'rmem' not described in 'of_init_reserved_mem_node'
 
 
-vim +551 drivers/of/of_reserved_mem.c
+On 6/18/2024 4:48 PM, Dmitry Baryshkov wrote:
+> On Tue, Jun 18, 2024 at 03:22:02PM GMT, Tengfei Fan wrote:
+>> Add AIM300 AIoT Carrier board DTS support, including usb, UART, PCIe,
+>> I2C functions support.
+>> Here is a diagram of AIM300 AIoT Carrie Board and SoM
+>>   +--------------------------------------------------+
+>>   |             AIM300 AIOT Carrier Board            |
+>>   |                                                  |
+>>   |           +-----------------+                    |
+>>   |power----->| Fixed regulator |---------+          |
+>>   |           +-----------------+         |          |
+>>   |                                       |          |
+>>   |                                       v VPH_PWR  |
+>>   | +----------------------------------------------+ |
+>>   | |                          AIM300 SOM |        | |
+>>   | |                                     |VPH_PWR | |
+>>   | |                                     v        | |
+>>   | |   +-------+       +--------+     +------+    | |
+>>   | |   | UFS   |       | QCS8550|     |PMIC  |    | |
+>>   | |   +-------+       +--------+     +------+    | |
+>>   | |                                              | |
+>>   | +----------------------------------------------+ |
+>>   |                                                  |
+>>   |                    +----+          +------+      |
+>>   |                    |USB |          | UART |      |
+>>   |                    +----+          +------+      |
+>>   +--------------------------------------------------+
+>>
+>> Co-developed-by: Qiang Yu <quic_qianyu@quicinc.com>
+>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+>> Co-developed-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>   .../boot/dts/qcom/qcs8550-aim300-aiot.dts     | 315 ++++++++++++++++++
+>>   2 files changed, 316 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index 0c1cebd16649..5576c7d6ea06 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -102,6 +102,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+>> new file mode 100644
+>> index 000000000000..d4fb10149e66
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+>> @@ -0,0 +1,315 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/leds/common.h>
+>> +#include "qcs8550-aim300.dtsi"
+>> +#include "pm8010.dtsi"
+>> +#include "pmr735d_a.dtsi"
+>> +#include "pmr735d_b.dtsi"
+>> +
+>> +/ {
+>> +	model = "Qualcomm Technologies, Inc. QCS8550 AIM300 AIOT";
+>> +	compatible = "qcom,qcs8550-aim300-aiot", "qcom,qcs8550-aim300", "qcom,qcs8550",
+>> +		     "qcom,sm8550";
+>> +
+>> +	aliases {
+>> +		serial0 = &uart7;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial0:115200n8";
+>> +	};
+>> +
+>> +	gpio-keys {
+>> +		compatible = "gpio-keys";
+>> +
+>> +		pinctrl-0 = <&volume_up_n>;
+>> +		pinctrl-names = "default";
+>> +
+>> +		key-volume-up {
+>> +			label = "Volume Up";
+>> +			debounce-interval = <15>;
+>> +			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
+>> +			linux,code = <KEY_VOLUMEUP>;
+>> +			linux,can-disable;
+>> +			wakeup-source;
+>> +		};
+>> +	};
+>> +
+>> +	pmic-glink {
+>> +		compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		orientation-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		connector@0 {
+>> +			compatible = "usb-c-connector";
+>> +			reg = <0>;
+>> +			power-role = "dual";
+>> +			data-role = "dual";
+>> +
+>> +			ports {
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +
+>> +				port@0 {
+>> +					reg = <0>;
+>> +
+>> +					pmic_glink_hs_in: endpoint {
+>> +						remote-endpoint = <&usb_1_dwc3_hs>;
+>> +					};
+>> +				};
+>> +
+>> +				port@1 {
+>> +					reg = <1>;
+>> +
+>> +					pmic_glink_ss_in: endpoint {
+>> +						remote-endpoint = <&redriver_ss_out>;
+>> +					};
+>> +				};
+>> +
+>> +				port@2 {
+>> +					reg = <2>;
+>> +
+>> +					pmic_glink_sbu: endpoint {
+>> +						remote-endpoint = <&fsa4480_sbu_mux>;
+>> +					};
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	vph_pwr: regulator-vph-pwr {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vph_pwr";
+>> +		regulator-min-microvolt = <3700000>;
+>> +		regulator-max-microvolt = <3700000>;
+>> +
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +};
+>> +
+>> +&apps_rsc {
+>> +	regulators-0 {
+>> +		vdd-bob1-supply = <&vph_pwr>;
+>> +		vdd-bob2-supply = <&vph_pwr>;
+>> +	};
+>> +
+>> +	regulators-3 {
+>> +		vdd-s4-supply = <&vph_pwr>;
+>> +		vdd-s5-supply = <&vph_pwr>;
+>> +	};
+>> +
+>> +	regulators-4 {
+>> +		vdd-s4-supply = <&vph_pwr>;
+>> +	};
+>> +
+>> +	regulators-5 {
+>> +		vdd-s1-supply = <&vph_pwr>;
+>> +		vdd-s2-supply = <&vph_pwr>;
+>> +		vdd-s3-supply = <&vph_pwr>;
+>> +		vdd-s4-supply = <&vph_pwr>;
+>> +		vdd-s5-supply = <&vph_pwr>;
+>> +		vdd-s6-supply = <&vph_pwr>;
+>> +	};
+>> +};
+>> +
+>> +&i2c_hub_2 {
+>> +	status = "okay";
+>> +
+>> +	typec-mux@42 {
+>> +		compatible = "fcs,fsa4480";
+>> +		reg = <0x42>;
+>> +
+>> +		vcc-supply = <&vreg_bob1>;
+>> +
+>> +		mode-switch;
+>> +		orientation-switch;
+>> +
+>> +		port {
+>> +			fsa4480_sbu_mux: endpoint {
+>> +				remote-endpoint = <&pmic_glink_sbu>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	typec-retimer@1c {
+>> +		compatible = "onnn,nb7vpq904m";
+>> +		reg = <0x1c>;
+>> +
+>> +		vcc-supply = <&vreg_l15b_1p8>;
+>> +
+>> +		orientation-switch;
+>> +		retimer-switch;
+>> +
+>> +		ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			port@0 {
+>> +				reg = <0>;
+>> +
+>> +				redriver_ss_out: endpoint {
+>> +					remote-endpoint = <&pmic_glink_ss_in>;
+>> +				};
+>> +			};
+>> +
+>> +			port@1 {
+>> +				reg = <1>;
+>> +
+>> +				redriver_ss_in: endpoint {
+>> +					data-lanes = <3 2 1 0>;
+>> +					remote-endpoint = <&usb_dp_qmpphy_out>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&mdss_dsi0 {
+>> +	status = "okay";
+>> +
+>> +	panel@0 {
+>> +		compatible = "visionox,vtdr6130";
+>> +		reg = <0>;
+>> +
+>> +		pinctrl-0 = <&dsi_active>, <&te_default>;
+>> +		pinctrl-1 = <&dsi_suspend>, <&te_default>;
+>> +		pinctrl-names = "default", "sleep";
+>> +
+>> +		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
+>> +
+>> +		vci-supply = <&vreg_l13b_3p0>;
+>> +		vdd-supply = <&vreg_l11b_1p2>;
+>> +		vddio-supply = <&vreg_l12b_1p8>;
+>> +
+>> +		port {
+>> +			panel0_in: endpoint {
+>> +				remote-endpoint = <&mdss_dsi0_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&mdss_dsi0_out {
+>> +	remote-endpoint = <&panel0_in>;
+>> +	data-lanes = <0 1 2 3>;
+>> +};
+>> +
+>> +&mdss_dsi0_phy {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie0_phy {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pcie1_phy {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pm8550_gpios {
+>> +	volume_up_n: volume-up-n-state {
+>> +		pins = "gpio6";
+>> +		function = "normal";
+>> +		power-source = <1>;
+>> +		bias-pull-up;
+>> +		input-enable;
+>> +	};
+>> +};
+>> +
+>> +&pon_pwrkey {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pon_resin {
+>> +	linux,code = <KEY_VOLUMEDOWN>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&qupv3_id_0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&remoteproc_adsp {
+>> +	firmware-name = "qcom/qcs8550/adsp.mbn",
+>> +			"qcom/qcs8550/adsp_dtbs.mbn";
+> 
+> adsp_dtb.mbn, not _dtbs.mbn.
+> 
+> https://lore.kernel.org/linux-arm-msm/s5gt3p6zsd5ebrkop4dhd33tykln33f6ahu3pibymecxsmakyd@lg5wfgec6dat/
 
-ae1add247bf8c2 Mitchel Humpherys  2015-09-15  546  
-3f0c8206644836 Marek Szyprowski   2014-02-28  547  /**
-cb40a192099698 Oreoluwa Babatunde 2024-06-17  548   * of_init_reserved_mem_node() - Initialize a saved reserved memory region.
-3f0c8206644836 Marek Szyprowski   2014-02-28  549   */
-cb40a192099698 Oreoluwa Babatunde 2024-06-17  550  static void __init of_init_reserved_mem_node(struct reserved_mem *rmem)
-3f0c8206644836 Marek Szyprowski   2014-02-28 @551  {
-cb40a192099698 Oreoluwa Babatunde 2024-06-17  552  	int err;
-6f1188b4ac7577 Yue Hu             2020-07-30  553  	bool nomap;
-cb40a192099698 Oreoluwa Babatunde 2024-06-17  554  	struct device_node *node = rmem->dev_node;
-3f0c8206644836 Marek Szyprowski   2014-02-28  555  
-59d2c3cbcb5a47 Oreoluwa Babatunde 2024-05-28  556  	nomap = of_property_present(node, "no-map");
-9dcfee01930e6c Marek Szyprowski   2014-07-14  557  
-d0b8ed47e83a22 pierre Kuo         2019-02-19  558  	err = __reserved_mem_init_node(rmem);
-d0b8ed47e83a22 pierre Kuo         2019-02-19  559  	if (err != 0 && err != -ENOENT) {
-a46cccb0ee2d62 Oreoluwa Babatunde 2024-05-28  560  		pr_info("node %s compatible matching fail\n", rmem->name);
-d0b8ed47e83a22 pierre Kuo         2019-02-19  561  		if (nomap)
-7b25995f5319ad Dong Aisheng       2021-06-11  562  			memblock_clear_nomap(rmem->base, rmem->size);
-3c6867a12a224d Dong Aisheng       2021-06-11  563  		else
-a46cccb0ee2d62 Oreoluwa Babatunde 2024-05-28  564  			memblock_phys_free(rmem->base, rmem->size);
-aeb9267eb6b1df Martin Liu         2023-02-10  565  	} else {
-aeb9267eb6b1df Martin Liu         2023-02-10  566  		phys_addr_t end = rmem->base + rmem->size - 1;
-59d2c3cbcb5a47 Oreoluwa Babatunde 2024-05-28  567  		bool reusable = of_property_present(node, "reusable");
-aeb9267eb6b1df Martin Liu         2023-02-10  568  
-6ee7afbabcee4d Geert Uytterhoeven 2023-02-16  569  		pr_info("%pa..%pa (%lu KiB) %s %s %s\n",
-aeb9267eb6b1df Martin Liu         2023-02-10  570  			&rmem->base, &end, (unsigned long)(rmem->size / SZ_1K),
-aeb9267eb6b1df Martin Liu         2023-02-10  571  			nomap ? "nomap" : "map",
-aeb9267eb6b1df Martin Liu         2023-02-10  572  			reusable ? "reusable" : "non-reusable",
-aeb9267eb6b1df Martin Liu         2023-02-10  573  			rmem->name ? rmem->name : "unknown");
-d0b8ed47e83a22 pierre Kuo         2019-02-19  574  	}
-d0b8ed47e83a22 pierre Kuo         2019-02-19  575  }
-9dcfee01930e6c Marek Szyprowski   2014-07-14  576  
+Previously, I observed different names in the comments and the patch, 
+and I initially think that "_dtb" is a clerical error. However, I now 
+realize that this is my mistake, and I will update "_dtbs" with "_dtb" 
+in the next verion patch series.
+
+> 
+>> +	status = "okay";
+>> +};
+>> +
+>> +&remoteproc_cdsp {
+>> +	firmware-name = "qcom/qcs8550/cdsp.mbn",
+>> +			"qcom/qcs8550/cdsp_dtbs.mbn";
+>> +	status = "okay";
+>> +};
+>> +
+>> +&swr1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&swr2 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&tlmm {
+>> +	gpio-reserved-ranges = <32 8>;
+>> +
+>> +	dsi_active: dsi-active-state {
+>> +		pins = "gpio133";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	dsi_suspend: dsi-suspend-state {
+>> +		pins = "gpio133";
+>> +		function = "gpio";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>> +	te_default: te-default-state {
+>> +		pins = "gpio86";
+>> +		function = "mdp_vsync";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +};
+>> +
+>> +&uart7 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_1_dwc3_hs {
+>> +	remote-endpoint = <&pmic_glink_hs_in>;
+>> +};
+>> +
+>> +&usb_1_hsphy {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_dp_qmpphy {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_dp_qmpphy_out {
+>> +	remote-endpoint = <&redriver_ss_in>;
+>> +};
+>> -- 
+>> 2.25.1
+>>
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thx and BRs,
+Tengfei Fan
 
