@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A503990C3E8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:46:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C15890C412
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 08:54:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2582B20B3A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:46:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6781C23309
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 06:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D51F2376A;
-	Tue, 18 Jun 2024 06:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99B74D8DC;
+	Tue, 18 Jun 2024 06:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NosOtCnj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fdXB65nX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C8318645;
-	Tue, 18 Jun 2024 06:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EC4210F8;
+	Tue, 18 Jun 2024 06:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718693197; cv=none; b=nkDWVk1LbQSD638ampvYZWIw+8OcZoJ8OruRAVzisFV2Y9wuGeAtl2CAkjdgeygSjwajrRDXQJ/S3qpqMduZmEwEE/1+MDhZ9YAHg+Z9n47RpcCr3acvc/Nl8HxgeTmVA8dB+qzhju2dqK9c6ILU85ymYV4LBD1aq8k0sTS2gCk=
+	t=1718693667; cv=none; b=aT5TBnNX2ig2uLzQHMeOGTkcRPEbsxxDNviAJr2qh/fkrcng6oVwXUcsLAYAsrIos8XbP5Du2IlcB9znDSSvJJ2T3+BNRUAeYWdu+eqzGTwvdVaELuf6b0tc35TLyDTX+BX++KTfbAPdnevMixLag6ESuZmmzONBOFTHcx32MIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718693197; c=relaxed/simple;
-	bh=WaVvQIfpnQHOh2a83bIB5A38kXgEyK4o0uPqp0KMh74=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Cl1lsu61PixqQtfmixuVDRb4k3tOzb9n9QxKu6H7+1Pfone4nTMuBfZGAIUmOV6IjhnwqpIXrajj6jHoZLzvIPyUsuP1wW7QoHN1j2aDuzEXU6jj4mLHXAiZRHXPTRk7BO+df44jJ4Ar1nmLoyO/zLUCxgebLQPmF1eU6XdbgBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NosOtCnj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA5B6C3277B;
-	Tue, 18 Jun 2024 06:46:33 +0000 (UTC)
+	s=arc-20240116; t=1718693667; c=relaxed/simple;
+	bh=4SApKPo6r2T2yqAQ1YtMPdKRofGXHQggS2kC0nhaOWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lr9Hrk08YuoXOKh1UYxVMvb0PZDHVAxWOnjFX81gTMglMdGFQEpz/Av8n3VukmzE1P7Z7PkfID3PcMJ7PdsCEvo53PaIsiuZ+AcUv+gDJKFFLOgrdo6fBuO+XfxqHd0X6KY7h86FDt0Wcnu8pBNkvLMv5SKuyB0uJwHlnPpCLNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fdXB65nX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F2EC3277B;
+	Tue, 18 Jun 2024 06:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718693196;
-	bh=WaVvQIfpnQHOh2a83bIB5A38kXgEyK4o0uPqp0KMh74=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=NosOtCnjRfEao6qRFIC5RN4w4Cq6g57EFZwPi+fCDx2B0lccBWw0qiWoHnhO2k4zq
-	 LSWFrm6YAlg1SlLokkA1V0DV6G4P9MOFS3DofEleR/KsEm0DW3WluoLD9ijBbXrMr1
-	 ve3j8hLHJS+rb6aogFmlfvc593Kl6WNkjBK7HHP+5044yyX6z7On0wCAhlZ+d9X5J5
-	 icwm7EYixJ/I1UK268dX7p0VF8yedhQH9vBEruONYs3zlE1YkPoX/wrPjZ7DY/K5vS
-	 rlCRwkoZQpStrRCJ0wSrYOz9gfjlxGMANiXuK5wFQRL45azGUNaOExtXothKCD51Al
-	 c7tjg5i+PH68g==
-Message-ID: <7f7bcb95-61fe-4804-8dda-1ab8ebc95b7f@kernel.org>
-Date: Tue, 18 Jun 2024 08:46:31 +0200
+	s=k20201202; t=1718693666;
+	bh=4SApKPo6r2T2yqAQ1YtMPdKRofGXHQggS2kC0nhaOWM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fdXB65nX1cCh95uS+AbuUQMrB7QwQPbYqKMtjEkF02o3rzDi6d6XIgsHQPKWphsCP
+	 yTUEYb2xE05MIJtB3ErtKerNJ43aXQPyf9LZ5uGdPtxd3xX5vQWCDZAW8URM9465AO
+	 s4MOPXFGXBQd9y7P1YugH7koSDBL9Zd2KKNGFnq7gHOCgHADdYlUbkeHl3wEHsDqgO
+	 OzvmuK2lWO5z5ARHNFpNdJCKe8bC9LibZLIumLe3Kb8//MsuFStVuwRojrUZrKoEq2
+	 CZlvsawahBo4R7GkIN9brWSljbBfIHKcEhh7X8Sx9veL5uhxhAC1qPNkOtir+nC3if
+	 d6Ofdv4V00uZA==
+Message-ID: <11d19894-b068-49cb-afe6-b87f47cd4426@kernel.org>
+Date: Tue, 18 Jun 2024 08:54:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: leds: Add LED1202 LED Controller
-To: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>,
- pavel@ucw.cz, lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <ZnCnnQfwuRueCIQ0@admins-Air>
+Subject: Re: [PATCH v4 1/2] dt-bindings: power: supply: add support for
+ MAX17201/MAX17205 fuel gauge
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
+ <thomas@t-8ch.de>
+References: <20240617184504.304211-1-dima.fedrau@gmail.com>
+ <20240617184504.304211-2-dima.fedrau@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,54 +105,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZnCnnQfwuRueCIQ0@admins-Air>
+In-Reply-To: <20240617184504.304211-2-dima.fedrau@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/06/2024 23:16, Vicentiu Galanopulo wrote:
-> +patternProperties:
-> +  "^led@[0-9a-f]+$":
-> +    type: object
-> +    $ref: common.yaml#
-> +    unevaluatedProperties: false
+On 17/06/2024 20:45, Dimitri Fedrau wrote:
+> Adding documentation for MAXIMs MAX17201/MAX17205 fuel gauge.
+> 
+> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
+> ---
+>  .../bindings/power/supply/maxim,max1720x.yaml | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
+> new file mode 100644
+> index 000000000000..52467af5388a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/maxim,max1720x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 11
+> +title: Maxim MAX1720x fuel gauge
 > +
-> +    required:
-> +      - reg
+> +maintainers:
+> +  - Dimitri Fedrau <dima.fedrau@gmail.com>
 > +
-> +additionalProperties: true
+> +allOf:
+> +  - $ref: power-supply.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max17201
+> +      - maxim,max17205
 
-This must be false. You can use other bindings as reference: none of
-final device schemas have here true.
+Your driver suggests these are compatible, so express it in the bindings
+(oneOf with list and fallback).
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        led-controller@58 {
-> +            compatible = "st,led1202";
-> +            reg = <0x58>;
-> +            address-cells = <1>;
-> +            size-cells = <0>;
-> +
-> +            led@0 {
-> +                reg = <0>;
-> +                label = "led1_r";
-
-No, use color and function instead.
-
-> +                active = <1>;
-
-What's that?
+https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
 
 Best regards,
 Krzysztof
