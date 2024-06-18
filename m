@@ -1,40 +1,55 @@
-Return-Path: <devicetree+bounces-76916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A7690C864
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:07:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A20390C876
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:08:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DA5F1C20C21
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:07:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 505351C22481
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B2C204EEB;
-	Tue, 18 Jun 2024 09:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768211AC781;
+	Tue, 18 Jun 2024 09:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="GcAPOWTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1205818036;
-	Tue, 18 Jun 2024 09:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696C81AC777;
+	Tue, 18 Jun 2024 09:51:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.120
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718704059; cv=none; b=KULPBsrTHyLTJ3v2CJivA47W5JvZL68giyvxIMNzsDVHYG4qWOYqHu2J46WYk9s4ZLlOXpvmHiSVVyiRvm9FYQCHAz0kIQsEbhHcORetur/zj9gC67yskolFMa2FYOiOp488LCN/cdzrbHahGedEiW4W9abH1mJepeAaT7m4Pw8=
+	t=1718704317; cv=none; b=pye+sFya5oq8b1mDK/tGev2fuOlY0Dpq8CzgpDjSqfZvQpMN7yUDZ2x22pJ40xfkJOjYXhSC5vDI2tntmf8ByHqqaOPhRshbNQ9TXmERNpl6t7cjkTnqXcCkrNBiPp9fs4NepfA/au0O7acldf75hvwutIIAv7ijUeBxeTo61TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718704059; c=relaxed/simple;
-	bh=bvydH7RjBestTLmNs2zaUNf93eKOltBy+ZSBAHcAorQ=;
+	s=arc-20240116; t=1718704317; c=relaxed/simple;
+	bh=V6G3Uf8lnLdFzV8ghfJZzvu9KzAk7z/NlQT/g7Qtx3U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I5Z8b6Vl4pY8ZA+bbOpzwV3SCz5OfQAlIcscVFARJDgA7+23FVp7j5hy1q/qS7unAyaz32WCXQaumZxBuaLjzaUjMLBI612zMobNxTtrD0+MN4qIhuCviQpePpo4YyK/QzFfh1l4iPP421wLisZKJfOKTYgg2V134FI1cPeDSjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D198DDA7;
-	Tue, 18 Jun 2024 02:48:00 -0700 (PDT)
-Received: from [10.57.72.20] (unknown [10.57.72.20])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AB13B3F64C;
-	Tue, 18 Jun 2024 02:47:32 -0700 (PDT)
-Message-ID: <243098a9-296b-4cbc-9f48-d37ab3b94153@arm.com>
-Date: Tue, 18 Jun 2024 10:47:31 +0100
+	 In-Reply-To:Content-Type; b=MtGOqbBYc95B/16UR/5qHIDX78FnHfAf0TT0abX0cR9dkmFdJ4NuLW4jr8/KH7o3RzHfS2LEOMWF5VjC/o1ROCJCC0mL5hZ/FpztHqp3ts+MheV9OrPjCqUIcIcfNYtJ/aCaUSnDS+iXb+eo7Fw4FVpwv7eoQqbn1tr0PAg6qsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=GcAPOWTJ; arc=none smtp.client-ip=185.125.188.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from [192.168.0.106] (unknown [123.112.65.116])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 7A2833F2E0;
+	Tue, 18 Jun 2024 09:51:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718704306;
+	bh=AT6Ux4OQr73lnVvzHIXm8cuYJgw6XPZgJKDkisYJHK4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=GcAPOWTJUdcRDhT+V0fM2H1kYLrgApG1C9HlUAYYTBquFKfe6vKsvx7IU7txCILAQ
+	 0EtA2rwig39Nob8slFZEH12nHeLETF5wGwvfydh4nssf6M05U1UVv2pHnI/5DdvlG1
+	 JXNLNGRiEWS5/uvBf4Ry2iBFDFBPTazDCtHaXLNkKhW/LFWTV0pcZOHpmtVckgQ527
+	 d22vEVMOvCKduBg8whE7rUGNa0mbH4LhMnTQ3CA4chMVVuw7tVEqUqCG/eaG/vrP/7
+	 kY2EU4z5oa5hL1ebtiWeQ2jL/YjTMc7zZ5pJpLsC1B/KfqR3k+A4gkRq8Avg3hwGQe
+	 awSJb1OrqqAjw==
+Message-ID: <82a39cb6-7fff-4948-928a-04eccad0e635@canonical.com>
+Date: Tue, 18 Jun 2024 17:51:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,125 +57,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/3] Add coresight slave register driver to support
- data filter function
-Content-Language: en-GB
-To: Jie Gan <quic_jiegan@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>,
- Song Chai <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org,
- andersson@kernel.org, quic_yijiyang@quicinc.com, quic_yuanjiey@quicinc.com,
- quic_liuxin@quicinc.com, quic_yanzl@quicinc.com, quic_xinlon@quicinc.com,
- quic_xueqnie@quicinc.com, quic_sijiwu@quicinc.com
-References: <20240618072726.3767974-1-quic_jiegan@quicinc.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20240618072726.3767974-1-quic_jiegan@quicinc.com>
+Subject: Re: [PATCH v5 2/2] serial: sc16is7xx: hardware reset chip if
+ reset-gpios is defined in DT
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andy@kernel.org,
+ lech.perczak@camlingroup.com, Maarten.Brock@sttls.nl
+References: <20240614102952.679806-1-hui.wang@canonical.com>
+ <20240614102952.679806-2-hui.wang@canonical.com>
+ <20240617120347.907e8e1e8eae5824930dcc48@hugovil.com>
+Content-Language: en-US
+From: Hui Wang <hui.wang@canonical.com>
+In-Reply-To: <20240617120347.907e8e1e8eae5824930dcc48@hugovil.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2024 08:27, Jie Gan wrote:
-> The Coresight Slave Register(CSR) device hosts miscellaneous configuration
-> registers to control various features related to TMC ETR device.
-> 
-> The CSR device works as a helper device physically connected to the TMC ETR device.
-> ---------------------------------------------------------
->               |ETR0|             |ETR1|
->                . \                 / .
->                .  \               /  .
->                .   \             /   .
->                .    \           /    .
-> ---------------------------------------------------
-> ETR0ATID0-ETR0ATID3     CSR     ETR1ATID0-ETR1ATID3
-> ---------------------------------------------------
-> Each ETR has four ATID registers with 128 bits long in total.
-> e.g. ETR0ATID0-ETR0ATID3 registers are used by ETR0 device.
 
-What is the maximum number of connections possible for CSR ? 2 ETRs ?
-
-> 
-> Based on the trace id which is programed in CSR ATID register of
-> specific ETR, trace data with that trace id can get into ETR's buffer
-
-How do you handle cases where there are multiple TraceIDs in a the 
-stream ? e.g., perf tracing a multi-threaded app ? Each ETM will have
-a distinct traceid. Is there way to disable filtering by CSR ?
-
-Side note, with James's trace id allocation per sink series makes this
-easier for the ETR to know the trace ids allocated for the current
-session. Works only for perf though.
-
-
-> while other trace data gets ignored. CSR may contain several ATID registers.
-> Each ATID register is associated with an ETR device.
-> 
-> To achieve this function, the trace id is obtained and stored in the related
-> ETR device's driver data just before enabling the CSR. Then, the CSR
-> device can easily obtain the trace ID from the ETR's driver data because the
-> ETR's driver data is passed to the CSR's enable/disable functions.
-> 
-> Ensure that every source device has already allocated a trace ID in its probe
-> session because the sink device should always be the first device to
-
-How is that possible ? We are going backwards in the trace id allocation
-with your proposal. What is the purpose of this hardware when you could 
-use a replicator with trace filtering based on masks ?
-
-> enable when operating coresight_enable_path function. As a helper device of the
-> ETR, the CSR device will program the ATID register of a specific ETR according to
-> the trace id to enable data filter function at a very early stage. Without the
-> correct trace ID, the enablement session will not work.
-> 
-> Each CSR's enable session will set one bit in the ATID register.
-
-So is this a bitmap of "enable/disable" ATID ? I really don't see the
-usecase of the CSR "device" yet. Please could you share "usecase" ?
-
-Suzuki
-
-
-> Every CSR's disbale seesion will reset all bits of the ATID register.
-> 
-> This patch only supports sysfs mode. I will send the perf mode part patch
-> once it is ready.
-> 
-> Looking forward to receiving comments as this is a new driver.
-> 
-> Thanks!
-> 
-> Jie Gan (3):
->    dt-bindings: arm: Add binding document for Coresight Slave Register
->      device.
->    coresight: Add coresight slave register driver to support data filter
->      function in sysfs mode
->    arm64: dts: qcom: Add CSR and ETR nodes for SA8775p
-> 
->   .../bindings/arm/arm,coresight-tmc.yaml       |   8 +
->   .../bindings/arm/qcom,coresight-csr.yaml      |  49 +++
->   arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 167 ++++++++++
->   drivers/hwtracing/coresight/Kconfig           |   6 +
->   drivers/hwtracing/coresight/Makefile          |   1 +
->   drivers/hwtracing/coresight/coresight-core.c  |   6 +-
->   drivers/hwtracing/coresight/coresight-csr.c   | 315 ++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-csr.h   |  24 ++
->   .../coresight/coresight-etm4x-core.c          |   1 +
->   drivers/hwtracing/coresight/coresight-stm.c   |  50 ---
->   drivers/hwtracing/coresight/coresight-sysfs.c |  45 ++-
->   .../hwtracing/coresight/coresight-tmc-core.c  |   1 +
->   drivers/hwtracing/coresight/coresight-tmc.h   |   2 +
->   include/linux/coresight-stm.h                 |  44 +++
->   14 files changed, 665 insertions(+), 54 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
->   create mode 100644 drivers/hwtracing/coresight/coresight-csr.c
->   create mode 100644 drivers/hwtracing/coresight/coresight-csr.h
-> 
-
+On 6/18/24 00:03, Hugo Villeneuve wrote:
+> On Fri, 14 Jun 2024 18:29:52 +0800
+> Hui Wang <hui.wang@canonical.com> wrote:
+>
+> Hi Hui,
+>
+>> Some boards connect a GPIO to the reset pin, and the reset pin needs
+...
+>> +	struct gpio_desc *reset_gpio;
+>> +
+>> +	/*
+>> +	 * The reset input is active low, and flag GPIOD_OUT_HIGH ensures the
+>> +	 * GPIO is low once devm_gpiod_get_optional returns a valid gpio_desc.
+>> +	 */
+> I would replace all the above comments with:
+>
+>    /* Assert reset GPIO if defined and valid. */
+>
+> The correct polarity is already defined by the device
+> tree reset-gpios entry, and can be high or low depending on the design
+> (ex: there can be an inverter between the CPU and the chip reset input,
+> etc).
+>
+Agree with that, I will change it in the v6.
+>> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(reset_gpio))
+>> +		return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
+>> +
+...
+>> +out_kthread:
+>>   	kthread_stop(s->kworker_task);
+>>   
+>>   out_clk:
+>> -- 
+>> 2.34.1
+>>
+> I could not test the validity of the 3us delay since I do not have an
+> oscilloscope, but testing with a 10s delay instead and a
+> multimeter showed that it works ok. You can add my Tested-by tag:
+>
+> Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+>
+> And if you modify the comment as I suggested above, then you can add my
+> R-b tag:
+>
+> Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+OK. thanks.
+>
 
