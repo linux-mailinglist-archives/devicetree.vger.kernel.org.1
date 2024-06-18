@@ -1,221 +1,221 @@
-Return-Path: <devicetree+bounces-76852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368EC90C5F9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:11:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF7890C60C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:13:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B61FC1F2123E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:11:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5D1228392F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F91B811FE;
-	Tue, 18 Jun 2024 07:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1671D15FCF2;
+	Tue, 18 Jun 2024 07:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="GLFkIoU1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LAulVbrO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A9F50282
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 07:34:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3DE06D1B9;
+	Tue, 18 Jun 2024 07:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718696050; cv=none; b=YWMhXXnNYv06Rmbo/kGf+3ElL9u0tf7qPjTDz3Iuq5gdYJi9gRucV+ZMEBMhfTjQOinqOkjGJ5rkIcxNjftKhvaMWneHXIcjqMQKa3SonvtK0Hck6f7mQuDqAwqn/n9hWAszpdiEO18u6kW6lw6OXSphRSe+PZRg1sZcbXNqv6A=
+	t=1718696386; cv=none; b=qgVifls1M5LWBJYq3Z19GyhTZ7EgXobIDsAPyDn4wl3EHE7Jbo97WKZg+VzYG5I1R0spuvtJHNbHp+oq+/0wKcEOUJmg/5HAd6wIPnZrsGiOdL8bi1/6HENL1qv52gBlLqEri+qQVv6BvCckhi5Hd0EOkBd1A0l33MsrKB2cAr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718696050; c=relaxed/simple;
-	bh=CIImvumzkAeN2g71CDXVF8iXYe2GO0UwOKirtMYFvqU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jo+D7nRsZBDy4RqEobToIqCZ8TQPguVdK1IwAXbEuXxhs0SIzuQjslFz4SQ+1ntHI75K041RL1O7OAxYPUa23Pk5tITeawp2Tim1DShDHHCX2Z+4svG9+zl46Uti3kj+jEv2p65c33Rf+rwHWcguzQvUq4daWt+uYz+yejQDsTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=GLFkIoU1; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42108856c33so37572435e9.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 00:34:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1718696046; x=1719300846; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S5rbHo29Bzcv6IgzEIj+saePdUmzo17xMUk+HWO4goE=;
-        b=GLFkIoU1WO3tepxt0KspCdQcl22OJRSAOttnup45B9fh6dNobbzq9X9BmGw04txs2V
-         BnDo6igMFxU3SBnkO3QnhwUY7uZny/lv5KbYrcp8YBonQwvTLEb1Ul+G8RuEYeMWKZH4
-         nBTXGC2/3TIJ9GyyMeX0WULHNFcCfslDUTc+N2NyFpxz2PI/mW32AWRettNuPl2LWvE6
-         YK3hGwLiQgXmQE5oZAMt4NskJLV5ulFdD5b3HHnLKsVnZ/AsebUYG9q2hCX0x7gj9vTv
-         Xxjw/rCRdztT9f7zU4LdFwDvEGxEWt76IvpiMTDdifPUV7qgb2xF35hJkLWzSO0vChc5
-         xniA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718696046; x=1719300846;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S5rbHo29Bzcv6IgzEIj+saePdUmzo17xMUk+HWO4goE=;
-        b=wdl9h3Ox/Fl/eA9e9Lhg1sX5+hGsFU+xK5njQsR08HXpb26VWFmUzkAY8fb3OyuH/J
-         diJYF0CiRrYACe49XZVkK5fSwqI3DOety7JljgOHvEdhh8Q+0bmSs1Xh/xA/HX457bYC
-         4m1xRX7QIBoqo1nPu+FPwQpSXtbJaS5mNrdRicCxrixxFCHw7Z+iekO14Y2c9bST4EAo
-         PFdUZuumsvtX6vHCOUmYQ1PGXduvMbjb19Zw0MkF1pCVi49vJuOkyF/0mb2KOCzeTQJq
-         foI3VveMKBfmHFuq6kJzryqMsI/dB6boqOl0s3hMzqRmqLz/S+zpCHFLilHL/iLv8uZc
-         GbNA==
-X-Forwarded-Encrypted: i=1; AJvYcCWBvVoO9Egaja/VjlWIezOKtu0xzLtYztPMMgpNWvM7PMp8u8v57BxXvaXZnIasFO125cwXL+jIko9s4uFF/2RWqNhZyTPPBxUgkA==
-X-Gm-Message-State: AOJu0YxGbPcXCpWzkAEVYCxYXYyaXJ8FjwZaZnqITe+g3EEbo/SRQrIf
-	fjGs21/onLVurgApzXAxC3bW8WwN7yxLZ0pScUs9FnZ8Zu+x8HC8rrYYFeLfnTU=
-X-Google-Smtp-Source: AGHT+IGs6nMfyFgDynWsbFh3DQ7FHvym58ye8vd0+afKHhJ633/JxauO+1qBYCV6VN20sYRNPadGSA==
-X-Received: by 2002:a05:600c:358f:b0:421:79b5:6d84 with SMTP id 5b1f17b1804b1-4246f5dbeabmr15612205e9.17.1718696045685;
-        Tue, 18 Jun 2024 00:34:05 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.189])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f6320bd8sm180070125e9.32.2024.06.18.00.34.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jun 2024 00:34:05 -0700 (PDT)
-Message-ID: <0a4ba0e5-3fb1-4ffc-b2d8-a4eb418707eb@tuxon.dev>
-Date: Tue, 18 Jun 2024 10:34:03 +0300
+	s=arc-20240116; t=1718696386; c=relaxed/simple;
+	bh=OjKlfNpd7OTHedF4ooTljpuB/fy48tL79BH5283OL2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X8xPx5yGW8WLSXkSFJ2uMGzNu2cJZ/y0z+eMcgkhAEjr+E9IfzBWkesv6jeN6EfyGbZofyuUxeLqtZ4XMc87RnTf6yKVUWvpwBRRDsR63NwR54VyYkxlcs/ZkMcXRlPq9pJrlRGDccfqrIwPNSm5fYPLnZ6pB4oX55U68/hy9l4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LAulVbrO; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718696383; x=1750232383;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OjKlfNpd7OTHedF4ooTljpuB/fy48tL79BH5283OL2c=;
+  b=LAulVbrOjdfYS2fk4hIsGQOY2QNFumUYSL5QsQ0tCDO3MPCxOVoTOBFU
+   T+63+X02Jf0TOjcbfu7zSADriPpxty3209Nz9JzUOhpkKze6ye4uWYtta
+   GlxjknogH9gM4h2VrLxON4MJRfQ66vOZuTYYWWM1g3UgqknIMX8yq4aIl
+   BE8953DY2/0kLJLZp5fNJB3maGO8jOeC/Zm0792tQn4pIzBQurQS7vd4J
+   vx27f1lOJN2tSPmnBMLAxQO/Mg7zwAIZJxJUmLJCvGHCBGgdwGSVFGbIP
+   6WjmGijsGXbMZ2zg67ihShJQun4HjP4o7xYPNNBn4lLUdZndLRFnw/fBQ
+   Q==;
+X-CSE-ConnectionGUID: qJCOoPSJRWydcAM/clWPmg==
+X-CSE-MsgGUID: TkrBEcBDTRKzsX1vH3rQ5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="33026728"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
+   d="scan'208";a="33026728"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2024 00:39:42 -0700
+X-CSE-ConnectionGUID: ZH26BE4mRAesZDWo1QDSVg==
+X-CSE-MsgGUID: dOhvDB2lRZezr651awkCQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
+   d="scan'208";a="45998161"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 18 Jun 2024 00:39:38 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sJTRI-0005JJ-1Z;
+	Tue, 18 Jun 2024 07:39:36 +0000
+Date: Tue, 18 Jun 2024 15:39:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andre Przywara <andre.przywara@arm.com>,
+	Corentin Labbe <clabbe.montjoie@gmail.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S . Miller" <davem@davemloft.net>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-crypto@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] crypto: sun8i-ce - wrap accesses to descriptor
+ address fields
+Message-ID: <202406181436.RZPPffYb-lkp@intel.com>
+References: <20240616220719.26641-3-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/12] dt-bindings: clock: renesas,rzg3s-vbattb-clk:
- Document the VBATTB clock driver
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
- alexandre.belloni@bootlin.com, magnus.damm@gmail.com,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
- <20240614071932.1014067-3-claudiu.beznea.uj@bp.renesas.com>
- <20240615-angler-occupier-6188a3187655@spud>
- <3d9ed0ec-ca9a-45b4-a633-8f7051d13cff@tuxon.dev>
- <20240617-subsoil-creed-04bf5f13d081@spud>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240617-subsoil-creed-04bf5f13d081@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240616220719.26641-3-andre.przywara@arm.com>
 
+Hi Andre,
 
+kernel test robot noticed the following build warnings:
 
-On 17.06.2024 18:19, Conor Dooley wrote:
-> On Mon, Jun 17, 2024 at 10:02:47AM +0300, claudiu beznea wrote:
->>
->>
->> On 15.06.2024 15:17, Conor Dooley wrote:
->>> On Fri, Jun 14, 2024 at 10:19:22AM +0300, Claudiu wrote:
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock that feeds
->>>> the RTC and the tamper detector. Add documentation for the VBATTB clock
->>>> driver.
->>>>
->>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>> ---
->>>>  .../clock/renesas,rzg3s-vbattb-clk.yaml       | 90 +++++++++++++++++++
->>>>  1 file changed, 90 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml b/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml
->>>> new file mode 100644
->>>> index 000000000000..ef52a0c0f874
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml
->>>> @@ -0,0 +1,90 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/renesas,rzg3s-vbattb-clk.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Renesas VBATTB clock
->>>> +
->>>> +maintainers:
->>>> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>> +
->>>> +description:
->>>> +  Renesas VBATTB module is an always on powered module (backed by battery) which
->>>> +  generates a clock (VBATTCLK). This clocks feeds the RTC and the tamper detector
->>>> +  modules.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: renesas,rzg3s-vbattb-clk
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: VBATTB module clock
->>>> +      - description: VBATTB input xtal
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: bclk
->>>> +      - const: vbattb_xtal
->>>> +
->>>> +  '#clock-cells':
->>>> +    const: 0
->>>> +
->>>> +  power-domains:
->>>> +    maxItems: 1
->>>> +
->>>> +  renesas,vbattb-load-nanofarads:
->>>> +    description: load capacitance of the on board xtal
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    enum: [ 4000, 7000, 9000, 12500 ]
->>>> +
->>>> +  renesas,vbattb-osc-bypass:
->>>> +    description: set when external clock is connected to RTXOUT pin
->>>> +    type: boolean
->>>
->>> When you say "external clock", is that an input or an output?
->>
->> I took that statement from the HW manual. As of the HW manual [1], table
->> 42.2, that would be an input.
-> 
-> Forgive me for not wanting to open the zip etc and find the information
-> in the document, but why do you need an extra property? Is it not
-> something you can determine from the clocks/clock-names properties?
+[auto build test WARNING on sunxi/sunxi/for-next]
+[also build test WARNING on herbert-cryptodev-2.6/master herbert-crypto-2.6/master linus/master v6.10-rc4 next-20240617]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-It can't be determined from clocks/clock-names as of my understanding. It
-depends on the type of the input clock (crystal oscillator or external
-hardware device generating the clock).
+url:    https://github.com/intel-lab-lkp/linux/commits/Andre-Przywara/dt-bindings-crypto-sun8i-ce-Add-compatible-for-H616/20240617-061144
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git sunxi/for-next
+patch link:    https://lore.kernel.org/r/20240616220719.26641-3-andre.przywara%40arm.com
+patch subject: [PATCH 2/4] crypto: sun8i-ce - wrap accesses to descriptor address fields
+config: loongarch-randconfig-r111-20240618 (https://download.01.org/0day-ci/archive/20240618/202406181436.RZPPffYb-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240618/202406181436.RZPPffYb-lkp@intel.com/reproduce)
 
-> It sounds like an additional clock from your description, is it actually
-> different way to provide the second clock you mention above?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406181436.RZPPffYb-lkp@intel.com/
 
-This is the block diagram (see [1], only picture this time) of the module
-controlling the clock. Please open it, it helps in understanding what I'll
-explain above.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c:175:34: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int [usertype] value @@     got restricted __le32 @@
+   drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c:175:34: sparse:     expected unsigned int [usertype] value
+   drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c:175:34: sparse:     got restricted __le32
 
-The VBATTB blocks controlling the VBATTBCLK are:
-- 32KHz-clock oscillator
-- the mux controlled by BKSCCR.SOSEL
-- the gate who's input is the mux output and XOSCCR.OUTEN
+vim +175 drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
 
-To the 32 KHz-clock oscillator block could be connected:
-1/ either a crystal oscillator in which case it will be connected to both
-RTXIN and RTXOUT pins (the direction of RTXOUT is wrong in this picture for
-this case)
-2/ or a device (like [2]) generating a clock which has a single output and,
-from my understanding and experience with devices like this, only RTXIN is
-needed, RTXOUT is connected to the ground; for this case the 32KHz-clock
-oscillator block from [1] need to be bypassed in which case the newly
-introduced property will be used; this will select the XBYP on the mux.
+   167	
+   168		mutex_lock(&ce->mlock);
+   169	
+   170		v = readl(ce->base + CE_ICR);
+   171		v |= 1 << flow;
+   172		writel(v, ce->base + CE_ICR);
+   173	
+   174		reinit_completion(&ce->chanlist[flow].complete);
+ > 175		writel(sun8i_ce_desc_addr(ce, ce->chanlist[flow].t_phy),
+   176		       ce->base + CE_TDQ);
+   177	
+   178		ce->chanlist[flow].status = 0;
+   179		/* Be sure all data is written before enabling the task */
+   180		wmb();
+   181	
+   182		/* Only H6 needs to write a part of t_common_ctl along with "1", but since it is ignored
+   183		 * on older SoCs, we have no reason to complicate things.
+   184		 */
+   185		v = 1 | ((le32_to_cpu(ce->chanlist[flow].tl->t_common_ctl) & 0x7F) << 8);
+   186		writel(v, ce->base + CE_TLR);
+   187		mutex_unlock(&ce->mlock);
+   188	
+   189		wait_for_completion_interruptible_timeout(&ce->chanlist[flow].complete,
+   190				msecs_to_jiffies(ce->chanlist[flow].timeout));
+   191	
+   192		if (ce->chanlist[flow].status == 0) {
+   193			dev_err(ce->dev, "DMA timeout for %s (tm=%d) on flow %d\n", name,
+   194				ce->chanlist[flow].timeout, flow);
+   195			err = -EFAULT;
+   196		}
+   197		/* No need to lock for this read, the channel is locked so
+   198		 * nothing could modify the error value for this channel
+   199		 */
+   200		v = readl(ce->base + CE_ESR);
+   201		switch (ce->variant->esr) {
+   202		case ESR_H3:
+   203			/* Sadly, the error bit is not per flow */
+   204			if (v) {
+   205				dev_err(ce->dev, "CE ERROR: %x for flow %x\n", v, flow);
+   206				err = -EFAULT;
+   207				print_hex_dump(KERN_INFO, "TASK: ", DUMP_PREFIX_NONE, 16, 4,
+   208					       cet, sizeof(struct ce_task), false);
+   209			}
+   210			if (v & CE_ERR_ALGO_NOTSUP)
+   211				dev_err(ce->dev, "CE ERROR: algorithm not supported\n");
+   212			if (v & CE_ERR_DATALEN)
+   213				dev_err(ce->dev, "CE ERROR: data length error\n");
+   214			if (v & CE_ERR_KEYSRAM)
+   215				dev_err(ce->dev, "CE ERROR: keysram access error for AES\n");
+   216			break;
+   217		case ESR_A64:
+   218		case ESR_D1:
+   219		case ESR_H5:
+   220		case ESR_R40:
+   221			v >>= (flow * 4);
+   222			v &= 0xF;
+   223			if (v) {
+   224				dev_err(ce->dev, "CE ERROR: %x for flow %x\n", v, flow);
+   225				err = -EFAULT;
+   226				print_hex_dump(KERN_INFO, "TASK: ", DUMP_PREFIX_NONE, 16, 4,
+   227					       cet, sizeof(struct ce_task), false);
+   228			}
+   229			if (v & CE_ERR_ALGO_NOTSUP)
+   230				dev_err(ce->dev, "CE ERROR: algorithm not supported\n");
+   231			if (v & CE_ERR_DATALEN)
+   232				dev_err(ce->dev, "CE ERROR: data length error\n");
+   233			if (v & CE_ERR_KEYSRAM)
+   234				dev_err(ce->dev, "CE ERROR: keysram access error for AES\n");
+   235			break;
+   236		case ESR_H6:
+   237			v >>= (flow * 8);
+   238			v &= 0xFF;
+   239			if (v) {
+   240				dev_err(ce->dev, "CE ERROR: %x for flow %x\n", v, flow);
+   241				err = -EFAULT;
+   242				print_hex_dump(KERN_INFO, "TASK: ", DUMP_PREFIX_NONE, 16, 4,
+   243					       cet, sizeof(struct ce_task), false);
+   244			}
+   245			if (v & CE_ERR_ALGO_NOTSUP)
+   246				dev_err(ce->dev, "CE ERROR: algorithm not supported\n");
+   247			if (v & CE_ERR_DATALEN)
+   248				dev_err(ce->dev, "CE ERROR: data length error\n");
+   249			if (v & CE_ERR_KEYSRAM)
+   250				dev_err(ce->dev, "CE ERROR: keysram access error for AES\n");
+   251			if (v & CE_ERR_ADDR_INVALID)
+   252				dev_err(ce->dev, "CE ERROR: address invalid\n");
+   253			if (v & CE_ERR_KEYLADDER)
+   254				dev_err(ce->dev, "CE ERROR: key ladder configuration error\n");
+   255			break;
+   256		}
+   257	
+   258		return err;
+   259	}
+   260	
 
-Thank you,
-Claudiu Beznea
-
-[1] https://pasteboard.co/QYsCvhfQlX6n.png
-[2]
-https://ro.mouser.com/datasheet/2/268/DSC1001_3_4_1_8V_3_3V_Low_Power_Precision_CMOS_Osc-3314582.pdf
-
-> 
->>
->> [1]
->> https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzg3s-general-purpose-microprocessors-single-core-arm-cortex-a55-11-ghz-cpu-and-dual-core-cortex-m33-250
->>
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
