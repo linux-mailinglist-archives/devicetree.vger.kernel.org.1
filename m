@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-76905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC4BB90C7C9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:53:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22FA490C7D3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC282280D12
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:53:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D016B1F27594
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8151A15688D;
-	Tue, 18 Jun 2024 09:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8DD1CB309;
+	Tue, 18 Jun 2024 09:20:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cxJiDhmY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N3eSqpzq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5907F15534B;
-	Tue, 18 Jun 2024 09:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C471CB306;
+	Tue, 18 Jun 2024 09:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718702251; cv=none; b=j5RqThy2JB4IA+WhgiPQxxFNhKR/LXl07WqDFFlBI02vm4CuxABNIyg8oD/9gfF7+PDpYyUGeWzGn0N6B5Mv+r8a+2gxJoI+jpw9hUaS3ibfdoJcYx5d+tkqIWtKkTB3TQt+VNVwmytLi7/WHp1hrLWZ93+64GVLSmV/fIzYuPo=
+	t=1718702432; cv=none; b=n+FFfJYHeNeeYjABN4q1h47NKHVE7lvIAPxNCh/xc6QBXmzwkafQZkyBVddBtzNHcc8X8B3YEyOCVSjlG7rIHGgZvcrpTXnB15OYiSdtOs5GOaSdJQbeiqpySQMXktTXcun18s3yRzftQ2u/gpA/4Kq5nF4kmpBbga6mcaUZMUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718702251; c=relaxed/simple;
-	bh=vS4lYPouitfUQewqLdFkh7k3IO7NnvRNr8JHf9FnNu0=;
+	s=arc-20240116; t=1718702432; c=relaxed/simple;
+	bh=vIFhwnIZEubFvJ3kvhDrto/wuAS+Z3gu3O4MQYZKIQc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WJBZzjgktnj2t8DOlvjai1iVmJMuImoAidTHzpvUiWBeTWG1r8X5d2jFrw67ZcS7lA7pxGdai88K7Hd+7jqQy478NqUtcjxWAq7sl0/tcHoS7uzAbNgKr5FMIKPbzc8+xRC0AVwKVwlRsYzuOtjuZI/2yPIeao00FuJn9IPO7dM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cxJiDhmY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11FBAC3277B;
-	Tue, 18 Jun 2024 09:17:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=R3CtiMvUzlW7YgdnhDrBFre9ZBpVNGmssvYRARXULb2cI1M7gfk/50hF8TmSPweI4vOZYRguab759S8B54rBS9m0Z6S4Qm4FchyctxUx2oAYq8Mkf5/3NPXTgLWDSv/JtA4BDqQj4gDKVrluejyDt7aBI/mVq+cPfSdM2cnzlq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N3eSqpzq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F0C1C4AF1D;
+	Tue, 18 Jun 2024 09:20:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718702251;
-	bh=vS4lYPouitfUQewqLdFkh7k3IO7NnvRNr8JHf9FnNu0=;
+	s=k20201202; t=1718702431;
+	bh=vIFhwnIZEubFvJ3kvhDrto/wuAS+Z3gu3O4MQYZKIQc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cxJiDhmY5sAvdDoLKKbxeYrKbRQf5cFzBuHzhhEYDFvK5+0BwX0OVQsh/MVtVn2DU
-	 1WeVedfm2TXARZo9VNuKKmu1Q1xyUaTLdEsidosB9uLI3cfWzkQkDdxhOiAsSdQBJe
-	 QHiFgvWl+bx4C8Paog+lhN76YRF9jax1v6UbnYM7I7p937CbCWWnwzQyPPlzG9X3oP
-	 1ow6UW2OcXV7sIRQGokJMguahvTcA+tX7fjiQnwBij4qnQ7bcvJT/Oy1nzs0KyuWqQ
-	 CvbG27NMJXaCRC5u+jh5QzxqJSXy5rfzuwFjRTYiPItxf7eCpOiroV2ngZTw/Oeh7Y
-	 0mWNbVm1t32UQ==
-Message-ID: <0455975b-837b-4a1c-8ea3-e9a504db53d0@kernel.org>
-Date: Tue, 18 Jun 2024 11:17:24 +0200
+	b=N3eSqpzqiFFqPbcjoYUG3B9g+XOosfCcKg2etM8aYGmdwNYom5sivOfdGIGD+/+jd
+	 dnaoovGGr08ikrUY/ZFwlftN7N/fdtX1XjPeP4Qx5KUe3Qxnc3qcTVehcLz9VXdAZN
+	 BqgYJ1Ad/zj2zsJSxO8pet3mGgPDjo9mDjjtyylSzsmKZM7/bDzFt3SZHSoTjdbniJ
+	 u+cQ4nMhgj6KKkv6xBQ62unhTE/9z42/9scgIrLJpKdwPlRVArRpfLYeqElU7ZU6Vz
+	 r2GtxN8WZjGoJGjh+3yk7kT4EyBuy30F3d3uHGLCWVbankGL9yZTi8twwssvWWikWr
+	 lbKTu1hT3UzwA==
+Message-ID: <7abe0097-8a19-47a5-85d2-b7cedcb31b75@kernel.org>
+Date: Tue, 18 Jun 2024 11:20:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: display: st7701: Add Anbernic RG28XX
- panel
+Subject: Re: [PATCH v1 2/3] drm/panel: st7701: Add support for SPI for
+ configuration
 To: Hironori KIKUCHI <kikuchan98@gmail.com>, linux-kernel@vger.kernel.org
 Cc: Jagan Teki <jagan@amarulasolutions.com>,
  Neil Armstrong <neil.armstrong@linaro.org>,
@@ -63,7 +63,7 @@ Cc: Jagan Teki <jagan@amarulasolutions.com>,
  Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org
 References: <20240618081515.1215552-1-kikuchan98@gmail.com>
- <20240618081515.1215552-2-kikuchan98@gmail.com>
+ <20240618081515.1215552-3-kikuchan98@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,73 +109,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240618081515.1215552-2-kikuchan98@gmail.com>
+In-Reply-To: <20240618081515.1215552-3-kikuchan98@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/06/2024 10:15, Hironori KIKUCHI wrote:
-> The RG28XX panel is a panel specific to the Anbernic RG28XX.
-> It is 2.8 inches in size (diagonally) with a resolution of 480x640.
+> The ST7701 supports not only MIPI DSI, but also SPI as an interface
+> for configuration. To support a panel connected via RGB parallel
+> interface, add support for SPI using MIPI DBI helpers.
 > 
 > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-> ---
->  .../display/panel/sitronix,st7701.yaml        | 36 +++++++++++++++++--
->  1 file changed, 34 insertions(+), 2 deletions(-)
-
-Nothing explains in the commit msg why rg28xx is actually st7701.
-Changing interface to SPI suggests it is not.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-> index b348f5bf0a9..04f6751ccca 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
-> @@ -22,19 +22,21 @@ description: |
->  
->  allOf:
->    - $ref: panel-common.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->  
->  properties:
->    compatible:
->      items:
->        - enum:
->            - anbernic,rg-arc-panel
-> +          - anbernic,rg28xx-panel
-
-What is xx? Wildcards are not allowed, in general.
-
-Can it be anything else than panel? If not, then drop "-panel".
 
 
->            - densitron,dmt028vghmcmi-1a
->            - elida,kd50t048a
->            - techstar,ts8550b
->        - const: sitronix,st7701
->  
->    reg:
-> -    description: DSI virtual channel used by that screen
-> +    description: DSI / SPI channel used by that screen
->      maxItems: 1
->  
->    VCC-supply:
-> @@ -43,6 +45,13 @@ properties:
->    IOVCC-supply:
->      description: I/O system regulator
->  
-> +  dc-gpios:
-> +    maxItems: 1
-> +    description: |
+...
 
-Do not need '|' unless you need to preserve formatting.
+> +
+> +static int st7701_spi_probe(struct spi_device *spi)
+> +{
+> +	struct st7701 *st7701;
+> +	struct gpio_desc *dc;
+> +	int err;
+> +
+> +	err = st7701_probe(&spi->dev, DRM_MODE_CONNECTOR_DPI);
+> +	if (err)
+> +		return err;
+> +
+> +	st7701 = dev_get_drvdata(&spi->dev);
+> +	st7701->write_command = st7701_dbi_write;
+> +
+> +	dc = devm_gpiod_get_optional(&spi->dev, "dc", GPIOD_OUT_LOW | GPIOD_FLAGS_BIT_NONEXCLUSIVE);
 
-> +      Controller data/command selection (D/CX) in 4-line SPI mode.
-> +      If not set, the controller is in 3-line SPI mode.
-> +      No effect for DSI.
-
-Which devices can be connected over SPI? It seems not all, so this
-should be disallowed (": false" in allOf:if:then:; move the allOf to
-bottom like in example-schema) for them.
+Nope, you cannot use GPIOD_FLAGS_BIT_NONEXCLUSIVE outside of regulators.
+I don't see any code for ensuring proper simultaneus access.
 
 Best regards,
 Krzysztof
