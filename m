@@ -1,155 +1,92 @@
-Return-Path: <devicetree+bounces-77190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E3C690DA92
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 19:26:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEC490DAA3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 19:31:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9257282DA0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:26:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A281281E49
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9B113DB8D;
-	Tue, 18 Jun 2024 17:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D622B9A6;
+	Tue, 18 Jun 2024 17:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m7SybJL/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dme/cf6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E772139DD
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 17:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5AF779FD;
+	Tue, 18 Jun 2024 17:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718731553; cv=none; b=sGA+EKuvludryYdlillMOQ/iDHYDx98ykzHhCrvhhwDzrPG8//PrhIkytoMBG9HiY0i3SiBG5epmoarc1Kesw+YlUaEDfbs2IDnzugEa4uNBTwIqGmfyY7NtV0k2zyXgs2OFtV0iVbb7EATN/DggMTIuQSqJhpipKvwZPxJGn7g=
+	t=1718731857; cv=none; b=OV5z1WvM4vlN7opYZBBT98r/brSiUnnPLmYQ0De4fWJGDpc9U5F54T3j0WkAcmthzrxYlH9zNr/yXJPJ2os098C7h7JgjUviMK1+JlBNgZj+r4ppDd6PKOJSZKiUq77wNYHx2taDPRAS/iacS9zXC/7hk7jqLKiEM4Q89KFss+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718731553; c=relaxed/simple;
-	bh=r2ha9U+OA/czbBCQIqjwB2b1MU+hOF6ap7ftdRtZAvs=;
+	s=arc-20240116; t=1718731857; c=relaxed/simple;
+	bh=+AIDgnkglNABOkM07rYQEuwdoQhiijYiDXrSPBEmNso=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hQr0R7kUSoJykNCaV10QZUf5CxKioQG7YZ14lySKCCB5wX8wl9f+bpxNpenysHojMi6R+WK1Eq2It0bK0bg5ZLZHVCloadiQ8YZOVShDdW3G8XDq9KFBRgWXB4Kb+mB6NDM8bZCcQgkIOqmMTV+yyobmQ90CRIu8vmzFW4hq1s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m7SybJL/; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ebe3bac6c6so63026771fa.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 10:25:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718731549; x=1719336349; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0x3UpCnFFeHobgX/UWFVCi5nUUKWM9Aq39qUpJkUIbU=;
-        b=m7SybJL/BlooD1kns6kcHDD/bFS/+L9Omvk12WqK9LU0M3OeMA7enSA+MN2fm8RnsT
-         rUJueNBZ1xGul1jOIoJNguMA2xKL37rVYJfGiVdausGwWKkOraPDmMGwbEOQGwwjUbyC
-         9ZW+c8F1qyxdksPyCP/UHc2xg0Wyta8yhjndBW6EyI75WBa3EIkHlI2b9Bdg7Edajjnw
-         GDib4DfvVsOcnmsIDLtfAxts3j73Pp1hdwf+47BwHlMVMLJ2PjMmB7GbeYDXFcWhc5qx
-         VYZpF0s0h5UlMUEylMyNWGr1VXWzfpO2awtHs6NVCc0jjvrh7DNHG1dBkqMHwoqNE+B+
-         8Wkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718731549; x=1719336349;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0x3UpCnFFeHobgX/UWFVCi5nUUKWM9Aq39qUpJkUIbU=;
-        b=aNbTXYwPBIV+m/4HBQezoLFi5WxispUm/dWKE/ZiBayYVjWcsKPnzGCbiWqggstzaU
-         3QJBzFwKAH4yss0oNrad71wbHap1E4zAn4/nfvf+0AkVyBVGvPx4PEb7oVzv91u9Q8Jo
-         XoOL6JrRNiUL2ME9J/2fT0o2Hux3UCva/K3mGMQIeGhhr8pKWexK0gMeuCrwhEu4pkI7
-         OiPbyKtETXi9a18IVKxZaC/kyRKb7ISXiypJoNGLYG7dYVZUmwIYW1cM/MPNv+FnSoq1
-         pYPFcFByjo6OAlq0gyxM4zSEDTUYJp9EDCYtva6ogQXaNAMFM0iPKcJ8Lutd5G7r+WAr
-         Qwcw==
-X-Forwarded-Encrypted: i=1; AJvYcCWCob3Vekc+yIgasSsOf0IlZ2cA3Gl7NSLGF8PCYTqck1KjqobsD5NtDlLqC2LmaQJPucjIwiQ+2FOEfYTxDgT7I21D+hvGYKuCrw==
-X-Gm-Message-State: AOJu0Yxd5C4BRxJCerhxvvT30e63xnw69qs/Lz/m3LM+MxvJVB8tLHrf
-	abju3+KhZelvqUYPxjOhhp0bYkTD4AIQu4H4mE061JnMbF/vBJHv43zrfreaWxk=
-X-Google-Smtp-Source: AGHT+IFf+j6X5dAvayfXrCIIhVNUgHdKwtrHtNwB1lo7ZJD9ArCnpH9ivkEoQ64N15sSUPSxrp47Ug==
-X-Received: by 2002:a2e:9008:0:b0:2eb:d4a4:42a1 with SMTP id 38308e7fff4ca-2ec3cfdfd78mr3710751fa.43.1718731549419;
-        Tue, 18 Jun 2024 10:25:49 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05c8a72bsm17349601fa.115.2024.06.18.10.25.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 10:25:49 -0700 (PDT)
-Date: Tue, 18 Jun 2024 20:25:47 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH 4/4] drm: bridge: simple-bridge: add tdp158 support
-Message-ID: <a4xdofsru4cfyfg762ud2x2kpoonbxgdpmjbhp4jpyew2oryvc@kskcz3zcg2ky>
-References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
- <20240617-tdp158-v1-4-df98ef7dec6d@freebox.fr>
- <hdhy5pnq4vsdn2axgu3t5vyhwqrqcrvpveeyai2lyvwadr7rbb@te6fucdqclez>
- <cad870dd-861b-433b-8598-1b8b68b72d6c@freebox.fr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PxNEyJWRJOuamvQ+eMGrLxHj4v2ETYPFs4AROa0R+vtZlJz0fjDSc4JG9NCeAXennF9egkXdk7iuMBlxRjoHEhD3JycFTDpVup9L2ib/OKx2PZV8CMIXR+Y5ZMaWF9TKdT3TMpQbspf567Vl6FcRgICW2hsw5NT/eeq4bo8VgPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dme/cf6u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF4E1C3277B;
+	Tue, 18 Jun 2024 17:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718731856;
+	bh=+AIDgnkglNABOkM07rYQEuwdoQhiijYiDXrSPBEmNso=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Dme/cf6uW4hfXjEHMMUZ5cmBMGTqn+Z29mSxUCF8xexGDNK8ynkK4zxJ07QC4j0GR
+	 ApXNUkaUb2ze7qHAEtzXroLEktMM+7yGvn9bLW+uQwGMMyrNjNr5V2vqYDSBzGUqM0
+	 cIZUfBiLVDJfwRE+fWOEriXccv3puvg2pWnEbx/Aywgqi46KPlkTLBhojivLV+oe3a
+	 GgYCUHMBfEaB72IuIsHHGF/+j+cJ8zoFWcwP0raDSfhfl7uiacMye8OI+7XcDvPx4W
+	 PqfqMv0qej6Cq1o2pQ4cI01Foz6h7G6nO5ksKWtMANOEg5plcxbHTo5diFDNPhbefj
+	 lcewYiGpvxEhA==
+Date: Tue, 18 Jun 2024 18:30:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Johan Jonker <jbx6244@gmail.com>
+Cc: heiko@sntech.de, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] dt-bindings: net: remove arc_emac.txt
+Message-ID: <20240618-speculate-sampling-d7933a1dc858@spud>
+References: <0b889b87-5442-4fd4-b26f-8d5d67695c77@gmail.com>
+ <1a45f178-3ed4-49cc-9bb9-c1f9978356bb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QYbO1KTJM7QqsiWe"
+Content-Disposition: inline
+In-Reply-To: <1a45f178-3ed4-49cc-9bb9-c1f9978356bb@gmail.com>
+
+
+--QYbO1KTJM7QqsiWe
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cad870dd-861b-433b-8598-1b8b68b72d6c@freebox.fr>
 
-On Tue, Jun 18, 2024 at 01:48:48PM GMT, Marc Gonzalez wrote:
-> On 18/06/2024 00:33, Dmitry Baryshkov wrote:
-> 
-> > On Mon, Jun 17, 2024 at 06:03:02PM GMT, Marc Gonzalez wrote:
-> > 
-> >> +	if (sbridge->vcc) {
-> >> +		ret = regulator_enable(sbridge->vcc);
-> >> +		msleep(100);
-> > 
-> > At least this should be documented or explained in the commit message.
-> > Is it absolutely necessary? Can you use regulator-enable-ramp-delay or
-> > any other DT property instead?
-> 
-> The value comes from datasheet "8.3.2 Operation Timing"
-> Table 1. Power Up and Operation Timing Requirements
-> VDD supply ramp up requirements, max = 100 ms
-> VCC supply ramp up requirements, max = 100 ms
-> 
-> Did I read the spec wrong? (Very possible)
+On Tue, Jun 18, 2024 at 06:14:32PM +0200, Johan Jonker wrote:
+> The last real user nSIM_700 of the "snps,arc-emac" compatible string in
+> a driver was removed in 2019. The use of this string in the combined DT of
+> rk3066a/rk3188 as place holder has also been replaced, so
+> remove arc_emac.txt
 
-I didn't check the spec. I was pointing that that you were adding
-msleeps() into a generic path, but the commit message had no explanation
-for that.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> 
-> Are you saying this could/should be a property of the regulator?
-> What if the regulator gates several different blocks?
+--QYbO1KTJM7QqsiWe
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I agree here. Yes, it should be done in the driver.
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> 
-> >>  	sbridge = devm_kzalloc(dev, sizeof(*sbridge), GFP_KERNEL);
-> >>  	if (!sbridge)
-> >>  		return -ENOMEM;
-> >> -	platform_set_drvdata(pdev, sbridge);
-> > 
-> > I think this call can get dropped together with the remove() being
-> > gone...
-> 
-> Oooh, it didn't occur to me that the only reason to store drvdata was
-> to have it available in the remove callback...
-> 
-> 
-> > Does this work if the driver is built as a module?
-> 
-> Not sure there's any point in testing since Maxime NACKed the approach.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnHESgAKCRB4tDGHoIJi
+0n2FAP0bZj3ydwoGLXHSklzjFjA0G1JZuS2f9Mq5LO+o++9dDwD/Zv8VPx8TNMgY
+rQ3xZj/iKj+ScXOPgIQ4AiexcWy9Wws=
+=YHdX
+-----END PGP SIGNATURE-----
 
-Yep :-(
-
-> 
-> Regards
-> 
-
--- 
-With best wishes
-Dmitry
+--QYbO1KTJM7QqsiWe--
 
