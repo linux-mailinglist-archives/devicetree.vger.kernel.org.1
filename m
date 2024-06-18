@@ -1,74 +1,43 @@
-Return-Path: <devicetree+bounces-77026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBD9890D389
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:07:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA7790D3A0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:10:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3827128699B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:07:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 711051C25261
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E48D13792B;
-	Tue, 18 Jun 2024 13:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="LxL3oUdj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADADE19E7E2;
+	Tue, 18 Jun 2024 13:52:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CD822139DB
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 13:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515B319E7DD;
+	Tue, 18 Jun 2024 13:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718718545; cv=none; b=UXCfXh/dllcsltR/7QP97ndU1P+GXxHB1CAfi48a7Zy/sdnzQGCSmU916n/q/uRi6HEgcRrIdjzGowybI20sGwutOCrE2vfex2kV06qYmBc0jRkt8YnNzEYB18RBRLRVcZQvesv1yKYfP3i9hX8+aEB0bh5C1uKvLoeNGzDqtg0=
+	t=1718718722; cv=none; b=qQjrqAuXHHXu5Wu7EjhoTgbESzl56uAnyzDZHBEsC7NnO/7yCV6mYbHaRvQtHhfFb768e1V5GHPuwhRTW7hpvnX0Ib0DnLMIHyUAhWYpfNjRSYxZcAweg5tJOlVf+t9Sy2D4G8FfdJtUWZwZ+pAGu4hf0hw6uDOhHGCZWKSBbj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718718545; c=relaxed/simple;
-	bh=RQfEglGSOmvcE2rbcjSAqK36cyu7SUDZmu2GUPRzTfs=;
+	s=arc-20240116; t=1718718722; c=relaxed/simple;
+	bh=VwKsrjIE10lvqke1zUsJ4ealB7C0M4kdJQQlSucPQmI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OVMdW/OOJ2JpEK085dnFDAeeACyLZofSKqiCjApOq8w2n0blNzuG2LG75EhlxJ+kneHKxwNTVI6pP2yzt64zeeIOdnL1Q0rHbuOMBcaj3Gz/DaZvj85gpG/lpya1ZKtl266KnwQEiqA/RpRaOCJTdpC40GjjjlFzklf/EKKpxSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=LxL3oUdj; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-362468852c8so58704f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 06:49:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718718541; x=1719323341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+A6Ln/tT358tVyqKy2/noXpOlJxyAQfqx2aBkUeUUbU=;
-        b=LxL3oUdjEH31k9kiOsl3XH6NKHEiBUnVYuZxkTfrSmRKu5R264OeClxecNTFY6KQuO
-         EswNhLHuxJAOjLIZODpzL/HJ2h77C8HdIcwdlfN95Sec8e6ZK/B1GfRwawYxbMS99BnL
-         /nOJHJZZ5TTxinbFk85FTendYG97GAbFzlTrRmLqWBjmmCct6ZjWzgqYLKSQR3ADYOKT
-         nR0/7bHeIICK28tKg1vPaEMUuJOwmyPEvIv5J+fwSrnYnzeVN9uJJcJ4Hp8RupYLTwie
-         VnurlAsqSeskcnjVzjsyRoNUTvBtrEsLj5RYRUbFwg18ZwiOGHWudHbv6hyMmorm5luG
-         0jqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718718541; x=1719323341;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+A6Ln/tT358tVyqKy2/noXpOlJxyAQfqx2aBkUeUUbU=;
-        b=WdciWIf2YwfpzsrDOe4COCnCBuf3iBFcxuHrsX5stFZG3mwvmJFkoQa5BZdx2NwSod
-         SWNMpsOQ2TvlQSV8th+bNxTCJO7c2SorSFWCZ3PjwWIxlppujGmsA3a7UNWBopW3tCNm
-         UX3Y+304TK2Aypm0ajGNpvL+At22neKaDSeEdRYxzab9zTQfCqxg1ppFZAU6vg4J0+lV
-         1vNm2HeJ2+dCNH7dN+p/x27ZW/lOXX/g2QoFJJx5nm0UCjNu689qEeDfvksQQzBk/EWJ
-         CoDh21PkiRXBLbNe2Kxgh9trTJ7JyHSi3WGCL1xi15K3Q6FwMrNQfyNLAyyG5VBe4S55
-         I7DQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHG5tsIUt0y20JQWmLDCfdXUCJSahC+ufEdUFybq/zHHwFVoBNSsHxLzRRJlS75n9ZnqZxlNSci2smkN847h/TiJ9qvqAT+cpRMQ==
-X-Gm-Message-State: AOJu0Yx6MyA5SSkLspFxCUeKcFUO8LE0WJa52OyCzCi2Y6FF7djiGStJ
-	OtL2aEt1ekwAGkXqrBScOgV8ZVADtz4X7ba7JuBXVFegeDYm2QP9WOvcABe2Bac=
-X-Google-Smtp-Source: AGHT+IGIn0V0kb2C9GfnJ/5CLyyzx+tZkHiedxvdMFuq3KLnaanaavZNpCBz2NKWlJXZsQOPYupmgg==
-X-Received: by 2002:a5d:5885:0:b0:360:83d6:e2f0 with SMTP id ffacd0b85a97d-36083d6e6d4mr8940241f8f.6.1718718541204;
-        Tue, 18 Jun 2024 06:49:01 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:999:a3a0:65d4:678c:278a:2de2? ([2a01:e0a:999:a3a0:65d4:678c:278a:2de2])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36075104954sm14123280f8f.99.2024.06.18.06.49.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jun 2024 06:49:00 -0700 (PDT)
-Message-ID: <d0abe3e0-af0f-4693-b943-57ea3fc2189f@rivosinc.com>
-Date: Tue, 18 Jun 2024 15:48:59 +0200
+	 In-Reply-To:Content-Type; b=DtwD6zO1ZuhOJWEDQ66hZvEugzcbULAph58tsc5t5XOavdTmehz2NveUU+l+kM0JP5e6blO+3B7IJtzBbmGVEv6m+5ACKGXFTgaQ//gyULXQvA8AlCI82ZGjgPhpB4eydebYet/J5X2AOyc1qF8N5mt4MvFoo7m/O7X08GnbP9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
+Received: from [141.14.220.45] (g45.guest.molgen.mpg.de [141.14.220.45])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: pmenzel)
+	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 0328561E5FE01;
+	Tue, 18 Jun 2024 15:51:16 +0200 (CEST)
+Message-ID: <8719fc64-2b51-4b79-ba52-0a3b9216f2db@molgen.mpg.de>
+Date: Tue, 18 Jun 2024 15:51:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,90 +45,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] riscv: hwprobe: export Zawrs ISA extension
-To: Andrew Jones <ajones@ventanamicro.com>, linux-riscv@lists.infradead.org,
- kvm-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- conor.dooley@microchip.com, anup@brainfault.org, atishp@atishpatra.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- christoph.muellner@vrull.eu, heiko@sntech.de, charlie@rivosinc.com,
- David.Laight@ACULAB.COM, parri.andrea@gmail.com, luxu.kernel@bytedance.com
-References: <20240426100820.14762-8-ajones@ventanamicro.com>
- <20240426100820.14762-12-ajones@ventanamicro.com>
+Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ =?UTF-8?Q?Ren=C3=A9_Rebe?= <rene@exactcode.de>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Armin Wolf <W_Armin@gmx.de>, Stephen Horvath <s.horvath@outlook.com.au>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-6-linux@roeck-us.net>
+ <a5aa120d-8497-4ca8-9752-7d800240b999@molgen.mpg.de>
+ <efb77b37-30e5-48a8-b4af-eb9995a2882b@roeck-us.net>
+ <33f369c1-1098-458e-9398-30037bd8c5aa@molgen.mpg.de>
+ <4e09b843-3d2d-46d7-a8e1-2eabc4382dc7@roeck-us.net>
+ <f20ea816-5165-401e-948f-6e77682a2d1b@molgen.mpg.de>
+ <975af7e5-b1b0-400e-a1c3-6d9140421f25@roeck-us.net>
 Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20240426100820.14762-12-ajones@ventanamicro.com>
-Content-Type: text/plain; charset=UTF-8
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <975af7e5-b1b0-400e-a1c3-6d9140421f25@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+Dear Guenter,
 
 
-On 26/04/2024 12:08, Andrew Jones wrote:
-> Export Zawrs ISA extension through hwprobe.
+Am 18.06.24 um 15:32 schrieb Guenter Roeck:
+
+> On 6/18/24 03:25, Paul Menzel wrote:
+> [ ... ]
+>>
+>>      $ ls -l /sys/bus/i2c/drivers/spd5118/0-0050/eeprom
+>>      -r--r--r-- 1 root root 1024 Jun 18 12:17 /sys/bus/i2c/drivers/spd5118/0-0050/eeprom
+>>      $ cp /sys/bus/i2c/drivers/spd5118/0-0050/eeprom /tmp
+>>      cp: error reading '/sys/bus/i2c/drivers/spd5118/0-0050/eeprom': No such device or address
 > 
-> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> ---
->  Documentation/arch/riscv/hwprobe.rst  | 4 ++++
->  arch/riscv/include/uapi/asm/hwprobe.h | 1 +
->  arch/riscv/kernel/sys_hwprobe.c       | 1 +
->  3 files changed, 6 insertions(+)
+> That suggests that the i801 driver got an error when trying some chip 
+> operation.
+> Unfortunately I have no idea what that error or the failed operation 
+> might be.
 > 
-> diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-> index b2bcc9eed9aa..e072ce8285d8 100644
-> --- a/Documentation/arch/riscv/hwprobe.rst
-> +++ b/Documentation/arch/riscv/hwprobe.rst
-> @@ -188,6 +188,10 @@ The following keys are defined:
->         manual starting from commit 95cf1f9 ("Add changes requested by Ved
->         during signoff")
->  
-> +  * :c:macro:`RISCV_HWPROBE_EXT_ZAWRS`: The Zawrs extension is supported as
-> +       ratified in commit 98918c844281 ("Merge pull request #1217 from
-> +       riscv/zawrs") of riscv-isa-manual.
-> +
->  * :c:macro:`RISCV_HWPROBE_KEY_CPUPERF_0`: A bitmask that contains performance
->    information about the selected set of processors.
->  
-> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-> index 9f2a8e3ff204..a5fca3878a32 100644
-> --- a/arch/riscv/include/uapi/asm/hwprobe.h
-> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
-> @@ -59,6 +59,7 @@ struct riscv_hwprobe {
->  #define		RISCV_HWPROBE_EXT_ZTSO		(1ULL << 33)
->  #define		RISCV_HWPROBE_EXT_ZACAS		(1ULL << 34)
->  #define		RISCV_HWPROBE_EXT_ZICOND	(1ULL << 35)
-> +#define		RISCV_HWPROBE_EXT_ZAWRS		(1ULL << 36)
->  #define RISCV_HWPROBE_KEY_CPUPERF_0	5
->  #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
->  #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
-> diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-> index 8cae41a502dd..b86e3531a45a 100644
-> --- a/arch/riscv/kernel/sys_hwprobe.c
-> +++ b/arch/riscv/kernel/sys_hwprobe.c
-> @@ -111,6 +111,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
->  		EXT_KEY(ZTSO);
->  		EXT_KEY(ZACAS);
->  		EXT_KEY(ZICOND);
-> +		EXT_KEY(ZAWRS);
->  
->  		if (has_vector()) {
->  			EXT_KEY(ZVBB);
+>>      $ od -t x1 /sys/bus/i2c/drivers/spd5118/0-0050/eeprom
+>>      od: /sys/bus/i2c/drivers/spd5118/0-0050/eeprom: read error: No such device or address
+>>      0000000
+>>
+>>> sudo i2cdump -y -f 0 0x50
+>>
+>>      $ sudo LD_LIBRARY_PATH=~/src/i2c-tools/lib tools/i2cdump -y -f 0 0x50
+>>      No size specified (using byte-data access)
+>>      Error: Could not open file `/dev/i2c-0' or `/dev/i2c/0': No such file or directory
+>>
+> This should work after you load the "i2c-dev" module.
 
-AFAIU, when used in userspace, this will actually "stall" the processor
-until an interrupt/timeout happens, so the current process will keep
-occupying the processor doing nothing (up to the next interrupt/timeout)
-right ?
+Silly me. Thank you.
 
-BTW, the spec also states that "When the TW (Timeout Wait) bit in
-mstatus is set and WRS.NTO is executed in any privilege mode other than
-M mode, and it does not complete within an implementation-specific
-bounded time limit, the WRS.NTO instruction will cause an illegal
-instruction exception." so I guess the process will be killed in this case ?
+> If you get it to work, please provide the output. Maybe it helps 
+> tracking down the problem.
 
-If this is not a concern:
+```
+$ sudo LD_LIBRARY_PATH=~/src/i2c-tools/lib tools/i2cdump -y -f 0 0x50
+No size specified (using byte-data access)
+      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: 51 18 0a 86 32 03 32 00 00 00 00 00 ff 01 00 00    Q???2?2......?..
+10: 00 00 00 00 00 00 00 00 00 00 00 00 70 03 00 00    ............p?..
+20: 50 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00    P?..............
+30: 00 58 01 00 00 00 00 00 00 00 00 00 00 00 00 00    .X?.............
+40: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+60: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+70: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+80: 30 10 12 02 04 00 20 62 00 00 00 00 90 02 00 00    0????. b....??..
+90: 00 00 00 00 a0 01 f2 03 7a 0d 00 00 00 00 80 3e    ....????z?....?>
+a0: 80 3e 80 3e 00 7d 80 bb 30 75 27 01 a0 00 82 00    ?>?>.}??0u'??.?.
+b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+c0: 00 00 00 00 00 00 88 13 08 88 13 08 20 4e 20 10    ......?????? N ?
+d0: 27 10 15 34 20 10 27 10 c4 09 04 4c 1d 0c 00 00    '??4 ?'????L??..
+e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+```
 
-Reviewed-by: Clément Léger <cleger@rivosinc.com>
+So (00,b) = 0x00 opposed to 0x07 in your example output.
 
-Thanks,
+     $ sensors
+     […]
 
-Clément
+Then there is no change:
+
+```
+$ sudo LD_LIBRARY_PATH=~/src/i2c-tools/lib tools/i2cdump -y -f 0 0x50
+No size specified (using byte-data access)
+      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
+00: 51 18 0a 86 32 03 32 00 00 00 00 00 ff 01 00 00    Q???2?2......?..
+10: 00 00 00 00 00 00 00 00 00 00 00 00 70 03 00 00    ............p?..
+20: 50 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00    P?..............
+30: 00 58 01 00 00 00 00 00 00 00 00 00 00 00 00 00    .X?.............
+40: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+60: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+70: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+80: 30 10 12 02 04 00 20 62 00 00 00 00 90 02 00 00    0????. b....??..
+90: 00 00 00 00 a0 01 f2 03 7a 0d 00 00 00 00 80 3e    ....????z?....?>
+a0: 80 3e 80 3e 00 7d 80 bb 30 75 27 01 a0 00 82 00    ?>?>.}??0u'??.?.
+b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+c0: 00 00 00 00 00 00 88 13 08 88 13 08 20 4e 20 10    ......?????? N ?
+d0: 27 10 15 34 20 10 27 10 c4 09 04 4c 1d 0c 00 00    '??4 ?'????L??..
+e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+```
+
+
+Kind regards,
+
+Paul
 
