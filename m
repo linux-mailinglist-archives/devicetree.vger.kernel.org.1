@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-77229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B74990DC2F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 21:06:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D80A90DC39
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 21:12:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD1DC1F219A4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 19:06:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7B0E28180B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 19:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7699F15ECF0;
-	Tue, 18 Jun 2024 19:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5108F15EFAF;
+	Tue, 18 Jun 2024 19:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="una3UUGB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oH0hcvFJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5AF914F13E
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 19:06:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC29F15EFA1
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 19:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718737611; cv=none; b=QnUgMVvlCd593k3ecMwSB/c7GG7f4DtcC6YB7PW0kr5xALSckw2QwAi3xGCJVgEVrJwwdFUjMhpXkEp9/9kHVzu3GQJYszwZbQetUvdqXvwU/FfQpGj47Hu0humqlxxl4iTowWx+CTadFjPcLNDNcpWbyby2RuTOWocKXkPAsoI=
+	t=1718737927; cv=none; b=WoRAvys3RjY3vGrMQI+Xz0D4BYHPU32ZGHFrUvrfevri42aMrnfK3JH8DuNy6m6VrHw13WRgzHXny7vx5LKWgYB9aleB9e+rJco60WtH4unK0czcXbo17L9mFoAephdO8NlpPXUnXsWnS8gLtvh5xcYZOPNXYhN5jwjIsL/t6QM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718737611; c=relaxed/simple;
-	bh=I6gh+ZhnpjHmqUx7wmh/gP5SC5PJ76jO4e5mhALPP8M=;
+	s=arc-20240116; t=1718737927; c=relaxed/simple;
+	bh=V6TUkHZXRl29GH5tB+9zD1O+XS7wyCwcd/6nrTmB+zo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JAaTF1xCszh4tuaAQvO9E5BGOEjsImdMFdCu/Dy35/lQCtfiZeobqhXXtfJIxb1GNBkw9Uv0G3YGOpLFwDeqDy0TuE/+70ZG8Q0YmqjYa+vF5lKmsw1CoVy9HxFkdb5xrEzUbL6pkAwIR8wOdfNcO80hdHZGkLt/KvpvMByjv1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=una3UUGB; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:Content-Type; b=AMZBug6UBb7GWW5qbQh69zXvwjPuJwEKxRPfYFc78HoikIAkDmkVr92aIvsNGz8D00jS/7ELN0u7nRn3/wQxV/lnXvQU74bZhbSfkbPcDhFAkHHKV/850o9t308PIeww3iIw2/pSlMl3/OrmDOT3ZQRJkaMUvdTp7SJut9JgNH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oH0hcvFJ; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-421820fc26dso45528805e9.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 12:06:49 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-421a1b834acso48992335e9.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 12:12:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718737608; x=1719342408; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718737924; x=1719342724; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oxz2pZ47pxNTQppBLFBoMYJoJeu/eLVWfqVJPijciDg=;
-        b=una3UUGBhDlHyHxaU61K+vu3dBVjvTR4XQIRpQ3do+pFyKPo4jZxtNO+veY0FP+Us2
-         mBspvZq8pFiq5CSK1rCAGLrPwDo/MbxQyRsMb07Tu3LTlUgbcwq6IoCBrIJxwTqZEBWf
-         IOHz0GV2qiYkC21LTMhW9kPUyb+YhSobnYyFo7ZXqoxE17pLD/V/dZ96/FEFLwMJT4pz
-         NU0eWh0rbv/ySc5K5UnqNC/ieNfnhykDPTXPzvV0vL1mG7IYepzuVCO6cjJf6pq6zjyB
-         MXN6JIruC3+6B1zPUAsTXOpBk4mlhB+C9gHhcPjzuYFC1qB+6DQduuLEI6i7SJ7YClfy
-         kBLQ==
+        bh=f8+/cR8dmnRCIY8KO1c6EzfyrRTOkElOzLEANvqSOFw=;
+        b=oH0hcvFJ7FmVmxz8THavBoaaaDNUg/2g4Z6LQuingacqxNEXmPzSba9sw4TOfi492Q
+         ooW+qyu7XLOz22qJtfnr6/AwZa8qp6je324y00HxdtdPZebey5DLkLE2XUdSAgZntRq7
+         3ULheWyKCY99KmTO1ePsCu4PxnXk5M7s1jZcGlXhssPN5elk8ATtHOYNi0t+I5f6qvd+
+         TWe2H/5jBl+xtvh7NRA+yfKJWXBGFq7fVgRTq1xBECGXEvF2iXCxeq2jal3oJgtrDO4i
+         TC1F+3uLJu3LyNbchFfqH23CB1Xg9OeZsZvFWA0qVcA8y0cYcLSFg7DPyiKuyCGqdLre
+         5lLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718737608; x=1719342408;
+        d=1e100.net; s=20230601; t=1718737924; x=1719342724;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oxz2pZ47pxNTQppBLFBoMYJoJeu/eLVWfqVJPijciDg=;
-        b=pVI1SBReEmREkVaU9SdISx61SvVkdXb55AZl7ZIAJFf/6qfCvbqgo1HrCpbUvRHfox
-         UZ9Vg67xOMkkAAFVIw5y3a5ZPeCglLLAud07C88PPL79YDk8KZs4bZNX07QiNNyEbe2g
-         68GqrEzVRHgI9U8R/Y1GmkuPh5fMmD0A2+0bDNSh/pCIf+Ag5y+JCVBs/7tPxSX5H2FM
-         SX9YnhI0V2ujlKWYgUGF8zDTZy1y5FCMMtKfUSgF4q4gJcT5rkBN0b9p5lO3jKpRaroA
-         tpfAoXKuoPY26R39S70RDfZ0jqSF4R+j+M32j53Oo3PCqCfDCYD6D4YTBGyQyQuDHBEJ
-         sSHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU7j8yiDu0gT+68MBcY/Ym1Cjffmxx+1SSzbSe3J9zzFr5MembF6uXofDI/dum7cDoXTcqJjoBpqoND6lH0VJyWKK7K5aXTFZ+VgQ==
-X-Gm-Message-State: AOJu0YzbVzIOoivYAUHHB3zitGBHDGLCCyS40nSbNQUBGoL1IxMxYD5A
-	5lfSoHsEvCLv0x4YRRY31r3IdDoMcOJc6ywXpA5cZduNzQkhEOBbKsoD66UutZ7SLj8Uy7EcNPS
-	Y64k=
-X-Google-Smtp-Source: AGHT+IHFzaKHtn6W0HDhJQws89CbNYw8HlOIfF5xX5dlB73nO09Ykn1ZM8Isd95B0DrXJaETeAPsOg==
-X-Received: by 2002:a05:600c:4f16:b0:418:c2af:ab83 with SMTP id 5b1f17b1804b1-4247529a9b6mr2845505e9.36.1718737607855;
-        Tue, 18 Jun 2024 12:06:47 -0700 (PDT)
+        bh=f8+/cR8dmnRCIY8KO1c6EzfyrRTOkElOzLEANvqSOFw=;
+        b=fGXMaHYWflKoVNDeFLzoaukxHX3FYg9SZUpNLpIKvj30oP7/Bx4kqZBZ3QinPC8SSy
+         VIrIeXlPdufLlR/aW0wUUsCq4Fh0PJsxsTKxwe+iMebjQr/UQgnWnuKWbi/nApEHrjPS
+         3qqSisZ6EqE3UzdZ7X866O0UCG/H90OUYr1cYmY+elpzXmwSmY2KXP8/PnnuLiq8c5Rr
+         UGhTlG4A84X3hE432WH5w2ZKXQH93DPdAox7+2JG+LHeDUX4Ehm91XXVaUW5G6JA82z2
+         5ixnjuv30U1d54dshSItI32jrP5AOufzvFQ/jWNacFcKXA8odkogCMa+GeS7TG0Opdf5
+         w7Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCWOYQe4774RVPpFaehJq9Tuwez6svXV3Nt0d7hxqiCXZQoc0pkb0iSbm2dRMVoRCSytSNM3OZHIT50gSWg9x4Dnyy/EGcnPI10aqw==
+X-Gm-Message-State: AOJu0Yz5lx5/l9ge7l362cwjrWr3v96nZIY1aL7tf4hcArP6/laC8w3P
+	9ASxTm1+zz890MmjBGnNUjUxuAuKRGxHuWhwn8DHMAeS+ilxJjX0e0AmplqlBUc=
+X-Google-Smtp-Source: AGHT+IHdn2YVcteO5gHaAZyTpV2RKc9NRMuQMnYAe8emYCZSQL9/iTeEcqYKL05YMuGAZiFOdSXtsQ==
+X-Received: by 2002:adf:fe11:0:b0:35e:5bf6:5432 with SMTP id ffacd0b85a97d-363175b8c65mr437516f8f.21.1718737923890;
+        Tue, 18 Jun 2024 12:12:03 -0700 (PDT)
 Received: from ?IPV6:2a00:f41:9028:9df3:5d11:7fa7:8997:f811? ([2a00:f41:9028:9df3:5d11:7fa7:8997:f811])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36094fa7ea8sm6298482f8f.80.2024.06.18.12.06.46
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-361a85074a2sm2280828f8f.25.2024.06.18.12.11.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jun 2024 12:06:47 -0700 (PDT)
-Message-ID: <7eb1c459-90d2-4b49-a226-0ced8216cee6@linaro.org>
-Date: Tue, 18 Jun 2024 21:06:43 +0200
+        Tue, 18 Jun 2024 12:12:03 -0700 (PDT)
+Message-ID: <85e03d10-59a2-4f15-bb85-7b2c0354a5d1@linaro.org>
+Date: Tue, 18 Jun 2024 21:11:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,70 +76,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/4] arm64: dts: qcom: add base AIM300 dtsi
-To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dmitry.baryshkov@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Fenglin Wu <quic_fenglinw@quicinc.com>
-References: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
- <20240618072202.2516025-4-quic_tengfan@quicinc.com>
+Subject: Re: [PATCH v3 02/23] gcc-sdm845: Add rates to the GP clocks
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
+ phone-devel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
+ <20240618-starqltechn_integration_upstream-v3-2-e3f6662017ac@gmail.com>
+ <wnf3mfgdm4p4f5wrxdtlx4wccnizdvohc7iiyu5t22eeb67r57@xun3r73hksrg>
+ <ad04e203-4244-4cd3-9c9a-fae002962990@linaro.org>
+ <lwrz4rvn6ogseea5v6j7plc3yi3xnzo76dvrsl3muat3iswlkb@zmwa3xo3xgw4>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240618072202.2516025-4-quic_tengfan@quicinc.com>
+In-Reply-To: <lwrz4rvn6ogseea5v6j7plc3yi3xnzo76dvrsl3muat3iswlkb@zmwa3xo3xgw4>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 6/18/24 09:22, Tengfei Fan wrote:
-> AIM300 Series is a highly optimized family of modules designed to
-> support AIoT applications. It integrates QCS8550 SoC, UFS and PMIC
-> chip etc.
-> Here is a diagram of AIM300 SoM:
->            +----------------------------------------+
->            |AIM300 SoM                              |
->            |                                        |
->            |                           +-----+      |
->            |                      |--->| UFS |      |
->            |                      |    +-----+      |
->            |                      |                 |
->            |                      |                 |
->       3.7v |  +-----------------+ |    +---------+  |
->    ---------->|       PMIC      |----->| QCS8550 |  |
->            |  +-----------------+      +---------+  |
->            |                      |                 |
->            |                      |                 |
->            |                      |    +-----+      |
->            |                      |--->| ... |      |
->            |                           +-----+      |
->            |                                        |
->            +----------------------------------------+
+On 6/18/24 20:55, Dmitry Baryshkov wrote:
+> On Tue, Jun 18, 2024 at 08:50:52PM GMT, Konrad Dybcio wrote:
+>>
+>>
+>> On 6/18/24 19:50, Dmitry Baryshkov wrote:
+>>> On Tue, Jun 18, 2024 at 04:59:36PM GMT, Dzmitry Sankouski wrote:
+>>>> sdm845 has "General Purpose" clocks that can be muxed to
+>>>> SoC pins.
+>>>>
+>>>> Those clocks may be used as e.g. PWM sources for external peripherals.
+>>>> Add more frequencies to the table for those clocks so it's possible
+>>>> for arbitrary peripherals to make use of them.
+>>>>
+>>>> See also: bf8bb8eaccf(clk: qcom: gcc-msm8916: Add rates to the GP clocks)
+>>>
+>>> Each time I look at the table attached to the GP CLK, I feel that it's
+>>> plain wrong. In the end the GPCLK can in theory have arbitrary value
+>>> depending on the usecase.
+>>>
+>>> Bjorn, Konrad, maybe we should add special clk_ops for GP CLK which
+>>> allow more flexibility than a default clk_rcg2_ops?
+>>
+>> If we can somehow get max m/n/d values for all possible parents, sure
 > 
-> Co-developed-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
+> Calculate them at runtime?
 
-[...]
-
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-> +	vcc-supply = <&vreg_l17b_2p5>;
-> +	vcc-max-microamp = <1300000>;
-> +	vccq-supply = <&vreg_l1g_1p2>;
-> +	vccq-max-microamp = <1200000>;
-> +	vdd-hba-supply = <&vreg_l3g_1p2>;
-
-These regulators should generally have:
-
-regulator-allow-set-load;
-regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-                            RPMH_REGULATOR_MODE_HPM>;
-
-although the current setup you have never lets them exit HPM
+We'd be calculating the mnd values for a frequency that's either equal or
+reasonably close to the one requested. My worry is that we somehow need
+to get the maximum values they can take (unless they're well-known)
 
 Konrad
 
