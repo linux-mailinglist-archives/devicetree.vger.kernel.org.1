@@ -1,125 +1,199 @@
-Return-Path: <devicetree+bounces-76948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C32F090CA1F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:46:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7028E90CA29
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:47:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79CCE1F21F66
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:46:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E614528F251
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AAC119EEC4;
-	Tue, 18 Jun 2024 11:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C83156878;
+	Tue, 18 Jun 2024 11:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FcWqq19g"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="DqU5t+ME"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A0F158DB4;
-	Tue, 18 Jun 2024 11:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F16551A00C3
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 11:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718709157; cv=none; b=EW+pIR6WbOO3QldrNZFUYnsK23OQrZxQRUpoREBmipKGciah0G28cGiHTY7OjVatfcxdCQvEadjT/MPsYZz4VixJuCxvycKEgpqfP8r1wRQrzqefxEuCu6ET8DNT8Qzzzj+i4jtDf6zhwrClOl+GJkTjBEAPTeAvXMbqlV4cPTI=
+	t=1718709229; cv=none; b=LKA+EInoaGrqOGoVobt0LkCoC//+XtK6FKqM+fIOkWVhTg9I+s4j9BL5Qk4rwuCx2KMQbOf2MWB+6oPxsfGpq5UrMtNTLHJH/52R1XoQbVpm4L8gDQsEztdUdU03VeDR0ho3aL7SOpzWKxGtZRD+N/gEcvWuYtpGLdXMAPPJwR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718709157; c=relaxed/simple;
-	bh=0GHupV46ZiTQkCvR/9xjYYpLuWY+JLethuNFtKgsOBw=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=o4ou2HZ+DDGriBsdl1PNyhrbYbZfKKK18atYwgzCj4TXOXU7fhajZDurLF9vP83ertgLZr6gbqoaJkHT9kQ1TJoKQuw74WI9t+B9A5mm9TUOBwgUvVJFtV44PU9nTsNyleWLPB9EnsW9FXjxu23jqgLhToaLqmixmUx2UsnLue8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FcWqq19g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85CDCC3277B;
-	Tue, 18 Jun 2024 11:12:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718709156;
-	bh=0GHupV46ZiTQkCvR/9xjYYpLuWY+JLethuNFtKgsOBw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=FcWqq19gnRsWN+uOVya+nn3wDKn5n/t9aaUP7vQBiIpz7Aqs7bhUHUtjg//tp34gG
-	 j23hOHiEUJlnfoVOlg+GiHPjFtpoBkOZCEDHdaZtKInh4TCrqGlbfjua7vhRstYkEI
-	 CpWLV7nMht88H2eGDOGmG/TUCWluPcKRSLaDYsIqLeZVqE+LjzUvJPrncdjn3DzYri
-	 0y5p8b3jwVWQObyuyRb6NTrE6hxtGNRYoTwT5tM5vKo9KDgIQ/uY7tFSptf2N0NnIK
-	 AfHcSwS2YLYiEVq4jjp3GwA5XGkuDpHSYuL6un7dNS8GzWq5PsHWkViRHrhMxHPmmU
-	 rhFCUiwMOvJhg==
-Date: Tue, 18 Jun 2024 05:12:35 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718709229; c=relaxed/simple;
+	bh=n1uBEzddLoQxzz/zi7h7jNVb1T7Yuzm7uH8yjdAGoOg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lQFlrRAfR2TO+BgKZQYmGPKpqL9tlsU5qmADuPW/DRnsiTdTAExzQpcRg/DiYZ6DFonDZiBWtlpd/ElcvCfv+FpPXcqd+2KUJOsWYnzgMjpHq5d/Wweqv4VlfqUpyparffEh/p4RH8qcjZJ4/U+0uLMcgjz3sEq/BVIaxQwBA9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=DqU5t+ME; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718709226; x=1750245226;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=n1uBEzddLoQxzz/zi7h7jNVb1T7Yuzm7uH8yjdAGoOg=;
+  b=DqU5t+MEXhjlsMwAlbfbtCf8HhVC6p2Pv62Y/PvDVV8ziIQ3oGaQL1u3
+   7cNymNsds+CcxFkNU4m4n4Ia2QMCLaDRUmA7HIZtr9Hc0KQ+p9P+XhDn0
+   f8OS8xgtkaMRgrUMmi6kayDDNNEcYL+gWyaj3R8hh4SXaeHCRjs/0X6Wf
+   FV2quI5UlkyIRuSXIo7X9KJc4ddol0wIVFt0hIzzmABzGg1zCBWnUsahn
+   7iD4T2ERbg+ebBdoe9fZ5QKFtPVUliJfUXjTn84FBsBG7e3Ofld2U5Yak
+   tEgrbrjYPXAYmjcP1fQJKiKaje167ukghyLtYTEPOqaX1y27NqCd8nt1w
+   w==;
+X-CSE-ConnectionGUID: zYlIm9dBTaSY1wpJsScrNw==
+X-CSE-MsgGUID: 4UpTHyHNTjSfIYFq8mQwRA==
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; 
+   d="asc'?scan'208";a="195436468"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Jun 2024 04:13:45 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 18 Jun 2024 04:13:43 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Tue, 18 Jun 2024 04:13:40 -0700
+Date: Tue, 18 Jun 2024 12:13:22 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Maxime Ripard <mripard@kernel.org>
+CC: Conor Dooley <conor@kernel.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Ryan Walklin <ryan@testtoast.com>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>, Jessica
+ Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, David
+ Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+	<tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hironori KIKUCHI
+	<kikuchan98@gmail.com>, Chris Morgan <macroalpha82@gmail.com>, Andre Przywara
+	<andre.przywara@arm.com>, John Watts <contact@jookia.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8
+ panel
+Message-ID: <20240618-reverse-kinship-7f8df8c8e111@wendy>
+References: <20240530211415.44201-1-ryan@testtoast.com>
+ <20240530211415.44201-3-ryan@testtoast.com>
+ <20240606-intelligent-aromatic-magpie-80a7a4@houat>
+ <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
+ <20240606-refreshing-cinnamon-ibex-a0fe73@houat>
+ <20240606-authentic-mongoose-9485904a91a1@spud>
+ <20240618-silky-holistic-oyster-bf59fe@houat>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jie Gan <quic_jiegan@quicinc.com>
-Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>, linux-kernel@vger.kernel.org, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, quic_xinlon@quicinc.com, 
- Song Chai <quic_songchai@quicinc.com>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Jinlong Mao <quic_jinlmao@quicinc.com>, 
- quic_yanzl@quicinc.com, Tao Zhang <quic_taozha@quicinc.com>, 
- andersson@kernel.org, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- linux-arm-kernel@lists.infradead.org, quic_yuanjiey@quicinc.com, 
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, coresight@lists.linaro.org, 
- Trilok Soni <quic_tsoni@quicinc.com>, quic_liuxin@quicinc.com, 
- quic_yijiyang@quicinc.com, quic_sijiwu@quicinc.com, 
- quic_xueqnie@quicinc.com, Yuanfang Zhang <quic_yuanfang@quicinc.com>
-In-Reply-To: <20240618072726.3767974-2-quic_jiegan@quicinc.com>
-References: <20240618072726.3767974-1-quic_jiegan@quicinc.com>
- <20240618072726.3767974-2-quic_jiegan@quicinc.com>
-Message-Id: <171870915568.1107169.13844924050806547324.robh@kernel.org>
-Subject: Re: [PATCH v1 1/3] dt-bindings: arm: Add binding document for
- Coresight Slave Register device.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="l3zryIkCRYabdmHC"
+Content-Disposition: inline
+In-Reply-To: <20240618-silky-holistic-oyster-bf59fe@houat>
+
+--l3zryIkCRYabdmHC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jun 18, 2024 at 11:04:09AM +0200, Maxime Ripard wrote:
+> Hi Conor,
+>=20
+> Sorry, I missed the news of you becoming a DT maintainer, so most of my
+> previous points are obviously bogus. And congrats :)
+
+I've been doing it for over a year, so news travels to some corners slowly
+I guess. I'm not just being a pest in dozens of subsystems for fun!
+
+> On Thu, Jun 06, 2024 at 12:51:33PM GMT, Conor Dooley wrote:
+> > On Thu, Jun 06, 2024 at 01:23:03PM +0200, Maxime Ripard wrote:
+> > > On Thu, Jun 06, 2024 at 11:37:31AM GMT, Neil Armstrong wrote:
+> > > > On 06/06/2024 11:32, Maxime Ripard wrote:
+> > > > > On Fri, May 31, 2024 at 09:12:14AM GMT, Ryan Walklin wrote:
+> > > > > > The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in=
+ a
+> > > > > > number of handheld gaming devices made by Anbernic. By consensu=
+s a
+> > > > > > vendor prefix is not provided as the panel OEM is unknown.
+> > > > >=20
+> > > > > Where has this consensus been found?
+> > > > >=20
+> > > > > I had a look at the previous discussions, and I can't find any co=
+nsensus
+> > > > > being reached there. And for that kind of thing, having the ack or
+> > > > > review of any of the DT maintainers would have been great.
+> > > >=20
+> > > > There was a consensus with Conor, this is why he acked v2, see
+> > > > https://lore.kernel.org/all/20240525-velvet-citable-a45dd06847a7@sp=
+ud/
+> > >=20
+> > > It's probably a matter of semantics here, but if it's with only one
+> > > person, it's not a consensus but an agreement.
+> > >=20
+> > > > ```
+> > > > I think if we genuinely do not know what the vendor is then we just
+> > > > don't have a prefix.
+> > > > ```
+> > >=20
+> > > And even then, I don't interpret Conor's statement as a formal agreem=
+ent
+> > > but rather an acknowledgment of the issue.
+> >=20
+> > I mean, I specifically left an r-b below that line in v2:
+> > https://lore.kernel.org/all/20240530-satchel-playgroup-e8aa6937b8b9@spu=
+d/
+> >=20
+> > I'm not a displays guy, so my sources were limited to what I could find
+> > from search engines, but I spent some time looking for an actual vendor
+> > of the panel and could not. All I found was various listings on places
+> > like AliExpress that did not mention an manufacturer. I'd rather not
+> > invent a vendor because we could not find the actual vendor of the
+> > panel & it seemed rather unreasonable to block support for the device
+> > on the basis of not being able to figure out the vendor. If you, as
+> > someone knowledgeable on displays, can figure the vendor out, then
+> > yeah we should definitely add it.
+>=20
+> It's still a bit surprising to me. We've merged[1][2][3][4], and are still
+> merging[5], panels from this particular vendor that have no clearly
+> identified OEMs. Just like any other panel, really. We almost *never*
+> have the actual OEM, we just go with whatever is the easiest to identify
+> it.
+
+It wasn't (isn't?) clear to me that Abernic is even the vendor of the
+panel, just that it works for their devices. If there's an established
+policy here of making up vendors for these panels, then sure, override
+me and use them as the prefix.
+
+> Plus, if there ever is another WL-355608-A8 part from a completely
+> unrelated vendor, then you'll have a naming clash with no clear
+> indication about which is which.
+>
+> 1: https://lore.kernel.org/all/20230426143213.4178586-1-macroalpha82@gmai=
+l.com/
+> 2: https://lore.kernel.org/all/20231003163355.143704-1-macroalpha82@gmail=
+=2Ecom/
+> 3: https://lore.kernel.org/all/20231117202536.1387815-1-macroalpha82@gmai=
+l.com/
+> 4: https://lore.kernel.org/all/20231208154847.130615-1-macroalpha82@gmail=
+=2Ecom/
+> 5: https://lore.kernel.org/dri-devel/20240618081515.1215552-1-kikuchan98@=
+gmail.com/
 
 
-On Tue, 18 Jun 2024 15:27:24 +0800, Jie Gan wrote:
-> Add binding document for Coresight Slave Register device.
-> 
-> Add a new property to TMC, qcom,csr-atid-offset, to indicate which
-> ATID registers will be used by the TMC ETR. Each TMC ETR device is
-> associated with four ATID registers that are continuous in address.
-> 
-> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
-> ---
->  .../bindings/arm/arm,coresight-tmc.yaml       |  8 ++
->  .../bindings/arm/qcom,coresight-csr.yaml      | 76 +++++++++++++++++++
->  2 files changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
-> 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+--l3zryIkCRYabdmHC
+Content-Type: application/pgp-signature; name="signature.asc"
 
-yamllint warnings/errors:
+-----BEGIN PGP SIGNATURE-----
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml: properties:clock-names: {'maxItems': 1, 'items': [{'const': 'apb_pclk'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-Error: Documentation/devicetree/bindings/arm/qcom,coresight-csr.example.dts:43.3-44.1 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/arm/qcom,coresight-csr.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnFr0gAKCRB4tDGHoIJi
+0nNKAP9FXUwcEobDw50Su/jD9Rq0NeMXmlICEhZpWrY+9SbnOQD+PCw5NPlSttJw
+WrSOVuBE04SJhTvPItRO1kbqWM1eRwM=
+=1CBj
+-----END PGP SIGNATURE-----
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240618072726.3767974-2-quic_jiegan@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--l3zryIkCRYabdmHC--
 
