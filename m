@@ -1,115 +1,295 @@
-Return-Path: <devicetree+bounces-77209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B4190DB49
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 20:08:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A792990DB57
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 20:10:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AE5E283877
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:08:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7870F283859
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1310814F9E6;
-	Tue, 18 Jun 2024 18:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE362156F21;
+	Tue, 18 Jun 2024 18:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="reM0BcBU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UsB1ggxD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3BC414F13E;
-	Tue, 18 Jun 2024 18:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E13156C6C;
+	Tue, 18 Jun 2024 18:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718734093; cv=none; b=iYbKpTCcC2w2ScW0+6eTksiJPEejCpZ7e92Q3QbId8gxn6P+h5wzTvWzM/VM/KktTWxWSNTVUq/CovRIfyeSvs4RE8uohcLljQ/H/5fmr9/HWxxsWT8zWAPxIG/e/IFSKB2ehPsMQDHZNZsxSngeMt4GR3hGgALwH14YZldXkew=
+	t=1718734239; cv=none; b=d7qtzPmQm+ikAuNQAI5aRCnQsfztOIyW4hrlp46wqhYdM5C3WklyUs2enxyVLinK/NV6lY0YhY+pUxdj1QXHSuJXLfgQLxrEW4nz9LmdLbRJ6sBl+qu2mNFTwCqt+6yJLtK3pT0Xi5yR/carebAEWPsqv63pCEQMDfehaO6oqVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718734093; c=relaxed/simple;
-	bh=DIWXHzFM9LsRVNoscUsRZE3SjmaDFUBGMVeyHHcwIVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IH5sKXsTjNvKFXtLoLG6zUMgN303xXA6y50ihBncmnhASDC326x2lXWDXQVIH1lfKv527tVlPTg7phMv/YweAsEk82b7yEvewrPPIMN5Eioc9xTFr5IalH57E2bFOLHbxB1ZUNmqiFntMnFR+wrex7JKvh9SPhvVaU88CFEgpzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=reM0BcBU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF7DEC3277B;
-	Tue, 18 Jun 2024 18:08:09 +0000 (UTC)
+	s=arc-20240116; t=1718734239; c=relaxed/simple;
+	bh=EAvgZ3jMRCuTBhjZ/B+YPumQ+F27xwXs2WGNI9/iw6w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CathX58dYt05ftmnRGcLyj0TLlqFvOgLKm2gpPE5VKqqnJVFMAHGU9GvdiEZWQeRZ85QwKGuYtvcRay89IqNJ73lH0H0i8TpifJyrTOhAMwFwsrJ/ZyC92/+vnEJFh89q8Y7JF+piYWlHwHxp5v22wRqcLgtvHU2AWR1O1Ljv7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UsB1ggxD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D31EC3277B;
+	Tue, 18 Jun 2024 18:10:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718734092;
-	bh=DIWXHzFM9LsRVNoscUsRZE3SjmaDFUBGMVeyHHcwIVM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=reM0BcBULhL6vYCBFsQHRbgWG5t1mnQuBX+OxOLkwHYD+348b48Pop5sdU56arf7R
-	 5ZUKPyMW2OeJ4YWwFCVqziOF8Dvt/0qf4QJ9BGGLpPdXhhPwtO2QwbnqLDNLCBkb3C
-	 d3ye1WHVxcV5T2Khjv6w5GVrPKRK4R6bsu38ajXcO2fyb0PJrcFC+8/5tQlNph6Mqp
-	 Ts/78Nny3XKmqU8zGR6pWzZri2i2DfZ0j45IsZzgIdBJTAw88ywiABpYlyIGycAFhG
-	 2iVl2TLzmtH5vNbKEQfW8UqChqsI4M8sPv9NNrjj58eo5AMnzITc48yooNFNJsiC9n
-	 LlRU+twT52wOA==
-Date: Tue, 18 Jun 2024 11:08:08 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: Nikita Shubin via B4 Relay 
- <devnull+nikita.shubin.maquefel.me@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Hartley Sweeten <hsweeten@visionengravers.com>, Alexander
- Sverdlin <alexander.sverdlin@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Lukasz Majewski <lukma@denx.de>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Andy
- Shevchenko <andy@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Thierry Reding
- <thierry.reding@gmail.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
- <u.kleine-koenig@pengutronix.de>, Mark Brown <broonie@kernel.org>, "David
- S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
- Abeni <pabeni@redhat.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Damien Le Moal <dlemoal@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Ralf Baechle <ralf@linux-mips.org>, "Wu, Aaron"
- <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>, Olof Johansson
- <olof@lixom.net>, Niklas Cassel <cassel@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
- netdev@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-ide@vger.kernel.org, linux-input@vger.kernel.org,
- linux-sound@vger.kernel.org, Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v10 00/38] ep93xx device tree conversion
-Message-ID: <20240618110808.7829d214@kernel.org>
-In-Reply-To: <eb3e6c0b883f408fed68e725a23b54854701ce9e.camel@maquefel.me>
-References: <20240617-ep93xx-v10-0-662e640ed811@maquefel.me>
-	<20240618073339.499a7fd2@kernel.org>
-	<eb3e6c0b883f408fed68e725a23b54854701ce9e.camel@maquefel.me>
+	s=k20201202; t=1718734239;
+	bh=EAvgZ3jMRCuTBhjZ/B+YPumQ+F27xwXs2WGNI9/iw6w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UsB1ggxDjMVJ2bkpOY1nKfMR+8EDszY1zyaQ5sHAm5770BSZXaG2f6OB+YNYYXa6q
+	 JPKFtXmGx6H4GmFZ+pdBKNvJ1eWUsXVnCmEnOpTL0Dh1PFH93SXT08T46h5g1vm5cG
+	 ayKhoikeHx/EcWdFzABFU3tAdtaYi9GxJw4TGJBQe0cWXJYif06tuTUvoF6x2dSYcH
+	 BAOL8V7giCyQP1QeNs7qtVGHoFLN/cYqyCkFxCPzdO2AxFQqaBhoaw/ExuhmPOxK7d
+	 TduN9cJ8gbcDNEwCcAXQQw1cjeqQ7K9zWRxZD/u3kSjjO/+Q5Lw2Wzz2QrxTgcddEo
+	 swS7EoMEUABbA==
+Date: Tue, 18 Jun 2024 19:10:33 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	alsa-devel@alsa-project.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] dt-bindings: iio: dfsdm: move to backend framework
+Message-ID: <20240618-footwear-impotence-5284985a609d@spud>
+References: <20240618160836.945242-1-olivier.moysan@foss.st.com>
+ <20240618160836.945242-5-olivier.moysan@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="4SiWeHDoe2HNgIcV"
+Content-Disposition: inline
+In-Reply-To: <20240618160836.945242-5-olivier.moysan@foss.st.com>
 
-On Tue, 18 Jun 2024 19:33:49 +0300 Nikita Shubin wrote:
-> On Tue, 2024-06-18 at 07:33 -0700, Jakub Kicinski wrote:
-> > On Mon, 17 Jun 2024 12:36:34 +0300 Nikita Shubin via B4 Relay wrote:  
-> > > The goal is to recieve ACKs for all patches in series to merge it
-> > > via Arnd branch.  
-> > 
-> > Why? The usual process is for every subsystem to accept the relevant
-> > patches, and then they converge during the merge window.  
-> 
-> It was decided from the very beginning of these series, mostly because
-> it's a full conversion of platform code to DT and it seemed not
-> convenient to maintain compatibility with both platform and DT.
-> 
-> Generally i think it's too late to ask such a question, when just a few
-> patches left.
 
-Put the relevant information in the cover letter. Justification why you
-can't follow normal merging rules is very relevant.
+--4SiWeHDoe2HNgIcV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jun 18, 2024 at 06:08:30PM +0200, Olivier Moysan wrote:
+> Change the DFSDM binding to use the new IIO backend framework,
+> along with the adoption of IIO generic channels.
+> This binding change allows to add scaling support to the DFSDM.
+>=20
+> Keep the legacy binding as deprecated for backward compatibility.
+>=20
+> The io-backends property is supported only in generic IIO channel
+> binding.
+>=20
+> - Channel description with the generic binding (Audio and Analog):
+>=20
+>   Properties supersed by generic properties:
+>     st,adc-channels: becomes "reg" property in channel node
+>     st,adc-channel-names: becomes "label" property in channel node
+>   Properties moved to channel child node:
+>     st,adc-channel-types, st,adc-channel-clk-src, st,adc-alt-channel
+>=20
+> - Analog binding:
+>=20
+>   DFSDM filter channel is configured as an IIO backend consumer.
+>   Add io-backends property in channel child nodes.
+>=20
+>   DFSDM is no more configured as a channel consumer from SD modulator.
+>   Use of io-channels in DFSDM node is deprecated.
+>=20
+> - Audio binding:
+>=20
+>   DFSDM audio DAI is configured as a channel consumer from DFSDM filter.
+>   No change compare to legacy.
+>=20
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>  .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  | 158 +++++++++++++++++-
+>  1 file changed, 152 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc=
+=2Eyaml b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> index c1b1324fa132..dd414bab74c1 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> @@ -102,9 +102,11 @@ patternProperties:
+>          items:
+>            minimum: 0
+>            maximum: 7
+> +        deprecated: true
+> =20
+>        st,adc-channel-names:
+>          description: List of single-ended channel names.
+> +        deprecated: true
+> =20
+>        st,filter-order:
+>          description: |
+> @@ -118,6 +120,12 @@ patternProperties:
+>        "#io-channel-cells":
+>          const: 1
+> =20
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+>        st,adc-channel-types:
+>          description: |
+>            Single-ended channel input type.
+> @@ -128,6 +136,7 @@ patternProperties:
+>          items:
+>            enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
+>          $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +        deprecated: true
+> =20
+>        st,adc-channel-clk-src:
+>          description: |
+> @@ -139,6 +148,7 @@ patternProperties:
+>          items:
+>            enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
+>          $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +        deprecated: true
+> =20
+>        st,adc-alt-channel:
+>          description:
+> @@ -147,6 +157,7 @@ patternProperties:
+>            If not set, channel n is connected to SPI input n.
+>            If set, channel n is connected to SPI input n + 1.
+>          type: boolean
+> +        deprecated: true
+> =20
+>        st,filter0-sync:
+>          description:
+> @@ -165,11 +176,65 @@ patternProperties:
+>        - compatible
+>        - reg
+>        - interrupts
+> -      - st,adc-channels
+> -      - st,adc-channel-names
+>        - st,filter-order
+>        - "#io-channel-cells"
+> =20
+> +    patternProperties:
+> +      "^channel@([0-9]|1[0-9])$":
+> +        type: object
+> +        $ref: adc.yaml
+> +        description: Represents the external channels which are connecte=
+d to the DFSDM.
+> +
+> +        properties:
+> +          reg:
+> +            items:
+> +              minimum: 0
+> +              maximum: 8
+> +
+> +          label:
+> +            description:
+> +              Unique name to identify which channel this is.
+> +
+> +          st,adc-channel-types:
+> +            description: |
+> +              Single-ended channel input type.
+> +              - "SPI_R": SPI with data on rising edge (default)
+> +              - "SPI_F": SPI with data on falling edge
+> +              - "MANCH_R": manchester codec, rising edge =3D logic 0, fa=
+lling edge =3D logic 1
+> +              - "MANCH_F": manchester codec, rising edge =3D logic 1, fa=
+lling edge =3D logic 0
+> +            items:
+> +              enum: [ SPI_R, SPI_F, MANCH_R, MANCH_F ]
+> +            $ref: /schemas/types.yaml#/definitions/non-unique-string-arr=
+ay
+
+Why is this an array? And why is the property plural? Can a channel have
+more than one type?
+
+> +
+> +          st,adc-channel-clk-src:
+> +            description: |
+> +              Conversion clock source.
+> +              - "CLKIN": external SPI clock (CLKIN x)
+> +              - "CLKOUT": internal SPI clock (CLKOUT) (default)
+> +              - "CLKOUT_F": internal SPI clock divided by 2 (falling edg=
+e).
+> +              - "CLKOUT_R": internal SPI clock divided by 2 (rising edge=
+).
+> +            items:
+> +              enum: [ CLKIN, CLKOUT, CLKOUT_F, CLKOUT_R ]
+> +            $ref: /schemas/types.yaml#/definitions/non-unique-string-arr=
+ay
+
+Ditto here, but s/type/clock source/
+
+Thanks,
+Conor.
+
+> +
+> +          st,adc-alt-channel:
+> +            description:
+> +              Must be defined if two sigma delta modulators are
+> +              connected on same SPI input.
+> +              If not set, channel n is connected to SPI input n.
+> +              If set, channel n is connected to SPI input n + 1.
+> +            type: boolean
+> +
+> +          io-backends:
+> +            description:
+> +              From common IIO binding.
+
+Drop this from the description.
+
+> Used to pipe external sigma delta
+> +              modulator or internal ADC backend to DFSDM channel.
+> +
+> +        required:
+> +          - reg
+> +
+> +        additionalProperties: false
+> +
+>      allOf:
+>        - if:
+>            properties:
+> @@ -199,9 +264,19 @@ patternProperties:
+>                description:
+>                  From common IIO binding. Used to pipe external sigma del=
+ta
+>                  modulator or internal ADC output to DFSDM channel.
+> +              deprecated: true
+> =20
+> -          required:
+> -            - io-channels
+> +          if:
+> +            required:
+> +              - st,adc-channels
+> +          then:
+> +            required:
+> +              - io-channels
+> +
+> +          patternProperties:
+> +            "^channel@([0-9]|1[0-9])$":
+> +              required:
+> +                - io-backends
+
+Why is this here, rather than with reg above? Only some channels require
+a backend?
+
+--4SiWeHDoe2HNgIcV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnHNmQAKCRB4tDGHoIJi
+0qHWAP4sIhBxMJaoCYlRr235U6E4PaT7TkOaskE90Tjd/qpLJQEAyeBOaQxiIt+1
+NK/yqLrQ0NQySGaW07Y716L/6hIBTgs=
+=tTur
+-----END PGP SIGNATURE-----
+
+--4SiWeHDoe2HNgIcV--
 
