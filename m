@@ -1,126 +1,114 @@
-Return-Path: <devicetree+bounces-77078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3542D90D58C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:39:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62ADD90D592
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:40:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47C3E1C2329A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:39:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10F301F230E5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 448BC166309;
-	Tue, 18 Jun 2024 14:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E7816CD04;
+	Tue, 18 Jun 2024 14:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PmIxqMhZ"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="AJvezRdp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BAD1662EA;
-	Tue, 18 Jun 2024 14:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34F916B390;
+	Tue, 18 Jun 2024 14:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718720542; cv=none; b=afInIjyugpbrbt3vXdLGIdSYzrFit5X+D6G9u26RnOgXpdsdfsmIUTVhI60oXLq5LxRA3DrFBIYcb484lbHKkV3cZmGbYCIkZ9yO7D+bi0R2Qbr4jLWCa4YllREJ6RsxL5KWOvrDULSaeBSCve7NkQZ6ibkZpyGetIO1VPKo26I=
+	t=1718720595; cv=none; b=t1TvqHIrrZqfNQfrZMiD7OEzoW0gjWzoLQIcmawpwphDYx4yCu9smSJU0rFRMipVamc7gT9/ByqV8J9cw7K0Jjs1ARMyujc5AmXjBIhwDyDr8XzzCOoe0lcb9ec9yWaaz/O3kkZLUoeqh4A2imch9yKB2zbmaUwU6Q8V33hlnPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718720542; c=relaxed/simple;
-	bh=9nWhS3qqdVUR1DFfHDG1/D2dWJpNJex73LEgHHCjB+A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=jmuRT3O4Iut6dvlRfclc3Ia1pIEXJq62y4dKSBSWJ7udCc2CjTYxDYzmfOORkwCxP50nSWlEQAQGl2FMjY7JqDXf35GzNikiqaulWPjP1mdZqeElbwOX8hx31Pmd3O3sb/rJ4aAWWiGBcfBljOnKc59Dzt0yQeOyUR8CPpVUf+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PmIxqMhZ; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a6f0c3d0792so648613266b.3;
-        Tue, 18 Jun 2024 07:22:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718720539; x=1719325339; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nd4fMU4XCRVdn8w+boSaOOLeFk1GxpN6I8ANgWZ/Utc=;
-        b=PmIxqMhZ7Vo39IiVZt7TEiwSj75mNhs3aMz/oTJoc3wYdlZuEUh7YTx/UDacMKr9qd
-         vJmknkwdDdIbMfjJy6DCvOUmKQIkPDvOiU3RDGo2gx3GZFMH0RiFSnHw+vJguR+AVUUh
-         tt9h7MRyxhv8r0p0Lhf7xT+Lz0ZrF6OpsJAGGiMS+WzBrdjj6H7MNoE+FWxGH6NKDVJG
-         xkoLn7tM9+dZIdML9nmNC4tFZSusglFe9U0QSSFy+BWzrfiQ590OPFW5wAXZvaWd34CY
-         eS85ttU7Yh/0wzayrI67lFud3y8zGzjUXnhSAbgQBSAvRXojTrhEkE7YUukVSRTLgX7i
-         Q/xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718720539; x=1719325339;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nd4fMU4XCRVdn8w+boSaOOLeFk1GxpN6I8ANgWZ/Utc=;
-        b=nlcaDEbkCepD6Vr3b7/JFgSPxfiECMcglI28JuVAmaIWzK+mYwvw6mjDGyUx47YrVg
-         3AoRPmkcULSUX6o6nMNOCNTYrde8PTuRkNXEo+/s8QlyP258iMXYdCaikShbmYjDkXP7
-         o6z+tRdjNYnv1Of9V/mz+vMN9foji71soO1Tj3rOfbhTyVWXXDtakVo/goxvKOY8Cfcd
-         eMGznE3Zn3Z5PmKskz9NT3spUKQONtYmiB6RpoW2RdCeOo8QQh9WypVzQb4roOho67Bk
-         B7TF9wP6JNI3IHQiE0LVSHPUqPiKBdsLox+gORgvWUegyByqsDdmNGXJrvkdVKVIhKCe
-         auyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVhySqcaiMtl7xUPXaXCALuwV6kjr/xbin0tMN3a8Ojq3cYWPuO5R+E5z5wh8mJ7TuoNOZiiImebMRVl/07CEci+ANvLwOI91x2U3EQdNDO+7koVfYfRXV2jQz27tJya0zVW9vQeo/rh3QnJjgBeQ34LzLTDoOVk/Vcpi8rYTcr8Fv93g==
-X-Gm-Message-State: AOJu0Yx7UEi2eY3ZUwaTwWWUYNYMwz6WErFA7X4STR8sdym7Yx9IMPJQ
-	QgZNJqWC32lnXAYzMOIsNKUNa9DNdNQR7xrgJUHZD0fTiUjbWy/I
-X-Google-Smtp-Source: AGHT+IGw8nTjb4FLe1ZvAWgDgoIVGkZHYVCvXgSPLf9KAfjt31/ecVatUcUgK02e1NOE/vUKq35u3Q==
-X-Received: by 2002:a17:906:710a:b0:a6f:10aa:9c3f with SMTP id a640c23a62f3a-a6f60dc8929mr885088966b.54.1718720538818;
-        Tue, 18 Jun 2024 07:22:18 -0700 (PDT)
-Received: from spiri.. ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56db6dfesm618191466b.87.2024.06.18.07.22.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 07:22:18 -0700 (PDT)
-From: Alisa-Dariana Roman <alisadariana@gmail.com>
-X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
-To: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Subject: [PATCH v5 6/6] MAINTAINERS: Update AD7192 driver maintainer
-Date: Tue, 18 Jun 2024 17:21:38 +0300
-Message-Id: <20240618142138.520192-7-alisa.roman@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240618142138.520192-1-alisa.roman@analog.com>
-References: <20240618142138.520192-1-alisa.roman@analog.com>
+	s=arc-20240116; t=1718720595; c=relaxed/simple;
+	bh=PZjsh8bF2QD7NEu1e44LpXuPYLh6snvHu9o3q9dMtyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=foxuRJ3RpC/zJamxidsVb08NcOPIGSP7hrpM7MNC0w0ybPF/8si+WT506MTIV/CHmu0/JiFT5J4HBLXxYCmdvXrJ90HFp/W1c2vBGOmcw6U+wEY38jTLiBqEx3ikIxKSe/9wcOSuME6xm3UAHLxk9oEhxq4r/NqIe/sj+XUllNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=AJvezRdp; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I62ObE026682;
+	Tue, 18 Jun 2024 09:23:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	PODMain02222019; bh=wKsPUSEDMz3xpWtklse9VKqx8SK3cksKkiySX4WQWis=; b=
+	AJvezRdp24skFi9rIPitdWOXzZ3Bkevtu5Ju5BeqxUFq9RVJk7+HowRGRG4mxe5m
+	G95v2DHAt8Wnbtup8O3JWIW8AkclcArcy1xD7r5U1wLSAJO2mRh/TMOReRPQevQc
+	B6KqCjuGrN6qoEqNnNiIvnMJVyk1xKNEgQZjRO4v2QUDocRagw3b8YnG6K2SqwHB
+	FfcHBhXSreXPrpGYylljfPQvgoo+kXTQizCBWyRybAd7v0APJ6FhOMxH3EakbKBt
+	TwLeVwCEOawN+9PC25vv/uHUQ3M1iin23Y9UUmuUJpROaXu1q+34K614F2lbkH1B
+	0FfnfdOhF832IEt0lDhOgA==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ys7cju6vq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 09:23:09 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Jun
+ 2024 15:23:07 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Tue, 18 Jun 2024 15:23:07 +0100
+Received: from [198.90.208.18] (ediswws06.ad.cirrus.com [198.90.208.18])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id AE089820248;
+	Tue, 18 Jun 2024 14:23:07 +0000 (UTC)
+Message-ID: <4e192a95-bb3d-41d4-b83f-176f0f8aba6b@opensource.cirrus.com>
+Date: Tue, 18 Jun 2024 15:23:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] ASoC: cs530x: Support for cs530x ADCs
+To: Mark Brown <broonie@kernel.org>,
+        Paul Handrigan
+	<paulha@opensource.cirrus.com>
+CC: <lgirdwood@gmail.com>, <linux-sound@vger.kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
+References: <20240617190102.1010597-1-paulha@opensource.cirrus.com>
+ <20240617190102.1010597-2-paulha@opensource.cirrus.com>
+ <96162ff4-8c54-4efa-b06a-dc20e358e712@sirena.org.uk>
+Content-Language: en-GB
+From: Richard Fitzgerald <rf@opensource.cirrus.com>
+In-Reply-To: <96162ff4-8c54-4efa-b06a-dc20e358e712@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: h8jbjWW0aArPSB4ZbMfCY9zCMk7jWo_1
+X-Proofpoint-ORIG-GUID: h8jbjWW0aArPSB4ZbMfCY9zCMk7jWo_1
+X-Proofpoint-Spam-Reason: safe
 
-Alexandru Tachici has not been active. Also the email address included
-is not reachable anymore. I was assigned to work on the driver instead.
+On 18/06/2024 15:18, Mark Brown wrote:
+> On Mon, Jun 17, 2024 at 02:01:02PM -0500, Paul Handrigan wrote:
+> 
+>> +static bool cs530x_volatile_register(struct device *dev, unsigned int reg)
+>> +{
+>> +	switch (reg) {
+>> +	case CS530X_DEVID:
+>> +	case CS530X_REVID:
+>> +		return true;
+>> +	default:
+>> +		return false;
+>> +	}
+>> +}
+> 
+> Are these really volatile?  I would expect them to have no defaults so
+> they must be read from the device, but once read I'd expect we could
+> cache the values.
+> 
+> Otherwise this looks good.
 
-Remove Alexandru Tachici and add myself as maintainer of AD7192 driver.
-
-Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 24d372f7653e..d4a958b4341e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1217,7 +1217,7 @@ F:	Documentation/devicetree/bindings/iio/adc/adi,ad7091r*
- F:	drivers/iio/adc/ad7091r*
- 
- ANALOG DEVICES INC AD7192 DRIVER
--M:	Alexandru Tachici <alexandru.tachici@analog.com>
-+M:	Alisa-Dariana Roman <alisa.roman@analog.com>
- L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
--- 
-2.34.1
-
+If you mark a register non-volatile but without default, a
+regcache_sync() will write it back out to the device. While that
+doesn't necessarily do any harm, that depends on what these
+registers do on write. Generally it makes me nervous to have
+cache syncs writing to registers we don't want to write to.
 
