@@ -1,121 +1,134 @@
-Return-Path: <devicetree+bounces-76968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EE590CB90
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:22:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED8290CB06
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:06:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11AA7B2901C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:05:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7046F1C21A56
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39FB013A3E8;
-	Tue, 18 Jun 2024 12:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFF513C66F;
+	Tue, 18 Jun 2024 12:01:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="S/tXZM8/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H+GjLnDP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390C213A3EE;
-	Tue, 18 Jun 2024 12:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C79B12FF87
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 12:01:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718712070; cv=none; b=LV4J198YV8COt1qSaLCTQ2gfGc8Jiqom1d1oIIZtD1YzkCIe5qxFEXtxajO2ociDzcoblFx3PuZVp7aksVt3/fPQy6/rqucofjIWclmWYgFY4s2BCEIlDyVglbiYmVGUpsN6VYIOCER8ttf7nk9FkBw1aFWx+SlOq5PVQqqw7ss=
+	t=1718712098; cv=none; b=NRKRn4bg/WbalAWWaEgEp6qu9Xjv4Fuuj/UFd946XiofzS/u92RFtj/cfuxkBeR30S/pt2F3r/dDOXEsfPxo6JCdNmtuCTqQ3vklRWciGmeY7Zs4hzvV6yelEtWhfaNbXXx3uO4ucEN7VBX1kqcmsKAWLbLpx0MxfayKINa2okY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718712070; c=relaxed/simple;
-	bh=jc50N0RnVWNFD2GgL6AtQC0sltoDiHKgy3x3xfHb+ew=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=a9Ep1/kzaEULTdPTLAjZILfIrSNiEqvgjNO3cJvdihl5V5AtZjB/N9aKKArHxQlUI2CMIn3zQRgLkqSsj80RV/cTfjLNUu1Lu3lyaElndzr6ZDICmniRhJsLDqZCeTvGUglUHNsdryb7mcMMkQotN3QiMeMsDkyPgDupYHMHQBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=S/tXZM8/; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45IA2Cuf014186;
-	Tue, 18 Jun 2024 14:00:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=selector1; bh=pRncs9djhWB9Ja92W3g41f
-	UBElkvpH4tn5xTWy10eG0=; b=S/tXZM8/EV++30E8fS2Xvuf5Z0QCJH1k5K8+Ri
-	8pgtJS+4aBG+qT56h/wb62Zh9qFZS6ZpM3AYtfqQfmRvCJC+OUudFZSnYzxBTV5A
-	OPWgbBc16XtxSPw6+Eqj7IkhNMH8waXw0NBrJhDemrIj9ShGqi1cl1Yqqc6cMhDa
-	syihGUqouebz49ENPUyKnIg1KlC7HMkuOY/N0uJEZFmbkJzcZR4Apu6a8ONLM4+g
-	2HGECQaxT3S7spWfvLdhF85cARpW/9N7awzOb3NueNgw5ouowHK+nu/eIjPBH4JH
-	f5zN719srZ3DNUwt/8KClIR0l9PK94D/yvHXTDPT8C9d/Ruw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ys035k7pb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 14:00:20 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 720F040044;
-	Tue, 18 Jun 2024 14:00:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 55CFD21682C;
-	Tue, 18 Jun 2024 13:59:24 +0200 (CEST)
-Received: from localhost (10.252.27.64) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 18 Jun
- 2024 13:59:24 +0200
-From: Olivier Moysan <olivier.moysan@foss.st.com>
-To: Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen
-	<arnaud.pouliquen@foss.st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-CC: <alsa-devel@alsa-project.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] dt-bindings: iio: stm32: dfsdm: fix dtbs warnings on dfsdm audio port
-Date: Tue, 18 Jun 2024 13:59:12 +0200
-Message-ID: <20240618115912.706912-1-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1718712098; c=relaxed/simple;
+	bh=E+n29sN8P5AtkOG7yLFIflLhEA6KBCE5a7tUsSeMhLQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DgGcqWKK8Cj/5xugGO3VCcHjGAMMbzaP00CKsyyygG57v5WQaK0HDwBdqS5oq4jwwCqPxfA0q3laWbk6UrO20OFRwiYDkhmmGTjOfKxR/D/rQSd22baqqrTgPkVqGIwU6QPOFD4wFWLGE4VZ/Za5EljomN5ZOMPcBxJAtVKbOCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H+GjLnDP; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57c83100c5fso5829536a12.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 05:01:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718712094; x=1719316894; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MsU2v0wJVmYuApk1E+Da8U3hDf+aDRCuqM6AXndVSqc=;
+        b=H+GjLnDP4Ehx0V56t+KeGWNx6E2TG/0BoMXTEqnns7PLRPkSolmtzsVmqWeRZAnwnX
+         W3FaPCDUWkSuGkxGh9RHO7NCETIr50Sy5ZJmyPBK20TdenqlRpyXDraOThy/tvAkjd7E
+         iPeR6U/i5RhONf9fHVYoH331HV9nL4inJDAahVKbDY5JR0D8lu2NqaxL25/KPsrt/Qwu
+         gG7DH3YRhIdaxwBJRmBc6zP82jMLHqozVwntQ8Bt6oXGpQ1K/LmOpZkm0siBK9q7oRVu
+         A4R1eR0lV3pZGxr7dfdHeJxpqPgLwzP0TMgVazh6yVrnRbS5eNOBtL4DliNrO8SNOvE3
+         4F0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718712094; x=1719316894;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MsU2v0wJVmYuApk1E+Da8U3hDf+aDRCuqM6AXndVSqc=;
+        b=POKK4jDfZN61lnI7A1bZUwh5Vy7BTN8RPg0WW9AHsF1ny/K2eLQLdx4Bs++hgvfvR/
+         uHGIgiJBlqRgZE5OEDUkJ8vgfkwGHSifbl5+A+qxpwAAXjU7CYINYN7GNZ3R8oS2lX/p
+         hkaIaCeTPnxlFlhcide291vVqEQAElw9PEq0Sp/nRUtrWsIBlLsnMJXWMfRWiq3eo75o
+         kkfFEwzZKyGy8/GK+snM18FwQpnwITyZslfZ0sw/whWGWYy58UozFR681j9Lc2m5Aa3H
+         wXvAPPR+8BkX+Mf1clROyJfZ9njFxdP1F6o0RXdysU08xRTk6+oAkz/2wb0lYKyLgNzq
+         TXWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVIlBoSP/ZLkf8A7poGksJiAmaTj0CihIOFSocb55IBsWwTWYBVCffKd4kOj/f9mbklrKqYiuly02/3eoaweDpK74qUlA8O4lQL7w==
+X-Gm-Message-State: AOJu0Yx6jgH6CYc1CCAKQQua95sOVqPiIIuEu4bYQYwxFywbwhpbzW/Z
+	o7sTY4S7N6SWktv0RRZWTiCogJWIME62zLn66VOf6/sjshGogr0cgdvYqIF3f+mGaD4nqhnjdIy
+	3iV0=
+X-Google-Smtp-Source: AGHT+IH0b8oA5xMFYhzt6HAcQqpSKpHgFsl2/nwBFkxeCKNkT7og4BH3dETMqQIucEPQvIDcNeEx2A==
+X-Received: by 2002:a50:8d4c:0:b0:57c:bd49:9969 with SMTP id 4fb4d7f45d1cf-57cbd8e73f4mr8093550a12.39.1718712094559;
+        Tue, 18 Jun 2024 05:01:34 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cbbb5576csm7062638a12.89.2024.06.18.05.01.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jun 2024 05:01:34 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 0/2] pinctrl: qcom: add sm4250 lpi pinctrl
+Date: Tue, 18 Jun 2024 13:01:23 +0100
+Message-Id: <20240612-sm4250-lpi-v3-0-a8dce28f20a2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABN3cWYC/22NQQrCMBBFr1JmbSSZtAVdeQ/pIonTdqAmMpGgl
+ N7dtGuX/30eb4VMwpTh2qwgVDhzinXYUwNhdnEixY+6ATW2ujeo8rPFTqvlxcob57H31utOQxW
+ 8y6S8uBjmXRGPO30Jjfw5EncoCENlM+d3ku9RLeZ4/gWKUVqN5hKsJRNCT7eFo5N0TjLBsG3bD
+ 1YRQry/AAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ alexey.klimov@linaro.org, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=913;
+ i=srinivas.kandagatla@linaro.org; h=from:subject:message-id;
+ bh=E+n29sN8P5AtkOG7yLFIflLhEA6KBCE5a7tUsSeMhLQ=;
+ b=owEBbQGS/pANAwAKAXqh/VnHNFU3AcsmYgBmcXcdNw6jct0B3z1KZuCHHH0cAnrZAiaogX0dX
+ pSQmtRK5OSJATMEAAEKAB0WIQQi509axvzi9vce3Y16of1ZxzRVNwUCZnF3HQAKCRB6of1ZxzRV
+ N0iOB/sHC+Kaxf5HYXWOMmSear72SxkWL7t2ACKmlj7q2swijawD++MkwR226FHcnApAUYdynMi
+ ovZOaUZzcJEMPayKV+eM16IEuYHTZllUgBxX6UEsPp/LzrUQBwcxepLDHx8TzJoJhCOeoR7syNF
+ ZAyDgQ7cKBzpm6z3/u2yZVH6hC92kqff+LE/IeSJiOa/Mirch85MZ6/oMs5tfIcwypw9Evr9fer
+ maehiD8PHTcTKE2cRTylwzWCE458vKAYaDSjAwHEZBpliJuz2Yvjt/zSG4iNldc9qPaomiAX2T8
+ 2IXUqt2bXDUDrmRa/X088DfK9/4vBw0uCUrXZB123I1l8PNE
+X-Developer-Key: i=srinivas.kandagatla@linaro.org; a=openpgp;
+ fpr=ED6472765AB36EC43B3EF97AD77E3FC0562560D6
 
-Fix warnings on DFSDM dtbs check
-Unevaluated properties are not allowed ('dfsdm-dai' was unexpected)
-'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+Add support for sm4250 lpi pinctrl.
 
-Fixes: 11183ac07a74 ("dt-bindings: stm32: convert dfsdm to json-schema")
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml       | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v3:
+- updated dt bindings with suggestions from Krzysztof
+- Link to v2: https://lore.kernel.org/r/20240612-sm4250-lpi-v1-0-f19c33e1cc6e@linaro.org
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
-index c1b1324fa132..2722edab1d9a 100644
---- a/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
-@@ -246,6 +246,10 @@ patternProperties:
-                     From common IIO binding. Used to pipe external sigma delta
-                     modulator or internal ADC output to DFSDM channel.
- 
-+                port:
-+                  $ref: /schemas/sound/audio-graph-port.yaml#
-+                  unevaluatedProperties: false
-+
-               required:
-                 - compatible
-                 - "#sound-dai-cells"
+---
+Srinivas Kandagatla (2):
+      dt-bindings: pinctrl: qcom: Add SM4250 pinctrl
+      pinctrl: qcom: Introduce SM4250 LPI pinctrl driver
+
+ .../pinctrl/qcom,sm4250-lpass-lpi-pinctrl.yaml     | 121 +++++++++++
+ drivers/pinctrl/qcom/Kconfig                       |   9 +
+ drivers/pinctrl/qcom/Makefile                      |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c    | 236 +++++++++++++++++++++
+ 4 files changed, 367 insertions(+)
+---
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+change-id: 20240612-sm4250-lpi-b1ab26b3b050
+
+Best regards,
 -- 
-2.25.1
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
 
