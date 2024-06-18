@@ -1,94 +1,115 @@
-Return-Path: <devicetree+bounces-77164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF71D90D8C4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:15:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5165A90D8CD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:15:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77D4B1F24B8F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:15:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81FA3282937
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CED213E8BE;
-	Tue, 18 Jun 2024 16:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F78156898;
+	Tue, 18 Jun 2024 16:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="EceMiuxK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XOy5JeVs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1470413E03D;
-	Tue, 18 Jun 2024 16:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B8084F5EA;
+	Tue, 18 Jun 2024 16:11:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718727098; cv=none; b=btbZM7tTyjdtZ0+zQrRU6uodqKKKmyGrDggdPrIibylVvsdX/RrfHbeQTSiH62Y+Dvll2agm1ZTLInnRlNhvrJ/e2qvdHVd2ht2I0ndudUsE/lDsv6XAB6wbRk1X09UQSnIcmyvt7PElpM539/1aZmW/7cLaHG/PojXdi5HEQig=
+	t=1718727115; cv=none; b=LTXmfNXgyfHUcK4i6TaX/oBTzl1SAIqgVi8Y0rfLY2+M+E3yxkbXFQ85cwWjeSLCos3aP2Q33dZzt9CQqM1LcWO4MhtOnXhZWRnpHUkXMirZgJzMBitGH6HI8E8TAIIWNLgaQXTlYaERa/h2eZLGNSYKzQ0XoKsKPo/vP9H21E8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718727098; c=relaxed/simple;
-	bh=U1eICDI/h9OCAW3WGTnf9X/LL1vDfHPHFkrVRTHdRKg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MfWfMwdAtbbB/4gILN2UBsOUrB1hKV2rXZG4IycC9D6NTUJrhY9fOUi/uThjBGyVMh5/7zGA+hWs36ZZixx3ya5TcGkYMXaS+xs/osuGEHp+4/nmMRZaqEEsTCGuCPX+lNFNIKgjm6rMQLMHazgFeMIcI49GSyw524UleqCFlOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=EceMiuxK; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I5jYvI001893;
-	Tue, 18 Jun 2024 11:11:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=F4jv7ND6r+gHtUmQre
-	xrvv1xFoRQZRXCB9kZAU/xEsQ=; b=EceMiuxKntJKD/R6KC7lBjtRebhOhmQA1n
-	vMsOFdWo91Kquid3x7aokUOxSiNXYMMYz00asm51B5eXU/icpyccaJ4yx/GXAf/p
-	+RINtNetj2LpVX/Jphd81tQrzkGvHZQJMDwNpC/VO7o/J50kQtoYD53bodBOKw1t
-	HRq3P2Ncx/YGEdEofH7YQgsW9nz1G+I7VfIqRBlgGZnwRzJbiQyZSUubk5h5mTVi
-	UoWasyahhFuaAjPoMjRZSmU2Hx88cP5h6Tt0Mer3NBu2pbRo/Qtd9LK/jO7hC/C5
-	aYeHk1xcctAA3RKTFPQci+SECxFI9lzFpVqWUm6ry8GRkjKoZDzg==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ys8by3nxg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 11:11:33 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Jun
- 2024 17:11:26 +0100
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.9 via Frontend Transport; Tue, 18 Jun 2024 17:11:26 +0100
-Received: by ediswmail9.ad.cirrus.com (Postfix, from userid 15641)
-	id 9454C820248; Tue, 18 Jun 2024 16:11:26 +0000 (UTC)
-Date: Tue, 18 Jun 2024 16:11:26 +0000
-From: Paul Handrigan <paulha@opensource.cirrus.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <broonie@kernel.org>, <lgirdwood@gmail.com>, <linux-sound@vger.kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: cirrus,cs530x: Add initial DT
- binding
-Message-ID: <ZnGxrv1huWcxkJ9o@ediswmail9.ad.cirrus.com>
-References: <20240617190102.1010597-1-paulha@opensource.cirrus.com>
- <0c59482e-ce40-450c-af6b-91d19f647775@kernel.org>
+	s=arc-20240116; t=1718727115; c=relaxed/simple;
+	bh=2hmMSMcK/DYRjUA5lhYtRVqQYkfz7USAMb6rWWQ3auM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=a7NtX9hiKEF4CFLTZzfttGIbYAgX0RGrgk7Q6g095Xvwe71B1P9PDCBd+tWqw0iFqse6CQCKLXTCZqxKBbVyVKtQaC+Wn+Seeuw31j90Wh1HeAozCv1QrGMvZuh9eX8FgKY7qa8/d1lzOXemTfP7BHDdSSdnZCi8Re75QVeGQMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XOy5JeVs; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-57a4d7ba501so7011970a12.2;
+        Tue, 18 Jun 2024 09:11:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718727112; x=1719331912; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vdhfQI9T5+yxPiraAgbpmOt7qEOjgccH7WBORNtfHfE=;
+        b=XOy5JeVsltAB8Kdw6lBOYVtRkgs8gb6MTyYYSJwMrVGFF6ZebYByThmCyJoPOFvCqK
+         nQwOLQEdJRcQ6XfUgtN8ocq3TxUTBYhAob4/Itnp5bdVrvmfk1Z4XIylsRxiTct6CWm4
+         FRnBVqUPcIo5P1T1w7YOkVOw5HOYLhXLN+682YFUyIwrupDjj/u9veyRqjKod0QVuSw3
+         zzNm3KgCIxiBEl+JCMPnZq1+mqD9vRwjrayTVVu6tvEe3coRePCPiFR52yhzEjCZNiEw
+         9h37Ya/HxV+5MmX0gF15ux11Hxs5N6Q5M5eUSQpIg/0dw+wci1wmL48+I7l0IbrV1KJb
+         FEvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718727112; x=1719331912;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vdhfQI9T5+yxPiraAgbpmOt7qEOjgccH7WBORNtfHfE=;
+        b=vgQvB8qNMlyq+x7O9cf+Sgm7cOkm7DyveH8k6wbBbPTyxeMXhrts6YgpXvPhTiNjlq
+         RbuCT+OSX1HrqpTK+5/bqaVFn0aWwax5jML1bu/y8MSTi1mjCMkgdddkrwpQgyw6G8iO
+         s6zB/bXdAVMK0DcxTXNH0gDb5O4TqJNHiFAFkdsKx4vAHxybmoPel3GNdOnR0r0lRugf
+         D4X0nZkYObosrtcZm7Yo7OIstPPs+lCi9hrzKEPzYezn9bFeuaHRMzVRKx5aFPo7Urfe
+         +vUNR40DNm0vGXyESwTudOP+vUSn+i8S7PUj7HwBziMuR7R4boKJhICMhb+mHfg11TV2
+         2Ygg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBnL04FdD5yUJN2LZrIzMi+Q1fVaDUl7Zs9AXFfmZyVzlGclDxKFZMRJusPni+Bav89Va+T45RoSUCENQL1lPkPMYxVd3DQ8ff6vLF0Uw+kK8K7QhHSHiZvKW/xGUsIDWaL64MACrOquOig9pUpKIRGex9Iih3z5hD6CJX0hK7zg==
+X-Gm-Message-State: AOJu0YzYQJ0Hf6fAdSDoXJjwacG1OJKmM/x9u5NncwioGPCZuKp3ZpTi
+	fltibpkg/bYe9PMyYRr9nl7LwKAAnVq4EXkOJrbv/Pb/EBgjcVlJ
+X-Google-Smtp-Source: AGHT+IEfZ9HaFQBufIL+uJmK6fz39+P64leJ9sWW5fe/okGzJN3xQA3FngvVzo6bSVhv/MbpbmaRQA==
+X-Received: by 2002:a50:8a97:0:b0:572:7bda:1709 with SMTP id 4fb4d7f45d1cf-57cbd649655mr8559509a12.9.1718727112118;
+        Tue, 18 Jun 2024 09:11:52 -0700 (PDT)
+Received: from ?IPV6:2a02:a449:4071:1:32d0:42ff:fe10:6983? (2a02-a449-4071-1-32d0-42ff-fe10-6983.fixed6.kpn.net. [2a02:a449:4071:1:32d0:42ff:fe10:6983])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb74387ffsm7997213a12.81.2024.06.18.09.11.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jun 2024 09:11:51 -0700 (PDT)
+Message-ID: <0b889b87-5442-4fd4-b26f-8d5d67695c77@gmail.com>
+Date: Tue, 18 Jun 2024 18:11:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0c59482e-ce40-450c-af6b-91d19f647775@kernel.org>
-X-Proofpoint-ORIG-GUID: WTXuutRQyDc0pATXNhK4Yh3d6szWjCGE
-X-Proofpoint-GUID: WTXuutRQyDc0pATXNhK4Yh3d6szWjCGE
-X-Proofpoint-Spam-Reason: safe
+User-Agent: Mozilla Thunderbird
+From: Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1 0/3] cleanup arc emac
+To: heiko@sntech.de
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 18, 2024 at 09:30:59AM +0200, Krzysztof Kozlowski wrote:
-> On 17/06/2024 21:01, Paul Handrigan wrote:
-> 
-> Where is the changelog? It's v3 but what happened here? No explanation
-> here, no cover letter.
-> 
-Apologies. I made a mistake with the naming as you pointed out.  I will
-add the changelog moving forward.
+The Rockchip emac binding for rk3036/rk3066/rk3188 has been converted to YAML
+with the ethernet-phy node in a mdio node. This requires some driver fixes
+by someone that can do hardware testing.
 
-Regards,
-Paul
+In order to make a future fix easier make the driver 'Rockchip only'
+by removing the obsolete part of the arc emac driver.
+
+Johan Jonker (3):
+  ARM: dts: rockchip: rk3xxx: fix emac node
+  net: ethernet: arc: remove emac_arc driver
+  dt-bindings: net: remove arc_emac.txt
+
+ .../devicetree/bindings/net/arc_emac.txt      | 46 ----------
+ arch/arm/boot/dts/rockchip/rk3066a.dtsi       |  4 -
+ arch/arm/boot/dts/rockchip/rk3xxx.dtsi        |  7 +-
+ drivers/net/ethernet/arc/Kconfig              | 10 ---
+ drivers/net/ethernet/arc/Makefile             |  1 -
+ drivers/net/ethernet/arc/emac_arc.c           | 88 -------------------
+ 6 files changed, 2 insertions(+), 154 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/arc_emac.txt
+ delete mode 100644 drivers/net/ethernet/arc/emac_arc.c
+
+--
+2.39.2
+
 
