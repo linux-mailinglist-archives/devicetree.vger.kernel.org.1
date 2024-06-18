@@ -1,139 +1,136 @@
-Return-Path: <devicetree+bounces-76991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1EB90CB61
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:14:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D0690CB64
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 14:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7458D1F252E5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:14:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5F691C20CEF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:14:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1FE13AA51;
-	Tue, 18 Jun 2024 12:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512F782D6D;
+	Tue, 18 Jun 2024 12:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kmWBQGSf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UJ+rDQ/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8291081725;
-	Tue, 18 Jun 2024 12:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC9D31367;
+	Tue, 18 Jun 2024 12:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718712716; cv=none; b=KxM1SoehPoOMRK/xMhCmVwzI2LAAHXbNO2UYBquicL9lrBbR/YM70cq875B89Z4TAxp+KplJYVdBIWX6ElTFzfad1En4xDo2xrY+5fDUouvhwc8tuqD1B+tEUkj9HiVqyEIs4WvivGUW/zrX68cmEU/rx2tRyZnKZYL5fmAmek8=
+	t=1718712825; cv=none; b=RquXu36MhMe3vu8n58KcuHQr1al85rDN81wmqdiNZDU9AZNXK+lMWd0q/BdGANlGtljwIirZhD49fvIwcbAEUTRQHNVdZ87VkEY/Zz1AELSH23EdaxlJl0YAQ6ReaL0uXU59WFx4FdDxjKlpcEBUY/UVpwZJFwJs/g9YHvQA0Ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718712716; c=relaxed/simple;
-	bh=tkkmd7e83SLx6wWZRPA2+oL9p5SIi1EfrihV/aj5aNU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PLNtv5LUjz/BTViUA7K6g5u3Zh2m20T051WmcP3loo0LLpKDYyK8uhhz5fXTOmkJUzTlMuXTeQc80Notwjdr0gGNCbSsyXtj/tsrZH0kNLaZO0oFwikNcMQre7wetjgSxWiLrmaTY+s7BJXIrVIA8p6yyAQmwytJPF3XJE6cXHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kmWBQGSf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I3D4L8011398;
-	Tue, 18 Jun 2024 12:11:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	I8QJeXfloRrBSZk5mn02oFEFrNdkTUucnuv4dy6+P3U=; b=kmWBQGSfh7VSXDtZ
-	dk0M+HQerYn4zHGQsssrCP3WrhKcVeUo3zLGO+c2dboW2IfEODo5DLUWSC5Gu7/B
-	EDrUL7/CuTFp/N6NItE//9XYgbJigME2buNMCQcNtWU/UuX6ytSw0rYZsZeuONMo
-	+YPThcdJvU380XBoTVKY2mY9RlSdxPirUUIuGvRMSlQ+Rri/4WS5HRdUo/ke0Vhg
-	y8Q4v95DXND2IVqSixFrxL7DNZolW5idj1JnBRWjK2riruXl0CqfHFIYM8g8V2tL
-	/PnropZtbQEw4Af5KLmASp7OVfXT16Qw2jz8sKYJ9hZL8bsoIzk+LI+jCW7x85v/
-	geHG+g==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yu24n15x9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 12:11:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45ICBmxR015711
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 12:11:48 GMT
-Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Jun
- 2024 05:11:45 -0700
-Message-ID: <7bcb66c1-39a0-4296-aadf-4889475d6ba6@quicinc.com>
-Date: Tue, 18 Jun 2024 17:41:42 +0530
+	s=arc-20240116; t=1718712825; c=relaxed/simple;
+	bh=zCbh/D8UcUOkLf0l1/eFpQzAdUwpMyUso60BWpn1Ha0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=C4GJvJ39IgVDIY76ERh2hvx2iEQy/y8pBDFlupmNiVtaoSS+AgemMOHwG0L0+Tl4FxIbAQ7neDJsHCm9teDJKSvN1n1r9N8cDsyKVlxBp8wH4zUdCYHLfC2ITwEE95yu8AzAWvfnE/xTn4FTHdtD9yp9zwaksHnXGycGo5gtyUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UJ+rDQ/b; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-6e41550ae5bso3923248a12.3;
+        Tue, 18 Jun 2024 05:13:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718712823; x=1719317623; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lzWwZ0WI5POwNAjxZ7T9jl0G8U0Jzav8kEKDeMCZmzo=;
+        b=UJ+rDQ/bsoEku5CjgpDene8oEOjb1sG+3DRcWtQSNA1w7kMQYpA1FkNADN0wJ48LLx
+         35EEbvqhufb/PG6Mn7dh+6Qyd2tsNMgkPJja2Aejmu3J/qHfWVM97GJjC5yJWyD1tq9l
+         r5bb5P9vN8igScC9aCaaXpAKL94gLYlscfBs/wu+2utdPuwRI0H34m2ta/DXYwLjlwIR
+         oWAw0lM1iyM3AkGrODHATQvz1FObyNjFPB+UdwwuRVXfeG7ptFw05VTqtctVwRdPn/8t
+         OYBu9IuJDXWJHuEw2bwatObxglQ7VCbvZJ620u9OgbSuEPaAX7Ah++USNETnWG7G22do
+         PVcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718712823; x=1719317623;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lzWwZ0WI5POwNAjxZ7T9jl0G8U0Jzav8kEKDeMCZmzo=;
+        b=HgHvGK7j2LLURZmjD9idXIeiTshYPmZyk30jzGZg6cYNXrTpp768zaipc3S6r6fUVs
+         aNwoxLKdSWpaAFZs4PYXA4XLaAO3AL9GaV5GIXnhf2sdFxtTJENUXcSeoIc9yiQZ+HIw
+         wNb3TiS3UZv1q9ZqM22wjGCt57s9gWW7+Kii1ohfRqcV5Z0LjVmxWJmgjYXcSPfiEWc6
+         yOxKDJkj5eO3JmZGvU+Jpwa1PuLXFAB0pQB63mHXf+0C93OQNL5LxYsAgOKKRZppkUvx
+         9Akw3jGk10C5WcREA1h5uS6vNb316i9htLER3lHQUDAJWKxGw+NWgVvm4jFrcRtvR5Sj
+         ZT+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWzgW0P/RAgIyUm4ssxI/qzcn97gPCud6Xa5dK1uCYfSVM1RmfNNR8s+hyZeUtL4ISiodjqiVE/ZvOTUv+E2/76Udf27QrUnRZ3FCIRsM89JwBpIGd/SKi59qh3/PYcfeoNqP1a1TfxDyVljr0Abxx9u/7ifP0U48vI4kN9nx/DV0K2ox42
+X-Gm-Message-State: AOJu0YyEI0+P9hJAeIuaY0oEDEjl13QNM3XVAiNbJryjCCF3p9FAjRaO
+	Qqnw1J9U566f5sv+8ZZPDynoITx8r1b9yHs0YeG6JJFi7DCMWb+g
+X-Google-Smtp-Source: AGHT+IHaKclJUc4Efl6Ydywur9YtKqbT47GJJBF4XJ29G0rvH83AABeR7Un9gk3CcGItoYkKQc5fmw==
+X-Received: by 2002:a17:902:eb82:b0:1f7:ff:b477 with SMTP id d9443c01a7336-1f8628063cdmr141385545ad.55.1718712823074;
+        Tue, 18 Jun 2024 05:13:43 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.133.99])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855e5ba93sm96576865ad.3.2024.06.18.05.13.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jun 2024 05:13:42 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: detlev.casanova@collabora.com
+Cc: alchark@gmail.com,
+	andy.yan@rock-chips.com,
+	conor+dt@kernel.org,
+	cristian.ciocaltea@collabora.com,
+	devicetree@vger.kernel.org,
+	didi.debian@cknow.org,
+	dsimic@manjaro.org,
+	gregkh@linuxfoundation.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	liujianfeng1994@gmail.com,
+	mchehab@kernel.org,
+	nicolas@ndufresne.ca,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com
+Subject: Re: [PATCH 1/3] media: rockchip: Introduce the rkvdec2 driver
+Date: Tue, 18 Jun 2024 20:13:29 +0800
+Message-Id: <20240618121329.79936-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <4116468.VLH7GnMWUR@arisu>
+References: <4116468.VLH7GnMWUR@arisu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH][RFT] arm64: dts: qcom: sm8550: Change camcc power domain
- from MMCX to MXC
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20240612214812.1149019-1-vladimir.zapolskiy@linaro.org>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <20240612214812.1149019-1-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -kwfyTtl-q2s6lBccDq9idjJnM9_tM81
-X-Proofpoint-ORIG-GUID: -kwfyTtl-q2s6lBccDq9idjJnM9_tM81
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- lowpriorityscore=0 mlxscore=0 mlxlogscore=737 impostorscore=0
- priorityscore=1501 malwarescore=0 spamscore=0 clxscore=1011 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406180090
+Content-Transfer-Encoding: 8bit
 
+Hi Detlev,
 
+On Fri, 14 Jun 2024 21:56:27 -0400, Detlev Casanova wrote:
+>+		.frmsize = {
+>+			.min_width = 16,
+>+			.max_width =  65520,
+>+			.step_width = 16,
+>+			.min_height = 16,
+>+			.max_height =  65520,
+>+			.step_height = 16,
+>+		},
 
-On 6/13/2024 3:18 AM, Vladimir Zapolskiy wrote:
-> Any attempt to enable titan_top_gdsc on SM8550-QRD fails and produces
-> an error message that the gdsc is stuck at 'off' state.
-> 
-> However if MMCX power domain is simply replaced to MXC one, it allows
-> to turn titan_top_gdsc on successfully, even if MMCX is remained off
-> according to /sys/kernel/debug/pm_genpd/pm_genpd_summary report.
-> 
-> Note that at the moment qcom,sm8450-camcc.yaml gives a definite comment
-> that the supply power domain should be MMCX, and it may be needed in
-> some certain cases, but at the moment they are not unveiled on SM8550
-> platform.
-> 
-> Fixes: e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock controller")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
+I think the min/max width/height are incorrect. From rockchip's TRM V1.0
+Part1 page 374, supported image size is 64x64 to 65472x65472. And my
+chromium can't use rkvdec2 because min width/height are set to 16, which
+will cause error at here in rkvdec2_h264_validate_sps:
+>+	if (width > ctx->coded_fmt.fmt.pix_mp.width ||
+>+	    height > ctx->coded_fmt.fmt.pix_mp.height)
+>+		return -EINVAL;
 
-Thanks Vladimir for reporting this. I will check on this issue 
-internally and will get back on this.
+width is 16, height is 32 while ctx->coded_fmt.fmt.pix_mp.width and
+ctx->coded_fmt.fmt.pix_mp.height are both 16.
 
-Thanks,
-Jagadeesh
+After changing them to 64 my chromium can use rkvdec2 to decode h264
+videos now.
 
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 4234c92aafe3..a429115524a6 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -2754,7 +2754,7 @@ camcc: clock-controller@ade0000 {
->   				 <&bi_tcxo_div2>,
->   				 <&bi_tcxo_ao_div2>,
->   				 <&sleep_clk>;
-> -			power-domains = <&rpmhpd SM8550_MMCX>;
-> +			power-domains = <&rpmhpd SM8550_MXC>;
->   			required-opps = <&rpmhpd_opp_low_svs>;
->   			#clock-cells = <1>;
->   			#reset-cells = <1>;
+Anyway many thanks to your amazing work!
+
+Best regards,
+Jianfeng
 
