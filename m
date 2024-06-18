@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-76874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C19A90C6CB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:26:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6234090C6DC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:28:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AFA4281AE2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:26:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D71B1C21F8C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8145D13C90F;
-	Tue, 18 Jun 2024 08:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D100D14A609;
+	Tue, 18 Jun 2024 08:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Aig2xZ1E"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="XU3hsbcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E184B13AA5E;
-	Tue, 18 Jun 2024 08:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C2714884D
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 08:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718697695; cv=none; b=TiXFlB0hsBtUShtW4Jc/5FJQ+ZQAcWG9ofR6yp4Sh7fVwKCXIZ+aFZkxfaqGsLf4HgcC7Wh7EYFNvkBBan5V4oy4VqkKhrBUPCquv2cCjFvQAmr57ZPieviYVvc7V5UW3gcxEmFa0qrMongrZt/hD8T9WbpC9qhfvXL+bxt5oP8=
+	t=1718698297; cv=none; b=OMB+sSvpArcrqd3N7X7vwjMBGmFXppEfEZH07cH6EDKNhxgn3X2kgasdg3yI6l+zG1b5nwd+t1ZqV4QT6yTFqbe5m79YjZOJiz1l9qDpmUQWjIL06KZ0Ez/LIqdKHVeAeoMxh989tSrxJ3YB6VTe1BPaaZCrIKXxrESShNjRr7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718697695; c=relaxed/simple;
-	bh=QC34Q+xe0n335kILA5aIWLckgMazYorNz/uLH/P8qsg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:CC:From:
-	 In-Reply-To:Content-Type; b=KBE4Lb/jEhtgIq2sbAWoZcVMhEFpdJ4jg2JVTZxsDQQgAO0jlgKFAgft0+cxoU+kbKURnaKorc5OJppabRKLMMUoKE7jaseS/WN9WhDmm6dfG/3Z1S1rhpvWyBTWs2EvvzxcZkR6VySLipd4GCv5N+SqJIXdqZcfwyCgvySxPys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Aig2xZ1E; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I7SjZ4011154;
-	Tue, 18 Jun 2024 10:01:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	KD5DJPIUWljRkbKyGSSk9X0rvNhJfAYrmRTUTF8bu0U=; b=Aig2xZ1EDoDtB4zy
-	RCgnLXckb/C5OOIQlev/+QgxHtyLGEojPbAgmgKWCGMGG44AtmNVdNY7uvurqenQ
-	pKpkFRXgIgfvyKshpAwkhjaysFhT1dtyfDYUzuQzSnR+HLfp1mDYhKz06HNkt9so
-	XJOBRmbrQExx+XhFRGOjQYN0jHhDAvq3CbLRJK94VwtdCPcf3byMLmRtxcDBQ1Wl
-	uogFCW9dfVNkD1xkN6Hzpw68wJf2RkoMBcR2pYQTvB31QvYdlLYOHQpcmoTey69L
-	v7Z1dAKv5kH5PXiTCqh/wk0u/ZHBKmDBu4paIFyeES1Ytw+Fj63+t1yVw6eGhExn
-	A/sbXg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ys0cgabqe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 10:01:14 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8C08740045;
-	Tue, 18 Jun 2024 10:01:10 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8EF58211973;
-	Tue, 18 Jun 2024 10:00:42 +0200 (CEST)
-Received: from [10.48.86.232] (10.48.86.232) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 18 Jun
- 2024 10:00:42 +0200
-Message-ID: <10e21012-d7f0-4329-a1bc-537828d7dca1@foss.st.com>
-Date: Tue, 18 Jun 2024 10:00:41 +0200
+	s=arc-20240116; t=1718698297; c=relaxed/simple;
+	bh=2KNMmat5vMET2BDI7NUXUz9iV8jjghd0Qaf7pSQvWdY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p4FO94dfqMfYy1/6svK2d/JoZVgUS0vr3m7LjBb6vbs/1wSpdCvqD8QnegQ0DW8bguQjvGils2la9rrAoAihyjqPelwXjifd76lp1RerKCruw+omveTS2w4S2sOLHedMYWd+SOwNlKmfbRuxIp4c6Ttu4hiKhhx8cLst+1g7zek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=XU3hsbcs; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4217dbeb4caso42307195e9.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 01:11:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1718698293; x=1719303093; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5Db/Ttkm8Wt1DAojtG+l5i3VYAIO56vuiF9BvfZCWUE=;
+        b=XU3hsbcs6oN4mExeSoAh7KhcLS6krsD89eVRRiZDBOHpP98+i0yBPiudWLfNIexlJC
+         ouihp8C99os4Xses4INfKTAib8W/j4WOEWCw/Rv0Bo/32czrzhul0WlocnN2BWqNuCsA
+         kvD5gii341WdbDhOgVDoodAuBe7vv1H5QzSgoNLL17py8xgORxnN7hjrT6LIxuVmsGwb
+         BMTW00qy31qvRmR6Df/t7pwxiuUkniVtRL0px3It0GacLgjKCKiDppN3PHJ5S8wP0C6h
+         d5d74zrnSm9jcksmwBVmPgrhbK1RtqIKOfBvpgo0SV4Mo5HwU7ZuLLBCKVRvCI1QGpRP
+         BVcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718698293; x=1719303093;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5Db/Ttkm8Wt1DAojtG+l5i3VYAIO56vuiF9BvfZCWUE=;
+        b=rpv5jlk/H8qaSguWnG9hJEEPypQKRGcNp+E2i0v7+0K1bCJ4zPmkczsCbFxMDXvX1F
+         psFFupBDzN97lkUzcEa89iguX2i+1815LprTU3Cf9+lo24+FhPLrxgDaFdcnxWMm1jnz
+         0ybZ+c+V7Qg81EofoLCJ6vHASSlM7214DgnWDBegU9ELfMuFqHgK43WWa2VmUKtUZU3h
+         ONmCcpQiYGmThNj9d/YNqxwq9CSMTTXdpVeCOELpTNuoZ+w+u3ni9fC46NHHQwY1P8F9
+         Zg1X0afDJd4fu7IdBhAVXyydFk1n+Lhn1A6hrpnjzrnR4f9ukSvCQbbHg8E4aN3jpbuH
+         BAgA==
+X-Forwarded-Encrypted: i=1; AJvYcCVJP2zefPJ/8kvRCeXU78Vbj/PsE7WV9FZ1CDbt1SS2AJFPPN9Kn317U6n7ztRUYYpXvfng5H4eAFrP8xzJSo1G5rjuyUtkD0yzGA==
+X-Gm-Message-State: AOJu0YypFeCwOmq5pFNz8sHiBSfAZbEdIcqgyVeAaK0L8K/98zhWYzBv
+	iIBYJufZ5gdxEQ/3IKCb+nujEk1PBRoioiwXUvY02OutK2km00GGqETm0D1BVj4=
+X-Google-Smtp-Source: AGHT+IEZ4zfien/Ap0pCf2tDyhM1mJ0USifoiBZp4jjoL6ZEetj9nRXUeKMXuBuNxOiTYrJSsTYSkA==
+X-Received: by 2002:a05:600c:4fcc:b0:423:4c2:7a80 with SMTP id 5b1f17b1804b1-42304c27cabmr78141565e9.5.1718698292647;
+        Tue, 18 Jun 2024 01:11:32 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.189])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422f2f30925sm183177995e9.0.2024.06.18.01.11.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jun 2024 01:11:32 -0700 (PDT)
+Message-ID: <ee58a84c-d0a9-4caf-9b97-40a4eaebae3f@tuxon.dev>
+Date: Tue, 18 Jun 2024 11:11:30 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,75 +76,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: mfd: dual licensing for st,stpmic1
- bindings
-To: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240617092016.2958046-1-etienne.carriere@foss.st.com>
- <VE1PR10MB3407EE2C8715D390E286BDB385CE2@VE1PR10MB3407.EURPRD10.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH 02/12] dt-bindings: clock: renesas,rzg3s-vbattb-clk:
+ Document the VBATTB clock driver
 Content-Language: en-US
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>, Lee Jones <lee@kernel.org>,
-        Pascal PAILLET-LME
-	<p.paillet@st.com>,
-        "linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>,
-        Etienne CARRIERE - foss
-	<etienne.carriere@foss.st.com>
-From: Pascal PAILLET-LME <p.paillet@foss.st.com>
-In-Reply-To: <VE1PR10MB3407EE2C8715D390E286BDB385CE2@VE1PR10MB3407.EURPRD10.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lee@kernel.org, alexandre.belloni@bootlin.com, magnus.damm@gmail.com,
+ linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240614071932.1014067-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240614071932.1014067-3-claudiu.beznea.uj@bp.renesas.com>
+ <20240615-angler-occupier-6188a3187655@spud>
+ <3d9ed0ec-ca9a-45b4-a633-8f7051d13cff@tuxon.dev>
+ <20240617-subsoil-creed-04bf5f13d081@spud>
+ <0a4ba0e5-3fb1-4ffc-b2d8-a4eb418707eb@tuxon.dev>
+ <CAMuHMdXOiuORjLo2nRAFxtXmn5rRm7U-CEHqfX2DoXHmQyfdRQ@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdXOiuORjLo2nRAFxtXmn5rRm7U-CEHqfX2DoXHmQyfdRQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
 
+Hi, Geert,
 
+On 18.06.2024 10:56, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Tue, Jun 18, 2024 at 9:34 AM claudiu beznea <claudiu.beznea@tuxon.dev> wrote:
+>> On 17.06.2024 18:19, Conor Dooley wrote:
+>>> On Mon, Jun 17, 2024 at 10:02:47AM +0300, claudiu beznea wrote:
+>>>> On 15.06.2024 15:17, Conor Dooley wrote:
+>>>>> On Fri, Jun 14, 2024 at 10:19:22AM +0300, Claudiu wrote:
+>>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>>
+>>>>>> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock that feeds
+>>>>>> the RTC and the tamper detector. Add documentation for the VBATTB clock
+>>>>>> driver.
+>>>>>>
+>>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>> ---
+>>>>>>  .../clock/renesas,rzg3s-vbattb-clk.yaml       | 90 +++++++++++++++++++
+>>>>>>  1 file changed, 90 insertions(+)
+>>>>>>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml b/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..ef52a0c0f874
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/clock/renesas,rzg3s-vbattb-clk.yaml
+>>>>>> +  renesas,vbattb-osc-bypass:
+>>>>>> +    description: set when external clock is connected to RTXOUT pin
+> 
+> FTR, this contradicts the explanation below, which states the external
+> clock oscillator is connected to RTXIN.
 
-On 6/17/24 11:20, Etienne CARRIERE wrote:
->
-> Change include/dt-bindings/mfd/st,stpmic1.h license model from GPLv2.0
-> only to dual GPLv2.0 or BSD-2-Clause. I have every legitimacy to request
-> this change on behalf of STMicroelectronics. This change clarifies that
-> this DT binding header file can be shared with software components as
-> bootloaders and OSes that are not published under GPLv2 terms.
->
-> In CC are all the contributors to this header file.
->
-> Cc: Pascal Paillet <p.paillet@st.com>
-> Cc: Lee Jones <lee@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
+I agree.
 
-Acked-by: Pascal Paillet <p.paillet@foss.st.com>
+> 
+>>>>>> +    type: boolean
+>>>>>
+>>>>> When you say "external clock", is that an input or an output?
+>>>>
+>>>> I took that statement from the HW manual. As of the HW manual [1], table
+>>>> 42.2, that would be an input.
+>>>
+>>> Forgive me for not wanting to open the zip etc and find the information
+>>> in the document, but why do you need an extra property? Is it not
+>>> something you can determine from the clocks/clock-names properties?
+>>
+>> It can't be determined from clocks/clock-names as of my understanding. It
+>> depends on the type of the input clock (crystal oscillator or external
+>> hardware device generating the clock).
+>>
+>>> It sounds like an additional clock from your description, is it actually
+>>> different way to provide the second clock you mention above?
+>>
+>> This is the block diagram (see [1], only picture this time) of the module
+>> controlling the clock. Please open it, it helps in understanding what I'll
+>> explain above.
+>>
+>> The VBATTB blocks controlling the VBATTBCLK are:
+>> - 32KHz-clock oscillator
+>> - the mux controlled by BKSCCR.SOSEL
+>> - the gate who's input is the mux output and XOSCCR.OUTEN
+>>
+>> To the 32 KHz-clock oscillator block could be connected:
+>> 1/ either a crystal oscillator in which case it will be connected to both
+>> RTXIN and RTXOUT pins (the direction of RTXOUT is wrong in this picture for
+>> this case)
+>> 2/ or a device (like [2]) generating a clock which has a single output and,
+>> from my understanding and experience with devices like this, only RTXIN is
+>> needed, RTXOUT is connected to the ground; for this case the 32KHz-clock
+>> oscillator block from [1] need to be bypassed in which case the newly
+>> introduced property will be used; this will select the XBYP on the mux.
+> 
+> Sounds similar to the RAA215300 PMIC, which includes an ISL1208-derived
+> RTC, where this was handled using two different clock names:
+> https://elixir.bootlin.com/linux/v6.10-rc1/source/Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml#L49
+> https://elixir.bootlin.com/linux/v6.10-rc1/source/drivers/rtc/rtc-isl1208.c#L869
 
-> ---
-> Changes since v1:
-> - Change request license from "GPL-2.0-only OR BSD-3-Clause" to
->   "GPL-2.0-only OR BSD-2-Clause".
-> - Update Lee's e-mail address.
-> ---
->  include/dt-bindings/mfd/st,stpmic1.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/include/dt-bindings/mfd/st,stpmic1.h 
-> b/include/dt-bindings/mfd/st,stpmic1.h
-> index 321cd08797d9..9dd15b9c743e 100644
-> --- a/include/dt-bindings/mfd/st,stpmic1.h
-> +++ b/include/dt-bindings/mfd/st,stpmic1.h
-> @@ -1,4 +1,4 @@
-> -/* SPDX-License-Identifier: GPL-2.0 */
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
->  /*
->   * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
->   * Author: Philippe Peurichard <philippe.peurichard@st.com>,
-> -- 
-> 2.25.1
->
+Yes, seem similar. I wasn't aware of this approach. I'll switch to it.
 
+Thank  you,
+Claudiu Beznea
+
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
