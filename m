@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-77133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6974290D77F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:38:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F142E90D789
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 17:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35384281193
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:38:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23C4A1C21B14
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578254120B;
-	Tue, 18 Jun 2024 15:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA864437F;
+	Tue, 18 Jun 2024 15:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TpPt3H2a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddDwqEe2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306C0200B7;
-	Tue, 18 Jun 2024 15:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A431CD29;
+	Tue, 18 Jun 2024 15:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718725124; cv=none; b=L/u9jGqvabHBLoH098BTKTSRWlJ+Op+zfL443uPn3ZNj9P8Jw25xwtsKvY/nCP7/sv4rdOv0K6aIKpToVNx2VTx+FsA3aCdMK+81WlccaUXPnN0u2ooBdVZ9hhj7JnNF5D3pIblJ/MKCIPhE0fv7LwkUOsFpEw0A6AIknsksQjE=
+	t=1718725250; cv=none; b=uZJ5VYMsayoUCBLNVVprdwcZvZsnm30s1dRG73xxnpZ0cUZitFsghaTbh+RyV4oWUHWB4Ma3S1J8ZDAX7TQ1iHGIQPdxQlH3MycJ35e0slfzL+sccP0yhT/mdfe/GVuHg/eG5YgYHB3VFU9vDS2L21crqPk7ktvCyS0xK5ys43o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718725124; c=relaxed/simple;
-	bh=fmH+xD1cgLl3hrIzxElufLFVaOm4PxZmFn0NGOamYw0=;
+	s=arc-20240116; t=1718725250; c=relaxed/simple;
+	bh=PBBvM5f39oe5lUF+K9oON8xgoBZj4J0hB6vuUXqrQLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EFfLzma6zbed6pOZahbdtw+5W0hT256s924Vh1+0B8pMZpmwhqJFvotH7rIW403bXFB+34fFZRFmwLziKDlaMfpraOSnPYQH8ytB1Y47QPr8OMwARru+EDRjll+82gfolmNGJdpdrxPCcsjCa/A0Rpb3/tGRlSHwspPhoaQKlgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TpPt3H2a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31447C3277B;
-	Tue, 18 Jun 2024 15:38:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mNTgEGGRGFFcfGNhj4loYRMdndy/0kfP2zqZF8m3ATeKDdcm57eQkIpFYWIxzf/UtxCbtfMa8vRc75pcxiZ9Poi+1ldt1RdcQ72FbGei77JxLcGZcF3ZNUuiSQAA1Z2cNSKjbQ+XsxcI0vn4GlE21x2QAjGFbqUw+yKMlOzWk/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddDwqEe2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D49DC3277B;
+	Tue, 18 Jun 2024 15:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718725123;
-	bh=fmH+xD1cgLl3hrIzxElufLFVaOm4PxZmFn0NGOamYw0=;
+	s=k20201202; t=1718725250;
+	bh=PBBvM5f39oe5lUF+K9oON8xgoBZj4J0hB6vuUXqrQLU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TpPt3H2alws9aXnqoBjGD9bXQ8D0wnMHu58Y4s+cOY2BLeCJkBlUAI7I7dUV0s0Eu
-	 B7qqDvY5FgMRA3b8k1pglul1Y7jWt6sFxiLmAzPTwc0KxCIDJvE1gPMaD5HnIbLt1V
-	 I3CKtJO1GucynggtOCcxVQEg0q1XQS7rCqzeofrQsMsRj5hji9Hf2qVwlLub7loG6a
-	 XKvTmAIlIOggS6/XV26S1MUKWUqa8Lmixw8wn8e2BQFlm4udWIyWGJiOhR/ZLQlwV5
-	 Q+78Qs4gveJYyxVlH8ZMsiGglD6KeOYr8NAzmPhDcTA2Olix3idZj+sTUrnXADAyOY
-	 KHRCrTNPHIBHQ==
-Date: Tue, 18 Jun 2024 16:38:38 +0100
+	b=ddDwqEe2gkFMjXA4MyFBt1yGVnOByf9vxk0E0rkQ4fd0jWXlTvzDHbxGhlLl7Xw9D
+	 EEUjsP1Prjoz8f4Xc+yWjzhMgkslAaTNUX2poZCVpUrTJySXSqa/ZUOd7R/QS83ZLF
+	 BNzGt2QeemNKNVg45Q5jwawe4HoJpeAFOp8GXioveszJYbR0ZrSyIgpkfIIf3GEsy+
+	 jxmORm3j8U5PUtrc4Ff+N8WlH0a7FezZ4bzTabZxVHUHms9jE0bLiBPg2HbvmdDteV
+	 BcFFK3Pa1r0a2KXqpA+D9fSyDJmUx7qnAzF6vn7S5vRR3iHvu9xFtMC5OqGulmbcKS
+	 qu2fJLklgyXpA==
+Date: Tue, 18 Jun 2024 16:40:46 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Yuntao Dai <d1581209858@live.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, unicorn_wang@outlook.com,
-	inochiama@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: mailbox: add Sophgo cv18x SoCs mailbox
-Message-ID: <20240618-monastery-manger-1a7d9a272f11@spud>
-References: <SYBP282MB2238DE0DA19C6EF411B2356CC4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
- <SYBP282MB22389FD1E07BBDC6FE1D90A0C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup.patel@wdc.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 4/9] dt-bindings: timer: Add SpacemiT K1 CLINT
+Message-ID: <20240618-backlands-flaring-f8b8b603868c@spud>
+References: <tencent_BC64B7B1876F5D10479BD19112F73F262505@qq.com>
+ <tencent_2A51312A21F88DDB7C7D82A2DA8E8EE7B808@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,138 +62,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nvbiF6U45eoEZ/qe"
+	protocol="application/pgp-signature"; boundary="5X0OydBZoMElPKXW"
 Content-Disposition: inline
-In-Reply-To: <SYBP282MB22389FD1E07BBDC6FE1D90A0C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+In-Reply-To: <tencent_2A51312A21F88DDB7C7D82A2DA8E8EE7B808@qq.com>
 
 
---nvbiF6U45eoEZ/qe
+--5X0OydBZoMElPKXW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 18, 2024 at 11:12:33PM +0800, Yuntao Dai wrote:
-> Add devicetree bindings documentation for Sophgo cv18x SoCs mailbox
+On Mon, Jun 17, 2024 at 01:20:49AM +0800, Yangyu Chen wrote:
+> Add compatible string for SpacemiT K1 CLINT.
 >=20
-> Signed-off-by: Yuntao Dai <d1581209858@live.com>
-> ---
->  .../mailbox/sophgo,cv1800b-mailbox.yaml       | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/sophgo,cv18=
-00b-mailbox.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mai=
-lbox.yaml b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbo=
-x.yaml
-> new file mode 100644
-> index 000000000..e1868aaf2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/sophgo,cv1800b-mailbox.ya=
-ml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/sophgo,cv1800b-mailbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo cv1800b mailbox controller
-> +
-> +maintainers:
-> +  - Yuntao Dai <d1581209858@live.com>
-> +
-> +description:
-> +  The Sophgo cv18x SoCs mailbox has 8 channels and 8 bytes per channel f=
-or
-> +  different processors. Any processer can write data in a channel, and
-> +  set co-responding register to raise interrupt to notice another proces=
-sor,
-> +  and it is allowed to send data to itself.
-> +  Sophgo cv18x SoCs has 3 processors and numbered as
-> +  <1> C906L
-> +  <2> C906B
-> +  <3> 8051
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sophgo,cv1800b-mailbox
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    const: mailbox
-> +
-> +  recvid:
-> +    maxItems: 1
-> +    description:
-> +      This cell indicates the mailbox controller is running on which pro=
-cessor
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
 
-You can just look up your hartid at runtime, wouldn't that be
-sufficient?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +
-> +  sendto:
-> +    maxItems: 1
-> +    description:
-> +      This cell indicates the message sends to which processor
-
-Can't this go into an mbox cell? Having this property would limit the
-mailbox to only communicating with 1 of the 2 available processors.
-
-Cheers,
-Conor.
-
-> +
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +    description:
-> +      This cell indicates which channel is used
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - recvid
-> +  - sendto
-> +  - "#mbox-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    mailbox: mailbox@1900000 {
-> +        compatible =3D "sophgo,cv1800b-mailbox";
-> +        reg =3D <0x01900000 0x1000>;
-> +        interrupts =3D <101 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names =3D "mailbox";
-> +        interrupt-parent =3D <&plic>;
-> +        recvid =3D <1>;
-> +        sendto =3D <2>;
-> +        #mbox-cells =3D <1>;
-> +    };
-> --=20
-> 2.17.1
->=20
-
---nvbiF6U45eoEZ/qe
+--5X0OydBZoMElPKXW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnGp/gAKCRB4tDGHoIJi
-0lZhAQCIpzmZgPmLcK0DlQG035X/2WhR0AckY3tilztfWdynmwD/ehaUlanIwAhu
-5bCcdtphU/WsBn0uG7+dwqn9H9B+IQY=
-=FmkD
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnGqfQAKCRB4tDGHoIJi
+0pgEAQDITBy4C94fWL4Zq9cGY4dK9mpYG6qHmYAJRQiGswCVSgEAi0g3XPr0hKbi
+Cv1izHT7Bm+ZfLed0aUww0mLqrERMQo=
+=Ua7v
 -----END PGP SIGNATURE-----
 
---nvbiF6U45eoEZ/qe--
+--5X0OydBZoMElPKXW--
 
