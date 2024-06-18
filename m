@@ -1,65 +1,48 @@
-Return-Path: <devicetree+bounces-76902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0830390C7B2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:51:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9125390C7BD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E7F01C20B11
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:51:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 617A5281CDA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E9C155A53;
-	Tue, 18 Jun 2024 09:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED2F1C230F;
+	Tue, 18 Jun 2024 09:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="G9NxefmJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+D8twzo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647AE155385;
-	Tue, 18 Jun 2024 09:11:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1859A155CBE;
+	Tue, 18 Jun 2024 09:14:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718701905; cv=none; b=bIbZKUo9oc6NKZPwywGYiZwznG7CGK1+axYVVpCF6KwwA7xVnGtlSTnBN9aZIflPWV7WdH5lKBw+X6lBB1pWzj0nAECTUodUbo8XR0axoRVdSRlQciHErx4h9LRkRO8QJ67mjlWsnQARTA9JuY5sfQr+BpuXJcLokEKf2gblbQU=
+	t=1718702044; cv=none; b=fN+NZsb4HuODlP40DUCEmcn1f3N2r+61HDjSNVfhR2CUeayhIKDZkhRkg/RlUWgGLZbBOuQK3hAAqkFGjhcX4wjE9KU99r0n5X28sLYjpFYuz9ELI7+qtu2qCuJeeny4dLdXXsL+owRWsqsYzXWJO/TthuSZsis1s70nupSzNwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718701905; c=relaxed/simple;
-	bh=aTKh7qoNC6ncYKFdcn3vrsfsJi4IWy5Xroe9fbCuJ70=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Z4QHCIxWoDZP7luXf4PwDKRlk6AGXsHVSIpnoYBrT6cD9vi11rcxtrwEoN8ziOMgGW8xCiQzCyIiwhHhkSJVvZXoeIK42U+/lYmBujOtac18fR+//Ka9Cj8KLOdI/cGNU3YmTYEE+T72NpmFY1I359mWQLCX9DuJbNPrenElxHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=G9NxefmJ; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I6Z9Yu004223;
-	Tue, 18 Jun 2024 11:10:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	mZ2gz1uO27QN7pXr1aHkYNUz1eKbUVDgHMdiHyPJKlI=; b=G9NxefmJuyB0GvV2
-	KOENsiD6laEfu4yo/CqfY466TRBnafFJnl8yv6Ayhuq5CpMuYk8gzgb3LWd3VTRj
-	/pYT7B20oQsadjXWZi3BFK/PYgi6oI4ZR0NUe6DvhJR96U3MtkKuphMM3xWBKSvs
-	mLotnNBd/J5amNgQQ8BYkqgaVoZR5FewmNYgwcOy1JnvKJxcOB/nU5ZVowA7lEEp
-	qRofcPWgCuG8JPw9NlvDdyiQcUBEhv5Tq7NJ9n2zI/wx3PC/A44s0O0BBZZ7I39r
-	d17IWMBDBxSnT3nWbE1AZBny1FFqgActjbdpirhhLm6jsb+saN4ViiNF5BXz5255
-	TQX9Gg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ys1uct15y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 11:10:52 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2A8894002D;
-	Tue, 18 Jun 2024 11:10:45 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 10A4D212FD7;
-	Tue, 18 Jun 2024 11:09:38 +0200 (CEST)
-Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 18 Jun
- 2024 11:09:37 +0200
-Message-ID: <8c3f1696-d67c-4960-ad3a-90461c896aa5@foss.st.com>
-Date: Tue, 18 Jun 2024 11:09:36 +0200
+	s=arc-20240116; t=1718702044; c=relaxed/simple;
+	bh=ttYN9V7Bv0xdEUu9yvXJ2Kb1OFzdBlAYZwrbDTsO7FI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TQl1Fl/vziVpGdP4oAdkKMwYwub10OsKdb1b5+6QocBrlLwTHhyxoMR79byjuAQ/3bSGyhGaGsNcdajJFL1vxI8wPRo7M1BvMczGIO6UkYblZP+l0cWKosERUo6DN4rpTEK4ApcnbZjDp9xTR3k/EBA7ytgxCYRJNBnx+7KcoZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+D8twzo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C196C3277B;
+	Tue, 18 Jun 2024 09:13:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718702043;
+	bh=ttYN9V7Bv0xdEUu9yvXJ2Kb1OFzdBlAYZwrbDTsO7FI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=C+D8twzoSvvGoWOZwivYtyP5feM5zLG61KgFlipYdDyKEU8NLYzTatHWDSpxYHf3S
+	 3kEvuMJ19ajA2An6lx+jDXSFsnb2EDI1Q6WSj4Qeo230r7R7w2lUmRpuFUbuBqko7I
+	 e2h/hRuz7y4t/uVkTPkqE5yi/X7tUzVcJzeXNa9OrZ2ZCRiSqJEtnHE0SEl2PQr3uK
+	 1xlgWUMGfDrK+lP6CYeu98f4LrdJ3l8quXoD3asIdQ5PYQ4dS2beKnBerTy+s5W6/i
+	 0M6uxuJmAVzVlX+QzIuPudK2RkNejBIKyzJOu5UQ4rd379w2RLrT0EMAbsI+yltSG7
+	 qoX/xmI+iit5Q==
+Message-ID: <bfda328d-572e-4eca-b451-8e7a112c2f48@kernel.org>
+Date: Tue, 18 Jun 2024 11:13:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,102 +50,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH 2/2] net: stmmac: dwmac-stm32: stm32: add
- management of stm32mp25 for stm32
-To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240614130812.72425-1-christophe.roullier@foss.st.com>
- <20240614130812.72425-3-christophe.roullier@foss.st.com>
- <4c2f1bac-4957-4814-bf62-816340bd9ff6@denx.de>
- <09010b02-fb55-4c4b-9d0c-36bd0b370dc8@foss.st.com>
- <39d35f6d-4f82-43af-883b-a574b8a67a1a@denx.de>
+Subject: Re: [PATCH 1/1] dt-bindings: ata: ahci-fsl-qoriq: convert to yaml
+ format
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Frank Li <Frank.Li@nxp.com>, Damien Le Moal <dlemoal@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)"
+ <linux-ide@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ imx@lists.linux.dev
+References: <20240617180241.901377-1-Frank.Li@nxp.com>
+ <ZnCKlj_Gp60_2otI@ryzen.lan>
+ <09fad8cc-ff9e-48b4-b954-4f84c61f3ffc@kernel.org>
+ <ZnFJINOphiD1BWyR@ryzen.lan>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Christophe ROULLIER <christophe.roullier@foss.st.com>
-In-Reply-To: <39d35f6d-4f82-43af-883b-a574b8a67a1a@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZnFJINOphiD1BWyR@ryzen.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Marek,
-
-On 6/17/24 17:57, Marek Vasut wrote:
-> On 6/17/24 1:23 PM, Christophe ROULLIER wrote:
->
-> Hi,
->
->>>> +static int stm32mp2_configure_syscfg(struct plat_stmmacenet_data 
->>>> *plat_dat)
->>>> +{
->>>> +    struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
->>>> +    u32 reg = dwmac->mode_reg;
->>>> +    int val = 0;
->>>> +
->>>> +    switch (plat_dat->mac_interface) {
->>>> +    case PHY_INTERFACE_MODE_MII:
->>>> +        break;
+On 18/06/2024 10:45, Niklas Cassel wrote:
+> On Tue, Jun 18, 2024 at 09:42:03AM +0200, Krzysztof Kozlowski wrote:
+>> On 17/06/2024 21:12, Niklas Cassel wrote:
+>>> On Mon, Jun 17, 2024 at 02:02:40PM -0400, Frank Li wrote:
+>>>> Convert ahci-fsl-qoirq DT binding to yaml format.
+>>>>
+>>>> Additional changes:
+>>>> - Add reg-names list, ahci and sata-ecc
+>>>> - Add fsl,ls1028a-ahci and fsl,lx2060a-ahci
+>>>>
+>>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>>> ---
+>>>>  .../bindings/ata/ahci-fsl-qoriq.txt           | 21 -------
+>>>>  .../devicetree/bindings/ata/fsl,ahci.yaml     | 58 +++++++++++++++++++
+>>>>  2 files changed, 58 insertions(+), 21 deletions(-)
+>>>>  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-fsl-qoriq.txt
+>>>>  create mode 100644 Documentation/devicetree/bindings/ata/fsl,ahci.yaml
 >>>
->>> dwmac->enable_eth_ck does not apply to MII mode ? Why ?
+>>> Should this file perhaps be called:
+>>> fsl,qoriq-ahci.yaml ?
+>>>
+>>> Would be nice with some input from DT maintainers on this.
 >>
->> It is like MP1 and MP13, nothing to set in syscfg register for case 
->> MII mode wo crystal.
->
-> Have a look at STM32MP15xx RM0436 Figure 83. Peripheral clock 
-> distribution for Ethernet.
->
-> If RCC (top-left corner of the figure) generates 25 MHz MII clock 
-> (yellow line) on eth_clk_fb (top-right corner), can I set 
-> ETH_REF_CLK_SEL to position '1' and ETH_SEL[2] to '0' and feed ETH 
-> (right side) clk_rx_i input with 25 MHz clock that way ?
->
-> I seems like this should be possible, at least theoretically. Can you 
-> check with the hardware/silicon people ?
-No it is not possible (it will work if speed (and frequency) is fixed  
-25Mhz=100Mbps, but for speed 10Mbps (2,5MHz) it will not work. (you can 
-see than diviser are only for RMII mode)
->
-> As a result, the MII/RMII mode would behave in a very similar way, and 
-> so would GMII/RGMII mode behave in a very similar way. Effectively you 
-> would end up with this (notice the fallthrough statements):
->
-> +    case PHY_INTERFACE_MODE_RMII:
-> +        val = SYSCFG_ETHCR_ETH_SEL_RMII;
-> +        fallthrough;
-> +    case PHY_INTERFACE_MODE_MII:
-> +        if (dwmac->enable_eth_ck)
-> +            val |= SYSCFG_ETHCR_ETH_REF_CLK_SEL;
-> +        break;
-> +
-> +    case PHY_INTERFACE_MODE_RGMII:
-> +    case PHY_INTERFACE_MODE_RGMII_ID:
-> +    case PHY_INTERFACE_MODE_RGMII_RXID:
-> +    case PHY_INTERFACE_MODE_RGMII_TXID:
-> +        val = SYSCFG_ETHCR_ETH_SEL_RGMII;
-> +        fallthrough;
-> +    case PHY_INTERFACE_MODE_GMII:
-> +        if (dwmac->enable_eth_ck)
-> +            val |= SYSCFG_ETHCR_ETH_CLK_SEL;
-> +        break;
->
-> [...]
+>> This should be rather compatible.
+> 
+> Considering that you gave your Reviewed-by tag, I interpret this sentence
+> as that you are happy with the filename used (fsl,ahci.yaml) in this patch.
+> 
+
+Yes, maybe indeed fsl,qoriq-ahci or compatible-based would be better,
+but probably I provided a bit different review on other patch, so don't
+want to block useful conversion.
+
+Best regards,
+Krzysztof
+
 
