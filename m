@@ -1,153 +1,114 @@
-Return-Path: <devicetree+bounces-77175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0216690D93B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:29:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6A590D9EC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 18:53:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 176071C2396C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:29:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20CD5B2C0C0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 16:34:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C3474BE0;
-	Tue, 18 Jun 2024 16:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C0159164;
+	Tue, 18 Jun 2024 16:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kdxYwlaF"
+	dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b="Oni59Gvd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [178.154.239.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579246F307;
-	Tue, 18 Jun 2024 16:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91BE68120A;
+	Tue, 18 Jun 2024 16:34:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718728177; cv=none; b=MuTPVx+hjaEzs/sIRd8MCMHL6IQo4H2PJWJ+RZn6r8sPm4lbpZwynSqoIPN5doseBht/yKV7qMyFmtT090g3TcFSCeyIYzzUN9e+ZXgzDwSNGbGFBcbyepk7WA/QBKphMY6hKqm9w4Y0Jt3sQ4YNo2R+QgIMBv92iyzEEtCPD2k=
+	t=1718728450; cv=none; b=OVmWgbFhyxXonv+u5KvMkl3hve83CJ71g2Q015o6yl++hBybK5aGVXu8NIGDnGHInEwBUNpFLW1jY25rz12kQzPqK3gG0mWDk8LnNpPcWZpkqQbf3oXzVJQLNkgfHmB36WKSrc1XfWcV73a2LS2liolp1Dg6dYvY2uUc7h3I1r0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718728177; c=relaxed/simple;
-	bh=UsT5NQh0GVQQVdqROGFcp5V5hRUJAqWTfvcSFefzOjo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I+cYvU29c7PPSYL5utA8SBYgeSTGt9R5q+G26uSMEmEpk23ijnxd7jUK9EtJgA34rmVMAj2CZkGwsK2AB5nFLSfKzELyd5yZW4gBVY2ibexCCR9gLMuGdDJ/ky47zT+jvj4ZJNDPzouCsbMBjH1HEplw1IdGVpcGS1zFn0WPHnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kdxYwlaF; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-705c739b878so4598922b3a.1;
-        Tue, 18 Jun 2024 09:29:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718728175; x=1719332975; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=PTLwF7FJJq28Tj9sU+QeSNnqnZzMZSab2k97XIaOnBQ=;
-        b=kdxYwlaFSshURseJE6p1MZ83iUCvyUtIkSGe2dcD4XOD6k5co2BHiem+Wo6Dq/exP8
-         5WJ/zpRWg+fAWjxtS/Q0OsWGXZVqfVgKMNuzXTrdXO+9RpHJXGbB5Nu42wGRJCoaK3Zc
-         Tet7RO0pFfhi9v8bQJkWg2o1X7ysfb2j8MrmsuQeQsQmhhYQDeYAwq7zu7h1A6+kDkDF
-         kGLgbVkgdUZIVApRjOllDMzjzFIcjYL/e6VmfD6mBguqXhczPsXoPHSbc/3KdjfTwgTK
-         mT6Y68avSh6XwuZ0yvy2q7lHE+F0GxNEotg40HqKuzVbP0Vdzj3T9Xq0AUxkCSmutLNc
-         Uufw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718728175; x=1719332975;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PTLwF7FJJq28Tj9sU+QeSNnqnZzMZSab2k97XIaOnBQ=;
-        b=qkTznE+XZC6V4XLzowarci5ARdMfIM6TFsghP+TMFJjawSH5l5wJSjTXEG96p2OEpq
-         Bz+Inth25y2f3yjC/ixSJmbZJDpUOULOi0oEzpvhNfoxBULVIbsHsK3d4pkxDKqoaFaQ
-         mT/0t/+U3Lp0Qvor/h33tAXxIeoB3WyrMn8BZIR0fgQ2i3zWDeu3tjbG/uki49HzJTBW
-         atPuTWa5hW/967NNakIN4XPL4eXapHTvUF1ZzA0ULbb3NgNDKcQEjRCqpi99kIxeZbG0
-         C+ZjEfBt2YfXUvPkC4RFHribPGtKEU4Fnu0ztzdfMyIHdu2TcNLfrO0AKXw7nNVyPC6A
-         r2RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVaUW9xJC4C82It+TWvWqddvT5fmhv3iEiTpTLYlxX5vlyUAmJp1MOpKSXrqxVr8ICJGkhvhHnnSGWNtEd8fQh1Xcu9bfJ9RI+Gh8Vx1AJopGk+d9vESpPD+kM75SaODjIxJyDxwIK0iUbnuWbfAG8icT2GL9jTen3Jfgl2NbCNLSZqVQ==
-X-Gm-Message-State: AOJu0YxALvKGu8HuoMN15VzEsviNG3jX3CvAUqEgppcLkIxpQtAeEwLH
-	/95F9p+wOS6UlFlClvC05UiS9N2FFvGykVuBJC34ZS58Oh5cZDWA
-X-Google-Smtp-Source: AGHT+IFnMIreX7N0zHGAieLQNwRvwy9eIcMc8pU01yWRkzyddP3GNSiHFCx8yMdXsrHRTJUi2+xZJQ==
-X-Received: by 2002:a05:6a20:2905:b0:1bc:bb05:e0db with SMTP id adf61e73a8af0-1bcbb05e107mr95545637.23.1718728175394;
-        Tue, 18 Jun 2024 09:29:35 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705ccb3d1ccsm9130707b3a.125.2024.06.18.09.29.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jun 2024 09:29:34 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <fdeea79f-4568-4e70-9b49-0c02abc91170@roeck-us.net>
-Date: Tue, 18 Jun 2024 09:29:32 -0700
+	s=arc-20240116; t=1718728450; c=relaxed/simple;
+	bh=9Ya0AF+I5kZB8f0I6QI7f8yC9CILQ3Sjw0vL1wBTNqU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=iVRYx69THeYwYXpv/APFRoZcrjyxZYrKsk4iXhPmjZUWcRSnTYMUvxkYMrnwRsru+OfCtVZD9U5UWOKuGjK9qIrM60PD4f20+DIk3J2wHBfWYJRfixyzSJ3JgBYD94CEec1OXN5T1HutnsL/ejDUiFbFxVtFJM6KGN2FvWDw8H4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me; spf=pass smtp.mailfrom=maquefel.me; dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b=Oni59Gvd; arc=none smtp.client-ip=178.154.239.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maquefel.me
+Received: from mail-nwsmtp-smtp-production-canary-88.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-canary-88.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:3483:0:640:1715:0])
+	by forward501b.mail.yandex.net (Yandex) with ESMTPS id A79C76123C;
+	Tue, 18 Jun 2024 19:33:57 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-canary-88.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id nXLBadKCSCg0-WTnPBLbY;
+	Tue, 18 Jun 2024 19:33:55 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail;
+	t=1718728435; bh=9Ya0AF+I5kZB8f0I6QI7f8yC9CILQ3Sjw0vL1wBTNqU=;
+	h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
+	b=Oni59GvdWxSFXVUm0FOyYIVzjEV0JRSU9Ip08bwMplFAtgBKjmuy5Yh1eldJeqi17
+	 Pa6h6Z/eehgezUl2WVdUScufJqePeWWaxGT7OxfJGM46bfE7df2u7mV+2/KLa+XOrw
+	 p+oLGi6VA8aTuPSROzXtOw+f362fnP6+ig6AeZ8c=
+Authentication-Results: mail-nwsmtp-smtp-production-canary-88.sas.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Message-ID: <eb3e6c0b883f408fed68e725a23b54854701ce9e.camel@maquefel.me>
+Subject: Re: [PATCH v10 00/38] ep93xx device tree conversion
+From: Nikita Shubin <nikita.shubin@maquefel.me>
+To: Jakub Kicinski <kuba@kernel.org>, Nikita Shubin via B4 Relay
+	 <devnull+nikita.shubin.maquefel.me@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Hartley Sweeten
+ <hsweeten@visionengravers.com>, Alexander Sverdlin
+ <alexander.sverdlin@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Lukasz Majewski <lukma@denx.de>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Vinod Koul <vkoul@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, Thierry Reding
+ <thierry.reding@gmail.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
+ <u.kleine-koenig@pengutronix.de>, Mark Brown <broonie@kernel.org>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>,  Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Damien Le Moal <dlemoal@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+ <tiwai@suse.com>, Ralf Baechle <ralf@linux-mips.org>, "Wu, Aaron"
+ <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>, Olof Johansson
+ <olof@lixom.net>,  Niklas Cassel <cassel@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-pm@vger.kernel.org,  devicetree@vger.kernel.org,
+ dmaengine@vger.kernel.org,  linux-watchdog@vger.kernel.org,
+ linux-pwm@vger.kernel.org,  linux-spi@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mtd@lists.infradead.org, 
+ linux-ide@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-sound@vger.kernel.org, Bartosz Golaszewski
+ <bartosz.golaszewski@linaro.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Andrew Lunn <andrew@lunn.ch>
+Date: Tue, 18 Jun 2024 19:33:49 +0300
+In-Reply-To: <20240618073339.499a7fd2@kernel.org>
+References: <20240617-ep93xx-v10-0-662e640ed811@maquefel.me>
+	 <20240618073339.499a7fd2@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/9] Add Mule MFD support
-To: Farouk Bouabid <farouk.bouabid@cherry.de>,
- Jean Delvare <jdelvare@suse.com>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Quentin Schulz <quentin.schulz@cherry.de>, Peter Rosin <peda@axentia.se>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20240618-dev-mule-i2c-mux-v4-0-5462d28354c8@cherry.de>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240618-dev-mule-i2c-mux-v4-0-5462d28354c8@cherry.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 6/18/24 09:06, Farouk Bouabid wrote:
-> Mule is an MCU that emulates a set of I2C devices which are reachable
-> through an I2C-mux.
-> 
-> The mux and amc6821 combined make the Mule multi-function device (@0x18)
-> 
+On Tue, 2024-06-18 at 07:33 -0700, Jakub Kicinski wrote:
+> On Mon, 17 Jun 2024 12:36:34 +0300 Nikita Shubin via B4 Relay wrote:
+> > The goal is to recieve ACKs for all patches in series to merge it
+> > via Arnd branch.
+>=20
+> Why? The usual process is for every subsystem to accept the relevant
+> patches, and then they converge during the merge window.
 
-I don't think that is appropriate. Those devices should all have separate
-devicetree entries and be modeled as individual i2c devices.
+It was decided from the very beginning of these series, mostly because
+it's a full conversion of platform code to DT and it seemed not
+convenient to maintain compatibility with both platform and DT.
 
-Guenter
-
+Generally i think it's too late to ask such a question, when just a few
+patches left.
 
