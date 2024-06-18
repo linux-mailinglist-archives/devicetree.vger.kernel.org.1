@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-77014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA50190D2EA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6AC90D2F0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 15:56:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4621C24005
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:56:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 252E21C20AB4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1471715DBC4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E0615E5A8;
 	Tue, 18 Jun 2024 13:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="IOROi1mJ"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="jUVy8jVO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2742415383D
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 13:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1AE415DBA8
+	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 13:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718717471; cv=none; b=lsDvZ8BaSKKOdZG+rMxNMb0yCb/jxIZAPtC8oAKKJ3/6OsEW6kzv9eOZ0e75DgXr+QkKIWSEnPi2Ny3HYzWYK1jh2yywmrDstEk7yJOYIaBTC6WN9z4yJBG1WOOQAxEV3oMKuxR7jqLE/cLE7c67E6oxJDAgh1/oirmZ/1tPj5Q=
+	t=1718717471; cv=none; b=ptcIhHEWIX4J5Xgv+HLLrm4zkGaLnsZMckL1T9VZvcSl8ieHe+wd+bNmIQbkKI+/ZJqHKntYMr2qJdk+75PgqVYFxkFKStHN59PrHNC936wIr8x2HGToA4ahk8o7F9efcGxsEDqxzszI14Tl0eaY4lOQlun0/kFPiwAlyEyNteg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1718717471; c=relaxed/simple;
-	bh=cxdO/CBDU729Yf5ACjB9FoIQHBrEtFFHA1h0G3YIxco=;
+	bh=9jqtvvRef02o66jA1QOAcPVai+7sRaY9EsyTsBrtl5U=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i3CD/BD2q2xsg5ugiwsmcALMcpxq7nTJQ99YyuxYK4kAdeD1N2A5Vel2qCQJwYunqPQZWQsNYyflXoRAaabSTctFWiCqmXwZXwszCLAUbBKH4RXnQPN90buA1Sth0mz58t1FsJXhpiBA8s0WU1THZmrgVQ7/6dSCJkJUd8G0Pcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=IOROi1mJ; arc=none smtp.client-ip=209.85.208.45
+	 In-Reply-To:To:Cc; b=i+JWhm6MldVV5QYm99o9fwkOEnmtKKG0A5g4UasVGNdS4QwpD0B7kwc9IDfxJFRcSFJ32t/AhSHKbtx2yF1BIWmZptEJn4NVVquEGWPcbtkwKEq0Mefo7IalpbN0TPMeUcbwi9YP8dE0NF/pdSvfm+cUr6t1w3hpSbt2KTO1kzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=jUVy8jVO; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-57cce3bc8c6so3776170a12.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 06:31:08 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-57c83100c5fso5954813a12.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 06:31:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1718717467; x=1719322267; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1718717468; x=1719322268; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NJIvSltK61hZcLnfuXyJJYAaIgQQrrXExiMwUA91MUA=;
-        b=IOROi1mJc6Zs5SXKFccceqAS64DMezDSaqMpUS/meO5I2qce2e3djnSN8IXV1y2n9j
-         5e6yIjgQr1qL852CSPKQlynyhWwIHYA12meqzar2UOUYguCKCsa2oQTL+VCUXHHPpeEn
-         Ja3ri0/RQ04rie580uysriK0U1+KpZfoNT/z6FwvSg0HB4ZT9iCNT0aHRhB6tCIyvsVW
-         hnPitDUYG2fDbMg3IZwisutQs9mU5/ewsc3TGY7uG7WIaeCkZnd/slKwblFTjIJ8i/a/
-         8PC5Nsp7b4Jll0W7FEemnis7rZ1PwO2XxAcDZZNYmrDK9mPCnxa2FS4gkHNERGJBK/AR
-         FuPA==
+        bh=XufLcHZuGTm8rMYI9wyKAZOCLDDD6NHtlJfPZ/EePfM=;
+        b=jUVy8jVOEa+dG16NQNvQsrUCh62Yq4iCcHiJfh/Pgo3WCFk8SkdIYAu/7j+g7VoiFT
+         UuCvJbldluMzc3IqVPNkmqdXkteEObCSmdynlUT/vHT5A0aQIqDWmbHhFiUscs3+DdK7
+         v957MDMw1vHc4lpmtT9EvsRiptqNFmnuTWInlj791nKdekDVrMuZhP8MUzOcGNZ6y6QR
+         dh7wiUPp47KdjtQ+EqSt+C2l04/hVbF7cNoh7mdFYiA19yETdDj1m8HPxdtrjGH0y19e
+         5JYVlgIhldiWDyKcVjSANxJsAdM9+NgaImAiHLNdO9zt7MJm2jiXph8apLNptUBfAuh5
+         2aWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718717467; x=1719322267;
+        d=1e100.net; s=20230601; t=1718717468; x=1719322268;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NJIvSltK61hZcLnfuXyJJYAaIgQQrrXExiMwUA91MUA=;
-        b=WaYkauJJ7SYiC5KYtGQTDL1YRIDypMTmPLEkkxmNmQhPR8sGtaYZW8bgU1q9x8De8x
-         Uun2FMrALHqt13KsJ2XXqNc7olc3UVnnrT/lrePXW3jvE2WmrJuHtC8n+nDWtqv+qsuH
-         elGZKXYwzxSgFp03cqL3KqFtJShCZEaLZchhwJ06z/tMt0JH/l+JDrp1RxsC7vRaoazx
-         DsZY1TUJ5loUB+F9l/GcVSiqr3Z+xzMbZGfGplVIJJwoqmHKHepyc7U421ymAAPdf/SP
-         99QVfpF1iVK2/JhhXSSmM+J6ojOKwSFjwzg0J+whKvS3VLnS3SRkW8naVklkwvWSdxWF
-         mLdg==
-X-Forwarded-Encrypted: i=1; AJvYcCXrTZb1NqdXyKRAlTRc1cotFUSTtzfuaFg6c2v5lKhSzDDzyFPrIoNh4HpuCBAfzu0yOWeOdnQzdwMc5MV+iNj7UCq9A/YFXNImDA==
-X-Gm-Message-State: AOJu0YxygVM49MNnj62vRlomxI36eBLIzLEFC5w1HYFleElUuwry8qdP
-	HNe+pJRX8tiA0tga17kKPCt4BdRuvv7lR8pDSGXDzSTkOFTve75ZAnorlSchdxE=
-X-Google-Smtp-Source: AGHT+IG9H2NOWBhabFFt1ojtwQAsCIzZmG70ROVQXJAeMSxLCk1HnYjqyZZTNLLp1L62he5OXR1uIw==
-X-Received: by 2002:a50:a694:0:b0:57a:4c9b:5dbc with SMTP id 4fb4d7f45d1cf-57cbd69eba3mr7019203a12.16.1718717467498;
-        Tue, 18 Jun 2024 06:31:07 -0700 (PDT)
+        bh=XufLcHZuGTm8rMYI9wyKAZOCLDDD6NHtlJfPZ/EePfM=;
+        b=ogLNLb4Yxozri1+G01zTvMjMg80nS+d8ViPBcedcwF6mMWM0Kj3EeOr008RzjAtZLu
+         jT0mMfp0F/P1GDQrufd0h5ZsmuO+L3jInD8NJ1soLWH9rFOMj6m0bWzvzoEmlZAnkMc9
+         70lBZZoQbB3nH6xVDVxx8a1zSZJq0d0ZXTQ/zQNOqEkTI6aB+irG/ZGFkPxOJZFxSORq
+         6pczcrLHbjc8F8iYN+3YZWiVqDNDJxocCmxQRPUYZSomDuyQgMpQH1GqjfhQLuifV3du
+         Bi9XqpfkmiqAD4DB7nYJKGJDimcbGPLtlO/Id/HRhFovt8fjfvcIRYRRJUqybbW/E0hi
+         w6fA==
+X-Forwarded-Encrypted: i=1; AJvYcCVXIUSGLd5HHb9OH57SltF8poD48NIYHg1d2BIlKkaNaPtNZhH7eojwUuzCyXKnJ2Bv7c96GaIAwcv77g8yjONwRqWG+3txvrNk8Q==
+X-Gm-Message-State: AOJu0YyLG61ClOpNoEY4TBNvzyudsn+RI+nyMfa8tHB+cn31O2IGQBny
+	xzc6qWXeXrE25lsWrYZ8EHt+0shgMfvOFPIY2LNz6VRxjHQC9ty/kl3eBmHQzmI=
+X-Google-Smtp-Source: AGHT+IE3f2gOOYSWrzXwFFUeGq/mLVAaVxodsc80KZGZ4autgi3rNIFJjzpwB667E+/etC8GMbQSLw==
+X-Received: by 2002:a50:8d4c:0:b0:57c:bd49:9969 with SMTP id 4fb4d7f45d1cf-57cbd8e73f4mr8256045a12.39.1718717468225;
+        Tue, 18 Jun 2024 06:31:08 -0700 (PDT)
 Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72ce12fsm7774862a12.7.2024.06.18.06.31.06
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72ce12fsm7774862a12.7.2024.06.18.06.31.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 18 Jun 2024 06:31:07 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Tue, 18 Jun 2024 15:30:54 +0200
-Subject: [PATCH 1/2] arm64: dts: qcom: qcm6490-fairphone-fp5: Name the
+Date: Tue, 18 Jun 2024 15:30:55 +0200
+Subject: [PATCH 2/2] arm64: dts: qcom: qcm6490-shift-otter: Name the
  regulators
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240618-qcm6490-regulator-name-v1-1-69fa05e9f58e@fairphone.com>
+Message-Id: <20240618-qcm6490-regulator-name-v1-2-69fa05e9f58e@fairphone.com>
 References: <20240618-qcm6490-regulator-name-v1-0-69fa05e9f58e@fairphone.com>
 In-Reply-To: <20240618-qcm6490-regulator-name-v1-0-69fa05e9f58e@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -99,14 +99,14 @@ to reason about.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 35 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 35 ++++++++++++++++++++++++
  1 file changed, 35 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-index 25ed74d4ebd2..c66c7eda6a69 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-@@ -271,46 +271,54 @@ regulators-0 {
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
+index e82938cab953..4667e47a74bc 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
+@@ -235,46 +235,54 @@ regulators-0 {
  		qcom,pmic-id = "b";
  
  		vreg_s1b: smps1 {
@@ -161,7 +161,7 @@ index 25ed74d4ebd2..c66c7eda6a69 100644
  			/* Constrained for UFS VCC, at least until UFS driver scales voltage */
  			regulator-min-microvolt = <2952000>;
  			regulator-max-microvolt = <2952000>;
-@@ -318,66 +326,77 @@ vreg_l7b: ldo7 {
+@@ -282,66 +290,77 @@ vreg_l7b: ldo7 {
  		};
  
  		vreg_l8b: ldo8 {
@@ -239,7 +239,7 @@ index 25ed74d4ebd2..c66c7eda6a69 100644
  			regulator-min-microvolt = <1800000>;
  			regulator-max-microvolt = <2000000>;
  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-@@ -389,60 +408,70 @@ regulators-1 {
+@@ -353,96 +372,112 @@ regulators-1 {
  		qcom,pmic-id = "c";
  
  		vreg_s1c: smps1 {
@@ -310,7 +310,6 @@ index 25ed74d4ebd2..c66c7eda6a69 100644
  			regulator-min-microvolt = <1620000>;
  			regulator-max-microvolt = <2000000>;
  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-@@ -451,36 +480,42 @@ vreg_l8c: ldo8 {
  		};
  
  		vreg_l9c: ldo9 {
