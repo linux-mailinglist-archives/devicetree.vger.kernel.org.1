@@ -1,165 +1,118 @@
-Return-Path: <devicetree+bounces-76954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122A890CABC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:58:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57E4B90CA66
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 13:52:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D760B29D85
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:50:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03ACF1F23C0B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 11:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52F113AD09;
-	Tue, 18 Jun 2024 11:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E77014A0A7;
+	Tue, 18 Jun 2024 11:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="m4qIfuH3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="btHUdzlO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93351139D11;
-	Tue, 18 Jun 2024 11:28:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534AC1482FA;
+	Tue, 18 Jun 2024 11:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718710087; cv=none; b=Pk0AT9mjiFcgQWDXcMp2y3hXspl68ojtrg7Q87ilJfRPqoR4Chx4IF15SPzgmKHsTwjR2jHMMDC8+NjEe0YfqIiAom3zVfEZIHYSVPKD+Vf9SQ5EMWp400CEJCy0L0xCnGwyFDWEx6liG+LUUDnNslA9nUtDnQRaDCaqCLD0g3M=
+	t=1718710363; cv=none; b=gWZBvZatQ0W6DOf6H/e28GYoOKoltsDpWBNgbs+kJvSID8S/v/gJ2pg/xkKYoEM2t92nh5KzrK+dFtAMyPbq64Kfbi0cEHEMOEAegQG/4erYmfvw3u7Y6KQ0PiCKQUwW9Tr8F9DDWcby/N7h4xgyiuxqYxvHvzLHjUhO0KM22LY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718710087; c=relaxed/simple;
-	bh=liqIQf/51gU0hCkHyFFUyrlyRfkSWPW0/N0Yi+ZfDcI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ce4keZk3mYwg5xRqQlXsO5xdrPcfc9oamcjmUE0dTRlbNdcjpqe2M6uC0+10eg0q43Wvrhstd+2YpvXxd/ezGJXg5bfufQo16Wc8bnVhiREvla2BHFye43KLFgVi8BZn5EaAHqhvzMqxrxAE+NTPje0h6Di0OKQswpbBd3YFcJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=m4qIfuH3; arc=none smtp.client-ip=185.125.188.121
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from hwang4-ThinkPad-T14s-Gen-2a.conference (unknown [123.112.65.116])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 9A7E04087E;
-	Tue, 18 Jun 2024 11:27:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1718710082;
-	bh=EuA5G7ftWh/W73RPr/IVD057SZHjTDVJktOyJiM2CIg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version;
-	b=m4qIfuH3MKe+j/BXGdj3BV9+Rzttew9kgDSdgMX1eRM7e4dsBYRK1dyOJ2yHWcAOp
-	 sHVqdYUlkxk5urYWsCnOKmQgr8jAwRYxz/AjxZWitE98rnN8flAcZnWena5NTMjwTt
-	 rJIvYe49gk/AQJ9VRQhAtaPAGDbVIUIbVy+2dCNdMNn+5EVKf0hVDxPwXC/m6epvbe
-	 eiBPL0UTC2lcsQ/hZsiqhgrC1ATh9PMhQsaqqLkFgST9MCejgmLjQ5gYwc1aVRSMEA
-	 YN+PRMlsexkRZHSo5GTue44TD2MjIF+PdNXk8/7sMrBYIr3aB/VX8jG9x0azu7fERQ
-	 4OQ/d5a6+FpPQ==
-From: Hui Wang <hui.wang@canonical.com>
-To: linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org
-Cc: jirislaby@kernel.org,
-	hvilleneuve@dimonoff.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andy@kernel.org,
-	lech.perczak@camlingroup.com,
-	Maarten.Brock@sttls.nl,
-	hui.wang@canonical.com
-Subject: [PATCH v6 2/2] serial: sc16is7xx: hardware reset chip if reset-gpios is defined in DT
-Date: Tue, 18 Jun 2024 19:26:20 +0800
-Message-Id: <20240618112620.152848-2-hui.wang@canonical.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240618112620.152848-1-hui.wang@canonical.com>
-References: <20240618112620.152848-1-hui.wang@canonical.com>
+	s=arc-20240116; t=1718710363; c=relaxed/simple;
+	bh=wpiKeO63IemTjXmi+1WwztXiYOdPdtVXvk0tyn5Fhoc=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=pGIuyCzMwU6LN2gJI7Bn57jHm9rMHIumZYgZpFIbV8cyTfydDr20wCaMmXiz3673d2+ZQ7bhyPy4npp2GMMjBj0ucWvGpU455RNkFNPb+doOURPYBdQpQHJweFYAeDpa3or8ZLElz0QiUHj+wcRMTIKmwtqcvlUEoLS2KvJHxuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=btHUdzlO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 081D7C4AF48;
+	Tue, 18 Jun 2024 11:32:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718710363;
+	bh=wpiKeO63IemTjXmi+1WwztXiYOdPdtVXvk0tyn5Fhoc=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=btHUdzlOT+VIyKTe3je22pK3+5vLZQ9K23c0u0il69gOCNjGuR7SvF/1Eje2MfJCp
+	 TWZyP45WcdqzYLuIz1RsT+JtydlkyZOia/SCXgY2bX2FMmNFDE8ijJx/Pm70v57ghV
+	 kRgSslxat16tz4K5jrY04W+U9ixvCDHydDequFp7qfpc7C/3SDZymFckE5oS28M4vY
+	 zfrKO01134c/qC7LCNfFMpD708yMBZLo8MBT5zkmvuDn8fCLbZfHVVjOzzM4rfZbQp
+	 NmPh/trp4K+QiUbc9/2ira4SQYWfZFIaD4pivLgTX3pu2Ip65un+covBoOCsh5Szb5
+	 tswRK/LL0CfbA==
+Date: Tue, 18 Jun 2024 05:32:42 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: lorenzo.bianconi83@gmail.com, robh+dt@kernel.org, upstream@airoha.com, 
+ conor+dt@kernel.org, edumazet@google.com, conor@kernel.org, 
+ davem@davemloft.net, pabeni@redhat.com, devicetree@vger.kernel.org, 
+ catalin.marinas@arm.com, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, rkannoth@marvell.com, 
+ benjamin.larsson@genexis.eu, kuba@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, angelogioacchino.delregno@collabora.com, 
+ sgoutham@marvell.com, will@kernel.org, netdev@vger.kernel.org, 
+ andrew@lunn.ch, nbd@nbd.name
+In-Reply-To: <ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org>
+References: <cover.1718696209.git.lorenzo@kernel.org>
+ <ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org>
+Message-Id: <171871036213.1272776.17317814792121610122.robh@kernel.org>
+Subject: Re: [PATCH v2 net-next 1/2] dt-bindings: net: airoha: Add EN7581
+ ethernet controller
 
-Some boards connect a GPIO to the reset pin, and the reset pin needs
-to be set up correctly before accessing the chip.
 
-Add a function to handle the chip reset. If the reset-gpios is defined
-in the DT, do hardware reset through this GPIO, otherwise do software
-reset as before.
+On Tue, 18 Jun 2024 09:49:02 +0200, Lorenzo Bianconi wrote:
+> Introduce device-tree binding documentation for Airoha EN7581 ethernet
+> mac controller.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+> This patch is based on the following one not applied yet on clk tree:
+> dt-bindings: clock: airoha: Add reset support to EN7581 clock binding
+> https://patchwork.kernel.org/project/linux-clk/patch/ac557b6f4029cb3428d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org/
+> ---
+>  .../bindings/net/airoha,en7581.yaml           | 106 ++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581.yaml
+> 
 
-Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
-Tested-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Reviewed-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Signed-off-by: Hui Wang <hui.wang@canonical.com>
----
-In the v6:
- - change the comment "The reset input is active low, and flag
-   GPIOD_OUT_HIGH ensures the GPIO is low once devm_gpiod_get_optional
-   returns a valid gpio_desc" to "Assert reset GPIO if defined and
-   valid"
+My bot found errors running 'make dt_binding_check' on your patch:
 
- drivers/tty/serial/sc16is7xx.c | 31 ++++++++++++++++++++++++++++---
- 1 file changed, 28 insertions(+), 3 deletions(-)
+yamllint warnings/errors:
 
-diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-index bf0065d1c8e9..c79dcd7c8d1a 100644
---- a/drivers/tty/serial/sc16is7xx.c
-+++ b/drivers/tty/serial/sc16is7xx.c
-@@ -14,6 +14,7 @@
- #include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/export.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/gpio/driver.h>
- #include <linux/idr.h>
- #include <linux/kthread.h>
-@@ -1467,6 +1468,29 @@ static const struct serial_rs485 sc16is7xx_rs485_supported = {
- 	.delay_rts_after_send = 1,	/* Not supported but keep returning -EINVAL */
- };
- 
-+/* Reset device, purging any pending irq / data */
-+static int sc16is7xx_reset(struct device *dev, struct regmap *regmap)
-+{
-+	struct gpio_desc *reset_gpio;
-+
-+	/* Assert reset GPIO if defined and valid. */
-+	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(reset_gpio), "Failed to get reset GPIO\n");
-+
-+	if (reset_gpio) {
-+		/* The minimum reset pulse width is 3 us. */
-+		fsleep(5);
-+		gpiod_set_value_cansleep(reset_gpio, 0); /* Deassert GPIO */
-+	} else {
-+		/* Software reset */
-+		regmap_write(regmap, SC16IS7XX_IOCONTROL_REG,
-+			     SC16IS7XX_IOCONTROL_SRESET_BIT);
-+	}
-+
-+	return 0;
-+}
-+
- int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
- 		    struct regmap *regmaps[], int irq)
- {
-@@ -1536,9 +1560,9 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
- 	}
- 	sched_set_fifo(s->kworker_task);
- 
--	/* reset device, purging any pending irq / data */
--	regmap_write(regmaps[0], SC16IS7XX_IOCONTROL_REG,
--		     SC16IS7XX_IOCONTROL_SRESET_BIT);
-+	ret = sc16is7xx_reset(dev, regmaps[0]);
-+	if (ret)
-+		goto out_kthread;
- 
- 	/* Mark each port line and status as uninitialised. */
- 	for (i = 0; i < devtype->nr_uart; ++i) {
-@@ -1663,6 +1687,7 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
- 			uart_remove_one_port(&sc16is7xx_uart, &s->p[i].port);
- 	}
- 
-+out_kthread:
- 	kthread_stop(s->kworker_task);
- 
- out_clk:
--- 
-2.34.1
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/net/airoha,en7581.example.dts:27:18: fatal error: dt-bindings/reset/airoha,en7581-reset.h: No such file or directory
+   27 |         #include <dt-bindings/reset/airoha,en7581-reset.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/net/airoha,en7581.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
