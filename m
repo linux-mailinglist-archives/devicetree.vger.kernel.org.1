@@ -1,103 +1,135 @@
-Return-Path: <devicetree+bounces-76881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-76907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E502E90C6F8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:31:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE4990C7D6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 12:54:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D52A01C21E6B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:31:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C05D41C22AD3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jun 2024 10:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDAC14BFBC;
-	Tue, 18 Jun 2024 08:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E387A1CB32D;
+	Tue, 18 Jun 2024 09:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dtjuvzkz"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="yR+oHpt9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5805E13A272
-	for <devicetree@vger.kernel.org>; Tue, 18 Jun 2024 08:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2BE156F29;
+	Tue, 18 Jun 2024 09:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718698617; cv=none; b=SzIlQn3/pjIllnSsUy+Km5X7j0uavjAqhMyAYLTfq3lgqCVhexYZa6U6HrpLioeC9PlnGXoAZV69H3H162WworiaLJ6rIT5hZUWJAO7DvXPBIYLFOK4YQJYUaSjo7vFtApBZVM0+Tc7bpxBXkv+JW1DJL6TSU0l9RxU8p8IeECw=
+	t=1718702465; cv=none; b=i+LVqq/CqlYnudTthBj3tJ50It8LsN4pJXG6d+LNf7O6GANM6JVQJW88loXpmaehSQdvETGUfATIo8MI8xHM+0vyMEieDaXN6988aw8/Ixsk5/LszOPAxfxlqPCGGwsgE0kKc8qlVilpRIQ2M/48I+/GTRDljIk7q8hTI8WAvTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718698617; c=relaxed/simple;
-	bh=AnHPQh9Ws7FCn5Y0bhEFJjmVr5CmxaG2VtfLyAikIhU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YSJ+ChC9HMAqT0JsGy3tYwEtvT67Be7PwcrenSQItDUCkx9L+RzTKUNSCdXtDtAlwlEN1e19y+CedUo0RAJttBne8bdIbZNcTcWCoIQahSBoAXvTG7/Xp5maFk88gyS0mfEtS0sLi3X1ORuC+k3CMJQ4IyK2jezN2+mHcH8vvNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dtjuvzkz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 918D9C3277B;
-	Tue, 18 Jun 2024 08:16:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718698616;
-	bh=AnHPQh9Ws7FCn5Y0bhEFJjmVr5CmxaG2VtfLyAikIhU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DtjuvzkzmQUY8B6zgAe2OZf2Ge6HFUNYDOHah5zXPAlNwsSVcFgLFt+FDQ0AMU2WE
-	 y8fi2K0dCjOm6cAkB8wtBgZHQLrnlD3AiD7M6xEcDH2nuepk5xeAgGxbPbcTak81nF
-	 xk1mimJtzBZe+6I1azrUnHTFOIEMaS3TtGdBMldAqxF0dBIOAF5SSngTXDefq5FCCa
-	 v9xdle+3hVKjw3UtdGZcVHnGpax17YX7Z0ShP5+9DSHmA8sSCITseOTgpaIGUh8HEH
-	 MtcfPSoyUhqw3sh7U9nLi8Guy1383eXSVcT0Or1IB2WpMCyhNQypz4bItuH+2EQ4AY
-	 oQdnyurwXuIUA==
-Date: Tue, 18 Jun 2024 10:16:54 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH 2/4] drm: bridge: simple-bridge: use dev pointer in probe
-Message-ID: <20240618-hot-centipede-of-contentment-bafcfc@houat>
-References: <20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr>
- <20240617-tdp158-v1-2-df98ef7dec6d@freebox.fr>
+	s=arc-20240116; t=1718702465; c=relaxed/simple;
+	bh=ODb0AS8Gid72yudRJyiMhX1jDUeji0O92Qk5KnJi5HU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JsQ7vD9VQck4eCAdqfiR3Fz6OHY8/ZB8goC+WfqQ9bkEEUeVAUlp1cdj8UIonwo1Lbpm5eCtyjO17c0b8GUe/GgunR7UDDCQuBW1qEDC3tOUguOLAT3kLelWWx2hgLSB/d88UpUYNSPk75bPjKVGOHqSLSbySbhPIqv5mV7GpuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=yR+oHpt9; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45I2vvDH006686;
+	Tue, 18 Jun 2024 04:20:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=s1jbBiljYWIQU2h5+M2d0n4QhEp
+	apypLQmJWq50+k+s=; b=yR+oHpt9pjtVUswxIlUbIAeE5RmM0K3GQKJCISTyoWB
+	tpYveDUHw2lgI1UfMBujoRvIsffQLUIgHR0naMKjtkUx6UBgr5tjSnSy5dbUsFFS
+	Xk1lf6gJLckPuEHykJv0om5N6M8EmVk5ULc04W1iqZC9zPWVaXrz+Ur1Vyr1QVvl
+	4i6z5fpE37qr56kO7gRgqw/jS8zgLneXKo4ezowRGHA9tNAAYClNqwcPg2q41Wlc
+	vTXbwKAhwNLCahJ7H2bw4cdSn4WES/E7nAdF8uESBHLaQCN9he7d3Glv2BdRR/Ia
+	bkLw2gSPzAITf86ijXK10XsyY2PU6fOj8c6tsuKYxyA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3ys4t32840-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Jun 2024 04:20:39 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 45I8KZ60049902
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Jun 2024 04:20:35 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 18 Jun 2024 04:20:34 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 18 Jun 2024 04:20:34 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 18 Jun 2024 04:20:34 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.163])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 45I8KJEV004234;
+	Tue, 18 Jun 2024 04:20:22 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lars-Peter Clausen
+	<lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        "Jonathan Cameron" <jic23@kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Conor Dooley
+	<conor.dooley@microchip.com>
+Subject: [PATCH v5 1/2] dt-bindings: iio: adf4350: add clk provider prop
+Date: Tue, 18 Jun 2024 11:20:06 +0300
+Message-ID: <20240618082012.4496-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6j5qm7tab4pveph5"
-Content-Disposition: inline
-In-Reply-To: <20240617-tdp158-v1-2-df98ef7dec6d@freebox.fr>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 2ekjhkomUuPqJkO0583p3I4WZH2cLugJ
+X-Proofpoint-ORIG-GUID: 2ekjhkomUuPqJkO0583p3I4WZH2cLugJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-18_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ malwarescore=0 adultscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 clxscore=1011 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2406180061
 
+Add properties required for providing clock to other consumers.
 
---6j5qm7tab4pveph5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ .../devicetree/bindings/iio/frequency/adi,adf4350.yaml      | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-On Mon, Jun 17, 2024 at 06:03:00PM GMT, Marc Gonzalez wrote:
-> Prepare to factorize probe function.
->=20
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
+index 43cbf27114c7..d1d1311332f8 100644
+--- a/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
+@@ -28,6 +28,12 @@ properties:
+   clock-names:
+     const: clkin
+ 
++  '#clock-cells':
++    const: 0
++
++  clock-output-names:
++    maxItems: 1
++
+   gpios:
+     maxItems: 1
+     description: Lock detect GPIO.
+-- 
+2.45.2
 
-=2E.. And since we would need a separate binding file, we probably don't
-want to add things to simple-bridge that would not be part of its
-binding.
-
-Even more so when bridge drivers are that simple to write.
-
-Maxime
-
---6j5qm7tab4pveph5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZnFCdQAKCRDj7w1vZxhR
-xSOGAQCyONwu9r3f/CI8n8WI6HWYwIWpVaBHAiQkqRvdA331GwD/UPE/Ia5NbW01
-YA06OHStsPC8FhSXLmOvPo/JdGkDeQA=
-=BELX
------END PGP SIGNATURE-----
-
---6j5qm7tab4pveph5--
 
