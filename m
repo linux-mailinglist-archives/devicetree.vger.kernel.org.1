@@ -1,206 +1,125 @@
-Return-Path: <devicetree+bounces-77298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9C990E11B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 03:05:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C3C90E156
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 03:36:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 924121C2264F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 01:05:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35CAF2841A1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 01:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6696D5227;
-	Wed, 19 Jun 2024 01:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC8F63A9;
+	Wed, 19 Jun 2024 01:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D6juFcrZ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IWFm4qBS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F574C74;
-	Wed, 19 Jun 2024 01:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03461878;
+	Wed, 19 Jun 2024 01:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718759125; cv=none; b=Yx5Pqf2Pj1DwYDGBa10iRNW2+d7CVHI+9rneRc7j9gMr6KTSolIcqeOit/vQJDOcOQhImJQkA1E1FkPAnFHazM4UcLII7P0gtmuywbOcG0yrRt584N1Xr8jf+fG9HvraKp3R9cbUY5a6wTNT/wgWFpZhZTK0Ob+juBSWZ+M736A=
+	t=1718760962; cv=none; b=B9KXBL9+reCPztl2Ui12rsRwcoM8fOgg03JgV4V/4xUBUcHf4szpvcSk1nKx0aVBvMhmIwILOEyhhjwf20/noB2Q+PhS9PFEgDo7h+dswl719IABj6Vsyxx0pLbivcZoPEKsNVGUDP5UzkSm/NVBoLa6CuZBU31DIokkUtAkW6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718759125; c=relaxed/simple;
-	bh=oOwrSvqZA58QNXbz37EYUQNh/FRgOZd5JWpDRpBpFsQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M4+0dWXJfivi5jwsFkjmvXnMGKQcWF9URFpunu9zCX67cNjFoBIVN2RZh3y+gxGyYNopAyDErFGIVxwvaOzSIcTdEbyf7tzT/J858EX28sSaKn8LKsxUW5VUSpXyC60DrYqqK3CCfqAUteYzrKKuQrIordS1QALN1lCuPzlcJds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D6juFcrZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0675CC3277B;
-	Wed, 19 Jun 2024 01:05:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718759124;
-	bh=oOwrSvqZA58QNXbz37EYUQNh/FRgOZd5JWpDRpBpFsQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=D6juFcrZeckxyYzrDwyOrjYbnhm5eMydGFWnZJaRm43kUEgrX/u+/3wGYt/VGhzcG
-	 PLGl4jY0CzIQnfunOoWppYWZn4khA0IDyXgfZY4pWBqlSyTPszR5wHLVK2X1QfuIdZ
-	 ekA+NwnPwXdD9ehGHh6qGjzlAtfuf3K6JYUOpSNc9BMSHCUX5LtToeq1ctvtv6kghN
-	 /pDxGYpq9vQ6ZZzgEgB0qBydfFvROaW30wOhAu27jaKJm0+7jdxbPGWhrd8xw44qvS
-	 SyT/VnUEEQmEVzIJUEuB2j8DdMy1gPDf8x5t71qMqZpNTVbPOg+07Rpv0pfoTBM7an
-	 2yG7Cn8XRzp7A==
-Date: Tue, 18 Jun 2024 18:05:23 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Kamil =?UTF-8?B?SG9yw6Fr?= - 2N <kamilh@axis.com>
-Cc: <florian.fainelli@broadcom.com>,
- <bcm-kernel-feedback-list@broadcom.com>, <andrew@lunn.ch>,
- <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <davem@davemloft.net>,
- <edumazet@google.com>, <pabeni@redhat.com>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach
- link modes
-Message-ID: <20240618180523.47ce876f@kernel.org>
-In-Reply-To: <20240617113841.3694934-5-kamilh@axis.com>
-References: <20240617113841.3694934-1-kamilh@axis.com>
-	<20240617113841.3694934-5-kamilh@axis.com>
+	s=arc-20240116; t=1718760962; c=relaxed/simple;
+	bh=hRatZ+p2pwXfVavlZb0czCqdixefjbssRPfj5eNN2y4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PENVTPwzSnXHvSDDYaJ4y/2xf+LRhElgKH4AhhlF3ulUtHfMZ8O6bClb3TkMW7MNnkoBJ+b7a+erU/oEidXPc9lBvPZ0Xv227gGNRl74iNu0YdtaZOfgdQgvov48iqUP/MxaQ7N9xdX5eJjinK2fuQK1lT82EHsBbtHRPSGiE7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IWFm4qBS; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C921289;
+	Wed, 19 Jun 2024 03:35:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1718760941;
+	bh=hRatZ+p2pwXfVavlZb0czCqdixefjbssRPfj5eNN2y4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IWFm4qBSoU7BofQ8pFLRtW8UXiI9bnTCqHMtL2dKnyGwY972v60j+wuKpJblZEy4H
+	 1cFlLHz1eXoMbC8BpY2Buph4+MyZCq3KLEN8j8TRG+YjnfEb5pBdeRqSe2LIFeo5fT
+	 t8WZENbN7CcJScNb3YYsUiLwCHiL1fXwcTRVQEOQ=
+Date: Wed, 19 Jun 2024 04:35:36 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] media: rcar-vin: Add support for R-Car V4M
+Message-ID: <20240619013536.GI32669@pendragon.ideasonboard.com>
+References: <20240610113124.2396688-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240610113124.2396688-3-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240610113124.2396688-3-niklas.soderlund+renesas@ragnatech.se>
 
-On Mon, 17 Jun 2024 13:38:41 +0200 Kamil Hor=C3=A1k - 2N wrote:
-> Implement single-pair BroadR-Reach modes on bcm5481x PHY by Broadcom.
-> Create set of functions alternative to IEEE 802.3 to handle configuration
-> of these modes on compatible Broadcom PHYs.
+Hi Niklas,
 
-Some nit picks below, but please don't repost until next week.
-Sorry for the delay but it's vacation season, I think some of
-the key folks are currently AFK :(
+Thank you for the patch.
 
-> + * bcm_config_lre_advert - sanitize and advertise Long-Distance Signaling
-> + *  auto-negotiation parameters
-> + * @phydev: target phy_device struct
-> + * @return: 0 if the PHY's advertisement hasn't changed, < 0 on error,
-> + *          > 0 if it has changed
+On Mon, Jun 10, 2024 at 01:31:24PM +0200, Niklas Söderlund wrote:
+> Add support for R-Car V4M. The V4M is similar to V4H and uses the ISP
+> Channel Selector as its only possible video input source. Reuse and
+> rename the info structure from V4H to cover all current Gen4 SoCs.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
- * Return: 0 if the PHY
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-no @ and after the description
+I would normally take this in my tree and send a pull request, but a
+decision on the DT bindings is needed first. I may miss the outcome if I
+don't get CC'ed on v2, but I'm sure Hans or Sakari can also take the
+patches.
 
-> + *
-> + * Description: Writes MII_BCM54XX_LREANAA with the appropriate values,
+> ---
+> * Changes since v1
+> - Create a shared Gen4 info strucutre.
+> ---
+>  drivers/media/platform/renesas/rcar-vin/rcar-core.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/renesas/rcar-vin/rcar-core.c b/drivers/media/platform/renesas/rcar-vin/rcar-core.c
+> index 809c3a38cc4a..6992b61f0d48 100644
+> --- a/drivers/media/platform/renesas/rcar-vin/rcar-core.c
+> +++ b/drivers/media/platform/renesas/rcar-vin/rcar-core.c
+> @@ -1283,7 +1283,7 @@ static const struct rvin_info rcar_info_r8a779a0 = {
+>  	.max_height = 4096,
+>  };
+>  
+> -static const struct rvin_info rcar_info_r8a779g0 = {
+> +static const struct rvin_info rcar_info_gen4 = {
+>  	.model = RCAR_GEN3,
+>  	.use_mc = true,
+>  	.use_isp = true,
+> @@ -1359,7 +1359,11 @@ static const struct of_device_id rvin_of_id_table[] = {
+>  	},
+>  	{
+>  		.compatible = "renesas,vin-r8a779g0",
+> -		.data = &rcar_info_r8a779g0,
+> +		.data = &rcar_info_gen4,
+> +	},
+> +	{
+> +		.compatible = "renesas,vin-r8a779h0",
+> +		.data = &rcar_info_gen4,
+>  	},
+>  	{ /* Sentinel */ },
+>  };
 
-Please don't prefix the description with the word "description"..
+-- 
+Regards,
 
-> + *   after sanitizing the values to make sure we only advertise
-> + *   what is supported.
-> + */
-> +int bcm_config_lre_advert(struct phy_device *phydev)
-> +{
-> +	int err;
-> +	u32 adv;
-> +
-> +	/* Only allow advertising what this PHY supports */
-> +	linkmode_and(phydev->advertising, phydev->advertising,
-> +		     phydev->supported);
-> +
-> +	adv =3D bcm_linkmode_adv_to_lre_adv_t(phydev->advertising);
-> +
-> +	/* Setup BroadR-Reach mode advertisement */
-> +	err =3D phy_modify_changed(phydev, MII_BCM54XX_LREANAA,
-> +				 LRE_ADVERTISE_ALL | LREANAA_PAUSE |
-> +				 LREANAA_PAUSE_ASYM, adv);
-> +
-> +	if (err < 0)
-> +		return err;
-> +
-> +	return err;
-
-You can return phy_modify_changed(... directly, no need for err
-
-> +}
-> +EXPORT_SYMBOL_GPL(bcm_config_lre_advert);
-> +
->  MODULE_DESCRIPTION("Broadcom PHY Library");
->  MODULE_LICENSE("GPL v2");
->  MODULE_AUTHOR("Broadcom Corporation");
-> diff --git a/drivers/net/phy/bcm-phy-lib.h b/drivers/net/phy/bcm-phy-lib.h
-> index b52189e45a84..fecdd66ad736 100644
-> --- a/drivers/net/phy/bcm-phy-lib.h
-> +++ b/drivers/net/phy/bcm-phy-lib.h
-> @@ -121,4 +121,8 @@ irqreturn_t bcm_phy_wol_isr(int irq, void *dev_id);
->  int bcm_phy_led_brightness_set(struct phy_device *phydev,
->  			       u8 index, enum led_brightness value);
-> =20
-> +int bcm_setup_master_slave(struct phy_device *phydev);
-> +int bcm_config_lre_aneg(struct phy_device *phydev, bool changed);
-> +int bcm_config_lre_advert(struct phy_device *phydev);
-> +
->  #endif /* _LINUX_BCM_PHY_LIB_H */
-> diff --git a/drivers/net/phy/broadcom.c b/drivers/net/phy/broadcom.c
-> index 370e4ed45098..5e590c8f82c4 100644
-> --- a/drivers/net/phy/broadcom.c
-> +++ b/drivers/net/phy/broadcom.c
-> @@ -5,6 +5,9 @@
->   *	Broadcom BCM5411, BCM5421 and BCM5461 Gigabit Ethernet
->   *	transceivers.
->   *
-> + *	Broadcom BCM54810, BCM54811 BroadR-Reach transceivers.
-> + *
-> + *
-
-double new line
-
->   *	Copyright (c) 2006  Maciej W. Rozycki
->   *
->   *	Inspired by code written by Amy Fong.
-> @@ -553,18 +556,97 @@ static int bcm54810_write_mmd(struct phy_device *ph=
-ydev, int devnum, u16 regnum,
->  	return -EOPNOTSUPP;
->  }
-> =20
-> -static int bcm54811_config_init(struct phy_device *phydev)
-> +static int bcm5481x_get_brrmode(struct phy_device *phydev, u8 *data)
->  {
-> -	int err, reg;
-> +	int reg;
-> =20
-> -	/* Disable BroadR-Reach function. */
->  	reg =3D bcm_phy_read_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL);
-> -	reg &=3D ~BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN;
-> -	err =3D bcm_phy_write_exp(phydev, BCM54810_EXP_BROADREACH_LRE_MISC_CTL,
-> -				reg);
-> -	if (err < 0)
-> +
-> +	*data =3D (reg & BCM54810_EXP_BROADREACH_LRE_MISC_CTL_EN) ? 1 : 0;
-> +
-> +	return 0;
-> +}
-> +
-> +static int bcm54811_read_abilities(struct phy_device *phydev)
-> +{
-> +	static const int modes_array[] =3D { ETHTOOL_LINK_MODE_100baseT1_Full_B=
-IT,
-> +					   ETHTOOL_LINK_MODE_10baseT1BRR_Full_BIT,
-> +					   ETHTOOL_LINK_MODE_1000baseT_Full_BIT,
-> +					   ETHTOOL_LINK_MODE_1000baseX_Full_BIT,
-> +					   ETHTOOL_LINK_MODE_1000baseT_Half_BIT,
-> +					   ETHTOOL_LINK_MODE_100baseT_Full_BIT,
-> +					   ETHTOOL_LINK_MODE_100baseT_Half_BIT,
-> +					   ETHTOOL_LINK_MODE_10baseT_Full_BIT,
-> +					   ETHTOOL_LINK_MODE_10baseT_Half_BIT };
-
-This is more normal formatting for the kernel:
-
-	static const int modes_array[] =3D {
-		ETHTOOL_LINK_MODE_100baseT1_Full_BIT,
-		ETHTOOL_LINK_MODE_10baseT1BRR_Full_BIT,
-
-please try to avoid going over 80 characters
-
-> +static int bcm54811_config_init(struct phy_device *phydev)
-> +{
-> +	int err, reg;
-> +	bool brr =3D false;
-> +	struct device_node *np =3D phydev->mdio.dev.of_node;
-
-order variable declaration lines longest to shortest,=20
-AKA reverse xmas tree
+Laurent Pinchart
 
