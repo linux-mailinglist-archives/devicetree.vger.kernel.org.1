@@ -1,187 +1,150 @@
-Return-Path: <devicetree+bounces-77394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2310E90E7EE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 12:11:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 004F790E80C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 12:13:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC2651F22350
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:11:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63BED282E86
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14ACE824BB;
-	Wed, 19 Jun 2024 10:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F96584E11;
+	Wed, 19 Jun 2024 10:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H4aqWOsB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ONONyysk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3FE824B2;
-	Wed, 19 Jun 2024 10:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86D8824AE;
+	Wed, 19 Jun 2024 10:12:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718791860; cv=none; b=UNth2eN9sCIHllF2DougUgufOXvGNmyve44qBcVEfLHWwJm98CtSxnyNeE+29iGMDXSiCWOiKZINzFV5/kAcIaYBxQBoBRDOxH9Ww1Bdu5x1fYKrO/P5xgzLsDZyo6cjbf6zdlgbuOHiD1C6RD/7PH3uy7uhaiwcnEkds7J9aAA=
+	t=1718791968; cv=none; b=Z/sqfbBGstR+CsopUDAWEkEd3SEHS6sMoTtnHI3ToI7RjaSU8/B1SQukVA/UrfL5DNTjs2oCJ2Lwhs/5aidpSZR9JNG5BEqXOac8ku7xPIodD3JEKt/j6YdayBU1cV7KlevCsMDvhyW7IDFXLkWj6b/CBe6+R7lJfnX9GBIRvMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718791860; c=relaxed/simple;
-	bh=0rAZYQHhp2RqKaZAMHmpDf0sdQTZ9FI3Tx8uRVuGaVY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oJYKPEvbTx1N0PL3/Z3FWBlsN7ed167/w1EwgcMr4716slcTpAKE/GmgkqbVRZaE82lyYQY7wKTuFbytMEGTnVfUGvu8mel6tye0h7rbTGdL/pSuzzNCLz0UxO0y6utB7uAPbLVLm9LMjRLmdmnx9wqqVAQLs6Lre2K7vOKB2K0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H4aqWOsB; arc=none smtp.client-ip=209.85.219.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6b50aeb2f31so852716d6.0;
-        Wed, 19 Jun 2024 03:10:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718791856; x=1719396656; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YE3Lrkv65eZljuEfFBOSDNEGg8fn6zSJ9y1iJWCoGl4=;
-        b=H4aqWOsBMBp4Wd9w/fpOKHFBVRanHukuL78KFjfySw9y7RAWKRqbqRMAo0vKGRhXOV
-         7GtP82J7WmwNDY/foWnekc2tcksqfWiV7i+2b7uDkdT+Q4lFfXeHcxMa9U+GFsR7Agee
-         cvW0aTD/9we+fZTVAtV7MSKIQ7+/Anw67TO2inAxKlAK/0q5Vu51yWt5wgM8pGMmsRxh
-         Nx2ToDn8ehGPmpr5P9KPcIhGRq32wUmD42pHtAy5jbJodmlolS9GeiLTh1V+shy1C78M
-         EKnFkRAHii9w1BZ5jNvtCjXysxRmLy0PG0rVMZrj0wMTA5GcSRreEaXNRtq30hoT7eBz
-         FZLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718791856; x=1719396656;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YE3Lrkv65eZljuEfFBOSDNEGg8fn6zSJ9y1iJWCoGl4=;
-        b=Se02DcJhKYkLtwP/CVPr8N/YCyJ7nH4QweOc2pzzvxA4Q1UOwLn8+msDdFjH3WpmdM
-         s+NQKxbttHy7HvFpo2bZBLTmjwaW14Ox9wcL7GKuBmTx9ED0haYBb9+CwJym2Firvk+L
-         BIDiuB+HoFAHMesENapLQgOH0wW7+5JHxF8G28uaG2q6r+2sEEXRy2cdqXfD/bSP6DQK
-         wGEmmNeZwMeCB/bU2iHDhdI5AoaMTE8oe2LgRgmzEW5JOHWWYcIrOLdMiqhDz+V9IRKP
-         L7u5VAWKZc2Z8iM7MdZoGYMz3/rSognQZwFp7axJZfmv9GZUP6OKs8Qcb54C0nuCBg6O
-         Wing==
-X-Forwarded-Encrypted: i=1; AJvYcCWPGVav/cBL4TVQ3GsTS+HzaAuK1556zCrJoWYD+KTMJPH+mRFxHXTQOGC2WjyfyVU8bqdeSqYNgCoT4fC/AOFlUQmk40IJFp+cNaQ6Vna900PL7UL/iwxCEaUclqril/mHshuq/oX7rA==
-X-Gm-Message-State: AOJu0YzDvYOAfDnLks0dLtY0EdbPyE+FAh1jRiiOEFUZFqMBAnbnoILv
-	6ndctIjRhqLNoJOktbjqDsKSBrcRABFqSHfu8IVO0t6NIMNFHwcm
-X-Google-Smtp-Source: AGHT+IF3P4/l4f+Swlmr4ZOd+VRtcUR3F56EYW5FRGDbYrofYG5NpSJT71LRl1xwlRdhpgjRnFFf7A==
-X-Received: by 2002:a0c:dc13:0:b0:6b0:7e44:c89 with SMTP id 6a1803df08f44-6b501ec345emr23691296d6.60.1718791855961;
-        Wed, 19 Jun 2024 03:10:55 -0700 (PDT)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:82:66f1:d3bb:c66f])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b2a5c2fbbasm74734976d6.60.2024.06.19.03.10.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jun 2024 03:10:55 -0700 (PDT)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp: Fix pgc vpu locations
-Date: Wed, 19 Jun 2024 05:10:44 -0500
-Message-ID: <20240619101045.6317-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1718791968; c=relaxed/simple;
+	bh=YPE7L3MBTVX7TNFQWGWAAbTRS5eEO4VzyhQ99y3zEWE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bRyOtAhyVtZYD7YMKWo/YPs/bvrhMRnK91G7uMqE4MRB9VKvb9tPbOhDul2N6nQAe/oKDEhHlC39TM1zLX3FCiQpD/p7qoeewuLKc+LLRVKg4zf90q5jZbiiDOa0lluvbpJQmS3ciKc5wosE+8THRRfDkQKB1RjkBJeVSmqtJcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ONONyysk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JA46Tj014872;
+	Wed, 19 Jun 2024 10:12:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=5l7P0pcQAGIo0TVfiWBIXKlO
+	X9EMst2BA4PlAJPNRa8=; b=ONONyyskoipe98S0Y5532prrhODl+sB5skDuUxid
+	RL5Lnsnl/MMLhkKuQTt3FKdT/2oNxouL9zLwllwFbC5Gx7uk8GyELsPdN6p8PzVy
+	bKujmcVtX0eTrozBdQQDMJQFakiMOBj24gic61X9z4OzFxFAtpDVifIeKewN7fpL
+	VSEU/pF53QTSR9QsBG2DGa5Jh4ZrHT80lSxH68YIysswTwpQ0yctomgmZ+QNdW11
+	SWIrRB+X9cqdrp5h4DlJns1nAiqTHF3O66vgbFJ+c6HXTvVi1TZ6H5r0+U5J/+6z
+	SLIdgHMuIleTtI+/GhztkPDeZIYpy14NmJIA8IFG7JpVrA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yuj9x1b49-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 19 Jun 2024 10:12:37 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45JACa0T005320
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 19 Jun 2024 10:12:36 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 19 Jun 2024 03:12:33 -0700
+Date: Wed, 19 Jun 2024 15:42:29 +0530
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3] arm64: dts: qcom: qdu1000: Add secure qfprom node
+Message-ID: <ZnKvDZGuc7hojsCj@hu-mojha-hyd.qualcomm.com>
+References: <20240618092711.15037-1-quic_kbajaj@quicinc.com>
+ <ZnHUFVFKTP+74Iie@hu-mojha-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZnHUFVFKTP+74Iie@hu-mojha-hyd.qualcomm.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yV0sAE45rMw_uyf0F3_D_9FyZ7YNuaLv
+X-Proofpoint-GUID: yV0sAE45rMw_uyf0F3_D_9FyZ7YNuaLv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-19_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=852
+ impostorscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 adultscore=0
+ lowpriorityscore=0 spamscore=0 malwarescore=0 bulkscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2406190075
 
-The various pgv_vpu nodes have a mismatch between the value after
-the @ symbol and what is referenced by 'reg' so reorder the nodes
-to align.
+On Wed, Jun 19, 2024 at 12:08:13AM +0530, Mukesh Ojha wrote:
+> On Tue, Jun 18, 2024 at 02:57:11PM +0530, Komal Bajaj wrote:
+> > Add secure qfprom node and also add properties for multi channel
+> > DDR. This is required for LLCC driver to pick the correct LLCC
+> > configuration.
+> > 
+> > Fixes: 6209038f131f ("arm64: dts: qcom: qdu1000: Add LLCC/system-cache-controller")
+> > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> > ---
+> > Changes in v3:
+> > * Addressed comment by Konrad
+> > * Added Fixes tag in commit message as suggested by Dmitry
+> > * Link to v2: https://lore.kernel.org/linux-arm-msm/20240612063424.2494-1-quic_kbajaj@quicinc.com/
+> > 
+> > Changes in v2:
+> > * Minor correction in commit message
+> > * Link to v1: https://lore.kernel.org/linux-arm-msm/20240607113445.2909-1-quic_kbajaj@quicinc.com/
+> > ---
+> >  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> > index 7a77f7a55498..27f9fc87079c 100644
+> > --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> > @@ -1584,6 +1584,21 @@ system-cache-controller@19200000 {
+> >  			reg-names = "llcc0_base",
+> >  				    "llcc_broadcast_base";
+> >  			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +			nvmem-cells = <&multi_chan_ddr>;
+> > +			nvmem-cell-names = "multi-chan-ddr";
+> > +		};
+> > +
+> > +		sec_qfprom: efuse@221c8000 {
+> > +			compatible = "qcom,qdu1000-sec-qfprom", "qcom,sec-qfprom";
+> > +			reg = <0 0x221c8000 0 0x1000>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <1>;
+> > +
+> > +			multi_chan_ddr: multi-chan-ddr@12b {
+> > +				reg = <0x12b 0x1>;
+> > +				bits = <0 2>;
+> > +			};
+> 
+> LGTM, without this change, LLCC driver for QDU1000 will result in probe failure.
+> 
+> Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
 
-Fixes: df680992dd62 ("arm64: dts: imx8mp: add vpu pgc nodes")
-Suggested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Just noticed, sec_qfprom driver config CONFIG_NVMEM_QCOM_SEC_QFPROM, still
+need to be enabled.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 3576d2b89b43..ee0c864f27e8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -838,6 +838,12 @@ pgc_gpumix: power-domain@7 {
- 						assigned-clock-rates = <800000000>, <400000000>;
- 					};
- 
-+					pgc_vpumix: power-domain@8 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MP_POWER_DOMAIN_VPUMIX>;
-+						clocks = <&clk IMX8MP_CLK_VPU_ROOT>;
-+					};
-+
- 					pgc_gpu3d: power-domain@9 {
- 						#power-domain-cells = <0>;
- 						reg = <IMX8MP_POWER_DOMAIN_GPU3D>;
-@@ -853,6 +859,28 @@ pgc_mediamix: power-domain@10 {
- 							 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
- 					};
- 
-+					pgc_vpu_g1: power-domain@11 {
-+						#power-domain-cells = <0>;
-+						power-domains = <&pgc_vpumix>;
-+						reg = <IMX8MP_POWER_DOMAIN_VPU_G1>;
-+						clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
-+					};
-+
-+					pgc_vpu_g2: power-domain@12 {
-+						#power-domain-cells = <0>;
-+						power-domains = <&pgc_vpumix>;
-+						reg = <IMX8MP_POWER_DOMAIN_VPU_G2>;
-+						clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
-+
-+					};
-+
-+					pgc_vpu_vc8000e: power-domain@13 {
-+						#power-domain-cells = <0>;
-+						power-domains = <&pgc_vpumix>;
-+						reg = <IMX8MP_POWER_DOMAIN_VPU_VC8000E>;
-+						clocks = <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
-+					};
-+
- 					pgc_hdmimix: power-domain@14 {
- 						#power-domain-cells = <0>;
- 						reg = <IMX8MP_POWER_DOMAIN_HDMIMIX>;
-@@ -890,33 +918,6 @@ pgc_ispdwp: power-domain@18 {
- 						reg = <IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP>;
- 						clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>;
- 					};
--
--					pgc_vpumix: power-domain@19 {
--						#power-domain-cells = <0>;
--						reg = <IMX8MP_POWER_DOMAIN_VPUMIX>;
--						clocks = <&clk IMX8MP_CLK_VPU_ROOT>;
--					};
--
--					pgc_vpu_g1: power-domain@20 {
--						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
--						reg = <IMX8MP_POWER_DOMAIN_VPU_G1>;
--						clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
--					};
--
--					pgc_vpu_g2: power-domain@21 {
--						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
--						reg = <IMX8MP_POWER_DOMAIN_VPU_G2>;
--						clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
--					};
--
--					pgc_vpu_vc8000e: power-domain@22 {
--						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
--						reg = <IMX8MP_POWER_DOMAIN_VPU_VC8000E>;
--						clocks = <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
--					};
- 				};
- 			};
- 		};
--- 
-2.43.0
-
+-Mukesh
 
