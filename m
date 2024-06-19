@@ -1,244 +1,118 @@
-Return-Path: <devicetree+bounces-77301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F4E390E1A1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 04:31:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E4790E1E5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 05:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A94341F23E41
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 02:31:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3C50B20DE5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 03:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE5B262BD;
-	Wed, 19 Jun 2024 02:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99C251C36;
+	Wed, 19 Jun 2024 03:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHm9xAeZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dzJBSkQs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3F22599;
-	Wed, 19 Jun 2024 02:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC85B1DFCB;
+	Wed, 19 Jun 2024 03:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718764300; cv=none; b=iO/eQtYb6wN/TgAge3cendE1+JQqVDdoyxOB93gYyJeY7Ty8Rfng/GYm6DRRhupAIIxSN2XMeZsmaoJgJIqRzYiv3Pa1PyEenjOBlpaKTldhK6nHuz8MyR0kWSJsf8ya4oDfRoxyCiOzCYyAS5lQNF3Im56qyE1mImxIWKFuM7w=
+	t=1718767004; cv=none; b=FPcmmEhK6m+e1tGMEk/lix6u1IUCsSM9tP8d/8+6l15drpx+ZjKio0CT/JaiHVqHDCqRqoFa13UXc0HtNFx99y8SWUr/HxT1odfLj5y0iBNVzG2Oy6xgbE7ybdstz14AQmHuM2gxNwK5cq1Z5lU/t7sRftHdjyRRwQ7PKSG53YE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718764300; c=relaxed/simple;
-	bh=tON+1ko1+L9sLXDmaPD3JWG8AGbdMBPXq8ldPeXQYsM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=SLf0FIujXxD6uRY8i/oMt8qjd99o1P+XlDirWzxC0HL8DrYQyEzSxf+AgVmlNHo1eiQ5z/PCkGKN0xT68lUeyf3fzLq3TfCMlRhYYnf07lnOKcPEKEmKsLhVpzd0Qm1xlp40DNwTGFg0fEOO0jFF7Z670lzBjKIJNn4hPDxmxOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aHm9xAeZ; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4405743ac19so3946521cf.0;
-        Tue, 18 Jun 2024 19:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718764297; x=1719369097; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jJWducu000Gylf5XAOa8WIhgRCeIrgAnJZ+kHKrkDe0=;
-        b=aHm9xAeZhjpoEwvCZLdh7hTZks5R4eqrFLAT4vQYmyZ4Lagr5X8DD+KNT1nhXGzIDb
-         lCeukbuiABKa+ERIxOy+k9xOI3fhbUk/wn7/vtlQdY+6ILen4lmbytC6E6x/VeRV69JB
-         0276vhA8sNpygbC87eP/aZOttH9QqFyrJsVkywanrZKjbM6Y+0jp3vFVKrofPPujXdT3
-         CzZDqbROmpwU+NBGwCRkhdW8k/xOSFfwNLeAxPluG4zr3BCxX2cOGjMLhNdrnrSAvCxc
-         RijUefiWMoHowNqWNcRw1UYJuHSOKIECAUPRcL4qjBGfWDvJt5TKTFxBrAp9Tz/CWc5b
-         VUqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718764297; x=1719369097;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jJWducu000Gylf5XAOa8WIhgRCeIrgAnJZ+kHKrkDe0=;
-        b=v5f2BAoDJSgCJU0A20I3B+1X5APORLHrDROlJKc6jkOo1KgyurszQ0bqi16Blg3Sd7
-         soJ4MmrPp6AfEkfL9vD3QefdkbVn3qH/LWLgAWTdd+DMCiDOiFej36LJE/sSa+wmfTed
-         DN85ERwhzDGymTUSX8LkCJjZvXM7qzp0zY8Jw5sqvbXPwLM+7Cea8KoeDqz5+rm1Qq9/
-         J0DKg6rgvq8Q879Yee+fOvZUqHAdbCvPPOD4fOjcx4C5/EK/5yAM9vO+2Dk8M0a7kocu
-         XwQDCzjmKCPQ5zGNxnVelawgt6nIxKyhsmvYYvHm+QyJOOIzWYnYFNpKSW5FhouM24WX
-         KJ5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXPMDTvz2a+YQU2/3Ss0J768McAAQ/zOR8FX4ELdLK3rYw8VVYI7K4nNiqA8dU7vBEsOSMgZpGeERyfDEhyM6AMkR2F1bMFzskETFqbdOYUmKbUdC/mjQRIl1iY4QRtX0b3w+zT3ar0ImtCYneJmbd9lpgGkAOJKIBY3EghzDBdLH7U
-X-Gm-Message-State: AOJu0YwcHKw6J30hiIx9BxTItokRQOnGyPGrlD0oRlNqfqWXZpJm/JqX
-	2plb3dWUMS9YFBNu1BbyyqQo7ElPFCOd5WyX99F4aRenyVTSpzuy
-X-Google-Smtp-Source: AGHT+IE+HAIxr8nOrosxxzcdbM00QsPfxTRPEYuk5G+mgX2XurEoYtjncDIdow1JK4U189/2i89J0A==
-X-Received: by 2002:a05:622a:138b:b0:442:1204:5d72 with SMTP id d75a77b69052e-444a78dcc3fmr36077401cf.30.1718764297372;
-        Tue, 18 Jun 2024 19:31:37 -0700 (PDT)
-Received: from [127.0.1.1] ([2607:fea8:bad7:5400:f8a2:b06e:a96b:63dd])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-441f2fceea3sm61651211cf.78.2024.06.18.19.31.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 19:31:36 -0700 (PDT)
-From: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
-Date: Tue, 18 Jun 2024 22:31:35 -0400
-Subject: [PATCH v4] dt-bindings: thermal: convert hisilicon-thermal.txt to
- dt-schema
+	s=arc-20240116; t=1718767004; c=relaxed/simple;
+	bh=7tNztevkaavreFJV4rcNE+ypDdZDtO+Kfjq+mux+/GI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J/C+ZCz24pgNuD477MAF7n5DuXF73V4tcggflEi5NThofKPBKp4e/bW6XLwlDEmQRLls4WQea7O/UAin9QkxrLe67rz7BlnwbW1g/MTYCRvv74/xwZX9nIv0P1whg2Ovk6E2s7dgtgKe3j/0QEodAVmQ6R7d1l0a9Iow4Su8d+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dzJBSkQs; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718767003; x=1750303003;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7tNztevkaavreFJV4rcNE+ypDdZDtO+Kfjq+mux+/GI=;
+  b=dzJBSkQsVOiMXFP4MAeL84xMiQWCKbjGeTjYaF6U7aqWX5muNV878vIg
+   F6A0FPC3Wwg4gGyp8jqGhiqFkDhvR6F347DHs3+yW21ImwufEWIvexfa/
+   v+LIjlzxpCPBn2SXGt6gdHrvLlW1qEJjXbVgcarstaArMc2RK+FoZAV6v
+   mitNLcye1Mib2cHqCP13Xmmo7EG1zpHb7IGX3wPM0qmPM+H7uDJ5KPqYx
+   1zYZEDducn6p6L3NTUYXWkhkSTFO0gcen6k9IQNNHbhGrWGcfp9TApJhm
+   IC0Gwhy+pfWGkhpWFxEOiXpAKJap8QYwmXKTv6RYpbn6phZGyB7uPU+8+
+   A==;
+X-CSE-ConnectionGUID: nVR4zDwHTaiRlkdCLCWQfg==
+X-CSE-MsgGUID: geD0UplfTiSQKeGVzrJv2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26363845"
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; 
+   d="scan'208";a="26363845"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2024 20:16:42 -0700
+X-CSE-ConnectionGUID: VNwv6KUmRV291ct3PKIUNA==
+X-CSE-MsgGUID: pjj5/MnPTyikLcMM9WZraQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; 
+   d="scan'208";a="46893908"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 18 Jun 2024 20:16:39 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sJloK-0006Da-1B;
+	Wed, 19 Jun 2024 03:16:36 +0000
+Date: Wed, 19 Jun 2024 11:15:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Guillaume Stols <gstols@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Beniamin Bia <beniamin.bia@analog.com>,
+	Stefan Popa <stefan.popa@analog.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	devicetree@vger.kernel.org, Guillaume Stols <gstols@baylibre.com>,
+	jstephan@baylibre.com, dlechner@baylibre.com
+Subject: Re: [PATCH 7/9] iio: adc: ad7606: switch mutexes to scoped_guard
+Message-ID: <202406191142.rs8moLqC-lkp@intel.com>
+References: <20240618-cleanup-ad7606-v1-7-f1854d5c779d@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240618-hisilicon-thermal-dt-bindings-conversion-v4-1-7eba97fbe6d0@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAZDcmYC/63QS4rDMBAE0KsEraNBn7YUZ5V7DFno07IFthxkI
- yYE333kMANeJpBlNc0rqAeZMUecyfnwIBlLnOOUaoDjgbjepA5p9DUTwQQwxSXt68sQ3ZTo0mM
- ezUD9Qm1MPqZupvVeMG8IlQZQcmCBmROp3C1jiD/Pqu9rzRVapnx/NhexXf9L4PWSIiinqJSzH
- mQQ0F660cThy03j1vkH6jfBBnSDXKFX1n0GlIw7RFEXsZ8BEU1rXdM6rXfgtmuR+y3fgWWFlT9
- 5gMCC17CH13X9BZ4krxksAgAA
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com, 
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
-X-Mailer: b4 0.14-dev-0bd45
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718764296; l=4182;
- i=abdulrasaqolawani@gmail.com; s=20240613; h=from:subject:message-id;
- bh=tON+1ko1+L9sLXDmaPD3JWG8AGbdMBPXq8ldPeXQYsM=;
- b=XKaE+TM/hnfwscXjITuSt+j4OEluklmc8wyfhJyQ6cuz6y4k7Flwt5XmRW3CLyrQlxYyu2MWd
- r2MWZcn91uDDcP706FFLsb4ecGT0mVgj+Lx8nqMkNm8AicLfjJqHlgu
-X-Developer-Key: i=abdulrasaqolawani@gmail.com; a=ed25519;
- pk=cUqfinPW5pkopFB8ShBc0ZTNgYvSW5ZTa8aLIFPGp/w=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240618-cleanup-ad7606-v1-7-f1854d5c779d@baylibre.com>
 
-Convert the hisilicon SoCs tsensor txt bindings to dt-schema
+Hi Guillaume,
 
-Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
----
-Changes in v4:
-- Update the indentation for 'examples'.
+kernel test robot noticed the following build warnings:
 
-- Link to v3: https://lore.kernel.org/all/71b58547-545e-4953-baa0-f3c6c8c3d2f9@kernel.org/
+[auto build test WARNING on 07d4d0bb4a8ddcc463ed599b22f510d5926c2495]
 
-Changes in v3:
-- Same as v2 
+url:    https://github.com/intel-lab-lkp/linux/commits/Guillaume-Stols/dt-bindings-iio-adc-adi-ad7606-add-missing-datasheet-link/20240618-223010
+base:   07d4d0bb4a8ddcc463ed599b22f510d5926c2495
+patch link:    https://lore.kernel.org/r/20240618-cleanup-ad7606-v1-7-f1854d5c779d%40baylibre.com
+patch subject: [PATCH 7/9] iio: adc: ad7606: switch mutexes to scoped_guard
+config: x86_64-randconfig-101-20240619 (https://download.01.org/0day-ci/archive/20240619/202406191142.rs8moLqC-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240619/202406191142.rs8moLqC-lkp@intel.com/reproduce)
 
-- Link to v2: https://lore.kernel.org/r/20240617-hisilicon-thermal-dt-bindings-conversion-v2-1-5eea9bc59c77@gmail.com
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406191142.rs8moLqC-lkp@intel.com/
 
-Changes in v2:
-- Remove extra node in example.
-- Use standard node name in example.
-- Include additional defines from includes.
-- Add reference to thermal-sensor.yaml.
-- Remove redundant properties and comments.
+All warnings (new ones prefixed by >>):
 
-- Link to v1: https://lore.kernel.org/all/20240613224204.185844-1-abdulrasaqolawani@gmail.com
----
+>> drivers/iio/adc/ad7606.o: warning: objtool: ad7606_reg_access+0x5a: sibling call from callable instruction with modified stack frame
 
-Validated with dtschema and tested against `hi3660-hikey960.dts`.
----
- .../bindings/thermal/hisilicon,tsensor.yaml        | 57 ++++++++++++++++++++++
- .../bindings/thermal/hisilicon-thermal.txt         | 32 ------------
- 2 files changed, 57 insertions(+), 32 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/hisilicon,tsensor.yaml b/Documentation/devicetree/bindings/thermal/hisilicon,tsensor.yaml
-new file mode 100644
-index 000000000000..11aca2b749d7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/hisilicon,tsensor.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/hisilicon,tsensor.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Temperature Sensor on HiSilicon SoCs
-+
-+maintainers:
-+  - Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
-+
-+allOf:
-+  - $ref: thermal-sensor.yaml
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,tsensor
-+      - hisilicon,hi3660-tsensor
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: thermal_clk
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  '#thermal-sensor-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#thermal-sensor-cells'
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/hi6220-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    temperature-sensor@f7030700 {
-+        compatible = "hisilicon,tsensor";
-+        reg = <0xf7030700 0x1000>;
-+        interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&sys_ctrl HI6220_TSENSOR_CLK>;
-+        clock-names = "thermal_clk";
-+        #thermal-sensor-cells = <1>;
-+    };
-diff --git a/Documentation/devicetree/bindings/thermal/hisilicon-thermal.txt b/Documentation/devicetree/bindings/thermal/hisilicon-thermal.txt
-deleted file mode 100644
-index 4b19d80e6558..000000000000
---- a/Documentation/devicetree/bindings/thermal/hisilicon-thermal.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--* Temperature Sensor on hisilicon SoCs
--
--** Required properties :
--
--- compatible: "hisilicon,tsensor".
--- reg: physical base address of thermal sensor and length of memory mapped
--  region.
--- interrupt: The interrupt number to the cpu. Defines the interrupt used
--  by /SOCTHERM/tsensor.
--- clock-names: Input clock name, should be 'thermal_clk'.
--- clocks: phandles for clock specified in "clock-names" property.
--- #thermal-sensor-cells: Should be 1. See Documentation/devicetree/bindings/thermal/thermal-sensor.yaml for a description.
--
--Example :
--
--for Hi6220:
--	tsensor: tsensor@0,f7030700 {
--		compatible = "hisilicon,tsensor";
--		reg = <0x0 0xf7030700 0x0 0x1000>;
--		interrupts = <0 7 0x4>;
--		clocks = <&sys_ctrl HI6220_TSENSOR_CLK>;
--		clock-names = "thermal_clk";
--		#thermal-sensor-cells = <1>;
--	}
--
--for Hi3660:
--	tsensor: tsensor@fff30000 {
--		compatible = "hisilicon,hi3660-tsensor";
--		reg = <0x0 0xfff30000 0x0 0x1000>;
--		interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
--		#thermal-sensor-cells = <1>;
--	};
-
----
-base-commit: 8d5ed3dd17c9c1bdb39ecb125f0e28dfb5111dd9
-change-id: 20240613-hisilicon-thermal-dt-bindings-conversion-3a4e3140f0a8
-
-Best regards,
 -- 
-Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
