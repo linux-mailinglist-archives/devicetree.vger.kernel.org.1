@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-77324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 374DF90E390
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:36:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C70C490E39C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:40:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1D331F24686
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:36:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC06C1C21614
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9636F318;
-	Wed, 19 Jun 2024 06:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4CA6F2E6;
+	Wed, 19 Jun 2024 06:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UJNscaX0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WkpyGp97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752066F315;
-	Wed, 19 Jun 2024 06:35:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122984C98;
+	Wed, 19 Jun 2024 06:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718778910; cv=none; b=ijundILy3YkmMyQbN6/3vVi5Ey6yIVuK/89eC+GmzHsJMcmoMJ5bp6iShkV4CuN3AYwD0wU2eVQ9jG6xoYOwtd9284mrWjrLZ4KZVl7D+ZpspyPWVrBFQb6J+hK4UM7oppAjK0XL9pPQ9e4+jBFEgQtAzKmr2Cq/8YlPNeJqnZE=
+	t=1718779215; cv=none; b=Lpi3aEBHu9nXDA5tcmGjgLkzk0xOh3YEjMKdqLN2FPn+ypEc9nLa5MHlUozYvEEaeFib5TTIRH8Su9FsBn0UoU9NgI5Y8w5MYrF2rM+6I4PmLjVFVqUsCSg+GdQKqhCxxOJTq7GdH7CJfkGKxBkf85s2g660iDSfpydO6xtYK/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718778910; c=relaxed/simple;
-	bh=UDqcr8PsQ5epcKbuV5qSLh/aCNPCwA9b1ki+GensfqY=;
+	s=arc-20240116; t=1718779215; c=relaxed/simple;
+	bh=BWCauMt68vFjBRrLNx3G2KlJT+7wCHlFSe+2GGiOfq8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r6rf1Y7+tLYTAK6HMUCfVkQJtEGJEfxCOngZgojo09ZocvU5WDH1inI9zQlEymxsj0mBLi5llMiTRznbmuoE6+jG/vPQGdge8RfevlJM3tSdjNajuejGfYMBPH5Qkk6ETHcNuIH/No99ZNMUWU2g908VuUI+9ElMkM60Tq69hF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UJNscaX0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 155AAC2BBFC;
-	Wed, 19 Jun 2024 06:35:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718778910;
-	bh=UDqcr8PsQ5epcKbuV5qSLh/aCNPCwA9b1ki+GensfqY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UJNscaX02fXkkgISd7PVEF9pJRuhG/hnRJtxHswIZBsqIzODDbBxm1b9QgFwjr/96
-	 bZvIRBfeGJLznjWkjtYobfcOcWPT35xVhLc8EgY4jbbUcydSi+NjCOCp4pBhGBLYCF
-	 p2mi1cyHchK3jaWI0W7ZReXJD1TVu5n9Ut6KHqUqzTt+XQZpkmVE4ZtXG3rD4CQgQh
-	 RJlCnQ9oSar8YSJQr+GDB3IV5dR8SzxliEOCRKBUWBKpL4kCh0R1hp89y9Ea83rQH7
-	 Dx/OiQzkKr1JSkpVGQTMUB9b3e/PnTGIWQJnSVpDOO+wNSFeoLf4xSRhvzpGn23cpg
-	 V2hoiHvSLpXgA==
-Message-ID: <fd9fea0a-c5ff-46ca-af12-7729f78f3768@kernel.org>
-Date: Wed, 19 Jun 2024 08:35:02 +0200
+	 In-Reply-To:Content-Type; b=IpdOmvg7d419dhO21WZb2C55qpMBjIthTMRuy7eY4GVNO2TTXj2dJp9sp6D5IQ7qDIwQJMoWHWwA0WiLJ40k6QIot8rW+eQ+3zOJBVAZjI3jKx2vtkOxZi+QX9nTUC36gMkcbNhCHXmea6jrc+zXi4w8XUzlW/m6IoPd36ITZoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WkpyGp97; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718779214; x=1750315214;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=BWCauMt68vFjBRrLNx3G2KlJT+7wCHlFSe+2GGiOfq8=;
+  b=WkpyGp97rfKd3E61mx+S1I44VdWjv0+vu5edxhU7k/zh/DOSuNgIY1Fd
+   uaukhot9qsZuhh8vh48iaTZwNf7FyY9EECf/LBKOBdBN3sL3UkNFTCc1g
+   xZKtsujHcBPwb12jX0L6637PSRfO9CNFnaHQB8+1MzSlXLGkuQbSUlZdU
+   +TK9SyrUimSarUn2aqg0/ve5QgL6Eijlepu2CsXGXx5IhcHIdQe458iTZ
+   IZJjKcxVpsmb0N28fAJPYCzeEl2/N9994BmJBw79aLH4Ig6/7hhWgLB08
+   KWYnsoPCpbUCjY32fqRwQGnWm1x//JWT8GGAlZBW0/DkXcmr+Zr2ERlDH
+   w==;
+X-CSE-ConnectionGUID: IA7CVRFwRQ6IIG/fzxG4sQ==
+X-CSE-MsgGUID: JgY/uaYNQsOkfBczoaGVgA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="27102379"
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; 
+   d="scan'208";a="27102379"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2024 23:40:14 -0700
+X-CSE-ConnectionGUID: j25NWx8hS6GtZnxJJ/Z/UQ==
+X-CSE-MsgGUID: p6/cW7vCSMW49szzklmGNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; 
+   d="scan'208";a="65045346"
+Received: from marquiz-s-2.fi.intel.com (HELO [10.237.72.58]) ([10.237.72.58])
+  by fmviesa002.fm.intel.com with ESMTP; 18 Jun 2024 23:40:09 -0700
+Message-ID: <f427b28c-420b-4174-a670-70f626f8061e@linux.intel.com>
+Date: Wed, 19 Jun 2024 09:40:07 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,87 +67,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: net: Convert fsl-fman to yaml
-To: Frank Li <Frank.Li@nxp.com>, Yangbo Lu <yangbo.lu@nxp.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Madalin Bucur <madalin.bucur@nxp.com>, Sean Anderson <sean.anderson@seco.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev
-References: <20240618-ls_fman-v2-0-f00a82623d8e@nxp.com>
- <20240618-ls_fman-v2-2-f00a82623d8e@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: dw: Document compatible
+ thead,th1520-i2c
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Drew Fustini <dfustini@tenstorrent.com>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240618-i2c-th1520-v3-0-3042590a16b1@bootlin.com>
+ <20240618-i2c-th1520-v3-1-3042590a16b1@bootlin.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240618-ls_fman-v2-2-f00a82623d8e@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+From: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+In-Reply-To: <20240618-i2c-th1520-v3-1-3042590a16b1@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2024 23:53, Frank Li wrote:
-> Convert fsl-fman from txt to yaml format and split it fsl,fman.yam,
-> fsl,fman-port.yaml, fsl-muram.yaml, fsl-mdio.yaml.
+Hi
+
+On 6/18/24 10:42 AM, Thomas Bonnefille wrote:
+> Add documentation for compatible string thead,th1520-i2c which can be
+> used specifically for the TH1520 SoC.
 > 
-> Addition changes:
-> fsl,fman.yaml:
->   - Fixed interrupts in example.
->   - Fixed ethernet@e8000 miss } in example.
->   - ptp-timer add label in example.
->   - Ref to new fsl,fman*.yaml.
->   - Reorder property in example.
->   - Keep only one example.
->   - Add const for #address-cells and #size-cells.
->   - Use defined interrupt type.
->   - ptp example use node name phc.
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>   Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> index d9293c57f573..60035a787e5c 100644
+> --- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> @@ -33,6 +33,10 @@ properties:
+>             - const: snps,designware-i2c
+>         - description: Baikal-T1 SoC System I2C controller
+>           const: baikal,bt1-sys-i2c
+> +      - description: T-HEAD TH1520 SoCs I2C controller
+> +        items:
+> +          - const: thead,th1520-i2c
+> +          - const: snps,designware-i2c
+>   
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Your comment below makes me thinking is this change needed? So is it 
+enough to specify "snps,designware-i2c" for the compatible string in 
+patch 2/3?
 
-Best regards,
-Krzysztof
-
+"It appears that the TH1520 I2C is already supported in the upstream 
+kernel through the Synopsis Designware I2C adapter driver."
 
