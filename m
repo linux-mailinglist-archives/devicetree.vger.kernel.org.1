@@ -1,207 +1,398 @@
-Return-Path: <devicetree+bounces-77615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491D890F6A5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 21:02:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E74BC90F6B8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 21:10:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB0C5284E78
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:02:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65C0C1F23295
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7923A156F37;
-	Wed, 19 Jun 2024 19:02:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1B6158A36;
+	Wed, 19 Jun 2024 19:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LnMG/7xy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wf1XOlcW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D20BF50275;
-	Wed, 19 Jun 2024 19:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFAF155759;
+	Wed, 19 Jun 2024 19:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718823743; cv=none; b=l4aS2bkUdk9A9zLmb+pESt4xzYGywYANCsv7qDFxi633M4V5fPvO0MQz2UXyt1yT5CmOdhpKLOyzHl3xnCM2BvwXxd3xv65JZrqFYWM3p3ybxx7U3xn8yfkpBcwBF7oMLGWg+7gorD3OG60k9yDuSM3MoHqjSkE8AIk7i2KEiOw=
+	t=1718824220; cv=none; b=aY5Q1K9fEuKbYsYAU8hyfxp52aOnYR2zI794kciKBzWHDFuPbWL4hNlJBZ8Bs6klVnS89S0uSx+MFqh1d3A5bSIRTV3IZfOTfSV0ZPNiKolp8+aEJtOYweHp939qTUrwaMcnnuSWSgRCmqrtYaaBO+P791958sXrkvicwVbyVzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718823743; c=relaxed/simple;
-	bh=FUkruGMGRHHwV+MvCEzaDmvhj/fHcy4Lhu/PFH2gzHo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cI13CT1Vhj8kFZzOWDNZUnhsCqSb/P4z1zyBy863OOLk6l6zz49wCqZnxyBar46LXZnW+lzoYu87ojgQH67EgrMLu1dHm6Q4EoXI20VERz0zwyPHL8wm9H/WZtGgZTDDTOXhdhuVc4Hrm3BYRoXWSPA7i4hiuxjvHF3ujxju7ds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LnMG/7xy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45J9oJD7016022;
-	Wed, 19 Jun 2024 19:02:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mqzCLWM8qCmcQ6o9VlwqlL+syqQt0w2+jEo/T5jNNic=; b=LnMG/7xyYwDAshaH
-	Zvf5NYlDx3OHXoHS8M+4uOMaJN7tslFQT3O+0plYLljYEQtSkGxSPjDrrcCwmpSt
-	ynmndreq4IyCNaWZUHtJp987mkLUEekQjPc1C4q+BptrwwcHRDA91rZvJOU3Cwij
-	Q5YlEKLLOE8yMh28Hp3SNaEMUm3/9OnHNmmyrccIaIQnwOwdx962/jD6qb8XHaXE
-	HsDAsyrX9GZKwV70K+xyjc8O2excmGfKIM2pW51Wh06sVt1EO77kUTlwb2N89hYo
-	rtYwe9vf6/Gz05hAQqzCDWQ+OzlyuIiWW6CFpPso2iK8tITx2sK5dtiCTGId6yPI
-	isf5lw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yuja52gxx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 19:02:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45JJ28AL014987
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 19:02:08 GMT
-Received: from [10.71.110.249] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 19 Jun
- 2024 12:02:02 -0700
-Message-ID: <b2e301c9-8723-0b26-5aa3-e78ac53dff9a@quicinc.com>
-Date: Wed, 19 Jun 2024 12:02:01 -0700
+	s=arc-20240116; t=1718824220; c=relaxed/simple;
+	bh=WAmFx+ZAhBE6QYFnuAIgPCTyeKlQ0c2u0P1mZZ6eo2s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pE58gKPtYolM4LR4gTx1tZoP1ZQFKrKQLiuSHQ6stQO5mdbDCIlyXgTZw0jwTJK8RtYytj0J8lJ9wkl1l5x0dW9fQ2naVmrx5EANIZtduMU4L7sNaeA8okH0Fy5ybNzz4f3Rsygj+orduftSeDGqouL7+kN+MROMdHnp3+dzqJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wf1XOlcW; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a6fb696d2d8so8958266b.1;
+        Wed, 19 Jun 2024 12:10:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718824217; x=1719429017; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ahlND5Zmd1zch0hsIJlAQEvMAiC/XZH76a69+Fwt53Q=;
+        b=Wf1XOlcWsbSG9aBaqeoXp3/VT/rXDkYi/ghPnCEP/RH7rgYdV72/nP80pkt1P+vVNf
+         +fhDPN6yGX99ZInJKxoWBx/FsEMyW0KiN0HUqOL8JV45LYWcTkcWesYI+JFV7K2/XsVJ
+         wKUllft9iIMK9/854hnjW8yxZiK6u95kVmGcAd9uzRTqwO3dDyqiM7FV03Cv0g2Mt0mc
+         suXb36ptvec8L1K3+cHN3dMAyemtvN7VHC8rFZFHhygrdUhoCO7btO6aYcWS5AaJPt4v
+         VcRFj+CMgo2D8mJMtiVHKmK3VZuBpCc6nYqXjgVvREjx3dSlaKMxrbFUYkwXx1KoG8vP
+         B1zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718824217; x=1719429017;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ahlND5Zmd1zch0hsIJlAQEvMAiC/XZH76a69+Fwt53Q=;
+        b=DrkmFZ8kuHuLGyJFtkZLq07KFuFhiOpC0wUWoXgy+ODR1ubT+IdNXjUbFAeVFvmh5Q
+         n63g3O3DVgmacdvCY5aeOYiFcKsvwTyjkamuI710b5NP3BPWeCzSN+6vFMVAFKjR4ez7
+         8/dUTqQXc0des1qNGd3oJlmkncGHUllLCduHa8qtgDCyXJQSBGXlhPN77dtKODgYwDJK
+         Kropz4ILyFUKmHppj2Utb6pS/JXGrx7Pq+zHj6ZtG5N1z+Tltwlo/uIkT92QEgP2p6sU
+         0cMOvcu8ldujqh8a4WGhRaLmcQ3LkWlHzNjKzfGtoMMmMRyS5HnFQXKKo3TfEn0FSFSx
+         glQA==
+X-Forwarded-Encrypted: i=1; AJvYcCXZNkP2B/3RuLwegjtZuvBR7kzdDPZnYzitSQf659HL5C9qD6RxLkwCFwon7cfy5aUdE8iOqqAqDKlKZjnudmYYg2qPDv23UZALYBVGSY5Iiv3rYzwnw9I9NlGVz9YMRs4j8ctKAXzck53MmCaOTBrVWUtkgtCN31C8o3akFj3YBcW0QQ==
+X-Gm-Message-State: AOJu0YyyriPeWgtFNsumEUQKigc7apfQ5dy9kk05B0s1qbBgazcWqLly
+	gsbvQc538Xgh452r3vG2EYJyoBEgsrn3EJlAatg+kuuAzwzYPQZAtlIbLlwv15Fu0uphe3YVGUY
+	fvj0wIZEl2WRaw37+LBnqi2jioXA=
+X-Google-Smtp-Source: AGHT+IG4EwmKdtxr3rqPxduBQKlfNFGX/bVsYbwYUwt0xso+kVroPnVAVQiWZQJtFZGOfOIImTMOT+FeU9/N8iQIJas=
+X-Received: by 2002:a17:906:3112:b0:a6e:f793:461f with SMTP id
+ a640c23a62f3a-a6fab6459b0mr207708666b.38.1718824216746; Wed, 19 Jun 2024
+ 12:10:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 7/8] drm/msm/dpu: support setting the TE source
-Content-Language: en-US
-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie
-	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-References: <20240613-dpu-handle-te-signal-v2-0-67a0116b5366@linaro.org>
- <20240613-dpu-handle-te-signal-v2-7-67a0116b5366@linaro.org>
- <cu3iicchkdmpkm6fttqv42hw2zfa2bs4wk6xsbeu5m4poav4s5@l7kbg43sfzrb>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <cu3iicchkdmpkm6fttqv42hw2zfa2bs4wk6xsbeu5m4poav4s5@l7kbg43sfzrb>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: UoE7gosjoL2pNiW5_1i2qaq6yI7DPbfL
-X-Proofpoint-GUID: UoE7gosjoL2pNiW5_1i2qaq6yI7DPbfL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-19_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
- adultscore=0 impostorscore=0 clxscore=1015 mlxscore=0 spamscore=0
- bulkscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406190144
+References: <20240619054641.277062-1-shanchun1218@gmail.com> <20240619054641.277062-3-shanchun1218@gmail.com>
+In-Reply-To: <20240619054641.277062-3-shanchun1218@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 19 Jun 2024 21:09:39 +0200
+Message-ID: <CAHp75VcJGoDaAbD7vWin8yTGarrLZbVQqucHs+M9rAAS0BZd9g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] mmc: sdhci-of-ma35d1: Add Novoton MA35D1 SDHCI driver
+To: Shan-Chun Hung <shanchun1218@gmail.com>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, adrian.hunter@intel.com, p.zabel@pengutronix.de, 
+	pbrobinson@gmail.com, serghox@gmail.com, mcgrof@kernel.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, forbidden405@outlook.com, 
+	tmaimon77@gmail.com, linux-arm-kernel@lists.infradead.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jun 19, 2024 at 7:47=E2=80=AFAM Shan-Chun Hung <shanchun1218@gmail.=
+com> wrote:
+>
+> This adds the SDHCI driver for the MA35 series SoC. It is based upon the
+> SDHCI interface, but requires some extra initialization.
+>
+> Signed-off-by: schung <schung@nuvoton.com>
+
+Even I agree with Markus' remarks, so please correct your SoB by using
+something similar to the From line.
+
+...
+
+> +config MMC_SDHCI_OF_MA35D1
+> +       tristate "SDHCI OF support for the MA35D1 SDHCI controller"
+> +       depends on ARCH_A35 || COMPILE_TEST
+> +       depends on MMC_SDHCI_PLTFM
+
+> +       depends on OF && COMMON_CLK
+
+OF is not compile dependency AFAICS, if you want make it functional, use
+
+  depends on OF || COMPILE_TEST
+
+...
+
+You are missing a lot of header inclusions, please follow IWYU principle.
+
++ array_size.h
++ bits.h
+
+> +#include <linux/clk.h>
+
++ device.h
+
+> +#include <linux/dma-mapping.h>
+
++ err.h
+
+> +#include <linux/mfd/syscon.h>
+
++ math.h
++ mod_devicetable.h
+
+> +#include <linux/module.h>
+> +#include <linux/mmc/mmc.h>
+> +#include <linux/pinctrl/consumer.h>
+
++ platform_device.h
+
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +#include <linux/slab.h>
+
++ types.h
+
+...
+
+> +#define BOUNDARY_OK(addr, len) \
+> +       ((addr | (SZ_128M - 1)) =3D=3D ((addr + len - 1) | (SZ_128M - 1))=
+)
+
+Besides sizes.h being missed, this can be done with help of ALIGN()
+macro (or alike). So, kill this and use the globally defined macro
+inline.
+
+...
+
+> +       /* If the clock frequency exceeds MMC_HIGH_52_MAX_DTR,
+> +        *      disable command conflict check.
+> +        */
+
+  /*
+   * The comment style is wrong and
+   * the indentation in the second line.
+   * Fix it as in this example.
+   */
+
+...
+
+> +static void ma35_voltage_switch(struct sdhci_host *host)
+> +{
+> +       /* Wait for 5ms after set 1.8V signal enable bit */
+> +       usleep_range(5000, 5500);
+
+Use fsleep()
+
+> +}
+> +
+> +static int ma35_execute_tuning(struct mmc_host *mmc, u32 opcode)
+> +{
+> +       struct sdhci_host *host =3D mmc_priv(mmc);
+> +       struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
+> +       struct ma35_priv *priv =3D sdhci_pltfm_priv(pltfm_host);
+> +
+> +       /* Limitations require a reset SD/eMMC before tuning. */
+> +       if (!IS_ERR(priv->rst)) {
+
+It's way too big for indentation, moreover it uses an unusual pattern,
+usually we check for an error case first. So, invert the conditional
+and this all code will become much better.
+
+> +               int idx;
+> +               u32 *val;
+> +
+> +               val =3D kmalloc(ARRAY_SIZE(restore_data), GFP_KERNEL);
+> +               for (idx =3D 0; idx < ARRAY_SIZE(restore_data); idx++) {
+> +                       if (restore_data[idx].width =3D=3D 32)
+
+sizeof(u32) ?
+
+> +                               val[idx] =3D sdhci_readl(host, restore_da=
+ta[idx].reg);
+> +                       else if (restore_data[idx].width =3D=3D 8)
+
+sizeof(u8) ?
+
+> +                               val[idx] =3D sdhci_readb(host, restore_da=
+ta[idx].reg);
+> +               }
+> +
+> +               reset_control_assert(priv->rst);
+> +               reset_control_deassert(priv->rst);
+> +
+> +               for (idx =3D 0; idx < ARRAY_SIZE(restore_data); idx++) {
+> +                       if (restore_data[idx].width =3D=3D 32)
+> +                               sdhci_writel(host, val[idx], restore_data=
+[idx].reg);
+> +                       else if (restore_data[idx].width =3D=3D 8)
+> +                               sdhci_writeb(host, val[idx], restore_data=
+[idx].reg);
+
+As per above?
+
+> +               }
+> +
+> +               kfree(val);
+> +       }
+> +
+> +       return sdhci_execute_tuning(mmc, opcode);
+> +}
+
+...
+
+> +static int ma35_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+
+Since you have it, use it!
+
+> +       struct sdhci_pltfm_host *pltfm_host;
+> +       struct sdhci_host *host;
+> +       struct ma35_priv *priv;
+> +       int err;
+> +       u32 extra, ctl;
+> +
+> +       host =3D sdhci_pltfm_init(pdev, &sdhci_ma35_pdata,
+> +                               sizeof(struct ma35_priv));
+
+One line?
+
+> +       if (IS_ERR(host))
+> +               return PTR_ERR(host);
+> +
+> +       /*
+> +        * extra adma table cnt for cross 128M boundary handling.
+> +        */
+
+Wrong comment style.
+
+> +       extra =3D DIV_ROUND_UP_ULL(dma_get_required_mask(&pdev->dev), SZ_=
+128M);
+> +       if (extra > SDHCI_MAX_SEGS)
+> +               extra =3D SDHCI_MAX_SEGS;
+
+min() ? clamp() ?
+
+> +       host->adma_table_cnt +=3D extra;
+> +       pltfm_host =3D sdhci_priv(host);
+> +       priv =3D sdhci_pltfm_priv(pltfm_host);
+
+> +       if (dev->of_node) {
+
+Why?
+
+> +               pltfm_host->clk =3D devm_clk_get(&pdev->dev, NULL);
+> +               if (IS_ERR(pltfm_host->clk)) {
+
+> +                       err =3D PTR_ERR(pltfm_host->clk);
+> +                       dev_err(&pdev->dev, "failed to get clk: %d\n", er=
+r);
+
+Use
+
+  return dev_err_probe(...);
+
+> +                       goto free_pltfm;
+
+This is wrong. You may not call non-devm before devm ones, otherwise
+it makes a room for subtle mistakes on remove-probe or unbind-bind
+cycles. Have you tested that?
+
+> +               }
+> +               err =3D clk_prepare_enable(pltfm_host->clk);
+> +               if (err)
+> +                       goto free_pltfm;
+
+Use _enabled variant of devm_clk_get() instead.
+
+> +       }
+> +
+> +       err =3D mmc_of_parse(host->mmc);
+> +       if (err)
+> +               goto err_clk;
+> +
+> +       priv->rst =3D devm_reset_control_get(&pdev->dev, NULL);
+
+No error check?!
+
+> +       sdhci_get_of_property(pdev);
+> +
+> +       priv->pinctrl =3D devm_pinctrl_get(&pdev->dev);
+> +       if (!IS_ERR(priv->pinctrl)) {
+> +               priv->pins_default =3D pinctrl_lookup_state(priv->pinctrl=
+, "default");
+> +               priv->pins_uhs =3D pinctrl_lookup_state(priv->pinctrl, "s=
+tate_uhs");
+> +               pinctrl_select_state(priv->pinctrl, priv->pins_default);
+> +       }
+> +
+> +       if (!(host->quirks2 & SDHCI_QUIRK2_NO_1_8_V)) {
+> +               u32 reg;
+> +
+> +               priv->regmap =3D syscon_regmap_lookup_by_phandle(
+> +                               pdev->dev.of_node, "nuvoton,sys");
+
+dev_of_node(dev)
+
+> +
+> +               if (!IS_ERR(priv->regmap)) {
+> +                       /* Enable SDHCI voltage stable for 1.8V */
+> +                       regmap_read(priv->regmap, MA35_SYS_MISCFCR0, &reg=
+);
+> +                       reg |=3D BIT(17);
+> +                       regmap_write(priv->regmap, MA35_SYS_MISCFCR0, reg=
+);
+> +               }
+> +
+> +               host->mmc_host_ops.start_signal_voltage_switch =3D
+> +                                       ma35_start_signal_voltage_switch;
+> +       }
+> +
+> +       host->mmc_host_ops.execute_tuning =3D ma35_execute_tuning;
+> +
+> +       err =3D sdhci_add_host(host);
+> +       if (err)
+> +               goto err_clk;
+> +
+> +       /* Enable INCR16 and INCR8 */
+> +       ctl =3D sdhci_readw(host, MA35_SDHCI_MBIUCTL);
+> +       ctl &=3D ~MA35_SDHCI_INCR_MSK;
+> +       ctl |=3D MA35_SDHCI_INCR16|MA35_SDHCI_INCR8;
+> +       sdhci_writew(host, ctl, MA35_SDHCI_MBIUCTL);
+> +
+> +       return 0;
+
+> +err_clk:
+> +       clk_disable_unprepare(pltfm_host->clk);
+
+This will go with the _enabled variant being used.
+
+> +free_pltfm:
+> +       sdhci_pltfm_free(pdev);
+
+This should go to be correct in ordering.
+
+> +       return err;
+> +}
+> +
+> +static int ma35_remove(struct platform_device *pdev)
+
+Use remove_new callback.
+
+> +{
+> +       struct sdhci_host *host =3D platform_get_drvdata(pdev);
+> +       struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
+> +
+> +       sdhci_remove_host(host, 0);
+
+> +       clk_disable_unprepare(pltfm_host->clk);
+> +       sdhci_pltfm_free(pdev);
+
+At least these two will go away as per probe error path.
+
+> +       return 0;
+> +}
+
+...
+
+> +MODULE_AUTHOR("shanchun1218@google.com");
+
+Needs to be fixed as Markus said.
 
 
-
-On 6/13/2024 11:14 AM, Marijn Suijten wrote:
-> On 2024-06-13 20:05:10, Dmitry Baryshkov wrote:
->> Make the DPU driver use the TE source specified in the DT. If none is
->> specified, the driver defaults to the first GPIO (mdp_vsync0).
-> 
-> mdp_vsync_p?
-> 
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 44 ++++++++++++++++++++++++++++++++-
->>   1 file changed, 43 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> index e9991f3756d4..6fcb3cf4a382 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> @@ -505,6 +505,44 @@ static void dpu_kms_wait_flush(struct msm_kms *kms, unsigned crtc_mask)
->>   		dpu_kms_wait_for_commit_done(kms, crtc);
->>   }
->>   
->> +static const char *dpu_vsync_sources[] = {
->> +	[DPU_VSYNC_SOURCE_GPIO_0] = "mdp_vsync_p",
->> +	[DPU_VSYNC_SOURCE_GPIO_1] = "mdp_vsync_s",
->> +	[DPU_VSYNC_SOURCE_GPIO_2] = "mdp_vsync_e",
->> +	[DPU_VSYNC_SOURCE_INTF_0] = "mdp_intf0",
->> +	[DPU_VSYNC_SOURCE_INTF_1] = "mdp_intf1",
->> +	[DPU_VSYNC_SOURCE_INTF_2] = "mdp_intf2",
->> +	[DPU_VSYNC_SOURCE_INTF_3] = "mdp_intf3",
->> +	[DPU_VSYNC_SOURCE_WD_TIMER_0] = "timer0",
->> +	[DPU_VSYNC_SOURCE_WD_TIMER_1] = "timer1",
->> +	[DPU_VSYNC_SOURCE_WD_TIMER_2] = "timer2",
->> +	[DPU_VSYNC_SOURCE_WD_TIMER_3] = "timer3",
->> +	[DPU_VSYNC_SOURCE_WD_TIMER_4] = "timer4",
->> +};
->> +
->> +static int dpu_kms_dsi_set_te_source(struct msm_display_info *info,
->> +				     struct msm_dsi *dsi)
->> +{
->> +	const char *te_source = msm_dsi_get_te_source(dsi);
-> 
-> Just checking: if the TE source is different and one has dual-DSI, it must be
-> set on both controllers?
-> 
-
-If we use dual-dsi (in NON-bonded mode), then yes we will have two TE 
-sources - one for each controller.
-
->> +	int i;
->> +
->> +	if (!te_source) {
->> +		info->vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
->> +		return 0;
->> +	}
->> +
->> +	/* we can not use match_string since dpu_vsync_sources is a sparse array */
-> 
-> Instead of having gaps in the array, you could also store both the vsync_source
-> and name as the array elements?
-> 
-
-Yes, there is a gap because the DPU_VSYNC_* macros have a gap.
-
-Can you pls explain your suggestion to remove the gap a little more?
-I didnt follow this part very well.
-
->> +	for (i = 0; i < ARRAY_SIZE(dpu_vsync_sources); i++) {
->> +		if (dpu_vsync_sources[i] &&
->> +		    !strcmp(dpu_vsync_sources[i], te_source)) {
->> +			info->vsync_source = i;
->> +			return 0;
->> +		}
->> +	}
->> +
->> +	return -EINVAL;
->> +}
->> +
->>   static int _dpu_kms_initialize_dsi(struct drm_device *dev,
->>   				    struct msm_drm_private *priv,
->>   				    struct dpu_kms *dpu_kms)
->> @@ -543,7 +581,11 @@ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
->>   
->>   		info.is_cmd_mode = msm_dsi_is_cmd_mode(priv->dsi[i]);
->>   
->> -		info.vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
->> +		rc = dpu_kms_dsi_set_te_source(&info, priv->dsi[i]);
->> +		if (rc) {
->> +			DPU_ERROR("failed to identify TE source for dsi display\n");
->> +			return rc;
->> +		}
->>   
->>   		encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_DSI, &info);
->>   		if (IS_ERR(encoder)) {
->>
->> -- 
->> 2.39.2
->>
+--=20
+With Best Regards,
+Andy Shevchenko
 
