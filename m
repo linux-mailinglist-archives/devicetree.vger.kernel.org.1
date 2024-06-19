@@ -1,111 +1,139 @@
-Return-Path: <devicetree+bounces-77420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 977CB90E953
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 13:25:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30A7E90E958
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 13:25:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0581F2860F8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 11:25:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3ADC1F23662
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 11:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DD71422C7;
-	Wed, 19 Jun 2024 11:24:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAD713B7AF;
+	Wed, 19 Jun 2024 11:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ta+L0Yfd"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="EqkygcD9";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="YoBm1bkm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE9313F439;
-	Wed, 19 Jun 2024 11:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63A413B290;
+	Wed, 19 Jun 2024 11:24:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718796252; cv=none; b=pn3wyyDS9eQ4Rm3+sx9Qscs2hQxeXJAHcRrimH9zV4gls1PT59EnSm/5b9rwx/kzZadWQcnLBpYlpO6SHsIJDwKUF4kF6NPaI9Ag7QKTNNUTeRYcr0WGpLt5QlHajFYnYNUUC0fcni/0DP5qZg14IkJgP2FPetU2oMVE3sb+2ws=
+	t=1718796275; cv=none; b=CF4jHzEvGfd6cJYglx7SALkaz673bMcmkrCqoVHVfO5A8Qve5cbzJKc0oHSMc7EOaF5GO7LuH0/etmaMptvoSRpd2Jgg9d0mDv5+fgyavNxai9CMZIdXAhXQdzt85XDfg4rnva9Jy4FvkrNsMDESkbMd+Ib+98GOdYZ0l8xQJd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718796252; c=relaxed/simple;
-	bh=mvTc6mmb97QnDGAQR4LeZV3dSJ5FUaa474nFk7DAEx8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YLYAC+nGjANL24Zzwxwwluwp+GMx49Ek0HhtcRxOO48HrI8M1HInLX6oglm5hMbq1KBbp9nb7+ywf6pkzJDdUHxCmK2mTsuQqWC2EoDqTLU8Zl+FtR+9gub7LcTt8AcBSyeXfP689bOGQyrL5TEQxyb8Hw0vpFm5k7Em1V7VSSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ta+L0Yfd; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718796248;
-	bh=mvTc6mmb97QnDGAQR4LeZV3dSJ5FUaa474nFk7DAEx8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=ta+L0YfdJ3ksL5pcrAYhmudSDaup1M5YUme5hol59ZZpdpjx9K+ndF5LdEdoyTwCu
-	 AC2gCmU/ejS0FY0Ql2sILZuH/3aQIqHUc1V+4Xu5tqO3uRBPHNrrTF1mvJzj3oxhM9
-	 lTz3hMhb5gWg0OUEX6e0R18sThbedgcaxhXc1vl9g104lSD/Xu3AHpXV3xrPN5I0PH
-	 9CbnOkdAmnLj05y6tYIiKExZxcBCHug8xWfBeOerLcGntJAsHTk/fv1vsGd+fkEOER
-	 68zVJyDotpuWQi9gLWjGc4VpOXDhxnTzxGnTxUFF3amR/V+YRl7F2GW8YCbKtmpI8g
-	 S6bARsq5kwu8A==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1CFCE37821D8;
-	Wed, 19 Jun 2024 11:24:08 +0000 (UTC)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Wed, 19 Jun 2024 14:23:34 +0300
-Subject: [PATCH 5/5] arm64: dts: rockchip: Fix mic-in-differential usage on
- rk3568-evb1-v10
+	s=arc-20240116; t=1718796275; c=relaxed/simple;
+	bh=lWyO75Xj3hzfTx0/HcDICshFRxN3psaKa4xdf5PPu2c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FldbyEFZQ5XpdHaFCYD3apURDHZ5DvVaKph7GLZBeVwCXPXCGe1ilH8EM1w82T5VAbhDtbxWRlRY59KzuAXEBgKml/IJU6Ioeo6UXRK5fF9p0JmKMhNcwwU1DZDE9gSqC708YcAUz98HpMm3dNU+nXXQfq5os+Mhdx/gaUcKoyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=EqkygcD9; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=YoBm1bkm reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1718796272; x=1750332272;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=xZufrVenZZNOki6ThkT5V784LHMR0r2wNvufJAnx7Y8=;
+  b=EqkygcD932UwBC49kxJK8L2XABv+kUhV/nuzwZ6islO631K57qtacOjA
+   NSz8pf4a5J3oXTVgQchpHHwPgAb1wlzViXejgPbqWwE9tNyintw/znkmE
+   P7yk+Z5HR6GZ5Tl8ssawEZjMcUDnco2LT605G8WuL762Xic8G/CSU6oAF
+   MJAvY4aF+JyNnwVhjWPS4EwaghI8b6lm4N2Z0854lbVEwiz5EdPBdPM0n
+   XWG4BXFC31rtZbuw9GId5lp0xF+pf5VDVdKq8+E2YvSy5Z3VxRABL13oG
+   aWvZs38E3QvXqnKuQ6EJamOt/Wz7L1cYIVCKO/1OaWXcwhtzhQBset8r8
+   A==;
+X-CSE-ConnectionGUID: KtG8NCUNS6OqyLTOH1tEbw==
+X-CSE-MsgGUID: TnTC/eVQQlSgSps1kOY4xA==
+X-IronPort-AV: E=Sophos;i="6.08,250,1712613600"; 
+   d="scan'208";a="37474780"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 19 Jun 2024 13:24:29 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 00F14165949;
+	Wed, 19 Jun 2024 13:24:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1718796265;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=xZufrVenZZNOki6ThkT5V784LHMR0r2wNvufJAnx7Y8=;
+	b=YoBm1bkm65S2SF3FEZHDxxzFsGx6IuEcYgJl3WLnSg1dVr4Xgfzze1KcgAtq5O5xPYZp37
+	zLaYKOTD34GxPwkf1Dw67kHtdDhnzXx1eTQuTJqnGqv8NLqYrXlN64HeC1BfpM615LMki9
+	OjPHwJe8bq2OGs8+wZ41qBQlFX3hJg3FhTW4AHZrLMihFjrKYibvLmyLcrehel3WWMgYxB
+	TnhPg4C3ml35HPj31Klr2SatE93oIB059w1ZDQpoT9Q0dBI6ncrZENq2ZTSpeyYcOHX7EK
+	reHfywshrEjGOLSMuGxVrWLs5KjxK1XPImZjFt3clW0+iWMA9DQ2r5bcJohCUA==
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Suman Anna <s-anna@ti.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [PATCH 1/2] dt-bindings: soc: ti: pruss: allow ethernet controller in ICSSG node
+Date: Wed, 19 Jun 2024 13:24:05 +0200
+Message-ID: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240619-rk809-fixes-v1-5-fa93bc5313f4@collabora.com>
-References: <20240619-rk809-fixes-v1-0-fa93bc5313f4@collabora.com>
-In-Reply-To: <20240619-rk809-fixes-v1-0-fa93bc5313f4@collabora.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>, 
- Chris Morgan <macromorgan@hotmail.com>, 
- Furkan Kardame <f.kardame@manjaro.org>, 
- Michael Riesch <michael.riesch@wolfvision.net>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-The 'mic-in-differential' DT property supported by the RK809/RK817 audio
-codec driver is actually valid if prefixed with 'rockchip,':
+While the current Device Trees for TI EVMs configure the PRUSS Ethernet
+controller as a toplevel node with names like "icssg1-eth", allowing to
+make it a subnode of the ICSSG has a number of advantages:
 
-  DTC_CHK arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dtb
+- It makes sense semantically - the Ethernet controller is running on
+  the ICSSG/PRUSS
+- Disabling or deleting the ICSSG node implicitly removes the Ethernet
+  controller node when it is a child node. This can be relevant on SoCs
+  like the AM64x which come in variants with and without ICSSG; e.g., on
+  the TQMa64xxL the ICSSG node will be disabled on variants without as a
+  bootloader fixup.
+  On Linux, this avoids leaving the Ethernet controller in deferred
+  state forever while waiting for the ICSSG to become available
+  (resulting in a warning on newer kernels)
 
-  rk3568-evb1-v10.dtb: pmic@20: codec: 'mic-in-differential' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk809.yaml#
+The node name "ethernet" is chosen as it nicely matches the regular
+"ethernet@<reg>" format of many Ethernet controller nodes, and is also
+what the prueth binding example (/schemas/net/ti,icssg-prueth.yaml) uses.
 
-Make use of the correct property name.
-
-Fixes: 3e4c629ca680 ("arm64: dts: rockchip: enable rk809 audio codec on the rk3568 evb1-v10")
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-index 19f8fc369b13..8c3ab07d3807 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -475,7 +475,7 @@ regulator-state-mem {
- 		};
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+index c402cb2928e89..89dfcf5ce8434 100644
+--- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+@@ -92,6 +92,13 @@ properties:
+     description: |
+       This property is as per sci-pm-domain.txt.
  
- 		codec {
--			mic-in-differential;
-+			rockchip,mic-in-differential;
- 		};
- 	};
- };
-
++  ethernet:
++    description: |
++      ICSSG PRUSS Ethernet. Configuration for an Ethernet controller running
++      on the PRU-ICSS.
++    $ref: /schemas/net/ti,icssg-prueth.yaml#
++    type: object
++
+ patternProperties:
+ 
+   memories@[a-f0-9]+$:
 -- 
-2.45.2
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
 
