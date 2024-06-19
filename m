@@ -1,91 +1,82 @@
-Return-Path: <devicetree+bounces-77658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34FFB90F9CA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 01:28:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 649A490F9D1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 01:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57C2D1C20E5E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 23:28:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 093E2B212E0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 23:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1958C15B14C;
-	Wed, 19 Jun 2024 23:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1CC15B106;
+	Wed, 19 Jun 2024 23:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sxPv9RjD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9EA762C1
-	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 23:28:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8BFF9E8;
+	Wed, 19 Jun 2024 23:38:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718839720; cv=none; b=N9Y5OYl/2+agLJDNC2+h7bSpe0T1MnPipGPlxM0+BYhlQ3MNO0NqujL05ge7jzuxJi5hjdVzvdhCUQUfNY0NdrHL2Loj2EqYBiw82OHRUekvJ9zNqKUwlEW298hpyP+9g1hn+NmeQ1V63LOKZIEvkVrGFtHBqVwkppO7j+QOJYY=
+	t=1718840286; cv=none; b=YYzo1N6lZ2AXbMfjzM2hkHaNUAK7MHLgxIekJaifEvobIXtaUNl2fG1eC2T9QI9BTgIJj+QLkHLQ8k+yftxzR3oaZ1HAuTLS8tp/HgsuO4j7sCQIiYHzleHnDfiMrVLZMXHl44YOqNa7vMtgLoTW2jNrHvhkSQUE5uETMS5idQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718839720; c=relaxed/simple;
-	bh=rWWe6ITV6bglpjBaeGgA1GENSTxnmklQWQQxqQ6v0L4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qQIEFe66z6FH+y6Iot3ArJrT7aLGUwQk53KAa8F9aOK3bRdGTfj0S+3XCpnte2fC3R3MmXYNNJRK3c7rnIXrP7ZfTPXIFTSAQ8QJFOdXjz9LO8jjXJKqEOJK1ktbwf56vIhmgr8z+vG+OM7jUONHJ7tfK+u8kfogZaKbtxBoVkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45JNRgmD026016;
-	Thu, 20 Jun 2024 08:27:43 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: jonas@kwiboo.se, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH] arm64: dts: rockchip: fix mmc aliases for Radxa ZERO 3E/3W
-Date: Thu, 20 Jun 2024 08:27:34 +0900
-Message-ID: <20240619232734.1126-1-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1718840286; c=relaxed/simple;
+	bh=pMFC1L80r+HKtEqEtcqW/lrqNA7cATLlLk4yYdkyGaM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=c+vhiITl7vchbXsiE+klw89xL/fN5bcaC0Ps7/HyY5KsGvTMpn2GNLbaJVX/2kAXhvFXa7iyBRHiLkFWCZsuJmONMyA8TViGfvWxiQXwEkfvV4MPtajnBju+3/d9zWCu5Ky0oSoE4pBxU6E85hsrl7vUUbmd78aYdfTKHF/YSik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sxPv9RjD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D60EFC2BBFC;
+	Wed, 19 Jun 2024 23:38:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718840285;
+	bh=pMFC1L80r+HKtEqEtcqW/lrqNA7cATLlLk4yYdkyGaM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=sxPv9RjDTXneMVpxOVzgyndQCUrZbrE0mUWHgVS05kq5SGHKyYE7kkCRblm3q6wTw
+	 W3Ou1G2+P4gjCb29VZEJLppiXrNy2cwXXsRMrj74Z5MMn/Dd2sfHOVg0HUrtqKUbaK
+	 ZyEeGDSBCu6/WLOaeJjMoDvo3Mlp9dfiQgub85Pus5uiBjyMSL0vqGF6Cnm/jL/4sp
+	 VXuoHXrPkMjkBsz0t6mzkkPaX9yQ5hT497Y58WnxFP2apxVgYw1Pyw06qx1HjGjD8C
+	 TDpLUZ41JKmEnYw4yqiEfoBofShn0HcZnark8Z5qig2hf7jhCaiNFvZy4Dj4W7exxE
+	 aqqE1C0e66xNQ==
+Date: Wed, 19 Jun 2024 16:38:03 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Kamil =?UTF-8?B?SG9yw6Fr?= - 2N <kamilh@axis.com>
+Cc: Conor Dooley <conor@kernel.org>, florian.fainelli@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com, andrew@lunn.ch,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+ edumazet@google.com, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/4] dt-bindings: ethernet-phy: add optional brr-mode
+ flag
+Message-ID: <20240619163803.6ba73ec5@kernel.org>
+In-Reply-To: <20240619-plow-audacity-8ee9d98a005e@spud>
+References: <20240619150359.311459-1-kamilh@axis.com>
+	<20240619150359.311459-4-kamilh@axis.com>
+	<20240619-plow-audacity-8ee9d98a005e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-align with other Radxa products.
+On Wed, 19 Jun 2024 18:36:16 +0100 Conor Dooley wrote:
+> > Signed-off-by: Kamil Hor=C3=A1k - 2N <kamilh@axis.com> =20
+>=20
+> Please fix your SoB and from addresses via your gitconfig as I told you
+> to in response to the off-list mail you sent me. You also dropped my Ack
+> without an explanation, why?
 
-- mmc0 is eMMC
-- mmc1 is microSD
++1, possibly repeating what Conor already said but the common
+format if 2N is your employer or sponsor of the work would be:
 
-Fixes: 1a5c8d307c83 ("arm64: dts: rockchip: Add Radxa ZERO 3W/3E")
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi | 2 +-
- arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
-index 623d5939d194..85d76d535338 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
-@@ -7,7 +7,7 @@
- 
- / {
- 	aliases {
--		mmc0 = &sdmmc0;
-+		mmc1 = &sdmmc0;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts
-index 9bf4f464915f..188147c4b78b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3w.dts
-@@ -9,7 +9,7 @@ / {
- 	compatible = "radxa,zero-3w", "rockchip,rk3566";
- 
- 	aliases {
--		mmc1 = &sdhci;
-+		mmc0 = &sdhci;
- 		mmc2 = &sdmmc1;
- 	};
- 
--- 
-2.43.0
-
+  Signed-off-by: Kamil Hor=C3=A1k (2N) <kamilh@axis.com> =20
+--=20
+pw-bot: cr
 
