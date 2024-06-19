@@ -1,123 +1,122 @@
-Return-Path: <devicetree+bounces-77603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1DF390F5DF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:20:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3828290F60C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:27:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B14E1F2272A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:20:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7465B20F37
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E6F157487;
-	Wed, 19 Jun 2024 18:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8CC157A61;
+	Wed, 19 Jun 2024 18:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UyQVV3m/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fKPo7ey+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C5215746D
-	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 18:20:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81680157A4D;
+	Wed, 19 Jun 2024 18:27:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718821226; cv=none; b=HVcWW2KVAVEEjsMPaJ5OSZ7bWGcdHyNCCiPivSylpFHG65EjSUQ/MliD1VGk+GBwSLflzlXEXELNRDJWUdiFsDKTuxp8O4+VVViJok4mXOTSvv+Z23VqAfTeI6Hxu5eVcTgH1HFtf4HdZiy8RQpEpGrlY4e5GqPo/+nqw//d9zE=
+	t=1718821660; cv=none; b=XEMcDg5rXouaiY6Yn2x++O31UjDOLbBJjUthXASfUQqseQOblwaW89TWcpdhbljrhDJf9TawjExWxJd61se7iH9Cf68atZOunoduiWLk5GXvz5PIvZWsqnOKqvEjnirJ/Uc65XIGEdrBNH/HdSpD4POZrEYUEi9LsOZ9tp5W6Bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718821226; c=relaxed/simple;
-	bh=RlFcuST3MTYw2HhcrIt93bRlktGhL2E9Pa+qAshb+Vc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k3MXpxhxHhVOWhpizjuOcFmtpytDWv3LooZLWd9lki17KboEbSb7oD0Dl4nNBIDIs7iNKyzH/Auwv71ua2zONbDThKTrSHJ8xBkWydGGpbsNCt3t3JvwIB3tNTRXiVGfbpZp4DymWqBmR0x0vMHmaVG5LO3UJzUDanDpcCjuxWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UyQVV3m/; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6f980c89db8so23723a34.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 11:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718821223; x=1719426023; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EEAmDmdxj2IHWsPzPWl7VVZMI4gsZPCFHp3nAK0/dQs=;
-        b=UyQVV3m/1fcKRjM21ZcHn17RogJM5/UU8Ea41Dgb8Z2wPL36J+rQ3smwnAANQVngOL
-         dIXUI9AqDZAVF27NXLZE090YmRLAl2zH+LyLfxTJ2C3q7Te2vnz5vjkXPOV+7S31mUUX
-         O1dpq7GiY2HgP8lzXFAALVPPD73tZtTkgY5BAbwpuROpk0x3ba+KzfTKTy9TeTFK6sbn
-         W3XbJBYFSqB58DNN3udAyE0yV4lg9ZOksvA6mxqzXwe6MQZD9UqrQn+mm5UVMMif+U8X
-         X7aa+xywMwYn9+CUyl62VsVQSWpobAhj0hEC+2wminpvxpsRO4U4vbluN16wp82AM/kF
-         eZzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718821223; x=1719426023;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EEAmDmdxj2IHWsPzPWl7VVZMI4gsZPCFHp3nAK0/dQs=;
-        b=pBizdQ/XODZjwBJvAo7BYBdQrAs0lGR+ypDg8p/S1OKOfbrrVaYk1PFiKwYPn4OyJB
-         2HD41OsmR7DXaC+FkpOav1O2LkH1Sbo47Zbpsszo94tImBzV2aJFiCIlpGyQgCeY8xN/
-         xRORuKSb38A/tFv81BGa0glfX2LJiGxD9HYgzW2ovf9a/kJNnhfBAAnn/4EzA4qI5ocX
-         OfrPn67UDl74ejl2PMnhBFw/iaCvyoWsJ8vqj9l22ud4Z2ZlxxtflpWX+yCs2GPNFYgx
-         0uSZoXpF8CL15F7saYsLWYR5Zn9K9caQQqVVVb7jLjXT8sBcN8jAoxn9QIbDqX7iS1vN
-         qjhA==
-X-Forwarded-Encrypted: i=1; AJvYcCX3JNaS4IQS0cDrz93cObWV/GNm7bVA1iZOH/tKyyuVFzcQbu9rqQuwrccDC8FRJ1pvLUz/COTSasYpEa2GrUs5e5cyxZ1ega+0iA==
-X-Gm-Message-State: AOJu0YyNCNsWtvEemFnapwPBC1V0xRvCZqW5cdhRPHe1gkQpFxWmYBn5
-	iu6LLVMBZKPVtSA/4Gw6D1hvMTePsV4fCGPNo7UveT6WAjuaUztYOH4aqrtJrOY=
-X-Google-Smtp-Source: AGHT+IE46EgTLGf5oN4IQLbetpDLGBop9HxlMQVzbGsKy4Pf+gc303cZxbeI8m5oLWrSKPVR+6EHzg==
-X-Received: by 2002:a05:6870:6494:b0:254:997e:ea4d with SMTP id 586e51a60fabf-25c94910162mr3750542fac.10.1718821223499;
-        Wed, 19 Jun 2024 11:20:23 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2569930f768sm3826912fac.41.2024.06.19.11.20.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jun 2024 11:20:23 -0700 (PDT)
-Message-ID: <d7cf1a03-9a03-40e1-b9a9-f06d28c21f92@baylibre.com>
-Date: Wed, 19 Jun 2024 13:20:22 -0500
+	s=arc-20240116; t=1718821660; c=relaxed/simple;
+	bh=ePMdXyYG5VP9699OyXIjL4DJdrxVOUDFWzBVFuvKuew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I8Uin40rSTuFLEvQiyZ0Gv8ROrZIFEoegauLkl5vFtVntASELbr7ubUTeC5WFgPg8lcNdx6hgTGEmQcupyizAtHYYCKna6lB+30oRevmq3AFrmCmDXi8TDbEH3bYcOQilED536yCgEoXO4nV6R+WM37Rs1YrdfDF+gExK/Wz+mA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fKPo7ey+; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718821659; x=1750357659;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ePMdXyYG5VP9699OyXIjL4DJdrxVOUDFWzBVFuvKuew=;
+  b=fKPo7ey+64mhRqh0LZG8q3hHTtaABkBsorDxkDUrlPc0nyMZNq4qSlsi
+   vWItodCl5Vhs4tXAcyPuOiy6pXzj8OfKtVgif5kwSFg9eHsWoAd92de8t
+   q7ICPYWNl1GGRdtgSluqQjx3vhyV2cyzgOoiy0jitNFIPVYqxyfQ7Qg/W
+   pA/zaK7Cb7ht9Q8GbY4S7Ub8oEDju2glkHVCCTL9StL3ZmtAZkVtlDuyO
+   4J8jh77gZz5uOUOMSLnhwD9i9TO0/sC+I+Xv0Tz1ydcdlFHcbbnzylxVY
+   +F53aUIzZT5GZu3HbJ1T8K1inlvcOuZCGhWYZQ9K32WWO9T08C0ZmpwC+
+   A==;
+X-CSE-ConnectionGUID: 5fFY+98JSWSE79vfkipGyw==
+X-CSE-MsgGUID: GTmAuOeVRzyDYMzk0emgWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="41178780"
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
+   d="scan'208";a="41178780"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jun 2024 11:27:38 -0700
+X-CSE-ConnectionGUID: ILNZl8P+Q3GMl7+ZHFDZUg==
+X-CSE-MsgGUID: nrkcKSQpRwmJ/hGixWRnVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
+   d="scan'208";a="42697044"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 19 Jun 2024 11:27:35 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sK01s-0006s6-2H;
+	Wed, 19 Jun 2024 18:27:32 +0000
+Date: Thu, 20 Jun 2024 02:26:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: convert to dt schema
+Message-ID: <202406200223.QexMAKqr-lkp@intel.com>
+References: <20240619154941.144011-2-kanakshilledar@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/6] spi: spi-axi-spi-engine: Add support for MOSI idle
- configuration
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1718749981.git.marcelo.schmitt@analog.com>
- <ead669c15db7cfad4034df1d743fd4088f1c2253.1718749981.git.marcelo.schmitt@analog.com>
- <6f945701-cac0-4a56-9ca7-1daceccc5efd@baylibre.com>
- <ZnMU-OUV2DCpS3mu@debian-BULLSEYE-live-builder-AMD64>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <ZnMU-OUV2DCpS3mu@debian-BULLSEYE-live-builder-AMD64>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240619154941.144011-2-kanakshilledar@gmail.com>
 
-On 6/19/24 12:27 PM, Marcelo Schmitt wrote:
-> On 06/19, David Lechner wrote:
->> On 6/18/24 6:11 PM, Marcelo Schmitt wrote:
+Hi Kanak,
 
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on andi-shyti/i2c/i2c-host]
+[also build test WARNING on linus/master v6.10-rc4 next-20240619]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->>> @@ -646,6 +651,9 @@ static int spi_engine_probe(struct platform_device *pdev)
->>>  
->>>  	host->dev.of_node = pdev->dev.of_node;
->>>  	host->mode_bits = SPI_CPOL | SPI_CPHA | SPI_3WIRE;
->>> +	if (ADI_AXI_PCORE_VER_MAJOR(version) >= 1 &&
->>
->> Currently, the major version is required to be 1, so this check is not
->> strictly needed.
->>
-> This is expecting the MOSI idle feature to be available on all versions from 1.3 on.
-> Will SPI-Engine always be major version 1?
+url:    https://github.com/intel-lab-lkp/linux/commits/Kanak-Shilledar/dt-bindings-i2c-convert-to-dt-schema/20240620-000339
+base:   git://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git i2c/i2c-host
+patch link:    https://lore.kernel.org/r/20240619154941.144011-2-kanakshilledar%40gmail.com
+patch subject: [PATCH] dt-bindings: i2c: convert to dt schema
+reproduce: (https://download.01.org/0day-ci/archive/20240620/202406200223.QexMAKqr-lkp@intel.com/reproduce)
 
-<yoda voice>Difficult to see, the future is.</yoda voice>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406200223.QexMAKqr-lkp@intel.com/
 
-It's fine if you want to leave it the way it is.
+All warnings (new ones prefixed by >>):
 
-> 
->>> +	    ADI_AXI_PCORE_VER_MINOR(version) >= 3)
->>> +		host->mode_bits |=  SPI_MOSI_IDLE_LOW | SPI_MOSI_IDLE_HIGH;
->>
+   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/i2c/i2c-lpc2k.txt
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/exynos/
+   Using alabaster theme
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
