@@ -1,211 +1,105 @@
-Return-Path: <devicetree+bounces-77350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631DE90E4A6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 09:37:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B71A90E4AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 09:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E306B20B1E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 07:37:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 401131F2182D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 07:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E3C770E2;
-	Wed, 19 Jun 2024 07:37:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CB2763F7;
+	Wed, 19 Jun 2024 07:38:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hH0J0IcK"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="TjVzyDQH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4AD208B0;
-	Wed, 19 Jun 2024 07:37:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718782623; cv=none; b=UQV1tptvxI/hxQwzZ2YI2QMYn1nx5IVXYcM5foqdk+lnVlcUCkt27+MmJihwH9Kws9MA50y5f/dXapwfdrGvOOdUfGcnL6Q3K4vp+g8fvpZsbh3GEJorOBmAMfxUVkx9wg4cSXMtAUgyCzIdW1WwwvFEVV3BLcy+wdkGMivIdjI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718782623; c=relaxed/simple;
-	bh=f7oSllmrd35P9uGR4eisbtJTPzm/dPPuS0q8bcjDQv8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MhPll4HPpusZ4DL38SHjesR4B/y7JHskUNRjVmuTLGbcs0+0XeHCAl16JnZj06Js1chPdtpRF98BvJ1XdL2WolOVOKDClwfzfFSRT5mRcBG+zPF7vqEvFezy6nouQ6mT2rn6PLJTW/4kGdKZeFmV4E3UkCprnvt6/LE7dXO1c2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hH0J0IcK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ILbEpH007379;
-	Wed, 19 Jun 2024 07:36:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=tedI/wDgAe2P2gAwrsKDr6tK
-	yUDAAtGPLir7ppJx4as=; b=hH0J0IcKos3rnNxyMLyPbiT1gWcaGvAnOEL/aWsx
-	FqceVDJrxBXW4nuGNJswI9ADyEfBgtFZwQPvg6gRk0ESLQWCPNXXutS5TxM1osqT
-	fWxYEf72QmvA5+/rs1L4UNSJy55RCOjbBM5ELXxxoyt90IR5mb8nD4DmvoZ8Knej
-	GwaYyzowvG00oC9Q2pEgWwOslSxM7uOn79Huc83nlWfJW8lv+jx6zASy0/ncTDKV
-	2LQF6/dTb2zvv4Fxelyg7iAEEuUEI3HAPbg6Wy03ePKm+3d+wJWvRuoZjIS4+nC6
-	pcvXKNpGRSO+uCbnM6MwzARdEatEpQR/6uFpzg9szQ8P2g==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yujag0yh0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 07:36:56 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45J7asqg007860
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 07:36:54 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 19 Jun 2024 00:36:50 -0700
-Date: Wed, 19 Jun 2024 13:06:46 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Georgi Djakov <djakov@kernel.org>
-CC: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <quic_anusha@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v9 6/6] arm64: dts: qcom: ipq9574: Add icc provider
- ability to gcc
-Message-ID: <ZnKKjomRQtJS2ZgL@hu-varada-blr.qualcomm.com>
-References: <ZjshR0ekcn0gxwOa@hu-varada-blr.qualcomm.com>
- <CAA8EJpqENsojPQmCbma_nQLEZq8nK1fz1K0JdtvLd=kPrH_DBw@mail.gmail.com>
- <1a08ef42-b52f-4c97-90d7-e7fdee7725b4@linaro.org>
- <Zmgb+OjdBNw71sC1@hu-varada-blr.qualcomm.com>
- <176137e5-6312-4d46-97b6-c4494bc1c61b@kernel.org>
- <ZmlAdETV0+6Md8HC@hu-varada-blr.qualcomm.com>
- <e24cfd23-6f77-46a0-b020-9cb3daef6930@kernel.org>
- <Zml4RQ5R5s3mVMnI@hu-varada-blr.qualcomm.com>
- <8e32a8be-dbbf-49ca-92a1-2fe3c8bfb571@kernel.org>
- <ZmpsOdsl9AMTSH88@hu-varada-blr.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1143D7603A;
+	Wed, 19 Jun 2024 07:38:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718782688; cv=pass; b=OQvjfiH5EUAl4xZUj3QBdrAvKGwREHs4A+kAafyPfnt1TY3cfvxTcd5zw3DY7a5PlJSgP3uiEn7aVYo+fqzd7Vvj0V00nYETKkn2gDZ5+Tsz7gdxdSkDgTE4CvOWpONTQoBb4iGVhD18vTNQsHcsSFxDM+8mmIMOwVQeXdI3jVI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718782688; c=relaxed/simple;
+	bh=dILstQIUai3DtXRp/q1RJsBjK8QEmdTG5Y18JKqP2W8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=cmHv4u5nbkz7fCGw+5XC8fLzbrkZicmgz5wkoUTKSga6mtM29KAMvHF0T6ONN+FJSYpPt4m/iC5WLN3VkXSMil2OfnPYFN7Q1GaBY/6C90C7ojf3AUFZzNiPiJ04ChH6+Z+KCaW2ymcYwx5RjnUboELyaGto3iNzh4xGFdU/CCA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=TjVzyDQH; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1718782667; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=F+jzLTyut4HRZWWwAgeDjA64/l80zDaCJxNwJicBERv3K4ZhePzZRL/ecXwTuAMsGU88cITkwR1ZNCGR3BUQbsq6oP9yyMz6ZecxuqIOofMi6dnQ+4rDTJ3sVtHcJbsV20ex5d94ZwenJ9zQCUqN+8po8f+fNZy8KHXU6kQwQMg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1718782667; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=dILstQIUai3DtXRp/q1RJsBjK8QEmdTG5Y18JKqP2W8=; 
+	b=PWTJXsoFWh6Sn5jhrZaehWp0R9DIPlnMpNK/NK3fCsQ4AOYZq+JjhfklfEYnhdCGbIiRq1lzf9NJpvrtF9lgjkVf8nl2IBr+BkCvw6a+yPdnQg3iUQnC5w27O5jEf6l0J/lOwS04m5PBHCYUPfr2CA/b1XMBBTxO9h010IQ3j6U=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1718782667;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=dILstQIUai3DtXRp/q1RJsBjK8QEmdTG5Y18JKqP2W8=;
+	b=TjVzyDQHnxTueOSE1UJ6XmDsaK59/K6M9HDxC35xMfbXxaGSbFhEx3/+kkAoRYVw
+	bB7G308woo+fsOPN8fhGDDvCtieUWoxTRSupa8XebcOwsTi3ImQx3WWEZyq00MtgCKv
+	A0oDYJBD3X+5BZVVWTI0zoB+e4qQtBHVoLmleWoJcbOYc1ARXWFAdH9WOvgR96fFPdK
+	XqN5WMcW52xIpq1WyAGulEebLxW2aX+DU/ZkJPvwo/+8sYwFMm5WkdDbnznI+5I7rnA
+	p7j7glCkDMDnIRdQsyCrvx0VtrBMRcUWT7IJTzsWexJSK+TdP2O0km8xbt1CMp7cprO
+	dduYLcqzTA==
+Received: by mx.zohomail.com with SMTPS id 1718782666075684.338458172934;
+	Wed, 19 Jun 2024 00:37:46 -0700 (PDT)
+Message-ID: <95c4d5e165992e8b775ec41a6948bda400b4c82f.camel@icenowy.me>
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: dw: Document compatible
+ thead,th1520-i2c
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Jarkko Nikula <jarkko.nikula@linux.intel.com>, Thomas Bonnefille
+ <thomas.bonnefille@bootlin.com>, Andi Shyti <andi.shyti@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Guo Ren
+ <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Drew Fustini
+ <dfustini@tenstorrent.com>, Emil Renner Berthing
+ <emil.renner.berthing@canonical.com>, Conor Dooley <conor@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>,  =?ISO-8859-1?Q?Miqu=E8l?= Raynal
+ <miquel.raynal@bootlin.com>, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>
+Date: Wed, 19 Jun 2024 15:37:36 +0800
+In-Reply-To: <f427b28c-420b-4174-a670-70f626f8061e@linux.intel.com>
+References: <20240618-i2c-th1520-v3-0-3042590a16b1@bootlin.com>
+	 <20240618-i2c-th1520-v3-1-3042590a16b1@bootlin.com>
+	 <f427b28c-420b-4174-a670-70f626f8061e@linux.intel.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZmpsOdsl9AMTSH88@hu-varada-blr.qualcomm.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: q23CxMHp9g3T2Lbye7KLJTHea_kt33mb
-X-Proofpoint-ORIG-GUID: q23CxMHp9g3T2Lbye7KLJTHea_kt33mb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-17_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 mlxscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
- spamscore=0 bulkscore=0 malwarescore=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406190055
+X-ZohoMailClient: External
 
-On Thu, Jun 13, 2024 at 09:19:13AM +0530, Varadarajan Narayanan wrote:
-> On Wed, Jun 12, 2024 at 03:52:51PM +0300, Georgi Djakov wrote:
-> > On 12.06.24 13:28, Varadarajan Narayanan wrote:
-> > > On Wed, Jun 12, 2024 at 11:48:17AM +0300, Georgi Djakov wrote:
-> > > > On 12.06.24 9:30, Varadarajan Narayanan wrote:
-> > > > > On Tue, Jun 11, 2024 at 02:29:48PM +0300, Georgi Djakov wrote:
-> > > > > > On 11.06.24 12:42, Varadarajan Narayanan wrote:
-> > > > > > > On Thu, Jun 06, 2024 at 04:06:01PM +0200, Konrad Dybcio wrote:
-> > > > > > > > On 8.05.2024 10:10 AM, Dmitry Baryshkov wrote:
-> > > > > > > > > On Wed, 8 May 2024 at 09:53, Varadarajan Narayanan
-> > > > > > > > > <quic_varada@quicinc.com> wrote:
-> > > > > > > > > >
-> > > > > > > > > > On Fri, May 03, 2024 at 04:51:04PM +0300, Georgi Djakov wrote:
-> > > > > > > > > > > Hi Varada,
-> > > > > > > > > > >
-> > > > > > > > > > > Thank you for your work on this!
-> > > > > > > > > > >
-> > > > > > > > > > > On 2.05.24 12:30, Varadarajan Narayanan wrote:
-> > > > > > > > > > > > On Tue, Apr 30, 2024 at 12:05:29PM +0200, Konrad Dybcio wrote:
-> > > > > > > > > > > > > On 25.04.2024 12:26 PM, Varadarajan Narayanan wrote:
-> > > > > > > > > > > > > > On Tue, Apr 23, 2024 at 02:58:41PM +0200, Konrad Dybcio wrote:
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > On 4/18/24 11:23, Varadarajan Narayanan wrote:
-> > > > > > > > > > > > > > > > IPQ SoCs dont involve RPM in managing NoC related clocks and
-> > > > > > > > > > > > > > > > there is no NoC scaling. Linux itself handles these clocks.
-> > > > > > > > > > > > > > > > However, these should not be exposed as just clocks and align
-> > > > > > > > > > > > > > > > with other Qualcomm SoCs that handle these clocks from a
-> > > > > > > > > > > > > > > > interconnect provider.
-> > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > Hence include icc provider capability to the gcc node so that
-> > > > > > > > > > > > > > > > peripherals can use the interconnect facility to enable these
-> > > > > > > > > > > > > > > > clocks.
-> > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > > > > > > > > > > > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > > > > > > > > > > > > > > > ---
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > If this is all you do to enable interconnect (which is not the case,
-> > > > > > > > > > > > > > > as this patch only satisfies the bindings checker, the meaningful
-> > > > > > > > > > > > > > > change happens in the previous patch) and nothing explodes, this is
-> > > > > > > > > > > > > > > an apparent sign of your driver doing nothing.
-> > > > > > > > > > > > > >
-> > > > > > > > > > > > > > It appears to do nothing because, we are just enabling the clock
-> > > > > > > > > > > > > > provider to also act as interconnect provider. Only when the
-> > > > > > > > > > > > > > consumers are enabled with interconnect usage, this will create
-> > > > > > > > > > > > > > paths and turn on the relevant NOC clocks.
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > No, with sync_state it actually does "something" (sets the interconnect
-> > > > > > > > > > > > > path bandwidths to zero). And *this* patch does nothing functionally,
-> > > > > > > > > > > > > it only makes the dt checker happy.
-> > > > > > > > > > > >
-> >
-> > [..]
-> >
-> > >
-> > > nsscc_ipq9574 was not using icc_sync_state. After adding that, I
-> > > can see the following messages printed from icc_sync_state. I
-> > > also added a print to confirm if 'p->set(n, n);' is called.
-> >
-> > Ok, that's good! So now when all providers are using sync_state, we
-> > can go back to the initial comment from Konrad. I think you should
-> > re-check the tests that you did, as the current results just lead to
-> > more questions than answers. Maybe it was just the sync-state that
-> > was missing, or there is some other issue.
->
-> Georgi,
->
-> Thanks very much for the clarifications. Will re-test the patches
-> and update the thread.
->
-> -Varada
+=E5=9C=A8 2024-06-19=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 09:40 +0300=EF=BC=
+=8CJarkko Nikula=E5=86=99=E9=81=93=EF=BC=9A
+>=20
+> Your comment below makes me thinking is this change needed? So is it=20
+> enough to specify "snps,designware-i2c" for the compatible string in=20
+> patch 2/3?
 
-Georgi,
+I think it's a common practice to have a SoC-specific compatible along
+with the specific compatible, in case any silicon quirk is found.
 
-Tested the patches with both gcc and nsscc providers having
-'sync_state' set to icc_sync_state.
+>=20
+> "It appears that the TH1520 I2C is already supported in the upstream=20
+> kernel through the Synopsis Designware I2C adapter driver."
 
-	# dmesg | grep synced
-	[    3.029820] qcom,gcc-ipq9574 1800000.clock-controller: interconnect provider is in synced state
-	[    3.470106] qcom,nsscc-ipq9574 39b00000.clock-controller: interconnect provider is in synced state
-
-I can see that icc_sync_state is getting called and clocks
-related to paths with zero bandwidth are getting disabled.
-
-Will post the NSSCC patches to get the full picture.
-
--Varada
-
->
-> > > nodes. Please refer to this patch
-> > >
-> > > 	[PATCH V5 4/6] arm64: dts: qcom: ipq9574: Add PCIe PHYs and controller nodes
-> > > 	https://lore.kernel.org/linux-arm-msm/20240512082858.1806694-5-quic_devipriy@quicinc.com/
-> > >
-> > > Sorry, did not post the nsscc related patches since this base ICC
-> > > patch hasn't reached closure. The nsscc patches are very similar
-> > > to this gcc based series. Wanted to gather the issues raised in
-> > > this and address them in nsscc so that it is in a more acceptable
-> > > shape.
-> > >
-> > > Thanks
-> > > Varada
-> >
->
 
