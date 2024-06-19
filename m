@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-77358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD9790E515
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:01:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D48090E54F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:13:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80A721F24570
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:01:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC4382850C9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D1EF770FD;
-	Wed, 19 Jun 2024 08:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AA978C65;
+	Wed, 19 Jun 2024 08:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XInfMRyl"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="FRxw+0cD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 334AB5FBB1;
-	Wed, 19 Jun 2024 08:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446A9763FD;
+	Wed, 19 Jun 2024 08:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718784039; cv=none; b=Fqr4lvWqLcLmloJN0VXJw/NlFJ5u6rcqz+NmHobSl3d2/SJih31il3leCS5BV3WDw4/WgMjDMxmo8WT2fAErC6HJfVNn53wGfXC1ptXUy2Xp7h0VZgLnEYn3f/H786jo+QG8cMn+ecnYbxmdOQRUjbvADpPo5vWiLqiEmcK3DTI=
+	t=1718784775; cv=none; b=Hj7DLqJsuVORrah98HrV96hk9m0FpcH1+b5qV+qrIUoqkmeWYmjBFc6zyz0L5wxBAXck2xJFYvGLRIAj5/YnE2cfDSpNqSY3zUxIhwwZdH2mdbDpb8Vk+LF7/Azd8EKqREFs9WDLNWCCg9xi6B5m3Rcp93RvMHdpgAkzjNVlQcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718784039; c=relaxed/simple;
-	bh=thpUAkhJsltf/HsaqagS513WhlqKytmyO9LxeeKBG+Y=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=diqNGW+LKzW4ZV0CjjR1ozQ/ysVlfGNxbTtVs60aDWCx8uzKdee9J1fh0pElD6AuVScVBzHIxk4Q7KtFtSxyxijXyMlHYQpeaXTYjtxXulbJLlbaOtxBWp482S5hoXAVH7RbnMyN/6eqb1ShxaHT61D59RIAF3giPIZC7W5eQ+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XInfMRyl; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45J80OG8042903;
-	Wed, 19 Jun 2024 03:00:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718784024;
-	bh=EyMR6PM9DXM8j7BksUHKq1zTFh3m/RdnU97LrP5+NNU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=XInfMRyl8/mWEmjGrisMMLOmO7+ssnkzZQgUYL4uN3MIqjs8VKdvB/HDZeQjlUeF0
-	 08zFOWBp8ObPwJtNyPPwFmaB44I/23tHXbxnL4lumKgsQhXc7XtluW4V21U2B4t3Q2
-	 eXU7mDwojYQ3gn1mD0TCVXuiY5sRG2qb0l2a0ZPU=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45J80O9v128966
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 19 Jun 2024 03:00:24 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
- Jun 2024 03:00:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 19 Jun 2024 03:00:24 -0500
-Received: from localhost (dhruva.dhcp.ti.com [172.24.227.68])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45J80N6E054421;
-	Wed, 19 Jun 2024 03:00:24 -0500
-Date: Wed, 19 Jun 2024 13:30:22 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Nishanth Menon <nm@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Jared McArthur <j-mcarthur@ti.com>, Bryan Brattlof <bb@ti.com>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62p: Add gpio-ranges properties
-Message-ID: <20240619080022.jdbufuc4w6fk77ju@dhruva>
-References: <20240618173123.2592074-1-nm@ti.com>
- <20240618173123.2592074-3-nm@ti.com>
+	s=arc-20240116; t=1718784775; c=relaxed/simple;
+	bh=d22ozv8UZzsbdeCLyzbmyCDhwksXbO4tqNyJiRNzVpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TiOtyQnu5SsJgKF1VT6WsqS39Yq9upZ7I8hDBYmZz14Q1JJGYtxW4OnZkuEEoF6q2CqNzzddwLg57iBxqXog3VvpQutCp5yziob1kkGYklpT1a9Ma3Kl9U04r9xag1hmz2pSt7fG7rgp/LfKJdVXn+wkeshcArwVqrT6IhtR3Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=FRxw+0cD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 390ECC2BBFC;
+	Wed, 19 Jun 2024 08:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1718784774;
+	bh=d22ozv8UZzsbdeCLyzbmyCDhwksXbO4tqNyJiRNzVpM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FRxw+0cDYZFJozbRUuujZdkbvcFzUBdF99vdYElj/iTAhc2AmqbsuXU4OhghUY0V2
+	 cY+wdFFl+mpsiRarjMYjdBdXpoBDovhiv5K+JJahLex4yeoYkuPRRrMJlIai0FDMoc
+	 0sCElbyU81+aJIT2xLdwj91jyQjXxJ3UF/qOa/kQ=
+Date: Wed, 19 Jun 2024 10:12:51 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: Jie Gan <quic_jiegan@quicinc.com>, coresight@lists.linaro.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Konrad Dybcio <konradybcio@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Mike Leach <mike.leach@linaro.org>, Rob Herring <robh@kernel.org>,
+	Suzuki Poulouse <suzuki.poulose@arm.com>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jinlong Mao <quic_jinlmao@quicinc.com>,
+	Song Chai <quic_songchai@quicinc.com>,
+	Tao Zhang <quic_taozha@quicinc.com>,
+	Tingwei Zhang <quic_tingweiz@quicinc.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Yuanfang Zhang <quic_yuanfang@quicinc.com>, quic_liuxin@quicinc.com,
+	quic_sijiwu@quicinc.com, quic_xinlon@quicinc.com,
+	quic_xueqnie@quicinc.com, quic_yanzl@quicinc.com,
+	quic_yijiyang@quicinc.com, quic_yuanjiey@quicinc.com
+Subject: Re: [PATCH 2/3] coresight: Add coresight slave register driver to
+ support data filter function in sysfs mode
+Message-ID: <2024061947-street-italics-0cdf@gregkh>
+References: <20240618072726.3767974-3-quic_jiegan@quicinc.com>
+ <e916a445-f7bd-4213-ac66-cf39f6c5001b@web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240618173123.2592074-3-nm@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e916a445-f7bd-4213-ac66-cf39f6c5001b@web.de>
 
-On Jun 18, 2024 at 12:31:22 -0500, Nishanth Menon wrote:
-> On the AM62P platform we have no single 1:1 relation regarding index
-> of GPIO and pin controller. The GPIOs and pin controller registers
-> have mapping and holes in the map. These have been extracted from the
-> AM62P data sheet.
+On Wed, Jun 19, 2024 at 09:55:25AM +0200, Markus Elfring wrote:
+> …
+> > +++ b/drivers/hwtracing/coresight/coresight-csr.c
+> > @@ -0,0 +1,315 @@
+> …
+> > +static int __csr_set_etr_traceid(struct coresight_device *csdev,
+> > +			uint32_t atid_offset, uint32_t traceid,
+> > +			bool enable)
+> > +{
+> …
+> > +	spin_lock_irqsave(&drvdata->spin_lock, flags);
+> > +	CS_UNLOCK(drvdata->base);
+> …
+> > +	CS_LOCK(drvdata->base);
+> > +	spin_unlock_irqrestore(&drvdata->spin_lock, flags);
+> > +	return 0;
+> > +}
+> …
 > 
-> Mux mode input is selected as it is bi-directional. In case a specific
-> pull type or a specific pin level drive setting is desired, the board
-> device tree files will have to explicitly mux those pins for the GPIO
-> with the desired setting.
-> 
-> Ref: AM62P Data sheet https://www.ti.com/lit/gpn/am62p
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
-> 
-> Note: this generates a 'too large' warning for
-> pinctrl-single,gpio-ranges -
-> https://lore.kernel.org/r/20240618165102.2380159-1-nm@ti.com/ for more
-> details
-> 
->  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 14 ++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi  | 10 ++++++++++
->  2 files changed, 24 insertions(+)
+> Would you become interested to apply a statement like “guard(spinlock_irqsave)(&drvdata->spin_lock);”?
+> https://elixir.bootlin.com/linux/v6.10-rc4/source/include/linux/spinlock.h#L574
 
 
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Hi,
 
--- 
-Best regards,
-Dhruva
+This is the semi-friendly patch-bot of Greg Kroah-Hartman.
+
+Markus, you seem to have sent a nonsensical or otherwise pointless
+review comment to a patch submission on a Linux kernel developer mailing
+list.  I strongly suggest that you not do this anymore.  Please do not
+bother developers who are actively working to produce patches and
+features with comments that, in the end, are a waste of time.
+
+Patch submitter, please ignore Markus's suggestion; you do not need to
+follow it at all.  The person/bot/AI that sent it is being ignored by
+almost all Linux kernel maintainers for having a persistent pattern of
+behavior of producing distracting and pointless commentary, and
+inability to adapt to feedback.  Please feel free to also ignore emails
+from them.
+
+thanks,
+
+greg k-h's patch email bot
 
