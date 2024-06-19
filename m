@@ -1,237 +1,139 @@
-Return-Path: <devicetree+bounces-77387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80B6690E793
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 11:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 395DB90E7A7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 11:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07A7D1F22AD5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 09:57:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D391A1F21154
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 09:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186B884E04;
-	Wed, 19 Jun 2024 09:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725D981720;
+	Wed, 19 Jun 2024 09:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Xl9tcqIB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BiA+21h4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69277824B2;
-	Wed, 19 Jun 2024 09:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28E7823A9;
+	Wed, 19 Jun 2024 09:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718790977; cv=none; b=NqyGgQQ0PTPAlv2RSXbxClft7iW05bjLxH9I1TAPo21+2AaMSC/1zfsP33eKBXy5gKHq5wkj4yE7pZMBId2KmZH5qUKT5EOu2CJlenMXEFaFXsxVUUjLubOPPybfdiRokcdxQ/VfVhwYLt2v4HhMw1BS5oK1n9ffS/NtQVFqjzo=
+	t=1718791073; cv=none; b=Sm0t9UMmWkurdnt9wy4/+3BEGk/DHIUZEDKG0qvC53crKg9JzFMW0dUT1Ay5Hid5X2ZMTCJhm0xdy9xPSTOTnTmqu1NZxr4syf7wnZGRPrGCDxD8FOBlh6BQqSBmF/FP7hSqwhYxLA6AW6bQEjeZ3A/gMZaNyk3zYlOMMWBrWhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718790977; c=relaxed/simple;
-	bh=tkiOYw0eqhfAoX/D0XNFeQSiPHu0lcAvizVef5/AGeQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AYOksyhsp1c6TBVhjydNLe0Vx84mM0/AsdSPxY1fh/Dh3jYTpUiLqSKZjz/Qka7WBGpNv4JgFzb+AxpgptadsUzNOeqtr3BCSrVFRHmRZPn04P/i+ILZfAAxfRUKcwNnLDEU/piAi851Cxu1COR2+tenTsdjlvdyuXhF+A3HCGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Xl9tcqIB; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718790973;
-	bh=tkiOYw0eqhfAoX/D0XNFeQSiPHu0lcAvizVef5/AGeQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xl9tcqIB9kCQUbIu61a+gI584SUMFbXK5vMZW1Ne2z9NB9ZDNFr1ukxIFTS1ePq6t
-	 FI33J3UP6XUOmnkZdKtpQmLvYpMIxXSeRqmGBqL3vdpSvBLQd5uRYE9jcziRnU6Y5T
-	 ncjtl2haOgXwVahYD+s9ZaG2BiSh1sXb0wjBnBia9srSgo/cScxwrKal+BYczxK4nP
-	 xyoaR7RWRqVV+EfnA/tMjMA5gfNvvQTLmCL0FkmgaDJU6mZIasMahQ+izXciHa350M
-	 hg0xanxGVUVafyR81PBKsbat/D6CWpZZ91dc+uNX58jq+dC8q9DBXv+Ia5LUWjNvHl
-	 nWuXQ7sKLbiCQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 646883782163;
-	Wed, 19 Jun 2024 09:56:12 +0000 (UTC)
-Message-ID: <966d5c3d-0595-4113-a507-4b8348ac4a77@collabora.com>
-Date: Wed, 19 Jun 2024 11:56:11 +0200
+	s=arc-20240116; t=1718791073; c=relaxed/simple;
+	bh=rHOqKYEiPSXAMGvwVWs307CPQ62xR0Vyd/69BfHqJzw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=d/IzxjUvGKZC8j3gKKoiqPeiXOFtMbd93z7vUkB9EaofW3sxduNXRQEE9p4cueSib05V1xLUSl7cAU4Oc9zaAcVuXx0SGW8Qv2DobKtXaoMQDtcoJni6EASitc1aDkh0JG6zRQSZmIV5Vgjsfhmnw768HODruhUmCUWiqiPNJms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BiA+21h4; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45J9vkEC075908;
+	Wed, 19 Jun 2024 04:57:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718791066;
+	bh=JgaQd2I/XrcTw6RtsvCXBKivjaKkKYMU5kwdUIU5ofg=;
+	h=From:Date:Subject:To:CC;
+	b=BiA+21h40EENvd8LVCAgTe6Qh3c8wPqitETNylEYLf7DzNkHWGhNyrJARCg6ywaSm
+	 V9k9etWm5DQZwmsuFfcXZfplzi7yQSwxxr8ok8BE1m1klYFWHdwC8eU6Z4BsNfAOiM
+	 z/17pyq3/1Unat+u/hMPnr4a7MX+0JbJLMFflWek=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45J9vkve053530
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 19 Jun 2024 04:57:46 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
+ Jun 2024 04:57:45 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 19 Jun 2024 04:57:45 -0500
+Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45J9vit6106634;
+	Wed, 19 Jun 2024 04:57:45 -0500
+From: Kamlesh Gurudasani <kamlesh@ti.com>
+Date: Wed, 19 Jun 2024 15:27:25 +0530
+Subject: [PATCH] arm64: dts: ti: k3-am62*-main: Remove unwanted properties
+ from crypto
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v5 04/16] ASoC: mediatek: mt8365: Add common header
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
- Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-References: <20240226-audio-i350-v5-0-54827318b453@baylibre.com>
- <20240226-audio-i350-v5-4-54827318b453@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240226-audio-i350-v5-4-54827318b453@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20240618-remove-ranges-v1-1-35d68147e9bf@ti.com>
+X-B4-Tracking: v=1; b=H4sIAISrcmYC/x2NwQqDQAwFf0VybkC3rdj+SvGQ3T5rDmpJRATx3
+ 7vb4zAMc5DDFE7P6iDDpq7LnKG5VJRGmT9gfWemUIdb3TYdG6ZlA1txzpKuUdIdYXiAchPFwTH
+ LNJZqEl9hRXwNg+7/0as/zx/wIZE3eAAAAA==
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Kamlesh Gurudasani <kamlesh@ti.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718791063; l=1733;
+ i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
+ bh=rHOqKYEiPSXAMGvwVWs307CPQ62xR0Vyd/69BfHqJzw=;
+ b=QqF2LAdVV7SZjhsfnrpfyU3R/Kk2VYvol8DEwkn/MmrBEBAS+iF/F8gzU0oXET5hFmqGX3MX1
+ jB9nggz/RNmDxtOMRaSZi+ukMNZ3Ib8yDFklznoUS+Tud1F3xAswVtO
+X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
+ pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Il 14/06/24 09:27, Alexandre Mergnat ha scritto:
-> Add header files for register definition and structure.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->   sound/soc/mediatek/mt8365/mt8365-afe-common.h | 491 +++++++++++++
->   sound/soc/mediatek/mt8365/mt8365-reg.h        | 991 ++++++++++++++++++++++++++
->   2 files changed, 1482 insertions(+)
-> 
-> diff --git a/sound/soc/mediatek/mt8365/mt8365-afe-common.h b/sound/soc/mediatek/mt8365/mt8365-afe-common.h
-> new file mode 100644
-> index 000000000000..4d8f8c4b19e3
-> --- /dev/null
-> +++ b/sound/soc/mediatek/mt8365/mt8365-afe-common.h
-> @@ -0,0 +1,491 @@
-> +/* SPDX-License-Identifier: GPL-2.0
-> + *
-> + * Mediatek 8365 audio driver common definitions
-> + *
-> + * Copyright (c) 2024 MediaTek Inc.
-> + * Authors: Jia Zeng <jia.zeng@mediatek.com>
-> + *          Alexandre Mergnat <amergnat@baylibre.com>
-> + */
-> +
-> +#ifndef _MT8365_AFE_COMMON_H_
-> +#define _MT8365_AFE_COMMON_H_
-> +
-> +#define COMMON_CLOCK_FRAMEWORK_API
-> +#define IDLE_TASK_DRIVER_API
-> +#define ENABLE_AFE_APLL_TUNER
+As there is no child node in crypto node, remove the properties
+that are not needed.
 
-Those three definitions do not exist upstream. Please remove.
+Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 4 ----
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 4 ----
+ 2 files changed, 8 deletions(-)
 
-> +
-> +#include <linux/clk.h>
-> +#include <linux/list.h>
-> +#include <linux/regmap.h>
-> +#include <sound/soc.h>
-> +#include <sound/asound.h>
-> +#include "../common/mtk-base-afe.h"
-> +#include "mt8365-reg.h"
-> +
-> +#define ENUM_TO_STR(enum) #enum
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 0f2722c4bcc3..00776a9987c1 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -207,10 +207,6 @@ k3_reset: reset-controller {
+ 	crypto: crypto@40900000 {
+ 		compatible = "ti,am62-sa3ul";
+ 		reg = <0x00 0x40900000 0x00 0x1200>;
+-		#address-cells = <2>;
+-		#size-cells = <2>;
+-		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
+-
+ 		dmas = <&main_pktdma 0xf501 0>, <&main_pktdma 0x7506 0>,
+ 		       <&main_pktdma 0x7507 0>;
+ 		dma-names = "tx", "rx1", "rx2";
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+index eed06506f617..c1c74ce40f76 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+@@ -227,10 +227,6 @@ k3_reset: reset-controller {
+ 	crypto: crypto@40900000 {
+ 		compatible = "ti,am62-sa3ul";
+ 		reg = <0x00 0x40900000 0x00 0x1200>;
+-		#address-cells = <2>;
+-		#size-cells = <2>;
+-		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
+-
+ 		dmas = <&main_pktdma 0xf501 0>, <&main_pktdma 0x7506 0>,
+ 		       <&main_pktdma 0x7507 0>;
+ 		dma-names = "tx", "rx1", "rx2";
 
-Unused definition
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240618-remove-ranges-ac3bac5e2f9e
 
-> +
-> +#define snd_soc_dai_stream_active_playback(dai) \
-> +		snd_soc_dai_stream_active(dai, SNDRV_PCM_STREAM_PLAYBACK)
-> +#define snd_soc_dai_stream_active_capture(dai) \
-> +		snd_soc_dai_stream_active(dai, SNDRV_PCM_STREAM_CAPTURE)
-> +
+Best regards,
+-- 
+Kamlesh Gurudasani <kamlesh@ti.com>
 
-Those are used only once and only in mt8365-dai-pcm.c, and I just noticed that.
-
-Can you please just remove those two and directly call snd_soc_dai_stream_active()
-with the right params in function mt8365_dai_pcm1_prepare()?
-
-> +enum {
-> +	MT8365_AFE_MEMIF_DL1,
-> +	MT8365_AFE_MEMIF_DL2,
-> +	MT8365_AFE_MEMIF_TDM_OUT,
-
-..snip..
-
-> +
-> +#ifdef CONFIG_MTK_HIFIXDSP_SUPPORT
-
-This configuration option doesn't exist.
-
-Please remove the ifdef and the enclosed code entirely, as it's unused.
-
-> +struct mt8365_adsp_data {
-> +	/* information adsp supply */
-> +	bool adsp_on;
-> +	int (*hostless_active)(void);
-> +	/* information afe supply */
-> +	int (*set_afe_memif)(struct mtk_base_afe *afe,
-> +			     int memif_id,
-> +			     unsigned int rate,
-> +			     unsigned int channels,
-> +			     snd_pcm_format_t format);
-> +	int (*set_afe_memif_enable)(struct mtk_base_afe *afe,
-> +				    int memif_id,
-> +				    unsigned int rate,
-> +				    unsigned int period_size,
-> +				    int enable);
-> +	void (*get_afe_memif_sram)(struct mtk_base_afe *afe,
-> +				   int memif_id,
-> +				   unsigned int *paddr,
-> +				   unsigned int *size);
-> +	void (*set_afe_init)(struct mtk_base_afe *afe);
-> +	void (*set_afe_uninit)(struct mtk_base_afe *afe);
-> +};
-> +#endif
-> +
-> +struct mt8365_afe_private {
-> +	struct clk *clocks[MT8365_CLK_NUM];
-> +	struct regmap *topckgen;
-> +	struct mt8365_fe_dai_data fe_data[MT8365_AFE_MEMIF_NUM];
-> +	struct mt8365_be_dai_data be_data[MT8365_AFE_BACKEND_NUM];
-> +	struct mt8365_control_data ctrl_data;
-> +	struct mt8365_gasrc_data gasrc_data[MT8365_TDM_ASRC_NUM];
-> +#ifdef CONFIG_MTK_HIFIXDSP_SUPPORT
-> +	struct mt8365_adsp_data adsp_data;
-
-ditto
-
-> +#endif
-> +	int afe_on_ref_cnt;
-> +	int top_cg_ref_cnt[MT8365_TOP_CG_NUM];
-> +	void __iomem *afe_sram_vir_addr;
-> +	unsigned int afe_sram_phy_addr;
-> +	unsigned int afe_sram_size;
-> +	/* locks */
-> +	spinlock_t afe_ctrl_lock;
-> +	struct mutex afe_clk_mutex;	/* Protect & sync APLL TUNER registers access*/
-> +#ifdef CONFIG_DEBUG_FS
-> +	struct dentry *debugfs_dentry[MT8365_AFE_DEBUGFS_NUM];
-> +#endif
-> +	int apll_tuner_ref_cnt[MT8365_AFE_APLL_NUM];
-> +	unsigned int tdm_out_mode;
-> +	unsigned int cm2_mux_input;
-> +
-> +	/* dai */
-> +	bool dai_on[MT8365_AFE_BACKEND_END];
-> +	void *dai_priv[MT8365_AFE_BACKEND_END];
-> +};
-> +
-
-....
-
-> +#ifdef CONFIG_MTK_HIFIXDSP_SUPPORT
-
-same
-
-> +struct mtk_base_afe *mt8365_afe_pcm_get_info(void);
-> +#endif
-> +
-> +int mt8365_dai_i2s_register(struct mtk_base_afe *afe);
-> +int mt8365_dai_set_priv(struct mtk_base_afe *afe,
-> +			int id,
-> +			int priv_size,
-> +			const void *priv_data);
-> +
-
-Everything else looks good.
-
-After applying the proposed cleanups,
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Cheers,
-Angelo
 
