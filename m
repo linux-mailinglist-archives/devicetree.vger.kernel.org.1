@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-77582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78EE590F525
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F3E90F537
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:36:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C90E2807F3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:33:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BA202815FA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C21D55882;
-	Wed, 19 Jun 2024 17:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F521465BD;
+	Wed, 19 Jun 2024 17:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E/PeXlYG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8kmch8B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E4547779;
-	Wed, 19 Jun 2024 17:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE0D41848;
+	Wed, 19 Jun 2024 17:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718818421; cv=none; b=LSJVHC/qSbexOwnzHNLyAJz5cv2gsR+sHuWeyW6hpMtK3IPAT4TKC/U5LFtEb2C7HUIBbE0JtTqwjucBc3KCNtOH5+zyZLlCFrysgdjBiBIVudFqLEiJ/jufmLlphHzo/B7kE8aDwfKt8aFSjjXDlnD9xrolULuCnzKtYKXvJpw=
+	t=1718818582; cv=none; b=Aase4nq1jpgJfxYasHp5QSWcl37KEkbw69NfDT0o7zDjc9xu4Blwz/5Aurf9vNOgw/edgHmMBfLAgwoLGU8ifinfgjO27PXqd0b2H+7eaxnYAzM5TcwswK8ZFnr0MAkm1NxlMqblbsVNoOfikxEwyradggXxrNe4xZaAZx13sbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718818421; c=relaxed/simple;
-	bh=jBQbrbECAxZQb03o9hjYR2DC5XcpH4RFuYhnr8rFRXQ=;
+	s=arc-20240116; t=1718818582; c=relaxed/simple;
+	bh=DrmJn4DQDg8tS/79j2zVF7iokicQzqB2ahSSIe6NO1Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YAHqlTs55iRZKRwIxOXwE8TNpUVox3JLE9Sancr5V2OBYQ5x01U+nBT25Whmahyq4lhvDq2ik6PL09IlfpAxW6/ogEJeRwAcA1/FIOD7i1zsPL2cYva52R03oN0FY2Kyefnxax9glClyO8BHFjptqbdKEgfVCfuj8yXZOBbuHFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E/PeXlYG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30A0AC2BBFC;
-	Wed, 19 Jun 2024 17:33:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JrjcFrRAPqqxF+nNT9P4MlaPn2OkkbDWLJowDwP3dLOsbjCfd0RiBIZXflUrat/65KKjLktPRkdDNSulKbks20ctbgZOjCwMZlS0cq9lWwlKe/CTGSMYR4+BBzDlz8RZ3qcWy10EqYbrq0r1RIqwDJmdvU6ScaoTRJsMo7qS8Cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8kmch8B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 572FAC2BBFC;
+	Wed, 19 Jun 2024 17:36:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718818421;
-	bh=jBQbrbECAxZQb03o9hjYR2DC5XcpH4RFuYhnr8rFRXQ=;
+	s=k20201202; t=1718818581;
+	bh=DrmJn4DQDg8tS/79j2zVF7iokicQzqB2ahSSIe6NO1Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E/PeXlYGKJ01rP7FrfGj/zPeeSHHYDD2Ut2a8yU0kS7JkDKgQzGdGpbmqAnYtumbE
-	 pIcNPU5BKJNdTP73PeNZu0TcbIyvmDdFlp+czBvah+b0tnsbeYXFihwLsHOfpCgBFX
-	 n6r+zaVJTIT/uwSOVBm2ri8p863yuLzazW9iNooZpy8e1WZGgQU63xUb+4oCG4MSTZ
-	 fPWGXnGPf+s6CLTit7HKOCZQQK2gxCyIttuQlsYyiz7CxxcOk93CwdF46vgNkdBOex
-	 6qgY+tHzq8gmapEgRguhHbEjDTPIxYwipIoruFsy/lEugltSBYpPlXAnI4kN6LMKWU
-	 d4aLGafNRtKJA==
-Date: Wed, 19 Jun 2024 18:33:37 +0100
+	b=k8kmch8BTnHgHALIfxSL47FmS0jyLMCvAZBQ7IxJly7ya4XiTwxj5cV6q+iAsvhZF
+	 aIZTkgJU3bwobPbCSeXvYNll8cXvnf7+M5ZNUWPToS7cvXHj0T6YF1NdE05G93edBU
+	 WWewKuNMx5cH9ThC/7+vk04+wwr7zm66P6dSb7lzt/KaISu1fpD6nLzulNV3Iy39aG
+	 AopUWom6uyVXKkAEX1ITgFgrBAzZ8fQX9HpUN7pfLTss79hgyYNE55wcwW5pMoxI2f
+	 fYLx8wEcr0LLcSPthTUmmAEevu7HTA1iqJUXx2PHm6NDoE3iqh1WkV0XEAvM9R1YKc
+	 FldH9tXO7tbGQ==
+Date: Wed, 19 Jun 2024 18:36:16 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
- V4M
-Message-ID: <20240619-passage-iodine-9f944b26a30d@spud>
-References: <20240619153559.1647957-1-niklas.soderlund+renesas@ragnatech.se>
- <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
+To: Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>
+Cc: florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/4] dt-bindings: ethernet-phy: add optional brr-mode
+ flag
+Message-ID: <20240619-plow-audacity-8ee9d98a005e@spud>
+References: <20240619150359.311459-1-kamilh@axis.com>
+ <20240619150359.311459-4-kamilh@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,60 +62,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dWpIEbyvW2ujKmwW"
+	protocol="application/pgp-signature"; boundary="c7q0oAxjwmmc8+yb"
 Content-Disposition: inline
-In-Reply-To: <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240619150359.311459-4-kamilh@axis.com>
 
 
---dWpIEbyvW2ujKmwW
+--c7q0oAxjwmmc8+yb
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 19, 2024 at 05:35:58PM +0200, Niklas S=F6derlund wrote:
-> Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
+On Wed, Jun 19, 2024 at 05:03:58PM +0200, Kamil Hor=E1k - 2N wrote:
+> There is a group of PHY chips supporting BroadR-Reach link modes in
+> a manner allowing for more or less identical register usage as standard
+> Clause 22 PHY.
+> These chips support standard Ethernet link modes as well, however, the
+> circuitry is mutually exclusive and cannot be auto-detected.
+> The link modes in question are 100Base-T1 as defined in IEEE802.3bw,
+> based on Broadcom's 1BR-100 link mode, and newly defined 10Base-T1BRR
+> (1BR-10 in Broadcom documents).
 >=20
-> Signed-off-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech.se>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Add optional brr-mode flag to switch the PHY to BroadR-Reach mode.
+>=20
+> Signed-off-by: Kamil Hor=E1k - 2N <kamilh@axis.com>
 
-Didn't we just have a conversation about this, yet nothing has changed?
-NAK. Either you need a fallback or to explain why a fallback is not
-suitable _in this patch_.
-
-Thanks,
-Conor.
+Please fix your SoB and from addresses via your gitconfig as I told you
+to in response to the off-list mail you sent me. You also dropped my Ack
+without an explanation, why?
 
 > ---
->  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/D=
-ocumentation/devicetree/bindings/media/renesas,vin.yaml
-> index 5539d0f8e74d..168cb02f8abe 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> @@ -54,6 +54,7 @@ properties:
->                - renesas,vin-r8a77995 # R-Car D3
->                - renesas,vin-r8a779a0 # R-Car V3U
->                - renesas,vin-r8a779g0 # R-Car V4H
-> +              - renesas,vin-r8a779h0 # R-Car V4M
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Do=
+cumentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 8fb2a6ee7e5b..0353ef98f2e1 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -93,6 +93,13 @@ properties:
+>        the turn around line low at end of the control phase of the
+>        MDIO transaction.
 > =20
->    reg:
+> +  brr-mode:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Request the PHY to operate in BroadR-Reach mode. This means the
+> +      PHY will use the BroadR-Reach protocol to communicate with the oth=
+er
+> +      end of the link, including LDS auto-negotiation if applicable.
+> +
+>    clocks:
 >      maxItems: 1
+>      description:
 > --=20
-> 2.45.2
->=20
+> 2.39.2
+>
 
---dWpIEbyvW2ujKmwW
+--c7q0oAxjwmmc8+yb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMWcAAKCRB4tDGHoIJi
-0s6XAP4s/yplPNpynA5D4eo3i0F1REW7NdZrUp19y6lcOKGvSgEA4C54jB1wmtKO
-mRenRWDwEyTonhBlh3nesRdn42gXgwk=
-=N6UY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMXEAAKCRB4tDGHoIJi
+0lkSAQDW+9gNfAKDGi1U2F+s8+yBsEsb0NQ5+TLYGiHPwWj5OgD/StCQn3Ce4XCU
+fD0X4999cQOtS22vCCda+6giB/kDbwM=
+=JF9C
 -----END PGP SIGNATURE-----
 
---dWpIEbyvW2ujKmwW--
+--c7q0oAxjwmmc8+yb--
 
