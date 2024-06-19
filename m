@@ -1,170 +1,136 @@
-Return-Path: <devicetree+bounces-77600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75A690F5CF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:13:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B0F90F5D3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:15:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C94828398A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:13:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 475651F224C5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6FB156F37;
-	Wed, 19 Jun 2024 18:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534FE157469;
+	Wed, 19 Jun 2024 18:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQ4OPWIt"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="VJCjcqGa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF94C1CAA2;
-	Wed, 19 Jun 2024 18:13:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF9815698D
+	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 18:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718820818; cv=none; b=DWC9BNAauM3FQMgr44rbvyKCYliGpm7LDfzQj5scjRmQ64eaIlbaxcYtt0cVDSFIBUlmEQ7XKm4nCKnakmjHofYkYTxnhkf9FIinURSAWpzHOOyfnjGDRQqk4W4jBm9GrzNTueYLtACfhcOTouuxKJmi3gXAzaVlwOTkzPv3o1U=
+	t=1718820911; cv=none; b=XffYsQBH9w4Jbsdc8gLjNujFsw47QxC7iLcnJd4te6Rf7zophBzV4SkZoja0DTK0VurVqeotIJzRy6Wmi9PZIB4t92x/iRjND4MzxVxPh+QGTKbGdgSAuteNhRgJq0w0CSau06ekB9q+YWk4LihUOf2nwoTvQSohz8BG1h0ZOJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718820818; c=relaxed/simple;
-	bh=jQ350hWNQNEF+QIPUhbhSXFLJT/hEkaoG2NqYHuZChE=;
+	s=arc-20240116; t=1718820911; c=relaxed/simple;
+	bh=fVNJ46LFa+YhWYpSphStOCOSpTawRC5Ibrt5BRhp/I0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ssb4nkF5UVP15lqpStIYmTpg/lORXuqHVakK//IwN5SIrmywv43FyNgzSpgDJDqgQtSvtwMTGNntwEoFlAodpcYL/4vVTO74ExpehSkXxt7p66S6j5bgh7gS3OrRPjfHbQ7khAL32EbIvaflQ8djc19gP6LOpfzr57JTuYMraOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQ4OPWIt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48E37C2BBFC;
-	Wed, 19 Jun 2024 18:13:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718820818;
-	bh=jQ350hWNQNEF+QIPUhbhSXFLJT/hEkaoG2NqYHuZChE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eQ4OPWIt0F+aBz3HBGG4uiDemdaXnQF108MrIGWVOqMJSJzYdGYgGWag/a3LsCOaX
-	 QiFiqQWDPht76vC1Xk5unXmQJl7IY//fqwsJkFyBAtVwaqyFpxu/eqDMnQxso00Abz
-	 BnhDjBETTM1S4BERRGn7rNdcnTQk7DqHUs2JgxwMXBOZhEX7BfqZHjZmkHlHirGYGm
-	 Hu8vyOPL6ldhxLoti2Zub1lb+Nu9YxoXPfS2u8hl/x6mFjXx14rf+Z9a/xDhqLcAq4
-	 z8oll2GMlix5ft6c9FMd894UhGOY5peo3fbb3oUnB8jNLH9znHK23EBsoEPeNSHdFs
-	 qWkcaNiGvGVOA==
-Date: Wed, 19 Jun 2024 19:13:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=CQaeD2qBnGao0QjuP9yrnbAsZkUkDQEKOimpM0mv3LVaEScSk3AVAjk9dGbF7ZkwSlaiwSSPpAThAdD42X73d4STv7nCeOyFg85QiHnwYbwCbNdqJE1oY1qUt0XKFI7gHVoSMdsiHil61JDPcycRRkQ/ciUH+y33KTmtUD8cSNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=VJCjcqGa; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-706264e1692so108437b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 11:15:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tenstorrent.com; s=google; t=1718820908; x=1719425708; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ObNK4nw+goLT3sduvlOOitPrsfAxlE+HFMLfQaVSTdo=;
+        b=VJCjcqGaTcR6AOxzCG/JkLBXnFVZ/voA0rOBgBYAJOsr5yqXKTSBeV2SHrA4CVbTvD
+         guW4fPs6ZDfD4JT7afhhC8nMZGqI0fZtWnDaZmSZ6B/9jamvb7SEg/2ceREW3r7pBOlh
+         9U2939CqmKxIEM6XlwPbF4qd5bOTxGJCGmn9TmPkDr9V8snlNbIjk2lcQiAHikPQAHWt
+         LZG16jK0W9fdKYXFr5zp6+QF8hO/Lb5F3+RHlLyvXeBm3sU7H+UjLC4s2EGCXm0qb7EC
+         WcgUzLhrYYK7f8/swgI6FYXVDxlvKK6pYTCoaVmuseHN/21NgqCVW4+kt9qnPFi2P7/K
+         bqOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718820908; x=1719425708;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ObNK4nw+goLT3sduvlOOitPrsfAxlE+HFMLfQaVSTdo=;
+        b=R1XrTsqs9XlxxyuJMdOXkjTESVDHXzYv4TJyFiac9bFtLpc8FTWZjouLVvkQdACwig
+         EDRjY8ohJwfryEjuOmu2RhpS+hZt1Ea6HslTq6tNHXCaGtZKWWuzxQcL+ZTkeN03vhIn
+         lIgNn56bIQ8CZ6Duz/uumHQmSqhnkr+zHog9iX0n24WNhrlIuWjqqcklWoKvSm0eCpju
+         97Fvhc6//jEpKukT5UEabxZgNprcTGJ8qw7EezrU7fq7GkkFC5hv8J90c3zeNzhnqixU
+         uCV2v/zVTvJh/t8N1shZC0MPKTw/MYAcR4kFFna/tmUEGPnDM7B6n3q7ELXqnEcodvsr
+         +08w==
+X-Forwarded-Encrypted: i=1; AJvYcCW1ML1hgxXlf5fBgl+F+I6hNtFZLSqB012oMw+5yzdtr+GyT6hp/WMTtDqYa55b1j48dRr6PnWTBAuoHU3jpDFLMQEoAsd52/GJ+Q==
+X-Gm-Message-State: AOJu0YwMB6Lsj90vNCQnSaYHN6q0Xci1b8/XsPoNzpzgRqFKXsXsDMsF
+	LKHDAnxpMyG6AlJXPT0ciAo60knq4aHtHsSQqg5njGclgBQT7U4PoOE24GVM1Gg=
+X-Google-Smtp-Source: AGHT+IGj5wpO/mjLKZrOGKZvpPOXW2hKDnc/Jp/UqhQuyCI6Q1OQJ7aj2Y4azc+GePSR7cngyftNOw==
+X-Received: by 2002:aa7:9e90:0:b0:706:29f0:33fa with SMTP id d2e1a72fcca58-70629f038d4mr3002643b3a.6.1718820908271;
+        Wed, 19 Jun 2024 11:15:08 -0700 (PDT)
+Received: from x1 ([2601:1c2:1802:170:7627:e2a7:42c9:f02c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705cc967334sm10993307b3a.57.2024.06.19.11.15.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jun 2024 11:15:08 -0700 (PDT)
+Date: Wed, 19 Jun 2024 11:15:06 -0700
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Yangtao Li <frank.li@vivo.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"paulburton@kernel.org" <paulburton@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v2 7/8] du-bindings: mips: cpu: Add img,mips compatible
-Message-ID: <20240619-joystick-broadcast-c1d37b923eb3@spud>
-References: <20240612-boston-syscon-v2-0-9f8e1a07fa63@flygoat.com>
- <20240612-boston-syscon-v2-7-9f8e1a07fa63@flygoat.com>
- <20240612-unstuffed-figure-966c90af52bc@spud>
- <ddb36d6c-b54f-4982-b9ca-48c022ce6eb8@app.fastmail.com>
- <20240613185902.GB2286020-robh@kernel.org>
- <dfb545a6-b8c2-4498-aa01-3e851fe0877f@app.fastmail.com>
- <20240615-reaction-movie-b4c21f2c7d91@spud>
- <5c51085b-6e6c-47f8-a68a-829ddc7ba74d@app.fastmail.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/6] clk: thead: Add support for TH1520 AP_SUBSYS clock
+ controller
+Message-ID: <ZnMgKs/dUcYXiisk@x1>
+References: <20240615-th1520-clk-v1-0-3ba4978c4d6b@tenstorrent.com>
+ <20240619-tapping-jaundice-471811929d96@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="w5J5qdwPEV2LTuB+"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5c51085b-6e6c-47f8-a68a-829ddc7ba74d@app.fastmail.com>
+In-Reply-To: <20240619-tapping-jaundice-471811929d96@spud>
 
+On Wed, Jun 19, 2024 at 12:12:30PM +0100, Conor Dooley wrote:
+> On Sat, Jun 15, 2024 at 06:54:29PM -0700, Drew Fustini wrote:
+> > This series adds support for the AP sub-system clock controller in the
+> > T-Head TH1520 [1]. Yangtao Li originally submitted this series in May
+> > 2023 [2]. Jisheng made additional improvements and then passed on the
+> > work in progress to me.
+> 
+> One thing I noticed on the dts side is that the GPIO controllers have no
+> clocks provided. Does the AP sub-system clock controller provide their
+> clocks too?
 
---w5J5qdwPEV2LTuB+
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Good question. I see that dwapb_get_clks() in drivers/gpio/gpio-dwapb.c
+does call devm_clk_bulk_get_optional() for "bus" and "db". There doesn't
+seem to be to many in-tree examples of clocks being defined for gpio
+controllers with compatible "snps,dw-apb-gpio", but I do see that
+k210.dtsi defines K210_CLK_APB0 for "bus" and K210_CLK_GPIO for "db".
 
-On Sat, Jun 15, 2024 at 08:16:11PM +0100, Jiaxun Yang wrote:
->=20
->=20
-> =E5=9C=A82024=E5=B9=B46=E6=9C=8815=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=
-=E5=8D=881:28=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> > On Thu, Jun 13, 2024 at 08:40:18PM +0100, Jiaxun Yang wrote:
-> >>=20
-> >>=20
-> >> =E5=9C=A82024=E5=B9=B46=E6=9C=8813=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=
-=8B=E5=8D=887:59=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
-> >> > On Wed, Jun 12, 2024 at 05:59:24PM +0100, Jiaxun Yang wrote:
-> >> >>=20
-> >> >>=20
-> >> >> =E5=9C=A82024=E5=B9=B46=E6=9C=8812=E6=97=A5=E5=85=AD=E6=9C=88 =E4=
-=B8=8B=E5=8D=885:39=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> >> >> > On Wed, Jun 12, 2024 at 12:56:26PM +0100, Jiaxun Yang wrote:
-> >> >> >> This compatible is used by boston.dts.
-> >> >> >>=20
-> >> >> >> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> >> >> >> ---
-> >> >> >> note: This is a wildcard compatible for all MIPS CPUs,
-> >> >> >>       I think we should use something like "riscv" for riscv.
-> >> >> >
-> >> >> > riscv systems, other than simulators etc are not meant to use the
-> >> >> > "riscv" compatible. All of the real CPUs use "vendor,cpu", "riscv=
-".
-> >> >> > I'd suggest you add specific compatibles for your CPUs.
-> >> >>=20
-> >> >> Boston can be combined with many different CPUs, thus we need to ha=
-ve
-> >> >> such compatibles.
-> >> >
-> >> > Then you'll need different DTs. Different h/w, different DT.
-> >>=20
-> >> The board have 9 CPU types in total, with hundreds of different possib=
-le
-> >> CPU topologies. Maintaining separate DT for them seems impossible in k=
-ernel.
-> >
-> > But you could definitely add 9 different compatibles for each of these
-> > different CPUs.
->=20
-> They are already in current bindings, but we need a default one to fill
-> in kernel dts.
+From the TH1520 System User Manual, I do see the gpio related clocks in
+Section 4.4.2.2 AP_SUBSYS. The peripheral clock gate control register
+(PERI_CLK_CFG) has:
 
-IMO, no you don't. I don't think some "default" dts does anything other
-than promote not correctly documenting what the CPU actually is and just
-using the default. I'd reject the "riscv" compatibles in isolation if
-they arrived now & demand a "qemu,riscv" or w/e compatible.
+Bit 20: GPIO3_CLK_EN
+Bit  8: GPIO0_CLK_EN
+Bit  7: GPIO1_CLK_EN
+Bit  6: GPIO2_CLK_EN
 
->=20
-> >
-> >> We can potentially patch this in bootloader, but for existing firmware=
- it's
-> >> being doing like this for years. I can see for RISC-V QEMU generated D=
-TB is
-> >> using a single "riscv" compatible and I do think it's a similar proble=
-m.
-> >
-> > That "riscv" compatible is only supposed to be used for
-> > simulators/software models. Real CPUs are not meant to use it. AFAICT,
-> > your boston is a real platform, even if the CPUs are implemented on an
-> > FPGA they should still have one. If you take the OpenC906 RISC-V CPU and
-> > put it on an FPGA, you're still meant to put "thead,c906" in your DT.
-> >
->=20
-> And sadly, boston is also the platform used by MIPS internal emulators :-(
->=20
-> Thanks
-> - Jiaxun
-> >
-> > =E9=99=84=E4=BB=B6:
-> > * signature.asc
->=20
-> --=20
-> - Jiaxun
+I will add these gates to the clk-th1520-ap.c and reference them from
+the gpio controller nodes.
 
---w5J5qdwPEV2LTuB+
-Content-Type: application/pgp-signature; name="signature.asc"
+Since each gpio controller will only have one clock, do you think I can
+omit the clock-names property?
 
------BEGIN PGP SIGNATURE-----
+Thanks,
+Drew
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMfzgAKCRB4tDGHoIJi
-0qLOAQCxs6Ttljb48q1RQ5keEJDU1zyZeZCoJD6Erz1IkAUV3gD8DVTC9euCscn6
-YiF0jiirvlZe8hxgDTwwd9Rybkbi2g4=
-=Sbte
------END PGP SIGNATURE-----
-
---w5J5qdwPEV2LTuB+--
+Link: https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
 
