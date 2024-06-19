@@ -1,219 +1,153 @@
-Return-Path: <devicetree+bounces-77585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88F4A90F55E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECFD490F56B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3858F282259
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:42:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3C3A28264C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3B415572F;
-	Wed, 19 Jun 2024 17:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3482A153505;
+	Wed, 19 Jun 2024 17:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pH4U57RK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jNGI5Ko9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD2477107;
-	Wed, 19 Jun 2024 17:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03F041C69;
+	Wed, 19 Jun 2024 17:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718818958; cv=none; b=rKDeFmzx7f4XpykUYlFyiwmJV0KG3Z3Ivdd+XMW3iFqkPWkCAwHUYT8oxHe/ITwIUztm3W6245MdmPobz5zb44J+wyvXObFFEQtAUwEYGMPn0cXcAOIuf7iUg0N3zOs5eQgn7v0Rxw1nGoRNL7R71XUcpvAlsHT8fuyNOvDMyEc=
+	t=1718819194; cv=none; b=IycX3gWUuSVvh9lv5i8hH/KqoVp9plruZCiJXR3gxpQLwYFQlhgy0xa/6aombgiMntbFPlDKeLLn8RJem039sUfjT4WppiKAZfAZtR2FgTsLTUlNmUKYAXHkMqOuiRzw4hgjUzrBSVosrPaNDvWggQESX+7OZAPlf/+p2nrDnz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718818958; c=relaxed/simple;
-	bh=IMD+o+HtoEpgZPwdGoQZpT4+nJLbdqGSdMmmb9m9c+A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YPHJJdx4TfSL/ev0t7oiDtLF6mRdV1KlUVMv5ofepWH8jCZF5xh9pbZZ0rWqTSFxMThAxdnJj/Vmbw7deSkNEMiqZIgejVqQ+ZsVub3SUIhzLfmCRerCBfDD1xk1vmXbrAGq+cWRvgsxb48B5wMbSkvkg5KMae589aZkwjVytmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pH4U57RK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0D8C2BBFC;
-	Wed, 19 Jun 2024 17:42:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718818958;
-	bh=IMD+o+HtoEpgZPwdGoQZpT4+nJLbdqGSdMmmb9m9c+A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pH4U57RKTHye7kcgscE74d6x6iWpjFvzye6Yl1G6LisVHUGm18xcXhWHTH+gSLowX
-	 MDn+x2broIqM4BGXnRAugyMCGTX4rBkfvLDQuZu3llasVnthWFeyviLdJjHDRpLoHv
-	 i3KpXnCnmlgOcS/I/K7/4RZnhlcnONjv0RGlJlTetK+OSZQcxz84D2gDywgfHcNChv
-	 pD85mheLgSa6gK9a5T3FFu5UbGBgJ5tPrz+AZnvVybnjUVdMDeaM5XqIgzzmXv9vBM
-	 hslTx3hWKpuMfILAdb1ZV4Tq1syONoMHfzKGQxuF413ezJ68sX/BQM6E88v7kPGWtB
-	 fC8z8k6RGKUJw==
-Date: Wed, 19 Jun 2024 18:42:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
-Cc: linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Marius Cristea <marius.cristea@microchip.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Okan Sahin <okan.sahin@analog.com>,
-	Ivan Mikhaylov <fr0st61te@gmail.com>,
-	Liam Beguin <liambeguin@gmail.com>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: add a7779 doc
-Message-ID: <20240619-pouring-evaluator-470155652a40@spud>
-References: <20240619122105.22642-1-ramona.nechita@analog.com>
- <20240619122105.22642-2-ramona.nechita@analog.com>
+	s=arc-20240116; t=1718819194; c=relaxed/simple;
+	bh=KfuZUDtRbQnetyeAbuRd3zXq8hTkCKuI/Ak5W9iGk3c=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=AGgXQ86T86egRi8elFSwC8yazX8Zooc7i13EXAMgMCMY8//ZT+q9qKNi0o/7NxO2O4vsScs5yPxa1XiECm4TVgBeuCHU4o7q1BD/tMrdqFoXlewcIFvbE05cyxc17IIdRTbPQ9uPTW9Zu5VgnatVzSE+h1rvh05avFuAsO0P1g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jNGI5Ko9; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-6fb2f398423so46709a12.0;
+        Wed, 19 Jun 2024 10:46:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718819192; x=1719423992; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5UHgTKJnVvGzz0RhWWxAYapaJvaOUe+M0dNscdnn3ck=;
+        b=jNGI5Ko9jLtsITieqTDK5RstE9lVTd8c7UErCwTmuwNQEkNxxncOMKV2iRQT+DerIY
+         m9zAdD7xxlmXP8WXgSbcAMieMSC5ynbY27CjXCKkD/+CYeHvpoorAJ+OplJwR+vIz0qN
+         ZPVoWcDv9vip6JzkAdoF9TCLFMepChmGI/H2BGPYHdVdWMwjkR8/mm8uuyFQbdJMm+px
+         tis0ZWydgGHSYh7vBPRFYdmsixO5tO4wKWNswuOBpjP8QOqEtQH8G98X8bHc9t59WbdJ
+         wRkQTO+x3cyb5a8EFOnx1iWr45sPvceurm/QeDK59Af9/L26oiaPgc3uhwVUXykniPsj
+         lpug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718819192; x=1719423992;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5UHgTKJnVvGzz0RhWWxAYapaJvaOUe+M0dNscdnn3ck=;
+        b=mxoM+zsLZA6wqHp4m9bfV+/E/gnh4/p4Nwb6NsOegnOmcTuVlrO4FGLHU+JtooHlay
+         ZFhCnphH3QwUSC6ZJ+qRvEmz2U7x18yWmFMjCUXdAcgxwB31c+LHgPfmQvX0W4EqW5fp
+         /cNg0MaTIHKs4ZiBzM661GnH+kUF9Lw5yIkBg3Mul8da9yVSkjygw7V6xIb51HOl8RtM
+         OxpnGCxtjQH4EHyth0lHSjLTY1Q0AYTzeuFZofq+F73DlGkKWC43/6twfMTNKlq64z75
+         3bF03z7OgO6kfEzsMKdXfhZ3TGozJV5qZIY0AMVU1VQkXXbjuo1pLlVlnYVukTcRpycx
+         c1sA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkOZoKb2Zbrw3p8ilE20v5GiFckOgv6UHUz8Kv75QCPoorQGVGiyrPOG/CDlOubxOWvRsFfvmbKXvodBced/Cuj4/1xkLIwSyoYXetFYc8U6OnyHCzsmGpr9oImVYEPEyEzmkYya06LdYlhSY+LIw1KNaaE+1ZpPsrv3X+Lpa3fbacNLPS
+X-Gm-Message-State: AOJu0YxNitLwoUvNb0YI675QclJAZomCBDSB8MuIQtVNbi0WQhd9sd78
+	nqKSYsCiEHMCw6LEJxMCNHxZ4corfyQzYQpRG3f5vQ6s/pUtpFP5
+X-Google-Smtp-Source: AGHT+IH0tqeqkE1rjW4+gz7APWuek16GJuuOw7jkeXENxmGKwm/HYrhSwM4hQ5g0CoPb1P5AUDj4bw==
+X-Received: by 2002:a17:90a:7087:b0:2c2:da02:a2c7 with SMTP id 98e67ed59e1d1-2c7b5dca970mr2971807a91.44.1718819191973;
+        Wed, 19 Jun 2024 10:46:31 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.128.96])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c4c45ac5f3sm13364906a91.12.2024.06.19.10.46.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jun 2024 10:46:31 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: detlev.casanova@collabora.com
+Cc: andy.yan@rock-chips.com,
+	benjamin.gaignard@collabora.com,
+	boris.brezillon@collabora.com,
+	conor+dt@kernel.org,
+	daniel.almeida@collabora.com,
+	devicetree@vger.kernel.org,
+	didi.debian@cknow.org,
+	dsimic@manjaro.org,
+	ezequiel@vanguardiasur.com.ar,
+	gregkh@linuxfoundation.org,
+	heiko@sntech.de,
+	hverkuil-cisco@xs4all.nl,
+	jonas@kwiboo.se,
+	knaerzche@gmail.com,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	mchehab@kernel.org,
+	nicolas.dufresne@collabora.com,
+	paul.kocialkowski@bootlin.com,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com
+Subject: Re: [PATCH v2 2/4] media: rockchip: Introduce the rkvdec2 driver
+Date: Thu, 20 Jun 2024 01:46:23 +0800
+Message-Id: <20240619174623.270706-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240619150029.59730-3-detlev.casanova@collabora.com>
+References: <20240619150029.59730-3-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zWzIdbr3LJguoypS"
-Content-Disposition: inline
-In-Reply-To: <20240619122105.22642-2-ramona.nechita@analog.com>
+Content-Transfer-Encoding: 8bit
 
+Hi Detlev,
 
---zWzIdbr3LJguoypS
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 19 Jun 2024 10:57:19 -0400, Detlev Casanova wrote:
+>+	if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY))
+>+		height *= 2;
+>+
+>+	if (width > ctx->coded_fmt.fmt.pix_mp.width ||
+>+	    height > ctx->coded_fmt.fmt.pix_mp.height)
+>+		return -EINVAL;
 
-On Wed, Jun 19, 2024 at 03:20:44PM +0300, Ramona Alexandra Nechita wrote:
-> Add dt bindings for adc ad7779.
->=20
-> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7779.yaml          | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7779.=
-yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
-> new file mode 100644
-> index 000000000000..f1eec656acec
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7779.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD777X family 8-Channel, 24-Bit, Simultaneous Samp=
-ling ADCs
-> +
-> +maintainers:
-> +  - Ramona Nechita <ramona.nechita@analog.com>
-> +
-> +description: |
-> +  The AD777X family consist of 8-channel, simultaneous sampling analog-t=
-o-
-> +  digital converter (ADC). Eight full =CE=A3-=CE=94 ADCs are on-chip. The
-> +  AD7771 provides an ultralow input current to allow direct sensor
-> +  connection. Each input channel has a programmable gain stage
-> +  allowing gains of 1, 2, 4, and 8 to map lower amplitude sensor
-> +  outputs into the full-scale ADC input range, maximizing the
-> +  dynamic range of the signal chain.
-> +
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-7770.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-7771.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-7779.pdf
-> +
-> +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7770
-> +      - adi,ad7771
-> +      - adi,ad7779
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
+I did further invesatigation on chromium. I find that before real video
+is decoded, chromium will call VIDIOC_STREAMON twice with value of
+sps->flags 0:
 
-Why does this device have address/size cells, but not have any child
-nodes? Are you missing some channel child nodes? If you don't have
-children, you don't need these properties.
+At the first time width and height are 16; ctx->coded_fmt.fmt.pix_mp.width
+and coded_fmt.fmt.pix_mp.height are 16, which are the min size of decoder;
+At the second time width and height are still 16; while
+coded_fmt.fmt.pix_mp.width is 1920 and coded_fmt.fmt.pix_mp.height is
+1088, which are the real size of video.
 
-Also, your patch is still not threaded with the other 2 patches in the
-series (I see 1/3 in the subject). Where are those patches?
+So VIDIOC_STREAMON will fall at the first time call because sps->flags is
+0 so V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY is not set, and then height is
+doubled to 32 which is larger than 16.
 
-Thanks,
-Conor.
+What do you think if we skip doubling height if sps->flags is 0 and at the
+same time V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY is not set? The following hack
+did fix my chromium:
 
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  vref-supply:
-> +    description:
-> +      ADC reference voltage supply
-> +
-> +  start-gpios:
-> +    description:
-> +      Pin that controls start synchronization pulse.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +- |
-> +  #include <dt-bindings/gpio/gpio.h>
-> +  spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      adc@0 {
-> +        compatible =3D "adi,ad7779";
-> +        reg =3D <0>;
-> +        vref-supply =3D <&vref>;
-> +        start-gpios =3D <&gpio0 87 GPIO_ACTIVE_LOW>;
-> +        reset-gpios =3D <&gpio0 93 GPIO_ACTIVE_LOW>;
-> +        clocks =3D <&adc_clk>;
-> +      };
-> +  };
-> +...
-> --=20
-> 2.43.0
->=20
+--- a/drivers/staging/media/rkvdec2/rkvdec2-h264.c
++++ b/drivers/staging/media/rkvdec2/rkvdec2-h264.c
+@@ -767,7 +767,7 @@ static int rkvdec2_h264_validate_sps(struct rkvdec2_ctx *ctx,
+         * which is half the final height (see (7-18) in the
+         * specification)
+         */
+-       if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY))
++       if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY) && sps->flags)
+                height *= 2;
+ 
+        if (width > ctx->coded_fmt.fmt.pix_mp.width ||
 
---zWzIdbr3LJguoypS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMYhwAKCRB4tDGHoIJi
-0ljnAQCua8lOT/HSJP8NZDAHBxmVeFj8Oa6o1ZcxDly4qE9TvwEA8+FFAZoo7WOx
-+je7T8yijGxZsIl3Hap9aqSs4HeHlQI=
-=2IPT
------END PGP SIGNATURE-----
-
---zWzIdbr3LJguoypS--
+Best regards
+Jianfeng
 
