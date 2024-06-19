@@ -1,65 +1,55 @@
-Return-Path: <devicetree+bounces-77555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8282C90F2C4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:46:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD2E90F2BA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:46:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 336C9284475
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 15:46:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3DDB28333D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 15:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021C115443A;
-	Wed, 19 Jun 2024 15:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD5B14EC56;
+	Wed, 19 Jun 2024 15:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="eXGjNNvc"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="xAkvfHA8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mout.web.de (mout.web.de [212.227.17.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B887A1514EF;
-	Wed, 19 Jun 2024 15:42:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F5C14E2C9;
+	Wed, 19 Jun 2024 15:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718811738; cv=none; b=kFIXMsQJ+8Cp6TUWjXUIbs2VtWvWyng06yfnYpBTIoeQgUkf/5Dg9TsXuOGBnJQiYYow1gPKxs8GuNnQrHh+3w1TRK08F6WY6g6C9UUfUhj34ZZResDv0YTAEE0TToIxUlIxU/gTcjGXN7OpoV2lv1e2gRrUiNP0jBYaXQSTnNs=
+	t=1718811688; cv=none; b=bfyl7xZmrCOcUhnbe1BLEkC56ZIcWdjtjaBRnXt7dXm62v7/RKqdKp/vrNuAyIt9hMRqnFiP1hC/vFDlN//wtUzhfS4kyX7cj46BA4y28KH9qqLl081S6uptDcfO2/6S+68lWSq0qHgrAKJb88PBkPDEl8stAgYwCJOznvGMk1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718811738; c=relaxed/simple;
-	bh=O9SvN5PDSrTOrdmyamPUNMeLQQeJVEqLKZx0ag1sbZA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=G+sZwhIcF7cSVhkLMTc95PGdX/uBxuP11I1Zotm9UkMqdq4XaBHv6aVPVN0lHLg7V6t9bqW44ZpowqILz+qxvlvAETN0lZsG9utpj3RVEaa+OarsJpdC1DN8edbYWM11/rgVzOZ2UyeMSopK0w83nUn6YPdrJkiGQMQ4ZMAkUqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=eXGjNNvc; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JClcrJ002573;
-	Wed, 19 Jun 2024 17:41:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	67yqfpKh56AKrK0vIV+pIDS3OpXEowZR1XSlRO6rTac=; b=eXGjNNvcd2mXSjDp
-	UWD9btAjEvQpIl3yBRvUBR8hSvsWtCfce/5+b6ro9bOFl5YMg4SHSly61PaMmlRJ
-	odXbdM38FA9MQnHx/UanvJClFwxiKQX47XY00k3/x7CKZkzpOBmIcO40SyUZbVUS
-	/ky3ZwZux2w1aIex5ruBccs8nGwxx3GdDsHSuD4ONWtugWdwqbLiQRsLa0w1JTi5
-	Tsm80xBb93M5ZBA09XFjUv8RKa0Au8oHvjighR0Oj/jy1TpRwmyf/BmRFI/WnC/0
-	DNWoSnGRrO9H7Oqgv/zN0/UT0ND0IB2rUUhH6hoCKqFWilOP/j2xD2mFqpI712c3
-	qBPreg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yuj9n4av8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 17:41:49 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 74ADE4004B;
-	Wed, 19 Jun 2024 17:41:43 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8A446221EB2;
-	Wed, 19 Jun 2024 17:40:22 +0200 (CEST)
-Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 19 Jun
- 2024 17:40:21 +0200
-Message-ID: <01e435a5-3a69-49a5-9d5e-ab9af0a2af7b@foss.st.com>
-Date: Wed, 19 Jun 2024 17:40:21 +0200
+	s=arc-20240116; t=1718811688; c=relaxed/simple;
+	bh=RT4j2J3K2cJPug7RNVsL6yX/1+8te7yz8mA1djK7REE=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=l5AGffNdriOvAc7p3pqCFNAShi4sdeCjuDnZfGB6z4W7C++wXnwup75ukOch2Kx+/R16H+HV8CJtuJAmjnOLTtvpRuRwxWm2g5JsELm2vYLKzzeDZhIg7Ltp9aBgUp/yZTewGMYH05w7XhwJdLKC0XKBUKMybCBep+ATC+8SteA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=xAkvfHA8; arc=none smtp.client-ip=212.227.17.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1718811649; x=1719416449; i=markus.elfring@web.de;
+	bh=t5BuAxzFoF/+RdRA6VaLzFTyRU7lFDYKeo0DV2WDzlk=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=xAkvfHA8biEeRnEi+oQhGy2Owlu6W+IcYtUieQIeml00P8MOii/yo+ZzYzY6SZzi
+	 JhSVEmlzPZyF/kQuhPOsSCHei6Hz7ijdqPzw6GaOtSTOUs0LyxTWM2E0iLxSfiyUg
+	 CxXFWOY9MtjngovgsEAX35VP/mI4FCU8aCfiNg0pCb4kLQo/1jOHMPYUNcB8I9KNY
+	 87IRiE0Ekl4kVhT7ZdYi9plPyJ6lrv6QC+OiG8ChHnN6VEPNRzjup0BhmJUtbguw9
+	 +klHjnBXkxNZYTnp4W/SZUVNsXm9oDyOz5kstthYET1wfRbKN1ugG2/pudCDK6C7g
+	 H8bUQxwdSeEKw6VBKQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1N943B-1sOvN01Av9-00z95r; Wed, 19
+ Jun 2024 17:40:49 +0200
+Message-ID: <4f3ad4ae-1071-4411-9791-ee9d27cfcbf4@web.de>
+Date: Wed, 19 Jun 2024 17:40:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,111 +57,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH 2/2] net: stmmac: dwmac-stm32: stm32: add
- management of stm32mp25 for stm32
-To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240614130812.72425-1-christophe.roullier@foss.st.com>
- <20240614130812.72425-3-christophe.roullier@foss.st.com>
- <4c2f1bac-4957-4814-bf62-816340bd9ff6@denx.de>
- <09010b02-fb55-4c4b-9d0c-36bd0b370dc8@foss.st.com>
- <39d35f6d-4f82-43af-883b-a574b8a67a1a@denx.de>
- <8c3f1696-d67c-4960-ad3a-90461c896aa5@foss.st.com>
- <3dee3c8a-12f0-42bd-acdf-8008da795467@denx.de>
- <aee3f6d2-6a44-4de6-9348-f83c4107188f@foss.st.com>
- <c74f393d-7d0a-4a34-8e72-553ccf273a41@denx.de>
-Content-Language: en-US
-From: Christophe ROULLIER <christophe.roullier@foss.st.com>
-In-Reply-To: <c74f393d-7d0a-4a34-8e72-553ccf273a41@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-19_01,2024-05-17_01
+To: Shan-Chun Hung <schung@nuvoton.com>, devicetree@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Shan-Chun Hung <shanchun1218@gmail.com>,
+ LKML <linux-kernel@vger.kernel.org>, Adrian Hunter
+ <adrian.hunter@intel.com>, Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Jacky Huang <ychuang3@nuvoton.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Luis Chamberlain <mcgrof@kernel.org>, Peter Robinson <pbrobinson@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sergey Khimich <serghox@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Yang Xiwen <forbidden405@outlook.com>
+References: <20240619054641.277062-1-shanchun1218@gmail.com>
+Subject: Re: [PATCH 0/2] Add support for Nuvovon MA35D1 SDHCI
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240619054641.277062-1-shanchun1218@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:JHeYW0cTxhh2VTBOBK2iw7JrIrc8CacTjD4FKBl1hGqnrc+nRIi
+ uhdbk1aSRjCtkoUbXezCLmBVvhaNJeWmVdY6WMTNffK7v6HlLdQoGYDmHr3La3XPk8RCaOf
+ DuQ9gW7PJSCm/x4C/GrVxlBPnVNmrTZzgp+b0vdfOuFdBQglC4N7YwGkZg9MuLBRPCtFYcv
+ kLpNHagO+4wOXwYkb1dvw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:CjjkTc2rrZk=;SajpZgiLXLGdeK8Y/d6bvqJUNcz
+ hiHG/lWXa5DWRL0BJO7b6glIr8ZolceZc4YGZZMeRS8ZIcfQY8zaTJPJKjy5LgJ3dkbTMllCZ
+ uZ1/7pH1/ZFwi/fIyq1AQcCdIdVKcSmMQb7fDI9QCPXBXypuxMuv1beUFPGLlk3XUrJ8eW5T6
+ Y2iPE3FF9H4HDdhY+n1Twz878IDWfr5YvFkKQzTt1fGgQrk+CEvn3Q0C/GjJREyr+Ym21lpEf
+ LEj9X6BBXqKk3GVrPefoNHeg30U+7PcZzJk+6ynEL8xYcsxK3f6FL0X/CFRJ9dTvdlqnF4DGF
+ x6cjJRdYpWwZ431/hCF0epGxEfqJBec48MrweVh8qVTx2R5TuNslUOfq70i98jk7aPacDK4zM
+ iN3X/Kx66ORTXmGG+N71TlH4qSUixV8D3YdwHJTj7/Bt/qzb9XNycSB4YHXW2IDYB8ph56yb7
+ R2VIC3J3BQyz+op2U2rbTv3D+ox8RF+d3ac8/6FHwruFn/x3yEi3Fn2zEoEFnghat1BljvYJq
+ nl+LvkuYsDDFXeg61LTWO0GEcLIw6f0h5TUWPvBV+ZthfAkaXlXSxu/6ReHaEA9pLYadMZYG2
+ iZKPQ71tWwjkUwcntr7I+5576ifOX3eG8fZK+Dqs95Ad6nbzy3U9bi0gzjv9tYsjrweNxkEGs
+ pEKQip83d0gg3T0BbNAFLVSyIfo173vNkr7SSYEwmN9JONhUPfbJ9Zb9dIO32vx9WyWsQ1anO
+ NMPe6FFtmTzYzz68k4jddlQjXWbpqglT//ZQQouZWnJUAyuFldWRXHc6bgkSkTQbVC7ry1WuQ
+ INKVh1diCcseDcq/XkU1ImFI3HS1z+D1fFyaUhp4w+AGOpF00GAzRE+fbmi/zSqMdY
 
+> This patch series adds the SDHCI driver for the Nuvoton MA35D1 series
+> platform. It includes DT binding documentation, the MA35D1 SDHCI driver.
+=E2=80=A6
+>   mmc: sdhci-of-ma35d1: Add Novoton MA35D1 SDHCI driver
+=E2=80=A6
 
-On 6/19/24 15:14, Marek Vasut wrote:
-> On 6/19/24 9:41 AM, Christophe ROULLIER wrote:
->
-> Hi,
->
->>>>>>>> +static int stm32mp2_configure_syscfg(struct 
->>>>>>>> plat_stmmacenet_data *plat_dat)
->>>>>>>> +{
->>>>>>>> +    struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
->>>>>>>> +    u32 reg = dwmac->mode_reg;
->>>>>>>> +    int val = 0;
->>>>>>>> +
->>>>>>>> +    switch (plat_dat->mac_interface) {
->>>>>>>> +    case PHY_INTERFACE_MODE_MII:
->>>>>>>> +        break;
->>>>>>>
->>>>>>> dwmac->enable_eth_ck does not apply to MII mode ? Why ?
->>>>>>
->>>>>> It is like MP1 and MP13, nothing to set in syscfg register for 
->>>>>> case MII mode wo crystal.
->>>>>
->>>>> Have a look at STM32MP15xx RM0436 Figure 83. Peripheral clock 
->>>>> distribution for Ethernet.
->>>>>
->>>>> If RCC (top-left corner of the figure) generates 25 MHz MII clock 
->>>>> (yellow line) on eth_clk_fb (top-right corner), can I set 
->>>>> ETH_REF_CLK_SEL to position '1' and ETH_SEL[2] to '0' and feed ETH 
->>>>> (right side) clk_rx_i input with 25 MHz clock that way ?
->>>>>
->>>>> I seems like this should be possible, at least theoretically. Can 
->>>>> you check with the hardware/silicon people ?
->>>> No it is not possible (it will work if speed (and frequency) is 
->>>> fixed 25Mhz=100Mbps, but for speed 10Mbps (2,5MHz) it will not work.
->>>
->>> Could the pll4_p_ck or pll3_q_ck generate either 25 MHz or 2.5 MHz 
->>> as needed in that case ? Then it would work, right ?
->>
->> Yes you can set frequency you want for pll4 or pll3, if you set 25MHz 
->> and auto-negotiation of speed is 100Mbps it should work (pad ETH_CK 
->> of 25MHz clock the PHY and eth_clk_fb set to 25MHz for clk_RX)
->>
->> but if autoneg of speed is 10Mbps, then 2.5MHz is needed for clk_RX 
->> (you will provide 25Mhz)
->
-> What if:
->
-> - Aneg is 10 Mbps
-> - PLL4_P_CK/PLL3_Q_CK = 2.5 MHz
-> - ETH_REF_CLK_SEL = 1
-> - ETH_SEL[2] = 0
->
-> ?
->
-> Then, clk_rx_i is 2.5 MHz, right ?
-Yes that right
->
-> Does this configuration work ?
-For me no, because PHY Ethernet Oscillator/cristal need in PAD 25Mhz or 
-50Mhz, I think it is does not work if oscillator frequency provided is 
-2.5MHz (To my knowledge there is no Ethernet PHY which have oscillator 
-working to 2.5MHz)
->
->> . For RMII case, frequency from pll (eth_clk_fb) is automatically 
->> adjust in function of speed value, thanks to diviser /2, /20 with 
->> mac_speed_o.
+Would you like to refer to a slightly different company name
+at a few message places?
+
+Regards,
+Markus
 
