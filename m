@@ -1,179 +1,159 @@
-Return-Path: <devicetree+bounces-77611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8275090F689
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:56:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A66F90F6C8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 21:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B65C1F2470B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:56:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 134561F21563
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:15:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223871586C8;
-	Wed, 19 Jun 2024 18:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EB241586D3;
+	Wed, 19 Jun 2024 19:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="BF7cQI6D";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Yv5miaMC"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Cd0+vLiX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39245524C4;
-	Wed, 19 Jun 2024 18:56:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3D353398;
+	Wed, 19 Jun 2024 19:15:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718823376; cv=none; b=HbUzOOylpUkZjFurWHcmrCiNMmA6Zq9mS3oWBV/9sKkNISV+FSyp47Ja+Zw3m+OHLmH+ygwRzSQko/gh55sByak+hP5dDkd/YZcn4EtS2U3I3I6I0Jde3Eo1yyz9mOVIRF/d4bvCw7c9Dc+E088XPzZE2Oc3CRuXQut6UsKOjBk=
+	t=1718824514; cv=none; b=tswks0PsKuQZ31kfoppyX200qCppZMnLhvLftcs4AjCBp2TX41GhT20BGXXDCJvWECRByx2s94T2aNdkrxV1OCOp/v/KjDNyI1T23CxJYYj8iW5A7EDQl/+xE9PpLQOy7lOMF+HnS2utYpsb0vIeRKMi5FBd5nGgu4QestIb1+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718823376; c=relaxed/simple;
-	bh=BXaBrly0Edxx0iSo+w3G8w3LlyVGw8jS0iBVypyeI7I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CxhqxXChqqd77qElyv2ViAQQq3TmB0tpYGJR6GWp0xyGDLgiH8Y4kQ3e+JaT5cW0VELWp96X0S3XFt9gOW3a/G3a2m+wmnnklYyDnv7XrbSSJckAXTwJtQZ5B8wLW7srEpq5hsptU43DscNKtTWyzRIkWJjw10q68ynO/sle7Xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=BF7cQI6D; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Yv5miaMC; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 0A81913801A1;
-	Wed, 19 Jun 2024 14:56:11 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute7.internal (MEProxy); Wed, 19 Jun 2024 14:56:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1718823371;
-	 x=1718909771; bh=jmPIQR1Ww2PZOtZ6FHeU+kqz22qvRT7bktPdDN2Y7F0=; b=
-	BF7cQI6DTOIt4RVbDxTjHqGBtQUWq8zBvpIRUZv1ctjvqAm/U2Te1J3cjSNQGjkR
-	bSDbudnhftw7UwaUTth+w280oUFvRyI38dAZxfRoP3poQZjX1LzmOjU8qStN2QaV
-	EO4Z019+zKPwRsNEpiQAyVUOzxHk5PvjydrZayVmdg35XrKaNbKmWRdMH/bFJ1Ti
-	jfJ+7mshP9VVXefEGpQ7lKFkin/uTm6rjd5lHxlP4JbRj9kB3IXffb3bzym7M32A
-	WcflghJtVUhdDVtP+Cmnj+r97tX1slRD9LoDmztqkh6yz7GDyx7fZmYZ4UFkzQaw
-	K8AfavoznDOkZadflykX4Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1718823371; x=
-	1718909771; bh=jmPIQR1Ww2PZOtZ6FHeU+kqz22qvRT7bktPdDN2Y7F0=; b=Y
-	v5miaMCSmyip1W+x/4REt7THR/vy3JqwrHHZQR1cwPfcfNko/MhJTJM+ZqqgsC+H
-	HVq61D1GFs/HRqzPqHPiCElMRtRF5yIhbJEswZfOz+rfXQ1cdSiuMSWS5ZixEjJD
-	+lh5C1l9culOwbBumsEc5TI5pxscmsoFMh9r+It5WX8oyggY+g8tJTEmjvfSJiAU
-	+CuULWVhfu/F5jAKE65OmhMDfKvnhItzLkP1MJLZjd7hwjd8kk+YfY4yxy85Cvy+
-	K9dv2QTl5Xi0hn43Tl2BA3r4s/13c4PMzPINDgyHw1eQ17O7btAZSIr8EKQYbC14
-	qGBwvFQIFUC9rhl5Whycg==
-X-ME-Sender: <xms:yilzZvLw6SlhRWbSaci6QSBpUgJOKhmg2SDOF1VdZo0PbquDwd4NOQ>
-    <xme:yilzZjIfI0qLT6WbavIdgZCumVsNvSKRmOCDWinvfHfiEcyt3DYyjH2GcTO0wTn0x
-    YocrdgL8dN-khobxek>
-X-ME-Received: <xmr:yilzZnuMczSs7biNs6IqAeQWhzuUupkiYT4N5t15jJM1VkKQhlIMzSCI9zKc1WBHtHGks6G06riDM-jSD8M63ozsltl44gM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeeftddgudeftdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhi
-    khhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvg
-    hnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepfefhleel
-    hfffjefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvleeinecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohgu
-    vghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:yilzZoa-sJXJehPcUkEcJSt3m_muhqLyJ_vMWnD9Ql1IiDiA1o48Jw>
-    <xmx:yilzZmZHOZuc7Plifp-UEdXK8hnDup6Jw1FqG9OCeTIPex9YHPLBvg>
-    <xmx:yilzZsCmd1QV4yI-SlA1lD02kcoD9VvZz_8XrPFmGxhsMPPpKqxS0w>
-    <xmx:yilzZkYRYCIyNRuc5Z63YNL9rmMDOnAksEkq9W3XBgOD_lJbOF7A2g>
-    <xmx:yylzZjR_uAYwUtHQkYL8Plkpf4c86zsJ_LjC4KK_sDpWxiTPpfrTISb3>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 19 Jun 2024 14:56:10 -0400 (EDT)
-Date: Wed, 19 Jun 2024 20:56:07 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Conor Dooley <conor@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
- V4M
-Message-ID: <20240619185607.GT382677@ragnatech.se>
-References: <20240619153559.1647957-1-niklas.soderlund+renesas@ragnatech.se>
- <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
- <20240619-passage-iodine-9f944b26a30d@spud>
+	s=arc-20240116; t=1718824514; c=relaxed/simple;
+	bh=i1O+8SuJRlMo4HLcHbCW/vbpdUEkEZ114ilGvFd19Ic=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RZ5GnmGTrhymODJgW2IZlC7b8sYXigAs8QVl6tOptr4sbyN6FJTcB7iGhauvYy2BInYli7U2PJhEC/Be2VUDJ402nVYV5xBuD9knodiTSdDwx6pUSQAIkfgIC2VzeBBFbwMpIliqmcO9k5xNlk7IW9LktBv173ZYTBkDVIALRUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Cd0+vLiX; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 5B74C80E9A;
+	Wed, 19 Jun 2024 21:15:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1718824509;
+	bh=2sBQZJl5GOkXP3lCyMuq4jH0kmltgWo/xNkz+SDOjYI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Cd0+vLiXuXd7IoP6GMpUo+GrIyTzbVea4Xu335PLbu6D/Yc6LFvWzly2fNYHc2m7H
+	 Yjm4LrPiwU9KJS83HZrpsHUmgj3lqqh2NXA5snyQ1JjTP5n25zXtJ5EocpLmiVIThs
+	 eq5FKj01f6LceN/HxDjcERepanO7x6UHBgxsAx3R3Klda7ISxU3p1/IOqY/Qmf3Kv7
+	 I+9sMR+27WkqjXBz/iogHaDdF7kJscPA2KOoa/tQE+LPe9N3gLDuccEFce9BMB739+
+	 0IolR48QcLxw5NVvYI4vq70puRptIKievYIdjcqTARywnZFdy5chlQjqSf7okigfay
+	 CTMqyLUAZYn5A==
+Message-ID: <b760c6ba-36aa-4486-891a-c40a8cac7c1b@denx.de>
+Date: Wed, 19 Jun 2024 20:56:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next,PATCH 2/2] net: stmmac: dwmac-stm32: stm32: add
+ management of stm32mp25 for stm32
+To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240614130812.72425-1-christophe.roullier@foss.st.com>
+ <20240614130812.72425-3-christophe.roullier@foss.st.com>
+ <4c2f1bac-4957-4814-bf62-816340bd9ff6@denx.de>
+ <09010b02-fb55-4c4b-9d0c-36bd0b370dc8@foss.st.com>
+ <39d35f6d-4f82-43af-883b-a574b8a67a1a@denx.de>
+ <8c3f1696-d67c-4960-ad3a-90461c896aa5@foss.st.com>
+ <3dee3c8a-12f0-42bd-acdf-8008da795467@denx.de>
+ <aee3f6d2-6a44-4de6-9348-f83c4107188f@foss.st.com>
+ <c74f393d-7d0a-4a34-8e72-553ccf273a41@denx.de>
+ <01e435a5-3a69-49a5-9d5e-ab9af0a2af7b@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <01e435a5-3a69-49a5-9d5e-ab9af0a2af7b@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240619-passage-iodine-9f944b26a30d@spud>
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Conor,
-
-On 2024-06-19 18:33:37 +0100, Conor Dooley wrote:
-> On Wed, Jun 19, 2024 at 05:35:58PM +0200, Niklas Söderlund wrote:
-> > Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
-> > 
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 6/19/24 5:40 PM, Christophe ROULLIER wrote:
 > 
-> Didn't we just have a conversation about this, yet nothing has changed?
-> NAK. Either you need a fallback or to explain why a fallback is not
-> suitable _in this patch_.
+> On 6/19/24 15:14, Marek Vasut wrote:
+>> On 6/19/24 9:41 AM, Christophe ROULLIER wrote:
+>>
+>> Hi,
+>>
+>>>>>>>>> +static int stm32mp2_configure_syscfg(struct 
+>>>>>>>>> plat_stmmacenet_data *plat_dat)
+>>>>>>>>> +{
+>>>>>>>>> +    struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
+>>>>>>>>> +    u32 reg = dwmac->mode_reg;
+>>>>>>>>> +    int val = 0;
+>>>>>>>>> +
+>>>>>>>>> +    switch (plat_dat->mac_interface) {
+>>>>>>>>> +    case PHY_INTERFACE_MODE_MII:
+>>>>>>>>> +        break;
+>>>>>>>>
+>>>>>>>> dwmac->enable_eth_ck does not apply to MII mode ? Why ?
+>>>>>>>
+>>>>>>> It is like MP1 and MP13, nothing to set in syscfg register for 
+>>>>>>> case MII mode wo crystal.
+>>>>>>
+>>>>>> Have a look at STM32MP15xx RM0436 Figure 83. Peripheral clock 
+>>>>>> distribution for Ethernet.
+>>>>>>
+>>>>>> If RCC (top-left corner of the figure) generates 25 MHz MII clock 
+>>>>>> (yellow line) on eth_clk_fb (top-right corner), can I set 
+>>>>>> ETH_REF_CLK_SEL to position '1' and ETH_SEL[2] to '0' and feed ETH 
+>>>>>> (right side) clk_rx_i input with 25 MHz clock that way ?
+>>>>>>
+>>>>>> I seems like this should be possible, at least theoretically. Can 
+>>>>>> you check with the hardware/silicon people ?
+>>>>> No it is not possible (it will work if speed (and frequency) is 
+>>>>> fixed 25Mhz=100Mbps, but for speed 10Mbps (2,5MHz) it will not work.
+>>>>
+>>>> Could the pll4_p_ck or pll3_q_ck generate either 25 MHz or 2.5 MHz 
+>>>> as needed in that case ? Then it would work, right ?
+>>>
+>>> Yes you can set frequency you want for pll4 or pll3, if you set 25MHz 
+>>> and auto-negotiation of speed is 100Mbps it should work (pad ETH_CK 
+>>> of 25MHz clock the PHY and eth_clk_fb set to 25MHz for clk_RX)
+>>>
+>>> but if autoneg of speed is 10Mbps, then 2.5MHz is needed for clk_RX 
+>>> (you will provide 25Mhz)
+>>
+>> What if:
+>>
+>> - Aneg is 10 Mbps
+>> - PLL4_P_CK/PLL3_Q_CK = 2.5 MHz
+>> - ETH_REF_CLK_SEL = 1
+>> - ETH_SEL[2] = 0
+>>
+>> ?
+>>
+>> Then, clk_rx_i is 2.5 MHz, right ?
+> Yes that right
+>>
+>> Does this configuration work ?
+> For me no, because PHY Ethernet Oscillator/cristal need in PAD 25Mhz or 
+> 50Mhz, I think it is does not work if oscillator frequency provided is 
+> 2.5MHz (To my knowledge there is no Ethernet PHY which have oscillator 
+> working to 2.5MHz)
 
-Sorry, I'm confused from the conclusion of our conversation in v2. I did 
-add an explanation to why not fallback is used, but I added it to patch 
-2/2 which adds the compatible to the driver.
-
-It was my understanding that a SoC specific compatible was needed in 
-either case so, at lest to me, made more sens to explain why in the 
-driver patch the reason go into detail about the register differences 
-between the two. Sorry if I misunderstood. I can add the same 
-explanation to both patches, would this help explain why only a SoC 
-specific value is added?
-
-  The datasheet for the two SoCs have small nuances around the Pre-Clip
-  registers ELPrC and EPPrC in three use-cases, interlaced images,
-  embedded data and RAW8 input. On V4H the values written to the registers
-  are based on odd numbers while on V4M they are even numbers, based on
-  the input image size.
-
-  No board that uses these SoCs which also have the external peripherals
-  to test these nuances exists. Most likely this is an issue in the
-  datasheet, but to make this easy to address in the future do not add a
-  common Gen4 fallback compatible. Instead uses SoC specific compatibles
-  for both SoCs. This is what was done for Gen3 SoCs, which also had
-  similar nuances in the register documentation.
-
-> 
-> Thanks,
-> Conor.
-> 
-> > ---
-> >  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > index 5539d0f8e74d..168cb02f8abe 100644
-> > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > @@ -54,6 +54,7 @@ properties:
-> >                - renesas,vin-r8a77995 # R-Car D3
-> >                - renesas,vin-r8a779a0 # R-Car V3U
-> >                - renesas,vin-r8a779g0 # R-Car V4H
-> > +              - renesas,vin-r8a779h0 # R-Car V4M
-> >  
-> >    reg:
-> >      maxItems: 1
-> > -- 
-> > 2.45.2
-> > 
-
-
-
--- 
-Kind Regards,
-Niklas Söderlund
+Would it work if the PHY had a dedicated Xtal , while the clocking of 
+the MAC was done using RCC ?
 
