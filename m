@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-77361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08D090E5D7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:37:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F1A90E640
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:50:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3759C1F21C18
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:37:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE91BB21959
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A4BE7D3F5;
-	Wed, 19 Jun 2024 08:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E777D07E;
+	Wed, 19 Jun 2024 08:50:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="iyY9kohw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O+ELKBCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB687CF25;
-	Wed, 19 Jun 2024 08:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE0A7BB15
+	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 08:50:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718786248; cv=none; b=RF0SdpVszohgs2G+SiDprZereHfflJMrnmD29w3SlB8NQzKLlHkDi3XUE9X3v69bClokQixA3055MAHCux9U6L7AFHKXC7tzuLubBOU/Uxl5zQkE25b5BaVXn/3vyr+lW8//d51iLZYdA6iVKz3Rxi0zY8JJgrTsplPmq5PZyyw=
+	t=1718787036; cv=none; b=pxD0hehM+LPndJnK19LXzloqV9Zt1jzsPDxt8q6V5hsZFW2zc3YlHwVJJVQauv2LKz320AiVrz0aDl8dG+FAb2rE+hZDyZ2Lj73El0tBBfPnzuCgA9klAKDfJnxJiS80WTw7STNG2w+zUvEErrRFcT4sCmVlK9rRK0Yrtk3PobY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718786248; c=relaxed/simple;
-	bh=nFKs7XfUvvbg1x9MrRmHrc2hxXu3H/G1BGEZiOFAh5U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Sv6eze8RHteFctzmLFrc1M4mzSGsglmOx0izraV2BdaptjzTDNdX4UqfLeCf+6pufwiwrl0Bl4F5JY4NBpo9dOOb233LodgTf9F8QxY7L6vmSpnOf0mf6xH5+TblIYNGOnIjuJUqANiLhFaiYUwV2nIc8QxzcOpDK/Sz4uKNXjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=iyY9kohw; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45J7V3bG030750;
-	Wed, 19 Jun 2024 10:37:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	jSkBEJRoXh8EzDoRBrIacJqbFlqlu5She/THheywmOI=; b=iyY9kohwE/7ow2ta
-	jkpPgR89iDefxuJWnRKHhwuEk+oyBjdelxbFGKNq66lQW0vs38OOk2F8PJnaTKoG
-	6jRnoBXwoayGOBDZwahI4Wwr5aX8fZleOPcIg1RorntjhDbyjMPJr0PjzNdZ/Ak1
-	YHFxkqHS1S6T5VmjmJ2Tl6ZUby/Zw2dPqtgGlvlwZ4uApNPBofWuPFRn3osYrqk2
-	GPsmxVIBU6Z7bOzpish3q12z7GvQ1hneu6CsdBpWKuwB1VabSdB4VmFl872G0MX7
-	OKNsL2CvAJVA1R/PHYogyvbjUPEQX7wwNE2AGVZECUMsOO1smDOZtvD8Q9sgSeKX
-	kUT84g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yuja1a356-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 10:37:06 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4128C40044;
-	Wed, 19 Jun 2024 10:37:02 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C0503210728;
-	Wed, 19 Jun 2024 10:36:13 +0200 (CEST)
-Received: from localhost (10.48.86.232) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 19 Jun
- 2024 10:36:12 +0200
-From: Pascal Paillet <p.paillet@foss.st.com>
-To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-CC: <p.paillet@foss.st.com>, Etienne Carriere <etienne.carriere@foss.st.com>
-Subject: [PATCH 4/4] arm64: stm32: enable scmi regulator for stm32
-Date: Wed, 19 Jun 2024 10:36:02 +0200
-Message-ID: <20240619083602.33007-5-p.paillet@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240619083602.33007-1-p.paillet@foss.st.com>
-References: <20240619083602.33007-1-p.paillet@foss.st.com>
+	s=arc-20240116; t=1718787036; c=relaxed/simple;
+	bh=6q1ZTtnzYg//bgAhA42Awnaa22+bcG/nj+xOuAg+m54=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZE8SH6B2FTQ3L2JPcWeVjyJFXnCqRx53pTzU6Cchgl54/D39wldkdMmGvGdE1WkALUNj4sqQR9NGQ7LpDJFUNupoVclJxxTRLj2AkJRzSKCE2+daYuDKs68EgPLEaVRQ3fCW9dvc7oIXQiplOG2HXu5oSrSqq20bASN92c/lgdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O+ELKBCs; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-363826fbcdeso296138f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 01:50:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718787033; x=1719391833; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ngW8Gz5Cpl+0cBREyYz+8mH5KwITQlYSWHUF7QS7aAo=;
+        b=O+ELKBCsPDXCedH6SnPSX0R2DlReKZbblL/N2QFZj2bRmRlNAyGbiIRoX8+f9zQuEh
+         0DAYHTdFAItVj8PbeJba8X/Oyi4TQM8LP6QJZMguLHDbtLJdCXRgcBmrYKMJk97xRg4v
+         805KLPq8GoVuwvKyifBjFrcwCEpBbjt1TW2TI4TTLKfkwMLdTIffjByV/J8cCZwRfXi5
+         qz5/1JGXUAhHRp8jMjCapMJ0p6kYnLzra5n7+7ZpcnpNeeMdN3cpWRHhnPE6JgURyCkk
+         6qfNG0shmMbrOdLOH89GdJtMh2HXi0e1oZzg5e5XP9dqSYBy7bThpN9YVApQ4kjR5nlw
+         5FJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718787033; x=1719391833;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ngW8Gz5Cpl+0cBREyYz+8mH5KwITQlYSWHUF7QS7aAo=;
+        b=FUYYcWYwONyI1ZD9FAKmcoLXSxpMdbvRGjnlB3h1llhKuyjjcPn8G8B/oLiKbOpwfk
+         7Xhehu9PteCHxMyFvXn25U4pQB8F2KzEe8k89EaZSWPJLFdnYF/6XhbgtwMCvJDc1rfP
+         rlfKku7qt3sIoS5h9Trnbp4MKBgHi/51AqNaeqGVa3h6NGDOt8yo+axgIn94Fw7oEx53
+         wQ1Ltt3SfB1q4dHbjZFwY5axLwp3Ut0vawLV6F2FwCzP7EUNEUSPCoIztVeV7NnEPbZ2
+         BthzzFoJvxR2QClKv0al1fttlvyhkl86M/eB+WLjGfC7/PQt6tejsEFg2S98CrFv3hHY
+         AG+g==
+X-Forwarded-Encrypted: i=1; AJvYcCW1fdv/yq1+pMSPQEw4YsYqjDQbLsTVx9K4I9wryOV5E1ALbhwRoOyWy2RZV3iEvGKBr5BscYFRCyhEDF1J+snzqlN2dx0KeFb8fw==
+X-Gm-Message-State: AOJu0YynEIaUKjgDWWfe8SXBHI8fVsmmOSwJTZ8NknEgmtt3VLZ5ygLZ
+	HJz92PK8K1tr7LgQpW0pWCrz7kti8orO8vn9rWEd96ikyUHzq0fGcZfWsBnT6OJtvBIu9gCvcof
+	a2nk=
+X-Google-Smtp-Source: AGHT+IHahTvGL4fXPSvvP/+8qIZ6XuBPDuQY5McrWerDtkQ7poz6Oe4u9spv229aajpWrvHKw6bZdA==
+X-Received: by 2002:a5d:4351:0:b0:35f:20eb:cae3 with SMTP id ffacd0b85a97d-3631998ef04mr1344014f8f.67.1718787032663;
+        Wed, 19 Jun 2024 01:50:32 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:9028:9df3:ea6c:d102:5e8f:d5a9? ([2a00:f41:9028:9df3:ea6c:d102:5e8f:d5a9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-363f7e62e6csm308966f8f.27.2024.06.19.01.50.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jun 2024 01:50:32 -0700 (PDT)
+Message-ID: <699a3bec-bb43-4572-83bc-6efe514a6b13@linaro.org>
+Date: Wed, 19 Jun 2024 10:50:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-17_01,2024-05-17_01
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] Revert "dt-bindings: cache: qcom,llcc: correct
+ QDU1000 reg entries"
+To: Komal Bajaj <quic_kbajaj@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Mukesh Ojha <quic_mojha@quicinc.com>
+References: <20240619061641.5261-1-quic_kbajaj@quicinc.com>
+ <20240619061641.5261-3-quic_kbajaj@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240619061641.5261-3-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add SCMI ARM REGULATOR configuration for stm32.
 
-Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
----
- arch/arm64/Kconfig.platforms | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index a52618073de2..dab964bc70ca 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -312,6 +312,7 @@ config ARCH_STM32
- 	select STM32_EXTI
- 	select ARM_SMC_MBOX
- 	select ARM_SCMI_PROTOCOL
-+	select REGULATOR_ARM_SCMI
- 	select COMMON_CLK_SCMI
- 	select STM32_FIREWALL
- 	help
--- 
-2.34.1
+On 6/19/24 08:16, Komal Bajaj wrote:
+> This reverts commit f0f99f371822c48847e02e56d6e7de507e18f186.
+> 
+> QDU1000 has 7 register regions. The earlier commit 8e2506d01231
+> ("dt-bindings: cache: qcom,llcc: Add LLCC compatible for QDU1000/QRU1000")
+> to add llcc compatible was reflecting the same, but dtsi change for
+> QDU1000 was not aligning with its binding. Later, commit f0f99f371822
+> ("dt-bindings: cache: qcom,llcc: correct QDU1000 reg entries") was merged
+> intended to fix this misalignment.
+> 
+> After the LLCC driver refactor, each LLCC bank/channel need to be
+> represented as one register space to avoid mapping to the region where
+> access is not there. Hence, revert the commit f0f99f371822 ("dt-bindings:
+> cache: qcom,llcc: correct QDU1000 reg entries") to align QDU1000 llcc
+> binding with its dtsi node.
+> 
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
 
+For future reference, it would be good to have this as patch 1,
+to prevent the previous one introducing (fake) schema warnings
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 
