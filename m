@@ -1,206 +1,244 @@
-Return-Path: <devicetree+bounces-77300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2ACF90E195
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 04:17:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F4E390E1A1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 04:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41C91B211DB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 02:17:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A94341F23E41
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 02:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9293C26AC6;
-	Wed, 19 Jun 2024 02:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE5B262BD;
+	Wed, 19 Jun 2024 02:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y0JNrcEx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHm9xAeZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8A11EA74;
-	Wed, 19 Jun 2024 02:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3F22599;
+	Wed, 19 Jun 2024 02:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718763420; cv=none; b=kSDv5zNXrHSdoUnAMf7CoWx6L1gtx0JVVe0qApY5Ixg+qgI/nwPlhZ21Yhs77CrcXz0JNWxxFGg53eNYg7rGXw9wLxEGcHr7lUx44/4TDuvjtVMqJ7DAile1KcLONrQG1iappJGPla46fS/EukQBXUk2xmeTJZSPSZs564r+Gw8=
+	t=1718764300; cv=none; b=iO/eQtYb6wN/TgAge3cendE1+JQqVDdoyxOB93gYyJeY7Ty8Rfng/GYm6DRRhupAIIxSN2XMeZsmaoJgJIqRzYiv3Pa1PyEenjOBlpaKTldhK6nHuz8MyR0kWSJsf8ya4oDfRoxyCiOzCYyAS5lQNF3Im56qyE1mImxIWKFuM7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718763420; c=relaxed/simple;
-	bh=HASXpDjNd2RHtCSey6cb/9CA17Pw1n51jwiTRiMlFc0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kzWvepMhApy+P6W8ZI4AXD4F3MjraICZ4yeSFLmE+Wek/VaFGlGJkae06BVayGZI2VF1rDGVTBuLIcV8uSwSVgC889quqOeKnD838yQJltX6zHm6gjWv/mmmUloEfE766MdkTSPZ2f7dK0q1eykluTeIe8fsy2Pnh7xH4Fhvnc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y0JNrcEx; arc=none smtp.client-ip=209.85.160.44
+	s=arc-20240116; t=1718764300; c=relaxed/simple;
+	bh=tON+1ko1+L9sLXDmaPD3JWG8AGbdMBPXq8ldPeXQYsM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=SLf0FIujXxD6uRY8i/oMt8qjd99o1P+XlDirWzxC0HL8DrYQyEzSxf+AgVmlNHo1eiQ5z/PCkGKN0xT68lUeyf3fzLq3TfCMlRhYYnf07lnOKcPEKEmKsLhVpzd0Qm1xlp40DNwTGFg0fEOO0jFF7Z670lzBjKIJNn4hPDxmxOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aHm9xAeZ; arc=none smtp.client-ip=209.85.160.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2547e1c7bbeso3207274fac.2;
-        Tue, 18 Jun 2024 19:16:58 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4405743ac19so3946521cf.0;
+        Tue, 18 Jun 2024 19:31:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718763418; x=1719368218; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cRNKRw+EdEWM4sTuEjNXHCmouPWU72BgyGwGHxeoQQ8=;
-        b=Y0JNrcEx51F1XiKHh+X5rpBpDzqpk46SrWvJo3VE7KgAqqxvqZiCBcySQegtBPf9ZH
-         kEzTjrsEfsuEBvRojd+rKV7oSbnMKTesA9WK//RdxK24/L0yIYurW2MXx3Zz/tBAUsmr
-         zHjmD8EHX+4S4b3m9Cj9Xi0VmBkPsxlYaJkDnBOE/j7E14MYKLKX1lP7pJ98FayAaU5P
-         0aMRbB37iPcnSVy4s+af5bUTpFESBDl5P0G8mjwoSHQsAlk6zsXIfrL/P87bEVK6MUu4
-         i/jLrf5yc+IBHUaSThGq/mgQka17965Q3b8craBkIMFzjQCMv/qybWcrqETLr0Ijog3q
-         lyIw==
+        d=gmail.com; s=20230601; t=1718764297; x=1719369097; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jJWducu000Gylf5XAOa8WIhgRCeIrgAnJZ+kHKrkDe0=;
+        b=aHm9xAeZhjpoEwvCZLdh7hTZks5R4eqrFLAT4vQYmyZ4Lagr5X8DD+KNT1nhXGzIDb
+         lCeukbuiABKa+ERIxOy+k9xOI3fhbUk/wn7/vtlQdY+6ILen4lmbytC6E6x/VeRV69JB
+         0276vhA8sNpygbC87eP/aZOttH9QqFyrJsVkywanrZKjbM6Y+0jp3vFVKrofPPujXdT3
+         CzZDqbROmpwU+NBGwCRkhdW8k/xOSFfwNLeAxPluG4zr3BCxX2cOGjMLhNdrnrSAvCxc
+         RijUefiWMoHowNqWNcRw1UYJuHSOKIECAUPRcL4qjBGfWDvJt5TKTFxBrAp9Tz/CWc5b
+         VUqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718763418; x=1719368218;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cRNKRw+EdEWM4sTuEjNXHCmouPWU72BgyGwGHxeoQQ8=;
-        b=Flx/EqyiY48l6h8dj93A2XC8siuWepNFdftjIk/29M1Mm4Nf8O57lCHKiHtsPgO6zt
-         2yeDhpE130IVjXfg/L/dpdpbEKDEaEwzZWmwcx0ZaFR0JR+40Dc22oqZnm4Lp5chsD8R
-         ezBjknfZNb4fl4eQhNvGxlpZfCukoKdxSuMKnzl8hNsmGMwnx/RZufVVRuGLJQH9g+D+
-         PhLLXJkVLr9pgebXzm31vJCMvwq/732cx1PbZpWe7InUGOTG1lIJFuYGxrxDbA2kXkWb
-         vZTrvv6vrEzBt2R0uwuKkCimtJdrHpnZKUAFWFrqjwFwdKLqBnPS4MNgfYA84IMTXfMS
-         qGtg==
-X-Forwarded-Encrypted: i=1; AJvYcCUUktYOgdCut2pVy1YSD0ybzurma/Svw2qdth5gF6jFYPcjIdLI6bHTbdrQ4BH31SaezsvzS4xPMsaaJGzKqIW/OsRrhgzWxKe1tm/+UygS248Ko2AhqRxx5cPRIyX7SslnOCfoUYRNt5sD+aV4ShDx9w56NUgEaRi+V9mASOnB57qtM7yB
-X-Gm-Message-State: AOJu0Yw2Hzjo0uiu8XP5kkIr0a2HTL7nBl3XxSe2l1XkK2DKMKygdXam
-	ubPC9am+KEgm6SJ7PBCjOQIp2U6XSqftkjh/QX9P31KlvTGM45NI
-X-Google-Smtp-Source: AGHT+IHpPhJ7zP7UN2BsY3unZsGUx9/U3vd2RdXQWiBk5jUZDOB6vaXOTsyuwUahSne82+LDr1KhGw==
-X-Received: by 2002:a05:6870:45a4:b0:23f:eea9:ae74 with SMTP id 586e51a60fabf-25c94d02f34mr1527205fac.46.1718763417948;
-        Tue, 18 Jun 2024 19:16:57 -0700 (PDT)
-Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-70c5ddb7334sm2816499a12.33.2024.06.18.19.16.54
+        d=1e100.net; s=20230601; t=1718764297; x=1719369097;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jJWducu000Gylf5XAOa8WIhgRCeIrgAnJZ+kHKrkDe0=;
+        b=v5f2BAoDJSgCJU0A20I3B+1X5APORLHrDROlJKc6jkOo1KgyurszQ0bqi16Blg3Sd7
+         soJ4MmrPp6AfEkfL9vD3QefdkbVn3qH/LWLgAWTdd+DMCiDOiFej36LJE/sSa+wmfTed
+         DN85ERwhzDGymTUSX8LkCJjZvXM7qzp0zY8Jw5sqvbXPwLM+7Cea8KoeDqz5+rm1Qq9/
+         J0DKg6rgvq8Q879Yee+fOvZUqHAdbCvPPOD4fOjcx4C5/EK/5yAM9vO+2Dk8M0a7kocu
+         XwQDCzjmKCPQ5zGNxnVelawgt6nIxKyhsmvYYvHm+QyJOOIzWYnYFNpKSW5FhouM24WX
+         KJ5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXPMDTvz2a+YQU2/3Ss0J768McAAQ/zOR8FX4ELdLK3rYw8VVYI7K4nNiqA8dU7vBEsOSMgZpGeERyfDEhyM6AMkR2F1bMFzskETFqbdOYUmKbUdC/mjQRIl1iY4QRtX0b3w+zT3ar0ImtCYneJmbd9lpgGkAOJKIBY3EghzDBdLH7U
+X-Gm-Message-State: AOJu0YwcHKw6J30hiIx9BxTItokRQOnGyPGrlD0oRlNqfqWXZpJm/JqX
+	2plb3dWUMS9YFBNu1BbyyqQo7ElPFCOd5WyX99F4aRenyVTSpzuy
+X-Google-Smtp-Source: AGHT+IE+HAIxr8nOrosxxzcdbM00QsPfxTRPEYuk5G+mgX2XurEoYtjncDIdow1JK4U189/2i89J0A==
+X-Received: by 2002:a05:622a:138b:b0:442:1204:5d72 with SMTP id d75a77b69052e-444a78dcc3fmr36077401cf.30.1718764297372;
+        Tue, 18 Jun 2024 19:31:37 -0700 (PDT)
+Received: from [127.0.1.1] ([2607:fea8:bad7:5400:f8a2:b06e:a96b:63dd])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-441f2fceea3sm61651211cf.78.2024.06.18.19.31.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jun 2024 19:16:57 -0700 (PDT)
-Date: Wed, 19 Jun 2024 10:16:50 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: dmitry.torokhov@gmail.com, dan.carpenter@linaro.org, robh@kernel.org,
-	dianders@chromium.org, krzk+dt@kernel.org, jikos@kernel.org,
-	bentiss@kernel.org, hbarnor@chromium.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] dt-bindings: input: Goodix SPI HID Touchscreen
-Message-ID: <ZnI_kt3APuF6NWvR@ux-UP-WHL01>
-References: <20240618084455.1451461-1-charles.goodix@gmail.com>
- <20240618084455.1451461-3-charles.goodix@gmail.com>
- <20240618-affluent-unroasted-e6d5d34d1ea2@spud>
+        Tue, 18 Jun 2024 19:31:36 -0700 (PDT)
+From: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+Date: Tue, 18 Jun 2024 22:31:35 -0400
+Subject: [PATCH v4] dt-bindings: thermal: convert hisilicon-thermal.txt to
+ dt-schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240618-affluent-unroasted-e6d5d34d1ea2@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240618-hisilicon-thermal-dt-bindings-conversion-v4-1-7eba97fbe6d0@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAZDcmYC/63QS4rDMBAE0KsEraNBn7YUZ5V7DFno07IFthxkI
+ yYE333kMANeJpBlNc0rqAeZMUecyfnwIBlLnOOUaoDjgbjepA5p9DUTwQQwxSXt68sQ3ZTo0mM
+ ezUD9Qm1MPqZupvVeMG8IlQZQcmCBmROp3C1jiD/Pqu9rzRVapnx/NhexXf9L4PWSIiinqJSzH
+ mQQ0F660cThy03j1vkH6jfBBnSDXKFX1n0GlIw7RFEXsZ8BEU1rXdM6rXfgtmuR+y3fgWWFlT9
+ 5gMCC17CH13X9BZ4krxksAgAA
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+X-Mailer: b4 0.14-dev-0bd45
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718764296; l=4182;
+ i=abdulrasaqolawani@gmail.com; s=20240613; h=from:subject:message-id;
+ bh=tON+1ko1+L9sLXDmaPD3JWG8AGbdMBPXq8ldPeXQYsM=;
+ b=XKaE+TM/hnfwscXjITuSt+j4OEluklmc8wyfhJyQ6cuz6y4k7Flwt5XmRW3CLyrQlxYyu2MWd
+ r2MWZcn91uDDcP706FFLsb4ecGT0mVgj+Lx8nqMkNm8AicLfjJqHlgu
+X-Developer-Key: i=abdulrasaqolawani@gmail.com; a=ed25519;
+ pk=cUqfinPW5pkopFB8ShBc0ZTNgYvSW5ZTa8aLIFPGp/w=
 
-Hi Conor,
+Convert the hisilicon SoCs tsensor txt bindings to dt-schema
 
-On Tue, Jun 18, 2024 at 06:43:18PM +0100, Conor Dooley wrote:
-> On Tue, Jun 18, 2024 at 04:44:54PM +0800, Charles Wang wrote:
-> > The Goodix GT7986U touch controller report touch data according to the
-> > HID protocol through the SPI bus. However, it is incompatible with
-> > Microsoft's HID-over-SPI protocol.
-> > 
-> > Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> > ---
-> >  .../bindings/input/goodix,gt7986u.yaml        | 72 +++++++++++++++++++
-> >  1 file changed, 72 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> > new file mode 100644
-> > index 000000000..25a26b4ce
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
-> > @@ -0,0 +1,72 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: GOODIX GT7986U SPI HID Touchscreen
-> > +
-> > +maintainers:
-> > +  - Charles Wang <charles.goodix@gmail.com>
-> > +
-> > +description: Supports the Goodix GT7986U touchscreen.
-> > +  This touch controller reports data packaged according to the HID protocol,
-> > +  but is incompatible with Microsoft's HID-over-SPI protocol.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - goodix,gt7986u
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +    description: reset gpio the chip is connected to.
-> 
-> The description here isn't needed, it's obvious :)
->
+Signed-off-by: Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
+---
+Changes in v4:
+- Update the indentation for 'examples'.
 
-Ack.
+- Link to v3: https://lore.kernel.org/all/71b58547-545e-4953-baa0-f3c6c8c3d2f9@kernel.org/
 
-> > +  goodix,hid-report-addr:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: |
-> 
-> This | is not needed, there's no formatting to preserve.
-> 
-> Those are nits:
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> 
+Changes in v3:
+- Same as v2 
 
-Thank you. If there is a next version, I will fix these.
+- Link to v2: https://lore.kernel.org/r/20240617-hisilicon-thermal-dt-bindings-conversion-v2-1-5eea9bc59c77@gmail.com
 
-Charles,
+Changes in v2:
+- Remove extra node in example.
+- Use standard node name in example.
+- Include additional defines from includes.
+- Add reference to thermal-sensor.yaml.
+- Remove redundant properties and comments.
 
-> 
-> > +      The register address for retrieving HID report data.
-> > +      This address is related to the device firmware and may
-> > +      change after a firmware update.
-> > +
-> > +  spi-max-frequency: true
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - reset-gpios
-> > +  - goodix,hid-report-addr
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    spi {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      touchscreen@0 {
-> > +        compatible = "goodix,gt7986u";
-> > +        reg = <0>;
-> > +        interrupt-parent = <&gpio>;
-> > +        interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
-> > +        reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-> > +        spi-max-frequency = <10000000>;
-> > +        goodix,hid-report-addr = <0x22c8c>;
-> > +      };
-> > +    };
-> > +
-> > +...
-> > -- 
-> > 2.43.0
-> > 
+- Link to v1: https://lore.kernel.org/all/20240613224204.185844-1-abdulrasaqolawani@gmail.com
+---
 
+Validated with dtschema and tested against `hi3660-hikey960.dts`.
+---
+ .../bindings/thermal/hisilicon,tsensor.yaml        | 57 ++++++++++++++++++++++
+ .../bindings/thermal/hisilicon-thermal.txt         | 32 ------------
+ 2 files changed, 57 insertions(+), 32 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/thermal/hisilicon,tsensor.yaml b/Documentation/devicetree/bindings/thermal/hisilicon,tsensor.yaml
+new file mode 100644
+index 000000000000..11aca2b749d7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/hisilicon,tsensor.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/hisilicon,tsensor.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Temperature Sensor on HiSilicon SoCs
++
++maintainers:
++  - Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
++
++allOf:
++  - $ref: thermal-sensor.yaml
++
++properties:
++  compatible:
++    enum:
++      - hisilicon,tsensor
++      - hisilicon,hi3660-tsensor
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: thermal_clk
++
++  interrupts:
++    maxItems: 1
++
++  '#thermal-sensor-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#thermal-sensor-cells'
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/hi6220-clock.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    temperature-sensor@f7030700 {
++        compatible = "hisilicon,tsensor";
++        reg = <0xf7030700 0x1000>;
++        interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&sys_ctrl HI6220_TSENSOR_CLK>;
++        clock-names = "thermal_clk";
++        #thermal-sensor-cells = <1>;
++    };
+diff --git a/Documentation/devicetree/bindings/thermal/hisilicon-thermal.txt b/Documentation/devicetree/bindings/thermal/hisilicon-thermal.txt
+deleted file mode 100644
+index 4b19d80e6558..000000000000
+--- a/Documentation/devicetree/bindings/thermal/hisilicon-thermal.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-* Temperature Sensor on hisilicon SoCs
+-
+-** Required properties :
+-
+-- compatible: "hisilicon,tsensor".
+-- reg: physical base address of thermal sensor and length of memory mapped
+-  region.
+-- interrupt: The interrupt number to the cpu. Defines the interrupt used
+-  by /SOCTHERM/tsensor.
+-- clock-names: Input clock name, should be 'thermal_clk'.
+-- clocks: phandles for clock specified in "clock-names" property.
+-- #thermal-sensor-cells: Should be 1. See Documentation/devicetree/bindings/thermal/thermal-sensor.yaml for a description.
+-
+-Example :
+-
+-for Hi6220:
+-	tsensor: tsensor@0,f7030700 {
+-		compatible = "hisilicon,tsensor";
+-		reg = <0x0 0xf7030700 0x0 0x1000>;
+-		interrupts = <0 7 0x4>;
+-		clocks = <&sys_ctrl HI6220_TSENSOR_CLK>;
+-		clock-names = "thermal_clk";
+-		#thermal-sensor-cells = <1>;
+-	}
+-
+-for Hi3660:
+-	tsensor: tsensor@fff30000 {
+-		compatible = "hisilicon,hi3660-tsensor";
+-		reg = <0x0 0xfff30000 0x0 0x1000>;
+-		interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+-		#thermal-sensor-cells = <1>;
+-	};
+
+---
+base-commit: 8d5ed3dd17c9c1bdb39ecb125f0e28dfb5111dd9
+change-id: 20240613-hisilicon-thermal-dt-bindings-conversion-3a4e3140f0a8
+
+Best regards,
+-- 
+Abdulrasaq Lawani <abdulrasaqolawani@gmail.com>
 
 
