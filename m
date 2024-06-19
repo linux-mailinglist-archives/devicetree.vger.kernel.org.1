@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-77645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1854690F88E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 23:34:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4892B90F895
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 23:47:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39AF1F2355A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 21:34:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAC80B20EDB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 21:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E25D15AD93;
-	Wed, 19 Jun 2024 21:34:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DI9iAekS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B3E78B4C;
+	Wed, 19 Jun 2024 21:47:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBC455884;
-	Wed, 19 Jun 2024 21:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C3F8475;
+	Wed, 19 Jun 2024 21:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718832848; cv=none; b=STXWrAMo9M2gG1/WgO+1PfwD4KKtHjb4kde+LBfFwzJyc8NccfhKwp+bdeWGsfpqBgoneddA7yjyVDasN7L10FvcFs4OC2K3aYaMRKOMq7H+2DY4Im9s42e4VcrusEs1ZxvcKMes/IlvFE3LnZL9I9iD/NV/6EbYpp7GWmoz+N4=
+	t=1718833623; cv=none; b=cCIx5cWHR1Nvs6656AxrF+IWIL256mgVMKH2Q8AlX9a8bhnME8+knJmnx/gfWjBRRVzPnweX5SC9bltgLr6iYrp2IH1v854y9gS2aHao5nX8gsO6ZegFKOYdyNV3UYPFbRc4t/dz1xdu7JdhoB9vWT/yKarKXWowaXxdkQXlUe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718832848; c=relaxed/simple;
-	bh=QpgxUO+NC9kg5vQa3E+qKEIvQmHTdiyzV696YvEtACY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OOWCg5l2Avfs1Dh1ew6W1sO36V9vwVpLuXlgIvBUTfw6fX9GCFXhy7OoZOxp0QPBPfs4bfH32ZRZ3KiqGfdTsI8vk9fKQuGmfsq8UoCOJaYoTO4cHKuFm7HmQmBdh61g9N9zWj0vby3vKN+UhxVhGqeWswFr4MLYH9PuSFw75Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DI9iAekS; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718832843;
-	bh=QpgxUO+NC9kg5vQa3E+qKEIvQmHTdiyzV696YvEtACY=;
-	h=From:Date:Subject:To:Cc:From;
-	b=DI9iAekSyUuT8+cYn3x7HFcCzMJsQ3WsgUwIqKK8yAEFbbFDvgUEEeESGrKIEbgaH
-	 cyo/+kj7D2mf2PltwQhN1NE/cJe3buTgdupOdyM9Gn0eEsbyZCizJAq9fOGudVCE1H
-	 hmm8IeutpXvs6CFh57DaZUlDZ9DOihDtS3i1v0vQBsbSjyAYesU6rck1iHgXA3f3eI
-	 doq6Omx4TIuJDKqKdP90OVZ4N+Wz/70aTXlcgJoa3KcQzdoVpAs3omcde9luHLy4xc
-	 RtZCEz4rWX0X/Ocj5n63+Ea69mW79rZRPmfpqwV/csePU7DZz+ZgXOz6bfN5zq6YF5
-	 AREQIIy67GqOA==
-Received: from [192.168.1.167] (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 30C603782198;
-	Wed, 19 Jun 2024 21:34:00 +0000 (UTC)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Wed, 19 Jun 2024 17:33:58 -0400
-Subject: [PATCH] kselftest: dt: Ignore nodes that have ancestors disabled
+	s=arc-20240116; t=1718833623; c=relaxed/simple;
+	bh=XO1prcmgzRq66CfRktRpEERVUTRdsmnBTaTK+lETy0Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EgtlEYdp7p40IKMUeU+jF5Uz5HxR0YrokFsYfhX6gR7t9Buz+UCOHIPqP/AbtUtG7W887ud5Bk/AVCD/mNQdlPUrfgH+g06U2mlH/WUICXjjt8JsijO+lKkNznx9keB34lASDYzxwazYXj0fFyTnGTBE27M8n9n3z1Rg5Ysm7Yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e8616dc.versanet.de ([94.134.22.220] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sK38o-0002AN-Df; Wed, 19 Jun 2024 23:46:54 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Johan Jonker <jbx6244@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
+	conor+dt@kernel.org,
+	robh@kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] ARM: dts: rockchip: add hdmi-sound node to rk3066a.dtsi
+Date: Wed, 19 Jun 2024 23:46:52 +0200
+Message-Id: <171883360477.12879.3763495026323638228.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <5fe7c2fe-4a38-436a-8017-66989959329a@gmail.com>
+References: <5fe7c2fe-4a38-436a-8017-66989959329a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,81 +58,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240619-dt-kselftest-parent-disabled-v1-1-b8f7a8778906@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAMZOc2YC/x3MQQqDQAwF0KtI1g1oKtb2KsXF1HxrqExlMkhBv
- HsHl2/zdnIkg9Oj2ilhM7dvLGguFY1ziG+waTFJLW3dNXfWzB/HMmV45jUkxMxqHl4LlEV6CTe
- Rq0pHpVgTJvud/XM4jj9xwYItbgAAAA==
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
- Shuah Khan <shuah@kernel.org>
-Cc: kernel@collabora.com, Shuah Khan <skhan@linuxfoundation.org>, 
- devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.13.0
 
-Filter out nodes that have one of its ancestors disabled as they aren't
-expected to probe.
+On Tue, 18 Jun 2024 14:02:25 +0200, Johan Jonker wrote:
+> Add hdmi-sound node to rk3066a.dtsi, so that it
+> can be reused by boards with HDMI support.
+> 
+> 
 
-This removes the following false-positive failures on the
-sc7180-trogdor-lazor-limozeen-nots-r5 platform:
+Applied, thanks!
 
-/soc@0/geniqup@8c0000/i2c@894000/proximity@28
-/soc@0/geniqup@ac0000/spi@a90000/ec@0
-/soc@0/remoteproc@62400000/glink-edge/apr
-/soc@0/remoteproc@62400000/glink-edge/apr/service@3
-/soc@0/remoteproc@62400000/glink-edge/apr/service@4
-/soc@0/remoteproc@62400000/glink-edge/apr/service@4/clock-controller
-/soc@0/remoteproc@62400000/glink-edge/apr/service@4/dais
-/soc@0/remoteproc@62400000/glink-edge/apr/service@7
-/soc@0/remoteproc@62400000/glink-edge/apr/service@7/dais
-/soc@0/remoteproc@62400000/glink-edge/apr/service@8
-/soc@0/remoteproc@62400000/glink-edge/apr/service@8/routing
-/soc@0/remoteproc@62400000/glink-edge/fastrpc
-/soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@3
-/soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@4
-/soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@5
-/soc@0/spmi@c440000/pmic@0/pon@800/pwrkey
-
-Fixes: 14571ab1ad21 ("kselftest: Add new test for detecting unprobed Devicetree devices")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- tools/testing/selftests/dt/test_unprobed_devices.sh | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/tools/testing/selftests/dt/test_unprobed_devices.sh b/tools/testing/selftests/dt/test_unprobed_devices.sh
-index 2d7e70c5ad2d..5e3f42ef249e 100755
---- a/tools/testing/selftests/dt/test_unprobed_devices.sh
-+++ b/tools/testing/selftests/dt/test_unprobed_devices.sh
-@@ -34,8 +34,21 @@ nodes_compatible=$(
- 		# Check if node is available
- 		if [[ -e "${node}"/status ]]; then
- 			status=$(tr -d '\000' < "${node}"/status)
--			[[ "${status}" != "okay" && "${status}" != "ok" ]] && continue
-+			if [[ "${status}" != "okay" && "${status}" != "ok" ]]; then
-+				if [ -n "${disabled_nodes_regex}" ]; then
-+					disabled_nodes_regex="${disabled_nodes_regex}|${node}"
-+				else
-+					disabled_nodes_regex="${node}"
-+				fi
-+				continue
-+			fi
- 		fi
-+
-+		# Ignore this node if one of its ancestors was disabled
-+		if [ -n "${disabled_nodes_regex}" ]; then
-+			echo "${node}" | grep -q -E "${disabled_nodes_regex}" && continue
-+		fi
-+
- 		echo "${node}" | sed -e 's|\/proc\/device-tree||'
- 	done | sort
- 	)
-
----
-base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
-change-id: 20240619-dt-kselftest-parent-disabled-2282a7223d26
+[1/1] ARM: dts: rockchip: add hdmi-sound node to rk3066a.dtsi
+      commit: 1e297069cc1c588bbece4752e0840b6a15982148
 
 Best regards,
 -- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
+Heiko Stuebner <heiko@sntech.de>
 
