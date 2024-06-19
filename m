@@ -1,131 +1,138 @@
-Return-Path: <devicetree+bounces-77644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4BB90F882
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 23:29:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1854690F88E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 23:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17639B21637
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 21:29:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39AF1F2355A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 21:34:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3648815A49F;
-	Wed, 19 Jun 2024 21:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E25D15AD93;
+	Wed, 19 Jun 2024 21:34:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r55G59yo"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DI9iAekS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038431DA23;
-	Wed, 19 Jun 2024 21:29:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBC455884;
+	Wed, 19 Jun 2024 21:34:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718832568; cv=none; b=GSMxjNrjXRCK4pgwFKixHyETcEu3pMzZC/Zna4DHF4lvGauuEFHDqCuvnWoxlhyqY5xZrJpJYuRs+TePVurEsUQ65uKSVh96t2iMCJgpyBaZ9TYhVB468Ds4io5XtNhkxe/20QlAprv85ewst7FsnaIOUlr/0GyDlePCbO/Ckqk=
+	t=1718832848; cv=none; b=STXWrAMo9M2gG1/WgO+1PfwD4KKtHjb4kde+LBfFwzJyc8NccfhKwp+bdeWGsfpqBgoneddA7yjyVDasN7L10FvcFs4OC2K3aYaMRKOMq7H+2DY4Im9s42e4VcrusEs1ZxvcKMes/IlvFE3LnZL9I9iD/NV/6EbYpp7GWmoz+N4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718832568; c=relaxed/simple;
-	bh=ZK/RJlwdXPh5HQsQ/9om81lNAfjZlF8oikBRZTzvVd8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lx8W7uyRtCR879RLk/XoqM9x8YWH4fgG7qDCX5HG3YqNTOccrdUS+vCAoqhQugPQx9nFXKx6KZU3BzX063JKzMCzC95pkHkC+4hh18nW/QOpil9YR8IP1fCpyfJwHxopneMNdOVcI7+tCK1Ftyv6QD2pM3NRzFscBvxGp1T7rZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r55G59yo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 917BBC2BBFC;
-	Wed, 19 Jun 2024 21:29:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718832567;
-	bh=ZK/RJlwdXPh5HQsQ/9om81lNAfjZlF8oikBRZTzvVd8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r55G59yoDJ4xWM7nAC4KxeQ1PJGx7PmWlAz5CMhP+6X7HTohYPmhW5GYxNTIjm2MJ
-	 AbKDz0EkENmhOpHxk6kXnUrFbFAI/LPjj90N1vXsgoSFH8OnC4iBMzCmjd+N/5/FJp
-	 5ttWvYkEigzc8dUd4h77N04IRFd6LzKERb2uMNfLg4VG1jcyUfOhgzzebKoKhiZkQ/
-	 udh+vsOz4lrBy4U72iyw72N1TYyLXtLAAazEsuBQ5eRYtErLUuqpss1idDWWnYe//B
-	 hm4IR8IXi/nkywZXvmsYuFb/hTFuJacgvvx1Vzr6LJTAGKWc1ppS3PorhGfEmCNIH7
-	 nowGb9xV1Jqdg==
-Date: Wed, 19 Jun 2024 22:29:21 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nuno.sa@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/6] spi: Enable controllers to extend the SPI
- protocol with MOSI idle configuration
-Message-ID: <0cf9576d-c50e-4730-834a-3a4ceac6a4f8@sirena.org.uk>
-References: <cover.1718749981.git.marcelo.schmitt@analog.com>
- <36eefb860f660e2cadb13b00aca04b5a65498993.1718749981.git.marcelo.schmitt@analog.com>
- <63db9349-f453-4a5b-aa09-d1857ddd8b03@baylibre.com>
- <ZnMqOAPc3IXP-eHC@debian-BULLSEYE-live-builder-AMD64>
+	s=arc-20240116; t=1718832848; c=relaxed/simple;
+	bh=QpgxUO+NC9kg5vQa3E+qKEIvQmHTdiyzV696YvEtACY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OOWCg5l2Avfs1Dh1ew6W1sO36V9vwVpLuXlgIvBUTfw6fX9GCFXhy7OoZOxp0QPBPfs4bfH32ZRZ3KiqGfdTsI8vk9fKQuGmfsq8UoCOJaYoTO4cHKuFm7HmQmBdh61g9N9zWj0vby3vKN+UhxVhGqeWswFr4MLYH9PuSFw75Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DI9iAekS; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718832843;
+	bh=QpgxUO+NC9kg5vQa3E+qKEIvQmHTdiyzV696YvEtACY=;
+	h=From:Date:Subject:To:Cc:From;
+	b=DI9iAekSyUuT8+cYn3x7HFcCzMJsQ3WsgUwIqKK8yAEFbbFDvgUEEeESGrKIEbgaH
+	 cyo/+kj7D2mf2PltwQhN1NE/cJe3buTgdupOdyM9Gn0eEsbyZCizJAq9fOGudVCE1H
+	 hmm8IeutpXvs6CFh57DaZUlDZ9DOihDtS3i1v0vQBsbSjyAYesU6rck1iHgXA3f3eI
+	 doq6Omx4TIuJDKqKdP90OVZ4N+Wz/70aTXlcgJoa3KcQzdoVpAs3omcde9luHLy4xc
+	 RtZCEz4rWX0X/Ocj5n63+Ea69mW79rZRPmfpqwV/csePU7DZz+ZgXOz6bfN5zq6YF5
+	 AREQIIy67GqOA==
+Received: from [192.168.1.167] (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 30C603782198;
+	Wed, 19 Jun 2024 21:34:00 +0000 (UTC)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Date: Wed, 19 Jun 2024 17:33:58 -0400
+Subject: [PATCH] kselftest: dt: Ignore nodes that have ancestors disabled
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="t5VeN0A55pzNIE5b"
-Content-Disposition: inline
-In-Reply-To: <ZnMqOAPc3IXP-eHC@debian-BULLSEYE-live-builder-AMD64>
-X-Cookie: Don't I know you?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240619-dt-kselftest-parent-disabled-v1-1-b8f7a8778906@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAMZOc2YC/x3MQQqDQAwF0KtI1g1oKtb2KsXF1HxrqExlMkhBv
+ HsHl2/zdnIkg9Oj2ilhM7dvLGguFY1ziG+waTFJLW3dNXfWzB/HMmV45jUkxMxqHl4LlEV6CTe
+ Rq0pHpVgTJvud/XM4jj9xwYItbgAAAA==
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+ Shuah Khan <shuah@kernel.org>
+Cc: kernel@collabora.com, Shuah Khan <skhan@linuxfoundation.org>, 
+ devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.13.0
 
+Filter out nodes that have one of its ancestors disabled as they aren't
+expected to probe.
 
---t5VeN0A55pzNIE5b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This removes the following false-positive failures on the
+sc7180-trogdor-lazor-limozeen-nots-r5 platform:
 
-On Wed, Jun 19, 2024 at 03:58:00PM -0300, Marcelo Schmitt wrote:
-> On 06/19, David Lechner wrote:
-> > On 6/18/24 6:10 PM, Marcelo Schmitt wrote:
+/soc@0/geniqup@8c0000/i2c@894000/proximity@28
+/soc@0/geniqup@ac0000/spi@a90000/ec@0
+/soc@0/remoteproc@62400000/glink-edge/apr
+/soc@0/remoteproc@62400000/glink-edge/apr/service@3
+/soc@0/remoteproc@62400000/glink-edge/apr/service@4
+/soc@0/remoteproc@62400000/glink-edge/apr/service@4/clock-controller
+/soc@0/remoteproc@62400000/glink-edge/apr/service@4/dais
+/soc@0/remoteproc@62400000/glink-edge/apr/service@7
+/soc@0/remoteproc@62400000/glink-edge/apr/service@7/dais
+/soc@0/remoteproc@62400000/glink-edge/apr/service@8
+/soc@0/remoteproc@62400000/glink-edge/apr/service@8/routing
+/soc@0/remoteproc@62400000/glink-edge/fastrpc
+/soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@3
+/soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@4
+/soc@0/remoteproc@62400000/glink-edge/fastrpc/compute-cb@5
+/soc@0/spmi@c440000/pmic@0/pon@800/pwrkey
 
-> > > +In this extension to the usual SPI protocol, the MOSI line state is specified to
-> > > +be kept high when CS is active but the controller is not clocking out data to
+Fixes: 14571ab1ad21 ("kselftest: Add new test for detecting unprobed Devicetree devices")
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+ tools/testing/selftests/dt/test_unprobed_devices.sh | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
-> > I think it would be less ambiguous to say "asserted" instead of "active".
+diff --git a/tools/testing/selftests/dt/test_unprobed_devices.sh b/tools/testing/selftests/dt/test_unprobed_devices.sh
+index 2d7e70c5ad2d..5e3f42ef249e 100755
+--- a/tools/testing/selftests/dt/test_unprobed_devices.sh
++++ b/tools/testing/selftests/dt/test_unprobed_devices.sh
+@@ -34,8 +34,21 @@ nodes_compatible=$(
+ 		# Check if node is available
+ 		if [[ -e "${node}"/status ]]; then
+ 			status=$(tr -d '\000' < "${node}"/status)
+-			[[ "${status}" != "okay" && "${status}" != "ok" ]] && continue
++			if [[ "${status}" != "okay" && "${status}" != "ok" ]]; then
++				if [ -n "${disabled_nodes_regex}" ]; then
++					disabled_nodes_regex="${disabled_nodes_regex}|${node}"
++				else
++					disabled_nodes_regex="${node}"
++				fi
++				continue
++			fi
+ 		fi
++
++		# Ignore this node if one of its ancestors was disabled
++		if [ -n "${disabled_nodes_regex}" ]; then
++			echo "${node}" | grep -q -E "${disabled_nodes_regex}" && continue
++		fi
++
+ 		echo "${node}" | sed -e 's|\/proc\/device-tree||'
+ 	done | sort
+ 	)
 
-> I'm not sure. IMHO, it looks less ambiguous to say a CS is active.
-> I think the most common for CS lines is to have a CS that is active low (i.e.
-> the line is at a low voltage level when the controller is selecting the device).
-> To me, "assert" sounds closer to the idea o setting something (like a bit to 1),
-> which is the opposite of active low CS.
-> Though, no strong opinion about it.
-> I go with what the maintainers prefer.
+---
+base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+change-id: 20240619-dt-kselftest-parent-disabled-2282a7223d26
 
-I think they're synonyms but asserted is the more common term for chip
-selects.
+Best regards,
+-- 
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-
-> > > +#define SPI_CONTROLLER_MOSI_IDLE_LOW    BIT(8)  /* Can idle MOSI low */
-> > > +#define SPI_CONTROLLER_MOSI_IDLE_HIGH   BIT(9)  /* Can idle MOSI high */
-
-> > I don't see where these are used anywhere else in the series. They
-> > seem redundant with SPI_MOSI_IDLE_LOW and SPI_MOSI_IDLE_HIGH.
-
-> Good point.
-> They are currently not being used.
-> Comparing with what we have for SPI_CONTROLLER_MULTI_CS, I'm thinking it may be
-> handy to have dt properties to indicate controller MOSI idle capabilities.
-> Does that sound reasonable?
-
-We shouldn't need DT properties, we should just know if the controller
-supports this based on knowing what controller is, and I'd not expect it
-to depend on board wiring.
-
---t5VeN0A55pzNIE5b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZzTbAACgkQJNaLcl1U
-h9Bzrgf9EoiodKo75yJQEuL4g09qEKn2Vt4xzbAl+sckq5RJ9OkMLe1BA4AEQT+e
-LQFBtArzEY6IjLirazsP5EHBN/YMCi/ogeOoz/5p0wCXQWOGoJTqWA69m7QJdeWN
-aDADnsapiHmCsRWOWLkuRh8O7uEXCb4COpDsKWp9cGt0iVAtkyku4Ngn6aQSvaKy
-vXmtkl+pzGYDApsC7ArQ9AexQGUojW8i/OuM2f4WxNgcR0XPm8ctV9MeXrw7Viyp
-kMB3OoVEeOQvOxS4kEL3+KwIWIRtkEC7l/8EUh9+BNJTDtll+yv+tHSOTW1Jm6c+
-07RDlnOAjW5IqiUN9/+jm1ie+q0Qnw==
-=5icn
------END PGP SIGNATURE-----
-
---t5VeN0A55pzNIE5b--
 
