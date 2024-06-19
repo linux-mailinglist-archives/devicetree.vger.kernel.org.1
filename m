@@ -1,127 +1,121 @@
-Return-Path: <devicetree+bounces-77335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CCFE90E3DA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:58:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7322590E3FA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 09:05:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 999BA284485
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:58:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0F55285EEA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 07:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48EEF6F306;
-	Wed, 19 Jun 2024 06:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86BA7442E;
+	Wed, 19 Jun 2024 07:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S4g0GHT3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nej6BCG1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2FB6F2EF;
-	Wed, 19 Jun 2024 06:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7818774049;
+	Wed, 19 Jun 2024 07:05:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718780287; cv=none; b=BcveU60WEU+orR84zjmLC9IxM3lPWKm0NTNYAOyHWSMigID9+dcM1n3JyJ3mPrnaGmHgPAfxKK4JzN9T+IanjwqKmxgadvGV5sv0PkD9JgK0giqWABVlX7gsJkdczN7B81bU2DdOD0u97rxl2pgP/MCg177tKmUstJ2Ns2Zm12o=
+	t=1718780728; cv=none; b=DbBkrsKhUGIzxwHvafEpeQiB9STVT7YrPFI1rXrHUkuccR8QaGty8UdL+OeLEme8sw1DFRwUNMUBbsxoMRS302eu3HASVDBguNxGVZCp3JS0Am/O0sUpsMr9MmpBU7vc9sSqTDudnOLRNN8WG29fddDSxVsSMQP0owyDAuGVGDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718780287; c=relaxed/simple;
-	bh=cW5Ge63fweS/szTsICcadN5NAWgmIOD+EQ6sg9xkUmI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i+gqQ4qn3IM0D5/abzwLYq88SuxCzp8e3exf8p/2sHeK41H/3gcWDTkJeQYJdeQc2MSgN+h85IYRLbAr2vvYMuDNQpLFXt9ZDoHmOdZzpWgRUKOfwqB2yeRmkgEEVIuTcTl+O/36Zrcf3xrBGmVntmu1UCPgmpAWwu4AAasYBg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S4g0GHT3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D406C32786;
-	Wed, 19 Jun 2024 06:58:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718780286;
-	bh=cW5Ge63fweS/szTsICcadN5NAWgmIOD+EQ6sg9xkUmI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S4g0GHT3ZsPHYWl6TJwuiw7nJbxsDZqNYo8UgKbQgnQ/Jo87Jrir/RrXx17vvyey/
-	 fTEF3D0jvoZP6gjBGVpzVmLXJdN35fzEZzMp/GvTjfAEL36PV0Wa+AKZw80mhN1a35
-	 9CA1CYe1rpLcVejOA/s9nEaLzG9rbcK0MhUa/py9m6yrOgzF/9j+ODhDRMN8IdTvJL
-	 NoWqY9BSrFnJt8WVB1UM3iUHAuTRYveZOVR0GdlLsyBtS8GA0NvnqYa3yz+Ol3o++O
-	 VN6tv9U1hiFqIdQiVgfv0Uly+nrk527mr14OtPx4d8p6Sb+kuX2BS5bIh9uZ6LHn4q
-	 V+xUOc6cfWoPw==
-Date: Wed, 19 Jun 2024 08:58:02 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, linux-clk@vger.kernel.org,
-	rkannoth@marvell.com, sgoutham@marvell.com, andrew@lunn.ch
-Subject: Re: [PATCH v2 net-next 1/2] dt-bindings: net: airoha: Add EN7581
- ethernet controller
-Message-ID: <ZnKBegrGA6OhIiJF@lore-desk>
-References: <cover.1718696209.git.lorenzo@kernel.org>
- <ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org>
- <20240618-subpar-absentee-c3a43a1a9f5e@spud>
+	s=arc-20240116; t=1718780728; c=relaxed/simple;
+	bh=1etGkshU1O7/KCVNXu5R9J/vCH7r2G2zAHvGse6TYp4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G0CVhSDjmSxqvD5S81K6comoTOxhoVWmXn9jp3oIdyMqs1S6jw4u/2KecWn2DZ8/ykWHLGV26YPpTupvbj3ecEaeLRoKWDYshUSmorF5pKrf+r31aviVmUlmrp/h10AD2XG6mxrs+ZQ13jaD0qriT77+UYvkE7N6WPFIUnTHBjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nej6BCG1; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-70435f4c330so5219981b3a.1;
+        Wed, 19 Jun 2024 00:05:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718780727; x=1719385527; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sB8HfoLbcg+hW+2TwdjXWA6kGA91H5GmLxeUo6C+9MA=;
+        b=nej6BCG18+DyaodiCUonKRDGdQh0NocIsZF+tkQL0tBnAEU2GoD4mndMyzGXz+ijFq
+         wm0cb22Sf8xecVPSxl/b/WIc/6rUj6BdOHkm1QRv1Tg0VkHvmnV2qIfhZylEKJ8nYpdm
+         sPIvK7wMyTYCDoYYQJM+lcGll4mIYC/t5aizvVQvRSo+PtwwxL8ETZkFKw72iDyqe8hd
+         y0KtfiH+E9Brj1GeWwMuepIF9Tv+dYN0TUWfMtgq4nSANDK7n4lQ2lApyk8tREh5zf9V
+         3p4Zpev2VOHy7rVGwEYfLU1twV7KpC4UZ+bOxbu7h1ARO9DzsrejuW6fxuP9BX2OGebL
+         f8DQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718780727; x=1719385527;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sB8HfoLbcg+hW+2TwdjXWA6kGA91H5GmLxeUo6C+9MA=;
+        b=rGqY09V3nQ6G7hUZ1K2X1Epx9yHNXgNp2X/AiJvcREKICLUSdt4L0h6UPLdy61TJ1M
+         /eOwttikv5YZomR6NW6RZv9GB9I0UchlFr+3lGCf+btllJSTTyPD8efPPUD99uWxiA8Y
+         HvEAtlJArSMWN97waQeeYsSGQbt3pyfohqXyL7RN9FlSIE/FlEwaFy5JqpTq0aghCih8
+         1hlqpSWgIGCVDFE/RUEy3lM8zBBYhOTb/VIrI7IXluAH4P4YQ6FoT7BgNdq+Mkxo7w/C
+         dgf6StCMSuSEDNJhFQvSxG5bym/+G9Ha7E6Cqap+25kHQXsJaT/UjDhAy6LFRl85edMp
+         c8CA==
+X-Forwarded-Encrypted: i=1; AJvYcCVR5Dl5rrP72jcVryLqSIRAiXerTuXfD0FXAeQNKeLMhhPfkL1yVCAvE0TSFXN5DzCLUdRW1/N42MHsu9B2Es4vTiwL4/KLxlsq0/eQ9UhyO+mDpXrP1fA+zbG0stmavRfSLymK8lZH1U0n7dZE/n6tGfZetD7i3pGK6QCeXKzruw8SLlCH
+X-Gm-Message-State: AOJu0YzKwMz7ps2mzrgXinvsfYlNM57VxygvgtKHOk5n5nOnV6jzAJpn
+	Qel+zGvyx1iCFsUpO76HUj3dw0JDjRkHusmYHjqabJsxS7enLuTzkANYwHsdlXd6Hg==
+X-Google-Smtp-Source: AGHT+IHPoyvXMcrxRtNi1sPgAPxtmm48b61E6rVWQ/0JpqZauJQXcaJ6a7BA93wBYNoVxjAiWQ2Olw==
+X-Received: by 2002:a05:6a20:f02:b0:1b7:bdb3:7bc9 with SMTP id adf61e73a8af0-1bcbb59caeamr1548782637.30.1718780726551;
+        Wed, 19 Jun 2024 00:05:26 -0700 (PDT)
+Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705cc987738sm10036177b3a.89.2024.06.19.00.04.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jun 2024 00:05:26 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	patches@opensource.cirrus.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: rename wm8750.yaml to wlf,wm8750.yaml
+Date: Wed, 19 Jun 2024 12:33:54 +0530
+Message-ID: <20240619070356.80759-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2kmjxWM4m0yk+HFF"
-Content-Disposition: inline
-In-Reply-To: <20240618-subpar-absentee-c3a43a1a9f5e@spud>
+Content-Transfer-Encoding: 8bit
 
+Add vendor prefix to wlf,wm8750 dt-schema.
 
---2kmjxWM4m0yk+HFF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+---
+ .../devicetree/bindings/sound/{wm8750.yaml => wlf,wm8750.yaml}  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/sound/{wm8750.yaml => wlf,wm8750.yaml} (92%)
 
-> On Tue, Jun 18, 2024 at 09:49:02AM +0200, Lorenzo Bianconi wrote:
-> > Introduce device-tree binding documentation for Airoha EN7581 ethernet
-> > mac controller.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> > This patch is based on the following one not applied yet on clk tree:
-> > dt-bindings: clock: airoha: Add reset support to EN7581 clock binding
-> > https://patchwork.kernel.org/project/linux-clk/patch/ac557b6f4029cb3428=
-d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org/
-> > ---
-> >  .../bindings/net/airoha,en7581.yaml           | 106 ++++++++++++++++++
-> >  1 file changed, 106 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581=
-=2Eyaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581.yaml b=
-/Documentation/devicetree/bindings/net/airoha,en7581.yaml
-> > new file mode 100644
-> > index 000000000000..09e7b5eed3ae
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581.yaml
->=20
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - airoha,en7581-eth
->=20
-> Actually, one other thing - filename matching compatible please.
->=20
+diff --git a/Documentation/devicetree/bindings/sound/wm8750.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
+similarity index 92%
+rename from Documentation/devicetree/bindings/sound/wm8750.yaml
+rename to Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
+index 24246ac7bbdf..96859e38315b 100644
+--- a/Documentation/devicetree/bindings/sound/wm8750.yaml
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/wm8750.yaml#
++$id: http://devicetree.org/schemas/sound/wlf,wm8750.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: WM8750 and WM8987 audio CODECs
+-- 
+2.45.2
 
-ack, I will fix in v3.
-
-Rregards,
-Lorenzo
-
---2kmjxWM4m0yk+HFF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnKBegAKCRA6cBh0uS2t
-rDkzAQCSUyqP7whqaj7oEagB3ButpOBwscMnJyiOHEWp+cB8ggD/XunfV68Xzv2N
-V66QJyDhZ4NOVLG1liVApntm0FihUAo=
-=5J4A
------END PGP SIGNATURE-----
-
---2kmjxWM4m0yk+HFF--
 
