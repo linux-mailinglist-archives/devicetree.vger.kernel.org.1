@@ -1,96 +1,127 @@
-Return-Path: <devicetree+bounces-77334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7AA90E3D1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:55:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CCFE90E3DA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:58:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E72D31F21B3D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:55:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 999BA284485
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EFB6F306;
-	Wed, 19 Jun 2024 06:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48EEF6F306;
+	Wed, 19 Jun 2024 06:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="WTIOUwKR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S4g0GHT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1DB6F2EF;
-	Wed, 19 Jun 2024 06:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2FB6F2EF;
+	Wed, 19 Jun 2024 06:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718780146; cv=none; b=eR3kuHKfRzkDvvjVgr6RN/Mj0Cs1ArZ9p67Q9dtJikA++ytsl6XywI0LugvjACDNPDQ5W+MmHLv+hkljy1I6LN1wZHSO/kBZZvgQ3zYYeh0tzmY4DZwK3fguuNq78J2XmDjA0B0/+9AEe/JPuVGVtzeZJ5oEhHmBi7WFj432IpI=
+	t=1718780287; cv=none; b=BcveU60WEU+orR84zjmLC9IxM3lPWKm0NTNYAOyHWSMigID9+dcM1n3JyJ3mPrnaGmHgPAfxKK4JzN9T+IanjwqKmxgadvGV5sv0PkD9JgK0giqWABVlX7gsJkdczN7B81bU2DdOD0u97rxl2pgP/MCg177tKmUstJ2Ns2Zm12o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718780146; c=relaxed/simple;
-	bh=hgH4DDDvAA9kgOZ2n3TjfNXg8eHsBsoYv2LJciY4Ixw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ouJJbsuKZWTr9rxa1/hngkaOvo2C7TKzbFVTfjGmab5TKae/SFzvlFQUi3mYT76C4ryVxYHhbhjEuB5zz6Dv+jEj2VqCFzl7jzcdZ6Htb+2LyE/Nc83hsIOxlinUw4WQZKQzg0RdjzlrgSlmu0y3ISzswk8z0oBS++OPOI2mBHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=WTIOUwKR; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from pecola.lan (unknown [159.196.93.152])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 2112C20127;
-	Wed, 19 Jun 2024 14:55:35 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1718780136;
-	bh=hgH4DDDvAA9kgOZ2n3TjfNXg8eHsBsoYv2LJciY4Ixw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=WTIOUwKRVPebDE+XFoyICYbLin7nX/vvQXC3AKRpUd3b0uxE/GDSDvyMybgzRCTFA
-	 XWz7D6Xw+kLwrrsq0WgD0pMPLdJHz4DTMP8bbs11PjVC+k7Sii4vPzRlPB0jWfF0S4
-	 gVIs5drwwyCeUrJdGWsyE4eAGafdpf56kYUcLC/HBRRpCvCJg7MPf6Fap0yKMpyTeo
-	 I0Ladfm5LUXJWleJl40TjU5ek/Jj2Iwh7yq0Bc4qmzaavWU7NekEBhz+VReWH10Dvw
-	 AnuhpmvXCVf6T3oQXIMfPzcLqzRKGuNMoeSyEkej2v9OE2BvYVcO0EOz1TMcyMdNXa
-	 Urz5aAipwmYnQ==
-Message-ID: <bae054d217aa577838593244eda02b008e3749a5.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 2/2] i3c: i3c-hub: Add Renesas RG3MxxB12A1 I3C HUB driver
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: Steven Niu <steven.niu.uj@renesas.com>, alexandre.belloni@bootlin.com, 
- linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
- robh+dt@kernel.org,  krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org,  devicetree@vger.kernel.org
-Cc: zbigniew.lukwinski@linux.intel.com
-Date: Wed, 19 Jun 2024 14:55:35 +0800
-In-Reply-To: <20240217131412.4145506-2-steven.niu.uj@renesas.com>
-References: <20240217131412.4145506-1-steven.niu.uj@renesas.com>
-	 <20240217131412.4145506-2-steven.niu.uj@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1718780287; c=relaxed/simple;
+	bh=cW5Ge63fweS/szTsICcadN5NAWgmIOD+EQ6sg9xkUmI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i+gqQ4qn3IM0D5/abzwLYq88SuxCzp8e3exf8p/2sHeK41H/3gcWDTkJeQYJdeQc2MSgN+h85IYRLbAr2vvYMuDNQpLFXt9ZDoHmOdZzpWgRUKOfwqB2yeRmkgEEVIuTcTl+O/36Zrcf3xrBGmVntmu1UCPgmpAWwu4AAasYBg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S4g0GHT3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D406C32786;
+	Wed, 19 Jun 2024 06:58:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718780286;
+	bh=cW5Ge63fweS/szTsICcadN5NAWgmIOD+EQ6sg9xkUmI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S4g0GHT3ZsPHYWl6TJwuiw7nJbxsDZqNYo8UgKbQgnQ/Jo87Jrir/RrXx17vvyey/
+	 fTEF3D0jvoZP6gjBGVpzVmLXJdN35fzEZzMp/GvTjfAEL36PV0Wa+AKZw80mhN1a35
+	 9CA1CYe1rpLcVejOA/s9nEaLzG9rbcK0MhUa/py9m6yrOgzF/9j+ODhDRMN8IdTvJL
+	 NoWqY9BSrFnJt8WVB1UM3iUHAuTRYveZOVR0GdlLsyBtS8GA0NvnqYa3yz+Ol3o++O
+	 VN6tv9U1hiFqIdQiVgfv0Uly+nrk527mr14OtPx4d8p6Sb+kuX2BS5bIh9uZ6LHn4q
+	 V+xUOc6cfWoPw==
+Date: Wed, 19 Jun 2024 08:58:02 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, linux-clk@vger.kernel.org,
+	rkannoth@marvell.com, sgoutham@marvell.com, andrew@lunn.ch
+Subject: Re: [PATCH v2 net-next 1/2] dt-bindings: net: airoha: Add EN7581
+ ethernet controller
+Message-ID: <ZnKBegrGA6OhIiJF@lore-desk>
+References: <cover.1718696209.git.lorenzo@kernel.org>
+ <ae8ac05a56f479286bc748fb930c5643a2fbde10.1718696209.git.lorenzo@kernel.org>
+ <20240618-subpar-absentee-c3a43a1a9f5e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-Hi Steven,
-
-> RG3MxxB12A1 I3C HUB is smart device which provide multiple
-> functionality:
-> * Enabling voltage compatibility across I3C Controller and Target
-> Device.
-> * Enabling voltage compatibility across I3C Controller and Target
-> devices.
-> * Bus capacitance isolation.
-> * Address conflict isolation.
-> * I3C port expansion.
-> * Two controllers in a single I3C bus.
-> * I3C and SMBus device compatibility.
-> * GPIO expansion.
-
-Do you plan any more work on this driver? It would be great to have
-this included upstream, but looks like there's a fairly large amount of
-work required to get to that point, particularly in regards to using
-existing kernel infrastructure to support the device functions.
-
-Anything I can do to help there? Would a (further) review on this
-series be useful?
-
-Cheers,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2kmjxWM4m0yk+HFF"
+Content-Disposition: inline
+In-Reply-To: <20240618-subpar-absentee-c3a43a1a9f5e@spud>
 
 
-Jeremy
+--2kmjxWM4m0yk+HFF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+> On Tue, Jun 18, 2024 at 09:49:02AM +0200, Lorenzo Bianconi wrote:
+> > Introduce device-tree binding documentation for Airoha EN7581 ethernet
+> > mac controller.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> > This patch is based on the following one not applied yet on clk tree:
+> > dt-bindings: clock: airoha: Add reset support to EN7581 clock binding
+> > https://patchwork.kernel.org/project/linux-clk/patch/ac557b6f4029cb3428=
+d4c0ed1582d0c602481fb6.1718282056.git.lorenzo@kernel.org/
+> > ---
+> >  .../bindings/net/airoha,en7581.yaml           | 106 ++++++++++++++++++
+> >  1 file changed, 106 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/airoha,en7581=
+=2Eyaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581.yaml b=
+/Documentation/devicetree/bindings/net/airoha,en7581.yaml
+> > new file mode 100644
+> > index 000000000000..09e7b5eed3ae
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581.yaml
+>=20
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - airoha,en7581-eth
+>=20
+> Actually, one other thing - filename matching compatible please.
+>=20
+
+ack, I will fix in v3.
+
+Rregards,
+Lorenzo
+
+--2kmjxWM4m0yk+HFF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnKBegAKCRA6cBh0uS2t
+rDkzAQCSUyqP7whqaj7oEagB3ButpOBwscMnJyiOHEWp+cB8ggD/XunfV68Xzv2N
+V66QJyDhZ4NOVLG1liVApntm0FihUAo=
+=5J4A
+-----END PGP SIGNATURE-----
+
+--2kmjxWM4m0yk+HFF--
 
