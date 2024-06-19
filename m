@@ -1,76 +1,71 @@
-Return-Path: <devicetree+bounces-77584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA22790F53D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:37:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F4A90F55E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:42:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBE271C224A3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:37:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3858F282259
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C5F152799;
-	Wed, 19 Jun 2024 17:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3B415572F;
+	Wed, 19 Jun 2024 17:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rkZWXkYJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pH4U57RK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E001E87B;
-	Wed, 19 Jun 2024 17:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD2477107;
+	Wed, 19 Jun 2024 17:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718818658; cv=none; b=OdnLMCwESv+bXV4fYi1DSxaYGqgfmOB7xHNmWnIRfAsXgBZZulZH+0AR2Y4R3Mueo+L51une2+imgwtsF9hiURZnIBlMJQz56Z8iIJcCNhwFa/8t57Q+3ShB+zSxQpvZVULiLC09Fkj0wqlUHCwR6/Dp9nb53pigt7d0bmydM6w=
+	t=1718818958; cv=none; b=rKDeFmzx7f4XpykUYlFyiwmJV0KG3Z3Ivdd+XMW3iFqkPWkCAwHUYT8oxHe/ITwIUztm3W6245MdmPobz5zb44J+wyvXObFFEQtAUwEYGMPn0cXcAOIuf7iUg0N3zOs5eQgn7v0Rxw1nGoRNL7R71XUcpvAlsHT8fuyNOvDMyEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718818658; c=relaxed/simple;
-	bh=aTTUFWcg2KfCBZQyUcLHsG1W9EOcEhA72GIkli1rAjg=;
+	s=arc-20240116; t=1718818958; c=relaxed/simple;
+	bh=IMD+o+HtoEpgZPwdGoQZpT4+nJLbdqGSdMmmb9m9c+A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z/VkUSC7xKeLbHUID/9+UzhNWJx7DkaH1D62hsHI85MYiSUUhoSkfzXvDW7aY3XUHT/D0fOMFgsCw3G1qrWSotH6oIJvgpk4q8P9+Cyp+Y8RbtnGDbMgtS7ZxEnPUd5Mdr5Z04aFrRKgaWm0PpKZ2ld6mcvmqDLPF1/s7eER1nM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rkZWXkYJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18216C2BBFC;
-	Wed, 19 Jun 2024 17:37:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YPHJJdx4TfSL/ev0t7oiDtLF6mRdV1KlUVMv5ofepWH8jCZF5xh9pbZZ0rWqTSFxMThAxdnJj/Vmbw7deSkNEMiqZIgejVqQ+ZsVub3SUIhzLfmCRerCBfDD1xk1vmXbrAGq+cWRvgsxb48B5wMbSkvkg5KMae589aZkwjVytmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pH4U57RK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0D8C2BBFC;
+	Wed, 19 Jun 2024 17:42:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718818657;
-	bh=aTTUFWcg2KfCBZQyUcLHsG1W9EOcEhA72GIkli1rAjg=;
+	s=k20201202; t=1718818958;
+	bh=IMD+o+HtoEpgZPwdGoQZpT4+nJLbdqGSdMmmb9m9c+A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rkZWXkYJ0650nk3Skne+YMQ35tM8hYlNF/QdJudkzL5FQEGh9y8n9bIx/GD8NGEnF
-	 HzwuWFbOguznxmS/U05NEwW5vU1s4K+hkxKxDGRcWhukZpYfOc9m7ejAbS0wpXV4ze
-	 OLTMg9cSzBIIyCbazuXgXQ0XfvoRfP+tLLSjUw0GpVk/GARc9AInzn7qi0d/NRq2JO
-	 fhQCcUQng/ytMYTofKBIjReTdqceA+J7O+ywCjmksm2q3+rn+OI66AF5FJMeoQfTJb
-	 TguBMxEJKYN04aUkmlhrA5b6HN4TTKwNf5UvWE9QQwVuzRbLl1tHpdAMErHzW/tUau
-	 Sc7I4W4Yn+8JQ==
-Date: Wed, 19 Jun 2024 18:37:31 +0100
+	b=pH4U57RKTHye7kcgscE74d6x6iWpjFvzye6Yl1G6LisVHUGm18xcXhWHTH+gSLowX
+	 MDn+x2broIqM4BGXnRAugyMCGTX4rBkfvLDQuZu3llasVnthWFeyviLdJjHDRpLoHv
+	 i3KpXnCnmlgOcS/I/K7/4RZnhlcnONjv0RGlJlTetK+OSZQcxz84D2gDywgfHcNChv
+	 pD85mheLgSa6gK9a5T3FFu5UbGBgJ5tPrz+AZnvVybnjUVdMDeaM5XqIgzzmXv9vBM
+	 hslTx3hWKpuMfILAdb1ZV4Tq1syONoMHfzKGQxuF413ezJ68sX/BQM6E88v7kPGWtB
+	 fC8z8k6RGKUJw==
+Date: Wed, 19 Jun 2024 18:42:31 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+Cc: linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Jonas Karlman <jonas@kwiboo.se>, Alex Bee <knaerzche@gmail.com>,
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 3/4] media: dt-bindings: rockchip: Document RK3588
- Video Decoder bindings
-Message-ID: <20240619-contently-demote-769bf48d7eb6@spud>
-References: <20240619150029.59730-1-detlev.casanova@collabora.com>
- <20240619150029.59730-4-detlev.casanova@collabora.com>
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Maksim Kiselev <bigunclemax@gmail.com>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Marcus Folkesson <marcus.folkesson@gmail.com>,
+	Okan Sahin <okan.sahin@analog.com>,
+	Ivan Mikhaylov <fr0st61te@gmail.com>,
+	Liam Beguin <liambeguin@gmail.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: add a7779 doc
+Message-ID: <20240619-pouring-evaluator-470155652a40@spud>
+References: <20240619122105.22642-1-ramona.nechita@analog.com>
+ <20240619122105.22642-2-ramona.nechita@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,132 +73,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="D5HLkMsx9LZ0D828"
+	protocol="application/pgp-signature"; boundary="zWzIdbr3LJguoypS"
 Content-Disposition: inline
-In-Reply-To: <20240619150029.59730-4-detlev.casanova@collabora.com>
+In-Reply-To: <20240619122105.22642-2-ramona.nechita@analog.com>
 
 
---D5HLkMsx9LZ0D828
-Content-Type: text/plain; charset=us-ascii
+--zWzIdbr3LJguoypS
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 19, 2024 at 10:57:20AM -0400, Detlev Casanova wrote:
-> Document the Rockchip RK3588 Video Decoder bindings.
+On Wed, Jun 19, 2024 at 03:20:44PM +0300, Ramona Alexandra Nechita wrote:
+> Add dt bindings for adc ad7779.
 >=20
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> Signed-off-by: Ramona Alexandra Nechita <ramona.nechita@analog.com>
 > ---
->  .../bindings/media/rockchip,vdec.yaml         | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
+>  .../bindings/iio/adc/adi,ad7779.yaml          | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7779.=
+yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b=
-/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> index 08b02ec16755..22cb62faaa9b 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      oneOf:
->        - const: rockchip,rk3399-vdec
-> +      - const: rockchip,rk3588-vdec
->        - items:
->            - enum:
->                - rockchip,rk3228-vdec
-> @@ -30,29 +31,56 @@ properties:
->      maxItems: 1
-> =20
->    clocks:
-> +    minItems: 4
->      items:
->        - description: The Video Decoder AXI interface clock
->        - description: The Video Decoder AHB interface clock
->        - description: The Video Decoded CABAC clock
->        - description: The Video Decoder core clock
-> +      - description: The Video decoder HEVC CABAC clock
-> =20
->    clock-names:
-> +    minItems: 4
->      items:
->        - const: axi
->        - const: ahb
->        - const: cabac
->        - const: core
-> +      - const: hevc_cabac
-> =20
->    assigned-clocks: true
-> =20
->    assigned-clock-rates: true
-> =20
-> +  resets:
-> +    items:
-> +      - description: The Video Decoder AXI interface reset
-> +      - description: The Video Decoder AHB interface reset
-> +      - description: The Video Decoded CABAC reset
-> +      - description: The Video Decoder core reset
-> +      - description: The Video decoder HEVC CABAC reset
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
+> new file mode 100644
+> index 000000000000..f1eec656acec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7779.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  reset-names:
-> +    items:
-> +      - const: rst_axi
-> +      - const: rst_ahb
-> +      - const: rst_cabac
-> +      - const: rst_core
-> +      - const: rst_hevc_cabac
+> +title: Analog Devices AD777X family 8-Channel, 24-Bit, Simultaneous Samp=
+ling ADCs
 > +
->    power-domains:
->      maxItems: 1
-> =20
->    iommus:
->      maxItems: 1
-> =20
-> +  sram:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      phandle to a reserved on-chip SRAM regions.
-> +      Some SoCs, like rk3588 provide on-chip SRAM to store temporary
-> +      buffers during decoding.
+> +maintainers:
+> +  - Ramona Nechita <ramona.nechita@analog.com>
 > +
->  required:
->    - compatible
->    - reg
-> @@ -61,6 +89,24 @@ required:
->    - clock-names
->    - power-domains
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3588-vdec
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 5
-> +        clock-names:
-> +          minItems: 5
+> +description: |
+> +  The AD777X family consist of 8-channel, simultaneous sampling analog-t=
+o-
+> +  digital converter (ADC). Eight full =CE=A3-=CE=94 ADCs are on-chip. The
+> +  AD7771 provides an ultralow input current to allow direct sensor
+> +  connection. Each input channel has a programmable gain stage
+> +  allowing gains of 1, 2, 4, and 8 to map lower amplitude sensor
+> +  outputs into the full-scale ADC input range, maximizing the
+> +  dynamic range of the signal chain.
 > +
-> +        resets:
-> +          minItems: 5
-> +        reset-names:
-> +          minItems: 5
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7770.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7771.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7779.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7770
+> +      - adi,ad7771
+> +      - adi,ad7779
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
 
-You need an else clause here to restrict sram, resets on the other
-platforms and to cap clocks at maxItems: 4.
+Why does this device have address/size cells, but not have any child
+nodes? Are you missing some channel child nodes? If you don't have
+children, you don't need these properties.
+
+Also, your patch is still not threaded with the other 2 patches in the
+series (I see 1/3 in the subject). Where are those patches?
 
 Thanks,
 Conor.
 
---D5HLkMsx9LZ0D828
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vref-supply:
+> +    description:
+> +      ADC reference voltage supply
+> +
+> +  start-gpios:
+> +    description:
+> +      Pin that controls start synchronization pulse.
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +- |
+> +  #include <dt-bindings/gpio/gpio.h>
+> +  spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      adc@0 {
+> +        compatible =3D "adi,ad7779";
+> +        reg =3D <0>;
+> +        vref-supply =3D <&vref>;
+> +        start-gpios =3D <&gpio0 87 GPIO_ACTIVE_LOW>;
+> +        reset-gpios =3D <&gpio0 93 GPIO_ACTIVE_LOW>;
+> +        clocks =3D <&adc_clk>;
+> +      };
+> +  };
+> +...
+> --=20
+> 2.43.0
+>=20
+
+--zWzIdbr3LJguoypS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMXWgAKCRB4tDGHoIJi
-0unCAQC2SBHJSe0kI6JV8OXZNtLluXhS2J4UwBm+kjbN2zXMugD/Rnr/Zc9PCLvM
-lEBc7CW/o9jDLrIyQYTKdCF2lJw0jwc=
-=k/38
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMYhwAKCRB4tDGHoIJi
+0ljnAQCua8lOT/HSJP8NZDAHBxmVeFj8Oa6o1ZcxDly4qE9TvwEA8+FFAZoo7WOx
++je7T8yijGxZsIl3Hap9aqSs4HeHlQI=
+=2IPT
 -----END PGP SIGNATURE-----
 
---D5HLkMsx9LZ0D828--
+--zWzIdbr3LJguoypS--
 
