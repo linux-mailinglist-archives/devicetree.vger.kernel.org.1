@@ -1,172 +1,158 @@
-Return-Path: <devicetree+bounces-77560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5AA90F392
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:04:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9866790F3BA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:10:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18E34284785
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 16:04:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 502DF1F228D8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 16:10:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3D115F3FF;
-	Wed, 19 Jun 2024 15:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D792976048;
+	Wed, 19 Jun 2024 16:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="vlqlEYVw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M8K47a0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C93114F9F9
-	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 15:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADDDA29;
+	Wed, 19 Jun 2024 16:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718812594; cv=none; b=P0qHARGijISdGE+CjcH75NDXgBw49zWAafm9NqNKdrZVMNyZCm0dcxp/byw8qM/0Gg+ZE57mF8AItSzAJZjADedh8BS2ETLCILUrXYgqpbHPGQ8D6N3sliIFUKotmFJ2Nnj1N+2T7nGjnJCJ7Iut1ofBvBKW/w9Bx9CZNVpf4EE=
+	t=1718813395; cv=none; b=ivkBUBi2tmlxiYVDtS/p6zjhJd9KMuuoxTiJ3iFbY7lu4FItwr0shCXhB5cqTxSwW7j9BdH41rpPrHP4jdrthn7yZTswrPbwZd32pgD6yeLLULg7axo2PIN4XMUuyyFRkfVScTReiBWHR3Afa+PHDj1KrAKe3U5qLAy6MLgkYLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718812594; c=relaxed/simple;
-	bh=LgcVYIRO8T26ASMCKl/EoDp1gqiFvT8kCgk9LpX+Q3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ONBMxT0aNzX2maAryg+3TFg8O1ZqS5VjPuZ/cn6Z1ilFZEkrYSxXee3Oxvw+Iraoxo6/525rhMq+8VexX0Pe8EO3Zkn9A6U62djUlHQ2ifC6DjtiPWXFZFNj83Bxf7OOouq7TXP+p32UcSsMLmBLqq+mIQ3+38UrOGZ1SUZ3bkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=vlqlEYVw; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ec3f875e68so10036561fa.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 08:56:30 -0700 (PDT)
+	s=arc-20240116; t=1718813395; c=relaxed/simple;
+	bh=jiAjSxEoHMD3b475hAvr1/rsStb5mKPmUQy8MQWE9Sg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kKxjhDVVh8m4iRKtBaEoDVzJqySOLX8pEE0SA1dLrP4aYYdp1faolaWoLYt2mHxY1GE/035fHpBPFEc7j5hw+2RILjSWUQWbOnv5VMIyd3PMKLiEzuq90dpzBG/8LmNCWFBWddIAgrg1c/fYbCR3wGoFBtoF/BtXbe/h8mGfktM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M8K47a0F; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a62ef52e837so878557966b.3;
+        Wed, 19 Jun 2024 09:09:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1718812589; x=1719417389; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M1BFZzRTH7ja91K8N7mMKCSJfOC96DMaExd23EFhZN8=;
-        b=vlqlEYVwJjC7WgmPxnlh7bVdFpZmtgzz1cbWl+Z+t66L6wrndk0eb3zqQJuB3uaQTc
-         AdMlV2sjJEDFqniCUTlBCZg98mXIPYyr3AycL1h5tkNR9Fg158kWafwdSp0P7NBQ0bhs
-         78yIBzTHsUo0vb9ALXMsn4MA+n9Fr4dOdWIMDxayApGJGM1LCENXuQDVz/U1PJb64UuM
-         SIhDMkpPwVDDTJgpLTH3WKFp/eMJD7MJ5eLNLEwg9eJuMEm+9NPIip+lzrkMTzEJ0B2M
-         DFqCpQNR6LxOxJNH/RlcvOn8I6vNVPcAU+/UC5hXYyni+Ry/uS4DELo1Y7R3lOZn8QNr
-         fGJQ==
+        d=gmail.com; s=20230601; t=1718813392; x=1719418192; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=W4GefIAh3qFrs4XiLEl++OqZDXLVqbHTFYPgxJpnh8Q=;
+        b=M8K47a0FKJ/siOKAllLlzHs51ybec3hdx9rdmQiWCFeJ12Pwmm829pFFRKUmSCroP5
+         icEIeesNawdV3clAlq/x7GBkgrTvX2BrPFrt7RGELzqzPiEH/tYimt+T/HkkTrQq7I9T
+         9hnQ5lv8FRV6z6rxaXIyJSnGznutXKCKEd8yd35xjphzATDZW+MIbzqGNfR5zM1vMCo9
+         J7Wx5HBLklKLriGgwXgjEPQUD4rgjTppqa/WcBWfZ3pXYJoNPVQ6znBImz1lxewqFR3+
+         l9jgYMzFxZwdSlztqaFVGAbIc4PRbPy+M6IwF/A9YGjlWIhS/D24SrsVX7N48Yi5hGHb
+         Pevg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718812589; x=1719417389;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M1BFZzRTH7ja91K8N7mMKCSJfOC96DMaExd23EFhZN8=;
-        b=U7SUL+4iRyzs2Fx/7/TBNMax+MBgrlYoIEzCNCjkniwfyNqMelN3RpvcqosidvSrop
-         muwC3rlDGLjkDd2RTbZsSxEBTcpVIRTPhNttDO2dCJjAw3nIaFVF8wgN3dm0DOHPZCWS
-         r7+d9BK89kKgsxGZl1ewRYyQ1goDxx2mpBSrnJZ4J0L1WO14zuN9kSmSZcD1zgzoyBHI
-         eW3kpID5QOHrV3c7bzLZDfnG5DOAHTKsgngma/Zvst1EI69VxFl1Et9YBfBa+fv/V+VB
-         DZqioqIzjzLONGxT6bHhCtkgT9fpRt5131zoQwy5sql67VnVyTu/VjQmKUZLUzz+yo7Z
-         zDRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWoVn32nbFmSTM5sLWsSLLA46Dr8Sc1JOlo/796ZTxYwBpAwkWhMn7exiBcxUWD+kdvNDDyx5rObYv/BS2gKH6i/bFClWUcf4/xfQ==
-X-Gm-Message-State: AOJu0Yx4x3vWGl1v+gBRiO36Bp7qh4NyiOaKYTyb6pJ4Ody5X1n6cdU4
-	WnRfWWHRcz55yyaeWkBFNXy/uaYRfYblWOBJRddu6hzxebbg5FkVxVv4ub7538E=
-X-Google-Smtp-Source: AGHT+IHaA9hcJJZxhODlzWXhLljZW7b77T7umunIdwrTJtOLoyjhilkaA+PUmNL+9uZYE92Nn6e8VQ==
-X-Received: by 2002:a2e:2416:0:b0:2ec:fa4:e310 with SMTP id 38308e7fff4ca-2ec3cfd6deemr18677031fa.34.1718812589347;
-        Wed, 19 Jun 2024 08:56:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ec24:52e0:dbf8:4c1e:1db7:2077? ([2a01:e34:ec24:52e0:dbf8:4c1e:1db7:2077])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422870e9145sm271027215e9.22.2024.06.19.08.56.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jun 2024 08:56:29 -0700 (PDT)
-Message-ID: <fcc585d5-637c-4736-a7ba-5f4eaad13ae6@freebox.fr>
-Date: Wed, 19 Jun 2024 17:56:28 +0200
+        d=1e100.net; s=20230601; t=1718813392; x=1719418192;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W4GefIAh3qFrs4XiLEl++OqZDXLVqbHTFYPgxJpnh8Q=;
+        b=Ethc2YNB1Ev1iZwM+sJL2zdHUmuh+kiIyQGOxdevKSlPVFTF085wuM1cLWWo4vkGDA
+         7fHwNRyk8baqlhroKl9YfEHgzz+xp3+Pm5DTK7rqB07aYn0j48qVp4WVbezVd7NxNu17
+         iVE/e0//tzYYr9R4pFBcN1NOiMGDETeHA5YYOY8JoNACOqGRkDw66op7fbzY9AAhQoxb
+         BJjEkqYAZHMpcKzJE/cKadYuxsBQhyUTOLjEk0WhXe+JG0U4ynQIQAR2Kv8I+G3TPcXj
+         jIwTYZbHqYYN01Hwd840qnRiLeUrFkwO9Wf8Fp/QqnzSHa/vpMva3/mku0lFmWmBu4yY
+         Jr8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU0GNroA/YFVdCwmme3KLJwQ4c5Pid+s+T1tCGiabOcpOPYcv436x1jyTysYZJDi4DN9CR0by21iz8I88sX+RyKeMnqWvNMsB9/LhCleXALV9DkYAGV3zg3VwdAU0mJji7rJPIQC0c7OFqfk2Vh8pMk6yK/gDmNcJ885tTWQUlLBeqE
+X-Gm-Message-State: AOJu0YwFsDBK+uj6fGDDm8x9wORmhbnaFXn9KynIu+A+f2DqZzkTiFx/
+	g/TFioptb769Z81mtC2DrPozQzhv2+Zb7AZMfWKFDlBXmBjGuec7
+X-Google-Smtp-Source: AGHT+IH4L8TiEcLgrkFzICsJXAyH3qfqCpGbex8LFyPLKfFDPJ3OsJ/BIwdKYBqEP9kGtYfX4OfFNA==
+X-Received: by 2002:a17:907:d383:b0:a6e:fad9:6dbb with SMTP id a640c23a62f3a-a6fab058a39mr255639866b.0.1718813391947;
+        Wed, 19 Jun 2024 09:09:51 -0700 (PDT)
+Received: from debian ([93.184.186.109])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56da4496sm672316466b.8.2024.06.19.09.09.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jun 2024 09:09:51 -0700 (PDT)
+Date: Wed, 19 Jun 2024 18:09:48 +0200
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
+Subject: Re: [PATCH v4 2/2] power: supply: add support for MAX1720x
+ standalone fuel gauge
+Message-ID: <20240619160948.GA4190@debian>
+References: <20240617184504.304211-1-dima.fedrau@gmail.com>
+ <20240617184504.304211-3-dima.fedrau@gmail.com>
+ <dzrsh5dsraz62sc3mfhlmf5yolkzjet2agv2ochg3xg4ryfofs@bnmxbtsavv4o>
+ <20240619061407.GA51605@debian>
+ <nar5atcllxoulmzm247uhe5zwyn2tpyt65mdrlxshejx5wcjlh@55re3bsshcqe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: add HDMI nodes for msm8998
-To: Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <20240613-hdmi-tx-v4-0-4af17e468699@freebox.fr>
- <20240613-hdmi-tx-v4-4-4af17e468699@freebox.fr>
- <348e16f1-0a1b-4cad-a3f0-3f7979a99a02@linaro.org>
- <pprbxhow6gl6bqlhzoiozz7ymwqk5uwuyuwclviulie4ucyjok@xv34zrzw72oz>
- <b6676951-33a2-4c3a-bb29-0d1ea7ad33d2@linaro.org>
- <c18c3acc-8f08-1384-0d99-509ffd663879@quicinc.com>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <c18c3acc-8f08-1384-0d99-509ffd663879@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <nar5atcllxoulmzm247uhe5zwyn2tpyt65mdrlxshejx5wcjlh@55re3bsshcqe>
 
-On 17/06/2024 19:14, Jeffrey Hugo wrote:
-> On 6/15/2024 5:35 AM, Konrad Dybcio wrote:
->> On 14.06.2024 12:33 PM, Dmitry Baryshkov wrote:
->>> On Fri, Jun 14, 2024 at 01:55:46AM GMT, Konrad Dybcio wrote:
->>>>
->>>>
->>
->> [...]
->>
->>>> GCC_HDMI_CLKREF_CLK is a child of xo, so you can drop the latter.
->>>> It would also be worth confirming whether it's really powering the
->>>> PHY and not the TX.. You can test that by trying to only power on the
->>>> phy (e.g. call the phy_power_on or whatever APIs) with and without the
->>>> clock
->>>
->>> I'd prefer to keep it. I think the original DT used one of LN_BB clocks
->>> here, so it might be that the HDMI uses CXO2 / LN_BB instead of the main
->>> CXO.
->>>
->>> If somebody can check, which clock is actually used for the HDMI, it
->>> would be really great.
->>
->> +CC jhugo - could you please take a look?
->>
->> Konrad
+Hi Sebastian,
+
+Am Wed, Jun 19, 2024 at 05:30:27PM +0200 schrieb Sebastian Reichel:
+> Hi,
 > 
-> Documentation is not great but it looks like CXO from what little I can 
-> find.
+> On Wed, Jun 19, 2024 at 08:14:07AM GMT, Dimitri Fedrau wrote:
+> > Am Wed, Jun 19, 2024 at 01:19:32AM +0200 schrieb Sebastian Reichel:
+> > > On Mon, Jun 17, 2024 at 08:45:04PM GMT, Dimitri Fedrau wrote:
+> > > > The MAX17201 monitors a single cell pack. The MAX17205 monitors and
+> > > > balances a 2S or 3S pack or monitors a multiple-series cell pack. Both
+> > > > devices use a I2C interface.
+> > > > 
+> > > > Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
+> > > > ---
+> > > 
+> > > [...]
+> > > 
+> > > > +static int max1720x_read_word_data_nvmem(struct i2c_client *ancillary, u8 addr)
+> > > > +{
+> > > > +	u8 rx[2];
+> > > > +	struct i2c_msg msgs[] = {
+> > > > +		{
+> > > > +			.addr = ancillary->addr,
+> > > > +			.flags = 0,
+> > > > +			.len = 1,
+> > > > +			.buf = &addr,
+> > > > +		},
+> > > > +		{
+> > > > +			.addr = ancillary->addr,
+> > > > +			.flags = I2C_M_RD,
+> > > > +			.len = 2,
+> > > > +			.buf = &rx[0],
+> > > > +		},
+> > > > +	};
+> > > > +	int ret;
+> > > > +
+> > > > +	ret = i2c_transfer(ancillary->adapter, msgs, ARRAY_SIZE(msgs));
+> > > > +	if (ret != ARRAY_SIZE(msgs))
+> > > > +		return ret < 0 ? ret : -EIO;
+> > > > +
+> > > > +	return get_unaligned_le16(&rx[0]);
+> > > > +}
+> > > 
+> > > Have you tried using i2c_smbus_read_word_data(ancillary, addr)
+> > > instead of the above?
+> > >
+> > Yes, I did and it worked. Used it in V3 and changed it due to review
+> > comments by Thomas which make sense to me. I don't have any preference on
+> > this. Should I change it back ?
+> 
+> Using the smbus function makes the driver work with a pure SMBus
+> adapter and keeps it working with I2C adapters through the SMBus
+> "emulation". By using the open coded version we have more code and
+> the driver does not work with pure SMBus adapters.
+> 
+> So I see no reason why the open coded version should be used. Note,
+> that regmap also uses i2c_smbus_read_word_data() internally for your
+> configuration of the non-ancillary device.
+> 
 
-If I read correctly, the conclusion of this sub-thread is
-that the clock tree described in the patch is correct?
+Thanks for the explanation, will switch to i2c_smbus_read_word_data in
+the next version.
 
-HDMI controller:
-
-+				clocks = <&mmcc MDSS_MDP_CLK>,
-+					 <&mmcc MDSS_AHB_CLK>,
-+					 <&mmcc MDSS_HDMI_CLK>,
-+					 <&mmcc MDSS_HDMI_DP_AHB_CLK>,
-+					 <&mmcc MDSS_EXTPCLK_CLK>,
-+					 <&mmcc MDSS_AXI_CLK>,
-+					 <&mmcc MNOC_AHB_CLK>,
-+					 <&mmcc MISC_AHB_CLK>;
-+				clock-names =
-+					"mdp_core",
-+					"iface",
-+					"core",
-+					"alt_iface",
-+					"extp",
-+					"bus",
-+					"mnoc",
-+					"iface_mmss";
-
-
-PHY:
-
-+				clocks = <&mmcc MDSS_AHB_CLK>,
-+					 <&gcc GCC_HDMI_CLKREF_CLK>,
-+					 <&rpmcc RPM_SMD_XO_CLK_SRC>;
-+				clock-names = "iface",
-+					      "ref",
-+					      "xo";
-
-
-Regards
+Dimitri
 
