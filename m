@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-77593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF8D90F593
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:58:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA92290F5A0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070531F223B4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:58:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53C5BB24425
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0BC15625A;
-	Wed, 19 Jun 2024 17:58:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B3A15746D;
+	Wed, 19 Jun 2024 18:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C5jradRK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kB4x14j4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F081855884;
-	Wed, 19 Jun 2024 17:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61BA15574F;
+	Wed, 19 Jun 2024 18:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718819885; cv=none; b=n6y+sxuXQaUae1Bm6b72sUegMMhzmRgrhEU79EWtQTBXMteCKZxqexQvpfD+8cN2SgviQ3hv57eLx1IBGoSbgYn5+hGRf07eMB29kRXS6s/ijeBU79uqrIgkPF92vi6i1I2uxVC62kO7Ikhut2fK/Izkm1tlzRL1ZN6fElEWVHs=
+	t=1718820035; cv=none; b=W/4EOYh6yixDhBwu4hJ2uDjkfjxQilbUL2bYRXPCAcCvzbBd0XBqpzQWVoQ8TceF/3kGYvqGcp9OFWNQ0A9BZHbrZzqDPsHeG/Sqwxyj+HRZzYk7Lb6t5Tz3ou3lNkpZ7bYlfaQRj8S0pY7EpnpDZrmPYZ7WDGYgubbagGe/MdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718819885; c=relaxed/simple;
-	bh=dulOfWapq1riowFzarPIjt0FGEvDfAqz4NvXyqMk3Hg=;
+	s=arc-20240116; t=1718820035; c=relaxed/simple;
+	bh=37mjy5yVqXRHkWjOzmaL4AQ0ULI3pbZHbuchhXGWk2M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gt1gX+ISJsoNVO2sNXbwFojJBO1ZG/1xp5rm32KAeRqb5KpLLuxFdvfRpSsMnsNetRIR+0Ki8R3T/oclxdIAjkmxsg34A2jQ3jelIegJ3838ApAvEp1dIeAeTjNzku/D/W/EqiYCIX+CgVgZhjjgnsD96VQJc2/FqQ2csHbCK2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C5jradRK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FF24C2BBFC;
-	Wed, 19 Jun 2024 17:58:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kZpizFFLsGXfHZwI+0G5/Rv97aszyESJFctLXRSZ9dRYY6x6r6mdu6yRCn4mLHB19HJ6/5IQ4ebQkiar48qmN1ZkZ+7vaE1FxGAH1zUzTYfocZhpXE+rlpaosh+8xvJ04IkxWWS97Y1sAV9fIa5qXlf4BQK9E7trVrmzqtvlmB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kB4x14j4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 713CDC2BBFC;
+	Wed, 19 Jun 2024 18:00:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718819884;
-	bh=dulOfWapq1riowFzarPIjt0FGEvDfAqz4NvXyqMk3Hg=;
+	s=k20201202; t=1718820035;
+	bh=37mjy5yVqXRHkWjOzmaL4AQ0ULI3pbZHbuchhXGWk2M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C5jradRKDOYlJ4oZTE2K1yTJ0Rdb7pnd578crjSaPs2mJnivr2VUHx9pcfhZsonF4
-	 pWdZDIA+7zWq9kBxRUfa0VrbfORmXynK19G0Hf/rO2h3jFCRj8zxmDbum24diV0FNM
-	 vKt8BG+IWQOUAtoyQVEx7XZT0MbPG2hohh4FPN5SkmxIwnZVyamJwe5Bksau9G/yvS
-	 FmFDw8VC2XzRRrHbKtilfwkZGDAqXxCRfZ3oMt7IYUvHvYjVcW1rhJOVz72CLSjh2D
-	 jVlOWsklDxEK4ShTgmJk73t+4wWuWRcPPFQJslWVToDneMw/imTBUcGoPXz7qae3s2
-	 zne6RXXH4tQmw==
-Date: Wed, 19 Jun 2024 18:57:59 +0100
+	b=kB4x14j4vR/tXG863iaez+td+23qfDGIXXwBzO95fgOcN/WDYbD6iTLqeG5mfHkOr
+	 tRpK8p9o/pYKUH1t2/uSNaVsni++x4+yZ8TqpLeSvcHGuWUtYgf8mQwBCJip+Pfixy
+	 ZVVVdFbAXz6orMYTTjc4TnRo7Xx2o796dhAz+ghIv347AO0TurCDSKbCYPskCKceCl
+	 q+da4duPBHB8LL+dB+KTdUWNj6ajw80aVY1Sv5RjRyeMuuQ8197Wj3xDm3daeICHyy
+	 O0eCEKg36IoitfAVntqOdAC7T6ovTnJNpxx/r1WsPtoagiLRC1hBIAGMx4nT6MvHXj
+	 D6iTmhj8PGf6w==
+Date: Wed, 19 Jun 2024 19:00:31 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dimitri Fedrau <dima.fedrau@gmail.com>,
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-Message-ID: <20240619-vanity-crowd-24d93dda47b8@spud>
-References: <20240619064904.73832-1-kimseer.paller@analog.com>
- <20240619064904.73832-5-kimseer.paller@analog.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: Re: [PATCH v2 2/2] Revert "dt-bindings: cache: qcom,llcc: correct
+ QDU1000 reg entries"
+Message-ID: <20240619-commerce-sustainer-e1372304280a@spud>
+References: <20240619061641.5261-1-quic_kbajaj@quicinc.com>
+ <20240619061641.5261-3-quic_kbajaj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,50 +63,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="VZs3U0EDq8+3ekdN"
+	protocol="application/pgp-signature"; boundary="VG5pAYf59PjJ9GHT"
 Content-Disposition: inline
-In-Reply-To: <20240619064904.73832-5-kimseer.paller@analog.com>
+In-Reply-To: <20240619061641.5261-3-quic_kbajaj@quicinc.com>
 
 
---VZs3U0EDq8+3ekdN
+--VG5pAYf59PjJ9GHT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 19, 2024 at 02:49:03PM +0800, Kim Seer Paller wrote:
-> +patternProperties:
-> +  "^channel@[0-4]$":
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        description: The channel number representing the DAC output channel.
-> +        maximum: 4
-> +
-> +      adi,toggle-mode:
-> +        description:
-> +          Set the channel as a toggle enabled channel. Toggle operation enables
-> +          fast switching of a DAC output between two different DAC codes without
-> +          any SPI transaction.
-> +        type: boolean
-> +
-> +      adi,output-range-microamp:
-> +        description: Specify the channel output full scale range.
-> +        enum: [3125000, 6250000, 12500000, 25000000, 50000000, 100000000,
-> +               200000000, 300000000]
+On Wed, Jun 19, 2024 at 11:46:41AM +0530, Komal Bajaj wrote:
+> This reverts commit f0f99f371822c48847e02e56d6e7de507e18f186.
+>=20
+> QDU1000 has 7 register regions. The earlier commit 8e2506d01231
+> ("dt-bindings: cache: qcom,llcc: Add LLCC compatible for QDU1000/QRU1000")
+> to add llcc compatible was reflecting the same, but dtsi change for
+> QDU1000 was not aligning with its binding. Later, commit f0f99f371822
+> ("dt-bindings: cache: qcom,llcc: correct QDU1000 reg entries") was merged
+> intended to fix this misalignment.
+>=20
+> After the LLCC driver refactor, each LLCC bank/channel need to be
+> represented as one register space to avoid mapping to the region where
+> access is not there. Hence, revert the commit f0f99f371822 ("dt-bindings:
+> cache: qcom,llcc: correct QDU1000 reg entries") to align QDU1000 llcc
+> binding with its dtsi node.
+>=20
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/cache/qcom,llcc.yaml | 2 +-
 
-IIO folks, is this sort of thing common/likely to exist on other DACs?
+I assume that Bjorn will apply this, I think I'm probably "meant" to
+apply patches for the cache bindings dir, but never added it to
+maintainers. I think Bjorn's been taking these via soc or w/e til now?
 
---VZs3U0EDq8+3ekdN
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml b/Doc=
+umentation/devicetree/bindings/cache/qcom,llcc.yaml
+> index 192911696010..68ea5f70b75f 100644
+> --- a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+> +++ b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+> @@ -67,7 +67,6 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> -              - qcom,qdu1000-llcc
+>                - qcom,sc7180-llcc
+>                - qcom,sm6350-llcc
+>      then:
+> @@ -132,6 +131,7 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - qcom,qdu1000-llcc
+>                - qcom,sc8180x-llcc
+>                - qcom,sc8280xp-llcc
+>                - qcom,x1e80100-llcc
+> --
+> 2.42.0
+>=20
+
+--VG5pAYf59PjJ9GHT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMcJwAKCRB4tDGHoIJi
-0qTHAQCIBJ6P9QySiAd2lvBBP8TytzaivOaDJCPxiSOpB2GEeAD/amMaLYjHrHTI
-cN0HQsmvkMOJOJv0w/QSOQjlkK4yQQ8=
-=RET4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMcvwAKCRB4tDGHoIJi
+0gVzAQCm8ozhkPgAC0dI/aBjyKIYtOYN5xCBkLYQAB554VCqFQEAy7dpuQpPU/PS
+afYuoyYXMTUkhc7/HdgMjFlHFZGeVg4=
+=hOZ6
 -----END PGP SIGNATURE-----
 
---VZs3U0EDq8+3ekdN--
+--VG5pAYf59PjJ9GHT--
 
