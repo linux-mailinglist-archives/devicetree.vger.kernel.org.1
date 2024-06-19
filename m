@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-77609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D9290F680
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:50:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C88B490F686
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 20:53:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39D6E288964
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:50:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2137C282229
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 18:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685491586C8;
-	Wed, 19 Jun 2024 18:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705801586F3;
+	Wed, 19 Jun 2024 18:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mWeZlhgM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ju4oL1tG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E2C22611
-	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 18:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7E2215749C
+	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 18:53:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718823030; cv=none; b=IDuO3lSAwMwwiuUE1rWBFBAITAbyjYy5wWneTdi+06LbUpTIa2sd4kP3FU4SBpHrcrNCUsZU8pZMnun3VanwH/LWqjCB1fCRCrVPEQNLwcbvDK0m4cz/7/pLcjGkb0BF6rUqxgsevyQS2MxvFhb+0jGB9rbN5cK5LKdst6+9hUQ=
+	t=1718823208; cv=none; b=OJYsYpnkefwglXaQwDyMo29aUdccFdT6JiJej/hrgONtk9Dq0Q9MteyJTEfGxNXVMdwMM8WFus1GsUsRZon7o+Bk6oPI+h2p3gnKxj/VFb93SJOHYi4ni2C4lQggeygkA7c41u4ZCCVSXOTEwTAx+GKpdH0+vtefsqV2BGgPFKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718823030; c=relaxed/simple;
-	bh=XqUGiVonNRQVkpgcnZrv1NspjsC21lpUpT8S0nl2wvM=;
+	s=arc-20240116; t=1718823208; c=relaxed/simple;
+	bh=6ztxlcGn2AnKYupDKfTVBswsDooklpeALUwz5Hks6k0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BN1vH0ZZrb9ImSrTD2/oMqW/C9GctUamSeyOWw9ztCzGmDMyZIDtbNBYoHMx0KrHXix0MdY17zqEhpeZkYaX3AadBeNG5wYoC/mSxfVW9RcFeKbp0YpzSzgjAtM72zE0d1LelaIAduDO2elEyWAnpGbf3ydOUBinYoiv1gfvsec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mWeZlhgM; arc=none smtp.client-ip=209.85.208.47
+	 In-Reply-To:Content-Type; b=BM0/5+7b1RbIGfuVTKCnjo6mqk7RcuhGgYBec9Aw8ovpH6+aZv1EkGuRemqmy1zEZmQzA+cu1tVa5h0UALSyx6qbOvZD13n2s4nPaVy7rLho4ukkE6PQb1b0HL6bY8WtxtwxYF+E8aaM0fAJTrt3MpthpJy4DjnC0URm/wjzbRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ju4oL1tG; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57d1782679fso66060a12.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 11:50:28 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a6265d3ba8fso8161966b.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 11:53:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718823027; x=1719427827; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1718823205; x=1719428005; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sWDiAvVpBXsUHjx7wnCwqZ3SqwbjI5GNUi/tqW2ciTQ=;
-        b=mWeZlhgMHXLiMuHosmcmx+POmiqlbs2SpM/nY2yo7asfo1M8vnEfs8vLJRMN9cH+nn
-         6k++wWLIR7GXP3WfupEyuBAPLRl6FKHyzpw9PfpgWdA/g5Z53AbclVToHedj9zJP61nM
-         JwI8yvT3vbHw84bsnt51kzVc6lbHUxPXUixmslp1kCUk6l8gFIxPOABSPiVFyD6fYC19
-         GEiAXicP/KcFcE7rSIX4XN+hjvBVvsH6EO+vR7VPJESQ5P+PHrsQ66DlsmfLZgvDz9oz
-         QkssgGxL4qMdvqu1kFJwJqXWkyaWSDjtDZHS4ZWPZ7Lvcl/zZe8KgHIigA5f/e1ki0ZV
-         Z2iA==
+        bh=P7VU9/vkRDVLt9/hPKpilxcIBRsUkpFlhfPUk5mASuY=;
+        b=ju4oL1tG+Q8KokKWJKgP2UH/tFWgy4Ze323w6PSgbhKNA2LGHii9nJYph1YS6w18TU
+         oQHr4ZdbNlwRZlPeG9kZLUfPtwupZ42Vqjl9vLuZL7jTosKUlMoP2I5IPbCz7qzDfj79
+         xba02wdRMVZ6POa4e0C16F5fm13X57gg2IqPIOHfSpIXf7g1RakrYHu0P+DaRcghsIaA
+         bdJAstYpzM7S48UuPxwDiU3dN6XNWo2CY1CBPCr9VEGCV2eXCjmah6RMDRIQRngw4hKK
+         qttdEGG+mSrc6GWNbYuNGTaFhaEUBiI9fYxpU87L4CxXyNEcPtzcfQ4CUD4oPK+6Gk/P
+         Notg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718823027; x=1719427827;
+        d=1e100.net; s=20230601; t=1718823205; x=1719428005;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sWDiAvVpBXsUHjx7wnCwqZ3SqwbjI5GNUi/tqW2ciTQ=;
-        b=epYeqpqWtKgc5jdRHaN+yNI5z+LrXkUMbshbfdfo2wYqnUYe91PelE3kXNPW0DHM/Y
-         Si1Y5P6OZ6/mSIzgMEfWqAW5nrn4D5Z3mvSFsrx7sOzb4yZ0WwS4dkm2kN376iyexrSP
-         M8KlXaTi423URCX9DRc1QZNyYv7ENRjiI822eNR1cnjT8B++rDLzeoHuzsjzj3OunyNz
-         kwrz32GP/ojLfgjMlOPhVC9hz30cUuSAHSoBH4GApbjImvPGF1jW780Vkp+Js2uidnqn
-         RXDeohPSdKuNA5K0JoZRYBDE06K/bA6QtTgMrRfRf2sEZ+VC0Z8Ovx070scRFmyBFwbF
-         lCvg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9WPm04dv8xtW5AJrsdeYIvSzDt010uLdgqU75B6gkYF8deuqbmlwcbgX1GXRDBAyYw1fi8sz/FtHab5QdRjF95zur9RjBKbJs1A==
-X-Gm-Message-State: AOJu0YyZsKFkGxPuFQmoVmp79t9V7vasxtXZ1NJmDemJiA2Et5Yy92ob
-	1nqFJn1Ji6tjON/cYnVgwGhhvMtvuNuUNd7lkcicA8+AOeP5HLCZmwnI5kWMMC+darPkhWM4cjB
-	WJcU=
-X-Google-Smtp-Source: AGHT+IEpXxKZYIZ+XPxen9fIYys7XEwP2kOSl4j/7m6u8p9EFYfE3KAUWhVEW00LKNfpqwhBdgZloA==
-X-Received: by 2002:a50:9e05:0:b0:57c:bf3b:76f6 with SMTP id 4fb4d7f45d1cf-57d07e18d3fmr1953222a12.3.1718823026866;
-        Wed, 19 Jun 2024 11:50:26 -0700 (PDT)
+        bh=P7VU9/vkRDVLt9/hPKpilxcIBRsUkpFlhfPUk5mASuY=;
+        b=ZEDkUvZFzZffMG771xT6FkJjcKBuMTuNF88iLlqGtherM8K5dez+mzZz0r7PaMM/CO
+         QoEfu6aUjJukG1ZJjJ8WVVfc69aKmaLABLSu+KUsau9I5EMU9oGmMQU7xSf+5FulGmwI
+         otjkoluqDVuzKrxO1paV0I8EEKP5fc2M4W4tzS87PG0zEt0JvC4IR85GVvIriLCXceMG
+         RaBV8xNd6TxV0FlnOuSE0OJKzYeLLMMO4KgWtAxPF5apOltDXEZZPuooOOK3sbdFu6Em
+         UqfL+r0zWchvSwvhSNx1N9d8dEE5CB8kYO6unQZoiBcSVrhv0uzDrTJMUfYbhS435WRc
+         4D4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVKxmRX5qlIpckg9Ah5VsMC6DNIHOyM5lqjlxJw/rHs+l+D465CSvfJTgPv4E0cvkmtzbAiIoH9RkH0Hp02eLXgzhufTagUSOJJ7Q==
+X-Gm-Message-State: AOJu0YywhQ2r6sBoV9dSWh+vfSvfnPMAXkl2SckB2cTNosKxkLdADTib
+	+c8Ld9aEDa9bWvGLcKO7k1BzrlGOOMafMqZskmN8FM8sVMLl7tkOsNqMnFJXywA=
+X-Google-Smtp-Source: AGHT+IGEsELbvieDunRcJVYAsix732u6ngRuAFNR/W1C2IjEg6EVXJ5enNfrAmSOVV7DyNRmLm/IRA==
+X-Received: by 2002:a17:907:c5cd:b0:a6f:aef4:a28 with SMTP id a640c23a62f3a-a6faef40a8emr176598266b.65.1718823204545;
+        Wed, 19 Jun 2024 11:53:24 -0700 (PDT)
 Received: from ?IPV6:2a00:f41:9028:9df3:4dba:9578:7545:6874? ([2a00:f41:9028:9df3:4dba:9578:7545:6874])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cfa753136sm1792853a12.34.2024.06.19.11.50.24
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56ecdd4dsm697972266b.140.2024.06.19.11.53.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jun 2024 11:50:26 -0700 (PDT)
-Message-ID: <4df2a52c-c21e-4da0-9ca0-13f28e81018c@linaro.org>
-Date: Wed, 19 Jun 2024 20:50:23 +0200
+        Wed, 19 Jun 2024 11:53:24 -0700 (PDT)
+Message-ID: <b8338dba-f7b7-4124-8fb3-8171284e71ce@linaro.org>
+Date: Wed, 19 Jun 2024 20:53:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +76,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: sa8775p-ride: support both board
- variants
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p-ride-r3: add new board file
 To: Bartosz Golaszewski <brgl@bgdev.pl>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
@@ -86,9 +84,10 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org,
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 References: <20240619183255.34107-1-brgl@bgdev.pl>
+ <20240619183255.34107-3-brgl@bgdev.pl>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240619183255.34107-1-brgl@bgdev.pl>
+In-Reply-To: <20240619183255.34107-3-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -97,10 +96,45 @@ Content-Transfer-Encoding: 7bit
 On 6/19/24 20:32, Bartosz Golaszewski wrote:
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Split the current .dts into two: the existing one keeps the name and
-> supports revision 2 of the board while patch 2 adds a .dts for revision 3.
+> Revision 3 of the sa8775p-ride board uses a different PHY for the two
+> ethernet ports and supports 2.5G speed. Create a new file for the board
+> reflecting the changes.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/Makefile            |  1 +
+>   arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dts | 42 ++++++++++++++++++++
+>   2 files changed, 43 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 0c1cebd16649..916fbdbf5631 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -112,6 +112,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sa8540p-ride.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sa8775p-ride.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sa8775p-ride-r3.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-acer-aspire1.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dts
+> new file mode 100644
+> index 000000000000..d7f0a25c1fc4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride-r3.dts
+> @@ -0,0 +1,42 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sa8775p-ride.dtsi"
 
-Are both gonna be actively used?
+The board compatible (and name) should probably differ
 
 Konrad
 
