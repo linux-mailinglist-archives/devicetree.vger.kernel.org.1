@@ -1,113 +1,147 @@
-Return-Path: <devicetree+bounces-77339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F68590E42C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 09:16:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF94E90E43A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 09:20:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31D4A1F25000
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 07:16:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8C381C22414
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 07:20:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503FC74077;
-	Wed, 19 Jun 2024 07:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F657580C;
+	Wed, 19 Jun 2024 07:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJm1iY6C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cgmz0kaE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263D217583;
-	Wed, 19 Jun 2024 07:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8DCA7406B;
+	Wed, 19 Jun 2024 07:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718781385; cv=none; b=g+xiCiYF+Na62VqTIHIPHZIWj92B0Zupy7M+jGzD0Ufzd2IXRvihLd8ozypTcMay6XwCzpGKaoI+R34F0xKX7/teRvR2kjQdqIEd7AYOXZvaeTjcHnk5xCzSrmi8Fa/AfxLWsIdFH5xtiXRIwyF7mpuRN/PnmezOg9x53dx9Gtg=
+	t=1718781599; cv=none; b=PQ1SoTk0kTVqJewV43uRBkj6V+5buqd99MxozlmVN0jvBZjYdtlakD22ybsPt+E6zZH7ouuisACF1gv5Vudkin0rSehaDaVcFcUUN5r2wPdubUjm+Xag5wyGK2qDeq3kBtzgq3RSXo96pFwBBEyn06BlwAZxZvLr8wOSaRA/kuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718781385; c=relaxed/simple;
-	bh=1SeX6DYpTe78Qp9u9466EckMez+yd1/EEOQ8w2vo0i8=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=o5TXI8A5AkHfiN+YOLvYoj5JUzYShEmSDc2kYk3lRM7GTyUAPKkmq5yjtHYn3039Lq0lWsEs8DHP4CBOySa+pwHp+F1C71K7wBkUTatecoYYcTD/ZbbL5PhvrPmN12L9ZDKOSohbgZ6I4dJzFVFQEI/LjpUwSe1y9212EbMqyHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJm1iY6C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8848EC2BBFC;
-	Wed, 19 Jun 2024 07:16:23 +0000 (UTC)
+	s=arc-20240116; t=1718781599; c=relaxed/simple;
+	bh=uvAP8y0qFZ/aHw0g4eIrWcQaH8P8vN+nnewkUnmZmDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D8GculfUFM7b6toepXydj7TUSf2bBhCmah1xoJGKHAGexR6UXdF9AP2qv4a9lqJHAj0HyLXHvM9taKGOMkqilBPqSor28199M9EZ+pV29UoZ3gaY3Feh0arvaWwNA00iLWUGmESPTcklcR5iOquzmu3xiAYGw6gNJYXnShh7y1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgmz0kaE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFE8DC2BBFC;
+	Wed, 19 Jun 2024 07:19:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718781383;
-	bh=1SeX6DYpTe78Qp9u9466EckMez+yd1/EEOQ8w2vo0i8=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=uJm1iY6CBbwXF8+kYSJCKVVxnMvXF2gJdFeIXwy0bBppV+iQLSkh0tR75Gl9AZM8e
-	 L8ph0vEZ/YUllDATVOBZfyz3PO7XV34/mVKUfWtPmdNcVKEIUgAB3aOTZm+jymZS97
-	 8iPSHPu6R/lIN0ywnvtcVxJGWF86hRQXMmNQxPl+KGZRa6THDqXfXJRILJjxjIDHkF
-	 z9xCmvBOgs09DJb7FP3qD5L7wzGR2R+hEdgu7vS33NMZyhQMFLD37LDIBBhgOfdVPk
-	 9kgDy63QbTR8dX75uiIAxr/RivtGacRJrj2oGszHym8M4ecg93ckRqsJmbgmwQkwTc
-	 ZVq4Z+y+3ynww==
-Date: Wed, 19 Jun 2024 01:16:22 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1718781598;
+	bh=uvAP8y0qFZ/aHw0g4eIrWcQaH8P8vN+nnewkUnmZmDQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cgmz0kaEeOZuEssLsDyMfcaN0ptcozzDrcsnfWcgf3wYAKNsVFBx5ZDNpThkTv2KA
+	 b7jiEVbZhMUj6mDw2w9PLcAWj7Ca7XNSkk3X1sbkO0On6eIs5lGepUf94wkGRHFPUc
+	 UA+LykfhiCEMmzOEouz8JalKkzCKjULNZfQ2P/kXz2TbWIH6pLqrCldKRBR3B9HZt8
+	 7u2pj0kE18Ug1gtRon8tLCUsFbleALWH97X/2HsbCk94JMrABH9MwzMyYvCc1A+hXf
+	 XgBbIWyqELBZExF2gi28wKvclW67DpOiRvb4x8Zch/EZgknVFYVYSDJI/z9ayJXLxR
+	 gLH8F11aOmVpQ==
+Date: Wed, 19 Jun 2024 09:19:54 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, linux-clk@vger.kernel.org,
+	rkannoth@marvell.com, sgoutham@marvell.com
+Subject: Re: [PATCH v2 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <ZnKGmhVOPV-W2LWA@lore-desk>
+References: <cover.1718696209.git.lorenzo@kernel.org>
+ <f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo@kernel.org>
+ <64b3c847-8674-4fdd-bbe6-8ea22410aa19@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Shan-Chun Hung <shanchun1218@gmail.com>
-Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, serghox@gmail.com, 
- krzk+dt@kernel.org, ychuang3@nuvoton.com, ulf.hansson@linaro.org, 
- devicetree@vger.kernel.org, pbrobinson@gmail.com, mcgrof@kernel.org, 
- schung@nuvoton.com, linux-kernel@vger.kernel.org, forbidden405@outlook.com, 
- tmaimon77@gmail.com, conor+dt@kernel.org, 
- linux-arm-kernel@lists.infradead.org, adrian.hunter@intel.com, 
- andy.shevchenko@gmail.com, p.zabel@pengutronix.de, 
- linux-mmc@vger.kernel.org
-In-Reply-To: <20240619054641.277062-2-shanchun1218@gmail.com>
-References: <20240619054641.277062-1-shanchun1218@gmail.com>
- <20240619054641.277062-2-shanchun1218@gmail.com>
-Message-Id: <171878138268.711122.13293312471456423483.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document
- MA35D1 SDHCI controller
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="t1JdaXAETMxshABh"
+Content-Disposition: inline
+In-Reply-To: <64b3c847-8674-4fdd-bbe6-8ea22410aa19@lunn.ch>
 
 
-On Wed, 19 Jun 2024 13:46:40 +0800, Shan-Chun Hung wrote:
-> Add binding for Nuvoton MA35D1 SDHCI controller.
-> 
-> Signed-off-by: schung <schung@nuvoton.com>
+--t1JdaXAETMxshABh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+> > +static void airoha_fe_maccr_init(struct airoha_eth *eth)
+> > +{
+>=20
+> ...
+>=20
+> > +	airoha_fe_wr(eth, REG_FE_VIP_PATN(11), 0xc057); /* PPP->IPv6CP (0xc05=
+7) */
+>=20
+> include/uapi/linux/ppp_defs.h
+> #define PPP_IPV6CP      0x8057  /* IPv6 Control Protocol */
+>=20
+> Are these the same thing? Why is there one bit difference?
+
+ack, I guess there is a typo here.
+
+>=20
+>=20
+> > +	airoha_fe_wr(eth, REG_FE_VIP_PATN(17), 0x1ae0);
+> > +	airoha_fe_wr(eth, REG_FE_VIP_EN(17),
+> > +		     PATN_FCPU_EN_MASK | PATN_SP_EN_MASK |
+> > +		     FIELD_PREP(PATN_TYPE_MASK, 3) | PATN_EN_MASK);
+> > +
+> > +	airoha_fe_wr(eth, REG_FE_VIP_PATN(18), 0x1ae00000);
+> > +	airoha_fe_wr(eth, REG_FE_VIP_EN(18),
+> > +		     PATN_FCPU_EN_MASK | PATN_DP_EN_MASK |
+> > +		     FIELD_PREP(PATN_TYPE_MASK, 3) | PATN_EN_MASK);
+>=20
+> > +	airoha_fe_wr(eth, REG_FE_VIP_PATN(22), 0xaaaa);
+>=20
+> Please add a comment what these match.
+
+ack, I will look into them.
+
+>=20
+> > +static int airoha_dev_change_mtu(struct net_device *dev, int new_mtu)
+> > +{
+> > +	dev->mtu =3D new_mtu;
+> > +
+> > +	return 0;
+> > +}
+> > +
+>=20
+> I don't think this is needed. Look at __dev_set_mtu().
+
+ack, I will get rid of it in v3.
+
+Regards,
+Lorenzo
+
+>=20
+>     Andrew
+>=20
 > ---
->  .../bindings/mmc/nuvoton,ma35d1-sdhci.yaml    | 106 ++++++++++++++++++
->  1 file changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
-> 
+> pw-bot: cr
 
-My bot found errors running 'make dt_binding_check' on your patch:
+--t1JdaXAETMxshABh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml:77:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+-----BEGIN PGP SIGNATURE-----
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.example.dts'
-Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml:77:1: found a tab character where an indentation space is expected
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml:77:1: found a tab character where an indentation space is expected
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnKGmgAKCRA6cBh0uS2t
+rIRCAP9rbZZTIY9xE3nb018VxcdNZuvz5KU6xukpk2vKwOwztQD/fI0rjlWwYxHQ
+kdo/7s1J7RCqUM5RlC+1sqpISnZ9KQU=
+=0xov
+-----END PGP SIGNATURE-----
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240619054641.277062-2-shanchun1218@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--t1JdaXAETMxshABh--
 
