@@ -1,153 +1,105 @@
-Return-Path: <devicetree+bounces-77441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5296690E9DD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 13:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B057990E9F1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 13:43:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1831289F66
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 11:41:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 577F728AE56
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 11:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3EA715666F;
-	Wed, 19 Jun 2024 11:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D882F13CA92;
+	Wed, 19 Jun 2024 11:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="EUjD1yC5"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ezkOXUhv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5475F15573F
-	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 11:36:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BF088248C;
+	Wed, 19 Jun 2024 11:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718796962; cv=none; b=LBeToXM2bhb6OSGc0Y0HzD1tnGsHISqnmi2qS0MIckAK8VHOuh90RzmiNxGsDY+0NUdqFmn00zMm0QB92R2DoIoRgvt5+AXHoJb6d/b3/dUNLhBw1ckz8zc4VmAiO8yIrvWZD/KFYC8l0LwQduG3vnZXfX5eDfMUxJLiSfjweHQ=
+	t=1718797345; cv=none; b=EiH4yVmjJjIT2WHFap+CfThm8SVNg2Oc6GVBfVqVwcTMXIBK/h9QaWX/LTg8DyxuufpTKTaKhmJwF7Pld9P23iarvHl75v3+KwlMMI5AvPv7pQXe/6XEUzwl9aakKQZCwCV5OWFGjFbbRECq08Yrd6VYFkvjxol5g3xXPwsRj/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718796962; c=relaxed/simple;
-	bh=X4qBKgV4JJYgoyWLE1WwBRgEHa7E96dNUupuHsGIhok=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CC1Tuc8JNitbIeIv7iSEVCk8qntc1WLVKo5QZqyZ/Qdk4YJOlZncqD95SmEpo8BoprS6Z4WaMlGcmdhubhNw1jvv7cyzT8VGL3sLN6iDKugnuJ6K8wY4AkOHI298KDii/m+HaykkNR/nTF/krEN2GYqTub+rSfJyi2LYSK3rq2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=EUjD1yC5; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2eaea316481so7893181fa.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 04:36:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718796959; x=1719401759; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TPgjZRcqRRqmI3UFgS+Cn+Zr3OcI7PEtvkIvlPP0qT0=;
-        b=EUjD1yC5qNCrn3Muaiif1DjGmCkVQmRI5g9Gf50hxBi2z1mp50kR1ZD0GeWKPjuckV
-         2dkMJroFxRajztiG7ljqzZGLmM1BkVbnBuHuiZ8RJow+TbyreGjEXiJ8CXyDPYhTQfxN
-         fhqj+OND0javAV2cftdLhleFt1dZ66roXJFkhDQ0/9Er1E/1FmE24GCOs7iOaO7YL9fu
-         iJLH3k6xbpUDVFBYPvqTYvh8zRZrPc+niIo6RVm0N+JVLTEQ8kUvgGxlD/S/xZTNL2tb
-         C2tG8YlMv0CsO4n7lFePrluCULPnLirvOXyW7vfnNcbEf9uDVJHTX7ZpmFj2mec/ljyo
-         70Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718796959; x=1719401759;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TPgjZRcqRRqmI3UFgS+Cn+Zr3OcI7PEtvkIvlPP0qT0=;
-        b=Z/6FRkSIYN3OYKFr9EuvMhjBvNArr2MREGFj7boMuzNvD4lAQRcBcpITbyPpPHrHbo
-         jMlohPYnVE7shsM4gTqspNG6SfzZ8PDJkgvd8KCUZ0WWHAsCZLMnVwIzDiRTOWYiDEF0
-         BvP/J71451Qi8wANUgcln9nxh+rk+nrcH0ATMRxIeqnfmlGdcgsc7nCosJIUy8XA9bXs
-         z0TfNm7LWxfX1JM/YyY93fAuQcv/sFhTDL6rYJ4I5lg1qU6VNeFYkJkZWEhnTuFjHP2Y
-         59ePP7tunYtbwE336lHFfBNUvmfyP60c5xhKRffnnKksalTbPj9v1SC2QzyKE5kcLhXN
-         lNmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUXRvnj9+juYGQgPD+d35+nih2fC2ocegRxiQq/iFkoVvLmaoAED3/yBQBl7lOLBs5ocS4+Sh5rN3w/BJeKNU0mRlTqf0X5W2FVeQ==
-X-Gm-Message-State: AOJu0Yze129bdDQzQkogL3qAix3uYIvw4G/34Sa/PcRRf1H/kJ+W/lR5
-	auPriRmgIOQS3YDbE/+mzvwX1yWKf91e/tWuMBrOB8at1BOXacltzn5TXAsVSa4=
-X-Google-Smtp-Source: AGHT+IEEUCVgW+BCowVYPjYKYwNlCLmKSZ/5HGn2eR9JA6+OxkNbZ4kw3whUx8mTA5ZRd8MgB6kmxQ==
-X-Received: by 2002:a05:6512:398f:b0:52c:a7b6:bb11 with SMTP id 2adb3069b0e04-52ccaa59e2dmr1406908e87.1.1718796959602;
-        Wed, 19 Jun 2024 04:35:59 -0700 (PDT)
-Received: from carbon-x1.. ([2a01:e0a:999:a3a0:e67b:7ea9:5658:701a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-422870e9681sm266192075e9.28.2024.06.19.04.35.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jun 2024 04:35:59 -0700 (PDT)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	Shuah Khan <shuah@kernel.org>
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	linux-kselftest@vger.kernel.org
-Subject: [PATCH v7 16/16] KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
-Date: Wed, 19 Jun 2024 13:35:26 +0200
-Message-ID: <20240619113529.676940-17-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240619113529.676940-1-cleger@rivosinc.com>
-References: <20240619113529.676940-1-cleger@rivosinc.com>
+	s=arc-20240116; t=1718797345; c=relaxed/simple;
+	bh=9nbzgzoMSz4g+t+2ea0rpY+XNFLSLRWc62G32S+O2Hs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jQnX3je+1ErrMN/xcYYjxwzY3680oKGW6jXxOWyJhMqXNkTlpVEENVHR28nKUHfzzP9xHamySd9cw8F4uwxSHXQJs9K7RcyTqqRLbXhHCC2ZPqo6VpLcOB0NqxyRSXzS07+u0jWv3XcLMHfduG6jOuCHo9qqIZRGXZNoCAeUArU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ezkOXUhv; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718797342;
+	bh=9nbzgzoMSz4g+t+2ea0rpY+XNFLSLRWc62G32S+O2Hs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ezkOXUhvHectTqnAcLrhzNGBcHg0uPI4mgEc0gMmVkR4o6ewz6Sbxha3wkztemMX6
+	 uL3bzjdXpLqqY9By9GL5Bz22MupxTL5Qoadk4KDY1o/2AzE80dgdRMInlEv+Dn0ibx
+	 JK4rOev2qmubnpn1wxRFmsZiDm30OFcjLHvlNxyr6BQw8r54L+6FM7p0Wuf52nqwMU
+	 mFN5YM8nUfFHLeG2DbVOF/hj/bmyL2X+GqCJw3UIkPQMuKjq3NBYOFzklf6wXtjLgw
+	 E+5Ke0utNmc8ROdmwksPXzWNnwqW/VbJueTgBkNtNqiaMxpqkwrZzUJwMsCszJ/N3G
+	 WBxe4JGqAi+tg==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bbrezillon)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 969F737804CF;
+	Wed, 19 Jun 2024 11:42:21 +0000 (UTC)
+Date: Wed, 19 Jun 2024 13:42:20 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, steven.price@arm.com,
+ matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 0/2] drm/panfrost: Add MT8188 support
+Message-ID: <20240619134220.683ae228@collabora.com>
+In-Reply-To: <20240611085602.491324-1-angelogioacchino.delregno@collabora.com>
+References: <20240611085602.491324-1-angelogioacchino.delregno@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-The KVM RISC-V allows Zcmop extension for Guest/VM so add this
-extension to get-reg-list test.
+On Tue, 11 Jun 2024 10:56:00 +0200
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+wrote:
 
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
-Reviewed-by: Anup Patel <anup@brainfault.org>
-Acked-by: Anup Patel <anup@brainfault.org>
----
- tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
- 1 file changed, 4 insertions(+)
+> Changes in v3:
+>  - Added comment stating that MT8188 uses same supplies as MT8183
+>    as requested by Steven
+> 
+> Changes in v2:
+>  - Fixed bindings to restrict number of power domains for MT8188's
+>    GPU to three like MT8183(b).
+> 
+> This series adds support for MT8188's Mali-G57 MC3.
+> 
+> AngeloGioacchino Del Regno (2):
+>   dt-bindings: gpu: mali-bifrost: Add compatible for MT8188 SoC
+>   drm/panfrost: Add support for Mali on the MT8188 SoC
 
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index 864a701ef6c3..1a5637a6ea1e 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -60,6 +60,7 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCB:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCD:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCF:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZCMOP:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFH:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZFHMIN:
-@@ -431,6 +432,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
- 		KVM_ISA_EXT_ARR(ZCB),
- 		KVM_ISA_EXT_ARR(ZCD),
- 		KVM_ISA_EXT_ARR(ZCF),
-+		KVM_ISA_EXT_ARR(ZCMOP),
- 		KVM_ISA_EXT_ARR(ZFA),
- 		KVM_ISA_EXT_ARR(ZFH),
- 		KVM_ISA_EXT_ARR(ZFHMIN),
-@@ -960,6 +962,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(zca, ZCA),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcb, ZCB),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcd, ZCD),
- KVM_ISA_EXT_SIMPLE_CONFIG(zcf, ZCF),
-+KVM_ISA_EXT_SIMPLE_CONFIG(zcmop, ZCMOP);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfa, ZFA);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfh, ZFH);
- KVM_ISA_EXT_SIMPLE_CONFIG(zfhmin, ZFHMIN);
-@@ -1021,6 +1024,7 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&config_zcb,
- 	&config_zcd,
- 	&config_zcf,
-+	&config_zcmop,
- 	&config_zfa,
- 	&config_zfh,
- 	&config_zfhmin,
--- 
-2.45.2
+Queued to drm-misc-next.
+
+Thanks,
+
+Boris
+
+> 
+>  .../devicetree/bindings/gpu/arm,mali-bifrost.yaml      |  5 ++++-
+>  drivers/gpu/drm/panfrost/panfrost_drv.c                | 10 ++++++++++
+>  2 files changed, 14 insertions(+), 1 deletion(-)
+> 
 
 
