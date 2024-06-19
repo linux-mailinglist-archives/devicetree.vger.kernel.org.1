@@ -1,128 +1,224 @@
-Return-Path: <devicetree+bounces-77327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39D990E3AB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9D5A90E3B7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D36EB28481A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:45:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E49D4285E5A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFA56F30C;
-	Wed, 19 Jun 2024 06:45:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E016F305;
+	Wed, 19 Jun 2024 06:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="YmmKJhhy"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="CsfjiGv5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEA750280;
-	Wed, 19 Jun 2024 06:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.148.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956FB28EC;
+	Wed, 19 Jun 2024 06:49:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718779512; cv=none; b=EzsHEf+P9LtQa5Shi4dH2n39MUZCnyRIq4LGsZn0pLcQG1f9stwxwszOHsyssB0Q4S2Dj+qLrCsl0zPKobI26x/j9cPTUKVsTK5rlt5qxUaHM3Y3Eqo3PJv19oDP2Ma16oHAJNL9aaNX//aNsrMdYVZ+NOwO4lzQcF4ABfbHlMI=
+	t=1718779795; cv=none; b=B22kBmcEKisuptAglB0XeEYkCV4FEel5khRyYlIhw/E0ic41sYBlGK1WhIeflLlvJNfp+ejtENG7gMyVbyxusFVerAuO/weI6SmthIfOWojiz/d/AA3azf0otjvG29gj9HyJZFLrMwoUKxJKj6RAdbLqT1rVdhhxQXgNACYLYOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718779512; c=relaxed/simple;
-	bh=P/NG24g5CSvJ6QZhArAef5FhFBYfQFIbCbKT0+9eQ4Q=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UowsUrizGFnC4ZhdpOgZ75LdzDsIP11F+HaSVbiTvki2WFYOb4liPMiGg08ku87Ytqggpiza/pVUaKv7fqq3e39S+0yrNEI64kpmpz91rcIdnmSEAUFLHXj1y+2xpi+mggebI0rhX8YMg6Q17mMsFFrgHaXVqhMSsPk/914O9Yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=YmmKJhhy; arc=none smtp.client-ip=67.231.148.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45ILbj6E025049;
-	Tue, 18 Jun 2024 23:44:44 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pfpt0220; bh=r
-	zNPxCMXvXFQ/XPnxovAj2nPmInvtEMcPu2BzcZ+63Y=; b=YmmKJhhyy/3JpcuYB
-	N5ytcahIWKuYr/mwlNKcVB9oRpLIfMjZ2rEaZDhloUe9pLmeSbUIoRNSfc1zDhr6
-	rKhPaRNFOEaXP9eIrY4x8mK6P5vL4QpMzzDasYKbSuTyRm29z/WtSxw/kVXW6Ufi
-	WjItoYNH48GZgc5LulIrRu6KNmib1MkZUBAPp0+LyjcgyEeauqTqcC/hKgXaLhsJ
-	MkvGjFttm1YzVVG2XVkJpBvdFlsQW3qGVMvU1yTxA2rvsa2Nk70kVSxvokKJTmZd
-	Xk8MS9jy1OYpKF2GrynXRTNH+w0bGbFcXDEJoP0WRjJqbtUxAIPmbtspdOZ9fq2b
-	AJ7AQ==
-Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3yujap9dyy-1
+	s=arc-20240116; t=1718779795; c=relaxed/simple;
+	bh=QRbBxk36TKELNT+KlUVraRuBJo6WSa4s4G7hk1SI7nw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FOkiMVTojqq48fiTISa8k6NsxdRsaZRGizQUUHEoFYWLTL/fAcED3xqRX4LxE/bR0o2ox98bkWidnxwXwzCLW8s02PUA49DwMFHNxYGM2wGT6lXFeNMtF/rILCb5/0xd2EWZTwSFrVB5ls5ZCpeJvEKYz2tbLsWsp86bTGaJeUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=CsfjiGv5; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45J6ePk0001410;
+	Wed, 19 Jun 2024 02:49:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=42lVyecVe7v6w/yanxyaXD0FDR1
+	myt7dG08UiL/DXiw=; b=CsfjiGv5QRmUBMvmsY9tCGvoNh5cZjn/C4yBfsokhSJ
+	F7VOFbCm+UFUHUWoXzg91vCweraR2RlBjN1nX7EaJg4ZQNMNSRnpQRoTRyeworH8
+	95QWn7/HcqUSD/oQjnObx/vgOMbs1litDIC+5wW4iw0De5sjTDSzAZaW4n0A/DD8
+	kCNpVC5NN0/x3lKmio3bsYZocaF8YN42IwXf8f6CRHZzm4GMjQgLuLSpEDloRsne
+	/hLohFPltNTkz5phW6f0fyCWcp+PWyRpTkl9EX1xrw084O8yBB3nLlgJHR+bHMkN
+	YfSCknonxsjTqsKLIG7JC9sgSNxwBe54Aqk37lx4/sg==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3yut9280u6-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Jun 2024 23:44:44 -0700 (PDT)
-Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
- DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Tue, 18 Jun 2024 23:44:42 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
- (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Tue, 18 Jun 2024 23:44:42 -0700
-Received: from maili.marvell.com (unknown [10.28.36.165])
-	by maili.marvell.com (Postfix) with ESMTP id 208FB3F706F;
-	Tue, 18 Jun 2024 23:44:37 -0700 (PDT)
-Date: Wed, 19 Jun 2024 12:14:36 +0530
-From: Ratheesh Kannoth <rkannoth@marvell.com>
-To: Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>
-CC: <florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 4/4] net: phy: bcm-phy-lib: Implement BroadR-Reach
- link modes
-Message-ID: <20240619064436.GA1191293@maili.marvell.com>
-References: <20240617113841.3694934-1-kamilh@axis.com>
- <20240617113841.3694934-5-kamilh@axis.com>
+	Wed, 19 Jun 2024 02:49:37 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 45J6nZSR048526
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 19 Jun 2024 02:49:35 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 19 Jun
+ 2024 02:49:34 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 19 Jun 2024 02:49:34 -0400
+Received: from kim-VirtualBox.ad.analog.com (KPALLER2-L03.ad.analog.com [10.117.220.25])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 45J6nEve011796;
+	Wed, 19 Jun 2024 02:49:16 -0400
+From: Kim Seer Paller <kimseer.paller@analog.com>
+To: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>,
+        David Lechner
+	<dlechner@baylibre.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Dimitri Fedrau
+	<dima.fedrau@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Michael
+ Hennerich <michael.hennerich@analog.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?=
+	<noname.nuno@gmail.com>,
+        Kim Seer Paller <kimseer.paller@analog.com>
+Subject: [PATCH v4 0/5] Add driver for LTC2664 and LTC2672
+Date: Wed, 19 Jun 2024 14:48:59 +0800
+Message-ID: <20240619064904.73832-1-kimseer.paller@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240617113841.3694934-5-kamilh@axis.com>
-X-Proofpoint-GUID: TB8XUTCyNFihKLoM0VgCZ_pfK25VIJm4
-X-Proofpoint-ORIG-GUID: TB8XUTCyNFihKLoM0VgCZ_pfK25VIJm4
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: ugWSz_HGi_XwU0A9IatFQN2Yzr-FZEjH
+X-Proofpoint-ORIG-GUID: ugWSz_HGi_XwU0A9IatFQN2Yzr-FZEjH
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-06-19_02,2024-06-17_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 phishscore=0 lowpriorityscore=0 mlxlogscore=999
+ adultscore=0 clxscore=1015 suspectscore=0 impostorscore=0 malwarescore=0
+ mlxscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2406190049
 
-On 2024-06-17 at 17:08:41, Kamil Horák - 2N (kamilh@axis.com) wrote:
-> +
-> +	if (brr_mode) {
-> +		linkmode_set_bit_array(phy_basic_ports_array,
-> +				       ARRAY_SIZE(phy_basic_ports_array),
-> +				       phydev->supported);
-> +
-> +		val = phy_read(phydev, MII_BCM54XX_LRESR);
-> +		if (val < 0)
-> +			return val;
-> +
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
-> +				 phydev->supported, 1);
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_100baseT1_Full_BIT,
-> +				 phydev->supported,
-> +				 val & LRESR_100_1PAIR);
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_10baseT1BRR_Full_BIT,
-> +				 phydev->supported,
-> +				 val & LRESR_10_1PAIR);
-> +	} else {
-> +		return genphy_read_abilities(phydev);
-> +	}
-> +
-> +	return 0;
-nit: Could you move this return to "if" statement and get rid of else part ?
+Generalize the ABI documentation for DAC. The ABI defined for toggle mode
+channels:
 
-> +static int bcm5481_config_aneg(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +	u8 brr_mode;
-nit: Reverse xmas-tree.
+LTC2664:
+  * out_voltageY_toggle_en
+  * out_voltageY_raw0
+  * out_voltageY_raw1
+  * out_voltageY_symbol
 
-> +static int bcm54811_config_aneg(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +	u8 brr_mode;
-nit: Please apply reverse xmas-tree comment everywhere applicable.
+LTC2672:
+  * out_currentY_toggle_en
+  * out_currentY_raw0
+  * out_currentY_raw1
+  * out_currentY_symbol
+
+Default channels won't have any of the above ABIs. A channel is toggle capable
+if the devicetree 'adi,toggle-mode' flag is set.
+
+changes in v4:
+
+ltc2664:
+  * Added comments for each field in the ltc2664_chan struct.
+  * Changed global_toggle data type to bool and updated vref and rfsadj variables
+    to include units.
+  * Added 0,0 entry in ltc2672_span_helper to removed the id field from the
+    ltc2664_chip_info struct.
+  * Used mul_u64_u32_div helper function from linux/math64.h to avoid integer
+    overflow during scale calculation.
+  * Refactored code to use a single template for channel instead of separate
+    channel arrays.
+  * Used the devm_regulator_get_enable_read_voltage API for simplifying voltage
+    retrieval.
+
+ABI:
+  sysfs-bus-iio:
+    * Added commit message for the ABI changes.
+  sysfs-bus-iio-dac:
+    * Updated the description of toggle_en to clarify autonomous toggling.
+    * Fixed inconsistent use of spacing and tabs.
+
+Bindings:
+  * Updated the description for both bindings to include both 12-bit and 16-bit
+    versions.
+
+changes in v3:
+
+ltc2664:
+  * Added span sanity check for no match.
+  * Initialized the variable 'span' to fix build warning.
+  * Added Reported-by and Closes by tag.
+
+ABI:
+  * Modified descriptions to make it more generalize.
+  * Removed MAINTAINERS file entry.
+
+Bindings:
+  * Changed clr-gpios to reset-gpios.
+  * Added output range and reset code description for 'adi,manual-span-operation-config'
+    property in ltc2664 binding.
+  * Removed the $ref for 'adi,output-range-microamp' due to dt-schema warning
+    in ltc2672 binding. Added Reported-by and Closes by tag.
+  * Modified io-channels description and added maxItems constraint.
+
+changes in v2:
+
+ltc2664:
+  * Updated struct ltc2664_chip_info to include device-specific data for scale,
+    offset, measurement type, internal vref, manual span support, and rfsadj
+    support.
+  * Added a read-only extended info attribute powerdown_mode to indicate the
+    state that the DAC output enters when the device is powered down.
+  * Refactored code for setting the span into separate function and directly
+    returning the span.
+  * Adjusted memory allocation for st->iio_channels to include null terminator.
+  * Spaces have been added after { and before }. Each pair of values is now
+    placed on a separate line.
+
+ABI:
+  * Generalized the ABI documentation for DAC.
+  * Added DAC 42kohm_to_gnd powerdown mode.
+
+Bindings:
+  * Created separate bindings for ltc2664 and ltc2672.
+  * Added v-pos-supply and v-neg-supply regulator properties.
+  * Renamed vref-supply to ref-supply based on the datasheet.
+  * Added io-channels property and specifying the pin for multiplexer output.
+  * Added vdd0-vdd4 supply properties for ltc2672, although they are not
+    currently supported in the driver.
+  * Changed clr-gpios description based on the datasheet.
+  * Used 4 spaces for example indentation.
+
+Kim Seer Paller (5):
+  iio: ABI: Generalize ABI documentation for DAC
+  iio: ABI: add DAC 42kohm_to_gnd powerdown mode
+  dt-bindings: iio: dac: Add adi,ltc2664.yaml
+  dt-bindings: iio: dac: Add adi,ltc2672.yaml
+  iio: dac: ltc2664: Add driver for LTC2664 and LTC2672
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   1 +
+ Documentation/ABI/testing/sysfs-bus-iio-dac   |  61 ++
+ .../ABI/testing/sysfs-bus-iio-dac-ltc2688     |  31 -
+ .../bindings/iio/dac/adi,ltc2664.yaml         | 167 ++++
+ .../bindings/iio/dac/adi,ltc2672.yaml         | 158 ++++
+ MAINTAINERS                                   |  10 +
+ drivers/iio/dac/Kconfig                       |  11 +
+ drivers/iio/dac/Makefile                      |   1 +
+ drivers/iio/dac/ltc2664.c                     | 755 ++++++++++++++++++
+ 9 files changed, 1164 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
+ create mode 100644 drivers/iio/dac/ltc2664.c
+
+
+base-commit: 07d4d0bb4a8ddcc463ed599b22f510d5926c2495
+-- 
+2.34.1
+
 
