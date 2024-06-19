@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-77576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E899A90F4E7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:19:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6AAD90F4F4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:24:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2B3C1C21FAD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:19:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D2911F22219
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C6A155744;
-	Wed, 19 Jun 2024 17:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0727155C8B;
+	Wed, 19 Jun 2024 17:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IfVB5J3b"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Dor1pG4Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33AD14EC56;
-	Wed, 19 Jun 2024 17:19:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BB514EC56
+	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 17:24:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718817587; cv=none; b=bfZgayBqy+429FHrxu2GS76FH9FLUrYXdY2TT0ZGMpE3bmjuUMbmnmflAVsF/6F4XXw4mIxntcykrNH8hl2EuypFCmXRbvCmMnMIROrZKOnjQZtut7HJg8TFyV/ogZKqJv1B4alRjLV93QomK3VtbibPl9wvRJ5JmwqXNGJqHY4=
+	t=1718817873; cv=none; b=Xj4Svf8uQmIeE46O2peKpACr5m+N0480lCeTqSw7gQAJr/wakObvo9VnlPQKevW/zC2EIUI+w3sAoGSdLq41i02C4dNR1XBgCUnXPtJ4mRZApIqlUCxcIZqTj7kPcq5rYP+KjTj7iMn4vSiV6uM6Vlzi5yt2HWPUKLmHVevjHFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718817587; c=relaxed/simple;
-	bh=mm1hylyXkmDHuJt81ydCZkHXptOfO14tJz3vZpematc=;
+	s=arc-20240116; t=1718817873; c=relaxed/simple;
+	bh=pHGHrMlLeKjI1/up7Rrmj+CZx30fzhzHLvJvS34Vm1M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oTrh3nYEtpVznwiomLT3ih74inLLJtCXHDMH3KubiKSQlg2CLW05v7v2rE6ajTiOhqjupvt816ttBgKeiBd6FLMbY96jQuMJaH9nLU4qb2P1lV3E7Ca4o/OlRIB5WVwYi9fmTC9+SUt/+6G+BocsaOcg1knH0LmebFgShqji3xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IfVB5J3b; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-57d046f4afdso1179108a12.1;
-        Wed, 19 Jun 2024 10:19:44 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=ZoDbXnD+Fj4uKpiwyim1zU/3gusve84Dz08jtQ3HpEdpV0mYFIwaUQFwOQuzMRVGFZXZUExdJX8+a7TjkyEELfsfUdZvUiBFJY/ZdDzByEWXk984RGLmUgup/uqJTag8CWOa6kGlsSsoLc+c5Zv3JzetsxhbhWWGtxw0I4SCG9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Dor1pG4Q; arc=none smtp.client-ip=209.85.160.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-25c9af0102cso51136fac.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 10:24:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718817583; x=1719422383; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718817870; x=1719422670; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ukRvnNcVX5voue1fTgUH3KmAmzHRKYHvwwI9CKvpFMY=;
-        b=IfVB5J3bEMYyqhsXBwFLORISgb73Lz6EDWILStcr8sj+Dyw4ie5zIkYHQDfP1LRpko
-         xETRZeLkBDhlcrlDoWGoqA7Etrx6+THobQRbANaWmK7Ae79+McfiQ6uOjDned37o6MOZ
-         As7t9ZuJ+xb5bKN7nftavvKrNHKfLshS4on7VGMxa3Rq+y3JwnVU5A+9rZ0DBNXw836R
-         1KOZYdTSOUUXSgOjBt6RAYJ2n3Q4dH+X9kkMfiUTd/M8I5PQKpmFUfQpE7ic7IYkvaGg
-         eKqBRQHy9VBxtjYttwu4jM5UfC4xN4GHUv7U1RWyQ//tzV8VoQ8F7fORXnVcHlW93JRG
-         8PpQ==
+        bh=WW/sGpONNf0gL3cR4b4skPpNC8NQNbXJ/sZFcTqP6DY=;
+        b=Dor1pG4Qu+/1feuIJb5xH9E1dRiL/pF4P/tuzZCw02844zQYFW4t6pejHri09PnSsg
+         ZYh6A4QbVIO9g16Dt4sVW3/owtrYOfO8G9q0gaKu3Q0hcuFATbB+mL/k/bhbU+0xhKWk
+         gYpkAhSQ5dJfyhQgHPtmFafJkfXDOVqXGS1GOnY/n/5EQjW7PYxnGZ9AqZJs1R7XRcx2
+         PM+1Ja2iZ5eE0HrUe+8K3T6/qCMggorIBLkI6wrsbuBfpzKjq0MxLd65PULuFYa2UDVm
+         vrpqYZKVg21F38RWVaJjqqmU7xWJxbahWaFamP6Q6XtJoScqsoV2i8dnwZ75SgrYupD/
+         gdsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718817583; x=1719422383;
+        d=1e100.net; s=20230601; t=1718817870; x=1719422670;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ukRvnNcVX5voue1fTgUH3KmAmzHRKYHvwwI9CKvpFMY=;
-        b=U+tOcZrBD8IC4zMjT6vCaE6YmexqltSDziR570HC9tzTyxSMT2Ld8ZKcAncqOtVABT
-         2oPRwZYeZGn59/rqGOlI/ud/wc8MlFFknKghw5XCnLnK6zLwxxs44MjewhBttyTuGy3m
-         wk18rmivmEcKO4rNhwJsrdTbPmcfpKrQRscB2UgoTZhvjpmfsg/1rDLHFYQ/x/vDmvLo
-         DuP/MZrT0+rclDlVdLn53xJc/+q/0vgPkmH/VhMndcClk+wYl11n95gqnu6ByIAFdkAJ
-         sf143dI+hp8Z2It7wJkUgdJYd3Zb/uGXovOSacRRswt4cmKbC3Byxq4G3PWVyG43xSB5
-         phag==
-X-Forwarded-Encrypted: i=1; AJvYcCVgAh5syl8CcXg/yCQoOfFFBY07a9pAb/vRnCaX4jXBDvR8prV7UUxn87+g6SdnURWyn6Aj2s77wtvypbwikUBtcecBlKxWk7eBlnxmzvSY3gR0m0yQsyPY8I0I5VxvHi/R3BCwOIWlwUhOLb+L08EAHxJT7IEZ8XDe2IdS9jPb9TWhNGGR
-X-Gm-Message-State: AOJu0Yz3yd0wyHnItLuh3y9VVZYR26ZLdOEWne/hZ/f07j95Mrz6fO6b
-	x+ugKnYN/puCTJuXK2OUWykH16cvZy0OIUch5MMsCnePwJsvc+g=
-X-Google-Smtp-Source: AGHT+IFNzK6QeAtlQ+ZgmOEcPV0B9TECO0/iPeztr7u31qsK3JvkUB2iuN22u9S27LK6ks8S/XPQqQ==
-X-Received: by 2002:a50:96cf:0:b0:57c:5874:4f5c with SMTP id 4fb4d7f45d1cf-57d07ea857fmr2350044a12.32.1718817582346;
-        Wed, 19 Jun 2024 10:19:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810b:f40:4600:a583:e39c:f68e:e81f? ([2a02:810b:f40:4600:a583:e39c:f68e:e81f])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57cb72da371sm8529513a12.24.2024.06.19.10.19.41
+        bh=WW/sGpONNf0gL3cR4b4skPpNC8NQNbXJ/sZFcTqP6DY=;
+        b=TAbE5vEjYgPCd2DwQYhuJgWOq7wI0x7WZNN5a+B40zuKnrfILB0B0h91m4enoIVYSb
+         Y1dwuiWEYVDnjYqPxCXcjviaOGa3h2USg9OeEuaIomegit/ivIlwaKmfuklX6ucv+LbD
+         iWVIcZGs0BB9J8rKY1FdaDkVMPQBLxfVCLywGdy1pMTwLdIjlUJOpSw/FaATqDxI4wW8
+         NompdzVswamU2V/fP+2EGJfUJze7Duog1jwIhthWYC0LrV2+U/gPwZEVbz9hHd0qLDmu
+         3qh0GPmu+Z0NCxRc/o9nqq0XGeCQO3rW52QP7VDhEYJ6Hp+IGFjR4QZxzy2EJcAOjju0
+         UCLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVo00Zbjm+9C5J0yNAd7rE465O9f8k7d9+fT7xbPIsG8MDon1GsdSs8zFlZPHv5poga2qBuCFWTeSXneLhJig0H2zviZdhrTa2gug==
+X-Gm-Message-State: AOJu0YwP6N0esWsvtQEdu65JQsX4/9GxuQhO6426DbkpSZuy1UuJ4SB+
+	Yba9mkPyMy+k7mg7Au0ALhk0oDnNqmNNAM7um7Sr7uQPAyoKpTNJ5JCTdn/fBOg=
+X-Google-Smtp-Source: AGHT+IHR54HXcr7/yjcrsiJmtUghksi74ROiI+fCbYFFhArdAwoof+CXH2w8urjUZ7OSSXvEzQS16w==
+X-Received: by 2002:a05:6870:1716:b0:258:44b7:b842 with SMTP id 586e51a60fabf-25c94991633mr3524648fac.13.1718817870065;
+        Wed, 19 Jun 2024 10:24:30 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2567a94e375sm3804185fac.4.2024.06.19.10.24.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jun 2024 10:19:42 -0700 (PDT)
-Message-ID: <052f2ea7-2ded-4d39-a513-3a47fee1bf02@gmail.com>
-Date: Wed, 19 Jun 2024 19:19:40 +0200
+        Wed, 19 Jun 2024 10:24:29 -0700 (PDT)
+Message-ID: <e3c12062-9bb3-40fd-8b55-5cecbd2fda4b@baylibre.com>
+Date: Wed, 19 Jun 2024 12:24:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,138 +76,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: rockchip: Add rkvdec2 Video Decoder on
- rk3588(s)
-To: Jonas Karlman <jonas@kwiboo.se>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>, Diederik de Haas <didi.debian@cknow.org>,
- Andy Yan <andy.yan@rock-chips.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20240619150029.59730-1-detlev.casanova@collabora.com>
- <20240619150029.59730-5-detlev.casanova@collabora.com>
- <6e5ddd5c-340d-4474-a490-427a82db4a97@kwiboo.se>
+Subject: Re: [PATCH v4 1/6] spi: Enable controllers to extend the SPI protocol
+ with MOSI idle configuration
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
+ lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, marcelo.schmitt1@gmail.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1718749981.git.marcelo.schmitt@analog.com>
+ <36eefb860f660e2cadb13b00aca04b5a65498993.1718749981.git.marcelo.schmitt@analog.com>
 Content-Language: en-US
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <6e5ddd5c-340d-4474-a490-427a82db4a97@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <36eefb860f660e2cadb13b00aca04b5a65498993.1718749981.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 6/18/24 6:10 PM, Marcelo Schmitt wrote:
 
-Am 19.06.24 um 17:28 schrieb Jonas Karlman:
-> Hi Detlev,
->
-> On 2024-06-19 16:57, Detlev Casanova wrote:
->> Add the rkvdec2 Video Decoder to the RK3588s devicetree.
->>
->> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 50 +++++++++++++++++++++++
->>   1 file changed, 50 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> index 6ac5ac8b48ab..7690632f57f1 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> @@ -2596,6 +2596,16 @@ system_sram2: sram@ff001000 {
->>   		ranges = <0x0 0x0 0xff001000 0xef000>;
->>   		#address-cells = <1>;
->>   		#size-cells = <1>;
->> +
->> +		vdec0_sram: rkvdec-sram@0 {
->> +			reg = <0x0 0x78000>;
->> +			pool;
->> +		};
->> +
->> +		vdec1_sram: rkvdec-sram@1 {
->> +			reg = <0x78000 0x77000>;
->> +			pool;
->> +		};
->>   	};
->>   
->>   	pinctrl: pinctrl {
->> @@ -2665,6 +2675,46 @@ gpio4: gpio@fec50000 {
->>   			#interrupt-cells = <2>;
->>   		};
->>   	};
->> +
->> +	vdec0: video-decoder@fdc38100 {
->> +		compatible = "rockchip,rk3588-vdec";
->> +		reg = <0x0 0xfdc38100 0x0 0x500>;
->> +		interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH 0>;
->> +		clocks = <&cru ACLK_RKVDEC0>, <&cru HCLK_RKVDEC0>, <&cru CLK_RKVDEC0_CA>,
->> +			 <&cru CLK_RKVDEC0_CORE>, <&cru CLK_RKVDEC0_HEVC_CA>;
->> +		clock-names = "axi", "ahb", "cabac", "core", "hevc_cabac";
->> +		assigned-clocks = <&cru ACLK_RKVDEC0>, <&cru CLK_RKVDEC0_CORE>,
->> +				  <&cru CLK_RKVDEC0_CA>, <&cru CLK_RKVDEC0_HEVC_CA>;
->> +		assigned-clock-rates = <800000000>, <600000000>,
->> +				       <600000000>, <1000000000>;
->> +		resets = <&cru SRST_A_RKVDEC0>, <&cru SRST_H_RKVDEC0>, <&cru SRST_RKVDEC0_CA>,
->> +			 <&cru SRST_RKVDEC0_CORE>, <&cru SRST_RKVDEC0_HEVC_CA>;
->> +		reset-names = "rst_axi", "rst_ahb", "rst_cabac",
->> +			      "rst_core", "rst_hevc_cabac";
->> +		power-domains = <&power RK3588_PD_RKVDEC0>;
->> +		sram = <&vdec0_sram>;
->> +		status = "okay";
->> +	};
->> +
->> +	vdec1: video-decoder@fdc40100 {
->> +		compatible = "rockchip,rk3588-vdec";
->> +		reg = <0x0 0xfdc40100 0x0 0x500>;
->> +		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH 0>;
->> +		clocks = <&cru ACLK_RKVDEC1>, <&cru HCLK_RKVDEC1>, <&cru CLK_RKVDEC1_CA>,
->> +			 <&cru CLK_RKVDEC1_CORE>, <&cru CLK_RKVDEC1_HEVC_CA>;
->> +		clock-names = "axi", "ahb", "cabac", "core", "hevc_cabac";
->> +		assigned-clocks = <&cru ACLK_RKVDEC1>, <&cru CLK_RKVDEC1_CORE>,
->> +				  <&cru CLK_RKVDEC1_CA>, <&cru CLK_RKVDEC1_HEVC_CA>;
->> +		assigned-clock-rates = <800000000>, <600000000>,
->> +				       <600000000>, <1000000000>;
->> +		resets = <&cru SRST_A_RKVDEC1>, <&cru SRST_H_RKVDEC1>, <&cru SRST_RKVDEC1_CA>,
->> +			 <&cru SRST_RKVDEC1_CORE>, <&cru SRST_RKVDEC1_HEVC_CA>;
->> +		reset-names = "rst_axi", "rst_ahb", "rst_cabac",
->> +			      "rst_core", "rst_hevc_cabac";
->> +		power-domains = <&power RK3588_PD_RKVDEC1>;
->> +		sram = <&vdec1_sram>;
->> +		status = "okay";
->> +	};
-> This is still missing the iommus, please add the iommus, they should be
-> supported/same as the one used for e.g. VOP2:
->
->    compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
->
-> The VOP2 MMUs does have one extra mmu_cfg_mode flag in AUTO_GATING,
-> compared to the VDPU381 MMUs, however only the AV1D MMU should be
-> special on RK3588.
->
-> Please add the iommus :-)
-When looking add the vendor DT/iommu driver I'm seeing serval quirks
-applied for vdec's iommus. Since it's rightly frowned upon adding such
-boolean-quirk-properties to upstream devicetrees, we'd at least need
-additional (fallback-) compatibles, even if it works with the iommu driver
-as is (what I doubt, but haven't tested). We need to be able to apply those
-quirks later without changing the devicetree (as usual) and I'm sure RK
-devs haven't added these quirks for the personal amusement. If Detlev says
-iommu is out of scope for this series (which is valid), I'd say it's fine
-to leave them out for now (as no binding exists) and the HW works
-(obviously) fine without them.
+...
 
-> Regards,
-> Jonas
->
->>   };
->>   
->>   #include "rk3588s-pinctrl.dtsi"
+> @@ -3928,7 +3934,8 @@ int spi_setup(struct spi_device *spi)
+>  	 * so it is ignored here.
+>  	 */
+>  	bad_bits = spi->mode & ~(spi->controller->mode_bits | SPI_CS_WORD |
+> -				 SPI_NO_TX | SPI_NO_RX);
+> +				 SPI_NO_TX | SPI_NO_RX | SPI_MOSI_IDLE_LOW |
+> +				 SPI_MOSI_IDLE_HIGH);
+
+This looks wrong to me. Adding flags here causes them to be ignored
+rather than to be checked.
+
+I also did a runtime check with a random driver and a SPI controller
+that does not have the flag.
+
+	spi->mode |= SPI_MOSI_IDLE_LOW;
+	ret = spi_setup(spi);
+	if (ret)
+		return ret;
+
+It incorrectly passes when used with this change but correctly fails
+without this change.
+
+>  	ugly_bits = bad_bits &
+>  		    (SPI_TX_DUAL | SPI_TX_QUAD | SPI_TX_OCTAL |
+>  		     SPI_RX_DUAL | SPI_RX_QUAD | SPI_RX_OCTAL);
+
 
