@@ -1,156 +1,132 @@
-Return-Path: <devicetree+bounces-77460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A04390EBD3
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 15:01:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD3390EC0D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 15:03:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 448FC1F2565A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 13:01:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B1DBB25850
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 13:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B98A1474C8;
-	Wed, 19 Jun 2024 13:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF9614B952;
+	Wed, 19 Jun 2024 13:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="FfTuwSVt"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vcY55Q7N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95380144307;
-	Wed, 19 Jun 2024 13:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7BF143873;
+	Wed, 19 Jun 2024 13:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718802049; cv=none; b=gL8EKhhyqrMx2cdS3sJ5LNwyaOH/dy3enkVBf9WpE3PH0YSzX5l2fYXRNGTjKvAM7vBw0dwSC+F9cm+9fqptZhkzKsdc14+1+kSb/ouj6boxEWNA8Qun7rDaUVhU1ynTzsrMkiLK63bxPBxSqxG3fGQ1SjhMrV2ir//OY9YqR0c=
+	t=1718802175; cv=none; b=MKLano0x43GKybgfmKm61DFA5H7WTKCGqbqwcbv4V2gQzF684QEJKO9iWZ+U754IhYhU5cJsEb6RXrwe/zsJ4syZXGDX82VETysTWrk3DVpMiNsBQ0Qnwhm0cX8A4UQoNt5wR7pUWFQmnjEHds4vIk6GcbaX5eTuJjXaNFg/em4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718802049; c=relaxed/simple;
-	bh=BKa/BZil4tJV9cfhHF1kyacuzAP7Gz0trqyfaSztpZ0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YxlETUA0Nv5DbCp+BUNI6ihqKEwSh9bUcrrbD2ivwN+OqhjjAopDhBnv9T5Fbp8FkoGZgxrRfvwJioB7//SjPpmu2lx1rb900Z/E6Jyf1mcbxTovo2lXEkxxSLAFq31fe9HTEsFTjt5ax3rjH5uNuc/sgerMkzb2NnURElYcAJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=FfTuwSVt; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JCUgjH015592;
-	Wed, 19 Jun 2024 14:59:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	jwyneShirZyRnGXk/ujWIW15qBot5c+IWzpmXBsKWbg=; b=FfTuwSVtxZ3+gPrS
-	wl9xODgA+HaNcgLArvaqJwDCcH6SjBG/30PZSjgyBTmIy6uBchukTWhXAmiwy/f7
-	wO6jILno+w1UHhH7NpHC3Io6U7yL5CJYCfaQXRiqq5RWl7FviJXbKUYCVBuc9fMj
-	+JFQliu0scteEldqlXXQmKTo+2AkNaODZncxg5Go5wuva95h2L4SbIJbHidukbfl
-	f1IRqD6Vb/FC6hQqWpvJvYBzPmPTNsQZTkZRfXBZSyCFvyiLzLTF0sIFr23G4s0y
-	2XJTJsGZLSHzCg7uMWTVG9UQ58BJIeK9UKGR0rPhSMA4iv69smHeV+UfWTMwc9sk
-	IZWQ0A==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yuj9s39pe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 14:59:59 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 357EC4002D;
-	Wed, 19 Jun 2024 14:59:55 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2DA9121862A;
-	Wed, 19 Jun 2024 14:58:31 +0200 (CEST)
-Received: from localhost (10.48.86.164) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 19 Jun
- 2024 14:58:30 +0200
-From: Christophe Roullier <christophe.roullier@foss.st.com>
-To: "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1718802175; c=relaxed/simple;
+	bh=Jvol2e9lzek2jg8e0ND3FZQETfpH3FrvjCpbr4/IHBc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M/x/j+D6AqmknMOPFgUmYzyjonFvBOPF7SM3Zx7bjcm7Kjc5alnExI3KMn0o7jKLsPMCebIYZ17mddjWvj1EFCthQEPJah/eScHEOb99e2OFTNhHoQbzJWKWbOKsPNA1LwAgyWGiwNfywti2Bexj54Wdp7f/jRHYHAZIlImSmz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vcY55Q7N; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45JD2e2l124608;
+	Wed, 19 Jun 2024 08:02:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718802161;
+	bh=4INkyI/sA/RaVNPzbecxi0GUkLiFmY7SAMUpTE6Nhj0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=vcY55Q7N6FUWYgG6ivM0o6CZAyEHiPcj3x1AKrhrCmCBhQrgmhoTpscniMlgAjKkw
+	 OihOQdtdCzKcqj1Fn0Hhqx45J9GrkPE15uDLY4LfHe0G5dWpke0IEugAZmbZ4ourEZ
+	 Zkn7cuCNkXQW1Vfna44ppsZvQZ4+o2Vo0KmsuDuA=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45JD2eK6040475
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 19 Jun 2024 08:02:40 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
+ Jun 2024 08:02:40 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 19 Jun 2024 08:02:40 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45JD2eDU124779;
+	Wed, 19 Jun 2024 08:02:40 -0500
+Date: Wed, 19 Jun 2024 08:02:40 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Dhruva Gole <d-gole@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark
- Brown <broonie@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>,
-        Marek Vasut <marex@denx.de>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] arm64: dts: st: enable Ethernet2 on stm32mp257f-ev1 board
-Date: Wed, 19 Jun 2024 14:58:15 +0200
-Message-ID: <20240619125815.358207-4-christophe.roullier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240619125815.358207-1-christophe.roullier@foss.st.com>
-References: <20240619125815.358207-1-christophe.roullier@foss.st.com>
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Jared McArthur <j-mcarthur@ti.com>, Bryan Brattlof <bb@ti.com>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-pinctrl: Define a generic GPIO
+ MUX Mode
+Message-ID: <20240619130240.azkb4fwhrnwlsv45@uneasily>
+References: <20240618173123.2592074-1-nm@ti.com>
+ <20240618173123.2592074-2-nm@ti.com>
+ <20240619045258.xy4pwqv6ut5wzk63@dhruva>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-19_01,2024-05-17_01
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240619045258.xy4pwqv6ut5wzk63@dhruva>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-ETHERNET2 instance is connected to Realtek PHY in RGMII mode
-Ethernet is SNSP IP with GMAC5 version.
+On 10:22-20240619, Dhruva Gole wrote:
+> Hi Nishanth,
+> 
+> On Jun 18, 2024 at 12:31:21 -0500, Nishanth Menon wrote:
+> > Introduce a GPIO mux mode macro for easier readability. All K3 devices
+> > use mux mode 7 to switch to GPIO mux.
+> > 
+> > Signed-off-by: Nishanth Menon <nm@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-pinctrl.h | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> > index 4cd2df467d0b..b1a0415e6611 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> > +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> > @@ -38,6 +38,8 @@
+> >  #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
+> >  #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
+> >  
+> > +#define PIN_GPIO_MUX_MODE	(7)
+> > +
+> 
+> While I do agree that this is a standard thing, don't you think that
+> updating it everywhere else (k3 DTs) makes sense? Having the number 7 in some
+> places and others having PIN_GPIO_MUX_MODE will give rise to confusion I
+> feel.
+> 
 
-Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 24 ++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 27b7360e5dba..058af3a51677 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -17,6 +17,7 @@ / {
- 	compatible = "st,stm32mp257f-ev1", "st,stm32mp257";
- 
- 	aliases {
-+		ethernet0 = &ethernet2;
- 		serial0 = &usart2;
- 	};
- 
-@@ -55,6 +56,29 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&ethernet2 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&eth2_rgmii_pins_a>;
-+	pinctrl-1 = <&eth2_rgmii_sleep_pins_a>;
-+	max-speed = <1000>;
-+	phy-handle = <&phy0_eth2>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy0_eth2: ethernet-phy@1 {
-+			compatible = "ethernet-phy-id001c.c916";
-+			reg = <1>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+			reset-gpios =  <&gpiog 6 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
- &i2c2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&i2c2_pins_a>;
+Yes, thinking again, we will repeat using this for other SoCs as well for
+gpio-ranges. I think it might be better if we did this instead:
+
+/* Default mux configuration for gpio-ranges use with pinctrl */
+#define PIN_GPIO_RANGE_IOPAD  (PIN_INPUT | 7)
+
+* Clears up the understanding what the define is for.
+* Consistent usage across K3 SoCs.
+* Prevents mis-understanding where to use the macro.
+
+Thoughts?
 -- 
-2.25.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
