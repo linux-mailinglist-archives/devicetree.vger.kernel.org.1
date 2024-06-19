@@ -1,122 +1,110 @@
-Return-Path: <devicetree+bounces-77359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D48090E54F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:13:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0D990E5DA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:37:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC4382850C9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:12:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69B82B2109B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 08:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AA978C65;
-	Wed, 19 Jun 2024 08:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A037E10B;
+	Wed, 19 Jun 2024 08:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="FRxw+0cD"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="FDU2sbFS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446A9763FD;
-	Wed, 19 Jun 2024 08:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E94AB7C6DF;
+	Wed, 19 Jun 2024 08:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718784775; cv=none; b=Hj7DLqJsuVORrah98HrV96hk9m0FpcH1+b5qV+qrIUoqkmeWYmjBFc6zyz0L5wxBAXck2xJFYvGLRIAj5/YnE2cfDSpNqSY3zUxIhwwZdH2mdbDpb8Vk+LF7/Azd8EKqREFs9WDLNWCCg9xi6B5m3Rcp93RvMHdpgAkzjNVlQcs=
+	t=1718786249; cv=none; b=aY5rZdGZIm8KFGfIuPAguCieZGwKWYXhKfvv5ZeCWGq+MenYtKLHaEMzVcolr8MaQgabs4aDgwhnAU+GnRUPRc26JhnuWeFfBMiD731BUhlm44UE91Qc+eK6EvrnBmf64mxW7/C+4go3oTIbfEPm1gNV+6qUiWLmiJBsAtKshXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718784775; c=relaxed/simple;
-	bh=d22ozv8UZzsbdeCLyzbmyCDhwksXbO4tqNyJiRNzVpM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TiOtyQnu5SsJgKF1VT6WsqS39Yq9upZ7I8hDBYmZz14Q1JJGYtxW4OnZkuEEoF6q2CqNzzddwLg57iBxqXog3VvpQutCp5yziob1kkGYklpT1a9Ma3Kl9U04r9xag1hmz2pSt7fG7rgp/LfKJdVXn+wkeshcArwVqrT6IhtR3Dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=FRxw+0cD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 390ECC2BBFC;
-	Wed, 19 Jun 2024 08:12:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1718784774;
-	bh=d22ozv8UZzsbdeCLyzbmyCDhwksXbO4tqNyJiRNzVpM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FRxw+0cDYZFJozbRUuujZdkbvcFzUBdF99vdYElj/iTAhc2AmqbsuXU4OhghUY0V2
-	 cY+wdFFl+mpsiRarjMYjdBdXpoBDovhiv5K+JJahLex4yeoYkuPRRrMJlIai0FDMoc
-	 0sCElbyU81+aJIT2xLdwj91jyQjXxJ3UF/qOa/kQ=
-Date: Wed, 19 Jun 2024 10:12:51 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: Jie Gan <quic_jiegan@quicinc.com>, coresight@lists.linaro.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Konrad Dybcio <konradybcio@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Mike Leach <mike.leach@linaro.org>, Rob Herring <robh@kernel.org>,
-	Suzuki Poulouse <suzuki.poulose@arm.com>,
-	LKML <linux-kernel@vger.kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Jinlong Mao <quic_jinlmao@quicinc.com>,
-	Song Chai <quic_songchai@quicinc.com>,
-	Tao Zhang <quic_taozha@quicinc.com>,
-	Tingwei Zhang <quic_tingweiz@quicinc.com>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	Yuanfang Zhang <quic_yuanfang@quicinc.com>, quic_liuxin@quicinc.com,
-	quic_sijiwu@quicinc.com, quic_xinlon@quicinc.com,
-	quic_xueqnie@quicinc.com, quic_yanzl@quicinc.com,
-	quic_yijiyang@quicinc.com, quic_yuanjiey@quicinc.com
-Subject: Re: [PATCH 2/3] coresight: Add coresight slave register driver to
- support data filter function in sysfs mode
-Message-ID: <2024061947-street-italics-0cdf@gregkh>
-References: <20240618072726.3767974-3-quic_jiegan@quicinc.com>
- <e916a445-f7bd-4213-ac66-cf39f6c5001b@web.de>
+	s=arc-20240116; t=1718786249; c=relaxed/simple;
+	bh=A6CcOSt5OgXTngZLoT07YHKknaUK/Q9MAttPeiHJhgE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WW3vWP3sPhTu4v9tZ/lnmWL9q7BTkqmiM5QWKDWxrrdjLKvqlscsT070FOWUtPbXMEnqIqOs5XWauRXxb4ZSufWayEQUUcLCWYkV+X2mp4gtN2uOOFpv4V1worSg9GzjBT1z7WQ45rIK5SPffiKq6UP2kahp+cENE/mN22RENiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=FDU2sbFS; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45J7Ruge002275;
+	Wed, 19 Jun 2024 10:37:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=XOCbwETXxIA+0drv6fkuip
+	MY97pF222Z5qC+mHznX5k=; b=FDU2sbFS45KDSNH8SvVgN+ls58xYX5umz53A6A
+	f7RC9K65Wciv2NUsMZJDOkd5iPmLLOXFGJofGfBUQeulQoXNpiHHa7Bobh+sFdOG
+	jpLmgcZ3OQ5x1s2t4DAyCrYz9SIcWodmqp0NCnEygrgfADE9qekV0OthuAuYqSSK
+	bKHCmqM0X/zYuGCILK4pPoM6u6Qztg6Ru+tr+rAEcjo429/x4ytTvExvcp0b7mwu
+	lnuE0Eeh0yFJhbav8/7lzIbxp1xM693BUZw/vs0sTYsU4ReQ6NDsv5lo7I+ddjEN
+	JmvZSvHR8mKfJDqxtcCT5mjxw/UCh3vZQMNKtHbO99GuVvmA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yuj9n23rh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 19 Jun 2024 10:37:05 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D426B4002D;
+	Wed, 19 Jun 2024 10:37:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2C80620E1D0;
+	Wed, 19 Jun 2024 10:36:10 +0200 (CEST)
+Received: from localhost (10.48.86.232) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 19 Jun
+ 2024 10:36:09 +0200
+From: Pascal Paillet <p.paillet@foss.st.com>
+To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+CC: <p.paillet@foss.st.com>, Etienne Carriere <etienne.carriere@foss.st.com>
+Subject: [PATCH 0/4] Add SCMI regulators desciption on STM32MP25
+Date: Wed, 19 Jun 2024 10:35:58 +0200
+Message-ID: <20240619083602.33007-1-p.paillet@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e916a445-f7bd-4213-ac66-cf39f6c5001b@web.de>
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-19_02,2024-06-17_01,2024-05-17_01
 
-On Wed, Jun 19, 2024 at 09:55:25AM +0200, Markus Elfring wrote:
-> …
-> > +++ b/drivers/hwtracing/coresight/coresight-csr.c
-> > @@ -0,0 +1,315 @@
-> …
-> > +static int __csr_set_etr_traceid(struct coresight_device *csdev,
-> > +			uint32_t atid_offset, uint32_t traceid,
-> > +			bool enable)
-> > +{
-> …
-> > +	spin_lock_irqsave(&drvdata->spin_lock, flags);
-> > +	CS_UNLOCK(drvdata->base);
-> …
-> > +	CS_LOCK(drvdata->base);
-> > +	spin_unlock_irqrestore(&drvdata->spin_lock, flags);
-> > +	return 0;
-> > +}
-> …
-> 
-> Would you become interested to apply a statement like “guard(spinlock_irqsave)(&drvdata->spin_lock);”?
-> https://elixir.bootlin.com/linux/v6.10-rc4/source/include/linux/spinlock.h#L574
+Add the description for SCMI regulators provided by OP-TEE firmware.
+The binding file named st,stm32mp25-regulator.h will be also used in
+the OP-TEE firmware.
 
+Pascal Paillet (4):
+  dt-bindings: add STM32MP25 regulator bindings
+  arm64: dts: st: add scmi regulators on stm32mp25
+  arm64: dts: st: describe power supplies for stm32mp257f-ev1 board
+  arm64: stm32: enable scmi regulator for stm32
 
-Hi,
+ arch/arm64/Kconfig.platforms                  |  1 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 35 ++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 43 +++++++++++++----
+ .../regulator/st,stm32mp25-regulator.h        | 48 +++++++++++++++++++
+ 4 files changed, 118 insertions(+), 9 deletions(-)
+ create mode 100644 include/dt-bindings/regulator/st,stm32mp25-regulator.h
 
-This is the semi-friendly patch-bot of Greg Kroah-Hartman.
+-- 
+2.34.1
 
-Markus, you seem to have sent a nonsensical or otherwise pointless
-review comment to a patch submission on a Linux kernel developer mailing
-list.  I strongly suggest that you not do this anymore.  Please do not
-bother developers who are actively working to produce patches and
-features with comments that, in the end, are a waste of time.
-
-Patch submitter, please ignore Markus's suggestion; you do not need to
-follow it at all.  The person/bot/AI that sent it is being ignored by
-almost all Linux kernel maintainers for having a persistent pattern of
-behavior of producing distracting and pointless commentary, and
-inability to adapt to feedback.  Please feel free to also ignore emails
-from them.
-
-thanks,
-
-greg k-h's patch email bot
 
