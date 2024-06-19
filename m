@@ -1,150 +1,127 @@
-Return-Path: <devicetree+bounces-77395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004F790E80C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 12:13:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E11A790E80F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 12:14:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63BED282E86
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:13:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB7601C21CC1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 10:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F96584E11;
-	Wed, 19 Jun 2024 10:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECB98287C;
+	Wed, 19 Jun 2024 10:13:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ONONyysk"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZdbEWY+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86D8824AE;
-	Wed, 19 Jun 2024 10:12:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6676824B2
+	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 10:13:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718791968; cv=none; b=Z/sqfbBGstR+CsopUDAWEkEd3SEHS6sMoTtnHI3ToI7RjaSU8/B1SQukVA/UrfL5DNTjs2oCJ2Lwhs/5aidpSZR9JNG5BEqXOac8ku7xPIodD3JEKt/j6YdayBU1cV7KlevCsMDvhyW7IDFXLkWj6b/CBe6+R7lJfnX9GBIRvMM=
+	t=1718792015; cv=none; b=s+CUZ+csQ2QZ/XBwdapSfmQBRK2zM4Skkm0056j8aajNMV5rRSG9uq9gMyu38oaP6QLeYxy81E7p9E/H3jDWRO/tLnnN8LZAZvwUioIdjWno/K3lfo/0LR9mkz6zPVrfeNJMJKgfzFGzmc8yhXJUzvF7hjYrp8IKcOgteejvhPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718791968; c=relaxed/simple;
-	bh=YPE7L3MBTVX7TNFQWGWAAbTRS5eEO4VzyhQ99y3zEWE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bRyOtAhyVtZYD7YMKWo/YPs/bvrhMRnK91G7uMqE4MRB9VKvb9tPbOhDul2N6nQAe/oKDEhHlC39TM1zLX3FCiQpD/p7qoeewuLKc+LLRVKg4zf90q5jZbiiDOa0lluvbpJQmS3ciKc5wosE+8THRRfDkQKB1RjkBJeVSmqtJcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ONONyysk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JA46Tj014872;
-	Wed, 19 Jun 2024 10:12:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=5l7P0pcQAGIo0TVfiWBIXKlO
-	X9EMst2BA4PlAJPNRa8=; b=ONONyyskoipe98S0Y5532prrhODl+sB5skDuUxid
-	RL5Lnsnl/MMLhkKuQTt3FKdT/2oNxouL9zLwllwFbC5Gx7uk8GyELsPdN6p8PzVy
-	bKujmcVtX0eTrozBdQQDMJQFakiMOBj24gic61X9z4OzFxFAtpDVifIeKewN7fpL
-	VSEU/pF53QTSR9QsBG2DGa5Jh4ZrHT80lSxH68YIysswTwpQ0yctomgmZ+QNdW11
-	SWIrRB+X9cqdrp5h4DlJns1nAiqTHF3O66vgbFJ+c6HXTvVi1TZ6H5r0+U5J/+6z
-	SLIdgHMuIleTtI+/GhztkPDeZIYpy14NmJIA8IFG7JpVrA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yuj9x1b49-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 10:12:37 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45JACa0T005320
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 10:12:36 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 19 Jun 2024 03:12:33 -0700
-Date: Wed, 19 Jun 2024 15:42:29 +0530
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-To: Komal Bajaj <quic_kbajaj@quicinc.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3] arm64: dts: qcom: qdu1000: Add secure qfprom node
-Message-ID: <ZnKvDZGuc7hojsCj@hu-mojha-hyd.qualcomm.com>
-References: <20240618092711.15037-1-quic_kbajaj@quicinc.com>
- <ZnHUFVFKTP+74Iie@hu-mojha-hyd.qualcomm.com>
+	s=arc-20240116; t=1718792015; c=relaxed/simple;
+	bh=MbUeaa2LZLaNTE5kZ2SLNoA2hdABUPU/FjsRj6mUvFI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oZ9laIk7IdGXgBJzJ+qHCPqbnT1xrepX/C1SM2ZnZZ3wTW2OLYjIsC7VZ7lWmTQdbY5UgcK9S66LSrDzKLEGSxE5Jvuojwli/EvatPhzIRrvGLTiqoXqSkH8vtCnC0q6XQYpYqNehCXFw/FF/u1+7ZsgVBuFJTtudxFvFw5Iv0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZdbEWY+Y; arc=none smtp.client-ip=209.85.222.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-80f50feea7cso402558241.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 03:13:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1718792012; x=1719396812; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KE8h2jNNZ6vFW2z7uotyBC53nGYQN5vB31WOkuARonw=;
+        b=ZdbEWY+Yc3jGQLHjhuE1sIPuPTXsprZWIf1rpJCVw/VIobbvQCK2HpEr/xBHACOOWN
+         FXl7QK7CBquWFUxfH1Y5Owziwql7lrMpdRS+kupqXxp7BCH+NHraJhVN9irByvq88aKV
+         MlJguyHzT3Axz+pLbPK9ASqRL6pVcrTYCt+cg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718792012; x=1719396812;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KE8h2jNNZ6vFW2z7uotyBC53nGYQN5vB31WOkuARonw=;
+        b=IGKIaofTycAK4xYxpRAOm3vapmZxj81vDcjeWV58Aiyo1Sy7pYH8qQdH+LaZVxXAbz
+         RomNP04asbwuCYtl+2yU3WdkVlUpoBYrvrFnD6Js361mKKLmMR8eIPcDdBizewd0hMz5
+         71CKh9L1KW0s7O2HAN5cDwMNcinTPkjIpCXxRlCyyGCA++2/pHvdKN1vZy4Y7KP3u1qt
+         0Dulf4snjEzYXoZEK2pyzrrMkTwKAMptwpxX2/+DnhKeTKX/rdugK3utNv93CrRD8TKL
+         DjiAoiUVImX8gPpYLc4sTtJAMa2K7eg4NlL0x4pc6C1y/2KjZN8eO//Z9/X1wIxBqP5C
+         59RA==
+X-Forwarded-Encrypted: i=1; AJvYcCXIco36SSLsSAYM2QHRYwF15CLYn1s6fNlHwuw6eLLsV8pPSZ83yp2pbMOUUZT67pwTZGNYpdq6hhsBq12zX7/8cL7+B9XQoMQgYQ==
+X-Gm-Message-State: AOJu0YxvMqR/PsXgvcnftBympGKzQrxGm9rObeJN1ZuctpRjc0AzzORl
+	WVcThs+hpkVngbzyya1CaM1m3nvlZl4bdJKhy14+Um4uBs+mUL4u3lyheDSYzGTEGSZGNeqKKUI
+	=
+X-Google-Smtp-Source: AGHT+IGSImI3dQ2VaDa9L7GMryrVPp0sFuzxRr/AjfECxHAEzIVEoomu6D3X4s/lhADlMnxhdNANVg==
+X-Received: by 2002:a05:6102:3659:b0:48c:436d:7bd9 with SMTP id ada2fe7eead31-48f130bd64amr1842515137.35.1718792012303;
+        Wed, 19 Jun 2024 03:13:32 -0700 (PDT)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-48da448431bsm2598885137.25.2024.06.19.03.13.32
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jun 2024 03:13:32 -0700 (PDT)
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-4ecf9ba11c8so1963821e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 03:13:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXg2ovljr1nZKQK2gVKGdJvmpLWYc2SAzBXWG2EdPPopFci9lGjYh5kdLdMjcjpVTtdwqKKGQ38iuQPfPvSrLd/HVciX/91lDY4GQ==
+X-Received: by 2002:a05:6122:250e:b0:4d3:45a2:ae53 with SMTP id
+ 71dfb90a1353d-4ef27845548mr2420871e0c.16.1718792011586; Wed, 19 Jun 2024
+ 03:13:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZnHUFVFKTP+74Iie@hu-mojha-hyd.qualcomm.com>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yV0sAE45rMw_uyf0F3_D_9FyZ7YNuaLv
-X-Proofpoint-GUID: yV0sAE45rMw_uyf0F3_D_9FyZ7YNuaLv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-17_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=852
- impostorscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 adultscore=0
- lowpriorityscore=0 spamscore=0 malwarescore=0 bulkscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406190075
+References: <20240322092845.381313-1-angelogioacchino.delregno@collabora.com> <20240322092845.381313-5-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240322092845.381313-5-angelogioacchino.delregno@collabora.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Wed, 19 Jun 2024 18:12:55 +0800
+X-Gmail-Original-Message-ID: <CAC=S1niC5ZePFFbEM6Fhr4q7kNqv45uSQNnTp1U8pesfe5f_Aw@mail.gmail.com>
+Message-ID: <CAC=S1niC5ZePFFbEM6Fhr4q7kNqv45uSQNnTp1U8pesfe5f_Aw@mail.gmail.com>
+Subject: Re: [PATCH 4/4] media: platform: mtk-mdp3: Add support for MT8188
+ MDP3 components
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-media@vger.kernel.org, mchehab@kernel.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, amergnat@baylibre.com, moudy.ho@mediatek.com, 
+	hverkuil-cisco@xs4all.nl, sebastian.fricke@collabora.com, 
+	u.kleine-koenig@pengutronix.de, chunkuang.hu@kernel.org, 
+	p.zabel@pengutronix.de, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 19, 2024 at 12:08:13AM +0530, Mukesh Ojha wrote:
-> On Tue, Jun 18, 2024 at 02:57:11PM +0530, Komal Bajaj wrote:
-> > Add secure qfprom node and also add properties for multi channel
-> > DDR. This is required for LLCC driver to pick the correct LLCC
-> > configuration.
-> > 
-> > Fixes: 6209038f131f ("arm64: dts: qcom: qdu1000: Add LLCC/system-cache-controller")
-> > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> > ---
-> > Changes in v3:
-> > * Addressed comment by Konrad
-> > * Added Fixes tag in commit message as suggested by Dmitry
-> > * Link to v2: https://lore.kernel.org/linux-arm-msm/20240612063424.2494-1-quic_kbajaj@quicinc.com/
-> > 
-> > Changes in v2:
-> > * Minor correction in commit message
-> > * Link to v1: https://lore.kernel.org/linux-arm-msm/20240607113445.2909-1-quic_kbajaj@quicinc.com/
-> > ---
-> >  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> > index 7a77f7a55498..27f9fc87079c 100644
-> > --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> > @@ -1584,6 +1584,21 @@ system-cache-controller@19200000 {
-> >  			reg-names = "llcc0_base",
-> >  				    "llcc_broadcast_base";
-> >  			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +			nvmem-cells = <&multi_chan_ddr>;
-> > +			nvmem-cell-names = "multi-chan-ddr";
-> > +		};
-> > +
-> > +		sec_qfprom: efuse@221c8000 {
-> > +			compatible = "qcom,qdu1000-sec-qfprom", "qcom,sec-qfprom";
-> > +			reg = <0 0x221c8000 0 0x1000>;
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +
-> > +			multi_chan_ddr: multi-chan-ddr@12b {
-> > +				reg = <0x12b 0x1>;
-> > +				bits = <0 2>;
-> > +			};
-> 
-> LGTM, without this change, LLCC driver for QDU1000 will result in probe failure.
-> 
-> Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
+Hi Angelo,
 
-Just noticed, sec_qfprom driver config CONFIG_NVMEM_QCOM_SEC_QFPROM, still
-need to be enabled.
+On Fri, Mar 22, 2024 at 5:29=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> MT8195 and MT8188 share a similar MDP3 macro-block, with minor
+> differences - as in, the latter supports a subset of the number
+> of components supported by the former, but are otherwise handled
+> in the same way.
+>
+> Add driver data for MT8188, reusing the already present MT8195
+> data where possible.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  .../platform/mediatek/mdp3/mdp_cfg_data.c     | 280 ++++++++++++++++++
+>  .../platform/mediatek/mdp3/mtk-img-ipi.h      |   1 +
+>  .../platform/mediatek/mdp3/mtk-mdp3-cfg.h     |   1 +
+>  .../platform/mediatek/mdp3/mtk-mdp3-core.c    |   3 +
+>  4 files changed, 285 insertions(+)
 
--Mukesh
+Reviewed-by: Fei Shao <fshao@chromium.org>
+
+Regards,
+Fei
 
