@@ -1,118 +1,116 @@
-Return-Path: <devicetree+bounces-77302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E4790E1E5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 05:16:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1024A90E272
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 06:53:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3C50B20DE5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 03:16:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FA76B227E5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 04:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99C251C36;
-	Wed, 19 Jun 2024 03:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5044B1DA2F;
+	Wed, 19 Jun 2024 04:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dzJBSkQs"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZM46F3aX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC85B1DFCB;
-	Wed, 19 Jun 2024 03:16:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7316A55884;
+	Wed, 19 Jun 2024 04:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718767004; cv=none; b=FPcmmEhK6m+e1tGMEk/lix6u1IUCsSM9tP8d/8+6l15drpx+ZjKio0CT/JaiHVqHDCqRqoFa13UXc0HtNFx99y8SWUr/HxT1odfLj5y0iBNVzG2Oy6xgbE7ybdstz14AQmHuM2gxNwK5cq1Z5lU/t7sRftHdjyRRwQ7PKSG53YE=
+	t=1718772792; cv=none; b=lK7+tTuDr6uTgR/nauVrdNF8MGXE/2NO5lZ2d5GTEYLXg/GVKWBkzu0kIZllYsvzXFlJST/bLVUYpWp9OBvHFSgQnweY/Gm48aRYqTRZCEVO5msP68Y0DY/L79kUIyD/aTK7pSD7FvJZn25J3OqDUpi0mJxYMDRR7gmW2Ab2vl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718767004; c=relaxed/simple;
-	bh=7tNztevkaavreFJV4rcNE+ypDdZDtO+Kfjq+mux+/GI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J/C+ZCz24pgNuD477MAF7n5DuXF73V4tcggflEi5NThofKPBKp4e/bW6XLwlDEmQRLls4WQea7O/UAin9QkxrLe67rz7BlnwbW1g/MTYCRvv74/xwZX9nIv0P1whg2Ovk6E2s7dgtgKe3j/0QEodAVmQ6R7d1l0a9Iow4Su8d+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dzJBSkQs; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718767003; x=1750303003;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7tNztevkaavreFJV4rcNE+ypDdZDtO+Kfjq+mux+/GI=;
-  b=dzJBSkQsVOiMXFP4MAeL84xMiQWCKbjGeTjYaF6U7aqWX5muNV878vIg
-   F6A0FPC3Wwg4gGyp8jqGhiqFkDhvR6F347DHs3+yW21ImwufEWIvexfa/
-   v+LIjlzxpCPBn2SXGt6gdHrvLlW1qEJjXbVgcarstaArMc2RK+FoZAV6v
-   mitNLcye1Mib2cHqCP13Xmmo7EG1zpHb7IGX3wPM0qmPM+H7uDJ5KPqYx
-   1zYZEDducn6p6L3NTUYXWkhkSTFO0gcen6k9IQNNHbhGrWGcfp9TApJhm
-   IC0Gwhy+pfWGkhpWFxEOiXpAKJap8QYwmXKTv6RYpbn6phZGyB7uPU+8+
-   A==;
-X-CSE-ConnectionGUID: nVR4zDwHTaiRlkdCLCWQfg==
-X-CSE-MsgGUID: geD0UplfTiSQKeGVzrJv2A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26363845"
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; 
-   d="scan'208";a="26363845"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2024 20:16:42 -0700
-X-CSE-ConnectionGUID: VNwv6KUmRV291ct3PKIUNA==
-X-CSE-MsgGUID: pjj5/MnPTyikLcMM9WZraQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; 
-   d="scan'208";a="46893908"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 18 Jun 2024 20:16:39 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sJloK-0006Da-1B;
-	Wed, 19 Jun 2024 03:16:36 +0000
-Date: Wed, 19 Jun 2024 11:15:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Guillaume Stols <gstols@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Beniamin Bia <beniamin.bia@analog.com>,
-	Stefan Popa <stefan.popa@analog.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	devicetree@vger.kernel.org, Guillaume Stols <gstols@baylibre.com>,
-	jstephan@baylibre.com, dlechner@baylibre.com
-Subject: Re: [PATCH 7/9] iio: adc: ad7606: switch mutexes to scoped_guard
-Message-ID: <202406191142.rs8moLqC-lkp@intel.com>
-References: <20240618-cleanup-ad7606-v1-7-f1854d5c779d@baylibre.com>
+	s=arc-20240116; t=1718772792; c=relaxed/simple;
+	bh=lx4rLJyPej68BOmpr7+ocvYiPmWPWtwIPfezXOc0vP8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DnCo6BgDAVeQ+p29g2XeWsSg3NNV9r8+oWwWsN+0MYfni47kmJ6WgSpxqldyCJ1Q0M8oa1sVWMw21sdTXT0RHssw0R7VlDA+eXldqCrhJslEP6pzEEq42SHVyA/Q9bWZLHlOR/EJE9ZOzuLf02EvEI+gL1wKn/5nrax/qDrgXTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZM46F3aX; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45J4r0Fs026309;
+	Tue, 18 Jun 2024 23:53:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718772780;
+	bh=Rc7qJe4uEyOVn3qro5Eomd2bfcwDyg3lU37JTh3HO84=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ZM46F3aXZCyNlCOHHqj6ruWfStvtIZ0I0oagQ78iXdkrZpKO4NGuF2HoVEsDyAr36
+	 5hCY/MOee5ivglzVaqN6D1OnOO8cl0gOF3twYDW6YPsDZIfdH2v5T5YrPEX1vMH9Ok
+	 VfJPezd5W9furyfCDYXrw2UJM4j3Gny5tBK10xh4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45J4r0Xd023468
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Jun 2024 23:53:00 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 18
+ Jun 2024 23:53:00 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 18 Jun 2024 23:52:59 -0500
+Received: from localhost (dhruva.dhcp.ti.com [172.24.227.68])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45J4qxSg008198;
+	Tue, 18 Jun 2024 23:52:59 -0500
+Date: Wed, 19 Jun 2024 10:22:58 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Jared McArthur <j-mcarthur@ti.com>, Bryan Brattlof <bb@ti.com>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-pinctrl: Define a generic GPIO
+ MUX Mode
+Message-ID: <20240619045258.xy4pwqv6ut5wzk63@dhruva>
+References: <20240618173123.2592074-1-nm@ti.com>
+ <20240618173123.2592074-2-nm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240618-cleanup-ad7606-v1-7-f1854d5c779d@baylibre.com>
+In-Reply-To: <20240618173123.2592074-2-nm@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Guillaume,
+Hi Nishanth,
 
-kernel test robot noticed the following build warnings:
+On Jun 18, 2024 at 12:31:21 -0500, Nishanth Menon wrote:
+> Introduce a GPIO mux mode macro for easier readability. All K3 devices
+> use mux mode 7 to switch to GPIO mux.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-pinctrl.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> index 4cd2df467d0b..b1a0415e6611 100644
+> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> @@ -38,6 +38,8 @@
+>  #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
+>  #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
+>  
+> +#define PIN_GPIO_MUX_MODE	(7)
+> +
 
-[auto build test WARNING on 07d4d0bb4a8ddcc463ed599b22f510d5926c2495]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Guillaume-Stols/dt-bindings-iio-adc-adi-ad7606-add-missing-datasheet-link/20240618-223010
-base:   07d4d0bb4a8ddcc463ed599b22f510d5926c2495
-patch link:    https://lore.kernel.org/r/20240618-cleanup-ad7606-v1-7-f1854d5c779d%40baylibre.com
-patch subject: [PATCH 7/9] iio: adc: ad7606: switch mutexes to scoped_guard
-config: x86_64-randconfig-101-20240619 (https://download.01.org/0day-ci/archive/20240619/202406191142.rs8moLqC-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240619/202406191142.rs8moLqC-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406191142.rs8moLqC-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/iio/adc/ad7606.o: warning: objtool: ad7606_reg_access+0x5a: sibling call from callable instruction with modified stack frame
+While I do agree that this is a standard thing, don't you think that
+updating it everywhere else (k3 DTs) makes sense? Having the number 7 in some
+places and others having PIN_GPIO_MUX_MODE will give rise to confusion I
+feel.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Dhruva Gole <d-gole@ti.com>
 
