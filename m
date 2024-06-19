@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-77581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95E8590F51C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78EE590F525
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 19:33:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30EFB280F93
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:32:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C90E2807F3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3F154673;
-	Wed, 19 Jun 2024 17:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C21D55882;
+	Wed, 19 Jun 2024 17:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mQM5QXIt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E/PeXlYG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEACB2139D1;
-	Wed, 19 Jun 2024 17:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E4547779;
+	Wed, 19 Jun 2024 17:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718818320; cv=none; b=H39ZFhWcH6xH+IXXN6ZGz8Vwm74snQ+S5IKrxSI6YUaZTXUoRd6ehQMgF5zl0WucFw2jlBnIh7xP30xrW7Givh3tPvSdvA3VpuB2ILCToIDwhZYRZycejkuBphb2skLshW70nkKvmwxKIBeDZbPgli28mTdXXlkJaurdSBK/3EA=
+	t=1718818421; cv=none; b=LSJVHC/qSbexOwnzHNLyAJz5cv2gsR+sHuWeyW6hpMtK3IPAT4TKC/U5LFtEb2C7HUIBbE0JtTqwjucBc3KCNtOH5+zyZLlCFrysgdjBiBIVudFqLEiJ/jufmLlphHzo/B7kE8aDwfKt8aFSjjXDlnD9xrolULuCnzKtYKXvJpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718818320; c=relaxed/simple;
-	bh=Mw7LIUiugtdZZuHFybQbmbix1eukq5dcFpQhjX9nH/8=;
+	s=arc-20240116; t=1718818421; c=relaxed/simple;
+	bh=jBQbrbECAxZQb03o9hjYR2DC5XcpH4RFuYhnr8rFRXQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L1pOBAb/Su/2A0y2VdbHAQFf5iT85u4CwxX2bljvTOXMETTEnPOZU5D+Vf/+cm/YgAJSPMVqWfF4KWxHNCtV4zIqZ392y6WSpUpu/lbob1CEclfkt7p+Y8XLGijZRYuFEujjztWF6ie3F3n7Tr7RRSiYymx9YUTTJJ8eXX7y6gQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mQM5QXIt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C857C32786;
-	Wed, 19 Jun 2024 17:31:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YAHqlTs55iRZKRwIxOXwE8TNpUVox3JLE9Sancr5V2OBYQ5x01U+nBT25Whmahyq4lhvDq2ik6PL09IlfpAxW6/ogEJeRwAcA1/FIOD7i1zsPL2cYva52R03oN0FY2Kyefnxax9glClyO8BHFjptqbdKEgfVCfuj8yXZOBbuHFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E/PeXlYG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30A0AC2BBFC;
+	Wed, 19 Jun 2024 17:33:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718818320;
-	bh=Mw7LIUiugtdZZuHFybQbmbix1eukq5dcFpQhjX9nH/8=;
+	s=k20201202; t=1718818421;
+	bh=jBQbrbECAxZQb03o9hjYR2DC5XcpH4RFuYhnr8rFRXQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mQM5QXItO5CQmXw6l/M0J8VfPMifngGLU6Fibd7nXVnfDg7dHOK8GjJKktiT2i0mF
-	 MNr1+IlItwJJEE6T1SQjTXZEemi048HB/w4osBkDQzU344pOkgttSJeB6uU95qYXxD
-	 XGEgNMauemZ6e2UWJkKLRRbV6bRTJWecKsErpQMuSxc+asRAIGVzAVrW8IEOyLQBjC
-	 GT+qfR1QPB+BC7cnR0A2ruyJcjcb8klh4v4RDUK9MN7W3GRsYG9M+E5zDJc3FLY9yl
-	 tSknn25Bca/Lxf+tI+UEIXICOjg9UdZznuRFPhIWOQv9Ycx4kyWtZavgSHCgoqTDR2
-	 ESHshqPBbqdKg==
-Date: Wed, 19 Jun 2024 18:31:55 +0100
+	b=E/PeXlYGKJ01rP7FrfGj/zPeeSHHYDD2Ut2a8yU0kS7JkDKgQzGdGpbmqAnYtumbE
+	 pIcNPU5BKJNdTP73PeNZu0TcbIyvmDdFlp+czBvah+b0tnsbeYXFihwLsHOfpCgBFX
+	 n6r+zaVJTIT/uwSOVBm2ri8p863yuLzazW9iNooZpy8e1WZGgQU63xUb+4oCG4MSTZ
+	 fPWGXnGPf+s6CLTit7HKOCZQQK2gxCyIttuQlsYyiz7CxxcOk93CwdF46vgNkdBOex
+	 6qgY+tHzq8gmapEgRguhHbEjDTPIxYwipIoruFsy/lEugltSBYpPlXAnI4kN6LMKWU
+	 d4aLGafNRtKJA==
+Date: Wed, 19 Jun 2024 18:33:37 +0100
 From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: riscv: add Zaamo and Zalrsc ISA
- extension description
-Message-ID: <20240619-unknowing-matrimony-84e1e16efeef@spud>
-References: <20240619153913.867263-1-cleger@rivosinc.com>
- <20240619153913.867263-2-cleger@rivosinc.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
+ V4M
+Message-ID: <20240619-passage-iodine-9f944b26a30d@spud>
+References: <20240619153559.1647957-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,34 +64,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WElrE+kfa4QQLVIV"
+	protocol="application/pgp-signature"; boundary="dWpIEbyvW2ujKmwW"
 Content-Disposition: inline
-In-Reply-To: <20240619153913.867263-2-cleger@rivosinc.com>
+In-Reply-To: <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
 
 
---WElrE+kfa4QQLVIV
+--dWpIEbyvW2ujKmwW
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 19, 2024 at 05:39:08PM +0200, Cl=E9ment L=E9ger wrote:
-> Add description for the Zaamo and Zalrsc ISA extension[1].
+On Wed, Jun 19, 2024 at 05:35:58PM +0200, Niklas S=F6derlund wrote:
+> Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
 >=20
-> Link: https://github.com/riscv/riscv-zaamo-zalrsc [1]
-> Signed-off-by: Cl=E9ment L=E9ger <cleger@rivosinc.com>
+> Signed-off-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Didn't we just have a conversation about this, yet nothing has changed?
+NAK. Either you need a fallback or to explain why a fallback is not
+suitable _in this patch_.
 
---WElrE+kfa4QQLVIV
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/D=
+ocumentation/devicetree/bindings/media/renesas,vin.yaml
+> index 5539d0f8e74d..168cb02f8abe 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> @@ -54,6 +54,7 @@ properties:
+>                - renesas,vin-r8a77995 # R-Car D3
+>                - renesas,vin-r8a779a0 # R-Car V3U
+>                - renesas,vin-r8a779g0 # R-Car V4H
+> +              - renesas,vin-r8a779h0 # R-Car V4M
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.45.2
+>=20
+
+--dWpIEbyvW2ujKmwW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMWCwAKCRB4tDGHoIJi
-0o10AQD+YJeDB9kDq+cmYMtglAAQi08gU/ZdO6csF0EgoJE9RgEA3vqPEx9kf8/3
-FHxUErBZs27ZSQXpY2OxrNHoYQsUrwc=
-=d4WG
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnMWcAAKCRB4tDGHoIJi
+0s6XAP4s/yplPNpynA5D4eo3i0F1REW7NdZrUp19y6lcOKGvSgEA4C54jB1wmtKO
+mRenRWDwEyTonhBlh3nesRdn42gXgwk=
+=N6UY
 -----END PGP SIGNATURE-----
 
---WElrE+kfa4QQLVIV--
+--dWpIEbyvW2ujKmwW--
 
