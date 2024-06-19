@@ -1,67 +1,70 @@
-Return-Path: <devicetree+bounces-77520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFFAE90F16D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 16:57:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31C2590F151
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 16:53:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADF121C21AC6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 14:57:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD4781F21562
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 14:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AF545013;
-	Wed, 19 Jun 2024 14:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097C81514F4;
+	Wed, 19 Jun 2024 14:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="DeO5eaTa"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="NVJeuPLC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.208])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C141D54A;
-	Wed, 19 Jun 2024 14:57:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.208
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541C71D545;
+	Wed, 19 Jun 2024 14:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718809061; cv=none; b=d5K2SYUQ03HLWb6Y45zDrppCLimVGm2xOa7GjroGRrxrLpQObx0YVQZQLVrN5ve0L5hW9WaHTjHlDKf0rrszFe3259mPzALWeDj98W7mMjrt0EwM1NK2jXxEqFPn1t6/4Uta5rYf8+j+RZdM7gN+1lAb+DRpj61dCdmF5GcxSW8=
+	t=1718808676; cv=none; b=KZ3rUSEGs31xmQXX5jJi0Z62LSqRQAsRgRwZT7otK1/S1dbru47Sa6q1BqIO29WHnaXUjVAlxkUWntX6jr1tSjqeeCeC55J8rohtoGgrxx18KoiDnumPXpet8x0Og8c6iOsisHdYbEHtxIcjutoBGWYjyFiTxhsCpy27x8jqPDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718809061; c=relaxed/simple;
-	bh=iZbm6EdAbJzUiVO4UtD9tGvM+sfX52gde6b5TpOe++k=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ZsG3j2+QwsNmkSZjEAdKCrV5upaLYZFkD2CBfwIV5Sw39LNDxTDFP2PrAZ1UJa3pt/3FQSkAEiNrnBYPWX4h0TPUwmIXuRdI/0Md20OCPKUGRUvkjIubrDZTUXxfSRuuh2WtHVYRNQnsmA8ZvOn8WoPw9waI5TironcDxitnYQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=DeO5eaTa; arc=none smtp.client-ip=192.19.144.208
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id AB7DFC0000EC;
-	Wed, 19 Jun 2024 07:48:27 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com AB7DFC0000EC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1718808507;
-	bh=iZbm6EdAbJzUiVO4UtD9tGvM+sfX52gde6b5TpOe++k=;
-	h=From:To:Cc:Subject:Date:From;
-	b=DeO5eaTaP/IqjtEVHu6D/Jn3oveijOQfNlLsWIqsuRN7nhkd+h4aDCZsf2sGzM1H2
-	 pVGZLgtd9GzaFxTZAcz7T/41Vmb/74cfkIo/V5WJlS9vq6ammieC/s3dkmJCzvM+xW
-	 sbL5fTI1UjsKRzRFie8rG4TsDSG/TmCzABQjXZ3M=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 763BA18041CAC4;
-	Wed, 19 Jun 2024 07:48:25 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: stable@vger.kernel.org
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	=?UTF-8?q?Philippe=20Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	linux-mips@vger.kernel.org (open list:BROADCOM BMIPS MIPS ARCHITECTURE),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH stable 6.1] MIPS: dts: bcm63268: Add missing properties to the TWD node
-Date: Wed, 19 Jun 2024 07:48:25 -0700
-Message-Id: <20240619144825.4052589-1-florian.fainelli@broadcom.com>
+	s=arc-20240116; t=1718808676; c=relaxed/simple;
+	bh=EtmxSZjL8mGyRg8bDiesXwtUpMPijBWfm8ALk/mgan8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iOQ6iI4Hucv7wRni5j3qETRT4XNQlJIRQ4G5Grb0h5dCCX32RnBtME0JFiL+DS/SXbUWgnG4MImUzElB6lt2xaGLStWeYcTDSb0efLJcwlP3Q1/i2tVD6TbsW+c0wyH6ZQm0rsuNfCHzs7EsK8p7G50qwSargksEsSj/hs0Kzb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=NVJeuPLC; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45J5ecNN006698;
+	Wed, 19 Jun 2024 09:51:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=5l96H0uoA+zwgJmW
+	v/Gdxjd+uqpALG7XTijG6E3dQV0=; b=NVJeuPLCSrsUllzX0mwJl1Yu9KaW4HFS
+	88RU1vzD+tF8C0ZrnWZzKMD1+Nqc+5AxKeTXtcXEmAN/YkDO8ue/k1b88k5qtZ/0
+	CvqfmpwqNSihL0ebNWOFe9MP5Is4yibaZs3x7Jjqn/jPQJC8OTBhUAhKmDtXCkBf
+	YscVa14uV4VagXZXuvzoqueniStiOYFuIJLksfgDbqmtcO0O6vLOWyjpYmKFaJYy
+	q2MTMLbcERRQUke2Vn1BbL7K8xRzMVWtOsLxBbyXnbAB+pR3JR+NB1dmZlQci4zg
+	sKCMXxTEpEvI8cB9cqzIr3kTXod8X4EptwZwIaIUnzDXqy5c3MXOUQ==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3yujb10t10-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 19 Jun 2024 09:51:10 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 19 Jun
+ 2024 15:51:09 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Wed, 19 Jun 2024 15:51:09 +0100
+Received: from paulha.crystal.cirrus.com (paulha.ad.cirrus.com [141.131.145.123])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id BD6AA82F2A2;
+	Wed, 19 Jun 2024 14:51:07 +0000 (UTC)
+From: Paul Handrigan <paulha@opensource.cirrus.com>
+To: <broonie@kernel.org>, <lgirdwood@gmail.com>, <linux-sound@vger.kernel.org>,
+        <patches@opensource.cirrus.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Paul Handrigan <paulha@opensource.cirrus.com>
+Subject: [PATCH v4 0/2] Cirrus Logic Family of ADCs
+Date: Wed, 19 Jun 2024 09:50:53 -0500
+Message-ID: <20240619145056.1379266-1-paulha@opensource.cirrus.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -69,46 +72,37 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: WhvLAmXuBW_CRUPsMZM09hcMQXDqFsvi
+X-Proofpoint-GUID: WhvLAmXuBW_CRUPsMZM09hcMQXDqFsvi
+X-Proofpoint-Spam-Reason: safe
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+This patchset provides ASoC support for the latest family
+of Cirrus Logic multichannel, high performance audio ADCs.
+The devices that are supported are CS5302 (2 channel ADC),
+CS5304 (4 channel ADC), and CS5308 (8 channel ADC).
 
-commit 24b333a866a10d4be47b9968b9c05a3e9f326ff5 upstream
+v4 changes:
+- Remove regmap volatile_reg callback since it is not needed.
 
-We currently have a DTC warning with the current DTS due to the lack of
-a suitable #address-cells and #size-cells property:
 
-  DTC     arch/mips/boot/dts/brcm/bcm63268-comtrend-vr-3032u.dtb
-arch/mips/boot/dts/brcm/bcm63268.dtsi:115.5-22: Warning (reg_format): /ubus/timer-mfd@10000080/timer@0:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-arch/mips/boot/dts/brcm/bcm63268.dtsi:120.5-22: Warning (reg_format): /ubus/timer-mfd@10000080/watchdog@1c:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-arch/mips/boot/dts/brcm/bcm63268.dtsi:111.4-35: Warning (ranges_format): /ubus/timer-mfd@10000080:ranges: "ranges" property has invalid length (12 bytes) (parent #address-cells == 1, child #address-cells == 2, #size-cells == 1)
+Paul Handrigan (2):
+  ASoC: dt-bindings: cirrus,cs530x: Add initial DT binding
+  ASoC: cs530x: Support for cs530x ADCs
 
-Fixes: d3db4b96ab7f ("mips: dts: bcm63268: add TWD block timer")
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
-The Fixes tag was partially incorrect which is why this change should
-have been applied to the 6.1 stable tree, but it was not.
+ .../bindings/sound/cirrus,cs530x.yaml         |  85 ++
+ sound/soc/codecs/Kconfig                      |  14 +
+ sound/soc/codecs/Makefile                     |   4 +
+ sound/soc/codecs/cs530x-i2c.c                 |  71 ++
+ sound/soc/codecs/cs530x.c                     | 966 ++++++++++++++++++
+ sound/soc/codecs/cs530x.h                     | 223 ++++
+ 6 files changed, 1363 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
+ create mode 100644 sound/soc/codecs/cs530x-i2c.c
+ create mode 100644 sound/soc/codecs/cs530x.c
+ create mode 100644 sound/soc/codecs/cs530x.h
 
- arch/mips/boot/dts/brcm/bcm63268.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-index 8926417a8fbc..87c75faf4a3b 100644
---- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
-+++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-@@ -109,6 +109,8 @@ timer-mfd@10000080 {
- 			compatible = "brcm,bcm7038-twd", "simple-mfd", "syscon";
- 			reg = <0x10000080 0x30>;
- 			ranges = <0x0 0x10000080 0x30>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 
- 			wdt: watchdog@1c {
- 				compatible = "brcm,bcm7038-wdt";
 -- 
 2.34.1
 
