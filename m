@@ -1,159 +1,177 @@
-Return-Path: <devicetree+bounces-77552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF04590F290
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:45:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8282C90F2C4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 17:46:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D6B8B230D6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 15:45:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 336C9284475
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jun 2024 15:46:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614CA15A85C;
-	Wed, 19 Jun 2024 15:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021C115443A;
+	Wed, 19 Jun 2024 15:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="kUX3t+q6"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="eXGjNNvc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68995158DD0
-	for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 15:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B887A1514EF;
+	Wed, 19 Jun 2024 15:42:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718811679; cv=none; b=cxKJmFwVmY0cbGpwFGO9/DZnIh5cBQxP2MwfV++zgj9C3qjovcJQ2shRnKQnUPoSWakDP+e2hlZONXKpoclkNr/+V0Ms8X1cD4fsyNPBt4DjBYZm/2f8u3vSRjHOCuaXuq76A6ukNoExQHlk3PHkTPyVGclcy603PLnP+IvXSUY=
+	t=1718811738; cv=none; b=kFIXMsQJ+8Cp6TUWjXUIbs2VtWvWyng06yfnYpBTIoeQgUkf/5Dg9TsXuOGBnJQiYYow1gPKxs8GuNnQrHh+3w1TRK08F6WY6g6C9UUfUhj34ZZResDv0YTAEE0TToIxUlIxU/gTcjGXN7OpoV2lv1e2gRrUiNP0jBYaXQSTnNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718811679; c=relaxed/simple;
-	bh=qQty25/2IPJCkenVM9tQdvdenEgFf8HeohkJI9e0LVk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uM524omPJgAEHrJ+gCtz1d7X48Ejmtkdko6LposoDlSR0iC0e80C2jt9RLnr7n+veRJWbT764I+iw57GdVkraCHU8g2h9Zd50RhgMF6IX0fnVFOhxqyHh22z78CR6Dv3cNKTNCWhSWmZzUjqloHG0DHI3t1KP/M7bOSLQnvGJ3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=kUX3t+q6; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42181803bf2so4909275e9.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Jun 2024 08:41:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718811676; x=1719416476; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uhmrjq4H2Oq8xJPevOPzXZFQ+Nl3u1sJLUiSeD49DFE=;
-        b=kUX3t+q64FPwaPYM8on0dgo8kRCTnk5mx2OHX18w1EEJxk//PT9R0GXQI7sP+UW6B7
-         RKmrd232eHLzOApxzDlxKlXUafQXaBAKWKVOKk/lltVZseGXtFqLU+/Nvyg1SG2kQ1D4
-         lTQ01GC1r6n6Cx9Q6unb17cKFyeW2n33xuG+LWwDQ67bCQ86MzXRIY9h+CHoyJ6ai+o3
-         BE4qEcwVi3iYWSR4BOSdtAploNF+4CgRXvOVFAyCNPdRwI5e3JED/P+KOUjpnY9BWUUK
-         AtL/GC+hZ1dsshyXP5nZIQ+QRouScvH6hfdSiPh1gb9tmTzLyg8bkQ5rXxETXiDwiTct
-         RdSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718811676; x=1719416476;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uhmrjq4H2Oq8xJPevOPzXZFQ+Nl3u1sJLUiSeD49DFE=;
-        b=Y6a5xU82hOnRl5fFnS7k5y+sK1pfxJA6fcWFinjIOJsQQejJzo04W3jgH01DTnlX68
-         7Xrg8RTumQDTETQrg8sIlxDBCPWCEWKZmg0Pg1fwTD06dvO+Qma1EQSMOIO+okLjysun
-         d7CAr9603nELJidwV0KfIfYuWZl8uTOBZxa98vwqwEK9L/maJT4gMsmpQiXHwIzv3K/3
-         asKJ+j34FFQvjZHXaTpxD9zlHh6T7tIJ1jJlEeLkt1M+1Dkc7UuxSnLV9n7k5vpwX/ns
-         BUyIX7Ii3cA3hdDSJdE1uLjOOjYKhsdcAukiTo3k6VuV+9XaDLtVHtjOO/tpqMRS6iBz
-         psXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQeO9SWanxFy5MSOuS/+08ESqIWqmEK9DGjNXuhAQw92Xf7/6mJv/qSXUdMfjoEVcEeujno0pg4JAUJRpSQBcce2N3LnlVSOdgpw==
-X-Gm-Message-State: AOJu0YwlkITc4oBOCLcNKDDsbTvuypLieRUG7zd921dWYdZ7qjlgtrbJ
-	u8mdzkt8h3CKCxE3qQH4Pdo2VUSQXQXZEvSZ1BaSOL7JdIsUzsDxFK1j6/nW0po=
-X-Google-Smtp-Source: AGHT+IGjwtUZf3kMWB9g1O1qJeQzBRQZ0qEbWnfWNveuCVuurscQ/RMRjo/RFMkwbrEud2Tb1Hd71w==
-X-Received: by 2002:a05:600c:1d09:b0:422:2f06:92d1 with SMTP id 5b1f17b1804b1-42475296800mr18928745e9.2.1718811675796;
-        Wed, 19 Jun 2024 08:41:15 -0700 (PDT)
-Received: from carbon-x1.. ([2a01:e0a:999:a3a0:819d:b9d2:9c2:3b7a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3607509c785sm17392292f8f.34.2024.06.19.08.41.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jun 2024 08:41:15 -0700 (PDT)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Anup Patel <anup@brainfault.org>,
-	Shuah Khan <shuah@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	linux-kselftest@vger.kernel.org
-Subject: [PATCH 5/5] KVM: riscv: selftests: Add Zaamo/Zalrsc extensions to get-reg-list test
-Date: Wed, 19 Jun 2024 17:39:12 +0200
-Message-ID: <20240619153913.867263-6-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240619153913.867263-1-cleger@rivosinc.com>
-References: <20240619153913.867263-1-cleger@rivosinc.com>
+	s=arc-20240116; t=1718811738; c=relaxed/simple;
+	bh=O9SvN5PDSrTOrdmyamPUNMeLQQeJVEqLKZx0ag1sbZA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=G+sZwhIcF7cSVhkLMTc95PGdX/uBxuP11I1Zotm9UkMqdq4XaBHv6aVPVN0lHLg7V6t9bqW44ZpowqILz+qxvlvAETN0lZsG9utpj3RVEaa+OarsJpdC1DN8edbYWM11/rgVzOZ2UyeMSopK0w83nUn6YPdrJkiGQMQ4ZMAkUqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=eXGjNNvc; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JClcrJ002573;
+	Wed, 19 Jun 2024 17:41:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	67yqfpKh56AKrK0vIV+pIDS3OpXEowZR1XSlRO6rTac=; b=eXGjNNvcd2mXSjDp
+	UWD9btAjEvQpIl3yBRvUBR8hSvsWtCfce/5+b6ro9bOFl5YMg4SHSly61PaMmlRJ
+	odXbdM38FA9MQnHx/UanvJClFwxiKQX47XY00k3/x7CKZkzpOBmIcO40SyUZbVUS
+	/ky3ZwZux2w1aIex5ruBccs8nGwxx3GdDsHSuD4ONWtugWdwqbLiQRsLa0w1JTi5
+	Tsm80xBb93M5ZBA09XFjUv8RKa0Au8oHvjighR0Oj/jy1TpRwmyf/BmRFI/WnC/0
+	DNWoSnGRrO9H7Oqgv/zN0/UT0ND0IB2rUUhH6hoCKqFWilOP/j2xD2mFqpI712c3
+	qBPreg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yuj9n4av8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 19 Jun 2024 17:41:49 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 74ADE4004B;
+	Wed, 19 Jun 2024 17:41:43 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8A446221EB2;
+	Wed, 19 Jun 2024 17:40:22 +0200 (CEST)
+Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 19 Jun
+ 2024 17:40:21 +0200
+Message-ID: <01e435a5-3a69-49a5-9d5e-ab9af0a2af7b@foss.st.com>
+Date: Wed, 19 Jun 2024 17:40:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next,PATCH 2/2] net: stmmac: dwmac-stm32: stm32: add
+ management of stm32mp25 for stm32
+To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Richard Cochran
+	<richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240614130812.72425-1-christophe.roullier@foss.st.com>
+ <20240614130812.72425-3-christophe.roullier@foss.st.com>
+ <4c2f1bac-4957-4814-bf62-816340bd9ff6@denx.de>
+ <09010b02-fb55-4c4b-9d0c-36bd0b370dc8@foss.st.com>
+ <39d35f6d-4f82-43af-883b-a574b8a67a1a@denx.de>
+ <8c3f1696-d67c-4960-ad3a-90461c896aa5@foss.st.com>
+ <3dee3c8a-12f0-42bd-acdf-8008da795467@denx.de>
+ <aee3f6d2-6a44-4de6-9348-f83c4107188f@foss.st.com>
+ <c74f393d-7d0a-4a34-8e72-553ccf273a41@denx.de>
+Content-Language: en-US
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <c74f393d-7d0a-4a34-8e72-553ccf273a41@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-19_02,2024-06-19_01,2024-05-17_01
 
-The KVM RISC-V allows Zaamo/Zalrsc extensions for Guest/VM so add these
-extensions to get-reg-list test.
 
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
----
- tools/testing/selftests/kvm/riscv/get-reg-list.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index 1a5637a6ea1e..70216a1760c3 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -48,7 +48,9 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVINVAL:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVNAPOT:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_SVPBMT:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZAAMO:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZACAS:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZALRSC:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBB:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBC:
-@@ -420,7 +422,9 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
- 		KVM_ISA_EXT_ARR(SVINVAL),
- 		KVM_ISA_EXT_ARR(SVNAPOT),
- 		KVM_ISA_EXT_ARR(SVPBMT),
-+		KVM_ISA_EXT_ARR(ZAAMO),
- 		KVM_ISA_EXT_ARR(ZACAS),
-+		KVM_ISA_EXT_ARR(ZALRSC),
- 		KVM_ISA_EXT_ARR(ZBA),
- 		KVM_ISA_EXT_ARR(ZBB),
- 		KVM_ISA_EXT_ARR(ZBC),
-@@ -950,7 +954,9 @@ KVM_ISA_EXT_SIMPLE_CONFIG(sstc, SSTC);
- KVM_ISA_EXT_SIMPLE_CONFIG(svinval, SVINVAL);
- KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
- KVM_ISA_EXT_SIMPLE_CONFIG(svpbmt, SVPBMT);
-+KVM_ISA_EXT_SIMPLE_CONFIG(zaamo, ZAAMO);
- KVM_ISA_EXT_SIMPLE_CONFIG(zacas, ZACAS);
-+KVM_ISA_EXT_SIMPLE_CONFIG(zalrsc, ZALRSC);
- KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
- KVM_ISA_EXT_SIMPLE_CONFIG(zbb, ZBB);
- KVM_ISA_EXT_SIMPLE_CONFIG(zbc, ZBC);
-@@ -1012,7 +1018,9 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&config_svinval,
- 	&config_svnapot,
- 	&config_svpbmt,
-+	&config_zaamo,
- 	&config_zacas,
-+	&config_zalrsc,
- 	&config_zba,
- 	&config_zbb,
- 	&config_zbc,
--- 
-2.45.2
-
+On 6/19/24 15:14, Marek Vasut wrote:
+> On 6/19/24 9:41 AM, Christophe ROULLIER wrote:
+>
+> Hi,
+>
+>>>>>>>> +static int stm32mp2_configure_syscfg(struct 
+>>>>>>>> plat_stmmacenet_data *plat_dat)
+>>>>>>>> +{
+>>>>>>>> +    struct stm32_dwmac *dwmac = plat_dat->bsp_priv;
+>>>>>>>> +    u32 reg = dwmac->mode_reg;
+>>>>>>>> +    int val = 0;
+>>>>>>>> +
+>>>>>>>> +    switch (plat_dat->mac_interface) {
+>>>>>>>> +    case PHY_INTERFACE_MODE_MII:
+>>>>>>>> +        break;
+>>>>>>>
+>>>>>>> dwmac->enable_eth_ck does not apply to MII mode ? Why ?
+>>>>>>
+>>>>>> It is like MP1 and MP13, nothing to set in syscfg register for 
+>>>>>> case MII mode wo crystal.
+>>>>>
+>>>>> Have a look at STM32MP15xx RM0436 Figure 83. Peripheral clock 
+>>>>> distribution for Ethernet.
+>>>>>
+>>>>> If RCC (top-left corner of the figure) generates 25 MHz MII clock 
+>>>>> (yellow line) on eth_clk_fb (top-right corner), can I set 
+>>>>> ETH_REF_CLK_SEL to position '1' and ETH_SEL[2] to '0' and feed ETH 
+>>>>> (right side) clk_rx_i input with 25 MHz clock that way ?
+>>>>>
+>>>>> I seems like this should be possible, at least theoretically. Can 
+>>>>> you check with the hardware/silicon people ?
+>>>> No it is not possible (it will work if speed (and frequency) is 
+>>>> fixed 25Mhz=100Mbps, but for speed 10Mbps (2,5MHz) it will not work.
+>>>
+>>> Could the pll4_p_ck or pll3_q_ck generate either 25 MHz or 2.5 MHz 
+>>> as needed in that case ? Then it would work, right ?
+>>
+>> Yes you can set frequency you want for pll4 or pll3, if you set 25MHz 
+>> and auto-negotiation of speed is 100Mbps it should work (pad ETH_CK 
+>> of 25MHz clock the PHY and eth_clk_fb set to 25MHz for clk_RX)
+>>
+>> but if autoneg of speed is 10Mbps, then 2.5MHz is needed for clk_RX 
+>> (you will provide 25Mhz)
+>
+> What if:
+>
+> - Aneg is 10 Mbps
+> - PLL4_P_CK/PLL3_Q_CK = 2.5 MHz
+> - ETH_REF_CLK_SEL = 1
+> - ETH_SEL[2] = 0
+>
+> ?
+>
+> Then, clk_rx_i is 2.5 MHz, right ?
+Yes that right
+>
+> Does this configuration work ?
+For me no, because PHY Ethernet Oscillator/cristal need in PAD 25Mhz or 
+50Mhz, I think it is does not work if oscillator frequency provided is 
+2.5MHz (To my knowledge there is no Ethernet PHY which have oscillator 
+working to 2.5MHz)
+>
+>> . For RMII case, frequency from pll (eth_clk_fb) is automatically 
+>> adjust in function of speed value, thanks to diviser /2, /20 with 
+>> mac_speed_o.
 
