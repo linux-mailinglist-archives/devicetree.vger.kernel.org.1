@@ -1,187 +1,256 @@
-Return-Path: <devicetree+bounces-77713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2FA190FBE4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 06:14:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E2290FC34
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 07:35:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D11451C20BC0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 04:14:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21D14283FC5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 05:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75663224CE;
-	Thu, 20 Jun 2024 04:14:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB39B2C1A2;
+	Thu, 20 Jun 2024 05:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="DGr7OTGN"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OAsfG+pf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82562230F;
-	Thu, 20 Jun 2024 04:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.148.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F22A1EEFC;
+	Thu, 20 Jun 2024 05:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718856883; cv=none; b=Ew4YtmpbJgvL5NSjSXnK2+qvQfISMED61Ws9O2LMX2XHQqR2WUqMTU+uLjsSDrxD1/Fm40KsZFYqdeaRrRUo23u2/yoABqbpV85B8IaL1zKaC/3RTnomRIhNmzIITsSi0qU0bpnumt0+3bVl74ijVUr4w4IoAySO2cM0HQ71smI=
+	t=1718861719; cv=none; b=j15qUO3bmuSaNsPe1hutJZIyNtSXbLM0KX69A2GOXJHlBZSw6EOOu8NUY7pC1vf9Zjyp0JD1MWtajGCZfWlYU+8VRiUo9KRRUfz1dwEcOLxqDWvudUP5k4r/OzJkbHFqysM/i2XyByUqycfR/bnl5nZP0Z6wR3/kStPQ+EFtOe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718856883; c=relaxed/simple;
-	bh=YQIn1MkMpj7lY0d17NP7sN5KihKvvgi0NIlPgb28b98=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a6R/Uo/NWeqjaxkl/j1kIU0pNYYvZynpONnSH2egsdU8GAnTEHz0xoIje6JJ+CqsMr1qsVSmqj8BYMz5xK0o5g0HGyPoI1RoiiaZIDWZ1LcNErekDIaHkS9aztENWb1ZWEjggZ+SZQO8LrbSU11ApQ5YyPFw/OOUzv9lTE+2S24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=DGr7OTGN; arc=none smtp.client-ip=67.231.148.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45K2BDqK011177;
-	Wed, 19 Jun 2024 21:14:32 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pfpt0220; bh=SgSc/yGNsoojtkr4IzPFWAM/9
-	qskkZPIOilqTLxkI50=; b=DGr7OTGNieTX72350G3XDFBcweuuO4cI1vG02Qx/N
-	Pq30xy1eN7lrccD9Hbd74fQGfeTP7oQGBiRVlXhWTjLnT+hti1MdlURUWSSAbzRN
-	v+Kz4aoG4NX3mP3gBKPFCGP8oG044ov/Qwo9B5n2BJp4GHJJ44CcNaBO4e64dN/R
-	L4stgCxvo2j/iNNbKt9iGy1r4oKTdI2T48OsAdnL1TNlZhMZgKMdDKEC6POr56of
-	I+Qb5jtXztzfp7o6df4+uc/RqQiIq/4C0MxjUYZLP6f/LmuLGA4kVpu8O592Z4VE
-	I+/XDmxgCApAZFD4clStPbrdv4Yam9/NLkusXq2ItO7FA==
-Received: from dc6wp-exch02.marvell.com ([4.21.29.225])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3yvbdy89nv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Jun 2024 21:14:31 -0700 (PDT)
-Received: from DC6WP-EXCH02.marvell.com (10.76.176.209) by
- DC6WP-EXCH02.marvell.com (10.76.176.209) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Wed, 19 Jun 2024 21:14:30 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC6WP-EXCH02.marvell.com
- (10.76.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 19 Jun 2024 21:14:30 -0700
-Received: from hyd1403.caveonetworks.com (unknown [10.29.37.84])
-	by maili.marvell.com (Postfix) with SMTP id 74B3B3F7062;
-	Wed, 19 Jun 2024 21:14:26 -0700 (PDT)
-Date: Thu, 20 Jun 2024 09:44:25 +0530
-From: Linu Cherian <lcherian@marvell.com>
-To: James Clark <james.clark@arm.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
-        <gcherian@marvell.com>, Anil Kumar Reddy <areddy3@marvell.com>,
-        Tanmay Jagdale <tanmay@marvell.com>, <suzuki.poulose@arm.com>,
-        <mike.leach@linaro.org>
-Subject: Re: [PATCH v9 5/7] coresight: tmc: Add support for reading crash data
-Message-ID: <20240620041425.GE125816@hyd1403.caveonetworks.com>
-References: <20240605081725.622953-1-lcherian@marvell.com>
- <20240605081725.622953-6-lcherian@marvell.com>
- <1b0c8c7e-2cf2-49a9-9120-3ced46f2df08@arm.com>
+	s=arc-20240116; t=1718861719; c=relaxed/simple;
+	bh=Vf9T+7tWeRN7n8TUR8lR1u6ymwYkzPDqzSOENXar0KI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=O3kdWjc1qnu8ZN7A5XfDhJsCOJqpiBU54j/VWnrNzV5FqT+u2JLB01lz73trs/Ou0AjXZ8aVqgvPVI7KfaBgAopRvIY3aNXwnt+0weCqV8tsEaGR8B6mTxFQBHIkE/IsCqwrbLQsFyuow3ZltITdCVtPKg0z0W3fUecToYPLaB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OAsfG+pf; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45K5YuUr080844;
+	Thu, 20 Jun 2024 00:34:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718861696;
+	bh=BShOhwlIAgzIEAPpYVZghIKZCGd+dk13oM7bFUNmrJc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=OAsfG+pfJTyr6H9c2diksIh4WWZ0Ti0QboMH1yfLLlwIppPWGJygS+FIRCOfNGQVE
+	 S6kmfK41oysGGtdEfR/pm9DOHjZqOBSW5nHnMkuzvfK94VwEeBwnXqZ1Bb4gzNa0qr
+	 aORHupNSOE3wNx19CzFk0zmGjvYlPC7aDfrRdQJE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45K5YuFM061838
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 20 Jun 2024 00:34:56 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
+ Jun 2024 00:34:56 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 20 Jun 2024 00:34:56 -0500
+Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45K5YqaG070553;
+	Thu, 20 Jun 2024 00:34:52 -0500
+Message-ID: <8e49039a-e700-49de-9b95-67babb4f3e8d@ti.com>
+Date: Thu, 20 Jun 2024 11:04:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1b0c8c7e-2cf2-49a9-9120-3ced46f2df08@arm.com>
-X-Proofpoint-ORIG-GUID: IHPwesqrCBc5RZTccJ_VODNiKAGbJONw
-X-Proofpoint-GUID: IHPwesqrCBc5RZTccJ_VODNiKAGbJONw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-20_01,2024-06-19_01,2024-05-17_01
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am642-tqma64xxl-mbax4xxl: add PRU
+ Ethernet support
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Suman Anna
+	<s-anna@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux@ew.tq-group.com>
+References: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
+ <20240619112406.106223-2-matthias.schiffer@ew.tq-group.com>
+Content-Language: en-US
+From: MD Danish Anwar <danishanwar@ti.com>
+In-Reply-To: <20240619112406.106223-2-matthias.schiffer@ew.tq-group.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Matthias,
 
-Hi James,
-
-
-
-On 2024-06-05 at 16:00:39, James Clark (james.clark@arm.com) wrote:
+On 19/06/24 4:54 pm, Matthias Schiffer wrote:
+> Add PRU Ethernet controller and PHY nodes, as it was previously done for
+> the AM64x EVM Device Trees.
 > 
+> Differing from the EVM, we add the virtual ethernet controller device
+> below &icssg1 instead of the top level. Besides being slighly more
+> accurate, this has the advantage that the node is implicitly disabled
+> when &icssg1 has status = "disabled" (which the TQMa64xxL bootloader
+> adds as a fixup when running on an AM64x variant without ICSSG support),
+> thus avoiding leaving the ethernet device in EPROBE_DEFER limbo forever.
 > 
-> On 05/06/2024 09:17, Linu Cherian wrote:
-> > * Introduce a new mode CS_MODE_READ_CRASHDATA for reading trace
-> >   captured in previous crash/watchdog reset.
-> > 
-> > * Add special device files for reading ETR/ETF crash data.
-> > 
-> > * User can read the crash data as below
-> > 
-> >   For example, for reading crash data from tmc_etf sink
-> > 
-> >   #dd if=/dev/crash_tmc_etfXX of=~/cstrace.bin
-> > 
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> ---
 > 
-> Hi Linu,
+> k3-am642-evm.dts uses "ti-pruss/am64x-sr2-*" filenames instead of
+> "ti-pruss/am65x-sr2-*", however it is not clear to me where these would
+> come from - I'm not aware of any firmwares named like that.
 > 
-> I think you are missing the removal of the new crash file when the
-> device is unloaded.
+
+During upstreaming of icssg1-eth node in "k3-am642-evm.dts", it was
+raised that the firmware name should be am64x-sr2* instead of am65x-sr2* [1]
+
+> So far, these firmwares are not in mainline linux-firmware; TI's
+> reference BSPs include firmware from ti-linux-firmware [1], and the same
+> "am65x-sr2" firmwares are used on AM65x and AM64x SoCs.
 > 
-> If you reload the module you get some errors:
+
+Yes currently the firmware used for both AM65x and AM64x is am65x-sr2*,
+but that firmware name is not taken from device tree. It is directly
+encoded in the driver. Plan is to have different firmware for both SoCs
+in future and when that happens driver will read the firmware name from
+device tree. For that case, the firmware name here is "am64x-sr2*"
+
+[1] https://lore.kernel.org/all/20231207134343.ufiy2owik5kn3y2r@degrease/
+
+> [1] https://git.ti.com/gitweb?p=processor-firmware/ti-linux-firmware.git;a=tree;f=ti-pruss;h=a220bdc6dce5e11845b5c6337ff9b2d329aee196;hb=refs/heads/ti-linux-firmware
 > 
->   # rmmod coresight_tmc
->   # modprobe coresight_tmc dyndbg=+p
+>  .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts    | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
 > 
->   kobject: kobject_add_internal failed for crash_tmc_etf0 with -EEXIST,
->     don't try to register things with the same name in the same
->     directory.
->   coresight tmc_etf0: Failed to setup user interface for crashdata
->   sysfs: cannot create duplicate filename '/devices/virtual
->    /misc/crash_tmc_etr0'
-> 
-> I'm not sure if it's related, but there are also some kasan errors at
-> the same time which I haven't seen before:
->
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+> index 1f4dc5ad1696a..0eff392a29b00 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+> @@ -24,6 +24,8 @@ / {
+>  
+>  	aliases {
+>  		ethernet0 = &cpsw_port1;
+> +		ethernet1 = &icssg1_emac0;
+> +		ethernet2 = &icssg1_emac1;
+>  		i2c1 = &mcu_i2c0;
+>  		mmc1 = &sdhci1;
+>  		serial0 = &mcu_uart0;
+> @@ -154,6 +156,104 @@ &epwm5 {
+>  	status = "okay";
+>  };
+>  
+> +&icssg1 {
+> +	icssg1_eth: ethernet {
+> +		compatible = "ti,am642-icssg-prueth";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pru_icssg1_rgmii1_pins>, <&pru_icssg1_rgmii2_pins>;
+> +		interrupt-parent = <&icssg1_intc>;
+> +		interrupts = <24 0 2>, <25 1 3>;
+> +		interrupt-names = "tx_ts0", "tx_ts1";
+> +		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
+> +		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
+> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+> +			    "rx0", "rx1";
+> +		sram = <&oc_sram>;
+> +		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
+> +		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
+> +		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
+> +				      <2>,
+> +				      <2>,
+> +				      <2>,	/* MII mode */
+> +				      <2>,
+> +				      <2>;
+> +		ti,mii-g-rt = <&icssg1_mii_g_rt>;
+> +		ti,mii-rt = <&icssg1_mii_rt>;
+> +		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
+> +
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			icssg1_emac0: port@0 {
+> +				reg = <0>;
+> +				phy-handle = <&icssg1_phy0c>;
+> +				phy-mode = "rgmii-id";
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +
+> +			icssg1_emac1: port@1 {
+> +				reg = <1>;
+> +				phy-handle = <&icssg1_phy03>;
+> +				phy-mode = "rgmii-id";
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&icssg1_mdio {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pru_icssg1_mdio_pins>;
+> +	status = "okay";
+> +
+> +	/* phy-mode is fixed up to rgmii-rxid by prueth driver to account for
+> +	 * the SoC integration, so the only rx-internal-delay and no
+> +	 * tx-internal-delay is set for the PHYs.
+> +	 */
+> +
+> +	icssg1_phy03: ethernet-phy@3 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0x3>;
+> +		reset-gpios = <&main_gpio1 47 GPIO_ACTIVE_LOW>;
+> +		reset-assert-us = <1000>;
+> +		reset-deassert-us = <1000>;
+> +		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +	};
+> +
+> +	icssg1_phy0c: ethernet-phy@c {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0xc>;
+> +		reset-gpios = <&main_gpio1 51 GPIO_ACTIVE_LOW>;
+> +		reset-assert-us = <1000>;
+> +		reset-deassert-us = <1000>;
+> +		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+> +	};
+> +};
+> +
+> +
+>  &main_gpio0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_gpio0_digital_pins>,
 
 
-Okay, somehow i missed testing with modules. Will fix those.
-
-
->   BUG: KASAN: slab-use-after-free in strcmp+0x94/0xd0
->   Read of size 1 at addr ffff00080b271be0 by task modprobe/570
->   CPU: 2 PID: 570 Comm: modprobe Not tainted 6.9.0-rc4+ #71
->   Hardware name: ARM LTD ARM Juno Development Platform/ARM Juno
-
-
-Okay. Will check if its reproducible and related.
-
-Thanks.
-
-
->     Development Platform, BIOS EDK II Oct 19 2019
->   Call trace:
->    dump_backtrace+0x100/0x158
->    show_stack+0x24/0x38
->    dump_stack_lvl+0x3c/0x98
->    print_report+0x178/0x508
->    kasan_report+0xc0/0x120
->    __asan_report_load1_noabort+0x20/0x30
->    strcmp+0x94/0xd0
->    cti_add_assoc_to_csdev+0x174/0x430 [coresight_cti]
->    coresight_register+0x414/0x500 [coresight]
->    __tmc_probe+0xd40/0x1340 [coresight_tmc]
->    tmc_probe+0x60/0x98 [coresight_tmc]
->    amba_probe+0x604/0x838
->    really_probe+0x318/0x780
->    __driver_probe_device+0x168/0x318
->    driver_probe_device+0x78/0x2a0
->    __driver_attach+0x22c/0x538
->    bus_for_each_dev+0x1bc/0x1f0
->    driver_attach+0x54/0x70
->    bus_add_driver+0x2a8/0x4c0
->    driver_register+0x168/0x2b8
->    amba_driver_register+0x74/0x98
->    coresight_init_driver+0x34/0xa8 [coresight]
->    init_module+0x34/0xfb8 [coresight_tmc]
->    do_one_initcall+0x1a0/0x8d0
->    do_init_module+0x1f8/0x588
->    load_module+0x3c20/0x44c0
->    __arm64_sys_finit_module+0x3c8/0x638
->    invoke_syscall+0x78/0x218
->    el0_svc_common+0x160/0x1d8
->    do_el0_svc+0x50/0x68
->    el0_svc+0x4c/0xc0
->    el0t_64_sync_handler+0x84/0x100
->    el0t_64_sync+0x190/0x198
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+-- 
+Thanks and Regards,
+Danish
 
