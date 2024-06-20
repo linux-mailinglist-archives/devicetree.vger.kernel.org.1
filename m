@@ -1,149 +1,131 @@
-Return-Path: <devicetree+bounces-77754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADBA90FDED
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:40:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A10590FE1A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:57:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75E95B20EDA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 07:40:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 355921C20D50
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 07:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56EB4C62B;
-	Thu, 20 Jun 2024 07:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7A250288;
+	Thu, 20 Jun 2024 07:57:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="AZn2oVNb"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="bzPZ+SsJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3173E21364
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 07:39:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381774CDE0;
+	Thu, 20 Jun 2024 07:57:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718869203; cv=none; b=k3hGnG1INCWhFZdIEB+inL33GhM8TZyLa3TTzz1obEY6b7kpjJDmHgsBkfqQTF1R/+lVJjfJhF1WT7eqrhfV2WhyEn0Avua717X/logll/cEU7m/i/98Vg1jZNu5PMx3e1GAxM1xvoNc7nsFvGRNd61Gq0Qtx64cCUUCZdA7ZmY=
+	t=1718870260; cv=none; b=N98r40+/ktxT1pWRiKrPuEDbZvxxmLumFSXMmR62QV2briWwssTcD5oe8rRNAsTnYuCDgBJby4eG15l8EuhIiXebkReywA092XmWOHyxaT7d0GyLgxRxfQyKVMHpTJWH1Q3BYbx/8tR6vS3419dN+tgQB7F9prJfI1YS/SCYv9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718869203; c=relaxed/simple;
-	bh=/yPsOddln1Esdy1u8224EnBJL9NW6sXJz7xHSt84Uxs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J63Y3DY3nF1nRlZvGJnPhbvaMSZrpW5PbKD40AQiO+UjLc50zXOKEkFPDca7G8pevdfkXYDZWsiXIWFEZvre/Shd1ijVZ4N893wCaw3RDyPOTZHS/kd3c4eJjWu7l1qCOSO7ivfRZedeQMBxbmLkW57YnxB1NfHpl/bUnyUDPes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=AZn2oVNb; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=bGVr
-	+yK03jS/+Uz4gbUSq4VhW8opj+zgNA5uyq5XFro=; b=AZn2oVNbUjatESfxtfvo
-	g9Vs+Z1+vmJTNMPzGTVq+DU1MHCNvXNXDCq1C31C4iQQvN8B/lLqlQB3YdWUBa/2
-	9MysEn4I9s+pFFa2HSTKFgaqPaHzkzTN1lFejJhlFnw4zx1WC9wmdmUz3Yt0W0a1
-	x/gdjkCFZLtYyPRCn8CNt+oz3xmXZwds5inJ2uinfj0jQcwsoxSz94uNYYkVxRRs
-	ayQF7yuUtaSAc5vu+Z2uZMZ8Dryshf43DwG/YlIbVslaJ26588iAr7TlKjWAsomR
-	C15X68AddF9Ye0GVrfbJlGoVDo3wm3XXgE9Nswo61ismm8YoN1afxJiG2uZ7Zddh
-	1g==
-Received: (qmail 928080 invoked from network); 20 Jun 2024 09:39:52 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Jun 2024 09:39:52 +0200
-X-UD-Smtp-Session: l3s3148p1@yyOYa00bXqEgAwDPXzjQABqqX1QYyOSW
-Date: Thu, 20 Jun 2024 09:39:51 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: linux-mmc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P)
- SoC
-Message-ID: <o7tswznmyk6gxoqfqvbvzxdndvf5ggkyc54nwafypquxjlvdrv@3ncwl5i5wyy3>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>, linux-mmc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240613091721.525266-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240613091721.525266-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <prdvmtsp35yy2naohivbrya3go6vh5ji2cdjoebw3ovditcujo@bhck6tca6mhj>
- <CA+V-a8u6KAFp1pox+emszjCHqvNRYrkOPpsv5XBdkAVJQMxjmA@mail.gmail.com>
+	s=arc-20240116; t=1718870260; c=relaxed/simple;
+	bh=36ksXXCoUERjDciqyomYjJO46lVtpFe9wPdrAkpcBis=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bD/NzCv0p0JWyQ5PJka+B/EGPxKBFI4sJeKG2zGRqne8cTXthKLdhUEmKMG63l6NICqllRA7UdFoH0FGb3S+B70uuLiEY4Pnd8n3otyqnovzzYDNbmGhz7vhLHEw5yCy2vUWj+ShJ8c7kDfvLYObq6JvLTdCllBTTa5jucWfTYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=bzPZ+SsJ; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718870259; x=1750406259;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=36ksXXCoUERjDciqyomYjJO46lVtpFe9wPdrAkpcBis=;
+  b=bzPZ+SsJ1jJkDw6xwdmlSQ+/nanJvrZmwDV7qeVAbWJDRqCJ+oiKlmIC
+   0nyvfoPn8s9gAzP974G13nC2Vj5V0ShKtZsBqoFnlcDiA1f2e98FVi5DH
+   1y1g6I9DrfnLnKGYGTdOPzEwZPQg7bkQCLGHb1LlxSZ+TzjPPXwmnF2Yp
+   HQ0/QDMvFqJjiwq/xX4fUUouehyf3QJiJrwNpfbHD3dyekh/IP+059i8n
+   TMGGXBNVpS8vCfksP6zW3Tf1xEZ/98o+9AAFdmkwNkVTxYG8+VFnqKzXs
+   uPE5TVQ38OJTBeBGh/CWDraK15JyWuul+VmHIfM1a2oOheVxpg/rn6WS/
+   A==;
+X-CSE-ConnectionGUID: 0IakRMRFTkalAgulpU58WA==
+X-CSE-MsgGUID: Zp8ATRj5TgmP6rT6IGHEBg==
+X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
+   d="asc'?scan'208";a="28280635"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Jun 2024 00:57:37 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 20 Jun 2024 00:57:21 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 20 Jun 2024 00:57:18 -0700
+Date: Thu, 20 Jun 2024 08:56:59 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Jakub Kicinski <kuba@kernel.org>
+CC: Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>, Conor Dooley
+	<conor@kernel.org>, <florian.fainelli@broadcom.com>,
+	<bcm-kernel-feedback-list@broadcom.com>, <andrew@lunn.ch>,
+	<hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <davem@davemloft.net>,
+	<edumazet@google.com>, <pabeni@redhat.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 3/4] dt-bindings: ethernet-phy: add optional brr-mode
+ flag
+Message-ID: <20240620-eskimo-banana-7b90cddfd9c3@wendy>
+References: <20240619150359.311459-1-kamilh@axis.com>
+ <20240619150359.311459-4-kamilh@axis.com>
+ <20240619-plow-audacity-8ee9d98a005e@spud>
+ <20240619163803.6ba73ec5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="33ovhsmrkgytchwi"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="V6XhR9n98oENxy/Y"
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8u6KAFp1pox+emszjCHqvNRYrkOPpsv5XBdkAVJQMxjmA@mail.gmail.com>
+In-Reply-To: <20240619163803.6ba73ec5@kernel.org>
 
-
---33ovhsmrkgytchwi
-Content-Type: text/plain; charset=us-ascii
+--V6XhR9n98oENxy/Y
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+On Wed, Jun 19, 2024 at 04:38:03PM -0700, Jakub Kicinski wrote:
+> On Wed, 19 Jun 2024 18:36:16 +0100 Conor Dooley wrote:
+> > > Signed-off-by: Kamil Hor=E1k - 2N <kamilh@axis.com> =20
+> >=20
+> > Please fix your SoB and from addresses via your gitconfig as I told you
+> > to in response to the off-list mail you sent me. You also dropped my Ack
+> > without an explanation, why?
+>=20
+> +1, possibly repeating what Conor already said but the common
+> format if 2N is your employer or sponsor of the work would be:
 
-> I did give it a try with platform_driver_probe() and failed.
+The explanation I was given was that Axis is the parent company of
+2N.
 
-Ok, thanks for trying nonetheless!
+>   Signed-off-by: Kamil Hor=E1k (2N) <kamilh@axis.com> =20
 
-> - Firstly I had to move the regulator node outside the SDHI node for
-> platform_driver_probe() to succeed or else it failed with -ENODEV (at
-> https://elixir.bootlin.com/linux/latest/source/drivers/base/platform.c#L953)
+> --=20
+> pw-bot: cr
 
-This makes sense to me because it is just a "regular" regulator.
+BTW Jakub, am I able to interact with the pw-bot, or is that limited to
+maintainers/senior netdev reviewers? Been curious about that for a
+while..
 
-> - In Renesas SoCs we have multiple instances of SDHI, the problem
-> being for each instance we are calling platform_driver_probe(). Which
-> causes a problem as the regulator node will use the first device.
-
-I see... we would need a reg property to differentiate between the
-internal regulators but that is already used by the parent SDHI node.
-
-Okay, so let's scrap that idea. However, we need to ensure that we can
-still have an external regulator. Seeing the bindings, it looks like you
-enable the internal regulator with the "vqmmc-r9a09g057-regulator"
-property? I wonder now if we can simplify this to an
-"use-internal-regulator" property because we have 'compatible' already
-to differentiate? Needs advice from DT maintainers, probably.
-
-> Let me know if I have missed something obvious here.
-
-Nope, all good.
-
-> > Don't we need REGULATOR_CHANGE_VOLTAGE here as well? Or is this implicit
-> > because of REGULATOR_VOLTAGE? Can't find this, though.
-> >
-> I will investigate it.
-
-Thank you.
-
-And happy hacking,
-
-   Wolfram
-
-
---33ovhsmrkgytchwi
+--V6XhR9n98oENxy/Y
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZz3MQACgkQFA3kzBSg
-KbZX2A//e7lZCY3V/QM4Kxz/32nrGxuFsbxpiA5GWvyWGqNLNrbbheU+sQkcRVF9
-Om1EyiYx/xWGdoTpSrQyislS0dRLIBw6BRs8XTq5iBO4iFGyoqhY/5t0+f+eNpc3
-TN9FnvuKFEI6BzuuBoHlJfBtJY2oCDtuWJU5eW4AheUFSzCP2zUDEanbSVBxEHDs
-giF7r1eYCCBH4k8CqryVsl6bLSdpmoO5S+tQpW9df0h9SE10dqtyLG++1UzyK4//
-n1E4trQRXHoWUBgK2IgDYCLD6JWAox4LI+oxSSYievnRKMIMZ8wnoecWNq1JWwvT
-vtuYIVAAbkVpTwrbGebxhHhd/wA5E8ns7eG7zdgmOUV1RAK5AhtW/lBuKR2B8ACU
-zWlDtQkibA9vf7a3wAwia8tMczbPoKzlhUI+okEVukI5Hngok91fitnfGROMV7gA
-XbNChfWtxkKXg2VoCfNcx9b1teHMn4F4A4jGToCIjCe5Ux6MBsVUS5LY1kSld1YH
-p730G8T9BoDcPjqWPwhXL+X7fkuGLx74DE4QbGTZ/NisYl/PYxa2UNyud1GPp7oB
-j43cInw/bppQ+vcbK4R36Q/7IvCdo1ZbAQh+e0V6FlDEnCl/c2Quo3QWsnruc2GM
-XV9rXr0n+vj4uRcsdqRHTg0jHJbLZEv+GUr+Y5tJlTpuDOl9JtA=
-=Gdi4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnPgvwAKCRB4tDGHoIJi
+0rIOAPwOpz7uD4Wx4/+KNK7iRAV0YSft1SA0VMjBuPsib5LhSgD+KwLQ/s3HGXbp
+ubQwIM6/G6JafosTasrGN1m2W4UAywA=
+=q30j
 -----END PGP SIGNATURE-----
 
---33ovhsmrkgytchwi--
+--V6XhR9n98oENxy/Y--
 
