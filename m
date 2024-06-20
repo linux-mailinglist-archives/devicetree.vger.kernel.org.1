@@ -1,157 +1,146 @@
-Return-Path: <devicetree+bounces-78125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14789911187
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:55:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8BB911244
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 21:37:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 817E31F2312F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:55:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D1DB1C22991
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 19:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BBA1A4F17;
-	Thu, 20 Jun 2024 18:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A8C1B9ADC;
+	Thu, 20 Jun 2024 19:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0EVECT2X"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="C77MmbHS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD101AB8E7
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 18:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFDA152F71
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 19:37:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718909739; cv=none; b=B1U/O2r0dSXHpW5LYrrIt+Ful1XYM1/EYOTTH9YYZfOviXEzwE4RJsHysPXDhbgncQUCDOZao0238DNB1uDr5jakKNj6swk2+mkW1yOjS93K5AkyydmWj6bcB3jA2yYQ7fQ+5IE28eDKsQ0Y3X8JbtYaJBOKCBt1Bk0fMWfNzPg=
+	t=1718912244; cv=none; b=DhGxBoiVdCCkj/irXk1Mxh88krcWEtlfA+CmAl/I/QtTy2IGpuxHcTfnLefiz/ZhsJ9GXv8Sshbb2Pk4hCPCzQnAFurpyHSxfyxs/HeW8pgiJG8OndeohmMjbcz18eGfeJ7YYqO1IdsxfgZg58z60tYF33CaYza9HaS9CNIGKOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718909739; c=relaxed/simple;
-	bh=H/R3HcK7gnjZXGR/Qc/zm33fza7/aCJqu6TNxANcPQk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mR01mBEx7osMWSv+AkX0FgbAXMgpzW+X+0y4SQBFVM6KScr1G7qSrnB93AemNS4gmtyxeou9mQPROFYq0PEfWYzrhVS/5Nnhd+xdofgmzdKaoXOyMp8MNtt4Yt89JrD7AsEfDw8FOQH8g5o2LRIlFWfX7GvVvF0fYxFvV1s8R6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0EVECT2X; arc=none smtp.client-ip=209.85.160.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-259884ef4ddso618939fac.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 11:55:36 -0700 (PDT)
+	s=arc-20240116; t=1718912244; c=relaxed/simple;
+	bh=rXsyJA9QBMX+RibxYe3uJ4xaYsp1C4y1HPJLv7IepjE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=mJ34VV/blVjlJ4ptyTgjENUuyorIInEq6EeTcKj359wIyXvC6TSCydddSkU8qeUkr4BRiwAhP64fsBsT/Iw5hpBQmbPp9t/ZTx9PKCpyQ5n+DlxrqMpD6LdIA1BpL4RWcIFlGMNWDbpL6hw6xoSAiJ1Wyi0GkO5fZMXBebpcQ/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=C77MmbHS; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6b06bb80d7dso6313756d6.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 12:37:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1718909736; x=1719514536; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H/R3HcK7gnjZXGR/Qc/zm33fza7/aCJqu6TNxANcPQk=;
-        b=0EVECT2XaJC9U234mXYaAVyuzikCIduHjCVWW2HvSwy3pfchbhwSxiC+BvSCogJabr
-         Y/C1AhrZws67l4vIowRww6QEPCb1JnZoXMICAmLhcEARdwK1RqAtxupOd2ecM+iODfQ3
-         mV4Dv+4PmYJuqGIBvwKghS1cmWx2wgx2bW6tswkoQGZbcwVuDxKb2MNKpgrYOGEibVTK
-         qpxogE0VT/T9oEbbbsAfz7oQNww/ou8AEb+rVBO8p2ZbOijpC2czWW9YsLlONnLtO+WO
-         zlF0MsVkTg3U+f/RJ1Y7M9xUMvRA/yu4GAXGZqD+CQQjFz7vXTcatctRGmf3r5heyt1M
-         mmTA==
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1718912241; x=1719517041; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=H4Z+ybUYMauqZ31ugavPoL4O/Q0wanX4Mqqn+IQJwQQ=;
+        b=C77MmbHSlvfgIKxKrCPFvxcLzpqVEWqj6e2AcZu2DrIpqSxszEGhLFdrfiilCnZd+q
+         G0QKvZzsbPT8VBq1MVlDeGmDmdcuxi8t+62a+H+amepDOjfiCiAawZ5a5GOZwc3aZw9l
+         mQYhneBvWK97l19IamULSrkjnraFCL5V1TIccy5IR2tjxiCqBNCI+BB3bQEHjL9mfzSn
+         1ULDD34YiNprsLdUcq41z8nuwAMckJBDFhdQr+Gd6jvXLX5ygTmEftq+SAt/fN9vSrqg
+         iFxtCHk3mUYUt4OcuA3+9xnRss3I2INiiBeXZworAIzSnG1nYtZKbVO+zxEco5sUwYL0
+         zyKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718909736; x=1719514536;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H/R3HcK7gnjZXGR/Qc/zm33fza7/aCJqu6TNxANcPQk=;
-        b=M2Pcln2XB9dACqwIakj2GuwXCGoCo6Cq+ExFnJ1+yiSAVEDTHget/AOy/Gvt0C+ZxV
-         /Q0q0pYBzf4BrgQChcONCrC/Pgoz37dH4/xC5ckYgVprL4UTiFikewzVj+FmRIFfAIoB
-         J1CJjY6+Gwlbawc7baaLyaYjahi0CxgXWDY0sMMb1N8xzMqrqgIDR1P64z0cAhgMYUCO
-         mDIHthanh9PnKeACNqJALQf8bV4W/koQcnPwKGqrxeovUFNnNl2GOmhYy7MIlxnmkh/1
-         qxOILcYjCjD7k22ULROnTb0+A2SBNAM0FJT7YhzeOQzWx35eYI1zT7qXo+Mef3v3HLBY
-         LU2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVSzCrxRlnbhNX1L6PkEqhw50XJc1C+yr7qyzWAzbMHdIflsVVWI7Pfln37GpC9gkjDQrZ1pQF9eD67Bm9p94q7G5Bm3HAK4zMxHQ==
-X-Gm-Message-State: AOJu0YxlsGexFpqasOM8/Z0RZ4S3RJz/9tDUbsajpSNCMaDwTNjFHYWV
-	T+ASCt9mq9SMa6QUNAz9+kxGAfwVtoptStCiVmZeZIGcSierVwdH2tAIgWLU9kY=
-X-Google-Smtp-Source: AGHT+IEjbLNYWFvxUGbprjlhgt3Dx7QgrbGK7vK6OHqcSZukBBTza7iDnYbe14RaF0wwGAFzzqN4tA==
-X-Received: by 2002:a05:6871:592:b0:24f:ef6b:353e with SMTP id 586e51a60fabf-25c94d106f7mr7009622fac.36.1718909735864;
-        Thu, 20 Jun 2024 11:55:35 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25cd49d9a2bsm7018fac.33.2024.06.20.11.55.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jun 2024 11:55:35 -0700 (PDT)
-Message-ID: <bbdd9716-3144-41e6-9558-7fb147cb0774@baylibre.com>
-Date: Thu, 20 Jun 2024 13:55:34 -0500
+        d=1e100.net; s=20230601; t=1718912241; x=1719517041;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H4Z+ybUYMauqZ31ugavPoL4O/Q0wanX4Mqqn+IQJwQQ=;
+        b=WuMW8Sh6N+Sud3U2ruBqLlhbFt+eDjGeeWpU2IycZB+FGPMW82IYgQaXtuczSz/qTM
+         UbxvgNYVH/uvG9eWDXN4bd6da8aFugouEL6JQ924B3L5oOxaxsyn2I/6QNPR7oiYRUot
+         vn9DTMKqMoZavb7pcaQmPnYSeIe8t+KYcm5p3uMt5CLZzUATd+yONcuZ6KDsUuU/20DT
+         SihHFyZ1+0saB1lRJVgTw5uuM241hrfSeSjS44JyrlilmpXFdDVfhmk2eMioDoilQGks
+         V1iJqVY87Y76eIOzWLSYjBjpuBMx7azRvZAQyiC4dm5a0qIRrdCnwM6d14zUJHOQhJXl
+         k92g==
+X-Forwarded-Encrypted: i=1; AJvYcCUVfR08pXHvCK6GOg9XWluTAaSHoFxuDjRY7Vl3aECJRlUejKDsW+9eFj1DTB5DlFk87CJyfqxrXTZamWZAJ6N63B0AmFPtCSIeyg==
+X-Gm-Message-State: AOJu0YzCYmhYYS43lJIkjXZOWJpeoAmQ0hI6wuPrAmu4N2ILNpgqbZjL
+	ygxy8ccK1ssRkZfNig4MPPRAHq42aP4a7fOSioF+ICUB9m7e3AE30HHAlt+h+To=
+X-Google-Smtp-Source: AGHT+IHNbneA1rPJZPgvcj3mwHKuiGb77Z6vVNX3UHTpocfd13qKN824+8NQu/mJjvCXPM6WtEQUuw==
+X-Received: by 2002:a0c:ca92:0:b0:6b5:34b:8c02 with SMTP id 6a1803df08f44-6b5034b8dbamr63633426d6.27.1718912240911;
+        Thu, 20 Jun 2024 12:37:20 -0700 (PDT)
+Received: from nicolas-tpx395.lan ([2606:6d00:17:6d4e::580])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b51b90472bsm3248726d6.143.2024.06.20.12.37.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 12:37:20 -0700 (PDT)
+Message-ID: <d31f18cae640095ca0704185f8238184c13cf93b.camel@ndufresne.ca>
+Subject: Re: [PATCH 0/4] Support MediaTek MT8188 Media Data Path 3 (MDP3)
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	linux-media@vger.kernel.org, hverkuil-cisco@xs4all.nl, 
+	sebastian.fricke@collabora.com
+Cc: mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ conor+dt@kernel.org, matthias.bgg@gmail.com, amergnat@baylibre.com, 
+ moudy.ho@mediatek.com, u.kleine-koenig@pengutronix.de,
+ chunkuang.hu@kernel.org,  p.zabel@pengutronix.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ kernel@collabora.com
+Date: Thu, 20 Jun 2024 15:37:19 -0400
+In-Reply-To: <4e1a8383-fdcb-45b9-b3d8-7019ed8c07bb@collabora.com>
+References: 
+	<20240322092845.381313-1-angelogioacchino.delregno@collabora.com>
+	 <4e1a8383-fdcb-45b9-b3d8-7019ed8c07bb@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] spi: Enable controllers to extend the SPI protocol
- with MOSI idle configuration
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1718749981.git.marcelo.schmitt@analog.com>
- <36eefb860f660e2cadb13b00aca04b5a65498993.1718749981.git.marcelo.schmitt@analog.com>
- <63db9349-f453-4a5b-aa09-d1857ddd8b03@baylibre.com>
- <ZnMqOAPc3IXP-eHC@debian-BULLSEYE-live-builder-AMD64>
- <e7a2438a-f6a3-439e-8058-937248dd5b3f@baylibre.com>
- <ZnRG9wgY3WIaYFyQ@debian-BULLSEYE-live-builder-AMD64>
- <08c09a34-af59-4387-8db9-594f30f85b7a@baylibre.com>
- <ZnRzIb-cD_oOFkg-@debian-BULLSEYE-live-builder-AMD64>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <ZnRzIb-cD_oOFkg-@debian-BULLSEYE-live-builder-AMD64>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 6/20/24 1:21 PM, Marcelo Schmitt wrote:
-> On 06/20, David Lechner wrote:
->> On 6/20/24 10:12 AM, Marcelo Schmitt wrote:
->>> On 06/19, David Lechner wrote:
->>>> On 6/19/24 1:58 PM, Marcelo Schmitt wrote:
->>>>> On 06/19, David Lechner wrote:
->>>>>> On 6/18/24 6:10 PM, Marcelo Schmitt wrote:
->>>>>>
->>>>>>
->>>>
->>>> ...
->>>>
+Le mercredi 19 juin 2024 =C3=A0 11:23 +0200, AngeloGioacchino Del Regno a =
+=C3=A9crit=C2=A0:
+> Il 22/03/24 10:28, AngeloGioacchino Del Regno ha scritto:
+> > This series adds code to support for the MDP3 block found in the
+> > MediaTek MT8188 SoC, including the necessary bits for mtk-mutex
+> > and platform data for the MDP3 driver.
+> >=20
+> > This is mostly compatible with MT8195, with a few differences
+> > "here and there", with the former having less instances of some
+> > of the MDP3 IPs compared to the latter.
+> >=20
+>=20
+> Gentle ping for this series getting stale.
+>=20
+> The soc bindings and commits are already upstream (v6.10).
+>=20
+> The commits that would go through the media tree [3/4], [4/4] still apply
+> cleanly as they are.
+>=20
+> Should I resend this, or ... ?
 
+If 1 and 2 is merged already, a rebase and resend makes a lot of sense.
 
->>> I don't know if that would actually work. I have not tested doing something like that.
->>> This also implies the controller will be able to start the next transfer right
->>> after the first preparatory transfer ends and it will meet that inter-transfer
->>> timing requirement (which I still didn't find documented anywhere).
->>> I'm not convinced that would be the best way to support those devices.
->>
->> I did something like this in the ad7944 driver where we needed an up to
->> 500ns delay before asserting CS. On SPI controllers without a hardware
->> sleep or FIFO, the delay will of course be much longer. But the delay
->> is just a minimum delay, so longer doesn't hurt. It just affects the
->> max sample rate that can be reliably achieved.
->>
-> In ad7944_3wire_cs_mode_init_msg(), xfers[1] is prepared with spi_transfer.delay
-> which is the "delay to be introduced after this transfer before
-> (optionally) changing the chipselect status, then starting the next transfer or
-> completing this @spi_message." That should work for ad7944 because
-> it has ADC SDI physically connected to VIO in that setup.
-> For ad4000, we would want to set MOSI high (by writing 1s) such that MOSI
-> is high when CS is brought high (if I'm getting what you are suggesting).
-> But spi_transfer.delay is introduced after the transfer and before changing CS
-> so I think MOSI may return to low if the controller idles MOSI low.
-> I can't see how this would work for ad4000.
-> Other delays we have for spi_transfer (cs_change_delay, word_delay) don't seem
-> to help for this particular case either.
+Nicolas
 
-I was actually referring to ad7944_4wire_mode_init_msg().
+>=20
+> Cheers,
+> Angelo
+>=20
+> >=20
+> > AngeloGioacchino Del Regno (4):
+> >    dt-bindings: soc: mediatek: Add support for MT8188 VPPSYS
+> >    soc: mediatek: mtk-mutex: Add support for MT8188 VPPSYS
+> >    dt-bindings: media: mediatek: mdp3: Add support for MT8188 RDMA
+> >    media: platform: mtk-mdp3: Add support for MT8188 MDP3 components
+> >=20
+> >   .../bindings/media/mediatek,mdp3-rdma.yaml    |   1 +
+> >   .../bindings/soc/mediatek/mediatek,mutex.yaml |   1 +
+> >   .../platform/mediatek/mdp3/mdp_cfg_data.c     | 280 +++++++++++++++++=
++
+> >   .../platform/mediatek/mdp3/mtk-img-ipi.h      |   1 +
+> >   .../platform/mediatek/mdp3/mtk-mdp3-cfg.h     |   1 +
+> >   .../platform/mediatek/mdp3/mtk-mdp3-core.c    |   3 +
+> >   drivers/soc/mediatek/mtk-mutex.c              |  41 +++
+> >   7 files changed, 328 insertions(+)
+>=20
+>=20
 
-In the case of ad4000, the SPI controller will be required to support the
-new SPI_MOSI_IDLE_HIGH flag. So at the beginning of the message, before any
-of the individual xfers, the controller driver will configure SCLK base on
-CPOL and MOSI based on SPI_MOSI_IDLE_HIGH. Then it will do whatever the
-xfers say.
-
-For most SPI controllers in Linux, this SCLK/MOSI config will happen in
-ctlr->prepare_message() which happens before xfers are processed in
-ctlr->transfer_one_message(). In the AXI SPI Engine, the SCLK/MOSI config
-is in a separate instruction that happens before anything else in the
-message.
-
-So if the first xfer is just a delay with no read/write, the delay will
-always happen after SCLK and MOSI are configured. We don't have to write
-1s because SPI_MOSI_IDLE_HIGH already does the right thing.
 
