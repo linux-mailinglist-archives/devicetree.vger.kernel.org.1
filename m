@@ -1,214 +1,190 @@
-Return-Path: <devicetree+bounces-77895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FC6A910471
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:48:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C703E91049A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:52:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB1F4286336
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:48:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B247B1C231BC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4471AC792;
-	Thu, 20 Jun 2024 12:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D78751ACE6C;
+	Thu, 20 Jun 2024 12:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TShp/ttk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B5Ox6D7i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A741ACE62
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 12:47:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E1146BF
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 12:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718887677; cv=none; b=YYunyoAv4tgQiTRRjsFXpDa3+vUHPxgUBRrVAVbrr3Br++6AHwAbO7zb2L1AfV/76Jqh8BhuiHz0nFi3pnFp9ypsdBMISV4BofaUYudPC7/Ed9Biz51vxS9qoe2/Jh1mDWGRE9ebR2uJFX75ggYrd12H+DT24WK2/oGnIG05JF0=
+	t=1718887962; cv=none; b=PynUHUZXmlu5s3f8tfoKArGKTjpO+nbKjk8hjos6HsE+hyX/unsXjXXuCIEqGU6iyhZf5PtS2MChwwHPSQ3Irp+s+7XoGmhG3tsCZSoIP07/iwlLgyG3/WSBnzQownGUnu2S0A/c1DNyi61jokTi6OAMoWRj86+C/3OdlavRSds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718887677; c=relaxed/simple;
-	bh=XrspX98ISckG3Sj6/BzKitPRpRn8XaSj2KqHKFT+dR8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LgMTsXyWoq1o7GyOam5XGm3UAoPDl+1YNyqe/Xj1x0FFOetJujfM6seync9ZQsdXDlPnX+T5iiAUt+ln1fTS84c24JtJu0HomgQru40uVqNlLaAGqHY8FyaLXV4gBHiDTKrErPYRomUpJPM+WzOwnAEAtFCLAvApr6K+KmBqzKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TShp/ttk; arc=none smtp.client-ip=209.85.208.182
+	s=arc-20240116; t=1718887962; c=relaxed/simple;
+	bh=BJWaKsUqKFaNc6rmzn7Kb9q3t1NJM450x5LshY3v8aY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qf+ArWWMbmDns2AyHoR7lHZaJs+3GGcpvr+ydThQ+MsJgE/gWxgXZG2At9dyTZi7o7++N64sJnbqrL+NaI48wx9xwAEByXXRza0GgDE37FlWZMO4uxUm0WtbuTEeqHx3Vekh1e67dx/sZzF1S1nHYuojXLULYR65tgdUQfpcFTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B5Ox6D7i; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ebf5987909so936141fa.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 05:47:54 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4217a96de38so6662495e9.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 05:52:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718887673; x=1719492473; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kU4UhCQc9+764HGn+BU4tW5vcAuXA5Pmyz8qsif4vWs=;
-        b=TShp/ttkj6f+2k7sB5BAii9rHyo8IkuYGZLaoGQElxSvsNhcR7bv2ZmcFbGFhRXuX9
-         JTKg97w//PutvFYMRicsqFUI54AFvN9OiGBsBVmViHXL6k6QgtZIksa2i54fQL1OXSw2
-         m1MH6uwhVziExFNzHbywuvEJe/7XIhsA5To6dPpYG3UIf3Bi3ldq3R5qlruXpoABw5mj
-         FuxHcWryuOObRUFkR7Xn3Ch7NUxbHqBsXPHsWVD+pg4Qw+kufNKv1oS6Vx2OrJDWQxTd
-         26IELgTp3pkJPQGBuZ/1mhRZdS17EXQde6uKFyaRix7GWmw6WkT/o9WhhHKg4NW4ieJj
-         L8Fg==
+        d=linaro.org; s=google; t=1718887959; x=1719492759; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ykk8VSXa2B9f9Rl4fXDSJSfLpyccYa1pxr5sqjpV2O4=;
+        b=B5Ox6D7iznAJJd+CgoTl7FTlpzf+6wSfsqlwQJCxA8WiLmeWUP75ZFw3aShQVkhcN9
+         HZSSOkNirhgf9oHsXFPitWhmN9Me/HVqFGki1EQfVreNR7SCkyEDw5HwGWDlQCqEQqHg
+         hJwfsUm/xWQUNDv6+Y9gvf3mHbQhNEbqCRKclFaom8NOHq980Uoa+UyRv1rsilqL0ajt
+         Ljpoe3appovSU2GdJvLKvG+TtYz+BO8MpzCpOtqsxIkbS7aR8KwxpM2bP9hlksjnBvXE
+         llVOJB/07/dkiUGpwy5p2NFHp3a9Wz6bkZ4hhsy6rPBT4iGfBWALOzlYtbNUqg/UJaWk
+         NNXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718887673; x=1719492473;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kU4UhCQc9+764HGn+BU4tW5vcAuXA5Pmyz8qsif4vWs=;
-        b=cg/IlyKBUw3HOsu0QBbGVJqGHQm0Vp0zt1Ohm9MnY5p05vTiESZDUOq5iR6wDmWYFj
-         4aMQuIP6jAfDOVFlObCGeOX1oENzPesopAkRPQ8K+2U11Wjs2iVpRA5NmCDT66wxKhqd
-         U73PkLFvKOgkxUCHVf7WR6pPeOZmWcGWsU2+ghEEg1yYyfa6SMCKvBBFFEX575S9PMr3
-         Or9KJd3fnqhQ9kEhixsELjy/RXsI05z+D1PCoH25dNVxJUWaHuazPoRgaWa2/aQggR/k
-         l1MLnNoMKZojrPl77vgvBO5vJlzvCVPiHLYdT049+c05LxxYTaCIeB39eBOJZeG+8n8W
-         zGvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUSdgCEziVrEY1O2hNItI0iHxXnVxZ1BN/oUAKihgzCHjNLaUNf01nQ12ry23t+DgWTDmxMZ2pOhP/WoXzI/rGVdpwF6W9V4Sq5Q==
-X-Gm-Message-State: AOJu0YxEE5kpgjMIT4VYLY6XseTYy/6kqZD8Ns4wV2L1plR35Bg0GDMy
-	GdLk9I/sgkN6v024PtukNMbT0kqsNWYN6ZsLH5MGQJ4WqFbyMSc8cxT9WSPFXXEUEWNlXnVmRXJ
-	aTfnwtA==
-X-Google-Smtp-Source: AGHT+IE2pOh2daHEILK+6XHiitvdvq9yF5/zOOktvf9tbV6nGyW3jjGwlRafV2mntrPBpgXDbVkYMg==
-X-Received: by 2002:a2e:a553:0:b0:2ec:ca8:4897 with SMTP id 38308e7fff4ca-2ec3cfe83camr37809031fa.4.1718887673146;
-        Thu, 20 Jun 2024 05:47:53 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec05c17ba8sm22421411fa.72.2024.06.20.05.47.52
+        d=1e100.net; s=20230601; t=1718887959; x=1719492759;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ykk8VSXa2B9f9Rl4fXDSJSfLpyccYa1pxr5sqjpV2O4=;
+        b=Y6fWz9cnKD0NHceENftOTs/OcwDbTe4dHJke0Ens0Mhnrky5CHgxflWdiyIAAfPrzF
+         pXJkaKlpAKZ0NlsioxxuX6sWwH47YKWMMh7jCxCh/0qyclUKZNmrFvVVjAheRRR7hmms
+         XQk/nA3OSJKd26wxB00s2X2Y8U/uXshgEwDmZiDtwXst+Pjwd0wfgljBQwlg/mozNd84
+         X/YsnobZ/uaCR6251BvYu6uUN1916zbQOz/4Oa/52xYKh5lHGPPlNS4MVwqTsmg3C1zk
+         DQlq/Xme6axo8ztFBHMNNxp8Ds2FKMcCy+hNxbT42kCWxFY5+tDPdadAR5NfgXykocz1
+         nxaw==
+X-Forwarded-Encrypted: i=1; AJvYcCUj4cmtKC7DJ49QuCng0HHFfnl6mRPbuo0W6EoITeu/UZw1AInfHW+0IXC3Hi83yYBnzenfoXWah90+WLe8PSimSaQ3R3c+EwRNnA==
+X-Gm-Message-State: AOJu0YxVyvafr6G92H5IqkJnn8h3t0tqni0epZotD2VuXRAB33YGRxIb
+	I9Eww6xTRFvZJebSdnKy1sqlbc+tXl0FiryPlJg+ZpUO1e4NX0DghAZVi1/KVjg=
+X-Google-Smtp-Source: AGHT+IFzcSaO+VXSfnXhvIYTKpmX2B/Ljg0Y3EEcfI2J1GLNZshG3lH32rEtoaDR0lqk22PNJ6tcmQ==
+X-Received: by 2002:a05:600c:6553:b0:421:7f4d:5280 with SMTP id 5b1f17b1804b1-42475184107mr35289375e9.21.1718887958525;
+        Thu, 20 Jun 2024 05:52:38 -0700 (PDT)
+Received: from linaro.org ([82.79.124.209])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4247d1e38dcsm24053485e9.36.2024.06.20.05.52.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 05:47:52 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 3/3] media: i2c: og01a1b: Add support of an input system clock
-Date: Thu, 20 Jun 2024 15:47:45 +0300
-Message-ID: <20240620124745.1265011-4-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240620124745.1265011-1-vladimir.zapolskiy@linaro.org>
-References: <20240620124745.1265011-1-vladimir.zapolskiy@linaro.org>
+        Thu, 20 Jun 2024 05:52:38 -0700 (PDT)
+Date: Thu, 20 Jun 2024 15:52:36 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Enable tsens and thermal
+ zone nodes
+Message-ID: <ZnQmFFq/lCm63yuL@linaro.org>
+References: <20240614-x1e80100-dts-thermal-v2-1-4d4f9effacc6@linaro.org>
+ <4a1e8cc5-5d82-435d-8a2a-5fab56f85965@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4a1e8cc5-5d82-435d-8a2a-5fab56f85965@linaro.org>
 
-To be properly configured at probe time the sensor module contains
-a required reference to xvclk clock on OF platforms, which is now
-enabled on probe and checked for a supported frequency rate.
+On 24-06-18 13:06:34, Konrad Dybcio wrote:
+> 
+> 
+> On 6/14/24 12:50, Abel Vesa wrote:
+> > From: Rajendra Nayak <quic_rjendra@quicinc.com>
+> > 
+> > Add tsens and thermal zones nodes for x1e80100 SoC.
+> > 
+> > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> 
+> [...]
+> 
+> > +		tsens0: thermal-sensor@c271000 {
+> > +			compatible = "qcom,x1e80100-tsens", "qcom,tsens-v2";
+> > +			reg = <0 0x0c271000 0 0x1000>,
+> > +			      <0 0x0c222000 0 0x1000>;
+> > +
+> > +			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> These are normally wired up through PDC so that the system can shut down
+> even if CPUSS is off
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- drivers/media/i2c/og01a1b.c | 43 +++++++++++++++++++++++++++++--------
- 1 file changed, 34 insertions(+), 9 deletions(-)
+The upper-lower one is wired through PDC, but the critical doesn't seem
+it is.
 
-diff --git a/drivers/media/i2c/og01a1b.c b/drivers/media/i2c/og01a1b.c
-index 9e756c1c47df..929a7e32bd6a 100644
---- a/drivers/media/i2c/og01a1b.c
-+++ b/drivers/media/i2c/og01a1b.c
-@@ -3,6 +3,7 @@
- 
- #include <asm/unaligned.h>
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/i2c.h>
- #include <linux/module.h>
-@@ -418,6 +419,9 @@ static const struct og01a1b_mode supported_modes[] = {
- };
- 
- struct og01a1b {
-+	struct device *dev;
-+	struct clk *xvclk;
-+
- 	struct v4l2_subdev sd;
- 	struct media_pad pad;
- 	struct v4l2_ctrl_handler ctrl_handler;
-@@ -898,8 +902,9 @@ static int og01a1b_identify_module(struct og01a1b *og01a1b)
- 	return 0;
- }
- 
--static int og01a1b_check_hwcfg(struct device *dev)
-+static int og01a1b_check_hwcfg(struct og01a1b *og01a1b)
- {
-+	struct device *dev = og01a1b->dev;
- 	struct fwnode_handle *ep;
- 	struct fwnode_handle *fwnode = dev_fwnode(dev);
- 	struct v4l2_fwnode_endpoint bus_cfg = {
-@@ -913,10 +918,13 @@ static int og01a1b_check_hwcfg(struct device *dev)
- 		return -ENXIO;
- 
- 	ret = fwnode_property_read_u32(fwnode, "clock-frequency", &mclk);
--
- 	if (ret) {
--		dev_err(dev, "can't get clock frequency");
--		return ret;
-+		if (!og01a1b->xvclk) {
-+			dev_err(dev, "can't get clock frequency");
-+			return ret;
-+		}
-+
-+		mclk = clk_get_rate(og01a1b->xvclk);
- 	}
- 
- 	if (mclk != OG01A1B_MCLK) {
-@@ -977,6 +985,7 @@ static void og01a1b_remove(struct i2c_client *client)
- 	v4l2_ctrl_handler_free(sd->ctrl_handler);
- 	pm_runtime_disable(&client->dev);
- 	mutex_destroy(&og01a1b->mutex);
-+	clk_disable_unprepare(og01a1b->xvclk);
- }
- 
- static int og01a1b_probe(struct i2c_client *client)
-@@ -984,22 +993,35 @@ static int og01a1b_probe(struct i2c_client *client)
- 	struct og01a1b *og01a1b;
- 	int ret;
- 
--	ret = og01a1b_check_hwcfg(&client->dev);
-+	og01a1b = devm_kzalloc(&client->dev, sizeof(*og01a1b), GFP_KERNEL);
-+	if (!og01a1b)
-+		return -ENOMEM;
-+
-+	og01a1b->dev = &client->dev;
-+
-+	og01a1b->xvclk = devm_clk_get_optional(&client->dev, NULL);
-+	if (IS_ERR(og01a1b->xvclk)) {
-+		ret = PTR_ERR(og01a1b->xvclk);
-+		dev_err(&client->dev, "failed to get clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = og01a1b_check_hwcfg(og01a1b);
- 	if (ret) {
- 		dev_err(&client->dev, "failed to check HW configuration: %d",
- 			ret);
- 		return ret;
- 	}
- 
--	og01a1b = devm_kzalloc(&client->dev, sizeof(*og01a1b), GFP_KERNEL);
--	if (!og01a1b)
--		return -ENOMEM;
-+	ret = clk_prepare_enable(og01a1b->xvclk);
-+	if (ret)
-+		return ret;
- 
- 	v4l2_i2c_subdev_init(&og01a1b->sd, client, &og01a1b_subdev_ops);
- 	ret = og01a1b_identify_module(og01a1b);
- 	if (ret) {
- 		dev_err(&client->dev, "failed to find sensor: %d", ret);
--		return ret;
-+		goto disable_clk;
- 	}
- 
- 	mutex_init(&og01a1b->mutex);
-@@ -1045,6 +1067,9 @@ static int og01a1b_probe(struct i2c_client *client)
- 	v4l2_ctrl_handler_free(og01a1b->sd.ctrl_handler);
- 	mutex_destroy(&og01a1b->mutex);
- 
-+disable_clk:
-+	clk_disable_unprepare(og01a1b->xvclk);
-+
- 	return ret;
- }
- 
--- 
-2.45.2
+> 
+> [...]
+> 
+> > +		cpu0-0-top-thermal {
+> > +			thermal-sensors = <&tsens0 1>;
+> 
+> Here you have passive trip points with no passive polling, this will
+> only report threshold crossing events (so e.g. cpufreq throttling will
+> be broken)
+> 
 
+Sure, will add with 250 value for all cpu per-core sensors.
+
+> > +
+> > +			trips {
+> > +				trip-point0 {
+> > +					temperature = <90000>;
+> > +					hysteresis = <2000>;
+> > +					type = "passive";
+> > +				};
+> > +
+> > +				trip-point1 {
+> > +					temperature = <95000>;
+> > +					hysteresis = <2000>;
+> > +					type = "passive";
+> > +				};
+> > +
+> > +				cpu-critical {
+> > +					temperature = <110000>;
+> > +					hysteresis = <1000>;
+> > +					type = "critical";
+> > +				};
+> > +			};
+> > +		};
+> > +
+> 
+> [...]
+> 
+> 
+> > +
+> > +		nsp1-thermal {
+> > +			polling-delay-passive = <10>;
+> 
+> Here you have passive polling, but no passive trip point
+> 
+
+Will drop the passive polling delay..
+
+> > +
+> > +			thermal-sensors = <&tsens3 2>;
+> > +
+> > +			trips {
+> > +				trip-point0 {
+> > +					temperature = <90000>;
+> > +					hysteresis = <2000>;
+> > +					type = "hot";
+> > +				};
+> > +
+> > +				nsp1-critical {
+> > +					temperature = <125000>;
+> > +					hysteresis = <0>;
+> > +					type = "critical";
+> > +				};
+> > +			};
+> > +		};
+> 
+> 
+> The rest looks okayish
+> 
+> Konrad
 
