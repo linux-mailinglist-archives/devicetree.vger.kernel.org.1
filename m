@@ -1,107 +1,124 @@
-Return-Path: <devicetree+bounces-78133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE439112BF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 22:08:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E7D59112CE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 22:13:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC09A283F98
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:08:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 094EA1F2322F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 875271BA09C;
-	Thu, 20 Jun 2024 20:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F981BA06E;
+	Thu, 20 Jun 2024 20:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N75if0Yp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v07k7aKO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5867F171A5;
-	Thu, 20 Jun 2024 20:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FEDF171A5
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 20:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718914117; cv=none; b=WSlvtRZwV/C2H2AOIUeAwLn+m2y5IjGG7rLHwFvpfXsiV9HeUzXY5IJrV0geNOeomRV80OwMsMRk3CYJkSAqT/+URrVxq8K+vLjZS6GVuWtS+BW8rM5/hxC6rxZBJ0vchgFVuH91kbcTawbxgDsyJxamqFNUKw7NFDHd7SZm5to=
+	t=1718914430; cv=none; b=Tw36dA2gdtuhZskThxj8LBUkuJyp/9F2ucoh4f2BA9HdaHcmUAp7LnF4as/YcnkveWs7jzqTk0jqto4f0nGwvICuW/Gw0I8N2AktoXHQ6MxxwufhO32M1DkIqrc8J9rZRrZ00a1qP+VD/Ik4okDWq+ro1l4DtYjYnpN97Yc3zu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718914117; c=relaxed/simple;
-	bh=9ykYoSNL6xmwMxQWQZVNhQtBkPMtS79EfXSuMEMNCAI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VvkeR5gMLWfKl662NK0JOrNv1b0sy5O/i1Q5m9XRBGD9OBBp/GKVpptXaPWJf2hAkPIKD7a4Q6JaitAWcKEgFDMFWPjgCEP94Tn6GbVbqFhlQFZh/KjyMmlMszcVbdAyf7uutADxdBIE+vCeURGM83dJ0PCcaW0Aei8zJSmSmoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N75if0Yp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82450C4AF09;
-	Thu, 20 Jun 2024 20:08:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718914116;
-	bh=9ykYoSNL6xmwMxQWQZVNhQtBkPMtS79EfXSuMEMNCAI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=N75if0YpkfH5WOAzXHn03Pd198BU3ZCm8jLXIFD/UIoMFTiMm3WfVVVxlDzkExTgK
-	 VSU1CjhaXehgcsgTfIqNgU64Wm6LvDgBnhk5vXxSBLtN7nv6GN+I53AqeRTz5tQr9r
-	 wqgpcQH3ja/qHgSwhnFq5UEHE7CGYbfWtlH5162DEF9UkZ/QD/GvpDgHw23Pi8wwKq
-	 sEZbrAMvdIH6JFcOOJH7himkVVDNv2VyhLM9snrOz5LSZvAKpBwi5mAYqlcc1oghwN
-	 YcmDE3OQe3Z4/ikxyJnuY+qvvubswEn2QpxMkH0tOafOGKz2JPCvrI2n5KT0t0EGop
-	 m+yo0kRA+aFTA==
-Date: Thu, 20 Jun 2024 21:08:27 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
- lars@metafoo.de, Michael.Hennerich@analog.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, nuno.sa@analog.com,
- marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 6/6] iio: adc: Add support for AD4000
-Message-ID: <20240620210827.2b46a718@jic23-huawei>
-In-Reply-To: <f877b9a1-6cd7-41c2-ac26-46516e0340da@baylibre.com>
-References: <cover.1718749981.git.marcelo.schmitt@analog.com>
-	<e77a00d1020baa178cb6a0201053b66cb27c39a9.1718749981.git.marcelo.schmitt@analog.com>
-	<f877b9a1-6cd7-41c2-ac26-46516e0340da@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1718914430; c=relaxed/simple;
+	bh=6FnKxC2oNZkMYNiFsU+CMhRZU/2u+PXH2Xg0uEEq4BQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a88u90VMb5Isvqg5bkkiTymOqEIJTcUSq8MI5BEL5OjQ3u8v5x6Ef31KE2aCnRkn7GRVuIr9DvmaXa0zkhkX2QSwl4CFbeh9zDRQ8tK2DMSY+WtCgcSbDRwEOpwuwuqyviyZOi8jlocOScnBZsWM9/tkzrZrnsHvPauyLXi/Z7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v07k7aKO; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ebdfe26217so11799141fa.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 13:13:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718914426; x=1719519226; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Gf88bxwZuTUs5YXwWPX6yadFRnjP9I8sFXH8/ud6MPc=;
+        b=v07k7aKOFKW1LD4tidMaju2MCZrGuYlTNaXBmlccEh5lil7gRIiog25J8q7wDde/Yu
+         dFLKtwwVimNMoQwz6mwKt1VAYalED0YsU9mxExVV6x6Xx+f+2oqmhDnr76jOLjdvxEtS
+         oetI96YKomXF2TM0FjPdutYa/gZIXQYaZ1KKsSDfd1j0l5i6CQdoDL26unODSpuNqtDx
+         WEdM7woVtlJOEogvD2nQxWIQnAtcBly5gVLY5wuq9URPA9A9JOPlSAPuInwyz3vqscCe
+         RbtUKCRGF9d9B62fjsLhlleCEog3o+xNY3KiVhPonLh5wSJzRlFR11Yuh0Kozvm+YF3M
+         grjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718914426; x=1719519226;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gf88bxwZuTUs5YXwWPX6yadFRnjP9I8sFXH8/ud6MPc=;
+        b=xJ1GeLW0hAu7QbinVvfK+0sjHENH2HBMukmvnWozhw1vVgqZTSDJXbQBZGxkHiKJJ2
+         rHGmllErKurqNl6eYO2vnpZaP8b73M3fapVB243kZa+zSFQbXcKxrSiU3Id8uV9GX51E
+         SlWS8vASSMS7tDNY6QD1568mXB4pOu0eyWqBX/+uTLdS7UobMhuTiZS3E0MKHSUDgXLc
+         BXnZcmVvssqJYZFRxTB0EIWkSdJWtFVQdsYx3ySElCGsSLwPDA/ToMJHWxAhv/TtwR3X
+         gfDCyA4MQZUunNZ/ExU98ItepbuhLP+mLYV59XIhZt80bkdrQ3nbYTWSVC7EpGHFxoYB
+         EBjA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1ysiBxoOV5TJiwr1DEme7L4/KqABPFGBjhX+/9sCi6XOKN/VAloF9Xq2Xu6hxgntQc9gDvxZsXdz6+vQQ9KRIFBL45rGifFIveQ==
+X-Gm-Message-State: AOJu0YyJvysZF+Rf4WHsSjgNDp/SFeNRz9bX2DPoh2DLBXmfz43VcfXF
+	zbuKm6C0uyReSAvH8sdcCPkMASSGTjlZKcmMjqKdsr7ucwfttl7cWttGdVwFvPA=
+X-Google-Smtp-Source: AGHT+IHmscm1ta08k7kKifcSjPxr0pk1YHMHeVkmRekDXSZgsUcQQz9WUuxqquxICdBXbipcg1QQvg==
+X-Received: by 2002:a2e:9b0a:0:b0:2ec:2583:2ba5 with SMTP id 38308e7fff4ca-2ec3cfe8b1dmr40485741fa.36.1718914426346;
+        Thu, 20 Jun 2024 13:13:46 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec4d757f9fsm104511fa.73.2024.06.20.13.13.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 13:13:45 -0700 (PDT)
+Date: Thu, 20 Jun 2024 23:13:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, phone-devel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 11/23] drm/panel: Add support for S6E3HA8 panel driver
+Message-ID: <c4g235wj3yfdftnwqe3pbupifhy5ploo7chumdgfnl4skzuahf@ftuellx4zwsn>
+References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
+ <20240618-starqltechn_integration_upstream-v3-11-e3f6662017ac@gmail.com>
+ <pkmxbxoc4sno6mbjsftz6hp5lxefc6yhwxjlhiy2pd4wbkzpvl@as43z4t64mm6>
+ <CABTCjFABEY0urmgrr5E3-oq9u_aNR8KcCTMpJpoGLOTPOfKAGg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABTCjFABEY0urmgrr5E3-oq9u_aNR8KcCTMpJpoGLOTPOfKAGg@mail.gmail.com>
 
+On Wed, Jun 19, 2024 at 04:27:40PM GMT, Dzmitry Sankouski wrote:
+> вт, 18 июн. 2024 г. в 21:39, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>:
+> >
+> > > +     ret = mipi_dsi_compression_mode(dsi, true);
+> > > +     if (ret < 0) {
+> > > +             dev_err(dev, "Failed to set compression mode: %d\n", ret);
+> > > +             return ret;
+> > > +     }
+> >
+> > Interesting, compression mode is being set before the PPS programming?
+> >
+> Yes, as per vendor kernel:
+> https://github.com/klabit87/twrp_android_samsung_kernel_sdm845/blob/e8bb63039008e1704a2f1bde68d39ded9c16ea88/drivers/gpu/drm/msm/samsung/S6E3HA8_AMB577PX01/dsi_panel_S6E3HA8_AMB577PX01_wqhd_octa_cmd.dtsi#L5508
 
-> > +struct ad4000_chip_info {
-> > +	const char *dev_name;
-> > +	struct iio_chan_spec chan_spec;
-> > +	struct iio_chan_spec three_w_chan_spec;
-> > +};  
-> 
-> I understand the reason for doing this, but it still seems a bit weird
-> to me to have two different sets of specs for the same chip. I guess
-> we'll see what Jonathan has to say about this.
+Ack
 
-
-It's very common, though for a different reason.
-
-Normally it's for cases where we have events (threshold crossing as similar)
-and the interrupt is optional. In those case we have channel specs with
-and without the event.  In this case the change is small so maybe
-the code to set it up on a copy of the chan spec would be fine.
-
-This is simple though so I'd keep it this way.
-
-> 
-> > +
-> > +static const struct ad4000_chip_info ad4000_chip_info = {
-> > +	.dev_name = "ad4000",
-> > +	.chan_spec = AD4000_PSEUDO_DIFF_CHANNEL('u', 16, 0),
-> > +	.three_w_chan_spec = AD4000_PSEUDO_DIFF_CHANNEL('u', 16, 1),
-> > +};
-> 
-> or could just replace all of this this will spi_w8r8() and have
-> a one-line function.
-Good point. I'd forgotten that existed.  Better still than
-spi_write_then_read.
-
-Glad we spotted some of the same things. Sometimes it's weird
-and two reviews are entirely unrelated issues throughout!
-
-Jonathan
+-- 
+With best wishes
+Dmitry
 
