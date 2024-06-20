@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-77726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87DF690FCEF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98FE290FCFD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23174281986
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 06:43:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FF0E286620
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 06:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C663C6AC;
-	Thu, 20 Jun 2024 06:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BE839ADD;
+	Thu, 20 Jun 2024 06:49:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVwr/rlS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UrPd1zqH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573863BBE8;
-	Thu, 20 Jun 2024 06:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4EC433C4;
+	Thu, 20 Jun 2024 06:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718865795; cv=none; b=tkFbpsWDMKlUn7EJuDC0jkSzIctQzJOCZz1uJEqXgwTmOA3sQZ1+OXoMJ46mAka1C1lsHKPhxlRRbTAi01ces09ttHH+hcVkEf28AXuLPJk6qDi5F4T2u4j/KAoWBHJDJzt2b2YQ14zEGG8FNA9vsllbnzRwYv0oIqIbGcRoVww=
+	t=1718866159; cv=none; b=sM3wxDC9IWH48uCFqr+oCv7eFbSuzxGCQCvoBIr2ZF3wXrYfhgStol+uGdSOgkMjdXo2+01rXXa/Ep/g1aPP7KzTGEaammMJaNoRWIb2P47jGu6JGBdfd2gPWcyinDI30/NXc7pYG3itxx5aVPdXBU14nEePLgpPRo9jseImuvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718865795; c=relaxed/simple;
-	bh=YoNtDkLra8F30tKubQqPMfHzyI20CRQwhBnryvteyto=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FPWJlgCGlYDD1JveucHHd5HT3Q+DhY3BcxnmXeM0K76pDT1QPqU7AmReEM25+4KTtyPR2dTP/mIZIBeNjerpTZm/2eYRwym3DbGMS/bn21Zy5KEsl7u2mXGeAZjlMXbQhtkEH3YVGqUAo4SeYeA6+V7EyHvpCWtdTpZp0Q6n7s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVwr/rlS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B433C4AF08;
-	Thu, 20 Jun 2024 06:43:11 +0000 (UTC)
+	s=arc-20240116; t=1718866159; c=relaxed/simple;
+	bh=topRIO6jwDZFmxlecZm/hIDN/hz/Byg0GMWQotDDeAU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=SssUYtarbfpJnEqoGTSzV0FMe1jKgDi4f2jJKR6XD7w5djERnj9XkY7+5xWX/Zu9M58OWAdFdFTNPCJob62PqfoKsJvVcRT+Lzxca81OXK68tjbsiHRHwE1XTF6lfnOigFinyalAXJnasjC22s77sa6fgeX1T557KctrFVOLcXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UrPd1zqH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FA6AC32781;
+	Thu, 20 Jun 2024 06:49:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718865794;
-	bh=YoNtDkLra8F30tKubQqPMfHzyI20CRQwhBnryvteyto=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iVwr/rlSEhW0YZDsd215GusyWQuzpQMvkXq63PLoZoFw58Gabg5ziX1faq30K2K8t
-	 Gj2cn8V1xlHml38BcoPBj5jrKUZj7bNS3Y+468s5/RHME94/oETs7gO5+qpLzUCl7O
-	 nyz43PDWoOouZ5t015zAbu7aUM2o8LLfBqyPjTKkQxsdDjweYYwjtDvaH7mQ9bNw3c
-	 AI4w18D8U88j4HIXSVyQ2C7uqZB1J1GKuzDErge5l20T/NOnbmsB9ouIhii5HGqX8B
-	 y5moPMckPnnlPmVoYt/Bn6FdP60KzMi5DvRQiGLKyvkv9W4NzOFR2BjAKsMcDmJbWw
-	 nw4CTKpoeifgw==
-Message-ID: <ff22c3db-db5d-4fb8-ba18-4e82044ce9a2@kernel.org>
-Date: Thu, 20 Jun 2024 08:43:09 +0200
+	s=k20201202; t=1718866158;
+	bh=topRIO6jwDZFmxlecZm/hIDN/hz/Byg0GMWQotDDeAU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=UrPd1zqHVKnqLaeV8Wbo8p7kMCnFu84MEGLggf+THGRs288d3h3mbUdtCv50/3E9I
+	 v6QfJQR+enm8d0q/o0qCp1fJc4NkddhmIt80qLKOOTkqpG3iO4PkZxqPQZrbgbKKmw
+	 8cnNV7DZ4zvANzSa2gsDs0YUW9wZhz7I55YYENHjWR9x27DDlMZOPyU2mwDqMr6zZD
+	 qdSNbD3mLLlCshX7hhIPacX/EYEyXNokFXo5XW6qMAhgkVbS97YBQiP4lEB1tnODQg
+	 sSly9AdloxpVjm/H6PNiiA7stMkI/EAI/8kzT4ShKS1ufJlP9KdLwJ0b408IVgbN/Q
+	 cg10Zco+E8w8g==
+Message-ID: <e3190fef-3d33-42e5-926f-07d44a4d5f64@kernel.org>
+Date: Thu, 20 Jun 2024 08:49:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/8] dt-bindings: mips: img: Add devices binding
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Burton <paulburton@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org
-References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
- <20240618-boston-syscon-v3-8-c47c06647a26@flygoat.com>
+Subject: Re: [PATCH] dt-bindings: misc: axi-fifo: Add binding for AXI-Stream
+ FIFO
+To: Mark Watson <markus.c.watson@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <ZnOAgM+zacF6u1x7@laptop>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,23 +101,268 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240618-boston-syscon-v3-8-c47c06647a26@flygoat.com>
+In-Reply-To: <ZnOAgM+zacF6u1x7@laptop>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/06/2024 17:11, Jiaxun Yang wrote:
-> Add devices binding for various Imagination Technologies
-> MIPS based Platforms.
+On 20/06/2024 03:06, Mark Watson wrote:
+> This resolves a checkpatch warning in drivers/staging/axis-fifo
+> regarding a missing devie-tree binding. The full warning is included
+> below.
 > 
-> Remove old documents.
-> 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
-> v3: Remove old bindings, they are not relavant any more.
->     Booting protocol stuff is covered by spec.
-> ---
+> WARNING: DT compatible string "xlnx,axi-fifo-mm-s-4.1" appears
+> un-documented -- check ./Documentation/devicetree/bindings/
+> +       { .compatible = "xlnx,axi-fifo-mm-s-4.1", },
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+That's not needed. Drop above reasoning but instead say that you add new
+bindings for foo bar (explain what is the hardware).
+
+You did not test your code, so limited review follows.
+
+There is a binding. Just grep for compatible. You might want to do
+conversion but then:
+
+Thank you for your patch. There are no DTS users of this binding, so
+while such conversions are useful, they have significantly smaller
+impact. In the future, please consider converting bindings from active
+platforms (arm64 defconfig, arm multi_v7). This would have significantly
+bigger impact.
+
+See also:
+https://lore.kernel.org/all/6552bcb8-e046-4882-91da-1094fff3d239@linaro.org/
+
+> 
+> Signed-off-by: Mark Watson <markus.c.watson@gmail.com>
+> ---
+>  .../bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml | 214 ++++++++++++++++++
+>  1 file changed, 214 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml
+> new file mode 100644
+> index 000000000000..cfb335752054
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s-4.1.yaml
+> @@ -0,0 +1,214 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/xlnx,axi-fifo-mm-s-4.1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx AXI-Stream FIFO v4.1 IP core
+> +
+
+Missing maintainers. Why would we care about hardware if there is no one
+to interested in it?
+
+> +description: |
+> +  The Xilinx AXI-Stream FIFO v4.1 IP core has read and write AXI-Stream FIFOs,
+> +  the contents of which can be accessed from the AXI4 memory-mapped interface.
+> +  This is useful for transferring data from a processor into the FPGA fabric.
+> +  The driver creates a character device that can be read/written to with
+> +  standard open/read/write/close operations.
+> +
+> +  See Xilinx PG080 document for IP details.
+> +
+> +  Currently supports only store-forward mode with a 32-bit AXI4-Lite
+> +  interface.
+> +
+> +  DOES NOT support:
+> +    - cut-through mode
+> +    - AXI4 (non-lite)
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,axi-fifo-mm-s-4.1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: interrupt
+
+No, drop entire property.
+
+> +
+> +  interrupt-parent:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+
+Drop property.
+
+> +
+> +  xlnx,axi-str-rxd-protocol:
+> +    const: XIL_AXI_STREAM_ETH_DATA
+> +
+> +  xlnx,axi-str-rxd-tdata-width:
+> +    const: 0x20
+> +
+> +  xlnx,axi-str-txc-protocol:
+> +    const: XIL_AXI_STREAM_ETH_CTRL
+> +
+> +  xlnx,axi-str-txc-tdata-width:
+> +    const: 0x20
+> +
+> +  xlnx,axi-str-txd-protocol:
+> +    const: XIL_AXI_STREAM_ETH_DATA
+> +
+> +  xlnx,axi-str-txd-tdata-width:
+> +    const: 0x20
+
+Drop all these.
+
+> +
+> +  xlnx,axis-tdest-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,axis-tid-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,axis-tuser-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+No clue what are these. Drop.
+
+> +
+> +  xlnx,data-interface-type:
+> +    const: 0x0
+> +
+> +  xlnx,has-axis-tdest:
+> +    const: 0x0
+> +
+> +  xlnx,has-axis-tid:
+> +    const: 0x0
+> +
+> +  xlnx,has-axis-tkeep:
+> +    const: 0x1
+> +
+> +  xlnx,has-axis-tstrb:
+> +    const: 0x0
+> +
+> +  xlnx,has-axis-tuser:
+> +    const: 0x0
+
+Drop everything above.
+
+> +
+> +  xlnx,rx-fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,rx-fifo-pe-threshold:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,rx-fifo-pf-threshold:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,s-axi-id-width:
+> +    const: 0x4
+> +
+> +  xlnx,s-axi4-data-width:
+> +    const: 0x20
+> +
+> +  xlnx,select-xpm:
+> +    const: 0x0
+> +
+> +  xlnx,tx-fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,tx-fifo-pe-threshold:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,tx-fifo-pf-threshold:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+No standard properties?
+
+> +
+> +  xlnx,use-rx-cut-through:
+> +    const: 0x0
+> +
+> +  xlnx,use-rx-data:
+> +    const: 0x1
+> +
+> +  xlnx,use-tx-ctrl:
+> +    const: 0x0
+> +
+> +  xlnx,use-tx-cut-through:
+> +    const: 0x0
+> +
+> +  xlnx,use-tx-data:
+> +    const: 0x1
+> +
+> +  xlnx,tx-max-pkt-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  xlnx,rx-min-pkt-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+No, drop all these.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - interrupt-parent
+> +  - xlnx,axi-str-rxd-protocol
+> +  - xlnx,axi-str-rxd-tdata-width
+> +  - xlnx,axi-str-txc-protocol
+> +  - xlnx,axi-str-txc-tdata-width
+> +  - xlnx,axi-str-txd-protocol
+> +  - xlnx,axi-str-txd-tdata-width
+> +  - xlnx,axis-tdest-width
+> +  - xlnx,axis-tid-width
+> +  - xlnx,axis-tuser-width
+> +  - xlnx,data-interface-type
+> +  - xlnx,has-axis-tdest
+> +  - xlnx,has-axis-tid
+> +  - xlnx,has-axis-tkeep
+> +  - xlnx,has-axis-tstrb
+> +  - xlnx,has-axis-tuser
+> +  - xlnx,rx-fifo-depth
+> +  - xlnx,rx-fifo-pe-threshold
+> +  - xlnx,rx-fifo-pf-threshold
+> +  - xlnx,s-axi-id-width
+> +  - xlnx,s-axi4-data-width
+> +  - xlnx,select-xpm
+> +  - xlnx,tx-fifo-depth
+> +  - xlnx,tx-fifo-pe-threshold
+> +  - xlnx,tx-fifo-pf-threshold
+> +  - xlnx,use-rx-cut-through
+> +  - xlnx,use-rx-data
+> +  - xlnx,use-tx-ctrl
+> +  - xlnx,use-tx-cut-through
+> +  - xlnx,use-tx-data
+> +  - xlnx,tx-max-pkt-size
+> +  - xlnx,rx-min-pkt-size
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    axi_fifo_mm_s_0: axi_fifo_mm_s@43c00000 {
+
+Drop label. No underscores in node names.
+
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +      compatible = "xlnx,axi-fifo-mm-s-4.1";
+> +      interrupt-names = "interrupt";
+> +      interrupt-parent = <&intc>;
+> +      interrupts = <0 29 4>;
+
+Use proper defines.
+
 
 Best regards,
 Krzysztof
