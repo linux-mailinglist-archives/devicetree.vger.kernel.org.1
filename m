@@ -1,505 +1,394 @@
-Return-Path: <devicetree+bounces-77880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CB54910375
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:53:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390C0910380
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:58:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4FA92826ED
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:53:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B53EB22569
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319EB17166B;
-	Thu, 20 Jun 2024 11:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF7517C21A;
+	Thu, 20 Jun 2024 11:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="dJgh8jUO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jht7wsDj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348CA17C210
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 11:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AFE2172780
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 11:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718884405; cv=none; b=iRb9sfChJtOBNF7evqE1YO9gktETXGLzHi7sZ6cC2ZfhqfwQrYgwqzJy/GQ2u7Oz9h8zfSSSXAhmLHq+Ej5Iy88JVE63BV48lj/AJExhG50TGZ89TY7yqUq8GEGIb6xYqqqz0BurIl1tcbWxCibqxxvZJJ+iyFabkvObsRId5Ho=
+	t=1718884676; cv=none; b=lijmdsdBIkhmRF5+3Y+DM3wcOOVPn8X6EMXPtAlO+UF9FO6mZobAlHRhVobwuePUerkyF200eOTteE7hlEzh7IoIIlY9aJsr4ERLy8n5N+ZL05F8nj8h9bqoUw/EObR9jvXyTiCBOD1ENnR6FdOTF0tqedwnSpCNoKR7JtVUZ3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718884405; c=relaxed/simple;
-	bh=JbjvBSoeGaOTiJHj0pNmCK5cvxVytAzO4Zwsf0Qcm0U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=mltqKU7bp9dBgMcjUYny+cKCLmphQ8lgZNpwZ+5LamaP1VU2+Lwf2n0AWHlq9fXMrZJ3gm6ArGms+IFshVpOe64oQmcX8555aDuIHwGLfLF0/6Er4+w5qdYbx/3GlUYjoKQFcnLhWizg6MxCKP1Apn3/0l5jZE7/zERnf0mi4jE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=dJgh8jUO; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-6e41550ae5bso584186a12.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 04:53:20 -0700 (PDT)
+	s=arc-20240116; t=1718884676; c=relaxed/simple;
+	bh=XDQvMnB16ZWU3vWZQhogTagaKmdPwNlpcCZpPzZaBu8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tLaCJhO6Zlv6ULOYQLZ55csuNlTcQ7vndfR9o9hDdYlyzaY+IaMk83rHS873mkAZ8mNAqlTXfXsSyMI9tioY5KWin/N0oXzOQyMio7WxpkZZNrC6VizjZ8IRbC+N+wzSqidRMSvQOQ5aiq0T5ohdCj0y0YBWASea/BkQHcu+2iU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jht7wsDj; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-627e3368394so7522747b3.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 04:57:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1718884400; x=1719489200; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SGxsnuQ/Ed2W6oHEgWL59ov1wcKeqfhC4//KwM5fATY=;
-        b=dJgh8jUOgG61iBXy4fRlzFvd9wOUrZ9UGE2Hq5eFanWF/mjUMwsVvHEmQNqGzKiMW3
-         T5CzcO+BfrvRlv7wINEnFbDxUmhwA1+TaBxXS0rgKslb0qMwFU9tZHOPt0rA4giwHNUZ
-         ayf7UOmJRKKocM/3pOb2iYaC+F68oJzUcUZgmyVH9CExSs3cdwe0H9gTgNDltkqQDfcZ
-         +VriW4Z9B6JvXODB5zRhzD4Pr6OpHOE0tVYAVpOnR6Pr6CijP1PzD504CCIylYZRH07j
-         ZzY0Kh6EkfIPNkSFxDl7SlnsWSEG0C/E/2pr4TL7L/OBs7KePMt3m5jVcG2YwpFAu48s
-         6rCQ==
+        d=linaro.org; s=google; t=1718884672; x=1719489472; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pKonK5DK481yyyPINscHZQSBdoIu2+DIuryYkBtbvTk=;
+        b=Jht7wsDjznvYWuJ7M0LHskr0h87OB9qTl/ss7B5JbkWAZ/np+olUPyblIhRdutjW+t
+         YB2L8vnxiuJKynmw47y5FLILwtGtXvPzvqeBTKD2dmcAsqDuK+tM3akjvcOHByHrsKfG
+         veqBQXCXzAzHARH980SqaPYoDAFxjA0byualYHJW3lmGbeGgbb29WCq8ynobQkGQsM3M
+         5/8zlPtMzZLYOXQilbhQ8Shop3lKiMyFHzAX3nrUzjdCbUFaeLHiRR2+Op8maM+WBWVA
+         SFubucqH5Ba5W08XvLMeYrOHeB7ZF/a5GZeOTZScbVAOA6zMkJMl+ZaWNX3hPiKgrBkl
+         95oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718884400; x=1719489200;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SGxsnuQ/Ed2W6oHEgWL59ov1wcKeqfhC4//KwM5fATY=;
-        b=piXqLgIA2NfOzbW7nj/Cm3cxnK22+2DS0j62Wa3wMXIAlf4FEpqI7p4jB8QaB3IkXj
-         HJpqzGrbBAt974O9QUe79zzoA4ZPwkiX8I0mZpXjsx5cg6advyhZQ4YRwNrMH7ZJMchu
-         QcChuS/PaVlG4gPV3rrj/7rvr/4bA4Sz/FXbwxBPeS/+/ibrIp9AWDZy5LPX7pdEsjnX
-         4SkN+/BRk2TchS9k5y2lisals9/c14utbOiYS7T5uAryyqbc3yYcAFkzvPAwKJcyLqdr
-         pJOWmTS4AKHWmvBRc67BUBhh+DKKR/ocqk25cD/rvDhS/AFq3R6DKQCPISztwS/f3cIc
-         WW9w==
-X-Forwarded-Encrypted: i=1; AJvYcCU/jBTF2abXWyQG9mRkrVP7sxsrZBZumtreh2nrL0ePuYfV6SdgRy2SE1Bv43P6nXivXVpUl2OYID5+d0Jf2xeMkVugUj6A7d3e+g==
-X-Gm-Message-State: AOJu0YyW1nrHEQ5m+DGt5H1BkgwwXCtsHbXoZvGNppLZDQu3kOOyt6Ru
-	Aj4x+nHodftRN1iXedWtSr3KwwXl8ShX3MdPwoHPmtL1h0p0xO9fijCAWN2qvnA=
-X-Google-Smtp-Source: AGHT+IGPaoUMZD2bE4TUQaAjM2Xa6g5NiSG8yzzsu6txP6paw9VEvEuLWcEQrpokt40rkmIuHxjR3g==
-X-Received: by 2002:a17:90b:fd8:b0:2c2:fed1:769f with SMTP id 98e67ed59e1d1-2c7b5c8234cmr4978938a91.13.1718884386873;
-        Thu, 20 Jun 2024 04:53:06 -0700 (PDT)
-Received: from lvzhaoxiong-KLVC-WXX9.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c7e64a1da9sm1486316a91.53.2024.06.20.04.53.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 04:53:06 -0700 (PDT)
-From: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-To: dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jikos@kernel.org,
-	benjamin.tissoires@redhat.co,
-	dianders@google.com,
-	hsinyi@google.com
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Subject: [PATCH v4 2/2] drm/panel: starry-er88577: add new panel driver
-Date: Thu, 20 Jun 2024 19:52:45 +0800
-Message-Id: <20240620115245.31540-3-lvzhaoxiong@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240620115245.31540-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-References: <20240620115245.31540-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+        d=1e100.net; s=20230601; t=1718884672; x=1719489472;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pKonK5DK481yyyPINscHZQSBdoIu2+DIuryYkBtbvTk=;
+        b=ogWH/SBhMCNkAws3LgvNrCXxHuIhq84B0EHlURsjJoJVV3POSZ3LXuep0hTROAhkrz
+         z1/tW/kCenyx/aO3teThbmtWINMOFj9VhQquoqFjnU+r2pB093oLLtXrbtCwgcxO5ALj
+         FFrMRln5EuUiI82OEUsM94eW0nLMWgJM+MQz1cpJhLZdh2Rbv+h5aD0ZtaMlHXiCp+w6
+         chJSZzwmQsg1CiDwejqbWgYa6lMV9HADb4scyeGPj6bMuZC5Q+y4odjxBVRLtXXKewWK
+         ZqOdmER1B4YiJ2FREvQuAKscAmBdd4FREcwIn8dgDsIUC6lpzdUn7MeYyf/NyyNKhKyw
+         iXZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJyQoUYPSTAUUQtN3OiMlPl9rte6+OOBGkgb3/hO+cxMn8suPxdkPSpCkdIMGO4EmKukmzUbTEj6+K4cJhShHZKUSLAPcYp2w74A==
+X-Gm-Message-State: AOJu0YzDDgOT23GiV136ZqC5s1JKAozIyBG7SGFp4ZtwTbkUfolNXevx
+	UTkFlts17dY5hwnOAcyN/bLe7Ez4JNzRV9tpBq5llA/00ho7iSOUut3IqGE5CkEuTB3gwPvL2IK
+	z49NcI2PNx0kFj3oYvfo7PDtbfaytXJpoTfdfOA==
+X-Google-Smtp-Source: AGHT+IHQTplRbWbAUTz96pvUbbS/SRQrzn+KYCnz3tnjagajTb/NoPerM2ZlPpGneIJvN7K8ostF+xiZRxvEptDtUcs=
+X-Received: by 2002:a0d:ebc5:0:b0:630:3061:c22 with SMTP id
+ 00721157ae682-63a8dd044femr54611747b3.20.1718884671752; Thu, 20 Jun 2024
+ 04:57:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
+ <20240617005825.1443206-5-quic_gaurkash@quicinc.com> <3eehkn3cdhhjfqtzpahxhjxtu5uqwhntpgu22k3hknctrop3g5@f7dhwvdvhr3k>
+ <96e2ce4b154a4f918be0bc2a45011e6d@quicinc.com> <CAA8EJppGpv7N_JQQNJZrbngBBdEKZfuqutR9MPnS1R_WqYNTQw@mail.gmail.com>
+ <3a15df00a2714b40aba4ebc43011a7b6@quicinc.com>
+In-Reply-To: <3a15df00a2714b40aba4ebc43011a7b6@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 20 Jun 2024 14:57:40 +0300
+Message-ID: <CAA8EJpoZ0RR035QwzMLguJZvdYb-C6aqudp1BgHgn_DH2ffsoQ@mail.gmail.com>
+Subject: Re: [PATCH v5 04/15] soc: qcom: ice: add hwkm support in ice
+To: "Gaurav Kashyap (QUIC)" <quic_gaurkash@quicinc.com>
+Cc: "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
+	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>, "andersson@kernel.org" <andersson@kernel.org>, 
+	"ebiggers@google.com" <ebiggers@google.com>, 
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
+	"srinivas.kandagatla" <srinivas.kandagatla@linaro.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, kernel <kernel@quicinc.com>, 
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"Om Prakash Singh (QUIC)" <quic_omprsing@quicinc.com>, 
+	"Bao D. Nguyen (QUIC)" <quic_nguyenb@quicinc.com>, 
+	"bartosz.golaszewski" <bartosz.golaszewski@linaro.org>, 
+	"konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>, 
+	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>, "jejb@linux.ibm.com" <jejb@linux.ibm.com>, 
+	"martin.petersen@oracle.com" <martin.petersen@oracle.com>, "mani@kernel.org" <mani@kernel.org>, 
+	"davem@davemloft.net" <davem@davemloft.net>, 
+	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>, Prasad Sodagudi <psodagud@quicinc.com>, 
+	Sonal Gupta <sonalg@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-The bias IC of this starry-er88577 panel is placed
-on the panel side, so when the panel is powered on,
-there is no need to control AVDD and AVEE in the driver,
-only 3.3v and reset are needed.
+On Thu, 20 Jun 2024 at 01:30, Gaurav Kashyap (QUIC)
+<quic_gaurkash@quicinc.com> wrote:
+>
+> Hello Dmitry
+>
+> On 06/18/2024 3:17 PM PDT, Dmitry Baryshkov wrote:
+> > On Wed, 19 Jun 2024 at 01:07, Gaurav Kashyap (QUIC)
+> > <quic_gaurkash@quicinc.com> wrote:
+> > >
+> > > Hello Dmitry,
+> > >
+> > > On 06/17/2024 12:55 AM PDT, Dmitry Baryshkov wrote:
+> > > > On Sun, Jun 16, 2024 at 05:50:59PM GMT, Gaurav Kashyap wrote:
+> > > > > Qualcomm's ICE (Inline Crypto Engine) contains a proprietary key
+> > > > > management hardware called Hardware Key Manager (HWKM).
+> > > > > This patch integrates HWKM support in ICE when it is available.
+> > > > > HWKM primarily provides hardware wrapped key support where the
+> > ICE
+> > > > > (storage) keys are not available in software and protected in
+> > > > > hardware.
+> > > > >
+> > > > > When HWKM software support is not fully available (from
+> > > > > Trustzone), there can be a scenario where the ICE hardware
+> > > > > supports HWKM, but it cannot be used for wrapped keys. In this
+> > > > > case, standard keys have to be used without using HWKM. Hence,
+> > > > > providing a toggle controlled by a devicetree entry to use HWKM or not.
+> > > > >
+> > > > > Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > > > Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> > > > > ---
+> > > > >  drivers/soc/qcom/ice.c | 153
+> > > > +++++++++++++++++++++++++++++++++++++++--
+> > > > >  include/soc/qcom/ice.h |   1 +
+> > > > >  2 files changed, 150 insertions(+), 4 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c index
+> > > > > 6f941d32fffb..d5e74cf2946b 100644
+> > > > > --- a/drivers/soc/qcom/ice.c
+> > > > > +++ b/drivers/soc/qcom/ice.c
+> > > > > @@ -26,6 +26,40 @@
+> > > > >  #define QCOM_ICE_REG_FUSE_SETTING            0x0010
+> > > > >  #define QCOM_ICE_REG_BIST_STATUS             0x0070
+> > > > >  #define QCOM_ICE_REG_ADVANCED_CONTROL                0x1000
+> > > > > +#define QCOM_ICE_REG_CONTROL                 0x0
+> > > > > +/* QCOM ICE HWKM registers */
+> > > > > +#define QCOM_ICE_REG_HWKM_TZ_KM_CTL                  0x1000
+> > > > > +#define QCOM_ICE_REG_HWKM_TZ_KM_STATUS                       0x1004
+> > > > > +#define QCOM_ICE_REG_HWKM_BANK0_BANKN_IRQ_STATUS
+> > 0x2008
+> > > > > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_0                       0x5000
+> > > > > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_1                       0x5004
+> > > > > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_2                       0x5008
+> > > > > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_3                       0x500C
+> > > > > +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_4                       0x5010
+> > > > > +
+> > > > > +/* QCOM ICE HWKM reg vals */
+> > > > > +#define QCOM_ICE_HWKM_BIST_DONE_V1           BIT(16)
+> > > > > +#define QCOM_ICE_HWKM_BIST_DONE_V2           BIT(9)
+> > > > > +#define QCOM_ICE_HWKM_BIST_DONE(ver)
+> > > > QCOM_ICE_HWKM_BIST_DONE_V##ver
+> > > > > +
+> > > > > +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V1            BIT(14)
+> > > > > +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V2            BIT(7)
+> > > > > +#define QCOM_ICE_HWKM_CRYPTO_BIST_DONE(v)
+> > > > QCOM_ICE_HWKM_CRYPTO_BIST_DONE_V##v
+> > > > > +
+> > > > > +#define QCOM_ICE_HWKM_BOOT_CMD_LIST1_DONE            BIT(2)
+> > > > > +#define QCOM_ICE_HWKM_BOOT_CMD_LIST0_DONE            BIT(1)
+> > > > > +#define QCOM_ICE_HWKM_KT_CLEAR_DONE                  BIT(0)
+> > > > > +
+> > > > > +#define QCOM_ICE_HWKM_BIST_VAL(v)
+> > > > (QCOM_ICE_HWKM_BIST_DONE(v) |           \
+> > > > > +                                     QCOM_ICE_HWKM_CRYPTO_BIST_DONE(v) |     \
+> > > > > +                                     QCOM_ICE_HWKM_BOOT_CMD_LIST1_DONE |     \
+> > > > > +                                     QCOM_ICE_HWKM_BOOT_CMD_LIST0_DONE |     \
+> > > > > +                                     QCOM_ICE_HWKM_KT_CLEAR_DONE)
+> > > > > +
+> > > > > +#define QCOM_ICE_HWKM_V1_STANDARD_MODE_VAL   (BIT(0) |
+> > BIT(1)
+> > > > | BIT(2))
+> > > > > +#define QCOM_ICE_HWKM_V2_STANDARD_MODE_MASK
+> > > > GENMASK(31, 1) #define
+> > > > > +QCOM_ICE_HWKM_DISABLE_CRC_CHECKS_VAL (BIT(1) | BIT(2))
+> > > > > +#define QCOM_ICE_HWKM_RSP_FIFO_CLEAR_VAL     BIT(3)
+> > > > >
+> > > > >  /* BIST ("built-in self-test") status flags */
+> > > > >  #define QCOM_ICE_BIST_STATUS_MASK            GENMASK(31, 28)
+> > > > > @@ -34,6 +68,9 @@
+> > > > >  #define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK  0x2  #define
+> > > > > QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK  0x4
+> > > > >
+> > > > > +#define QCOM_ICE_HWKM_REG_OFFSET     0x8000
+> > > > > +#define HWKM_OFFSET(reg)             ((reg) +
+> > > > QCOM_ICE_HWKM_REG_OFFSET)
+> > > > > +
+> > > > >  #define qcom_ice_writel(engine, val, reg)    \
+> > > > >       writel((val), (engine)->base + (reg))
+> > > > >
+> > > > > @@ -46,6 +83,9 @@ struct qcom_ice {
+> > > > >       struct device_link *link;
+> > > > >
+> > > > >       struct clk *core_clk;
+> > > > > +     u8 hwkm_version;
+> > > > > +     bool use_hwkm;
+> > > > > +     bool hwkm_init_complete;
+> > > > >  };
+> > > > >
+> > > > >  static bool qcom_ice_check_supported(struct qcom_ice *ice) @@
+> > > > > -63,8
+> > > > > +103,21 @@ static bool qcom_ice_check_supported(struct qcom_ice
+> > > > > +*ice)
+> > > > >               return false;
+> > > > >       }
+> > > > >
+> > > > > -     dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
+> > > > > -              major, minor, step);
+> > > > > +     if (major >= 4 || (major == 3 && minor == 2 && step >= 1))
+> > > > > +             ice->hwkm_version = 2;
+> > > > > +     else if (major == 3 && minor == 2)
+> > > > > +             ice->hwkm_version = 1;
+> > > > > +     else
+> > > > > +             ice->hwkm_version = 0;
+> > > > > +
+> > > > > +     if (ice->hwkm_version == 0)
+> > > > > +             ice->use_hwkm = false;
+> > > > > +
+> > > > > +     dev_info(dev, "Found QC Inline Crypto Engine (ICE)
+> > > > > + v%d.%d.%d,
+> > > > HWKM v%d\n",
+> > > > > +              major, minor, step, ice->hwkm_version);
+> > > > > +
+> > > > > +     if (!ice->use_hwkm)
+> > > > > +             dev_info(dev, "QC ICE HWKM (Hardware Key Manager)
+> > > > > + not used/supported");
+> > > > >
+> > > > >       /* If fuses are blown, ICE might not work in the standard way. */
+> > > > >       regval = qcom_ice_readl(ice, QCOM_ICE_REG_FUSE_SETTING); @@
+> > > > > -113,27 +166,106 @@ static void
+> > > > > qcom_ice_optimization_enable(struct
+> > > > qcom_ice *ice)
+> > > > >   * fails, so we needn't do it in software too, and (c) properly testing
+> > > > >   * storage encryption requires testing the full storage stack anyway,
+> > > > >   * and not relying on hardware-level self-tests.
+> > > > > + *
+> > > > > + * However, we still care about if HWKM BIST failed (when
+> > > > > + supported) as
+> > > > > + * important functionality would fail later, so disable hwkm on failure.
+> > > > >   */
+> > > > >  static int qcom_ice_wait_bist_status(struct qcom_ice *ice)  {
+> > > > >       u32 regval;
+> > > > > +     u32 bist_done_val;
+> > > > >       int err;
+> > > > >
+> > > > >       err = readl_poll_timeout(ice->base +
+> > QCOM_ICE_REG_BIST_STATUS,
+> > > > >                                regval, !(regval & QCOM_ICE_BIST_STATUS_MASK),
+> > > > >                                50, 5000);
+> > > > > -     if (err)
+> > > > > +     if (err) {
+> > > > >               dev_err(ice->dev, "Timed out waiting for ICE
+> > > > > self-test to complete\n");
+> > > > > +             return err;
+> > > > > +     }
+> > > > >
+> > > > > +     if (ice->use_hwkm) {
+> > > > > +             bist_done_val = ice->hwkm_version == 1 ?
+> > > > > +                             QCOM_ICE_HWKM_BIST_VAL(1) :
+> > > > > +                             QCOM_ICE_HWKM_BIST_VAL(2);
+> > > > > +             if (qcom_ice_readl(ice,
+> > > > > +
+> > > > HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_STATUS)) !=
+> > > > > +                                bist_done_val) {
+> > > > > +                     dev_err(ice->dev, "HWKM BIST error\n");
+> > > > > +                     ice->use_hwkm = false;
+> > > > > +                     err = -ENODEV;
+> > > > > +             }
+> > > > > +     }
+> > > > >       return err;
+> > > > >  }
+> > > > >
+> > > > > +static void qcom_ice_enable_standard_mode(struct qcom_ice *ice) {
+> > > > > +     u32 val = 0;
+> > > > > +
+> > > > > +     /*
+> > > > > +      * When ICE is in standard (hwkm) mode, it supports HW wrapped
+> > > > > +      * keys, and when it is in legacy mode, it only supports standard
+> > > > > +      * (non HW wrapped) keys.
+> > > >
+> > > > I can't say this is very logical.
+> > > >
+> > > > standard mode => HW wrapped keys
+> > > > legacy mode => standard keys
+> > > >
+> > > > Consider changing the terms.
+> > > >
+> > >
+> > > Ack, will make this clearer
+> > >
+> > > > > +      *
+> > > > > +      * Put ICE in standard mode, ICE defaults to legacy mode.
+> > > > > +      * Legacy mode - ICE HWKM slave not supported.
+> > > > > +      * Standard mode - ICE HWKM slave supported.
+> > > >
+> > > > s/slave/some other term/
+> > > >
+> > > Ack - will address this.
+> > >
+> > > > Is it possible to use both kind of keys when working on standard mode?
+> > > > If not, it should be the user who selects what type of keys to be used.
+> > > > Enforcing this via DT is not a way to go.
+> > > >
+> > >
+> > > Unfortunately, that support is not there yet. When you say user, do
+> > > you mean to have it as a filesystem mount option?
+> >
+> > During cryptsetup time. When running e.g. cryptsetup I, as a user, would like
+> > to be able to use either a hardware-wrapped key or a standard key.
+> >
+>
+> What we are looking for with these patches is for per-file/folder encryption using fscrypt policies.
+> Cryptsetup to my understanding supports only full-disk , and does not support FBE (File-Based)
 
-Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
----
-Chage since V3:
--  1. Adjust the ".clock" assignment format.
+I must admit, I mostly used dm-crypt beforehand, so I had to look at
+fscrypt now. Some of my previous comments might not be fully
+applicable.
 
-v3: https://lore.kernel.org/all/20240614145609.25432-3-lvzhaoxiong@huaqin.corp-partner.google.com/
+> Hence the idea here is that we mount an unencrypted device (with the inlinecrypt option that indicates inline encryption is supported)
+> And specify policies (links to keys) for different folders.
+>
+> > > The way the UFS/EMMC crypto layer is designed currently is that, this
+> > > information is needed when the modules are loaded.
+> > >
+> > > https://lore.kernel.org/all/20231104211259.17448-2-ebiggers@kernel.org
+> > > /#Z31drivers:ufs:core:ufshcd-crypto.c
+> >
+> > I see that the driver lists capabilities here. E.g. that it supports HW-wrapped
+> > keys. But the line doesn't specify that standard keys are not supported.
+> >
+>
+> Those are capabilities that are read from the storage controller. However, wrapped keys
+> Are not a standard in the ICE JEDEC specification, and in most cases, is a value add coming
+> from the SoC.
+>
+> QCOM SOC and firmware currently does not support both kinds of keys in the HWKM mode.
+> That is something we are internally working on, but not available yet.
 
-Chage since V3:
--  Separate Starry-er88577 from the panel-kingdisplay-kd101ne3 driver.
--  Use mipi_dsi_dcs_set_display_on_multi().
--  Use mipi_dsi_dcs_exit_sleep_mode_multi() and mipi_dsi_msleep().
+I'd say this is a significant obstacle, at least from my point of
+view. I understand that the default might be to use hw-wrapped keys,
+but it should be possible for the user to select non-HW keys if the
+ability to recover the data is considered to be important. Note, I'm
+really pointing to the user here, not to the system integrator. So
+using DT property or specifying kernel arguments to switch between
+these modes is not really an option.
 
-v2: https://lore.kernel.org/all/20240601084528.22502-5-lvzhaoxiong@huaqin.corp-partner.google.com/
+But I'd really love to hear some feedback from linux-security and/or
+linux-fscrypt here.
 
-Chage since V2:
--  Add compatible for Starry er88577 in panel-kingdisplay-kd101ne3 drivers.
+In my humble opinion the user should be able to specify that the key
+is wrapped using the hardware KMK. Then if the hardware has already
+started using the other kind of keys, it should be able to respond
+with -EINVAL / whatever else. Then the user can evict previously
+programmed key and program a desired one.
 
----
- drivers/gpu/drm/panel/Kconfig                |   9 +
- drivers/gpu/drm/panel/Makefile               |   1 +
- drivers/gpu/drm/panel/panel-starry-er88577.c | 343 +++++++++++++++++++
- 3 files changed, 353 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-starry-er88577.c
+> > Also, I'd have expected that hw-wrapped keys are handled using trusted
+> > keys mechanism (see security/keys/trusted-keys/). Could you please point
+> > out why that's not the case?
+> >
+>
+> I will evaluate this.
+> But my initial response is that we currently cannot communicate to our TPM directly from HLOS, but
+> goes through QTEE, and I don't think our qtee currently interfaces with the open source tee
+> driver. The interface is through QCOM SCM driver.
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index e54f6f5604ed..a52aa2552ab8 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -781,6 +781,15 @@ config DRM_PANEL_SITRONIX_ST7789V
- 	  Say Y here if you want to enable support for the Sitronix
- 	  ST7789V controller for 240x320 LCD panels
- 
-+config DRM_PANEL_STARRY_ER88577
-+	tristate "Starry er88577 panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y if you want to enable support for panels based on the
-+	  Starry er88577 controller.
-+
- config DRM_PANEL_SONY_ACX565AKM
- 	tristate "Sony ACX565AKM panel"
- 	depends on GPIOLIB && OF && SPI
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index f0203f6e02f4..ecd843a6dc6e 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -81,6 +81,7 @@ obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) += panel-sharp-ls060t1sx01.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
-+obj-$(CONFIG_DRM_PANEL_STARRY_ER88577) += panel-starry-er88577.o
- obj-$(CONFIG_DRM_PANEL_SYNAPTICS_R63353) += panel-synaptics-r63353.o
- obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
- obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
-diff --git a/drivers/gpu/drm/panel/panel-starry-er88577.c b/drivers/gpu/drm/panel/panel-starry-er88577.c
-new file mode 100644
-index 000000000000..e6088262ee69
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-starry-er88577.c
-@@ -0,0 +1,343 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Panels based on the ER88577 display controller.
-+ * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <drm/drm_connector.h>
-+#include <drm/drm_crtc.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_panel.h>
-+
-+#include <video/mipi_display.h>
-+#include <drm/drm_probe_helper.h>
-+
-+struct starry_panel;
-+
-+struct panel_desc {
-+	const struct drm_display_mode *modes;
-+	unsigned int bpc;
-+	unsigned long mode_flags;
-+	enum mipi_dsi_pixel_format format;
-+	const struct panel_init_cmd *init_cmds;
-+	int (*init)(struct starry_panel *starry);
-+	unsigned int lanes;
-+	bool discharge_on_disable;
-+	bool lp11_before_reset;
-+	unsigned int power_off_delay_ms;
-+};
-+
-+struct starry_panel {
-+	struct drm_panel base;
-+	struct mipi_dsi_device *dsi;
-+
-+	const struct panel_desc *desc;
-+
-+	enum drm_panel_orientation orientation;
-+	struct regulator *vccio;
-+	struct gpio_desc *reset;
-+};
-+
-+static int starry_er88577_init(struct starry_panel *starry)
-+{
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = starry->dsi };
-+
-+	/* T5:HWreset to init_code >= 120ms */
-+	mipi_dsi_msleep(dsi_ctx, 120);
-+
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0xab, 0xba);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0xba, 0xab);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb1, 0x10, 0x01, 0x47, 0xff);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2, 0x0c, 0x14, 0x04, 0x50, 0x50, 0x14);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb3, 0x56, 0x53, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb4, 0x33, 0x30, 0x04);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0xb0, 0x00, 0x00, 0x10, 0x00, 0x10, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x05, 0x12, 0x29, 0x49, 0x40);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb9, 0x7c, 0x61, 0x4f, 0x42, 0x3e, 0x2d, 0x31,
-+				     0x1a, 0x33, 0x33, 0x33, 0x52, 0x40, 0x47, 0x38, 0x34, 0x26,
-+				     0x0e, 0x06, 0x7c, 0x61, 0x4f, 0x42, 0x3e, 0x2d, 0x31, 0x1a,
-+				     0x33, 0x33, 0x33, 0x52, 0x40, 0x47, 0x38, 0x34, 0x26, 0x0e,
-+				     0x06);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0xcc, 0x76, 0x12, 0x34, 0x44, 0x44, 0x44,
-+				     0x44, 0x98, 0x04, 0x98, 0x04, 0x0f, 0x00, 0x00, 0xc1);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0x54, 0x94, 0x02, 0x85, 0x9f, 0x00, 0x6f,
-+				     0x00, 0x54, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2, 0x17, 0x09, 0x08, 0x89, 0x08, 0x11, 0x22,
-+				     0x20, 0x44, 0xff, 0x18, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc3, 0x87, 0x47, 0x05, 0x05, 0x1c, 0x1c, 0x1d,
-+				     0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, 0x0f, 0x0f, 0x0d, 0x0d,
-+				     0x13, 0x13, 0x11, 0x11, 0x24);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4, 0x06, 0x06, 0x04, 0x04, 0x1c, 0x1c, 0x1d,
-+				     0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, 0x0e, 0x0e, 0x0c, 0x0c,
-+				     0x12, 0x12, 0x10, 0x10, 0x24);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc8, 0x21, 0x00, 0x31, 0x42, 0x34, 0x16);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca, 0xcb, 0x43);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcd, 0x0e, 0x4b, 0x4b, 0x20, 0x19, 0x6b, 0x06,
-+				     0xb3);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd2, 0xe3, 0x2b, 0x38, 0x08);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4, 0x00, 0x01, 0x00, 0x0e, 0x04, 0x44, 0x08,
-+				     0x10, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x80, 0x09, 0xff, 0xff, 0xff, 0xff, 0xff,
-+				     0xff);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x12, 0x03, 0x20, 0x00, 0xff);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0x00);
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-+
-+	mipi_dsi_msleep(dsi_ctx, 120);
-+
-+	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-+	mipi_dsi_msleep(dsi_ctx, 20);
-+
-+	return dsi_ctx.accum_err;
-+};
-+
-+static inline struct starry_panel *to_starry_panel(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct starry_panel, base);
-+}
-+
-+static int starry_panel_disable(struct drm_panel *panel)
-+{
-+	struct starry_panel *starry = to_starry_panel(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = starry->dsi };
-+
-+	starry->dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	mipi_dsi_msleep(dsi_ctx, 100);
-+
-+	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-+
-+	mipi_dsi_msleep(dsi_ctx, 50);
-+
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-+
-+	mipi_dsi_msleep(dsi_ctx, 120);
-+
-+	return dsi_ctx.accum_err;
-+}
-+
-+static int starry_panel_unprepare(struct drm_panel *panel)
-+{
-+	struct starry_panel *starry = to_starry_panel(panel);
-+	int err;
-+
-+	gpiod_set_value_cansleep(starry->reset, 0);
-+
-+	/* T15: 2ms */
-+	usleep_range(1000, 2000);
-+
-+	err = regulator_disable(starry->vccio);
-+	if (err < 0)
-+		return err;
-+
-+	if (starry->desc->power_off_delay_ms)
-+		msleep(starry->desc->power_off_delay_ms);
-+
-+	return 0;
-+}
-+
-+static int starry_panel_prepare(struct drm_panel *panel)
-+{
-+	struct starry_panel *starry = to_starry_panel(panel);
-+	int err;
-+
-+	gpiod_set_value(starry->reset, 0);
-+
-+	err = regulator_enable(starry->vccio);
-+	if (err < 0)
-+		return err;
-+
-+	/* T1:Vdd to mipi_lp >= 0ms */
-+	usleep_range(5000, 6000);
-+
-+	if (starry->desc->lp11_before_reset) {
-+		err = mipi_dsi_dcs_nop(starry->dsi);
-+		if (err < 0)
-+			goto poweroff;
-+
-+		usleep_range(1000, 2000);
-+	}
-+
-+	/* T2: 10ms, T1 + T2 > 60ms */
-+	msleep(60);
-+
-+	gpiod_set_value_cansleep(starry->reset, 1);
-+
-+	err = starry->desc->init(starry);
-+	if (err < 0)
-+		goto poweroff;
-+
-+	return 0;
-+
-+poweroff:
-+	gpiod_set_value(starry->reset, 0);
-+		/* T6: 2ms */
-+	usleep_range(1000, 2000);
-+	regulator_disable(starry->vccio);
-+
-+	return err;
-+}
-+
-+static int starry_panel_enable(struct drm_panel *panel)
-+{
-+	msleep(130);
-+	return 0;
-+}
-+
-+static const struct drm_display_mode starry_er88577_default_mode = {
-+	.clock = (800 + 25 + 25 + 25) * (1280 + 20 + 4 + 12) * 60 / 1000,
-+	.hdisplay = 800,
-+	.hsync_start = 800 + 25,
-+	.hsync_end = 800 + 25 + 25,
-+	.htotal = 800 + 25 + 25 + 25,
-+	.vdisplay = 1280,
-+	.vsync_start = 1280 + 20,
-+	.vsync_end = 1280 + 20 + 4,
-+	.vtotal = 1280 + 20 + 4 + 12,
-+	.width_mm = 135,
-+	.height_mm = 216,
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static const struct panel_desc starry_er88577_desc = {
-+	.modes = &starry_er88577_default_mode,
-+	.bpc = 8,
-+	.lanes = 4,
-+	.format = MIPI_DSI_FMT_RGB888,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-+		      MIPI_DSI_MODE_LPM,
-+	.init = starry_er88577_init,
-+	.lp11_before_reset = true,
-+	.power_off_delay_ms = 1000,
-+};
-+
-+static int starry_panel_get_modes(struct drm_panel *panel,
-+			       struct drm_connector *connector)
-+{
-+	struct starry_panel *starry = to_starry_panel(panel);
-+	const struct drm_display_mode *mode = starry->desc->modes;
-+
-+	return drm_connector_helper_get_modes_fixed(connector, mode);
-+}
-+
-+static enum drm_panel_orientation starry_panel_get_orientation(struct drm_panel *panel)
-+{
-+	struct starry_panel *starry = to_starry_panel(panel);
-+
-+	return starry->orientation;
-+}
-+
-+static const struct drm_panel_funcs starry_panel_funcs = {
-+	.disable = starry_panel_disable,
-+	.unprepare = starry_panel_unprepare,
-+	.prepare = starry_panel_prepare,
-+	.enable = starry_panel_enable,
-+	.get_modes = starry_panel_get_modes,
-+	.get_orientation = starry_panel_get_orientation,
-+};
-+
-+static int starry_panel_add(struct starry_panel *starry)
-+{
-+	struct device *dev = &starry->dsi->dev;
-+	int err;
-+
-+	starry->vccio = devm_regulator_get(dev, "vccio");
-+	if (IS_ERR(starry->vccio))
-+		return dev_err_probe(dev, PTR_ERR(starry->vccio),
-+				     "Cannot get vccio\n");
-+
-+	starry->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(starry->reset))
-+		return dev_err_probe(dev, PTR_ERR(starry->reset),
-+				     "Cannot get reset GPIO\n");
-+
-+	drm_panel_init(&starry->base, dev, &starry_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+
-+	err = of_drm_get_panel_orientation(dev->of_node, &starry->orientation);
-+	if (err < 0) {
-+		dev_err(dev, "%pOF: failed to get orientation %d\n", dev->of_node, err);
-+		return err;
-+	}
-+
-+	err = drm_panel_of_backlight(&starry->base);
-+	if (err)
-+		return err;
-+
-+	starry->base.funcs = &starry_panel_funcs;
-+	starry->base.dev = &starry->dsi->dev;
-+
-+	drm_panel_add(&starry->base);
-+
-+	return 0;
-+}
-+
-+static int starry_panel_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct starry_panel *starry;
-+	int ret;
-+	const struct panel_desc *desc;
-+
-+	starry = devm_kzalloc(&dsi->dev, sizeof(*starry), GFP_KERNEL);
-+	if (!starry)
-+		return -ENOMEM;
-+
-+	desc = of_device_get_match_data(&dsi->dev);
-+	dsi->lanes = desc->lanes;
-+	dsi->format = desc->format;
-+	dsi->mode_flags = desc->mode_flags;
-+	starry->desc = desc;
-+	starry->dsi = dsi;
-+	ret = starry_panel_add(starry);
-+	if (ret < 0)
-+		return ret;
-+
-+	mipi_dsi_set_drvdata(dsi, starry);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret)
-+		drm_panel_remove(&starry->base);
-+
-+	return ret;
-+}
-+
-+static void starry_panel_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct starry_panel *starry = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", ret);
-+
-+	if (starry->base.dev)
-+		drm_panel_remove(&starry->base);
-+}
-+
-+static const struct of_device_id starry_of_match[] = {
-+	{ .compatible = "starry,er88577",
-+	  .data = &starry_er88577_desc
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, starry_of_match);
-+
-+static struct mipi_dsi_driver starry_panel_driver = {
-+	.driver = {
-+		.name = "panel-starry-er88577",
-+		.of_match_table = starry_of_match,
-+	},
-+	.probe = starry_panel_probe,
-+	.remove = starry_panel_remove,
-+};
-+module_mipi_dsi_driver(starry_panel_driver);
-+
-+MODULE_AUTHOR("Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>");
-+MODULE_DESCRIPTION("starry er88577 800x1280 video mode panel driver");
-+MODULE_LICENSE("GPL v2");
+Note, this is just an API interface, see how it is implemented for the
+CAAM hardware.
+
+>
+> > > I am thinking of a way now to do this with DT, but without having a new
+> > vendor property.
+> > > Is it acceptable to use the addressable range as the deciding factor?
+> > > Say use legacy mode of ICE when the addressable size is 0x8000 and use
+> > > HWKM mode of ICE when the addressable size is 0x10000.
+> >
+> > Definitely, this is a NAK. It's a very unobvious hack. You have been asked to
+> > use compatible strings to detect whether HW keys are supported or not.
+
 -- 
-2.17.1
-
+With best wishes
+Dmitry
 
