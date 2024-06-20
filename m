@@ -1,187 +1,160 @@
-Return-Path: <devicetree+bounces-77827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC8B910146
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:17:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D53891014A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:17:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45FF1B21621
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:17:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C5DC1F22A80
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF1E91AAE09;
-	Thu, 20 Jun 2024 10:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="e0O0Vqeu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087F01A8C39;
+	Thu, 20 Jun 2024 10:17:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E7B1A8C19;
-	Thu, 20 Jun 2024 10:17:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12BAB4500E
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 10:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718878628; cv=none; b=hmQfSBlsfuq0FLJVsEWhtaN3nqQdFI0A9Ij0OKacCGCgybsU3PuVBwLIMlbA6+vJ2qO8cppRQ6b5exaJTOa3FUU0hhCKhF1SZAwqa97QZFKWLAvY4VzzHSyQrtQB6KYIqb19aDbrO/yiPcDA0F+O0GPtyr3DxGJn0L0qPqiQU5c=
+	t=1718878646; cv=none; b=IsAuN5lTmAEhcAdWokXaX+wHqX2y1pYjRSt7pdkk3VFhtbGoMuN5dWL/xx2ulZo+pF3arNvzlCo7x0dg5MYy+wtipHuYyU4kWIH9BBUuRr4OWpJO1/m0xT8Na/mWmWbXHKP6INUgEf6JxnlIjO4NvWQ5XD8FNNbbhn5pHbV9VRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718878628; c=relaxed/simple;
-	bh=5/xHxmoCi6QI9LdIQBj0+iaTN+SgQB2ZeW/Ik0I59PE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=md39R8hBqboRUEqhWcgYnLlFgQ9NMxmF7DKrthoQVIFuW8G7g+mN3Y/1tbth14cvA2UIfIh7cvYlTJvbctzUuXfry1pvVltuyq9Dz72ZUduKMofiJfLGzWgdxUMDfYNpyMXHNRM8NfkLiws7Vss0VeBiq33nf/dInM4NpJIhozs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=e0O0Vqeu; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718878625;
-	bh=5/xHxmoCi6QI9LdIQBj0+iaTN+SgQB2ZeW/Ik0I59PE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=e0O0VqeuzYslp1aUxg/9cFnisu00u+IzNyVfwcQZhRfJWcyf/4njYTb6reh1R7zR5
-	 y6HIBpL0SSlYcWjXBdSU8O0zcCz7ww++qLzS2KWRWQCYTd7t5oLaZs3qX/c10nBI7S
-	 ITdeI4jDg89jdJK+jp7QDkKs0krWRDXw4Qgc4VYORDHp799aCfpPcrjk9gWaD1BUEn
-	 p4k3eehOasHDUVxktjeyGAxqgGYA7EurfPaJ6NrKNMVkJwYCNq8bX7BS1b7FUtO00i
-	 CYru2O03U9TwN15rwyBzkPXg/qzISY8MEY9GvqeJ05kv/FgSqXACfIbcCrNDQpec69
-	 W3nUYwheeuE7w==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D8F9B3780698;
-	Thu, 20 Jun 2024 10:17:04 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH 2/2] arm: dts: mediatek: Declare drive-strength numerically
-Date: Thu, 20 Jun 2024 12:16:56 +0200
-Message-ID: <20240620101656.1096374-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240620101656.1096374-1-angelogioacchino.delregno@collabora.com>
-References: <20240620101656.1096374-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1718878646; c=relaxed/simple;
+	bh=1I3ur0ocbWFP4fWAh3mMdb00sUlMHr9RGoHljdDyqIc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LQlcOSE4KKru0ZAAZ6pnEe5gCmVX1zvGYvwpCh7yB9KQlV6dvnmagbOBNcI73AeBJ34uu55CWmb6IU4k6fTDEYLGxD+9TUn2OeIWWU3h0YFuIimCBiY9afHWjzauq2lHQRSEMcFH5w7wbaHp/yGK5vwG+34IDCSvKFbEILI1Wjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ec0f3b9bb8so6713431fa.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 03:17:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718878639; x=1719483439;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d+lxYOzrcMs2AvPs+DTpEs/Zqfcyw5bdiw2jrVTDM7w=;
+        b=On4hO9uT8Wl+uMMxy+boCEKJi8Ub3CuRUy5v9Pv0WlpqegH9Bf+DVu8K5GKi88rP7h
+         qQhqgLBXGmiInbrWv/A1mr4CQBKsGmf67nQ2SYGv3TWMzbjd8GMQe4O7tv20riGwxzTW
+         uK2Xzb/O7F7fzLnxpqQFiyfuMBSS/iiJKI7H37PNE9kAHKlA4ma+pmKHuWvKPFGgCE1N
+         Vzvy2HQMue6dDpN91Rv3cBkqMGZzxDEewOziz2EX/R6AqQCjV9LPa27Cey6IebGH6Mh5
+         wgoMj8JN9v5fjtZdD5uU3Q6lmt8K+jT+5w4xQr5E31sILP7WpX9qT8vYEzup83YDK720
+         0r4w==
+X-Forwarded-Encrypted: i=1; AJvYcCXC3PIk9hWciNmzqA9RSIlM9nHp/AYpmPG6ux5bvogCSIq70BrakV98uiTMvNoz6L8+PJnH9luv+LliArnjI3ilFp3q2O1/692MLA==
+X-Gm-Message-State: AOJu0YydYqUSogc+pfALTIPCXRCLHVIwSEIPDpgd50ipQHZQImpme0t3
+	gpoc20wEXmwtD36RkhmWku7+BSpP7C3UDCyJEM/ZYwHphmHqy/Yj7Ja4U9Ze/RA=
+X-Google-Smtp-Source: AGHT+IEHRDN7Y/hTRnitY+zKbDHhciao12bR9ALJW099WSuRojZny9Z8UdJ8WMaHKULioz/AfRh6qQ==
+X-Received: by 2002:a2e:8199:0:b0:2ec:3423:8729 with SMTP id 38308e7fff4ca-2ec3ce27b37mr33107261fa.0.1718878638555;
+        Thu, 20 Jun 2024 03:17:18 -0700 (PDT)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com. [209.85.208.179])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec25647ec2sm15028361fa.56.2024.06.20.03.17.18
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 03:17:18 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ec0f3b9bb8so6712321fa.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 03:17:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWC2p/wKkRT9VwiHtUifNhlJLW15XTIcoGKjs3dZZ2To8lU36MhcdWxcemSmNbeash9S51lj+NkixYzZ5RRtuZXFQXStNUzXhgZKQ==
+X-Received: by 2002:a2e:740a:0:b0:2eb:f7a4:7289 with SMTP id
+ 38308e7fff4ca-2ec3cfe1769mr29351241fa.51.1718878637724; Thu, 20 Jun 2024
+ 03:17:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240616224056.29159-1-andre.przywara@arm.com> <20240616224056.29159-3-andre.przywara@arm.com>
+In-Reply-To: <20240616224056.29159-3-andre.przywara@arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 20 Jun 2024 18:17:01 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66mFF6ayXtTQk2C9EaH3TJ=3uVJr_y3WvCkdPmVE43S+w@mail.gmail.com>
+Message-ID: <CAGb2v66mFF6ayXtTQk2C9EaH3TJ=3uVJr_y3WvCkdPmVE43S+w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] iommu: sun50i: allocate page tables from below 4 GiB
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>, 
+	Philippe Simons <simons.philippe@gmail.com>, iommu@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On some devicetrees, the drive-strength property gets assigned a
-MTK_DRIVE_(x)_mA definition, which matches with (x).
+On Mon, Jun 17, 2024 at 6:42=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> The Allwinner IOMMU is a strict 32-bit device, with its input addresses,
+> the page table root pointer as well as both level's page tables and also
+> the target addresses all required to be below 4GB.
+> The Allwinner H6 SoC only supports 32-bit worth of physical addresses
+> anyway, so this isn't a problem so far, but the H616 and later SoCs exten=
+d
+> the PA space beyond 32 bit to accommodate more DRAM.
+> To make sure we stay within the 32-bit PA range required by the IOMMU,
+> force the memory for the page tables to come from below 4GB. by using
+> allocations with the DMA32 flag.
+> Also reject any attempt to map target addresses beyond 4GB, and print a
+> warning to give users a hint while this fails.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-For example, MTK_DRIVE_8mA equals to 8 and MTK_DRIVE_30mA equals
-to 30.
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
-Also keeping in mind that the drive-strength property is, by
-(binding) definition, taking a number in milliamperes unit,
-change all devicetrees to avoid the usage of any MTK_DRIVE_(x)
-definition.
-
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm/boot/dts/mediatek/mt2701-evb.dts |  2 +-
- arch/arm/boot/dts/mediatek/mt7623.dtsi    | 18 +++++++++---------
- 2 files changed, 10 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm/boot/dts/mediatek/mt2701-evb.dts b/arch/arm/boot/dts/mediatek/mt2701-evb.dts
-index 9c7325f18933..4c76366aa938 100644
---- a/arch/arm/boot/dts/mediatek/mt2701-evb.dts
-+++ b/arch/arm/boot/dts/mediatek/mt2701-evb.dts
-@@ -231,7 +231,7 @@ pins1 {
- 				 <MT2701_PIN_238_EXT_SDIO1__FUNC_EXT_SDIO1>,
- 				 <MT2701_PIN_237_EXT_SDIO2__FUNC_EXT_SDIO2>,
- 				 <MT2701_PIN_236_EXT_SDIO3__FUNC_EXT_SDIO3>;
--			drive-strength = <MTK_DRIVE_4mA>;
-+			drive-strength = <4>;
- 			bias-pull-up;
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/mediatek/mt7623.dtsi b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-index f0b4a09004b3..814586abc297 100644
---- a/arch/arm/boot/dts/mediatek/mt7623.dtsi
-+++ b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-@@ -1143,13 +1143,13 @@ pins-cmd-dat {
- 				 <MT7623_PIN_121_MSDC0_DAT0_FUNC_MSDC0_DAT0>,
- 				 <MT7623_PIN_116_MSDC0_CMD_FUNC_MSDC0_CMD>;
- 			input-enable;
--			drive-strength = <MTK_DRIVE_2mA>;
-+			drive-strength = <2>;
- 			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
- 		};
- 
- 		pins-clk {
- 			pinmux = <MT7623_PIN_117_MSDC0_CLK_FUNC_MSDC0_CLK>;
--			drive-strength = <MTK_DRIVE_2mA>;
-+			drive-strength = <2>;
- 			bias-pull-down = <MTK_PUPD_SET_R1R0_01>;
- 		};
- 
-@@ -1167,14 +1167,14 @@ pins-cmd-dat {
- 				 <MT7623_PIN_110_MSDC1_DAT3_FUNC_MSDC1_DAT3>,
- 				 <MT7623_PIN_105_MSDC1_CMD_FUNC_MSDC1_CMD>;
- 			input-enable;
--			drive-strength = <MTK_DRIVE_4mA>;
-+			drive-strength = <4>;
- 			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
- 		};
- 
- 		pins-clk {
- 			pinmux = <MT7623_PIN_106_MSDC1_CLK_FUNC_MSDC1_CLK>;
- 			bias-pull-down;
--			drive-strength = <MTK_DRIVE_4mA>;
-+			drive-strength = <4>;
- 		};
- 
- 		pins-wp {
-@@ -1197,13 +1197,13 @@ pins-cmd-dat {
- 				 <MT7623_PIN_110_MSDC1_DAT3_FUNC_MSDC1_DAT3>,
- 				 <MT7623_PIN_105_MSDC1_CMD_FUNC_MSDC1_CMD>;
- 			input-enable;
--			drive-strength = <MTK_DRIVE_4mA>;
-+			drive-strength = <4>;
- 			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
- 		};
- 
- 		pins-clk {
- 			pinmux = <MT7623_PIN_106_MSDC1_CLK_FUNC_MSDC1_CLK>;
--			drive-strength = <MTK_DRIVE_4mA>;
-+			drive-strength = <4>;
- 			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
- 		};
- 	};
-@@ -1211,7 +1211,7 @@ pins-clk {
- 	nand_pins_default: nanddefault {
- 		pins-ale {
- 			pinmux = <MT7623_PIN_116_MSDC0_CMD_FUNC_NALE>;
--			drive-strength = <MTK_DRIVE_8mA>;
-+			drive-strength = <8>;
- 			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
- 		};
- 
-@@ -1226,13 +1226,13 @@ pins-dat {
- 				 <MT7623_PIN_115_MSDC0_RSTB_FUNC_NLD8>,
- 				 <MT7623_PIN_119_MSDC0_DAT2_FUNC_NLD2>;
- 			input-enable;
--			drive-strength = <MTK_DRIVE_8mA>;
-+			drive-strength = <8>;
- 			bias-pull-up;
- 		};
- 
- 		pins-we {
- 			pinmux = <MT7623_PIN_117_MSDC0_CLK_FUNC_NWEB>;
--			drive-strength = <MTK_DRIVE_8mA>;
-+			drive-strength = <8>;
- 			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
- 		};
- 	};
--- 
-2.45.2
-
+> ---
+>  drivers/iommu/sun50i-iommu.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/iommu/sun50i-iommu.c b/drivers/iommu/sun50i-iommu.c
+> index dd3f07384624c..20a07f829085d 100644
+> --- a/drivers/iommu/sun50i-iommu.c
+> +++ b/drivers/iommu/sun50i-iommu.c
+> @@ -602,6 +602,14 @@ static int sun50i_iommu_map(struct iommu_domain *dom=
+ain, unsigned long iova,
+>         u32 *page_table, *pte_addr;
+>         int ret =3D 0;
+>
+> +       /* the IOMMU can only handle 32-bit addresses, both input and out=
+put */
+> +       if ((uint64_t)paddr >> 32) {
+> +               ret =3D -EINVAL;
+> +               dev_warn_once(iommu->dev,
+> +                             "attempt to map address beyond 4GB\n");
+> +               goto out;
+> +       }
+> +
+>         page_table =3D sun50i_dte_get_page_table(sun50i_domain, iova, gfp=
+);
+>         if (IS_ERR(page_table)) {
+>                 ret =3D PTR_ERR(page_table);
+> @@ -682,7 +690,8 @@ sun50i_iommu_domain_alloc_paging(struct device *dev)
+>         if (!sun50i_domain)
+>                 return NULL;
+>
+> -       sun50i_domain->dt =3D iommu_alloc_pages(GFP_KERNEL, get_order(DT_=
+SIZE));
+> +       sun50i_domain->dt =3D iommu_alloc_pages(GFP_KERNEL | GFP_DMA32,
+> +                                             get_order(DT_SIZE));
+>         if (!sun50i_domain->dt)
+>                 goto err_free_domain;
+>
+> @@ -997,7 +1006,7 @@ static int sun50i_iommu_probe(struct platform_device=
+ *pdev)
+>
+>         iommu->pt_pool =3D kmem_cache_create(dev_name(&pdev->dev),
+>                                            PT_SIZE, PT_SIZE,
+> -                                          SLAB_HWCACHE_ALIGN,
+> +                                          SLAB_HWCACHE_ALIGN | SLAB_CACH=
+E_DMA32,
+>                                            NULL);
+>         if (!iommu->pt_pool)
+>                 return -ENOMEM;
+> --
+> 2.39.4
+>
 
