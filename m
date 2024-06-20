@@ -1,473 +1,132 @@
-Return-Path: <devicetree+bounces-77903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B87F9105A6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:17:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96C239105AC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:19:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7EEEB224B9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:17:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E842AB25B45
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36B61A8C08;
-	Thu, 20 Jun 2024 13:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02EE1ACE86;
+	Thu, 20 Jun 2024 13:19:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="NkabB94j"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="V0+qvCb1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2060.outbound.protection.outlook.com [40.107.21.60])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F04A1E49E;
-	Thu, 20 Jun 2024 13:17:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718889436; cv=fail; b=s7yirjt1vh/Nrb9cG4h5yKDyvlhxS2hqgsM4ST+MFK1ATuFJ24Mx2/cRRL9PuykBem3HeZBiB8sd/WtKMfkBrFj6MN44kzESNf0s8MeJ9RcUJukdyfB0A8gENtZTNVQwSuWThsVjWRkMbqNfnfa8B7m/yiVqjQuj8sCyOZNDlYY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718889436; c=relaxed/simple;
-	bh=VGxvG2y/qaH2vE+REEynWIh1FOOVxLKNR2vjPm78qGc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Tom/O5wt4whRmhwskH4iKf4xtcN0CJ8cCitv9XG+jWaMkpsic+iIbdP46h3apci8YN5R0ZTAsfMPuKFRbUkQyt1DFHQvvADBm86dw+q0qqMl0j0flHK3SEPGYvabzlaIZmsZNP4Dcq8dya+nqYDOM2SCt2O2lFoh1xkFNlGxV9c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=NkabB94j; arc=fail smtp.client-ip=40.107.21.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IHRg2ecHulxiwhrC1+pp8vyHCapohBBKaSNKEalC0r3tUHseH48EA0CLHZr8XBIzIMUxmlDZA3GWFgbG4lqohII7M0fmW4KaQXOZXIcnUm7xYENM+ipUINFzxK8Quk7QhRqa4ClNWO50guLuuhjKD/3b7AkpblP5VRSEhH6gOCbZWskz+XXQTzLR4sfxCvWehw0dHG/BVa7OacSgbwLgwEXsVaSJJLtggAlolqvPPuLWcZ/d5vJnj1rTyQ7xDA6OeVPFe0CMWlVH/FYsoYGpP1k0AfOBQ0MuxaAUGiCeUG01Ddr1pzTOO19zzQ0gS2jpu3hwTK1+6HEnYMvYBwyiwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ns0CKJtvxE7Mktvh8RCiVwj1fTXL+laetSf2yGshRGs=;
- b=gRY78hM6vxJjmKusGeWah7sZN7kp+8fIITTP/cYI+0HF+fZg1oUKygckEuTupn4WYMYX/3oqxQ36fxZmUnnIQ0e3LEwdatYw8lAlmfCceWRJZFOD8+f4G+CRG3Wm4w1psH289u8M1Kpa43kGuFaBaloyIQjlOq17Jg468me4EWtp4EuWKtQvT13xnRs+Ib5nzubWSmr7LUtAnf1JIlr5f7Zkb8It7fkXdazrHRrOKQPqzubsY8543hj2RV23H7NIMRMiPUwI+3qtJw87dSeE+hy8PC3+b54bYM3/1ryAYm5/1W+Y1NISC7FCL6oKXjJGOZauVQJCIUOYeZSQQEQwIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ns0CKJtvxE7Mktvh8RCiVwj1fTXL+laetSf2yGshRGs=;
- b=NkabB94jEsEounMaVPSYjF12tlTwvOnUEVPBakreRLg5R/a+bskMvtLEJlx2r77fae/70hEjxiLNGoX8h+ORDsCBMeekT7qYSEFPcYHO0sH2+jwN/+D2ewYubPMJ9OKsH+iIZYPyOENcpRiTaI/0FW7M2yZIyN5xZLDve6ld+KM=
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com (2603:10a6:20b:9e::16)
- by AM9PR04MB8921.eurprd04.prod.outlook.com (2603:10a6:20b:408::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Thu, 20 Jun
- 2024 13:17:10 +0000
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256]) by AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256%4]) with mapi id 15.20.7698.017; Thu, 20 Jun 2024
- 13:17:10 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Cristian Marussi <cristian.marussi@arm.com>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, dl-linux-imx
-	<linux-imx@nxp.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 4/5] firmware: imx: support BBM module
-Thread-Topic: [PATCH 4/5] firmware: imx: support BBM module
-Thread-Index: AQHaVaFXyGFz8Dn2ZE22sFi/LtPU2LEYXMCAgLkSy6A=
-Date: Thu, 20 Jun 2024 13:17:09 +0000
-Message-ID:
- <AM6PR04MB5941958C71C04525760CF38388C82@AM6PR04MB5941.eurprd04.prod.outlook.com>
-References: <20240202-imx95-bbm-misc-v1-0-3cb743020933@nxp.com>
- <20240202-imx95-bbm-misc-v1-4-3cb743020933@nxp.com> <ZdjgSxFx9YRP107y@pluto>
-In-Reply-To: <ZdjgSxFx9YRP107y@pluto>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM6PR04MB5941:EE_|AM9PR04MB8921:EE_
-x-ms-office365-filtering-correlation-id: aaec98ee-0cbf-4386-6d18-08dc912b4a91
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230037|376011|7416011|1800799021|366013|38070700015;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?w5zfIRkZdtOegTxVqjGbPGQW9LiUsajWuelPniiK5bUW5KQH43p7r0hdXLgi?=
- =?us-ascii?Q?scVWVFrloqTgy/ue5J9dWLxM/9yEpbpzwl989DKaHqovf3Ug2L0PYRbfT7aR?=
- =?us-ascii?Q?wZFDuKAVaIMVt8n+atjs7zHy7DoHO4I24MPxyxli+pleHPPjVS5FE381As4a?=
- =?us-ascii?Q?0+KdCCBMSLyQeMlnsbABsDy0NxW14hLG03VR3lQKvu/qGXFxtbXcCrfvliC5?=
- =?us-ascii?Q?2LgGLVTi2c/YhW3xARsXArdR1qdF9X6vAOTyjXHamt4ukWI8FSoRtjMoGKZx?=
- =?us-ascii?Q?qdTWJ0LACYg3AlCgZB9MoXOLXQmjfGWSScWRTFjt+YHhmZzKmdX22ImWIb6A?=
- =?us-ascii?Q?kEvcD0bg8DF4LR6zSurIPnsk3WkQuluTJ/C9MjHxBiu3WkMcQ5buav9Ee+Mn?=
- =?us-ascii?Q?fnDCM5pfmkfp53sgdvJ/vT89hXWkenfUP8Uz7/140nLa9Vj0mWNPwnJuZ3tq?=
- =?us-ascii?Q?bbf+bj6WbxwkDxF9KML2hLhn9/x3wisgXF2aT61OspGM3R5+IoOHXnKWWniF?=
- =?us-ascii?Q?Z4e1s1rAUlixC/FEZ9rwH3pt4uzR7a/xo05XPOLfW4c16sdJPHCUjwoRFqZm?=
- =?us-ascii?Q?YPe/2x5ZtPPUCSYo3t2mhZFACxIrMJiLHbEOJT4y6iO9IguRjC5r/md6OLaV?=
- =?us-ascii?Q?FaEKtPLsaDao23HnvlnuW7M9sFMRDuGAwmXiRx7QqH/BQ33OK5iV5vYR9Pd7?=
- =?us-ascii?Q?MRLitgevHXSbksfET6NfonthAaUI5eDRtC1dMfpT9jr8fEK2M4nHSgA2g8u5?=
- =?us-ascii?Q?NHYedu//fYqVqhD9lqEeQSpZWb15LZ6gCw0bCSjvK3cAbpOGR79/5mPw0LLd?=
- =?us-ascii?Q?7TGAU6kkXKJLv+zl69VYTW1w/Fq7Vt+dCeZJlcKmQnWaafwFfNrIdHRRaKmR?=
- =?us-ascii?Q?pccKjzObueci57qgztON2g+YZyIsuAwCp3d3QpEUZielhELHUhL7iUF1V+QQ?=
- =?us-ascii?Q?AoGO0up+RANAa8zNKFXrEk/N/qmWBKVvwf7zhFyrkZ2hVmOu1NbvDA6qq++G?=
- =?us-ascii?Q?zlm5GfF2NpWvnt3XwBitwh6xKxLEmljRHzSZejpL2pQbDcSinZCbqz3HMUvj?=
- =?us-ascii?Q?XHUr60U3u4OZ4WBmd4U2zL009bFWupBtnXtPVBvcUaOtNFXSKqXCyI11Q7Zn?=
- =?us-ascii?Q?V5q/0KOAUK4HIN5SiGb3VS89zYTS/Q+30ovjBQpRX08i/EA8QnAVP0It6Cgm?=
- =?us-ascii?Q?TMn6hbmCgZ03eL7lGdyQrzqOZn8AB3wbqxmPnb3LfEaVCYh8WA6ZbCtVT3vS?=
- =?us-ascii?Q?oqocCyBMCJOIIJSQXtkeW87vMJe9EVnTpgzABYgMFCwTqWKHMaeR6c0sNkBo?=
- =?us-ascii?Q?/195XnneAo1GsgWTUi18IoleBbl140paW2H+8Gr1xcmRzwsMfFymyToOw/dz?=
- =?us-ascii?Q?hHiuSGg=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(376011)(7416011)(1800799021)(366013)(38070700015);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?ZVoQwfwV7TfRDOHIT8jx4PMhEaKHhdui2IMo3V89PvHWMgtrrleEfSzuQ+p0?=
- =?us-ascii?Q?PdG5MOmT/QMhyZSAonBx4loLss/VBFRYLT7yBQ2cNaZ8N5nGknnSbnHb6W6O?=
- =?us-ascii?Q?wX17HI0gPQd8JC2RRWzWlNhS4xnAACFS+FCcove5TW1HioQ6ytgJ79yHo+BE?=
- =?us-ascii?Q?FsbW+7OcdqMF1hL5uH7vNUZ/bvoy0ijrE8g+QL9UFMJabuuGIG6gTRUqoT8y?=
- =?us-ascii?Q?oWyLvNTRwT6NzGyWdkAUUs/xLjb8gEMsAwcW6VS9vOmkljeiCY3e08sOsxV7?=
- =?us-ascii?Q?FZByMe9iBMTDOX7p0iadn+VizCed8ofkiLGwsQR55EmR1fwFwm1Ex66Enwfy?=
- =?us-ascii?Q?K+GHws1ZlzFllZbO9uM/MdAG4F7s35W/o2kFJ6xtbnU45mfBblA6bOxndCmA?=
- =?us-ascii?Q?0n6FkfDGlucRIxlcFlbosocMAvG7T8ifaKO+qYhPyahAFWGCanCz/fM2fqSB?=
- =?us-ascii?Q?TXNNRe4YejiKIrhQ8qdqWJ6H0rT8zbeBgM+P+owm0u6QtOd/Bt2Y0Sw9qw95?=
- =?us-ascii?Q?OgHwqsmt4+hr7/UZXQCalL3XqGTUs94ZaT9M7g4epYKsyi1u/zflDRlNo5vw?=
- =?us-ascii?Q?DHlHWGl98RtosEg39UQUGfDZt5TMrXIlbOjnk/wv2oJzK/E0ZHBhu46P8MWG?=
- =?us-ascii?Q?CAmyrXEEQHdUf8u84qBIkIoYm+r0xPNT4NG6EV+sS6ZeA46x/BXZnuv9s8DL?=
- =?us-ascii?Q?PC4DLZ7c30jxzbtjMNgHLvTf6WAQaox70ggdDj346S2szM6D8s89G9v2THRM?=
- =?us-ascii?Q?AZjm6xQpi8ovdnTbystqGDqL/CrpCEimrbeBgMT466D5CMdgECbH/5feew69?=
- =?us-ascii?Q?+Q5Ma54Cu3XLRXxmjrNlYmyZj6Uv+3k6m5ZrpqJyrolSAd3esUEWES3tT9t8?=
- =?us-ascii?Q?U4XGoVYo97up6K7ePsAkhu45kvrSNNk9KYJ7UIYKc3tah+xs8N317z9b+8tG?=
- =?us-ascii?Q?ZTTPBZukkcNGvhN+1QRYL1YuTxoYDOsZh0HBug2CvE71Z1sIjnOXgYZRBOUP?=
- =?us-ascii?Q?4KQfH0VtT3ozSkN/UlRH4wf7IQ8ME32VQ+QUpsQBPg68M37j/geifEhonpZU?=
- =?us-ascii?Q?Emro/ktQ53kp5ybvVN4rSyv2/Pm7xjQDazOXK6pbyrXdFfzplZIsJHxUnoNf?=
- =?us-ascii?Q?B+DjpJ+f2dID3Y/fScEupA25DjgrDIRSAam1DWP5ZfPo6vpZuGG6LEiuhlT2?=
- =?us-ascii?Q?+VpwacKwdFI6GkkW7lHNHIyZEQetLNPnB6TeMLh+NI8p+ylKRRWyFcoNOI3q?=
- =?us-ascii?Q?WDFmZfusfU5WviaNez1I4mBu/MRRcfDtQ9ewvEdKPTIJ0dW22AnTDFd0oZkl?=
- =?us-ascii?Q?Pq3P1LXf/cPFltYvcp6UCo/GYbewzaAYyeQlcxK/swFMePkqH9txcDgAwPUg?=
- =?us-ascii?Q?XOoHdeqn5dHDmCbDR0ZK7WQsdhXYY/D0luNFWKt33OME2KBWsGPk2qhjM0fr?=
- =?us-ascii?Q?GOqCpQyYVxVs8YGEbPJQHJG0hfkvkfd9iP7Wu9PCCq62ZnNDyzYGm1ohNt1l?=
- =?us-ascii?Q?cEvZxj/wmvKO9kG8aNVSdY0HiZxieT2iT2QEollbtyo0TArCiNzXiLGUp35A?=
- =?us-ascii?Q?j6AgO2ltMX+TBE5sUJQ=3D?=
-Content-Type: text/plain; charset="us-ascii"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A881AC77D
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 13:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718889572; cv=none; b=eLeG77RToa5vVLLn9AZGYcYTJVR0r1XeIA82X+BYJlzPn0uCP1uMfViogxS3Z5J748jdd/5Li1hzjqyn2tNXTLtjVkCfWTfwa55Jq+Uz2pnBsNOJ0HbTqCpM9hmlaz0ABgFO9FBO5Fa9L+UXhiIPk25iMM/x5P6lhhZ4y0BgmAQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718889572; c=relaxed/simple;
+	bh=BV1WLhE4C8cxKsCUyQftaONKUO7BupTFwyuw+2FphCw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=rhn9MzIy4eyu+dcMIY8YJmHlC2fOoTlIbdOmMvqptpyeOQGYcwBlFAT+FY0J4gEhrKW4zoDzlk+2fuJAn88rmEmEX3iJ+WFFGpk/wVaDRKwPcnmpJfSss1JKQXMxdbOOsfk+JZaQtXmQOeGgA4uAQ8bvXAbU7PkSDY8SLGiP/cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=V0+qvCb1; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1718889570;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=AsRP5r0fpvpmEsH04gNv9kKaqCwtAkKfmqkVYvY6dLE=;
+	b=V0+qvCb1rfAn2B4bglLa0k+cOgclGO6V/nQOVKIfSypvKjqXPbXp3BGHgoITQQT045NjQ4
+	v1RCNApk+K7bMd+JLxGEZ55l207Dti3o3bWKUjed+GlqZ8JrzxODJDcfJTOBF0Ql6kD46s
+	FFbxDumR9GxqKebWTpOu4GewhAoMcj8=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-70-zIdt_587OhatNffcICAqcA-1; Thu, 20 Jun 2024 09:19:29 -0400
+X-MC-Unique: zIdt_587OhatNffcICAqcA-1
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6b0762cfd0bso1450666d6.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 06:19:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718889568; x=1719494368;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:cc:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AsRP5r0fpvpmEsH04gNv9kKaqCwtAkKfmqkVYvY6dLE=;
+        b=iDDa7KQlAEMG/7cT2H2dwo4FhzS4qSG9s0p2sO9SeIYKVOSfDb8sitvu2+JziVQzuJ
+         lGRtSCIxbp0GAVJP1HLLsJGGTJKw6quB03pDDYmq2YqLNXsKPzImX0yKfFKGc3qxjpxf
+         SdoxPoxExXgsV7WBrRQEDlHb1+vyzfcIexU3ELT5V1+6cpEVJAzUrr4NI/Jq9hlpzuWV
+         TmsqDUjojUOmi+wdYZVudbplPuIesMe39qpUyAIqWqu3tE8ATeol1hcSR/JI1Zcvb8Bp
+         fpdxDxK9XRVLsw5hURA6vEMQNubAv9+JWWuJzOpbBoR+6m5x6MoX2URYNMTj+8AKlCIG
+         8p5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVfQsnw8OTe4DyGe4XFwLeMBqQ1Bd5KD9FfA1kvpOn0C8S1GjFZsHl4UqlpzZlfaWxRPtc5BDrWnMBsPYaqL9uP4Vhf9cHxixnlsA==
+X-Gm-Message-State: AOJu0Yy7xKW09LQvYpo+Hx2WN4RXlpIRWuOc8fh/QuINBaB1lb90FQBj
+	CNzkykIwmITyT71jT6OUpNy6wwIQg63Sw+eflXXbk6/HUWBme8VokzdR2GJJjCTRT7amCtHvcIw
+	xIjI+QRI3EfbqX7LOECPG+BRMADetKSJr8dvin0Fyx173S6jxqEHNn2s2zPw=
+X-Received: by 2002:ad4:5dc6:0:b0:6b2:ae54:7c88 with SMTP id 6a1803df08f44-6b501e23be1mr56594516d6.2.1718889568421;
+        Thu, 20 Jun 2024 06:19:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEJiGXq7iC/KBqjz9TGNj1mG2OAhFM3Jo0oxe+pfu0GBa+zaF9kGf1NuOpnQDyqcPzmYgDJZw==
+X-Received: by 2002:ad4:5dc6:0:b0:6b2:ae54:7c88 with SMTP id 6a1803df08f44-6b501e23be1mr56594336d6.2.1718889567978;
+        Thu, 20 Jun 2024 06:19:27 -0700 (PDT)
+Received: from gerbillo.redhat.com ([2a0d:3341:b0b7:b110::f71])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b5033f8a0esm19772146d6.134.2024.06.20.06.19.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 06:19:27 -0700 (PDT)
+Message-ID: <7d208e8c8bb577cfc790fd24cf990684020ee7c5.camel@redhat.com>
+Subject: Re: [PATCH v1 2/3] net: ethernet: arc: remove emac_arc driver
+From: Paolo Abeni <pabeni@redhat.com>
+To: Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ robh@kernel.org,  krzk+dt@kernel.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org,  devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Thu, 20 Jun 2024 15:19:24 +0200
+In-Reply-To: <10d8576f-a5da-4445-b841-98ceb338da0d@gmail.com>
+References: <0b889b87-5442-4fd4-b26f-8d5d67695c77@gmail.com>
+	 <10d8576f-a5da-4445-b841-98ceb338da0d@gmail.com>
+Autocrypt: addr=pabeni@redhat.com; prefer-encrypt=mutual; keydata=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
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5941.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aaec98ee-0cbf-4386-6d18-08dc912b4a91
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2024 13:17:10.0374
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ii+/4eYkLxpPvA9PkWOIYsCqYWC3NlC4ptVhXSbH3uVG20mKVyZub7hQ92K5+StnyhOoBdmvJuLqe8tDGwj/IA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8921
 
-Hi Cristian,
+On Tue, 2024-06-18 at 18:14 +0200, Johan Jonker wrote:
+> The last real user nSIM_700 of the "snps,arc-emac" compatible string in
+> a driver was removed in 2019. The use of this string in the combined DT o=
+f
+> rk3066a/rk3188 as place holder has also been replaced, so
+> remove emac_arc.c to clean up some code.
+>=20
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>=20
+> [PATCH 8/8] ARC: nSIM_700: remove unused network options
+> https://lore.kernel.org/all/20191023124417.5770-9-Eugeniy.Paltsev@synopsy=
+s.com/
+> ---
+>  drivers/net/ethernet/arc/Kconfig    | 10 ----
+>  drivers/net/ethernet/arc/Makefile   |  1 -
+>  drivers/net/ethernet/arc/emac_arc.c | 88 -----------------------------
+>  3 files changed, 99 deletions(-)
+>  delete mode 100644 drivers/net/ethernet/arc/emac_arc.c
 
-> Subject: Re: [PATCH 4/5] firmware: imx: support BBM module
->=20
-....
+AFAICS this depends on the previous DT patch, which in turn should go
+via the arm tree.
 
-> > +msecs_to_jiffies(DEBOUNCE_TIME));
-> > +
-> > +	/*
-> > +	 * Directly report key event after resume to make no key press
-> > +	 * event is missed.
-> > +	 */
-> > +	if (bbnsm->suspended) {
->=20
-> So this bbnsm->suspended is checked here from inside the SCMI
-> notifier and it is set by a couple of pm_ops you provide down below
-> which are called by the core PM subsys, so is it not high likely that you
-> could have issues with the order of such reads/writes ?
->=20
-> Would it be worth to add a READ_ONCE here and WRITE_ONCE in the
-> pm_ops...or I am overthinking ?
+Perhaps the whole series should go via the arm tree?
 
-Just checked other input drivers, only two use READ_ONCE.
-It might be good to avoid potential issues with READ/WRITE_ONCE.
+In such case:
 
-Other comments will be addressed. BTW,
-I will split rtc and pwr key into two drivers and put
-them in input and rtc directory.
+Acked-by: Paolo Abeni <pabeni@redhat.com>
 
-Thanks,
-Peng
-
->=20
-> > +		bbnsm->keystate =3D 1;
-> > +		input_event(input, EV_KEY, bbnsm->keycode, 1);
-> > +		input_sync(input);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void scmi_imx_bbm_pwrkey_act(void *pdata) {
-> > +	struct scmi_imx_bbm *bbnsm =3D pdata;
-> > +
-> > +	cancel_delayed_work_sync(&bbnsm->check_work);
-> > +}
-> > +
-> > +static int scmi_imx_bbm_notifier(struct notifier_block *nb, unsigned
-> > +long event, void *data) {
-> > +	struct scmi_imx_bbm *bbnsm =3D container_of(nb, struct
-> scmi_imx_bbm, nb);
-> > +	struct scmi_imx_bbm_notif_report *r =3D data;
-> > +
-> > +	if (r->is_rtc)
-> > +		rtc_update_irq(bbnsm->rtc_dev, 1, RTC_AF |
-> RTC_IRQF);
-> > +	if (r->is_button) {
-> > +		pr_debug("BBM Button Power key pressed\n");
-> > +		scmi_imx_bbm_pwrkey_event(bbnsm);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int scmi_imx_bbm_pwrkey_init(struct scmi_device *sdev) {
-> > +	const struct scmi_handle *handle =3D sdev->handle;
-> > +	struct device *dev =3D &sdev->dev;
-> > +	struct scmi_imx_bbm *bbnsm =3D dev_get_drvdata(dev);
-> > +	struct input_dev *input;
-> > +	int ret;
-> > +
-> > +	if (device_property_read_u32(dev, "linux,code", &bbnsm-
-> >keycode)) {
-> > +		bbnsm->keycode =3D KEY_POWER;
-> > +		dev_warn(dev, "key code is not specified, using
-> default KEY_POWER\n");
-> > +	}
-> > +
-> > +	INIT_DELAYED_WORK(&bbnsm->check_work,
-> > +scmi_imx_bbm_pwrkey_check_for_events);
-> > +
-> > +	input =3D devm_input_allocate_device(dev);
-> > +	if (!input) {
-> > +		dev_err(dev, "failed to allocate the input device for
-> SCMI IMX BBM\n");
-> > +		return -ENOMEM;
-> > +	}
-> > +
-> > +	input->name =3D dev_name(dev);
-> > +	input->phys =3D "bbnsm-pwrkey/input0";
-> > +	input->id.bustype =3D BUS_HOST;
-> > +
-> > +	input_set_capability(input, EV_KEY, bbnsm->keycode);
-> > +
-> > +	ret =3D devm_add_action_or_reset(dev,
-> scmi_imx_bbm_pwrkey_act, bbnsm);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to register remove action\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	bbnsm->input =3D input;
-> > +
-> > +	ret =3D handle->notify_ops->devm_event_notifier_register(sdev,
-> SCMI_PROTOCOL_IMX_BBM,
-> > +
-> SCMI_EVENT_IMX_BBM_BUTTON,
-> > +							       NULL,
-> &bbnsm->nb);
->=20
-> So you are registering for another SCMI event but you want to use the
-> same callback and notifier_bock to handle different events, BUT
-> internally the SCMI core creates a DISTINCT kernel regular notification
-> chain for each event and each resource (or one for ALL resources of an
-> event) against which a
-> devm_event_notifier_register() has been called AND so, being a
-> notification_chain the notifier_blocks that you provide MUST be
-> distinct, because the notification chain is indeed a simply-linked list
-> and so when you register bbnsm->nb the second time you will indeed
-> add the nb to another list at the same....
->=20
-> ...thing which I suppose could work in your case since you have only
-> nb/callback per event BUT as soon as you (or someone else) will try to
-> register another nb for these same events the 2 notification chains will
-> start melting together....
->=20
-> ...and it will be a hell to debug...
->=20
-> so IOW...even if it works now for you, please use 2 distinct nb_pwr.
-> nb_rtc notifier blocks with 2 distinct callbacks (to be able to use
-> container_of in
-> them) to register to 2 distinct events...you can register for multiple
-> sources using only one nb BUT you cannot register for multiple events
-> using the same nb/callback as of now.
->=20
-> With this internal design the queues and the worker threads
-> dispatching these notifs are dedicated to a single event and possible to
-> a single event/resource...
-> ...no event ever queues behind any other...
->=20
-> This probably would need better clarification in the SCMI docs, my bad,
-> and maybe a new option to register for ANY event the same nb (like
-> you can do with src_id if you dont specify one), IF you are fine with the
-> possibility that your events notification will be serialized in a single
-> queue.
->=20
-> > +
-> > +	if (ret)
-> > +		dev_err(dev, "Failed to register BBM Button
-> Events %d:", ret);
-> > +
->=20
-> So why not failing if you could NOT register the notifications ?
->=20
-> > +	ret =3D input_register_device(input);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to register input device\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int scmi_imx_bbm_rtc_init(struct scmi_device *sdev) {
-> > +	const struct scmi_handle *handle =3D sdev->handle;
-> > +	struct device *dev =3D &sdev->dev;
-> > +	struct scmi_imx_bbm *bbnsm =3D dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	bbnsm->rtc_dev =3D devm_rtc_allocate_device(dev);
-> > +	if (IS_ERR(bbnsm->rtc_dev))
-> > +		return PTR_ERR(bbnsm->rtc_dev);
-> > +
-> > +	bbnsm->rtc_dev->ops =3D &smci_imx_bbm_rtc_ops;
-> > +	bbnsm->rtc_dev->range_min =3D 0;
-> > +	bbnsm->rtc_dev->range_max =3D U32_MAX;
-> > +
-> > +	ret =3D devm_rtc_register_device(bbnsm->rtc_dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	bbnsm->nb.notifier_call =3D &scmi_imx_bbm_notifier;
-> > +	return handle->notify_ops->devm_event_notifier_register(sdev,
-> SCMI_PROTOCOL_IMX_BBM,
-> > +
-> 	SCMI_EVENT_IMX_BBM_RTC,
-> > +
-> 	NULL, &bbnsm->nb);
->=20
-> As said, this will get mixed up when pwrkey_init tries to register again
-> the same nb for a different event...
->=20
-> > +}
-> > +
-> > +static int scmi_imx_bbm_probe(struct scmi_device *sdev) {
-> > +	const struct scmi_handle *handle =3D sdev->handle;
-> > +	struct device *dev =3D &sdev->dev;
-> > +	struct scmi_protocol_handle *ph;
-> > +	struct scmi_imx_bbm *bbnsm;
-> > +	int ret;
-> > +
-> > +	if (!handle)
-> > +		return -ENODEV;
-> > +
-> > +	bbnsm =3D devm_kzalloc(dev, sizeof(struct scmi_imx_bbm),
-> GFP_KERNEL);
->=20
-> sizeof(*bbnsm)
->=20
-> > +	if (!bbnsm)
-> > +		return -ENOMEM;
-> > +
-> > +	bbnsm->ops =3D handle->devm_protocol_get(sdev,
-> SCMI_PROTOCOL_IMX_BBM,
-> > +&ph);
->=20
-> proto ops can be global really..since are always the same pointer even
-> if this is probed mutiple times... this could be
->=20
-> 	bbnsm_ops =3D handle->devm_protocol_get(sdev,
-> SCMI_PROTOCOL_IMX_BBM, &bbnsm->ph);
->=20
-> with bbnsm_ops static global to this file
->=20
-> > +	if (IS_ERR(bbnsm->ops))
-> > +		return PTR_ERR(bbnsm->ops);
-> > +
-> > +	bbnsm->ph =3D ph;
-> > +
-> > +	device_init_wakeup(dev, true);
->=20
-> Not fully familiar with this, but it seems to me that when this is issued
-> some wakeup related sysfs entries are created too...so I suppose you
-> want to disable this back on failure to have those entries removed.
->=20
-> or maybe just move this right before the final return 0....but I am not
-> sure if you want to have it called BEFORE the pwrkey notifier if
-> registered or AFTER is fine too...potentially loosing some wakeup,
-> though.
->=20
-> > +
-> > +	dev_set_drvdata(dev, bbnsm);
-> > +
-> > +	ret =3D scmi_imx_bbm_rtc_init(sdev);
-> > +	if (ret) {
-> > +		dev_err(dev, "rtc init failed: %d\n", ret);
->=20
-> like ??
-> 		device_init_wakeup(dev, false);
->=20
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret =3D scmi_imx_bbm_pwrkey_init(sdev);
-> > +	if (ret) {
-> > +		dev_err(dev, "pwr init failed: %d\n", ret);
-> and...
-> 		device_init_wakeup(dev, false);
->=20
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused scmi_imx_bbm_suspend(struct device
-> *dev) {
-> > +	struct scmi_imx_bbm *bbnsm =3D dev_get_drvdata(dev);
-> > +
-> > +	bbnsm->suspended =3D true;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused scmi_imx_bbm_resume(struct device
-> *dev) {
-> > +	struct scmi_imx_bbm *bbnsm =3D dev_get_drvdata(dev);
-> > +
-> > +	bbnsm->suspended =3D false;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static SIMPLE_DEV_PM_OPS(scmi_imx_bbm_pm_ops,
-> scmi_imx_bbm_suspend,
-> > +scmi_imx_bbm_resume);
-> > +
-> > +static const struct scmi_device_id scmi_id_table[] =3D {
-> > +	{ SCMI_PROTOCOL_IMX_BBM, "imx-bbm" },
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(scmi, scmi_id_table);
-> > +
-> > +static struct scmi_driver scmi_imx_bbm_driver =3D {
-> > +	.driver =3D {
-> > +		.pm =3D &scmi_imx_bbm_pm_ops,
-> > +	},
-> > +	.name =3D "scmi-imx-bbm",
-> > +	.probe =3D scmi_imx_bbm_probe,
-> > +	.id_table =3D scmi_id_table,
-> > +};
-> > +module_scmi_driver(scmi_imx_bbm_driver);
-> > +
->=20
-> Thanks,
-> Cristian
 
