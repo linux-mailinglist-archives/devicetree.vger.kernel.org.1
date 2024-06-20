@@ -1,156 +1,132 @@
-Return-Path: <devicetree+bounces-77810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB2469100AD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:44:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A72D9100B0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:45:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3622B22033
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:44:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 393FA1C20B48
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E951C1A4F09;
-	Thu, 20 Jun 2024 09:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B1F19DF51;
+	Thu, 20 Jun 2024 09:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EVVd7BUM"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="SW8BwNrm";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="vk7XYibv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout5-smtp.messagingengine.com (fout5-smtp.messagingengine.com [103.168.172.148])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C45199EBA;
-	Thu, 20 Jun 2024 09:44:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BC7433BB
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 09:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718876668; cv=none; b=YQbnhumgfbckfKksuYOPxvI5OKT6e9qwDvJe9ZncLpdYVbEkicqSvTkFVXFjLCJ/3VfitLylR9CfdoYHoKqjcz6MQtlY2yRgqSjuHJsQZB9ZpOMpM/nBy6SBPhh6QIqPSo1Cy9BNY9s4kvrUCrSb2a2+a0pWqjFmwQU2mNAaAuM=
+	t=1718876738; cv=none; b=ac3xkzmpwDOgmylGAKZMhh853skL5BlvLJoA1Mr3h12JTECFrWZtQ96O4ibZz3XHzaFt7YAxgt5VJT6vaDRMVGKy5HVM79S1DgHQfr3VZSo6w4OevxzzhH8pNsIi9SgRwb4LVm5+W6402KMubkwvpSk3vCwsX3dWuz9frde3hMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718876668; c=relaxed/simple;
-	bh=okOqLw7c0senVhgw+ra23kw900+h4DE+0U7XOxfhL+M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iFPUUP3pnjXUlyJ/L1YTSCma00t6J2zWoO+Nd/QHGmQdDLoxmgmqjF7i6DhylSiE3X7QctuEZJwt69nSuY3WObzFqpPxXHbVeg3fF9OdoinQD/cfE5DVNULkUHfiwO0M45I5ZlfAi8E/Ow/AcHexayfrxdlI0oV/yuVnnjclO7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EVVd7BUM; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-4ed0b3c6a76so194904e0c.1;
-        Thu, 20 Jun 2024 02:44:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718876665; x=1719481465; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=okOqLw7c0senVhgw+ra23kw900+h4DE+0U7XOxfhL+M=;
-        b=EVVd7BUMJDTxZU+uZYDb8PzR3uHaGQ9E02m9AWRhamrbRw2GZ1XFOUHBFzELeSMHeE
-         ccAqUVkuI2/ifnTNlRNXP+5w3QM+cnqbSNoCEK+GhiLrO73dY96zAHrR3e/ZPDJGFREC
-         eBLZaaDljEmQnVX8a0rg/T8p9ohrV6YTX2hffLJ3LbCZxMnLFRO7i/3a2lotKmyG2jXT
-         jEWJFH13mh9kHqTmwBPXfN72qIXPB4gz9d1/AQoNp7QQE4MqccU4InySQBRgsQrXfSea
-         eMkNJyfQwvoJyF+8r1YI5PrUmE/Y9AWkkcgrBKqnIzkQqKM4GeYZikkbxLb2WJ9ilxMn
-         0pTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718876665; x=1719481465;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=okOqLw7c0senVhgw+ra23kw900+h4DE+0U7XOxfhL+M=;
-        b=mjxJxDhW3hQp/t3pEYWA7r96Qilwty3wLJO29GKRRy5bwaLKA7x0rRPuYua/tXXNiL
-         IjfytxwIiHmKCLo6swhikwwTtEFFP9/HhQ/0jtkYWO/2g76rNS11YiU2I87zTxQxhmiE
-         o+QzS+5a1QOIkLV52gpl2/PoAm9UguxYdQYoh7smuHm81ojNMgRcEqN8z4DNd3Tnre+4
-         ujWR1oH7yIXtOlO4o9rnFSLxflFVJljV3QkwBqVzzUGrmTebzOoQNuyWKmpVvB/jm68r
-         2xbYsJ5WdTsuQWgjdNACXdDOe7va7lW69JnQOjTVCRUoa2vY8vf22HCF0uidORm3i6me
-         O9lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXVGfyfL4pwqV1pvKAItWVL0mqP0YaAzs/UJIouWxyu2OmQMMjDxSuVR9PtJmoIRtwV/+ZFldLl/ggKyrFVkAGH/x7t0Qd0mYMJEnOZgtC70jvZtfEDBl0jL2x+R4eVuU/gl+1dVFNR+jNRIKnZs+JD4uCkgxko7wEmDsAoToBZr4u24ZRRMz28KGNexRvlGwr1k/4WcGSvkXcnZ+eS1amI/SO3bFMD
-X-Gm-Message-State: AOJu0YwARpuctroM0CUrGmjmD204RGhSwf+DmxKVqsQ8JueTjpGhmMSe
-	9LeWyzz3hfkIM1yFBMPG0Tc9U8sFGLv9mwwPINCOB6sut/HPx17BTz/2Fb3widPWzVNRzXlZJP+
-	6sPOq50f4Iq1Pi7lG0OXt9RPa6N4=
-X-Google-Smtp-Source: AGHT+IFBepYei96IK6SgPeYNf/E1cKcoErQgdiXocUItGkoIcqYFiufUIo+8G4N0O6SofR+puEeWV6rivz9Db7RDCkc=
-X-Received: by 2002:a05:6122:3124:b0:4eb:1a82:2037 with SMTP id
- 71dfb90a1353d-4ef277b59f3mr5563871e0c.14.1718876663767; Thu, 20 Jun 2024
- 02:44:23 -0700 (PDT)
+	s=arc-20240116; t=1718876738; c=relaxed/simple;
+	bh=CUc1gDLpC345RTrFQKC24CcXBEu62C/dxC9CC6Wpmgk=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=My4fzTqCUpPcP0yc/m0MlOyz7zVYBoNhuLT54jsTA0YIc6DInbC08RQRSlJ7ZeKKJ9zgJVWdgXUhz3zk2iCvKmiUc8gS8T+o6RFXeFrqvjN8xJkuiEFPudky5BIBywC5pSqAiGuPI6Cy3WwbitfPCecUrMgJOmjecnU04bYW1fQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=SW8BwNrm; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=vk7XYibv; arc=none smtp.client-ip=103.168.172.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 67F821380591;
+	Thu, 20 Jun 2024 05:45:35 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Thu, 20 Jun 2024 05:45:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1718876735; x=
+	1718963135; bh=mUhzbzChIylmEGH0/MJ86mZWNAZXM70UzMOFDHyCHRc=; b=S
+	W8BwNrmyAlxh4M3o6vqcHtvwHb7YD6FXoF6KLuL145oJnEk+e1LUhWovpxMtoM3f
+	rvR1bwJFansf7WeY/xDfqcqUS945fdQxrJsoDI38NkQY38NSqVluhrDDQcbdooEt
+	mJUGLgKyrqKY+Pjq6loRQ+oACSPCCV+ma4wEzEvyIzqFL/yKgVXsbHX4SvRF+bZH
+	GmYj6NVanpdeoUyk10PWGys9EZDrNyt459/F0RYRtHJcgiEf4rWVu9xBX6K85B8a
+	Dxb8gyrSj+BVtbYsFIzNWB32VhckRDF64tqvm5aWTlQ6VmOVvQAg+D42FB/S4ZUE
+	U7MfMI9Nbv3nRFmlaKlbQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1718876735; x=1718963135; bh=mUhzbzChIylmEGH0/MJ86mZWNAZX
+	M70UzMOFDHyCHRc=; b=vk7XYibvZm+OT/nXT86A2p7eXQ/lHr4lqzbw6oC+bvng
+	89JObMGFy6Ja9U3r4ibObK7uz72p0NrvNubBH0BuQO29eU6uyBBYmE01/7TXKVpm
+	nAg03shghZLHCB7lL/5wSnTUCD6w5nQFifSJhkfFrmtMWFiqYMnuRry1R44nd7UY
+	bl09EpdGddkdgbVGD7+ckrBntNX+hXyhmCYecUP9M52Nt+80DqlkoRB7qVRZXdXT
+	MVj9NFU6MNDnzoLvakiaZw+hHd324omBxARZDBYfEgEgc5ueQyoq/pxjnsHXNNuY
+	OAtETQdBigz4CIeatsPhUL25L9xP+gVKDXuNoV/6/g==
+X-ME-Sender: <xms:PvpzZpauLmSOstUAwPog9nIXc1bPeIsbPswpUfeeP76F2AbIlYM-Rg>
+    <xme:PvpzZgY2-eZT7fs3JFoSjIYDywFOfeLfYV0bOXBbPEnHBfFUv_wFWojwgTXulfuQ9
+    Ugv8q3fWgIsBkkDXg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeefvddgvddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
+    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
+    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
+    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
+X-ME-Proxy: <xmx:PvpzZr-8jTf_9URxOSVlD4LczVtsMPba6DBeplMNB30Bd8EdtrE92A>
+    <xmx:PvpzZnpj5OXFj_0GW--D1B3VYJTwhkzRANZzBg0TSDMHPRzCHtSy7g>
+    <xmx:PvpzZkq7WdD5v8hyCf_o7bCKwq9mgxeJcXY8WuCy8iuPFJny7RPfow>
+    <xmx:PvpzZtTWl6mKCyJ75JAQDIWg3fpYNT132IU-la1FYIW6INJwn2bKvA>
+    <xmx:P_pzZgaQkX4ibclyEAGzEJJ_nbtEbxDWi4rteQ4yE_6zICkSMfPqN2aF>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id A5567A60079; Thu, 20 Jun 2024 05:45:34 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-522-ga39cca1d5-fm-20240610.002-ga39cca1d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613091721.525266-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240613091721.525266-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <prdvmtsp35yy2naohivbrya3go6vh5ji2cdjoebw3ovditcujo@bhck6tca6mhj>
- <CA+V-a8u6KAFp1pox+emszjCHqvNRYrkOPpsv5XBdkAVJQMxjmA@mail.gmail.com>
- <o7tswznmyk6gxoqfqvbvzxdndvf5ggkyc54nwafypquxjlvdrv@3ncwl5i5wyy3> <TY3PR01MB113467E6EF1CFC24154AF73E986C82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB113467E6EF1CFC24154AF73E986C82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 20 Jun 2024 10:43:41 +0100
-Message-ID: <CA+V-a8s-fCtQ8GKVh_REkPO81v0oCKPGiLJ5aiJOVdVUbvbCzA@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Conor Dooley <conor+dt@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-Id: <d02c238c-766b-4463-96a9-dd6373b173bb@app.fastmail.com>
+In-Reply-To: <20240616224056.29159-6-andre.przywara@arm.com>
+References: <20240616224056.29159-1-andre.przywara@arm.com>
+ <20240616224056.29159-6-andre.przywara@arm.com>
+Date: Thu, 20 Jun 2024 21:45:13 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Andre Przywara" <andre.przywara@arm.com>,
+ "Joerg Roedel" <joro@8bytes.org>, "Will Deacon" <will@kernel.org>,
+ "Robin Murphy" <robin.murphy@arm.com>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Rob Herring" <robh@kernel.org>
+Cc: "Chris Morgan" <macromorgan@hotmail.com>,
+ "Philippe Simons" <simons.philippe@gmail.com>, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 5/5] arm64: dts: allwinner: h616: add IOMMU node
+Content-Type: text/plain
 
-Hi Biju,
+Hi Andre,
 
-On Thu, Jun 20, 2024 at 10:30=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
+On Mon, 17 Jun 2024, at 10:40 AM, Andre Przywara wrote:
+> The Allwinner H616 contains a scatter-gather IOMMU connected to some
+> video related devices. It's almost compatible to the one used in the H6,
+> though with minor incompatibilities.
 >
-> Hi Wolfram, Prabhakar,
->
-> > -----Original Message-----
-> > From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > Sent: Thursday, June 20, 2024 8:40 AM
-> > Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V=
-2H(P) SoC
-> >
-> > Hi Prabhakar,
-> >
-> > > I did give it a try with platform_driver_probe() and failed.
-> >
-> > Ok, thanks for trying nonetheless!
-> >
-> > > - Firstly I had to move the regulator node outside the SDHI node for
-> > > platform_driver_probe() to succeed or else it failed with -ENODEV (at
-> > > https://elixir.bootlin.com/linux/latest/source/drivers/base/platform.=
-c
-> > > #L953)
-> >
-> > This makes sense to me because it is just a "regular" regulator.
-> >
-> > > - In Renesas SoCs we have multiple instances of SDHI, the problem
-> > > being for each instance we are calling platform_driver_probe(). Which
-> > > causes a problem as the regulator node will use the first device.
-> >
-> > I see... we would need a reg property to differentiate between the inte=
-rnal regulators but that is
-> > already used by the parent SDHI node.
-> >
-> > Okay, so let's scrap that idea. However, we need to ensure that we can =
-still have an external
-> > regulator. Seeing the bindings, it looks like you enable the internal r=
-egulator with the "vqmmc-
-> > r9a09g057-regulator"
-> > property? I wonder now if we can simplify this to an "use-internal-regu=
-lator" property because we
-> > have 'compatible' already to differentiate? Needs advice from DT mainta=
-iners, probably.
->
-> Why this cannot be modelled as a regular "regulator" as a child device of=
- SDHI device?
->
-The current implementation does implement the regulator as a child
-device of the sdhi node [0] itself.
+> Add the DT node describing its resources, so that devices like the video
+> or display engine can connect to it.
 
-Wolfram was suggesting to have the regulator outside and use
-platform_driver_probe(), which caused an issue as mentioned above.
+Thanks, tested working with the display engine on an Allwinner H700 device (Anbernic RG35XX Plus).
 
-[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/2024061309=
-1721.525266-2-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[    0.038060] iommu: Default domain type: Translated
+[    0.038080] iommu: DMA domain TLB invalidation policy: strict mode
+...
+[    0.175075] sun8i-mixer 1100000.mixer: Adding to iommu group 0
 
-Cheers,
-Prabhakar
+Tested-by: Ryan Walklin <ryan@testtoast.com>
+
+Regards,
+
+Ryan
 
