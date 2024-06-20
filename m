@@ -1,297 +1,654 @@
-Return-Path: <devicetree+bounces-77943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C47C910808
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:21:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE64910813
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:23:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4321B24D3D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:21:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6CB7284475
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673041AE86A;
-	Thu, 20 Jun 2024 14:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D76A1AD9DA;
+	Thu, 20 Jun 2024 14:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lB2NegJh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W49EKvE8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FAA1AD499;
-	Thu, 20 Jun 2024 14:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D506B1AB35E;
+	Thu, 20 Jun 2024 14:23:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718893247; cv=none; b=OzzoIGjkD4s4Ko9FAafopeJkHnXWDW6j8uHnqasPuYoA8Jwb06lrcBu6p27ceuqvrMyxDw4iwSlF9dKNx35XaDYUQIJiMF9gFyxtJs8tNklTK8rePadr+st/TXpc/Bgo8b4xfwNCgWy77ugHFTRG5qj6yA95RvG+X0FsYQBv/3M=
+	t=1718893400; cv=none; b=MgxZmU2izWdc10mtqhX79ta5WRkol2cWa/64ph+gWTTpRbfcXuPSzWXrPkBK/CbL0vXMzz+6SrFTT4kX8BaLN+K7o6HsMQhF42qcA0GwrRRjJK8mq0w907pfksioVHrEXI6m966ai4HFmN8mNF6zfxefQp2F2GhMNsp5u2Ybxm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718893247; c=relaxed/simple;
-	bh=RpDzMEPAkTH0gCUtj8Zipc0F542rspFE5ClM8an0Mto=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VhmViT5JCVqpzYs2yBb014Nvm1jhukrRvAm5pkSj+RnzYRrVdx2TQ/ijsQvFtWWYB46J/iYxEaPHiypmx0BkGTssdRYdtV0ZYQ1KGeKhR6o746/WNVDhIkrGVBlH3Yce39xEehqpIL9qp9qzG3We1yq+/S/GgIW7p6kQYNdY9q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lB2NegJh; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1718893400; c=relaxed/simple;
+	bh=+4W6JHoLbictFQEQCAFezXlFJOLnm+WKWCVrkiWdAOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KYL+nMCq4lENXgRZEC78q0ENfQL6kBedTZ5UVMRitZ/qeMtjbxYOoZm9T35FAdbS8qeOgGE3YdpiKocUgJvfgNAli37NpCmk7Erou7YNaV70m4CPq/exbUtRsT0PGx21ZUeFXEiyZF881vFt9luak+DVaoOCxdNGubLU3e5wlFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W49EKvE8; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ebe0a81dc8so10885081fa.2;
-        Thu, 20 Jun 2024 07:20:45 -0700 (PDT)
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-6bfd4b88608so753899a12.1;
+        Thu, 20 Jun 2024 07:23:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718893243; x=1719498043; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aE+vLn2GjGuqLu8n+Texxnq8vZV2TJlYRLG7tNkSm9w=;
-        b=lB2NegJhi6qat4W54xuOimsqp8F6UDTWxzUFkOrPnrfQsrP3rfIMgVI6Su+epJXtp8
-         ZbFYqoeOUKMrUqKkm0gdB2BOMiIO5HBUfozD7h8wpiQDB2kK9ps7v8eRQKs4X/EK6vha
-         B7LsM+O0FdUB/fXp/ReojMhcrxQBxJjPoEpNUt6UaR64eiZoAdmUBL5m1goCg5XQcK3z
-         I32TDs0UixQUkEas+mvpzcT40MtpVAH8iZ9o6qgPhSXwjEpl/p0l5oWdN/kI3UNk0sEC
-         Wr7kQVyrVc08R81yM+QXxJJnPu5aPgM9fwYzq6sOpCxpZRLiMbfXTmfozsrZbyK5tSYC
-         vUBw==
+        d=gmail.com; s=20230601; t=1718893398; x=1719498198; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uHxT3flbaEPPxQuVj7AheidwaIoPLVYY25DeO8a1/YU=;
+        b=W49EKvE82DRf5GFU3KhMOhG1G5AYvg7QEp6n+r/s60Kp3bNFi/oYjs9vGMcU4kddxx
+         dx5KGKYrh8Ln1le9ME8irJji8R4hrBMO7bEqPUOTVznZYGB2u9hLcAO01bDWVdZgn6y0
+         ZthIpzQPZ8J6koRM9kCgzZQWQYZYRuL9JctQKF/q5LmM++numlJcd3EpA5S3mh5OpPWA
+         up2fQhlsJFV0D9szH/ri9DRrxg76tx0utDwLxdImt3j33Rj2eHhXuwzt5kX2p/fyPxwz
+         dlEZIEVcHgaqph0as2CaY+hGTCSsJmskmQzkxVAMdnIDRjX7T02N0GaPERIoRVADIhzo
+         jN0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718893243; x=1719498043;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1718893398; x=1719498198;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aE+vLn2GjGuqLu8n+Texxnq8vZV2TJlYRLG7tNkSm9w=;
-        b=sIZRWq8XKChomKpPruZkIGWFdbQD4HNA5FHt4m3dmqF2T5mPyYQI2f0MHXo+Us0AYZ
-         W+pYhrSLY6Wwvfl6U9tOjqqqBAhk7FkJknkX2nua0Oi8tR+8ejZ12YjHf71zQ/xXfv3E
-         NvslcySxqrcWn2P4FqpwXkbm35Nqhlo1GjBKiFFxKcqTMYCv3D1/ort7XcKQ6TetlLV4
-         RGin5/gEjR0Et7k3+MxDsYgODOgPbVy+LquK3mC9v2W3F9nyvtesUw2WtIFWc9dSf0Y2
-         uTvkmrJgLqIoSkwE2L/4UYnrV2881FJVfWiFte57jtWFPMq1q1I39mGFoAvJ+Z1+KMmu
-         dtLA==
-X-Forwarded-Encrypted: i=1; AJvYcCWfpuY7v8FXGLUi1Yp9s2nEE8ULeOATd5KXt59ou4Di9w7LA+YBS6aPvcqnhp3a2dbamm+ToCbC3vvhHXfzZQjYgYgYF7MVOc5T3XXARxh9Vdz+3lrW1hXrdtpA2FxF26PJCT8WtZooFVgclgx5qOTpNcFxieSXeqKPtMTC9ovZpgmj3O1X8Ip5MkEUhhsPDYMdLndxpmB8fSVkCgGT99I2Eg==
-X-Gm-Message-State: AOJu0YxsxI2gWy+j6IDcxPtxHX3l1xJ+Qb6GvGY3GrutQ6LnVqWAdSZ4
-	fVET5q5gLH3mIfEdFkn+VKJcAWEB3Ijp54+9Wf48Yh5aRCPuPC8HsTGaLO4UHuoHOcvPlzKdpDd
-	yePl8MbUmOqgz1Ysm3qbdbiho2H0=
-X-Google-Smtp-Source: AGHT+IGfHPFkchZI4XFBDyNkcZVktC7kVtwWWeNopv9MwMRTymLvl60lvFyANEtN7uERk9DW2caXasLHMpYMVL3ALww=
-X-Received: by 2002:a2e:9a8e:0:b0:2ec:429a:a807 with SMTP id
- 38308e7fff4ca-2ec429aa8b1mr25630481fa.7.1718893243411; Thu, 20 Jun 2024
- 07:20:43 -0700 (PDT)
+        bh=uHxT3flbaEPPxQuVj7AheidwaIoPLVYY25DeO8a1/YU=;
+        b=DHYRBv/nilcOjidwXift4U109zdqF2PvKUPFFKnTCF/tuT8FdtFrPGB0rxwzYJQMSj
+         9txTfsdP7EEPAwuI+E7lWcLIXdK0TZ5BmIHDIvDBMdYcBxGtUM4O+3C35YsRm4Y/u28V
+         VmcHJvlkPOArI1uTfDaB/zFmxG/5a5u+p6d2k4lRKkBrXt7lNt03rMGDvJjWGVEceMSW
+         CtngoA2yoBwj6noC1GeTd6x6FYhfd+TY5qeqidPqCHWzvOqE2Rvz45YJesWsleImSIka
+         LArDPDBimo2SD+gKTsLOXHpcvL1s7vfRmVDywpDL1ZF/DhD022Sj5ByCsZBqAv1alKCg
+         HltA==
+X-Forwarded-Encrypted: i=1; AJvYcCXAhDei7QgkEevNutfFePQmWxI42sbY3ubB8wxPHYvAsB6G7RMEE3LnZH9vAnC69yz+F1Kl860ffJNw0xtHy3xiwJP0ypaqwiFp22D8dX0fwLyac0cy4atFy7zl1zGZ8jp4EloEMyiRWlIkZ9M/Z28NPlXxssazKSn0WX6U2V5d1KpoTeuBrsbm5F0ljlsSFOmY5DsvlLfd1gScV40SdRuj
+X-Gm-Message-State: AOJu0YzC9maGKLhE/s7oL8ur8IsndbaiNx/EgrS9hV1wSFQFhvPH/FRW
+	sTxXOrsr67rv5QsB1Obyb68lNOWtJyyxJs6eFROt/xKsVg/4gSZvBVdIxQ==
+X-Google-Smtp-Source: AGHT+IFbizT99phNhpGKm9snju0f+ayL5ZR+zNOlGENZy23mB9lvmEatcku8nuEVSMkICmYFwMj6RA==
+X-Received: by 2002:a17:90b:97:b0:2c4:aa3d:f1e8 with SMTP id 98e67ed59e1d1-2c7b5b06d60mr5492012a91.14.1718893397960;
+        Thu, 20 Jun 2024 07:23:17 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c7e64ac485sm1733545a91.57.2024.06.20.07.23.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 07:23:16 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 20 Jun 2024 07:23:15 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: baneric926@gmail.com
+Cc: jdelvare@suse.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	corbet@lwn.net, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, openbmc@lists.ozlabs.org,
+	kwliu@nuvoton.com, kcfeng0@nuvoton.com, DELPHINE_CHIU@wiwynn.com,
+	Bonnie_Lo@wiwynn.com
+Subject: Re: [PATCH v5 2/2] hwmon: Add driver for I2C chip Nuvoton NCT7363Y
+Message-ID: <dee8d81d-590e-4ae5-9771-9e1848b8ffe9@roeck-us.net>
+References: <20240322081158.4106326-1-kcfeng0@nuvoton.com>
+ <20240322081158.4106326-3-kcfeng0@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240612075829.18241-1-brgl@bgdev.pl> <CABBYNZLrwgj848w97GP+ijybt-yU8yMNnW5UWhb2y5Zq6b5H9A@mail.gmail.com>
- <CAMRc=Mdb31YGUUXRWACnx55JawayFaRjEPYSdjOCMrYr5xDYag@mail.gmail.com>
- <CABBYNZLPv3zk_UX67yPetQKWiQ-g+Dv9ZjZydhwG3jfaeV+48w@mail.gmail.com>
- <CAMRc=Mdsw5c_BDwUwP2Ss4Bogz-d+waZVd8LLaZ5oyc9dWS2Qg@mail.gmail.com>
- <CAMRc=Mf2koxQH8Pw--6g5O3FTFn_qcyfwTVQjUqxwJ5qW1nzjw@mail.gmail.com>
- <CABBYNZ+7SrLSDeCLF0WDM01prRgAEHMD=9mhu5MfWOuGwoAkNQ@mail.gmail.com>
- <CAMRc=MdozeAzWJCSrDdxVBZ=fwP2yn_j-KZaTDT2Dp7YjKP8-g@mail.gmail.com> <CABBYNZKA7-PAODStTZO33KfHOrGmZHjbEQcP+DKq-CVNwEce4w@mail.gmail.com>
-In-Reply-To: <CABBYNZKA7-PAODStTZO33KfHOrGmZHjbEQcP+DKq-CVNwEce4w@mail.gmail.com>
-From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date: Thu, 20 Jun 2024 10:20:30 -0400
-Message-ID: <CABBYNZ+x-HPCEwQVPONr6pF-Kvss=gJxqdosNGUfFFQDLz75DA@mail.gmail.com>
-Subject: Re: [GIT PULL] Immutable tag between the Bluetooth and pwrseq
- branches for v6.11-rc1
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240322081158.4106326-3-kcfeng0@nuvoton.com>
 
-Hi,
+On Fri, Mar 22, 2024 at 04:11:58PM +0800, baneric926@gmail.com wrote:
+> From: Ban Feng <kcfeng0@nuvoton.com>
+> 
+> The NCT7363Y is a fan controller which provides up to 16
+> independent FAN input monitors. It can report each FAN input count
+> values. The NCT7363Y also provides up to 16 independent PWM
+> outputs. Each PWM can output specific PWM signal by manual mode to
+> control the FAN duty outside.
+> 
+> Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
 
-On Thu, Jun 20, 2024 at 10:16=E2=80=AFAM Luiz Augusto von Dentz
-<luiz.dentz@gmail.com> wrote:
->
-> Hi Bartosz,
->
-> On Wed, Jun 19, 2024 at 3:40=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.p=
-l> wrote:
-> >
-> > On Wed, Jun 19, 2024 at 8:59=E2=80=AFPM Luiz Augusto von Dentz
-> > <luiz.dentz@gmail.com> wrote:
-> > >
-> > > Hi Bartosz,
-> > >
-> > > On Wed, Jun 19, 2024 at 3:35=E2=80=AFAM Bartosz Golaszewski <brgl@bgd=
-ev.pl> wrote:
-> > > >
-> > > > On Wed, Jun 12, 2024 at 5:00=E2=80=AFPM Bartosz Golaszewski <brgl@b=
-gdev.pl> wrote:
-> > > > >
-> > > > > On Wed, Jun 12, 2024 at 4:54=E2=80=AFPM Luiz Augusto von Dentz
-> > > > > <luiz.dentz@gmail.com> wrote:
-> > > > > >
-> > > > > > Hi Bartosz,
-> > > > > >
-> > > > > > On Wed, Jun 12, 2024 at 10:45=E2=80=AFAM Bartosz Golaszewski <b=
-rgl@bgdev.pl> wrote:
-> > > > > > >
-> > > > > > > On Wed, Jun 12, 2024 at 4:43=E2=80=AFPM Luiz Augusto von Dent=
-z
-> > > > > > > <luiz.dentz@gmail.com> wrote:
-> > > > > > > >
-> > > > > > > > Hi Bartosz,
-> > > > > > > >
-> > > > > > > > On Wed, Jun 12, 2024 at 3:59=E2=80=AFAM Bartosz Golaszewski=
- <brgl@bgdev.pl> wrote:
-> > > > > > > > >
-> > > > > > > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org=
->
-> > > > > > > > >
-> > > > > > > > > Hi Marcel, Luiz,
-> > > > > > > > >
-> > > > > > > > > Please pull the following power sequencing changes into t=
-he Bluetooth tree
-> > > > > > > > > before applying the hci_qca patches I sent separately.
-> > > > > > > > >
-> > > > > > > > > Link: https://lore.kernel.org/linux-kernel/20240605174713=
-.GA767261@bhelgaas/T/
-> > > > > > > > >
-> > > > > > > > > The following changes since commit 83a7eefedc9b56fe7bfeff=
-13b6c7356688ffa670:
-> > > > > > > > >
-> > > > > > > > >   Linux 6.10-rc3 (2024-06-09 14:19:43 -0700)
-> > > > > > > > >
-> > > > > > > > > are available in the Git repository at:
-> > > > > > > > >
-> > > > > > > > >   git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linu=
-x.git tags/pwrseq-initial-for-v6.11
-> > > > > > > > >
-> > > > > > > > > for you to fetch changes up to 2f1630f437dff20d02e4b3f07e=
-836f42869128dd:
-> > > > > > > > >
-> > > > > > > > >   power: pwrseq: add a driver for the PMU module on the Q=
-Com WCN chipsets (2024-06-12 09:20:13 +0200)
-> > > > > > > > >
-> > > > > > > > > ---------------------------------------------------------=
--------
-> > > > > > > > > Initial implementation of the power sequencing subsystem =
-for linux v6.11
-> > > > > > > > >
-> > > > > > > > > ---------------------------------------------------------=
--------
-> > > > > > > > > Bartosz Golaszewski (2):
-> > > > > > > > >       power: sequencing: implement the pwrseq core
-> > > > > > > > >       power: pwrseq: add a driver for the PMU module on t=
-he QCom WCN chipsets
-> > > > > > > >
-> > > > > > > > Is this intended to go via bluetooth-next or it is just bec=
-ause it is
-> > > > > > > > a dependency of another set? You could perhaps send another=
- set
-> > > > > > > > including these changes to avoid having CI failing to compi=
-le.
-> > > > > > > >
-> > > > > > >
-> > > > > > > No, the pwrseq stuff is intended to go through its own pwrseq=
- tree
-> > > > > > > hence the PR. We cannot have these commits in next twice.
-> > > > > >
-> > > > > > Not following you here, why can't we have these commits on diff=
-erent
-> > > > > > next trees? If that is the case how can we apply the bluetooth
-> > > > > > specific ones without causing build regressions?
-> > > > > >
-> > > > >
-> > > > > We can't have the same commits twice with different hashes in nex=
-t
-> > > > > because Stephen Rothwell will yell at us both.
-> > > > >
-> > > > > Just pull the tag I provided and then apply the Bluetooth specifi=
-c
-> > > > > changes I sent on top of it. When sending to Linus Torvalds/David
-> > > > > Miller (not sure how your tree gets upstream) mention that you pu=
-lled
-> > > > > in the pwrseq changes in your PR cover letter.
-> > >
-> > > By pull the tag you mean using merge commits to merge the trees and
-> > > not rebase, doesn't that lock us down to only doing merge commits
-> > > rather than rebases later on? I have never used merge commits before.
-> > > There is some documentation around it that suggests not to use merges=
-:
-> > >
-> > > 'While merges from downstream are common and unremarkable, merges fro=
-m
-> > > other trees tend to be a red flag when it comes time to push a branch
-> > > upstream. Such merges need to be carefully thought about and well
-> > > justified, or there=E2=80=99s a good chance that a subsequent pull re=
-quest
-> > > will be rejected.'
-> > > https://docs.kernel.org/maintainer/rebasing-and-merging.html#merging-=
-from-sibling-or-upstream-trees
-> > >
-> > > But then looking forward in that documentation it says:
-> > >
-> > > 'Another reason for doing merges of upstream or another subsystem tre=
-e
-> > > is to resolve dependencies. These dependency issues do happen at
-> > > times, and sometimes a cross-merge with another tree is the best way
-> > > to resolve them; as always, in such situations, the merge commit
-> > > should explain why the merge has been done. Take a moment to do it
-> > > right; people will read those changelogs.'
-> > >
-> > > So I guess that is the reason we want to merge the trees, but what I'=
-m
-> > > really looking forward to is for the 'proper' commands and commit
-> > > message to use to make sure we don't have problems in the future.
-> > >
-> >
-> > You shouldn't really need to rebase your branch very often anyway.
-> > This is really for special cases. But even then you can always use:
-> > `git rebase --rebase-merges` to keep the merge commits.
-> >
-> > The commands you want to run are:
-> >
-> > git pull git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
-> > tags/pwrseq-initial-for-v6.11
-> > git am or b4 shazam on the patches targeting the Bluetooth subsystem
-> > git push
->
-> Not quite working for me:
->
-> From git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
->  * tag                         pwrseq-initial-for-v6.11 -> FETCH_HEAD
-> hint: You have divergent branches and need to specify how to reconcile th=
-em.
-> hint: You can do so by running one of the following commands sometime bef=
-ore
-> hint: your next pull:
-> hint:
-> hint:   git config pull.rebase false  # merge
-> hint:   git config pull.rebase true   # rebase
-> hint:   git config pull.ff only       # fast-forward only
-> hint:
-> hint: You can replace "git config" with "git config --global" to set a de=
-fault
-> hint: preference for all repositories. You can also pass --rebase, --no-r=
-ebase,
-> hint: or --ff-only on the command line to override the configured default=
- per
-> hint: invocation.
-> fatal: Need to specify how to reconcile divergent branches.
->
-> Perhaps I need to configure pull.rebase to be false?
+Sorry for the late reply. This got somehow lost in my queue.
 
-Looks like I just needed -no-ff, will be pushing it after it finishes compi=
-ling.
+> ---
+>  Documentation/hwmon/index.rst   |   1 +
+>  Documentation/hwmon/nct7363.rst |  33 +++
+>  MAINTAINERS                     |   2 +
+>  drivers/hwmon/Kconfig           |  11 +
+>  drivers/hwmon/Makefile          |   1 +
+>  drivers/hwmon/nct7363.c         | 396 ++++++++++++++++++++++++++++++++
+>  6 files changed, 444 insertions(+)
+>  create mode 100644 Documentation/hwmon/nct7363.rst
+>  create mode 100644 drivers/hwmon/nct7363.c
+> 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 1ca7a4fe1f8f..0874f2f754f4 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -170,6 +170,7 @@ Hardware Monitoring Kernel Drivers
+>     mpq8785
+>     nct6683
+>     nct6775
+> +   nct7363
+>     nct7802
+>     nct7904
+>     npcm750-pwm-fan
+> diff --git a/Documentation/hwmon/nct7363.rst b/Documentation/hwmon/nct7363.rst
+> new file mode 100644
+> index 000000000000..1a6abce3a433
+> --- /dev/null
+> +++ b/Documentation/hwmon/nct7363.rst
+> @@ -0,0 +1,33 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver nct7363
+> +=====================
+> +
+> +Supported chip:
+> +
+> +  * Nuvoton NCT7363Y
+> +
+> +    Prefix: nct7363
+> +
+> +    Addresses: I2C 0x20, 0x21, 0x22, 0x23
+> +
+> +Author: Ban Feng <kcfeng0@nuvoton.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +The NCT7363Y is a fan controller which provides up to 16 independent
+> +FAN input monitors, and up to 16 independent PWM outputs with SMBus interface.
+> +
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +Currently, the driver supports the following features:
+> +
+> +==========  ==========================================
+> +fanX_input  provide current fan rotation value in RPM
+> +
+> +pwmX        get or set PWM fan control value.
+> +==========  ==========================================
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2705e44ffc0c..c016a0bed476 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15221,6 +15221,8 @@ M:	Ban Feng <kcfeng0@nuvoton.com>
+>  L:	linux-hwmon@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml
+> +F:	Documentation/hwmon/nct7363.rst
+> +F:	drivers/hwmon/nct7363.c
+>  
+>  NETDEVSIM
+>  M:	Jakub Kicinski <kuba@kernel.org>
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 83945397b6eb..4ff19ea11001 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -1658,6 +1658,17 @@ config SENSORS_NCT6775_I2C
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called nct6775-i2c.
+>  
+> +config SENSORS_NCT7363
+> +	tristate "Nuvoton NCT7363Y"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for the Nuvoton NCT7363Y
+> +	  hardware monitoring chip.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called nct7363.
+> +
+>  config SENSORS_NCT7802
+>  	tristate "Nuvoton NCT7802Y"
+>  	depends on I2C
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index 5c31808f6378..cf7be22b916a 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -171,6 +171,7 @@ obj-$(CONFIG_SENSORS_NCT6775_CORE) += nct6775-core.o
+>  nct6775-objs			:= nct6775-platform.o
+>  obj-$(CONFIG_SENSORS_NCT6775)	+= nct6775.o
+>  obj-$(CONFIG_SENSORS_NCT6775_I2C) += nct6775-i2c.o
+> +obj-$(CONFIG_SENSORS_NCT7363)	+= nct7363.o
+>  obj-$(CONFIG_SENSORS_NCT7802)	+= nct7802.o
+>  obj-$(CONFIG_SENSORS_NCT7904)	+= nct7904.o
+>  obj-$(CONFIG_SENSORS_NPCM7XX)	+= npcm750-pwm-fan.o
+> diff --git a/drivers/hwmon/nct7363.c b/drivers/hwmon/nct7363.c
+> new file mode 100644
+> index 000000000000..858296f5d5b3
+> --- /dev/null
+> +++ b/drivers/hwmon/nct7363.c
+> @@ -0,0 +1,396 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (c) 2023 Nuvoton Technology corporation.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/err.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/hwmon-sysfs.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
+> +
+> +#define NCT7363_REG_FUNC_CFG_BASE(x)	(0x20 + (x))
+> +#define NCT7363_REG_PWMEN_BASE(x)	(0x38 + (x))
+> +#define NCT7363_REG_FANINEN_BASE(x)	(0x41 + (x))
+> +#define NCT7363_REG_FANINX_HVAL(x)	(0x48 + ((x) * 2))
+> +#define NCT7363_REG_FANINX_LVAL(x)	(0x49 + ((x) * 2))
+> +#define NCT7363_REG_FSCPXDUTY(x)	(0x90 + ((x) * 2))
+> +
+> +#define PWM_SEL(x)			(BIT(0) << ((x) * 2))
+> +#define FANIN_SEL(x)			(BIT(1) << ((x < 8) ? \
+> +					 (((x) + 8) * 2) : \
+> +					 (((x) % 8) * 2)))
+> +#define VALUE_TO_REG(x, y)		(((x) >> ((y) * 8)) & 0xFF)
+> +
+> +#define NCT7363_FANINX_LVAL_MASK	GENMASK(4, 0)
+> +#define NCT7363_FANIN_MASK		GENMASK(12, 0)
+> +
+> +#define NCT7363_PWM_COUNT		16
+> +
+> +static inline unsigned int FAN_FROM_REG(u16 val)
 
-> > That's really it, there's not much else to it.
-> >
-> > Bart
-> >
-> > > > > Bart
-> > > >
-> > > > Gentle ping.
-> > > >
-> > > > Bart
-> > >
-> > >
-> > >
-> > > --
-> > > Luiz Augusto von Dentz
->
->
->
-> --
-> Luiz Augusto von Dentz
+Please use lower case for functions, even if inline.
 
+> +{
+> +	if (val == NCT7363_FANIN_MASK || val == 0)
+> +		return 0;
+> +
+> +	return (1350000UL / val);
+> +}
+> +
+> +enum chips { nct7363, nct7362 };
+> +
 
+Those enums are not actually used. Are they needed ?
 
---=20
-Luiz Augusto von Dentz
+> +static const struct i2c_device_id nct7363_id[] = {
+> +	{ "nct7363", nct7363 },
+> +	{ "nct7362", nct7362 },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, nct7363_id);
+> +
+> +static const struct of_device_id nct7363_of_match[] = {
+> +	{ .compatible = "nuvoton,nct7363", .data = (void *)nct7363 },
+> +	{ .compatible = "nuvoton,nct7362", .data = (void *)nct7362 },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, nct7363_of_match);
+> +
+> +struct nct7363_data {
+> +	struct regmap		*regmap;
+> +	struct mutex		lock;		/* protect register access */
+> +
+> +	u16			fanin_mask;
+> +	u16			pwm_mask;
+> +};
+> +
+> +static int nct7363_read_fan(struct device *dev, u32 attr, int channel,
+> +			    long *val)
+> +{
+> +	struct nct7363_data *data = dev_get_drvdata(dev);
+> +	unsigned int hi, lo, rpm;
+> +	int ret = 0;
+> +	u16 cnt;
+> +
+> +	switch (attr) {
+> +	case hwmon_fan_input:
+> +		/*
+> +		 * High-byte register should be read first to latch
+> +		 * synchronous low-byte value
+> +		 */
+> +		mutex_lock(&data->lock);
+> +		ret = regmap_read(data->regmap,
+> +				  NCT7363_REG_FANINX_HVAL(channel), &hi);
+> +		if (ret)
+> +			goto out;
+> +
+> +		ret = regmap_read(data->regmap,
+> +				  NCT7363_REG_FANINX_LVAL(channel), &lo);
+
+Please consider using regmap_read_bulk() to avoid the locks.
+
+> +		if (ret)
+> +			goto out;
+> +		mutex_unlock(&data->lock);
+> +
+> +		cnt = (hi << 5) | (lo & NCT7363_FANINX_LVAL_MASK);
+> +		rpm = FAN_FROM_REG(cnt);
+> +		*val = (long)rpm;
+
+rpm and the typecast are unnecessary. Just use
+		*val = fan_from_reg(cnt);
+
+> +		return 0;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&data->lock);
+> +	return ret;
+> +}
+> +
+> +static umode_t nct7363_fan_is_visible(const void *_data, u32 attr, int channel)
+> +{
+> +	const struct nct7363_data *data = _data;
+> +
+> +	switch (attr) {
+> +	case hwmon_fan_input:
+> +		if (data->fanin_mask & BIT(channel))
+> +			return 0444;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int nct7363_read_pwm(struct device *dev, u32 attr, int channel,
+> +			    long *val)
+> +{
+> +	struct nct7363_data *data = dev_get_drvdata(dev);
+> +	unsigned int regval;
+> +	int ret;
+> +
+> +	switch (attr) {
+> +	case hwmon_pwm_input:
+> +		ret = regmap_read(data->regmap,
+> +				  NCT7363_REG_FSCPXDUTY(channel), &regval);
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val = (long)regval;
+> +		return 0;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int nct7363_write_pwm(struct device *dev, u32 attr, int channel,
+> +			     long val)
+> +{
+> +	struct nct7363_data *data = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	switch (attr) {
+> +	case hwmon_pwm_input:
+> +		if (val < 0 || val > 255)
+> +			return -EINVAL;
+> +
+> +		ret = regmap_write(data->regmap,
+> +				   NCT7363_REG_FSCPXDUTY(channel), val);
+> +
+> +		return ret;
+> +
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static umode_t nct7363_pwm_is_visible(const void *_data, u32 attr, int channel)
+> +{
+> +	const struct nct7363_data *data = _data;
+> +
+> +	switch (attr) {
+> +	case hwmon_pwm_input:
+> +		if (data->pwm_mask & BIT(channel))
+> +			return 0644;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int nct7363_read(struct device *dev, enum hwmon_sensor_types type,
+> +			u32 attr, int channel, long *val)
+> +{
+> +	switch (type) {
+> +	case hwmon_fan:
+> +		return nct7363_read_fan(dev, attr, channel, val);
+> +	case hwmon_pwm:
+> +		return nct7363_read_pwm(dev, attr, channel, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static int nct7363_write(struct device *dev, enum hwmon_sensor_types type,
+> +			 u32 attr, int channel, long val)
+> +{
+> +	switch (type) {
+> +	case hwmon_pwm:
+> +		return nct7363_write_pwm(dev, attr, channel, val);
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
+> +
+> +static umode_t nct7363_is_visible(const void *data,
+> +				  enum hwmon_sensor_types type,
+> +				  u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	case hwmon_fan:
+> +		return nct7363_fan_is_visible(data, attr, channel);
+> +	case hwmon_pwm:
+> +		return nct7363_pwm_is_visible(data, attr, channel);
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static const struct hwmon_channel_info *nct7363_info[] = {
+> +	HWMON_CHANNEL_INFO(fan,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT,
+> +			   HWMON_F_INPUT),
+
+Other potential attributes:
+
+- enable (register 0x41, 0x42, and possibly 0x40)
+- alarm (register 0x34, 0x35)
+- min (register 0x6c, 0x6d)
+
+> +	HWMON_CHANNEL_INFO(pwm,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT,
+> +			   HWMON_PWM_INPUT),
+
+Other potential attributes:
+
+- enable (register 0x38)
+- freq (register 0x91, ...)
+
+All those could be added later, of course, but I would suggest to at least
+add the fan speed low limit and alarm attributes.
+
+> +	NULL
+> +};
+> +
+> +static const struct hwmon_ops nct7363_hwmon_ops = {
+> +	.is_visible = nct7363_is_visible,
+> +	.read = nct7363_read,
+> +	.write = nct7363_write,
+> +};
+> +
+> +static const struct hwmon_chip_info nct7363_chip_info = {
+> +	.ops = &nct7363_hwmon_ops,
+> +	.info = nct7363_info,
+> +};
+> +
+> +static int nct7363_init_chip(struct nct7363_data *data)
+> +{
+> +	u32 func_config = 0;
+> +	int i, ret;
+> +
+> +	/* Pin Function Configuration */
+> +	for (i = 0; i < NCT7363_PWM_COUNT; i++) {
+> +		if (data->pwm_mask & BIT(i))
+> +			func_config |= PWM_SEL(i);
+> +		if (data->fanin_mask & BIT(i))
+> +			func_config |= FANIN_SEL(i);
+> +	}
+> +
+> +	for (i = 0; i < 4; i++) {
+> +		ret = regmap_write(data->regmap, NCT7363_REG_FUNC_CFG_BASE(i),
+> +				   VALUE_TO_REG(func_config, i));
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	/* PWM and FANIN Monitoring Enable */
+> +	for (i = 0; i < 2; i++) {
+> +		ret = regmap_write(data->regmap, NCT7363_REG_PWMEN_BASE(i),
+> +				   VALUE_TO_REG(data->pwm_mask, i));
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		ret = regmap_write(data->regmap, NCT7363_REG_FANINEN_BASE(i),
+> +				   VALUE_TO_REG(data->fanin_mask, i));
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int nct7363_present_pwm_fanin(struct device *dev,
+> +				     struct device_node *child,
+> +				     struct nct7363_data *data)
+> +{
+> +	u8 fanin_ch[NCT7363_PWM_COUNT];
+> +	struct of_phandle_args args;
+> +	int ret, fanin_cnt;
+> +	u8 ch, index;
+> +
+> +	ret = of_parse_phandle_with_args(child, "pwms", "#pwm-cells",
+> +					 0, &args);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (args.args[0] >= NCT7363_PWM_COUNT)
+> +		return -EINVAL;
+> +	data->pwm_mask |= BIT(args.args[0]);
+> +
+> +	fanin_cnt = of_property_count_u8_elems(child, "tach-ch");
+> +	if (fanin_cnt < 1 || fanin_cnt > NCT7363_PWM_COUNT)
+> +		return -EINVAL;
+> +
+> +	ret = of_property_read_u8_array(child, "tach-ch", fanin_ch, fanin_cnt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (ch = 0; ch < fanin_cnt; ch++) {
+> +		index = fanin_ch[ch];
+> +		if (index >= NCT7363_PWM_COUNT)
+> +			return -EINVAL;
+> +		data->fanin_mask |= BIT(index);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct regmap_config nct7363_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+
+Your call to make, but this doesn't use regmap caching capabilities which
+might be really useful here. Most of the registers (all but the count and
+status registers, plus the gpio input registers if/when gpio support is
+added) are not volatile and could be cached.
+
+> +};
+> +
+> +static int nct7363_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct device_node *child;
+> +	struct nct7363_data *data;
+> +	struct device *hwmon_dev;
+> +	int ret;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->regmap = devm_regmap_init_i2c(client, &nct7363_regmap_config);
+> +	if (IS_ERR(data->regmap))
+> +		return PTR_ERR(data->regmap);
+> +
+> +	mutex_init(&data->lock);
+> +
+> +	for_each_child_of_node(dev->of_node, child) {
+> +		ret = nct7363_present_pwm_fanin(dev, child, data);
+> +		if (ret) {
+> +			of_node_put(child);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	/* Initialize the chip */
+> +	ret = nct7363_init_chip(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hwmon_dev =
+> +		devm_hwmon_device_register_with_info(dev, client->name, data,
+> +						     &nct7363_chip_info, NULL);
+> +	return PTR_ERR_OR_ZERO(hwmon_dev);
+> +}
+> +
+> +static struct i2c_driver nct7363_driver = {
+> +	.class = I2C_CLASS_HWMON,
+> +	.driver = {
+> +		.name = "nct7363",
+> +		.of_match_table = nct7363_of_match,
+> +	},
+> +	.probe = nct7363_probe,
+> +	.id_table = nct7363_id,
+> +};
+> +
+> +module_i2c_driver(nct7363_driver);
+> +
+> +MODULE_AUTHOR("CW Ho <cwho@nuvoton.com>");
+> +MODULE_AUTHOR("Ban Feng <kcfeng0@nuvoton.com>");
+> +MODULE_DESCRIPTION("NCT7363 Hardware Monitoring Driver");
+> +MODULE_LICENSE("GPL");
 
