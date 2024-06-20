@@ -1,192 +1,263 @@
-Return-Path: <devicetree+bounces-77905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A119105B1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:20:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7359C9105C7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:26:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B447B25E42
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:20:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DED141F256F5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022B21ACE94;
-	Thu, 20 Jun 2024 13:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF2C1ACE9E;
+	Thu, 20 Jun 2024 13:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EszdFoqL"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="Qk/sR5k4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C744D1E49E;
-	Thu, 20 Jun 2024 13:20:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4E51ACE94;
+	Thu, 20 Jun 2024 13:26:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718889625; cv=none; b=aolAIpeRmFWUDRQxnFSx5CshH2Ia735/6aHtaWLJUGUShzgEdZ3VkQiuHLC/EzGRY/ZzzpUeEfEulhHt2sJGJzcHbPHR2v2Q2bb8voGyngA9665osfcFZ9fjMVCgn8UKBGltM2x0T19fLZeGOMabDMzCLx92dQJ/zoDemenlpEA=
+	t=1718889984; cv=none; b=aegdqvDxh6PGQrjZyiuipaXdhxWUsep9nPAX1IyM1L6E9kc/YJ/Ib64lD3G4+d5IIEE+9ahSu1fVMjZBEEkjEJqnOJ9BUNN4jHcmrbHWTl4MsHqrwuYILEgycct8cngqJ35drqu0q3aJpSGYCU3ceVd3AR6+pmlnpYqOpkXfz9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718889625; c=relaxed/simple;
-	bh=KEROTR005kTLhtx/k+9f7IK2AIDNVt50nsFd2BWMl30=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WmKAvwUJeaQoA6hsNOoG5hTAuyaFh15Klhmo2ein1KxFpVd5EpUpBl67xpOvCQ6I0jm31iTQ3G8BbdTpUE8QvXw8ytWDzy/kul6lwbNQYiZET2APMjx0mf5bTfcEnrUZRBwAIwZXCtuAFyAdYZdbCQ7H49J/82vGBYbo2olwAvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EszdFoqL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 063D0C2BD10;
-	Thu, 20 Jun 2024 13:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718889624;
-	bh=KEROTR005kTLhtx/k+9f7IK2AIDNVt50nsFd2BWMl30=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EszdFoqLBct+twlYq5PmHlR+kk91HtkmqT/p8iQvXgoRrRldYFnFXcFToGnj+uSox
-	 h2Zu62R+tYk2I6O5LtvgAbtSR7d5rAxVIu9qXKOoOJumQlm2mDE0VI1PUEJfVvupcx
-	 BdHZ55BvhPklbpe/91BZN9nA8rM/Ca1Fu270Sx5JsoF3XkUXq0+FWkDVRneDgJfH1z
-	 wZH6JCoWcYlTvOn7esMlreYOoGxFeTS2i8idbDqIOxC3meF2lsx1+Xgm5ROdTVBfy6
-	 c3T25vIdJz8aJDEwiUwJRLTjD6BAGftmdxqBtFnzx9Au/8jbkltLtoBGN+CZAU+7pZ
-	 gSVNxJUBYwisg==
-Message-ID: <bf61b47d-e375-4f52-b25c-f02a5cd9b6dd@kernel.org>
-Date: Thu, 20 Jun 2024 15:20:20 +0200
+	s=arc-20240116; t=1718889984; c=relaxed/simple;
+	bh=skBpDlqyjwQaFn99kQpKQNX/zKajEVFtRHZv8Un2Y2o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=JsiWafaeoVTdRf89UJcTt0TZFIQbGQwrAzaYY7ZxraGZsR9vS2HXKjBuzsIgrAJGgoEnw22BhSRfJxvOqiJSHgEb4jZalNXUiqPXZGD1Hu5QJH8HPljcA20ALZZEmL8zk7zY1jEL2YUAxtXoLk2Z0Ml6JCrDDIo1YU/UnPrzmEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=Qk/sR5k4; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 6C2D39C3240;
+	Thu, 20 Jun 2024 09:26:13 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id tWZLTMGpjfJE; Thu, 20 Jun 2024 09:26:11 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 7B16E9C5625;
+	Thu, 20 Jun 2024 09:26:11 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 7B16E9C5625
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1718889971; bh=j97G0da8OsHXoIQTZAx0D9lInyeaXOz7op8GRSt10VM=;
+	h=From:To:Date:Message-Id:MIME-Version;
+	b=Qk/sR5k4Lp2oSnWyvu7y0zssZpxpu+oiUtS4Cc+5D3G102f8GQvstlSr10k1LmuNV
+	 HjcTrshIvmyuktL2qf6dSyB7jo/vjeC3JeDnegVr9DvQnbvNzmF5pVfmDFIkd989CQ
+	 tUfa1NUfk4GSqwyRaBqdD4Br9LTB/wh+UDX/m2GWyjrAWXXnn1we63pLw1llMtIpvl
+	 9a7t5g42je8MJlY2iLWg1wgri6ejfevNwqhVRtKQg6KHHt4Esw2UXrwLQG+BnlKyKE
+	 I7wCu0nYSdMP6s1yw0GuM6skRsqAKdVg9hM6A6wmhd0n2B78rvWvqTSeJsdddzhqMg
+	 ekrx6qFa3mNpA==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 84fPbdbD_-bf; Thu, 20 Jun 2024 09:26:11 -0400 (EDT)
+Received: from gerard.rennes.sfl (lmontsouris-657-1-69-118.w80-15.abo.wanadoo.fr [80.15.101.118])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 76F0D9C54A8;
+	Thu, 20 Jun 2024 09:26:08 -0400 (EDT)
+From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>,
+	Philip-Dylan <philip-dylan.gleonec@savoirfairelinux.com>
+Subject: [PATCHv5 0/9] ASoC: fsl-asoc-card: add S/PDIF controller
+Date: Thu, 20 Jun 2024 15:25:02 +0200
+Message-Id: <20240620132511.4291-1-elinor.montmasson@savoirfairelinux.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: remoteproc: mpss: Document
- QDU1000/QRU1000 mpss devices
-To: Komal Bajaj <quic_kbajaj@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Melody Olvera <quic_molvera@quicinc.com>
-References: <20240620120143.12375-1-quic_kbajaj@quicinc.com>
- <20240620120143.12375-2-quic_kbajaj@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240620120143.12375-2-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=quoted-printable
+Content-Transfer-Encoding: quoted-printable
 
-On 20/06/2024 14:01, Komal Bajaj wrote:
-> From: Melody Olvera <quic_molvera@quicinc.com>
-> 
-> Document the compatible for the component used to boot the MPSS on the
-> QDU1000 and QRU1000 SoCs.
-> 
-> The QDU1000 and QRU1000 mpss boot process now requires the specification
-> of an RMB register space to complete the handshake needed to start or
+Hello,
 
-What is RMB?
+This is the v5 of the series of patches aiming to make the machine
+driver `fsl-asoc-card` compatible with S/PDIF controllers on imx boards.
+The main goal is to allow the use of S/PDIF controllers with ASRC
+modules.
 
-> attach the mpss.
+The `imx-spdif` machine driver already has specific support for S/PDIF
+controllers but doesn't support using an ASRC with it. However, the
+`fsl-asoc-card` machine driver has the necessary code to create a sound
+card which can use an ASRC module.
+It is then possible to extend the support for S/PDIF audio cards by
+merging the `imx-spdif` driver into `fsl-asoc-card`.
 
-mpss? MPSS?
+The first patch fixes a NULL pointer dereference in `fsl-asoc-card`
+which occurs when the function "fsl_asoc_card_audmux_init()" prints
+error logs.
 
-> 
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  .../remoteproc/qcom,qdu1000-mpss-pas.yaml     | 129 ++++++++++++++++++
->  1 file changed, 129 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
-> new file mode 100644
-> index 000000000000..71c5a85b679e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
-> @@ -0,0 +1,129 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/qcom,qdu1000-mpss-pas.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QDU1000 Modem Peripheral Authentication Service
-> +
-> +maintainers:
-> +  - Melody Olvera <quic_molvera@quicinc.com>
-> +  - Komal Bajaj <quic_kbajaj@quicinc.com>
-> +
-> +description:
-> +  Qualcomm QDU1000 SoC Peripheral Authentication Service loads and boots firmware
-> +  on the Qualcomm DSP Hexagon core.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qdu1000-mpss-pas
-> +
-> +  reg:
-> +    items:
-> +      - description: Address offset and size for MPSS PAS register set
-> +      - description: Address offset and size for MPSS RMB register set
+The next three patches adapt the `fsl-asoc-card` driver to support
+multiple codec use cases.
+The driver can get 2 codec phandles from the device tree, and
+codec-related variables are doubled.
+`for_each_codecs` macros are also used when possible to ease adding
+other multi-codec use cases in the future.
+This makes possible to use the two S/PDIF dummy codec drivers
+`spdif_receiver` and `spdif_transmitter` instead of `snd-soc-dummy`,
+which was used in `imx-spdif`.
 
-10 words, 8 are entirely redundant. This cannot be anything else than
-address offset and size of some register set. Please write efficient and
-understandable code. E.g.
-"MPSS main Peripheral Authentication Service"
-"MPSS something-explain-what-is-rmb"
+The fifth patch merges the S/PDIF support from `imx-spdif` to
+`fsl-asoc-card`.
+`fsl-asoc-card` offers the same functionalities as `imx-spdif` did, but
+this merge also extends the S/PDIF support with the possibility of using
+an ASRC.
+Compatible "fsl,imx-audio-spdif" is kept, but some DT properties have to
+be updated in device trees to match those of `fsl-asoc-card`:
+* "spdif-controller" is now "audio-cpu" in `fsl-asoc-card`.
+* "spdif-in" and "spdif-out" are now replaced by the "audio-codec"
+  property of `fsl-asoc-card`. S/PDIF specific dummy codecs should be
+  used with `fsl-asoc-card`, and therefore declared in device trees.
 
+The last four patches update the device tree bindings of
+`fsl-asoc-card`, remove the now obsolete binding of `imx-spdif`, and
+update all device trees using the `fsl,imx-audio-spdif` compatible.
 
-...
+This series of patches was successfully built for arm64 and x86 on top
+of the latest=C2=A0"for-next" branch of the ASoC git tree on the 19th of Ju=
+ne
+2024.
+These modifications have also been tested on an i.MX8MN evaluation board
+with a linux kernel RT v6.1.26-rt8.
 
-> +        glink-edge {
-> +            interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
-> +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
-> +                                         IRQ_TYPE_EDGE_RISING>;
-> +            mboxes = <&ipcc IPCC_CLIENT_MPSS IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +
-> +            label = "modem";
-> +            qcom,remote-pid = <2>;
-> +        };
-
-This wasn't tested.
+If you have any questions or remarks about these commits, don't hesitate
+to reply to this message.
 
 Best regards,
-Krzysztof
+Elinor Montmasson
+
+Changelog:
+v4 -> v5:
+* Focus the contribution to bringing S/PDIF / ASRC support.
+* Instead of creating a new compatible for the S/PDIF `fsl-asoc-card`
+  support, merge the driver `imx-spdif` into `fsl-asoc-card`, and keep
+  the compatible. It preserves the base S/PDIF audio card support but
+  also extends it with the possibility to use an ASRC.
+  It also reduces code and driver duplication.
+* Following driver merge, adapt device trees using "fsl,imx-audio-spdif"
+  compatible.=20
+* Use more `for_each_codecs` macros in `fsl-asoc-card` when adding
+  multi-codec support.
+* Remove patches about new device-tree bindings that were not relevant
+  for an S/PDIF specific support.
+* Improve DT schema changes.
+* Move `priv->pdev` assignment earlier in "fsl_asoc_card_probe()" to fix
+  a NULL pointer dereference in "fsl_asoc_card_audmux_init()".
+* v4 patch series at :
+https://lore.kernel.org/all/20240515135411.343333-1-elinor.montmasson@savoi=
+rfairelinux.com/
+
+v3 -> v4:
+* Use the standard TDM bidings, as defined in "tdm-slot.txt", for the
+  new optional DT bindings setting the TDM slots number and width.
+* Use the clock DT bindings to optionally specify the CPU DAI system
+  clock frequency, instead of a dedicated new binding.
+* Rename the new DT binding "cpu-sysclk-dir-out" to
+  "cpu-system-clock-direction-out" to better follow the style of the
+  simple-card driver.
+* Merge TX an RX bindings for CPU DAI system-clock, to better follow the
+  style of the simple-card driver, and also as there was no use case in
+  fsl-asoc-card where TX and RX settings had to be different.
+* Add the documentation for the new bindings in the new DT schema
+  bindings documentation. Also add an example with the generic codec.
+* v3 patch series at :
+https://lore.kernel.org/alsa-devel/20231218124058.2047167-1-elinor.montmass=
+on@savoirfairelinux.com/
+
+v2 -> v3:
+* When the bitmaster or framemaster are retrieved from the device tree,
+  the driver will now compare them with the two codecs possibly given in
+  device tree, and not just the first codec.
+* Improve driver modifications to use multiple codecs for better
+  integration of future multi-codec use cases:
+    * Use `for_each_codec` macros when possible.
+    * `fsl_asoc_card_priv` struct now has 2 `codec_priv` as the driver
+      can currently retrieve 2 codec phandles from the device tree.
+* Fix subject of patch 10/10 to follow the style of the subsystem
+* v2 patch series at:
+https://lore.kernel.org/alsa-devel/20231027144734.3654829-1-elinor.montmass=
+on@savoirfairelinux.com/
+
+v1 -> v2:
+* Replace use of the dummy codec by the pair of codecs spdif_receiver /
+  spdif_transmitter.
+* Adapt how dai links codecs are used to take into account the
+  possibility for multiple codecs per link.
+* Change compatible name.
+* Adapt driver to be able to register two codecs given in the device
+  tree.
+* v1 patch series at:
+https://lore.kernel.org/alsa-devel/20230901144550.520072-1-elinor.montmasso=
+n@savoirfairelinux.com/
+
+Elinor Montmasson (9):
+  ASoC: fsl-asoc-card: set priv->pdev before using it
+  ASoC: fsl-asoc-card: add support for dai links with multiple codecs
+  ASoC: fsl-asoc-card: add second dai link component for codecs
+  ASoC: fsl-asoc-card: add compatibility to use 2 codecs in dai-links
+  ASoC: fsl-asoc-card: merge spdif support from imx-spdif.c
+  ASoC: dt-bindings: fsl-asoc-card: add compatible string for spdif
+  ASoC: dt-bindings: imx-audio-spdif: remove binding
+  arm64: dts: imx8m: update spdif sound card node properties
+  ARM: dts: imx6: update spdif sound card node properties
+
+ .../bindings/sound/fsl,imx-audio-spdif.yaml   |  66 ----
+ .../bindings/sound/fsl-asoc-card.yaml         |  30 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts    |  15 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-prti6q.dts    |  15 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-tbs2910.dts   |   9 +-
+ arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi |  15 +-
+ .../arm/boot/dts/nxp/imx/imx6qdl-apf6dev.dtsi |   9 +-
+ .../arm/boot/dts/nxp/imx/imx6qdl-colibri.dtsi |  15 +-
+ .../arm/boot/dts/nxp/imx/imx6qdl-cubox-i.dtsi |   9 +-
+ .../dts/nxp/imx/imx6qdl-hummingboard.dtsi     |   9 +-
+ .../boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi   |   9 +-
+ .../boot/dts/nxp/imx/imx6qdl-wandboard.dtsi   |   9 +-
+ .../arm/boot/dts/nxp/imx/imx6sx-sabreauto.dts |   9 +-
+ arch/arm/boot/dts/nxp/imx/imx6sx-sdb.dtsi     |   9 +-
+ arch/arm/configs/imx_v6_v7_defconfig          |   1 -
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi |  15 +-
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi |  15 +-
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts  |  24 +-
+ arch/arm64/configs/defconfig                  |   1 -
+ sound/soc/fsl/Kconfig                         |  10 +-
+ sound/soc/fsl/Makefile                        |   2 -
+ sound/soc/fsl/fsl-asoc-card.c                 | 361 ++++++++++++------
+ sound/soc/fsl/imx-spdif.c                     | 103 -----
+ 23 files changed, 408 insertions(+), 352 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-audio-s=
+pdif.yaml
+ delete mode 100644 sound/soc/fsl/imx-spdif.c
+
+--=20
+2.34.1
 
 
