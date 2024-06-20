@@ -1,300 +1,773 @@
-Return-Path: <devicetree+bounces-78135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D1DB9112DE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 22:15:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E77911322
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 22:28:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDCA61F2313C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:15:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB2FB1F235D9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:28:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253061BA091;
-	Thu, 20 Jun 2024 20:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37A361BA899;
+	Thu, 20 Jun 2024 20:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K3Q5hlmF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y3Uz1nc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBC01B9AC7;
-	Thu, 20 Jun 2024 20:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF642E859
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 20:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718914514; cv=none; b=cq+Y4XTgzkx7/lfMPb0lnMQhHhKT+CcVrr9BtLR0SiR7DLMt+eFZyDI4MGsvoX/RON/hlvhWV9iMtrWlmvTADJYVxrEmaI7TK+Mw8kGwPOU5sK5XmnJzwGESpRUi8gZOCJalElQMTpJsTyYWDHY7D7FHvL8QJfuK5DJsHwZ//4s=
+	t=1718915282; cv=none; b=L4XGJXWrxpHRV1Q53kboc6dxgGEWGXiaG9aYAMwmuEYxnKRfi/oAAvuYPFjM0v6Df5H1LB+L/pZ4WZmI9c223Wt6DXvmujt+veym0BEgflyDTC/DshzHgnOt68daSRGMye/BdeXJn3s6lZDS77C59NTuaPV76o8UX2t+LBZfB6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718914514; c=relaxed/simple;
-	bh=dx88qbfA3v0QDgtBAfkX2p+KZ894xqWOi1spAiEK79Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Af1zBzOILsRT342BYc8pOqu58eZzLRPucJ2hy4qpUAjwBgLyg+Q152fSU1v+SeVVGp/anlP8bErqF5pRaxb7By4Z8Dl0SOPLUlBYguzLA8RSDELdMUyyWLFny044WCNEgm/u6asLO7AK3iA0xEODUST4kdNLDq6pjF8JE58bQ4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K3Q5hlmF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3088C2BD10;
-	Thu, 20 Jun 2024 20:15:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718914513;
-	bh=dx88qbfA3v0QDgtBAfkX2p+KZ894xqWOi1spAiEK79Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K3Q5hlmFTV2StGeAqV1ad3ALvO+at6HlmCfy/QXw80XBHI+CtCSJkAB6T0ljm1Cla
-	 h1FXTkMlJVy3YH8tdyanjrUGrMb+VoRevwm6fnqvKUM57OyG/H15yfbdSIVTdZCLh3
-	 37/vSJq/jpQHMF3G47KlhSq+OSUt8sc0+DmRekUGL9Bje93H8KLMY/PBtbK1Sh5Uks
-	 mrnDLEAMdFXzxRAKsxZtF13sVSaXwSWqY3ZjjuVcQ0QzyFwy2lQCNQLs4U6Y5wLWZ6
-	 YcyobmsG93CE3GImMYQqPd3ezOFin5JLavDjJQF6mCPAWzDHNK11PoA1fh2iITVrMb
-	 s0XuW0DNn177w==
-Message-ID: <dafab4dc-34ef-4abd-9f3f-1dee675a1a56@kernel.org>
-Date: Thu, 20 Jun 2024 22:14:59 +0200
+	s=arc-20240116; t=1718915282; c=relaxed/simple;
+	bh=1xNnAHdwMBX+E7zzJwQJbfTUOxebBAoux6Ueg2HTnIA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HxwSLXZ7mxdCCtdk4ajq3LUCMrOhqYUTUJBrqpEv7S+ugcdj5UlGsk+kw5WCV33cXPo9FfBl+es8KyYF4x6DRoh8hk/Jkg1ZEiCskhGkSxW/9WBVf/v8HKclHwdCA4UJL23Vhk1Op3HbDzFRFiAWhBqIHKEd3OE7/gWHx86m1bA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y3Uz1nc6; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-713fa1aea36so693296a12.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 13:27:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718915279; x=1719520079; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MODH0beCS6SStlE9bjQyGbwh7MiVHocUvofE3ZyuHSY=;
+        b=y3Uz1nc6VQMmjJF4am6XVjx4Kchruj0YZY2FgenV8jCi9cYgFu23ZDgln/O2dkFAO7
+         mj2b94xbhc4PyPlweWM9cCPvQL5ATYb9ipZbdlfYqa5AChdsExFyatPWSkZ601buK9Dy
+         iLvfDZNje0OkVewXJ/DtyYMgqqRvl5muRnlq6lJN6FEs2JbOfI11+8dApCrDIygdA3wg
+         I6VrS6HDZ78w7a2suwCENKe8xlX4vqGuqCz71U7DPayMj787xpqwCsuuhCsn6p/kVqzJ
+         JQmyFhsbZaSpyljhTmCtwhPKG0SBnbMywJttElEUlJwW4vKlklvdvSwQisHyYRD/3XWo
+         /F8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718915279; x=1719520079;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MODH0beCS6SStlE9bjQyGbwh7MiVHocUvofE3ZyuHSY=;
+        b=LsZX9EPRdk4pYCqA5gEAQvaNzsa9hIq46n9zd5kFhCFvexbiSPOTSznQmA7L5IUccr
+         c5dJ/aiMdg7ZjvenkWsVL3uKECgjlNeN3+kJh73WavgFWP8m+xISixwb4gQfK2ulM9bR
+         RHtu7UQO4c3KKCidcHxchz6RcPkKHP3vhcCoXSGAaqkoVNl03Dd7/AE7Hma9UQvQ9UtV
+         eA6jRLoAnN0zf/3LIUkPP7QlKvo1xDNqBogTnuXl6dChW9sCdagNKw7Vyou2fZ9NZUFe
+         s6A2srBRaYuIN+aBb82Fb5gkH/mKFdwEPESCONm/loGsf7rHLtJkSv7eluM4PirLxgyj
+         61Qw==
+X-Forwarded-Encrypted: i=1; AJvYcCWu53v6jicyV+99l0iYYbMXZr+QDiLsjcP+UCSajW7T2EsNu2JoMsBJHNE3HCgW6z+CP1iq6DsJO05jRfXVXLZdV2Cs1L8ljoFOdg==
+X-Gm-Message-State: AOJu0YwNppXpFMTo6dVSnSA13oWvzjFE6K9cBvnI1QyaL+D9bR9pmfhi
+	UvaRsGPws4HAgqT3t1BWIJvkBETlic55lvCifUIHNduR/UU3LxNL07lWQYNZD98=
+X-Google-Smtp-Source: AGHT+IHb8bwb0GnqndspCOrRS7jIVFqFpfYKsXk9Wcp6yfD92Bqk5O7rgekfAmF7z8IdOmTbINDr2A==
+X-Received: by 2002:a17:90a:7848:b0:2c8:633:4a37 with SMTP id 98e67ed59e1d1-2c806334bbdmr1746927a91.13.1718915279249;
+        Thu, 20 Jun 2024 13:27:59 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800::9eba])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c819dbb7c6sm89124a91.40.2024.06.20.13.27.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 13:27:58 -0700 (PDT)
+Date: Thu, 20 Jun 2024 14:27:55 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 2/5] remoteproc: Add TEE support
+Message-ID: <ZnSQy3TQ6Torzb76@p14s>
+References: <20240611073904.475019-1-arnaud.pouliquen@foss.st.com>
+ <20240611073904.475019-3-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 16/23] leds: max77705: Add LEDs support
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
- Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Chanwoo Choi <cw00.choi@samsung.com>, phone-devel@vger.kernel.org
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
- <20240618-starqltechn_integration_upstream-v3-16-e3f6662017ac@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240618-starqltechn_integration_upstream-v3-16-e3f6662017ac@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240611073904.475019-3-arnaud.pouliquen@foss.st.com>
 
-On 18/06/2024 15:59, Dzmitry Sankouski wrote:
-> This adds basic support for LEDs for the max77705 PMIC.
+On Tue, Jun 11, 2024 at 09:39:01AM +0200, Arnaud Pouliquen wrote:
+> Add a remoteproc TEE (Trusted Execution Environment) driver
+> that will be probed by the TEE bus. If the associated Trusted
+> application is supported on secure part this driver offers a client
+> interface to load a firmware in the secure part.
+
+s/in/by
+
+> This firmware could be authenticated by the secure trusted application.
 > 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
 > ---
->  MAINTAINERS                  |   1 +
->  drivers/leds/Kconfig         |   6 ++
->  drivers/leds/Makefile        |   1 +
->  drivers/leds/leds-max77705.c | 166 +++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 174 insertions(+)
+> update from V
+> - Fix missing "{" in tee_rproc_find_loaded_rsc_table inline definition.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f66f08825db9..f3c245d432d9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13691,6 +13691,7 @@ F:	drivers/*/max14577*.c
->  F:	drivers/*/max77686*.c
->  F:	drivers/*/max77693*.c
->  F:	drivers/*/max77705*.c
-> +F:	drivers/leds/leds-max77705.c
->  F:	drivers/clk/clk-max77686.c
->  F:	drivers/extcon/extcon-max14577.c
->  F:	drivers/extcon/extcon-max77693.c
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 05e6af88b88c..14d483011308 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -728,6 +728,12 @@ config LEDS_MAX77650
->  	help
->  	  LEDs driver for MAX77650 family of PMICs from Maxim Integrated.
+> update from V5
+> - make tee_rproc_get_loaded_rsc_table() local and replace this API by
+>   tee_rproc_find_loaded_rsc_table()
+> - map and unmap the resource table in tee_rproc_parse_fw to make a cached copy
+> - use the new rproc_pa_to_va() API to map the resource table memory declared in carevout
+> - remove tee_rproc_release_loaded_rsc_table as no more used.
+> ---
+>  drivers/remoteproc/Kconfig          |  10 +
+>  drivers/remoteproc/Makefile         |   1 +
+>  drivers/remoteproc/tee_remoteproc.c | 451 ++++++++++++++++++++++++++++
+>  include/linux/remoteproc.h          |   4 +
+>  include/linux/tee_remoteproc.h      | 100 ++++++
+>  5 files changed, 566 insertions(+)
+>  create mode 100644 drivers/remoteproc/tee_remoteproc.c
+>  create mode 100644 include/linux/tee_remoteproc.h
+
+I think this is a core module and theredore should follow the remoteproc_xyz
+convention.  I would rename these to remoteproc_tee.{c|h}.  The names of the
+functions inside the files can remain unchanged.
+
+> 
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 48845dc8fa85..6c1c07202276 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -365,6 +365,16 @@ config XLNX_R5_REMOTEPROC
 >  
-> +config LEDS_MAX77705
-> +	tristate "LED support for Maxim MAX77705 RGB"
-> +	depends on MFD_MAX77705 && LEDS_CLASS && I2C
-> +	help
-> +	  LED driver for MAX77705 MFD chip from Maxim Integrated.
+>  	  It's safe to say N if not interested in using RPU r5f cores.
+>  
 > +
->  config LEDS_MAX8997
->  	tristate "LED support for MAX8997 PMIC"
->  	depends on LEDS_CLASS && MFD_MAX8997
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index effdfc6f1e95..be064e3d678e 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -58,6 +58,7 @@ obj-$(CONFIG_LEDS_LP8860)		+= leds-lp8860.o
->  obj-$(CONFIG_LEDS_LT3593)		+= leds-lt3593.o
->  obj-$(CONFIG_LEDS_MAX5970)		+= leds-max5970.o
->  obj-$(CONFIG_LEDS_MAX77650)		+= leds-max77650.o
-> +obj-$(CONFIG_LEDS_MAX77705)		+= leds-max77705.o
->  obj-$(CONFIG_LEDS_MAX8997)		+= leds-max8997.o
->  obj-$(CONFIG_LEDS_MC13783)		+= leds-mc13783.o
->  obj-$(CONFIG_LEDS_MENF21BMC)		+= leds-menf21bmc.o
-> diff --git a/drivers/leds/leds-max77705.c b/drivers/leds/leds-max77705.c
+> +config TEE_REMOTEPROC
+> +	tristate "Remoteproc support by a TEE application"
+> +	depends on OPTEE
+> +	help
+> +	  Support a remote processor with a TEE application. The Trusted
+> +	  Execution Context is responsible for loading the trusted firmware
+> +	  image and managing the remote processor's lifecycle.
+> +	  This can be either built-in or a loadable module.
+> +
+>  endif # REMOTEPROC
+>  
+>  endmenu
+> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> index 91314a9b43ce..fa8daebce277 100644
+> --- a/drivers/remoteproc/Makefile
+> +++ b/drivers/remoteproc/Makefile
+> @@ -36,6 +36,7 @@ obj-$(CONFIG_RCAR_REMOTEPROC)		+= rcar_rproc.o
+>  obj-$(CONFIG_ST_REMOTEPROC)		+= st_remoteproc.o
+>  obj-$(CONFIG_ST_SLIM_REMOTEPROC)	+= st_slim_rproc.o
+>  obj-$(CONFIG_STM32_RPROC)		+= stm32_rproc.o
+> +obj-$(CONFIG_TEE_REMOTEPROC)		+= tee_remoteproc.o
+>  obj-$(CONFIG_TI_K3_DSP_REMOTEPROC)	+= ti_k3_dsp_remoteproc.o
+>  obj-$(CONFIG_TI_K3_R5_REMOTEPROC)	+= ti_k3_r5_remoteproc.o
+>  obj-$(CONFIG_XLNX_R5_REMOTEPROC)	+= xlnx_r5_remoteproc.o
+> diff --git a/drivers/remoteproc/tee_remoteproc.c b/drivers/remoteproc/tee_remoteproc.c
 > new file mode 100644
-> index 000000000000..f91c0e41056c
+> index 000000000000..9455fd9d0d2d
 > --- /dev/null
-> +++ b/drivers/leds/leds-max77705.c
-> @@ -0,0 +1,166 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/drivers/remoteproc/tee_remoteproc.c
+> @@ -0,0 +1,451 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
 > +/*
-> + * Based on leds-max77650 driver:
-> + *		Copyright (C) 2018 BayLibre SAS
-> + *		Author: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> + *
-> + * LED driver for MAXIM 77705 MFD.
-> + * Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.org>
+> + * Copyright (C) STMicroelectronics 2024 - All Rights Reserved
+> + * Author: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
 > + */
 > +
-> +#include <linux/i2c.h>
-> +#include <linux/leds.h>
-> +#include <linux/mfd/max77705.h>
-> +#include <linux/mfd/max77705-private.h>
+> +#include <linux/firmware.h>
+> +#include <linux/io.h>
 > +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
+> +#include <linux/remoteproc.h>
+> +#include <linux/slab.h>
+> +#include <linux/tee_drv.h>
+> +#include <linux/tee_remoteproc.h>
 > +
-> +#define MAX77705_LED_NUM_LEDS		4
-> +#define MAX77705_LED_EN_MASK		GENMASK(1, 0)
-> +#define MAX77705_LED_MAX_BRIGHTNESS	0xff
+> +#include "remoteproc_internal.h"
 > +
-> +#define LEDBLNK_ON(time)	((time < 100) ? 0 :			\
-> +				(time < 500) ? time/100-1 :		\
-> +				(time < 3250) ? (time-500)/250+4 : 15)
+> +#define MAX_TEE_PARAM_ARRY_MEMBER	4
 > +
-> +#define LEDBLNK_OFF(time)	((time < 1) ? 0x00 :			\
-> +				(time < 500) ? 0x01 :			\
-> +				(time < 5000) ? time/500 :		\
-> +				(time < 8000) ? (time-5000)/1000+10 :	 \
-> +				(time < 12000) ? (time-8000)/2000+13 : 15)
-
-Make both static functions, if really needed, but these appear only in
-one place, so maybe just code it directly.
-
-
+> +/*
+> + * Authentication of the firmware and load in the remote processor memory
+> + *
+> + * [in]  params[0].value.a:	unique 32bit identifier of the remote processor
+> + * [in]	 params[1].memref:	buffer containing the image of the buffer
+> + */
+> +#define TA_RPROC_FW_CMD_LOAD_FW		1
 > +
-> +struct max77705_led {
-> +	struct led_classdev cdev;
-> +	struct regmap *regmap;
-> +	unsigned int en_shift;
-> +	unsigned int reg_brightness;
-> +	unsigned int regB;
-
-noCamelCase.
-
+> +/*
+> + * Start the remote processor
+> + *
+> + * [in]  params[0].value.a:	unique 32bit identifier of the remote processor
+> + */
+> +#define TA_RPROC_FW_CMD_START_FW	2
+> +
+> +/*
+> + * Stop the remote processor
+> + *
+> + * [in]  params[0].value.a:	unique 32bit identifier of the remote processor
+> + */
+> +#define TA_RPROC_FW_CMD_STOP_FW		3
+> +
+> +/*
+> + * Return the address of the resource table, or 0 if not found
+> + * No check is done to verify that the address returned is accessible by
+> + * the non secure context. If the resource table is loaded in a protected
+> + * memory the access by the non secure context will lead to a data abort.
+> + *
+> + * [in]  params[0].value.a:	unique 32bit identifier of the remote processor
+> + * [out]  params[1].value.a:	32bit LSB resource table memory address
+> + * [out]  params[1].value.b:	32bit MSB resource table memory address
+> + * [out]  params[2].value.a:	32bit LSB resource table memory size
+> + * [out]  params[2].value.b:	32bit MSB resource table memory size
+> + */
+> +#define TA_RPROC_FW_CMD_GET_RSC_TABLE	4
+> +
+> +/*
+> + * Return the address of the core dump
+> + *
+> + * [in]  params[0].value.a:	unique 32bit identifier of the remote processor
+> + * [out] params[1].memref:	address of the core dump image if exist,
+> + *				else return Null
+> + */
+> +#define TA_RPROC_FW_CMD_GET_COREDUMP	5
+> +
+> +struct tee_rproc_context {
+> +	struct list_head sessions;
+> +	struct tee_context *tee_ctx;
+> +	struct device *dev;
 > +};
 > +
-> +static struct max77705_led *max77705_to_led(struct led_classdev *cdev)
+> +static struct tee_rproc_context *tee_rproc_ctx;
+> +
+> +static void tee_rproc_prepare_args(struct tee_rproc *trproc, int cmd,
+> +				   struct tee_ioctl_invoke_arg *arg,
+> +				   struct tee_param *param,
+> +				   unsigned int num_params)
 > +{
-> +	return container_of(cdev, struct max77705_led, cdev);
+> +	memset(arg, 0, sizeof(*arg));
+> +	memset(param, 0, MAX_TEE_PARAM_ARRY_MEMBER * sizeof(*param));
+> +
+> +	arg->func = cmd;
+> +	arg->session = trproc->session_id;
+> +	arg->num_params = num_params + 1;
+> +
+> +	param[0] = (struct tee_param) {
+> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT,
+> +		.u.value.a = trproc->rproc_id,
+> +	};
 > +}
 > +
-
-
-> +		led = &leds[reg];
-> +		led->regmap = map;
-> +		led->reg_brightness = MAX77705_RGBLED_REG_LED0BRT + reg;
-> +		led->en_shift = 2 * reg;
-> +		led->cdev.brightness_set_blocking = max77705_led_brightness_set;
-> +		led->cdev.blink_set = max77705_rgb_blink;
-> +		led->cdev.max_brightness = MAX77705_LED_MAX_BRIGHTNESS;
+> +int tee_rproc_load_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRY_MEMBER];
+> +	struct tee_rproc *trproc = rproc->tee_interface;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	struct tee_shm *fw_shm;
+> +	int ret;
 > +
-> +		init_data.fwnode = child;
-> +		init_data.devicename = "max77705";
-> +		/* for backwards compatibility if `label` is not present */
-> +		init_data.default_label = ":";
-
-There is no backwards compatibility - it's fresh driver.
-
+> +	if (!trproc)
+> +		return -EINVAL;
 > +
-> +		rv = devm_led_classdev_register_ext(dev, &led->cdev,
-> +							&init_data);
-> +		if (rv)
-> +			goto err_node_put;
+> +	fw_shm = tee_shm_register_kernel_buf(tee_rproc_ctx->tee_ctx, (void *)fw->data, fw->size);
+> +	if (IS_ERR(fw_shm))
+> +		return PTR_ERR(fw_shm);
 > +
-> +		rv = max77705_led_brightness_set(&led->cdev, LED_OFF);
-> +		if (rv)
-> +			goto err_node_put;
+> +	tee_rproc_prepare_args(trproc, TA_RPROC_FW_CMD_LOAD_FW, &arg, param, 1);
+> +
+> +	/* Provide the address of the firmware image */
+> +	param[1] = (struct tee_param) {
+> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_MEMREF_INPUT,
+> +		.u.memref = {
+> +			.shm = fw_shm,
+> +			.size = fw->size,
+> +			.shm_offs = 0,
+> +		},
+> +	};
+> +
+> +	ret = tee_client_invoke_func(tee_rproc_ctx->tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(tee_rproc_ctx->dev,
+> +			"TA_RPROC_FW_CMD_LOAD_FW invoke failed TEE err: %x, ret:%x\n",
+> +			arg.ret, ret);
+> +		if (!ret)
+> +			ret = -EIO;
+> +	}
+> +
+> +	tee_shm_free(fw_shm);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(tee_rproc_load_fw);
+> +
+> +static int tee_rproc_get_loaded_rsc_table(struct rproc *rproc, phys_addr_t *rsc_pa,
+> +					  size_t *table_sz)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRY_MEMBER];
+> +	struct tee_rproc *trproc = rproc->tee_interface;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	int ret;
+> +
+> +	tee_rproc_prepare_args(trproc, TA_RPROC_FW_CMD_GET_RSC_TABLE, &arg, param, 2);
+> +
+> +	param[1].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT;
+> +	param[2].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT;
+> +
+> +	ret = tee_client_invoke_func(tee_rproc_ctx->tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(tee_rproc_ctx->dev,
+> +			"TA_RPROC_FW_CMD_GET_RSC_TABLE invoke failed TEE err: %x, ret:%x\n",
+> +			arg.ret, ret);
+> +		return -EIO;
+> +	}
+> +
+> +	*table_sz = param[2].u.value.a;
+> +
+> +	if (*table_sz)
+> +		*rsc_pa = param[1].u.value.a;
+> +	else
+> +		*rsc_pa  = 0;
+> +
+> +	return 0;
+> +}
+> +
+> +int tee_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	phys_addr_t rsc_table;
+> +	void __iomem *rsc_va;
+> +	size_t table_sz;
+> +	int ret;
+> +
+> +	ret = tee_rproc_load_fw(rproc, fw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = tee_rproc_get_loaded_rsc_table(rproc, &rsc_table, &table_sz);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * We assume here that the memory mapping is the same between the TEE and Linux kernel
+> +	 * contexts. Else a new TEE remoteproc service could be needed to get a copy of the
+> +	 * resource table
+> +	 */
+> +	rsc_va = ioremap_wc(rsc_table, table_sz);
+> +	if (IS_ERR_OR_NULL(rsc_va)) {
+> +		dev_err(tee_rproc_ctx->dev, "Unable to map memory region: %pa+%zx\n",
+> +			&rsc_table, table_sz);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	/*
+> +	 * Create a copy of the resource table to have the same behavior as the elf loader.
+> +	 * This cached table will be used after the remoteproc stops to free resources, and for
+> +	 * crash recovery to reapply the settings.
+> +	 */
+> +	rproc->cached_table = kmemdup((__force void *)rsc_va, table_sz, GFP_KERNEL);
+> +	if (!rproc->cached_table) {
+> +		ret = -ENOMEM;
+> +		goto out;
+> +	}
+> +
+> +	rproc->table_ptr = rproc->cached_table;
+> +	rproc->table_sz = table_sz;
+> +
+> +out:
+> +	iounmap(rsc_va);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(tee_rproc_parse_fw);
+> +
+> +struct resource_table *tee_rproc_find_loaded_rsc_table(struct rproc *rproc,
+> +						       const struct firmware *fw)
+> +{
+> +	struct tee_rproc *trproc = rproc->tee_interface;
+> +	phys_addr_t rsc_table;
+> +	size_t table_sz;
+> +	int ret;
+> +
+> +	if (!trproc)
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	ret = tee_rproc_get_loaded_rsc_table(rproc, &rsc_table, &table_sz);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	rproc->table_sz = table_sz;
+> +	if (!table_sz)
+> +		return NULL;
+> +
+> +	/*
+> +	 * At this step the memory area that contains the resource table should have be declared
+> +	 * in the remote proc platform driver and allocated by rproc_alloc_registered_carveouts().
+> +	 */
+> +
+
+Extra newline
+
+> +	return (struct resource_table *)rproc_pa_to_va(rproc, rsc_table, table_sz, NULL);
+> +}
+> +EXPORT_SYMBOL_GPL(tee_rproc_find_loaded_rsc_table);
+> +
+> +int tee_rproc_start(struct rproc *rproc)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRY_MEMBER];
+> +	struct tee_rproc *trproc = rproc->tee_interface;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	int ret = 0;
+> +
+> +	if (!trproc)
+> +		return -EINVAL;
+> +
+> +	tee_rproc_prepare_args(trproc, TA_RPROC_FW_CMD_START_FW, &arg, param, 0);
+> +
+> +	ret = tee_client_invoke_func(tee_rproc_ctx->tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(tee_rproc_ctx->dev,
+> +			"TA_RPROC_FW_CMD_START_FW invoke failed TEE err: %x, ret:%x\n",
+> +			arg.ret, ret);
+> +		if (!ret)
+> +			return  -EIO;
 > +	}
 > +
 > +	return 0;
-> +err_node_put:
-> +	fwnode_handle_put(child);
-> +	return rv;
+> +}
+> +EXPORT_SYMBOL_GPL(tee_rproc_start);
+> +
+> +int tee_rproc_stop(struct rproc *rproc)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRY_MEMBER];
+> +	struct tee_rproc *trproc = rproc->tee_interface;
+> +	struct tee_ioctl_invoke_arg arg;
+> +	int ret;
+> +
+> +	if (!trproc)
+> +		return -EINVAL;
+> +
+> +	tee_rproc_prepare_args(trproc, TA_RPROC_FW_CMD_STOP_FW, &arg, param, 0);
+> +
+> +	ret = tee_client_invoke_func(tee_rproc_ctx->tee_ctx, &arg, param);
+> +	if (ret < 0 || arg.ret != 0) {
+> +		dev_err(tee_rproc_ctx->dev,
+> +			"TA_RPROC_FW_CMD_STOP_FW invoke failed TEE err: %x, ret:%x\n",
+> +			arg.ret, ret);
+> +		if (!ret)
+> +			ret = -EIO;
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(tee_rproc_stop);
+> +
+> +static const struct tee_client_device_id stm32_tee_rproc_id_table[] = {
+
+This driver is supposed to be as generic as possible, and other backend in the
+secure world may wish to use it.  As such this should probably be called
+tee_rproc_id_table.
+
+> +	{UUID_INIT(0x80a4c275, 0x0a47, 0x4905,
+> +		   0x82, 0x85, 0x14, 0x86, 0xa9, 0x77, 0x1a, 0x08)},
+> +	{}
+> +};
+> +
+> +struct tee_rproc *tee_rproc_register(struct device *dev, struct rproc *rproc, unsigned int rproc_id)
+> +{
+> +	struct tee_param param[MAX_TEE_PARAM_ARRY_MEMBER];
+> +	struct tee_ioctl_open_session_arg sess_arg;
+> +	struct tee_client_device *tee_device;
+> +	struct tee_rproc *trproc, *p_err;
+> +	int ret;
+> +
+> +	/*
+> +	 * Test if the device has been probed by the TEE bus. In case of failure, we ignore the
+> +	 * reason. The bus could be not yet probed or the service not available in the secure
+> +	 * firmware.The assumption in such a case is that the TEE remoteproc is not probed.
+> +	 */
+> +	if (!tee_rproc_ctx)
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	/* Prevent tee rproc module from being removed */
+> +	if (!try_module_get(THIS_MODULE)) {
+> +		dev_err(tee_rproc_ctx->dev, "can't get owner\n");
+> +		p_err = ERR_PTR(-ENODEV);
+> +		goto module_put;
+
+There is no point in calling module_put() if the get operation failed.  
+
+> +	}
+> +
+> +	trproc =  devm_kzalloc(dev, sizeof(*trproc), GFP_KERNEL);
+> +	if (!trproc) {
+> +		p_err = ERR_PTR(-ENOMEM);
+> +		goto module_put;
+> +	}
+> +	tee_device = to_tee_client_device(tee_rproc_ctx->dev);
+> +	memset(&sess_arg, 0, sizeof(sess_arg));
+> +
+> +	memcpy(sess_arg.uuid, tee_device->id.uuid.b, TEE_IOCTL_UUID_LEN);
+> +
+> +	sess_arg.clnt_login = TEE_IOCTL_LOGIN_REE_KERNEL;
+> +	sess_arg.num_params = 1;
+> +
+> +	param[0] = (struct tee_param) {
+> +		.attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT,
+> +		.u.value.a = rproc_id,
+> +	};
+> +
+> +	ret = tee_client_open_session(tee_rproc_ctx->tee_ctx, &sess_arg, param);
+> +	if (ret < 0 || sess_arg.ret != 0) {
+> +		dev_err(dev, "tee_client_open_session failed, err: %x\n", sess_arg.ret);
+> +		p_err = ERR_PTR(-EINVAL);
+> +		goto module_put;
+> +	}
+> +
+> +	trproc->parent =  dev;
+
+Extra space
+
+> +	trproc->rproc_id = rproc_id;
+> +	trproc->session_id = sess_arg.session;
+> +
+> +	trproc->rproc = rproc;
+> +	rproc->tee_interface = trproc;
+> +
+> +	list_add_tail(&trproc->node, &tee_rproc_ctx->sessions);
+> +
+> +	return trproc;
+> +
+> +module_put:
+> +	module_put(THIS_MODULE);
+> +	return p_err;
+> +}
+> +EXPORT_SYMBOL_GPL(tee_rproc_register);
+> +
+> +int tee_rproc_unregister(struct tee_rproc *trproc)
+> +{
+> +	struct rproc *rproc = trproc->rproc;
+> +	int ret;
+> +
+> +	ret = tee_client_close_session(tee_rproc_ctx->tee_ctx, trproc->session_id);
+> +	if (ret < 0)
+> +		dev_err(trproc->parent,	"tee_client_close_session failed, err: %x\n", ret);
+> +
+> +	list_del(&trproc->node);
+> +	rproc->tee_interface = NULL;
+> +
+> +	module_put(THIS_MODULE);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(tee_rproc_unregister);
+> +
+> +static int tee_rproc_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
+> +{
+> +	/* Today we support only the OP-TEE, could be extend to other tees */
+> +	return (ver->impl_id == TEE_IMPL_ID_OPTEE);
 > +}
 > +
-> +static const struct of_device_id max77705_led_of_match[] = {
-> +	{ .compatible = "maxim,max77705-led" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max77705_led_of_match);
+> +static int tee_rproc_probe(struct device *dev)
+> +{
+> +	struct tee_context *tee_ctx;
+> +	int ret;
 > +
-> +static struct platform_driver max77705_led_driver = {
-> +	.driver = {
-> +		.name = "max77705-led",
-> +		.of_match_table = max77705_led_of_match,
+> +	/* Open context with TEE driver */
+> +	tee_ctx = tee_client_open_context(NULL, tee_rproc_ctx_match, NULL, NULL);
+> +	if (IS_ERR(tee_ctx))
+> +		return PTR_ERR(tee_ctx);
+> +
+> +	tee_rproc_ctx = devm_kzalloc(dev, sizeof(*tee_ctx), GFP_KERNEL);
+> +	if (!tee_rproc_ctx) {
+> +		ret = -ENOMEM;
+> +		goto err;
+> +	}
+> +
+> +	tee_rproc_ctx->dev = dev;
+> +	tee_rproc_ctx->tee_ctx = tee_ctx;
+> +	INIT_LIST_HEAD(&tee_rproc_ctx->sessions);
+> +
+> +	return 0;
+> +err:
+> +	tee_client_close_context(tee_ctx);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tee_rproc_remove(struct device *dev)
+> +{
+> +	struct tee_rproc *entry, *tmp;
+> +
+> +	list_for_each_entry_safe(entry, tmp, &tee_rproc_ctx->sessions, node) {
+> +		tee_client_close_session(tee_rproc_ctx->tee_ctx, entry->session_id);
+> +		list_del(&entry->node);
+> +		kfree(entry);
+> +	}
+> +
+> +	tee_client_close_context(tee_rproc_ctx->tee_ctx);
+> +
+> +	return 0;
+> +}
+> +
+> +MODULE_DEVICE_TABLE(tee, stm32_tee_rproc_id_table);
+> +
+> +static struct tee_client_driver tee_rproc_fw_driver = {
+> +	.id_table	= stm32_tee_rproc_id_table,
+> +	.driver		= {
+> +		.name		= KBUILD_MODNAME,
+> +		.bus		= &tee_bus_type,
+> +		.probe		= tee_rproc_probe,
+> +		.remove		= tee_rproc_remove,
 > +	},
-> +	.probe = max77705_led_probe,
 > +};
-> +module_platform_driver(max77705_led_driver);
 > +
-> +MODULE_DESCRIPTION("MAXIM 77705 LED driver");
-> +MODULE_AUTHOR("Bartosz Golaszewski <bgolaszewski@baylibre.com>");
-> +MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
+> +static int __init tee_rproc_fw_mod_init(void)
+> +{
+> +	return driver_register(&tee_rproc_fw_driver.driver);
+> +}
+> +
+> +static void __exit tee_rproc_fw_mod_exit(void)
+> +{
+> +	driver_unregister(&tee_rproc_fw_driver.driver);
+> +}
+> +
+> +module_init(tee_rproc_fw_mod_init);
+> +module_exit(tee_rproc_fw_mod_exit);
+> +
+> +MODULE_DESCRIPTION(" TEE remote processor control driver");
 > +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:max77705-led");
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
-
-
-Best regards,
-Krzysztof
-
+> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+> index 28aa62a3b505..6168f778414f 100644
+> --- a/include/linux/remoteproc.h
+> +++ b/include/linux/remoteproc.h
+> @@ -505,6 +505,8 @@ enum rproc_features {
+>  	RPROC_MAX_FEATURES,
+>  };
+>  
+> +struct tee_rproc;
+> +
+>  /**
+>   * struct rproc - represents a physical remote processor device
+>   * @node: list node of this rproc object
+> @@ -547,6 +549,7 @@ enum rproc_features {
+>   * @cdev: character device of the rproc
+>   * @cdev_put_on_release: flag to indicate if remoteproc should be shutdown on @char_dev release
+>   * @features: indicate remoteproc features
+> + * @tee_interface: pointer to the remoteproc tee context
+>   */
+>  struct rproc {
+>  	struct list_head node;
+> @@ -588,6 +591,7 @@ struct rproc {
+>  	struct cdev cdev;
+>  	bool cdev_put_on_release;
+>  	DECLARE_BITMAP(features, RPROC_MAX_FEATURES);
+> +	struct tee_rproc *tee_interface;
+>  };
+>  
+>  /**
+> diff --git a/include/linux/tee_remoteproc.h b/include/linux/tee_remoteproc.h
+> new file mode 100644
+> index 000000000000..c9ae4f60e844
+> --- /dev/null
+> +++ b/include/linux/tee_remoteproc.h
+> @@ -0,0 +1,100 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + * Copyright(c) 2024 STMicroelectronics - All Rights Reserved
+> + */
+> +
+> +#ifndef TEE_REMOTEPROC_H
+> +#define TEE_REMOTEPROC_H
+> +
+> +#include <linux/tee_drv.h>
+> +#include <linux/firmware.h>
+> +#include <linux/remoteproc.h>
+> +
+> +struct rproc;
+> +
+> +/**
+> + * struct tee_rproc - TEE remoteproc structure
+> + * @node:		Reference in list
+> + * @rproc:		Remoteproc reference
+> + * @parent:		Parent device
+> + * @rproc_id:		Identifier of the target firmware
+> + * @session_id:		TEE session identifier
+> + */
+> +struct tee_rproc {
+> +	struct list_head node;
+> +	struct rproc *rproc;
+> +	struct device *parent;
+> +	u32 rproc_id;
+> +	u32 session_id;
+> +};
+> +
+> +#if IS_REACHABLE(CONFIG_TEE_REMOTEPROC)
+> +
+> +struct tee_rproc *tee_rproc_register(struct device *dev, struct rproc *rproc,
+> +				     unsigned int rproc_id);
+> +int tee_rproc_unregister(struct tee_rproc *trproc);
+> +int tee_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw);
+> +int tee_rproc_load_fw(struct rproc *rproc, const struct firmware *fw);
+> +struct resource_table *tee_rproc_find_loaded_rsc_table(struct rproc *rproc,
+> +						       const struct firmware *fw);
+> +int tee_rproc_start(struct rproc *rproc);
+> +int tee_rproc_stop(struct rproc *rproc);
+> +
+> +#else
+> +
+> +static inline struct tee_rproc *tee_rproc_register(struct device *dev, struct rproc *rproc,
+> +						   unsigned int rproc_id)
+> +{
+> +	return ERR_PTR(-ENODEV);
+> +}
+> +
+> +static int tee_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int tee_rproc_unregister(struct tee_rproc *trproc)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int tee_rproc_load_fw(struct rproc *rproc,  const struct firmware *fw)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int tee_rproc_start(struct rproc *rproc)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int tee_rproc_stop(struct rproc *rproc)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline struct resource_table *
+> +tee_rproc_find_loaded_rsc_table(struct rproc *rproc, const struct firmware *fw)
+> +{
+> +	/* This shouldn't be possible */
+> +	WARN_ON(1);
+> +
+> +	return NULL;
+> +}
+> +#endif /* CONFIG_TEE_REMOTEPROC */
+> +#endif /* TEE_REMOTEPROC_H */
+> -- 
+> 2.25.1
+> 
 
