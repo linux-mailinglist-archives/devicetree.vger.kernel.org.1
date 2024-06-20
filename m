@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-77994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9539109DD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:28:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA749109EA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEAEE28228B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:28:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 041F91F21215
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09AB1AF6A1;
-	Thu, 20 Jun 2024 15:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B1A1AED4D;
+	Thu, 20 Jun 2024 15:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UL+DJwMn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DLXW8kmN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953511AF697;
-	Thu, 20 Jun 2024 15:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEDC21E52F;
+	Thu, 20 Jun 2024 15:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718897324; cv=none; b=Y3Dbr9/UDuPoLd/Oaxd/yqLp8kQp3lm6jzUNUBPnBVkIdnCDpkfu3zRCng+W3oKj27jnT/uqvjtcFJG0BJTop045UmEEtwIbfEkb/0VDyflkdnydaIYpSciDkEWzvRB0epOV3agb8qAFpRwA+0+Y677VTrr35+hAdwUO7hjbLTA=
+	t=1718897600; cv=none; b=TYmFANEVe9rmek6kbBOVZqUGcn2WpyA/A2wVRm6u5kDH/cJ3T34TFz2eA6SKgAX3sRrrLstEadhv+FL/2a3zUggqPtgEcPaSL9c/ms9lMbknCcgd56IS619NAML/e7tyvmqDMOGplrHGgJlvlPtwlpSmGqYnfhcLMTrJoMrTeBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718897324; c=relaxed/simple;
-	bh=nDAkqaWXsNM2fSpQ6Sk3c99kTwc0eErLCi2L7aZH3cY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=pPwAJBukyYY3xC5RjG5DEmLxmPwWcJo0SjSPBfxsgxxae9rYVODRc+ADSrcET1PwDL7eDFCKVAjm9TmUg0+h39DlYMza3Y7W0s5QiHR3WV9xXF3OrfCxAsdTTYsAW5UZGzhEWd/6onMgaiZWU4EuDjA5ecxkZcxuSJIgvwiIrds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UL+DJwMn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B96A9C2BD10;
-	Thu, 20 Jun 2024 15:28:40 +0000 (UTC)
+	s=arc-20240116; t=1718897600; c=relaxed/simple;
+	bh=D4c13aD0xZ1dCAQ0HyMlziCKUmWH44dIPomU60kHRvo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=beD0QB5Sj1bSYo/pPtJE3oZdo7p1XfogBVA5rhXHNymB0zsj5/Z7eUE3jHJtGhd9y8koxO0pm+N6AQaqziE0WInbutnLkD6BGZu8751cjizng1cccsl+mdxxktpfInbQEqHlbgdlSDs+bAZFp57Mqnlrhw5JEOr6RYOmKAT0RAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DLXW8kmN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B18F0C2BD10;
+	Thu, 20 Jun 2024 15:33:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718897324;
-	bh=nDAkqaWXsNM2fSpQ6Sk3c99kTwc0eErLCi2L7aZH3cY=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=UL+DJwMn6seKzq7lQ1HRKpkecO16PGYe6o0wuavImSeRTwtDJohxSS7Xu/sxYH5Gf
-	 clIOGnNTCLH84DFvftBDOXkpUx4lLgQg5XtyTLFgiJ6VaXlh2bEiRNWBAeSvK9vlRC
-	 6G9ZUdhh86BKAGzXCoRZh0+EgFXmryW+xbjCndxoxsAnds7jJpe+JwutNhtdz8sm+P
-	 e6rm6Qd4xpyCBahSBpITD9RZUHTNAX12AKEsRFwrPQgP2kX8zh7b1ETdhSAEO4h2dh
-	 kNfXPMc0aqDdO4/7JlH2Woi9lgXjvQ8DEs+uR+7iuQe3rWDexmfWAfa/3mHxsRZwGU
-	 n5/gC+tM3DARQ==
-Message-ID: <cd1479c2-c5b4-4064-8d80-a2d706af0db2@kernel.org>
-Date: Thu, 20 Jun 2024 17:28:38 +0200
+	s=k20201202; t=1718897600;
+	bh=D4c13aD0xZ1dCAQ0HyMlziCKUmWH44dIPomU60kHRvo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DLXW8kmNxc+5YJmn46/8MV/I5+lqqz4tlWW0f+gcOK+H8C2M23a2FXQS7sZppkYhp
+	 SX5IdE9EH9hgpLopgLeQegB9uNRCzfW5mVGhUH+fPrETb3ZshkKw/AoMoIacNXX4uP
+	 knHPY8zcDB72OIrj1ntg9daDSjgoXqeOR+6QTEt6x3IPvgXBhKc7M+YkgsmBs4TDgj
+	 AqM+LF6ccYqLh4SpbX4GQQfjV3FM7wwaxq8y8N1XJD7KovXFdz3sbiQAIMyof3A8te
+	 rySeKhOYH1aDU8HRoQ/RXT4VSfjUqf0j29lZYhdFM9fLpiioiCfsqYKFdpx2mSbDN2
+	 QgYyfVZb2r+ZA==
+Message-ID: <e61b5066-c256-4ad6-93ea-cc10cdfafc31@kernel.org>
+Date: Thu, 20 Jun 2024 17:33:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] ASoC: dt-bindings: cirrus,cs530x: Add initial DT
- binding
-To: Paul Handrigan <paulha@opensource.cirrus.com>, broonie@kernel.org,
- lgirdwood@gmail.com, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20240620142856.1609250-1-paulha@opensource.cirrus.com>
- <20240620142856.1609250-2-paulha@opensource.cirrus.com>
+Subject: Re: [PATCH 1/3] media: dt-bindings: Add description of OmniVision
+ OG01A1B image sensor
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240620124745.1265011-1-vladimir.zapolskiy@linaro.org>
+ <20240620124745.1265011-2-vladimir.zapolskiy@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,20 +105,96 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240620142856.1609250-2-paulha@opensource.cirrus.com>
+In-Reply-To: <20240620124745.1265011-2-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/06/2024 16:28, Paul Handrigan wrote:
-> Add the YAML DT bindings for the cs530x high performance
-> audio ADCs.
+On 20/06/2024 14:47, Vladimir Zapolskiy wrote:
+> Add device tree bindings documentation for OmniVision OG01A1B image
+> sensor.
 > 
-> Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-What changed here? Changelog is limited to v5, but what happened in v4
-that you invalidated my tag?
 
-For exactly this case I wrote you a guide. Did you read it?
+> +
+> +maintainers:
+> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> +
+> +description: |-
+
+Do not need '|-' unless you need to preserve formatting.
+
+
+> +  The OmniVision OG01A1B is black and white CMOS 1.3 Megapixel (1280x1024)
+> +  image sensor controlled over an I2C-compatible SCCB bus.
+> +  The sensor transmits images on a MIPI CSI-2 output interface with one or
+> +  two data lanes.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,og01a1b
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: External clock connected to the sensor system clock.
+
+Drop description, obvious.
+
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    description: Frequency of the external clock to the sensor in Hz.
+
+Drop property. Frequency comes from clock.
+
+> +
+> +  reset-gpios:
+> +    description: Active low signal GPIO to control sensor.
+> +    maxItems: 1
+> +
+> +  strobe-gpios:
+> +    description: GPIO connected to the sensor strobe pad.
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Analogue circuit voltage supply.
+> +
+> +  dovdd-supply:
+> +    description: I/O circuit voltage supply.
+> +
+> +  dvdd-supply:
+> +    description: Digital circuit voltage supply.
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description:
+> +      Output port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 2
+> +
+> +          link-frequencies: true
+
+This should not be needed.
+
+> +
+> +        required:
+> +          - data-lanes
+> +
+
 
 Best regards,
 Krzysztof
