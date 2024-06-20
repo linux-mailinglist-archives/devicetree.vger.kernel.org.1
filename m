@@ -1,107 +1,59 @@
-Return-Path: <devicetree+bounces-78084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5664910E5D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 19:22:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1128A910E6F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 19:26:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82E2B2858E0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:22:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35DA21C20FE0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:26:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20821B3737;
-	Thu, 20 Jun 2024 17:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E871B3F26;
+	Thu, 20 Jun 2024 17:26:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="l2uvP6jJ";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="DvYoYla7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UhaQSAL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout2-smtp.messagingengine.com (fout2-smtp.messagingengine.com [103.168.172.145])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E541A4F1D;
-	Thu, 20 Jun 2024 17:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EE91B3F11;
+	Thu, 20 Jun 2024 17:26:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718904165; cv=none; b=adzZZqBYWwBwXN7BxSn94sVJBVAJiIR0VUU16U6z+6lKGg6tfE591mrRh0j4l3PTmApJm4P3gxppg9i63VP0J6XCoLUTDwdo2ebG/xhbz6xMPfVSJhCdZtIIWUXPLOrLb6g5tMyLacb52rgYX61iVheDHLHFkE98RP9tb9bJbec=
+	t=1718904365; cv=none; b=SJ7ckFfJqOIZrSganmi2+tZnOcAVC5vwHIuIC7D+WURfaAKOeAuKYKlCuC7vg0VnuuTNgnVtDL1MnltOvJn018fAN9ihd0GW9k/2Cqbo0GqTXFAmZ1xELzyjijbd3z13+acOUnfLtZsCUbqugxqHx9H/yu6ivQ0+5N53+LfkLgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718904165; c=relaxed/simple;
-	bh=4GZytodNabpBpQfHkn0vHgr7691PnQZlRpPCrb0qEqI=;
+	s=arc-20240116; t=1718904365; c=relaxed/simple;
+	bh=/R9ChJDF9sqWGPt6Eu8s/uknHOOVvufDfRsy7wCwPUc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sFzj3NMHBr2j85dwUBWpBwj8UikszfauEt4csE0g6KeZAsyP4nGhOJdpopFItLsctsu7B0gh5ZQ07FWso5Ey5i0pyYAsFaEPUWdI4lFS2+z8HflMOuFETjaSSRcd0NduDmTxpDHVKM5+7rBqTxmicGgHJ+jl7TT+mmg4jc60liI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=l2uvP6jJ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=DvYoYla7; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailfout.nyi.internal (Postfix) with ESMTP id C168C1380120;
-	Thu, 20 Jun 2024 13:22:40 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 20 Jun 2024 13:22:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1718904160;
-	 x=1718990560; bh=VkdvAqCpdBsmsMXIeyPYcuMengxQ+03Ye9lgxOnYspo=; b=
-	l2uvP6jJgtazJl1/LHGOyjytI4yw23c1JKu+eYqiuAGGyPrfcgxpkFLCyavavPvA
-	NEY6wD0J+aI3/Fm2Fmj/guEbP7fNXEB/ciPTjHurucfWXcg0Qp6hSCMynZoPiG99
-	1/R2kxWpcX05X250hMjOONM3INBIMpTlIk7Une3FGezvvyTh2LNgAgwNZ6Wxphe6
-	BxDAGoW84isIlS/kUKxz098jn3ZWngyyq1AK+3BAV67GC1WRAOLArRaR24zd8LD2
-	zd8pqdwEP/q4lmZIX/W38d48o7QB9XahPjVKX3mNw4IhNvXk82DaRTNoewYXdOrf
-	RDxC40ZXKRMitWBeLLM8Rw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1718904160; x=
-	1718990560; bh=VkdvAqCpdBsmsMXIeyPYcuMengxQ+03Ye9lgxOnYspo=; b=D
-	vYoYla7f++xU6eEop8yMmQ1ZENaPvxwCfvx7DvvmKxeaunbTWa7Z6Q1C2vDGWUgd
-	57C7Q+WGLMwv17UTj3tyonW7x4akbCmn0yDtfM+w5rTvspa3N3oatI+SnLnh5BZ1
-	A0oYnU9V5DZMNBBUpesG/6nlJL/oN52D43+7K+yyShsMavn+aVmihFeg/G0O0nXN
-	+9GHNLRDLPMYCvq4EBiEj/toWz5Tj6Ro5eR3uGI/hZ/fPXgCvMlACxKFjph0ltMh
-	Dp5gQI1T3S6bT6pxwtby9rVztFWLnns3PzSSZmsfLyRSVAka5a1arhzBF/8c6FrS
-	HhHz+zCy7tRY6SZCBOJgg==
-X-ME-Sender: <xms:YGV0ZlOjDjgf04O_hIYTe6zWg457CXOoooZdNhDMVD0w1SVZ28hnzQ>
-    <xme:YGV0Zn84ctcLTQgmnTeF-Yy2AuumR5O5F49nvKgmWvpx_pkxbO6HT4bEkuqPAzbqz
-    6CGXSyyOrzrXK9N1MU>
-X-ME-Received: <xmr:YGV0ZkSA2IhUonAuzcSEwqF7nwf-OHVInrk1Z24vGSVY5BLmneVR6E58vi8RfUFqwUfxYQp4tW4oGgKhmen-zzg9sXzLZdI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeefvddguddufecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhi
-    khhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvg
-    hnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepfefhleel
-    hfffjefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvleeinecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohgu
-    vghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:YGV0Zhsh_0L12XeIliRQc2oHYHdqMITreXLfkr4012lohOwhWiMpnQ>
-    <xmx:YGV0Ztceh-lwKjjwun-aBN8MkCe_2AVVQDM011Bj1xFo0aVnzgzYJg>
-    <xmx:YGV0Zt3nVzVMs5j-LcxFuUA-Mx-86vAmtpStTNolAGRiZfL0AH65uA>
-    <xmx:YGV0Zp_YF4nXohgcJ2b2nHNo5o541nytiBpfyoiOeJUvAsG1HP85hg>
-    <xmx:YGV0ZuUUX4OU7tUBIiFqfSM4W2105h_QqdRNjndE1X7_R4ZtS9YVnHsX>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 20 Jun 2024 13:22:40 -0400 (EDT)
-Date: Thu, 20 Jun 2024 19:22:37 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Conor Dooley <conor@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
- V4M
-Message-ID: <20240620172237.GA3623951@ragnatech.se>
-References: <20240619153559.1647957-1-niklas.soderlund+renesas@ragnatech.se>
- <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
- <20240619-passage-iodine-9f944b26a30d@spud>
- <20240619185607.GT382677@ragnatech.se>
- <20240619204321.GU382677@ragnatech.se>
- <20240620-gating-coherent-af984389b2d7@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QyLa01sD5F0MVAbTQyLUjsJ1ITJrlz9FtE6/jjFtzOgo8Cts9HDFCk2MTXMyLHTkBlyBPoaG1T2+v5lHEzIgTVFTi8EQULjWTO7q+7qQS6x8TabmW1Z8sMc5wHZ/rrt5LlLm8CbEpmyi0BVQyLw7yG5M66pTTdpEKyiBU8N7aQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UhaQSAL5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F6A1C4AF09;
+	Thu, 20 Jun 2024 17:26:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718904365;
+	bh=/R9ChJDF9sqWGPt6Eu8s/uknHOOVvufDfRsy7wCwPUc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UhaQSAL5s0wKyT6zkq/C9Df7HWSxsDSwe1JgssP5EFJ9k0QCX+Rt4GDnsQfC5urjc
+	 J6+eTfSV8OJOx5KmmTostZzvwhBcuuFpd9ddFDSoDnZ59wWkoyvT14FDAfhovbVcBf
+	 Z6DRHnSTIdnE6/hSRDi2bPTdgxre4v6+bzrhX6j4rf0FYoTjDh/euFCgRcs+GfSVga
+	 GvHDFw85qSDWpMIjtIs9Dc1lMPbjCscKFBg1pEyJpVLDfm6DT7wrJNOFVQ/bpuqYJA
+	 cYca+V9BBG8cZ5Fi3P0NpiGYzPp+SEYCRFNKPQ5cZ2QlCs+8WEArxQOti27UU2FgYn
+	 1vaEE/Y7gvWww==
+Date: Thu, 20 Jun 2024 18:25:59 +0100
+From: Lee Jones <lee@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	broonie@kernel.org, samuel@sholland.org, jernej.skrabec@gmail.com,
+	sre@kernel.org, wens@csie.org, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 4/8] mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
+Message-ID: <20240620172559.GZ3029315@google.com>
+References: <20240617220535.359021-1-macroalpha82@gmail.com>
+ <20240617220535.359021-5-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,69 +63,95 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240620-gating-coherent-af984389b2d7@spud>
+In-Reply-To: <20240617220535.359021-5-macroalpha82@gmail.com>
 
-On 2024-06-20 17:27:00 +0100, Conor Dooley wrote:
+On Mon, 17 Jun 2024, Chris Morgan wrote:
 
-> > +      - items:
-> > +          - enum:
-> >                - renesas,vin-r8a779g0 # R-Car V4H
-> > +              - renesas,vin-r8a779h0 # R-Car V4M
-> > +          - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
-> > 
-> > If so I can see that working as I could still fix any issues that come 
-> > from differences between V4H and V4M if needed. If so do you think it 
-> > best to add this in two different patches? One to add the 
-> > renesas,rcar-gen4-vin fallback (which will also need DTS updates to fix 
-> > warnings from exciting users of V4H not listing the gen4 fallback) and 
-> > one to add V4M?
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
+> Add support for the AXP717 PMIC to utilize the ADC (for reading
+> voltage, current, and temperature information from the PMIC) as well
+> as the USB charger and battery.
 > 
-> I would just do:
-> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> index 5539d0f8e74d..22bbad42fc03 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> @@ -54,6 +54,9 @@ properties:
->                - renesas,vin-r8a77995 # R-Car D3
->                - renesas,vin-r8a779a0 # R-Car V3U
->                - renesas,vin-r8a779g0 # R-Car V4H
-> +      - items:
-> +          - const: renesas,vin-r8a779h0 # R-Car V4L2
-> +          - const: renesas,vin-r8a779g0 # R-Car V4H
-
-@Geert: What do you think about this? This would be a first use-case for 
-compatibles crossing SoC DTS files that I know of. I'm a bit uneasy 
-going down this road.
-
-Would this not also effect the existing users of renesas,vin-r8a779g0 
-which would now need something similar to what you propose below with a 
-list of SoC compatibles and a fallback.
-
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  drivers/mfd/axp20x.c                 | 30 +++++++++++++++++++++++++---
+>  drivers/regulator/axp20x-regulator.c |  2 +-
+>  include/linux/mfd/axp20x.h           | 26 +++++++++++++++++++++++-
+>  3 files changed, 53 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
+> index 609e7e149681..07db4a11acbc 100644
+> --- a/drivers/mfd/axp20x.c
+> +++ b/drivers/mfd/axp20x.c
+> @@ -209,15 +209,23 @@ static const struct regmap_access_table axp313a_volatile_table = {
+>  };
 >  
->    reg:
->      maxItems: 1
-> 
-> Which requires no driver or dts changes. That could become:
->       - items:
->           - enum:
->               - renesas,vin-r8a779h0 # R-Car V4L2
->               - renesas,vin-r8a779i0 # R-Car R4P17
->           - const: renesas,vin-r8a779g0 # R-Car V4H
+>  static const struct regmap_range axp717_writeable_ranges[] = {
+> -	regmap_reg_range(AXP717_MODULE_EN_CONTROL, AXP717_MODULE_EN_CONTROL),
+> -	regmap_reg_range(AXP717_BOOST_CONTROL, AXP717_BOOST_CONTROL),
+> +	regmap_reg_range(AXP717_PMU_FAULT, AXP717_MODULE_EN_CONTROL_1),
+> +	regmap_reg_range(AXP717_MIN_SYS_V_CONTROL, AXP717_BOOST_CONTROL),
+> +	regmap_reg_range(AXP717_VSYS_V_POWEROFF, AXP717_VSYS_V_POWEROFF),
+>  	regmap_reg_range(AXP717_IRQ0_EN, AXP717_IRQ4_EN),
+>  	regmap_reg_range(AXP717_IRQ0_STATE, AXP717_IRQ4_STATE),
+> +	regmap_reg_range(AXP717_ICC_CHG_SET, AXP717_CV_CHG_SET),
+>  	regmap_reg_range(AXP717_DCDC_OUTPUT_CONTROL, AXP717_CPUSLDO_CONTROL),
+> +	regmap_reg_range(AXP717_ADC_CH_EN_CONTROL, AXP717_ADC_CH_EN_CONTROL),
+> +	regmap_reg_range(AXP717_ADC_DATA_SEL, AXP717_ADC_DATA_SEL),
+>  };
+>  
+>  static const struct regmap_range axp717_volatile_ranges[] = {
+> +	regmap_reg_range(AXP717_ON_INDICATE, AXP717_PMU_FAULT),
+>  	regmap_reg_range(AXP717_IRQ0_STATE, AXP717_IRQ4_STATE),
+> +	regmap_reg_range(AXP717_BATT_PERCENT_DATA, AXP717_BATT_PERCENT_DATA),
+> +	regmap_reg_range(AXP717_BATT_V_H, AXP717_BATT_CHRG_I_L),
+> +	regmap_reg_range(AXP717_ADC_DATA_H, AXP717_ADC_DATA_L),
+>  };
+>  
+>  static const struct regmap_access_table axp717_writeable_table = {
+> @@ -310,6 +318,11 @@ static const struct resource axp22x_usb_power_supply_resources[] = {
+>  	DEFINE_RES_IRQ_NAMED(AXP22X_IRQ_VBUS_REMOVAL, "VBUS_REMOVAL"),
+>  };
+>  
+> +static const struct resource axp717_usb_power_supply_resources[] = {
+> +	DEFINE_RES_IRQ_NAMED(AXP717_IRQ_VBUS_PLUGIN, "VBUS_PLUGIN"),
+> +	DEFINE_RES_IRQ_NAMED(AXP717_IRQ_VBUS_REMOVAL, "VBUS_REMOVAL"),
+> +};
+> +
+>  /* AXP803 and AXP813/AXP818 share the same interrupts */
+>  static const struct resource axp803_usb_power_supply_resources[] = {
+>  	DEFINE_RES_IRQ_NAMED(AXP803_IRQ_VBUS_PLUGIN, "VBUS_PLUGIN"),
+> @@ -424,7 +437,7 @@ static const struct regmap_config axp717_regmap_config = {
+>  	.val_bits = 8,
+>  	.wr_table = &axp717_writeable_table,
+>  	.volatile_table = &axp717_volatile_table,
+> -	.max_register = AXP717_CPUSLDO_CONTROL,
+> +	.max_register = AXP717_ADC_DATA_L,
+>  	.cache_type = REGCACHE_MAPLE,
+>  };
+>  
+> @@ -1026,6 +1039,17 @@ static struct mfd_cell axp313a_cells[] = {
+>  static struct mfd_cell axp717_cells[] = {
+>  	MFD_CELL_NAME("axp20x-regulator"),
+>  	MFD_CELL_RES("axp20x-pek", axp717_pek_resources),
+> +	{
+> +		.name		= "axp717-adc",
+> +		.of_compatible	= "x-powers,axp717-adc",
+> +	},
+> +	MFD_CELL_OF("axp20x-usb-power-supply",
+> +		    axp717_usb_power_supply_resources, NULL, 0, 0,
+> +		    "x-powers,axp717-usb-power-supply"),
+> +	{
+> +		.name		= "axp20x-battery-power-supply",
+> +		.of_compatible	= "x-powers,axp717-battery-power-supply",
+> +	},
+>  };
 
-FWIW, on Gen2 where fallback es where useful compared to Gen3 we did 
-this with "renesas,rcar-gen2-vin".
+Please refrain from mixing and matching:
 
-> 
-> if there's another compatible device in the future.
-> 
-> > Apologies again for the confusion.
-> 
-> dw about it
-
-
+MFD_CELL_OF() for both.
 
 -- 
-Kind Regards,
-Niklas Söderlund
+Lee Jones [李琼斯]
 
