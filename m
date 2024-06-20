@@ -1,195 +1,150 @@
-Return-Path: <devicetree+bounces-77774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCE3990FEC3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F2FE90FED1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:29:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58DA1288C7C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:26:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29850286EA7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8194719580F;
-	Thu, 20 Jun 2024 08:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A056198831;
+	Thu, 20 Jun 2024 08:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="fsktYGwp";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ltjhb45n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkVQD7q/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3917118EFEE;
-	Thu, 20 Jun 2024 08:26:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67B7482C8;
+	Thu, 20 Jun 2024 08:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718871979; cv=none; b=pabZYP0fgP1xaZiz/bIhBQOjgfBgT6WoUQsSnZiCse2UAALxz3BmDaoLCPWP9jdX79tPzLUbmQHtZHN0zy2CC4+8EpUw8FzrGTUerOb22qGzOIzig1PTjy9f513vdnq5lVwbZKo60KlBjhJBtQ2yamTpsfJmnGuURZZwfz4vZ40=
+	t=1718872183; cv=none; b=EHXWeXFw9Nhkz7XsxybBy6nVtjtBIlFMVBtNepezufT3fmoUKyglg8xGiLgA3sO/FDEgzQYeuAWUQcd++tzSv8Pq7nGPVxVkQm3cko7hwm/1yDgKfLApQ4m823o00S8FvSC1bADbP7aiKbfRJoYnE/Bml3xt/2TIuBksDbNobCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718871979; c=relaxed/simple;
-	bh=ykx82u3dFRnQssCH+WPqTmGF9rPNEhJ9MfICw59yjuU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=I3YHYtMpV/xkDnpzYoqZjJlcilFRsmQLTcXT/EaZMJEGly4h1jhdzhkg0ECYv/MwnEJvd72wqU/IfEpXHqXEA3vvXuW405604pZtcbE2yA9tm7sCqBBOXJRuq9BhHfwyxF0nbYzIrHFN00I7YaGvZANeSxY34usGVJqjEZv+H3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=fsktYGwp; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ltjhb45n reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1718871975; x=1750407975;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=fhOVTc8EwkQ97eTIibAFj6NhxNXrIp2CfJhA/VS9Po0=;
-  b=fsktYGwpaANzFCTw3oK8xidvLCxulksFsfmNUYwDNEU7HDc1anuKU5gb
-   8eMsGC8csT9llq6moFmBGDWc5qKrZIF8FOz8Xgse55t4el6rzj7jsqS2n
-   MyDPeaSI/KUIEM6V98qVUdDwEn3JWMwxwWUmANSCeXVzcghk1gxMf6UO6
-   HPIyDmYYOZWXDrQKjxcg8nO/85ywkkD3Y9mFz3USDtjcdnujjjbozKTHB
-   p8S9FmNLGtItwUT9D1Q9RrV3erqGobWYvFg4yG+Ct/6PeBhOHixWoUb0j
-   pYlSdkhYIcFbndBgwKNJ7Ly87E0oRI9FWQMfR315A9lbw5bZkmmDSJvBf
-   A==;
-X-CSE-ConnectionGUID: eDohtDWbQhm/sCQHt/ve+g==
-X-CSE-MsgGUID: ur5SVpOwQFGYlcVGdk7nNg==
-X-IronPort-AV: E=Sophos;i="6.08,251,1712613600"; 
-   d="scan'208";a="37492741"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 20 Jun 2024 10:26:12 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 48787161196;
-	Thu, 20 Jun 2024 10:26:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1718871968;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=fhOVTc8EwkQ97eTIibAFj6NhxNXrIp2CfJhA/VS9Po0=;
-	b=ltjhb45nnKhAozxXQPtArb5qMYrSIefFEh6/MeCJwAMqiKx/6v77A69YxU/WNYTFW33ViI
-	ytsdcjw/H1tgbv574S3EKZe9JEqBqIHG8FwJ7i9LMXRNHQyaHeDZtdoJegolaaUG8Mh8kf
-	E7j29BNSu5/sTvi2/eTKWu2rLt5OlBXJcOu3782QrUxNAZaChs8DHEVyqvX0vlLR9Xr6sC
-	t2JCWRY4XPsvXWgVUTc0kFqD5ig0w/ptSbNfyQ6kPPc1Rwc65OLhwT0XdZbY5KuVNfTZt0
-	LljBTN/pTsjdWlH2b+vmsEbIaF3+3h8g7f/THOHoV09/ERvwgaQSINLo4ZnI1A==
-Message-ID: <99cc7afbb891de890ff051606f7a120f796e0fbc.camel@ew.tq-group.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: allow ethernet
- controller in ICSSG node
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
- <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Suman Anna
- <s-anna@ti.com>
-Date: Thu, 20 Jun 2024 10:26:07 +0200
-In-Reply-To: <89880cda-1140-4ed5-a67f-2201c2825447@kernel.org>
-References: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
-	 <89880cda-1140-4ed5-a67f-2201c2825447@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+	s=arc-20240116; t=1718872183; c=relaxed/simple;
+	bh=xnidyzQB+078M+inmBdQiDXTphVNNmg8dPEaCmWi54c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ugZBUJVLlx2Xn11ptBrQExEQ4kvAabR+IvT7Mb0IWC8f5dEH3A6il0fg/GARu2VjDxs0NRT+ci03XGclpuNV7/Uz0Mpdim8x8afjuuiXVJZSZl49FMpsPq0jzku+XQ4WtZVasn1gb06IZEGAyd9klRqmB1oA9jHbVFUH2Nz/0Lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkVQD7q/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54F8BC2BD10;
+	Thu, 20 Jun 2024 08:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718872182;
+	bh=xnidyzQB+078M+inmBdQiDXTphVNNmg8dPEaCmWi54c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tkVQD7q/C2zRMlqpMvO5kbs8RMF/1hlwEllihlQcrRreeILEZKgvDrHWRW66XpcZ8
+	 jM4V6QFamsADmwBCZkoST59+iIeACrrjvbEdeaXcRfDxKjhlcKZMSA396ShN3PdmI7
+	 7d12I0rHwFBr+ZeOtA089dw8klWhb52ymGhiK9sB6BXuE1M5NeDMAz18Z5C6U3+9ZQ
+	 4jyWYFS4I0lKHu9NKqf0KwLG48p7mLmjQwRGrGTIzetGJb7+imDCzxz1RBE+TqhMJv
+	 9Qd0WzFikMeXAX4GUJhSg8hPT3TjoIFjz4GgbiLFzv0zyp3+FR5jiFEwCeG4W8TQ5t
+	 V2RQsXIr0Qe9w==
+Message-ID: <14bebdc5-3239-47fe-b8cc-68daba278d73@kernel.org>
+Date: Thu, 20 Jun 2024 10:29:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: allow ethernet
+ controller in ICSSG node
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Suman Anna <s-anna@ti.com>
+References: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
+ <89880cda-1140-4ed5-a67f-2201c2825447@kernel.org>
+ <99cc7afbb891de890ff051606f7a120f796e0fbc.camel@ew.tq-group.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <99cc7afbb891de890ff051606f7a120f796e0fbc.camel@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2024-06-20 at 09:24 +0200, Krzysztof Kozlowski wrote:
-> On 19/06/2024 13:24, Matthias Schiffer wrote:
-> > While the current Device Trees for TI EVMs configure the PRUSS Ethernet
-> > controller as a toplevel node with names like "icssg1-eth", allowing to
-> > make it a subnode of the ICSSG has a number of advantages:
->=20
-> What is ICSSG? The sram or ti,prus from the ethernet schema?
+On 20/06/2024 10:26, Matthias Schiffer wrote:
+> On Thu, 2024-06-20 at 09:24 +0200, Krzysztof Kozlowski wrote:
+>> On 19/06/2024 13:24, Matthias Schiffer wrote:
+>>> While the current Device Trees for TI EVMs configure the PRUSS Ethernet
+>>> controller as a toplevel node with names like "icssg1-eth", allowing to
+>>> make it a subnode of the ICSSG has a number of advantages:
+>>
+>> What is ICSSG? The sram or ti,prus from the ethernet schema?
+> 
+> ICSSG (Industrial Communication Subsystem (Group?)) is the main device described by the
+> ti,pruss.yaml binding (ICSS and PRUSS are different variants of similar IP cores); it is the
+> container for the individual PRU, TXPRU and RTU cores which are referenced by the ti,prus
+> node of the Ethernet schema.
+> 
+> The entirety of PRU, TXPRU and RTU cores of one ICSSG, each with its own firmware, forms one
+> Ethernet controller, which is not quite a hardware device, but also not a fully virtual software
+> device.
 
-ICSSG (Industrial Communication Subsystem (Group?)) is the main device desc=
-ribed by the
-ti,pruss.yaml binding (ICSS and PRUSS are different variants of similar IP =
-cores); it is the
-container for the individual PRU, TXPRU and RTU cores which are referenced =
-by the ti,prus
-node of the Ethernet schema.
+So it is not really child of ICSSG.
 
-The entirety of PRU, TXPRU and RTU cores of one ICSSG, each with its own fi=
-rmware, forms one
-Ethernet controller, which is not quite a hardware device, but also not a f=
-ully virtual software
-device.
+> 
+> The Ethernet controller only exists through the various ICSS subcores, so it doesn't have an MMIO
+> address of its own. As described, the existing Device Trees define it as a toplevel non-MMIO node;
+> we propose to allow it as a non-MMIO child node of the ICSSG container instead.
+> 
+> If you consider moving the ethernet node into the ICSSG node a bad approach, we will drop this patch
+> and try to find a different solution to our issue (the Ethernet device staying in deferred state
+> forever when the ICSSG node is disabled on Linux).
 
-The Ethernet controller only exists through the various ICSS subcores, so i=
-t doesn't have an MMIO
-address of its own. As described, the existing Device Trees define it as a =
-toplevel non-MMIO node;
-we propose to allow it as a non-MMIO child node of the ICSSG container inst=
-ead.
+Just disable the ethernet. That's the expected behavior, I don't get
+what is the problem here.
 
-If you consider moving the ethernet node into the ICSSG node a bad approach=
-, we will drop this patch
-and try to find a different solution to our issue (the Ethernet device stay=
-ing in deferred state
-forever when the ICSSG node is disabled on Linux).
 
 Best regards,
-Matthias
+Krzysztof
 
-
-
->=20
-> >=20
-> > - It makes sense semantically - the Ethernet controller is running on
-> >   the ICSSG/PRUSS
-> > - Disabling or deleting the ICSSG node implicitly removes the Ethernet
-> >   controller node when it is a child node. This can be relevant on SoCs
-> >   like the AM64x which come in variants with and without ICSSG; e.g., o=
-n
-> >   the TQMa64xxL the ICSSG node will be disabled on variants without as =
-a
-> >   bootloader fixup.
-> >   On Linux, this avoids leaving the Ethernet controller in deferred
-> >   state forever while waiting for the ICSSG to become available
-> >   (resulting in a warning on newer kernels)
-> >=20
-> > The node name "ethernet" is chosen as it nicely matches the regular
-> > "ethernet@<reg>" format of many Ethernet controller nodes, and is also
-> > what the prueth binding example (/schemas/net/ti,icssg-prueth.yaml) use=
-s.
-> >=20
-> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> > ---
-> >  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/D=
-ocumentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> > index c402cb2928e89..89dfcf5ce8434 100644
-> > --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> > @@ -92,6 +92,13 @@ properties:
-> >      description: |
-> >        This property is as per sci-pm-domain.txt.
-> > =20
-> > +  ethernet:
-> > +    description: |
->=20
-> Do not need '|' unless you need to preserve formatting.
->=20
-> > +      ICSSG PRUSS Ethernet. Configuration for an Ethernet controller r=
-unning
-> > +      on the PRU-ICSS.
-> > +    $ref: /schemas/net/ti,icssg-prueth.yaml#
-> > +    type: object
-> > +
-> >  patternProperties:
-> > =20
-> >    memories@[a-f0-9]+$:
->=20
-> You are mixing MMIO and non-MMIO nodes. That's odd or even sloppy
-> design. It immediately raises questions about your bindings.
->=20
-> Best regards,
-> Krzysztof
->=20
-
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
 
