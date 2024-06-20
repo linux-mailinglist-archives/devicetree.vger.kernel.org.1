@@ -1,218 +1,188 @@
-Return-Path: <devicetree+bounces-77690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B129A90FAEE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 03:28:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F28D390FAF9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 03:33:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E1CA2839C1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 01:28:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ACC5B214AD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 01:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE273179AD;
-	Thu, 20 Jun 2024 01:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3A0BA5E;
+	Thu, 20 Jun 2024 01:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OTQ3iQEq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ScoHheEF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E273F12E78;
-	Thu, 20 Jun 2024 01:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E41469D;
+	Thu, 20 Jun 2024 01:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718846890; cv=none; b=DR2oVnGBI18cgCU+CQ67A44ekNLfonRTREVzkeCwj7NQ7jngc0UjDz0kIeU145QzXq4u0am+Qx9FAOekj2K7mt28j/ct6GqG/D5uD/uKeUg0/4OZUCwaB7Te3f1CZWvspw6OqeZYYyDJ4TtXCke7Bsipsl+HuYYDgu0BY9XtTjY=
+	t=1718847230; cv=none; b=ewVy0rnTQ8n+s3uUVt+xyX398pGZh8VyK5xCTmVtVCI8TD1bKXqwCwir6rC30koHk/pCO0AjL8dyrp37jVh4USQzbXwjPhMZrWPo4sgwkrNhZXug5WRtojIirGO/lttOf6MEL4kjzyqnGPeYK5hcXPAqJRttTDBfu11XmDCHoPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718846890; c=relaxed/simple;
-	bh=nfp5CA+23zcmQ/1lVBpeAwB797V/t6mCwgDv4Twwnzo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u8OSfjjawJSAoC1CuIU6vk132JdRwLaqiELLvRlXG4cSbTQLRcB/jLbe0TT+g4gxSMz6NNXgA+Y54nNHW1s64io9IJXqoOTCilZzKiHnPcB0S42BqAmJyudzVevb6fKphoYApMh8iX3q+wRrVa8a7b0l9K0YRVbhtTow46I79nQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OTQ3iQEq; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718846889; x=1750382889;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nfp5CA+23zcmQ/1lVBpeAwB797V/t6mCwgDv4Twwnzo=;
-  b=OTQ3iQEqaPG53qpTFx/ZPszPM+qTZWzCJtWsZnXQsP5M62qX72nqtiZM
-   DGT7SIqD4myGfwKGR171QLX/s9XhERxm0DocAs/GUELeCo5qks7K2qDio
-   GLFi5SssFuIk4Zacp7E/UET2IK37IFN0ouvBixzeVDF0JJe91h+wneF9l
-   XjSJevkXGGgc4bGjqNL//MlW7+oZe+cycDTOFG01kiwlX+rTOfw2KMsu8
-   T3Vrp7dWNyuB94vMf4LUizl7nmYFwIuHiuw1YHjeZw0mHV1Aj+7k3mE1z
-   5FkT+yilw5+frl/6RXt1Cxd7xWVt/xJPU978Qot5AFWyJ93q8pvR1t/Do
-   A==;
-X-CSE-ConnectionGUID: Pco3Ih5wRhCXIDPgUp45FA==
-X-CSE-MsgGUID: xiAMbYcERUaKheycdWOCzw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11108"; a="33349850"
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
-   d="scan'208";a="33349850"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jun 2024 18:28:07 -0700
-X-CSE-ConnectionGUID: BTQoYyg3TiOsBVZZG+jrFA==
-X-CSE-MsgGUID: U8jhb5YDSvaTiyjPBNYlhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
-   d="scan'208";a="65328321"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 19 Jun 2024 18:28:03 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sK6am-0007Bn-2p;
-	Thu, 20 Jun 2024 01:28:00 +0000
-Date: Thu, 20 Jun 2024 09:27:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yuntao Dai <d1581209858@live.com>, jassisinghbrar@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	unicorn_wang@outlook.com, inochiama@outlook.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, Yuntao Dai <d1581209858@live.com>
-Subject: Re: [PATCH 3/3] mailbox: sophgo: add mailbox driver for cv18x SoCs
-Message-ID: <202406200820.Wms9UPDw-lkp@intel.com>
-References: <SYBP282MB2238F93AB57A398E322644C3C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1718847230; c=relaxed/simple;
+	bh=2SQzggWorWMQ+hxr5KZ4ouzgg+a7dj9wP5GbU1kw68M=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=TqdJi5Idj+KVYtfBGl9hq1ZnaSbj3Xg4b0seWE8MJg6xVoUA3T4tpyzoFSix84JYytLYXB2M41lBnYiWHJ1bWm7dblRfmxR81JQhm6VT4NaacN4zm4icxprGeUwnjeBL49uk5zbIhzBysC7/o2w0ynAcV3kwNLvUnpO+SBsqBac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ScoHheEF; arc=none smtp.client-ip=209.85.219.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6b50a68b0b3so8117466d6.0;
+        Wed, 19 Jun 2024 18:33:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718847227; x=1719452027; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q5HikRv6kiIPMm4QeUn8QwCXDOdRpGxbqfkwLthijeI=;
+        b=ScoHheEFh85xNQ0onFqKyHu+059OXFjaoCf5+n4X8jHTfrzX6mRsGuMi8vla0w/Wo8
+         +/zWxvUdn+6ipiaUFloEh1c6gBg8ZaPLVrmLOfG9JL0V43MiOVmLcekzQzFIwzNNLn8b
+         jPLPWW9Z1a5aIAlBc8KUsKz6NcKx68/RQTBAkCfoi4l8Km+lU8qOVXMNS0mJR9qSI3UL
+         paeipVHeaUlmi6GQk/hFeaieePvoRwyW8qst+b6UReqNfsuhOy6v0XabVYk6hG9xdIsR
+         Q6TdiI/6i7sa98pav4xRwWXVSqCZeUt5MDi3FSz/wqE56wXMVaCecttjSWyxbkwYEl0O
+         tMUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718847227; x=1719452027;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q5HikRv6kiIPMm4QeUn8QwCXDOdRpGxbqfkwLthijeI=;
+        b=v1pz0OaBOpq2XjrHY5IWkoKEvNgLEX5krhATXsUs5/2aBcfk5gKnxIxnddmDLMTVxX
+         zVvSzBKeSyYEiyvpnJ/pSpYDXAyZNkb47BMPmuZ47lT4NzYDORyTlBO2TsxppVoHkoLF
+         TaCYjGCfVg5tNweDCdmq04p6ZU5ITvE2g+2HBzEw4JK6jZx8yrCz+nhHkKy+wxr7Ib0r
+         wPcjA2sGUyCU0lRojAOfmLrcX6Bx4Qom7ll1mZvfq8Y+hcOx8P/HsqMDpZG99IxdJyRR
+         yj8P9UMFsdQEBVFF3Et9E5+U/j3nwcjjBHu9GWcQXApW4yzjfEZl9TOnZFaGFnBLeeeD
+         9cag==
+X-Forwarded-Encrypted: i=1; AJvYcCXEFquaMPeXMFjfoMfY029ZAetEM3uKZR+Aaoiwp5GHUVt1E/iYGbr/sNNdLy3LqlvIKegcyweAkGmqpSY/NT//pOXqXUgfgj5O4Q==
+X-Gm-Message-State: AOJu0YyxqPJ7Zrc40XKaDCswP5UwPvkAaefVU2zT7wIHXsPrOcvm2Fyh
+	MMu8KItdCErKzuZCdK5bqYtygjqw1Iy/OJkYD3YHXQ28oAuN/UIbXay1TA==
+X-Google-Smtp-Source: AGHT+IEN53ttccCe1IOgM4GHOIP/75gthbOYHPruIhVGqJeLAJFFAeSgQqBm0F4DE7g+E2ACCcWemw==
+X-Received: by 2002:a0c:eace:0:b0:6af:7b2e:1868 with SMTP id 6a1803df08f44-6b501a07c22mr84110066d6.18.1718847226902;
+        Wed, 19 Jun 2024 18:33:46 -0700 (PDT)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b2a5bf2546sm83012256d6.14.2024.06.19.18.33.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jun 2024 18:33:46 -0700 (PDT)
+From: Trevor Woerner <twoerner@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC support),
+	linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
+Subject: [PATCH] arm64: dts: rockchip: add gpio-line-names to radxa-zero-3
+Date: Wed, 19 Jun 2024 21:32:49 -0400
+Message-ID: <20240620013301.33653-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.44.0.501.g19981daefd7c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SYBP282MB2238F93AB57A398E322644C3C4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: 8bit
 
-Hi Yuntao,
+Add names to the pins of the general-purpose expansion header as given
+in the Radxa documentation[1] following the conventions in the kernel[2]
+to make it easier for users to correlate pins with functions when using
+utilities such as 'gpioinfo'.
 
-kernel test robot noticed the following build warnings:
+[1] https://docs.radxa.com/en/zero/zero3/hardware-design/hardware-interface
+[2] https://www.kernel.org/doc/Documentation/devicetree/bindings/gpio/gpio.txt
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.10-rc4 next-20240619]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ .../dts/rockchip/rk3566-radxa-zero-3.dtsi     | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yuntao-Dai/dt-bindings-mailbox-add-Sophgo-cv18x-SoCs-mailbox/20240618-232307
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/SYBP282MB2238F93AB57A398E322644C3C4CE2%40SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
-patch subject: [PATCH 3/3] mailbox: sophgo: add mailbox driver for cv18x SoCs
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240620/202406200820.Wms9UPDw-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240620/202406200820.Wms9UPDw-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406200820.Wms9UPDw-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/mailbox/cv1800b-mailbox.c:83:12: warning: cast to smaller integer type 'int' from 'void *' [-Wvoid-pointer-to-int-cast]
-      83 |         int idx = (int)chan->con_priv;
-         |                   ^~~~~~~~~~~~~~~~~~~
->> drivers/mailbox/cv1800b-mailbox.c:160:34: warning: cast to 'void *' from smaller integer type 'int' [-Wint-to-void-pointer-cast]
-     160 |                 mb->mbox.chans[idx].con_priv = (void *)idx;
-         |                                                ^~~~~~~~~~~
-   2 warnings generated.
-
-
-vim +83 drivers/mailbox/cv1800b-mailbox.c
-
-    79	
-    80	static int cv1800b_mbox_send_data(struct mbox_chan *chan, void *data)
-    81	{
-    82		struct cv1800b_mbox *mbox = dev_get_drvdata(chan->mbox->dev);
-  > 83		int idx = (int)chan->con_priv;
-    84		u8 en, valid;
-    85		u64 *addr = (u64 *)(mbox->mbox_base + MAILBOX_CONTEXT_OFFSET) + idx;
-    86	
-    87		memcpy_toio(addr, data, 8);
-    88	
-    89		valid = 1 << idx;
-    90		writeb(valid, mbox->mbox_base + MBOX_SET_CLR_REG(mbox->sendto));
-    91		en = readb(mbox->mbox_base + MBOX_EN_REG(mbox->sendto));
-    92		writeb(en | valid, mbox->mbox_base + MBOX_EN_REG(mbox->sendto));
-    93		writeb(valid, mbox->mbox_base + MBOX_SET_REG);
-    94	
-    95		return 0;
-    96	}
-    97	
-    98	static bool cv1800b_last_tx_done(struct mbox_chan *chan)
-    99	{
-   100		return true;
-   101	}
-   102	
-   103	static const struct mbox_chan_ops cv1800b_mbox_chan_ops = {
-   104		.send_data = cv1800b_mbox_send_data,
-   105		.last_tx_done = cv1800b_last_tx_done,
-   106	};
-   107	
-   108	static const struct of_device_id cv1800b_mbox_of_match[] = {
-   109		{ .compatible = "sophgo,cv1800b-mailbox", },
-   110		{},
-   111	};
-   112	MODULE_DEVICE_TABLE(of, cv1800b_mbox_of_match);
-   113	
-   114	static int cv1800b_mbox_probe(struct platform_device *pdev)
-   115	{
-   116		struct device *dev = &pdev->dev;
-   117		struct cv1800b_mbox *mb;
-   118		int irq, idx, err, cpu;
-   119	
-   120		if (!dev->of_node)
-   121			return -ENODEV;
-   122	
-   123		mb = devm_kzalloc(dev, sizeof(*mb), GFP_KERNEL);
-   124		if (!mb)
-   125			return -ENOMEM;
-   126	
-   127		mb->mbox_base = devm_of_iomap(dev, dev->of_node, 0, NULL);
-   128		if (IS_ERR(mb->mbox_base))
-   129			return dev_err_probe(dev, PTR_ERR(mb->mbox_base),
-   130					     "Failed to map resource\n");
-   131	
-   132		err = of_property_read_s32(dev->of_node, "sendto", &cpu);
-   133		if (err)
-   134			return dev_err_probe(dev, err,
-   135					     "Failed to find <sendto> in of_node\n");
-   136	
-   137		mb->sendto = cpu;
-   138	
-   139		err = of_property_read_s32(dev->of_node, "recvid", &cpu);
-   140		if (err) {
-   141			return dev_err_probe(dev, err,
-   142					     "Failed to find <recvid> in of_node\n");
-   143		}
-   144		mb->recvid = cpu;
-   145	
-   146		mb->mbox.dev = dev;
-   147		mb->mbox.num_chans = MAILBOX_MAX_CHAN;
-   148		mb->mbox.chans = mb->chans;
-   149		mb->mbox.ops = &cv1800b_mbox_chan_ops;
-   150		mb->mbox.txdone_poll = true;
-   151	
-   152		irq = platform_get_irq_byname(pdev, "mailbox");
-   153		err = devm_request_threaded_irq(dev, irq, cv1800b_mbox_irq,
-   154						cv1800b_mbox_isr, IRQF_ONESHOT,
-   155						dev_name(&pdev->dev), mb);
-   156		if (err < 0)
-   157			return dev_err_probe(dev, err, "Failed to register irq\n");
-   158	
-   159		for (idx = 0; idx < MAILBOX_MAX_CHAN; idx++)
- > 160			mb->mbox.chans[idx].con_priv = (void *)idx;
-   161	
-   162		err = devm_mbox_controller_register(dev, &mb->mbox);
-   163		if (err)
-   164			return dev_err_probe(dev, err, "Failed to register mailbox\n");
-   165	
-   166		platform_set_drvdata(pdev, mb);
-   167		return 0;
-   168	}
-   169	
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+index 623d5939d194..b72d75b908a2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+@@ -109,6 +109,78 @@ &cpu3 {
+ 	cpu-supply = <&vdd_cpu>;
+ };
+ 
++&gpio0 {
++	gpio-line-names =
++		/* GPIO0_A0 - A7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO0_B0 - B7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO0_C0 - C7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO0_D0 - D7 */
++		"pin-10 [GPIO0_D0]", "pin-08 [GPIO0_D1]", "",
++		"", "", "", "", "";
++};
++
++&gpio1 {
++	gpio-line-names =
++		/* GPIO1_A0 - A7 */
++		"pin-03 [GPIO1_A0]", "pin-05 [GPIO1_A1]", "",
++		"",                  "pin-37 [GPIO1_A4]", "",
++		"",                  "",
++		/* GPIO1_B0 - B7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO1_C0 - C7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO1_D0 - D7 */
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names =
++		/* GPIO2_A0 - A7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO2_B0 - B7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO2_C0 - C7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO2_D0 - D7 */
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names =
++		/* GPIO3_A0 - A7 */
++		"",                  "pin-11 [GPIO3_A1]", "pin-13 [GPIO3_A2]",
++		"pin-12 [GPIO3_A3]", "pin-35 [GPIO3_A4]", "pin-40 [GPIO3_A5]",
++		"pin-38 [GPIO3_A6]", "pin-36 [GPIO3_A7]",
++		/* GPIO3_B0 - B7 */
++		"pin-15 [GPIO3_B0]", "pin-16 [GPIO3_B1]", "pin-18 [GPIO3_B2]",
++		"pin-29 [GPIO3_B3]", "pin-31 [GPIO3_B4]", "",
++		"", "",
++		/* GPIO3_C0 - C7 */
++		"",                  "pin-22 [GPIO3_C1]", "pin-32 [GPIO3_C2]",
++		"pin-33 [GPIO3_C3]", "pin-07 [GPIO3_C4]", "",
++		"", "",
++		/* GPIO3_D0 - D7 */
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names =
++		/* GPIO4_A0 - A7 */
++		"", "", "", "", "", "", "", "",
++		/* GPIO4_B0 - B7 */
++		"",                  "",                  "pin-27 [GPIO4_B2]",
++		"pin-28 [GPIO4_B3]", "", "", "", "",
++		/* GPIO4_C0 - C7 */
++		"",                  "",                  "pin-23 [GPIO4_C2]",
++		"pin-19 [GPIO4_C3]", "",                  "pin-21 [GPIO4_C5]",
++		"pin-24 [GPIO4_C6]", "",
++		/* GPIO4_D0 - D7 */
++		"", "", "", "", "", "", "", "";
++};
++
+ &gpu {
+ 	mali-supply = <&vdd_gpu_npu>;
+ 	status = "okay";
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.44.0.501.g19981daefd7c
+
 
