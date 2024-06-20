@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-77999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00FE9910A30
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:41:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03441910A3F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:44:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 311B31C22FC5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:41:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADF7B280FCA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E8A1B010D;
-	Thu, 20 Jun 2024 15:41:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471581B0116;
+	Thu, 20 Jun 2024 15:44:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZkIsszvS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCGhAfXB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90BE1AF6B5;
-	Thu, 20 Jun 2024 15:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA2C81B0109;
+	Thu, 20 Jun 2024 15:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718898086; cv=none; b=GTE6NEp9rbzztaFrj0aNSL7aUbsnDcAS0Dkv1/XkcWVSDEieLDTr8cSSf5lB0cKkjw9cZ2bDSJShmiiCtRAWRgyXV6Go37EzTqOB7XZoG9Pk5sZPOKZtjf9IT2Qr6IUX/E+7YTIQ6g13xqqdRV3ASS/pYncL4KvWs99LYB8bdXs=
+	t=1718898265; cv=none; b=rwgcBmhHdL+I+iGsy2rI5y035THMmK4m69opb2o5q/a0JgIXGif0VR7Jcs6PxrRWrvphbXDwol4yggf4l7D8sCRuVoKhTUCGkL6ae2fi2wD13BuIqUH1iVpsdxzcsp+B0SS4G+IuiEfpnhrN+DYzAm4yvDOWjlrh0z218JBZ3jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718898086; c=relaxed/simple;
-	bh=uXUQcC50fbjgB0KPnRDtDslrC8JyKIUItq1pr5paBoI=;
+	s=arc-20240116; t=1718898265; c=relaxed/simple;
+	bh=NDXoArYoOi42/owc5Xd/tf23JKVgVR3hxxrlHPGBiaQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=milqmIibxmJuqMllo0DKTnD5Ud8JMU/QJOhfSOK6DK3Ci+Zcr02nQYUPeDgrEkYgD3lQApJuy9zAyT7zySF6Rgb6HH7HiM4v3ek74MxV/TxQgY26sgQi8T+o1aFCReaiXfxOrvoICKdLDs3GLARtRKHPb7S4xfn69JxfuI8IxbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZkIsszvS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 208C9C2BD10;
-	Thu, 20 Jun 2024 15:41:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PoLrKmU/Kmo5eD/RJWF5N8xxi99e7+OJcyFbIcP6a4MKXJsA2ck7ScUj38esJKtwXKv8yTKL/7VfMVafEAtk1EQER5XTGK5ufiKGl4c0NUq69WxvGEnpka7a/zUls0QJb8860OaJy5ZDlgB1Qjb4ScPpUnfwHMuEePK82tqUI4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCGhAfXB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4C6C2BD10;
+	Thu, 20 Jun 2024 15:44:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718898085;
-	bh=uXUQcC50fbjgB0KPnRDtDslrC8JyKIUItq1pr5paBoI=;
+	s=k20201202; t=1718898264;
+	bh=NDXoArYoOi42/owc5Xd/tf23JKVgVR3hxxrlHPGBiaQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZkIsszvSM4/Ajr56xQhCIfuNxnI8q5fVkVegM0T6V3NMrslGImYvLCdMkUZMij89i
-	 VzBs5QMu2CvMaUC/Rp14LE+3OccIDDquaFJPzFScTRN6q8SgH04Q/buwg0UM11npHq
-	 6VpUZOyExsyTQLmP+2gkP8CEkG0AwOEo2Vy4JVG3yOf6bTGxL/+pFi9dG+QwXWuK0A
-	 uIru3VGJP/pZeCS/JCE+jI+ogO8xWtPN2+zWJ2slGmu/w4AsalyIdy+SFBGX9glhJh
-	 6RtNpVf2m/u6W2d0GCxMVe+AZko9dXAQhSzr6xQf2U4ubAJwf756QRB9cWaD8svuww
-	 rJkVuwqljKwTw==
-Message-ID: <475b8567-e77b-47d4-96bc-19405f3a6ffd@kernel.org>
-Date: Thu, 20 Jun 2024 17:41:16 +0200
+	b=SCGhAfXB6TvNGpmFq4tkdAMjT0BGXqUhPg0hCTxr4beUuDJ7W29IQNBlij8Cf97ul
+	 tMAx8kSFiZsGyzK+EgtVuGcVinfB1I5FxjCd9puEHkPe/IwygmoKhclQPxjek8s+9F
+	 NFGGcW/AKfDQAnIzbFrpKn/wXoT0A1L9DmQX9o/HtHSo9mCs3xypVAjykhijQM218T
+	 PgvBX+5tM24zkzmwOofxt0PICy2ZsV/tAvomvknU3jOd7PvTJ2KOn5eoARpX/scLHo
+	 T++IMGjqjR3IGx+v2EdrMge7LGse2qKcePLOIz1LkXT6OAYWH46HsykEJ+j6PnoAm5
+	 aqzl4xqMU9vMw==
+Message-ID: <5e263066-5d05-4645-a695-0e7e62562666@kernel.org>
+Date: Thu, 20 Jun 2024 17:44:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: media: Add bindings for
- raspberrypi,rp1-cfe
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Naushir Patuck
- <naush@raspberrypi.com>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- 20240531080707.34568-1-jacopo.mondi@ideasonboard.com
-References: <20240620-rp1-cfe-v2-0-b8b48fdba3b3@ideasonboard.com>
- <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
+Subject: Re: [PATCH v3 03/23] dt-bindings: panel: add Samsung s6e3ha8
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Chanwoo Choi <cw00.choi@samsung.com>, phone-devel@vger.kernel.org
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+References: <20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com>
+ <20240618-starqltechn_integration_upstream-v3-3-e3f6662017ac@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,18 +118,90 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
+In-Reply-To: <20240618-starqltechn_integration_upstream-v3-3-e3f6662017ac@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/06/2024 13:07, Tomi Valkeinen wrote:
-> Add DT bindings for raspberrypi,rp1-cfe.
+On 18/06/2024 15:59, Dzmitry Sankouski wrote:
+> Add binding for the Samsung s6e3ha8 panel found in the Samsung S9.
 > 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 > ---
+>  .../bindings/display/panel/samsung,s6e3ha8.yaml    | 76 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 81 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e3ha8.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e3ha8.yaml
+> new file mode 100644
+> index 000000000000..9d7d747264dd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e3ha8.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/samsung,s6e3ha8.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung s6e3ha8 AMOLED DSI panel
+> +
+> +description: The s6e3ha8 is a 1440x2960 DPI display panel from Samsung Mobile
+> +  Displays (SMD).
+> +
+> +maintainers:
+> +  - Dzmitry Sankouski <dsankouski@gmail.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: samsung,s6e3ha8
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: reset gpio
 
+Pointless description. I think this can be reset-gpios: true, because
+gpio-consumer-common provides constrain.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +  port: true
+> +
+> +  vdd3-supply:
+> +    description: VDD regulator
+> +
+> +  vci-supply:
+> +    description: VCI regulator
+> +
+> +  vddr-supply:
+> +    description: VDDR regulator
+> +
+> +required:
+> +  - compatible
+> +  - reset-gpios
+> +  - vdd3-supply
+> +  - vddr-supply
+> +  - vci-supply
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      panel@0 {
+> +      	compatible = "samsung,s6e3ha8";
+> +      	reg = <0>;
+
+Messed indentation. Keep consistent one.
+
 
 
 Best regards,
