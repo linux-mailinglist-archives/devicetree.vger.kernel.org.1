@@ -1,86 +1,84 @@
-Return-Path: <devicetree+bounces-77771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E451290FEA0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:19:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E326590FEAF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6495F281696
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:19:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8016D287135
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4144917CA19;
-	Thu, 20 Jun 2024 08:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9235017CA19;
+	Thu, 20 Jun 2024 08:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="h0VVb5z/"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="bzA/JTEb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3790D17C7BE;
-	Thu, 20 Jun 2024 08:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09435B05E;
+	Thu, 20 Jun 2024 08:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718871578; cv=none; b=YeuzuarELu31pXG+QbkR942J2O72oqLxHeDiX/62PekkZzclxqdnW688NwSUR9lubJnmQHAU6//V3D1aaItcfijVhyPJgfnEsnGmG3sQnikUiUGXWEzwvv19MtgC/yVRbIQKSyliTgjlrpBf3HVJytIpPLqTL+P4t2kAVzNE3TY=
+	t=1718871747; cv=none; b=O1tq3viGSGFjb+Ypuq7Sb3XwCQsHzZ5g47jiCg5Cjj694ZX+HnuDvworN3QRWermqcJT+5DDBI7JQM9vGanGsdG4vJVlsAjdtdKXPyiinZ3ddsFYDNroFZ5CsEvzXxUP+KavGKTV1BNLsYzSweLr93qqIxE2L8dWSf/GGKBeCTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718871578; c=relaxed/simple;
-	bh=ogti5RvgXrKJYpGa8r9DIIr/6eDafdzHtCOOnJYD6Aw=;
+	s=arc-20240116; t=1718871747; c=relaxed/simple;
+	bh=DgkvKqufEzVzA4mCCc5Izp084ePjsPRawcTM+KusyrY=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DHLuOoa9QI7j016FQ8cyxz1jKYQp/OwPLgGBXCwg8xnSfAmUtVbKekumyQ6H/wIxXTDJhBn1G0FbcquD+OxXlxw63jnuT4gM3rVwsumnQF32nhQ2Q0t40Qyc3FkRokWCRkIGgkyXimasniB58cQ/CmJqD/MPUqYj/f4xMKd0puk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=h0VVb5z/; arc=none smtp.client-ip=68.232.154.123
+	 Content-Type:Content-Disposition:In-Reply-To; b=rCuXDcJMYfMHkGDa2mqPPydcPx960evxedJp4LK+5JjAAVVKx0LgEDgGPLscYXeDZcmX3v2GSWsEhCKkKe0MpjAxTo3O+z054uwsgoOOhymy8ldnG8dk/Oaf8QGigvjMlV5enRXrfHcL0DZYnRydlSB0Q4FQec1iFj8AU7azDPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=bzA/JTEb; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1718871576; x=1750407576;
+  t=1718871746; x=1750407746;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=ogti5RvgXrKJYpGa8r9DIIr/6eDafdzHtCOOnJYD6Aw=;
-  b=h0VVb5z/OdRBXscf3yveqtV7hZoqdb1u2UEETkBDlm8t+eO2BLKtb/1S
-   Jm+JS9Hd49Y7HC2p5gW5yD9ZYnHRHxI4I9aX5rUHtsnws1bnsKniaq/nD
-   kBs+u6zSg7HxKeUaLUoIO50Se+69nyI9l560q+VBZ7FwTWLSp+2vErElT
-   T/2R0kY7l+8luO/0YbAHp1sPxJi7bXV4TAqFRT7N8bIkCDaoyZ2Sm4Qck
-   tvN9TyQLr80IKE7GjkMVz9tYQTVYccC+j1lBjpBovZgsjCWdShpyfzNuZ
-   5oroW/jvPVvEsSMLP52NMmrHpZ8VStqDKE+AOfuKLASwEX+A2xz/A/OAP
+  bh=DgkvKqufEzVzA4mCCc5Izp084ePjsPRawcTM+KusyrY=;
+  b=bzA/JTEbNLhNHk602tpK/ERTU+FlluweZvZtGR7dYJHR19Ki25mJMugJ
+   DcHKlYBnbBdmvgOc75BRprRyiq3PDgxKaCl5IXaKx+EYz0X8lvHwmXxd5
+   mfvL6CKHX26tffh5p3hwoNA+le/NEoSCZxHsx3WCobKHe20BafeINqWAV
+   rQws+225NQhj7IIa1AeAArbFplBJ/tM2cp2UAWzzaKNpV7aikuUzdWvhK
+   A76ntdqJkkJ6LKUrzSdaZqwYWCYcNLqGxCr+NK9e3kLhy+wc3rgMzOg3m
+   VOsjDngFbCx9GXG3/mDtafdZ+7sfj6Krqb9F+G5W6kVHeqnG+MpM1DUyN
    Q==;
-X-CSE-ConnectionGUID: TJufhWwaQoyNOaHETkFUAg==
-X-CSE-MsgGUID: VcPZEXqWQmmibClzYtLFKA==
+X-CSE-ConnectionGUID: BfXzup/sSuCPo1L9vCsj6w==
+X-CSE-MsgGUID: ecnZoOx/TbqPi03KL3ujjw==
 X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
-   d="asc'?scan'208";a="28908925"
+   d="asc'?scan'208";a="259148518"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Jun 2024 01:19:31 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Jun 2024 01:22:25 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 20 Jun 2024 01:18:32 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ 15.1.2507.35; Thu, 20 Jun 2024 01:22:24 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 20 Jun 2024 01:18:29 -0700
-Date: Thu, 20 Jun 2024 09:18:11 +0100
+ Transport; Thu, 20 Jun 2024 01:22:20 -0700
+Date: Thu, 20 Jun 2024 09:22:02 +0100
 From: Conor Dooley <conor.dooley@microchip.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Viacheslav <adeep@lexina.in>, Rob Herring <robh@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 3/4] dt-bindings: arm: amlogic:
- amlogic,meson-gx-ao-secure: add secure-monitor property
-Message-ID: <20240620-sprinkled-manor-cce42d587578@wendy>
-References: <20240610084032.3096614-1-adeep@lexina.in>
- <20240610084032.3096614-4-adeep@lexina.in>
- <20240610-dropout-compress-6d6a9b749524@spud>
- <4866f6d4-2e3c-40c7-a8cb-ba4e422ffef6@lexina.in>
- <20240611-undying-earthy-00236ac251aa@spud>
- <20240613164244.GA1999034-robh@kernel.org>
- <c0d18fef-be65-461e-948f-c25e757199a5@lexina.in>
- <20240617-sulfate-posture-1619f1cdf090@spud>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+CC: Conor Dooley <conor@kernel.org>, <krzk+dt@kernel.org>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>, <jassisinghbrar@gmail.com>,
+	<garmin.chang@mediatek.com>, <houlong.wei@mediatek.com>,
+	<Jason-ch.Chen@mediatek.com>, <amergnat@baylibre.com>,
+	<Elvis.Wang@mediatek.com>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<kernel@collabora.com>
+Subject: Re: [PATCH 3/3] dt-bindings: mailbox: mediatek: Avoid clock-names on
+ MT8188 GCE
+Message-ID: <20240620-district-bullring-c028e0183925@wendy>
+References: <20240619085322.66716-1-angelogioacchino.delregno@collabora.com>
+ <20240619085322.66716-3-angelogioacchino.delregno@collabora.com>
+ <20240619-sleeve-citable-a3dc10e5cd4f@spud>
+ <a7317981-8690-4d45-81b6-cc6a63c459e0@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,104 +86,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZQkocubyAqYBA3MR"
+	protocol="application/pgp-signature"; boundary="vDd3+enh6BC9rJov"
 Content-Disposition: inline
-In-Reply-To: <20240617-sulfate-posture-1619f1cdf090@spud>
+In-Reply-To: <a7317981-8690-4d45-81b6-cc6a63c459e0@collabora.com>
 
---ZQkocubyAqYBA3MR
+--vDd3+enh6BC9rJov
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 17, 2024 at 05:57:53PM +0100, Conor Dooley wrote:
-> On Mon, Jun 17, 2024 at 11:21:30AM +0300, Viacheslav wrote:
-> > Thanks for review.
+On Thu, Jun 20, 2024 at 10:01:18AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 19/06/24 19:49, Conor Dooley ha scritto:
+> > On Wed, Jun 19, 2024 at 10:53:22AM +0200, AngeloGioacchino Del Regno wr=
+ote:
+> > > Add mediatek,mt8188-gce to the list of compatibles for which the
+> > > clock-names property is not required.
 > >=20
-> > 13/06/2024 19.42, Rob Herring wrote:
-> > > On Tue, Jun 11, 2024 at 07:07:28PM +0100, Conor Dooley wrote:
-> > > > On Tue, Jun 11, 2024 at 01:25:11PM +0300, Viacheslav wrote:
-> > > > > Hi!
-> > > > >=20
-> > > > > 10/06/2024 19.08, Conor Dooley wrote:
-> > > > > > On Mon, Jun 10, 2024 at 11:39:49AM +0300, Viacheslav Bocharov w=
-rote:
-> > > > > > > Add secure-monitor property to schema for meson-gx-socinfo-sm=
- driver.
-> > > > > >=20
-> > > > > > "bindings are for hardware, not drivers". Why purpose does the =
-"secure
-> > > > > > monitor" serve that the secure firmware needs a reference to it?
-> > > > >=20
-> > > > > This driver is an extension to the meson-gx-socinfo driver: it su=
-pplements
-> > > > > information obtained from the register with information from the
-> > > > > SM_GET_CHIP_ID secure monitor call. Due to the specifics of the m=
-odule
-> > > > > loading order, we cannot do away with meson-gx-socinfo, as it is =
-used for
-> > > > > platform identification in some drivers. Therefore, the extended =
-information
-> > > > > is formatted as a separate driver, which is loaded after the secu=
-re-monitor
-> > > > > driver.
-> > > >=20
-> > > > Please stop talking about drivers, this is a binding which is about
-> > > > hardware. Please provide, in your next version, a commit message th=
-at
-> > > > justifies adding this property without talking about driver probing
-> > > > order etc, and instead focuses on what service the "secure monitor"
-> > > > provides etc.
-> > >=20
-> > > To put it another way, how many secure monitors does 1 system have?
+> > Because, I assume, it has some internal clock? Why do either of these
+> > things have no clock? Doesn't the internal logic require one?
 > >=20
-> > One per system in current device tree.
 >=20
-> One per system, or one is currently described per system, but more might
-> be added later?
->=20
-> > > What do you do if the property is not present? You didn't make it
-> > > required which is good because that would be an ABI break.
-> >=20
-> > We need an indication of the ability to use the secure-monitor to obtain
-> > additional information within the soc driver. It seemed to me that usin=
-g an
-> > explicit reference to the secure-monitor is the best choice.
-> >=20
-> > >=20
-> > > You only need a link in DT if there are different possible providers =
-or
-> > > some per consumer information to describe (e.g. an interrupt number or
-> > > clock ID). You don't have the latter and likely there is only 1 possi=
-ble
-> > > provider.
-> >=20
-> > Would replacing the reference to sm with an option, for example,
-> > use-secure-monitor =3D <1>; look more appropriate in this case?
->=20
-> Perhaps a silly question, but (provided there's only one per system, why
-> can't the secure-monitor driver expose a function that you can call to get
-> a reference to the system-monitor? I did something similar before with
-> a call to in mpfs_sys_controller_get() mpfs_rng_probe(). Granted,
-> mpfs-rng is probed from software so it's slightly different to your
-> case, but the principle is the same and it's not unheard of for code in
-> drivers/soc to expose interfaces to other drivers like this. You can
-> just call a function like that, and know whether there's a secure
-> monitor, without having to retrofit a DT property.
+> Because there's no gce0/gce1 clock, there's only an infracfg_AO clock tha=
+t is
+> for one GCE instance, hence there's no need to require clock-names.
 
-Another thing, without having a driver expose an API, is calling
-of_find_compatible_node() to find the node. That also doesn't require
-retrofitting properties.
+clock-names, d'oh. I misread that completely yesterday.
 
---ZQkocubyAqYBA3MR
+> I can't remove the clock-names requirement from the older compatibles tho=
+ugh,
+> because the (sorry about this word) driver (eh..) gets the clock by name =
+for
+> the single GCE SoCs...
+>=20
+> ...and here comes a self-NACK for this commit, I have to fix the driver a=
+nd
+> then stop requiring clock-names on all compatibles, instead of having this
+> ugly nonsense.
+
+Is it not worth keeping the clock names, even if ugly or w/e, because
+things have been done that way for a while?
+Also, what does U-Boot do on these systems to get the clocks?
+
+> Self-note: gce0/gce1 clocks lookup was implemented in the driver but never
+> used and never added to the binding - luckily.
+>=20
+> Sorry Conor, I just acknowledged that there's a better way of doing that.
+>=20
+> Thank you for making me re-read this stuff, I'll send the proper changes
+> later today, driver change + binding change in a separate series.
+>=20
+> As for the other two commits in this series, completely unrelated to GCE,
+> those are still fine, and are fixing dtbs_check warnings.
+
+--vDd3+enh6BC9rJov
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnPlwwAKCRB4tDGHoIJi
-0r0uAP0XyqVo9SKftA8ejE3Fu+0lCIC+uQhySWm9eWN0WAAtvQD+POqtfbe5hEQx
-p0IbGE65UCeaR18GC+u0dYXgSIES5ws=
-=G8k+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnPmqgAKCRB4tDGHoIJi
+0kReAP9+nHTN6lCNnpAg765nXa6b1QwdTBEFjAYmSXPq03sY+QEAtvDHFzs69uth
+qgd15/M32kAL2PfmVibeGNuC6SuDsQA=
+=4tAi
 -----END PGP SIGNATURE-----
 
---ZQkocubyAqYBA3MR--
+--vDd3+enh6BC9rJov--
 
