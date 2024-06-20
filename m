@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-77747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620A290FD9E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:24:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B55A90FDAE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:27:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F009E2817CF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 07:24:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FB371C242B5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 07:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0EA543AD2;
-	Thu, 20 Jun 2024 07:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F70B45026;
+	Thu, 20 Jun 2024 07:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PPSB/nNu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cVgTOahZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71B042058;
-	Thu, 20 Jun 2024 07:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0A0446A5;
+	Thu, 20 Jun 2024 07:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718868265; cv=none; b=TK4VisWQY8VByqxXVgiTGboNuuM09MEAQSOWf+Vn4IfqmiirUY++5mFQ4ZN7FR86qB23Brq3M7gfdalECLGt4ah+4+fBcxPRijyvS9Kmbsj81LdpSS0Hr6L7FW7ggQTqpti4EtDRkvAbXO1jZ6UyubpZxX/z5F18Le+Dj4/fmKc=
+	t=1718868449; cv=none; b=jF8QiOclbO+fa2AOHICRRvCAe36G9n9su6eMKaMILxSroUI/tIJ3HRm8LOR9pAXbOXKT2ZLymz+EEG5FNq62XZTWhOWxPIC6Vujs1zecUIV4N1EVAVBOWFl7cPRvsOZGAzEVrfp8ztLGIlXEZkTVAI+8HjIFuOQ8ligYnpsUmYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718868265; c=relaxed/simple;
-	bh=bFxZk/qrW9Ux3NsamNQ01/iN0dHJ3WeihXjldjVbGxw=;
+	s=arc-20240116; t=1718868449; c=relaxed/simple;
+	bh=cnfxORgUb2XRzaUYhyY7pO04rpW+058lKSthDjn+Z90=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cUYULRUapKRfSSnJn8cUWNd9Faxbb8DHv6uOIfw3DLe9Qe7CxbXXvKFHynkBHt4OYzIKHTxY4zhNBJM6VJ0ZDTa9lvcbiBsX1B7LwPzPnJQdysPhRUXNj4SGyzPbLx4EXm6QfdsS42UDj85NNY9YGBMqjRvF8rZvvDz+J145F0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PPSB/nNu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7B58C2BD10;
-	Thu, 20 Jun 2024 07:24:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cf3kZ9JyUB4h4aQy7twe+McIHGvL9Gy6MJGqgp83rnEwyzbh7yvymm7MT3+FnSM3YmQTRRFHx90AxwWlbb4mxkKa8zU/KPHzVESHjdrEodMUQ0aESKWS9lgipkO10xYlaOAySjdH2KGuSG9T/CiFrBcLpxgtkUk/y760dpuJvjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cVgTOahZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA3DC2BD10;
+	Thu, 20 Jun 2024 07:27:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718868265;
-	bh=bFxZk/qrW9Ux3NsamNQ01/iN0dHJ3WeihXjldjVbGxw=;
+	s=k20201202; t=1718868448;
+	bh=cnfxORgUb2XRzaUYhyY7pO04rpW+058lKSthDjn+Z90=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PPSB/nNu7/o86f2uDySNS6iU6hxlce1Rwnz8eiqLAK0rTUr51kHgQ9kFXKXpi2BoX
-	 7M9ZHBzla44SomIdu8IyT8cWW6s1sAylFnxKgsoaNrwMfVmK4zx1ytaDwzIv3BYv1m
-	 ss0J2Vr1zB8DpWs9uTOaHKsZBL07djgpDWKtEGx8ICv4rPI6yY0puJ8UCbi8xRuRZT
-	 JqwBViaCIiLdEgLvf8YJZkugBO+odovHJjYl/cbK6gRPava8rb4w2eotiDFesTeLLR
-	 aL9LKicoW9oIGA/f+s1IeIxe3LGRasN7Pu/lBbhQqKxEdLuEGNSF7PZBvMoRrk3MDj
-	 fV9/W3ect/Jbw==
-Message-ID: <89880cda-1140-4ed5-a67f-2201c2825447@kernel.org>
-Date: Thu, 20 Jun 2024 09:24:19 +0200
+	b=cVgTOahZ7q8pfb9SLRgrQ3drJhGKn0rOK7azdkbjd/FdlyRfwj39PI2NMfFxdSJAm
+	 iu3Lif8D9pIkpJQ4paeP5Y7ZM4+/1msNjNQ0AQfuEIye6mPOdJmRA+Gz9zVCoL3Uqx
+	 EDQ+VYI7l9TYjHhzdxoZvW7Z+TP/Gl1tAL07eUvBaOGksljF2wvdIteUyNqPYHK/Ku
+	 jgOFqQCr1SO31bfhJIqGEIsUqmWDqeXtdVfu71ak1Rbf3NFkRV/HzBGBboBKKyVZo4
+	 3b6kaEYnsjOIeAqgGs4oO/cYrHSdt9aoOv+b5p6p9ulgVspRZ1/UUIIEJJesnaurtC
+	 mjt7zwGMqTefA==
+Message-ID: <710469e2-d7be-46d0-9851-773458bd789b@kernel.org>
+Date: Thu, 20 Jun 2024 09:27:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: allow ethernet
- controller in ICSSG node
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Suman Anna <s-anna@ti.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-References: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: rng: Add Exynos850 support to
+ exynos-trng
+To: Sam Protsenko <semen.protsenko@linaro.org>,
+ =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Anand Moon <linux.amoon@gmail.com>, Olivia Mackall <olivia@selenic.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240618204523.9563-1-semen.protsenko@linaro.org>
+ <20240618204523.9563-2-semen.protsenko@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,62 +108,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
+In-Reply-To: <20240618204523.9563-2-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/06/2024 13:24, Matthias Schiffer wrote:
-> While the current Device Trees for TI EVMs configure the PRUSS Ethernet
-> controller as a toplevel node with names like "icssg1-eth", allowing to
-> make it a subnode of the ICSSG has a number of advantages:
-
-What is ICSSG? The sram or ti,prus from the ethernet schema?
-
+On 18/06/2024 22:45, Sam Protsenko wrote:
+> The TRNG block in Exynos850 is pretty much the same as in Exynos5250,
+> but there are two clocks that has to be controlled to make it work:
+>   1. Functional (operating) clock: called ACLK in Exynos850, the same as
+>      "secss" clock in Exynos5250
+>   2. Interface (bus) clock: called PCLK in Exynos850. It has to be
+>      enabled in order to access TRNG registers
 > 
-> - It makes sense semantically - the Ethernet controller is running on
->   the ICSSG/PRUSS
-> - Disabling or deleting the ICSSG node implicitly removes the Ethernet
->   controller node when it is a child node. This can be relevant on SoCs
->   like the AM64x which come in variants with and without ICSSG; e.g., on
->   the TQMa64xxL the ICSSG node will be disabled on variants without as a
->   bootloader fixup.
->   On Linux, this avoids leaving the Ethernet controller in deferred
->   state forever while waiting for the ICSSG to become available
->   (resulting in a warning on newer kernels)
+> Document Exynos850 compatible and the related clock changes.
 > 
-> The node name "ethernet" is chosen as it nicely matches the regular
-> "ethernet@<reg>" format of many Ethernet controller nodes, and is also
-> what the prueth binding example (/schemas/net/ti,icssg-prueth.yaml) uses.
-> 
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> index c402cb2928e89..89dfcf5ce8434 100644
-> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> @@ -92,6 +92,13 @@ properties:
->      description: |
->        This property is as per sci-pm-domain.txt.
->  
-> +  ethernet:
-> +    description: |
 
-Do not need '|' unless you need to preserve formatting.
 
-> +      ICSSG PRUSS Ethernet. Configuration for an Ethernet controller running
-> +      on the PRU-ICSS.
-> +    $ref: /schemas/net/ti,icssg-prueth.yaml#
-> +    type: object
-> +
->  patternProperties:
->  
->    memories@[a-f0-9]+$:
-
-You are mixing MMIO and non-MMIO nodes. That's odd or even sloppy
-design. It immediately raises questions about your bindings.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
