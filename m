@@ -1,153 +1,469 @@
-Return-Path: <devicetree+bounces-77772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E326590FEAF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:22:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C9A90FEC1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8016D287135
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:22:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 347421C203D8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9235017CA19;
-	Thu, 20 Jun 2024 08:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="bzA/JTEb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322EC18EFEC;
+	Thu, 20 Jun 2024 08:25:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09435B05E;
-	Thu, 20 Jun 2024 08:22:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0216B3CF65;
+	Thu, 20 Jun 2024 08:25:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718871747; cv=none; b=O1tq3viGSGFjb+Ypuq7Sb3XwCQsHzZ5g47jiCg5Cjj694ZX+HnuDvworN3QRWermqcJT+5DDBI7JQM9vGanGsdG4vJVlsAjdtdKXPyiinZ3ddsFYDNroFZ5CsEvzXxUP+KavGKTV1BNLsYzSweLr93qqIxE2L8dWSf/GGKBeCTo=
+	t=1718871949; cv=none; b=e/d4yWA5PmdCDySCAeCOCl7M2Gy7tNqeCofcxV0WkJ8WWNDYAFocwKdZ1PODSFii28owTLIud0R435ChxGN22vCNnbDBUP2yqZTz7Q5mfQe/cpqB6f7Yb+PO76ZCXzL4TYJYh28BqyV85DxzlK2V65aEFXqz2xzWbSD9qd7gm+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718871747; c=relaxed/simple;
-	bh=DgkvKqufEzVzA4mCCc5Izp084ePjsPRawcTM+KusyrY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rCuXDcJMYfMHkGDa2mqPPydcPx960evxedJp4LK+5JjAAVVKx0LgEDgGPLscYXeDZcmX3v2GSWsEhCKkKe0MpjAxTo3O+z054uwsgoOOhymy8ldnG8dk/Oaf8QGigvjMlV5enRXrfHcL0DZYnRydlSB0Q4FQec1iFj8AU7azDPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=bzA/JTEb; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1718871746; x=1750407746;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DgkvKqufEzVzA4mCCc5Izp084ePjsPRawcTM+KusyrY=;
-  b=bzA/JTEbNLhNHk602tpK/ERTU+FlluweZvZtGR7dYJHR19Ki25mJMugJ
-   DcHKlYBnbBdmvgOc75BRprRyiq3PDgxKaCl5IXaKx+EYz0X8lvHwmXxd5
-   mfvL6CKHX26tffh5p3hwoNA+le/NEoSCZxHsx3WCobKHe20BafeINqWAV
-   rQws+225NQhj7IIa1AeAArbFplBJ/tM2cp2UAWzzaKNpV7aikuUzdWvhK
-   A76ntdqJkkJ6LKUrzSdaZqwYWCYcNLqGxCr+NK9e3kLhy+wc3rgMzOg3m
-   VOsjDngFbCx9GXG3/mDtafdZ+7sfj6Krqb9F+G5W6kVHeqnG+MpM1DUyN
-   Q==;
-X-CSE-ConnectionGUID: BfXzup/sSuCPo1L9vCsj6w==
-X-CSE-MsgGUID: ecnZoOx/TbqPi03KL3ujjw==
-X-IronPort-AV: E=Sophos;i="6.08,251,1712646000"; 
-   d="asc'?scan'208";a="259148518"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Jun 2024 01:22:25 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 20 Jun 2024 01:22:24 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 20 Jun 2024 01:22:20 -0700
-Date: Thu, 20 Jun 2024 09:22:02 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: Conor Dooley <conor@kernel.org>, <krzk+dt@kernel.org>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>, <jassisinghbrar@gmail.com>,
-	<garmin.chang@mediatek.com>, <houlong.wei@mediatek.com>,
-	<Jason-ch.Chen@mediatek.com>, <amergnat@baylibre.com>,
-	<Elvis.Wang@mediatek.com>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<kernel@collabora.com>
-Subject: Re: [PATCH 3/3] dt-bindings: mailbox: mediatek: Avoid clock-names on
- MT8188 GCE
-Message-ID: <20240620-district-bullring-c028e0183925@wendy>
-References: <20240619085322.66716-1-angelogioacchino.delregno@collabora.com>
- <20240619085322.66716-3-angelogioacchino.delregno@collabora.com>
- <20240619-sleeve-citable-a3dc10e5cd4f@spud>
- <a7317981-8690-4d45-81b6-cc6a63c459e0@collabora.com>
+	s=arc-20240116; t=1718871949; c=relaxed/simple;
+	bh=2h8RP9Ndy6w9QPLaBDGqwRt4sBSKvYRtqx5wKBIOJ9Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d9txFNAwC8MjXrrLM4XjcbNXWE7zaCyBoy8Vhq43JjzS/c1vA6mnho/P1aLNOfR42WIEZ6H99IeqUH3EU5CCc6HdR98ELQB78XfKPOgxiWFaLUusSKroDYc5Qm8QNZZ1URoK8YrI5/ZVRWuZggUwVxQ0g1vzAf3P0lSHG2ofZSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 88FE4DA7;
+	Thu, 20 Jun 2024 01:26:09 -0700 (PDT)
+Received: from [192.168.1.100] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3CCAA3F64C;
+	Thu, 20 Jun 2024 01:25:43 -0700 (PDT)
+Message-ID: <ffce6b1c-1f84-4a9f-9e9a-d44201097876@arm.com>
+Date: Thu, 20 Jun 2024 09:25:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vDd3+enh6BC9rJov"
-Content-Disposition: inline
-In-Reply-To: <a7317981-8690-4d45-81b6-cc6a63c459e0@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 4/7] coresight: tmc: Enable panic sync handling
+To: Linu Cherian <lcherian@marvell.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: mike.leach@linaro.org, linux-arm-kernel@lists.infradead.org,
+ coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com
+References: <20240605081725.622953-1-lcherian@marvell.com>
+ <20240605081725.622953-5-lcherian@marvell.com>
+ <f885b6df-e9c4-4c19-9587-b4e0c84d31c4@arm.com>
+ <20240620041054.GC125816@hyd1403.caveonetworks.com>
+Content-Language: en-US
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <20240620041054.GC125816@hyd1403.caveonetworks.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---vDd3+enh6BC9rJov
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 20, 2024 at 10:01:18AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 19/06/24 19:49, Conor Dooley ha scritto:
-> > On Wed, Jun 19, 2024 at 10:53:22AM +0200, AngeloGioacchino Del Regno wr=
-ote:
-> > > Add mediatek,mt8188-gce to the list of compatibles for which the
-> > > clock-names property is not required.
-> >=20
-> > Because, I assume, it has some internal clock? Why do either of these
-> > things have no clock? Doesn't the internal logic require one?
-> >=20
->=20
-> Because there's no gce0/gce1 clock, there's only an infracfg_AO clock tha=
-t is
-> for one GCE instance, hence there's no need to require clock-names.
 
-clock-names, d'oh. I misread that completely yesterday.
+On 20/06/2024 05:10, Linu Cherian wrote:
+> On 2024-06-10 at 18:32:33, Suzuki K Poulose (suzuki.poulose@arm.com) wrote:
+>> On 05/06/2024 09:17, Linu Cherian wrote:
+>>> - Get reserved region from device tree node for metadata
+>>> - Define metadata format for TMC
+>>> - Add TMC ETR panic sync handler that syncs register snapshot
+>>>    to metadata region
+>>> - Add TMC ETF panic sync handler that syncs register snapshot
+>>>    to metadata region and internal SRAM to reserved trace buffer
+>>>    region.
+>>>
+>>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+>>> Reviewed-by: James Clark <james.clark@arm.com>
+>>> ---
+>>> Changelog from v8:
+>>> Added Reviewed-by tag.
+>>>
+>>>   .../hwtracing/coresight/coresight-tmc-core.c  | 25 +++++++
+>>>   .../hwtracing/coresight/coresight-tmc-etf.c   | 72 +++++++++++++++++++
+>>>   .../hwtracing/coresight/coresight-tmc-etr.c   | 70 ++++++++++++++++++
+>>>   drivers/hwtracing/coresight/coresight-tmc.h   | 45 +++++++++++-
+>>>   4 files changed, 211 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
+>>> index 6beb69d74d0a..daad08bc693d 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
+>>> @@ -443,6 +443,31 @@ static void tmc_get_reserved_region(struct device *parent)
+>>>   	drvdata->crash_tbuf.paddr = res.start;
+>>>   	drvdata->crash_tbuf.size  = resource_size(&res);
+>>> +
+>>> +	/* Metadata region */
+>>> +	node = tmc_get_region_byname(parent->of_node, "metadata");
+>>> +	if (IS_ERR_OR_NULL(node)) {
+>>> +		dev_dbg(parent, "No metadata memory-region specified\n");
+>>> +		return;
+>>> +	}
+>>> +
+>>> +	rc = of_address_to_resource(node, 0, &res);
+>>> +	of_node_put(node);
+>>> +	if (rc || res.start == 0 || resource_size(&res) == 0) {
+>>> +		dev_err(parent, "Metadata memory is invalid\n");
+>>> +		return;
+>>> +	}
+>>> +
+>>> +	drvdata->crash_mdata.vaddr = memremap(res.start,
+>>> +					       resource_size(&res),
+>>> +					       MEMREMAP_WC);
+>>> +	if (IS_ERR_OR_NULL(drvdata->crash_mdata.vaddr)) {
+>>> +		dev_err(parent, "Metadata memory mapping failed\n");
+>>> +		return;
+>>> +	}
+>>> +
+>>> +	drvdata->crash_mdata.paddr = res.start;
+>>> +	drvdata->crash_mdata.size  = resource_size(&res);
+>>>   }
+>>>   /* Detect and initialise the capabilities of a TMC ETR */
+>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etf.c b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+>>> index d4f641cd9de6..f9569585e9f8 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-tmc-etf.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+>>> @@ -590,6 +590,73 @@ static unsigned long tmc_update_etf_buffer(struct coresight_device *csdev,
+>>>   	return to_read;
+>>>   }
+>>> +static int tmc_panic_sync_etf(struct coresight_device *csdev)
+>>> +{
+>>> +	u32 val;
+>>> +	struct csdev_access *csa;
+>>> +	struct tmc_crash_metadata *mdata;
+>>> +	struct tmc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
+>>> +
+>>> +	csa = &drvdata->csdev->access;
+>>> +
+>>> +	/* Make sure we have valid reserved memory */
+>>> +	if (!is_tmc_reserved_region_valid(csdev->dev.parent))
+>>> +		return 0;
+>>> +
+>>> +	mdata = (struct tmc_crash_metadata *)drvdata->crash_mdata.vaddr;
+>>> +	mdata->valid = false;
+>>> +
+>>> +	CS_UNLOCK(drvdata->base);
+>>> +
+>>> +	/* Proceed only if ETF is enabled or configured as sink */
+>>> +	val = readl(drvdata->base + TMC_CTL);
+>>> +	if (!(val & TMC_CTL_CAPT_EN))
+>>> +		goto out;
+>>> +
+>>> +	val = readl(drvdata->base + TMC_MODE);
+>>> +	if (val != TMC_MODE_CIRCULAR_BUFFER)
+>>> +		goto out;
+>>> +
+>>> +	val = readl(drvdata->base + TMC_FFSR);
+>>> +	/* Do manual flush and stop only if its not auto-stopped */
+>>> +	if (!(val & TMC_FFSR_FT_STOPPED)) {
+>>> +		dev_info(&csdev->dev,
+>>> +			 "%s: Triggering manual flush\n", __func__);
+>>> +		tmc_flush_and_stop(drvdata);
+>>> +	} else
+>>> +		tmc_wait_for_tmcready(drvdata);
+>>> +
+>>> +	/* Sync registers from hardware to metadata region */
+>>> +	mdata->sts = csdev_access_relaxed_read32(csa, TMC_STS);
+>>> +	mdata->trc_paddr = drvdata->crash_tbuf.paddr;
+>>> +
+>>> +	/* Sync Internal SRAM to reserved trace buffer region */
+>>> +	drvdata->buf = drvdata->crash_tbuf.vaddr;
+>>> +	tmc_etb_dump_hw(drvdata);
+>>> +	/* Store as per RSZ register convention */
+>>> +	mdata->size = drvdata->len >> 2;
+>>> +
+>>> +	/*
+>>> +	 * Make sure all previous writes are completed,
+>>> +	 * before we mark valid
+>>> +	 */
+>>> +	dsb(sy);
+>>> +	mdata->valid = true;
+>>> +	/*
+>>> +	 * Below order need to maintained, since crc of metadata
+>>> +	 * is dependent on first
+>>> +	 */
+>>> +	mdata->crc32_tdata = find_crash_tracedata_crc(drvdata, mdata);
+>>> +	mdata->crc32_mdata = find_crash_metadata_crc(mdata);
+>>> +
+>>> +	tmc_disable_hw(drvdata);
+>>> +
+>>> +	dev_info(&csdev->dev, "%s: success\n", __func__);
+>>> +out:
+>>> +	CS_UNLOCK(drvdata->base);
+>>> +	return 0;
+>>> +}
+>>> +
+>>>   static const struct coresight_ops_sink tmc_etf_sink_ops = {
+>>>   	.enable		= tmc_enable_etf_sink,
+>>>   	.disable	= tmc_disable_etf_sink,
+>>> @@ -603,6 +670,10 @@ static const struct coresight_ops_link tmc_etf_link_ops = {
+>>>   	.disable	= tmc_disable_etf_link,
+>>>   };
+>>> +static const struct coresight_ops_panic tmc_etf_sync_ops = {
+>>> +	.sync		= tmc_panic_sync_etf,
+>>> +};
+>>> +
+>>>   const struct coresight_ops tmc_etb_cs_ops = {
+>>>   	.sink_ops	= &tmc_etf_sink_ops,
+>>>   };
+>>> @@ -610,6 +681,7 @@ const struct coresight_ops tmc_etb_cs_ops = {
+>>>   const struct coresight_ops tmc_etf_cs_ops = {
+>>>   	.sink_ops	= &tmc_etf_sink_ops,
+>>>   	.link_ops	= &tmc_etf_link_ops,
+>>> +	.panic_ops	= &tmc_etf_sync_ops,
+>>>   };
+>>>   int tmc_read_prepare_etb(struct tmc_drvdata *drvdata)
+>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>>> index 041c428dd7cd..be1079e8fd64 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>>> @@ -1813,6 +1813,71 @@ static int tmc_disable_etr_sink(struct coresight_device *csdev)
+>>>   	return 0;
+>>>   }
+>>> +static int tmc_panic_sync_etr(struct coresight_device *csdev)
+>>> +{
+>>> +	u32 val;
+>>> +	struct csdev_access *csa;
+>>> +	struct tmc_crash_metadata *mdata;
+>>> +	struct tmc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
+>>> +
+>>> +	csa = &drvdata->csdev->access;
+>>> +
+>>> +	if (!drvdata->etr_buf)
+>>> +		return 0;
+>>> +
+>>> +	/* Being in RESRV mode implies valid reserved memory as well */
+>>> +	if (drvdata->etr_buf->mode != ETR_MODE_RESRV)
+>>> +		return 0;
+>>> +
+>>> +	mdata = (struct tmc_crash_metadata *)drvdata->crash_mdata.vaddr;
+>>> +	mdata->valid = false;
+>>> +
+>>> +	CS_UNLOCK(drvdata->base);
+>>> +
+>>> +	/* Proceed only if ETR is enabled */
+>>> +	val = readl(drvdata->base + TMC_CTL);
+>>> +	if (!(val & TMC_CTL_CAPT_EN))
+>>> +		goto out;
+>>> +
+>>> +	val = readl(drvdata->base + TMC_FFSR);
+>>> +	/* Do manual flush and stop only if its not auto-stopped */
+>>> +	if (!(val & TMC_FFSR_FT_STOPPED)) {
+>>> +		dev_info(&csdev->dev,
+>>> +			 "%s: Triggering manual flush\n", __func__);
+>>> +		tmc_flush_and_stop(drvdata);
+>>> +	} else
+>>> +		tmc_wait_for_tmcready(drvdata);
+>>> +
+>>> +	/* Sync registers from hardware to metadata region */
+>>> +	mdata->size = csdev_access_relaxed_read32(csa, TMC_RSZ);
+>>> +	mdata->sts = csdev_access_relaxed_read32(csa, TMC_STS);
+>>> +	mdata->rrp = tmc_read_rrp(drvdata);
+>>> +	mdata->rwp = tmc_read_rwp(drvdata);
+>>> +	mdata->dba = tmc_read_dba(drvdata);
+>>> +	mdata->trc_paddr = drvdata->crash_tbuf.paddr;
+>>> +
+>>> +	/*
+>>> +	 * Make sure all previous writes are completed,
+>>> +	 * before we mark valid
+>>> +	 */
+>>> +	dsb(sy);
+>>> +	mdata->valid = true;
+>>> +	/*
+>>> +	 * Below order need to maintained, since crc of metadata
+>>> +	 * is dependent on first
+>>> +	 */
+>>> +	mdata->crc32_tdata = find_crash_tracedata_crc(drvdata, mdata);
+>>> +	mdata->crc32_mdata = find_crash_metadata_crc(mdata);
+>>> +
+>>> +	tmc_disable_hw(drvdata);
+>>> +
+>>> +	dev_info(&csdev->dev, "%s: success\n", __func__);
+>>> +out:
+>>> +	CS_UNLOCK(drvdata->base);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>>   static const struct coresight_ops_sink tmc_etr_sink_ops = {
+>>>   	.enable		= tmc_enable_etr_sink,
+>>>   	.disable	= tmc_disable_etr_sink,
+>>> @@ -1821,8 +1886,13 @@ static const struct coresight_ops_sink tmc_etr_sink_ops = {
+>>>   	.free_buffer	= tmc_free_etr_buffer,
+>>>   };
+>>> +static const struct coresight_ops_panic tmc_etr_sync_ops = {
+>>> +	.sync		= tmc_panic_sync_etr,
+>>> +};
+>>> +
+>>>   const struct coresight_ops tmc_etr_cs_ops = {
+>>>   	.sink_ops	= &tmc_etr_sink_ops,
+>>> +	.panic_ops	= &tmc_etr_sync_ops,
+>>>   };
+>>>   int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
+>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+>>> index c23dc9917ab9..35beee53584a 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-tmc.h
+>>> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
+>>> @@ -12,6 +12,7 @@
+>>>   #include <linux/miscdevice.h>
+>>>   #include <linux/mutex.h>
+>>>   #include <linux/refcount.h>
+>>> +#include <linux/crc32.h>
+>>>   #define TMC_RSZ			0x004
+>>>   #define TMC_STS			0x00c
+>>> @@ -76,6 +77,9 @@
+>>>   #define TMC_AXICTL_AXCACHE_OS	(0xf << 2)
+>>>   #define TMC_AXICTL_ARCACHE_OS	(0xf << 16)
+>>> +/* TMC_FFSR - 0x300 */
+>>> +#define TMC_FFSR_FT_STOPPED	BIT(1)
+>>> +
+>>>   /* TMC_FFCR - 0x304 */
+>>>   #define TMC_FFCR_FLUSHMAN_BIT	6
+>>>   #define TMC_FFCR_EN_FMT		BIT(0)
+>>> @@ -131,6 +135,21 @@ enum tmc_mem_intf_width {
+>>>   #define CORESIGHT_SOC_600_ETR_CAPS	\
+>>>   	(TMC_ETR_SAVE_RESTORE | TMC_ETR_AXI_ARCACHE)
+>>
+>>
+>>
+>>
+>>> +/* TMC metadata region for ETR and ETF configurations */
+>>
+>> I strongly think we should version the data layout to handle
+>> the future changes better (if at all).
+> 
+> 
+>>
+>>
+>>> +struct tmc_crash_metadata {
+>>> +	uint32_t crc32_mdata;	/* crc of metadata */
+>>> +	uint32_t crc32_tdata;	/* crc of tracedata */
+>>
+>> 	uint32_t version;	/* Version of the structure = 1 */
+> 
+> Ack.
+> 
+>>
+>>> +	uint32_t valid;         /* Indicate if this ETF/ETR was enabled */
+>>> +	uint32_t size;          /* Ram Size register */
+>>
+>> Please save the size in bytes and also rename it :
+>>
+>> 	uint32_t trace_size;	/* Trace size in Bytes */
+> 
+> The idea was to only take a register snapshot by kernel/firmware at the time of
+> panic/watchdog reset and thought that keeping that panic handler/watchdog reset
+> handler without any conversions would be better when external entities like firmware
+> is involved.
+> 
+> Please let me know if you still prefer adding this field.
+> 
+>>
+>>
+>>> +	uint32_t sts;           /* Status register */
+>>> +	uint32_t reserved32[3];
+>>> +	uint64_t rrp;           /* Ram Read pointer register */
+>>> +	uint64_t rwp;           /* Ram Write pointer register */
+>>
+>>
+>>
+>>> +	uint64_t dba;		/* Data buffer address register */
+>>
+>> Is this field useful ? And we store RRP/RWP relative to the DBA ? Could
+> 
+> RRP/RWP/DBA fields are just register snapshots.
+> Yes we use the DBA to calculate offsets. 
+> ie. etr_buf->offset = rrp - dba;
+> 
+> 
+>> we instead :
+>>
+>> 1. Drop DBA
+>> 2. Store RRP and RWP as offsets from DBA. Or even convert them to the
+>> actual PADDRs relative to the trc_paddr.
+> 
+> Converting to actual PADDRs would be difficult in case of watchdog reset
+> scenarios where firmware is involved.
+> 
+>>
+>> DBA could be a "DMA" Address and not necessarily the PA Address.
+>> We already have the trc_paddr below. (And for ETF, we already copy
+>> the buffer to the reserved buffer). So all the user needs to know
+>> is where the pointers are within the buffer. Having them relative
+>> to the "actual" location of the buffer is much useful than basing
+>> it on some unusable base address.
+> 
+> As pointed out above, the idea was to only take a register snapshot without
+> any conversions. Please let me know if you still prefer dropping the DBA.
+> 
+>>
+>>> +	uint64_t trc_paddr;	/* Phys address of trace buffer */
+>>
+>> s/trc/trace
+>>
+>> Move RRP and RWP, after the above field.
+>>
+>> For the sake of completeness, you are also missing :
+>>
+>> 1) FFCR register => That tells you whether the Formatting was enabled or not
+>> (among other things) ? Though we always enable it, its good to
+>> capture it, if we ever decide to turn off the formatting.
+>>
+>>
+>> 2) MODE => Which mode was selected. Again, CIRCULAR_BUFFER for now,
+>> but lets seal it for the future, so that you can infer the trace buffer
+>> correctly with RRP/RWP.
+>>
+>> 3) And may be FFSR, just in case the flush never completed and the
+>> data is not reliable ?
+> 
+> Sure will add the above three fields.
+> 
+>>
+>>> +	uint64_t reserved64[3];
+>>> +};
+>>
+>>
+>>
+>>
+>>> +
+>>>   enum etr_mode {
+>>>   	ETR_MODE_FLAT,		/* Uses contiguous flat buffer */
+>>>   	ETR_MODE_ETR_SG,	/* Uses in-built TMC ETR SG mechanism */
+>>> @@ -204,6 +223,8 @@ struct tmc_resrv_buf {
+>>>    *		retention (after crash) only when ETR_MODE_RESRV buffer
+>>>    *		mode is enabled. Used by ETF for trace data retention
+>>>    *		(after crash) by default.
+>>> + * @crash_mdata: Reserved memory for storing tmc crash metadata.
+>>> + *		 Used by ETR/ETF.
+>>>    */
+>>>   struct tmc_drvdata {
+>>>   	struct clk		*pclk;
+>>> @@ -230,6 +251,7 @@ struct tmc_drvdata {
+>>>   	struct etr_buf		*sysfs_buf;
+>>>   	struct etr_buf		*perf_buf;
+>>>   	struct tmc_resrv_buf	crash_tbuf;
+>>> +	struct tmc_resrv_buf	crash_mdata;
+>>>   };
+>>>   struct etr_buf_operations {
+>>> @@ -352,11 +374,32 @@ static inline bool is_tmc_reserved_region_valid(struct device *dev)
+>>>   	struct tmc_drvdata *drvdata = dev_get_drvdata(dev);
+>>>   	if (drvdata->crash_tbuf.paddr &&
+>>> -		drvdata->crash_tbuf.size)
+>>> +		drvdata->crash_tbuf.size &&
+>>> +		drvdata->crash_mdata.paddr &&
+>>> +		drvdata->crash_mdata.size)
+>>
+>> Why do we need to tie the "reserved" region to metdata region availability ?
+>> It is perfectly possible for another usecase
+>> to dedicate a buffer for trace and use it without metadata ?
+> 
+> Okay that can be reworked.
+> 
 
-> I can't remove the clock-names requirement from the older compatibles tho=
-ugh,
-> because the (sorry about this word) driver (eh..) gets the clock by name =
-for
-> the single GCE SoCs...
->=20
-> ...and here comes a self-NACK for this commit, I have to fix the driver a=
-nd
-> then stop requiring clock-names on all compatibles, instead of having this
-> ugly nonsense.
+Wouldn't that be the same as the old sysfs mode? Without the metadata
+does it do anything different functionally? I'm wondering if it's worth
+the extra complexity to implement and test two modes (with and without
+metadata).
 
-Is it not worth keeping the clock names, even if ugly or w/e, because
-things have been done that way for a while?
-Also, what does U-Boot do on these systems to get the clocks?
-
-> Self-note: gce0/gce1 clocks lookup was implemented in the driver but never
-> used and never added to the binding - luckily.
->=20
-> Sorry Conor, I just acknowledged that there's a better way of doing that.
->=20
-> Thank you for making me re-read this stuff, I'll send the proper changes
-> later today, driver change + binding change in a separate series.
->=20
-> As for the other two commits in this series, completely unrelated to GCE,
-> those are still fine, and are fixing dtbs_check warnings.
-
---vDd3+enh6BC9rJov
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnPmqgAKCRB4tDGHoIJi
-0kReAP9+nHTN6lCNnpAg765nXa6b1QwdTBEFjAYmSXPq03sY+QEAtvDHFzs69uth
-qgd15/M32kAL2PfmVibeGNuC6SuDsQA=
-=4tAi
------END PGP SIGNATURE-----
-
---vDd3+enh6BC9rJov--
+James
 
