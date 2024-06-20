@@ -1,153 +1,192 @@
-Return-Path: <devicetree+bounces-77793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE3A90FF56
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:49:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 115E290FF68
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:50:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 808B21F2194D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:49:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FDFB285988
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764511AB91B;
-	Thu, 20 Jun 2024 08:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D511A4F12;
+	Thu, 20 Jun 2024 08:47:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BflZkvXV"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CnCwWcPG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7BBF1AB90F;
-	Thu, 20 Jun 2024 08:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD9740858;
+	Thu, 20 Jun 2024 08:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718873161; cv=none; b=Gg+/QYHkZiHcOJXbeiQpgAbfuwlmntMQ6Q+7wMlPDnO7dGPWOe9e5iu1s8TTnHC4qrtVaGiwH7fQSeUir3lGosfvoQLncjnxEZekdiUxxv/FGhHVbPpi9H0YhXagZzayjd7UNZYsse3t97ulfmRw3+lEnrsWUK7X2UyIxnTPhXI=
+	t=1718873276; cv=none; b=s/B652ecpI8VndZsqb3KCPifVNXCXCGdbjmpbBN1XBLA9mR402FeS4zftmGX0jH3H710Yj8WMUA2txxPNN+065mWmoY+UJpXZKctnKD9uoXkAm5RNsPi8kcJmSIzb3G73bPvz046Q0o7B6ebX6tuII40HhXrd86Gd9kKZYMv0To=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718873161; c=relaxed/simple;
-	bh=IYpgjkNJ+3p8GkMwRIoKvBaYq1yJLDn4XIpVSdU6z7c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tVv3TiXXM8x41FsZpNSpPTibtMnLNEC6hztSwBbMgYprVQKk4SmOg2P7/0EsSCeLS6v+XmT6AvKU6/c7B4TdqRd2i2XLyHrpvaW/ywVhthpOGVi8lURRx0j5FhrFCEvCwTGnb7c9EukwSl0bY6OOwpoK3N0dYromEbfK5qq74qA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BflZkvXV; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3d229826727so415095b6e.1;
-        Thu, 20 Jun 2024 01:45:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718873159; x=1719477959; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EiJfmKO8nNBSX1oUuFOSypNRXVZPBtzmshynKzoPzUw=;
-        b=BflZkvXVDni/8Fe0N+z2Z8DLQuUNjyMcMWyzW+dJF+oWSVN91xQVh4x2VynCyg6yzl
-         yxjUDrpSHrnqCXddmb3YE6qx0ufR/s3S6Ej4S3xEKFbMvWaucL4a2j7QGcCcxV1MKw8h
-         peDBy5AvkW1/tdOrqh+fLgg2LyZwQAl+M/jE4s2eKUA3Y8SWuSnruiTOeZvc3YYcfpSP
-         +d2hcA54oaK4+XqQQK2Ka5GnyweTBMTGHEzzDsjhHc6dB1466q2W77CyXKTJj/LPIk0g
-         /wseu0IF+c0ojhSH66dJwkLzVXNbkwElj2RlN/dPKUmvvGcGq8zyHaYXVltLBQHmNxQn
-         Pd6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718873159; x=1719477959;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EiJfmKO8nNBSX1oUuFOSypNRXVZPBtzmshynKzoPzUw=;
-        b=j/ynDyrMNaym+x4f84RTqM71aOvVJdjV83TYRxREukbIIP4zDft1uqpwC7WzZhJQiL
-         oRfs2znSIQ6kh70wbG4Uum7Kf7fFhCIujbv/OcWDCxUU17B+dT4SK9ATFLMLaUprCCGq
-         xYtq9xRpJB1kQgM3EPsUiPwtZOdLOGHOgFvqD/7gEHTCa4thMiOpe0yonmYgP+hCAjpD
-         beyJopnNHmdWyZEuNAmtxWRH9EeI4Abm44pwJ9oTWOuyhyimb8yOmKw+zjgRF+9cAlOe
-         N/gjynXhBcUScsxS5EpGzoI3DwCIXpNlue9ZoPl7okehzZ7wAdB+/476B+D4TzN3py2D
-         CsoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHiB0IJ4wla4OpOlzmtIAhOZluzi28I9B+602RmQvH7gdFkRHaqrToNFjLTCA1VymMptmQ0luOCkSsNwMXEquGj18bfOaGluaviVSapjDe21HTC29JAOJCiNm6IA7m/fGl4MiVHeG27PblppL5dPXz/gkbL+f0SMB46JvHcEgOCBHo1nw=
-X-Gm-Message-State: AOJu0YwTGWFuIiZAtmLK2JTg9d2eTHocqK8zcQH836EIN8UCFjItt3ZN
-	hh5uCB79CHqd1bvSW4QDAvNpUVtww6aVz1cbxRyz+P9rvJY/3mSX
-X-Google-Smtp-Source: AGHT+IGhGDKSgAv0T6Xql5g7csBDAeTCcq8i/P2W7WhnsCqa2jWpcloUNmsMrFYRH/C43jnjpNWvwg==
-X-Received: by 2002:a05:6808:199c:b0:3d2:1e98:cb04 with SMTP id 5614622812f47-3d51b9824c4mr5393367b6e.7.1718873157886;
-        Thu, 20 Jun 2024 01:45:57 -0700 (PDT)
-Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705ccb6b9besm11895592b3a.165.2024.06.20.01.45.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 01:45:57 -0700 (PDT)
-From: Potin Lai <potin.lai.pt@gmail.com>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>
-Cc: linux-aspeed@lists.ozlabs.org,
-	openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Patrick Williams <patrick@stwcx.xyz>,
-	Cosmo Chou <cosmo.chou@quantatw.com>,
-	Potin Lai <potin.lai@quantatw.com>,
-	Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH v3 2/2] pinctrl: aspeed-g6: Add NCSI pin group config
-Date: Thu, 20 Jun 2024 16:43:37 +0800
-Message-Id: <20240620084337.3525690-3-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20240620084337.3525690-1-potin.lai.pt@gmail.com>
-References: <20240620084337.3525690-1-potin.lai.pt@gmail.com>
+	s=arc-20240116; t=1718873276; c=relaxed/simple;
+	bh=TBVTI/0PYjZSNwLs8zOMBanM4w1UfbWtOpjIx22X/S8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:Message-ID:MIME-Version:
+	 Content-Type:References; b=VQbRjLSm4Qb1roC7yuLhd5ASR39aynhOz/pRXMI0spw8N+Pv1Z76WeQOZcpUdkPLrdik/UciEfKPXSfSPxGCmmzsrhjNGak8Bc0lgAfYz3+G62lhCKhEmLYPKWhRs8hZHDBH3/sNyxad5aWO7R1YbVngb0ph9S6/tj45HwP6uEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CnCwWcPG; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240620084750euoutp022a61bdb452905d0d93967b59e85b60ff~aqiHwNbLt1458414584euoutp02w;
+	Thu, 20 Jun 2024 08:47:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240620084750euoutp022a61bdb452905d0d93967b59e85b60ff~aqiHwNbLt1458414584euoutp02w
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1718873270;
+	bh=2xH7UaeSHxwlKbfKFdgiBYrxzRVkCcqlRlIhfGGkv3E=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=CnCwWcPGEQLlrmu5GiGFmqg0ZxD5CVc+j6jPG5uuRr9gCAk7ZPCub9S5bgAmQfeoS
+	 glnYI8j0c2Va+5WGibE3KKBIp7FN49iE7HuZaLtE3SR3AYhmtU7UPUuVXg9iBr3H4Y
+	 BexdtWc8Ke8ws3TU2C6pXr/R9dncumT+S7Dkx+F0=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20240620084750eucas1p1e7fb1bcad2283f58e3f6041152a56a46~aqiHegUUU0512305123eucas1p1O;
+	Thu, 20 Jun 2024 08:47:50 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id CE.08.09624.6BCE3766; Thu, 20
+	Jun 2024 09:47:50 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8~aqiG47y3k0326503265eucas1p1Z;
+	Thu, 20 Jun 2024 08:47:49 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240620084749eusmtrp10b61c85089f15485d410823a8fd41c31~aqiG4BP6H2065920659eusmtrp1C;
+	Thu, 20 Jun 2024 08:47:49 +0000 (GMT)
+X-AuditID: cbfec7f2-c11ff70000002598-16-6673ecb6e85e
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 41.33.09010.5BCE3766; Thu, 20
+	Jun 2024 09:47:49 +0100 (BST)
+Received: from localhost (unknown [106.120.51.111]) by eusmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240620084749eusmtip121f8870fba034cffe60389c2be011cc0~aqiGnuu2i3165231652eusmtip1W;
+	Thu, 20 Jun 2024 08:47:49 +0000 (GMT)
+From: Lukasz Stelmach <l.stelmach@samsung.com>
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,  Rob Herring
+	<robh@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Anand Moon
+	<linux.amoon@gmail.com>,  Olivia Mackall <olivia@selenic.com>,  Herbert Xu
+	<herbert@gondor.apana.org.au>,  Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-samsung-soc@vger.kernel.org,  linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] hwrng: exynos: Enable Exynos850 support
+Date: Thu, 20 Jun 2024 10:47:44 +0200
+In-Reply-To: <20240618204523.9563-7-semen.protsenko@linaro.org> (Sam
+	Protsenko's message of "Tue, 18 Jun 2024 15:45:22 -0500")
+Message-ID: <oypijdjzikt2z3.fsf%l.stelmach@samsung.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
+	protocol="application/pgp-signature"
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMKsWRmVeSWpSXmKPExsWy7djPc7rb3hSnGRx/yWnxYN42Nos1e88x
+	Wcw/co7VovuVjMXLWffYLDY9vsZqcf/eTyaLy7vmsFnMOL+PyWLdxlvsFvfP9DBa/N+zg93i
+	ed8+Jgdej52z7rJ7bDug6rFpVSebx51re9g8Ni+p9+jbsorRo+/lBkaPz5vkAjiiuGxSUnMy
+	y1KL9O0SuDK+7N7GXvCfr2LTnnVMDYyfeboYOTkkBEwkuo7sZu9i5OIQEljBKLF753RGCOcL
+	o0RP7x02COczo8TSM83sMC0ftr+DqlrOKHF+3TdWCOcFo8SDG5OYuxg5ONgE9CTWro0AaRAB
+	MtfNfAXWzCywj1li099AEFtYwFmiec1jsDiLgKrE1+MNYHdwCjQwSnz6fAMswStgLnFh00pW
+	EFtUwFLi+NZ2Noi4oMTJmU9YIIbmSsw8/wbsIgmB7ZwSNyZdYoU41UXi14LdUGcLS7w6vgXK
+	lpE4PbmHBaKhnVGi6cpCVghnAqPE544mJogqa4k7536xQdiOEh+/HGIHeU1CgE/ixltBiM18
+	EpO2TWeGCPNKdLQJQVSrSKzr38MCYUtJ9L5awQhhe0icW/EEGtqTGCXONfezT2BUmIXkoVlI
+	HpoFNJZZQFNi/S59iLC2xLKFr5khbFuJdevesyxgZF3FKJ5aWpybnlpsmJdarlecmFtcmpeu
+	l5yfu4kRmPZO/zv+aQfj3Fcf9Q4xMnEwHmJUAWp+tGH1BUYplrz8vFQlEd7nXUVpQrwpiZVV
+	qUX58UWlOanFhxilOViUxHlVU+RThQTSE0tSs1NTC1KLYLJMHJxSDUyCti31/z0Xb/F02MZx
+	8NWZaV/7tCN38U9ymrLlylPeJQEufzdkylrqzHTkerjh1X27NYpXznmxbPLY+ebBAnOvqw7b
+	K4rXpTCfYVy0mCva+P/Vm4du5j4431a3PcDWf8uS694pe5155gQE2v9wd7sc77rDfoK/tP8i
+	2xuvZ9x/66at91F54d7a/CBrnT91eyY93FD/eYWz9spkxz1Ox9wmNqTNFTZmz3z6Zf2zV+GX
+	Chd0NrUE5DVn8F1/erm7ks/5xtT20y8t5lZIOWZuD3zoOMs5Ma7neXzCbs+8TeqZJbF6Rk9P
+	J7UWcG9Uvp7inLaa/+re0i1vRKTnhVxZnHn0svOZNpUzRl9nH93tpnVbiaU4I9FQi7moOBEA
+	xZ5FWfYDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJIsWRmVeSWpSXmKPExsVy+t/xu7pb3xSnGfTtkLZ4MG8bm8WaveeY
+	LOYfOcdq0f1KxuLlrHtsFpseX2O1uH/vJ5PF5V1z2CxmnN/HZLFu4y12i/tnehgt/u/ZwW7x
+	vG8fkwOvx85Zd9k9th1Q9di0qpPN4861PWwem5fUe/RtWcXo0fdyA6PH501yARxRejZF+aUl
+	qQoZ+cUltkrRhhZGeoaWFnpGJpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJehlfdm9jL/jPV7Fp
+	zzqmBsbPPF2MnBwSAiYSH7a/Y+xi5OIQEljKKPH56Qq2LkYOoISUxMq56RA1whJ/rnWxQdQ8
+	Y5R4OOMHWA2bgJ7E2rURIDUiQOa6ma/YQWqYBQ4yS1x63MMEkhAWcJZoXvOYHcQWErCTaLt0
+	gxnEZhFQlfh6vAGsgVOggVHi0+cbYEW8AuYSFzatZAWxRQUsJY5vbWeDiAtKnJz5hAXEZhbI
+	lvi6+jnzBEaBWUhSs5CkZgHdxyygKbF+lz5EWFti2cLXzBC2rcS6de9ZFjCyrmIUSS0tzk3P
+	LTbSK07MLS7NS9dLzs/dxAiM123Hfm7Zwbjy1Ue9Q4xMHIyHGFWAOh9tWH2BUYolLz8vVUmE
+	93lXUZoQb0piZVVqUX58UWlOavEhRlOg3yYyS4km5wMTSV5JvKGZgamhiZmlgamlmbGSOK9n
+	QUeikEB6YklqdmpqQWoRTB8TB6dUA9PSUxVKDxvvzPmmkVvOtzTGJuKhDe95vs/p6xmOfPmp
+	uT/m0LWOfPXdYiZvD7YU3Er/bWzl6+oUceZRI/OpPdyHrZd0qcfI25Q8OZtRcN0vXXdHWEfd
+	d2bfM2tbUqavS52kZHxlZ9mVyLmsi/Pa5t22rZ3izzC9O3HmrwWLc7IS2C++q7B9Yj/t14oq
+	k12Pbb6p19p9/TwzWzj3ilW5in3soVc/t8Rc+5W/LXXqsev3eIL+yijm7nIU+DHlxL/O/zra
+	lz69Otd851fS3hy53LItyRNeNc/Nm5nLWLfwzDx34f95BaJhq3+t2sK/4luNa3FXqa7ShpkJ
+	MpqOF9/rPtirt2BFgc/F1BevlZdwyP5UYinOSDTUYi4qTgQA8UnVOmwDAAA=
+X-CMS-MailID: 20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8
+X-Msg-Generator: CA
+X-RootMTR: 20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8
+References: <20240618204523.9563-7-semen.protsenko@linaro.org>
+	<CGME20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8@eucas1p1.samsung.com>
 
-Based on the NCSI pin table (Table 181) in NCSI spec[1], the reference
-clock output pin (RMIIXRCLKO) is not needed on the management controller
-side.
+--=-=-=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-To optimize pin usage, add new NCSI pin group that excludes RMIIXRCLKO,
-reducing the number of required pins.
+It was <2024-06-18 wto 15:45>, when Sam Protsenko wrote:
+> Add Exynos850 compatible and its driver data. It's only possible to
+> access TRNG block via SMC calls in Exynos850, so specify that fact using
+> EXYNOS_SMC flag in the driver data.
+>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+> Changes in v2:
+>   - Changed QUIRK_SMC to EXYNOS_SMC to reflect the name change in the
+>     previous patch
+>
+>  drivers/char/hw_random/exynos-trng.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
 
-LINK: [1] https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.2.0a.pdf
+Acked-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+> diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_rando=
+m/exynos-trng.c
+> index 497d6018c6ba..841598037cce 100644
+> --- a/drivers/char/hw_random/exynos-trng.c
+> +++ b/drivers/char/hw_random/exynos-trng.c
+> @@ -313,6 +313,9 @@ static DEFINE_SIMPLE_DEV_PM_OPS(exynos_trng_pm_ops, e=
+xynos_trng_suspend,
+>  static const struct of_device_id exynos_trng_dt_match[] =3D {
+>  	{
+>  		.compatible =3D "samsung,exynos5250-trng",
+> +	}, {
+> +		.compatible =3D "samsung,exynos850-trng",
+> +		.data =3D (void *)EXYNOS_SMC,
+>  	},
+>  	{ },
+>  };
 
-diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-index 7938741136a2c..31e4e0b342a00 100644
---- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-+++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-@@ -249,7 +249,9 @@ PIN_DECL_2(E26, GPIOD3, RGMII3RXD3, RMII3RXER);
- 
- FUNC_GROUP_DECL(RGMII3, H24, J22, H22, H23, G22, F22, G23, G24, F23, F26, F25,
- 		E26);
--FUNC_GROUP_DECL(RMII3, H24, J22, H22, H23, G23, F23, F26, F25, E26);
-+GROUP_DECL(RMII3, H24, J22, H22, H23, G23, F23, F26, F25, E26);
-+GROUP_DECL(NCSI3, J22, H22, H23, G23, F23, F26, F25, E26);
-+FUNC_DECL_2(RMII3, RMII3, NCSI3);
- 
- #define F24 28
- SIG_EXPR_LIST_DECL_SESG(F24, NCTS3, NCTS3, SIG_DESC_SET(SCU410, 28));
-@@ -355,7 +357,9 @@ FUNC_GROUP_DECL(NRTS4, B24);
- 
- FUNC_GROUP_DECL(RGMII4, F24, E23, E24, E25, D26, D24, C25, C26, C24, B26, B25,
- 		B24);
--FUNC_GROUP_DECL(RMII4, F24, E23, E24, E25, C25, C24, B26, B25, B24);
-+GROUP_DECL(RMII4, F24, E23, E24, E25, C25, C24, B26, B25, B24);
-+GROUP_DECL(NCSI4, E23, E24, E25, C25, C24, B26, B25, B24);
-+FUNC_DECL_2(RMII4, RMII4, NCSI4);
- 
- #define D22 40
- SIG_EXPR_LIST_DECL_SESG(D22, SD1CLK, SD1, SIG_DESC_SET(SCU414, 8));
-@@ -1976,6 +1980,8 @@ static const struct aspeed_pin_group aspeed_g6_groups[] = {
- 	ASPEED_PINCTRL_GROUP(MDIO2),
- 	ASPEED_PINCTRL_GROUP(MDIO3),
- 	ASPEED_PINCTRL_GROUP(MDIO4),
-+	ASPEED_PINCTRL_GROUP(NCSI3),
-+	ASPEED_PINCTRL_GROUP(NCSI4),
- 	ASPEED_PINCTRL_GROUP(NCTS1),
- 	ASPEED_PINCTRL_GROUP(NCTS2),
- 	ASPEED_PINCTRL_GROUP(NCTS3),
--- 
-2.31.1
+=2D-=20
+=C5=81ukasz Stelmach
+Samsung R&D Institute Poland
+Samsung Electronics
 
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAmZz7LAACgkQsK4enJil
+gBA4ZQf9H/yTan9r7idWXpguT1GA+QwtJfaZDQynWcWKu6JdXndL54/0k5A5WQsC
+KAItmS8Wzp5CDEUY2uTO/o3O7vSuuAMWC8yY1Gz6OyA9A6RZ1wYlSdYSyPO7eu2Q
++lAaSn+hx6EgEWeAmsN8e67FhbRu7qvY/+EaYbobCGDfoBTVw4d1eX1ZmAEVY9+W
+qqvMyOlFq8KVxA6I+kYdkm9/Yj6AsxcZMSfZMLf/GfFwgkySTwnxxTz7nFpihYUc
+fEHU8L8IqEaU6EFxkg6tmkx2y0nYnBSkEuQ5/0LYndCqIH8ts+cBBExNNrpVNRz3
+peJy+ClnFMVwNxSK64LK9iBItsDq/w==
+=DvxN
+-----END PGP SIGNATURE-----
+--=-=-=--
 
