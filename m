@@ -1,335 +1,376 @@
-Return-Path: <devicetree+bounces-77674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A85E90FA20
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 02:11:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11CC290FA51
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 02:32:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5853B227DB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 00:11:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 781F1B20AF3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 00:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41D8119B;
-	Thu, 20 Jun 2024 00:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26FD15A8;
+	Thu, 20 Jun 2024 00:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MRhVHfcS"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Y4S7rcRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2068.outbound.protection.outlook.com [40.107.114.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE51365;
-	Thu, 20 Jun 2024 00:11:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718842266; cv=none; b=NwP6kDAcpFW7yytOPSL/2PYiANI+ho0/q7XU6DcV2w1RWILOUWiKgpl3FJliort9SPCb7dgY52xsdOdS2GxWuMDRQg8UoCFDibTpaPZ0juojgY4btdEgDbi+Ehj333kinl+bwSnk+YMONOoJILJ2/JuZsuTgSpHiJsiU9X8k6V4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718842266; c=relaxed/simple;
-	bh=u4PrA9HJiG+Ew0eD/qifHzsRxivvCZdkuwxWVHAcCbI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CvhNbFKmJjKbapRd8ATyu9NnsGryIHtkWrRJczUITnck0CKx4L4e9v+AZWr5SZ3EvkpJlB8HESH68zyD6olPQHDkATcnIxOartQSW/5nwKANUFvAgtfNgc3484NZFq8OBr/IrOh04EaAqsEWSXv/fK5ZDMmMJJT4eJskoJVPkWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MRhVHfcS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JALiRK023156;
-	Thu, 20 Jun 2024 00:10:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+CsNH6WhWqlQOHkcV8o/A/l5euMhtvt2OZiz460XFT8=; b=MRhVHfcSTS3fQ1DF
-	WL/au5Wu+aMZzqdDbxOa94Ux731IEKFOOQsNlATvXJLBZ/KpCB+RPik/0lRpzIIq
-	b1sxUkPKSZkPxMvCu1YDQHzwOK1xwyl6bQB9hAoVJluWrdg1oYnlIIQHb9iASESr
-	naEDv2tsJsRmgxEvY5y9aYa1gh0I16jXCAsFHnd3A1qT1P3eXr4n+T2nU7tjZTa0
-	z3/Z9tWtYUiQ6Qxt6urxD44XzN6YoDJCMVa7ax3eLFKeSvyBRBkXgmaJKfwAJ3SP
-	QCIQUOGTCXZbLsJCJ439+F2HJas/g6daB/ALkQKD0MwRFS6SD/CKeN4L3m2m94pU
-	VWBYPA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yuj9x3283-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Jun 2024 00:10:47 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45K0Ak5K019691
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Jun 2024 00:10:46 GMT
-Received: from hu-obabatun-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 19 Jun 2024 17:10:43 -0700
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-To: <robh@kernel.org>
-CC: <broonie@kernel.org>, <catalin.marinas@arm.com>, <conor@kernel.org>,
-        <devicetree@vger.kernel.org>, <hch@lst.de>, <iommu@lists.linux.dev>,
-        <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
-        <m.szyprowski@samsung.com>, <nathan@kernel.org>,
-        <oe-kbuild-all@lists.linux.dev>, <quic_obabatun@quicinc.com>,
-        <robin.murphy@arm.com>, <saravanak@google.com>, <will@kernel.org>
-Subject: [PATCH v2] of: reserved_mem: Restructure code to call reserved mem init functions earlier
-Date: Wed, 19 Jun 2024 17:10:27 -0700
-Message-ID: <20240620001027.2326275-1-quic_obabatun@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <202406181626.126X1Nbz-lkp@intel.com>
-References: <202406181626.126X1Nbz-lkp@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041FE7F8;
+	Thu, 20 Jun 2024 00:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718843568; cv=fail; b=Fb4AMZFl3g0SELHKCgD7AqW6Dq1PFqjavb/86hENedJNpN2qdqK10Uyh578BtE9I6D83vzuAwrp3CWPpzOCUm79PiqcChoAX3TvLehUB51eiRij3kbaVGhLgdAtzAASP2l1loH7ECkcoS95dulOQGQ2aLDZ5KelP8+zyNzd0nSk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718843568; c=relaxed/simple;
+	bh=bd6dMAZVBVhSKcD8U+jEXPJtJXCvfCgqpSj0Ig+6AVs=;
+	h=Message-ID:To:Cc:From:Subject:Content-Type:Date:MIME-Version; b=Y5khcyNV6+9ClyvxuzeTVBvuHJMf3/QgCQIEOT8bKxJiUzlFVcKWYJvw556vv1OWLKFSab5xGOo6LRe7nX2xuBNMIMtvXhOVJyJ1RjiEEc6y60KrVVhgnfq+Q3NGXN8kT/TDp5SgXOTLWPIn/ulWKQRBOlrS05sfHxuhSaLGXf0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=Y4S7rcRx; arc=fail smtp.client-ip=40.107.114.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Pl6RmmZR3j1O//fFQb10G8/JU30dEVoQHDaAvgrWuY8RtyCsa6yg4/UoMpriOG6P913jm7oGB/hqRGFVoO1k3lyrenrkNAVz6az255BCz0sCPfCySb868s8PQuC51XE5RXYybxkJ91tDVVahHBNY5iUnqeeb0jkggfLt/KUaa+/rB6XLNrUpU80bUQs3BtzGwt6DX0/D7Lj0f0q8pdTiuD1vLRNNP93gVBtTfTRvfF7dSirzhmSZ6oaK3HtANZueVzTjgeeSQ8e6VHhRRRq2jc6eXVU1rWkNmnMRnOG7aOsbYtRCGXdolTJlN1mxgGwEezZ+8uLTvH9YeNcL1J/gMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CWHZKh45LxpyU0ruWqQaeTwFGNlrm9AoIsSWTI8f6fk=;
+ b=iMrlE3Z3HdtELBToYjp1mCsNngkeRzFkXLINrkaHJAC7EFr86gfM8ezFN8TI6foHEq737GVbAja1nQ7fZ65DU2ovN7wwCKU/HNEJwoa8RZL/lFE0bB3DnxrYig5mATyO+2viJoEjXn/Z93ZLqfN5TK8p6672YhFzsccARf9BKYlJAfaW52GHFI8qbHwYZP8uPzzdraJGaxW0EkFZCoZ1XVG5Vm+trm2SMVdgPjjx/q+KraWDEkdTVUEfbw++VQUQ+wSVcFcAX90I5stZEflpknPgq5qng1JYvSgdbU+r77pAMQKhz04NdMudxlWVFvUrMHkP+dz9gnFnlkjiYPug9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CWHZKh45LxpyU0ruWqQaeTwFGNlrm9AoIsSWTI8f6fk=;
+ b=Y4S7rcRxATq7/BRlJYutb1lA0BGopP7l8uXr9meRPCcXeqThwPEFWePC6sqSD1rKzutRx2vsbdvXApstTHezY4lgKhbjJ//qfpT7SJ/5uMc+P3MopZusddc6U2bJv5U9j/cFy7Z048BTpvFhvu9YayI++n5UA6LRL2r2w5DLLQU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OS3PR01MB7731.jpnprd01.prod.outlook.com
+ (2603:1096:604:17a::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.21; Thu, 20 Jun
+ 2024 00:32:40 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%4]) with mapi id 15.20.7698.020; Thu, 20 Jun 2024
+ 00:32:40 +0000
+Message-ID: <87wmmkpi6w.wl-kuninori.morimoto.gx@renesas.com>
+To: Andrew Davis <afd@ti.com>, Baojun Xu <baojun.xu@ti.com>, Conor Dooley <conor+dt@kernel.org>, Daniel Beer <daniel.beer@igorinstitute.com>, Fabio Estevam <festevam@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Kevin Lu <kevin-lu@ti.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Shenghao Ding <shenghao-ding@ti.com>, Shi Fu <shifu0704@thundersoft.com>, Takashi Iwai <tiwai@suse.com>, Vincent Knecht <vincent.knecht@mailoo.org>
+Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-sound@vger.kernel.org, patches@opensource.cirrus.com
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH] ASoC: dt-bindings: add missing vender prefix on filename
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 20 Jun 2024 00:32:39 +0000
+X-ClientProxiedBy: TYAPR04CA0004.apcprd04.prod.outlook.com
+ (2603:1096:404:15::16) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: vAiifgyVNjlZhb9Q62jOPFCYsXQXTOph
-X-Proofpoint-GUID: vAiifgyVNjlZhb9Q62jOPFCYsXQXTOph
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-19_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- impostorscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 adultscore=0
- lowpriorityscore=0 spamscore=0 malwarescore=0 bulkscore=0 clxscore=1011
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406200000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS3PR01MB7731:EE_
+X-MS-Office365-Filtering-Correlation-Id: 843501e1-a677-4e45-963e-08dc90c07e0d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230037|1800799021|376011|7416011|52116011|366013|38350700011|921017;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?HwNdabZScXoHJLnzSZDxNnmZr+D0o+0OSVO4wl0+GKIx1OxpCkNmReYAyAk+?=
+ =?us-ascii?Q?4sxYR143D/ilp79qHSudvY3vZuHlVj7Y/oee8EgA46h7pfmSZjMe42M3ZwHw?=
+ =?us-ascii?Q?6vlTOkF6Nx4IhY2WoFrMJsQ/eKQ5cKW3u2azBW/c9cJqqgXGYa0iQCklilWF?=
+ =?us-ascii?Q?tEJeqpx2S1N7wyHD5zpi1XSdeGQfePDAlMgOF0LP6H1jaQ6LTHOC+ZRAk4NU?=
+ =?us-ascii?Q?xFJ+UvwYjbekq47vcByS5AEBZPAANjO38AqsWiCt0u8Hcv9UOxm1VVV3uHKE?=
+ =?us-ascii?Q?f7SDz0V39MXoxD9Q0UEFreKUDKyKdA0DdvrdRJpP1AlHkQktfqhYYJKhu23x?=
+ =?us-ascii?Q?ns6ZjljfPEetqhvz8zY1liaEusluYbbr2FU7SIvy2UZACWeR1dSjYReooYY1?=
+ =?us-ascii?Q?ryNqVGwTJN6BSclZ5VBubOrbPDK4INMrMk4BtwrrLGKwSSCH+ibqjYWwpF4V?=
+ =?us-ascii?Q?anqXw4s6b1sytBINZsnbGh71mKTQnbW2Ym8yVlrHcP1axHT0EG6fKX7PbxiL?=
+ =?us-ascii?Q?/l86vWEMOtw/JKE1ZoNQbQKeRjixdvi/zkTWNf+/wqKdkbXvh19zpYEBjf9c?=
+ =?us-ascii?Q?pqIyv6TXG7R30X8sa/OoPcl9w4SWdEPCKVZoDNiHg0EaKDo5dsxv2+KZ/gCO?=
+ =?us-ascii?Q?ZTu02wW0eFWv2sHbwFOakUDSBfU2Q5LmmAssv2exgVplDgs/nbz65cZL99yu?=
+ =?us-ascii?Q?d3XMswI4PFAHxeKOG+pwAJu14YCbIk3I0m9GQOAwK0zMk8/pwZOb1sn19FYf?=
+ =?us-ascii?Q?gLfZvWvYAkScVha/htY4bPR8PqvOTx0EbZe53tXmIHu+BIhDNUUNvxZPCk72?=
+ =?us-ascii?Q?V7IlrrGw+0E5xLKUFHXNs+7WvM3ByLrE6vyPxJPOcFRUr8QDvG9L0U5LGyuT?=
+ =?us-ascii?Q?6nDNoIcdOjRO03zYGbGNNXPPd8D7rGbxIlLXtnFJttWC4vVXbKJiAKi+L9Js?=
+ =?us-ascii?Q?S2VflbN70s1n8QgrkmuEAOnUMFLKoNCzQja4ND6UIOiJQEpYXm9yahLF/fCG?=
+ =?us-ascii?Q?gFBXh0G8umsfUll0v6iEGbrT9pKYF2U1q2k9jTCBrxDh7KL5B6o5qRBfFszp?=
+ =?us-ascii?Q?ipmM99wJdAq7R/aJ35qVVEg0lG9MnyBDl0HrpySgJjo3YUU0i7KbSvct4bGR?=
+ =?us-ascii?Q?rtnG8dIVqXa18ulv6RjO2ysGZjZ/0f4niPLxgXUsthnfLPnu0ueVO71Ns1v2?=
+ =?us-ascii?Q?OTQ/xUCUURkqbcNrCM8MzAoesafhmH428nGYaRrMxoUYAeUMvT/vQvWbRei+?=
+ =?us-ascii?Q?hjWwAGBHQleIMtiZL07Lpb2zs1Uz20smWoVkOxvSGGNj9jaLN2cfEtBJ+pR+?=
+ =?us-ascii?Q?Y1837wor537+a6mnQhZQM2p+2ls8BjCaYZQVooZ9BnpliA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(376011)(7416011)(52116011)(366013)(38350700011)(921017);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?GtyjOGrthQVRLPpwNDg2oZggncanp8+fYsV9xCCoQ4jGcqRdM6PN3L7DEeJN?=
+ =?us-ascii?Q?4by/5KpamtFCMDFs+i/Z4n5qs6COYIOqUaoxdzc5Fblozapd5FN5u/kWSl23?=
+ =?us-ascii?Q?2xQxuWVLBksX3mD+BClSaQRt/zZuadbZ1v0VTqzNI53HTLwMczW6weCTrrdY?=
+ =?us-ascii?Q?9sSackkqzseXizdU5V+R1kLA4wOEp2UvWEuj7nd8KXQHPHdeZVb5lQl8EUjL?=
+ =?us-ascii?Q?qXWaXj05sXiCvSECrBqqHlm4B+UeD9/kfKkF24+qXN1TeUuENk+KT91Hroqi?=
+ =?us-ascii?Q?dEgi/zIqM5YKpZhKbPB57y/jKr/X6BDx6okW75wpyUeTF864muNgjNLCFIbt?=
+ =?us-ascii?Q?ZKSIpYcMhFHFUyvj2/n5HdOrX5tlLPC+1nwy7lMMD1Guut+wFTtSCnfSqGfL?=
+ =?us-ascii?Q?5M0F+P2+XiOqWzkxtTD/KqVno8AurXOO2jqWfSQNcP5TEztk1vUtHtn/S/Em?=
+ =?us-ascii?Q?qzx9MXF6xuttXFHrO4T0BUYduBaxN8Ldz7r/0VKvw5C+d11g0UNjakMheJdM?=
+ =?us-ascii?Q?aXeZZeuuWknh8riZ223R4405OFGWgyIWlRIoouGYLKx/1s4PxZnE+Dwn3mmh?=
+ =?us-ascii?Q?U2L6L8g+GVGaKQJQWWFFOjWyeDpmd5mJnrhKy9LMskJG3MABxs/6Dip4HVND?=
+ =?us-ascii?Q?EgLs/cmh/g5Oy5v7xlocUd9qbp1UBVUPVGTvqHpuwgqyrEpWADKky/8Q9N0X?=
+ =?us-ascii?Q?mk/GRJuT7aQ0aLU6BjnVlXP2GNmxerPhtFsfv08FLt3hjcaz7sXvorcJUJvC?=
+ =?us-ascii?Q?och8cvfGFIprDJlMf+djfoLF4L3zdhVDnl/lXzCRby5Qikmap44tTbaqpT7q?=
+ =?us-ascii?Q?tph3Ic5XBYSvREINgyF7V1Kq2wr03Vx/J18RUiuvgylu5lGVzAmxWJuA8bUl?=
+ =?us-ascii?Q?Tg+QkJK8pmP7jxTvL1j2Nkq/UAcxLK3s6ozp5Rd8odJV6VMDzJwcWG/DI48O?=
+ =?us-ascii?Q?JpEnrP/GGqoLnR/EKzTbniY+ZuAXJ2cx1aEAxrXQfo8XPcyXFHR9SdDHg911?=
+ =?us-ascii?Q?f54LL+mXgt6hNtWHnCNEvd1QryVrhqNZy9vWRMPmNZ7x4F8Xlmcyfokmbmtn?=
+ =?us-ascii?Q?5Pa0MGak2xYoF501p6y0O+lh3ED9XA1oBFijOcbhsX20j7gHZSmi5wMFcpPr?=
+ =?us-ascii?Q?iJaOESsIl+hfQ00vrskRnMA+McxVtaRTWPdlRRc/CZH1CnernLDqKpyYJs3l?=
+ =?us-ascii?Q?b9nY6keeQ1iAQ9Fie3KkyXjbOLbFAkYmxCZUOlqqL6i7qJXmiTsRFRihjG5v?=
+ =?us-ascii?Q?aW589mOAb7jb8cj+qaMo+9c1z/6YRJDyMgY2H8BVQNIMgbBQGsd/A5vlIe2G?=
+ =?us-ascii?Q?iWpjM+ia+o2vRmtwk7bpJ18GJUAnpL2SRdRe6dR4ChfObe6T6K7jbzgiOdZQ?=
+ =?us-ascii?Q?2/sGDCOPyNjseoVVWWHMEDoC5BmlKOtXXrPWvKPeHw18haqWTNkLv0Rp6VSK?=
+ =?us-ascii?Q?kY8BenVruick7O5na6igJw8xap1vBpGF2raY9mWsEIBadiMqLDGRS+66h/KE?=
+ =?us-ascii?Q?ghbw3ldUFs2J/sye/wvcH1R2YXqF6t7CQKX7+W0U/RnfJPDaq3wV94GzH/9e?=
+ =?us-ascii?Q?SlwuXURttauBP07aKO/7zN3UduI175WAn507Vm6gxNCNEBvuiGQrMfFpIDcT?=
+ =?us-ascii?Q?X1DcUPJIzICZdLcd9LGyzVo=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 843501e1-a677-4e45-963e-08dc90c07e0d
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2024 00:32:40.4490
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +EWD85u2MocYG9jpIaaQBqzyvB7pcRCtx0a8Ix5u0oKxIcg7ilcVVYE0HVuWm3xa0PapgMEk2K7vukZZDaI89UZzJpr89I60DhrQgSs0tidGMo/JvX4QfKD5o89lje1U
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB7731
 
-After all the reserved memory regions have been added to the
-reserved_mem array, a region specific initialization function is called
-on each of reserved memory regions in a loop to initialize them.
+Many Sound yaml files doesn't have vender prefix on filename.
+Add missing vender prefix for these files.
 
-With recent changes made to allow the reserved_mem array be dynamically
-allocated, the cma reserved memory regions are not initialized until
-after the page tables are setup. This causes the warning seen in the
-dump stack below:
-
-	WARNING: CPU: 0 PID: 1 at mm/memory.c:2789 __apply_to_page_range+0x360/0x380
-	CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.10.0-rc1-00007-ga46cccb0ee2d #1
-	Hardware name: Generic DT based system
-	Call trace:
-	unwind_backtrace from show_stack+0x18/0x1c
-	show_stack from dump_stack_lvl+0x54/0x68
-	dump_stack_lvl from __warn+0x74/0x114
-	__warn from warn_slowpath_fmt+0x13c/0x1c0
-	warn_slowpath_fmt from __apply_to_page_range+0x360/0x380
-	__apply_to_page_range from apply_to_page_range+0x24/0x2c
-	apply_to_page_range from __alloc_from_contiguous+0xc4/0x158
-	__alloc_from_contiguous from cma_allocator_alloc+0x3c/0x44
-	cma_allocator_alloc from arch_dma_alloc+0x128/0x2b4
-	arch_dma_alloc from dma_alloc_attrs+0x90/0x150
-	dma_alloc_attrs from drm_gem_dma_create+0xa4/0x13c
-	drm_gem_dma_create from drm_gem_dma_create_with_handle+0x24/0xac
-	drm_gem_dma_create_with_handle from drm_gem_dma_dumb_create+0x44/0x50
-	drm_gem_dma_dumb_create from drm_client_framebuffer_create+0x9c/0x164
-	drm_client_framebuffer_create from drm_fbdev_dma_helper_fb_probe+0x84/0x23c
-	drm_fbdev_dma_helper_fb_probe from __drm_fb_helper_initial_config_and_unlock+0x2e4/0x4f8
-	__drm_fb_helper_initial_config_and_unlock from drm_fbdev_dma_client_hotplug+0x74/0xb8
-	drm_fbdev_dma_client_hotplug from drm_client_register+0x5c/0x98
-	drm_client_register from aspeed_gfx_probe+0x278/0x3c0
-	aspeed_gfx_probe from platform_probe+0x60/0xb8
-	platform_probe from really_probe+0xd4/0x3b4
-	really_probe from __driver_probe_device+0x90/0x1dc
-	__driver_probe_device from driver_probe_device+0x38/0xd0
-	driver_probe_device from __driver_attach+0x118/0x1dc
-	__driver_attach from bus_for_each_dev+0x84/0xd4
-	bus_for_each_dev from bus_add_driver+0xec/0x1f0
-	bus_add_driver from driver_register+0x84/0x11c
-	driver_register from do_one_initcall+0x84/0x1c8
-	do_one_initcall from kernel_init_freeable+0x1a4/0x230
-	kernel_init_freeable from kernel_init+0x1c/0x138
-	kernel_init from ret_from_fork+0x14/0x28
-	Exception stack(0x9f015fb0 to 0x9f015ff8)
-	5fa0:                                     00000000 00000000 00000000 00000000
-	5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-	5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-	---[ end trace 0000000000000000 ]---
-	aspeed_gfx 1e6e6000.display: [drm] fb0: aspeed-gfx-drmd frame buffer device
-
-Hence, restructure the code to initialize the regions as soon as each
-of them are added to the reserved_mem array.
-
-Fixes: a46cccb0ee2d ("of: reserved_mem: Restruture how the reserved memory regions are processed")
-Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 ---
-v2:
-- Fix kernel-doc for of_init_reserved_mem_node() in response to the
-  below warning from v1:
-  https://lore.kernel.org/all/202406181626.126X1Nbz-lkp@intel.com/
+ .../bindings/sound/{ak4375.yaml => asahi-kasei,ak4375.yaml}     | 2 +-
+ .../bindings/sound/{ak4613.yaml => asahi-kasei,ak4613.yaml}     | 2 +-
+ .../bindings/sound/{ak4642.yaml => asahi-kasei,ak4642.yaml}     | 2 +-
+ .../bindings/sound/{sgtl5000.yaml => fsl,sgtl5000.yaml}         | 2 +-
+ .../bindings/sound/{zl38060.yaml => mscc,zl38060.yaml}          | 2 +-
+ .../bindings/sound/{rt1019.yaml => realtek,rt1019.yaml}         | 2 +-
+ .../devicetree/bindings/sound/{tas2562.yaml => ti,tas2562.yaml} | 2 +-
+ .../devicetree/bindings/sound/{tas2770.yaml => ti,tas2770.yaml} | 2 +-
+ .../devicetree/bindings/sound/{tas27xx.yaml => ti,tas27xx.yaml} | 2 +-
+ .../bindings/sound/{tas5805m.yaml => ti,tas5805m.yaml}          | 2 +-
+ .../sound/{tlv320adcx140.yaml => ti,tlv320adcx140.yaml}         | 2 +-
+ .../devicetree/bindings/sound/{wm8750.yaml => wlf,wm8750.yaml}  | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
+ rename Documentation/devicetree/bindings/sound/{ak4375.yaml => asahi-kasei,ak4375.yaml} (94%)
+ rename Documentation/devicetree/bindings/sound/{ak4613.yaml => asahi-kasei,ak4613.yaml} (94%)
+ rename Documentation/devicetree/bindings/sound/{ak4642.yaml => asahi-kasei,ak4642.yaml} (94%)
+ rename Documentation/devicetree/bindings/sound/{sgtl5000.yaml => fsl,sgtl5000.yaml} (97%)
+ rename Documentation/devicetree/bindings/sound/{zl38060.yaml => mscc,zl38060.yaml} (96%)
+ rename Documentation/devicetree/bindings/sound/{rt1019.yaml => realtek,rt1019.yaml} (90%)
+ rename Documentation/devicetree/bindings/sound/{tas2562.yaml => ti,tas2562.yaml} (97%)
+ rename Documentation/devicetree/bindings/sound/{tas2770.yaml => ti,tas2770.yaml} (97%)
+ rename Documentation/devicetree/bindings/sound/{tas27xx.yaml => ti,tas27xx.yaml} (97%)
+ rename Documentation/devicetree/bindings/sound/{tas5805m.yaml => ti,tas5805m.yaml} (95%)
+ rename Documentation/devicetree/bindings/sound/{tlv320adcx140.yaml => ti,tlv320adcx140.yaml} (99%)
+ rename Documentation/devicetree/bindings/sound/{wm8750.yaml => wlf,wm8750.yaml} (92%)
 
-v1:
-  https://lore.kernel.org/all/20240617193357.3929092-1-quic_obabatun@quicinc.com/
-
- drivers/of/fdt.c             |  2 +-
- drivers/of/of_private.h      |  2 +-
- drivers/of/of_reserved_mem.c | 83 +++++++++++++++++++++---------------
- 3 files changed, 50 insertions(+), 37 deletions(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 9cde2abd2fc0..ea2dff0478c7 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1239,7 +1239,7 @@ void __init unflatten_device_tree(void)
- 	unittest_unflatten_overlay_base();
+diff --git a/Documentation/devicetree/bindings/sound/ak4375.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4375.yaml
+similarity index 94%
+rename from Documentation/devicetree/bindings/sound/ak4375.yaml
+rename to Documentation/devicetree/bindings/sound/asahi-kasei,ak4375.yaml
+index 587598e122c6..bc07fcba535b 100644
+--- a/Documentation/devicetree/bindings/sound/ak4375.yaml
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4375.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/ak4375.yaml#
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4375.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- 	/* initialize the reserved memory regions */
--	of_init_reserved_mem();
-+	of_scan_reserved_mem_reg_nodes();
- }
+ title: AK4375 DAC and headphones amplifier
+diff --git a/Documentation/devicetree/bindings/sound/ak4613.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4613.yaml
+similarity index 94%
+rename from Documentation/devicetree/bindings/sound/ak4613.yaml
+rename to Documentation/devicetree/bindings/sound/asahi-kasei,ak4613.yaml
+index 75e13414d6eb..b49a6cff9f1f 100644
+--- a/Documentation/devicetree/bindings/sound/ak4613.yaml
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4613.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/ak4613.yaml#
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4613.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- /**
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 01b33c4b1e9f..7412aed903df 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -181,7 +181,7 @@ static inline struct device_node *__of_get_dma_parent(const struct device_node *
- #endif
+ title: AK4613 I2C transmitter
+diff --git a/Documentation/devicetree/bindings/sound/ak4642.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4642.yaml
+similarity index 94%
+rename from Documentation/devicetree/bindings/sound/ak4642.yaml
+rename to Documentation/devicetree/bindings/sound/asahi-kasei,ak4642.yaml
+index 437fe5d7cae1..fc03f0373a1a 100644
+--- a/Documentation/devicetree/bindings/sound/ak4642.yaml
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4642.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/ak4642.yaml#
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4642.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- int fdt_scan_reserved_mem(void);
--void of_init_reserved_mem(void);
-+void of_scan_reserved_mem_reg_nodes(void);
+ title: AK4642 I2C transmitter
+diff --git a/Documentation/devicetree/bindings/sound/sgtl5000.yaml b/Documentation/devicetree/bindings/sound/fsl,sgtl5000.yaml
+similarity index 97%
+rename from Documentation/devicetree/bindings/sound/sgtl5000.yaml
+rename to Documentation/devicetree/bindings/sound/fsl,sgtl5000.yaml
+index 1353c051488f..c6ab1ca16763 100644
+--- a/Documentation/devicetree/bindings/sound/sgtl5000.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,sgtl5000.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/sgtl5000.yaml#
++$id: http://devicetree.org/schemas/sound/fsl,sgtl5000.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- bool of_fdt_device_is_available(const void *blob, unsigned long node);
+ title: Freescale SGTL5000 Stereo Codec
+diff --git a/Documentation/devicetree/bindings/sound/zl38060.yaml b/Documentation/devicetree/bindings/sound/mscc,zl38060.yaml
+similarity index 96%
+rename from Documentation/devicetree/bindings/sound/zl38060.yaml
+rename to Documentation/devicetree/bindings/sound/mscc,zl38060.yaml
+index 8bd201e573aa..994313fd12b2 100644
+--- a/Documentation/devicetree/bindings/sound/zl38060.yaml
++++ b/Documentation/devicetree/bindings/sound/mscc,zl38060.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/zl38060.yaml#
++$id: http://devicetree.org/schemas/sound/mscc,zl38060.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index eb54490a0a11..b31001728866 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -97,6 +97,8 @@ static void __init alloc_reserved_mem_array(void)
- 	reserved_mem = new_array;
- }
+ title: ZL38060 Connected Home Audio Processor from Microsemi.
+diff --git a/Documentation/devicetree/bindings/sound/rt1019.yaml b/Documentation/devicetree/bindings/sound/realtek,rt1019.yaml
+similarity index 90%
+rename from Documentation/devicetree/bindings/sound/rt1019.yaml
+rename to Documentation/devicetree/bindings/sound/realtek,rt1019.yaml
+index 3d5a91a942f4..adf5e38f4dbc 100644
+--- a/Documentation/devicetree/bindings/sound/rt1019.yaml
++++ b/Documentation/devicetree/bindings/sound/realtek,rt1019.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/rt1019.yaml#
++$id: http://devicetree.org/schemas/sound/realtek,rt1019.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+static void __init of_init_reserved_mem_node(struct reserved_mem *rmem);
-+
- /*
-  * of_reserved_mem_save_node() - save fdt node for second pass initialization
-  */
-@@ -115,6 +117,12 @@ static void __init of_reserved_mem_save_node(struct device_node *node, const cha
- 	rmem->base = base;
- 	rmem->size = size;
+ title: RT1019 Mono Class-D Audio Amplifier
+diff --git a/Documentation/devicetree/bindings/sound/tas2562.yaml b/Documentation/devicetree/bindings/sound/ti,tas2562.yaml
+similarity index 97%
+rename from Documentation/devicetree/bindings/sound/tas2562.yaml
+rename to Documentation/devicetree/bindings/sound/ti,tas2562.yaml
+index d28c102c0ce7..8bc3b0c7531e 100644
+--- a/Documentation/devicetree/bindings/sound/tas2562.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,tas2562.yaml
+@@ -2,7 +2,7 @@
+ # Copyright (C) 2019 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/tas2562.yaml#
++$id: http://devicetree.org/schemas/sound/ti,tas2562.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+	/*
-+	 * Run the region specific initialization function for the rmem
-+	 * node.
-+	 */
-+	of_init_reserved_mem_node(rmem);
-+
- 	reserved_mem_count++;
- 	return;
- }
-@@ -201,6 +209,8 @@ static int __init __fdt_reserved_mem_check_root(unsigned long node)
- 	return 0;
- }
+ title: Texas Instruments TAS2562 Smart PA
+diff --git a/Documentation/devicetree/bindings/sound/tas2770.yaml b/Documentation/devicetree/bindings/sound/ti,tas2770.yaml
+similarity index 97%
+rename from Documentation/devicetree/bindings/sound/tas2770.yaml
+rename to Documentation/devicetree/bindings/sound/ti,tas2770.yaml
+index be2536e8c440..362c2e6154f0 100644
+--- a/Documentation/devicetree/bindings/sound/tas2770.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,tas2770.yaml
+@@ -2,7 +2,7 @@
+ # Copyright (C) 2019-20 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/tas2770.yaml#
++$id: http://devicetree.org/schemas/sound/ti,tas2770.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+static void __init __rmem_check_for_overlap(void);
-+
- /**
-  * of_scan_reserved_mem_reg_nodes() - Store info for the "reg" defined
-  * reserved memory regions.
-@@ -211,7 +221,7 @@ static int __init __fdt_reserved_mem_check_root(unsigned long node)
-  * size are all stored in the reserved_mem array by calling the
-  * of_reserved_mem_save_node() function.
-  */
--static void __init of_scan_reserved_mem_reg_nodes(void)
-+void __init of_scan_reserved_mem_reg_nodes(void)
- {
- 	struct device_node *node, *child;
- 	phys_addr_t base, size;
-@@ -222,6 +232,13 @@ static void __init of_scan_reserved_mem_reg_nodes(void)
- 		return;
- 	}
+ title: Texas Instruments TAS2770 Smart PA
+diff --git a/Documentation/devicetree/bindings/sound/tas27xx.yaml b/Documentation/devicetree/bindings/sound/ti,tas27xx.yaml
+similarity index 97%
+rename from Documentation/devicetree/bindings/sound/tas27xx.yaml
+rename to Documentation/devicetree/bindings/sound/ti,tas27xx.yaml
+index f2d878f6f495..530bc3937847 100644
+--- a/Documentation/devicetree/bindings/sound/tas27xx.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,tas27xx.yaml
+@@ -2,7 +2,7 @@
+ # Copyright (C) 2020-2022 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/tas27xx.yaml#
++$id: http://devicetree.org/schemas/sound/ti,tas27xx.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+	/*
-+	 * Before moving forward, allocate the exact size needed for the
-+	 * reserved_mem array and copy all previously saved contents
-+	 * into the new array if successful.
-+	 */
-+	alloc_reserved_mem_array();
-+
- 	for_each_child_of_node(node, child) {
- 		int ret = 0;
- 		const char *uname;
-@@ -246,6 +263,8 @@ static void __init of_scan_reserved_mem_reg_nodes(void)
- 		if (size)
- 			of_reserved_mem_save_node(child, uname, base, size);
- 	}
-+	/* check for overlapping reserved regions */
-+	__rmem_check_for_overlap();
- }
+ title: Texas Instruments TAS2764/TAS2780 Smart PA
+diff --git a/Documentation/devicetree/bindings/sound/tas5805m.yaml b/Documentation/devicetree/bindings/sound/ti,tas5805m.yaml
+similarity index 95%
+rename from Documentation/devicetree/bindings/sound/tas5805m.yaml
+rename to Documentation/devicetree/bindings/sound/ti,tas5805m.yaml
+index 12c41974274e..c2c2835a9e1d 100644
+--- a/Documentation/devicetree/bindings/sound/tas5805m.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,tas5805m.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/tas5805m.yaml#
++$id: http://devicetree.org/schemas/sound/ti,tas5805m.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- static int __init __reserved_mem_alloc_size(unsigned long node, const char *uname);
-@@ -526,44 +545,38 @@ static void __init __rmem_check_for_overlap(void)
- }
+ title: TAS5805M audio amplifier
+diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
+similarity index 99%
+rename from Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+rename to Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
+index f3274bcc4c05..876fa97bfbcd 100644
+--- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
+@@ -2,7 +2,7 @@
+ # Copyright (C) 2019 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/tlv320adcx140.yaml#
++$id: http://devicetree.org/schemas/sound/ti,tlv320adcx140.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- /**
-- * of_init_reserved_mem() - allocate and init all saved reserved memory regions
-+ * of_init_reserved_mem_node() - Initialize a saved reserved memory region.
-+ * @rmem: reserved_mem object of the memory region to be initialized.
-+ *
-+ * This function is used to call the region specific initialization
-+ * function on the rmem object passed as an argument. The rmem object
-+ * will contain the base address, size, node name, and device_node of
-+ * the reserved memory region to be initialized.
-  */
--void __init of_init_reserved_mem(void)
-+static void __init of_init_reserved_mem_node(struct reserved_mem *rmem)
- {
--	int i;
--
--	alloc_reserved_mem_array();
--
--	of_scan_reserved_mem_reg_nodes();
-+	int err;
-+	bool nomap;
-+	struct device_node *node = rmem->dev_node;
+ title: Texas Instruments TLV320ADCX140 Quad Channel Analog-to-Digital Converter
+diff --git a/Documentation/devicetree/bindings/sound/wm8750.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
+similarity index 92%
+rename from Documentation/devicetree/bindings/sound/wm8750.yaml
+rename to Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
+index 24246ac7bbdf..96859e38315b 100644
+--- a/Documentation/devicetree/bindings/sound/wm8750.yaml
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8750.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/wm8750.yaml#
++$id: http://devicetree.org/schemas/sound/wlf,wm8750.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
--	/* check for overlapping reserved regions */
--	__rmem_check_for_overlap();
-+	nomap = of_property_present(node, "no-map");
- 
--	for (i = 0; i < reserved_mem_count; i++) {
--		struct reserved_mem *rmem = &reserved_mem[i];
--		struct device_node *node = rmem->dev_node;
--		int err = 0;
--		bool nomap;
--
--		nomap = of_property_present(node, "no-map");
--
--		err = __reserved_mem_init_node(rmem);
--		if (err != 0 && err != -ENOENT) {
--			pr_info("node %s compatible matching fail\n", rmem->name);
--			if (nomap)
--				memblock_clear_nomap(rmem->base, rmem->size);
--			else
--				memblock_phys_free(rmem->base, rmem->size);
--		} else {
--			phys_addr_t end = rmem->base + rmem->size - 1;
--			bool reusable = of_property_present(node, "reusable");
--
--			pr_info("%pa..%pa (%lu KiB) %s %s %s\n",
--				&rmem->base, &end, (unsigned long)(rmem->size / SZ_1K),
--				nomap ? "nomap" : "map",
--				reusable ? "reusable" : "non-reusable",
--				rmem->name ? rmem->name : "unknown");
--		}
-+	err = __reserved_mem_init_node(rmem);
-+	if (err != 0 && err != -ENOENT) {
-+		pr_info("node %s compatible matching fail\n", rmem->name);
-+		if (nomap)
-+			memblock_clear_nomap(rmem->base, rmem->size);
-+		else
-+			memblock_phys_free(rmem->base, rmem->size);
-+	} else {
-+		phys_addr_t end = rmem->base + rmem->size - 1;
-+		bool reusable = of_property_present(node, "reusable");
-+
-+		pr_info("%pa..%pa (%lu KiB) %s %s %s\n",
-+			&rmem->base, &end, (unsigned long)(rmem->size / SZ_1K),
-+			nomap ? "nomap" : "map",
-+			reusable ? "reusable" : "non-reusable",
-+			rmem->name ? rmem->name : "unknown");
- 	}
- }
- 
+ title: WM8750 and WM8987 audio CODECs
 -- 
-2.34.1
+2.43.0
 
 
