@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-77724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56BCF90FCCF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:37:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 497D090FCD7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:40:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 073741F21F5C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 06:37:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9E5D1C21C5C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 06:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 157463BBC0;
-	Thu, 20 Jun 2024 06:37:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCC13BBED;
+	Thu, 20 Jun 2024 06:40:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VzCyR8Vh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YgsvW9D4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBA71946F;
-	Thu, 20 Jun 2024 06:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB522BCF7;
+	Thu, 20 Jun 2024 06:40:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718865442; cv=none; b=uKPwy3aaUkVLpMA/ZmuPYlQUn1ik6GbNprPdka1BEtbR9HzHkGJXaH9AngXnt7nfU+/CNBXUzsYNOVqzUIVBAbyX9NilMR/Zpg6TMW+7sDYBpvKbxuBDe52PXx5KsXOkM5S0Phe6iRicHV3VPWKdXJ+/mPwHoKZe69YPYMig5QU=
+	t=1718865611; cv=none; b=Bm3cqlbWluVtSKUlfg3ySbpf/fdNCzx1L7zHrfKXN67rOy3qINvB9FEEQHy3sZhuw7I9pkyG1pX8OATX+2TwUsumPBqZvitGV5hgiNzX1zJzJiSnfUGh7NK+s3+t+7CCjDsSEREAe5ljzqPwu+ErYAIRvpbcHMahb1k7l3OXTiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718865442; c=relaxed/simple;
-	bh=3wZ8z1BqXx7wiDffBy8DwIW3zBd2GZ2P4pl0TgqT9ag=;
+	s=arc-20240116; t=1718865611; c=relaxed/simple;
+	bh=F9VZztG35SxUJvfy5B5ZE1Rpm3VmMCzAMyl2EasFXRM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bke3EjBvHvmJGlvKmab9OY83u9lQIBLqk9lqGPIMtGHAWiCmaC9+UUrIbog3bb1W0eV4rGx7AAXYACC24+eZ+Job24OhE6NVwhP2FWhM3uNCOlPre8qnttWVu6MJmjKsfhyamCdhfqDvPbcCaROeQHyUZYjy1FTLAvw2Do+kxMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VzCyR8Vh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FFF4C4AF08;
-	Thu, 20 Jun 2024 06:37:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OqcHGT1sm9Ai7jstHj75dndPENgOjUPbW4qntLQL9uj59bJMkcgKPfF9NRNE4j3s65LmSVejK/+S6zvZKZWOhWC/M/VygGW2lSis8mEIXspHcYDa5y9vBkEkKpGawfa/eEUYiluQJpK6JvlXXPr4ZmsS896bLAa4E4wbl7qMcl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YgsvW9D4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3902C4AF07;
+	Thu, 20 Jun 2024 06:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718865441;
-	bh=3wZ8z1BqXx7wiDffBy8DwIW3zBd2GZ2P4pl0TgqT9ag=;
+	s=k20201202; t=1718865610;
+	bh=F9VZztG35SxUJvfy5B5ZE1Rpm3VmMCzAMyl2EasFXRM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VzCyR8Vhu2eW5EZHLfJiKsPj+x3uRND6nHT9h/yQMmCHvken3pRSDQryJ2MRaoRJ6
-	 rrOuUKs8SBNW4xQD4ETZd6V8zQhNiCWEPo69WPdAl3MlHgcKjRpf6SdPAvNADG24Xg
-	 GfX7cGvgotFvn51dEVrdN2Y/UySPkTzpnTI/wgjNaD6Kj+dLWb7P7JjtzacnUeMvwD
-	 K3kE27rUUzSlr25VoPhYtEgg1Ibs7tug7RIDQ0sz8DTcSxHuTzvOE7F9itvBYdDTIR
-	 MF/heWGl4lpKJim4MWiJY+SGTMIndCupKefuFzLCyxOJ2ml7OoFR79+9Ue4n3j4crR
-	 viMTcdmeFThfg==
-Message-ID: <ebebb17c-0247-4328-8129-24f15ef6f5c4@kernel.org>
-Date: Thu, 20 Jun 2024 08:37:15 +0200
+	b=YgsvW9D4vtuXWGk22nza9zaOstRIZQO9+1mEIAz9sD6BnU3kpRYyzgnOmpdbcGunR
+	 RPZ3IJvDumjAdjo4KQxLiNsWc+UaLYpEqimZoi1UwMhJe96ez2auSY24typWEBudfU
+	 E0YBXl11K+D6WSf/WM8FEjUYVkrybuVbn0kzgSQt2UIhT/u15XVpNPUhDRrcEUCB91
+	 mWoUNWKNjyDvu36jLfdACQrFRuA3LaRJjqgoWGauQ5+8phKfTFjg0JOy/SPteLaxb3
+	 i+dDpR7Rdmfjsg/O9jezT667Op/KRNYrNf3vg8B5e6CGMfm9WvVycKoMxNrNQxjanT
+	 Kuj/WBJFnZkyQ==
+Message-ID: <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
+Date: Thu, 20 Jun 2024 08:40:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: rename wm8750.yaml to wlf,wm8750.yaml
-To: Daniel Baluta <daniel.baluta@gmail.com>
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, patches@opensource.cirrus.com,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240619070356.80759-1-animeshagarwal28@gmail.com>
- <f3ce758b-fa9e-4eff-984e-ace10553d683@kernel.org>
- <CAEnQRZBvc6TR4Nnvp41oTKAU+EBdtuC0GnuDAGwO2MHDA8bV=Q@mail.gmail.com>
+Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
+ <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
+ <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
+ <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,30 +107,82 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAEnQRZBvc6TR4Nnvp41oTKAU+EBdtuC0GnuDAGwO2MHDA8bV=Q@mail.gmail.com>
+In-Reply-To: <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 20/06/2024 08:08, Daniel Baluta wrote:
-> On Wed, Jun 19, 2024 at 10:29 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 19/06/2024 09:03, Animesh Agarwal wrote:
->>> Add vendor prefix to wlf,wm8750 dt-schema.
->>>
->>> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
->>> Cc: Daniel Baluta <daniel.baluta@nxp.com>
->>> ---
->>>  .../devicetree/bindings/sound/{wm8750.yaml => wlf,wm8750.yaml}  | 2 +-
->>
->> Same as in other cases (why they started now?): why only one file not
->> all of them? Anyway, that's not necessary.
+On 19/06/2024 13:20, Jiaxun Yang wrote:
 > 
-> There is only one yaml file from wolfson which doesnt have the wlf, prefix.
-> For consistency we think that we should rename the file :).
+> 
+> 在2024年6月19日六月 上午10:28，Krzysztof Kozlowski写道：
+>> On 18/06/2024 17:11, Jiaxun Yang wrote:
+>>> This compatible has been used in arch/mips/boot/dts/img/boston.dts
+>>> for a while but never documented properly.
+>>>
+>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml b/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml
+>>> new file mode 100644
+>>> index 000000000000..79cae87c6758
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mfd/img,boston-platform-regs.yaml
+>>> @@ -0,0 +1,74 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mfd/img,boston-platform-regs.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Imagination Technologies Boston Platform Registers
+>>> +
+>>> +maintainers:
+>>> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: img,boston-platform-regs
+>>> +      - const: syscon
+>>> +      - const: simple-mfd
+>>
+>>
+>> Fix U-boot to populate devices instead of relying on simple-mfd.
+> 
+> Hi Krzysztof,
+> 
+> I believe U-Boot's implementation is correct. As per simple-mfd binding:
+> 
+> ```
+> simple-mfd" - this signifies that the operating system should
+>   consider all subnodes of the MFD device as separate devices akin to how
+>   "simple-bus" indicates when to see subnodes as children for a simple
+>   memory-mapped bus.
+> ```
+> 
+> This reads to me as "if you want sub nodes to be populated as devices
+> you need this."
+> 
+> In our case there are "clock" and "reset" node sub nodes which should be
+> probed as regular device, so it's true for us.
 
-And several other files have the same issue. That's just churn. No, let
-me be clear. Rule is for all files, not for wlf or asahi only. If you
-want that consistency, then fix *all* files, not selected one schema.
+No, you already got comment from Rob.
+
+Your children depend on parent to provide IO address, so this is not
+simple-mfd. Rule for simple-mfd is that children do not rely on parent
+at all.
+
+> 
+> Linux managed to work without "simple-mfd" only because clock subsystem
+> is bypassing regular OF population process. Semantically we need this.
+
+Semantically? No, you need proper populate, not incorrect simple-mfd.
+
+> 
+> Besides Linux as upstream of devicetree source had accepted U-Boot
+> only stuff here, such as "bootph-all" property.
+
+Because bootph-all is valid and correct. Calling simple-mfd something
+which is not entirely simple-mfd is not that valid.
+
 
 Best regards,
 Krzysztof
