@@ -1,192 +1,180 @@
-Return-Path: <devicetree+bounces-77794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115E290FF68
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:50:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55F4090FF73
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:51:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FDFB285988
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:50:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AA691F24B9F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D511A4F12;
-	Thu, 20 Jun 2024 08:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF74157A7C;
+	Thu, 20 Jun 2024 08:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CnCwWcPG"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Rzrybw1f";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="WMgubCCb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD9740858;
-	Thu, 20 Jun 2024 08:47:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7646F2582;
+	Thu, 20 Jun 2024 08:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718873276; cv=none; b=s/B652ecpI8VndZsqb3KCPifVNXCXCGdbjmpbBN1XBLA9mR402FeS4zftmGX0jH3H710Yj8WMUA2txxPNN+065mWmoY+UJpXZKctnKD9uoXkAm5RNsPi8kcJmSIzb3G73bPvz046Q0o7B6ebX6tuII40HhXrd86Gd9kKZYMv0To=
+	t=1718873350; cv=none; b=b3ao7TPHo98qviIJ/Dgm+0Bu+C2oWeXhR0osDsHouFB2CZfVswxMiAmSzzgyvrR3LG50OJSLIQ/NUUmkpGpAjx0ldvDgQqgr5uS17mwOGt2VhOFfnz1nlY/hBHpmy+S8bfRc2YF7rWaP2iTgTux8a/GhtIWGVjFzuL+O//NpDKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718873276; c=relaxed/simple;
-	bh=TBVTI/0PYjZSNwLs8zOMBanM4w1UfbWtOpjIx22X/S8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:Message-ID:MIME-Version:
-	 Content-Type:References; b=VQbRjLSm4Qb1roC7yuLhd5ASR39aynhOz/pRXMI0spw8N+Pv1Z76WeQOZcpUdkPLrdik/UciEfKPXSfSPxGCmmzsrhjNGak8Bc0lgAfYz3+G62lhCKhEmLYPKWhRs8hZHDBH3/sNyxad5aWO7R1YbVngb0ph9S6/tj45HwP6uEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CnCwWcPG; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240620084750euoutp022a61bdb452905d0d93967b59e85b60ff~aqiHwNbLt1458414584euoutp02w;
-	Thu, 20 Jun 2024 08:47:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240620084750euoutp022a61bdb452905d0d93967b59e85b60ff~aqiHwNbLt1458414584euoutp02w
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1718873270;
-	bh=2xH7UaeSHxwlKbfKFdgiBYrxzRVkCcqlRlIhfGGkv3E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CnCwWcPGEQLlrmu5GiGFmqg0ZxD5CVc+j6jPG5uuRr9gCAk7ZPCub9S5bgAmQfeoS
-	 glnYI8j0c2Va+5WGibE3KKBIp7FN49iE7HuZaLtE3SR3AYhmtU7UPUuVXg9iBr3H4Y
-	 BexdtWc8Ke8ws3TU2C6pXr/R9dncumT+S7Dkx+F0=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20240620084750eucas1p1e7fb1bcad2283f58e3f6041152a56a46~aqiHegUUU0512305123eucas1p1O;
-	Thu, 20 Jun 2024 08:47:50 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id CE.08.09624.6BCE3766; Thu, 20
-	Jun 2024 09:47:50 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8~aqiG47y3k0326503265eucas1p1Z;
-	Thu, 20 Jun 2024 08:47:49 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240620084749eusmtrp10b61c85089f15485d410823a8fd41c31~aqiG4BP6H2065920659eusmtrp1C;
-	Thu, 20 Jun 2024 08:47:49 +0000 (GMT)
-X-AuditID: cbfec7f2-c11ff70000002598-16-6673ecb6e85e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 41.33.09010.5BCE3766; Thu, 20
-	Jun 2024 09:47:49 +0100 (BST)
-Received: from localhost (unknown [106.120.51.111]) by eusmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240620084749eusmtip121f8870fba034cffe60389c2be011cc0~aqiGnuu2i3165231652eusmtip1W;
-	Thu, 20 Jun 2024 08:47:49 +0000 (GMT)
-From: Lukasz Stelmach <l.stelmach@samsung.com>
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,  Rob Herring
-	<robh@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Anand Moon
-	<linux.amoon@gmail.com>,  Olivia Mackall <olivia@selenic.com>,  Herbert Xu
-	<herbert@gondor.apana.org.au>,  Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,  linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] hwrng: exynos: Enable Exynos850 support
-Date: Thu, 20 Jun 2024 10:47:44 +0200
-In-Reply-To: <20240618204523.9563-7-semen.protsenko@linaro.org> (Sam
-	Protsenko's message of "Tue, 18 Jun 2024 15:45:22 -0500")
-Message-ID: <oypijdjzikt2z3.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1718873350; c=relaxed/simple;
+	bh=kSLxkWTBi+7p1x6D2l+GqdxuiwvhFd858T/X56MUp54=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=HnTCkpR0oyaNBXWpy8ma+EJMdTmvmESKIGSe6bE4Cki4CuLde0ikkaNyJz9TYbipRjgbCtaf5GT+mv++CUJrpQRchrvxhVY5263gtDJqc0oPnS+cwV+4RDDfOaiV618Gk9+icuI3fpLxzNXl70j5MN5yIRce7ty6uspe/0sks8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Rzrybw1f; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=WMgubCCb reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1718873347; x=1750409347;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=kSLxkWTBi+7p1x6D2l+GqdxuiwvhFd858T/X56MUp54=;
+  b=Rzrybw1fCFpjD88tfgJZ6zfGARhOwGLj6fa2jKUXmYTHO8/zDLT9BEAb
+   fHhAZLv+G9899zmPWLmZGdabSHVOh9+TEhZCU4W5t2aUxEQZTMPJgZhLz
+   QLl1MZ+tVC8HjY6QbGwhQDvbtSbJBEWnvGWtlwNIF0bx+04WyCx4Pz1Ia
+   4sFj7IoXkDGUve1LPfVpaMKGaeCyeSbMQZGU9Cnhni4LrP4Cn9X5haS0i
+   WgVEmt8OFymoByguguWISDE4ZPEI0jGk3OZ4S8mk759KD9pqMBNWFtFdn
+   87fDX/5EXQV1mCxzOOoDf53g1ws+rUuE6LHsFu6zhPO8yuDMxuKowMdkp
+   A==;
+X-CSE-ConnectionGUID: dJCJucXNRfiB1+9RADoZhw==
+X-CSE-MsgGUID: zVz13cV6QeSxXfhCK+cVKw==
+X-IronPort-AV: E=Sophos;i="6.08,251,1712613600"; 
+   d="scan'208";a="37493611"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 20 Jun 2024 10:49:04 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8134B160F46;
+	Thu, 20 Jun 2024 10:48:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1718873340;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=kSLxkWTBi+7p1x6D2l+GqdxuiwvhFd858T/X56MUp54=;
+	b=WMgubCCbkT2bV4NGe0ZxAgqPvP52bL1LgN+51fY5mRVepiyGhAN4vOE5T45HrGJhfXqWRS
+	GXav3uf0CiRtaduYaKn+a0CCD9lrWdOsA4eBfzkpEla1tpYcpYUIHffsMATiAIN2X2csWq
+	ZlhXaNarYE/qT3hbX5HT2hjaec3vz1IBZ9OEqk+4hOVEpuHNc/KrrSdvkM49D6SqpbGvVI
+	9knB9l72sstJ8zcyi5YYp0u6pYQpS9GqmU8daMMxHpqZDN6yCGSeDinDj4r3YFcueHymz7
+	FhiPybmpqddAgOLNCYwIT/OhWaCwo0Maabrvlmm4jYJdj0I5YhxWLmpcVIOHtw==
+Message-ID: <7adcd6789fb33fef10b7349934374e2cfb5ad164.camel@ew.tq-group.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: allow ethernet
+ controller in ICSSG node
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Suman Anna
+ <s-anna@ti.com>
+Date: Thu, 20 Jun 2024 10:48:59 +0200
+In-Reply-To: <14bebdc5-3239-47fe-b8cc-68daba278d73@kernel.org>
+References: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
+	 <89880cda-1140-4ed5-a67f-2201c2825447@kernel.org>
+	 <99cc7afbb891de890ff051606f7a120f796e0fbc.camel@ew.tq-group.com>
+	 <14bebdc5-3239-47fe-b8cc-68daba278d73@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-	protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMKsWRmVeSWpSXmKPExsWy7djPc7rb3hSnGRx/yWnxYN42Nos1e88x
-	Wcw/co7VovuVjMXLWffYLDY9vsZqcf/eTyaLy7vmsFnMOL+PyWLdxlvsFvfP9DBa/N+zg93i
-	ed8+Jgdej52z7rJ7bDug6rFpVSebx51re9g8Ni+p9+jbsorRo+/lBkaPz5vkAjiiuGxSUnMy
-	y1KL9O0SuDK+7N7GXvCfr2LTnnVMDYyfeboYOTkkBEwkuo7sZu9i5OIQEljBKLF753RGCOcL
-	o0RP7x02COczo8TSM83sMC0ftr+DqlrOKHF+3TdWCOcFo8SDG5OYuxg5ONgE9CTWro0AaRAB
-	MtfNfAXWzCywj1li099AEFtYwFmiec1jsDiLgKrE1+MNYHdwCjQwSnz6fAMswStgLnFh00pW
-	EFtUwFLi+NZ2Noi4oMTJmU9YIIbmSsw8/wbsIgmB7ZwSNyZdYoU41UXi14LdUGcLS7w6vgXK
-	lpE4PbmHBaKhnVGi6cpCVghnAqPE544mJogqa4k7536xQdiOEh+/HGIHeU1CgE/ixltBiM18
-	EpO2TWeGCPNKdLQJQVSrSKzr38MCYUtJ9L5awQhhe0icW/EEGtqTGCXONfezT2BUmIXkoVlI
-	HpoFNJZZQFNi/S59iLC2xLKFr5khbFuJdevesyxgZF3FKJ5aWpybnlpsmJdarlecmFtcmpeu
-	l5yfu4kRmPZO/zv+aQfj3Fcf9Q4xMnEwHmJUAWp+tGH1BUYplrz8vFQlEd7nXUVpQrwpiZVV
-	qUX58UWlOanFhxilOViUxHlVU+RThQTSE0tSs1NTC1KLYLJMHJxSDUyCti31/z0Xb/F02MZx
-	8NWZaV/7tCN38U9ymrLlylPeJQEufzdkylrqzHTkerjh1X27NYpXznmxbPLY+ebBAnOvqw7b
-	K4rXpTCfYVy0mCva+P/Vm4du5j4431a3PcDWf8uS694pe5155gQE2v9wd7sc77rDfoK/tP8i
-	2xuvZ9x/66at91F54d7a/CBrnT91eyY93FD/eYWz9spkxz1Ox9wmNqTNFTZmz3z6Zf2zV+GX
-	Chd0NrUE5DVn8F1/erm7ks/5xtT20y8t5lZIOWZuD3zoOMs5Ma7neXzCbs+8TeqZJbF6Rk9P
-	J7UWcG9Uvp7inLaa/+re0i1vRKTnhVxZnHn0svOZNpUzRl9nH93tpnVbiaU4I9FQi7moOBEA
-	xZ5FWfYDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJIsWRmVeSWpSXmKPExsVy+t/xu7pb3xSnGfTtkLZ4MG8bm8WaveeY
-	LOYfOcdq0f1KxuLlrHtsFpseX2O1uH/vJ5PF5V1z2CxmnN/HZLFu4y12i/tnehgt/u/ZwW7x
-	vG8fkwOvx85Zd9k9th1Q9di0qpPN4861PWwem5fUe/RtWcXo0fdyA6PH501yARxRejZF+aUl
-	qQoZ+cUltkrRhhZGeoaWFnpGJpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJehlfdm9jL/jPV7Fp
-	zzqmBsbPPF2MnBwSAiYSH7a/Y+xi5OIQEljKKPH56Qq2LkYOoISUxMq56RA1whJ/rnWxQdQ8
-	Y5R4OOMHWA2bgJ7E2rURIDUiQOa6ma/YQWqYBQ4yS1x63MMEkhAWcJZoXvOYHcQWErCTaLt0
-	gxnEZhFQlfh6vAGsgVOggVHi0+cbYEW8AuYSFzatZAWxRQUsJY5vbWeDiAtKnJz5hAXEZhbI
-	lvi6+jnzBEaBWUhSs5CkZgHdxyygKbF+lz5EWFti2cLXzBC2rcS6de9ZFjCyrmIUSS0tzk3P
-	LTbSK07MLS7NS9dLzs/dxAiM123Hfm7Zwbjy1Ue9Q4xMHIyHGFWAOh9tWH2BUYolLz8vVUmE
-	93lXUZoQb0piZVVqUX58UWlOavEhRlOg3yYyS4km5wMTSV5JvKGZgamhiZmlgamlmbGSOK9n
-	QUeikEB6YklqdmpqQWoRTB8TB6dUA9PSUxVKDxvvzPmmkVvOtzTGJuKhDe95vs/p6xmOfPmp
-	uT/m0LWOfPXdYiZvD7YU3Er/bWzl6+oUceZRI/OpPdyHrZd0qcfI25Q8OZtRcN0vXXdHWEfd
-	d2bfM2tbUqavS52kZHxlZ9mVyLmsi/Pa5t22rZ3izzC9O3HmrwWLc7IS2C++q7B9Yj/t14oq
-	k12Pbb6p19p9/TwzWzj3ilW5in3soVc/t8Rc+5W/LXXqsev3eIL+yijm7nIU+DHlxL/O/zra
-	lz69Otd851fS3hy53LItyRNeNc/Nm5nLWLfwzDx34f95BaJhq3+t2sK/4luNa3FXqa7ShpkJ
-	MpqOF9/rPtirt2BFgc/F1BevlZdwyP5UYinOSDTUYi4qTgQA8UnVOmwDAAA=
-X-CMS-MailID: 20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8
-X-Msg-Generator: CA
-X-RootMTR: 20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8
-References: <20240618204523.9563-7-semen.protsenko@linaro.org>
-	<CGME20240620084749eucas1p18f46cc9aa0983afb75e1677b399d12f8@eucas1p1.samsung.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 2024-06-20 at 10:29 +0200, Krzysztof Kozlowski wrote:
+>=20
+>=20
+> On 20/06/2024 10:26, Matthias Schiffer wrote:
+> > On Thu, 2024-06-20 at 09:24 +0200, Krzysztof Kozlowski wrote:
+> > > On 19/06/2024 13:24, Matthias Schiffer wrote:
+> > > > While the current Device Trees for TI EVMs configure the PRUSS Ethe=
+rnet
+> > > > controller as a toplevel node with names like "icssg1-eth", allowin=
+g to
+> > > > make it a subnode of the ICSSG has a number of advantages:
+> > >=20
+> > > What is ICSSG? The sram or ti,prus from the ethernet schema?
+> >=20
+> > ICSSG (Industrial Communication Subsystem (Group?)) is the main device =
+described by the
+> > ti,pruss.yaml binding (ICSS and PRUSS are different variants of similar=
+ IP cores); it is the
+> > container for the individual PRU, TXPRU and RTU cores which are referen=
+ced by the ti,prus
+> > node of the Ethernet schema.
+> >=20
+> > The entirety of PRU, TXPRU and RTU cores of one ICSSG, each with its ow=
+n firmware, forms one
+> > Ethernet controller, which is not quite a hardware device, but also not=
+ a fully virtual software
+> > device.
+>=20
+> So it is not really child of ICSSG.
+>=20
+> >=20
+> > The Ethernet controller only exists through the various ICSS subcores, =
+so it doesn't have an MMIO
+> > address of its own. As described, the existing Device Trees define it a=
+s a toplevel non-MMIO node;
+> > we propose to allow it as a non-MMIO child node of the ICSSG container =
+instead.
+> >=20
+> > If you consider moving the ethernet node into the ICSSG node a bad appr=
+oach, we will drop this patch
+> > and try to find a different solution to our issue (the Ethernet device =
+staying in deferred state
+> > forever when the ICSSG node is disabled on Linux).
+>=20
+> Just disable the ethernet. That's the expected behavior, I don't get
+> what is the problem here.
 
-It was <2024-06-18 wto 15:45>, when Sam Protsenko wrote:
-> Add Exynos850 compatible and its driver data. It's only possible to
-> access TRNG block via SMC calls in Exynos850, so specify that fact using
-> EXYNOS_SMC flag in the driver data.
->
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - Changed QUIRK_SMC to EXYNOS_SMC to reflect the name change in the
->     previous patch
->
->  drivers/char/hw_random/exynos-trng.c | 3 +++
->  1 file changed, 3 insertions(+)
->
+If the disabling happens as a fixup in the bootloader, it needs to know the=
+ name of the Ethernet
+controller node (or iterate through the DTB to find references to the disab=
+led ICSSG node).
 
-Acked-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
+The name is currently not used for anything, and not specified in the bindi=
+ng doc; the example uses
+"ethernet", which is too unspecific, as there can be multiple ICSSG/PRUs, w=
+ith each running a
+separate Ethernet controller.
 
-> diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_rando=
-m/exynos-trng.c
-> index 497d6018c6ba..841598037cce 100644
-> --- a/drivers/char/hw_random/exynos-trng.c
-> +++ b/drivers/char/hw_random/exynos-trng.c
-> @@ -313,6 +313,9 @@ static DEFINE_SIMPLE_DEV_PM_OPS(exynos_trng_pm_ops, e=
-xynos_trng_suspend,
->  static const struct of_device_id exynos_trng_dt_match[] =3D {
->  	{
->  		.compatible =3D "samsung,exynos5250-trng",
-> +	}, {
-> +		.compatible =3D "samsung,exynos850-trng",
-> +		.data =3D (void *)EXYNOS_SMC,
->  	},
->  	{ },
->  };
+Existing Device trees use "icssgX-eth" for an Ethernet controller running o=
+n the ICSSG with label
+"&icssgX", but labels are a source concept and don't exist in the compiled =
+DTB by default.
 
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
+I do have an idea for an alternative approach that does not need changes to=
+ the DT bindings: The PRU
+Ethernet driver could detect that the referenced ti,prus are disabled and n=
+ot just waiting to be
+probed and then fail with ENODEV instead of EPROBE_DEFER.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Matthias
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAmZz7LAACgkQsK4enJil
-gBA4ZQf9H/yTan9r7idWXpguT1GA+QwtJfaZDQynWcWKu6JdXndL54/0k5A5WQsC
-KAItmS8Wzp5CDEUY2uTO/o3O7vSuuAMWC8yY1Gz6OyA9A6RZ1wYlSdYSyPO7eu2Q
-+lAaSn+hx6EgEWeAmsN8e67FhbRu7qvY/+EaYbobCGDfoBTVw4d1eX1ZmAEVY9+W
-qqvMyOlFq8KVxA6I+kYdkm9/Yj6AsxcZMSfZMLf/GfFwgkySTwnxxTz7nFpihYUc
-fEHU8L8IqEaU6EFxkg6tmkx2y0nYnBSkEuQ5/0LYndCqIH8ts+cBBExNNrpVNRz3
-peJy+ClnFMVwNxSK64LK9iBItsDq/w==
-=DvxN
------END PGP SIGNATURE-----
---=-=-=--
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
