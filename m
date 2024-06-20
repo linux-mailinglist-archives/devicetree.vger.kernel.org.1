@@ -1,164 +1,158 @@
-Return-Path: <devicetree+bounces-77970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BDB9108F9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:52:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5726F910904
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:53:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2EB51C209B7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:52:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 875E11C20F73
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE2B1AE878;
-	Thu, 20 Jun 2024 14:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C7CA1AED25;
+	Thu, 20 Jun 2024 14:53:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mj4qRAQJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32BEA1AE84E;
-	Thu, 20 Jun 2024 14:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F346A1AE878
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 14:52:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718895148; cv=none; b=ZHugzqmokr+hZXysotWWZ/CL/tk5p9c2P4nESMgEnXPzbcE9j57+phoXkpvdwywnHfldFK2XgSfcbNgZCC5UINJhveUi7dRO64A6Oo8F26IHIThNoNziyAf2RKZCEOki7QRtTsv0k1mIYphkywafZ41Tch/fnqKlNzO19VNPLvg=
+	t=1718895180; cv=none; b=rRVL9UmieFitzqu/jdDFRPoPtgBQTapiQ8iLhnvSsGtc577JjBFOpV1hzrdw8hXfkUXsLANtjtF1yv1FbHewuK89Nn/WsNiv6Hr/+g8lpCAGUNkqnvpMKpq9d0wc2va/hQgWQVbZukFghMkZb9oPeggd+SPOgHJsPq9Z8mJHqlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718895148; c=relaxed/simple;
-	bh=quHvdMGXD+OF+Vmvo6ZchqeF+v17FJP9dNrIZBXrvGc=;
+	s=arc-20240116; t=1718895180; c=relaxed/simple;
+	bh=cOjlLG7J6uNFSBufcYc1U6uO2TdqNqn9wVWkYk95jjo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sMvQz3V37yeUl5LLHfleUR5r8uMdLy30IAYK5WAYiBVI1fUobedpHpH8yS6KTf+fHlY96Iz8slKJ32dT2YSyKQ6JKcAQY59JgQKX88sZ3XZHDhJ4q4Tmb5ZdoBLLfLe/8Faye0o5Xa3p13gnalRCh7oHYNc/xBRPPVmfNhfGzM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dfe81d54db9so973713276.2;
-        Thu, 20 Jun 2024 07:52:26 -0700 (PDT)
+	 To:Cc:Content-Type; b=M7C8HzC5mD/wIZ2qI6aN01+Z7eGs2nwfHHJm1u53RraXt+XWwSFzE4bujkKp3W9pcli6g86mBHB7zXHZqAiC78ozveIE7pcE3vzS4FS/LhjgpdpkXyFb8XccnTa+9BJluQHrzOWGlyrIzMDHfNh0Szu9lDUO245aASnWcQpa0ZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Mj4qRAQJ; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-63036fa87dbso8243387b3.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 07:52:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718895178; x=1719499978; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qCNEYn05yS9gykrfyaJDjrazGTz47gbZUOuJaEqz7AQ=;
+        b=Mj4qRAQJ2Wx5lLhhpLxAQFkU3cYGQB2F6Hum+kp+9EhQTIRbkIt6eMTyMUPKeaqnTv
+         0Dd0hxRQpRJ0ayAaZFEWNqJKf+v+6czaYyhkSKePJBD0erUSKj5ENB5otFFOMYnxeMTe
+         SxsMkigkfuVbHFswgLVP+91M9n89kGcDi3MgN3vUwqm0jho665jzA2zxEX2BaEv8IHNs
+         Kn5QkS2DFyISLU8KfPYx9lBxByYvfdPwEmqU04PjFL0Cff4CWv4/dGZPlacA0zVoEvbo
+         hxH51qFUSAlIbgWay8sdMtxzKzyPFt3ZWMb3kdp53iz8E1C1O1hdYmAe2kgxN/TSMXlO
+         En0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718895144; x=1719499944;
+        d=1e100.net; s=20230601; t=1718895178; x=1719499978;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qicnrKvU4izSAdjyf++mWnVsSY0UBkYb5drVYCcA5wY=;
-        b=cdeJnu6fScTZbDDJ5VBiclJX/d3DAxzRVw1+ZUziR2PktI4AezKkSWoXDLIZEJLPol
-         DZRNiOTkKhrWktzkK5ws/uvmoqnn771pNsuAOA2GmkNUwT/9QqA7Y18epbeCFeG1Gd5s
-         6eGSBJtSpNWqNQMFySRx3linrkSsPkoyTG2ktwX+AhEuhey3i6kR0vZOmb3xZej2t4/R
-         Rmg9HRUaf7hVvBnF7RSHN4MDSXEc4zb+68MuRRFezoeMYyzqjmUvx0BhnEXrLUDUK28U
-         PSuiCdTtEGZqSNMfsxKhHpvxop5CzFriNQpM4gr8T6jV/0L6l4FaBrOcR9sU16fYPtJN
-         If8g==
-X-Forwarded-Encrypted: i=1; AJvYcCV7e4QvIb6nn+VQV5HyGYRxivCCbSVrA2r5DiUkuVJPXOFdPiYoTOfoqaAy5zGar+K4TdZj+rhv1Fg5E4wv9Js4Xa1COSKRxxBD+7/edyVcrqhi9zICXo+75imgtf5AsU7YM9POLMTOL3tNbv6moj260D2FFp0N10MO0ETTQfuJK7Fhk1OZCSx+DFKcP/dkpFJ4B7WqTdtYPwvNUoHJ1jiUd2iy+F8Q
-X-Gm-Message-State: AOJu0Yw9Uav9DpyxEIi3k4BSYPlQK2l3YgRfjFGv0994QCuYVM+wPujX
-	/kgfNGoBbHMxXv2z7t2G8ADchrJxSWYAOtevkrnIOvjEbO/paEwt6Pw+jVmF
-X-Google-Smtp-Source: AGHT+IHa726p4LBUgJ4pKzqdMzHgOlyRn0z7kg86RymTqqoueBuhne4yq1OJUzSFpV67LGh1zg0C2A==
-X-Received: by 2002:a25:d653:0:b0:dff:745:2303 with SMTP id 3f1490d57ef6-e02be225ddemr4959097276.57.1718895144153;
-        Thu, 20 Jun 2024 07:52:24 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e02ce311570sm987321276.15.2024.06.20.07.52.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jun 2024 07:52:23 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dfe81d54db9so973676276.2;
-        Thu, 20 Jun 2024 07:52:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW8Jv9p9FcgyzdRMxyQg94hd8/iEvpkOQYFU9ir04GVpGuNBboPAeVyCFaBAjkEXnBFckDFQqpCd1biv/VRksTFljKHglTDAplzpIyqr0bcpE9HJUpcSiThl5VLfDFi8RZE9KWrC2M4W8AHJeVpoAl+bTgGgPxPNwHz9K1ekVFQKlQF+ARxO3d9+cF/sRdxv4uBkq2AXV32mgC4vLxgmWX42YBYmgEa
-X-Received: by 2002:a25:8403:0:b0:e02:b7ee:5354 with SMTP id
- 3f1490d57ef6-e02be138271mr5993985276.20.1718895143516; Thu, 20 Jun 2024
- 07:52:23 -0700 (PDT)
+        bh=qCNEYn05yS9gykrfyaJDjrazGTz47gbZUOuJaEqz7AQ=;
+        b=k54S2tfWG++tVLF61723t6cBmZ89/RAMc0dFJszhNbXgv5SG0iHV3SKYbwD+Zl7RWI
+         uRNk9mdwMgQcNWk4i6pwmMUSG2bPEjC4QDSC8R/jSUnvV4I04jQ742K4F27iuLtl12wk
+         gLXgTkz1UaS2dBy+ks7yz7B3WccUbcqLO/Rp/qu5D8pKw4cATMOBHH/63cnJxz0rdkMG
+         I1LDkZS82bLJ6X8Sai9G2k5zgQrvpcWc9ivRwyLNmCNDMUc90UQVU0eo1hXMgE/Bh8Kg
+         gZ8DUW64RBFN+dIvGJN/HzqRiOlYGukWJWSXfABZACe7dEfYGWqN0bz61+fXtDbLsPIC
+         WRFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVHwljSb96cKWtpxFlcfmRBmCYIH10/n8JVpolmGVUM+O3sdXsi9napRmHUslIOP/rHfvrJLmhuABJhIbc1k6pXwQg7PFhOxXq7SA==
+X-Gm-Message-State: AOJu0YzVuEv26cmbqHSOuCP6TYFr0O1CRcFJ4C6qYNFJbNRp42qKz/FA
+	DZMbgKZtc2Dhj23EeL5amn1ODgna4fr1N8dytHZ9LWolWGikRKNq1BY5a9/8miO8U/LAc816FOK
+	sQxSDaq2jDEroO3QsKECFskYLBRJ0tGuqdsR30Yy2KARiQXJW
+X-Google-Smtp-Source: AGHT+IF40pdsLHGJGXsUitmodarquEe+C+A7BtlyIVzKzW3fRxNf20I0BvEb3GK+3HmTvwvssyu3em+pUpOJ1efXyLE=
+X-Received: by 2002:a81:e30d:0:b0:61b:e61e:8988 with SMTP id
+ 00721157ae682-63949fecfc4mr58602707b3.18.1718895177927; Thu, 20 Jun 2024
+ 07:52:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240605074936.578687-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240605074936.578687-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 20 Jun 2024 16:52:11 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW5J087M=xD95R87XsP-xTqiaenzJ9WVq8x_d2_+67J1A@mail.gmail.com>
-Message-ID: <CAMuHMdW5J087M=xD95R87XsP-xTqiaenzJ9WVq8x_d2_+67J1A@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/4] regulator: core: Add regulator_map_voltage_descend()
- API
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240612075829.18241-1-brgl@bgdev.pl> <171889385052.4585.15983645082672209436.git-patchwork-notify@kernel.org>
+ <8d6af7e2-76f8-4daa-a751-a1abe29af103@kernel.org> <CABBYNZJ5z91HExR-dkwrEPoF1pEGbkAP0X6tpftEGz-kd7vdsw@mail.gmail.com>
+In-Reply-To: <CABBYNZJ5z91HExR-dkwrEPoF1pEGbkAP0X6tpftEGz-kd7vdsw@mail.gmail.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date: Thu, 20 Jun 2024 16:52:46 +0200
+Message-ID: <CACMJSevy9w9L3c9fmbZcwO2BdmtJiQmHBTqJSiSXUs-fcmEqAQ@mail.gmail.com>
+Subject: Re: [GIT PULL] Immutable tag between the Bluetooth and pwrseq
+ branches for v6.11-rc1
+To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, patchwork-bot+bluetooth@kernel.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, marcel@holtmann.org, krzk+dt@kernel.org, 
+	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
-
-On Wed, Jun 5, 2024 at 9:49=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.co=
-m> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, 20 Jun 2024 at 16:44, Luiz Augusto von Dentz
+<luiz.dentz@gmail.com> wrote:
 >
-> Similarly to regulator_map_voltage_ascend() api add
-> regulator_map_voltage_descend() api and export it.
+> Hi Krzysztof,
 >
-> Drivers that have descendant voltage list can use this as their
-> map_voltage() operation.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-Thanks for your patch!
-
-> --- a/drivers/regulator/helpers.c
-> +++ b/drivers/regulator/helpers.c
-> @@ -368,6 +368,37 @@ int regulator_map_voltage_ascend(struct regulator_de=
-v *rdev,
->  }
->  EXPORT_SYMBOL_GPL(regulator_map_voltage_ascend);
->
-> +/**
-> + * regulator_map_voltage_descend - map_voltage() for descendant voltage =
-list
-> + *
-> + * @rdev: Regulator to operate on
-> + * @min_uV: Lower bound for voltage
-> + * @max_uV: Upper bound for voltage
-> + *
-> + * Drivers that have descendant voltage list can use this as their
-> + * map_voltage() operation.
-> + */
-> +int regulator_map_voltage_descend(struct regulator_dev *rdev,
-> +                                 int min_uV, int max_uV)
-> +{
-> +       int i, ret;
-> +
-> +       for (i =3D rdev->desc->n_voltages - 1; i >=3D 0 ; i--) {
-> +               ret =3D rdev->desc->ops->list_voltage(rdev, i);
-> +               if (ret < 0)
-> +                       continue;
-> +
-> +               if (ret > min_uV)
-
-I know this patch is superseded, but shouldn't this be "<"?
-
-> +                       break;
-> +
-> +               if (ret >=3D min_uV && ret <=3D max_uV)
-> +                       return i;
-> +       }
-> +
-> +       return -EINVAL;
-> +}
-> +EXPORT_SYMBOL_GPL(regulator_map_voltage_descend);
-> +
->  /**
->   * regulator_map_voltage_linear - map_voltage() for simple linear mappin=
-gs
->   *
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
+> On Thu, Jun 20, 2024 at 10:35=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >
+> > On 20/06/2024 16:30, patchwork-bot+bluetooth@kernel.org wrote:
+> > > Hello:
+> > >
+> > > This pull request was applied to bluetooth/bluetooth-next.git (master=
+)
+> > > by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+> > >
+> > > On Wed, 12 Jun 2024 09:58:29 +0200 you wrote:
+> > >> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >>
+> > >> Hi Marcel, Luiz,
+> > >>
+> > >> Please pull the following power sequencing changes into the Bluetoot=
+h tree
+> > >> before applying the hci_qca patches I sent separately.
+> > >>
+> > >> [...]
+> > >
+> > > Here is the summary with links:
+> > >   - [GIT,PULL] Immutable tag between the Bluetooth and pwrseq branche=
+s for v6.11-rc1
+> > >     https://git.kernel.org/bluetooth/bluetooth-next/c/4c318a2187f8
+> >
+> >
+> > Luiz,
+> >
+> > This pulls looks wrong. Are you sure you have correct base? The diffsta=
 t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > suggests you are merging into rc2, not rc3. This will be confusing in
+> > merge commit. It is much safer, including possible feedback from Linus,
+> > if you use exactly the same base.
+>
+> So you are saying I need to rebase? I usually only rebase when it
+> comes the time to do a pull-request using net-next as a base since
+> that is where bluetooth-next normally lands.
+>
+
+Technically you're all set - you pulled rc3 together with my tag. But
+if you pulled rc3 separately and then my tag, the merge commit for the
+latter would look much cleaner.
+
+And for the record: you don't need to rebase anything. Does net-next
+require you to? That would be weird. I assume they also are based on
+one of the RC tags. You almost never should rebase on top of an rc,
+instead you merge it into your branch and send the PR starting from
+the latest rc tag. Git is smart and will figure it out. You may be
+afraid you'll "lose" some commits because you will not see it in the
+immediate git log. That's true, they will be buried underneath the
+pile of Merge commits from upstream, but worry not: git will always
+find all commits missing from upstream when you do `git request-pull`.
+
+Bart
+
+> > Best regards,
+> > Krzysztof
+> >
+>
+>
+> --
+> Luiz Augusto von Dentz
 
