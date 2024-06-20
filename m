@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-77829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D53891014A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:17:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7FB991014B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:17:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C5DC1F22A80
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:17:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E763B21E78
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087F01A8C39;
-	Thu, 20 Jun 2024 10:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD43A1A8C2B;
+	Thu, 20 Jun 2024 10:17:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12BAB4500E
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 10:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA5E558A5
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 10:17:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718878646; cv=none; b=IsAuN5lTmAEhcAdWokXaX+wHqX2y1pYjRSt7pdkk3VFhtbGoMuN5dWL/xx2ulZo+pF3arNvzlCo7x0dg5MYy+wtipHuYyU4kWIH9BBUuRr4OWpJO1/m0xT8Na/mWmWbXHKP6INUgEf6JxnlIjO4NvWQ5XD8FNNbbhn5pHbV9VRI=
+	t=1718878659; cv=none; b=DjJVx71fYmqYry58PabpqGOdaMHt88KVNDd+VoO3O8okJJZJdW/pkMocVn5FAubvsbOUH1QRL+wrvh/lMS2AMXfT7XM8V56NoSzdhKmtf+5p5X+0UiqKT2bKgIICLWmou4axRqjYtg+7PsrwbzADcfzz5BDwlY41n4KB0lGpRCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718878646; c=relaxed/simple;
-	bh=1I3ur0ocbWFP4fWAh3mMdb00sUlMHr9RGoHljdDyqIc=;
+	s=arc-20240116; t=1718878659; c=relaxed/simple;
+	bh=h7V0DxoSMVHG8VEd6s7x6wFAS8w5u2rt7fpd1rRse9Y=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LQlcOSE4KKru0ZAAZ6pnEe5gCmVX1zvGYvwpCh7yB9KQlV6dvnmagbOBNcI73AeBJ34uu55CWmb6IU4k6fTDEYLGxD+9TUn2OeIWWU3h0YFuIimCBiY9afHWjzauq2lHQRSEMcFH5w7wbaHp/yGK5vwG+34IDCSvKFbEILI1Wjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.169
+	 To:Cc:Content-Type; b=Vx3Ewt7XYXeMC79hBecb4GPB3HYvN/kUAXPlS2cXAcbUKBXHmd+OCSHJSIBYPhrWrhrFylPR1AtSqSavkYWafMUvMHj88REOAT8l59Q6avebUuVtTcEyV4BhP4hsZ+OH8y7O3LAo0ytwesJ8kv7qeL+T+8+Yn9tKqwXcr8w8hvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ec0f3b9bb8so6713431fa.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 03:17:23 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ebe40673e8so6611721fa.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 03:17:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718878639; x=1719483439;
+        d=1e100.net; s=20230601; t=1718878654; x=1719483454;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :reply-to:in-reply-to:references:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d+lxYOzrcMs2AvPs+DTpEs/Zqfcyw5bdiw2jrVTDM7w=;
-        b=On4hO9uT8Wl+uMMxy+boCEKJi8Ub3CuRUy5v9Pv0WlpqegH9Bf+DVu8K5GKi88rP7h
-         qQhqgLBXGmiInbrWv/A1mr4CQBKsGmf67nQ2SYGv3TWMzbjd8GMQe4O7tv20riGwxzTW
-         uK2Xzb/O7F7fzLnxpqQFiyfuMBSS/iiJKI7H37PNE9kAHKlA4ma+pmKHuWvKPFGgCE1N
-         Vzvy2HQMue6dDpN91Rv3cBkqMGZzxDEewOziz2EX/R6AqQCjV9LPa27Cey6IebGH6Mh5
-         wgoMj8JN9v5fjtZdD5uU3Q6lmt8K+jT+5w4xQr5E31sILP7WpX9qT8vYEzup83YDK720
-         0r4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXC3PIk9hWciNmzqA9RSIlM9nHp/AYpmPG6ux5bvogCSIq70BrakV98uiTMvNoz6L8+PJnH9luv+LliArnjI3ilFp3q2O1/692MLA==
-X-Gm-Message-State: AOJu0YydYqUSogc+pfALTIPCXRCLHVIwSEIPDpgd50ipQHZQImpme0t3
-	gpoc20wEXmwtD36RkhmWku7+BSpP7C3UDCyJEM/ZYwHphmHqy/Yj7Ja4U9Ze/RA=
-X-Google-Smtp-Source: AGHT+IEHRDN7Y/hTRnitY+zKbDHhciao12bR9ALJW099WSuRojZny9Z8UdJ8WMaHKULioz/AfRh6qQ==
-X-Received: by 2002:a2e:8199:0:b0:2ec:3423:8729 with SMTP id 38308e7fff4ca-2ec3ce27b37mr33107261fa.0.1718878638555;
-        Thu, 20 Jun 2024 03:17:18 -0700 (PDT)
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com. [209.85.208.179])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec25647ec2sm15028361fa.56.2024.06.20.03.17.18
+        bh=bf8vNA5yuOytQH9oqGaxBvwD+CmbF2hsnog35+f66vs=;
+        b=gOL0gDK5RZE3JXpJ+uDIEXBxPuN7Qtw0SQdMUxbuSN8CqwNMRZRIVZ4qeqRDT+OSNG
+         q0LjO0euu9oeDIbWkueb1BdtNiWMDJpzMu2IIj9PyE33qwLTRUSLD1GYAVCS+5NziBre
+         zlaCr2qgmYqLkagvbBW/2AqlvsyontYJ+22x/hv/84RMz1UtrjhGJAh6xWLiF56XjjS/
+         LyUjljqlt6qzmyNPoYaVAgERVp+BjYAQGUFkMK1aYA3O4ajthcILWcM9jswM3wr39knf
+         pJi6ZozyOwL12oU2Fhi5/+5iazX6r0n+g16YlgD1CR+Va1jqvlf4anJX78HYzEUDQltA
+         uN4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWhUKCPQGiCuL6QSzmlAYFvqmUMW7zsNt3lx1oMZKz7XpT16ta0lr5k8TbcSCQhDKvPGZQzsCgMvWE0MxrfSkEONzCWA8L2WRNjLw==
+X-Gm-Message-State: AOJu0YwPMw/RMG4Stfbk48BTbloiSJ59jWAPr2IX+eYELn8B3NpHPvyx
+	dJL5DFVoQq+6o3TmHFypc2PlZdAm9j+F2E9fJWqGOb31Y9sQQFcfJrTvhVIV0bw=
+X-Google-Smtp-Source: AGHT+IH0hJ6IjHBHKNUwjwgaDfny8C4RZo6bUxzYxw/fFd4szYJtt2Nt6EISknmn1a+Vggl8pFR6Kg==
+X-Received: by 2002:a05:6512:1247:b0:52c:84bf:d1f9 with SMTP id 2adb3069b0e04-52ccaa2a879mr3198157e87.8.1718878654235;
+        Thu, 20 Jun 2024 03:17:34 -0700 (PDT)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com. [209.85.208.172])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ca2879978sm2011947e87.182.2024.06.20.03.17.32
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jun 2024 03:17:18 -0700 (PDT)
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ec0f3b9bb8so6712321fa.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 03:17:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWC2p/wKkRT9VwiHtUifNhlJLW15XTIcoGKjs3dZZ2To8lU36MhcdWxcemSmNbeash9S51lj+NkixYzZ5RRtuZXFQXStNUzXhgZKQ==
-X-Received: by 2002:a2e:740a:0:b0:2eb:f7a4:7289 with SMTP id
- 38308e7fff4ca-2ec3cfe1769mr29351241fa.51.1718878637724; Thu, 20 Jun 2024
- 03:17:17 -0700 (PDT)
+        Thu, 20 Jun 2024 03:17:33 -0700 (PDT)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ec3f875e68so7932061fa.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 03:17:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXkmfxjMMsmKeaNdwigqyhK7f/AIo6lyu7OhHap0UZhBPtrOPB4jPWo2MSU/kZL594EC+GIegao8tUdzps+QSiSy4I7sqmGLcGzag==
+X-Received: by 2002:a2e:3c18:0:b0:2ec:3c55:3056 with SMTP id
+ 38308e7fff4ca-2ec3cfe174dmr28682841fa.44.1718878652049; Thu, 20 Jun 2024
+ 03:17:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240616224056.29159-1-andre.przywara@arm.com> <20240616224056.29159-3-andre.przywara@arm.com>
-In-Reply-To: <20240616224056.29159-3-andre.przywara@arm.com>
+References: <20240616224056.29159-1-andre.przywara@arm.com> <20240616224056.29159-4-andre.przywara@arm.com>
+In-Reply-To: <20240616224056.29159-4-andre.przywara@arm.com>
 Reply-To: wens@csie.org
 From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 20 Jun 2024 18:17:01 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66mFF6ayXtTQk2C9EaH3TJ=3uVJr_y3WvCkdPmVE43S+w@mail.gmail.com>
-Message-ID: <CAGb2v66mFF6ayXtTQk2C9EaH3TJ=3uVJr_y3WvCkdPmVE43S+w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] iommu: sun50i: allocate page tables from below 4 GiB
+Date: Thu, 20 Jun 2024 18:17:19 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65-tPgwJW4Yy80nBBkFg7kvtu_50Skd_ZF9gSFNAJzbRg@mail.gmail.com>
+Message-ID: <CAGb2v65-tPgwJW4Yy80nBBkFg7kvtu_50Skd_ZF9gSFNAJzbRg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] dt-bindings: iommu: add new compatible strings
 To: Andre Przywara <andre.przywara@arm.com>
 Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
 	Robin Murphy <robin.murphy@arm.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
@@ -89,72 +89,46 @@ Content-Transfer-Encoding: quoted-printable
 On Mon, Jun 17, 2024 at 6:42=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
 com> wrote:
 >
-> The Allwinner IOMMU is a strict 32-bit device, with its input addresses,
-> the page table root pointer as well as both level's page tables and also
-> the target addresses all required to be below 4GB.
-> The Allwinner H6 SoC only supports 32-bit worth of physical addresses
-> anyway, so this isn't a problem so far, but the H616 and later SoCs exten=
-d
-> the PA space beyond 32 bit to accommodate more DRAM.
-> To make sure we stay within the 32-bit PA range required by the IOMMU,
-> force the memory for the page tables to come from below 4GB. by using
-> allocations with the DMA32 flag.
-> Also reject any attempt to map target addresses beyond 4GB, and print a
-> warning to give users a hint while this fails.
+> The Allwinner H616 and A523 contain IOMMU IP very similar to the H6, but
+> use a different reset value for the bypass register, which makes them
+> strictly speaking incompatible.
+>
+> Add a new compatible string for the H616, and a version for the A523,
+> falling back to the H616.
 >
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
 > ---
->  drivers/iommu/sun50i-iommu.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+>  .../bindings/iommu/allwinner,sun50i-h6-iommu.yaml          | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/iommu/sun50i-iommu.c b/drivers/iommu/sun50i-iommu.c
-> index dd3f07384624c..20a07f829085d 100644
-> --- a/drivers/iommu/sun50i-iommu.c
-> +++ b/drivers/iommu/sun50i-iommu.c
-> @@ -602,6 +602,14 @@ static int sun50i_iommu_map(struct iommu_domain *dom=
-ain, unsigned long iova,
->         u32 *page_table, *pte_addr;
->         int ret =3D 0;
+> diff --git a/Documentation/devicetree/bindings/iommu/allwinner,sun50i-h6-=
+iommu.yaml b/Documentation/devicetree/bindings/iommu/allwinner,sun50i-h6-io=
+mmu.yaml
+> index e20016f120175..a8409db4a3e3d 100644
+> --- a/Documentation/devicetree/bindings/iommu/allwinner,sun50i-h6-iommu.y=
+aml
+> +++ b/Documentation/devicetree/bindings/iommu/allwinner,sun50i-h6-iommu.y=
+aml
+> @@ -17,7 +17,12 @@ properties:
+>        The content of the cell is the master ID.
 >
-> +       /* the IOMMU can only handle 32-bit addresses, both input and out=
-put */
-> +       if ((uint64_t)paddr >> 32) {
-> +               ret =3D -EINVAL;
-> +               dev_warn_once(iommu->dev,
-> +                             "attempt to map address beyond 4GB\n");
-> +               goto out;
-> +       }
-> +
->         page_table =3D sun50i_dte_get_page_table(sun50i_domain, iova, gfp=
-);
->         if (IS_ERR(page_table)) {
->                 ret =3D PTR_ERR(page_table);
-> @@ -682,7 +690,8 @@ sun50i_iommu_domain_alloc_paging(struct device *dev)
->         if (!sun50i_domain)
->                 return NULL;
+>    compatible:
+> -    const: allwinner,sun50i-h6-iommu
+> +    oneOf:
+> +      - const: allwinner,sun50i-h6-iommu
+> +      - const: allwinner,sun50i-h616-iommu
+> +      - items:
+> +          - const: allwinner,sun55i-a523-iommu
+> +          - const: allwinner,sun50i-h616-iommu
 >
-> -       sun50i_domain->dt =3D iommu_alloc_pages(GFP_KERNEL, get_order(DT_=
-SIZE));
-> +       sun50i_domain->dt =3D iommu_alloc_pages(GFP_KERNEL | GFP_DMA32,
-> +                                             get_order(DT_SIZE));
->         if (!sun50i_domain->dt)
->                 goto err_free_domain;
->
-> @@ -997,7 +1006,7 @@ static int sun50i_iommu_probe(struct platform_device=
- *pdev)
->
->         iommu->pt_pool =3D kmem_cache_create(dev_name(&pdev->dev),
->                                            PT_SIZE, PT_SIZE,
-> -                                          SLAB_HWCACHE_ALIGN,
-> +                                          SLAB_HWCACHE_ALIGN | SLAB_CACH=
-E_DMA32,
->                                            NULL);
->         if (!iommu->pt_pool)
->                 return -ENOMEM;
+>    reg:
+>      maxItems: 1
 > --
 > 2.39.4
+>
 >
 
