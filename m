@@ -1,176 +1,288 @@
-Return-Path: <devicetree+bounces-78203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79A89116E6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:37:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A5C91170A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:53:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0367B1C220C8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 23:37:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C161A1F234E8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 23:53:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF373143737;
-	Thu, 20 Jun 2024 23:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768FB15ADBA;
+	Thu, 20 Jun 2024 23:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dQBRcETp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KDGKUdmK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220E7482ED;
-	Thu, 20 Jun 2024 23:37:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE8BE159204;
+	Thu, 20 Jun 2024 23:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718926649; cv=none; b=OCIrMvdrebK5+OI1LLyNVuQqs+iQ3VmySdUtvFoqPoXICXZ2iz6H6Opg/OVWJdCEmoT9/c2vMt8ko2bpM6AuhuMsOXW2ETYPZORaV2Mz9dlgajnPorCavFBZ0ijoHH4Rw7jGd7M4OYZipJT7WEzQTNeLbduHp9/pkOkGLdaYVPs=
+	t=1718927602; cv=none; b=Zfee/lDHgeegpkpCb35lHm1/lpyGzvseDUxmWnRuObu3dwWCd+O2Um/G3dDQ2sKHIXCEDXDgSK2etXHrtORdGtvz1iBSsKcAPawZfOI4A6XJ38ReRGWy7hLz1UL3hoK0kZnogAiXH888VZ4Sy9enjGw+6Lci2g9/yYjr1ByDdVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718926649; c=relaxed/simple;
-	bh=ahjfBUeLfeo1fxhXjHk6wp/gQtPJzH+k5Vz/WaHQqDI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JBBm5/RtQnn67muElPHrKBEVusESyG61WxrG0xZkIJwdvtScgj7iRYz7tiFnDz4hVK36aYUJSEq6O5cf2CSaZ8HFVUhy13wrt4uYcrA/6JqETNXaBcrCC+ycx425yuGAW1Uk6K83hNzyHfCy6Q55keUZ5ZO5sFABDZxHaS4zQv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dQBRcETp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45KHC6IK011849;
-	Thu, 20 Jun 2024 23:37:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=3TZij88SGIKu2ouzX+gUyKRo
-	FlEWEYwTyShDW092wco=; b=dQBRcETpCCEqrmLHQgvaggunSSZtkCtm1P6GWcTJ
-	JnomayxfAacDeLm/qhaBnhUwbWpSR5IDG7hOQouwS/oxrXNYiM7GT/Rku1xlUfRq
-	v5SGp6S6N34Aqu5pO7lm/B1m4KdRC90BgKvpVhteyO2p+ltc8H54yANmEdOnlp4Y
-	ZecWkKvDh8Fq/BT9xpx6qGPJOOolHHf44ZeKfkUtgHJYTmUu02p4vUsvdDbCyrcC
-	/1QjrAKPPf6C3+vC8RcIiLnoXefNIrQu1joz0oqJQGF/PCfuyWLxbc9hIRp9w5oc
-	FFMjJly+Ob+VHQivRn9axYxWYxBjTJKr2NuJsSK/+KjQJw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yvrkvgw5w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Jun 2024 23:37:12 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45KNbAx3016285
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Jun 2024 23:37:11 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 20 Jun 2024 16:37:10 -0700
-Date: Thu, 20 Jun 2024 16:37:09 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Sudeep Holla <sudeep.holla@arm.com>, Sebastian Reichel <sre@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andy Yan
-	<andy.yan@rock-chips.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Mark
- Rutland" <mark.rutland@arm.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Shivendra Pratap <quic_spratap@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v5 3/4] firmware: psci: Read and use vendor reset types
-Message-ID: <20240620162547309-0700.eberman@hu-eberman-lv.qualcomm.com>
-References: <20240617-arm-psci-system_reset2-vendor-reboots-v5-0-086950f650c8@quicinc.com>
- <20240617-arm-psci-system_reset2-vendor-reboots-v5-3-086950f650c8@quicinc.com>
- <20240619135143.kr2tx4ynxayc5v3a@bogus>
- <20240619080933071-0700.eberman@hu-eberman-lv.qualcomm.com>
+	s=arc-20240116; t=1718927602; c=relaxed/simple;
+	bh=avSQMYIEEY2W6DAs/05THz899U39RFvYlSgTBTcgimQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=T10XoP/AWUMGtFH2OqicJ/GFDMo45dZ8+VbR9I606IrA6dT6YiTOgJOVbmO8pwZtSxJuRPFAzREUDNqAR/9cTbEjkkvMSEcHo1k1rOCddJRXgq4Sd4edXRsbFZT7yyfPXnIqGbWqT0JCx306bAbat9+UWL+LD4MjCpqj/qnvZvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KDGKUdmK; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70601bcfddcso1431270b3a.3;
+        Thu, 20 Jun 2024 16:53:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718927600; x=1719532400; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=pmtddJthMQKvJgmwUwcCqsfsT87mXd0DUJUxKPzoExg=;
+        b=KDGKUdmKydRstmyJaKjS35uE5ewwIEGbQd0cLg9JlhghG0EoJdNQ3LqEMvEgtDgsaL
+         ZeIT3wCbGfZzhJudLnAMZamx2uP4S3Fdm1EoS2eSKQDORi1/n1oe6x38QySPcQymWIM9
+         uoI7tNzRYgZApIej1GjD4zkoqu2PigHmO67cR0aul27LIP3ZvmJjfgTQY4PKVmuwBJgD
+         S792hae7sTHjnNjKrvtsgi/+16HgxEog78UMESRibXq93hndHcPkLKbLx00f5aSwkJnL
+         1pjfhzoQ3pIMENGDBK5F4zv3L9YLS3FRgtaQ+FvLJI386aRh9PCKFEI2ycG30g0yWmjr
+         65vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718927600; x=1719532400;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pmtddJthMQKvJgmwUwcCqsfsT87mXd0DUJUxKPzoExg=;
+        b=fqm5pPnGTZjmxkIP+6qX/4HjPkDajzydtT5ACS5Hn/K45XS71Na1fhfYaPzE71898h
+         MiWMZECbTKbdw34QP6lTfb0N2At3a9iFrCcCOHBXxjKMmxbrJhKmcUkt8tUc6CIaxK1L
+         32orVK4uW+i8BstyuNN96DhnfQy0O4TJJUnhnOXZ87nTp6WQpurzamV6aURSj2nHeFER
+         EufOvIekR8HnO/ec3EL3nHHjOkuEkON2ft9NfW2dAjT1iafDABmFTjSFDWDz4uJDo6uG
+         XhrCPslO+g22HSs3XqyrULjtyIVDchHOiMuRBUVIlFBdRRY1hr2j2OTqJASeGLVzatVb
+         e2UA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwahcPUm+3pRWeA2wghJki4lcVWXhRP9FhXOXyeBRHumqUSpMnbssRBLN52XKu8j/fC7FplQmikVbdKFYpnqx5PvhfBIq9DhICXkuNvef6wEDMQq779Se+MIDLyTl7nxEXrF6QBmZHkVe9wTJR4jY5PBYhAoyfZP9QYD2fP/wa0hj97A==
+X-Gm-Message-State: AOJu0YwIqEbowRlOpWbquh2gtWv9v2kq1Sxwo3jpo9HylrRmkHPpqE6O
+	6MD2Eey/CAV8YB5vb/ueIcU4nLrj9t26k4KOPAJpc3bRnTZ5Mh99
+X-Google-Smtp-Source: AGHT+IFl3mGlSWyDautXUIxFZI07Ej5Fg9/SYd7TZo9A403tsBfjofIAmHGJpKVRmou+OtVc2sq2jA==
+X-Received: by 2002:a05:6a20:47dd:b0:1b6:f34c:95b3 with SMTP id adf61e73a8af0-1bcbb60fca3mr6195673637.59.1718927599987;
+        Thu, 20 Jun 2024 16:53:19 -0700 (PDT)
+Received: from [172.19.1.51] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9ebbc8efbsm1769175ad.306.2024.06.20.16.53.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 16:53:19 -0700 (PDT)
+Message-ID: <42ec842e-84c0-40fd-b6fc-e59d25ede89f@gmail.com>
+Date: Fri, 21 Jun 2024 07:53:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240619080933071-0700.eberman@hu-eberman-lv.qualcomm.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: FPdfh-nyfdNH2V3YNMdyeKVIT0F722rp
-X-Proofpoint-ORIG-GUID: FPdfh-nyfdNH2V3YNMdyeKVIT0F722rp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-20_10,2024-06-20_04,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 mlxscore=0 bulkscore=0 malwarescore=0
- mlxlogscore=999 priorityscore=1501 suspectscore=0 impostorscore=0
- spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406200172
+User-Agent: Mozilla Thunderbird
+From: Shan-Chun Hung <shanchun1218@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document
+ MA35D1 SDHCI controller
+To: Krzysztof Kozlowski <krzk@kernel.org>, ulf.hansson@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com,
+ serghox@gmail.com, mcgrof@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, forbidden405@outlook.com,
+ tmaimon77@gmail.com, andy.shevchenko@gmail.com,
+ linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20240619054641.277062-1-shanchun1218@gmail.com>
+ <20240619054641.277062-2-shanchun1218@gmail.com>
+ <3d193f01-2c8b-4d6c-8139-11f2d9a34d2d@kernel.org>
+Content-Language: en-US
+In-Reply-To: <3d193f01-2c8b-4d6c-8139-11f2d9a34d2d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Sudeep and Sebastian,
+Dear Krzysztof,
 
-On Wed, Jun 19, 2024 at 08:28:06AM -0700, Elliot Berman wrote:
-> On Wed, Jun 19, 2024 at 02:51:43PM +0100, Sudeep Holla wrote:
-> > On Mon, Jun 17, 2024 at 10:18:09AM -0700, Elliot Berman wrote:
-> > > SoC vendors have different types of resets and are controlled through
-> > > various registers. For instance, Qualcomm chipsets can reboot to a
-> > > "download mode" that allows a RAM dump to be collected. Another example
-> > > is they also support writing a cookie that can be read by bootloader
-> > > during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
-> > > vendor reset types to be implemented without requiring drivers for every
-> > > register/cookie.
-> > > 
-> > > Add support in PSCI to statically map reboot mode commands from
-> > > userspace to a vendor reset and cookie value using the device tree.
-> > > 
-> > > A separate initcall is needed to parse the devicetree, instead of using
-> > > psci_dt_init because mm isn't sufficiently set up to allocate memory.
-> > > 
-> > > Reboot mode framework is close but doesn't quite fit with the
-> > > design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
-> > > be solved but doesn't seem reasonable in sum:
-> > >  1. reboot mode registers against the reboot_notifier_list, which is too
-> > >     early to call SYSTEM_RESET2. PSCI would need to remember the reset
-> > >     type from the reboot-mode framework callback and use it
-> > >     psci_sys_reset.
-> > >  2. reboot mode assumes only one cookie/parameter is described in the
-> > >     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
-> > >     cookie.
-> > >  3. psci cpuidle driver already registers a driver against the
-> > >     arm,psci-1.0 compatible. Refactoring would be needed to have both a
-> > >     cpuidle and reboot-mode driver.
-> > >
-> > 
-> > I need to think through it but when you first introduced the generic
-> > Documentation/devicetree/bindings/power/reset/reboot-mode.yaml bindings
-> > I also looked at drivers/power/reset/reboot-mode.c
-> > 
-> > I assumed this extension to that binding would reuse the same and
-> > PSCI would just do reboot_mode_register(). I didn't expect to see these
-> > changes. I might have missing something but since the bindings is still
-> > quite generic with additional cells that act as additional cookie for
-> > reboot call, I still think that should be possible.
-> > 
-> > What am I missing here then ?
-> > 
-> 
-> Right, if that was only thing to "solve" to make it easy to use
-> reboot-mode framework, I agree we should update reboot mode framework to
-> work with the additional cells. There are a few other issues I mention
-> above which, when combined, make me feel that PSCI is different enough
-> from how reboot mode framework works that we shouldn't try to make PSCI
-> work with the framework. Issues #1 and #2 are pretty easy to solve
-> (whether they should be solved is different); I'm not sure a good
-> approach to issue #3.
-> 
+Thanks for you review
 
-Does the reasoning I mention in the commit text make sense why PSCI should
-avoid using the reboot-mode.c framework?
+On 2024/6/19 下午 03:29, Krzysztof Kozlowski wrote:
+> On 19/06/2024 07:46, Shan-Chun Hung wrote:
+>> Add binding for Nuvoton MA35D1 SDHCI controller.
+>>
+>> Signed-off-by: schung<schung@nuvoton.com>
+> Since this was not tested, only limited review follows. Please test your
+> future patches.
+>
+>> ---
+>>   .../bindings/mmc/nuvoton,ma35d1-sdhci.yaml    | 106 ++++++++++++++++++
+>>   1 file changed, 106 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml b/Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
+>> new file mode 100644
+>> index 000000000000..173449360dea
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mmc/nuvoton,ma35d1-sdhci.yaml
+>> @@ -0,0 +1,106 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id:http://devicetree.org/schemas/mmc/nuvoton,ma35d1-sdhci.yaml#
+>> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Nuvoton MA35D1 SD/SDIO/MMC Controller
+>> +
+>> +maintainers:
+>> +  - Shan-Chun Hung<shanchun1218@gmail.com>
+>> +
+>> +description: |
+> Do not need '|' unless you need to preserve formatting.
+I will remove '|'
+>> +  This controller on Nuvoton MA35 family SoCs provides an interface for MMC, SD, and
+>> +  SDIO types of memory cards.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+> Drop
 
-Thanks,
-Elliot
+I will remove oneof.
+
+>> +      - enum:
+>> +          - nuvoton,ma35d1-sdhci
+> Blank line
+
+I will fix it.
+
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: The SDHCI registers
+> Drop
+
+I will remove description.
+
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  pinctrl-names:
+>> +    description:
+>> +      Should at least contain default and state_uhs.
+> ? Contradicts constraints.
+I will modify the description to "Should at least contain default. 
+state_uhs is mandatory in this scenario."
+>> +    minItems: 1
+>> +    items:
+>> +      - const: default
+>> +      - const: state_uhs
+>> +
+>> +  pinctrl-0:
+>> +    description:
+>> +      Should contain default/high speed pin ctrl.
+>> +    maxItems: 1
+>> +
+>> +  pinctrl-1:
+>> +    description:
+>> +      Should contain uhs mode pin ctrl.
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 1
+> No, maxItems instead.
+
+I will fix it.
+
+>> +    description: The SDHCI bus clock
+> Drop
+
+I will remove it.
+
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +    description:
+>> +      Phandle and reset specifier pair to softreset line of sdhci.
+> Drop
+
+I will remove it.
+
+>> +
+>> +  nuvoton,sys:
+> 1. too generic, what is sys?
+>
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      Phandle to the syscon that configure sdhci votage stable
+
+I will modify description as follows:
+   nuvoton,sys:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description: phandle to access GCR (Global Control Register) registers.
+
+>> 2. typo: voltage
+I will fix it.
+>> 3. Which syscon?
+same as 1.
+>> 4. Why you are not implementing regulators?
+>>
+I will add "vqmmc-supply = <&sdhci1_vqmmc_regulator>;" in the examples.
+
+This requlator is used by regulator-gpio driver.
+
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - pinctrl-names
+>> +  - pinctrl-0
+>> +
+>> +unevaluatedProperties: false
+> Hm? And where is ref to MMC schema?
+
+I will add as follows:
+
+allOf:
+   - $ref: sdhci-common.yaml#
+
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+>> +    #include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
+>> +
+>> +    soc {
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+> Fix your indentation.
+>
+> Use 4 spaces for example indentation.
+I will fix it.
+>> +        sdhci0: sdhci@40180000 {
+> Drop label
+I will fix it.
+>> +            compatible = "nuvoton,ma35d1-sdhci";
+>> +            reg = <0x0 0x40180000 0x0 0x2000>;
+>> +            interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+>> +            clocks = <&clk SDH0_GATE>;
+>> +            pinctrl-names = "default";
+>> +            pinctrl-0 = <&pinctrl_sdhci0>;
+>> +            bus-width = <4>;
+>> +            max-frequency = <100000000>;
+>> +            no-1-8-v;
+>> +            status = "disabled";
+> Drop
+I will fix it.
+>> +        };
+>> +
+>> +        sdhci1: sdhci@40190000 {
+> Drop this example. One is enough.
+>
+>
+>
+> Best regards,
+> Krzysztof
+OK , I will remove one.
+
+Best Regards
+
+Shan-Chun
 
 
