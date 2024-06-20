@@ -1,163 +1,143 @@
-Return-Path: <devicetree+bounces-78117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C031F911114
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:40:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDF591113C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:47:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A896F1F223EB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:40:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D442D1F2204D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208E31C005B;
-	Thu, 20 Jun 2024 18:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bOmTno0Z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BC951B9AB9;
+	Thu, 20 Jun 2024 18:35:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26CB1C0052;
-	Thu, 20 Jun 2024 18:27:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750FD1B4C35;
+	Thu, 20 Jun 2024 18:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718908021; cv=none; b=MeQOyW1aqbJGqK7tUTqJdyEUwf9zgo6WD7AqkWeeq6btnxAoRIjXtMxtR9y0AOEJieeO8I145MGLjOLSh3LSoIE8lK9rdP/AvdmCPrN+wikQrSHmmqjScM0zFVy2AqV4oBSwVdVfP4cgm1iCGBv/v7422EHlCLogjT7ZjdgIUpk=
+	t=1718908500; cv=none; b=Vy3X4vNGxasa0p2tZO4gB+gw1/UIeXuNiTf00SNfQnH42twIOe+9/Hj3OuWizlciqFraeODp0h3vqJ1CQ9aah6NU+lyq6GdIIiotJlUz1URnd3IoGPcTcGWVusdw3HONVSVhxN8zBMOg97iHufzO6GNiMeIlIBMYsaQxHlKXBKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718908021; c=relaxed/simple;
-	bh=Npw3k9d4pOutQAzbANjN50tc75Fu4ciumJhM6mJHTaI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=RcwVvziCk5NelpivnplSV4kU9AMUejA1W+xKdU5ErNO//p1crVEBsGstGBGJ0+vPlsNRgSnW7N/0Txw5hZeAId7/LFVZR+p3XQt5UyIyyvWD4A+m/XHrg/4vz1vufHH+UgFLy3pX37lvAcd55zXjHl+/dgnRqhwFSJV2Lh1/j5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bOmTno0Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18134C4AF0D;
-	Thu, 20 Jun 2024 18:27:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718908020;
-	bh=Npw3k9d4pOutQAzbANjN50tc75Fu4ciumJhM6mJHTaI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=bOmTno0ZAI/lrVwWk8qZeZQp/7E/IKb2Zd/nPKbHfQIXzdr4xKlznfmGOBnZ19kmz
-	 5t0O0cirHqQ82XIkzwF1JS0GWfDBqVYHz+sLqD1uO16yYfORLy1Hrl5W6Gry3GkAbI
-	 TCNjzb4VuuaFyzxCG5d+teNDRnRF5uhhOFUdyZprHz1qQ0qS6uRUPSE2CgQtV4ISQT
-	 jRqL15VjUnjBfyZrsfvdIoZvYcgP9hKjZn2/VTDJRx0ahRaXV4k0nQJEhY0G/EhPpa
-	 MHJmow22NZFWdVY26rcRCvMVmRW40oJzvm6b95dV45V9Uws1/U2mpez6vVY2wGhUgX
-	 K2uIZa0Egkg4w==
-Date: Thu, 20 Jun 2024 12:26:58 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1718908500; c=relaxed/simple;
+	bh=tPAZ0xHBfoomsrxImrhJ+gY9MeQqc/CDLx78nd8mDlA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MK7yDEBgKpz6EPNq1q+tMmP3guWDbhLRmwlfwtX29ZzihzvSAjZhqyRH8smlCrt8WEI3Wcxdjy7npKESZ+w+fWMeLL88ninUGmVMJdu1IsRGKHvJpftOuNZPZgDGjo0nuJ2S1M7cdhCGfWX6lF8iciDmSSaOO4jn39gfL7hr8t0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e860cc8.versanet.de ([94.134.12.200] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sKMcT-0000Sm-1A; Thu, 20 Jun 2024 20:34:49 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Sebastian Kropatsch <seb-dev@mail.de>
+Cc: linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 1/5] arm64: dts: rockchip: Add common definitions for NanoPi R6C
+ and R6S
+Date: Thu, 20 Jun 2024 20:34:47 +0200
+Message-ID: <3392879.RL5eaSpR8r@diego>
+In-Reply-To: <20240612205056.397204-2-seb-dev@mail.de>
+References:
+ <20240612205056.397204-1-seb-dev@mail.de>
+ <20240612205056.397204-2-seb-dev@mail.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, linux-clk@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, Lee Jones <lee@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-In-Reply-To: <20240620-mbly-olb-v3-4-5f29f8ca289c@bootlin.com>
-References: <20240620-mbly-olb-v3-0-5f29f8ca289c@bootlin.com>
- <20240620-mbly-olb-v3-4-5f29f8ca289c@bootlin.com>
-Message-Id: <171890801727.3178289.9824854320457865934.robh@kernel.org>
-Subject: Re: [PATCH v3 4/9] dt-bindings: soc: mobileye: add EyeQ OLB system
- controller
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-
-On Thu, 20 Jun 2024 19:30:56 +0200, Théo Lebrun wrote:
-> Add documentation to describe the "Other Logic Block" system-controller.
-> It deals with three platforms: EyeQ5, EyeQ6L and EyeQ6H. First two have
-> a single instance, whereas EyeQ6H has seven named instances.
+Am Mittwoch, 12. Juni 2024, 22:48:10 CEST schrieb Sebastian Kropatsch:
+> The FriendlyElec NanoPi R6C and R6S are quite similar boards,
+> although they differ in:
+> - M.2 M-Key connector vs second RTL8125BG Ethernet port
+> - One of the LEDs has a different function on each board
+> - 12-pin GPIO FPC vs 30-pin GPIO header
+> - R6S has a PWM-based IR receiver while the R6C has not
+> - R6S has a 5V fan connector while the R6C has not
 > 
-> Features provided are:
->  - Clocks, children to main crystal. Some PLLs and divider clocks.
->  - Resets. Some instances DO NOT have reset.
->  - Pinctrl. Only EyeQ5 has such feature.
+> Refactor their DT files by adding a common definitions file to
+> improve differentiation clarity between both boards and to make
+> hardware-specific DT changes easier in the long run.
+> Do not introduce any functional changes.
 > 
-> Those are NOT the only features exposed in OLB system-controllers! Many
-> individual registers, related to IP block integration, can be found.
-> Additional features will be exposed over time.
-> 
-> We simplify devicetree phandles to OLB in two ways:
-> 
->  - Compatibles exposing a single clock do not ask for a index argument.
->    This means we use EyeQ6H OLB south (it has four clocks):
-> 
->       clocks = <&olb_south EQ6HC_SOUTH_PLL_PER>;
-> 
->    But use EyeQ6H OLB east (it has one clock):
-> 
->       clocks = <&olb_east>;
-> 
->  - Compatibles exposing a single reset domain do not ask for a domain
->    index, only a reset index.
->    This means we use EyeQ5 OLB (it has three domains):
-> 
->      resets = <&olb 0 10>;
-> 
->    But use EyeQ6H west reset (it has one domain):
-> 
->       resets = <&olb_west 3>;
-> 
-> About pinctrl subnodes: all pins have two functionality, either GPIO or
-> something-else. The latter is pin dependent, we express constraints
-> using many if-then.
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> Signed-off-by: Sebastian Kropatsch <seb-dev@mail.de>
 > ---
->  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 374 +++++++++++++++++++++
->  MAINTAINERS                                        |   2 +
->  include/dt-bindings/clock/mobileye,eyeq5-clk.h     |  21 ++
->  3 files changed, 397 insertions(+)
+>  ...-nanopi-r6s.dts => rk3588s-nanopi-r6.dtsi} |   7 +-
+>  .../boot/dts/rockchip/rk3588s-nanopi-r6c.dts  |   2 +-
+>  .../boot/dts/rockchip/rk3588s-nanopi-r6s.dts  | 756 +-----------------
+>  3 files changed, 7 insertions(+), 758 deletions(-)
+>  copy arch/arm64/boot/dts/rockchip/{rk3588s-nanopi-r6s.dts => rk3588s-nanopi-r6.dtsi} (99%)
 > 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
+> similarity index 99%
+> copy from arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
+> copy to arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
+> index 4fa644ae510c..e68d4071400e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6.dtsi
+> @@ -1,4 +1,7 @@
+>  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Common devicetree definitions for the NanoPi R6C and R6S
+> + */
+>  
+>  /dts-v1/;
+>  
+> @@ -8,9 +11,6 @@
+>  #include "rk3588s.dtsi"
+>  
+>  / {
+> -	model = "FriendlyElec NanoPi R6S";
+> -	compatible = "friendlyarm,nanopi-r6s", "rockchip,rk3588s";
+> -
+>  	aliases {
+>  		ethernet0 = &gmac1;
+>  		mmc0 = &sdmmc;
+> @@ -74,7 +74,6 @@ lan1_led: led-2 {
+>  		};
+>  
+>  		lan2_led: led-3 {
+> -			label = "lan2_led";
+>  			gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&lan2_led_pin>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
+> index 497bbb57071f..ccc5e4627517 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
+> @@ -2,7 +2,7 @@
+>  
+>  /dts-v1/;
+>  
+> -#include "rk3588s-nanopi-r6s.dts"
+> +#include "rk3588s-nanopi-r6.dtsi"
+>  
+>  / {
+>  	model = "FriendlyElec NanoPi R6C";
 
-My bot found errors running 'make dt_binding_check' on your patch:
+you didn't add a label for that led here.
 
-yamllint warnings/errors:
+Though I think it might very well be much nicer to just define the led
+with differing function in each board separately.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml: ^.*@[1-4]$: Missing additionalProperties/unevaluatedProperties constraint
+Especially as the phandle in the new dtsi now still reference the removed
+label.
 
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml: oneOf: Missing additionalProperties/unevaluatedProperties constraint
 
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml: oneOf: Missing additionalProperties/unevaluatedProperties constraint
+Heiko
 
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml: ^.*@[0-9a-f]+$: Missing additionalProperties/unevaluatedProperties constraint
 
-Documentation/devicetree/bindings/sound/st,stm32-sai.example.dtb: /example-0/sai@4400b000/audio-controller@4400b004: failed to match any schema with compatible: ['st,stm32-sai-sub-a']
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dtb: /example-0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
-Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: failed to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.example.dtb: /example-1/syscon@20e00000: failed to match any schema with compatible: ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/clock/milbeaut-clock.example.dtb: /example-2/serial@1e700010: failed to match any schema with compatible: ['socionext,milbeaut-usio-uart']
-Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.example.dtb: /example-0/peripheral-controller@8a20000/phy@850: failed to match any schema with compatible: ['hisilicon,hi3798cv200-combphy']
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/stm32/st,mlahb.example.dtb: ahb@38000000: Unevaluated properties are not allowed ('reg' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/stm32/st,mlahb.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240620-mbly-olb-v3-4-5f29f8ca289c@bootlin.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
