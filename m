@@ -1,180 +1,151 @@
-Return-Path: <devicetree+bounces-77795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F4090FF73
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:51:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3F790FF82
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:52:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AA691F24B9F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:51:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 144171F24C34
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 08:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF74157A7C;
-	Thu, 20 Jun 2024 08:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B821AB8E2;
+	Thu, 20 Jun 2024 08:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Rzrybw1f";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="WMgubCCb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="GpiQjkF/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7646F2582;
-	Thu, 20 Jun 2024 08:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D28D19AD94
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 08:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718873350; cv=none; b=b3ao7TPHo98qviIJ/Dgm+0Bu+C2oWeXhR0osDsHouFB2CZfVswxMiAmSzzgyvrR3LG50OJSLIQ/NUUmkpGpAjx0ldvDgQqgr5uS17mwOGt2VhOFfnz1nlY/hBHpmy+S8bfRc2YF7rWaP2iTgTux8a/GhtIWGVjFzuL+O//NpDKs=
+	t=1718873396; cv=none; b=NkjmbE9R8pwUBas3L8F6Tb4ZRRowX3V2uh2EnB+h5zFVZKOG07kxzBs2J92wHogAjGnSCjf9gjf42wdHusEMUHo6dL5gYtrve9HXhNi2iyXKN494YQ5LDBJjdCRsArdtmnLs2ah5TFVMSYGLiIR6pU8wd+8t37WuWA5wToDcrzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718873350; c=relaxed/simple;
-	bh=kSLxkWTBi+7p1x6D2l+GqdxuiwvhFd858T/X56MUp54=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HnTCkpR0oyaNBXWpy8ma+EJMdTmvmESKIGSe6bE4Cki4CuLde0ikkaNyJz9TYbipRjgbCtaf5GT+mv++CUJrpQRchrvxhVY5263gtDJqc0oPnS+cwV+4RDDfOaiV618Gk9+icuI3fpLxzNXl70j5MN5yIRce7ty6uspe/0sks8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Rzrybw1f; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=WMgubCCb reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1718873396; c=relaxed/simple;
+	bh=2CIj8Y9AUmvIjg+JAcqcZ+r+tVIYJcXIr4N0cIi9dVU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GiUZXoC8QvP4h9yHdo6VkEdTdc8q61PMPMrRcYidTqCqUkku5WZM970facPyWdYFYzKnkSzMQLHCXnOwbieOBuDYIdXkSjlpdc9s5exMnbSB+NLYRHpmgaFFwVyz56nQEO4bIchDM10+KCscWqovfUjdhXllHxmVvnboF5ewsoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=GpiQjkF/; arc=none smtp.client-ip=209.85.222.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-80f4b2b8c9eso184568241.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 01:49:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1718873347; x=1750409347;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=kSLxkWTBi+7p1x6D2l+GqdxuiwvhFd858T/X56MUp54=;
-  b=Rzrybw1fCFpjD88tfgJZ6zfGARhOwGLj6fa2jKUXmYTHO8/zDLT9BEAb
-   fHhAZLv+G9899zmPWLmZGdabSHVOh9+TEhZCU4W5t2aUxEQZTMPJgZhLz
-   QLl1MZ+tVC8HjY6QbGwhQDvbtSbJBEWnvGWtlwNIF0bx+04WyCx4Pz1Ia
-   4sFj7IoXkDGUve1LPfVpaMKGaeCyeSbMQZGU9Cnhni4LrP4Cn9X5haS0i
-   WgVEmt8OFymoByguguWISDE4ZPEI0jGk3OZ4S8mk759KD9pqMBNWFtFdn
-   87fDX/5EXQV1mCxzOOoDf53g1ws+rUuE6LHsFu6zhPO8yuDMxuKowMdkp
-   A==;
-X-CSE-ConnectionGUID: dJCJucXNRfiB1+9RADoZhw==
-X-CSE-MsgGUID: zVz13cV6QeSxXfhCK+cVKw==
-X-IronPort-AV: E=Sophos;i="6.08,251,1712613600"; 
-   d="scan'208";a="37493611"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 20 Jun 2024 10:49:04 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8134B160F46;
-	Thu, 20 Jun 2024 10:48:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1718873340;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=kSLxkWTBi+7p1x6D2l+GqdxuiwvhFd858T/X56MUp54=;
-	b=WMgubCCbkT2bV4NGe0ZxAgqPvP52bL1LgN+51fY5mRVepiyGhAN4vOE5T45HrGJhfXqWRS
-	GXav3uf0CiRtaduYaKn+a0CCD9lrWdOsA4eBfzkpEla1tpYcpYUIHffsMATiAIN2X2csWq
-	ZlhXaNarYE/qT3hbX5HT2hjaec3vz1IBZ9OEqk+4hOVEpuHNc/KrrSdvkM49D6SqpbGvVI
-	9knB9l72sstJ8zcyi5YYp0u6pYQpS9GqmU8daMMxHpqZDN6yCGSeDinDj4r3YFcueHymz7
-	FhiPybmpqddAgOLNCYwIT/OhWaCwo0Maabrvlmm4jYJdj0I5YhxWLmpcVIOHtw==
-Message-ID: <7adcd6789fb33fef10b7349934374e2cfb5ad164.camel@ew.tq-group.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: allow ethernet
- controller in ICSSG node
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
- <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Suman Anna
- <s-anna@ti.com>
-Date: Thu, 20 Jun 2024 10:48:59 +0200
-In-Reply-To: <14bebdc5-3239-47fe-b8cc-68daba278d73@kernel.org>
-References: <20240619112406.106223-1-matthias.schiffer@ew.tq-group.com>
-	 <89880cda-1140-4ed5-a67f-2201c2825447@kernel.org>
-	 <99cc7afbb891de890ff051606f7a120f796e0fbc.camel@ew.tq-group.com>
-	 <14bebdc5-3239-47fe-b8cc-68daba278d73@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+        d=chromium.org; s=google; t=1718873394; x=1719478194; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wnzPQkY7olrxeTisghk4ynlDr11qeA45cqHLGGh55Sg=;
+        b=GpiQjkF/wJ9IZ02l5qoUnjOL2HklREfOw67jYRkhqkUJTWYJf84rJMyMSmIuyGg5Fb
+         PJw7KOS16dileS5uQw7sQKuUoEryJa8GMFlL5yPP0XzYRu9v10yRzzKpNrqwK0kFhLTi
+         bOruxCpirmPR97yfNqOAuJWoFcO/Ignol4ag4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718873394; x=1719478194;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wnzPQkY7olrxeTisghk4ynlDr11qeA45cqHLGGh55Sg=;
+        b=JsQWTdiYN9bR/RMJPEz4bRAcTI0FCuS6WKNGn4TLkeFcy6wJTnsF1LMm6AJwaFUrP5
+         AvzT7syM6I2OQ7MxwVc3go4TJpIC+/uJsvOdX8upJ1k303U3EG+XL6axMsbcnfH2MGBY
+         UCZr5ucdvySB8cmmP7gvvnaQLE73Pvtc4qAj4ucJi60hTfYpJH+ZpvAYRLKmVwI3yX/v
+         hGhvl81jBhEgbs8AAAPeqHU5NyIsf58q+Jwgfmk9611LtVcprMdQoe6hOc4o8A8Oeg+q
+         AAqcL7Re8dgOsIZBMVkS64kpiiOah5AtRWD65wAjC4YYXIfgiXFJSCJtqP5X/TapL2cI
+         zNXg==
+X-Forwarded-Encrypted: i=1; AJvYcCWVoJ3Ko8+w8TYAnqvSteaoi13iZFCC0hfK9ApnsHF7vwAmWTH7SY6b26L6huLKseSOOdhbZXMLT2pXkgr3ymFC/J+5XAJJSk7OvQ==
+X-Gm-Message-State: AOJu0Yx4tbVvm2VGiVoFNGea7CWnCgX0LbyqksPWbnDng9JEzXo7Hdq5
+	+wY/w70vAUu0ln7x4dlqsxqxo1uiuWE5DuSXW2H5lPgztpGLuD2WIKiRIq6fsvk2btx656qQcm8
+	=
+X-Google-Smtp-Source: AGHT+IEVpk+2vuPxEf//uprfisWNAiZehYg4dppo6JcfZaL0RjGi9HSj0hpWQKrKKqAUmFiMcLMkwQ==
+X-Received: by 2002:a05:6102:1889:b0:48d:7692:51ba with SMTP id ada2fe7eead31-48f1304d706mr4853227137.4.1718873394172;
+        Thu, 20 Jun 2024 01:49:54 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-48da43c784dsm2876759137.8.2024.06.20.01.49.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 01:49:54 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-48d9998787fso254688137.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 01:49:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXa9xU3c2F/88A+eRWI2CrOfkI4XXTvTD8img8prfuYYceOvCxrvCcBnz6VC0f5GiQ6+ftcg49tT0zLs4/7AIStI9WK7C+lZpPpuQ==
+X-Received: by 2002:a05:6102:1889:b0:48d:7692:51ba with SMTP id
+ ada2fe7eead31-48f1304d706mr4853217137.4.1718873393626; Thu, 20 Jun 2024
+ 01:49:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20240619085322.66716-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240619085322.66716-1-angelogioacchino.delregno@collabora.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Thu, 20 Jun 2024 16:49:16 +0800
+X-Gmail-Original-Message-ID: <CAC=S1njt1tEH-S2YYKvewRmqta468DuteZFCXKgC02vMUoiBdA@mail.gmail.com>
+Message-ID: <CAC=S1njt1tEH-S2YYKvewRmqta468DuteZFCXKgC02vMUoiBdA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: mediatek: mt8188: Fix VPPSYS0/1 node name/compatibles
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: krzk+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	robh@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	jassisinghbrar@gmail.com, garmin.chang@mediatek.com, houlong.wei@mediatek.com, 
+	Jason-ch.Chen@mediatek.com, amergnat@baylibre.com, Elvis.Wang@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2024-06-20 at 10:29 +0200, Krzysztof Kozlowski wrote:
->=20
->=20
-> On 20/06/2024 10:26, Matthias Schiffer wrote:
-> > On Thu, 2024-06-20 at 09:24 +0200, Krzysztof Kozlowski wrote:
-> > > On 19/06/2024 13:24, Matthias Schiffer wrote:
-> > > > While the current Device Trees for TI EVMs configure the PRUSS Ethe=
-rnet
-> > > > controller as a toplevel node with names like "icssg1-eth", allowin=
-g to
-> > > > make it a subnode of the ICSSG has a number of advantages:
-> > >=20
-> > > What is ICSSG? The sram or ti,prus from the ethernet schema?
-> >=20
-> > ICSSG (Industrial Communication Subsystem (Group?)) is the main device =
-described by the
-> > ti,pruss.yaml binding (ICSS and PRUSS are different variants of similar=
- IP cores); it is the
-> > container for the individual PRU, TXPRU and RTU cores which are referen=
-ced by the ti,prus
-> > node of the Ethernet schema.
-> >=20
-> > The entirety of PRU, TXPRU and RTU cores of one ICSSG, each with its ow=
-n firmware, forms one
-> > Ethernet controller, which is not quite a hardware device, but also not=
- a fully virtual software
-> > device.
->=20
-> So it is not really child of ICSSG.
->=20
-> >=20
-> > The Ethernet controller only exists through the various ICSS subcores, =
-so it doesn't have an MMIO
-> > address of its own. As described, the existing Device Trees define it a=
-s a toplevel non-MMIO node;
-> > we propose to allow it as a non-MMIO child node of the ICSSG container =
-instead.
-> >=20
-> > If you consider moving the ethernet node into the ICSSG node a bad appr=
-oach, we will drop this patch
-> > and try to find a different solution to our issue (the Ethernet device =
-staying in deferred state
-> > forever when the ICSSG node is disabled on Linux).
->=20
-> Just disable the ethernet. That's the expected behavior, I don't get
-> what is the problem here.
+On Wed, Jun 19, 2024 at 4:53=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Like VDOSYS0/1, the VPPSYS0 and VPPSYS1 are syscon nodes, as
+> described by the mediatek,mmsys binding: fix the node name to
+> be syscon@address and add "syscon" to the list of compatible
+> strings for both VPPSYS0 and VPPSYS1.
+>
+> Fixes: 9461e0caac9e ("arm64: dts: Add MediaTek MT8188 dts and evaluation =
+board and Makefile")
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 
-If the disabling happens as a fixup in the bootloader, it needs to know the=
- name of the Ethernet
-controller node (or iterate through the DTB to find references to the disab=
-led ICSSG node).
+Reviewed-by: Fei Shao <fshao@chromium.org>
 
-The name is currently not used for anything, and not specified in the bindi=
-ng doc; the example uses
-"ethernet", which is too unspecific, as there can be multiple ICSSG/PRUs, w=
-ith each running a
-separate Ethernet controller.
-
-Existing Device trees use "icssgX-eth" for an Ethernet controller running o=
-n the ICSSG with label
-"&icssgX", but labels are a source concept and don't exist in the compiled =
-DTB by default.
-
-I do have an idea for an alternative approach that does not need changes to=
- the DT bindings: The PRU
-Ethernet driver could detect that the referenced ti,prus are disabled and n=
-ot just waiting to be
-probed and then fail with ENODEV instead of EPROBE_DEFER.
-
-Best regards,
-Matthias
-
-
->=20
->=20
-> Best regards,
-> Krzysztof
->=20
-
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8188.dtsi
+> index 3b02170562ae..77c4f2d104cd 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -1331,8 +1331,8 @@ mfgcfg: clock-controller@13fbf000 {
+>                         #clock-cells =3D <1>;
+>                 };
+>
+> -               vppsys0: clock-controller@14000000 {
+> -                       compatible =3D "mediatek,mt8188-vppsys0";
+> +               vppsys0: syscon@14000000 {
+> +                       compatible =3D "mediatek,mt8188-vppsys0", "syscon=
+";
+>                         reg =3D <0 0x14000000 0 0x1000>;
+>                         #clock-cells =3D <1>;
+>                 };
+> @@ -1349,8 +1349,8 @@ wpesys_vpp0: clock-controller@14e02000 {
+>                         #clock-cells =3D <1>;
+>                 };
+>
+> -               vppsys1: clock-controller@14f00000 {
+> -                       compatible =3D "mediatek,mt8188-vppsys1";
+> +               vppsys1: syscon@14f00000 {
+> +                       compatible =3D "mediatek,mt8188-vppsys1", "syscon=
+";
+>                         reg =3D <0 0x14f00000 0 0x1000>;
+>                         #clock-cells =3D <1>;
+>                 };
+> --
+> 2.45.2
+>
+>
 
