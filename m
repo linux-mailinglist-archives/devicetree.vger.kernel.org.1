@@ -1,150 +1,149 @@
-Return-Path: <devicetree+bounces-77753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A6E90FDD1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:32:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DADBA90FDED
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:40:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25441B234B6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 07:32:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75E95B20EDA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 07:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF1E94503B;
-	Thu, 20 Jun 2024 07:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56EB4C62B;
+	Thu, 20 Jun 2024 07:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XwUWPywQ"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="AZn2oVNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5265B2582;
-	Thu, 20 Jun 2024 07:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3173E21364
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 07:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718868759; cv=none; b=siPhPTTjLsFZ9gVI+Uoe4hRx6xkdpjd0gmAHKJ6wao0dloS4pVq9PnJuHfrHW65iHsISSCT5LDcmjiAxmRXKeTFc/V6Qqy0z3rFV1JG+zpZKipykMhP+/gvMFIuCrx3NxhBZQ5u0CusXbMLmUJpFlUQ0/602R9Yoo3fgNrpGduc=
+	t=1718869203; cv=none; b=k3hGnG1INCWhFZdIEB+inL33GhM8TZyLa3TTzz1obEY6b7kpjJDmHgsBkfqQTF1R/+lVJjfJhF1WT7eqrhfV2WhyEn0Avua717X/logll/cEU7m/i/98Vg1jZNu5PMx3e1GAxM1xvoNc7nsFvGRNd61Gq0Qtx64cCUUCZdA7ZmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718868759; c=relaxed/simple;
-	bh=wHBVd9fc2iWfUZuweb4LS9YbAAd/18fD/OhLw/DQ1QU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sgBQKDElaiBa5THypnJhe2lEd3Vm7YsfMtruG0sRKzSlC6ykCPiOtTa2hUSWUxdrVdRjpYAEEiAqQkcJ/rYF9ky4e7QSjT5nl3oxj75FvP4nBj/ZA+Uud2QpK+tNuIjqFABwyY6e2vY6vrWVCghTJNxuvKBcv87sd/kKgXaG4XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XwUWPywQ; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-62cddff7f20so5002917b3.3;
-        Thu, 20 Jun 2024 00:32:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718868757; x=1719473557; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qnAIkWGQryIAQtTLmUZTYaNhdbVrLJLMPyGuu/muHE4=;
-        b=XwUWPywQ0J+uow7/3WM3VxDHf2yfN/gmz8ONSejpWXnXXkWkkcE6WD3hNXztgjiZVo
-         XZ/zSclx0OJXpYAt0hGVqpAKB5difb1mpYRCH5OztsfEtLSQVWJJxQf5pL+Ax06f5/iA
-         YT+2o8YyMkinjPqJBepe7jKwDwX/teTqWzztgBF0AgwHBEQj18K6jalWPXDQ7mVG+3rM
-         lRpqajQUKesOT1MtPKiLGeYMhl84qtQd7AsoAWQ3veguEion4+RPkDrzazug3283o4DQ
-         XhnQ+rsbr6UhJgkolyueURKUq9pOthe+pN6W38xpX4RdhrJ6ewiKSuYwQbH6BsDEDA//
-         Es4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718868757; x=1719473557;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qnAIkWGQryIAQtTLmUZTYaNhdbVrLJLMPyGuu/muHE4=;
-        b=KA5CCCihMW//oD6Yi55M2BfcadVmm7lW8d9ZIwq+o6o94Mtmo0tuYNWjxxKMDYgXlv
-         PMHBm8SJTGgI2vruVFh2TV21J/yR7qDzZVuCPIDAwErzppl+BnHy0IsSOU3PqvPyKhE4
-         u5VvznZIa/LgKx0kSLtoNivesaN4cJsQWXCDzkHt7diIWJWgDqdFHkgDT7sYTry4VEpw
-         /1PHEIrSrT0xcXin7n9Pytw+LyJIfVTaknU9htgVEmZ5Sv3FhhXANnUDeXznhOP8Ud2a
-         bMFlQohwI6iQVia8c3WvwVka0sG0s9POS69Hsmn3FHjEotKyEAJB1xnd9tlIBZA5y8i3
-         h65A==
-X-Forwarded-Encrypted: i=1; AJvYcCWv8ZDAIh0SxfIUHIt2W0GfAtq7Cg3Mo7e3M4EEeyw55Xt2PuEH9PKozocC3jjglvmltyFRMmr56JvIG7uZh8+mCLA2ZRViK9pwJFEg1tMEDUFFbvFByivFIZuMYdW1XuIa1dTUXE1lECx5eNBkHw5/+FiLlD/yF3ctIQUPLvTbw1Duxw==
-X-Gm-Message-State: AOJu0YxZrMoQyKbBGmykjiLU9NaI1hd8zo3cXXdEgLdZSvqOompsMIT6
-	kQ6eg6wqWRslT5Sw2fQPwl1Pd3WDwnJVlX5W7UJ0kbrp6s/ZT+lZBLH6qoew6LPwzWlsv733B42
-	QPlrHXKyH9BzouBOVGiLH2jdwmmM=
-X-Google-Smtp-Source: AGHT+IFMs27chWrPqAVjs1vjzs16P9LfbkLcD+9tzrx+qaAHwjt2BmEAahSMklBZ+1btLgaZ6nW+L/dXD2/WIeBy5t8=
-X-Received: by 2002:a0d:e605:0:b0:618:8d31:a557 with SMTP id
- 00721157ae682-63a8e1d915cmr46504547b3.14.1718868757233; Thu, 20 Jun 2024
- 00:32:37 -0700 (PDT)
+	s=arc-20240116; t=1718869203; c=relaxed/simple;
+	bh=/yPsOddln1Esdy1u8224EnBJL9NW6sXJz7xHSt84Uxs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J63Y3DY3nF1nRlZvGJnPhbvaMSZrpW5PbKD40AQiO+UjLc50zXOKEkFPDca7G8pevdfkXYDZWsiXIWFEZvre/Shd1ijVZ4N893wCaw3RDyPOTZHS/kd3c4eJjWu7l1qCOSO7ivfRZedeQMBxbmLkW57YnxB1NfHpl/bUnyUDPes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=AZn2oVNb; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=bGVr
+	+yK03jS/+Uz4gbUSq4VhW8opj+zgNA5uyq5XFro=; b=AZn2oVNbUjatESfxtfvo
+	g9Vs+Z1+vmJTNMPzGTVq+DU1MHCNvXNXDCq1C31C4iQQvN8B/lLqlQB3YdWUBa/2
+	9MysEn4I9s+pFFa2HSTKFgaqPaHzkzTN1lFejJhlFnw4zx1WC9wmdmUz3Yt0W0a1
+	x/gdjkCFZLtYyPRCn8CNt+oz3xmXZwds5inJ2uinfj0jQcwsoxSz94uNYYkVxRRs
+	ayQF7yuUtaSAc5vu+Z2uZMZ8Dryshf43DwG/YlIbVslaJ26588iAr7TlKjWAsomR
+	C15X68AddF9Ye0GVrfbJlGoVDo3wm3XXgE9Nswo61ismm8YoN1afxJiG2uZ7Zddh
+	1g==
+Received: (qmail 928080 invoked from network); 20 Jun 2024 09:39:52 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Jun 2024 09:39:52 +0200
+X-UD-Smtp-Session: l3s3148p1@yyOYa00bXqEgAwDPXzjQABqqX1QYyOSW
+Date: Thu, 20 Jun 2024 09:39:51 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: linux-mmc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P)
+ SoC
+Message-ID: <o7tswznmyk6gxoqfqvbvzxdndvf5ggkyc54nwafypquxjlvdrv@3ncwl5i5wyy3>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>, linux-mmc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240613091721.525266-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240613091721.525266-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <prdvmtsp35yy2naohivbrya3go6vh5ji2cdjoebw3ovditcujo@bhck6tca6mhj>
+ <CA+V-a8u6KAFp1pox+emszjCHqvNRYrkOPpsv5XBdkAVJQMxjmA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240618185819.2155595-2-tmaimon77@gmail.com> <202406191439.3NcnExKM-lkp@intel.com>
-In-Reply-To: <202406191439.3NcnExKM-lkp@intel.com>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Thu, 20 Jun 2024 10:32:26 +0300
-Message-ID: <CAP6Zq1h2Sk6H2V-i+PAk_fCy9xdywcYw=w9wT_xcJ2WrqyWbAg@mail.gmail.com>
-Subject: Re: [PATCH v25 1/3] dt-bindings: reset: npcm: add clock properties
-To: kernel test robot <lkp@intel.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, 
-	joel@jms.id.au, venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	oe-kbuild-all@lists.linux.dev, openbmc@lists.ozlabs.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="33ovhsmrkgytchwi"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8u6KAFp1pox+emszjCHqvNRYrkOPpsv5XBdkAVJQMxjmA@mail.gmail.com>
 
-Hi Rob and Krzysztof,
 
-Could you please review this patch?
+--33ovhsmrkgytchwi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks,
+Hi Prabhakar,
 
-Tomer
+> I did give it a try with platform_driver_probe() and failed.
 
-On Wed, 19 Jun 2024 at 09:20, kernel test robot <lkp@intel.com> wrote:
->
-> Hi Tomer,
->
-> kernel test robot noticed the following build warnings:
->
-> [auto build test WARNING on clk/clk-next]
-> [also build test WARNING on linus/master pza/reset/next v6.10-rc4 next-20240618]
-> [cannot apply to pza/imx-drm/next]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Tomer-Maimon/dt-bindings-reset-npcm-add-clock-properties/20240619-093532
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-> patch link:    https://lore.kernel.org/r/20240618185819.2155595-2-tmaimon77%40gmail.com
-> patch subject: [PATCH v25 1/3] dt-bindings: reset: npcm: add clock properties
-> config: arm64-randconfig-051-20240619 (https://download.01.org/0day-ci/archive/20240619/202406191439.3NcnExKM-lkp@intel.com/config)
-> compiler: aarch64-linux-gcc (GCC) 13.2.0
-> dtschema version: 2024.6.dev1+g833054f
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240619/202406191439.3NcnExKM-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202406191439.3NcnExKM-lkp@intel.com/
->
-> dtcheck warnings: (new ones prefixed by >>)
->    arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi:63.7-177.5: Warning (simple_bus_reg): /ahb/apb: simple-bus unit address format error, expected "f0000000"
->    arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi:50.35-55.5: Warning (unique_unit_address_if_enabled): /ahb/reset-controller@f0801000: duplicate unit-address (also used in node /ahb/clock-controller@f0801000)
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /: memory@0: 'device_type' is a required property
->         from schema $id: http://devicetree.org/schemas/memory.yaml#
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: system-controller@f0800000: compatible: ['nuvoton,npcm845-gcr', 'syscon'] is too short
->         from schema $id: http://devicetree.org/schemas/soc/nuvoton/nuvoton,npcm-gcr.yaml#
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: interrupt-controller@dfff9000: 'ppi-partitions' does not match any of the regexes: '^v2m@[0-9a-f]+$', 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/interrupt-controller/arm,gic.yaml#
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: ahb: apb:ranges: [[0, 0, 4026531840, 3145728], [4293918720, 0, 4293918720, 90112]] is not of type 'boolean'
->         from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-> >> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: reset-controller@f0801000: '#clock-cells' is a required property
->         from schema $id: http://devicetree.org/schemas/reset/nuvoton,npcm750-reset.yaml#
-> >> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: reset-controller@f0801000: 'clocks' is a required property
->         from schema $id: http://devicetree.org/schemas/reset/nuvoton,npcm750-reset.yaml#
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: timer@8000: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/timer/nuvoton,npcm7xx-timer.yaml#
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/apb/watchdog@801c: failed to match any schema with compatible: ['nuvoton,npcm845-wdt', 'nuvoton,npcm750-wdt']
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/apb/watchdog@801c: failed to match any schema with compatible: ['nuvoton,npcm845-wdt', 'nuvoton,npcm750-wdt']
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/apb/watchdog@901c: failed to match any schema with compatible: ['nuvoton,npcm845-wdt', 'nuvoton,npcm750-wdt']
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/apb/watchdog@901c: failed to match any schema with compatible: ['nuvoton,npcm845-wdt', 'nuvoton,npcm750-wdt']
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/apb/watchdog@a01c: failed to match any schema with compatible: ['nuvoton,npcm845-wdt', 'nuvoton,npcm750-wdt']
->    arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/apb/watchdog@a01c: failed to match any schema with compatible: ['nuvoton,npcm845-wdt', 'nuvoton,npcm750-wdt']
->
-> --
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+Ok, thanks for trying nonetheless!
+
+> - Firstly I had to move the regulator node outside the SDHI node for
+> platform_driver_probe() to succeed or else it failed with -ENODEV (at
+> https://elixir.bootlin.com/linux/latest/source/drivers/base/platform.c#L953)
+
+This makes sense to me because it is just a "regular" regulator.
+
+> - In Renesas SoCs we have multiple instances of SDHI, the problem
+> being for each instance we are calling platform_driver_probe(). Which
+> causes a problem as the regulator node will use the first device.
+
+I see... we would need a reg property to differentiate between the
+internal regulators but that is already used by the parent SDHI node.
+
+Okay, so let's scrap that idea. However, we need to ensure that we can
+still have an external regulator. Seeing the bindings, it looks like you
+enable the internal regulator with the "vqmmc-r9a09g057-regulator"
+property? I wonder now if we can simplify this to an
+"use-internal-regulator" property because we have 'compatible' already
+to differentiate? Needs advice from DT maintainers, probably.
+
+> Let me know if I have missed something obvious here.
+
+Nope, all good.
+
+> > Don't we need REGULATOR_CHANGE_VOLTAGE here as well? Or is this implicit
+> > because of REGULATOR_VOLTAGE? Can't find this, though.
+> >
+> I will investigate it.
+
+Thank you.
+
+And happy hacking,
+
+   Wolfram
+
+
+--33ovhsmrkgytchwi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZz3MQACgkQFA3kzBSg
+KbZX2A//e7lZCY3V/QM4Kxz/32nrGxuFsbxpiA5GWvyWGqNLNrbbheU+sQkcRVF9
+Om1EyiYx/xWGdoTpSrQyislS0dRLIBw6BRs8XTq5iBO4iFGyoqhY/5t0+f+eNpc3
+TN9FnvuKFEI6BzuuBoHlJfBtJY2oCDtuWJU5eW4AheUFSzCP2zUDEanbSVBxEHDs
+giF7r1eYCCBH4k8CqryVsl6bLSdpmoO5S+tQpW9df0h9SE10dqtyLG++1UzyK4//
+n1E4trQRXHoWUBgK2IgDYCLD6JWAox4LI+oxSSYievnRKMIMZ8wnoecWNq1JWwvT
+vtuYIVAAbkVpTwrbGebxhHhd/wA5E8ns7eG7zdgmOUV1RAK5AhtW/lBuKR2B8ACU
+zWlDtQkibA9vf7a3wAwia8tMczbPoKzlhUI+okEVukI5Hngok91fitnfGROMV7gA
+XbNChfWtxkKXg2VoCfNcx9b1teHMn4F4A4jGToCIjCe5Ux6MBsVUS5LY1kSld1YH
+p730G8T9BoDcPjqWPwhXL+X7fkuGLx74DE4QbGTZ/NisYl/PYxa2UNyud1GPp7oB
+j43cInw/bppQ+vcbK4R36Q/7IvCdo1ZbAQh+e0V6FlDEnCl/c2Quo3QWsnruc2GM
+XV9rXr0n+vj4uRcsdqRHTg0jHJbLZEv+GUr+Y5tJlTpuDOl9JtA=
+=Gdi4
+-----END PGP SIGNATURE-----
+
+--33ovhsmrkgytchwi--
 
