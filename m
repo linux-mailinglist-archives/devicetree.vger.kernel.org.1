@@ -1,146 +1,174 @@
-Return-Path: <devicetree+bounces-78040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02067910BD7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:18:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4DD3910BE6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:19:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA45D1F2180F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:18:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B0262874DA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 749571B47C1;
-	Thu, 20 Jun 2024 16:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4950B1B3756;
+	Thu, 20 Jun 2024 16:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdtGzwQ1"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="Y3ZMdTWS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466A11AF6BE;
-	Thu, 20 Jun 2024 16:16:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928FE1B3743;
+	Thu, 20 Jun 2024 16:18:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718900217; cv=none; b=RPwc5VwKF9apH6GfY6+QBmtRHsiknxQVjrLn4fSJLEESL8mpf+izbEklzThV30Htoq1sXOiVjfDticLfdz8ER2/N0R16fs6Tf1eF9eApoDckhFGq1YQwi6ZbAHHKQegh0glO2mI0/zxSY9mKZOucgX7peSNPyIWHgEwPKiHUdek=
+	t=1718900292; cv=none; b=jp2keI3vO+Pj61s3wexxhH5+xxexkDhqET7jUNigshaYuUMqkm+GnQ7du75/Fzp4O2SOcBhEvI8aOeF+n7hJBGzH9B2KLG/VqAVwUhvwX+vhxmcqb/pTKhm71yDwYPaScOrnwYUNdJVP79AL/ASH4ERrKHKGBj0o7YXpgCpioQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718900217; c=relaxed/simple;
-	bh=vHDWenkeMb4RhXFUkZ9+r76f4G4q9rAOzWwZhsXlnDA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RtVr0QsbPpmOUZhLkwsC1gorLnLnIBYksaRZSmGd60+CMPB6FGTlmaERiWRLBaFU1T5A73miEN5Lc/yxVEEzgZAET0sH5A11eWMsZxm0/vXAcqwRE0NJda/mUzqHI7frVWswHx5XA13M7qecvrpsnz7jnKWgbDDAPlyzSJ8l74M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdtGzwQ1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F6F4C4AF07;
-	Thu, 20 Jun 2024 16:16:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718900216;
-	bh=vHDWenkeMb4RhXFUkZ9+r76f4G4q9rAOzWwZhsXlnDA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mdtGzwQ1RycWMYjzjeVWy4giLAtkYuuagNJkowB9PNpYF++i8gIX5wOpbHpOZbfs2
-	 vXny6BfZ02G8cvjFTfGmBX2fxPAqoi6gcGKb1rwPrZcQuGHEmyzyNlUDRHP2wE7dLO
-	 1mbOrQMot7lVkPPMOgOpnGetf/BrVoqNWQ5C5Ar+ebETNeUZM4jwHtdOR3wtTcRkQR
-	 B4rJ0apCbGel8z/JQlkx9VmaYc8ZhYWzrChFzV9NytKrJKlEqpV+arr9MMkiZXTz2A
-	 8n8IrpJtaJfo1GPeywJ6f6h3x1viuoGHWpsr96ujC8ejAoyCDZxm+qr6MwJcWHXOUV
-	 RKsJKu1QHMbGA==
-Message-ID: <45d66377-20d8-4b16-9b5c-490d9afc41ed@kernel.org>
-Date: Thu, 20 Jun 2024 18:16:50 +0200
+	s=arc-20240116; t=1718900292; c=relaxed/simple;
+	bh=l+us4B7oRsCgW3b+RtflPgR9TE13tQzAII9dHEXn2PU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=q45pQ0djsLMFKpHnO2nNm7u7V3w4zkTo9BxTnGyPKBNhHqVLLItr39Wzz6KiDnLzIH+CHnM40Fra7WmSvRxOHokav/U7qwlx323+0QrIHu70oI1klDYPRBNxyof93HptFTWSjNmHZfUG3dUfPMqXbeo1mjvooJ/xEw3H5kFsW2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=Y3ZMdTWS; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45K3cdBm004563;
+	Thu, 20 Jun 2024 11:17:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=/njZOCmFYnuQqgMS
+	LFIBiG84a+xw942qr8iK0lGZQxo=; b=Y3ZMdTWSeAOf+z3pfk6lVFD8Xamgcv6Q
+	TL31EVRg2WiocCdgZ/Wb6PouxCn2f0SEgDCBxgDpHH1K+OjZQtEUrSD9xa1ldMN5
+	YUo2en31jsKDe/aNuNTSucZ/A58LJ+yZeRLN6+lwjDQ2gDU+4BImPCZUdN3/fEWL
+	Ng/ryUJsu12zfBAEaduBCVg1t9CTyjuwVd+SxBRJ8U+89hxt6RSW6tfZV1lMO3sZ
+	zrByur50ifqj+iFlxWkp/tgEIJngUuecrbygLMmddWwYltDmt5/ERLjaW3WWchhW
+	dXLIiVC8EZsTPYIEb7DWVGYLcpi4sqUSydirSAv55fxfu9avAzlMaw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3yuj8m2270-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Jun 2024 11:17:52 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Jun
+ 2024 17:17:50 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Thu, 20 Jun 2024 17:17:50 +0100
+Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.42])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 72EC7820248;
+	Thu, 20 Jun 2024 16:17:48 +0000 (UTC)
+From: James Ogletree <jogletre@opensource.cirrus.com>
+To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
+CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        James Ogletree
+	<jogletre@opensource.cirrus.com>
+Subject: [PATCH RESEND v11 0/5] Add support for CS40L50
+Date: Thu, 20 Jun 2024 16:17:40 +0000
+Message-ID: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
- <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
- <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
- <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
- <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
- <be608e3e-2ecd-4d7d-bf45-99c553e72c08@app.fastmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <be608e3e-2ecd-4d7d-bf45-99c553e72c08@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: U51LQKxPLDe1lMSBcCwVvlh9ohAg3Qxd
+X-Proofpoint-ORIG-GUID: U51LQKxPLDe1lMSBcCwVvlh9ohAg3Qxd
+X-Proofpoint-Spam-Reason: safe
 
-On 20/06/2024 18:13, Jiaxun Yang wrote:
-> 
-> 
-> 在2024年6月20日六月 上午7:40，Krzysztof Kozlowski写道：
->> On 19/06/2024 13:20, Jiaxun Yang wrote:
->>>
->>>
->>> 在2024年6月19日六月 上午10:28，Krzysztof Kozlowski写道：
-> [...]
->> Your children depend on parent to provide IO address, so this is not
->> simple-mfd. Rule for simple-mfd is that children do not rely on parent
->> at all.
-> 
-> I don't really get this.
-> 
-> As per syscon-rebbot.yaml:
-> 
-> The SYSCON registers map is normally retrieved from the
->   parental dt-node. So the SYSCON reboot node should be represented as a
->   sub-node of a "syscon", "simple-mfd" node.
-> 
-> syscon-reboot is certainly using parent node to provide I/O address,
-> even regmap property is deprecated. Without "simple-mfd", reboot node
-> won't be populated at all.
+Changes in v11:
+- Constified function parameters in ASOC driver
+- Removed an unneeded #include
+- Changed number of max FF effects = 1
+- Minor refactoring in Input driver
+- Reworded comment in MFD driver
 
-That's why I asked you to populate children.
+Changes in v10:
+- Minor refactoring and logical improvements all around
+- Renamed and added supplies
 
-Best regards,
-Krzysztof
+Changes in v9:
+- Fixed empty struct by utilizing cs_dsp's post_run callback
+- Style fixes in MFD driver
+
+Changes in v8:
+- set_sysclk() -> set_bclk_ratio()
+- Added ID table to codec driver
+- Style improvements
+- Fixed ordering of new write sequence operations
+
+Changes in v7:
+- Fixed sparse warning
+- Moved write sequences to private data structure
+- Logical and style improvements in write sequence interface
+
+Changes in v6:
+- Updated write sequencer interface to be control-name based
+- Fixed a race condition and non-handling of repeats in playback callback
+- Stylistic and logical improvements all around
+
+Changes in v5:
+- Added a codec sub-device to support I2S streaming
+- Moved write sequencer code from cirrus_haptics to cs_dsp
+- Reverted cirrus_haptics library; future Cirrus input
+  drivers will export and utilize cs40l50_vibra functions
+- Added more comments
+- Many small stylistic and logical improvements
+
+Changes in v4:
+- Moved from Input to MFD
+- Moved common Cirrus haptic functions to a library
+- Incorporated runtime PM framework
+- Many style improvements
+
+Changes in v3:
+- YAML formatting corrections
+- Fixed typo in MAINTAINERS
+- Used generic node name "haptic-driver"
+- Fixed probe error code paths
+- Switched to "sizeof(*)"
+- Removed tree reference in MAINTAINERS
+
+Changes in v2:
+- Fixed checkpatch warnings
+
+James Ogletree (5):
+  firmware: cs_dsp: Add write sequence interface
+  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+  mfd: cs40l50: Add support for CS40L50 core driver
+  Input: cs40l50 - Add support for the CS40L50 haptic driver
+  ASoC: cs40l50: Support I2S streaming to CS40L50
+
+ .../bindings/input/cirrus,cs40l50.yaml        |  68 +++
+ MAINTAINERS                                   |  12 +
+ drivers/firmware/cirrus/cs_dsp.c              | 278 +++++++++
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/cs40l50-vibra.c            | 555 +++++++++++++++++
+ drivers/mfd/Kconfig                           |  30 +
+ drivers/mfd/Makefile                          |   4 +
+ drivers/mfd/cs40l50-core.c                    | 570 ++++++++++++++++++
+ drivers/mfd/cs40l50-i2c.c                     |  68 +++
+ drivers/mfd/cs40l50-spi.c                     |  68 +++
+ include/linux/firmware/cirrus/cs_dsp.h        |  27 +
+ include/linux/mfd/cs40l50.h                   | 137 +++++
+ sound/soc/codecs/Kconfig                      |  11 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/cs40l50-codec.c              | 307 ++++++++++
+ 16 files changed, 2148 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cs40l50-vibra.c
+ create mode 100644 drivers/mfd/cs40l50-core.c
+ create mode 100644 drivers/mfd/cs40l50-i2c.c
+ create mode 100644 drivers/mfd/cs40l50-spi.c
+ create mode 100644 include/linux/mfd/cs40l50.h
+ create mode 100644 sound/soc/codecs/cs40l50-codec.c
+
+-- 
+2.34.1
 
 
