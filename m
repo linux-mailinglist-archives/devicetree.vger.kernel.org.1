@@ -1,144 +1,134 @@
-Return-Path: <devicetree+bounces-78059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD35910D11
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:35:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 241FF910D1D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:35:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3E54B28867
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:35:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF0192893BF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058701B47A3;
-	Thu, 20 Jun 2024 16:30:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3FA1B29A8;
+	Thu, 20 Jun 2024 16:32:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpcDoxmh"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="MP49U8c+";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Zz4g3Eu3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from wfout6-smtp.messagingengine.com (wfout6-smtp.messagingengine.com [64.147.123.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C991A1B1500;
-	Thu, 20 Jun 2024 16:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B3E174EC1;
+	Thu, 20 Jun 2024 16:32:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718901053; cv=none; b=qL9e0wquftXALdv9DLNwGBaS6RtGd5xDcH7vIh/F0IDEhl3LxETCB034gKqwFmfREnf2KrJhfe8JEZdaeISqgXFutTH40minDsoK7fmEPv7A2HA5OxaNHUkJhAODFfgdz4OvleHkXO7svT3eMT8bsIkwdcu2DmdtGsM74Vrz70Y=
+	t=1718901162; cv=none; b=i5eFAJKPay3tP12ZWl1zdWSvA6gU00Px3jqS/HAZdPZblTTIqjwSzQCV8dvAXi4Ei3OIbL1bnl5W7gs4ekCpGYg8WldDxeDNYaUyylrEextyNKgNK//q3hbjN5ve5dvYf/ezAsgcFRBrVb5GabqqQrSejqeKADklBmoqtsapWSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718901053; c=relaxed/simple;
-	bh=+u20+PzQw0ydTGvhxZkg0M/CZ1MW4ZV07QKlmdkZH9c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GIeqKThDF5IpxBtQ9qFYV9vN+qx715BvSL2rG4vITxAhrgNHaVSsJfYejCP0aknvQ5ToCX+dvv3WTyAmEzSZ2Q57KXxih55YHKWR4hGNKfK8Uhb2IVUyFV6mWuzsv1giz1JXrlqLdtGn1/byb+yMqhrKYZqREZa7FucU4e4kI+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpcDoxmh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B15EC2BD10;
-	Thu, 20 Jun 2024 16:30:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718901053;
-	bh=+u20+PzQw0ydTGvhxZkg0M/CZ1MW4ZV07QKlmdkZH9c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fpcDoxmhms7zCAojcmv/RYq8amuLtl7ctEBD7zQhfbjW7+P8jmXqkou3HRrlVlZb7
-	 qYze12R0q8VIC64JI2zqHYNHsKkTWq5FDGrl8aZADPgnv4scthWEesv3iVgNjopql8
-	 KjHezkm5GuBt5xFg30ugfxRRImANN6sWHEAf0KXygq1ydZmdZ+9rBnbcrFOT6nMOoc
-	 j7Pf5kBzBYriCkkIuGAcfwiPeLYN59qvgvCua5fa56a5zX7iDDkL9QGgm+5hsw5yfi
-	 QLEqJNvH3RUjLyJcUQAFLiXUZgI9M2wj9DdxqjNPeeZuHj7YMSmhbwHzhh6qWY3Aof
-	 NGLV5yR/cROXQ==
-Date: Thu, 20 Jun 2024 17:30:48 +0100
-From: Simon Horman <horms@kernel.org>
-To: "Nemanov, Michael" <michael.nemanov@ti.com>
-Cc: Sabeeh Khan <sabeeh-khan@ti.com>, Kalle Valo <kvalo@kernel.org>,
-	Johannes Berg <johannes.berg@intel.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 11/17] wifi: cc33xx: Add init.c, init.h
-Message-ID: <20240620163048.GK959333@kernel.org>
-References: <20240609182102.2950457-1-michael.nemanov@ti.com>
- <20240609182102.2950457-12-michael.nemanov@ti.com>
- <20240615085133.GA234885@kernel.org>
- <8dbb30be-3c0c-43c9-8f7a-dbfeeca3837e@ti.com>
+	s=arc-20240116; t=1718901162; c=relaxed/simple;
+	bh=Odbk+EWM54S/MJAlmXIgT9f/AlcQ+5s/yWxbT/rznTI=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=V32msydq6r6fQmtLCPQ9HIdMGEo1ngYGOAWbCwPiXsRCycJSCP/OAfGYXIiXJfz4Rx/emzh4nfQkmyrDw3Zsz4RqVlDlwssFsoq7ndzadjYQamldlNr21Iang21qboTVZsYtaK1XRvr655/i4/D3EFITqi9xvWk3989WFSh7qTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=MP49U8c+; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Zz4g3Eu3; arc=none smtp.client-ip=64.147.123.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfout.west.internal (Postfix) with ESMTP id 93E321C0012F;
+	Thu, 20 Jun 2024 12:32:39 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Thu, 20 Jun 2024 12:32:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1718901159;
+	 x=1718987559; bh=Odbk+EWM54S/MJAlmXIgT9f/AlcQ+5s/yWxbT/rznTI=; b=
+	MP49U8c+KCpHeGMcKVE+acKq6tPkjMkNvBNQUG+9kIPz77N9LYWM2QsS0y1HlnQk
+	3jbENB3hAc4jbySC6mL/sfJxg3gj0RcOGBbjkX5+h/WITe5hlSojqsqOtrSktZo7
+	shqJYvSzUeeTsFoxAvsFPAzl53t+OAksdUVjpG3vIeIqqpKmwNCZXXa8c9M8SY0E
+	8k+Cpm447pEQJIdyKilPptUiJ/5vW0CRbqvrq8ENyW0LALbakFu/awZUo1++JOqf
+	Z6QeO9R8jwThPIz7ztxs5XiuxgRp5jXICwf8v627Pa/UK7e24vEukIKmxOvuCQ2u
+	oAh76/jb8YQ5wnzdRCcs8g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1718901159; x=
+	1718987559; bh=Odbk+EWM54S/MJAlmXIgT9f/AlcQ+5s/yWxbT/rznTI=; b=Z
+	z4g3Eu3xwya8GXGMqnYOzuKTJfB/ylUYgSr5Pnv+GWa4899Trx4V8CkPTRGcM8Vz
+	DkWRwWAGXRKBSG8WtKDYTSbzrZ4HrGa+c0cuOkZDFDRH7INv8uExwRQXPDYjyB21
+	rE03eKVFNyWQulj6aq1ELpAKxm5ubAJnrs8evsrOsV0Pujw0kFr2UjFp+DSFx9lH
+	0TG0Oz2RSRgqkisvs5D5rlEfgbcq6ErbBQGIjccdhQgW0wsSZb2qwP56zbEf6ndj
+	m2SpBJ3B3oTLRvGuQoF02KpmSZM+h9SJonbeEyV8X6D5FJPOCyeJ/oDCM3uyhzqv
+	NzivlYavSLjokdymoBzfA==
+X-ME-Sender: <xms:pll0ZljqtYFd19cOttadDOaalvYq5ijyWi_0ws8Sy2YH1eNk-xAxDw>
+    <xme:pll0ZqDzFUy9DVcV6_k_K0y4bu4KL9PDWDwpHX5IL0xF5dAepxhhtGLJGnd4oUpJM
+    ZlvlsGdAJtJjZVa7ss>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeefvddguddtfecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
+    homheqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefh
+    jeeugeevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:pll0ZlHTGm15d0kiSDJA6gJnfI3FtVaNANqRHnN4m2YpMuOpCYitXw>
+    <xmx:pll0ZqQr1t-vxJpUkP7s8_9zr4wsarz_YXQfqOTu7wB0g0ld0Ttcig>
+    <xmx:pll0Ziyx2WgH1B_Jrpqk67Ka4wiIXsbMZ-42vcZ_hesjTZj7dr2law>
+    <xmx:pll0Zg6UVDe8bmvCeLfUATevopyvNFPmnjYSyC-b9WRa2Yc1kUB_5Q>
+    <xmx:p1l0Zmd9HeXlDI8A-fMuXFAyMDB5OP7D-9tlOxkHirlkV97fZgcRJ3qD>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id AA55A36A0075; Thu, 20 Jun 2024 12:32:38 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-522-ga39cca1d5-fm-20240610.002-ga39cca1d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8dbb30be-3c0c-43c9-8f7a-dbfeeca3837e@ti.com>
+Message-Id: <2ab8b329-268f-4f18-b0ee-17fdee1b329d@app.fastmail.com>
+In-Reply-To: <45d66377-20d8-4b16-9b5c-490d9afc41ed@kernel.org>
+References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
+ <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
+ <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
+ <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
+ <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
+ <be608e3e-2ecd-4d7d-bf45-99c553e72c08@app.fastmail.com>
+ <45d66377-20d8-4b16-9b5c-490d9afc41ed@kernel.org>
+Date: Thu, 20 Jun 2024 17:32:19 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 20, 2024 at 11:40:31AM +0300, Nemanov, Michael wrote:
-> On 6/15/2024 11:51 AM, Simon Horman wrote:
-> ...
-> 
-> > 
-> > Hi Michael,
-> > 
-> > allmodconfig builds on x86_64 with gcc-13 flag the following:
-> > 
-> > In file included from ./include/linux/string.h:374,
-> >                   from ./include/linux/bitmap.h:13,
-> >                   from ./include/linux/cpumask.h:13,
-> >                   from ./arch/x86/include/asm/paravirt.h:21,
-> >                   from ./arch/x86/include/asm/irqflags.h:60,
-> >                   from ./include/linux/irqflags.h:18,
-> >                   from ./include/linux/spinlock.h:59,
-> >                   from ./include/linux/mmzone.h:8,
-> >                   from ./include/linux/gfp.h:7,
-> >                   from ./include/linux/firmware.h:8,
-> >                   from drivers/net/wireless/ti/cc33xx/init.c:6:
-> > In function 'fortify_memcpy_chk',
-> >      inlined from 'cc33xx_init_vif_specific' at drivers/net/wireless/ti/cc33xx/init.c:156:2:
-> > ./include/linux/fortify-string.h:580:25: warning: call to '__read_overflow2_field' declared with attribute warning: detected read beyond size of field (2nd parameter); maybe use struct_group()? [-Wattribute-warning]
-> >    580 |                         __read_overflow2_field(q_size_field, size);
-> >        |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > In function 'fortify_memcpy_chk',
-> >      inlined from 'cc33xx_init_vif_specific' at drivers/net/wireless/ti/cc33xx/init.c:157:2:
-> > ./include/linux/fortify-string.h:580:25: warning: call to '__read_overflow2_field' declared with attribute warning: detected read beyond size of field (2nd parameter); maybe use struct_group()? [-Wattribute-warning]
-> >    580 |                         __read_overflow2_field(q_size_field, size);
-> >        |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >    CC [M]  drivers/net/wireless/ti/cc33xx/rx.o
-> > 
-> > I believe that this is because the destination for each of the two memcpy()
-> > calls immediately above is too narrow - 1 structure wide instead of 4 or 8.
-> > 
-> > I think this can be resolved by either using:
-> > 1. struct_group in .../cc33xx/conf.h:struct conf_tx_settings
-> >     to wrap ac_conf0 ... ac_conf3, and separately tid_conf0 ... tid_conf7.
-> > 2. Using arrays for ac_conf and tid_conf in
-> >     .../cc33xx/conf.h:struct conf_tx_settings, in which case perhaps
-> >     .../wlcore/conf.h:struct conf_tx_settings can be reused somehow
-> >     (I did not check closely)?
-> > 
-> 
-> Thank you for checking. I agree this code should be rewritten so it is more
-> clear and w/o any warnings. Will fix.
-> 
-> I was unsuccessful reproducing the warning on my end. Tried with GCC 13.2.0
-> (ARCH=x86_64, allmodconfig) and Arm GNU Toolchain 13.2 (ARCH=arm,
-> allmodconfig) and only got errors in scan.c which I assume you refer to
-> below (will also be fixed).
 
-Hi Michael,
 
-I tried this again with GCC 13.2.0 on x86_64 with allmodconfig.
-And I was able to see this with a W=1 (make W=1) build.
+=E5=9C=A82024=E5=B9=B46=E6=9C=8820=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=E5=
+=8D=885:16=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+[...]
+>> syscon-reboot is certainly using parent node to provide I/O address,
+>> even regmap property is deprecated. Without "simple-mfd", reboot node
+>> won't be populated at all.
+>
+> That's why I asked you to populate children.
 
-I don't think it is an important detail, but for reference,
-I am using the compiler here, on an x86_64 host.
-https://mirrors.edge.kernel.org/pub/tools/crosstool/
+Do you mean I should write a driver for this?
+This is a little bit overkilling, I'd rather fix the clock driver.
 
-> > Similar errors are flagged elsewhere in this series.
-> > Please take a look at allmodconfig builds and make sure
-> > no warnings are introduced.
-> > 
-> > Lastly, more related to the series as a whole than this patch in
-> > particular, please consider running checkpatch.pl --codespell
-> 
-> Sure, will add checkpatch.pl --codespell to my tests.
+Thanks
+>
+> Best regards,
+> Krzysztof
 
-Great, thanks.
+--=20
+- Jiaxun
 
