@@ -1,265 +1,443 @@
-Return-Path: <devicetree+bounces-78130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A68491129E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 21:57:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A849112B2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 22:02:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C01E1C216A8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 19:57:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 219871C21174
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:02:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3AC64D8BA;
-	Thu, 20 Jun 2024 19:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEAA1AED28;
+	Thu, 20 Jun 2024 20:02:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jtk39QTu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfCh2TYY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B383E3D575
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 19:56:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE5B39ADD;
+	Thu, 20 Jun 2024 20:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718913417; cv=none; b=oweKFpFwkkrcVbNbnyZKIZDNQRmONhDNZKFzhCKma7oMCzuE8Re93Z+s7JJqGENUbzHl52Q/b1PB2+n4tPUfErYWAz0JKJHl/o5WofHp3czpGVrKgXeTWucSlKbcWX6B52diJiGQEMm/2SJOrGQXY/gMhUzVhfQzX/rpOA2QQvE=
+	t=1718913750; cv=none; b=j9u/MGpIlCJg9MaVVgcCjOIaNmtnZnLPKXlWlce1bCIlZBM6BxmHIC16O/oVou6YCoU+8i8TC2bU5pmVIizSKX5PL3T339LJvPUIJ33CPg+jEka1auax4gqS0e6X18RNnSaPnPd0OpABaB6U7wwsXspNH+jHkx+TuMGH3VDVayA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718913417; c=relaxed/simple;
-	bh=i1/IGFj4Fw/D53T1zwnTKZeqI2fRIpOhdrxLwBvHoVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DqKa1NrSZHV+mwqGo1MWLgH36HfcuZAQtSVGYpRg9d+7WzWcaizROgxGQ57X95/9tX3ARLadL1rwMxwzH0nWQ17hlP1Q2RUOejaD2bq2v9Nsv2+UjdZu4HkRhbZJKBFQAy3jbtlfqy5mb++020aCvMG7caj0yXB5U3omz8xLq+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jtk39QTu; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ec0f3b9bb8so14779511fa.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 12:56:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718913414; x=1719518214; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=j+KYydD7nko1FrffBssKIhFciA1unGFTs1mnRoxyK9M=;
-        b=jtk39QTubRQNdEeUUhvcIKu27SYMF0P2o+5VzyMdfTfndXM84dI49zdUR6XdFU2Vaj
-         Gpz4WFFkz9DilyBTnsaEmzQSUAAc2bCzUBiTonuDHOoVD0ay5tf06tTNGJJfdRB2mOlt
-         fvZgrNpCwQyw34/kMfX/jJC2iR5XoNMVmrR7ifo/l62QSNfLXNSSanSCTrj86b6VRs4s
-         u0cx5eviOCGzscBumvPoXT3aX45sM+T3wvJy9gm5JCbt0n4b6tUN4ep+XYI0XN5vJMAD
-         XaJ/xTpMgujTHHK4O2QHqoCgZ7VqaSdDAZS3uurtlKRLo67UIha/5qo6OT3POOi3FL1w
-         28gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718913414; x=1719518214;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j+KYydD7nko1FrffBssKIhFciA1unGFTs1mnRoxyK9M=;
-        b=RjtHop+eekDGT49BtS8nGDsORKGFDYxsdXyH0nSxU/pU0SaVamVN3p+qy9DDx/pyoV
-         aqRQtKMxAXP/IP2vhu9zZm9ad6rXRwhYX6bz6zh95Gq0ZNQ//dzjYwPZhXuydaB2upnK
-         TydEUM7o1Kfx+Eat19lr23NSoPhEkEsuFh/VKQ/k6hmDTe2af9bc17F9wJV+37LgnCtP
-         2Xy1eKgyYAB4lL8FU/R4/HmpAXKAMPmb9QRGX5KgZMw3tMLn3rHh/G5IC9zYNpcQ2LiS
-         8Dtnsryvxf2VOtM7eWc/zS256zxBvW76M3Us2zQqAVUIkjIpuKdsouaRv/W0Muu7J8VE
-         U0zw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQHV5LSIRRZrHcuaumX+o6wSXzu0iCgpG/gp9n8Q9EgXBSsfhjaoDhqQmJ0eKDDv7qpyVX3hyTPwekT5zw3XTuL8xjhttjfi7+jQ==
-X-Gm-Message-State: AOJu0Yyq7GVIhktiqyIJGLFoAPJdbHBqohUuT0580J12dCUZ/fdvN2bn
-	jlqgUU/jCj/dxTwbs8CrvekCfuvvoS+GCgsdXavIFNePPaYQd8NqW0PO6R8mJVU=
-X-Google-Smtp-Source: AGHT+IHBAKdt7nCo4Li66Yi4OSvpW1dRF0oRpX6m7JKc3NlOt2u5cVk5oKGqB8kBFo+abyfpX1GfYg==
-X-Received: by 2002:a2e:9699:0:b0:2ec:4399:9bff with SMTP id 38308e7fff4ca-2ec4399a3c8mr24955371fa.42.1718913413901;
-        Thu, 20 Jun 2024 12:56:53 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec4d600022sm75651fa.29.2024.06.20.12.56.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 12:56:53 -0700 (PDT)
-Date: Thu, 20 Jun 2024 22:56:52 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
-	benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] drm/panel: starry-er88577: add new panel driver
-Message-ID: <bmmng663zqsc4xolkh6jdbu6yj637f3k6qbclxgi6fcmm4hv7z@i7ycd36flcha>
-References: <20240620115245.31540-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240620115245.31540-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1718913750; c=relaxed/simple;
+	bh=boFmBkvFSZHjeEcIa9NGTHUPZQwae/WRy+i4UJgp3dk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=d0aDkFngv5ubCdVNd+hCbziyGwjHiVT3QqUoXjSe+pn/oqcUkH13zi1adbD8pbFIqx0/zIBbzFpKgTmuEGM5mHiNe2zdVZo22MPZExcfKschPjk8KmxwL80sKa4epWrxwbWD8cs/FowaJPwYFYxSwK67GJFvaXUtx0qqLIkF8Ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hfCh2TYY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D35F0C2BD10;
+	Thu, 20 Jun 2024 20:02:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718913749;
+	bh=boFmBkvFSZHjeEcIa9NGTHUPZQwae/WRy+i4UJgp3dk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hfCh2TYYOgfzSWOPDG9qS+7fQE6jFoZxlAP5+w8ZMck0CTEzzSOxTDuLWewq8V7Nr
+	 mzKVKnkSPg2auDvd+QmjK2qviROCStc/T/nUDoQYxPtp6MKg3XubtchTRAnvujLIW2
+	 9AhS9kKPgrslsl1KC+SLGTfxpsznnPk0HRnxdipFAEFRSXHMN7kOa++W0dHEwhLA/i
+	 9K+KUem5CExo3Wvfr3ZYCiy9c4GO2GT47RBrLLQ4JeuZov/Ne/5y5GflMllhoZdnkv
+	 pf/qrcInpn7BWzSlFrg1PfGU/I3IoGEKH8TVokhXs00/scGA9CMy8mc4YhQarGTm/B
+	 ieNAPre7dd22w==
+Date: Thu, 20 Jun 2024 21:02:20 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <broonie@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+ <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+ <conor+dt@kernel.org>, <nuno.sa@analog.com>, <dlechner@baylibre.com>,
+ <marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 6/6] iio: adc: Add support for AD4000
+Message-ID: <20240620210220.3c1dd94d@jic23-huawei>
+In-Reply-To: <e77a00d1020baa178cb6a0201053b66cb27c39a9.1718749981.git.marcelo.schmitt@analog.com>
+References: <cover.1718749981.git.marcelo.schmitt@analog.com>
+	<e77a00d1020baa178cb6a0201053b66cb27c39a9.1718749981.git.marcelo.schmitt@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240620115245.31540-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 20, 2024 at 07:52:45PM GMT, Zhaoxiong Lv wrote:
-> The bias IC of this starry-er88577 panel is placed
-> on the panel side, so when the panel is powered on,
-> there is no need to control AVDD and AVEE in the driver,
-> only 3.3v and reset are needed.
+On Tue, 18 Jun 2024 20:12:37 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+
+> Add support for AD4000 series of low noise, low power, high speed,
+> successive aproximation register (SAR) ADCs.
 > 
-> Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Hi Marcelo,
+
+A few comments inline.
+
+Thanks,
+
+Jonathan
+
 > ---
-> Chage since V3:
-> -  1. Adjust the ".clock" assignment format.
-> 
-> v3: https://lore.kernel.org/all/20240614145609.25432-3-lvzhaoxiong@huaqin.corp-partner.google.com/
-> 
-> Chage since V3:
-> -  Separate Starry-er88577 from the panel-kingdisplay-kd101ne3 driver.
-> -  Use mipi_dsi_dcs_set_display_on_multi().
-> -  Use mipi_dsi_dcs_exit_sleep_mode_multi() and mipi_dsi_msleep().
-> 
-> v2: https://lore.kernel.org/all/20240601084528.22502-5-lvzhaoxiong@huaqin.corp-partner.google.com/
-> 
-> Chage since V2:
-> -  Add compatible for Starry er88577 in panel-kingdisplay-kd101ne3 drivers.
-> 
-> ---
->  drivers/gpu/drm/panel/Kconfig                |   9 +
->  drivers/gpu/drm/panel/Makefile               |   1 +
->  drivers/gpu/drm/panel/panel-starry-er88577.c | 343 +++++++++++++++++++
->  3 files changed, 353 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-starry-er88577.c
-> 
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index e54f6f5604ed..a52aa2552ab8 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -781,6 +781,15 @@ config DRM_PANEL_SITRONIX_ST7789V
->  	  Say Y here if you want to enable support for the Sitronix
->  	  ST7789V controller for 240x320 LCD panels
->  
-> +config DRM_PANEL_STARRY_ER88577
-> +	tristate "Starry er88577 panel"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y if you want to enable support for panels based on the
-> +	  Starry er88577 controller.
-> +
->  config DRM_PANEL_SONY_ACX565AKM
->  	tristate "Sony ACX565AKM panel"
->  	depends on GPIOLIB && OF && SPI
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index f0203f6e02f4..ecd843a6dc6e 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -81,6 +81,7 @@ obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) += panel-sharp-ls060t1sx01.o
->  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
->  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
->  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
-> +obj-$(CONFIG_DRM_PANEL_STARRY_ER88577) += panel-starry-er88577.o
->  obj-$(CONFIG_DRM_PANEL_SYNAPTICS_R63353) += panel-synaptics-r63353.o
->  obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
->  obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
-> diff --git a/drivers/gpu/drm/panel/panel-starry-er88577.c b/drivers/gpu/drm/panel/panel-starry-er88577.c
+>  MAINTAINERS              |   1 +
+>  drivers/iio/adc/Kconfig  |  12 +
+>  drivers/iio/adc/Makefile |   1 +
+>  drivers/iio/adc/ad4000.c | 715 +++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 729 insertions(+)
+>  create mode 100644 drivers/iio/adc/ad4000.c
+
+
+> diff --git a/drivers/iio/adc/ad4000.c b/drivers/iio/adc/ad4000.c
 > new file mode 100644
-> index 000000000000..e6088262ee69
+> index 000000000000..310f81a2a1d9
 > --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-starry-er88577.c
-> @@ -0,0 +1,343 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Panels based on the ER88577 display controller.
-> + * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-> + */
+> +++ b/drivers/iio/adc/ad4000.c
+
 > +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
+> +/* AD4000 Configuration Register programmable bits */
+> +#define AD4000_CFG_STATUS		BIT(4) /* Status bits output */
+> +#define AD4000_CFG_SPAN_COMP		BIT(3) /* Input span compression  */
+> +#define AD4000_CFG_HIGHZ		BIT(2) /* High impedance mode  */
+> +#define AD4000_CFG_TURBO		BIT(1) /* Turbo mode */
 > +
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_panel.h>
+> +#define AD4000_TQUIET1_NS		190
+> +#define AD4000_TQUIET2_NS		60
+> +#define AD4000_TCONV_NS			320
 > +
-> +#include <video/mipi_display.h>
-> +#include <drm/drm_probe_helper.h>
+> +#define AD4000_18BIT_MSK	GENMASK(31, 14)
+> +#define AD4000_20BIT_MSK	GENMASK(31, 12)
+
+See below. These masks made me wonder what you were doing with them given everything
+they represent is provided by other paths.
+
 > +
-> +struct starry_panel;
+> +#define AD4000_DIFF_CHANNEL(_sign, _real_bits, _3wire)				\
+> +{										\
+> +	.type = IIO_VOLTAGE,							\
+> +	.indexed = 1,								\
+> +	.differential = 1,							\
+> +	.channel = 0,								\
+> +	.channel2 = 1,								\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
+> +			      BIT(IIO_CHAN_INFO_SCALE),				\
+> +	.info_mask_separate_available = _3wire ? BIT(IIO_CHAN_INFO_SCALE) : 0,	\
+> +	.scan_type = {								\
+> +		.sign = _sign,							\
+> +		.realbits = _real_bits,						\
+> +		.storagebits = _real_bits > 16 ? 32 : 16,			\
+> +		.shift = _real_bits > 16 ? 32 - _real_bits : 0,			\
+> +		.endianness = IIO_BE,						\
+> +	},									\
+> +}
 > +
-> +struct panel_desc {
-> +	const struct drm_display_mode *modes;
-> +	unsigned int bpc;
-> +	unsigned long mode_flags;
-> +	enum mipi_dsi_pixel_format format;
-> +	const struct panel_init_cmd *init_cmds;
-> +	int (*init)(struct starry_panel *starry);
-> +	unsigned int lanes;
-> +	bool discharge_on_disable;
-> +	bool lp11_before_reset;
-> +	unsigned int power_off_delay_ms;
+> +#define AD4000_PSEUDO_DIFF_CHANNEL(_sign, _real_bits, _3wire)			\
+> +{										\
+> +	.type = IIO_VOLTAGE,							\
+> +	.indexed = 1,								\
+> +	.channel = 0,								\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
+> +			      BIT(IIO_CHAN_INFO_SCALE) |			\
+> +			      BIT(IIO_CHAN_INFO_OFFSET),			\
+> +	.info_mask_separate_available = _3wire ? BIT(IIO_CHAN_INFO_SCALE) : 0,	\
+> +	.scan_type = {								\
+> +		.sign = _sign,							\
+> +		.realbits = _real_bits,						\
+> +		.storagebits = _real_bits > 16 ? 32 : 16,			\
+> +		.shift = _real_bits > 16 ? 32 - _real_bits : 0,			\
+
+I wonder if it's worth another level of macro so that you can compute storage bits
+in one place.  The dance for shift then just becomes _storage_bits - _read_bits.
+e.g.
+
+#define __AD4000_PSEUDO_DIFF_CHANNEL(_sign, _real_bits, _storage_bits, _3wire)			\
+{										\
+	.type = IIO_VOLTAGE,							\
+	.indexed = 1,								\
+	.channel = 0,								\
+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
+			      BIT(IIO_CHAN_INFO_SCALE) |			\
+			      BIT(IIO_CHAN_INFO_OFFSET),			\
+	.info_mask_separate_available = _3wire ? BIT(IIO_CHAN_INFO_SCALE) : 0,	\
+	.scan_type = {								\
+		.sign = _sign,							\
+		.realbits = _real_bits,						\
+		.storagebits = _storage_bits,					\
+		.shift = _storage_bits - read_bits,				\
+		.endianness = IIO_BE,						\
+	},									\
+}
+#define AD4000_PSEUDO_DIFF_CHANNEL(_sign, _real_bits, _3wire) \
+	__AD4000_PSEUDO_DIFF_CHANNEL((_sign), (_read_bits), (_real_bits) > 16 ? 32 : 16, (_3wire))
+ 
+> +		.endianness = IIO_BE,						\
+> +	},									\
+> +}
+
+> +struct ad4000_chip_info {
+> +	const char *dev_name;
+> +	struct iio_chan_spec chan_spec;
+> +	struct iio_chan_spec three_w_chan_spec;
+As mentioned below add
+
 > +};
+
 > +
-> +struct starry_panel {
-> +	struct drm_panel base;
-> +	struct mipi_dsi_device *dsi;
+> +struct ad4000_state {
+> +	struct spi_device *spi;
+> +	struct gpio_desc *cnv_gpio;
+> +	struct spi_transfer xfers[2];
+> +	struct spi_message msg;
+> +	int vref_mv;
+> +	enum ad4000_spi_mode spi_mode;
+> +	bool span_comp;
+> +	bool turbo_mode;
+> +	u16 gain_milli;
+> +	int scale_tbl[2][2];
 > +
-> +	const struct panel_desc *desc;
-> +
-> +	enum drm_panel_orientation orientation;
-> +	struct regulator *vccio;
-> +	struct gpio_desc *reset;
+> +	/*
+> +	 * DMA (thus cache coherency maintenance) requires the
+> +	 * transfer buffers to live in their own cache lines.
+> +	 */
+
+Wrapped a bit sort. Go up to 80 chars.
+
+> +	struct {
+> +		union {
+> +			__be16 sample_buf16;
+> +			__be32 sample_buf32;
+> +		} data;
+> +		s64 timestamp __aligned(8);
+> +	} scan __aligned(IIO_DMA_MINALIGN);
+> +	__be16 tx_buf;
+> +	__be16 rx_buf;
+As below, I think these are u8 ...
+
 > +};
+
+
 > +
-> +static int starry_er88577_init(struct starry_panel *starry)
+> +static int ad4000_write_reg(struct ad4000_state *st, uint8_t val)
 > +{
-> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = starry->dsi };
-> +
-> +	/* T5:HWreset to init_code >= 120ms */
-> +	mipi_dsi_msleep(dsi_ctx, 120);
-> +
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0xab, 0xba);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0xba, 0xab);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb1, 0x10, 0x01, 0x47, 0xff);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2, 0x0c, 0x14, 0x04, 0x50, 0x50, 0x14);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb3, 0x56, 0x53, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb4, 0x33, 0x30, 0x04);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0xb0, 0x00, 0x00, 0x10, 0x00, 0x10, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x05, 0x12, 0x29, 0x49, 0x40);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb9, 0x7c, 0x61, 0x4f, 0x42, 0x3e, 0x2d, 0x31,
-> +				     0x1a, 0x33, 0x33, 0x33, 0x52, 0x40, 0x47, 0x38, 0x34, 0x26,
-> +				     0x0e, 0x06, 0x7c, 0x61, 0x4f, 0x42, 0x3e, 0x2d, 0x31, 0x1a,
-> +				     0x33, 0x33, 0x33, 0x52, 0x40, 0x47, 0x38, 0x34, 0x26, 0x0e,
-> +				     0x06);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0xcc, 0x76, 0x12, 0x34, 0x44, 0x44, 0x44,
-> +				     0x44, 0x98, 0x04, 0x98, 0x04, 0x0f, 0x00, 0x00, 0xc1);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0x54, 0x94, 0x02, 0x85, 0x9f, 0x00, 0x6f,
-> +				     0x00, 0x54, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2, 0x17, 0x09, 0x08, 0x89, 0x08, 0x11, 0x22,
-> +				     0x20, 0x44, 0xff, 0x18, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc3, 0x87, 0x47, 0x05, 0x05, 0x1c, 0x1c, 0x1d,
-> +				     0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, 0x0f, 0x0f, 0x0d, 0x0d,
-> +				     0x13, 0x13, 0x11, 0x11, 0x24);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4, 0x06, 0x06, 0x04, 0x04, 0x1c, 0x1c, 0x1d,
-> +				     0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, 0x0e, 0x0e, 0x0c, 0x0c,
-> +				     0x12, 0x12, 0x10, 0x10, 0x24);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc8, 0x21, 0x00, 0x31, 0x42, 0x34, 0x16);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca, 0xcb, 0x43);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcd, 0x0e, 0x4b, 0x4b, 0x20, 0x19, 0x6b, 0x06,
-> +				     0xb3);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd2, 0xe3, 0x2b, 0x38, 0x08);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4, 0x00, 0x01, 0x00, 0x0e, 0x04, 0x44, 0x08,
-> +				     0x10, 0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x80, 0x09, 0xff, 0xff, 0xff, 0xff, 0xff,
-> +				     0xff);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x12, 0x03, 0x20, 0x00, 0xff);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0x00);
+> +	st->tx_buf = cpu_to_be16(AD4000_WRITE_COMMAND << BITS_PER_BYTE | val);
 
-NAK.
+Use u8 tx_buf[2] and fill the two bytes separately given one is the command
+and the other the data.
 
-This sequence looks _exactly_ like the sequence in
-panel-boe-th101mb31ig002-28a.c.
+> +	return spi_write(st->spi, &st->tx_buf, sizeof(st->tx_buf));
+> +}
+> +
+> +static int ad4000_read_reg(struct ad4000_state *st, unsigned int *val)
+> +{
+> +	struct spi_transfer t[] = {
+> +		{
+> +			.tx_buf = &st->tx_buf,
+> +			.rx_buf = &st->rx_buf,
+> +			.len = 2,
+> +		},
+> +	};
+> +	int ret;
+> +
+> +	st->tx_buf = cpu_to_be16(AD4000_READ_COMMAND << BITS_PER_BYTE);
+
+Interesting dance. Really necessary?  This looks like a classic
+write address byte then read register contents sequency.
+	u8 tx = AD4000_READ_COMMAND;
+	u8 rx;
+
+	ret = spi_write_then_read(spi, tx, 1, rx, 1);
+	if (ret < 0)
+		return ret;
+
+	*val = rx;
+
+	return ret;
+
+
+> +	ret = spi_sync_transfer(st->spi, t, ARRAY_SIZE(t));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*val = be16_to_cpu(st->rx_buf);
+> +
+> +	return ret;
+> +}
+> +
+> +static void ad4000_unoptimize_msg(void *msg)
+> +{
+> +	spi_unoptimize_message(msg);
+> +}
+
+Makes me wonder if a devm_spi_optimize_msg() would make sense... 
+
++static int ad4000_single_conversion(struct iio_dev *indio_dev,
++				    const struct iio_chan_spec *chan, int *val)
++{
++	struct ad4000_state *st = iio_priv(indio_dev);
++	u32 sample;
++	int ret;
++
++	ret = ad4000_convert_and_acquire(st);
++	if (ret < 0)
++		return ret;
++
++	if (chan->scan_type.storagebits > 16)
++		sample = be32_to_cpu(st->scan.data.sample_buf32);
++	else
++		sample = be16_to_cpu(st->scan.data.sample_buf16);
++
+	I'd probably just do
+	sample >>= chan->scan_type.shift;
+
++	switch (chan->scan_type.realbits) {
++	case 16:
++		break;
++	case 18:
++		sample = FIELD_GET(AD4000_18BIT_MSK, sample);
++		break;
++	case 20:
++		sample = FIELD_GET(AD4000_20BIT_MSK, sample);
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	if (chan->scan_type.sign == 's')
++		*val = sign_extend32(sample, chan->scan_type.realbits - 1);
++
++	return IIO_VAL_INT;
++}
++
+
+
+> +static int ad4000_read_avail(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     const int **vals, int *type, int *length,
+> +			     long info)
+> +{
+> +	struct ad4000_state *st = iio_priv(indio_dev);
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*vals = (int *)st->scale_tbl;
+> +		*length = 2 * 2;
+I'd use a define for the length of the array (of pairs) and reuse that
+here.
+
+> +		*type = IIO_VAL_INT_PLUS_NANO;
+> +		return IIO_AVAIL_LIST;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+> +static int ad4000_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan, int val, int val2,
+> +			    long mask)
+> +{
+> +	struct ad4000_state *st = iio_priv(indio_dev);
+> +	unsigned int reg_val;
+> +	bool span_comp_en;
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
+If you are going to do a read modify write cycle, you should hold a local
+lock to avoid races.
+
+Relying on the implementation of iio_device_claim_direct_coped() for that
+isn't a good idea as that may change in the future.
+
+
+> +			ret = ad4000_read_reg(st, &reg_val);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			span_comp_en = val2 == st->scale_tbl[1][1];
+> +			reg_val &= ~AD4000_CFG_SPAN_COMP;
+> +			reg_val |= FIELD_PREP(AD4000_CFG_SPAN_COMP, span_comp_en);
+> +
+> +			ret = ad4000_write_reg(st, reg_val);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			st->span_comp = span_comp_en;
+> +			return 0;
+> +		}
+> +		unreachable();
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
 
 > +
-> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> +static int ad4000_probe(struct spi_device *spi)
+> +{
+> +	const struct ad4000_chip_info *chip;
+> +	struct iio_dev *indio_dev;
+> +	struct ad4000_state *st;
+> +	int ret;
 > +
-> +	mipi_dsi_msleep(dsi_ctx, 120);
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
 > +
-> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> +	mipi_dsi_msleep(dsi_ctx, 20);
+> +	chip = spi_get_device_match_data(spi);
+> +	if (!chip)
+> +		return -EINVAL;
 > +
-> +	return dsi_ctx.accum_err;
+> +	st = iio_priv(indio_dev);
+> +	st->spi = spi;
+> +
+> +	ret = devm_regulator_get_enable(&spi->dev, "vdd");
 
--- 
-With best wishes
-Dmitry
+A lot of spi->dev, I'd add a
+struct device *dev = spi->dev; and use that throughout.
+
+> +	if (ret)
+> +		return dev_err_probe(&spi->dev, ret, "Failed to enable VDD supply\n");
+> +
+>
+...
+
+> +	indio_dev->name = chip->dev_name;
+> +	indio_dev->num_channels = 1;
+> +
+> +	/* Hardware gain only applies to ADAQ devices */
+
+Probably best not to rely on the DT binding sanity. So I'd add a flag for
+support of this to your chip info structures and only try reading the
+property if you have an adaq.  With that in place you can probably
+drop the comment as well as it will be easy to tell by seeing who
+as set st->has_hardware_gain (name up to you)
+> +	st->gain_milli = 1000;
+> +	if (device_property_present(&spi->dev, "adi,gain-milli")) {
+> +		ret = device_property_read_u16(&spi->dev, "adi,gain-milli",
+> +					       &st->gain_milli);
+> +		if (ret)
+> +			return dev_err_probe(&spi->dev, ret,
+> +					     "Failed to read gain property\n");
+> +	}
+We are often lazy on parameters with a clear default and just do
+	device_property_read_*()
+without checking the return value.  That will only overwrite the output
+parameter it it succeeds. Otherwise we get the default you set before
+the call.
+
+If you prefer the more protective form I don't mind that much.
+
+> +
+> +	ad4000_fill_scale_tbl(st, indio_dev->channels);
+> +
+> +	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+> +					      &iio_pollfunc_store_time,
+> +					      &ad4000_trigger_handler, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
 
