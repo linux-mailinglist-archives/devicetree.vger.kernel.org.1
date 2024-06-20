@@ -1,137 +1,151 @@
-Return-Path: <devicetree+bounces-77989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46385910988
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:15:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F14D1910971
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDD22B22901
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:15:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 872F81F22442
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1171B142A;
-	Thu, 20 Jun 2024 15:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF19E1AED5D;
+	Thu, 20 Jun 2024 15:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wu3boQu6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jRHN58CI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE7B1B0137
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 15:15:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BBC41AD486;
+	Thu, 20 Jun 2024 15:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718896509; cv=none; b=T0T5kSgWD5whRo5QdJ7gA78I0QFVFUsiORkL8TPQS8i5E7SWN9gcP9ctJgr97M5nezgipdG5R4NrTtmomySErC8wqX11tjhZx5mG27BHGjFeiPpMQQBnuMll9byNo0XdTNUkf4aelhN/I0Zu72YBGVlD8vNfn/gPTulFTzGFiPQ=
+	t=1718896419; cv=none; b=c4MtIs8/tmntNJi5lY+eaFFnbbe5jYKZANE2vEeSq1c+u3CWPCv/ffS2wKwMncrMZdMOTCQP1cbUflmqdBQICFuz9EA+NMJfm5cIu4FVIynse04F0KYQkKOKqIp/lVPONgDibLWY0eTjHt/yZX9ygKCFPhFArf9ZwrPLLBUNFj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718896509; c=relaxed/simple;
-	bh=omKEA7183JIq4+qk4ktnB4723ZppBGp3RLv0v4fpWqI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n6FNdCv2QY+KXmVFMgaT2neY0IucEjOVYNbjtB449UV1yqE081yy7ofSw6ySRad5RX3MhOrOSiOI6er7YHwwDok/1qWbNzvh509WI3bbWju6cPXku+qPEnD8liFY8xNWCYWRu4YVOdmsQByF6w62xgd1Q9j2b1fupPSdXQfjdnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wu3boQu6; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-630daaec9c7so9476257b3.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 08:15:05 -0700 (PDT)
+	s=arc-20240116; t=1718896419; c=relaxed/simple;
+	bh=SV1MB+rMIhzvY5kkb5cSdZqkMnbh+I0UyxCJkYmMut4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J4a2cztfxi0nP6TUr1k4+hOhPEUhufpbpFTtxnyrSY7Vg53j2rFTUovJoaZA+nVnu+RT/4aTwkTLfsLr1UQvO3YUEH2sWytonRBdUxbexbFKKDthUUpDpE3jVtZIlujEXSwyulhx+4LRm01XYvpN0QRzefAGTEuyILA9VOTwszg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jRHN58CI; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-704313fa830so866680b3a.3;
+        Thu, 20 Jun 2024 08:13:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718896505; x=1719501305; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=B2n5KrLTZBvGu9gEb8O17y0tpUk8+ZpfDeRqP/uAfjQ=;
-        b=wu3boQu68VI/klJgMzTutnkMF3/Qlh/iDrvPLlz3D/8gFSaFE3oTwzvrGYZQD6j4IT
-         0ID06L98iNMODNoFbt1z+zV3dQUQ1DQiRvXRm2FhWEd/0l54Js8ZRNG1Q9RIoIr0ftdV
-         IcoS5byFW0++Fl6T7kQyoDSzUJrnBorhTDwZuV/di53w9MWuUqpPQuOxmh9AACNuP9bz
-         K/RWPFFGD5WsXWkWX9FD1kmj/v7RLVhN7Ba6vGbPS5PGdMWYLsRLNRNQQAntspWkzIMt
-         KXMk49Ts0w8QvoMoqII7qghGOm8VJWd6DX3LETn8qnf1NNKLPRnDlrlSoYlaZmyXZfJg
-         cb6Q==
+        d=gmail.com; s=20230601; t=1718896417; x=1719501217; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3nq34gHN3rCWci3z+YBG2EHSMYY20+Tz9GpEK9DzMtg=;
+        b=jRHN58CILt++yvgQuUrrwYg5ZOMByB5xAI/OhKmRwd05GL4m4Dvm/3PiZ5J8EcEHGp
+         y3BEOnh2TU+NNd6/CQdHktdoO1eWSRdTLaz6hz2NCeE/3KHo1/QN2a9lBDPhbBd6XBMg
+         Q4wkYxhSoF73FjzrD4pX/yaUR0+qeFhMyeQzrMBhEaZa8OV9onaXmeHMU0zBeQsOPAOw
+         te+GWxdDMvPJtQ6CraGeTm2XP4cHizTJMUQmnRALjTvSfpP9d/FameZTklEupY79KNR7
+         Ut1e/cQb/bHxz1FFlgxDdwq7ou2ahRWKbFwof2WudT5H4H6LrVHZcBJmHI1kQc3oXWMu
+         nq2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718896505; x=1719501305;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B2n5KrLTZBvGu9gEb8O17y0tpUk8+ZpfDeRqP/uAfjQ=;
-        b=Lgewmw9MAgFwKNpm8wvl0ce+W+OKMZaEHAJ51aulDD/kR/jeBVqOFxM66UL6b78WrD
-         ue2TyIQirBONhoc26/2BzKmu6GAI5ik7DFcYMDYsFrci0O1Rucbvz0WfR9UgmRmIsvdZ
-         7VvW5CVthjEu5FQwJYOFJAt6nHleE/ud2ul8vnNgKr66SLRjN1kKkqJJQ+MWDvDWbx9r
-         g5JQWt4U2UmO3z67hhdz/yBleKIqgIzc4vB+v/Mbm5UStUn3vBy/KQ94E+K2TvJ6WXo9
-         Qdkp8jii+V2i7Tvq9NluvI8CyETPzDXSL2fd0KwCOXKnlF8XKVcOMvKTLsuce1VS8GA8
-         JQaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXivl/xUDEXsdzhTexHBu3KHWRBdNA5/ogsAhQEQrKz9Sziq6MAbc6BHb2KLQlxPo+zeps5AahZs5xGksU4HhT+TLM2TL0Vh5y6jA==
-X-Gm-Message-State: AOJu0Ywskv/ta7482It3+WZ8GIPfYzb4TjyDN0JTi3AHYujvLQG1peBS
-	GesWtHl5BCIXhL6WFeKEk01LjmTd2g/cRAHB6e6gC+AR/S2/qmGnFnirJKxeVJ1SIQvMRWUxAH0
-	upEfcAu225yr3l4zIG8rJbE0I/Udeq5k0FTK7bL/lB9xwx48Q
-X-Google-Smtp-Source: AGHT+IEgsR6Axacelg4a84hDNwZ/HxzbPZz6nBbHwPbmaUBauO4zOvR4vycjA+yQ+ptsu9Vsx+lvyO9aNTZ86xfQU+o=
-X-Received: by 2002:a25:840c:0:b0:e02:b68d:b432 with SMTP id
- 3f1490d57ef6-e02be17563cmr6316451276.37.1718896505132; Thu, 20 Jun 2024
- 08:15:05 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718896417; x=1719501217;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3nq34gHN3rCWci3z+YBG2EHSMYY20+Tz9GpEK9DzMtg=;
+        b=AF1a7T7G4kv37tEkoE+S5ajV0BxlRQJPp1qooZgbdgNXkCXkfl3EYLVxE6Yb+CE+YP
+         Jd1bzAD7byAOawgg59VrxRyeZKc4rBZ7/8C208nmE5rv2d4BTM0LI0m3Wsbmnw9JfIno
+         A9mDo+qe112D+6X1SL+vPDn6RhSoyaA/gaNqfwJu1zh3EvUkB2Lv2QBbdKdLYhwI9Ngq
+         CwQv7S/E5hQk9ufC7m0sIJViCqZca++O77F/WOBt1/NKtLjjM/6Bw6pFyQVRubR9KJvJ
+         1tM0gSEIpdcm3WL0/ZnAXDyMYRcjIPJsLDCN7dlDlVEitd6vH8RAQa7mMM0zPoa0HLeW
+         eAeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUmhxvmZkp+gZssrrKmqnczB5AnVUJPXtOEiqkl8IKN0PuutXVJydJnM30vKlXEqk2bzQEDBzpkakv1YYkJ6bjHlpRcq1Dj/OdZKsGTgbw+P1mdFxJe9qLOobktt6vlXE4eFhnpgTrPi+TkzLSSw7/vnL2LZJLbxTfPLEHG1yGl5ETko6t5w1ex8aItHrxtnSPM2tPZM8AzTIGz8UYMyg==
+X-Gm-Message-State: AOJu0YwrSGNKMJsfCOBsn44gh7pM1wmHIy1B6Q3aIG7bNAgtSawISQDM
+	w4ttuxL7//u3KbtJvD4Cb9eboOQsFAY3aft6yBr5Y3hGvjeMkeBo
+X-Google-Smtp-Source: AGHT+IEubZsaogJmmRsMBzvSimjhpFhkRr9tZqbr7CaXNFD3VGPRTDC5Jd1++FZkiV0kUOtRD4sA6w==
+X-Received: by 2002:a05:6a20:4b15:b0:1b2:47f9:3814 with SMTP id adf61e73a8af0-1bcbb421fdcmr5387797637.2.1718896416389;
+        Thu, 20 Jun 2024 08:13:36 -0700 (PDT)
+Received: from localhost ([2804:30c:96b:f700:cc1d:c0ae:96c9:c934])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-705ccb9195asm12420995b3a.209.2024.06.20.08.13.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 08:13:35 -0700 (PDT)
+Date: Thu, 20 Jun 2024 12:14:57 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, jic23@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nuno.sa@analog.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/6] spi: Enable controllers to extend the SPI
+ protocol with MOSI idle configuration
+Message-ID: <ZnRHcXaCIVH4zDMo@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1718749981.git.marcelo.schmitt@analog.com>
+ <36eefb860f660e2cadb13b00aca04b5a65498993.1718749981.git.marcelo.schmitt@analog.com>
+ <63db9349-f453-4a5b-aa09-d1857ddd8b03@baylibre.com>
+ <ZnMqOAPc3IXP-eHC@debian-BULLSEYE-live-builder-AMD64>
+ <0cf9576d-c50e-4730-834a-3a4ceac6a4f8@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613-ls_waring_esdhc-v5-0-36644e2fe21c@nxp.com>
-In-Reply-To: <20240613-ls_waring_esdhc-v5-0-36644e2fe21c@nxp.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 20 Jun 2024 17:14:28 +0200
-Message-ID: <CAPDyKFrfQQu7GE2pHPHspKw3hkqf219kWCU2KwKMtTKQmKRbtA@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] arm64: dts: convert fsl,esdhc.txt to yaml and fix
- layerscape dts warning
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0cf9576d-c50e-4730-834a-3a4ceac6a4f8@sirena.org.uk>
 
-On Thu, 13 Jun 2024 at 16:32, Frank Li <Frank.Li@nxp.com> wrote:
->
-> Start from v4 because fsl.esdhc.txt to yaml already sent out as v3.
->
-> Now only "bit-endian" proptery warning left.
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Changes in v5:
-> - squash dts patches to one patch and fix typo.
-> - move spi-slot-mmc to first patch.
-> - add Krzysztof Kozlowski review tag for fsl,eshc patch
-> - Link to v4: https://lore.kernel.org/r/20240611-ls_waring_esdhc-v4-0-d0d8a5b3f3cb@nxp.com
->
-> Change from v3 to v4
-> - Add dts warning fixes
-> - Add mmc-spi-slot's voltage range fix, (not sure why it apply to
-> layserscape's dts file.
-> - clock-frequency is not required property
-> - add dma-conherence: true in binding doc
->
-> ---
-> Frank Li (3):
->       dt-bindings: mmc: mmc-spi-slot: Change voltage-ranges to uint32-matrix
->       dt-bindings: mmc: Convert fsl-esdhc.txt to yaml
->       arm64: dts: layerscape: Change node name from 'esdhc' to 'mmc'
->
->  .../devicetree/bindings/mmc/fsl,esdhc.yaml         | 105 +++++++++++++++++++++
->  .../devicetree/bindings/mmc/fsl-esdhc.txt          |  52 ----------
->  .../devicetree/bindings/mmc/mmc-spi-slot.yaml      |  16 ++--
->  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi     |   4 +-
->  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi     |   8 +-
->  9 files changed, 124 insertions(+), 69 deletions(-)
-> ---
-> base-commit: d35b2284e966c0bef3e2182a5c5ea02177dd32e4
-> change-id: 20240610-ls_waring_esdhc-93136a5dd794
->
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
+On 06/19, Mark Brown wrote:
+> On Wed, Jun 19, 2024 at 03:58:00PM -0300, Marcelo Schmitt wrote:
+> > On 06/19, David Lechner wrote:
+> > > On 6/18/24 6:10 PM, Marcelo Schmitt wrote:
+> 
+> > > > +In this extension to the usual SPI protocol, the MOSI line state is specified to
+> > > > +be kept high when CS is active but the controller is not clocking out data to
+> 
+> > > I think it would be less ambiguous to say "asserted" instead of "active".
 
-Patch 1 and patch 2, applied for next, thanks!
+ack, replaced "active" by "asserted" when describing CS state for v5.
 
-Kind regards
-Uffe
+> 
+> > I'm not sure. IMHO, it looks less ambiguous to say a CS is active.
+> > I think the most common for CS lines is to have a CS that is active low (i.e.
+> > the line is at a low voltage level when the controller is selecting the device).
+> > To me, "assert" sounds closer to the idea o setting something (like a bit to 1),
+> > which is the opposite of active low CS.
+> > Though, no strong opinion about it.
+> > I go with what the maintainers prefer.
+> 
+> I think they're synonyms but asserted is the more common term for chip
+> selects.
+> 
+> 
+> > > > +#define SPI_CONTROLLER_MOSI_IDLE_LOW    BIT(8)  /* Can idle MOSI low */
+> > > > +#define SPI_CONTROLLER_MOSI_IDLE_HIGH   BIT(9)  /* Can idle MOSI high */
+> 
+> > > I don't see where these are used anywhere else in the series. They
+> > > seem redundant with SPI_MOSI_IDLE_LOW and SPI_MOSI_IDLE_HIGH.
+> 
+> > Good point.
+> > They are currently not being used.
+> > Comparing with what we have for SPI_CONTROLLER_MULTI_CS, I'm thinking it may be
+> > handy to have dt properties to indicate controller MOSI idle capabilities.
+> > Does that sound reasonable?
+> 
+> We shouldn't need DT properties, we should just know if the controller
+> supports this based on knowing what controller is, and I'd not expect it
+> to depend on board wiring.
+
+Okay, though, I fail to see the need for 
+#define SPI_CONTROLLER_MOSI_IDLE_LOW    BIT(8)  /* Can idle MOSI low */
+#define SPI_CONTROLLER_MOSI_IDLE_HIGH   BIT(9)  /* Can idle MOSI high */
+
+It looks like SPI_CONTROLLER bits are used to tweak controller operation in
+various ways.
+Right now, I'm not aware of any additional tweak needed to support the MOSI idle
+feature. I have tested that on Raspberry Pi with bitbang/gpio controller and on
+CoraZ7 with spi-engine and it did work fine in those setups.
+Anyway, I'm prone to implement any additional changes to make this set better.
+
+Thanks,
+Marcelo
 
