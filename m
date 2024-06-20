@@ -1,121 +1,172 @@
-Return-Path: <devicetree+bounces-77938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D6F910739
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:02:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19D7910788
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A594E2848AB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:02:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 391A9B2171B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9A21AF692;
-	Thu, 20 Jun 2024 13:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5C71AD4A3;
+	Thu, 20 Jun 2024 14:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ies5kZvC"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RsiO9sOV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D225B1AD9C6;
-	Thu, 20 Jun 2024 13:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2367E1AB91B;
+	Thu, 20 Jun 2024 14:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718891963; cv=none; b=E4sXRh4Ij1OVqOYjpUiuTc0nDVSsdejcgyUj2q3bD68AWgc+OQEgAyKk3KBK7z3jhZ/n3rjCtSufxOXmRHaCm5w5fl/yu2xsrZfnmHacJ7gXJXgwqGzztZA1cpUtNwRBKQCAuwFa09ONaph8IlWZBjKnKS+MWrLenCRnysrprOs=
+	t=1718892499; cv=none; b=S/RhU8WxOB5QbWX6rzmDMLs8N9zf+k6gtloWUVEgqlBT/VzL433FOSRG8kq4CZ3Tu8ZlJGXPs1veRWcZh2u6ph6o8H7wQj9FSuBSEmY4FvYmeQzh1xPzii0ouiNP6Vr1VYxmKnPm72CtARFITKTx7wos2Ikvg2PNKEp6Q2POcBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718891963; c=relaxed/simple;
-	bh=Z8ykrk5YoWwEuFbj1k4TUc4xuI2OXNR4A6IYRWxVNWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HGAmDZ707lwMSnpLMSH9XbwwLnlbDI4aBRzI7gv1xgQeXKcv5DlbbCdBUZ4JWBcu7+ZEaQ+omhRqkew4xZoAEtS8zxwKwvSFpQsp0uhz8TflbBqWb9Ip/B3CstxbJ0txmQiTr0SmdNNHO91YiuD+XPkD2L+3XNlCmh3jsRmUB7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ies5kZvC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEFDC32786;
-	Thu, 20 Jun 2024 13:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718891963;
-	bh=Z8ykrk5YoWwEuFbj1k4TUc4xuI2OXNR4A6IYRWxVNWM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ies5kZvCDEdEO5yAghIHv8V1zLcS6yhwHCeMNvPmfOwkWVclOLSfb56gZs/8EK8B/
-	 e37Z7VOww7TDvkHRgdB1X0Ors/+sPow6JwHjreCPMEajdgvfzE+N/hcFKqI3Dbuw6J
-	 nXP7VpQT9yX8ZVgtu+Y3klXN5byrkBnb8HrUg+PtyKMzAtjeQnFCdDgiG+FWuFCg1U
-	 4jDa2R2mof19EKJZ3PnDlMc0qF6MePTNPn3b2IohnZtPGxbz5LH6IIm3yok4blm5U+
-	 xxO5MrMJn9bYcu0ctXgpIOJ4LDViJYuSObQPhRSwvMPv9F3MHJgtsoUlazCcGxVhO1
-	 CzUk5v3Uoa/7w==
-Date: Thu, 20 Jun 2024 14:59:17 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
-	Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>,
-	florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com, hkallweit1@gmail.com,
-	linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 3/4] dt-bindings: ethernet-phy: add optional brr-mode
- flag
-Message-ID: <20240620-rocky-impure-7fd0caf9f01d@spud>
-References: <20240619150359.311459-1-kamilh@axis.com>
- <20240619150359.311459-4-kamilh@axis.com>
- <20240619-plow-audacity-8ee9d98a005e@spud>
- <20240619163803.6ba73ec5@kernel.org>
- <20240620-eskimo-banana-7b90cddfd9c3@wendy>
- <9f8628dd-e11c-4c91-ad46-c1e01f17be1e@lunn.ch>
- <20240620063532.653227a1@kernel.org>
+	s=arc-20240116; t=1718892499; c=relaxed/simple;
+	bh=Obh1l7ctkuteMg1GKDKq263sZnU4xN5tzaYs6CgQKHg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PS3XpYoRTZcey/xoJEJVcgIClJy/S/lPD5AC2cR+A8axlNfGEWies/kjFnNYQr3L2Cll5Ro/GZ8J2Ma3jRfkYST4fHm2v3JudoFb7sOQyZ89aq8MBezUVftptZa1MttcQJhlnvrxSs1Huatlk92lWraRH/uJ3k9Qx9K0Ll29LIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RsiO9sOV; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718892494;
+	bh=Obh1l7ctkuteMg1GKDKq263sZnU4xN5tzaYs6CgQKHg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=RsiO9sOVDN2eJ/YtpjsnzPKkWk4fizsnrP5t/sQf/8gyHJW3uWq66biHXkTCKAze0
+	 WR20iJ5rkAYZvv4ibNL+s5sGWvlzGBX/jVuLDeyEY828zUfg7kEagtD4JEdX/oIRDm
+	 E3b79qQBjd4GTdhcdGAh32u5ngJe8Q5LUUUuC7/m1Eri/wlUs1nUfh9SOP0HleBPLI
+	 R8L2xmpQ7+SxdOKryWI6RyIhZE2ZK5GvQ11pVcVzoxJhBJBYXEXchdNfPdUlLcbZAn
+	 JRtBLyBrnOVPw0JNp8OhPTu3loixPRB/9veXLSRpxhXShbEU5nurV9jfTQMirryWbv
+	 3kQO1zTY9c+Fg==
+Received: from arisu.localnet (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 835D037821C0;
+	Thu, 20 Jun 2024 14:08:10 +0000 (UTC)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Jianfeng Liu <liujianfeng1994@gmail.com>
+Cc: andy.yan@rock-chips.com, benjamin.gaignard@collabora.com,
+ boris.brezillon@collabora.com, conor+dt@kernel.org,
+ daniel.almeida@collabora.com, devicetree@vger.kernel.org,
+ didi.debian@cknow.org, dsimic@manjaro.org, ezequiel@vanguardiasur.com.ar,
+ gregkh@linuxfoundation.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+ jonas@kwiboo.se, knaerzche@gmail.com, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-staging@lists.linux.dev, mchehab@kernel.org,
+ nicolas.dufresne@collabora.com, paul.kocialkowski@bootlin.com,
+ robh@kernel.org, sebastian.reichel@collabora.com
+Subject: Re: [PATCH v2 2/4] media: rockchip: Introduce the rkvdec2 driver
+Date: Thu, 20 Jun 2024 10:07:41 -0400
+Message-ID: <2187039.irdbgypaU6@arisu>
+Organization: Collabora
+In-Reply-To: <20240619174623.270706-1-liujianfeng1994@gmail.com>
+References:
+ <20240619150029.59730-3-detlev.casanova@collabora.com>
+ <20240619174623.270706-1-liujianfeng1994@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wRUHkzBBSbDnLgU6"
-Content-Disposition: inline
-In-Reply-To: <20240620063532.653227a1@kernel.org>
+Content-Type: multipart/signed; boundary="nextPart13537518.uLZWGnKmhe";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-
---wRUHkzBBSbDnLgU6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--nextPart13537518.uLZWGnKmhe
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"; protected-headers="v1"
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Jianfeng Liu <liujianfeng1994@gmail.com>
+Date: Thu, 20 Jun 2024 10:07:41 -0400
+Message-ID: <2187039.irdbgypaU6@arisu>
+Organization: Collabora
+In-Reply-To: <20240619174623.270706-1-liujianfeng1994@gmail.com>
+MIME-Version: 1.0
 
-On Thu, Jun 20, 2024 at 06:35:32AM -0700, Jakub Kicinski wrote:
-> On Thu, 20 Jun 2024 14:59:53 +0200 Andrew Lunn wrote:
-> > > BTW Jakub, am I able to interact with the pw-bot, or is that limited =
-to
-> > > maintainers/senior netdev reviewers? Been curious about that for a
-> > > while.. =20
-> >=20
-> > https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#u=
-pdating-patch-status
+Hi Jianfeng,
 
-Hmm, thanks for the link Andrew. In theory I should be able to use it
-then, I wonder if it is smart enough to detect that conor@kernel.org is
-the same person as conor+dt@kernel.org.
-I'll have to try it at some point and find out :)
-
+On Wednesday, June 19, 2024 1:46:23 P.M. EDT Jianfeng Liu wrote:
+> Hi Detlev,
 >=20
-> One thing that may not be immediately obvious is that this is our local
-> netdev thing, so it will only work on netdev@ and bpf@.
-> We could try to convince Konstantin to run it for all pw instances, we
-> never tried.
+> On Wed, 19 Jun 2024 10:57:19 -0400, Detlev Casanova wrote:
+> >+	if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY))
+> >+		height *=3D 2;
+> >+
+> >+	if (width > ctx->coded_fmt.fmt.pix_mp.width ||
+> >+	    height > ctx->coded_fmt.fmt.pix_mp.height)
+> >+		return -EINVAL;
+>=20
+> I did further invesatigation on chromium. I find that before real video
+> is decoded, chromium will call VIDIOC_STREAMON twice with value of
+> sps->flags 0:
+>=20
+> At the first time width and height are 16; ctx->coded_fmt.fmt.pix_mp.width
+> and coded_fmt.fmt.pix_mp.height are 16, which are the min size of decoder;
+> At the second time width and height are still 16; while
+> coded_fmt.fmt.pix_mp.width is 1920 and coded_fmt.fmt.pix_mp.height is
+> 1088, which are the real size of video.
+>=20
+> So VIDIOC_STREAMON will fall at the first time call because sps->flags is
+> 0 so V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY is not set, and then height is
+> doubled to 32 which is larger than 16.
+>=20
+> What do you think if we skip doubling height if sps->flags is 0 and at the
+> same time V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY is not set? The following hack
+> did fix my chromium:
+>=20
+> --- a/drivers/staging/media/rkvdec2/rkvdec2-h264.c
+> +++ b/drivers/staging/media/rkvdec2/rkvdec2-h264.c
+> @@ -767,7 +767,7 @@ static int rkvdec2_h264_validate_sps(struct rkvdec2_c=
+tx
+> *ctx, * which is half the final height (see (7-18) in the
+>          * specification)
+>          */
+> -       if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY))
+> +       if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY) && sps->fla=
+gs)
+> height *=3D 2;
+>=20
+>         if (width > ctx->coded_fmt.fmt.pix_mp.width ||
 
-ngl, I'd love to have it on the riscv instance. Things are hectic for me
-this month, but I might just ~harass~ask him about it after that..
+I'm not sure what Chromium is trying to do here. But the spec is clear that=
+=20
+height should be multiplied by 2 (That's actually 7-8, not 7-18):
 
-Thanks,
-Conor.
+  FrameHeightInMbs =3D ( 2 =E2=80=93 frame_mbs_only_flag ) * PicHeightInMap=
+Units
 
---wRUHkzBBSbDnLgU6
+This feels like hacking the driver to please a specific userspace applicati=
+on,=20
+so I'd like to understand better what chromium is doing.
+
+Regards,
+Detlev.
+
+--nextPart13537518.uLZWGnKmhe
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnQ1jgAKCRB4tDGHoIJi
-0rRhAP9GP2eEIbEhKtBPnUJSJDp9esWXhxgUbmNib0nMWearkwEAs7lANltzZdpy
-rfh95/1jdKE5NFdhAgYWW/VfAVviGg4=
-=NT0+
+iQEzBAABCAAdFiEEonF9IvGrXNkDg+CX5EFKUk4x7bYFAmZ0N60ACgkQ5EFKUk4x
+7bbkywgAtKkDH6nMcaU7/h9CiC9sAFMgb3R0h3425HDWWYCWzlR6H3SNvlNc1AOu
+8QBuQnqf/Q5FR8iYNfuTXiEDoCGfOVpxpKmUyh1gURZD5Ea5skFm0a7U6+HfmCr1
+CWzNfTOoqqxNbkJSGwesshEB9bRS/r+fjLulIPhBiItnVOnnDMrWmdgpwcJya5RH
+H6kOw/B3ENImQtlsbLhawoaULowVN832okdMrqC+/cRTenn+zOiRKlFYgBmJDm27
+3jNAQNSfj65NBKZWr8Bwsv74dOcntvjLDEUeAExEPhyDcnu0KKhiNceKqQohei5b
+E0Cylo58qmCvUjiEz2JjlAdG2CizfQ==
+=S3/z
 -----END PGP SIGNATURE-----
 
---wRUHkzBBSbDnLgU6--
+--nextPart13537518.uLZWGnKmhe--
+
+
+
 
