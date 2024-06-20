@@ -1,257 +1,121 @@
-Return-Path: <devicetree+bounces-77937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3CC6910731
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:02:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D6F910739
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:02:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3777B20998
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:01:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A594E2848AB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19E11AE852;
-	Thu, 20 Jun 2024 13:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9A21AF692;
+	Thu, 20 Jun 2024 13:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ies5kZvC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C0E1AE861
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 13:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D225B1AD9C6;
+	Thu, 20 Jun 2024 13:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718891879; cv=none; b=XbQcZUvoOwoZ059UUuiVHiBaJSIAuLzKN9xn7J/SA8ISf/yt1jHf9IvDXuv6DOAIssE/xObWBARYaHx0vvVCA39YDDdauMqeufNBZLz+laa5lKioCWpwwN5A/kdpOoE8ms2b9eQzV1stF3CL9RO7hKWe8IV/2Y0hOUJKC7zzxw0=
+	t=1718891963; cv=none; b=E4sXRh4Ij1OVqOYjpUiuTc0nDVSsdejcgyUj2q3bD68AWgc+OQEgAyKk3KBK7z3jhZ/n3rjCtSufxOXmRHaCm5w5fl/yu2xsrZfnmHacJ7gXJXgwqGzztZA1cpUtNwRBKQCAuwFa09ONaph8IlWZBjKnKS+MWrLenCRnysrprOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718891879; c=relaxed/simple;
-	bh=J+oMdGnScvCH1deVlWSyxrQGbs2BqvP003Li96lyB4g=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aQ1dRk92l98KMb5KpA8Bv+9pLA194Lvt2R2st9iiVoKc6vCX4apyiUDFLAghBiBKxaZMWU7gYjm2qpdZKlnRum1bj8hkUJn5DB1PIYnujF/axPbh9ervj/ed/hvS+JMH11uaknSpKY+6vhgLurX+iT+SvfOCAd5I7tIDmm0Cg9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:260f:cd5c:91b1:523c])
-	by baptiste.telenet-ops.be with bizsmtp
-	id dpxm2C0090Y0hZi01pxmKD; Thu, 20 Jun 2024 15:57:48 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sKIIM-00058L-4a;
-	Thu, 20 Jun 2024 15:57:46 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sKIIM-000CpQ-2W;
-	Thu, 20 Jun 2024 15:57:46 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Magnus Damm <magnus.damm@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Cc: Mark Rutland <mark.rutland@arm.com>,
-	Marc Zyngier <maz@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 9/9] arm64: dts: renesas: Add interrupt-names to arch timer nodes
-Date: Thu, 20 Jun 2024 15:57:39 +0200
-Message-Id: <e5e2767011322daaebcc8dd6ecfcadc6966042d5.1718890849.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1718890849.git.geert+renesas@glider.be>
-References: <cover.1718890849.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1718891963; c=relaxed/simple;
+	bh=Z8ykrk5YoWwEuFbj1k4TUc4xuI2OXNR4A6IYRWxVNWM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HGAmDZ707lwMSnpLMSH9XbwwLnlbDI4aBRzI7gv1xgQeXKcv5DlbbCdBUZ4JWBcu7+ZEaQ+omhRqkew4xZoAEtS8zxwKwvSFpQsp0uhz8TflbBqWb9Ip/B3CstxbJ0txmQiTr0SmdNNHO91YiuD+XPkD2L+3XNlCmh3jsRmUB7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ies5kZvC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEFDC32786;
+	Thu, 20 Jun 2024 13:59:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718891963;
+	bh=Z8ykrk5YoWwEuFbj1k4TUc4xuI2OXNR4A6IYRWxVNWM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ies5kZvCDEdEO5yAghIHv8V1zLcS6yhwHCeMNvPmfOwkWVclOLSfb56gZs/8EK8B/
+	 e37Z7VOww7TDvkHRgdB1X0Ors/+sPow6JwHjreCPMEajdgvfzE+N/hcFKqI3Dbuw6J
+	 nXP7VpQT9yX8ZVgtu+Y3klXN5byrkBnb8HrUg+PtyKMzAtjeQnFCdDgiG+FWuFCg1U
+	 4jDa2R2mof19EKJZ3PnDlMc0qF6MePTNPn3b2IohnZtPGxbz5LH6IIm3yok4blm5U+
+	 xxO5MrMJn9bYcu0ctXgpIOJ4LDViJYuSObQPhRSwvMPv9F3MHJgtsoUlazCcGxVhO1
+	 CzUk5v3Uoa/7w==
+Date: Thu, 20 Jun 2024 14:59:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+	Kamil =?iso-8859-1?Q?Hor=E1k?= - 2N <kamilh@axis.com>,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com, hkallweit1@gmail.com,
+	linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/4] dt-bindings: ethernet-phy: add optional brr-mode
+ flag
+Message-ID: <20240620-rocky-impure-7fd0caf9f01d@spud>
+References: <20240619150359.311459-1-kamilh@axis.com>
+ <20240619150359.311459-4-kamilh@axis.com>
+ <20240619-plow-audacity-8ee9d98a005e@spud>
+ <20240619163803.6ba73ec5@kernel.org>
+ <20240620-eskimo-banana-7b90cddfd9c3@wendy>
+ <9f8628dd-e11c-4c91-ad46-c1e01f17be1e@lunn.ch>
+ <20240620063532.653227a1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wRUHkzBBSbDnLgU6"
+Content-Disposition: inline
+In-Reply-To: <20240620063532.653227a1@kernel.org>
 
-Add interrupt-names properties to device nodes that represent ARM
-architected timers for clarity.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/arm64/boot/dts/renesas/r8a774a1.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a774b1.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a774c0.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a774e1.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77951.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77960.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77961.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77965.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77970.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77980.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77990.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a77995.dtsi  | 1 +
- arch/arm64/boot/dts/renesas/r8a779h0.dtsi  | 2 ++
- arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 1 +
- 14 files changed, 15 insertions(+)
+--wRUHkzBBSbDnLgU6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-index a8a44fe5e83bbd5c..1dbf9d56c68da8c6 100644
---- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-@@ -2853,6 +2853,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-index 4fff511e994cf840..10f22c52e79ecfca 100644
---- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-@@ -2704,6 +2704,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-index 1ef43d78c3a5740b..3e2af50ce7c64bef 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-@@ -1990,6 +1990,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-index be55ae83944cf225..1eeb4c7b4c4b9282 100644
---- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-@@ -2985,6 +2985,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-index bea4edd17d534909..96f3b5fe7e92cc9b 100644
---- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-@@ -3473,6 +3473,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-index 7846fea8e40da725..1122c470b72f8715 100644
---- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-@@ -3068,6 +3068,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index 58f9286a5ab57534..bf1130af7de39ce0 100644
---- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-@@ -2889,6 +2889,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-index 692940662d38d89a..f02d1547b881716a 100644
---- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-@@ -2877,6 +2877,7 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- 
- 	/* External USB clocks - can be overridden by the board */
-diff --git a/arch/arm64/boot/dts/renesas/r8a77970.dtsi b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-index d2d3cecc76d52f86..64fb95b1c89ac63a 100644
---- a/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-@@ -1223,5 +1223,6 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/renesas/r8a77980.dtsi b/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-index c0ba110c74d6a3ac..0c2b157036e75e36 100644
---- a/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-@@ -1630,5 +1630,6 @@ IRQ_TYPE_LEVEL_LOW)>,
- 				       IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
- 				       IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-index 37063e3f4e1be06d..233af3081e84a407 100644
---- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-@@ -2157,5 +2157,6 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/renesas/r8a77995.dtsi b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-index 89990dd8ebf7f182..5f0828a4675b6e50 100644
---- a/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-@@ -1476,5 +1476,6 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-index 163bbcbccc9fcde4..010426bae1b7e793 100644
---- a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-@@ -1906,5 +1906,7 @@ timer {
- 				      <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
- 				      <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
- 				      <&gic GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys",
-+				  "hyp-virt";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-index e008236c3d2d6eab..9a4cbef704c10505 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-@@ -372,5 +372,6 @@ timer {
- 				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
- 				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys";
- 	};
- };
--- 
-2.34.1
+On Thu, Jun 20, 2024 at 06:35:32AM -0700, Jakub Kicinski wrote:
+> On Thu, 20 Jun 2024 14:59:53 +0200 Andrew Lunn wrote:
+> > > BTW Jakub, am I able to interact with the pw-bot, or is that limited =
+to
+> > > maintainers/senior netdev reviewers? Been curious about that for a
+> > > while.. =20
+> >=20
+> > https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#u=
+pdating-patch-status
 
+Hmm, thanks for the link Andrew. In theory I should be able to use it
+then, I wonder if it is smart enough to detect that conor@kernel.org is
+the same person as conor+dt@kernel.org.
+I'll have to try it at some point and find out :)
+
+>=20
+> One thing that may not be immediately obvious is that this is our local
+> netdev thing, so it will only work on netdev@ and bpf@.
+> We could try to convince Konstantin to run it for all pw instances, we
+> never tried.
+
+ngl, I'd love to have it on the riscv instance. Things are hectic for me
+this month, but I might just ~harass~ask him about it after that..
+
+Thanks,
+Conor.
+
+--wRUHkzBBSbDnLgU6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnQ1jgAKCRB4tDGHoIJi
+0rRhAP9GP2eEIbEhKtBPnUJSJDp9esWXhxgUbmNib0nMWearkwEAs7lANltzZdpy
+rfh95/1jdKE5NFdhAgYWW/VfAVviGg4=
+=NT0+
+-----END PGP SIGNATURE-----
+
+--wRUHkzBBSbDnLgU6--
 
