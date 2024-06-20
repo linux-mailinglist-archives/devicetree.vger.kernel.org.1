@@ -1,168 +1,116 @@
-Return-Path: <devicetree+bounces-77923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5019C91067C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:41:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01FE791069F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:45:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E0FF1C20A2A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:41:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13FF31C2181F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18CF1AC782;
-	Thu, 20 Jun 2024 13:41:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CEF41ACE8B;
+	Thu, 20 Jun 2024 13:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="31rEfK1z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f8zbHJQH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6178E12E4A;
-	Thu, 20 Jun 2024 13:41:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D2E48CCD;
+	Thu, 20 Jun 2024 13:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718890866; cv=none; b=W+OuFEIUxZAPwaArc0k8iqu2Vp4IouCK8C8zzhwxToBoQoGWUg1sG2my5Bx1bUzTOyHIrzH/CxkIMwDJSIhTZHYHci62Xm7XMughKX4t4VAXGTRwWeAJ3sjxtXWF7Fc1Ak0I0NVaTDcNxv3HRJ9v/0+oP+7QMAtUNCVGgDSqjtY=
+	t=1718891129; cv=none; b=Qni7TulxNPBiBiefmIQ57X+iADTTf7ayoLLywRGdzGxbOvzmCRHONJsn41GtNo+zL56fehroXAxuCrIvqzPXjYNe269lbAXZr9j80gxnuKz6V6+ucCNMy9NCPdkTGCUK019TmsMvD+0JPMX//zqLujASg3dxEMktDTXP5tuQwg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718890866; c=relaxed/simple;
-	bh=MXb/JFel+g0jLVI/vSHtNdzpSZ2gi9otcO1O+OJ3IgI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TRf9bMGMAMC2Zrt0Z0NtzPPCAIqlgJnMHGUuokufGWJfuVJlcZpN7yNJ2QzLGFlcnE1lEeOn+fPba9/wJhaNUPTOqZ1CeTwrVtUpFORRiIk2onoVpq4jJbX+B09RzY2n5zwee739+Ur2j+kto687clngrMItCr/esX0YdRSpIHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=31rEfK1z; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718890863;
-	bh=MXb/JFel+g0jLVI/vSHtNdzpSZ2gi9otcO1O+OJ3IgI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=31rEfK1zKEp5adqlU6WR3ZhzqN8vRiZ/q5Jwns/Crg+wTVk0x3NL5HOstTmAEV19l
-	 s4BYiQLQ1V4N0kbAREM9oDSc/0Pz5WY8vNt8MkfQ+n9zCdD7y1PKLSDXLpo+fOcdcu
-	 rRV/HsL0xJRQIYWEgn2UuOvGIcAZ62MCZu71WC7EC4YcRwlzGm9r3Qs4Ctz+tBmCOc
-	 lklEVSIK4VXQ6+7ik4TIb/fIv9zp7ioBtLy9CZKa+wc1TqMlPv0tDdwcCqzj4P5VKo
-	 qzQzwpItuPD/572aWhfGjTCB0uoKZnYgVrtuldPj4Gpm+OkGH2RPrzlfrbx8giTGjw
-	 CeZE78Srmwcdw==
-Received: from mercury (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5D1773782039;
-	Thu, 20 Jun 2024 13:41:03 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 0687C106045A; Thu, 20 Jun 2024 15:41:03 +0200 (CEST)
-Date: Thu, 20 Jun 2024 15:41:03 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Detlev Casanova <detlev.casanova@collabora.com>, 
-	linux-kernel@vger.kernel.org, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Dragan Simic <dsimic@manjaro.org>, Diederik de Haas <didi.debian@cknow.org>, 
-	Andy Yan <andy.yan@rock-chips.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Daniel Almeida <daniel.almeida@collabora.com>, 
-	Paul Kocialkowski <paul.kocialkowski@bootlin.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Jonas Karlman <jonas@kwiboo.se>, Alex Bee <knaerzche@gmail.com>, 
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 2/4] media: rockchip: Introduce the rkvdec2 driver
-Message-ID: <klzru2ak3yxccywqr57bslyctqtmrl2d3eghgv5letp7jkel6s@rlupljmxfijg>
-References: <20240619150029.59730-1-detlev.casanova@collabora.com>
- <20240619150029.59730-3-detlev.casanova@collabora.com>
- <dc232a01-1495-42ff-ad2a-5a0aa780b60c@kernel.org>
+	s=arc-20240116; t=1718891129; c=relaxed/simple;
+	bh=FfPpOjJnEITcR7i8fMExBoCLBH2IU2CdQTn9lzapm0s=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Do9+hqCTtkkdNTPL8meImrG4eBgpRFDlmmJSUV9i17xukI+zPUo5GuaHhxXJyS5WSaevTeab09dmty/TL25PfonA9YrAnxYabPAv2rf2TfsyrnNY/3T3gUJ6YbCD3lmuZ/AR4q3RJ5ANSfL2E/Vk9SY8jj6szxUx8iCfOwRqYPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f8zbHJQH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA65C2BD10;
+	Thu, 20 Jun 2024 13:45:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718891128;
+	bh=FfPpOjJnEITcR7i8fMExBoCLBH2IU2CdQTn9lzapm0s=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=f8zbHJQHAYF3TlFVevSkIHOXiMGnzT+s3X+X3M4iFXWT4IwKykpu6GuR/4MMDdy4J
+	 lp1GKDtGHXt7c6gILs3r6LHA3OCCOvEtdDxlZc+gcE3sqRWSrXZL/kbKyD1OUtL91B
+	 UeLM7+7Zqw2eAFfbI9fdSzuG4/tfO6JwtVAXdgObNYMBLJten6AA23mCjK2ZeDqFBS
+	 KzFwmtejpUgoz8THIZ6eWpukbmEbq4mNOYme3YzrZDrcz/KddoaLBl03hcPNCEyb6d
+	 PCyFIodlZkXDTesVVkEXC5KWgoykPrCL5kzNPV1lu8+UESh5+txQ7jYdT5v+NQNg4Q
+	 dK80vQZ1qh6aw==
+Date: Thu, 20 Jun 2024 07:45:27 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="twf4p3kbbzlssnu2"
-Content-Disposition: inline
-In-Reply-To: <dc232a01-1495-42ff-ad2a-5a0aa780b60c@kernel.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, linux-arm-msm@vger.kernel.org, 
+ Melody Olvera <quic_molvera@quicinc.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20240620120143.12375-2-quic_kbajaj@quicinc.com>
+References: <20240620120143.12375-1-quic_kbajaj@quicinc.com>
+ <20240620120143.12375-2-quic_kbajaj@quicinc.com>
+Message-Id: <171889112732.2146896.6642576596328895598.robh@kernel.org>
+Subject: Re: [PATCH v3 1/4] dt-bindings: remoteproc: mpss: Document
+ QDU1000/QRU1000 mpss devices
 
 
---twf4p3kbbzlssnu2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 20 Jun 2024 17:31:40 +0530, Komal Bajaj wrote:
+> From: Melody Olvera <quic_molvera@quicinc.com>
+> 
+> Document the compatible for the component used to boot the MPSS on the
+> QDU1000 and QRU1000 SoCs.
+> 
+> The QDU1000 and QRU1000 mpss boot process now requires the specification
+> of an RMB register space to complete the handshake needed to start or
+> attach the mpss.
+> 
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  .../remoteproc/qcom,qdu1000-mpss-pas.yaml     | 129 ++++++++++++++++++
+>  1 file changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.yaml
+> 
 
-Hi,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-On Thu, Jun 20, 2024 at 12:30:00PM GMT, Krzysztof Kozlowski wrote:
-> On 19/06/2024 16:57, Detlev Casanova wrote:
-> > +static const char * const rkvdec2_clk_names[] =3D {
-> > +	"axi",
-> > +	"ahb",
-> > +	"core",
-> > +	"cabac",
-> > +	"hevc_cabac",
-> > +};
-> > +
-> > +/*
-> > + * Some SoCs, like RK3588 have multiple identical vdpu34x cores, but t=
-he
-> > + * kernel is currently missing support for multi-core handling. Exposi=
-ng
-> > + * separate devices for each core to userspace is bad, since that does
-> > + * not allow scheduling tasks properly (and creates ABI). With this wo=
-rkaround
-> > + * the driver will only probe for the first core and early exit for th=
-e other
-> > + * cores. Once the driver gains multi-core support, the same technique
-> > + * for detecting the main core can be used to cluster all cores togeth=
-er.
-> > + */
-> > +static int rkvdec2_disable_multicore(struct rkvdec2_dev *rkvdec)
-> > +{
-> > +	const char *compatible;
-> > +	struct device_node *node;
-> > +	int ret;
-> > +
-> > +	/* Intentionally ignores the fallback strings */
-> > +	ret =3D of_property_read_string(rkvdec->dev->of_node, "compatible", &=
-compatible);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* first compatible node found from the root node is considered the m=
-ain core */
->=20
-> So you rely on order of nodes? Before you claim "identical cores", but
-> now "main core" suggests one is different than others.
+yamllint warnings/errors:
 
-Heh, I wrote that comment for Hantro. By main core I was referencing
-the software side of things. With a number of equal cores and no DT
-node describing a cluster (from HW point of view it's just equal
-cores), they somehow need to be combined into a single entity to allow
-scheduling work between them. This solves the issue by making one of
-the devices the "main" device. From the HW point it's exactly the same
-as the others. The function could also use the last core or the second
-one. It does not matter as long as there is only one "main" core.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.example.dts:70.3-71.1 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/remoteproc/qcom,qdu1000-mpss-pas.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-Greetings,
+doc reference errors (make refcheckdocs):
 
--- Sebastian
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240620120143.12375-2-quic_kbajaj@quicinc.com
 
---twf4p3kbbzlssnu2
-Content-Type: application/pgp-signature; name="signature.asc"
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmZ0MWQACgkQ2O7X88g7
-+pqbMA//Z5Ti8uy0mdUzAGS0Mfn5J1NUNWqus8fR5S7wDtYVJYvyqrsEkSeJ0iFw
-1f3sPaNTIQQS4KTPhRtjCi6BImU9MnfOAJYELHFqibESxacqAIDxGhqiQkC57t2h
-9tI13kcEiUM69czxT6cmJIeZ3Y9cJ0znaJ+HTs/QRGYM+OnOr4tIDdC5/CRWK3od
-7cZizdGpbg0q2f/OaY7AAmNLlTL/5UgWD5xXQzud1hAAR1FhZlK3VSp4OPsdlpP+
-+zEArBx9XtW+Os6l4Nn73T5p+Ibqgood9dxdq58MEkHhlFzWwoDjCgItqSBMJkby
-y8u0whzx/EjJ/onaeBtuzAXsf7OAALtnkz5WV8Cs8lqBI7ekhG5QkMOxZ0AGbKI/
-ZmtOrA3n1995HJqxMpKuepyF3oVy28YloNbA/5PNWqOFLAEM3pM7r0/fF6DeMrZf
-evKFG4n3BXHcACwScohbaIgBXAsm8fkcoiS2Wh6cyC1nqjhbXtd+jYrlOsdYrziQ
-IYpL8zSf5FtjD8uOjFlGNYuVc5tAqit2NBz3ok7VXvY2KdVy6CQpjhdxTk1ZJxwh
-cMNGsGx/sKSatNWURaNqmyYKoxaZe/TglJS6sl1Wfk2A8m88krx6aRj2qIfhm8B2
-PMoDwflLXjwBRC+gXa7h+SS/yZFcCZ+4DcM/T5WNCmdc8qiJ2ys=
-=okQ+
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---twf4p3kbbzlssnu2--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
