@@ -1,132 +1,138 @@
-Return-Path: <devicetree+bounces-77998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D48910A2A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:40:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00FE9910A30
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:41:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B16E928608C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:40:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 311B31C22FC5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F8FA1AF6BB;
-	Thu, 20 Jun 2024 15:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E8A1B010D;
+	Thu, 20 Jun 2024 15:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZkIsszvS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE441ACE94;
-	Thu, 20 Jun 2024 15:40:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90BE1AF6B5;
+	Thu, 20 Jun 2024 15:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718898023; cv=none; b=HbAf9nS9mEdkXzOAJ/n+hsGpK4qhvr/3qi55HGakZRAUkagOkX6cSylWFG27eXQqE2mBnCyIer2+LJq+m/BlRIJJDEw033jAwg9DJAg6s3qAgFD5SNpDP9fFSIQr8/PHj++QN/Z6LnDhU9vwgUmH5U905j4pl60QDDSUgsepbew=
+	t=1718898086; cv=none; b=GTE6NEp9rbzztaFrj0aNSL7aUbsnDcAS0Dkv1/XkcWVSDEieLDTr8cSSf5lB0cKkjw9cZ2bDSJShmiiCtRAWRgyXV6Go37EzTqOB7XZoG9Pk5sZPOKZtjf9IT2Qr6IUX/E+7YTIQ6g13xqqdRV3ASS/pYncL4KvWs99LYB8bdXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718898023; c=relaxed/simple;
-	bh=44UxWeJuayI3bZGqwBHbWalofDb7+ni2lz+I7HuZP18=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Mak7SS1QC9y1jn0j5iRwAgceFvJS5vPyo3mVm3tGLGz2Hg5ZTvPxmXzsNzXBtO2NIR99pIk8qQYqTHC25FfgrFeT3JQpWLLPVHEkQFbj0CigOhrZG70jeJVGSQB3UkkvIIvW4/Tj4vE23YNNsrQXSIt/JW8WD3WpOBzgoX3pgpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-63bf3452359so10424127b3.2;
-        Thu, 20 Jun 2024 08:40:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718898019; x=1719502819;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sH7+YxOUiDXwjwnxlowJ+B9PVdvEeRNVTnlGmm0Kww0=;
-        b=xEeC9uxbIF+dXjTO9Ny0EwsxYd3NaSmUXu1pBDUZ9jfyM7tlbcWwolISTNL0MLR7vR
-         dWxYAfGRlnlc+pUv+UOWSTBpCc+4TL9L8x8EpXDZLTZuB59miEjNWrcZp/pDPpBzWd2k
-         3DsbMoEDZlLezdxW7VFGIT48Xr22z/7F97/FSzgR23+YUNJelzF3dCxanoF1E62S2TlU
-         faBK9EgtSOzKkrQvgtfaSTcGdr9Gv821q2TIwf95pXNejvaqavQQrmzlXcZjJgzo6n1F
-         2HLllOcX/wbbfp2sdXblK/4/5XrYFaOsPhXGDHFBx+YScq2PpS8aVaVwMOhR1Gr3qjE5
-         pu8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVgDCbgsCiTndGO5Th/cPOaIESKznxoyeiqvCXZTL1x3ii9alTmUbn20WRVlA83G8XioTGgRbdAeA6+/UcJtxVwUmujEt6/ji6btX0huKS+f/OqdME1MPoUfPsHKWP5+9haKoq6x6v4axwkSYU4HgEFVv3+9QNdqvSiMUEjvLyAOwBkdoVw8XEp4LdiAPSSRGxHF+/fkWLQhWD9eqESJ21dZ9b3wctu
-X-Gm-Message-State: AOJu0YzC+VxXSgqEpTwRgcCLyqNyup4K3KlyQtKFxHqMa17se2GSFfRA
-	SzGtSuOpN/RxMxme3myGbZe0WqKB7cxyTe8ZGhaTbkPSGyS/oyZqltdpcXdD
-X-Google-Smtp-Source: AGHT+IHeLwk3RLz1ugAFOA+qTtKGY0HmYMbOxT79xAtMjZYQD1N9yD97tlJM2gGgPbaC08XmKOZqdg==
-X-Received: by 2002:a05:690c:a10:b0:631:1d44:5850 with SMTP id 00721157ae682-63a903a431cmr54698107b3.47.1718898019519;
-        Thu, 20 Jun 2024 08:40:19 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-63118e9917asm30523987b3.60.2024.06.20.08.40.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jun 2024 08:40:19 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6316253dc52so8497757b3.0;
-        Thu, 20 Jun 2024 08:40:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXe2BM8nqJh4hLDGhO98m3VPYsGhFb6YGs6xKx0OvPTmaCQhq4GuIYjgr5eAnzGMoJ6FbiCuGuLsr4UGT0HyG+rseDPos47lXtjJUo84Sat50NKyabpe3DiQQessgCmLrGOJF8Q5j7ZqlzdkjeGTGb+61R/sIorbLpOonJ/Vt4VHiDZvuBtenCv58tSe8QiBDFecgnrGw69BAACKZb1UT0fGNqqF/Us
-X-Received: by 2002:a0d:e810:0:b0:632:5b24:c0c with SMTP id
- 00721157ae682-63a8dc08affmr55684907b3.5.1718898019011; Thu, 20 Jun 2024
- 08:40:19 -0700 (PDT)
+	s=arc-20240116; t=1718898086; c=relaxed/simple;
+	bh=uXUQcC50fbjgB0KPnRDtDslrC8JyKIUItq1pr5paBoI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=milqmIibxmJuqMllo0DKTnD5Ud8JMU/QJOhfSOK6DK3Ci+Zcr02nQYUPeDgrEkYgD3lQApJuy9zAyT7zySF6Rgb6HH7HiM4v3ek74MxV/TxQgY26sgQi8T+o1aFCReaiXfxOrvoICKdLDs3GLARtRKHPb7S4xfn69JxfuI8IxbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZkIsszvS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 208C9C2BD10;
+	Thu, 20 Jun 2024 15:41:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718898085;
+	bh=uXUQcC50fbjgB0KPnRDtDslrC8JyKIUItq1pr5paBoI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZkIsszvSM4/Ajr56xQhCIfuNxnI8q5fVkVegM0T6V3NMrslGImYvLCdMkUZMij89i
+	 VzBs5QMu2CvMaUC/Rp14LE+3OccIDDquaFJPzFScTRN6q8SgH04Q/buwg0UM11npHq
+	 6VpUZOyExsyTQLmP+2gkP8CEkG0AwOEo2Vy4JVG3yOf6bTGxL/+pFi9dG+QwXWuK0A
+	 uIru3VGJP/pZeCS/JCE+jI+ogO8xWtPN2+zWJ2slGmu/w4AsalyIdy+SFBGX9glhJh
+	 6RtNpVf2m/u6W2d0GCxMVe+AZko9dXAQhSzr6xQf2U4ubAJwf756QRB9cWaD8svuww
+	 rJkVuwqljKwTw==
+Message-ID: <475b8567-e77b-47d4-96bc-19405f3a6ffd@kernel.org>
+Date: Thu, 20 Jun 2024 17:41:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613091721.525266-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240613091721.525266-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240613091721.525266-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 20 Jun 2024 17:40:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU0oFH61fHNp2txOOJi_pWihKrK=UdETrzBs-bDeULTqQ@mail.gmail.com>
-Message-ID: <CAMuHMdU0oFH61fHNp2txOOJi_pWihKrK=UdETrzBs-bDeULTqQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: media: Add bindings for
+ raspberrypi,rp1-cfe
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Naushir Patuck
+ <naush@raspberrypi.com>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ 20240531080707.34568-1-jacopo.mondi@ideasonboard.com
+References: <20240620-rp1-cfe-v2-0-b8b48fdba3b3@ideasonboard.com>
+ <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240620-rp1-cfe-v2-2-b8b48fdba3b3@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar,
+On 20/06/2024 13:07, Tomi Valkeinen wrote:
+> Add DT bindings for raspberrypi,rp1-cfe.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> ---
 
-Thanks for your patch!
 
-On Thu, Jun 13, 2024 at 11:17=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The SDHI/eMMC IPs found in the RZ/V2H(P) (a.k.a. r9a09g057) are very
-> similar to those found in R-Car Gen3. However, they are not identical,
-> necessitating an SoC-specific compatible string for fine-tuning driver
-> support.
->
-> Key features of the RZ/V2H(P) SDHI/eMMC IPs include:
-> - Voltage level control via the IOVS bit.
-> - PWEN pin support via SD_STATUS register.
-> - Lack of HS400 support.
-> - Fixed address mode operation.
->
-> regulator support is added to control the volatage levels of SD pins
-> via sd_iovs/sd_pwen bits in SD_STATUS register.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Probably I am missing something obvious in the big picture, but why
-must this be modelled as a regulator?  Can't the SDHI driver handle
-this register bit directly?
 
-Cfr. tmio_mmc_power_on(), which can use the tmio_mmc_host.set_pwr()
-callback[1] instead of/in addition to a regulator.
+Best regards,
+Krzysztof
 
-Thanks!
-
-[1] Oh, no more users... Let's get rid of it... patch sent...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
