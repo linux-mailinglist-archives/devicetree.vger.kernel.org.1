@@ -1,169 +1,94 @@
-Return-Path: <devicetree+bounces-77962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F01F2910897
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:39:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CACB9108C9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:46:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB71128469E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:39:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CA671C2117B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3981AD9EB;
-	Thu, 20 Jun 2024 14:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S0QTwX57"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DCB1AE876;
+	Thu, 20 Jun 2024 14:46:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9A81ACE9C;
-	Thu, 20 Jun 2024 14:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15ED1AC42B;
+	Thu, 20 Jun 2024 14:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718894345; cv=none; b=mbAdkWFXcSbruoc/Uz02Ub2fM0Mhli2f3rro08W2dVErjshBB/+T0Zy+Z1omcjosC79LmuWsE9zQg0huCS7tGyv6twPkNddASYdm27xT6w1NjNkinmp3k8vFVk87JsicWsbEV1nOdgImjXQMsmYlOfZI5iKpjsddgkfIMaFtQoo=
+	t=1718894762; cv=none; b=g4B9oV6hue1XX+NDiesPEvu5Hu4sxRVGNJ2bkfU8w/cYYFdgfKdXpY2ScP/pHefp7GPEfmgo9OkYvDkbHPEAK652ovm96wAOKcaUIvwzsQAlqH+kFjAh3h6Bj2W4OIH8g0dttZLOes9Om5q9PWqhNtjYJUMCyCEK7BVqmQ28Fq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718894345; c=relaxed/simple;
-	bh=05/RUrOTznOicbhTxGt3jINlULbNja3R+ibYExoycxY=;
+	s=arc-20240116; t=1718894762; c=relaxed/simple;
+	bh=9SWSdO9QAB7Azh3TzzyctLHLDP8tNGxckstEzvhXeyU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ek649OHPsYNeNIMk+bwqiial/C/zzWzNdxhRcFlNXaxScEP1GaA+qTZSuY3td9rEewQNiIOQRY/vuNDLzxZFqwDwqA6kSVNsD+0gJmj1yLXRp+2mpcuGUsvRNgzGo7SnOBcSivVbC9X07oPlzX3NJw+w3b7y+yDAcpP+WVvaDS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S0QTwX57; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65107C2BD10;
-	Thu, 20 Jun 2024 14:39:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718894345;
-	bh=05/RUrOTznOicbhTxGt3jINlULbNja3R+ibYExoycxY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S0QTwX57+Ly3xbKN+gWS+0Jj1L7+hwOMgdXsLjDB2woFCb2QQ5O5MAjOA7zRSlxZ3
-	 hXRto68N50fvgVEXeLVXBkTVuHt7ypO/DKbAL5N7FTHwr8UlBZ+YF4m+4awIYnky8M
-	 837LPIwneH+N4N9wEi1HJTLBIvOM0JVdoOhuDz05VCyA++iaCm3uB8OeuV1FuVYbBg
-	 DBOfTQccappFpK0ov1jgaw8VCCdViW7ZvNXOHHklSW8V3hGvCYbz+zQOK7NvmLAsoX
-	 8G1x9ctTOcDKyngaUumZuJv0cVr4ib2hYl+qHVBHCkYOXRhY3o+BTZtLqCHvezrTCF
-	 AT0ucvskAZTpQ==
-Date: Thu, 20 Jun 2024 15:38:59 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=mjyqyf3b6tkOo/q+wPd2GjkrfXPxdKiHJhbol8sxGuDtzurIgjEWsdrmMYRVk503nhW3/X9hOadzagKi7NrEtQYEJOVfK8q2EcMRWOOeZHP2C/2I1I0YsOEzvvORaASTOrLgvpl8WZcDhoBMOoRTOdomZ/4tsufWoWLZx/kSXeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1sKJ2m-0000tL-00; Thu, 20 Jun 2024 16:45:44 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id ED40EC031A; Thu, 20 Jun 2024 16:40:42 +0200 (CEST)
+Date: Thu, 20 Jun 2024 16:40:42 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Hauke Mehrtens <hauke@hauke-m.de>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v4 0/6] Support ROHM BD96801 Scalable PMIC
-Message-ID: <20240620143859.GM3029315@google.com>
-References: <cover.1718356964.git.mazziesaccount@gmail.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/5] mips: bmips: rework and cache CBR addr handling
+Message-ID: <ZnQ/auhuPWb1SGjb@alpha.franken.de>
+References: <20240611113538.9004-1-ansuelsmth@gmail.com>
+ <20240611113538.9004-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1718356964.git.mazziesaccount@gmail.com>
+In-Reply-To: <20240611113538.9004-3-ansuelsmth@gmail.com>
 
-On Fri, 14 Jun 2024, Matti Vaittinen wrote:
-
-> Support ROHM BD96801 Scalable PMIC
+On Tue, Jun 11, 2024 at 01:35:34PM +0200, Christian Marangi wrote:
+> Rework the handling of the CBR address and cache it. This address
+> doesn't change and can be cached instead of reading the register every
+> time.
 > 
-> The ROHM BD96801 is automotive grade PMIC, intended to be usable in
-> multiple solutions. The BD96801 can be used as a stand-alone, or together
-> with separate 'companion PMICs'. This modular approach aims to make this
-> PMIC suitable for various use-cases.
+> This is in preparation of permitting to tweak the CBR address in DT with
+> broken SoC or bootloader.
 > 
-> This series brings only limited support. The more complete set of
-> features was sent in the RFC:
-> https://lore.kernel.org/lkml/cover.1712058690.git.mazziesaccount@gmail.com/
+> bmips_cbr_addr is defined in smp-bmips.c to keep compatibility with
+> legacy brcm47xx/brcm63xx and generic BMIPS target.
 > 
-> The v3: implemented also support for ERRB interrupt and setting a name
-> suffix to IRQ domains. That work was postponed and will be continued
-> after some unrelated changes to irqdomain code are completed as
-> discussed here:
-> https://lore.kernel.org/all/87plst28yk.ffs@tglx/
-> 
-> Revision history still tries to summarize changes from the RFC for the
-> reviewers.
-> 
-> Revision history:
-> v3 => v4:
->  - Drop patches 7 to 10 (inclusive) until preparatory irqdomain changes
->    are done.
->  - Cleanups as suggested by Lee.
-> 	- Change the regulator subdevice name. (MFD and regulators).
-> 	- Minor styling in MFD driver
-> 
-> v2 => v3: Mostly based on feedback from Thomas Gleixner
-> 	- Added acks from Krzysztof and Mark
-> 	- Rebased on v6.10-rc2
-> 	- Drop name suffix support for legacy IRQ domains (both
-> 	  irqdomain and regmap)
-> 	- Improve the commit message for patch 7/10
-> 
-> v1 => v2:
-> 	- Add support for setting a name suffix for fwnode backed IRQ domains.
-> 	- Add support for setting a domain name suffix for regmap-IRQ.
-> 	- Add handling of ERRB IRQs.
-> 	- Small fixes based on feedback.
-> 
-> RFCv2 => v1:
-> 	- Drop ERRB IRQ from drivers (but not DT bindings).
-> 	- Drop configuration which requires STBY - state.
-> 	- Fix the register lock race by moving it from the regulator
-> 	  driver to the MFD driver.
-> 
-> RFCv1 => RFCv2:
-> 	- Tidying code based on feedback form Krzysztof Kozlowski and
-> 	  Lee Jones.
-> 	- Documented undocumented watchdog related DT properties.
-> 	- Added usage of the watchdog IRQ.
-> 	- Use irq_domain_update_bus_token() to work-around debugFS name
-> 	  collision for IRQ domains.
-> 
+> Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
-> 
-> 
-> Matti Vaittinen (6):
->   dt-bindings: ROHM BD96801 PMIC regulators
->   dt-bindings: mfd: bd96801 PMIC core
->   mfd: support ROHM BD96801 PMIC core
->   regulator: bd96801: ROHM BD96801 PMIC regulators
->   watchdog: ROHM BD96801 PMIC WDG driver
->   MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries
-> 
->  .../bindings/mfd/rohm,bd96801-pmic.yaml       | 173 ++++
->  .../regulator/rohm,bd96801-regulator.yaml     |  63 ++
->  MAINTAINERS                                   |   4 +
->  drivers/mfd/Kconfig                           |  13 +
->  drivers/mfd/Makefile                          |   1 +
->  drivers/mfd/rohm-bd96801.c                    | 273 ++++++
->  drivers/regulator/Kconfig                     |  12 +
->  drivers/regulator/Makefile                    |   2 +
->  drivers/regulator/bd96801-regulator.c         | 908 ++++++++++++++++++
->  drivers/watchdog/Kconfig                      |  13 +
->  drivers/watchdog/Makefile                     |   1 +
->  drivers/watchdog/bd96801_wdt.c                | 416 ++++++++
->  include/linux/mfd/rohm-bd96801.h              | 215 +++++
->  include/linux/mfd/rohm-generic.h              |   1 +
->  14 files changed, 2095 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml
->  create mode 100644 drivers/mfd/rohm-bd96801.c
->  create mode 100644 drivers/regulator/bd96801-regulator.c
->  create mode 100644 drivers/watchdog/bd96801_wdt.c
->  create mode 100644 include/linux/mfd/rohm-bd96801.h
+>  arch/mips/bcm47xx/prom.c      | 3 +++
+>  arch/mips/bcm63xx/prom.c      | 3 +++
+>  arch/mips/bmips/dma.c         | 2 +-
+>  arch/mips/bmips/setup.c       | 4 +++-
+>  arch/mips/include/asm/bmips.h | 1 +
+>  arch/mips/kernel/smp-bmips.c  | 6 ++++--
+>  6 files changed, 15 insertions(+), 4 deletions(-)
 
-allmodconfig and allyesconfig builds fail with:
+still problems on a bcm47xx build:
 
-  make[5]: *** No rule to make target 'drivers/regulator/da903x.o', needed by 'drivers/regulator/built-in.a'.
-  make[5]: Target 'drivers/regulator/' not remade because of errors.
+mips64-linux-gnu-ld: arch/mips/bcm47xx/prom.o: in function `prom_init':
+/local/tbogendoerfer/korg/linux/arch/mips/bcm47xx/prom.c:(.init.text+0x3c): undefined reference to `bmips_cbr_addr'
+mips64-linux-gnu-ld: /local/tbogendoerfer/korg/linux/arch/mips/bcm47xx/prom.c:(.init.text+0x44): undefined reference to `bmips_cbr_addr'
+
+Thomas.
 
 -- 
-Lee Jones [李琼斯]
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
