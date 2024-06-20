@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-77928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF46391071E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:01:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232F391072B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:01:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CC10283880
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:01:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA5781F21FAD
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD57E1AE84C;
-	Thu, 20 Jun 2024 13:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 682DC1AE876;
+	Thu, 20 Jun 2024 13:57:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [195.130.132.52])
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [195.130.137.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968D91AE088
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 13:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC8D1AE85E
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 13:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718891871; cv=none; b=qy5q+vgm+fzMkpPzWN5Pg3UbaTwPaA5TLgq+hhaA466Y+y5L90YKKo9RDL1HIP1xrGeTSAzeeIPLKvzvcJsd8pCxzZlxFomQ9kbUJrdDPmRw4W4zSeqcRp0pD5roTmmazZzbXx+GoqIBsy+cgQ+QowvfbPF4sd9ZTXYqICuE6W4=
+	t=1718891878; cv=none; b=D6b4sq8BAumixb422XnbQo/DRJHzq2KMd+XsI6ppH+UTq/eB0xBzsiuoyOdE5TFqwkvC55nZ/8ruk/+24JVYIePUzm1nINsElUaBC9EwCQYdNSrXKy2VDRn19fSve9AaDTGbbcv+PEXWBV3j+y48ewtcv+DdqJ7Wo7xRI9mLMnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718891871; c=relaxed/simple;
-	bh=FztDS2O8Pp/Et4r0TpkZuhKQZhiW8X89KNuZKI3pLqw=;
+	s=arc-20240116; t=1718891878; c=relaxed/simple;
+	bh=b02wX5WbEMDX4N0UnETcg5m6jF1Ms5pPejiiIZbDKtE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZUwcfWNGretQ/vTXONTmmnsS6KWWDo5YSQJIl6KDMoYj+kKRtqaVpVBZcYpkhZTXIhPTmP6081cXcU7Pq81V7Oswor2iZkQl+2rVIhPJlR76CvCrXnYAOzgaHNh2jNslE++rQwbCJERPZSjuK35mR9yH0tbNZPcn7BpjINP3f4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.52
+	 MIME-Version; b=SbpRyRjicM9UzwwuC5XtHckyRKB/7WX0gI5R3B/D/X1k56kcHLhayKUygKyXZ59eDQE3EWP6bHxZoj5uzuPuAcw13ns10EdyrwJJ0vKLwiO+1k6lxRTSchBYEbr+unZPDUAixywrSkmcCnKAY5cpNbVcvjCM39jXcC+onW1Vuos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.90
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:260f:cd5c:91b1:523c])
-	by xavier.telenet-ops.be with bizsmtp
-	id dpxm2C0030Y0hZi01pxm6o; Thu, 20 Jun 2024 15:57:47 +0200
+	by albert.telenet-ops.be with bizsmtp
+	id dpxm2C0050Y0hZi06pxmzH; Thu, 20 Jun 2024 15:57:47 +0200
 Received: from rox.of.borg ([192.168.97.57])
 	by ramsan.of.borg with esmtp (Exim 4.95)
 	(envelope-from <geert@linux-m68k.org>)
-	id 1sKIIL-00057p-Ur;
+	id 1sKIIL-00057r-VU;
 	Thu, 20 Jun 2024 15:57:45 +0200
 Received: from geert by rox.of.borg with local (Exim 4.95)
 	(envelope-from <geert@linux-m68k.org>)
-	id 1sKIIL-000Cop-Rs;
+	id 1sKIIL-000Cos-Si;
 	Thu, 20 Jun 2024 15:57:45 +0200
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Magnus Damm <magnus.damm@gmail.com>,
@@ -53,9 +53,9 @@ Cc: Mark Rutland <mark.rutland@arm.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 1/9] arm64: dts: renesas: r8a779a0: Add missing hypervisor virtual timer IRQ
-Date: Thu, 20 Jun 2024 15:57:31 +0200
-Message-Id: <671416fb31e3992101c32fe7e46147fe4cd623ae.1718890849.git.geert+renesas@glider.be>
+Subject: [PATCH 2/9] arm64: dts: renesas: r8a779f0: Add missing hypervisor virtual timer IRQ
+Date: Thu, 20 Jun 2024 15:57:32 +0200
+Message-Id: <46deba1008f73e4b6864f937642d17f9d4ae7205.1718890849.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1718890849.git.geert+renesas@glider.be>
 References: <cover.1718890849.git.geert+renesas@glider.be>
@@ -71,17 +71,17 @@ Add the missing fifth interrupt to the device node that represents the
 ARM architected timer.  While at it, add an interrupt-names property for
 clarity,
 
-Fixes: 834c310f541839b6 ("arm64: dts: renesas: Add Renesas R8A779A0 SoC support")
+Fixes: c62331e8222f8f21 ("arm64: dts: renesas: Add Renesas R8A779F0 SoC support")
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 5 ++++-
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-index 1abe92c98358eddb..395f8d43ce2db92d 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-@@ -2927,6 +2927,9 @@ timer {
+diff --git a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+index 48390654e172bd5d..21747f11bc602d13 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+@@ -1332,7 +1332,10 @@ timer {
  		interrupts-extended = <&gic GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
  				      <&gic GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
  				      <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
@@ -91,7 +91,8 @@ index 1abe92c98358eddb..395f8d43ce2db92d 100644
 +		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys",
 +				  "hyp-virt";
  	};
- };
+ 
+ 	ufs30_clk: ufs30-clk {
 -- 
 2.34.1
 
