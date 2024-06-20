@@ -1,142 +1,169 @@
-Return-Path: <devicetree+bounces-77961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5110E910888
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:35:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F01F2910897
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:39:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A8A9B2451A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:35:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB71128469E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BF91AD3F5;
-	Thu, 20 Jun 2024 14:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3981AD9EB;
+	Thu, 20 Jun 2024 14:39:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWw+JMX/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S0QTwX57"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3141ACE9C;
-	Thu, 20 Jun 2024 14:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9A81ACE9C;
+	Thu, 20 Jun 2024 14:39:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718894122; cv=none; b=kS4EJjQ+Yvjprseh0NyryC5uuRxy6rCkQR7YwFdYNKisltomrcxmKNgDL450AhB918Sv4ltm7XEsdxhB5osMaHexvXJWu4lRPI4M05W08RD7IIgmhQMAJxQA9ylwKaQ4k4w0yYoYhiNXdXlFVEuAFwHw1Dg48nZeQ0yAy+Qydj8=
+	t=1718894345; cv=none; b=mbAdkWFXcSbruoc/Uz02Ub2fM0Mhli2f3rro08W2dVErjshBB/+T0Zy+Z1omcjosC79LmuWsE9zQg0huCS7tGyv6twPkNddASYdm27xT6w1NjNkinmp3k8vFVk87JsicWsbEV1nOdgImjXQMsmYlOfZI5iKpjsddgkfIMaFtQoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718894122; c=relaxed/simple;
-	bh=npqeh05ryDsyIjjm50F0c9LzhQy62vbv2Gkiq4GYZ/0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mqJO3AwzoI9fQHzYIC/pihYwRf/RTIGwRdEcaiua3bczp4AoI9KHVPTym2KAMRCW6itmOCPriBxHzkJ0Pd13xxHmUm2F2e9FffhhHpCBzFphOisruFkp0h6flVv+fufM+GpQUzKSJfE5VJF4UTBuMtWEYnzmab0PqORydbpykpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pWw+JMX/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5D83C2BD10;
-	Thu, 20 Jun 2024 14:35:18 +0000 (UTC)
+	s=arc-20240116; t=1718894345; c=relaxed/simple;
+	bh=05/RUrOTznOicbhTxGt3jINlULbNja3R+ibYExoycxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ek649OHPsYNeNIMk+bwqiial/C/zzWzNdxhRcFlNXaxScEP1GaA+qTZSuY3td9rEewQNiIOQRY/vuNDLzxZFqwDwqA6kSVNsD+0gJmj1yLXRp+2mpcuGUsvRNgzGo7SnOBcSivVbC9X07oPlzX3NJw+w3b7y+yDAcpP+WVvaDS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S0QTwX57; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65107C2BD10;
+	Thu, 20 Jun 2024 14:39:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718894122;
-	bh=npqeh05ryDsyIjjm50F0c9LzhQy62vbv2Gkiq4GYZ/0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pWw+JMX/pZBbZERiMYq8jt3mLMHCNeyw2n+rsNU8yzEc1RmCWw7SL5IklwlwDvLyy
-	 CcpvEsCvzu/nuxvROzR45QPxqjZ5WRnuTE9Dv/2lc7T0+nx/tbSl4O9bFlDXVJrgyw
-	 nwuTpvrvfzG9UNGZloYjIX90dsxygDKlOq1MgyKy28fg3pzxGc1RC2iGsjWetEoHzX
-	 9ogBU6Je4NnmbnXz/Y8Eb15JTQ6RddyLShb/mu7w617r9GdQh4fFVIFVgeJiUlYe70
-	 /N7Sfisn8kBZj0nYGRkRJrQS/HL3p1xCyPUOlmHzvCdypvawyYWLwFQHsQoIi7oLV6
-	 GxTNCa6u5JOiA==
-Message-ID: <8d6af7e2-76f8-4daa-a751-a1abe29af103@kernel.org>
-Date: Thu, 20 Jun 2024 16:35:16 +0200
+	s=k20201202; t=1718894345;
+	bh=05/RUrOTznOicbhTxGt3jINlULbNja3R+ibYExoycxY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S0QTwX57+Ly3xbKN+gWS+0Jj1L7+hwOMgdXsLjDB2woFCb2QQ5O5MAjOA7zRSlxZ3
+	 hXRto68N50fvgVEXeLVXBkTVuHt7ypO/DKbAL5N7FTHwr8UlBZ+YF4m+4awIYnky8M
+	 837LPIwneH+N4N9wEi1HJTLBIvOM0JVdoOhuDz05VCyA++iaCm3uB8OeuV1FuVYbBg
+	 DBOfTQccappFpK0ov1jgaw8VCCdViW7ZvNXOHHklSW8V3hGvCYbz+zQOK7NvmLAsoX
+	 8G1x9ctTOcDKyngaUumZuJv0cVr4ib2hYl+qHVBHCkYOXRhY3o+BTZtLqCHvezrTCF
+	 AT0ucvskAZTpQ==
+Date: Thu, 20 Jun 2024 15:38:59 +0100
+From: Lee Jones <lee@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v4 0/6] Support ROHM BD96801 Scalable PMIC
+Message-ID: <20240620143859.GM3029315@google.com>
+References: <cover.1718356964.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [GIT PULL] Immutable tag between the Bluetooth and pwrseq
- branches for v6.11-rc1
-To: patchwork-bot+bluetooth@kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
- luiz.dentz@gmail.com
-Cc: marcel@holtmann.org, krzk+dt@kernel.org, linux-bluetooth@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, bartosz.golaszewski@linaro.org
-References: <20240612075829.18241-1-brgl@bgdev.pl>
- <171889385052.4585.15983645082672209436.git-patchwork-notify@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <171889385052.4585.15983645082672209436.git-patchwork-notify@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1718356964.git.mazziesaccount@gmail.com>
 
-On 20/06/2024 16:30, patchwork-bot+bluetooth@kernel.org wrote:
-> Hello:
+On Fri, 14 Jun 2024, Matti Vaittinen wrote:
+
+> Support ROHM BD96801 Scalable PMIC
 > 
-> This pull request was applied to bluetooth/bluetooth-next.git (master)
-> by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+> The ROHM BD96801 is automotive grade PMIC, intended to be usable in
+> multiple solutions. The BD96801 can be used as a stand-alone, or together
+> with separate 'companion PMICs'. This modular approach aims to make this
+> PMIC suitable for various use-cases.
 > 
-> On Wed, 12 Jun 2024 09:58:29 +0200 you wrote:
->> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>
->> Hi Marcel, Luiz,
->>
->> Please pull the following power sequencing changes into the Bluetooth tree
->> before applying the hci_qca patches I sent separately.
->>
->> [...]
+> This series brings only limited support. The more complete set of
+> features was sent in the RFC:
+> https://lore.kernel.org/lkml/cover.1712058690.git.mazziesaccount@gmail.com/
 > 
-> Here is the summary with links:
->   - [GIT,PULL] Immutable tag between the Bluetooth and pwrseq branches for v6.11-rc1
->     https://git.kernel.org/bluetooth/bluetooth-next/c/4c318a2187f8
+> The v3: implemented also support for ERRB interrupt and setting a name
+> suffix to IRQ domains. That work was postponed and will be continued
+> after some unrelated changes to irqdomain code are completed as
+> discussed here:
+> https://lore.kernel.org/all/87plst28yk.ffs@tglx/
+> 
+> Revision history still tries to summarize changes from the RFC for the
+> reviewers.
+> 
+> Revision history:
+> v3 => v4:
+>  - Drop patches 7 to 10 (inclusive) until preparatory irqdomain changes
+>    are done.
+>  - Cleanups as suggested by Lee.
+> 	- Change the regulator subdevice name. (MFD and regulators).
+> 	- Minor styling in MFD driver
+> 
+> v2 => v3: Mostly based on feedback from Thomas Gleixner
+> 	- Added acks from Krzysztof and Mark
+> 	- Rebased on v6.10-rc2
+> 	- Drop name suffix support for legacy IRQ domains (both
+> 	  irqdomain and regmap)
+> 	- Improve the commit message for patch 7/10
+> 
+> v1 => v2:
+> 	- Add support for setting a name suffix for fwnode backed IRQ domains.
+> 	- Add support for setting a domain name suffix for regmap-IRQ.
+> 	- Add handling of ERRB IRQs.
+> 	- Small fixes based on feedback.
+> 
+> RFCv2 => v1:
+> 	- Drop ERRB IRQ from drivers (but not DT bindings).
+> 	- Drop configuration which requires STBY - state.
+> 	- Fix the register lock race by moving it from the regulator
+> 	  driver to the MFD driver.
+> 
+> RFCv1 => RFCv2:
+> 	- Tidying code based on feedback form Krzysztof Kozlowski and
+> 	  Lee Jones.
+> 	- Documented undocumented watchdog related DT properties.
+> 	- Added usage of the watchdog IRQ.
+> 	- Use irq_domain_update_bus_token() to work-around debugFS name
+> 	  collision for IRQ domains.
+> 
+> ---
+> 
+> 
+> Matti Vaittinen (6):
+>   dt-bindings: ROHM BD96801 PMIC regulators
+>   dt-bindings: mfd: bd96801 PMIC core
+>   mfd: support ROHM BD96801 PMIC core
+>   regulator: bd96801: ROHM BD96801 PMIC regulators
+>   watchdog: ROHM BD96801 PMIC WDG driver
+>   MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries
+> 
+>  .../bindings/mfd/rohm,bd96801-pmic.yaml       | 173 ++++
+>  .../regulator/rohm,bd96801-regulator.yaml     |  63 ++
+>  MAINTAINERS                                   |   4 +
+>  drivers/mfd/Kconfig                           |  13 +
+>  drivers/mfd/Makefile                          |   1 +
+>  drivers/mfd/rohm-bd96801.c                    | 273 ++++++
+>  drivers/regulator/Kconfig                     |  12 +
+>  drivers/regulator/Makefile                    |   2 +
+>  drivers/regulator/bd96801-regulator.c         | 908 ++++++++++++++++++
+>  drivers/watchdog/Kconfig                      |  13 +
+>  drivers/watchdog/Makefile                     |   1 +
+>  drivers/watchdog/bd96801_wdt.c                | 416 ++++++++
+>  include/linux/mfd/rohm-bd96801.h              | 215 +++++
+>  include/linux/mfd/rohm-generic.h              |   1 +
+>  14 files changed, 2095 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml
+>  create mode 100644 drivers/mfd/rohm-bd96801.c
+>  create mode 100644 drivers/regulator/bd96801-regulator.c
+>  create mode 100644 drivers/watchdog/bd96801_wdt.c
+>  create mode 100644 include/linux/mfd/rohm-bd96801.h
 
+allmodconfig and allyesconfig builds fail with:
 
-Luiz,
+  make[5]: *** No rule to make target 'drivers/regulator/da903x.o', needed by 'drivers/regulator/built-in.a'.
+  make[5]: Target 'drivers/regulator/' not remade because of errors.
 
-This pulls looks wrong. Are you sure you have correct base? The diffstat
-suggests you are merging into rc2, not rc3. This will be confusing in
-merge commit. It is much safer, including possible feedback from Linus,
-if you use exactly the same base.
-
-Best regards,
-Krzysztof
-
+-- 
+Lee Jones [李琼斯]
 
