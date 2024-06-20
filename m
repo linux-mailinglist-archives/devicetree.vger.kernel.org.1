@@ -1,135 +1,149 @@
-Return-Path: <devicetree+bounces-78200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96470911695
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:15:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3985591169B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:15:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D4CD1F22CF6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 23:15:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBB7F28367C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 23:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403A0154BF7;
-	Thu, 20 Jun 2024 23:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E48155C84;
+	Thu, 20 Jun 2024 23:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KbGzKlsu"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="Ktu5iUuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 736E4143C58
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 23:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DE614B978
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 23:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718925228; cv=none; b=G4Ma79eIcCXklAoMkyRe91nPwqCxMAWNvd2zsU5HEkDz6qr6fuPcseKGvz2AddAoq/uCI1Bo8q83CrUq4aQV3fxZndCnAqJksDYQywaM0CeEKbJXQf2BkxEnvDt8aCD2VVaX3MWQmZi7bi55NKPqhpvU8JCeEDNdic2qL6dxY28=
+	t=1718925239; cv=none; b=kK4O/D11O4nZvu7soDhcBIWL3eUOJGcK9Ikuxlq/JfOYc6Q00z0jlUuVfwL+0uyhOxayXQUknxl4WJ7Y7DZh+NxFyB3q1L4aUWdgvhfDkrvHHk3Xyl3ewl0goJcyk625rZy4e1E8rxuUUOykV/3eQF7qv+YeuTFbfdc1AEiIhzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718925228; c=relaxed/simple;
-	bh=OnEU/sDI6L4n4GuKABhOjlofl7NLYJUjjb44iomKIdw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cOCHYxmegJ1zUODPdE0Z90E3yPgmv22aYfKx+NGBPhemaAfwKIq+098syyig8vaqKNsIXx2RvfqiDrbMJorsVbga1S300f+LTJE5hemqfUMUQM+xU5rRNHq3LG3hWshGDI824fyZrYJGleeBumdN0Ww0w17POVsg1AJWChDdtpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KbGzKlsu; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3d2472450d6so753903b6e.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 16:13:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718925224; x=1719530024; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zz8ynrGU4z42Aj9sdj4ptAZtRt0FzTqPDvedxGwGE2Y=;
-        b=KbGzKlsuFU1MfOfM+Ae5/YotqltjV0hy5HkjLHV/b5SHJ6gHDkITlmrmHo0NkylSKw
-         5uJWeA0epi6Ym+UhRcXiV/fEgsTTJnrwrJz/3/pEMBPKK9C9Ir1YVHoaP7lDO/OSG8i1
-         /1w98jnfKtR4buUC2EU9haxz2CGUKjqBT1JQa17PpWNZ7AnAttujMQpukXYOC6Rbxuz+
-         bi2EbPqojfU1LJ2613JCd/DkZOZ/A3aw6faqLgE54g6gdW6E4LOe1lZo9kJwupOau6Hd
-         gH5C2VCe3Kt9wdoG7M90nMBr1EHIKQ5DEm/7Xe6Fb1ZYk+ZCmhTt2vLzqpx3J2q47veK
-         P1YA==
+	s=arc-20240116; t=1718925239; c=relaxed/simple;
+	bh=moyy8bUxRmyLvQ1UUSv+zZxJA/z5qbOMYR9+oGPfK3A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KrAKrhFEIW5yyUy8c+efobqy5cwMHgkExtf4cI0T2jSlHXnux/FvibXIBeiTs4QGt7G6bnFqwVAWL40J/uT+s3SmEPvFpF2anB3/r1+AkLlgdWtANZj4dxHiWIL/2sU41tParFvSYTii79CaM+AFFtyKqnPtMy7fkWGQvER5V9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=Ktu5iUuB; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 76D653FE20
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 23:13:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1718925229;
+	bh=t0kBjJJclVeFv5sCLu7ZlbOalZQki6cx+luI1vzwY9Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=Ktu5iUuBKr0TvUOSXtqAvCaBi9Nu/kau9hRK8gu5ictjQ61kiWzy7/ZIFwRs4AJRJ
+	 ARjXaEQUfwF9mQ9+ilu/TwD8jajOwJW5r5kM/SYh5+AW7veeXMWr++XtkkUsWIgmvd
+	 ePXu97sCY94AAbRCPI+KCK/tcuNWv6qg+kSF8OsdNSOUdIfeLC77vOVB7q85Oz8At6
+	 sCbfW9YwBMIwFTGhqz4JE07IwG/oNSS17dktVg2rAZ7Td4xSwwVbHaYbSpzOHgOgG7
+	 5rwQgU4rtqRaCoUIOTStpcmbprg09ZuJ+1VhmkNcPdaX8lR5yzOxfk3hx5dKlcFR4Q
+	 pHXYjN9Md1dzg==
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-423034c6119so10082815e9.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 16:13:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718925224; x=1719530024;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zz8ynrGU4z42Aj9sdj4ptAZtRt0FzTqPDvedxGwGE2Y=;
-        b=YtM5DxiFVBRVTyRm5XJ43Bw8Do4X6F2FKnCXWqhaRWnKVB3DRyrdaIXpXbiI7MxV31
-         qzkMj9albWl2dzQm9rFfCHc9gfP782a3e+BaN0fASjDAGjV47grgT5fUTfkzE8zfb7Ux
-         Bl01zf/Qs5qEUJqdxEYPtXMCzxgpgLOnVLFF91ptKTwCuHP3VQZF1YJ/z0iEP9AIk1cQ
-         eNqgCr9/UZDQXvk6fLnjMLUsFEkALyM8XdOd9OhoOJyX/3Z1jtnIqF3yzfzY+FqHNevA
-         3saE/6lVsTlsNdDyRsQBVL7QiZe3/Eyg7G9m+b1IPoRG0AuwvR/vvodS71CB4I9GpRWA
-         /Unw==
-X-Forwarded-Encrypted: i=1; AJvYcCUwp0TDnBO5hZMsfwNfs9E6wTWp2rlQGbjJgDpCsCSJ5ntYm8VwUXASAlG9diSP5BYPFdYBb6fkZykAKWKDglSz34E9yDRchrpXsw==
-X-Gm-Message-State: AOJu0YyNepT9bi1V8m4hQGTyOhGDoDwI5OM++Ydvep/n0a3skxcfEk6L
-	auF4SDzPYZZPPaCH+GJoKthA8exKnDOohM242DPnfb47lVsHXpoDqwLEcURs0QA=
-X-Google-Smtp-Source: AGHT+IGMxuLpMKjIuYdJYrob79SDg2RZvql0ouDIgVaa+eFVMNZbWP3rPhPLCBOfG/l5X2eomxjBsA==
-X-Received: by 2002:a05:6808:300f:b0:3d2:2b8e:a7e2 with SMTP id 5614622812f47-3d51baf503fmr6570385b6e.48.1718925224517;
-        Thu, 20 Jun 2024 16:13:44 -0700 (PDT)
-Received: from localhost ([136.62.192.75])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3d5344de45bsm86185b6e.3.2024.06.20.16.13.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 16:13:44 -0700 (PDT)
-From: Sam Protsenko <semen.protsenko@linaro.org>
-To: =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] hwrng: exynos: Enable Exynos850 support
-Date: Thu, 20 Jun 2024 18:13:39 -0500
-Message-Id: <20240620231339.1574-7-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240620231339.1574-1-semen.protsenko@linaro.org>
-References: <20240620231339.1574-1-semen.protsenko@linaro.org>
+        d=1e100.net; s=20230601; t=1718925229; x=1719530029;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t0kBjJJclVeFv5sCLu7ZlbOalZQki6cx+luI1vzwY9Y=;
+        b=n0hYPC37dfBCkn8pWzCkxe2icnxpN+5roHwLt9/dW9rUYjsKDZ2dmjHnC8QMntzrlL
+         UTjwgF553rqOQahgZewdlRCOC+3jdTrNSe4wfJIzTX8DR6xtcbylfTG8OUmgYmzEPf8r
+         Fm05jszjzTjn8mk+x7Wzt4J63TR0ussavF2uoqI7P7iiLNX8XGFKsn4TtEG0WUbdxnKx
+         arKkuf5Yll/dt531voUKaOacJGg4A7XCGDeb31LXlYOiraLTeDJF9pVsogY4aA5o33KV
+         sYZSbic87Y+y23tnUC0hgpdJd5KilAj6OhSEqRZS/GlOB2JgzKcV9uQVwaRxKl/bbOkN
+         0dTg==
+X-Forwarded-Encrypted: i=1; AJvYcCXTg3MM4QhpQfUo/f4noqPgLh/jqy7mHRO5j4TeHqEZQoA2EIeSm0/ATgOcKHYyaRTLXkb+S9p9rUxr+NwQvDXN879SbSQgN/6UnA==
+X-Gm-Message-State: AOJu0YxbwW4VZuLuT9ND6SIZ0Cl/EmWDN7qzH+PITOTfz2YIHQavb6yd
+	oiHbJ2SwCYKagVLdKrVXHc9jsFV4vRUyCJ6q6CBfdcs3rrmYjQpu7kYLkXVFQmQ6bfeWG+NKIFp
+	MakCevBA9rhEdQvbntc5MEs0ehNsOu74sPJ+PzRGBu3ejbQUHdlXk13AcAb1PEqAzsjlFuxFk/p
+	U=
+X-Received: by 2002:a05:600c:5583:b0:422:720a:1bef with SMTP id 5b1f17b1804b1-42475184751mr47390975e9.24.1718925229086;
+        Thu, 20 Jun 2024 16:13:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE/szjKS05yNUuwLBXEoegmRaYcN/BTF+XSyE2bm4gfonOSPp8TsNZ8tNgl/4SdQCUw8GatIA==
+X-Received: by 2002:a05:600c:5583:b0:422:720a:1bef with SMTP id 5b1f17b1804b1-42475184751mr47390865e9.24.1718925228659;
+        Thu, 20 Jun 2024 16:13:48 -0700 (PDT)
+Received: from [192.168.123.161] (ip-178-202-041-025.um47.pools.vodafone-ip.de. [178.202.41.25])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4248179d3afsm7127015e9.5.2024.06.20.16.13.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 16:13:48 -0700 (PDT)
+Message-ID: <8ceef5c1-03b3-4468-96e3-d86db5434e82@canonical.com>
+Date: Fri, 21 Jun 2024 01:13:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] riscv: dts: starfive: enable heartbeat LED for Milk-V
+ Mars
+To: FUKAUMI Naoki <naoki@milkv.io>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, kernel@esmil.dk
+References: <20240613024827.36512-1-naoki@milkv.io>
+ <20240613024827.36512-2-naoki@milkv.io>
+Content-Language: en-US
+From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <20240613024827.36512-2-naoki@milkv.io>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add Exynos850 compatible and its driver data. It's only possible to
-access TRNG block via SMC calls in Exynos850, so specify that fact using
-EXYNOS_SMC flag in the driver data.
+On 6/13/24 04:48, FUKAUMI Naoki wrote:
+> Milk-V Mars has a green LED to show system load. This patch enables
+> a green LED as a heartbeat LED.
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@milkv.io>
+> ---
+>   arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+> index fa0eac78e0ba..4f4bbf64dbe4 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+> @@ -4,11 +4,24 @@
+>    */
+>   
+>   /dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+>   #include "jh7110-common.dtsi"
+>   
+>   / {
+>   	model = "Milk-V Mars";
+>   	compatible = "milkv,mars", "starfive,jh7110";
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			linux,default-trigger = "heartbeat";
+> +			function = LED_FUNCTION_HEARTBEAT;
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Łukasz Stelmach <l.stelmach@samsung.com>
----
-Changes in v3:
-  - Added R-b tag from Krzysztof
-  - Added A-b tag from Łukasz
+According to the schematics the StarFive VisionFive 2 board like the 
+Mars board has RGPIO3 connected to a green LED to display the power 
+status. Shouldn't we consider both boards?
 
-Changes in v2:
-  - Changed QUIRK_SMC to EXYNOS_SMC to reflect the name change in the
-    previous patch
+Best regards
 
- drivers/char/hw_random/exynos-trng.c | 3 +++
- 1 file changed, 3 insertions(+)
+Heinrich
 
-diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_random/exynos-trng.c
-index 9fa30583cc86..9f039fddaee3 100644
---- a/drivers/char/hw_random/exynos-trng.c
-+++ b/drivers/char/hw_random/exynos-trng.c
-@@ -320,6 +320,9 @@ static DEFINE_SIMPLE_DEV_PM_OPS(exynos_trng_pm_ops, exynos_trng_suspend,
- static const struct of_device_id exynos_trng_dt_match[] = {
- 	{
- 		.compatible = "samsung,exynos5250-trng",
-+	}, {
-+		.compatible = "samsung,exynos850-trng",
-+		.data = (void *)EXYNOS_SMC,
- 	},
- 	{ },
- };
--- 
-2.39.2
+> +		};
+> +	};
+>   };
+>   
+>   &gmac0 {
 
 
