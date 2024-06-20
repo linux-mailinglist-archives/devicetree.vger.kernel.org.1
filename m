@@ -1,172 +1,119 @@
-Return-Path: <devicetree+bounces-77939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A19D7910788
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:08:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8BAF9107A3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:11:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 391A9B2171B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:08:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 717282818F0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 14:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5C71AD4A3;
-	Thu, 20 Jun 2024 14:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933B81AD499;
+	Thu, 20 Jun 2024 14:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RsiO9sOV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ys2oz0Rs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2367E1AB91B;
-	Thu, 20 Jun 2024 14:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB8C4F211;
+	Thu, 20 Jun 2024 14:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718892499; cv=none; b=S/RhU8WxOB5QbWX6rzmDMLs8N9zf+k6gtloWUVEgqlBT/VzL433FOSRG8kq4CZ3Tu8ZlJGXPs1veRWcZh2u6ph6o8H7wQj9FSuBSEmY4FvYmeQzh1xPzii0ouiNP6Vr1VYxmKnPm72CtARFITKTx7wos2Ikvg2PNKEp6Q2POcBs=
+	t=1718892704; cv=none; b=tvhVUQWEICpk4I2IWBGK5FYp0gg76ljCSby7PEorr7fb9ernf8h1gty19ODxWzDF3al043cJDrZXhxs72Oz+wNQ0ZgXAXGwvJAXL+kdoAyZDVOI2IrBsfFC3azTQFfIopJ7nnIMpBHgTwhCtNDCpVKJ3fmjdFzTaPwuJzcbeGFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718892499; c=relaxed/simple;
-	bh=Obh1l7ctkuteMg1GKDKq263sZnU4xN5tzaYs6CgQKHg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PS3XpYoRTZcey/xoJEJVcgIClJy/S/lPD5AC2cR+A8axlNfGEWies/kjFnNYQr3L2Cll5Ro/GZ8J2Ma3jRfkYST4fHm2v3JudoFb7sOQyZ89aq8MBezUVftptZa1MttcQJhlnvrxSs1Huatlk92lWraRH/uJ3k9Qx9K0Ll29LIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RsiO9sOV; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718892494;
-	bh=Obh1l7ctkuteMg1GKDKq263sZnU4xN5tzaYs6CgQKHg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RsiO9sOVDN2eJ/YtpjsnzPKkWk4fizsnrP5t/sQf/8gyHJW3uWq66biHXkTCKAze0
-	 WR20iJ5rkAYZvv4ibNL+s5sGWvlzGBX/jVuLDeyEY828zUfg7kEagtD4JEdX/oIRDm
-	 E3b79qQBjd4GTdhcdGAh32u5ngJe8Q5LUUUuC7/m1Eri/wlUs1nUfh9SOP0HleBPLI
-	 R8L2xmpQ7+SxdOKryWI6RyIhZE2ZK5GvQ11pVcVzoxJhBJBYXEXchdNfPdUlLcbZAn
-	 JRtBLyBrnOVPw0JNp8OhPTu3loixPRB/9veXLSRpxhXShbEU5nurV9jfTQMirryWbv
-	 3kQO1zTY9c+Fg==
-Received: from arisu.localnet (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 835D037821C0;
-	Thu, 20 Jun 2024 14:08:10 +0000 (UTC)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: andy.yan@rock-chips.com, benjamin.gaignard@collabora.com,
- boris.brezillon@collabora.com, conor+dt@kernel.org,
- daniel.almeida@collabora.com, devicetree@vger.kernel.org,
- didi.debian@cknow.org, dsimic@manjaro.org, ezequiel@vanguardiasur.com.ar,
- gregkh@linuxfoundation.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
- jonas@kwiboo.se, knaerzche@gmail.com, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-staging@lists.linux.dev, mchehab@kernel.org,
- nicolas.dufresne@collabora.com, paul.kocialkowski@bootlin.com,
- robh@kernel.org, sebastian.reichel@collabora.com
-Subject: Re: [PATCH v2 2/4] media: rockchip: Introduce the rkvdec2 driver
-Date: Thu, 20 Jun 2024 10:07:41 -0400
-Message-ID: <2187039.irdbgypaU6@arisu>
-Organization: Collabora
-In-Reply-To: <20240619174623.270706-1-liujianfeng1994@gmail.com>
-References:
- <20240619150029.59730-3-detlev.casanova@collabora.com>
- <20240619174623.270706-1-liujianfeng1994@gmail.com>
+	s=arc-20240116; t=1718892704; c=relaxed/simple;
+	bh=UypyNJH/5Fw7YUZyk5xxbqlACwezSpBXOcNsj7LxJrw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=uDj88hXUzwHQxGKItl9bt7Ah/nGRI8TQkEtHuqVBTkkyMAkMTr/RBA8rAa/C1mGWCnyspdcdkppVWyUKJL7tzUCglogwSM+WdNu6+W1FbjTiD95gggdAdo6/ah5VOa57baHlQDEXKxG4Tyf5vIk8SUSx/a2ioaE7BPwufgU8QNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ys2oz0Rs; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a6fb341a7f2so119593066b.1;
+        Thu, 20 Jun 2024 07:11:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718892701; x=1719497501; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bLF9zl+L8Mm7lU4AoqgefyMRhZ+wS9MBIn1Wjck2JRM=;
+        b=Ys2oz0Rs9kMHKxxg8PP/AeVu25R60HtRaxp9wZAvfL62cYVor3anHUrjfDG17lofLz
+         /E86v9fZSHkd/mL3x4fx6mOnfGuzmUIEFfEoFfw0cfnZb9MEVayX9C0ydOwCTvyv+Hq9
+         J+I5zq0olbjPEuRXceRUuAg5A8TU1RzbojFDggPf49kkq+VwYi5Zm8/w8CXIq+Jalls+
+         hujGrGpdTP9KFdedwvmXVc+o1hiu/OfAVrGMCN2jQilXCNjd6GTz5V7NHrLr2Elcuibm
+         h/3QPbXDN66gP3RDprvAyoXbpaikLfIzmKocvzM9ysYd1LRhqImuPoPl9oe8dygZDjBL
+         QuTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718892701; x=1719497501;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bLF9zl+L8Mm7lU4AoqgefyMRhZ+wS9MBIn1Wjck2JRM=;
+        b=Q+YyfIVuI3dGu62DEtFhUOGqX5Qmo3VzN/Jev5DXNcJoRH18Y4iZj24Nzk4MTC3nh9
+         GOReGo71wH4ZlKDZfKtR9JbsX1WkGBz6aY2owZFCSVqkgiCFGDqh3YXeLlaQdrE1kjdo
+         t5iAqElUQ6tSYbce17iE9bW63z5R6c7WDyV9BSQPcMTAJWBDVsKmIaV0LNn0GvCTEADO
+         5G07bnkPC42LKjx0c9sXeXslULcb4XhLjYDqHnbDkJNStgRgN4c/LKdaZ/K5vjqSXb7r
+         cAxcrmNw+VKhdpTFRQ4/MuRBZbh0pMJGeo1ks66hYWDf+zJN+MCN1X6BnSFLls6oaQs2
+         SA/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWETHhnOZ53TezrAsQ3jsRHJOi+NT4DxG4bXSh6y8Di2EZPgE9kh3GCKx/bxMUIDqyjEJlp5RMUVh+5VwXUn0cQVoXur83TgMOPU2Cf7N0afBAJvn/EGmQUbwCyMZ90rG0qPlzqhsvatA==
+X-Gm-Message-State: AOJu0Yyj+QYDSZ+XDPk3eqCYwxZMXsWsKyItE5JXUStAztaFOF9Rfasl
+	QAETSsA9jYAPInNC1OU70rbxXMFw+qnmX8HbQVw7dTGM10x5uEeX
+X-Google-Smtp-Source: AGHT+IErRFRQRmLH+rlW+KU/hVUJABPZ3okIiiRohJA06n+XOlP+9KDc1vb5BXSzerQN3sk+791O5Q==
+X-Received: by 2002:a17:906:16ce:b0:a6f:cb3:55cc with SMTP id a640c23a62f3a-a6fab7d6d8emr320883866b.73.1718892701054;
+        Thu, 20 Jun 2024 07:11:41 -0700 (PDT)
+Received: from ?IPV6:2a02:a449:4071:1:32d0:42ff:fe10:6983? (2a02-a449-4071-1-32d0-42ff-fe10-6983.fixed6.kpn.net. [2a02:a449:4071:1:32d0:42ff:fe10:6983])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56db62e5sm767879266b.84.2024.06.20.07.11.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 07:11:40 -0700 (PDT)
+Message-ID: <aa79ff87-ea94-4f6d-a81b-5110724243f4@gmail.com>
+Date: Thu, 20 Jun 2024 16:11:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart13537518.uLZWGnKmhe";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
+User-Agent: Mozilla Thunderbird
+From: Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] ARM: dts: rockchip: enable hdmi_sound and i2s0 for mk808
+ hdmi
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---nextPart13537518.uLZWGnKmhe
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"; protected-headers="v1"
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Date: Thu, 20 Jun 2024 10:07:41 -0400
-Message-ID: <2187039.irdbgypaU6@arisu>
-Organization: Collabora
-In-Reply-To: <20240619174623.270706-1-liujianfeng1994@gmail.com>
-MIME-Version: 1.0
+Enable the hdmi_sound node and add i2s0 as sound source
+for mk808 hdmi.
 
-Hi Jianfeng,
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rockchip/rk3066a-mk808.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-On Wednesday, June 19, 2024 1:46:23 P.M. EDT Jianfeng Liu wrote:
-> Hi Detlev,
->=20
-> On Wed, 19 Jun 2024 10:57:19 -0400, Detlev Casanova wrote:
-> >+	if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY))
-> >+		height *=3D 2;
-> >+
-> >+	if (width > ctx->coded_fmt.fmt.pix_mp.width ||
-> >+	    height > ctx->coded_fmt.fmt.pix_mp.height)
-> >+		return -EINVAL;
->=20
-> I did further invesatigation on chromium. I find that before real video
-> is decoded, chromium will call VIDIOC_STREAMON twice with value of
-> sps->flags 0:
->=20
-> At the first time width and height are 16; ctx->coded_fmt.fmt.pix_mp.width
-> and coded_fmt.fmt.pix_mp.height are 16, which are the min size of decoder;
-> At the second time width and height are still 16; while
-> coded_fmt.fmt.pix_mp.width is 1920 and coded_fmt.fmt.pix_mp.height is
-> 1088, which are the real size of video.
->=20
-> So VIDIOC_STREAMON will fall at the first time call because sps->flags is
-> 0 so V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY is not set, and then height is
-> doubled to 32 which is larger than 16.
->=20
-> What do you think if we skip doubling height if sps->flags is 0 and at the
-> same time V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY is not set? The following hack
-> did fix my chromium:
->=20
-> --- a/drivers/staging/media/rkvdec2/rkvdec2-h264.c
-> +++ b/drivers/staging/media/rkvdec2/rkvdec2-h264.c
-> @@ -767,7 +767,7 @@ static int rkvdec2_h264_validate_sps(struct rkvdec2_c=
-tx
-> *ctx, * which is half the final height (see (7-18) in the
->          * specification)
->          */
-> -       if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY))
-> +       if (!(sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY) && sps->fla=
-gs)
-> height *=3D 2;
->=20
->         if (width > ctx->coded_fmt.fmt.pix_mp.width ||
+diff --git a/arch/arm/boot/dts/rockchip/rk3066a-mk808.dts b/arch/arm/boot/dts/rockchip/rk3066a-mk808.dts
+index 06790f05b395..4de9a45c4883 100644
+--- a/arch/arm/boot/dts/rockchip/rk3066a-mk808.dts
++++ b/arch/arm/boot/dts/rockchip/rk3066a-mk808.dts
+@@ -143,6 +143,14 @@ hdmi_out_con: endpoint {
+ 	};
+ };
 
-I'm not sure what Chromium is trying to do here. But the spec is clear that=
-=20
-height should be multiplied by 2 (That's actually 7-8, not 7-18):
-
-  FrameHeightInMbs =3D ( 2 =E2=80=93 frame_mbs_only_flag ) * PicHeightInMap=
-Units
-
-This feels like hacking the driver to please a specific userspace applicati=
-on,=20
-so I'd like to understand better what chromium is doing.
-
-Regards,
-Detlev.
-
---nextPart13537518.uLZWGnKmhe
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEEonF9IvGrXNkDg+CX5EFKUk4x7bYFAmZ0N60ACgkQ5EFKUk4x
-7bbkywgAtKkDH6nMcaU7/h9CiC9sAFMgb3R0h3425HDWWYCWzlR6H3SNvlNc1AOu
-8QBuQnqf/Q5FR8iYNfuTXiEDoCGfOVpxpKmUyh1gURZD5Ea5skFm0a7U6+HfmCr1
-CWzNfTOoqqxNbkJSGwesshEB9bRS/r+fjLulIPhBiItnVOnnDMrWmdgpwcJya5RH
-H6kOw/B3ENImQtlsbLhawoaULowVN832okdMrqC+/cRTenn+zOiRKlFYgBmJDm27
-3jNAQNSfj65NBKZWr8Bwsv74dOcntvjLDEUeAExEPhyDcnu0KKhiNceKqQohei5b
-E0Cylo58qmCvUjiEz2JjlAdG2CizfQ==
-=S3/z
------END PGP SIGNATURE-----
-
---nextPart13537518.uLZWGnKmhe--
-
-
++&hdmi_sound {
++	status = "okay";
++};
++
++&i2s0 {
++	status = "okay";
++};
++
+ &mmc0 {
+ 	bus-width = <4>;
+ 	cap-mmc-highspeed;
+--
+2.39.2
 
 
