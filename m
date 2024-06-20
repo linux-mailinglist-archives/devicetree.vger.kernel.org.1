@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-77814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163F59100BE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:48:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA83B9100C0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:48:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85A51283F53
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:48:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD3511C21DBC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:48:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48D21A8C0C;
-	Thu, 20 Jun 2024 09:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3814A1A8C3E;
+	Thu, 20 Jun 2024 09:48:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="P+V54A75"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="R07gqTv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB961A4F30
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 09:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84061A8C2F
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 09:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718876877; cv=none; b=Nvltdxja3R3GvQXpu3ugQ1kP8TmlgRoeLQecDwaPpwuNW4hllA0RVMc5plUC1czZreE/uXf0bhkee+bdO3UzCKPVg/oIBzajr+sjXAtAT+kqqAHG2rG9yb6H2s/otgs/1iHj4bnoi2lwMWYoqlWOkc+IXZiGJ7K3NSfYNIqEwl8=
+	t=1718876880; cv=none; b=DtJIxnkgl9udejl/rvZqXmiKvKVaeAwUGeBQUSWb9gPPEd/cvLFhshbqjWqyJ9cosf/Fuzq6DCtwpZLu411sblPkz7QLafqH9rVU3aHC5Hqhul3GxTix+DBW62NUNAQFNdsYwqdfs3a5s03uFxrzlRyXXJt4pwxXBlgaebSzJWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718876877; c=relaxed/simple;
-	bh=aZLSIBDUaaXuBxbbGEuyOwyTAI34NhUgnIpR75tQM7s=;
+	s=arc-20240116; t=1718876880; c=relaxed/simple;
+	bh=QY/fE1vMgobk6BJWDBwWQ56ykc1bAz6OcQGPar4E5Io=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OTxm+dBdHCkxS9B73Ylm3YrG5wB1mJtivL3/5eJenYXtOoMC+UjBLsbyna+OBciTJujGmJpRv6BzYLifOm/XRXyFdQYz7q/UZdr/ODrTZsfLDfT0qKAtguGyRoM/EbXmpkEkwUY2ilhOSROgFOkUIFfZ81ZUzKBFOixwZ8se9Yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=P+V54A75; arc=none smtp.client-ip=209.85.210.174
+	 MIME-Version; b=VnvaQOceliUmbKfGDDin2kns5UFeHv+Z6zrZuoyOCDlwYtq38K7Ml2eHyBgZO/UJ36hKPiV262BnPv8YeNarVLsPYIHY0r/fSF9BIQjIzyIJVUWhFYuNJ3qEnNbaNOrVQgjU+5Rl5Yc+EmxqKpeNWXpTQx8drfK7aDRFs6Sc2GY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=R07gqTv3; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7042a8ad9f5so1141382b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 02:47:56 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-705fff50de2so498734b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 02:47:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1718876876; x=1719481676; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1718876878; x=1719481678; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7KB2vnbw+59r77dIT1XqZt8Bq4nLOyd8kq/y1e23jiU=;
-        b=P+V54A75XlFLu7TfIQhnD0a62cDRFnefS9cVebez4bDIVqclJEsinlIqVBFeE1gvBi
-         XrEFs8ckDEnxh9JTZRa1Vqlo4TVNkPm66N+01yb8CHgw57x+4NxLYBIXB6wTyrhfGsH6
-         xh7lUhR0XAi7XdFGB4x/Ke82blIDLv8yA2nFg=
+        bh=m1iA/zvEiFStBDAQUtTcnVMjUIjY5Wwj1aHdUMEw364=;
+        b=R07gqTv3FbypFtcsjAm9ut7TeY1JRtKNHqhF1dF5W60HJhVWtEaL2qw1eLsW9CXDuK
+         LGVyPdmXTxuAvd+nf4RGNuQEyTo7kIftZ3OrXqmtHrkJBdv10JGFK584MR5q+OvAL5AI
+         QCaO6QjJnAacNx/bgoSgCyo9R3TihtenSD61o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718876876; x=1719481676;
+        d=1e100.net; s=20230601; t=1718876878; x=1719481678;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7KB2vnbw+59r77dIT1XqZt8Bq4nLOyd8kq/y1e23jiU=;
-        b=ioI+uU4EbGWh7I3fKryqUxbsdpO0adNdTrSaFKKqIylLH4hOlTYv45mERgB64K1mQH
-         jtDxX1qt5Hnp5PIAFjoJH8h/Yxg/q3P62wzlAUHxwZzJcOt7q15DzphtIC8mydEJG0O3
-         bjeOod5hqpiE1LWwfhn5wDRMNb6GSnSzQV5BgYm2dS5LrqXEgAPDRTUMNPfQuaRxc60k
-         ohd5g3sohgp9+qFdG3Oy8M65Djo8tqCc6NvZoD39SOCK1CGWZf6slFFgLngGKeDrQ1U0
-         r7Z5lFLY15lCY3K46zx9lHhFai3YxSikUBjzf7W1kFoZdbQWlK3W+oTiHW2MvsogZBC8
-         7dpw==
-X-Forwarded-Encrypted: i=1; AJvYcCXDmaucTDv1Zb7cCYMC0HFpTASHFnhtk1lStM+39PEsUkFhIG7Wto0XRq3biXJPdn8elPbesQeRQr9oLcRI6iXw2n3zOv7yeMRT1g==
-X-Gm-Message-State: AOJu0Yz88kTGcVLQo1Z/WROgkTNL1FlR6Plavvb+BhIH+N7LivgnxOSB
-	K9CQOkcVrtDmL9BUoNEROY7VYzDYB7cTHvcjts4/34AAJBXOE3MvGGorJ9jxZg==
-X-Google-Smtp-Source: AGHT+IHlxHx3IJjM2Bl6bnv0ofbMIfZvrxY8EfKGaCgMXMCFaU6DcjSHdYJKb67N3HSA7r0ZPxljnw==
-X-Received: by 2002:a17:90a:af8f:b0:2c8:62f:de2c with SMTP id 98e67ed59e1d1-2c8062fdf10mr170000a91.15.1718876875679;
-        Thu, 20 Jun 2024 02:47:55 -0700 (PDT)
+        bh=m1iA/zvEiFStBDAQUtTcnVMjUIjY5Wwj1aHdUMEw364=;
+        b=APhHNzxN7aLRjqngWoeLSJfAs9POqjL5Npt9kBi+yqDGt25jLgkwX9TApd2tfQ/4sr
+         7XP/GUz91aK3Lv1BSCuyFFmCSlYdZh86ArXPJc9iV0HuPJx4Q1Aeuk8KWzUuNb34rQv1
+         atpxhuoFVirNQtmhsakD8csJ6zNi1nRlrwcOponUhHImJuyXhiVd670rEewZlZ5JlPTA
+         z5wT9AhLlp5eHpd9wnOqdx9BZtGJn2Ow56m470ZaCFCz6fF7TXRicVjch/ZGlZb/qN08
+         tUeusEMt13Rf334YkyNwjXfvXao56dn2dZh6Ck+e/j220YFgJ9tIM+5XNhCV8gm6wOVH
+         +0Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbx5olDsW5xu+sDSQbMUwcuqE3Dt8YAZuhbTwPcz7JtiYinZ29FX+VbMtJPOlUW5bDtTCcsZ9kt57uAYH2osYbtoA+CTmrqI8sFQ==
+X-Gm-Message-State: AOJu0YzcM5nCyoSc7eKt84L2d7+cwzl+zdIx0OgdPc4mgut71M1t69iB
+	eyPWnuLSWsW/0p7Pxl7ik754icCMTE/rZyDjlVNxMZLkxA7vq0kI/Xe/uxsHww==
+X-Google-Smtp-Source: AGHT+IEbLm6UkzausNcxJ9iowsJM7AcH7c4cGUtul3KvHm8nPFGfqXBgRBs6sehTiRsxZ7Zo1TrDRQ==
+X-Received: by 2002:aa7:9ddc:0:b0:704:229e:54bd with SMTP id d2e1a72fcca58-70628fa93eamr6460287b3a.8.1718876878161;
+        Thu, 20 Jun 2024 02:47:58 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:c53a:5326:7f72:759f])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-70dbae52920sm4164469a12.42.2024.06.20.02.47.53
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-70dbae52920sm4164469a12.42.2024.06.20.02.47.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 02:47:55 -0700 (PDT)
+        Thu, 20 Jun 2024 02:47:57 -0700 (PDT)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -77,9 +77,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: regulator: mt6315: Document MT6319 PMIC
-Date: Thu, 20 Jun 2024 17:47:36 +0800
-Message-ID: <20240620094746.2404753-2-wenst@chromium.org>
+Subject: [PATCH 2/3] dt-bindings: arm: mediatek: Add MT8186 Voltorb Chromebooks
+Date: Thu, 20 Jun 2024 17:47:37 +0800
+Message-ID: <20240620094746.2404753-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.45.2.741.gdbec12cfda-goog
 In-Reply-To: <20240620094746.2404753-1-wenst@chromium.org>
 References: <20240620094746.2404753-1-wenst@chromium.org>
@@ -91,38 +91,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The MT6319 is a pin-compatible drop-in replacement for MT6315 with
-slightly better electrical characteristics.
-
-It's unclear whether there are any differences, since the downstream
-implementation doesn't describe the MT6319 separately. Neither does the
-implementation check chip IDs, even though those are available.
-
-Add a new compatible for the MT6319 just in case differences are
-discovered later and fall back to the MT6315 compatible.
+Add an entry for the MT8186 based Voltorb Chromebooks, also known as the
+Acer Chromebook 311 (C723/C723T). The device is a clamshell style laptop
+with an optional touchscreen.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- .../devicetree/bindings/regulator/mt6315-regulator.yaml     | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
-index 6317daf76d1f..cd4aa27218a1 100644
---- a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
-@@ -16,7 +16,11 @@ description: |
- 
- properties:
-   compatible:
--    const: mediatek,mt6315-regulator
-+    oneOf:
-+      - items:
-+          - const: mediatek,mt6319-regulator
-+          - const: mediatek,mt6315-regulator
-+      - const: mediatek,mt6315-regulator
- 
-   reg:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index b1b09db0bd65..e7746afeb0b3 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -301,6 +301,13 @@ properties:
+           - const: google,tentacruel-sku327683
+           - const: google,tentacruel
+           - const: mediatek,mt8186
++      - description: Google Voltorb (Acer Chromebook 311 C723/C732T)
++        items:
++          - enum:
++              - google,voltorb-sku589824
++              - google,voltorb-sku589825
++          - const: google,voltorb
++          - const: mediatek,mt8186
+       - items:
+           - enum:
+               - mediatek,mt8186-evb
 -- 
 2.45.2.741.gdbec12cfda-goog
 
