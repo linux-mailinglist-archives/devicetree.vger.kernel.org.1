@@ -1,183 +1,129 @@
-Return-Path: <devicetree+bounces-77818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B5E9100F8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:00:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1783291011F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 12:07:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 064A41F2242B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:00:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60689B22644
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 10:07:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F72E1A8C05;
-	Thu, 20 Jun 2024 10:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h52Acn9m"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FFD1A8C08;
+	Thu, 20 Jun 2024 10:07:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42CF1A4F2D;
-	Thu, 20 Jun 2024 10:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44AEC2BAE2;
+	Thu, 20 Jun 2024 10:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718877603; cv=none; b=aYuQXv0fFDuvzREfccQTRt8LhRt4JqRHnGLPH9bLK9wvEAH52E6XED/QQoOUfda0opk1vfLXjnZQOIB3N6M/7mnUSfAkYN+h1MCrswJjpk/LmSKw0dPZYRvJ1Kds8sG+YxwPZ5wNNPzBkz0+H0LgXXUkiWhbsMfCglIZRm1N77A=
+	t=1718878037; cv=none; b=lR3r/iACNCOjN/SXzbG/Ms3SYkobFlLosACb1J4tgR4hAjKC8vv6PY4NA17blonBay9qTIBK4TZuMxe/z6wcSoGBYTaUvQgNnbxVsqxWkXSy0yv45+5NEMaK3RV5dj/yAg+1qSi9MYbmhaOJ9UtYuh3IOzHqbH1HPr/n3pc8Jtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718877603; c=relaxed/simple;
-	bh=/iZzAiTQ5UNxV0/HtKdwOhMREms4rHsGBjYD5hM252w=;
+	s=arc-20240116; t=1718878037; c=relaxed/simple;
+	bh=gtlJye50+OfffKjggbOEmtKNH45g/zjK6ZfJA8b8AdM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FjuZQkG8VgZZbjXXajW1279BtazYbBhntRbcRoEvnTML8F1ChUeXi6N6XeoaySWsgm4m3A2XK7YKsVNGjsLOuov45+r3q9kNYGWykVMHREktOpeKnda+jtbb9nspBRXTDlIkS7LCF3A1Ckyi6EiOa/Oj+WqG8akwWA4u6hegW3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h52Acn9m; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=CouKu1g2ujm8uzj3dxLEo4k+efqZoIn0K0mGx2+BH4Ng7NktVsy3arcBu9tIoQVo3iJ6x5c4Jet+xofKsLUJ8Q77iRwkGzx6IdBqARnvvGe2gqb3jHTj3TsClZHFbZaag6KnDnNlJA7coGXa5ZdA2VT/7Iruk9LYeXPVMyKzdiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e02bda4aba3so702959276.3;
-        Thu, 20 Jun 2024 03:00:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718877601; x=1719482401; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/iZzAiTQ5UNxV0/HtKdwOhMREms4rHsGBjYD5hM252w=;
-        b=h52Acn9mwzjaU7kooJFt10M1SNBBKkndEx68W13FJ+6Sj6nx3ZeXtUyknIzN0cVYdA
-         7xvRK3cQE6uDe2mvYeNx3wYtiOdlrC7tnOnAZ4m3oFu+2ekVtmXAZW5VRj4HMel+7IB6
-         M7M5kmFzCRWZS4f/QLpBK1Cd3wJjkLJrSBygAQb+U+vjCmFTYC4JwaksOJ4nz/lI/AnO
-         40ntvL6R50PkuqpBENNKn1YU564KEtPy6Fdjqx/6UJhUuPI/ZdPZiC1u4hBpmlXSZlMF
-         bYw0kpA42FgubIj0dNeT+Z2iZOa/IkIZo2RdV4mmiRYtTAmyYuyMaoui4lJQ3FXNk5vO
-         fglQ==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ebec2f11b7so7082151fa.2;
+        Thu, 20 Jun 2024 03:07:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718877601; x=1719482401;
+        d=1e100.net; s=20230601; t=1718878031; x=1719482831;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/iZzAiTQ5UNxV0/HtKdwOhMREms4rHsGBjYD5hM252w=;
-        b=UadjrwNNCTDoOVZXPbQdP4lSAOWfX2y3DOy7FWLtLJLcHN2WdAve1/CvWX5q1x8GQI
-         aEY3W5zsUXkDYPtVFIYwUD+ruuCl/LQxZhmvjCBRvGIHXQVzz5nC1NJy/bw5hJPWGwBZ
-         2efR/PdIKsQEp7buaTKRs8A+CCOm3I/j6mu5i1UqnUgrxZ5Osn0fJJl7y4g8y+19jwpJ
-         tzUJQ6HqTpkRAdK5xF+WVwHHy7WGS5hVa/einOkWZlqRFTFgMwIIq+mthnMkeRsVqXnC
-         WpLvgTSgvHqDfKikswG6T4WpeSIh6lDyQI/MUciwoIpbWgHBbLLUcyQpWh2b7LghcmV2
-         vRWw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVWdjfsrp4wLoVn/SCih11E7ljtMap3Ic7pmJLWdCHPQgK1ElPa148Y6CJXiWRY22FdPzXHIJ4Bjd5mAht4TiZgk0NkTi+TJZuqGXQOozt3mwmi/0aLDqkMIQsf6GDXNUBmNGF9TmJwHqz+HtlX5ccBaF4lZ4g2SmxlWJ5LtUc/sErRFBrZpbLFueJwtI4/JIxGexykJgk4/cqF8xiTUPE/F6RJRvo
-X-Gm-Message-State: AOJu0YyfR0nwNwJmy9QuzhCAjSnf15xlV2UghoEeYlLuFMRbL65J+c7A
-	bzlzPfvDwPBeKDkigRdDeo5JRBEO6Biw83TLd88V2o0m7sUI9/C0eeMFMtBLlxRQ9qyuPXGeru0
-	zCyvUbDo9FLySdK3UWn4wz1C5Now=
-X-Google-Smtp-Source: AGHT+IE/souHVrwkNI4H0SszQxPS242fjmLmxDj1CUeCpa2GYkt+I5sMR/FDRRdD3aYX9PRPh+0ikGTF07PKZIxciXM=
-X-Received: by 2002:a25:dc51:0:b0:dff:2bae:a0f7 with SMTP id
- 3f1490d57ef6-e02be20b9c1mr4819358276.47.1718877600660; Thu, 20 Jun 2024
- 03:00:00 -0700 (PDT)
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ir1hVcg7ykDi/DMYCtyM630+t+MR02LhBXB13vEhoEE=;
+        b=HWadjFrxdhidJf581/KHMFU37LIsrX/0ubkpYymrRmBLj4wvzBfCyuIDqGI1wgy2at
+         lu2s7oSKpDIKTJqNq8o3gG8UPs7PM71+pmuwq0jfoA/Vgkk3Kt7e0zWNAXmQLIxtbFi1
+         3H2FduzYdwH6eBDR74xWTKptMj4swB/C6F1upRRsQ/ApHdbj99mm5Oy2MaAxNaI/DBZH
+         SSBb5cqMd5ocSR0mRozDOXTxACdRnXXB7+ZBWhpXGXEa3HZudfulFoJ8MVNV0TcZR/pD
+         MUI3aON2EyjPi8/1GDP/BL6ngWojhlZ6Wm1BKzdGdNR7aKH8PBvdgQbtotdmTQE4X3Be
+         zdJA==
+X-Forwarded-Encrypted: i=1; AJvYcCXBwQTfodVpvWU6iyiDoUuuOs4DUjzm3WdganSnOWuCffmy6nbG746MFLoCFgrohnDsC+9FS7wc6WdXWbSWQcve7et7Xo91xJpsKCxUQ+vo5MvfiQqLHRIm3UeWZG3+XTCF78QcgAIkacCLGLcbenwmkOFQOOspILe8xm0twQIGhNN+IuQ2TEdynnidcYYnfgH3orSqwJ4JhOUxLKxUpHNKr+3xkg==
+X-Gm-Message-State: AOJu0YzHuMg6bjZSMyCboPguWpo1q8YJywLVBDZWaOPGMbImsjayt59F
+	64S7Exb4E4njmx/6aChQsOtyd9i+dZlxnlj9ajqxU4hYyuNVbQRvpXhyUQHp
+X-Google-Smtp-Source: AGHT+IHyWFHFPL26B3ZfZfKkuSgAC6BXeGhWLtLKr8pp33zaKyC/TKmg3uHEqLkwMS/Udx+d/1ifcg==
+X-Received: by 2002:a2e:9046:0:b0:2ec:4211:e9dc with SMTP id 38308e7fff4ca-2ec4211ea8emr18468281fa.0.1718878030548;
+        Thu, 20 Jun 2024 03:07:10 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec45542b7asm1646711fa.29.2024.06.20.03.07.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 03:07:09 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so7112321fa.3;
+        Thu, 20 Jun 2024 03:07:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW78aCKfgTlp1XJ8AAfi3OCmf7iWDyNIzaVVwSPDqGymV6qvtsfZan1oiVMAz+/QWOQx0sp7mWbqcUiaNRw5QZ3DgyiUZ/BmoJRgfNjmkWH2cGiQKIICPA7MtnY3kzVzaT2EW+HT81SRjqVFg4KQC5952bLNVq3N/cZnppt11HL/bGl++FAXmfbPkI6Q2LIYzxDjk4pgcQ5H7bYi9qJYuYWkzOqfg==
+X-Received: by 2002:a05:651c:90:b0:2eb:f8d1:87d9 with SMTP id
+ 38308e7fff4ca-2ec3cecca82mr30693691fa.31.1718878028507; Thu, 20 Jun 2024
+ 03:07:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613091721.525266-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240613091721.525266-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <prdvmtsp35yy2naohivbrya3go6vh5ji2cdjoebw3ovditcujo@bhck6tca6mhj>
- <CA+V-a8u6KAFp1pox+emszjCHqvNRYrkOPpsv5XBdkAVJQMxjmA@mail.gmail.com>
- <o7tswznmyk6gxoqfqvbvzxdndvf5ggkyc54nwafypquxjlvdrv@3ncwl5i5wyy3>
- <TY3PR01MB113467E6EF1CFC24154AF73E986C82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8s-fCtQ8GKVh_REkPO81v0oCKPGiLJ5aiJOVdVUbvbCzA@mail.gmail.com> <TY3PR01MB1134652A77AFEED63DDEF034886C82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB1134652A77AFEED63DDEF034886C82@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 20 Jun 2024 10:59:18 +0100
-Message-ID: <CA+V-a8thqzvbPf53UnjejN4xO4miXShs5NeHJnsrvngmTUXnUw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Conor Dooley <conor+dt@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240619-xtheadvector-v3-0-bff39eb9668e@rivosinc.com> <20240619-xtheadvector-v3-3-bff39eb9668e@rivosinc.com>
+In-Reply-To: <20240619-xtheadvector-v3-3-bff39eb9668e@rivosinc.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 20 Jun 2024 18:06:56 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64ZuLhnZn4G_Zbqqosh46Fh57WtXCcCFkwMA2phtLzq1g@mail.gmail.com>
+Message-ID: <CAGb2v64ZuLhnZn4G_Zbqqosh46Fh57WtXCcCFkwMA2phtLzq1g@mail.gmail.com>
+Subject: Re: [PATCH v3 03/13] riscv: dts: allwinner: Add xtheadvector to the
+ D1/D1s devicetree
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jisheng Zhang <jszhang@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, Andy Chiu <andy.chiu@sifive.com>, 
+	Jessica Clarke <jrtc27@jrtc27.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
-
-On Thu, Jun 20, 2024 at 10:49=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.c=
+On Thu, Jun 20, 2024 at 7:57=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.c=
 om> wrote:
 >
-> Hi Prabhakar,
+> The D1/D1s SoCs support xtheadvector so it can be included in the
+> devicetree. Also include vlenb for the cpu.
 >
-> > -----Original Message-----
-> > From: Lad, Prabhakar <prabhakar.csengg@gmail.com>
-> > Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V=
-2H(P) SoC
-> >
-> > Hi Biju,
-> >
-> > On Thu, Jun 20, 2024 at 10:30=E2=80=AFAM Biju Das <biju.das.jz@bp.renes=
-as.com> wrote:
-> > >
-> > > Hi Wolfram, Prabhakar,
-> > >
-> > > > -----Original Message-----
-> > > > From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > > > Sent: Thursday, June 20, 2024 8:40 AM
-> > > > Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for
-> > > > RZ/V2H(P) SoC
-> > > >
-> > > > Hi Prabhakar,
-> > > >
-> > > > > I did give it a try with platform_driver_probe() and failed.
-> > > >
-> > > > Ok, thanks for trying nonetheless!
-> > > >
-> > > > > - Firstly I had to move the regulator node outside the SDHI node
-> > > > > for
-> > > > > platform_driver_probe() to succeed or else it failed with -ENODEV
-> > > > > (at
-> > > > > https://elixir.bootlin.com/linux/latest/source/drivers/base/platf=
-o
-> > > > > rm.c
-> > > > > #L953)
-> > > >
-> > > > This makes sense to me because it is just a "regular" regulator.
-> > > >
-> > > > > - In Renesas SoCs we have multiple instances of SDHI, the problem
-> > > > > being for each instance we are calling platform_driver_probe().
-> > > > > Which causes a problem as the regulator node will use the first d=
-evice.
-> > > >
-> > > > I see... we would need a reg property to differentiate between the
-> > > > internal regulators but that is already used by the parent SDHI nod=
-e.
-> > > >
-> > > > Okay, so let's scrap that idea. However, we need to ensure that we
-> > > > can still have an external regulator. Seeing the bindings, it looks
-> > > > like you enable the internal regulator with the "vqmmc- r9a09g057-r=
-egulator"
-> > > > property? I wonder now if we can simplify this to an
-> > > > "use-internal-regulator" property because we have 'compatible' alre=
-ady to differentiate? Needs
-> > advice from DT maintainers, probably.
-> > >
-> > > Why this cannot be modelled as a regular "regulator" as a child devic=
-e of SDHI device?
-> > >
-> > The current implementation does implement the regulator as a child devi=
-ce of the sdhi node [0]
-> > itself.
-> >
-> > Wolfram was suggesting to have the regulator outside and use platform_d=
-river_probe(), which caused
-> > an issue as mentioned above.
->
-> You, mean standalone node with a device compatible for each SDHI device n=
-odes(Assuming 3 sdhi devices)?
->
-Yep.
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> 3 SDHI devices nodes(stand alone) + 3 regulator device nodes (stand alone=
-) ?
->
-This one (since as per the HW we have three SDHI instances and 3
-internal regulators) so we need to describe the same in DT.
+Acked-by: Chen-Yu Tsai <wens@csie.org>
 
-Cheers,
-Prabhakar
+If the RISC-V maintainers want to take the whole series.
+
+> ---
+>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/b=
+oot/dts/allwinner/sun20i-d1s.dtsi
+> index 64c3c2e6cbe0..6367112e614a 100644
+> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> @@ -27,7 +27,8 @@ cpu0: cpu@0 {
+>                         riscv,isa =3D "rv64imafdc";
+>                         riscv,isa-base =3D "rv64i";
+>                         riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> -                                              "zifencei", "zihpm";
+> +                                              "zifencei", "zihpm", "xthe=
+advector";
+> +                       thead,vlenb =3D <128>;
+>                         #cooling-cells =3D <2>;
+>
+>                         cpu0_intc: interrupt-controller {
+>
+> --
+> 2.34.1
+>
 
