@@ -1,213 +1,417 @@
-Return-Path: <devicetree+bounces-77926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84DBA9106A3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 699A89106B2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 15:49:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 887231C21414
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:46:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8124A1C21141
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 13:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390FC1AD40B;
-	Thu, 20 Jun 2024 13:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83AA1AD407;
+	Thu, 20 Jun 2024 13:49:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="pfFi5h+H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B2mEuSe9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1C51A3BD3;
-	Thu, 20 Jun 2024 13:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC331ACE96
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 13:49:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718891176; cv=none; b=WEcb4eF3eoGz9r+MMnJ1kPQpcMjJG8wZbV2E/TR/hUlF27ZUzGuHBA7VZ6UqqJtqv4qYypeWayt9gSQYZKR199DEJGbUyLKDR6JRByr4L1xkk7RGq9mNI1QjPpj43FQB3F7VFAZ8ngm+WTtAZur/KxNOK1nTD2RkjUcU4g4awAM=
+	t=1718891369; cv=none; b=qg+Bm5o5timZ8UBR1VXVbWBJhh3Jy9cFPGq7VFIQcUVPr+j40MhI2dy9ryGmmnwIVtsH4fxgXu9D6cnPF1G9BK6Wfvu9ELUNak3R1YytREcMeymulELfSQHiCVKOmzhrRtsJdQCd8nRVHCuycVMLSMv87t8vFaXHw73of4i5zjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718891176; c=relaxed/simple;
-	bh=dJnp2EW+2R3q8xyoX0QitfjOP8taMkV4+hsyCujZ1e8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:Message-ID:MIME-Version:
-	 Content-Type:References; b=HNSGxjIcFjZZVlikoV47FJQgRduB0DrRBVl7ZfcBh8ZSzi7qJa/msfKDMiO/Z3mtz1K2LvFeNe/YgFeZbuJ57b2Vs3g5ZtV0p6FaqiONa8p0aLsC/ryYb2x8CNeJ54trAdAeu7lU0OxsWSG5jobWS79yX0fNnix91sJnKqlGX1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=pfFi5h+H; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240620134611euoutp02a96cd9ca107e37de619283a51f669cae~aumm3LN8t2421724217euoutp02B;
-	Thu, 20 Jun 2024 13:46:10 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240620134611euoutp02a96cd9ca107e37de619283a51f669cae~aumm3LN8t2421724217euoutp02B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1718891171;
-	bh=iFqp3Vmg2kXZw5nz0hjIfH1Vkk6Dw440kokEiE+YTgA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pfFi5h+H8lPp007wsRqpVpZNLS5nLEMCmpdUAME44CgSbKH9/QtZXkJlFLIPUqU27
-	 fzMFL4P/MJyv9BkFP+rGX07Citxen2F4/63K3Zqq1dPcsd4/wXOsfofmnAJ2Ez5sxL
-	 eXR5Kv9RbPSXgeXtkkuoF/hWYvXT+bzb5DJ2EDM0=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20240620134610eucas1p26751fca5e1265a5eb54a3aad17522d62~aummjdKZ83240632406eucas1p2R;
-	Thu, 20 Jun 2024 13:46:10 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id A8.E4.09620.2A234766; Thu, 20
-	Jun 2024 14:46:10 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240620134610eucas1p2fbcd7218bc220bf568ea117acf2f4781~aummJRJA03240632406eucas1p2P;
-	Thu, 20 Jun 2024 13:46:10 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240620134610eusmtrp10775d1c759a9d9dc121cf4e65390464b~aummIap1-0536305363eusmtrp1V;
-	Thu, 20 Jun 2024 13:46:10 +0000 (GMT)
-X-AuditID: cbfec7f5-d31ff70000002594-53-667432a2088e
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 85.35.09010.2A234766; Thu, 20
-	Jun 2024 14:46:10 +0100 (BST)
-Received: from localhost (unknown [106.120.51.111]) by eusmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240620134609eusmtip229d220fbda7a358d93723c417de4002e~auml6JyNF2776327763eusmtip2Q;
-	Thu, 20 Jun 2024 13:46:09 +0000 (GMT)
-From: Lukasz Stelmach <l.stelmach@samsung.com>
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,  Rob Herring
-	<robh@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Anand Moon
-	<linux.amoon@gmail.com>,  Olivia Mackall <olivia@selenic.com>,  Herbert Xu
-	<herbert@gondor.apana.org.au>,  Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,  linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/7] hwrng: exynos: Add SMC based TRNG operation
-Date: Thu, 20 Jun 2024 15:46:02 +0200
-In-Reply-To: <20240618204523.9563-6-semen.protsenko@linaro.org> (Sam
-	Protsenko's message of "Tue, 18 Jun 2024 15:45:21 -0500")
-Message-ID: <oypijdbk3vu3qd.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1718891369; c=relaxed/simple;
+	bh=o32N+eytD2zL0y4gsfGboQLUMFeo8g9DH2cWeaKHgbE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bZ2A4CssuuF1KD9bpYoh+JdJfvr74tf/iADdfhX21p/rtNTJJM0gFZuxaz+M4WkihX9ytQmnzldqefaKF22xknpNR/Lj09IQ95DlVNBDnDsj6jR6IQbB3O1i3wbMxGIPPld2ovOdrFmdsJzL5WLxtKPwQZqepKOvJJ8yY7ZmL84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B2mEuSe9; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a6f8ebbd268so337081366b.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 06:49:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718891366; x=1719496166; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RHokNqWDcZyjkEYXD8HUJkvq4qXFJ0UCeMUkTUv94RQ=;
+        b=B2mEuSe9Lf4jSVCQp/PnlC0GjoBWk5Lu0UkYyApEG1cvKF1cw98gMKT2BHGRLesJVT
+         WQaUBS/+dlM5Sj3bwFNPK+UozEKuAYUulUJmGdkYBPRthAmfz5kod+3e3XKiE3fsw0HF
+         AVdm3Wv9nG5/F0Il14bsYVim4o0E62kUG54+5GupVc0NJ2Q3/Rc31gq5+4OFonsKqsPQ
+         r735vbUkZS+1/Fu678VElFaz+ZDDwn55iYxOZkmEPaTGkfOHGBJQQQ/uvwpwu3GxdwdH
+         Q6CbwpMO0aXch5rKy6++CsCAe1iwhaWH8noblPXqkTs3XyTF0h4d6oauiLjodYY+NZf3
+         Qnow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718891366; x=1719496166;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RHokNqWDcZyjkEYXD8HUJkvq4qXFJ0UCeMUkTUv94RQ=;
+        b=wa8V8SOXHvnFRgj/u0rVthvON/8hh18QW1M+pqQgRq1eoq/ayLfdbLxH1ey4HFY2yU
+         2/rGM7ivUs8AZg5q+oaRr4XXxxZSOjpV03vM76T+BOLwP4xrAACRRgFLUKOATBGYdeo/
+         X52S3782jjPUI9ZbGzOkN/iIvoLbvNzCNAKsvcRUhUfHobHY+KHoJjqVMHmi3L6gm3dl
+         jKmWzXF8IwbmBBQJllP9aZXSJk0KCPuyH7pNObgyFc9kD5mwbemOvOG355PU8GTgUoMM
+         pu/IuCiAU0syXMJ5bQWtPAAh9iz9ym3bQQTaOmq2dbrO/MEcyuG9WhKEz5sHoJzdsjG6
+         CeNA==
+X-Forwarded-Encrypted: i=1; AJvYcCVKfyfpC+PWAm7PqdXLk0/DWHcQlNw9hRZcJNr/m8dd3JZ2oMy1fR6E4PAUwffIGPnipk8YwUqhdfqWEMazyVciBBMS+tXX2vK1OQ==
+X-Gm-Message-State: AOJu0Yz1xtYiuAx69FM1jjQ9s6TJ7zXkJehsZbxtDB+1CFTSJ2ku+9BW
+	SHALynyHrOb9W8xTlazKxZXa+gEWxjPDVrX1hqe2HwKYU8SKzpbfPzvKQZCfX10=
+X-Google-Smtp-Source: AGHT+IEdOMuoR76TY+TyOaDptGKznyVC6XlczNzpcVSNxmOWU8x6zKnfPGcpPPOBGZl3Rc/ELq8SAw==
+X-Received: by 2002:a17:907:8b98:b0:a6f:b6c3:fb2e with SMTP id a640c23a62f3a-a6fb6c41f0cmr275408166b.0.1718891365565;
+        Thu, 20 Jun 2024 06:49:25 -0700 (PDT)
+Received: from ?IPV6:2a02:8109:aa0d:be00::ebdd? ([2a02:8109:aa0d:be00::ebdd])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f788f46c6sm523513766b.23.2024.06.20.06.49.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 06:49:25 -0700 (PDT)
+Message-ID: <c71e1543-6957-4aa6-98fa-160b3bd29c78@linaro.org>
+Date: Thu, 20 Jun 2024 15:49:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-	protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrIKsWRmVeSWpSXmKPExsWy7djPc7qLjErSDHa/V7R4MG8bm8WaveeY
-	LOYfOcdq0f1KxuLlrHtsFpseX2O1uH/vJ5PF5V1z2CxmnN/HZLFu4y12i/tnehgt/u/ZwW7x
-	vG8fkwOvx85Zd9k9th1Q9di0qpPN4861PWwem5fUe/RtWcXo0fdyA6PH501yARxRXDYpqTmZ
-	ZalF+nYJXBmXp/xkLmgVq+i6s5K1gfGEUBcjJ4eEgInEpqdTmLoYuTiEBFYwSuy9cIURwvnC
-	KPF65jY2COczo8TatVsZYVr2H7wC1bKcUaKzaT4rSEJI4AWjxILNsl2MHBxsAnpADREgYREg
-	c93MV+wgNrPAPmaJTX8DQWxhAXeJiWdmMIPYLAKqEjufn2UGmckp0MAoceZ9GzPIHF4Bc4mJ
-	DdkgNaIClhLHt7azgdi8AoISJ2c+YYGYmSsx8/wbsKslBDZzSpw79Ikd4lAXiReP1kIdLSzx
-	6vgWqLiMxOnJPSwQDe2MEk1XFrJCOBMYJT53NDFBVFlL3Dn3iw3CdpR4+e4rE8hFEgJ8Ejfe
-	CkJs5pOYtG06M0SYV6KjDRqmKhLr+vewQNhSEr2vVkDd4CGx7O5ZaPBOYpRYuesv8wRGhVlI
-	HpqF5KFZQGOZBTQl1u/ShwhrSyxb+JoZwraVWLfuPcsCRtZVjOKppcW56anFxnmp5XrFibnF
-	pXnpesn5uZsYgSnv9L/jX3cwrnj1Ue8QIxMH4yFGFaDmRxtWX2CUYsnLz0tVEuF93lWUJsSb
-	klhZlVqUH19UmpNafIhRmoNFSZxXNUU+VUggPbEkNTs1tSC1CCbLxMEp1cC0rPql/MSjTPJr
-	731ZznVu5XTB9f/PzFi1VGLuRaOwrzNm25xk7S4WncX2I41pf2/qDKtAqeOZq3blXz74geml
-	+zTFJQvSpy7l1lJxru+Y42LTp/R4beEP9XWHVyl5Ltz0dl3Rdffj38TZ4rrtfL/GBysZBWnn
-	C9nkzJZb2dS7WCnuccDbhGkKpkeDedUfn//Soj49pOrMqfLoT212AovUo73M2mNMTbWfnnf6
-	5ZTxZcrHCM/0G6aOCcG/bAXWsL64N6Gk+I5m4x8ZnSkq2kcv/X9XafNk7vHlnVcn7blR3KYa
-	cGpx4O2OlfMOdnssO/hpT6CxwpEEg3UK/PzLlBTnbbRYpr9dPXOqqeSkY3KhSizFGYmGWsxF
-	xYkA6W9K/vQDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOIsWRmVeSWpSXmKPExsVy+t/xe7qLjErSDDZ2sFk8mLeNzWLN3nNM
-	FvOPnGO16H4lY/Fy1j02i02Pr7Fa3L/3k8ni8q45bBYzzu9jsli38Ra7xf0zPYwW//fsYLd4
-	3rePyYHXY+esu+we2w6oemxa1cnmcefaHjaPzUvqPfq2rGL06Hu5gdHj8ya5AI4oPZui/NKS
-	VIWM/OISW6VoQwsjPUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsEvYzLU34yF7SKVXTd
-	WcnawHhCqIuRk0NCwERi/8ErTCC2kMBSRonmFs8uRg6guJTEyrnpECXCEn+udbF1MXIBlTxj
-	lDhyrpcZpIZNQE9i7doIkBoRIHPdzFfsIDXMAgeZJS497gGbKSzgLjHxzAxmiPl2Egc/LWYD
-	sVkEVCV2Pj/LDNLAKdDAKHHmfRvYUF4Bc4mJDdkgNaIClhLHt7aD1fMKCEqcnPmEBcRmFsiW
-	+Lr6OfMERoFZSFKzkKRmAU1iFtCUWL9LHyKsLbFs4WtmCNtWYt269ywLGFlXMYqklhbnpucW
-	G+kVJ+YWl+al6yXn525iBMbqtmM/t+xgXPnqo94hRiYOxkOMKkCdjzasvsAoxZKXn5eqJML7
-	vKsoTYg3JbGyKrUoP76oNCe1+BCjKdBrE5mlRJPzgUkkryTe0MzA1NDEzNLA1NLMWEmc17Og
-	I1FIID2xJDU7NbUgtQimj4mDU6qByWjXoWv6/6yc2i32+Kvu7vqen5/Cxn/Mm7OI+4RP58Rn
-	grsVqq8EnrtQM/NUmVrA2WdXX6/fd8up+azD/JnB/3qlH1+fuF0oP/xqoUuXX7XnHOvL0qlN
-	NqVawcvsuYS3cT5y/xidmOddMeVNUEzV9fvtVzzm8QjOcfazv5+QP9GOed6D3Zkzqys8z6y8
-	xySatbCxcNriB5a3kpYlaXxmzjkTv39Nv9r54ns7G0RU9iR+jl37zusj5wTGqsd2U82vqq1/
-	dDj39ZTeCg0bpYLHL3qni/MFxS+TUHjLqxIm7OYl3yt+55Vh8LbDTxZcubyl/u9tI8m/Wtb/
-	NjSxrZxtn6TVfoHToCpG9szWcxseKrEUZyQaajEXFScCAE/S1AZqAwAA
-X-CMS-MailID: 20240620134610eucas1p2fbcd7218bc220bf568ea117acf2f4781
-X-Msg-Generator: CA
-X-RootMTR: 20240620134610eucas1p2fbcd7218bc220bf568ea117acf2f4781
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240620134610eucas1p2fbcd7218bc220bf568ea117acf2f4781
-References: <20240618204523.9563-6-semen.protsenko@linaro.org>
-	<CGME20240620134610eucas1p2fbcd7218bc220bf568ea117acf2f4781@eucas1p2.samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/4] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dmitry.baryshkov@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
+ <20240618072202.2516025-3-quic_tengfan@quicinc.com>
+ <44e24399-6efa-41ed-8871-12180dd03e10@linaro.org>
+ <c265d22e-c246-4c9f-b6ff-7a350468e28c@quicinc.com>
+Content-Language: en-US
+From: Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <c265d22e-c246-4c9f-b6ff-7a350468e28c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-It was <2024-06-18 wto 15:45>, when Sam Protsenko wrote:
-> On some Exynos chips like Exynos850 the access to Security Sub System
-> (SSS) registers is protected with TrustZone, and therefore only possible
-> from EL3 monitor software. The Linux kernel is running in EL1, so the
-> only way for the driver to obtain TRNG data is via SMC calls to EL3
-> monitor. Implement such SMC operation and use it when EXYNOS_SMC flag is
-> set in the corresponding chip driver data.
->
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Changes in v2:
->   - Used the "reversed Christmas tree" style in the variable declaration
->     block in exynos_trng_do_read_smc()
->   - Renamed .quirks to .flags in the driver structure
->   - Added Krzysztof's R-b tag
->
->  drivers/char/hw_random/exynos-trng.c | 133 +++++++++++++++++++++++++--
->  1 file changed, 123 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_rando=
-m/exynos-trng.c
-> index 99a0b271ffb7..497d6018c6ba 100644
-> --- a/drivers/char/hw_random/exynos-trng.c
-> +++ b/drivers/char/hw_random/exynos-trng.c
-> @@ -10,6 +10,7 @@
->   * Krzysztof Koz=C5=82owski <krzk@kernel.org>
->   */
 
-[...]
+On 20/06/2024 15:40, Tengfei Fan wrote:
+> 
+> 
+> On 6/18/2024 6:06 PM, Caleb Connolly wrote:
+>> HI Tengfei,
+>>
+>> On 18/06/2024 09:22, Tengfei Fan wrote:
+>>> QCS8550 is derived from SM8550. The difference between SM8550 and
+>>> QCS8550 is QCS8550 doesn't have modem RF system. QCS8550 is mainly used
+>>> in IoT products.
+>>> QCS8550 firmware has different memory map compared to SM8550.
+>>> The memory map will be runtime added through bootloader.
+>>> There are 3 types of reserved memory regions here:
+>>> 1. Firmware related regions which aren't shared with kernel.
+>>>      The device tree source in kernel doesn't need to have node to 
+>>> indicate
+>>> the firmware related reserved information. Bootloader converys the
+>>> information by updating devicetree at runtime.
+>>>      This will be described as: UEFI saves the physical address of the
+>>> UEFI System Table to dts file's chosen node. Kernel read this table and
+>>> add reserved memory regions to efi config table. Current reserved memory
+>>> region may have reserved region which was not yet used, release note of
+>>> the firmware have such kind of information.
+>>> 2. Firmware related memory regions which are shared with Kernel
+>>>      The device tree source in the kernel needs to include nodes that
+>>> indicate fimware-related shared information. A label name is suggested
+>>> because this type of shared information needs to be referenced by
+>>> specific drivers for handling purposes.
+>>>      Unlike previous platforms, QCS8550 boots using EFI and describes
+>>> most reserved regions in the ESRT memory map. As a result, reserved
+>>> memory regions which aren't relevant to the kernel(like the hypervisor
+>>> region) don't need to be described in DT.
+>>> 3. Remoteproc regions.
+>>>      Remoteproc regions will be reserved and then assigned to subsystem
+>>> firmware later.
+>>> Here is a reserved memory map for this platform:
+>>>   0x80000000 +-------------------+
+>>>              |                   |
+>>>              | Firmware Related  |
+>>>              |                   |
+>>>   0x8a800000 +-------------------+
+>>>              |                   |
+>>>              | Remoteproc Region |
+>>>              |                   |
+>>>   0xa7000000 +-------------------+
+>>>              |                   |
+>>>              | Kernel Available  |
+>>>              |                   |
+>>>   0xd4d00000 +-------------------+
+>>>              |                   |
+>>>              | Firmware Related  |
+>>>              |                   |
+>>> 0x100000000 +-------------------+
+>>>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/qcs8550.dtsi | 162 ++++++++++++++++++++++++++
+>>>   1 file changed, 162 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>> new file mode 100644
+>>> index 000000000000..07b314834d88
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>> @@ -0,0 +1,162 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All 
+>>> rights reserved.
+>>> + */
+>>> +
+>>> +#include "sm8550.dtsi"
+>>> +
+>>> +/delete-node/ &reserved_memory;
+>>> +
+>>> +/ {
+>>> +    reserved_memory: reserved-memory {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <2>;
+>>> +        ranges;
+>>> +
+>>> +
+>>> +        /* These are 3 types of reserved memory regions here:
+>>> +         * 1. Firmware related regions which aren't shared with kernel.
+>>> +         *     The device tree source in kernel doesn't need to have 
+>>> node to
+>>> +         * indicate the firmware related reserved information. 
+>>> Bootloader
+>>> +         * conveys the information by updating devicetree at runtime.
+>>> +         *     This will be described as: UEFI saves the physical 
+>>> address of
+>>> +         * the UEFI System Table to dts file's chosen node. Kernel 
+>>> read this
+>>> +         * table and add reserved memory regions to efi config 
+>>> table. Current
+>>> +         * reserved memory region may have reserved region which was 
+>>> not yet
+>>> +         * used, release note of the firmware have such kind of 
+>>> information.
+>>
+>> This is a lot of implementation detail about UEFI, I'd imagine that 
+>> anyone curious can go read the relevant docs instead. It's a lot of 
+>> words just to say "Firmware regions which the kernel doesn't need to 
+>> know about which are not included in the EFI provided memory map."
+> 
+> 
+> The following update will be applied to this point:
+> 
+> 1. Firmware related regions which aren't shared with kernel.
+>       Firmware regions which the kernel doesn't need to know about which 
+> are not included in the EFI provided memory map.
+> 
+> 
+>>> +         * 2. Firmware related memory regions which are shared with 
+>>> Kernel
+>>> +         *     The device tree source in the kernel needs to include 
+>>> nodes
+>>> +         * that indicate fimware-related shared information. A label 
+>>> name
+>>> +         * is suggested because this type of shared information 
+>>> needs to
+>>> +         * be referenced by specific drivers for handling purposes.
+>>
+>> "Firmware regions the kernel DOES need to know about, which are 
+>> described in the reserved-memory node".
+> 
+> The following update will be applied to this point:
+> 
+> 2. Firmware related memory regions which are shared with Kernel
+> 
+> Firmware regions the kernel does need to know about, which are described 
+> in the reserved-memory node.
+> 
+>>> +         *     Unlike previous platforms, QCS8550 boots using EFI 
+>>> and describes
+>>> +         * most reserved regions in the ESRT memory map. As a 
+>>> result, reserved
+>>> +         * memory regions which aren't relevant to the kernel(like 
+>>> the hypervisor
+>>> +         ( region) don't need to be described in DT.
+>>
+>> These would fall under (1) "firmware the kernel doesn't need to know 
+>> about"
+> 
+> This will be removed from its current position.
+> 
+>>> +         * 3. Remoteproc regions.
+>>> +         *     Remoteproc regions will be reserved and then assigned to
+>>> +         * subsystem firmware later.
+>>
+>> How do these differ from those described in (2)?
+> 
+> This point will do the following update:
+> 
+> 3. Remoteproc regions
+> 
+>     Remoteproc regions will be reserved and then assigned to subsystem 
+> firmware later.
+> 
+>     Remoteproc regions can be loaded either in a fixed form or in a 
+> relocatable form, depending on the platform.
+> 
+>>
+>> I think this comment is trying to describe too much at once. You're 
+>> trying to describe what the different types of reserved memory are, 
+>> how the kernel learns about them, and how this differs from previous 
+>> platforms all at once. I think you should tackle these points separately:
+>>
+>> First describe the types of reserved memory and how the kernel learns 
+>> about them (my suggestions above). Then describe the differences with 
+>> previous platforms (like the hypervisor example)
+>>
+>> Thanks and regards,
+> 
+> Your previous suggestion will be incorporated here as follows:
+> 
+> Unlike previous platforms, QCS8550 boots using EFI and describes most 
+> reserved regions in the ESRT memory map. As a result, reserved memory 
+> regions which aren't relevant to the kernel(like the hypervisor region) 
+> don't need to be described in DT.
+> 
+> Is it reasonable to place it here?
 
-> +static int exynos_trng_init_smc(struct hwrng *rng)
-> +{
-> +	struct arm_smccc_res res;
-> +
-> +	arm_smccc_smc(SMC_CMD_RANDOM, HWRNG_INIT, 0, 0, 0, 0, 0, 0, &res);
-> +	if (res.a0 !=3D HWRNG_RET_OK)
-> +		return -EIO;
-> +
-> +	return 0;
-> +}
-> +
+Thanks great, thanks a lot :)
+> 
+> Thanks!
+> 
+>>> +         * Here is a reserved memory map for this platform:
+>>> +         *  0x80000000 +-------------------+
+>>> +         *             |                   |
+>>> +         *             | Firmware Related  |
+>>> +         *             |                   |
+>>> +         *  0x8a800000 +-------------------+
+>>> +         *             |                   |
+>>> +         *             | Remoteproc Region |
+>>> +         *             |                   |
+>>> +         *  0xa7000000 +-------------------+
+>>> +         *             |                   |
+>>> +         *             | Kernel Available  |
+>>> +         *             |                   |
+>>> +         *  0xd4d00000 +-------------------+
+>>> +         *             |                   |
+>>> +         *             | Firmware Related  |
+>>> +         *             |                   |
+>>> +         * 0x100000000 +-------------------+
+>>> +         */
+>>> +
+>>> +        aop_image_mem: aop-image-region@81c00000 {
+>>> +            reg = <0x0 0x81c00000 0x0 0x60000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        aop_cmd_db_mem: aop-cmd-db-region@81c60000 {
+>>> +            compatible = "qcom,cmd-db";
+>>> +            reg = <0x0 0x81c60000 0x0 0x20000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        aop_config_mem: aop-config-region@81c80000 {
+>>> +            no-map;
+>>> +            reg = <0x0 0x81c80000 0x0 0x20000>;
+>>> +        };
+>>> +
+>>> +        smem_mem: smem-region@81d00000 {
+>>> +            compatible = "qcom,smem";
+>>> +            reg = <0x0 0x81d00000 0x0 0x200000>;
+>>> +            hwlocks = <&tcsr_mutex 3>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        adsp_mhi_mem: adsp-mhi-region@81f00000 {
+>>> +            reg = <0x0 0x81f00000 0x0 0x20000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        mpss_mem: mpss-region@8a800000 {
+>>> +            reg = <0x0 0x8a800000 0x0 0x10800000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        q6_mpss_dtb_mem: q6-mpss-dtb-region@9b000000 {
+>>> +            reg = <0x0 0x9b000000 0x0 0x80000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        ipa_fw_mem: ipa-fw-region@9b080000 {
+>>> +            reg = <0x0 0x9b080000 0x0 0x10000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        ipa_gsi_mem: ipa-gsi-region@9b090000 {
+>>> +            reg = <0x0 0x9b090000 0x0 0xa000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        gpu_micro_code_mem: gpu-micro-code-region@9b09a000 {
+>>> +            reg = <0x0 0x9b09a000 0x0 0x2000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        spss_region_mem: spss-region@9b100000 {
+>>> +            reg = <0x0 0x9b100000 0x0 0x180000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        spu_secure_shared_memory_mem: 
+>>> spu-secure-shared-memory-region@9b280000 {
+>>> +            reg = <0x0 0x9b280000 0x0 0x80000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        camera_mem: camera-region@9b300000 {
+>>> +            reg = <0x0 0x9b300000 0x0 0x800000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        video_mem: video-region@9bb00000 {
+>>> +            reg = <0x0 0x9bb00000 0x0 0x700000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        cvp_mem: cvp-region@9c200000 {
+>>> +            reg = <0x0 0x9c200000 0x0 0x700000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        cdsp_mem: cdsp-region@9c900000 {
+>>> +            reg = <0x0 0x9c900000 0x0 0x2000000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9e900000 {
+>>> +            reg = <0x0 0x9e900000 0x0 0x80000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        q6_adsp_dtb_mem: q6-adsp-dtb-region@9e980000 {
+>>> +            reg = <0x0 0x9e980000 0x0 0x80000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        adspslpi_mem: adspslpi-region@9ea00000 {
+>>> +            reg = <0x0 0x9ea00000 0x0 0x4080000>;
+>>> +            no-map;
+>>> +        };
+>>> +
+>>> +        mpss_dsm_mem: mpss_dsm_region@d4d00000 {
+>>> +            reg = <0x0 0xd4d00000 0x0 0x3300000>;
+>>> +            no-map;
+>>> +        };
+>>> +    };
+>>> +};
+>>
+> 
 
-Does this driver requiers some vendor-specifig bootloading code?
-I am testing the code on a WinLink E850-96 board booted with the
-upstream u-boot and it fails during init (res0.a is -1).
-
-[    1.883413] exynos-trng 12081400.rng: Could not register hwrng device
-[    1.893394] exynos-trng 12081400.rng: probe with driver exynos-trng fail=
-ed with error -5
-
-If an additional code outside the kernel is required for this to run,
-then maybe the error message should reflect that.
-
-Kind regards,
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAmZ0MpoACgkQsK4enJil
-gBBttwgAiuVydgU5PyyNzMPe0P1nzHAgaj19otvTg/m/h3TtY895/ILzYjSZ15x1
-DO9Mb2tlW3z1F7f2y1xUcOWT/zcam6fga074wnx5llsPe6+burPhrt40r09Fy2hF
-U1CpvLyEVuuFnifaSOLKfxUptC5d0daB/3dXgrPaieIk96JSi18rZZejmb+BRcQ+
-6sVwrnm6MM+H0UsZ1o8QydCVAdO7l/v+cOa/ix9yEJtCDFPqQyqJR8LEA6TaXlxH
-icXzjvhMqiwYo62HGl48W97hkuP/AATqBqil8CT5kuYDEN+gq5/2UHPsQPYDciki
-FDuJ3bFCfH8VTAGb0EvBC+UAadOY5g==
-=Dl6f
------END PGP SIGNATURE-----
---=-=-=--
+-- 
+// Caleb (they/them)
 
