@@ -1,365 +1,162 @@
-Return-Path: <devicetree+bounces-77680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B5490FA60
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 02:39:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD37C90FA6A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 02:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AAC21C2115D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 00:39:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DD881C21069
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 00:46:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8FA9171A5;
-	Thu, 20 Jun 2024 00:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A345816;
+	Thu, 20 Jun 2024 00:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DpZTOU1K"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Paz43CAW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB2DDDB8;
-	Thu, 20 Jun 2024 00:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F1118E;
+	Thu, 20 Jun 2024 00:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718843913; cv=none; b=XqDA1Txpse6J6gGqbxbU4RvaZnnMvmCkYlzFBSzKrE0K3wTQttgpgJt+5Bcu3eD2AdhrTyuiZ3/qN+GY4Je/KafXqvNpaX1+IqoLJe3Q1FXSfdwHQhVEwEsdC41J06tfalYsmbmGo/ZojoOsbzH+fJfFvo32qDpPVtDtZsaET+Q=
+	t=1718844382; cv=none; b=HURIfbmulw7kiNRXxPR3tm4feVw1a+MRFaGmm8yJfGk1d8uOgkNWUwc4+u7+BG3SrtzJKNzSCjsoJlC/Q7UkNam+XvN4qWpD/miXP5wTXHd7igVdgZWudUlz6p2U2s1LWKA1t0Cdy52JT7m+dEc7UOCw3+jhvDVB0N0Ez+4or80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718843913; c=relaxed/simple;
-	bh=8oc+gW9i1iuNOLqRtRgTfLkc+/HrQ5t4e8n2v6OKIPw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MxKdTrGLz3yyVd/s9RtVH6+yDggnbUDR0xVd92xUABqHucPo8EYuscaYCuAqGitiHZb49MC5eCFnOWdGIC38QCtoZFGsA63+yr08W9fsKgnwpg1zjwbpyN1YrDiJbS33ShvOX2Ww3YfnI8onJd3JPfAFHnpQqhHQE3FRMOhio1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DpZTOU1K; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1718843910;
-	bh=8oc+gW9i1iuNOLqRtRgTfLkc+/HrQ5t4e8n2v6OKIPw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=DpZTOU1K8dWEpEie3PDyuRrYDtBzcOiHSFvKoog2U5MM0LifMGFzmZGk9s+F88dl+
-	 Kx7JaA+0IG/6YeCuU+SbEt45cnCuV3lcBJ5lihSLbta0jtFDjs3JvLsTEjBYGiKyOo
-	 25UpxxvbQ6DuOo8yTI1Od4/2yek/qfi31xPOzKOxmZYnbI+WcEYIDaoMWKxH3jxdFd
-	 zTGa1b712N+a46lgYR/j9lFvi/YfHoWUWK50CKDvfHKA6qtuwfW3jIkuCaINCMDkFE
-	 +rAzJVxTofie0BaQ/x8Tzw6f4imnRcFBE78oAC64haWg2opPaKvwfw7SpbRqidZoWL
-	 6SZJX2X5yCOag==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0171E37821B0;
-	Thu, 20 Jun 2024 00:38:29 +0000 (UTC)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Thu, 20 Jun 2024 03:36:25 +0300
-Subject: [PATCH v2 4/4] phy: phy-rockchip-samsung-hdptx: Add clock provider
- support
+	s=arc-20240116; t=1718844382; c=relaxed/simple;
+	bh=Oe+CueodMhyXAAT3zVm/KoN3H449VGK1MN7mCKRitow=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WcRcqZKbHQGVNXZ/5wgj1AlgUTv4DPjSJRT3u1SWoebFzTz9QkyIPY5rPrAifPTFnOKtq1nMPdI06hEE5yk1qUyRXzPPamdi/KX3GDLzCHwXk5+Km/bLj+E5VyCRno9fzjDgESpLcTGp5fhk38wdJX2Y8Hpfb5UhJMV9ef2XhhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Paz43CAW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JLlgud031194;
+	Thu, 20 Jun 2024 00:46:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tyw48aqYA3gCdB0J0LJP7goqQaUPXUvvK0gWp2XyaVA=; b=Paz43CAWJmCIUlTt
+	HC6M66LbRS98h6xMnj3f6J8rF/bBjYOgnD7LKPCEABWVEosPcyo9UFimDJO7m90C
+	RAIUW92RIR4kNMNAGw6++73MX8Jomn/3LnvoRqOEx0CwVx7yIn4c3PxlDWKLK5n6
+	NC6Se8W+e8ZF2y7pHBI9j/wUH7HtD5DY6XHahkmywwWLs0XFnAiEowAdybMhkh+3
+	XDMfhT+fiLA87XoOn09k83/Jn5NS/hEuuu9A4+e9xar4vF7fhlx0dvIgEINB+CSa
+	pzye7z2Kc0Fh1FaIuDl9Gi5Zy5BITLDWHBNNdi1qMMmFWgnWzV3g3dkidySUuWr4
+	XOryZA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yv7jeg8t6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Jun 2024 00:46:17 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45K0kGhs018017
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Jun 2024 00:46:16 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 19 Jun
+ 2024 17:46:11 -0700
+Message-ID: <04517096-38a0-465f-86f7-7e8c7de702a2@quicinc.com>
+Date: Thu, 20 Jun 2024 08:46:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240620-rk3588-hdmiphy-clkprov-v2-4-6a2d2164e508@collabora.com>
-References: <20240620-rk3588-hdmiphy-clkprov-v2-0-6a2d2164e508@collabora.com>
-In-Reply-To: <20240620-rk3588-hdmiphy-clkprov-v2-0-6a2d2164e508@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 3/4] arm64: dts: qcom: add base AIM300 dtsi
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Fenglin Wu
+	<quic_fenglinw@quicinc.com>
+References: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
+ <20240618072202.2516025-4-quic_tengfan@quicinc.com>
+ <7eb1c459-90d2-4b49-a226-0ced8216cee6@linaro.org>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <7eb1c459-90d2-4b49-a226-0ced8216cee6@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: h_Xi4y-Z7yZY-idzn1LXuK9V1mPXDwmP
+X-Proofpoint-ORIG-GUID: h_Xi4y-Z7yZY-idzn1LXuK9V1mPXDwmP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-19_02,2024-06-19_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=763
+ clxscore=1015 priorityscore=1501 impostorscore=0 mlxscore=0 malwarescore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2406200004
 
-The HDMI PHY PLL can be used as an alternative dclk source to RK3588 SoC
-CRU. It provides more accurate clock rates required by VOP2 to improve
-existing support for display modes handling, which is known to be
-problematic when dealing with non-integer refresh rates, among others.
 
-It is worth noting this only works for HDMI 2.0 or below, e.g. cannot be
-used to support HDMI 2.1 4K@120Hz mode.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c | 195 +++++++++++++++++++---
- 1 file changed, 173 insertions(+), 22 deletions(-)
+On 6/19/2024 3:06 AM, Konrad Dybcio wrote:
+> 
+> 
+> On 6/18/24 09:22, Tengfei Fan wrote:
+>> AIM300 Series is a highly optimized family of modules designed to
+>> support AIoT applications. It integrates QCS8550 SoC, UFS and PMIC
+>> chip etc.
+>> Here is a diagram of AIM300 SoM:
+>>            +----------------------------------------+
+>>            |AIM300 SoM                              |
+>>            |                                        |
+>>            |                           +-----+      |
+>>            |                      |--->| UFS |      |
+>>            |                      |    +-----+      |
+>>            |                      |                 |
+>>            |                      |                 |
+>>       3.7v |  +-----------------+ |    +---------+  |
+>>    ---------->|       PMIC      |----->| QCS8550 |  |
+>>            |  +-----------------+      +---------+  |
+>>            |                      |                 |
+>>            |                      |                 |
+>>            |                      |    +-----+      |
+>>            |                      |--->| ... |      |
+>>            |                           +-----+      |
+>>            |                                        |
+>>            +----------------------------------------+
+>>
+>> Co-developed-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> +&ufs_mem_hc {
+>> +    reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
+>> +    vcc-supply = <&vreg_l17b_2p5>;
+>> +    vcc-max-microamp = <1300000>;
+>> +    vccq-supply = <&vreg_l1g_1p2>;
+>> +    vccq-max-microamp = <1200000>;
+>> +    vdd-hba-supply = <&vreg_l3g_1p2>;
+> 
+> These regulators should generally have:
+> 
+> regulator-allow-set-load;
+> regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+>                             RPMH_REGULATOR_MODE_HPM>;
+> 
+> although the current setup you have never lets them exit HPM
+> 
+> Konrad
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-index 72de287282eb..9f084697dd05 100644
---- a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-+++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-@@ -8,6 +8,7 @@
-  */
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
-@@ -191,6 +192,8 @@
- #define LN3_TX_SER_RATE_SEL_HBR2	BIT(3)
- #define LN3_TX_SER_RATE_SEL_HBR3	BIT(2)
- 
-+#define HDMI20_MAX_RATE			600000000
-+
- struct lcpll_config {
- 	u32 bit_rate;
- 	u8 lcvco_mode_en;
-@@ -273,6 +276,12 @@ struct rk_hdptx_phy {
- 	struct clk_bulk_data *clks;
- 	int nr_clks;
- 	struct reset_control_bulk_data rsts[RST_MAX];
-+
-+	/* clk provider */
-+	struct clk_hw hw;
-+	unsigned long rate;
-+
-+	atomic_t usage_count;
- };
- 
- static const struct ropll_config ropll_tmds_cfg[] = {
-@@ -760,6 +769,8 @@ static int rk_hdptx_ropll_tmds_cmn_config(struct rk_hdptx_phy *hdptx,
- 	struct ropll_config rc = {0};
- 	int i;
- 
-+	hdptx->rate = rate * 100;
-+
- 	for (i = 0; i < ARRAY_SIZE(ropll_tmds_cfg); i++)
- 		if (rate == ropll_tmds_cfg[i].bit_rate) {
- 			cfg = &ropll_tmds_cfg[i];
-@@ -823,19 +834,6 @@ static int rk_hdptx_ropll_tmds_cmn_config(struct rk_hdptx_phy *hdptx,
- static int rk_hdptx_ropll_tmds_mode_config(struct rk_hdptx_phy *hdptx,
- 					   unsigned int rate)
- {
--	u32 val;
--	int ret;
--
--	ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &val);
--	if (ret)
--		return ret;
--
--	if (!(val & HDPTX_O_PLL_LOCK_DONE)) {
--		ret = rk_hdptx_ropll_tmds_cmn_config(hdptx, rate);
--		if (ret)
--			return ret;
--	}
--
- 	rk_hdptx_multi_reg_write(hdptx, rk_hdtpx_common_sb_init_seq);
- 
- 	regmap_write(hdptx->regmap, LNTOP_REG(0200), 0x06);
-@@ -857,10 +855,68 @@ static int rk_hdptx_ropll_tmds_mode_config(struct rk_hdptx_phy *hdptx,
- 	return rk_hdptx_post_enable_lane(hdptx);
- }
- 
-+static int rk_hdptx_phy_consumer_get(struct rk_hdptx_phy *hdptx,
-+				     unsigned int rate)
-+{
-+	u32 status;
-+	int ret;
-+
-+	if (atomic_inc_return(&hdptx->usage_count) > 1)
-+		return 0;
-+
-+	ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &status);
-+	if (ret)
-+		goto dec_usage;
-+
-+	if (status & HDPTX_O_PLL_LOCK_DONE)
-+		dev_warn(hdptx->dev, "PLL locked by unknown consumer!\n");
-+
-+	if (rate) {
-+		ret = rk_hdptx_ropll_tmds_cmn_config(hdptx, rate);
-+		if (ret)
-+			goto dec_usage;
-+	}
-+
-+	return 0;
-+
-+dec_usage:
-+	atomic_dec(&hdptx->usage_count);
-+	return ret;
-+}
-+
-+static int rk_hdptx_phy_consumer_put(struct rk_hdptx_phy *hdptx, bool force)
-+{
-+	u32 status;
-+	int ret;
-+
-+	ret = atomic_dec_return(&hdptx->usage_count);
-+	if (ret > 0)
-+		return 0;
-+
-+	if (ret < 0) {
-+		dev_warn(hdptx->dev, "Usage count underflow!\n");
-+		ret = -EINVAL;
-+	} else {
-+		ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &status);
-+		if (!ret) {
-+			if (status & HDPTX_O_PLL_LOCK_DONE)
-+				rk_hdptx_phy_disable(hdptx);
-+			return 0;
-+		} else if (force) {
-+			return 0;
-+		}
-+	}
-+
-+	atomic_inc(&hdptx->usage_count);
-+	return ret;
-+}
-+
- static int rk_hdptx_phy_power_on(struct phy *phy)
- {
- 	struct rk_hdptx_phy *hdptx = phy_get_drvdata(phy);
- 	int bus_width = phy_get_bus_width(hdptx->phy);
-+	int ret;
-+
- 	/*
- 	 * FIXME: Temporary workaround to pass pixel_clk_rate
- 	 * from the HDMI bridge driver until phy_configure_opts_hdmi
-@@ -871,20 +927,22 @@ static int rk_hdptx_phy_power_on(struct phy *phy)
- 	dev_dbg(hdptx->dev, "%s bus_width=%x rate=%u\n",
- 		__func__, bus_width, rate);
- 
--	return rk_hdptx_ropll_tmds_mode_config(hdptx, rate);
-+	ret = rk_hdptx_phy_consumer_get(hdptx, rate);
-+	if (ret)
-+		return ret;
-+
-+	ret = rk_hdptx_ropll_tmds_mode_config(hdptx, rate);
-+	if (ret)
-+		rk_hdptx_phy_consumer_put(hdptx, true);
-+
-+	return ret;
- }
- 
- static int rk_hdptx_phy_power_off(struct phy *phy)
- {
- 	struct rk_hdptx_phy *hdptx = phy_get_drvdata(phy);
--	u32 val;
--	int ret;
- 
--	ret = regmap_read(hdptx->grf, GRF_HDPTX_STATUS, &val);
--	if (ret == 0 && (val & HDPTX_O_PLL_LOCK_DONE))
--		rk_hdptx_phy_disable(hdptx);
--
--	return ret;
-+	return rk_hdptx_phy_consumer_put(hdptx, false);
- }
- 
- static const struct phy_ops rk_hdptx_phy_ops = {
-@@ -893,6 +951,99 @@ static const struct phy_ops rk_hdptx_phy_ops = {
- 	.owner	   = THIS_MODULE,
- };
- 
-+static struct rk_hdptx_phy *to_rk_hdptx_phy(struct clk_hw *hw)
-+{
-+	return container_of(hw, struct rk_hdptx_phy, hw);
-+}
-+
-+static int rk_hdptx_phy_clk_prepare(struct clk_hw *hw)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	return rk_hdptx_phy_consumer_get(hdptx, hdptx->rate / 100);
-+}
-+
-+static void rk_hdptx_phy_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	rk_hdptx_phy_consumer_put(hdptx, true);
-+}
-+
-+static unsigned long rk_hdptx_phy_clk_recalc_rate(struct clk_hw *hw,
-+						  unsigned long parent_rate)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	return hdptx->rate;
-+}
-+
-+static long rk_hdptx_phy_clk_round_rate(struct clk_hw *hw, unsigned long rate,
-+					unsigned long *parent_rate)
-+{
-+	u32 bit_rate = rate / 100;
-+	int i;
-+
-+	if (rate > HDMI20_MAX_RATE)
-+		return rate;
-+
-+	for (i = 0; i < ARRAY_SIZE(ropll_tmds_cfg); i++)
-+		if (bit_rate == ropll_tmds_cfg[i].bit_rate)
-+			break;
-+
-+	if (i == ARRAY_SIZE(ropll_tmds_cfg) &&
-+	    !rk_hdptx_phy_clk_pll_calc(bit_rate, NULL))
-+		return -EINVAL;
-+
-+	return rate;
-+}
-+
-+static int rk_hdptx_phy_clk_set_rate(struct clk_hw *hw, unsigned long rate,
-+				     unsigned long parent_rate)
-+{
-+	struct rk_hdptx_phy *hdptx = to_rk_hdptx_phy(hw);
-+
-+	return rk_hdptx_ropll_tmds_cmn_config(hdptx, rate / 100);
-+}
-+
-+static const struct clk_ops hdptx_phy_clk_ops = {
-+	.prepare = rk_hdptx_phy_clk_prepare,
-+	.unprepare = rk_hdptx_phy_clk_unprepare,
-+	.recalc_rate = rk_hdptx_phy_clk_recalc_rate,
-+	.round_rate = rk_hdptx_phy_clk_round_rate,
-+	.set_rate = rk_hdptx_phy_clk_set_rate,
-+};
-+
-+static int rk_hdptx_phy_clk_register(struct rk_hdptx_phy *hdptx)
-+{
-+	struct device *dev = hdptx->dev;
-+	const char *name, *pname;
-+	struct clk *refclk;
-+	int ret, id;
-+
-+	refclk = devm_clk_get(dev, "ref");
-+	if (IS_ERR(refclk))
-+		return dev_err_probe(dev, PTR_ERR(refclk),
-+				     "Failed to get ref clock\n");
-+
-+	id = of_alias_get_id(dev->of_node, "hdptxphy");
-+	name = id > 0 ? "clk_hdmiphy_pixel1" : "clk_hdmiphy_pixel0";
-+	pname = __clk_get_name(refclk);
-+
-+	hdptx->hw.init = CLK_HW_INIT(name, pname, &hdptx_phy_clk_ops,
-+				     CLK_GET_RATE_NOCACHE);
-+
-+	ret = devm_clk_hw_register(dev, &hdptx->hw);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register clock\n");
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &hdptx->hw);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to register clk provider\n");
-+	return 0;
-+}
-+
- static int rk_hdptx_phy_runtime_suspend(struct device *dev)
- {
- 	struct rk_hdptx_phy *hdptx = dev_get_drvdata(dev);
-@@ -987,7 +1138,7 @@ static int rk_hdptx_phy_probe(struct platform_device *pdev)
- 	reset_control_deassert(hdptx->rsts[RST_CMN].rstc);
- 	reset_control_deassert(hdptx->rsts[RST_INIT].rstc);
- 
--	return 0;
-+	return rk_hdptx_phy_clk_register(hdptx);
- }
- 
- static const struct dev_pm_ops rk_hdptx_phy_pm_ops = {
+I understand your point is that these settings need to be added to 
+allthe child regulator nodes of regulators-0, regulators-1, 
+regulators-2, regulators-3, regulators-4 and regulators-5. Is that correct?
+
+
 
 -- 
-2.45.2
-
+Thx and BRs,
+Tengfei Fan
 
