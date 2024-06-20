@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-78119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFBBB911145
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:49:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DA891114F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:51:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A3AA2813E3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:49:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B67A1F2217D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3E91BA892;
-	Thu, 20 Jun 2024 18:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D6AD1B9AA4;
+	Thu, 20 Jun 2024 18:42:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D811B9AB0;
-	Thu, 20 Jun 2024 18:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355B31B47DE;
+	Thu, 20 Jun 2024 18:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718908793; cv=none; b=Hpimxcz5IUeUoe3IgYNw9+F0XcNTelcpRKOWN0tgJftTD3n4qKDmS/pxRIkyGBqFjXHUreNwEtcnlAyjtqnOC3BIc1/qkpk/NbH0c1/I22SimY/w2vWgrAz6cpjzae/hAH6b7PshB4BkDrbPi5tbQfsOti31WGGaBpQnHP/yZzc=
+	t=1718908970; cv=none; b=BiG3FcEI8LcgjYFUZMoOb2K3l0UcQblZSOOimHAh2TwJ2hOptXzYHlo/t/ZtOXGGMDU7DXCk7/VDjjus6qtfx3/x4SfKsEDrXvZQFH0ydj93IHZiSP/cRzNfjPoeI/AYxcIhzvXXjkGK9f9MubSJDXI0WbIJKp1m6tXx1PgwZUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718908793; c=relaxed/simple;
-	bh=ect3o+WXx/8Mtj30Y52UBbKc1pPxHH6COoSG4HKXAqk=;
+	s=arc-20240116; t=1718908970; c=relaxed/simple;
+	bh=LvnaCPxKoIZfQ4R88XqAC/V17BVWq6QoYfODJKaC0tk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AT6BeatEXw3Qa9kyOGvUayYwLB25LDBLra6diB2ScXfY1WUIKzC/jEIK8z0XkVV4j6uu1pEuzlJ1WPd9QoZcVdX+5obXysB0NubNTKsVMfGQHOIDEvOrQFMp9yUVf76HXVJ5tfkyQvue7fc0KvHHtKXq2El5epw2O7MXTbc6pRQ=
+	 MIME-Version:Content-Type; b=F08d//MeDB29Cd43TyBOItD4OrcHdeGoEb9PmBUhfEQLdzQakMBCxYNl0YMkGsEKYy7MPLs0tHw167L1YqA75iHAJqdK9/stB35JoQrcCe69XjV6wTr1+gkURJIMipZHhy1eby6Rh7HpGQ+gkErCgelYO59vSHERYFK6/Sy55gg=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
@@ -33,21 +33,20 @@ Received: from i5e860cc8.versanet.de ([94.134.12.200] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1sKMhF-0000W2-Ed; Thu, 20 Jun 2024 20:39:45 +0200
+	id 1sKMk6-0000XY-Qs; Thu, 20 Jun 2024 20:42:42 +0200
 From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
 To: Sebastian Kropatsch <seb-dev@mail.de>
 Cc: linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] arm64: dts: rockchip: Fix regulators,
- gmac and naming on NanoPi R6C/R6S
-Date: Thu, 20 Jun 2024 20:39:44 +0200
-Message-ID: <2396550.3c9HiEOlIg@diego>
-In-Reply-To: <20240612205056.397204-3-seb-dev@mail.de>
+Subject: Re: [PATCH 3/5] arm64: dts: rockchip: Improve LEDs on NanoPi R6C/R6S
+Date: Thu, 20 Jun 2024 20:42:42 +0200
+Message-ID: <2564239.kdYZ1jHi8b@diego>
+In-Reply-To: <20240612205056.397204-4-seb-dev@mail.de>
 References:
  <20240612205056.397204-1-seb-dev@mail.de>
- <20240612205056.397204-3-seb-dev@mail.de>
+ <20240612205056.397204-4-seb-dev@mail.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,50 +56,37 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Am Mittwoch, 12. Juni 2024, 22:48:11 CEST schrieb Sebastian Kropatsch:
-> Fix the alphabetical ordering in some nodes and rename some regulators
-> and pins to match the schematics [1][2] as well as to adhere to
-> preferred naming schemes.
-
-General rule of thumb, when you need an "and" in your subject or a list
-like the above - you definitly want to split the change into multiple
-commits.
-
+Am Mittwoch, 12. Juni 2024, 22:48:12 CEST schrieb Sebastian Kropatsch:
+> Move led-3 node into NanoPi R6C/R6S's source files since they have
+> different functionalities on each board: On the R6S this LED is used
+> to signal LAN2 link up, while on the R6C this LED does not have a
+> pre-defined purpose.
+> 
 > In addition to that:
-> * vcc_3v3_sd_s0: Fix voltage to be 3.3V
-> * vcc3v3_pcie:
->     - Move to NanoPi R6C, this power switch is not available on R6S
->     - Fix vin-supply (is vcc_5v0 per schematics)
->     - Add gpios/pincrtl to enable power
+>     - Remove deprecated label property
+>     - Add color and function properties
+>     - Add linux,default-trigger to trigger on Ethernet link
 
-this defnitly needs its own patch
+Again, please don't group unrelated changes together into one patch.
+It makes things hard to read and hard to follow the changes.
 
-> * vcc5v0_usb: Remove this regulator since according to the schematics,
+> 
+> Signed-off-by: Sebastian Kropatsch <seb-dev@mail.de>
+> ---
+> 
+> DT validation doesn't like the 'linux,default-trigger = "stmmac-0:01:link"'
+> properties, since "*:link" is not a valid value according to
+> [Documentation/devicetree/bindings/leds/common.yaml]. These LEDs do
+> have the specific purpose to show if an Ethernet link is up though.
+> There is one LED for each Ethernet port and they are labeled WAN and
+> LAN.
+> Using the 'linux,default-trigger' like this does work perfectly fine
+> with this solution. I could not find another way to achieve this. Please
+> let me know if there is a better way.
+> Maybe it would also be valid to add an entry to the DT bindings file to
+> allow "*:link" as a value for 'linux,default-trigger'?
 
-this too
-
-> * vcc5v0_host_20 and vcc5v0_usb_otg0 are directly powered by vcc_5v0
-
-this could be grouped together with the 3.3v change
-
-> * gmac1: Add rx_delay of 0 (no delay since phy-mode = "rgmii-rxid")
-
-with rxid mode, why is the rx_delay needed at all?
-Shouldn't this just work without the property?
-
-> * rgmii_phy1: Add phy-supply as seen in schematics
-
-separate patch
-
-> * pcie2*:
->     - Add pinctrl reset pins
->     - Update vpcie3v3-supply to match the schematics
-
-separate patch
-
-> * sdhci: Add vmmc-supply and vqmmc-supply
-
-separate patch
+correct. If needed, things should be added to binding.
 
 
 Heiko
