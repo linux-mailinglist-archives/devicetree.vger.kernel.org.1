@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-78070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F46910D89
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:49:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5547910D9B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:52:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 615D4283368
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:49:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 809D4281356
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 16:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F4D1B29A8;
-	Thu, 20 Jun 2024 16:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E5C1B29BB;
+	Thu, 20 Jun 2024 16:52:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pCtwnP2J"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PZ58B+r9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E41B1B29AC
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 16:49:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1ED317545;
+	Thu, 20 Jun 2024 16:52:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718902192; cv=none; b=hmMwRk1G5+5xf13rm5CZOUmTpbWrv6NtCb80WeXzx09hNos2Z5drw/G8hFXMpj/3DzvQXjXmPLJVuY6fMmJGYA0qj0X/BrnvrISxJ7SoHIVtcMOm67aD+pnTKQj9nOI+bMRnBZGc9pVSGEQB3QHfUogXFTkxAy4rW6lrpmYDv4o=
+	t=1718902367; cv=none; b=VgXSWWp3nXyeSTrCI39IDuKzNmBOJ3SDFJWESHPTeJEw/oos+TYUawHw8KOLs02mtf38Kyvq7Kl/XAm6pE/Law+9E3LMG5awGcbFS/a/p8xhEE8FT2hpvg1fkkLUgq1ApQJCOiqHa3i7D++RKSz8EcDEPVMa/BxFF5Qk9FDqd8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718902192; c=relaxed/simple;
-	bh=K/cfNSTDSkBQxZsTkqMrHOm6LPQ4yATi/xG2niJvV5M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cus55o0pznHIRjK51k5zNbBtFgYU651OEt4hC08a4A/dQE/a+ARf9zJXVsJAY7YwFj/8HSswUT2PihLrgF4WycezAUSjXkQKHxi5mCKTaRp6C82tZUK9AR4htxrs5LUKfVtJgMK9svMzK1OVVPNEhkBFJ/XhF1U7fikLB3sno8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pCtwnP2J; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a6ef8bf500dso112223266b.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 09:49:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718902189; x=1719506989; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GqQopnvWVUJ77bCPyUL9r68U4uxLIHub62go1lzROFU=;
-        b=pCtwnP2J21ZnD9BczwYhqtGHXePBF3JUCj1Cu7jTT0cEpaajtbdsrT4PodvM9JDi/V
-         8Jr1h7TymEmi1yjWbseFz/+d8jsgZXbrwAy6RBrfwXH5zZQk2oxJEZdwKF/Qzwdp+Dwq
-         2JsZ/P5YspRDpCCzWNo4RNzkWlsKmcTFWk7itP4R1pRDJskkKPa67tMlilB3qmfVjw6c
-         Wzh9XpsTxryA3iK6iSOj1bX5BiQJ/Aq7TD06bzLT6+1GYOVauFYRlV4+ftAnzHBn8dti
-         nfdYKyTR1r6q8BMMHqGW9ojloANAQz8LB2G0mOdsAlpydId/wEf/+/YH1h72RMAnb32J
-         b8AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718902189; x=1719506989;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GqQopnvWVUJ77bCPyUL9r68U4uxLIHub62go1lzROFU=;
-        b=WpEwDiu+s8l7SJK09JwLKibzf2CQZcZ+opDn5iQCsvP9NOMQo10IbGXX5nLurymbRQ
-         AjuzD5pXRWFTOhHVV6pKPImr2nwmyOCmIlJdfxJ9ELDUuaZ/27rHR9VvHrqeORcmrLd4
-         Livn52vf6xzN7HluvAG2RlbAVTyHIikBbbIOnZtlkXBnAvW8xc8yBiI8kLvwiRrzecFP
-         L/l3W7N68G6u5ItJ5dYUeNaMuAPB7DFpB8huo6+IF2wRYuuSrO+RIcHid+JJMkj/YWk3
-         Xa77r9Pml8y2OFV7kY9LX2B4I/dRyQ6G1TeTE/L9P0tuufD5c2pLrWvk/iEVzONJZ8PG
-         QpAg==
-X-Forwarded-Encrypted: i=1; AJvYcCUmc0H5EepMX+mY1VM57xowiiGgKG1o6YSOSSnrzHvH0vt/HV2Z772RnTOFWp9d1KX9XuG8TVeUOsBKJjlY5hVJX8J/Pf/3dvj+ug==
-X-Gm-Message-State: AOJu0YxL6JmMCeLDFhpzo9saylRPRMLuBIZmyFWzFV4tbCJNl9UFBZ0w
-	pdwssPuc5U2LpCzm22OUXzLADYMbcP7e0gl5UhAkMEr8W3wD3+kct5oSg9kWiZc=
-X-Google-Smtp-Source: AGHT+IGysnIrSKn5ZsCRoX6C8aN64NnfdvBmRtWtf5nKzRPFf3y/BPDA4dK2cGa7MsKDCazb1HAtkw==
-X-Received: by 2002:a17:907:7716:b0:a6f:5318:b8f7 with SMTP id a640c23a62f3a-a6fab645215mr361554666b.43.1718902188581;
-        Thu, 20 Jun 2024 09:49:48 -0700 (PDT)
-Received: from ?IPV6:2a02:8109:aa0d:be00::ebdd? ([2a02:8109:aa0d:be00::ebdd])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56f42badsm782858666b.184.2024.06.20.09.49.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jun 2024 09:49:48 -0700 (PDT)
-Message-ID: <35d9f16d-c009-4383-a616-9b21f0819b46@linaro.org>
-Date: Thu, 20 Jun 2024 18:49:46 +0200
+	s=arc-20240116; t=1718902367; c=relaxed/simple;
+	bh=qbAYQwuAZ3+wqE5qpkltgeY9gIOi1oncenNBRJRTJTk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sl6SUKXieLUaNV0B/Win3s9lHhlQZ+uH3PHt8NUB9ynK/COuRNyeH51m985T5swg695oHnghIZ5r5DaRf1BeapJxznAB/RSNZzpaXbW1eOkOWHKdzjsASUQIt/eivtNXHTlqAhnutwQxqfl53qdhr0hKg16a3ytT7mkqfmwFjCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PZ58B+r9; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45KGqQKQ070807;
+	Thu, 20 Jun 2024 11:52:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718902346;
+	bh=HG1bfcMijyIFrjAnBLZjdBnssxxpZ4esXoREhIa1pjM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=PZ58B+r90OegnbC0udY0dzwaoPOwxby3SKaz8mAZwm0IW2iGKQXON5/H33HYpA6e4
+	 gzRuO/nN8LNt3ff8zinl+KLMiw/wzfOjEI4qtX8O8UC67ibKow2AiufjJEE4ulj8Ud
+	 F1NA5jVNDS8dC149dVZC1d6GDuO/EYPp7u1LOveo=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45KGqQbm020672
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 20 Jun 2024 11:52:26 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
+ Jun 2024 11:52:25 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 20 Jun 2024 11:52:26 -0500
+Received: from [10.250.212.197] ([10.250.212.197])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45KGqMX1051378;
+	Thu, 20 Jun 2024 11:52:22 -0500
+Message-ID: <8dd345ae-7da3-440f-9d9c-d2b0500ba78b@ti.com>
+Date: Thu, 20 Jun 2024 19:52:21 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,70 +65,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qrb4210-rb2: set
- role-switch-default-mode
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexey Klimov <alexey.klimov@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240619-rb2-fixes-v1-0-1d2b1d711969@linaro.org>
- <20240619-rb2-fixes-v1-2-1d2b1d711969@linaro.org>
- <CAA8EJpo94qg0dDR-H64v0yC7jLKHuD9O59m3hG2tNR4v3NAkLA@mail.gmail.com>
- <c10b1343-921b-494b-94dd-6f5acc894e6d@linaro.org>
- <v3dgoeybewgegi2xuixhaq5c7jwju6wojrmzcq3rtb5f5r5nfu@6gj4tfz5blx7>
+Subject: Re: [PATCH v2 11/17] wifi: cc33xx: Add init.c, init.h
+To: Simon Horman <horms@kernel.org>
+CC: Sabeeh Khan <sabeeh-khan@ti.com>, Kalle Valo <kvalo@kernel.org>,
+        Johannes
+ Berg <johannes.berg@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240609182102.2950457-1-michael.nemanov@ti.com>
+ <20240609182102.2950457-12-michael.nemanov@ti.com>
+ <20240615085133.GA234885@kernel.org>
+ <8dbb30be-3c0c-43c9-8f7a-dbfeeca3837e@ti.com>
+ <20240620163048.GK959333@kernel.org>
 Content-Language: en-US
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <v3dgoeybewgegi2xuixhaq5c7jwju6wojrmzcq3rtb5f5r5nfu@6gj4tfz5blx7>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Nemanov, Michael" <michael.nemanov@ti.com>
+In-Reply-To: <20240620163048.GK959333@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On 6/20/2024 7:30 PM, Simon Horman wrote:
 
+...
 
-On 20/06/2024 17:07, Dmitry Baryshkov wrote:
-> On Thu, Jun 20, 2024 at 03:30:29PM GMT, Caleb Connolly wrote:
->>
->>
->> On 20/06/2024 15:15, Dmitry Baryshkov wrote:
->>> On Wed, 19 Jun 2024 at 23:33, Caleb Connolly <caleb.connolly@linaro.org> wrote:
->>>>
->>>> Give a hint to the OS which role we prefer. Host mode generally makes
->>>> the most sense.
->>>
->>> Why?
->>
->> I guess this is subjective, but on these boards the more common usecase is
->> host mode (before we had role switching we forced them to host mode...).
->>>
->>>>
->>>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 4 ++++
->>>>    1 file changed, 4 insertions(+)
->>>
->>> Would it make sense to set this for all the RB and HDK boards?
->>
->> The rb1/2 are the only boards which lack multiple USB controllers. For
->> others it's fine to leave the default (peripheral mode).
+> Hi Michael,
 > 
-> SM8450-HDK and SM8650-HDK also have just a single USB-C port. My logic
-> was slightly different. We consider these devices to be SBCs, so I'd
-> expect that they act as hosts _by_default_. If somebody plugs RB board
-> into a laptop, then it's logical that it should work as a device, but
-> between the phone and the RB board the RB is a host.
-
-Ahh I see, then yes perhaps it makes sense. I can send v2 with patches 
-for other boards too.
-
-* qrb2210-rb1
-* qrb4210-rb2
-* sm8450-hdk
-* sm8650-hdk
-
-Any others?
+> I tried this again with GCC 13.2.0 on x86_64 with allmodconfig.
+> And I was able to see this with a W=1 (make W=1) build.
 > 
 
--- 
-// Caleb (they/them)
+Oh it was the combination of CONFIG_FORTIFY_SOURCE=y (from allmodconfig) 
+and W=1. Thanks, I see it now.
+
+Michael.
+
 
