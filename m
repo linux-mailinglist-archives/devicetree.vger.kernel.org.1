@@ -1,112 +1,115 @@
-Return-Path: <devicetree+bounces-78181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED41D911521
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 23:51:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDDD911524
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 23:52:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51593B22E00
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 21:51:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 287CB2824EC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 21:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B51757EE;
-	Thu, 20 Jun 2024 21:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39609139CEC;
+	Thu, 20 Jun 2024 21:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b="fYXhP9XW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D5auG+h1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from shout12.mail.de (shout12.mail.de [62.201.172.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB852E859;
-	Thu, 20 Jun 2024 21:51:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.201.172.58
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A153C8663A
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 21:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718920279; cv=none; b=D9hedBRr+Me09CLyVEBckGZXZVHp4vnWitSCzUXfl1wpDIjmPI5F4srex0EfVl4LCAJdwCWtWhBOgz9JKqSIwKn7y+ucl1d+r/fI+aMVDG1Y0oY+iQYIxeQfzadSvh3ktrajJXw8//p45zBu5TOTB3lPyP7VF1L/eE8EF1dKErU=
+	t=1718920323; cv=none; b=biGh7vdI51HUMo/lWXEsEcKtZ8Ymbv2rpIaFSRhFKMcqrlkpwL4sDPKouxWxESTfWeh2LrBXerH4zvdmPBWFpDUGaEqBd+BFpvCm4YwXExTzi6f+p+pFxFNdA1ntPfaJ9/shg4iPPTExOSiU8KiRxN44NQtEdR5c00VbHyMBnuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718920279; c=relaxed/simple;
-	bh=jS4tGX7Yr+F4Pgav2Qb5MERvvFle9VrE1JzJPH9w6gw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eNTcuXX12D+rgWXGE0FTYpAo0vejQNwDACS1o7a3zWYNER8zT9HPzmNnwIz1uopZBx9UrWbJ10UXzwPX7+bHmnCvzPMjfEQVIZeVp/936owQbj2j/kwNKGJaB3pcFU1O+z3gyEcRoHO6yhPLaWTrxCkkatYrUKDhWUQMuLniTFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de; spf=pass smtp.mailfrom=mail.de; dkim=pass (2048-bit key) header.d=mail.de header.i=@mail.de header.b=fYXhP9XW; arc=none smtp.client-ip=62.201.172.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail.de
-Received: from shout02.mail.de (unknown [10.0.120.222])
-	by shout12.mail.de (Postfix) with ESMTPS id 52E40240AE7;
-	Thu, 20 Jun 2024 23:51:16 +0200 (CEST)
-Received: from postfix01.mail.de (postfix01.bt.mail.de [10.0.121.125])
-	by shout02.mail.de (Postfix) with ESMTP id 31768240E86;
-	Thu, 20 Jun 2024 23:51:16 +0200 (CEST)
-Received: from smtp01.mail.de (smtp03.bt.mail.de [10.0.121.213])
-	by postfix01.mail.de (Postfix) with ESMTP id 12B7C80102;
-	Thu, 20 Jun 2024 23:51:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.de;
-	s=mailde202009; t=1718920276;
-	bh=jS4tGX7Yr+F4Pgav2Qb5MERvvFle9VrE1JzJPH9w6gw=;
-	h=Message-ID:Date:Subject:To:Cc:From:From:To:CC:Subject:Reply-To;
-	b=fYXhP9XWv8R9NfFyLu0p9bECXAvkCoG4tyq8CP7rG1v5IXS6ngMg8+4KGjyvD9mtI
-	 KV7gCoiQfTOwCW6cCR9nQ3ZP4cNRo/zTq+hPc9DDXdQV485NhL4RMdxr8xai66jyXw
-	 Julp268jMYuAEbxy8rhDXTkunfszXMInjK3BqxXHbH+ipgA0tlubvqYHioU8X3cp3c
-	 mjDy7VGxhvkyYqmF3ubRJKBTEhM7QgOdvOrAr/9eWRHc5Z3hf0KWzbeWhlHeEDDPiJ
-	 5sQ61TOjhMrjt2TtDOjWtqPZ/3qYP3hrOymgkpOruzRi4oXghwyrO/lOyVhQ5y2j+J
-	 pzTHuhS4Ppfrg==
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	by smtp01.mail.de (Postfix) with ESMTPSA id 84B272409AB;
-	Thu, 20 Jun 2024 23:51:15 +0200 (CEST)
-Message-ID: <7cc3d7c4-d0c9-45f3-ada9-d0e0d3fe7cc2@mail.de>
-Date: Thu, 20 Jun 2024 23:51:14 +0200
+	s=arc-20240116; t=1718920323; c=relaxed/simple;
+	bh=IDGHQeVi/J99Ud0h98ztO9JyZxnoDSj89IWh+m4Qijg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LMYdEFoM3aToJoVdcUmn+879sMG6PLV5VWSEaig3Ojha8k3FDecy16lddXaLvDjN1jzOkcokH6lo+4aCaxUHvWLPvgJw90zDvBKcDEIr/7mBVXMEeR6ApCf1/Svm5vZEmhjdjGOHClRy1P4JMlR1ot/bFF9+YJz+jKzkLe4BDms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D5auG+h1; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e02b605bca2so1870857276.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 14:52:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718920320; x=1719525120; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S5TRSOhA8iGH1R60np2uoqVbWEYsCAZsWtQBh11sRns=;
+        b=D5auG+h1GKzv+9RcwYa7bi/7IqQ9PufT+M1bZ5jJ2jm25xD1SoHBYNHVt4B2YPfNWG
+         W0HJ7bITl0TLbsuGpcL0nb+8+gHnqhYAc6lQ66X8oPIWhbbb5vO/hS+jWwx3UzGWM2FA
+         11TzlXpd0h4gTvV0DuxXzYiYbD24/YE4hxV+krecm98YrRlCsbrL9JgvXT16Wt2Qwngo
+         98kPBvu17nx+rWyqptx+2UdDOch2+wE80gc56bBdAjHwP/7H7yj/qwPOpTjgdzcPxyce
+         m9Nz8gEituRbOP9RWaSI5orXOtD7uba/+3N2Nah6FKRe6rHTOAu7cjMyVs+GcjF6fnVR
+         /FNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718920320; x=1719525120;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S5TRSOhA8iGH1R60np2uoqVbWEYsCAZsWtQBh11sRns=;
+        b=slcAeMcMtycEuUczdrjNrMnpdxdF3B3zG52Qbm5xnOqzDJfunEYUigccnE67mFJW31
+         MbfVzNO0X84KsDcKaJJpF+L1JkSKNT1l95r2tLa1WQU2LoE5zqcNajEtb57BVB+146rL
+         vTg1PTejw6F+pI9fkgqXdV7JSFTLXeFfjHO1/9bnpgB+u2CI36KdqA4uouNMIK9vhaqD
+         3RmsYqy3JIPhQ66LVIhJJaoBbyMDNZkTTj4+eTKkVH+8nI6+gIgOSaAtngd+nrXLS+zM
+         Rxyce2hjWLImOqb214nePqideLeE8smbeOjxwYC+DtNDhbipjlkTZLos0hX/XhnsZoLN
+         6OAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXXQkPeJ+5de6yBoQIyfeuiX6Wphdbv1LQacWv9viSPFw2WWlTqZWlL8RTXDihd/VImUaPF1CdKz0A6xzKKZ/ngaXBTXMRIcKq+YA==
+X-Gm-Message-State: AOJu0YxaYbvtISmrzEP8IU3vndXfz3T6Rg8lHfGiMIlHXtCGUI4Z17Tu
+	2ro6YNxMpLdsNZhd/CbiWgL3Ri+r/LLpYzn4Pu2za5sbAVXKvMkKMMEq4igDYshYGYFdfbENd2j
+	qpMXbcmIJOykAspwHKZlTVscQYexJkzTKXuvNS4wsSBrVylJY
+X-Google-Smtp-Source: AGHT+IFWhs1oHnCwYtIqEUDb3GYs2ctlTMeXUy+SHit8M9zRZ1POT9JRHWWKif58A0sP7XezyP4BsfWsLr49BttIR4Y=
+X-Received: by 2002:a25:800b:0:b0:e02:bc74:522f with SMTP id
+ 3f1490d57ef6-e02bc7454f5mr5257999276.30.1718920320565; Thu, 20 Jun 2024
+ 14:52:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 3/5] arm64: dts: rockchip: Improve LEDs on NanoPi R6C/R6S
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240612205056.397204-1-seb-dev@mail.de>
- <20240612205056.397204-4-seb-dev@mail.de> <2564239.kdYZ1jHi8b@diego>
-From: Sebastian Kropatsch <seb-dev@mail.de>
-In-Reply-To: <2564239.kdYZ1jHi8b@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: This mail is considered clean (visit http://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 1112
-X-purgate-ID: 154282::1718920275-4EE221F9-E6050407/0/0
+References: <20240618204523.9563-1-semen.protsenko@linaro.org>
+ <20240618204523.9563-8-semen.protsenko@linaro.org> <6e4e78f7-9d94-4c4e-9098-02522dee29a2@kernel.org>
+In-Reply-To: <6e4e78f7-9d94-4c4e-9098-02522dee29a2@kernel.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Thu, 20 Jun 2024 16:51:49 -0500
+Message-ID: <CAPLW+4n_x9dBwuSOyAn4fNA61vHPRCSMVzTs3p3Oa94NCOhDFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] arm64: dts: exynos850: Enable TRNG
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Anand Moon <linux.amoon@gmail.com>, Olivia Mackall <olivia@selenic.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	linux-samsung-soc@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am 20.06.2024 um 20:42 schrieb Heiko Stübner:
-> Am Mittwoch, 12. Juni 2024, 22:48:12 CEST schrieb Sebastian Kropatsch:
->> DT validation doesn't like the 'linux,default-trigger = "stmmac-0:01:link"'
->> properties, since "*:link" is not a valid value according to
->> [Documentation/devicetree/bindings/leds/common.yaml]. These LEDs do
->> have the specific purpose to show if an Ethernet link is up though.
->> There is one LED for each Ethernet port and they are labeled WAN and
->> LAN.
->> Using the 'linux,default-trigger' like this does work perfectly fine
->> with this solution. I could not find another way to achieve this. Please
->> let me know if there is a better way.
->> Maybe it would also be valid to add an entry to the DT bindings file to
->> allow "*:link" as a value for 'linux,default-trigger'?
-> 
-> correct. If needed, things should be added to binding.
+On Thu, Jun 20, 2024 at 2:31=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 18/06/2024 22:45, Sam Protsenko wrote:
+> > Add True Random Number Generator (TRNG) node to Exynos850 SoC dtsi.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v2:
+> >   - (no changes)
+> >
+>
+> That's a patch for Samsung soc. I'll take it once binding is accepted.
+> If you send any new version of the patchset, please do not include DTS,
+> so the crypto maintainer could apply entire set easier.
+>
 
-Alright, I'll add this to the binding at
-[Documentation/devicetree/bindings/leds/common.yaml]
+Thanks, Krzysztof! I'm going to send v3 soon, so I'll remove this
+patch from the series.
 
-Should this be a completely separate patch or is it preferred
-to add a patch to this NanoPi patch series?
-
-Cheers,
-Sebastian
+> Best regards,
+> Krzysztof
+>
 
