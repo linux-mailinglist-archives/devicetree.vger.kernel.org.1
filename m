@@ -1,405 +1,669 @@
-Return-Path: <devicetree+bounces-78185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C50491155F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 00:04:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F896911576
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 00:14:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E7511C21217
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 22:04:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 834B91F224ED
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 22:14:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F2584A4D;
-	Thu, 20 Jun 2024 22:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334E513210D;
+	Thu, 20 Jun 2024 22:14:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mWDGsyVY"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Hfc/wECk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9437A59167;
-	Thu, 20 Jun 2024 22:04:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E09823DC
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 22:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718921081; cv=none; b=P8w/KfshjXbgPy8vrmo8lgy4UYVWTgKSoByCPbDpE9ifG8bx6mrmTRV4D5Z7AccPhQ3zIbNdH5qKzc+K++nIXxFTVnKcMOWplXYp1+mtuoGBdI/redhia/kuQefd/UXM8TdV48dULsSN2cYxU3i7pM0TaJfrFgePQZpWGUya/BM=
+	t=1718921661; cv=none; b=Byf3VSwWpluCJ/9TNfA/ESE2THjuhhEGco6NFtuzCJDkO9eTAiY8uximYM5acxEZxHvhcNvoHT/XQ9j2rvMIEW6WMxDPd+yMlsyWW4DM8EjFdzi8UkWKQ+rvmBX7LckKqSl1AFsSYdttWChureD9B7wYiutt0pUHBKuXLRbl87k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718921081; c=relaxed/simple;
-	bh=gVYQl3pGyFlk05T7rufNWSVGMuubCIbjo9ynHZOlX0A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rJEM9NgZUpeffaX5ZKrIu5u+zU4TdxE0IMJBmUr11TR4uITEVEvd7GAuTOVlEEp57GOobWetLdIA20ifUnumAhpxC6/w4wLsey4nzSERV9MKSWsZDi71v6wPezggQurW3aghrR3Cg3me4GK0YwNsahw5s0V0R/bkVnFs2DUjD4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mWDGsyVY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45KHKsWA010564;
-	Thu, 20 Jun 2024 22:04:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2xhWTtdjB/pWg5xkVHFabX0MQ0bplv4y9hWfHxdmgnU=; b=mWDGsyVYfgWL0pCN
-	aY+M+Q3hSAPS/RzgrdgML04H2m6wdmu3woRrJYaY11Zo0LMNh318rDUkpy9TMPVb
-	EzFlkFRRSptZnPDPg8F1Xhua8EsM5VMu/Vif6uUEw4T+7Pmh6XNldDLJyKSmy7c2
-	bILB61CH2dvwss4IQOE2w2FCDqeAS6ffVkPBPdHdwR9XiXuph8ewyzVxyGN1ePi6
-	/pI8tNM53I3uWxVhDNnX7xZvYHmTigrqmXdbdlHsveA/ogHo7bxVZDovYw+/HU3t
-	mC/b7j9Kpmnh12RFIm1VidQsLB+UR2DvnkUYQS5OIsYqbh0jk0uRc90eNeA6NVbi
-	E8Dk5Q==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yvrrc8qr6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Jun 2024 22:04:06 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45KM45pr006861
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Jun 2024 22:04:05 GMT
-Received: from [10.110.23.35] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Jun
- 2024 15:04:04 -0700
-Message-ID: <c7a95157-1b71-1489-3657-8fe67f9acb4e@quicinc.com>
-Date: Thu, 20 Jun 2024 15:04:04 -0700
+	s=arc-20240116; t=1718921661; c=relaxed/simple;
+	bh=q1S9WFM/v/bftk3nGAh6WRIt4YPSu75PnTQnHtWsiYk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qBiqL6jyasy4zIKTm+IRVWBsPikChXvDK6Jxg//n2+jSinhGXpGmY8daTdeWktfhqb3bxxAYC8yhY4iSPbaLNIMwdUl9fgGf42hH9pyodbCh2Z3UN+lFeGkw2JupfmQ0VardCGqXt06ZDpBODDuWzHswsugZgYtsvwFHUYSELpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Hfc/wECk; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2c70c08d98fso1201973a91.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 15:14:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1718921658; x=1719526458; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yRRlc/83n24Dr8E+l2WtakH0kOCe8mMbgELZ1nglttQ=;
+        b=Hfc/wECkFdh/ktH9ilRWFxNN4BBKwoOXtdlA37b0tWBPkIEZyGbUZBi1d8wE+23sxC
+         Jh1nQY++FftRaAdldePxMcDKCFTqrB7uPla2sMunBF2vA9HzzJTD9dQntV4aBVH6VEP8
+         2SYXVAbSdcTHng2V5ixxi9KxDmApCQ2gdq9cGySMuKT8OuoHc/Y4hnTZMID1R2Ac6FWB
+         iPkb/+ngtzK/G9uit5xzdCffTPBvB1s30f7vaicgv+zfTHIX4eIhgZC0vI7aj5/3f94a
+         vK6PzVfOehouAUKv9+rP/G5iyXUUM6JNN/EHHbcBAq9euPh1S0LD/cJy/nAekHjDDcQL
+         WMKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718921658; x=1719526458;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yRRlc/83n24Dr8E+l2WtakH0kOCe8mMbgELZ1nglttQ=;
+        b=nJ973VSAIegXyahwiddTxuZtM6/5W3PlNgx/8xNgCQFvW/wXG+aTBj+jucNPyG/GI4
+         ktvRDMXfclMuzc7lFDprm1yr0sxaPK16n/E1rZYyUoQR+HlwssmMEmhPEohG101n/stH
+         5NAyy5jsg7GDZnN6cETJV2wL7FTttb/1jGP9BnW9f2BaSORULGKDxaC3h74ZNrNSMm2M
+         hvv7q3+nImAAjkBXGrRoF/QbjlTGZX6y8cpge7Y6aUUepTwUq26kWXIbWeB1a7ovjH7u
+         hilm7qNoksAbRoXB6GFnnFjIi+JFSQ70BslI4l3/3gZiWkWXewApBsn+MyEy2V3PrsiU
+         E0OA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGNYXu4zgFCrq1nptzOT0xS6S7yTtsFlz6Uc6nDQhuC/VgkY0dDtuazXgrbz4LYCr3qzWXkq7yNACGgO+TJfT9wo3hIeC7jqPT2g==
+X-Gm-Message-State: AOJu0Yy1xTrbFih7VYcSBAZSOD2MxKBKreLM6UB0JSbO8nohPCzhyIVG
+	SPf3ljlslngNhFi0cRiOrcfZX8R8XFdOUquHHJzT47A1rOA93z9QbrrVu1/ZdLA=
+X-Google-Smtp-Source: AGHT+IFbCZ0FAccwoCAdoG5nNsVZH7whu4ENOVlLqgggcLjyl/Ld268tprzAF+/kNf7+xSzGSefIxw==
+X-Received: by 2002:a17:90b:1298:b0:2c7:af97:ccf8 with SMTP id 98e67ed59e1d1-2c7b5da57b4mr6662656a91.35.1718921657956;
+        Thu, 20 Jun 2024 15:14:17 -0700 (PDT)
+Received: from ghost ([50.145.13.30])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c7e55dcc7fsm2213827a91.29.2024.06.20.15.14.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 15:14:17 -0700 (PDT)
+Date: Thu, 20 Jun 2024 15:14:14 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Jesse Taube <jesse@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu <andy.chiu@sifive.com>,
+	Eric Biggers <ebiggers@google.com>,
+	Greentime Hu <greentime.hu@sifive.com>,
+	=?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Costa Shulyupin <costa.shul@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Baoquan He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>,
+	Zong Li <zong.li@sifive.com>,
+	Sami Tolvanen <samitolvanen@google.com>,
+	Ben Dooks <ben.dooks@codethink.co.uk>,
+	Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Erick Archer <erick.archer@gmx.com>,
+	Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] RISC-V: Detect unaligned vector accesses
+ supported.
+Message-ID: <ZnSptpobfqjik3RM@ghost>
+References: <20240613191616.2101821-1-jesse@rivosinc.com>
+ <20240613191616.2101821-5-jesse@rivosinc.com>
+ <ZnDmRK0ZtKzmWN5S@ghost>
+ <ZnDsdzv4o/Xz9kWm@ghost>
+ <e6f7a061-50f0-4a6a-a09b-468502703c20@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v23 32/32] ASoC: doc: Add documentation for SOC USB
-Content-Language: en-US
-To: =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?=
-	<amadeuszx.slawinski@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <robh@kernel.org>, <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240610235808.22173-1-quic_wcheng@quicinc.com>
- <20240610235808.22173-33-quic_wcheng@quicinc.com>
- <5be51e1f-70c9-4bbc-96fa-1e50e441bd35@linux.intel.com>
- <408d9e8e-0f40-7e66-54be-2f8d2c0783a3@quicinc.com>
- <ca1e1063-e1bd-4e03-a7cd-91985e9954e9@linux.intel.com>
- <096d59a0-5e18-092c-c9ae-d98130226f06@quicinc.com>
- <368d9019-2c96-468e-b472-7e1127f76213@linux.intel.com>
- <eb6370ea-47a0-3659-3c10-cb7f95e3e520@quicinc.com>
- <510468c7-b181-48d0-bf2d-3e478b2f2aca@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <510468c7-b181-48d0-bf2d-3e478b2f2aca@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fkjkoaaKb0pnjbw8a4G2aIcuXdMzPNuF
-X-Proofpoint-ORIG-GUID: fkjkoaaKb0pnjbw8a4G2aIcuXdMzPNuF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-20_10,2024-06-20_04,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 mlxlogscore=999 spamscore=0 lowpriorityscore=0
- phishscore=0 bulkscore=0 adultscore=0 mlxscore=0 suspectscore=0
- malwarescore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2406140001 definitions=main-2406200162
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e6f7a061-50f0-4a6a-a09b-468502703c20@rivosinc.com>
 
-Hi Amaduesz,
+On Thu, Jun 20, 2024 at 05:31:28PM -0400, Jesse Taube wrote:
+> 
+> 
+> On 6/17/24 22:09, Charlie Jenkins wrote:
+> > On Mon, Jun 17, 2024 at 06:43:32PM -0700, Charlie Jenkins wrote:
+> > > On Thu, Jun 13, 2024 at 03:16:13PM -0400, Jesse Taube wrote:
+> > > > Run a unaligned vector access to test if the system supports
+> > > > vector unaligned access. Add the result to a new key in hwprobe.
+> > > > This is useful for usermode to know if vector misaligned accesses are
+> > > > supported and if they are faster or slower than equivalent byte accesses.
+> > > > 
+> > > > Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> > > > ---
+> > > > V1 -> V2:
+> > > >   - Add Kconfig options
+> > > >   - Add insn_is_vector
+> > > >   - Add handle_vector_misaligned_load
+> > > >   - Fix build
+> > > >   - Seperate vector from scalar misaligned access
+> > > >   - This patch was almost completely rewritten
+> > > > ---
+> > > >   arch/riscv/Kconfig                         |  41 +++++++
+> > > >   arch/riscv/include/asm/cpufeature.h        |   7 +-
+> > > >   arch/riscv/include/asm/entry-common.h      |  11 --
+> > > >   arch/riscv/include/asm/hwprobe.h           |   2 +-
+> > > >   arch/riscv/include/asm/vector.h            |   1 +
+> > > >   arch/riscv/include/uapi/asm/hwprobe.h      |   5 +
+> > > >   arch/riscv/kernel/Makefile                 |   4 +-
+> > > >   arch/riscv/kernel/sys_hwprobe.c            |  41 +++++++
+> > > >   arch/riscv/kernel/traps_misaligned.c       | 119 ++++++++++++++++++++-
+> > > >   arch/riscv/kernel/unaligned_access_speed.c |   9 +-
+> > > >   arch/riscv/kernel/vector.c                 |   2 +-
+> > > >   11 files changed, 221 insertions(+), 21 deletions(-)
+> > > > 
+> > > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> > > > index b94176e25be1..f12df0ca6c18 100644
+> > > > --- a/arch/riscv/Kconfig
+> > > > +++ b/arch/riscv/Kconfig
+> > > > @@ -723,6 +723,12 @@ config RISCV_MISALIGNED
+> > > >   	help
+> > > >   	  Embed support for emulating misaligned loads and stores.
+> > > > +config RISCV_VECTOR_MISALIGNED
+> > > > +	bool
+> > > > +	depends on RISCV_ISA_V
+> > > > +	help
+> > > > +	  Enable detecting support for vector misaligned loads and stores.
+> > > > +
+> > > >   choice
+> > > >   	prompt "Unaligned Accesses Support"
+> > > >   	default RISCV_PROBE_UNALIGNED_ACCESS
+> > > > @@ -774,6 +780,41 @@ config RISCV_EFFICIENT_UNALIGNED_ACCESS
+> > > >   endchoice
+> > > > +choice
+> > > > +	prompt "Vector unaligned Accesses Support"
+> > > > +	depends on RISCV_ISA_V
+> > > > +	default RISCV_PROBE_VECTOR_UNALIGNED_ACCESS
+> > > > +	help
+> > > > +	  This determines the level of support for vector unaligned accesses. This
+> > > > +	  information is used by the kernel to perform optimizations. It is also
+> > > > +	  exposed to user space via the hwprobe syscall. The hardware will be
+> > > > +	  probed at boot by default.
+> > > > +
+> > > > +config RISCV_DETECT_VECTOR_UNALIGNED_ACCESS
+> > > 
+> > > This is not used anywhere, what is the reason for including it?
+> 
+> This is so that we can check if they are supported or not, but not check the
+> speed of them. Similar to RISCV_EMULATED_UNALIGNED_ACCESS.
 
-On 6/19/2024 12:52 AM, Amadeusz Sławiński wrote:
-> On 6/18/2024 10:52 PM, Wesley Cheng wrote:
->> Hi Amadeusz,
->>
->> On 6/18/2024 4:42 AM, Amadeusz Sławiński wrote:
->>> On 6/17/2024 7:02 PM, Wesley Cheng wrote:
->>>> Hi Amadeusz,
->>>>
->>>> On 6/13/2024 12:46 AM, Amadeusz Sławiński wrote:
->>>>> On 6/12/2024 9:28 PM, Wesley Cheng wrote:
->>>>>> Hi Amadeusz,
->>>>>>
->>>>>> On 6/12/2024 7:47 AM, Amadeusz Sławiński wrote:
->>>>>>> On 6/11/2024 1:58 AM, Wesley Cheng wrote:
->>>>>>>
->>>>>>> (...)
->>>>>>>
->>>>>>>> +In the case where the USB offload driver is unbounded, while 
->>>>>>>> USB SND is
->>>>>>>
->>>>>>> unbounded -> unbound
->>>>>>>
->>>>>>> (...)
->>>>>>>
->>>>>>>> +SOC USB and USB Sound Kcontrols
->>>>>>>> +===============================
->>>>>>>> +Details
->>>>>>>> +-------
->>>>>>>> +SOC USB and USB sound expose a set of SND kcontrols for 
->>>>>>>> applications to select
->>>>>>>> +and fetch the current offloading status for the ASoC platform 
->>>>>>>> sound card. Kcontrols
->>>>>>>> +are split between two layers:
->>>>>>>> +
->>>>>>>> +    - USB sound - Notifies the sound card number for the ASoC 
->>>>>>>> platform sound
->>>>>>>> +      card that it is registered to for supporting audio offload.
->>>>>>>> +
->>>>>>>> +    - SOC USB - Maintains the current status of the offload 
->>>>>>>> path, and device
->>>>>>>> +      (USB sound card and PCM device) information.  This would 
->>>>>>>> be the main
->>>>>>>> +      card that applications can read to determine offloading 
->>>>>>>> capabilities.
->>>>>>>> +
->>>>>>>> +Implementation
->>>>>>>> +--------------
->>>>>>>> +
->>>>>>>> +**Example:**
->>>>>>>> +
->>>>>>>> +  **Sound Cards**:
->>>>>>>> +
->>>>>>>> +    ::
->>>>>>>> +
->>>>>>>> +      0 [SM8250MTPWCD938]: sm8250 - 
->>>>>>>> SM8250-MTP-WCD9380-WSA8810-VA-D
->>>>>>>> +                     SM8250-MTP-WCD9380-WSA8810-VA-DMIC
->>>>>>>> +      1 [C320M          ]: USB-Audio - Plantronics C320-M
->>>>>>>> +                     Plantronics Plantronics C320-M at 
->>>>>>>> usb-xhci-hcd.1.auto-1, full speed
->>>>>>>> +
->>>>>>>> +
->>>>>>>> +  **Platform Sound Card** - card#0:
->>>>>>>> +
->>>>>>>> +    ::
->>>>>>>> +
->>>>>>>> +      USB Offload Playback Route Card Select  1 (range -1->32)
->>>>>>>> +      USB Offload Playback Route PCM Select   0 (range -1->255)
->>>>>>>> +      USB Offload Playback Route Card Status  -1 (range -1->32)
->>>>>>>> +      USB Offload Playback Route PCM Status   -1 (range -1->255)
->>>>>>>> +
->>>>>>>> +
->>>>>>>> +  **USB Sound Card** - card#1:
->>>>>>>> +
->>>>>>>> +    ::
->>>>>>>> +
->>>>>>>> +      USB Offload Playback Capable Card         0 (range -1->32)
->>>>>>>> +
->>>>>>>> +
->>>>>>>> +The platform sound card(card#0) kcontrols are created as part 
->>>>>>>> of adding the SOC
->>>>>>>> +USB device using **snd_soc_usb_add_port()**.  The following 
->>>>>>>> kcontrols are defined
->>>>>>>> +as:
->>>>>>>> +
->>>>>>>> +  - ``USB Offload Playback Route Card Status`` **(R)**: USB 
->>>>>>>> sound card device index
->>>>>>>> +    that defines which USB SND resources are currently 
->>>>>>>> offloaded. If -1 is seen, it
->>>>>>>> +    signifies that offload is not active.
->>>>>>>> +  - ``USB Offload Playback Route PCM Status`` **(R)**: USB PCM 
->>>>>>>> device index
->>>>>>>> +    that defines which USB SND resources are currently 
->>>>>>>> offloaded. If -1 is seen, it
->>>>>>>> +    signifies that offload is not active.
->>>>>>>> +  - ``USB Offload Playback Route Card Select`` **(R/W)**: USB 
->>>>>>>> sound card index which
->>>>>>>> +    selects the USB device to initiate offloading on.  If no 
->>>>>>>> value is written to the
->>>>>>>> +    kcontrol, then the last USB device discovered card index 
->>>>>>>> will be chosen.
->>>>>>>
->>>>>>> I see only one kcontrol, what if hardware is capable of 
->>>>>>> offloading on more cards, is it possible to do offloading on more 
->>>>>>> than one device?
->>>>>>>
->>>>>>>> +  - ``USB Offload Playback Route PCM Select`` **(R/W)**: USB 
->>>>>>>> PCM index which selects
->>>>>>>> +    the USB device to initiate offloading on.  If no value is 
->>>>>>>> written to the
->>>>>>>> +    kcontrol, then the last USB device discovered PCM zero 
->>>>>>>> index will be chosen.
->>>>>>>> +
->>>>>>>> +The USB sound card(card#1) kcontrols are created as USB audio 
->>>>>>>> devices are plugged
->>>>>>>> +into the physical USB port and enumerated.  The kcontrols are 
->>>>>>>> defined as:
->>>>>>>> +
->>>>>>>> +  - ``USB Offload Playback Capable Card`` **(R)**: Provides the 
->>>>>>>> sound card
->>>>>>>> +    number/index that supports USB offloading.  Further/follow 
->>>>>>>> up queries about
->>>>>>>> +    the current offload state can be handled by reading the 
->>>>>>>> offload status
->>>>>>>> +    kcontrol exposed by the platform card.
->>>>>>>> +
->>>>>>>
->>>>>>>
->>>>>>> Why do we need to some magic between cards? I feel like whole 
->>>>>>> kcontrol thing is overengineered a bit - I'm not sure I 
->>>>>>> understand the need to do linking between cards. It would feel a 
->>>>>>> lot simpler if USB card exposed one "USB Offload" kcontrol on USB 
->>>>>>> card if USB controller supports offloading and allowed to set it 
->>>>>>> to true/false to allow user to choose if they want to do 
->>>>>>> offloading on device.
->>>>>>>
->>>>>>> (...)
->>>>>>
->>>>>> Based on feedback from Pierre, what I understood is that for some 
->>>>>> applications, there won't be an order on which sound card is 
->>>>>> queried/opened first.
->>>>>>
->>>>>
->>>>> Yes if you have multiple cards, they are probed in random order.
->>>>>
->>>>>> So the end use case example given was if an application opened the 
->>>>>> USB sound card first, it can see if there is an offload path 
->>>>>> available. If there is then it can enable the offload path on the 
->>>>>> corresponding card if desired.
->>>>>>
->>>>>
->>>>> This still doesn't explain why you need to link cards using 
->>>>> controls. What would not work with simple "Enable Offload" with 
->>>>> true/false values on USB card that works while you do have above 
->>>>> routing controls?
->>>>>
->>>>
->>>> Sorry for the late response.
->>>>
->>>> I think either way, even with the "Enable Offload" kcontrol in USB 
->>>> SND, we'd need a way to link these cards, because if you have 
->>>> multiple USB audio devices connected, and say... your offload 
->>>> mechanism only supports one stream.  Then I assume we'd still need 
->>>> to way to determine if that stream can be enabled for that USB SND 
->>>> device or not.
->>>>
->>>> Since the USB SND isn't really the entity maintaining the offload 
->>>> path, I went with the decision to add that route selection to the 
->>>> ASoC platform card. It would have access to all the parameters 
->>>> supported by the audio DSP.
->>>>
->>>
->>> Problem with card selection is that it will most likely work in 
->>> pretty random way during reboots and similar scenarios.
->>>
->>> Taking from your example:
->>>      USB Offload Playback Route Card Select  1 (range -1->32)
->>>      USB Offload Playback Route PCM Select   0 (range -1->255)
->>>      USB Offload Playback Route Card Status  -1 (range -1->32)
->>>      USB Offload Playback Route PCM Status   -1 (range -1->255)
->>>
->>> This tells that hw:1,0 will be offloaded USB card. What happens if 
->>> after reboot the USB card and offload card change places, the control 
->>> will be pointing at its owner... Another scenario to consider is that 
->>> user attaches two USB cards and only first one does offload. Now what 
->>> happens when they enumerate in different order after reboot (swapping 
->>> places)? Taking into the account that most systems restore previous 
->>> values of controls in some way - this will point at wrong card.
->>
->> That sounds like a problem that would exist with current USB SND 
->> implementation too?  Removing the offloading perspective, how does the 
->> system ensure that the previous setting stays persistent?  For 
->> example, as you mentioned, depending on which USB device enumerates 
->> first, the sound card may be different so cards will be switched.
->>
-> 
-> It works because there is no control pointing at other card. My main 
-> problem is with controls which have card and pcm id of other card in it.
-> 
->> I think I mentioned this previously in another discussion, but I think 
->> the idea was that with the
->> USB Offload Playback Capable Card
->>
->> kcontrol, would allow the system to at least know there is an offload 
->> capable path pointing to the ASoC platform card, and fetch more 
->> detailed information about which device is selected for offloading, 
->> etc...
->>
-> 
-> This works only in your design, where USB Offload is backed by card, 
-> what happens if it is backed by something else?
-> 
->>>
->>> In my opinion Offload capability should be the capability of the 
->>> endpoint - in this case USB card (even if in the background it needs 
->>> to talk to some other device) and it should be exposed as such. 
->>> Currently you are mixing capabilities of your audio card with 
->>> capabilities of USB card.
->>>
->>> And adding more controls will not make it easy to use from end user 
->>> perspective. Most users will most likely want for the devices to 
->>> perform offload automatically if possible to save power and just have 
->>> control to disable it in case they want to test if it works better 
->>> without it in case of some problems.
->>
->> I agree with you that we need to keep the controls at a minimum, but I 
->> think what I have in place is fairly reasonable.  If we switch to 
->> having the USB SND controlling things, we'd save maybe one control?  I 
->> think keeping the offload status controls are still fairly valuable in 
->> both scenarios, as userspace may need to verify which USB SND card is 
->> being offloaded.
->>
-> 
-> It should be able to tell which one is being offloaded by examining 
-> which USB card has Offload control set to true.
-> 
-> I would assume that USB cards that cannot perform Offload have no 
-> control at all, as it is unneeded. And ones that can do, have Offload 
-> control. And ones actively being Offloaded have it set to true, 
-> otherwise to false.
-> 
-> End user has no need to know where it is offloaded. I'm not HW person, 
-> but I would assume that it is even unlikely that someone will design HW, 
-> where it is possible to Offload one endpoint to two different places, as 
-> this complicates things a lot, but if it were possible, from design 
-> perspective it would make a lot more sense to set it in Offloaded USB 
-> card settings, instead of some seemingly unrelated controller card 
-> device. And that is assuming that all solutions use some other card 
-> device to perform Offload.
-> 
->>>
->>> Additional question what happens if you want to offload two usb 
->>> cards, currently the above set of controls allows you to only point 
->>> at one card, will you be adding additional set of above controls 
->>> dynamically for each USB card attached?
->>>
->>
->> It would depend on the number of offload streams that folks may be 
->> supporting on their platform.  In our case we only have one available 
->> stream, so applications would need to switch between the two devices 
->> using the card/pcm selector.
->>
->> In this case, there will be only one set of controls to select the 
->> card/pcm device.  As of now (I think I'll change to to add another 
->> separate set of controls per stream) if you did support multiple 
->> streams, then the current card/PCM device selector would take in 
->> multiple arugments. (ie for two streams the kcontrol can take in two 
->> values)
->>
-> 
-> Then it is implementation detail of your device, and it should be 
-> implemented as controls in your device instead of as part of generic API.
-> 
+What do you mean? It isn't used anywhere so this "check if they are
+supported or not" is not guarded by this config.
 
-I initially had it as part of the device specific files, but I did get 
-some feedback on [1], it might be better to have generic control names, 
-hence the reason for moving into soc-usb.
+> 
+> > > 
+> > > > +	bool "Detect support for vector unaligned accesses"
+> > > > +	select RISCV_VECTOR_MISALIGNED
+> > > > +	help
+> > > > +	  During boot, the kernel will detect if the system supports vector
+> > > > +	  unaligned accesses.
+> > > > +
+> > > > +config RISCV_PROBE_VECTOR_UNALIGNED_ACCESS
+> > > > +	bool "Probe speed of vector unaligned accesses"
+> > > > +	select RISCV_VECTOR_MISALIGNED
+> > > > +	help
+> > > > +	  During boot, the kernel will run a series of tests to determine the
+> > > > +	  speed of vector unaligned accesses if they are supported. This probing
+> > > > +	  will dynamically determine the speed of vector unaligned accesses on
+> > > > +	  the underlying system if they are supported.
+> > > > +
+> > > > +config CONFIG_RISCV_UNALIGNED_ACCESS_UNSUPPORTED
+> > > 
+> > > This should not be prefixed with CONFIG and does not include VECTOR in
+> > > the name.
+> 
+> Huh thought it would warn fixed though
 
-I'll spend some time to evaluate your suggestion about moving the logic 
-to control the offloading from USB SND versus ASoC, since there are 
-valid points.  However, before I do that, I just want to make sure folks 
-are also inline with that thinking.  I've had to put a lot of effort 
-moving things around such as the previous example, and now you've 
-suggested to move it back to the vendor specific drivers.
+What do you mean by "warn fixed"?
 
-@Pierre, since you've helped with providing a lot of valuable input in 
-the previous revisions on the kcontrol uses, what do you think about the 
-proposal from Amadeusz?  Basically shifting the offload device selection 
-into USB SND from the ASoC USB BE driver, and having this per USB SND 
-device.
+> 
+> > I assume you meant to put
+> > > "RISCV_VEC_UNALIGNED_ACCESS_UNSUPPORTED" here?
+> 
+> This is to leave a faster path like SLOW or FAST to say that unaligned
+> access arent suported.
 
-[1] 
-https://lore.kernel.org/linux-usb/20231017200109.11407-30-quic_wcheng@quicinc.com/
+I am not sure what you are responding to. This comment seems to be
+responding to my correction of
+CONFIG_RISCV_UNALIGNED_ACCESS_UNSUPPORTED->RISCV_VEC_UNALIGNED_ACCESS_UNSUPPORTED
+so I don't see how that ties into SLOW/FAST.
+
+> 
+> > > 
+> > > This was also intentionally left out on the scalar side [1]. The
+> > > implication here is that having this config will cause people to compile
+> > > kernels without unaligned access support which really shouldn't be
+> > > something we are explicitly supporting.
+> > > 
+> > > If somebody does want to support hardware that does not handle vector
+> > > unaligned accesses, the solution should be to add emulation support to
+> > > the kernel.
+> 
+> Yes but we dont have emulation support yet so I do think its a good idea.
+
+I am hesitant because it is very likely that somebody will add support
+for unaligned vector emulation. When there is emulation support, this
+config option should not exist to be consistent with scalar. However if
+we add this option in now, we must expect a user to enable this config,
+and then we will have to get rid of it later. Users are not always happy
+when config options are removed.
+
+> 
+> > > 
+> > > Link: https://lore.kernel.org/all/Zd4y5llkvTfKHf6b@ghost/ [1]
+> > > 
+> > > - Charlie
+> > > 
+> > > > +	bool "Assume the system does not support vector unaligned memory accesses"
+> > > > +	help
+> > > > +	  Assume that the system does not support vector unaligned memory accesses.
+> > > > +	  The kernel and userspace programs may run them successfully on systems
+> > > > +	  that do support vector unaligned memory accesses.
+> > > > +
+> > > > +endchoice
+> > > > +
+> > > >   endmenu # "Platform type"
+> > > >   menu "Kernel features"
+> > > > diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
+> > > > index 347805446151..d0ea5921ab20 100644
+> > > > --- a/arch/riscv/include/asm/cpufeature.h
+> > > > +++ b/arch/riscv/include/asm/cpufeature.h
+> > > > @@ -33,8 +33,8 @@ extern struct riscv_isainfo hart_isa[NR_CPUS];
+> > > >   void riscv_user_isa_enable(void);
+> > > > -#if defined(CONFIG_RISCV_MISALIGNED)
+> > > >   bool check_unaligned_access_emulated_all_cpus(void);
+> > > > +#if defined(CONFIG_RISCV_MISALIGNED)
+> > > >   void unaligned_emulation_finish(void);
+> > > >   bool unaligned_ctl_available(void);
+> > > >   DECLARE_PER_CPU(long, misaligned_access_speed);
+> > > > @@ -45,6 +45,11 @@ static inline bool unaligned_ctl_available(void)
+> > > >   }
+> > > >   #endif
+> > > > +bool check_vector_unaligned_access_emulated_all_cpus(void);
+> > > > +#if defined(CONFIG_RISCV_VECTOR_MISALIGNED)
+> > > > +DECLARE_PER_CPU(long, vector_misaligned_access);
+> > > > +#endif
+> > > > +
+> > > >   #if defined(CONFIG_RISCV_PROBE_UNALIGNED_ACCESS)
+> > > >   DECLARE_STATIC_KEY_FALSE(fast_unaligned_access_speed_key);
+> > > > diff --git a/arch/riscv/include/asm/entry-common.h b/arch/riscv/include/asm/entry-common.h
+> > > > index 2293e535f865..7b32d2b08bb6 100644
+> > > > --- a/arch/riscv/include/asm/entry-common.h
+> > > > +++ b/arch/riscv/include/asm/entry-common.h
+> > > > @@ -25,18 +25,7 @@ static inline void arch_exit_to_user_mode_prepare(struct pt_regs *regs,
+> > > >   void handle_page_fault(struct pt_regs *regs);
+> > > >   void handle_break(struct pt_regs *regs);
+> > > > -#ifdef CONFIG_RISCV_MISALIGNED
+> > > >   int handle_misaligned_load(struct pt_regs *regs);
+> > > >   int handle_misaligned_store(struct pt_regs *regs);
+> > > > -#else
+> > > > -static inline int handle_misaligned_load(struct pt_regs *regs)
+> > > > -{
+> > > > -	return -1;
+> > > > -}
+> > > > -static inline int handle_misaligned_store(struct pt_regs *regs)
+> > > > -{
+> > > > -	return -1;
+> > > > -}
+> > > > -#endif
+> > > >   #endif /* _ASM_RISCV_ENTRY_COMMON_H */
+> > > > diff --git a/arch/riscv/include/asm/hwprobe.h b/arch/riscv/include/asm/hwprobe.h
+> > > > index 150a9877b0af..ef01c182af2b 100644
+> > > > --- a/arch/riscv/include/asm/hwprobe.h
+> > > > +++ b/arch/riscv/include/asm/hwprobe.h
+> > > > @@ -8,7 +8,7 @@
+> > > >   #include <uapi/asm/hwprobe.h>
+> > > > -#define RISCV_HWPROBE_MAX_KEY 7
+> > > > +#define RISCV_HWPROBE_MAX_KEY 8
+> > > >   static inline bool riscv_hwprobe_key_is_valid(__s64 key)
+> > > >   {
+> > > > diff --git a/arch/riscv/include/asm/vector.h b/arch/riscv/include/asm/vector.h
+> > > > index be7d309cca8a..99b0f91db9ee 100644
+> > > > --- a/arch/riscv/include/asm/vector.h
+> > > > +++ b/arch/riscv/include/asm/vector.h
+> > > > @@ -21,6 +21,7 @@
+> > > >   extern unsigned long riscv_v_vsize;
+> > > >   int riscv_v_setup_vsize(void);
+> > > > +bool insn_is_vector(u32 insn_buf);
+> > > >   bool riscv_v_first_use_handler(struct pt_regs *regs);
+> > > >   void kernel_vector_begin(void);
+> > > >   void kernel_vector_end(void);
+> > > > diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
+> > > > index 023b7771d1b7..2fee870e41bb 100644
+> > > > --- a/arch/riscv/include/uapi/asm/hwprobe.h
+> > > > +++ b/arch/riscv/include/uapi/asm/hwprobe.h
+> > > > @@ -75,6 +75,11 @@ struct riscv_hwprobe {
+> > > >   #define		RISCV_HWPROBE_MISALIGNED_MASK		(7 << 0)
+> > > >   #define RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE	6
+> > > >   #define RISCV_HWPROBE_KEY_MISALIGNED_PERF	7
+> > > > +#define RISCV_HWPROBE_KEY_VEC_MISALIGNED_PERF	8
+> > > > +#define		RISCV_HWPROBE_VEC_MISALIGNED_UNKNOWN		0
+> > > 
+> > > I appreciate you leaving the key for EMULATED open!
+> > > 
+> > > > +#define		RISCV_HWPROBE_VEC_MISALIGNED_SLOW		2
+> > > > +#define		RISCV_HWPROBE_VEC_MISALIGNED_FAST		3
+> > > > +#define		RISCV_HWPROBE_VEC_MISALIGNED_UNSUPPORTED	4
+> > > >   /* Increase RISCV_HWPROBE_MAX_KEY when adding items. */
+> > > >   /* Flags */
+> > > > diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
+> > > > index 5b243d46f4b1..62ac19c029f1 100644
+> > > > --- a/arch/riscv/kernel/Makefile
+> > > > +++ b/arch/riscv/kernel/Makefile
+> > > > @@ -62,8 +62,8 @@ obj-y	+= probes/
+> > > >   obj-y	+= tests/
+> > > >   obj-$(CONFIG_MMU) += vdso.o vdso/
+> > > > -obj-$(CONFIG_RISCV_MISALIGNED)	+= traps_misaligned.o
+> > > > -obj-$(CONFIG_RISCV_MISALIGNED)	+= unaligned_access_speed.o
+> > > > +obj-y	+= traps_misaligned.o
+> > > > +obj-y	+= unaligned_access_speed.o
+> 
+> > These files only need to be compiled if either CONFIG_RISCV_MISALIGNED
+> > or CONFIG_RISCV_VECTOR_MISALIGNED is selected. Can you refactor this
+> > code to replace CONFIG_RISCV_MISALIGNED with
+> > CONFIG_RISCV_SCALAR_MISALIGNED and then have
+> > CONFIG_RISCV_SCALAR_MISALIGNED and CONFIG_RISCV_VECTOR_MISALIGNED
+> > select CONFIG_RISCV_MISALIGNED in the Kconfig?
+> 
+> Fixed!
+> 
+> > > >   obj-$(CONFIG_RISCV_PROBE_UNALIGNED_ACCESS)	+= copy-unaligned.o
+> > > >   obj-$(CONFIG_FPU)		+= fpu.o
+> > > > diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
+> > > > index e910e2971984..c40df314058b 100644
+> > > > --- a/arch/riscv/kernel/sys_hwprobe.c
+> > > > +++ b/arch/riscv/kernel/sys_hwprobe.c
+> > > > @@ -194,6 +194,43 @@ static u64 hwprobe_misaligned(const struct cpumask *cpus)
+> > > >   }
+> > > >   #endif
+> > > > +#ifdef CONFIG_RISCV_VECTOR_MISALIGNED
+> > > > +static u64 hwprobe_vec_misaligned(const struct cpumask *cpus)
+> > > > +{
+> > > > +	int cpu;
+> > > > +	u64 perf = -1ULL;
+> > > > +
+> > > > +	if (IS_ENABLED(CONFIG_RISCV_UNALIGNED_ACCESS_UNSUPPORTED))
+> > > > +		return RISCV_HWPROBE_VEC_MISALIGNED_UNSUPPORTED;
+> > > > +
+> > > > +	/* Return if supported or not even if speed wasn't probed */
+> > > > +	for_each_cpu(cpu, cpus) {
+> > > > +		int this_perf = per_cpu(vector_misaligned_access, cpu);
+> > > > +
+> > > > +		if (perf == -1ULL)
+> > > > +			perf = this_perf;
+> > > > +
+> > > > +		if (perf != this_perf) {
+> > > > +			perf = RISCV_HWPROBE_VEC_MISALIGNED_UNKNOWN;
+> > > > +			break;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	if (perf == -1ULL)
+> > > > +		return RISCV_HWPROBE_VEC_MISALIGNED_UNKNOWN;
+> > > > +
+> > > > +	return perf;
+> > > > +}
+> > > > +#else
+> > > > +static u64 hwprobe_vec_misaligned(const struct cpumask *cpus)
+> > > > +{
+> > > > +	if (IS_ENABLED(CONFIG_RISCV_UNALIGNED_ACCESS_UNSUPPORTED))
+> > > > +		return RISCV_HWPROBE_VEC_MISALIGNED_UNSUPPORTED;
+> > > > +
+> > > > +	return RISCV_HWPROBE_VEC_MISALIGNED_UNKNOWN;
+> > > > +}
+> > > > +#endif
+> > > > +
+> > > >   static void hwprobe_one_pair(struct riscv_hwprobe *pair,
+> > > >   			     const struct cpumask *cpus)
+> > > >   {
+> > > > @@ -222,6 +259,10 @@ static void hwprobe_one_pair(struct riscv_hwprobe *pair,
+> > > >   		pair->value = hwprobe_misaligned(cpus);
+> > > >   		break;
+> > > > +	case RISCV_HWPROBE_KEY_VEC_MISALIGNED_PERF:
+> > > > +		pair->value = hwprobe_vec_misaligned(cpus);
+> > > > +		break;
+> > > > +
+> > > >   	case RISCV_HWPROBE_KEY_ZICBOZ_BLOCK_SIZE:
+> > > >   		pair->value = 0;
+> > > >   		if (hwprobe_ext0_has(cpus, RISCV_HWPROBE_EXT_ZICBOZ))
+> > > > diff --git a/arch/riscv/kernel/traps_misaligned.c b/arch/riscv/kernel/traps_misaligned.c
+> > > > index 8fadbe00dd62..6f0264a8c9de 100644
+> > > > --- a/arch/riscv/kernel/traps_misaligned.c
+> > > > +++ b/arch/riscv/kernel/traps_misaligned.c
+> > > > @@ -16,6 +16,7 @@
+> > > >   #include <asm/entry-common.h>
+> > > >   #include <asm/hwprobe.h>
+> > > >   #include <asm/cpufeature.h>
+> > > > +#include <asm/vector.h>
+> > > >   #define INSN_MATCH_LB			0x3
+> > > >   #define INSN_MASK_LB			0x707f
+> > > > @@ -322,12 +323,37 @@ union reg_data {
+> > > >   	u64 data_u64;
+> > > >   };
+> > > > -static bool unaligned_ctl __read_mostly;
+> > > > -
+> > > >   /* sysctl hooks */
+> > > >   int unaligned_enabled __read_mostly = 1;	/* Enabled by default */
+> > > > -int handle_misaligned_load(struct pt_regs *regs)
+> > > > +#ifdef CONFIG_RISCV_VECTOR_MISALIGNED
+> > > > +static int handle_vector_misaligned_load(struct pt_regs *regs)
+> > > > +{
+> > > > +	unsigned long epc = regs->epc;
+> > > > +	unsigned long insn;
+> > > > +
+> > > > +	if (get_insn(regs, epc, &insn))
+> > > > +		return -1;
+> > > > +
+> > > > +	/* Only return 0 when in check_vector_unaligned_access_emulated */
+> > > > +	if (*this_cpu_ptr(&vector_misaligned_access) == RISCV_HWPROBE_VEC_MISALIGNED_UNKNOWN) {
+> > > > +		*this_cpu_ptr(&vector_misaligned_access) = RISCV_HWPROBE_VEC_MISALIGNED_UNSUPPORTED;
+> > > > +		regs->epc = epc + INSN_LEN(insn);
+> > > > +		return 0;
+> > > > +	}
+> > > > +
+> > > > +	/* If vector instruction we don't emulate it yet */
+> > > > +	regs->epc = epc;
+> > > > +	return -1;
+> > > > +}
+> > > > +#else
+> > > > +static int handle_vector_misaligned_load(struct pt_regs *regs)
+> > > > +{
+> > > > +	return -1;
+> > > > +}
+> > > > +#endif
+> > > > +
+> > > > +static int handle_scalar_misaligned_load(struct pt_regs *regs)
+> > > >   {
+> > > >   	union reg_data val;
+> > > >   	unsigned long epc = regs->epc;
+> > > > @@ -435,7 +461,7 @@ int handle_misaligned_load(struct pt_regs *regs)
+> > > >   	return 0;
+> > > >   }
+> > > > -int handle_misaligned_store(struct pt_regs *regs)
+> > > > +static int handle_scalar_misaligned_store(struct pt_regs *regs)
+> > > >   {
+> > > >   	union reg_data val;
+> > > >   	unsigned long epc = regs->epc;
+> > > > @@ -526,6 +552,85 @@ int handle_misaligned_store(struct pt_regs *regs)
+> > > >   	return 0;
+> > > >   }
+> > > > +int handle_misaligned_load(struct pt_regs *regs)
+> > > > +{
+> > > > +	unsigned long epc = regs->epc;
+> > > > +	unsigned long insn;
+> > > > +
+> > > > +	if (IS_ENABLED(CONFIG_RISCV_VECTOR_MISALIGNED)) {
+> > > > +		if (get_insn(regs, epc, &insn))
+> > > > +			return -1;
+> > > > +
+> > > > +		if (insn_is_vector(insn))
+> > > > +			return handle_vector_misaligned_load(regs);
+> > > > +	}
+> > > > +
+> > > > +	if (IS_ENABLED(CONFIG_RISCV_MISALIGNED))
+> > > > +		return handle_scalar_misaligned_load(regs);
+> > > > +
+> > > > +	return -1;
+> > > > +}
+> > > > +
+> > > > +int handle_misaligned_store(struct pt_regs *regs)
+> > > > +{
+> > > > +	if (IS_ENABLED(CONFIG_RISCV_MISALIGNED))
+> > > > +		return handle_scalar_misaligned_store(regs);
+> > > > +
+> > > > +	return -1;
+> > > > +}
+> > > > +
+> > > > +#ifdef CONFIG_RISCV_VECTOR_MISALIGNED
+> > > > +static void check_vector_unaligned_access_emulated(struct work_struct *unused)
+> > > > +{
+> > > > +	long *mas_ptr = this_cpu_ptr(&vector_misaligned_access);
+> > > > +	unsigned long tmp_var;
+> > > > +
+> > > > +	*mas_ptr = RISCV_HWPROBE_VEC_MISALIGNED_UNKNOWN;
+> > > > +
+> > > > +	local_irq_enable();
+> @Evan Green I forgot to remove this from when when I was using
+> smp_call_on_cpu and encountered the problem you descibed.
+> They can be removed.
+> 
+> > > > +	kernel_vector_begin();
+> > > > +	__asm__ __volatile__ (
+> > > > +		".balign 4\n\t"
+> > > > +		".option push\n\t"
+> > > > +		".option arch, +zve32x\n\t"
+> > > > +		"       vsetivli zero, 1, e16, m1, ta, ma\n\t"	// Vectors of 16b
+> > > > +		"       vle16.v v0, (%[ptr])\n\t"		// Load bytes
+> > > > +		".option pop\n\t"
+> > > > +		: : [ptr] "r" ((u8 *)&tmp_var + 1) : "v0");
+> > > > +	kernel_vector_end();
+> 	if (*mas_ptr == RISCV_HWPROBE_VEC_MISALIGNED_UNKNOWN)
+> 		*mas_ptr = RISCV_HWPROBE_VEC_MISALIGNED_SLOW;
+> 
+> > > > +}
+> > > > +
+> > > > +bool check_vector_unaligned_access_emulated_all_cpus(void)
+> > 
+> > Hopefully I catch the final things I want to say in this email ;)
+> > 
+> > > > +{
+> > > > +	int cpu;
+> > > > +	bool ret = true;
+> > > > +
+> > > > +	if (!has_vector()) {
+> > > > +		for_each_online_cpu(cpu)
+> > > > +			per_cpu(vector_misaligned_access, cpu) = RISCV_HWPROBE_VEC_MISALIGNED_UNSUPPORTED;
+> > > > +		return false;
+> > > > +	}
+> > > > +
+> > > > +	schedule_on_each_cpu(check_vector_unaligned_access_emulated);
+> > > > +
+> > > > +	for_each_online_cpu(cpu)
+> > > > +		if (per_cpu(vector_misaligned_access, cpu)
+> > > > +		    != RISCV_HWPROBE_VEC_MISALIGNED_SLOW)
+> > > > +			return false;
+> > 
+> > The default value of vector_misaligned_access is
+> > RISCV_HWPROBE_VEC_MISALIGNED_UNSUPPORTED so when the hardware supports
+> > unaligned accesses this will return false. If the hardware doesn't
+> > support unaligned accesses, then the trap will happen and the kernel
+> > will set this variable to UNSUPPORTED, causing this function to again
+> > return false.
+> > 
+> > Having the default value be UNKNOWN and checking for UNKNOWN here and in
+> > check_vector_unaligned_access() can remedy this issue.
+> 
+> I meant to set it to SLOW in check_vector_unaligned_access_emulated like
+> above.
+
+What "it" are you referring to? UNKNOWN should be the default internally
+here, not SLOW. Before probing is done, the speed is unknown, so UNKNOWN
+is the logical default.
+
+> 
+> > - Charlie
+> > 
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > > +#else
+> > > > +bool check_vector_unaligned_access_emulated_all_cpus(void)
+> > > > +{
+> > > > +	return false;
+> > > > +}
+> > > > +#endif
+> > > > +
+> > > > +#ifdef CONFIG_RISCV_MISALIGNED
+> > > > +
+> > > > +static bool unaligned_ctl __read_mostly;
+> > > > +
+> > > >   static void check_unaligned_access_emulated(struct work_struct *unused)
+> > > >   {
+> > > >   	int cpu = smp_processor_id();
+> > > > @@ -563,3 +668,9 @@ bool unaligned_ctl_available(void)
+> > > >   {
+> > > >   	return unaligned_ctl;
+> > > >   }
+> > > > +#else
+> > > > +bool check_unaligned_access_emulated_all_cpus(void)
+> > > > +{
+> > > > +	return false;
+> > > > +}
+> > > > +#endif
+> > > > diff --git a/arch/riscv/kernel/unaligned_access_speed.c b/arch/riscv/kernel/unaligned_access_speed.c
+> > > > index 70c1588fc353..c6106bd4a25a 100644
+> > > > --- a/arch/riscv/kernel/unaligned_access_speed.c
+> > > > +++ b/arch/riscv/kernel/unaligned_access_speed.c
+> > > > @@ -19,7 +19,8 @@
+> > > >   #define MISALIGNED_BUFFER_ORDER get_order(MISALIGNED_BUFFER_SIZE)
+> > > >   #define MISALIGNED_COPY_SIZE ((MISALIGNED_BUFFER_SIZE / 2) - 0x80)
+> > > > -DEFINE_PER_CPU(long, misaligned_access_speed);
+> > > > +DEFINE_PER_CPU(long, misaligned_access_speed) = RISCV_HWPROBE_MISALIGNED_UNKNOWN;
+> > > > +DEFINE_PER_CPU(long, vector_misaligned_access) = RISCV_HWPROBE_VEC_MISALIGNED_UNSUPPORTED;
+> > > >   #ifdef CONFIG_RISCV_PROBE_UNALIGNED_ACCESS
+> > > >   static cpumask_t fast_misaligned_access;
+> > > > @@ -268,12 +269,18 @@ static int check_unaligned_access_all_cpus(void)
+> > > >   	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_ZICCLSM)) {
+> > > >   		for_each_online_cpu(cpu) {
+> > > > +#ifdef CONFIG_RISCV_VECTOR_MISALIGNED
+> > > > +			per_cpu(vector_misaligned_access, cpu) = RISCV_HWPROBE_VEC_MISALIGNED_FAST;
+> > > > +#endif
+> > > > +#ifdef CONFIG_RISCV_MISALIGNED
+> > > >   			per_cpu(misaligned_access_speed, cpu) = RISCV_HWPROBE_MISALIGNED_FAST;
+> > > > +#endif
+> > > >   		}
+> > > >   		return 0;
+> > > 
+> > > Since this function returns 0 in both cases, can you wrap the rest of
+> > > the function with an else and remove this early return?
+> 
+> I think its more readable in a guard clause style.
+
+By guard clause style are you referring to how it is right now? It's the
+same return value of 0 in both cases and the most common way of doing
+that is by having a single line for the return at the bottom of the
+function instead of duplicating the return.
+
+- Charlie
+
+> 
+> 
+> Thanks,
+> Jesse Taube
+> > > - Charlie
+> > > 
+> > > >   	}
+> > > >   	all_cpus_emulated = check_unaligned_access_emulated_all_cpus();
+> > > > +	check_vector_unaligned_access_emulated_all_cpus();
+> > > >   #ifdef CONFIG_RISCV_PROBE_UNALIGNED_ACCESS
+> > > >   	if (!all_cpus_emulated)
+> > > > diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
+> > > > index 682b3feee451..821818886fab 100644
+> > > > --- a/arch/riscv/kernel/vector.c
+> > > > +++ b/arch/riscv/kernel/vector.c
+> > > > @@ -66,7 +66,7 @@ void __init riscv_v_setup_ctx_cache(void)
+> > > >   #endif
+> > > >   }
+> > > > -static bool insn_is_vector(u32 insn_buf)
+> > > > +bool insn_is_vector(u32 insn_buf)
+> > > >   {
+> > > >   	u32 opcode = insn_buf & __INSN_OPCODE_MASK;
+> > > >   	u32 width, csr;
+> > > > -- 
+> > > > 2.43.0
+> > > > 
 
