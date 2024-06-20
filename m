@@ -1,379 +1,150 @@
-Return-Path: <devicetree+bounces-78101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C8791100C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:05:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A8DA910FFF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 20:04:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75312B23BFF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:51:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A939C1F22C71
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 18:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8F71B29D0;
-	Thu, 20 Jun 2024 17:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05DD41C2334;
+	Thu, 20 Jun 2024 17:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="n7wq2mXc"
+	dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b="Z1WAPFAm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D231B0115;
-	Thu, 20 Jun 2024 17:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084BF1C2303
+	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 17:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718905745; cv=none; b=Sd5/Fe7b9UFTyQGKo2acqINElyBYGo+hxewGbhC1jYtZXRQqSQIu1zH+iobo5fHy4E/QWG3QUpXS/9kitnBwflleOnVXuflRkVkxZY8E09ZzSG78j0hOmQGKHrbE1KD1FCClnZLppDAX7SWcn7xGNSlQ0YOFpI+SaJe+OIasJrY=
+	t=1718906284; cv=none; b=BcyjjbES3Rb+QXIv/RqcvoXxKm8p48fkRcNlpJdY6JHcfNB2HHoKNh+xes0N9eTyFLOFdatftDBauD5YWV182TgafZgJiElbMk/J/cX/bL5iZvDuKy9HgvTw/fCNtXNk4gMKwXXhGvT5Tb3e3ZjiRZ+QVYeLGVroW8czSgxDyvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718905745; c=relaxed/simple;
-	bh=LqukskVfosQj/PiYyIrjBOVGTtXK2/AbOHRsUZqhpDA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=AoVj7cyhf1AU3CNbz/qJPjkVGA8iJETq3ZYH1kPauUYHgpOjJcU0rHBPWkCUJ4v96nmqztEOvT8F5Fm+/IVuSDn/UiXkxCCPA7mpz3ZKW694xiT/E2Dak5M/vxuzixA6bGsLfkFG1gngDY08GkEFtNfB9cchruR8fwPwd/Oq7J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=n7wq2mXc; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 593E0240002;
-	Thu, 20 Jun 2024 17:48:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1718905738;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ex/Fts0vtRxrrqpdJ6d+tTUoSpyLJVH1DzwkPw6yqtM=;
-	b=n7wq2mXc45hhfREFMBumX2r5QgvvgJHvyALaQdta5TcFJ+GbMKX6x/EQl+tRHggTSWyQN6
-	17WGjXqPBs71oqBUey79HqwgBPd3nRGLoZkFYJvXXyBuWKjIvySLyWKNiISdoEyssFvU/u
-	yiBHuf7c4nmY3LCczyt/SqU7t2gckcDtfzJfhgvWWLGkVfcciSQh6Um4kAO3qSf8eoYvrS
-	gTxWSrQH5wSgOa3290d8CIJV0+Qj/suQILEqL3OYA4FsUQ9sx/jYbmCghA/jXaDj3NCIlK
-	TrudObnOj/TMJpSuYkrLC18YyRMIxILk2YBRcgrdlVkP7JyILt4AxtjHSXmvpw==
+	s=arc-20240116; t=1718906284; c=relaxed/simple;
+	bh=57mSqvK5F8icDZvtosz8MW5pSg98mK2P/IkbkOYFjBo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=bb9iFGhzjJ/QtTwCJ2XyU86nqALJQVubD5z4yJE5j7Gh/ryhDvOYHoyFOlj9JSSbckPsTjxshcuCPW7UOFWDHO7DpwMoOUkBoeLZW+SXmFpN1IfJt1LD2fAfcFdmA5F+V0pHh3hB0TdEXe6FCEg1NpOQhCkhbbZlKTX2qwUTB/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com; spf=pass smtp.mailfrom=timesys.com; dkim=pass (2048-bit key) header.d=timesys-com.20230601.gappssmtp.com header.i=@timesys-com.20230601.gappssmtp.com header.b=Z1WAPFAm; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timesys.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timesys.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a6f0e153eddso158137266b.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 10:58:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=timesys-com.20230601.gappssmtp.com; s=20230601; t=1718906280; x=1719511080; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LLJSsUsQJimHeyehvy4obxzFbfnPiiocs4Of944Xm3I=;
+        b=Z1WAPFAmggyZXgLQQ8xHRVLJyIdVqTm6EFiZQkqU98DYk6IGKMtR0IbCNv8eef7YzJ
+         4U5udbizQMs46zEqIFLLcbKD6EtEnSEv7giK2XYYh7iwjvYnoT/O3BVQt6wbbJy8D2jR
+         WvPVWf5OPR+9R73AdLBwFo6uXDNiyz4Q0GVRQbP4JgqR6vr1DSMg7WEOq3R+k69zaT5i
+         VDWjNunvXVyqv5ZGr2lZ8ZG4qGUrUJEnTdNpG1agdy5Rp1xak0eQNgAdsOXgyqale1hO
+         FHt1JdLhWZ4fm+JxXSREDbBVDzEf+viVWyUTEj8FpRgGHT6Fa0Ul950C885uZOllMtUi
+         WA6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718906280; x=1719511080;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LLJSsUsQJimHeyehvy4obxzFbfnPiiocs4Of944Xm3I=;
+        b=q9KLacDh6ObyTD8LR0DfNB01/Xt6p3d/DO0GH7dmDlGI7+K3XThXMSIAtxEvYYzxpe
+         GT7aBzdG/OB4+QahH4NYV8f+jmBCB3UTqS0XdUSS4/k4ru8Yj3ODqM5mYNuoonqInnVj
+         yA/hjS1ObKq2V92j2LrnXWQmvsr1LnMwzSZ8qfsTZXmVAM0aMdQpdXHxCYol9sfrFQwe
+         QndZcstBXtO0SGUAGoXkOAXKfjA28bJpCISDubrrCzRuTl1/E3Ng3KqnQJBWLjVX40jP
+         HAZIepvfL5Km34joCI2Ea1Dq3StsvQSNHaZtwuhUKd6gEH6xwmVodHeGOivakjni+01y
+         WCsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWKRljgRj/LxMFf6WrRwv0CPfesKHzX1T4KliXwG6nhV4xj5ATIaK7EaLUr3yHxp1TWcCpD/RDpHXMc/vloItlIrhqWlEoi67RicA==
+X-Gm-Message-State: AOJu0Yz0FJ06bP3cxtj5Ur4te05KffJ4DYLAvwP2dZEXOppAfdhZvp43
+	WytqwBNPoI8s30UB4PyVdvGYnqlUei+Tc0n7lyW3Neq4lr/8MQWs9j7MIiY8LJA=
+X-Google-Smtp-Source: AGHT+IGXtwYdokrlfBxhK8FxTp2sWYE+r/rA8OXrz8ajsAvjdcVPMUue0BkFzpXPCbEPXWGLdile5Q==
+X-Received: by 2002:a17:907:8025:b0:a6f:147f:7d06 with SMTP id a640c23a62f3a-a6fab7de093mr273780966b.77.1718906280266;
+        Thu, 20 Jun 2024 10:58:00 -0700 (PDT)
+Received: from localhost.localdomain ([91.216.213.152])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6f56f42e80sm781370766b.186.2024.06.20.10.57.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jun 2024 10:57:59 -0700 (PDT)
+From: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"J.M.B. Downing" <jonathan.downing@nautel.com>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Yangtao Li <frank.li@vivo.com>,
+	Li Zetao <lizetao1@huawei.com>,
+	Chancel Liu <chancel.liu@nxp.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-sound@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Cc: Markus Elfring <Markus.Elfring@web.de>
+Subject: [Patch v4 01/10] dt-bindings: dma: pl08x: Add dma-cells description
+Date: Thu, 20 Jun 2024 19:56:32 +0200
+Message-Id: <20240620175657.358273-2-piotr.wojtaszczyk@timesys.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240620175657.358273-1-piotr.wojtaszczyk@timesys.com>
+References: <20240620175657.358273-1-piotr.wojtaszczyk@timesys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 20 Jun 2024 19:48:56 +0200
-Message-Id: <D2518A4HNS5R.2GQYLDGDQ82XV@bootlin.com>
-Subject: Re: [PATCH v2 06/11] mfd: olb: Add support for Mobileye OLB
- system-controller
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Lee Jones" <lee@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.17.0
-References: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
- <20240503-mbly-olb-v2-6-95ce5a1e18fe@bootlin.com>
- <20240531110550.GE1005600@google.com>
-In-Reply-To: <20240531110550.GE1005600@google.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hello Lee,
+Recover dma-cells description from the legacy DT binding.
 
-The latest revision [0] has changed approach following advice from
-Stephen Boyd to rather move forward with auxiliary devices.
+Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+---
+Changes for v4:
+- This patch is new in v4
 
-[0]: https://lore.kernel.org/lkml/20240620-mbly-olb-v3-0-5f29f8ca289c@bootl=
-in.com/
+ Documentation/devicetree/bindings/dma/arm-pl08x.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-On Fri May 31, 2024 at 1:05 PM CEST, Lee Jones wrote:
-> On Fri, 03 May 2024, Th=C3=A9o Lebrun wrote:
->
-> > Mobileye OLB system-controller gets used in EyeQ5, EyeQ6L and EyeQ6H
-> > platforms. It hosts clock, reset and pinctrl functionality.
-> >=20
-> > Tiny iomem resources are declared for all cells. Some features are
-> > spread apart. Pinctrl is only used on EyeQ5.
-> >=20
-> > EyeQ6H is special: it hosts seven OLB controllers, each with a
-> > compatible. That means many clock and reset cells. Use cell->devname
-> > for explicit device names rather than clk-eyeq.ID or clk-eyeq.ID.auto.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  drivers/mfd/Kconfig        |  10 +++
-> >  drivers/mfd/Makefile       |   2 +
-> >  drivers/mfd/mobileye-olb.c | 180 +++++++++++++++++++++++++++++++++++++=
-++++++++
-> >  3 files changed, 192 insertions(+)
-> >=20
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 4b023ee229cf..d004a3f4d493 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1030,6 +1030,16 @@ config MFD_OCELOT
-> > =20
-> >  	  If unsure, say N.
-> > =20
-> > +config MFD_OLB
-> > +	bool "Mobileye EyeQ OLB System Controller Support"
-> > +	select MFD_CORE
-> > +	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
-> > +	default MACH_EYEQ5 || MACH_EYEQ6H
-> > +	help
-> > +	  Say yes here to add support for EyeQ platforms (EyeQ5, EyeQ6L and
-> > +	  EyeQ6H). This core MFD platform driver provides clock, reset and
-> > +	  pinctrl (only EyeQ5) support.
-> > +
-> >  config EZX_PCAP
-> >  	bool "Motorola EZXPCAP Support"
-> >  	depends on SPI_MASTER
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index c66f07edcd0e..d872833966a8 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -120,6 +120,8 @@ obj-$(CONFIG_MFD_CORE)		+=3D mfd-core.o
-> >  ocelot-soc-objs			:=3D ocelot-core.o ocelot-spi.o
-> >  obj-$(CONFIG_MFD_OCELOT)	+=3D ocelot-soc.o
-> > =20
-> > +obj-$(CONFIG_MFD_OLB)		+=3D mobileye-olb.o
-> > +
-> >  obj-$(CONFIG_EZX_PCAP)		+=3D ezx-pcap.o
-> >  obj-$(CONFIG_MFD_CPCAP)		+=3D motorola-cpcap.o
-> > =20
-> > diff --git a/drivers/mfd/mobileye-olb.c b/drivers/mfd/mobileye-olb.c
-> > new file mode 100644
-> > index 000000000000..1640d63a3ddd
-> > --- /dev/null
-> > +++ b/drivers/mfd/mobileye-olb.c
-> > @@ -0,0 +1,180 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * System controller multi-function device for EyeQ platforms.
-> > + *
-> > + * Mobileye EyeQ5, EyeQ6L and EyeQ6H platforms have MMIO mapped regist=
-ers
-> > + * controlling core platform clocks, resets and pin control. Many othe=
-r
-> > + * features are present and not yet exposed.
-> > + *
-> > + * Declare cells for each compatible. Only EyeQ5 has pinctrl.
-> > + * EyeQ6H has seven OLB instances; each has a name which we propagate =
-to
-> > + * sub-devices using cell->devname.
-> > + *
-> > + * Copyright (C) 2024 Mobileye Vision Technologies Ltd.
-> > + */
-> > +
-> > +#include <linux/array_size.h>
-> > +#include <linux/device.h>
-> > +#include <linux/errno.h>
-> > +#include <linux/ioport.h>
-> > +#include <linux/mfd/core.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> > +
-> > +#define OLB_MFD_CELL(_name, _res, _devname) \
-> > +	MFD_CELL_ALL(_name, _res, NULL, 0, 0, NULL, 0, false, NULL, _devname)
->
-> The reason we provide generic MACROs is so that you don't have to define
-> your own.
-
-In this case, there was no macro that allowed setting the MFD cell
-devname field, which is something that was added in the series.
-
-I didn't know what generic macro to create so instead of creating loads
-of useless ones I created a single one, targeted at my usecase.
-
->
-> > +struct olb_match_data {
-> > +	const struct mfd_cell	*cells;
-> > +	int			nb_cells; /* int to match devm_mfd_add_devices() argument */
-> > +};
-> > +
-> > +#define OLB_DATA(_cells) { .cells =3D (_cells), .nb_cells =3D ARRAY_SI=
-ZE(_cells) }
-> > +
-> > +static int olb_probe(struct platform_device *pdev)
-> > +{
-> > +	const struct olb_match_data *match_data;
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct resource *res;
-> > +
-> > +	match_data =3D device_get_match_data(dev);
-> > +	if (!match_data)
-> > +		return -ENODEV;
-> > +
-> > +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +	if (!res)
-> > +		return -ENODEV;
-> > +
-> > +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
-> > +				    match_data->cells, match_data->nb_cells,
-> > +				    res, 0, NULL);
-> > +}
-> > +
-> > +static const struct resource olb_eyeq5_clk_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x02C, 10 * 8, "pll"),
-> > +	DEFINE_RES_MEM_NAMED(0x11C, 1 * 4, "ospi"),
-> > +};
-> > +
-> > +static const struct resource olb_eyeq5_reset_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x004, 2 * 4, "d0"),
-> > +	DEFINE_RES_MEM_NAMED(0x200, 13 * 4, "d1"),
-> > +	DEFINE_RES_MEM_NAMED(0x120, 1 * 4, "d2"),
-> > +};
-> > +
-> > +static const struct resource olb_eyeq5_pinctrl_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x0B0, 12 * 4, "pinctrl"),
-> > +};
-> > +
-> > +static const struct mfd_cell olb_eyeq5_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq5_clk_resources, NULL),
-> > +	OLB_MFD_CELL("reset-eyeq", olb_eyeq5_reset_resources, NULL),
-> > +	OLB_MFD_CELL("eyeq5-pinctrl", olb_eyeq5_pinctrl_resources, NULL),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq5_match_data =3D OLB_DATA(o=
-lb_eyeq5_cells);
-> > +
-> > +static const struct resource olb_eyeq6l_clk_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x02C, 4 * 8, "pll"),
-> > +};
-> > +
-> > +static const struct resource olb_eyeq6l_reset_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x004, 2 * 4, "d0"),
-> > +	DEFINE_RES_MEM_NAMED(0x200, 13 * 4, "d1"),
-> > +};
-> > +
-> > +static const struct mfd_cell olb_eyeq6l_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq6l_clk_resources, NULL),
-> > +	OLB_MFD_CELL("reset-eyeq", olb_eyeq6l_reset_resources, NULL),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq6l_match_data =3D OLB_DATA(=
-olb_eyeq6l_cells);
-> > +
-> > +static const struct resource olb_eyeq6h_acc_clk_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x040, 7 * 8, "pll"),
-> > +};
-> > +
-> > +static const struct resource olb_eyeq6h_acc_reset_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x000, 15 * 4, "d0"),
-> > +};
-> > +
-> > +static const struct mfd_cell olb_eyeq6h_acc_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq6h_acc_clk_resources, "clk-eyeq-acc"=
-),
->
-> The point of enumerating platform device names is to identify devices
-> that are identical.  We lose this with bespoke naming.
->
-> If you want to identify devices either define a value to pass to .id or
-> adapt the first parameter and make the clk-eyeq driver accept different
-> device names.
-
-About int IDs: those make it unclear what device we are talking about,
-when we have seven of them as it was the case in this series. Yes,
-there were 7 system-controllers, each exposing clocks (and most
-exposing resets). IDs from 0 thru 6 was really not clear enough when
-going through dmesg, which I why I added the feature.
-
-I wasn't able to change the first parameter as that gets used for
-matching a driver. As it is driver name, there can only be a single
-string per driver. Here we have multiple MFD cells that each want to
-probe the same driver, so they must have the same name.
-
->
-> > +	OLB_MFD_CELL("reset-eyeq", olb_eyeq6h_acc_reset_resources, "reset-eye=
-q-acc"),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq6h_acc_match_data =3D OLB_D=
-ATA(olb_eyeq6h_acc_cells);
-> > +
-> > +static const struct resource olb_eyeq6h_we_clk_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x074, 1 * 8, "pll"),
-> > +};
-> > +
-> > +static const struct resource olb_eyeq6h_we_reset_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x004, 4 * 4, "d0"),
-> > +};
-> > +
-> > +static const struct mfd_cell olb_eyeq6h_west_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq6h_we_clk_resources, "clk-eyeq-west"=
-),
-> > +	OLB_MFD_CELL("reset-eyeq", olb_eyeq6h_we_reset_resources, "reset-eyeq=
--west"),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq6h_west_match_data =3D OLB_=
-DATA(olb_eyeq6h_west_cells);
-> > +
-> > +static const struct mfd_cell olb_eyeq6h_east_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq6h_we_clk_resources, "clk-eyeq-east"=
-),
-> > +	OLB_MFD_CELL("reset-eyeq", olb_eyeq6h_we_reset_resources, "reset-eyeq=
--east"),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq6h_east_match_data =3D OLB_=
-DATA(olb_eyeq6h_east_cells);
-> > +
-> > +static const struct resource olb_eyeq6h_south_clk_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x000, 4 * 8, "pll"),
-> > +	DEFINE_RES_MEM_NAMED(0x070, 1 * 4, "emmc"),
-> > +	DEFINE_RES_MEM_NAMED(0x090, 1 * 4, "ospi"),
-> > +	DEFINE_RES_MEM_NAMED(0x098, 1 * 4, "tsu"),
-> > +};
-> > +
-> > +static const struct mfd_cell olb_eyeq6h_south_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq6h_south_clk_resources, "clk-eyeq-so=
-uth"),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq6h_south_match_data =3D OLB=
-_DATA(olb_eyeq6h_south_cells);
-> > +
-> > +static const struct resource olb_eyeq6h_ddr_clk_resources[] =3D {
-> > +	DEFINE_RES_MEM_NAMED(0x074, 1 * 8, "pll"),
-> > +};
-> > +
-> > +static const struct mfd_cell olb_eyeq6h_ddr0_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq6h_ddr_clk_resources, "clk-eyeq-ddr0=
-"),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq6h_ddr0_match_data =3D OLB_=
-DATA(olb_eyeq6h_ddr0_cells);
-> > +
-> > +static const struct mfd_cell olb_eyeq6h_ddr1_cells[] =3D {
-> > +	OLB_MFD_CELL("clk-eyeq", olb_eyeq6h_ddr_clk_resources, "clk-eyeq-ddr1=
-"),
-> > +};
-> > +
-> > +static const struct olb_match_data olb_eyeq6h_ddr1_match_data =3D OLB_=
-DATA(olb_eyeq6h_ddr1_cells);
-> > +
-> > +static const struct of_device_id olb_of_match[] =3D {
-> > +	{ .compatible =3D "mobileye,eyeq5-olb", .data =3D &olb_eyeq5_match_da=
-ta },
->
-> We're not passing MFD init data through the OF API, sorry.
->
-> Pass defined identifiers through instead and match on those please.
-
-Ah, that makes sense. Thanks for the mention. I can't find any
-reasoning, I might be missing context?
-
-Thanks Lee,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+diff --git a/Documentation/devicetree/bindings/dma/arm-pl08x.yaml b/Documentation/devicetree/bindings/dma/arm-pl08x.yaml
+index ab25ae63d2c3..191215d36c85 100644
+--- a/Documentation/devicetree/bindings/dma/arm-pl08x.yaml
++++ b/Documentation/devicetree/bindings/dma/arm-pl08x.yaml
+@@ -52,6 +52,13 @@ properties:
+   clock-names:
+     maxItems: 1
+ 
++  "#dma-cells":
++    const: 2
++    description: |
++      First cell should contain the DMA request,
++      second cell should contain either 1 or 2 depending on
++      which AHB master that is used.
++
+   lli-bus-interface-ahb1:
+     type: boolean
+     description: if AHB master 1 is eligible for fetching LLIs
+-- 
+2.25.1
 
 
