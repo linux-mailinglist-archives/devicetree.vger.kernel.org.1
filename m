@@ -1,190 +1,118 @@
-Return-Path: <devicetree+bounces-78098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4F67910F50
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 19:48:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0252D910F55
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 19:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 434CD1F22E86
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:48:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2F7D284141
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 17:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADBE1B4C54;
-	Thu, 20 Jun 2024 17:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437741BB68D;
+	Thu, 20 Jun 2024 17:39:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NNNUr1vT"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Jgvr+GaG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26D41B4C26;
-	Thu, 20 Jun 2024 17:38:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820BB1B4C2A;
+	Thu, 20 Jun 2024 17:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718905122; cv=none; b=LBXJHmNLFnrDbu59i7+6REoMMx6ujbum9wt25Icv8Is2dLR9GkkQnMteceCzjRjn7PN1z1yytF+O25S5+6wm8sBGZfOkKVm0x3d+KAMpFrIoEZwBKHGl/W77+0ZrHHNAX0yXHIL0skDsQXBcO1pY+G0bHko9G8j0Yx16WH9CKGU=
+	t=1718905155; cv=none; b=tSUm3CXEAqNbXOj0zWw7fHJFaxo3jwSsz4i/dzZuTxJZwIs1ACbOHYYBv7/+k1Qff8iViaFLCL4ZaUIZ2m9DXT0/r2M646iuS/xbOR/iG5gsPA/k6Fn9rhAe7NxXjQlJFcctO6ubrZ7+MwLX4NbTf7gRAoDoJUsFNvruvT7Xt2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718905122; c=relaxed/simple;
-	bh=WNDUfhBM9/HSXNcFmiKwEnh7+iaCd5SdM7ZCgWc+f/g=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=h4bV1iqdrLikiaY3/dKVj8LSi7rq1JlN1AMmDpg8GDA/faHxpoRZFNS1Z791vgQtwqb6v0Du2hlbBMHoJd88HNrKg/47qbsnLKXOveQ9gCOF4Itwf/c+4GdmpLtHmJcBqvmSxELxd5FUzSPEJkevLDSrbE6GKH5bkP5UwdxMqfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NNNUr1vT; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1f9cd92b146so8085025ad.3;
-        Thu, 20 Jun 2024 10:38:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718905120; x=1719509920; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4sG4Va9OdsdsAbudvNBTbNSzmionWI4fbzxfvxF/ZFU=;
-        b=NNNUr1vTXlNoCMK5h20v7urH9pZewRlosfUeedkaqPeGndfK1b0jZ19qYyxr1iX3gT
-         LTAiOn0WRWMp9/KFBWpZ+VQhr90Yr/YTLGnXlc50L4mSZNiUBZrSW+FI4QBCdTULbpQJ
-         yIkFA7WO3V4Qr51wYOZRHUYzEY9TW/Ax8PmVaLCa5gu8F+XYyyb5lK6hxwO3D2fj5veJ
-         85LHA2RAb/uoT1mWb+zqDYCQS8JOaiyggACWKhJKxYOX8XkTl3t06Kh0IWsG+Jffx1Tc
-         nCUC8UpW+jP5Y4oDUYD01SsDhnffEA8nj3T5d+m6opEfsluTGkFG2Eh6uJT4WZR0JuQn
-         V/aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718905120; x=1719509920;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4sG4Va9OdsdsAbudvNBTbNSzmionWI4fbzxfvxF/ZFU=;
-        b=QTepeAmOWZ4QXjiAPyljFiw4v7I4ff5jySb4u5n4pXMhqzvjkXVl6BMzq545nRgKwT
-         HWEBJa0GLZTnBkFuWhX5y1cwXspVdVL0pmlokt4CIq4oR1b9Ovh1fw+qEo7AZrTUlfcR
-         rDTpYiR0dP80b8vjPEUgNRxZ20jnlMu8FzWs9HrM/f5q9xEOtSZsp0jLYzUjo9B2Wr/q
-         wQTRKGe8BlOyv2/uokWaYVXNnj+nG8BAuc7yyON/BirLC2dQX/rcCpvYq5VgK3klAqId
-         95O1gnoXkksJeILnzp2BkRsY1Z3MBfcrc9+mKos1pQXTeIIIKbVkhRFGJ6nIbT+JNWwp
-         rp0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVRl8MhzuEprOkXcMtuawck8KLP1DZpBaQKAeV/uTBf5TchUTHQRABYsP1tcMTmQE8/RjkLrvNCZfFpRuGWoQrqddbRLhIiUmPfZFcOpki25l+duh+CUaDAi4vxZb8fER7/Aas6tFM4NI7ZmB1oJvXKUbvf6zBcJE/hG+ZiXmF8TdCybtBm
-X-Gm-Message-State: AOJu0YywWB0F0QIDTr0p8P118c6O9AgUfwpVJbwrQirndNe1vzBl3nZD
-	wvfIeQPKtx0LHAlu0/VOxE05O3MkdKpWu0utVeeit/EkF7sWLG0i
-X-Google-Smtp-Source: AGHT+IGuxDdFAgdWqgiP/kZrg0iwxBJMVyTH3b8zZKvOQHHripPZ4bEWsXUOLcu/oJJn63EYCqpTKg==
-X-Received: by 2002:a17:903:2443:b0:1f9:cbe1:ae9 with SMTP id d9443c01a7336-1f9cbe10dc6mr23294315ad.44.1718905119620;
-        Thu, 20 Jun 2024 10:38:39 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.128.96])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f855e55ca1sm140132045ad.49.2024.06.20.10.38.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jun 2024 10:38:39 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: nicolas.dufresne@collabora.com
-Cc: andy.yan@rock-chips.com,
-	benjamin.gaignard@collabora.com,
-	boris.brezillon@collabora.com,
-	conor+dt@kernel.org,
-	daniel.almeida@collabora.com,
-	detlev.casanova@collabora.com,
-	devicetree@vger.kernel.org,
-	didi.debian@cknow.org,
-	dsimic@manjaro.org,
-	ezequiel@vanguardiasur.com.ar,
-	gregkh@linuxfoundation.org,
-	heiko@sntech.de,
-	hverkuil-cisco@xs4all.nl,
-	jonas@kwiboo.se,
-	knaerzche@gmail.com,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-staging@lists.linux.dev,
-	liujianfeng1994@gmail.com,
-	mchehab@kernel.org,
-	paul.kocialkowski@bootlin.com,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com
-Subject: Re: [PATCH v2 2/4] media: rockchip: Introduce the rkvdec2 driver
-Date: Fri, 21 Jun 2024 01:38:30 +0800
-Message-Id: <20240620173830.277022-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <2349746d488f4edf9c7c40df5e15ff70d3ec67b7.camel@collabora.com>
-References: <2349746d488f4edf9c7c40df5e15ff70d3ec67b7.camel@collabora.com>
+	s=arc-20240116; t=1718905155; c=relaxed/simple;
+	bh=YTk3Lm9Ov1kYYHSEDrF0pg5GItvYrx4G0xmDmP2GC7w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=F7LKZtgjmBN6KyEU3+yV7pbL7AIZ9x0oV8TZRoZMgIMWldu9ZpidOHGytq12nzuQL6YrGXvpGix9mBfxnvSgEQjzDaQNJm1UqqkkVeDQngXPfVNbzkHGdsVywLgZDo7W9UwvLH8c5dF0w6bT96fgFALep65slS0jZuEyzi4h4xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Jgvr+GaG; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 30CA71BF205;
+	Thu, 20 Jun 2024 17:39:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1718905145;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YTk3Lm9Ov1kYYHSEDrF0pg5GItvYrx4G0xmDmP2GC7w=;
+	b=Jgvr+GaGJcOUHSVi29h34AVdwARGliz2lLi7NaRdFKrRMW2OVjEwlGi3L8MThZEu3T805v
+	rDng0iNK6hr2kv5yfCcrDuvqet1rU0F6RHIICrZ+FAY5fruHVwG9xiFFUh5QsFKO2Z/8sh
+	l2AWBagV0wn7qcQ6W9N2xMoAaC8isPyhTw1oV91bTGtl5LnAFwpdT5e9UbGknSlxpd6a8M
+	9xvtlwark/NwQaNb8iaxcrgKE6VrFPPgNJ+/C5kOKto6NN+HGpNccIU9XpZ7Q7eeA1EW9r
+	dE1FoLrhZrZR+qV5y0n19g5Lv2Iew7X+8NlVwWKsu+T+6aLgzHVSDhQnLo5GRQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 20 Jun 2024 19:39:03 +0200
+Message-Id: <D2510PQUKXWM.24TOHQBNTC7Y5@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: clock: mobileye,eyeq5-clk: drop
+ bindings
+Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
+ <sboyd@kernel.org>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, "Lee
+ Jones" <lee@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
+X-Mailer: aerc 0.17.0
+References: <20240503-mbly-olb-v2-0-95ce5a1e18fe@bootlin.com>
+ <20240503-mbly-olb-v2-1-95ce5a1e18fe@bootlin.com>
+ <ee278102-f4b8-4ca0-879e-f83cd54efbd0@linaro.org>
+ <13ed1865-d702-47b6-b186-d5f060103280@linaro.org>
+ <D13I8TFIF77X.2EFWZ14LM2H6N@bootlin.com>
+ <fd0228f2-2f41-4194-b804-7a90ea3a6091@linaro.org>
+In-Reply-To: <fd0228f2-2f41-4194-b804-7a90ea3a6091@linaro.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hi Detlev,
+Hello Krzysztof,
 
-On Thu, 20 Jun 2024 10:07:41 -0400, Detlev Casanova wrote:
-
->This feels like hacking the driver to please a specific userspace application, 
->so I'd like to understand better what chromium is doing.
-
-Yes that hack is ugly. I have added log print in chromium to see if they
-have set frame_mbs_only_flag to zero and found nothing. This sps->flags is
-initialized 0 by kernel's v4l2 code. I printed all sps values in function
-rkvdec2_h264_validate_sps and they are all initial values when chromiumn
-call VIDIOC_STREAMON at the first time.
-
-Hi Nicolas,
-
-On Thu, 20 Jun 2024 11:03:54 -0400, Nicolas Dufresne wrote:
-
->This falls short of a specification to support the uninitialized usage by
->Chromium. That being said, we do make an effort to try and have a valid default
->SPS control and OUTPUT format combination. So my suggestion would be to set
->V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY in the default compound control init. This
->way, 0x0 get translate to 16x16 instead of 16x32, thus will work with more
->drivers.
-
-Yeah that's the root cause. Vaule of sps->flags is initialized to 0 along
-with pic_width_in_mbs_minus1 and pic_height_in_map_units_minus1, so this
-check would fall with minimal decoder size 16x16.
-
->Chromium these days is not being tested on anything else then MTK, which has a
->64x64 minimum size, this is why they never get into this issue. This driver
->validation is entirely correct. Removing in some cases is unsafe, it would need
->to be replaced with STREAMON only validation of the CAPTURE sizes (which
->currently is validate by implied propagation of valid SPS/OUTPUT).
+On Tue May 7, 2024 at 5:34 PM CEST, Krzysztof Kozlowski wrote:
+> On 07/05/2024 17:07, Th=C3=A9o Lebrun wrote:
+> > Proposal from Stephen Boyd of using auxiliary devices makes sense, that
+> > could be the future direction of this series. It won't change the
+> > dt-bindings aspect of it, only the driver implementations.
+> >=20
+> > [0]: https://lore.kernel.org/lkml/daa732cb31d947c308513b535930c729.sboy=
+d@kernel.org/
+> > [1]: https://lore.kernel.org/lkml/20240124151405.GA930997-robh@kernel.o=
+rg/
 >
->**not even compiled tested, just to illustrate**
->
->diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-
->core/v4l2-ctrls-core.c
->index c4d995f32191..a55e165ea9c3 100644
->--- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
->+++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
->@@ -111,6 +111,7 @@ static void std_init_compound(const struct v4l2_ctrl *ctrl,
->u32 idx,
->        struct v4l2_ctrl_vp9_frame *p_vp9_frame;
->        struct v4l2_ctrl_fwht_params *p_fwht_params;
->        struct v4l2_ctrl_h264_scaling_matrix *p_h264_scaling_matrix;
->+       struct v4l2_ctrl_h264_sps *p_h264_sps;
->        struct v4l2_ctrl_av1_sequence *p_av1_sequence;
->        void *p = ptr.p + idx * ctrl->elem_size;
-> 
->@@ -179,6 +180,18 @@ static void std_init_compound(const struct v4l2_ctrl *ctrl,
->u32 idx,
->                 */
->                memset(p_h264_scaling_matrix, 16,
->sizeof(*p_h264_scaling_matrix));
->                break;
->+       case V4L2_CTRL_TYPE_H264_SPS:
->+               p_h264_sps = p;
->+               /*
->+                * Without V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY,
->+                * frame_mbs_only_flag set to 0 will translate to a miniumum
->+                * height of 32 (see H.264 specification 7-8). Some driver may
->+                * have a minimum size lower then 32, which would fail
->+                * validation with the SPS value. Set this flag, so that there
->+                * is now doubling in the height, allowing a valid default.
->+                */
->+               p_h264_sps->flags = V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY;
->+               break;
->        }
-> }
->
->Nicolas
+> So after Robs comment above, you still pushed the wrong approach and now
+> you revert it?
 
-This patch makes sense and I just confirmed that it works with chromium.
-Thank you very much!
+Yes. The gist of it is that I had misunderstood the messages. Mostly, I
+did not understand how to implement separate Linux driver with the
+desired devicetree structure (no subnode on the syscon for each
+feature). I was missing knowledge about Linux infrastructure allowing
+for that. MFD and auxdevs are two approaches, with auxdevs being
+preferred.
 
-Best regards,
-Jianfeng
+The latest revision finally takes those comments into account.
+
+Thanks Krzysztof,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
