@@ -1,294 +1,109 @@
-Return-Path: <devicetree+bounces-77801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-77802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E8690FFF3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:08:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BBFE91004B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 11:27:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBEC2283AF6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:08:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05C392804D0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jun 2024 09:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE0A19DF82;
-	Thu, 20 Jun 2024 09:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9605719FA8A;
+	Thu, 20 Jun 2024 09:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="OLHSYPwt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O30jpsTL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B8519B3D7
-	for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 09:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30900171E7C;
+	Thu, 20 Jun 2024 09:27:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718874506; cv=none; b=uL2Z2v6lQ04Tv/FXxazYhVyIoN7t0LEN0Tu/sM+xUfZ3VR/UozcIbIe9PgQRQCXwxar/aZy8Ko1H4nzaNwuqFa1Hbe3IPHs8hKF6K2iJTY+OSWvG05ge4RZE/D3BJJnX2u4KmbYsJRT3Z+E5lTMy+/qjaDsEOl0winBjRzEl6q4=
+	t=1718875641; cv=none; b=Lb4fOCW4KXEGQO5mbLrWtYC8kIKKyTGZZlsbZBt/YZzNG4uUaeOpcGT8l8McWcR+DZr89+jTPTTXhD7Wq7G17tFHQIMdaHR3Iwek0KFbX+CHL/pab1wt1Idjmqzlf3gz9aUhlQ4URIQFNG6gaoedmlJXX2mwk+KvH4X+0/qFTH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718874506; c=relaxed/simple;
-	bh=Uf/DRFaK4xkStOOOomLsrlUHxyWX9dj5leuLl5H+864=;
+	s=arc-20240116; t=1718875641; c=relaxed/simple;
+	bh=0Mu03VNJ+fThgkuava8qDtHf7MBwdi9Udg1su8Z0OW8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dam92ad/+TYHg0+1R9Cramckf7hamHEwjwWAODVnbHJpmsk6Otih5chpJU/iU3tOuzx3D68M5fznUzQMAvb3xecG26O0Dp+xpo5JU++MdoLVOa82DeH0yiLyDqIpRVFXNfyBazqj+4yZ+yIXlvdlb6dgrnIYNiH170cMiAA/wv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=OLHSYPwt; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-57d0f929f79so501245a12.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 02:08:24 -0700 (PDT)
+	 To:Cc:Content-Type; b=HQa3C5n5gZirQ1ot3doyOrj9ZMV40acTJKDDj8GoKLElOiwSWLBfV12hpbU4O1rDULY1x5DWTrgHoAh5p75Gy2aGaY8DDrpq/J+ykiA/nBEW4rBvhYqi4vVmuVVvVDYTJrEKGwfhyTClOKTAQsmRhO7WiTFXddrWQSKe79cn2Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O30jpsTL; arc=none smtp.client-ip=209.85.161.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5c19d338401so320248eaf.0;
+        Thu, 20 Jun 2024 02:27:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1718874503; x=1719479303; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/HqSY3GOs/15VIJ9Rt+TiaY5fHiC8UUyqPG+GopX0FQ=;
-        b=OLHSYPwt1WiH1wux5wyzX+q9HjzS2/eguV0pa/semL6DpOwu2nWAP+zuVLC49BYBbi
-         9XRbxDR6WekZi4qmqYd8k+wmdUZkcnbJBs4RxzEfh+PbcjN/bN1o53eMRH0IJG1WZGIH
-         OfMrFeCkWHg0hAlkhWY8LQ+BOimQlqW3hZUjgYO38vxD5qVgD5UJeg45dJayEtxZ8SDR
-         AUTf8OhS25Y9M5No2+j44cH8eCjC6CtwS5oicL1wAuWV3UZpCCaR/Tae5FQFumo3kqGA
-         EwnHNBGzh7YW79SDYeSuCBMZfdHqqn+qVujHBiTLAivxkXSascD2/b6HMNmC5KITEgFW
-         ghyA==
+        d=gmail.com; s=20230601; t=1718875639; x=1719480439; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FROFlUneDLe4vhTKghMMJ/e6nscmWsFk47kSMER6MVc=;
+        b=O30jpsTLmOY6mKtrtopfydeaArC12tcifhXwy5LGRIZykymLyeMnvEub4MM7kY2Pwx
+         pqPzUVi+dvvlpX/+LGU1La6kmUVXSxQOQY8q4IzZZqUWwbawas5KInWY7SiVMMBACzkS
+         w4ioaJVyPqDaNQ0PmNJ/rY8Y+gOMJiDkz2Q7ptACaaALsXaJocJwpZf6W353y6vVGUVV
+         h9Xgqf14+xOw2voO1CqE83jD6j2Q1R09dmvmsrCd9oqq+OZiocJ2g8C8e454NFVhjQOJ
+         bpkN8p5/9Rqv/7jUo2vJySa8V4H6RZIhSBbFCm7if0kB9NRugefFou0ACSHMBuzpOQM1
+         oKqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718874503; x=1719479303;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/HqSY3GOs/15VIJ9Rt+TiaY5fHiC8UUyqPG+GopX0FQ=;
-        b=Zvzr/R/9W6F/tN2aQig310jav4MbkCEv8XKwxYoD0lj6fsWDYSCSHHzC0dOtQCH8T4
-         UuvB3XfSnxF0vW1H2IV+ODOPLQwpJmKuBcr8EsbO+0axiaBw7/i9uJxUTUg4cTAjvrPV
-         XTJJYKekzH27jkEYKYeSA1ShR5nlmd3HX7MyH5jSsIjzmg8jtgyEEhXePeG/LXRB9VpU
-         4V1P9dsF1ls7RwUurEW6fLN/3DzjwKbgXg4ShtPZwdlHhcF9xn+KdiLgl2nIOiaCwQO3
-         Vebe4pE31vU8vTf114P7cmuS+inBgHbBdZAD9LGvPnWeOUx6nC5RMb2OF4brQrhlXKgJ
-         xfAg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIQ8YzQSAQVmKT8U+++Axja3Yc9rAwSgGqleL3s2b7pTHD0JRc7qipFsnu7m2Mp4lnSt1Te6SjBWfIItLvKJC44VGTJpgqGqKiJw==
-X-Gm-Message-State: AOJu0YwaWsDWISqgntQk0hIlgFDV2KqgXrcSrrkH515PGn1H3WYZnbkM
-	ZKkxewPel/f/Mf8NMXeqFP0CxDMMQVAU0UPohCK5XjXXuUccA6f24qxrVxJHyQ2bRY4enQ4CChj
-	taTpvUmxNlgthcIYVZ0yomZbpJA8VGuZTqdJsiQ==
-X-Google-Smtp-Source: AGHT+IHO5sP2gbpxBB+AMGd4wNamE9Q721oKfWv/dUroSShvJU+KFMT4kGHIsnxr8NwAqlWGAJQN7rLag50g2h0cmh4=
-X-Received: by 2002:a50:ee92:0:b0:57c:765b:83a3 with SMTP id
- 4fb4d7f45d1cf-57d0bff1a13mr2919665a12.25.1718874502424; Thu, 20 Jun 2024
- 02:08:22 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718875639; x=1719480439;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FROFlUneDLe4vhTKghMMJ/e6nscmWsFk47kSMER6MVc=;
+        b=LMInDX2RVXIQHj4g1znmA4UoPRt/KjroE1VrDniGB+yOBQN4WI/Q6UksJ2klmxibi/
+         DnrouiQRsH0S0ErXNhnq47OKEHSSin3jx0Dp0tSU863C5kZODka30V0QV2TEYAIsqA/o
+         dJeNwMGIjcqxOpCQ4vEPCWyzCf1i8QtA+BSNtIjz9I2/JIWumSEJh030nBIjHhQnUYGf
+         Q2QlsezyZPoUez+3IN3sKUPvIXgttB2ZeqLg0VMgmeB2NtJhpY6QY01KqN3672IdSOyi
+         W94DyTEP4Rlkipdi/wMBVWAWFoGgau80rB5HL+jIjt5Ya/h5qJTg3cmGO9l9Gm4TDxMg
+         6i1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXEI0kMBKfwBCHPGiHtc+ASPwPXNvg3nv6oSB0eYX2HGMtil6Gw4lXRh2D457oNU32ldWzKQlx6lh4TMgTdksMiubqKvuYp2Nr8SsKCdbTrVrn4oIBu8V27es0oh77GBQhpauR/+A1jUimdoDwSIR1iWyxAS64qaoG4jRKvq+/gc2d09fAECP39Ue9gsb251ue5YWEajQ5XVv/EHG/1JdzEqbYhJWOnADRC
+X-Gm-Message-State: AOJu0YyHDqv8RCtL0PJCzjqqCS3ispM2Wz/NfonzR9QIbW1FajrzE2Vx
+	stfRJzVj+fdwbyz+meL17ppVkIDyDzwL/iVOAzesC6d8MxcJAfdqwYl6LhsFQ+H/UvwmL7PKdAI
+	ILFrODTMkT16Atvlq7rHuqzw+K9k=
+X-Google-Smtp-Source: AGHT+IFfg1F0VgT9U7HH46syTdFLN/j9mjNVjjK3LM5UPZUG03dA0siyK9W/UHDjGUhaFvaHXG8w+cqvHC76fvDnpIw=
+X-Received: by 2002:a4a:8042:0:b0:5ba:f5f3:987b with SMTP id
+ 006d021491bc7-5c1adaea716mr4869639eaf.1.1718875639234; Thu, 20 Jun 2024
+ 02:27:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240614145609.25432-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240614145609.25432-3-lvzhaoxiong@huaqin.corp-partner.google.com> <xiv3rvzpx7l2esosggybp6pheoa4zg3ew6vnhjxewnmvkdy73o@jflkmq77lxxn>
-In-Reply-To: <xiv3rvzpx7l2esosggybp6pheoa4zg3ew6vnhjxewnmvkdy73o@jflkmq77lxxn>
-From: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Date: Thu, 20 Jun 2024 17:08:11 +0800
-Message-ID: <CA+6=WdQpLMQBti_1WBQ9h09fRSf74o0m4YrJqDOqzDAYJ0EyOA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/panel: starry-er88577: add new panel driver
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
-	benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20240618204523.9563-1-semen.protsenko@linaro.org> <20240618204523.9563-4-semen.protsenko@linaro.org>
+In-Reply-To: <20240618204523.9563-4-semen.protsenko@linaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 20 Jun 2024 14:57:03 +0530
+Message-ID: <CANAwSgQpPPP-2_9R9tenfQ4zMzF2d7BYBW8=nMRec5OVaEknMw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/7] hwrng: exynos: Use devm_clk_get_enabled() to get
+ the clock
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-hi Dmitry
+Hi Sam,
 
-We checked the panel-boe-th101mb31ig002-28a.c driver. Although the
-init_code is similar, the IC does not seem to be the same from the
-name, and our panel and timing are also different.
+On Wed, 19 Jun 2024 at 02:15, Sam Protsenko <semen.protsenko@linaro.org> wrote:
+>
+> Use devm_clk_get_enabled() helper instead of calling devm_clk_get() and
+> then clk_prepare_enable(). It simplifies the error handling and makes
+> the code more compact. Also use dev_err_probe() to handle possible
+> -EPROBE_DEFER errors if the clock is not available yet.
+>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+> Changes in v2:
+>   - No changes (it's a new patch added in v2)
+>
 
-On Sat, Jun 15, 2024 at 1:25=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Fri, Jun 14, 2024 at 10:56:09PM GMT, Zhaoxiong Lv wrote:
-> > The bias IC of this starry-er88577 panel is placed
-> > on the panel side, so when the panel is powered on,
-> > there is no need to control AVDD and AVEE in the driver,
-> > only 3.3v and reset are needed.
-> >
-> > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com=
->
-> >
-> > ---
-> >
-> > Chage since V3:
-> >
-> > -  Separate Starry-er88577 from the panel-kingdisplay-kd101ne3 driver.
-> > -  Use mipi_dsi_dcs_set_display_on_multi().
-> > -  Use mipi_dsi_dcs_exit_sleep_mode_multi() and mipi_dsi_msleep().
-> >
-> > v2: https://lore.kernel.org/all/20240601084528.22502-5-lvzhaoxiong@huaq=
-in.corp-partner.google.com/
-> >
-> > Chage since V2:
-> >
-> > -  Add compatible for Starry er88577 in panel-kingdisplay-kd101ne3 driv=
-ers.
-> > ---
-> >  drivers/gpu/drm/panel/Kconfig                |   9 +
-> >  drivers/gpu/drm/panel/Makefile               |   1 +
-> >  drivers/gpu/drm/panel/panel-starry-er88577.c | 343 +++++++++++++++++++
-> >  3 files changed, 353 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/panel/panel-starry-er88577.c
-> >
-> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kcon=
-fig
-> > index e54f6f5604ed..a52aa2552ab8 100644
-> > --- a/drivers/gpu/drm/panel/Kconfig
-> > +++ b/drivers/gpu/drm/panel/Kconfig
-> > @@ -781,6 +781,15 @@ config DRM_PANEL_SITRONIX_ST7789V
-> >         Say Y here if you want to enable support for the Sitronix
-> >         ST7789V controller for 240x320 LCD panels
-> >
-> > +config DRM_PANEL_STARRY_ER88577
-> > +     tristate "Starry er88577 panel"
-> > +     depends on OF
-> > +     depends on DRM_MIPI_DSI
-> > +     depends on BACKLIGHT_CLASS_DEVICE
-> > +     help
-> > +       Say Y if you want to enable support for panels based on the
-> > +       Starry er88577 controller.
-> > +
-> >  config DRM_PANEL_SONY_ACX565AKM
-> >       tristate "Sony ACX565AKM panel"
-> >       depends on GPIOLIB && OF && SPI
-> > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Mak=
-efile
-> > index f0203f6e02f4..ecd843a6dc6e 100644
-> > --- a/drivers/gpu/drm/panel/Makefile
-> > +++ b/drivers/gpu/drm/panel/Makefile
-> > @@ -81,6 +81,7 @@ obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) +=3D panel-=
-sharp-ls060t1sx01.o
-> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) +=3D panel-sitronix-st7701.o
-> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) +=3D panel-sitronix-st7703.o
-> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) +=3D panel-sitronix-st7789v.o
-> > +obj-$(CONFIG_DRM_PANEL_STARRY_ER88577) +=3D panel-starry-er88577.o
-> >  obj-$(CONFIG_DRM_PANEL_SYNAPTICS_R63353) +=3D panel-synaptics-r63353.o
-> >  obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) +=3D panel-sony-acx565akm.o
-> >  obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) +=3D panel-sony-td4353-jdi.o
-> > diff --git a/drivers/gpu/drm/panel/panel-starry-er88577.c b/drivers/gpu=
-/drm/panel/panel-starry-er88577.c
-> > new file mode 100644
-> > index 000000000000..a8250a464883
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/panel/panel-starry-er88577.c
-> > @@ -0,0 +1,343 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/* Panels based on the JD9365DA display controller.
-> > + * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/regulator/consumer.h>
-> > +
-> > +#include <drm/drm_connector.h>
-> > +#include <drm/drm_crtc.h>
-> > +#include <drm/drm_mipi_dsi.h>
-> > +#include <drm/drm_panel.h>
-> > +
-> > +#include <video/mipi_display.h>
-> > +#include <drm/drm_probe_helper.h>
-> > +
-> > +struct starry_panel;
-> > +
-> > +struct panel_desc {
-> > +     const struct drm_display_mode *modes;
-> > +     unsigned int bpc;
-> > +     unsigned long mode_flags;
-> > +     enum mipi_dsi_pixel_format format;
-> > +     const struct panel_init_cmd *init_cmds;
-> > +     int (*init)(struct starry_panel *starry);
-> > +     unsigned int lanes;
-> > +     bool discharge_on_disable;
-> > +     bool lp11_before_reset;
-> > +     unsigned int power_off_delay_ms;
-> > +};
-> > +
-> > +struct starry_panel {
-> > +     struct drm_panel base;
-> > +     struct mipi_dsi_device *dsi;
-> > +
-> > +     const struct panel_desc *desc;
-> > +
-> > +     enum drm_panel_orientation orientation;
-> > +     struct regulator *vccio;
-> > +     struct gpio_desc *reset;
-> > +};
-> > +
-> > +static int starry_er88577_init(struct starry_panel *starry)
-> > +{
-> > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D starry->dsi =
-};
-> > +
-> > +     /* T5:HWreset to init_code >=3D 120ms */
-> > +     mipi_dsi_msleep(dsi_ctx, 120);
-> > +
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0xab, 0xba);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0xba, 0xab);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb1, 0x10, 0x01, 0x47, 0x=
-ff);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2, 0x0c, 0x14, 0x04, 0x=
-50, 0x50, 0x14);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb3, 0x56, 0x53, 0x00);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb4, 0x33, 0x30, 0x04);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0xb0, 0x00, 0x00, 0x=
-10, 0x00, 0x10, 0x00);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x05, 0x12, 0x29, 0x=
-49, 0x40);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb9, 0x7c, 0x61, 0x4f, 0x=
-42, 0x3e, 0x2d, 0x31,
-> > +                                  0x1a, 0x33, 0x33, 0x33, 0x52, 0x40, =
-0x47, 0x38, 0x34, 0x26,
-> > +                                  0x0e, 0x06, 0x7c, 0x61, 0x4f, 0x42, =
-0x3e, 0x2d, 0x31, 0x1a,
-> > +                                  0x33, 0x33, 0x33, 0x52, 0x40, 0x47, =
-0x38, 0x34, 0x26, 0x0e,
-> > +                                  0x06);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0xcc, 0x76, 0x12, 0x=
-34, 0x44, 0x44, 0x44,
-> > +                                  0x44, 0x98, 0x04, 0x98, 0x04, 0x0f, =
-0x00, 0x00, 0xc1);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0x54, 0x94, 0x02, 0x=
-85, 0x9f, 0x00, 0x6f,
-> > +                                  0x00, 0x54, 0x00);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2, 0x17, 0x09, 0x08, 0x=
-89, 0x08, 0x11, 0x22,
-> > +                                  0x20, 0x44, 0xff, 0x18, 0x00);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc3, 0x87, 0x47, 0x05, 0x=
-05, 0x1c, 0x1c, 0x1d,
-> > +                                  0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, =
-0x0f, 0x0f, 0x0d, 0x0d,
-> > +                                  0x13, 0x13, 0x11, 0x11, 0x24);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4, 0x06, 0x06, 0x04, 0x=
-04, 0x1c, 0x1c, 0x1d,
-> > +                                  0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, =
-0x0e, 0x0e, 0x0c, 0x0c,
-> > +                                  0x12, 0x12, 0x10, 0x10, 0x24);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc8, 0x21, 0x00, 0x31, 0x=
-42, 0x34, 0x16);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca, 0xcb, 0x43);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcd, 0x0e, 0x4b, 0x4b, 0x=
-20, 0x19, 0x6b, 0x06,
-> > +                                  0xb3);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd2, 0xe3, 0x2b, 0x38, 0x=
-08);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4, 0x00, 0x01, 0x00, 0x=
-0e, 0x04, 0x44, 0x08,
-> > +                                  0x10, 0x00, 0x00, 0x00);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x80, 0x09, 0xff, 0x=
-ff, 0xff, 0xff, 0xff,
-> > +                                  0xff);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x12, 0x03, 0x20, 0x=
-00, 0xff);
-> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0x00);
->
-> This looks pretty close to panel-boe-th101mb31ig002-28a.c
->
-> > +
-> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> > +
->
->
-> --
-> With best wishes
-> Dmitry
+Reviewed-by: Anand Moon <linux.amoon@gmail.com>
+
+Thanks
+
+-Anand
 
