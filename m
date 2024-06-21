@@ -1,94 +1,93 @@
-Return-Path: <devicetree+bounces-78355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892579120B5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:34:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE9C9120A8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:32:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9AAA1C2162B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:34:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F41781F249FA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:32:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D67FD16F0C2;
-	Fri, 21 Jun 2024 09:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241701422D5;
+	Fri, 21 Jun 2024 09:32:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FtNa0mZI"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="JGvYFIqm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D10B16EC0B;
-	Fri, 21 Jun 2024 09:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA3578C8D
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 09:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718962446; cv=none; b=G45jEeWv53wk2FVmnCIC5LKGTu5miCxKeJpvA4IwSt8xzO4jrUOP9Ddyuv9AookaTnvHkhg+lHj4FPCvlKF+QfRzP7qoFWIOW0jC0xbaBM2k96w9oEM9M8Bw7TXyTR3S2WOry4PXJjbRxe2KK5jz/9mrFEdJ8UVTD2077FrIxAE=
+	t=1718962357; cv=none; b=Z4oxQGG5YDJAiXMSP7jQp9FKsYAV4AWofKDxpVY9MoWOycAiR5kQD1J8JU5UONH+MzxsfWSZc3F2ajhpksTOnp92ZRzKCR7BtKQxTI1JX47ZMa5vM84ryD/gTIJofX/LVrLwUtx477XyIkHUE8MLoxIonywhU3juqqV73To2BHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718962446; c=relaxed/simple;
-	bh=IYpgjkNJ+3p8GkMwRIoKvBaYq1yJLDn4XIpVSdU6z7c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qPXVJfgmsKev+w1Rpi7QMjYOhZvReUk/eEhJGbO1or4Y+SIqeaynSOteJsAMLDq9NnIJ9Ric1QRMXW6MSaPJK6EcJRetXjGk/iH0v8acv2jlU0DA1kjwU63udYqCHmG76asDUw/o0+j33aNtZBZA6zXfsGwDl9miI9sW8Qal3H0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FtNa0mZI; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1f6a837e9a3so11724915ad.1;
-        Fri, 21 Jun 2024 02:34:05 -0700 (PDT)
+	s=arc-20240116; t=1718962357; c=relaxed/simple;
+	bh=Io7x0Pj5yu6Aay2v1mJmnn2x5+0MezQargV1CWZ0hoE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VMWMAIqrDNQxNFgYEhlUzSaNtQlkvo1uldUcT7/+YllQoesxf8SuhgUhL4CkGV8xeXlIsijXlViujF0PWZCzWBruK1MqXgC2xqJ78+kCxYj5V4Bfy+glMiwt0At9hsROdspemj0DRaslqffgErUKkcpomLgahnKboO7/itS4LbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=JGvYFIqm; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3d22378c59eso1024391b6e.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 02:32:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718962444; x=1719567244; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EiJfmKO8nNBSX1oUuFOSypNRXVZPBtzmshynKzoPzUw=;
-        b=FtNa0mZIFdfiZLdN/bQxlIE6Z51Ltp9jLDCGd/ZAOGHnOplYpKNCu4UtjAWnIX+vT7
-         py2WeCst/TflQXQNOGHKMHrXrA/KHw0Nv4qmVOdK/YhGcKcIKdPkevVgMMTQkZL8oqbR
-         r8tKDbh5AlQ/YteZVkZ58HOx6/she0wuuREkhkR8dVvnRB5JInFQlfVUXmuPPsihJTjy
-         u3OQFrFjrBTcDEfW6J8u9Az7w6v40pd5/+B1kQS66Y7wiU0xK2v+PoHpMu3/fobWONme
-         c5ag5WKY1vkgKzz9T7jZaa4vCEiUQ4k18VJVmJcj7zF3hoKJ4w8q2wBAFK2cat019f7k
-         8F/w==
+        d=bytedance.com; s=google; t=1718962354; x=1719567154; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3wqIpx/xNWV6IHwMrdSRTckXkxxvetpMu+iSEo5dv+4=;
+        b=JGvYFIqmbIHmpV6mQ/LHEgJJDfLdc3ktUr4KZtuFUQzKSQy17TBzsJSsU4qjM6AhbQ
+         pxGyKkcFDgkvCw75S7yc/aq6diK4ncJo0mRo4lwOGuHe4e3MMvMbg25X6MimelYEHjJB
+         WIUFJsA6pMfkrd7kecZ9X6E5yIPY48WJ9DadkpGK8vn7tjbPFZNl5vXKZEDMLUqGoe4M
+         8/O0+zNyY/qyTFfzN8XMnTboY9kFZpDCcUGR09U0uWqrcAEArT3n8ioLLIIR9X2ueqX+
+         j137K+aD4SVx3waptGWbuWnYpLGyaYvYBnvwKZ2fh7RKjgjReYzjVVEqgDb88sUt29wH
+         WwJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718962444; x=1719567244;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EiJfmKO8nNBSX1oUuFOSypNRXVZPBtzmshynKzoPzUw=;
-        b=OlYvuDcEKKcDcHEkEl1Rv2f5JrXPEoMe6Uzdq4n+2HRo+DiuMeyp5+7VeykmcVj+wa
-         iRHh0EUDKKD8lc9IVg/nCIB39xi9t+yJEKltOes7DFcxZT7CPnFQgkR1+ZxLhtTwgPfE
-         VsG7pu+i+rL7NELGXsgym6+GgHCiB0kAWTL7jWcWsZYvuAfbROJPbz1vxZFTwn9e8SZg
-         DjWyC50QIUcFY8utPiHCYRHTS/kMnd2g8fcX+ZtE/GeB7sZSxTedy62VpUCIObpyyJyU
-         1oC2q3rYzwLh7gKjcpeZdNxWe1kQtn2Ja7nZE/YKu/PLiXrPlHoaccwe9PSILezC5uHT
-         lyJg==
-X-Forwarded-Encrypted: i=1; AJvYcCWTgDCZSy18Ackm4egr/Gg9qDUB21Utinpbkr4CiNZ53u3q2wDn9qhDHqGuOaw9WgMs21iMsugQSnxm5XMVeO5wdUp5CpnlDoulOqpOmHmqIrcvjyPJYQHLYhT3ArRyLYYE+9RoWxxdhS2NdCun3QaykLwRA4t+meVFYzk2mIxiLXIYgkM=
-X-Gm-Message-State: AOJu0Yx/HtoCKCFPX26hvdj6lhZXJFxNitt2wi/4NqVEe24MkiputqnS
-	o5QkRMdtTwyifR4nPARfk6COCxPLsbCEPZuLOXZfocIRdI5QGsTZ
-X-Google-Smtp-Source: AGHT+IFOKXrh2SxGVKHFT+5si9TabUQXPaizDpK8J7kyQ+x11v7jWslxqA6il5ABG6GwYYLtHI0tSA==
-X-Received: by 2002:a17:902:d4c1:b0:1f6:7f8f:65c7 with SMTP id d9443c01a7336-1f9aa3e9e54mr90810285ad.26.1718962444561;
-        Fri, 21 Jun 2024 02:34:04 -0700 (PDT)
-Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9ebbc72e9sm9810365ad.296.2024.06.21.02.34.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 02:34:04 -0700 (PDT)
-From: Potin Lai <potin.lai.pt@gmail.com>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>
-Cc: linux-aspeed@lists.ozlabs.org,
-	openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Patrick Williams <patrick@stwcx.xyz>,
-	Cosmo Chou <cosmo.chou@quantatw.com>,
-	Potin Lai <potin.lai@quantatw.com>
-Subject: [PATCH v4 2/2] pinctrl: aspeed-g6: Add NCSI pin group config
-Date: Fri, 21 Jun 2024 17:31:42 +0800
-Message-Id: <20240621093142.698529-3-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20240621093142.698529-1-potin.lai.pt@gmail.com>
-References: <20240621093142.698529-1-potin.lai.pt@gmail.com>
+        d=1e100.net; s=20230601; t=1718962354; x=1719567154;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3wqIpx/xNWV6IHwMrdSRTckXkxxvetpMu+iSEo5dv+4=;
+        b=GSvCQW1u/RL3U/LlgBeaLE6cyr9AP882usO2K5Ya86MktwC8Puuwp3Ha0DcE66zZUP
+         DzsRQfx39pIOdlBZ0gtgctROci8eIVXjzCTK+zeqaYOWku+OLdhC5y5eoene3qECGwKg
+         n6S4iYir4RFF0ypL+akHdZx2mB3KqpNLg1xEH3pSQs5enkOEnbvn/pX4TB/e1CYOGf0g
+         Qr390gaBl7K5v9RdURNtPoBz0JBCuMgmJU7uqdzKQxVCRIZd4tcaBjODeDFoRLrr+s46
+         42pbTcBGkTjFGoLluUzGcb5X5/TlE5GdKpIlB+ka4EbhiWbt2jAuPutgQinh1kdnRdPU
+         za2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUd5KP97/fHoXcj+8N58p80e6Z0WmHAaqCbHhMzhsw6t2CcPVrkRJOgtxVVwWg4f2P34WkNhu4uUst1zfA41pVF3J04Hv2QNJ5jLQ==
+X-Gm-Message-State: AOJu0YzJ2mNHjAkbwifA8HvE5MCptwOYE6u/71Qn/fU8v40D46FShMaX
+	6A+D9hFkntNFV20yw7PFom7LjLO+tQIhpNKHwp1FDgsg5JzwmtUtJ5qrABIFp7g=
+X-Google-Smtp-Source: AGHT+IEYiPdKpLIiyynObeE7nm0iaBRvcw73rKG2SXQrJii6TwMzCurVIpNbfHgviOCPq4wnb7YnDA==
+X-Received: by 2002:a05:6808:16a2:b0:3d5:2bb7:867 with SMTP id 5614622812f47-3d52bb71282mr4012256b6e.17.1718962354114;
+        Fri, 21 Jun 2024 02:32:34 -0700 (PDT)
+Received: from J9GPGXL7NT.bytedance.net ([61.213.176.56])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7065124dd26sm968415b3a.127.2024.06.21.02.32.28
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Fri, 21 Jun 2024 02:32:33 -0700 (PDT)
+From: Xu Lu <luxu.kernel@bytedance.com>
+To: linux-riscv@lists.infradead.org,
+	kvm-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	conor.dooley@microchip.com,
+	anup@brainfault.org,
+	atishp@atishpatra.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	christoph.muellner@vrull.eu,
+	heiko@sntech.de,
+	charlie@rivosinc.com,
+	David.Laight@aculab.com,
+	parri.andrea@gmail.com,
+	Xu Lu <luxu.kernel@bytedance.com>
+Subject: [RFC v2 0/2] riscv: Idle thread using Zawrs extension
+Date: Fri, 21 Jun 2024 17:32:21 +0800
+Message-Id: <20240621093223.37893-1-luxu.kernel@bytedance.com>
+X-Mailer: git-send-email 2.39.3 (Apple Git-146)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,56 +96,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Based on the NCSI pin table (Table 181) in NCSI spec[1], the reference
-clock output pin (RMIIXRCLKO) is not needed on the management controller
-side.
+This is the second version of idle thread based on Zawrs extension. We
+rebased our code on Andrew's patch series[1] which provides basic
+support for Zawrs as well as optimization for spinlock.
 
-To optimize pin usage, add new NCSI pin group that excludes RMIIXRCLKO,
-reducing the number of required pins.
+This patch series introduces a new implementation of idle thread using
+Zawrs extension.
 
-LINK: [1] https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.2.0a.pdf
+The Zawrs[0] extension introduces two new instructions named WRS.STO and
+WRS.NTO in RISC-V. When software registers a reservation set using LR
+instruction, a subsequent WRS.STO or WRS.NTO instruction will cause the
+hart to stall in a low-power state until a store happens to the
+reservation set or an interrupt becomes pending. The difference between
+these two instructions is that WRS.STO will terminate stall after an
+implementation-defined timeout while WRS.NTO won't.
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+This patch series implements idle thread using WRS.NTO instruction.
+Besides, we found there is no need to send a real IPI to wake up an idle
+CPU. Instead, we write IPI information to the reservation set of an idle
+CPU to wake it up and let it handle IPI quickly, without going through
+tranditional interrupt handling routine.
 
-diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-index 7938741136a2c..31e4e0b342a00 100644
---- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-+++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-@@ -249,7 +249,9 @@ PIN_DECL_2(E26, GPIOD3, RGMII3RXD3, RMII3RXER);
- 
- FUNC_GROUP_DECL(RGMII3, H24, J22, H22, H23, G22, F22, G23, G24, F23, F26, F25,
- 		E26);
--FUNC_GROUP_DECL(RMII3, H24, J22, H22, H23, G23, F23, F26, F25, E26);
-+GROUP_DECL(RMII3, H24, J22, H22, H23, G23, F23, F26, F25, E26);
-+GROUP_DECL(NCSI3, J22, H22, H23, G23, F23, F26, F25, E26);
-+FUNC_DECL_2(RMII3, RMII3, NCSI3);
- 
- #define F24 28
- SIG_EXPR_LIST_DECL_SESG(F24, NCTS3, NCTS3, SIG_DESC_SET(SCU410, 28));
-@@ -355,7 +357,9 @@ FUNC_GROUP_DECL(NRTS4, B24);
- 
- FUNC_GROUP_DECL(RGMII4, F24, E23, E24, E25, D26, D24, C25, C26, C24, B26, B25,
- 		B24);
--FUNC_GROUP_DECL(RMII4, F24, E23, E24, E25, C25, C24, B26, B25, B24);
-+GROUP_DECL(RMII4, F24, E23, E24, E25, C25, C24, B26, B25, B24);
-+GROUP_DECL(NCSI4, E23, E24, E25, C25, C24, B26, B25, B24);
-+FUNC_DECL_2(RMII4, RMII4, NCSI4);
- 
- #define D22 40
- SIG_EXPR_LIST_DECL_SESG(D22, SD1CLK, SD1, SIG_DESC_SET(SCU414, 8));
-@@ -1976,6 +1980,8 @@ static const struct aspeed_pin_group aspeed_g6_groups[] = {
- 	ASPEED_PINCTRL_GROUP(MDIO2),
- 	ASPEED_PINCTRL_GROUP(MDIO3),
- 	ASPEED_PINCTRL_GROUP(MDIO4),
-+	ASPEED_PINCTRL_GROUP(NCSI3),
-+	ASPEED_PINCTRL_GROUP(NCSI4),
- 	ASPEED_PINCTRL_GROUP(NCTS1),
- 	ASPEED_PINCTRL_GROUP(NCTS2),
- 	ASPEED_PINCTRL_GROUP(NCTS3),
+[0] https://github.com/riscv/riscv-zawrs/blob/main/zawrs.adoc
+[1] https://github.com/jones-drew/linux/commits/riscv/zawrs-v3
+
+Xu Lu (2):
+  riscv: process: Introduce idle thread using Zawrs extension
+  riscv: Use Zawrs to accelerate IPI to idle cpu
+
+ arch/riscv/Kconfig                 |  10 +++
+ arch/riscv/include/asm/cpuidle.h   |  11 +---
+ arch/riscv/include/asm/processor.h |  32 +++++++++
+ arch/riscv/include/asm/smp.h       |  14 ++++
+ arch/riscv/kernel/cpu.c            |   5 ++
+ arch/riscv/kernel/process.c        | 102 ++++++++++++++++++++++++++++-
+ arch/riscv/kernel/smp.c            |  39 +++++++----
+ 7 files changed, 190 insertions(+), 23 deletions(-)
+
 -- 
-2.31.1
+2.20.1
 
 
