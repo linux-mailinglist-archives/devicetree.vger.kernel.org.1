@@ -1,185 +1,200 @@
-Return-Path: <devicetree+bounces-78340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BFCA911F67
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:54:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0956911FE2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:01:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30D461F25843
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:54:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 384B31F2123D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED50C16D9B3;
-	Fri, 21 Jun 2024 08:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9E9142E78;
+	Fri, 21 Jun 2024 09:00:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SIhxydNv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WiR6TTtV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CF216C856;
-	Fri, 21 Jun 2024 08:53:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723AE43156;
+	Fri, 21 Jun 2024 09:00:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718960035; cv=none; b=csnA7YIthm9orDnObyN3YSjKqoTjgAnC3koFr9v2hPZE4EE7jyaGFkhFKTvusP240sJkVsXmArEAaWrssXzL141XbN/lncslqQJiw5f8DjDkCKvMnMUqo+Ms6dNhMUfCgNfp4IXIudWMPaYfj4fAMZL/ZsHnbX7yhC8lagmlxV0=
+	t=1718960456; cv=none; b=Yt9dzOHRcK+EhKZnpSY5HewFVDRqu7/9/KLAL5OUjDiIDqtUzDiF1Pgt4JUJPzquFx0cSiZ8EsjiXgwMIkt26yUcD2w30tSmfLBW5oN/hNWKJaeG+AvlO///3Km8xdLd5OTxPUp2pQYzol94u/Wfj7Es0lxuAqY4AsHwm1iBkQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718960035; c=relaxed/simple;
-	bh=AtFinZsMgiIIHjA21Sc0KoGjJvdqQ5HCKFk1uDEBWL8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=keoybxCJL/8c6tRu4x/qFvj6wJpg3eVB0AdZBxfoW/07H9Ju1mNL44P+VQaUk1j46+6cBm/uoAZJQ320c0E9vwG024qhUIpRkh0C9enWrXYomwF00b5Fk3eLF/LbM6byf0YlaZwInysOdXxLr2ii7YiHzylfelNDYACXUFsH8iE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SIhxydNv; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2eaae2a6dc1so33362471fa.0;
-        Fri, 21 Jun 2024 01:53:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718960032; x=1719564832; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C2NbmAeSPtr+VJPCDZGzIPSzbzCrEPpKv2Ul8cjGJpg=;
-        b=SIhxydNvnzMqk3equVSf3SmEblz7poLkj2sOUODgHPrQCp0b6UH1FjdtWqZlWDkInn
-         dsNV7j+5IQnjWu4N6tvTJoPJFi1RP0m+VkcBStpmy/hM9inb+hB5R2hXj8zx4NNL6EKJ
-         /9HRCCxLpYzBH65ynnFYddhj9wNTqrw7FeBOmlkJIx3IA6T1FH57YJdxiuduh0Xn+q77
-         NrnoHaKTAqPqcRDqWRMEZs+310Bpz5rlekx6DExnLyTh+65LZfHhGiEf0xuR4xx2idq2
-         M7L3yVYb4uM41sPBaJcdQIFL3HfSdDkV4kk6cKD+0/ovfm5xluBc6bceDeJbZHOEaCdW
-         ovzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718960032; x=1719564832;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C2NbmAeSPtr+VJPCDZGzIPSzbzCrEPpKv2Ul8cjGJpg=;
-        b=HIJvuOKuFT/y+/AjN3tY9Z6re0w+Q61vjuznDYghELeeiIy7tsYMWbre98jokbTTiT
-         SwxuetjZuCtWRU7mXoUCnKsNctRg8vFMxVE9XZ+Qj/v8NPuiWf8ivci/3J47mtGa8lUu
-         icT/4SK+rU6GTA/vtVvzw/4r25f7sQR7HsE9wzWPTGnYW8A2wMs6QvzMsMlSUEFdN8Qw
-         3LwzGMP4GHpb6lwbp1OKDLNhv8zSQDbcK97OkKAEZ+SrE6mvTdXxVJq2a9DKHMaWWzDe
-         n3MZLIhUYHFLsSTyvaWznVvckNjQoQKwqHYjKXk+KXPu2q1RZwSkKgphCsonHYfSU//o
-         w68A==
-X-Forwarded-Encrypted: i=1; AJvYcCVM+ok2BcItshtC/UV/psOD98unBrN27uK23KqQIKS5sETpxVbev0HxGBUkOdxbhnNJb1U21eTWkNxIOXHGcP04GUmDZYq3tp5cat7vVrWr4Z3ym4uigLeOQR4hY+KiMUNV7mWA8NyrW1xBDa8lvJwzjyVhFosQky6gipSzd1NVWf3Ly0I=
-X-Gm-Message-State: AOJu0YxjvpdR1eywBn1NNZJn21RQk6pOjRSmlujCbum/qCiDCmn9B8N0
-	a2UoTPfRu++9k7Sm7UJF5NNLiqGT2viwLZ1dTUDakbk0Pw7twDrzQxmIrX85xOvbFmgxL0k0gIp
-	hEXYCtjPSVF248j9iDnEcm/SQdc8=
-X-Google-Smtp-Source: AGHT+IFACBZJL/JrK568qW0O9LvAd+FrY4FSuAOLFmRWXPL7E3VDBY2O378p7oDlZU5U3E2pPeP3u6Glqf31Mu/d0J0=
-X-Received: by 2002:a05:6512:4ca:b0:52c:d5e4:9a99 with SMTP id
- 2adb3069b0e04-52cd5e49ccfmr1025377e87.17.1718960031907; Fri, 21 Jun 2024
- 01:53:51 -0700 (PDT)
+	s=arc-20240116; t=1718960456; c=relaxed/simple;
+	bh=9if5fECP7iXZCzmm9T9MC/4MQfBUdrm184DZ11Gr9XM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jm7IKa2065yMnNcqxqgpHXqAgBGit2/ysOv+dnjCD52xqj4CbhQOf/OdygUUYgHQzhv2CDpUVF31W8+P6bRHcWb08PocmdYPw3l31yl/0CYtcFDOiX4KqqMkh5M5iCMNEYsOR28xOG2tG6hI/vxG3F2XYgIKWYfnmWaeFBmB860=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WiR6TTtV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 969BAC2BBFC;
+	Fri, 21 Jun 2024 09:00:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718960455;
+	bh=9if5fECP7iXZCzmm9T9MC/4MQfBUdrm184DZ11Gr9XM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WiR6TTtVsR6xlP1vNXR8iZ+WUzIkrzjWd8kYt6Rf99D/J1LEJpD/XU/o/7ebCoFAz
+	 dmR1oCAJefVCTY0coDd5zB0r/sGWmi5dwjQFBw3X5Dp0eYPUKrrHj/l4KdESmXnQix
+	 cYiFnUpuAThPYPXGXRvj7ZK1SjVxX9GRLVUk+TCW4Ky958XK4GYGV8xlrQUtVofjfx
+	 oeygrZZiyTJpXgSYxlUWWGgE4oJyhpsyi1R5a/vTus4DyTvkDzzCqNLEdrIVC5QYFI
+	 yMPQ6XgbJ3SS+8eF286QAxuVW8xHZPEJ8PjMWabSWMZHAnKIhQjN+y7fohdqs+2kH4
+	 v8uwGnUvZUd1g==
+Date: Fri, 21 Jun 2024 11:00:53 +0200
+From: "mripard@kernel.org" <mripard@kernel.org>
+To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	Singo Chang =?utf-8?B?KOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>, 
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"jason-jh.lin@mediatek.corp-partner.google.com" <jason-jh.lin@mediatek.corp-partner.google.com>, 
+	Jason-ch Chen =?utf-8?B?KOmZs+W7uuixqik=?= <Jason-ch.Chen@mediatek.com>, 
+	Shawn Sung =?utf-8?B?KOWui+WtneismSk=?= <Shawn.Sung@mediatek.com>, Nancy Lin =?utf-8?B?KOael+aso+ieoik=?= <Nancy.Lin@mediatek.com>, 
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "jkardatzke@google.com" <jkardatzke@google.com>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, "airlied@gmail.com" <airlied@gmail.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v6 0/7] Add mediate-drm secure flow for SVP
+Message-ID: <20240621-colossal-acoustic-cassowary-ee8d05@houat>
+References: <20240525232928.5524-1-jason-jh.lin@mediatek.com>
+ <20240527-determined-sage-piculet-bfec4a@houat>
+ <4828461fa10101eec29e2885bc1aa0e2b7114e7c.camel@mediatek.com>
+ <20240530-inventive-nippy-bee-bb6fa6@houat>
+ <43db5c0959b387ff049dbd285093b076ed1421fa.camel@mediatek.com>
+ <705eb69997333ffaf6efec053e376243a3c80265.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240620084337.3525690-1-potin.lai.pt@gmail.com>
- <20240620084337.3525690-2-potin.lai.pt@gmail.com> <cb55efedaef63e4580c11415aa2e29606edcaf9f.camel@codeconstruct.com.au>
-In-Reply-To: <cb55efedaef63e4580c11415aa2e29606edcaf9f.camel@codeconstruct.com.au>
-From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Fri, 21 Jun 2024 16:53:40 +0800
-Message-ID: <CAGfYmwWp2dayGvySdYvU+nmtxZ-x3PPW_j69ZoBD4mxzPMQAzg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: aspeed,ast2600-pinctrl: add
- NCSI group
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Stanley <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Patrick Williams <patrick@stwcx.xyz>, Cosmo Chou <cosmo.chou@quantatw.com>, 
-	Potin Lai <potin.lai@quantatw.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sncbl7222dptrev6"
+Content-Disposition: inline
+In-Reply-To: <705eb69997333ffaf6efec053e376243a3c80265.camel@mediatek.com>
+
+
+--sncbl7222dptrev6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 8:46=E2=80=AFAM Andrew Jeffery
-<andrew@codeconstruct.com.au> wrote:
->
-> Hi Potin,
->
-> On Thu, 2024-06-20 at 16:43 +0800, Potin Lai wrote:
-> > In the NCSI pin table, the reference clock output pin (RMIIXRCLKO) is n=
-ot
-> > needed on the management controller side.
-> >
-> > Add NCSI group to distinguish the pin group between RMII and NCSI.
-> >
-> > - RMII pins:
-> >   - RMIIXRCLKI
-> >   - RMIIXRXD0
-> >   - RMIIXRXD1
-> >   - RMIIXCRSDV
-> >   - RMIIXRXER
-> >   - RMIIXRCLKO
-> >   - RMIIXTXEN
-> >   - RMIIXTXD0
-> >   - RMIIXTXD1
-> >
-> > - NCSI pins:
-> >   - RMIIXRCLKI
-> >   - RMIIXRXD0
-> >   - RMIIXRXD1
-> >   - RMIIXCRSDV
-> >   - RMIIXRXER
-> >   - RMIIXTXEN
-> >   - RMIIXTXD0
-> >   - RMIIXTXD1
->
-> I think listing all the pins for both groups obscures the fact that
-> there aren't more changes than removing RMIIXRCLKO.
->
-> Can we instead drop these lists and replace
->
-> > Add NCSI group to distinguish the pin group between RMII and NCSI.
->
-> With:
->
-> > Add "NCSI" pin groups that are equivalent to the RMII pin groups,
-> > but without the RMIIXRCLKO pin
->
-> ?
->
-Got it, will update it in the next version.
+Hi,
 
-> >
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
-> > ---
-> >  .../devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml     | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-p=
-inctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinc=
-trl.yaml
-> > index 00b6974a5ed3d..3f02dc94a7ce2 100644
-> > --- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.=
-yaml
-> > +++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.=
-yaml
-> > @@ -337,6 +337,8 @@ additionalProperties:
-> >          - MDIO2
-> >          - MDIO3
-> >          - MDIO4
-> > +        - NCSI3
-> > +        - NCSI4
->
-> Can we also do this for RMII{1,2}RCLKO (and in the driver patch as
-> well)?
->
-The power of RMII{1,2} is 1.8v, which does not meet NCSI requirements.
+On Tue, Jun 11, 2024 at 09:13:03AM GMT, Jason-JH Lin (=E6=9E=97=E7=9D=BF=E7=
+=A5=A5) wrote:
+> Hi Maxime,
+>=20
+> [snip]
+>=20
+> > > > > > ---
+> > > > > > TODO:
+> > > > > > 1) Drop MTK_DRM_IOCTL_GEM_CREATE and use DMA_HEAP_IOCTL_ALLOC
+> > > > > > in
+> > > > > > userspace
+> > > > > > 2) DRM driver use secure mailbox channel to handle normal and
+> > > > > > secure flow
+> > > > > > 3) Implement setting mmsys routing table in the secure world
+> > > > > > series
+> > > > >=20
+> > > > > I'm not sure what you mean here. Why are you trying to upstream
+> > > > > something that still needs to be removed from your patch
+> > > > > series?
+> > > > >=20
+> > > >=20
+> > > > Because their is too much patches need to be fixed in this
+> > > > series,
+> > > > so I
+> > > > list down the remaining TODO items and send to review for the
+> > > > other
+> > > > patches.
+> > > >=20
+> > > > Sorry for the bothering, I'll drop this at the next version.
+> > >=20
+> > > If you don't intend to use it, we just shouldn't add it. Removing
+> > > the
+> > > TODO item doesn't make sense, even more so if heaps should be the
+> > > way
+> > > you handle this.
+> > >=20
+> >=20
+> > Sorry for this misunderstanding.
+> >=20
+> > I mean I'll remove the DRM_IOCTL_GEM_CREATE patch and then change
+> > user
+> > space calling DMA_HEAP_IOCTL_ALLOC to allocate buffer from secure
+> > heap.
+> >=20
+>=20
+> I have changed user space to use DMA_HEAP_IOCTL_ALLOC to allocate
+> secure buffer, but I still encounter the problem of determining whether
+> the buffer is secure in mediatek-drm driver to add some secure
+> configure for hardware.
+>=20
+>=20
+> As the comment in [1], dma driver won't provide API for use.
+> [1]:=20
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20240515112308.=
+10171-3-yong.wu@mediatek.com/#25857255
+>=20
+>=20
+> So I use name checking at [PATCH v6 3/7] like this currently:
+>=20
+> struct drm_gem_object *mtk_gem_prime_import_sg_table(struct drm_device
+> *dev,
+>             struct dma_buf_attachment *attach, struct sg_table *sg)
+> {
+>     struct mtk_gem_obj *mtk_gem;
+>=20
+>     /* check if the entries in the sg_table are contiguous */
+>     if (drm_prime_get_contiguous_size(sg) < attach->dmabuf->size) {
+>         DRM_ERROR("sg_table is not contiguous");
+>         return ERR_PTR(-EINVAL);
+>     }
+>=20
+>     mtk_gem =3D mtk_gem_init(dev, attach->dmabuf->size);
+>     if (IS_ERR(mtk_gem))
+>         return ERR_CAST(mtk_gem);
+>=20
+> +   mtk_gem->secure =3D (!strncmp(attach->dmabuf->exp_name, "restricted",
+> 10));
+>     mtk_gem->dma_addr =3D sg_dma_address(sg->sgl);
+> +   mtk_gem->size =3D attach->dmabuf->size;
+>     mtk_gem->sg =3D sg;
+>=20
+>     return &mtk_gem->base;
+> }
+>=20
+> But I want to change this name checking to the information brought from
+> user space.
+> I tried to use arg->flags to append the secure flag in user space and
+> call drmPrimeHandleToFD() to pass it to DRM driver, but it will be
+> blocked by at the beginning of the drm_prime_handle_to_fd_ioctl().
 
-> >          - NCTS1
-> >          - NCTS2
-> >          - NCTS3
->
-> Overall, what I was hoping for with the comment on the earlier patch
-> was that you would add the discussion in the commit message to the
-> "description" entry in the binding YAML. Can you please do so? That way
-> the information is always present for people reading the binding
-> without them having to look at the binding's change history.
->
-Got it, I will add note into aspeed,ast2600-pinctrl.yaml.
+I agree with you, it's something to discuss mostly with the dma-buf
+maintainers but it would be better to just set a flag on the dma-buf,
+and use that flag whenever necessary.
 
-> Thanks,
->
-> Andrew
+It might be related to the recent work I did to introduce allocation
+flags too:
+https://lore.kernel.org/linux-media/20240515-dma-buf-ecc-heap-v1-0-54cbbd04=
+9511@kernel.org/
+
+Maxime
+
+--sncbl7222dptrev6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZnVBRAAKCRDj7w1vZxhR
+xW0eAQDL7FsolnEpQg0yKYGy2J97ffePbyQRQLT7aLkrr2nOygEA8o8jrPiaA91q
+rOBhlLYPPx+pkleZ2bdvAacEXvA3QQA=
+=dCqI
+-----END PGP SIGNATURE-----
+
+--sncbl7222dptrev6--
 
