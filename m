@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-78264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D8D911B19
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2391911B1F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:14:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B3ADB24801
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:13:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53875B24B79
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322D316D303;
-	Fri, 21 Jun 2024 06:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39AA116D4F4;
+	Fri, 21 Jun 2024 06:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hpHlthpw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FXwYC0M6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F8316CD01;
-	Fri, 21 Jun 2024 06:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCDE16D4E8;
+	Fri, 21 Jun 2024 06:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718950302; cv=none; b=RFuG20XLm3z1U9ufltR2WCaIpA0rLE2h9nIUprBOBu4pfa8CYL38V34u2yzBv8XQEPWxSOMS4CMrCsuu5AJnrDZMNG+CoiFF801QaXN4QCsUWE+W9ZmZuyRrfZ4sRRMcJbipyRgggP0+Zx6Wf4+h676qbsrgWLLbPUxSbUNR3RE=
+	t=1718950304; cv=none; b=Iinv0abbu1utB7Y3hIJ9kQJGiemWbYFukyvC4J+DIajGuM1TFSNDBBb01XiJFlFW+kDt4A3YOGvaRWv37GmAAiYH0udxe/IQodpsasp3EpDfEuLsf32X+C/QJhJNdefPHO6KvH85OTLgF7vdjnnTE6uUwxLWhiajO4xM+lSzUmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718950302; c=relaxed/simple;
-	bh=/7p4EWibp+39wGze2VFodXuE1Nowh/+3gCWNSzr3Nr8=;
+	s=arc-20240116; t=1718950304; c=relaxed/simple;
+	bh=9/VAdNtFSFHza6lYbJgLX57zw99VzG9352qUO24IWOs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=e8vx8NelsfuD1eoiCpXy+aHvgBL1Xlzun9ir0dzzXxQjU3Qg3rSkCTgirBcUc+U+SsewbZCpLkMM5ESh+O+kVGf4WysKoE/D1XvSCZ78tc+kcdszJIA2Gqu8M1OAmIC+2VkKZXw/7RBoF39nxzbyxzv4YLhFM7niK9ywdbt8asQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hpHlthpw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F37FBC4AF07;
-	Fri, 21 Jun 2024 06:11:40 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Y2WtzMbeBo6F+UrwoqWdz+8KOHxMFRTFBonHAjZ8urJ0Lbjl+6Yqz2Bipr45WzfaUwsvcIsuJE5K1cuDTmNXN2gwSetXOqhSaMBQn1LyJFkR0QF6298E5K8aVDBLRwoE9IXpo6HdEggMThatwOb3/nx6UGkI2my1ooBZc1sYg3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FXwYC0M6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D37A3C4AF0A;
+	Fri, 21 Jun 2024 06:11:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718950301;
-	bh=/7p4EWibp+39wGze2VFodXuE1Nowh/+3gCWNSzr3Nr8=;
+	s=k20201202; t=1718950303;
+	bh=9/VAdNtFSFHza6lYbJgLX57zw99VzG9352qUO24IWOs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hpHlthpwytipg6gG/9C87OKCNE/lAfftm8kmfwJuCaKpdLSARO1ypo6w4UT09DNfu
-	 L3bcyT/qys8b5KsuHoAZ0SC9Iaply6PANyu5l7tAUNGvX2L1i68FbaOC7kSaKaY8H8
-	 MVLKFKFuuNmQCykeL4UEFbNXxZQvxTlaNGGbEWjoj1Jnx6fqxDddXEhhluKpsR0Gvs
-	 CGhJUqw5jKXQDrklVAdJ4lTr0WgNYAZHa5Qhjc2TXlzHnMgQEbTJGSmk+HdPffYAUZ
-	 zkuQnKD1NYacn1T8OCcsfyQwxskp/cptG77luLVKLzXrC38vHPzPyRLQvZktdrsSfb
-	 g7zKEmwrK0cLw==
+	b=FXwYC0M63ovs5psNA1nl2D+XJKYYQhRavwreWkG6F8VvnAR9QtL/a1a9k6z5WmFJw
+	 rjst/cOG/8d7lz4SUjk7G21wI6M6HaYuzZR+yJSVnfPyPtbmgEZFhlOrxZmP7bewLb
+	 nEQbu4m/xuc9hRCRand3ogV8fXeqBCGwr30kYL/fM6MUUzlah+bnl05uE2evZkKcvx
+	 NNtSrl/7PTLwELpFjJQxwxzFG5KfYoWl5i42N+8CeDCIfUX3to1q/nptSswcU0tIf7
+	 /zuXKd0UDG5oyEAr/WFeqnMMvb4YpHeaF0XwZgwn/ZDp517XPPMje0KIV5eL/z1T4l
+	 oTAQAdXrx6kdQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: cros-qcom-dts-watchers@chromium.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rob Clark <robdclark@chromium.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	Stephen Boyd <swboyd@chromium.org>,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
-Cc: kernel@collabora.com,
-	linux-arm-msm@vger.kernel.org,
+	Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Disable pwmleds node where unused
-Date: Fri, 21 Jun 2024 01:11:23 -0500
-Message-ID: <171895028800.12506.5847544505762232246.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Krishna Kurapati <quic_kriskura@quicinc.com>,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qdu1000: fix usb interrupts properties
+Date: Fri, 21 Jun 2024 01:11:25 -0500
+Message-ID: <171895028811.12506.10681719894217760161.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240614-sc7180-pwmleds-probe-v1-1-e2c3f1b42a43@collabora.com>
-References: <20240614-sc7180-pwmleds-probe-v1-1-e2c3f1b42a43@collabora.com>
+In-Reply-To: <20240617115624.29875-1-quic_kbajaj@quicinc.com>
+References: <20240617115624.29875-1-quic_kbajaj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,22 +68,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 14 Jun 2024 16:59:36 -0400, Nícolas F. R. A. Prado wrote:
-> Currently the keyboard backlight is described in the common
-> sc7180-trogdor dtsi as an led node below a pwmleds node, and the led
-> node is set to disabled. Only the boards that have a keyboard backlight
-> enable it.
-> 
-> However, since the parent pwmleds node is still enabled everywhere, even
-> on boards that don't have keyboard backlight it is probed and fails,
-> resulting in an error:
+On Mon, 17 Jun 2024 17:26:24 +0530, Komal Bajaj wrote:
+> Update the usb interrupts properties to fix the following
+> bindings check errors:
+> usb@a6f8800: interrupt-names:0: 'pwr_event' was expected
+>         from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+> usb@a6f8800: interrupt-names:1: 'hs_phy_irq' was expected
+> 	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+> usb@a6f8800: interrupt-names: ['hs_phy_irq', 'ss_phy_irq', 'dm_hs_phy_irq', 'dp_hs_phy_irq'] is too short
+>         from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7180-trogdor: Disable pwmleds node where unused
-      commit: 99e94768c890c7522af020ff0e5e5317b2d046d9
+[1/1] arm64: dts: qcom: qdu1000: fix usb interrupts properties
+      commit: 38b55ddb4a9f364b68cb1db174cadfae7cf4696e
 
 Best regards,
 -- 
