@@ -1,125 +1,219 @@
-Return-Path: <devicetree+bounces-78271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B69D911B49
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:17:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B7A8911B5D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:19:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F13BAB24D36
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:17:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D24A287063
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33A9F16D303;
-	Fri, 21 Jun 2024 06:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C35169AD0;
+	Fri, 21 Jun 2024 06:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q/rrvijN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y6ZF7uWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A857C16C872;
-	Fri, 21 Jun 2024 06:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C5F16938C;
+	Fri, 21 Jun 2024 06:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718950549; cv=none; b=ZSwx2uIAGVf1xGlfInJ9hsXxFT9g8mQFmMtTcrJQjYORXVcHIAiCHXr6EX0aMLHVvv0M0iuDuBZK7q20mZu8ISIK7dxfvKecma8X2saST+QVt/AOklS1LQn5O5CCuDFHtoKWzILq6Rzit+yxqA9sUj10dxlV8304I+9grviHN4o=
+	t=1718950645; cv=none; b=EnZ/Xee1YKaNCe/fmkMtDSwSU+Jw+GyvaTNoWDpB6Yxow2O92QLgUuhW68kNYyOIsknFnJCU+YSw5xhWJNNMGkFavH1sBVHivibOg4qaKHeWPVSbYwv1maoV1zBaQ2FMPkc/ot51z7MCf9CM/fiqAGrl/T08R42ltiQWKYkAQuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718950549; c=relaxed/simple;
-	bh=7+Zay9Q/tACc3KceTusqfwoZ/lsUfeFQUleob9sKrRs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KAL89AA+1D05NaoWXkSEcDiHi/N0OqPbgkhnUfNAOgrsLu3d0JLH7OYSYaI3H47S+tFUKjscNed4/5tK+UYBRxOs36j2ayIQ6XKF2OUYN/DtFy706GQcYtt42qn0LKl1j+Zz2nGCzovBqEJ6XMpDYVBq3FaoxYuEcOzFL58YcfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q/rrvijN; arc=none smtp.client-ip=209.85.160.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-441567d352bso9658601cf.1;
-        Thu, 20 Jun 2024 23:15:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718950546; x=1719555346; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tHjNPKqZCKhgDXLVPDuF8PC10fevxh3nwWHIDP2+EYc=;
-        b=Q/rrvijN3ctZRi8/IIpYJ/+bk3ubu23W5GP+6LsqD7Wyuz/PgGabuGyURuZKdUg+cH
-         C63XMtAVvKv0G8DkOxl5SSX7gXgHegF09CMxapG5u9vGT5rXWfMljOxBMlI22ZCNdFgF
-         Jg6BH/ugvg0zjgkZArrkoW/H9JGq490KJ/1jO+2/GBFtOG6p/jHnhx+7qdHR/jwstaEH
-         fRrDduaPerWYA6cJGF6f9+AnVPqIk8h4SjmSjIsRpwtFk5kc1f61+PnxKoCd3GNKYNR9
-         nzDn6f8SAcONsYSGDiDSx2If/rTneFAZAx8DU+14F5rLke3KJEs3yOrR4TyI//yrc3YR
-         g6Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718950546; x=1719555346;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tHjNPKqZCKhgDXLVPDuF8PC10fevxh3nwWHIDP2+EYc=;
-        b=b+u4lQYemTi6GOha4OSB3w2Y+h1TbJQEfTLY+eejUMGWTwYQtc88POvhWeNtxa8Odw
-         Dt9T43Efi8em26k8QMy4364sWNDFv5f0XXjPr+Gs29+3pJ/CVz34dbY/iEaAYs0CXII4
-         n8ota35OZfEQzjqWt/cLCuRqhmAgLAh00W5J3fEeZsNrA5VA2x8BdYqq6PSHTLmRBZu1
-         yX0v4qGIcYO0xEOtnwtmWKoKNvdfUfI8HHog0K4u/7pTcPorvOC3nntNc7JU7zBrnKSR
-         SOxW78XQUIveeN0JfTArntVsWFLLTJdZBhQUfCdrdc9u/nQgvk76Y/U9jyX65tukJy/L
-         5ong==
-X-Forwarded-Encrypted: i=1; AJvYcCVSYzQ+x3al1h6N4iiXSBkDtiGw9znBoqBUZTCZGXWHpyPjCFtXsoPvriIcf/sFBvwAWieYHrm1w/ar0Z8MNLoUII4bPUAJRHZRnR4j+1CRONWgufe+9PLtsZl0kYTANj4o+GVuYQzBlw==
-X-Gm-Message-State: AOJu0YytO+WSSzDGlmHAcmgYgihpUfMhdbtn+IOUgREwQIp8i/iJ6Sj/
-	AF9eMDw0P7Y4PscCIKHiHo5uY4VVZZJApcGDO978ynLiQn1eLEjxu3imIBB663OMh8nM+sJGSCb
-	yru2MUOVFOvut446A0NOeHPk2oSM=
-X-Google-Smtp-Source: AGHT+IE3lfFWGjWgrj27pkYkdgHBqSSalyQmDiFMb+whosNnifVr5lWmS+oKU37X0pm4Fkin2cu3+9QttEKF57F3M1c=
-X-Received: by 2002:ac8:7c53:0:b0:441:58e9:678d with SMTP id
- d75a77b69052e-444a7a7344emr76740211cf.64.1718950546331; Thu, 20 Jun 2024
- 23:15:46 -0700 (PDT)
+	s=arc-20240116; t=1718950645; c=relaxed/simple;
+	bh=grR7DKj1v9NfUIVXQ/wA7b9FGj3wa+ylhebh9dYyMss=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ctsdfVUWmWCq+HTwvHRdKN+iLh/Pyz1tXtE8s7VTu5MY9g+1b1nPre7LaeZYILphJNR6T72JPgQTDw2QxN/vRZ5t1CaADnrCpbIJxDas0GFeC7MgCIDGyEQPyJW+ozqoVyLKElBY+RS0qw++zMsKpxY4lklamWyhsEMKvaR8TE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y6ZF7uWa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0083FC2BBFC;
+	Fri, 21 Jun 2024 06:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718950645;
+	bh=grR7DKj1v9NfUIVXQ/wA7b9FGj3wa+ylhebh9dYyMss=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y6ZF7uWao4h0Z17eZa8wQq/f0CTLyIVLWxIxqI5M6ALQOA6cuCSaTBHAqQFZMZL+D
+	 kDhCosVLaUyMk7fOJk+2lX7iobozai1v+8kmLHUPGKkI23lF3imFBxToa5NSjT5DCS
+	 KRioXx8CNZhk3Uu3zcRwvplrSxVbhOXRtye772hXYPjghPx0xexG7eZG4pGMihkVbj
+	 DAFrfCPCcM1MjpfKOlwj+PT/KlZjKjSh7lYyrfaoAmc1NZ3pXtpaJPCJJP4RQNnXUL
+	 9Iue/Ar7rXj/FIW4StHM8iMP5BqjyvWpQ+nYQ+i5w2/ngX36xc6Zp9KtbZIwp8A4Ia
+	 PexX5ULbTzcgA==
+Message-ID: <6aafffd6-4c1f-4041-abe0-9b17d669467f@kernel.org>
+Date: Fri, 21 Jun 2024 08:17:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com> <171891591945.88443.14666251613914983261.b4-ty@sntech.de>
-In-Reply-To: <171891591945.88443.14666251613914983261.b4-ty@sntech.de>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 21 Jun 2024 10:15:35 +0400
-Message-ID: <CABjd4Yzkr22aB7v33JjXtn-4nrkL1cNmxWmb5g5KiXhnAVi0sw@mail.gmail.com>
-Subject: Re: (subset) [PATCH v5 0/8] RK3588 and Rock 5B dts additions:
- thermal, OPP and fan
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Diederik de Haas <didi.debian@cknow.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, 
-	linux-rockchip@lists.infradead.org, Dragan Simic <dsimic@manjaro.org>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Patch v4 02/10] dt-bindings: dma: Add lpc32xx DMA mux binding
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "J.M.B. Downing" <jonathan.downing@nautel.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Yangtao Li <frank.li@vivo.com>, Arnd Bergmann <arnd@arndb.de>,
+ Li Zetao <lizetao1@huawei.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Chancel Liu <chancel.liu@nxp.com>, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+ linuxppc-dev@lists.ozlabs.org, linux-sound@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-mtd@lists.infradead.org
+Cc: Markus Elfring <Markus.Elfring@web.de>
+References: <20240620175657.358273-1-piotr.wojtaszczyk@timesys.com>
+ <20240620175657.358273-3-piotr.wojtaszczyk@timesys.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240620175657.358273-3-piotr.wojtaszczyk@timesys.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 21, 2024 at 12:40=E2=80=AFAM Heiko Stuebner <heiko@sntech.de> w=
-rote:
->
-> On Mon, 17 Jun 2024 22:28:50 +0400, Alexey Charkov wrote:
-> > This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
-> > active cooling on Radxa Rock 5B via the provided PWM fan.
-> >
-> > Some RK3588 boards use separate regulators to supply CPUs and their
-> > respective memory interfaces, so this is handled by coupling those
-> > regulators in affected boards' device trees to ensure that their
-> > voltage is adjusted in step.
-> >
-> > [...]
->
-> Applied, thanks!
->
-> [1/8] arm64: dts: rockchip: add thermal zones information on RK3588
->       commit: 97d61227d6bb0023a325ab2f87e4438a858207a2
-> [2/8] arm64: dts: rockchip: enable thermal management on all RK3588 board=
-s
->       commit: 4afa9056ed9e3d9ff036f3576cb137a011448295
-> [3/8] arm64: dts: rockchip: add passive GPU cooling on RK3588
->       commit: d64d337f1856bd0e5cbfc60b6f0458ad4951d05e
-> [4/8] arm64: dts: rockchip: enable automatic fan control on Rock 5B
->       commit: 2aab8905a843aef624565c014a34d155f8702135
->
->
-> Don't worry, I'll look at the other patches too.
-> Was just easier on my mind to this in blocks ;-) .
+On 20/06/2024 19:56, Piotr Wojtaszczyk wrote:
+> LPC32XX SoCs use pl080 dma controller which have few request signals
+> multiplexed between peripherals. This binding describes how devices can
+> use the multiplexed request signals.
+> 
+> Signed-off-by: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
 
-Great, thanks a lot Heiko!
+> +
+> +properties:
+> +  "#dma-cells":
+> +    const: 3
+> +    description: |
+> +      First two cells same as for device pointed in dma-masters.
+> +      Third cell represents mux value for the request.
+> +
+> +  compatible:
+> +    const: nxp,lpc3220-dmamux
+
+Please put compatible first in the list of properties (and follow the
+same order in "required"). It's the most important piece, so we want it
+to be the first to see. It also follows the convention of DTS, where
+compatible is expected to be first.
+
+> +
+> +  dma-masters:
+> +    description: phandle to a dma node compatible with arm,pl080
+
+maxItems: 1
+
+> +
+> +  reg:
+> +    maxItems: 1
+
+Keep reg after compatible.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - dma-masters
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@40004000 {
+> +      compatible = "nxp,lpc3220-creg", "syscon", "simple-mfd";
+> +      reg = <0x40004000 0x114>;
+> +      ranges = <0 0x40004000 0x114>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+
+Drop the node above (you will see Rob's warning). Alternatively, this
+schema could skip the example and the nxp,lpc3220-creg could have one
+complete example for entire device with children.
+
+> +
+> +      dma-router@7c {
+> +        compatible = "nxp,lpc3220-dmamux";
+> +        reg = <0x7c 0x8>;
+> +        #dma-cells = <3>;
+> +        dma-masters = <&dma>;
+> +      };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index aacccb376c28..f7adf9f66dfa 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2396,6 +2396,15 @@ F:	drivers/usb/host/ohci-nxp.c
+>  F:	drivers/watchdog/pnx4008_wdt.c
+>  N:	lpc32xx
+>  
+> +ARM/LPC32XX DMAMUX SUPPORT
+
+This should be just "LPC32XX DMAMUX SUPPORT"
+
+> +M:	J.M.B. Downing <jonathan.downing@nautel.com>
+> +M:	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+> +R:	Vladimir Zapolskiy <vz@mleia.com>
+> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/dma/nxp,lpc3220-dmamux.yaml
+> +N:	lpc32xx
+
+I think this entry is only foor DMAMUX so the last "N:" is not appropriate.
+
+You are welcomed to help maintaining the platform. Add yourself to
+appropriate place of LPC32xx ARM.
 
 Best regards,
-Alexey
+Krzysztof
+
 
