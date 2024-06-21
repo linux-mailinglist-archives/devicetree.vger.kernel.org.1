@@ -1,227 +1,152 @@
-Return-Path: <devicetree+bounces-78650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83B991300A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 00:06:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F9791300D
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 00:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5538E1F25536
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 22:06:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AE66287911
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 22:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F5A317A93C;
-	Fri, 21 Jun 2024 22:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D50179203;
+	Fri, 21 Jun 2024 22:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="taMpRQ6/"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qBegDUoD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3659117D8BE;
-	Fri, 21 Jun 2024 22:04:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B4616D310;
+	Fri, 21 Jun 2024 22:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719007444; cv=none; b=gKBbADUkbjlMATyK6MKqPSdrXa3SkceOiibmcbJgLTT/9Z6zY7p7KOipUHFEuevdiV8rSOfHS6oMKkcXFJXv1+pqh2zUGQoH+uglGlYncXokuZa9gLfiueIyEXzRYClazAmCp0a46I593Imv+CP9cbVhxmrd1y9i/R9wuBUMSA0=
+	t=1719007565; cv=none; b=Zx6Wqxk5RTjnv792L+ztqdbXoOk81L33608EsLU7iK96wua79w+uzXj/kxtIKfphciqVvfaFuubM9/AtZC2+tzri/GTtIyyTu7dBs3/uJAzoaOOa/t2bHZl8/iaFrUFBW+mbD5B0PAExEexZ5K1ZXZenDRL01r7VITh/4v9czsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719007444; c=relaxed/simple;
-	bh=/Du/16Fm/7+7K5Nz0r9Yf9xRXhOT4EhavnWXHlF818E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n2yL0HYT47/kcNFHwIRIAXSYrCrdks4PJMyqlt5K156sZPR3XTX/1V8wCk4KefHTVtf0Y+mmlI4v1IJQ4gDPKi3k8TuAQYugRsm8SMglnPVYdV0Fdn2K0dFQCavRSnDgpUTzpXN/sFLsk2aigfdtBBhGvbhHrMVG9YcGt/gdt7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=taMpRQ6/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50967C2BBFC;
-	Fri, 21 Jun 2024 22:04:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719007442;
-	bh=/Du/16Fm/7+7K5Nz0r9Yf9xRXhOT4EhavnWXHlF818E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=taMpRQ6/ggVqSTEK+68ZtBCvG2LgqjACMZG1EKqG0Cda0bAKNqcQc3mvY2oAmplnh
-	 MoLkzjgsGzWrmf5zxDT8BaYrH7JNt37zF+eY+7RD2JB+hIN7PwkPuSCXlzk0epeiCc
-	 v5Ik6vrsXVv96RLpWv5NkV004zn4/wUX8FnrUoM2M+ikI4K5BYXOl105a8d6/pWqxF
-	 Nfk9r5W6cn3COgxuiHICz7exkRHU5f08ttTxS5Z4mCnAQdRpKPs4ZXUDTpVcBp2712
-	 ji87ROWGTCX4pacYhBfneURF0XAq/lR6g68708osiQkggdOH6zdUxxySlRhzD8PydQ
-	 KjbAq2PxN25MQ==
-Date: Sat, 22 Jun 2024 00:03:59 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, linux-mediatek@lists.infradead.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH 4/4] PCI: mediatek-gen3: Add Airoha EN7581 support
-Message-ID: <ZnX4z9-UxXYdyBPT@lore-desk>
-References: <f044eb44654522801d4a93e94918a32c72c4c49f.1718980864.git.lorenzo@kernel.org>
- <20240621180250.GA1396831@bhelgaas>
+	s=arc-20240116; t=1719007565; c=relaxed/simple;
+	bh=MJaLeVkFyERVtHBT2g/r5XD6cXEUKTBZEHce/z3g82s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RRqnSZVQDD8afmgL8wDEklGT/ebk7Bp8DWlE/eq4KFDpfQBkPkQddEHxFrqthXScl56ITYM/cZm0JtiytlY6cPZi3WGbndjYffJ3CG2t4h5VZ2XaNqr3NEMXXmqLvvSDAJwdlA1exWVkgBDyGZqo12h1fDcUIudenfKMR9QbqS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qBegDUoD; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1719007562;
+	bh=MJaLeVkFyERVtHBT2g/r5XD6cXEUKTBZEHce/z3g82s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qBegDUoDurKTVdNcHFcw5VkH9LSZLcyHToC7OzpzJ3koi3sUHicl1vfsdHP0SVf0E
+	 syh3VRXPfN4A0/eJ8oMDyE3ohYJdgaT8GPAiVyBKOZgGk9kfixHejNbATa2QuGTASs
+	 YEMmusdDwUvYk1dw8guHwHllLMQL8hcOZSTXU5FslI2R886nYAvmCsyK1ATsnWqvMm
+	 1QDf8w6ZWadHGgH1E1xT6qzI7x/u8ndVEMfCAu38T6e3k8JcPwk3GF6+me057Sl1SZ
+	 y4Y4g/CUjFLHtxGqmcvplVDkxwi4u3u9Cy3sbAxsGHCe3JCz6e1/mlfLZBr81zwQFF
+	 wUrPWW1gEJStQ==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 04920378203F;
+	Fri, 21 Jun 2024 22:06:00 +0000 (UTC)
+Message-ID: <55dbc2a8-4e4a-405a-a9ae-e62b18aaeb1d@collabora.com>
+Date: Sat, 22 Jun 2024 01:06:00 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3EmFiM8r3ZH3wxen"
-Content-Disposition: inline
-In-Reply-To: <20240621180250.GA1396831@bhelgaas>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] arm64: dts: rockchip: Fix mic-in-differential usage
+ on rk3568-rock-3a
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Furkan Kardame <f.kardame@manjaro.org>,
+ Michael Riesch <michael.riesch@wolfvision.net>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240619-rk809-fixes-v1-0-fa93bc5313f4@collabora.com>
+ <20240619-rk809-fixes-v1-3-fa93bc5313f4@collabora.com>
+ <c35b3e80-7889-473d-8365-88436c3cb9a9@kwiboo.se>
+ <4015ded1-5ec4-4374-982e-9c7f23b43884@collabora.com>
+ <1fce65a2-b752-4bab-84e5-314b60d682f0@collabora.com>
+ <dbf9d54e-1197-4731-80f2-91ff7c9954e4@kwiboo.se>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Language: en-US
+In-Reply-To: <dbf9d54e-1197-4731-80f2-91ff7c9954e4@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 6/21/24 9:58 AM, Jonas Karlman wrote:
+> Hi Cristian,
+> 
+> On 2024-06-21 03:23, Cristian Ciocaltea wrote:
+>> On 6/19/24 3:56 PM, Cristian Ciocaltea wrote:
+>>> Hi Jonas,
+>>>
+>>> On 6/19/24 3:22 PM, Jonas Karlman wrote:
+>>>> Hi Cristian,
+>>>>
+>>>> On 2024-06-19 13:23, Cristian Ciocaltea wrote:
+>>>>> The 'mic-in-differential' DT property supported by the RK809/RK817 audio
+>>>>> codec driver is actually valid if prefixed with 'rockchip,':
+>>>>>
+>>>>>   DTC_CHK arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dtb
+>>>>>   rk3568-rock-3a.dtb: pmic@20: codec: 'mic-in-differential' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>>>> 	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk809.yaml#
+>>>>>
+>>>>> Make use of the correct property name.
+>>>>>
+>>>>> Fixes: a84ffd2ef1ff ("arm64: dts: rockchip: Fix mic-in-differential usage on rock-3a")
+>>>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 +-
+>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>>>>> index ebdedea15ad1..0b54dfe92d6e 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>>>>> @@ -533,7 +533,7 @@ regulator-state-mem {
+>>>>>  		};
+>>>>>  
+>>>>>  		codec {
+>>>>> -			mic-in-differential;
+>>>>> +			rockchip,mic-in-differential;
+>>>>
+>>>> If I understand the schematics correctly, only one wire is connected so
+>>>> this board cannot really use differential signaling, and this should
+>>>> probably instead be dropped.
+>>>
+>>> Thanks for pointing this out, I will drop it in v2.
+>>
+>> I've also checked the schematics which indicate the PMIC RK809 CODEC
+>> receives both MIC1_INN and MIC1_INP signals; the former comes from the
+>> Jack input, while the latter is generated by the SLM42Q3AT MEMS Microphone.
+>>
+>> However, I'm not sure the Mic presence on the board is dependent on the
+>> HW revision - on REV V1.3 the "NC_" prefix under U24 component label
+>> suggests it is not connected.  So maybe we should keep the property?!
+> 
+> There is no such mic on the board, at least on the rev 1.3 that I have.
+> 
+> This prop should be used to indicate that the attached microphone uses
+> differential signaling, e.g. should have its two output signals
+> connected to both INP(+) and INN(-).
+> 
+> The SLM42Q3AT or the single wire from headphone jack indicate that a
+> single-ended microphone is/can be used/wired on this board.
+> 
+> The current use of non-working mic-in-differential was wrong, adding
+> the rockchip,mic-in-differential would change behavior and wrongly
+> describe hw of this board.
 
---3EmFiM8r3ZH3wxen
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-> On Fri, Jun 21, 2024 at 04:48:50PM +0200, Lorenzo Bianconi wrote:
-> > Introduce support for Airoha EN7581 pcie controller to mediatek-gen3
-> > pcie controller driver.
->=20
-> s/pcie/PCIe/ (twice)
->=20
-
-ack, I will fix them in v2
-
-> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  drivers/pci/controller/Kconfig              |  2 +-
-> >  drivers/pci/controller/pcie-mediatek-gen3.c | 84 ++++++++++++++++++++-
-> >  2 files changed, 84 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kc=
-onfig
-> > index e534c02ee34f..3bd6c9430010 100644
-> > --- a/drivers/pci/controller/Kconfig
-> > +++ b/drivers/pci/controller/Kconfig
-> > @@ -196,7 +196,7 @@ config PCIE_MEDIATEK
-> > =20
-> >  config PCIE_MEDIATEK_GEN3
-> >  	tristate "MediaTek Gen3 PCIe controller"
-> > -	depends on ARCH_MEDIATEK || COMPILE_TEST
-> > +	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
-> >  	depends on PCI_MSI
-> >  	help
-> >  	  Adds support for PCIe Gen3 MAC controller for MediaTek SoCs.
-> > diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/=
-controller/pcie-mediatek-gen3.c
-> > index 9842617795a9..2dacfed665c6 100644
-> > --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> > +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> > @@ -7,6 +7,7 @@
-> >   */
-> > =20
-> >  #include <linux/clk.h>
-> > +#include <linux/clk-provider.h>
-> >  #include <linux/delay.h>
-> >  #include <linux/iopoll.h>
-> >  #include <linux/irq.h>
-> > @@ -21,6 +22,8 @@
-> >  #include <linux/pm_domain.h>
-> >  #include <linux/pm_runtime.h>
-> >  #include <linux/reset.h>
-> > +#include <linux/of_pci.h>
-> > +#include <linux/of_device.h>
->=20
-> Existing list of includes is sorted.  Preserve that sorted order.
-
-ack, I will fix them in v2
-
->=20
-> > +static int mtk_pcie_en7581_power_up(struct mtk_gen3_pcie *pcie)
-> > +{
-> > +	struct device *dev =3D pcie->dev;
-> > +	int err;
-> > +
-> > +	writel_relaxed(0x23020133, pcie->base + 0x10044);
-> > +	writel_relaxed(0x50500032, pcie->base + 0x15030);
-> > +	writel_relaxed(0x50500032, pcie->base + 0x15130);
->=20
-> Magic.  Needs #defines at least for the registers.  These offsets are
-> HUGE, far bigger than the existing offsets:
-
-ack. Anyway they are in pcie mapped regions (I have not posted the dts chan=
-ges
-yet):
-
-pcie0: reg =3D <0x0 0x1fc00000 0x0 0x20000>;
-pcie1: reg =3D <0x0 0x1fc20000 0x0 0x20000>;
-
-But they are undocumented. I will try to get some info for them.
-
->=20
->   #define PCIE_CFGNUM_REG                 0x140
->   #define PCIE_CFG_OFFSET_ADDR            0x1000
->   #define PCIE_TRANS_TABLE_BASE_REG       0x800
->   #define PCIE_MSI_SET_BASE_REG           0xc00
->   #define PCIE_MSI_SET_ADDR_HI_BASE       0xc80
->   #define PCIE_MSI_SET_ENABLE_REG         0x190
->   #define PCIE_INT_ENABLE_REG             0x180
->   #define PCIE_SETTING_REG                0x80
->   #define PCIE_PCI_IDS_1                  0x9c
->   #define PCIE_MISC_CTRL_REG              0x348
->   #define PCIE_RST_CTRL_REG               0x148
->   #define PCIE_LINK_STATUS_REG            0x154
->   #define PCIE_LTSSM_STATUS_REG           0x150
->   #define PCIE_INT_STATUS_REG             0x184
->=20
-> > +	err =3D phy_init(pcie->phy);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to initialize PHY\n");
-> > +		return err;
-> > +	}
-> > +	mdelay(30);
->=20
-> Source?  Cite the spec that requires this delay and add a #define if
-> possible.
-
-They are undocumented in the vendor sdk, I will try some info for them (and
-even for the ones below).
+Thanks a lot for the clarifications! I dropped this in v2.
 
 Regards,
-Lorenzo
-
->=20
-> > +	err =3D phy_power_on(pcie->phy);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to power on PHY\n");
-> > +		goto err_phy_on;
-> > +	}
-> > +
-> > +	err =3D reset_control_bulk_deassert(pcie->soc->phy_resets.num_rsts,
-> > +					  pcie->phy_resets);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to deassert PHYs\n");
-> > +		goto err_phy_deassert;
-> > +	}
-> > +	usleep_range(5000, 10000);
->=20
-> Source?
->=20
-> > +	pm_runtime_enable(dev);
-> > +	pm_runtime_get_sync(dev);
-> > +
-> > +	err =3D clk_bulk_prepare(pcie->num_clks, pcie->clks);
-> > +	if (err) {
-> > +		dev_err(dev, "failed to prepare clock\n");
-> > +		goto err_clk_prepare;
-> > +	}
-> > +
-> > +	writel_relaxed(0x41474147, pcie->base + PCIE_EQ_PRESET_01_REF);
-> > +	writel_relaxed(0x1018020f, pcie->base + PCIE_PIPE4_PIE8_REG);
-> > +	mdelay(10);
->=20
-> Source?
-
---3EmFiM8r3ZH3wxen
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnX4zgAKCRA6cBh0uS2t
-rLeCAQCFBOcP+pRhRD/u3Qw4FOgCe5z9/sbvOwpJaImvU67BlAD/XMMbMXVmeSDQ
-r6i2QxAtvWovWR/oUbE94cvwl082LgE=
-=kaKN
------END PGP SIGNATURE-----
-
---3EmFiM8r3ZH3wxen--
+Cristian
 
