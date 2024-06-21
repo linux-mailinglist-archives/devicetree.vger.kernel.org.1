@@ -1,112 +1,134 @@
-Return-Path: <devicetree+bounces-78618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2224B912DEB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:34:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 285EA912E03
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:39:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB6571F217A3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 19:34:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A760EB27970
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 19:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD2017BB3A;
-	Fri, 21 Jun 2024 19:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Xtnmt/hZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E3C17B423;
+	Fri, 21 Jun 2024 19:39:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E941417C206
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 19:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754F184A32;
+	Fri, 21 Jun 2024 19:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718998444; cv=none; b=KcGZjbvGaJN/835JC1Sw2ghMhmENEKQHmR7rON7mXLpbQJUGXFj0khd4O9yOQFpq6O3PVNjJ97ibczukTV2allV71DExgdHDxQW/ZEkWloM3b2AXnbtlqNPsyIo/Y4ION3zrdWE9n7Zdfi+HXT2JPwtWsSVPig4T841koMdD7QU=
+	t=1718998781; cv=none; b=UNyNYYAc2lQAJnJmhtfR9vJvoNggwH6RBHdRcYLZzHbsb4revED8vlrVQU65stgfnc5QqXRfKjXgSnICacO4g7ZudJgzYZatwl0vAPQggHHwoWGjQpd+H+nfIRNJup1Z55RqsViTqnpJdaN4QDugDJJZlIhthDZGix1lwmNhFxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718998444; c=relaxed/simple;
-	bh=22bAKJA6pR5A3fau1FPfbtJIxdk2LdaJWM67dwRA6io=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U7OvBloUlVvqcicxaroKmY1pI6T3pXKquERn+B/gJJahsyAUYgjSMX0W4GZyE0ANdo14pAX9K7+D1+paGKNe2TxM7iUJmrF072Rj2dbxryg0/F3Ax2oIuOtHn778Qd6ziVLDXiFg6O31mTTRVplaAajyq+t/Ee21/kAi+k9pHMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Xtnmt/hZ; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-443586c2091so589611cf.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 12:34:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1718998442; x=1719603242; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TcjyGl0poFmJvaQIN/Tb4xXEEBm1p2om5dg/4ZRBoHA=;
-        b=Xtnmt/hZ7U0H84Hzk79GfR9fobS3HNJNKTVGF+df/NGNALBk/RL9uustBv9NfRNa6t
-         AaNZX3i+2eakj7OFcG5Qd3HggWbdl4b6DGHrf50pal5ZLrWZYQVsIZafak0+OfFqsJwp
-         j3T46x6LBnY4TFWtcThshUqCYFo0Qobx8j1ZB+MY559qT5O2X/T3YVv9ovRweFEIkm42
-         jxRLuhez8THw/AC5cW2NRsoVQ4ZYFl5qVgBF+OL7oQAM6NNRYOjm9NWEsuU9lKN1NmH6
-         C5/3PMOObMoLudk+TSmg+MjkOc+7vglScWrnD3l4GmQJ3MoCjiDKD3teiKDD7ZRC1pPW
-         dvJw==
+	s=arc-20240116; t=1718998781; c=relaxed/simple;
+	bh=U6BFQW2Bf2YvjNS9Cqv8gtXGEtkdb6Mqkyc1F3FIQlM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jZ9LYbAMSK9St4hVCPrTkhky4lskmb+Gd+p5/MUFDl2v+Erzv0pjIR8xhLQXoH39OmYko4wTNgSUC/jnQGV2BiBEmFp0m0rP5KKgU4XCHFWbAF7olIidNukisvFf/qLVHk5vG/6jIh9wzpyF1QBiUNgLzqdHaB3kBWrRFRGZy58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7062c11d0d1so2162792b3a.1;
+        Fri, 21 Jun 2024 12:39:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718998442; x=1719603242;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TcjyGl0poFmJvaQIN/Tb4xXEEBm1p2om5dg/4ZRBoHA=;
-        b=LTdRxcanxkgOYhnnJVu5ixHVxGLMpccNZvUoxcNAHdKI8Y2EWM537vMkZr31/kcnlM
-         FFreob78vBN+s4PwAu32hiA25Rfc5Z7BexEux5jGtnfwqRSKPFe6j9i08uwd9KrDU8pB
-         ttWAVRh1LcPDKZgbOmJAGnmoata5CrLPOOW6fNhdMnHDnsNypyHeBmYk8LE7CWZRyXb7
-         AXqBq0SQw4vNHvYmVMgTVxl8euAXa/nGtBgvu2/igxQXxVeynkb3ghq0py+fGyD8SmuO
-         LGBW8eUs7/89LvG0ul16AipXULCB8PqQs4Oavlwkv1eDb1+twlU1j1Bqb34fJnGOjo7J
-         C4wA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2rHA1+2A9ZClipJc5aczVmegCw9L9RB9fJhodb0IdyGQ8qMX02Y0SAje5Hk9SAj5IeF8YBQmbYcGaPcR9pcp6ppxxDmm3oNn/bA==
-X-Gm-Message-State: AOJu0Yz9iaIVY0NGSP3CQlaK36g0zTH+tVpAPqvSEZeonDHe5YKFGJ1L
-	Gw9mi5c80qNfPBGJSxvT2jjNiQygeRlx8SGP1HVaRcbWxmoOa5kURhIhGStp5FPRr7t54g/r/r5
-	OO4oj+1mjjNtgbYEzltD8UN3ouYoITYb5vxcVOBEAAGH6f4h/fg==
-X-Google-Smtp-Source: AGHT+IHOnCXVNj6jxV8LpXQHq3BlC9ork7/0wY+nUji69T+kI2ZaEuQxzQC3D1JRanjzh53xix7c9zbM8luwO4E45L8=
-X-Received: by 2002:ac8:5748:0:b0:444:cdc4:fef5 with SMTP id
- d75a77b69052e-444ce38fbebmr159621cf.27.1718998441772; Fri, 21 Jun 2024
- 12:34:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1718998780; x=1719603580;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5qcjCj1d5K3iJ5YuAuheFrJXPu/KrnBD3KZXSkLcbok=;
+        b=eYpMbFXHBUAE6HjcHhrLA9hEXpNu9RR4jvMpondOkMQ+c/9FMHGpuWYeY3EQg4ApTF
+         IzySB9gOgZ3iXUPOo1cgzQ5b6h8xTPCTkeiXUXC4XPTzSjtoSdZiTL37EGKSWt84ww+k
+         sTIPHd39U8nGz4zIwOqVBq+pKyFHs8tk/v3ZKjwG5kiczlL2JJBoz+nARGupRVIoPOWR
+         4jDQFefpFCuAzNRnl1UB59HNZyw4AT7Od19aFE/VQap7w/t3aAIdoYFkwoK9GfxV1gxr
+         wMcXXY3GQP6WXbEv3IX96styF0z3mMWFy+/WLYYPKJy+j2ZTOyacPDPaNB0lC4iOqktH
+         S97A==
+X-Forwarded-Encrypted: i=1; AJvYcCU2SIwVv6Ys5dK+yqIGG2w8z5vKbbLrMcoDp8ZQD3Mxbgk/7gdgzRHv0yq/lvxXt6caMI2zL6BQ7V/yqxJvMpwkFOD1wLfsdDAnZoei6u9gEQzZOtFa0HEdD7CESeX4oRHf3UxpKQ==
+X-Gm-Message-State: AOJu0YyxUpgvNBO/KBxcl+/7DTKFCmMtloNiPS1R8gouG0VitbykIjmN
+	2FajQwmtBpPmzx33/UVfXyDL3ZtQ6+4dEDZxtGojKwhUAJ2et6EG
+X-Google-Smtp-Source: AGHT+IEYUbVQCtzTwul6T6G76wz0/njvH+sWwE8HKvA6iwxYKKzfFD1GGcxnU3GSiWtOY/JWO+LNFA==
+X-Received: by 2002:a05:6a20:651e:b0:1b4:b4af:6047 with SMTP id adf61e73a8af0-1bcbb55fe74mr8085989637.33.1718998779547;
+        Fri, 21 Jun 2024 12:39:39 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70651085891sm1789309b3a.3.2024.06.21.12.39.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jun 2024 12:39:39 -0700 (PDT)
+Date: Sat, 22 Jun 2024 04:39:37 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v5 00/13] PCI: dw-rockchip: Add endpoint mode support
+Message-ID: <20240621193937.GB3008482@rocinante>
+References: <20240607-rockchip-pcie-ep-v1-v5-0-0a042d6b0049@kernel.org>
+ <Zm_tGknJe5Ttj9mC@ryzen.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240620080509.18504-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240620080509.18504-5-lvzhaoxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240620080509.18504-5-lvzhaoxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Fri, 21 Jun 2024 12:33:49 -0700
-Message-ID: <CAD=FV=UjFvi53W2gkfhJTz10ALSsR=E+9ZLCH_8KCr9h5bHSaQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] drm/panel: jd9365da: Add the function of adjusting orientation
-To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
-	benjamin.tissoires@redhat.co, hsinyi@google.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zm_tGknJe5Ttj9mC@ryzen.lan>
 
-Hi,
+Hello,
 
-On Thu, Jun 20, 2024 at 1:05=E2=80=AFAM Zhaoxiong Lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
->
-> @@ -893,6 +901,12 @@ static int jadard_dsi_probe(struct mipi_dsi_device *=
-dsi)
->         drm_panel_init(&jadard->panel, dev, &jadard_funcs,
->                        DRM_MODE_CONNECTOR_DSI);
->
-> +       ret =3D of_drm_get_panel_orientation(dev->of_node, &jadard->orien=
-tation);
-> +       if (ret < 0) {
-> +               dev_err(dev, "%pOF: failed to get orientation %d\n", dev-=
->of_node, ret);
-> +               return ret;
-> +       }
+[...]
+> If there is anything more I can do to get this picked up, please tell me.
 
-nit: use dev_err_probe(). Also no need to include a %pOF, AKA:
+Looks good! As such...
 
-if (ret < 0)
-  return dev_err_probe(dev, ret, "Failed to get orientation\n");
+Applied to dt-bindings, thank you!
+
+[01/06] dt-bindings: PCI: snps,dw-pcie-ep: Add vendor specific reg-name
+        https://git.kernel.org/pci/pci/c/3b287269ab60
+
+[02/06] dt-bindings: PCI: snps,dw-pcie-ep: Add vendor specific interrupt-names
+        https://git.kernel.org/pci/pci/c/b96353773d24
+
+[03/06] dt-bindings: PCI: snps,dw-pcie-ep: Add tx_int{a,b,c,d} legacy IRQs
+        https://git.kernel.org/pci/pci/c/6f308c017c27
+
+[04/06] dt-bindings: PCI: rockchip-dw-pcie: Prepare for Endpoint mode support
+        https://git.kernel.org/pci/pci/c/9b0b9b588c00
+
+[05/06] dt-bindings: PCI: rockchip-dw-pcie: Fix description of legacy IRQ
+        https://git.kernel.org/pci/pci/c/5f262f67cbc5
+
+[06/06] dt-bindings: rockchip: Add DesignWare based PCIe Endpoint controller
+        https://git.kernel.org/pci/pci/c/ff36edde817e
+
+Applied to controller/rockchip, thank you!
+
+[01/04] PCI: dw-rockchip: Fix weird indentation
+        https://git.kernel.org/pci/pci/c/e7e8872191af
+
+[02/04] PCI: dw-rockchip: Add rockchip_pcie_get_ltssm() helper
+        https://git.kernel.org/pci/pci/c/cbb2d4ae3fdc
+
+[03/04] PCI: dw-rockchip: Add endpoint mode support
+        https://git.kernel.org/pci/pci/c/67fe449bcd85
+
+[04/04] PCI: dw-rockchip: Refactor the driver to prepare for EP mode
+        https://git.kernel.org/pci/pci/c/ecdc98a3a912
+
+Applied to endpoint, thank you!
+
+[1/1] misc: pci_endpoint_test: Add support for Rockchip rk3588
+      https://git.kernel.org/pci/pci/c/657463e393d1
+
+	Krzysztof
 
