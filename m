@@ -1,141 +1,135 @@
-Return-Path: <devicetree+bounces-78357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0709120D5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:39:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6270F9120E4
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:41:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCE0A2810A8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:39:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17F581F2190A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3439B16E899;
-	Fri, 21 Jun 2024 09:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F5E16EC03;
+	Fri, 21 Jun 2024 09:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="M84UPz6W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9a9Ifh+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E98982D66
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 09:39:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B037B16E89E;
+	Fri, 21 Jun 2024 09:40:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718962786; cv=none; b=u4Ymu6lvCJ/wKIpHc5X0Lptw2/mNMRsjQkgdxxexP42BbvNcb/pyz6nbCNQXV7EObTZnYjIoftTEUnPjni4tUtVZ2W67LCcD72imJ01GZi5tN1/AWWbWXS4TRC/2OOpHg+2M8D7BDGpqbAMStg9k38Unn3ds0Kg7wCWJX425rV0=
+	t=1718962857; cv=none; b=Iiz4ar/Eh59FyIaHvwQNMa36IddVXDkDN5VVseA/UI0Xx4mHHN1anjhqs+1kw7gKr/eh8KpZuSWoHFIezP114t/3gXpvPCuanFkqB+pbY/cENIIY2kg8b7OmV55Py4g6BV0OQrtXGhg5SJUEK/hRC8fAMrMhiKHY1Mm/5YpFKIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718962786; c=relaxed/simple;
-	bh=FP38xlj8/r8bCZ8KQj6fPg81YiPJc6xm4wu0CROHhr8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pGVFgStkqTApg2lNXMsNkkQABiaIoiMAqyiSLmcpkXAv4uUqj3nrMQUmPgI2F3YLWnctoIIPZroOiHTzHkOnt+A/vI6MDHJtqC8mOZ8PuV7oi6E7HY0rqkxpb6XW/16IvFGr1W7wMqkQMiZLTtjyOguPSkcHayv3cqSZ0IsAofQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=M84UPz6W; arc=none smtp.client-ip=95.215.58.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Envelope-To: daniel@makrotopia.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1718962782;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=F17P9pKVySbI9fXVe++iTydSN358yg4hkbFcPDVCy1k=;
-	b=M84UPz6Wu0UdD81k8U0RjQXVLLhTxopBIriQfgTZL6bUK8n+gKUKsIz9KB3vMEXQl+M2Za
-	rJr+tk+CHZgryOqLzkPQ6Wm7Q9RLm5AIe+kAQ0F83m07A92nTXF9I/29ZAeUS3A1vHtlox
-	j9hh0Gk5ktVgr7nBn8WtgCkLbV2ijJpxO8eWNI5qG1OQqZBGaNqjAE6zqFULsW4si3fq8M
-	uCyvJZ9qxNTY44KhmNkkkoqC28BzPkcpnNOVti5Zh6P3CUthzdrwae5xUczj5iQ7u7dZKB
-	DclCF+2Tlwjxx+yJfXcbIIPxO4veiO6g+KSMZcjrTez/E57huvpw93GcQ/BjHg==
-X-Envelope-To: aurelien@aurel32.net
-X-Envelope-To: olivia@selenic.com
-X-Envelope-To: herbert@gondor.apana.org.au
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: heiko@sntech.de
-X-Envelope-To: p.zabel@pengutronix.de
-X-Envelope-To: ukleinek@debian.org
-X-Envelope-To: sebastian.reichel@collabora.com
-X-Envelope-To: linux.amoon@gmail.com
-X-Envelope-To: dsimic@manjaro.org
-X-Envelope-To: s.hauer@pengutronix.de
-X-Envelope-To: martin@kaiser.cx
-X-Envelope-To: ardb@kernel.org
-X-Envelope-To: linux-crypto@vger.kernel.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: linux-rockchip@lists.infradead.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: daniel@makrotopia.org
-X-Envelope-To: didi.debian@cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Daniel Golle <daniel@makrotopia.org>,
- Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heikomemcpy_fromio Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Anand Moon <linux.amoon@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Martin Kaiser <martin@kaiser.cx>,
- Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Daniel Golle <daniel@makrotopia.org>,
- Diederik de Haas <didi.debian@cknow.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: RNG: Add Rockchip RNG bindings
-Date: Fri, 21 Jun 2024 11:39:38 +0200
-Message-ID: <11022668.754mm22UMy@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <68762122.lzCB0yxN2V@bagend>
-References:
- <cover.1718921174.git.daniel@makrotopia.org>
- <10f621d0711c80137afd93f62a03b1b10009715c.1718921174.git.daniel@makrotopia.org>
- <68762122.lzCB0yxN2V@bagend>
+	s=arc-20240116; t=1718962857; c=relaxed/simple;
+	bh=ZVXJbWByUzIKTOC7VscBLLwylCglSs2J2Rvmr2V8T5A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hQeVng7Fl/n9b3qv72QZre2ixUY9HU0GrdVpXw5nc+f8wo8MAVIw7DlRfsu2Yo5hFIYot74ab3U3Ltxj0oD1YHN9otuM1Fd8pdC4kt0vt7iYS/hvH13SP/rqgEqI87rLXv3Mi925Qlqo9rEkRGLyOE4M3dhpwj6fVjE6217ujV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9a9Ifh+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3C26FC2BBFC;
+	Fri, 21 Jun 2024 09:40:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718962857;
+	bh=ZVXJbWByUzIKTOC7VscBLLwylCglSs2J2Rvmr2V8T5A=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=t9a9Ifh+bD9lt8eMom0eEB7hbcAsRYIdOdBb9O058tDO7Kmzvxo9w6yK/fo1bvOJW
+	 LIb+qkkPJn/7cO0b4W979WDXZj8MSBM7H1bwcNK/WVzwuxEvo8NgX2FUIEgWwxF+ow
+	 43cPVWG7LfnCJ9llkHa9chOZE5HElIESUn4H1MBzORC1TKBtQv8u5xHQr3cB0rpKfw
+	 RatY5r0g62zA7Dk4GMtJMCioqLBtsxRthEv8HJ4a+8+f9LDvgp6jQce1V3QyGaZMGC
+	 7RUGohWUHmODpT/Dxv+l5onru5+eaOJfyAL64TcbuUZMBlFNCO+yjUobb66Vs7Dfl9
+	 UWnSKDhToQJmg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28CDEC2BA1A;
+	Fri, 21 Jun 2024 09:40:57 +0000 (UTC)
+From: George Chan via B4 Relay <devnull+gchan9527.gmail.com@kernel.org>
+Subject: [PATCH 0/6] media: qcom: camss: Add sc7180 support
+Date: Fri, 21 Jun 2024 17:40:52 +0800
+Message-Id: <20240621-b4-sc7180-camss-v1-0-14937929f30e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart33708828.OdkiG2bhLU";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKRKdWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDMyND3SQT3eJkc0MLA93kxNziYt3klJRksyQzg0TLJBMloK6CotS0zAq
+ widGxtbUA0tGVeGEAAAA=
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ George Chan <gchan9527@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1718962855; l=1917;
+ i=gchan9527@gmail.com; s=20240621; h=from:subject:message-id;
+ bh=ZVXJbWByUzIKTOC7VscBLLwylCglSs2J2Rvmr2V8T5A=;
+ b=BnsW7oejRFpwuGmmirMaAx9oEYiaBpv3Qz/M2DX4n3OI8yXFjAvAEpaiy89G07uhalR+jN7Gy
+ AaiYtcEU7BxBFzn//FTtSNerwZ79KNwxLH9n3Zcgy1FR9/ZUjzk6zkA
+X-Developer-Key: i=gchan9527@gmail.com; a=ed25519;
+ pk=Ac2fkTqgUBlj2sns9hRIWJTYhWHO1BsmHbdBb5UpUUY=
+X-Endpoint-Received: by B4 Relay for gchan9527@gmail.com/20240621 with
+ auth_id=176
+X-Original-From: George Chan <gchan9527@gmail.com>
+Reply-To: gchan9527@gmail.com
 
---nextPart33708828.OdkiG2bhLU
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Fri, 21 Jun 2024 11:39:38 +0200
-Message-ID: <11022668.754mm22UMy@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <68762122.lzCB0yxN2V@bagend>
-MIME-Version: 1.0
+SM7125 is the SoC found in the Xiaomi Redmi Note 9 Pro(joyeuse) cellphone.
+This series adds support to bring up the CSIPHY, CSID, VFE/RDI interfaces.
 
-On Friday, 21 June 2024 11:12:35 CEST Diederik de Haas wrote:
-> > +title: Rockchip TRNG
-> > +
-> > +description: True Random Number Generator on Rokchip RK3568 SoC
-> 
-> I *think* that the TRNG for rk3588 is different, so shouldn't the title be:
-> 
-> Rockchip TRNG for rk356x SoCs
+Since SM7125 is a low-speed variant of SC7180, SC7180 testers please
+take a look and have a test as well.
 
-And I just noticed `Rokchip` in the description, so that's missing a `c`.
---nextPart33708828.OdkiG2bhLU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+sc7180 provides
 
------BEGIN PGP SIGNATURE-----
+- 2 x VFE
+- 1 x VFE Lite
+- 2 x CSID
+- 1 x CSID Lite
+- 4 x CSI PHY
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZnVKWgAKCRDXblvOeH7b
-bo/WAQDnYl+LPfUhcypL7EAoGbH3FOzB3zav+r4xz8nCx6VAlAEA2EROli/zO/gU
-Gzgahi+rLvQnzlFGOyM3qgeOw2xCXgA=
-=BEBo
------END PGP SIGNATURE-----
+The sc7180-camss binding should be comaptible with sdm845 yaml.
+I've copied a new yaml from sdm845-camss.yaml, strip all _src clk and leave
+original maintainer. If this is not desirable then i can add binding to
+existing sdm845 yaml instead.
 
---nextPart33708828.OdkiG2bhLU--
+In addition, a bootable tree of sm7125/joyeuse is availble at:
+https://github.com/99degree/linux/tree/camss
+  
 
+Signed-off-by: George Chan <gchan9527@gmail.com>
+---
+George Chan (6):
+      media: dt-bindings: media: camss: Add qcom,sc7180-camss binding
+      media: qcom: camss: Add CAMSS_SC7180 enum
+      media: qcom: camss: csiphy-3ph: Add Gen2 v1.2.2 two-phase MIPI CSI-2 DPHY init
+      media: qcom: camss: Add sc7180 support
+      media: qcom: camss: Add sc7180 resources
+      [RFT]arm64: dts: qcom: sc7180: Add support for camss subsys
+
+ .../bindings/media/qcom,sc7180-camss.yaml          | 324 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               | 134 +++++++++
+ .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 120 ++++++++
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ drivers/media/platform/qcom/camss/camss-vfe.c      |   3 +
+ drivers/media/platform/qcom/camss/camss-video.c    |   1 +
+ drivers/media/platform/qcom/camss/camss.c          | 218 +++++++++++++-
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 8 files changed, 801 insertions(+), 1 deletion(-)
+---
+base-commit: 2102cb0d050d34d50b9642a3a50861787527e922
+change-id: 20240621-b4-sc7180-camss-cddc6b60a9b4
+
+Best regards,
+-- 
+George Chan <gchan9527@gmail.com>
 
 
 
