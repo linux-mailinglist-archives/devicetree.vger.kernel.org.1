@@ -1,45 +1,55 @@
-Return-Path: <devicetree+bounces-78214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58E19117F2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 03:16:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2875C9117FA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 03:23:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FE76B21441
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:16:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 479FF1C20EED
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D1D4AEEA;
-	Fri, 21 Jun 2024 01:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B60552F9B;
+	Fri, 21 Jun 2024 01:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="SK5Ji/kn"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="L2dz/yDS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DFD3214;
-	Fri, 21 Jun 2024 01:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E2C4EB45;
+	Fri, 21 Jun 2024 01:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718932557; cv=none; b=neMPkMe+l1VeAsJKD1jNO6lBpmfhpMHh/Ll0Se5i9GEnD8NR5iQjtVpPdlpN18hpMxGuKcKD+IT3NawUd848TJprOSG80zU6q9m4s8bZMjzQKsjUk1GVuFvN15EoimcTGsgumtp7fJOGr7iLRcrULB/yaPR7+CAMqBEEZf6cxdg=
+	t=1718933026; cv=none; b=PS+gSPrG64FSaoHvAvPj6GCpfcEv4lRXwsB9u1YBPM3/g4taqE8WbHEt4u81poWF1KRA7oU4C2iayJ1VpazLckA2rFYRYpU2uevHyEqiInz/XP2VkFUNf3gIZaqNpNf6aa+ishEuNdY00abrRt/OLrF5M+fUNuyqYxB40DG2Tac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718932557; c=relaxed/simple;
-	bh=IABB4tHTtsIHnF9E/p0KMPVd0BwdXUuqJPhJoQzkufw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qa1Zp0Bl9IcPFojM/ybZFFS/ui1cQcyHq2sgeb9tytBXPzWUVAaxacuN+yQFApr9gZ4kiGfHN+iqD1DPCafLyvag+0Xqrjrcw7bJ1pPNWTYRVGv97rFomkko3ZleAfj8OX7t2k57BzT3lJ8yjGDFEkttEL52AO5FO0AX9pegpgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=SK5Ji/kn; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:From:
-	Content-Type; bh=uKgyUTPoIa0HOFwQLliApvt6PD0XnAuEcNuHZ585raA=;
-	b=SK5Ji/kn4sI1W96ZdXt9fW1P5hOX4F2KHB22JEH3nru2ent6WnGuiVcUM3+v0a
-	bz9M9Qf+J4VL5kkplzHMaz4Y0yy0w64OlFXuFeXgwHfk4GUOyJ9cw9g4q51ZaSCI
-	CqKwtoz8Qd3UzzG9zobudai70VLBl+CvzNMiIi4Bazkpg=
-Received: from [192.168.1.26] (unknown [183.195.6.47])
-	by gzga-smtp-mta-g3-1 (Coremail) with SMTP id _____wDnT3z203RmODBWCQ--.32395S2;
-	Fri, 21 Jun 2024 09:14:32 +0800 (CST)
-Message-ID: <0b144517-4cc5-4c23-be57-d6f5323690ec@163.com>
-Date: Fri, 21 Jun 2024 09:14:30 +0800
+	s=arc-20240116; t=1718933026; c=relaxed/simple;
+	bh=S/Y+XD9EEnIR15Y7mRl6RrqRYyY+K+WmygZUm5wATzo=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=dECeFFE//GVk85mi2H8z2EvVQW/E+I7ASr2enplhHiTl+hT95huPaiwRmsFalBJQ2fcmrlLsYedKYXt2uXHxua7JpwsYvew/TBGR9zUGAgkMiN6wYlFgc7YXeH4cCS79MqgeuDNFJaU4jv7xv2tyoTLXV6vbiGJBdcLWhDP0lZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=L2dz/yDS; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718933022;
+	bh=S/Y+XD9EEnIR15Y7mRl6RrqRYyY+K+WmygZUm5wATzo=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=L2dz/yDSW0PG56ChLFne9pA3VPa3SAhhoxfa6nEqxFvc+g92GCayvWkpfw3N9lckd
+	 PUdCvjFlmNg2Q+A4yNwfa627epfMxTufbR5lm8s9Ypck4O3wuANihNFOEOSfAMHwu+
+	 2eCysVofl9oyYQzfjbNOmFp2A6R5n601anu6SyQzNCCXqRgls5EwFtcs0KbRQ6JBC2
+	 pC0xPHkWOmbIlw8H5wvU91IXsQnBytxR/OCNlEIYF0pger3soEk89cb9rL6KF8fEt4
+	 G37KYh7o3d/s9JsCaNxhTVXxbg/cKSjmMFhMM14BCurmPsoUYQ1EBuYUgq2+/k5O6O
+	 4fjoFBQn0OLfA==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B1D5A3780FF1;
+	Fri, 21 Jun 2024 01:23:41 +0000 (UTC)
+Message-ID: <1fce65a2-b752-4bab-84e5-314b60d682f0@collabora.com>
+Date: Fri, 21 Jun 2024 04:23:41 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,87 +57,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/2] pwrseq: introduce the subsystem and first driver
-To: patchwork-bot+bluetooth@kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: marcel@holtmann.org, luiz.dentz@gmail.com, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kvalo@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, lgirdwood@gmail.com,
- broonie@kernel.org, catalin.marinas@arm.com, will@kernel.org,
- bhelgaas@google.com, saravanak@google.com, geert+renesas@glider.be,
- arnd@arndb.de, neil.armstrong@linaro.org, m.szyprowski@samsung.com,
- elder@linaro.org, srinivas.kandagatla@linaro.org,
- gregkh@linuxfoundation.org, abel.vesa@linaro.org, mani@kernel.org,
- lukas@wunner.de, dmitry.baryshkov@linaro.org, amit.pundir@linaro.org,
- wuxilin123@gmail.com, linux-bluetooth@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
- bartosz.golaszewski@linaro.org
-References: <20240605123850.24857-1-brgl@bgdev.pl>
- <171889385036.4585.6482250630135606154.git-patchwork-notify@kernel.org>
+Subject: Re: [PATCH 3/5] arm64: dts: rockchip: Fix mic-in-differential usage
+ on rk3568-rock-3a
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To: Jonas Karlman <jonas@kwiboo.se>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Furkan Kardame <f.kardame@manjaro.org>,
+ Michael Riesch <michael.riesch@wolfvision.net>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240619-rk809-fixes-v1-0-fa93bc5313f4@collabora.com>
+ <20240619-rk809-fixes-v1-3-fa93bc5313f4@collabora.com>
+ <c35b3e80-7889-473d-8365-88436c3cb9a9@kwiboo.se>
+ <4015ded1-5ec4-4374-982e-9c7f23b43884@collabora.com>
 Content-Language: en-US
-From: Lk Sii <lk_sii@163.com>
-In-Reply-To: <171889385036.4585.6482250630135606154.git-patchwork-notify@kernel.org>
+In-Reply-To: <4015ded1-5ec4-4374-982e-9c7f23b43884@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:_____wDnT3z203RmODBWCQ--.32395S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ur18uFykGryxtFW7AF17trb_yoW8Aw48pF
-	W3K3Z0kF48Jr1UJF4DKw1fXFy2gw43Xw1xCr4Dtr98Xa4Ygr48tw1FvwnYgr17urWI9w42
-	yFWftryfKw48urDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRWmhrUUUUU=
-X-CM-SenderInfo: 5onb2xrl6rljoofrz/1tbiExkFNWXAluX0pAAAs8
 
-
-
-On 2024/6/20 22:30, patchwork-bot+bluetooth@kernel.org wrote:
-> Hello:
+On 6/19/24 3:56 PM, Cristian Ciocaltea wrote:
+> Hi Jonas,
 > 
-> This series was applied to bluetooth/bluetooth-next.git (master)
-> by Bartosz Golaszewski <bartosz.golaszewski@linaro.org>:
-> 
-Hi luiz,
-
-i am curious why Bartosz is able to merge his changes into bluetooth
-development tree bluetooth-next directly.
-
-1)
-his changes should belong to *POWER* scope instead of *Bluetooth*
-obviously, however, there are *NOT* any SOB tag from either power and
-bluetooth maintainer. these changes currently only have below Acked-by
-and Signed-off-by tags:
-
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-
-2)
-his changes have not merged into linus mainline tree yet.
-
-3)
-perhaps, it is safer to pull his changes from linus mainline tree when
-merged than to merge into bluetooth-next firstly.
-
-> On Wed,  5 Jun 2024 14:38:48 +0200 you wrote:
->> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> On 6/19/24 3:22 PM, Jonas Karlman wrote:
+>> Hi Cristian,
 >>
->> Hi!
+>> On 2024-06-19 13:23, Cristian Ciocaltea wrote:
+>>> The 'mic-in-differential' DT property supported by the RK809/RK817 audio
+>>> codec driver is actually valid if prefixed with 'rockchip,':
+>>>
+>>>   DTC_CHK arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dtb
+>>>   rk3568-rock-3a.dtb: pmic@20: codec: 'mic-in-differential' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>> 	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk809.yaml#
+>>>
+>>> Make use of the correct property name.
+>>>
+>>> Fixes: a84ffd2ef1ff ("arm64: dts: rockchip: Fix mic-in-differential usage on rock-3a")
+>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>> ---
+>>>  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>>> index ebdedea15ad1..0b54dfe92d6e 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+>>> @@ -533,7 +533,7 @@ regulator-state-mem {
+>>>  		};
+>>>  
+>>>  		codec {
+>>> -			mic-in-differential;
+>>> +			rockchip,mic-in-differential;
 >>
->> These are the power sequencing patches sent separately after some
->> improvements suggested by Bjorn Helgaas. I intend to pick them up into a
->> new branch and maintain the subsystem from now on. I then plan to
->> provide an immutable tag to the Bluetooth and PCI subsystems so that the
->> rest of the C changes can be applied. This new branch will then be
->> directly sent to Linus Torvalds for the next merge window.
->>
->> [...]
+>> If I understand the schematics correctly, only one wire is connected so
+>> this board cannot really use differential signaling, and this should
+>> probably instead be dropped.
 > 
-> Here is the summary with links:
->   - [v9,1/2] power: sequencing: implement the pwrseq core
->     https://git.kernel.org/bluetooth/bluetooth-next/c/249ebf3f65f8
->   - [v9,2/2] power: pwrseq: add a driver for the PMU module on the QCom WCN chipsets
->     https://git.kernel.org/bluetooth/bluetooth-next/c/2f1630f437df
-> 
-> You are awesome, thank you!
+> Thanks for pointing this out, I will drop it in v2.
 
+I've also checked the schematics which indicate the PMIC RK809 CODEC
+receives both MIC1_INN and MIC1_INP signals; the former comes from the
+Jack input, while the latter is generated by the SLM42Q3AT MEMS Microphone.
+
+However, I'm not sure the Mic presence on the board is dependent on the
+HW revision - on REV V1.3 the "NC_" prefix under U24 component label
+suggests it is not connected.  So maybe we should keep the property?!
+
+Cristian
 
