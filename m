@@ -1,147 +1,160 @@
-Return-Path: <devicetree+bounces-78560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCAAF912989
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:24:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62E391299A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:27:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 752851F21EBA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:24:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 821A4281879
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B115A81AC1;
-	Fri, 21 Jun 2024 15:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E946EB4C;
+	Fri, 21 Jun 2024 15:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qc9/4CZb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A/9z+zCw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85AD45CDE9;
-	Fri, 21 Jun 2024 15:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B016EB73
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 15:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718983454; cv=none; b=Nskxt5l5cTHrR8Lry2iim39Cuog7sO5t+TlUlf8L0B5M4ssMBn8fbk049ErJgRMDodeJSKIZ4+WNzRKSBLf2SrlFzuJJr7WYyu31ioSbajVG/doZbilO0YDKJUPF5p+wrxnCUlm9OGtoKNkkkvtSMG6PHU+IzB5s5U5naRR6hbQ=
+	t=1718983619; cv=none; b=R56FsYMkY2TA2amf/QX8iczTGPyhvGHRs9N+a/ehp9uqJSyoqPQdxCsRrGbwMHd3o2b4efKUlfneePzeDxYE6vm61A7ckRHryQ20SNsFLIYCKQFMdkEcx9cwYUgAxUn0AfQuxtCCLVOXHtz+CNnGA09PbmEJKJFNBR6i7PxrbPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718983454; c=relaxed/simple;
-	bh=Ff9EA/QpmNbx6stJ+wK7SetR4F+aGIuV8L9De81Il+E=;
+	s=arc-20240116; t=1718983619; c=relaxed/simple;
+	bh=YiXUoRydHF94lmyooJRgeUSN12E4zkqY2DFQsZtgdZ4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rSHUAqoEJiFauwxgCglTWtZ+FsdRtZItLompxjaU9l35X2gac2PyMd3GKauR6wUYX6FZq94j5pJUDsBTg8zxazg56RrAsEKPkgAhM1/CnXorrpSdsqzcdWOYbhddpkc07fIWTZP9iQBfNNQlIJx2ejAHqSeiT1T7gwGcpE05I1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qc9/4CZb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1451EC4AF07;
-	Fri, 21 Jun 2024 15:24:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718983454;
-	bh=Ff9EA/QpmNbx6stJ+wK7SetR4F+aGIuV8L9De81Il+E=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qc9/4CZbIp5EKUk+F/AKUwoQ0aHLAq+2Pj44DNsskp5QnjGqRURlmL1ze/hDM0a7j
-	 iMOp0Vpp+GM5Qh8dkZVv/IW4Ylx4kc3LAoYEYLEeDAlmBBl5hj8F41tgaKvHCtUsu8
-	 bfoLgYmQWN9/+IyIrAwn2DUjhnD3OoDXp/Obg5f9VNFIyMfdAuk7sD9q9ZU2ehiv5Y
-	 V4RAiz8enzz6rhWcPCnLQuw7I2r6iMy7V4TaW3XutG+sOWkq7n0m1tCk0P0N1S0J5Q
-	 mTk9m+HVV60FOicQZNtK0Q3mPlRcDgPM++ilW4XWKorfAGToycanfiZV9qJWw+Komn
-	 2em0GAWyG//NQ==
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2c7b14bb4a5so1574888a91.0;
-        Fri, 21 Jun 2024 08:24:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUwY+ZM3M3IU3jnTI1T42DqoB6k9u3pk/vXYHVAFMCDC8rnMBT9NPEcuZB7LbH3y/KO5Ov0w8GlUjmZHGPj3C8IqxhAWxQyKS9h1eA0S/6OVhVrbBlKmrAMb3VZjJnjPAXZ1Dg2y5FgOg==
-X-Gm-Message-State: AOJu0YzP3AQcCYUI+E1NBOJ+labBu0RHJFs0pHCdA8CubgxkVqL/LdS/
-	DgoG3VAGHx5gUexPuHsZHn6Nhutzoohm0M4RyJ2cBB3oGuwPuOzzd++Zzo51U0YcjMKho4oWf6B
-	ucR6cWdv90wcDnkXVqo5UD3Wr+w==
-X-Google-Smtp-Source: AGHT+IGQ+sY96q+fAXo/8wcMlUkQMzFLEU6NhVSDTBlzTx/VszhL+gr2xWg/am131E2fodn2RmM1MK7LQCnq1VLk1pE=
-X-Received: by 2002:a17:90a:2c07:b0:2c7:b392:8f02 with SMTP id
- 98e67ed59e1d1-2c83c2dc0fbmr115615a91.23.1718983453637; Fri, 21 Jun 2024
- 08:24:13 -0700 (PDT)
+	 To:Cc:Content-Type; b=Ek11A0BGos5UBhGGQ6bg4mFlPH09eiaNtzGbTErDx47J4A9b7b1lbCU5RWMAhdOEGmUtMG1/m5mia+7+lfl+qR63ezOwYVSc8k1AtKJsrqGvHMV5RZTlMdIs0WU2z3rRNHnhm5AFiQ0urRyAkRoIzbzot5Xzm/BlMFkOOsoT3fQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A/9z+zCw; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e02c4983bfaso2096927276.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 08:26:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718983616; x=1719588416; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sbi54k1BCdu8WFR/Tlc4MACpNabu6e6B0tEbW4QkoJA=;
+        b=A/9z+zCwl10gCmoXuotennI0XHsSPbbWOFGqO17mFZhkV6ZyPDot5HHyj2rRZz3ZQa
+         I81Vuy4F3zshAULOHgFyQ3vYz0MdBg2jthRDWZCHFEvyrUwWdZflgo1a6aIzN0rhzrxV
+         MDrpJop93gLRCGyHH0vVXG9kFrCR2eq5a2aUgLNEXeHM0Ynw0/+rOQc72zuClAodQQoU
+         4oP+SRgk43tHBfPy6z1eTyzDgG8rRXvgDsHbqQsmM71CyxmSM7wkMWeRTq68I2FxB+4m
+         1+wnDu8m0cGMc9IrT5q1uIldOiIFBzmgDnrYhd42Y1JIo1bWSHaaynF3ML7s1Bwc8iVw
+         zCmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718983616; x=1719588416;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sbi54k1BCdu8WFR/Tlc4MACpNabu6e6B0tEbW4QkoJA=;
+        b=a4z0I9/4atehduXCoPoueaOnui8qeIyutXrqYeoDmr8NO9x0VBh/zWxMlYPhmQlw9M
+         px5lLRKWp40gA8WvTvx7YCN7HcAqDEuCpuNPF82WTkSUl6xT91McwqFnow4ul5B7S0HR
+         vuEirnaxTzW3bpdJY4SOJjUdoN7F0UMIO1skYX1BEAuLcC52S5NCMl+eT5PgCzbd2Oha
+         IYJfsbmLWCxNnjXgdueLr39BGjQ8FYDrXlLEcswwNlphSb5o7IjED5fI5Aq9Tc6NEcnf
+         uDswvKk23RsqU7ccmXGR4OFTc/szIoN07i6PWGbJs4bWs1yxGR38Q6vCKDAahN86ETWN
+         uurg==
+X-Forwarded-Encrypted: i=1; AJvYcCWkwm6SIrMoQ1Vf3tHpzXs2C52A26/UuElngl4JPaUrvywXNfQAjLM2tutvJeVEFLpPbOhQyqDb3QbcKvypKqL1v0dZQR8xAL4M+A==
+X-Gm-Message-State: AOJu0YwHQMZM3BCQ2qYPOAmEGrZOTsO0iCc1bTf5a/EGzR2TycbVqVPq
+	lnB+QbDCgj/HLLR8VCaEg856mz0ONyeqmNtdBkR6xL7paM/+mlZJHs/y92pRVW8NV8hiQjDlYjl
+	F9Qd8Fkvt0XChHz8m5FOQdhUyaTNtV6NaoNQmNQ==
+X-Google-Smtp-Source: AGHT+IG+I31DzLceCazIw7M6Qo4beh+kZ5vRhPUkqyf/9QxJiflVj0d2qL03yK/OibBR7ZfsPrT4jqXE5tX6a25Gmi4=
+X-Received: by 2002:a25:68c7:0:b0:dfb:f06:a657 with SMTP id
+ 3f1490d57ef6-e02be226b10mr8870122276.54.1718983616650; Fri, 21 Jun 2024
+ 08:26:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023-display-support-v4-0-ed82eb168fb1@baylibre.com> <20231023-display-support-v4-12-ed82eb168fb1@baylibre.com>
-In-Reply-To: <20231023-display-support-v4-12-ed82eb168fb1@baylibre.com>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Fri, 21 Jun 2024 23:24:19 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__ZLjuJHnGsVLvGkFK0WhJJ6r=miqewRHsPCJhqO=8qoA@mail.gmail.com>
-Message-ID: <CAAOTY__ZLjuJHnGsVLvGkFK0WhJJ6r=miqewRHsPCJhqO=8qoA@mail.gmail.com>
-Subject: Re: [PATCH v4 12/15] drm/mediatek: add MT8365 SoC support
-To: amergnat@baylibre.com
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+References: <20240619-rb2-fixes-v1-0-1d2b1d711969@linaro.org>
+ <20240619-rb2-fixes-v1-2-1d2b1d711969@linaro.org> <CAA8EJpo94qg0dDR-H64v0yC7jLKHuD9O59m3hG2tNR4v3NAkLA@mail.gmail.com>
+ <c10b1343-921b-494b-94dd-6f5acc894e6d@linaro.org> <v3dgoeybewgegi2xuixhaq5c7jwju6wojrmzcq3rtb5f5r5nfu@6gj4tfz5blx7>
+ <35d9f16d-c009-4383-a616-9b21f0819b46@linaro.org> <6fpp4noq76tphgsmkuacp6jcgy4b73emgt76wxain6jisiidxt@itj2hedhlea3>
+In-Reply-To: <6fpp4noq76tphgsmkuacp6jcgy4b73emgt76wxain6jisiidxt@itj2hedhlea3>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 21 Jun 2024 18:26:45 +0300
+Message-ID: <CAA8EJpqKkM_MemiVdLQt7rZnmEKkiUboD_GT1QRTay039o+XdQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qrb4210-rb2: set role-switch-default-mode
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Caleb Connolly <caleb.connolly@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Fabien Parent <fparent@baylibre.com>
+	Alexey Klimov <alexey.klimov@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi, Alexandre:
+On Fri, 21 Jun 2024 at 08:32, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Thu, Jun 20, 2024 at 06:49:46PM GMT, Caleb Connolly wrote:
+> >
+> >
+> > On 20/06/2024 17:07, Dmitry Baryshkov wrote:
+> > > On Thu, Jun 20, 2024 at 03:30:29PM GMT, Caleb Connolly wrote:
+> > > >
+> > > >
+> > > > On 20/06/2024 15:15, Dmitry Baryshkov wrote:
+> > > > > On Wed, 19 Jun 2024 at 23:33, Caleb Connolly <caleb.connolly@linaro.org> wrote:
+> > > > > >
+> > > > > > Give a hint to the OS which role we prefer. Host mode generally makes
+> > > > > > the most sense.
+> > > > >
+> > > > > Why?
+> > > >
+> > > > I guess this is subjective, but on these boards the more common usecase is
+> > > > host mode (before we had role switching we forced them to host mode...).
+> > > > >
+> > > > > >
+> > > > > > Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> > > > > > ---
+> > > > > >    arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 4 ++++
+> > > > > >    1 file changed, 4 insertions(+)
+> > > > >
+> > > > > Would it make sense to set this for all the RB and HDK boards?
+> > > >
+> > > > The rb1/2 are the only boards which lack multiple USB controllers. For
+> > > > others it's fine to leave the default (peripheral mode).
+> > >
+> > > SM8450-HDK and SM8650-HDK also have just a single USB-C port. My logic
+> > > was slightly different. We consider these devices to be SBCs, so I'd
+> > > expect that they act as hosts _by_default_. If somebody plugs RB board
+> > > into a laptop, then it's logical that it should work as a device, but
+> > > between the phone and the RB board the RB is a host.
+> >
+> > Ahh I see, then yes perhaps it makes sense. I can send v2 with patches for
+> > other boards too.
+> >
+> > * qrb2210-rb1
+> > * qrb4210-rb2
+> > * sm8450-hdk
+> > * sm8650-hdk
+> >
+> > Any others?
+>
+> qcs6490-rb3gen2 please.
 
-<amergnat@baylibre.com> =E6=96=BC 2024=E5=B9=B45=E6=9C=8823=E6=97=A5 =E9=80=
-=B1=E5=9B=9B =E4=B8=8B=E5=8D=888:49=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: Fabien Parent <fparent@baylibre.com>
->
-> Add DRM support for MT8365 SoC.
->
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.c
-> index ce8f3cc6e853..e1c3281651ae 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -318,6 +318,10 @@ static const struct mtk_mmsys_driver_data mt8195_vdo=
-sys1_driver_data =3D {
->         .mmsys_dev_num =3D 2,
->  };
->
-> +static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data =3D {
-> +       .mmsys_dev_num =3D 1,
+Seeing the list grow on and on. What about making a policy decision
+that all non-phone-factor ARCH_QCOM devices should use the host role
+by default? So HDK, IDP, RBn, DragonBoard, laptops => host. QRD,
+phones => peripheral. Not sure about the tablets. Probably peripheral
+too (unless it's a convertible / 2-in-1).
 
-You do not describe the pipeline information here. I think display
-function would not work.
-
-Regards,
-Chun-Kuang.
-
-> +};
-> +
->  static const struct of_device_id mtk_drm_of_ids[] =3D {
->         { .compatible =3D "mediatek,mt2701-mmsys",
->           .data =3D &mt2701_mmsys_driver_data},
-> @@ -345,6 +349,8 @@ static const struct of_device_id mtk_drm_of_ids[] =3D=
- {
->           .data =3D &mt8195_vdosys0_driver_data},
->         { .compatible =3D "mediatek,mt8195-vdosys1",
->           .data =3D &mt8195_vdosys1_driver_data},
-> +       { .compatible =3D "mediatek,mt8365-mmsys",
-> +         .data =3D &mt8365_mmsys_driver_data},
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, mtk_drm_of_ids);
-> @@ -732,6 +738,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[=
-] =3D {
->           .data =3D (void *)MTK_DISP_MUTEX },
->         { .compatible =3D "mediatek,mt8195-disp-mutex",
->           .data =3D (void *)MTK_DISP_MUTEX },
-> +       { .compatible =3D "mediatek,mt8365-disp-mutex",
-> +         .data =3D (void *)MTK_DISP_MUTEX },
->         { .compatible =3D "mediatek,mt8173-disp-od",
->           .data =3D (void *)MTK_DISP_OD },
->         { .compatible =3D "mediatek,mt2701-disp-ovl",
 >
-> --
-> 2.25.1
+> I'm picking patch 1 for v6.10, no need to repost it.
 >
+> Regards,
+> Bjorn
+>
+> > >
+> >
+> > --
+> > // Caleb (they/them)
+
+
+
+-- 
+With best wishes
+Dmitry
 
