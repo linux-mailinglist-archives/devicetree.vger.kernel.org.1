@@ -1,220 +1,245 @@
-Return-Path: <devicetree+bounces-78382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D087912228
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:20:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 839F0912222
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:19:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 301371C22238
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:20:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 110561F259E7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E182C172BCF;
-	Fri, 21 Jun 2024 10:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06DC217108F;
+	Fri, 21 Jun 2024 10:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="BFvmdqp/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AN4S2eu+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA02172BC4;
-	Fri, 21 Jun 2024 10:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDEFF16E894;
+	Fri, 21 Jun 2024 10:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718965125; cv=none; b=hGPE/R0WQ2wW9+QT/5643YY0A1xir6BfZBD+kie3qewPo+cXKKsjlDCFbtMAWc9q29cxDMGPSbI+UuPbgS1CsHlxAoVA4v0nKlFDKzrveYTsClnTYnRMeMl4PaHui9vZohuKbFPbSY1DbvwiIgtEXtkl7yPgxGiyf7pAIy03Huk=
+	t=1718965107; cv=none; b=EMlOoU16/nXGgecZI1gbJMsN3NmVkVA4i8ASgGrtcZXhRF9aDa2oTCVNTQubeo4TuziayHjo2qDFAY8CQM7VZVmtX7n5C1tPOs1O0Hb3x4WgfQ8UgQZtoHBZanLhBfeIzyTOYQuyScZnENAUX5XhMGHy8HZP+wTa1UMKnZmwZp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718965125; c=relaxed/simple;
-	bh=N1yo7secwogxuEPVHJ5Vld6lZEvYNi5oKI8TVPWuc8g=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UVjF9VI8c5+RaeYUtIbP1G+yUDtI79EaOKY1bi7ILtrsUO5KF40vyjvPFFl3cdjI3aZ+mv8IzYFrgOb4iperLoOeHx/h9bXGkQ0ZIzNR6WSh0Kdx/kb4AfFS3l8kaX24SBN6BayjprtycpupcKJ0JVxiUgw0MhE/ge9SFkXakY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BFvmdqp/; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1718965124; x=1750501124;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=N1yo7secwogxuEPVHJ5Vld6lZEvYNi5oKI8TVPWuc8g=;
-  b=BFvmdqp/zlHshCSNpDaGQ5mSlnXuO0KIX1YzXPweEtwYYfvIoKWAW5Jm
-   91T2uBcCZVbi90IlBx78OVFSaA6hS2cJCHU9AloDQMel6QZrdTiymCj8J
-   e0VcGfZJL2Nf//vXJaGyNXO1TmjFseM/FsVTrsVP5AWod5/n5XLLBSwFc
-   0m/yuuLr0NYXvuG8X4yw2eQWbvKfR5Icm0tDeKuITzSDO8ybGmnt1G+0o
-   V/Lt7nSIzJzFKu+8TWL5FjFLuCI7+UR+8O4E5rgCNO/aeMUfgXeCeGn2S
-   73Kkxcg7mM6f226t33BjpB/7XxEu1x34CGRVgVN0EvAQ/vWz5m/C60F1R
-   g==;
-X-CSE-ConnectionGUID: HFkKWv5gQi6XJez7y6X/8g==
-X-CSE-MsgGUID: D4+6zTj7RaSh21uL4J0goA==
-X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; 
-   d="asc'?scan'208";a="28968692"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Jun 2024 03:18:42 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 21 Jun 2024 03:18:15 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 21 Jun 2024 03:18:12 -0700
-Date: Fri, 21 Jun 2024 11:17:53 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Alexandre Ghiti <alex@ghiti.fr>
-CC: Anup Patel <apatel@ventanamicro.com>, Conor Dooley <conor@kernel.org>,
-	Yong-Xuan Wang <yongxuan.wang@sifive.com>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <kvm-riscv@lists.infradead.org>,
-	<kvm@vger.kernel.org>, <ajones@ventanamicro.com>, <greentime.hu@sifive.com>,
-	<vincent.chen@sifive.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-Message-ID: <20240621-viewless-mural-f5992a247992@wendy>
-References: <20240605121512.32083-1-yongxuan.wang@sifive.com>
- <20240605121512.32083-3-yongxuan.wang@sifive.com>
- <20240605-atrium-neuron-c2512b34d3da@spud>
- <CAK9=C2XH7-RdVpojX8GNW-WFTyChW=sTOWs8_kHgsjiFYwzg+g@mail.gmail.com>
- <40a7d568-3855-48fb-a73c-339e1790f12f@ghiti.fr>
+	s=arc-20240116; t=1718965107; c=relaxed/simple;
+	bh=U1hz+8/bzdauintFQu1B2mPpB7R33BaC4FjDhvSa8R8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CF66zbRaZhfBl5cR98eZLKip/yKkwR/kG5e4ekIQmTEPNzwHmWUnSf3sIRns3XbYHtSbS1T7CqGRzB5sOYtg+C9BXtG8AWKtI9LFnJvrDy6gy0aejGmgI0K16TWjiL8a4KOwLMf3Tjqe3M+soEEKphHtBpfVMNs3Fhu8iduZO0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AN4S2eu+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB288C4AF09;
+	Fri, 21 Jun 2024 10:18:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718965107;
+	bh=U1hz+8/bzdauintFQu1B2mPpB7R33BaC4FjDhvSa8R8=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=AN4S2eu+2StK8dntclq6UzVlpDLAtIOCFvnr1RahBqyXLmC2oLqjkYJR456Ms+40R
+	 hKf49obq+VfQyyGDiFPJaNQKXjHTMd4eN7RmAR61ZmQhI5cBjA/FRNba68ucSrY3yb
+	 aCW+yht4NYfHN8sRxRhggSGoxgvHOoijcDFiM2MmjCXua1hOm1ga7PWMgXJWKnm4pe
+	 /8j1uoPfogZRlPIpXkl2jMKZvbHsLtG47/0y9tbngsb2Scy6jGuxJq89FS8o6L4FwG
+	 XXSGFPQsedLRozheV3qz5odtHkmUg+uZYkaftLv2QfZ5cEK8AMvZ3xVvIjknpgpfAS
+	 JFR2P5xf0Szwg==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2eaea28868dso24069441fa.3;
+        Fri, 21 Jun 2024 03:18:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV7d2g+D4gxEQYt5ryeyKB0yYrtjiDitrv+x9OrgnWoBumVMB8F4Dun1Pn2O/dQ2yw2UsiDhupTJYNygw0Zl1toFq5nxaGXCoiUs/rJYw9tOsK3ihwHJciCnY4laP/y1ILuQBqCTQsYwqBlwOHSH87SnRStYh3rg0RQVDsjhah5HHxIFTRCZA==
+X-Gm-Message-State: AOJu0YyfoRL72EYB0c7HH8yCWy7jxl/5K/7pP5+qgB12yBwtkf+t6tvF
+	WEMT8lhK2gpVXFCwGWcCdOvKEEVtK5vfrw3c4rCJVQdDOTUKzNjfAmnB5x7QrTVeC9VCOMpA9H9
+	pdwp92FhelEUYjBYi68RRa5heVLg=
+X-Google-Smtp-Source: AGHT+IHO98/2KxxNQSI6Iov2uFjwnOJvJY9CeBR3g6jopu9QSIJvgzBeO6l1TKdjqUov1zSWO5URR/C24lztI0UaSCk=
+X-Received: by 2002:a05:651c:1311:b0:2ec:4a91:c38b with SMTP id
+ 38308e7fff4ca-2ec4a91d4b4mr22199161fa.5.1718965106029; Fri, 21 Jun 2024
+ 03:18:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/Q/JsluL++EEkeZ1"
-Content-Disposition: inline
-In-Reply-To: <40a7d568-3855-48fb-a73c-339e1790f12f@ghiti.fr>
-
---/Q/JsluL++EEkeZ1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <cover.1718921174.git.daniel@makrotopia.org> <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
+ <f8e6b1b9-f8ff-42df-b1ef-bcc439c2e913@kernel.org>
+In-Reply-To: <f8e6b1b9-f8ff-42df-b1ef-bcc439c2e913@kernel.org>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Fri, 21 Jun 2024 18:18:13 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66VHXvBGH9X9nj1=fSnCgP035HEMU-L2NShg08rE5Qnug@mail.gmail.com>
+Message-ID: <CAGb2v66VHXvBGH9X9nj1=fSnCgP035HEMU-L2NShg08rE5Qnug@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Aurelien Jarno <aurelien@aurel32.net>, 
+	Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Anand Moon <linux.amoon@gmail.com>, 
+	Dragan Simic <dsimic@manjaro.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 10:37:21AM +0200, Alexandre Ghiti wrote:
-> On 20/06/2024 08:25, Anup Patel wrote:
-> > On Wed, Jun 5, 2024 at 10:25=E2=80=AFPM Conor Dooley <conor@kernel.org>=
- wrote:
-> > > On Wed, Jun 05, 2024 at 08:15:08PM +0800, Yong-Xuan Wang wrote:
-> > > > Add entries for the Svade and Svadu extensions to the riscv,isa-ext=
-ensions
-> > > > property.
-> > > >=20
-> > > > Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-> > > > ---
-> > > >   .../devicetree/bindings/riscv/extensions.yaml | 30 ++++++++++++++=
-+++++
-> > > >   1 file changed, 30 insertions(+)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yam=
-l b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > index 468c646247aa..1e30988826b9 100644
-> > > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > @@ -153,6 +153,36 @@ properties:
-> > > >               ratified at commit 3f9ed34 ("Add ability to manually =
-trigger
-> > > >               workflow. (#2)") of riscv-time-compare.
-> > > >=20
-> > > > +        - const: svade
-> > > > +          description: |
-> > > > +            The standard Svade supervisor-level extension for rais=
-ing page-fault
-> > > > +            exceptions when PTE A/D bits need be set as ratified i=
-n the 20240213
-> > > > +            version of the privileged ISA specification.
-> > > > +
-> > > > +            Both Svade and Svadu extensions control the hardware b=
-ehavior when
-> > > > +            the PTE A/D bits need to be set. The default behavior =
-for the four
-> > > > +            possible combinations of these extensions in the devic=
-e tree are:
-> > > > +            1. Neither svade nor svadu in DT: default to svade.
-> > > I think this needs to be expanded on, as to why nothing means svade.
-> > Actually if both Svade and Svadu are not present in DT then
-> > it is left to the platform and OpenSBI does nothing.
-> >=20
-> > > > +            2. Only svade in DT: use svade.
-> > > That's a statement of the obvious, right?
-> > >=20
-> > > > +            3. Only svadu in DT: use svadu.
-> > > This is not relevant for Svade.
-> > >=20
-> > > > +            4. Both svade and svadu in DT: default to svade (Linux=
- can switch to
-> > > > +               svadu once the SBI FWFT extension is available).
-> > > "The privilege level to which this devicetree has been provided can s=
-witch to
-> > > Svadu if the SBI FWFT extension is available".
-> > >=20
-> > > > +        - const: svadu
-> > > > +          description: |
-> > > > +            The standard Svadu supervisor-level extension for hard=
-ware updating
-> > > > +            of PTE A/D bits as ratified at commit c1abccf ("Merge =
-pull request
-> > > > +            #25 from ved-rivos/ratified") of riscv-svadu.
-> > > > +
-> > > > +            Both Svade and Svadu extensions control the hardware b=
-ehavior when
-> > > > +            the PTE A/D bits need to be set. The default behavior =
-for the four
-> > > > +            possible combinations of these extensions in the devic=
-e tree are:
-> > > @Anup/Drew/Alex, are we missing some wording in here about it only be=
-ing
-> > > valid to have Svadu in isolation if the provider of the devicetree has
-> > > actually turned on Svadu? The binding says "the default behaviour", b=
-ut
-> > > it is not the "default" behaviour, the behaviour is a must AFAICT. If
-> > > you set Svadu in isolation, you /must/ have turned it on. If you set
-> > > Svadu and Svade, you must have Svadu turned off?
-> > Yes, the wording should be more of requirement style using
-> > must or may.
-> >=20
-> > How about this ?
-> > 1) Both Svade and Svadu not present in DT =3D> Supervisor may
-> >      assume Svade to be present and enabled or it can discover
-> >      based on mvendorid, marchid, and mimpid.
-> > 2) Only Svade present in DT =3D> Supervisor must assume Svade
-> >      to be always enabled. (Obvious)
-> > 3) Only Svadu present in DT =3D> Supervisor must assume Svadu
-> >      to be always enabled. (Obvious)
->=20
->=20
-> I agree with all of that, but the problem is how can we guarantee that
-> openSBI actually enabled svadu?=20
-Conflation of an SBI implementation and OpenSBI aside, if the devicetree
-property is defined to mean that "the supervisor must assume svadu to be
-always enabled", then either it is, or the firmware's description of the
-hardware is broken and it's not the supervisor's problem any more. It's
-not the kernel's job to validate that the devicetree matches the
-hardware.
+On Fri, Jun 21, 2024 at 5:58=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 21/06/2024 03:25, Daniel Golle wrote:
+> > From: Aurelien Jarno <aurelien@aurel32.net>
+> >
+>
+> > +
+> > +static int rk_rng_init(struct hwrng *rng)
+> > +{
+> > +     struct rk_rng *rk_rng =3D container_of(rng, struct rk_rng, rng);
+> > +     int ret;
+> > +
+> > +     /* start clocks */
+> > +     ret =3D clk_bulk_prepare_enable(rk_rng->clk_num, rk_rng->clk_bulk=
+s);
+> > +     if (ret < 0) {
+> > +             dev_err((struct device *) rk_rng->rng.priv,
+> > +                     "Failed to enable clks %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     /* set the sample period */
+> > +     writel(RK_RNG_SAMPLE_CNT, rk_rng->base + TRNG_RNG_SAMPLE_CNT);
+> > +
+> > +     /* set osc ring speed and enable it */
+> > +     writel_relaxed(TRNG_RNG_CTL_LEN_256_BIT |
+> > +                    TRNG_RNG_CTL_OSC_RING_SPEED_0 |
+> > +                    TRNG_RNG_CTL_ENABLE,
+> > +                    rk_rng->base + TRNG_RNG_CTL);
+>
+> I doubt relaxed write is here intentional. Enabling should be last
+> instruction, so this should be ordered write.
 
-> This is not the case for now.
+I agree that the driver should just do all non-relaxed writes for simplicit=
+y.
+The penalty isn't that severe since commit 22ec71615d82 ("arm64: io: Relax
+implicit barriers in default I/O accessors").
 
-What "is not the case for now"? My understanding was that, at the
-moment, nothing happens with Svadu in OpenSBI. In turn, this means that
-there should be no devicetrees containing Svadu (per this binding's
-description) and therefore no problem?
+Just to clarify, writes to devices are always ordered. The non-relaxed
+writes are ordered to _memory writes_, which doesn't really matter for
+this driver.
 
-Thanks,
-Conor.
+ChenYu
 
---/Q/JsluL++EEkeZ1
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnVTUQAKCRB4tDGHoIJi
-0umAAP9Ky5jmwL/vxKQCCEHnHdguojF9KRICh/OKTjjNr83q0QD+M27FYa47s7qx
-aJWtzNZgU73VI8rgfcbj5zSeT7XqZQQ=
-=l7ge
------END PGP SIGNATURE-----
-
---/Q/JsluL++EEkeZ1--
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void rk_rng_cleanup(struct hwrng *rng)
+> > +{
+> > +     struct rk_rng *rk_rng =3D container_of(rng, struct rk_rng, rng);
+> > +
+> > +     /* stop TRNG */
+> > +     writel_relaxed(0, rk_rng->base + TRNG_RNG_CTL);
+>
+> This should not be relaxed. This might lead to very tricky to debug issue=
+s.
+>
+> > +
+> > +     /* stop clocks */
+> > +     clk_bulk_disable_unprepare(rk_rng->clk_num, rk_rng->clk_bulks);
+> > +}
+> > +
+> > +static int rk_rng_read(struct hwrng *rng, void *buf, size_t max, bool =
+wait)
+> > +{
+> > +     struct rk_rng *rk_rng =3D container_of(rng, struct rk_rng, rng);
+> > +     size_t to_read =3D min_t(size_t, max, RK_RNG_MAX_BYTE);
+> > +     u32 reg;
+> > +     int ret =3D 0;
+> > +
+> > +     ret =3D pm_runtime_get_sync((struct device *) rk_rng->rng.priv);
+>
+> Why this cannot be just simpler pm_runtime_resume_and_get()?
+>
+> > +     if (ret < 0)
+> > +             goto out;
+>
+> This does not look like correct error path. Device was not busy here.
+>
+> > +
+> > +     /* Start collecting random data */
+> > +     writel_relaxed(TRNG_RNG_CTL_START, rk_rng->base + TRNG_RNG_CTL);
+> > +
+> > +     ret =3D readl_poll_timeout(rk_rng->base + TRNG_RNG_CTL, reg,
+> > +                              !(reg & TRNG_RNG_CTL_START),
+> > +                              RK_RNG_POLL_PERIOD_US,
+> > +                              RK_RNG_POLL_TIMEOUT_US);
+> > +     if (ret < 0)
+> > +             goto out;
+> > +
+> > +     /* Read random data stored in the registers */
+> > +     memcpy_fromio(buf, rk_rng->base + TRNG_RNG_DOUT, to_read);
+> > +out:
+> > +     pm_runtime_mark_last_busy((struct device *) rk_rng->rng.priv);
+> > +     pm_runtime_put_sync_autosuspend((struct device *) rk_rng->rng.pri=
+v);
+> > +
+> > +     return to_read;
+> > +}
+> > +
+> > +static int rk_rng_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct rk_rng *rk_rng;
+> > +     int ret;
+> > +
+> > +     rk_rng =3D devm_kzalloc(dev, sizeof(*rk_rng), GFP_KERNEL);
+> > +     if (!rk_rng)
+> > +             return -ENOMEM;
+> > +
+> > +     rk_rng->base =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(rk_rng->base))
+> > +             return PTR_ERR(rk_rng->base);
+> > +
+> > +     rk_rng->clk_num =3D devm_clk_bulk_get_all(dev, &rk_rng->clk_bulks=
+);
+> > +     if (rk_rng->clk_num < 0)
+> > +             return dev_err_probe(dev, rk_rng->clk_num,
+> > +                                  "Failed to get clks property\n");
+> > +
+> > +     rk_rng->rst =3D devm_reset_control_array_get(&pdev->dev, false, f=
+alse);
+> > +     if (IS_ERR(rk_rng->rst))
+> > +             return dev_err_probe(dev, PTR_ERR(rk_rng->rst),
+> > +                                  "Failed to get reset property\n");
+> > +
+> > +     reset_control_assert(rk_rng->rst);
+> > +     udelay(2);
+> > +     reset_control_deassert(rk_rng->rst);
+> > +
+> > +     platform_set_drvdata(pdev, rk_rng);
+> > +
+> > +     rk_rng->rng.name =3D dev_driver_string(dev);
+> > +#ifndef CONFIG_PM
+> > +     rk_rng->rng.init =3D rk_rng_init;
+> > +     rk_rng->rng.cleanup =3D rk_rng_cleanup;
+> > +#endif
+> > +     rk_rng->rng.read =3D rk_rng_read;
+> > +     rk_rng->rng.priv =3D (unsigned long) dev;
+> > +     rk_rng->rng.quality =3D 900;
+> > +
+> > +     pm_runtime_set_autosuspend_delay(dev, RK_RNG_AUTOSUSPEND_DELAY);
+> > +     pm_runtime_use_autosuspend(dev);
+> > +     pm_runtime_enable(dev);
+> > +
+> > +     ret =3D devm_hwrng_register(dev, &rk_rng->rng);
+> > +     if (ret)
+> > +             return dev_err_probe(&pdev->dev, ret, "Failed to register=
+ Rockchip hwrng\n");
+> > +
+> > +     dev_info(&pdev->dev, "Registered Rockchip hwrng\n");
+>
+> Drop, driver should be silent on success.
+>
+>
+> Best regards,
+> Krzysztof
+>
+>
 
