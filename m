@@ -1,100 +1,119 @@
-Return-Path: <devicetree+bounces-78520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF21D91284B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:46:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE6C1912854
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:47:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A28E1F28034
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:46:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D07A1C2108C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC01D358A7;
-	Fri, 21 Jun 2024 14:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79635358A7;
+	Fri, 21 Jun 2024 14:46:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD6E2C6BB;
-	Fri, 21 Jun 2024 14:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F7C2BAE3;
+	Fri, 21 Jun 2024 14:46:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718981146; cv=none; b=aD2WNX5eUjhVCpj+TmrdkpGgJv4rje9j+Cspy6M9aQi5uNv4Qidt155Qr9ktGxip5Y87IfdNkrK3NDWHZLYQuzJH5Xx8Qc85XkMhb/RJSkfjQgOJgYYh4uFlxyJlJ3Cw3hQym2FFNMzgmgVANazaYUg9z4rmyD/ooUKcGJoMcuY=
+	t=1718981213; cv=none; b=sPUdIu60VeORkC4OryXB+yMZIQvLiz9p6QVkeG7mjEvLDdNu+rXyDktuEj5N/EgYOhC6fg716szF4TgdDw4Sy1XBMvMJYs+zHi5JtxhuJdzuOj7c1b+VBnHtu604v3eoWxvbxisB7F0TODV+sk3H7eVBr2uUnxoKC4otqtEBGSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718981146; c=relaxed/simple;
-	bh=NxVj40cdOchzrQqEkP4dhiyynqL5T82rHBpo+PoV684=;
+	s=arc-20240116; t=1718981213; c=relaxed/simple;
+	bh=yQVb2DeThksBLy1v6heanX+uAjJHYjLCnQz2w0NHRqc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Mm+f9oPgJT5uXO6Gghq6SyJpbFJE3xMN6DvCXnCVJMXKMo0wgpxtMihivTzZ0BNsTzBE2vIqPUbnBBRUDnLE8YJooQS8VBzgHW+tMAG4GHWno6V5JVHJkOvn07mlc1b66lGOzEQM3rs+woNLbdkragtpwzRE7U0h/svzfAgOmXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.50
+	 To:Cc:Content-Type; b=YmEIBUhjXVsMMl8nmdRcV41bKoNF7nGirGRTCNZy9FsK4AkZI6CY3H7479Oq1StdgDN5y2fIJ3E2hv6yC90ejBeYsbOknPp9/1+wagUI1BPM3IFtbARkrWw1WGfMveaCs351gw0xl1P2XYkjPtbDlActwRFvNb2u/OsesOhB7Zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cdb9526e2so259327e87.0;
-        Fri, 21 Jun 2024 07:45:44 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52c89d6b4adso2023884e87.3;
+        Fri, 21 Jun 2024 07:46:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718981142; x=1719585942;
+        d=1e100.net; s=20230601; t=1718981208; x=1719586008;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :reply-to:in-reply-to:references:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NxVj40cdOchzrQqEkP4dhiyynqL5T82rHBpo+PoV684=;
-        b=GN/l3qgKMsEbj1EWybBJMUFDFJ1FZbbtfG+oY3SwvMzOoB4c8/L3ptrn4IDwxMkyoH
-         mLRL7UOJ4aoPzN7cnQY7XzFfMn0RyH5jgcdwK154Ws6LoNnVHDcHx3KRor0Ekx+FH2gr
-         ILSPVfrCjufqSn/iQvXtzBcCeR81kZKYAdjtPt1mPgHkm2vDd3HuNgRdlfpvuFIPLyvS
-         UG0ZFqvFtE3oWpxXuMPuPydAT7wAdZlUMlGY6PGfCOhJJPTQHKvkgQHtbQiBDHC8Incb
-         Y3LbvZInAz+R/uCs9JTQwecXkP1p3ebFXvuF4laaLyq6y4pGYlgIdbMuh473AKJW5FVU
-         QkkA==
-X-Forwarded-Encrypted: i=1; AJvYcCUdb5OGJnJn6+Gh0WrbmSvnbHl3advokAAEDIZszP/x+LA3OtuK/F0UlMBkra40JYNfYgkOVzcudiOeCM4GHLpjChN8v3bKFp7S9uh7MahKdhQlK6wryXaMN3N8S9sdSq6gZAyF/1SoLg==
-X-Gm-Message-State: AOJu0YzQtDomW4JO/0hd4bS15l6xtQuqa1Brx699MKXVR1WfmFqoVxCO
-	PJ14z9S53ZuRjuzALeMA7rNK7Q2ySU4ywut9nvMp3/DhRq7QN+HFz3erDwcK
-X-Google-Smtp-Source: AGHT+IF7Qwm8F5y5qIxkgDIHfWWxyQyxSTsIzpZsHW/pEqkqqA9vXa+JkC7HiI1KqQxPGV2slpcvKg==
-X-Received: by 2002:a05:6512:3e0a:b0:52c:9fb1:6ae with SMTP id 2adb3069b0e04-52cdcde47famr4354e87.1.1718981142510;
-        Fri, 21 Jun 2024 07:45:42 -0700 (PDT)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd6432b2asm218981e87.232.2024.06.21.07.45.42
+        bh=yQVb2DeThksBLy1v6heanX+uAjJHYjLCnQz2w0NHRqc=;
+        b=tQ5sLXnzoPkaSkLZ5Wqt7NISILtrnAxq6fkaJY9T4b7PUG2ZjeIrFHeXKB9hfekJyc
+         P8918gYagsgFd/bYldXpPefhRcCO14fzT4Ka6wzXKyFRq7BI6UStt+Vcm6Krq4DIkUTK
+         660eiQR+CthCx/Al6x/QssiVC+BYIT8Q04cfcMHYg6WvfcRFWMCUAP5NwmvKhqZnw/+E
+         clfdo8gpwFJE+cOUtJ9iRBTkJxx9HU1ETKCFV/y5xqbTnCAfEoQgI9W3H/BVaJ56Fm09
+         ne4LQ1t2aEskLDg26V/anLBGwBPQIknxrO7DwF0eQwDroMKJanoIH8exx/vFtCyAF0r7
+         JAAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVcU0xLQhgIl+Y+Uw9C3XH0a4RA9HEEqgMU2q5G0bSlg0tFkNJr/nHxohUuP31pGL/mwVHTkOwc1tLXK4IbYF+4UrPo4UlK0vJR+pMiNXsfxYTGAuvVmH6HdFLfzMJmLziqTpXuaLUfh8z4jMTmj2pX2DPGa19DksL0TfxVUJF+6e7T44tPlv0yBkOyxu5aQEVdD6M9IsQJN0HlXzlh8Jl2s+Q2LkYMnF6hos2m0m+caiPh1kCkIU26gvp36d8j9GTxWYrQz+HcCKhXy0d3BNX6I/Ka//1IMaZALXqXp/Di+o5h34HuqhBZUBecec1t36R6XyOA/7M7yyPqRQqzDPeE7rhthw==
+X-Gm-Message-State: AOJu0YwkNyvdXvfLGvyEDUYuc1kzW0LCCAmhe4/Z2qlhXIH9PMDh/NOc
+	3HLSthSXTx1qr1lRVAhCBqhjS/U8dfvLzCZXBmZiyVyOvdvzkJTHXuo22gM/DpM=
+X-Google-Smtp-Source: AGHT+IER7wT4R9FfGOzQ5BNfgll5zO8oVJ4SPQG+6xi9r8nDKeH7ziLtYU/BWHh5yJD3VLyT3Eb/yA==
+X-Received: by 2002:ac2:5e78:0:b0:52b:bdbd:2c43 with SMTP id 2adb3069b0e04-52ccaaa8d27mr4679346e87.61.1718981207807;
+        Fri, 21 Jun 2024 07:46:47 -0700 (PDT)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com. [209.85.167.50])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cdace206esm100345e87.286.2024.06.21.07.46.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jun 2024 07:45:42 -0700 (PDT)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ec4a35baa7so12522291fa.1;
-        Fri, 21 Jun 2024 07:45:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXO4FT6RCw371vxFRM1AUaq8RN1zQEBpk5DF8Wb4uvDxRO8yMRNs4ATCrU+fE1z6hir0Hy67deYXzIIq8kLgVaW8pnBIYjcYPOIeMzAxtrki4yu/BYQsw2vBa/Ateu1hmssgymcASBuVw==
-X-Received: by 2002:a2e:9b53:0:b0:2ec:35a3:20bd with SMTP id
- 38308e7fff4ca-2ec53afdc03mr148101fa.22.1718981142291; Fri, 21 Jun 2024
- 07:45:42 -0700 (PDT)
+        Fri, 21 Jun 2024 07:46:47 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cccd44570so2468895e87.2;
+        Fri, 21 Jun 2024 07:46:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVr3Wm/MY98z91lj2BJiaYsaP47maRZCyqyfvlJCH8OKjvpALfVSBALIZVvvXSr9Y3QRUut4A3mrmprnUkALNaXApBMiZkE35fsGixCdo0OcszqeWEUkGoCl4LiSPKidpmLgLyy4lzMFAkTvzjR1ANGi5JYPwQr7SMFoJh90SeJcC9TJlfyTjWDtBCTAEasPqcuHGmLxBUKrPTy2t9qA38/3+qLfup2AgRW4uESKsAT9RgrKYRGpTn5/n+10V1bOCMBkrhvxJIYgiiC4yFMQ2TynBfiBOhdltc35NL8opGh9D1j1tQ43eH46PXM01HzFxhDR5lAaXcclO4CXyIVfGVtYG8B7Q==
+X-Received: by 2002:a05:651c:104c:b0:2ec:5073:5816 with SMTP id
+ 38308e7fff4ca-2ec507358edmr10687831fa.31.1718981186574; Fri, 21 Jun 2024
+ 07:46:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240616220719.26641-1-andre.przywara@arm.com> <20240616220719.26641-4-andre.przywara@arm.com>
-In-Reply-To: <20240616220719.26641-4-andre.przywara@arm.com>
+References: <20240614-dt-bindings-thermal-allof-v1-0-30b25a6ae24e@linaro.org> <20240614-dt-bindings-thermal-allof-v1-3-30b25a6ae24e@linaro.org>
+In-Reply-To: <20240614-dt-bindings-thermal-allof-v1-3-30b25a6ae24e@linaro.org>
 Reply-To: wens@csie.org
 From: Chen-Yu Tsai <wens@csie.org>
-Date: Fri, 21 Jun 2024 22:45:29 +0800
-X-Gmail-Original-Message-ID: <CAGb2v656egzMQ+YqwZm=Z5QyHzEKGoSOivZxYhzBbq4GGp8mEA@mail.gmail.com>
-Message-ID: <CAGb2v656egzMQ+YqwZm=Z5QyHzEKGoSOivZxYhzBbq4GGp8mEA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] crypto: sun8i-ce - add Allwinner H616 support
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Corentin Labbe <clabbe.montjoie@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
-	"David S . Miller" <davem@davemloft.net>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org
+Date: Fri, 21 Jun 2024 22:46:13 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65T80TH9HUpny8vK2KNrE6aYQHf4x0CAUrxKWih34TdTA@mail.gmail.com>
+Message-ID: <CAGb2v65T80TH9HUpny8vK2KNrE6aYQHf4x0CAUrxKWih34TdTA@mail.gmail.com>
+Subject: Re: [PATCH 03/22] dt-bindings: thermal: allwinner,sun8i-a83t-ths:
+ reference thermal-sensor schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Guillaume La Roque <glaroque@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Vasily Khoruzhick <anarsoul@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Anson Huang <Anson.Huang@nxp.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+	Heiko Stuebner <heiko@sntech.de>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Pascal Paillet <p.paillet@foss.st.com>, Keerthy <j-keerthy@ti.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	zhanghongchen <zhanghongchen@loongson.cn>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, linux-pm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	imx@lists.linux.dev, linux-tegra@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Florian Fainelli <f.fainelli@gmail.com>, linux-rpi-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 17, 2024 at 6:09=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
-com> wrote:
+On Fri, Jun 14, 2024 at 5:46=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> The crypto engine in the Allwinner H616 is very similar to the H6, but
-> needs the base address for the task descriptor and the addresses within
-> it to be expressed in words, not in bytes.
+> Device is a thermal sensor and it requires '#thermal-sensor-cells', so
+> reference the thermal-sensor.yaml to simplify it and bring the
+> common definition of '#thermal-sensor-cells' property.
 >
-> Add a new variant struct entry for the H616, and set the new flag to
-> mark the use of 34 bit addresses. Also the internal 32K oscillator is
-> required for TRNG operation, so specify all four clocks.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+Acked-by: Chen-Yu Tsai <wens@csie.org>
 
