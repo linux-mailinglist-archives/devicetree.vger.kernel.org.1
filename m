@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-78266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDE6911B21
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:14:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBAFE911B27
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:14:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7713C1F21D1A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:14:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EE741F21D5A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0EFA16D9AE;
-	Fri, 21 Jun 2024 06:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A7516D9C6;
+	Fri, 21 Jun 2024 06:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b9ZU8SJM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUNkEaGI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808A116D9A8;
-	Fri, 21 Jun 2024 06:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90CC16DECA;
+	Fri, 21 Jun 2024 06:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718950304; cv=none; b=X/oCPYtVITfUqvUjGolSe0h6j8v21U/R7DCH3QJBARsyVD73eWDzxR5joszqEJ9EtfHE4YBSkA6uFzJmsxdOv1wg/4yCzgN7OEZXDPKUpsTMYGkLpSdCDi5djtt7Xin58ZZ3IkNDt/+osAS0Gjw7fp59/EJVAer2UxMRxdNNlJE=
+	t=1718950306; cv=none; b=uEYqhy3eSvvjNb2sMenhodn+6fYVPhe1Xeehu6GN+mvJW1AMrAsC6dalFP5OrFzgqAvd5IUdevzudrEleXx7AyJVWbQitzf8DkvefxqQnLJqvppVNiFrIFrHUcfWf3qz3FBO1Ym3ptuAdVvEdVlzqlXwHFPRFJOMMv75NgU7h8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718950304; c=relaxed/simple;
-	bh=SnlVex2au9WIDVFBuKTqnVLh0QtiLPrt8mCOwpktnRE=;
+	s=arc-20240116; t=1718950306; c=relaxed/simple;
+	bh=TrPlD8EPTxxzfTHqr4aPupok0Two1WCg253dFO+fg+8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Hg03nFZTc5hLuy5aIE+8psyfwlBeTPQGljlhdECsp8vApIEDsDmMaD3HVpaQJbV3LENsmxrU2+DI2DLbOSQof8dA8QGJfTd0Ch7zn4h0G1wRbNKysn4uUkUTmY3FJmdyfYHWQEHWlRFFdIcvUtd2QVgAEuhS/OYF2UCHnqR/dP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b9ZU8SJM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAF8FC2BBFC;
-	Fri, 21 Jun 2024 06:11:43 +0000 (UTC)
+	 MIME-Version:Content-Type; b=tCKLlg81L/iJkdtPYlAc1/YKqg3NS5aNeHMF0DydnevftdRV6nZ0mtM7zggULpY+vNwMDU0XG5jecPbKtVymZRqBNw2BaWyfWSzjg1z0414dh/tYoqAGAM3B1oCcjmxO4a3ZaadGRks0GmzmcwI0sKW7ISWNNx0ktA6nPvTypQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUNkEaGI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D3E4C4AF09;
+	Fri, 21 Jun 2024 06:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718950304;
-	bh=SnlVex2au9WIDVFBuKTqnVLh0QtiLPrt8mCOwpktnRE=;
+	s=k20201202; t=1718950306;
+	bh=TrPlD8EPTxxzfTHqr4aPupok0Two1WCg253dFO+fg+8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=b9ZU8SJMOVB+fBoV6UreMtWrEIBnjoo0KsZtHeXHyy4p/nmC3FT6fwds2a4yH/BiK
-	 4mBhZhvRmIOeLrC3sSeccaT1QFqHE9Dl2tSln8SG+n1itPvmfgy7Jh3/NechpiNATo
-	 MbYpOle+pWHZx3qNNm8wFONT9hNRc9i+IrQYM7ZYnGCQbgh4ov/hEcTGvd4AzPUZft
-	 gabf22vQHf2YzkL08TvzNv8CqlO7Flyy00ic7cejlJMqAILzZiNg8zUs2iC62tYiQG
-	 mgiT6gsLwbb8TbxRIHL4YBIREw/phObzQqCsvTtzpgvXd64tzu1FA6d7fRdyrb9SH5
-	 GwBVQ/G1GxooA==
+	b=cUNkEaGIZHvcbp59hYWC7NVUNcpg7NLZ5wYETCou4n6F0p21z2elKnLHtFJ5woIwM
+	 5IPx9p6D0T8bLF52Izm36zqukiQ+2f7Z+lBhgkygd0L75avxVYl3cLal6NWUASG5Fe
+	 xKYZoSNO0C++9xsOeMtYmAVGObpDkxMYybWKNtStNiaKNM4UbsETAoFT39jNrgIzI9
+	 a/Iyj8sRWzk0QZPEkOZzDDnUQ+2881BIXXeWgOnYnNdmR+B+3DRKm3NirYTAYHG/so
+	 Hw5vn9c6cBOil7TL3AscucNL5ouppz1R4CNBstRiPr7XcczdTVglsu6I2JOz0fQ1vV
+	 4dNcmQ2eEQC2g==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
@@ -49,14 +49,13 @@ To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Komal Bajaj <quic_kbajaj@quicinc.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Mukesh Ojha <quic_mojha@quicinc.com>
-Subject: Re: [PATCH v2 0/2] qdu1000: Fix LLCC reg property
-Date: Fri, 21 Jun 2024 01:11:26 -0500
-Message-ID: <171895028802.12506.3175097705958876053.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: qcom: qdu1000: Add secure qfprom node
+Date: Fri, 21 Jun 2024 01:11:28 -0500
+Message-ID: <171895028800.12506.3929742745184236619.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240619061641.5261-1-quic_kbajaj@quicinc.com>
-References: <20240619061641.5261-1-quic_kbajaj@quicinc.com>
+In-Reply-To: <20240618092711.15037-1-quic_kbajaj@quicinc.com>
+References: <20240618092711.15037-1-quic_kbajaj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,24 +66,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 19 Jun 2024 11:46:39 +0530, Komal Bajaj wrote:
-> The LLCC binding and driver was corrected to handle the stride
-> varying between platforms. Switch to the new format to obtain
-> the base address of each LLCC bank from devicetree.
+On Tue, 18 Jun 2024 14:57:11 +0530, Komal Bajaj wrote:
+> Add secure qfprom node and also add properties for multi channel
+> DDR. This is required for LLCC driver to pick the correct LLCC
+> configuration.
 > 
-> -----
-> Changes in v2:
-> * Updated the commit message for bindings, marking the change as revert
-> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240612062719.31724-1-quic_kbajaj@quicinc.com/
 > 
-> [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: qdu1000: Fix LLCC reg property
-      commit: af355e799b3dc3dd0ed8bf2143641af05d8cd3d4
-[2/2] Revert "dt-bindings: cache: qcom,llcc: correct QDU1000 reg entries"
-      commit: e32ac54b0529a8727235c04aebe1f2d689fa5cfe
+[1/1] arm64: dts: qcom: qdu1000: Add secure qfprom node
+      commit: 367fb3f0aaa6eac9101dc683dd27c268b4cc702e
 
 Best regards,
 -- 
