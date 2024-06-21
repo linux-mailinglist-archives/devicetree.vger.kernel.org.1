@@ -1,238 +1,201 @@
-Return-Path: <devicetree+bounces-78571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872C2912AB6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:55:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DC97912ACD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 18:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DB572893F7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:55:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9424FB28D3E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C276315F303;
-	Fri, 21 Jun 2024 15:54:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DD415FA94;
+	Fri, 21 Jun 2024 16:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="G/Kxx9Rt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e3Kx0nfV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFAE15EFCD
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 15:54:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B236215FA80;
+	Fri, 21 Jun 2024 16:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718985297; cv=none; b=Lnt5WMe450KSYtTW/w1sj+41Dj4aZfpbBDOR9zJTNhfbb1ou947v+xiMm0UpUcqd035/LK6h0NcXIaX54CZjxBcTWPk/MOYHudD6tgyitK1d292IS3XtZIi0F9cOdtR1LXVHECVxFn49wCxLw9VQDcsnXOhER2IdIGWGYg2DFyA=
+	t=1718985707; cv=none; b=DqTTOM37t2/1mlOukZKaM4hSPSlVSO68FnHhybcjONsWEivGoFRjFwqV/5WVVZOoX7sZdcKDOG3aa4BFjWEB2YmJk8DuEoiMT2sk/u4H3pHNcEVMy11cO88vlEAuTHbdmcjdTCbu+ZE9d5bf+tyNoPrbcOKKpCRzoQLAuR0E8ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718985297; c=relaxed/simple;
-	bh=OmsoKiA6pnN3rOER8AooRP23EHq85wH3quCbmnEwn8k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aYGpF7GyWV2Lc1KLoFhpkNUrCziOgfalHDJRdull2rqU4gRqNvFVL8YKHHuykXrGHUNIuQXN6N6mMAUOQuCfFrAQ4ZSNJGGIj29VSG0Si1HYpqWeDrNtDI2aDpK9XqQrpfMdARNDGsb4XSVGXAoCATZ6LAxdpTnF/9/zIfuBCdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=G/Kxx9Rt; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 23CFF88059;
-	Fri, 21 Jun 2024 17:54:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1718985293;
-	bh=Va3O4DqzQSHq3cJfPChqI8lE50hpgVvzybgMmu0WY2w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=G/Kxx9RtfvnuHTC+LxFmPfeeQZiuI8Jrz7aieQaIQlmZpoQBcElw/IRo/OiQeLk5p
-	 QPieIyG2bDo1Tq/PL7PpqSzFoM+lRr7oD5xNQXPX0LaDWaHnrnL/Iru9yYH0sVqIzg
-	 49JI1awCAEHK96qAaCrLn26G9Fp7Wir4G8rfoL2r8V+MHiBrexSA0Chou9fyMODSaq
-	 TvvgYehM3Ic3q37gh6sjU913mBJFb57+CaCMrdd86l04kGV/sd75K8XnZrsYLFHQf7
-	 EZDPsIh9wGV85xE37PKhPY1X4t+e0GlRWz4b26nDPWOOL9NhCTuq6Fmxf2g93+h7Ob
-	 GC7+Z9Awk6MIQ==
-From: Marek Vasut <marex@denx.de>
-To: dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marex@denx.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com
-Subject: [PATCH v2 2/2] drm/bridge: tc358767: Add configurable default preemphasis
-Date: Fri, 21 Jun 2024 17:53:54 +0200
-Message-ID: <20240621155430.92894-2-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240621155430.92894-1-marex@denx.de>
-References: <20240621155430.92894-1-marex@denx.de>
+	s=arc-20240116; t=1718985707; c=relaxed/simple;
+	bh=8v/eEGyFKY5gIZxnTxHoa5Tk339bix4846v13RAQ1fU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q0O03+x7uLOjH2MtX2GYpqFplAjcID23IhIQb9735tNeC2fn4Fg9Qpb+rcWMfoy9Reba5HtSP06Dpl5rfrY4fxlE0a2qrRrnBPqIcofyJMjA0kk/niQYGCA1dXpcaFWFDTpVYQKN8jIkOAfAdYVYyBEJaazbxs7t+GGPkpGpYl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e3Kx0nfV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74EDEC2BBFC;
+	Fri, 21 Jun 2024 16:01:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718985707;
+	bh=8v/eEGyFKY5gIZxnTxHoa5Tk339bix4846v13RAQ1fU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e3Kx0nfVNTQdGiS+EXiNuS8Ff9ugwc/B9NUkC0TH+vzENHZ4xwj8vql3R3uFeY6wz
+	 K4k4NsKJ+54dLDGjyYdiDsZNGSeE2eSi8nny45lw3cPVjVYm1/vl9LePRAV/hF15Z1
+	 C9mBsXCgN5JQi/72ufehpDqtVl3Bji9Yv1vNJ/vTzWSx0F3tYm8+J98pKXnUkj/PBL
+	 9Y4UwN5zguSJkKfNWZisLZl/14Y6O89kvnyeL2efq/S5CyxUmIVS32nbLBUKhzaOly
+	 mW1aLqaDbhiyI32S30aPL6C9dOaGJcHi3hGab/I97tGVOWoUKKCZ6JyY3kJmdj/dXK
+	 yITUPP3efhCWQ==
+Date: Fri, 21 Jun 2024 09:01:44 -0700
+From: Eric Biggers <ebiggers@kernel.org>
+To: Gaurav Kashyap <gaurkash@qti.qualcomm.com>
+Cc: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+	"Gaurav Kashyap (QUIC)" <quic_gaurkash@quicinc.com>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+	"andersson@kernel.org" <andersson@kernel.org>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"srinivas.kandagatla" <srinivas.kandagatla@linaro.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+	kernel <kernel@quicinc.com>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"Om Prakash Singh (QUIC)" <quic_omprsing@quicinc.com>,
+	"Bao D. Nguyen (QUIC)" <quic_nguyenb@quicinc.com>,
+	"bartosz.golaszewski" <bartosz.golaszewski@linaro.org>,
+	"konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
+	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+	"jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+	"martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+	"mani@kernel.org" <mani@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+	Prasad Sodagudi <psodagud@quicinc.com>,
+	Sonal Gupta <sonalg@quicinc.com>
+Subject: Re: [PATCH v5 04/15] soc: qcom: ice: add hwkm support in ice
+Message-ID: <20240621160144.GB2081@sol.localdomain>
+References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
+ <20240617005825.1443206-5-quic_gaurkash@quicinc.com>
+ <3eehkn3cdhhjfqtzpahxhjxtu5uqwhntpgu22k3hknctrop3g5@f7dhwvdvhr3k>
+ <96e2ce4b154a4f918be0bc2a45011e6d@quicinc.com>
+ <CAA8EJppGpv7N_JQQNJZrbngBBdEKZfuqutR9MPnS1R_WqYNTQw@mail.gmail.com>
+ <3a15df00a2714b40aba4ebc43011a7b6@quicinc.com>
+ <CAA8EJpoZ0RR035QwzMLguJZvdYb-C6aqudp1BgHgn_DH2ffsoQ@mail.gmail.com>
+ <20240621044747.GC4362@sol.localdomain>
+ <CY8PR02MB9502E314820C659AF080DB93E2C92@CY8PR02MB9502.namprd02.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CY8PR02MB9502E314820C659AF080DB93E2C92@CY8PR02MB9502.namprd02.prod.outlook.com>
 
-Make the default DP port preemphasis configurable via new DT property
-"toshiba,pre-emphasis". This is useful in case the DP link properties
-are known and starting link training from preemphasis setting of 0 dB
-is not useful. The preemphasis can be set separately for both DP lanes
-in range 0=0dB, 1=3.5dB, 2=6dB .
+On Fri, Jun 21, 2024 at 03:35:40PM +0000, Gaurav Kashyap wrote:
+> Hello Eric
+> 
+> On 06/20/2024, 9:48 PM PDT, Eric Biggers wrote:
+> > On Thu, Jun 20, 2024 at 02:57:40PM +0300, Dmitry Baryshkov wrote:
+> > > > > >
+> > > > > > > Is it possible to use both kind of keys when working on standard
+> > mode?
+> > > > > > > If not, it should be the user who selects what type of keys to be
+> > used.
+> > > > > > > Enforcing this via DT is not a way to go.
+> > > > > > >
+> > > > > >
+> > > > > > Unfortunately, that support is not there yet. When you say user,
+> > > > > > do you mean to have it as a filesystem mount option?
+> > > > >
+> > > > > During cryptsetup time. When running e.g. cryptsetup I, as a user,
+> > > > > would like to be able to use either a hardware-wrapped key or a
+> > standard key.
+> > > > >
+> > > >
+> > > > What we are looking for with these patches is for per-file/folder
+> > encryption using fscrypt policies.
+> > > > Cryptsetup to my understanding supports only full-disk , and does
+> > > > not support FBE (File-Based)
+> > >
+> > > I must admit, I mostly used dm-crypt beforehand, so I had to look at
+> > > fscrypt now. Some of my previous comments might not be fully
+> > > applicable.
+> > >
+> > > > Hence the idea here is that we mount an unencrypted device (with the
+> > > > inlinecrypt option that indicates inline encryption is supported) And
+> > specify policies (links to keys) for different folders.
+> > > >
+> > > > > > The way the UFS/EMMC crypto layer is designed currently is that,
+> > > > > > this information is needed when the modules are loaded.
+> > > > > >
+> > > > > > https://lore.kernel.org/all/20231104211259.17448-2-ebiggers@kern
+> > > > > > el.org /#Z31drivers:ufs:core:ufshcd-crypto.c
+> > > > >
+> > > > > I see that the driver lists capabilities here. E.g. that it
+> > > > > supports HW-wrapped keys. But the line doesn't specify that standard
+> > keys are not supported.
+> > > > >
+> > > >
+> > > > Those are capabilities that are read from the storage controller.
+> > > > However, wrapped keys Are not a standard in the ICE JEDEC
+> > > > specification, and in most cases, is a value add coming from the SoC.
+> > > >
+> > > > QCOM SOC and firmware currently does not support both kinds of keys in
+> > the HWKM mode.
+> > > > That is something we are internally working on, but not available yet.
+> > >
+> > > I'd say this is a significant obstacle, at least from my point of
+> > > view. I understand that the default might be to use hw-wrapped keys,
+> > > but it should be possible for the user to select non-HW keys if the
+> > > ability to recover the data is considered to be important. Note, I'm
+> > > really pointing to the user here, not to the system integrator. So
+> > > using DT property or specifying kernel arguments to switch between
+> > > these modes is not really an option.
+> > >
+> > > But I'd really love to hear some feedback from linux-security and/or
+> > > linux-fscrypt here.
+> > >
+> > > In my humble opinion the user should be able to specify that the key
+> > > is wrapped using the hardware KMK. Then if the hardware has already
+> > > started using the other kind of keys, it should be able to respond
+> > > with -EINVAL / whatever else. Then the user can evict previously
+> > > programmed key and program a desired one.
+> > >
+> > > > > Also, I'd have expected that hw-wrapped keys are handled using
+> > > > > trusted keys mechanism (see security/keys/trusted-keys/). Could
+> > > > > you please point out why that's not the case?
+> > > > >
+> > > >
+> > > > I will evaluate this.
+> > > > But my initial response is that we currently cannot communicate to
+> > > > our TPM directly from HLOS, but goes through QTEE, and I don't think
+> > > > our qtee currently interfaces with the open source tee driver. The
+> > interface is through QCOM SCM driver.
+> > >
+> > > Note, this is just an API interface, see how it is implemented for the
+> > > CAAM hardware.
+> > >
+> > 
+> > The problem is that this patchset was sent out without the patches that add
+> > the block and filesystem-level framework for hardware-wrapped inline
+> > encryption keys, which it depends on.  So it's lacking context.  The proposed
+> > framework can be found at https://lore.kernel.org/linux-
+> > block/20231104211259.17448-1-ebiggers@kernel.org/T/#u
+> > 
+> 
+> I have only been adding the fscryp patch link as part of the cover letter - as a dependency.
+> https://lore.kernel.org/all/20240617005825.1443206-1-quic_gaurkash@quicinc.com/
+> If you would like me to include it in the patch series itself, I can do that as well.
+> 
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: kernel@dh-electronics.com
----
-V2: - Parse toshiba,pre-emphasis property out of an endpoint of port 2 (the DP port)
----
- drivers/gpu/drm/bridge/tc358767.c | 45 ++++++++++++++++++++++++++-----
- 1 file changed, 38 insertions(+), 7 deletions(-)
+I think including all prerequisite patches would be helpful for reviewers.
 
-diff --git a/drivers/gpu/drm/bridge/tc358767.c b/drivers/gpu/drm/bridge/tc358767.c
-index 2b035a136a6e5..8f81fc960d0fa 100644
---- a/drivers/gpu/drm/bridge/tc358767.c
-+++ b/drivers/gpu/drm/bridge/tc358767.c
-@@ -241,6 +241,10 @@
- 
- /* Link Training */
- #define DP0_SRCCTRL		0x06a0
-+#define DP0_SRCCTRL_PRE1		GENMASK(29, 28)
-+#define DP0_SRCCTRL_SWG1		GENMASK(25, 24)
-+#define DP0_SRCCTRL_PRE0		GENMASK(21, 20)
-+#define DP0_SRCCTRL_SWG0		GENMASK(17, 16)
- #define DP0_SRCCTRL_SCRMBLDIS		BIT(13)
- #define DP0_SRCCTRL_EN810B		BIT(12)
- #define DP0_SRCCTRL_NOTP		(0 << 8)
-@@ -278,6 +282,8 @@
- #define AUDIFDATA6		0x0720	/* DP0 Audio Info Frame Bytes 27 to 24 */
- 
- #define DP1_SRCCTRL		0x07a0	/* DP1 Control Register */
-+#define DP1_SRCCTRL_PRE			GENMASK(21, 20)
-+#define DP1_SRCCTRL_SWG			GENMASK(17, 16)
- 
- /* PHY */
- #define DP_PHY_CTRL		0x0800
-@@ -369,6 +375,7 @@ struct tc_data {
- 
- 	u32			rev;
- 	u8			assr;
-+	u8			pre_emphasis[2];
- 
- 	struct gpio_desc	*sd_gpio;
- 	struct gpio_desc	*reset_gpio;
-@@ -1090,13 +1097,17 @@ static int tc_main_link_enable(struct tc_data *tc)
- 			return ret;
- 	}
- 
--	ret = regmap_write(tc->regmap, DP0_SRCCTRL, tc_srcctrl(tc));
-+	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
-+			   tc_srcctrl(tc) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 	/* SSCG and BW27 on DP1 must be set to the same as on DP0 */
- 	ret = regmap_write(tc->regmap, DP1_SRCCTRL,
- 		 (tc->link.spread ? DP0_SRCCTRL_SSCG : 0) |
--		 ((tc->link.rate != 162000) ? DP0_SRCCTRL_BW27 : 0));
-+		 ((tc->link.rate != 162000) ? DP0_SRCCTRL_BW27 : 0) |
-+		 FIELD_PREP(DP1_SRCCTRL_PRE, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -1188,8 +1199,10 @@ static int tc_main_link_enable(struct tc_data *tc)
- 		goto err_dpcd_write;
- 
- 	/* Reset voltage-swing & pre-emphasis */
--	tmp[0] = tmp[1] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
--			  DP_TRAIN_PRE_EMPH_LEVEL_0;
-+	tmp[0] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
-+		 FIELD_PREP(DP_TRAIN_PRE_EMPHASIS_MASK, tc->pre_emphasis[0]);
-+	tmp[1] = DP_TRAIN_VOLTAGE_SWING_LEVEL_0 |
-+		 FIELD_PREP(DP_TRAIN_PRE_EMPHASIS_MASK, tc->pre_emphasis[1]);
- 	ret = drm_dp_dpcd_write(aux, DP_TRAINING_LANE0_SET, tmp, 2);
- 	if (ret < 0)
- 		goto err_dpcd_write;
-@@ -1213,7 +1226,9 @@ static int tc_main_link_enable(struct tc_data *tc)
- 	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
- 			   tc_srcctrl(tc) | DP0_SRCCTRL_SCRMBLDIS |
- 			   DP0_SRCCTRL_AUTOCORRECT |
--			   DP0_SRCCTRL_TP1);
-+			   DP0_SRCCTRL_TP1 |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -1248,7 +1263,9 @@ static int tc_main_link_enable(struct tc_data *tc)
- 	ret = regmap_write(tc->regmap, DP0_SRCCTRL,
- 			   tc_srcctrl(tc) | DP0_SRCCTRL_SCRMBLDIS |
- 			   DP0_SRCCTRL_AUTOCORRECT |
--			   DP0_SRCCTRL_TP2);
-+			   DP0_SRCCTRL_TP2 |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -1274,7 +1291,9 @@ static int tc_main_link_enable(struct tc_data *tc)
- 
- 	/* Clear Training Pattern, set AutoCorrect Mode = 1 */
- 	ret = regmap_write(tc->regmap, DP0_SRCCTRL, tc_srcctrl(tc) |
--			   DP0_SRCCTRL_AUTOCORRECT);
-+			   DP0_SRCCTRL_AUTOCORRECT |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE0, tc->pre_emphasis[0]) |
-+			   FIELD_PREP(DP0_SRCCTRL_PRE1, tc->pre_emphasis[1]));
- 	if (ret)
- 		return ret;
- 
-@@ -2408,6 +2427,18 @@ static int tc_probe_bridge_endpoint(struct tc_data *tc)
- 			return -EINVAL;
- 		}
- 		mode |= BIT(endpoint.port);
-+		if (endpoint.port != 2)
-+			continue;
-+
-+		of_property_read_u8_array(node, "toshiba,pre-emphasis",
-+					  tc->pre_emphasis,
-+					  ARRAY_SIZE(tc->pre_emphasis));
-+
-+		if (tc->pre_emphasis[0] < 0 || tc->pre_emphasis[0] > 2 ||
-+		    tc->pre_emphasis[1] < 0 || tc->pre_emphasis[1] > 2) {
-+			dev_err(dev, "Incorrect Pre-Emphasis setting, use either 0=0dB 1=3.5dB 2=6dB\n");
-+			return -EINVAL;
-+		}
- 	}
- 
- 	if (mode == mode_dpi_to_edp || mode == mode_dpi_to_dp) {
--- 
-2.43.0
+Thanks for continuing to work on this!
 
+I still need to get ahold of a sm8650 based device and test this out.  Is the
+SM8650 HDK the only option, or is there a sm8650 based phone with upstream
+support yet?
+
+- Eric
 
