@@ -1,210 +1,105 @@
-Return-Path: <devicetree+bounces-78328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E32C911E94
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:23:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 983BF911EB0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:27:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC83E2825CF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:23:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4071F1F24F30
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B791155C82;
-	Fri, 21 Jun 2024 08:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BY/5yKC6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F4216D9B7;
+	Fri, 21 Jun 2024 08:27:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4783712D210
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 08:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C672616D335;
+	Fri, 21 Jun 2024 08:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718958200; cv=none; b=Tv625wMzM6WixFa1bcK2iY9hVBdEuijgKfnrhZzzTM1VYa8vZGQwKb6uogl/9IWcqOH/CGl+qY97JEIhYCYyvrQfkHBnoSOXF5zal34pF3EwrMATkbjgjleekq9+G8J2W0ZwWk/24Vd+zN+YkgamWO4+qM8ZVZ/tiI68lCVsvUA=
+	t=1718958423; cv=none; b=Six+8Ui5tDJS2nlIK4cGDH0eVBsu+YQRJfACz5L1Bw/jagx/UA4Uiuh2DX6AlWiVyB4vCs6588jiD8N3XYhg8boASmiHfbRbgf7h/VAxiFCScgy4x9P16ZeOdVqNDdj6XwLWym8DS3dG66/addusqOmP9Z+99D1ihYuGHAddcq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718958200; c=relaxed/simple;
-	bh=6OAO8od/+Z5WA17/lFyMhf6eWCujfX1iV3HKhszXrVc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U0tgj8Le6+7NPT8V3O41ipJ4C134UXjtsFEgTUtPD1DQ8cXrBhxlAhFS3o1DG8rhME4iVclf7cbtRAxDBOeqinSvKdh6RkmVdI166cnwF4YlchDEBKg4isfSh6NOmsuPr7hqDqxzrPlIzX0YThAaqdzceTSr6DWxPeMsKgXuL+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BY/5yKC6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53281C32781;
-	Fri, 21 Jun 2024 08:23:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718958199;
-	bh=6OAO8od/+Z5WA17/lFyMhf6eWCujfX1iV3HKhszXrVc=;
-	h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BY/5yKC6C/WPaR4MyqUPnBX7hjZOj5KdU6opuUMilYLce5nRAojZo5ROGhmMU370U
-	 dlYkrsgylYRKzu1WOHJJOPcELdzSpv6Dc7KjC3y5YxkYy9JpMx8eUG67IIvlZXpvBQ
-	 KPyC0MeKmasjdl1mPyzZkqIQmJmFXMGcHL4xbUkvc0J3L7yn7OnMtyKzoWMaFtXi3I
-	 6HgW2Z3v/w65WR9/tDoTPTK61LQPWrSEkjwts5wEvoG/d8uzawQg/7tTfykrpcWQ1M
-	 pfJs8v+Zp7DLfiAJSyCAb64xo/HbPnzJ/Eqb1uph1OYrkvjtLbEfW5Xymx6NSHAxB/
-	 C2S83Mp5TeM5Q==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1718958423; c=relaxed/simple;
+	bh=1R7fiFnL/wVNkTfm6vdznU0RWqmiuV2jLlNdozZfQ/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WZN8PHuRa62dqHjeJQQvi18QwcNM9P4F3D6zYskzixSkiQC5MsQCEXK4HoOQ6GXMCcNy1Hofq1jbmgl7d4z9lz4JuBk/IDZQROGQ5AqOR0D2XeZ8PrSQZGZYWjxeCE6YRhM76N3s9q3Y6yV+KwhyOMFKS1eRY1423AvovYtn0is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1sKZbl-0001Sm-00; Fri, 21 Jun 2024 10:26:57 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 21BF8C0688; Fri, 21 Jun 2024 10:26:24 +0200 (CEST)
+Date: Fri, 21 Jun 2024 10:26:24 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	soc@kernel.org,
-	Thomas Gleixner <tglx@linutronix.de>
-Cc: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH 2/2] dt-bindings: interrupt-controller: convert marvell,mpic binding to YAML
-Date: Fri, 21 Jun 2024 10:23:13 +0200
-Message-ID: <20240621082313.6605-1-kabel@kernel.org>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240621080719.20380-1-kabel@kernel.org>
-References: 
+	Qing Zhang <zhangqing@loongson.cn>,
+	Binbin Zhou <zhoubinbin@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 00/10] MIPS: Loongson64: Loongson-2K1000 fixes
+Message-ID: <ZnU5MCzS6zkBTHH3@alpha.franken.de>
+References: <20240614-ls3k-mips-v1-0-7614340ace7d@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240614-ls3k-mips-v1-0-7614340ace7d@flygoat.com>
 
-Convert the marvell,mpic device-tree binding to YAML. Add myself as
-maintainer.
+On Fri, Jun 14, 2024 at 04:40:08PM +0100, Jiaxun Yang wrote:
+> Hi all,
+> 
+> This series fixed various problems I meet when I was trying to
+> boot kernel on my Loongson-2K PI2 system.
+> 
+> Although most of the series are taged for stable, please apply
+> it to mips-next tree as it has dependency to commits in next
+> and I'm not in rush to get them into linus tree. I have some
+> future works planed based on this series that may get into this
+> cycle.
+> 
+> Thanks
+> - Jiaxun
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> ---
+> Jiaxun Yang (10):
+>       MIPS: Loongson64: Remove memory node for builtin-dtb
+>       MIPS: dts: loongson: Fix liointc IRQ polarity
+>       MIPS: dts: loongson: Fix ls2k1000-rtc interrupt
+>       MIPS: dts: loongson: Fix GMAC phy node
+>       MIPS: dts: loongson: Add ISA node
+>       MIPS: Loongson64: Test register availability before use
+>       platform: mips: cpu_hwmon: Disable driver on unsupported hardware
+>       MIPS: Loongson64: reset: Prioritise firmware service
+>       MIPS: Loongson64: sleeper: Pass ra and sp as arguments
+>       MIPS: Loongson64: env: Hook up Loongsson-2K
+> 
+>  arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 65 +++++++++++-----------
+>  arch/mips/include/asm/mach-loongson64/boot_param.h |  2 +
+>  arch/mips/loongson64/env.c                         |  8 +++
+>  arch/mips/loongson64/reset.c                       | 38 ++++++-------
+>  arch/mips/loongson64/sleeper.S                     |  8 ++-
+>  arch/mips/loongson64/smp.c                         | 23 +++++++-
+>  drivers/platform/mips/cpu_hwmon.c                  |  3 +
+>  7 files changed, 89 insertions(+), 58 deletions(-)
+> ---
+> base-commit: 6906a84c482f098d31486df8dc98cead21cce2d0
+> change-id: 20240613-ls3k-mips-52eb3fb3e917
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- .../marvell,armada-370-xp-mpic.txt            | 38 ------------
- .../interrupt-controller/marvell,mpic.yaml    | 62 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 63 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
+series applied to mips-next.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt b/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
-deleted file mode 100644
-index 5fc03134a999..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Marvell Armada 370, 375, 38x, XP Interrupt Controller
-------------------------------------------------------
--
--Required properties:
--- compatible: Should be "marvell,mpic"
--- interrupt-controller: Identifies the node as an interrupt controller.
--- msi-controller: Identifies the node as an PCI Message Signaled
--  Interrupt controller.
--- #interrupt-cells: The number of cells to define the interrupts. Should be 1.
--  The cell is the IRQ number
--
--- reg: Should contain PMIC registers location and length. First pair
--  for the main interrupt registers, second pair for the per-CPU
--  interrupt registers. For this last pair, to be compliant with SMP
--  support, the "virtual" must be use (For the record, these registers
--  automatically map to the interrupt controller registers of the
--  current CPU)
--
--Optional properties:
--
--- interrupts: If defined, then it indicates that this MPIC is
--  connected as a slave to another interrupt controller. This is
--  typically the case on Armada 375 and Armada 38x, where the MPIC is
--  connected as a slave to the Cortex-A9 GIC. The provided interrupt
--  indicate to which GIC interrupt the MPIC output is connected.
--
--Example:
--
--        mpic: interrupt-controller@d0020000 {
--              compatible = "marvell,mpic";
--              #interrupt-cells = <1>;
--              #address-cells = <1>;
--              #size-cells = <1>;
--              interrupt-controller;
--              msi-controller;
--              reg = <0xd0020a00 0x1d0>,
--                    <0xd0021070 0x58>;
--        };
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml b/Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
-new file mode 100644
-index 000000000000..5318d4a7716a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/marvell,mpic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell Armada 370, 375, 38x, 39x, XP Interrupt Controller
-+
-+maintainers:
-+  - Marek Behún <kabel@kernel.org>
-+
-+description: |
-+  The top-level interrupt controller on Marvell Armada 370 and XP. On these
-+  platforms it also provides inter-processor interrupts.
-+
-+  On Marvell Armada 375, 38x and 39x this controller is wired under ARM GIC.
-+
-+  Provides MSI handling for the PCIe controllers.
-+
-+properties:
-+  compatible:
-+    const: marvell,mpic
-+
-+  reg:
-+    items:
-+      - description: main registers
-+      - description: per-cpu registers
-+
-+  interrupts:
-+    items:
-+      - description: |
-+          Parent interrupt on platforms where MPIC is not the top-level
-+          interrupt controller.
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+  msi-controller: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - msi-controller
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    interrupt-controller@20a00 {
-+        compatible = "marvell,mpic";
-+        reg = <0x20a00 0x2d0>, <0x21070 0x58>;
-+        interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+        msi-controller;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b68c8b25bb93..5506e3141d92 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2211,6 +2211,7 @@ F:	Documentation/ABI/testing/sysfs-firmware-turris-mox-rwtm
- F:	Documentation/devicetree/bindings/bus/moxtet.txt
- F:	Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
- F:	Documentation/devicetree/bindings/gpio/gpio-moxtet.txt
-+F:	Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
- F:	Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
- F:	Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
- F:	drivers/bus/moxtet.c
+Thomas.
+
 -- 
-2.44.2
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
