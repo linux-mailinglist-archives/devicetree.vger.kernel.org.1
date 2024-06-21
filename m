@@ -1,295 +1,265 @@
-Return-Path: <devicetree+bounces-78529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCB991287A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0050891273B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:04:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7EC7281669
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:51:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A0A328B6D0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0105A2C6BD;
-	Fri, 21 Jun 2024 14:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4977D4C94;
+	Fri, 21 Jun 2024 14:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="UaXZMKs5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oET6lsg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28F02940F;
-	Fri, 21 Jun 2024 14:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17789134BC;
+	Fri, 21 Jun 2024 14:04:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718981470; cv=none; b=rz5yMu6eLK4gri1ncoJ9Usj47Gy3+ALHlWd7smnNfrpmQLw+QtWabTPhw99P13pxqGHdArQ2LDWOsuEH75RtavBlXL/5N5guXmGyF8dTiXPr0PHvE35hKEwQ0qjua0Vt+8hpO0NPl7iI0vYvATObS7W7LRSuWmpkSWOneqaIrQw=
+	t=1718978693; cv=none; b=s7c4VEvPlOkHSIlSr0kdwfirUyLzUlpEqx53abY8ZjBJ4ITWSg2xspRFxVHcI5T95RglxHBnFjqowziiB8rTRqqo8J2DCYUkYslmoamdGc2MxFnrrAZsLACbfoafO97G4BjcW/abZiwC9qR6eDXxBkRLaRlTdYq3WTWusYoEU/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718981470; c=relaxed/simple;
-	bh=5hLo/NJHRsfeggQDXZtDEA7gdlTNrQ5GceHmTEYUk8k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TqkdYGsOhMfADhX7WD/ULXYTNASpJ4eyu14sAB1Yj7+bedvmueh6sjP2B8vaDpXjwZ/+6MeXMqBGVZ05rqr7bxrJ5fyIHCEF4mjg1NNsI5uSJAvHQpj3+QNZdxc1azsoJMDhr3y6pHE0bY1uMO2m5geVA4Ap4QMYU3dpQBaQhuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=UaXZMKs5; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45LBfeWg014796;
-	Fri, 21 Jun 2024 08:14:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=MxN1j
-	fBJIKGuR9o5HaLQx0jskf9yOcmAgKNAbFMGh/g=; b=UaXZMKs573U7Hq/tuwhso
-	duyHbSt5xkgv7pFv059imY1WDyMNMAI7527g4TRv8mvO/iUV8k/J+81NneZfTNpV
-	XeH1jg7WeqEDM0HW6kMmb7JX3E/cqbQDkmlIW0TFGfZuZpSmN9t/V9qhGuJjEcRG
-	WXChOHO0prYhAre7hYc+pOHA9Ywx/cj+Sieq1U9NBFzQi2FdLfTfc1Y3gR+IEUYj
-	3wSKvPy+uvJARPnupQBD9FWNVY2lyQQeEEJcHjiqcxSAxWOwXlu5vwaTmhQvbdk1
-	GidOGP1Q1Nx//5UUOGyOY3KQdA7+o1GJpfqovXTRQvQx7hl6FUe+5Kp8mAjTh3uu
-	w==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3yw4yxs5vc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Jun 2024 08:14:25 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 45LCEO2X021838
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 21 Jun 2024 08:14:24 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 21 Jun
- 2024 08:14:23 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 21 Jun 2024 08:14:23 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.120])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 45LCE6Sv032255;
-	Fri, 21 Jun 2024 08:14:16 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan
- Cameron <jic23@kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v6 2/2] iio: frequency: adf4350: add clk provider
-Date: Fri, 21 Jun 2024 15:13:59 +0300
-Message-ID: <20240621121403.47912-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240621121403.47912-1-antoniu.miclaus@analog.com>
-References: <20240621121403.47912-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1718978693; c=relaxed/simple;
+	bh=KWONXLjIDswlsmFvy16KVHeYndfVYsx2KlAtEwqZ4dU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F+P/js4kTaRCtkOTkHb5ZfQSAGdmLSXEZ7V6nlNxMm8oqyLMTGsSCptvP4xwXoVlalsYNVAp3YLxYiuMKrfu27+E/JudzS80glmL25c2IkAAEpOcN2nEzpbE8A3d1E7uTaUPJ5p9xBzoUYnU5azqEO1V7Sl5IFSNo1S71CsEg7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oET6lsg4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62082C2BBFC;
+	Fri, 21 Jun 2024 14:04:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718978692;
+	bh=KWONXLjIDswlsmFvy16KVHeYndfVYsx2KlAtEwqZ4dU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oET6lsg4mKcAgsDQrC0hA/Q3BbSXRXajfx26T9gI1bPB+UEUoBLFKq0YJtFNV70ib
+	 it2BQbNLzutOEjK5w/r3P5dr9QY+/gTjWGaaXIqAH/c2LpcUadIMkDteFkgUgJT28y
+	 ouTaof7EjAYOAzigL2dMMuULJSeqz1nlvxvPcnsjByat4Aj5l8JwqKEj19MV/6kYGp
+	 /+k8rqlLbjvtXPNgI1SfldUVWYTvQo58LlkKEhOV5AapBu0FcpZmrcpGLfgFgr7zBp
+	 DEHmoG3Fr2iu+l6EJjXKRHZPJ3Gffo2pHdoOKaJi3IcIZnocKH1X/iVdzF3wenjO0Q
+	 bRtpPlwegkcdQ==
+Date: Fri, 21 Jun 2024 15:04:47 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: Alexandre Ghiti <alex@ghiti.fr>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Yong-Xuan Wang <yongxuan.wang@sifive.com>,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org,
+	greentime.hu@sifive.com, vincent.chen@sifive.com,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
+Message-ID: <20240621-glutton-platonic-2ec41021b81b@spud>
+References: <20240605121512.32083-1-yongxuan.wang@sifive.com>
+ <20240605121512.32083-3-yongxuan.wang@sifive.com>
+ <20240605-atrium-neuron-c2512b34d3da@spud>
+ <CAK9=C2XH7-RdVpojX8GNW-WFTyChW=sTOWs8_kHgsjiFYwzg+g@mail.gmail.com>
+ <40a7d568-3855-48fb-a73c-339e1790f12f@ghiti.fr>
+ <20240621-viewless-mural-f5992a247992@wendy>
+ <edcd3957-0720-4ab4-bdda-58752304a53a@ghiti.fr>
+ <20240621-9bf9365533a2f8f97cbf1f5e@orel>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: C5-Nl98mnm-CxPdry3kMW7wGU8kUzwEg
-X-Proofpoint-ORIG-GUID: C5-Nl98mnm-CxPdry3kMW7wGU8kUzwEg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-21_04,2024-06-21_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- bulkscore=0 malwarescore=0 spamscore=0 mlxscore=0 phishscore=0
- impostorscore=0 clxscore=1015 mlxlogscore=999 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406210091
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qd/Kua9U59FyvKVK"
+Content-Disposition: inline
+In-Reply-To: <20240621-9bf9365533a2f8f97cbf1f5e@orel>
 
-Add clk provider feature for the adf4350.
 
-Even though the driver was sent as an IIO driver in most cases the
-device is actually seen as a clock provider.
+--qd/Kua9U59FyvKVK
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This patch aims to cover actual usecases requested by users in order to
-completely control the output frequencies from userspace.
+On Fri, Jun 21, 2024 at 03:15:10PM +0200, Andrew Jones wrote:
+> On Fri, Jun 21, 2024 at 02:42:15PM GMT, Alexandre Ghiti wrote:
+> >=20
+> > On 21/06/2024 12:17, Conor Dooley wrote:
+> > > On Fri, Jun 21, 2024 at 10:37:21AM +0200, Alexandre Ghiti wrote:
+> > > > On 20/06/2024 08:25, Anup Patel wrote:
+> > > > > On Wed, Jun 5, 2024 at 10:25=E2=80=AFPM Conor Dooley <conor@kerne=
+l.org> wrote:
+> > > > > > On Wed, Jun 05, 2024 at 08:15:08PM +0800, Yong-Xuan Wang wrote:
+> > > > > > > Add entries for the Svade and Svadu extensions to the riscv,i=
+sa-extensions
+> > > > > > > property.
+> > > > > > >=20
+> > > > > > > Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+> > > > > > > ---
+> > > > > > >    .../devicetree/bindings/riscv/extensions.yaml | 30 +++++++=
+++++++++++++
+> > > > > > >    1 file changed, 30 insertions(+)
+> > > > > > >=20
+> > > > > > > diff --git a/Documentation/devicetree/bindings/riscv/extensio=
+ns.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > > > > index 468c646247aa..1e30988826b9 100644
+> > > > > > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > > > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > > > > @@ -153,6 +153,36 @@ properties:
+> > > > > > >                ratified at commit 3f9ed34 ("Add ability to ma=
+nually trigger
+> > > > > > >                workflow. (#2)") of riscv-time-compare.
+> > > > > > >=20
+> > > > > > > +        - const: svade
+> > > > > > > +          description: |
+> > > > > > > +            The standard Svade supervisor-level extension fo=
+r raising page-fault
+> > > > > > > +            exceptions when PTE A/D bits need be set as rati=
+fied in the 20240213
+> > > > > > > +            version of the privileged ISA specification.
+> > > > > > > +
+> > > > > > > +            Both Svade and Svadu extensions control the hard=
+ware behavior when
+> > > > > > > +            the PTE A/D bits need to be set. The default beh=
+avior for the four
+> > > > > > > +            possible combinations of these extensions in the=
+ device tree are:
+> > > > > > > +            1. Neither svade nor svadu in DT: default to sva=
+de.
+> > > > > > I think this needs to be expanded on, as to why nothing means s=
+vade.
+> > > > > Actually if both Svade and Svadu are not present in DT then
+> > > > > it is left to the platform and OpenSBI does nothing.
+> > > > >=20
+> > > > > > > +            2. Only svade in DT: use svade.
+> > > > > > That's a statement of the obvious, right?
+> > > > > >=20
+> > > > > > > +            3. Only svadu in DT: use svadu.
+> > > > > > This is not relevant for Svade.
+> > > > > >=20
+> > > > > > > +            4. Both svade and svadu in DT: default to svade =
+(Linux can switch to
+> > > > > > > +               svadu once the SBI FWFT extension is availabl=
+e).
+> > > > > > "The privilege level to which this devicetree has been provided=
+ can switch to
+> > > > > > Svadu if the SBI FWFT extension is available".
+> > > > > >=20
+> > > > > > > +        - const: svadu
+> > > > > > > +          description: |
+> > > > > > > +            The standard Svadu supervisor-level extension fo=
+r hardware updating
+> > > > > > > +            of PTE A/D bits as ratified at commit c1abccf ("=
+Merge pull request
+> > > > > > > +            #25 from ved-rivos/ratified") of riscv-svadu.
+> > > > > > > +
+> > > > > > > +            Both Svade and Svadu extensions control the hard=
+ware behavior when
+> > > > > > > +            the PTE A/D bits need to be set. The default beh=
+avior for the four
+> > > > > > > +            possible combinations of these extensions in the=
+ device tree are:
+> > > > > > @Anup/Drew/Alex, are we missing some wording in here about it o=
+nly being
+> > > > > > valid to have Svadu in isolation if the provider of the devicet=
+ree has
+> > > > > > actually turned on Svadu? The binding says "the default behavio=
+ur", but
+> > > > > > it is not the "default" behaviour, the behaviour is a must AFAI=
+CT. If
+> > > > > > you set Svadu in isolation, you /must/ have turned it on. If yo=
+u set
+> > > > > > Svadu and Svade, you must have Svadu turned off?
+> > > > > Yes, the wording should be more of requirement style using
+> > > > > must or may.
+> > > > >=20
+> > > > > How about this ?
+> > > > > 1) Both Svade and Svadu not present in DT =3D> Supervisor may
+> > > > >       assume Svade to be present and enabled or it can discover
+> > > > >       based on mvendorid, marchid, and mimpid.
+> > > > > 2) Only Svade present in DT =3D> Supervisor must assume Svade
+> > > > >       to be always enabled. (Obvious)
+> > > > > 3) Only Svadu present in DT =3D> Supervisor must assume Svadu
+> > > > >       to be always enabled. (Obvious)
+> > > >=20
+> > > > I agree with all of that, but the problem is how can we guarantee t=
+hat
+> > > > openSBI actually enabled svadu?
+> > > Conflation of an SBI implementation and OpenSBI aside, if the devicet=
+ree
+> > > property is defined to mean that "the supervisor must assume svadu to=
+ be
+> > > always enabled", then either it is, or the firmware's description of =
+the
+> > > hardware is broken and it's not the supervisor's problem any more. It=
+'s
+> > > not the kernel's job to validate that the devicetree matches the
+> > > hardware.
+> > >=20
+> > > > This is not the case for now.
+> > > What "is not the case for now"? My understanding was that, at the
+> > > moment, nothing happens with Svadu in OpenSBI. In turn, this means th=
+at
+> > > there should be no devicetrees containing Svadu (per this binding's
+> > > description) and therefore no problem?
+> >=20
+> >=20
+> > What prevents a dtb to be passed with svadu to an old version of opensbi
+> > which does not support the enablement of svadu? The svadu extension wil=
+l end
+> > up being present in the kernel but not enabled right?
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-changes in v6:
- - rework `init.name` handling.
- - simplify iio channels initialization.
- drivers/iio/frequency/adf4350.c | 124 +++++++++++++++++++++++++++++++-
- 1 file changed, 122 insertions(+), 2 deletions(-)
+If you'll allow me use of my high horse, relying on undocumented
+(or deprecated I suppose in this case) devicetree properties is always
+going to leave people exposed to issues like this. If the property isn't
+documented, then you shouldn't be passing it to the kernel.
 
-diff --git a/drivers/iio/frequency/adf4350.c b/drivers/iio/frequency/adf4350.c
-index 4abf80f75ef5..e13e64a5164c 100644
---- a/drivers/iio/frequency/adf4350.c
-+++ b/drivers/iio/frequency/adf4350.c
-@@ -19,6 +19,7 @@
- #include <linux/gpio/consumer.h>
- #include <asm/div64.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- 
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
-@@ -36,6 +37,9 @@ struct adf4350_state {
- 	struct gpio_desc		*lock_detect_gpiod;
- 	struct adf4350_platform_data	*pdata;
- 	struct clk			*clk;
-+	struct clk			*clkout;
-+	const char			*clk_out_name;
-+	struct clk_hw			hw;
- 	unsigned long			clkin;
- 	unsigned long			chspc; /* Channel Spacing */
- 	unsigned long			fpfd; /* Phase Frequency Detector */
-@@ -61,6 +65,8 @@ struct adf4350_state {
- 	__be32				val __aligned(IIO_DMA_MINALIGN);
- };
- 
-+#define to_adf4350_state(_hw) container_of(_hw, struct adf4350_state, hw)
-+
- static struct adf4350_platform_data default_pdata = {
- 	.channel_spacing = 10000,
- 	.r2_user_settings = ADF4350_REG2_PD_POLARITY_POS |
-@@ -381,6 +387,113 @@ static const struct iio_info adf4350_info = {
- 	.debugfs_reg_access = &adf4350_reg_access,
- };
- 
-+static void adf4350_clk_del_provider(void *data)
-+{
-+	struct adf4350_state *st = data;
-+
-+	of_clk_del_provider(st->spi->dev.of_node);
-+}
-+
-+static unsigned long adf4350_clk_recalc_rate(struct clk_hw *hw,
-+					     unsigned long parent_rate)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+	unsigned long long tmp;
-+
-+	tmp = (u64)(st->r0_int * st->r1_mod + st->r0_fract) * st->fpfd;
-+	do_div(tmp, st->r1_mod * (1 << st->r4_rf_div_sel));
-+
-+	return tmp;
-+}
-+
-+static int adf4350_clk_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	if (parent_rate == 0 || parent_rate > ADF4350_MAX_FREQ_REFIN)
-+		return -EINVAL;
-+
-+	st->clkin = parent_rate;
-+
-+	return adf4350_set_freq(st, rate);
-+}
-+
-+static int adf4350_clk_prepare(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	st->regs[ADF4350_REG2] &= ~ADF4350_REG2_POWER_DOWN_EN;
-+
-+	return adf4350_sync_config(st);
-+}
-+
-+static void adf4350_clk_unprepare(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	st->regs[ADF4350_REG2] |= ADF4350_REG2_POWER_DOWN_EN;
-+
-+	adf4350_sync_config(st);
-+}
-+
-+static int adf4350_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct adf4350_state *st = to_adf4350_state(hw);
-+
-+	return (st->regs[ADF4350_REG2] & ADF4350_REG2_POWER_DOWN_EN);
-+}
-+
-+static const struct clk_ops adf4350_clk_ops = {
-+	.recalc_rate = adf4350_clk_recalc_rate,
-+	.set_rate = adf4350_clk_set_rate,
-+	.prepare = adf4350_clk_prepare,
-+	.unprepare = adf4350_clk_unprepare,
-+	.is_enabled = adf4350_clk_is_enabled,
-+};
-+
-+static int adf4350_clk_register(struct adf4350_state *st)
-+{
-+	struct spi_device *spi = st->spi;
-+	struct clk_init_data init;
-+	struct clk *clk;
-+	const char *parent_name;
-+	int ret;
-+
-+	if (!device_property_present(&spi->dev, "#clock-cells"))
-+		return 0;
-+
-+	if (device_property_read_string(&spi->dev, "clock-output-names", &init.name)) {
-+		init.name = devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-+					   fwnode_get_name(dev_fwnode(&spi->dev)));
-+		if (!init.name)
-+			return -ENOMEM;
-+	}
-+
-+	parent_name = of_clk_get_parent_name(spi->dev.of_node, 0);
-+	if (!parent_name)
-+		return -EINVAL;
-+
-+	init.ops = &adf4350_clk_ops;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+	init.flags = CLK_SET_RATE_PARENT;
-+
-+	st->hw.init = &init;
-+	clk = devm_clk_register(&spi->dev, &st->hw);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	ret = of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_get, clk);
-+	if (ret)
-+		return ret;
-+
-+	st->clkout = clk;
-+
-+	return devm_add_action_or_reset(&spi->dev, adf4350_clk_del_provider, st);
-+}
-+
- static struct adf4350_platform_data *adf4350_parse_dt(struct device *dev)
- {
- 	struct adf4350_platform_data *pdata;
-@@ -522,8 +635,6 @@ static int adf4350_probe(struct spi_device *spi)
- 
- 	indio_dev->info = &adf4350_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->channels = &adf4350_chan;
--	indio_dev->num_channels = 1;
- 
- 	mutex_init(&st->lock);
- 
-@@ -551,6 +662,15 @@ static int adf4350_probe(struct spi_device *spi)
- 			return ret;
- 	}
- 
-+	ret = adf4350_clk_register(st);
-+	if (ret)
-+		return ret;
-+
-+	if (!st->clkout) {
-+		indio_dev->channels = &adf4350_chan;
-+		indio_dev->num_channels = 1;
-+	}
-+
- 	ret = devm_add_action_or_reset(&spi->dev, adf4350_power_down, indio_dev);
- 	if (ret)
- 		return dev_err_probe(&spi->dev, ret,
--- 
-2.45.2
+> I understand the concern; old SBI implementations will leave svadu in the
+> DT but not actually enable it. Then, since svade may not be in the DT if
+> the platform doesn't support it or it was left out on purpose, Linux will
+> only see svadu and get unexpected exceptions. This is something we could
+> force easily with QEMU and an SBI implementation which doesn't do anything
+> for svadu. I hope vendors of real platforms, which typically provide their
+> own firmware and DTs, would get this right, though, especially since Linux
+> should fail fast in their testing when they get it wrong.
 
+I'll admit, I wasn't really thinking here about something like QEMU that
+puts extensions into the dtb before their exact meanings are decided
+upon. I almost only ever think about "real" systems, and in those cases
+I would expect that if you can update the representation of the hardware
+provided to (or by the firmware to Linux) with new properties, then updating
+the firmware itself should be possible.
+
+Does QEMU have the this exact problem at the moment? I know it puts
+Svadu in the max cpu, but does it enable the behaviour by default, even
+without the SBI implementation asking for it?
+
+Sorta on a related note, I'm completely going head-in-sand here for ACPI,
+cos I have no idea how that is being dealt with - other than that Linux
+assumes that all ACPI properties have the same meaning as the DT ones. I
+don't really think that that is sustainable, but it is what we are doing
+at present. Maybe I should put that in boot.rst or in acpi.rst?
+
+Also on the ACPI side of things, and I am going an uber devil's advocate
+here, the version of the spec that we documented as defining our parsing
+rules never mentions svade or svadu, so is it even valid to use them on
+ACPI systems?
+
+
+
+
+--qd/Kua9U59FyvKVK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnWIfwAKCRB4tDGHoIJi
+0q/dAP4kNGqCQqfmua36oZyQabQDESU4lnBPcaNqz4EP05qYHwEAv0/Przk2eqiW
+eKknt2R9xQc1PxpjjybKTm7K30FMVAU=
+=WPCG
+-----END PGP SIGNATURE-----
+
+--qd/Kua9U59FyvKVK--
 
