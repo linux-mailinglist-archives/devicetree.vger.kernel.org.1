@@ -1,199 +1,160 @@
-Return-Path: <devicetree+bounces-78568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C678912A8D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66788912AA3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0671C28469F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:45:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20B112837AB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F226715AAC7;
-	Fri, 21 Jun 2024 15:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC4D915EFA7;
+	Fri, 21 Jun 2024 15:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XuG/A2u9"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="EDHzFVnb";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Y/wetpbH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout8-smtp.messagingengine.com (fout8-smtp.messagingengine.com [103.168.172.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3569415A85C;
-	Fri, 21 Jun 2024 15:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06AD6823D0;
+	Fri, 21 Jun 2024 15:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718984745; cv=none; b=BDe3PGT4hDvmE/42QgJuWE9Y4KLLLLRQigqER28d2/LVcaAWsgkzPSEfKvcRdLpc3TE6cz6aFfyK53FZGXoJMj4Q3hJRr21xyFmTeXolso3e7Tdn557HwUFxM7uV9F0IzMNlT3kJs/O2vjjTfwcFFzHuc8RzGT8EVcOlDic7TgA=
+	t=1718985136; cv=none; b=sRvgpVeYB9ksPupJlY97Q6jqwrzKXMzuB5qld2CheGWJxMP8oCRZmvpTOIcnkzsD130Fy1xtB94lwlJhO75aoaDUEei3fLl6vYzAhBhcln69VrnFo3WdLXKVDIhtIItQfOJPrd85XbXK6C9gIDVbB9ZDa+MIBHEa0EjfZK/t1DQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718984745; c=relaxed/simple;
-	bh=HOSCZ2vrhvGoFP2iw1Ql/Hz/mDzmyBgbdC959qExCDk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kE+KO56hhwx8mv0s3QBGzllCZtHVjBhRnFF6WMCvC9LyNwd8IsVFj7h4mrEeihi2/tjQINipJF6neUbU2VKqdcdbTlBbiNvhLEIQODEf82ANmH8fbFj5T799dI6QT3mHfFdjr6YWKbqRgnuLEY6gHsMabFe4GFuPQS3NWZ5neI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XuG/A2u9; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6f21ff4e6dso302754366b.3;
-        Fri, 21 Jun 2024 08:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718984742; x=1719589542; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p4CvXaD0p8juFHM/mj9mpOHYuq+vuwl0xPPEP0shwFI=;
-        b=XuG/A2u9OpJtRpPAM5mP7DY2cdn+s7cd7jq28VaTgI2un7In6lh6Z4mbdte580yI98
-         70Grq8EJjXkLFfTONjSn/GOz3Pic1ejLZzF4r3OW4IrCRDOb9dsP2eHtV6ORHbdFRSdm
-         /Z1izixViC4T10HqMKBQvZ8sZtuTjuV/DVqYcNjE2xMRz81bGEJFM1d8TUmCSMYvuLRi
-         aodVgmaK42d9B/5MbMbg+LScbsmE4nbWTw5fbwbSG+/sH4V+TBxnAwMLdUiijTK16DZn
-         RX+obBfORID0lFpxKSXpH/9HzGXR/lYmARMAQZruq6aWPzZyq0JkX9GxCDkCkTDnoVqf
-         5uYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718984742; x=1719589542;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p4CvXaD0p8juFHM/mj9mpOHYuq+vuwl0xPPEP0shwFI=;
-        b=WIXnDV6FMcnQ9PJNpsLMlSiG7jZz7k9+4lVkT4cJcR+rcAjdalIAR8IfqrzlVtqjJi
-         NAMeiiiHtBjs1zbaHMXMKHPBxMnnI93V6K2tJ1oLTQSyd9aw9UP4GEKeKIr2fuouDExY
-         1h3Nd4xwuCFdEEdbLC5IZciGVlCWhdGJuAHWUUYPI/pZJag7ulnJBoK2vDfzwc+Uo8QS
-         kA0JcTMNUYvA+m8OtFRpbAU9A6GkIePGKSWjs60eyiw82fcX/PXQFmW+2PLI15zULxgA
-         /faVgSddHZjP9MxoH2qLfweUQCQ0nOiKpedocHVdzzb8BcEF8MJvol1+mqVPCOkksH1G
-         dE4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVTH7ozIHaxrtH7yHjnYm90dvbnOjBUVv2xSPj/ibVTYywH6wV2oUN95ntxNG4Q5itRlnOx/hrlngU28hBjgH+m65AYQjUKFIREPdVsm9I3N3pFUz2Ka8/WmDADj6yiVNcFt+bGud8Y3nPGwPi2taWNFk0IJ2Y3RjhonscUN0P1kHp6L50VWsRZtzj5E0OgphiY3OaWmbVTmymiVA==
-X-Gm-Message-State: AOJu0Yz0rPReYIt/0vVAU6rSciVLIeBclft/rODZpus3t+XJQPVnLml3
-	0R8tGgGBqerIA8O94QJv2v5Krc1m3ITqaGtCbC8rFrXTc889vSGOO34WH4ocpyaIe0mLmVeAjif
-	Iwx/glhhXBGOwq3yQEnWdnAYH6wc=
-X-Google-Smtp-Source: AGHT+IGQG2/pFic6ghI58imlJHEBDuzmWT1uMrn79oh0Id6ZdT6X4Yy9HwZWFVL2JJuDF6fSk19Bw5MO37t5DdaeuQk=
-X-Received: by 2002:a17:907:7a94:b0:a6f:b58f:ae3c with SMTP id
- a640c23a62f3a-a6fb58fba03mr436111266b.26.1718984742083; Fri, 21 Jun 2024
- 08:45:42 -0700 (PDT)
+	s=arc-20240116; t=1718985136; c=relaxed/simple;
+	bh=okNWiYN3jSllF7aHvqx8wll68vaA9f02SH5rITMSg9M=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=tYxVFkWG8WAoKa3gKM4mZ+I7ZusM6IkmweLxnlN2nGpfgTIaPpVEOxk5PtiHlDvju93RRT3CquFFAh/m8U6rIYABeJcESb4uQbdvf3HmmXXZeEVFsgaERiMjaqk0MRo2ujXxca8k7pNGrIqnY+oXV7LG7tXMwZWHyfjUnBVJD5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=EDHzFVnb; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Y/wetpbH; arc=none smtp.client-ip=103.168.172.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 01E521380099;
+	Fri, 21 Jun 2024 11:52:14 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Fri, 21 Jun 2024 11:52:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1718985133;
+	 x=1719071533; bh=tEs/YOs3Cin6gK0AVTgZ7Beywij4477QZ3N259TzrVk=; b=
+	EDHzFVnbTWo9CJ9z/+Lrm+nKov+alSuDNSLI0EPUXP9mQG/4boCpKJaM78U92mDA
+	JWd3saJw31hd/Ub+adR9O+8j9SufxAtOtJxvSy3dNQHRfH0MPpKOUpeY7hjBHJWE
+	pa8lo91bTyE43Y0JpjQIW7kIt6QrVFvyZOTW8YWPisvjKva54BOh2OVgsTC0Da/e
+	WP6QQtLvvxoD0QT+sJsYK7JCrD7FqdFAblJPZiub+/E7lVNuSjvDeCevES0FEIyx
+	FS0VqgKbOjUxAnHo00YssSyAM09As04VT+XX511GzXGim814nM7+jnjW+2DVf1qy
+	oF6JIa/eoKZVECNGemXZ8A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1718985133; x=
+	1719071533; bh=tEs/YOs3Cin6gK0AVTgZ7Beywij4477QZ3N259TzrVk=; b=Y
+	/wetpbHtFaiPRKucVMd61+OS606HECO5Bk78U5lc78DfS6ud8WeoyuN0tWKjb8Pv
+	mBszz30e21ML4muyaZTO0KnKseugxYibygoFfPlaZDROE/rLGM5jDRUFNTM36+sB
+	q7srgB8u2UYjiWrPXNIhyyxKUL+6hiGp9COyaoitVKVCSYfvwJN04Fa3riTAZ0dR
+	sdYMu3tcg0t7FJOeKuMJKU7pPqOq5gP3WwuM14U3ETCP8h4HTlQbO0V1L83U44+V
+	TIVIFfPvbUjEFTSyQeE1aWSGu0pL7Y0KoV/5CGuYIAhNIcBzBh/0NYDDRe/k8Kwy
+	xwi6WAjSXWUwZ6L6/vLnw==
+X-ME-Sender: <xms:raF1Zn2TThGtlOwWW6Ld6ZTfyCGaHFpB6YrihemH_X_HO9QQUxxPdA>
+    <xme:raF1ZmE2KZyobt74-pNjUrQ6qyDclcVPJUlyJQnp9o53a1YT4kwbRyNtWXgAOLCWb
+    oZwpuaBXvgwC0jLEXg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeefgedgleehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
+    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
+    hmqeenucggtffrrghtthgvrhhnpedufeegfeetudeghefftdehfefgveffleefgfehhfej
+    ueegveethfduuddvieehgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+    grihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:raF1Zn6lM7t3eTht1EgKBHXBKMF8ODY9nvYtsgGb0MQjH7obiiWUhA>
+    <xmx:raF1Zs0WuDQnMfUfkxDgJUzfG21BjxuOutpwB9TNuYdm9J7uUzrLAw>
+    <xmx:raF1ZqGnHd7OkQYjiCfwhp-Kvll1f-jZUBt6tdm-LEdYB0zFgAv_ig>
+    <xmx:raF1Zt-hjd5qx97N-rh3AaL41vP-_ymsut8Pwuuft5ocSVOyOJiHwg>
+    <xmx:raF1ZtCE5CQYUZVPNu8D0XEC9u0F4NVyflr8BzaYZ_7rOCLI6ykaTODr>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 9A90836A0075; Fri, 21 Jun 2024 11:52:13 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-522-ga39cca1d5-fm-20240610.002-ga39cca1d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
- <20240527161450.326615-19-herve.codina@bootlin.com> <ZmDJi__Ilp7zd-yJ@surfacebook.localdomain>
- <20240620175646.24455efb@bootlin.com> <CAHp75VdDkv-dxWa60=OLfXAQ8T5CkFiKALbDHaVVKQOK3gJehA@mail.gmail.com>
- <20240620184309.6d1a29a1@bootlin.com> <20240620191923.3d62c128@bootlin.com>
-In-Reply-To: <20240620191923.3d62c128@bootlin.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 21 Jun 2024 17:45:05 +0200
-Message-ID: <CAHp75VdeoNXRTmMoK-S6qecU1nOQWDZVONeHU+imFiwcTxe8xg@mail.gmail.com>
-Subject: Re: [PATCH v2 18/19] mfd: Add support for LAN966x PCI device
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Simon Horman <horms@kernel.org>, Sai Krishna Gajula <saikrishnag@marvell.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, 
-	Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Message-Id: <856ff7b0-774d-4120-8bd8-01270f5c14b4@app.fastmail.com>
+In-Reply-To: <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
+References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
+ <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
+ <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
+ <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
+ <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
+Date: Fri, 21 Jun 2024 16:51:55 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
+Content-Type: text/plain;charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 20, 2024 at 7:19=E2=80=AFPM Herve Codina <herve.codina@bootlin.=
-com> wrote:
-> On Thu, 20 Jun 2024 18:43:09 +0200
-> Herve Codina <herve.codina@bootlin.com> wrote:
-> > On Thu, 20 Jun 2024 18:07:16 +0200
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > On Thu, Jun 20, 2024 at 5:56=E2=80=AFPM Herve Codina <herve.codina@bo=
-otlin.com> wrote:
-> > > > On Wed, 5 Jun 2024 23:24:43 +0300
-> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > Mon, May 27, 2024 at 06:14:45PM +0200, Herve Codina kirjoitti:
 
-...
 
-> > > > > > +   if (!dev->of_node) {
-> > > > > > +           dev_err(dev, "Missing of_node for device\n");
-> > > > > > +           return -EINVAL;
-> > > > > > +   }
-> > > > >
-> > > > > Why do you need this? The code you have in _create_intr_ctrl() wi=
-ll take care
-> > > > > already for this case.
-> > > >
-> > > > The code in _create_intr_ctrl checks for fwnode and not an of_node.
-> > > >
-> > > > The check here is to ensure that an of_node is available as it will=
- be use
-> > > > for DT overlay loading.
-> > >
-> > > So, what exactly do you want to check? fwnode check covers this.
-> > >
-> > > > I will keep the check here and use dev_of_node() instead of dev->of=
-_node.
-> > >
-> > > It needs to be well justified as from a coding point of view this is =
-a
-> > > duplication.
+=E5=9C=A82024=E5=B9=B46=E6=9C=8820=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8A=E5=
+=8D=887:40=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+[...]
+>>=20
+>> Hi Krzysztof,
+>>=20
+>> I believe U-Boot's implementation is correct. As per simple-mfd bindi=
+ng:
+>>=20
+>> ```
+>> simple-mfd" - this signifies that the operating system should
+>>   consider all subnodes of the MFD device as separate devices akin to=
+ how
+>>   "simple-bus" indicates when to see subnodes as children for a simple
+>>   memory-mapped bus.
+>> ```
+>>=20
+>> This reads to me as "if you want sub nodes to be populated as devices
+>> you need this."
+>>=20
+>> In our case there are "clock" and "reset" node sub nodes which should=
+ be
+>> probed as regular device, so it's true for us.
 >
-> On DT based system, if a fwnode is set it is an of_node.
-> On ACPI, if a fwnode is set is is an acpi_node.
+> No, you already got comment from Rob.
 >
-> The core PCI, when it successfully creates the DT node for a device
-> (CONFIG_PCI_DYNAMIC_OF_NODES) set the of_node of this device.
-> So we can have a device with:
->  - fwnode from ACPI
->  - of_node from core PCI creation
-
-Does PCI device creation not set fwnode?
-
-> This driver needs the of_node to load the overlay.
-> Even if the core PCI cannot create a DT node for the PCI device right
-> now, I don't expect this LAN855x PCI driver updated when the core PCI
-> is able to create this PCI device DT node.
-
-If it's really needed, I think the correct call here is is_of_node()
-to show exactly why it's not a duplication. It also needs a comment on
-top of this call.
-
-...
-
-> > > > > > +static struct pci_device_id lan966x_pci_ids[] =3D {
-> > > > > > +   { PCI_DEVICE(0x1055, 0x9660) },
-> > > > >
-> > > > > Don't you have VENDOR_ID defined somewhere?
-> > > >
-> > > > No and 0x1055 is taken by PCI_VENDOR_ID_EFAR in pci-ids.h
-> > > > but SMSC acquired EFAR late 1990's and MCHP acquired SMSC in 2012
-> > > > https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet=
-/microchip/lan743x_main.h#L851
-> > > >
-> > > > I will patch pci-ids.h to create:
-> > > >   #define PCI_VENDOR_ID_SMSC PCI_VENDOR_ID_EFAR
-> > > >   #define PCI_VENDOR_ID_MCHP PCI_VENDOR_ID_SMSC
-> > > > As part of this patch, I will update lan743x_main.h to remove its o=
-wn #define
-> > > >
-> > > > And use PCI_VENDOR_ID_MCHP in this series.
-> > >
-> > > Okay, but I don't think (but I haven't checked) we have something lik=
-e
-> > > this ever done there. In any case it's up to Bjorn how to implement
-> > > this.
+> Your children depend on parent to provide IO address, so this is not
+> simple-mfd. Rule for simple-mfd is that children do not rely on parent
+> at all.
 >
-> Right, I wait for Bjorn reply before changing anything.
+Hi Krzysztof,
 
-But we already have the vendor ID with the same value. Even if the
-company was acquired, the old ID still may be used. In that case an
-update on PCI IDs can go in a separate change justifying it. In any
-case, I would really want to hear from Bjorn on this and if nothing
-happens, to use the existing vendor ID for now to speed up the series
-to be reviewed/processed.
+Sorry but can I ask for clarification on "depend on parent to provide IO
+address", do you mind explaining it a little bit? Does it mean children
+should get regmap node from a phandle property, not the parent node? Or =
+there
+should be a reg property for child node to tell register offset etc?
+
+There are way too much usage that children "depends" on parents somehow
+in tree, so I want to confirm my understanding.
+
+For boston-platform-regs there are some other PHYs that I may add drivers
+for them in future, so I certainly want "simple-mfd" to be here=20
 
 
 --=20
-With Best Regards,
-Andy Shevchenko
+- Jiaxun
 
