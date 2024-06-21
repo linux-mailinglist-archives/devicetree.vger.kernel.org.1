@@ -1,128 +1,116 @@
-Return-Path: <devicetree+bounces-78249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B6EE911A8F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 07:45:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 202ED911A9A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 07:46:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C479E1F2563E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 05:45:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC1731F25EEA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 05:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F9113E88C;
-	Fri, 21 Jun 2024 05:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FC012EBE7;
+	Fri, 21 Jun 2024 05:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FByPLpwk"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="BcHwKT8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B952912C7F9;
-	Fri, 21 Jun 2024 05:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A982883CD7;
+	Fri, 21 Jun 2024 05:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718948717; cv=none; b=ezE5f7XtlpbLsJwLZvBA1Kdb2lNQzB0UtQJd3Xs6dRV61bputtLaxELaNe3uo5xazIGtVMnnCPRmYqtZauivdRHikuKwBELVzibYg3cEzSHMVPBtOMD78LF4r3euaINrQCKwUTwvBALH2ywy2zzAyupl5gyeX2Iy98XiNzC/o/A=
+	t=1718948811; cv=none; b=p3yoZ/uOGgchCqFQXTSMqbxtJWfAlC9aDLvCfcV4AJUxH06/e9RJVyEk9E3bx4vRe34+mpaO9D5Jl+FMR1Dax1E4iVP2Z5bbMf1DsXWOSpBXeboteBrbz8/w5H2hCq//GJgiO6yt28S39vlBr0oUzxoJYK8fEjWs7IdIogI9WPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718948717; c=relaxed/simple;
-	bh=h5D18kB/jJ92V9TMO/5fhp21VV4JzGcvLvRCpsgdkQ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kZzaISNXkiFwOKMIKpKZTQLhzWFkWZIByDcC4yZX5xEUerq1PmSRobOhw3QqLYSDyG3BOU70yocfCuotLHZwexMwXIaHilH+mIm3d7O5JJUEmPR62NW2BcLTpgkb/duOeji+fAQqXmG63qzni5f1PbZL984EvQWoTPYo9QTE3Uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FByPLpwk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 271C8C2BBFC;
-	Fri, 21 Jun 2024 05:45:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718948717;
-	bh=h5D18kB/jJ92V9TMO/5fhp21VV4JzGcvLvRCpsgdkQ0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FByPLpwkqnhIX2qh0PzKcNtRAh7HHeQhNhg5LjlvwtVeQypznKWAn9A93W7c3oQc5
-	 /Z9AicwJAVWHuuXljtbN/GxMoXFeEi1QMXMIWI4BtzdqR9+cPGih2aAQTerFXk3p6l
-	 40NHPSftykwyTq64CgbXYHBL8vciwqzDoMPcPhL1q1dlwMqkWNp2SUQkv8P95ZBSao
-	 zPOSumIY6Nkb1gR23gLZmHpq0nEctPZHujQNEsLmgNJ/3ThBU4gd2ZpAXRcOhxUhVK
-	 5kqFZ7SLJ1Fc93uD6/LU9ifM6dwZSxHqvv7Ys5fteuv1KpApkJyxxmSbkW0TGGrRPF
-	 VrWODNPreVT5g==
-Date: Fri, 21 Jun 2024 00:45:14 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: konrad.dybcio@linaro.org, djakov@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
-	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, 
-	dmitry.baryshkov@linaro.org, abel.vesa@linaro.org
-Subject: Re: [PATCH V2 2/3] soc: qcom: icc-bwmon: Allow for interrupts to be
- shared across instances
-Message-ID: <vjes4lm3um44f6oguvrq3gozemquzmmmicj47ieczwfuqkmaqp@aby3dj6ttdig>
-References: <20240618154306.279637-1-quic_sibis@quicinc.com>
- <20240618154306.279637-3-quic_sibis@quicinc.com>
+	s=arc-20240116; t=1718948811; c=relaxed/simple;
+	bh=kkYqZYijKZreQC7isvDQVtuAI4cUP9+RI5g70SolPKQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
+	 In-Reply-To:Content-Type; b=t11XRK/jGDQsZeoS4LycVk6cKD/UZSoXl6eBjWwYc7PPvzttgbIqotHjpKuLAEcJH+MhKzLEVIR+3dwlTayoYDqo3VRjK26Iuy1ik9efD+a1fFzd0JrtAz6rOcKKI/mBiLVMp9HDt92GQ2J4TL+UEzTqdxQ43YOoBzqO+ojaRAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=BcHwKT8q; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1718948759; x=1719553559; i=markus.elfring@web.de;
+	bh=kkYqZYijKZreQC7isvDQVtuAI4cUP9+RI5g70SolPKQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:Cc:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=BcHwKT8qczQBUZmomUv0AM6QnX97SDGgPlBDIVTabydiiO2YNuvLTi0vxybiHhtx
+	 6ooiz0LklK63jJ12sUOR41eTFnHJ29i6E8dwPItmoNQ8eJ85122eKDwij4wJDHN7E
+	 jyhyIJVk1GiWjQyvMjc4L2HZ9tAkI56L1V1w9BsPe0Q4wpW9+gOOMaaqgQfI1/EfQ
+	 bL4WzQetE6FwBgkj0JRIkCdRabXU5Yl9TdVjHesjkqim7Er/RNbJyQ9UcnggovU/c
+	 jyo4VWLQUVqaDTF9GjRZ7doK/FlD0NXDCi2Nl/YD2mc268HvX7Rf/6BG240vgSaxa
+	 hJ2hXVSkzKRX78qM9Q==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.85.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MyvB8-1sYT6j1kTS-016cfq; Fri, 21
+ Jun 2024 07:45:59 +0200
+Message-ID: <4b368817-11ba-4d6d-9a46-59bee8406ee7@web.de>
+Date: Fri, 21 Jun 2024 07:45:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240618154306.279637-3-quic_sibis@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Patch v4 05/10] clk: lpc32xx: initialize regmap using parent
+ syscon
+To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "J.M.B. Downing" <jonathan.downing@nautel.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Arnd Bergmann <arnd@arndb.de>, Yangtao Li <frank.li@vivo.com>,
+ Li Zetao <lizetao1@huawei.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Chancel Liu <chancel.liu@nxp.com>, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
+ linux-sound@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-mtd@lists.infradead.org
+References: <20240620175657.358273-1-piotr.wojtaszczyk@timesys.com>
+ <20240620175657.358273-6-piotr.wojtaszczyk@timesys.com>
+Content-Language: en-GB
+Cc: LKML <linux-kernel@vger.kernel.org>
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240620175657.358273-6-piotr.wojtaszczyk@timesys.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:/HnPeG1IAMU/Df3lJw189pApwGB8C6p6sxQOjGGDgYaEXEYX3rR
+ 1fzF6oMG/oC3y4WJ7MEJ4TBAKQIyhyJR9kLS1DmPUSeNWoeRLiHOx6XiA4dc3aykL6q8xK8
+ ppHVp27GOpJ/Bs+b4hwtsFX07S22yoUi7Yykat+/2SOia9gZAP0dOgdRdMUjNp+ybmCNrse
+ f6I1C/okSjZJiM9p46NnQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:RZzKrzeMnoA=;3Xr8mLJNU5K+f3Yl83BIysqGVe0
+ 4rpRYhraZfI1bck68O03DyDm4Cg0Ralh0kzhMQ7XEn/NHb22XhOO/qEek+tkZj9AymaCo5rlw
+ bSKPoi1i/ladDc5kcnxbIKRRmcQGzYb4SSgAVMqhYt/qj/PBeAEk81mo2AOh/48zJcgz+wqoi
+ MPAi/oqcMFuSKBk+mdhb2o9DXXDBjHLdAU3Yav7jWcUVm9sv3UXQg5rkBV+K14j45sxBBfCgj
+ BF0eH/zDH8oj6G819SSeDhWuOAk+DOSqO7rbNv2Qt7c+GSAO2UYlxSB/Rjlnk6hp8CJKsxJLN
+ TYBNewFaMSiY6DlviClA4CjSyDZabDzR2UfartoiCxpy0CsdpCAwUZZ7+/W/nRM4IPTPBuXVq
+ DZOPeZX3tdo2dEw49H4cW1veaubeQCNBos2daRlftqwTo/+d6d4aoQtD0rHTwlsvcd0g6RObu
+ 37Jmd3rYX0642LHQoEDxlMQ9ZVSJCkdNf19a7al0wniU1zydyKkNOG7JOzZoS5qXb+WREAufY
+ QKToA9R0LG4Ix6eTpjodQq1tzUl7rLtW1asXsu4MO6VZ+MSTWdYTmapSC2TD9GmScTYm+lZwY
+ 5gpJpFwGpIL0viYTOu0iXtFgTO0Lpw2eVrKsKPMkDP++IbWbuu4VOrvp/t8bgavYXXMUu4T6N
+ /6VsHf5yFd4+pm1faTJC+gQmyIZzRN78+tAQwW4DfScDwIVbbvlXUxZShAa6XFjM4//+SobX1
+ GbjpiRCVpeFw+GzVaX7nD6J9JYgj6Gh8vBIsAD0+ZwHk6nmmTdIMTVYTFwx3FvFnzFu1tSMhy
+ 9FKVb+6gaSPCl/M1gSvlML1hIN3Q3IKlJwNFX4wmTfG34=
 
-On Tue, Jun 18, 2024 at 09:13:05PM GMT, Sibi Sankar wrote:
-> The multiple BWMONv4 instances available on the X1E80100 SoC use the
-> same interrupt number. Mark them are shared to allow for re-use across
-> instances. Handle the ensuing race introduced by relying on bwmon_disable
+> This allows to share the regmap with other simple-mfd devices like
+> nxp,lpc32xx-dmamux
 
-In an effort to educate the reader, could you please describe what the
-race condition is here.
-
-It would also make sense to break this ("Handle...") into a separate
-paragraph.
+Please choose an imperative wording for an improved change description.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?h=v6.10-rc4#n94
 
 Regards,
-Bjorn
-
-> to disable the interrupt and coupled with explicit request/free irqs.
-> 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
-> 
-> v2:
-> * Use explicit request/free irq and add comments regarding the race
->   introduced when adding the IRQF_SHARED flag. [Krzysztof/Dmitry]
-> 
->  drivers/soc/qcom/icc-bwmon.c | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/icc-bwmon.c b/drivers/soc/qcom/icc-bwmon.c
-> index fb323b3364db..4a4e28b41509 100644
-> --- a/drivers/soc/qcom/icc-bwmon.c
-> +++ b/drivers/soc/qcom/icc-bwmon.c
-> @@ -781,9 +781,10 @@ static int bwmon_probe(struct platform_device *pdev)
->  	bwmon->dev = dev;
->  
->  	bwmon_disable(bwmon);
-> -	ret = devm_request_threaded_irq(dev, bwmon->irq, bwmon_intr,
-> -					bwmon_intr_thread,
-> -					IRQF_ONESHOT, dev_name(dev), bwmon);
-> +
-> +	/* SoCs with multiple cpu-bwmon instances can end up using a shared interrupt line */
-> +	ret = request_threaded_irq(bwmon->irq, bwmon_intr, bwmon_intr_thread,
-> +				   IRQF_ONESHOT | IRQF_SHARED, dev_name(dev), bwmon);
->  	if (ret)
->  		return dev_err_probe(dev, ret, "failed to request IRQ\n");
->  
-> @@ -798,6 +799,13 @@ static void bwmon_remove(struct platform_device *pdev)
->  	struct icc_bwmon *bwmon = platform_get_drvdata(pdev);
->  
->  	bwmon_disable(bwmon);
-> +
-> +	/*
-> +	 * Handle the race introduced, when dealing with multiple bwmon instances
-> +	 * using a shared interrupt line, by relying on bwmon_disable to disable
-> +	 * the interrupt and followed by an explicit free.
-> +	 */
-> +	free_irq(bwmon->irq, bwmon);
->  }
->  
->  static const struct icc_bwmon_data msm8998_bwmon_data = {
-> -- 
-> 2.34.1
-> 
+Markus
 
