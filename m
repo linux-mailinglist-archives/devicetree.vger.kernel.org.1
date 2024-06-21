@@ -1,133 +1,106 @@
-Return-Path: <devicetree+bounces-78493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BB09126ED
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A98F9124E1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:16:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B8AC288FF3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:45:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA55F286D6D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A9B38DD8;
-	Fri, 21 Jun 2024 13:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7777414F9EA;
+	Fri, 21 Jun 2024 12:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="L8B9Gp1r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y3FRhXl8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10A9120335;
-	Fri, 21 Jun 2024 13:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2FD28399;
+	Fri, 21 Jun 2024 12:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718977504; cv=none; b=qdLL7FRTIQX8CXZYp0QeT1mrvpvjb346fBGWAO7rR/EoWqEZB2CyWvuQ6la3DN2BSCfgm4mBdDohjx5WWAwGS8tHqFMI042opd3Yax2iyZrAZNjaKSHR62sRI1iukNQthNeFQKYYNJKSBg96WRji2PMXJwW2pHIv1o7WDsyqQLs=
+	t=1718972153; cv=none; b=ZHRxR2wpWTvju5LcHNJ+3m5ESJqa0bmCuWklEJZoSLzj2k9hTiw3RilP/zKBIgiWqJ7sXkL4gHA/AC5TctojNwBJHzpxKug/lH5N2Y/RPAAjsZGDi5dlky3onXAcZunxYtFP74lez/Hk3HnExP49Sr0cUWFIRrpyJZJ8XtlXeas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718977504; c=relaxed/simple;
-	bh=WoquWunYmCSL+/95Rrnl6iED+A+KdzoiIUpUW0JykN4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jWogVBkYvtsUW2F7gYb4UMRPZACjHguz53bIlkBIIx2MRBnO+UaZ6jDyD2C5J8KtJn21+kFmaXkA6xxjuMWxDtyzwqeaVgU0to6PhtGN4ZnpYHbf5/VWunO1Mi4ykTyYyCkZ9XCBrlFa91VMmcE6G8MR4dlW5Mw72TojIH1Jw4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=L8B9Gp1r; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45LBel53014651;
-	Fri, 21 Jun 2024 08:14:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=DKIM; bh=FRa3aI0ad3u7nydsNc44sEFGNZQ
-	hulyTRHX1Q7HOfYY=; b=L8B9Gp1rQuEvKJ70pgMgEIohqQzyUnXFuEishOXEnsx
-	G5dKGv97qbZc/OuF7Ty636rO6Ma19DNRsldTlSI4lG4CfgyQYXihTPG5kqzxnHao
-	U04a+dlR1YD2aXLO9cZg6rR0QFvW9BsGRHu0OwgPxmQganQds8Bi3g8k5PnYKcGs
-	K1DNzFMDD3DEGVqpT7uMtW8tITpdHLVxOFaEV2QDQKtUlMvgXiGYZSGdGCi23jF6
-	I2Ge70brJvm47F0OZY/r9Zz5uSpjnR46Am0Ay6LeHmfv7MvkMd2YZONso5L9qk6p
-	0xdhB+pBHnkRPbAKLZ103YAwCQVHPXXzJJD/YH146Iw==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3yw4yxs5v7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Jun 2024 08:14:23 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 45LCEMf0021835
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 21 Jun 2024 08:14:22 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 21 Jun
- 2024 08:14:21 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 21 Jun 2024 08:14:21 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.120])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 45LCE6Su032255;
-	Fri, 21 Jun 2024 08:14:08 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan
- Cameron <jic23@kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Conor Dooley
-	<conor.dooley@microchip.com>
-Subject: [PATCH v6 1/2] dt-bindings: iio: adf4350: add clk provider prop
-Date: Fri, 21 Jun 2024 15:13:58 +0300
-Message-ID: <20240621121403.47912-1-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1718972153; c=relaxed/simple;
+	bh=rE8ntxNIM5vaTaumZmp3qsqdX3oe1BdkEBjRraySjMw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GQroqBZrENnJYHPbVOLWmLtf+UYxJrcMihkd5OZ+WvGgmya4+KC/0GZ5nbfXlNE3IY7I7bWbyMmK/BrDIKH92gZ06K0Otz8lt3d2//xdjPTALe2vmB2tKJrEoIJetMkBvU7RL0GghYmsW5AOFyhJBWujl/pYdjghUASUJq8e7DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y3FRhXl8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46864C2BBFC;
+	Fri, 21 Jun 2024 12:15:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1718972152;
+	bh=rE8ntxNIM5vaTaumZmp3qsqdX3oe1BdkEBjRraySjMw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Y3FRhXl8cs1YgSR5JVrW/YQdZKcFQQl0NXj8PkGQEOJi6s2eALFoiOOF2lNYis6mF
+	 +us6FwSsxNyXwncLAPRmxTN5EE51/GIQ1OVmDLQAz/pNSaLCye16mSylO+xYNhJnrk
+	 9aI8e4T5bm+9wgROQnktthu326NyAZSezjo12l6eNTVp4qdesDqnDo1d3CgaLxEXMG
+	 yCbsm//WFIH2RVbX/e15v2tHA6Ko8n3CN5G7Gp0Sb/CycpFeYFEkJRHPeM7OFaUzYJ
+	 RLo0t4bfryHFYpcDjq91Ad4MEhY1ZCPtfUXfPYJm+mOD1ZX+gdoB74/BHGkBvNl+lJ
+	 PC/cmal4zBy7g==
+From: Mark Brown <broonie@kernel.org>
+To: Andrew Davis <afd@ti.com>, Baojun Xu <baojun.xu@ti.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Daniel Beer <daniel.beer@igorinstitute.com>, 
+ Fabio Estevam <festevam@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Kevin Lu <kevin-lu@ti.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Shenghao Ding <shenghao-ding@ti.com>, Shi Fu <shifu0704@thundersoft.com>, 
+ Takashi Iwai <tiwai@suse.com>, Vincent Knecht <vincent.knecht@mailoo.org>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
+ linux-sound@vger.kernel.org, patches@opensource.cirrus.com
+In-Reply-To: <87wmmkpi6w.wl-kuninori.morimoto.gx@renesas.com>
+References: <87wmmkpi6w.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: add missing vender prefix on
+ filename
+Message-Id: <171897214898.79912.13208484267678405419.b4-ty@kernel.org>
+Date: Fri, 21 Jun 2024 13:15:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: q5lCPQa3DyGBp6-UeJoXADohoYHrnZur
-X-Proofpoint-ORIG-GUID: q5lCPQa3DyGBp6-UeJoXADohoYHrnZur
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-21_04,2024-06-21_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- bulkscore=0 malwarescore=0 spamscore=0 mlxscore=0 phishscore=0
- impostorscore=0 clxscore=1015 mlxlogscore=999 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406210091
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev-d4707
 
-Add properties required for providing clock to other consumers.
+On Thu, 20 Jun 2024 00:32:39 +0000, Kuninori Morimoto wrote:
+> Many Sound yaml files doesn't have vender prefix on filename.
+> Add missing vender prefix for these files.
+> 
+> 
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
-no changes in v6.
- .../devicetree/bindings/iio/frequency/adi,adf4350.yaml      | 6 ++++++
- 1 file changed, 6 insertions(+)
+Applied to
 
-diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
-index 43cbf27114c7..d1d1311332f8 100644
---- a/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
-+++ b/Documentation/devicetree/bindings/iio/frequency/adi,adf4350.yaml
-@@ -28,6 +28,12 @@ properties:
-   clock-names:
-     const: clkin
- 
-+  '#clock-cells':
-+    const: 0
-+
-+  clock-output-names:
-+    maxItems: 1
-+
-   gpios:
-     maxItems: 1
-     description: Lock detect GPIO.
--- 
-2.45.2
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: add missing vender prefix on filename
+      commit: ae8fc2948b48f001514d4b73167fcef3b398a5fb
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
