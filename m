@@ -1,167 +1,116 @@
-Return-Path: <devicetree+bounces-78334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76FAB911EEB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:37:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9039911F03
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:43:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A76B71C22335
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:37:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B5E1B2104A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2349016D4C0;
-	Fri, 21 Jun 2024 08:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B17F016D9C5;
+	Fri, 21 Jun 2024 08:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="p1OAOJEq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C5F116D31E;
-	Fri, 21 Jun 2024 08:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F7916D9AD
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 08:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718959052; cv=none; b=CFMZhq1WOUjLcXlPgDdAl3lEh1FW676LqVoJe1dmOCXbS+F4wPKmUAVRIt56BmucbbkSlj+Yieo97oVdSdMXjRNQ7UDDWsMcdzevnArN1HWt8ACvJcZibAJeD0ClOMRMDLLlHwTRx+uISFAJb5KTLpZwtrhO8WVAXyAZEeJmpTQ=
+	t=1718959367; cv=none; b=IgRICzGb+ChJv+nygp2qMbR9xJyEVwm05S0jHDDDEaTcxfIyTC5UEBhwIidp29SvpVMdoYausz3EHLQoVRnB6BSzR8XGdxhszohHGifqtxlLZEttfnxWpEFVlhQVia4j8aG45ieTxXpGH97JreKyXWvqMdhEYJj18PJ0yBI4qSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718959052; c=relaxed/simple;
-	bh=vQbkzYO5D64OlUwNV48NR4emSRgPe77OGdkJraE8QTQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EBhclMOU1IuPDfqdlEtfyRI+ZDdeBbPfBFTpHDdIKmA0uuSAA7SxKeEH30TV1z8pzem9HX7p8rnnnFlEOxNru/mdIt6KMcPq3JODUTC2W/ceHE2KwEcRmQFgvaNQi5VHbmckgSefe1acdePZt64nfThBOS48nRHXBFAHQAbjIUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B540B240011;
-	Fri, 21 Jun 2024 08:37:25 +0000 (UTC)
-Message-ID: <40a7d568-3855-48fb-a73c-339e1790f12f@ghiti.fr>
-Date: Fri, 21 Jun 2024 10:37:21 +0200
+	s=arc-20240116; t=1718959367; c=relaxed/simple;
+	bh=xqKek1XvqTCfr6NwYsPzB4GImiJYhgGIGr03tZ1blJs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LeK0nbjw5eaRd8LrHGAaCRVQq1qCkjwRBZ2x955cuxfNTBnwM7EyAjwD7iu9FSVu4Lh34GxlVmuhdKEr2irO9R/gCJPnvB4NmFzkzzK91SQ55bXukH19st6PRhHJhbr9rglfVtRHaAJwuOBGaOW6MCRopO5kwquyHGAQnhywFas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=p1OAOJEq; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a6e43dad8ecso297992166b.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 01:42:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1718959364; x=1719564164; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kUnYRScJzL59U2vYuUFusX/xjPGk6acayJAkE49irck=;
+        b=p1OAOJEqurtjb4zgOI5DrNGzp8Mk7CD/3QdpgDfBFnEcYHdArLD4borK8H5XK+7OOo
+         oNlqFmjm3G7dE66Ftnw3s+ujnx8RiFdiT/MobjXzPWUDRPb0gdoJ2Vyze70tnuLxNz6j
+         aPGyBPmPlkNirLg8CBvqrzdt1yV88XmO0htJNgbl+JFnhRfWgd4LYHEn2c7YuY7dzZO4
+         XDmrjaKGj4tNqFtYRSK94EYWvxmCFrIaR33u0SJGDLss+l3MYRZ2DoNvVojkpAX8j2U2
+         GZRrR/xA+tKjYnvmSOM362pWef8JTJvMLTHHldZJVgljldS2ZptA4vc4d6e7w+3OQlPT
+         Me9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718959364; x=1719564164;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kUnYRScJzL59U2vYuUFusX/xjPGk6acayJAkE49irck=;
+        b=hAi9ufRA7ZnS950NPX3s16Np84QDQifjJf3IbPXMY69Yl42MaviOYFyK9Fj1A532Jj
+         XdKqjSSJGhOJPqLFISiKl2CWYa73JWd4ssyh8n+d5qmD+QhA5hp98M6XKcp/C6fYdFPc
+         uY82Y5fcZyFo3YhlYGG1Aibn0+K762Rd3020GAVW3Ie+rRg7rGYYLrSiQA7qHoxextDD
+         C5MFatV6QA93WPXLbVWIlFX31aIh1ztuhjclzxVKezQJ5hKmYW7KGpZt3zSCr74X0qBw
+         +ibE+PUa4pIlQ6UfsRcwC2ZcmRVH+zS5zWxcYtYJZc2OsbkUZ5LvjnFDeP674Nj0wc8H
+         6LXw==
+X-Forwarded-Encrypted: i=1; AJvYcCVYONhXcSFmfp4OO1e5Mso2tOMg6fWWa3/keUdmP3yDKmkYJWubeZWGtJcJjc/lbbkYRmwd6i80lpEgIktzdZX9nUcSzOvtEGdFQQ==
+X-Gm-Message-State: AOJu0YwCfk/dY5Xul+JRphQWpn6Lus7hYCtquWwN0UaCEi6P4ppPssQB
+	kXvpN4y6MxbRIWsocohYLmZe8dgau2X3mRpz8lmuolhRx8ShmneHdyle8sf9zF8=
+X-Google-Smtp-Source: AGHT+IGk9CWilm5qia4rnGMjRHdwvVHpwVCxmCigKKbigiJMGhUVq2PvtH2YD/02WIjUNb44SYwydg==
+X-Received: by 2002:a17:906:27d0:b0:a6d:fbed:7953 with SMTP id a640c23a62f3a-a6f9506efe1mr729475666b.27.1718959364083;
+        Fri, 21 Jun 2024 01:42:44 -0700 (PDT)
+Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf428c18sm58993166b.24.2024.06.21.01.42.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jun 2024 01:42:43 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/2] Add PM8008 regulator support for Fairphone 4 & 5
+Date: Fri, 21 Jun 2024 10:42:29 +0200
+Message-Id: <20240621-fp4-fp5-pm8008-v1-0-dbedcd6f00f1@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-Content-Language: en-US
-To: Anup Patel <apatel@ventanamicro.com>, Conor Dooley <conor@kernel.org>
-Cc: Yong-Xuan Wang <yongxuan.wang@sifive.com>, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
- kvm@vger.kernel.org, ajones@ventanamicro.com, greentime.hu@sifive.com,
- vincent.chen@sifive.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- devicetree@vger.kernel.org
-References: <20240605121512.32083-1-yongxuan.wang@sifive.com>
- <20240605121512.32083-3-yongxuan.wang@sifive.com>
- <20240605-atrium-neuron-c2512b34d3da@spud>
- <CAK9=C2XH7-RdVpojX8GNW-WFTyChW=sTOWs8_kHgsjiFYwzg+g@mail.gmail.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <CAK9=C2XH7-RdVpojX8GNW-WFTyChW=sTOWs8_kHgsjiFYwzg+g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alex@ghiti.fr
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPU8dWYC/x2MQQqAIBAAvxJ7TtjERPtKdLBaaw+ZKEQg/j3pM
+ Ic5zBTIlJgyTF2BRA9nvkOToe9gO104SPDeHCRKhVqi8FE1RhEvg2iERetWNNpY76FFMZHn9x/
+ OS60fUBAAmWAAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.0
 
-On 20/06/2024 08:25, Anup Patel wrote:
-> On Wed, Jun 5, 2024 at 10:25 PM Conor Dooley <conor@kernel.org> wrote:
->> On Wed, Jun 05, 2024 at 08:15:08PM +0800, Yong-Xuan Wang wrote:
->>> Add entries for the Svade and Svadu extensions to the riscv,isa-extensions
->>> property.
->>>
->>> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
->>> ---
->>>   .../devicetree/bindings/riscv/extensions.yaml | 30 +++++++++++++++++++
->>>   1 file changed, 30 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> index 468c646247aa..1e30988826b9 100644
->>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> @@ -153,6 +153,36 @@ properties:
->>>               ratified at commit 3f9ed34 ("Add ability to manually trigger
->>>               workflow. (#2)") of riscv-time-compare.
->>>
->>> +        - const: svade
->>> +          description: |
->>> +            The standard Svade supervisor-level extension for raising page-fault
->>> +            exceptions when PTE A/D bits need be set as ratified in the 20240213
->>> +            version of the privileged ISA specification.
->>> +
->>> +            Both Svade and Svadu extensions control the hardware behavior when
->>> +            the PTE A/D bits need to be set. The default behavior for the four
->>> +            possible combinations of these extensions in the device tree are:
->>> +            1. Neither svade nor svadu in DT: default to svade.
->> I think this needs to be expanded on, as to why nothing means svade.
-> Actually if both Svade and Svadu are not present in DT then
-> it is left to the platform and OpenSBI does nothing.
->
->>> +            2. Only svade in DT: use svade.
->> That's a statement of the obvious, right?
->>
->>> +            3. Only svadu in DT: use svadu.
->> This is not relevant for Svade.
->>
->>> +            4. Both svade and svadu in DT: default to svade (Linux can switch to
->>> +               svadu once the SBI FWFT extension is available).
->> "The privilege level to which this devicetree has been provided can switch to
->> Svadu if the SBI FWFT extension is available".
->>
->>> +        - const: svadu
->>> +          description: |
->>> +            The standard Svadu supervisor-level extension for hardware updating
->>> +            of PTE A/D bits as ratified at commit c1abccf ("Merge pull request
->>> +            #25 from ved-rivos/ratified") of riscv-svadu.
->>> +
->>> +            Both Svade and Svadu extensions control the hardware behavior when
->>> +            the PTE A/D bits need to be set. The default behavior for the four
->>> +            possible combinations of these extensions in the device tree are:
->> @Anup/Drew/Alex, are we missing some wording in here about it only being
->> valid to have Svadu in isolation if the provider of the devicetree has
->> actually turned on Svadu? The binding says "the default behaviour", but
->> it is not the "default" behaviour, the behaviour is a must AFAICT. If
->> you set Svadu in isolation, you /must/ have turned it on. If you set
->> Svadu and Svade, you must have Svadu turned off?
-> Yes, the wording should be more of requirement style using
-> must or may.
->
-> How about this ?
-> 1) Both Svade and Svadu not present in DT => Supervisor may
->      assume Svade to be present and enabled or it can discover
->      based on mvendorid, marchid, and mimpid.
-> 2) Only Svade present in DT => Supervisor must assume Svade
->      to be always enabled. (Obvious)
-> 3) Only Svadu present in DT => Supervisor must assume Svadu
->      to be always enabled. (Obvious)
+With the PM8008 regulator driver scheduled for Linux v6.11[0] let's add
+the dts bits for Fairphone 4 and Fairphone 5 which both use this PMIC
+for powering the camera sensors - and the pull-up for the CCI (camera
+I2C bus).
 
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=ib-mfd-regulator-pm8008-6.11
 
-I agree with all of that, but the problem is how can we guarantee that 
-openSBI actually enabled svadu? This is not the case for now.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (2):
+      arm64: dts: qcom: sm7225-fairphone-fp4: Configure PM8008 regulators
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Configure PM8008 regulators
 
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 105 +++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 109 ++++++++++++++++++++-
+ 2 files changed, 212 insertions(+), 2 deletions(-)
+---
+base-commit: 89b2edc37183ced80c5ae14277b10bf6482a0a94
+change-id: 20240620-fp4-fp5-pm8008-909ab08689ff
 
-> 4) Both Svade and Svadu present in DT => Supervisor must
->      assume Svadu turned-off at boot time. To use Svadu, supervisor
->      must explicitly enable it using the SBI FWFT extension.
->
-> IMO, the #2 and #3 are definitely obvious but still worth mentioning.
->
->>> +            1. Neither svade nor svadu in DT: default to svade.
->>> +            2. Only svade in DT: use svade.
->> These two are not relevant to Svadu, I'd leave them out.
->>
->>> +            3. Only svadu in DT: use svadu.
->> Again, statement of the obvious?
->>
->>> +            4. Both svade and svadu in DT: default to svade (Linux can switch to
->>> +               svadu once the SBI FWFT extension is available).
->> Same here as in the Svade entry.
->>
->> Thanks,
->> Conor.
->>
-> Regards,
-> Anup
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
