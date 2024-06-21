@@ -1,114 +1,147 @@
-Return-Path: <devicetree+bounces-78305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE51911CD3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:32:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C8F911CF2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09A991C2214B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 07:32:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AF1F1F21E31
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 07:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECCA16CD0A;
-	Fri, 21 Jun 2024 07:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1988B16B3B4;
+	Fri, 21 Jun 2024 07:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PdfMISyd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Cshbk9pF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB7C16B74F;
-	Fri, 21 Jun 2024 07:30:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A955415A49F;
+	Fri, 21 Jun 2024 07:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718955057; cv=none; b=P9gzuFOs6V9JDq5YPtP7Jlm54W2hig24ZsSXxsMNLhCfLC1zZ4fB/g9GVWEzaFmYHGpiY2GIwovVP7dUljPlu7+Q9XAowf0RrUY4C2BGsDR92+WGOJwBOkDoyVo8Yj7EOzJ/ge8EZaDkJSNSmjVUAMbX6pPPKO/As47DIrEO5rI=
+	t=1718955421; cv=none; b=t/eGUnckFw2pDTSsTNLg8/x/NRaPKK1lXJB4rAzELMP6q633zQyovwVhK6M4JsriK3Mmvy4keL7jleNOLD6O3LvdM+gYYH9zXoPImUzyLXN2lFDbEmM60x+cSMx1fq+Nrdd+bXgE/T3ZIyJQLfnXlV4I9HAZFYzJDhb06eGCBOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718955057; c=relaxed/simple;
-	bh=ko8J2UaKlSl/BDPlAtHFYwIIw4yfwjeKtWhC1B1E6dI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lfhVGj8VTXUysLGlCDz/3Lf81KQQ+LFWAGnIpVI4CaJBd7h8qE4/hXX4OfhsY2rRhS74ZAS0U8mP/yOWGBng58V/r1v1F644hPuzvFrBuP8+1XOZSQMEGZ62gApCNIrzy7cXkyt0O4SDhaQHJpUwuzFLL0eaEm4JWvGgHQyvSxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PdfMISyd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45L5tdhw023962;
-	Fri, 21 Jun 2024 07:30:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ko8J2UaKlSl/BDPlAtHFYwII
-	w4yfwjeKtWhC1B1E6dI=; b=PdfMISyd+3hSBZ1Ke013xq1J2zysYifRDPjAQ8mf
-	63t0Oq8F+STq05ZXQDoltyCI+30YcLArzi+iIctkeBOJZEhAkNojqvG1/6sabk3N
-	gjdxWdf1ouecy/Es5gE5yQILuoXPrxCBIh88yD8mSeRTQ57aftuX/REz4aS6lnbe
-	lYz/VkRlnSKTNFJt2ybQ4Wr0Y/8VL/3WlkoUvRwJFFSySJLP91unkez7r5U+z0Xw
-	48QB6N5Tn1EZrr4Z+xVsjyGIm8h62N7wKW2nsJopX+2GDCqChRHV+M/tffvdW5+D
-	92c9QlT1FI6zTDWRuDvKnzet+mRAfbPYGR92vz7nuCbVJA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yvrksswd3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Jun 2024 07:30:43 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45L7Ugpb026188
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Jun 2024 07:30:42 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 21 Jun 2024 00:30:36 -0700
-Date: Fri, 21 Jun 2024 13:00:31 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <angelogioacchino.delregno@collabora.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>, <quic_sibis@quicinc.com>,
-        <quic_rjendra@quicinc.com>, <luca@z3ntu.xyz>, <abel.vesa@linaro.org>,
-        <quic_rohiagar@quicinc.com>, <danila@jiaxyga.com>,
-        <otto.pflueger@abscue.de>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-Subject: Re: [PATCH v1 3/7] pmdomain: qcom: rpmpd: Add IPQ9574 power domains
-Message-ID: <ZnUsFwQyc7JRTXl/@hu-varada-blr.qualcomm.com>
-References: <20240620081427.2860066-1-quic_varada@quicinc.com>
- <20240620081427.2860066-4-quic_varada@quicinc.com>
- <jfh2xygjdoapkno2jrt6w7thlylgyp2tk7oaczundhxvi26qel@ahtskgn4v6sp>
+	s=arc-20240116; t=1718955421; c=relaxed/simple;
+	bh=ke+r23BTDD21jUujjqNFtd8m4jT5jsEpK++8SapryWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O+azsJ8eFVpZbmiAuTUSk1ziG/0X5IrKO1Lyogc8HWWeIUvV2xWlxdsBJuaOUVKbbEvm1f63uuL7o+NQj68ihsz2hi9/MlOVkoIrMQ09xWvJJcRSFA5ranRAg0JFZ4RooXkbAFMOSYhxj9nGD40iOzV7DVSeM2HKhypq69aPwqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Cshbk9pF; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718955419; x=1750491419;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ke+r23BTDD21jUujjqNFtd8m4jT5jsEpK++8SapryWI=;
+  b=Cshbk9pFFsBlWr0OAN8t1Gmslv1zOlEZv19bHM0uukAmB/e/GwXjExPJ
+   /YHtblVAczMOGZmN3sd8pHx+CtA1fgxd+9Rsvdb/jVOF/00WQmXG4zKUr
+   oX0t0HT+pN8NdpNs63gmWS0WeUh21qQPl5L/97QNkHuxtJqyjWu2kXvH9
+   Vo9vJEsms8Us4kZuRdTH17+ZtkzWHdLQ+73z51nj67SZmis6OLg2zawf2
+   yEQ+0b+O4X0QHlbQxwTWuL5QIGIrujoCe6O+UX1nYZL/Gh4Wa2RBw1CqJ
+   AHMlZYu5KkIpbx7DwS9KCDcrkHpXlbUsZMVaVakLZzQJOwa4+wupgJI51
+   w==;
+X-CSE-ConnectionGUID: nIBgm0OBSrmevCqlJy9YAA==
+X-CSE-MsgGUID: RvTvCc6VSSa7cwuzqqg00Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="41380600"
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; 
+   d="scan'208";a="41380600"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2024 00:36:58 -0700
+X-CSE-ConnectionGUID: ToHq5LJEQ1KUNWNh6d9r+Q==
+X-CSE-MsgGUID: /UwiEcC3SJ+H3frnT7NadA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; 
+   d="scan'208";a="46854468"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 21 Jun 2024 00:36:52 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sKYpF-0008Ky-1m;
+	Fri, 21 Jun 2024 07:36:49 +0000
+Date: Fri, 21 Jun 2024 15:36:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jie Gan <quic_jiegan@quicinc.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Konrad Dybcio <konradybcio@gmail.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Jinlong Mao <quic_jinlmao@quicinc.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Tingwei Zhang <quic_tingweiz@quicinc.com>,
+	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+	Tao Zhang <quic_taozha@quicinc.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Song Chai <quic_songchai@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+	quic_yijiyang@quicinc.com, quic_yuanjiey@quicinc.com,
+	quic_liuxin@quicinc.com, quic_yanzl@quicinc.com,
+	quic_xinlon@quicinc.com, quic_xueqnie@quicinc.com,
+	quic_sijiwu@quicinc.com
+Subject: Re: [PATCH v1 2/3] coresight: Add coresight slave register driver to
+ support data filter function in sysfs mode
+Message-ID: <202406211517.KmJFaZkV-lkp@intel.com>
+References: <20240618072726.3767974-3-quic_jiegan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <jfh2xygjdoapkno2jrt6w7thlylgyp2tk7oaczundhxvi26qel@ahtskgn4v6sp>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 3EDCezE50oxWbJ3qrC5dswBy0blzoSZi
-X-Proofpoint-GUID: 3EDCezE50oxWbJ3qrC5dswBy0blzoSZi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-21_02,2024-06-20_04,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- adultscore=0 phishscore=0 suspectscore=0 spamscore=0 malwarescore=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
- mlxlogscore=628 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406210055
+In-Reply-To: <20240618072726.3767974-3-quic_jiegan@quicinc.com>
 
-On Thu, Jun 20, 2024 at 06:09:51PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Jun 20, 2024 at 01:44:23PM GMT, Varadarajan Narayanan wrote:
-> > Add the APC power domain definitions used in IPQ9574.
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->
-> The order of the S-o-B's is wrong. Who is the actual author of the
-> patch?
+Hi Jie,
 
-Praveenkumar I <quic_ipkumar@quicinc.com> is the actual author.
+kernel test robot noticed the following build errors:
 
-Thanks
-Varada
+[auto build test ERROR on next-20240617]
+[also build test ERROR on v6.10-rc4]
+[cannot apply to robh/for-next atorgue-stm32/stm32-next linus/master v6.10-rc4 v6.10-rc3 v6.10-rc2]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jie-Gan/dt-bindings-arm-Add-binding-document-for-Coresight-Slave-Register-device/20240618-181003
+base:   next-20240617
+patch link:    https://lore.kernel.org/r/20240618072726.3767974-3-quic_jiegan%40quicinc.com
+patch subject: [PATCH v1 2/3] coresight: Add coresight slave register driver to support data filter function in sysfs mode
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20240621/202406211517.KmJFaZkV-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240621/202406211517.KmJFaZkV-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406211517.KmJFaZkV-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/hwtracing/coresight/coresight-csr.c:21:
+>> drivers/hwtracing/coresight/coresight-etm4x.h:237:10: fatal error: asm/sysreg.h: No such file or directory
+     237 | #include <asm/sysreg.h>
+         |          ^~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +237 drivers/hwtracing/coresight/coresight-etm4x.h
+
+03336d0f4d0d74 Suzuki K Poulose 2021-02-01  236  
+03336d0f4d0d74 Suzuki K Poulose 2021-02-01 @237  #include <asm/sysreg.h>
+03336d0f4d0d74 Suzuki K Poulose 2021-02-01  238  #define ETM4x_REG_NUM_TO_SYSREG(n)				\
+03336d0f4d0d74 Suzuki K Poulose 2021-02-01  239  	sys_reg(2, 1, ETM4x_CRn(n), ETM4x_CRm(n), ETM4x_Op2(n))
+03336d0f4d0d74 Suzuki K Poulose 2021-02-01  240  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
