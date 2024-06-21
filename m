@@ -1,477 +1,303 @@
-Return-Path: <devicetree+bounces-78298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2BE911C4F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:57:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB4A5911C67
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51FD11C2403E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:57:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 809B528694A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 07:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0426016D4F1;
-	Fri, 21 Jun 2024 06:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="e1C1w/sA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D4816B3A5;
+	Fri, 21 Jun 2024 07:07:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2079.outbound.protection.outlook.com [40.107.22.79])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F0716C436;
-	Fri, 21 Jun 2024 06:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.79
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718952991; cv=fail; b=iZg9UZnXXXJv7gYMiufwIkqgEiblxy0C8CVO7GZ0ZC28ofkEC2RmQbayAY+3JV+D/BAIA7p0C70xwPAZqCsrbvt29I1oJbeweCNsENjB+31VNKWB/oPHNeS0a14dm1hOpZgAn68xosRPifTPWFjo/aJGHSbt5Ht3TtSmpijrxsk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718952991; c=relaxed/simple;
-	bh=BQjEWFs3tn1kJ3gHqry+33Y19uPuh+IDbf4sSa4/dBE=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=lwI5/nOhBG3BRjc8nPmaWRAuw383KV8IOBiT0/MhRfAGsYxR3ZJ+6V05nwx8tq9Ehs7r5e9QUMgRmLMrK7UTPuNAcjxdHFdCC4QFlESgNCKHE7k5UEa+BKCzlTUVP3RJzglNXVt02Lc2gKhMS6qVSj3PiTpVlpEqFZhK7+/mWus=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=e1C1w/sA; arc=fail smtp.client-ip=40.107.22.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UU0/0mE/X+O4K5UjG1TcSkT5OUab5vVdoPOn3BlVWk9g/kPhXLx8dl5LsOqnRM2mG2OjsDWKvXWLethoWjc19u5igx32QDMculzwlfuGc8oArswDLdN9IcIM6TILFt2VDTWWIHOI4VaXdEnoN1p1Yy48slVb7qOuuiuYtE3PE7nYDqbMJdWALGnDXvd5qdSATBP3QNTFhECc4upGSsfF9v5pbgsIbgT9AXdDu5Ky/MateZQR0TyYlKQAqm+tfDjwhFJHP8TSFBBANzYvQ2vIJIuvFJHJVZAOGfbg6ZYzI6tYo2kKMuTZ5zpmFgN0UWBWhbmjvKSc/kW/1+vahp7wxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C0ggd5wKMv4U80GyDOSu2OoINrWdvdDCP012GJn8Wwo=;
- b=Y4F7JYzIlkNCS547gfRhNWOuWH5j9fnaIj7nNMFvGpshPO6+l/i/xT1ZQlMugO1DogCg7AJ2vy0ANvE9ev2wkc0WB26mn/CwRRI4GBwq9qD5ymkG8v+fPP/NyMHDSJEhkKl70bU3S5kyrDgrCZ25X3GX3EIFnhjML8HVa5ck2XAkay9ObNbflKt/HPfh7IR+oWng6rsZNuv1aE4TV1uJmcm7lbuZN0VIvGMhD008Wq6vvPXUp4c73Gi/udi8mVoawIb+H4/xQ98KOuWpA8Ai9r4MAV6Vb+zkreW+DoUknNDqFEwGigTbTzwSO8dtBsmBke0VMW+FzBMLX5yhcW1yWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C0ggd5wKMv4U80GyDOSu2OoINrWdvdDCP012GJn8Wwo=;
- b=e1C1w/sAWUm7Ru2rMJ3VfPnkm/TC+thyHFIOqCYlHdbM/oPyjLdXxL6t8zxMQtAtLhM9aqHG0bhi0aakk0wdWMajxAQ9E+POMXKJNjyizW7YaQfPpWwzIR1idPpv+H+XZkWvQ4MUaQ004EoNT0riHQLxSiGHklkbcfZPchz0Vv0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com (2603:10a6:20b:9e::16)
- by GV1PR04MB10426.eurprd04.prod.outlook.com (2603:10a6:150:1cc::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Fri, 21 Jun
- 2024 06:56:26 +0000
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256]) by AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256%4]) with mapi id 15.20.7698.017; Fri, 21 Jun 2024
- 06:56:25 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Fri, 21 Jun 2024 15:04:42 +0800
-Subject: [PATCH v5 7/7] input: keyboard: support i.MX95 BBM module
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240621-imx95-bbm-misc-v2-v5-7-b85a6bf778cb@nxp.com>
-References: <20240621-imx95-bbm-misc-v2-v5-0-b85a6bf778cb@nxp.com>
-In-Reply-To: <20240621-imx95-bbm-misc-v2-v5-0-b85a6bf778cb@nxp.com>
-To: Jonathan Corbet <corbet@lwn.net>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Sudeep Holla <sudeep.holla@arm.com>, 
- Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, arm-scmi@vger.kernel.org, 
- linux-rtc@vger.kernel.org, linux-input@vger.kernel.org
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718953487; l=8179;
- i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
- bh=ChfkEJX/72hXEL9g1a8O55kYUMOihK4KW1T6yM6QP7s=;
- b=478Kz2I4jFt9FPxkAK98lmXfjQPwSEDRoU4ChGwdkT9MAJDo+jB1gg6nuORaR7bm8I4KVBzUT
- JqOZH3l/a+MBl6n63yUIcLj2DjBKNKzwAa0dT3pjhv+bJ+NRxUa3F+5
-X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
- pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
-X-ClientProxiedBy: SG2PR01CA0122.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::26) To AM6PR04MB5941.eurprd04.prod.outlook.com
- (2603:10a6:20b:9e::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 045B716B39C;
+	Fri, 21 Jun 2024 07:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718953657; cv=none; b=ge0UTqNP2IyRlyXnIUk+LXh8P8uFF2Nn2WNFYUmqCRXxI9/TMF0Pf2rpoMNCx4NO5g6OWYQny0hNhbYDcqq5LKsSAA+MGVkYgzds9GCqcM1oMvgqAibR05cnX/CUy7YVmQkQndZ0dVMDaJ294soyx/9P9XpTYWglDA2zoOuc3QQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718953657; c=relaxed/simple;
+	bh=7tkF5DoG1mNyxCDvKqAsREysYynts5LZQaOGCf04ZBM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o/ETKFZhJrdWd0+yNqxdSZe9U4Y9aC/ik40cmSBhBegiYUK3Yeb2aHE9aO1I+unEx/HXuCEhCrjvEgQKVY/IiAmvETqhi7NfO8Kd+rQIwroBDUKFdzZPFrI9hAXctUF3WfLZXeJOwfG5t5ct5V9+0LLG1clG0Jngkw5GVxqx+K0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e02b571b0f6so1755514276.0;
+        Fri, 21 Jun 2024 00:07:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718953653; x=1719558453;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pCeBy6m9Ikgkd0V6AmZHrrVdN8+2k5wHMXK+JUn37Us=;
+        b=dwgkxqYlcbVunXfq1bmRBfQcrYpSyk7teLpDdkQz+8PcnGcblLl6UzxYjk9+ENlGBs
+         0rA9Dj7jwlfZDMW9l3jRmcqoX2NCiHPsK/l7n/YPVEKAT6fa1CahJeEci1xX1x29Tjg+
+         3JvM3ybTvuQK1bLA3dm1RRr9vBoXSbfVDqyDnDoLU2MD4SYTqgFhB1HDZsaBkXyhb7ZP
+         pcwDPR+KFPy4kZuXnMsBC4b6aSF3kuJErJVRseMjU5/ld4wK0ckqe6Y5K0mqqc3EZKaS
+         3ZyxLPK214L9/4KJIlKAx8tQv26Jy6Mdghc9TSa5pbZMrEa9PUWtA6lw3zQRP68k1RiB
+         zPxA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtQXD0n7fQXBEuVFPNONTVYXqOpPpwJ7oJR/PREcR35NcYKCdvSbL6xicvOfjFgZmleCoCNR8vmy8o7R2StC12IQlUC0Kaj492eRJZ84dfcgcaDPuY1gVdSpanwTOPWpcmgzzfXlvnxXOlai+UkE+NVUfZCf+qa9nYRANgdAbspQMhSla3LTqKph/SwqYowrtKL8LzizTh9G3/AEtaVTpVEmr6cD1VECa2VIgUvAvF96p7JUQ/nqjU/ZqBHSAcaXkisqQ=
+X-Gm-Message-State: AOJu0Yys0VMIWxsfl2lRH+vzD66Kpf/tgn2kt0JM1ZN7L3mN00vusXji
+	CUnjTNwFE6bkIDmeZ7jjdfpjz6C0ivKTwE2N/gcDEHr9NQRAAXlICGhw3D3U
+X-Google-Smtp-Source: AGHT+IEwQSLVg32R6LnNxhCts3FFOjppOMNhjb1LPkVVaD61bLTb4+b5+eet7DNLk5aIWMUC9tWc0A==
+X-Received: by 2002:a25:bc8b:0:b0:e02:8d40:98ad with SMTP id 3f1490d57ef6-e02be10a9aamr8046578276.13.1718953653123;
+        Fri, 21 Jun 2024 00:07:33 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e02e61168b3sm243511276.6.2024.06.21.00.07.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jun 2024 00:07:32 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6327e303739so16311557b3.2;
+        Fri, 21 Jun 2024 00:07:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXbZh/NiVNtdZwRAy+L5NdysXpJBH3C1lM/y3uRIzgprhXG7AIUUjPZI1Ctx/EWOlYiqrJTm8BWhePFoG3lha6+MNvp19Siq4yJMMgN9kaKS+YISuzUGKeDOEFa9d6YgcSfm0UKx5xkrUsaxvEK+VEgofem8kmMZsqhicHOXmzYWWHIzdZuUOgNkYcre156pKZ3jA1c0vGz74Owx96Ih2y6DwGrOj7mKAoTOQR12E+aQcGSEXLEYkU2MnsJ+3LphxQ1R5c=
+X-Received: by 2002:a0d:d7d2:0:b0:62c:fcba:cfeb with SMTP id
+ 00721157ae682-63a8f339693mr74571937b3.34.1718953651367; Fri, 21 Jun 2024
+ 00:07:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB5941:EE_|GV1PR04MB10426:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4a72654-60e5-466f-3f9f-08dc91bf448f
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230037|1800799021|366013|52116011|7416011|376011|921017|38350700011;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?QUZ1WXpBOGRGT0dubW9OUzROSVJSOStLRnMvQ3A0SGFxWnlodXEzWE5LYUc4?=
- =?utf-8?B?S1ZVWWVkanFhejF2d2JkMXdWRGVaYWN5b2pHdjBESGFzNzVHY09mU3BtRXpm?=
- =?utf-8?B?bzBTYmk5N1FKdUhoNjVITWkzK2hwd1BiUmkzY2RXS0UzWE5ZZmNUcW1paWRF?=
- =?utf-8?B?OWZkbUxBWERPNXR0VkhueHZNbFBVVWlrYmdiNk5iMTFIb25mc2tKZCtuWkNp?=
- =?utf-8?B?aGM2cnE5MCtha2tOblNTSTFxWW5MR09Qc0dxRFlZNWtiVmFRVHMyRXJ4aW9V?=
- =?utf-8?B?UlZxbVVxSUVWNHFGSVBKRzl4Zkk2aXk2eTRkZ3RrVDVGNWtZcVNkeStwcHE5?=
- =?utf-8?B?M3EvRDNKZml0d0doMG1NVUd6dXJqNFFQb3RDcnhQK1lZMThTaU9TcmtwYzla?=
- =?utf-8?B?a3QrRWxlUE45SEg4Tk9yMkplQ1VwWm1hckRWdWE5ZkJZRjhBMURFMjg0aE1k?=
- =?utf-8?B?cll0ZDRWQkI4L0NvaXB5QVl2bWxPd3gyM0lETytOREtmcDZFUzNZbWNSVUxU?=
- =?utf-8?B?anJxdUpTM1Q4SXJyTzc2R0NKV2ZrZFQyMnFOcUtrbDYrM0grd3RzYjFMOUNJ?=
- =?utf-8?B?eHE3aE1uWVBxcHJxOHpWZW4xekxjZGVuejJGMDVZb1Q2ZFFnUGNScy9WajV6?=
- =?utf-8?B?QlBySGpuTGh6bXJpbEJHY3lpM1pITDZPSHIySGZaZ0Y0eURjQjdVc0xiTGpR?=
- =?utf-8?B?MmpQT0M1cG96MTI0R05VQ0JYcklXc2pSeGdscU5lL3RHRTZPdHM3Y0ZIR2Nz?=
- =?utf-8?B?V2JWdzdWb290ejlId0V0RmlHRUpUaFh5eFhXWVM0ZDB4ODN1YnlnVW5aZFhK?=
- =?utf-8?B?M2tWckE1QnBsUnpraDlRbVRiNitEMlg1RUFQaSswbDhJMFN1QkVpeFVjclJV?=
- =?utf-8?B?OENnai9oRlFJc001R0kzWHhWbTI3Zi9uUFZ2aUFjSDlGM0twZW1kOFArRWtK?=
- =?utf-8?B?akVhcHlQVmRvVEdXaUpIWGpJTkh1MHluYVFPVDROaGpEbW9uaG80c3I1R1pO?=
- =?utf-8?B?YkhQWEkzTEE3WkYzbkJFdjFzMldCWDhqc1AvU24yWXRacFN2dlhGWnF0MlIv?=
- =?utf-8?B?VUFvMWRTenpyMDlWWEt2M09aa0tnRHkyeDREVS9vT1ArQVppclkxNE5JTUhF?=
- =?utf-8?B?TGFDSHp3VnNWQW5va3NvOVIvQ3g3Mi9jdXF1U2w1NGgza3VYSmhHY1dudk1u?=
- =?utf-8?B?WVk3K3QwcS9iYWV5ZnBocmdGakNkNFR3TmJMNUF3aEM5MVJxNGxWaFo4a0JB?=
- =?utf-8?B?ZkQwa3ExcnRwV3paMEVNWkVwY3Vzd2t1ejI3TTk5RkdoZHhsc3hOZnZjaUZY?=
- =?utf-8?B?QThYVXdXbWo3dkZUVGVNaXhCZ0pWU1gyU3NCZTY2TWV6RXZjSStVdmZOQ2lM?=
- =?utf-8?B?KzZOZmdKcGlVelpFNHYrWTIvRGR6UnV3YmxCdUhLaEhqbGdvdWdyaHYyN1FQ?=
- =?utf-8?B?RjAxY052WERxaWdXV2UwMmZ1UzBDUy8zSkttOExKQVNmSFFCY1FEL2dJWFFO?=
- =?utf-8?B?dXJhRDZZenNDTk1CS21vMmsvWjhWa0FrY2YxRXlhSlcxbkhlTDd1ZEhEUDBF?=
- =?utf-8?B?NVZYaW5taXpyQ2g5WXdqUmFoMkhVNlFwcEJQanV6NTRna2d6cU1RNkw2VVNB?=
- =?utf-8?B?eTJTN3lHczZ1MW5DUGErZ29oSkRuK2w5eEEzT0EwdktOZnMrSjFkK2duOTFv?=
- =?utf-8?B?K2ZOVWlocVE0UGlHNFpGa1ZKNWx6U2dmWStsaXBzcGdHMzNZMmF6L21yNHVv?=
- =?utf-8?B?UjhnaHVlL3U1VXFiWWxLK1owU3VSem5zWTlUZDUxdTZJaE5EVm1CM0NhQ1Vw?=
- =?utf-8?B?c1U3MWg1TENIYXFRb210cE05WUJMSVlueWlFbVQxZXdRblV2OXdkSkpmbTNS?=
- =?utf-8?Q?SXC9Ucfurwpn1?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(366013)(52116011)(7416011)(376011)(921017)(38350700011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?U0MyYXJ2N29QUERSdWs1UStJQlNQOTA0ZjRhUkxyTWcxTTBZUFBES1RXY2R4?=
- =?utf-8?B?UTRsSXpWbHhkdGtDMWZZWG1wMDdpVjZnN0dUYTQzUTIyNU9ZYU5VbE12K2w0?=
- =?utf-8?B?ZDN5UnlnWnRQdDFzNllCT1pRanVpTzQ2UDJhREMybExuZ25WTWFra3RyMjRF?=
- =?utf-8?B?Z3BsMDFsYUd3ODhBT0V2eFhudG5BMXVSVkhvQitHa3YxNEIxL01vc2R4MEZp?=
- =?utf-8?B?SnJBMkxycDl2a0dPbkdjV1FRT1d2aUNlWC96VVpldW9oMjNwaE9qOGR0VDRx?=
- =?utf-8?B?OFpQZ3FtbUVGYlQ0c1FHYmZMSDM5M3lNbnJlQjJqZmtwS1NNSFpnRXJkVHBQ?=
- =?utf-8?B?Qi9zTTBWUHBkRXd3WmNucFU0RHptUm9iVkl2NW1GWitvTEN4Njlxb0RyRkdr?=
- =?utf-8?B?MkpPa0wwR0dnVzJSbEFhNlBVTlZxR1NYTy9Rb2VTWEpNejFtMHFrVzZJT0Ex?=
- =?utf-8?B?amRZaVJhSG9nNkE1eWdrZC9LQms2WEhKYXl2NWlhNDVDNXF6ZXp1YkQ0ajVL?=
- =?utf-8?B?WGJralhCaXN6ODZLT0tObjZNdG1Wc2ZQTEtlM2hsRDc1ZXlzc202eXJCOWlB?=
- =?utf-8?B?T2RPN1E1WG5GL1FsT3BDVG83dDU4VWtoeStDdzV1ZmVrNTU5QzZ5YUdRNHh0?=
- =?utf-8?B?dStiTm1oZmpIK3pXelpYUHFMSE5KMFQ5WVR5ZElEN3BqMDdXZi9rc20zQkJW?=
- =?utf-8?B?cHErc2hWUHlDdlFIKzVoS24ydWE0ekxsaHI5dncxUEhtemYvbFoxeTYrWUR6?=
- =?utf-8?B?cEFUYW5YM3d3VElNOUZoeHZEQXZSVTlCS05XMEFLRFV6TXpZRWsvbUxvai9m?=
- =?utf-8?B?Njl0dmNDWjk1ZlYyaG95d1gxSEhyNEZNQmxneEFXZkJNTXJDUmxObVlBaWRa?=
- =?utf-8?B?QkpUNXQxTzRQS3VWbFN6djBSU2MrUjJxQUFqTWZZZkM2ZDhGSmM3NFlpYkty?=
- =?utf-8?B?anlsYmoxU3lqSDFuaENQK0JqU0RGVUoxeTVLK3dYS2doeXlua3VjR20vVExD?=
- =?utf-8?B?RUtMRDZkVVdCUXY1bFU3aXNzeklyZzhmeWZEb2tTdkJkYjJSMndmTkxicFNF?=
- =?utf-8?B?dGJYYzZNMnFSM2RUclEzeW5wdXdoUkRmWFAzbjRBOXNwNG1pQjZMQzVodlZO?=
- =?utf-8?B?bTQwR1pUMlQ4VG1iOGdDN0RCUzg0VlI3UElidVZ4S011Ujl5Tjd4ZVdHYkh5?=
- =?utf-8?B?M001bkpZRE54RTlrS2paZG51WDh6aEkrNjZMMFo1MGhqdWRqYmZndE5pMzVS?=
- =?utf-8?B?ZUFTZDFzR3oxZ0J5SmplZGE3TVdOamEwaWJ2NXdVY0FYTVQ1NXdQVndWYjE1?=
- =?utf-8?B?bnFFWGpmUVpKZUZVVmRyaHZmU05zNFlnK2o5d241YXBYdDd3bkpVM2tTTWs2?=
- =?utf-8?B?RXUyL0lsVzZRT1p6cVlIYUFXRlVMZFRsVzBZZGxsYmFhZnZ6bjJyWVVZYnM3?=
- =?utf-8?B?SGRyYkJHSnFVWjBpQ0dOUERHL0ZSeVVLUlNOMHJYYitZTlE4cCtpV0RoL0lS?=
- =?utf-8?B?YUZNdExTTlA2N1BzRkNzdEFFZHpOUDV1cFdKVXhVMVNaekpRTTdGNXdXbzVh?=
- =?utf-8?B?cWV1WmsvcjZrNE43T1RuMngxR2xhZDhyNGhJTVI5dEQ0bExOSzJFTDkrZTg0?=
- =?utf-8?B?YWJ1bDd4dlVDeE54Nk9Wbjk3ZnNrdFBPL0pFTzhjZGlxaFBicEtFc1ZNUVEx?=
- =?utf-8?B?d28yQnNLTTBPdmVCclFEUzZOU0lFeEpZYW52VFBMQ09lNmM5R1FESzFVTnJu?=
- =?utf-8?B?MGZ2MklRK21udFF5SVhVK3JLT1VPcGltZjlYdjdmSTVSVXQzemtsb2x1OUFZ?=
- =?utf-8?B?R2FtMUNjYlFULzBYazBwVHlwQWc3WnpiRGxBZ2x2bStjY1lmOEsveVQ1WnRk?=
- =?utf-8?B?NmFJS0JVajJkUFc1L2ZjbWhWbGdVdEZTSWNndlhoT1pmQk9FcGRQczZLVHpZ?=
- =?utf-8?B?TzFVQjNIbDY0ZlJEWjF2Y3UrYzJocmFvY0MvbmFCdTVoK1hqWEdkYi9PendD?=
- =?utf-8?B?c1h6a0pvdHVJY1lnZTM1bksxQXlVQTZOenlodVlNTldBTjJ2WTBMQnhvN1di?=
- =?utf-8?B?c3VqdWtERUcvL0FJdXQ2R2pNb0lRYlkwRnJKVm4ranF3VitTUEtnVWJ3MFMy?=
- =?utf-8?Q?Ztox0FzBeEDD48CEhJMEkk7PY?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4a72654-60e5-466f-3f9f-08dc91bf448f
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5941.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2024 06:56:25.5987
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SmTeL7EWNsEbLfOuXKP+NFRvyoE5Stss07R2Nnwa9hzyawP3qzhdO7EGgjkCNJd6jsKUxVnvuNg7LInI1tyxcA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10426
+References: <cover.1716811405.git.geert+renesas@glider.be> <CAPDyKFpa4LZF3eN7x-NT+b9=dKB3Oe6RY8RAyetdRBSR1-LQoQ@mail.gmail.com>
+ <0a025885-ed95-45d3-bf76-d2a043baaed7@ideasonboard.com> <CAPDyKFrxUDhnUUfz5wHpGVQfNYssxoWO5Eb2wtmZMTcMYhEjxQ@mail.gmail.com>
+ <1bda8e8f-10df-4a10-a217-26cf50ef3577@ideasonboard.com> <CAGETcx-T54w=x=gv524dUJtnRGmOiXFA2CRYHE5Pawbux8_Tig@mail.gmail.com>
+In-Reply-To: <CAGETcx-T54w=x=gv524dUJtnRGmOiXFA2CRYHE5Pawbux8_Tig@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 21 Jun 2024 09:07:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUTGLSDv-zAun7tV2VnN0q08PibBT9B-MhxqdwmRTA_UQ@mail.gmail.com>
+Message-ID: <CAMuHMdUTGLSDv-zAun7tV2VnN0q08PibBT9B-MhxqdwmRTA_UQ@mail.gmail.com>
+Subject: Re: [PATCH/RFC 0/3] pmdomain: renesas: rmobile-sysc: Remove serial
+ console handling
+To: Saravana Kannan <saravanak@google.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Peng Fan <peng.fan@nxp.com>, 
+	linux-pm@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi Saravana,
 
-The BBM module provides BUTTON feature. To i.MX95, this module
-is managed by System Manager and exported using System Management
-Control Interface(SCMI). Linux could use i.MX SCMI BBM Extension
-protocol to use BUTTON feature.
+On Fri, Jun 21, 2024 at 3:08=E2=80=AFAM Saravana Kannan <saravanak@google.c=
+om> wrote:
+> On Wed, Jun 5, 2024 at 4:16=E2=80=AFAM Tomi Valkeinen
+> <tomi.valkeinen@ideasonboard.com> wrote:
+> > On 05/06/2024 13:53, Ulf Hansson wrote:
+> > > On Wed, 5 Jun 2024 at 12:41, Tomi Valkeinen
+> > > <tomi.valkeinen@ideasonboard.com> wrote:
+> > >> On 05/06/2024 12:34, Ulf Hansson wrote:
+> > >>> On Mon, 27 May 2024 at 14:41, Geert Uytterhoeven
+> > >>> <geert+renesas@glider.be> wrote:
+> > >>>> Since commit a47cf07f60dcb02d ("serial: core: Call
+> > >>>> device_set_awake_path() for console port"), the serial driver prop=
+erly
+> > >>>> handles the case where the serial console is part of the awake pat=
+h, and
+> > >>>> it looked like we could start removing special serial console hand=
+ling
+> > >>>> from PM Domain drivers like the R-Mobile SYSC PM Domain driver.
+> > >>>> Unfortunately the devil is in the details, as usual...
+> > >>>>
+> > >>>> Earlycon relies on the serial port to be initialized by the firmwa=
+re
+> > >>>> and/or bootloader.  Linux is not aware of any hardware dependencie=
+s that
+> > >>>> must be met to keep the port working, and thus cannot guarantee th=
+ey
+> > >>>> stay met, until the full serial driver takes over.
+> > >>>>
+> > >>>> E.g. all unused clocks and unused PM Domains are disabled in a lat=
+e
+> > >>>> initcall.  As this happens after the full serial driver has taken =
+over,
+> > >>>> the serial port's clock and/or PM Domain are no longer deemed unus=
+ed,
+> > >>>> and this is typically not a problem.
 
-This driver is to use SCMI interface to enable pwrkey.
+Let's call this "Case A".
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/input/keyboard/Kconfig          |  11 ++
- drivers/input/keyboard/Makefile         |   1 +
- drivers/input/keyboard/imx-sm-bbm-key.c | 225 ++++++++++++++++++++++++++++++++
- 3 files changed, 237 insertions(+)
+> > >>>>
+> > >>>> However, if the serial port's clock or PM Domain is shared with an=
+other
+> > >>>> device, and that other device is runtime-suspended before the full
+> > >>>> serial driver has probed, the serial port's clock and/or PM Domain=
+ will
+> > >>>> be disabled inadvertently.  Any subsequent serial console output w=
+ill
+> > >>>> cause a crash or system lock-up.  E.g. on R/SH-Mobile SoCs, the se=
+rial
+> > >>>> ports share their PM Domain with several other I/O devices.  After=
+ the
+> > >>>> use of pwm (Armadillo-800-EVA) or i2c (KZM-A9-GT) during early boo=
+t,
+> > >>>> before the full serial driver takes over, the PM Domain containing=
+ the
+> > >>>> early serial port is powered down, causing a lock-up when booted w=
+ith
+> > >>>> "earlycon".
 
-diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
-index 1d0c5f4c0f99..1c3fef7d34af 100644
---- a/drivers/input/keyboard/Kconfig
-+++ b/drivers/input/keyboard/Kconfig
-@@ -466,6 +466,17 @@ config KEYBOARD_IMX
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called imx_keypad.
- 
-+config KEYBOARD_IMX_BBM_SCMI
-+	tristate "IMX BBM SCMI Key Driver"
-+	depends on IMX_SCMI_BBM_EXT || COMPILE_TEST
-+	default y if ARCH_MXC
-+	help
-+	  This is the BBM key driver for NXP i.MX SoCs managed through
-+	  SCMI protocol.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called scmi-imx-bbm-key.
-+
- config KEYBOARD_IMX_SC_KEY
- 	tristate "IMX SCU Key Driver"
- 	depends on IMX_SCU
-diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
-index aecef00c5d09..624c90adde89 100644
---- a/drivers/input/keyboard/Makefile
-+++ b/drivers/input/keyboard/Makefile
-@@ -31,6 +31,7 @@ obj-$(CONFIG_KEYBOARD_IPAQ_MICRO)	+= ipaq-micro-keys.o
- obj-$(CONFIG_KEYBOARD_IQS62X)		+= iqs62x-keys.o
- obj-$(CONFIG_KEYBOARD_IMX)		+= imx_keypad.o
- obj-$(CONFIG_KEYBOARD_IMX_SC_KEY)	+= imx_sc_key.o
-+obj-$(CONFIG_KEYBOARD_IMX_BBM_SCMI)	+= imx-sm-bbm-key.o
- obj-$(CONFIG_KEYBOARD_HP6XX)		+= jornada680_kbd.o
- obj-$(CONFIG_KEYBOARD_HP7XX)		+= jornada720_kbd.o
- obj-$(CONFIG_KEYBOARD_LKKBD)		+= lkkbd.o
-diff --git a/drivers/input/keyboard/imx-sm-bbm-key.c b/drivers/input/keyboard/imx-sm-bbm-key.c
-new file mode 100644
-index 000000000000..907dad383b8f
---- /dev/null
-+++ b/drivers/input/keyboard/imx-sm-bbm-key.c
-@@ -0,0 +1,225 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright 2024 NXP.
-+ */
-+
-+#include <linux/input.h>
-+#include <linux/jiffies.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/rtc.h>
-+#include <linux/scmi_protocol.h>
-+#include <linux/scmi_imx_protocol.h>
-+#include <linux/suspend.h>
-+
-+#define DEBOUNCE_TIME		30
-+#define REPEAT_INTERVAL		60
-+
-+struct scmi_imx_bbm {
-+	struct scmi_protocol_handle *ph;
-+	const struct scmi_imx_bbm_proto_ops *ops;
-+	struct notifier_block nb;
-+	int keycode;
-+	int keystate;  /* 1:pressed */
-+	bool suspended;
-+	struct delayed_work check_work;
-+	struct input_dev *input;
-+};
-+
-+static void scmi_imx_bbm_pwrkey_check_for_events(struct work_struct *work)
-+{
-+	struct scmi_imx_bbm *bbnsm = container_of(to_delayed_work(work),
-+						  struct scmi_imx_bbm, check_work);
-+	struct scmi_protocol_handle *ph = bbnsm->ph;
-+	struct input_dev *input = bbnsm->input;
-+	u32 state = 0;
-+	int ret;
-+
-+	ret = bbnsm->ops->button_get(ph, &state);
-+	if (ret) {
-+		pr_err("%s: %d\n", __func__, ret);
-+		return;
-+	}
-+
-+	pr_debug("%s: state: %d, keystate %d\n", __func__, state, bbnsm->keystate);
-+
-+	/* only report new event if status changed */
-+	if (state ^ bbnsm->keystate) {
-+		bbnsm->keystate = state;
-+		input_event(input, EV_KEY, bbnsm->keycode, state);
-+		input_sync(input);
-+		pm_relax(bbnsm->input->dev.parent);
-+		pr_debug("EV_KEY: %x\n", bbnsm->keycode);
-+	}
-+
-+	/* repeat check if pressed long */
-+	if (state)
-+		schedule_delayed_work(&bbnsm->check_work, msecs_to_jiffies(REPEAT_INTERVAL));
-+}
-+
-+static int scmi_imx_bbm_pwrkey_event(struct scmi_imx_bbm *bbnsm)
-+{
-+	struct input_dev *input = bbnsm->input;
-+
-+	pm_wakeup_event(input->dev.parent, 0);
-+
-+	schedule_delayed_work(&bbnsm->check_work, msecs_to_jiffies(DEBOUNCE_TIME));
-+
-+	/*
-+	 * Directly report key event after resume to make no key press
-+	 * event is missed.
-+	 */
-+	if (READ_ONCE(bbnsm->suspended)) {
-+		bbnsm->keystate = 1;
-+		input_event(input, EV_KEY, bbnsm->keycode, 1);
-+		input_sync(input);
-+		WRITE_ONCE(bbnsm->suspended, false);
-+	}
-+
-+	return 0;
-+}
-+
-+static void scmi_imx_bbm_pwrkey_act(void *pdata)
-+{
-+	struct scmi_imx_bbm *bbnsm = pdata;
-+
-+	cancel_delayed_work_sync(&bbnsm->check_work);
-+}
-+
-+static int scmi_imx_bbm_key_notifier(struct notifier_block *nb, unsigned long event, void *data)
-+{
-+	struct scmi_imx_bbm *bbnsm = container_of(nb, struct scmi_imx_bbm, nb);
-+	struct scmi_imx_bbm_notif_report *r = data;
-+
-+	if (r->is_button) {
-+		pr_debug("BBM Button Power key pressed\n");
-+		scmi_imx_bbm_pwrkey_event(bbnsm);
-+	} else {
-+		/* Should never reach here */
-+		pr_err("Unexpected BBM event: %s\n", __func__);
-+	}
-+
-+	return 0;
-+}
-+
-+static int scmi_imx_bbm_pwrkey_init(struct scmi_device *sdev)
-+{
-+	const struct scmi_handle *handle = sdev->handle;
-+	struct device *dev = &sdev->dev;
-+	struct scmi_imx_bbm *bbnsm = dev_get_drvdata(dev);
-+	struct input_dev *input;
-+	int ret;
-+
-+	if (device_property_read_u32(dev, "linux,code", &bbnsm->keycode)) {
-+		bbnsm->keycode = KEY_POWER;
-+		dev_warn(dev, "key code is not specified, using default KEY_POWER\n");
-+	}
-+
-+	INIT_DELAYED_WORK(&bbnsm->check_work, scmi_imx_bbm_pwrkey_check_for_events);
-+
-+	input = devm_input_allocate_device(dev);
-+	if (!input) {
-+		dev_err(dev, "failed to allocate the input device for SCMI IMX BBM\n");
-+		return -ENOMEM;
-+	}
-+
-+	input->name = dev_name(dev);
-+	input->phys = "bbnsm-pwrkey/input0";
-+	input->id.bustype = BUS_HOST;
-+
-+	input_set_capability(input, EV_KEY, bbnsm->keycode);
-+
-+	ret = devm_add_action_or_reset(dev, scmi_imx_bbm_pwrkey_act, bbnsm);
-+	if (ret) {
-+		dev_err(dev, "failed to register remove action\n");
-+		return ret;
-+	}
-+
-+	bbnsm->input = input;
-+
-+	bbnsm->nb.notifier_call = &scmi_imx_bbm_key_notifier;
-+	ret = handle->notify_ops->devm_event_notifier_register(sdev, SCMI_PROTOCOL_IMX_BBM,
-+							       SCMI_EVENT_IMX_BBM_BUTTON,
-+							       NULL, &bbnsm->nb);
-+
-+	if (ret)
-+		dev_err(dev, "Failed to register BBM Button Events %d:", ret);
-+
-+	ret = input_register_device(input);
-+	if (ret) {
-+		dev_err(dev, "failed to register input device\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int scmi_imx_bbm_key_probe(struct scmi_device *sdev)
-+{
-+	const struct scmi_handle *handle = sdev->handle;
-+	struct device *dev = &sdev->dev;
-+	struct scmi_protocol_handle *ph;
-+	struct scmi_imx_bbm *bbnsm;
-+	int ret;
-+
-+	if (!handle)
-+		return -ENODEV;
-+
-+	bbnsm = devm_kzalloc(dev, sizeof(*bbnsm), GFP_KERNEL);
-+	if (!bbnsm)
-+		return -ENOMEM;
-+
-+	bbnsm->ops = handle->devm_protocol_get(sdev, SCMI_PROTOCOL_IMX_BBM, &ph);
-+	if (IS_ERR(bbnsm->ops))
-+		return PTR_ERR(bbnsm->ops);
-+
-+	bbnsm->ph = ph;
-+
-+	device_init_wakeup(dev, true);
-+
-+	dev_set_drvdata(dev, bbnsm);
-+
-+	ret = scmi_imx_bbm_pwrkey_init(sdev);
-+	if (ret)
-+		device_init_wakeup(dev, false);
-+
-+	return ret;
-+}
-+
-+static int __maybe_unused scmi_imx_bbm_key_suspend(struct device *dev)
-+{
-+	struct scmi_imx_bbm *bbnsm = dev_get_drvdata(dev);
-+
-+	WRITE_ONCE(bbnsm->suspended, true);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused scmi_imx_bbm_key_resume(struct device *dev)
-+{
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(scmi_imx_bbm_pm_key_ops, scmi_imx_bbm_key_suspend,
-+			 scmi_imx_bbm_key_resume);
-+
-+static const struct scmi_device_id scmi_id_table[] = {
-+	{ SCMI_PROTOCOL_IMX_BBM, "imx-bbm-key" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(scmi, scmi_id_table);
-+
-+static struct scmi_driver scmi_imx_bbm_key_driver = {
-+	.driver = {
-+		.pm = &scmi_imx_bbm_pm_key_ops,
-+	},
-+	.name = "scmi-imx-bbm-key",
-+	.probe = scmi_imx_bbm_key_probe,
-+	.id_table = scmi_id_table,
-+};
-+module_scmi_driver(scmi_imx_bbm_key_driver);
-+
-+MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
-+MODULE_DESCRIPTION("IMX SM BBM Key driver");
-+MODULE_LICENSE("GPL");
+Let's call this "Case B".
 
--- 
-2.37.1
+> > >>>
+> > >>> Thanks for the detailed description of the problem! As pointed out =
+in
+> > >>> regards to another similar recent patch [1], this is indeed a gener=
+ic
+> > >>> problem, not limited to the serial console handling.
+> > >>>
+> > >>> At Linaro Connect a few weeks ago I followed up with Saravana from =
+the
+> > >>> earlier discussions at LPC last fall. We now have a generic solutio=
+n
+> > >>> for genpd drafted on plain paper, based on fw_devlink and the
+> > >>> ->sync_state() callback. I am currently working on the genpd series=
+,
+> > >>> while Saravana will re-spin the series (can't find the link to the
+> > >>> last version) for the clock framework. Ideally, we want these thing=
+s
+> > >>> to work in a very similar way.
+> > >>>
+> > >>> That said, allow me to post the series for genpd in a week or two t=
+o
+> > >>> see if it can solve your problem too, for the serial console.
+> > >>
+> > >> Both the genpd and the clock solutions will make suppliers depend on=
+ all
+> > >> their consumers to be probed, right?
+> > >>
+> > >> I think it is a solution, and should be worked on, but it has the
+> > >> drawback that suppliers that have consumers that will possibly never=
+ be
+> > >> probed, will also never be able to turn off unused resources.
+> > >>
+> > >> This was specifically the case with the TI ti-sci pmdomain case I wa=
+s
+> > >> looking at: the genpd driver (ti_sci_pm_domains.c) provides a lot of
+> > >> genpds for totally unrelated devices, and so if, e.g., you don't hav=
+e or
+> > >> don't want to load a driver for the GPU, all PDs are affected.
+> > >>
+> > >> Even here the solutions you mention will help: instead of things get=
+ting
+> > >> broken because genpds get turned off while they are actually in use,=
+ the
+> > >> genpds will be kept enabled, thus fixing the breakage. Unfortunately=
+,
+> > >> they'll be kept enabled forever.
+> > >>
+> > >> I've been ill for quite a while so I haven't had the chance to look =
+at
+> > >> this more, but before that I was hacking around a bit with something=
+ I
+> > >> named .partial_sync_state(). .sync_state() gets called when all the
+> > >> consumers have probed, but .partial_sync_state() gets called when _a=
+_
+> > >> consumer has been probed.
+> > >>
+> > >> For the .sync_state() things are easy for the driver, as it knows
+> > >> everything related has been probed, but for .partial_sync_state() th=
+e
+> > >> driver needs to track resources internally. .partial_sync_state() wi=
+ll
+> > >> tell the driver that a consumer device has probed, the driver can th=
+en
+> > >> find out which specific resources (genpds in my case) that consumer
+> > >> refers to, and then... Well, that's how far I got with my hacks =3D)=
+.
+> > >>
+> > >> So, I don't know if this .partial_sync_state() can even work, but I
+> > >> think we do need something more on top of the .sync_state().
+> > >
+> > > Thanks for the update!
+> > >
+> > > You certainly have a point, but rather than implementing some platfor=
+m
+> > > specific method, I think we should be able enforce the call to
+> > > ->sync_state(), based upon some condition/timeout - and even if all
+> > > consumers haven't been probed.
+> >
+> > Hmm, I think that was already implemented in some of the serieses out
+> > there (or even in mainline already?), as I remember doing some
+> > experiments with it. I don't like it much, though.
+> >
+> > With a simple timeout, it'll always be just a bit too early for some
+> > user (nfs mount took a bit more time than expected -> board frozen).
+> >
+> > The only condition I can see that would somewhat work is a manual
+> > trigger from the userspace. The boot scripts could then signal the
+> > kernel when all the modules have been loaded and probably a suitable,
+> > platform/use case specific amount of time has passed to allow the
+> > drivers to probe.
+>
+> This is also already supported in mainline.
+>
+> Devices with sync_state() implementations (once Ulf adds it) will have
+> a state_synced file in sysfs. It shows where it has been called yet or
+> not. But you can also echo 1 into it to force the sync_state()
+> callback (only if it hasn't been called already). So, yeah, all
+> methods of handling this are available if you implement the
+> sync_state() callback.
+>
+> By default it's all strict (wait till all consumers probe
+> successfully). But you can set it to timeout (fw_devlink.sync_state).
+> And you also have the option I mentioned above that you can use with
+> both cases.
 
+So the idea is to disable unused genpds and clocks from the genpd
+resp. clock's driver .sync_state() callback, instead of from a late
+initcall?  That would indeed solve issues related to "Case A".
+
+However, how to solve "Case B"? Ignore disabling genpds or clocks
+before .sync_state() callback() has been called?
+That would cause issues for cases where the clock must be disabled,
+cfr.
+    "[PATCH RFC 0/3] Add clk_disable_unprepare_sync()"
+    https://lore.kernel.org/all/20240131160947.96171-1-biju.das.jz@bp.renes=
+as.com/
+    "[PATCH v3 0/3] Add clk_poll_disable_unprepare()"
+    https://lore.kernel.org/linux-renesas-soc/20240318110842.41956-1-biju.d=
+as.jz@bp.renesas.com/
+
+> > It just feels a bit too much of a "let's hope this work" approach.
+> >
+> > That said, the timeout/condition is probably acceptable for many cases,
+> > where turning off a resource forcefully will just result in, say, a
+> > temporarily blanked display, or something else that gets fixed if and
+> > when the proper driver is probed.
+> >
+> > Unfortunately, here with the case I have, the whole board gets halted i=
+f
+> > the display subsystem genpd is turned off and the display driver is
+> > loaded after that.
+
+Tomi: Do you have more details? The genpd must be controlling something
+critical that must never be turned off, or perhaps the display driver
+lacks some initialization?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
