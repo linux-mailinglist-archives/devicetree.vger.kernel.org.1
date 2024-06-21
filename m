@@ -1,129 +1,108 @@
-Return-Path: <devicetree+bounces-78399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D12391231D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:16:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55478912322
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D68981F234BF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:16:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8615B1C22488
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8164D172BD8;
-	Fri, 21 Jun 2024 11:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9CC1171E6C;
+	Fri, 21 Jun 2024 11:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lVHr/P6n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U/xeOkmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59FC172BA5
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 11:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B57F171664
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 11:16:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718968585; cv=none; b=uXteKvQGjlEMn6adbeKiSwoemFusOY8WXRp4OZ3AbJPQubqN3yjsEJP6CuIdGFl3f8VEES8uu2EmEnEj0yfU6VHiSYq6i/1hFlmgKhT3Ned8MIuzt0CxfwEe7sV3HEe1cJtcDJTqNm31idqHc3rs8Y5h5jUtUpL1AHPOvvqfAQE=
+	t=1718968618; cv=none; b=fVHTtDoD0RouzN0SgBWNuiHBPlSQ4W6ZNXfI6sz+0HQQZIZtVYqY7jGZ8IXAtNXi4t/9gXlWNZTkKj0fEDfKgholPnCkwU48oLiKePWWSubsRnTLp9RkCMJ5gbt0TpjReCWkvFWNDestZ/tEkgGdJxMu0zoJMBWDEtMVJzIUQ6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718968585; c=relaxed/simple;
-	bh=BshDJQdhNhXf11L2xygSIbCgPvzBsBsrcg9+j+hrxIA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zot/Oojb7jKKFMWbLpFJ7fRq5HXEXyCO6qW4OYb4qBpjxfLKRrUemeShJm04r0DgXpwf7IJl6bHtVRkUFvAx4lnIaztDvNTx+/UWJnLbOnTJP0tXnq78z4hDum/0u2JmlO2lsnrqz+ZZIcxjm0AphEdbBRUDZK4+VhiypspfXGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lVHr/P6n; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4217c7eb6b4so18171645e9.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 04:16:22 -0700 (PDT)
+	s=arc-20240116; t=1718968618; c=relaxed/simple;
+	bh=0PkvrwAYLugv99pm0z+AGMq/KSx7vmUchVeRRoaCVyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CxxtECbeA7Ba4BoK1/fYK0ziqJkJXGvvxswJnHV/1EjprsJfhc30xj2H62uY807NSaTZt8xlCuMXWS3u65E1Y71ftWsb9PMpHDJ3EHwW25V0d2F0ppNl6yup3xQmDRSxezgK4R2P+Ch8SQM1ooJs7m251bNiWsSP84w9jgAkME4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U/xeOkmF; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a6f7720e6e8so225464766b.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 04:16:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1718968581; x=1719573381; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bPEEtZOHgOmd9n8/jwJKYJBhpCqajSuBe3eF47dbP/M=;
-        b=lVHr/P6n6fNHFm3wxISbNYNWoUzEx+8rlKIn5YEaROvaHCPfUB4jNSK5xX2y5mlfUB
-         elqOmknRLYmDRLqZj9ww/pkGCj6z3xySNh4O57402tgDRn/J3HFW7wHwBuqpG9GEQczF
-         VQ7vSnBbXAvMW3VOSjoN45ZlnAwTPRSWUmEikeqx7/iW5xWSeE1r8lpdPHKq8ndntmuE
-         N4QD9RqkJawT90arooRZmLKlr88wzHNCIatJLAcP6OKfB/2dqx6EkoR4QiRhw2afmX99
-         0ceKGb0iKiafSr4IwW6Yzv2bOj/NheeuxDPDWMx+9jEsCoqvf2YzxTdf//xAjcwB9KXl
-         H8bg==
+        d=gmail.com; s=20230601; t=1718968615; x=1719573415; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=08k9pna/opWaEBAg76zcgK1RSow47jGdPu4ejDMD8xg=;
+        b=U/xeOkmFtGgVC4d7imvD+qs6xTXaLLmcjtmR75Gn5MmsRIheWHvSEb4AY7JPaVYdzg
+         nxaCbHSlJqbQCLA99nvr9O7vbKzlbYn55jyAYErlVC8vx38uhcfpE0zRVcIMsbFsol/K
+         9aBFG56FX9lWnqGz3sjvERLSJD5GlH/6xyJKx6GEd/kfoBRgc2QWzmCwRmcHpNPYUR1V
+         GLMvG2XTYpWbJEID8shxyBc3zD6Teskqpx4bgmvzLMiAFBKEpXDyQdirTvLaEWfJIPPX
+         bPJ4kMbj1/oL6H9Qv0vlH8Lqb5ZSq2hoFHqhX+4z6UMYC2LI74NmQvkaNQ6YotiPtuxk
+         qPvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718968581; x=1719573381;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bPEEtZOHgOmd9n8/jwJKYJBhpCqajSuBe3eF47dbP/M=;
-        b=f5YFNQT9GDp8um8FLapQAUfydPhjdgpCvZawOrYWz39AEcZaEv03GfkETWXUSEb8nt
-         CogAIbsOIlM5HNdgfHbwlDQZkfpyPqXUq4jknrivDL8GCNjUNn7oPFebjsPcfZk6kQYu
-         UYQsKJ+PnE5JXPdC9chIqJEA7UTos1Z8Nv15XB2tBwZGWOXca0jnSly8QSZnt1lz/lzZ
-         Se3We3tTeg6hpuhpI7Moe6Z/PCRY0WwgyQT69Ypj0FfdH8lC3yECMvIEJ8tfKJgZuRey
-         JRrqT9PHwkk4bl8MZnX6ImCMskbppAzxUl7jyf4leW5wmrWwjowIfm0unrg6GsXgB+72
-         x1vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV0G3lGmNjDAD0S3Kg3zevlzfE4rm82Zf6dOthMwqToDFWbb2QMs6S4vXosts08ObKoOxpCjyLmr9FjFIOAo0JbqIL7XBTlaxJKiA==
-X-Gm-Message-State: AOJu0YxWx/fhgT05FO3BtDMcP81blzJuaddZcz7Q7BQjgMv9QDEX0qPh
-	H1GYlRssGW1mTEXOfpgf8h1WkPIc19zq66q+F3p1sSvVE60Fb8j0YakRvZiROWs=
-X-Google-Smtp-Source: AGHT+IGELu0uHxfAlwboPDwjRtRyDqLbieRNBQ+AhZbFVs2b5uEh5KXbhEXjKnW5TwDgBrj6qXfxtQ==
-X-Received: by 2002:a05:600c:2e54:b0:424:6c83:a78e with SMTP id 5b1f17b1804b1-4247529c9e0mr50294075e9.40.1718968581086;
-        Fri, 21 Jun 2024 04:16:21 -0700 (PDT)
-Received: from [192.168.0.3] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424817a8d8esm23675535e9.12.2024.06.21.04.16.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jun 2024 04:16:20 -0700 (PDT)
-Message-ID: <be3d384f-82e2-4849-b3c4-070de8d08ba0@linaro.org>
-Date: Fri, 21 Jun 2024 12:16:19 +0100
+        d=1e100.net; s=20230601; t=1718968615; x=1719573415;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=08k9pna/opWaEBAg76zcgK1RSow47jGdPu4ejDMD8xg=;
+        b=cgY6JWWUEhGVlmOC/JBEPWQ79dXQEAr9URKFuh7idMOSAyYtTsPg17yJ5pofMPOahv
+         OOdMIza4YRRa2AZAY6uY3ngtcLXdNPhhfr5z9aB0w5jJn2gouRcX8DBbFjLXcpOs3z43
+         CU1j6O7YunZetXO3Ns/SNhts/NSD7Zhh/JKGyZ265vxwpXnMN65kAN7Wfd4A1oJ0FVyG
+         8v0cki3/pEmyz/mLxg1j6dcOgpslzzd+OjlrS4FgowDPrcEJKdmeIUJEAnYPRqMujNco
+         zqc3H4sEi2t9dxpk0SglfzVvvAzKJ/SHlAvBcTsSliNB26R+zWzGrs+Hle5w6niT0d1g
+         nuQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGJTJiRW4+ZwBf5A/PbA+hgW0KZjqeR0merKk+/BGtTDtEraWrqA5X6bMbVcm+W8xSeHtoE2g9X8IJ6CbZiqTxoIDt2sVtK3Myxw==
+X-Gm-Message-State: AOJu0YxXuI+V/MlWg3RTgH9wSbFqCFjvJkBiqd6IiY0R1v/gDnjNmxVy
+	FmFNvJldB+9KNCT7y7YG8OeG9WqUe1ut8mcvAaI9KMZ0vMK5kPlp
+X-Google-Smtp-Source: AGHT+IEQA9JTSUlACGJxZV6P42mF5Qfs1km1bZk9sSrb3zLaZehHEY4QKzeHjWVfBYdo4222YzZQ1A==
+X-Received: by 2002:a17:907:7625:b0:a6f:53f9:7974 with SMTP id a640c23a62f3a-a6fab7791a4mr539231866b.52.1718968614880;
+        Fri, 21 Jun 2024 04:16:54 -0700 (PDT)
+Received: from andrea (host-82-50-195-19.retail.telecomitalia.it. [82.50.195.19])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf48b7desm73263366b.90.2024.06.21.04.16.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jun 2024 04:16:54 -0700 (PDT)
+Date: Fri, 21 Jun 2024 13:16:50 +0200
+From: Andrea Parri <parri.andrea@gmail.com>
+To: Xu Lu <luxu.kernel@bytedance.com>
+Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	conor.dooley@microchip.com, anup@brainfault.org,
+	atishp@atishpatra.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	christoph.muellner@vrull.eu, heiko@sntech.de, charlie@rivosinc.com,
+	David.Laight@aculab.com
+Subject: Re: [RFC v2 0/2] riscv: Idle thread using Zawrs extension
+Message-ID: <ZnVhIi0Jre77i3RN@andrea>
+References: <20240621093223.37893-1-luxu.kernel@bytedance.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] media: qcom: camss: Add CAMSS_SC7180 enum
-To: Krzysztof Kozlowski <krzk@kernel.org>, gchan9527@gmail.com,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240621-b4-sc7180-camss-v1-0-14937929f30e@gmail.com>
- <20240621-b4-sc7180-camss-v1-2-14937929f30e@gmail.com>
- <f835bd3c-82a7-4798-ac49-cf0d0014d70c@kernel.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <f835bd3c-82a7-4798-ac49-cf0d0014d70c@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240621093223.37893-1-luxu.kernel@bytedance.com>
 
-On 21/06/2024 11:03, Krzysztof Kozlowski wrote:
-> On 21/06/2024 11:40, George Chan via B4 Relay wrote:
->> From: George Chan <gchan9527@gmail.com>
->>
->> Adds a CAMSS SoC identifier for the SC7180.
->>
->> Signed-off-by: George Chan <gchan9527@gmail.com>
->> ---
->>   drivers/media/platform/qcom/camss/camss.h | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
->> index ac15fe23a702..5e750c481b74 100644
->> --- a/drivers/media/platform/qcom/camss/camss.h
->> +++ b/drivers/media/platform/qcom/camss/camss.h
->> @@ -76,6 +76,7 @@ enum camss_version {
->>   	CAMSS_8x96,
->>   	CAMSS_660,
->>   	CAMSS_845,
->> +	CAMSS_7180,
-> 
-> This patch on its own makes no sense. Squash it with patch adding 7180.
-> 
-> Best regards,
-> Krzysztof
-> 
+> This is the second version of idle thread based on Zawrs extension. We
+> rebased our code on Andrew's patch series[1] which provides basic
+> support for Zawrs as well as optimization for spinlock.
 
-Agreed you can put it into the PHY init sequence in patch #3
+There's some feedback on Andrew's v2 [1] which seems to equally apply
+to the later, mentioned series/submission, and hence to the series in
+question (although only indirectly admittedly).
 
----
-bod
+As an additional comment, please do add  linux-kernel@vger.kernel.org 
+(the LKML) to your Cc:  list on patch submission (again, this applies
+to both Andrew's and the present submissions).
+
+  Andrea
+
+[1] https://lore.kernel.org/linux-riscv/ZiWCP6f6zZ3dKXfN@andrea/
 
