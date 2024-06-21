@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-78574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FDFE912AFD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 18:11:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8240E912B0E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 18:14:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D92F4281C11
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:10:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B20781C25E63
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3AD115F407;
-	Fri, 21 Jun 2024 16:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB94C15FA7F;
+	Fri, 21 Jun 2024 16:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jpJQd9nB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="klLoX33H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD76110A39;
-	Fri, 21 Jun 2024 16:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE00A15FA6C;
+	Fri, 21 Jun 2024 16:14:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718986254; cv=none; b=fWKxeE2Yuz8eYeWztBxWkuktRX2vIvMIi8Enn6mjXXBBnYUL4aG5+n4AnnNJFag8wYnt6xvH5nOAV198vEK4NuCU638TRco+PrS4Vf9K906l9IGwpkwl9M1BgjiHs3Xx5qipglTCKQpizHKJw8pgqPTsLevuhrJygMK7y1Ek5JA=
+	t=1718986496; cv=none; b=H9oJG0yAczKh4VMzjfJLdc6FGWfdPnw6ehpwL+6Mma2q4Zt64QjDSIvP/BTTvuSWySOYRwc/XHBT5GyEqs+kbhpZb3IjXmd45tbQwUvKsYNVi30hpE+/SOUcDXD1Ps/kgl1YM6bFnWs5+3rNDQX3Ipz9JF0xE9cI93LolJLB3/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718986254; c=relaxed/simple;
-	bh=r9YHpdhmFnaoXg/aYsoCzRq2YkuWPoz7IQ4Otlr55iU=;
+	s=arc-20240116; t=1718986496; c=relaxed/simple;
+	bh=b7MpNwrhbxp7wFiXQH5J0bM5Ti2raMUUWEzZOd/dU6Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RjMKWaQ0K9uR3aCRhhs8zUE/BsGBlFxlmZPCEgomwR4KUCSBC3XZGMtVhnFfnMVmpaIN89TXAeUmRkvNppbba002gdEdX3h0N5dfDyl7izZ8XzIqJ9JUiWItMsCBK9AEtx/isYllWaPpGYbVB0el2H5IDdii33pFLc6SUn3tnds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jpJQd9nB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45L8hWZO002806;
-	Fri, 21 Jun 2024 16:10:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aWuqR9ztbNyIAjyHZp/D+k3LERxwgE+KdMF3mnKzsBw=; b=jpJQd9nBiUc+zx4T
-	GUiTIX41Vrh+bYysQK32NsmVuG5lmu+AyYbVEvKUEw6f0isltfH2JjG5TyR2Jrec
-	tkTlZLtoN+Fynu//e4fHKmT+c3Bei5uH3vVE3F6ammAeuqNNoi/jeH1B1k6OvUd6
-	HQrZAWJVPhg6VyoQmdRYSvN87NRqHRCsfo8nL7ktatGB1Fs8PmmGeHhRBdE9PjM5
-	jmQmzhMuP0s3DSdQuGMXo7rTrWfX1K6aQVcenNJzvy2YTs8UGY1wSDvxIqSKmlVo
-	8bqVahMl8rnfweHCySJ3M8Gtz3JzmNn8jDxUyryr1RYNG97Zsww4b5novLnAcI5+
-	s3CzjQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yw68gs0y1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Jun 2024 16:10:14 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45LGACfe004404
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Jun 2024 16:10:12 GMT
-Received: from [10.216.56.78] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 21 Jun
- 2024 09:10:04 -0700
-Message-ID: <c0dee6b8-599f-4086-87d7-cc3750b46d0a@quicinc.com>
-Date: Fri, 21 Jun 2024 21:39:59 +0530
+	 In-Reply-To:Content-Type; b=bCS3AjdLPUzLLEB8SKPwjAYeoiqx4u31eSxULB5tAQNXt6PZfk/d92IuHbZPaaVHz7WUlc4Tm7l8hcY0YNArou3wDQR+7JEexKcCngf+D2O2E3NpkWcxuOfn3Argir0rQawwd7Ysk1du6jggjoqmEzXmx11ar7NAOm2ZbAbh9aA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=klLoX33H; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45LGEkxN046341;
+	Fri, 21 Jun 2024 11:14:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718986486;
+	bh=syTK7l/prnGj+f5oxRzOtqn+SH670xlXIdLII55WPVw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=klLoX33HmwBOOEZdcwadE6NQFnxPna1YpjQz7h+9mkO8WOt+xAEXYD1yhvZcPkM2v
+	 R2TGwl5o5jKMGvmFjTavcFqatek3pJQF7LjXgE34ifUPXfs1wHerYIn26m8kP5wV1p
+	 pexLHQmpUPhQGcbcyuzXW/WKpmfwRpuxWtSRWFtM=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45LGEk7N007182
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 21 Jun 2024 11:14:46 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 21
+ Jun 2024 11:14:46 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 21 Jun 2024 11:14:46 -0500
+Received: from [10.249.130.181] ([10.249.130.181])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45LGEX7T021157;
+	Fri, 21 Jun 2024 11:14:34 -0500
+Message-ID: <1b5e3175-c9b7-4fb5-b405-e46373a6a469@ti.com>
+Date: Fri, 21 Jun 2024 21:44:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,134 +65,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 8/8] arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
-To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>, <sboyd@kernel.org>,
-        <andersson@kernel.org>, <bjorn.andersson@linaro.org>,
-        <david.brown@linaro.org>, <devicetree@vger.kernel.org>,
-        <jassisinghbrar@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <mark.rutland@arm.com>,
-        <mturquette@baylibre.com>, <ohad@wizery.com>, <robh@kernel.org>,
-        <sricharan@codeaurora.org>
-CC: <gokulsri@codeaurora.org>
-References: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
- <20240621114659.2958170-9-quic_gokulsri@quicinc.com>
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-am62p5-sk: Reserve 576 MiB of
+ global CMA
+To: Brandon Brnich <b-brnich@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>
+References: <20240613150902.2173582-1-devarsht@ti.com>
+ <20240613150902.2173582-4-devarsht@ti.com>
+ <20240614170409.zu4vaatdac4o6w2o@udba0500997>
 Content-Language: en-US
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <20240621114659.2958170-9-quic_gokulsri@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20240614170409.zu4vaatdac4o6w2o@udba0500997>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0uNXG96egObUG18jCdgu8i-gcJ65t2t2
-X-Proofpoint-GUID: 0uNXG96egObUG18jCdgu8i-gcJ65t2t2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-21_08,2024-06-21_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 lowpriorityscore=0
- clxscore=1011 impostorscore=0 spamscore=0 mlxscore=0 adultscore=0
- suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2406140001 definitions=main-2406210116
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Vignesh,
 
+On 14/06/24 22:34, Brandon Brnich wrote:
+[..]
 
-On 6/21/2024 5:16 PM, Gokul Sriram Palanisamy wrote:
-> Enable remoteproc WCSS PIL driver with glink. Also,
-> configure shared memory and enables smp2p required for IPC.
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>> index fb980d46e304..5ef74d9f8eea 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>> @@ -48,6 +48,13 @@ reserved-memory {
+>>  		#size-cells = <2>;
+>>  		ranges;
+>>  
+>> +		linux,cma {
+>> +			compatible = "shared-dma-pool";
+>> +			reusable;
+>> +			size = <0x00 0x24000000>;
+>> +			linux,cma-default;
+>> +		};
 > 
-> Signed-off-by: Nikhil Prakash V <quic_nprakash@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 80 +++++++++++++++++++++++++++
->   1 file changed, 80 insertions(+)
+> Since AM62p has 8gb memory, this allocation can come from upper portion.
+> Doing so breaks Wave5 encoding/decoding as the driver can not yet handle
+> 48 bit addressing. 48bit support is scheduled to be upstreamed, but unsure of
+> when this will actually make it in.  
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> index 92682d3c9478..b98766cce0d6 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> @@ -108,6 +108,12 @@ memory@4ac00000 {
->   			reg = <0x0 0x4ac00000 0x0 0x400000>;
->   			no-map;
->   		};
-> +
-> +		q6_region: memory@4b000000 {
-> +			no-map;
-
-move the no-map after reg, to align with other entries.
-
-> +			reg = <0x0 0x4b000000 0x0 0x5f00000>;
-> +		};
-> +
->   	};
->   
->   	firmware {
-> @@ -117,6 +123,30 @@ scm {
->   		};
->   	};
->   
-
-...
-
->   
-> +		q6v5_wcss: remoteproc@cd00000 {
-> +			compatible = "qcom,ipq8074-wcss-pil";
-> +			reg = <0x0cd00000 0x4040>,
-> +			      <0x004ab000 0x20>;
-> +			reg-names = "qdsp6",
-> +				    "rmb";
-> +			qca,auto-restart;
-> +			qca,extended-intc;
-> +			interrupts-extended = <&intc 0 325 1>,
+> Could we force this into lower 32bits using same
+> alloc-ranges as done in your AM62a patch[0]?
+> 
 
 
-Use macros instead of open coding.
+I would like to take a look at this separately, is it possible for you
+to drop this patch [3/3] from series due to above comments and take the
+rest two from the series ?
 
-> +					      <&wcss_smp2p_in 0 0>,
-> +					      <&wcss_smp2p_in 1 0>,
-> +					      <&wcss_smp2p_in 2 0>,
-> +					      <&wcss_smp2p_in 3 0>;
-> +			interrupt-names = "wdog",
-> +					  "fatal",
-> +					  "ready",
-> +					  "handover",
-> +					  "stop-ack";
-> +
-> +			resets = <&gcc GCC_WCSSAON_RESET>,
-> +				 <&gcc GCC_WCSS_BCR>,
-> +				 <&gcc GCC_WCSS_Q6_BCR>;
-> +
-> +			reset-names = "wcss_aon_reset",
-> +				      "wcss_reset",
-> +				      "wcss_q6_reset";
-> +
-> +			clocks = <&gcc GCC_PRNG_AHB_CLK>;
-> +			clock-names = "prng";
-> +
-> +			qcom,halt-regs = <&tcsr 0xa000 0xd000 0xe000>;
-> +
-> +			qcom,smem-states = <&wcss_smp2p_out 0>,
-> +					   <&wcss_smp2p_out 1>;
-> +			qcom,smem-state-names = "shutdown",
-> +						"stop";
-> +
-> +			memory-region = <&q6_region>;
-> +
-> +			glink-edge {
-> +				interrupts = <GIC_SPI 321 IRQ_TYPE_EDGE_RISING>;
-> +				qcom,remote-pid = <1>;
-> +				mboxes = <&apcs_glb 8>;
-> +
-> +				rpm_requests {
-> +					qcom,glink-channels = "rpm_requests";
-> +				};
-> +			};
-> +		};
-> +
->   		pcie1: pcie@10000000 {
->   			compatible = "qcom,pcie-ipq8074";
->   			reg = <0x10000000 0xf1d>,
+Regards
+Devarsh
 
