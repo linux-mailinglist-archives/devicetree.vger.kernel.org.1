@@ -1,218 +1,111 @@
-Return-Path: <devicetree+bounces-78484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C3F89126B6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:30:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A069126BE
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:36:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 214DE1F26C06
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:30:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 158AB1F269AD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6577D155C9C;
-	Fri, 21 Jun 2024 13:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B3F5244;
+	Fri, 21 Jun 2024 13:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="N1g6+9HU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hQZiExZy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40813155A47
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 13:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF314A20;
+	Fri, 21 Jun 2024 13:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718976590; cv=none; b=miViZmcpvjRrjCoeLn9WCmYRgrC/ia3OQVzC+QlkIaT76kHSvbOzPFx4FAb0GZedmrihKxqs06ZRGRVBQ658J1vMWrurSpRbR+ixrb7OCc68udd0iuZZZAFwoCHJsM0cbvn/vc4KU2Kpixrw/QMkNjY8MlD6X7Om2ZdR746n5D4=
+	t=1718977011; cv=none; b=gDctmPRNIpB1MuVnm0Zl0K8knlBjDIOe2ZKjwbKlVBkTnlfiQSiHAH7vYJjwmMRRphW0dlWPokbR+hKqNcXxTYYIS8lia6bBnME+0PI/XnokDL1aC9MLTdqUHAdQ83iCHxbjCwuuOWwea8JWC/zZ5qft9BmABbUca6/yZL00PfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718976590; c=relaxed/simple;
-	bh=PrpYvrr+lZj/0Jd3AkYhgkAtqFwGNxKdteDQAdEtqEI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r95sDk3VvZCZxP5SNyGfQoIdUVUrQCtvr+/CveWqMUcQOBDrrEf/HoyviY/6QrpqqpnE7E4xAl0NltvFr2ynWsRNayjQYTfdKSCORq7MOK+T46aiZydO4QWl7hspo0hvDhRFuqtBWa2o/UZY4WQSme+gINxasPWPCu8rL38gLuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=N1g6+9HU; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a6efe62f583so198246566b.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 06:29:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1718976585; x=1719581385; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=INoRISBtXksAaYyy0JvylhuhhaTC+YBBST6VNRHIR4w=;
-        b=N1g6+9HUkZuIEMIk8r7k57BGHCPOsP5YljHBrK545ZZ3mKktX4GvovEJ/SlifC4k9A
-         P09vg2gjtzqXpCRoDcR12a2v4x+s0DCoYAswrgeXKxLSTje14IHb2+W12wym0mXqxiyd
-         VK4/yzSpSBlrJFTO9LFXGHHH9cECYHw5oOnmoqURPSLqGXrzncyiq7dD4Y+PDZx+3KhM
-         ZtrBJA0y80eDFJTGH12dUg2LBfJITaGauRwQfs7sg4KJwIp1UKA4PBvU7oWAUh8GQLsP
-         WN7ZWyMvfJ4OJSiVXONtFUrcgxP3SB6q/A4I6bGEGrrbrHLOpkqFY29ThVfJoh8LW3ty
-         q3sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718976585; x=1719581385;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=INoRISBtXksAaYyy0JvylhuhhaTC+YBBST6VNRHIR4w=;
-        b=YhSc1pgotZ2V0FOpd1Pyh3wFWSZiZohpwfvu7lyudsqWbIEJjUFO4S70g/d2r00rnI
-         GItFhBF6HXGPspuoilvSyoaqgYJY4FDOxtylNOGb/MCyfpQFSlBngWhCBwt4E5xu8MUQ
-         v6Ud8Waxz0qZsMswRQT5R4/dNhdLCIJjMGAhe+oQLHheTu1qjew1LA15gxHrEVmgLaJe
-         oPWZV3wkmIMxnhvWGqzeDSivlm2dmIUtFGKGLGsAfCp8CCEdQXJxZSFMa9XGak9DQdTB
-         sWKXNLsvqnMWwd3zyrXCYgi0vDszidD5gkkz1PAr+QmKKHGf85grxTJ78yGlJZTGsRol
-         DeWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW94HFE5m4jCnmIBXMu37E+ZsxoA3lZPZ7e2ocVY/XazGnayKDUcPHrC3g4sRwQfieMlY9Bd1Fd/jhYxRDXzLND+kTOf3Em6h/1ww==
-X-Gm-Message-State: AOJu0YxDWtdvMo+B7xX51+cxBE92VWt9p6mcbMdzly4yHic5dt64cWFv
-	Y7r5xHBhjy0y6cy59AXnTMKRngcT1E8QIaPLXf2CnAyEU22zbJytXKTf0pz2zt0=
-X-Google-Smtp-Source: AGHT+IFnJLB1bdpPyMNJb5hUtZ8cwpI1DBnsNCd6rt2DmnH3ISK33RmtfNC2TKx7U0ybwxMCRAAz9w==
-X-Received: by 2002:a17:906:f2c3:b0:a6f:15c9:9aa3 with SMTP id a640c23a62f3a-a6fab7d6a99mr477701666b.67.1718976585397;
-        Fri, 21 Jun 2024 06:29:45 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.70])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf42a650sm84492566b.43.2024.06.21.06.29.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jun 2024 06:29:44 -0700 (PDT)
-Message-ID: <e381e1c0-2e23-4734-a55f-cab6c21f8c5b@tuxon.dev>
-Date: Fri, 21 Jun 2024 16:29:41 +0300
+	s=arc-20240116; t=1718977011; c=relaxed/simple;
+	bh=VmXZW32hCjidF+0Rl4VnEUEIwG58npl0O0ibS45psjc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fLhGi9jdtwKNltfHt+YaImXw20pwbbFf1RTNyQETbHrumdiK9BkudRJPym3FKCXlasnzMUP7PFwN56TBRQQKcfzgI8hJAEFSrGdBO0DSyyw4r00CUFCev1u+5gPxT9+CDV1ZE5m27KgedAVOzAa/+mDYN01qpc+yPOuAcNmjGgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hQZiExZy; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45LDaaHF052343;
+	Fri, 21 Jun 2024 08:36:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718976997;
+	bh=jO3qwjFYPAmtp5fMhPJin8eIQO27BhIN/9LFR+mQksc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=hQZiExZykvjBDt1MV47J8d9I4eFKrjr17jRdtU4Ywo/91qcZIBeNznGf8lKO/KxO0
+	 mTO8cMQEVjxwrECF2v2K1DlKwObvifb+fkES+dL7p3vnZOmjpBygnKVicgemiYOZBN
+	 ef70Z9Yu3xqMZnyWKFfjhN1vYdw/kbvRMKZDT8do=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45LDaarA114465
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 21 Jun 2024 08:36:36 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 21
+ Jun 2024 08:36:36 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 21 Jun 2024 08:36:36 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45LDaaHQ046592;
+	Fri, 21 Jun 2024 08:36:36 -0500
+Date: Fri, 21 Jun 2024 08:36:36 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Andrew Davis <afd@ti.com>, Linus Walleij <linus.walleij@linaro.org>
+CC: "Rob Herring (Arm)" <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tony
+ Lindgren <tony@atomide.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: pinctrl-single: Define a max count
+ for "pinctrl-single,gpio-range"
+Message-ID: <20240621133636.wfy3ucf2qkcqphdf@lantern>
+References: <20240618165102.2380159-1-nm@ti.com>
+ <171873566448.3500109.16734660300499772836.robh@kernel.org>
+ <20240618185705.5fwevm7drphgvwl2@dilation>
+ <c1b7a47e-cb05-4701-9766-d1fc13612f34@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document the
- R9A08G045 support
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Chris Brandt <Chris.Brandt@renesas.com>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240621112303.1607621-1-claudiu.beznea.uj@bp.renesas.com>
- <20240621112303.1607621-9-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB11346105D3D3DD46AEF8CD44986C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <0bc78e5e-de37-4ff6-ac74-571f615b97f9@tuxon.dev>
- <TY3PR01MB1134602C189C6C63C6187840886C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <b5a3ef7c-8509-4065-ab0f-efb5a7e5fcbb@tuxon.dev>
- <TY3PR01MB11346D9CF89F7ED9B6A49C61586C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB11346D9CF89F7ED9B6A49C61586C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c1b7a47e-cb05-4701-9766-d1fc13612f34@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-
-
-On 21.06.2024 16:10, Biju Das wrote:
-> 
-> 
->> -----Original Message-----
->> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->> Sent: Friday, June 21, 2024 2:06 PM
->  Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document the R9A08G045 support
->>
->>
->>
->> On 21.06.2024 15:56, Biju Das wrote:
->>>
->>> Hi claudiu,
->>>
->>>> -----Original Message-----
->>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>> Sent: Friday, June 21, 2024 1:55 PM
->>>> Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document
->>>> the R9A08G045 support
->>>>
->>>>
->>>>
->>>> On 21.06.2024 15:34, Biju Das wrote:
->>>>> Hi Claudiu,
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>>>> Sent: Friday, June 21, 2024 12:23 PM
->>>>>> Subject: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document the
->>>>>> R9A08G045 support
->>>>>>
->>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>>
->>>>>> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible
->>>>>> with the version available on Renesas RZ/V2H (R9A09G075). Most of
->>>>>> the IP variants that the RIIC driver is working with supports fast mode plus.
->>>>>> However, it happens that on the same SoC to have IP instatiations
->>>>>> that support fast mode plus as well as IP instantiation that
->>>>>> doesn't support it. For this, introduced the renesas,riic-no-fast- mode-plus property.
->>>>>>
->>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>> ---
->>>>>>  Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 8
->>>>>> ++++++++
->>>>>>  1 file changed, 8 insertions(+)
->>>>>>
->>>>>> diff --git
->>>>>> a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>> b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>> index 91ecf17b7a81..c0964edbca69 100644
->>>>>> --- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>> @@ -25,6 +25,10 @@ properties:
->>>>>>                - renesas,riic-r9a07g054  # RZ/V2L
->>>>>>            - const: renesas,riic-rz      # RZ/A or RZ/G2L
->>>>>>
->>>>>> +      - items:
->>>>>> +          - const: renesas,riic-r9a08g045   # RZ/G3S
->>>>>> +          - const: renesas,riic-r9a09g057
->>>>>> +
->>>>>>        - const: renesas,riic-r9a09g057   # RZ/V2H(P)
->>>>>>
->>>>>>    reg:
->>>>>> @@ -66,6 +70,10 @@ properties:
->>>>>>    resets:
->>>>>>      maxItems: 1
->>>>>>
->>>>>> +  renesas,riic-no-fast-mode-plus:
->>>>>> +    description: specifies if fast mode plus is not supported
->>>>>> +    type: Boolean
->>>>>
->>>>> Can't this info, as part of device data?? Based on frequency and
->>>>> device data is enough to derive this info??
->>>>
->>>> We can't rely completely on device data because on RZ/G3S we have 2
->>>> RIIC channels that support fast mode plus and 2 that doesn't support it.
->>>
->>> Can't array of bits for this channels won't help??
->>
->> Can you give an example? I'm not sure I understand how you would prefer me to use the array of
->> bits.
-> 
-> struct riic_of_data {
-> 	u8 regs[RIIC_REG_END];
-> 	u16 fast_mode_info info; /* 1 means fast mode plus supported, starting with channel 0*/
-> };
-> 
-> .info = 0x3, means channel 0 and 1 has fast mode plus supported
-> .info = 0x0, none of the channel supported fast mode plus.
-
-If I understand the proposal correctly, a match b/w struct
-riic_of_data::info bit + frequency and the nodes in device tree is still
-needed, right? As the RZ/G3S RIIC channels are using the same compatible.
-W/o a match how I cannot detect in the driver who is, e.g., channel 1 that
-supports FMP w/o hardcoding some RIIC channel data in the driver (e.g. RIIC
-channel address)?
-
-Also, for future SoCs that will suffer the same symptom but for different
-channels (and channels with different addresses) the driver will have to be
-adapted to match b/w the channel bit in struct riic_of_data::info and
-channel node from DT.
+On 11:19-20240619, Andrew Davis wrote:
+[...]
 
 > 
-> Cheers,
-> Biju
+> This binding is a bit of a mess, the phandle is always a pointer to
+> a node with the cells length hard-coded to 3. This looks to have been done
+> to allow the driver to use the function "of_parse_phandle_with_args" which
+> needs a property name for to find the cell count. But that makes no sense
+> as the count is always 3, the driver cannot accept any other value. The
+> driver should have just looped of_get_property() 3 times but wanted to
+> use the helper. So a silly driver mistake has turned into a binding issue.
+> 
+> We should drop the "pinctrl-single,gpio-range" from the binding and
+> fix the driver.
+
+Linus W: pinctrl-single,gpio-range -> any thoughts here? I think it is a
+valid (if a bit too flexible design looking at the existing users who
+just use a single mux value mapping for all modes)
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
