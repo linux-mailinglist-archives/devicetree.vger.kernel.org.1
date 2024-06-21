@@ -1,216 +1,150 @@
-Return-Path: <devicetree+bounces-78442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2440F912495
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8443391261A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:57:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43FF51C2400D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:59:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A68CD1C2584E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6E2173357;
-	Fri, 21 Jun 2024 11:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD99A1534E8;
+	Fri, 21 Jun 2024 12:57:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2112.outbound.protection.partner.outlook.cn [139.219.146.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD2E171E54;
-	Fri, 21 Jun 2024 11:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718971116; cv=none; b=q1+IAxPI6zLUgmhA/pGG7sw3TDZ1tzdNcZF/fo9VDl57oVvf+B3Sy4APW+vpJ7WVxko8lb9DBhNLUllmT9kQT1BjdpBt84+jECCVWMNHooRM6k9c1BJyfHwGZZMrdsTmm7B0JBP1J3KYUYP4CC/z5Q9eBj6s1Am3+9kTDOXgo2w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718971116; c=relaxed/simple;
-	bh=XdJKUpMOfjs7xW7KNeqalxlxMZkmgjEczqSjunn5RpM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ukx/Thaq0nrUuHJaCtLhxNYnYwD1gkWdrJZtdjE+oJ58RlNC0Ix3zJQx0STqZd2bKyqo5MuhKfLFrHO1ESV+UcjpqAg/x+VLpzStkQEQlncHDl6+ijMiKWY3VvlzcOjdvMMkncB32ScTyhxPvXybdSErgNboYyDpEQdxE3fJ2bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-63bd10df78dso18061987b3.2;
-        Fri, 21 Jun 2024 04:58:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718971113; x=1719575913;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6CfxTc2ay7dMkeRR8i1FoggTgd547G3vjExlObGw368=;
-        b=MZd1w3q47qyJJSZe7Zxlbtm8+wfRREeF1fw2E4MEO2o6B9gLpHTwxcJG6edrrA05Fx
-         JHEmLlkNxBt+Fu2Zc+bJWyBmquhE3sivVfRR84XQR3lN7t3/yGXkQEf0Dq9I+ZASq4Fm
-         QSi2wXTZc1H0JZwq3EbhMBXaTLH2NSxDj3mj9QM4scYPEtKKpsBCCabLkK2BIlwGr+GB
-         autc42HUjuuKd6KhEU42tlw1nSE1JB4szUOpAmByxn158Ts97xn2/w88tFZHQkdG45dP
-         PHv+Azvga4t+VUMEmgs+28jZ6fUTVjqhuuJilxrQWOUl81nM4mSqt/Tmd8vwWW58uOCr
-         C4oA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8B3u9VKGUJTpzfUi82JtQtl3lWg9AqaRBPOtcQfdIjjddsSjCu+xJeOt1wnQGUaza2VSciVf257dBZuk7njIBNGrMP/DwA5U0oCqKO4muUz/XrHdtHlzD+kws/sesvW1vyk+R7UNJwN4uULV3r69w2DEMee/7X3C8D5H03XA6YuQBAJyuJJAzJd5iPKyAptm54iS/6QK18/+OkxzD1On9mN1WCFc4
-X-Gm-Message-State: AOJu0YwNJaHzUGGu7NDrXL7iRd8zxQjKvpt3ksF8Qb8zxh8xGDip+w/7
-	IZr2Wg1/Zyj2ZOyrnBXhCuWjDmEHedSXcrRcWg8cXSsDYlb5dazhBoOYKNlK
-X-Google-Smtp-Source: AGHT+IGU6+IPljA+GWBirS1yIkoda3RkNeEXEgUr5IH7xXsWgx3ZUP/EpHO+x/73+bR+xwemmCmqTA==
-X-Received: by 2002:a0d:e88f:0:b0:613:febf:7a7c with SMTP id 00721157ae682-63a8e0e2c4dmr72593207b3.16.1718971112781;
-        Fri, 21 Jun 2024 04:58:32 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-63f10d9f3aasm2935937b3.3.2024.06.21.04.58.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jun 2024 04:58:32 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dff02b8a956so1883037276.1;
-        Fri, 21 Jun 2024 04:58:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVSK40vUwFL7dmO0h7fBol+wmQZ6OhIehG/MBgM7AOA9g8WMdG+UseCyzaqM5Ew8h/qMzIJnsQRsqMT6dZKK7Szy1fqcOu3eQ59jyXllDXl2TV2p3J0qJEse4PKXzyWlo/1BMUtwksJibOTeSCXAsvTjnco4np6I7fEDBYcv+tLdDzqVMaMNQoMCQYSkttVYTL3AB6qUN1m8HIFpztNEymxY5neUDeL
-X-Received: by 2002:a25:6ac5:0:b0:dfe:388e:2987 with SMTP id
- 3f1490d57ef6-e02be228793mr7474675276.64.1718971112323; Fri, 21 Jun 2024
- 04:58:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5F6152E0A;
+	Fri, 21 Jun 2024 12:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718974657; cv=fail; b=WmaKypq5BA8nmUkIbJZTC4MIRQJ08MzSppW9N7z46ZOAQ5G4cydxQfIxKGEE8YybZMb+7Med3SjiHwODIvWmFcg/pNAYkt5igSZ2OeHYXn4SSRhzm21fxC95KjNJnuIiGV+cBaB/KUaoWUMoNfNF9AMKFeS57vlouoDfS9BBX0Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718974657; c=relaxed/simple;
+	bh=4lFQQpmAvsoMe4I6RYj2zMWzqDWkiYm+N1Aey/I6fQM=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ADpaauj88u2ZVf4rK2cYkwZ04wwUjIomKFJ6IbkEpWu1FVMml3Qu6A63DRrcI2ppZGwscW29Sh/eE+5p0AqHdSEGgZ/opNl8S1d9JzdUWOEvlg93PKBqCpVYMcMBKLWo2P/eg0IMRpGRc1emx5LDY7z4pNSJ+aGpttVr8P1UIs0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XGjTScVJI4iEnz0iNF/L1oT2TK0lwArFWT0Fe/ZQw18QUTQiMrtoLYB9SodkllPu83xp6XicC/O3gTwJ7b0Cf9piLL7WDB3vKdxhf01R6sXplFs/PA4jHFlvNKxGvGbyEDjBLQWop5cQZ+QC6EdmZjSjboBXgaxu5F7LhjXMylui2cXVm6SWwRGO/Y0W/RciPB0jK+mg4NgVBCY2v8CY1x2pYzKyY3pUi+DD7885/WgFNcjmAgLBt7YvOo5HdZasfzlnwjwDbDAy2ZCwnF/jncnqY4e7VedRoLfaVIBrrb8CTs2nZ2xhWnNoGNCJuxELu21LTnpQbjb1/rBcdmI8ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fEj7Emiyz5dvsIIrBiVW+/4imeofSTztYvolrRg71Io=;
+ b=I6hMhLW5E+5PLAe8Zj1gjH/i1Prz+MdzHKRgJ98+9EwXpnmWPrYx/tHKHCz5fonNDJjwVgILL1bL4ZR578c21lesOQuYYdrVGSa95mCQXgBy7Ra81XcGSjXjsWFW6Pi2plPEPMGXpRYDFPDeZ4BzVAz07ZvF958tz+o/1pmztkw+uYQjLVyHpqL6FVOdQ6+0e9R9SlDOIO8TBgauZqDa1doaNxc6JUfYKf0JlRNbGh4LJJg29PIce9lr2LSvW0WOoB4sUdn0/J0zCxpuqIo528AG2VCwHz82ucKd0mGm7nRuenTrHwRHvsUnTiNsknZZmGrvX3s8elt/2cEOuGupTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15) by SHXPR01MB0751.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:24::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7656.33; Fri, 21 Jun
+ 2024 08:22:42 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::358e:d57d:439f:4e8a]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::358e:d57d:439f:4e8a%7])
+ with mapi id 15.20.7656.033; Fri, 21 Jun 2024 08:22:42 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Minda Chen <minda.chen@starfivetech.com>
+Subject: [PATCH v2 0/1] Add PCIe dts configuration for JH7110
+Date: Fri, 21 Jun 2024 16:22:30 +0800
+Message-Id: <20240621082231.92896-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: BJSPR01CA0012.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:c::24) To SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240613091721.525266-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240613091721.525266-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <prdvmtsp35yy2naohivbrya3go6vh5ji2cdjoebw3ovditcujo@bhck6tca6mhj>
- <CA+V-a8u6KAFp1pox+emszjCHqvNRYrkOPpsv5XBdkAVJQMxjmA@mail.gmail.com>
- <o7tswznmyk6gxoqfqvbvzxdndvf5ggkyc54nwafypquxjlvdrv@3ncwl5i5wyy3>
- <CA+V-a8spwd82a3BTS-u-w-JY859YCRxCi0Os6XRn27-mkWz6WA@mail.gmail.com> <4lypqqf4o2wk22kzpyutlaarare5kurdrlokbm6mb4re3mstam@qo7c3d4tcpll>
-In-Reply-To: <4lypqqf4o2wk22kzpyutlaarare5kurdrlokbm6mb4re3mstam@qo7c3d4tcpll>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 21 Jun 2024 13:58:20 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXeDTof+aPJVUma78DgxP8vuWjJHoiBTcX_mKjX9WduZA@mail.gmail.com>
-Message-ID: <CAMuHMdXeDTof+aPJVUma78DgxP8vuWjJHoiBTcX_mKjX9WduZA@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/3] mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	linux-mmc@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	linux-kernel@vger.kernel.org, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SHXPR01MB0863:EE_|SHXPR01MB0751:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ae306b7-5db4-4648-e4bc-08dc91cb5202
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230037|1800799021|52116011|7416011|41320700010|366013|38350700011;
+X-Microsoft-Antispam-Message-Info:
+	NF64Cte/iVl/jy+9/S0pafs935geiwWiVXZvexufuV1GTV2BBSTr5YH99V+/lkLwWVlE2J84h2Oz7Si6lt7AsdsXskOKoD9qWJVMarTl/aiCO6dxWGr5WGbKeXdBVbw4vNHmxSJIx376kutY9556puO5UDwOICkoDI3nuYiC4nykkucEGhynbFjBQdNjBAFr/eUvn8qYwDnrbmaV2+aBpdmSEXv+6OJXZE/4CqILcDNya3KH0ZwYQenuceB1NPUGX4NSrCbS51O4A42ymveRCdmDQt6l0/1G5V3QaZbZ8O96bP7iJm5Utb2O02qquSAHyCi1nzwzt59KtaGE21p8btUWeIZYSb1XyZtdWk/EHVhp65UtUaDTTUmy0HwwvgDAYbRQSYuLIO99Y+HQ8DsGcpiypxw5uEy66Q2oUhPyfhR1gvA1K4lrioOS0HvCTZAOYvP/vj/rYPgX6cyiWoUQgFAHD6EPvvdCIGQUpqqGXskHqioRLPs3PMddQAxuNvKbMQ0Y94ZrYLfkfnk95MT614Fwjk0q5VX5K/o7m9rIYjTNR/x2dMgf2C0oFeIXjD+P4nic1HYeg7eys/W9jlVd8k6f8XMRmrHWIzHpuQFHfbXXphBvd8ZNagWY3Rap4w/I
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(52116011)(7416011)(41320700010)(366013)(38350700011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?amKZeAqG/b1HjkjDmk9rBp0kGciDs9+LlQXWv5CsJUIMTwdM6I85RE0W5Gu2?=
+ =?us-ascii?Q?PoEeJReM0nX6qsNwwSIC/wS4sJMskiZ1Lrsj+mSlhwjdfaGDR8uwHs4HIVz6?=
+ =?us-ascii?Q?e4VCin6IPObz1jLSJurPgFE9msQQBZLn2iKiBUfH7Da/812fqUIKiUNpsFSP?=
+ =?us-ascii?Q?vKZGI/YcdQ3Jxj6Pn/N4a8FZLX7H9VpZlC9PBWdEsDiE4v/s7+CclXS02oHi?=
+ =?us-ascii?Q?vrlAYKf6/cqSv5kTKFD6h/Cy1/ARQMDc9xoGVOKI+GLY0dXeR2fWUGJIA+rR?=
+ =?us-ascii?Q?szqkKqwoBsUoBqmcdqpS/HcKwX9LLq308noJg3b4x0Hpm3Bs7a+DCdq00TZX?=
+ =?us-ascii?Q?CVwttStosRdp/bi5zgqD8B3NRR0Tyl+pq/UoFgBBa0awANPKvL7s57fC5NE3?=
+ =?us-ascii?Q?b4rCPIJn+W9SvGilTgN6HHkc4nzb3ivYJvwTd1wy3G1XGjsw0UdP494X9Cel?=
+ =?us-ascii?Q?6Ct91Mm2Fi0BWkQixkp8l1/Cwi54cNnHPvVz48AN20Zhl520zlp2A5hRutkc?=
+ =?us-ascii?Q?wf2ePqipLmTkj9Zxcbnqd5TZHWF3VchbCZYUkPJqe1gt96rJWX6mM0mxcta3?=
+ =?us-ascii?Q?iDsZXmjZ0y6u3eRyb8FYxj2+cqgqe433ZRrwknX0Rwi4BEXbDYLCl0nCN6eS?=
+ =?us-ascii?Q?TZBMMStR1Ged9uNB/RPbip7GLhu9WdsP2xJoIA+GhT6bIAG7+dpKhNqx6sZ9?=
+ =?us-ascii?Q?VoxCcFxkl5hd0C2K+LzHZxgJgVVenXeu2XfXuURdkvY+dOEljRgg6nep1yo0?=
+ =?us-ascii?Q?OvZ7YvBYobVU/nw4njX2Lu7W5YzZ3//HFQ6ENty2McvBMJ/aiGFKP07olxAs?=
+ =?us-ascii?Q?yeMN0urUn8ZLGdsGiDTplhF/KjpdMIBqxjVBux+VTNN40IoRjxTKfX9IR9yF?=
+ =?us-ascii?Q?uDKE3Q/q8JB4T6YMLeatIe/2AE+BT3oCWiSpoMy3zyRki0HP5uKDbe01PL4M?=
+ =?us-ascii?Q?fxP3wIqtpdSwuUnJqSM07P4ShqgwX2btFM2JcFAFwqFu22qkYoPxdQEt3abK?=
+ =?us-ascii?Q?Etp4l6WyaPF7ta2LRLLe6ndPr2VVlYx7y1TsJCqoCBKaTD55n0Aaz/bhkubV?=
+ =?us-ascii?Q?bHug6X89nd2v1MKeayauANtpxIOwE7dyX2nHL2GluvSiM/OOmyBhIv6qPVFA?=
+ =?us-ascii?Q?EygLkcfZSoQGQyvj29rL4+ZTxDlgVU4B0AeTAeXoayac0xH/yi7/upzyK7z0?=
+ =?us-ascii?Q?xX2A1YGgBTaiXT9vf618SWwEu0rPvbvLsYeF+L1Ciwu5MoRbRMnKtytLH9lo?=
+ =?us-ascii?Q?c2XxiFEuHGH7r00bn18LdiXiLzfWDdKFKDNVV4dd+uuAlASqgxUZon/nurtG?=
+ =?us-ascii?Q?Rvntz7ZWeGmfscnpLoyrNt7YOd45u/Dtfmigzqglv95LiG7XBOd+nbJOqBIP?=
+ =?us-ascii?Q?xPEvC6J6wzuiZ80nFHaj3Dj5oJseHB5mivFaGtw1JG/lMD6WoY3Ti87dNQaI?=
+ =?us-ascii?Q?/t+V8TSyhkfI4R1mYksry0La4UJauFiBMfuEg7/BAFl4wRzOxe/5RHT+cQbu?=
+ =?us-ascii?Q?w4Vr5m0oqsX61uynaIAOMrnRZ5CMt5MUYlARx0OskZ+gYwLDM1W4ley1SzKi?=
+ =?us-ascii?Q?HaoZjPbguoZcqbqkxTYjEbZlBDbM+JwLec7oa5UsWX8PK2shT5VtR7u1FiOT?=
+ =?us-ascii?Q?vw=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ae306b7-5db4-4648-e4bc-08dc91cb5202
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2024 08:22:42.1805
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QFHKM7r3l9gMxW1w05o7VxI0Tg2uOvto2jnRZLotldoTkD3u9UwYCRUz448h7YYUrBeXFV2GRt40F1W614d40FqN9O3q7varKSMUfa+vZnY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0751
 
-Hi all,
+changed:
+    v2: default disable pcie dts node. enable it board config
+        (milkv mars and visionfive 2).
 
-On Fri, Jun 21, 2024 at 9:54=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> > Based on the feedback from Rob I have now changed it to below, i.e.
-> > the regulator now probes based on regulator-compatible property value
-> > "vqmmc-r9a09g057-regulator" instead of regulator node name as the
-> > driver has of_match in regulator_desc.
->
-> I like this a lot! One minor comment.
->
-> > static struct regulator_desc r9a09g057_vqmmc_regulator =3D {
-> >     .of_match    =3D of_match_ptr("vqmmc-r9a09g057-regulator"),
-> >     .owner        =3D THIS_MODULE,
-> >     .type        =3D REGULATOR_VOLTAGE,
-> >     .ops        =3D &r9a09g057_regulator_voltage_ops,
-> >     .volt_table    =3D r9a09g057_vqmmc_voltages,
-> >     .n_voltages    =3D ARRAY_SIZE(r9a09g057_vqmmc_voltages),
-> > };
-> >
-> > SoC DTSI:
-> >         sdhi1: mmc@15c10000 {
-> >             compatible =3D "renesas,sdhi-r9a09g057";
-> >             reg =3D <0x0 0x15c10000 0 0x10000>;
-> >             interrupts =3D <GIC_SPI 737 IRQ_TYPE_LEVEL_HIGH>,
-> >                      <GIC_SPI 738 IRQ_TYPE_LEVEL_HIGH>;
-> >             clocks =3D <&cpg CPG_MOD 167>,
-> >                  <&cpg CPG_MOD 169>,
-> >                  <&cpg CPG_MOD 168>,
-> >                  <&cpg CPG_MOD 170>;
-> >             clock-names =3D "core", "clkh", "cd", "aclk";
-> >             resets =3D <&cpg 168>;
-> >             power-domains =3D <&cpg>;
-> >             status =3D "disabled";
-> >
-> >             vqmmc_sdhi1: vqmmc-regulator {
-> >                 regulator-compatible =3D "vqmmc-r9a09g057-regulator";
+base on v6.10-rc3.
 
-renesas,r9a09g057-vqmmc-regulator?
+Minda Chen (1):
+  riscv: dts: starfive: add PCIe dts configuration for JH7110
 
-> >                 regulator-name =3D "vqmmc-regulator";
->
-> This should have "sdhi<X>" somewhere in the name?
+ .../boot/dts/starfive/jh7110-common.dtsi      | 62 +++++++++++++
+ .../boot/dts/starfive/jh7110-milkv-mars.dts   |  7 ++
+ .../jh7110-starfive-visionfive-2.dtsi         |  8 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 86 +++++++++++++++++++
+ 4 files changed, 163 insertions(+)
 
-Indeed.
 
->
-> >                 regulator-min-microvolt =3D <1800000>;
-> >                 regulator-max-microvolt =3D <3300000>;
-> >                 status =3D "disabled";
-> >             };
-> >         };
-> >
-> > Board DTS:
-> >
-> > &sdhi1 {
-> >     pinctrl-0 =3D <&sdhi1_pins>;
-> >     pinctrl-1 =3D <&sdhi1_pins>;
-> >     pinctrl-names =3D "default", "state_uhs";
-> >     vmmc-supply =3D <&reg_3p3v>;
-> >     vqmmc-supply =3D <&vqmmc_sdhi1>;
-> >     bus-width =3D <4>;
-> >     sd-uhs-sdr50;
-> >     sd-uhs-sdr104;
-> >     status =3D "okay";
-> > };
-> >
-> > &vqmmc_sdhi1 {
-> >     status =3D "okay";
-> > };
->
-> Again, I like this. It looks like proper HW description to me.
->
-> > Based on the feedback provided Geert ie to use set_pwr callback to set
-> > PWEN bit and handle IOVS bit in voltage switch callback by dropping
-> > the regulator altogether. In this case we will have to introduce just
-> > a single "use-internal-regulator" property and if set make the vqmmc
-> > regulator optional?
->
-> Let's discuss with Geert. But I am quite convinced of your approach
-> above.
->
-> > > > Let me know if I have missed something obvious here.
-> > >
-> > > Nope, all good.
->
-> Don't give up, I think we are close...
+base-commit: 83a7eefedc9b56fe7bfeff13b6c7356688ffa670
+-- 
+2.17.1
 
-The above indeed starts looking good to me.
-IIUIC, the use of the special vqmmc-r9a09g057-regulator is still
-optional, and the subnode can be left disabled? E.g. the board
-designer may still use a (different) GPIO to control the regulator,
-using "regulator-gpio"?
-
-Which brings me to another question: as both the SDmIOVS and SDmPWEN
-pins can be configured as GPIOs, why not ignore the special handling
-using the SDm_SD_STATUS register, and use "regulator-gpio" instead?
-We usually do the same for CD/WP, using "{cd,wp}-gpios" instead.
-Exceptions are old SH/R-Mobile and R-Car Gen1 boards:
-
-  arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts:          groups =3D
-"sdhi0_data4", "sdhi0_ctrl", "sdhi0_cd";
-  arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts:
-groups =3D "sdhi0_data4", "sdhi0_ctrl", "sdhi0_wp";
-  arch/arm/boot/dts/renesas/r8a7778-bockw.dts:            groups =3D
-"sdhi0_cd", "sdhi0_wp";
-  arch/arm/boot/dts/renesas/r8a7779-marzen.dts:           groups =3D
-"sdhi0_data4", "sdhi0_ctrl", "sdhi0_cd";
-  arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts:             groups =3D
-"sdhi0_data4", "sdhi0_ctrl", "sdhi0_cd", "sdhi0_wp";
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
