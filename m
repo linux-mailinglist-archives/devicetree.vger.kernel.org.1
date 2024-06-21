@@ -1,147 +1,144 @@
-Return-Path: <devicetree+bounces-78625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54228912EBC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 22:45:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E7C912EEA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 22:52:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09FEF2835EF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 20:45:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E43161C230C7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 20:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7B417BB09;
-	Fri, 21 Jun 2024 20:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3537D17BB31;
+	Fri, 21 Jun 2024 20:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PP5DBmEu"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="asThEooi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119F117B424
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 20:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1F017BB28
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 20:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719002697; cv=none; b=dAnRfzgFF9I2xzzGFTuFkiusoNu4U4gW6q7t0eyR/+L8aEYH7AHQyFWoJEvRskLjvj1+v/OxNfvaCiAwYAtan/tFA3bIQrxNVP/zBQMMKet0dmfyPftGtNm2Ndzmg5FIB9o7nS9cKkl/xcO2sOEHy32eXR1Kks3Y3Dyx5t56Q10=
+	t=1719003118; cv=none; b=GMoKScfQdRnLk0bKCuLpRELS7KnNnXtOLTipkWij7J455WmtXLxvWHpCnrrF7Kg9AEamzzLmexduJ8Dv9ZGHDalZ6sXvF29QpDEY1VRdAL9XbWIskWauPeqSksVSdYCBy/JVHzbyenJQooFMF0ZVeCfNfqJY7lMk3wtiCPjZzno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719002697; c=relaxed/simple;
-	bh=EVjOk2Qvik+pOzl2DFM0KDrYTyxssV7z+Gs7LWahwhI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CdB+EFryewRyRh4Xkn3OOu9bHAQcPAr0Vao8MConD4V085+3H5HhpWJXNdhkFivM8xL34gR2Vtm7afjCoD+SGpfMeqiVDg6jqTv/m/oK3+YpAcdw16jkVDKHUsYPtOhCB6z0e/ZbuJ1gP4y5poAP3elWn3HcNs9215Z4zLvWeOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PP5DBmEu; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1719002695;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IBRyGrjkPd5CIS4XoIva4gQOV3Q+VtL43fiauuhlKtM=;
-	b=PP5DBmEud1E2RLh4VfHLdt/IYIVsU4fLmdotvL/wQ/0fSwdpPtbAKfltakEIxRxPHiAJcc
-	mlIJScrZQrbdUVccbuqmP1p9l7LQBys7zBOzE8btaffEAWM7uJ6nh33lLbwMaxQBnqa92P
-	lTmfEv8Dcj5AuPxHiTuQmHUyMCG5dU0=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-164-ykJwaLg-NQGBFndzqr2kJw-1; Fri, 21 Jun 2024 16:44:54 -0400
-X-MC-Unique: ykJwaLg-NQGBFndzqr2kJw-1
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6b077178ca4so28878556d6.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 13:44:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719002693; x=1719607493;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1719003118; c=relaxed/simple;
+	bh=Oh3fHeV4znlvxEw6zOAQuavyv3NjqYzTMJ90QD3QnrM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GkF5j2/LsytF+wyhCW9De8CjhFSxFOCUka65F5kg2WH3JmiDt1zfbodejtrbF/BSPcK2/Stof/Z7Kl7NGf7Nf6nEn9cD7WbpVuxSzb7GVZnCEmRqTaYVIAoWQMQkF7uq2oEwQCgZBluCRomfpwEwZ7HD3JERzU9q/gabYaTYkWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=asThEooi; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-443580f290dso473771cf.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 13:51:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1719003115; x=1719607915; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IBRyGrjkPd5CIS4XoIva4gQOV3Q+VtL43fiauuhlKtM=;
-        b=SaEP2DzFAZVPV3iWbzAnWhHORrhtWZ4WKnv6AjoVRM8LegbNQdWpOK2FUYRzg8RXY8
-         5rxVP8saqb4RbYebDC88TDC9YVG7MarL+biTztWqRGq9oUfE6XS8AA5b/2lL6wG4xqoi
-         TQK7VKI6XxX8vmJG+c+5RGGe2Xt1dqVhBp+9VQcCDKY8Q7Tgh8zhtBmVPMX6knmxee1l
-         TBrQjXupqQ8eoHYJxkmnDEByW3FXlnEFKIa/0JOvFDBXEjAuDDQq+m82UXHbiLMU8DlX
-         bWXlVHZu1QhbmnhZ5EGuFbSAZ9km2A4749zV8wmV0wSCgfR+2fLOASTviaS2O9e5gdjP
-         XWgA==
-X-Forwarded-Encrypted: i=1; AJvYcCVIqdoZfXWPhQ0EZzRXC2hz422obX/6vKGBWwzUfLTXK8+urRBPan9jbFoI7oREPdugCYlJpD42TW6ZJaqqVvtIU60++QBrVssEww==
-X-Gm-Message-State: AOJu0YzCZJ3shC/I5Zb7yamk5MtTR1ReiFVxcL1C4NTbkbWxL0pHIPyE
-	QgZLCMQUSFfSsNAwSD5ILNzidyNzOgemccBcr8HZi+r8vIR4IMMeM/dq7mWy0Zuw/1K4yRpht6n
-	sIbWwsFK+HltnpvJfKAk06D/MLVRQzJ+QvhoX8GV1IKkHjSgUlAZgOoAsElk=
-X-Received: by 2002:ad4:4e2a:0:b0:6b2:cdaf:300e with SMTP id 6a1803df08f44-6b501e03d2cmr96084136d6.1.1719002693500;
-        Fri, 21 Jun 2024 13:44:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHpK5D9TDm/aP5jldornZZLwHdWh2EXn0K0pkw6eEyjdSKLkGZH9gNAROZfr7QzFOXxvhc+rQ==
-X-Received: by 2002:ad4:4e2a:0:b0:6b2:cdaf:300e with SMTP id 6a1803df08f44-6b501e03d2cmr96083876d6.1.1719002693102;
-        Fri, 21 Jun 2024 13:44:53 -0700 (PDT)
-Received: from x1gen2nano ([2600:1700:1ff0:d0e0::13])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b51ef30d47sm12047126d6.83.2024.06.21.13.44.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 13:44:52 -0700 (PDT)
-Date: Fri, 21 Jun 2024 15:44:50 -0500
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Sagar Cheluvegowda <quic_scheluve@quicinc.com>, 
-	Vinod Koul <vkoul@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>, kernel@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] net: stmmac: Add interconnect support in qcom-ethqos
- driver
-Message-ID: <ymg2rf4vlp6kcsb6fbass3rntaxfz4ox4hbhcn56engfqcboqr@kp47u5rk3mvk>
-References: <20240619-icc_bw_voting_from_ethqos-v1-0-6112948b825e@quicinc.com>
- <20240619-icc_bw_voting_from_ethqos-v1-1-6112948b825e@quicinc.com>
- <159700cc-f46c-4f70-82aa-972ba6e904ca@lunn.ch>
- <b075e5a8-ca75-49cc-84d6-84e28bc38eee@quicinc.com>
- <b5096113-de85-485e-a226-a8112b3d5490@lunn.ch>
+        bh=lArdc/1wZ6cGMV0ZmDn9MYnxqrFzIsvvBqrD/IAOOXM=;
+        b=asThEooimGIB6lT3goXLdKHmwSc/SexKaLdfRQ89jrkN2j7W2kdBbo6Cq8EqTJeXv3
+         JJrv1GebWy6p+I6zmr4lWjudBJYQ/uKXP1veHlItPqcqzJXAzCzKKBdD3s+cyD5pVHa7
+         1cO5wO0kusRMpB5yrV8GcNbZBmvuDp0eUi3L+K2brgvLvougSmhfnY0rMMVEEP1iXzhV
+         LrJ7NdScLT0Ebak/MqjSF4tD6+xM6Voaa+0qt6sVPLCueBN5acqcxn5OaSx71MAVNY+C
+         FfMGhv9rDe/wSq3+YCmB+gq/k1SZimdwns9C30ZCzf72qqT8eH+5B6auKTaQXcxAdo30
+         TaJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719003115; x=1719607915;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lArdc/1wZ6cGMV0ZmDn9MYnxqrFzIsvvBqrD/IAOOXM=;
+        b=NbZNh/cO7ZaPuROezmIj876RO0Xv8NzYCWaTE4hK/14PWfMWGWgLEVJrtyALVlXvhG
+         0mPah8V625rQNDqTSquWkWtULCBBGRkHZam9sj8MmKk/r8Slqv4Apjk8gSm9I8HPqtNw
+         P8x+00ndJAiOKb3hUElxqH2iivLRnGl36y3iaZfeTYCCaPGK9ZTq9mY22L7Vg4rdcgUW
+         nEDZmP9FsmBNiF/VDyEB3nLTml1EDATD6/5MY88L4MJtdu5jvL3K+yZ2N+SoiHxw//1Q
+         9ugOEY1Dr1Q7zdKWTpmVmLYcsJ67oC8qrSQd4NG++Wiu2vJUm/zcom6VHv4DOeFL/Bep
+         NyUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWcHMKNbBonm8s7619KwnpyXWBWeR/O+Ow64OKke0ruMcDQ20Y0HWWFBrtKpNWrnCNMVYYpHfdJeMsunAcr7UdEToEPe+k4gAS5Jg==
+X-Gm-Message-State: AOJu0Yx4wPsDAGfT0f8dXMxzCcw+cxcWiXJROyr73u18xOdw0akgs+8x
+	sdcAEjYQVGViOKeg5CeRsug9NCvgZKWLuv2SPygKXD6p0hKOD8FFk8fJ+awwtOdebeO3P1RPPbP
+	1dnBpOHcvwNijqi/JfW+OAn4o8YsbCaJ2o7T7
+X-Google-Smtp-Source: AGHT+IH5yoYBlppb4JsqH83QVq/VXvffOxaxcg76w1huEHrI0GcDKG80KYq2O785kln/S9G/4ZJBzT5QZpUnTZkr5kA=
+X-Received: by 2002:a05:622a:1a01:b0:444:92a6:188a with SMTP id
+ d75a77b69052e-444ce2be63dmr496101cf.9.1719003115301; Fri, 21 Jun 2024
+ 13:51:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b5096113-de85-485e-a226-a8112b3d5490@lunn.ch>
+References: <cover.1718994350.git.robin.murphy@arm.com>
+In-Reply-To: <cover.1718994350.git.robin.murphy@arm.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Fri, 21 Jun 2024 22:51:16 +0200
+Message-ID: <CAGETcx-nBb43181Rd4HC6HQF-6=XOufA05e8Zda+LBBfhwvagw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] iommu: Remove iommu_fwspec ops
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>, linux-acpi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>, Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 10:01:39PM GMT, Andrew Lunn wrote:
-> > > This all looks pretty generic. Any reason why this is just in the
-> > > Qualcomm device, and not at a higher level so it could be used for all
-> > > stmmac devices if the needed properties are found in DT?
-> > > 
-> > >        Andrew
-> > ICC is a software framework to access the NOC bus topology of the
-> > system, all though "axi" and "ahb" buses seem generic but the 
-> > topologies of these NOC's are specific to the vendors of synopsys chipset hence
-> > this framework might not be applicable to all the vendors of stmmac driver.
-> 
-> There are however a number of SoCs using synopsys IP. Am i right in
-> says they could all make use of this? Do we really want them to one by
-> one copy/paste what you have here to other vendor specific parts of
-> stmmac?
-> 
-> This code looks in DT. If there are no properties in DT, it does
-> nothing. So in general it should be safe, right?
+On Fri, Jun 21, 2024 at 8:46=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
+ wrote:
+>
+> v1: https://lore.kernel.org/linux-iommu/cover.1713523251.git.robin.murphy=
+@arm.com
+>
+> Hi all,
+>
+> Here's v2 of this little cleanup, with acks and the additional cosmetic
+> tweak suggested by Andy. There were some slightly non-trivial changes in
+> the rebase so I've left off Jean-Philippe's tested-by from v1, but I've
+> given it a quick spin on arm64 ACPI and DT and all seems well still.
 
-That logic makes sense to me, and thinking about it more you request a
-"path" between two "endpoints" in the network, and that's pretty
-generic. Sort of like the clocks, etc, and then let the provider figure
-out the gory SoC specific details.
+Hi Robin,
 
-i.e., for example I see the UFS driver uses the paths "ufs-ddr" and
-"cpu-ufs", and thinking about it generically for this IP that's probably
-the same thing going on here (and lends weight to Krzysztof's request to
-use names similar to other interconnect users).
+I see in this series you talk about figuring out if a device has a
+driver that could match. There has been a "can_match" flag in every
+device that's set if a driver that match it is present, but hasn't
+probed the device yet (for whatever reason). Just pointing that out in
+case that makes things a lot easier for you. As of now, we don't
+handle clearing it when the driver is unregistered, but if that really
+needs to be handled, that shouldn't be too difficult.
 
-That being said, grepping around I don't see users outside of platform
-driver bits (i.e. I was hoping to see drivers/pci/controller/dwc/ doing
-some shared usage, but that's not the case). Given what you said I'm
-of the opinion now this should be done in stmmac_platform.c
-and described for all stmmac users since it feels like a property of the
-IP itself similar to the clocks required, etc. The interconnect framework handles
-when they're not described in the dts gracefully so it shouldn't break any
-other SoCs that don't describe interconnects currently.
+-Saravana
 
-Thanks,
-Andrew
-
+>
+> Thanks,
+> Robin.
+>
+>
+> Robin Murphy (4):
+>   iommu: Resolve fwspec ops automatically
+>   ACPI: Retire acpi_iommu_fwspec_ops()
+>   OF: Simplify of_iommu_configure()
+>   iommu: Remove iommu_fwspec ops
+>
+>  drivers/acpi/arm64/iort.c             | 19 +++-------
+>  drivers/acpi/scan.c                   | 36 +++++--------------
+>  drivers/acpi/viot.c                   | 11 ++----
+>  drivers/iommu/arm/arm-smmu/arm-smmu.c |  3 +-
+>  drivers/iommu/iommu-priv.h            |  7 ++++
+>  drivers/iommu/iommu.c                 | 20 +++++------
+>  drivers/iommu/mtk_iommu_v1.c          |  2 +-
+>  drivers/iommu/of_iommu.c              | 50 ++++++++++-----------------
+>  drivers/iommu/tegra-smmu.c            |  2 +-
+>  drivers/of/device.c                   | 30 ++++++----------
+>  include/acpi/acpi_bus.h               |  3 +-
+>  include/linux/iommu.h                 | 15 ++------
+>  12 files changed, 65 insertions(+), 133 deletions(-)
+>
+> --
+> 2.39.2.101.g768bb238c484.dirty
+>
 
