@@ -1,329 +1,199 @@
-Return-Path: <devicetree+bounces-78567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D256D912A80
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:41:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C678912A8D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96330B2A5EA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:41:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0671C28469F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622B213D521;
-	Fri, 21 Jun 2024 15:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F226715AAC7;
+	Fri, 21 Jun 2024 15:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gsRhugAq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XuG/A2u9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B920E84A4C;
-	Fri, 21 Jun 2024 15:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3569415A85C;
+	Fri, 21 Jun 2024 15:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718984450; cv=none; b=rIELrpzL6P3Q3tD7+/ZomZesy76ToaiF2WknYtW9abdjDV+WqCfLC7rvsvRQ3dmaxippFGnR7xMg3COT9KdEEMp2E6X/F5nKKnsFiGL7WJJ6CSCltWc1IQYgkwnFXRlScZLL0AXvAvkQ3QWE4BvQBXwXDdw8k5heDRaEGnnV8aw=
+	t=1718984745; cv=none; b=BDe3PGT4hDvmE/42QgJuWE9Y4KLLLLRQigqER28d2/LVcaAWsgkzPSEfKvcRdLpc3TE6cz6aFfyK53FZGXoJMj4Q3hJRr21xyFmTeXolso3e7Tdn557HwUFxM7uV9F0IzMNlT3kJs/O2vjjTfwcFFzHuc8RzGT8EVcOlDic7TgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718984450; c=relaxed/simple;
-	bh=J9beTWQ6nBQMACRt3dW6ixHUj30KwKhEXz5zO1lRtlE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cX6El45p3i6Sb0UiYzenGHEBjrQ3/RXL0AePD5u3fk1zeesrXI5VWcENKSKyXzjnQ93Xym6HvaAF55jRTNcUIL6wuwV7MrKUjGA7QBk/pKA8uxpGJqNPZaar224zUckhomie7XvpRLnSM+x6oAcg0JMuSIAVtVDQlXsVlCbIB0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gsRhugAq; arc=none smtp.client-ip=209.85.210.169
+	s=arc-20240116; t=1718984745; c=relaxed/simple;
+	bh=HOSCZ2vrhvGoFP2iw1Ql/Hz/mDzmyBgbdC959qExCDk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kE+KO56hhwx8mv0s3QBGzllCZtHVjBhRnFF6WMCvC9LyNwd8IsVFj7h4mrEeihi2/tjQINipJF6neUbU2VKqdcdbTlBbiNvhLEIQODEf82ANmH8fbFj5T799dI6QT3mHfFdjr6YWKbqRgnuLEY6gHsMabFe4GFuPQS3NWZ5neI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XuG/A2u9; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-7042a8ad9f5so1916419b3a.0;
-        Fri, 21 Jun 2024 08:40:48 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a6f21ff4e6dso302754366b.3;
+        Fri, 21 Jun 2024 08:45:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1718984448; x=1719589248; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9lNEeiRMZyfbNEcygdR2xAKFEd5icF+LSS0bm07Oqsk=;
-        b=gsRhugAqxoG9lvlKyazDDzrsHNU04jy9nsqlKvhPyMIlqf3iIEiAOd2FOalYpHjDIf
-         bgd6AgF5zr0654KPzrvoGUqI0FBvH1hZTAFwGAoP2GikEps7eCXd6qE48n/s37bcAAnp
-         SOn30qeGBugBpOeQ3dZ735lUCxTkLPsSUM3xW8R2fRnxoslMbvsa9eLZ42ecVTH4OMkg
-         0rV0IrUmWV4/TAklMhKGipNeJYk0ARcVsetJHVBsdyH06SFaqaI0RmUbiD3xFA+85+Hn
-         5EAe8Ng/9z7YkDFzX8yiCEe78nVkkYz9tKTVUD524TY3duQFJcqCrvDH0vRVXYPUg6U7
-         ww3Q==
+        d=gmail.com; s=20230601; t=1718984742; x=1719589542; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p4CvXaD0p8juFHM/mj9mpOHYuq+vuwl0xPPEP0shwFI=;
+        b=XuG/A2u9OpJtRpPAM5mP7DY2cdn+s7cd7jq28VaTgI2un7In6lh6Z4mbdte580yI98
+         70Grq8EJjXkLFfTONjSn/GOz3Pic1ejLZzF4r3OW4IrCRDOb9dsP2eHtV6ORHbdFRSdm
+         /Z1izixViC4T10HqMKBQvZ8sZtuTjuV/DVqYcNjE2xMRz81bGEJFM1d8TUmCSMYvuLRi
+         aodVgmaK42d9B/5MbMbg+LScbsmE4nbWTw5fbwbSG+/sH4V+TBxnAwMLdUiijTK16DZn
+         RX+obBfORID0lFpxKSXpH/9HzGXR/lYmARMAQZruq6aWPzZyq0JkX9GxCDkCkTDnoVqf
+         5uYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718984448; x=1719589248;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9lNEeiRMZyfbNEcygdR2xAKFEd5icF+LSS0bm07Oqsk=;
-        b=aHT7LFBirRjjTQR2AdG4tGZk8qZGFc0JpHe++ud1Qjk8FY7B8JrrqdM1yPTRcOJl03
-         Je0WtbJxpFEbL8SS9MbiWcFd2oZhOrFHAR/vKxhNqm34W8DyPn7LTYS1GV2OjZ9fyAZr
-         B+NC+GxiPkwhl5Lpx/jDMj8GmJsO/YmOz6xUXS/NWvd8fNwz2jXE8U4bSOfCvIrGhFC8
-         tm15EFtR5WIo8Hn84lgkTLA4a10/DH76ThTNqxNrnqT9qbrfg0L5xNewt/WhErNjOVXE
-         geV3qwndhwufoZ6huG0+LXAzZRvZt7ekiU4QjCHjH+swiXFMG9JNwv3s827j7xBB8fII
-         sbxg==
-X-Forwarded-Encrypted: i=1; AJvYcCX1I+9l3KVNah0qA7249cS0TlemQ9rvmt0p2VgIs6mfQlWYFm4Kmx4Xn/P9v7y5pK0/rxoG2nY4RbIWO+9r4H8pUSTLXVEPCuyxXxh6SgH0ygvdl+I37m8nFmxfJL5n3qZmVSmCRZsc+2l79qXqr15LxSkI+iDFUoMQNYbuZ8atT0il66Zi
-X-Gm-Message-State: AOJu0Yxm7P8vZmPT+u/B6uow+4DazfIeVdLokTXUa+xeFGsg06iddKZW
-	VbYLcKnNQQSOCnxou/BqfCIjz+KYhkfPKXw3FC5PQ0Nt0uDDtJ11
-X-Google-Smtp-Source: AGHT+IGRTpgRoS9Ooc2BHJ4NPBqzyh8zsWzwUoEzcYv0F/1FXItq5OIJQG5dLJb24ilLB+6dDw0BTA==
-X-Received: by 2002:a05:6a20:3252:b0:1b5:88f5:5823 with SMTP id adf61e73a8af0-1bce65cabe9mr186358637.27.1718984447745;
-        Fri, 21 Jun 2024 08:40:47 -0700 (PDT)
-Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-716baf4acd1sm1271070a12.75.2024.06.21.08.40.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 08:40:47 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: realtek,rt5645: Convert to dtschema
-Date: Fri, 21 Jun 2024 21:10:27 +0530
-Message-ID: <20240621154034.489037-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.2
+        d=1e100.net; s=20230601; t=1718984742; x=1719589542;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p4CvXaD0p8juFHM/mj9mpOHYuq+vuwl0xPPEP0shwFI=;
+        b=WIXnDV6FMcnQ9PJNpsLMlSiG7jZz7k9+4lVkT4cJcR+rcAjdalIAR8IfqrzlVtqjJi
+         NAMeiiiHtBjs1zbaHMXMKHPBxMnnI93V6K2tJ1oLTQSyd9aw9UP4GEKeKIr2fuouDExY
+         1h3Nd4xwuCFdEEdbLC5IZciGVlCWhdGJuAHWUUYPI/pZJag7ulnJBoK2vDfzwc+Uo8QS
+         kA0JcTMNUYvA+m8OtFRpbAU9A6GkIePGKSWjs60eyiw82fcX/PXQFmW+2PLI15zULxgA
+         /faVgSddHZjP9MxoH2qLfweUQCQ0nOiKpedocHVdzzb8BcEF8MJvol1+mqVPCOkksH1G
+         dE4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVTH7ozIHaxrtH7yHjnYm90dvbnOjBUVv2xSPj/ibVTYywH6wV2oUN95ntxNG4Q5itRlnOx/hrlngU28hBjgH+m65AYQjUKFIREPdVsm9I3N3pFUz2Ka8/WmDADj6yiVNcFt+bGud8Y3nPGwPi2taWNFk0IJ2Y3RjhonscUN0P1kHp6L50VWsRZtzj5E0OgphiY3OaWmbVTmymiVA==
+X-Gm-Message-State: AOJu0Yz0rPReYIt/0vVAU6rSciVLIeBclft/rODZpus3t+XJQPVnLml3
+	0R8tGgGBqerIA8O94QJv2v5Krc1m3ITqaGtCbC8rFrXTc889vSGOO34WH4ocpyaIe0mLmVeAjif
+	Iwx/glhhXBGOwq3yQEnWdnAYH6wc=
+X-Google-Smtp-Source: AGHT+IGQG2/pFic6ghI58imlJHEBDuzmWT1uMrn79oh0Id6ZdT6X4Yy9HwZWFVL2JJuDF6fSk19Bw5MO37t5DdaeuQk=
+X-Received: by 2002:a17:907:7a94:b0:a6f:b58f:ae3c with SMTP id
+ a640c23a62f3a-a6fb58fba03mr436111266b.26.1718984742083; Fri, 21 Jun 2024
+ 08:45:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240527161450.326615-1-herve.codina@bootlin.com>
+ <20240527161450.326615-19-herve.codina@bootlin.com> <ZmDJi__Ilp7zd-yJ@surfacebook.localdomain>
+ <20240620175646.24455efb@bootlin.com> <CAHp75VdDkv-dxWa60=OLfXAQ8T5CkFiKALbDHaVVKQOK3gJehA@mail.gmail.com>
+ <20240620184309.6d1a29a1@bootlin.com> <20240620191923.3d62c128@bootlin.com>
+In-Reply-To: <20240620191923.3d62c128@bootlin.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 21 Jun 2024 17:45:05 +0200
+Message-ID: <CAHp75VdeoNXRTmMoK-S6qecU1nOQWDZVONeHU+imFiwcTxe8xg@mail.gmail.com>
+Subject: Re: [PATCH v2 18/19] mfd: Add support for LAN966x PCI device
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Simon Horman <horms@kernel.org>, Sai Krishna Gajula <saikrishnag@marvell.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, 
+	Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Allan Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert the RT5650/RT5645 audio CODEC bindings to DT schema.
+On Thu, Jun 20, 2024 at 7:19=E2=80=AFPM Herve Codina <herve.codina@bootlin.=
+com> wrote:
+> On Thu, 20 Jun 2024 18:43:09 +0200
+> Herve Codina <herve.codina@bootlin.com> wrote:
+> > On Thu, 20 Jun 2024 18:07:16 +0200
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > On Thu, Jun 20, 2024 at 5:56=E2=80=AFPM Herve Codina <herve.codina@bo=
+otlin.com> wrote:
+> > > > On Wed, 5 Jun 2024 23:24:43 +0300
+> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > > > Mon, May 27, 2024 at 06:14:45PM +0200, Herve Codina kirjoitti:
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
----
- .../bindings/sound/realtek,rt5645.yaml        | 129 ++++++++++++++++++
- .../devicetree/bindings/sound/rt5645.txt      |  82 -----------
- 2 files changed, 129 insertions(+), 82 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/rt5645.txt
+...
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
-new file mode 100644
-index 000000000000..d2d97d2bca2e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,rt5645.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RT5650/RT5645 audio CODEC
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+description: |
-+  This device supports I2C only.
-+
-+  Pins on the device (for linking into audio routes) for RT5645/RT5650:
-+    * DMIC L1
-+    * DMIC R1
-+    * DMIC L2
-+    * DMIC R2
-+    * IN1P
-+    * IN1N
-+    * IN2P
-+    * IN2N
-+    * Haptic Generator
-+    * HPOL
-+    * HPOR
-+    * LOUTL
-+    * LOUTR
-+    * PDM1L
-+    * PDM1R
-+    * SPOL
-+    * SPOR
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - realtek,rt5645
-+      - realtek,rt5650
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description: The CODEC's interrupt output.
-+
-+  avdd-supply:
-+    description: Power supply for AVDD, providing 1.8V.
-+
-+  cpvdd-supply:
-+    description: Power supply for CPVDD, providing 3.5V.
-+
-+  hp-detect-gpios:
-+    description: 
-+      A GPIO spec for the external headphone detect pin. If jd-mode = 0, we
-+      will get the JD status by getting the value of hp-detect-gpios.
-+
-+  cbj-sleeve-gpios:
-+    description:
-+      A GPIO spec to control the external combo jack circuit to tie the
-+      sleeve/ring2 contacts to the ground or floating. It could avoid some
-+      electric noise from the active speaker jacks.
-+
-+  realtek,in2-differential:
-+    description:
-+      Indicate MIC2 input are differential, rather than single-ended.
-+    type: boolean
-+
-+  realtek,dmic1-data-pin:
-+    description: Specify which pin to be used as DMIC1 data pin.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # dmic1 is not used
-+      - 1 # using IN2P pin as dmic1 data pin
-+      - 2 # using GPIO6 pin as dmic1 data pin
-+      - 3 # using GPIO10 pin as dmic1 data pin
-+      - 4 # using GPIO12 pin as dmic1 data pin
-+
-+  realtek,dmic2-data-pin:
-+    description: Specify which pin to be used as DMIC2 data pin.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # dmic2 is not used
-+      - 1 # using IN2N pin as dmic2 data pin
-+      - 2 # using GPIO5 pin as dmic2 data pin
-+      - 3 # using GPIO11 pin as dmic2 data pin
-+
-+  realtek,jd-mode:
-+    description: The JD mode of rt5645/rt5650.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # rt5645/rt5650 JD function is not used
-+      - 1 # Mode-0 (VDD=3.3V), two port jack detection
-+      - 2 # Mode-1 (VDD=3.3V), one port jack detection
-+      - 3 # Mode-2 (VDD=1.8V), one port jack detection
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - avdd-supply
-+  - cpvdd-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        codec@1a {
-+            compatible = "realtek,rt5650";
-+            reg = <0x1a>;
-+            hp-detect-gpios = <&gpio 19 0>;
-+            cbj-sleeve-gpios = <&gpio 20 0>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+            avdd-supply = <&avdd_reg>;
-+            cpvdd-supply = <&cpvdd_supply>;
-+            realtek,jd-mode = <3>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/rt5645.txt b/Documentation/devicetree/bindings/sound/rt5645.txt
-deleted file mode 100644
-index c1fa379f5f3e..000000000000
---- a/Documentation/devicetree/bindings/sound/rt5645.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--RT5650/RT5645 audio CODEC
--
--This device supports I2C only.
--
--Required properties:
--
--- compatible : One of "realtek,rt5645" or "realtek,rt5650".
--
--- reg : The I2C address of the device.
--
--- interrupts : The CODEC's interrupt output.
--
--- avdd-supply: Power supply for AVDD, providing 1.8V.
--
--- cpvdd-supply: Power supply for CPVDD, providing 3.5V.
--
--Optional properties:
--
--- hp-detect-gpios:
--  a GPIO spec for the external headphone detect pin. If jd-mode = 0,
--  we will get the JD status by getting the value of hp-detect-gpios.
--
--- cbj-sleeve-gpios:
--  a GPIO spec to control the external combo jack circuit to tie the sleeve/ring2
--  contacts to the ground or floating. It could avoid some electric noise from the
--  active speaker jacks.
--
--- realtek,in2-differential
--  Boolean. Indicate MIC2 input are differential, rather than single-ended.
--
--- realtek,dmic1-data-pin
--  0: dmic1 is not used
--  1: using IN2P pin as dmic1 data pin
--  2: using GPIO6 pin as dmic1 data pin
--  3: using GPIO10 pin as dmic1 data pin
--  4: using GPIO12 pin as dmic1 data pin
--
--- realtek,dmic2-data-pin
--  0: dmic2 is not used
--  1: using IN2N pin as dmic2 data pin
--  2: using GPIO5 pin as dmic2 data pin
--  3: using GPIO11 pin as dmic2 data pin
--
---- realtek,jd-mode : The JD mode of rt5645/rt5650
--   0 : rt5645/rt5650 JD function is not used
--   1 : Mode-0 (VDD=3.3V), two port jack detection
--   2 : Mode-1 (VDD=3.3V), one port jack detection
--   3 : Mode-2 (VDD=1.8V), one port jack detection
--
--Pins on the device (for linking into audio routes) for RT5645/RT5650:
--
--  * DMIC L1
--  * DMIC R1
--  * DMIC L2
--  * DMIC R2
--  * IN1P
--  * IN1N
--  * IN2P
--  * IN2N
--  * Haptic Generator
--  * HPOL
--  * HPOR
--  * LOUTL
--  * LOUTR
--  * PDM1L
--  * PDM1R
--  * SPOL
--  * SPOR
--
--Example:
--
--codec: rt5650@1a {
--	compatible = "realtek,rt5650";
--	reg = <0x1a>;
--	hp-detect-gpios = <&gpio 19 0>;
--	cbj-sleeve-gpios = <&gpio 20 0>;
--	interrupt-parent = <&gpio>;
--	interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
--	realtek,dmic-en = "true";
--	realtek,en-jd-func = "true";
--	realtek,jd-mode = <3>;
--};
--- 
-2.45.2
+> > > > > > +   if (!dev->of_node) {
+> > > > > > +           dev_err(dev, "Missing of_node for device\n");
+> > > > > > +           return -EINVAL;
+> > > > > > +   }
+> > > > >
+> > > > > Why do you need this? The code you have in _create_intr_ctrl() wi=
+ll take care
+> > > > > already for this case.
+> > > >
+> > > > The code in _create_intr_ctrl checks for fwnode and not an of_node.
+> > > >
+> > > > The check here is to ensure that an of_node is available as it will=
+ be use
+> > > > for DT overlay loading.
+> > >
+> > > So, what exactly do you want to check? fwnode check covers this.
+> > >
+> > > > I will keep the check here and use dev_of_node() instead of dev->of=
+_node.
+> > >
+> > > It needs to be well justified as from a coding point of view this is =
+a
+> > > duplication.
+>
+> On DT based system, if a fwnode is set it is an of_node.
+> On ACPI, if a fwnode is set is is an acpi_node.
+>
+> The core PCI, when it successfully creates the DT node for a device
+> (CONFIG_PCI_DYNAMIC_OF_NODES) set the of_node of this device.
+> So we can have a device with:
+>  - fwnode from ACPI
+>  - of_node from core PCI creation
 
+Does PCI device creation not set fwnode?
+
+> This driver needs the of_node to load the overlay.
+> Even if the core PCI cannot create a DT node for the PCI device right
+> now, I don't expect this LAN855x PCI driver updated when the core PCI
+> is able to create this PCI device DT node.
+
+If it's really needed, I think the correct call here is is_of_node()
+to show exactly why it's not a duplication. It also needs a comment on
+top of this call.
+
+...
+
+> > > > > > +static struct pci_device_id lan966x_pci_ids[] =3D {
+> > > > > > +   { PCI_DEVICE(0x1055, 0x9660) },
+> > > > >
+> > > > > Don't you have VENDOR_ID defined somewhere?
+> > > >
+> > > > No and 0x1055 is taken by PCI_VENDOR_ID_EFAR in pci-ids.h
+> > > > but SMSC acquired EFAR late 1990's and MCHP acquired SMSC in 2012
+> > > > https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet=
+/microchip/lan743x_main.h#L851
+> > > >
+> > > > I will patch pci-ids.h to create:
+> > > >   #define PCI_VENDOR_ID_SMSC PCI_VENDOR_ID_EFAR
+> > > >   #define PCI_VENDOR_ID_MCHP PCI_VENDOR_ID_SMSC
+> > > > As part of this patch, I will update lan743x_main.h to remove its o=
+wn #define
+> > > >
+> > > > And use PCI_VENDOR_ID_MCHP in this series.
+> > >
+> > > Okay, but I don't think (but I haven't checked) we have something lik=
+e
+> > > this ever done there. In any case it's up to Bjorn how to implement
+> > > this.
+>
+> Right, I wait for Bjorn reply before changing anything.
+
+But we already have the vendor ID with the same value. Even if the
+company was acquired, the old ID still may be used. In that case an
+update on PCI IDs can go in a separate change justifying it. In any
+case, I would really want to hear from Bjorn on this and if nothing
+happens, to use the existing vendor ID for now to speed up the series
+to be reviewed/processed.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
