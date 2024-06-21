@@ -1,111 +1,268 @@
-Return-Path: <devicetree+bounces-78429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED4589123AE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:32:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8234691243C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2A1A1F29504
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:32:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36C6428A69F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71CD176AA2;
-	Fri, 21 Jun 2024 11:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508B4176245;
+	Fri, 21 Jun 2024 11:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="BdZhAPw3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ht2M7X6j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C40174EC2;
-	Fri, 21 Jun 2024 11:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738D2176231;
+	Fri, 21 Jun 2024 11:40:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718969405; cv=none; b=MEOg7QZjsYLnv2hfy9dJ5shMTnDtBqLY6cprl1gk+xiSLgFzdRA5WEBAPRe6/CyanJqVCOGPuZBsPB6CXO6EdJOecNvj05y/GS5NDJnghaAEhH8Hk6uMiH0Ick6IFjqrXlz6oGTMoLuf+W7LmNB7Y8Etc9KaNkXtqRg3jUPotu4=
+	t=1718970007; cv=none; b=Iqy0tzg2e++jLi46zQll/luxN3v8DJy4ArywXBVNFA0A8UbrA3EPYgnMvTeNQCkKcOZY4RCeD+Mev4uXXzK4c0ZVAPkrY86Yt9citdDwyaMBQ7UPIYOEPTONxtduOAyAdvHIsNA8Qi8T6veS0RjlwM52fbrT3Fu4LRY+1RsnShs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718969405; c=relaxed/simple;
-	bh=eOM+rlNe4Ccmiqqj78VRC7CbyAJhediEgq9+gqUJt5c=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kDiRTkI40vB4Swy4WZcma/JTsC/kQf17Kqu5KJJ532D5mvqiRn8U8HQojyZ8OPgU8bTwDIV3e/7kdHFqQ+1oN4+CuzEcaXTMhHnh37JW8x6pgTl0LNP0Gow83FhbfL/EcNrmq84Qab0rwvlqh/H+zTE9o0uJmrXbn1ffGE/PmpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BdZhAPw3; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1718970007; c=relaxed/simple;
+	bh=A7fe/rmNeatZoT47KW1uJmACk0ZsVe99J4Vy/X6Gee0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fAdMAzh+SjEn4drGM+D1DsIvXbfpt5VQjJwUC56DICTjgHt8snMsO4KR2hygAKfGZ4jN1KtG+11NzdriovS+B2iWB6KCaTmwqqaPvcnT1Km0mStRNdZZLcE7p5FQr8zEMpK0XTRZaUPzezF7iaELPJGTeZrWX3DQqYvU0YOctxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ht2M7X6j; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1718969404; x=1750505404;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=eOM+rlNe4Ccmiqqj78VRC7CbyAJhediEgq9+gqUJt5c=;
-  b=BdZhAPw3wQu9V3Zy94zBjcAjDhLAJUdD9eKdTFjG8zHfdFAa/KJ1EmMl
-   q0ThJ9lM9U6mGcCioVpqZXtv/M+RNA2biDy6X543Z9PkiVUd1sgidphB9
-   /JCilIkhSlgTmEzvz+o3oHveCJkhCYhzA9pOqLSG3v3ns6nwJ3Z2I0ujt
-   JN0mGoRnDrmBo85AzGLhXvdYvRUeNYn3+d33yZhUUGNlX4YeqKa1ee1TL
-   JCnYso7e7WqDo14c6YxUVMpi0QscwXz3LU3qFmafVBn0SPh2iuiZ46QYN
-   DTT0tNzrK2lPUnIxIXmNO8VCLxP5CqlD+GX/kzVUGKKJXBlLd2wFBHC7W
-   g==;
-X-CSE-ConnectionGUID: MLVdO+kgSZidOgeJsnHSMg==
-X-CSE-MsgGUID: dO+OJ/qNSuS3vu3+Mtuk5A==
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1718970004; x=1750506004;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=A7fe/rmNeatZoT47KW1uJmACk0ZsVe99J4Vy/X6Gee0=;
+  b=Ht2M7X6jZG3zAwjUEd3mqZtnyhYKP+uTGwhAKvdkcPT1zu/rLaVpP+qx
+   OWXCz33MBtBUH7aU+2d7C4RMz12F6WvlJDedvutn7R9uPQII/089ocSHU
+   Rin5zhJBIc+Zuy1DxBfoU0OR+wV0puvi5RFo4Vb+Wr+j9ovxonYoR1xPd
+   kwM2vi558SAHt2W8ACxlAfvr/PEdtc1ORjtgOe8+TUL+9T93J3Er9NWHk
+   B+PhjsTAbUXTGdjGOrymMvZW0DViYl7k5+FUjmu1robZSrQ7RV8GvytMa
+   fxFV8XZ0txDhLZfrwG+nwIZBKjLreDdlf4EPxclLt2uMETZme7m23tpdh
+   Q==;
+X-CSE-ConnectionGUID: mJinsS6JSBSjHvORmZcUXw==
+X-CSE-MsgGUID: +ZSf1InNSo61ne5JL4TZ4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11109"; a="33541782"
 X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; 
-   d="scan'208";a="259209056"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Jun 2024 04:30:02 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 21 Jun 2024 04:29:36 -0700
-Received: from daire-X570.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Fri, 21 Jun 2024 04:29:33 -0700
-From: <daire.mcnamara@microchip.com>
-To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <conor.dooley@microchip.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-	<robh@kernel.org>, <bhelgaas@google.com>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <daire.mcnamara@microchip.com>,
-	<ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH v4 3/3] dt-bindings: PCI: microchip,pcie-host: allow dma-noncoherent
-Date: Fri, 21 Jun 2024 12:29:15 +0100
-Message-ID: <20240621112915.3434402-4-daire.mcnamara@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240621112915.3434402-1-daire.mcnamara@microchip.com>
-References: <20240621112915.3434402-1-daire.mcnamara@microchip.com>
+   d="scan'208";a="33541782"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2024 04:40:03 -0700
+X-CSE-ConnectionGUID: j1UZwtamTsuQ2iTqvQjRdw==
+X-CSE-MsgGUID: BlaiZ1oSTN6ItkMUod1vYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; 
+   d="scan'208";a="46921413"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 21 Jun 2024 04:40:00 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sKccY-0008VW-1u;
+	Fri, 21 Jun 2024 11:39:58 +0000
+Date: Fri, 21 Jun 2024 19:39:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Frank Li <Frank.Li@nxp.com>, robh@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Frank.Li@nxp.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev, krzk+dt@kernel.org,
+	laurentiu.tudor@nxp.com, linux-kernel@vger.kernel.org,
+	stuyoder@gmail.com
+Subject: Re: [PATCH v2 1/1] dt-bindings: misc: fsl,qoriq-mc: convert to yaml
+ format
+Message-ID: <202406211921.SuMJLQwU-lkp@intel.com>
+References: <20240617170934.813321-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240617170934.813321-1-Frank.Li@nxp.com>
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hi Frank,
 
-PolarFire SoC may be configured in a way that requires non-coherent DMA
-handling. On RISC-V, buses are coherent by default & the dma-noncoherent
-property is required to denote buses or devices that are non-coherent.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
----
- Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.10-rc4 next-20240620]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-index f7a3c2636355..c84e1ae20532 100644
---- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-@@ -52,6 +52,8 @@ properties:
-     items:
-       pattern: '^fic[0-3]$'
- 
-+  dma-noncoherent: true
-+
-   interrupts:
-     minItems: 1
-     items:
+url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/dt-bindings-misc-fsl-qoriq-mc-convert-to-yaml-format/20240618-011116
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240617170934.813321-1-Frank.Li%40nxp.com
+patch subject: [PATCH v2 1/1] dt-bindings: misc: fsl,qoriq-mc: convert to yaml format
+config: arm64-randconfig-051-20240621 (https://download.01.org/0day-ci/archive/20240621/202406211921.SuMJLQwU-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project ad79a14c9e5ec4a369eed4adf567c22cc029863f)
+dtschema version: 2024.6.dev1+g833054f
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240621/202406211921.SuMJLQwU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406211921.SuMJLQwU-lkp@intel.com/
+
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: wdt@c030000: $nodename:0: 'wdt@c030000' does not match '^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
+   	from schema $id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: wdt@c100000: $nodename:0: 'wdt@c100000' does not match '^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
+   	from schema $id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: wdt@c110000: $nodename:0: 'wdt@c110000' does not match '^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
+   	from schema $id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: wdt@c120000: $nodename:0: 'wdt@c120000' does not match '^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
+   	from schema $id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: wdt@c130000: $nodename:0: 'wdt@c130000' does not match '^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
+   	from schema $id: http://devicetree.org/schemas/watchdog/arm,sp805.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: fsl-mc@80c000000: dpmacs:ethernet@1: 'sfp' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: fsl-mc@80c000000: dpmacs:ethernet@2: 'sfp' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: ethernet@1: 'sfp' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: ethernet@2: 'sfp' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: power-controller@1e34040: '#power-domain-cells' is a required property
+   	from schema $id: http://devicetree.org/schemas/power/power-domain.yaml#
+   arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dtb: /soc/power-controller@1e34040: failed to match any schema with compatible: ['fsl,ls1088a-rcpm', 'fsl,qoriq-rcpm-2.1+']
+--
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: /soc/mdio@8c37000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: /soc/mdio@8c3b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: /soc/mdio@8c3f000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: /soc/mdio@8c43000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: /soc/mdio@8c47000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: /soc/mdio@8c4b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: pinmux@70010012c: #address-cells:0:0: 1 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: pinmux@70010012c: #size-cells:0:0: 0 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: fsl-mc@80c000000: dpmacs:ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: fsl-mc@80c000000: dpmacs:ethernet@12: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet@12: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+--
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: /soc/mdio@8c37000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: /soc/mdio@8c3b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: /soc/mdio@8c3f000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: /soc/mdio@8c43000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: /soc/mdio@8c47000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: /soc/mdio@8c4b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: pinmux@70010012c: #address-cells:0:0: 1 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: pinmux@70010012c: #size-cells:0:0: 0 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: fsl-mc@80c000000: dpmacs:ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: fsl-mc@80c000000: dpmacs:ethernet@12: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dtb: ethernet@12: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+--
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/mdio@8c37000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/mdio@8c3b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/mdio@8c3f000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/mdio@8c43000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/mdio@8c47000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/mdio@8c4b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: pinmux@70010012c: #address-cells:0:0: 1 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: pinmux@70010012c: #size-cells:0:0: 0 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: fsl-mc@80c000000: dpmacs:ethernet@7: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: fsl-mc@80c000000: dpmacs:ethernet@8: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: fsl-mc@80c000000: dpmacs:ethernet@9: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: fsl-mc@80c000000: dpmacs:ethernet@a: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: ethernet@7: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: ethernet@8: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: ethernet@9: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: ethernet@a: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+--
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: /soc/mdio@8c37000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: /soc/mdio@8c3b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: /soc/mdio@8c3f000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: /soc/mdio@8c43000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: /soc/mdio@8c47000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: /soc/mdio@8c4b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: pinmux@70010012c: #address-cells:0:0: 1 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: pinmux@70010012c: #size-cells:0:0: 0 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: fsl-mc@80c000000: dpmacs:ethernet@7: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: fsl-mc@80c000000: dpmacs:ethernet@8: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: fsl-mc@80c000000: dpmacs:ethernet@9: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: fsl-mc@80c000000: dpmacs:ethernet@a: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: ethernet@7: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: ethernet@8: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: ethernet@9: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: ethernet@a: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+--
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: /soc/mdio@8c37000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: /soc/mdio@8c3b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: /soc/mdio@8c3f000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: /soc/mdio@8c43000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: /soc/mdio@8c47000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: /soc/mdio@8c4b000: failed to match any schema with compatible: ['fsl,fman-memac-mdio']
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: pinmux@70010012c: #address-cells:0:0: 1 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: pinmux@70010012c: #size-cells:0:0: 0 was expected
+   	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-single.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@3: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@4: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@5: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@6: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@b: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@c: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@d: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@e: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@f: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+>> arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@10: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@11: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: fsl-mc@80c000000: dpmacs:ethernet@12: 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: ethernet@3: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: ethernet@4: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	from schema $id: http://devicetree.org/schemas/net/fsl,qoriq-mc-dpmac.yaml#
+   arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: ethernet@5: 'phys', 'sfp' do not match any of the regexes: 'pinctrl-[0-9]+'
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
