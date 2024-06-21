@@ -1,209 +1,143 @@
-Return-Path: <devicetree+bounces-78482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E1991269C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:24:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC009126A6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3BFCB2606C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:24:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA3ADB25FBA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD40F156221;
-	Fri, 21 Jun 2024 13:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B9D155A2B;
+	Fri, 21 Jun 2024 13:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="bjtyj2p4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JxgGvYQx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C50B1552F8
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 13:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1BAB153BD2;
+	Fri, 21 Jun 2024 13:27:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718976233; cv=none; b=oUzLt/7wvVnogv8Gx/dp5vBVhWP1Ajwr2oYKF2TsmNb4hCRYrmuqiltzRE/jDfGu62C8lWSx822Te6FhJZYzgrd5aA6wyjpo6OiQ8jyXtcwlbCGtNQC4EGs7X9LZP3V4LgVCoNf10P9uMm6hQIHmJSToFJIzSOAsouKaswTa2Zc=
+	t=1718976423; cv=none; b=PGAx2iAvo18wmlA+R7ct1CP4J/OdSLfLg9gX8Fa46UMkm6UtRiOg1tVUzSQcQN0zYc+MCNcibzCnGSO7oQ1urNKqQRbQoOF5x0N7+9U0+1ae8nsT84XR1YZKTU1K8rS3odXtI8MvNpBrZwZN9ctap/v/JAyebhLjtI7s1KIvplI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718976233; c=relaxed/simple;
-	bh=wQtusHT7PTHfNhISON3c4fk/0f68+/Mcm3emwcz0W2Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=im1NuolE5boMgBd3lvqLb4bNAtNdn3NS3MIpcHZAr+Nk4BtdhMQWghBKKkVrLawd6Wblq9U6xiaKvzYJ5/5DOUxmiJDVkoWyFZ4Z3EuwPRxzCuO87cwTkYpmLDqu/wAD8Mdbp524lKdN3L4qmXObbu29fCZTnStiypG45CC0YFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=bjtyj2p4; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52bc335e49aso2333532e87.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 06:23:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1718976229; x=1719581029; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lh6DHy5f3eoMV1E961uZI87Rq1n/gY0n/fr9bCAQrdo=;
-        b=bjtyj2p4U32GeMDYPSUWmtE2chTbi1v+y5UfIGQC9LEUpC/OkUlilX5eOFlWPjKkF2
-         qGe2Q+8jPSNTYIRSXG62GOsDi+9yNmRjVL1O4136JvCl8YCVbSJmMiDn0iyE48QF+noj
-         pNXmYpbCubSyKA/c8TV0D4sg1tw2fB1XAG0PChFXO1DR863DYtqrGl/uIFqlLVSpw2XD
-         7wFFJ7AJdLdvFSUYayx5g+q8kYUwqmnSx6u+f8T3NdMv42+yEaRWhWiWs0NZcPQwrJ9z
-         0gunHamNuRjqeEvfoiC00FK96wfDMMJUaAV0APR2FVMtD2VMV69wLgtapdkgfAKz6Ry2
-         jacQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718976229; x=1719581029;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lh6DHy5f3eoMV1E961uZI87Rq1n/gY0n/fr9bCAQrdo=;
-        b=IFRMtyN3wj4/Z8fCfIWNa0dfqPsH/IHAK3MXohWyuSmwl8AqrWS/iSnKIlBrjyWxlG
-         eQryQPTndHN1cagYJq0+43XrIDPIDhk8fyYdrjvMXpmhJmreRhucxgkWqmzeOJHDAk79
-         DBlaBOEz6bQLZYpesRD37EuSnYM/di5S4Mt7+iIjeSw9ImXbkPQhqWGBZKxnzqPXtdfo
-         GRCtWqdssLbo4qcXOYUXU3TuCBeGOyqsax4wF9zKIKBlWs2P3+GPFF91YPz5yQ/ql3zp
-         tnqoyL6c/lA4e8BYH2bpkJKlvx59ms58SQDfB92DM2wJ8sEhF+/ZgAcwG0uU1hJYEy5p
-         Khrw==
-X-Forwarded-Encrypted: i=1; AJvYcCUY1IbNrIBTfiUlq1ohmut616xHoKHz6b0N8+pzJLUjvmpfiMQXXm4jvnGh10XCl1meAoGkpYd21xJtKQDRhHMEGNSrjAnj1dNrZw==
-X-Gm-Message-State: AOJu0YyhvTGQ3neejqOxlwhbRF5CNXGvgHjFF3NUh0fSxTcwpDBj2LLo
-	SLHquyoG/Q1AZCYHyHgqpYVQfZ7DFEbzx5LMf55GO7hnWOlNEry/P7xsEq1w51KdHI/30j1x5v8
-	5QYP7dkcazC9k/47c9CJH76i8XoQoNM0E8TzLIg==
-X-Google-Smtp-Source: AGHT+IG5Y1gn2ekPnM1m7JqqJu9Ttsj5bBzwQpCQM5QC3ClAcEetDkpxMFp8GreL0i+Q2R/FLHudf9Yf2q2tQ+uH6IQ=
-X-Received: by 2002:ac2:5e91:0:b0:52c:b199:940b with SMTP id
- 2adb3069b0e04-52ccaa62a3emr5131441e87.32.1718976228569; Fri, 21 Jun 2024
- 06:23:48 -0700 (PDT)
+	s=arc-20240116; t=1718976423; c=relaxed/simple;
+	bh=osld6dK3jXn9QfIFzrfdCXJj+wgJTV1og7IU+S2Vsr8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dj1UAzTRYQAH7JRH4JY6Bg3+F91qmSxN7T3fOuU89P9e9I9gELMifx0kgcVSvCL0GAGAZYnaJXVlnM604KehcNsaXjtTsRsaWL+dckPd6Gt8fMJ/MbI33iHmSUaZLajf2aScGQJbzV4RfJtTfXGma5TmWVG+7dfa0SivwIhjjbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JxgGvYQx; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1718976420;
+	bh=osld6dK3jXn9QfIFzrfdCXJj+wgJTV1og7IU+S2Vsr8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JxgGvYQxSjR6XDCF8N//FsUZaEWtBizAcw48r40ry1BYk+990Kb6YJ85wmYo2nqr7
+	 XF1NicpZRH6FuchNagMoT2k54vpdFpfckwDYiUD07aou4vNrdv2leQwRSnJg113pm9
+	 gU7xf+G1xjTLCxCWx9bID2HO4YRyVkvS63HVyR90Cm6WJLZoLqiY1Kjh1dP3KRdLNK
+	 5EZqsFzioieJ8sa+PWFlga/c3SIEi3ZTom+GtbxkFrsXc39p6hrjM2HhDvWVNto1rv
+	 g0RGEu1zEAc9ZpgAtb/f7mfZ8GA1nvoYKUaAUIK889Xa3sGL8qV/96lijrlOqQ3ET7
+	 jDRNPHfHu0q/w==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E9C4837821DD;
+	Fri, 21 Jun 2024 13:26:59 +0000 (UTC)
+Date: Fri, 21 Jun 2024 15:26:58 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Devarsh Thakkar <devarsht@ti.com>
+Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	benjamin.gaignard@collabora.com, laurent.pinchart@ideasonboard.com,
+	praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
+	j-luthra@ti.com, b-brnich@ti.com, detheridge@ti.com,
+	p-mantena@ti.com, vijayp@ti.com, andrzej.p@collabora.com,
+	nicolas@ndufresne.ca, afd@ti.com
+Subject: Re: [PATCH v14 2/6] media: imagination: Add E5010 JPEG Encoder driver
+Message-ID: <20240621132658.m2utqnvwaicgiwqr@basti-XPS-13-9310>
+References: <20240618193651.2771478-1-devarsht@ti.com>
+ <20240618193651.2771478-3-devarsht@ti.com>
+ <20240621123715.enqtdqxskdkod5ze@basti-XPS-13-9310>
+ <8dda9d0c-3154-a7fd-1233-ca5be59639de@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605123850.24857-1-brgl@bgdev.pl> <171889385036.4585.6482250630135606154.git-patchwork-notify@kernel.org>
- <0b144517-4cc5-4c23-be57-d6f5323690ec@163.com> <CAMRc=Mf2C4ywa+wQ6pcq5RtehQD00dDhzvS6sDcD8tAn=UypUA@mail.gmail.com>
- <33c7587b-83a4-4be7-b00a-d30874df8c22@163.com>
-In-Reply-To: <33c7587b-83a4-4be7-b00a-d30874df8c22@163.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 21 Jun 2024 15:23:37 +0200
-Message-ID: <CAMRc=Me8h-L6mbmOfHce9FF8Koh4_fp=cWAeWrQAj-ukxBOL2g@mail.gmail.com>
-Subject: Re: [PATCH v9 0/2] pwrseq: introduce the subsystem and first driver
-To: Lk Sii <lk_sii@163.com>, marcel@holtmann.org, luiz.dentz@gmail.com
-Cc: patchwork-bot+bluetooth@kernel.org, davem@davemloft.net, 
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kvalo@kernel.org, 
-	andersson@kernel.org, konrad.dybcio@linaro.org, lgirdwood@gmail.com, 
-	broonie@kernel.org, catalin.marinas@arm.com, will@kernel.org, 
-	bhelgaas@google.com, saravanak@google.com, geert+renesas@glider.be, 
-	arnd@arndb.de, neil.armstrong@linaro.org, m.szyprowski@samsung.com, 
-	elder@linaro.org, srinivas.kandagatla@linaro.org, gregkh@linuxfoundation.org, 
-	abel.vesa@linaro.org, mani@kernel.org, lukas@wunner.de, 
-	dmitry.baryshkov@linaro.org, amit.pundir@linaro.org, wuxilin123@gmail.com, 
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	linux-pm@vger.kernel.org, bartosz.golaszewski@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8dda9d0c-3154-a7fd-1233-ca5be59639de@ti.com>
 
-On Fri, Jun 21, 2024 at 11:04=E2=80=AFAM Lk Sii <lk_sii@163.com> wrote:
+Hey Devarsh,
+
+On 21.06.2024 18:14, Devarsh Thakkar wrote:
+>Hi Sebastian
 >
-> On 2024/6/21 14:36, Bartosz Golaszewski wrote:
-> > On Fri, Jun 21, 2024 at 3:14=E2=80=AFAM Lk Sii <lk_sii@163.com> wrote:
-> >>
-> >>
-> >>
-> >> On 2024/6/20 22:30, patchwork-bot+bluetooth@kernel.org wrote:
-> >>> Hello:
-> >>>
-> >>> This series was applied to bluetooth/bluetooth-next.git (master)
-> >>> by Bartosz Golaszewski <bartosz.golaszewski@linaro.org>:
-> >>>
-> >> Hi luiz,
-> >>
-> >> i am curious why Bartosz is able to merge his changes into bluetooth
-> >> development tree bluetooth-next directly.
-> >>
-> >
-> > This conversation is getting progressively worse...
-> >
-> >> 1)
-> >> his changes should belong to *POWER* scope instead of *Bluetooth*
-> >> obviously, however, there are *NOT* any SOB tag from either power and
-> >> bluetooth maintainer. these changes currently only have below Acked-by
-> >> and Signed-off-by tags:
-> >>
-> >> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> >> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >>
-> >
-> > It's a new subsystem that has been discussed and reviewed for months
-> > and thoroughly tested. Please refer to the cover letter under v8
-> > linked in this thread. It's not related to power-management or
-> > power-supply, it's its own thing but IMO the best place to put it is
-> > under drivers/power/. And I will maintain it.
-> >
-> >> 2)
-> >> his changes have not merged into linus mainline tree yet.
-> >>
-> >
-> > This is why they are in next! They are scheduled to go in during the
-> > upcoming merge window. But since changes belong in multiple trees, we
-> > need a cross-tree merge.
-> >
-> >> 3)
-> >> perhaps, it is safer to pull his changes from linus mainline tree when
-> >> merged than to merge into bluetooth-next firstly.
-> >>
-> >
-> > It's not safer at all, why would spending less time in next be safer?
-> >
-> it seems this patch serial(new subsystem) does not depend on bluetooth
-> and also does not belong to bluetooth subsystem, but have been contained
-> by tip of bluetooth tree.
+>On 21/06/24 18:07, Sebastian Fricke wrote:
+>> Hey Devarsh,
+>>
+>> This doesn't compile without errors for me, curious, it probably did
+>> compile without problems for you right?
+>>
+>> drivers/media/platform/imagination/e5010-jpeg-enc.c:1622:19: error:
+>> initialization of ‘int (*)(struct platform_device *)’ from incompatible
+>> pointer type ‘void (*)(struct platform_device *)’
+>> [-Werror=incompatible-pointer-types]
+>>  1622 |         .remove = e5010_remove,
+>>       |                   ^~~~~~~~~~~~
+>> drivers/media/platform/imagination/e5010-jpeg-enc.c:1622:19: note: (near
+>> initialization for ‘e5010_driver.remove’)
+>> cc1: some warnings being treated as errors
+>>
 >
+>Yes I think it did compile fine for me.
+>Did you try this on tip of linux-next ?
 
-It's the other way around: bluetooth changes (namely the hci_qca
-driver) depend on the power sequencing changes.
+Nope the media subsystem is not based on linux-next, but instead on:
+https://git.linuxtv.org/media_stage.git/log/
+Please make sure that your patches compile on top of that.
 
-> why not follow below merging produce?
-> 1) you send this patch serials to Linus to merge within linus mainline tr=
-ee
-> 2) luiz then pull your changes from linus mainline tree.
 >
+>As mentioned in changelog, there was update in platform driver for return type
+>of remove function which got changed to void return type. Please check if you
+>have this patch [1] in your tree which got recently merged.
 
-I explained this in my previous email. Why would you want these
-changes to needlessly wait for another release cycle? It makes no
-sense. It's just a regular cross-tree merge like hundreds that are
-performed every release.
+No that patch is not part of the tree yet.
 
-> >>> On Wed,  5 Jun 2024 14:38:48 +0200 you wrote:
-> >>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >>>>
-> >>>> Hi!
-> >>>>
-> >>>> These are the power sequencing patches sent separately after some
-> >>>> improvements suggested by Bjorn Helgaas. I intend to pick them up in=
-to a
-> >>>> new branch and maintain the subsystem from now on. I then plan to
-> >>>> provide an immutable tag to the Bluetooth and PCI subsystems so that=
- the
-> >>>> rest of the C changes can be applied. This new branch will then be
-> >>>> directly sent to Linus Torvalds for the next merge window.
-> >>>>
-> >>>> [...]
-> >>>
-> >>> Here is the summary with links:
-> >>>   - [v9,1/2] power: sequencing: implement the pwrseq core
-> >>>     https://git.kernel.org/bluetooth/bluetooth-next/c/249ebf3f65f8
-> >>>   - [v9,2/2] power: pwrseq: add a driver for the PMU module on the QC=
-om WCN chipsets
-> >>>     https://git.kernel.org/bluetooth/bluetooth-next/c/2f1630f437df
-> >>>
-> >>> You are awesome, thank you!
-> >>
-> >
-> > Why are you top-posting anyway?
-> >
-> it is caused by my bad mail client settings. thanks for reminder.
-> > Bart
+Please note also the following section in that patch:
+
+  	/*
+	 * Traditionally the remove callback returned an int which however is
+	 * ignored by the driver core. This led to wrong expectations by driver
+	 * authors who thought returning an error code was a valid error
+	 * handling strategy. To convert to a callback returning void, new
+	 * drivers should implement .remove_new() until the conversion it done
+	 * that eventually makes .remove() return void.
+
+So your driver is expected to implement remove_new().
+
+I will take care of this for the PR, but please note for the future:
+It has to work with media_stage, unless you have a very good reason for
+something different.
+
 >
+>Kindly let me know if you still face any issues.
+>
+>[1]:
+>https://lore.kernel.org/all/20240527083416.1177106-2-u.kleine-koenig@pengutronix.de/
+>
+>Regards
+>Devarsh
 
-Luiz, Marcel: Am I wasting my time with this person? Is this another
-Markus Elfring and I unknowingly got pulled into a nonsensical
-argument?
-
-Bart
+Regards,
+Sebastian
 
