@@ -1,137 +1,228 @@
-Return-Path: <devicetree+bounces-78549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F114912931
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:16:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 285CB912937
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:16:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B0771F2206B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:16:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BD781C22F5A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C7943172;
-	Fri, 21 Jun 2024 15:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2EC4EB51;
+	Fri, 21 Jun 2024 15:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vVnhNJm8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DvMZ1yde"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7C5EAC8;
-	Fri, 21 Jun 2024 15:15:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C5117554
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 15:16:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718982961; cv=none; b=d9O6SPQt2rUmVvYcAKKVWZ2Tpay2RGEDYW9XNDI/UKz4hgtsGwAskA3auod+7FI1vBQ9XLW6en+EJ7h/cNRzxraqC5eDRFyZSCJ17UT0ZsE4msPCX2YUnVCM5+I3xE2tOXlcF9hslT12sITkDlCcS2VlalxTm1OulYdSev0n5I4=
+	t=1718983011; cv=none; b=Rjw7Pc5G64QV6HriyB6nszOj4Gq1pSZuq1wumE6reeobPglBPdLaKTBrs5IpALzOUXMQtyAAZQnb89WS0yTn5IOwO6MK4Hpupogxfc19rMZKFKgTsB6ZGVdJZIYWno+QFuJo5W3+4QTm7WEK1qmQ6urW4AfK9JcKuVs8wADAGsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718982961; c=relaxed/simple;
-	bh=7v8ej1iY9M+A2N+qWcvSGZRkoHNl4Z/1daZhWJzyN5g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n6SgASur9veOZqf9WxDpf2dQm1li3p284BLOqtfdPizt2OX23k1PZdUa1hFtkGLEYbLAsKa/d9kIFQfN7A0HiNzd1h3i4nBKtMs0uMF5Vpq6VwNHxk/Kh+4FYRtAZWbTjnVQ7P/x+annTmBA+OZOxJ3KnXdPFvD4Oz9+VMyx180=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vVnhNJm8; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45LFFsZd073542;
-	Fri, 21 Jun 2024 10:15:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1718982954;
-	bh=RRFPu7deYk9IDG+eVZrGypiMB6D2D6xdke4ksLDULzY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=vVnhNJm8X2JBk16AoQCsMN9/udqMWhCuZQWXrFJ1Fipa44ZQUyEAF+hA70lZSeJJ0
-	 xNyQHepC47H6OVbWKRlcrKx6VkxCRkspovJiP0QDuxNyN73h9MLCrx4XFBM41NiQry
-	 Uv8EH6OPbf4Zt5mV/2WirI3nraHBb2BtiOShNiGA=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45LFFsIv040130
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 21 Jun 2024 10:15:54 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 21
- Jun 2024 10:15:54 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 21 Jun 2024 10:15:54 -0500
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45LFFno2087600;
-	Fri, 21 Jun 2024 10:15:50 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <afd@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <rogerq@kernel.org>,
-        Siddharth
- Vadapalli <s-vadapalli@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <u-kumar1@ti.com>, <danishanwar@ti.com>, <srk@ti.com>
-Subject: Re: [PATCH v7 0/8] Add PCIe, SERDES and USB DT support for J722S
-Date: Fri, 21 Jun 2024 20:45:46 +0530
-Message-ID: <171898028153.2272421.7541252743648207333.b4-ty@ti.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240615081600.3602462-1-s-vadapalli@ti.com>
-References: <20240615081600.3602462-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1718983011; c=relaxed/simple;
+	bh=zFuk48cbhB5z7snlfIaQJo8NiN5IXQRvgXqdLrDRlUU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ivPUQ9lGqbdktBCmYsaUes210rwMxcHn+4Jif2FevWensExRqLPMHNGLojTBcLSVSdusvZK+91AQ119g9qqmCe+5gyzGJr5glKo14beqadjAZLwFKre5L3Fv9k1lLwVnTGRhcOqxHjkmBz66LMiD7Kk20THbAWVAkgK69PUefFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DvMZ1yde; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-63f7d53bd88so7111427b3.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 08:16:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718983008; x=1719587808; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=INvmFR+mG8MdGOooEtB857cvAaTXvZhVkdY0DiHUQtU=;
+        b=DvMZ1ydejbqS2cT5pBUfd4o7FeQaofVq0edEItDyz2IjfrqGkSNngtjxyiGiwyi4Yq
+         9CcXbcbiwp+60LEUUiGoU6tEHIeXmuLImaenYvOrT4jKPlScxXXfxlyVyGdy3wHXW67x
+         s/c+7pKKBBJ/l/o2XwUJkIZfTT9aLVo4/p2B4aBRWNsQyM8qj/nK+ls1ElIRfZXFsUHz
+         4HERoCbSvDjL/XsVbovWJEjdPzdNgFOVgAQC1BzdsHG4qYyyYeYGuIipjDXmAeY7UQVK
+         RWqHudZUaL6X4oV7xyL5yoC/tD58werLUIYW+x3kCuNfPa/Lf2vYrmqpN34g83yViQK8
+         4g+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718983008; x=1719587808;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=INvmFR+mG8MdGOooEtB857cvAaTXvZhVkdY0DiHUQtU=;
+        b=YyziPjdcPBM9JLmidACtDWBOAW2tLEgT09ycG1+SQo4rzK1fuu6SbOT8ZTMCyDUoEk
+         FBOc7sG0xtegHnFW90ulX9/t9cDjIpSvZn7Tm0edEQn54cWO6iYU3U7ihK2NawvrCsOg
+         muFw/rspnEfYZvFo1B18dReVAafUmer3mvkv7Brgt72y4VTOsUnNbkZXWmwW37EH4BEF
+         CNMBEfdZNNWWjhC4bI4iwcPl+prHcPWgb+HNJmgaAMpwgZZ4mCcMy4h7kwwuaFPTF8Zf
+         gOIZOwmA4rc5G0RF/nRNLDJ64CHgHbJYKau31MijcaO0jiA+VSt3b5H53tzaqfSEfHpQ
+         djWA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfizJEczi0X7p627DlLdbmAGs7VV1X2HoO4GhoqT4UJO7P2vEK1OC7MJXVWY0iM4hf129E97QpLG6zCwOXJaAvOniFSZCOGopiaw==
+X-Gm-Message-State: AOJu0YynYUrOu+tlzqIfc59HUwayc8tIVsWyF+UJarj9fp5EVaaXCtRr
+	Ji+m5OrY55F+UYNBJJMs+E3IaGkcqpoRU3VWMvYoZgzHeAtthDBXH5wNqERRBtBE/OMv2Bw4DGq
+	qVLy5flvkn2ZbxKXmY2s4cp23Q2qf1QYh0KQVmg==
+X-Google-Smtp-Source: AGHT+IG9fIZtqKAlVbm475u7hjzHmZxu5O5csfSpdA3s/BA65IHQtgPjc9HdU685v/rRzRccM4YLnKwk8VBa0Bz9ESQ=
+X-Received: by 2002:a81:8742:0:b0:630:fe1d:99cc with SMTP id
+ 00721157ae682-63a8faf37b2mr77928047b3.52.1718983008204; Fri, 21 Jun 2024
+ 08:16:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
+ <20240617005825.1443206-5-quic_gaurkash@quicinc.com> <3eehkn3cdhhjfqtzpahxhjxtu5uqwhntpgu22k3hknctrop3g5@f7dhwvdvhr3k>
+ <96e2ce4b154a4f918be0bc2a45011e6d@quicinc.com> <CAA8EJppGpv7N_JQQNJZrbngBBdEKZfuqutR9MPnS1R_WqYNTQw@mail.gmail.com>
+ <3a15df00a2714b40aba4ebc43011a7b6@quicinc.com> <CAA8EJpoZ0RR035QwzMLguJZvdYb-C6aqudp1BgHgn_DH2ffsoQ@mail.gmail.com>
+ <20240621044747.GC4362@sol.localdomain>
+In-Reply-To: <20240621044747.GC4362@sol.localdomain>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 21 Jun 2024 18:16:37 +0300
+Message-ID: <CAA8EJppXsbpFCeGJOMGKOQddy0fF4uW3rt4RUuDTQq6mPunBkg@mail.gmail.com>
+Subject: Re: [PATCH v5 04/15] soc: qcom: ice: add hwkm support in ice
+To: Eric Biggers <ebiggers@kernel.org>
+Cc: "Gaurav Kashyap (QUIC)" <quic_gaurkash@quicinc.com>, 
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
+	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>, "andersson@kernel.org" <andersson@kernel.org>, 
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
+	"srinivas.kandagatla" <srinivas.kandagatla@linaro.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, kernel <kernel@quicinc.com>, 
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"Om Prakash Singh (QUIC)" <quic_omprsing@quicinc.com>, 
+	"Bao D. Nguyen (QUIC)" <quic_nguyenb@quicinc.com>, 
+	"bartosz.golaszewski" <bartosz.golaszewski@linaro.org>, 
+	"konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>, 
+	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>, "jejb@linux.ibm.com" <jejb@linux.ibm.com>, 
+	"martin.petersen@oracle.com" <martin.petersen@oracle.com>, "mani@kernel.org" <mani@kernel.org>, 
+	"davem@davemloft.net" <davem@davemloft.net>, 
+	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>, Prasad Sodagudi <psodagud@quicinc.com>, 
+	Sonal Gupta <sonalg@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Siddharth Vadapalli,
+On Fri, 21 Jun 2024 at 07:47, Eric Biggers <ebiggers@kernel.org> wrote:
+>
+> On Thu, Jun 20, 2024 at 02:57:40PM +0300, Dmitry Baryshkov wrote:
+> > > > >
+> > > > > > Is it possible to use both kind of keys when working on standard mode?
+> > > > > > If not, it should be the user who selects what type of keys to be used.
+> > > > > > Enforcing this via DT is not a way to go.
+> > > > > >
+> > > > >
+> > > > > Unfortunately, that support is not there yet. When you say user, do
+> > > > > you mean to have it as a filesystem mount option?
+> > > >
+> > > > During cryptsetup time. When running e.g. cryptsetup I, as a user, would like
+> > > > to be able to use either a hardware-wrapped key or a standard key.
+> > > >
+> > >
+> > > What we are looking for with these patches is for per-file/folder encryption using fscrypt policies.
+> > > Cryptsetup to my understanding supports only full-disk , and does not support FBE (File-Based)
+> >
+> > I must admit, I mostly used dm-crypt beforehand, so I had to look at
+> > fscrypt now. Some of my previous comments might not be fully
+> > applicable.
+> >
+> > > Hence the idea here is that we mount an unencrypted device (with the inlinecrypt option that indicates inline encryption is supported)
+> > > And specify policies (links to keys) for different folders.
+> > >
+> > > > > The way the UFS/EMMC crypto layer is designed currently is that, this
+> > > > > information is needed when the modules are loaded.
+> > > > >
+> > > > > https://lore.kernel.org/all/20231104211259.17448-2-ebiggers@kernel.org
+> > > > > /#Z31drivers:ufs:core:ufshcd-crypto.c
+> > > >
+> > > > I see that the driver lists capabilities here. E.g. that it supports HW-wrapped
+> > > > keys. But the line doesn't specify that standard keys are not supported.
+> > > >
+> > >
+> > > Those are capabilities that are read from the storage controller. However, wrapped keys
+> > > Are not a standard in the ICE JEDEC specification, and in most cases, is a value add coming
+> > > from the SoC.
+> > >
+> > > QCOM SOC and firmware currently does not support both kinds of keys in the HWKM mode.
+> > > That is something we are internally working on, but not available yet.
+> >
+> > I'd say this is a significant obstacle, at least from my point of
+> > view. I understand that the default might be to use hw-wrapped keys,
+> > but it should be possible for the user to select non-HW keys if the
+> > ability to recover the data is considered to be important. Note, I'm
+> > really pointing to the user here, not to the system integrator. So
+> > using DT property or specifying kernel arguments to switch between
+> > these modes is not really an option.
+> >
+> > But I'd really love to hear some feedback from linux-security and/or
+> > linux-fscrypt here.
+> >
+> > In my humble opinion the user should be able to specify that the key
+> > is wrapped using the hardware KMK. Then if the hardware has already
+> > started using the other kind of keys, it should be able to respond
+> > with -EINVAL / whatever else. Then the user can evict previously
+> > programmed key and program a desired one.
+> >
+> > > > Also, I'd have expected that hw-wrapped keys are handled using trusted
+> > > > keys mechanism (see security/keys/trusted-keys/). Could you please point
+> > > > out why that's not the case?
+> > > >
+> > >
+> > > I will evaluate this.
+> > > But my initial response is that we currently cannot communicate to our TPM directly from HLOS, but
+> > > goes through QTEE, and I don't think our qtee currently interfaces with the open source tee
+> > > driver. The interface is through QCOM SCM driver.
+> >
+> > Note, this is just an API interface, see how it is implemented for the
+> > CAAM hardware.
+> >
+>
+> The problem is that this patchset was sent out without the patches that add the
+> block and filesystem-level framework for hardware-wrapped inline encryption
+> keys, which it depends on.  So it's lacking context.  The proposed framework can
+> be found at
+> https://lore.kernel.org/linux-block/20231104211259.17448-1-ebiggers@kernel.org/T/#u
 
-On Sat, 15 Jun 2024 13:45:52 +0530, Siddharth Vadapalli wrote:
-> This series adds the device-tree support for enabling PCIe and USB
-> functionality on J722S-EVM.
-> 
-> Since AM62P and J722S SoCs share most of the peripherals, the files have
-> been renamed to indicate the same. The main domain peripherals on both
-> SoCs that aren't shared are present in the "soc-main.dtsi" files.
-> This change has been made based on Roger's feedback at:
-> https://lore.kernel.org/r/f52d9569-a399-422f-9cf0-b0bf69b64d18@kernel.org/
-> 
-> [...]
+Thank you. I have quickly skimmed through the patches, but I didn't
+review them thoroughly. Maybe the patchset already implements the
+interfaces that I'm thinking about. In such a case please excuse me. I
+will give it a more thorough look later today.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+> As for why "trusted keys" aren't used, they just aren't helpful here.  "Trusted
+> keys" are based around a model where the kernel can request that keys be sealed
+> and unsealed using a trust source, and the kernel gets access to the raw
+> unsealed keys.  Hardware-wrapped inline encryption keys use a different model
+> where the kernel never gets access to the raw keys.  They also have the concept
+> of ephemeral wrapping which does not exist in "trusted keys".  And they need to
+> be properly integrated with the inline encryption framework in the block layer.
 
-[1/8] arm64: dts: ti: am62p: Rename am62p-{}.dtsi to am62p-j722s-common-{}.dtsi
-      commit: 3ad6579f106db8f94fb8495063cb4b0f0eaaaa9a
-[2/8] arm64: dts: ti: k3-am62p-j722s: Move AM62P specific USB1 to am62p-main.dtsi
-      commit: 77044cfb9346d1601bfe8759b7d785c664a73f84
-[3/8] arm64: dts: ti: k3-j722s: Add main domain peripherals specific to J722S
-      commit: 731626cc3180b263216805f82e006ca1f1df02c3
-[4/8] arm64: dts: ti: k3-j722s: Switch to k3-am62p-j722s-common-{}.dtsi includes
-      commit: 18fb2b7c8a09ca454709b806efc5c38b8a012ab4
-[5/8] arm64: dts: ti: k3-serdes: Add SERDES0/SERDES1 lane-muxing macros for J722S
-      commit: 6f9323f6ad818008fc58d2f804ee4140c1b8424d
-[6/8] arm64: dts: ti: k3-j722s-main: Add SERDES and PCIe support
-      commit: 628e0a0118e69bed9dad14e7dbd8a8802652f5f2
-[7/8] arm64: dts: ti: k3-j722s: Enable PCIe and USB support on J722S-EVM
-      commit: 485705df5d5fc0ad6bc5b3657fa63a96a421770d
-[8/8] arm64: dts: ti: k3-am62p-j722s: Move SoC-specific node properties
-      commit: ed07d82f9e3e8220d8e2f92afd323d718b860f21
+Then what exactly does qcom_scm_derive_sw_secret() do? Does it rewrap
+the key under some other key?
+I had the feeling that there are two separate pieces of functionality
+being stuffed into a single patchset and into a single solution.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+First one is handling the keys. I keep on thinking that there should
+be a separate software interface to unseal the key and rewrap it under
+an ephemeral key. Some hardware might permit importing raw keys. Other
+hardware might insist on generating the keys on-chip so that raw keys
+can never be used. Anyway, the net result is the binary blob + cookie
+for the ephemeral key.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Second part is the actual block interface. Gaurav wrote about
+targeting fscrypt, but there should be no actual difference between
+crypto targets. FDE or having a single partition encrypted should
+probably work in the same way. Convert the key into blk_crypto_key
+(including the cookie for the ephemeral key), program the key into the
+slot, use the slot to en/decrypt hardware blocks.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+My main point is that the decision on the key type should be coming
+from the user. I can easily imagine a user, which wants to use
+password / raw key for documents storage so that it is possible to
+recover the data, hw-wrapped long-term key for app & data storage and
+generated one-time random key for the swap, so that memory contents
+can never be recovered after reboot / device capture.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+-- 
+With best wishes
+Dmitry
 
