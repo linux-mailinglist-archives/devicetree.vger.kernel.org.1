@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-78636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78FF1912F74
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 23:23:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8D7912F79
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 23:24:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A92C1F2446B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:23:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D3A81C23DFF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C40D17C7C4;
-	Fri, 21 Jun 2024 21:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03B017C20E;
+	Fri, 21 Jun 2024 21:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w6/pmwDl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xtr8C8Sc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08C817C7BC
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 21:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371904A3F
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 21:24:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719005006; cv=none; b=nGqjaCDUd0OBH1g47PkZgnwTKLvN2cWOUz+7GwH64jO1ZmVlKSmxOkYsm15qTc54qqHSO+CVMZ0aPmPsex/+nfct24G378efs6UGRnNXglsSsvrWVFFgJSBta06OBwJPWGV1d/0Dr0oLsVSCtgsc97ExXzAUXl4CltaoIIAX0hk=
+	t=1719005055; cv=none; b=Vf+czThiun653Y0bkLB1syv7dSz4Kje3JOAhvoh79G8+hZx3ax82tqOXyySRgq3iptfc3wq1eKrRQ7UaJx7m0tL+EuR7pfP3Cesg+VeHFTgO5L9nyU0XHfk7rOF6TXRqwZCLMmkVKRJaFq6FbGhX1QId2zeYzfgv/7zmxxBpE0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719005006; c=relaxed/simple;
-	bh=ZVeztje9EUQdYpB4LE1FyD1iGFLoRxXhdVQcdodG+ak=;
+	s=arc-20240116; t=1719005055; c=relaxed/simple;
+	bh=djuSz5mFeJ9nLAAgzN9ybob+36I/5RNb9wb3vaUsk4w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sMuQETuiSVGxtmZRYUzxKnOdK2biAJ53Z1U4syTz98v3WQavZT+N2uxnCZt8KZPY23YGACWMH1AB2njtaPxS/4eLN9qAj8myH1DNr+Zt9+oS/rFyjIK8MZ7CTrLFteOV/DFA32P6pfyvn94JiE/TyxDrqAxTMrz6ApBcEe2uzRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w6/pmwDl; arc=none smtp.client-ip=209.85.167.44
+	 Content-Type:Content-Disposition:In-Reply-To; b=qvn0sHi6TLAYb9iS4ZIX+dgvSmclv+FFwmAmNunjr/musf9qFn27XCsQbbjAgvlQkEdydb1/whomTmAKl3Tx0AmZEif9aHn51/5mtEnaywRy39kwtrGkhFYhjdKt/hGSJREuhgJ6fd7jszl05PKys5skXihJpkuFoQrvcS4RHL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xtr8C8Sc; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52c815e8e9eso2545821e87.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 14:23:24 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so26714971fa.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 14:24:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719005003; x=1719609803; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719005052; x=1719609852; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mh1wRjWN5t1/jKB73EzwYyPfPHKCwEFO5625un8IksA=;
-        b=w6/pmwDlIY2hF9rqxlGgTswRk2UDl5WyYIZlkmhKVnp69xvTOH4N6mjxqoI6aRw7uS
-         8ud3bfEKmrfi6Te3ADlINGp3MAxlINhA2vnHiqeVGh3llKEiEmksEwVCbrMUEzXho8ZC
-         lA70gVrsndGDBmTIIvCBw85/LtxGOzYR9c0yZUPBiqXwfYBOJAbXi51e9NJjuvi9VwRN
-         Y/mkOx6goweo1QP8D5P7FT/cezthmulVXb/WjDBQNFda25AoyF/dDzjIZdczWTauc/95
-         5sUdL9YDb+dWh+UzgDqwYOXMtO/HjUPzdFDPUzuHDoyElIjcNXsM/fgqHpOVVOXTjDxP
-         tsBg==
+        bh=R7G/EKqKrp2dVyxr+tqg9qnQl8cmiv7vTyvsidd4q/0=;
+        b=xtr8C8Sc0mYgc0rY8AkmgJ8MS57UnyDrbxZZG20KjF1S8dFbGl8/1yZx0BZQvC51vq
+         F3pNheYncvetlTgGXP3WCGbj02xYfeKmLWBFXeyFCnexWnZOYz8WBBHvSuoQvn7g2ENq
+         jtZ3Z9G0FJKD1QoIqJ3ibT3u6h7xQXAwCukBCKcdYWyOfIudD8u+S7VjQe++W+zDIYKF
+         9FUIkR4y8kNq+12e6rLhdpile2c/KGU63JkfyVaHl9YqukB8qLZ5uTvbTv2jQhei0chf
+         auB76JSU4BoJDbyr4jXHXwBHGWHwJ53u/HWJxJlM8qb/k7yVXN/GTayrqL5RlRWBXa9A
+         YgEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719005003; x=1719609803;
+        d=1e100.net; s=20230601; t=1719005052; x=1719609852;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mh1wRjWN5t1/jKB73EzwYyPfPHKCwEFO5625un8IksA=;
-        b=tFwcJ0fO0PS+P0krbffT961YYDKo0ttvJ5MM07dU/LD2rOSEd5dhboCcqMqWtb6JbG
-         7I5UuZ3KZz5PGm+/Ig+KmHM/GN40Ex3NdVKutoyIDyTpxx9NgOQai3z5oy4CnNExAczN
-         L98KBcHL/FC3gycs0IHaAe9/PKj0GmEr1+WZeHMK0pomW4ocRFZPWYzTiFTyTDkvepBo
-         wy4SWwgXLpUaTb/kfwYEE+3MFv2BXSMXmqn8whIB4lCOwS9PvHggRNlg7zoxvYH3mcJ/
-         zwCopKtAeZaCTvJsiJJSWVwvM7pPfYjf49Bo2vHL1EWlQ8coW+j5zIXw1+ivomoDI3y6
-         4GsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+/sDfVQ+TmCXwcxNskBdrr28HGXbU+U0y44oFu7ryhw5hmkTY0Or7+Hd1HGSMPbiV4OjEYxKB/ia66zBG+IOxtZ1rx+sCfu8xzw==
-X-Gm-Message-State: AOJu0YzhEB1f986qSvk1ccSuMkPH1WF8gbJH6duU956IoMQxT9KOT40C
-	uB2Ro0sQ9YBC9dEkaW1WWRBEAsibWJwG2dLwxhsYHgL4VqKXw/UumOj4m5tP2bk=
-X-Google-Smtp-Source: AGHT+IEEws3Gu1xymwfcBekyq/pzjX/PeYddoBuwFa0zEsRP4l+K5qUunAwj4KATjHZ6K+N3Ske+RA==
-X-Received: by 2002:a05:6512:324f:b0:52b:8ef7:bf1f with SMTP id 2adb3069b0e04-52ccaa33fa2mr5352345e87.17.1719005002922;
-        Fri, 21 Jun 2024 14:23:22 -0700 (PDT)
+        bh=R7G/EKqKrp2dVyxr+tqg9qnQl8cmiv7vTyvsidd4q/0=;
+        b=M6joSyrYm00m4IG7O7zUKcmTmOx9JCQtD5wpW4HhZJbgK8iJq0q4gUFWCvwrMNZYuP
+         Ru4+cO6TKE9AuENqbqH1B5HZP34Zzb0QwQBSlF5Kh+0KtvBRRyi0zrypwf7bYyjxyTe7
+         RH5klpgWvT9dBxl3pn3xBhTYdukcrEzCQUvCmTzO4Gd49swoDhTLrAGHd7Fk7oehP9I6
+         hzDqglyqg6sbtPE2F9MqxyzO+WB9RVycRlcRx5xCbwDxZs1LD6R9NHQuBkIe6p7hJCXt
+         OmD3KQWgI6zstQ4NQpZvczN4DNL6T0D/mx8XaN8w2oe79uSmO/be0S+s85Ejp4grp6HR
+         K+zA==
+X-Forwarded-Encrypted: i=1; AJvYcCXl8CzNYint/tz418XoPU6HyWyb4d5OhxY/2v70YIwacdMXe90NFthbQsGvRp0jUXHerhSb+9djgIigJMe2Gk3Xw7l8yDuzoYCH2A==
+X-Gm-Message-State: AOJu0YyO9H/LIWtgUlgKQse2asJvFLWDjt/0gH/Soxev35aHAKY+/6yz
+	CsXs0oczLWGXK3FCE3LtK89WOyp7iguEfsx58nxuE9pqhvLUo7pxEP5BtxIae/c=
+X-Google-Smtp-Source: AGHT+IF8Z/Z3bLdGw7DYlN4GVLk29Ytc+7dRRyw60VtQPf9tmMYsoq5/am5uEr53+Gxt2n5uAi1Qig==
+X-Received: by 2002:a2e:b2d1:0:b0:2ec:5540:4332 with SMTP id 38308e7fff4ca-2ec554043d1mr992491fa.0.1719005052412;
+        Fri, 21 Jun 2024 14:24:12 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd63b4a0bsm309018e87.20.2024.06.21.14.23.22
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec4d708582sm2926301fa.32.2024.06.21.14.24.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 14:23:22 -0700 (PDT)
-Date: Sat, 22 Jun 2024 00:23:21 +0300
+        Fri, 21 Jun 2024 14:24:12 -0700 (PDT)
+Date: Sat, 22 Jun 2024 00:24:10 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
 Cc: sboyd@kernel.org, andersson@kernel.org, bjorn.andersson@linaro.org, 
@@ -74,10 +74,10 @@ Cc: sboyd@kernel.org, andersson@kernel.org, bjorn.andersson@linaro.org,
 	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-remoteproc@vger.kernel.org, mark.rutland@arm.com, mturquette@baylibre.com, ohad@wizery.com, 
 	robh@kernel.org, sricharan@codeaurora.org, gokulsri@codeaurora.org
-Subject: Re: [PATCH v9 4/8] remoteproc: qcom: Add ssr subdevice identifier
-Message-ID: <zyyh56ohozogcgms73jh2c33i3c5k7cazk5godm5sxxnztddqk@h2xagcardsw3>
+Subject: Re: [PATCH v9 0/8] remoteproc: qcom: q6v5-wcss: Add support for
+ secure pil
+Message-ID: <62bf3lmbj3gf23x7rgmzhfa7gmpjmwelhspy66j326pudjqlqx@k6owdffe55mz>
 References: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
- <20240621114659.2958170-5-quic_gokulsri@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,36 +86,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240621114659.2958170-5-quic_gokulsri@quicinc.com>
+In-Reply-To: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
 
-On Fri, Jun 21, 2024 at 05:16:55PM GMT, Gokul Sriram Palanisamy wrote:
-> Add name for ssr subdevice on IPQ8074 SoC.
+On Fri, Jun 21, 2024 at 05:16:51PM GMT, Gokul Sriram Palanisamy wrote:
+> IPQ8074 needs support for secure pil as well.
+> Also, currently only unified firmware is supported.
+> IPQ8074 supports split firmware for q6 and m3, so
+> adding support for that.
+> 
+> changes since v8:
+>  - Rebased on top of Linux 6.10-rc4
 
-Is it SSR or ssr? Why is it necessary?
+Why do you have so many dead email addresses in you To/Cc lists?
 
 > 
-> Signed-off-by: Nikhil Prakash V <quic_nprakash@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-
-Three authors for a single-line patch?
-
-> ---
->  drivers/remoteproc/qcom_q6v5_wcss.c | 1 +
->  1 file changed, 1 insertion(+)
+> Gokul Sriram Palanisamy (8):
+>   remoteproc: qcom: Add PRNG proxy clock
+>   remoteproc: qcom: Add secure PIL support
+>   remoteproc: qcom: Add support for split q6 + m3 wlan firmware
+>   remoteproc: qcom: Add ssr subdevice identifier
+>   remoteproc: qcom: Update regmap offsets for halt register
+>   dt-bindings: clock: qcom: Add reset for WCSSAON
+>   clk: qcom: Add WCSSAON reset
+>   arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
 > 
-> diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
-> index d8b79765d5c6..06936ca1d079 100644
-> --- a/drivers/remoteproc/qcom_q6v5_wcss.c
-> +++ b/drivers/remoteproc/qcom_q6v5_wcss.c
-> @@ -1170,6 +1170,7 @@ static const struct wcss_data wcss_ipq8074_res_init = {
->  	.crash_reason_smem = WCSS_CRASH_REASON,
->  	.aon_reset_required = true,
->  	.wcss_q6_reset_required = true,
-> +	.ssr_name = "q6wcss",
->  	.ops = &q6v5_wcss_ipq8074_ops,
->  	.requires_force_stop = true,
->  	.need_mem_protection = true,
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi        |  80 +++++++++
+>  drivers/clk/qcom/gcc-ipq8074.c               |   1 +
+>  drivers/remoteproc/qcom_q6v5_wcss.c          | 162 +++++++++++++++----
+>  include/dt-bindings/clock/qcom,gcc-ipq8074.h |   1 +
+>  4 files changed, 212 insertions(+), 32 deletions(-)
+> 
 > -- 
 > 2.34.1
 > 
