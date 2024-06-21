@@ -1,156 +1,203 @@
-Return-Path: <devicetree+bounces-78533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D081912897
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:55:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EC3B9128A3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:57:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 298751F23307
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:55:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CF4E282991
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798A23F9EC;
-	Fri, 21 Jun 2024 14:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE26383A5;
+	Fri, 21 Jun 2024 14:57:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="eosdQW/P"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="bWH5QlR/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF98938FA0
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 14:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF1C376E6;
+	Fri, 21 Jun 2024 14:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718981705; cv=none; b=oJtLcslbKxHq0ek6OmPhHQyO0AjOEtJ3/2eoQacDADuhOFNsfxDt3K5GDS/6hsFKNbYO2Ayje+MZxWE2+NrGlDLzOxGk4Cw/f6TbsJ7753Jli8mHBnaKt5aC5ji6gIiwygHTnDYLi69uFHRQb7I0DBi8c5ElLgSmHVg3x2ToQDY=
+	t=1718981841; cv=none; b=Ffl4XD3uFmTdSjDygT2fwsD/i5mXt4RnPsgAj/UBkASiQPIltF5Ikj87lwm+wsjYrwk6xOSSDciU9V6t8hTISzv6lnMFxvKnLKT0AJ+0Lj9tnNvCHCWqFXvAdjd0N+vpZa76XIQYSdjRC8qL1LwfIfNYdzx1+Qzm6cwxdOXNbZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718981705; c=relaxed/simple;
-	bh=sA2EemPlAa1+90qgqq7ZJOodmKmw2IBbHOSXPvS/iWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nPR/AJyof0ZlgYWKEDlmB4av2Ls0lApuHUEQfnR8qVW/cydKO1QJJ4Q0APR9ByFONvR5vEpQtKVSWbYz9y/fuRUXC2BY+X06HOxUPjQL/15Y+4PGrov9vQJBgp/oUGS5QASld8fiPzmXJfP4P175wqge10n1bsFIH6eafiD3rw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=eosdQW/P; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1718981702;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CLJWp7apiozZzbnDE4rKsBuGgxng8bCCQ3VO68nlf8k=;
-	b=eosdQW/Pkko8vc2e9PF47l9iUQpNt7lGzWu91kkGny2IHJqQFq7leZ78AcBqfWjRRfvq+m
-	OcDa/uKbAGWKgFuzoF7FrTZKKMyhwcMeN4FWLu6xvEqVlc2Kq9qbWfgZUCEH/7TNIt9X8k
-	Z8sDLU/4E5dqP9xQpU15Fzp4qx/+RKM=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-88-JdzsTXInOlyM095qJsnt3g-1; Fri, 21 Jun 2024 10:54:59 -0400
-X-MC-Unique: JdzsTXInOlyM095qJsnt3g-1
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-43fb0603968so26132611cf.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 07:54:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718981699; x=1719586499;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CLJWp7apiozZzbnDE4rKsBuGgxng8bCCQ3VO68nlf8k=;
-        b=fRqbnhSaxdJVgGkPUA/690aosW6g+jGmgaxxmwTZh9subhHy/aOqVtO3x7GyJi3Gq/
-         5YfuukOutwu7uu6naW5ioOF5x0DR+jlaBAkOoSkFobdc/8zeLMMyzzdGqY4RkhA4J6Vo
-         YgmN4bXMAVYdyQfMf7WpqE0RjwxhKhFdwOz3Vz8IvVYbsk68/4/BhcoutZ+wfnIA33Qo
-         +KB5FiTChQggzXsxn9QenDSsfAsxqZ5+7Z+34kgG9ekBv7MQ11tFDwcf5mBj/hZABYOw
-         0Ojs2vzFlOh8LmWK0vdYw88oiY+wwAQNM3ln1girhXTF9pYYUtsxuNbgOcgrSPJYDweR
-         3nQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVctt4vwxfsBImUxSN6UZxFyyz+f3OVh/ZRePbGES4VE5XOeCxEVbq4jwochq8TKscnko0SCgXJHwg1tfYqhos9zvAxwliizJ2YoQ==
-X-Gm-Message-State: AOJu0YxCkgcjOZTOYqgkhM4hw9OKVtIohOpvgkzPvhK9fRs0X6Pz32sJ
-	TN2cjmQVaSIlV8Sa0ajM1hn3i62i83hnOhYJDgc7Fj/rsDKGBQlQunnJMLja4V230rAxZllMtH3
-	ZhwTeOCQiuNT/ZSOmnqxc9+EuUp24YaO237nMvGtlBC+4w4Ovgs+5bvMnghA=
-X-Received: by 2002:a05:622a:1344:b0:444:a1f7:c76c with SMTP id d75a77b69052e-444a7a4a690mr72023881cf.50.1718981699062;
-        Fri, 21 Jun 2024 07:54:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGA/mZMLmC2PMvsA5TPz1W93o/nYaAFsRLxZI7ixuWF5tBXy17kgJF52R2CO4IPg91XdCLzfA==
-X-Received: by 2002:a05:622a:1344:b0:444:a1f7:c76c with SMTP id d75a77b69052e-444a7a4a690mr72023681cf.50.1718981698558;
-        Fri, 21 Jun 2024 07:54:58 -0700 (PDT)
-Received: from x1gen2nano ([2600:1700:1ff0:d0e0::13])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-444c2c88de3sm11735691cf.87.2024.06.21.07.54.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 07:54:58 -0700 (PDT)
-Date: Fri, 21 Jun 2024 09:54:56 -0500
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p-ride-r3: add new board file
-Message-ID: <t7ztnomeyebome2xylbp4jygwzod35bqn3rwj4gnivt5rjl7b7@cuuqafqzecyf>
-References: <20240619183255.34107-1-brgl@bgdev.pl>
- <20240619183255.34107-3-brgl@bgdev.pl>
- <henuash23dwkj5fcmub6sabygwo4kam7fgots2pp2j3eu4asuk@cn3o7a62lo74>
- <CACMJSes7XcXPZt8NgZm9mQ7h2B6A=+mL13gpZEHY6UnTFqXdOA@mail.gmail.com>
+	s=arc-20240116; t=1718981841; c=relaxed/simple;
+	bh=lXY6CvJZT6PLKK588FETEcVyQ9oR5LCCe8uI1gQY7is=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nb7ye7fyyS7QR6/NiiSqCaU3oPs+87e4GfnSB3orb/7C7XZORHas3xHZe6M8z8q6tn2o9IKdVzt41q9OuGVK4VXckEUzA3N7lmXpht6/2sfrdr5prps12SP0f28szDtiEHzcB5Wm7UQ5XzuU0GD34cATjt/W6wS3xAHyf/Uh/SA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=bWH5QlR/; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45LBQoF1027665;
+	Fri, 21 Jun 2024 16:56:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	KIQrxrtnC2DYhTRvoRD8OWvHXgA1BQjlsrCrREKJO/M=; b=bWH5QlR/N8zwS7LT
+	/nSDcp38Zye2Kq7q1AnYNmoI5AGfF8AosL/P++/bYXMgSSbw47eRo9AfyCYLYdVS
+	inF3Opx5XXVdpIOTeq4lRZqukPUaZo/g7yKHnffoKbDueLmIoKo8bdl3LAm+qNwT
+	webf4XcX9gVPosLgNgoOo93FPj+5X0/nRo8Kqn4lTrRMQhc0Uz7u+wqs6kZdlgWx
+	PJRgHTq08kZI+4pdes42oPnBUVWi129seKFbQSLXiX5TJsHde75iwz2tPGh/2dx7
+	+D8E/PAsObYLf3ewmeJNmdZ0x0dQJIa8vVNCTjHNpbuiSBNPWB8juiwmQcbvsB9K
+	A6zzJA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yvrkgv64p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jun 2024 16:56:51 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 245514002D;
+	Fri, 21 Jun 2024 16:56:46 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8876522365A;
+	Fri, 21 Jun 2024 16:55:44 +0200 (CEST)
+Received: from [10.48.87.177] (10.48.87.177) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 21 Jun
+ 2024 16:55:43 +0200
+Message-ID: <7cdeaaab-ab8f-4b0c-89ec-cb61764a4abb@foss.st.com>
+Date: Fri, 21 Jun 2024 16:55:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACMJSes7XcXPZt8NgZm9mQ7h2B6A=+mL13gpZEHY6UnTFqXdOA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] drm/stm: ltdc: add lvds pixel clock
+To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240226-lvds-v6-0-15e3463fbe70@foss.st.com>
+ <20240226-lvds-v6-3-15e3463fbe70@foss.st.com>
+Content-Language: en-US
+From: Yannick FERTRE <yannick.fertre@foss.st.com>
+In-Reply-To: <20240226-lvds-v6-3-15e3463fbe70@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-21_06,2024-06-21_01,2024-05-17_01
 
-On Fri, Jun 21, 2024 at 03:14:13PM GMT, Bartosz Golaszewski wrote:
-> On Thu, 20 Jun 2024 at 18:04, Andrew Halaney <ahalaney@redhat.com> wrote:
-> >
-> > > +
-> > > +&mdio {
-> > > +     compatible = "snps,dwmac-mdio";
-> > > +     #address-cells = <1>;
-> > > +     #size-cells = <0>;
-> > > +
-> > > +     sgmii_phy0: phy@8 {
-> > > +             compatible = "ethernet-phy-id31c3.1c33";
-> > > +             reg = <0x8>;
-> > > +             device_type = "ethernet-phy";
-> > > +             interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
-> > > +             reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-> > > +             reset-assert-us = <11000>;
-> > > +             reset-deassert-us = <70000>;
-> >
-> > I need to read your other series still wrt "ocsgmii", but any chance you
-> > have access to docs indicating the reset timing? I've never had docs for
-> > the specific Marvell phy on the prior board or the Aquantia one on the
-> > new board...
-> >
-> 
-> I have but they're not public. :(
-> 
-> > Boot time is something automotive is always concerned over, so I just
-> > want to make sure that this timing isn't any longer than it needs to be.
-> > Right now it looks the same as the Marvell phy's in the "v2" boards etc
-> > and that made me raise my eyebrows.
-> >
-> 
-> That's a good point but what else can we do? This should typically
-> execute in its own thread anyway.
+Hi Raphaël,
 
-I guess all I'm asking is are these timings accurate? Ethernet is often
-considered one of the things that needs to be up early (think about
-getting the vehicle reverse status off the network for example), so in this case
-I meant to consider it part of the "boot time".
+Thanks for your patch, it will not merged due to a new clock management.
 
-If this is actually the recommended values then we're good, just wanting to
-make sure we're not reusing the Marvell values (which may or may not be accurate
-as I don't have the doc) since they could be larger than necessary, etc!
+Philippe,
 
-Dealing with the phys is a long pole in the time to get ethernet up in
-my benchmarks in the past, that's why I made this change etc:
+this patch will be replaced by another which manages all clocks that the 
+display controller
 
-    https://lore.kernel.org/netdev/20231127-net-phy-reset-once-v2-1-448e8658779e@redhat.com/
+  will need (pixel clock, bus clock reference clock).
 
-If these reset numbers are accurate then we're all good here, just
-confirming since they match the "r2" version which uses the marvell phy
-instead of the aquantia phy, and that seemed like a suspicious
-coincidence!
 
-Thanks,
-Andrew
+Best regards
 
+
+Le 26/02/2024 à 11:48, Raphael Gallais-Pou a écrit :
+> The STM32MP25x display subsystem presents a mux which feeds the loopback
+> pixel clock of the current bridge in use into the LTDC. This mux is only
+> accessible through sysconfig registers which is not yet available in the
+> STM32MP25x common clock framework.
+>
+> While waiting for a complete update of the clock framework, this would
+> allow to use the LVDS.
+>
+> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+> ---
+> Changes in v2:
+> 	- Fixed my address
+> 	- Fixed smatch warning
+> ---
+>   drivers/gpu/drm/stm/ltdc.c | 19 +++++++++++++++++++
+>   drivers/gpu/drm/stm/ltdc.h |  1 +
+>   2 files changed, 20 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
+> index 5576fdae4962..23011a8913bd 100644
+> --- a/drivers/gpu/drm/stm/ltdc.c
+> +++ b/drivers/gpu/drm/stm/ltdc.c
+> @@ -838,6 +838,12 @@ ltdc_crtc_mode_valid(struct drm_crtc *crtc,
+>   	int target_max = target + CLK_TOLERANCE_HZ;
+>   	int result;
+>   
+> +	if (ldev->lvds_clk) {
+> +		result = clk_round_rate(ldev->lvds_clk, target);
+> +		DRM_DEBUG_DRIVER("lvds pixclk rate target %d, available %d\n",
+> +				 target, result);
+> +	}
+> +
+>   	result = clk_round_rate(ldev->pixel_clk, target);
+>   
+>   	DRM_DEBUG_DRIVER("clk rate target %d, available %d\n", target, result);
+> @@ -1896,6 +1902,8 @@ void ltdc_suspend(struct drm_device *ddev)
+>   
+>   	DRM_DEBUG_DRIVER("\n");
+>   	clk_disable_unprepare(ldev->pixel_clk);
+> +	if (ldev->lvds_clk)
+> +		clk_disable_unprepare(ldev->lvds_clk);
+>   }
+>   
+>   int ltdc_resume(struct drm_device *ddev)
+> @@ -1910,6 +1918,13 @@ int ltdc_resume(struct drm_device *ddev)
+>   		DRM_ERROR("failed to enable pixel clock (%d)\n", ret);
+>   		return ret;
+>   	}
+> +	if (ldev->lvds_clk) {
+> +		if (clk_prepare_enable(ldev->lvds_clk)) {
+> +			clk_disable_unprepare(ldev->pixel_clk);
+> +			DRM_ERROR("Unable to prepare lvds clock\n");
+> +			return -ENODEV;
+> +		}
+> +	}
+>   
+>   	return 0;
+>   }
+> @@ -1981,6 +1996,10 @@ int ltdc_load(struct drm_device *ddev)
+>   		}
+>   	}
+>   
+> +	ldev->lvds_clk = devm_clk_get(dev, "lvds");
+> +	if (IS_ERR(ldev->lvds_clk))
+> +		ldev->lvds_clk = NULL;
+> +
+>   	rstc = devm_reset_control_get_exclusive(dev, NULL);
+>   
+>   	mutex_init(&ldev->err_lock);
+> diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
+> index 9d488043ffdb..4a60ce5b610c 100644
+> --- a/drivers/gpu/drm/stm/ltdc.h
+> +++ b/drivers/gpu/drm/stm/ltdc.h
+> @@ -44,6 +44,7 @@ struct ltdc_device {
+>   	void __iomem *regs;
+>   	struct regmap *regmap;
+>   	struct clk *pixel_clk;	/* lcd pixel clock */
+> +	struct clk *lvds_clk;	/* lvds pixel clock */
+>   	struct mutex err_lock;	/* protecting error_status */
+>   	struct ltdc_caps caps;
+>   	u32 irq_status;
+>
 
