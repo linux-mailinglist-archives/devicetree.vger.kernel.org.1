@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-78285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7536D911BFA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:42:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A61AA911C09
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA4831F24E2D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:42:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C37A1F24620
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96D93168C17;
-	Fri, 21 Jun 2024 06:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50AB161937;
+	Fri, 21 Jun 2024 06:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6rNiBrl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mhsBvx0v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B8A12D771;
-	Fri, 21 Jun 2024 06:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5555315A863;
+	Fri, 21 Jun 2024 06:44:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718952119; cv=none; b=V/BeIl+gvxDGFIsx1b9a3SbS+0lmLAd3pX1ylV7wy9nLu+QHcJnVMqseWygPlfiEZSM/bVqr/tBGblv45tLsthXZz1EKDHVv0UCT8nhLnn96vyr5NuWQ9IRdcnY52/iFWJQIDNGLoJlGxiFdYuBKQputE64FKgKq3OPkRXlqMoI=
+	t=1718952263; cv=none; b=C5cy+OV85uLvNHACosVHMwAUGS/Ndje/5ZBRtomW8p52aX/5Fvqv/5hrm7tC9NyCIKxrwS/vFdSUDbOxDoj0PWnv24eJUcNHdehiEDe5j19BoVhvWSb+3Hib7ayzTj72hfD2vO4kvbP+Gt7cQ2FMEME+RHT6s0W7BYLNPhB7HCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718952119; c=relaxed/simple;
-	bh=WruSoZIyzBxO2AjClNC3OXrTNOVdz8wBtrZPpY4CzrU=;
+	s=arc-20240116; t=1718952263; c=relaxed/simple;
+	bh=e8vsqUTPR8hmmzvnBxNMNmNl9t0csZwAExFhrGl8H6w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EJqWNOWldIb5Z433zavPquYTqY55PWAB+Ymb3vp+9FlHdpZPEcB0+EOWzVGV1GypdIm9DXJpA9p+Ui3/wAOedUAloReU5AEsIySH9JfZN8K5Hfepn7omgkLUFVq9iAFHEp+d9hqKlgoRFQ+oFpp2uECis1ASorQAk7CYrwTFzlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6rNiBrl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5054AC2BBFC;
-	Fri, 21 Jun 2024 06:41:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718952119;
-	bh=WruSoZIyzBxO2AjClNC3OXrTNOVdz8wBtrZPpY4CzrU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B6rNiBrlBYwkyA0e3RSYOVVn9W1hyp5+2on+44gsrjjFhPH9shLFOj/UhUxvhyGUX
-	 ndS2Uw9gLQUTvPgbp6+oa7ckki11+h6YS35Rm3ssuekkMQqqEDGU8t5oIP8sw2SMCg
-	 xgY+2Hrz9VOSQTQ5gkl8QkdwI7lql2KpHeVays6R78PaHkIXqd1Eeqw3sF+DeEpeop
-	 cH5SB53sv5vLkRT22zQNb3XXhn1PQ5DnSEw9aNPF8fXe1cJdAVDYU1yScT0bKYZShV
-	 tqwJvKFIX894a77BWrQjqwvK/zoh8gH+KCRRiW/Dqck0HWSaXrePPLfC5qABtGaTgb
-	 px/O/wkUpRPwA==
-Message-ID: <0c5d89e7-b5cf-4a51-9bd7-24fbae1b7c62@kernel.org>
-Date: Fri, 21 Jun 2024 08:41:51 +0200
+	 In-Reply-To:Content-Type; b=RLbH6tbBEx8GG7j6ebZM5dfq6s7daOXBZ8bRsFVUjG+6aQM+KPMsowxrJMuNhq+72IkevIYVOqkIe6+Kye5t/Tdm8n1KlKjA39qPH/vceB8t3ycYJpg4GDlr5intx09A+Li71gfp4lfHpvdbVqTqpXIDRRBf0s5n+Eaybj6xyrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mhsBvx0v; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-25980546baeso828719fac.2;
+        Thu, 20 Jun 2024 23:44:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718952261; x=1719557061; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w24n82/vIpX8B4Z/eMTSwnntz2rc9ZV12ox6TxguyJY=;
+        b=mhsBvx0vl1lD/8SRgHpBrvba4MFjqrXakeFB702z5lDk4lTtnf+qR/H9uEqlWeSucx
+         RPuhv8d5smrH+hy/8vKbnztds6G1Cuhw8+gUKsXM+iMPrekPJLvMImnqLRdtS4Vt+YJ1
+         XD1MV8Ov/kH6+AcA/bk3fVPbu2LTkiwFJHnKsxvZfjnE/1Ur0c559h+IaF/9QV6iy8+i
+         F+seGueXoZ5Ncd8YBvk6u34DzMZFNzs3a4AQDSgeD+36Fc/PPIGO54DAf6JVnXjLuIYC
+         ye0APx4mgiiOUirKy+pFNjHMqDkUyY0YpBAYNiop4B6bR0L67plceBnEQbcSv8032tfn
+         qEaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718952261; x=1719557061;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w24n82/vIpX8B4Z/eMTSwnntz2rc9ZV12ox6TxguyJY=;
+        b=eN4zFh3aPso3Yy1cyOURrhYojhxFBTE/vV6K/On5Txq8Cx6kuQ6Bs/NW/vgVw7tH3s
+         ZTwcL0NqwFKIvmXUh7WMK7qEGUBsgAh8E70lflimndqA6YZXEa9l0xCBam7c9zeWbWer
+         VzgxUpQIssCUNlV1kfK6C84DDCb0CDeYA6j8bulAZkJkitJVBfJBkM4d1teYpoun/vSH
+         vGhsIV1UGKA5zUBdr2+vnUkKb4Rv9I5z2unNCfZFiYSoa9i9f29LPR2uAFwXqDLsD9NE
+         pBP0tyH+mqRtbb/R3k0iBGFVIZf5A17HT6E/Jv+uooyv6ylIxOAaoQlkpZJtMwqSHcXz
+         BlWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXrcBuZpghhofnXxyW5l/1FJBtNyCom7tjxuy5VPkmkaXNvYtLebsxv/ydDs3aVPFywxApub4byfEuEaigVwRy6+NvB1L41bNxFXgg7ytIRmQmGm7mhrDU+ZwE0pH9oceqKrQq+LWoIbUIAzll9wvRmFDuWvHp5hlCf2NpEhsDQzQoSBQ==
+X-Gm-Message-State: AOJu0Yw5AMoMlILcqpblEfkSfi33xtQ4cXM6rmR+qkXXGT6fP8qjD82y
+	tROwE/oo+MSBno7sQztwyCq7rF5e+9O4pybN0okMbZz2/jJZlgRg
+X-Google-Smtp-Source: AGHT+IEANZZHgCyKdIftWd3cOp2dSGvWG7foIJAXLX+nyVQbywXPbr3RDWjgbnU4m/tFyceWACZ1kg==
+X-Received: by 2002:a05:6870:b50d:b0:254:9501:db80 with SMTP id 586e51a60fabf-25c949a6b97mr8705807fac.14.1718952261214;
+        Thu, 20 Jun 2024 23:44:21 -0700 (PDT)
+Received: from [172.19.1.51] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-716c950d71asm515928a12.62.2024.06.20.23.44.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jun 2024 23:44:20 -0700 (PDT)
+Message-ID: <b6bda253-3fdf-41c5-934a-66b79c991582@gmail.com>
+Date: Fri, 21 Jun 2024 14:44:15 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,103 +76,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-bindings: clock: qcom: Add SA8775P video clock
- controller
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_jkona@quicinc.com, quic_imrashai@quicinc.com
-References: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
- <20240612-sa8775p-mm-clock-controllers-v1-1-db295a846ee7@quicinc.com>
- <e1424d12-4dd8-4a8a-a8b5-ac94476fa3d3@kernel.org>
- <ac8781fe-e8f1-4ba7-8f7d-ebfcbaadbcee@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document
+ MA35D1 SDHCI controller
+To: Krzysztof Kozlowski <krzk@kernel.org>, ulf.hansson@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com,
+ serghox@gmail.com, mcgrof@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, forbidden405@outlook.com,
+ tmaimon77@gmail.com, andy.shevchenko@gmail.com,
+ linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20240619054641.277062-1-shanchun1218@gmail.com>
+ <20240619054641.277062-2-shanchun1218@gmail.com>
+ <3d193f01-2c8b-4d6c-8139-11f2d9a34d2d@kernel.org>
+ <42ec842e-84c0-40fd-b6fc-e59d25ede89f@gmail.com>
+ <f315c1cd-1f78-46e0-a86b-5240a869bb31@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ac8781fe-e8f1-4ba7-8f7d-ebfcbaadbcee@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Shan-Chun Hung <shanchun1218@gmail.com>
+In-Reply-To: <f315c1cd-1f78-46e0-a86b-5240a869bb31@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 21/06/2024 06:24, Taniya Das wrote:
-> 
-> 
-> On 6/13/2024 12:58 PM, Krzysztof Kozlowski wrote:
->> On 12/06/2024 12:47, Taniya Das wrote:
->>> Add device tree bindings for the video clock controller on Qualcomm
->>> SA8775P platform.
->>
->> You claim it is a v1, but I saw it and already commented on this. No
->> changelog, no versioning, so my comments were ignored?
->>
->> Please go back to previous comments, implement then, respond and then
->> send v3 with all comments addressed.
->>
-> 
-> Krzysztof, I mentioned the below in the cover letter of this series. Did 
-> I still miss something?
-> 
-> Add support for videocc, camcc, dispcc0 and dispcc1 on Qualcomm SA8775P
-> platform.
-> 
-> These multimedia clock controller and device tree patches are split
-> from the below series.
-> https://lore.kernel.org/all/20240531090249.10293-1-quic_tdas@quicinc.com/
+Dear Krzysztof,
 
-But this does not invalidate patch history. If you sent patch in foo
-patchset, then sending v2 of this patch in bar patchset is still v2, not
-v1. You still need changelog and proper versioning.
+Thanks for your review.
 
-So again - respond to previous comments and/or implement them, then
-provide changelog what happened.
+On 2024/6/21 下午 02:04, Krzysztof Kozlowski wrote:
+> On 21/06/2024 01:53, Shan-Chun Hung wrote:
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  pinctrl-names:
+>>>> +    description:
+>>>> +      Should at least contain default and state_uhs.
+>>> ? Contradicts constraints.
+>> I will modify the description to "Should at least contain default.
+>> state_uhs is mandatory in this scenario."
+> Then just drop it. Don't repeat constraints in free form text.
+>
+>
+> Best regards,
+> Krzysztof
+OK , I will drop the description.
 
-Best regards,
-Krzysztof
+Best Regards,
+
+Shan-Chun
 
 
