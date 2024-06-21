@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6F0911BF6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7536D911BFA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:42:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 659E51F24DD6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:40:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA4831F24E2D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:42:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B818D13E022;
-	Fri, 21 Jun 2024 06:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96D93168C17;
+	Fri, 21 Jun 2024 06:41:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lf2Fnjhn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6rNiBrl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D29926AD5;
-	Fri, 21 Jun 2024 06:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B8A12D771;
+	Fri, 21 Jun 2024 06:41:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718952032; cv=none; b=k8YzLHCkjwqCdR5NBumqJfEX9QaqSiwmJVkwTwySefT1EQYg0FsiIinvGY85oZ15ddpdbdTcWLo71r9y8ISkqU49rdFFf89sKcvCzQvxv6JeJ7t4C9WkLMi6vvtI+YgGrJVs+q95qVnnVdlTjtDV+Gkm9XDPLFS5QtxYFsYl4Ro=
+	t=1718952119; cv=none; b=V/BeIl+gvxDGFIsx1b9a3SbS+0lmLAd3pX1ylV7wy9nLu+QHcJnVMqseWygPlfiEZSM/bVqr/tBGblv45tLsthXZz1EKDHVv0UCT8nhLnn96vyr5NuWQ9IRdcnY52/iFWJQIDNGLoJlGxiFdYuBKQputE64FKgKq3OPkRXlqMoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718952032; c=relaxed/simple;
-	bh=K+/rxMxqAy5MbNI96QKep2nTd0OAX55bDUMBx9oYT/U=;
+	s=arc-20240116; t=1718952119; c=relaxed/simple;
+	bh=WruSoZIyzBxO2AjClNC3OXrTNOVdz8wBtrZPpY4CzrU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JKvkaCrdDOelG7yR1K99o7e5APSAVrpyejl9xQvmX6b0vyMcXaq+xqR0GaFR1HFsY+iYAOwl/8piLsvVS0v8kkQ33ZmgS8FycBnihEIViRMJaUGl4Gq8/LlRS87mx44/vV+RrwGSepjNkYqmjgJheyIaQmps6zdR/TFz/bGDVuw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lf2Fnjhn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7BC3C2BBFC;
-	Fri, 21 Jun 2024 06:40:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EJqWNOWldIb5Z433zavPquYTqY55PWAB+Ymb3vp+9FlHdpZPEcB0+EOWzVGV1GypdIm9DXJpA9p+Ui3/wAOedUAloReU5AEsIySH9JfZN8K5Hfepn7omgkLUFVq9iAFHEp+d9hqKlgoRFQ+oFpp2uECis1ASorQAk7CYrwTFzlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6rNiBrl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5054AC2BBFC;
+	Fri, 21 Jun 2024 06:41:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718952032;
-	bh=K+/rxMxqAy5MbNI96QKep2nTd0OAX55bDUMBx9oYT/U=;
+	s=k20201202; t=1718952119;
+	bh=WruSoZIyzBxO2AjClNC3OXrTNOVdz8wBtrZPpY4CzrU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lf2FnjhndpjEcOM43NC9j2zdC87rV9XDDxl7Sp8Xs/roaZeONUDZpqaf5BWUJC2/F
-	 OnsQNWhbh43ER/DDvxb+TbcCP2mMtQXwm5Gv/8Ab28muO/CJxBZoe5xSfg54bFienY
-	 0u1mqpJiI7VaiEsATfKDTUMwqb3oaD+NlcPNJsu4i/SVXsFu+Kk+UswWzulDLK+T1/
-	 ZWikPvo8o/fGF26aP0ro5gHKD4HOiShZbTRGyNyP2I201szQZ1shnm8D/XzXtMVbch
-	 ClAOgImnMpJD4Cf5G02QhtPo8Tmd1x0X1JAzgB58AmWDVV89BfGQClzXPGsUq1k1/q
-	 nQJDECy42WDcA==
-Message-ID: <684ae4ea-63c6-4322-a71b-429e9cc9b0b9@kernel.org>
-Date: Fri, 21 Jun 2024 08:40:24 +0200
+	b=B6rNiBrlBYwkyA0e3RSYOVVn9W1hyp5+2on+44gsrjjFhPH9shLFOj/UhUxvhyGUX
+	 ndS2Uw9gLQUTvPgbp6+oa7ckki11+h6YS35Rm3ssuekkMQqqEDGU8t5oIP8sw2SMCg
+	 xgY+2Hrz9VOSQTQ5gkl8QkdwI7lql2KpHeVays6R78PaHkIXqd1Eeqw3sF+DeEpeop
+	 cH5SB53sv5vLkRT22zQNb3XXhn1PQ5DnSEw9aNPF8fXe1cJdAVDYU1yScT0bKYZShV
+	 tqwJvKFIX894a77BWrQjqwvK/zoh8gH+KCRRiW/Dqck0HWSaXrePPLfC5qABtGaTgb
+	 px/O/wkUpRPwA==
+Message-ID: <0c5d89e7-b5cf-4a51-9bd7-24fbae1b7c62@kernel.org>
+Date: Fri, 21 Jun 2024 08:41:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] dt-bindings: phy: rockchip-emmc-phy: Convert to
- dtschema
-To: Shresth Prasad <shresthprasad7@gmail.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, sebastian.reichel@collabora.com, andy.yan@rock-chips.com,
- s.hauer@pengutronix.de, jbx6244@yandex.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, javier.carrasco.cruz@gmail.com,
- skhan@linuxfoundation.org
-References: <20240620212806.3011-2-shresthprasad7@gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: clock: qcom: Add SA8775P video clock
+ controller
+To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_jkona@quicinc.com, quic_imrashai@quicinc.com
+References: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
+ <20240612-sa8775p-mm-clock-controllers-v1-1-db295a846ee7@quicinc.com>
+ <e1424d12-4dd8-4a8a-a8b5-ac94476fa3d3@kernel.org>
+ <ac8781fe-e8f1-4ba7-8f7d-ebfcbaadbcee@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,19 +110,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240620212806.3011-2-shresthprasad7@gmail.com>
+In-Reply-To: <ac8781fe-e8f1-4ba7-8f7d-ebfcbaadbcee@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/06/2024 23:28, Shresth Prasad wrote:
-> Convert txt bindings of Rockchip EMMC PHY to dtschema to allow
-> for validation.
+On 21/06/2024 06:24, Taniya Das wrote:
 > 
-> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
-> ---
+> 
+> On 6/13/2024 12:58 PM, Krzysztof Kozlowski wrote:
+>> On 12/06/2024 12:47, Taniya Das wrote:
+>>> Add device tree bindings for the video clock controller on Qualcomm
+>>> SA8775P platform.
+>>
+>> You claim it is a v1, but I saw it and already commented on this. No
+>> changelog, no versioning, so my comments were ignored?
+>>
+>> Please go back to previous comments, implement then, respond and then
+>> send v3 with all comments addressed.
+>>
+> 
+> Krzysztof, I mentioned the below in the cover letter of this series. Did 
+> I still miss something?
+> 
+> Add support for videocc, camcc, dispcc0 and dispcc1 on Qualcomm SA8775P
+> platform.
+> 
+> These multimedia clock controller and device tree patches are split
+> from the below series.
+> https://lore.kernel.org/all/20240531090249.10293-1-quic_tdas@quicinc.com/
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+But this does not invalidate patch history. If you sent patch in foo
+patchset, then sending v2 of this patch in bar patchset is still v2, not
+v1. You still need changelog and proper versioning.
 
+So again - respond to previous comments and/or implement them, then
+provide changelog what happened.
 
 Best regards,
 Krzysztof
