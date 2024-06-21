@@ -1,258 +1,286 @@
-Return-Path: <devicetree+bounces-78531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B0F91288A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:53:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4DE291288C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5AB45B242CA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:52:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F1351C20961
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3BD3328DB;
-	Fri, 21 Jun 2024 14:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="dpk/+NH1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC961358A7;
+	Fri, 21 Jun 2024 14:54:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB132C1BA
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 14:52:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1449383A2;
+	Fri, 21 Jun 2024 14:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718981534; cv=none; b=ZcBvztLnkEGWj5399CcAHcHJwA0DQRFTDa0ogFuWlIP8D4klL4lbcWJXq92Pjo9rUksYN0PC5bA2/9YNmOUEc3S1YS/R13sSAtvLGFtIPP07q7o0BgXdyT7f7XtD8UQvH28QbN007X+/FfcxG1ZFtAFU5IKie9EpP6GPwvjjUQw=
+	t=1718981653; cv=none; b=V5lCGpmZ2rj50qPKxPepTGGDqCT0psu/nsEIY5FVD3o87Ym9qyp4hJU+u04PdQTOjEflDMZLX9qn4Oc+Uxf/WPKmW27SSxluaBuAnkz+zZqDPUSv8ZcoRjydll685vppTBJCAhc7BNFf4BtGHGsHScps+3kDfSBE+e8qrtacQuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718981534; c=relaxed/simple;
-	bh=JOzDKRfRyAYrmFpbQG5/eALwnos6jjvCy2uXdxhP3Zc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QmXmF8qWvrHhkgLSrKC+nKr9Ku0vNqJfIxHG/nuKBM3ro5tMDpz1vUvhqLoiyvpnuBIsO8/LHbZhnFvu9auEjXMnGR1TaGjXqB2W8EUOxLvcGsrfCSaiEFx7cjYmK92yr6ARdIRZ6h925jetLo/1vFYRkV8Ye+5Na8WQo8FLfUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=dpk/+NH1; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-35f2d723ef0so1581433f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 07:52:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1718981531; x=1719586331; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=dY/74FpLsXRkkOHvC1PKdD9HRHfMWtcqzzHZbgsRq/Y=;
-        b=dpk/+NH11/yM8DZ4kDdoUYLka+FEpKjtI/QcCBqEqfMrcKvCOHiwtoKLRh9oWdYVuy
-         GPzQSnhDg8igm/W3SWt9uooRkxdAyLxHzxW4Wal9PilhCL/kO98x/8jvhTKfaQPKeMAQ
-         8bdJ4bd32Qf/o+yqiCUSLs9O6Envr6Dz18bJ3VjkAr1p9uZPRJgRPfWfT4Htwx9MXy9w
-         c/PklNDyNv/6zVg5c74BPu248LhjXRnrNPKKomrdvIpybh+Fe9Y4H7dDDJe6N3ZhFDMe
-         DSO2u3RVu2Jtu4i2t7ivVfgpsRKUixdF8cNrN8Z30ImO1TkSXJX6LYa68mAf+z3oPZYF
-         OXwQ==
+	s=arc-20240116; t=1718981653; c=relaxed/simple;
+	bh=9fGiVhIGKu4NQKJdAeG7n0j9T/2YWEcWWCSmYg2oLKM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XnXTYUdvEXl+PMiMMqj9gHLGQWYih2RF7mzTEQpa+oahfLnbctfabJZbOcvh/RMEcjTSbkmXLOPnOMnimUzGWfffQUvHCeCgXS+o9cK5q4Xzv8WyTyIAzJJmWu0oncI5LLZrMB50r+mBKmRGoumMLh13ltWOW68wnWlzcnqIUc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-7ec00e71a57so79421439f.3;
+        Fri, 21 Jun 2024 07:54:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718981531; x=1719586331;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dY/74FpLsXRkkOHvC1PKdD9HRHfMWtcqzzHZbgsRq/Y=;
-        b=QgBzWdY5XuHTCK5FosTx/nCzkqn+qr/KhXZQwYePzg5oYaidarsL55RMXno5RJwuQO
-         UuEtoerpAQMPFA/m+MyD/l9ilbdG9WRel6BBed3az2YuQnWLWdNDVwzm+YgjaASLp1dM
-         A+rrgweVVMrhCFhPDABXnSUvTvn1oUoYjoQezCjgH5vZ4XleFxuJ7cLJY90JtZEB18mv
-         pSjFMmJRi0Ps0EvkJidyP4ivgok86sN0zXepCcUg6el+0/23tjF3Tnn8IzOstZvRtrtg
-         mpduomMkT1FXmiA58N4w+bvm8fzISh1oF7L2Mk6W6y6J9n0Ao+X9SpGWSRVpwyUyj9WX
-         4how==
-X-Forwarded-Encrypted: i=1; AJvYcCUC5Y2/DbC67rTJN9OifwUkWVoufe5cRl77XD1gJbBPbcfI6zup7g5HouR5oE7XrWQcooFc5Zuu60REki4DFeuYFiS6uoiKCWlOPg==
-X-Gm-Message-State: AOJu0Yy8Q/7WZXJ8i2Jl6rpNP0c6GJ7tZEwWoLPk6XYOsKyCLNk4L9rR
-	UrfFbesytb91M1WrPtjKqMGHtUD/sNHtwj9s6QGZbnB3M5TB2vG5qETzVv+tUCM=
-X-Google-Smtp-Source: AGHT+IFDyWfIf5nnHBOBzgfJ+unGgV6WY1zA4ehKaX0HVcYnLUrxaelLe8EK6XWmwNeLgZdxyEg9Og==
-X-Received: by 2002:a05:6000:154c:b0:365:f52f:cd30 with SMTP id ffacd0b85a97d-365f52fce6bmr2382767f8f.53.1718981530889;
-        Fri, 21 Jun 2024 07:52:10 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3664178f5f7sm1896905f8f.19.2024.06.21.07.52.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 07:52:10 -0700 (PDT)
-Date: Fri, 21 Jun 2024 16:52:09 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, 
-	Conor Dooley <conor.dooley@microchip.com>, Anup Patel <apatel@ventanamicro.com>, 
-	Yong-Xuan Wang <yongxuan.wang@sifive.com>, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org, greentime.hu@sifive.com, 
-	vincent.chen@sifive.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-Message-ID: <20240621-a56e848050ebbf1f7394e51f@orel>
-References: <20240605121512.32083-1-yongxuan.wang@sifive.com>
- <20240605121512.32083-3-yongxuan.wang@sifive.com>
- <20240605-atrium-neuron-c2512b34d3da@spud>
- <CAK9=C2XH7-RdVpojX8GNW-WFTyChW=sTOWs8_kHgsjiFYwzg+g@mail.gmail.com>
- <40a7d568-3855-48fb-a73c-339e1790f12f@ghiti.fr>
- <20240621-viewless-mural-f5992a247992@wendy>
- <edcd3957-0720-4ab4-bdda-58752304a53a@ghiti.fr>
- <20240621-9bf9365533a2f8f97cbf1f5e@orel>
- <20240621-glutton-platonic-2ec41021b81b@spud>
+        d=1e100.net; s=20230601; t=1718981645; x=1719586445;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J/NNzS6WAE1jFUsn8rK9By+4Dsv7Fm3OvCmxKnmIsak=;
+        b=eNnKwY0+d6dkeBm8d98FTgobqVZNkO0oSRSC1uBv77Z0TnU+A5VWlCmdN+vLl+VZw6
+         0kzc4uyHZld7ClkR0qIacjMjunA5PClJtgmiQ+I0UinUfE2+i9U/o3BDEWiwd/ghWHOg
+         vEBPLIcWsmTd8ZQ+wMl7YF384oEsrAFaV23TiSYwb8YfpTiXSZihJcxsEGRjG/VwRwg9
+         05qtiSlF94A5NhndzT8u72SCLvG8MJmntZCgbDaqYjdV3kjGPCKeC6e9eo2nRPygaKqc
+         3kUwFu0xLRwRktagluvnf6uRlibddxLzGLRusLKsj8UUy+fyZmJ2wgPELOaO69WIGSyR
+         M5Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCWYKTge5dbdm8r5z9m8ks+A5Oi6jzL9bHsmh2ufyeBbgBScgHPpkY0wYpYUIItusXgP6YZWZP1by2ylxYg4ZML5aJ7vGMz2qBobQm888tVcaI49FpEBXBniSHnPrqdM4j26UeEaXbXL3Q==
+X-Gm-Message-State: AOJu0YwZM4aj/juDhAOxBXaBOIOH8yvOJtFZDEo7/bVnSBNFhF4LTwuq
+	UBfVc1BKwbizSFIrx900R2a3o3NnT1DFdn2gLQQ6JB7OsElhdhqLcMhSuhuj9kky8Q==
+X-Google-Smtp-Source: AGHT+IFcRzV6dJNS5jfG2v6r9279SJkSIlyV7C8keMTvkV5Ha9cngM6oAIKho3O1NjoDeFF3mFFBDg==
+X-Received: by 2002:a05:6602:3429:b0:7eb:caf2:98d5 with SMTP id ca18e2360f4ac-7f13edaf7bemr1020316339f.1.1718981644685;
+        Fri, 21 Jun 2024 07:54:04 -0700 (PDT)
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com. [209.85.166.44])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4b9d1110286sm391040173.63.2024.06.21.07.54.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jun 2024 07:54:04 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7ebe508fa34so106316739f.2;
+        Fri, 21 Jun 2024 07:54:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUBp749T3AnQl2PIdPG64vT3Tvwp3Z9LQ7CuGy1icoOUNxDfKEBTkDk1UMNixK80NvXubpeJoPP/QVn2epyIdM38TbULrcqsuw8krKvH2MXUYbQ1oJXe/1MPxV/m/JAo2n7qxbdNffBgA==
+X-Received: by 2002:a05:6602:60ce:b0:7eb:898f:1c66 with SMTP id
+ ca18e2360f4ac-7f13ee0a0fcmr992286339f.11.1718981644259; Fri, 21 Jun 2024
+ 07:54:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240621-glutton-platonic-2ec41021b81b@spud>
+References: <20240616220719.26641-1-andre.przywara@arm.com> <20240616220719.26641-3-andre.przywara@arm.com>
+In-Reply-To: <20240616220719.26641-3-andre.przywara@arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Fri, 21 Jun 2024 22:53:47 +0800
+X-Gmail-Original-Message-ID: <CAGb2v6724rJ19-LEQHuMvfU5SsrECKYwUxRyE7vQTdnb39Ubjw@mail.gmail.com>
+Message-ID: <CAGb2v6724rJ19-LEQHuMvfU5SsrECKYwUxRyE7vQTdnb39Ubjw@mail.gmail.com>
+Subject: Re: [PATCH 2/4] crypto: sun8i-ce - wrap accesses to descriptor
+ address fields
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Corentin Labbe <clabbe.montjoie@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S . Miller" <davem@davemloft.net>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 03:04:47PM GMT, Conor Dooley wrote:
-> On Fri, Jun 21, 2024 at 03:15:10PM +0200, Andrew Jones wrote:
-> > On Fri, Jun 21, 2024 at 02:42:15PM GMT, Alexandre Ghiti wrote:
-> > > 
-> > > On 21/06/2024 12:17, Conor Dooley wrote:
-> > > > On Fri, Jun 21, 2024 at 10:37:21AM +0200, Alexandre Ghiti wrote:
-> > > > > On 20/06/2024 08:25, Anup Patel wrote:
-> > > > > > On Wed, Jun 5, 2024 at 10:25 PM Conor Dooley <conor@kernel.org> wrote:
-> > > > > > > On Wed, Jun 05, 2024 at 08:15:08PM +0800, Yong-Xuan Wang wrote:
-> > > > > > > > Add entries for the Svade and Svadu extensions to the riscv,isa-extensions
-> > > > > > > > property.
-> > > > > > > > 
-> > > > > > > > Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-> > > > > > > > ---
-> > > > > > > >    .../devicetree/bindings/riscv/extensions.yaml | 30 +++++++++++++++++++
-> > > > > > > >    1 file changed, 30 insertions(+)
-> > > > > > > > 
-> > > > > > > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > > > > > index 468c646247aa..1e30988826b9 100644
-> > > > > > > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > > > > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > > > > > > > @@ -153,6 +153,36 @@ properties:
-> > > > > > > >                ratified at commit 3f9ed34 ("Add ability to manually trigger
-> > > > > > > >                workflow. (#2)") of riscv-time-compare.
-> > > > > > > > 
-> > > > > > > > +        - const: svade
-> > > > > > > > +          description: |
-> > > > > > > > +            The standard Svade supervisor-level extension for raising page-fault
-> > > > > > > > +            exceptions when PTE A/D bits need be set as ratified in the 20240213
-> > > > > > > > +            version of the privileged ISA specification.
-> > > > > > > > +
-> > > > > > > > +            Both Svade and Svadu extensions control the hardware behavior when
-> > > > > > > > +            the PTE A/D bits need to be set. The default behavior for the four
-> > > > > > > > +            possible combinations of these extensions in the device tree are:
-> > > > > > > > +            1. Neither svade nor svadu in DT: default to svade.
-> > > > > > > I think this needs to be expanded on, as to why nothing means svade.
-> > > > > > Actually if both Svade and Svadu are not present in DT then
-> > > > > > it is left to the platform and OpenSBI does nothing.
-> > > > > > 
-> > > > > > > > +            2. Only svade in DT: use svade.
-> > > > > > > That's a statement of the obvious, right?
-> > > > > > > 
-> > > > > > > > +            3. Only svadu in DT: use svadu.
-> > > > > > > This is not relevant for Svade.
-> > > > > > > 
-> > > > > > > > +            4. Both svade and svadu in DT: default to svade (Linux can switch to
-> > > > > > > > +               svadu once the SBI FWFT extension is available).
-> > > > > > > "The privilege level to which this devicetree has been provided can switch to
-> > > > > > > Svadu if the SBI FWFT extension is available".
-> > > > > > > 
-> > > > > > > > +        - const: svadu
-> > > > > > > > +          description: |
-> > > > > > > > +            The standard Svadu supervisor-level extension for hardware updating
-> > > > > > > > +            of PTE A/D bits as ratified at commit c1abccf ("Merge pull request
-> > > > > > > > +            #25 from ved-rivos/ratified") of riscv-svadu.
-> > > > > > > > +
-> > > > > > > > +            Both Svade and Svadu extensions control the hardware behavior when
-> > > > > > > > +            the PTE A/D bits need to be set. The default behavior for the four
-> > > > > > > > +            possible combinations of these extensions in the device tree are:
-> > > > > > > @Anup/Drew/Alex, are we missing some wording in here about it only being
-> > > > > > > valid to have Svadu in isolation if the provider of the devicetree has
-> > > > > > > actually turned on Svadu? The binding says "the default behaviour", but
-> > > > > > > it is not the "default" behaviour, the behaviour is a must AFAICT. If
-> > > > > > > you set Svadu in isolation, you /must/ have turned it on. If you set
-> > > > > > > Svadu and Svade, you must have Svadu turned off?
-> > > > > > Yes, the wording should be more of requirement style using
-> > > > > > must or may.
-> > > > > > 
-> > > > > > How about this ?
-> > > > > > 1) Both Svade and Svadu not present in DT => Supervisor may
-> > > > > >       assume Svade to be present and enabled or it can discover
-> > > > > >       based on mvendorid, marchid, and mimpid.
-> > > > > > 2) Only Svade present in DT => Supervisor must assume Svade
-> > > > > >       to be always enabled. (Obvious)
-> > > > > > 3) Only Svadu present in DT => Supervisor must assume Svadu
-> > > > > >       to be always enabled. (Obvious)
-> > > > > 
-> > > > > I agree with all of that, but the problem is how can we guarantee that
-> > > > > openSBI actually enabled svadu?
-> > > > Conflation of an SBI implementation and OpenSBI aside, if the devicetree
-> > > > property is defined to mean that "the supervisor must assume svadu to be
-> > > > always enabled", then either it is, or the firmware's description of the
-> > > > hardware is broken and it's not the supervisor's problem any more. It's
-> > > > not the kernel's job to validate that the devicetree matches the
-> > > > hardware.
-> > > > 
-> > > > > This is not the case for now.
-> > > > What "is not the case for now"? My understanding was that, at the
-> > > > moment, nothing happens with Svadu in OpenSBI. In turn, this means that
-> > > > there should be no devicetrees containing Svadu (per this binding's
-> > > > description) and therefore no problem?
-> > > 
-> > > 
-> > > What prevents a dtb to be passed with svadu to an old version of opensbi
-> > > which does not support the enablement of svadu? The svadu extension will end
-> > > up being present in the kernel but not enabled right?
-> 
-> If you'll allow me use of my high horse, relying on undocumented
-> (or deprecated I suppose in this case) devicetree properties is always
-> going to leave people exposed to issues like this. If the property isn't
-> documented, then you shouldn't be passing it to the kernel.
-> 
-> > I understand the concern; old SBI implementations will leave svadu in the
-> > DT but not actually enable it. Then, since svade may not be in the DT if
-> > the platform doesn't support it or it was left out on purpose, Linux will
-> > only see svadu and get unexpected exceptions. This is something we could
-> > force easily with QEMU and an SBI implementation which doesn't do anything
-> > for svadu. I hope vendors of real platforms, which typically provide their
-> > own firmware and DTs, would get this right, though, especially since Linux
-> > should fail fast in their testing when they get it wrong.
-> 
-> I'll admit, I wasn't really thinking here about something like QEMU that
-> puts extensions into the dtb before their exact meanings are decided
-> upon. I almost only ever think about "real" systems, and in those cases
-> I would expect that if you can update the representation of the hardware
-> provided to (or by the firmware to Linux) with new properties, then updating
-> the firmware itself should be possible.
-> 
-> Does QEMU have the this exact problem at the moment? I know it puts
-> Svadu in the max cpu, but does it enable the behaviour by default, even
-> without the SBI implementation asking for it?
+On Mon, Jun 17, 2024 at 6:08=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> The Allwinner H616 (and later) SoCs support more than 32 bits worth of
+> physical addresses. To accommodate the larger address space, the CE task
+> descriptor fields holding addresses are now encoded as "word addresses",
+> so take the actual address divided by four.
+> This is true for the fields within the descriptor, but also for the
+> descriptor base address, in the CE_TDA register.
+>
+> Wrap all accesses to those fields in a function, which will do the
+> required division if needed. For now this in unused, so there should be
+> no change in behaviour.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Yes, because QEMU has done hardware A/D updating since it first started
-supporting riscv, which means it did svadu when neither svadu nor svade
-were in the DT. The "fix" for that was to ensure we have svadu and !svade
-by default, which means we've perfectly realized Alexandre's concern...
-We should be able to change the named cpu types that don't support svadu
-to only have svade in their DTs, since that would actually be fixing those
-cpu types, but we'll need to discuss how to proceed with the generic cpu
-types like 'max'.
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
-> 
-> Sorta on a related note, I'm completely going head-in-sand here for ACPI,
-> cos I have no idea how that is being dealt with - other than that Linux
-> assumes that all ACPI properties have the same meaning as the DT ones. I
-> don't really think that that is sustainable, but it is what we are doing
-> at present. Maybe I should put that in boot.rst or in acpi.rst?
+though you need to fix up the reported sparse warning in sun8i_ce_run_task(=
+).
 
-Yes, I think that's what we're doing right now and documenting that
-assumption is a good idea.
-
-> 
-> Also on the ACPI side of things, and I am going an uber devil's advocate
-> here, the version of the spec that we documented as defining our parsing
-> rules never mentions svade or svadu, so is it even valid to use them on
-> ACPI systems?
-
-I think that ISA string format chapter implies that any extension name
-that is in the specified format can be parsed, which implies it can be
-interpreted as an available extension, even if it's not mentioned in
-the spec. But maybe I'm just pushing a big foot into a small shoe since
-I don't really want to try and figure out how to get that chapter
-changed...
-
-Thanks,
-drew
+> ---
+>  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c |  8 ++++----
+>  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c   |  3 ++-
+>  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c   |  6 +++---
+>  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c   |  6 +++---
+>  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c   |  2 +-
+>  drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h        | 10 ++++++++++
+>  6 files changed, 23 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c b/driver=
+s/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+> index de50c00ba218f..3a5674b1bd3c0 100644
+> --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+> +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
+> @@ -190,7 +190,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_engi=
+ne *engine, void *async_req
+>                 err =3D -EFAULT;
+>                 goto theend;
+>         }
+> -       cet->t_key =3D cpu_to_le32(rctx->addr_key);
+> +       cet->t_key =3D sun8i_ce_desc_addr(ce, rctx->addr_key);
+>
+>         ivsize =3D crypto_skcipher_ivsize(tfm);
+>         if (areq->iv && crypto_skcipher_ivsize(tfm) > 0) {
+> @@ -208,7 +208,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_engi=
+ne *engine, void *async_req
+>                         err =3D -ENOMEM;
+>                         goto theend_iv;
+>                 }
+> -               cet->t_iv =3D cpu_to_le32(rctx->addr_iv);
+> +               cet->t_iv =3D sun8i_ce_desc_addr(ce, rctx->addr_iv);
+>         }
+>
+>         if (areq->src =3D=3D areq->dst) {
+> @@ -236,7 +236,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_engi=
+ne *engine, void *async_req
+>
+>         len =3D areq->cryptlen;
+>         for_each_sg(areq->src, sg, nr_sgs, i) {
+> -               cet->t_src[i].addr =3D cpu_to_le32(sg_dma_address(sg));
+> +               cet->t_src[i].addr =3D sun8i_ce_desc_addr(ce, sg_dma_addr=
+ess(sg));
+>                 todo =3D min(len, sg_dma_len(sg));
+>                 cet->t_src[i].len =3D cpu_to_le32(todo / 4);
+>                 dev_dbg(ce->dev, "%s total=3D%u SG(%d %u off=3D%d) todo=
+=3D%u\n", __func__,
+> @@ -251,7 +251,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_engi=
+ne *engine, void *async_req
+>
+>         len =3D areq->cryptlen;
+>         for_each_sg(areq->dst, sg, nr_sgd, i) {
+> -               cet->t_dst[i].addr =3D cpu_to_le32(sg_dma_address(sg));
+> +               cet->t_dst[i].addr =3D sun8i_ce_desc_addr(ce, sg_dma_addr=
+ess(sg));
+>                 todo =3D min(len, sg_dma_len(sg));
+>                 cet->t_dst[i].len =3D cpu_to_le32(todo / 4);
+>                 dev_dbg(ce->dev, "%s total=3D%u SG(%d %u off=3D%d) todo=
+=3D%u\n", __func__,
+> diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c b/drivers/=
+crypto/allwinner/sun8i-ce/sun8i-ce-core.c
+> index 0408b2d5d533b..89ab3e08f0697 100644
+> --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
+> +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
+> @@ -172,7 +172,8 @@ int sun8i_ce_run_task(struct sun8i_ce_dev *ce, int fl=
+ow, const char *name)
+>         writel(v, ce->base + CE_ICR);
+>
+>         reinit_completion(&ce->chanlist[flow].complete);
+> -       writel(ce->chanlist[flow].t_phy, ce->base + CE_TDQ);
+> +       writel(sun8i_ce_desc_addr(ce, ce->chanlist[flow].t_phy),
+> +              ce->base + CE_TDQ);
+>
+>         ce->chanlist[flow].status =3D 0;
+>         /* Be sure all data is written before enabling the task */
+> diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c b/drivers/=
+crypto/allwinner/sun8i-ce/sun8i-ce-hash.c
+> index ee2a28c906ede..a710ec9aa96f1 100644
+> --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c
+> +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c
+> @@ -403,7 +403,7 @@ int sun8i_ce_hash_run(struct crypto_engine *engine, v=
+oid *breq)
+>
+>         len =3D areq->nbytes;
+>         for_each_sg(areq->src, sg, nr_sgs, i) {
+> -               cet->t_src[i].addr =3D cpu_to_le32(sg_dma_address(sg));
+> +               cet->t_src[i].addr =3D sun8i_ce_desc_addr(ce, sg_dma_addr=
+ess(sg));
+>                 todo =3D min(len, sg_dma_len(sg));
+>                 cet->t_src[i].len =3D cpu_to_le32(todo / 4);
+>                 len -=3D todo;
+> @@ -414,7 +414,7 @@ int sun8i_ce_hash_run(struct crypto_engine *engine, v=
+oid *breq)
+>                 goto theend;
+>         }
+>         addr_res =3D dma_map_single(ce->dev, result, digestsize, DMA_FROM=
+_DEVICE);
+> -       cet->t_dst[0].addr =3D cpu_to_le32(addr_res);
+> +       cet->t_dst[0].addr =3D sun8i_ce_desc_addr(ce, addr_res);
+>         cet->t_dst[0].len =3D cpu_to_le32(digestsize / 4);
+>         if (dma_mapping_error(ce->dev, addr_res)) {
+>                 dev_err(ce->dev, "DMA map dest\n");
+> @@ -445,7 +445,7 @@ int sun8i_ce_hash_run(struct crypto_engine *engine, v=
+oid *breq)
+>         }
+>
+>         addr_pad =3D dma_map_single(ce->dev, buf, j * 4, DMA_TO_DEVICE);
+> -       cet->t_src[i].addr =3D cpu_to_le32(addr_pad);
+> +       cet->t_src[i].addr =3D sun8i_ce_desc_addr(ce, addr_pad);
+>         cet->t_src[i].len =3D cpu_to_le32(j);
+>         if (dma_mapping_error(ce->dev, addr_pad)) {
+>                 dev_err(ce->dev, "DMA error on padding SG\n");
+> diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c b/drivers/=
+crypto/allwinner/sun8i-ce/sun8i-ce-prng.c
+> index 80815379f6fc5..f030167f95945 100644
+> --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c
+> +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c
+> @@ -132,10 +132,10 @@ int sun8i_ce_prng_generate(struct crypto_rng *tfm, =
+const u8 *src,
+>         cet->t_sym_ctl =3D cpu_to_le32(sym);
+>         cet->t_asym_ctl =3D 0;
+>
+> -       cet->t_key =3D cpu_to_le32(dma_iv);
+> -       cet->t_iv =3D cpu_to_le32(dma_iv);
+> +       cet->t_key =3D sun8i_ce_desc_addr(ce, dma_iv);
+> +       cet->t_iv =3D sun8i_ce_desc_addr(ce, dma_iv);
+>
+> -       cet->t_dst[0].addr =3D cpu_to_le32(dma_dst);
+> +       cet->t_dst[0].addr =3D sun8i_ce_desc_addr(ce, dma_dst);
+>         cet->t_dst[0].len =3D cpu_to_le32(todo / 4);
+>         ce->chanlist[flow].timeout =3D 2000;
+>
+> diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c b/drivers/=
+crypto/allwinner/sun8i-ce/sun8i-ce-trng.c
+> index 9c35f2a83eda8..465c1c512eb85 100644
+> --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c
+> +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c
+> @@ -77,7 +77,7 @@ static int sun8i_ce_trng_read(struct hwrng *rng, void *=
+data, size_t max, bool wa
+>         cet->t_sym_ctl =3D 0;
+>         cet->t_asym_ctl =3D 0;
+>
+> -       cet->t_dst[0].addr =3D cpu_to_le32(dma_dst);
+> +       cet->t_dst[0].addr =3D sun8i_ce_desc_addr(ce, dma_dst);
+>         cet->t_dst[0].len =3D cpu_to_le32(todo / 4);
+>         ce->chanlist[flow].timeout =3D todo;
+>
+> diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h b/drivers/crypt=
+o/allwinner/sun8i-ce/sun8i-ce.h
+> index 93d4985def87a..8fa58f3bb7f86 100644
+> --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
+> +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
+> @@ -149,6 +149,7 @@ struct ce_variant {
+>         bool hash_t_dlen_in_bits;
+>         bool prng_t_dlen_in_bytes;
+>         bool trng_t_dlen_in_bytes;
+> +       bool needs_word_addresses;
+>         struct ce_clock ce_clks[CE_MAX_CLOCKS];
+>         int esr;
+>         unsigned char prng;
+> @@ -241,6 +242,15 @@ struct sun8i_ce_dev {
+>  #endif
+>  };
+>
+> +static inline __le32 sun8i_ce_desc_addr(struct sun8i_ce_dev *dev,
+> +                                       dma_addr_t addr)
+> +{
+> +       if (dev->variant->needs_word_addresses)
+> +               return cpu_to_le32(addr / 4);
+> +
+> +       return cpu_to_le32(addr);
+> +}
+> +
+>  /*
+>   * struct sun8i_cipher_req_ctx - context for a skcipher request
+>   * @op_dir:            direction (encrypt vs decrypt) for this request
+> --
+> 2.39.4
+>
 
