@@ -1,251 +1,102 @@
-Return-Path: <devicetree+bounces-78363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442AB9120EB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:41:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ECD6912132
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:50:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF16328119E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:41:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69D411C21F39
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211FE16F0E9;
-	Fri, 21 Jun 2024 09:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eT2enNBT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75BAF16F82F;
+	Fri, 21 Jun 2024 09:50:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A6216EBE7;
-	Fri, 21 Jun 2024 09:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CC1616EB59;
+	Fri, 21 Jun 2024 09:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718962858; cv=none; b=b2JRGBOzoPnOtBiEezIhywFDTOfleEQGFovXAgfvSR0ZlY/kHUngOSSjvfxg+Z3nsPd8mDv5JxvJkVyx31BMUgjuJTYlVtDVdhqDm9xnZsJcXimi70anvZshjxY+9FBMoiuS4d0vlilzQ8w5dn4tIGGPOpY/KsKsSH/Ob4k58ZY=
+	t=1718963418; cv=none; b=CE1LlYJGary6JlQoFLL1DCwDKvpyUHuWsVMngwJMRVLuUfwFsb7k/KYpTAeMU5ybPauAkR6y3EahG93HeI2p2rNXFIkiSoy4XlrXX1BvJ2viCRQKt5S+W+81WgcU+nWFtsTwc7nSYIWf1/IYdqRMd1qnq9J3O9Glq4ygQf9klwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718962858; c=relaxed/simple;
-	bh=086ciIBUwSein3FKRXzbIwvB2nfQumI262UryjRwkC4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=P8YBcKhOPnw1c1120uazbyoSs6kMhtjOIBhbBZQrSYJAfn7VotqjjAo+IM5L1Ec69Y1f1ioGe9e4BytD/rK9giJsDK/ZEX/sZYEgjBGOWE4b9Ejo6N33s5kQJmyoHWLYT1eUgvujF9x5SRPWk38YvVOXCsG5O1eQVEvgZzgzsTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eT2enNBT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 83FD5C4AF54;
-	Fri, 21 Jun 2024 09:40:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718962857;
-	bh=086ciIBUwSein3FKRXzbIwvB2nfQumI262UryjRwkC4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=eT2enNBTB3j7z67DLa9e1wu7xdOhnJv/OSXHmbzWjz1C8t+fWUOkcMYgoSWNKoPek
-	 RTIMZKnaqWGWhP0JcPJ0waK1HQwOoLlClGWWGV6EOnMubqWfADhqXB7MNKmJld//En
-	 6BPqqT0RatBt6hybEfbIY/uEelt6wi8XHLIMWmCBmyZq7xnPUHqkNiI5+207Q88m6z
-	 v15hQGFBu5STuYoQP+iTbO+pD1EGcWHik1jTpw7vRKTCku9hdobc0N/N7of/cHAIQo
-	 PYhc1DJ+9LjpnJ8561sd+S91iXbXXBnyc5ml+GfH+3Rjucp74E45mPYHIg2MfNnsBM
-	 Pkitx0kHF4ZIA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D73DC27C4F;
-	Fri, 21 Jun 2024 09:40:57 +0000 (UTC)
-From: George Chan via B4 Relay <devnull+gchan9527.gmail.com@kernel.org>
-Date: Fri, 21 Jun 2024 17:40:58 +0800
-Subject: [PATCH RFT 6/6] arm64: dts: qcom: sc7180: Add support for camss
- subsys
+	s=arc-20240116; t=1718963418; c=relaxed/simple;
+	bh=xtdLRnYhmq+0nTYyiyr1vnT1az+4mpomWJNS21vlD+w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZJyvB6Lzd2jLqtp/8Gv4JyMCDGd1xfFCdC89BEkCTbEfnGn+snRdj4Pe+jPQEuXLDrXZdGrBWcwQWPfEz2nbsIwWXzeTX8wZuz2bKt6iuz8LJkTM8ezgbmJBkeAIBDemu/jkeqtFW1Uc+en9QF79RbdfcfZV9Jjn96YTj1yxcqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e8616cf.versanet.de ([94.134.22.207] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sKatj-0000eb-JF; Fri, 21 Jun 2024 11:49:35 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Daniel Golle <daniel@makrotopia.org>,
+ Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Anand Moon <linux.amoon@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Martin Kaiser <martin@kaiser.cx>,
+ Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Diederik de Haas <didi.debian@cknow.org>
+Cc: Daniel Golle <daniel@makrotopia.org>
+Subject:
+ Re: [PATCH v3 3/3] arm64: dts: rockchip: add DT entry for RNG to RK356x
+Date: Fri, 21 Jun 2024 11:49:33 +0200
+Message-ID: <1772829.KUTt5R2Mg1@diego>
+In-Reply-To: <5870442.3KgWVfgXFx@bagend>
+References:
+ <cover.1718921174.git.daniel@makrotopia.org>
+ <bd08c142ce6b32cd98014c875c7ccf3657c63f23.1718921174.git.daniel@makrotopia.org>
+ <5870442.3KgWVfgXFx@bagend>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240621-b4-sc7180-camss-v1-6-14937929f30e@gmail.com>
-References: <20240621-b4-sc7180-camss-v1-0-14937929f30e@gmail.com>
-In-Reply-To: <20240621-b4-sc7180-camss-v1-0-14937929f30e@gmail.com>
-To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- George Chan <gchan9527@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1718962855; l=4150;
- i=gchan9527@gmail.com; s=20240621; h=from:subject:message-id;
- bh=B8rhLES5xtNqCPArzEgX9w5nXV1pwjkOAbh2DRGd8HY=;
- b=P2glylTdS03cwFIQg4vYqmZQCnI2va7LPlU45e0jcpfBa3hgqbaEywoLDDqKmfKCqg7D+pnpg
- mhGmwOELNPLA4ShMM6oEpru5J/F7QDqc/VZj0md3oi/tJspGC24iV/8
-X-Developer-Key: i=gchan9527@gmail.com; a=ed25519;
- pk=Ac2fkTqgUBlj2sns9hRIWJTYhWHO1BsmHbdBb5UpUUY=
-X-Endpoint-Received: by B4 Relay for gchan9527@gmail.com/20240621 with
- auth_id=176
-X-Original-From: George Chan <gchan9527@gmail.com>
-Reply-To: gchan9527@gmail.com
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: George Chan <gchan9527@gmail.com>
+Am Freitag, 21. Juni 2024, 11:36:45 CEST schrieb Diederik de Haas:
+> On Friday, 21 June 2024 03:25:30 CEST Daniel Golle wrote:
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index d8543b5557ee..57c8103500ea
+> > 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > @@ -1855,6 +1855,15 @@ usb2phy1_otg: otg-port {
+> >                 };
+> >         };
+> > 
+> > +       rng: rng@fe388000 {
+> > +               compatible = "rockchip,rk3568-rng";
+> > +               reg = <0x0 0xfe388000 0x0 0x4000>;
+> > +               clocks = <&cru CLK_TRNG_NS>, <&cru HCLK_TRNG_NS>;
+> > +               clock-names = "core", "ahb";
+> > +               resets = <&cru SRST_TRNG_NS>;
+> > +               reset-names = "reset";
+> > +       };
+> > +
+> >         pinctrl: pinctrl {
+> >                 compatible = "rockchip,rk3568-pinctrl";
+> >                 rockchip,grf = <&grf>;
+> > --
+> 
+> I had placed the node between ``sdhci: mmc@fe310000`` and
+> ``i2s0_8ch: i2s@fe400000`` which I think is the proper order.
 
-Introduce camss subsys support to sc7180 family soc.
-
-Signed-off-by: George Chan <gchan9527@gmail.com>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 134 +++++++++++++++++++++++++++++++++++
- 1 file changed, 134 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index b5ebf8980325..6ed4caafbe98 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -5,6 +5,7 @@
-  * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,camcc-sc7180.h>
- #include <dt-bindings/clock/qcom,dispcc-sc7180.h>
- #include <dt-bindings/clock/qcom,gcc-sc7180.h>
- #include <dt-bindings/clock/qcom,gpucc-sc7180.h>
-@@ -3150,6 +3151,139 @@ camnoc_virt: interconnect@ac00000 {
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		camss: camss@acb3000 {
-+			compatible = "qcom,sc7180-camss";
-+
-+			reg = <0 0x0acb3000 0 0x1000>,
-+				<0 0x0acba000 0 0x1000>,
-+				<0 0x0acc8000 0 0x1000>,
-+				<0 0x0ac65000 0 0x1000>,
-+				<0 0x0ac66000 0 0x1000>,
-+				<0 0x0ac67000 0 0x1000>,
-+				<0 0x0ac68000 0 0x1000>,
-+				<0 0x0acaf000 0 0x4000>,
-+				<0 0x0acb6000 0 0x4000>,
-+				<0 0x0acc4000 0 0x4000>;
-+			reg-names = "csid0",
-+				"csid1",
-+				"csid2",
-+				"csiphy0",
-+				"csiphy1",
-+				"csiphy2",
-+				"csiphy3",
-+				"vfe0",
-+				"vfe1",
-+				"vfe_lite";
-+
-+			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 473 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+				<GIC_SPI 472 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+				"csid1",
-+				"csid2",
-+				"csiphy0",
-+				"csiphy1",
-+				"csiphy2",
-+				"csiphy3",
-+				"vfe0",
-+				"vfe1",
-+				"vfe_lite";
-+
-+			power-domains = <&camcc IFE_0_GDSC>,
-+				<&camcc IFE_1_GDSC>,
-+				<&camcc TITAN_TOP_GDSC>;
-+
-+			power-domain-names = "ife0",
-+				"ife1",
-+				"top";
-+
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_IFE_0_CSID_CLK>,
-+				<&camcc CAM_CC_IFE_1_CSID_CLK>,
-+				<&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-+				<&camcc CAM_CC_CSIPHY0_CLK>,
-+				<&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+				<&camcc CAM_CC_CSIPHY1_CLK>,
-+				<&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+				<&camcc CAM_CC_CSIPHY2_CLK>,
-+				<&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+				<&camcc CAM_CC_CSIPHY3_CLK>,
-+				<&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-+				<&gcc GCC_CAMERA_AHB_CLK>,
-+				<&gcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_IFE_0_AXI_CLK>,
-+				<&camcc CAM_CC_IFE_0_CLK>,
-+				<&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+				<&camcc CAM_CC_IFE_1_AXI_CLK>,
-+				<&camcc CAM_CC_IFE_1_CLK>,
-+				<&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+				<&camcc CAM_CC_IFE_LITE_CLK>,
-+				<&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
-+
-+			clock-names = "camnoc_axi",
-+				"cpas_ahb",
-+				"csi0",
-+				"csi1",
-+				"csi2",
-+				"csiphy0",
-+				"csiphy0_timer",
-+				"csiphy1",
-+				"csiphy1_timer",
-+				"csiphy2",
-+				"csiphy2_timer",
-+				"csiphy3",
-+				"csiphy3_timer",
-+				"gcc_camera_ahb",
-+				"gcc_camera_axi",
-+				"soc_ahb",
-+				"vfe0_axi",
-+				"vfe0",
-+				"vfe0_cphy_rx",
-+				"vfe1_axi",
-+				"vfe1",
-+				"vfe1_cphy_rx",
-+				"vfe_lite",
-+				"vfe_lite_cphy_rx";
-+
-+			iommus = <&apps_smmu 0x820 0x0>,
-+				<&apps_smmu 0x840 0x0>,
-+				<&apps_smmu 0x860 0x0>;
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sc7180-camcc";
- 			reg = <0 0x0ad00000 0 0x10000>;
-
--- 
-2.34.1
+correct.
+If a node has an address in its name, sort by that address.
 
 
 
