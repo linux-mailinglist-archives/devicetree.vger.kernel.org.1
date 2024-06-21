@@ -1,73 +1,72 @@
-Return-Path: <devicetree+bounces-78634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC9BB912F4A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 23:18:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B9C912F69
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 23:22:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72709287883
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:17:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D471FB20A89
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:22:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6369617BB31;
-	Fri, 21 Jun 2024 21:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2F417C20E;
+	Fri, 21 Jun 2024 21:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="caapiA1m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UTKP7OhZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E0A1607AF
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 21:17:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 884BC16D4CE
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 21:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719004676; cv=none; b=j7SEY0f/nU/u15HFDCTQfJHDLDw2yOjsH9ukI2l4vHM3cP5s0dJgHkn3GZWnd1n05PcWdIPNA9EHqlpLDrbQ09k/KzQJdZGyNZMTMJegfeO3U0JRkGbxs4mo4DggP0vW7OYZkSYMX/kyzIVsblpNeayYs+GkPpHQBGFFrb9wSEU=
+	t=1719004955; cv=none; b=GgBOHIzsxiExdrWzhBN6GuIvDJ5Y+gJUKGnq/1SzLih3NdA3gCZSptdorALGcINB0orV0oVnBsdLkJuClIkeKHwabyVxB6Pb+12gRzByXvR46Z+qGHJhjVYTufZG+cwZfkowVo/YkMX0UJpeUCPVaE7SpGsmPEA95TVsluICgkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719004676; c=relaxed/simple;
-	bh=ejKkPFJaB3Ka3fsapPQVUzX9N5WhhAbWiXLA/TvXHh0=;
+	s=arc-20240116; t=1719004955; c=relaxed/simple;
+	bh=ZBvcr7+Gwxbqe0da41kn+7SiVw4SO+t8RwQK3zGaPcA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fIr3aQoD0OckwxCWfPEnoZvRGp7mAIEoyM32OGwN0RXthJvsX/U2nd9AYVAu0AbWNbeuanvAQGQUvayp0cJYDmkkaQ9kREXyFlSnktb2mVck6go4shvw6XVP6ywK2Q/aWuELk6ggodvy0yy/kKVAGnwkOjqP7gLDJGkoLpoQtQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=caapiA1m; arc=none smtp.client-ip=209.85.208.180
+	 Content-Type:Content-Disposition:In-Reply-To; b=u0yOV3GjCoQ2goLfMLjglaiiuj1BvEHKOqh2N+b/cmrNt7sgf/GiQr5aJ9qCXZ4c/bn3p46+A2UIpUUFMpyIpGcbsBCZh3/rKz7smN3s0pLNUsXWSC1ydJybaQRehFOWfOeIftAYmlD85KnvawjWZ4lNPq824UBFYU/E7YLB/Kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UTKP7OhZ; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ec52fbb50bso5481491fa.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 14:17:54 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ec408c6d94so29257411fa.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 14:22:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719004673; x=1719609473; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719004952; x=1719609752; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M+XDYN6E55Q8wiev+4hnFYw5SQkDqC6ydMWbbsnc6Uw=;
-        b=caapiA1mTW1PO+/g1XlZx1enhgS5J4ZyAptW2qQGzYPHw7rW2S5DF66MWkdQAzuYRP
-         TCoa24H+lde/cHkMw9mVn1G+HKrCUDRZRR23lc3G/atGLdeBKEq9ekqEQ7Tw7vUq8hxA
-         e9fFrCIrwR8MCzxjkh5LWB+tDIW+uBLTDeI/EbjdRbJ3oWau8S9esuv5D2/5VcPEzsBg
-         mujjerUJLa8uut7cHPBlq6CE/HZTFiDvsV79qPx5d79rQ55WHUVK9GykFJ617WlgAfa7
-         lyR9N2GEXEAo+9k7jBFJdKyW7hivKYYbsg3b3enXez9wxFrPQZKquBqc4UqUO/n6aOZ5
-         K8nw==
+        bh=xAdB563R8XYmyXoP8NFXvauaXnziMOv9/xConCBo8TA=;
+        b=UTKP7OhZ8PVh0j5NyUAOxUTvkOBebR0aeeNN5WQu6sdT3xs9Sy8oQmXjnQdCAKwY77
+         3PmVW8LXfsXdasGn7e9QM7y0FuOVyQa3siV38sT0ulfDflKZQ9cCQY1cOCFugnxq4Dei
+         N9sVDlPztrc81ZzltlAQ9pAdNcGplzERXMVz4JoTtiX1Dc/JPjv+roKEpqftFIc0qZVj
+         oJWqbMTzFt3yrO1JjSqATYNNqnmfjRgySZl3iKPcvqJxPVDZImo0pWdcU1oPSZd63lsZ
+         nsSWYbdXAzmFfgUy42WRUi4wK3GtZ9P9mDHaPfsiaDQnM7dlDP1eQ/UVOzUM06N2AiLU
+         S8YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719004673; x=1719609473;
+        d=1e100.net; s=20230601; t=1719004952; x=1719609752;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=M+XDYN6E55Q8wiev+4hnFYw5SQkDqC6ydMWbbsnc6Uw=;
-        b=kh0dDFr/cybXqu6k+GrevMlustFjIyBdhzVfTWyf3R0eB5jqqEPx3uAXVq0OO470UL
-         jXhSUeh6u55iaPyiVNlcrOwj5d7KVLufBJa5JNRdwuXSb/aCB/+AJYcQTpexh122lPJy
-         TEk1pO5p1q81NSqYmGro6R7rfHEVlLLz6JUM1PpjzSfFf9RBPkX8U/Ap73YKoekS0LPp
-         P3ckdu7v/krUX9Us5UChQk0u2TbpD3Y4MpLWLF4NF6+0yaEdFqPYZLfi7NDz3s4gojXO
-         5KTwS319QNARAOCr0fX4HRN1sM4QO+GyvrhT0G51tXshu9NN5pJ/BEvvH3GQcCHpF4Tf
-         VN1A==
-X-Forwarded-Encrypted: i=1; AJvYcCU9jrVHOwG0QFF+c8vD4GBnPEI5tW0UNvIAIfhK0U2Fo2ukNKT6YkrIg9Dm9P/QVRPspPVYKxInl5ppaPdw7Q0hEb122PP485OfKg==
-X-Gm-Message-State: AOJu0Yz1Ol0VCpyp4mHZ7zwGZjHL9mjGqtgN/KXo77Kjlk+FX0Loiaqp
-	H6FZWJT2Ah+uZkm7d6/S+1cSF+nC7OdWBGeAvGq0AFp3znk5MeiBfKz7z0tQxq+Bf04URx6Cz0/
-	CszY=
-X-Google-Smtp-Source: AGHT+IG5ONtAHMiAMkjrKYk/XJYpMtsQK2fNUz21XwNvYiifq/ErR6C5eSVfLnXD9V5NnA9w+MvPuw==
-X-Received: by 2002:a2e:980b:0:b0:2ec:5365:34db with SMTP id 38308e7fff4ca-2ec536537eemr6903361fa.0.1719004672703;
-        Fri, 21 Jun 2024 14:17:52 -0700 (PDT)
+        bh=xAdB563R8XYmyXoP8NFXvauaXnziMOv9/xConCBo8TA=;
+        b=NNGL1abfMDU6RdkBCMD0GV/M1gC8JEIFUVqb0SYyO8ScQBdj+B5HwBbJRiP0pfqCWD
+         mC6NRD8Mn+idjBj64WSRdQr8NYJqU2EnlA1vyyhctvPDAe5byBm2QbCaW1u18jfeQBqZ
+         NgUvJewPkjhGmOUw2XRjIDue8Uj/eNunikfK2HgUTOlMdpwxBDlg3ndixhOfM/tqQQ8h
+         YqOssSP//5r8fmb2dt3lRvDRoVBPglw+bUXzfKunQsdbj3Lo/AYmoPIZh7C23Xk+zB6+
+         RzJvz6XmVufRKMrVLs6GBAvY2foJSVAVdMLOgqwn1vSg9U+Hy2zN41ujvn52vGquRidx
+         8cCA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUJArFNSJGluahyPaeQQUvzIRBiZuY6G2ChtuqR7FSl/GhyWjYE2NkLZic4hDwmtMc2+XvzjUvCrrzykMsmADSez77u8UXD3GKXQ==
+X-Gm-Message-State: AOJu0YwdDKV6FmrRBvS9YkYOYDWcQ9DrLXPlb7ZDuPSm0TRs9A/hZ4gU
+	HDkvYUKyouQYL8fmyQFe5Ipw+xD4+pAfVzCr3HK+XPv8LlPyZHKHQLOdC9SxRcA=
+X-Google-Smtp-Source: AGHT+IGfaOTGT+6o67ivDYPs7VfP98am4DOphN8WQafMAF7sGYpWN2LWS4wRAQkJx7QKaIe8VP/Jcw==
+X-Received: by 2002:a2e:7d0b:0:b0:2ec:140c:8985 with SMTP id 38308e7fff4ca-2ec3cfe99dfmr68489491fa.36.1719004951726;
+        Fri, 21 Jun 2024 14:22:31 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec511dac51sm1707251fa.74.2024.06.21.14.17.52
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec4d6012d9sm2931571fa.10.2024.06.21.14.22.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 14:17:52 -0700 (PDT)
-Date: Sat, 22 Jun 2024 00:17:50 +0300
+        Fri, 21 Jun 2024 14:22:31 -0700 (PDT)
+Date: Sat, 22 Jun 2024 00:22:29 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
 Cc: sboyd@kernel.org, andersson@kernel.org, bjorn.andersson@linaro.org, 
@@ -75,10 +74,10 @@ Cc: sboyd@kernel.org, andersson@kernel.org, bjorn.andersson@linaro.org,
 	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-remoteproc@vger.kernel.org, mark.rutland@arm.com, mturquette@baylibre.com, ohad@wizery.com, 
 	robh@kernel.org, sricharan@codeaurora.org, gokulsri@codeaurora.org
-Subject: Re: [PATCH v9 2/8] remoteproc: qcom: Add secure PIL support
-Message-ID: <mew7kifravbescnenvstmebfxkbpwdnarmagh6v4a2hqnbrxc6@cepyqz4vgum6>
+Subject: Re: [PATCH v9 0/8] remoteproc: qcom: q6v5-wcss: Add support for
+ secure pil
+Message-ID: <75hecf5rsekiq6vlnzx4zn3out2emdiwevhclt55espyzcenxc@fs5dljukafdb>
 References: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
- <20240621114659.2958170-3-quic_gokulsri@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,167 +86,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240621114659.2958170-3-quic_gokulsri@quicinc.com>
+In-Reply-To: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
 
-On Fri, Jun 21, 2024 at 05:16:53PM GMT, Gokul Sriram Palanisamy wrote:
-> IPQ8074 uses secure PIL. Hence, adding the support for the same.
+On Fri, Jun 21, 2024 at 05:16:51PM GMT, Gokul Sriram Palanisamy wrote:
+> IPQ8074 needs support for secure pil as well.
 
-See Documentation/process/submitting-patches.rst
+Could you please settle on 'pil' or 'PIL'. Just use one of them.
+Explain, what is secure PIL.
+
+> Also, currently only unified firmware is supported.
+
+What is unified firmware? What is split firmware? Why do I have so many
+questions after reading the cover letter for what claims to be v9?
+
+> IPQ8074 supports split firmware for q6 and m3, so
+> adding support for that.
+
+Ok. After reading through the first few patches. Is WCSS support on
+IPQ8074 broken?
 
 > 
-> Signed-off-by: Nikhil Prakash V <quic_nprakash@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> ---
->  drivers/remoteproc/qcom_q6v5_wcss.c | 43 +++++++++++++++++++++++++++--
->  1 file changed, 40 insertions(+), 3 deletions(-)
+> changes since v8:
+>  - Rebased on top of Linux 6.10-rc4
+
+Previous changelog has wanished?
+
 > 
-> diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
-> index 366b19cbd994..e45e79d80238 100644
-> --- a/drivers/remoteproc/qcom_q6v5_wcss.c
-> +++ b/drivers/remoteproc/qcom_q6v5_wcss.c
-> @@ -18,6 +18,7 @@
->  #include <linux/regulator/consumer.h>
->  #include <linux/reset.h>
->  #include <linux/soc/qcom/mdt_loader.h>
-> +#include <linux/firmware/qcom/qcom_scm.h>
->  #include "qcom_common.h"
->  #include "qcom_pil_info.h"
->  #include "qcom_q6v5.h"
-> @@ -86,6 +87,9 @@
->  #define TCSR_WCSS_CLK_ENABLE	0x14
->  
->  #define MAX_HALT_REG		3
-> +
-> +#define WCNSS_PAS_ID		6
-> +
->  enum {
->  	WCSS_IPQ8074,
->  	WCSS_QCS404,
-> @@ -134,6 +138,7 @@ struct q6v5_wcss {
->  	unsigned int crash_reason_smem;
->  	u32 version;
->  	bool requires_force_stop;
-> +	bool need_mem_protection;
-
-needs
-
->  
->  	struct qcom_rproc_glink glink_subdev;
->  	struct qcom_rproc_ssr ssr_subdev;
-> @@ -152,6 +157,7 @@ struct wcss_data {
->  	int ssctl_id;
->  	const struct rproc_ops *ops;
->  	bool requires_force_stop;
-> +	bool need_mem_protection;
-
-needs
-
->  };
->  
->  static int q6v5_wcss_reset(struct q6v5_wcss *wcss)
-> @@ -251,6 +257,15 @@ static int q6v5_wcss_start(struct rproc *rproc)
->  
->  	qcom_q6v5_prepare(&wcss->q6v5);
->  
-> +	if (wcss->need_mem_protection) {
-> +		ret = qcom_scm_pas_auth_and_reset(WCNSS_PAS_ID);
-> +		if (ret) {
-> +			dev_err(wcss->dev, "wcss_reset failed\n");
-> +			return ret;
-> +		}
-> +		goto wait_for_reset;
-> +	}
-
-Use if/else instead of a goto.
-
-> +
->  	/* Release Q6 and WCSS reset */
->  	ret = reset_control_deassert(wcss->wcss_reset);
->  	if (ret) {
-> @@ -285,6 +300,7 @@ static int q6v5_wcss_start(struct rproc *rproc)
->  	if (ret)
->  		goto wcss_q6_reset;
->  
-> +wait_for_reset:
-
-This is more like wait_for_start
-
->  	ret = qcom_q6v5_wait_for_start(&wcss->q6v5, 5 * HZ);
->  	if (ret == -ETIMEDOUT)
->  		dev_err(wcss->dev, "start timed out\n");
-> @@ -718,6 +734,15 @@ static int q6v5_wcss_stop(struct rproc *rproc)
->  	struct q6v5_wcss *wcss = rproc->priv;
->  	int ret;
->  
-> +	if (wcss->need_mem_protection) {
-> +		ret = qcom_scm_pas_shutdown(WCNSS_PAS_ID);
-> +		if (ret) {
-> +			dev_err(wcss->dev, "not able to shutdown\n");
-> +			return ret;
-> +		}
-> +		goto pas_done;
-> +	}
-
-if/else. Or abstract this to functions.
-
-> +
->  	/* WCSS powerdown */
->  	if (wcss->requires_force_stop) {
->  		ret = qcom_q6v5_request_stop(&wcss->q6v5, NULL);
-> @@ -742,6 +767,7 @@ static int q6v5_wcss_stop(struct rproc *rproc)
->  			return ret;
->  	}
->  
-> +pas_done:
->  	clk_disable_unprepare(wcss->prng_clk);
->  	qcom_q6v5_unprepare(&wcss->q6v5);
->  
-> @@ -765,9 +791,15 @@ static int q6v5_wcss_load(struct rproc *rproc, const struct firmware *fw)
->  	struct q6v5_wcss *wcss = rproc->priv;
->  	int ret;
->  
-> -	ret = qcom_mdt_load_no_init(wcss->dev, fw, rproc->firmware,
-> -				    0, wcss->mem_region, wcss->mem_phys,
-> -				    wcss->mem_size, &wcss->mem_reloc);
-> +	if (wcss->need_mem_protection)
-> +		ret = qcom_mdt_load(wcss->dev, fw, rproc->firmware,
-> +				    WCNSS_PAS_ID, wcss->mem_region,
-> +				    wcss->mem_phys, wcss->mem_size,
-> +				    &wcss->mem_reloc);
-> +	else
-> +		ret = qcom_mdt_load_no_init(wcss->dev, fw, rproc->firmware,
-> +					    0, wcss->mem_region, wcss->mem_phys,
-> +					    wcss->mem_size, &wcss->mem_reloc);
->  	if (ret)
->  		return ret;
->  
-> @@ -1035,6 +1067,9 @@ static int q6v5_wcss_probe(struct platform_device *pdev)
->  	if (!desc)
->  		return -EINVAL;
->  
-> +	if (desc->need_mem_protection && !qcom_scm_is_available())
-> +		return -EPROBE_DEFER;
-> +
->  	rproc = devm_rproc_alloc(&pdev->dev, pdev->name, desc->ops,
->  				 desc->firmware_name, sizeof(*wcss));
->  	if (!rproc) {
-> @@ -1048,6 +1083,7 @@ static int q6v5_wcss_probe(struct platform_device *pdev)
->  
->  	wcss->version = desc->version;
->  	wcss->requires_force_stop = desc->requires_force_stop;
-> +	wcss->need_mem_protection = desc->need_mem_protection;
->  
->  	ret = q6v5_wcss_init_mmio(wcss, pdev);
->  	if (ret)
-> @@ -1111,6 +1147,7 @@ static const struct wcss_data wcss_ipq8074_res_init = {
->  	.wcss_q6_reset_required = true,
->  	.ops = &q6v5_wcss_ipq8074_ops,
->  	.requires_force_stop = true,
-> +	.need_mem_protection = true,
->  };
->  
->  static const struct wcss_data wcss_qcs404_res_init = {
+> Gokul Sriram Palanisamy (8):
+>   remoteproc: qcom: Add PRNG proxy clock
+>   remoteproc: qcom: Add secure PIL support
+>   remoteproc: qcom: Add support for split q6 + m3 wlan firmware
+>   remoteproc: qcom: Add ssr subdevice identifier
+>   remoteproc: qcom: Update regmap offsets for halt register
+>   dt-bindings: clock: qcom: Add reset for WCSSAON
+>   clk: qcom: Add WCSSAON reset
+>   arm64: dts: qcom: Enable Q6v5 WCSS for ipq8074 SoC
+> 
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi        |  80 +++++++++
+>  drivers/clk/qcom/gcc-ipq8074.c               |   1 +
+>  drivers/remoteproc/qcom_q6v5_wcss.c          | 162 +++++++++++++++----
+>  include/dt-bindings/clock/qcom,gcc-ipq8074.h |   1 +
+>  4 files changed, 212 insertions(+), 32 deletions(-)
+> 
 > -- 
 > 2.34.1
 > 
