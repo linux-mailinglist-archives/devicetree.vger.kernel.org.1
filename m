@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-78537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F55C9128B0
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6230E9128B6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A469D1C24F43
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:59:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86CC51C25E47
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85BA44CDF9;
-	Fri, 21 Jun 2024 14:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD1A838F91;
+	Fri, 21 Jun 2024 15:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Oqz3vE+q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="djMZcDlR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872683B7AC
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 14:59:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5834208A8
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 15:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718981969; cv=none; b=rW9/9IGphyAihF+EKBiJDUDCY2Y7Qpsck4dXit91czhvsW8r3hkF0k4G2QBVN7W4FLf8AlVLk28sXwdb5ttios+2QwT+nBZyObt+nFgsjCAclYSRnurIYYHHOEq1fEuv6sn//SHiDJ66SRFolv7NVxpyEzf9VmsooMFno4kIFLc=
+	t=1718982054; cv=none; b=fLMegy0noUoP7Vj7Zbdsi4oM4nEdZyg+T0K/y5ws832TPtSc/vXE1Lo38XyN9ctrQxpLh2sBd7cKrgv0oZEuWCbrOnzJWlzo5Ot58GGBU9+LiGD+ikNeloxSPVuTrYGrsGu9DtpCMIKpGwN7twncAVx/ayoIylOr2PLs+s3WjSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718981969; c=relaxed/simple;
-	bh=WigRbV7KlBkMBfbFYkSADamOt1ilXsNtB7dVBf83LNY=;
+	s=arc-20240116; t=1718982054; c=relaxed/simple;
+	bh=T9h91WmzV9RsoBeR2GhzN4Xe4/q6MNzCJiEVe07QEfU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=piCF0zO/+izCfarHoyJMjKFst2jygZhWj21SxEccfMnlO3YPNA4qwYNGblC3RF3QSmNEK/lphQZ00u2tDQIIkQpbvtjTe72H7ol2gHrNDKuv8DwACLuF1rVvOCtZizZYDfpWcePUV4nFfJ0yKhLk+rTRxFo7VnbqPsJVk+b9j68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Oqz3vE+q; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52cc148159dso2329007e87.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 07:59:26 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=YfWfd+NvyxB8TOEa5cw8Derlu7xvF4Mr3i/SliinANHhLmVy1wzxyP+Jtg4KVmHvgArcGqptvMYqNp3xPePXNpxD/nOifxHew9ray9XhVg1F3z+6rCUZbfk/xlmAQKq9F06ijx/ZNvlgUTrVyQ2G8R9TTwvEhvZ7LU7NhKKibX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=djMZcDlR; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52c525257feso2583109e87.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 08:00:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1718981965; x=1719586765; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7k2nQvFOjuZ7C6fH4GnT+p4Sp8E7d5ws7fWv5o6k/Os=;
-        b=Oqz3vE+qdSCBS5G2ktOtuVfw0ca7Wwz4W9iT9RWEXnDtJzTcewhHrqfQLYmGO52FJt
-         3uFL5BL38lcZmzy3HQ3SjX5jJV1uh8i+ZGx8Fsqge8UMPa5ELzJlgenSkqW28n/wRCuH
-         UHbwgjYCStcegsoCPDIcbqSvFLBdYNwcbeDm1MWfNeWFpgz4hTr0UJgSnHJcY+xary2t
-         xMKk013jxL9wAABlmnRD1OfSnaGThIv85m/1CUU2UkdPA1eDJ2kSAjNo2O8++b9ubCfx
-         bIEJ0laLx7UzQdFCLQh5Z1Ri/bCeqJ1KIhEVNAD3fRpf9lHgVXTdCFNA+fj1g28n4J79
-         W0zg==
+        d=linaro.org; s=google; t=1718982051; x=1719586851; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=eGlFN7nlxbUXBg3c7X1S+q3Q+PHtbyntGbbiW5UXmC4=;
+        b=djMZcDlR7RuQjf7eabf49zEBQR5hfqacBgPgQClXC6aZP6SlwO8NvS/r/piBWlkfe/
+         RVfSRUz+XaGHhpayaL5TrAewCBD3dCGTOf/awiEU1PKcZkMk7uF0HO3sesu39g+uSEgG
+         tvlgSAB9b1RXZ0b+OiNEaj+t0gfsOR86BRIMZmOF+wQbigTd6AAC+SH4NReytTlIu9Ge
+         yh5M5eufEo/J91/EisaeTOch6V4VgRJYOvRqa9TD0NbLzlVTQz7Hf5Y32408LzwWMrWP
+         bwPqaVbv4PhR4vYAefu4TaDJofeTiVOZJqQSfKfS+y4vqhFk0KPbNuj8cgQNfeaosxdC
+         D0yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718981965; x=1719586765;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7k2nQvFOjuZ7C6fH4GnT+p4Sp8E7d5ws7fWv5o6k/Os=;
-        b=bkA+XapnOD91OkRThBrk7TvpfpWQS5QWMZDLvH7HWH2Eq5zU0UoSgstxYv/zxT+pOJ
-         8dnvnkFfJZ+EqNiC7WF1g4ejzgODGNjKFzaaOjeQ+4Lc66di1bLuu4RnB/KK1Y9e/Em+
-         ZQ8Z2aQGcyP9pjujvN9v0vcZFPSzJWLCp6H/HQ53SWK8xbu4ABWTrDGQBfTS43t4CeCI
-         BLSqZA5y8IlHeJlRuwAu2V5y39huQhf+Y7e0qWkaY3LYZIW0TO6wJOPJaA6zH2jOyErh
-         qgb6Ce1/tt6WE47YBSLROXlXy2jE+Y2vFaAiNw1uAYdfHy/F+QPqL2DK3vQgDmbDIeqE
-         hAOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXL9yhFXMzXxjmpG8EjAySnmMq9Zuec5vCiL4RydvHRsAu5MvS/RI0TL4BkvhNEfeMfs+EC2iw11XTEVP/KAwbKcvrPDIiu3bVH7w==
-X-Gm-Message-State: AOJu0Ywle1PTDbCz1tQv9IlB7WEU9g6HDD77OciFBj/F0mNfdlFHt0r+
-	thqojMm/2V2ATfTupY0+fWwX14HgQ0gQnRVL/tafX1wXc8kHeEaPAS5SGbo1XLw=
-X-Google-Smtp-Source: AGHT+IFFbnXa5y83ipiFrBG70v4cTSICilZFHJK0nDg/PBcswmk/132r8UcGNAsTvy2hfDPzaalr3w==
-X-Received: by 2002:a05:6512:214e:b0:52c:bc50:ff35 with SMTP id 2adb3069b0e04-52ccaa9739cmr4598189e87.57.1718981964604;
-        Fri, 21 Jun 2024 07:59:24 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.70])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424817b6381sm30688365e9.28.2024.06.21.07.59.22
+        d=1e100.net; s=20230601; t=1718982051; x=1719586851;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eGlFN7nlxbUXBg3c7X1S+q3Q+PHtbyntGbbiW5UXmC4=;
+        b=jOvzcVBVl1TMzoDwDNi2Mn/qs/EYZa3VkJ5qnv2me53tbPIkiW+c6KtyQVIgJ1xGcH
+         wl83GUaN+gX5EJqi4salW764YezOchr+fefiY7GWMQVzV/9oBcGX5XT0w62HIBNvAnE8
+         Wy2DeeWcDx506NR09zEoygzq2jzrvCaTihxNpYayeY9zF9ilJG5nprFf4nf8Yfikd66X
+         hBtsrSlTlrV2GYgKqNmiY6zaPNJtnzto3OXzng3TauzX8QkiXueGQIykKeWDdEvepoiU
+         0HX93l6kG4B2WLdlAc/gLvUt3RlRyw+kWV3cNhgzIQNhgcNLGqW/rJJsSYEsOJwkyVhj
+         5yvA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbH4MmpXkgUOgcj8NN+1eLt2IBp/f3+WPT2hBQYMfHnSCGQE0WExHHnBgxUZ1KD2t7AHqhywvvmIegKQ4vQtUM3AZNJv/67WItwA==
+X-Gm-Message-State: AOJu0YxJ0k457KnKVEgQpHzwZooY0zCgejwTDv2144MaV4wEXonqs02g
+	rTBrvPfBSY/OlcIlWdcsE2MTK4+UrnyyV6Dmf4LEIgi2AFbcIZ08KKz3QLg3otw=
+X-Google-Smtp-Source: AGHT+IEoOrvU821swGSjxdzf8p74w1HuPp4DjRYiSzze658L9jgqK8dDrRvaQhK4PVhPEXpg1IK0Yw==
+X-Received: by 2002:ac2:4c0c:0:b0:52c:8158:3d7f with SMTP id 2adb3069b0e04-52ccaa33ef4mr4956844e87.28.1718982051109;
+        Fri, 21 Jun 2024 08:00:51 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd63bcf14sm222984e87.83.2024.06.21.08.00.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jun 2024 07:59:24 -0700 (PDT)
-Message-ID: <86843e15-6791-4214-8eca-720142820973@tuxon.dev>
-Date: Fri, 21 Jun 2024 17:59:21 +0300
+        Fri, 21 Jun 2024 08:00:50 -0700 (PDT)
+Message-ID: <cd190d35-1658-43d8-9606-5e73257bbf3a@linaro.org>
+Date: Fri, 21 Jun 2024 17:00:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,213 +77,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document the
- R9A08G045 support
+Subject: Re: [PATCH v6 03/16] dt-bindings: mfd: mediatek: Add codec property
+ for MT6357 PMIC
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v6-0-f754ec1a7634@baylibre.com>
+ <20240226-audio-i350-v6-3-f754ec1a7634@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Chris Brandt <Chris.Brandt@renesas.com>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240621112303.1607621-1-claudiu.beznea.uj@bp.renesas.com>
- <20240621112303.1607621-9-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB11346105D3D3DD46AEF8CD44986C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <0bc78e5e-de37-4ff6-ac74-571f615b97f9@tuxon.dev>
- <TY3PR01MB1134602C189C6C63C6187840886C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <b5a3ef7c-8509-4065-ab0f-efb5a7e5fcbb@tuxon.dev>
- <TY3PR01MB11346D9CF89F7ED9B6A49C61586C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <e381e1c0-2e23-4734-a55f-cab6c21f8c5b@tuxon.dev>
- <TY3PR01MB113468EF895A0EBED5DBD975D86C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <871c563d-daa5-4be4-b114-9a8072e4edd0@tuxon.dev>
- <TY3PR01MB113462C6C427DD4581086430D86C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB113462C6C427DD4581086430D86C92@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240226-audio-i350-v6-3-f754ec1a7634@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 19/06/2024 16:46, Alexandre Mergnat wrote:
+> Add the audio codec sub-device. This sub-device is used to set the
+> optional voltage values according to the hardware.
+> The properties are:
+>   - Setup of microphone bias voltage.
+>   - Setup of the speaker pin pull-down.
+> 
+> Also, add the audio power supply property which is dedicated for
+> the audio codec sub-device.
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 33 ++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> index 37423c2e0fdf..d95307393e75 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+> @@ -37,6 +37,32 @@ properties:
+>    "#interrupt-cells":
+>      const: 2
+>  
+> +  vaud28-supply:
+> +    description: 2.8 volt supply phandle for the audio codec
+> +
+> +  audio-codec:
+> +    type: object
 
+Still not much improved. You do not have any resources there, so these
+should go to the parent node.
 
-On 21.06.2024 17:37, Biju Das wrote:
-> 
-> 
->> -----Original Message-----
->> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->> Sent: Friday, June 21, 2024 3:31 PM
->> To: Biju Das <biju.das.jz@bp.renesas.com>; Chris Brandt <Chris.Brandt@renesas.com>;
->> andi.shyti@kernel.org; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
->> geert+renesas@glider.be; magnus.damm@gmail.com; mturquette@baylibre.com; sboyd@kernel.org;
->> p.zabel@pengutronix.de; wsa+renesas@sang-engineering.com
->> Cc: linux-renesas-soc@vger.kernel.org; linux-i2c@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-kernel@vger.kernel.org; linux-clk@vger.kernel.org; Claudiu Beznea
->> <claudiu.beznea.uj@bp.renesas.com>
->> Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document the R9A08G045 support
->>
->>
->>
->> On 21.06.2024 17:06, Biju Das wrote:
->>> Hi Claudiu,
->>>
->>>> -----Original Message-----
->>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>> Sent: Friday, June 21, 2024 2:30 PM
->>>> Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document
->>>> the R9A08G045 support
->>>>
->>>>
->>>>
->>>> On 21.06.2024 16:10, Biju Das wrote:
->>>>>
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>>>> Sent: Friday, June 21, 2024 2:06 PM
->>>>>  Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document
->>>>> the R9A08G045 support
->>>>>>
->>>>>>
->>>>>>
->>>>>> On 21.06.2024 15:56, Biju Das wrote:
->>>>>>>
->>>>>>> Hi claudiu,
->>>>>>>
->>>>>>>> -----Original Message-----
->>>>>>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>>>>>> Sent: Friday, June 21, 2024 1:55 PM
->>>>>>>> Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic:
->>>>>>>> Document the R9A08G045 support
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> On 21.06.2024 15:34, Biju Das wrote:
->>>>>>>>> Hi Claudiu,
->>>>>>>>>
->>>>>>>>>> -----Original Message-----
->>>>>>>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>>>>>>>> Sent: Friday, June 21, 2024 12:23 PM
->>>>>>>>>> Subject: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document
->>>>>>>>>> the
->>>>>>>>>> R9A08G045 support
->>>>>>>>>>
->>>>>>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>>>>>>
->>>>>>>>>> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is
->>>>>>>>>> compatible with the version available on Renesas RZ/V2H
->>>>>>>>>> (R9A09G075). Most of the IP variants that the RIIC driver is
->>>>>>>>>> working with supports fast mode
->>>> plus.
->>>>>>>>>> However, it happens that on the same SoC to have IP
->>>>>>>>>> instatiations that support fast mode plus as well as IP
->>>>>>>>>> instantiation that doesn't support it. For this, introduced the renesas,riic-no-fast-
->> mode-plus property.
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Claudiu Beznea
->>>>>>>>>> <claudiu.beznea.uj@bp.renesas.com>
->>>>>>>>>> ---
->>>>>>>>>>  Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 8
->>>>>>>>>> ++++++++
->>>>>>>>>>  1 file changed, 8 insertions(+)
->>>>>>>>>>
->>>>>>>>>> diff --git
->>>>>>>>>> a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>>>>>> b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>>>>>> index 91ecf17b7a81..c0964edbca69 100644
->>>>>>>>>> --- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>>>>>> +++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
->>>>>>>>>> @@ -25,6 +25,10 @@ properties:
->>>>>>>>>>                - renesas,riic-r9a07g054  # RZ/V2L
->>>>>>>>>>            - const: renesas,riic-rz      # RZ/A or RZ/G2L
->>>>>>>>>>
->>>>>>>>>> +      - items:
->>>>>>>>>> +          - const: renesas,riic-r9a08g045   # RZ/G3S
->>>>>>>>>> +          - const: renesas,riic-r9a09g057
->>>>>>>>>> +
->>>>>>>>>>        - const: renesas,riic-r9a09g057   # RZ/V2H(P)
->>>>>>>>>>
->>>>>>>>>>    reg:
->>>>>>>>>> @@ -66,6 +70,10 @@ properties:
->>>>>>>>>>    resets:
->>>>>>>>>>      maxItems: 1
->>>>>>>>>>
->>>>>>>>>> +  renesas,riic-no-fast-mode-plus:
->>>>>>>>>> +    description: specifies if fast mode plus is not supported
->>>>>>>>>> +    type: Boolean
->>>>>>>>>
->>>>>>>>> Can't this info, as part of device data?? Based on frequency and
->>>>>>>>> device data is enough to derive this info??
->>>>>>>>
->>>>>>>> We can't rely completely on device data because on RZ/G3S we have
->>>>>>>> 2 RIIC channels that support fast mode plus and 2 that doesn't support it.
->>>>>>>
->>>>>>> Can't array of bits for this channels won't help??
->>>>>>
->>>>>> Can you give an example? I'm not sure I understand how you would
->>>>>> prefer me to use the array of bits.
->>>>>
->>>>> struct riic_of_data {
->>>>> 	u8 regs[RIIC_REG_END];
->>>>> 	u16 fast_mode_info info; /* 1 means fast mode plus supported,
->>>>> starting with channel 0*/ };
->>>>>
->>>>> .info = 0x3, means channel 0 and 1 has fast mode plus supported
->>>>> .info = 0x0, none of the channel supported fast mode plus.
->>>>
->>>> If I understand the proposal correctly, a match b/w struct
->>>> riic_of_data::info bit + frequency and the nodes in device tree is
->>>> still needed, right? As the RZ/G3S RIIC channels are using the same compatible.
->>>> W/o a match how I cannot detect in the driver who is, e.g., channel 1
->>>> that supports FMP w/o hardcoding some RIIC channel data in the driver (e.g. RIIC channel
->> address)?
->>>
->>> bit array gives the capability info on various channels.
->>>
->>> If someone define fast_mode_plus frequency in DT node and channel is
->>> not fast_mode_plus(from the capability info) then you should return error.
->>>
->>> Here you need to use SoC specific compatible as each SoC has different capabilities.
->>
->> And I would add, as it is in this case: there are multiple instantiation of the RIIC in RZ/G3S SoC.
->> RIIC 0 and 1 supports FMP, RIIC 2 and 3 does not.
->>
->> For all RIICs (0, 1, 2, 3) we use the same compatible (as all are part of the same SoC). How to do
->> the match b/w DT RIIC channel and driver with the solution you propose w/o hardcoding some RIIC
->> channel data in the driver?
-> 
-> .info =0x3, so you know from the capability, for this soc, bus 0 and 1 supports FMP.
+Best regards,
+Krzysztof
 
-I understand this part. What I don't understand is: when probing the driver
-for, e.g., bus 0, how do I know I probe the driver for bus 0? compatible is
-the same for all buses.
-
-> 
-> Cheers,
-> Biju
-> 
-> 
->>
->>>
->>> Cheers,
->>> Biju
->>>
->>>
->>>>
->>>> Also, for future SoCs that will suffer the same symptom but for
->>>> different channels (and channels with different addresses) the driver
->>>> will have to be adapted to match b/w the channel bit in struct riic_of_data::info and channel
->> node from DT.
->>>>
->>>>>
->>>>> Cheers,
->>>>> Biju
 
