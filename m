@@ -1,233 +1,329 @@
-Return-Path: <devicetree+bounces-78566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45AA1912A75
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:40:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D256D912A80
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39F37B296C2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:39:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96330B2A5EA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 15:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543B17C09E;
-	Fri, 21 Jun 2024 15:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622B213D521;
+	Fri, 21 Jun 2024 15:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NjYcQVXn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gsRhugAq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2113381AA5;
-	Fri, 21 Jun 2024 15:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B920E84A4C;
+	Fri, 21 Jun 2024 15:40:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718984382; cv=none; b=oAeRqJIeLDV6N7nel0Y/GgFkzk2Ejj9ZOmR0oeSDONd8xjiPR7lqVk7Qv9BKqqWhe0j0p4Qo37XF1G00MojDMf7Yw7pdRoq3Vwx1OI/wCqmSPHHEZhy+ZtLaPYueIcVozJxPZ16uWWgS3NjJEMN4vWgTGJNsu30Ftxc9XWwT5+U=
+	t=1718984450; cv=none; b=rIELrpzL6P3Q3tD7+/ZomZesy76ToaiF2WknYtW9abdjDV+WqCfLC7rvsvRQ3dmaxippFGnR7xMg3COT9KdEEMp2E6X/F5nKKnsFiGL7WJJ6CSCltWc1IQYgkwnFXRlScZLL0AXvAvkQ3QWE4BvQBXwXDdw8k5heDRaEGnnV8aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718984382; c=relaxed/simple;
-	bh=EOau0dfsyRwYfKXixdZIbYkEwGVX1Gwagh7/S9mgfG8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QZvlFhSh/lmIZ0p918QhPhLbOC7JFk+6rXRky9aWjfkGdu6Mn72vd6uvZ0XUu0koWoRKa4GBukAuDVIPSRD/wLYUigUyvSSc8bVNrRkqSdeCH9TRU4UohYTonuhr9c33otDLi3mSMphbYYSR/VDdR0A9DiozKNjzZ3LOknW/bno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NjYcQVXn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1462C2BBFC;
-	Fri, 21 Jun 2024 15:39:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718984381;
-	bh=EOau0dfsyRwYfKXixdZIbYkEwGVX1Gwagh7/S9mgfG8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NjYcQVXn/sIYnlO0dK68AKO94KqGZMwdy6Pr81nk/Lmr8FH0Vv0UZEjrHMXSKnlw+
-	 vngDe3mIAhMk9tM3Kzx2iaKIr3tqaG9PymZadCK6ZZZkfNGBZ/A/7r91OqjgNG5vsL
-	 /JaLexUt7vXX9hSdOxOpsFv+XMQY3JcIFsIXbMX3I4nndu2jM56tJm3IXB7VNNpmAx
-	 toz4J0mOr+fRotTCZbr0CTgL+cWc7ckin5lEB2ApWB/cbOfe+gz1yhyn+VR3PwFEKm
-	 td4ju0s/5dZwri0GAkDXovKfYsws1dFQNhAYgRyLrpTdGGzDd7M361pJ+GyVUi+1G8
-	 BorVxP+fe0WZw==
-Date: Fri, 21 Jun 2024 08:39:39 -0700
-From: Eric Biggers <ebiggers@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: "Gaurav Kashyap (QUIC)" <quic_gaurkash@quicinc.com>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-	"andersson@kernel.org" <andersson@kernel.org>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"srinivas.kandagatla" <srinivas.kandagatla@linaro.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	kernel <kernel@quicinc.com>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"Om Prakash Singh (QUIC)" <quic_omprsing@quicinc.com>,
-	"Bao D. Nguyen (QUIC)" <quic_nguyenb@quicinc.com>,
-	"bartosz.golaszewski" <bartosz.golaszewski@linaro.org>,
-	"konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
-	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-	"jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-	"martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-	"mani@kernel.org" <mani@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-	Prasad Sodagudi <psodagud@quicinc.com>,
-	Sonal Gupta <sonalg@quicinc.com>
-Subject: Re: [PATCH v5 04/15] soc: qcom: ice: add hwkm support in ice
-Message-ID: <20240621153939.GA2081@sol.localdomain>
-References: <20240617005825.1443206-1-quic_gaurkash@quicinc.com>
- <20240617005825.1443206-5-quic_gaurkash@quicinc.com>
- <3eehkn3cdhhjfqtzpahxhjxtu5uqwhntpgu22k3hknctrop3g5@f7dhwvdvhr3k>
- <96e2ce4b154a4f918be0bc2a45011e6d@quicinc.com>
- <CAA8EJppGpv7N_JQQNJZrbngBBdEKZfuqutR9MPnS1R_WqYNTQw@mail.gmail.com>
- <3a15df00a2714b40aba4ebc43011a7b6@quicinc.com>
- <CAA8EJpoZ0RR035QwzMLguJZvdYb-C6aqudp1BgHgn_DH2ffsoQ@mail.gmail.com>
- <20240621044747.GC4362@sol.localdomain>
- <CAA8EJppXsbpFCeGJOMGKOQddy0fF4uW3rt4RUuDTQq6mPunBkg@mail.gmail.com>
+	s=arc-20240116; t=1718984450; c=relaxed/simple;
+	bh=J9beTWQ6nBQMACRt3dW6ixHUj30KwKhEXz5zO1lRtlE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cX6El45p3i6Sb0UiYzenGHEBjrQ3/RXL0AePD5u3fk1zeesrXI5VWcENKSKyXzjnQ93Xym6HvaAF55jRTNcUIL6wuwV7MrKUjGA7QBk/pKA8uxpGJqNPZaar224zUckhomie7XvpRLnSM+x6oAcg0JMuSIAVtVDQlXsVlCbIB0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gsRhugAq; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-7042a8ad9f5so1916419b3a.0;
+        Fri, 21 Jun 2024 08:40:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718984448; x=1719589248; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9lNEeiRMZyfbNEcygdR2xAKFEd5icF+LSS0bm07Oqsk=;
+        b=gsRhugAqxoG9lvlKyazDDzrsHNU04jy9nsqlKvhPyMIlqf3iIEiAOd2FOalYpHjDIf
+         bgd6AgF5zr0654KPzrvoGUqI0FBvH1hZTAFwGAoP2GikEps7eCXd6qE48n/s37bcAAnp
+         SOn30qeGBugBpOeQ3dZ735lUCxTkLPsSUM3xW8R2fRnxoslMbvsa9eLZ42ecVTH4OMkg
+         0rV0IrUmWV4/TAklMhKGipNeJYk0ARcVsetJHVBsdyH06SFaqaI0RmUbiD3xFA+85+Hn
+         5EAe8Ng/9z7YkDFzX8yiCEe78nVkkYz9tKTVUD524TY3duQFJcqCrvDH0vRVXYPUg6U7
+         ww3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718984448; x=1719589248;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9lNEeiRMZyfbNEcygdR2xAKFEd5icF+LSS0bm07Oqsk=;
+        b=aHT7LFBirRjjTQR2AdG4tGZk8qZGFc0JpHe++ud1Qjk8FY7B8JrrqdM1yPTRcOJl03
+         Je0WtbJxpFEbL8SS9MbiWcFd2oZhOrFHAR/vKxhNqm34W8DyPn7LTYS1GV2OjZ9fyAZr
+         B+NC+GxiPkwhl5Lpx/jDMj8GmJsO/YmOz6xUXS/NWvd8fNwz2jXE8U4bSOfCvIrGhFC8
+         tm15EFtR5WIo8Hn84lgkTLA4a10/DH76ThTNqxNrnqT9qbrfg0L5xNewt/WhErNjOVXE
+         geV3qwndhwufoZ6huG0+LXAzZRvZt7ekiU4QjCHjH+swiXFMG9JNwv3s827j7xBB8fII
+         sbxg==
+X-Forwarded-Encrypted: i=1; AJvYcCX1I+9l3KVNah0qA7249cS0TlemQ9rvmt0p2VgIs6mfQlWYFm4Kmx4Xn/P9v7y5pK0/rxoG2nY4RbIWO+9r4H8pUSTLXVEPCuyxXxh6SgH0ygvdl+I37m8nFmxfJL5n3qZmVSmCRZsc+2l79qXqr15LxSkI+iDFUoMQNYbuZ8atT0il66Zi
+X-Gm-Message-State: AOJu0Yxm7P8vZmPT+u/B6uow+4DazfIeVdLokTXUa+xeFGsg06iddKZW
+	VbYLcKnNQQSOCnxou/BqfCIjz+KYhkfPKXw3FC5PQ0Nt0uDDtJ11
+X-Google-Smtp-Source: AGHT+IGRTpgRoS9Ooc2BHJ4NPBqzyh8zsWzwUoEzcYv0F/1FXItq5OIJQG5dLJb24ilLB+6dDw0BTA==
+X-Received: by 2002:a05:6a20:3252:b0:1b5:88f5:5823 with SMTP id adf61e73a8af0-1bce65cabe9mr186358637.27.1718984447745;
+        Fri, 21 Jun 2024 08:40:47 -0700 (PDT)
+Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-716baf4acd1sm1271070a12.75.2024.06.21.08.40.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jun 2024 08:40:47 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: realtek,rt5645: Convert to dtschema
+Date: Fri, 21 Jun 2024 21:10:27 +0530
+Message-ID: <20240621154034.489037-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJppXsbpFCeGJOMGKOQddy0fF4uW3rt4RUuDTQq6mPunBkg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 21, 2024 at 06:16:37PM +0300, Dmitry Baryshkov wrote:
-> On Fri, 21 Jun 2024 at 07:47, Eric Biggers <ebiggers@kernel.org> wrote:
-> >
-> > On Thu, Jun 20, 2024 at 02:57:40PM +0300, Dmitry Baryshkov wrote:
-> > > > > >
-> > > > > > > Is it possible to use both kind of keys when working on standard mode?
-> > > > > > > If not, it should be the user who selects what type of keys to be used.
-> > > > > > > Enforcing this via DT is not a way to go.
-> > > > > > >
-> > > > > >
-> > > > > > Unfortunately, that support is not there yet. When you say user, do
-> > > > > > you mean to have it as a filesystem mount option?
-> > > > >
-> > > > > During cryptsetup time. When running e.g. cryptsetup I, as a user, would like
-> > > > > to be able to use either a hardware-wrapped key or a standard key.
-> > > > >
-> > > >
-> > > > What we are looking for with these patches is for per-file/folder encryption using fscrypt policies.
-> > > > Cryptsetup to my understanding supports only full-disk , and does not support FBE (File-Based)
-> > >
-> > > I must admit, I mostly used dm-crypt beforehand, so I had to look at
-> > > fscrypt now. Some of my previous comments might not be fully
-> > > applicable.
-> > >
-> > > > Hence the idea here is that we mount an unencrypted device (with the inlinecrypt option that indicates inline encryption is supported)
-> > > > And specify policies (links to keys) for different folders.
-> > > >
-> > > > > > The way the UFS/EMMC crypto layer is designed currently is that, this
-> > > > > > information is needed when the modules are loaded.
-> > > > > >
-> > > > > > https://lore.kernel.org/all/20231104211259.17448-2-ebiggers@kernel.org
-> > > > > > /#Z31drivers:ufs:core:ufshcd-crypto.c
-> > > > >
-> > > > > I see that the driver lists capabilities here. E.g. that it supports HW-wrapped
-> > > > > keys. But the line doesn't specify that standard keys are not supported.
-> > > > >
-> > > >
-> > > > Those are capabilities that are read from the storage controller. However, wrapped keys
-> > > > Are not a standard in the ICE JEDEC specification, and in most cases, is a value add coming
-> > > > from the SoC.
-> > > >
-> > > > QCOM SOC and firmware currently does not support both kinds of keys in the HWKM mode.
-> > > > That is something we are internally working on, but not available yet.
-> > >
-> > > I'd say this is a significant obstacle, at least from my point of
-> > > view. I understand that the default might be to use hw-wrapped keys,
-> > > but it should be possible for the user to select non-HW keys if the
-> > > ability to recover the data is considered to be important. Note, I'm
-> > > really pointing to the user here, not to the system integrator. So
-> > > using DT property or specifying kernel arguments to switch between
-> > > these modes is not really an option.
-> > >
-> > > But I'd really love to hear some feedback from linux-security and/or
-> > > linux-fscrypt here.
-> > >
-> > > In my humble opinion the user should be able to specify that the key
-> > > is wrapped using the hardware KMK. Then if the hardware has already
-> > > started using the other kind of keys, it should be able to respond
-> > > with -EINVAL / whatever else. Then the user can evict previously
-> > > programmed key and program a desired one.
-> > >
-> > > > > Also, I'd have expected that hw-wrapped keys are handled using trusted
-> > > > > keys mechanism (see security/keys/trusted-keys/). Could you please point
-> > > > > out why that's not the case?
-> > > > >
-> > > >
-> > > > I will evaluate this.
-> > > > But my initial response is that we currently cannot communicate to our TPM directly from HLOS, but
-> > > > goes through QTEE, and I don't think our qtee currently interfaces with the open source tee
-> > > > driver. The interface is through QCOM SCM driver.
-> > >
-> > > Note, this is just an API interface, see how it is implemented for the
-> > > CAAM hardware.
-> > >
-> >
-> > The problem is that this patchset was sent out without the patches that add the
-> > block and filesystem-level framework for hardware-wrapped inline encryption
-> > keys, which it depends on.  So it's lacking context.  The proposed framework can
-> > be found at
-> > https://lore.kernel.org/linux-block/20231104211259.17448-1-ebiggers@kernel.org/T/#u
-> 
-> Thank you. I have quickly skimmed through the patches, but I didn't
-> review them thoroughly. Maybe the patchset already implements the
-> interfaces that I'm thinking about. In such a case please excuse me. I
-> will give it a more thorough look later today.
-> 
-> > As for why "trusted keys" aren't used, they just aren't helpful here.  "Trusted
-> > keys" are based around a model where the kernel can request that keys be sealed
-> > and unsealed using a trust source, and the kernel gets access to the raw
-> > unsealed keys.  Hardware-wrapped inline encryption keys use a different model
-> > where the kernel never gets access to the raw keys.  They also have the concept
-> > of ephemeral wrapping which does not exist in "trusted keys".  And they need to
-> > be properly integrated with the inline encryption framework in the block layer.
-> 
-> Then what exactly does qcom_scm_derive_sw_secret() do? Does it rewrap
-> the key under some other key?
+Convert the RT5650/RT5645 audio CODEC bindings to DT schema.
 
-It derives a secret for functionality such as filenames encryption that can't
-use inline encryption.
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+---
+ .../bindings/sound/realtek,rt5645.yaml        | 129 ++++++++++++++++++
+ .../devicetree/bindings/sound/rt5645.txt      |  82 -----------
+ 2 files changed, 129 insertions(+), 82 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/rt5645.txt
 
-> I had the feeling that there are two separate pieces of functionality
-> being stuffed into a single patchset and into a single solution.
-> 
-> First one is handling the keys. I keep on thinking that there should
-> be a separate software interface to unseal the key and rewrap it under
-> an ephemeral key.
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
+new file mode 100644
+index 000000000000..d2d97d2bca2e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,rt5645.yaml
+@@ -0,0 +1,129 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,rt5645.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RT5650/RT5645 audio CODEC
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++description: |
++  This device supports I2C only.
++
++  Pins on the device (for linking into audio routes) for RT5645/RT5650:
++    * DMIC L1
++    * DMIC R1
++    * DMIC L2
++    * DMIC R2
++    * IN1P
++    * IN1N
++    * IN2P
++    * IN2N
++    * Haptic Generator
++    * HPOL
++    * HPOR
++    * LOUTL
++    * LOUTR
++    * PDM1L
++    * PDM1R
++    * SPOL
++    * SPOR
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - realtek,rt5645
++      - realtek,rt5650
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: The CODEC's interrupt output.
++
++  avdd-supply:
++    description: Power supply for AVDD, providing 1.8V.
++
++  cpvdd-supply:
++    description: Power supply for CPVDD, providing 3.5V.
++
++  hp-detect-gpios:
++    description: 
++      A GPIO spec for the external headphone detect pin. If jd-mode = 0, we
++      will get the JD status by getting the value of hp-detect-gpios.
++
++  cbj-sleeve-gpios:
++    description:
++      A GPIO spec to control the external combo jack circuit to tie the
++      sleeve/ring2 contacts to the ground or floating. It could avoid some
++      electric noise from the active speaker jacks.
++
++  realtek,in2-differential:
++    description:
++      Indicate MIC2 input are differential, rather than single-ended.
++    type: boolean
++
++  realtek,dmic1-data-pin:
++    description: Specify which pin to be used as DMIC1 data pin.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # dmic1 is not used
++      - 1 # using IN2P pin as dmic1 data pin
++      - 2 # using GPIO6 pin as dmic1 data pin
++      - 3 # using GPIO10 pin as dmic1 data pin
++      - 4 # using GPIO12 pin as dmic1 data pin
++
++  realtek,dmic2-data-pin:
++    description: Specify which pin to be used as DMIC2 data pin.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # dmic2 is not used
++      - 1 # using IN2N pin as dmic2 data pin
++      - 2 # using GPIO5 pin as dmic2 data pin
++      - 3 # using GPIO11 pin as dmic2 data pin
++
++  realtek,jd-mode:
++    description: The JD mode of rt5645/rt5650.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # rt5645/rt5650 JD function is not used
++      - 1 # Mode-0 (VDD=3.3V), two port jack detection
++      - 2 # Mode-1 (VDD=3.3V), one port jack detection
++      - 3 # Mode-2 (VDD=1.8V), one port jack detection
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - avdd-supply
++  - cpvdd-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            compatible = "realtek,rt5650";
++            reg = <0x1a>;
++            hp-detect-gpios = <&gpio 19 0>;
++            cbj-sleeve-gpios = <&gpio 20 0>;
++            interrupt-parent = <&gpio>;
++            interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++            avdd-supply = <&avdd_reg>;
++            cpvdd-supply = <&cpvdd_supply>;
++            realtek,jd-mode = <3>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/rt5645.txt b/Documentation/devicetree/bindings/sound/rt5645.txt
+deleted file mode 100644
+index c1fa379f5f3e..000000000000
+--- a/Documentation/devicetree/bindings/sound/rt5645.txt
++++ /dev/null
+@@ -1,82 +0,0 @@
+-RT5650/RT5645 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-- compatible : One of "realtek,rt5645" or "realtek,rt5650".
+-
+-- reg : The I2C address of the device.
+-
+-- interrupts : The CODEC's interrupt output.
+-
+-- avdd-supply: Power supply for AVDD, providing 1.8V.
+-
+-- cpvdd-supply: Power supply for CPVDD, providing 3.5V.
+-
+-Optional properties:
+-
+-- hp-detect-gpios:
+-  a GPIO spec for the external headphone detect pin. If jd-mode = 0,
+-  we will get the JD status by getting the value of hp-detect-gpios.
+-
+-- cbj-sleeve-gpios:
+-  a GPIO spec to control the external combo jack circuit to tie the sleeve/ring2
+-  contacts to the ground or floating. It could avoid some electric noise from the
+-  active speaker jacks.
+-
+-- realtek,in2-differential
+-  Boolean. Indicate MIC2 input are differential, rather than single-ended.
+-
+-- realtek,dmic1-data-pin
+-  0: dmic1 is not used
+-  1: using IN2P pin as dmic1 data pin
+-  2: using GPIO6 pin as dmic1 data pin
+-  3: using GPIO10 pin as dmic1 data pin
+-  4: using GPIO12 pin as dmic1 data pin
+-
+-- realtek,dmic2-data-pin
+-  0: dmic2 is not used
+-  1: using IN2N pin as dmic2 data pin
+-  2: using GPIO5 pin as dmic2 data pin
+-  3: using GPIO11 pin as dmic2 data pin
+-
+--- realtek,jd-mode : The JD mode of rt5645/rt5650
+-   0 : rt5645/rt5650 JD function is not used
+-   1 : Mode-0 (VDD=3.3V), two port jack detection
+-   2 : Mode-1 (VDD=3.3V), one port jack detection
+-   3 : Mode-2 (VDD=1.8V), one port jack detection
+-
+-Pins on the device (for linking into audio routes) for RT5645/RT5650:
+-
+-  * DMIC L1
+-  * DMIC R1
+-  * DMIC L2
+-  * DMIC R2
+-  * IN1P
+-  * IN1N
+-  * IN2P
+-  * IN2N
+-  * Haptic Generator
+-  * HPOL
+-  * HPOR
+-  * LOUTL
+-  * LOUTR
+-  * PDM1L
+-  * PDM1R
+-  * SPOL
+-  * SPOR
+-
+-Example:
+-
+-codec: rt5650@1a {
+-	compatible = "realtek,rt5650";
+-	reg = <0x1a>;
+-	hp-detect-gpios = <&gpio 19 0>;
+-	cbj-sleeve-gpios = <&gpio 20 0>;
+-	interrupt-parent = <&gpio>;
+-	interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+-	realtek,dmic-en = "true";
+-	realtek,en-jd-func = "true";
+-	realtek,jd-mode = <3>;
+-};
+-- 
+2.45.2
 
-There is.  That's what the BLKCRYPTOPREPAREKEY ioctl is for.
-
-> Some hardware might permit importing raw keys.
-
-That's what BLKCRYPTOIMPORTKEY is for.
-
-> Other hardware might insist on generating the keys on-chip so that raw keys
-> can never be used.
-
-And that's what BLKCRYPTOGENERATEKEY is for.
-
-> Second part is the actual block interface. Gaurav wrote about
-> targeting fscrypt, but there should be no actual difference between
-> crypto targets. FDE or having a single partition encrypted should
-> probably work in the same way. Convert the key into blk_crypto_key
-> (including the cookie for the ephemeral key), program the key into the
-> slot, use the slot to en/decrypt hardware blocks.
-> 
-> My main point is that the decision on the key type should be coming
-> from the user.
-
-That's exactly how it works.  There is a block interface for specifying an
-inline encryption key along with each bio.  The submitter of the bio can specify
-either a standard key or a HW-wrapped key.
-
-Again, take a look at the patchset
-https://lore.kernel.org/linux-block/20231104211259.17448-1-ebiggers@kernel.org/T/#u.
-That's where all this stuff is.
-
-Thanks,
-
-- Eric
 
