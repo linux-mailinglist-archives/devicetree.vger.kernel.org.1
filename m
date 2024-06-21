@@ -1,128 +1,141 @@
-Return-Path: <devicetree+bounces-78319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38769911E41
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:14:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F85911E4C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:15:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3E5D2827DB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:14:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0EFAB20D89
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5337716D4C8;
-	Fri, 21 Jun 2024 08:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2971316D324;
+	Fri, 21 Jun 2024 08:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqyFqPmo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dq4FFZtm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0DC16C865
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 08:07:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35FB16D304;
+	Fri, 21 Jun 2024 08:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718957248; cv=none; b=jv1Z6AFKPcFPSlGGKiesTul8hGb6XAYGILcYik1ZeN+9wUGZpcZyBfSkgSeG1ccdxKIceFljcbTTndCGPL77fCSTUX4q5u2/sJ5d47AfyCqQ5VJT7ywHtJOpdK+bHlbt+QSw6nSi4+1QKHTs3GNwnij6l+IUlasE9YfTnrb8xvE=
+	t=1718957354; cv=none; b=Txe95Xt1eXB05kVpc7emGGPoyO3hdmQtQa3lH3YaL8KFOVv6S1TOHkwVMrfMy7U/j41c89X/iFkW+gDAe4k4jUe1sTRPXOyHnHUzDwSrsh2mCvB+Epkr/U2P4Oi18UhJxv61UCYh7ioHaKdWX73nhornbiv4mj5dHvxXZkHvPCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718957248; c=relaxed/simple;
-	bh=1QkgOztAYGhK2udxTzVzSKcc4uUQRYcY30IrA8sSEpY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gMr74kWUk1HzrN5dxrWL1p9MVbNe9nOEDaJADuAefgcYsemEM7jkAwZDS3oJFy0QLCqdatAejWAvlLQGBVt3FWQVXDU8zIt0U7HmBrZOfreodbofDeaGftPoEOeXc7CvoTVuD+U+SbbJgzZxUDx3ATP1ZQJ/UZwO3wZ4/S7S3JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZqyFqPmo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CA9DC2BBFC;
-	Fri, 21 Jun 2024 08:07:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718957247;
-	bh=1QkgOztAYGhK2udxTzVzSKcc4uUQRYcY30IrA8sSEpY=;
-	h=From:List-Id:To:Cc:Subject:Date:From;
-	b=ZqyFqPmoOZfY9GYJI2n33VZVtSp/Rm2lWYkThA9Q/jh8cT3mG2Ew2gvFmgzEcnWg5
-	 VRPmtQ9TmaOIRqxBVdDguYRfgNgWdzrTSeaUnsl004X4aoRhrwiAa/fnbpAIDHPzS6
-	 9tzsXI6zjgMeD7+aoAdjUSKXlD1eSB9Sr3eo4w9ya9S9/PVIaztCllMMUnESDtXvo0
-	 lqBI1ONIPPRHjdTjPaVJ8GtDNkIIph+iDU/wv8P7gviHnkhRo4TEYIIV2sYiNJv6Z+
-	 vwqdaPqen4TzLt5/9DdgJwgiTKFfPxWGSOc0jR9PjlqITxhNiREKqXhi2TPHwCgOfM
-	 iRREFmeogj6BQ==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	soc@kernel.org
-Cc: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH 1/2] ARM: dts: armada-{370-xp,375,38x,39x}: Drop #size-cells from mpic node
-Date: Fri, 21 Jun 2024 10:07:19 +0200
-Message-ID: <20240621080719.20380-1-kabel@kernel.org>
-X-Mailer: git-send-email 2.44.2
+	s=arc-20240116; t=1718957354; c=relaxed/simple;
+	bh=JO8jBgL5VicYON4ggakHf8zSEa0qmLKYKjl67css/90=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o108NMVy1RPY5A4uvCYjqXcp7I1jRFw1DYOBcaphorkEmmz9FNt1KTR9Yjd2kx5WY+RDjCyFA/b7PJzapiZaok147sToPamaHugr0hIlLNXRRqclRSbme1wCpAb3DeRScPGNSTlkFVW9w08Dl7UbkW8toSLmSjzlvI5YzrVL/28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dq4FFZtm; arc=none smtp.client-ip=209.85.166.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3762ef0c477so1095015ab.3;
+        Fri, 21 Jun 2024 01:09:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1718957352; x=1719562152; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CwClo4datysb7tCRM4Yh2KXHFdvHWi27Cv7/oywYAaE=;
+        b=dq4FFZtmX/C4HHx/KPpSFhMZ7hc26tpA2ycgB2/AT46ULNcIccaM9m+b1gAbllgPEn
+         PKwSngTLSkJ4qmx41tdcvn3guG58PODBNKdBpRlYOeMqnM9UdYHFBP9Lm/gr5YIFzC9r
+         nWCug4qS+hoP67OxolpstpTjRSlM2IOVR3sMWh3+mR9zl1C5EeTE3kfCEAV6wgsKKOA1
+         l4lVrMtNaq294oAGaqOeyIqT6HEn1ogSH/C424Qz1/N86C9OxFUNuLv5vX7w0WIHDCNw
+         qy+4T9uoFQLpmMQfSC9AUXNqpUdyAY6eagobjEocj5pF9X2TMlDIU7YgwEfbOMCRfhcS
+         NhFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718957352; x=1719562152;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CwClo4datysb7tCRM4Yh2KXHFdvHWi27Cv7/oywYAaE=;
+        b=TIkcpc5yT3601w0rkZ44OWsh+huk5077NubGNhlQGP2Mh1s5+ynvWk98THR07ea4Xd
+         bDVZ1CfCt0g0raOpJcqhrGJq5vSy4GpnzWDljz+msWWPXWpOJ6rRS36UG23qfHEDE5lV
+         maaa39di2EhxxJM8pijRuFiZQrikbTgaxy1LV7bjP+ebPT2t7a9TB41jhmQA6m4ChBQ0
+         CtSlP9zaFtu+U/d/ZEi/buxBKNNkknVSqXz0D59HHBQ6PsLBIwvIyaE0+0TIV/ZQWerl
+         MQRwGzIuFzeW3fq2NHSdGG04pYh7MIvBiWRfavideunKAnxWNd1fUFGkoWIhNexWqmFa
+         n2nA==
+X-Forwarded-Encrypted: i=1; AJvYcCVZKG6pn2HaDyDzFFwH3EEo8SoiRYMowKZZype/mMFsZj4vUMVrCHcNTOCrMUyKk4KtHcDr/YqfeBzGkv8YSufAhFrswYEhZ9k2S/MKkXh73omtdVvo1klL8PjewD6VvGosjZy6y5wVNbhZ9f8RculwcIj/oblsSWebJ5NKXZ1AdSI/7w==
+X-Gm-Message-State: AOJu0Yz1KyilRGeSFgqvwfsxueS+Kvu5tpblufLxyaS0tnwck7+RT4/D
+	g5b+3XNOHDxh0/QvwFIaasXN1QBUTceUmKbDmqCc5L/0PadILj07/10DIefx4Y1R1Pv5UHU9YSP
+	2GgK4O8bvKQEMK/6F6Lrdn5DZF1ESkD08yws=
+X-Google-Smtp-Source: AGHT+IFwSrtGzSeEPK5TgC+oT8UOSi4rybKlq0dBAqLPHDSohAbLAOfIvFh4wZQl+7YbkvIbecRy6ybHuZFNV6WdVXA=
+X-Received: by 2002:a05:6e02:1849:b0:375:a3d8:97be with SMTP id
+ e9e14a558f8ab-3761d66d1admr86716815ab.9.1718957351600; Fri, 21 Jun 2024
+ 01:09:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <1718350923-21392-1-git-send-email-shengjiu.wang@nxp.com>
+ <171895121238.3616871.12573343188535489268.b4-ty@linaro.org> <ZnUfbEBDaKqIJU0r@linaro.org>
+In-Reply-To: <ZnUfbEBDaKqIJU0r@linaro.org>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Fri, 21 Jun 2024 16:09:00 +0800
+Message-ID: <CAA+D8APggO9q1bC7LnEBLj4JqF_q=Arax=iO6VeO5wZsm=d12g@mail.gmail.com>
+Subject: Re: [PATCH v8 0/5] clk: imx: clk-audiomix: Improvement for audiomix
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: p.zabel@pengutronix.de, abelvesa@kernel.org, peng.fan@nxp.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Shengjiu Wang <shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The marvell,mpic interrupt controller has no children nodes. Drop the
+Hi Philipp Zabel
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- arch/arm/boot/dts/marvell/armada-370-xp.dtsi | 1 -
- arch/arm/boot/dts/marvell/armada-375.dtsi    | 1 -
- arch/arm/boot/dts/marvell/armada-38x.dtsi    | 1 -
- arch/arm/boot/dts/marvell/armada-39x.dtsi    | 1 -
- 4 files changed, 4 deletions(-)
+On Fri, Jun 21, 2024 at 2:36=E2=80=AFPM Abel Vesa <abel.vesa@linaro.org> wr=
+ote:
+>
+> On 24-06-21 09:26:52, Abel Vesa wrote:
+> >
+> > On Fri, 14 Jun 2024 15:41:58 +0800, Shengjiu Wang wrote:
+> > > Some improvement for audiomix driver:
+> > > Add CLK_SET_RATE_PARENT flags for clocks
+> > > Correct parent clock for earc_phy and audpll clocks.
+> > > Add reset controller for EARC function, use the auxiliary device
+> > > framework:
+> > > https://lore.kernel.org/lkml/b86c83a520f0c45a60249468fa92b1de.sboyd@k=
+ernel.org/
+> > >
+> > > [...]
+> >
+> > Applied, thanks!
+> >
+> > [1/5] dt-bindings: clock: imx8mp: Add #reset-cells property
+> >       commit: d7d9ef1f40dc0639ba0901097139fcdc4bedb32e
+> > [2/5] clk: imx: clk-audiomix: Add reset controller
+> >       commit: 6f0e817175c5b2e453f7ad6a4e9a8a7fd904ee4a
+> > [3/5] reset: imx8mp-audiomix: Add AudioMix Block Control reset driver
+> >       commit: b7604e8b805a6e52161ff98728122005e6975a46
+>
+> Dropped the this one. Needs to go through different tree.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-370-xp.dtsi b/arch/arm/boot/dts/marvell/armada-370-xp.dtsi
-index 0b8c2a64b36f..954c891e5aee 100644
---- a/arch/arm/boot/dts/marvell/armada-370-xp.dtsi
-+++ b/arch/arm/boot/dts/marvell/armada-370-xp.dtsi
-@@ -168,7 +168,6 @@ mbusc: mbus-controller@20000 {
- 			mpic: interrupt-controller@20a00 {
- 				compatible = "marvell,mpic";
- 				#interrupt-cells = <1>;
--				#size-cells = <1>;
- 				interrupt-controller;
- 				msi-controller;
- 			};
-diff --git a/arch/arm/boot/dts/marvell/armada-375.dtsi b/arch/arm/boot/dts/marvell/armada-375.dtsi
-index ddc49547d786..99778b4b7e7b 100644
---- a/arch/arm/boot/dts/marvell/armada-375.dtsi
-+++ b/arch/arm/boot/dts/marvell/armada-375.dtsi
-@@ -376,7 +376,6 @@ mpic: interrupt-controller@20a00 {
- 				compatible = "marvell,mpic";
- 				reg = <0x20a00 0x2d0>, <0x21070 0x58>;
- 				#interrupt-cells = <1>;
--				#size-cells = <1>;
- 				interrupt-controller;
- 				msi-controller;
- 				interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm/boot/dts/marvell/armada-38x.dtsi b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-index 01d2288bbdae..1c84cc317560 100644
---- a/arch/arm/boot/dts/marvell/armada-38x.dtsi
-+++ b/arch/arm/boot/dts/marvell/armada-38x.dtsi
-@@ -408,7 +408,6 @@ mpic: interrupt-controller@20a00 {
- 				compatible = "marvell,mpic";
- 				reg = <0x20a00 0x2d0>, <0x21070 0x58>;
- 				#interrupt-cells = <1>;
--				#size-cells = <1>;
- 				interrupt-controller;
- 				msi-controller;
- 				interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm/boot/dts/marvell/armada-39x.dtsi b/arch/arm/boot/dts/marvell/armada-39x.dtsi
-index 9d1cac49c022..6d05835efb42 100644
---- a/arch/arm/boot/dts/marvell/armada-39x.dtsi
-+++ b/arch/arm/boot/dts/marvell/armada-39x.dtsi
-@@ -268,7 +268,6 @@ mpic: interrupt-controller@20a00 {
- 				compatible = "marvell,mpic";
- 				reg = <0x20a00 0x2d0>, <0x21070 0x58>;
- 				#interrupt-cells = <1>;
--				#size-cells = <1>;
- 				interrupt-controller;
- 				msi-controller;
- 				interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.44.2
+In case that you may miss this commit which is in a clock driver patch set.
+Could you please have a review?  Thanks.
 
+https://lore.kernel.org/linux-arm-kernel/20240614101727.zkh32bqe5nurnmbx@pe=
+ngutronix.de/T/#m4bd8091438d9fbe0bd1400005d681483c59607c7
+
+Best regards
+Shengjiu Wang
+
+>
+> > [4/5] clk: imx: clk-audiomix: Add CLK_SET_RATE_PARENT flags for clocks
+> >       commit: 163e678c0b24d0e45f617f4496c4ae9b1afd8d63
+> > [5/5] clk: imx: clk-audiomix: Correct parent clock for earc_phy and aud=
+pll
+> >       commit: 22fb849ead1b109f868e83b309223d906e4b7d96
+> >
+> > Best regards,
+> > --
+> > Abel Vesa <abel.vesa@linaro.org>
+> >
 
