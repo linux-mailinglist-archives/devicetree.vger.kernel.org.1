@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-78502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24CE912758
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:16:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8CB91278C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 16:22:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F1DE1C21185
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:16:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 960CA1F26BD7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 14:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B08F1D55D;
-	Fri, 21 Jun 2024 14:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78ECC1C6BD;
+	Fri, 21 Jun 2024 14:21:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o65zcFBA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R8+r96bF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E66221C6BD;
-	Fri, 21 Jun 2024 14:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510B9482E2;
+	Fri, 21 Jun 2024 14:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718979355; cv=none; b=OBADWTchJyDtG/cwhaH5oFbdtlpGVfxaidwka3LcBTMNJSfGcKz1iQLE2gOUAdZcqZ36I25/KdUzHFf2J9QQLeVQWpKQV2SMiGcL8lxRbIWz/qS2c3HkBXEFcT1kbA1j4i0lYFc/uxDoGRbU/+fwYCzum0v+ILYY99Mskuuy7S8=
+	t=1718979698; cv=none; b=DeTXW1UtYbdE+45pAEYlY7vC72uGDxv9l+uvP8QxjKp2ewX/8bTnuLNxURoRxT9KxfPaCeMAHCm8+wFCzxAhBY2ixHw/Nm4UgH5kH3BjJyVgEjHwhrXF55PZ3X+ETezXVdU05q/X4GNovaFkqQuKURU2EFwjEeM9pu0qEJCokLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718979355; c=relaxed/simple;
-	bh=za2MxDAObiqIEVBJMDU7v1XvhGLJ+imINTPyDRhLpLM=;
+	s=arc-20240116; t=1718979698; c=relaxed/simple;
+	bh=OQPO5vQZl5riqUdlNrU5QnmW+tWrPynwH15KZnCsdDU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TlD00Kwa8ZXfQes1v2qUqtYtWCpjdcdvNEai2kYVQ06h3f+LNZGiJOBW9yNAroZrLLoZmnODZX3WR0OdxDpWbPTbbpCz9UGEVXQVBEnQOYZCZkdLU7tU2a9FOTkf6cso9kIu8ctTIJJ4pdJW4YEdCC27zJ7WRh+XTW5AEyDaJ8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o65zcFBA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 190B2C2BBFC;
-	Fri, 21 Jun 2024 14:15:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=maZkMXZQCzErOmiZoaxL1UgjhW7tkCrHNJccZWQhWDBOj9LtxbfcbqBu8N8EcBGu/JxxJHxCzkXjW0f8T4nZV79Wxbpn36IVZJipnv1kn2cRiP5+EsMAcnRTA2sBSmpKlSiKWC3Q2egME6OAOltHkpQcomvuG9Wv7NKaBiS5yAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R8+r96bF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3621DC2BBFC;
+	Fri, 21 Jun 2024 14:21:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718979354;
-	bh=za2MxDAObiqIEVBJMDU7v1XvhGLJ+imINTPyDRhLpLM=;
+	s=k20201202; t=1718979697;
+	bh=OQPO5vQZl5riqUdlNrU5QnmW+tWrPynwH15KZnCsdDU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o65zcFBAPk/pP5qWOg6FURU7KiNkoOXp44d9IJAvQoKz/kDJ7SnRQcThfZshFplcu
-	 IKCu19V8Gu24gcjayiKe0ldOnsInho6gIxus2PtJrEcmqJW+01VSdQPRtiXt9A3xTt
-	 kUhF4xLlEpnavzaUkleHsLQ+PJqWi6xUeMgOOTlghX+BBY0IYoDOYDRMAyL+PZdqr/
-	 tnIba8Fbq6UjwAv/kV9rK0qC/arJovP5rCzi2mE9QJCDGbrprXWehYn0NjG0qYzV/+
-	 IWmSTL8i/aNrjbr708eWkwYbAfuQwd+q+Wa9okvx2xV3pL9sNd8Xkcryuwyywn1DYF
-	 9/EmFOPFdSl9A==
-Date: Fri, 21 Jun 2024 15:15:48 +0100
+	b=R8+r96bF44lTTMmJq0L1Z3QwIvfzrQkT+daQyH45XLr7xlXPR6bk1ORkKwJi92SAc
+	 xIekqPlx8TBLIWXB4j8Ek3OkqkXn4r9X3KzocDyLxas7/DlwTFcRhxQ0ok+ns2nj9w
+	 0QwFftwFEvQwPepjn18NILQ3ana2bbFbgPC0BXEKIXxJSDvjyrrVKLdPYAon7iscH7
+	 NYLUGxLUoAyX2oG+iPpI2lfuAOD9/GQ24IlrkU7zFD53ukjtzthuq3meOpe2we8fiz
+	 0duHYQ74lalYG0hRmoQ2ywfCTauZQy0xLphP9g5F9jJJXKwLiG6DRoI9uG1yZwNFFD
+	 Izj9JOxBpG33Q==
+Date: Fri, 21 Jun 2024 15:21:34 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
-	p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document the
- R9A08G045 support
-Message-ID: <20240621-tycoon-resemble-7fa4cd691939@spud>
-References: <20240621112303.1607621-1-claudiu.beznea.uj@bp.renesas.com>
- <20240621112303.1607621-9-claudiu.beznea.uj@bp.renesas.com>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+	denis.ciocca@st.com, devicetree@vger.kernel.org,
+	linus.walleij@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: iio: st-sensors: add LIS2DS12
+ accelerometer
+Message-ID: <20240621-vaporizer-dealt-02a1d8a8d423@spud>
+References: <20240611160821.13941-1-kauschluss@disroot.org>
+ <20240611160821.13941-2-kauschluss@disroot.org>
+ <20240611-reassign-eliminate-b05e4a302cfb@spud>
+ <56ab50d7c542356b7e377023b84a6018@disroot.org>
+ <20240615144948.61e7f519@jic23-huawei>
+ <157b613ce552e1060e856625d37e927e@disroot.org>
+ <20240618-jockstrap-gains-de25ff6a969b@spud>
+ <c4c7532b6b2ba08e24043b432431303b@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,67 +65,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="U91Hxo+ynXl/8kRg"
+	protocol="application/pgp-signature"; boundary="EobNpeVPbdRbwVux"
 Content-Disposition: inline
-In-Reply-To: <20240621112303.1607621-9-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <c4c7532b6b2ba08e24043b432431303b@disroot.org>
 
 
---U91Hxo+ynXl/8kRg
+--EobNpeVPbdRbwVux
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 02:22:59PM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Thu, Jun 20, 2024 at 04:42:39PM +0000, Kaustabh Chakraborty wrote:
+> On 2024-06-18 17:38, Conor Dooley wrote:
+> > On Tue, Jun 18, 2024 at 12:21:17PM +0000, Kaustabh Chakraborty wrote:
+> >> On 2024-06-15 13:49, Jonathan Cameron wrote:
+> >> > On Sat, 15 Jun 2024 09:46:59 +0000
+> >> > Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
+> >> >=20
+> >> >> On 2024-06-11 18:17, Conor Dooley wrote:
+> >> >> > On Tue, Jun 11, 2024 at 09:35:53PM +0530, Kaustabh Chakraborty wr=
+ote: =20
+> >> >> >> Add compatible for LIS2DS12 accelerometer by STMicroelectronics.=
+ =20
+> >> >> >=20
+> >> >> > I can see that! Your commit message should mention why this device
+> >> >> > is not compatible with existing variants. =20
+> >> >>=20
+> >> >> Sure, is adding the WhoAmI value enough? Or do I also have to
+> >> >> explain the different registers and sensor settings.
+> >> >>=20
+> >> > Who ami is not enough, but a statement along the lines of
+> >> > "The register interface is not compatible with existing parts, for
+> >> > example addresses and contents of numerous registers are different"
+> >> >=20
+> >> > With whatever the actual differences are.
+> >>=20
+> >> "LIS2DS12 is an accelerometer by STMicroelectronics. It is identifiabl=
+e by
+> >> its WhoAmI value 0x43.
+> >>=20
+> >> Its register interface is not compatible with existing parts. For exam=
+ple:=20
+> >>=20
+> >> - The full-scale values are present in register 0x20, in bits 2 and 3
+> >>   (mask 0x0c).
+> >>=20
+> >> - The full-scale values 2G, 4G, 8G, and 16G correspond to the register
+> >>   values 0x00, 0x02, 0x03, 0x01 respectively.
+> >>=20
+> >> Add the compatible string without any fallback."
+> >>=20
+> >> Is this good enough?
+> >=20
+> > I don't know the other devices, so please highlight how the examples you
+> > give here are different to the existing ones please.
 >=20
-> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible with
-> the version available on Renesas RZ/V2H (R9A09G075). Most of the IP
-> variants that the RIIC driver is working with supports fast mode plus.
-> However, it happens that on the same SoC to have IP instatiations that
-> support fast mode plus as well as IP instantiation that doesn't support
-> it. For this, introduced the renesas,riic-no-fast-mode-plus property.
+> Are these acceptable?
 >=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> - The full-scale values are present in register 0x20, in bits 2 and 3
+>   (mask 0x0c).
+>   Most other supported sensors have the register address set to 0x21,
+>   0x23, 0x24, or 0x25.
+>   There is one sensor setting though (bearing WhoAmI 0x3b) which has
+>   it's address set to 0x20, but the mask is set to 0x20, not 0x0c.
 >=20
-> diff --git a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml b/Do=
-cumentation/devicetree/bindings/i2c/renesas,riic.yaml
-> index 91ecf17b7a81..c0964edbca69 100644
-> --- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
-> @@ -25,6 +25,10 @@ properties:
->                - renesas,riic-r9a07g054  # RZ/V2L
->            - const: renesas,riic-rz      # RZ/A or RZ/G2L
-> =20
-> +      - items:
-> +          - const: renesas,riic-r9a08g045   # RZ/G3S
-> +          - const: renesas,riic-r9a09g057
-> +
->        - const: renesas,riic-r9a09g057   # RZ/V2H(P)
-> =20
->    reg:
-> @@ -66,6 +70,10 @@ properties:
->    resets:
->      maxItems: 1
-> =20
-> +  renesas,riic-no-fast-mode-plus:
-> +    description: specifies if fast mode plus is not supported
-> +    type: boolean
+> - The full-scale values 2G, 4G, 8G, and 16G correspond to the register
+>   values 0x00, 0x02, 0x03, 0x01 respectively.
+>   None of the sensor settings have the value 0x01 associated with 16G.
 
-The correct type here is "flag", not boolean.
+Yeah, that sounds good to me. Thanks for the updates.
 
---U91Hxo+ynXl/8kRg
+--EobNpeVPbdRbwVux
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnWLFAAKCRB4tDGHoIJi
-0rx4AQDK72mtMR+DQxuOqfx3EVjPx2nIzvd3VXtiSvnYAIijbgD/f67k8zd6b+w8
-N4MWmgku6tXiydmX+/oiqh14LnN8zgI=
-=du1X
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnWMbgAKCRB4tDGHoIJi
+0pYVAQDsXaMiTz4nVsnrOb1sLALm92WhmvswS/cTd3J4e7gpUgD/X8jyhJDSLMJZ
+QrASEU5b0zodsRfS5PEf1SYmTTJUCgA=
+=VJ9T
 -----END PGP SIGNATURE-----
 
---U91Hxo+ynXl/8kRg--
+--EobNpeVPbdRbwVux--
 
