@@ -1,143 +1,302 @@
-Return-Path: <devicetree+bounces-78373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8F3912180
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:06:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C555D9121B4
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:10:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3DA71F255BB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:06:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4768F1F26C5C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB9C171068;
-	Fri, 21 Jun 2024 10:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F240171E6A;
+	Fri, 21 Jun 2024 10:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kAdMqyV+"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="YJTMtvnR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C09084D04;
-	Fri, 21 Jun 2024 10:06:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853FE17166C;
+	Fri, 21 Jun 2024 10:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718964370; cv=none; b=hwIaVJyL1YK0q+yllkwOiL6fcO8CGZf60QnYrvLuJLRbxmk8dAMK3DBE2XPLXnrdWVYEsgJ5X8o+npmU6QzBGEHOmAIBujsWVbxYnjbyjXVx71EgsiW8MZy+DzgQYK01VIgupNFrstzIE+d+BBXyL0wUZrcWab2nins+f5pcguI=
+	t=1718964446; cv=none; b=OSyKXYSQlOAWCHqxnGhCBQbUx/rHGkNDp5Vh1/RoxiI5UbbFxAyMMHvR+tLJExJUKJ+CxZAYsv5k/yPFYbH5xYrlGq05+64C2D4MbfH8OeX5XIAw59DA3ZBHvNHI60bsQBsFB6QAVO1K8WjavoD9TZpRjem8nD/ZrSa6B9Ci6ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718964370; c=relaxed/simple;
-	bh=eIrkj/gF11mCVv5C/FFPHFinu8rryuV0kc+GwM2eeE4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ELoW7r4jBpyoAXgPPd/Bi4JPnrhYfAOXf+fdy+jVR6xY1cw91tjPuGQijLytM8M6gtLxW6tqWc7//sKQnJZy1zMeJFJj4zVYrmCrIEJnGkeh0hEs1uUmYIiMppMP0S4a3M+x35qQdJqXb3epC80jmP7scg9+t7KS8Bcx7/vBpM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kAdMqyV+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C756BC2BBFC;
-	Fri, 21 Jun 2024 10:06:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718964370;
-	bh=eIrkj/gF11mCVv5C/FFPHFinu8rryuV0kc+GwM2eeE4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kAdMqyV+Bm54/U80yaJFieUDXUu5iENt7Oga/D+z04++JZfqq56C6/Am28wY+na8f
-	 twWx/luB6gR/FNCn0Bi5gVHXrrZRXKKvqppeYoLhjyZXM1vIhXLzVMx3MDlUb6Idwt
-	 6J8mCn5JkYxKCQe7kZ6+iLe3E08N8Io2eYhnpbrknIxwoFtEfqKIzH78cD8Yrj2Nl1
-	 Xausbquup+SUfGZ4cTOfmkuKwr7zTWGswAkycDD5H5U3jPBZp/5yWnjJyPtyfhHgaS
-	 PI4AqFZ3f0uT6ssMzfjZJzwBbFkXuDOHrYnpoMzSj5XDiz3cjEsAAA96sP/mwW+W8t
-	 6rYRsZfO7FCGg==
-Message-ID: <6ad2a9ab-41a7-4560-8031-d5fa9f2cd558@kernel.org>
-Date: Fri, 21 Jun 2024 12:06:01 +0200
+	s=arc-20240116; t=1718964446; c=relaxed/simple;
+	bh=9Mj5A9F9aX0M1Sv5c3xhao2Mzlr3mL7kZ+ELIe6yfU4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=crKLamoLJY4IEOwkzdr9dWhKa9RouFPXEFQPIUy8OlthEXzYLAwhzKWLn/eQ0jHuSoZwp+I0+CdXInQhLYBKq6R/FI+Px/DvXDo1lssG6ZTn6PI9PgrpVHUX2IiI4vdtGT19PZZZDpfzWOkYbNU2rtpLOlgQHMnL6XoYCvFeLPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=YJTMtvnR; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1718964443; x=1750500443;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9Mj5A9F9aX0M1Sv5c3xhao2Mzlr3mL7kZ+ELIe6yfU4=;
+  b=YJTMtvnRjpT4RBSzew5hEfCfjVUK9kR06hT1Z9QanFNQukYbXHxj44I1
+   zpiKh8ILY5j/UA6w08nQURZg6oivau+uZULKBEGDfZPZv9XcKyEDcQg4Y
+   bqxBGwSKMUU8b+oidMx1Ke/MjUkdc2HFXq2Pap9lZ19tiq/J8EJhoLa/I
+   tjgnHofmAxPVfcymewUhtqZPLKXasTwHc48+JsKrCkEHiAqN3fsDEMI3J
+   glcZ7jTirdyHkzbYGrlmBhjNBdhCS5SyaQPBrNM7KZD0tcPHtH4JUekd4
+   KHy2ySUlDPG/2H1GR2mO5ERyiOf8ExBfDQFxrVMonY4YfSDgjJaV/K7KM
+   g==;
+X-CSE-ConnectionGUID: yH9lxABoTZGknLEBPBJV2w==
+X-CSE-MsgGUID: 2yopCvb3SVSuE7sfObazNA==
+X-IronPort-AV: E=Sophos;i="6.08,254,1712646000"; 
+   d="asc'?scan'208";a="28314974"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Jun 2024 03:07:15 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 21 Jun 2024 03:06:55 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 21 Jun 2024 03:06:50 -0700
+Date: Fri, 21 Jun 2024 11:06:31 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Charlie Jenkins <charlie@rivosinc.com>
+CC: Jesse Taube <jesse@rivosinc.com>, <linux-riscv@lists.infradead.org>,
+	Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Conor
+ Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
+	<cleger@rivosinc.com>, Evan Green <evan@rivosinc.com>, Andrew Jones
+	<ajones@ventanamicro.com>, Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu
+	<andy.chiu@sifive.com>, Eric Biggers <ebiggers@google.com>, Greentime Hu
+	<greentime.hu@sifive.com>, =?iso-8859-1?Q?Bj=F6rn_T=F6pel?=
+	<bjorn@rivosinc.com>, Heiko Stuebner <heiko@sntech.de>, Costa Shulyupin
+	<costa.shul@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Baoquan
+ He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>, Zong Li
+	<zong.li@sifive.com>, Sami Tolvanen <samitolvanen@google.com>, Ben Dooks
+	<ben.dooks@codethink.co.uk>, Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Erick Archer
+	<erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 4/6] RISC-V: Detect unaligned vector accesses
+ supported.
+Message-ID: <20240621-reveler-underfed-37600a9f16d5@wendy>
+References: <20240613191616.2101821-1-jesse@rivosinc.com>
+ <20240613191616.2101821-5-jesse@rivosinc.com>
+ <ZnDmRK0ZtKzmWN5S@ghost>
+ <ZnDsdzv4o/Xz9kWm@ghost>
+ <e6f7a061-50f0-4a6a-a09b-468502703c20@rivosinc.com>
+ <ZnSptpobfqjik3RM@ghost>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] net: wireless: brcmfmac: Add optional 32k clock
- enable support
-To: Jacobe Zang <jacobe.zang@wesion.com>,
- "arend.vanspriel@broadcom.com" <arend.vanspriel@broadcom.com>
-Cc: "kvalo@kernel.org" <kvalo@kernel.org>,
- "duoming@zju.edu.cn" <duoming@zju.edu.cn>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "minipli@grsecurity.net" <minipli@grsecurity.net>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- "brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>,
- "brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>,
- "megi@xff.cz" <megi@xff.cz>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "heiko@sntech.de" <heiko@sntech.de>, Nick Xie <nick@khadas.com>,
- "efectn@protonmail.com" <efectn@protonmail.com>,
- "jagan@edgeble.ai" <jagan@edgeble.ai>,
- "dsimic@manjaro.org" <dsimic@manjaro.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240620020015.4021696-1-jacobe.zang@wesion.com>
- <20240620020015.4021696-3-jacobe.zang@wesion.com>
- <b8b89ef7-2e92-4e1a-9609-6b0fd6d64d7e@kernel.org>
- <TYZPR03MB700143E13635364FF5A316D080C92@TYZPR03MB7001.apcprd03.prod.outlook.com>
- <4533403d-11b1-4f73-b57d-3079be1e300f@kernel.org>
- <TYZPR03MB7001C517C5BDC8967DECECD880C92@TYZPR03MB7001.apcprd03.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <TYZPR03MB7001C517C5BDC8967DECECD880C92@TYZPR03MB7001.apcprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+rvukaB0Gwx7tZ+V"
+Content-Disposition: inline
+In-Reply-To: <ZnSptpobfqjik3RM@ghost>
 
-On 21/06/2024 09:45, Jacobe Zang wrote:
->> That's DTS, not binding. I ask about Devicetree binding.
-> 
-> Ok... I have grep in all dts files and can't find wifi node which is under pcie node has clock. So should I add an example in the yaml file? 
+--+rvukaB0Gwx7tZ+V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No, that's example, not binding.
+On Thu, Jun 20, 2024 at 03:14:14PM -0700, Charlie Jenkins wrote:
+> On Thu, Jun 20, 2024 at 05:31:28PM -0400, Jesse Taube wrote:
+> >=20
+> >=20
+> > On 6/17/24 22:09, Charlie Jenkins wrote:
+> > > On Mon, Jun 17, 2024 at 06:43:32PM -0700, Charlie Jenkins wrote:
+> > > > On Thu, Jun 13, 2024 at 03:16:13PM -0400, Jesse Taube wrote:
+> > > > > Run a unaligned vector access to test if the system supports
+> > > > > vector unaligned access. Add the result to a new key in hwprobe.
+> > > > > This is useful for usermode to know if vector misaligned accesses=
+ are
+> > > > > supported and if they are faster or slower than equivalent byte a=
+ccesses.
+> > > > >=20
+> > > > > Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+> > > > > ---
+> > > > > V1 -> V2:
+> > > > >   - Add Kconfig options
+> > > > >   - Add insn_is_vector
+> > > > >   - Add handle_vector_misaligned_load
+> > > > >   - Fix build
+> > > > >   - Seperate vector from scalar misaligned access
+> > > > >   - This patch was almost completely rewritten
+> > > > > ---
+> > > > >   arch/riscv/Kconfig                         |  41 +++++++
+> > > > >   arch/riscv/include/asm/cpufeature.h        |   7 +-
+> > > > >   arch/riscv/include/asm/entry-common.h      |  11 --
+> > > > >   arch/riscv/include/asm/hwprobe.h           |   2 +-
+> > > > >   arch/riscv/include/asm/vector.h            |   1 +
+> > > > >   arch/riscv/include/uapi/asm/hwprobe.h      |   5 +
+> > > > >   arch/riscv/kernel/Makefile                 |   4 +-
+> > > > >   arch/riscv/kernel/sys_hwprobe.c            |  41 +++++++
+> > > > >   arch/riscv/kernel/traps_misaligned.c       | 119 ++++++++++++++=
+++++++-
+> > > > >   arch/riscv/kernel/unaligned_access_speed.c |   9 +-
+> > > > >   arch/riscv/kernel/vector.c                 |   2 +-
+> > > > >   11 files changed, 221 insertions(+), 21 deletions(-)
+> > > > >=20
+> > > > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> > > > > index b94176e25be1..f12df0ca6c18 100644
+> > > > > --- a/arch/riscv/Kconfig
+> > > > > +++ b/arch/riscv/Kconfig
+> > > > > @@ -723,6 +723,12 @@ config RISCV_MISALIGNED
+> > > > >   	help
+> > > > >   	  Embed support for emulating misaligned loads and stores.
+> > > > > +config RISCV_VECTOR_MISALIGNED
+> > > > > +	bool
+> > > > > +	depends on RISCV_ISA_V
+> > > > > +	help
+> > > > > +	  Enable detecting support for vector misaligned loads and stor=
+es.
+> > > > > +
+> > > > >   choice
+> > > > >   	prompt "Unaligned Accesses Support"
+> > > > >   	default RISCV_PROBE_UNALIGNED_ACCESS
+> > > > > @@ -774,6 +780,41 @@ config RISCV_EFFICIENT_UNALIGNED_ACCESS
+> > > > >   endchoice
+> > > > > +choice
+> > > > > +	prompt "Vector unaligned Accesses Support"
+> > > > > +	depends on RISCV_ISA_V
+> > > > > +	default RISCV_PROBE_VECTOR_UNALIGNED_ACCESS
+> > > > > +	help
+> > > > > +	  This determines the level of support for vector unaligned acc=
+esses. This
+> > > > > +	  information is used by the kernel to perform optimizations.
 
-Validate your DTS with dtbs_check.
+I haven't actually checked the patchset, but is it actually used by the
+kernel to perform optimisations?
 
-Best regards,
-Krzysztof
+> > > > > It is also
+> > > > > +	  exposed to user space via the hwprobe syscall. The hardware w=
+ill be
+> > > > > +	  probed at boot by default.
+> > > > > +
+> > > > > +config RISCV_DETECT_VECTOR_UNALIGNED_ACCESS
+> > > >=20
+> > > > This is not used anywhere, what is the reason for including it?
+> >=20
+> > This is so that we can check if they are supported or not, but not chec=
+k the
+> > speed of them. Similar to RISCV_EMULATED_UNALIGNED_ACCESS.
+>=20
+> What do you mean? It isn't used anywhere so this "check if they are
+> supported or not" is not guarded by this config.
+>=20
+> >=20
+> > > >=20
+> > > > > +	bool "Detect support for vector unaligned accesses"
+> > > > > +	select RISCV_VECTOR_MISALIGNED
+> > > > > +	help
+> > > > > +	  During boot, the kernel will detect if the system supports ve=
+ctor
+> > > > > +	  unaligned accesses.
+> > > > > +
+> > > > > +config RISCV_PROBE_VECTOR_UNALIGNED_ACCESS
+> > > > > +	bool "Probe speed of vector unaligned accesses"
+> > > > > +	select RISCV_VECTOR_MISALIGNED
+> > > > > +	help
+> > > > > +	  During boot, the kernel will run a series of tests to determi=
+ne the
+> > > > > +	  speed of vector unaligned accesses if they are supported. Thi=
+s probing
+> > > > > +	  will dynamically determine the speed of vector unaligned acce=
+sses on
+> > > > > +	  the underlying system if they are supported.
+> > > > > +
+> > > > > +config CONFIG_RISCV_UNALIGNED_ACCESS_UNSUPPORTED
+> > > >=20
+> > > > This should not be prefixed with CONFIG and does not include VECTOR=
+ in
+> > > > the name.
+> >=20
+> > Huh thought it would warn fixed though
+>=20
+> What do you mean by "warn fixed"?
+>=20
+> >=20
+> > > I assume you meant to put
+> > > > "RISCV_VEC_UNALIGNED_ACCESS_UNSUPPORTED" here?
+> >=20
+> > This is to leave a faster path like SLOW or FAST to say that unaligned
+> > access arent suported.
+>=20
+> I am not sure what you are responding to. This comment seems to be
+> responding to my correction of
+> CONFIG_RISCV_UNALIGNED_ACCESS_UNSUPPORTED->RISCV_VEC_UNALIGNED_ACCESS_UNS=
+UPPORTED
+> so I don't see how that ties into SLOW/FAST.
+>=20
+> >=20
+> > > >=20
+> > > > This was also intentionally left out on the scalar side [1]. The
+> > > > implication here is that having this config will cause people to co=
+mpile
+> > > > kernels without unaligned access support which really shouldn't be
+> > > > something we are explicitly supporting.
+> > > >=20
+> > > > If somebody does want to support hardware that does not handle vect=
+or
+> > > > unaligned accesses, the solution should be to add emulation support=
+ to
+> > > > the kernel.
+> >=20
+> > Yes but we dont have emulation support yet so I do think its a good ide=
+a.
+>=20
+> I am hesitant because it is very likely that somebody will add support
+> for unaligned vector emulation. When there is emulation support, this
+> config option should not exist to be consistent with scalar. However if
+> we add this option in now, we must expect a user to enable this config,
+> and then=20
 
+I dunno, I think there could be value in having the option here. For
+scalar, we couldn't have an option that would break the uABI, so the
+unsupported option wasn't okay. That's not a constraint that we have for
+vector.
+
+For vector, if you have a system that doesn't support misaligned access,
+you probably don't want to emulate the accesses either, since that's
+likely remove any performance gains you get from using vector in the
+first place, so I can see benefit in the option.
+Enabling the probing is going to end up with same outcome for userspace
+as having this option on such a system, so it comes down to whether you
+want to allow people to skip the probing if they know their system has
+this problem.
+
+> we will have to get rid of it later. Users are not always happy
+> when config options are removed.
+
+I dunno, I don't think that adding emulation requires that we remove
+this unsupported option.
+
+Additionally, what are we doing in the kernel if we detect that
+misaligned stuff isn't supported? Are we going to mandate that kernel
+code is aligned only, disable in-kernel vector or some other mechanism
+to make sure that things like crypto code don't have/introduce code
+that'll not run on these systems?
+
+Cheers,
+Conor.
+
+--+rvukaB0Gwx7tZ+V
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnVQpwAKCRB4tDGHoIJi
+0pXZAQD9cjwE3+HhR1BPGTVexyDMeNXhGnxoQU2WPZIkQff5PAEAmEWvP/j3OqO3
+Dh9OTffECs5ihlGfcsGsZqFA/aAANAQ=
+=b750
+-----END PGP SIGNATURE-----
+
+--+rvukaB0Gwx7tZ+V--
 
