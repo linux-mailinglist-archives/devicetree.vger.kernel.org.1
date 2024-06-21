@@ -1,288 +1,135 @@
-Return-Path: <devicetree+bounces-78234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0741E91196D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:28:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C42D91197D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:34:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2903B1C22E5C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 04:28:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE7021C222E3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 04:34:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9253C14E2E4;
-	Fri, 21 Jun 2024 04:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BBE12C473;
+	Fri, 21 Jun 2024 04:34:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="whoXJyjC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mJ8aNvCj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD49312F365
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 04:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86BAEBE;
+	Fri, 21 Jun 2024 04:34:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718944079; cv=none; b=UZXwtZPAKirPYoqewaUxmhxFO2p9JpsfQthTAsx+Ji6tJNxkAFU2AYJBdoXgYQFBQDRR6zagjsmccf+/TcDkRMUjiGgtBKvg638631NUzR7Hvm9Bwd3D+2keUCJtFSPN7aX6cWDkSoVRSp0Msyx0td5sXzOhC0vF6WEX7+oblZI=
+	t=1718944455; cv=none; b=jkmeo3CZ3pOCeU2My/K5dAncAXbTT/xQXy7eDhr/QaU3XJVR1R1ADlmN9nvR0Jb5K7FwsrpqYTEUHiGBrlHl4ebagwSbXs5MOI0jkQkT5iL1TEb32iMjcpkohaLNRr391lJsq5WLPTgBKcG7C9GRkBq4h3RccS6iSazqIuSjTSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718944079; c=relaxed/simple;
-	bh=kxsLXwle6gFtuh661k++ZNvghjzuFfcqbh4/sPpmdSc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Xh0hiRFNBX6K66vEC2R1+iRVCV+SjvaTuPsgcn+Johskt6zjryodNuMcRTF9aBVnQOt33aezRfsC6fE8qG951MWh9mEYfyaz4J9v++Pty1CdwN7xGPg/jnOK79XoLgC9tQupdJJiCHHd4JDhY0YO9n5yCDJ6wIt3oKO+nwEL8Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=whoXJyjC; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 022692C044B;
-	Fri, 21 Jun 2024 16:27:45 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1718944065;
-	bh=B1yeaoEsau+/HF9aMUxPE70V+9UI3cn1YqdyaLzd7Bs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=whoXJyjCf5ditrQuMpespEX47tBYUhznBFcVHjSZRPs+9e2+3F5VGBWFwAmDJmPdD
-	 jgywn8QUsh8ARvShbE3wG9JnINCepMe0jqNayphSlXjh9TospnIeL6w41bcxme8mpY
-	 FMGaJmfS+iFsSpG21J+Gn2atmfyYhOl1F697H0rw8KRAfT3ZkwcTiw4Q2wGMTrBdNa
-	 Tslip5mQVw8Dck2Eb/Z/9TdcaU0KP7rkR7ZaGPVmgE8bYIbma4ZHrkA4kTFwiRgT2G
-	 CamujiAlJP9HqeSbHeHOYDpwzU6+Jp2MLC6vvZPxmDNgxuwP+rQM4dUfrP4HTnoYl0
-	 vNUbyThM0jTtQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B667501400006>; Fri, 21 Jun 2024 16:27:44 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 5C6B613EE94;
-	Fri, 21 Jun 2024 16:27:44 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 5B089280BEA; Fri, 21 Jun 2024 16:27:44 +1200 (NZST)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: tglx@linutronix.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	daniel.lezcano@linaro.org,
-	paulburton@kernel.org,
-	peterz@infradead.org,
-	mail@birger-koblitz.de,
-	bert@biot.com,
-	john@phrozen.org,
-	sander@svanheule.net
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	kabel@kernel.org,
-	ericwouds@gmail.com,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH 6/6] mips: dts: realtek: Add RTL9302C board
-Date: Fri, 21 Jun 2024 16:27:37 +1200
-Message-ID: <20240621042737.674128-7-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240621042737.674128-1-chris.packham@alliedtelesis.co.nz>
-References: <20240621042737.674128-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1718944455; c=relaxed/simple;
+	bh=BoS/tIDHw9tMTBj4Fpfa4bXjNsqBWr/XXVzf3vePCa0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ojjBYwG61LY2DYOxno72ei/sHezrLSgyNTkgCAFAkOdVrOE9bkeJceKGOf3z45DfZ8vi13E5tB+PXQ8vByle7NMK6MffZhQQgNvlFwPDriby8trPltdJeKYNp8JDM64RGbtZ13A4YE21Tv3FFtaq8FnuBavH+Lnkz0Bz6DBzS7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mJ8aNvCj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45L4P5Le022511;
+	Fri, 21 Jun 2024 04:34:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PwjfkBZCfAbe9fUHJY7I6WnMh4SDhfak2gHRLZ/Osmo=; b=mJ8aNvCjGF9Txl9n
+	mxUHggwVbb/9iIaLfObQ4EiWxlO8UV4SnGKQ43s/QifCuveGa1WWCLVE4cn/NbDT
+	bgfCMk0N1CZOAU9v2qqiVqSE5K0yb/J7zLyVjF4oKSIe++18+jhhA1miT6eiBT3P
+	9e0aLnSEJEl+q/dD2YT5vxcCPb8IbR2P3ZqkfrQ6oyg6hDu5Xx19+CcpCB4sKLgl
+	8yccEl/OUWqYrF2pR+FlzBT2LGjMuSg70x8taYo8pjNsd8eDA/21x0epKeW8eNwn
+	MC7pTox6uKEO+bDiOlBeu7n0g97NG264JSxx6luG8ZRqElrwnAjw3PX9V1cZsxho
+	dTu91Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yvrnyhcbj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jun 2024 04:34:09 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45L4Y8tf005173
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jun 2024 04:34:08 GMT
+Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Jun
+ 2024 21:34:02 -0700
+Message-ID: <053e047b-7594-48bc-ac1b-2368c0c8f1cc@quicinc.com>
+Date: Fri, 21 Jun 2024 10:03:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=66750140 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T1WGqf2p2xoA:10 a=FkagyKZCYwirPjr5IuAA:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/8] clk: qcom: Add support for Display clock Controllers
+ on SA8775P
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_jkona@quicinc.com>, <quic_imrashai@quicinc.com>
+References: <20240612-sa8775p-mm-clock-controllers-v1-0-db295a846ee7@quicinc.com>
+ <20240612-sa8775p-mm-clock-controllers-v1-6-db295a846ee7@quicinc.com>
+ <37bbd466-742a-4a23-b3f7-97f8da109608@linaro.org>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <37bbd466-742a-4a23-b3f7-97f8da109608@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sXulWohIsmaG89yWtgjJuRyGmaKO5vRo
+X-Proofpoint-ORIG-GUID: sXulWohIsmaG89yWtgjJuRyGmaKO5vRo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-20_12,2024-06-20_04,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 spamscore=0 bulkscore=0
+ adultscore=0 mlxlogscore=913 clxscore=1015 phishscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2406210031
 
-Add support for the RTL930x SoC and the RTL9302C reference board.
 
-The RTL930x family of SoCs are Realtek switches with an embedded MIPS
-core (800MHz 34Kc). Most of the peripherals are similar to the RTL838x
-SoC and can make use of many existing drivers.
 
-Add in full DSA switch support is still a work in progress.
+On 6/13/2024 10:16 PM, Konrad Dybcio wrote:
+> 
+> 
+> On 6/12/24 12:47, Taniya Das wrote:
+>> Add support for display0 and display1 clock controllers on SA8775P
+>> platform.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
+> 
+> Please merge this into one to save on boilerplate, take a look
+> at dispcc-sc8280xp.c
+> 
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- arch/mips/boot/dts/realtek/Makefile     |  1 +
- arch/mips/boot/dts/realtek/RTL9302C.dts | 74 +++++++++++++++++++++++
- arch/mips/boot/dts/realtek/rtl930x.dtsi | 78 +++++++++++++++++++++++++
- 3 files changed, 153 insertions(+)
- create mode 100644 arch/mips/boot/dts/realtek/RTL9302C.dts
- create mode 100644 arch/mips/boot/dts/realtek/rtl930x.dtsi
+I did take a look at the dispcc for SC8280XP before posting the series, 
+but it kind of looked tricky to add fixes for a particular dispcc.
+Debugging could also be difficult in my opinion.
+Though I understand that we are trying to optimize by re-using few 
+common structures/probe but from clocks side they are all redefined.
+That was the reason to keep them separate.
 
-diff --git a/arch/mips/boot/dts/realtek/Makefile b/arch/mips/boot/dts/rea=
-ltek/Makefile
-index fba4e93187a6..54dc2d280cd5 100644
---- a/arch/mips/boot/dts/realtek/Makefile
-+++ b/arch/mips/boot/dts/realtek/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-y	+=3D cisco_sg220-26.dtb
-+dtb-y	+=3D RTL9302C.dtb
-diff --git a/arch/mips/boot/dts/realtek/RTL9302C.dts b/arch/mips/boot/dts=
-/realtek/RTL9302C.dts
-new file mode 100644
-index 000000000000..d921067d5006
---- /dev/null
-+++ b/arch/mips/boot/dts/realtek/RTL9302C.dts
-@@ -0,0 +1,74 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/dts-v1/;
-+
-+#include "rtl930x.dtsi"
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/thermal/thermal.h>
-+
-+/ {
-+	compatible =3D "realtek,RTL9302C", "realtek,rtl930x-soc";
-+	model =3D "RTL9302C Development Board";
-+
-+	memory@0 {
-+		device_type =3D "memory";
-+		reg =3D <0x0 0x8000000>;
-+	};
-+
-+	chosen {
-+		bootargs =3D "earlycon";
-+		stdout-path =3D "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status =3D "okay";
-+};
-+
-+&spi0 {
-+	status =3D "okay";
-+	flash@0 {
-+		compatible =3D "jedec,spi-nor";
-+		reg =3D <0>;
-+		spi-max-frequency =3D <10000000>;
-+
-+		partitions {
-+			compatible =3D "fixed-partitions";
-+			#address-cells =3D <1>;
-+			#size-cells =3D <1>;
-+
-+			partition@0 {
-+				label =3D "u-boot";
-+				reg =3D <0x0 0xe0000>;
-+				read-only;
-+			};
-+			partition@e0000 {
-+				label =3D "u-boot-env";
-+				reg =3D <0xe0000 0x10000>;
-+			};
-+			partition@f0000 {
-+				label =3D "u-boot-env2";
-+				reg =3D <0xf0000 0x10000>;
-+				read-only;
-+			};
-+			partition@100000 {
-+				label =3D "jffs";
-+				reg =3D <0x100000 0x100000>;
-+			};
-+			partition@200000 {
-+				label =3D "jffs2";
-+				reg =3D <0x200000 0x100000>;
-+			};
-+			partition@300000 {
-+				label =3D "runtime";
-+				reg =3D <0x300000 0xe80000>;
-+			};
-+			partition@1180000 {
-+				label =3D "runtime2";
-+				reg =3D <0x1180000 0xe80000>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/mips/boot/dts/realtek/rtl930x.dtsi b/arch/mips/boot/dts=
-/realtek/rtl930x.dtsi
-new file mode 100644
-index 000000000000..5e088c90d2ee
---- /dev/null
-+++ b/arch/mips/boot/dts/realtek/rtl930x.dtsi
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-+
-+#include "rtl83xx.dtsi"
-+
-+/ {
-+	compatible =3D "realtek,rtl930x-soc";
-+
-+	cpus {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+
-+		cpu@0 {
-+			compatible =3D "mips,mips34Kc";
-+			reg =3D <0>;
-+			clocks =3D <&baseclk 0>;
-+			clock-names =3D "cpu";
-+		};
-+	};
-+
-+	baseclk: baseclk {
-+		compatible =3D "fixed-clock";
-+		#clock-cells =3D <0>;
-+		clock-frequency =3D <800000000>;
-+	};
-+
-+	lx_clk: lx_clk {
-+		compatible =3D "fixed-clock";
-+		#clock-cells =3D <0>;
-+		clock-frequency  =3D <175000000>;
-+	};
-+};
-+
-+&soc {
-+	intc: interrupt-controller@3000 {
-+		compatible =3D "realtek,rtl9300-intc", "realtek,rtl-intc";
-+		reg =3D <0x3000 0x18>, <0x3018 0x18>;
-+		interrupt-controller;
-+		#interrupt-cells =3D <2>;
-+
-+		interrupt-parent =3D <&cpuintc>;
-+		interrupts =3D <2>, <3>, <4>, <5>, <6>, <7>;
-+	};
-+
-+	spi0: spi@1200 {
-+		compatible =3D "realtek,rtl8380-spi";
-+		reg =3D <0x1200 0x100>;
-+
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+	};
-+
-+	timer0: timer@3200 {
-+		compatible =3D "realtek,rtl930x-timer", "realtek,otto-timer";
-+		reg =3D <0x3200 0x10>, <0x3210 0x10>, <0x3220 0x10>,
-+		    <0x3230 0x10>, <0x3240 0x10>;
-+
-+		interrupt-parent =3D <&intc>;
-+		interrupts =3D <7 4>, <8 4>, <9 4>, <10 4>, <11 4>;
-+		clocks =3D <&lx_clk>;
-+	};
-+};
-+
-+&uart0 {
-+	/delete-property/ clock-frequency;
-+	clocks =3D <&lx_clk>;
-+
-+	interrupt-parent =3D <&intc>;
-+	interrupts =3D <30 1>;
-+};
-+
-+&uart1 {
-+	/delete-property/ clock-frequency;
-+	clocks =3D <&lx_clk>;
-+
-+	interrupt-parent =3D <&intc>;
-+	interrupts =3D <31 0>;
-+};
-+
---=20
-2.45.2
+> Konrad
 
+-- 
+Thanks & Regards,
+Taniya Das.
 
