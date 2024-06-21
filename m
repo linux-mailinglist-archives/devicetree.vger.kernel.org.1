@@ -1,175 +1,309 @@
-Return-Path: <devicetree+bounces-78222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A1C91180F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 03:36:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17921911823
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 03:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2169E1C20EFD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:36:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98C081F2148F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 01:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAFCD80603;
-	Fri, 21 Jun 2024 01:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C8E8249A;
+	Fri, 21 Jun 2024 01:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="H7c+XXED"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="JQczGmzk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2061.outbound.protection.outlook.com [40.107.6.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E037E110;
-	Fri, 21 Jun 2024 01:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718933793; cv=fail; b=XR92zWB/mz00w+srjxaeSKqYcfMPWmi+GW8pUr+SzGSzjIl5/LCJNoQHY74V07LzCp6JbZ7wMEGeMgVVM1uwVwh7Unq5l0BN4HGa6XGEWiPhFnppDkDcgGE8lERJ6jf2zGSmPzjPcZ43zp0o78pdC9QYtrbvIX6rUFErpSurJEA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718933793; c=relaxed/simple;
-	bh=H7wtZu8f9S2YF3hbkGeoH+C5muM8VSy6k5nIrwzBEhs=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=tU2CjUVS41T3rLsRCi5p3H0Dn70BbILOpsGmBZQSQwobqlHkucc/E3wrlI+Y1oSRLm7jOdy9BLikBMaBWNu6/S0w/Z8otxb/hcuIgjyF7npOZKZZEC+MLo9ZoaqGHq6bsbXobasMvXWzFmOl+KZt+zP0pgOrR7JcELyOq/ufgPE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=H7c+XXED; arc=fail smtp.client-ip=40.107.6.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eN35OYy9yxBr9DmBfHB5xteMb0sv2/pUs1lsrIPR1P+vE4wN8uM7WifdHUSXXjFav+jJyXbhAK5n/kgM9kls3wGzdAHktptCVFkfdHiz+c/NWeNwl81qzIHiCNMbvXIAdPudZRf+iriCSzWx7zznDKDzx2LksTvr8Sdj3vziVv9Fj3GgOnrwhyLawxjMzFTPAZAEaWHn4HQQmtRCHoORbF/q5mhixAMfCM8jp5CC/2HkZANeHw/H6H98zcW8wvk6+8s62WzqiIkikIQKXb7HdYR9OoDwTzHAAiCCxRqlkRPQANV5ob1kheJlDhDJX8ySZXodGthtnLXWxzir20FdXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H7wtZu8f9S2YF3hbkGeoH+C5muM8VSy6k5nIrwzBEhs=;
- b=G66yoFv+PFtoG7x6UUKwRyNB4DL9vgxXOVME1tQmBUPN9KmVx6Rd4F3HlvMFsvawAhaJInBo6s19wu2hVk2e3d31lGlvlpyP8jJIk4nTDuJy6dbK0V6Hb39iPHbVyuJAn5qht8NHQuJltkokYkz4D9W0+EVEtVIoOxlJgjk687SaZdFnRAwYEZAoHmvGwm6Enazr+gjhBuxslCPJNE1pbC/BX0gDpCaW7aF3GDMO1cQgzTFfibKDLNUpwMi9czJONUYWLBXYSwBiLefY6GeEu182wIM/w+1DjiHotsOIzmeLarXv1XAyjWVkHVCZHPZffcfWTu938sfy7rCL5dAY9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H7wtZu8f9S2YF3hbkGeoH+C5muM8VSy6k5nIrwzBEhs=;
- b=H7c+XXEDWCL7H5e7glkFQiq6Q08v8s1S1j/kdSEQYFt8YYxQqOKOkx7t3iQc47vLDGIZStN0Mz0H7/NtqAeNnceOq0N5aJXYCeoLIRtjqDyK5B+QH0zC8nSMUFPsXPOKJxqRhABwdtu+eWVcj/dKIoXsHQcF4AibC41AVpoSkIk=
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com (2603:10a6:20b:9e::16)
- by DBBPR04MB7737.eurprd04.prod.outlook.com (2603:10a6:10:1e5::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.19; Fri, 21 Jun
- 2024 01:36:28 +0000
-Received: from AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256]) by AM6PR04MB5941.eurprd04.prod.outlook.com
- ([fe80::9f4e:b695:f5f0:5256%4]) with mapi id 15.20.7698.017; Fri, 21 Jun 2024
- 01:36:27 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Frank Li <frank.li@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
-	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
-	<devicetree@vger.kernel.org>, "open list:ARM/FREESCALE IMX / MXC ARM
- ARCHITECTURE" <imx@lists.linux.dev>, "moderated list:ARM/FREESCALE IMX / MXC
- ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, open list
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 3/4] arm64: dts: imx95-19x19-evk: add lpi2c7 and
- expander gpio pcal6524
-Thread-Topic: [PATCH v2 3/4] arm64: dts: imx95-19x19-evk: add lpi2c7 and
- expander gpio pcal6524
-Thread-Index: AQHawy1hpmY8bScXJEC+62K4A3HworHRcF7g
-Date: Fri, 21 Jun 2024 01:36:27 +0000
-Message-ID:
- <AM6PR04MB5941DE0CC49993C143BC304F88C92@AM6PR04MB5941.eurprd04.prod.outlook.com>
-References: <20240620161622.3986692-1-Frank.Li@nxp.com>
- <20240620161622.3986692-3-Frank.Li@nxp.com>
-In-Reply-To: <20240620161622.3986692-3-Frank.Li@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM6PR04MB5941:EE_|DBBPR04MB7737:EE_
-x-ms-office365-filtering-correlation-id: c98f21d4-d8d5-448d-8d62-08dc91929199
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230037|7416011|376011|1800799021|366013|38070700015|921017;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?r9yepJF30UXueDYfi4T6C8d2j2Gt2xoyaAglyeOi8vKafB/qXqeuFMqg9Dnz?=
- =?us-ascii?Q?h7uEY34owwtm+tdqcb+TzqRu8Jt+QmZlFk0mTOEz88dqM1A95k8JbOV5I8WR?=
- =?us-ascii?Q?bdEPptXvreS7mcKZcb6yi2IkVeVqbIXt/fc98JVdV39oB6pgFyGNTsdJMJJh?=
- =?us-ascii?Q?jqT4ZuhEza1ATreO9/G10o3ELWnGgLA6ex/oZKSjb1BC5lmiBZrdPHbxjZmT?=
- =?us-ascii?Q?kxpNKzuv0mQM0zGKGPJVFPtobOQCreXJvoLAkArML4uGQk1KKZO4fx6rzs/f?=
- =?us-ascii?Q?EL/Zj+7dX15gkwLhoWp6wzSiVltAAUTyNZFlO/Z44Q1fnoP7648soeLSkdYb?=
- =?us-ascii?Q?W2UIWtDim5s5xGyVMHd+L/1RX6DAjVJ6ie4P5tyvRCjgHV0mn3FE2gfHa9ke?=
- =?us-ascii?Q?NyT3r3Ajku2kri8JOf8YNJDMFZeLAqzRPNngGH7GEV9EeIH8L3shpZAPouBh?=
- =?us-ascii?Q?yelxgSfkPx8quQiI/c8ldWXC2A4CvorBafYgFUvtnTy6Y6eVwuouiAHOAgId?=
- =?us-ascii?Q?nVPeUEablaxFZ12cO4rKcyefM4a9BiBHsrvMHyN15OsQ9jXdBpNEIzfViYhs?=
- =?us-ascii?Q?cvtrlv3ri+OqPnkPKsHKAXI9+LNAVVtCDp1GR+dVgnASsx8sirYiab5faOjQ?=
- =?us-ascii?Q?bc9zFw3Xw92n6fxGJ9tlE1pGHgHJ43ZNg44nmxURvq3UOORBC/RJ/ebt5jE4?=
- =?us-ascii?Q?OCdGJxAtfl+NwLBwQRdmi9pC/SnjuD5e5QsqdpWfB02DtZMPav/ZSBVizUeC?=
- =?us-ascii?Q?/XdP0AqfvzrZtfpi/pFNI7/H/PtnHj0h8LgJU0Z16khs8s4jeNBeWzGSinva?=
- =?us-ascii?Q?MtOMK1gPzLlP9iKoOpDwqvZUWQ38Jwr5iLyMJ4IrKs/qp8iF7PN8Q2VkeVKD?=
- =?us-ascii?Q?5wRRe5LghEr/zdc0RJV0YbfnKANROWjB9/owtV34HjEVFV++f15SIPar1P4W?=
- =?us-ascii?Q?k7dpat7nuvKXpFR6O8xkscmZVMSLwmdQs4S7l447EqhwBU0I7SDg7NfWnDDR?=
- =?us-ascii?Q?yj2YSCiVhJAVEQlwKH3Ov59I0IhRS8rmA/7lERe3mEjN2X6y1VUwg2UJA9si?=
- =?us-ascii?Q?WhiWg5rNu+u3BI34lfQ10hY6Ez5mrrGg/z6xJ37r7FY+eG0omerp8CskKTJz?=
- =?us-ascii?Q?pTRELyzp+XEcA4oNdtPnHJgrQDzhkSE6fqbKo3QfcMHQGQfM2vzzZUZ3UMHG?=
- =?us-ascii?Q?HRHIntVCI4l+dY0lo1P7VTqf2VwpOC110gKt/RdhYOPmQR9OtI6rEH7gkCws?=
- =?us-ascii?Q?EUZEOemExpbNkmJK414GTXt3fGoeAlIugCujiYoXA0O+HEtmIPmfUQTYUQ/Y?=
- =?us-ascii?Q?JoVLL2elRvXDa7u47HPmr+6Xf04NyWPMn55hvBK42t20Rd9jkGOdzhPqhyPR?=
- =?us-ascii?Q?VNiN0ftPw/uJfhJhxsWJOLPs7RLB?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5941.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(7416011)(376011)(1800799021)(366013)(38070700015)(921017);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?8MD+ixYJYQlP0y8gQ6keCqT0LCJXIGEl1SympuCaqORa7glI3+iJIjtVHUmc?=
- =?us-ascii?Q?xIkv2PK695bba8toTDFTToVwxXVikE/v1ivt+F52hoG4zYEMrNxnKAYuc35m?=
- =?us-ascii?Q?xAd/wpfE/pcP7TvhqtROYf2WHKCK11mo8sqTIpruG+/ue7WNnuFhJXEv8brg?=
- =?us-ascii?Q?JUgP7fpLQUn06KiVPPRyz7M3iVPlMrQQgB8ujq45cjkNeqHhhrJLnJUhHssp?=
- =?us-ascii?Q?OziZt24rdsaTGi17jNPpsGrZMqsktvZCh4l7Rq42utf/8KZlBjNWYZYg7FtE?=
- =?us-ascii?Q?j72ml2nrD71rDFgQktNk9yH2wIO69h6d4aGzJuVhCtvaFlTW1gczhUt0i7kL?=
- =?us-ascii?Q?U+cd6F467+8lDcM4EDQXmlSo4/EhyySoL/pbrwjeGWVEhI0U1y1EQYNHBkJK?=
- =?us-ascii?Q?ovdZEmlYCjUr6WLkEYo/ili3JwVB9tUunLSUZ8G0t6uFZah1QOcpZzExvHLT?=
- =?us-ascii?Q?TOOuR9AOthgVFGhXK/VP2qQH+61zW/+RqHXhn1Ph+p5HT3mlcx4Bstytk7XU?=
- =?us-ascii?Q?xjhgFh2vRF9tdUiXQCU7sBR9UiYW/K0/qq4o6moeSFATiQ4t3sASC7JKgpte?=
- =?us-ascii?Q?VrSSWLlVy+RSZPAlgnKf7pEMRnPSPRoUTqvpHwiVKQVe1+iUX2YHHrhBzoJ9?=
- =?us-ascii?Q?AyfDAUH5RXv/fQLnD1l1xP46OJuGgCrjP8d4D+4GHh/EaoK0yZ1d9lCu6PIW?=
- =?us-ascii?Q?UxQfMrmdd2Y2AiJc3bimJxd3GS5o9Whn2qcjVxiH+0ZcCwfis6wFf+RQvOjp?=
- =?us-ascii?Q?UzT0PcDfc+Dr/uYmngc8O/5WGguNXIIPNakz6PO2GnvpiGHcDdZkqh9zwfuJ?=
- =?us-ascii?Q?CE3nwkSkl3WXx50NoiKfeWubAH0OK0ANKuGp6QliPGUL1LncujUuFuU9VaXe?=
- =?us-ascii?Q?JVcpoKr7zKEcCl2BAyQr6CzbVJrWf5ZRLaUy5qAxm/ansze5ZF7OTvE1DxWP?=
- =?us-ascii?Q?FAnSqOadb2drneIcmTQb10a4dxEu/KhUTRc2BmG/5BaIIA99dgP0Zw7nMmK0?=
- =?us-ascii?Q?UvRIBoaPvr5RGWcO59CjXvykrNfwkL8juQSaL+o7vt877SyqNICrk0tFAiQA?=
- =?us-ascii?Q?8ZvmvhMc3NN1xk8Hxf0SmYgCR8Ogmh1rFX+w2WOBuqXthtG6K7bBg172lpxa?=
- =?us-ascii?Q?UhHSJlNBwuVpxpEAJTEFzaSXCRDX+NHH5KC0r21caKbZurUZxMbxOLP/0Adn?=
- =?us-ascii?Q?ipe/PjdOWTiMMrCh4I94PDE+TFg06xo9PeovLAb/o+jE94yNn0eLqnL2D0UI?=
- =?us-ascii?Q?pygPwVaOuPNNknaZYqfH7IZ/r/m1c7tSm5aW7dhc58DWV0wTniW03m69pZBM?=
- =?us-ascii?Q?mFwyu/zsEUBK6pYkJ4WrbHXwJdChSqYzGHfhahP3mP4PdparkxpJXmBc7hra?=
- =?us-ascii?Q?/o7ny2Ait0a1fRP+QS+nR5XaMsheQhG6UI2Aw3I4apd62J8xNpFc48/31vhD?=
- =?us-ascii?Q?yFlH6lZabtbDe1TL5b3yFQLgJnu0JDUpuJvf0Z5BJWrKaMRRHTYBr5OVqzbU?=
- =?us-ascii?Q?11lIzI/30WfX6YDxdzIghowkvfAwSCLjQXOZ42RPhXKw06UwJeJudl4qvNPs?=
- =?us-ascii?Q?Mb0torBBi+tMPmQuJG0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD46080603
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 01:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1718934219; cv=none; b=Xzz2LqvhKLkrEZUw6ztSTCibI0QT8dNS0nVn6SQts9L3GGLrHBLDnGVdYnbx1ryHB6anBLU2PDDt40JYzPLD3b9xEwLPUgB+N669HCMBjxGpI2e2cFpMWmzm9WM/8fD4jR3RdmJSU7TH63Fqd7AnTwIsPV+6WARDMgfYy21rpQs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1718934219; c=relaxed/simple;
+	bh=o34UvPbCxcXcUfT8nN4zJTW0tdEx/03plVr9C6dfJeA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dTBSjrdyD08hG2+YxEjw4s5ZiowZUXXhXNj2QtmudQSbHCKMrjTeY9UvUfvZsJNvnoaoRA6Kf2EgErcjs0MaYtELLaA1rp2N+U3zEkkhDTZD9Vo41AsldPr6ltp7tGO08zickMCUVl6QWiIO4X6JClzdfi6QLq/OPOPTpiOJQro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=JQczGmzk; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57d05e0017aso1806264a12.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jun 2024 18:43:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1718934216; x=1719539016; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t/MykFi1Rd45hp+4W7HG+OPx1GAcGVoTa1TKgwh/O6k=;
+        b=JQczGmzkvVDT8AJrSPTfUWkYP9obeeWK1W7QkVtQOei/+75UkWocJUKOzd1/ij1ZKT
+         Z/AbVjJCY5ugmecwCTD4YLnccVCbdMGl+rqBgV9KYHcOsdQ7pPZ5z1xSFBs+qTbinbXC
+         DhYeeL4xoK+dI7MW6OTbZ9l1eEwuBR7FPcmBLVgApxSoGV+B7tAm9u2yEZA7WhYyPzQA
+         mvWg97jQEyoX+4C06Yulj70TFMyjzzlSGNtYrlU4Vge0gobbTVD4MOndtW+MDUiHZ1Lr
+         yiTd+N2e7fTiEbkhSeaiIojlp96TuwMQE6yapQkJ1nv6LZ066w/UMGanQc62uhSZrTP7
+         X1mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718934216; x=1719539016;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t/MykFi1Rd45hp+4W7HG+OPx1GAcGVoTa1TKgwh/O6k=;
+        b=Ho0aKnFM+loPA3GGzJ0TJMK0eemwy0UCfoRcpBCdxUY1evM0NqGKF7gmsWRjd0g5Ow
+         VNxhWMkfmtwJHEwLwgDMZKID9topK/IFvf9v1iEYZ4/QVMmWaDGzM9ldrYaxG4aUfCi8
+         1eKfh1OpkLieTQVw/o7Nhqi9JwKfvYF/XEy2P4OsTTgtvMPLzrE6FruGwdKUhKPB8ZW2
+         qda+MBGLZ/ZfpbVdjp/Aw16ra7PrKZ4CqBWP3Bf9YH655emXDPRGA8WVOwYdiOhGkwo6
+         nGU2SmvgR/FZD1XObk464Dl5E2D0sSABwn08u4ZiViBpyVFZNM5VyrkcZVoydufaDlwJ
+         4pig==
+X-Forwarded-Encrypted: i=1; AJvYcCWKgXOuvDm6u8LeNm6t5O7qBHtAbCKNJckWgqCc7loPd0mp0RYStegWZApBHNnfOUhezTD9/6mjobTbSSXTbbHKtjqQ/ticWayKkw==
+X-Gm-Message-State: AOJu0Yy4obgt+Mb45rpMCH9u6w/sSc5OOfXf1uguxTwLnvFGO2oWIrFP
+	H8Kzgs4RClSlGW0u3xUcMExYXDxSHWCCsf228e4SqBlc7xPLrW2D3dzJwwspxtMvd8Mvp6TxzGD
+	baPFOFwk9XBOuz5tZRKfwhlcGyVpPJHa80kLErw==
+X-Google-Smtp-Source: AGHT+IEEhJWU5lH/YnMBYpC0VRfm8ILGJplMvmMfCBQAbgBcvoVMdYiAe6GSTbydGUVMd9Wa4ALAYUU1S2QyTH2HSZ0=
+X-Received: by 2002:a50:aa8d:0:b0:578:676e:324 with SMTP id
+ 4fb4d7f45d1cf-57d07e7b2aemr4030050a12.17.1718934215679; Thu, 20 Jun 2024
+ 18:43:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5941.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c98f21d4-d8d5-448d-8d62-08dc91929199
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jun 2024 01:36:27.3313
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: k2OgI9lenkJ9T5OhNMxlSA+osFUOjIBaFnl+ogS/bc7FiI3HMbJjjiTY/8YEfCy8jUwRr5EtQCCACx4c0QhZow==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7737
+References: <20240620115245.31540-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240620115245.31540-3-lvzhaoxiong@huaqin.corp-partner.google.com> <bmmng663zqsc4xolkh6jdbu6yj637f3k6qbclxgi6fcmm4hv7z@i7ycd36flcha>
+In-Reply-To: <bmmng663zqsc4xolkh6jdbu6yj637f3k6qbclxgi6fcmm4hv7z@i7ycd36flcha>
+From: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Date: Fri, 21 Jun 2024 09:43:24 +0800
+Message-ID: <CA+6=WdT80hcAW4f=UDcO2d3e+ODcRjAQBOUug7M6vgmtAEY1SA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] drm/panel: starry-er88577: add new panel driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
+	benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Subject: [PATCH v2 3/4] arm64: dts: imx95-19x19-evk: add lpi2c7 and
-> expander gpio pcal6524
->=20
-> Add lpi2c7 and expander gpio pcal6524.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Fri, Jun 21, 2024 at 3:56=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Thu, Jun 20, 2024 at 07:52:45PM GMT, Zhaoxiong Lv wrote:
+> > The bias IC of this starry-er88577 panel is placed
+> > on the panel side, so when the panel is powered on,
+> > there is no need to control AVDD and AVEE in the driver,
+> > only 3.3v and reset are needed.
+> >
+> > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com=
+>
+> > ---
+> > Chage since V3:
+> > -  1. Adjust the ".clock" assignment format.
+> >
+> > v3: https://lore.kernel.org/all/20240614145609.25432-3-lvzhaoxiong@huaq=
+in.corp-partner.google.com/
+> >
+> > Chage since V3:
+> > -  Separate Starry-er88577 from the panel-kingdisplay-kd101ne3 driver.
+> > -  Use mipi_dsi_dcs_set_display_on_multi().
+> > -  Use mipi_dsi_dcs_exit_sleep_mode_multi() and mipi_dsi_msleep().
+> >
+> > v2: https://lore.kernel.org/all/20240601084528.22502-5-lvzhaoxiong@huaq=
+in.corp-partner.google.com/
+> >
+> > Chage since V2:
+> > -  Add compatible for Starry er88577 in panel-kingdisplay-kd101ne3 driv=
+ers.
+> >
+> > ---
+> >  drivers/gpu/drm/panel/Kconfig                |   9 +
+> >  drivers/gpu/drm/panel/Makefile               |   1 +
+> >  drivers/gpu/drm/panel/panel-starry-er88577.c | 343 +++++++++++++++++++
+> >  3 files changed, 353 insertions(+)
+> >  create mode 100644 drivers/gpu/drm/panel/panel-starry-er88577.c
+> >
+> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kcon=
+fig
+> > index e54f6f5604ed..a52aa2552ab8 100644
+> > --- a/drivers/gpu/drm/panel/Kconfig
+> > +++ b/drivers/gpu/drm/panel/Kconfig
+> > @@ -781,6 +781,15 @@ config DRM_PANEL_SITRONIX_ST7789V
+> >         Say Y here if you want to enable support for the Sitronix
+> >         ST7789V controller for 240x320 LCD panels
+> >
+> > +config DRM_PANEL_STARRY_ER88577
+> > +     tristate "Starry er88577 panel"
+> > +     depends on OF
+> > +     depends on DRM_MIPI_DSI
+> > +     depends on BACKLIGHT_CLASS_DEVICE
+> > +     help
+> > +       Say Y if you want to enable support for panels based on the
+> > +       Starry er88577 controller.
+> > +
+> >  config DRM_PANEL_SONY_ACX565AKM
+> >       tristate "Sony ACX565AKM panel"
+> >       depends on GPIOLIB && OF && SPI
+> > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Mak=
+efile
+> > index f0203f6e02f4..ecd843a6dc6e 100644
+> > --- a/drivers/gpu/drm/panel/Makefile
+> > +++ b/drivers/gpu/drm/panel/Makefile
+> > @@ -81,6 +81,7 @@ obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) +=3D panel-=
+sharp-ls060t1sx01.o
+> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) +=3D panel-sitronix-st7701.o
+> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) +=3D panel-sitronix-st7703.o
+> >  obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) +=3D panel-sitronix-st7789v.o
+> > +obj-$(CONFIG_DRM_PANEL_STARRY_ER88577) +=3D panel-starry-er88577.o
+> >  obj-$(CONFIG_DRM_PANEL_SYNAPTICS_R63353) +=3D panel-synaptics-r63353.o
+> >  obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) +=3D panel-sony-acx565akm.o
+> >  obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) +=3D panel-sony-td4353-jdi.o
+> > diff --git a/drivers/gpu/drm/panel/panel-starry-er88577.c b/drivers/gpu=
+/drm/panel/panel-starry-er88577.c
+> > new file mode 100644
+> > index 000000000000..e6088262ee69
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/panel/panel-starry-er88577.c
+> > @@ -0,0 +1,343 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/* Panels based on the ER88577 display controller.
+> > + * Author: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+> > + */
+> > +
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#include <drm/drm_connector.h>
+> > +#include <drm/drm_crtc.h>
+> > +#include <drm/drm_mipi_dsi.h>
+> > +#include <drm/drm_panel.h>
+> > +
+> > +#include <video/mipi_display.h>
+> > +#include <drm/drm_probe_helper.h>
+> > +
+> > +struct starry_panel;
+> > +
+> > +struct panel_desc {
+> > +     const struct drm_display_mode *modes;
+> > +     unsigned int bpc;
+> > +     unsigned long mode_flags;
+> > +     enum mipi_dsi_pixel_format format;
+> > +     const struct panel_init_cmd *init_cmds;
+> > +     int (*init)(struct starry_panel *starry);
+> > +     unsigned int lanes;
+> > +     bool discharge_on_disable;
+> > +     bool lp11_before_reset;
+> > +     unsigned int power_off_delay_ms;
+> > +};
+> > +
+> > +struct starry_panel {
+> > +     struct drm_panel base;
+> > +     struct mipi_dsi_device *dsi;
+> > +
+> > +     const struct panel_desc *desc;
+> > +
+> > +     enum drm_panel_orientation orientation;
+> > +     struct regulator *vccio;
+> > +     struct gpio_desc *reset;
+> > +};
+> > +
+> > +static int starry_er88577_init(struct starry_panel *starry)
+> > +{
+> > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D starry->dsi =
+};
+> > +
+> > +     /* T5:HWreset to init_code >=3D 120ms */
+> > +     mipi_dsi_msleep(dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe0, 0xab, 0xba);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe1, 0xba, 0xab);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb1, 0x10, 0x01, 0x47, 0x=
+ff);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2, 0x0c, 0x14, 0x04, 0x=
+50, 0x50, 0x14);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb3, 0x56, 0x53, 0x00);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb4, 0x33, 0x30, 0x04);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0xb0, 0x00, 0x00, 0x=
+10, 0x00, 0x10, 0x00);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x05, 0x12, 0x29, 0x=
+49, 0x40);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb9, 0x7c, 0x61, 0x4f, 0x=
+42, 0x3e, 0x2d, 0x31,
+> > +                                  0x1a, 0x33, 0x33, 0x33, 0x52, 0x40, =
+0x47, 0x38, 0x34, 0x26,
+> > +                                  0x0e, 0x06, 0x7c, 0x61, 0x4f, 0x42, =
+0x3e, 0x2d, 0x31, 0x1a,
+> > +                                  0x33, 0x33, 0x33, 0x52, 0x40, 0x47, =
+0x38, 0x34, 0x26, 0x0e,
+> > +                                  0x06);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0xcc, 0x76, 0x12, 0x=
+34, 0x44, 0x44, 0x44,
+> > +                                  0x44, 0x98, 0x04, 0x98, 0x04, 0x0f, =
+0x00, 0x00, 0xc1);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0x54, 0x94, 0x02, 0x=
+85, 0x9f, 0x00, 0x6f,
+> > +                                  0x00, 0x54, 0x00);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2, 0x17, 0x09, 0x08, 0x=
+89, 0x08, 0x11, 0x22,
+> > +                                  0x20, 0x44, 0xff, 0x18, 0x00);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc3, 0x87, 0x47, 0x05, 0x=
+05, 0x1c, 0x1c, 0x1d,
+> > +                                  0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, =
+0x0f, 0x0f, 0x0d, 0x0d,
+> > +                                  0x13, 0x13, 0x11, 0x11, 0x24);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4, 0x06, 0x06, 0x04, 0x=
+04, 0x1c, 0x1c, 0x1d,
+> > +                                  0x1d, 0x02, 0x1e, 0x1e, 0x1f, 0x1f, =
+0x0e, 0x0e, 0x0c, 0x0c,
+> > +                                  0x12, 0x12, 0x10, 0x10, 0x24);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc8, 0x21, 0x00, 0x31, 0x=
+42, 0x34, 0x16);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca, 0xcb, 0x43);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcd, 0x0e, 0x4b, 0x4b, 0x=
+20, 0x19, 0x6b, 0x06,
+> > +                                  0xb3);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd2, 0xe3, 0x2b, 0x38, 0x=
+08);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4, 0x00, 0x01, 0x00, 0x=
+0e, 0x04, 0x44, 0x08,
+> > +                                  0x10, 0x00, 0x00, 0x00);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x80, 0x09, 0xff, 0x=
+ff, 0xff, 0xff, 0xff,
+> > +                                  0xff);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x12, 0x03, 0x20, 0x=
+00, 0xff);
+> > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0x00);
+>
+> NAK.
+>
+> This sequence looks _exactly_ like the sequence in
+> panel-boe-th101mb31ig002-28a.c.
+>
+Hi Dmity
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
+We checked the panel-boe-th101mb31ig002-28a.c driver. The init_code is
+indeed very similar, but the ICs seem to be different from the names,
+and our panels and timings are also different. Do you want us to add
+compatibility with Starry in this driver
+panel-boe-th101mb31ig002-28a.c?
+
+thanks
+
+> > +
+> > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > +
+> > +     mipi_dsi_msleep(dsi_ctx, 120);
+> > +
+> > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > +     mipi_dsi_msleep(dsi_ctx, 20);
+> > +
+> > +     return dsi_ctx.accum_err;
+>
+> --
+> With best wishes
+> Dmitry
 
