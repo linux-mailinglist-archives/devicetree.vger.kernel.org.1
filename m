@@ -1,136 +1,119 @@
-Return-Path: <devicetree+bounces-78269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00271911B33
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:16:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F72911B46
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:17:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE9B7281CC3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:16:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA2EA1C225F0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5F6155A52;
-	Fri, 21 Jun 2024 06:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAD15152DF7;
+	Fri, 21 Jun 2024 06:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClD5gQBm"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DdFuMzNa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E573212F365;
-	Fri, 21 Jun 2024 06:12:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315D21534EA;
+	Fri, 21 Jun 2024 06:15:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718950354; cv=none; b=LqrC7bozMUk97CGhEKzsezS7/o1L+xDp5R2TB1TYagqeSTJzSKHThBZalwakmUcrkGFQvO4gcv48+L+EmIHbeuQBP7eqDhWej7b+IxdtUrezr7hi9TRcXThClycqHYTDmn1f5YFXpETyodTgDgkX4ElNn4X079A1WMT25bVRAmA=
+	t=1718950546; cv=none; b=HnX6/+n/w9xbzI4/WCYB97bpdJJjUTFULHZzjAvmAQRkRYiYGArspgqrPT4/Dc0FIJ2wksFgpoGiOGXgW3je1I1WUiGnX/wBo8GkjV/G00DUb9cgFurdyF3TiWvgVWNHaez5O4dM00ken3u4SlEcE5v1y2WtjioQ2J7iNiDPzbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718950354; c=relaxed/simple;
-	bh=vojD1edeHu+08xGLbiSASu7tg/Bp8R5PhjuAmo0dWCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TtYHf16gxmsXkGyvBqT6D3npXr50s+rO6talVpUDys6c1NMJaq94wg9Rx+BN9LcGZi1xnoS4HZ73uaAUhDc6ANTCEsIEALbnp4JpjcLyr1KLrBwymGJTLDobFyJUW3nFo7m8TnO84DxJbWWZ4U628/oQhJtmm+ce2kUC2DI0pu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClD5gQBm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4174C2BBFC;
-	Fri, 21 Jun 2024 06:12:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718950353;
-	bh=vojD1edeHu+08xGLbiSASu7tg/Bp8R5PhjuAmo0dWCs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ClD5gQBmGVBVPrCFqCk9xIOuDBsykUWFIoneJaOc9ZNRW0LvgNYjc9DlgnGpI1xc/
-	 a/++9XUppHDDHwOtziX1qmD/hPbsf8eO1E4Y0ipBAg8L+gjbyqmU4ZBXcq2trsLuRH
-	 XUdCooXpq6nXF/Fv8l8V5JWghyphboS7PbsfBiwTBwHoYd1ienLSG6NpJ264Ji7v32
-	 0O+zw6vBMt2JhyYTI4l26ZxW9JY5lMMz/xkXGm0MhnhW0OJbJZIdYAmpLAMHQc6PW1
-	 A8a5Lq1LZMZRMSKtpSq7HulNwgH1Qg/5gC6yEZePheTdC5/gEG8ehzndsntekCLDtv
-	 7ho96cue0s/Wg==
-Message-ID: <c1bd3378-4b9f-431a-b6db-d9ca00638f5c@kernel.org>
-Date: Fri, 21 Jun 2024 08:12:22 +0200
+	s=arc-20240116; t=1718950546; c=relaxed/simple;
+	bh=O9evRJX2gCyOvgN7D3f4v4px9aaOmtIKONVbD/a3e7s=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WPR7mcqnYWuBryG231mCyrMFXIYV9uMBO67j3HP2dqEmb3mgVokvqVSo5v+6kT1+fFhO0pk6yOfO0PzEzL5QAuFWxmFdSG5qz/rqm+oOG1RyCpbTa0y3i6Ff00AfZ8LUnDuRCz2iXJQ1Tyvnid9eYTuTjnO6ZplEk1BfVCcweGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DdFuMzNa; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45L6AF1A017939;
+	Fri, 21 Jun 2024 06:15:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ubTw/SGh4Hd1iy6B/oYlG5
+	X2s+gU3U2DrGQmpFCywno=; b=DdFuMzNandpwFEa1hCH184xLj2+yJ0aVyY7SxI
+	HxYbct6oOVaGI1givPnXp2q1r2Qh+PY6vxtoCi0bpY3xsrPsoqUrDwnwFrX+hEdD
+	P1zYmjdbOAbnDoUT+cA43pDPCJA2vevUdlIhfWdxEBQYSZZMyE284Yx3OSV//id/
+	70Ct+pAunA+TPETqTtTR5Ws3mZw5bIx3BLnJjfG3Sl4vT7cXy1WDV443VSHbHwqm
+	3Rwwbg0c8ibWahkuxd6JS8XoHKAJDrKviAMhF7ONOTblvyBGAEWWk8AYc1HtWolG
+	yr6SlMugo3oTKVXSmz+L1fa7fDfwam5OoJMarlnqAl74zMZA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yvrm09jqb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jun 2024 06:15:37 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45L6FaNc019800
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jun 2024 06:15:36 GMT
+Received: from yijiyang-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 20 Jun 2024 23:15:29 -0700
+From: YijieYang <quic_yijiyang@quicinc.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_tengfan@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <quic_jiegan@quicinc.com>
+CC: <kernel@quicinc.com>, <quic_yijiyang@quicinc.com>
+Subject: [PATCH] dt-bindings: phy: qcom,qmp-usb: fix spelling error
+Date: Fri, 21 Jun 2024 14:15:21 +0800
+Message-ID: <20240621061521.332567-1-quic_yijiyang@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Patch v4 01/10] dt-bindings: dma: pl08x: Add dma-cells
- description
-To: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
- Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "J.M.B. Downing" <jonathan.downing@nautel.com>,
- Vladimir Zapolskiy <vz@mleia.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Arnd Bergmann <arnd@arndb.de>, Yangtao Li <frank.li@vivo.com>,
- Li Zetao <lizetao1@huawei.com>, Chancel Liu <chancel.liu@nxp.com>,
- Michael Ellerman <mpe@ellerman.id.au>, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
- linuxppc-dev@lists.ozlabs.org, linux-sound@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-mtd@lists.infradead.org
-Cc: Markus Elfring <Markus.Elfring@web.de>
-References: <20240620175657.358273-1-piotr.wojtaszczyk@timesys.com>
- <20240620175657.358273-2-piotr.wojtaszczyk@timesys.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240620175657.358273-2-piotr.wojtaszczyk@timesys.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yw65nC8FemhvEFmxEkjssmvn7FEc2_QL
+X-Proofpoint-GUID: yw65nC8FemhvEFmxEkjssmvn7FEc2_QL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-20_12,2024-06-20_04,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=846 adultscore=0 impostorscore=0 clxscore=1011
+ lowpriorityscore=0 malwarescore=0 spamscore=0 phishscore=0 mlxscore=0
+ bulkscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2406210044
 
-On 20/06/2024 19:56, Piotr Wojtaszczyk wrote:
-> Recover dma-cells description from the legacy DT binding.
+From: Yijie Yang <quic_yijiyang@quicinc.com>
 
-Fixes: 6f64aa5746d2 ("dt-bindings: dma: convert arm-pl08x to yaml")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Correct the spelling error, changing 'com' to 'qcom'.
 
+Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+---
+ .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+index 5755245ecfd6..0e0b6cae07bc 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+@@ -20,7 +20,7 @@ properties:
+       - qcom,ipq8074-qmp-usb3-phy
+       - qcom,ipq9574-qmp-usb3-phy
+       - qcom,msm8996-qmp-usb3-phy
+-      - com,qdu1000-qmp-usb3-uni-phy
++      - qcom,qdu1000-qmp-usb3-uni-phy
+       - qcom,sa8775p-qmp-usb3-uni-phy
+       - qcom,sc8180x-qmp-usb3-uni-phy
+       - qcom,sc8280xp-qmp-usb3-uni-phy
+
+base-commit: b992b79ca8bc336fa8e2c80990b5af80ed8f36fd
+-- 
+2.34.1
 
 
