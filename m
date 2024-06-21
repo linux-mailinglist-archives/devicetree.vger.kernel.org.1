@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-78431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD3C912445
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:47:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBDC691244F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 13:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A90C1F20F55
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:47:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC23F1C22124
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183BB178368;
-	Fri, 21 Jun 2024 11:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7308917554C;
+	Fri, 21 Jun 2024 11:45:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A23B178369
-	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 11:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3154153580
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 11:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718970107; cv=none; b=fWkUouuN8u013uycL2L6NDWNrdFZoxQtDi5LaMOJNlTSIDI3UAPIncn9G8Vo8Omw4KsUx0GEwqRe087+e4Rey/Czidq0cvA+QOegSE+IHDr+mlbUKyLuhcEOscCNaejB62YpewTyFrlxo+7hdCuJLnRDHudxfTjLUpt5CxoJBq4=
+	t=1718970353; cv=none; b=CediS9fe5wcuV6yAaqEC5tWEpc2rmUbYY0V/Smkl+LFfWQZoIupBkvFjENS+mcjzBloWQwV98oYfoOnYZFF7tgRvedkm6B1yGCNxBgP5TOfuSWSHm1h6hJyv+BpZB0d4g5pZG75aTd2YC+oa58ZrTk1S4/kafEdqGjdAs/9KyzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718970107; c=relaxed/simple;
-	bh=NkRjYRRgPY2pxFysJad/qIZDlWc4+7rcFnCsrgCUrMw=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=YwyBJi8MbEOkpBYKb3tZYRvqgwtmWSDvuNiixVTDFTwQ3gS+nn0U/NH6UobVq9PTJo+PTSIDvmWeIdRpV/WZt3rKh347RldatxURIkGF57felFT4d+yeD3dXgW9ZONUKlkDzkioVr0Y+l3IYXH0Gxgv/njr+mTgonaz7GKASDB8=
+	s=arc-20240116; t=1718970353; c=relaxed/simple;
+	bh=uWTRWW7B95x3LGJfYoqRdq663wzUpFIq+873sqtjHjA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=kaZTdM9Oe5fTBEfayDEpFkSHo46rHD76xURYxDQy+4XA0JRY/MBX6Kr3Ksu3pheXQDcQkEhAzkfRAd5OLbSL/ewDTKmI86VDfpbc3orDc2A8FLVtyBK3k1gDERyKpoHdymrm/HaPx+vjeWuY5EPwfF8CyDOWEwhC/7HTFmj/zbs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,35 +33,32 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sKcdd-0007pj-RL; Fri, 21 Jun 2024 13:41:05 +0200
+	id 1sKchx-00089F-JS; Fri, 21 Jun 2024 13:45:33 +0200
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sKcdY-003voe-7z; Fri, 21 Jun 2024 13:41:00 +0200
+	id 1sKchu-003vp1-IG; Fri, 21 Jun 2024 13:45:30 +0200
 Received: from pza by lupine with local (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sKcdY-0008gu-0V;
-	Fri, 21 Jun 2024 13:41:00 +0200
-Message-ID: <fa9aee7a6cbe4f1320a83db1097a4a486ca1781c.camel@pengutronix.de>
-Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
+	id 1sKchu-0008vo-1Y;
+	Fri, 21 Jun 2024 13:45:30 +0200
+Message-ID: <bd0e85f42ef74f6f927020cbee6879351d1c3e9e.camel@pengutronix.de>
+Subject: Re: [PATCH 2/2] mmc: sdhci-of-ma35d1: Add Novoton MA35D1 SDHCI
+ driver
 From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Daniel Golle <daniel@makrotopia.org>, Aurelien Jarno
- <aurelien@aurel32.net>,  Olivia Mackall <olivia@selenic.com>, Herbert Xu
- <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko
- Stuebner <heiko@sntech.de>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <ukleinek@debian.org>,  Sebastian Reichel
- <sebastian.reichel@collabora.com>, Anand Moon <linux.amoon@gmail.com>,
- Dragan Simic <dsimic@manjaro.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>, 
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-Date: Fri, 21 Jun 2024 13:41:00 +0200
-In-Reply-To: <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
-References: <cover.1718921174.git.daniel@makrotopia.org>
-	 <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
+To: Shan-Chun Hung <shanchun1218@gmail.com>, ulf.hansson@linaro.org, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ adrian.hunter@intel.com,  pbrobinson@gmail.com, serghox@gmail.com,
+ mcgrof@kernel.org,  prabhakar.mahadev-lad.rj@bp.renesas.com,
+ forbidden405@outlook.com,  tmaimon77@gmail.com, andy.shevchenko@gmail.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ychuang3@nuvoton.com, schung@nuvoton.com
+Date: Fri, 21 Jun 2024 13:45:30 +0200
+In-Reply-To: <20240619054641.277062-3-shanchun1218@gmail.com>
+References: <20240619054641.277062-1-shanchun1218@gmail.com>
+	 <20240619054641.277062-3-shanchun1218@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -76,67 +73,70 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi,
-
-On Fr, 2024-06-21 at 02:25 +0100, Daniel Golle wrote:
-> From: Aurelien Jarno <aurelien@aurel32.net>
+On Mi, 2024-06-19 at 13:46 +0800, Shan-Chun Hung wrote:
+> This adds the SDHCI driver for the MA35 series SoC. It is based upon the
+> SDHCI interface, but requires some extra initialization.
 >=20
-> Rockchip SoCs used to have a random number generator as part of their
-> crypto device, and support for it has to be added to the corresponding
-> driver. However newer Rockchip SoCs like the RK356x have an independent
-> True Random Number Generator device. This patch adds a driver for it,
-> greatly inspired from the downstream driver.
->=20
-> The TRNG device does not seem to have a signal conditionner and the FIPS
-> 140-2 test returns a lot of failures. They can be reduced by increasing
-> RK_RNG_SAMPLE_CNT, in a tradeoff between quality and speed. This value
-> has been adjusted to get ~90% of successes and the quality value has
-> been set accordingly.
->=20
-> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-> [daniel@makrotpia.org: code style fixes]
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Signed-off-by: schung <schung@nuvoton.com>
 > ---
->  MAINTAINERS                           |   1 +
->  drivers/char/hw_random/Kconfig        |  14 ++
->  drivers/char/hw_random/Makefile       |   1 +
->  drivers/char/hw_random/rockchip-rng.c | 229 ++++++++++++++++++++++++++
->  4 files changed, 245 insertions(+)
->  create mode 100644 drivers/char/hw_random/rockchip-rng.c
+>  drivers/mmc/host/Kconfig           |  13 ++
+>  drivers/mmc/host/Makefile          |   1 +
+>  drivers/mmc/host/sdhci-of-ma35d1.c | 297 +++++++++++++++++++++++++++++
+>  3 files changed, 311 insertions(+)
+>  create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
 >=20
 [...]
-> diff --git a/drivers/char/hw_random/rockchip-rng.c b/drivers/char/hw_rand=
-om/rockchip-rng.c
+> diff --git a/drivers/mmc/host/sdhci-of-ma35d1.c b/drivers/mmc/host/sdhci-=
+of-ma35d1.c
 > new file mode 100644
-> index 000000000000..6070abb73847
+> index 000000000000..7714a5ab463d
 > --- /dev/null
-> +++ b/drivers/char/hw_random/rockchip-rng.c
-> @@ -0,0 +1,229 @@
+> +++ b/drivers/mmc/host/sdhci-of-ma35d1.c
+> @@ -0,0 +1,297 @@
 [...]
->=20
-> +static int rk_rng_probe(struct platform_device *pdev)
+> +static int ma35_probe(struct platform_device *pdev)
 > +{
 > +	struct device *dev =3D &pdev->dev;
-> +	struct rk_rng *rk_rng;
-> +	int ret;
+> +	struct sdhci_pltfm_host *pltfm_host;
+> +	struct sdhci_host *host;
+> +	struct ma35_priv *priv;
+> +	int err;
+> +	u32 extra, ctl;
 > +
-> +	rk_rng =3D devm_kzalloc(dev, sizeof(*rk_rng), GFP_KERNEL);
-> +	if (!rk_rng)
-> +		return -ENOMEM;
+> +	host =3D sdhci_pltfm_init(pdev, &sdhci_ma35_pdata,
+> +				sizeof(struct ma35_priv));
+> +	if (IS_ERR(host))
+> +		return PTR_ERR(host);
 > +
-> +	rk_rng->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(rk_rng->base))
-> +		return PTR_ERR(rk_rng->base);
+> +	/*
+> +	 * extra adma table cnt for cross 128M boundary handling.
+> +	 */
+> +	extra =3D DIV_ROUND_UP_ULL(dma_get_required_mask(&pdev->dev), SZ_128M);
+> +	if (extra > SDHCI_MAX_SEGS)
+> +		extra =3D SDHCI_MAX_SEGS;
+> +	host->adma_table_cnt +=3D extra;
+> +	pltfm_host =3D sdhci_priv(host);
+> +	priv =3D sdhci_pltfm_priv(pltfm_host);
 > +
-> +	rk_rng->clk_num =3D devm_clk_bulk_get_all(dev, &rk_rng->clk_bulks);
-> +	if (rk_rng->clk_num < 0)
-> +		return dev_err_probe(dev, rk_rng->clk_num,
-> +				     "Failed to get clks property\n");
+> +	if (dev->of_node) {
+> +		pltfm_host->clk =3D devm_clk_get(&pdev->dev, NULL);
+> +		if (IS_ERR(pltfm_host->clk)) {
+> +			err =3D PTR_ERR(pltfm_host->clk);
+> +			dev_err(&pdev->dev, "failed to get clk: %d\n", err);
+> +			goto free_pltfm;
+> +		}
+> +		err =3D clk_prepare_enable(pltfm_host->clk);
+> +		if (err)
+> +			goto free_pltfm;
+> +	}
 > +
-> +	rk_rng->rst =3D devm_reset_control_array_get(&pdev->dev, false, false);
+> +	err =3D mmc_of_parse(host->mmc);
+> +	if (err)
+> +		goto err_clk;
+> +
+> +	priv->rst =3D devm_reset_control_get(&pdev->dev, NULL);
 
-Please use devm_reset_control_array_get_exclusive() instead.
-
+Please use devm_reset_control_get_exclusive() instead.
 
 regards
 Philipp
