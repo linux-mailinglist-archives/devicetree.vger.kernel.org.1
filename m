@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6479E912161
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:58:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C4A791216B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:02:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18ABF1F21D48
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:58:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10E43281EB9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BFB16F27A;
-	Fri, 21 Jun 2024 09:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67DBB170853;
+	Fri, 21 Jun 2024 10:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="II8XZYHa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F/xsUEMs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F6016E860;
-	Fri, 21 Jun 2024 09:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C4816EB6D;
+	Fri, 21 Jun 2024 10:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718963888; cv=none; b=JGeCeuFIblTemZXdrJpp5kFmPj68VjwvUAUzkQ9xMO7uhK0N1IMnfbKl3MpVH0cdhiuS6dnvexDHKLJZP/7IaUO3/SclsKdr92TlSMyInn5h5wg+SyydF+PQzvAyjCEUkoYUVkjknHlVfseoKZXt3mKzLa3HK35Z6mNNBM1+TAA=
+	t=1718964159; cv=none; b=CGnYtg9cL0AGualWdo/5Ue+yyBCKTPA3iqf8JjzQDkrKUROmmxjjKtceEpzuqA1juFfz4stp1nUYqWhwYKVV3aZyfkXuvehXIvKHpyWvXv9qJDfojwV8yKwzT04S2ejwgsHnmjtE+m5yB3SKnV2d8aY++mr0xYUayNjuhkWm8XM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718963888; c=relaxed/simple;
-	bh=UnxwRbCuBhggYeSXiYfvMZrlDoEB2JpNNPUtYoo6gpw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=cfiSYzIlPNsYK/qfLmVVwTk0pAubrU0wCtOO//v17P6U6BFUeEDsBGtj0o9/JnamCm03Se9/fD30RjO/MDAYVUz+JaYltEJVKwpDTyp4gqyuun/oD9rsWQ4pL8DtzzMZpPPmHbXvUZXkaIAz17xKW9oGWJ030pc7x2t4uGiUMyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=II8XZYHa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AF1EC32781;
-	Fri, 21 Jun 2024 09:58:00 +0000 (UTC)
+	s=arc-20240116; t=1718964159; c=relaxed/simple;
+	bh=dmwsNvDKdvJyzog0BmeRIafnVzdlhm+iSDk33lXZPfo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c56/YRT8bmpNcgN8shlKaK9bPo78ML2cd/WU8AshW67x7MBaqpvYaO/772+IQvg4RGBZwNWe73z+nE9bB9AxIbeJRFrA9k5MWrOkkLY8BbJ+mQw3io3lGNQTkbTvefqnAw1EMmi0hQYqQz7P7FY49yN+4xAVRJbnP1D6dsaHdt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/xsUEMs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 491BBC2BBFC;
+	Fri, 21 Jun 2024 10:02:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718963887;
-	bh=UnxwRbCuBhggYeSXiYfvMZrlDoEB2JpNNPUtYoo6gpw=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=II8XZYHa0nSXcmJ4Au8CDk6LzP05gOlsjmoGueyBEacxmAA6OFXrlZ4blwktjqUj4
-	 tNsmd7fHdZ5ruNO+L8LPcTUiXtxyuXIkbkHs7MKZdaT3WsQdfZAlYhc5w3H1Wj0fZZ
-	 kvIr/aNYGwMJe+mW8PcyWtF0pGzKbjE3rHoic+eTAsA10gXGz8d/D0d2qSv5yt7v5X
-	 qTNDQ7g/TuK7YBOKevFzx1hTAqj9f4jDps+MC31GizdyADRaY2gYd+3hYbkWbB1fKK
-	 P6fhf86Oy1QUruF8upRVvWLEQRz/r56El1RWD1vLaLXwLNUh2INkDWI6CeWTFzIFTU
-	 WmtzdZGz3LiMQ==
-Message-ID: <f8e6b1b9-f8ff-42df-b1ef-bcc439c2e913@kernel.org>
-Date: Fri, 21 Jun 2024 11:57:58 +0200
+	s=k20201202; t=1718964158;
+	bh=dmwsNvDKdvJyzog0BmeRIafnVzdlhm+iSDk33lXZPfo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F/xsUEMsS04zCX8+SaxYsPUhm75Yu/RgnmwFnjWNa2r8esrMvPBl/oI1k0AYPKxja
+	 5iHxbHR08oU4yLXxEQBTLo3Ofr8QOQsyNsKJyXo0PC1FpOPg5uaeN+km9UzwuFdzq+
+	 WhzIkK47LNLg3I9zaXIUA3WxEMmdC3PhKRp+TCJwmfD9ctcCtmJGjt8/tC9XUvanyq
+	 iv4eYdtgW54d3c0PACWzKPFQ1n85eOOVoa1y2blkrIxnA1BbyYoXBvNFpWZ+foIEzl
+	 agenxxmoYDkecirxZ0Neghibe+ng3PpU2q8b5/4mqFRzJThvI+JkZ5IVDQ35yOjmt6
+	 +YHV7iOVrDCBg==
+Message-ID: <c3e2e7a1-e424-4808-a690-a457e0526f3f@kernel.org>
+Date: Fri, 21 Jun 2024 12:02:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
-To: Daniel Golle <daniel@makrotopia.org>,
- Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/6] media: dt-bindings: media: camss: Add
+ qcom,sc7180-camss binding
+To: gchan9527@gmail.com, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Anand Moon <linux.amoon@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Martin Kaiser <martin@kaiser.cx>,
- Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1718921174.git.daniel@makrotopia.org>
- <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240621-b4-sc7180-camss-v1-0-14937929f30e@gmail.com>
+ <20240621-b4-sc7180-camss-v1-1-14937929f30e@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,144 +109,376 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
+In-Reply-To: <20240621-b4-sc7180-camss-v1-1-14937929f30e@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/06/2024 03:25, Daniel Golle wrote:
-> From: Aurelien Jarno <aurelien@aurel32.net>
+On 21/06/2024 11:40, George Chan via B4 Relay wrote:
+> From: George Chan <gchan9527@gmail.com>
 > 
+> Add bindings for qcom,sc7180-camss in order to support the camera
+> subsystem for sm7125 as found in the Xiaomi Redmi 9 Pro cellphone.
+> 
+> Signed-off-by: George Chan <gchan9527@gmail.com>
+
+Subject: just one media (first). No need to write media: media: ...
+
+
+A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+
+> ---
+>  .../bindings/media/qcom,sc7180-camss.yaml          | 324 +++++++++++++++++++++
+>  1 file changed, 324 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-camss.yaml
+> new file mode 100644
+> index 000000000000..4dc10c32ee9c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc7180-camss.yaml
+> @@ -0,0 +1,324 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,sc7180-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm CAMSS ISP
+
+What is CAMSS?
 
 > +
-> +static int rk_rng_init(struct hwrng *rng)
-> +{
-> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
-> +	int ret;
-> +
-> +	/* start clocks */
-> +	ret = clk_bulk_prepare_enable(rk_rng->clk_num, rk_rng->clk_bulks);
-> +	if (ret < 0) {
-> +		dev_err((struct device *) rk_rng->rng.priv,
-> +			"Failed to enable clks %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* set the sample period */
-> +	writel(RK_RNG_SAMPLE_CNT, rk_rng->base + TRNG_RNG_SAMPLE_CNT);
-> +
-> +	/* set osc ring speed and enable it */
-> +	writel_relaxed(TRNG_RNG_CTL_LEN_256_BIT |
-> +		       TRNG_RNG_CTL_OSC_RING_SPEED_0 |
-> +		       TRNG_RNG_CTL_ENABLE,
-> +		       rk_rng->base + TRNG_RNG_CTL);
+> +maintainers:
+> +  - Robert Foss <robert.foss@linaro.org>
 
-I doubt relaxed write is here intentional. Enabling should be last
-instruction, so this should be ordered write.
+For sure this is not true. Robert does not work in Linaro and I doubt he
+cares that much about camss.
 
 > +
-> +	return 0;
-> +}
-> +
-> +static void rk_rng_cleanup(struct hwrng *rng)
-> +{
-> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
-> +
-> +	/* stop TRNG */
-> +	writel_relaxed(0, rk_rng->base + TRNG_RNG_CTL);
+> +description: |
 
-This should not be relaxed. This might lead to very tricky to debug issues.
+Do not need '|' unless you need to preserve formatting.
 
+> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
 > +
-> +	/* stop clocks */
-> +	clk_bulk_disable_unprepare(rk_rng->clk_num, rk_rng->clk_bulks);
-> +}
+> +properties:
+> +  compatible:
+> +    const: qcom,sc7180-camss
 > +
-> +static int rk_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-> +{
-> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
-> +	size_t to_read = min_t(size_t, max, RK_RNG_MAX_BYTE);
-> +	u32 reg;
-> +	int ret = 0;
-> +
-> +	ret = pm_runtime_get_sync((struct device *) rk_rng->rng.priv);
+> +  clocks:
+> +    minItems: 25
 
-Why this cannot be just simpler pm_runtime_resume_and_get()?
+Drop minItems
 
-> +	if (ret < 0)
-> +		goto out;
+> +    maxItems: 25
+> +
+> +  clock-names:
+> +    items:
+> +      - const: camnoc_axi
+> +      - const: cpas_ahb
+> +      - const: cphy_rx_src
+> +      - const: csi0
+> +      - const: csi1
+> +      - const: csi2
+> +      - const: csiphy0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1
+> +      - const: csiphy1_timer
+> +      - const: csiphy2
+> +      - const: csiphy2_timer
+> +      - const: csiphy3
+> +      - const: csiphy3_timer
+> +      - const: gcc_camera_ahb
+> +      - const: gcc_camera_axi
+> +      - const: soc_ahb
+> +      - const: vfe0_axi
+> +      - const: vfe0
+> +      - const: vfe0_cphy_rx
+> +      - const: vfe1_axi
+> +      - const: vfe1
+> +      - const: vfe1_cphy_rx
+> +      - const: vfe_lite
+> +      - const: vfe_lite_cphy_rx
+> +
+> +  interrupts:
+> +    minItems: 10
 
-This does not look like correct error path. Device was not busy here.
+Drop minItems
 
+> +    maxItems: 10
 > +
-> +	/* Start collecting random data */
-> +	writel_relaxed(TRNG_RNG_CTL_START, rk_rng->base + TRNG_RNG_CTL);
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe_lite
 > +
-> +	ret = readl_poll_timeout(rk_rng->base + TRNG_RNG_CTL, reg,
-> +				 !(reg & TRNG_RNG_CTL_START),
-> +				 RK_RNG_POLL_PERIOD_US,
-> +				 RK_RNG_POLL_TIMEOUT_US);
-> +	if (ret < 0)
-> +		goto out;
+> +  iommus:
+> +    maxItems: 4
 > +
-> +	/* Read random data stored in the registers */
-> +	memcpy_fromio(buf, rk_rng->base + TRNG_RNG_DOUT, to_read);
-> +out:
-> +	pm_runtime_mark_last_busy((struct device *) rk_rng->rng.priv);
-> +	pm_runtime_put_sync_autosuspend((struct device *) rk_rng->rng.priv);
+> +  power-domains:
+> +    items:
+> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
+> +      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
 > +
-> +	return to_read;
-> +}
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 > +
-> +static int rk_rng_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rk_rng *rk_rng;
-> +	int ret;
+> +    description:
+> +      CSI input ports.
 > +
-> +	rk_rng = devm_kzalloc(dev, sizeof(*rk_rng), GFP_KERNEL);
-> +	if (!rk_rng)
-> +		return -ENOMEM;
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
 > +
-> +	rk_rng->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(rk_rng->base))
-> +		return PTR_ERR(rk_rng->base);
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
 > +
-> +	rk_rng->clk_num = devm_clk_bulk_get_all(dev, &rk_rng->clk_bulks);
-> +	if (rk_rng->clk_num < 0)
-> +		return dev_err_probe(dev, rk_rng->clk_num,
-> +				     "Failed to get clks property\n");
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
 > +
-> +	rk_rng->rst = devm_reset_control_array_get(&pdev->dev, false, false);
-> +	if (IS_ERR(rk_rng->rst))
-> +		return dev_err_probe(dev, PTR_ERR(rk_rng->rst),
-> +				     "Failed to get reset property\n");
+> +            required:
+> +              - data-lanes
 > +
-> +	reset_control_assert(rk_rng->rst);
-> +	udelay(2);
-> +	reset_control_deassert(rk_rng->rst);
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
 > +
-> +	platform_set_drvdata(pdev, rk_rng);
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
 > +
-> +	rk_rng->rng.name = dev_driver_string(dev);
-> +#ifndef CONFIG_PM
-> +	rk_rng->rng.init = rk_rng_init;
-> +	rk_rng->rng.cleanup = rk_rng_cleanup;
-> +#endif
-> +	rk_rng->rng.read = rk_rng_read;
-> +	rk_rng->rng.priv = (unsigned long) dev;
-> +	rk_rng->rng.quality = 900;
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
 > +
-> +	pm_runtime_set_autosuspend_delay(dev, RK_RNG_AUTOSUSPEND_DELAY);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_enable(dev);
+> +            required:
+> +              - data-lanes
 > +
-> +	ret = devm_hwrng_register(dev, &rk_rng->rng);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "Failed to register Rockchip hwrng\n");
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
 > +
-> +	dev_info(&pdev->dev, "Registered Rockchip hwrng\n");
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port for receiving CSI data.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +  reg:
+> +    minItems: 10
 
-Drop, driver should be silent on success.
+Drop minItems
+
+> +    maxItems: 10
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe_lite
+> +
+> +  vdda-phy-supply:
+> +    description:
+> +      Phandle to a regulator supply to PHY core block.
+> +
+> +  vdda-pll-supply:
+> +    description:
+> +      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +
+> +required:
+> +  - clock-names
+> +  - clocks
+> +  - compatible
+
+Keep the list ordered, the same as list properties.
+
+> +  - interrupt-names
+> +  - interrupts
+> +  - iommus
+> +  - power-domains
+> +  - reg
+> +  - reg-names
+> +  - vdda-phy-supply
+> +  - vdda-pll-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/qcom,camcc-sc7180.h>
+> +    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      camss: camss@acb3000 {
+> +        compatible = "qcom,sc7180-camss";
+> +
+> +        clocks = <&clock_camcc CAM_CC_CAMNOC_AXI_CLK>,
+> +          <&clock_camcc CAM_CC_CPAS_AHB_CLK>,
+
+Missed alignment with previous <.
+
+> +          <&clock_camcc CAM_CC_IFE_0_CSID_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_1_CSID_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_LITE_CSID_CLK>,
+> +          <&clock_camcc CAM_CC_CSIPHY0_CLK>,
+> +          <&clock_camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> +          <&clock_camcc CAM_CC_CSIPHY1_CLK>,
+> +          <&clock_camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> +          <&clock_camcc CAM_CC_CSIPHY2_CLK>,
+> +          <&clock_camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> +          <&clock_camcc CAM_CC_CSIPHY3_CLK>,
+> +          <&clock_camcc CAM_CC_CSI3PHYTIMER_CLK>,
+> +          <&gcc GCC_CAMERA_AHB_CLK>,
+> +          <&gcc GCC_CAMERA_HF_AXI_CLK>,
+> +          <&clock_camcc CAM_CC_SOC_AHB_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_0_AXI_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_0_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_1_AXI_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_1_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_LITE_CLK>,
+> +          <&clock_camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
+> +
+> +        clock-names = "camnoc_axi",
+> +          "cpas_ahb",
+
+Same problem.
+
+> +          "csi0",
+> +          "csi1",
+> +          "csi2",
+> +          "csiphy0",
+> +          "csiphy0_timer",
+> +          "csiphy1",
+> +          "csiphy1_timer",
+> +          "csiphy2",
+> +          "csiphy2_timer",
+> +          "csiphy3",
+> +          "csiphy3_timer",
+> +          "gcc_camera_ahb",
+> +          "gcc_camera_axi",
+> +          "soc_ahb",
+> +          "vfe0_axi",
+> +          "vfe0",
+> +          "vfe0_cphy_rx",
+> +          "vfe1_axi",
+> +          "vfe1",
+> +          "vfe1_cphy_rx",
+> +          "vfe_lite",
+> +          "vfe_lite_cphy_rx";
+> +
+> +        interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
+> +          <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        interrupt-names = "csid0",
+> +          "csid1",
+> +          "csid2",
+> +          "csiphy0",
+> +          "csiphy1",
+> +          "csiphy2",
+> +          "csiphy3",
+> +          "vfe0",
+> +          "vfe1",
+> +          "vfe_lite";
+> +
+> +        iommus = <&apps_smmu 0x820 0x0>,
+> +          <&apps_smmu 0x840 0x0>,
+> +          <&apps_smmu 0x860 0x0>;
+> +
+> +        power-domains = <&camcc IFE_0_GDSC>,
+> +          <&camcc IFE_1_GDSC>,
+> +          <&camcc TITAN_TOP_GDSC>;
+> +
+> +        reg = <0 0xacb3000 0 0x1000>,
+
+reg is always the second property. See DTS coding style.
+
+> +          <0 0xacba000 0 0x1000>,
+> +          <0 0xacc8000 0 0x1000>,
+> +          <0 0xac65000 0 0x1000>,
+> +          <0 0xac66000 0 0x1000>,
+> +          <0 0xac67000 0 0x1000>,
+> +          <0 0xac68000 0 0x1000>,
+> +          <0 0xacaf000 0 0x4000>,
+> +          <0 0xacb6000 0 0x4000>,
+> +          <0 0xacc4000 0 0x4000>;
+> +
+> +        reg-names = "csid0",
+
+So this will be the third property.
+
 
 
 Best regards,
