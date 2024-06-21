@@ -1,134 +1,188 @@
-Return-Path: <devicetree+bounces-78619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 285EA912E03
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:39:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F10ED912E04
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 21:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A760EB27970
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 19:39:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 710441F2129A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 19:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E3C17B423;
-	Fri, 21 Jun 2024 19:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772EB17B50A;
+	Fri, 21 Jun 2024 19:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NdrVElxF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754F184A32;
-	Fri, 21 Jun 2024 19:39:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56A117B423
+	for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 19:40:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718998781; cv=none; b=UNyNYYAc2lQAJnJmhtfR9vJvoNggwH6RBHdRcYLZzHbsb4revED8vlrVQU65stgfnc5QqXRfKjXgSnICacO4g7ZudJgzYZatwl0vAPQggHHwoWGjQpd+H+nfIRNJup1Z55RqsViTqnpJdaN4QDugDJJZlIhthDZGix1lwmNhFxk=
+	t=1718998822; cv=none; b=HEyOxHhw1+xLKhaXjB5TUgA0oqcR9nGJB/MuFMWkaK2n1AA4gj/Sr+ye/mZh/XTIXzrcTK/Lon1uUPifmIS9Qkl5znMkSeYi9Pu2AuQKWtzHOpSc8Nb3KzNE/Qr2ihdyMN69VX79IeqJ5iVy7+AY0WEcWOoqymP7PoOt+mhG7j4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718998781; c=relaxed/simple;
-	bh=U6BFQW2Bf2YvjNS9Cqv8gtXGEtkdb6Mqkyc1F3FIQlM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jZ9LYbAMSK9St4hVCPrTkhky4lskmb+Gd+p5/MUFDl2v+Erzv0pjIR8xhLQXoH39OmYko4wTNgSUC/jnQGV2BiBEmFp0m0rP5KKgU4XCHFWbAF7olIidNukisvFf/qLVHk5vG/6jIh9wzpyF1QBiUNgLzqdHaB3kBWrRFRGZy58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7062c11d0d1so2162792b3a.1;
-        Fri, 21 Jun 2024 12:39:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1718998780; x=1719603580;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1718998822; c=relaxed/simple;
+	bh=6ZPeCGjV8WBzKchfn6bhJls+sDUkHecdyn5jbswwMA0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y2G9yKKN2Hx8ySBE+uOzToAqbVMGeWKChVKYeWfBNDUkrA5z6MIz5qytetyfaehadyWWFbwbEPhnQSuKAZIQP6pcc4TZg4tDC+pR6bPKxzuf215GQIfM7J5VDIbtwxrA0P6iASAobUkd4m2p/PltDU+7Yas+IGZZmMkgDAAnpPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NdrVElxF; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6325b04c275so24293917b3.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 12:40:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1718998820; x=1719603620; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5qcjCj1d5K3iJ5YuAuheFrJXPu/KrnBD3KZXSkLcbok=;
-        b=eYpMbFXHBUAE6HjcHhrLA9hEXpNu9RR4jvMpondOkMQ+c/9FMHGpuWYeY3EQg4ApTF
-         IzySB9gOgZ3iXUPOo1cgzQ5b6h8xTPCTkeiXUXC4XPTzSjtoSdZiTL37EGKSWt84ww+k
-         sTIPHd39U8nGz4zIwOqVBq+pKyFHs8tk/v3ZKjwG5kiczlL2JJBoz+nARGupRVIoPOWR
-         4jDQFefpFCuAzNRnl1UB59HNZyw4AT7Od19aFE/VQap7w/t3aAIdoYFkwoK9GfxV1gxr
-         wMcXXY3GQP6WXbEv3IX96styF0z3mMWFy+/WLYYPKJy+j2ZTOyacPDPaNB0lC4iOqktH
-         S97A==
-X-Forwarded-Encrypted: i=1; AJvYcCU2SIwVv6Ys5dK+yqIGG2w8z5vKbbLrMcoDp8ZQD3Mxbgk/7gdgzRHv0yq/lvxXt6caMI2zL6BQ7V/yqxJvMpwkFOD1wLfsdDAnZoei6u9gEQzZOtFa0HEdD7CESeX4oRHf3UxpKQ==
-X-Gm-Message-State: AOJu0YyxUpgvNBO/KBxcl+/7DTKFCmMtloNiPS1R8gouG0VitbykIjmN
-	2FajQwmtBpPmzx33/UVfXyDL3ZtQ6+4dEDZxtGojKwhUAJ2et6EG
-X-Google-Smtp-Source: AGHT+IEYUbVQCtzTwul6T6G76wz0/njvH+sWwE8HKvA6iwxYKKzfFD1GGcxnU3GSiWtOY/JWO+LNFA==
-X-Received: by 2002:a05:6a20:651e:b0:1b4:b4af:6047 with SMTP id adf61e73a8af0-1bcbb55fe74mr8085989637.33.1718998779547;
-        Fri, 21 Jun 2024 12:39:39 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70651085891sm1789309b3a.3.2024.06.21.12.39.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 12:39:39 -0700 (PDT)
-Date: Sat, 22 Jun 2024 04:39:37 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 00/13] PCI: dw-rockchip: Add endpoint mode support
-Message-ID: <20240621193937.GB3008482@rocinante>
-References: <20240607-rockchip-pcie-ep-v1-v5-0-0a042d6b0049@kernel.org>
- <Zm_tGknJe5Ttj9mC@ryzen.lan>
+        bh=CbwyiyWva+x9FYZsLEbwDcBJqBAnnNSOVrVdnz/JzOg=;
+        b=NdrVElxFQdKgDZffEK30KtUnF8EkQcdiH4pR6F9xg+kf3PV/XMU0BTo70omSG9QFe6
+         K0AwFsYmwmsM5ikZNeUbvWF8fJCmZ3DXo/INLp7J1mNHxxSA3Y+nFOAPQ7FK6NSgDZwu
+         THNaVoWMHG2DZYsT4EnDGXv15FGp9stvRPcRS6lzFjWdmqQnMafbxeL/HRUn2d06rtul
+         TBWf2cad3lgIIcKFa0F/Q0Hrr/93ehezxTucLnWM1ywy4GkrZK2V8K9mO92z0XYgTwt6
+         bgnLUfhpqmyLpKIp9mUZdbQmSiCMtrVpMb9E86M5cpRk3x3J4wsovqQqHv4pP/rxlis7
+         T/LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718998820; x=1719603620;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CbwyiyWva+x9FYZsLEbwDcBJqBAnnNSOVrVdnz/JzOg=;
+        b=MA1M/znBW+SKUwMzqPU+WvoXlWBLjIygx2ZlqfP4IqqPRCLo1f0snhii4m71/EoGq8
+         RwY8l3KPp5rB2AcHm5kGkWnWrYPPgCHmJvqx8T4JRgbwteLLCH08eywT5gdBue5HuetK
+         PolBoKqaDeJRSFV9IdtVkPfrea06dOhtNE//kcsqGsnvzE2NwDrjMPwUfEAwXM40Zuq0
+         nojl3l7kCyCvqeRLcjBH17fTFnqdl6VPY2vwbtI6L37Kkd+l4gcDU34TvdULea2FDos0
+         5h9wuhUCudwp4kEPC3fadlJdpCi3N9r5HUmfgrPD4ZqqScCeOIvT75gmQrgvpbqSK8CW
+         CpPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX8k03ZS73Qhw4O/wZyxPdRv34WBKVsxwD0toO2M6I1JRvvmbfDD+BkVOXRxeW4BWUVdSvst3ki4cHDSpap1i5gtAJUsgpCwUth1w==
+X-Gm-Message-State: AOJu0Yw8sCX+M3OSCJezCKbtwJgfVQ8OCWuKSacQndCaI6VMTy4hZXVA
+	+QR8+/uEZzVV2EFZCoEJryvtQAagH8qLH3rh65Yu6GzK0OG6Z/sU3RjCa31YQDf31rX/eCulGB6
+	MU/vQf00DY3qQvQM+SvXLKjVtFPjz1neWvGgHSQ==
+X-Google-Smtp-Source: AGHT+IEmV0m+/TjcKpWT6y40NzpmbgGYoiiKNqdKPlOSZ6tUU44/DxfiY84Ds0g2/sBfdjZbnUd1cxbqC/UhcIk3SWg=
+X-Received: by 2002:a81:f805:0:b0:62f:cb31:1be with SMTP id
+ 00721157ae682-63a8d543d67mr96963607b3.8.1718998819708; Fri, 21 Jun 2024
+ 12:40:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zm_tGknJe5Ttj9mC@ryzen.lan>
+References: <CGME20240621190049eucas1p28ba502d86e2f9380315c06add645517c@eucas1p2.samsung.com>
+ <20240620231339.1574-6-semen.protsenko@linaro.org> <oypijdplsaruia.fsf%l.stelmach@samsung.com>
+In-Reply-To: <oypijdplsaruia.fsf%l.stelmach@samsung.com>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Fri, 21 Jun 2024 14:40:08 -0500
+Message-ID: <CAPLW+4njmKxXSMqNazX6t6LS=fHNh6Pi8_icF1=aPw27G0J3PQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] hwrng: exynos: Add SMC based TRNG operation
+To: Lukasz Stelmach <l.stelmach@samsung.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Anand Moon <linux.amoon@gmail.com>, 
+	Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-samsung-soc@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Fri, Jun 21, 2024 at 2:00=E2=80=AFPM Lukasz Stelmach <l.stelmach@samsung=
+.com> wrote:
+>
+> It was <2024-06-20 czw 18:13>, when Sam Protsenko wrote:
+> > On some Exynos chips like Exynos850 the access to Security Sub System
+> > (SSS) registers is protected with TrustZone, and therefore only possibl=
+e
+> > from EL3 monitor software. The Linux kernel is running in EL1, so the
+> > only way for the driver to obtain TRNG data is via SMC calls to EL3
+> > monitor. Implement such SMC operation and use it when EXYNOS_SMC flag i=
+s
+> > set in the corresponding chip driver data.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> > Changes in v3:
+> >   - Added appropriate error messages for the case when init SMC command=
+ fails
+> >
+> > Changes in v2:
+> >   - Used the "reversed Christmas tree" style in the variable declaratio=
+n
+> >     block in exynos_trng_do_read_smc()
+> >   - Renamed .quirks to .flags in the driver structure
+> >   - Added Krzysztof's R-b tag
+> >
+> >  drivers/char/hw_random/exynos-trng.c | 140 +++++++++++++++++++++++++--
+> >  1 file changed, 130 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/char/hw_random/exynos-trng.c b/drivers/char/hw_ran=
+dom/exynos-trng.c
+> > index 6ef2ee6c9804..9fa30583cc86 100644
+> > --- a/drivers/char/hw_random/exynos-trng.c
+> > +++ b/drivers/char/hw_random/exynos-trng.c
+>
+> [...]
+>
+>
+> > @@ -103,6 +163,24 @@ static int exynos_trng_init(struct hwrng *rng)
+> >       return 0;
+> >  }
+> >
+> > +static int exynos_trng_init_smc(struct hwrng *rng)
+> > +{
+> > +     struct exynos_trng_dev *trng =3D (struct exynos_trng_dev *)rng->p=
+riv;
+> > +     struct arm_smccc_res res;
+> > +     int ret =3D 0;
+> > +
+> > +     arm_smccc_smc(SMC_CMD_RANDOM, HWRNG_INIT, 0, 0, 0, 0, 0, 0, &res)=
+;
+> > +     if (res.a0 !=3D HWRNG_RET_OK) {
+> > +             dev_err(trng->dev, "SMC command for TRNG init failed (%d)=
+\n",
+> > +                     (int)res.a0);
+> > +             ret =3D -EIO;
+> > +     }
+> > +     if ((int)res.a0 =3D=3D -1)
+> > +             dev_info(trng->dev, "Make sure LDFW is loaded by your BL\=
+n");
+>
+> This is good, thank you for adding it. It can be even better though, if
+> you don't skimp on message length (-; I mean, I know what BL is, I can
+> fingure what LDFW is because you have explained to me and I can see the
+> source code, but somewone who sees it for the first time will be only
+> slightly less surprised than with v2 error message only. Come on, you
+> can make this message twice as long and it will still fit in 80 character=
+s (-;
+>
 
-[...]
-> If there is anything more I can do to get this picked up, please tell me.
+Guess my OCD got in the way and I just didn't want to break the line
+:) But yeah, LDFW =3D Loadable Firmware, and BL =3D bootloader. There is
+an "ldfw" partition on eMMC, and I noticed Samsung usually uses LDFW
+term, so I figured it was not a big deal to throw that abbreviation at
+the user. But I totally agree on BL part, it might be confusing. I
+don't have any strong opinion on this one. If you are going to apply
+v3, can I kindly ask you to change that message the way you want it to
+be?
 
-Looks good! As such...
-
-Applied to dt-bindings, thank you!
-
-[01/06] dt-bindings: PCI: snps,dw-pcie-ep: Add vendor specific reg-name
-        https://git.kernel.org/pci/pci/c/3b287269ab60
-
-[02/06] dt-bindings: PCI: snps,dw-pcie-ep: Add vendor specific interrupt-names
-        https://git.kernel.org/pci/pci/c/b96353773d24
-
-[03/06] dt-bindings: PCI: snps,dw-pcie-ep: Add tx_int{a,b,c,d} legacy IRQs
-        https://git.kernel.org/pci/pci/c/6f308c017c27
-
-[04/06] dt-bindings: PCI: rockchip-dw-pcie: Prepare for Endpoint mode support
-        https://git.kernel.org/pci/pci/c/9b0b9b588c00
-
-[05/06] dt-bindings: PCI: rockchip-dw-pcie: Fix description of legacy IRQ
-        https://git.kernel.org/pci/pci/c/5f262f67cbc5
-
-[06/06] dt-bindings: rockchip: Add DesignWare based PCIe Endpoint controller
-        https://git.kernel.org/pci/pci/c/ff36edde817e
-
-Applied to controller/rockchip, thank you!
-
-[01/04] PCI: dw-rockchip: Fix weird indentation
-        https://git.kernel.org/pci/pci/c/e7e8872191af
-
-[02/04] PCI: dw-rockchip: Add rockchip_pcie_get_ltssm() helper
-        https://git.kernel.org/pci/pci/c/cbb2d4ae3fdc
-
-[03/04] PCI: dw-rockchip: Add endpoint mode support
-        https://git.kernel.org/pci/pci/c/67fe449bcd85
-
-[04/04] PCI: dw-rockchip: Refactor the driver to prepare for EP mode
-        https://git.kernel.org/pci/pci/c/ecdc98a3a912
-
-Applied to endpoint, thank you!
-
-[1/1] misc: pci_endpoint_test: Add support for Rockchip rk3588
-      https://git.kernel.org/pci/pci/c/657463e393d1
-
-	Krzysztof
+> Don't change it if v3 is the last. If not, please, make it more verbose.
+>
+> > +
+> > +     return ret;
+> > +}
+> > +
+>
+>
+> [...]
+>
+>
+> Kind regards,
+> --
+> =C5=81ukasz Stelmach
+> Samsung R&D Institute Poland
+> Samsung Electronics
 
