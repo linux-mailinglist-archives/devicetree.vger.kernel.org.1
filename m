@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8041C91222B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:20:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE8D912240
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:22:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B11C91C22E4C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:20:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 843F51F276A2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016BC17332C;
-	Fri, 21 Jun 2024 10:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BF4171068;
+	Fri, 21 Jun 2024 10:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItpYouiP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AEqat2jW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD55172BDF;
-	Fri, 21 Jun 2024 10:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1245213C689;
+	Fri, 21 Jun 2024 10:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718965126; cv=none; b=o6cOTZ09QxhbfeB6IJCWgcF9rK6qBXF4T4R3on3VDR8atiOwTzl34TdIlL/sl7rRKuZBncf7bO4oYQ3nSunctVAyNFt5bs1FPahFvLPzipiuvHZJBTkTekyv2NszMhf/ev+4+KWG8UzIVi0t9ST0VBE5Vp6gCzsagkcznh5IEN4=
+	t=1718965247; cv=none; b=dq/GBzA3ymguIM+7si9kCQV+GYv99Byz42lpIOsKam0/CjWZ1j3N5o9f14f6btAgHRrKn3f375idqgNBrjeYI66mDhKz9CT0jf//1/lclCypD6s3Nf3HPvSCTYPXJ8860u+knl/wIpg5gcNfb1tvTN+ghnDlPxR+5P1WeNaIn8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718965126; c=relaxed/simple;
-	bh=l/puWWhtbVxCHqqQ5cY1MrrBqDGK4KESLw5MMl+Yx/k=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Gz904nMoq+MwpblUHadswjL6L9B9BREZb4+8CQm9bT4VDcegdp6YTrmASK5GyArAza921oou59ti2CIoF+NBRFwMv234b/8fm79d3pfrAyo/TbhhPzE/B3TUJTqsxJmQj0mQFJ91ovlKQR3SCSvH1NBS03XnSLuvKMpdNbqoVmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItpYouiP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C58BC2BBFC;
-	Fri, 21 Jun 2024 10:18:41 +0000 (UTC)
+	s=arc-20240116; t=1718965247; c=relaxed/simple;
+	bh=8sIyQrK2MiTV1Zz4aSs5CXNwGqPgRm/aRVhyZ4IU0sM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=PIBR7ZrcbnsUZJSNi/ySJ0snk7PVja3C0D/3dQcxOCH6/heerrZpN+CqIMs0Rlna5d4Bo4t/cTWC+P1etHd1PhrQ/RAFPWkqlUb9dn311sECOB+YstEFLHufzaPKT+d5jsr7Y4KHbBMdKUFF+xf9BCb7tp0+reSoAKmzjXzs4hQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AEqat2jW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BE86C2BBFC;
+	Fri, 21 Jun 2024 10:20:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718965126;
-	bh=l/puWWhtbVxCHqqQ5cY1MrrBqDGK4KESLw5MMl+Yx/k=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=ItpYouiPSEbMR1HuxS7UK0gz/Ms798eObRqp/a6VDGyB1S/R4ORXPvDHOksqDgSC9
-	 fx6rPLjJFx7gxiufbtJRBNAMn/yDVOpwKbf6/1Wl6DYKJm5qzEt6nzVF/3U5aYoegh
-	 fQhcyeOaH1qZ8ZkAEsB+6C0WotqnHWipuI3VbKf3SxD8ySUs5KA3qV+joIrJNtbKHI
-	 knEM/PQka995nvGs5Y+XMzfHt1DSr3SDGTk8c+DR2fZHup3krGEsnndYr/CvQ44qv1
-	 CqZm5jrFaHpjaU/bR5W145tv63f5jjZ5Sl3NuLphK3P/aeMgmwuv6cSwolgEaTzq4C
-	 TylxYZagaOBcw==
-Message-ID: <0f8e127f-0159-4263-8582-5eccaae21dd7@kernel.org>
-Date: Fri, 21 Jun 2024 12:18:39 +0200
+	s=k20201202; t=1718965246;
+	bh=8sIyQrK2MiTV1Zz4aSs5CXNwGqPgRm/aRVhyZ4IU0sM=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=AEqat2jWmDWp5expRJ/tQrXSxWUftEkE96x0gIZSSux7qMB+QlhsGMMaWum4+VYZt
+	 ogK3QtcxKelyVGdGB59RBNyOotPAKjG6PGDki00de600REyv5nQQ4pRXO7qQXzEmT/
+	 71l/RFnfdoU3Yv0SwqZPUxXiRrnRArOvd6s/6htoq9zX9AkmswUKmd/2NJGcVaHJu3
+	 j/cm+jV6h2zqEUfYCSbys/l8vxSmQK3Fe/tMt8qSiO52mL5ENDXYXCwbiIsf9+QtkU
+	 TQqxPIg6mqmE6l/jQJHw/kkNiUy2XS3QVh5B9BGDljUCUtHGfny+jwnmX/xO57QV3X
+	 5iAL4wSVqM39w==
+Message-ID: <7bee89c6-605e-4ac6-ab4c-e1c0b68e6a77@kernel.org>
+Date: Fri, 21 Jun 2024 12:20:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: rk809: Add missing audio codec
- properties
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: accel: add ADXL380
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Ramona Gradinariu <ramona.gradinariu@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
- Chris Morgan <macromorgan@hotmail.com>,
- Furkan Kardame <f.kardame@manjaro.org>,
- Michael Riesch <michael.riesch@wolfvision.net>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240619-rk809-fixes-v1-0-fa93bc5313f4@collabora.com>
- <20240619-rk809-fixes-v1-2-fa93bc5313f4@collabora.com>
- <fdf4da20-93a8-45c3-84cf-fd3fdc500f2b@kernel.org>
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Jun Yan <jerrysteve1101@gmail.com>, Mehdi Djait <mehdi.djait.k@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20240621101756.27218-1-antoniu.miclaus@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -111,24 +109,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <fdf4da20-93a8-45c3-84cf-fd3fdc500f2b@kernel.org>
+In-Reply-To: <20240621101756.27218-1-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/06/2024 12:16, Krzysztof Kozlowski wrote:
->> +    type: object
->> +    additionalProperties: false
->> +    properties:
->> +      rockchip,mic-in-differential:
->> +        type: boolean
->> +        description:
->> +          Describes if the microphone uses differential mode.
+On 21/06/2024 12:17, Antoniu Miclaus wrote:
+> From: Ramona Gradinariu <ramona.gradinariu@analog.com>
 > 
-> No resources? Then it goes to parent.
+> Add dt-bindings for ADXL380/ADLX382 low noise density, low
+> power, 3-axis accelerometer with selectable measurement ranges.
+> 
+> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-Ah, I missed explanation in commit msg, this was already since few
-years. It's fine.
-
+It's v2 but no changelog (no cover letter either). Were all previous
+issues skipped and comments ignored? Please provide proper changelog.
 
 Best regards,
 Krzysztof
