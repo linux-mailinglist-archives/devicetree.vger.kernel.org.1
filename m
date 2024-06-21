@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4AD9121F3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:16:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D92791220D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 12:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBB091C20643
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:16:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AEEAB215BA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 10:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEB2171083;
-	Fri, 21 Jun 2024 10:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16BB172BD4;
+	Fri, 21 Jun 2024 10:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UakSvlxe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NLdrdDzY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A428117107F;
-	Fri, 21 Jun 2024 10:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7829171062;
+	Fri, 21 Jun 2024 10:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718964761; cv=none; b=o6SMFJlVnIoXZlk4DGU+RpUf6bvO05pq6fY6VCOEhnmIhAzRpQ19fbBHj04HGDqkslpmras39KuSNfjmSb5z0XzyOnWFzdu/zAGrfoZll0BU6VsoXZeLRSlK0r/Om7NXU8axFsYRzMTM+kXDzZiNurPgfg169Aqm9ePPahL8mbE=
+	t=1718964868; cv=none; b=qIFDDRZZRrLM9QF9c8PTVNM+ARXj0OWLMpEFq+3egPtdL/khd6oNhSoOsOvtFI66VHFjd5QXK5mpkO7fXpvdNpiunBOBipY8TcqitetHVBIPGxAvTpBWcTZtxV71g23rTdqfFqooTI2QiWZNdamHQffq/jOKM16QiXBWDZU55nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718964761; c=relaxed/simple;
-	bh=xd8BuJAJVt4hYO7CaDhACUTYs0P5FBRx8/Suf66ku6U=;
+	s=arc-20240116; t=1718964868; c=relaxed/simple;
+	bh=mkYEDP/YXO6DS57YMdoORyJiiNR4AuIuioT8DgJSFsM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NurlXLCRTwlsqSb52z1bno26/Zxk5iuBqoT7Tg0neYTOSeL50PJuxKqmQUFRvKdzxQZkJArGctgxi7nnJ+NUm0/kShoCRRAWPZqtrc/ZFKnn5bd02I4PwcRdTS8H2ReuagN4I5kG7gQwzkf1K34u2os4f/HDGhwvEIGihc7hlT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UakSvlxe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D19B0C2BBFC;
-	Fri, 21 Jun 2024 10:12:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jImiao7bhRHIPH3guuikSQIgKFA0paTTBN+l4HuqqNeAzfSh2kTfyMU6tB2h0C5qrF+i8kQIC9tIsLxfR5qQML14fdK7uf2THibXrI5kbJU5imyyK27ECT67JN1m4Ll6pclKu2Ov4i399Dm2g+OwHxIwzYHMQQyEw3kjNAUzc2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NLdrdDzY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD993C2BBFC;
+	Fri, 21 Jun 2024 10:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718964761;
-	bh=xd8BuJAJVt4hYO7CaDhACUTYs0P5FBRx8/Suf66ku6U=;
+	s=k20201202; t=1718964868;
+	bh=mkYEDP/YXO6DS57YMdoORyJiiNR4AuIuioT8DgJSFsM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UakSvlxeoCtbOygNKL7Id0HTMLMC6aqtXHqwA9Pd3/LjK+a8D/gI+kkyKHBXJhZV7
-	 DEVMIt/2NemkglX2N2TosNEUARJuPezRY1ryFooKFvhA8fLALL+ri5bMyPgxl+2MVw
-	 a60UCZfLn387P7NHDlxNPuOxjImHKW9JDhy6SGJOQEbTLfzcUYu8Lg5/T1uMsfo3OI
-	 N2jDZyFmr8P33WW3CXFzwaOe2O0t1E8Nsp4PgpN5Kl9TnYTVXndJNBUUTf58HD5PMA
-	 MeMp/leBqngAOvbtbc8XP0LMm4DGHFjnseB192B6WAr7BrKaQmzNZ2/eltSwBdsdBz
-	 yq61iWtq+rdQg==
-Message-ID: <d35f5eba-abb4-4924-89d6-0beb878a0bf7@kernel.org>
-Date: Fri, 21 Jun 2024 12:12:35 +0200
+	b=NLdrdDzY3KwJZ3O+RO79Uo6g0BP7dPf5JXbWH/kohkfToNyoPTQXy+ZhbctcNMI7D
+	 N7dPusUjDUGNRo36JAf/xbwnE1v6R/qFEeLqmI1+1cHAnMaUU9BI6fU0BGIkmg5vwA
+	 2f+1dqf627X0zfSZ72olfIYdc8PBuoQaLnQRLhzn+c+cGpvjBxktUGQ5JGQ+tM7nLG
+	 W6MhCXYeX3T5ouNAmHp0V0iCSlnK1urLKa9r4bR35ybQFuHuW1J8iaCT5YhiC9OJdi
+	 sf8jXOxI+xdTzKYLvUCapqV+4JUrD8WY8pzjOCtKpbVH/qrLsvcyq3bT0BI6Us/UO0
+	 W+uNyMLoBkHMg==
+Message-ID: <269b5d3e-bf25-4b32-8e39-479057221c6b@kernel.org>
+Date: Fri, 21 Jun 2024 12:14:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
-To: Yasin Lee <yasin.lee.x@gmail.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/5] dt-bindings: mfd: rk809: Use correct compatible in
+ the example
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com>
- <20240621-add-tyhx-hx9023s-sensor-driver-v6-2-65196a9020f1@gmail.com>
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Zhong <zyw@rock-chips.com>, Zhang Qing <zhangqing@rock-chips.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Furkan Kardame <f.kardame@manjaro.org>,
+ Michael Riesch <michael.riesch@wolfvision.net>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240619-rk809-fixes-v1-0-fa93bc5313f4@collabora.com>
+ <20240619-rk809-fixes-v1-1-fa93bc5313f4@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,114 +110,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240621-add-tyhx-hx9023s-sensor-driver-v6-2-65196a9020f1@gmail.com>
+In-Reply-To: <20240619-rk809-fixes-v1-1-fa93bc5313f4@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/06/2024 09:40, Yasin Lee wrote:
-> A capacitive proximity sensor
+On 19/06/2024 13:23, Cristian Ciocaltea wrote:
+> The example is not able to actually test the schema since it uses a
+> wrong compatible 'rockchip,rk808' instead of 'rockchip,rk809'.
 > 
-> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
-> ---
->  .../bindings/iio/proximity/tyhx,hx9023s.yaml       | 115 +++++++++++++++++++++
->  1 file changed, 115 insertions(+)
+> Use the correct compatible and drop the wrong properties in the
+> example section so that dt_binding_check passes.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
-> new file mode 100644
-> index 000000000000..beca70ce7609
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/proximity/tyhx,hx9023s.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TYHX HX9023S capacitive proximity sensor
-> +
-> +maintainers:
-> +  - Yasin Lee <yasin.lee.x@gmail.com>
-> +
-> +description: |
-> +  TYHX HX9023S proximity sensor. Datasheet can be found here:
-> +    http://www.tianyihexin.com/ueditor/php/upload/file/20240614/1718336303992081.pdf
-> +
-> +allOf:
-> +  - $ref: /schemas/iio/iio.yaml#
+> Fixes: 6c38ca03406e ("dt-bindings: mfd: rk808: Convert bindings to yaml")
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
-Which part of iio.yaml binding do you use here? I cannot find anything,
-so this looks wrong.	
-
-> +
-> +properties:
-> +  compatible:
-> +    const: tyhx,hx9023s
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      Generated by device to announce preceding read request has finished
-> +      and data is available or that a close/far proximity event has happened.
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-4]$":
-> +    $ref: /schemas/iio/adc/adc.yaml
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 4
-> +        description: The channel number.
-> +
-> +      input-channel:
-
-Isn't this duplicating single-channel property?
-
-Where is this property defined (which common schema)?
-
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 4
-> +        description:
-> +          Specify the input pin used in single-ended configuration.
-> +
-> +      diff-channels: true
-> +
-> +    oneOf:
-> +      - required:
-> +          - input-channel
-> +      - required:
-> +          - diff-channels
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - vdd-supply
-> +  - reg
-
-Keep the same order as in properties.
-
-> +
-> +unevaluatedProperties: false
-> +
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
