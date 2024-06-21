@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-78267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBAFE911B27
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:14:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A41A911B30
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:15:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EE741F21D5A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:14:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0517E282719
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:15:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A7516D9C6;
-	Fri, 21 Jun 2024 06:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A7216EBF7;
+	Fri, 21 Jun 2024 06:11:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUNkEaGI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="biQBUHB4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90CC16DECA;
-	Fri, 21 Jun 2024 06:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A86316EBE8;
+	Fri, 21 Jun 2024 06:11:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718950306; cv=none; b=uEYqhy3eSvvjNb2sMenhodn+6fYVPhe1Xeehu6GN+mvJW1AMrAsC6dalFP5OrFzgqAvd5IUdevzudrEleXx7AyJVWbQitzf8DkvefxqQnLJqvppVNiFrIFrHUcfWf3qz3FBO1Ym3ptuAdVvEdVlzqlXwHFPRFJOMMv75NgU7h8g=
+	t=1718950308; cv=none; b=gNmYDLOvUJaHBFrWLMXkRl0aYcpwL7Fhi+1swCWSUgmffDWpcq8FkZtI198ghCzsQjMfUK5F248m7lLOrF2b3QHRTm+VB0srlhfc+QNOCI74OIV6U2pP6JbrgxEwq0T4oDSfqzMqMx88dkmwtOVseXLmurckvdo82yV6OY39s3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718950306; c=relaxed/simple;
-	bh=TrPlD8EPTxxzfTHqr4aPupok0Two1WCg253dFO+fg+8=;
+	s=arc-20240116; t=1718950308; c=relaxed/simple;
+	bh=Rjeq2f6+/LU/dx94vTkY6FX6cQL8X5ChA6Y7UFLcU0U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tCKLlg81L/iJkdtPYlAc1/YKqg3NS5aNeHMF0DydnevftdRV6nZ0mtM7zggULpY+vNwMDU0XG5jecPbKtVymZRqBNw2BaWyfWSzjg1z0414dh/tYoqAGAM3B1oCcjmxO4a3ZaadGRks0GmzmcwI0sKW7ISWNNx0ktA6nPvTypQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUNkEaGI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D3E4C4AF09;
-	Fri, 21 Jun 2024 06:11:45 +0000 (UTC)
+	 MIME-Version:Content-Type; b=hcv8WnuMuXMMqMe7Iu8PZ3isUc915of0V3mk8ZHGmjpUDWJNRKSK5gT2lX+7EvnOIOBROfgonDB0e8Ghy7yJ4uXzT4iVSojRpmHiY/TT26RMD+XYpLdZ/heykCU3BmVU8GPrGpryHsxAQzlDy1Pi87V70h+FB7kPV1zL1VnxLi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=biQBUHB4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D737DC4AF09;
+	Fri, 21 Jun 2024 06:11:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718950306;
-	bh=TrPlD8EPTxxzfTHqr4aPupok0Two1WCg253dFO+fg+8=;
+	s=k20201202; t=1718950308;
+	bh=Rjeq2f6+/LU/dx94vTkY6FX6cQL8X5ChA6Y7UFLcU0U=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cUNkEaGIZHvcbp59hYWC7NVUNcpg7NLZ5wYETCou4n6F0p21z2elKnLHtFJ5woIwM
-	 5IPx9p6D0T8bLF52Izm36zqukiQ+2f7Z+lBhgkygd0L75avxVYl3cLal6NWUASG5Fe
-	 xKYZoSNO0C++9xsOeMtYmAVGObpDkxMYybWKNtStNiaKNM4UbsETAoFT39jNrgIzI9
-	 a/Iyj8sRWzk0QZPEkOZzDDnUQ+2881BIXXeWgOnYnNdmR+B+3DRKm3NirYTAYHG/so
-	 Hw5vn9c6cBOil7TL3AscucNL5ouppz1R4CNBstRiPr7XcczdTVglsu6I2JOz0fQ1vV
-	 4dNcmQ2eEQC2g==
+	b=biQBUHB4De/RqAisRyrC8Mu9OHu8Bx0lYR09gBef5pFHVykrB1RiPkHBkqr2bl34W
+	 OEVsafsDbPHhKmySY8z7TzTrcGistSmpeDu5j0I81b10uoCOX3OY/rGoIHVCCXM3fC
+	 viMEJ3HD8+++1GcJZaRh9IluzuqEaXdvCNDmWUUan2vsplnukahERxXyEQwwAqYrzL
+	 5iWUGMrNSel6JLMbypnD0P0QfCq+orLzRZxKZpLusLTbgQWYJT9RPObWw0IRB6ai+w
+	 8PB0Dee3kVipo2UCZOH5CvIKOrn37rhGZCqVyVTKyDu4EiGspqg3cWiif3b/aeCXEB
+	 900wSWK2M+8LQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Komal Bajaj <quic_kbajaj@quicinc.com>
+To: konrad.dybcio@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dmitry.baryshkov@linaro.org,
+	Tengfei Fan <quic_tengfan@quicinc.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: qcom: qdu1000: Add secure qfprom node
-Date: Fri, 21 Jun 2024 01:11:28 -0500
-Message-ID: <171895028800.12506.3929742745184236619.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	kernel@quicinc.com
+Subject: Re: [PATCH v10 0/4] arm64: dts: qcom: aim300: add AIM300 AIoT
+Date: Fri, 21 Jun 2024 01:11:31 -0500
+Message-ID: <171895028812.12506.17324795855835558511.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240618092711.15037-1-quic_kbajaj@quicinc.com>
-References: <20240618092711.15037-1-quic_kbajaj@quicinc.com>
+In-Reply-To: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
+References: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +68,58 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 18 Jun 2024 14:57:11 +0530, Komal Bajaj wrote:
-> Add secure qfprom node and also add properties for multi channel
-> DDR. This is required for LLCC driver to pick the correct LLCC
-> configuration.
+On Tue, 18 Jun 2024 15:21:58 +0800, Tengfei Fan wrote:
+> Add AIM300 AIoT support along with usb, ufs, regulators, serial, PCIe,
+> and PMIC functions.
+> AIM300 Series is a highly optimized family of modules designed to
+> support AIoT applications. It integrates QCS8550 SoC, UFS and PMIC
+> chip etc.
+> Here is a diagram of AIM300 AIoT Carrie Board and SoM
+>  +--------------------------------------------------+
+>  |             AIM300 AIOT Carrier Board            |
+>  |                                                  |
+>  |           +-----------------+                    |
+>  |power----->| Fixed regulator |---------+          |
+>  |           +-----------------+         |          |
+>  |                                       |          |
+>  |                                       v VPH_PWR  |
+>  | +----------------------------------------------+ |
+>  | |                          AIM300 SOM |        | |
+>  | |                                     |VPH_PWR | |
+>  | |                                     v        | |
+>  | |   +-------+       +--------+     +------+    | |
+>  | |   | UFS   |       | QCS8550|     |PMIC  |    | |
+>  | |   +-------+       +--------+     +------+    | |
+>  | |                                              | |
+>  | +----------------------------------------------+ |
+>  |                                                  |
+>  |                    +----+          +------+      |
+>  |                    |USB |          | UART |      |
+>  |                    +----+          +------+      |
+>  +--------------------------------------------------+
+> The following functions have been verified:
+>   - uart
+>   - usb
+>   - ufs
+>   - PCIe
+>   - PMIC
+>   - display
+>   - adsp
+>   - cdsp
+>   - tlmm
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: qdu1000: Add secure qfprom node
-      commit: 367fb3f0aaa6eac9101dc683dd27c268b4cc702e
+[1/4] dt-bindings: arm: qcom: Document QCS8550 SoC and the AIM300 AIoT board
+      commit: 6d97b93acf9d0b29d3eddf38186d9556e5360368
+[2/4] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
+      commit: bb8a2dc3bd89628a7f4aac577894d47dd0f4db3c
+[3/4] arm64: dts: qcom: add base AIM300 dtsi
+      commit: 0b12da4e28d8f6ecb492c98313e325eff11b5bb8
+[4/4] arm64: dts: qcom: aim300: add AIM300 AIoT
+      commit: e7931a52c7b68fb5143e118778092a23cfc5b0fc
 
 Best regards,
 -- 
