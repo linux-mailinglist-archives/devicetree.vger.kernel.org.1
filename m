@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8794D912147
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6479E912161
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 11:58:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C89F1F24A77
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:53:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18ABF1F21D48
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 09:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F92C16F82F;
-	Fri, 21 Jun 2024 09:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BFB16F27A;
+	Fri, 21 Jun 2024 09:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYhYpWgI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="II8XZYHa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3400382D66;
-	Fri, 21 Jun 2024 09:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F6016E860;
+	Fri, 21 Jun 2024 09:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718963576; cv=none; b=BB4yKGfPLfvvea75ZT8z2HeIMaepoL/1TgIi9iVmXSSh+Zz+0r4rQ8DTZfI7YBH/zIpi63bLoWSVVYqX0MyTdkJp76+YMNk3+oIEUSW6m6EhwMx2t9QZMpY3wobAvmoz265zRx1wza4Hz4hCghQEcPcBacL5rGBKzCITmxlQ6rg=
+	t=1718963888; cv=none; b=JGeCeuFIblTemZXdrJpp5kFmPj68VjwvUAUzkQ9xMO7uhK0N1IMnfbKl3MpVH0cdhiuS6dnvexDHKLJZP/7IaUO3/SclsKdr92TlSMyInn5h5wg+SyydF+PQzvAyjCEUkoYUVkjknHlVfseoKZXt3mKzLa3HK35Z6mNNBM1+TAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718963576; c=relaxed/simple;
-	bh=0NHzm6VNlu4nLnPyUAj59dHeuyvRJkkEV1Tubkf8NUI=;
+	s=arc-20240116; t=1718963888; c=relaxed/simple;
+	bh=UnxwRbCuBhggYeSXiYfvMZrlDoEB2JpNNPUtYoo6gpw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=N/Il1RhzCSzfQ83CB91VYzxoT6TPh1lrdNaVOHFUEV43qS7WIcw67+7nHhHK+UeDq2hNFTIAdxOtWNoSMgDWpHF2K375oXppn3aX4rgwpL+0zi6+vU67YfXW17AQocoTyocwF+aSkyBHXCAm4Z/9XAQ57VzDSUT/Vw/jEcBl2eU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYhYpWgI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DCA7C4AF0B;
-	Fri, 21 Jun 2024 09:52:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cfiSYzIlPNsYK/qfLmVVwTk0pAubrU0wCtOO//v17P6U6BFUeEDsBGtj0o9/JnamCm03Se9/fD30RjO/MDAYVUz+JaYltEJVKwpDTyp4gqyuun/oD9rsWQ4pL8DtzzMZpPPmHbXvUZXkaIAz17xKW9oGWJ030pc7x2t4uGiUMyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=II8XZYHa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AF1EC32781;
+	Fri, 21 Jun 2024 09:58:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718963575;
-	bh=0NHzm6VNlu4nLnPyUAj59dHeuyvRJkkEV1Tubkf8NUI=;
+	s=k20201202; t=1718963887;
+	bh=UnxwRbCuBhggYeSXiYfvMZrlDoEB2JpNNPUtYoo6gpw=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=uYhYpWgIQeY7mY1FBbAI1EhEtu5m/4WOaksEyoXZ/HWzIE5suPZ9tqAcw4glJ111q
-	 gEI7mhpAnyZLXsFPoYHWLbv0Av4Q9vAO2vYxCfa9aeuE2rMaPk2RKxER9oO7p7Xr/Z
-	 AJjuE7fIIdHdH1uqPUpk8iCzstVy3rwkncH8ZpAyAanYGxmr/RchocGX85NOQhfrUy
-	 ElvPWKKXpCrAeRn31JqZfYnu182IOYhNMCz0X+C9JbtgIFLbhOexbCrjeirn8wN4Xv
-	 qx9ldNM67OB6oLCnNo5iRRPVuYS3qCzUYY56aZ3GaB6QOhoUjawd8Tb1TEQx6A5Iut
-	 equBFtDv5aqcw==
-Message-ID: <75ca3bed-f57b-4c89-bafd-7cd170dcdf94@kernel.org>
-Date: Fri, 21 Jun 2024 11:52:46 +0200
+	b=II8XZYHa0nSXcmJ4Au8CDk6LzP05gOlsjmoGueyBEacxmAA6OFXrlZ4blwktjqUj4
+	 tNsmd7fHdZ5ruNO+L8LPcTUiXtxyuXIkbkHs7MKZdaT3WsQdfZAlYhc5w3H1Wj0fZZ
+	 kvIr/aNYGwMJe+mW8PcyWtF0pGzKbjE3rHoic+eTAsA10gXGz8d/D0d2qSv5yt7v5X
+	 qTNDQ7g/TuK7YBOKevFzx1hTAqj9f4jDps+MC31GizdyADRaY2gYd+3hYbkWbB1fKK
+	 P6fhf86Oy1QUruF8upRVvWLEQRz/r56El1RWD1vLaLXwLNUh2INkDWI6CeWTFzIFTU
+	 WmtzdZGz3LiMQ==
+Message-ID: <f8e6b1b9-f8ff-42df-b1ef-bcc439c2e913@kernel.org>
+Date: Fri, 21 Jun 2024 11:57:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: RNG: Add Rockchip RNG bindings
+Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
 To: Daniel Golle <daniel@makrotopia.org>,
  Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>,
  Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heikomemcpy_fromio Stuebner <heiko@sntech.de>,
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
  Philipp Zabel <p.zabel@pengutronix.de>,
  =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
  Sebastian Reichel <sebastian.reichel@collabora.com>,
@@ -65,7 +65,7 @@ To: Daniel Golle <daniel@makrotopia.org>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <cover.1718921174.git.daniel@makrotopia.org>
- <10f621d0711c80137afd93f62a03b1b10009715c.1718921174.git.daniel@makrotopia.org>
+ <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,28 +111,144 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <10f621d0711c80137afd93f62a03b1b10009715c.1718921174.git.daniel@makrotopia.org>
+In-Reply-To: <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/06/2024 03:25, Daniel Golle wrote:
 > From: Aurelien Jarno <aurelien@aurel32.net>
 > 
-> Add the RNG bindings for the RK3568 SoC from Rockchip
-> 
-> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 
-<form letter>
-This is a friendly reminder during the review process.
+> +
+> +static int rk_rng_init(struct hwrng *rng)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +	int ret;
+> +
+> +	/* start clocks */
+> +	ret = clk_bulk_prepare_enable(rk_rng->clk_num, rk_rng->clk_bulks);
+> +	if (ret < 0) {
+> +		dev_err((struct device *) rk_rng->rng.priv,
+> +			"Failed to enable clks %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* set the sample period */
+> +	writel(RK_RNG_SAMPLE_CNT, rk_rng->base + TRNG_RNG_SAMPLE_CNT);
+> +
+> +	/* set osc ring speed and enable it */
+> +	writel_relaxed(TRNG_RNG_CTL_LEN_256_BIT |
+> +		       TRNG_RNG_CTL_OSC_RING_SPEED_0 |
+> +		       TRNG_RNG_CTL_ENABLE,
+> +		       rk_rng->base + TRNG_RNG_CTL);
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
+I doubt relaxed write is here intentional. Enabling should be last
+instruction, so this should be ordered write.
 
-Thank you.
-</form letter>
+> +
+> +	return 0;
+> +}
+> +
+> +static void rk_rng_cleanup(struct hwrng *rng)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +
+> +	/* stop TRNG */
+> +	writel_relaxed(0, rk_rng->base + TRNG_RNG_CTL);
+
+This should not be relaxed. This might lead to very tricky to debug issues.
+
+> +
+> +	/* stop clocks */
+> +	clk_bulk_disable_unprepare(rk_rng->clk_num, rk_rng->clk_bulks);
+> +}
+> +
+> +static int rk_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
+> +{
+> +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
+> +	size_t to_read = min_t(size_t, max, RK_RNG_MAX_BYTE);
+> +	u32 reg;
+> +	int ret = 0;
+> +
+> +	ret = pm_runtime_get_sync((struct device *) rk_rng->rng.priv);
+
+Why this cannot be just simpler pm_runtime_resume_and_get()?
+
+> +	if (ret < 0)
+> +		goto out;
+
+This does not look like correct error path. Device was not busy here.
+
+> +
+> +	/* Start collecting random data */
+> +	writel_relaxed(TRNG_RNG_CTL_START, rk_rng->base + TRNG_RNG_CTL);
+> +
+> +	ret = readl_poll_timeout(rk_rng->base + TRNG_RNG_CTL, reg,
+> +				 !(reg & TRNG_RNG_CTL_START),
+> +				 RK_RNG_POLL_PERIOD_US,
+> +				 RK_RNG_POLL_TIMEOUT_US);
+> +	if (ret < 0)
+> +		goto out;
+> +
+> +	/* Read random data stored in the registers */
+> +	memcpy_fromio(buf, rk_rng->base + TRNG_RNG_DOUT, to_read);
+> +out:
+> +	pm_runtime_mark_last_busy((struct device *) rk_rng->rng.priv);
+> +	pm_runtime_put_sync_autosuspend((struct device *) rk_rng->rng.priv);
+> +
+> +	return to_read;
+> +}
+> +
+> +static int rk_rng_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct rk_rng *rk_rng;
+> +	int ret;
+> +
+> +	rk_rng = devm_kzalloc(dev, sizeof(*rk_rng), GFP_KERNEL);
+> +	if (!rk_rng)
+> +		return -ENOMEM;
+> +
+> +	rk_rng->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(rk_rng->base))
+> +		return PTR_ERR(rk_rng->base);
+> +
+> +	rk_rng->clk_num = devm_clk_bulk_get_all(dev, &rk_rng->clk_bulks);
+> +	if (rk_rng->clk_num < 0)
+> +		return dev_err_probe(dev, rk_rng->clk_num,
+> +				     "Failed to get clks property\n");
+> +
+> +	rk_rng->rst = devm_reset_control_array_get(&pdev->dev, false, false);
+> +	if (IS_ERR(rk_rng->rst))
+> +		return dev_err_probe(dev, PTR_ERR(rk_rng->rst),
+> +				     "Failed to get reset property\n");
+> +
+> +	reset_control_assert(rk_rng->rst);
+> +	udelay(2);
+> +	reset_control_deassert(rk_rng->rst);
+> +
+> +	platform_set_drvdata(pdev, rk_rng);
+> +
+> +	rk_rng->rng.name = dev_driver_string(dev);
+> +#ifndef CONFIG_PM
+> +	rk_rng->rng.init = rk_rng_init;
+> +	rk_rng->rng.cleanup = rk_rng_cleanup;
+> +#endif
+> +	rk_rng->rng.read = rk_rng_read;
+> +	rk_rng->rng.priv = (unsigned long) dev;
+> +	rk_rng->rng.quality = 900;
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, RK_RNG_AUTOSUSPEND_DELAY);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_enable(dev);
+> +
+> +	ret = devm_hwrng_register(dev, &rk_rng->rng);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "Failed to register Rockchip hwrng\n");
+> +
+> +	dev_info(&pdev->dev, "Registered Rockchip hwrng\n");
+
+Drop, driver should be silent on success.
 
 
 Best regards,
