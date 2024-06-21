@@ -1,153 +1,134 @@
-Return-Path: <devicetree+bounces-78596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 751F9912C7B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 19:36:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 325C8912C89
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 19:43:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9F54B25F18
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:36:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2E22286E5A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 17:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B460161327;
-	Fri, 21 Jun 2024 17:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7174168490;
+	Fri, 21 Jun 2024 17:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z2co8RlL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K7NLThrQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D12F2E417;
-	Fri, 21 Jun 2024 17:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0501F8BFD;
+	Fri, 21 Jun 2024 17:43:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718991378; cv=none; b=Zwnmfr17dUBStT1eJjb7NXTL4NdyrQvspOf9RVzRkeoCpD5hB+p+yxinWB37qGUpfZlxFiKmRLIYq1A3t0d6Cb7uStsdHRApLcuUJPuJm0w84Q/pYWeeL2sRoR5Z4MNiAkA9CxfrfAHaE/UaEiP85WGiYpWr6JE2nI4W982B5R8=
+	t=1718991831; cv=none; b=Jxvz9YEtydhNvgEOMiF4BLO7M6K0Qm4q3qbD3JZnyVp9JzrYBTJ8I+K+uEvNvQ6y+VNYWUW+WaRig40WNG6TsNuEyGjqmYwaLCtc2hpx1eXz6yG6fQboRx++QbwccPlC/q6fEOH/JTW/ZOaVejJq3vzUl8Ji8lCxFeWU5N+pst4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718991378; c=relaxed/simple;
-	bh=qcPvzmgYj12g8ImX1mzdEnkJ4xTcuDJBE3vsD6BBM/8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oNIJiC2WJMEyq10ldkwK7AK/jp+wEvyRleUoF/eQLutV207SuPsuIHp9Ww9gpnOybOLJM8UFIdgrKIZKSG9hdY6RLqKKkCOaCqYpN3gioPGlvA855TmuDKkMMNju6Fw8ZB58vMGaQz+AB4KicQRH44N4T3pDlMbf4o1iFkyIbtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z2co8RlL; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1718991377; x=1750527377;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=qcPvzmgYj12g8ImX1mzdEnkJ4xTcuDJBE3vsD6BBM/8=;
-  b=Z2co8RlLYAN8D+wvTAguu6XCH5ag5Uwwu9k8UXVB+df/bsRELZbcvBWN
-   pSZ5K3Hu6VK+LDUsigRNKQMKePul15I49i4bttX1sz9Xe/bzrZV4JkssN
-   IA/PJBbD7EWmkVYPMELS1+pIyobn1im2a68CbRXYTpUeAYRO05FjB8lMD
-   /7T/6SZBExBxvnDcVQP09JHvph4QzS4f7rIXc080nm6iCX8uw5qpe8iKm
-   Ch6v0RizVnj6V/4nitdzKnG60WD9yQJO6Ehb49RCdNA+r905x2KNOKK17
-   vLxeBnRTQp88hQ2+K52OYjMHNHqJOhfIJNvoQrtGF2YYL1P5tQ8qCZLl6
-   Q==;
-X-CSE-ConnectionGUID: vcBk/8plTl6iC9P/BV5yxg==
-X-CSE-MsgGUID: Fx6LAm2TR+uemhrv/2HGlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11110"; a="15793894"
-X-IronPort-AV: E=Sophos;i="6.08,255,1712646000"; 
-   d="scan'208";a="15793894"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2024 10:36:15 -0700
-X-CSE-ConnectionGUID: H9IYCJeiSDarIWFxa6sdhA==
-X-CSE-MsgGUID: 3ooXh5iNSpCEYlpT4ljgOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,255,1712646000"; 
-   d="scan'208";a="43333717"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2024 10:36:08 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id A070711F855;
-	Fri, 21 Jun 2024 20:36:04 +0300 (EEST)
-Date: Fri, 21 Jun 2024 17:36:04 +0000
-From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Zhi Mao =?utf-8?B?5q+b5pm6?= <zhi.mao@mediatek.com>,
-	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
-	krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org,
-	dongchun.zhu@mediatek.com, "heiko@sntech.de" <heiko@sntech.de>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"laurent.pinchart+renesas@ideasonboard.com" <laurent.pinchart+renesas@ideasonboard.com>,
-	"yunkec@chromium.org" <yunkec@chromium.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"hdegoede@redhat.com" <hdegoede@redhat.com>,
-	"bingbu.cao@intel.com" <bingbu.cao@intel.com>,
-	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Yaya Chang =?utf-8?B?5by16ZuF5riF?= <Yaya.Chang@mediatek.com>,
-	Shengnan Wang =?utf-8?B?546L5Zyj55S3?= <shengnan.wang@mediatek.com>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"alain.volmat@foss.st.com" <alain.volmat@foss.st.com>,
-	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
-	"10572168@qq.com" <10572168@qq.com>,
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"mehdi.djait@bootlin.com" <mehdi.djait@bootlin.com>
-Subject: Re: [PATCH v3 2/3] media: i2c: Add GT97xx VCM driver
-Message-ID: <ZnW6BO0ZLPPI71TP@kekkonen.localdomain>
-References: <20240612012019.19078-1-zhi.mao@mediatek.com>
- <20240612012019.19078-3-zhi.mao@mediatek.com>
- <7c71534f-9815-4ea3-969f-c04d249d35d2@collabora.com>
- <18d2c28fc8b47889689a1506957ea2a308c80fa2.camel@mediatek.com>
- <171823714905.1550852.13442340621133903705@ping.linuxembedded.co.uk>
- <CAHp75VcA9yZ6bVt+10FrzB3L3wPj8fW5UBB9D7p0iHjLaxWCpA@mail.gmail.com>
+	s=arc-20240116; t=1718991831; c=relaxed/simple;
+	bh=X8jfzg/wyxs168n27oHncGTMVl1l94eynwuziWyg5Wg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nke2TCTKy5lNmJkhJkGmfwjBKEWOUWAyvCvpGjgNUfPyJy+X92GzIVis1wJEbUGqaLfNDw1brOt7Lvu4AZDrhI6z9W3B15CFdqgvXgS2Ia1AzAPNuqgLBIEmiGsodO0sWOF9+B/fuyc3ttswIjjgHneJvKF0dTR88+6I71ll8nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K7NLThrQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45LFbvjP021677;
+	Fri, 21 Jun 2024 17:43:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	J4d77Yn0f566TtqVIjt1HDWczzH71mbrVuT84+uqzSA=; b=K7NLThrQVbTZeS88
+	U/bpc+F1H1yGivwcMb6k6M/JklRLG8K87fI4MJhZ5emkO1SYLZQreP4kOECF4gLE
+	GNkQL2fE7LeliP5TDdC4DkARFVxRKjuXpxbsoB+7Ig9/Co5FQr8OLxVj8whI+uIs
+	PGRmX+fPZTiU+1+GhH3XNnXY25LHnNODs6P0aTdK+MnyrsX/HtoDR2nTMQARrOAa
+	XFZGKV/8KkR/iluEMT6vvA57zRhcW+jrHQ4YtR7h/RObPGSqRZbOr0Sm0N63sjuA
+	pTqNLsg0SnxxAhDd53KGjdn7rnQOe5U8rN1+IVo1Q4++1Zoxc4Zhhb0PCBGgaNBq
+	Q37dmg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywcb28a65-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jun 2024 17:43:45 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45LHhhGe013848
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Jun 2024 17:43:43 GMT
+Received: from [10.50.38.38] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 21 Jun
+ 2024 10:43:38 -0700
+Message-ID: <d6c4ceed-5804-473a-8599-405d4ace099f@quicinc.com>
+Date: Fri, 21 Jun 2024 23:13:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VcA9yZ6bVt+10FrzB3L3wPj8fW5UBB9D7p0iHjLaxWCpA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] interconnect: qcom: sc7280: enable QoS
+ configuration
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Kees Cook <keescook@chromium.org>, <cros-qcom-dts-watchers@chromium.org>,
+        "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
+        <quic_mdtipton@quicinc.com>
+References: <20240607173927.26321-1-quic_okukatla@quicinc.com>
+ <20240607173927.26321-3-quic_okukatla@quicinc.com>
+ <910af90e-affb-45f2-a2f7-875ca8362c0f@linaro.org>
+Content-Language: en-US
+From: Odelu Kukatla <quic_okukatla@quicinc.com>
+In-Reply-To: <910af90e-affb-45f2-a2f7-875ca8362c0f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: B_kqqTIC_s-xjSuoVgL781wJiaYmrprG
+X-Proofpoint-ORIG-GUID: B_kqqTIC_s-xjSuoVgL781wJiaYmrprG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-21_08,2024-06-21_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ clxscore=1011 phishscore=0 lowpriorityscore=0 impostorscore=0
+ malwarescore=0 suspectscore=0 mlxlogscore=645 priorityscore=1501
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2406210126
 
-Hi Andy, others,
 
-On Thu, Jun 13, 2024 at 09:51:03PM +0200, Andy Shevchenko wrote:
-> On Thu, Jun 13, 2024 at 2:05 AM Kieran Bingham
-> <kieran.bingham@ideasonboard.com> wrote:
-> > Also - Cc: Dongchun Zhu <dongchun.zhu@mediatek.com> who is listed as the
-> > DW9768 VCM driver author...
-> > Quoting Zhi Mao (毛智) (2024-06-12 12:13:40)
-> > > On Wed, 2024-06-12 at 09:07 +0200, AngeloGioacchino Del Regno wrote:
+
+On 6/18/2024 8:16 PM, Konrad Dybcio wrote:
 > 
-> ...
 > 
-> > > Our project uses Giantec VCM hardware.
-> > > For detailed vendor information, please visit: (
-> > > https://en.giantec-semi.com/yqmd/164).
-> > > The VCM datasheet we are referencing is provided by Giantec.
-> > > Currently, the relationship between Giantec VCM and Dongwoon VCM is
-> > > unclear, but Dongwoon seems to be another manufacturer of VCM
-> > > hardware.
+> On 6/7/24 19:39, Odelu Kukatla wrote:
+>> Enable QoS configuration for master ports with predefined values
+>> for priority and urgency forawrding.
+>>
+>> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+>> ---
 > 
-> There may be plenty of manufacturers of the same/similar IPs, but it's
-> not an excuse to have a duplication like this.
+> msm-5.4 also has a qhm_gic node with QoS offset 0x9000, is that of any
+> importance, or can we forget it exists?
 > 
-> > > From the perspective of software driver development and maintenance, it
-> > > makes sense for each vendor's hardware should have its own software
-> > > driver.
-> >
-> > Personally, I don't think so. If two vendors make identical parts, we
-> > shouldn't have two identical drivers.
+
+qhm_gic node QoS is not that important, it is fine.
+
+> LGTM otherwise:
 > 
-> Exactly! That's why we have compatible strings or other means of
-> reusing the same code base as much as possible. This in particular
-> reduces maintenance costs (of all means!) _a lot_.
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Konrad
 
-Indeed. I'll mark these thus "rejected" in Patchwork.
+Thanks for the review!
 
-If there's something that needs to be handled differently for the other
-VCM, that can be taken into account in the driver.
-
--- 
-Kind regards,
-
-Sakari Ailus
+Regards,
+Odelu
 
