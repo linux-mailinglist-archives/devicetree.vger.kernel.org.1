@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AD5A911AE2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:05:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9BCD911AF6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 08:11:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3ABB1F21DEC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:05:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2365B2396A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jun 2024 06:11:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8EC12F365;
-	Fri, 21 Jun 2024 06:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3844E146017;
+	Fri, 21 Jun 2024 06:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LZZdTPnA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SgHVQoco"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CA61422A6;
-	Fri, 21 Jun 2024 06:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00583168C17;
+	Fri, 21 Jun 2024 06:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1718949907; cv=none; b=ba2CKvRSK8Ygwk1lxoVaj6Of/q5FuvWMiSTUR0Dy67RYYroY2gh4VXqqKbysiyqvolUKi4TIPmBkawx/mN2L/I6S26WGovZRW3LAXVYvp0wdf6d2AGc4U9H0E2wKKTNZNLZoWjeYtW2EsIItFreyhYSmDrcavI/fV3AJq1m9s3Q=
+	t=1718950238; cv=none; b=lgt5kboeDImTOghqWsbjTkEpOCUOLyq9JcqWf+9zA+5+nOaFQfPAGGPc+3y9eh6pP5oJwLD3J+8CPnJ8fcoFpUGy5JBER4FOgUJ2F7JCU9Qs3axiQDw/e+knAYxShQiQxCFU1Gsb+AaVlKnawigNkiIzkc6ikiRNohyuwe3kXUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1718949907; c=relaxed/simple;
-	bh=FKTuHiq9a9f8t62lOXBHngDzhtAoZftKMZ66t+Lrfpk=;
+	s=arc-20240116; t=1718950238; c=relaxed/simple;
+	bh=vanRCVs7Il0N1bVX0/dHBOpckIxMz3F6/5aZRbOXc3M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tXK++KwbSCeFjBdmuzmYaVWm3trfRe25gC/AOqHjwacQtyGONziATZIEI5DGBN6PtetXw2y0og7KCimM+yPPFbl1Qi3fp8OX8362uFppT66Pp7qvbfuhdGddJ3aGfRVxA+QLnkywxamEdN5t5CobexsIAQHtpe+5v45TWCl8Pd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LZZdTPnA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACF43C2BBFC;
-	Fri, 21 Jun 2024 06:05:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gjQPF79QalDQvdInnmd40943iu9RJgui4Ie2SeN6bQHDdYjWAk9pBnoBP5j0cyLtqVDw5ZA/l9duaDjXDFgIVBlfBrqTAHJIaO7+pOr6qeBNDUgo0r8h3zhtvFQDPE3XrDSTFORBtBnTaNsnPNqYCMFQ6bpSJGvdN0A6DgCGqaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SgHVQoco; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7C4CC2BBFC;
+	Fri, 21 Jun 2024 06:10:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1718949906;
-	bh=FKTuHiq9a9f8t62lOXBHngDzhtAoZftKMZ66t+Lrfpk=;
+	s=k20201202; t=1718950237;
+	bh=vanRCVs7Il0N1bVX0/dHBOpckIxMz3F6/5aZRbOXc3M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LZZdTPnAmkEihrLbDpk74L4Iu2m+/h8a+QKb43TLVfRIxngX50zStUTTN8AP3Z5qC
-	 LzNK0Zl+V+2HhKN1rJUnM5FLmhQfSeMgQSlTlY92lNxnTBCi156uWDOxPyU+6T0YUP
-	 I08MggNxYG9+Z3eFrwvf4CvDel3jxBGNaN+w3nt4wffoZaRQCsuSJrTTgA8kKsdsmU
-	 M/KEBS2scyWAW32qmLXZZSUxJAAfBguyPrO5sZSq1Rt5M4y/Mry0//3pxrVR1diOZf
-	 MZjTwybw4Y9jmSKkiO+Pc7SXjQblxl96U8IJv6JvoGkuLE6MSQI/5/DP2Dfl5OhuXi
-	 6zHzAYySM65zg==
-Message-ID: <f315c1cd-1f78-46e0-a86b-5240a869bb31@kernel.org>
-Date: Fri, 21 Jun 2024 08:04:58 +0200
+	b=SgHVQocoCiIw1OHhZ5VnmaFBHjno76cQpn3hOUw3agt9k/yNyFP4X20lAMb/XwW+r
+	 PsNJ3RRtPQHqHTvq+AnyiIoL6sByOVlWJjEECnAvn8h/skjp4fmp5rpvxXmasyXR5p
+	 M3y1GUkH4gZl9esHKaTyI6x8RL2rIzUuKPMns1GfxHUcE1JEwDpKQQnBUzQjiFmznV
+	 DgsmS8eM76NSSRZC046k0iLRArOqBJ3u12icEapzxoaE21/nPncY7XAW0EtDLlq9om
+	 3B8yUQ2w48nD/WWOjS7QdOPDHrDixtUfV5qGeSebzGUYwkALUXJL4DyImgOpaCrpoO
+	 4lWJR1dUvEW/A==
+Message-ID: <3acc5a0a-260a-4958-aab2-1d473c835a1b@kernel.org>
+Date: Fri, 21 Jun 2024 08:10:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: nuvoton,ma35d1-sdhci: Document
- MA35D1 SDHCI controller
-To: Shan-Chun Hung <shanchun1218@gmail.com>, ulf.hansson@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- adrian.hunter@intel.com, p.zabel@pengutronix.de, pbrobinson@gmail.com,
- serghox@gmail.com, mcgrof@kernel.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, forbidden405@outlook.com,
- tmaimon77@gmail.com, andy.shevchenko@gmail.com,
- linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240619054641.277062-1-shanchun1218@gmail.com>
- <20240619054641.277062-2-shanchun1218@gmail.com>
- <3d193f01-2c8b-4d6c-8139-11f2d9a34d2d@kernel.org>
- <42ec842e-84c0-40fd-b6fc-e59d25ede89f@gmail.com>
+Subject: Re: [PATCH v2 2/4] media: rockchip: Introduce the rkvdec2 driver
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Diederik de Haas <didi.debian@cknow.org>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Alex Bee <knaerzche@gmail.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-staging@lists.linux.dev
+References: <20240619150029.59730-1-detlev.casanova@collabora.com>
+ <20240619150029.59730-3-detlev.casanova@collabora.com>
+ <dc232a01-1495-42ff-ad2a-5a0aa780b60c@kernel.org>
+ <klzru2ak3yxccywqr57bslyctqtmrl2d3eghgv5letp7jkel6s@rlupljmxfijg>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,24 +119,59 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <42ec842e-84c0-40fd-b6fc-e59d25ede89f@gmail.com>
+In-Reply-To: <klzru2ak3yxccywqr57bslyctqtmrl2d3eghgv5letp7jkel6s@rlupljmxfijg>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/06/2024 01:53, Shan-Chun Hung wrote:
+On 20/06/2024 15:41, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Thu, Jun 20, 2024 at 12:30:00PM GMT, Krzysztof Kozlowski wrote:
+>> On 19/06/2024 16:57, Detlev Casanova wrote:
+>>> +static const char * const rkvdec2_clk_names[] = {
+>>> +	"axi",
+>>> +	"ahb",
+>>> +	"core",
+>>> +	"cabac",
+>>> +	"hevc_cabac",
+>>> +};
 >>> +
->>> +  interrupts:
->>> +    maxItems: 1
+>>> +/*
+>>> + * Some SoCs, like RK3588 have multiple identical vdpu34x cores, but the
+>>> + * kernel is currently missing support for multi-core handling. Exposing
+>>> + * separate devices for each core to userspace is bad, since that does
+>>> + * not allow scheduling tasks properly (and creates ABI). With this workaround
+>>> + * the driver will only probe for the first core and early exit for the other
+>>> + * cores. Once the driver gains multi-core support, the same technique
+>>> + * for detecting the main core can be used to cluster all cores together.
+>>> + */
+>>> +static int rkvdec2_disable_multicore(struct rkvdec2_dev *rkvdec)
+>>> +{
+>>> +	const char *compatible;
+>>> +	struct device_node *node;
+>>> +	int ret;
 >>> +
->>> +  pinctrl-names:
->>> +    description:
->>> +      Should at least contain default and state_uhs.
->> ? Contradicts constraints.
-> I will modify the description to "Should at least contain default. 
-> state_uhs is mandatory in this scenario."
+>>> +	/* Intentionally ignores the fallback strings */
+>>> +	ret = of_property_read_string(rkvdec->dev->of_node, "compatible", &compatible);
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	/* first compatible node found from the root node is considered the main core */
+>>
+>> So you rely on order of nodes? Before you claim "identical cores", but
+>> now "main core" suggests one is different than others.
+> 
+> Heh, I wrote that comment for Hantro. By main core I was referencing
+> the software side of things. With a number of equal cores and no DT
+> node describing a cluster (from HW point of view it's just equal
+> cores), they somehow need to be combined into a single entity to allow
+> scheduling work between them. This solves the issue by making one of
+> the devices the "main" device. From the HW point it's exactly the same
+> as the others. The function could also use the last core or the second
+> one. It does not matter as long as there is only one "main" core.
 
-Then just drop it. Don't repeat constraints in free form text.
-
+Sounds good. Maybe comment could be a bit extended with this
+explanation, so the term "main" is clarified.
 
 Best regards,
 Krzysztof
