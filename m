@@ -1,362 +1,130 @@
-Return-Path: <devicetree+bounces-78752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39D4E913457
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 16:01:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FC4913478
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 16:36:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4429284E4E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 14:01:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72AB11C210CC
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 14:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A552F16FF2A;
-	Sat, 22 Jun 2024 14:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5BA16F0D0;
+	Sat, 22 Jun 2024 14:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AAhD1EuI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WZWEn+u6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7CA16F90F;
-	Sat, 22 Jun 2024 14:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4DF1E4AB;
+	Sat, 22 Jun 2024 14:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719064885; cv=none; b=pPhHAOqxPE2a7lyFEF/jA1HrVAvkBpQ34WyYCWHUfZXEI9Q/rSMvC9zPKNXcoBQAyNrN731H9vuDYCWFsbKQrvK+gv+mpvBnhn0IMU43NNBIZFqjicHT1XlrLYQy0tBUM8LocVoTaLPkSk0JhUkCQTjfIWZCk8gMWAuZzJgYW5s=
+	t=1719066987; cv=none; b=Da8qE+WDkmLNTwaNvfAEHiv5DQW/r2Wrl2/9CeDkVWg+qegNN9yIyQm0DMYFRmRsMAYyx3uG/gEgOGnXWs9/ZmyGVrOV4p9CvCHdAEzijLwFN0K3Sa//3g3ABOgDE9PkZT5+yXV6eVwjHtbbRdkgi1Z+JiARkdreTK/EuJApOQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719064885; c=relaxed/simple;
-	bh=q/Zid0560pg4Km6CiMYNtkNW/Kw3jvH9xbM5mFzcmS8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=jpdXfgbtyQCdgOfo2wxb+vN5QkoVBCR9pZO+OeuXmMPeEGQZyqKaaCtWCOHtAcCr0Co1A52F12PrEigHTuPpaUIV4JSJoajaB4b0a0EQDAR8KzxFaknaZ8p8EErfR5q+0nC7XhEH4gnt6JfKcZSa6D4MnJzGZH+a8YB2+V7KAQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AAhD1EuI; arc=none smtp.client-ip=209.85.218.42
+	s=arc-20240116; t=1719066987; c=relaxed/simple;
+	bh=fFfsg+f4AU+eql/TtMeYZLXfrroZ/Pgt+D3BjAS+LAs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j9pAMWdfYxQAPS8wo6R1RCc32izHH05a9bm3+99f9uwKTPXe/uyJ3E+z9GF6gqF9oriw35Eqld0m8lv4E4FZ7dtFh78WxF1nFBxXpESJZ0KJN4dnxBVMx1IlR4XUEHJF+dlL3BunNYIzW7yoh/kNe8FyUzAePTt5TXvzlNN4swM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WZWEn+u6; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a6ef8bf500dso316161566b.0;
-        Sat, 22 Jun 2024 07:01:23 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52ce0140416so240929e87.0;
+        Sat, 22 Jun 2024 07:36:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719064882; x=1719669682; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SLvV2VTWAcjodNcp3MfviP3sDUHSwc6DqDjb10RCEHs=;
-        b=AAhD1EuInFDzbD0ZnU80KAhpPDxwqcNyhwu6MaAOCv0yUp1En+QTOQc4ur2sFZz3ig
-         eB4ekYI+vq9nu0LEWDMKqwV+dweSUV8ztlfzt1Qho02uU3X2amjCdCAF5T/vL1mr4xGy
-         I7UyaeqTKl6jc190GaigRSUJ35Y2QCDdLCgYY45BWlgDW1+pk8uiLfdC4+BPZsP535KP
-         JGsjKn9yE6ARMK6yUftEAdHOCIrs6DDL2RPBzm3XvgYB04mQ3GDa0Pp4j4THwNTThECT
-         rm6Q3wRXlk5k+dcXMeS2ZHFs0k2yHNUQgtYv5lA7aHt2M/54ERY0LUoujFKipRgCgVbY
-         mtLA==
+        d=gmail.com; s=20230601; t=1719066982; x=1719671782; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WNYrUl2YGsngqImjAyk/vT9l6tF/5D7wdDvB58mdJRs=;
+        b=WZWEn+u6CrCFS9Xfk3XqyJf8Jn+t2cNcxfzw8H6OJb4KFRneUBI1Nu8ysJnfrb5xUp
+         Uc9vKzOi/aDavjFT4frZadZmeC8Xmjj+7Ha4MeskaPbBROqcDhKHHvrvK2NbBLh0kORp
+         IYLkM42m+NhXGer8Jw5e1sKl+OrVns212chvybUcwRdD6Tlily8eXTugIqr8UVwz2QzB
+         K00qeE6VMClg+dzvu6/ID6ZotkHSp1wZ0WPJnFmqC+nzW4JU/p9K3Dm67SoCLuEibGCA
+         gvUHyRm1nxO+LpYP5YjdyCeeQdJCDRWDfgqZ4oRSdF+qgAgH/r5/1tawH6sHb+EEKpQP
+         YXjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719064882; x=1719669682;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SLvV2VTWAcjodNcp3MfviP3sDUHSwc6DqDjb10RCEHs=;
-        b=mFYgl1ina+1cJ1AhMbila0BDZW1+1/xrpCXPoeDXzGhzjUlwkmChymLYrVkXys6ZEZ
-         GgFi3WqIM9NK30y/kPZ0sQQI9qv9W628H04LzRHnV3lCsK5zjiJoQOdBiJFmYJf7Vldc
-         ZpWPfoCM1v8wAmczh4Uo9QDrgPZQrIDh9S/pZRjkMj1tkc3KyRBi3LwtGDvGJd67mWRq
-         SOTxjkIW2vmQTxeYVJOTa1u7TnlBKKpYdMdVChb6wSZvTk6e+hqcGrTQB346xTKX4Csy
-         PBZEiA/cjNfiCHLnWhFpDP7NWpk0uFijwp75raqOCdZ32dpE1/VkRQk/KCVm/wUeTrLc
-         ScfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVs40qo+aw6a25S8BWHDkrp+2mpEKUAh1ZpuwsHjqJ8VivGlr/yb7YMuOqXJevUY2rKDsx/Wg4rYxSqn9f2H29c+cSx+S/mu4DSN2EmC4KUiFJz0Ln1Af3OnqC18QwLEnLegChF+ap/EQ==
-X-Gm-Message-State: AOJu0YwDNulQ4E66PJxtsTwUZ0ZH4A+WtT8Vxfn+UIGWH3rSCiQT1cq/
-	XLNk0U2hoi0V8wkgT85c5DAi18nJkvKkmDbKOglWjrak24Zos7sH
-X-Google-Smtp-Source: AGHT+IGv4yfPRuhrA0FwFK4MSf3NTDGOrmKmbLLSx3sSa73OntyRY6T1rGZN+QhVItLZ2NJhtvKvdw==
-X-Received: by 2002:a17:907:c80d:b0:a6f:a756:2e8e with SMTP id a640c23a62f3a-a6fab604e66mr915231566b.14.1719064881876;
-        Sat, 22 Jun 2024 07:01:21 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf549166sm198715166b.132.2024.06.22.07.01.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jun 2024 07:01:21 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Christian Hewitt <christianshewitt@gmail.com>,
-	Emanuel Strobel <emanuel.strobel@yahoo.com>
-Subject: [PATCH v2 3/3] arm64: dts: meson: add initial support for Dreambox One/Two
-Date: Sat, 22 Jun 2024 14:01:12 +0000
-Message-Id: <20240622140112.2609534-3-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240622140112.2609534-1-christianshewitt@gmail.com>
-References: <20240622140112.2609534-1-christianshewitt@gmail.com>
+        d=1e100.net; s=20230601; t=1719066982; x=1719671782;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WNYrUl2YGsngqImjAyk/vT9l6tF/5D7wdDvB58mdJRs=;
+        b=jUXqwVNOZiqZBDBNj3Z/xKitjVlJ3jge1Gp98qKXS6udW4EZVNK0saAH1MJqHUp6R0
+         zUrungdjeRlZ5F1RLNGtnKsYubjc/mfw8+NI+H43YphpkdXlkdfo07UAk9yRYfxWzkU9
+         yfZmCC/0J3k1LozinSqCxKhBk3kx3PUJd8qaH5TKehR05tEFzt10oktVprrVYBsa3eno
+         cnZkeda4OYaIwKWhHxmhDGs1zr4XavO6DqOc2REXi/vROdf09l0C10Rf4eg81yfSfi6X
+         wf3x/dkswColJamvVgC+Oo89XI38Dg3Zl4UbXr6xgK65uw2fHx9Xrl9OftqGOwOTa0da
+         qSSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVptDECskTG8W0i7NvXVO/Mmxa/n2iK7n23+6Sogir2yZI6hB7WV0P2FIFpcucIxJpKV8V581UWUxIOithVHEhDSGisrxxNOf5LUGiW+Hq2FUb0NLfvzWCruULAHFjPl+3tUnntqAzoA5r+QU3D2pPKStM81tM0B3n5/9onyBO9IAXBFP2t2aM+cmEITdP3T7nMMH9UTjlMCU4TeuNyzV3olv8=
+X-Gm-Message-State: AOJu0Ywu6XT/jbIeqjXHFRpTnDTBt+Q83W+EZW61sB54JoGDowhQ56Y2
+	lff3PsBqhBWwatMlWyUpWsVSSPDDUyJsjAML+ISlAKvZ8R/CulD1h2wyZg==
+X-Google-Smtp-Source: AGHT+IE/2Zw69mZ5Nmp2bq2yaB2+Cfu8PQ8xGCyORiNbD89YhAvnnSPpUdCwEvydqxU9tqFqOif9Jg==
+X-Received: by 2002:a19:2d18:0:b0:52c:dbc6:8eb0 with SMTP id 2adb3069b0e04-52ce061a287mr405838e87.21.1719066981895;
+        Sat, 22 Jun 2024 07:36:21 -0700 (PDT)
+Received: from [192.168.3.32] (d-zg2-226.globalnet.hr. [213.149.37.226])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36638e90cbesm4711184f8f.58.2024.06.22.07.36.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Jun 2024 07:36:21 -0700 (PDT)
+Message-ID: <e3ad7b57-65dc-4262-b523-8bb81b60892b@gmail.com>
+Date: Sat, 22 Jun 2024 16:36:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] clk: qcom: gcc-ipq6018: update sdcc max clock
+ frequency
+To: Chukun Pan <amadeus@jmu.edu.cn>, Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240620150122.1406631-1-amadeus@jmu.edu.cn>
+ <20240620150122.1406631-2-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Robert Marko <robimarko@gmail.com>
+In-Reply-To: <20240620150122.1406631-2-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dreambox One and Dreambox Two are based on the Amlogic W400 reference
-board with an S922X chip and the following specs:
 
-- 2GB DDR3 RAM
-- 16GB eMMC
-- 10/100/1000 Base-T Ethernet
-- AP6356 Wireless (802.11 b/g/n/ac, BT 5.0)
-- HDMI 2.1 video
-- S/PDIF optical output
-- 2x DVB-S2/T2
-- Smartcard Reader Slot
-- 2x USB 2.0 port (1x micro-USB for service)
-- 1x USB 3.0 port
-- IR receiver
-- 1x Power LED (blue)
-- 1x Power button (top)
-- 1x Update/Reset button (underside)
-- 1x micro SD card slot
+On 20. 06. 2024. 17:01, Chukun Pan wrote:
+> The mmc controller of the IPQ6018 does not support HS400 mode.
+> So adjust the maximum clock frequency of sdcc to 200 MHz (HS200).
+>
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>   drivers/clk/qcom/gcc-ipq6018.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/clk/qcom/gcc-ipq6018.c b/drivers/clk/qcom/gcc-ipq6018.c
+> index 7e69de34c310..6c764e3e2665 100644
+> --- a/drivers/clk/qcom/gcc-ipq6018.c
+> +++ b/drivers/clk/qcom/gcc-ipq6018.c
+> @@ -1617,7 +1617,7 @@ static const struct freq_tbl ftbl_sdcc_apps_clk_src[] = {
+>   	F(96000000, P_GPLL2, 12, 0, 0),
+>   	F(177777778, P_GPLL0, 4.5, 0, 0),
+>   	F(192000000, P_GPLL2, 6, 0, 0),
+> -	F(384000000, P_GPLL2, 3, 0, 0),
+> +	F(200000000, P_GPLL0, 4, 0, 0),
 
-Dreambox Two differences:
+Hi,
+Are you sure that 200MHz is even valid of a frequency, cause all IPQ SoC-s
+use 192MHz for the HS200 mode instead.
 
-- 3" Colour LCD display (MIPI-DSI)
-- Common Interface Slot
+I would just drop the 384MHz frequency as datasheet clearly states that 
+HS400
+is not supported.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Changes since v1:
-- Move assigned-clocks under sound node as requested by Neil
+Regards,
+Robert
 
- arch/arm64/boot/dts/amlogic/Makefile          |   2 +
- .../dts/amlogic/meson-g12b-dreambox-one.dts   |  17 ++
- .../dts/amlogic/meson-g12b-dreambox-two.dts   |  20 +++
- .../boot/dts/amlogic/meson-g12b-dreambox.dtsi | 154 ++++++++++++++++++
- 4 files changed, 193 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 0746e01b5853..4addcae2c54e 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -21,6 +21,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3-ts050.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-mnt-reform2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-dreambox-one.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-dreambox-two.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
-new file mode 100644
-index 000000000000..ecfa1c683dde
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-dreambox.dtsi"
-+
-+/ {
-+	compatible = "dream,dreambox-one", "amlogic,s922x", "amlogic,g12b";
-+	model = "Dreambox One";
-+};
-+
-+&sd_emmc_a {
-+	sd-uhs-sdr12;
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
-new file mode 100644
-index 000000000000..df0d71983c3d
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-dreambox.dtsi"
-+
-+/ {
-+	compatible = "dream,dreambox-two", "amlogic,s922x", "amlogic,g12b";
-+	model = "Dreambox Two";
-+};
-+
-+&sd_emmc_a {
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
-new file mode 100644
-index 000000000000..3a24c2411552
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-dreambox.dtsi
-@@ -0,0 +1,154 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+#include "meson-g12b-w400.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	cvbs-connector {
-+		status = "disabled";
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOA_11 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	spdif_dit: audio-codec-1 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "DREAMBOX";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3";
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* spdif hdmi or toslink interface */
-+		dai-link-4 {
-+			sound-dai = <&spdifout_a>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
-+			};
-+		};
-+
-+		/* spdif hdmi interface */
-+		dai-link-5 {
-+			sound-dai = <&spdifout_b>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-6 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&ir {
-+	linux,rc-map-name = "rc-dreambox";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddao_1v8>;
-+};
-+
-+&spdifout_a {
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&spdifout_b {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
--- 
-2.34.1
-
+>   	{ }
+>   };
+>   
 
