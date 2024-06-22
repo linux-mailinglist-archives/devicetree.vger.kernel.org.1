@@ -1,269 +1,208 @@
-Return-Path: <devicetree+bounces-78783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1049135B9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C6B89135C5
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 21:06:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AB8C282B4E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:50:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 470F2283646
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 19:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFD8250EC;
-	Sat, 22 Jun 2024 18:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26AE638FB9;
+	Sat, 22 Jun 2024 19:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxb+vuVf"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="fkZ6bI9I";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OnBs5KqO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from wfout6-smtp.messagingengine.com (wfout6-smtp.messagingengine.com [64.147.123.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1B81C294;
-	Sat, 22 Jun 2024 18:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5CD1863E;
+	Sat, 22 Jun 2024 19:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719082227; cv=none; b=OLQOb7CIAQkePi65L0MEEKNRvt0p3/SjJxZtOkGL0gkN/3mANB03zeOrO3UU/GDL6AvM0fxbgoN5AWcWgedCYMauCOfD+4rdEHughr0Ldh2SSVWUZ5RKKPYENVynP5Gz1rWhNu6Dxg51q45X6zUseatgMT33PXEfADbwl3Fr4Oo=
+	t=1719083212; cv=none; b=Bkau6AqZvMhuIVKrxFvYYUDJtZcIXioEEUzb1IDz6fu2UlcN3TqRINiXrlBx2P5RnS1qqibplCoBou0PmXxKFWoFgVrPcmYFIxAPVCvdD1FuBvgMiLydfW2xxXJDu6SsenFw03htXoD21LpxEL/DJxJUbaUEkouO3HP/CmNA3Pk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719082227; c=relaxed/simple;
-	bh=hjpL8sBLRmDXwQAkwY/Az+tIeeHDtbnbJXHCvXbMkMY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OY8mIp1WDRhAOfAMCJBktf3fPVT1sO4FO5f5kEOd9AIQBZeWz81rQanb5RGHRQf3nVW/gp8LOiU2dnwtmwZ33HwH7/bJWsCasle2zffMKg3FuzuoTtSuqsceSatS06nXYYyIvEiaPvz/4K+kRyLXkmiSnqDJVHW441rDUn8Ta5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxb+vuVf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDE5DC3277B;
-	Sat, 22 Jun 2024 18:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719082226;
-	bh=hjpL8sBLRmDXwQAkwY/Az+tIeeHDtbnbJXHCvXbMkMY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gxb+vuVfi1dbrSqTeE1jSoDW2CVkMqhNgCvMoayI/UmTdAgMQyl/6bf7fVWfWqjsc
-	 +v1tSEwhPdBCQRLdVOcQVOuwS8q9UGZAhEyj/xR20eUrybNqvcQ/eIY1GFkFVkVmto
-	 6T0rSKhqwudppSgVS13Bap9DA+uiP37tBmwd1muQ5qxyPf5+avobrJvhxtnuhKviC+
-	 HtuVdzsz1tUwHbRcOT9xNoMugSy5u411k1chgvcSlUJj0TW84dHFLt1dYfNIfQtAid
-	 dYmwDBDRWp2R8zEW6t4761Y1hSyfALQZm9rXbjzVV2oALUVClrUxzABxQFXzdAmVGr
-	 2K7gZ+MYcbl+w==
-Date: Sat, 22 Jun 2024 19:50:18 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v6 2/2] iio: frequency: adf4350: add clk provider
-Message-ID: <20240622195018.587997ae@jic23-huawei>
-In-Reply-To: <20240621121403.47912-2-antoniu.miclaus@analog.com>
-References: <20240621121403.47912-1-antoniu.miclaus@analog.com>
-	<20240621121403.47912-2-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1719083212; c=relaxed/simple;
+	bh=r4NAfeztUwL/BJd+0mcWpNeVg5Ang9ARryrTpzHPa+k=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=M1aRaNiCNnzryjjX6Su/ELoEzCfPXQxjda5J/EaA/khjoI8M/Q0NDcjABZA7ekBmXIr5GdTuzkTzqJ/6WIrZteIely5x79N/9fnXfE4A9QfDryz0hAWZy0Kj77qZHC6qjNwgX53cHk3vAMTb2Q8RaCFPxxnqjBiu1OXNDCpxECQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=fkZ6bI9I; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OnBs5KqO; arc=none smtp.client-ip=64.147.123.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfout.west.internal (Postfix) with ESMTP id 99BE91C000B8;
+	Sat, 22 Jun 2024 15:06:48 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Sat, 22 Jun 2024 15:06:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1719083208;
+	 x=1719169608; bh=3iSvzQUPYRn852sXVZfCY1CE4cmCTtU2TMLXcCOvQbM=; b=
+	fkZ6bI9IpohMYDUUkPo3p/kyXC18E0xZqreS1hFTYErYS57Csgq2OAB4k3PN8piG
+	TvP494JDC2rMYMybTge9rQpEFf7ezMu7W32jAp1PAtl0eTps0+xz0aypcazmP8OZ
+	GTTdyThRz3wH0xhFIaHtqic57f4eGqg3zl1LbXgjwsiRUmnClCYZJi4N23SHgOVP
+	X0Shlg7fCzu1pXuM1Wi1tMkZp+y8swoM8/kn7O1y8O1v2N9omChAuwrih2R+ImON
+	L9mqmkmFTR61a/vx+l3CQ7b5s1mHxWJo5s2hH0B6vCDKJV7I5By5DVHep8iLtUVx
+	0D407COsDaU5XRZ8ml2ZDg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719083208; x=
+	1719169608; bh=3iSvzQUPYRn852sXVZfCY1CE4cmCTtU2TMLXcCOvQbM=; b=O
+	nBs5KqO40qPEbgiIf/1hS2JxxYj0f0hh7prVVuTVyUo33qFK+CukkYVRlPA3ABmk
+	Fdxhqk/jOrJaQj2lB+OGpFdWKjQS6JcXW/8ut9F0fBE6F/h+qNcINwuni7Laavqs
+	oc5EhJkd+hglfCBfDhDTYuINaQe2q3C9rSI92NyHwA8Oj27sOpAJXa/CiCAH214R
+	F2Dlxe4091EFOQsQW8G7bP55rRl54OJhRiLVh3F/6ImwJ8hrN/2SLRyMfs1F9000
+	iC77Cr00LIeH/nd77Vlcdw1prqbZyYv7jP/Oez2zEbqPaCLI/KEwYPcKt36mPXqD
+	MHEgEy5VmYo7SvlYTPGkg==
+X-ME-Sender: <xms:xyB3ZuvTNkecoMW9OJVOmvTVG8kXV-ip7wd9tHjuKMjB_g8qqp8Z7w>
+    <xme:xyB3Zjd5VwOkyaGw9ycMAbAf6BNwPDJNaj_M-5SYMBpK8FODw9ran9XhUeh3pMNor
+    C6n8UyqfrfJU1zsXLw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeefiedgudefiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
+    homheqnecuggftrfgrthhtvghrnhepudefgeeftedugeehffdtheefgfevffelfefghefh
+    jeeugeevtefhudduvdeihefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:xyB3ZpxeOmsoIJZxnG5tIsSY_fpdPp2Wjru72Vwz57-ijtujXw8ifg>
+    <xmx:xyB3ZpPcjd0ebMx-BJsybglASWzBGOANtVLtU5ZLp1pZ0oc2R788Mg>
+    <xmx:xyB3Zu_AWtf5edbIQ8XOC4ziAUuG2YIpPKqJPIlnXzQWalyDPGv_kw>
+    <xmx:xyB3ZhV8Ndp7pu4WIUa79TymhUpwO-Xg_jicB4uKL3M0llkg4uksHg>
+    <xmx:yCB3ZhZIb4xe4TVgrocpb694OnJyzEAQlHLpVN4uHm5ZQkfJ_DGlwdou>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 957A636A0074; Sat, 22 Jun 2024 15:06:47 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-522-ga39cca1d5-fm-20240610.002-ga39cca1d
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Message-Id: <5eed908d-3943-4a4d-b0ec-c7acdae63c5e@app.fastmail.com>
+In-Reply-To: <6ca74ccf-b93e-4d77-8609-a12a96c15f38@kernel.org>
+References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
+ <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
+ <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
+ <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
+ <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
+ <856ff7b0-774d-4120-8bd8-01270f5c14b4@app.fastmail.com>
+ <6ca74ccf-b93e-4d77-8609-a12a96c15f38@kernel.org>
+Date: Sat, 22 Jun 2024 20:06:24 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 21 Jun 2024 15:13:59 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-> Add clk provider feature for the adf4350.
-> 
-> Even though the driver was sent as an IIO driver in most cases the
-> device is actually seen as a clock provider.
-> 
-> This patch aims to cover actual usecases requested by users in order to
-> completely control the output frequencies from userspace.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-You addressed both of Nuno's comments and I didn't have anything to add,
- so I'll pick this up (can still add a tag though if Nuno wants to give one).
 
-Series applied to the togreg branch of iio.git and pushed out as testing
-for 0-day to have fun.
+=E5=9C=A82024=E5=B9=B46=E6=9C=8822=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8B=E5=
+=8D=887:12=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 21/06/2024 17:51, Jiaxun Yang wrote:
+>>=20
+>>=20
+>> =E5=9C=A82024=E5=B9=B46=E6=9C=8820=E6=97=A5=E5=85=AD=E6=9C=88 =E4=B8=8A=
+=E5=8D=887:40=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+>> [...]
+>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>> I believe U-Boot's implementation is correct. As per simple-mfd bin=
+ding:
+>>>>
+>>>> ```
+>>>> simple-mfd" - this signifies that the operating system should
+>>>>   consider all subnodes of the MFD device as separate devices akin =
+to how
+>>>>   "simple-bus" indicates when to see subnodes as children for a sim=
+ple
+>>>>   memory-mapped bus.
+>>>> ```
+>>>>
+>>>> This reads to me as "if you want sub nodes to be populated as devic=
+es
+>>>> you need this."
+>>>>
+>>>> In our case there are "clock" and "reset" node sub nodes which shou=
+ld be
+>>>> probed as regular device, so it's true for us.
+>>>
+>>> No, you already got comment from Rob.
+>>>
+>>> Your children depend on parent to provide IO address, so this is not
+>>> simple-mfd. Rule for simple-mfd is that children do not rely on pare=
+nt
+>>> at all.
+>>>
+>> Hi Krzysztof,
+>>=20
+>> Sorry but can I ask for clarification on "depend on parent to provide=
+ IO
+>> address", do you mind explaining it a little bit? Does it mean childr=
+en
+>> should get regmap node from a phandle property, not the parent node? =
+Or there
+>> should be a reg property for child node to tell register offset etc?
+>>=20
+>> There are way too much usage that children "depends" on parents someh=
+ow
+>> in tree, so I want to confirm my understanding.
+>
+>
+> Your driver relies on parent IO address to be provided - what's more to
+> explain here? If parent does not provide syscon, does the child work?
+> No. Therefore it is not suited for simple-mfd.
+>
+I can name too much "simple-mfd" devices that depending on parent to get
+it's syscon, in fact it's true for almost all "simple-mfd" users now.
 
-Thanks,
+I greped RISC-V's DTS, and all two users have child nodes depends on par=
+ent
+node to get "IO address". For "canaan,k210-sysctl" it's both "canaan,k21=
+0-clk"
+and "canaan,k210-rst", for "starfive,jh7110-sys-syscon" that's "starfive=
+,jh7110-pll".
 
-Jonathan
+If that's something prohibited, then we may need a generic driver in ker=
+nel to
+catch all those syscon devices lost eligibility to "simple-mfd" to get t=
+heir childs
+populated.
 
-> ---
-> changes in v6:
->  - rework `init.name` handling.
->  - simplify iio channels initialization.
->  drivers/iio/frequency/adf4350.c | 124 +++++++++++++++++++++++++++++++-
->  1 file changed, 122 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/iio/frequency/adf4350.c b/drivers/iio/frequency/adf4350.c
-> index 4abf80f75ef5..e13e64a5164c 100644
-> --- a/drivers/iio/frequency/adf4350.c
-> +++ b/drivers/iio/frequency/adf4350.c
-> @@ -19,6 +19,7 @@
->  #include <linux/gpio/consumer.h>
->  #include <asm/div64.h>
->  #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->  
->  #include <linux/iio/iio.h>
->  #include <linux/iio/sysfs.h>
-> @@ -36,6 +37,9 @@ struct adf4350_state {
->  	struct gpio_desc		*lock_detect_gpiod;
->  	struct adf4350_platform_data	*pdata;
->  	struct clk			*clk;
-> +	struct clk			*clkout;
-> +	const char			*clk_out_name;
-> +	struct clk_hw			hw;
->  	unsigned long			clkin;
->  	unsigned long			chspc; /* Channel Spacing */
->  	unsigned long			fpfd; /* Phase Frequency Detector */
-> @@ -61,6 +65,8 @@ struct adf4350_state {
->  	__be32				val __aligned(IIO_DMA_MINALIGN);
->  };
->  
-> +#define to_adf4350_state(_hw) container_of(_hw, struct adf4350_state, hw)
-> +
->  static struct adf4350_platform_data default_pdata = {
->  	.channel_spacing = 10000,
->  	.r2_user_settings = ADF4350_REG2_PD_POLARITY_POS |
-> @@ -381,6 +387,113 @@ static const struct iio_info adf4350_info = {
->  	.debugfs_reg_access = &adf4350_reg_access,
->  };
->  
-> +static void adf4350_clk_del_provider(void *data)
-> +{
-> +	struct adf4350_state *st = data;
-> +
-> +	of_clk_del_provider(st->spi->dev.of_node);
-> +}
-> +
-> +static unsigned long adf4350_clk_recalc_rate(struct clk_hw *hw,
-> +					     unsigned long parent_rate)
-> +{
-> +	struct adf4350_state *st = to_adf4350_state(hw);
-> +	unsigned long long tmp;
-> +
-> +	tmp = (u64)(st->r0_int * st->r1_mod + st->r0_fract) * st->fpfd;
-> +	do_div(tmp, st->r1_mod * (1 << st->r4_rf_div_sel));
-> +
-> +	return tmp;
-> +}
-> +
-> +static int adf4350_clk_set_rate(struct clk_hw *hw,
-> +				unsigned long rate,
-> +				unsigned long parent_rate)
-> +{
-> +	struct adf4350_state *st = to_adf4350_state(hw);
-> +
-> +	if (parent_rate == 0 || parent_rate > ADF4350_MAX_FREQ_REFIN)
-> +		return -EINVAL;
-> +
-> +	st->clkin = parent_rate;
-> +
-> +	return adf4350_set_freq(st, rate);
-> +}
-> +
-> +static int adf4350_clk_prepare(struct clk_hw *hw)
-> +{
-> +	struct adf4350_state *st = to_adf4350_state(hw);
-> +
-> +	st->regs[ADF4350_REG2] &= ~ADF4350_REG2_POWER_DOWN_EN;
-> +
-> +	return adf4350_sync_config(st);
-> +}
-> +
-> +static void adf4350_clk_unprepare(struct clk_hw *hw)
-> +{
-> +	struct adf4350_state *st = to_adf4350_state(hw);
-> +
-> +	st->regs[ADF4350_REG2] |= ADF4350_REG2_POWER_DOWN_EN;
-> +
-> +	adf4350_sync_config(st);
-> +}
-> +
-> +static int adf4350_clk_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct adf4350_state *st = to_adf4350_state(hw);
-> +
-> +	return (st->regs[ADF4350_REG2] & ADF4350_REG2_POWER_DOWN_EN);
-> +}
-> +
-> +static const struct clk_ops adf4350_clk_ops = {
-> +	.recalc_rate = adf4350_clk_recalc_rate,
-> +	.set_rate = adf4350_clk_set_rate,
-> +	.prepare = adf4350_clk_prepare,
-> +	.unprepare = adf4350_clk_unprepare,
-> +	.is_enabled = adf4350_clk_is_enabled,
-> +};
-> +
-> +static int adf4350_clk_register(struct adf4350_state *st)
-> +{
-> +	struct spi_device *spi = st->spi;
-> +	struct clk_init_data init;
-> +	struct clk *clk;
-> +	const char *parent_name;
-> +	int ret;
-> +
-> +	if (!device_property_present(&spi->dev, "#clock-cells"))
-> +		return 0;
-> +
-> +	if (device_property_read_string(&spi->dev, "clock-output-names", &init.name)) {
-> +		init.name = devm_kasprintf(&spi->dev, GFP_KERNEL, "%s-clk",
-> +					   fwnode_get_name(dev_fwnode(&spi->dev)));
-> +		if (!init.name)
-> +			return -ENOMEM;
-> +	}
-> +
-> +	parent_name = of_clk_get_parent_name(spi->dev.of_node, 0);
-> +	if (!parent_name)
-> +		return -EINVAL;
-> +
-> +	init.ops = &adf4350_clk_ops;
-> +	init.parent_names = &parent_name;
-> +	init.num_parents = 1;
-> +	init.flags = CLK_SET_RATE_PARENT;
-> +
-> +	st->hw.init = &init;
-> +	clk = devm_clk_register(&spi->dev, &st->hw);
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
-> +
-> +	ret = of_clk_add_provider(spi->dev.of_node, of_clk_src_simple_get, clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->clkout = clk;
-> +
-> +	return devm_add_action_or_reset(&spi->dev, adf4350_clk_del_provider, st);
-> +}
-> +
->  static struct adf4350_platform_data *adf4350_parse_dt(struct device *dev)
->  {
->  	struct adf4350_platform_data *pdata;
-> @@ -522,8 +635,6 @@ static int adf4350_probe(struct spi_device *spi)
->  
->  	indio_dev->info = &adf4350_info;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
-> -	indio_dev->channels = &adf4350_chan;
-> -	indio_dev->num_channels = 1;
->  
->  	mutex_init(&st->lock);
->  
-> @@ -551,6 +662,15 @@ static int adf4350_probe(struct spi_device *spi)
->  			return ret;
->  	}
->  
-> +	ret = adf4350_clk_register(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!st->clkout) {
-> +		indio_dev->channels = &adf4350_chan;
-> +		indio_dev->num_channels = 1;
-> +	}
-> +
->  	ret = devm_add_action_or_reset(&spi->dev, adf4350_power_down, indio_dev);
->  	if (ret)
->  		return dev_err_probe(&spi->dev, ret,
+We also need to think about how to handle "syscon-reboot-mode" and "sysc=
+on-reboot".
+"syscon-reboot-mode" is explicitly relying on parent IO address, for "sy=
+scon-reboot"
+the ability of not relying on parent node (regmap property) is deprecate=
+d as well.
 
+I think we need to make those rules explicit, I'm happy to write a docum=
+ent or update
+Devicetree specification about that, but I need to make it crystal clear=
+ to myself first.
+
+Thanks
+[...]
+>
+> Best regards,
+> Krzysztof
+
+--=20
+- Jiaxun
 
