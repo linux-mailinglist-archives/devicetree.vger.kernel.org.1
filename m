@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-78710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85097913381
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:47:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F9C913386
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:48:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B095B22302
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:47:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BECE1F2163C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97ED2153828;
-	Sat, 22 Jun 2024 11:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6104714E2D6;
+	Sat, 22 Jun 2024 11:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sSBfdw8A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JsvyzqC0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E762914B09F
-	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 11:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9FD1509AE
+	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 11:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719056849; cv=none; b=DEN61SshB07u6RDzt7mzc1oV1aEak1lEa4g3JISWi0bcQgRfDAN6krxdrjnTi2uSwYwKoc7YGoAwPEPbCc3f/DCPyU+WHVfCeQD7BGwCQ0JwBL/Rtg8mUk0zoSeQzvU0EG5wV+8JS5C6BfLanYAEa0SA6FQdfgZyxFdZOg6Ji7k=
+	t=1719056933; cv=none; b=dPEXr0fWNVMF7vGNzKJRCSsJFulO6X8q7y4bZ7dgq8HM38hP3kSh3zeS0EvzobshqYJSiAJbGYLfIgQ8LcZPtngC7KSBb7B+mCnIkhsL6gcnsuzd3/2AzFM1DMgzpqOmVmeOcmHz8EeK4rzM/6XXAYNhBbqFYVIYqT2iNv1pSGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719056849; c=relaxed/simple;
-	bh=9HW0EKBjliMtQgcjh+Q6rnR7bvgYSXhkoyU8qURuBOE=;
+	s=arc-20240116; t=1719056933; c=relaxed/simple;
+	bh=64yO8JfGv2L2EdkUtYfsGwvZ48+tCTCotY2TqOzKbQk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EROXI5bezaFqA+vhCcAXRPiENg6k7G7vwoYbTJNBjLGi1PQ9TWCWnxfBqwz8VNwsvqkghYMjuGj+4UfcwMz5gwsYqqg4YhC3OMIqN7cUM/hmPVsDd6FhgOZIf3DPBqK4Vp7JxbBHV+zRTkAgRvOTVHBS+UXTcTsE2bNx9KVKHsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sSBfdw8A; arc=none smtp.client-ip=209.85.208.51
+	 In-Reply-To:Content-Type; b=nF24ZezmQjUCBNf/Z3IZ5uJ/NNKFC1lvD3Tegq1c6PrAFbjmEyt0bQrjcX0d8V6kKztR2N1Hb3frDMhBKwZxgOPO3r+bS2fBDRMPiA9S1i6y+xNAiqkEnR+NxHIXw2fEMf8dtIl2rMmyTONOpro/83tbxTUBBpotKVb7QsNSS5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JsvyzqC0; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-57cb9a370ddso3192602a12.1
-        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 04:47:27 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-57d2fc03740so1437635a12.0
+        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 04:48:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719056846; x=1719661646; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719056929; x=1719661729; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GMNfILuks1dO8qewlx3Rln5wKJZKgfLBKJ/x00vmQuc=;
-        b=sSBfdw8AfGuahRGAMbm8SXWucHf6auJA8XtkxFrh8Ms8oXdaeolW09cmmzS3KJqIcK
-         xgeKiivaDJybl4x7nVb2qGOR6icCd5DiMpBNkD9aWqmFnvOeQi46OnjoB4sBTb3+yjHG
-         CBNukBWrCtfNha1aKfQOUw/ajUQVSi13YC8LBYFruU6KAGTdErT1r78E4GDatbMoQzfJ
-         HI1Jfo0A+EG0Rv7KIX13K6pdrlqOagOoCYKzo9AuzZf4Cl+UsvYy0ketu3SBA1Mfj14O
-         ePSZHr8UAynQGnylLWg4/CZSWFLRDrRBEy1NMxwTrMUoD9D/8P2W/E9Seg0ZnKlliN8a
-         jQEQ==
+        bh=Si+0+Udt3TumPYpj87u59+KPSMEelqrx15xLL3IUjzg=;
+        b=JsvyzqC0/Zr6zOkTWHxPCxqgTt0b4572BhpuVl3gLusJv2iOqmxwf6xAyt8OARjS0R
+         vTxBhd0xcu81TV1gZz/yMbvM3UAxEgyyKq2rYUWCLtDWT/vLilcil3ABsQ5rzRVSbdsF
+         CFYzpZuuC8/hdJeEYng2OwkgvVQ/HD+f9+HJE/SwwPf7tvkSTsaF3+l6a9CCtcGIzqBc
+         VDwNnmB007BMbbfb6VzEUzmhLxyhKbXz7GaToCA4YQk5M7kThTHAwl8q8g4/2Q68PPaI
+         uYqZX3G/F4/F5hlK3LZMKXmwz5gTGQn64BTdoT79Xa/gExuIz8Bxdl5kxUKSE5m2usqo
+         5NEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719056846; x=1719661646;
+        d=1e100.net; s=20230601; t=1719056929; x=1719661729;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GMNfILuks1dO8qewlx3Rln5wKJZKgfLBKJ/x00vmQuc=;
-        b=laswJMtVNXiZqH41GI2C6G3dRMDpwCBWgtwGX0Ug5D81NA/hKEDw4A3/U+YJqwJuHr
-         avBe40OPDKy3RTRfynVRP0Icob8MptRvC52yvF6BUbIsJPJY9sAeKgQs98zibak8rQEj
-         cS15G2M4HC3a1BVf4KO/YbgOrPEz+HqgVzG44+C+Z3k6YYJCitndZV42vkmllAc6IDU+
-         cKS1yntH72f1IlfcU9qNJBsGleud2II0ixNv/FL8nLV40m0V4eNB4COJh+X3nUDRgF9T
-         bOSqGou7KxjjkuMWTVxCh3NsMbPaD9Kjk5W5epdq5Uxp116sXU4lmizEuqREpZmJvunY
-         MqBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUyvwEn7quiDg9pRpqCBgqqtRPql/6RaPfA5tcK4eRYEqN//k5xc8A6eSaDC7mEzLcgmWxhuF3yGHEwsRuw6RgZvJ7lSipyYE+dEA==
-X-Gm-Message-State: AOJu0YwBlMzvIkkvnxDZqJWufR/G62ILEWpGcW3900a45LvCwdADmTFm
-	8qa79FEKYfCJlXbon3UTn9oTeLkKNh7rw0CwwYvAD1opyfqgk56V25646FYBh6Q0YzycCjGNqhF
-	5N3o=
-X-Google-Smtp-Source: AGHT+IGPd0yRMno5iuHp123ccFoht9qSNa3r7/hf1JIr+3S3nQAB1NpSm/qpu9dnCIwbrVTmzCgpBg==
-X-Received: by 2002:a50:c014:0:b0:57c:7ce3:6cd9 with SMTP id 4fb4d7f45d1cf-57d07e6b7d8mr6880465a12.23.1719056846039;
-        Sat, 22 Jun 2024 04:47:26 -0700 (PDT)
+        bh=Si+0+Udt3TumPYpj87u59+KPSMEelqrx15xLL3IUjzg=;
+        b=TMpbRWrsua6ieLvQP7Ack7GziCd1O7MogXhJGbcCiK7SF+zOjoXkqEOLYL7luxwIwB
+         rXSwvWxsHzI8mfqHz6RsguyhnMuvudgXGhvAIwE1wi73G/SuMyervdNQwMiWKDKeFMcx
+         cCIv9YLLUunzstL1KG3XOYvOHNhkRqL12DwMg4i6FwDzYWACZHfjTkZpMYRk6/7/Z8T0
+         MUC7uP6whTd5wPJrNrfA6fyB5AzTbV/ZNZPe4TrNBw1znqcZpxjadIohMvLjFZ5HkxdD
+         FxSg0gpGKLFljeUqZXwzspKAIutBrmSf6iB6euutdRaz8qVXDYhiUx1Ika6HLmKl6TBJ
+         pzsw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRH6+j76MS14ythjkwycKQ1g6PjV5funcThE6YtEpVI8KeHQN8kstL+r8btVnxiWecykpNIMYgaEErHh5epPtcLjCg95ALbxnxGg==
+X-Gm-Message-State: AOJu0YwXGnJTSi5SM9ww4250Ihge5UhTtOD1j8C4H9/duw7Rv7v7PPZ7
+	NJddbFttfu2cXb8cA4EWi2xQ4L6imSp1X0q2xXLQCrs21wvkJoNy21lGHG2q1Tg=
+X-Google-Smtp-Source: AGHT+IETsmUp0wg345dn1k6YoCEgM27JTx2/WGxNpwXA2lrAy+TNHTbiIiNfA5B4wb3j7PDAkVxgug==
+X-Received: by 2002:a50:c30d:0:b0:57d:261d:f825 with SMTP id 4fb4d7f45d1cf-57d261df8b3mr3767209a12.21.1719056929128;
+        Sat, 22 Jun 2024 04:48:49 -0700 (PDT)
 Received: from [192.168.128.35] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57d305616dfsm2243941a12.79.2024.06.22.04.47.24
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57d3041208esm2237898a12.30.2024.06.22.04.48.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Jun 2024 04:47:25 -0700 (PDT)
-Message-ID: <a7cd32a6-4689-4bb4-b211-b8dab5caa0a5@linaro.org>
-Date: Sat, 22 Jun 2024 13:47:23 +0200
+        Sat, 22 Jun 2024 04:48:48 -0700 (PDT)
+Message-ID: <2fcf909c-10c5-41b4-9962-d085e7e2bf5c@linaro.org>
+Date: Sat, 22 Jun 2024 13:48:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] ARM: dts: qcom: msm8226: Hook up CPU cooling
+Subject: Re: [PATCH 7/7] ARM: dts: qcom: msm8226: Convert APCS usages to mbox
+ interface
 To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
  phone-devel@vger.kernel.org, Jassi Brar <jassisinghbrar@gmail.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -87,7 +87,7 @@ To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
 Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-clk@vger.kernel.org
 References: <20240619-msm8226-cpufreq-v1-0-85143f5291d1@lucaweiss.eu>
- <20240619-msm8226-cpufreq-v1-6-85143f5291d1@lucaweiss.eu>
+ <20240619-msm8226-cpufreq-v1-7-85143f5291d1@lucaweiss.eu>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -125,18 +125,16 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240619-msm8226-cpufreq-v1-6-85143f5291d1@lucaweiss.eu>
+In-Reply-To: <20240619-msm8226-cpufreq-v1-7-85143f5291d1@lucaweiss.eu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19.06.2024 11:02 PM, Luca Weiss wrote:
-> Add cooling-maps for the CPU thermal zones so the driver can actually do
-> something when the CPU temperature rises too much.
+> Since we now have the apcs set up as a mailbox provider, let's use the
+> interface for all drivers where possible.
 > 
 > Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
 > ---
-
-Very cool, thanks
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
