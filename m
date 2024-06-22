@@ -1,171 +1,151 @@
-Return-Path: <devicetree+bounces-78675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166F4913118
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 02:07:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D56F913122
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 02:22:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C027728152B
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 00:07:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 451D81C210FB
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 00:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25315387;
-	Sat, 22 Jun 2024 00:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92696385;
+	Sat, 22 Jun 2024 00:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="jzgBglPf"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="dh+pZiJO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA8F37C
-	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 00:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752027E2;
+	Sat, 22 Jun 2024 00:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719014871; cv=none; b=q9cS2KJ5NRUVt94cyjQvI6F7HJZWH9U0utgO3fU+VcJl9wj0sdHhiJ1I735t4HFpuciJpbkD8nN+n41OB3EEPTbpCU+DfrhI1s5nLIE3FC3xwyBBXPHWJI0sUi/Vnp57wrJBxqsvSEnmzvIVoqeR1iZ2WK4yaglJXKcrEIIEqFY=
+	t=1719015763; cv=none; b=O4NbfSWG0fpnmu+QGnw9T5roos3YJEUULCYOLXAlfd3FOlMLe7j9GKH6cQRW07ukt0zzZCyTqOd4w4VWu4DHepdbWdPrXyG7JJBoeaQdWPc0uD4pJ6IDfQRjc5fl8rxye6TmdqgEhhtlyp9yEA5MV3ndHLFTNC+Fah2M+C7Vi4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719014871; c=relaxed/simple;
-	bh=DyHbBj9ueXncHw3F9NWgAosV2bXx6WUyn8kWbVonih4=;
+	s=arc-20240116; t=1719015763; c=relaxed/simple;
+	bh=En/fn5XzRu8qqC+N8HlyBSRi6I96WhnRYtmMy55Q0T4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HsfLmNgH3f5588uZRrPlyTgIkcktj5eHpZPMVnZ5PjpfhJJ0czmQoasdQk/cMuzy2mmXu14k4KivZpn/T8rnEQSXe0hilAMS0kiJZ31bhdHKdsbV0KVIp/QBN5/tSawYYatc+pS/gAMdb+SaSi9kQ0Q809BUNeM1Ft0boATQ8nU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=jzgBglPf; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1ee5f3123d8so260805ad.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 17:07:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1719014869; x=1719619669; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AVh4f6aDFggCQxeACj/Y+2csLoIHzjIutTBKzrEmvec=;
-        b=jzgBglPfRRMWSuoRkGuxX+taWSsFfKXre0Oz0ZzBkrs4Zv3OpUEG5hyTWf3nsLfWRA
-         pVoWQoOfs1Yw3p4nZvvnuJIYiSHPjg91yxWQ5+efFGGF35uOs3KDFpaPVaZ8YoWcK86x
-         LK5V+VAsw2yzYCgPiD73ZdSm7nQNZqojEs6LEXbjFuA5NAa9EUoBvDhH+63cg+gME4yM
-         0FsrzpKSEHtFy7+NkLyiH2CU5i+XLrCvnK+B0RRioN6HDN6DjsVmFKjUqlmY9mPu5cmx
-         MQf7D1I9ABEWr+sRP1yXSjhA9GhbHlZMa73ogQyRHRYOgaPJxPFV0f7vNR04HtvJxkPO
-         0N3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719014869; x=1719619669;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AVh4f6aDFggCQxeACj/Y+2csLoIHzjIutTBKzrEmvec=;
-        b=wVfYVObe0Y7VUsiRqGxT5At6wWMOsf0N+OuGtAXj3kthUqLZODaoxb91F1rA9Jj6Nj
-         dDAPlMhmaORNRPHvKV3N4FiWhGienRlxM38pR+BXM8Mqp9lt+yCc8dCIGfGgruOrJYxr
-         CuG/EbItulxnbm+Tt+2RtOmP9WJ5fh7jc/RqUrjHhRNyQ+vV80IMhkkGoQdlzbOyH76K
-         6zvXmp4GCm1yDRxx7JQPnsb/ABd61XaA946RqNMGqHV0IddCBbn/DoxTg2CC+wvONx73
-         +CwEPPrXLVz+EiVGVw3Q9ch/WgupbdAAG+hVH9a4ksde5tlkCtsMXRPNTovP2ghpb/eF
-         kipg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbNPMnUjOjEkGGnrOxa97E+lNIVQnKCK868iId9wgyGTfTAcuEHk6eP0uagHlZMujs3STG+4eXx2xNpjYdQMdETJ8VlosEdvExuw==
-X-Gm-Message-State: AOJu0Yxw1lYbbM/0eUX5QvCHtmXwQ+wLXytxzY5ids4nksb9Wdw+9Jzy
-	jl3YX8MlCrO95p2hFSttXQPay+07pfRwUWwYDT4YJ5EWr8D0Wz4S6w3XCYnDas3c23polja1c+f
-	Mpgz7
-X-Google-Smtp-Source: AGHT+IFZzkoPglStXTsiSGxKm5UGD1YXcN6j2iZrwpJmR5uQr6OjhCrwqZMmcCE7BXkKaphhRz+WDw==
-X-Received: by 2002:a17:902:a989:b0:1f4:7db0:afbd with SMTP id d9443c01a7336-1fa0a2319bdmr811465ad.28.1719014868736;
-        Fri, 21 Jun 2024 17:07:48 -0700 (PDT)
-Received: from google.com (7.104.168.34.bc.googleusercontent.com. [34.168.104.7])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7065124dd1bsm1989696b3a.108.2024.06.21.17.07.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 17:07:48 -0700 (PDT)
-Date: Fri, 21 Jun 2024 17:07:44 -0700
-From: William McVicker <willmcvicker@google.com>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Roy Luo <royluo@google.com>, kernel-team@android.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] phy: exynos5-usbdrd: support Exynos USBDRD 3.1
- combo phy (HS & SS)
-Message-ID: <ZnYV0MfjLyyI5uqQ@google.com>
-References: <20240617-usb-phy-gs101-v3-0-b66de9ae7424@linaro.org>
- <20240617-usb-phy-gs101-v3-6-b66de9ae7424@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=e6faQhxoUxwZnTctjM7aLON42s9NVnngkeAzxAjwmaITR5YQocHjjxPvosAUVGtzjSiE78QrVCV5FVqM7LhOJOVlIRKvUlKk3zG0oO/FLvDShCNUkxAlorDmPi6fqMNLNa/9yErtLpnioz5sgWUcUnmHkbeJrvL1ejjgTkxGJrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=dh+pZiJO; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1719015750; bh=En/fn5XzRu8qqC+N8HlyBSRi6I96WhnRYtmMy55Q0T4=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=dh+pZiJO6J7C8WZbaASR9rKURRAU4kMsRx64Pqih9eBS3je8rfX9h5xQpntWM83l8
+	 vSt8w9EDKNDaTotaldRde6toHwH0uhmJ6Jw/VcmX1EuNHQ/ZNYrMGXPqYx6/CZo62P
+	 HQTynxBU87v7Rb3vOj+hBnFmQU2KaSQow7lj1bTU=
+Date: Sat, 22 Jun 2024 02:22:29 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Jacobe Zang <jacobe.zang@wesion.com>
+Cc: arend.vanspriel@broadcom.com, kvalo@kernel.org, duoming@zju.edu.cn, 
+	bhelgaas@google.com, minipli@grsecurity.net, linux-wireless@vger.kernel.org, 
+	brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, nick@khadas.com, 
+	efectn@protonmail.com, jagan@edgeble.ai, dsimic@manjaro.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] net: wireless: brcmfmac: Add support for AP6275P
+Message-ID: <fro2xcwsnvbxmpszny6g2p36z4zwoq4kegmpvww4twxir5piez@a3c2nbwitmab>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Jacobe Zang <jacobe.zang@wesion.com>, arend.vanspriel@broadcom.com, kvalo@kernel.org, 
+	duoming@zju.edu.cn, bhelgaas@google.com, minipli@grsecurity.net, 
+	linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
+	nick@khadas.com, efectn@protonmail.com, jagan@edgeble.ai, dsimic@manjaro.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20240620020015.4021696-1-jacobe.zang@wesion.com>
+ <20240620020015.4021696-4-jacobe.zang@wesion.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240617-usb-phy-gs101-v3-6-b66de9ae7424@linaro.org>
+In-Reply-To: <20240620020015.4021696-4-jacobe.zang@wesion.com>
 
-On 06/17/2024, André Draszik wrote:
-> Add support for the Exynos USB 3.1 DRD combo phy, as found in Exynos 9
-> SoCs like Google GS101. It supports USB SS, HS and DisplayPort.
-> 
-> In terms of UTMI+, this is very similar to the existing Exynos850
-> support in this driver. The difference is that this combo phy supports
-> both UTMI+ (HS) and PIPE3 (SS). It also supports DP alt mode.
-> 
-> The number of ports for UTMI+ and PIPE3 can be determined using the
-> LINKPORT register (which also exists on Exynos E850).
-> 
-> For SuperSpeed (SS) a new SS phy is in use and its PIPE3 interface is
-> new compared to Exynos E850, and also very different from the existing
-> support for older Exynos SoCs in this driver.
-> 
-> The SS phy needs a bit more configuration work and register tuning for
-> signal quality to work reliably, presumably due to the higher
-> frequency, e.g. to account for different board layouts. Additionally,
-> power needs to be enabled before writing to the SS phy registers.
-> 
-> This commit adds the necessary changes for USB HS and SS to work.
-> DisplayPort is out of scope in this commit.
-> 
-> Notes:
-> * For the register tuning, exynos5_usbdrd_apply_phy_tunes() has been
->   added with the appropriate data structures to support tuning at
->   various stages during initialisation. Since these are hardware
->   specific, the platform data is supposed to be populated accordingly.
->   The implementation is loosely modelled after the Samsung UFS PHY
->   driver.
-> 
->   There is one tuning state for UTMI+, PTS_UTMI_POSTINIT, to execute
->   after init and generally intended for HS signal tuning, as done in
->   this commit.
-> 
->   PTS_PIPE3_PREINIT PTS_PIPE3_INIT PTS_PIPE3_POSTINIT
->   PTS_PIPE3_POSTLOCK are tuning states for PIPE3. In the downstream
->   driver, preinit differs by Exynos SoC, and postinit and postlock
->   are different per board. The latter haven't been implemented for
->   gs101 here, because downstream doesn't use them on gs101 either.
-> 
-> * Signal lock acquisition for SS depends on the orientation of the
->   USB-C plug. Since there currently is no infrastructure to chain
->   connector events to both the USB DWC3 driver and this phy driver, a
->   work-around has been added in
->   exynos5_usbdrd_usbdp_g2_v4_pma_check_cdr_lock() to check both
->   registers if it failed in one of the orientations.
-> 
-> * Equally, we can only establish SS speed in one of the connector
->   orientations due to programming differences when selecting the lane
->   mux in exynos5_usbdrd_usbdp_g2_v4_pma_lane_mux_sel(), which really
->   needs to be dynamic, based on the orientation of the connector.
-> 
-> * As is, we can establish a HS link using any cable, and an SS link in
->   one orientation of the plug, falling back to HS if the orientation is
->   reversed to the expectation.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+On Thu, Jun 20, 2024 at 10:00:15AM GMT, Jacobe Zang wrote:
+> This module features BCM43752A2 chipset. The firmware requires
+> randomness seeding, so enabled it.
 
-Tested-by: Will McVicker <willmcvicker@google.com>
+Any reason to strip info about origin of the patch, my SoB and
+present this work as your own?
 
-[...]
+Original patch here https://megous.com/git/linux/commit/?h=ap6275p-6.10&id=1a99573bc8ed412e60e1969c0b29d53a0e5782e0
 
-Thanks,
-Will
+regards,
+	o.
+
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> ---
+>  drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c      | 5 ++++-
+>  .../net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h    | 2 ++
+>  2 files changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> index f241e1757d7e3..add317731126c 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> @@ -71,6 +71,7 @@ BRCMF_FW_CLM_DEF(4377B3, "brcmfmac4377b3-pcie");
+>  BRCMF_FW_CLM_DEF(4378B1, "brcmfmac4378b1-pcie");
+>  BRCMF_FW_CLM_DEF(4378B3, "brcmfmac4378b3-pcie");
+>  BRCMF_FW_CLM_DEF(4387C2, "brcmfmac4387c2-pcie");
+> +BRCMF_FW_CLM_DEF(43752, "brcmfmac43752-pcie");
+>  
+>  /* firmware config files */
+>  MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-pcie.txt");
+> @@ -105,6 +106,7 @@ static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
+>  	BRCMF_FW_ENTRY(BRCM_CC_43664_CHIP_ID, 0xFFFFFFF0, 4366C),
+>  	BRCMF_FW_ENTRY(BRCM_CC_43666_CHIP_ID, 0xFFFFFFF0, 4366C),
+>  	BRCMF_FW_ENTRY(BRCM_CC_4371_CHIP_ID, 0xFFFFFFFF, 4371),
+> +	BRCMF_FW_ENTRY(BRCM_CC_43752_CHIP_ID, 0xFFFFFFFF, 43752),
+>  	BRCMF_FW_ENTRY(BRCM_CC_4377_CHIP_ID, 0xFFFFFFFF, 4377B3), /* revision ID 4 */
+>  	BRCMF_FW_ENTRY(BRCM_CC_4378_CHIP_ID, 0x0000000F, 4378B1), /* revision ID 3 */
+>  	BRCMF_FW_ENTRY(BRCM_CC_4378_CHIP_ID, 0xFFFFFFE0, 4378B3), /* revision ID 5 */
+> @@ -1721,7 +1723,7 @@ static int brcmf_pcie_download_fw_nvram(struct brcmf_pciedev_info *devinfo,
+>  		memcpy_toio(devinfo->tcm + address, nvram, nvram_len);
+>  		brcmf_fw_nvram_free(nvram);
+>  
+> -		if (devinfo->otp.valid) {
+> +		if (devinfo->otp.valid || devinfo->ci->chip == BRCM_CC_43752_CHIP_ID) {
+>  			size_t rand_len = BRCMF_RANDOM_SEED_LENGTH;
+>  			struct brcmf_random_seed_footer footer = {
+>  				.length = cpu_to_le32(rand_len),
+> @@ -2710,6 +2712,7 @@ static const struct pci_device_id brcmf_pcie_devid_table[] = {
+>  	BRCMF_PCIE_DEVICE(BRCM_PCIE_4366_5G_DEVICE_ID, BCA),
+>  	BRCMF_PCIE_DEVICE(BRCM_PCIE_4371_DEVICE_ID, WCC),
+>  	BRCMF_PCIE_DEVICE(BRCM_PCIE_43596_DEVICE_ID, CYW),
+> +	BRCMF_PCIE_DEVICE(BRCM_PCIE_43752_DEVICE_ID, WCC),
+>  	BRCMF_PCIE_DEVICE(BRCM_PCIE_4377_DEVICE_ID, WCC),
+>  	BRCMF_PCIE_DEVICE(BRCM_PCIE_4378_DEVICE_ID, WCC),
+>  	BRCMF_PCIE_DEVICE(BRCM_PCIE_4387_DEVICE_ID, WCC),
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+> index 44684bf1b9acc..c1e22c589d85e 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+> +++ b/drivers/net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h
+> @@ -52,6 +52,7 @@
+>  #define BRCM_CC_43664_CHIP_ID		43664
+>  #define BRCM_CC_43666_CHIP_ID		43666
+>  #define BRCM_CC_4371_CHIP_ID		0x4371
+> +#define BRCM_CC_43752_CHIP_ID		43752
+>  #define BRCM_CC_4377_CHIP_ID		0x4377
+>  #define BRCM_CC_4378_CHIP_ID		0x4378
+>  #define BRCM_CC_4387_CHIP_ID		0x4387
+> @@ -94,6 +95,7 @@
+>  #define BRCM_PCIE_4366_5G_DEVICE_ID	0x43c5
+>  #define BRCM_PCIE_4371_DEVICE_ID	0x440d
+>  #define BRCM_PCIE_43596_DEVICE_ID	0x4415
+> +#define BRCM_PCIE_43752_DEVICE_ID	0x449d
+>  #define BRCM_PCIE_4377_DEVICE_ID	0x4488
+>  #define BRCM_PCIE_4378_DEVICE_ID	0x4425
+>  #define BRCM_PCIE_4387_DEVICE_ID	0x4433
+> -- 
+> 2.34.1
+> 
 
