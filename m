@@ -1,89 +1,87 @@
-Return-Path: <devicetree+bounces-78788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1059135D5
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 21:18:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460B89135DB
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 21:42:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90B65B2149A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 19:18:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C720282924
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 19:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FDF38FB9;
-	Sat, 22 Jun 2024 19:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0C34085D;
+	Sat, 22 Jun 2024 19:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ij1osO61"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YtEgjDXg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6101199BC;
-	Sat, 22 Jun 2024 19:18:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F90021373;
+	Sat, 22 Jun 2024 19:42:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719083893; cv=none; b=l86EHvqXL8wbsRGYLPPqTuqSuZZ2XnLPosF316Poi687+resKWkuqSpjW9VEJeqxmp3speJ66VoV2UsO9g86S6bM2cY6Z6L2IQZODpKMMqijFvE8McrjL0IrGEUyGM2pffxMlHV27mUtGhBuiPV1zMyQyVxkrq0u8WZQE1HYzFc=
+	t=1719085344; cv=none; b=ZJI/A5lettJ9PzY2fbBySP2vY/wfyTlaJGL9MDXw86FgkJ982vF8C63YwjbOaAyNnm72rwt17Ed95vJoawsGSXSedu8OzOOiRWqot3E+aLUoOI4J5IVjv+bv0viDs+bwJGpUwL00iX4Fd17DcdGEIkh6/pslbApJ21q7mPmmoLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719083893; c=relaxed/simple;
-	bh=pXPBT/S6G+6/TjFGRwVE2GxR2xWBeslThIEl97d3IK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b2wkDpHxLEmFuys0z4e0HreCwZJOA4OtJw+9Gcb0KLC/bBPsqR/CS2WpyBBBV1alhwqsuM2Z1UFY24bBrWfQFGAM8UULqXxNdD5M22PyBi1VFge39lKhm+y/57fZYiBwRDExhDCDWm/T1A3O2s3BDw2mT8YSrdthf7P95fI/wdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ij1osO61; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=EszZyqiXJ4XQZ+flbruOHXM6khxq1TBaQspAvF7UKT0=; b=Ij1osO61Nctta30bsdgMnAckv5
-	Pv8HeLy+lFBSvAgunF+U7PFHePVTn/d1cpRyVp7aas/qu0H8WRwbBLaSN7evT143lUWMazwSPI7OT
-	eXtQRv3e1YzwvsVb9KJiqm6MyU8dB1a2J1quhlK6cU/tT84IyAjhE8rer0FD36oK95q4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sL6FN-000kPf-6m; Sat, 22 Jun 2024 21:18:01 +0200
-Date: Sat, 22 Jun 2024 21:18:01 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux@armlinux.org.uk, vadim.fedorenko@linux.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH net-next v7 3/4] net: macb: Add ARP support to WOL
-Message-ID: <8252d2d2-933c-4666-8f48-038d85a75725@lunn.ch>
-References: <20240621045735.3031357-1-vineeth.karumanchi@amd.com>
- <20240621045735.3031357-4-vineeth.karumanchi@amd.com>
+	s=arc-20240116; t=1719085344; c=relaxed/simple;
+	bh=fcJbsy2jm25GAUnNM9Xcuj1AU2NBoRKuw3UTI9/38rM=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=ZwAbnok4ilpWpguMdUmJIjQr/WV6lsb/JVQwFcKd/+cOAzw+hmfD/4TPFCmTmF33KxdsLm3HUh3Djx6R/pRCfLGlx+UER6GzaDc3SwATo4V6JaydnnPniD2tD8zgCQc/DGfCmo/X5+4F+GD1na/uNmtBL6beptGsvRxGimY82HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YtEgjDXg; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ebe40673d8so33864161fa.3;
+        Sat, 22 Jun 2024 12:42:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719085341; x=1719690141; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fcJbsy2jm25GAUnNM9Xcuj1AU2NBoRKuw3UTI9/38rM=;
+        b=YtEgjDXgiJPKd4pDD6WwK3RizpTb+cdWAfSBUBYlYx7JlGih3jVO1UNj4EBfxIXQmt
+         GVXaX36jsGtUTP53jDuM9eQdW9CwOmGktIgzTrWTd3vjN2RLl9940gI7p063oAnEJJ30
+         RBSamPTpVumtQ/TF/G0RfZ3sEilmZsP7nYqGBKpOdIxcEocXVDOdkg0vQAaQc1N9xe+U
+         LrQtoiei0WDTM1AYTgY3+sd/dDk6+4yiT8FpGi1V3HBHkA9aihMxc4uun0KwtFjzAqrU
+         wqWT/Wy8kOYXmdf67BAAbtL0AC8LjX9XbGXBPSomWn9nF4I3pW7uaMaQlheY8AC/lD0G
+         b57w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719085341; x=1719690141;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fcJbsy2jm25GAUnNM9Xcuj1AU2NBoRKuw3UTI9/38rM=;
+        b=Hdy+45GT22Tydamsy+JUx3y3qW9ws1aX3zRmlMGVfwJjkg++v66sTMxEU2pozfDg+1
+         ahKWkKAieX1Qce9tQXG78RitZdjGtrmZ83QN+DYrkla8dOz15Y0SpMj+GVtPYy012Q+E
+         76QmZkaOFdkmR/9IAQKqrFmPdHIGpBO2EmCdcneWT9wufV/x4WCrE9EhQHNDymy6evbb
+         7qzTI1N66YOYr4dt7iotaaQwb4g8vndT3gNDjVzyM9DHlNL25B/vwpOuLm7xWTjNhjY2
+         VCVM3mNT6Iuk36tFC5muAod3X5rfx0Uvga1d7QwqBtnNTuOsYmJk3EMmqmWBVuClkfjo
+         L5Ng==
+X-Forwarded-Encrypted: i=1; AJvYcCV+lI0SMh1iKGiznvqxdlkAilycPIubSlECmiS0JQzwfKZ3pJDWRcw2qgsslx9x9zdA2c2DcvByLQCAzmGRu8iRDdbg+xPinFUVJYqafkexQXaAKulXV/coagZTr4A2JNWwLcu8EAloQseUbCGHSOidYPvnWbzXAeR/FOC16p0w
+X-Gm-Message-State: AOJu0Yy7IFWu7o6dGW+1juazMn9jMHxBvfhUx2f+wWb/tsg0FZD8RTSP
+	mjhiNkyAMZFvz4zngXSI2cCcM1R+gdItfzn8XjDBI5F44Zg8gb5jdMFBYxFOKpmlpzmqTvXtEPJ
+	QTz2n6PRl5B83JP4o2tRutkMD+Fo=
+X-Google-Smtp-Source: AGHT+IHzsJQQOfin1lQogznzEbzzUuyUAsOIZxSoPdvWF+xwgTub0+dgEi+j5N2GsC7SCJXZSGwdHtVAkmpj8apv+OE=
+X-Received: by 2002:a2e:8250:0:b0:2ec:eee:f19e with SMTP id
+ 38308e7fff4ca-2ec5b3888a8mr3097551fa.37.1719085340800; Sat, 22 Jun 2024
+ 12:42:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240621045735.3031357-4-vineeth.karumanchi@amd.com>
+From: Philippe Simons <simons.philippe@gmail.com>
+Date: Sat, 22 Jun 2024 21:42:09 +0200
+Message-ID: <CADomA4-TnSKthXDKA6f=o29he+Mt-ZxAcyTHkPRD3MVVkDBCKA@mail.gmail.com>
+Subject: Re: [PATCH 6/8] power: supply: axp20x_usb_power: Add support for AXP717
+To: macroalpha82@gmail.com
+Cc: broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	jernej.skrabec@gmail.com, krzk+dt@kernel.org, lars@metafoo.de, lee@kernel.org, 
+	linux-iio@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, macromorgan@hotmail.com, robh@kernel.org, 
+	samuel@sholland.org, sre@kernel.org, wens@csie.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Jun 21, 2024 at 10:27:34AM +0530, Vineeth Karumanchi wrote:
-> Extend wake-on LAN support with an ARP packet.
-> 
-> Currently, if PHY supports WOL, ethtool ignores the modes supported
-> by MACB. This change extends the WOL modes with MACB supported modes.
-> 
-> Advertise wake-on LAN supported modes by default without relying on
-> dt node. By default, wake-on LAN will be in disabled state.
-> Using ethtool, users can enable/disable or choose packet types.
-> 
-> For wake-on LAN via ARP, ensure the IP address is assigned and
-> report an error otherwise.
-> 
-> Co-developed-by: Harini Katakam <harini.katakam@amd.com>
-> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
-> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+sysfs correctly reports presence of USB power and voltages, tested on
+RG35XX-H (H700)
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-
-    Andrew
+Tested-by: Philippe Simons <simons.philippe@gmail.com>
 
