@@ -1,386 +1,223 @@
-Return-Path: <devicetree+bounces-78678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6FF99131E2
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 06:11:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F85F913227
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 07:57:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B61E285D90
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 04:11:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EDB31C21D1E
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 05:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43ABD9454;
-	Sat, 22 Jun 2024 04:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D78C14A4F8;
+	Sat, 22 Jun 2024 05:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VwfNf3NA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z26hRnAr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702DA65F
-	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 04:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7018BFA;
+	Sat, 22 Jun 2024 05:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719029491; cv=none; b=lt8nsf0NmIKDd301bOIyzMqIrCnPp2KfJSodSPihg8y6DTacrqh8NwsZ+dzPbGP/lVUV08EhPbqO8qI5RigsNf7SFZ5PYzBFcU59gCdRjqa89mMufNJa8y9QkU49VSsxAdtFwUUYh4Cb4/lVpuLB7R9msys3L7WdL+RmhvY3C7I=
+	t=1719035818; cv=none; b=NAFW8xWmNZKHT5GzvB28xEM1430xUgrDQFKhdy6QTi87M7WbLdYelPsUeVJAMkQ7GIMoiGRqUHrrx4ULkJ7pYt8NMGtP//qMk4x3dWYHJLx7j17JFdft41+oEhTqW9Uu47LnJaBioMzvNX+22dGcFTVqXEVriEG/IsYNfR9tdtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719029491; c=relaxed/simple;
-	bh=BycR4VjN1P2/crFqGM7x9mmrtddl8EKh2KJCyfpv2P4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZraV7VjN4GaymWDHgNMrqHSfRqwfc4Dt1fGEudwjbmPlmcTvvROXkPYXFifz8ZBwpzL4J4jMvRzHRu3LK5ymauRxogCZ0ar/DkkOaB4JnSDSGyRkJJAdZnCDpFmDZqEQzi4lWxfpowDiUr1JbrNyyeoao+RkioglKuDapo6orIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VwfNf3NA; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-706264e1692so2149310b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jun 2024 21:11:29 -0700 (PDT)
+	s=arc-20240116; t=1719035818; c=relaxed/simple;
+	bh=8JJsl62hOZO3ko0SdWLCt6KmCn4EPgL0eaHKR+7qg8o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dSVWMVn7JloMRYeWRUR2SVSPK2aVjK3pki9xNiGItog4n9ne73Nh6ZD57uzozsye3mOJuihL+/4O8FQgRklOnJWRkA5TMEwijbuHWFDb7hMCpkH8AHZPuiyVSGFvDla9qUiwveVwDz2WGbDXGbMpS9WycmihgJNZT39v4xpgKwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z26hRnAr; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7065e31ee3cso736035b3a.0;
+        Fri, 21 Jun 2024 22:56:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719029489; x=1719634289; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TfjJ/7PxukviDUtbYW71wrZoAgJ4L/WBbr7ZDew9h2I=;
-        b=VwfNf3NAXjCBt9CA9bWJToo7wOBaNTlz/Nj4Z8NVLV3YB5wGL9U1jamnDIIwFiVJoU
-         XYCegsJw7oxPfaXWeS5EStppr9H+4awx71MXEHencEuGbiJS95OaVDUrQ5qWzx7mw3Pu
-         kWXnd/ruPjfrQ0uTy6+hocrGLpkz8jrFk45J+Z19y/1qxbKvNNyVv1+tl3ZBcoJ0ME+B
-         XsOXax+SHM5FSJ5hn4SsY7IHTo5GG3kGLGn7V98+lHVWelqXGQ5YR7xT3Z95SfaB4CBW
-         V+o8DY2cVny9ae/pnvaUHO/9uHxzjPYuyy3/iDx1hCeM70IuPppGUMqGsFWak0KzwtKY
-         e6lQ==
+        d=gmail.com; s=20230601; t=1719035816; x=1719640616; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gs6O6f04jMeghuWyfCIpI7mthyEAD7cAG4GE2WWkIig=;
+        b=Z26hRnArW4sEHjY2McvRjPD+p9gt4452OJYQ1EBSFnR5BcUsnxdy0PsXEJTdZLIPxq
+         VbiehyFzaAIkI/ytqtoRl527zIv3YMec9NW/pCi3MhUm7lPb/zJ/IrWpoFM3mUtjIeTk
+         Ns6hxNp75LoOXjrmfLLzMx1tLKFmW5OIQok7aB/h/Wis7jW2SDfVMPFJIQ9Si51R8M99
+         1L2gN1gfhoteUgJmRtTXJhtHuR/HW3EJ6VV39zXYnKg8aBHGhinZVReWYA/ym3GJPl/l
+         ifKVHhZ2mQuEw4PpzuGlp3eni9kxLLwODosQAegw9tevu9Qc1ONxur47AlPeXeNkoY6n
+         9YZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719029489; x=1719634289;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1719035816; x=1719640616;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TfjJ/7PxukviDUtbYW71wrZoAgJ4L/WBbr7ZDew9h2I=;
-        b=QP1dmPUbjo8NUTpvoz55Ui2PfUskjONsrTxaPyXkBGLF/OwB7iwkbRNO61Kqv872/E
-         V4ykp0XvhGzxji95K6kgZ2fSYISUoryz7wnK6S0LG/vhtAHOJY3CtgEtX90vNG5SKrrq
-         zoFqBP57RXItDD/CGn5z1usVjRz4LZPpcxEUabA0ANJ+21dZZwssAc0bt1abi1iZl5xe
-         vAxvy57theJPNJsXRe3zTUZ/T4jKcf9ca3g5aGikSFlcWs9sdjyqkPJYAWEmJ23vWxMn
-         lNumLjsR+KPvfIzXsP+3UF1r5ba0RvHBWIpcr1p0zJgpfFBUnfoMZ8Iiz4iUhz52lqMK
-         a9bw==
-X-Forwarded-Encrypted: i=1; AJvYcCUW2IqK7hG/X+sF3ZRa+S909g/IU9RI0A2Xq9VTD8HeP95U9gkNQKpFWuryOF+ggqxQ4yvvltRryACDFiOy+Qqcgbcx7bJKFmuNtQ==
-X-Gm-Message-State: AOJu0Yy3/On9hHLwZlFhRWcuu4jUKH18A3wXamdR/zNG97IK6uedfYAO
-	RvlOeu8rHGQdHCKorPkUoIJv2eR6wYRlPAV1kO6Zgf31Lgb4eTGBaD87lMt+5A==
-X-Google-Smtp-Source: AGHT+IH+yBsETEqfxy9vYW6jfMV4VUEuUCczzbiF/DAMNYGj7eoKv9nvHXCHsH1eneeaZG8RXNzxKQ==
-X-Received: by 2002:a05:6a00:1d0d:b0:704:3a0f:1d88 with SMTP id d2e1a72fcca58-70629ccff3bmr11045925b3a.21.1719029488608;
-        Fri, 21 Jun 2024 21:11:28 -0700 (PDT)
-Received: from thinkpad ([120.60.57.250])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-716b4a74010sm1558983a12.49.2024.06.21.21.11.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jun 2024 21:11:28 -0700 (PDT)
-Date: Sat, 22 Jun 2024 09:41:15 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 08/12] PCI: imx6: Config look up table(LUT) to support
- MSI ITS and IOMMU for i.MX95
-Message-ID: <20240622041115.GB2922@thinkpad>
-References: <20240528-pci2_upstream-v5-0-750aa7edb8e2@nxp.com>
- <20240528-pci2_upstream-v5-8-750aa7edb8e2@nxp.com>
+        bh=Gs6O6f04jMeghuWyfCIpI7mthyEAD7cAG4GE2WWkIig=;
+        b=tLJre/40sHP1Z2S54FOiXSb6l0NsM2TXav7OvauznP4SYAuh5gFHOcMT4H+X3D39NF
+         eN34vLsNkh40IZIZNtP6mwfpYwQXhNcO3yL5hB7jCY6zLCV4e6GU3S8y3CrUzpqlbtmm
+         qzBOz93KD/qIJV70xSIgC9BGtdV0x1bBrzNt+c4Ap6o8weOkIKys776U9Y9osHGEQxMA
+         MhtXJLbFwwz5osjjuTGlQq+jD4MSo1BZPUQnsICwOk7r7+CYpvTKE5OTvRKtsn0sU/on
+         QWKDajN7QCLRmNlX+9TaEP+uTIDtdl+p0GZcroZRlVzKPH/5cZiEdsXBBMExJt/2yyv9
+         SnZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUlofDWZ7R7l+ChSsrEdFveFk20k2AXcMMwyMikyPnGQbNFqQdL3c75ditaaQgrNplhy6ztD0E1NgAYuNlgegd5cXw8f4e3LIA50RJc+bPAHritHBE8MNb4F/VF0CQJzPPLsfubjbdN
+X-Gm-Message-State: AOJu0YwTZ6wepqLqcGCU9MQ8xJnpnV0FB8xdLMHAhamPfSuO+XbAn18B
+	N15AtyZbej+8du4kfWcgy3JP7tKq7nLXaDlMMFmky8LycTQhDzN7
+X-Google-Smtp-Source: AGHT+IGJ3+53nng3c5HyZrbB4d4THj6HEuBxurSHmPafjQZYpCOssMyUXTBd64MjK4u8rB+j7+20Vw==
+X-Received: by 2002:aa7:8c0b:0:b0:706:5dab:83c5 with SMTP id d2e1a72fcca58-7065dab85abmr2506240b3a.0.1719035816056;
+        Fri, 21 Jun 2024 22:56:56 -0700 (PDT)
+Received: from [100.90.230.39] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7066aeeaa5asm292203b3a.29.2024.06.21.22.56.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jun 2024 22:56:55 -0700 (PDT)
+Message-ID: <385a7a64-fc76-4655-bc7f-d89d00b053d5@gmail.com>
+Date: Sat, 22 Jun 2024 13:56:42 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240528-pci2_upstream-v5-8-750aa7edb8e2@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com>
+ <20240621-add-tyhx-hx9023s-sensor-driver-v6-2-65196a9020f1@gmail.com>
+ <d35f5eba-abb4-4924-89d6-0beb878a0bf7@kernel.org>
+Content-Language: en-US
+From: Yasin Lee <yasin.lee.x@gmail.com>
+In-Reply-To: <d35f5eba-abb4-4924-89d6-0beb878a0bf7@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 28, 2024 at 03:39:21PM -0400, Frank Li wrote:
-> For the i.MX95, configuration of a LUT is necessary to convert Bus Device
-> Function (BDF) to stream IDs, which are utilized by both IOMMU and ITS.
-> This involves examining the msi-map and smmu-map to ensure consistent
-> mapping of PCI BDF to the same stream IDs. Subsequently, LUT-related
-> registers are configured. In the absence of an msi-map, the built-in MSI
-> controller is utilized as a fallback.
-> 
-> Additionally, register a PCI bus notifier to trigger imx_pcie_add_device()
-> upon the appearance of a new PCI device and when the bus is an iMX6 PCI
-> controller. This function configures the correct LUT based on Device Tree
-> Settings (DTS).
-> 
 
-Sorry for jumping the ship very late... But why can't you configure the LUT
-during probe() itself? Anyway, you are going to use the 'iommu-map' and
-'msi-map' which are static info provided in DT. I don't see a necessity to do it
-during device addition time.
+On 2024/6/21 18:12, Krzysztof Kozlowski wrote:
 
-Qcom RC driver also uses a similar configuration in
-qcom_pcie_config_sid_1_9_0().
+Hi ,Krzysztof
+Thank you for your reply. I have some questions inline.
 
-- Mani
+Best regards,
+Yasin
 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pci-imx6.c | 175 +++++++++++++++++++++++++++++++++-
->  1 file changed, 174 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 29309ad0e352b..8ecc00049e20b 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -54,6 +54,22 @@
->  #define IMX95_PE0_GEN_CTRL_3			0x1058
->  #define IMX95_PCIE_LTSSM_EN			BIT(0)
->  
-> +#define IMX95_PE0_LUT_ACSCTRL			0x1008
-> +#define IMX95_PEO_LUT_RWA			BIT(16)
-> +#define IMX95_PE0_LUT_ENLOC			GENMASK(4, 0)
-> +
-> +#define IMX95_PE0_LUT_DATA1			0x100c
-> +#define IMX95_PE0_LUT_VLD			BIT(31)
-> +#define IMX95_PE0_LUT_DAC_ID			GENMASK(10, 8)
-> +#define IMX95_PE0_LUT_STREAM_ID			GENMASK(5, 0)
-> +
-> +#define IMX95_PE0_LUT_DATA2			0x1010
-> +#define IMX95_PE0_LUT_REQID			GENMASK(31, 16)
-> +#define IMX95_PE0_LUT_MASK			GENMASK(15, 0)
-> +
-> +#define IMX95_SID_MASK				GENMASK(5, 0)
-> +#define IMX95_MAX_LUT				32
-> +
->  #define to_imx_pcie(x)	dev_get_drvdata((x)->dev)
->  
->  enum imx_pcie_variants {
-> @@ -79,6 +95,7 @@ enum imx_pcie_variants {
->  #define IMX_PCIE_FLAG_HAS_PHY_RESET		BIT(5)
->  #define IMX_PCIE_FLAG_HAS_SERDES		BIT(6)
->  #define IMX_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
-> +#define IMX_PCIE_FLAG_MONITOR_DEV		BIT(8)
->  
->  #define imx_check_flag(pci, val)     (pci->drvdata->flags & val)
->  
-> @@ -132,6 +149,8 @@ struct imx_pcie {
->  	struct device		*pd_pcie_phy;
->  	struct phy		*phy;
->  	const struct imx_pcie_drvdata *drvdata;
-> +
-> +	struct mutex		lock;
->  };
->  
->  /* Parameters for the waiting for PCIe PHY PLL to lock on i.MX7 */
-> @@ -215,6 +234,66 @@ static int imx95_pcie_init_phy(struct imx_pcie *imx_pcie)
->  	return 0;
->  }
->  
-> +static int imx_pcie_config_lut(struct imx_pcie *imx_pcie, u16 reqid, u8 sid)
-> +{
-> +	struct dw_pcie *pci = imx_pcie->pci;
-> +	struct device *dev = pci->dev;
-> +	u32 data1, data2;
-> +	int i;
-> +
-> +	if (sid >= 64) {
-> +		dev_err(dev, "Invalid SID for index %d\n", sid);
-> +		return -EINVAL;
-> +	}
-> +
-> +	guard(mutex)(&imx_pcie->lock);
-> +
-> +	for (i = 0; i < IMX95_MAX_LUT; i++) {
-> +		regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_ACSCTRL, IMX95_PEO_LUT_RWA | i);
-> +
-> +		regmap_read(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_DATA1, &data1);
-> +		if (data1 & IMX95_PE0_LUT_VLD)
-> +			continue;
-> +
-> +		data1 = FIELD_PREP(IMX95_PE0_LUT_DAC_ID, 0);
-> +		data1 |= FIELD_PREP(IMX95_PE0_LUT_STREAM_ID, sid);
-> +		data1 |= IMX95_PE0_LUT_VLD;
-> +
-> +		regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_DATA1, data1);
-> +
-> +		data2 = 0xffff;
-> +		data2 |= FIELD_PREP(IMX95_PE0_LUT_REQID, reqid);
-> +
-> +		regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_DATA2, data2);
-> +
-> +		regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_ACSCTRL, i);
-> +
-> +		return 0;
-> +	}
-> +
-> +	dev_err(dev, "All lut already used\n");
-> +	return -EINVAL;
-> +}
-> +
-> +static void imx_pcie_remove_lut(struct imx_pcie *imx_pcie, u16 reqid)
-> +{
-> +	u32 data2 = 0;
-> +	int i;
-> +
-> +	guard(mutex)(&imx_pcie->lock);
-> +
-> +	for (i = 0; i < IMX95_MAX_LUT; i++) {
-> +		regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_ACSCTRL, IMX95_PEO_LUT_RWA | i);
-> +
-> +		regmap_read(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_DATA2, &data2);
-> +		if (FIELD_GET(IMX95_PE0_LUT_REQID, data2) == reqid) {
-> +			regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_DATA1, 0);
-> +			regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_DATA2, 0);
-> +			regmap_write(imx_pcie->iomuxc_gpr, IMX95_PE0_LUT_ACSCTRL, i);
-> +		}
-> +	}
-> +}
-> +
->  static void imx_pcie_configure_type(struct imx_pcie *imx_pcie)
->  {
->  	const struct imx_pcie_drvdata *drvdata = imx_pcie->drvdata;
-> @@ -1232,6 +1311,85 @@ static int imx_pcie_resume_noirq(struct device *dev)
->  	return 0;
->  }
->  
-> +static bool imx_pcie_match_device(struct pci_bus *bus);
-> +
-> +static int imx_pcie_add_device(struct imx_pcie *imx_pcie, struct pci_dev *pdev)
-> +{
-> +	u32 sid_i = 0, sid_m = 0, rid = pci_dev_id(pdev);
-> +	struct device *dev = imx_pcie->pci->dev;
-> +	int err;
-> +
-> +	err = of_map_id(dev->of_node, rid, "iommu-map", "iommu-map-mask", NULL, &sid_i);
-> +	if (err)
-> +		return err;
-> +
-> +	err = of_map_id(dev->of_node, rid, "msi-map", "msi-map-mask", NULL, &sid_m);
-> +	if (err)
-> +		return err;
-> +
-> +	if (sid_i != rid && sid_m != rid)
-> +		if ((sid_i & IMX95_SID_MASK) != (sid_m & IMX95_SID_MASK)) {
-> +			dev_err(dev, "its and iommu stream id miss match, please check dts file\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +	/* if iommu-map is not existed then use msi-map's stream id*/
-> +	if (sid_i == rid)
-> +		sid_i = sid_m;
-> +
-> +	sid_i &= IMX95_SID_MASK;
-> +
-> +	if (sid_i != rid)
-> +		return imx_pcie_config_lut(imx_pcie, rid, sid_i);
-> +
-> +	/* Use dwc built-in MSI controller */
-> +	return 0;
-> +}
-> +
-> +static void imx_pcie_del_device(struct imx_pcie *imx_pcie, struct pci_dev *pdev)
-> +{
-> +	imx_pcie_remove_lut(imx_pcie, pci_dev_id(pdev));
-> +}
-> +
-> +
-> +static int imx_pcie_bus_notifier(struct notifier_block *nb, unsigned long action, void *data)
-> +{
-> +	struct pci_host_bridge *host;
-> +	struct imx_pcie *imx_pcie;
-> +	struct pci_dev *pdev;
-> +	int err;
-> +
-> +	pdev = to_pci_dev(data);
-> +	host = pci_find_host_bridge(pdev->bus);
-> +
-> +	if (!imx_pcie_match_device(host->bus))
-> +		return NOTIFY_OK;
-> +
-> +	imx_pcie = to_imx_pcie(to_dw_pcie_from_pp(host->sysdata));
-> +
-> +	if (!imx_check_flag(imx_pcie, IMX_PCIE_FLAG_MONITOR_DEV))
-> +		return NOTIFY_OK;
-> +
-> +	switch (action) {
-> +	case BUS_NOTIFY_ADD_DEVICE:
-> +		err = imx_pcie_add_device(imx_pcie, pdev);
-> +		if (err)
-> +			return notifier_from_errno(err);
-> +		break;
-> +	case BUS_NOTIFY_DEL_DEVICE:
-> +		imx_pcie_del_device(imx_pcie, pdev);
-> +		break;
-> +	default:
-> +		return NOTIFY_DONE;
-> +	}
-> +
-> +	return NOTIFY_OK;
-> +}
-> +
-> +static struct notifier_block imx_pcie_nb = {
-> +	.notifier_call = imx_pcie_bus_notifier,
-> +};
-> +
->  static const struct dev_pm_ops imx_pcie_pm_ops = {
->  	NOIRQ_SYSTEM_SLEEP_PM_OPS(imx_pcie_suspend_noirq,
->  				  imx_pcie_resume_noirq)
-> @@ -1264,6 +1422,8 @@ static int imx_pcie_probe(struct platform_device *pdev)
->  	imx_pcie->pci = pci;
->  	imx_pcie->drvdata = of_device_get_match_data(dev);
->  
-> +	mutex_init(&imx_pcie->lock);
-> +
->  	/* Find the PHY if one is defined, only imx7d uses it */
->  	np = of_parse_phandle(node, "fsl,imx7d-pcie-phy", 0);
->  	if (np) {
-> @@ -1551,7 +1711,8 @@ static const struct imx_pcie_drvdata drvdata[] = {
->  	},
->  	[IMX95] = {
->  		.variant = IMX95,
-> -		.flags = IMX_PCIE_FLAG_HAS_SERDES,
-> +		.flags = IMX_PCIE_FLAG_HAS_SERDES |
-> +			 IMX_PCIE_FLAG_MONITOR_DEV,
->  		.clk_names = imx8mq_clks,
->  		.clks_cnt = ARRAY_SIZE(imx8mq_clks),
->  		.ltssm_off = IMX95_PE0_GEN_CTRL_3,
-> @@ -1687,6 +1848,8 @@ DECLARE_PCI_FIXUP_CLASS_HEADER(PCI_VENDOR_ID_SYNOPSYS, 0xabcd,
->  
->  static int __init imx_pcie_init(void)
->  {
-> +	int ret;
-> +
->  #ifdef CONFIG_ARM
->  	struct device_node *np;
->  
-> @@ -1705,7 +1868,17 @@ static int __init imx_pcie_init(void)
->  	hook_fault_code(8, imx6q_pcie_abort_handler, SIGBUS, 0,
->  			"external abort on non-linefetch");
->  #endif
-> +	ret = bus_register_notifier(&pci_bus_type, &imx_pcie_nb);
-> +	if (ret)
-> +		return ret;
->  
->  	return platform_driver_register(&imx_pcie_driver);
->  }
-> +
-> +static void __exit imx_pcie_exit(void)
-> +{
-> +	bus_unregister_notifier(&pci_bus_type, &imx_pcie_nb);
-> +}
-> +
->  device_initcall(imx_pcie_init);
-> +__exitcall(imx_pcie_exit);
-> 
-> -- 
-> 2.34.1
-> 
+> On 21/06/2024 09:40, Yasin Lee wrote:
+>> A capacitive proximity sensor
+>>
+>> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+>> ---
+>>   .../bindings/iio/proximity/tyhx,hx9023s.yaml       | 115 +++++++++++++++++++++
+>>   1 file changed, 115 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+>> new file mode 100644
+>> index 000000000000..beca70ce7609
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+>> @@ -0,0 +1,115 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/proximity/tyhx,hx9023s.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TYHX HX9023S capacitive proximity sensor
+>> +
+>> +maintainers:
+>> +  - Yasin Lee <yasin.lee.x@gmail.com>
+>> +
+>> +description: |
+>> +  TYHX HX9023S proximity sensor. Datasheet can be found here:
+>> +    http://www.tianyihexin.com/ueditor/php/upload/file/20240614/1718336303992081.pdf
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/iio/iio.yaml#
+> Which part of iio.yaml binding do you use here? I cannot find anything,
+> so this looks wrong.	
+>
 
--- 
-மணிவண்ணன் சதாசிவம்
+I will remove this reference.
+
+
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: tyhx,hx9023s
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    description:
+>> +      Generated by device to announce preceding read request has finished
+>> +      and data is available or that a close/far proximity event has happened.
+>> +    maxItems: 1
+>> +
+>> +  vdd-supply: true
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +patternProperties:
+>> +  "^channel@[0-4]$":
+>> +    $ref: /schemas/iio/adc/adc.yaml
+>> +    type: object
+>> +
+>> +    properties:
+>> +      reg:
+>> +        minimum: 0
+>> +        maximum: 4
+>> +        description: The channel number.
+>> +
+>> +      input-channel:
+> Isn't this duplicating single-channel property?
+>
+> Where is this property defined (which common schema)?
+>
+|input-channel| is indeed intended for single-ended configuration, but I 
+couldn't find a definition
+
+or reference for |single-channel| anywhere. If possible, should I rename 
+|input-channel| to |single-channel|?
+
+
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        minimum: 0
+>> +        maximum: 4
+>> +        description:
+>> +          Specify the input pin used in single-ended configuration.
+>> +
+>> +      diff-channels: true
+>> +
+>> +    oneOf:
+>> +      - required:
+>> +          - input-channel
+>> +      - required:
+>> +          - diff-channels
+>> +
+>> +    required:
+>> +      - reg
+>> +
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - vdd-supply
+>> +  - reg
+> Keep the same order as in properties.
+
+
+OK, I will correct the order in the next version.
+
+
+>> +
+>> +unevaluatedProperties: false
+>> +
+>
+> Best regards,
+> Krzysztof
+>
 
