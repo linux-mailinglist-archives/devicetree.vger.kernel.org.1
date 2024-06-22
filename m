@@ -1,151 +1,972 @@
-Return-Path: <devicetree+bounces-78684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 933FE913289
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 09:18:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 805A5913297
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 09:37:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13E151F234D2
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 07:18:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 002A42820C4
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 07:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E0D14C5BD;
-	Sat, 22 Jun 2024 07:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B16414B061;
+	Sat, 22 Jun 2024 07:37:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uft+2Pf9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HCdzbweS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1E914C5A4
-	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 07:18:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 944EE5382;
+	Sat, 22 Jun 2024 07:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719040694; cv=none; b=g3MawYDpSFVZOH7a/RgekhkbdQdkIlBIinrWi/tGnMPTVarrygbYd+2i/cIfeKFSF/NZKk5TGS1K915f9xzZ+HQ5NulGIoo321a4CNbgsGzTDHQAgf+/aiA+xP3Tr9s41yAkCXKMKDrgYD/u4upJBiqWW/7U5HRZKzC2dLmdYJs=
+	t=1719041824; cv=none; b=OlK9rp9IYPCwrbNHI+RA+yg4ae4nfLnBTGDYLKITUk9vjXdJ9toBQTwR1a+/EEzPxL+3EwvMhkhFNC3XuEWZ+7UO1j/mdwxLiYgSR8ivFrDoOt2gg6dFU2IlFFROoyEbKG20hHgNpoI+gXLyhEakzm7bFggzEA05fVUwcrYPsz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719040694; c=relaxed/simple;
-	bh=Dwh3hngqTIwFb9W9PD6nYsx0EywIrvynYVJ8Zbfh+NY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uBrOtfTAy+MGG/2vKBfb3dlNOxm1qwL438xPy/UM1fysOj0vXU1ZV4eeF2wUoG7KLUPeqxGoAtcrxP95qJr8akGtLY0G2xJXyzy9kl/Nwa9qGjLA1B7EgIgiuJaX+FKs4WpvyY70G4Zi4gcMsy4EaOT0R0Qd1f1cuabr3iW9TIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uft+2Pf9; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52cdc4d221eso853571e87.3
-        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 00:18:11 -0700 (PDT)
+	s=arc-20240116; t=1719041824; c=relaxed/simple;
+	bh=GIOp4aGIUGy2fHq8HAI43u/aAK2pd6K5I3pjBY5XeZc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ljFsTbFT9yhGGQX8VFKIRdQ190D/sM++9NKzm/R+9XOEi4ofurHSqaOD/Kq0W+zSNfKUA7VAR36602Paqh9zIBN6JrBoJ71BB3kD9gTWwghwR0xDgs4pCeJP4Em67mLqDi5P0UimGA1o8diVm00Qpt05m12fhH9Mc8zFukqae1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HCdzbweS; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-630daaec9c7so26214257b3.1;
+        Sat, 22 Jun 2024 00:37:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719040690; x=1719645490; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8gk/WLnrU93BmHjjlJlU9hm1kE/s/S+tE20JTbJQLcY=;
-        b=uft+2Pf9nsEFjIor9cavmXcCshY19VLeboJsSUyAhRqR4/cRu89yH064Izsxtd9cEk
-         4uqBB3/IUx4aBy9X21kZfPrF5gaOKd5bmYIarSM3I6BMpdbwy2mnMMVGhLmUJBiRQuAC
-         ELjnE4HeiQYpmRHeq2I+A+dQERnu3JMVHhiYtMqU4tyIUnvlx/IssrRupyMEueD0C2I0
-         /wjcVeyESSt9Vq5o7k7ocuyvseXkiGKGBl2+23aQnhgVtIwKuC7ZAKkOy7fhK9ZwjhZW
-         rAWYfxm51zGsSFMA2eYVVeitMEE6OYs0HVRHsWVu0GpiwyxTA63h5/zH879N4QpYt3At
-         LxGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719040690; x=1719645490;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1719041820; x=1719646620; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8gk/WLnrU93BmHjjlJlU9hm1kE/s/S+tE20JTbJQLcY=;
-        b=lZpdCbIHveAMYU7Y9IR+iDEbrQjegRuxqD1wbdQOj9/aAK0phOpXuYCO/40BR67mCf
-         BNeMKIgjHnBIWUFCWbkGTIZ+cj1yjFoiw2UcNqaxP3cMvjQBDchInNZ00TuDYC8lr6bA
-         p9mLXSkOD2VCsSo+fxrZL5MWyVORKwdw1tDnu+eUp81Uz0NTTvW5P6nrpUaVBUtq4Hx1
-         4vTPcMbXfoK7AtD9oFrYylLtucMnzKp6Y++PrvVO5h/eGjVoKAY907dvwgSGGIZoHWAR
-         vbBmb6lpQ0gGx4aHBFTyl6jza5s9gDDOQD+g2276BkHkuy6Cxj9xTyWSGqaWCk22wtwE
-         1WHw==
-X-Forwarded-Encrypted: i=1; AJvYcCXLX7oKgycboxvrZwKzexLvT3wz/NkyLDq3SKoCqIQ1DrfJoXJgohFJ9Va9hm7HXWgj2AZ7L5Rtk6G3aePnm8OATlYxfNEDmvj+Hw==
-X-Gm-Message-State: AOJu0YwT+k1qyeplfYDqWfN8Qlg8t4o3Dnvl/Emg9SDzYSqJH35TtP3c
-	zzzlxpbJsX2csoBdew9lKyhAbqT+ZRgCUwhknX3UIxCwJqc4+vRpfqGpYGwswEc=
-X-Google-Smtp-Source: AGHT+IGH6cKb0i17ESt2t11EWg7ayk6aCghT/OhE/tqOJdP/a/WQUFUKJeG5X8SncZ7fxcARxG/8OQ==
-X-Received: by 2002:a05:6512:3e02:b0:52c:5f12:5317 with SMTP id 2adb3069b0e04-52ccaa9268bmr8340293e87.44.1719040690325;
-        Sat, 22 Jun 2024 00:18:10 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd6454a96sm409678e87.303.2024.06.22.00.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jun 2024 00:18:09 -0700 (PDT)
-Date: Sat, 22 Jun 2024 10:18:07 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Simon Glass <sjg@chromium.org>, Rob Herring <robh+dt@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Amrit Anand <quic_amrianan@quicinc.com>, 
-	Peter Griffin <peter.griffin@linaro.org>, Caleb Connolly <caleb.connolly@linaro.org>, 
-	Andy Gross <agross@kernel.org>, Doug Anderson <dianders@chromium.org>, 
-	Chen-Yu Tsai <wenst@chromium.org>, Julius Werner <jwerner@chromium.org>, 
-	"Humphreys, Jonathan" <j-humphreys@ti.com>, Sumit Garg <sumit.garg@linaro.org>, 
-	Michal Simek <michal.simek@amd.com>, boot-architecture@lists.linaro.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH RFC v3 0/9] dt-bindings: hwinfo: Introduce board-id
-Message-ID: <uz6f2tie4r4zlywt7vgeb44zl7hoxzdkmdsaluch2zlpp6cosi@jfhmdj4zbii2>
-References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
- <CAFLszTjexpNEjo1sGVs67L0CAgGZLNkyn9RGfHRD7iHak_mtmg@mail.gmail.com>
- <20240605100246481-0700.eberman@hu-eberman-lv.qualcomm.com>
- <CAFLszThbe_aUAq_5rCCiPV-bj60oq9UCc=vdDHwM3i6t44ohLw@mail.gmail.com>
- <20240621142054973-0700.eberman@hu-eberman-lv.qualcomm.com>
+        bh=VjLuZ9inbFoMpW0veWSS5+5irgFSGhkT1Wp76Bpgxx0=;
+        b=HCdzbweStZeKC8KI8Eu2K92VFGUJ+noJnsGnF11tGHaedMV3dVBWr5oF4wUgYu14/A
+         zH0MYdZjrbbXLxrP3Www35y2CPDHnLFULc8I0ypNxBiKTtUZIfxxeqeEaedCxqWT05Bz
+         pvb0PyR4n025oZ443SqzZLDnXQ3+Fi0KUOv3cN5we+GUErKoVKDQ+Veh88ZGDs0O619x
+         fs1R1rMaFoDeysAEqoccTHjHwYiuSbQJxOEcC21i7U9in2cAv/7tsDjTMIPymqIBVxok
+         NDI/J7eFkDJUFh1oc1FzEOMSw7rREOnThzq7Go7cIKLMrRwwK4siQnpBhAgQgj1r07Js
+         EbrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719041820; x=1719646620;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VjLuZ9inbFoMpW0veWSS5+5irgFSGhkT1Wp76Bpgxx0=;
+        b=AqRtcvT2RPhaOf7JIrEYFaknylmCWsvgpqoVFAr2cTtB/Z/Nquex97HulCXl/DJXhd
+         DOsutIBCFRIkQEqaFHzN5cOjdzh7zZb05HfefrzUGs5SSwgT5MhVwiVTBMPbfw9U4Zkn
+         h7gBu8IllpBFnJ15nzhuyqB1XR50dt89pwCQBlb8F2zakTXX3FjzQTTnUcoF7P5Rlr1J
+         hxilMRu4Tkx6K2ygPn2vqjASTXJC5u3jwn7tiPcrgcjN8mC1UYw0XBINHeDKlVn//obU
+         j/AwCS91i/5jdN44GC5KXU8W3wfcA9BUMjoumpiYENxsHqfmV36fxv3JzjcDCO0cZX+g
+         P1Zg==
+X-Forwarded-Encrypted: i=1; AJvYcCV53jMwglQdlqM9+nxvxuB1mHbi6VfjCubsDHD8Qw3/GFx13MRdBsl+eP4QxLfU0KhO8RJzRepZ2GN5xVt1eEbbRAfPUXOEq+suSQ==
+X-Gm-Message-State: AOJu0YxnUUkk+I/7DKZS8+qfWKc0C0fx7FigHFDCNI+x2ekXXC6klchB
+	RzPDHP/ZYRIwHw09Ir8qR1Bvh09OO9cm/KzTPZ3InRCWvw7CFgpi7GwLhkrqwcRurGNZVljhflD
+	blXYc+roWopP7azy5OFsux1yZNew=
+X-Google-Smtp-Source: AGHT+IF+ra8yyDtFTgSxn9+dmmEY/iK2jLtuTpWD2RYFXgFS7nSiy4PtN3wjErIm5rEsTFuoKCJPUshJ/I41TrqPSEk=
+X-Received: by 2002:a0d:d342:0:b0:61a:ca09:dae3 with SMTP id
+ 00721157ae682-63a8e4bb138mr113037457b3.26.1719041820395; Sat, 22 Jun 2024
+ 00:37:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240621142054973-0700.eberman@hu-eberman-lv.qualcomm.com>
+References: <20240618081515.1215552-1-kikuchan98@gmail.com>
+ <20240618081515.1215552-3-kikuchan98@gmail.com> <de5e45eb-4885-4c4b-ab49-f350d82537f3@quicinc.com>
+In-Reply-To: <de5e45eb-4885-4c4b-ab49-f350d82537f3@quicinc.com>
+From: Hironori KIKUCHI <kikuchan98@gmail.com>
+Date: Sat, 22 Jun 2024 16:36:49 +0900
+Message-ID: <CAG40kxGkXw7fsb47NZmNJ-dqF003Gf6qSfSSGO_ea0yKi5ymOQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/3] drm/panel: st7701: Add support for SPI for configuration
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: linux-kernel@vger.kernel.org, Jagan Teki <jagan@amarulasolutions.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 21, 2024 at 03:40:20PM GMT, Elliot Berman wrote:
-> Hi Simon,
-> 
-> On Thu, Jun 06, 2024 at 10:00:54AM -0600, Simon Glass wrote:
-> > On Wed, 5 Jun 2024 at 11:17, Elliot Berman <quic_eberman@quicinc.com> wrote:
-> > > On Wed, Jun 05, 2024 at 07:17:35AM -0600, Simon Glass wrote:
-> > > > Hi Elliot,
-> > > >
-> > > > I am just picking up the discussion here, which was started on another thread.
-> > > >
-> > > > I can't see why this new feature is needed. We should be able to use
-> > > > compatible strings, as we do now. I added a 'usage' section to the FIT
-> > > > spec [1] which might help. I also incorporated the board revision and
-> > > > variant information and some notes on how to add to the available
-> > > > suffixes.
-> > > >
-> > > > Does that handle your use case?
-> > >
-> > > -rev and -sku don't fit the versioning scheme for QTI devices, so this
-> > > isn't a generic enough approach. Patch 5 in this series describes the
-> > > versioning scheme for us.
-> > >
-> > > In the other thread, we had talked about using some regex based approach
-> > > for matching the root node compatible. I haven't had chance to work on
-> > > that proposal and will try to get to it in the next couple weeks.
-> > 
-> > OK, I look forward to it. Please do check the FIT best match approach
-> > and see how it might be extended to handle your requirements. So far I
-> > have not seen a need for regexes, but it is certainly a possibility.
-> > 
-> 
-> I spent some time collecting feedback from the team on using compatible
-> strings + regex-style approach and we're not able to add a regex library
-> into firmware, so this approach unfortunately won't work for us.
+Hello Jessica,
 
-Why? What is the size growth caused by the RegularExpressionDxe ?
+Thank you for your review and reply!
 
-> Because we have more axes of board identification than chromebook, using
-> FIT's compatible strings isn't a scalable solution for us. I don't think
-> we have incompatible problems, we only have more than 2-3 axes of
-> information.
+On Sat, Jun 22, 2024 at 5:31=E2=80=AFAM Jessica Zhang <quic_jesszhan@quicin=
+c.com> wrote:
+>
+>
+>
+> On 6/18/2024 1:15 AM, Hironori KIKUCHI wrote:
+> > The ST7701 supports not only MIPI DSI, but also SPI as an interface
+> > for configuration. To support a panel connected via RGB parallel
+> > interface, add support for SPI using MIPI DBI helpers.
+> >
+> > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+> > ---
+> >   drivers/gpu/drm/panel/Kconfig                 |   2 +
+> >   drivers/gpu/drm/panel/panel-sitronix-st7701.c | 211 ++++++++++++++---=
+-
+> >   2 files changed, 172 insertions(+), 41 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kcon=
+fig
+> > index 2ae0eb0638f..1831544400d 100644
+> > --- a/drivers/gpu/drm/panel/Kconfig
+> > +++ b/drivers/gpu/drm/panel/Kconfig
+> > @@ -755,7 +755,9 @@ config DRM_PANEL_SHARP_LS060T1SX01
+> >   config DRM_PANEL_SITRONIX_ST7701
+> >       tristate "Sitronix ST7701 panel driver"
+> >       depends on OF
+> > +     depends on SPI
+> >       depends on DRM_MIPI_DSI
+> > +     select DRM_MIPI_DBI
+> >       depends on BACKLIGHT_CLASS_DEVICE
+> >       help
+> >         Say Y here if you want to enable support for the Sitronix
+> > diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gp=
+u/drm/panel/panel-sitronix-st7701.c
+> > index 421eb4592b6..3c4a66f2fc7 100644
+> > --- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> > +++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> > @@ -4,6 +4,7 @@
+> >    * Author: Jagan Teki <jagan@amarulasolutions.com>
+> >    */
+> >
+> > +#include <drm/drm_mipi_dbi.h>
+> >   #include <drm/drm_mipi_dsi.h>
+> >   #include <drm/drm_modes.h>
+> >   #include <drm/drm_panel.h>
+> > @@ -14,6 +15,7 @@
+> >   #include <linux/module.h>
+> >   #include <linux/of.h>
+> >   #include <linux/regulator/consumer.h>
+> > +#include <linux/spi/spi.h>
+> >
+> >   #include <video/mipi_display.h>
+> >
+> > @@ -130,12 +132,16 @@ struct st7701_panel_desc {
+> >   struct st7701 {
+> >       struct drm_panel panel;
+> >       struct mipi_dsi_device *dsi;
+> > +     struct mipi_dbi dbi;
+> >       const struct st7701_panel_desc *desc;
+> >
+> >       struct regulator_bulk_data supplies[2];
+> >       struct gpio_desc *reset;
+> >       unsigned int sleep_delay;
+> >       enum drm_panel_orientation orientation;
+> > +
+> > +     int (*write_command)(struct st7701 *st7701, u8 cmd, const u8 *seq=
+,
+> > +                          size_t len);
+> >   };
+> >
+> >   static inline struct st7701 *panel_to_st7701(struct drm_panel *panel)
+> > @@ -143,16 +149,22 @@ static inline struct st7701 *panel_to_st7701(stru=
+ct drm_panel *panel)
+> >       return container_of(panel, struct st7701, panel);
+> >   }
+> >
+> > -static inline int st7701_dsi_write(struct st7701 *st7701, const void *=
+seq,
+> > -                                size_t len)
+> > +static int st7701_dsi_write(struct st7701 *st7701, u8 cmd, const u8 *s=
+eq,
+> > +                         size_t len)
+> >   {
+> > -     return mipi_dsi_dcs_write_buffer(st7701->dsi, seq, len);
+> > +     return mipi_dsi_dcs_write(st7701->dsi, cmd, seq, len);
+> >   }
+> >
+> > -#define ST7701_DSI(st7701, seq...)                           \
+> > -     {                                                       \
+> > -             const u8 d[] =3D { seq };                         \
+> > -             st7701_dsi_write(st7701, d, ARRAY_SIZE(d));     \
+> > +static int st7701_dbi_write(struct st7701 *st7701, u8 cmd, const u8 *s=
+eq,
+> > +                         size_t len)
+> > +{
+> > +     return mipi_dbi_command_stackbuf(&st7701->dbi, cmd, seq, len);
+> > +}
+> > +
+> > +#define ST7701_DSI(st7701, cmd, seq...)
+>
+> Hi Hironori,
+>
+> Is it really correct to keep this as *_DSI? Since the macro can
+> theoretically support either DBI or DSI write commands, maybe this
+> should be renamed to something more generic.
+>
+>                                 \
+> > +     {                                                               \
+> > +             const u8 d[] =3D { seq };                                =
+ \
+> > +             st7701->write_command(st7701, cmd, d, ARRAY_SIZE(d));   \
+> >       }
+> >
+> >   static u8 st7701_vgls_map(struct st7701 *st7701)
+> > @@ -211,10 +223,10 @@ static void st7701_init_sequence(struct st7701 *s=
+t7701)
+> >       /* Command2, BK0 */
+> >       st7701_switch_cmd_bkx(st7701, true, 0);
+> >
+> > -     mipi_dsi_dcs_write(st7701->dsi, DSI_CMD2_BK0_PVGAMCTRL,
+> > -                        desc->pv_gamma, ARRAY_SIZE(desc->pv_gamma));
+> > -     mipi_dsi_dcs_write(st7701->dsi, DSI_CMD2_BK0_NVGAMCTRL,
+> > -                        desc->nv_gamma, ARRAY_SIZE(desc->nv_gamma));
+> > +     st7701->write_command(st7701, DSI_CMD2_BK0_PVGAMCTRL, desc->pv_ga=
+mma,
+>
+> Same here for the DSI_CMD2_* macros.
+>
 
-Well, not using compatibles / strings results in most of the phone
-vendors having just the 'MTP' as their platform id. It makes then
-impossible to have an image with several DTB files targeting different
-phone families from several vendors. What looks like a nice feature for
-MTP vs QRD vs HDK becomes useless with the end-user devices.
+Right...
+I'll change them to ST7701_WIRTE() and ST7701_CMD* respectively.
+Thanks.
 
--- 
-With best wishes
-Dmitry
+
+> > +                           ARRAY_SIZE(desc->pv_gamma));
+> > +     st7701->write_command(st7701, DSI_CMD2_BK0_NVGAMCTRL, desc->nv_ga=
+mma,
+> > +                           ARRAY_SIZE(desc->nv_gamma));
+> >       /*
+> >        * Vertical line count configuration:
+> >        * Line[6:0]: select number of vertical lines of the TFT matrix i=
+n
+> > @@ -974,42 +986,47 @@ static const struct st7701_panel_desc rg_arc_desc=
+ =3D {
+> >       .gip_sequence =3D rg_arc_gip_sequence,
+> >   };
+> >
+> > -static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
+> > +static void st7701_cleanup(void *data)
+> > +{
+> > +     struct st7701 *st7701 =3D (struct st7701 *)data;
+> > +
+> > +     drm_panel_remove(&st7701->panel);
+> > +}
+> > +
+> > +static int st7701_probe(struct device *dev, int connector_type)
+> >   {
+> >       const struct st7701_panel_desc *desc;
+> >       struct st7701 *st7701;
+> >       int ret;
+> >
+> > -     st7701 =3D devm_kzalloc(&dsi->dev, sizeof(*st7701), GFP_KERNEL);
+> > +     desc =3D of_device_get_match_data(dev);
+> > +     if (!desc)
+> > +             return -ENODEV;
+> > +
+> > +     st7701 =3D devm_kzalloc(dev, sizeof(*st7701), GFP_KERNEL);
+> >       if (!st7701)
+> >               return -ENOMEM;
+> >
+> > -     desc =3D of_device_get_match_data(&dsi->dev);
+> > -     dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BUR=
+ST |
+> > -                       MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUO=
+US;
+> > -     dsi->format =3D desc->format;
+> > -     dsi->lanes =3D desc->lanes;
+> > -
+> > +     st7701->desc =3D desc;
+> >       st7701->supplies[0].supply =3D "VCC";
+> >       st7701->supplies[1].supply =3D "IOVCC";
+> >
+> > -     ret =3D devm_regulator_bulk_get(&dsi->dev, ARRAY_SIZE(st7701->sup=
+plies),
+> > +     ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(st7701->supplies)=
+,
+> >                                     st7701->supplies);
+> >       if (ret < 0)
+> >               return ret;
+> >
+> > -     st7701->reset =3D devm_gpiod_get(&dsi->dev, "reset", GPIOD_OUT_LO=
+W);
+> > +     st7701->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> >       if (IS_ERR(st7701->reset)) {
+> > -             dev_err(&dsi->dev, "Couldn't get our reset GPIO\n");
+> > +             dev_err(dev, "Couldn't get our reset GPIO\n");
+> >               return PTR_ERR(st7701->reset);
+> >       }
+> >
+> > -     ret =3D of_drm_get_panel_orientation(dsi->dev.of_node, &st7701->o=
+rientation);
+> > +     ret =3D of_drm_get_panel_orientation(dev->of_node, &st7701->orien=
+tation);
+> >       if (ret < 0)
+> > -             return dev_err_probe(&dsi->dev, ret, "Failed to get orien=
+tation\n");
+> > +             return dev_err_probe(dev, ret, "Failed to get orientation=
+\n");
+> >
+> > -     drm_panel_init(&st7701->panel, &dsi->dev, &st7701_funcs,
+> > -                    DRM_MODE_CONNECTOR_DSI);
+> > +     drm_panel_init(&st7701->panel, dev, &st7701_funcs, connector_type=
+);
+> >
+> >       /**
+> >        * Once sleep out has been issued, ST7701 IC required to wait 120=
+ms
+> > @@ -1026,21 +1043,77 @@ static int st7701_dsi_probe(struct mipi_dsi_dev=
+ice *dsi)
+> >       if (ret)
+> >               return ret;
+> >
+> > +     dev_set_drvdata(dev, st7701);
+> > +
+> >       drm_panel_add(&st7701->panel);
+> >
+> > -     mipi_dsi_set_drvdata(dsi, st7701);
+> > -     st7701->dsi =3D dsi;
+> > -     st7701->desc =3D desc;
+> > -
+> > -     ret =3D mipi_dsi_attach(dsi);
+> > +     ret =3D devm_add_action_or_reset(dev, st7701_cleanup, st7701);
+>
+> Is the intention here to move to using the devm framework? Also, just
+> wondering, what advantages does this implementation have over the
+> original implementation?
+
+Uh, maybe no?
+Actually not intended, but I just want to avoid the need to call
+drm_panel_remove() manually and carefully in both st7701_dsi_probe()
+and st7701_spi_probe() after calling st7701_probe().
+
+Oh, in this way, I've just noticed that drm_panel_remove() might no
+longer need to be explicitly called in st7701_remove(), perhaps?
+
+>
+> >       if (ret)
+> > -             goto err_attach;
+> > +             return ret;
+>
+> If you're removing the `goto` here, you could probably drop this entire
+> check and just `return ret` at the end of the function.
+
+Right, thanks.
+
+>
+> >
+> >       return 0;
+> > +}
+> >
+> > -err_attach:
+> > -     drm_panel_remove(&st7701->panel);
+> > -     return ret;
+> > +static void st7701_remove(struct st7701 *st7701)
+> > +{
+> > +     st7701_cleanup(st7701);
+>
+> Why add an extra helper that's essentially just a wrapper for another
+> helper? Why can't we directly call st7701_cleanup()?
+
+To avoid a cast, because I'm unsure which is preferred in kernel...
+Would it be better like this?
+
+return devm_add_action_or_reset(dev, (void (*)(void *))st7701_remove, st770=
+1);
+
+or, more directly
+
+return devm_add_action_or_reset(dev, (void (*)(void
+*))drm_panel_remove, &st7701->panel);
+
+This emphasizes a relation to the preceding drm_panel_add().
+
+>
+> Thanks,
+>
+> Jessica Zhang
+>
+> > +}
+> > +
+> > +static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct st7701 *st7701;
+> > +     int err;
+> > +
+> > +     err =3D st7701_probe(&dsi->dev, DRM_MODE_CONNECTOR_DSI);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     st7701 =3D dev_get_drvdata(&dsi->dev);
+> > +     st7701->dsi =3D dsi;
+> > +     st7701->write_command =3D st7701_dsi_write;
+> > +
+> > +     if (!st7701->desc->lanes)
+> > +             return dev_err_probe(&dsi->dev, err, "This panel is not f=
+or MIPI DSI\n");
+> > +
+> > +     dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BUR=
+ST |
+> > +                       MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUO=
+US;
+> > +     dsi->format =3D st7701->desc->format;
+> > +     dsi->lanes =3D st7701->desc->lanes;
+> > +
+> > +     mipi_dsi_set_drvdata(dsi, st7701);
+> > +
+> > +     err =3D mipi_dsi_attach(dsi);
+> > +     if (err)
+> > +             return dev_err_probe(&dsi->dev, err, "Failed to init MIPI=
+ DSI\n");
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int st7701_spi_probe(struct spi_device *spi)
+> > +{
+> > +     struct st7701 *st7701;
+> > +     struct gpio_desc *dc;
+> > +     int err;
+> > +
+> > +     err =3D st7701_probe(&spi->dev, DRM_MODE_CONNECTOR_DPI);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     st7701 =3D dev_get_drvdata(&spi->dev);
+> > +     st7701->write_command =3D st7701_dbi_write;
+> > +
+> > +     dc =3D devm_gpiod_get_optional(&spi->dev, "dc", GPIOD_OUT_LOW | G=
+PIOD_FLAGS_BIT_NONEXCLUSIVE);
+> > +     if (IS_ERR(dc))
+> > +             return dev_err_probe(&spi->dev, PTR_ERR(dc), "Failed to g=
+et GPIO for D/CX\n");
+> > +
+> > +     spi_set_drvdata(spi, st7701);
+> > +
+> > +     err =3D mipi_dbi_spi_init(spi, &st7701->dbi, dc);
+> > +     if (err)
+> > +             return dev_err_probe(&spi->dev, err, "Failed to init MIPI=
+ DBI\n");
+> > +     st7701->dbi.read_commands =3D NULL;
+> > +
+> > +     return 0;
+> >   }
+> >
+> >   static void st7701_dsi_remove(struct mipi_dsi_device *dsi)
+> > @@ -1048,28 +1121,84 @@ static void st7701_dsi_remove(struct mipi_dsi_d=
+evice *dsi)
+> >       struct st7701 *st7701 =3D mipi_dsi_get_drvdata(dsi);
+> >
+> >       mipi_dsi_detach(dsi);
+> > -     drm_panel_remove(&st7701->panel);
+> > +     st7701_remove(st7701);
+> >   }
+> >
+> > -static const struct of_device_id st7701_of_match[] =3D {
+> > +static void st7701_spi_remove(struct spi_device *spi)
+> > +{
+> > +     struct st7701 *st7701 =3D spi_get_drvdata(spi);
+> > +
+> > +     st7701_remove(st7701);
+> > +}
+> > +
+> > +static const struct of_device_id st7701_dsi_of_match[] =3D {
+> >       { .compatible =3D "anbernic,rg-arc-panel", .data =3D &rg_arc_desc=
+ },
+> >       { .compatible =3D "densitron,dmt028vghmcmi-1a", .data =3D &dmt028=
+vghmcmi_1a_desc },
+> >       { .compatible =3D "elida,kd50t048a", .data =3D &kd50t048a_desc },
+> >       { .compatible =3D "techstar,ts8550b", .data =3D &ts8550b_desc },
+> > -     { }
+> > +     { /* sentinel */ }
+> >   };
+> > -MODULE_DEVICE_TABLE(of, st7701_of_match);
+> > +MODULE_DEVICE_TABLE(of, st7701_dsi_of_match);
+> > +
+> > +static const struct of_device_id st7701_spi_of_match[] =3D {
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, st7701_spi_of_match);
+> > +
+> > +static const struct spi_device_id st7701_spi_ids[] =3D {
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(spi, st7701_spi_ids);
+> >
+> >   static struct mipi_dsi_driver st7701_dsi_driver =3D {
+> >       .probe          =3D st7701_dsi_probe,
+> >       .remove         =3D st7701_dsi_remove,
+> >       .driver =3D {
+> >               .name           =3D "st7701",
+> > -             .of_match_table =3D st7701_of_match,
+> > +             .of_match_table =3D st7701_dsi_of_match,
+> >       },
+> >   };
+> > -module_mipi_dsi_driver(st7701_dsi_driver);
+> > +
+> > +static struct spi_driver st7701_spi_driver =3D {
+> > +     .probe          =3D st7701_spi_probe,
+> > +     .remove         =3D st7701_spi_remove,
+> > +     .id_table       =3D st7701_spi_ids,
+> > +     .driver =3D {
+> > +             .name           =3D "st7701",
+> > +             .of_match_table =3D st7701_spi_of_match,
+> > +     },
+> > +};
+> > +
+> > +static int __init st7701_driver_init(void)
+> > +{
+> > +     int err;
+> > +
+> > +     err =3D spi_register_driver(&st7701_spi_driver);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     if (IS_ENABLED(CONFIG_DRM_MIPI_DSI)) {
+> > +             err =3D mipi_dsi_driver_register(&st7701_dsi_driver);
+> > +             if (err) {
+> > +                     spi_unregister_driver(&st7701_spi_driver);
+> > +                     return err;
+> > +             }
+> > +
+> > +             return 0;
+> > +     }
+> > +}
+> > +module_init(st7701_driver_init);
+> > +
+> > +static void __exit st7701_driver_exit(void)
+> > +{
+> > +     if (IS_ENABLED(CONFIG_DRM_MIPI_DSI))
+> > +             mipi_dsi_driver_unregister(&st7701_dsi_driver);
+> > +
+> > +     spi_unregister_driver(&st7701_spi_driver);
+> > +}
+> > +module_exit(st7701_driver_exit);
+> >
+> >   MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
+> > +MODULE_AUTHOR("Hironori KIKUCHI <kikuchan98@gmail.com>");
+> >   MODULE_DESCRIPTION("Sitronix ST7701 LCD Panel Driver");
+> >   MODULE_LICENSE("GPL");
+> > --
+> > 2.45.2
+> >
+
+Best regards,
+kikuchan.
+
+On Sat, Jun 22, 2024 at 5:31=E2=80=AFAM Jessica Zhang <quic_jesszhan@quicin=
+c.com> wrote:
+>
+>
+>
+> On 6/18/2024 1:15 AM, Hironori KIKUCHI wrote:
+> > The ST7701 supports not only MIPI DSI, but also SPI as an interface
+> > for configuration. To support a panel connected via RGB parallel
+> > interface, add support for SPI using MIPI DBI helpers.
+> >
+> > Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+> > ---
+> >   drivers/gpu/drm/panel/Kconfig                 |   2 +
+> >   drivers/gpu/drm/panel/panel-sitronix-st7701.c | 211 ++++++++++++++---=
+-
+> >   2 files changed, 172 insertions(+), 41 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kcon=
+fig
+> > index 2ae0eb0638f..1831544400d 100644
+> > --- a/drivers/gpu/drm/panel/Kconfig
+> > +++ b/drivers/gpu/drm/panel/Kconfig
+> > @@ -755,7 +755,9 @@ config DRM_PANEL_SHARP_LS060T1SX01
+> >   config DRM_PANEL_SITRONIX_ST7701
+> >       tristate "Sitronix ST7701 panel driver"
+> >       depends on OF
+> > +     depends on SPI
+> >       depends on DRM_MIPI_DSI
+> > +     select DRM_MIPI_DBI
+> >       depends on BACKLIGHT_CLASS_DEVICE
+> >       help
+> >         Say Y here if you want to enable support for the Sitronix
+> > diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gp=
+u/drm/panel/panel-sitronix-st7701.c
+> > index 421eb4592b6..3c4a66f2fc7 100644
+> > --- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> > +++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> > @@ -4,6 +4,7 @@
+> >    * Author: Jagan Teki <jagan@amarulasolutions.com>
+> >    */
+> >
+> > +#include <drm/drm_mipi_dbi.h>
+> >   #include <drm/drm_mipi_dsi.h>
+> >   #include <drm/drm_modes.h>
+> >   #include <drm/drm_panel.h>
+> > @@ -14,6 +15,7 @@
+> >   #include <linux/module.h>
+> >   #include <linux/of.h>
+> >   #include <linux/regulator/consumer.h>
+> > +#include <linux/spi/spi.h>
+> >
+> >   #include <video/mipi_display.h>
+> >
+> > @@ -130,12 +132,16 @@ struct st7701_panel_desc {
+> >   struct st7701 {
+> >       struct drm_panel panel;
+> >       struct mipi_dsi_device *dsi;
+> > +     struct mipi_dbi dbi;
+> >       const struct st7701_panel_desc *desc;
+> >
+> >       struct regulator_bulk_data supplies[2];
+> >       struct gpio_desc *reset;
+> >       unsigned int sleep_delay;
+> >       enum drm_panel_orientation orientation;
+> > +
+> > +     int (*write_command)(struct st7701 *st7701, u8 cmd, const u8 *seq=
+,
+> > +                          size_t len);
+> >   };
+> >
+> >   static inline struct st7701 *panel_to_st7701(struct drm_panel *panel)
+> > @@ -143,16 +149,22 @@ static inline struct st7701 *panel_to_st7701(stru=
+ct drm_panel *panel)
+> >       return container_of(panel, struct st7701, panel);
+> >   }
+> >
+> > -static inline int st7701_dsi_write(struct st7701 *st7701, const void *=
+seq,
+> > -                                size_t len)
+> > +static int st7701_dsi_write(struct st7701 *st7701, u8 cmd, const u8 *s=
+eq,
+> > +                         size_t len)
+> >   {
+> > -     return mipi_dsi_dcs_write_buffer(st7701->dsi, seq, len);
+> > +     return mipi_dsi_dcs_write(st7701->dsi, cmd, seq, len);
+> >   }
+> >
+> > -#define ST7701_DSI(st7701, seq...)                           \
+> > -     {                                                       \
+> > -             const u8 d[] =3D { seq };                         \
+> > -             st7701_dsi_write(st7701, d, ARRAY_SIZE(d));     \
+> > +static int st7701_dbi_write(struct st7701 *st7701, u8 cmd, const u8 *s=
+eq,
+> > +                         size_t len)
+> > +{
+> > +     return mipi_dbi_command_stackbuf(&st7701->dbi, cmd, seq, len);
+> > +}
+> > +
+> > +#define ST7701_DSI(st7701, cmd, seq...)
+>
+> Hi Hironori,
+>
+> Is it really correct to keep this as *_DSI? Since the macro can
+> theoretically support either DBI or DSI write commands, maybe this
+> should be renamed to something more generic.
+>
+>                                 \
+> > +     {                                                               \
+> > +             const u8 d[] =3D { seq };                                =
+ \
+> > +             st7701->write_command(st7701, cmd, d, ARRAY_SIZE(d));   \
+> >       }
+> >
+> >   static u8 st7701_vgls_map(struct st7701 *st7701)
+> > @@ -211,10 +223,10 @@ static void st7701_init_sequence(struct st7701 *s=
+t7701)
+> >       /* Command2, BK0 */
+> >       st7701_switch_cmd_bkx(st7701, true, 0);
+> >
+> > -     mipi_dsi_dcs_write(st7701->dsi, DSI_CMD2_BK0_PVGAMCTRL,
+> > -                        desc->pv_gamma, ARRAY_SIZE(desc->pv_gamma));
+> > -     mipi_dsi_dcs_write(st7701->dsi, DSI_CMD2_BK0_NVGAMCTRL,
+> > -                        desc->nv_gamma, ARRAY_SIZE(desc->nv_gamma));
+> > +     st7701->write_command(st7701, DSI_CMD2_BK0_PVGAMCTRL, desc->pv_ga=
+mma,
+>
+> Same here for the DSI_CMD2_* macros.
+>
+> > +                           ARRAY_SIZE(desc->pv_gamma));
+> > +     st7701->write_command(st7701, DSI_CMD2_BK0_NVGAMCTRL, desc->nv_ga=
+mma,
+> > +                           ARRAY_SIZE(desc->nv_gamma));
+> >       /*
+> >        * Vertical line count configuration:
+> >        * Line[6:0]: select number of vertical lines of the TFT matrix i=
+n
+> > @@ -974,42 +986,47 @@ static const struct st7701_panel_desc rg_arc_desc=
+ =3D {
+> >       .gip_sequence =3D rg_arc_gip_sequence,
+> >   };
+> >
+> > -static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
+> > +static void st7701_cleanup(void *data)
+> > +{
+> > +     struct st7701 *st7701 =3D (struct st7701 *)data;
+> > +
+> > +     drm_panel_remove(&st7701->panel);
+> > +}
+> > +
+> > +static int st7701_probe(struct device *dev, int connector_type)
+> >   {
+> >       const struct st7701_panel_desc *desc;
+> >       struct st7701 *st7701;
+> >       int ret;
+> >
+> > -     st7701 =3D devm_kzalloc(&dsi->dev, sizeof(*st7701), GFP_KERNEL);
+> > +     desc =3D of_device_get_match_data(dev);
+> > +     if (!desc)
+> > +             return -ENODEV;
+> > +
+> > +     st7701 =3D devm_kzalloc(dev, sizeof(*st7701), GFP_KERNEL);
+> >       if (!st7701)
+> >               return -ENOMEM;
+> >
+> > -     desc =3D of_device_get_match_data(&dsi->dev);
+> > -     dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BUR=
+ST |
+> > -                       MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUO=
+US;
+> > -     dsi->format =3D desc->format;
+> > -     dsi->lanes =3D desc->lanes;
+> > -
+> > +     st7701->desc =3D desc;
+> >       st7701->supplies[0].supply =3D "VCC";
+> >       st7701->supplies[1].supply =3D "IOVCC";
+> >
+> > -     ret =3D devm_regulator_bulk_get(&dsi->dev, ARRAY_SIZE(st7701->sup=
+plies),
+> > +     ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(st7701->supplies)=
+,
+> >                                     st7701->supplies);
+> >       if (ret < 0)
+> >               return ret;
+> >
+> > -     st7701->reset =3D devm_gpiod_get(&dsi->dev, "reset", GPIOD_OUT_LO=
+W);
+> > +     st7701->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> >       if (IS_ERR(st7701->reset)) {
+> > -             dev_err(&dsi->dev, "Couldn't get our reset GPIO\n");
+> > +             dev_err(dev, "Couldn't get our reset GPIO\n");
+> >               return PTR_ERR(st7701->reset);
+> >       }
+> >
+> > -     ret =3D of_drm_get_panel_orientation(dsi->dev.of_node, &st7701->o=
+rientation);
+> > +     ret =3D of_drm_get_panel_orientation(dev->of_node, &st7701->orien=
+tation);
+> >       if (ret < 0)
+> > -             return dev_err_probe(&dsi->dev, ret, "Failed to get orien=
+tation\n");
+> > +             return dev_err_probe(dev, ret, "Failed to get orientation=
+\n");
+> >
+> > -     drm_panel_init(&st7701->panel, &dsi->dev, &st7701_funcs,
+> > -                    DRM_MODE_CONNECTOR_DSI);
+> > +     drm_panel_init(&st7701->panel, dev, &st7701_funcs, connector_type=
+);
+> >
+> >       /**
+> >        * Once sleep out has been issued, ST7701 IC required to wait 120=
+ms
+> > @@ -1026,21 +1043,77 @@ static int st7701_dsi_probe(struct mipi_dsi_dev=
+ice *dsi)
+> >       if (ret)
+> >               return ret;
+> >
+> > +     dev_set_drvdata(dev, st7701);
+> > +
+> >       drm_panel_add(&st7701->panel);
+> >
+> > -     mipi_dsi_set_drvdata(dsi, st7701);
+> > -     st7701->dsi =3D dsi;
+> > -     st7701->desc =3D desc;
+> > -
+> > -     ret =3D mipi_dsi_attach(dsi);
+> > +     ret =3D devm_add_action_or_reset(dev, st7701_cleanup, st7701);
+>
+> Is the intention here to move to using the devm framework? Also, just
+> wondering, what advantages does this implementation have over the
+> original implementation?
+>
+> >       if (ret)
+> > -             goto err_attach;
+> > +             return ret;
+>
+> If you're removing the `goto` here, you could probably drop this entire
+> check and just `return ret` at the end of the function.
+>
+> >
+> >       return 0;
+> > +}
+> >
+> > -err_attach:
+> > -     drm_panel_remove(&st7701->panel);
+> > -     return ret;
+> > +static void st7701_remove(struct st7701 *st7701)
+> > +{
+> > +     st7701_cleanup(st7701);
+>
+> Why add an extra helper that's essentially just a wrapper for another
+> helper? Why can't we directly call st7701_cleanup()?
+>
+> Thanks,
+>
+> Jessica Zhang
+>
+> > +}
+> > +
+> > +static int st7701_dsi_probe(struct mipi_dsi_device *dsi)
+> > +{
+> > +     struct st7701 *st7701;
+> > +     int err;
+> > +
+> > +     err =3D st7701_probe(&dsi->dev, DRM_MODE_CONNECTOR_DSI);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     st7701 =3D dev_get_drvdata(&dsi->dev);
+> > +     st7701->dsi =3D dsi;
+> > +     st7701->write_command =3D st7701_dsi_write;
+> > +
+> > +     if (!st7701->desc->lanes)
+> > +             return dev_err_probe(&dsi->dev, err, "This panel is not f=
+or MIPI DSI\n");
+> > +
+> > +     dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BUR=
+ST |
+> > +                       MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUO=
+US;
+> > +     dsi->format =3D st7701->desc->format;
+> > +     dsi->lanes =3D st7701->desc->lanes;
+> > +
+> > +     mipi_dsi_set_drvdata(dsi, st7701);
+> > +
+> > +     err =3D mipi_dsi_attach(dsi);
+> > +     if (err)
+> > +             return dev_err_probe(&dsi->dev, err, "Failed to init MIPI=
+ DSI\n");
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int st7701_spi_probe(struct spi_device *spi)
+> > +{
+> > +     struct st7701 *st7701;
+> > +     struct gpio_desc *dc;
+> > +     int err;
+> > +
+> > +     err =3D st7701_probe(&spi->dev, DRM_MODE_CONNECTOR_DPI);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     st7701 =3D dev_get_drvdata(&spi->dev);
+> > +     st7701->write_command =3D st7701_dbi_write;
+> > +
+> > +     dc =3D devm_gpiod_get_optional(&spi->dev, "dc", GPIOD_OUT_LOW | G=
+PIOD_FLAGS_BIT_NONEXCLUSIVE);
+> > +     if (IS_ERR(dc))
+> > +             return dev_err_probe(&spi->dev, PTR_ERR(dc), "Failed to g=
+et GPIO for D/CX\n");
+> > +
+> > +     spi_set_drvdata(spi, st7701);
+> > +
+> > +     err =3D mipi_dbi_spi_init(spi, &st7701->dbi, dc);
+> > +     if (err)
+> > +             return dev_err_probe(&spi->dev, err, "Failed to init MIPI=
+ DBI\n");
+> > +     st7701->dbi.read_commands =3D NULL;
+> > +
+> > +     return 0;
+> >   }
+> >
+> >   static void st7701_dsi_remove(struct mipi_dsi_device *dsi)
+> > @@ -1048,28 +1121,84 @@ static void st7701_dsi_remove(struct mipi_dsi_d=
+evice *dsi)
+> >       struct st7701 *st7701 =3D mipi_dsi_get_drvdata(dsi);
+> >
+> >       mipi_dsi_detach(dsi);
+> > -     drm_panel_remove(&st7701->panel);
+> > +     st7701_remove(st7701);
+> >   }
+> >
+> > -static const struct of_device_id st7701_of_match[] =3D {
+> > +static void st7701_spi_remove(struct spi_device *spi)
+> > +{
+> > +     struct st7701 *st7701 =3D spi_get_drvdata(spi);
+> > +
+> > +     st7701_remove(st7701);
+> > +}
+> > +
+> > +static const struct of_device_id st7701_dsi_of_match[] =3D {
+> >       { .compatible =3D "anbernic,rg-arc-panel", .data =3D &rg_arc_desc=
+ },
+> >       { .compatible =3D "densitron,dmt028vghmcmi-1a", .data =3D &dmt028=
+vghmcmi_1a_desc },
+> >       { .compatible =3D "elida,kd50t048a", .data =3D &kd50t048a_desc },
+> >       { .compatible =3D "techstar,ts8550b", .data =3D &ts8550b_desc },
+> > -     { }
+> > +     { /* sentinel */ }
+> >   };
+> > -MODULE_DEVICE_TABLE(of, st7701_of_match);
+> > +MODULE_DEVICE_TABLE(of, st7701_dsi_of_match);
+> > +
+> > +static const struct of_device_id st7701_spi_of_match[] =3D {
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, st7701_spi_of_match);
+> > +
+> > +static const struct spi_device_id st7701_spi_ids[] =3D {
+> > +     { /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(spi, st7701_spi_ids);
+> >
+> >   static struct mipi_dsi_driver st7701_dsi_driver =3D {
+> >       .probe          =3D st7701_dsi_probe,
+> >       .remove         =3D st7701_dsi_remove,
+> >       .driver =3D {
+> >               .name           =3D "st7701",
+> > -             .of_match_table =3D st7701_of_match,
+> > +             .of_match_table =3D st7701_dsi_of_match,
+> >       },
+> >   };
+> > -module_mipi_dsi_driver(st7701_dsi_driver);
+> > +
+> > +static struct spi_driver st7701_spi_driver =3D {
+> > +     .probe          =3D st7701_spi_probe,
+> > +     .remove         =3D st7701_spi_remove,
+> > +     .id_table       =3D st7701_spi_ids,
+> > +     .driver =3D {
+> > +             .name           =3D "st7701",
+> > +             .of_match_table =3D st7701_spi_of_match,
+> > +     },
+> > +};
+> > +
+> > +static int __init st7701_driver_init(void)
+> > +{
+> > +     int err;
+> > +
+> > +     err =3D spi_register_driver(&st7701_spi_driver);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     if (IS_ENABLED(CONFIG_DRM_MIPI_DSI)) {
+> > +             err =3D mipi_dsi_driver_register(&st7701_dsi_driver);
+> > +             if (err) {
+> > +                     spi_unregister_driver(&st7701_spi_driver);
+> > +                     return err;
+> > +             }
+> > +
+> > +             return 0;
+> > +     }
+> > +}
+> > +module_init(st7701_driver_init);
+> > +
+> > +static void __exit st7701_driver_exit(void)
+> > +{
+> > +     if (IS_ENABLED(CONFIG_DRM_MIPI_DSI))
+> > +             mipi_dsi_driver_unregister(&st7701_dsi_driver);
+> > +
+> > +     spi_unregister_driver(&st7701_spi_driver);
+> > +}
+> > +module_exit(st7701_driver_exit);
+> >
+> >   MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
+> > +MODULE_AUTHOR("Hironori KIKUCHI <kikuchan98@gmail.com>");
+> >   MODULE_DESCRIPTION("Sitronix ST7701 LCD Panel Driver");
+> >   MODULE_LICENSE("GPL");
+> > --
+> > 2.45.2
+> >
 
