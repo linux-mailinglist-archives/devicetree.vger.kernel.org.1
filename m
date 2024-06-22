@@ -1,124 +1,120 @@
-Return-Path: <devicetree+bounces-78694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BC1913308
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 12:43:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D6F9132F6
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 12:11:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 736311C20A9C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 10:43:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C5EC1C210E4
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 10:11:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EA014D708;
-	Sat, 22 Jun 2024 10:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578AD14B959;
+	Sat, 22 Jun 2024 10:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="bTv1y0xU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c+q0QeVr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com [209.85.208.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B6E14B09C;
-	Sat, 22 Jun 2024 10:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A35514A0A4;
+	Sat, 22 Jun 2024 10:11:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719053013; cv=none; b=rLHsTEClA9l5leN4pSkcx/K8KELhqTWGse99RZhNtgZ2V55364Vhcx3qLscImfz0LtgbOHgAO+XtD934zwfzGJA5oFDeC/8YGZexx6tTzypJM+5g29L9CHg+uQFOS5SlaFAD47e5EJEUKp4DSx3e7nTidX10ZEtocMEZ83e8720=
+	t=1719051092; cv=none; b=WX9fwQKT+FApIT4mClPErLrEZp9t7lz4M2o3aILiBBdVUXZTH3nrQB2c1DRY903p/noAAlLhcpOgreX2blHsYShTYT3kG3e73zv7vn06on3mObC8Od6V2DG9DDpHPtP9DMf7k0ntjna8yZT+Dtg4Bs6gOHrje7J1aB/jjiLuHPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719053013; c=relaxed/simple;
-	bh=LVfYR8/jFkVpAgI5c9DnudXm1sPcC5/oQYIYNdp8Jys=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mfrpAsHEHqTRB6X2IOHRVfQniHPxGcZi5b78H8RujVF4MC3xSNwrNBt6oed/IvZZUVqW61Zz5KHF5i8licOe1LfjmNmN82l98oQOaX7VOhbhrVOstYr8frNfSSfBFX0o6DUPAQmNTdA9swFnfUmn/qR4PApCX5VgKg8JLpwRI3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=bTv1y0xU; arc=none smtp.client-ip=195.154.113.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
-	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=L7GES3nlJ/mbxpjgjMloPbQ6xU28njSFXetD3IW/C9k=; b=bTv1y0xUMPOFAGcp8NXNG5sAri
-	9Wuf4Hr94UiZ7MZR0BqUJALKC7GisIpFxsW4LjUzSTu1FQa6X6/y1SDljDg3i+o2SYsmilCnpGMmt
-	CbkRrHufQlZoVG/xB9JElfWnkZp8zN4O9JUqJfB+BjT42Xt+9oCe/VUU5TuPkmepcyVGseWADjq2b
-	cj2nad8/d1eEV2nuXGQo+5U/ebwR2rLenZBgHimL1u9n/wlKqDQcyCZZCZY+GI+SnPDQFkaePavUf
-	KzQEhPT/Mso/7rXN/RH21FOxsdKDOYvAKYTGT2lc97Jjyt56u0C1qbY7b2LoeI6bbTsFUMb5cK9mp
-	KNunQfcw==;
-Received: from [2a01:e34:ec5d:a741:1ee1:92ff:feb4:5ec0] (helo=ohm.rr44.fr)
-	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <aurelien@aurel32.net>)
-	id 1sKxVY-003oby-0i;
-	Sat, 22 Jun 2024 11:58:08 +0200
-Date: Sat, 22 Jun 2024 11:58:06 +0200
-From: Aurelien Jarno <aurelien@aurel32.net>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Anand Moon <linux.amoon@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] hwrng: add hwrng support for Rockchip RK3568
-Message-ID: <ZnagLpqZS4UjDR6T@aurel32.net>
-Mail-Followup-To: Daniel Golle <daniel@makrotopia.org>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Anand Moon <linux.amoon@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1718921174.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1719051092; c=relaxed/simple;
+	bh=rnx3RZC11dVJlwD6hTQr41HzSK7kJvBsJ/oa76LMcdI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FTUOH4rlMN0rI9aZK92XUojdNczhQLrOJybbuBb8lG6mJm2fpLcOH9NCGuTtzrLgxK8RKlCdq9X6On0YKO3rBKdR8FVAYdvXdQqXFqll1395ngXMhRxDjaiDf5nrMiIdccIGBE2G8PZk9fHRFW4SB5rFnZHwvoqaTatiIrAxmR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c+q0QeVr; arc=none smtp.client-ip=209.85.208.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f195.google.com with SMTP id 38308e7fff4ca-2ec002caeb3so34246281fa.2;
+        Sat, 22 Jun 2024 03:11:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719051089; x=1719655889; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H5B4zOxXEObeVuA7VINw2ILHjmpFBuMPZOmX3Ds+qSs=;
+        b=c+q0QeVrQeIfyDpgx3qxc5Qah7a0I+w+p/4tf3BuZQsBr+Xo4krx9ZePxvDjL0AnoE
+         9u7LYneLVw+wIMkgx0O3VTyOn2aAzZvI0b32GZHXjOAsfcuoQR8jzUyqPFAMVqXfITEc
+         NHey6kQVjw3eBuXD5jxQU7/np/7kJIM4i0GmZU9TweMKNDWII1cQzz/fXDfm6P3GmaVv
+         F6uzufedmbjA7EjQ/+1YchQdcs4Y2XlrZtGEAdj73S62inId8iIiFe5V7ITUUswcDpu6
+         CTjD1nkfepKquszbFMF+oPN0Ri9q4sfQ32x9jjh9j/e5WtFzC3zkNDAOQZf9m5Rxf/gx
+         Z77A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719051089; x=1719655889;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H5B4zOxXEObeVuA7VINw2ILHjmpFBuMPZOmX3Ds+qSs=;
+        b=v9d6Ng/mQnJ8y+lZfoLWNP+xy0fm4xwMiGXKX0f7tUPbN0dTD+GRUZ9y9KThmvWzIn
+         kCt2Ex0ml1KXPK8Tn6LFlgjQbqTKcEn88jrorqLgtGnopNOqUR0BSKqTzxSIApjx+Ekz
+         /5cExbiBxPkcl/Sa/jKca1tTPNxnlXqe1Cq3tAOhWPxGBYN0e5Z/GNIVHWljEbDtUnsk
+         EPn5RfWr4NV9Z9rpaABio+rrH2EsQ1aJ0HuF4krD9kRZiikUnZw1jfxLn6LV9D7Ytebz
+         Rh2PWbk/zlB3O2M2XPunKBMf7QairKbMGN/JuD9RQ3ZHSOZLxckLQh1vmCfVGUDL6lOJ
+         LFsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXStJfa1VjiPaRKtUuNKZJ7X7hreG5URVgD9T7yZaZ4PydwM2P/OlUHgcvSgtnMggvFRBhG8JsEbih9Etem+aHDKVwDJlkMKxtJ08wOmLlVxCeVbzXhcwjbmKSHUzuXDEHwFZLgLgMWsrBCVCgnyfvaoTqt4RQm/lnM7zh/wy2PwuqxCQ==
+X-Gm-Message-State: AOJu0Yx0sw8IrH48kgcxLlh7Gjvrza1vCxyiT4+UXVvlNrirMNwh580+
+	btFEg1f5bayFBur/n0XmL3Y5R45nD02g6CUGxs5E70wNgogFczSp
+X-Google-Smtp-Source: AGHT+IFNzs28ZoOZIPvpiDZrpqmyjo0o+8lqMGI8FW5cgkZ5MV2b6u4cUf/TVXL5AP73TGF6oPyDMw==
+X-Received: by 2002:ac2:4823:0:b0:52c:d56f:b2cc with SMTP id 2adb3069b0e04-52cdf82574bmr414339e87.58.1719051088434;
+        Sat, 22 Jun 2024 03:11:28 -0700 (PDT)
+Received: from comp ([95.165.92.141])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd64390d6sm454917e87.238.2024.06.22.03.11.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Jun 2024 03:11:28 -0700 (PDT)
+Date: Sat, 22 Jun 2024 13:11:27 +0300
+From: Alexey Lukyanchuk <skifwebdevelop@gmail.com>
+To: minda.chen@starfivetech.com
+Cc: aou@eecs.berkeley.edu, bhelgaas@google.com, conor@kernel.org,
+ daire.mcnamara@microchip.com, devicetree@vger.kernel.org,
+ emil.renner.berthing@canonical.com, kevin.xie@starfivetech.com,
+ krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+ leyfoon.tan@starfivetech.com, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+ lpieralisi@kernel.org, mason.huo@starfivetech.com, p.zabel@pengutronix.de,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+ tglx@linutronix.de
+Subject: Re: [PATCH v16 00/22] Refactoring Microchip PCIe driver and add
+ StarFive PCIe
+Message-ID: <20240622131127.0f63bc4c@comp>
+In-Reply-To: <20240622121403.7effa777@comp>
+References: <20240328091835.14797-1-minda.chen@starfivetech.com>
+	<20240622121403.7effa777@comp>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1718921174.git.daniel@makrotopia.org>
-User-Agent: Mutt/2.2.12 (2023-09-09)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Daniel,
+SOZ, I forgot to add email to tag, sorry
+Tested-by: Alexey Lukyanchuk <skifwebdevelop@gmail.com>
 
-On 2024-06-21 02:24, Daniel Golle wrote:
-> Rockchip SoCs used to have a random number generator as part of their
-> crypto device, and support for it has to be added to the corresponding
-> driver.
+On Sat, 22 Jun 2024 12:14:03 +0300
+Alexey Lukyanchuk <skifwebdevelop@gmail.com> wrote:
+
+> Hello Minda Chen.
 > 
-> However newer Rockchip SoCs like the RK3568 have an independent True
-> Random Number Generator device. This patchset adds a driver for it and
-> enable it in the device tree.
+> I applied your PCIE series patches to v6.10-rc3 and v6.9.0, works like
+> a charm - thank you!
 > 
-> v2 of this patchset has been submitted by Aurelien Jarno in November
-> 2022. A follow-up submission addressing the comments received for v2
-> never happened.
+> So Tested-by: Alexey Lukyanchuk to all series.
+> 
+> Hovewere i had to fix some minor issues, you can view the results
+> here:
+> 
+> https://github.com/skif-web/linux-starfive-vs2-mainline/tree/strafive-visionfive2-pcie-2
+> 
+> Hope it helps.
+> 
+> Hopefully to see this series being eventually applied soon.
 
-I didn't have the time or energy to continue working on this. Thanks for
-continuing the work, I'll give it a try at some point.
-
-Regards
-Aurelien
-
--- 
-Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-aurelien@aurel32.net                     http://aurel32.net
 
