@@ -1,142 +1,121 @@
-Return-Path: <devicetree+bounces-78792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42694913609
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 22:45:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FAC6913699
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 00:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5049F1C2113C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:45:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 890932847FF
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 22:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9051D41C72;
-	Sat, 22 Jun 2024 20:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56FB7629E4;
+	Sat, 22 Jun 2024 22:23:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="yut8vwcx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kw4SP/R6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7733D381AA;
-	Sat, 22 Jun 2024 20:45:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23805EE8D;
+	Sat, 22 Jun 2024 22:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719089131; cv=none; b=If1Hem8KRMOUGVYTdwLWlwfoYW/g13dDGWybJqgbWiJ8+Wm3Ia23+6VnJuyjxkZiE7uYBvj3kp3cofdzE7RVy10s7NDoigWlRgZMcM9+A1E9X6vihUF+iHwdBOnmSa5He79v1Ph4phhrKG2JDtCBcIudyetGHijjnQslG7H8uvY=
+	t=1719095038; cv=none; b=Xx4wUtPzNFOwjVoZkjYZ7zS51/3/T2IZeX8Yr47ouoCFNZTTXmQHGZdgLmvIiCk+cJbboPsO3SZ6Mn5WPuUR2Hg2jzV6/wDGTBUpNyA5E5kCiapW0Z6LlR21vR/UtbgaqIEi5EZxO6hnl2jKsst3d1VzxpDHYfd3byqjaDO/ykM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719089131; c=relaxed/simple;
-	bh=f361aP1H2fhPiV6ZzXRV4IlCRWpJ16KLdJmM2TAa/xg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=dd/t6FTfYVmH1v6G9lijH4Bny100XCKXR4u7kdb+FRqfMGBLY6gMcBBGT3ASVZt4OlXAGl4JgWR1aVyWxVa7G+XlIRm8AtpwUHBRCxf/z26mNQhUdOFBcck0GzRLbbLonBm9mNJ7tjt0d8VvvzXmuIUdXXuESGmD0sWYSILpwNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=yut8vwcx; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1719095038; c=relaxed/simple;
+	bh=EqV1qFCG++Nzhr7AacdvIDDpDmZjV9W7typc/BXWX20=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=baCR93NXdIIxm8Uh47SgVuob5YoKPa0Hckvi3uot4+I4oHmwPazTkSchHNx7e//iD3BxGHJ1pMsTkF3JSh1B+IGCMM1VKj5c/38iqLnM6fihXGOIcyRlJAvrI5j+S+XYTj4GKpbQ8nKdnBX455UtFmvigyZdlvlXVHdxtDm29VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kw4SP/R6; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a72477a6096so17208666b.1;
+        Sat, 22 Jun 2024 15:23:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719095035; x=1719699835; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9caasNtPciKtQdTeYYYLBrHobFYeJt44kO2irBcxd70=;
+        b=Kw4SP/R6P+r/jrYRUFDPVbMCSGobv048Cumi0Wh0/SWFzVTcpb18Eif2jt//DqeLxI
+         Of7IaAIYLnbTxtPWu5HoHhpM79E3e93tYfhsyiwj8JUe+sNaYfKvScE54a6DVOFx0KE+
+         +OUfamCjPtw6UpyPRQ2kvghMvMkgzxvUJs1dW/GgBREu2rmhSbCkQs1jDeYDZTImPmVo
+         KLslXDtAeT+ZWhcgbEDaRRMePOpJotnolY+4WIfCCJjjCBw1Baw2mJNDpJcT0vFiPROu
+         YIXzBVg/ZW+d2sOP+s1jLJEwnvOFXWYnZZz0pT8rmpX0wlEFC3jqxhcuAMczOzD3j2R9
+         6msw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719095035; x=1719699835;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9caasNtPciKtQdTeYYYLBrHobFYeJt44kO2irBcxd70=;
+        b=pHvrVI3UceUnQxB6mkrvcAuCgbcA6MgC7gEHJVt40s/bRG+lIpCotQB22/mPv0xoEY
+         juq3XJORXhKKa1uq2YyufOSiY28SSvX2moXEWoSe8HUau1Gvwfe8KXpamzx2O9ZvGnvI
+         VW0dKOPQoAMENKRlEMOUogvGKBwcL1/Sk3XlNuwApJ2yjHOQqu1h8ROu2BbxZPUg/NMH
+         gI35I34mdac616gnDAKFllElj7kNrNeRPR8N9a/mpGRuV781JEEaPKIw19GR9jhrgKK5
+         Xg3nGNqcbJJLQl5QXzXCBDyzU7MyrUtt19alFRAZhE8bGwf6zd038fP2QbrL3UcFGITU
+         g6gA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5ic85xpvcb7EsBackmKxfV9Mn26TK+LAis2Lm4zyzdJJFQzCNyECLEFMIOKzTDdHdFV8Z+bZezXb9Z7AS0cAfDGP28Ve9F2EyUZCV/PIBBfmL1bN9hb55mKq8nMVDVXCG9O59/w2YceAzVFn6lBf9KdEjwyYtIr0R7KC5AsDb2KPTwZo=
+X-Gm-Message-State: AOJu0Yw6q83HBV8XyCchMg4cIFvVQ9VHcDlaNDV6ZdcT1vTKbgcArUM5
+	A/fMNByWVD905Au5vUh51Z/A1eJHHBaoKTAMAUiPKxfzdzLWryIWvMREDeEarlygV542S8elFFc
+	pt7HVmh60mIAHe8EfJVM7beCUdWs=
+X-Google-Smtp-Source: AGHT+IEKr2CGX/X++Hn4E16EBYaSb0Q6Q7lHDkmdWRWksxAExg4pWThLuqgYIiIDj6bT7jw2IsluN1TGHXGOQYF6r1E=
+X-Received: by 2002:a17:907:d409:b0:a72:4a48:7e89 with SMTP id
+ a640c23a62f3a-a724a488300mr5784666b.26.1719095034815; Sat, 22 Jun 2024
+ 15:23:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1719089125;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZAx6xJEcAp2BzU+6jCZ3gQ0T/OrV48S/ARN8pl1rVcw=;
-	b=yut8vwcxjmeGy4YmsZGRxYcx0knvQfa1RRPq0L8Y2dElH+KmWFRYK+BC8x9fQp5Dji4FRj
-	Rg+/zD5pw1CSr7whGYO4CIuiY/52drtn8tpCZwZVJUYYRFaLggpDMs+NiiNq8EDXW5kHQQ
-	6+dEGFaVR8d95EdSohBI2qhlglNr0eeO/m5uas95//jDed91uFLFXxdgWASR2nxcdilWFt
-	/EYmo1mcWO2M4wF+a/9ubAUq3MudExsN+bhjEgYXuFwbw4o0/OfTLSZ4pzaxC4/ueysE4X
-	IONlh7c2olGV0pHdtZA0ZkrmwGQ7ZkuI1JQcUfmCmXu2W1ofoDs+m7umToCZ+g==
-Date: Sat, 22 Jun 2024 22:45:22 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Daniel Golle <daniel@makrotopia.org>, Aurelien
- Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, Herbert
- Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
- Zabel <p.zabel@pengutronix.de>, Sebastian Reichel
- <sebastian.reichel@collabora.com>, Anand Moon <linux.amoon@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Martin Kaiser <martin@kaiser.cx>, Ard
- Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
-In-Reply-To: <3660160.WbyNdk4fJJ@diego>
-References: <cover.1718921174.git.daniel@makrotopia.org>
- <ead26406-dd3b-491c-b6ab-11002a2db11a@kernel.org>
- <07fba45d99e9eabf9bcca71b86651074@manjaro.org> <3660160.WbyNdk4fJJ@diego>
-Message-ID: <b0164e0d05d9e445a844ffdfca7a82d5@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <cover.1718994350.git.robin.murphy@arm.com> <0dc14431c8a495e1135fc1d9c4500d4cb96b4e39.1718994350.git.robin.murphy@arm.com>
+In-Reply-To: <0dc14431c8a495e1135fc1d9c4500d4cb96b4e39.1718994350.git.robin.murphy@arm.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sun, 23 Jun 2024 00:23:18 +0200
+Message-ID: <CAHp75VdnoOyKYbaNtr_UKn9NMSzXR1Syn9W7u0qtLgGuwYX6-Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] OF: Simplify of_iommu_configure()
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>, linux-acpi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Heiko,
+On Fri, Jun 21, 2024 at 8:47=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
+ wrote:
+>
+> We no longer have a notion of partially-initialised fwspecs existing,
+> and we also no longer need to use an iommu_ops pointer to return status
+> to of_dma_configure(). Clean up the remains of those, which lends itself
+> to clarifying the logic around the dma_range_map allocation as well.
 
-On 2024-06-22 22:26, Heiko Stübner wrote:
-> Am Samstag, 22. Juni 2024, 12:29:33 CEST schrieb Dragan Simic:
->> On 2024-06-22 00:16, Uwe Kleine-König wrote:
->> > On 6/21/24 20:13, Dragan Simic wrote:
->> >> On 2024-06-21 11:57, Krzysztof Kozlowski wrote:
->> >>> On 21/06/2024 03:25, Daniel Golle wrote:
->> >>>> From: Aurelien Jarno <aurelien@aurel32.net>
->> >>
->> >> [snip]
->> >>
->> >>>> +    pm_runtime_set_autosuspend_delay(dev,
->> >>>> RK_RNG_AUTOSUSPEND_DELAY);
->> >>>> +    pm_runtime_use_autosuspend(dev);
->> >>>> +    pm_runtime_enable(dev);
->> >>>> +
->> >>>> +    ret = devm_hwrng_register(dev, &rk_rng->rng);
->> >>>> +    if (ret)
->> >>>> +        return dev_err_probe(&pdev->dev, ret, "Failed to register
->> >>>> Rockchip hwrng\n");
->> >>>> +
->> >>>> +    dev_info(&pdev->dev, "Registered Rockchip hwrng\n");
->> >>>
->> >>> Drop, driver should be silent on success.
->> >>
->> >> I respectfully disagree.  Many drivers print a single line upon
->> >> successful probing, which I find very useful.  In this particular
->> >> case, it's even more useful, because some people may be concerned
->> >> about the use of hardware TRNGs, so we should actually make sure
->> >> to announce it.
->> >
->> > I agree to Krzysztof here. From the POV of a driver author, your own
->> > driver is very important and while you write it, it really interests
->> > *you* if the driver is successfully probed. However from a system
->> > perspective these are annoying: There are easily >50 devices[1] on a
->> > system, if all of these print a message in probe, you have little
->> > chance
->> > to see the relevant messages. Even if every driver author thinks their
->> > work is a special snow flake that is worth announcing, in practice
->> > users
->> > only care about your driver if there is a problem. Additionally each
->> > message takes time and so delays the boot process. Additionally each
->> > message takes place in the printk ring buffer and so edges out earlier
->> > messages that might be more important.
->> 
->> Well, I don't find those messages annoying, for the drivers I've had
->> nothing to do with.  Also, in my experience, 99.9% of users don't care
->> about the kernel messages at all, be it everything hunky-dory, or be
->> it something really wrong somewhere.
->> 
->> > So +1 for dropping the dev_info() or at least using dev_debug() for it.
-> 
-> Just for 2ct ... I'm also in the don't print too much camp ;-) .
-> When parsing kernel logs to see where things fail, messages just
-> telling me about sucesses make things more difficult.
-> 
-> So really this message should be dropped or at least as Uwe suggests
-> made a dev_dbg.
+...
 
-As a note, "dmesg --level=err,warn", for example, is rather useful
-when it comes to filtering the kernel messages to see only those that
-are signs of a trouble.
+> +       if (!err && dev->bus)
+> +               err =3D iommu_probe_device(dev);
+>
+> +       if (err && err !=3D -EPROBE_DEFER)
+> +               dev_dbg(dev, "Adding to IOMMU failed: %d\n", err);
+
+Hmm... I'm wondering if dev_err_probe() can be used here.
+
+>         return err;
+
+...
+
+> +       dev_dbg(dev, "device is%sbehind an iommu\n",
+> +               !ret ? " " : " not ");
+
+Why not a positive test?
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
