@@ -1,131 +1,216 @@
-Return-Path: <devicetree+bounces-78762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2219134E6
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 17:43:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63630913507
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:19:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9B7AB2276E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 15:43:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89F541C20F42
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 16:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD7716FF39;
-	Sat, 22 Jun 2024 15:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D72216F84B;
+	Sat, 22 Jun 2024 16:19:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QhdxPuce"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DAD416F286;
-	Sat, 22 Jun 2024 15:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1412216C445;
+	Sat, 22 Jun 2024 16:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719071008; cv=none; b=fIKDQ705Fa8iYy2EoGXA8im+gJflZzzBgPMSGaHDiJ8R5jbsTLb60LFxSN+GoMfE75RWyE8DxY4d0UDU/wTWOL5dJh2ossJ0j8akaoIUAGVOb2KanMtHZD8UWAuN47vAkOKAiXHtXKzsyr4oGxCkMxNZ1CxCWz3Wi30DjmvT1JY=
+	t=1719073158; cv=none; b=dOD+K4zNhW9D0NsLoqI3YcihpTd1lcbc491lL1LLc+rNbigEoMdy1bJmlsQqrdxsPEdoHKNHrnfCji+dRXjn6OFayuA2FFkN37a9IVrc+TmfVKFLlY/tBnmSdvaWsj4WyoTRyHudQqGPr+81PupnuCbOs7gus0ak5K4kbCNRXY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719071008; c=relaxed/simple;
-	bh=gLJ5+cVco3zzhNfu9rHyY18hslSCLkFf6EhGm/tluww=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pFEZRaYG+eNbxYFwftvJLdKMhTMuNk2aXg+CfUXKqKrRcH/kI5YhZRq9Ci/zQ3ewTQgfZ5p5ovxU5o/ity/LDgiNrcaDWOd3VArCKu2NspA8cs2nuB89t9Gz07wxbKKPfpdVXUP34b9ilv/PiRUlDsvFCPCviTClNYnKluy7x8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1f44b45d6abso23764785ad.0;
-        Sat, 22 Jun 2024 08:43:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719071006; x=1719675806;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Tr32xZGVVaqv7jAiwzmOcZLqHSUA0J9mSCiEtEoaTQ=;
-        b=R3buFEBwZr993BZk3xcwFGD0Has0UJSdbd16WRmkVObkTeFlzaznhx191vjW+p3Auq
-         NPWhV1z+RaLmGOKeJsYGgMkT93GzmRjkJp3cIBDrpgQquyLakQca40smsS+IXiShU4eE
-         ci+YXJ0bknYoiPKfW8/6PPsBla+12l2LFuHdTn7gjGu2e6qcMWMbv+Sj13tslF35S/Ga
-         /s/afYFU/Ne4xHB3Kvj6lgUU/MpeecPQUUuL7AXaZzruHghEgQ9O4vR6ZA4L6CaxYNZn
-         PN8UQP7JR80tejgTaj/9wUkmM5p8BolqrqwgMpN+gUpPlk8xrZzlKuaapobujqbgNhOu
-         fjaw==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ7BJ3eYT+1wI8iWtRzwtmfxZo2ZoxZpoMxzCxC0UbXMUtlt8eOFfU4r6WrrI0LUR4plraEb3FHny2gBRApw+Xd47S779HKYdlzgTwaqzdu7mMWYdbVnarqGMtSGxmEnneb4s7KA==
-X-Gm-Message-State: AOJu0YwTR3MxjyVB9PHb2GSjNa9I8nnr1t1eKYZJLB0HGZVzjbHzCfOq
-	s8XxcCz/PX4bJCya6RViJEWXE9rVNKogJFeJ3K80RBmgiP1Wha4Y
-X-Google-Smtp-Source: AGHT+IGUXVafMgf2JONHoy51XKuI3VfKD5p9JBYhQqxen0O92HROgW6FcusfSXMkgP0V9Vf4JstoWw==
-X-Received: by 2002:a17:903:18d:b0:1fa:2001:d8ff with SMTP id d9443c01a7336-1fa2001dad7mr6104195ad.52.1719071006450;
-        Sat, 22 Jun 2024 08:43:26 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb3206a1sm32466645ad.77.2024.06.22.08.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jun 2024 08:43:25 -0700 (PDT)
-Date: Sun, 23 Jun 2024 00:43:24 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
-	Jon Lin <jon.lin@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 00/13] PCI: dw-rockchip: Add endpoint mode support
-Message-ID: <20240622154324.GA391376@rocinante>
-References: <20240607-rockchip-pcie-ep-v1-v5-0-0a042d6b0049@kernel.org>
- <Zm_tGknJe5Ttj9mC@ryzen.lan>
- <20240621193937.GB3008482@rocinante>
- <ZnbUHI5GEMCmaK2V@ryzen.lan>
+	s=arc-20240116; t=1719073158; c=relaxed/simple;
+	bh=R1fJAxEmEa9+Ogxf/UQa4lVvbvX8kI5YG4jOsFb1HgY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P9wyXTvgQQiBpDqOEDoxrKMRzXLGp3rvlglzkCdawAm+v50GROML+y0Onb5qo6u/OxhjUs4SANL9CBdwUBjgOUPdQ8NZ4Z+9O+TohhJz1V/XviZrqrDBM6Zpvt5Dw1Q6IJlNRsijXGFyBFXZsJvbS8+ghvy/5yYFoqsqO0OMs/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QhdxPuce; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45MGJ4Y2061387;
+	Sat, 22 Jun 2024 11:19:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719073144;
+	bh=C4RoinTQTtmRn4rV2KwDh6NL62drf5wIG8VbXAUiIrs=;
+	h=From:To:CC:Subject:Date;
+	b=QhdxPuce6CkqLZkLH4MmWW+ybITatONSC13UXT6O6H3swWDOvRBA61845JgNI59Kh
+	 C+oi6o0HvCGZNQyfYP3IW9lZWNjJ7B8kF//sDIcsN5dIHY9JomPCxADoa9vavzKnTr
+	 1XwkHnGz64XKQ8CxySEOaxnwFzxAGaxChW11pHyo=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45MGJ4JR001208
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 22 Jun 2024 11:19:04 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 22
+ Jun 2024 11:19:03 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 22 Jun 2024 11:19:03 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (udit-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.18])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45MGJ0M1029138;
+	Sat, 22 Jun 2024 11:19:00 -0500
+From: Udit Kumar <u-kumar1@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <m-chawdhry@ti.com>, Sinthu Raja <sinthu.raja@ti.com>,
+        Udit Kumar
+	<u-kumar1@ti.com>
+Subject: [PATCH v4] arm64: dts: ti: k3-am68-sk-som: Add support for OSPI flash
+Date: Sat, 22 Jun 2024 21:48:35 +0530
+Message-ID: <20240622161835.3610348-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZnbUHI5GEMCmaK2V@ryzen.lan>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hello,
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-[...]
-> Could you possibly include the commit:
-> 3d2e425263e2 ("PCI: dwc: ep: Add a generic dw_pcie_ep_linkdown() API to handle Link Down event")
-> from the controller/dwc branch in the controller/rockchip as well,
-> or rebase the controller/rockchip branch on top of the controller/dwc branch,
-> or merge the controller/dwc branch to the controller/rockchip branch?
-> 
+AM68 SK has an OSPI NOR flash on its SOM connected to OSPI0 instance.
+Enable support for the same. Also, describe the OSPI flash partition
+information through the device tree, according to the offsets in the
+bootloader.
 
-Done.
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+---
+Bootlogs
+https://gist.github.com/uditkumarti/3a131e3c78f121cf8c2f703d307c02df#file-gistfile1-txt
+line 1451
 
-> Additionally, since you picked up Mani's series which removes
-> dw_pcie_ep_init_notify() on the controller/dwc branch:
-> 9eba2f70362f ("PCI: dwc: ep: Remove dw_pcie_ep_init_notify() wrapper")
-> 
-> You will need to pick up this patch as well:
-> https://lore.kernel.org/linux-pci/20240622132024.2927799-2-cassel@kernel.org/T/#u
-> Otherwise there will be a build error when merging the controller/dwc
-> and the controller/rockchip branch to for-next.
-> The patch that I sent out can be picked up to the controller/rockchip right
-> now (since the API that Mani is switching to already exists in Linus's tree).
+Changes in v4:
+  a. Added bootph properties
+  b. INT pin is not used by flash drivers, so dropping this
+  c. reverting partition 0 offset to 512KB, due to DFU boot failure
+     seen on other K3 SOC with 1MB offset.
 
-Done.
+Changes in v3:
+  a. Fix the make dtbs_check error related to ospi pinctrl
+  b. Increase the partition 0 size to 1MB and update the following
+   partitions start address accordingly.
 
-Hopefully, this settles things for a bit.
+Changes in v2:
+  a. remove pin E20, which is not connected.
 
-> May I ask why all the branches for the different DWC glue drivers are not
-> based on the controller/dwc branch?
+v3: https://lore.kernel.org/all/20240226095231.35684-1-sinthu.raja@ti.com/
+v2: https://lore.kernel.org/linux-arm-kernel/20240219075932.6458-1-sinthu.raja@ti.com/
+v1: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240206092334.30307-1-sinthu.raja@ti.com/ 
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 81 ++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-No worries.
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+index 2ebb7daa822f..5c66e0ec6e82 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+@@ -131,6 +131,25 @@ rtos_ipc_memory_region: ipc-memories@a8000000 {
+ 	};
+ };
+ 
++&wkup_pmx0 {
++	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins {
++		bootph-all;
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
++			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
++			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
++			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
++			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
++			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (F18) MCU_OSPI0_D3 */
++			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (E19) MCU_OSPI0_D4 */
++			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (G19) MCU_OSPI0_D5 */
++			J721S2_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (F19) MCU_OSPI0_D6 */
++			J721S2_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (F20) MCU_OSPI0_D7 */
++			J721S2_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (E18) MCU_OSPI0_DQS */
++		>;
++	};
++};
++
+ &wkup_pmx2 {
+ 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+@@ -153,6 +172,68 @@ eeprom@51 {
+ 	};
+ };
+ 
++&ospi0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0x0>;
++		spi-tx-bus-width = <8>;
++		spi-rx-bus-width = <8>;
++		spi-max-frequency = <25000000>;
++		cdns,tshsl-ns = <60>;
++		cdns,tsd2d-ns = <60>;
++		cdns,tchsh-ns = <60>;
++		cdns,tslch-ns = <60>;
++		cdns,read-delay = <4>;
++
++		partitions {
++			bootph-all;
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "ospi.tiboot3";
++				reg = <0x0 0x80000>;
++			};
++
++			partition@80000 {
++				label = "ospi.tispl";
++				reg = <0x80000 0x200000>;
++			};
++
++			partition@280000 {
++				label = "ospi.u-boot";
++				reg = <0x280000 0x400000>;
++			};
++
++			partition@680000 {
++				label = "ospi.env";
++				reg = <0x680000 0x40000>;
++			};
++
++			partition@740000 {
++				label = "ospi.env.backup";
++				reg = <0x740000 0x40000>;
++			};
++
++			partition@800000 {
++				label = "ospi.rootfs";
++				reg = <0x800000 0x37c0000>;
++			};
++
++			partition@3fc0000 {
++				bootph-pre-ram;
++				label = "ospi.phypattern";
++				reg = <0x3fc0000 0x40000>;
++			};
++		};
++	};
++};
++
+ &mailbox0_cluster0 {
+ 	status = "okay";
+ 	interrupts = <436>;
+-- 
+2.34.1
 
-> They are obviously going to be tightly related.
-
-Normally, we prefer to apply things to specific topic branches, but I will
-revisit this approach going forward, since changes between Endpoint, DWC
-and specific controller drivers are often tightly coupled, as you noted,
-which can make things a bit of a mess, unnecessarily.
-
-We are going to do some clean up once Bjorn sends his Pull Request.
-
-	Krzysztof
 
