@@ -1,173 +1,124 @@
-Return-Path: <devicetree+bounces-78691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38A739132DD
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:15:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BC1913308
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 12:43:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8AAB1F22997
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 09:15:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 736311C20A9C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 10:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA73514B96B;
-	Sat, 22 Jun 2024 09:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EA014D708;
+	Sat, 22 Jun 2024 10:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B6NaVLXc"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="bTv1y0xU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD832904;
-	Sat, 22 Jun 2024 09:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B6E14B09C;
+	Sat, 22 Jun 2024 10:43:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719047732; cv=none; b=M9MAG8GB99Sazg6e8MmSzTRgZs2VHmt3bM9y0yOrFmwDk9/FDy255NkfGPhCG7l/uB2oYXgrGcus5YB3RYFJobYF4RhfwMJB/Qy44bAELfxA0ExLYD5zwAurlyyDCyQhPXwCCs5BK+U5Mq4etbCGCq8baNcp6Dq1BiAomswn66s=
+	t=1719053013; cv=none; b=rLHsTEClA9l5leN4pSkcx/K8KELhqTWGse99RZhNtgZ2V55364Vhcx3qLscImfz0LtgbOHgAO+XtD934zwfzGJA5oFDeC/8YGZexx6tTzypJM+5g29L9CHg+uQFOS5SlaFAD47e5EJEUKp4DSx3e7nTidX10ZEtocMEZ83e8720=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719047732; c=relaxed/simple;
-	bh=QGmovqxe/ZZvpyV8EpE1WhgzuX8/X+ep9bNe33O6b7k=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mSXjtOlvq9C3zbP8hXLcdIO/tQJo3+j3MtpoXqmX1PO1K1xjW9OON9jLsYuS1jaQ1E33ZEmGvf1slOIo42uxdfsqiqNbgCMjj5xsCanXInMLGQtoXDPpUjoMuBcshn+Sz8W1RIV7GMeG2kxYGOfM9ERx+YFOoxU10lN+ody28Ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B6NaVLXc; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1fa07e4f44eso4714005ad.2;
-        Sat, 22 Jun 2024 02:15:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719047730; x=1719652530; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=E+Wro17/2T3M6H3Hb7/cNYPT10OFFiTg+saReZEKGL8=;
-        b=B6NaVLXcWO+TNJ8InKGSth5xkCIM8kkUw6DrZJdpPVd479dLkQrkI5G8AEsRLG4G6V
-         61LUMs6tJjYPgE5NZYJ+yYiwSz4tP4Ug0Hhj8lGx2Qu4MJXEZmRh6Y1ZHaK/sjn4BrVy
-         PL+WIdvswJHkLzNx2FlHblw9lOZK9KuUtrBEhtPw/RUYUYcZ9kefNIQTEtHY4lkapkR9
-         wfo10+3/ZdAo69Kki0YfhGvgMkuWdSw7dm55/bhban6giqFdpZF8b3WDZroG1cnU3ICb
-         J9QzyKL8hY3TEW9gv13cRCthSF8V8KNuFpsf+ijTchDjlcDQI8sQArVkeu9KVWbXTNHQ
-         y77w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719047730; x=1719652530;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E+Wro17/2T3M6H3Hb7/cNYPT10OFFiTg+saReZEKGL8=;
-        b=b6k5ApM/rrkKO5REE9Tym7oMdNJG6wmmRIGKI8p4hnPdJk5JX8PsKI2Dbeg6g7/W8l
-         CWMxZkeB4geoAA22BRZE3TbMTm+sv0lcKvTcoo/Q+Wa1pddElBo/uUgkgQZjMIeirVx9
-         ifhQsJ4Bg2qNkhG3J1Ev1BqGsZ0gZOtA/lTDqJudxDyCnKYNWioAAwLFUZ4+FOU4ULfw
-         5MJqDzPaMSEymuE4GypFOgvhivB3eDHhQx1EYf7gUSFSq+Nr91bYmM2bIZWhPQ7oi/V9
-         tXPh+LkBFVbjqYtBe4lU4/EstAPMlFm07R/gpdHaP7rWkB5X10+jKxmXOnq0SIC8nvzq
-         f3Pg==
-X-Forwarded-Encrypted: i=1; AJvYcCUlB8xTYDOcuaClDZ3euTyw5sGZZKgOGTiKO/gUJlG1DNiaq43nAcooUNjX6gDTWIzzNoXyGFHNhsw7ga5mx5AzY2MKhM/NvcFoDecTYudIvCMLGhD2eNx0OyNy6GMIC+/2hkh7ET3PqpJrimh+QE7N2uzKp/XSBcvrSHxxynla7XXZVQ==
-X-Gm-Message-State: AOJu0YznxKFSbxse/UBRB1amY2SpGqJUDqjy9+TTGkMc8aEbuffSH5QC
-	s30t3umVNcxB95m+kSmU6alNmT7jTY7JxpghtmiRpvz3ZLUELydf
-X-Google-Smtp-Source: AGHT+IFCAGCzvCfBKH6kQY85vrf8JsQcixQ15Dk3MpSL0kWK12ZJS4GFjOJTc01K7wzCRuSgudiSZg==
-X-Received: by 2002:a17:903:191:b0:1f9:ccd0:2abb with SMTP id d9443c01a7336-1f9ccd02d58mr85004575ad.58.1719047730306;
-        Sat, 22 Jun 2024 02:15:30 -0700 (PDT)
-Received: from [172.19.1.51] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb9bffdasm26812535ad.237.2024.06.22.02.15.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Jun 2024 02:15:29 -0700 (PDT)
-Message-ID: <3c4e0d8f-8d1e-4667-87c3-f070f3649a2c@gmail.com>
-Date: Sat, 22 Jun 2024 17:15:24 +0800
+	s=arc-20240116; t=1719053013; c=relaxed/simple;
+	bh=LVfYR8/jFkVpAgI5c9DnudXm1sPcC5/oQYIYNdp8Jys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mfrpAsHEHqTRB6X2IOHRVfQniHPxGcZi5b78H8RujVF4MC3xSNwrNBt6oed/IvZZUVqW61Zz5KHF5i8licOe1LfjmNmN82l98oQOaX7VOhbhrVOstYr8frNfSSfBFX0o6DUPAQmNTdA9swFnfUmn/qR4PApCX5VgKg8JLpwRI3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=bTv1y0xU; arc=none smtp.client-ip=195.154.113.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=L7GES3nlJ/mbxpjgjMloPbQ6xU28njSFXetD3IW/C9k=; b=bTv1y0xUMPOFAGcp8NXNG5sAri
+	9Wuf4Hr94UiZ7MZR0BqUJALKC7GisIpFxsW4LjUzSTu1FQa6X6/y1SDljDg3i+o2SYsmilCnpGMmt
+	CbkRrHufQlZoVG/xB9JElfWnkZp8zN4O9JUqJfB+BjT42Xt+9oCe/VUU5TuPkmepcyVGseWADjq2b
+	cj2nad8/d1eEV2nuXGQo+5U/ebwR2rLenZBgHimL1u9n/wlKqDQcyCZZCZY+GI+SnPDQFkaePavUf
+	KzQEhPT/Mso/7rXN/RH21FOxsdKDOYvAKYTGT2lc97Jjyt56u0C1qbY7b2LoeI6bbTsFUMb5cK9mp
+	KNunQfcw==;
+Received: from [2a01:e34:ec5d:a741:1ee1:92ff:feb4:5ec0] (helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1sKxVY-003oby-0i;
+	Sat, 22 Jun 2024 11:58:08 +0200
+Date: Sat, 22 Jun 2024 11:58:06 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Anand Moon <linux.amoon@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] hwrng: add hwrng support for Rockchip RK3568
+Message-ID: <ZnagLpqZS4UjDR6T@aurel32.net>
+Mail-Followup-To: Daniel Golle <daniel@makrotopia.org>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Anand Moon <linux.amoon@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <cover.1718921174.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Shan-Chun Hung <shanchun1218@gmail.com>
-Subject: Re: [PATCH 2/2] mmc: sdhci-of-ma35d1: Add Novoton MA35D1 SDHCI driver
-To: Philipp Zabel <p.zabel@pengutronix.de>, ulf.hansson@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- adrian.hunter@intel.com, pbrobinson@gmail.com, serghox@gmail.com,
- mcgrof@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- forbidden405@outlook.com, tmaimon77@gmail.com, andy.shevchenko@gmail.com,
- linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240619054641.277062-1-shanchun1218@gmail.com>
- <20240619054641.277062-3-shanchun1218@gmail.com>
- <bd0e85f42ef74f6f927020cbee6879351d1c3e9e.camel@pengutronix.de>
-Content-Language: en-US
-In-Reply-To: <bd0e85f42ef74f6f927020cbee6879351d1c3e9e.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1718921174.git.daniel@makrotopia.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
 
-Dear Philipp,
+Hi Daniel,
 
-Thanks for your review.
+On 2024-06-21 02:24, Daniel Golle wrote:
+> Rockchip SoCs used to have a random number generator as part of their
+> crypto device, and support for it has to be added to the corresponding
+> driver.
+> 
+> However newer Rockchip SoCs like the RK3568 have an independent True
+> Random Number Generator device. This patchset adds a driver for it and
+> enable it in the device tree.
+> 
+> v2 of this patchset has been submitted by Aurelien Jarno in November
+> 2022. A follow-up submission addressing the comments received for v2
+> never happened.
 
-On 2024/6/21 下午 07:45, Philipp Zabel wrote:
-> On Mi, 2024-06-19 at 13:46 +0800, Shan-Chun Hung wrote:
->> This adds the SDHCI driver for the MA35 series SoC. It is based upon the
->> SDHCI interface, but requires some extra initialization.
->>
->> Signed-off-by: schung<schung@nuvoton.com>
->> ---
->>   drivers/mmc/host/Kconfig           |  13 ++
->>   drivers/mmc/host/Makefile          |   1 +
->>   drivers/mmc/host/sdhci-of-ma35d1.c | 297 +++++++++++++++++++++++++++++
->>   3 files changed, 311 insertions(+)
->>   create mode 100644 drivers/mmc/host/sdhci-of-ma35d1.c
->>
-> [...]
->> diff --git a/drivers/mmc/host/sdhci-of-ma35d1.c b/drivers/mmc/host/sdhci-of-ma35d1.c
->> new file mode 100644
->> index 000000000000..7714a5ab463d
->> --- /dev/null
->> +++ b/drivers/mmc/host/sdhci-of-ma35d1.c
->> @@ -0,0 +1,297 @@
-> [...]
->> +static int ma35_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct sdhci_pltfm_host *pltfm_host;
->> +	struct sdhci_host *host;
->> +	struct ma35_priv *priv;
->> +	int err;
->> +	u32 extra, ctl;
->> +
->> +	host = sdhci_pltfm_init(pdev, &sdhci_ma35_pdata,
->> +				sizeof(struct ma35_priv));
->> +	if (IS_ERR(host))
->> +		return PTR_ERR(host);
->> +
->> +	/*
->> +	 * extra adma table cnt for cross 128M boundary handling.
->> +	 */
->> +	extra = DIV_ROUND_UP_ULL(dma_get_required_mask(&pdev->dev), SZ_128M);
->> +	if (extra > SDHCI_MAX_SEGS)
->> +		extra = SDHCI_MAX_SEGS;
->> +	host->adma_table_cnt += extra;
->> +	pltfm_host = sdhci_priv(host);
->> +	priv = sdhci_pltfm_priv(pltfm_host);
->> +
->> +	if (dev->of_node) {
->> +		pltfm_host->clk = devm_clk_get(&pdev->dev, NULL);
->> +		if (IS_ERR(pltfm_host->clk)) {
->> +			err = PTR_ERR(pltfm_host->clk);
->> +			dev_err(&pdev->dev, "failed to get clk: %d\n", err);
->> +			goto free_pltfm;
->> +		}
->> +		err = clk_prepare_enable(pltfm_host->clk);
->> +		if (err)
->> +			goto free_pltfm;
->> +	}
->> +
->> +	err = mmc_of_parse(host->mmc);
->> +	if (err)
->> +		goto err_clk;
->> +
->> +	priv->rst = devm_reset_control_get(&pdev->dev, NULL);
-> Please use devm_reset_control_get_exclusive() instead.
->
-> regards
-> Philipp
-OK, I will fix it.
+I didn't have the time or energy to continue working on this. Thanks for
+continuing the work, I'll give it a try at some point.
 
-Best Regards
+Regards
+Aurelien
 
-Shan-Chun
-
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
