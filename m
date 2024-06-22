@@ -1,120 +1,141 @@
-Return-Path: <devicetree+bounces-78692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D6F9132F6
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 12:11:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC80913300
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 12:29:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C5EC1C210E4
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 10:11:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1158284509
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 10:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578AD14B959;
-	Sat, 22 Jun 2024 10:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6EF14D701;
+	Sat, 22 Jun 2024 10:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c+q0QeVr"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="nLBuVgLd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com [209.85.208.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A35514A0A4;
-	Sat, 22 Jun 2024 10:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A633D79DF;
+	Sat, 22 Jun 2024 10:29:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719051092; cv=none; b=WX9fwQKT+FApIT4mClPErLrEZp9t7lz4M2o3aILiBBdVUXZTH3nrQB2c1DRY903p/noAAlLhcpOgreX2blHsYShTYT3kG3e73zv7vn06on3mObC8Od6V2DG9DDpHPtP9DMf7k0ntjna8yZT+Dtg4Bs6gOHrje7J1aB/jjiLuHPo=
+	t=1719052187; cv=none; b=Felq0bPcH6oM0QVM4jLMOcbbNzIOGN+KWw7dT+Gcn1+8MZ4NLCx2UrHmB/wGHz4F/d8dI7SsfzbBpvegN/fhM/15zuUp4hdQfwdHH+pBIgBi/o3OsOnE5D+i0i+u+6/MrqyEZ1V8IlC/deZB4kUbU1bYOxpN2Y+mXduPHCy3F4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719051092; c=relaxed/simple;
-	bh=rnx3RZC11dVJlwD6hTQr41HzSK7kJvBsJ/oa76LMcdI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FTUOH4rlMN0rI9aZK92XUojdNczhQLrOJybbuBb8lG6mJm2fpLcOH9NCGuTtzrLgxK8RKlCdq9X6On0YKO3rBKdR8FVAYdvXdQqXFqll1395ngXMhRxDjaiDf5nrMiIdccIGBE2G8PZk9fHRFW4SB5rFnZHwvoqaTatiIrAxmR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c+q0QeVr; arc=none smtp.client-ip=209.85.208.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f195.google.com with SMTP id 38308e7fff4ca-2ec002caeb3so34246281fa.2;
-        Sat, 22 Jun 2024 03:11:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719051089; x=1719655889; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H5B4zOxXEObeVuA7VINw2ILHjmpFBuMPZOmX3Ds+qSs=;
-        b=c+q0QeVrQeIfyDpgx3qxc5Qah7a0I+w+p/4tf3BuZQsBr+Xo4krx9ZePxvDjL0AnoE
-         9u7LYneLVw+wIMkgx0O3VTyOn2aAzZvI0b32GZHXjOAsfcuoQR8jzUyqPFAMVqXfITEc
-         NHey6kQVjw3eBuXD5jxQU7/np/7kJIM4i0GmZU9TweMKNDWII1cQzz/fXDfm6P3GmaVv
-         F6uzufedmbjA7EjQ/+1YchQdcs4Y2XlrZtGEAdj73S62inId8iIiFe5V7ITUUswcDpu6
-         CTjD1nkfepKquszbFMF+oPN0Ri9q4sfQ32x9jjh9j/e5WtFzC3zkNDAOQZf9m5Rxf/gx
-         Z77A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719051089; x=1719655889;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H5B4zOxXEObeVuA7VINw2ILHjmpFBuMPZOmX3Ds+qSs=;
-        b=v9d6Ng/mQnJ8y+lZfoLWNP+xy0fm4xwMiGXKX0f7tUPbN0dTD+GRUZ9y9KThmvWzIn
-         kCt2Ex0ml1KXPK8Tn6LFlgjQbqTKcEn88jrorqLgtGnopNOqUR0BSKqTzxSIApjx+Ekz
-         /5cExbiBxPkcl/Sa/jKca1tTPNxnlXqe1Cq3tAOhWPxGBYN0e5Z/GNIVHWljEbDtUnsk
-         EPn5RfWr4NV9Z9rpaABio+rrH2EsQ1aJ0HuF4krD9kRZiikUnZw1jfxLn6LV9D7Ytebz
-         Rh2PWbk/zlB3O2M2XPunKBMf7QairKbMGN/JuD9RQ3ZHSOZLxckLQh1vmCfVGUDL6lOJ
-         LFsA==
-X-Forwarded-Encrypted: i=1; AJvYcCXStJfa1VjiPaRKtUuNKZJ7X7hreG5URVgD9T7yZaZ4PydwM2P/OlUHgcvSgtnMggvFRBhG8JsEbih9Etem+aHDKVwDJlkMKxtJ08wOmLlVxCeVbzXhcwjbmKSHUzuXDEHwFZLgLgMWsrBCVCgnyfvaoTqt4RQm/lnM7zh/wy2PwuqxCQ==
-X-Gm-Message-State: AOJu0Yx0sw8IrH48kgcxLlh7Gjvrza1vCxyiT4+UXVvlNrirMNwh580+
-	btFEg1f5bayFBur/n0XmL3Y5R45nD02g6CUGxs5E70wNgogFczSp
-X-Google-Smtp-Source: AGHT+IFNzs28ZoOZIPvpiDZrpqmyjo0o+8lqMGI8FW5cgkZ5MV2b6u4cUf/TVXL5AP73TGF6oPyDMw==
-X-Received: by 2002:ac2:4823:0:b0:52c:d56f:b2cc with SMTP id 2adb3069b0e04-52cdf82574bmr414339e87.58.1719051088434;
-        Sat, 22 Jun 2024 03:11:28 -0700 (PDT)
-Received: from comp ([95.165.92.141])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd64390d6sm454917e87.238.2024.06.22.03.11.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jun 2024 03:11:28 -0700 (PDT)
-Date: Sat, 22 Jun 2024 13:11:27 +0300
-From: Alexey Lukyanchuk <skifwebdevelop@gmail.com>
-To: minda.chen@starfivetech.com
-Cc: aou@eecs.berkeley.edu, bhelgaas@google.com, conor@kernel.org,
- daire.mcnamara@microchip.com, devicetree@vger.kernel.org,
- emil.renner.berthing@canonical.com, kevin.xie@starfivetech.com,
- krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
- leyfoon.tan@starfivetech.com, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
- lpieralisi@kernel.org, mason.huo@starfivetech.com, p.zabel@pengutronix.de,
- palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
- tglx@linutronix.de
-Subject: Re: [PATCH v16 00/22] Refactoring Microchip PCIe driver and add
- StarFive PCIe
-Message-ID: <20240622131127.0f63bc4c@comp>
-In-Reply-To: <20240622121403.7effa777@comp>
-References: <20240328091835.14797-1-minda.chen@starfivetech.com>
-	<20240622121403.7effa777@comp>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1719052187; c=relaxed/simple;
+	bh=EbhJrZl4vfVX69Ed6tMYXe+MvUXi6WxJaYR8+kCdLp0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Y3XnFGVnNvBAYCGnp625iYphtM6hVVwzacY6++q/XQyy7VjWcuJOQRJmctNtttWeLL29M2cL12RdcWtSy2U7PUj/iBuHz5zwLjKxePMEIGwvE9v/Zbyli7h/Dld5DuRDBmvRs8sEkvLwRopwss25NVdO5K/qi4MRYsH3tnIjGKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=nLBuVgLd; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1719052181;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gAs4OzU1Oz3fZkEyE0fXcGDcqifaH35w5B5v23oDbGw=;
+	b=nLBuVgLdi1Ma3AsC4BcduWrQtZljtVvLRLy8P++PL4vrCvYI8UjuY1RWa1GQEQUYAss95u
+	ZhOlYTGJL8HfYiXljF3nuWBQhZXfcw60f48BGapi1QZ1eZnQVwQ7Z7NG5tBGYdPdNEEMDi
+	vf45ho21uqRa1x6iiIU5HK0qfJKGsT+YzEjZUhSLXR7eeufJ6saJjzserH6ceUmcMOmi6R
+	heTdohQ4ujLYbMNd9ySFlM9XgOJgb9j8eaZow2P5XcKZ4XbABY2Qku9+KTFWgnBxsZn8bM
+	tlmA2OK7w48oxzYmXFfp1fzheQXxkSryBkQwf3IG2ms7svnYumxZQIfTJZMqdg==
+Date: Sat, 22 Jun 2024 12:29:33 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Daniel Golle
+ <daniel@makrotopia.org>, Aurelien Jarno <aurelien@aurel32.net>, Olivia
+ Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp
+ Zabel <p.zabel@pengutronix.de>, Sebastian Reichel
+ <sebastian.reichel@collabora.com>, Anand Moon <linux.amoon@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Martin Kaiser <martin@kaiser.cx>, Ard
+ Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
+In-Reply-To: <ead26406-dd3b-491c-b6ab-11002a2db11a@kernel.org>
+References: <cover.1718921174.git.daniel@makrotopia.org>
+ <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
+ <f8e6b1b9-f8ff-42df-b1ef-bcc439c2e913@kernel.org>
+ <173ce1663186ab8282356748abcac3f4@manjaro.org>
+ <ead26406-dd3b-491c-b6ab-11002a2db11a@kernel.org>
+Message-ID: <07fba45d99e9eabf9bcca71b86651074@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-SOZ, I forgot to add email to tag, sorry
-Tested-by: Alexey Lukyanchuk <skifwebdevelop@gmail.com>
+Hello Uwe,
 
-On Sat, 22 Jun 2024 12:14:03 +0300
-Alexey Lukyanchuk <skifwebdevelop@gmail.com> wrote:
+On 2024-06-22 00:16, Uwe Kleine-König wrote:
+> On 6/21/24 20:13, Dragan Simic wrote:
+>> On 2024-06-21 11:57, Krzysztof Kozlowski wrote:
+>>> On 21/06/2024 03:25, Daniel Golle wrote:
+>>>> From: Aurelien Jarno <aurelien@aurel32.net>
+>> 
+>> [snip]
+>> 
+>>>> +    pm_runtime_set_autosuspend_delay(dev, 
+>>>> RK_RNG_AUTOSUSPEND_DELAY);
+>>>> +    pm_runtime_use_autosuspend(dev);
+>>>> +    pm_runtime_enable(dev);
+>>>> +
+>>>> +    ret = devm_hwrng_register(dev, &rk_rng->rng);
+>>>> +    if (ret)
+>>>> +        return dev_err_probe(&pdev->dev, ret, "Failed to register 
+>>>> Rockchip hwrng\n");
+>>>> +
+>>>> +    dev_info(&pdev->dev, "Registered Rockchip hwrng\n");
+>>> 
+>>> Drop, driver should be silent on success.
+>> 
+>> I respectfully disagree.  Many drivers print a single line upon
+>> successful probing, which I find very useful.  In this particular
+>> case, it's even more useful, because some people may be concerned
+>> about the use of hardware TRNGs, so we should actually make sure
+>> to announce it.
+> 
+> I agree to Krzysztof here. From the POV of a driver author, your own
+> driver is very important and while you write it, it really interests
+> *you* if the driver is successfully probed. However from a system
+> perspective these are annoying: There are easily >50 devices[1] on a
+> system, if all of these print a message in probe, you have little 
+> chance
+> to see the relevant messages. Even if every driver author thinks their
+> work is a special snow flake that is worth announcing, in practice 
+> users
+> only care about your driver if there is a problem. Additionally each
+> message takes time and so delays the boot process. Additionally each
+> message takes place in the printk ring buffer and so edges out earlier
+> messages that might be more important.
 
-> Hello Minda Chen.
-> 
-> I applied your PCIE series patches to v6.10-rc3 and v6.9.0, works like
-> a charm - thank you!
-> 
-> So Tested-by: Alexey Lukyanchuk to all series.
-> 
-> Hovewere i had to fix some minor issues, you can view the results
-> here:
-> 
-> https://github.com/skif-web/linux-starfive-vs2-mainline/tree/strafive-visionfive2-pcie-2
-> 
-> Hope it helps.
-> 
-> Hopefully to see this series being eventually applied soon.
+Well, I don't find those messages annoying, for the drivers I've had
+nothing to do with.  Also, in my experience, 99.9% of users don't care
+about the kernel messages at all, be it everything hunky-dory, or be
+it something really wrong somewhere.
 
+> So +1 for dropping the dev_info() or at least using dev_debug() for it.
+> 
+> Best regards
+> Uwe
+> 
+> [1] On my laptop if have:
+> 
+> 	$ find /sys/devices -name driver | wc -l
+> 	87
+> 
+>     On a Raspberrypi it yields 66.
 
