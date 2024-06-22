@@ -1,169 +1,289 @@
-Return-Path: <devicetree+bounces-78776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AC03913592
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:12:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7895B913598
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:22:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D5D31C21239
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:12:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C09221F21FE0
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD0924A08;
-	Sat, 22 Jun 2024 18:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EAC2AF15;
+	Sat, 22 Jun 2024 18:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JImTM2rp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g52BCUjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988C2225CF;
-	Sat, 22 Jun 2024 18:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C41820332;
+	Sat, 22 Jun 2024 18:22:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719079944; cv=none; b=hTHNKCwiBxd+Is7XEmnedmywdt7Y/0k2XpCE9GvuJF6OpUS63XbtL0hTaa7j3PapVQkqo+m48Y/dT2ENjqBl/u7ILaC5zmqsFFnK6Et9wk4D4qImqLGuHKcnQy1JG6jo0kK9VzaB6Ub2FbAexPwCHC/YPIfRaPa7fAKSD/vz6Yc=
+	t=1719080560; cv=none; b=ZcdUuGN/YRJrHxk8I7sFyMtojJcNuvG4sZ5IKau6b9r6RtRCSG27H13L2wXnoqvuKhh1nnyebDLrM4gvaoDPLBSdlvyW7LuoclyZxp5M4WIRNwCXhGopUGtzIf2JfkDofxZ2l7Lj36XMj6Z0Q27PQxcn4VNGZ6cjsNxSM1CzvFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719079944; c=relaxed/simple;
-	bh=7K1cC3WKLb7G8lvv4xw3xZ6OA3k0OfGg8JeEG6bBLEg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dqp6SeHI1tUvGt/fGVvWe5WE/f+FsLrgDVTalrCt8bU4/SkiQZjuc9PPsTG+FUlUggDBuhA6CHVYQbcsXk8AlHAPKIAE8ZfMNuAhSPZBeM1iUPut+D0/mj/p6Vx1J9iOhO5iiYQTTWkWG2cBVbQHCnWVNk+eiXCOmGn4lfV8mPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JImTM2rp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6968BC3277B;
-	Sat, 22 Jun 2024 18:12:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719079944;
-	bh=7K1cC3WKLb7G8lvv4xw3xZ6OA3k0OfGg8JeEG6bBLEg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JImTM2rpPT9Yl5DhsAbrWQOuLmwBGqR4QPy9+7oDH4XkS2FGOaXk8TUPQd0oDe+UU
-	 xICYDbLZd2lsbbB8H5mThe0nS0/pqgcAvXPCeqGkJcyNLo83MUlwv4+f9hE8dXwyFg
-	 oaqza+sSU7oub8Q8J6tLHQ4J9gA3W2gBrQ+8fcjh3xEMt8Wm1rQE/6/LWEXeS7O3JD
-	 POzKMDnlXtQq0Kz+zwkrfV8+ybo211jtIFY3q+/x/M7X6AsVjWOSXEIyey7x+dS2P0
-	 4TmI3bwe1DHt/CnYSLHbvIIEY/zB1x1+U7lnLoi4RdX9OLCObB+8q0FbH0kqxAtUuh
-	 eRVYnDvAsvOzQ==
-Message-ID: <6ca74ccf-b93e-4d77-8609-a12a96c15f38@kernel.org>
-Date: Sat, 22 Jun 2024 20:12:17 +0200
+	s=arc-20240116; t=1719080560; c=relaxed/simple;
+	bh=ICz9k805W8OYylRda156ORFIN7cEsgDT2/4ec7IeMLk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=onPhqx2Y5+vgnVdGqWYotrsYSWFZOB6G7hJojbfMRssChmtwyjEonKHA0DbCn+6POtXRLQC2dHYcOJSZpxtSjs+PyVpyNJNxZin6m6vZeb+bbHvraO1R61dqBPP7ewFKPtQQYzl4VQNVQVKxu9/ShfVFUjO8H55a6t14IYDpl3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g52BCUjO; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1f4a5344ec7so20673635ad.1;
+        Sat, 22 Jun 2024 11:22:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719080558; x=1719685358; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0kSS06er1VarQnO16XXiZ+cNjn4u2G2NLIQN3unM0EE=;
+        b=g52BCUjOAykmbU0k5Z3CKezoAaml6zo3CaC2yJ2LkKKNeIyJ/eoNo3uaEoCja+IJMs
+         em87S0RE727rsGs58bKTUvVkXSyZ23GORThjRcYymosQpxJi1Y+/1bHnNtL/XgMyitBh
+         OeijQWExtFOD69StxuakwdxCFiIUBSpnZGkGHTO+DoWq44t8covqtHlr4mScm2WZaAZ7
+         ydsxklv32ntaEOFJXqGAbkCscwhl+LABfN7IoHvuWWpvjtP+zRehTQ/CkQYOUw+m4yCy
+         enL6/a7GD1JxQP5CmcxmHDT2AGO9L2Eo6jJJ2TWQZcLz33gLICS+WHPsiRS+WS2AMS3d
+         BzHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719080558; x=1719685358;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0kSS06er1VarQnO16XXiZ+cNjn4u2G2NLIQN3unM0EE=;
+        b=PgeoTqiTLoB4BgUOKKTZ775dama17VhO5KRS9UDbJYLkXzx55eY0pM1wJL3YdULMAZ
+         a2mIA6nnfpf9cKq/xa6IKWKYYJaocMgfFsvJJw+0I/grjYQ33fDEvVcfFLHK0wtUYxhx
+         dG/Xwz+2B8I9nr3EJRPrZnMrnotRKyaxqM8V3BHzhy0CttGmLgiiOeLomG3QvvgQzueX
+         ajGqxjcZF0tQ4cBsXmfmUw7htEAM9DYXV7nKtwvLGlMUX4Fq0eMHPRpyl6y2PXQU/XI+
+         OJVXel1ICn5mUCr1W4naQ8lb80e+7qw3osK4LvBPqyBAPNFzkUzCUiEfm1nIUXQeCGz4
+         ohtA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnFVZBT5LQ3VUCIbH7c0xqQEkWStlTMn2rP3Q7pOZ8wbcjd5P3i3PxhrkSowIRSLFtm5W2qUlVnjgxKbLbPgClT/U31MFLKG49JudI5dkzm1QMH0t51yop91EPMeB2sp1nUyUsisRQTn//PIemrn3s7qFS7KMFdVOkF/fnbkvkF2bjdicM
+X-Gm-Message-State: AOJu0Yy3Jy8SagPJmwis4dMyxk4oXGDOtjUAzNMoTPa6Tx/XRn2EQ9el
+	3tJKIEyy4ukQm/EtYRMIruJcrp+ikdKj8JKVUckGHuXIZmf3dY7T
+X-Google-Smtp-Source: AGHT+IFSi6Zl6roN+pMwkndNjWlqH2oNq/bbNLK+UAZlb4vSoJGqMkxrLST790YOyh4/Jg6sPZ2R1g==
+X-Received: by 2002:a17:903:a46:b0:1f9:fe14:592f with SMTP id d9443c01a7336-1fa0f8cd95cmr18266495ad.17.1719080556950;
+        Sat, 22 Jun 2024 11:22:36 -0700 (PDT)
+Received: from fedora.one.one.one.one ([2405:201:6013:c0b2:ea4b:30e0:4e3a:ab56])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9ebbc7b8asm33794545ad.300.2024.06.22.11.22.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Jun 2024 11:22:36 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: fsl,imx-audio-sgtl5000: Convert to dtschema
+Date: Sat, 22 Jun 2024 23:51:56 +0530
+Message-ID: <20240622182200.245339-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
- <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
- <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
- <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
- <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
- <856ff7b0-774d-4120-8bd8-01270f5c14b4@app.fastmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <856ff7b0-774d-4120-8bd8-01270f5c14b4@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 21/06/2024 17:51, Jiaxun Yang wrote:
-> 
-> 
-> 在2024年6月20日六月 上午7:40，Krzysztof Kozlowski写道：
-> [...]
->>>
->>> Hi Krzysztof,
->>>
->>> I believe U-Boot's implementation is correct. As per simple-mfd binding:
->>>
->>> ```
->>> simple-mfd" - this signifies that the operating system should
->>>   consider all subnodes of the MFD device as separate devices akin to how
->>>   "simple-bus" indicates when to see subnodes as children for a simple
->>>   memory-mapped bus.
->>> ```
->>>
->>> This reads to me as "if you want sub nodes to be populated as devices
->>> you need this."
->>>
->>> In our case there are "clock" and "reset" node sub nodes which should be
->>> probed as regular device, so it's true for us.
->>
->> No, you already got comment from Rob.
->>
->> Your children depend on parent to provide IO address, so this is not
->> simple-mfd. Rule for simple-mfd is that children do not rely on parent
->> at all.
->>
-> Hi Krzysztof,
-> 
-> Sorry but can I ask for clarification on "depend on parent to provide IO
-> address", do you mind explaining it a little bit? Does it mean children
-> should get regmap node from a phandle property, not the parent node? Or there
-> should be a reg property for child node to tell register offset etc?
-> 
-> There are way too much usage that children "depends" on parents somehow
-> in tree, so I want to confirm my understanding.
+Convert the imx-audio-sgtl bindings to DT schema. Make bindings complete
+by adding audio-cpu property.
 
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+---
+ .../sound/fsl,imx-audio-sgtl5000.yaml         | 108 ++++++++++++++++++
+ .../bindings/sound/imx-audio-sgtl5000.txt     |  56 ---------
+ 2 files changed, 108 insertions(+), 56 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-audio-sgtl5000.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/imx-audio-sgtl5000.txt
 
-Your driver relies on parent IO address to be provided - what's more to
-explain here? If parent does not provide syscon, does the child work?
-No. Therefore it is not suited for simple-mfd.
-
-> 
-> For boston-platform-regs there are some other PHYs that I may add drivers
-> for them in future, so I certainly want "simple-mfd" to be here 
-
-Well, I want a new Ducati, but we don't always get what we want, right?
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/sound/fsl,imx-audio-sgtl5000.yaml b/Documentation/devicetree/bindings/sound/fsl,imx-audio-sgtl5000.yaml
+new file mode 100644
+index 000000000000..906dcecb73b7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/fsl,imx-audio-sgtl5000.yaml
+@@ -0,0 +1,108 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/fsl,imx-audio-sgtl5000.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX audio complex with SGTL5000 codec
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,imx25-pdk-sgtl5000
++              - fsl,imx51-babbage-sgtl5000
++              - fsl,imx53-m53evk-sgtl5000
++              - tq,imx53-mba53-sgtl5000
++              - fsl,imx53-cpuvo-sgtl5000
++              - fsl,imx53-qsb-sgtl5000
++              - karo,tx53-audio-sgtl5000
++              - fsl,imx53-voipac-sgtl5000
++              - fsl,imx6q-ba16-sgtl5000
++              - fsl,imx6q-ventana-sgtl5000
++              - fsl,imx-sgtl5000
++              - fsl,imx6-armadeus-sgtl5000
++              - fsl,imx6dl-nit6xlite-sgtl5000
++              - fsl,imx6q-nitrogen6_max-sgtl5000
++              - fsl,imx6q-nitrogen6_som2-sgtl5000
++              - fsl,imx6q-nitrogen6x-sgtl5000
++              - fsl,imx6-rex-sgtl5000
++              - fsl,imx6q-sabrelite-sgtl5000
++              - fsl,imx6-wandboard-sgtl5000
++          - const: fsl,imx-audio-sgtl5000
++      - const: fsl,imx-audio-sgtl5000
++
++  model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: The user-visible name of this sound complex.
++
++  audio-cpu:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of an CPU DAI controller
++
++  ssi-controller:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the i.MX SSI controller.
++
++  audio-codec:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the SGTL5000 audio codec.
++
++  audio-routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: |
++      A list of the connections between audio components. Each entry is a pair
++      of strings, the first being the connection's sink, the second being the
++      connection's source. Valid names could be:
++
++      Power supplies:
++        * Mic Bias
++
++      SGTL5000 pins:
++        * MIC_IN
++        * LINE_IN
++        * HP_OUT
++        * LINE_OUT
++
++      Board connectors:
++        * Mic Jack
++        * Line In Jack
++        * Headphone Jack
++        * Line Out Jack
++        * Ext Spk
++
++  mux-int-port:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: The internal port of the i.MX audio muxer (AUDMUX).
++    enum: [1, 2]
++
++  mux-ext-port:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: The external port of the i.MX audio muxer.
++    enum: [3, 4, 5, 6]
++
++required:
++  - compatible
++  - model
++
++additionalProperties: false
++
++examples:
++  - |
++    sound {
++        compatible = "fsl,imx51-babbage-sgtl5000",
++            "fsl,imx-audio-sgtl5000";
++        model = "imx51-babbage-sgtl5000";
++        ssi-controller = <&ssi1>;
++        audio-codec = <&sgtl5000>;
++        audio-routing =
++            "MIC_IN", "Mic Jack",
++            "Mic Jack", "Mic Bias",
++            "Headphone Jack", "HP_OUT";
++        mux-int-port = <1>;
++        mux-ext-port = <3>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/imx-audio-sgtl5000.txt b/Documentation/devicetree/bindings/sound/imx-audio-sgtl5000.txt
+deleted file mode 100644
+index 2f89db88fd57..000000000000
+--- a/Documentation/devicetree/bindings/sound/imx-audio-sgtl5000.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-Freescale i.MX audio complex with SGTL5000 codec
+-
+-Required properties:
+-
+-  - compatible		: "fsl,imx-audio-sgtl5000"
+-
+-  - model		: The user-visible name of this sound complex
+-
+-  - ssi-controller	: The phandle of the i.MX SSI controller
+-
+-  - audio-codec		: The phandle of the SGTL5000 audio codec
+-
+-  - audio-routing	: A list of the connections between audio components.
+-			  Each entry is a pair of strings, the first being the
+-			  connection's sink, the second being the connection's
+-			  source. Valid names could be power supplies, SGTL5000
+-			  pins, and the jacks on the board:
+-
+-			  Power supplies:
+-			   * Mic Bias
+-
+-			  SGTL5000 pins:
+-			   * MIC_IN
+-			   * LINE_IN
+-			   * HP_OUT
+-			   * LINE_OUT
+-
+-			  Board connectors:
+-			   * Mic Jack
+-			   * Line In Jack
+-			   * Headphone Jack
+-			   * Line Out Jack
+-			   * Ext Spk
+-
+-  - mux-int-port	: The internal port of the i.MX audio muxer (AUDMUX)
+-
+-  - mux-ext-port	: The external port of the i.MX audio muxer
+-
+-Note: The AUDMUX port numbering should start at 1, which is consistent with
+-hardware manual.
+-
+-Example:
+-
+-sound {
+-	compatible = "fsl,imx51-babbage-sgtl5000",
+-		     "fsl,imx-audio-sgtl5000";
+-	model = "imx51-babbage-sgtl5000";
+-	ssi-controller = <&ssi1>;
+-	audio-codec = <&sgtl5000>;
+-	audio-routing =
+-		"MIC_IN", "Mic Jack",
+-		"Mic Jack", "Mic Bias",
+-		"Headphone Jack", "HP_OUT";
+-	mux-int-port = <1>;
+-	mux-ext-port = <3>;
+-};
+-- 
+2.45.2
 
 
