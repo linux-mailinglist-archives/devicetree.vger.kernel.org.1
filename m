@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1091391357E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:02:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63AC0913584
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:04:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D8841F2183F
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:02:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC0EC1F21D8B
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9FC18651;
-	Sat, 22 Jun 2024 18:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8905138397;
+	Sat, 22 Jun 2024 18:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ga8Hh3ku"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R41chvNt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32558F5B;
-	Sat, 22 Jun 2024 18:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A7A381AA;
+	Sat, 22 Jun 2024 18:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719079329; cv=none; b=XCHTdvEaFinn8rfOlxXPfzFoH1VAezXzETyB7OZ1MZ5YEmZAmV2sCdaVY8Vlqr9bC8UVyzPty71qWJMC8OCQlsRuTwtlWPcvZcdrmYH5djjm/nafvFMXXZqUFOxv8vPf5Q4oykOI/p6CJoNasN8DsjdRtS0MuwWtUyTygQQcM6A=
+	t=1719079456; cv=none; b=eukuW0WQsxJxPe4+hDrmfO1oTSN8MAPxbxeaPfx8j8q++7yIc/4cjo2w1T3Z9SOeWryKn3pAbrabL9cl+QSWVC8sNZaWgIg7OVIpyUG+WzFbNuJdHn5x8CQDBVcZhTixdByZTRjRdLgl7SX83XdXa74rWFtDhEkqX+13qENJWgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719079329; c=relaxed/simple;
-	bh=/CqRTqTZCB8hAjBECfG7EZ/+qUwLGs+3+2qHHaWRSnM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=K/uTYaBlP96X9yhWpghAbWzM9ma3Xrdo/iPLFR5y9wI2pE4dyHCCnynRi1wMvzMmUzdse8qWJZYjivNrON6OfQNgsjV9VUJHXrngmVANY7uYPBqdcXWRZgY5ODoROvNr6HkwSABKfuh9YprIWeRO+c4sMq9WTffsyBpz1+m/QPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ga8Hh3ku; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 901F9C3277B;
-	Sat, 22 Jun 2024 18:02:03 +0000 (UTC)
+	s=arc-20240116; t=1719079456; c=relaxed/simple;
+	bh=QoGfE8cQ3Ncm2RINmc7UjozNPcoaLETzKNCmZeMz/zU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kl10zXi+3lVCs9qbVrJoeYMIo2i8pV42zklJd0VQn29aXPG+mvxslLXOjCIioFvgWi7DjrkYubh6fz6dVmaAL2CB4+wnEfkA2rCBRAbpwnf4G8IMAyypOLyQweDsr6nfC0wdD6U52MW7cMwKQ5wxZFR2l4GE5hDRWOTFyYu19dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R41chvNt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ECD8C32786;
+	Sat, 22 Jun 2024 18:04:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719079328;
-	bh=/CqRTqTZCB8hAjBECfG7EZ/+qUwLGs+3+2qHHaWRSnM=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Ga8Hh3kuafzSeBPIkzInO4usaCUwqW+ofrxrWLhIjOiDhMnNTMAodX9l+AvFzrdzL
-	 NpccsmZvdlNrd4uTwkJ63BB9/ufe9qXKD4LAt94xTkPDBcfoyrkf4IVb7VdqA8crW5
-	 WsrK3CkVQOxUwSVYk8zQQnVdlG2aD/qucnp/xZXdJsA+NBQQO0H1Syh+0uIyyUgLRE
-	 PdoU82xT9Adqla1JtDuCJI+R8fCy5GX96Ft40z0rlYh4R6IjmunVd6Q7RJJ180Hh1X
-	 gyMustwbcMBzZirh5bBaOlUcvi5oVhPUoqE1+vkLs8lnnt3JTpyYvbuRvMNeFJKeIo
-	 MdTX0K7J5yhMw==
-Message-ID: <f6936739-a2b9-425a-9a07-9e52bd4316bc@kernel.org>
-Date: Sat, 22 Jun 2024 20:02:00 +0200
+	s=k20201202; t=1719079455;
+	bh=QoGfE8cQ3Ncm2RINmc7UjozNPcoaLETzKNCmZeMz/zU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=R41chvNtSZL18SM7BcTw+6ViMHnJ9VQeuge4yBLhR0aCJ0c1KXGvybG9HiEIMMp7U
+	 mqnXQG82RQu/WumMHhpjss783uWoaZojdazFpDVr3imUxf1Cef2ee8x3jQXS7gMAfJ
+	 DL8oUlrePZycWT0eQnyXReI70CxOhkOkBuj9ePwUHi/Dhq/J03zW2pOp7GXI4UEds1
+	 lIU2rXKBCKwfyTBhC+d/GnZPtxfMZ34NfEBMXzOCiMJ9xXIIL6rfr4UliEob4UKqRl
+	 IxWqBbpcBPO1uLoXvMuw25CCrHFIlmbrhZkW4r0rxB5foqcjUNFjt2aDWgw2cEIUYZ
+	 OGqn/7DX+3uRw==
+Message-ID: <3541cd63-882b-4b91-871a-7d0385e12957@kernel.org>
+Date: Sat, 22 Jun 2024 20:04:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: sound: add ti,pcm5242 to pcm512x
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shenghao Ding <shenghao-ding@ti.com>,
- Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-References: <20240622131245.2607533-1-christianshewitt@gmail.com>
- <20240622131245.2607533-2-christianshewitt@gmail.com>
+Subject: Re: [PATCH v6 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
+To: Yasin Lee <yasin.lee.x@gmail.com>, Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com>
+ <20240621-add-tyhx-hx9023s-sensor-driver-v6-2-65196a9020f1@gmail.com>
+ <d35f5eba-abb4-4924-89d6-0beb878a0bf7@kernel.org>
+ <385a7a64-fc76-4655-bc7f-d89d00b053d5@gmail.com>
+ <20240622-superjet-dusk-cfd19f899cc2@spud>
+ <26db1f7b-bde9-43a5-8c9b-4323ccfc59cf@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,16 +108,113 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240622131245.2607533-2-christianshewitt@gmail.com>
+In-Reply-To: <26db1f7b-bde9-43a5-8c9b-4323ccfc59cf@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 22/06/2024 15:12, Christian Hewitt wrote:
-> Add ti,pcm5242 to the pcm512x driver file
+On 22/06/2024 14:35, Yasin Lee wrote:
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> On 2024/6/22 18:51, Conor Dooley wrote:
+>> On Sat, Jun 22, 2024 at 01:56:42PM +0800, Yasin Lee wrote:
+>>> On 2024/6/21 18:12, Krzysztof Kozlowski wrote:
+>>>
+>>> Hi ,Krzysztof
+>>> Thank you for your reply. I have some questions inline.
+>>>
+>>> Best regards,
+>>> Yasin
+>>>
+>>>> On 21/06/2024 09:40, Yasin Lee wrote:
+>>>>> A capacitive proximity sensor
+>>>>>
+>>>>> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+>>>>> ---
+>>>>>    .../bindings/iio/proximity/tyhx,hx9023s.yaml       | 115 +++++++++++++++++++++
+>>>>>    1 file changed, 115 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..beca70ce7609
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
+>>>>> @@ -0,0 +1,115 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/iio/proximity/tyhx,hx9023s.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: TYHX HX9023S capacitive proximity sensor
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Yasin Lee <yasin.lee.x@gmail.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  TYHX HX9023S proximity sensor. Datasheet can be found here:
+>>>>> +    http://www.tianyihexin.com/ueditor/php/upload/file/20240614/1718336303992081.pdf
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: /schemas/iio/iio.yaml#
+>>>> Which part of iio.yaml binding do you use here? I cannot find anything,
+>>>> so this looks wrong.	
+>>>>
+>>> I will remove this reference.
+>>>
+>>>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: tyhx,hx9023s
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    description:
+>>>>> +      Generated by device to announce preceding read request has finished
+>>>>> +      and data is available or that a close/far proximity event has happened.
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  vdd-supply: true
+>>>>> +
+>>>>> +  "#address-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  "#size-cells":
+>>>>> +    const: 0
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  "^channel@[0-4]$":
+>>>>> +    $ref: /schemas/iio/adc/adc.yaml
+>>>>> +    type: object
+>>>>> +
+>>>>> +    properties:
+>>>>> +      reg:
+>>>>> +        minimum: 0
+>>>>> +        maximum: 4
+>>>>> +        description: The channel number.
+>>>>> +
+>>>>> +      input-channel:
+>>>> Isn't this duplicating single-channel property?
+>>>>
+>>>> Where is this property defined (which common schema)?
+>>>>
+>>> |input-channel| is indeed intended for single-ended configuration, but I
+>>> couldn't find a definition
+>>>
+>>> or reference for |single-channel| anywhere. If possible, should I rename
+>>> |input-channel| to |single-channel|?
+>> Single-channel is new, it should be the next branch of the iio tree and
+>> in linux-next.
+> 
+> Hi Conor，
+> 
+> Thank you for informing me. I plan to temporarily add a prefix to this 
+> attribute to distinguish it and update it in the future. Is this the 
+> correct approach?
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+No, because there is no need. You are supposed to work on maintainer
+tree (linux-next works usually as well).
 
 Best regards,
 Krzysztof
