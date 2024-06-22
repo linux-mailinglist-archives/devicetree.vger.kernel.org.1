@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971F4913588
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:05:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC03913592
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 20:12:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06F28B21BD4
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:05:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D5D31C21239
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 18:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B10225CF;
-	Sat, 22 Jun 2024 18:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD0924A08;
+	Sat, 22 Jun 2024 18:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QJBqLmR5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JImTM2rp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FA417C69;
-	Sat, 22 Jun 2024 18:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988C2225CF;
+	Sat, 22 Jun 2024 18:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719079515; cv=none; b=Jhc1M1b5Lbf38VO0MutdEsfaF9NRQRzabj/ZN8dACzu93/9Jz1B03P1XZbYUjMIUfXytMxxyqZQWeSSfHD5MJpb7tZ1vQy3nZIvPtfHsxo6Y9Ly/uhb8mgp1mLt6M+NrcQc8ihePmTn0FkrnpDuAJR4TObD+qFFb/z0UeceZ5M8=
+	t=1719079944; cv=none; b=hTHNKCwiBxd+Is7XEmnedmywdt7Y/0k2XpCE9GvuJF6OpUS63XbtL0hTaa7j3PapVQkqo+m48Y/dT2ENjqBl/u7ILaC5zmqsFFnK6Et9wk4D4qImqLGuHKcnQy1JG6jo0kK9VzaB6Ub2FbAexPwCHC/YPIfRaPa7fAKSD/vz6Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719079515; c=relaxed/simple;
-	bh=iyK99zPeByjWCIY3e/7A9JMYZk1aGCnYk4YbiH21Jc8=;
+	s=arc-20240116; t=1719079944; c=relaxed/simple;
+	bh=7K1cC3WKLb7G8lvv4xw3xZ6OA3k0OfGg8JeEG6bBLEg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ck4qYqze9QeUK8aJerfin2itmE2aM8qCm3n1T1xzZVGsBQl6JCVTPBYxKQGToNifhiFS072O5GiGjYzpzxRG0NFzUAOzZAsFa1e/0QwYo4YvYdHRdKC29hZsRFYsPB5MI6m//cmS6PehrhMlZVcIFw213BDXs1kqpXW1z+jZkfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QJBqLmR5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BC8EC32786;
-	Sat, 22 Jun 2024 18:05:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dqp6SeHI1tUvGt/fGVvWe5WE/f+FsLrgDVTalrCt8bU4/SkiQZjuc9PPsTG+FUlUggDBuhA6CHVYQbcsXk8AlHAPKIAE8ZfMNuAhSPZBeM1iUPut+D0/mj/p6Vx1J9iOhO5iiYQTTWkWG2cBVbQHCnWVNk+eiXCOmGn4lfV8mPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JImTM2rp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6968BC3277B;
+	Sat, 22 Jun 2024 18:12:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719079515;
-	bh=iyK99zPeByjWCIY3e/7A9JMYZk1aGCnYk4YbiH21Jc8=;
+	s=k20201202; t=1719079944;
+	bh=7K1cC3WKLb7G8lvv4xw3xZ6OA3k0OfGg8JeEG6bBLEg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QJBqLmR5SLGOD5qyZyj5wf4r1YcEE5W6sCkRUbaVJJn2sJX3DEJuN55lLuG+rEv4V
-	 MjqZe9ZNkgSSLdA2sLXnejdK4mcDgLC0WG1jb0gV6Jzxt0gUqFs6Z9qAXLVrGNSX8p
-	 J2JL+OtsaaPL+i0UCnvB/E74u6BlGVDzZ5H/bxrfhqottqjD+InM4zMLI5RIjfCD2b
-	 GjHuE6HtA5hb3M6ED5yZ8rVMCFDGyKxzCSILXTAMtKxO+IJ1XsRaGmlOLKB8x2uxI8
-	 wd8V/zHX/Ig7gHXmj6C/Bra/rCSrY+qtSoZ7HksfpLpTVDP0Tq+k+rbm+WJrABll1b
-	 rj9cAJut9SAiQ==
-Message-ID: <303bc9df-c887-41d0-8613-0fa2898ab48e@kernel.org>
-Date: Sat, 22 Jun 2024 20:05:03 +0200
+	b=JImTM2rpPT9Yl5DhsAbrWQOuLmwBGqR4QPy9+7oDH4XkS2FGOaXk8TUPQd0oDe+UU
+	 xICYDbLZd2lsbbB8H5mThe0nS0/pqgcAvXPCeqGkJcyNLo83MUlwv4+f9hE8dXwyFg
+	 oaqza+sSU7oub8Q8J6tLHQ4J9gA3W2gBrQ+8fcjh3xEMt8Wm1rQE/6/LWEXeS7O3JD
+	 POzKMDnlXtQq0Kz+zwkrfV8+ybo211jtIFY3q+/x/M7X6AsVjWOSXEIyey7x+dS2P0
+	 4TmI3bwe1DHt/CnYSLHbvIIEY/zB1x1+U7lnLoi4RdX9OLCObB+8q0FbH0kqxAtUuh
+	 eRVYnDvAsvOzQ==
+Message-ID: <6ca74ccf-b93e-4d77-8609-a12a96c15f38@kernel.org>
+Date: Sat, 22 Jun 2024 20:12:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Daniel Golle <daniel@makrotopia.org>,
- Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Anand Moon <linux.amoon@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>,
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <cover.1718921174.git.daniel@makrotopia.org>
- <57a7fb13451f066ddc8d1d9339d8f6c1e1946bf1.1718921174.git.daniel@makrotopia.org>
- <f8e6b1b9-f8ff-42df-b1ef-bcc439c2e913@kernel.org>
- <173ce1663186ab8282356748abcac3f4@manjaro.org>
+Subject: Re: [PATCH v3 7/8] dt-bindings: mfd: Add img,boston-platform-regs
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+References: <20240618-boston-syscon-v3-0-c47c06647a26@flygoat.com>
+ <20240618-boston-syscon-v3-7-c47c06647a26@flygoat.com>
+ <6d3fbd07-72a0-43fd-a1e5-c39e3a833bc1@kernel.org>
+ <51557e31-0a59-4278-a8c1-25cf66fa3c3f@app.fastmail.com>
+ <808f27bf-9dc7-407a-86ff-0a8fae79531c@kernel.org>
+ <856ff7b0-774d-4120-8bd8-01270f5c14b4@app.fastmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,41 +109,59 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <173ce1663186ab8282356748abcac3f4@manjaro.org>
+In-Reply-To: <856ff7b0-774d-4120-8bd8-01270f5c14b4@app.fastmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/06/2024 20:13, Dragan Simic wrote:
-> Hello Krzysztof,
+On 21/06/2024 17:51, Jiaxun Yang wrote:
 > 
-> On 2024-06-21 11:57, Krzysztof Kozlowski wrote:
->> On 21/06/2024 03:25, Daniel Golle wrote:
->>> From: Aurelien Jarno <aurelien@aurel32.net>
 > 
-> [snip]
-> 
->>> +	pm_runtime_set_autosuspend_delay(dev, RK_RNG_AUTOSUSPEND_DELAY);
->>> +	pm_runtime_use_autosuspend(dev);
->>> +	pm_runtime_enable(dev);
->>> +
->>> +	ret = devm_hwrng_register(dev, &rk_rng->rng);
->>> +	if (ret)
->>> +		return dev_err_probe(&pdev->dev, ret, "Failed to register Rockchip 
->>> hwrng\n");
->>> +
->>> +	dev_info(&pdev->dev, "Registered Rockchip hwrng\n");
+> 在2024年6月20日六月 上午7:40，Krzysztof Kozlowski写道：
+> [...]
+>>>
+>>> Hi Krzysztof,
+>>>
+>>> I believe U-Boot's implementation is correct. As per simple-mfd binding:
+>>>
+>>> ```
+>>> simple-mfd" - this signifies that the operating system should
+>>>   consider all subnodes of the MFD device as separate devices akin to how
+>>>   "simple-bus" indicates when to see subnodes as children for a simple
+>>>   memory-mapped bus.
+>>> ```
+>>>
+>>> This reads to me as "if you want sub nodes to be populated as devices
+>>> you need this."
+>>>
+>>> In our case there are "clock" and "reset" node sub nodes which should be
+>>> probed as regular device, so it's true for us.
 >>
->> Drop, driver should be silent on success.
+>> No, you already got comment from Rob.
+>>
+>> Your children depend on parent to provide IO address, so this is not
+>> simple-mfd. Rule for simple-mfd is that children do not rely on parent
+>> at all.
+>>
+> Hi Krzysztof,
 > 
-> I respectfully disagree.  Many drivers print a single line upon
-> successful probing, which I find very useful.  In this particular
+> Sorry but can I ask for clarification on "depend on parent to provide IO
+> address", do you mind explaining it a little bit? Does it mean children
+> should get regmap node from a phandle property, not the parent node? Or there
+> should be a reg property for child node to tell register offset etc?
+> 
+> There are way too much usage that children "depends" on parents somehow
+> in tree, so I want to confirm my understanding.
 
-No, it's duplicating existing interfaces and polluting log unnecessarily
-without any useful information.
 
-> case, it's even more useful, because some people may be concerned
-> about the use of hardware TRNGs, so we should actually make sure
-> to announce it.
+Your driver relies on parent IO address to be provided - what's more to
+explain here? If parent does not provide syscon, does the child work?
+No. Therefore it is not suited for simple-mfd.
+
+> 
+> For boston-platform-regs there are some other PHYs that I may add drivers
+> for them in future, so I certainly want "simple-mfd" to be here 
+
+Well, I want a new Ducati, but we don't always get what we want, right?
 
 Best regards,
 Krzysztof
