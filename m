@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-78704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0689491334D
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:20:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 226D0913353
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:22:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFD3C1C21434
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:20:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53D661C21350
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891C91514D8;
-	Sat, 22 Jun 2024 11:20:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FE6153BEF;
+	Sat, 22 Jun 2024 11:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r2VL2iC0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UZQuClbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15FB14D70B
-	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 11:20:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A86C14D70B
+	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 11:21:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719055241; cv=none; b=V4UaEmmJbebIooPRGDYzclJHiDpvH/wn5R0PByxzhkjVWvVpU3+WEIg7+Aexs9Piz5F3aNSKlC3IOIW8d6OjgE/MxPq/Zo7CO003VFhDHf6gDCNWqHq//AIZtz0NOkuT2sS7JDPzlAjWyOeQAT68dDCWwSIqNIx7CiQXLI5qMp8=
+	t=1719055312; cv=none; b=cvg58BzzvnjGSFtioSruh4vRC1sZggEH9uFGWMYWU9dZNYfOFcGVGFMkmmc2cyJa0SmPdQJ1GXthyZQq/TAvWkC97bVY5RsPEUOnvdM2Urb2buNZf/WflYms//I28O/lvEUItYFml9XpoM64yNzdKLlL3/BOIEBenK2akfB+HUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719055241; c=relaxed/simple;
-	bh=6OweLc4eBvs/JJvGZrwlp8hNSSJPNRIvBHl6/QSlhA4=;
+	s=arc-20240116; t=1719055312; c=relaxed/simple;
+	bh=yNv9F/RG5xvLbcRU5VaoFHunK5D9b7jdpAxluannzVc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EvU1uBWU+OrPseXMnG//x69F4ziiAHc5WocyalzDOYU0C88HQK42o3RNzWLS1jliKtYE8i+4YTISzM+ZS0dVbBkhr0F3CurHsvdWsEZnWh5cMgPTTSlxZj5x3U7kwyfeTl46tplU8qeYfGu3CeMk8R49fnYJLpPwqyE7FRCZfl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r2VL2iC0; arc=none smtp.client-ip=209.85.218.41
+	 In-Reply-To:Content-Type; b=mHoYWDWgZ1TGSOvheWRUkZhhnMgjTvOHAkvDB5y2uBGjDrsVn5e/0/UnFskPNHPY+e3zwbNONXGGPSO2gtirGAR7BFE1oiq4T8Ei6hCI9RBWU3SnMQhAGbUYWX1ItMKmk/gXG44DDaXEREt4dJUdqWzhBKFbyrLr0nkVOFOMido=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UZQuClbl; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a689ad8d1f6so350024866b.2
-        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 04:20:39 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a6f7720e6e8so314682666b.3
+        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 04:21:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719055238; x=1719660038; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719055308; x=1719660108; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=72431nl2SzDcS3jDBD6K/aeYHATt9J2PsD5YXQmzkR8=;
-        b=r2VL2iC0f1dR8gNn5BuQBo+5g1eXLevTV9msSsayXkxRezFx4VNqEqKNjLtiHGpyvu
-         AmTTFKCgvCn5V9MHIP1PmabX0HhbtO63oMzWYQ5VYkHK/AJcbsCdJo0GPwxujPe1m4xB
-         oTK+HEN2laicocILNjga2rRxFPLTiFzDOTpHA0d3AoyqsXxM39raj33tIHGvvnNpVHj+
-         Jbg7X0RTvRVJoLI7uUiUmpuvuCpgkd+gPuobi9hCMBqPw2K0AUOMKkIH/Y7i/OZdxqik
-         nhxKe9/t7s6prPmCF2D7d/qucxZ2B90CKsRB50ifhLZjiJ1N9nr7FfLzP2oH66VNc+FP
-         xyQA==
+        bh=ONG6bKiTspIhEbA9YlGbgpEq1mAWMqyNj0AssfJTVR4=;
+        b=UZQuClbl9zvoLtErS1rgY7VZR7P1R7sjjkQ3XMWWdALvnxTkc7IajfCfdAW0Y0TPtQ
+         RnNpd0lWywDmWkc7COfBhk3VYrY0VDgxXM3bPiTCxIU5THC7A48/+Xmh0oQZb2RDxHfT
+         pufRJcFZYBqPw75UHcTyH48QNFO6SFEnx0+GFe14gVyFxJ3K2FB6xSdjN/dP1eNuvs1x
+         avgBXIeLQY90Dp5Mk13ygz4wA1F93S1TgrK8++i5BevMNQB0t4mu3p/Bk9g0ZCBfQumM
+         ogzdKSakQF9EVxzrTAmgRNjDaEz67YmEmiYtwympnAVUs2uzEdfdElUHaA+lhSHI1zKH
+         tRow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719055238; x=1719660038;
+        d=1e100.net; s=20230601; t=1719055308; x=1719660108;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=72431nl2SzDcS3jDBD6K/aeYHATt9J2PsD5YXQmzkR8=;
-        b=Niof++KVigw8EGPH/GP7COArCDhpQKP1ZzbhwdVEMpbAJOAc3+h7xrpfx+MEt9ntt9
-         HSwVDzsv1ZGFL8Le757x3qW/62zFlXBcuqIdwrGeetGPGAIueonagGmy5Dj/U06FfgIY
-         ohJXm5zbufgKzIytHifFUJKaJtId4n9zbJzXuF+XcmuOTLEyUm2dXIqO/p3sTdPL6cjL
-         rEo+zyU3Bg8Zf9gT43F/EuR340q6JRnmiNFR5T0wdtaQcKQPrPrsITCpvZuicWxzxTcx
-         NngQ0P8RnE2+fi3bveOJSbrtBNNiPDI76e7EiaE7vxlkM7b/jBtC/YA26T+0KlAyfATR
-         yKAg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4Q0FZsUFdT3mLHQDf0mwUDxdEmHhIQX4ibNpdayDbkDjCalnT8dM3BaTOK1eJI8PgNprt8CKteUjSeAegWjMWGgaA31GQUoa/MA==
-X-Gm-Message-State: AOJu0YyOGxGlN1BJSMHL6EqGQG1hGpFyv1N9X3ZX0f1ZrpZMVQ9XMVXV
-	MMGb/7QodT1YZIBnhDOjK14lKViVYF8TpRWWZWTu85A7gEoA2PmESaKzgehhXJ0oVMhjQ++Wulw
-	BNeY=
-X-Google-Smtp-Source: AGHT+IFnkN8a7raSH73gXKwC6s4jpempe+oDE2AIgwSkj4jFfdgTskKwT+iexeGZeZ0CFWRMPu9nPA==
-X-Received: by 2002:a17:906:2e94:b0:a6f:e47d:a965 with SMTP id a640c23a62f3a-a6fe47dab12mr62240466b.41.1719055237199;
-        Sat, 22 Jun 2024 04:20:37 -0700 (PDT)
+        bh=ONG6bKiTspIhEbA9YlGbgpEq1mAWMqyNj0AssfJTVR4=;
+        b=GyiWsiE2ZaO6SyR5CR4yXg9Y0tXF4Lmr1kV3j7v/cK55D+YFGAk2x0iOGAMFGTFAiQ
+         ZZ1Trnvj8PplHOzPqeXKJJ7cmlrQ+i8x3sqZN9HVU/mK8rE4fEnYYRjb//JqcSU5oDgQ
+         PzHwSBQOa+2V9vb3dHpFLxXsxvdnF3A4f7sgaYJoV4DAS/mrYYPx5a5YSdJiXMSmpD4e
+         tB8JEIDP4GOaaUAgi7kVYNsRaklR6iUHOol0fzldMYeoO2no46sh5yA4jWtd0ADxWXox
+         bg/0St1FlTGs5o5k7BCyQG844Ewwn6wm+QKSrCEvruspJ5Yz3bDnj78Hvq90AVRYZpsX
+         QwCA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWZnrEEGpudoKhYW5+Lfi5WBm0EOJfJZvMinU9VhVYnjj+BBvgYm0RWu5QCkKb9rcLS8s0TGWFYO1k4hGGFchCovAVIrONzKrvww==
+X-Gm-Message-State: AOJu0YzxY/XVKW39pQAdrdK2Pxz+dzuF3IU+5o8aPyGFYX7gWfM45w83
+	hxyi7UrDG0t+uUXVEXamvE5g17X5WFtFvMCu+0vOfenSnJooyR+iXingd/K2BCM=
+X-Google-Smtp-Source: AGHT+IGfzyz/0+o2tIp0n2wByuwnQjzt4pOamTr3vvZ9Zdc4a8xnYsWLCqrh2+ZmZ5QnfRnATMd8UQ==
+X-Received: by 2002:a17:907:d502:b0:a68:fcc9:6c1c with SMTP id a640c23a62f3a-a6fab05c0edmr800424866b.0.1719055307670;
+        Sat, 22 Jun 2024 04:21:47 -0700 (PDT)
 Received: from [192.168.128.35] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf428b15sm184204966b.9.2024.06.22.04.20.35
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf549075sm185474666b.98.2024.06.22.04.21.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Jun 2024 04:20:36 -0700 (PDT)
-Message-ID: <b9deca88-8e1a-4017-a0fc-6a77672d684d@linaro.org>
-Date: Sat, 22 Jun 2024 13:20:34 +0200
+        Sat, 22 Jun 2024 04:21:47 -0700 (PDT)
+Message-ID: <f468e14f-7ba6-4717-abc8-fbf451c05030@linaro.org>
+Date: Sat, 22 Jun 2024 13:21:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,19 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] media: qcom: camss: csiphy-3ph: Add Gen2 v1.2.2
- two-phase MIPI CSI-2 DPHY init
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, gchan9527@gmail.com,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240621-b4-sc7180-camss-v1-0-14937929f30e@gmail.com>
- <20240621-b4-sc7180-camss-v1-3-14937929f30e@gmail.com>
- <cd9b5612-1160-4284-be7f-4efbcbbbe346@linaro.org>
+Subject: Re: [PATCH v2 3/3] ARM: dts: qcom: msm8974-sony-shinano: increase
+ load on l21 for sdhc2
+To: Valeriy Klimin <vdos63@gmail.com>,
+ ~postmarketos/upstreaming <~postmarketos/upstreaming@lists.sr.ht>,
+ phone-devel <phone-devel@vger.kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240621-sony-aries-v2-0-dddf10722522@gmail.com>
+ <20240621-sony-aries-v2-3-dddf10722522@gmail.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -128,43 +125,20 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <cd9b5612-1160-4284-be7f-4efbcbbbe346@linaro.org>
+In-Reply-To: <20240621-sony-aries-v2-3-dddf10722522@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 21.06.2024 1:25 PM, Bryan O'Donoghue wrote:
-> On 21/06/2024 10:40, George Chan via B4 Relay wrote:
->> From: George Chan <gchan9527@gmail.com>
->>
->> Add a PHY configuration sequence for the sc7180 which uses a Qualcomm
->> Gen 2 version 1.2.2 CSI-2 PHY.
->>
->> The PHY can be configured as two phase or three phase in C-PHY or D-PHY
->> mode. This configuration supports two-phase D-PHY mode.
->>
->> Signed-off-by: George Chan <gchan9527@gmail.com>
->> ---
->>   .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 120 +++++++++++++++++++++
->>   1 file changed, 120 insertions(+)
->>
->> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
->> index df7e93a5a4f6..181bb7f7c300 100644
->> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
->> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
->> @@ -348,6 +348,121 @@ csiphy_reg_t lane_regs_sm8250[5][20] = {
->>       },
->>   };
->>   +/* GEN2 1.2.2 2PH */
+On 21.06.2024 4:26 PM, Valeriy Klimin wrote:
+> SD cards would exhibit errors similar to ones described in commit
+> 27fe0fc05f35 ("ARM: dts: msm8974-FP2: Increase load on l20 for sdhci")
 > 
-> This is the init sequence for 1_2_1 not 1_2_2
+> This patch applies the same change to the regulator for sdhc2.
 > 
-> https://review.lineageos.org/c/LineageOS/android_kernel_xiaomi_sm8250/+/311931/10/techpack/camera/drivers/cam_sensor_module/cam_csiphy/include/cam_csiphy_1_2_1_hwreg.h
-> 
-> https://review.lineageos.org/c/LineageOS/android_kernel_xiaomi_sm8250/+/311931/10/techpack/camera/drivers/cam_sensor_module/cam_csiphy/include/cam_csiphy_1_2_2_hwreg.h
+> Signed-off-by: Valeriy Klimin <vdos63@gmail.com>
+> ---
 
-FWIW 1.2.2 seems to be the desired one: [1]
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
-
-[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/UC.UM.1.0.r1-02500-sa8155.0/arch/arm64/boot/dts/qcom/atoll-camera.dtsi#L22
 
