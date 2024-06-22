@@ -1,223 +1,121 @@
-Return-Path: <devicetree+bounces-78679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F85F913227
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 07:57:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD94091323C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 08:14:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EDB31C21D1E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 05:57:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89E89283AE0
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 06:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D78C14A4F8;
-	Sat, 22 Jun 2024 05:56:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6466F14B061;
+	Sat, 22 Jun 2024 06:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z26hRnAr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="m2ny6oge"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7018BFA;
-	Sat, 22 Jun 2024 05:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560D28F66;
+	Sat, 22 Jun 2024 06:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719035818; cv=none; b=NAFW8xWmNZKHT5GzvB28xEM1430xUgrDQFKhdy6QTi87M7WbLdYelPsUeVJAMkQ7GIMoiGRqUHrrx4ULkJ7pYt8NMGtP//qMk4x3dWYHJLx7j17JFdft41+oEhTqW9Uu47LnJaBioMzvNX+22dGcFTVqXEVriEG/IsYNfR9tdtk=
+	t=1719036874; cv=none; b=U6K2g9tuEYtQeQ6Kv1z06VdDXBxa9NO5b5OIJ5YRYKY43DenxjAzK+wqlzQ+0Q8kRhXbRFNP1SJ/cisQyb25eimwM3mdk35GYYGI5CA/Kx88/QriSxkqMtQjZwS5Kw+3dAkbmxdwczRpSTXohRWDDmFn66lzSIeUCOxZItWV/J8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719035818; c=relaxed/simple;
-	bh=8JJsl62hOZO3ko0SdWLCt6KmCn4EPgL0eaHKR+7qg8o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dSVWMVn7JloMRYeWRUR2SVSPK2aVjK3pki9xNiGItog4n9ne73Nh6ZD57uzozsye3mOJuihL+/4O8FQgRklOnJWRkA5TMEwijbuHWFDb7hMCpkH8AHZPuiyVSGFvDla9qUiwveVwDz2WGbDXGbMpS9WycmihgJNZT39v4xpgKwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z26hRnAr; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7065e31ee3cso736035b3a.0;
-        Fri, 21 Jun 2024 22:56:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719035816; x=1719640616; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gs6O6f04jMeghuWyfCIpI7mthyEAD7cAG4GE2WWkIig=;
-        b=Z26hRnArW4sEHjY2McvRjPD+p9gt4452OJYQ1EBSFnR5BcUsnxdy0PsXEJTdZLIPxq
-         VbiehyFzaAIkI/ytqtoRl527zIv3YMec9NW/pCi3MhUm7lPb/zJ/IrWpoFM3mUtjIeTk
-         Ns6hxNp75LoOXjrmfLLzMx1tLKFmW5OIQok7aB/h/Wis7jW2SDfVMPFJIQ9Si51R8M99
-         1L2gN1gfhoteUgJmRtTXJhtHuR/HW3EJ6VV39zXYnKg8aBHGhinZVReWYA/ym3GJPl/l
-         ifKVHhZ2mQuEw4PpzuGlp3eni9kxLLwODosQAegw9tevu9Qc1ONxur47AlPeXeNkoY6n
-         9YZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719035816; x=1719640616;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gs6O6f04jMeghuWyfCIpI7mthyEAD7cAG4GE2WWkIig=;
-        b=tLJre/40sHP1Z2S54FOiXSb6l0NsM2TXav7OvauznP4SYAuh5gFHOcMT4H+X3D39NF
-         eN34vLsNkh40IZIZNtP6mwfpYwQXhNcO3yL5hB7jCY6zLCV4e6GU3S8y3CrUzpqlbtmm
-         qzBOz93KD/qIJV70xSIgC9BGtdV0x1bBrzNt+c4Ap6o8weOkIKys776U9Y9osHGEQxMA
-         MhtXJLbFwwz5osjjuTGlQq+jD4MSo1BZPUQnsICwOk7r7+CYpvTKE5OTvRKtsn0sU/on
-         QWKDajN7QCLRmNlX+9TaEP+uTIDtdl+p0GZcroZRlVzKPH/5cZiEdsXBBMExJt/2yyv9
-         SnZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUlofDWZ7R7l+ChSsrEdFveFk20k2AXcMMwyMikyPnGQbNFqQdL3c75ditaaQgrNplhy6ztD0E1NgAYuNlgegd5cXw8f4e3LIA50RJc+bPAHritHBE8MNb4F/VF0CQJzPPLsfubjbdN
-X-Gm-Message-State: AOJu0YwTZ6wepqLqcGCU9MQ8xJnpnV0FB8xdLMHAhamPfSuO+XbAn18B
-	N15AtyZbej+8du4kfWcgy3JP7tKq7nLXaDlMMFmky8LycTQhDzN7
-X-Google-Smtp-Source: AGHT+IGJ3+53nng3c5HyZrbB4d4THj6HEuBxurSHmPafjQZYpCOssMyUXTBd64MjK4u8rB+j7+20Vw==
-X-Received: by 2002:aa7:8c0b:0:b0:706:5dab:83c5 with SMTP id d2e1a72fcca58-7065dab85abmr2506240b3a.0.1719035816056;
-        Fri, 21 Jun 2024 22:56:56 -0700 (PDT)
-Received: from [100.90.230.39] ([45.32.86.188])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7066aeeaa5asm292203b3a.29.2024.06.21.22.56.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jun 2024 22:56:55 -0700 (PDT)
-Message-ID: <385a7a64-fc76-4655-bc7f-d89d00b053d5@gmail.com>
-Date: Sat, 22 Jun 2024 13:56:42 +0800
+	s=arc-20240116; t=1719036874; c=relaxed/simple;
+	bh=rE8s4/lVGqOH2HVvCPHLjv2fnvzZ8VW5ODWWL4pLeVs=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TUahLA2yKP0Rbo01coNXjCWHkFHy4XXYCP0/A3OFFwNCeXiX08GSoPUSs8a+ge6/9GRu3qabfs9y6WmHEJU7RxRSM7IV2HxdcEw6IqoXGxTQjVTh5QtaUkPIPb0O/rTwpZNu+Ezb3ajxp0wFM5jcGZ65KcB9eaihzLGRyYaSjb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=m2ny6oge; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45M6EObw087734;
+	Sat, 22 Jun 2024 01:14:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719036864;
+	bh=zuRNlVx5I+17kIxkSzgYpuIh6L4ea6JU89TLnbXSr40=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=m2ny6ogeZdkC2jIJkQnjIpGp3JEhJdFFv0EQ5GoBIYSsJU9UDCapbKpy8/srcEjp/
+	 1eCS4tKA2bDAHB9MxpOwWdIQRw3yMq1Tv9zbV0h2pLmfDRFZX8ytS48I1gaWwRYrxr
+	 24yK5ry8fbwDpfKE8kUe+kELnvZP/4KcYeikebNY=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45M6EO5W118797
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 22 Jun 2024 01:14:24 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 22
+ Jun 2024 01:14:24 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 22 Jun 2024 01:14:23 -0500
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45M6EKj2128067;
+	Sat, 22 Jun 2024 01:14:20 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: <linux-kernel@vger.kernel.org>, <nm@ti.com>, <a-bhatia1@ti.com>,
+        <u-kumar1@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e: Add overlay for J721E Infotainment Expansion Board
+Date: Sat, 22 Jun 2024 11:44:07 +0530
+Message-ID: <171898028152.2272421.10198050525742682172.b4-ty@ti.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240613093706.480700-1-j-choudhary@ti.com>
+References: <20240613093706.480700-1-j-choudhary@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com>
- <20240621-add-tyhx-hx9023s-sensor-driver-v6-2-65196a9020f1@gmail.com>
- <d35f5eba-abb4-4924-89d6-0beb878a0bf7@kernel.org>
-Content-Language: en-US
-From: Yasin Lee <yasin.lee.x@gmail.com>
-In-Reply-To: <d35f5eba-abb4-4924-89d6-0beb878a0bf7@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Jayesh Choudhary,
 
-On 2024/6/21 18:12, Krzysztof Kozlowski wrote:
+On Thu, 13 Jun 2024 15:07:06 +0530, Jayesh Choudhary wrote:
+> J721E common processor board can be interfaced with the infotainment
+> expansion board[0] to enable the following audio/video interfaces in
+> addition to the peripherals provided by the common processor board:
+> - Two Audio codecs each with three Stereo Inputs and four Stereo Outputs
+> - Audio input over FPD Link III
+> - Digital Audio Interface TX/RX
+> - HDMI/FPD LINK III Display out
+> - LI/OV Camera input
+> 
+> [...]
 
-Hi ,Krzysztof
-Thank you for your reply. I have some questions inline.
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Best regards,
-Yasin
+[1/1] arm64: dts: ti: k3-j721e: Add overlay for J721E Infotainment Expansion Board
+      commit: 9c0fa304fa561abfe83d328ffc4f638c0152bead
 
-> On 21/06/2024 09:40, Yasin Lee wrote:
->> A capacitive proximity sensor
->>
->> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
->> ---
->>   .../bindings/iio/proximity/tyhx,hx9023s.yaml       | 115 +++++++++++++++++++++
->>   1 file changed, 115 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
->> new file mode 100644
->> index 000000000000..beca70ce7609
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
->> @@ -0,0 +1,115 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/proximity/tyhx,hx9023s.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TYHX HX9023S capacitive proximity sensor
->> +
->> +maintainers:
->> +  - Yasin Lee <yasin.lee.x@gmail.com>
->> +
->> +description: |
->> +  TYHX HX9023S proximity sensor. Datasheet can be found here:
->> +    http://www.tianyihexin.com/ueditor/php/upload/file/20240614/1718336303992081.pdf
->> +
->> +allOf:
->> +  - $ref: /schemas/iio/iio.yaml#
-> Which part of iio.yaml binding do you use here? I cannot find anything,
-> so this looks wrong.	
->
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-I will remove this reference.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
->> +
->> +properties:
->> +  compatible:
->> +    const: tyhx,hx9023s
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    description:
->> +      Generated by device to announce preceding read request has finished
->> +      and data is available or that a close/far proximity event has happened.
->> +    maxItems: 1
->> +
->> +  vdd-supply: true
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +patternProperties:
->> +  "^channel@[0-4]$":
->> +    $ref: /schemas/iio/adc/adc.yaml
->> +    type: object
->> +
->> +    properties:
->> +      reg:
->> +        minimum: 0
->> +        maximum: 4
->> +        description: The channel number.
->> +
->> +      input-channel:
-> Isn't this duplicating single-channel property?
->
-> Where is this property defined (which common schema)?
->
-|input-channel| is indeed intended for single-ended configuration, but I 
-couldn't find a definition
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-or reference for |single-channel| anywhere. If possible, should I rename 
-|input-channel| to |single-channel|?
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
-
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        minimum: 0
->> +        maximum: 4
->> +        description:
->> +          Specify the input pin used in single-ended configuration.
->> +
->> +      diff-channels: true
->> +
->> +    oneOf:
->> +      - required:
->> +          - input-channel
->> +      - required:
->> +          - diff-channels
->> +
->> +    required:
->> +      - reg
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - vdd-supply
->> +  - reg
-> Keep the same order as in properties.
-
-
-OK, I will correct the order in the next version.
-
-
->> +
->> +unevaluatedProperties: false
->> +
->
-> Best regards,
-> Krzysztof
->
 
