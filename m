@@ -1,225 +1,175 @@
-Return-Path: <devicetree+bounces-78715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9031913398
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:58:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84D17913394
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:56:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F23D8B2260A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:57:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FD601F220DC
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:56:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77617155305;
-	Sat, 22 Jun 2024 11:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA06153828;
+	Sat, 22 Jun 2024 11:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nr97E3is"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtprelay01.ispgateway.de (smtprelay01.ispgateway.de [80.67.18.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B2814C591;
-	Sat, 22 Jun 2024 11:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.67.18.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A2614C591
+	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 11:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719057475; cv=none; b=Rtc7zUCmiMKIKKrQkqXzyzkDUEm2NqkoGgtjI54Ore7E0hra2AaSJ5+ZNGTBqsXOxwdmi/oHCfg3S5sNtPCTkcibgpW0jv4ovPuG4vB+ePai3Y0JeuZ450vieutnatp75p+SO7Jc2XklR1fvIonurSdsXFFhqGZ3ooqJkNxi4bo=
+	t=1719057370; cv=none; b=PIulaGxeHKt2cJqSi/n7JIGh1bEfFR+SNRdvigNyp0Zv/IXPoI5hZj+PjeHUlF0+VI0mxIcS4o+V1RjyhCwMtPHDNn2CXITmGv6OVxNHh7TOuW/QOmlBoWEE0E4VJbwuFRr4JFqbcjz2OkUE4OH6l5zR8GGKOMXtIZgmeNMWeyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719057475; c=relaxed/simple;
-	bh=4nNz2jv+VOICXuXw2R1uGsao3nWrsCy0ZjQNa4eOHH0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZOrnFbti2DBaOVcbTgrLbp/8xqK4QWxhl8oOyTth0UpeAoq60e50hgJ5WI6LbV9QQYWdNQ4EsBkbd/jqKG3uq6n2RfH/GEOYM5zUJk9OApJXB1zvR6TB/FDqMXLPFziWNhZh3BMp4bKmaQgwgVMhYz871sxmbBL3QvO/rcSA63M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; arc=none smtp.client-ip=80.67.18.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-Received: from [92.206.190.41] (helo=framework.lan)
-	by smtprelay01.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.97.1)
-	(envelope-from <git@apitzsch.eu>)
-	id 1sKzKz-000000005fV-1pf2;
-	Sat, 22 Jun 2024 13:55:21 +0200
-Message-ID: <86f8110e8edc24d0df035b77a1aa68422e48bde1.camel@apitzsch.eu>
-Subject: Re: [PATCH v4 2/3] leds: sy7802: Add support for Silergy SY7802
- flash LED controller
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, Bjorn
- Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,  Trilok Soni
- <quic_tsoni@quicinc.com>, Kees Cook <kees@kernel.org>,
- linux-leds@vger.kernel.org,  devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,  linux-hardening@vger.kernel.org,
- linux-arm-msm@vger.kernel.org,  ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-Date: Sat, 22 Jun 2024 13:55:25 +0200
-In-Reply-To: <20240621102656.GK1318296@google.com>
-References: <20240616-sy7802-v4-0-789994180e05@apitzsch.eu>
-	 <20240616-sy7802-v4-2-789994180e05@apitzsch.eu>
-	 <20240621102656.GK1318296@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+	s=arc-20240116; t=1719057370; c=relaxed/simple;
+	bh=bEzn6fXDFwVpMlYuR07RzmqbdZcLx51KhVBOIz45SmM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VsOfgvW06IlBSoZc5Bs67YH5S/rjpZPuUz8Ms2gFHTI9/lgfmTNoSnMILQX/Ge4CTxDFxSIjASsImFY9/5NDocu5p/jk+lyfwjhH94TB6S7zpd982A5acOMWM2zpzYtRqHQ8LHMy6yYmX+3qv/xzLPCFp2WhKwLXx7E6lIY08qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nr97E3is; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59034C3277B;
+	Sat, 22 Jun 2024 11:56:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719057369;
+	bh=bEzn6fXDFwVpMlYuR07RzmqbdZcLx51KhVBOIz45SmM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nr97E3isvn0cQYtepeO0r+f6dJYJQ/ba8/5xu8lrvb0Mh/PVl5930Km6YAkEmRTju
+	 nSce5/u9G36ZsueZhXZrOWTEKT1Gwhzjjw/T5QVcw6vbG8h6Y2dItc7EQ75NkTgBFu
+	 uU57zUgxqVboQ7qDQeDppU4kf8UECX596bz9D95vBsJJDbb9npxSFNNZCEF+ObJAvn
+	 MLW5pn8YmAFwIRUEdwLKfidQOwSEjpNaLo7KOSgIB3iXFf2kjt976rj5b046w4aCaf
+	 qtbeAoSCtM5hDRRWyzOOPqtiyzOFG9wK78Xgwehf5LLsJItjFwNsS1RNND+yAJ4j68
+	 Zcnzw+1wIjl4w==
+Date: Sat, 22 Jun 2024 12:56:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: dri-devel@lists.freedesktop.org,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	kernel@dh-electronics.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: tc358867: Document
+ default DP preemphasis
+Message-ID: <20240622-ruse-stock-2c2b8d0b1cfb@spud>
+References: <20240621155430.92894-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/FRKGiZx/KRqGQiy"
+Content-Disposition: inline
+In-Reply-To: <20240621155430.92894-1-marex@denx.de>
 
-Hello Lee,
 
-Am Freitag, dem 21.06.2024 um 11:26 +0100 schrieb Lee Jones:
-> On Sun, 16 Jun 2024, Andr=C3=A9 Apitzsch via B4 Relay wrote:
+--/FRKGiZx/KRqGQiy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jun 21, 2024 at 05:53:53PM +0200, Marek Vasut wrote:
+> Document default DP port preemphasis configurable via new DT property
+> "toshiba,pre-emphasis". This is useful in case the DP link properties
+> are known and starting link training from preemphasis setting of 0 dB
+> is not useful. The preemphasis can be set separately for both DP lanes
+> in range 0=3D0dB, 1=3D3.5dB, 2=3D6dB .
 >=20
-> > From: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> >=20
-> > The SY7802 is a current-regulated charge pump which can regulate
-> > two
-> > current levels for Flash and Torch modes.
-> >=20
-> > It is a high-current synchronous boost converter with 2-channel
-> > high
-> > side current sources. Each channel is able to deliver 900mA
-> > current.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> > ---
-> > =C2=A0drivers/leds/flash/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 11 +
-> > =C2=A0drivers/leds/flash/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
-=C2=A0 1 +
-> > =C2=A0drivers/leds/flash/leds-sy7802.c | 542
-> > +++++++++++++++++++++++++++++++++++++++
-> > =C2=A03 files changed, 554 insertions(+)
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: kernel@dh-electronics.com
+> ---
+> V2: - Fix the type to u8 array
+>     - Fix the enum items to match what they represent
+> ---
+>  .../display/bridge/toshiba,tc358767.yaml       | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 >=20
-> Generally very nice.
->=20
-> Just a couple of teensy nits to fix then add my and resubmit please.
->=20
-> Acked-by: Lee Jones <lee@kernel.org>
->=20
-> > [...]
-> > diff --git a/drivers/leds/flash/leds-sy7802.c
-> > b/drivers/leds/flash/leds-sy7802.c
-> > new file mode 100644
-> > index 000000000000..c4bea55a62d0
-> > --- /dev/null
-> > +++ b/drivers/leds/flash/leds-sy7802.c
-> > @@ -0,0 +1,542 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Silergy SY7802 flash LED driver with I2C interface
->=20
-> "an I2C interface"
->=20
-> Or
->=20
-> "I2C interfaces"
->=20
-> > + * Copyright 2024 Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> > + */
-> > +
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/led-class-flash.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/regulator/consumer.h>
-> > +
-> > +#define SY7802_MAX_LEDS 2
-> > +#define SY7802_LED_JOINT 2
-> > +
-> > +#define SY7802_REG_ENABLE		0x10
-> > +#define SY7802_REG_TORCH_BRIGHTNESS	0xa0
-> > +#define SY7802_REG_FLASH_BRIGHTNESS	0xb0
-> > +#define SY7802_REG_FLASH_DURATION	0xc0
-> > +#define SY7802_REG_FLAGS		0xd0
-> > +#define SY7802_REG_CONFIG_1		0xe0
-> > +#define SY7802_REG_CONFIG_2		0xf0
-> > +#define SY7802_REG_VIN_MONITOR		0x80
-> > +#define SY7802_REG_LAST_FLASH		0x81
-> > +#define SY7802_REG_VLED_MONITOR		0x30
-> > +#define SY7802_REG_ADC_DELAY		0x31
-> > +#define SY7802_REG_DEV_ID		0xff
-> > +
-> > +#define SY7802_MODE_OFF		0
-> > +#define SY7802_MODE_TORCH	2
-> > +#define SY7802_MODE_FLASH	3
-> > +#define SY7802_MODE_MASK	GENMASK(1, 0)
-> > +
-> > +#define SY7802_LEDS_SHIFT	3
-> > +#define SY7802_LEDS_MASK(_id)	(BIT(_id) << SY7802_LEDS_SHIFT)
-> > +#define SY7802_LEDS_MASK_ALL	(SY7802_LEDS_MASK(0) |
-> > SY7802_LEDS_MASK(1))
-> > +
-> > +#define SY7802_TORCH_CURRENT_SHIFT	3
-> > +#define SY7802_TORCH_CURRENT_MASK(_id) \
-> > +	(GENMASK(2, 0) << (SY7802_TORCH_CURRENT_SHIFT * (_id)))
-> > +#define SY7802_TORCH_CURRENT_MASK_ALL \
-> > +	(SY7802_TORCH_CURRENT_MASK(0) |
-> > SY7802_TORCH_CURRENT_MASK(1))
-> > +
-> > +#define SY7802_FLASH_CURRENT_SHIFT	4
-> > +#define SY7802_FLASH_CURRENT_MASK(_id) \
-> > +	(GENMASK(3, 0) << (SY7802_FLASH_CURRENT_SHIFT * (_id)))
-> > +#define SY7802_FLASH_CURRENT_MASK_ALL \
-> > +	(SY7802_FLASH_CURRENT_MASK(0) |
-> > SY7802_FLASH_CURRENT_MASK(1))
-> > +
-> > +#define SY7802_TIMEOUT_DEFAULT_US	512000U
-> > +#define SY7802_TIMEOUT_MIN_US		32000U
-> > +#define SY7802_TIMEOUT_MAX_US		1024000U
-> > +#define SY7802_TIMEOUT_STEPSIZE_US	32000U
-> > +
-> > +#define SY7802_TORCH_BRIGHTNESS_MAX 8
-> > +
-> > +#define SY7802_FLASH_BRIGHTNESS_DEFAULT	14
-> > +#define SY7802_FLASH_BRIGHTNESS_MIN	0
-> > +#define SY7802_FLASH_BRIGHTNESS_MAX	15
-> > +#define SY7802_FLASH_BRIGHTNESS_STEP	1
-> > +
-> > +#define SY7802_FLAG_TIMEOUT			BIT(0)
-> > +#define SY7802_FLAG_THERMAL_SHUTDOWN		BIT(1)
-> > +#define SY7802_FLAG_LED_FAULT			BIT(2)
-> > +#define SY7802_FLAG_TX1_INTERRUPT		BIT(3)
-> > +#define SY7802_FLAG_TX2_INTERRUPT		BIT(4)
-> > +#define SY7802_FLAG_LED_THERMAL_FAULT		BIT(5)
-> > +#define SY7802_FLAG_FLASH_INPUT_VOLTAGE_LOW	BIT(6)
-> > +#define SY7802_FLAG_INPUT_VOLTAGE_LOW		BIT(7)
-> > +
-> > +#define SY7802_CHIP_ID	0x51
-> > +
-> > +static const struct reg_default sy7802_regmap_defs[] =3D {
-> > +	{ SY7802_REG_ENABLE, SY7802_LEDS_MASK_ALL },
-> > +	{ SY7802_REG_TORCH_BRIGHTNESS, 0x92 },
-> > +	{ SY7802_REG_FLASH_BRIGHTNESS,
-> > SY7802_FLASH_BRIGHTNESS_DEFAULT |
-> > +		SY7802_FLASH_BRIGHTNESS_DEFAULT <<
-> > SY7802_FLASH_CURRENT_SHIFT },
-> > +	{ SY7802_REG_FLASH_DURATION, 0x6f },
-> > +	{ SY7802_REG_FLAGS, 0x0 },
-> > +	{ SY7802_REG_CONFIG_1, 0x68 },
-> > +	{ SY7802_REG_CONFIG_2, 0xf0 },
->=20
-> Not your fault, but this interface is frustrating since we have no
-> idea
-> what these register values mean.=C2=A0 IMHO, they should be defined and
-> ORed
-> together in some human readable way.
->=20
-> I say that it's not your fault because I see that this is the most
-> common usage.
+> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc3=
+58767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358=
+767.yaml
+> index 2ad0cd6dd49e0..6287eb2b40908 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.y=
+aml
+> @@ -98,6 +98,24 @@ properties:
+>              reference to a valid eDP panel input endpoint node. This por=
+t is
+>              optional, treated as DP panel if not defined
+> =20
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              toshiba,pre-emphasis:
+> +                description:
+> +                  Display port output Pre-Emphasis settings for both por=
+ts.
+
+Why here and not in the port nodes?
+
+> +                $ref: /schemas/types.yaml#/definitions/uint8-array
+> +                minItems: 2
+> +                maxItems: 2
+> +                items:
+> +                  enum:
+> +                    - 0 # No pre-emphasis
+> +                    - 1 # 3.5dB pre-emphasis
+> +                    - 2 # 6dB pre-emphasis
+
+I'd love to say please make this -bB and put this in units, but that'd
+require it being a string..
+
+> +
+>      oneOf:
+>        - required:
+>            - port@0
+> --=20
+> 2.43.0
 >=20
 
-I don't know how to interpret some bits of the default values. I don't
-have the documentation and changing the bits and observing the behavior
-of the device also didn't help.
+--/FRKGiZx/KRqGQiy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Should I remove the entries from sy7802_regmap_defs, which have values
-that we don't fully understand?
+-----BEGIN PGP SIGNATURE-----
 
-Regards,
-Andr=C3=A9
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZna71AAKCRB4tDGHoIJi
+0oJAAP4yg+nH4MWPdvQx0vJQmZn2zlDtCFpSbj5+o33nzQg34gD/Vpq3YZxMx1EL
+IAzii8Zj6FJ9jfSX4aA5lmrRQskXSgs=
+=HVgL
+-----END PGP SIGNATURE-----
+
+--/FRKGiZx/KRqGQiy--
 
