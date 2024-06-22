@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-78701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AE5C91332B
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:09:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE75F913346
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:12:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFF04284A95
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:09:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E01F1F2318E
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 11:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8698E1509AE;
-	Sat, 22 Jun 2024 11:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3F21553A2;
+	Sat, 22 Jun 2024 11:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LP/LBE3R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xOLihn5H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2908014D299
-	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 11:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1AF14F106
+	for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 11:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719054570; cv=none; b=LvdnBP0nv3fsholb8uWEktURZNqkCRGdyzcpYSiXO4nP+gzmY3J9mq6snwt9t2vDFh5g/okHCXMYFRoMW4ob+gKKWspmVatRZF052AzQCOrdV2bQIDvztTgkoS5vdEz/s6uzZPrE53PyelJ5F6qix6/CXaGO5yaWpaWJVuHtw8U=
+	t=1719054643; cv=none; b=UwxfqIxnurIm51OrqSYZl7Jb7P6yOD33O1yA9gMvaNhusAMgdI290F3OwuY7NSNx7JIoc4G8hGldd1qJy9zOzULIYNcA4EWTodZ87ytXHTEXIscP7k0IheFaZH+GyegoLLdoWrsPOuCAkmGqwPn3mWRpc8nQupJFBQoY/l5x/ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719054570; c=relaxed/simple;
-	bh=lfF9InuMlIs46IAKThHeoaqSIjaqpjrF0mNn0upr/EI=;
+	s=arc-20240116; t=1719054643; c=relaxed/simple;
+	bh=33t2+53znsyzLwt+Za4IlobN0ZG9pU4A3lqHnq/ojcQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TYeMIHyjKXzANY8sidK9gFIIsSGVv2H3WNfNg+7bpceiuuJly3ulzN4PRWEXhLx1uyjmRhlaslBP9pIuZaCg82st31qdN35iee4cwmmEqtK0EJ6OCTH1ydR3hdXXNWOrZMpQfA+wSkYnmjOtTFAFok3MENPu6ay7qQJ2tUDATJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LP/LBE3R; arc=none smtp.client-ip=209.85.218.49
+	 In-Reply-To:Content-Type; b=OQECJVWs1u0V7F3ohf/C7SfH91CagPGA6o85Iqj6Jp9tzUkSSZXUh5R4M3usiZ6H8BxOFcsUUnQZ8qT0YY2Z72flOkqD3+i+cmzdHNe44hGmSdJ3+JWE5eboUITesFCYuibv9jkp66SkzqMza7hWTC9+EeZbWJ3v3ySCDew1GCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xOLihn5H; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a6fbe639a76so453740066b.1
-        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 04:09:27 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a6fbe639a76so453830366b.1
+        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 04:10:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719054566; x=1719659366; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719054640; x=1719659440; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=UxTd0A5ih62U/2vVAXq1cOqm/KoxaID5Hveyi9+8Qjo=;
-        b=LP/LBE3R5a6SHeuK4HNtjaXJtDjjShgoIbMLt4dxsZ1a7LMu00UbiTwxC4pDf3t2pD
-         tIPckKF32Gs7eDaAkt7rvPKpe1A87G4P7BbTf2UM8smGPDkLSwrvUuza/NIaFj4MaoUE
-         bo+5R+sTV6kN3Gk9g02RTAfZXD4HwSMREoWVBL/T7qW4Sbxk4QU4SxzQGc8XeuIue1aL
-         0NTLVGjbpuJNOf6N3nQxx+IWVV3tVwh8rHjOZxNPSTnJUQp5e6GCmW+fdPfDrqu84+CX
-         TU+HjuMeXGRta3IyppXQEbZ502EB1aFZ6aM6NXQj27Lm8ZdRIN86/LxuZs2nSIi98eCB
-         CTrQ==
+        bh=iBZeZdfUAWpnWDhH3kUtvDr+DT4k3Dvr8whyjRJOFaE=;
+        b=xOLihn5HyX9DvS5tLshiBxFFYiJVRY8sJMZRAgZ+jEakt9dXBXH+myIp5/nPhKP4HD
+         o2hoxYjxiv6uXpZbhP3pICQvoCdWGmEvAM3kDiKQ6aItA2SP0CkgjcEBoc4+5Qqj7ET2
+         LH+W9OGWokIAGrWMSidRTvnuuvBHAlfPUNoEhf+wQ3d4Km78xfBGzgBveqHMSiViVxwK
+         0G/yfi0cP1y1aF1R00wdd6325QK1ub0pr/4f+vMvukQnaletP1yFGT3r0yIRHTH1dVNo
+         l93cdx4hMKqWt40jjKFCptQg4HyP2x49OqRpxYr6BkrRAMhml55HKmfQ0foopEhTosXz
+         WWnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719054566; x=1719659366;
+        d=1e100.net; s=20230601; t=1719054640; x=1719659440;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UxTd0A5ih62U/2vVAXq1cOqm/KoxaID5Hveyi9+8Qjo=;
-        b=IOvXi+9y4LexEHZ21iMuuDq/R433EEiD/HrfG5nQbcYuXMNsyL5MZPvkPezm3gT17a
-         83mfmn5T5KD6CpFFuAGYe9t5VDkI2sulkq4SRVo7dT4jZNLLcHsQ+9zk12Xv4/moyI8L
-         c2FM2jpJnO8HksjxFxE0Kl1+akKRhfNl9ueXk7FJ/jxgEMeIAJzjob7RW8DrsSLg3rpq
-         firSR7XEqfRkSCT9z4iWJNjpvp7CUb6l+fFV2GdIxxobkaesl+uB7/HAL+AqR9BvWC1g
-         68SFuOqISVkeAGPHQR4FV4ZieHc3AXa/7CyUdX817ds02/lHmcy9v2qKhZJWLN9ic5Vv
-         Nnog==
-X-Forwarded-Encrypted: i=1; AJvYcCW2kjTtzJl9g9yU3Kqphv/fiRzAmuPeskAcz2c8VOgHfq0NngUxuhRnFzUj31IXYW7360Ii7TR36+monzNKVPLmtCPhB1rpC1/ArA==
-X-Gm-Message-State: AOJu0YweoM+ldRHrqyTbdyu+LNnTeSGr3rs2d+q2o9pt1z9FjMs9elGf
-	oAm8MugOosX/kCKXz67YbQt0aXzqCsT9n7IQr4fuU/SnVrPl+ZiI4GLH3Nu7fFSKsCcP+NztKvi
-	ESGw=
-X-Google-Smtp-Source: AGHT+IHcwXTf6PVedll4+dpa6qYQ6zvsrzeqSxOX0XmLY3MOwZma/dXdW+fkzbZGeLqn+ghehhzmFw==
-X-Received: by 2002:a17:907:d30a:b0:a6f:b6c3:fb2e with SMTP id a640c23a62f3a-a701b749c41mr89424066b.0.1719054566171;
-        Sat, 22 Jun 2024 04:09:26 -0700 (PDT)
+        bh=iBZeZdfUAWpnWDhH3kUtvDr+DT4k3Dvr8whyjRJOFaE=;
+        b=De0E/FcHxdDPN9SfKQpgux1DQJYAk+9vZNgX1yh1QQ92z2Ln5QpY267bgmuTLZQ/Jn
+         +z80zbwTM+yEuRSS70Zk9G2pA8QjBNkI3WgxfwIoxpa4Y8JShBnRTuF0mGFxUXAtLPUU
+         hKgUOgOFpvKTA7XUnDkR2Xvgc9fUpCyMfnT2B9vTsrPOuDMrrFfE0cwwQCuRlALDNy0Q
+         Plh9oZmGWKeYOytaIr3EhZtRNlip8O7tV2Z1ZhK0Wpd6vrEUIkzxaDRq7DzKodn3/k5c
+         oq8WlxjNzXWwV0eGdd8GsITcYqetixHASCYnX5DRl1NZI6sHkecEvhhGS3iiOO173RsG
+         rO1w==
+X-Forwarded-Encrypted: i=1; AJvYcCWb/VhduVHATg9A1o/yg6l1dY3mBk3ZCoBryAX321LKmFikHIVysTVKzKvyc6Uufn4C80GRWSgmbifKIQjJRgGegUtV18Z7g0NOEg==
+X-Gm-Message-State: AOJu0YznIOn1XTaOJh6pJaSj/uskNUSAltln6sWvs1U/oSz2qIP4EIf9
+	g6095qHMLXcf8Ubz9IYA0MytCr9YG0rrh01mc46s8I9dVgADYwNMAkN8FKsDS7w=
+X-Google-Smtp-Source: AGHT+IFc4K10XvEUFt442L4NeWoSGr4NiejUevDiqHJvU6cMnjOX60WCnHfV7UtbQJZAAGo/UxSrHg==
+X-Received: by 2002:a17:907:c924:b0:a6f:1d4e:734f with SMTP id a640c23a62f3a-a7038608fddmr53171066b.36.1719054639493;
+        Sat, 22 Jun 2024 04:10:39 -0700 (PDT)
 Received: from [192.168.128.35] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a70eb8792b2sm42005166b.184.2024.06.22.04.09.24
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf48b451sm183459666b.83.2024.06.22.04.10.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Jun 2024 04:09:25 -0700 (PDT)
-Message-ID: <e344335f-be60-4568-97be-728257684310@linaro.org>
-Date: Sat, 22 Jun 2024 13:09:23 +0200
+        Sat, 22 Jun 2024 04:10:39 -0700 (PDT)
+Message-ID: <77c837c3-0d72-45e8-9f1a-bef43d7d4d51@linaro.org>
+Date: Sat, 22 Jun 2024 13:10:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,17 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/4] arm64: dts: qcom: add base AIM300 dtsi
-To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH v2 2/3] ARM: dts: qcom: Add Sony Xperia Z3 Compact
+ smartphone
+To: Valeriy Klimin <vdos63@gmail.com>,
+ ~postmarketos/upstreaming <~postmarketos/upstreaming@lists.sr.ht>,
+ phone-devel <phone-devel@vger.kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Fenglin Wu <quic_fenglinw@quicinc.com>
-References: <20240618072202.2516025-1-quic_tengfan@quicinc.com>
- <20240618072202.2516025-4-quic_tengfan@quicinc.com>
- <7eb1c459-90d2-4b49-a226-0ced8216cee6@linaro.org>
- <04517096-38a0-465f-86f7-7e8c7de702a2@quicinc.com>
+ linux-kernel@vger.kernel.org
+References: <20240621-sony-aries-v2-0-dddf10722522@gmail.com>
+ <20240621-sony-aries-v2-2-dddf10722522@gmail.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -126,73 +125,19 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <04517096-38a0-465f-86f7-7e8c7de702a2@quicinc.com>
+In-Reply-To: <20240621-sony-aries-v2-2-dddf10722522@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20.06.2024 2:46 AM, Tengfei Fan wrote:
+On 21.06.2024 4:26 PM, Valeriy Klimin wrote:
+> Add the dts for the Z3 Compact. This is currently almost the same
+> as the plain Z3 as they share almost the same hardware and
+> nothing device-specific is currently supported.
 > 
-> 
-> On 6/19/2024 3:06 AM, Konrad Dybcio wrote:
->>
->>
->> On 6/18/24 09:22, Tengfei Fan wrote:
->>> AIM300 Series is a highly optimized family of modules designed to
->>> support AIoT applications. It integrates QCS8550 SoC, UFS and PMIC
->>> chip etc.
->>> Here is a diagram of AIM300 SoM:
->>>            +----------------------------------------+
->>>            |AIM300 SoM                              |
->>>            |                                        |
->>>            |                           +-----+      |
->>>            |                      |--->| UFS |      |
->>>            |                      |    +-----+      |
->>>            |                      |                 |
->>>            |                      |                 |
->>>       3.7v |  +-----------------+ |    +---------+  |
->>>    ---------->|       PMIC      |----->| QCS8550 |  |
->>>            |  +-----------------+      +---------+  |
->>>            |                      |                 |
->>>            |                      |                 |
->>>            |                      |    +-----+      |
->>>            |                      |--->| ... |      |
->>>            |                           +-----+      |
->>>            |                                        |
->>>            +----------------------------------------+
->>>
->>> Co-developed-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>> ---
->>
->> [...]
->>
->>> +&ufs_mem_hc {
->>> +    reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
->>> +    vcc-supply = <&vreg_l17b_2p5>;
->>> +    vcc-max-microamp = <1300000>;
->>> +    vccq-supply = <&vreg_l1g_1p2>;
->>> +    vccq-max-microamp = <1200000>;
->>> +    vdd-hba-supply = <&vreg_l3g_1p2>;
->>
->> These regulators should generally have:
->>
->> regulator-allow-set-load;
->> regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
->>                             RPMH_REGULATOR_MODE_HPM>;
->>
->> although the current setup you have never lets them exit HPM
->>
->> Konrad
-> 
-> I understand your point is that these settings need to be added to allthe child regulator nodes of regulators-0, regulators-1, regulators-2, regulators-3, regulators-4 and regulators-5. Is that correct?
+> Signed-off-by: Valeriy Klimin <vdos63@gmail.com>
+> ---
 
-No, I only meant the three references in the UFS node (l17b, l1g, l3g),
-although I suppose such properties should be there by default on all
-regulators in order to save power.. but most boards don't do that (yet),
-as nobody wants to waste their time with potentially one more thing to
-debug
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
