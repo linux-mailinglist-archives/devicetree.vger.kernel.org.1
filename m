@@ -1,133 +1,95 @@
-Return-Path: <devicetree+bounces-78683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B1DA913267
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 08:45:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9991B91328B
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 09:21:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B25CFB20FD3
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 06:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C77EF1C2145F
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 07:21:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A50014A612;
-	Sat, 22 Jun 2024 06:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF3414B078;
+	Sat, 22 Jun 2024 07:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TlqdmYZE"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="Y09ult06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DE748BFD;
-	Sat, 22 Jun 2024 06:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3DCC2B2CC;
+	Sat, 22 Jun 2024 07:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719038693; cv=none; b=XuimOQvT4WvSqcqZZnrNlwuAm81CypGvOMvdlE9NVJjStZdk/XxOi0gbAjdwYM4s1vaqM2XJEyu4Vyj75ACCdsy+hjYw/vHzaqxXOy/FPeQCT/cSW5b3YSNv4Mr558Ay6Jgus0XXuzwDPOW6MPEyHT7OVMUX4ilzY+sfS4oKbI4=
+	t=1719040902; cv=none; b=lsmFR8q2HGpNw6zdIWsOCbKxTBi4vrBFtvzSRit7ScN8igHkIch6Ic4wFF0p0QwD0koETmpQZ7In+B0WWpNzUOub5LGlzNVPReAvRKQM2zVZWGmIZRWanpmFWc0SRQtJLC4EqHFP9/fYKa8KzvGXOfK2doS7wjL+0CpC2jJfc94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719038693; c=relaxed/simple;
-	bh=UQb8Z+ujaHhhsuuhpwTwvPOB79Pihy/x2wORD1fIK6s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gxp+OZGrJBwwglt1l3WRH674dqzKygFIFOHficifHrcP+GyV+uKItbQvIh8eIayT+XW0XR4Os3Sg4bLO01eOihCkyLqkFIOqqF4DcnzNAWX2jrsTLKQqjaCBuv0+dp6UpZ8J2U60X2OTYh6BPm+iv6D6IJupkSnhR96knlq9f50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TlqdmYZE; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45M6iixB122438;
-	Sat, 22 Jun 2024 01:44:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719038684;
-	bh=spi4GdNW9JTa5ptQraKQLzKCk03Loxxcxp8dMLIrZNY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=TlqdmYZELih3Jw4nYUqKZiT9NRELaqTORRtOogiEfUsELJG+t7Px+FY7fWjegT/83
-	 Weyiowdgs8C+eR12zY5sdQ44b0rfz/IbhUnuBA8oPuJTfIyCaZEs67OiQFFreY429J
-	 rlZedS0YhachLmkNT5BLmfg2FiVW0YKhuAXQ0zI8=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45M6iioF110193
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 22 Jun 2024 01:44:44 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 22
- Jun 2024 01:44:44 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 22 Jun 2024 01:44:44 -0500
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45M6ieNS065637;
-	Sat, 22 Jun 2024 01:44:41 -0500
-Message-ID: <6b13bb6a-4378-4764-9a60-d25ee2914176@ti.com>
-Date: Sat, 22 Jun 2024 12:14:39 +0530
+	s=arc-20240116; t=1719040902; c=relaxed/simple;
+	bh=BRgmF1SuWGxaSlfe9UasHg3POB9fYog1Hz1JNFO0V7s=;
+	h=Date:From:To:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=r/wc5rg9qOwCcuOp0YmE67pYhJ38Fgrw+M8fugfBi4/spSaySaPeUV8IsAL1vVYR9r7yNVTAFcscLn6qUELnnLALpb9ATuRz9x+Ne1VVq7T7Ns79588S8wv4ak5FAAVW1VeeQ1Y04kyCqREIyTntJkmBZ47tNCyQmZJxlVJIYHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=Y09ult06; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Sender:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=0b04sSHMbcUZr86ZF4qTwtY++eMAXQb1yCBpSHbrK+k=; b=Y09ult06y0LucRVOeMjzyooo+G
+	DHp6/RaN/0A2yQi4DrNCpnCwDO1jPi1m06pJOeLa1dIC0sWFjGIntkThC4KQkcquwMzV3mS1DMBpL
+	FDy3x3LrYQnGPvsAHXPigubmezaijWRZ6eaKE3sdMnx28s4DwSt1v++zXlGeoXnDuSENdNNBOeqKE
+	lSDcuvSHEJabE6bEA7f6g30E+xkC+bx1uw3W4YK2vvtmdyKaZVCjpvu6QcCaH8l51UstNvIGUBlPa
+	2pSCAlUlhZtHAbA2jth+0PO7SY8uM+wv4gNLsXK68f2bO0YbztR9mGp9ZMBTMrvJJGx5BKmjGpRqD
+	OLvxz6vw==;
+Received: from p200300c20737c2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:c2:737:c200:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1sKuau-003Qf9-2d;
+	Sat, 22 Jun 2024 08:51:30 +0200
+Date: Sat, 22 Jun 2024 08:51:28 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, o.rempel@pengutronix.de, andreas@kemnade.info,
+ u.kleine-koenig@pengutronix.de, hdegoede@redhat.com,
+ oliver.graute@kococonnector.com, ye.xingchen@zte.com.cn,
+ p.puschmann@pironex.com, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ andy.shevchenko@gmail.com, felix@kaechele.ca
+Subject: Re: [PATCH v3 0/2] Input: add ft5426
+Message-ID: <20240622085128.38a6feb1@aktux>
+In-Reply-To: <20240501204758.758537-1-andreas@kemnade.info>
+References: <20240501204758.758537-1-andreas@kemnade.info>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4-evm: Enable analog audio
- support
-To: Jayesh Choudhary <j-choudhary@ti.com>, <linux-kernel@vger.kernel.org>,
-        <nm@ti.com>, <j-luthra@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20240619095253.290552-1-j-choudhary@ti.com>
- <20240619095253.290552-4-j-choudhary@ti.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Content-Language: en-US
-In-Reply-To: <20240619095253.290552-4-j-choudhary@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+ping
 
+On Wed,  1 May 2024 22:47:56 +0200
+Andreas Kemnade <andreas@kemnade.info> wrote:
 
-On 19/06/24 15:22, Jayesh Choudhary wrote:
-> &wkup_pmx2 {
-> @@ -881,6 +917,14 @@ exp1: gpio@20 {
->  				  "PCIE0_4L_RC_RSTZ", "PCIE0_4L_EP_RST_EN", "PCIE1_4L_PRSNT#",
->  				  "PCIE0_4L_PRSNT#", "CDCI1_OE1/OE4", "CDCI1_OE2/OE3",
->  				  "AUDIO_MUX_SEL", "EXP_MUX2", "EXP_MUX3", "GESI_EXP_PHY_RSTZ";
-> +
-> +		p12-hog {
-> +			/* P12 - AUDIO_MUX_SEL */
-> +			gpio-hog;
-> +			gpios = <12 GPIO_ACTIVE_HIGH>;
-> +			output-low;
-> +			line-name = "AUDIO_MUX_SEL";
-> +		};
->  	};
->  
->  	exp2: gpio@22 {
-> @@ -896,6 +940,22 @@ exp2: gpio@22 {
->  				  "CANUART_MUX1_SEL1", "ENET1_EXP_PWRDN", "ENET1_EXP_RESETZ",
->  				  "ENET1_I2CMUX_SEL", "ENET1_EXP_SPARE2", "ENET2_EXP_RESETZ",
->  				  "USER_INPUT1", "USER_LED1", "USER_LED2";
-> +
-> +		p13-hog {
-> +			/* P13 - CANUART_MUX_SEL0 */
-> +			gpio-hog;
-> +			gpios = <13 GPIO_ACTIVE_HIGH>;
-> +			output-high;
-> +			line-name = "CANUART_MUX_SEL0";
-> +		};
-> +
-> +		p15-hog {
-> +			/* P15 - CANUART_MUX1_SEL1 */
-> +			gpio-hog;
-> +			gpios = <15 GPIO_ACTIVE_HIGH>;
-> +			output-high;
-> +			line-name = "CANUART_MUX1_SEL1";
-> +		};
->  	};
->  };
+> Changes in v3:
+> - reorder compatible also in driver
+> 
+> Changes in v2:
+> - reorder compatible
+> 
+> Andreas Kemnade (2):
+>   dt-bindings: input: touchscreen: edt-ft5x06: Add ft5426
+>   Input: edt-ft5x06 - add ft5426
+> 
+>  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml        | 1 +
+>  drivers/input/touchscreen/edt-ft5x06.c                           | 1 +
+>  2 files changed, 2 insertions(+)
+> 
 
-
-Does this break CAN instances already enabled in the dts? If you
-consider making this a overlay as defaults seem to be set for CAN
-
--- 
-Regards
-Vignesh
 
