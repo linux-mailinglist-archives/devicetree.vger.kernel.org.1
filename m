@@ -1,154 +1,139 @@
-Return-Path: <devicetree+bounces-78745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC7F913424
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 15:13:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C77D8913436
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 15:39:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 904E21F219A6
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:13:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7967A28471D
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jun 2024 13:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E4716F8F0;
-	Sat, 22 Jun 2024 13:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034E116EBE8;
+	Sat, 22 Jun 2024 13:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gn8ed99h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YRyrbmEZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6B516F835;
-	Sat, 22 Jun 2024 13:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD39B82492;
+	Sat, 22 Jun 2024 13:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719061979; cv=none; b=fz0IKBg1vw0KqM5RKB6rm7IMcYrn7FSZhFzOkuuHuLVw8/Iul/Gd6dXzji/efFW+zQyjFwuI/WGpsSGK+8102r8HxSVcOaxt2TTYSW611gfNY0E2kBYenNAK7gDvufhFHYkUGR3NmsNZDEx5GtGhR+mGdP7fh6pnKDgYUspfxBs=
+	t=1719063587; cv=none; b=U1m8kSiie3QcBp+38xvlvbO8J3MuBngo+dUhqmljBkL0vNDi12R36K7brarfTiPX52RkC3ltlrX/tjKe3kzzUpmQoJVq9cWkeULfcBsEElpUJ9HrFruxqpE6NInfgN2Lt1QISJtS6D7mqHdO0NH4TJaqymHVCVirU7owVeZ/l5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719061979; c=relaxed/simple;
-	bh=NOkj/f8lAc7kTz5X7jDGaKXy+Z6EDvf0UOG45AeiUzs=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ACZPR19a9KZFTN/sxgOi6TX7viqpLIF+9OzNYZQdi3w48kL40A4xYbgxQqJKMnRjhcKiKPCCNlpY8LicwEYwBkuMtOecK42C3dFN3DBYwv61Fej8wESWLKyLuMluDg6Nymb9Z4ETovcKq3Gy8r1NREtTmqwVP6ncfwoA3CA4jrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gn8ed99h; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a6f13dddf7eso347889966b.0;
-        Sat, 22 Jun 2024 06:12:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719061976; x=1719666776; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1KIghhhap73u1S2Fgyv5RhQSmZlNkggPnJ4NqRaVR4E=;
-        b=gn8ed99hK3f7hP4UgaYN2eyiJeWBOuim/KDTbdkj67O1/FKwK4KrDCf1e9sNWPYEAO
-         9/FalHXA8u4oCQ4O14DYsJmAUsdS0NSvLqf91597w8v5tBT2BjJuSdjyA+ueUftt0GKk
-         LymgXCYnjlYmTBr2CT1oGV+jDopwAasyQe7TqEi6LXSAIr+kT7ObQ5OcxIjoGxKBqtpj
-         pqSVEbT8RrGoDM0ZIxnQ3j/0WEn3QlnzvCKG2OKFshnaBIQLM0+fhpmcbH+dNMFUFCUU
-         sgtY0y4L5U3iKLTF5DOgTyGHqDAWKOvHDLlpNco2yCurT0lyCDCDInd30YInsAJ3TvY2
-         ZlZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719061976; x=1719666776;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1KIghhhap73u1S2Fgyv5RhQSmZlNkggPnJ4NqRaVR4E=;
-        b=C3lswE+0M1lTN2BJFpw4bQElrkUHts/qv6+1btgyGupONB6Z2ujaQOxpL7w/u/8JPo
-         GYhKAGoIorAeTKL3NzWZ50eM5X3yM3zpLuFutV0tQhufBX2CuuYjE88ybDiPMfEEjkr5
-         EbeUvhqKvkRYrfKSi0yjxbcgQwsjvMT0ejkjB/YzVNCg94ygzKEhgjrP+OlHDkPecy0Q
-         rttYUooiBmN83/ff9DAkadLBLPdRfLDi1qrAStpe/vCZ/eBFaZeVJD8vCBSotK9VGxNV
-         BEIw17r/Gf61IUMn2fZqLRTb+mYzyX6qeGZyUpHN1t2umz7LOqIJtkg1mw7IlfBh7se1
-         CQ0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVR4mqZYNQLIWIVStbUeAvfwek6bvRyrgDz9rgPLKmh0MfN2F5bItrx33J7xAXLEzjWpIg6RXx8bhLBNEbWW0jMCT/U1Q19Hp+mDSofVlabzfRiHl+uAhSLPRxROg+GCSML8dwGf+1k19WtazEI3m4noLou3ewv86eOcyo3QEQcc64Vm0VT
-X-Gm-Message-State: AOJu0YyEtbEXxKuNlxtmaewo6S2vOJQdVpt6Qmw200jxaXe1k1hfj0EG
-	n1BQTga6iPpK98sKX6CDA5KPq1RCc2eFFF0Id5Cx1hTIcVNsolzA
-X-Google-Smtp-Source: AGHT+IH5qt1PObEvU6yvifso7ZxFmIBxYQ215NYI9UltdYVsYxH03ugtpQPpYu3t5Veq/1dFONMdDA==
-X-Received: by 2002:a17:906:7f05:b0:a6e:4693:1f6e with SMTP id a640c23a62f3a-a7242c39be2mr24427066b.29.1719061976155;
-        Sat, 22 Jun 2024 06:12:56 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf42a724sm197708166b.16.2024.06.22.06.12.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jun 2024 06:12:55 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	s=arc-20240116; t=1719063587; c=relaxed/simple;
+	bh=XoDceAdXs9z6NeEt0iuTL63LGCFyCmlS+FZp9Eo478A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XfmLfb14kNFBkamwkDTiiT6uWm7R8+YVbaUiImXEAIniKutHG8rNWxdNDGc7BMoEhRqS20dT5O1jviDJW8yw30SEgBOfK1f8stW8nVgkePHLUBhS4KTYNdei/n8iRCAeiM5X2hExAuBybdy81XGVnaCVlNAIGje0mP7KqgZbE5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YRyrbmEZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 864CAC3277B;
+	Sat, 22 Jun 2024 13:39:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719063587;
+	bh=XoDceAdXs9z6NeEt0iuTL63LGCFyCmlS+FZp9Eo478A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YRyrbmEZwPVx6Kq3OX7UakomyMBYMbHvJTJWNzDVbmFr345rfZhNmE7m4YjIa8tDK
+	 xC9peBlGek6Jcrn1zrUk0ZGyeLcLQLLn/qClDZu01loSvm75xV+jyr6m/OL9mJY/51
+	 1wxxr+qwdWiTwydzXO4rV8hgvgqea39BlGxSmUDlQVcu3CIf4VWPveUPwdm0jNlHU8
+	 c4yrHGfrfcbWhWY+aXlLx+qILyqelFr4X1aSa0IygbEE8FPjk1+PdpDp/B8sC6+xHw
+	 yd4D4xccgu3mC+4iXTc2Ak/X8Kh/rI3ANFjiq3RmiCS+Bw2ZQK+tmRa3solRgU435U
+	 7SfU2RPtQnP2A==
+Date: Sat, 22 Jun 2024 15:39:40 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shenghao Ding <shenghao-ding@ti.com>,
-	Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Subject: [PATCH v2 2/2] ASoC: Add support for ti,pcm5242 to the pcm512x driver
-Date: Sat, 22 Jun 2024 13:12:45 +0000
-Message-Id: <20240622131245.2607533-3-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240622131245.2607533-1-christianshewitt@gmail.com>
-References: <20240622131245.2607533-1-christianshewitt@gmail.com>
+	Heiko Stuebner <heiko@sntech.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Damien Le Moal <dlemoal@kernel.org>,
+	Jon Lin <jon.lin@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v5 00/13] PCI: dw-rockchip: Add endpoint mode support
+Message-ID: <ZnbUHI5GEMCmaK2V@ryzen.lan>
+References: <20240607-rockchip-pcie-ep-v1-v5-0-0a042d6b0049@kernel.org>
+ <Zm_tGknJe5Ttj9mC@ryzen.lan>
+ <20240621193937.GB3008482@rocinante>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240621193937.GB3008482@rocinante>
 
-Add a compatible string to enable support for the ti,pcm5242 DAC chip
-in the pcm512x driver.
+On Sat, Jun 22, 2024 at 04:39:37AM +0900, Krzysztof Wilczyński wrote:
+> Hello,
+>
+> [...]
+> > If there is anything more I can do to get this picked up, please tell me.
+>
+> Looks good! As such...
+>
+> Applied to controller/rockchip, thank you!
+>
+> [01/04] PCI: dw-rockchip: Fix weird indentation
+>         https://git.kernel.org/pci/pci/c/e7e8872191af
+>
+> [02/04] PCI: dw-rockchip: Add rockchip_pcie_get_ltssm() helper
+>         https://git.kernel.org/pci/pci/c/cbb2d4ae3fdc
+>
+> [03/04] PCI: dw-rockchip: Add endpoint mode support
+>         https://git.kernel.org/pci/pci/c/67fe449bcd85
+>
+> [04/04] PCI: dw-rockchip: Refactor the driver to prepare for EP mode
+>         https://git.kernel.org/pci/pci/c/ecdc98a3a912
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-Changes since v1:
-- add pcm5242 to SPI too as suggested by Mark Brown
+Krzysztof,
 
- sound/soc/codecs/pcm512x-i2c.c | 2 ++
- sound/soc/codecs/pcm512x-spi.c | 2 ++
- 2 files changed, 4 insertions(+)
+unfortunately, the controller/rockchip branch currently doesn't build:
 
-diff --git a/sound/soc/codecs/pcm512x-i2c.c b/sound/soc/codecs/pcm512x-i2c.c
-index 4be476a280e1..92bcf5179779 100644
---- a/sound/soc/codecs/pcm512x-i2c.c
-+++ b/sound/soc/codecs/pcm512x-i2c.c
-@@ -39,6 +39,7 @@ static const struct i2c_device_id pcm512x_i2c_id[] = {
- 	{ "pcm5122", },
- 	{ "pcm5141", },
- 	{ "pcm5142", },
-+	{ "pcm5242", },
- 	{ "tas5754", },
- 	{ "tas5756", },
- 	{ }
-@@ -51,6 +52,7 @@ static const struct of_device_id pcm512x_of_match[] = {
- 	{ .compatible = "ti,pcm5122", },
- 	{ .compatible = "ti,pcm5141", },
- 	{ .compatible = "ti,pcm5142", },
-+	{ .compatible = "ti,pcm5242", },
- 	{ .compatible = "ti,tas5754", },
- 	{ .compatible = "ti,tas5756", },
- 	{ }
-diff --git a/sound/soc/codecs/pcm512x-spi.c b/sound/soc/codecs/pcm512x-spi.c
-index 4d29e7196380..6629b862f47d 100644
---- a/sound/soc/codecs/pcm512x-spi.c
-+++ b/sound/soc/codecs/pcm512x-spi.c
-@@ -36,6 +36,7 @@ static const struct spi_device_id pcm512x_spi_id[] = {
- 	{ "pcm5122", },
- 	{ "pcm5141", },
- 	{ "pcm5142", },
-+	{ "pcm5242", },
- 	{ },
- };
- MODULE_DEVICE_TABLE(spi, pcm512x_spi_id);
-@@ -45,6 +46,7 @@ static const struct of_device_id pcm512x_of_match[] = {
- 	{ .compatible = "ti,pcm5122", },
- 	{ .compatible = "ti,pcm5141", },
- 	{ .compatible = "ti,pcm5142", },
-+	{ .compatible = "ti,pcm5242", },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, pcm512x_of_match);
--- 
-2.34.1
+drivers/pci/controller/dwc/pcie-dw-rockchip.c: In function ‘rockchip_pcie_ep_sys_irq_thread’:
+drivers/pci/controller/dwc/pcie-dw-rockchip.c:407:17: error: implicit declaration of function ‘dw_pcie_ep_linkdown’;
+	did you mean ‘dw_pcie_ep_linkup’? [-Wimplicit-function-declaration]
+  407 |                 dw_pcie_ep_linkdown(&pci->ep);
+      |                 ^~~~~~~~~~~~~~~~~~~
+      |                 dw_pcie_ep_linkup
 
+
+Could you possibly include the commit:
+3d2e425263e2 ("PCI: dwc: ep: Add a generic dw_pcie_ep_linkdown() API to handle Link Down event")
+from the controller/dwc branch in the controller/rockchip as well,
+or rebase the controller/rockchip branch on top of the controller/dwc branch,
+or merge the controller/dwc branch to the controller/rockchip branch?
+
+
+
+Additionally, since you picked up Mani's series which removes
+dw_pcie_ep_init_notify() on the controller/dwc branch:
+9eba2f70362f ("PCI: dwc: ep: Remove dw_pcie_ep_init_notify() wrapper")
+
+You will need to pick up this patch as well:
+https://lore.kernel.org/linux-pci/20240622132024.2927799-2-cassel@kernel.org/T/#u
+Otherwise there will be a build error when merging the controller/dwc
+and the controller/rockchip branch to for-next.
+The patch that I sent out can be picked up to the controller/rockchip right
+now (since the API that Mani is switching to already exists in Linus's tree).
+
+
+
+May I ask why all the branches for the different DWC glue drivers are not
+based on the controller/dwc branch?
+They are obviously going to be tightly related.
+
+
+Kind regards,
+Niklas
 
