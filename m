@@ -1,270 +1,301 @@
-Return-Path: <devicetree+bounces-78979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211F5913CFC
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:09:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ADDD913D20
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EBA41F2271F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:09:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24015B20F55
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:20:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7C7183084;
-	Sun, 23 Jun 2024 17:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B367183093;
+	Sun, 23 Jun 2024 17:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KCauEOHD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EBFBUwOU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98A08F5B;
-	Sun, 23 Jun 2024 17:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F09A3C38;
+	Sun, 23 Jun 2024 17:20:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719162589; cv=none; b=NcqxUqCvB2GwwmEzYxkE4nOT7MJnJH9Gq7n8kobl0Bb8Z2H5zCOVlqWsElRuTcFWu7gkl5Qx0LynDCvHqaCDiGRbkKKrd7tpfX4NEgJXtio9ZkIs9x1GaUy2xKvmbukj1/FFJkOMGuhb/sFf91ZRCSK7Dkhy0EUKOYWyI+N5PJQ=
+	t=1719163209; cv=none; b=dOu+WjvRXGhem7Bo6wqWFSKLCtb/b6UIsgH2Kn7Aj5qTi3y8Eqqjy9wANcUsVSkco/0MR9ZuzsWGVC79Cs5pDHTFJCoSh9A1Dchf1cNYHo5cuJxrLSnKHW+THQK1jXp5xqc0laQdKXb072SuVGyq+8vbAQ4cKHdcPntJnYLMMQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719162589; c=relaxed/simple;
-	bh=tQkkahnYieXy88Qh4CeUGjNNp7ssw8YuvBevUMbs1jM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gduCwKwXFzHIxo5ZQj7L95bSE8uSX3L4fSyRshZBQgSsWWqqDrPO+LIf/4Ha09Z4UwDxwjX9ycM23aopgNjDOrJ+ROMPnwsjVA/iHqXSyazdKHVXJd7tPqf1OEWf+hb44DDQFrt8GrNTUsT+3YNzzFoX2pKqreR3GmCb0nFBA14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KCauEOHD; arc=none smtp.client-ip=209.85.166.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-7f3b36cc47bso2202939f.0;
-        Sun, 23 Jun 2024 10:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719162586; x=1719767386; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6jFqQ9m9baI0PMnMyszCHoX3PO27F3E3H83bwUdNQUg=;
-        b=KCauEOHDDePYZB8213TQ+eTHXvl+7PNq3dkJr6CsEyyIJeJktzoyo6QqbJj7SqKciK
-         DctoxgqDpt3H+7tNDrMFfOySDKEbijYV1JjyireYOBIDQMyJimegXkvXeIhzeVnkbhBU
-         Ok/mm6DXWpi6LRZO/WyswkzYJn/IhvOXdUrIxZQZW99/jP+2CLBL3Zs9afqWxdCcJw1N
-         RuC22TEdPc8woGAxcGZlKj5EYzYWaRnUxOxRqVFwOCEmS3lZClRLCjzc2D+0GgzSbqKW
-         Z5Hcu+jYS0u67tS0QkBCDxK3NhuP2daW2hKORyzHHLK5UbPyU+EmnPbKdGyKnoO4lBtr
-         mAtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719162586; x=1719767386;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6jFqQ9m9baI0PMnMyszCHoX3PO27F3E3H83bwUdNQUg=;
-        b=jlv6RVHKdIJAMN8PkwBuzEPfKclUKUjo9B+BLlU3ilouza1UW7Hb2SyOAGrvPBDW23
-         DTZVUZQ0RTqN9gyplgn7s/pUWOu3+Ph9bo/MlQwb077Ass5iz/sTkU4eoI1G+fYrE7D+
-         oDwUcRACEJCuR7Txjo2aVHC/49XnbbT7eg3Mywl7G9j0xpwwEJmfayt/Onjo+AGGG2jq
-         gCDoDowGLoFKklqFjn52XL02uB9H7IkMecUb31NYqhw9qGqZRgt2NLaiFuNNyeCR2SHj
-         mGhDvKDxOuoAfx9mQguBAhX2tXvok3u42Rn5bZYfg8q97FTuhfrmCFfkYuBmo8EzXd+p
-         IPvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUeeP8tq40vzacYl3MqVUU81Qk0hTkKdgId0i4/hViFyULAe7kp6y/lrIPuqmsR09xdslSktT7jjPFkwN+0Xt6MDz2qQUMJZJKR9ep1aFpOXeU/iDCfKn+AAM2ufjMyqprolbVt
-X-Gm-Message-State: AOJu0Yy9/hXwiF1yBJtozmYfGv3ydYpnusBTeuY1zspWQhylsZco3b0V
-	Phc/OErpgRAFmeu88Mww0RG95HRVI7Kl4g0blOe3lFErcj3vWhI/qWYPpQ==
-X-Google-Smtp-Source: AGHT+IEyqlDrKAjXC7OKyz6JG7m/0yE9wGhkb0TPQKZzzavCexRQvIYnrIbTnuIVyT4Fgu6dniZY8w==
-X-Received: by 2002:a05:6602:6419:b0:7eb:b36f:b4e2 with SMTP id ca18e2360f4ac-7f3a74be868mr271263839f.10.1719162586012;
-        Sun, 23 Jun 2024 10:09:46 -0700 (PDT)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:7f0e:d47:475:ab36])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4b9d41612dbsm1480959173.4.2024.06.23.10.09.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 10:09:45 -0700 (PDT)
-From: Adam Ford <aford173@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: woods.technical@gmail.com,
-	aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adam Ford <aford@gmail.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: davinci_emac: Convert to yaml version from txt
-Date: Sun, 23 Jun 2024 12:09:33 -0500
-Message-ID: <20240623170933.63864-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1719163209; c=relaxed/simple;
+	bh=uJZcpJv0hqA88xELHju5tB3hDMt2Is5uBZniePTkLb8=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=J2DxmOXhk2iTBy5fjnVy+c9TDUgjUf/ENQNYxVG/Zgi9k3b3GRpTVew/CkRZUF+LFF1vfzE+tFacoXqkYpfpAWBUK1QqmLia8bCQ6otl4O6/4VAj6HKVqhQp69rhrtsDae0kWM2uVgl7evv9r4jrJGbENNf+v22WEtDsa2VM2b4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EBFBUwOU; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1719163207; x=1750699207;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=uJZcpJv0hqA88xELHju5tB3hDMt2Is5uBZniePTkLb8=;
+  b=EBFBUwOU85ErC3pF8ASyZ822lDtR9WvdHimitpuUBuS849p3JsFfXCe2
+   7ISEvDPGBBnZlssaF53JwBkDnKdU0jTSjGpthZSybijqFfH7pEEEpYj9t
+   97jA/BbGXY9OavuuiDMaqy55q63HR5RnIXM+IlZlniWZm1477v6N/m2qr
+   zNGu8ZHEa6u8c5cgzkzusyvQeUeJcg/d9scgbqv9joGUNUhf/6rIA+Vrn
+   qL+UGPTu8du31d2IuIhHCwdXPpA95zRx84zYv4Po8Jh7HYMR2n1Gb1ate
+   B0eef9620inmc+akVcvCvSWfsnEOQMXi3tZKdBusmOS1ud70a95qA+9ed
+   w==;
+X-CSE-ConnectionGUID: +SONrJCWSWuP5DdHabqQeQ==
+X-CSE-MsgGUID: dAG2E3g/SdKDrS/A909rYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="27266057"
+X-IronPort-AV: E=Sophos;i="6.08,260,1712646000"; 
+   d="scan'208";a="27266057"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2024 10:20:07 -0700
+X-CSE-ConnectionGUID: XqbvGZsrTi+RoOiT6ZcPag==
+X-CSE-MsgGUID: sreWyJctRkiuWmZkFlK6OA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,260,1712646000"; 
+   d="scan'208";a="43771548"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.55])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2024 10:20:02 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Sun, 23 Jun 2024 20:19:58 +0300 (EEST)
+To: daire.mcnamara@microchip.com
+cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com, 
+    robh@kernel.org, bhelgaas@google.com, LKML <linux-kernel@vger.kernel.org>, 
+    linux-riscv@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+    ilpo.jarvinen@linux.intel.com
+Subject: Re: [PATCH v4 2/3] PCI: microchip: Fix inbound address translation
+ tables
+In-Reply-To: <20240621112915.3434402-3-daire.mcnamara@microchip.com>
+Message-ID: <e9c70168-b1cf-2f9a-3249-4e7ade9732b1@linux.intel.com>
+References: <20240621112915.3434402-1-daire.mcnamara@microchip.com> <20240621112915.3434402-3-daire.mcnamara@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 
-The davinci_emac is used by several devices which are still maintained,
-but to make some improvements, it's necessary to convert from txt to yaml.
+On Fri, 21 Jun 2024, daire.mcnamara@microchip.com wrote:
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> On Microchip PolarFire SoC the PCIe Root Port can be behind one of three
+> general purpose Fabric Interface Controller (FIC) buses that encapsulates
+> an AXI-S bus. Depending on which FIC(s) the Root Port is connected
+> through to CPU space, and what address translation is done by that FIC,
+> the Root Port driver's inbound address translation may vary.
+> 
+> For all current supported designs and all future expected designs,
+> inbound address translation done by a FIC on PolarFire SoC varies
+> depending on whether PolarFire SoC in operating in dma-coherent mode or
+> dma-noncoherent mode.
+> 
+> The setup of the outbound address translation tables in the root port
+> driver only needs to handle these two cases.
+> 
+> Setup the inbound address translation tables to one of two address
+> translations, depending on whether the rootport is marked as dma-coherent or
+> dma-noncoherent.
+> 
+> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe controller driver")
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
 
-diff --git a/Documentation/devicetree/bindings/net/davinci_emac.txt b/Documentation/devicetree/bindings/net/davinci_emac.txt
-deleted file mode 100644
-index 5e3579e72e2d..000000000000
---- a/Documentation/devicetree/bindings/net/davinci_emac.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--* Texas Instruments Davinci EMAC
--
--This file provides information, what the device node
--for the davinci_emac interface contains.
--
--Required properties:
--- compatible: "ti,davinci-dm6467-emac", "ti,am3517-emac" or
--  "ti,dm816-emac"
--- reg: Offset and length of the register set for the device
--- ti,davinci-ctrl-reg-offset: offset to control register
--- ti,davinci-ctrl-mod-reg-offset: offset to control module register
--- ti,davinci-ctrl-ram-offset: offset to control module ram
--- ti,davinci-ctrl-ram-size: size of control module ram
--- interrupts: interrupt mapping for the davinci emac interrupts sources:
--              4 sources: <Receive Threshold Interrupt
--			  Receive Interrupt
--			  Transmit Interrupt
--			  Miscellaneous Interrupt>
--
--Optional properties:
--- phy-handle: See ethernet.txt file in the same directory.
--              If absent, davinci_emac driver defaults to 100/FULL.
--- ti,davinci-rmii-en: 1 byte, 1 means use RMII
--- ti,davinci-no-bd-ram: boolean, does EMAC have BD RAM?
--
--The MAC address will be determined using the optional properties
--defined in ethernet.txt.
--
--Example (enbw_cmc board):
--	eth0: emac@1e20000 {
--		compatible = "ti,davinci-dm6467-emac";
--		reg = <0x220000 0x4000>;
--		ti,davinci-ctrl-reg-offset = <0x3000>;
--		ti,davinci-ctrl-mod-reg-offset = <0x2000>;
--		ti,davinci-ctrl-ram-offset = <0>;
--		ti,davinci-ctrl-ram-size = <0x2000>;
--		local-mac-address = [ 00 00 00 00 00 00 ];
--		interrupts = <33
--				34
--				35
--				36
--				>;
--		interrupt-parent = <&intc>;
--	};
-diff --git a/Documentation/devicetree/bindings/net/davinci_emac.yaml b/Documentation/devicetree/bindings/net/davinci_emac.yaml
-new file mode 100644
-index 000000000000..4c2640aef8a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/davinci_emac.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/davinci_emac.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments Davici EMAC
-+
-+maintainers:
-+  - Adam Ford <aford@gmail.com>
-+
-+description:
-+  Ethernet based on the Programmable Real-Time Unit and Industrial
-+  Communication Subsystem.
-+
-+allOf:
-+  - $ref: ethernet-controller.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - ti,davinci-dm6467-emac # da850
-+          - ti,dm816-emac
-+          - ti,am3517-emac
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 4
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: ick
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  local-mac-address: true
-+  mac-address: true
-+
-+  syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: a phandle to the global system controller on
-+      to enable/disable interrupts
-+
-+  ti,davinci-ctrl-reg-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Offset to control register
-+
-+  ti,davinci-ctrl-mod-reg-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Offset to control module register
-+
-+  ti,davinci-ctrl-ram-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Offset to control module ram
-+
-+  ti,davinci-ctrl-ram-size:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Size of control module ram
-+
-+  ti,davinci-rmii-en:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description:
-+      RMII enable means use RMII
-+
-+  ti,davinci-no-bd-ram:
-+    type: boolean
-+    description:
-+      Enable if EMAC have BD RAM
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - ti,davinci-ctrl-reg-offset
-+  - ti,davinci-ctrl-mod-reg-offset
-+  - ti,davinci-ctrl-ram-offset
-+  - ti,davinci-ctrl-ram-size
-+
-+examples:
-+  - |
-+    eth0: ethernet@220000 {
-+      compatible = "ti,davinci-dm6467-emac";
-+      reg = <0x220000 0x4000>;
-+      ti,davinci-ctrl-reg-offset = <0x3000>;
-+      ti,davinci-ctrl-mod-reg-offset = <0x2000>;
-+      ti,davinci-ctrl-ram-offset = <0>;
-+      ti,davinci-ctrl-ram-size = <0x2000>;
-+      local-mac-address = [ 00 00 00 00 00 00 ];
-+      interrupts = <33>, <34>, <35>,<36>;
-+      clocks = <&psc1 5>;
-+      power-domains = <&psc1 5>;
-+      status = "disabled";
-+    };
-+
+Hi,
+
+As mentioned against v3 1/3, don't leave empty lines between tags.
+
+> ---
+>  drivers/pci/controller/pcie-microchip-host.c | 102 +++++++++++++++++--
+>  1 file changed, 93 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
+> index 853adce24492..d0489bd42bef 100644
+> --- a/drivers/pci/controller/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/pcie-microchip-host.c
+> @@ -30,6 +30,9 @@
+>  #define MC_PCIE_BRIDGE_ADDR			(MC_PCIE1_BRIDGE_ADDR)
+>  #define MC_PCIE_CTRL_ADDR			(MC_PCIE1_CTRL_ADDR)
+>  
+> +#define MC_MAX_NUM_INBOUND_WINDOWS		8
+> +#define MPFS_NC_BOUNCE_ADDR			0x80000000
+> +
+>  /* PCIe Bridge Phy Regs */
+>  #define PCIE_PCI_IRQ_DW0			0xa8
+>  #define  MSIX_CAP_MASK				BIT(31)
+> @@ -97,14 +100,15 @@
+>  
+>  /* PCIe AXI slave table init defines */
+>  #define ATR0_AXI4_SLV0_SRCADDR_PARAM		0x800u
+> -#define  ATR_SIZE_SHIFT				1
+> -#define  ATR_IMPL_ENABLE			1
+> +#define  ATR_SIZE_MASK				GENMASK(6, 1)
+
+#include <linux/bits.h>
+
+> +#define  ATR_IMPL_ENABLE_MASK			1
+
+This would be BIT(0), I think. IMO, you don't need to add _MASK postfix 
+for it, since it's just 1-bit wide field.
+
+>  #define ATR0_AXI4_SLV0_SRC_ADDR			0x804u
+>  #define ATR0_AXI4_SLV0_TRSL_ADDR_LSB		0x808u
+>  #define ATR0_AXI4_SLV0_TRSL_ADDR_UDW		0x80cu
+>  #define ATR0_AXI4_SLV0_TRSL_PARAM		0x810u
+>  #define  PCIE_TX_RX_INTERFACE			0x00000000u
+>  #define  PCIE_CONFIG_INTERFACE			0x00000001u
+> +#define  TRSL_ID_AXI4_MASTER_0			0x00000004u
+>  
+>  #define ATR_ENTRY_SIZE				32
+>  
+> @@ -931,6 +935,86 @@ static int mc_pcie_init_irq_domains(struct mc_pcie *port)
+>  	return mc_allocate_msi_domains(port);
+>  }
+>  
+> +static void mc_pcie_setup_inbound_atr(int window_index, u64 axi_addr, u64 pcie_addr, size_t size)
+> +{
+> +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> +	u32 table_offset = window_index * ATR_ENTRY_SIZE;
+> +	void __iomem *table_addr = bridge_base_addr + table_offset;
+> +	u32 atr_sz;
+> +	u32 val;
+> +
+> +	atr_sz = ilog2(size) - 1;
+
+You should add explicit includes you use:
+
+#include <linux/log2.h>
+
+> +
+> +	val = ALIGN_DOWN(lower_32_bits(pcie_addr), SZ_4K);
+
+#include <linux/align.h>
+
+> +	val |= FIELD_PREP(ATR_SIZE_MASK, atr_sz);
+> +	val |= FIELD_PREP(ATR_IMPL_ENABLE_MASK, 1);
+> +
+> +	writel(val, table_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
+> +
+> +	writel(upper_32_bits(pcie_addr), table_addr + ATR0_PCIE_WIN0_SRC_ADDR);
+
+#include <linux/wordpart.h>
+
+> +	writel(lower_32_bits(axi_addr), table_addr + ATR0_PCIE_WIN0_TRSL_ADDR_LSB);
+> +	writel(upper_32_bits(axi_addr), table_addr + ATR0_PCIE_WIN0_TRSL_ADDR_UDW);
+> +
+> +	writel(TRSL_ID_AXI4_MASTER_0, table_addr + ATR0_PCIE_WIN0_TRSL_PARAM);
+> +}
+> +
+> +static int mc_pcie_setup_inbound_ranges(struct platform_device *pdev, struct mc_pcie *port)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *dn = dev->of_node;
+> +	struct of_range_parser parser;
+> +	struct of_range range;
+> +	int atr_index = 0;
+> +
+> +	/*
+> +	 * MPFS PCIe root port is 32-bit only, behind a Fabric Interface
+> +	 * Controller FPGA logic block which contains the AXI-S interface.
+> +	 *
+> +	 * From the point of view of the PCIe root port, There are only
+> +	 * two supported Root Port configurations
+> +	 *
+> +	 * Configuration 1: for use with fully coherent designs; supports a
+> +	 * window from 0x0 (CPU space) to specified PCIe space.
+> +	 *
+> +	 * Configuration 2: for use with non-coherent designs; supports two
+> +	 * 1 Gb wide windows to CPU space; one mapping cpu space 0 to pcie
+> +	 * space 0x80000000 and mapping cpu space 0x40000000 to pcie
+> +	 * space 0xc0000000. This cfg needs two windows because of how
+> +	 * the MSI space is allocated in the AXI-S range on MPFS.
+> +	 *
+> +	 * The FIC interface outside the PCIe block *must* complete the inbound
+> +	 * address translation as per MCHP MPFS FPGA design guidelines.
+> +	 */
+> +	if (device_property_read_bool(dev, "dma-noncoherent")) {
+> +		/*
+> +		 * Always need same two tables in this case.  Need two tables
+> +		 * due to hardware interactions between address and size.
+> +		 */
+> +		mc_pcie_setup_inbound_atr(0, 0, MPFS_NC_BOUNCE_ADDR, SZ_1G);
+> +		mc_pcie_setup_inbound_atr(1, SZ_1G, MPFS_NC_BOUNCE_ADDR + SZ_1G, SZ_1G);
+> +	} else {
+> +		/* Find any dma-ranges */
+> +		if (of_pci_dma_range_parser_init(&parser, dn)) {
+> +			/* No dma-range property - setup default */
+> +			mc_pcie_setup_inbound_atr(0, 0, 0, SZ_4G);
+> +			return 0;
+> +		}
+> +
+> +		for_each_of_range(&parser, &range) {
+> +			if (atr_index >= MC_MAX_NUM_INBOUND_WINDOWS) {
+> +				dev_err(dev, "too many inbound ranges; %d available tables\n",
+> +					MC_MAX_NUM_INBOUND_WINDOWS);
+> +				return -EINVAL;
+> +			}
+> +			mc_pcie_setup_inbound_atr(atr_index, 0, range.pci_addr, range.size);
+> +			atr_index++;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>  				 phys_addr_t axi_addr, phys_addr_t pci_addr,
+>  				 u64 size)
+> @@ -946,8 +1030,9 @@ static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>  	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
+>  	       ATR0_AXI4_SLV0_TRSL_PARAM);
+>  
+> -	val = lower_32_bits(axi_addr) | (atr_sz << ATR_SIZE_SHIFT) |
+> -			    ATR_IMPL_ENABLE;
+> +	val = ALIGN_DOWN(lower_32_bits(axi_addr), SZ_4K);
+> +	val |= FIELD_PREP(ATR_SIZE_MASK, atr_sz);
+> +	val |= FIELD_PREP(ATR_IMPL_ENABLE_MASK, 1);
+
+This can be just val |= ATR_IMPL_ENABLE when you don't have _MASK 
+there which is easier to read (IMO).
+
+It would be nice to put the GENMASK()/FIELD_PREP() refactor into a 
+preparatory patch on top of which you'd make the actual fix to keep the 
+fix change itself simpler.
+
+Nonetheless, this was already much better than the previous version.
+
 -- 
-2.43.0
+ i.
 
+>  	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
+>  	       ATR0_AXI4_SLV0_SRCADDR_PARAM);
+>  
+> @@ -962,11 +1047,6 @@ static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>  	val = upper_32_bits(pci_addr);
+>  	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
+>  	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
+> -
+> -	val = readl(bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
+> -	val |= (ATR0_PCIE_ATR_SIZE << ATR0_PCIE_ATR_SIZE_SHIFT);
+> -	writel(val, bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
+> -	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
+>  }
+>  
+>  static int mc_pcie_setup_windows(struct platform_device *pdev,
+> @@ -1129,6 +1209,10 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = mc_pcie_setup_inbound_ranges(pdev, port);
+> +	if (ret)
+> +		return ret;
+> +
+>  	/* Address translation is up; safe to enable interrupts */
+>  	ret = mc_init_interrupts(pdev, port);
+>  	if (ret)
+> 
 
