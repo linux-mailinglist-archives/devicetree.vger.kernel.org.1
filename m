@@ -1,119 +1,107 @@
-Return-Path: <devicetree+bounces-78950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9DC913BC5
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:30:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BDE913BE3
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:02:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E56991F21B39
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:30:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DBAE282F5F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 15:02:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496111802C4;
-	Sun, 23 Jun 2024 14:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF971802CD;
+	Sun, 23 Jun 2024 15:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DqBVCtSf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AUTDTxB0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3291EB25;
-	Sun, 23 Jun 2024 14:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F02E20E6;
+	Sun, 23 Jun 2024 15:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719153027; cv=none; b=Mr+LjSZdd6YGXly3ZilnTT/xfeEvlslvpAuR5UVpplaMqpY8w8LnHt5pY4AIxmscpiqLTqB/6ViQdIKPHjw/BBHBUQmQ3WRw2OZ9up2EaHfy/rj2UzX2ThqPorJDfUK6ETbpzj8tSx3M7kMCiKnYQ6oc4bYVagrwEyxgZ0oqHeY=
+	t=1719154928; cv=none; b=QG3AyeibfUSqtJOH4sklGtpcOnWDmxJl1Eni8NSnCLDx0csbvlDQE39VfsPc4Bqywa3ShAK9idty4qQ7fZ8hunL1/qSATftcteaS0sUzqYvW4QK/1CAtXo5iOwWdx5j6mDBkOz7MtneI5tE0hrLfzKQ4FemK46SXaTvgeey2FVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719153027; c=relaxed/simple;
-	bh=JeDwnT/5o/t4SulflNylysZnroxPO1yMnY77AG2371A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q4lTO5ZIF2bnBMjQxBRlWrVJfJPiRhfuQeHM4Sczgly9AWYgC3wQBKU2JcacinaVdjN2q9wSmuqKaO/y+VXwm4VerHx4SAL3iX0ctzxZ2ycw2P6x7nHX7b0cARhTMrr6VY/bgGgnWhgvmKuKdnlNP361ZzvNT2ic53FFl8H3Bz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DqBVCtSf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16F8AC2BD10;
-	Sun, 23 Jun 2024 14:30:24 +0000 (UTC)
+	s=arc-20240116; t=1719154928; c=relaxed/simple;
+	bh=ISrxbHoDsgdg8jZ5QeZIYDTqqYNzfT5aOQ66p+EPqGo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kckZO+7gJOFXkIZzz9JJVOJXif6d/jJYRCIxyclpf373Gtn3tK8IOHOAc4qUPmPYD+tfsCAUom1eB7e4tdHppem9RlMRBCe8i9iddMMdusumvGyF4GhE10lehFgHVrJ+/i7YLvTrCCU0Emnv34u4wCCJKSCK32vcLLnChqjQgWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUTDTxB0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4865CC2BD10;
+	Sun, 23 Jun 2024 15:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719153026;
-	bh=JeDwnT/5o/t4SulflNylysZnroxPO1yMnY77AG2371A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DqBVCtSf3tjapxospQEitqB5uuhOSm4oGAc1Ni+y2Rys1edgdAKLj+JaB08lprST1
-	 qkSXfGGjdWmXUJYlykuN9lXzjiip2fWrWNUAPz4ImJLoJHSA8HpJtIZ2LE4+OalJCI
-	 GlTRVLwec7QN9icUAXUX0iGUPiINVHC39FO+lSGRiTaNLxwz1/sfjXjRDPyg3PoYWg
-	 oUYVz+xJN9I61XouX9Xx1R95LKe60Q7wlmsIn5yahzXiI8/fTs/cda70Iw0yRpuJhH
-	 YSKZauQfLmiNFP31GxuOTSCJ4eMwOfZp3/WNu+1aPIpyD5iOUcCfvZlVe3mGT/M6gt
-	 0+BrPo78XOR0g==
-Date: Sun, 23 Jun 2024 15:30:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Kaustabh Chakraborty <kauschluss@disroot.org>,
-	linux-iio@vger.kernel.org, denis.ciocca@st.com,
-	devicetree@vger.kernel.org, linus.walleij@linaro.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH v5 2/2] dt-bindings: iio: st-sensors: add LIS2DS12
- accelerometer
-Message-ID: <20240623-lure-rubber-27c1f8f7ec66@spud>
-References: <20240622123520.39253-1-kauschluss@disroot.org>
- <20240622123520.39253-2-kauschluss@disroot.org>
- <20240623110305.5d961052@jic23-huawei>
+	s=k20201202; t=1719154928;
+	bh=ISrxbHoDsgdg8jZ5QeZIYDTqqYNzfT5aOQ66p+EPqGo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=AUTDTxB066M0zP5PMnojHiP1J9VHW5O8wI8HefXUNgg6ViyiR7lynsdfZGq264K6U
+	 IW4Ea5yErWl4FfQyuG8vIAehENxpLg5icImCG8oxz/qLBjTQb4Bk6kpJANxvEJ5wYD
+	 PrjphOlKGgCzYIfmAOr+12xKh6tN5iTDr5+UcorXUOpyjdZwJ3AwiULMN4GHkAJqDb
+	 eUWjQBZsXWE03LxzzGgbyxGgKNRMqdXdlwAfGxljoGFPOlFJDE3iYqcLDS3uBRj4JN
+	 efREL+yQKPQTMEGlMmIqSlWt+v2fJnjLEdxB1bweeVrR9fdjtANEtfQWZVXgb08OJ2
+	 Qy6wWz68wH1GA==
+Date: Sun, 23 Jun 2024 16:01:57 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Fabrice Gasnier
+ <fabrice.gasnier@foss.st.com>, <alsa-devel@alsa-project.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/8] dt-bindings: iio: dfsdm: move to backend framework
+Message-ID: <20240623160157.2bed9ff9@jic23-huawei>
+In-Reply-To: <20240618160836.945242-5-olivier.moysan@foss.st.com>
+References: <20240618160836.945242-1-olivier.moysan@foss.st.com>
+	<20240618160836.945242-5-olivier.moysan@foss.st.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="N3AVEEhuL/WRSAO2"
-Content-Disposition: inline
-In-Reply-To: <20240623110305.5d961052@jic23-huawei>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Tue, 18 Jun 2024 18:08:30 +0200
+Olivier Moysan <olivier.moysan@foss.st.com> wrote:
 
---N3AVEEhuL/WRSAO2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Change the DFSDM binding to use the new IIO backend framework,
+> along with the adoption of IIO generic channels.
+> This binding change allows to add scaling support to the DFSDM.
+> 
+> Keep the legacy binding as deprecated for backward compatibility.
+> 
+> The io-backends property is supported only in generic IIO channel
+> binding.
+> 
+> - Channel description with the generic binding (Audio and Analog):
+> 
+>   Properties supersed by generic properties:
+superseded
 
-On Sun, Jun 23, 2024 at 11:03:05AM +0100, Jonathan Cameron wrote:
-> On Sat, 22 Jun 2024 18:03:46 +0530
-> Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
->=20
-> > LIS2DS12 is an accelerometer by STMicroelectronics. It is identifiable =
-by
-> > its WhoAmI value 0x43.
-> >=20
-> > Its register interface is not compatible with existing parts. For examp=
-le:
-> >=20
-> > - The full-scale values are present in register 0x20, in bits 2 and 3
-> >   (mask 0x0c). Most other supported sensors have the register address s=
-et
-> >   to 0x21, 0x23, 0x24, or 0x25. There is one sensor setting though
-> >   (bearing WhoAmI 0x3b) which has it's address set to 0x20, but the mas=
-k is
-> >   set to 0x20, not 0x0c.
-> >=20
-> > - The full-scale values 2G, 4G, 8G, and 16G correspond to the register
-> >   values 0x00, 0x02, 0x03, 0x01 respectively. None of the sensor settin=
-gs
-> >   have the value 0x01 associated with 16G.
-> >=20
-> > Add the compatible string without any fallback.
-> >=20
-> > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> Given the only requested change was this description and everyone seemed
-> happy with it in previous thread, I'll pick this series up now.
-
-ye, fine in my books. I should've prob acked explicitly when I assented
-to the wording on the previous version.
-
---N3AVEEhuL/WRSAO2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZngxfgAKCRB4tDGHoIJi
-0prlAP9WTLKrzFB6YvuKX+72fa1nL+hHQqEIJZPBPwETp0JN8wEA52l724nen/9Z
-htbZbuUUNvAmtYwn1ng3PA1CE2wZcwM=
-=+j52
------END PGP SIGNATURE-----
-
---N3AVEEhuL/WRSAO2--
+>     st,adc-channels: becomes "reg" property in channel node
+>     st,adc-channel-names: becomes "label" property in channel node
+>   Properties moved to channel child node:
+>     st,adc-channel-types, st,adc-channel-clk-src, st,adc-alt-channel
+> 
+> - Analog binding:
+> 
+>   DFSDM filter channel is configured as an IIO backend consumer.
+>   Add io-backends property in channel child nodes.
+> 
+>   DFSDM is no more configured as a channel consumer from SD modulator.
+>   Use of io-channels in DFSDM node is deprecated.
+> 
+> - Audio binding:
+> 
+>   DFSDM audio DAI is configured as a channel consumer from DFSDM filter.
+>   No change compare to legacy.
+> 
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
 
