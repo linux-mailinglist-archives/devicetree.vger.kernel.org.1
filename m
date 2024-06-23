@@ -1,108 +1,98 @@
-Return-Path: <devicetree+bounces-78858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583239138FE
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:20:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC95913908
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:35:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0523F1F21ABE
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:20:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB4EB28237E
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:35:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30CB2C6B7;
-	Sun, 23 Jun 2024 08:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABF23770C;
+	Sun, 23 Jun 2024 08:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="LeyFSiA+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D717715E83
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 08:20:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C66BE6F;
+	Sun, 23 Jun 2024 08:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.50.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719130818; cv=none; b=f1IweP0lMKsOajVvaFbGvEMUp9uVLGkH5bm3/BbTTQttKfbIDd5HMc7fZz1M5PDdSjxpyqfZQ9c3EcfAqa9CnOMm9dfJc5UiY3ElQDjsqgCJwVXaj4woiGAQGWzP+9Ltji2KAkuX6McLdXpExktLtCLu2C46hoiCYqVB4Q9DEso=
+	t=1719131700; cv=none; b=jYaZZf6BOpyrWva7lfVvx3gADFOA5+gxTInVGIhRTzmms7aOF2AZtd4+m3yEo5ZGDoB8byWKewRpRwxbsDRTzAH6hyT4y1fDK0tBTMfA+mJVYonp+haZE1wLFLN2f1hRrrfS/dWMAkN2+jKYZKlPWTUR+rCwAHvzhki1R7ck3x0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719130818; c=relaxed/simple;
-	bh=+zUMpKFzqiiRYS3rFF3JW8+b68NnSmgfPQwvGe0dY04=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aWw/dimW/ctBkRR3zw7NqPhaH0pGR+BSOQkY4J7fJ83HvEGc+cPWfsibABeX/op5OuRTZ4WBfXJVMQ9M4u8NjYAjCMngzOLBTkpNWNDDAwfGCWkOSRTai02u95vPpbzmspXuV08N6rfCWXr9PsAi8UrCDCAoPm2CWVThXITOqlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpsz8t1719130741t9z4pqa
-X-QQ-Originating-IP: 3WfoIsP1y1/hRCpT+9KdBFthcVVs8RrrukwZVyBJz/4=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sun, 23 Jun 2024 16:18:58 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3802460711432902669
-Message-ID: <9941941CA3B1175A+26e42825-e100-44b7-a565-f1a86ca3fff8@radxa.com>
-Date: Sun, 23 Jun 2024 17:18:58 +0900
+	s=arc-20240116; t=1719131700; c=relaxed/simple;
+	bh=BhIkfRTetisfAaTZramypcPdzr3QZINiGgPlhDXYUO8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=AF9lD7+d7RS8JkUr3skZ8qkBM6kzx3kM+rDq0d5UIR1JQtNnXbt8rrfKRIIFo8G3yaioweF/+TMue83rzKv1nas70cxNFl5AScqM0ULuqRj335akLpKCxtNQ4C6Wtbky2O6sF1eD7yERYJTpBl2RbfXnpI/N8++yri5uHtR+XUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=LeyFSiA+; arc=none smtp.client-ip=45.254.50.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=Pl0j2
+	zhZ4/LwcqBnPNf0V3io50xd+ejg631E0UIKQMo=; b=LeyFSiA+Bijt+UJpCmBdh
+	5w99jB+5mL6X0pbXyyn4wIs2pZ88kCPaANwJZXQifO60045hWV3B+jv0vdSaD9ne
+	h4e0cZeQKC9IdFxFHjQpBCai3MgrNAw6k3XcOuD/JyJ6LSMCmRS23k82miPFspQA
+	JwJHrE0N6HHUSpVHa2ybAA=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by gzga-smtp-mta-g0-3 (Coremail) with SMTP id _____wD3X+oG3ndm3x2cAA--.62882S2;
+	Sun, 23 Jun 2024 16:34:18 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: dsimic@manjaro.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andyshrk@163.com>
+Subject: [PATCH] arm64: dts: rockchip: Fix the i2c address of es8316 on Cool Pi 4B
+Date: Sun, 23 Jun 2024 16:34:13 +0800
+Message-Id: <20240623083413.2051412-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: add dts for Radxa ROCK Pi E v3.0
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20240623075318.80492-1-naoki@radxa.com>
- <8da8e56a-e24f-4b56-9861-df55369c984f@kernel.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <8da8e56a-e24f-4b56-9861-df55369c984f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3X+oG3ndm3x2cAA--.62882S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Ary8JFy3GFyfXw4kCrWxWFg_yoW8GFy5pa
+	15u39xJr109r4FqayqqanxXrsrCrsI9F48Cw17Gasayr47X34vqr17XryfCryjgF13Zan5
+	ur15Jr1DK3WDZaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ziVHqxUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiMw0HXmXAmBQZZAAAsz
 
-Hi,
+According to the hardware design, the i2c address of audio codec es8316
+on Cool Pi 4B is 0x10.
 
-thank you very much for your comment!
+This fix the read/write error like bellow:
+es8316 7-0011: ASoC: error at soc_component_write_no_lock on es8316.7-0011 for register: [0x0000000c] -6
+es8316 7-0011: ASoC: error at soc_component_write_no_lock on es8316.7-0011 for register: [0x00000003] -6
+es8316 7-0011: ASoC: error at soc_component_read_no_lock on es8316.7-0011 for register: [0x00000016] -6
+es8316 7-0011: ASoC: error at soc_component_read_no_lock on es8316.7-0011 for register: [0x00000016] -6
 
-On 6/23/24 17:07, Krzysztof Kozlowski wrote:
-> On 23/06/2024 09:53, FUKAUMI Naoki wrote:
->> Radxa ROCK Pi E v3.0 has DDR4 SDRAM instead of DDR3 SDRAM.
->>
->> for Linux, this change doesn't make any difference from a device tree
->> POV. but, for bootloader (U-Boot TPL), it makes a difference.
-> 
-> What difference?
+Fixes: 3f5d336d64d6 ("arm64: dts: rockchip: Add support for rk3588s based board Cool Pi 4B")
+Signed-off-by: Andy Yan <andyshrk@163.com>
+---
 
-U-Boot TPL initialize DDR SDRAM.
+ arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://github.com/RadxaNaoki/u-boot/commit/16d823eb95fe311c82a8ebb31570b59b1c59c43b#diff-03ce6c241f5db74ae87d4d8654bfef5eeb5bc42a9f1ff3cc828b70b3b2ac51d2R4
-https://github.com/RadxaNaoki/u-boot/commit/16d823eb95fe311c82a8ebb31570b59b1c59c43b#diff-31b80303774e7c10b527fb2dbc704b82e6c5ccdc6d53dd4f65861309ce0e7413R4
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+index 20a0a60acd16..091dee37d068 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+@@ -302,7 +302,7 @@ &i2c7 {
+ 
+ 	es8316: audio-codec@11 {
+ 		compatible = "everest,es8316";
+-		reg = <0x11>;
++		reg = <0x10>;
+ 		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
+ 		assigned-clock-rates = <12288000>;
+ 		clocks = <&cru I2S0_8CH_MCLKOUT>;
+-- 
+2.34.1
 
-there is 1 letter difference, ddr"3" and ddr"4".
-
->> bootloader needs a separeted dts for v3, so I add new dts for it.
->> dtb can be shared between v3 and prior, so I don't touch Makefile.
-> 
-> I don't understand. If you have the same DTB then you do not need second
-> DTS.
-
-2nd dts is for bootloader. it's not needed for Linux.
-
-but latest U-Boot uses upstream device tree for some targets.
-
-> This change really lacks proper explanation or is just unnecessary. If
-> change is proven as necessary, then you also miss compatible and model.
-
-sorry, I should write proper explanation.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Best regards,
-> Krzysztof
-> 
-> 
 
