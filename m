@@ -1,61 +1,67 @@
-Return-Path: <devicetree+bounces-78972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3BE3913CD0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 18:43:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9474B913CE5
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 18:52:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1E711C20E85
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:43:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 505E32832A3
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916D918308D;
-	Sun, 23 Jun 2024 16:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F7E183061;
+	Sun, 23 Jun 2024 16:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NPDmB/95"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MokcOLV7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B1D27453;
-	Sun, 23 Jun 2024 16:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE1038BFA;
+	Sun, 23 Jun 2024 16:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719161020; cv=none; b=InM9/qY6oCophqv7BcmcyAbz/jdv8vHLXDevy6CnpUQczzWqwhl/vQY/USMKyPzgBoLpVH1PnbOE8MgAIUFDkGGIx59u/DCySDZM0b3oOwWT0xW4KtyB9hyG71p/UeSXGuaLeUasYT4icx3cQt0taFu73jx7S9C7g0LuqDNrG8w=
+	t=1719161545; cv=none; b=Ip/LrY7U5MFD+gL7f3eK7BhFAKbqiN/XAcSg68wlg7Y8ZdqpkDkYVxoXTerWqsiPYe2pRtbS2o4YNFIxr7H/aE80wpC6lfKeoVeU0i0NzHUliME7aNWJGwW7sbZgeEJ3Oq54irnoB2kNf6h/hZ+My9bE7ZPcQ/A7kKd8Q92Wwtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719161020; c=relaxed/simple;
-	bh=1nMqqxlbzqnOaLTzG3lu0kMusS7M47wv0fXB6SIvc0U=;
+	s=arc-20240116; t=1719161545; c=relaxed/simple;
+	bh=w3rWc4cJp3prvIAFS9iJKV4UQoSn7/pOlOMHaiefaAY=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gcyb5GHE4b90/WHf7lUHOkK0miw6sFs44X0AzRENON9pmf4wmsvKYDqeuvI9+kYuge+bc5Omj8zDp0afv5OJ9TVHIxCPOf0t52eKwXkyxVu+epn8u5Sw6jd4hrNZHJcGRnsgxCMxGTuoaP55fmj14U+raAhqBW6CnOJcorE+4pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NPDmB/95; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4C7CC4AF09;
-	Sun, 23 Jun 2024 16:43:35 +0000 (UTC)
+	 MIME-Version:Content-Type; b=WpAkxsywrPbvzDzlaB7PptptjTKbr4QUTgKB3QBVm+eY7AvSHbIjd0BNlw74AzXw4hYRGH7f1EOidTphcdILdMXs7aojzOwE9VNybqccEUZXMaRk7hjjZnmVdAEiUNXrWY2+7k3iXPDM1DhPbckA6LTI0MZuXeFzKDFt16JA6yA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MokcOLV7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA50AC2BD10;
+	Sun, 23 Jun 2024 16:52:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719161020;
-	bh=1nMqqxlbzqnOaLTzG3lu0kMusS7M47wv0fXB6SIvc0U=;
+	s=k20201202; t=1719161545;
+	bh=w3rWc4cJp3prvIAFS9iJKV4UQoSn7/pOlOMHaiefaAY=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NPDmB/95FhIXETQ4nb2L5wVxntqtY4sQ5d2FZlw72flAX1/vxt7XGYHG9eait9MZj
-	 +SMPg6JSrOCFIXzyDHgCvclWGVNn1tq7Z1K0LsfP7pNqujcD7pXUjI+nVV4s1WYjxM
-	 a46VqGVoWz9xkWVM93hEMDbCN4Y7rQhvB5SfaHcwBHTjpmryus1wFzLa1cVGflRsMJ
-	 K48FZ+WPI9oxAQJ1UvPYabwVMsITEgaLYi0MYJiWuuDS8zX7ecl0a2rAhaublErLSq
-	 1DBMLOAPL69VEjh9IoNCoaKYz3Dx0tJWbciDpxW9EIt5qcZsb/YFgPwTQmTSp/MjDc
-	 TyYoJFSrjcqmQ==
-Date: Sun, 23 Jun 2024 17:43:31 +0100
+	b=MokcOLV7qwP2dwx2+1oEOCymfbSejs20W+ZX5sMbFcGViO/GyKqQcpEiPYubmwIc1
+	 ad846XLYn9i6s7H3BT+l2VEAzvgINUHQz9rntDlMBJrW3MaR0qRN+sriSuPzvOJhC/
+	 6/WkRBvcOwA0dfmr70g1mQGszTwONFq5aE01fofAzg0r6WjC5rK/aUxsmTKBqvgMNt
+	 eiVM+P+k2RKy1J4rOeqgsQ7FKTmn7veFw2+5B5BjREONSocVNjPqOZOlMoblkeMhZ1
+	 NnV9+BTOkhqbVHE6UcX6PNG0NWb0dgF6xr1391u0AXlZtH71seIlx/LwpzL51UC7JY
+	 TT0TqIMDh3yyw==
+Date: Sun, 23 Jun 2024 17:52:16 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Hennerich
- <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Ramona Gradinariu <ramona.gradinariu@analog.com>
-Subject: Re: [PATCH v2 3/4] iio: adc: ad4695: Add driver for AD4695 and
- similar ADCs
-Message-ID: <20240623174331.07ad2446@jic23-huawei>
-In-Reply-To: <20240617-iio-adc-ad4695-v2-3-63ef6583f25d@baylibre.com>
-References: <20240617-iio-adc-ad4695-v2-0-63ef6583f25d@baylibre.com>
-	<20240617-iio-adc-ad4695-v2-3-63ef6583f25d@baylibre.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, Mudit Sharma
+ <muditsharma.info@gmail.com>, lars@metafoo.de, krzk+dt@kernel.org,
+ conor+dt@kernel.org, robh@kernel.org, ivan.orlov0322@gmail.com,
+ javier.carrasco.cruz@gmail.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, "Haikola, Heikki"
+ <Heikki.Haikola@fi.rohmeurope.com>, "Mutanen, Mikko"
+ <Mikko.Mutanen@fi.rohmeurope.com>
+Subject: Re: [PATCH v4 2/2] iio: light: ROHM BH1745 colour sensor
+Message-ID: <20240623175216.6bb09390@jic23-huawei>
+In-Reply-To: <6e5d6734-eae0-49fd-a1ed-beda00e37209@gmail.com>
+References: <20240606162948.83903-1-muditsharma.info@gmail.com>
+	<20240606162948.83903-2-muditsharma.info@gmail.com>
+	<20240608172227.17996c75@jic23-huawei>
+	<CANhJrGM9czj0RL3OLCgRHEKc2QOjG9P0AZTrZxvYUk65TCpHRg@mail.gmail.com>
+	<20240611181407.00003f61@Huawei.com>
+	<c9c0d585-617d-4181-afa2-c5743848f5c9@gmail.com>
+	<20240615192348.182eb1b8@jic23-huawei>
+	<6e5d6734-eae0-49fd-a1ed-beda00e37209@gmail.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,24 +72,43 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 17 Jun 2024 14:53:14 -0500
-David Lechner <dlechner@baylibre.com> wrote:
 
-> This is a new driver for Analog Devices Inc. AD4695 and similar ADCs.
-> The initial driver supports initializing the chip including configuring
-> all possible LDO and reference voltage sources as well as any possible
-> voltage input channel wiring configuration.
+> > Gut feeling is normally people are actually cranking scaling of light
+> > channels up and down together as hopefully they are approximately balanced
+> > for 'white' giving similar scales on all sensors (by filters or fixed gains)  
 > 
-> Only the 4-wire SPI wiring mode where the CNV pin is tied to the CS pin
-> is supported at this time. And reading sample data from the ADC can only
-> be done in direct mode for now.
+> I appreciate your insight on how people usually use these devices :) 
+> It's very valuable to me.
+
+Pah, never trust me on this stuff.  I've not been on the 'ground' with
+real sensor for a long time and even then my use cases were far from typical.
+
+These days I just play with big toys (though having just helped moved them
+between buildings this week I can say that they are at least real and not all
+in the cloud).
+
 > 
-> Co-developed-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > and people would only need to care if they were trying to measure a weak
+> > blue signal in a red world. If we have a case that doesn't work well
+> > for that sort of global scaling (I can sort of see that as a possible
+> > problem due to the transition states not being possible) then we
+> > should make sure that one works!  
+> 
+> Yes. I think some users will eventually hit to a scale transition which 
+> will be NACKed by the driver. Also, I don't think this problem will be 
+> specific to the BU27034 sensor, but in some form this will be possible 
+> for many gain-time-scale type devices. I just don't have a good generic 
+> solution in my mind right now.
+> 
+> Oh, besides, it seems raining stopped. Time to turn off my computer and 
+> go out to the yard :)
 
-I only took a quick look as it sounds like some of this will change.
-FWIW Looks good to me.
+Wise!
 
-Jonathan
+
+> 
+> Yours,
+> 	-- Matti
+> 
+
 
