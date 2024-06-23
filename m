@@ -1,268 +1,179 @@
-Return-Path: <devicetree+bounces-78867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF9C91394E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:42:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA3E5913936
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:31:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E62CF282103
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 09:42:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B1DB1F21A49
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 09:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEDD7E0F2;
-	Sun, 23 Jun 2024 09:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC651DDD6;
+	Sun, 23 Jun 2024 09:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="XUbqly1N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSk0Jcf0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D288438C;
-	Sun, 23 Jun 2024 09:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32ED538C;
+	Sun, 23 Jun 2024 09:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719135753; cv=none; b=e2CourG6f4A9Ni/gPooc8qd9YRwx+Cf1FDtAak3B1T8Sm69FE4yBYef1rChHzuxgWygvBjZDk7w7XlXN2kEjhQsLQ31AIiwe8yFPIfWBdhLcfufXxgTRXBd7YxCkMbkTKxmqwF9HwjnfBfxDGsEfhzLV33WG0k5VYb23CDQre4g=
+	t=1719135097; cv=none; b=ZqJ7GpR3OX1v52R/cYkuEBXMzY38hI1VMy+VZ7D2NIT0Yuf2MwNj5xDQn4PY8jJ8V3TPxYloOdKZNNh+M99I6brfE3ZpOi/ZkXHSYIRcwycHreY1dW8dngM5U/cE3NM2GOEken8BvfMM4mxYih4pXaiKGBGhC5nP6UQHkwYgGC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719135753; c=relaxed/simple;
-	bh=zmniZvRHoh5jL1vf5EYtGQpxPG2Az2hORSfAnvblczI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Edxq8xRu35GMyb0Rdx0KIDQDNWjslicUh1AzYbY5RhWogAZx1Hvrv40kVZjbHjyg/tSZbkOVjniVIHDKmOyQTmWvu3TJaDxJf+ZyRDmCfE5AG4Ma4SSQjIOE5fbxI1KJho5CvzXvo+XHmsa6yQsX74rCHej6EikU2l3fmGRbND4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=XUbqly1N; arc=none smtp.client-ip=194.87.146.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 5661442238;
-	Sun, 23 Jun 2024 14:27:10 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1719134830; bh=zmniZvRHoh5jL1vf5EYtGQpxPG2Az2hORSfAnvblczI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=XUbqly1NREiOYgUvzIxAciOjSTqFq+/CoMieTM9Rmf73Z1/MZLhX25e9ne7Ca2vVY
-	 8PSCx97uKyXnRg3rAZI5AtlhRKAGh4mp+BSMeA8uKFNS5AzL+nXG/qrrdjOmUfonkl
-	 Yz8mOje8DR7ezcrh2Dc036qkXwaeMr+Ib/H6RKNtE81NCKLpQFtTlXbC7IHara1ijf
-	 uAW3j9Ucfw7MQ94EAbSkZtyb75M1d0VbqPnooi12WM0nSkjROJPMId+iG//9RU6RML
-	 1OstRxoZCU+o6Kl5ZcKGTLa57sWzhIBRLPiZrFxRnFtQkSzkjdJ5oB+g5J3AWPWSNI
-	 OSDfLyESVBjpw==
-From: Nikita Travkin <nikita@trvn.ru>
-Date: Sun, 23 Jun 2024 14:26:32 +0500
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916-lg-c50: add initial dts for
- LG Leon LTE
+	s=arc-20240116; t=1719135097; c=relaxed/simple;
+	bh=mmkFqQCWNWhI9vMGLTThsVmNtKKLibTwrxANXk3fnLs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJEY3rZtRCSOOZ+xp46ficY/PmDLMoTAQ4ih0C+yBvANo9UUHqIhSCrAjLItMYtrBLPex8N7mniRod4o8Z0lBHei0gJc/pHV/zWkqv+H/buFAyyuJZjuM6/4VmsSelASnbbNl9Miao3Q9asQ2xR0eXa7AB+X7n3yunBzl3xNmCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSk0Jcf0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 144BAC2BD10;
+	Sun, 23 Jun 2024 09:31:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719135096;
+	bh=mmkFqQCWNWhI9vMGLTThsVmNtKKLibTwrxANXk3fnLs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gSk0Jcf0ZmSdEdzC9y2jzm4UfWnBwEVmUJA1s9qbCCGCpaHX62uNp9LcAN1Empo3w
+	 2h3Zy6S1Fvv4OJftNEBmG7kvQb1OmcIiyJDNi874ISwu0rmLhtQnY3CzME0TY9ik8p
+	 wMZpwejzkWvDCxsATVljcrKzaoyg44Z3cP67EV596U4en/Vxt/caop8qMiH4pwTPTx
+	 XQ/1WJgzokRw0FnqecQwAutSwfmCNGSlz+cBq9pF82vNAEqBrokcwXG+tGRNGMSBLY
+	 g54QTHtZf3xRBNT+o+cLOmUjbfRouMfu6bACDgTV5zV5BrVH/Jq1dxFj45pexVELJq
+	 gN6DV0kxmP5jw==
+Date: Sun, 23 Jun 2024 11:31:32 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-pci@vger.kernel.org, ryder.lee@mediatek.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, linux-mediatek@lists.infradead.org,
+	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	nbd@nbd.name, dd@embedd.com, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH 1/4] dt-bindings: PCI: mediatek-gen3: add support for
+ Airoha EN7581
+Message-ID: <ZnfrdF8Q7kRUudq1@lore-desk>
+References: <cover.1718980864.git.lorenzo@kernel.org>
+ <a215d6d8a91fccdbd1a28dd3262a3e5db1b728fd.1718980864.git.lorenzo@kernel.org>
+ <20240622-ripple-skylight-cdf172afde61@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240623-msm8916-lg-initial-v1-3-6fbcf714d69b@trvn.ru>
-References: <20240623-msm8916-lg-initial-v1-0-6fbcf714d69b@trvn.ru>
-In-Reply-To: <20240623-msm8916-lg-initial-v1-0-6fbcf714d69b@trvn.ru>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, Nikita Travkin <nikita@trvn.ru>, 
- Anton Bambura <jenneron@postmarketos.org>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3842; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=bC4SZtN+AFLyi1JYMGkC2HvTobEFyqaaDyPlFLIZKfE=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBmd+ppFeSvpz1i9ux/cTpIbt6hiS4fahhBIh/88
- mvE4hfNJ3mJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZnfqaQAKCRBDHOzuKBm/
- dRMuEACfHQlU50aDd43dm3nTkZJKSdD/W5qyjZalh8XT2Dg7jSaB5Q9uv2JgO4kWZDG1iq4rL/Y
- JD6WKaLrvvQWV+WNGDA6Yd8UNYM6e7/9XfCYc0ORAKHKjdlKRPkyk3zkBo8FyOXHIxjnG4kuVvx
- WHBJpbaTZwIXiPDgiYHihyWN58tuIPSaaOnLT6MK5829rcQR3E+FINMy0d7jrozxFZJD4etOwie
- fOQVvouRyZ3TrUf80XNC40sPpCu6yOPEtDseJmZ9wQY0duG5+GeT1V4ukAJnNY7XaWQ8g/AtBBa
- kA7p0FR7L1KCHOSRQHJncBOgy+yI7p/kkl3BnhfD1K+6uCQ9U1tgg3hKesXVWT3SYEah0n/8crl
- iY783Ctq7zsOqau4FNwbOyrgMiCb8WbMhhx6mRtp+RhlMc0q/LisSO+l+JUw+dAgN+Rw9/HqzJ0
- PcfJ2ClCpZeLmx52uY361IhNk6jTT90NSQSEFkxE/t6oqmSBjwHMu8rjV71/YY+Fgg7rKDg5hdd
- kHT0BK7vY6dq7QHWDOuWFHLc+1EZ46/LmTmTbElXLhw78/u9lwTNsO035VWxrfl4nzxhUleuiNc
- bkpA9apYfEKYaVHBUAJpTNDjmKGIrVDRRGnyFsOIaKC19GlQ87JL6oVbYHe2ltWB32S9SHqIN6y
- Xg60yUPk/Pu539w==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="74VzLLej2lJJYR4f"
+Content-Disposition: inline
+In-Reply-To: <20240622-ripple-skylight-cdf172afde61@spud>
 
-From: Anton Bambura <jenneron@postmarketos.org>
 
-Add initial device-tree for LG Leon LTE (lg-c50), currently supported
-features:
-- eMMC;
-- MicroSD;
-- usb in peripheral mode;
-- WiFi/BT;
-- vibration;
-- keys.
+--74VzLLej2lJJYR4f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Anton Bambura <jenneron@postmarketos.org>
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- arch/arm64/boot/dts/qcom/Makefile           |   1 +
- arch/arm64/boot/dts/qcom/msm8916-lg-c50.dts | 140 ++++++++++++++++++++++++++++
- 2 files changed, 141 insertions(+)
+> On Fri, Jun 21, 2024 at 04:48:47PM +0200, Lorenzo Bianconi wrote:
+> > Introduce Airoha EN7581 entry in mediatek-gen3 PCIe controller binding
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  .../bindings/pci/mediatek-pcie-gen3.yaml      | 25 +++++++++++++++----
+> >  1 file changed, 20 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.y=
+aml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> > index 76d742051f73..0f35cf49de63 100644
+> > --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> > @@ -53,6 +53,7 @@ properties:
+> >                - mediatek,mt8195-pcie
+> >            - const: mediatek,mt8192-pcie
+> >        - const: mediatek,mt8192-pcie
+> > +      - const: airoha,en7581-pcie
+> > =20
+> >    reg:
+> >      maxItems: 1
+> > @@ -76,20 +77,20 @@ properties:
+> > =20
+> >    resets:
+> >      minItems: 1
+> > -    maxItems: 2
+> > +    maxItems: 3
+> > =20
+> >    reset-names:
+> >      minItems: 1
+> > -    maxItems: 2
+> > +    maxItems: 3
+> >      items:
+> > -      enum: [ phy, mac ]
+> > +      enum: [ phy, mac, phy-lane0, phy-lane1, phy-lane2 ]
+> > =20
+> >    clocks:
+> > -    minItems: 4
+> > +    minItems: 1
+> >      maxItems: 6
+> > =20
+> >    clock-names:
+> > -    minItems: 4
+> > +    minItems: 1
+>=20
+> You've now relaxed the clock requirements for all devices,
+> and permitted an extra reset on the existing platforms. You'll need to
+> add some per-device min/maxItems constraints to solve that.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index b35e46d75a1d..919dfcb26d15 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -31,6 +31,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-gplus-fl8005a.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-huawei-g7.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-lg-c50.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-lg-m216.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8150.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-lg-c50.dts b/arch/arm64/boot/dts/qcom/msm8916-lg-c50.dts
-new file mode 100644
-index 000000000000..a823a1c40208
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-lg-c50.dts
-@@ -0,0 +1,140 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-pm8916.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "LG Leon LTE";
-+	compatible = "lg,c50", "qcom,msm8916";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* eMMC */
-+		mmc1 = &sdhc_2; /* SD card */
-+		serial0 = &blsp_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Buttons";
-+
-+		volume-up-button {
-+			label = "Volume Up";
-+			gpios = <&tlmm 108 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+
-+		volume-down-button {
-+			label = "Volume Down";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+		};
-+	};
-+
-+	reg_sd_vmmc: regulator-sdcard-vmmc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "sdcard-vmmc";
-+		regulator-min-microvolt = <2950000>;
-+		regulator-max-microvolt = <2950000>;
-+
-+		gpio = <&tlmm 60 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		startup-delay-us = <5000>;
-+
-+		pinctrl-0 = <&sd_vmmc_en_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp_uart2 {
-+	status = "okay";
-+};
-+
-+&pm8916_usbin {
-+	status = "okay";
-+};
-+
-+&pm8916_vib {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&reg_sd_vmmc>;
-+
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+
-+	cd-gpios = <&tlmm 38 GPIO_ACTIVE_HIGH>;
-+
-+	status = "okay";
-+};
-+
-+&usb {
-+	dr_mode = "peripheral";
-+	extcon = <&pm8916_usbin>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&pm8916_usbin>;
-+};
-+
-+&venus {
-+	status = "okay";
-+};
-+
-+&venus_mem {
-+	status = "okay";
-+};
-+
-+&wcnss {
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio107", "gpio108";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	sd_vmmc_en_default: sd-vmmc-en-default-state {
-+		pins = "gpio60";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio38";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+};
+ack, I will fix it in v2.
 
--- 
-2.45.2
+Regards,
+Lorenzo
 
+>=20
+> Thanks,
+> Conor.
+>=20
+>=20
+> >      maxItems: 6
+> > =20
+> >    assigned-clocks:
+> > @@ -186,6 +187,20 @@ allOf:
+> >              - const: tl_26m
+> >              - const: peri_26m
+> >              - const: top_133m
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          const: airoha,en7581-pcie
+> > +    then:
+> > +      properties:
+> > +        clock-names:
+> > +          items:
+> > +            - const: sys_ck
+> > +        reset-names:
+> > +          items:
+> > +            - const: phy-lane0
+> > +            - const: phy-lane1
+> > +            - const: phy-lane2
+> > =20
+> >  unevaluatedProperties: false
+> > =20
+> > --=20
+> > 2.45.2
+> >=20
+> >=20
+
+
+
+--74VzLLej2lJJYR4f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnfrdAAKCRA6cBh0uS2t
+rOkIAQCVSXTV3xENYTEyf+1j+ekpZaKsAp4R8xyTSgF2apueWAEA4MkUFvZFd35T
+MsWFBfAu26UqJSHFbAHsudq/K+3O0gI=
+=W1o1
+-----END PGP SIGNATURE-----
+
+--74VzLLej2lJJYR4f--
 
