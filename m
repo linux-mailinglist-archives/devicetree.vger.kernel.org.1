@@ -1,167 +1,136 @@
-Return-Path: <devicetree+bounces-78989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFBB8913D46
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:32:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 714CE913D72
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:56:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22EC01C20C0A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:32:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E416B20632
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E8A148311;
-	Sun, 23 Jun 2024 17:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5AEB1836E0;
+	Sun, 23 Jun 2024 17:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MuWYOZae"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="SBi8Ig5k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FD322F4A;
-	Sun, 23 Jun 2024 17:32:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0444712E1D1;
+	Sun, 23 Jun 2024 17:56:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719163928; cv=none; b=AS0xVuFbKQPN8P6AtSJt6Vk5fW6K/L8TT81FsfrBMorDSA68nOuqa3zqjWSR8+vCP/DzVHD9mjKwJnkOr0G2IfXWjIJ6OAKEkG3RmJEb35IBKccGQ0wdBiQ2zqeSYupkVn5m+rrwZduKtEVhQ0LDg5zQMlXo1GNUxwxQm22ZVug=
+	t=1719165405; cv=none; b=CL8POoEYw5woExXpVJJgZBW/I6p4kranMdA00NTMO6GkQrjGVxJ+9VhS6vIGZ5nEMBjEZcZDucNR2PURGZdO833QNO4n8br5VyqJublxwGYbqm/GnjssGqQxwRmkozZ4JmMP2cordAr+9QYedcuS/yAuQkasVmlBAhx7qR+ciek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719163928; c=relaxed/simple;
-	bh=4RpJrjP+HQ5Hl1Kqa2ZS0D5BRTr/aIQgYxzQ18Gv6Go=;
+	s=arc-20240116; t=1719165405; c=relaxed/simple;
+	bh=R9Ubzz/1Tw0aPlQUWNOfjVouf4hBa4yPYahG9GCS5I0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QBTLbGGHAGR9EdftutUEbtuz96u6OUy0oqDX/tX7TkNVYgUrLF3HBZ6vu4QqK2XHJK+QaFfL/BrJq3mLr6XNFj9r6rflvs2wM4nIENRLgmD/CGEPCC6AR9DadX+6JctBYtvvBBN/kbBkWLME4zImGYwyXiBpMI4uRxdpDhJWnIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MuWYOZae; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09F0BC2BD10;
-	Sun, 23 Jun 2024 17:32:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719163927;
-	bh=4RpJrjP+HQ5Hl1Kqa2ZS0D5BRTr/aIQgYxzQ18Gv6Go=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MuWYOZaexDplPuJDc+7/dS2pRInpaHtqdO/USSBExy4BnfhHi50WuTSF3LFLSlrRX
-	 tDErip4tn5+MChXWdqew174rDb9UI/7FmWF3xXZyFg1irIbp1gUfLDxXNVXUQ7ek2M
-	 X5BqBF10FBSWbNv1D8rgk2b+CN2Usrh7Umi1f/nvdNyLwQZaEDnbyKmqM1n1UlhZWz
-	 vifXql/SG9nSlfYNwJx8fM0INI/CGsZwmf1qpwh2tCXS8j/56v9kZlkZfGMcJyE5Vu
-	 bUoGxg/KcKDNF4IRFUdyM0o86FWD06VkHC2Hz/VGxUw2cCBQnj1Q6TP8zZg8PROKZJ
-	 sNJwt9JEo/lPQ==
-Date: Sun, 23 Jun 2024 18:32:02 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Guo Ren <guoren@kernel.org>
-Cc: linux-riscv@lists.infradead.org, Yangyu Chen <cyy@cyyself.name>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH RESEND v8 0/6] riscv: add initial support for
- Canaan Kendryte K230
-Message-ID: <20240623-graveyard-consonant-97eff0f11808@spud>
-References: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
- <20240410-unwoven-march-299a9499f5f4@spud>
- <20240619-hammock-drum-04bfc16a8ef6@spud>
- <CAJF2gTRYpDLij1aQoftz6ZqEgXDrfhNA39KiFVrwm7qc4WH6Fg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pJHdLpuay/J3TypXNvw1xVxPLkAK6M5UAzXG4mdhGhjzQ3vVW1toJBoLsBdTXw+viPTbLHq47O2bRnK2L2myXWntfocCQf1CmlRL+rHGkCT5IZEmP2oDV56aCMGy2YzgWyIeNXG2OWUYzuSj8ABtMzyCw4E0SSDZ5ytZX1KEGwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=SBi8Ig5k; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=6B2hSzN6wUZJiN2cPxvTxUJrgPEaM8Jvt0OMTSIbYFM=; b=SBi8Ig5kM9ywmlWWVx0DvoKUAo
+	yyRh60WddHqNpeE/FjsSi/ZryLQInZXbah8k/+I89/2eJfBdsIjvMtjMm8b05mPvAZ+qUCoGwhbvt
+	jZ/tokMkC1U0/CbtrK7E/T3nAZV16KPC37oMmxXzyxRG9Er14xy1J/aFqSNzw3EbImpw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sLRRv-000nIu-KM; Sun, 23 Jun 2024 19:56:23 +0200
+Date: Sun, 23 Jun 2024 19:56:23 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com
+Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
+References: <cover.1719159076.git.lorenzo@kernel.org>
+ <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7CnmFpihGKPoqw+z"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAJF2gTRYpDLij1aQoftz6ZqEgXDrfhNA39KiFVrwm7qc4WH6Fg@mail.gmail.com>
+In-Reply-To: <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
 
+> +static int airoha_fe_set_pse_oq_rsv(struct airoha_eth *eth,
+> +				    u32 port, u32 queue, u32 val)
+> +{
+> +	u32 orig_val, tmp, all_rsv, fq_limit;
+> +	const u32 pse_port_oq_id[] = {
+> +		PSE_PORT0_QUEUE,
+> +		PSE_PORT1_QUEUE,
+> +		PSE_PORT2_QUEUE,
+> +		PSE_PORT3_QUEUE,
+> +		PSE_PORT4_QUEUE,
+> +		PSE_PORT5_QUEUE,
+> +		PSE_PORT6_QUEUE,
+> +		PSE_PORT7_QUEUE,
+> +		PSE_PORT8_QUEUE,
+> +		PSE_PORT9_QUEUE,
+> +		PSE_PORT10_QUEUE
+> +	};
 
---7CnmFpihGKPoqw+z
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> +static void airoha_fe_oq_rsv_init(struct airoha_eth *eth)
+> +{
+> +	int i;
+> +
+> +	/* hw misses PPE2 oq rsv */
+> +	airoha_fe_set(eth, REG_FE_PSE_BUF_SET,
+> +		      PSE_DEF_RSV_PAGE * PSE_PORT8_QUEUE);
+> +
+> +	for (i = 0; i < PSE_PORT0_QUEUE; i++)
+> +		airoha_fe_set_pse_oq_rsv(eth, 0, i, 0x40);
+> +	for (i = 0; i < PSE_PORT1_QUEUE; i++)
+> +		airoha_fe_set_pse_oq_rsv(eth, 1, i, 0x40);
+> +
+> +	for (i = 6; i < PSE_PORT2_QUEUE; i++)
+> +		airoha_fe_set_pse_oq_rsv(eth, 2, i, 0);
+> +
+> +	for (i = 0; i < PSE_PORT3_QUEUE; i++)
+> +		airoha_fe_set_pse_oq_rsv(eth, 3, i, 0x40);
 
-On Mon, Jun 24, 2024 at 01:07:55AM +0800, Guo Ren wrote:
-> On Wed, Jun 19, 2024 at 6:45=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Wed, Apr 10, 2024 at 11:30:25AM +0100, Conor Dooley wrote:
-> > > From: Conor Dooley <conor.dooley@microchip.com>
-> > >
-> > > On Mon, 08 Apr 2024 00:26:58 +0800, Yangyu Chen wrote:
-> > > > K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add ini=
-tial
-> > > > support for it to allow more people to participate in building driv=
-ers
-> > > > to mainline for it.
-> > > >
-> > > > This kernel has been tested upon factory SDK [1] with
-> > > > k230_evb_only_linux_defconfig and patched mainline opensbi [2] to s=
-kip
-> > > > locked pmp and successfully booted to busybox on initrd with this l=
-og [3].
-> > > >
-> > > > [...]
-> > >
-> > > Applied to riscv-dt-for-next, thanks!
-> > >
-> > > [1/6] dt-bindings: riscv: Add T-HEAD C908 compatible
-> > >       https://git.kernel.org/conor/c/64cbc46bb854
-> > > [2/6] dt-bindings: add Canaan K230 boards compatible strings
-> > >       https://git.kernel.org/conor/c/b065da13ea9c
-> > > [3/6] dt-bindings: timer: Add Canaan K230 CLINT
-> > >       https://git.kernel.org/conor/c/b3ae796d0a4f
-> > > [4/6] dt-bindings: interrupt-controller: Add Canaan K230 PLIC
-> > >       https://git.kernel.org/conor/c/db54fda11b13
-> > > [5/6] riscv: dts: add initial canmv-k230 and k230-evb dts
-> > >       https://git.kernel.org/conor/c/5db2c4dc413e
-> >
-> > After some discussion on the k1 thread
-> > (https://lore.kernel.org/all/ZnEOU7D00J8Jzy-1@xhacker/, https://lore.ke=
-rnel.org/all/ZnA6pZLkI2StP8Hh@xhacker/)
-> > I am going to drop this series. It's not very useful in the current
-> > state and there's not really been any interest from people in getting
-> > the platform to a more complete state. Jisheng made some good points in
-> > the k1 thread about the missing clock controller stuff, and I think I'm
-> > going to make having basic things like clocks and where applicable
-> > resets and pinctrl the minimum requirement for the platforms I'm looking
-> > after.
-> Here is the k230 clock driver based on Linux-6.6:
-> https://github.com/ruyisdk/linux-xuantie-kernel/commit/196242fd9b9b4a191d=
-ab0c7c3c5bf851ed857d8d
->=20
-> pinctrl:
-> https://github.com/ruyisdk/linux-xuantie-kernel/commit/baf26b6622c9de2ff6=
-4a6ed58eeeb98c8b2c828b
->=20
-> No reset driver.
->=20
-> Most of the k230 drivers are under Linux-5.10, and we are porting them
-> into the newest version of Linux, which takes time.
->=20
-> So, if the clock & punctual drivers mentioned above could satisfy the
-> minimum requirements for the platforms, we will update the version of
-> this series as a supplement.
->=20
-> Is that okay?
+Code like this is making me wounder about the split between MAC
+driver, DSA driver and DSA tag driver. Or if it should actually be a
+pure switchdev driver?
 
-I don't understand how that changes anything, these are all out of tree
-drivers based on an old kernel. I know that there are drivers for a lot
-of the peripherals that are in-use in the vendor tree etc. What I am
-looking to happen, before I apply patches for the k230, is that the clock
-dt-bindings will have landed in linux-next - and ideally the pinctrl ones
-too.
+If there some open architecture documentation for this device?
 
-Thanks,
-Conor.
+What are these ports about?
 
---7CnmFpihGKPoqw+z
-Content-Type: application/pgp-signature; name="signature.asc"
+> +static void airoha_qdma_clenaup_rx_queue(struct airoha_queue *q)
 
------BEGIN PGP SIGNATURE-----
+cleanup?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnhcEgAKCRB4tDGHoIJi
-0o3gAPwIKqvtW8/ntyAJ2oP0W/Qxo6lOiR4/hpCuM7YY2syHAwD+K9UEOGv9IGnf
-S+SPP1Ff/veVlNcIm6//1+yG3FV6dwQ=
-=J+o1
------END PGP SIGNATURE-----
+> +static int airoha_dev_open(struct net_device *dev)
+> +{
+> +	struct airoha_eth *eth = netdev_priv(dev);
+> +	int err;
+> +
+> +	if (netdev_uses_dsa(dev))
+> +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+> +	else
+> +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
 
---7CnmFpihGKPoqw+z--
+Does that imply both instances of the GMAC are not connected to the
+switch? Can one be used with a PHY?
+
+	Andrew
 
