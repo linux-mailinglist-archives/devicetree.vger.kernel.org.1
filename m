@@ -1,183 +1,174 @@
-Return-Path: <devicetree+bounces-78804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF1B913709
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 02:20:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7966391370D
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 02:20:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2050FB2284E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 00:20:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC7FAB228E3
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 00:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B77EE10E5;
-	Sun, 23 Jun 2024 00:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25733322E;
+	Sun, 23 Jun 2024 00:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DF08ZR3l"
+	dkim=pass (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="qezHeh9A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2132.outbound.protection.outlook.com [40.107.243.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2387F653
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 00:20:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719102020; cv=none; b=Z92rmk+AHQ41fuVukjkjH4hYAJ16FVrURhjH5bVDD3z6aboauIQcWTztY5FsYnuejZXPxkBfErnhEz9iWmrpJCwnK3islSVok7S1ydhckj0rRifeGsqzqxpDxHVutIDUDunTP5vZqqDHMyekC8lNxVuWmwuZZ0Zl8uU2DxgejtE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719102020; c=relaxed/simple;
-	bh=46BSqqvy7Y6F7xIkfaws++IANCV/SaTAN+h9yATNqCI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qPRaQ7xeaFJAlKy5ns1TaG0risdPhAtVi+8ksnMRNgsEKpHFjjZHvhAnsHinEr272rSoEV2aBZ9dPOU1aT5axRbLAJ1c+waRsjfq7tPFiywHkbGiHpsa/GZ+am+i1M0VLXFVpE2K+JARTeRJ5a1G261dlIcwCMqgbPq0/msRkq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=DF08ZR3l; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a724440f597so40719166b.0
-        for <devicetree@vger.kernel.org>; Sat, 22 Jun 2024 17:20:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 434A1EDE;
+	Sun, 23 Jun 2024 00:20:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.132
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719102022; cv=fail; b=awlp00ZJvAKG8i84wyI3so3cd+Nnoyi661FHk+xnRKTA7+0LyHVHnlS1sIM3pFmPlVSTd/NrOO1vs/hMEqvuvf1eASkwjonBwU/82ydbhvdG8YRLiFoTfwStsFFngHHiV+PtDkuH8Skp4muIk7733yLzHfzbA8zEpERunJbbPYg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719102022; c=relaxed/simple;
+	bh=I2ecYRDfpXeh6xhpk/QGsR2Ju/ZooLe7PoZnEXwxNOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=XdpHOOlelqRz9+QJPfpAo0YU8NAC1mfLijb12uD04wX7xJlP6NEg+4R7KcEOyPaCtOq1VH/AZq+RguHrYA7i/0G0xYmjnWwU7tgZGCV3bM2/Frx9puDUGAxlS38y48THQs16U8iAX1usr+GtdDH/Y4NQbqYSmIiz/XtcjRP/Jds=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=labundy.com; spf=pass smtp.mailfrom=labundy.com; dkim=pass (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b=qezHeh9A; arc=fail smtp.client-ip=40.107.243.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=labundy.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=labundy.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RXz2eYt4KjAgPZps0y/MLhe9HPGrjaHroVEyq+50gmRQUzUyRa9m/LoVMjsrd869RqiwTsJCGh9xUr3zjbgv382HPhuM5HhbfbvCZ27cmr9UVVVSU7lPl97pCocQtgQ46SrcTrHqDUnlWwXeHvMl6qEU4gMxIkg9oepF3LS6Tk2dGrp0tXGLCxtpxbFw1jbFMm0CEj44CWAegD+Uz2hIv/kQ7t8aljNj/mUl34mhmfBtteY0gaRG9bX1F/ZbMxl7bja46FgoNPHaQuk2/PXyLzFdjOqIa8EGC0beBVj7U2NpAwoyux9AnQt6tBPZkYrtsTehBre1xLDhW503DhmMRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g/Y+3Ux3RMYvzDEQoK8hrf/43c0CXIGGa8Wbz59vpKc=;
+ b=lYDQ/oV8g0jUu2njCWbnMo7zb8vxUQ47uuJbWr8b40uLfs+R/nyjs1ZKlujBCmG/d6fXiprfPNOJSxyloph8286HuQ4fsTMxSSOS/jaYdMowR0A9ux+Y6ZlAj2woFvQlAr342EgAdmN/yE6gpl3DQp0sKrLZP9EBzXk0D3r4EB+mXS5ssy2J86gnXXpsPtHciqSgHh1+lTscahm+ZgWIg8xBsfOkrAyhXIt/2rnO3Q5BiVLm5aYR96rOv4xZjxMrkFbrqaUUHN1+1S8tg1nrnVceGOO9zM4y6jV+DJEJtCfP2B80ABsro4pwt/tE3eQp09rT71oi7bB+Fh3mtbL1JQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719102016; x=1719706816; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ONa3iSOONrUQZrCElWDntgf1TBX/gIFjmLuMwiVxBc=;
-        b=DF08ZR3lblp7FfWQRNa7T7PYA9tquywswatGc5RTLCRAAJsivoZpjNE/EwQAvLSYv7
-         mew54nQTLlWgFX8TSUsCtiYdiTeeB+mcDrIEroFdKzhiHdyYcYdq0pIr4zI9DeLp7tZi
-         rhdBlVf1KqqnMejzV4XWvOlcQawfVKAajFFwTw8REAuVIJ86MaDzeYiWXJhy4i7wVXx4
-         COihuZWCI74may8UtmJx/NYBQmYlbpivpdll3LimiC2ajEQxlhFouV0ud2/0SQqcjdbq
-         kNNZ9oBqNcEspj3ATCuq42c31Bm5FrtnbienM5hW0YvdgIiwLHl+Nh2bWCNEj78lVraC
-         4Ltg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719102016; x=1719706816;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8ONa3iSOONrUQZrCElWDntgf1TBX/gIFjmLuMwiVxBc=;
-        b=krelgqgdXfwrHhWNIJNi8WP3J7/nENjYZOCZIw1sUJH5c/SKAfnjlduleVsxgnDu1b
-         FaeZ90FBQRU4RkZVUST5NXOm8DxTMdVPXg5TgopCsnU7aRX9QbpSrymEu3BXN12uU5qQ
-         x8X6KiMc4FA7vUPn3isK7IEhMJczJcFDlkhyXhkCuiwMiNeEe7KdmBuZREPtjFih5ylI
-         oP51xFPvPVmAhVV1GfOcT9dPy1eDnZ1ojhNCgqtitmIlnBe6IoCtEba4UV1meqxEYoJM
-         Yo1Xhm3/3ZTW6cky53Ng/AxNU7RsouFvMT7apYt/LKlQFZZCFiM72yQWHUFdb4MzBEAX
-         FQfg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIq6qF/9VHHthPUPcbwJRln/Zf7vosNCOR3OJIV7mddBgxyS3biz3BM3v12xn+f2kp1vGliupkH7UvZv0sb/7sPKDXniExpfSPTw==
-X-Gm-Message-State: AOJu0YwMj4h7+u9KhWZbblcKGRasGOX/o/Ctc/l7Xq/juVPgPhuH5jRv
-	sNNb8p7HZBn0d/kXWhUQeq4HTxjX/RmgdUVaLQvmsbWzwomdVoY0EvcNA7srkVg=
-X-Google-Smtp-Source: AGHT+IFkQnTmyYgj3ga+Jr84O+VsTZAb6uFS3rOryfDJPiSyoNjG8TnrDmOAhk+I37PmyQzqrzBbWw==
-X-Received: by 2002:a17:906:1d42:b0:a6f:1f40:600a with SMTP id a640c23a62f3a-a7245b938c3mr45943466b.30.1719102016036;
-        Sat, 22 Jun 2024 17:20:16 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf435941sm252779866b.18.2024.06.22.17.20.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jun 2024 17:20:15 -0700 (PDT)
-Date: Sun, 23 Jun 2024 02:20:13 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Daniel Golle <daniel@makrotopia.org>, 
-	Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Anand Moon <linux.amoon@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Martin Kaiser <martin@kaiser.cx>, Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] hwrng: add Rockchip SoC hwrng driver
-Message-ID: <6u4bgwemukkpjvregtvrhdarelvy4rf76n5dv5oiclbyh4q7gd@b776tut4a6ki>
-References: <cover.1718921174.git.daniel@makrotopia.org>
- <ead26406-dd3b-491c-b6ab-11002a2db11a@kernel.org>
- <07fba45d99e9eabf9bcca71b86651074@manjaro.org>
- <3660160.WbyNdk4fJJ@diego>
- <b0164e0d05d9e445a844ffdfca7a82d5@manjaro.org>
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g/Y+3Ux3RMYvzDEQoK8hrf/43c0CXIGGa8Wbz59vpKc=;
+ b=qezHeh9AsYjoIRCwAsGAaoBfEyxn4x48AfrpnPKPPyMsWIe3ssmLvZYdZo6buNWqXBPlPR3+IbNTWE023H1QJSWlOB27OHslN3YYzLWM/HsgS466KRv/vlpDFezd2zZA+moHjjJbXfWU6NCbheXjYRKrIe1kvVbfkHuBwhRJ32E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from BN7PR08MB3937.namprd08.prod.outlook.com (2603:10b6:406:8f::25)
+ by CH0PR08MB6956.namprd08.prod.outlook.com (2603:10b6:610:c5::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.28; Sun, 23 Jun
+ 2024 00:20:18 +0000
+Received: from BN7PR08MB3937.namprd08.prod.outlook.com
+ ([fe80::b729:b21d:93b4:504d]) by BN7PR08MB3937.namprd08.prod.outlook.com
+ ([fe80::b729:b21d:93b4:504d%6]) with mapi id 15.20.7698.025; Sun, 23 Jun 2024
+ 00:20:18 +0000
+Date: Sat, 22 Jun 2024 19:20:14 -0500
+From: Jeff LaBundy <jeff@labundy.com>
+To: James Ogletree <jogletre@opensource.cirrus.com>
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lee@kernel.org, broonie@kernel.org, patches@opensource.cirrus.com,
+	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v11 2/5] dt-bindings: input: cirrus,cs40l50: Add
+ initial DT binding
+Message-ID: <ZndqPl3fhIZWystD@nixie71>
+References: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
+ <20240620161745.2312359-3-jogletre@opensource.cirrus.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240620161745.2312359-3-jogletre@opensource.cirrus.com>
+X-ClientProxiedBy: SN7PR04CA0106.namprd04.prod.outlook.com
+ (2603:10b6:806:122::21) To BN7PR08MB3937.namprd08.prod.outlook.com
+ (2603:10b6:406:8f::25)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dd3zswqm4oau246l"
-Content-Disposition: inline
-In-Reply-To: <b0164e0d05d9e445a844ffdfca7a82d5@manjaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN7PR08MB3937:EE_|CH0PR08MB6956:EE_
+X-MS-Office365-Filtering-Correlation-Id: e456c26f-8d6e-4f5c-2f29-08dc931a4321
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230037|366013|376011|7416011|1800799021;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?tT9LMBlFlVmZaxKIPOJrzeZxaISqt2lNhJHtO/063dUAoS39evAJOTQW3rvB?=
+ =?us-ascii?Q?830xsJxCHzFYyhu3Dd6Q8al39DBJqytW/S/A9jd23T3xRLQthLBGXrvbesc8?=
+ =?us-ascii?Q?HGUac4ynilIlM4Il41+dQOaN/lPLBWpE2aDHZ99joRBmsHE9QLSEf/CNtPzJ?=
+ =?us-ascii?Q?YZtMDvNNlZJElJXgodOIWG2//ZoiDGj9Hn6dPzEbtuz5dhbZ+Eq61TUWsZ6Y?=
+ =?us-ascii?Q?blOQ8TclXYzTwjrdet88puAGOvSRsziG5jvw5gdfi4WOhQ4iC+emV/tf0A0Z?=
+ =?us-ascii?Q?xNr8X4S3iM3ev2YUJfdix64f9WPuXlGKlyJZNOno7BLXFFkTWwDaqaKzFyjO?=
+ =?us-ascii?Q?fc5+YdvnB1Ii7G4cXsR8DFzbGYLzDCS3jGhsBXUEEvvl4H36w6Ck++BwUoz2?=
+ =?us-ascii?Q?wF7DXpov0r9k1h0nbWz+x4bav4tk4ZNd8ZsIiUUuI/UYeSzCQHxALfk+YW8z?=
+ =?us-ascii?Q?qt1DiDvw4i8Gz2g/n4DRAgIN4Fc4ayYVPiV64lTDMn4Ivpj3pGaMEi+o0jwC?=
+ =?us-ascii?Q?ZpVMPw8dnu0y78+jHn5/Tm8MWAsSPcxTobZU1f/SLe2/IYlzkhyatEU1R9Ck?=
+ =?us-ascii?Q?D0tL0/cMz8kcW/gPm/n5Kv2DhFf8x7ARtA5UfPwomTvJE6U1ERqeNcljlf2V?=
+ =?us-ascii?Q?FtxwJL1jQnGeCmuyAgfHAld+VneTSXX2wrql08JqsR//R0rtdkFG2iq+Z/3n?=
+ =?us-ascii?Q?lFUyywS+xvmdVDpHw3oEdH9f2C5ZmhZqVZM3wPdWNrATsri//bXAsbK4fpdA?=
+ =?us-ascii?Q?S3VQ0REqhJWHdufHdfxaZ+peVl++VNk57idM8hMNbWzYEZdytj9/oWfDfyPe?=
+ =?us-ascii?Q?m5ztklQTBCK4tKSx6Cx8UqnVfqRtAswV66jRmqVzSFi8A/7MEIN8eNdP12cT?=
+ =?us-ascii?Q?+xLYxJNd1BUEgIHf34NAJWm2miAcbf52Lw+xdFPNMVc7fwCNuiFkqkx1D7RP?=
+ =?us-ascii?Q?23yxtLk9VI6BVUaYkxwy31EBsEmKvEUm5NkwHT6Xbws4mk9ft3/Gq4hbCm+k?=
+ =?us-ascii?Q?PEwl7FiwEaR3xdj7ta8/X8yyMjkKn/sXlSKYlwzGeJzWJhtl1W7T5Q1jTZRM?=
+ =?us-ascii?Q?BvBKnkiiYA5Ve53AhGml+8LoE5bUAr8pvJ0qgjqDrUF5C8rascoUeo6vGyHH?=
+ =?us-ascii?Q?Yi+oVPhn8VAy7Idy+O5GLLpqmVG9EuNZwh/gzjEeq03ZyNyGZe0nJjb5b3Jh?=
+ =?us-ascii?Q?8+cqfUfoX5ogUDqjp5LOmme91JbZw8n2PzVfq2TQHWpswZRw6ZvAfjuLZ24N?=
+ =?us-ascii?Q?EuQtNQc+t9pr1q/Syj+Z7UWDtH/VDv9h57snPIA0BTZ0GJjz5TUOTeKTYht0?=
+ =?us-ascii?Q?3A1E3dhWE+I8r3YVs5NUNlcn?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR08MB3937.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(376011)(7416011)(1800799021);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?6P3zPpQR0n3uXCrTY5TiYLi4n+8xE+71257kQ6qEGv6F57T49v1LuNtxbnik?=
+ =?us-ascii?Q?ZEmAZQxhtUAstS6+VDpz184oCcHgveRMP7UqEZWL7xnXa4QvbJI1BP8/PJP9?=
+ =?us-ascii?Q?J9kh27PwOJ9Q2EArbwHhauXp/HnwLVtCt8Rnx8aEMmzaOTE2T5LAV2ougEDK?=
+ =?us-ascii?Q?yQjHC7IJGEioNXwTDAEKpKFruzpQySzfy87HJ6HW/xcEYFIgdLheJ0Tf9SsB?=
+ =?us-ascii?Q?QsR093p4cKk/jlga+DHRZOydRsmPYUT5B5i9DsHFl9j4mJ+iqMv8rA4MRXoR?=
+ =?us-ascii?Q?+6tPFUQ4zPtO265tf1OVELw/mAP6WrsCJfb/GQVK6YSLHnroiTcuo85dH+uj?=
+ =?us-ascii?Q?yXbyAeHlvmsV3g1GN2ZElRkzlWeWx7JWspoMgbajGy69mB+ZdUkcT66UKNKd?=
+ =?us-ascii?Q?WOPiHDbc8cN8bVeHWhf9ZRbEgSCL1GZr+Q/fnUdLEKUgneBk8LhihV6oaEOr?=
+ =?us-ascii?Q?M5bh+nnOfXjxn5zkD++Gs2nmx9hUitl2l6Z60AbH1ju4/MzJ3jp6uniU1mFa?=
+ =?us-ascii?Q?Q21CMNv6ZFUd4lFZGZ6Fiq7b+FT9ZbnhuRSAlojh4ls2ZfgTbtjFNJjANN5R?=
+ =?us-ascii?Q?HkCKuby+oeduS1dgwS5t4pK9/7xAuG+LmN1XnQZ0Enkxo/W4/Fa6bXfgMOz9?=
+ =?us-ascii?Q?/SOmein6B1KfdxxOKJgy2Xx/K+IrZQ/GJ59z3qguLHV2Av/kJ9UE64o1z5bH?=
+ =?us-ascii?Q?14Z796J1jr8l6E83L/oIgFNJPWSTBgB6V7MvVopmPEAPVGYQN1ngqWNYDqoX?=
+ =?us-ascii?Q?BHifzC25dYST7kEOsWy45hFnxnNMUiv8KxyDtmbdHYrRQmYg2XoF/YSfQ0wm?=
+ =?us-ascii?Q?QLGFvfc9livJt5jPSAp8bOm/qeA5sZx3tJRfSmoDSrQFiVFbMaQujrF/+zNH?=
+ =?us-ascii?Q?dYvneETB+pxkQ1VpYT8md/FHBmldikEQP30kt/CwKL3OTIkZ61a2Eogtc9CA?=
+ =?us-ascii?Q?EWKN3gZxsmXKikG7w8df/2vC8N4L5F+Wm0p0CTGXSKZx627J711ikFWSSYC7?=
+ =?us-ascii?Q?cHPjftdbhJvbWlQzfw/oAN1eOZIXXC6TXs8kwkhnq3KehmpGXp/lZiNjNfxX?=
+ =?us-ascii?Q?wnpSUmursSyy2B6O2viRoEHY/Ho5shxVYsNDBZAJRKfrTATW4hcCuABOyfd1?=
+ =?us-ascii?Q?yHynGVmCVOGfHVhXUwZb6YqvcX4WjGNbVo3XNfm4EUCaElrTILZCb2mmsSvA?=
+ =?us-ascii?Q?K5RTxE4i2yk182GxcclGjzmonGAz2e8RtrwUOily0xbM5jQs4hsxBZeCt84l?=
+ =?us-ascii?Q?OQluHI5mzVcI77jfVkqDcrJOpO1tMkzY7hEF2xi6M9TEmGjm88IdCVa3v50n?=
+ =?us-ascii?Q?ieY4ze/4pz0uY1aPf5Iec/uHg9fSyTteKLxGWnL00hCO8b3UKxApiia2yYek?=
+ =?us-ascii?Q?kq8Fs+B92wQWHCM3mzLVT0rgpzlFjUWdB0q6xpN8kTHFv4lPPii4ml3ooHvc?=
+ =?us-ascii?Q?1MaGen4exLT7404Ue8CmN+dfsT69JIFxtuvxGn//weq6DQ7K6QLDeel+/bNP?=
+ =?us-ascii?Q?VIqqbpf/d2clKObuh/RY+j7hKbBRZpaKnxzkHZZjBTYpqkcjwoEjDknkMziW?=
+ =?us-ascii?Q?TVW9QMa6nz5PoVrAUPDqW1/4Mox/jsULDJ4XKMDU?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e456c26f-8d6e-4f5c-2f29-08dc931a4321
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR08MB3937.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2024 00:20:18.5776
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aZAxuEgbcEwljWmEx6iil75duNLrOTU+n/wJ+n2vYCVvNQkP5wOafQjR5bMRFIUKIKi833ZL2urvsD6PTusztQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR08MB6956
 
+Hi James,
 
---dd3zswqm4oau246l
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Jun 20, 2024 at 04:17:42PM +0000, James Ogletree wrote:
+> CS40L50 is a haptic driver with waveform memory,
+> integrated DSP, and closed-loop algorithms.
+> 
+> Add a YAML DT binding document for this device.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
 
-Hello Dragan,
+Reviewed-by: Jeff LaBundy <jeff@labundy.com>
 
-On Sat, Jun 22, 2024 at 10:45:22PM +0200, Dragan Simic wrote:
-> On 2024-06-22 22:26, Heiko St=FCbner wrote:
-> > Am Samstag, 22. Juni 2024, 12:29:33 CEST schrieb Dragan Simic:
-> > > On 2024-06-22 00:16, Uwe Kleine-K=F6nig wrote:
-> > > > On 6/21/24 20:13, Dragan Simic wrote:
-> > > >> On 2024-06-21 11:57, Krzysztof Kozlowski wrote:
-> > > >>> On 21/06/2024 03:25, Daniel Golle wrote:
-> > > >>>> +    dev_info(&pdev->dev, "Registered Rockchip hwrng\n");
-> > > >>>
-> > > >>> Drop, driver should be silent on success.
-> > > >>
-> > [...]
-> > So really this message should be dropped or at least as Uwe suggests
-> > made a dev_dbg.
->=20
-> As a note, "dmesg --level=3Derr,warn", for example, is rather useful
-> when it comes to filtering the kernel messages to see only those that
-> are signs of a trouble.
-
-IMHO it's a bit sad, that there is such a long thread about something so
-trivial, but I want to make a few points:
-
- - not all dmesg implementations support this:
-
-	root@machine:~ dmesg --level=3Derr,warn
-	dmesg: unrecognized option '--level=3Derr,warn'
-	BusyBox v1.36.1 () multi-call binary.
-
-	Usage: dmesg [-cr] [-n LEVEL] [-s SIZE]
-
-	Print or control the kernel ring buffer
-
-		-c              Clear ring buffer after printing
-		-n LEVEL        Set console logging level
-		-s SIZE         Buffer size
-		-r              Print raw message buffer
-
- - Your argument that the output of this dev_info can easily be ignored
-   is a very weak reason to keep it.
-
- - I personally consider it hard sometimes to accept feedback if I think
-   it's wrong and there is a good reason to do it the way I want it.
-   But there are now three people opposing your position, who brought
-   forward (IMHO) good reasons and even a constructive alternative was
-   presented. Please stay open minded while weighting the options.
-   The questions to ask here include:
-
-    - How many people care for this message? During every boot? Is it
-      maybe enough for these people to check in /sys if the device
-      probed successfully? Or maybe even the absence of an error message
-      is enough?
-    - How many people get this message and don't care about the
-      presented information? How many people are even annoyed by it?
-    - Is the delay and memory usage introduced by this message justified
-      then, even if it's small?
-
-Best regards
-Uwe
-
---dd3zswqm4oau246l
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZ3ajoACgkQj4D7WH0S
-/k5WAAf+ITFdGqdN406tmIfhUkT/VVsswv7UZYQ19nee0y/e08Hckgmx/mEmS4ft
-tJsOL0GAgMDpyvbgz6smWIgOAzsdln+m73wuSjSe62fHLUgd68YA4ehtQ3EghbY4
-Ey7cYUhVnjJFpahWN+b4QS774FfeFRTtRUzdU9ENsV5pRenbmERcKnGOSQ15fwfE
-mpqgcAnKvcz43qhHjJpgaJ8p41IQQRWh3jAK3edrnLGjcAAIhynSWzwRdSOYR9QU
-aLL2hb1i8mFNkAr1q71hM+pqGrJZ6gQ0gAI/t1wP6/S0OG4WkYs4TpG0xjJq0TN+
-N8+bGnosWqTuh5Wt3I1924btUX+e4Q==
-=KN/a
------END PGP SIGNATURE-----
-
---dd3zswqm4oau246l--
+Kind regards,
+Jeff LaBundy
 
