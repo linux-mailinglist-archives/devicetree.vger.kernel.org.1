@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1253A9138E6
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:07:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D869138E7
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:08:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 457141C2094F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:07:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D06EC1F219C2
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72F954657;
-	Sun, 23 Jun 2024 08:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45EC05A0F4;
+	Sun, 23 Jun 2024 08:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MMQAli9Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E7eRRjIx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19C320317
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 08:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19D4749633;
+	Sun, 23 Jun 2024 08:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719130045; cv=none; b=UsQka0stZgj6/BrhQNaWyPoiwwxmnoZIXGpnVL8ijeb41cVRv1aoX8y5vMuBOSLXoQ+jSr2pHPvKpWXpkMPMoDYApsW906WOhIi2mcDLvVI2S8/FwmuqemBdIJf9nJhGpGSpqlE0kPhjKgDqMDvOFqZ3a4ibKea/gXXVxgLTgBQ=
+	t=1719130116; cv=none; b=CjPpqGIh2MliPm28QmisqXqpYFnVnc1HrJGx1Py9OPV3OryumF8SJGILXn5Tp5A3kR5OEMv5so6qzLYMqSPizHrQhdvYjMsuQBxCBi9+llA6YvrI1NYwKCssAPqWplR/87Y7xK3VKYXno1ZNGdUuhceCQ7qXIU1+N1wqALVUuGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719130045; c=relaxed/simple;
-	bh=HL7gc5aNbPxOTUixvrZIwyvWjEMc/PzfdgXNeWwkdg8=;
+	s=arc-20240116; t=1719130116; c=relaxed/simple;
+	bh=+pLFZBPj//YztSi5TcONh3iuWLjMYcTw1nhqxWanKBs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SIRh/hWV5HjrmzCpqtajsOy+qDIk3OfpP1duiyn2lw9OMGXpV98YJGPgdD2hdoIS6eg+vo8/2FZFudA11TNlEocAx07b1JZxRZaK6P8M7iugimShu21yQWWgYwsukpm64xqe1CRo1NNZX+n1jut5i5wtLwTV2qEmTBLy/Rp1R8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MMQAli9Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79231C2BD10;
-	Sun, 23 Jun 2024 08:07:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=O+sBvBIhdSm1qHgmmsbfkqHWzVO3LIWfxdVQq5lmDrvBnL0dv9h4dnV2m6DOWcUblAbariDu2PQTYApBunpdApwUvELYIyPI3G1S5qql4G3shHAjd0t38EpRnEetqMWpawBKbdaGJLpHLR/TsmMLUXaBPoRj0XhXOGUNUdLE/J8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E7eRRjIx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9DA1C2BD10;
+	Sun, 23 Jun 2024 08:08:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719130045;
-	bh=HL7gc5aNbPxOTUixvrZIwyvWjEMc/PzfdgXNeWwkdg8=;
+	s=k20201202; t=1719130115;
+	bh=+pLFZBPj//YztSi5TcONh3iuWLjMYcTw1nhqxWanKBs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MMQAli9YvSuEvOrjzTlj+MuHBvXUXBbO9toNBeQ0//U49QzFQIlk6GzY/heQKlbyU
-	 AHh/yZlk46Nx8qrcP8ODGZh0Mpz6ml8Gi1FqzOIoR9lHysUuS1Fxnlwdh5+MD+B5N0
-	 mnJaJ8f7ZDArMZ78dzOj9MhthLqNWBN5zmHbbW5xnjtx/GTCZi3+NssCHojIFbCkHK
-	 xKuwDZhzTUmCpcgJBz2m7egg95kQoGgjwdLC83VKcVpFY2nrioA4sojKB3vCA2nVn0
-	 8B5XPmgqcEYFNUo8U5WsmLexa1jLUmTItQM/Z0eBjNERoBpcsHowSGScl6u7YSBo95
-	 PAUAu2iAql/vQ==
-Message-ID: <8da8e56a-e24f-4b56-9861-df55369c984f@kernel.org>
-Date: Sun, 23 Jun 2024 10:07:19 +0200
+	b=E7eRRjIxkckqVPDNvXfDiCOmNFkRIyKC7Wm14jgZz+A9Kbo0Sy1uNafMXPhqmSM9V
+	 HPaVQVMP0w9cXGxTFdwhbOBu2gRyhywYU8JH/ck6YQ36lAJ1LI/Ct5ME575u+ammfZ
+	 gGYcxX3NZMRDuRIJT1A5VRAqdc3Z8yuGU/ZJzVM1KYH0C9ktQZTn/2+OTBY/YldVf6
+	 3gTtj0D0jRB5ufhkFbP8aRxifmLyiKzlRmPAvsuF8NgiGv0zPpIqrN0U20MSsmbbqR
+	 YdlaipJ13VLAlbPqsczbJxLYvLdiW8VIOx1SDTp0YOEr1+75ios4YFvKieVg/XqfIS
+	 2qJM9qdKZ2Jpw==
+Message-ID: <77987fdd-5cd5-4683-87af-18c5c31e1357@kernel.org>
+Date: Sun, 23 Jun 2024 10:08:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,11 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: add dts for Radxa ROCK Pi E v3.0
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20240623075318.80492-1-naoki@radxa.com>
+Subject: Re: [PATCH 1/4] dt-bindings: display/msm: qcom, mdp5: Add msm8937
+ compatible
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240623-dsi-v1-0-4ab560eb5bd9@gmail.com>
+ <20240623-dsi-v1-1-4ab560eb5bd9@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,27 +112,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240623075318.80492-1-naoki@radxa.com>
+In-Reply-To: <20240623-dsi-v1-1-4ab560eb5bd9@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/06/2024 09:53, FUKAUMI Naoki wrote:
-> Radxa ROCK Pi E v3.0 has DDR4 SDRAM instead of DDR3 SDRAM.
+On 23/06/2024 01:25, Barnabás Czémán wrote:
+> Add the compatible for the MDP5 found on MSM8937.
 > 
-> for Linux, this change doesn't make any difference from a device tree
-> POV. but, for bootloader (U-Boot TPL), it makes a difference.
+> Signed-off-by: Barnabás Czémán <trabarni@gmail.com>
+> ---
 
-What difference?
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> 
-> bootloader needs a separeted dts for v3, so I add new dts for it.
-> dtb can be shared between v3 and prior, so I don't touch Makefile.
 
-I don't understand. If you have the same DTB then you do not need second
-DTS.
+---
 
-This change really lacks proper explanation or is just unnecessary. If
-change is proven as necessary, then you also miss compatible and model.
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
 
 
 Best regards,
