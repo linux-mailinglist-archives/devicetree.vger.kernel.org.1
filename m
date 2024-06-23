@@ -1,50 +1,45 @@
-Return-Path: <devicetree+bounces-78903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38B2913A3F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:00:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C82913A5B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:06:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 718E628237E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:00:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D333CB207C5
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0FEA180A7D;
-	Sun, 23 Jun 2024 12:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nh9z/1Ul"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75CD1180A90;
+	Sun, 23 Jun 2024 12:06:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C135155C1A;
-	Sun, 23 Jun 2024 12:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F2F180A79
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:06:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719144030; cv=none; b=ZKQc8iCAkW+2qOVdAAGdKc4zkUoTZiBwqVzXR4zQXSF7Gy0F/46DCi4D8BuKpjscLS+/MdRtH8LeEdLPDi05WAKgo+tpbxf0UWTOG5OE6qN5bFcUERgw8sqHBbbL6C1mqI35wys1VEc3qRrvTvnTsaQo8Zv74USUy0Ve8C5jkIw=
+	t=1719144363; cv=none; b=aWKduL15zKOgXcPLxqsBeA6T2CKUquh/IJ2mUPfeuPAJ2cs535qzQWMPMOU/pJhxA3L2ENjziy9ZVigTSAnfm58GARmy9b60nGHEIAd6upl80CvNZ/Bz+mUU9b2alaZkIlC6fWgjYe1g5kLtxwYDrhVpayHjqFo80oMCGWp3TMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719144030; c=relaxed/simple;
-	bh=mAN44LwTX3XKIAEy4qNZFAmyTgjXBNzHHu7xGgTUnqk=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=qB5vRGXkUjRknRdhyifxpVJXpgEC2q9Fvg5V9FfpljmlU7MFal0dzJO/OqugR5+1nGRSpKDkD99x7ZQFCdkSVrIAYuFbWAkUpSFVASApdBg++W8pvhAP6mDxD37WF1aMcG98LihjNT2gMrr/NP4uza2RaWEmGGDcU0AwNEhDtYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nh9z/1Ul; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 533B4C32782;
-	Sun, 23 Jun 2024 12:00:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719144030;
-	bh=mAN44LwTX3XKIAEy4qNZFAmyTgjXBNzHHu7xGgTUnqk=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=Nh9z/1UlpjX8JpDF34aLyT2iVr8v8V4BlO7GwBSzwCJa6017lGcMS/fi1GhgJlrts
-	 P4YzUxGBARbwYPYyR/O+vIm4CiGAD6Ya4rbPgChAZ0CJodUqYqcFYnyJ243tP1rs8n
-	 uqPhCXt+BXHUbeY9l9aqF5mFpSPXbavokzhv/8GKWcGx7SD6mwiQaVL6F3mdfLa0WI
-	 WyHw+uL+TH82dXwt/9VCsVYWFnygwCjZqIIst1HjhZwaujLvMfG4oBzKw6FySNeXRP
-	 7uYYwVlTeQ9IbTGSX4BjYENQRXR/10NZOv3vdxDNQ6pJc/JrH+W1eMWXUsXqquxVvg
-	 jsaeAl1mBGkQw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3AADBC54BB3;
-	Sun, 23 Jun 2024 12:00:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1719144363; c=relaxed/simple;
+	bh=vipAM1bq0ZEMzzMy85z2dXySms/4PUfBklT7kizRJ+8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=b5uoSFNJPkupWbKBAD7h3GEup+4B1yvdutJTmVhGIlLSoTJvdSRtD/o+9orZCBlCYyyt6TsWrMoktTiqCGEsUnF4qGx23/l6tohG/4CC3UQrQP68bFUAJFb4bio8+tdm9buRg3Mrl4TLiRiuBTbuwhmsI7382fvx5gTX6O+X1Hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45NC0fJA006059;
+	Sun, 23 Jun 2024 21:00:41 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH 1/3] dt-bindings: arm: rockchip: Add Radxa ROCK Pi E v3.0
+Date: Sun, 23 Jun 2024 21:00:14 +0900
+Message-ID: <20240623120016.82990-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,43 +47,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 1/1] dt-bindings: net: fman: remove ptp-timer from required
- list
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <171914403023.11613.628899711265897409.git-patchwork-notify@kernel.org>
-Date: Sun, 23 Jun 2024 12:00:30 +0000
-References: <20240621170000.2289596-1-Frank.Li@nxp.com>
-In-Reply-To: <20240621170000.2289596-1-Frank.Li@nxp.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- richardcochran@gmail.com, madalin.bucur@nxp.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev
 
-Hello:
+Add devicetree binding for the Radxa ROCK Pi E v3.0 board.
 
-This patch was applied to netdev/net.git (main)
-by David S. Miller <davem@davemloft.net>:
+Radxa ROCK Pi E v3.0 is a single-board computer based on the Rockchip
+RK3328 SoC with a compact form factor.
 
-On Fri, 21 Jun 2024 13:00:00 -0400 you wrote:
-> IEEE1588(ptp) is optional feature for network. Remove it from required
-> list to fix below CHECK_DTBS warning.
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: ethernet@f0000: 'ptp-timer' is a required property
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml | 1 -
->  1 file changed, 1 deletion(-)
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Here is the summary with links:
-  - [1/1] dt-bindings: net: fman: remove ptp-timer from required list
-    https://git.kernel.org/netdev/net/c/8a67cbd47bf4
-
-You are awesome, thank you!
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index eca0a42eb384..53ca61c47b76 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -779,6 +779,11 @@ properties:
+           - const: radxa,rockpi-e
+           - const: rockchip,rk3328
+ 
++      - description: Radxa ROCK Pi E v3.0
++        items:
++          - const: radxa,rockpi-e-v3
++          - const: rockchip,rk3328
++
+       - description: Radxa ROCK Pi N8
+         items:
+           - const: radxa,rockpi-n8
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.43.0
 
 
