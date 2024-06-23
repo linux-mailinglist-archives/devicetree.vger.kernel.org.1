@@ -1,147 +1,126 @@
-Return-Path: <devicetree+bounces-79033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB9F913E71
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 23:16:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E548A913E7C
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 23:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8795FB20AF7
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 21:16:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 894E71F21585
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 21:23:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3321836F5;
-	Sun, 23 Jun 2024 21:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84DB185084;
+	Sun, 23 Jun 2024 21:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P6OytJCs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zOpgVvrV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD86D530
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 21:15:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0464A5A10B
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 21:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719177361; cv=none; b=FWa5ck9r/GhDf1MSWMaI7YG9VAzlUW762tIx1oa1FoenVgvCj2YwN3hfV79etNwA8a1eZxSRm8YfQy57DTG0J34z4DX8wFTQGkOz8rOVITCrIi6I8xaZ9LwCWeFcmTw9gD1A3xCTsbA1OA97H9qAateYefHXea2QP0+fDvSqJr4=
+	t=1719177827; cv=none; b=bLshN4Ty2j8lyNoqzr81pdpxrI3i3nGcjC4UT7jza1gSr+YpkP6l56Sf5XJBo3WK/GoVA5f86LO4KDeNahHVWi+UgtGZII94ClDnWuDLMY36AK6uaoCuV3s/Gfbt3ekCf8V7GAhj8R5RNB9Fij6YSVBiCkpZnb1YDAJlS++Zra0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719177361; c=relaxed/simple;
-	bh=3Kc4F7ivhPrRmEzH14G9M7kQbUWv/PFz/3aeP0kdkEs=;
+	s=arc-20240116; t=1719177827; c=relaxed/simple;
+	bh=gOEoPA/SWeSkLXp92OjEE03U6ATjSbAL2GVCr38i/b0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PknQjNGZ5cduOo/OZuLLsG8ppm7BxGFGqkBDAh+KbmW54XI+Mp3hy1gnBVHzNvcaKYV/h8FspLT6Q7YYRew2izTwgwKJAXCkiZxLh4PVbmjeBPmKZAkhT+uKQ8YRhyVOz+wFKtytd8/WI9WSsm3EtU5Vq2c10yK5HPdOVVs/308=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P6OytJCs; arc=none smtp.client-ip=209.85.167.45
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kv03Mf3lPueIkvB96Q52wdPLvNoe5TfXMPNSZ6sCFIpryNCXRkSM1fFT0YIUK7FhGoWHNFjzlP8MsDaH6D1AVAbpb7vR7Sv+Xuo/46lREjk6d0UnfFWGQ+Fm3+1VSaNkWr6XLBKss7UWLrEEmRlE1/CyjvKYHPE7k5zrr0UXTCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zOpgVvrV; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52cdf4bc083so1675637e87.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 14:15:59 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52caebc6137so3579710e87.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 14:23:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719177358; x=1719782158; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=npqBqrsZNAIwVwMzRpL1TmQcfMoNbDQggbKHwWlSbcg=;
-        b=P6OytJCs6JoJWBoR6KGseTwnU0E+aDpxiNs0dcCEwXVN8ypNi+2896OdmCcvuOM3qB
-         rk6vrvg9MVH0mHcpLcFBCqtqHFu5xidtQHTyJiaUZ1eMh46vDYnFXiei/O+RhCMTnGvs
-         2WkoUHOVQ/DWbcxaBx1fKkahURn+PpDJeDuhe1GTNlIaqXvy0sFiK+I8EMgOGkbxGXh5
-         Dqk9S9LP4vdzCl/FcHBZx/ERcF4JEojkBfKT9C/V/4hSLEufvh8ASYPKt7CeFFHAoOCu
-         AyiK/Txd4y1TMZEifgiB1kEssV5J7eVvoU+haN9tqHa61fqctV5GCFvJx5Mml8Dytc0Q
-         NsGw==
+        d=linaro.org; s=google; t=1719177824; x=1719782624; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jVqPPOYq/l25Fj/g6B1LeAJoOYkFmgg6jrPDZkmyB8I=;
+        b=zOpgVvrVGVz0lgmEXA2UXDi+Yy0n0N3y9dY8+PI3mjEWcgxeHqRUfQyn0f0P71LiWq
+         rXPa4fEiygDRMyQjJZ+kRVjFzdNaxOkCf+rmxFM/x84Wtm11IFIUtN+7uNa0IPvsruuY
+         9xdIJOkdYp3uylYdh3eGsAVW1UflMEhyD4SFIsBfZhyhqY5AMjUwAhdW1iUVF+OTcvVV
+         JUKp4C3N3OY39RxBYP4vtQ25N9CMFVuwp8xXfVZPDPw+HwHIzAXMobQAZeCRY7aNvaUR
+         NeTBD/HUGDbp5v3ANEOOVpATOg8NC158rDsU/Q7V3yT3+cn1HxDHwEhL7KgKaSGzjS8P
+         X8jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719177358; x=1719782158;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=npqBqrsZNAIwVwMzRpL1TmQcfMoNbDQggbKHwWlSbcg=;
-        b=lZu0ZzzrrbDzRrK8DLR+x2uKbSmJSKbsYUbvbdWih5bZiTy2swiK3jJBCk0pojjxEf
-         jl9OF+lpjvGiUexcl+xQ7QXvW/IzUh9Feqk8C0c7C3/FutoKmTvlkrE/dYCxmtlCjRHu
-         a/WqacX2zSBpFjcNSp/D735/05Xm5Fylen5PiGOSSiClV+O1aFSnTl1f8367IniYCyzG
-         geEYIuD7kvVxc7CqvkB9bXqhzzKnbzslLjlVaQBA+eEoiPO5P02jl1t4G/awh96+QuaG
-         5z/OVGRPN6qHoFLAmjV3DpilLPaH/xJ4JyUWv7Pr1ZkNXzb9fFKwYkCMmQn1asTNkEdH
-         u5NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUc0CQClMKOPc6eKy60Nm6L40yEQ18Ezjnd3pSyFwLWmTPq3+hWEtwD9VHanxI8GvzRgKY/refzp2zgJJH5eQkeSn+XDABNYNW+3w==
-X-Gm-Message-State: AOJu0Yxw0pKJ6u2sbSYKCWB4QjiruQ6IqTxi7xSo8LbbfXNpHHbIqGmJ
-	gMgQqewLhkif+fZ/P3ZscBVOKrb4TDWnNLw4ZQbY2hC+61oZz8mjnBp15Xh6QoE=
-X-Google-Smtp-Source: AGHT+IH5kNGocu2dFm65gFsoVZhigJ6nemG+so7J1Pq+CT/tsTHpWdQ8xhhme3ais5shulJS0U/Jrw==
-X-Received: by 2002:a05:6512:4004:b0:52c:dfe1:44ea with SMTP id 2adb3069b0e04-52ce0610526mr2776983e87.6.1719177357863;
-        Sun, 23 Jun 2024 14:15:57 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719177824; x=1719782624;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jVqPPOYq/l25Fj/g6B1LeAJoOYkFmgg6jrPDZkmyB8I=;
+        b=Qgq5YuM0NBVRuDsyGmM3V1k2/st9w5MJgj2+rEK9MDMpDqzRBnq4zw3NaNxkpZMYDK
+         rxwVfVIW33NMeLzoK3xdD62J/HLIMaKHLeAE6ZBdnmb+En6W9EAMzDqMt8KjD/SOzvrW
+         zxrkR6wbgi6pJf3T5kUkuIroNJtirjr2msUvzy4GlLEXIx1h+q9e7e3ChBTOfFYllyaQ
+         YLtp0bBUfiTg57bIyFjsnwB3PFNDXKziPaNE0jGyCL3q52xj78M9zkyrqBWl6And0SBg
+         8ndBmg6Qt75tN9yoc6QqtkrHWymgL+uFELD+GIBJUfU0m5v2SyHrXgZfSulQDSkD9Nsr
+         epZg==
+X-Forwarded-Encrypted: i=1; AJvYcCX5vwUNIXitemfTtB3dilHdTDh8xIhbdbdmBgb2P+8DTYKhdCvp8ApVr3MvICGcqvPt0QOYPJ+OkE7rpXOIwqxDyFIVXcyOXzIDGA==
+X-Gm-Message-State: AOJu0Yx7/c4lUuw8/Iy4omg5o26FEv2Wy3TZkXi8sfwuAcSTV2ai6hB7
+	6/zRuaXhS6HU4VirgZfO65/TNnArhN3XLkfbaixafJmivmLX221RWV7giPjNfOs=
+X-Google-Smtp-Source: AGHT+IFhS87TfxpvmZ1+wkQPSgcCq7a9bj2sbGnuntdnh8f2/UxXXs198UOXsp3whu7KPM/2ddEfLw==
+X-Received: by 2002:a05:6512:31d2:b0:52c:e3bd:c708 with SMTP id 2adb3069b0e04-52ce3bdc757mr1719307e87.10.1719177824001;
+        Sun, 23 Jun 2024 14:23:44 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ce98c1a27sm3079e87.253.2024.06.23.14.15.57
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cdec145f9sm494773e87.182.2024.06.23.14.23.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 14:15:57 -0700 (PDT)
-Date: Mon, 24 Jun 2024 00:15:55 +0300
+        Sun, 23 Jun 2024 14:23:43 -0700 (PDT)
+Date: Mon, 24 Jun 2024 00:23:42 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Daniil Titov <daniilt971@gmail.com>
-Subject: Re: [PATCH 2/4] drm/msm/mdp5: Add MDP5 configuration for MSM8937
-Message-ID: <l276ykxey3qvct7rwkngyby4ohy3bl5cl77ldvo6zqco57d6xn@4mkwdabfabtf>
-References: <20240623-dsi-v1-0-4ab560eb5bd9@gmail.com>
- <20240623-dsi-v1-2-4ab560eb5bd9@gmail.com>
- <hzslz54iq5sjmfhcbuj3my7cbjsu73acxeelih3jekr6rznz44@qie4c4w5lt2d>
- <CAGsSOWUDbvUMW95Xnjrg4z7TJ9=tj7_KHyek3xTuzbDP2_VhHw@mail.gmail.com>
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: freedreno <freedreno@lists.freedesktop.org>, 
+	dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, Rob Clark <robdclark@gmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: x1e80100: Add gpu support
+Message-ID: <ionw2k6rz5eokroilrluq2nvh7uap4oans62z66o7fydray7l5@a52bkrf2plkb>
+References: <20240623110753.141400-1-quic_akhilpo@quicinc.com>
+ <20240623110753.141400-4-quic_akhilpo@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGsSOWUDbvUMW95Xnjrg4z7TJ9=tj7_KHyek3xTuzbDP2_VhHw@mail.gmail.com>
+In-Reply-To: <20240623110753.141400-4-quic_akhilpo@quicinc.com>
 
-On Sun, Jun 23, 2024 at 12:48:53PM GMT, Barnabás Czémán wrote:
-> On Sun, Jun 23, 2024 at 7:59 AM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Sun, Jun 23, 2024 at 01:25:52AM GMT, Barnabás Czémán wrote:
-> > > From: Daniil Titov <daniilt971@gmail.com>
-> > >
-> > > Add the mdp5_cfg_hw entry for MDP5 version v1.14 found on msm8937.
-> > >
-> > > Signed-off-by: Daniil Titov <daniilt971@gmail.com>
-> > > Signed-off-by: Barnabás Czémán <trabarni@gmail.com>
-> > > ---
-> > >  drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c | 89 ++++++++++++++++++++++++++++++++
-> > >  1 file changed, 89 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c b/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
-> > > index c5179e4c393c..6413c0d3e237 100644
-> > > --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
-> > > +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
-> > > @@ -1011,6 +1011,94 @@ static const struct mdp5_cfg_hw msm8917_config = {
-> > >       .max_clk = 320000000,
-> > >  };
-> > >
-> > > +static const struct mdp5_cfg_hw msm8937_config = {
-> > > +     .name = "msm8937",
-> > > +     .mdp = {
-> > > +             .count = 1,
-> > > +             .caps = MDP_CAP_CDM |
-> > > +                     MDP_CAP_SRC_SPLIT,
-> >
-> > Could you please point out the SRC_SPLIT reference?
-> Is this would be qcom,mdss-has-source-split in downstream, because if
+On Sun, Jun 23, 2024 at 04:36:30PM GMT, Akhil P Oommen wrote:
+> Add the necessary dt nodes for gpu support in X1E80100.
+> 
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> ---
+> 
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 195 +++++++++++++++++++++++++
+>  1 file changed, 195 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index 5f90a0b3c016..3e887286bab4 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
+>  #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
+> +#include <dt-bindings/clock/qcom,x1e80100-gpucc.h>
+>  #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+>  #include <dt-bindings/interconnect/qcom,icc.h>
 
-Yes, IIRC.
 
-> it is i think it is a mistake and it is wrong at msm8953 also.
+> +		gmu: gmu@3d6a000 {
+> +			compatible = "qcom,adreno-gmu-x185.1", "qcom,adreno-gmu";
+> +			reg = <0x0 0x03d50000 0x0 0x10000>,
+> +			      <0x0 0x03d6a000 0x0 0x35000>,
+> +			      <0x0 0x0b280000 0x0 0x10000>;
+> +			reg-names =  "rscc", "gmu", "gmu_pdc";
 
-Please send a fix.
+Ther @address should match the first resource defined for a device.
 
-> >
-> > Other than that LGTM
-> >
-> > --
-> > With best wishes
-> > Dmitry
-
+> +
 -- 
 With best wishes
 Dmitry
