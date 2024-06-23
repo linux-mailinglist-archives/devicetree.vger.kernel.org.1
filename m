@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 128A8913A63
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:09:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5CE913A64
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:10:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0CA0B20AA2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:09:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F7051C20757
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61CC180A90;
-	Sun, 23 Jun 2024 12:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B0E180A90;
+	Sun, 23 Jun 2024 12:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eviJDkFL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ye/yxpy0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0738180A7D
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C974148825
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719144561; cv=none; b=oeL6aSG271lRd3/J9FRJtbqDD4XDL8DG2iS8bjRzUx7+PPCkGPfScPFlbfLkNy/oeFeyXTPY6NC2R56Rtlfc9PhISfhB4+3DrfhIi+9E/xhw54n/K/bMTArcbxJwuwaM6vCa2wwGFsJUPR/2agpX4hftLqfIc9jAkW0mPWSNKKU=
+	t=1719144603; cv=none; b=gRzzHE0geAiLMTZ+HjWaU9URRIRiavdOuP+jupJXltUUk043i/m90Mqr3AvaPGY/PrJahcVEvmCbB26BaDPC8xHju5rw2cYJLDF9++X4HcTAfJHgj9lSrja6tCZV5g5RPmyL8xO937/GbesUN/+SvxIWvMOx5L0+BSPHxjxj/h0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719144561; c=relaxed/simple;
-	bh=opTbdMGRgaN2ww61+CV7ojIDXU7tC5vgTyZPdy9FQQE=;
+	s=arc-20240116; t=1719144603; c=relaxed/simple;
+	bh=frYAetObG2QKsyb4KqNeDuVDQcjhJo+59JoamXcQt2w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fx3dY6884sbHzrYofB/nuerkCwePcOuLV6OPoFgbxzRg028a00oV74BXfMta64KJcXTY8ex2xBLnx/nyUyuse9Ol4Vaopr817S6LSnVJ4cCuS2UqVwl0tHM5whDQMZfj+fPFti9VefjHKcgnEeEGSenV/xjoLt1QMvhKDPJJVkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eviJDkFL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFE94C2BD10;
-	Sun, 23 Jun 2024 12:09:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BnEYksrp6/7dvj97W8c8950bG3AiIDjo1m5Q8pWEf/TZCmPQNWOALhFoGxS7PqV7VK47ozQ0wj/XhvQH2id+pXufr7BuTc2C3fjlvZunuJ56m0BwdeZt8KN2piA1/hN+cstVg5/dTkphFz/K6Kj6E107NRpSM87d7vSzF9ax2nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ye/yxpy0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 190DCC2BD10;
+	Sun, 23 Jun 2024 12:09:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719144561;
-	bh=opTbdMGRgaN2ww61+CV7ojIDXU7tC5vgTyZPdy9FQQE=;
+	s=k20201202; t=1719144602;
+	bh=frYAetObG2QKsyb4KqNeDuVDQcjhJo+59JoamXcQt2w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eviJDkFL7xGwEPazySGMrdz/aVmHAQN1pydS4fjAsk2POvC6kkuUS6FZHsIi9Rl2B
-	 VWQPLGfM0SuExfZ61jY7bgEaeRxqJqz4xI1DGVcORIrfGY3BXwD1BmJAgjrt8LlthE
-	 WsGmMump0HhW6pDNQQPjP2ruLZEPpb0u6hkX7RDa0AJyn8zJPCfDAw1z+a6C8hdvWK
-	 Qi7Q7VF2cUU/dZJgLmbq9rnNX5L4rNxR7dTzyUtDB3PVS5zYcNnAavm1muf7RFTKhD
-	 BXB2vUtmY23QNc9BCG5533by9NX2CNBH885lbEAq4usJ/HbCbU9k36aAuVWBofKTIY
-	 BnlKFUfMnum9g==
-Message-ID: <094882f5-48e6-4c0d-b6c6-942cc21e14bd@kernel.org>
-Date: Sun, 23 Jun 2024 14:09:16 +0200
+	b=Ye/yxpy0ZcwVPESRw1PMlc0erVBTp+SWWgR2828hKsMJU3gk2tK7bRi7GtVx+GL2f
+	 Dz6CPmszB0YkpRRcKurbf2rE0G49bxmaZIvYAVi7GRB+xauWM59Xt63DH7Wy6Lpy9T
+	 +BD7edB9ni+Z5vcTmDf8chj1+A9Mqb5/hqw77FHrIWJKlk4FCZ1tqhYj90QTdLmKch
+	 Y1d3iMkFeyfnCSTJwvAZ0BySAWs2tas05MaJnCGhgZ/Gnha6dmMhHlt50Vk6xG5d5t
+	 uw2l1au18C2SAGXdRlPSxeaRyRaZVZ2meIH0l7jobvRCIeMWMYCVN+MsULMmHDHeDU
+	 hgUaa8BQIhEAA==
+Message-ID: <32f61b72-9346-4ac7-b225-c7fce45f0785@kernel.org>
+Date: Sun, 23 Jun 2024 14:09:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: prepare common .dtsi for Radxa
- ROCK Pi E
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add support for Radxa ROCK Pi E
+ v3.0
 To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
 References: <20240623120016.82990-1-naoki@radxa.com>
- <20240623120016.82990-2-naoki@radxa.com>
+ <20240623120016.82990-3-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,21 +102,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240623120016.82990-2-naoki@radxa.com>
+In-Reply-To: <20240623120016.82990-3-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 23/06/2024 14:00, FUKAUMI Naoki wrote:
-> Radxa ROCK Pi E v1.2x and ROCK Pi E v3.0 share most of their parts.
-> prepare rk3328-rock-pi-e-base.dtsi as a common dtsi for both boards.
+> ROCK Pi E v3.0 is newer version of ROCK Pi E v1.2x. Changes are
+> 
+> - Upgrade DDR3 to DDR4
+> - Elevate eMMC connector to onboard eMMC
+> - Update silkscreen to ROCK PI E V3.0
 > 
 > Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > ---
->  .../{rk3328-rock-pi-e.dts => rk3328-rock-pi-e-base.dtsi}       | 3 ---
->  1 file changed, 3 deletions(-)
->  rename arch/arm64/boot/dts/rockchip/{rk3328-rock-pi-e.dts => rk3328-rock-pi-e-base.dtsi} (99%)
+>  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts | 10 ++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 10 ++++++++++
+>  2 files changed, 20 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
 
-This breaks users and is not bisectable.
+And how did you test it if you cannot build it?
 
 Best regards,
 Krzysztof
