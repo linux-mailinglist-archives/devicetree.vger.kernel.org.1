@@ -1,103 +1,117 @@
-Return-Path: <devicetree+bounces-78924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D674913A8E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:27:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0758B913A86
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:23:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C74011F20CD9
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:27:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B970F280EDF
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43FBA145B0D;
-	Sun, 23 Jun 2024 12:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC69E149E1A;
+	Sun, 23 Jun 2024 12:23:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E5E+h4u1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13EA912E1CA
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:27:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E33412E1DC
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719145648; cv=none; b=pnqHUFJWOBNS0SjcF/WOTBfHJjBwqHmg2dlKjHFhcjp7pusRmRdqxyY4Zmn3INGPGgi+57dU0a0rpmdNmn33ez2+5AYx8uEvvDG71N9OHTqsDckXkl/uxU83IgWgMQRKQC27XXV1qp0DvU+vMSvjwu9wokIS1rkoIwHgt+IREig=
+	t=1719145432; cv=none; b=gsrOcRU/es+DlhObUqVFquPIcnOzAiICqIZg/04o6a9qtJZox9sB3qXTksjLcW+f3lIO0a20GkBk4OZd58GM3YIeJ5gf3cbd1hd5y+22XH+vUc8eKkV1pPfAaduILEw7rZQd7XCd2AAEWbKmfILUd48dK7eXS9dPPAP9C2dtEJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719145648; c=relaxed/simple;
-	bh=+wKFWA4mE6UfwIEaxsp5VedGH107P6vopaqTb047CcQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F4aV+7KbTLxa9c7bYlWdKfSEAzzlSYrshpDuY9WmL3ePZvmHzHdwYZqC1aptMaP24KqsliyreS1PPYbLeIO+mt8evMPBorEQb/bmua1yFG7jMILQXDiGuXac6pzoZrCfbtJmf4HT+nvFf0YlS4kATZhpH4X1cEkY5PJxY2XViaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45NCNik5006105;
-	Sun, 23 Jun 2024 21:23:45 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: add support for Radxa ROCK Pi E v3.0
-Date: Sun, 23 Jun 2024 21:23:37 +0900
-Message-ID: <20240623122337.91914-3-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240623122337.91914-1-naoki@radxa.com>
-References: <20240623122337.91914-1-naoki@radxa.com>
+	s=arc-20240116; t=1719145432; c=relaxed/simple;
+	bh=+3i2agRPOQdsbG9p0mP1wgp/7zig5/6KfMRBRB9YgoQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=cwapbynv2fxP5Yy6rjF1Ln9wTV9uCWKmMlQipB0cR6qTqQCFD+IU9BTcKfooOW6IfWIshMbVSbarLlxFcY7WRApg/1YM608cC9KJyFvpLYFnoGjP8MnluiAeMOyzZOV0cDvOkgWU9tcch1z5ONJOjoFRHwTAzocNpSfy5QX3/Fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E5E+h4u1; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-365663f51adso2276291f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 05:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719145429; x=1719750229; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uSMp1oIN7G5KMuwIqxjaMjb37TFnDfxyBRpLl4YVWt8=;
+        b=E5E+h4u1Va8kTVXMUGIA4RDeNJWyJWawkFH+sTBFKZ+FVlnvKM8+t22hfeXyQQEn16
+         VO2YHz24dHCO9FwOkAgr5TEEmwZ7tzp7Uni14wsTAuGuJkR2k/yLLupuaX6zAOIjmcHs
+         WWALEkyVGkSNXfmBmTAo0p3g5Ib9xK24HzQItauOOR1FrnYm10R/WtQzSrjmNgaP05bM
+         17vCFARzfSAearbkuAvr1PDF6Tsqu4T8cWWgQ1stL0noXDtZOFmg9b/V8eG2rBWpPJWp
+         oCIRn96zqekDFBHW5ok2t2GCLnBORd9SDDA9fZxBEt2bbGBCOSnH3GolBb1QXIat/o31
+         Xvxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719145429; x=1719750229;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uSMp1oIN7G5KMuwIqxjaMjb37TFnDfxyBRpLl4YVWt8=;
+        b=jyVgqlunfdmIW0xL8fgMpcA+NNrYOJ0sQaDaC8JhDnVlg1Z79bs+cFGpkrmD3QGAJ3
+         4YSopz4Ub1LXkBIzhxwC5CDSrMPkan1qdySCS1MW485gcefCNMttgy/uem6yozea6Krj
+         yGg7yUBYttBhkj5FesSOlKzFE6lE7Cf7WYPnh35ILXr9kVoknBhy2gIqTahqhqtOe17z
+         DZeURdlXQQDVehrMHtNXJJo610iunEj6hetgc0QCllSm/KOGb9LY1T5rZg1E8mKYYEG5
+         v2/TDmAg/4xg3DM2fHc2Fpo+EnnPmQs2cALc/qu0og0OVSCv1AObwHf1CqHeVcso+qAN
+         ooCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUT0SuqXjbmtZhoEA9hK2v3qyRt8hqis5ecZCywUzETNV38G9NN3Z4x7goMRHJnEYzzsFowe4I+oMEDOhaYHjVqtYLpsEjPSgUkOw==
+X-Gm-Message-State: AOJu0YxCW7iKdeXUcHW/ECN23EePNpMbnB9xFeR8MMKHJim5xSdLGDtH
+	Rvds+aAmFGo+fEQUNq46bFBFnz1a6Xcu6iGSfIFeW7VFDfx3w//F9TH0WNQoMv4=
+X-Google-Smtp-Source: AGHT+IGB2X865c0lYFBdE1+56PwmMK6W+Egw7AqkKkYF4fhyfS0NEyJNq94ctIvbytl9wv5NDt8kTA==
+X-Received: by 2002:adf:edcb:0:b0:361:bd3f:f89b with SMTP id ffacd0b85a97d-366e4f00a89mr1936156f8f.50.1719145429436;
+        Sun, 23 Jun 2024 05:23:49 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3663a2f66bbsm7204864f8f.78.2024.06.23.05.23.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Jun 2024 05:23:48 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, 
+ kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240618-gs101-usb-regulators-in-dt-v3-1-6a749207052e@linaro.org>
+References: <20240618-gs101-usb-regulators-in-dt-v3-1-6a749207052e@linaro.org>
+Subject: Re: [PATCH v3] arm64: dts: exynos: gs101-oriole: add placeholder
+ regulators for USB phy
+Message-Id: <171914542792.47206.11134715783148912337.b4-ty@linaro.org>
+Date: Sun, 23 Jun 2024 14:23:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-ROCK Pi E v3.0 is new, incompatible version of ROCK Pi E v1.2x.
 
-Changes are:
-- Upgrade DDR3 to DDR4
-- Elevate eMMC connector to onboard eMMC
-- Update silkscreen to ROCK PI E V3.0
+On Tue, 18 Jun 2024 10:01:33 +0100, André Draszik wrote:
+> The USB phy requires various power supplies to work.
+> 
+> While we don't have a PMIC driver yet, the supplies should still be
+> added to the DT.
+> 
+> Add some placeholders, which will be replaced with the real ones once
+> we implement PMIC.
+> 
+> [...]
 
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Applied, thanks!
 
-Changes in v2:
-- add change for Makefile to build rk3328-rock-pi-e-v3.dtb
-- minor reword in commit message
----
- arch/arm64/boot/dts/rockchip/Makefile                |  1 +
- arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts | 10 ++++++++++
- 2 files changed, 11 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
+[1/1] arm64: dts: exynos: gs101-oriole: add placeholder regulators for USB phy
+      https://git.kernel.org/krzk/linux/c/2510bca4810801c98260e0975c13cf2306d28e96
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 85d949f2c909..a9b57c09299e 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -24,6 +24,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus-lts.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e-v3.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3368-evb-act8846.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-new file mode 100644
-index 000000000000..be369dace843
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-@@ -0,0 +1,10 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3328-rock-pi-e-base.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK Pi E v3.0";
-+	compatible = "radxa,rockpi-e-v3", "rockchip,rk3328";
-+};
+Best regards,
 -- 
-2.43.0
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
