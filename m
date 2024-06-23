@@ -1,120 +1,154 @@
-Return-Path: <devicetree+bounces-78875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 431B8913991
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:34:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D7091399B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09A6428238B
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:34:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD4601F21EC6
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91AD184DEA;
-	Sun, 23 Jun 2024 10:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19A512D1E8;
+	Sun, 23 Jun 2024 10:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B9LOCJSr"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="tTGJofW/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7A33EA69;
-	Sun, 23 Jun 2024 10:34:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D25F63D;
+	Sun, 23 Jun 2024 10:43:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719138850; cv=none; b=U3Tn7Sl7kjx8mn+mzeInPmqYFTHyJxHphOEXxM/r+SQoRdJrxvhIKqeuC2DVK1Edbd2MYF9Jn7CCtgtE+PpRojXAeaQW5uH/JiXCKyRqJHNtdUGtQVO+LjtPpCeC1rE/i5KWoHAuys52rL9lHUXaO9ZE53ChzVZox4JC+MIIAeQ=
+	t=1719139422; cv=none; b=CXgvl5Ufv9I8eQfm1+ctcWVhSosi038T/qQvvJp0/izhey/VGx/iqV5qiaDqKjpTXbkX9PuwL4P4WHMElHTzNPFcIhk9ilqfqd7eRNuUBN+VDNJXKzvWevjVNCjyl07ZCT8S4tgazPUaQMDibpx8pKyQrRYTW/98XASufsIjpEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719138850; c=relaxed/simple;
-	bh=WMDfPBqv8mCqyLWf4aN45hzN/sTkaqumDzdg1ZFXJhI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WYfvGaxwafRbw4TXjLMxCzq5z11lLTk0A66Zjue250wrkwwgWU7e2tH/xzBoB9nz5aBhzOwDzSsJlujvXJDH+MA433gtjMj5iYuACMDhY80Y1f65ILeuXlk0IdvxAH9XTN742+JKRJtP38n6Rv7gOIkqS2b8LYu9veRjJ995SLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B9LOCJSr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7208FC2BD10;
-	Sun, 23 Jun 2024 10:34:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719138849;
-	bh=WMDfPBqv8mCqyLWf4aN45hzN/sTkaqumDzdg1ZFXJhI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=B9LOCJSrdS9WbCc2qReyLJXgIezc9p3zujoEjhIsm9a4z/MUbQG+4GJxC+ngwJ+8p
-	 fi8xzxsdm1Mc1QcRy6VeyIx1giM30gAE8V/yRrnYCO9Qf0I4pIdybeWoWLKyl61Ru2
-	 4Qh4aAYRiSn7loy5ZW/9kM8Avux3U3LuE2+VVLJxEnUD6f8syDpePcw9Dn0FFVvU1o
-	 2jn3RY82T/fVwHJz4e8vOXig4i+C2KrDK92AjgjzI33RrF91nRQgEmHLdRmxldw7j5
-	 tow8+XDmAhxRXB3UzG+g/YMzCeBuJ6NDFw9VWQ1+lXNTVFtMa8nxE43++EEtUemwZO
-	 BplUhPPgn7ctA==
-Date: Sun, 23 Jun 2024 11:34:00 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, "Michael Hennerich" <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Jun Yan
- <jerrysteve1101@gmail.com>, Matti Vaittinen <mazziesaccount@gmail.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Mehdi Djait
- <mehdi.djait.k@gmail.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] docs: iio: add documentation for adxl380 driver
-Message-ID: <20240623113400.5dcc1d0d@jic23-huawei>
-In-Reply-To: <20240621101756.27218-3-antoniu.miclaus@analog.com>
-References: <20240621101756.27218-1-antoniu.miclaus@analog.com>
-	<20240621101756.27218-3-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1719139422; c=relaxed/simple;
+	bh=Qjr+hGbELVoM/PRT/OT/56EzWqjLqLpwPtYcTtfmTfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PfHazyKnBMD2QVMvadZeI2w1nTv6Opb0HdGiOhVRMiJxUEs587lny5aF1OHl4ndJiLQtHNJ8ONwwprqR6EEmLRMYNsS2/+NwL5jmRmn7/mlSKPKxcV8mXYQz8pHv2yVQGwnWmytgVKq/1FT09pr/Pe7dtKKGRrtTAco7mITjdgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=tTGJofW/; arc=none smtp.client-ip=195.154.113.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=cOPGiZTRLTkSPLlPpnHXwm++QfEHnrjcKdztZiRkX3A=; b=tTGJofW/SnqoWjxA4acUKT5+gG
+	Mr4PhiFFC6KqT7c3h2SomxcHqkUoUNzKL6Gsj9JEPfqjc/P3H5AJ6MS7c7HDl8TxeJq1cB0HR1xLL
+	wVD2IK2vijGTCx26lZk/fWQan/cjSxrsFGFP8XZ7Hc1VWv8y8o++ro6tkJSdnJ+0gkXR4cukDpu3a
+	IYnEvXxLTwZMCzMMjHNhDNv5WufbbugCEWok5HM+VhzXveTHo26izRbQyeY2AUqqEeGyMZqXHTopl
+	OLM1pco+3K/9vsAX5rC3eSj8kLBWhC3V8DtmmcepeB4SD3RTgLw/JwmzaU9MhOT19P+9N1ZXvooG5
+	Rv2hpWTw==;
+Received: from ohm.aurel32.net ([2001:bc8:30d7:111::2] helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1sLKgI-0057EX-1S;
+	Sun, 23 Jun 2024 12:42:46 +0200
+Date: Sun, 23 Jun 2024 12:42:45 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Dragan Simic <dsimic@manjaro.org>, Martin Kaiser <martin@kaiser.cx>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] hwrng: add Rockchip SoC hwrng driver
+Message-ID: <Znf8JeBA4mzVa0V1@aurel32.net>
+Mail-Followup-To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Dragan Simic <dsimic@manjaro.org>, Martin Kaiser <martin@kaiser.cx>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <cover.1719106472.git.daniel@makrotopia.org>
+ <240db6e0ab07e8e2a86da99b0fc085eabaf9f0cc.1719106472.git.daniel@makrotopia.org>
+ <612bd49c-c44a-41f2-89e9-c96e62e52a0a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <612bd49c-c44a-41f2-89e9-c96e62e52a0a@kernel.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
 
-On Fri, 21 Jun 2024 13:17:05 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+Hi,
 
-> Add documentation for adxl380 driver which describes the driver
-> device files and shows how the user may use the ABI for various
-> scenarios (configuration, measurement, etc.).
+On 2024-06-23 09:00, Krzysztof Kozlowski wrote:
+> On 23/06/2024 05:33, Daniel Golle wrote:
+> > +
+> > +	rk_rng->rng.name = dev_driver_string(dev);
+> > +#ifndef CONFIG_PM
+> > +	rk_rng->rng.init = rk_rng_init;
+> > +	rk_rng->rng.cleanup = rk_rng_cleanup;
+> > +#endif
+> > +	rk_rng->rng.read = rk_rng_read;
+> > +	rk_rng->rng.priv = (unsigned long) dev;
+> > +	rk_rng->rng.quality = 900;
 > 
-> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> I doubt in this value. Usually SoC vendors do not provide datasheet with
+> any reliable and verifiable (so one which could be proven by 3rd party)
+> information. Can you provide a source? (and vendor downstream tree does
+> not really count)
 
-Looks good. Only comment is to make sure you run a docs build test.
-We had one similar hexdump case blow up a few weeks back.
+As the original author of the patch, I am the one who have chosen the
+value. I did it as explained in the commit message:
 
-If you already have, just stick a note under the --- in the next version.
-Everyone hates building the docs because it's slow so I know I sometimes
-forget to do so and suspect others do as well!
+| The TRNG device does not seem to have a signal conditionner and the FIPS
+| 140-2 test returns a lot of failures. They can be reduced by increasing
+| RK_RNG_SAMPLE_CNT, in a tradeoff between quality and speed. This value
+| has been adjusted to get ~90% of successes and the quality value has
+| been set accordingly.
 
-> +Obtain buffered data:
-> +
-> +.. code-block:: bash
-We recently got bitten by a processing issue for one of these hex dumps and changed it
-to unformatted text.  Make sure you do an HTML docs build for this and check there
-are no similar warnings (honestly I never really understood what was going wrong with the
-parser).
+It is also explained, admittedly more briefly, above the
+RK_RNG_SAMPLE_CNT #define, as the commit messages are not really
+relevant anymore once the patches are accepted:
 
-If you do need unformatted text
+| * TRNG collects osc ring output bit every RK_RNG_SAMPLE_CNT time. The value is
+| * a tradeoff between speed and quality and has been adjusted to get a quality
+| * of ~900 (~90% of FIPS 140-2 successes).
+| */
 
-Obtain buffered data::
+The decision to adjust RK_RNG_SAMPLE_CNT to reach ~90% of FIPS 140-2
+successes was based on the quality chosen by most hw_random drivers
+currently in the kernel sources. The FIPS 140-2 tests were performed
+using rngtest from the rng-tools project.
 
-plus the indent works. 
+All that said, I am not an expert in that domain, so feel free to point
+to the documentation or provide the correct method to determine the
+quality.
 
-> +
-> +        root:/sys/bus/iio/devices/iio:device0> hexdump -C /dev/iio\:device0
-> +        ...
-> +        002bc300  f7 e7 00 a8 fb c5 24 80  f7 e7 01 04 fb d6 24 80  |......$.......$.|
+Regards
+Aurelien
 
-> +        002bc310  f7 f9 00 ab fb dc 24 80  f7 c3 00 b8 fb e2 24 80  |......$.......$.|
-> +        002bc320  f7 fb 00 bb fb d1 24 80  f7 b1 00 5f fb d1 24 80  |......$...._..$.|
-> +        002bc330  f7 c4 00 c6 fb a6 24 80  f7 a6 00 68 fb f1 24 80  |......$....h..$.|
-> +        002bc340  f7 b8 00 a3 fb e7 24 80  f7 9a 00 b1 fb af 24 80  |......$.......$.|
-> +        002bc350  f7 b1 00 67 fb ee 24 80  f7 96 00 be fb 92 24 80  |...g..$.......$.|
-> +        002bc360  f7 ab 00 7a fc 1b 24 80  f7 b6 00 ae fb 76 24 80  |...z..$......v$.|
-> +        002bc370  f7 ce 00 a3 fc 02 24 80  f7 c0 00 be fb 8b 24 80  |......$.......$.|
-> +        002bc380  f7 c3 00 93 fb d0 24 80  f7 ce 00 d8 fb c8 24 80  |......$.......$.|
-> +        002bc390  f7 bd 00 c0 fb 82 24 80  f8 00 00 e8 fb db 24 80  |......$.......$.|
-> +        002bc3a0  f7 d8 00 d3 fb b4 24 80  f8 0b 00 e5 fb c3 24 80  |......$.......$.|
-> +        002bc3b0  f7 eb 00 c8 fb 92 24 80  f7 e7 00 ea fb cb 24 80  |......$.......$.|
-> +        002bc3c0  f7 fd 00 cb fb 94 24 80  f7 e3 00 f2 fb b8 24 80  |......$.......$.|
-> +        ...
+[1] https://git.kernel.org/pub/scm/utils/kernel/rng-tools/rng-tools.git/
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
