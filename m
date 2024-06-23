@@ -1,119 +1,137 @@
-Return-Path: <devicetree+bounces-78883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B991A9139A8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:47:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8132F9139AE
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:49:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835E4282717
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:47:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96F6A1C20957
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1EE712E1FF;
-	Sun, 23 Jun 2024 10:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFD612E1DE;
+	Sun, 23 Jun 2024 10:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=nils.rothaug@gmx.de header.b="RkqxKllT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0pURa1c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCAD812E1DE;
-	Sun, 23 Jun 2024 10:47:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA7D944E;
+	Sun, 23 Jun 2024 10:49:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719139648; cv=none; b=JiUyACGOar9pc9AaToOEzbisX+n1g//S4ZJ1EdFNgSHFy9bCfgpK3v/Na2oC55ISYtbPQn85ja09VoMBHKub+87Gx2xvAwoxE+ajkp6X3wyMIvZFjPMdKWqFENvtxhq8ygfCeKBqiVPzJSnjrbBgT2V9sYBryv5tLoANe/hBk5I=
+	t=1719139747; cv=none; b=kQZrER/W5xLl9jWLt/HOW+8qjUGZg13fpAQ07w1eBRckfbNbiSIYBzFZ76wtUmaOUp5IPJsaDULiNyKXR7FYH3Bl7WaWtNTq+i0NB5/CfJawaRuo4kq9gKSFnhcZx4u6BZDsWjbrNvvHW/zumxp/Gc3PELvK/F8B9RP9pOOesnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719139648; c=relaxed/simple;
-	bh=m6arXT4GDbumWRlA0AunZOdHCUdv3iERn8bZu7xUXao=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qF8TJwi722Doh2gqgLHMDLyYh+6k3iKxgESXjH31oRI33jPDz0hvrpi3cnvYlxjiLWCnYi00IE0h5br3b/jZTzjU/qStrjeeIf7XUlKzBwDoDemPCqYQvHRuc6EtRT8pCDiZHrVbc9WswdfAnJqBOK3fo74oDLXIi5Z4Yyw3R2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=nils.rothaug@gmx.de header.b=RkqxKllT; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1719139641; x=1719744441; i=nils.rothaug@gmx.de;
-	bh=aIuqGElgpNfIxpmIK6owpSmAHJS5jLpXs1KY3iJsh8M=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=RkqxKllTXDb2t35HCVmx820y8wQhfzwM+mu9qILRZG0oY/Xp+n97qDBVHZY4eOx9
-	 mJCNttJuhx8w6GSNTA0LZS0/SFps8gYZPOqfDt9gcAOarLnYQKHzK41Uw5fOIPe0Q
-	 nemNSOG2EQW9VK+V0SRRO8BnxsXOpO/l8rhzNjtoV9igMvp6dpIPCoPM4GFGJv80v
-	 xdB0qiiXzoBAauiw8SE2jm1avSlAuvJFjRrIjRqBqd7L8NmJqNtfs5QD3mdNpESCj
-	 9e6y0BS3JCx9uoTY+1g909N9Wt/4bb5N20sSLJFDIBcJEKJEhFAr5x4pe8mkHqFIL
-	 dP+MVJk0HUVe3nUnsQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from nilsr-VirtualBox ([83.78.44.59]) by mail.gmx.net (mrgmx005
- [212.227.17.184]) with ESMTPSA (Nemesis) id 1M7b2d-1sHjBF3bAr-00Amz0; Sun, 23
- Jun 2024 12:47:20 +0200
-From: Nils Rothaug <nils.rothaug@gmx.de>
-To: hverkuil@xs4all.nl
-Cc: sean@mess.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	mchehab@kernel.org,
-	nils.rothaug@gmx.de
-Subject: [PATCH v2 5/5] media: em28xx: Set GPIOs for non-audio boards when switching input
-Date: Sun, 23 Jun 2024 12:46:47 +0200
-Message-Id: <20240623104647.7697-6-nils.rothaug@gmx.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240623104647.7697-1-nils.rothaug@gmx.de>
-References: <20240623104647.7697-1-nils.rothaug@gmx.de>
+	s=arc-20240116; t=1719139747; c=relaxed/simple;
+	bh=X6fFwcZ2bciYxHGg1tV+do5pO+J0UpUU9qrl+KByrH4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DUJBuKn3UT/U8bahqqhf1ZDjG5raXihPDukgNnSM5z5vW3Q7hhgTmP9BXttwZ9OtOibi9usQvmVBRNVbYOshT3g3gxOK4GApw0yui3eloHvZbY6tSYwm8Ccs0jmq8fo8IwcYZU3z7yBEF4vA1ecZLZY2v1KWyF15CHlQuz4fg3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O0pURa1c; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-71816f36d4dso1118160a12.2;
+        Sun, 23 Jun 2024 03:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719139745; x=1719744545; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5tOKBNF1K6kM4/l3Ir2w3oOEOvrznnr6BloYrKa9764=;
+        b=O0pURa1cOzyVKAtG9QML4oivBW49aGJ4dmSgRzH1Q/oeoUqivDPeCZcqEE0ijWqo8v
+         n3E5bsJeFNm9YQb1uqaTAr8E2J2YAtvYbkfN52jbS5pSrS5V2fUWcOsN4L0WmOgTeVP4
+         1pYXSg9niS37jDNtYn6rVEZavNQdg7mbF81rAufOlnkmh8z8lYyi6Fp2b5in8vk2uRC3
+         rsPwDBWDZJt7Le+X1tOm8URI+2cz3sseKPR5EZFHgMlhnZr92vLk4tNyEPkbUrzI+3LK
+         FguUA5iS/2H1FZKe6SNyBhiDVBRPA6soJbbfDeeltsxLtLvfBMNij+QIcZ/+vqBiwGJC
+         8J4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719139745; x=1719744545;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5tOKBNF1K6kM4/l3Ir2w3oOEOvrznnr6BloYrKa9764=;
+        b=HwKL2mN7k0vMhIavzf8DiMeaSdoLrjyUCPXIfkBbo9mq3gYfHXl9Vy1Dk2BfOv+HPh
+         g6aKQnIQPIHYSXgb6GAVT9omGJ8AIIig/KnadkiAjLrV+G3Whmn6Cm4/YmGOan+f1eRU
+         cHgpfeTIwmgW5l9eji+gs/j10Z8MR+UB2WsRi9as2/mlK4uMlBME+zn6+xNMj2qRat6w
+         eObGuuKr0hQz1XYnUSNqWGnr15A/Yt5ysXWoy6wZhJIQBjH2C6LUV7b6Wv/KyxLTMZsK
+         sMUiztrCtLKWlv2PX7815Z9OtNaFHex+FaFBrZNNeSuqW9CIuQhWjlU5PTLop+G5AMsc
+         Rc1w==
+X-Forwarded-Encrypted: i=1; AJvYcCW1zgJwBRONwUZ4uRkU518zawwJIJ+aVjKqmVe6yG9NlalMCAab9BQFGUgMIokHs+grGkDwAcAdvVAxopZ59xTbyQI5g12t0P7HQL5ZEuTTu3jN8BsrPKoX7KC8HQ9dUPllxuzL8CwpMnxmc0I/ThP+koabLj5Ds2f0bw7JDoLte6cfwQ+S+ZM=
+X-Gm-Message-State: AOJu0YzJkaGXMLkLxeKwcg5nJRfNVK5iAjl0d96jJJZPnjCJgEH/6MFB
+	rQTn65FjugQg9CIKn7LqNG8XSMQyozP5FucocrQI+9yuowMUCCFvVpnMgACBIekyz3RevKV3WKk
+	cIvDU2shNE05bNWJIm9xAAy0+T4U=
+X-Google-Smtp-Source: AGHT+IEYhaua3z+8fvVxYKOlzI0SeXlh1Mqqe1m7wg491bift0wbb0Sz1XkAToMjWcbemVJ9AJKorDfG72cQicJRWyw=
+X-Received: by 2002:a05:6a21:7882:b0:1b5:1feb:b3f9 with SMTP id
+ adf61e73a8af0-1bcf7e32018mr2620120637.9.1719139745149; Sun, 23 Jun 2024
+ 03:49:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240623-dsi-v1-0-4ab560eb5bd9@gmail.com> <20240623-dsi-v1-2-4ab560eb5bd9@gmail.com>
+ <hzslz54iq5sjmfhcbuj3my7cbjsu73acxeelih3jekr6rznz44@qie4c4w5lt2d>
+In-Reply-To: <hzslz54iq5sjmfhcbuj3my7cbjsu73acxeelih3jekr6rznz44@qie4c4w5lt2d>
+From: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>
+Date: Sun, 23 Jun 2024 12:48:53 +0200
+Message-ID: <CAGsSOWUDbvUMW95Xnjrg4z7TJ9=tj7_KHyek3xTuzbDP2_VhHw@mail.gmail.com>
+Subject: Re: [PATCH 2/4] drm/msm/mdp5: Add MDP5 configuration for MSM8937
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Daniil Titov <daniilt971@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:hLwCfQorBE1RdUHVn/1Yn8Q3PJiGdP7IC3A/JIy8pByzqhcjhOQ
- vq3NcGFNMJghyj+lUK7if/+p48mWwHukwDBT0C0tESVOaV9QEB5p3apDCFV038g8mwZut8R
- ZMAVEEa4hzwndjoG0bLr/Hr73kimHm9uX4U9dngmzVvlv8dT8zApVY0Tgcdoyqc2rqRwWQJ
- wHtaakwQLN5gK63AOjtHA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:GqxfqAqaHtg=;sY0PJVJQcP3ELeHB8o2wySzq5a4
- Djq3OxrqWcmUGyGl2TCAUwEKP/dU27e1HIZJg9GjVpaQ3eHRUKHpyo72lse3+NR5OuQDnBpIt
- +PIg6R+Of5ZhL+n1wcP87gJU2X3ehaC1mqKNarsQj2VRfBlUjp3FkttY3bhsExlpwTBDDkY1t
- 7J6lqdyCNb9doso4QU6jHMOIPKQ2V/JwGdB7KK6tCkQyiKKrboHFpZ2eapl9Y5XAVBr641zsj
- DyQjIBCBLd1lV4alFFb4vhD7xPZRnmg8ss5FwonpdZbAhbqVbIR7qQ3ZAv51ZpNwT54bSm2/T
- 3MMGgQ9tbCRCamgVY/SnnzQ2AZN2FUVmaE+5UEQ8+vrR8ZQocWksM9pDO+O31dEybTsosrFKa
- 7p6zaBIg+FB8WcFkZBZWGxUnkvN9Zniv22vCYULmAe4/xe5G/2pn0gLxaJAFJjQzFyacG60Dz
- Hgs6dMBVTN/V1pxsXtIlUKLWNpMZ68cwo4Mw3iBzri6yh2I0DJ8fAiJPavmixVjFcrcljfSb5
- miln8SQHqLTO+QiEarkTGmCygjYKcHyX49c7JaSkR0/e7Nm2hVY9B2RHuAmqQMA22xqxQ6OVw
- qJ2B1UU4HGYKzVDJiwlABo4ZabGpktmWZlsy9Lf0A6gLQcCsS83T2kFrTnPwPeZdv8HoOPngR
- Yt6lpZ28YIqlvqXEAJEo3e8w+Btimyv8PVpkfS1EYuT3N6orUD41vWvlIvfppsUZ53r86jkkw
- vlWi4snYxqjsOS1fpgowztUJFR2cfUcwji+65aLbKyZT/alx999GUGXZ7Fy+7fzSILhx+dI0b
- SKKIWkerKVePtS0FY7K7UYtm0zUqRp0wyiSGaAHRaGRPw=
 
-Fixes changing the Line Out audio source with the video input
-on MyGica UTV3 board. Previously, GPIOs were only set in
-em28xx_set_audio_source(), which only boards with USB audio
-support reach.
-
-Signed-off-by: Nils Rothaug <nils.rothaug@gmx.de>
-=2D--
- drivers/media/usb/em28xx/em28xx-core.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/media/usb/em28xx/em28xx-core.c b/drivers/media/usb/em=
-28xx/em28xx-core.c
-index 61d7bf701d57..29a7f3f19b56 100644
-=2D-- a/drivers/media/usb/em28xx/em28xx-core.c
-+++ b/drivers/media/usb/em28xx/em28xx-core.c
-@@ -416,8 +416,9 @@ int em28xx_audio_analog_set(struct em28xx *dev)
- 	int ret, i;
- 	u8 xclk;
-
-+	/* Set GPIOs here for boards without audio */
- 	if (dev->int_audio_type =3D=3D EM28XX_INT_AUDIO_NONE)
--		return 0;
-+		return em28xx_gpio_set(dev, INPUT(dev->ctl_input)->gpio);
-
- 	/*
- 	 * It is assumed that all devices use master volume for output.
-=2D-
-2.34.1
-
+On Sun, Jun 23, 2024 at 7:59=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Sun, Jun 23, 2024 at 01:25:52AM GMT, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
+ote:
+> > From: Daniil Titov <daniilt971@gmail.com>
+> >
+> > Add the mdp5_cfg_hw entry for MDP5 version v1.14 found on msm8937.
+> >
+> > Signed-off-by: Daniil Titov <daniilt971@gmail.com>
+> > Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <trabarni@gmail.com>
+> > ---
+> >  drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c | 89 ++++++++++++++++++++++++=
+++++++++
+> >  1 file changed, 89 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c b/drivers/gpu/drm=
+/msm/disp/mdp5/mdp5_cfg.c
+> > index c5179e4c393c..6413c0d3e237 100644
+> > --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
+> > +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
+> > @@ -1011,6 +1011,94 @@ static const struct mdp5_cfg_hw msm8917_config =
+=3D {
+> >       .max_clk =3D 320000000,
+> >  };
+> >
+> > +static const struct mdp5_cfg_hw msm8937_config =3D {
+> > +     .name =3D "msm8937",
+> > +     .mdp =3D {
+> > +             .count =3D 1,
+> > +             .caps =3D MDP_CAP_CDM |
+> > +                     MDP_CAP_SRC_SPLIT,
+>
+> Could you please point out the SRC_SPLIT reference?
+Is this would be qcom,mdss-has-source-split in downstream, because if
+it is i think it is a mistake and it is wrong at msm8953 also.
+>
+> Other than that LGTM
+>
+> --
+> With best wishes
+> Dmitry
 
