@@ -1,66 +1,59 @@
-Return-Path: <devicetree+bounces-78968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF339913CB9
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 18:21:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8768E913CC3
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 18:30:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5C0B1F228F7
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:21:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0CCECB20D44
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF00183067;
-	Sun, 23 Jun 2024 16:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 751901822FD;
+	Sun, 23 Jun 2024 16:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g61aITPV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JL2TyUEo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111C91822D6;
-	Sun, 23 Jun 2024 16:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D6F8F5B;
+	Sun, 23 Jun 2024 16:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719159644; cv=none; b=ql6A6P3ksURW39rubkBwnzHDqMUz6FN1GsbwGQvZVyrqHyAUDDn0ew2v7+plrBGaMzuwQ3knL93a5OSp/mJuHPVYa4uf4oSic96QMSx4XCjapIrz5Qe1KDodHbpNyW8J8TEx2xJ2LUQyVJN25sTNsgeD/KNOfIJ8MMrhK7ammkY=
+	t=1719160226; cv=none; b=pKefvf2Ias5lf+3fPed3bdkGVFUA8DuzLRmx0jolMwewo1fvaIMoypKdTz92z/nFrM91PyJQ3BOxc6OMv/IT8ptcEQgaQCuFY+NdSBXF/IflyvzKsIumSOU1CFCCwGtC2kAjyHM6xIOEQ75N1SdZ+Vtzw+Lva0L8qNwYEqsbAGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719159644; c=relaxed/simple;
-	bh=ybsa2AlMObRZqjJio+sRTrCAG3J3AotfB3UICIYd5Zc=;
+	s=arc-20240116; t=1719160226; c=relaxed/simple;
+	bh=GpYFGPdZts7O9qMXftegdL5qHYUq/82DkYhv80PMtCE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OsdGvHNoQE4gnOU24JtQTCf6VSbuJvj77zfGNSSpQyDE/IEScajGG1R84zE/7uBBIbLt1EZENrzldL2AyTwmAfL+kYVqIj27GNHy5/PJJWyFfGKhX5mNnn8Clmgc3w+FGSelpED6OpOhqnz3zco5932U6fZJutm1FK/7q8n1W90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g61aITPV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6117CC4AF0A;
-	Sun, 23 Jun 2024 16:20:38 +0000 (UTC)
+	 MIME-Version:Content-Type; b=u+x7SlCMFOdUbqW0k6M/1KEHmYlKQ7cv9b8QDBdT8xT1uUIBgl9+waqEfezKQtzEEnfesfdyMdDvP5fvbE2uDktLX0xeTNCbHFhIxsuNvCBuksmEUtHMjigCGU8Nza8xuaxHklzNamPBpVSQ0PnZO1ADqvDQp4VtZS4bf+E/H/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JL2TyUEo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A465CC2BD10;
+	Sun, 23 Jun 2024 16:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719159643;
-	bh=ybsa2AlMObRZqjJio+sRTrCAG3J3AotfB3UICIYd5Zc=;
+	s=k20201202; t=1719160225;
+	bh=GpYFGPdZts7O9qMXftegdL5qHYUq/82DkYhv80PMtCE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=g61aITPVmyaQzzfWG7pI0GlENhPnv7Cw9Y5XjHJO8tYOpcoqBmnc7AIHg9n5kCKlj
-	 dqZOpS9KgjFAXUd3ChAPh0bCVhObRrY/+22SR7BFKcLxhT/enE5RbgeAk+Ah49WAqX
-	 9fCKafOdwttyTQ47U7SrNgscLZ54i0QfJ5audW2FqZB7psCFG/Exq54vqldg6h5ISk
-	 3Bc/zktN9Yh1kBTYhlhXcOkgEV6lbpp9ZIWKqsvaYuva/1KFG1ViiRYHIgZEYz2AVY
-	 xVOIVc+b4GlcedOlV/rpJBKTV1lrcvHwGBcP3Ad4wU7P4XwqSot24YOqX7BK5JvEeS
-	 /ubSvIpwBkkfQ==
-Date: Sun, 23 Jun 2024 17:20:33 +0100
+	b=JL2TyUEoe125u3uwLbWL8FlcI+B/7LRJvn7jAWrFzQmlMFUzQ9ns8nlvV+pX7o5SF
+	 SBAVpblUx7oAOxOQAm+qUloArQCUjIkzANmInr6L0zSrqrWPkP/Pku3rmAVz3mij89
+	 g97ENTSdYZB6+KOcc9Q8x6nKq60ASR2IQGKR2nsaiMCPDDApyOJBeyugnd9shCC/yr
+	 MRy6l41ZrLKEYV0LPYprmZ6QljJMbafgT/ZP/JKvSCuQ2HKJs1nfQ/h2CAIwuyQj4P
+	 4EXSLEnnJZqR4mNgAXu/EeE5Mw+gJjfrjSt2PrErsCwzlECgO3F476eGpbn7N7r5Yo
+	 AFtfZXHC3IB3w==
+Date: Sun, 23 Jun 2024 17:30:15 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Kim Seer Paller <kimseer.paller@analog.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Hennerich
- <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <noname.nuno@gmail.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-Message-ID: <20240623172033.4d821cff@jic23-huawei>
-In-Reply-To: <20240623-juror-ground-9a44d66a002b@spud>
-References: <20240619064904.73832-1-kimseer.paller@analog.com>
-	<20240619064904.73832-5-kimseer.paller@analog.com>
-	<20240619-vanity-crowd-24d93dda47b8@spud>
-	<20240623144339.6a5087cf@jic23-huawei>
-	<20240623-juror-ground-9a44d66a002b@spud>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, broonie@kernel.org,
+ lee@kernel.org, samuel@sholland.org, jernej.skrabec@gmail.com,
+ sre@kernel.org, wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, lars@metafoo.de, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 5/8] iio: adc: axp20x_adc: add support for AXP717 ADC
+Message-ID: <20240623173015.555584b6@jic23-huawei>
+In-Reply-To: <20240617220535.359021-6-macroalpha82@gmail.com>
+References: <20240617220535.359021-1-macroalpha82@gmail.com>
+	<20240617220535.359021-6-macroalpha82@gmail.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -71,58 +64,107 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sun, 23 Jun 2024 15:03:47 +0100
-Conor Dooley <conor@kernel.org> wrote:
+On Mon, 17 Jun 2024 17:05:32 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-> On Sun, Jun 23, 2024 at 02:43:39PM +0100, Jonathan Cameron wrote:
-> > On Wed, 19 Jun 2024 18:57:59 +0100
-> > Conor Dooley <conor@kernel.org> wrote:
-> >   
-> > > On Wed, Jun 19, 2024 at 02:49:03PM +0800, Kim Seer Paller wrote:  
-> > > > +patternProperties:
-> > > > +  "^channel@[0-4]$":
-> > > > +    type: object
-> > > > +    additionalProperties: false
-> > > > +
-> > > > +    properties:
-> > > > +      reg:
-> > > > +        description: The channel number representing the DAC output channel.
-> > > > +        maximum: 4
-> > > > +
-> > > > +      adi,toggle-mode:
-> > > > +        description:
-> > > > +          Set the channel as a toggle enabled channel. Toggle operation enables
-> > > > +          fast switching of a DAC output between two different DAC codes without
-> > > > +          any SPI transaction.
-> > > > +        type: boolean
-> > > > +
-> > > > +      adi,output-range-microamp:
-> > > > +        description: Specify the channel output full scale range.
-> > > > +        enum: [3125000, 6250000, 12500000, 25000000, 50000000, 100000000,
-> > > > +               200000000, 300000000]    
-> > > 
-> > > IIO folks, is this sort of thing common/likely to exist on other DACs?  
-> > 
-> > Fair point. It is probably time to conclude this is at least moderately common
-> > and generalize it - which will need a dac.yaml similar to the one we have for
-> > ADCs in adc/adc.yaml.  That will need to make this a per channel node
-> > property (same as the adc ones).  
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Looks like it is already per channel node?
+> Add support for the AXP717 ADC. The AXP717 differs from other ADCs
+> in this series by utilizing a 14 bit ADC for all channels (a full 16
+> bits with the first 2 digits reserved). It also differs by lacking a
+> battery discharge current channel.
+> 
+> Note that while the current charge channel itself is included in this
+> driver for the AXP717 and listed in the datasheet, no scale or offset
+> was given for this channel. For now no scale or offset is provided in
+> this driver.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Hi Chris
 
-Absolutely - but that is a bit fiddlier to do in a generic file so I just
-meant make sure to enforce that in a similar fashion to adc.yaml.
-> 
-> > I'd also expect it to always take 2 values. In many cases the first will be 0
-> > but that is fine.  
-> 
-> What would that first value represent?
-Hmm. For voltage equivalent they are often not zero based so it would be the
-negative. I have no idea if there are current dacs that act as both sources and sinks...
-So maybe voltage one which should be done in this series as well needs to be 2 value
-and current variant maybe not.
+A few minor comments inline,
+
+Thanks,
 
 Jonathan
 
+> ---
+>  drivers/iio/adc/axp20x_adc.c | 167 +++++++++++++++++++++++++++++++++--
+>  1 file changed, 160 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/axp20x_adc.c b/drivers/iio/adc/axp20x_adc.c
+> index d6c51b0f48e3..f35ba2c11e1b 100644
+> --- a/drivers/iio/adc/axp20x_adc.c
+> +++ b/drivers/iio/adc/axp20x_adc.c
+> @@ -5,6 +5,7 @@
+>   *	Quentin Schulz <quentin.schulz@free-electrons.com>
+>   */
+>  
+> +#include <asm/unaligned.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/completion.h>
+>  #include <linux/interrupt.h>
+> @@ -27,6 +28,8 @@
+>  
+>  #define AXP22X_ADC_EN1_MASK			(GENMASK(7, 5) | BIT(0))
+>  
+> +#define AXP717_ADC_EN1_MASK			GENMASK(5, 0)
+> +
+>  #define AXP20X_GPIO10_IN_RANGE_GPIO0		BIT(0)
+>  #define AXP20X_GPIO10_IN_RANGE_GPIO1		BIT(1)
+>  
+> @@ -35,6 +38,11 @@
+>  
+>  #define AXP22X_ADC_RATE_HZ(x)			((ilog2((x) / 100) << 6) & AXP20X_ADC_RATE_MASK)
+>  
+> +#define AXP717_ADC_DATA_TS			0x00
+> +#define AXP717_ADC_DATA_TEMP			0x01
+> +
+> +#define AXP717_ADC_DATA_MASK			0x3fff
+
+GENMASK()
+
+> +static int axp717_adc_raw(struct iio_dev *indio_dev,
+> +			  struct iio_chan_spec const *chan, int *val)
+> +{
+> +	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> +	u8 bulk_reg[2];
+> +	int ret;
+> +
+> +	/*
+> +	 * A generic "ADC data" channel is used for TS, tdie, vmid,
+> +	 * and vbackup. This channel must both first be enabled and
+> +	 * also selected before it can be read.
+> +	 */
+> +	switch (chan->channel) {
+> +	case AXP717_TS_IN:
+> +		regmap_write(info->regmap, AXP717_ADC_DATA_SEL,
+> +			     AXP717_ADC_DATA_TS);
+> +		break;
+> +	case AXP717_DIE_TEMP_V:
+> +		regmap_write(info->regmap, AXP717_ADC_DATA_SEL,
+> +			     AXP717_ADC_DATA_TEMP);
+> +		break;
+> +
+> +	default:
+> +		break;
+> +	}
+> +
+> +	/*
+> +	 * All channels are 14 bits, with the first 2 bits on the high
+> +	 * register reserved and the remaining bits as the ADC value.
+> +	 */
+> +	ret = regmap_bulk_read(info->regmap, chan->address, bulk_reg, 2);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*val = get_unaligned_be16(bulk_reg) & AXP717_ADC_DATA_MASK;
+
+FIELD_GET() preferred as then I don't have to check if DATA_MASK includes
+the 0th bit.
+
+> +	return IIO_VAL_INT;
+> +}
+> +
 
 
