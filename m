@@ -1,136 +1,141 @@
-Return-Path: <devicetree+bounces-78990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714CE913D72
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:56:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA4A913D98
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 20:43:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E416B20632
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:56:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 918191F211C5
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 18:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5AEB1836E0;
-	Sun, 23 Jun 2024 17:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EA918307A;
+	Sun, 23 Jun 2024 18:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="SBi8Ig5k"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="VIEbXJE/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mout.web.de (mout.web.de [212.227.15.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0444712E1D1;
-	Sun, 23 Jun 2024 17:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1BA314830D;
+	Sun, 23 Jun 2024 18:43:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719165405; cv=none; b=CL8POoEYw5woExXpVJJgZBW/I6p4kranMdA00NTMO6GkQrjGVxJ+9VhS6vIGZ5nEMBjEZcZDucNR2PURGZdO833QNO4n8br5VyqJublxwGYbqm/GnjssGqQxwRmkozZ4JmMP2cordAr+9QYedcuS/yAuQkasVmlBAhx7qR+ciek=
+	t=1719168226; cv=none; b=jkkrzRE/xSmxGiP6haAA1Clf0C5L+yRygw87LarbWHEbX4ss9pEWvE2A5cIUVWEfacN8Y6x0plAKQJ+cjjDFLrj+dJS3IaqaD3BRzVqz9W4ayeNPpyXUZTu2KvmtIOJ7p98ah4iLgfwTAqZfun1bnGr0bgYK8sAGp+Ovs870NnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719165405; c=relaxed/simple;
-	bh=R9Ubzz/1Tw0aPlQUWNOfjVouf4hBa4yPYahG9GCS5I0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pJHdLpuay/J3TypXNvw1xVxPLkAK6M5UAzXG4mdhGhjzQ3vVW1toJBoLsBdTXw+viPTbLHq47O2bRnK2L2myXWntfocCQf1CmlRL+rHGkCT5IZEmP2oDV56aCMGy2YzgWyIeNXG2OWUYzuSj8ABtMzyCw4E0SSDZ5ytZX1KEGwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=SBi8Ig5k; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6B2hSzN6wUZJiN2cPxvTxUJrgPEaM8Jvt0OMTSIbYFM=; b=SBi8Ig5kM9ywmlWWVx0DvoKUAo
-	yyRh60WddHqNpeE/FjsSi/ZryLQInZXbah8k/+I89/2eJfBdsIjvMtjMm8b05mPvAZ+qUCoGwhbvt
-	jZ/tokMkC1U0/CbtrK7E/T3nAZV16KPC37oMmxXzyxRG9Er14xy1J/aFqSNzw3EbImpw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sLRRv-000nIu-KM; Sun, 23 Jun 2024 19:56:23 +0200
-Date: Sun, 23 Jun 2024 19:56:23 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com
-Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
-References: <cover.1719159076.git.lorenzo@kernel.org>
- <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1719168226; c=relaxed/simple;
+	bh=w5hEXJLG4OPyvbd7nDQPT+h5KcrjcJGViT3NRwut84w=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=mihNJvWrVwrK43kvCYjGqPP8/PnGOvjDVsKGkBpRW7qj38HzxbRv6l/eqp9NPklyRNqABitI02fF6AgLZbPky4RvJHpC9Rl+bvTyVDLMoTo01Q8DSzlNXusgeM0mbrV59pJQjE8+ZZ5f64uzA/wTrA4RKSsBKfxPGJ97hmAZFdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=VIEbXJE/; arc=none smtp.client-ip=212.227.15.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1719168170; x=1719772970; i=markus.elfring@web.de;
+	bh=1dcrNaQXji2yb2Bh82SWM2XJHeDXnEcOqfxNrj9m7pc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=VIEbXJE/wxAjUjt/ESseuUx0eQH5SvCYmT7KyG/Z2xjFSIK8Jht1WYOgY1nWHm+a
+	 cfrx98dpNdbrBt9L/7Mhd8nihJBYIp9iYezvSUt72nE2wLFJZLC4wY3f5MHZY9h0K
+	 61Khm5FQnHrwXCHwKE5bIvUii821v7lohV/9ETP/m1abEQrbj2K24qybYeGvtdqyb
+	 GIgtmVorR4oxDPU2kpTMkTngoiNQtaep9aHpFmZsNJqpcnBCKZ4viaXHfRmVm3X2m
+	 u/iVIVA6+irG64qODkA6Y7gAeVwMVe3FE/0R8RKRXzHMZohq4EocvyP5W1mWzs00F
+	 sgRjoMQ2m57pZSjCJw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.85.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MhFhe-1sqxRb3zNa-00p6YS; Sun, 23
+ Jun 2024 20:42:50 +0200
+Message-ID: <43209c1a-7889-4dec-8385-2f3b15d6faa5@web.de>
+Date: Sun, 23 Jun 2024 20:42:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+User-Agent: Mozilla Thunderbird
+To: Keith Zhao <keith.zhao@starfivetech.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Jack Zhu <jack.zhu@starfivetech.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Robert Foss <rfoss@kernel.org>,
+ Rob Herring <robh@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ Shengyang Chen <shengyang.chen@starfivetech.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc: LKML <linux-kernel@vger.kernel.org>
+References: <20240521105817.3301-3-keith.zhao@starfivetech.com>
+Subject: Re: [PATCH v4 02/10] drm/bridge: add common api for inno hdmi
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240521105817.3301-3-keith.zhao@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:8UtErLEWkjKse7Z0yUU8qtJl/YJlx/hZuvrqJ8fnPQwXh0Q92U2
+ /j0FUKwVLLHrvRKbfPmiXs3VdXBtF9nZw8Sh8N2tkwGV+7BoF3sgkVA+KDBYBEz+505KFXl
+ 5eOn5uMey4aq465MdaeSoof1/gSklk5KdExo/zqeWiMyUyyYHzF9YzTxMUADcTaC4Nes5aA
+ NnZwRH+vKL8iMbBkZ54OA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:vEmo676cbak=;0bvQHYhf/I3BY0oOfipEpU67Eo5
+ xPtfdhaTrr8k89QH4O5X9GmTdcK8MMcac0ibniBNUiUCWPll7Ha5x6c6gT92N3Bd94fZ8f8Rj
+ 0t9spvDIlQzNFjQcQ/D/xf0ZAkHE/Af26NSvwOagJH+lELXYjIgObuLJEkh3rwjsK+SPhK4O4
+ UA0iICskL4KX32xcI38wZNZkROB+YpsgdyMwUkStyYgTVo4Mlb2b4VLDNZLqFvandmwEEEB3+
+ pK7RkIh1NDwbLp8SpLVPbPkGYeeWqCUVaKsWcOJLRAKRGC14QC00cSazSbzKUjap6ykifVHis
+ ySA+Pb64b49bVbSh5RBjDfdAn3QTKAAXyvebZT8nHxTq5A1RRVsrhE0VUd0lQKDzeV3xbkZ0O
+ 8u+lvWsbGtmrWTQPhyDukYaE/fWZPAv44aI8722hu0mB6a0+0osOMIOqJlnBrjMlTm+uXeQKg
+ +PktpEg9IaOq/0hylRcPDfsLSSI14+WZ0kpdPtmWldM/p+psHop0xJCT/L0uizF3nXqLYCRd7
+ tk10V7MOm8RRoKpAAHE+K5yjlXq1HDcXCkgISh6gvCbR+3R5Q0dVlW84EIb5aaQBLpv/qhsC7
+ 8vsiKq0C000/xOOonM8i8KALS0YA5gV0uWVsTtEaMeLWBQTFwRRJDPB3v+rIvWQxnSb7jRBJp
+ 9Sm8q7UQx6WJ3cRTCVplmjQnk0LP8WxeF1bdAManBcZpkrqWt0PzqujhMpOToVfWMHy7DHY+b
+ hUZR9KBGTTx66qfsHf5lWvl5xPthQAPNV7LPvLWt1RlgsydBG3IkionuTXcnLyZv9veSwlKym
+ caQj2yv7EoZ4nQEc1T++XBb6NRaKc2sN/9hls27UoqrUA=
 
-> +static int airoha_fe_set_pse_oq_rsv(struct airoha_eth *eth,
-> +				    u32 port, u32 queue, u32 val)
+=E2=80=A6
+> Signed-off-by: keith <keith.zhao@starfivetech.com>
+
+Should the personal name be more unique
+(according to the Developer's Certificate of Origin)?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/submitting-patches.rst?h=3Dv6.10-rc4#n438
+
+
+=E2=80=A6
+> +++ b/drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
+> @@ -0,0 +1,587 @@
+=E2=80=A6
+> +static int inno_hdmi_i2c_xfer(struct i2c_adapter *adap,
+> +			      struct i2c_msg *msgs, int num)
 > +{
-> +	u32 orig_val, tmp, all_rsv, fq_limit;
-> +	const u32 pse_port_oq_id[] = {
-> +		PSE_PORT0_QUEUE,
-> +		PSE_PORT1_QUEUE,
-> +		PSE_PORT2_QUEUE,
-> +		PSE_PORT3_QUEUE,
-> +		PSE_PORT4_QUEUE,
-> +		PSE_PORT5_QUEUE,
-> +		PSE_PORT6_QUEUE,
-> +		PSE_PORT7_QUEUE,
-> +		PSE_PORT8_QUEUE,
-> +		PSE_PORT9_QUEUE,
-> +		PSE_PORT10_QUEUE
-> +	};
-
-> +static void airoha_fe_oq_rsv_init(struct airoha_eth *eth)
-> +{
-> +	int i;
+=E2=80=A6
+> +	mutex_lock(&i2c->lock);
 > +
-> +	/* hw misses PPE2 oq rsv */
-> +	airoha_fe_set(eth, REG_FE_PSE_BUF_SET,
-> +		      PSE_DEF_RSV_PAGE * PSE_PORT8_QUEUE);
+> +	/* Clear the EDID interrupt flag and unmute the interrupt */
+=E2=80=A6
+> +	hdmi_writeb(hdmi, HDMI_INTERRUPT_MASK1, 0);
 > +
-> +	for (i = 0; i < PSE_PORT0_QUEUE; i++)
-> +		airoha_fe_set_pse_oq_rsv(eth, 0, i, 0x40);
-> +	for (i = 0; i < PSE_PORT1_QUEUE; i++)
-> +		airoha_fe_set_pse_oq_rsv(eth, 1, i, 0x40);
+> +	mutex_unlock(&i2c->lock);
 > +
-> +	for (i = 6; i < PSE_PORT2_QUEUE; i++)
-> +		airoha_fe_set_pse_oq_rsv(eth, 2, i, 0);
-> +
-> +	for (i = 0; i < PSE_PORT3_QUEUE; i++)
-> +		airoha_fe_set_pse_oq_rsv(eth, 3, i, 0x40);
+> +	return ret;
+> +}
+=E2=80=A6
 
-Code like this is making me wounder about the split between MAC
-driver, DSA driver and DSA tag driver. Or if it should actually be a
-pure switchdev driver?
+Would you become interested to apply a statement like =E2=80=9Cguard(mutex=
+)(&i2c->lock);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.10-rc4/source/include/linux/mutex.h#L1=
+96
 
-If there some open architecture documentation for this device?
-
-What are these ports about?
-
-> +static void airoha_qdma_clenaup_rx_queue(struct airoha_queue *q)
-
-cleanup?
-
-> +static int airoha_dev_open(struct net_device *dev)
-> +{
-> +	struct airoha_eth *eth = netdev_priv(dev);
-> +	int err;
-> +
-> +	if (netdev_uses_dsa(dev))
-> +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
-> +	else
-> +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
-
-Does that imply both instances of the GMAC are not connected to the
-switch? Can one be used with a PHY?
-
-	Andrew
+Regards,
+Markus
 
