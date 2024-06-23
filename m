@@ -1,45 +1,48 @@
-Return-Path: <devicetree+bounces-78908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C82913A5B
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:06:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 040EC913A5A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:06:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D333CB207C5
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B29C028236F
 	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75CD1180A90;
-	Sun, 23 Jun 2024 12:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F70180A92;
+	Sun, 23 Jun 2024 12:06:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F2F180A79
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F84180A7D
 	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719144363; cv=none; b=aWKduL15zKOgXcPLxqsBeA6T2CKUquh/IJ2mUPfeuPAJ2cs535qzQWMPMOU/pJhxA3L2ENjziy9ZVigTSAnfm58GARmy9b60nGHEIAd6upl80CvNZ/Bz+mUU9b2alaZkIlC6fWgjYe1g5kLtxwYDrhVpayHjqFo80oMCGWp3TMw=
+	t=1719144364; cv=none; b=iLXqoWEY2SSmrE/CmSuCK8vUV/5ItpK7+dGnwsBSJPoLxRuQrKgqlXgHID24/uCgM0eMQ9wKxVb7UnbeiUVoEGl9CGYIuIsnPbeW4JAjDur5u775dxw6VS6vP4LNytbF8Ti+KcNdZVLuTZCWi8n3uHd8lNmolwcgWsXw+ST//kM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719144363; c=relaxed/simple;
-	bh=vipAM1bq0ZEMzzMy85z2dXySms/4PUfBklT7kizRJ+8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=b5uoSFNJPkupWbKBAD7h3GEup+4B1yvdutJTmVhGIlLSoTJvdSRtD/o+9orZCBlCYyyt6TsWrMoktTiqCGEsUnF4qGx23/l6tohG/4CC3UQrQP68bFUAJFb4bio8+tdm9buRg3Mrl4TLiRiuBTbuwhmsI7382fvx5gTX6O+X1Hw=
+	s=arc-20240116; t=1719144364; c=relaxed/simple;
+	bh=DowWKf4MH4eyaDEXJcE82Am07OmYG+d0aPulWFi5Mxw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=BjaQ8VHDMtbvbm5K5XIGiwLnYSXPphwysjgnnfEs0Bt6h84YSyh28VRhKRz8E35ArAwpffRP8jLHMcXyt7DB3vlZog4jsk7w2tjAco2FRmUxfWGfl2miXRQtEiVPN1cfJHcCWLrd7voAOOzhhJxchE6SkZJSp8uVN93XA7fgSjU=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
 Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45NC0fJA006059;
-	Sun, 23 Jun 2024 21:00:41 +0900
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45NC0fJB006059;
+	Sun, 23 Jun 2024 21:00:42 +0900
 From: FUKAUMI Naoki <naoki@radxa.com>
 To: heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
         devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
         FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH 1/3] dt-bindings: arm: rockchip: Add Radxa ROCK Pi E v3.0
-Date: Sun, 23 Jun 2024 21:00:14 +0900
-Message-ID: <20240623120016.82990-1-naoki@radxa.com>
+Subject: [PATCH 2/3] arm64: dts: rockchip: prepare common .dtsi for Radxa ROCK Pi E
+Date: Sun, 23 Jun 2024 21:00:15 +0900
+Message-ID: <20240623120016.82990-2-naoki@radxa.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240623120016.82990-1-naoki@radxa.com>
+References: <20240623120016.82990-1-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,32 +51,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add devicetree binding for the Radxa ROCK Pi E v3.0 board.
-
-Radxa ROCK Pi E v3.0 is a single-board computer based on the Rockchip
-RK3328 SoC with a compact form factor.
+Radxa ROCK Pi E v1.2x and ROCK Pi E v3.0 share most of their parts.
+prepare rk3328-rock-pi-e-base.dtsi as a common dtsi for both boards.
 
 Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 ---
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../{rk3328-rock-pi-e.dts => rk3328-rock-pi-e-base.dtsi}       | 3 ---
+ 1 file changed, 3 deletions(-)
+ rename arch/arm64/boot/dts/rockchip/{rk3328-rock-pi-e.dts => rk3328-rock-pi-e-base.dtsi} (99%)
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index eca0a42eb384..53ca61c47b76 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -779,6 +779,11 @@ properties:
-           - const: radxa,rockpi-e
-           - const: rockchip,rk3328
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-base.dtsi
+similarity index 99%
+rename from arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+rename to arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-base.dtsi
+index a608a219543e..b2c5089ad2f8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-base.dtsi
+@@ -17,9 +17,6 @@
+ #include "rk3328.dtsi"
  
-+      - description: Radxa ROCK Pi E v3.0
-+        items:
-+          - const: radxa,rockpi-e-v3
-+          - const: rockchip,rk3328
-+
-       - description: Radxa ROCK Pi N8
-         items:
-           - const: radxa,rockpi-n8
+ / {
+-	model = "Radxa ROCK Pi E";
+-	compatible = "radxa,rockpi-e", "rockchip,rk3328";
+-
+ 	aliases {
+ 		ethernet0 = &gmac2io;
+ 		ethernet1 = &gmac2phy;
 -- 
 2.43.0
 
