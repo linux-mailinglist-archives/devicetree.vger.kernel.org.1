@@ -1,76 +1,85 @@
-Return-Path: <devicetree+bounces-78852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B080B9138DB
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:02:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB16C9138DF
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:02:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2B681C20B24
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:02:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32782B213C7
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACA43D0D0;
-	Sun, 23 Jun 2024 08:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7032450E2;
+	Sun, 23 Jun 2024 08:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="Kuc4qm+R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dlOLiKBq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C58417C77;
-	Sun, 23 Jun 2024 08:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C59376E5;
+	Sun, 23 Jun 2024 08:02:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719129726; cv=none; b=hxp27fIreJAAiqlZaHHd5+4VPzTEmCPyw4U2PacmLd8XYhi7pwMsFvP4LnWjjTsABcuWicCwYCPN0V0j5S5iTFPpo4FEwdQFtcW5w2vp/M9kUA7kSZe8tt9QH91hUmpoF1nBxrZpfeBp4mjgKjH6oYjq8mSITHfAtqODkdevfkI=
+	t=1719129760; cv=none; b=T7nykhTUrmz2IPDIPNqCleGhZ8lKkRxZ5gstMUb0QvOVRZWc4ufIEfc05H57NcI+JxFJEdfFCuOu0Kogy6O/9x/Uo/+dRAXROLtF62j1VmPxo8bBUPItB3DxMX8nwUiWk0g/dEzBo3MKVcOPoJSw7IDhYNYcRqDszb6sB+qrFZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719129726; c=relaxed/simple;
-	bh=hy2ki87r3CsdFd2uUj+s2wvNocOXNjMZAbPN3I53JH0=;
+	s=arc-20240116; t=1719129760; c=relaxed/simple;
+	bh=NVpdgJtLxbGz8AcVmJ/q9hKRXHgl1H30VLE8Z20v8pM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TO6Azge1E8ltBil4n/QJVhuuIqlfOpPa/LIlvrTL0364ktaTOWiOliLrbRf6LXyXh7tt3Ff44aBfxF2Zlm+UCIt6pms7o/KnJYSzzg7zwUIbJJiM3wvVPpn1enh03QwqdcuhqPpBB7Svhk3FGMJWV/qi4RJDE2pDhQmquizmUl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=Kuc4qm+R; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1719129714; bh=hy2ki87r3CsdFd2uUj+s2wvNocOXNjMZAbPN3I53JH0=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=Kuc4qm+RLkfMTLfmABd/NF5FdG4goJqKSizgr8Rh95Nv+/dZdA991kg8WfyO3gNc6
-	 +2ReQTYUQd0zLBsoIx2NnvRL+BYtOn83yOvQGtwEs+oThlrW18iyYiKwChHbrVGBv5
-	 3wT9N6tYQpJLkVOqIpvtliVhHaYF9QMqsSky42A0=
-Date: Sun, 23 Jun 2024 10:01:54 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Jacobe Zang <jacobe.zang@wesion.com>
-Cc: "arend.vanspriel@broadcom.com" <arend.vanspriel@broadcom.com>, 
-	"kvalo@kernel.org" <kvalo@kernel.org>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>, 
-	"bhelgaas@google.com" <bhelgaas@google.com>, "minipli@grsecurity.net" <minipli@grsecurity.net>, 
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>, 
-	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"heiko@sntech.de" <heiko@sntech.de>, Nick Xie <nick@khadas.com>, 
-	"efectn@protonmail.com" <efectn@protonmail.com>, "jagan@edgeble.ai" <jagan@edgeble.ai>, 
-	"dsimic@manjaro.org" <dsimic@manjaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 3/3] net: wireless: brcmfmac: Add support for AP6275P
-Message-ID: <ksxio3vzlz4rqcwvmtthskv6lqt33ejzjes557rwnkzex2oihk@52ueay5cwuub>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Jacobe Zang <jacobe.zang@wesion.com>, "arend.vanspriel@broadcom.com" <arend.vanspriel@broadcom.com>, 
-	"kvalo@kernel.org" <kvalo@kernel.org>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>, 
-	"bhelgaas@google.com" <bhelgaas@google.com>, "minipli@grsecurity.net" <minipli@grsecurity.net>, 
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>, 
-	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"heiko@sntech.de" <heiko@sntech.de>, Nick Xie <nick@khadas.com>, 
-	"efectn@protonmail.com" <efectn@protonmail.com>, "jagan@edgeble.ai" <jagan@edgeble.ai>, 
-	"dsimic@manjaro.org" <dsimic@manjaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20240620020015.4021696-1-jacobe.zang@wesion.com>
- <20240620020015.4021696-4-jacobe.zang@wesion.com>
- <fro2xcwsnvbxmpszny6g2p36z4zwoq4kegmpvww4twxir5piez@a3c2nbwitmab>
- <TYZPR03MB700154AE39D44B8D166344BF80CB2@TYZPR03MB7001.apcprd03.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AhI2vgqMkqKs6rWFT0y0lV3MMVsOlzT1lBheNCjDR/8PnYhT0huGkaHJnXrntEYPPXEMB5IBXOuB5daOtCHirsCswxX9YgLwEFIlb66BMtYI8hhtpkhZ6dwoQJYhtWgJhdEgzt7ycICsFPiALvS7INXrHzPblZibIULYdsltQ0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dlOLiKBq; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-44051a92f37so26195381cf.1;
+        Sun, 23 Jun 2024 01:02:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719129757; x=1719734557; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YWDMd9l69iqb+D6Wxa/JBkQ4IN4XRV16aDq5fyQM2YQ=;
+        b=dlOLiKBqEYcLnCiJ2KXOPKwScefo5NXx+bTNbfIcAhJIxPdJhQR1cw99+z5DFN8p8m
+         AYwUmyW64b0RqOAqekDVW9LGbEqim4aHECmYvzYE+EcemBSfWTX0eslWv8HoLI6IADm2
+         Gtob6Dpz2CaHL0HxzrGUCp2/yXelPhyxNeWqGFgjfIi6hvFfPJxUCQ8rQ+fbPgvToAtU
+         /EPJ2ERxpEHLCkjb1xVR982xy9M1YtcCc77abt9V+uEPO0EsuX8SkrfFta/xjFlb3qQG
+         PWKvCwL+hPKmyCGfJYD8hqKD6iLpZXs0PJ9erHIPHjEFc8IwX9kWE+EbTmzdyiLgkffK
+         Pi0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719129757; x=1719734557;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YWDMd9l69iqb+D6Wxa/JBkQ4IN4XRV16aDq5fyQM2YQ=;
+        b=YWHmWyuixTfmWch/VOmggCnSUhT4QhyNQ0GEzqDRc5BzvfZOvHOiHedC23A7NZW/Ua
+         d2bx5E55HMbuGmdfKYd0Vt6+9vk4Lkhngu5kWvXzTLqxFKgXpRKiGBQrj+g2lchaNyli
+         5kIxJN4OGgc7UNDXQwopq1XrIst3+yAEnUkLKpU9KFypbt70u1T2Gwx8mwh5jp7bYP3c
+         YdXk67fqrXev3WFPrnp2QzaMFbmNfzO1I7Bn5ykESUtGNc0qnmi6fSSO/6QMTNfu+24e
+         1WrlF1D1Rvpg5hzRhPjdHUs+8jgntimAGIIxeYuV/TAJYQ5Ozq58urra/is3DoveGKfP
+         tUtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXEl54/p+7+OMewHV6CIleo4Um1YT8WKdShSzq6Qq23OXVm3tGDGq940fS7XYOG/NPi8MiL5CfrLdai/fxJ+5Y90dSvzEnmrYAsIPAml2PJjdnlPOPkMPDj/JSEuFMr16vRdKxyCqYzqBP88i5dxov5gHwEckL9OI2grFNU9OkwhD/hAiU=
+X-Gm-Message-State: AOJu0YyWAeYXttYQcO6M1VCpFx25iqXIocpWEb0QOEWyiDN7ZUKTw4dn
+	hOqbX7S5LyjetRhDG92WOdWuKZ8rHf8CnWxGw1Hupv0NmJNaMOAz
+X-Google-Smtp-Source: AGHT+IHBI7Grs+1Q9dbj3jZDgpTfx3BFj1bl8BFrxloybqWXunmQzCnqD0F4ohhZtl7BQ/fRlssmKA==
+X-Received: by 2002:a05:622a:50:b0:444:d2df:e9d1 with SMTP id d75a77b69052e-444d2dff42cmr44750361cf.17.1719129757281;
+        Sun, 23 Jun 2024 01:02:37 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:c8b4:4b16:721a:ce0f])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-444c2c96b03sm29268061cf.93.2024.06.23.01.02.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Jun 2024 01:02:37 -0700 (PDT)
+Date: Sun, 23 Jun 2024 01:02:33 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: James Ogletree <jogletre@opensource.cirrus.com>, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lee@kernel.org, broonie@kernel.org, patches@opensource.cirrus.com,
+	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RESEND v11 4/5] Input: cs40l50 - Add support for the
+ CS40L50 haptic driver
+Message-ID: <ZnfWmR48MfcQKpTS@google.com>
+References: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
+ <20240620161745.2312359-5-jogletre@opensource.cirrus.com>
+ <ZndqwfN4G+RkCNrn@nixie71>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,53 +88,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TYZPR03MB700154AE39D44B8D166344BF80CB2@TYZPR03MB7001.apcprd03.prod.outlook.com>
+In-Reply-To: <ZndqwfN4G+RkCNrn@nixie71>
 
-Hi Jacobe,
-
-On Sun, Jun 23, 2024 at 02:21:39AM GMT, Jacobe Zang wrote:
-> > Any reason to strip info about origin of the patch, my SoB and
-> > present this work as your own?
+On Sat, Jun 22, 2024 at 07:22:25PM -0500, Jeff LaBundy wrote:
+> Hi James,
 > 
-> Sincerely express my apology to Ondrej. It's really my mistake. After getting
-> your permission if I could submit the patches. I jsut think if the author and
-> submitter is not the same person is strange so I changed it. Next tiem I will
-> avoid this mistake. Apologize again.
+> On Thu, Jun 20, 2024 at 04:17:44PM +0000, James Ogletree wrote:
+> > Introduce support for Cirrus Logic Device CS40L50: a
+> > haptic driver with waveform memory, integrated DSP,
+> > and closed-loop algorithms.
+> > 
+> > The input driver provides the interface for control of
+> > haptic effects through the device.
+> > 
+> > Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
 > 
-> 
-> > I sincerely hope this is just a rookie mistake so please carefully read
-> the URL below:
-> 
-> > https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-> 
-> Thanks for the guidance Arend. After reading the document I realized what a stupid mistake I made.
-> 
-> BTW I have another question, except the SoB of the real author, should I also post the original link in commit message?
+> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
 
-I suggest keeping at least this part:
+OK, let's merge it.
 
-> Partially copied from https://lore.kernel.org/all/c7b331edd65b66521a6605177d654e55051568a3.camel@toradex.com/
-> 
-> (No Signed-off-by provided in the email. The code looks like some
-> data copied probably from a vendor driver and adapted for the upstream
-> one.)
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-I'm not the complete author of the patch either. I just figured out why
-just adding device/chip IDs was not enough compared to what Marcel Ziswiler
-tried and expanded the patch from his email, to make it work.
+IMO it still needs improvements so that the repeated effect can be
+stopped/erased without waiting for it to finish playing, but that
+can be improved later.
 
-People using baords with AP6275P (eg. I did my debugging on QuartzPro64) will
-also be interested in how to get the firmware for AP6275P, and there are some
-hints for that in the above link, too. (FW filename that is in the patch for the
-driver doesn't match FW name as distributed by eg. SparkLAN, which makes it
-harder to find it just based on FW name from the code)
+I assume it is going through MFD tree?
 
-Although it would be nice to have the firmware available in linux-firmware.
+Thanks.
 
-Kind regards,
-	o.
-
-> ---
-> Best Regards
-> Jacobe
+-- 
+Dmitry
 
