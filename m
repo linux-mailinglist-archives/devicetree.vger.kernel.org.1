@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-78861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B5691391E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:01:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0536491391F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:01:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 492831C20B90
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 09:01:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 353AA1C20A0A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 09:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676FB4CE09;
-	Sun, 23 Jun 2024 09:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 879726EB7C;
+	Sun, 23 Jun 2024 09:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EzZ7XTqz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U1vGlb2W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A7C2D052
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 09:01:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5255C82
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 09:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719133282; cv=none; b=Bw31Xszyr46V8wj8FgVLFMpFDo3iatLa8f43+B9092s19E9FX3FiKXJNKjQuqVidUtMORSfQwUEz9ilt8406G/X1vDLZlTwFH8ITM/XR/8/JOkYiHCpA8kJZqugJ+kENg4CJ1PbUHvrDcjKgjxdJ6qubQ2Ohqc2TYjKE3t3lNEg=
+	t=1719133283; cv=none; b=Z0R8erf48pCzZ31ALdnct217kf0Fj+hZPYAxq0grttrorkpD+xPK7Z7K6Pspw+ZJpesyTd2FXx16USGsQy/1PPdKT3wjNdMBqWog/AQyo8MVXyidnFpAxdU9aoHTIoXeOpQjXU7s68i2lxWJdHXHWl9aINSUV3My1Eu+49C8qyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719133282; c=relaxed/simple;
-	bh=U6OOr5OpMrSdAgnkkCYBgC2RVtOBIbLQA9Cd3XKahYs=;
+	s=arc-20240116; t=1719133283; c=relaxed/simple;
+	bh=/WnKdbVrMFj56zIVE+/kgmmmmZLjJQ3Idmy4hwzf6GE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=f7KBJJYY7ly3XHtX1+jGr9zO5HKBpAwvxH8YO6sA/oZx1IEy5aeW8Lr4ynOmOYp0lHFjWxCtuXN9WUPO1XrjGySXcwa4HBfs/NasjYz78+8+ubLE+eoZI9qh9yo5zpSBIkD1E4dL3ev9DNdwXsjQvb345Do6v5pLh0pdJv4bT0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EzZ7XTqz; arc=none smtp.client-ip=209.85.208.52
+	 MIME-Version; b=BHpBDxnTGT/P22NBV0JAvseGxfUG39XnPr5maR+Y2i6QPFi6pM+TLtSKQ/FNYjU+UUi2QOk+9/+s1EYJLiB6YupBhbT5yqXIrP90Dst9a/DRZEC7Dj2oMoi4kM/PoqXmb5hx4TEdtcoFFKtk0fs1CSkYZJvI98GYJCK0fg4GS/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U1vGlb2W; arc=none smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-57d15b85a34so3583672a12.3;
-        Sun, 23 Jun 2024 02:01:20 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ec002caf3eso48062491fa.1;
+        Sun, 23 Jun 2024 02:01:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719133279; x=1719738079; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1719133280; x=1719738080; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BnFNSmeXKE9Xbj/8rB7DUybiDejAAysFdgDDOjzrm44=;
-        b=EzZ7XTqzGENjjyvwQoCXplwYTU7f26ag5Jjb+k734PQhgRZEHFMHV7l4mphvZrA99G
-         nBf9I78uqxnpwzO5ickk3yBsWtZUZFpIvesgHmZ8mUjFYToSvD5x8rxj0y0/PujiUb9V
-         HvduhFt3vtIHaCXrOAyd5JWeICpLvAvtqPt0FR2X1s5yx0gJls/eB4ceF6MiZNilIpmH
-         3g4aMfs5JBM6EfrvXSwjnENrPKZYmeDLUYZ+tPQEBLk4bsiEoJ+7MArXI1Ytr6498Oh5
-         uuY8mI6gTsGneDeo9mK0NuIpuPPkKW1sWnx/QpUbcBNtXMPpbw3LXGOSIGWmxqXYxzLf
-         3ulQ==
+        bh=HqMpbxn+qhcW76/sheILADMaTVAYcOB6vMzBzHs4wdY=;
+        b=U1vGlb2WDKbETnDL41L655qr80p1CYeyndLuw4FQMf+yAb4xUpNQ4KZo0rdJw14b1F
+         HvE2lArQUo5W4C0N5Fk97u8sbbEdzVz4KfkbO30SAYmPZZq0nZPp02IB/V/AhiU5+x3b
+         kAumTRIdBqLSF1ydmC8WaPH88qsh84udL9lRL4ZhUjwvaSKOWOH6ySMbdshz7NXgKnGK
+         SUJDJIcX2M/W1UcHvXpzL+zK0hyC9QcNVz5dMiK/i6dyddd0euXZZ9esiiMoCVPR+ehM
+         562odKtPNP8GGLeetrFbWFxivlvHu6FPlhgWcd8RdptCoCfaOiZuyGJOfvBDwPWNj+ps
+         ud7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719133279; x=1719738079;
+        d=1e100.net; s=20230601; t=1719133280; x=1719738080;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BnFNSmeXKE9Xbj/8rB7DUybiDejAAysFdgDDOjzrm44=;
-        b=dv325EcUc1L9eNHNS2I2+8BJav8qkd0CZf+HkvjQncu06/9WLpXCr+fMjEZK9IwNRN
-         uRPTmHKxyO7nqwKAcYOIOeW7Pb6Mhfq2U5cI9L376FroQ4cc+T1JxqKIbXsMb34kCU5d
-         7Otp/0nDW5zw6yOy84gQnd4oR/RR0hE/bBIJN9gTmWFQLaBRY9sMSHvSSBaeZAcewB5G
-         kklBU4qHBpyAXUvrL4cD7J6qjiRhWvBlWh6auxJQhwK2XcbuXCyc9UAAdY7QbXX0Fexv
-         E327W6GSNB1Imv/qVSNdubJU36Z2qDEYJbbIzo/RlD9TCc+EO8m6o+BBtud5dr5nQtzU
-         Tw/w==
-X-Forwarded-Encrypted: i=1; AJvYcCW+iaglLDA68X+RWl45Bcl1TIynXGeIfWsvhAjwrRNrvvW5V4nS74Poa1Mi+pLutSW3uhJmQKhA4KXzZkR/MjTDVBQ5ChksvVN45XZPk75aqZLHPmHvQPLwWv7mEyF+2aPFUXAuN+sN
-X-Gm-Message-State: AOJu0Yxy8VXLbNFt6wpK2UnqnBaBTvPJUYVzj+77DNZ8tAZ9SEaaqD75
-	cfYydKOwrK3HvqLVMlah0BYfOwDz6X9/Ccis5GWkC7vOcLm2m1M=
-X-Google-Smtp-Source: AGHT+IHk5b/y5TB+6CCC61uFRwDTgKVdKv1ghN5pyDe3ew++W6QJFzOjhRdHXQgvO3IimQyQvbV9sw==
-X-Received: by 2002:a17:906:ba82:b0:a72:5010:bd87 with SMTP id a640c23a62f3a-a725010bea8mr30806566b.61.1719133278715;
-        Sun, 23 Jun 2024 02:01:18 -0700 (PDT)
+        bh=HqMpbxn+qhcW76/sheILADMaTVAYcOB6vMzBzHs4wdY=;
+        b=szrbz3i2nKzlurGK2X740lb2B+jdxt53GijIL4cdL7QpR9zHAUUvId1u5KWNirwppb
+         idDncTnsnBHkBPt37wSlYZa7RVIEvnX8k3vbUVrlLlX0MiHumPf1ax//9V+Dj3DF8fg7
+         0m+AxZ+vy1H3peGHZnnGcBM4fXgRblKRyuNRxGWwTUiQEoF+zkpnIfT25kPtmTArCgQM
+         /WFbxGaTyNouOzvAIXuOSZMB3F/qx+WtKLkSFCFVSjrjHg63xuY2snl7p7W5e99e83YF
+         FkK6Z7MFf53b/0h+0aH5hrQU+oDijDtWqO+1wfunjixnFU2fNzaWaxvx8knrfAA2wmSK
+         FzYA==
+X-Forwarded-Encrypted: i=1; AJvYcCWPrBynxN7uMXBsZq/DNZKN3cAcF6h2YUoIYCdhJKJvzpxRR9RzApNJLzOQGEGWJOGTVHReJAKS5Vh9geSnC7i5usJfYLd1qYtViir2GVf7u8JlveHEdNFdyS74PB/xEfH/peMEeK/p
+X-Gm-Message-State: AOJu0YydFEOHozyY4KVnY+3mslgYaFvv4cSGUWhb5RAuUsYg6bjKFFcf
+	cP5hqUSIgLlXWNROmLU55S92UG6o6XB2APKtqPm/ZtCCQbV0BYI=
+X-Google-Smtp-Source: AGHT+IFKwaftrnzrFipKnsCcS6iTtyGmISk1R0bB2uyq/G/bVRqyp9Fw4gBkrsygi0MoPkFobiD9uw==
+X-Received: by 2002:a2e:968b:0:b0:2ec:4f6b:de7a with SMTP id 38308e7fff4ca-2ec5b2c4e9cmr11873601fa.3.1719133279370;
+        Sun, 23 Jun 2024 02:01:19 -0700 (PDT)
 Received: from U4.lan ([2a02:810b:f40:4600:eac1:5757:d323:9544])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6fcf549385sm282003966b.105.2024.06.23.02.01.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 02:01:18 -0700 (PDT)
+        Sun, 23 Jun 2024 02:01:19 -0700 (PDT)
 From: Alex Bee <knaerzche@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -79,9 +79,9 @@ Cc: Sugar Zhang <sugar.zhang@rock-chips.com>,
 	inux-kernel@vger.kernel.org,
 	Alex Bee <knaerzche@gmail.com>,
 	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 1/4] dt-bindings: vendor-prefixes: Add Neardi Technology
-Date: Sun, 23 Jun 2024 11:01:13 +0200
-Message-ID: <20240623090116.670607-2-knaerzche@gmail.com>
+Subject: [PATCH v2 2/4] dt-bindings: arm: rockchip: Add Neardi LBA3368
+Date: Sun, 23 Jun 2024 11:01:14 +0200
+Message-ID: <20240623090116.670607-3-knaerzche@gmail.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240623090116.670607-1-knaerzche@gmail.com>
 References: <20240623090116.670607-1-knaerzche@gmail.com>
@@ -93,28 +93,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add vendor prefix for Shanghai Neardi Technology Co., Ltd.
-(http://neardi.com/)
+Add Neardi LBA3368, a RK3368 based industrial board.
 
 Signed-off-by: Alex Bee <knaerzche@gmail.com>
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index fbf47f0bacf1..6e879abec71d 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -995,6 +995,8 @@ patternProperties:
-     description: MYIR Tech Limited
-   "^national,.*":
-     description: National Semiconductor
-+  "^neardi,.*":
-+    description: Shanghai Neardi Technology Co., Ltd.
-   "^nec,.*":
-     description: NEC LCD Technologies, Ltd.
-   "^neonode,.*":
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index eca0a42eb384..d2e887415d5d 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -634,6 +634,11 @@ properties:
+           - const: mqmaker,miqi
+           - const: rockchip,rk3288
+ 
++      - description: Neardi LBA3368
++        items:
++          - const: neardi,lba3368
++          - const: rockchip,rk3368
++
+       - description: Netxeon R89 board
+         items:
+           - const: netxeon,r89
 -- 
 2.45.2
 
