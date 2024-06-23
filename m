@@ -1,135 +1,136 @@
-Return-Path: <devicetree+bounces-78896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F929139F0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 13:17:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB4F5913A1D
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 13:31:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B38C1F21B7A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:17:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3252BB20D25
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB1D12D205;
-	Sun, 23 Jun 2024 11:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64AD12DDAF;
+	Sun, 23 Jun 2024 11:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kicdWBwZ"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="Rw5BM7be"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-185.mta1.migadu.com (out-185.mta1.migadu.com [95.215.58.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619D764D;
-	Sun, 23 Jun 2024 11:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F4D2C95
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 11:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719141443; cv=none; b=IVPufsaFP7vLrWCztejtm1SgRZpFEDvk7TFRZ7YT3iTXRXNM7cS10yAxiEbL0+0TAvqIiQkLwFa45JAyB2PMm+31phVnKZvC9TNvdtttoCtSA7DowlPf14z6YoJXkkpvUThyjPPKwjzyKMfnPijyfkLUwl7H9HWSBY8la1aFaeo=
+	t=1719142287; cv=none; b=pjSEEDK8xKS4OGUzAbQJ0c8oLvdgW7XFSf2UD4PYPLMJc21QqcbpujrFAeUFeDSfAnUL3xe4eAl26f11Y8UcOJi7uRM9QytcSM0lrKat3ElFSbLYGqed0yuSwS0+0uqkCm3zOWpsjv5AfWABVMdv/j3a7e+lMcADt+7e0S9wpKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719141443; c=relaxed/simple;
-	bh=7PMJh1IV9P4084It6la8SIga/HlxLlyZ153yooL7pA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dzpjrk7P5Xmg/XmiZhARMv6h3ZhLm5GgEY8vL+swoVDpzgtS9Z0qOoE0e7feyNiWtHI0kMT5etMU+Qet5lDfRK60i4EgvcW9q0FYrNNPimhy0Q2vdqxGaZH4FDM/JI6yASzz0xot0/mREegpNiFw1v8qfYcysgwu2HjC2vXQuOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kicdWBwZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C59B1C2BD10;
-	Sun, 23 Jun 2024 11:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719141443;
-	bh=7PMJh1IV9P4084It6la8SIga/HlxLlyZ153yooL7pA0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kicdWBwZpB6XBYekNsv0O/sm4JP3gnEJRMSFlp3P7/D8V/HiESyof/zXJM8wvr6CN
-	 AMIsunwKMKqYnoq1086kxWNvntSP/bsDy5Isadq39XBEOnl7YmXVZIM11mv6ZBwP3+
-	 5TlrbCSGAKUwV8kQO50ojib2+yi5iaj8hJXBor3wMMZ63HUtkAsUR9FNgDcuwKa1bu
-	 +ORKKv7H/G5o+mfGDWozmODbvk6yAMFpRB7AM+GH5nIwXnaaiq4hU6YjTt8NG9E+He
-	 V28kFYR7PKlTYWB2Ntnv2mdjrkNC+Mppc9AqwKlDh3Qzd/YtQC4VLNtMmbwwsB4nDF
-	 OiZhh2+Yd55oQ==
-Message-ID: <a458a3a7-2b6d-4032-949c-b2c021d339e8@kernel.org>
-Date: Sun, 23 Jun 2024 13:17:16 +0200
+	s=arc-20240116; t=1719142287; c=relaxed/simple;
+	bh=L9dXnhFbrkaYuTfm4DbBIxBmCMz4jM+mrPztKiQskQ0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PO/h01KBcLD7csa26VmtUn+CbJWKH3e7jCgBf/ESZI404ArzgcdXzFucEVWHukqRo1rvRKozM2hhcucEcPxDkY+TfCjbnEwfNovSM7bIUH0J0FtX0VheXxiN+N+7xSVc9s0iOYQhxiM079b4s3lYTBPJAdtjkqAhgpnU7e4aWUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=Rw5BM7be; arc=none smtp.client-ip=95.215.58.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Envelope-To: heiko@sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1719142277;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5sGngLZBqkAE79iidbqyoVY0tRIQ64K5ocj/t6ME7os=;
+	b=Rw5BM7beOxfAOo/M/g9Y90xdI/WXTSgfKd8Vcc4N06yn0AbYNv+tyhjF5g/VKBygh3VFk7
+	5HGGA+ys9qIY/QpCe60KRNBmHBeu0+yWvbouknppNGdtdjOF6McYoQw+lr37zV7sMlSJmu
+	Dk7iGGJOo7gFSWl7O1hsqDOIWObEAqpzAVX0Wc8QAxXi3ja2jWyUBzVKpZxq2ja34Oym5J
+	MO/2rn6/MhuyZ7CH/dzqjGf9fFq/darjJ4bWPYBclob7uiCm5mD5FbFNc/sOOyRPfVMdIG
+	X0KIwqedDvCxcbBM2U8S73oLAbSLXqMIjPqf36lk8/fln+2QTs8MB2Ej5G6Teg==
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: dsimic@manjaro.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: linux-rockchip@lists.infradead.org
+X-Envelope-To: andyshrk@163.com
+X-Envelope-To: andyshrk@163.com
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+To: heiko@sntech.de, linux-rockchip@lists.infradead.org
+Cc: dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Andy Yan <andyshrk@163.com>,
+ Andy Yan <andyshrk@163.com>
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: Fix the i2c address of es8316 on Cool Pi 4B
+Date: Sun, 23 Jun 2024 13:31:02 +0200
+Message-ID: <2771372.9AS07kTVam@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240623083413.2051412-1-andyshrk@163.com>
+References: <20240623083413.2051412-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: x1e80100: Add gpu support
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
- freedreno <freedreno@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Bjorn Andersson <andersson@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240623110753.141400-1-quic_akhilpo@quicinc.com>
- <20240623110753.141400-4-quic_akhilpo@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240623110753.141400-4-quic_akhilpo@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="nextPart4155544.U3QUcyqSlJ";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-On 23/06/2024 13:06, Akhil P Oommen wrote:
-> Add the necessary dt nodes for gpu support in X1E80100.
+--nextPart4155544.U3QUcyqSlJ
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+To: heiko@sntech.de, linux-rockchip@lists.infradead.org
+Date: Sun, 23 Jun 2024 13:31:02 +0200
+Message-ID: <2771372.9AS07kTVam@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240623083413.2051412-1-andyshrk@163.com>
+References: <20240623083413.2051412-1-andyshrk@163.com>
+MIME-Version: 1.0
+
+On Sunday, 23 June 2024 10:34:13 CEST Andy Yan wrote:
+> According to the hardware design, the i2c address of audio codec es8316
+> on Cool Pi 4B is 0x10.
 > 
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> ...
 > ---
-> +		gmu: gmu@3d6a000 {
-> +			compatible = "qcom,adreno-gmu-x185.1", "qcom,adreno-gmu";
-> +			reg = <0x0 0x03d50000 0x0 0x10000>,
-> +			      <0x0 0x03d6a000 0x0 0x35000>,
-> +			      <0x0 0x0b280000 0x0 0x10000>;
-> +			reg-names =  "rscc", "gmu", "gmu_pdc";
+> 
+>  arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts index
+> 20a0a60acd16..091dee37d068 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+> @@ -302,7 +302,7 @@ &i2c7 {
+> 
+>  	es8316: audio-codec@11 {
 
-Really, please start testing your patches. Your internal instructions
-tells you to do that, so please follow it carefully. Don't use the
-community as the tool, because you do not want to run checks and
-investigate results.
+Shouldn't this be `@10` then too?
 
-NAK.
+>  		compatible = "everest,es8316";
+> -		reg = <0x11>;
+> +		reg = <0x10>;
+>  		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
+>  		assigned-clock-rates = <12288000>;
+>  		clocks = <&cru I2S0_8CH_MCLKOUT>;
 
-Best regards,
-Krzysztof
+
+--nextPart4155544.U3QUcyqSlJ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZngHdgAKCRDXblvOeH7b
+bt3oAQCII30iQ/sfgohv2r+DOosF7UhIE+8oOtI6S/ypnnR5ewD+JVcYqudfLmEs
+OWE4JSAnFwNwXgGsOr8QJFLcDpI25gc=
+=MCtm
+-----END PGP SIGNATURE-----
+
+--nextPart4155544.U3QUcyqSlJ--
+
+
 
 
