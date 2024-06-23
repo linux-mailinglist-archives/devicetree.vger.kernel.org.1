@@ -1,122 +1,129 @@
-Return-Path: <devicetree+bounces-78853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB16C9138DF
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:02:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1253A9138E6
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:07:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32782B213C7
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:02:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 457141C2094F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7032450E2;
-	Sun, 23 Jun 2024 08:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72F954657;
+	Sun, 23 Jun 2024 08:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dlOLiKBq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MMQAli9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C59376E5;
-	Sun, 23 Jun 2024 08:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19C320317
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 08:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719129760; cv=none; b=T7nykhTUrmz2IPDIPNqCleGhZ8lKkRxZ5gstMUb0QvOVRZWc4ufIEfc05H57NcI+JxFJEdfFCuOu0Kogy6O/9x/Uo/+dRAXROLtF62j1VmPxo8bBUPItB3DxMX8nwUiWk0g/dEzBo3MKVcOPoJSw7IDhYNYcRqDszb6sB+qrFZM=
+	t=1719130045; cv=none; b=UsQka0stZgj6/BrhQNaWyPoiwwxmnoZIXGpnVL8ijeb41cVRv1aoX8y5vMuBOSLXoQ+jSr2pHPvKpWXpkMPMoDYApsW906WOhIi2mcDLvVI2S8/FwmuqemBdIJf9nJhGpGSpqlE0kPhjKgDqMDvOFqZ3a4ibKea/gXXVxgLTgBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719129760; c=relaxed/simple;
-	bh=NVpdgJtLxbGz8AcVmJ/q9hKRXHgl1H30VLE8Z20v8pM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AhI2vgqMkqKs6rWFT0y0lV3MMVsOlzT1lBheNCjDR/8PnYhT0huGkaHJnXrntEYPPXEMB5IBXOuB5daOtCHirsCswxX9YgLwEFIlb66BMtYI8hhtpkhZ6dwoQJYhtWgJhdEgzt7ycICsFPiALvS7INXrHzPblZibIULYdsltQ0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dlOLiKBq; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-44051a92f37so26195381cf.1;
-        Sun, 23 Jun 2024 01:02:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719129757; x=1719734557; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YWDMd9l69iqb+D6Wxa/JBkQ4IN4XRV16aDq5fyQM2YQ=;
-        b=dlOLiKBqEYcLnCiJ2KXOPKwScefo5NXx+bTNbfIcAhJIxPdJhQR1cw99+z5DFN8p8m
-         AYwUmyW64b0RqOAqekDVW9LGbEqim4aHECmYvzYE+EcemBSfWTX0eslWv8HoLI6IADm2
-         Gtob6Dpz2CaHL0HxzrGUCp2/yXelPhyxNeWqGFgjfIi6hvFfPJxUCQ8rQ+fbPgvToAtU
-         /EPJ2ERxpEHLCkjb1xVR982xy9M1YtcCc77abt9V+uEPO0EsuX8SkrfFta/xjFlb3qQG
-         PWKvCwL+hPKmyCGfJYD8hqKD6iLpZXs0PJ9erHIPHjEFc8IwX9kWE+EbTmzdyiLgkffK
-         Pi0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719129757; x=1719734557;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YWDMd9l69iqb+D6Wxa/JBkQ4IN4XRV16aDq5fyQM2YQ=;
-        b=YWHmWyuixTfmWch/VOmggCnSUhT4QhyNQ0GEzqDRc5BzvfZOvHOiHedC23A7NZW/Ua
-         d2bx5E55HMbuGmdfKYd0Vt6+9vk4Lkhngu5kWvXzTLqxFKgXpRKiGBQrj+g2lchaNyli
-         5kIxJN4OGgc7UNDXQwopq1XrIst3+yAEnUkLKpU9KFypbt70u1T2Gwx8mwh5jp7bYP3c
-         YdXk67fqrXev3WFPrnp2QzaMFbmNfzO1I7Bn5ykESUtGNc0qnmi6fSSO/6QMTNfu+24e
-         1WrlF1D1Rvpg5hzRhPjdHUs+8jgntimAGIIxeYuV/TAJYQ5Ozq58urra/is3DoveGKfP
-         tUtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXEl54/p+7+OMewHV6CIleo4Um1YT8WKdShSzq6Qq23OXVm3tGDGq940fS7XYOG/NPi8MiL5CfrLdai/fxJ+5Y90dSvzEnmrYAsIPAml2PJjdnlPOPkMPDj/JSEuFMr16vRdKxyCqYzqBP88i5dxov5gHwEckL9OI2grFNU9OkwhD/hAiU=
-X-Gm-Message-State: AOJu0YyWAeYXttYQcO6M1VCpFx25iqXIocpWEb0QOEWyiDN7ZUKTw4dn
-	hOqbX7S5LyjetRhDG92WOdWuKZ8rHf8CnWxGw1Hupv0NmJNaMOAz
-X-Google-Smtp-Source: AGHT+IHBI7Grs+1Q9dbj3jZDgpTfx3BFj1bl8BFrxloybqWXunmQzCnqD0F4ohhZtl7BQ/fRlssmKA==
-X-Received: by 2002:a05:622a:50:b0:444:d2df:e9d1 with SMTP id d75a77b69052e-444d2dff42cmr44750361cf.17.1719129757281;
-        Sun, 23 Jun 2024 01:02:37 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:c8b4:4b16:721a:ce0f])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-444c2c96b03sm29268061cf.93.2024.06.23.01.02.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 01:02:37 -0700 (PDT)
-Date: Sun, 23 Jun 2024 01:02:33 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Jeff LaBundy <jeff@labundy.com>
-Cc: James Ogletree <jogletre@opensource.cirrus.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	lee@kernel.org, broonie@kernel.org, patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v11 4/5] Input: cs40l50 - Add support for the
- CS40L50 haptic driver
-Message-ID: <ZnfWmR48MfcQKpTS@google.com>
-References: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
- <20240620161745.2312359-5-jogletre@opensource.cirrus.com>
- <ZndqwfN4G+RkCNrn@nixie71>
+	s=arc-20240116; t=1719130045; c=relaxed/simple;
+	bh=HL7gc5aNbPxOTUixvrZIwyvWjEMc/PzfdgXNeWwkdg8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SIRh/hWV5HjrmzCpqtajsOy+qDIk3OfpP1duiyn2lw9OMGXpV98YJGPgdD2hdoIS6eg+vo8/2FZFudA11TNlEocAx07b1JZxRZaK6P8M7iugimShu21yQWWgYwsukpm64xqe1CRo1NNZX+n1jut5i5wtLwTV2qEmTBLy/Rp1R8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MMQAli9Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79231C2BD10;
+	Sun, 23 Jun 2024 08:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719130045;
+	bh=HL7gc5aNbPxOTUixvrZIwyvWjEMc/PzfdgXNeWwkdg8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MMQAli9YvSuEvOrjzTlj+MuHBvXUXBbO9toNBeQ0//U49QzFQIlk6GzY/heQKlbyU
+	 AHh/yZlk46Nx8qrcP8ODGZh0Mpz6ml8Gi1FqzOIoR9lHysUuS1Fxnlwdh5+MD+B5N0
+	 mnJaJ8f7ZDArMZ78dzOj9MhthLqNWBN5zmHbbW5xnjtx/GTCZi3+NssCHojIFbCkHK
+	 xKuwDZhzTUmCpcgJBz2m7egg95kQoGgjwdLC83VKcVpFY2nrioA4sojKB3vCA2nVn0
+	 8B5XPmgqcEYFNUo8U5WsmLexa1jLUmTItQM/Z0eBjNERoBpcsHowSGScl6u7YSBo95
+	 PAUAu2iAql/vQ==
+Message-ID: <8da8e56a-e24f-4b56-9861-df55369c984f@kernel.org>
+Date: Sun, 23 Jun 2024 10:07:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZndqwfN4G+RkCNrn@nixie71>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: add dts for Radxa ROCK Pi E v3.0
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240623075318.80492-1-naoki@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240623075318.80492-1-naoki@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Jun 22, 2024 at 07:22:25PM -0500, Jeff LaBundy wrote:
-> Hi James,
+On 23/06/2024 09:53, FUKAUMI Naoki wrote:
+> Radxa ROCK Pi E v3.0 has DDR4 SDRAM instead of DDR3 SDRAM.
 > 
-> On Thu, Jun 20, 2024 at 04:17:44PM +0000, James Ogletree wrote:
-> > Introduce support for Cirrus Logic Device CS40L50: a
-> > haptic driver with waveform memory, integrated DSP,
-> > and closed-loop algorithms.
-> > 
-> > The input driver provides the interface for control of
-> > haptic effects through the device.
-> > 
-> > Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
+> for Linux, this change doesn't make any difference from a device tree
+> POV. but, for bootloader (U-Boot TPL), it makes a difference.
+
+What difference?
+
 > 
-> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
+> bootloader needs a separeted dts for v3, so I add new dts for it.
+> dtb can be shared between v3 and prior, so I don't touch Makefile.
 
-OK, let's merge it.
+I don't understand. If you have the same DTB then you do not need second
+DTS.
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+This change really lacks proper explanation or is just unnecessary. If
+change is proven as necessary, then you also miss compatible and model.
 
-IMO it still needs improvements so that the repeated effect can be
-stopped/erased without waiting for it to finish playing, but that
-can be improved later.
 
-I assume it is going through MFD tree?
+Best regards,
+Krzysztof
 
-Thanks.
-
--- 
-Dmitry
 
