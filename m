@@ -1,142 +1,183 @@
-Return-Path: <devicetree+bounces-78935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A06D913AB9
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:59:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731FD913ABE
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 15:09:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3F381F217EE
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:59:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 981901C20B6C
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 13:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D106F18133C;
-	Sun, 23 Jun 2024 12:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G4I9pIWr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B331802B3;
+	Sun, 23 Jun 2024 13:09:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127601E4BF
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:59:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2637A145FE5;
+	Sun, 23 Jun 2024 13:09:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719147579; cv=none; b=gXW91aKTX3UQTLGFrAc4oZWzdwdAAqLZKOcbpotp6kxy6morguLQg5Q+lTjk5aFovBGDpQLP0vzYThn7coAy0GAau0f2Rsoz36s8YKKgt5gbaAM7NAR9BXsvkJ6u0y9O0MOtGZNd5rgDvf/PzF0niAK3lSbLTs7PnzDGA1bJVtg=
+	t=1719148151; cv=none; b=cnrm0Tfo5ssV7BQ6SVgbLJy9vHi3cagWMtP0HSoMI5wyMXYititWh+cABoct1nsi7GKElQcQsuENgJLbngb5Z0IztBcquB03zDdlfJRAQaQmpsK1dqnLSvQMmGrec9dgajeRspmiDc/EKpZmBR7dMgAQe3wsSxiByDgJ/CE8hT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719147579; c=relaxed/simple;
-	bh=JnK4tC/6AdATC2rdcUlEX6+c1sqoOuE/fsYaD+m1DGA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s1f1RIGD+omMhKw4xq2hb8rGX0u+uLVPEc90X0eXs/pEv6T8b8QjljcyFzCRVtDhl955TOVfowOHfem9sCjgCxaD1yODmIDMsTTsMIpR8n3DG24ow1wsKs/tgNprZfBKjbmFU1Ipudr05oeiiXfJ+AayT8w2kKbqovf+t1WvX5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G4I9pIWr; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-364c9ec17d1so2098519f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 05:59:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719147575; x=1719752375; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ws1yhAOxT/v0xOVLwszOW0D6d4xFjidlrdHX+n3YJlI=;
-        b=G4I9pIWr2Nj1rvMFPxudOkPg1wPGfyfC17QnfbW+Q3Z3dTpYF0cZENVhqo9cGJHgFo
-         vFtXQGGsxJOg71CHWmV+CWE92+4IqAjPDEk73nzGcsR3bh/lrrH3ZFcnhoytCwTEx5g0
-         vTuOHwpc0zXeHXbYV0etYqVW1PbgbTk0yAJydfdeaUTsMT+BHEX60x6WkjSfyTB4WSY4
-         VsyrQaTbv8qsTnHyr9MY/B+uhNSd5yEqgVj2nQbrW8Eo+1lllV3RZrNI5rGTyCgKyVfk
-         vIPzqow/vdh7YDm/s8i/MeYx9tAjIOnDzid3XFxlLxZrfEwzlIHt7MO8Dpc2o9UYoEiz
-         S2Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719147575; x=1719752375;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ws1yhAOxT/v0xOVLwszOW0D6d4xFjidlrdHX+n3YJlI=;
-        b=nupLYiImqQNtugu/BMAOzOGT9VmRmhP7m2fe5dmxhK2aqXw2ve7djm52cbO7SjRgjz
-         bHavrCwgWubUR6PEIuDoiS7xuuwdZ6KxhJFNKjwnW8FYZTXNSD7TcwcrbUpMQaSVV6kp
-         c0SThMWXstBlD5KbwHVL25UbISOws0QSNG9KBkeUEIB6lJwDlF5Js6poVb4sl/cVIw/f
-         RoU4XRJ2Oz93sKhnyBhDKUe//NQJLuuI+82Ny43hKrwApr+kE2aVGBwZzTxAK++wxNoA
-         yvvwILE6FWl2ftgXlETMhkpAyTfyf+0RB+MdG5oMWy+T9f2D/jISE0APPYtvK3LvPESC
-         GWOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXQAqDUT6Vh1cEO/KnnhE83gAm9WqEpIq3QwSqk/DWJYoA77ISHLEKVgrDDSJ0G6v91T4Z5alvS4xu7TkIcEphmKV0w120naevQew==
-X-Gm-Message-State: AOJu0YyEo7vWc3ywshDHhFG9lJ0ASD+O5GPs531bhNqVbaIZnXRn6bH8
-	ulfohJwouNuUiI7nFVKrZq+LD4qDGbkAt1QN9NvRq0Ajrd4NIfGE/czBwXg8xkQ=
-X-Google-Smtp-Source: AGHT+IH/FPiPO1kX2dxDboF7jruNga6O3TVW36OIWCsw7kwZBc8YPjnPRr443tH7ldk0wY395QD3/w==
-X-Received: by 2002:a5d:6d02:0:b0:366:ec30:adcf with SMTP id ffacd0b85a97d-366ec30aeb4mr1166492f8f.5.1719147575020;
-        Sun, 23 Jun 2024 05:59:35 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36638d9bfe4sm7245088f8f.53.2024.06.23.05.59.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 05:59:34 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
+	s=arc-20240116; t=1719148151; c=relaxed/simple;
+	bh=Glj3PVhq07s9ybEWPOZIinwXH1m+JqkijiqUrCCJCbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EOooGQuuBsJ9suhd8JFdl+OFD/d7DkLTi1fCD/nBXclOSabAY9h21AZZPMzI720NSjiqIE+fmHKIzu73KHIevMk6iUIXa6QT6wVOQ8QoU7lzuUSIc/R2Mptg1p0hkebzgNlPP8G3ZMAvI4/ehHaDDok/FRTpJE3Zqr+nB3s3Kok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.97.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sLMxY-0000000081f-4C5p;
+	Sun, 23 Jun 2024 13:08:45 +0000
+Date: Sun, 23 Jun 2024 14:08:35 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>,
+	Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Akhil P Oommen <quic_akhilpo@quicinc.com>
-Subject: [PATCH] dt-bindings: display/msm/gmu: fix the schema being not applied
-Date: Sun, 23 Jun 2024 14:59:30 +0200
-Message-ID: <20240623125930.110741-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Dragan Simic <dsimic@manjaro.org>, Martin Kaiser <martin@kaiser.cx>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: rng: Add Rockchip RNG bindings
+Message-ID: <ZngeUxK6r0qqBj28@makrotopia.org>
+References: <cover.1719106472.git.daniel@makrotopia.org>
+ <b28ccedac0a51f8a437f7ceb5175e3b70696c8c2.1719106472.git.daniel@makrotopia.org>
+ <a31bc0f2-4f82-4e15-95b8-c17dc46e7bf5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a31bc0f2-4f82-4e15-95b8-c17dc46e7bf5@kernel.org>
 
-dtschema v2024.4, v2024.5 and maybe earlier do not select device nodes for
-given binding validation if the schema contains compatible list with
-pattern and a const fallback.  This leads to binding being a no-op - not
-being applied at all.  Issue should be fixed in the dtschema but for now
-add a work-around do the binding can be used against DTS validation.
+Hi Krzysztof,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+thank you for your patiente and repeated review of this series.
 
----
+On Sun, Jun 23, 2024 at 09:03:15AM +0200, Krzysztof Kozlowski wrote:
+> On 23/06/2024 05:32, Daniel Golle wrote:
+> > From: Aurelien Jarno <aurelien@aurel32.net>
+> > 
+> > Add the True Random Number Generator on the Rockchip RK3568 SoC.
+> > 
+> > Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> 
+> My comments from v2, which I reminded at v3, were not addressed.
+> 
+> Respond to each of them and acknowledge that you are going to implement
+> the change.
 
-Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
- .../devicetree/bindings/display/msm/gmu.yaml         | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Your comments to v1which I'm aware of are:
+https://patchwork.kernel.org/comment/25087874/
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-index b3837368a260..8d1b515f59ec 100644
---- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-@@ -17,6 +17,18 @@ description: |
-   management and support to improve power efficiency and reduce the load on
-   the CPU.
- 
-+# dtschema does not select nodes based on pattern+const, so add custom select
-+# as a work-around:
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - qcom,adreno-gmu
-+          - qcom,adreno-gmu-wrapper
-+  required:
-+    - compatible
-+
- properties:
-   compatible:
-     oneOf:
--- 
-2.43.0
+> > +++ b/Documentation/devicetree/bindings/rng/rockchip-rng.yaml
+> Filename matching compatible, so "rockchip,rk3568-rng.yaml"
 
+I've changed the filename.
+
+> > +title: Rockchip TRNG bindings
+
+> Drop "bindings"
+
+I've changed the title accordingly (now: "Rockchip TRNG" in v4).
+
+> > +description:
+> > +  This driver interface with the True Random Number Generator present in some
+> 
+> Drop "This driver interface" and make it a proper sentence. Bindings are
+> not about drivers.
+
+This has been addressed by Aurelien and further improved by me in v3.
+
+> > +  clocks:
+> > +    minItems: 2
+
+> Drop minItems.
+
+Aurelien did that in v2.
+
+> > +  clock-names:
+> > +    items:
+> > +      - const: clk
+> > +      - const: hclk
+> 
+> You need to explain what are these in clocks. Also you need better
+> names. A clock name "clk" is useless.
+
+Clocks now have meaningful names and descriptions.
+
+> > +  reset-names:
+> > +    items:
+> > +      - const: reset
+> 
+> Drop reset-names entirely, not useful.
+
+Aurelien did so in v2.
+
+Your comments to v2 which I'm aware of are:
+https://patchwork.kernel.org/comment/25111597/
+
+> > Add the RNG bindings for the RK3568 SoC from Rockchip
+
+> Use subject prefixes matching the subsystem (git log --oneline -- ...),
+> so it is rng, not RNG. Also, you are not adding all-Rockhip RNG but a
+> specific device.
+> 
+> Subject: drop second, redundant "bindings".
+
+I've changed 'RNG' into 'rng' in the subject and spelled it out in the
+commit message.
+
+> > +description: True Random Number Generator for some Rockchip SoCs
+> 
+> s/for some Rockchip SoCs/on Rokchip RK3568 SoC/
+
+I've adopted your suggestion in v3 and then fixed the typo in v4.
+
+> 
+> > +  clock-names:
+> > +    items:
+> > +      - const: trng_clk
+> > +      - const: trng_hclk
+
+> These are too vague names. Everything is a clk in clock-names, so no
+> need usually to add it as name suffix. Give them some descriptive names,
+> e.g. core and ahb.
+
+If changed the names to the suggested 'core' and 'ahb'.
+
+Before sending another round of patches, just to make sure we are on
+the same page, please confirm that what remains is
+Subject: dt-bindings: rng: Add Rockchip RNG bindings
+which not only should be 'rng' in small letters but also name the exact
+chip, eg.:
+Subject: dt-bindings: rng: add TRNG on the Rockchip RK3568 SoC
+
+If there are any other comments you made which I'm not aware of, please
+point me to them.
+
+
+Cheers
+
+
+Daniel
 
