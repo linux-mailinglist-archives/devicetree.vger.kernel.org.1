@@ -1,48 +1,44 @@
-Return-Path: <devicetree+bounces-78913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5CE913A64
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:10:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E28B6913A70
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:13:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F7051C20757
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:10:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B8471F215B0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B0E180A90;
-	Sun, 23 Jun 2024 12:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ye/yxpy0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE7B6180A95;
+	Sun, 23 Jun 2024 12:12:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C974148825
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382F52C95
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719144603; cv=none; b=gRzzHE0geAiLMTZ+HjWaU9URRIRiavdOuP+jupJXltUUk043i/m90Mqr3AvaPGY/PrJahcVEvmCbB26BaDPC8xHju5rw2cYJLDF9++X4HcTAfJHgj9lSrja6tCZV5g5RPmyL8xO937/GbesUN/+SvxIWvMOx5L0+BSPHxjxj/h0=
+	t=1719144777; cv=none; b=FKs0yP2hFpUG8dVt2pIrpv2+VcbxKqPMvUiKtxBqjsNjHH3hnIRuG2WH5QvOKfOgptXAk02bunioGu5y/kfktQrycW0NXpn1yhULimVNVDK1cG9TadfoZisdQrNxdMVpUH+Wa/uWinD9+SsU7sPPkILzGCTgCkuw5E9kp7+TFGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719144603; c=relaxed/simple;
-	bh=frYAetObG2QKsyb4KqNeDuVDQcjhJo+59JoamXcQt2w=;
+	s=arc-20240116; t=1719144777; c=relaxed/simple;
+	bh=fzhjtfs7/LL+79U21nNxIE9c06zYo6rVWsc+UtFJgp0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BnEYksrp6/7dvj97W8c8950bG3AiIDjo1m5Q8pWEf/TZCmPQNWOALhFoGxS7PqV7VK47ozQ0wj/XhvQH2id+pXufr7BuTc2C3fjlvZunuJ56m0BwdeZt8KN2piA1/hN+cstVg5/dTkphFz/K6Kj6E107NRpSM87d7vSzF9ax2nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ye/yxpy0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 190DCC2BD10;
-	Sun, 23 Jun 2024 12:09:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719144602;
-	bh=frYAetObG2QKsyb4KqNeDuVDQcjhJo+59JoamXcQt2w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ye/yxpy0ZcwVPESRw1PMlc0erVBTp+SWWgR2828hKsMJU3gk2tK7bRi7GtVx+GL2f
-	 Dz6CPmszB0YkpRRcKurbf2rE0G49bxmaZIvYAVi7GRB+xauWM59Xt63DH7Wy6Lpy9T
-	 +BD7edB9ni+Z5vcTmDf8chj1+A9Mqb5/hqw77FHrIWJKlk4FCZ1tqhYj90QTdLmKch
-	 Y1d3iMkFeyfnCSTJwvAZ0BySAWs2tas05MaJnCGhgZ/Gnha6dmMhHlt50Vk6xG5d5t
-	 uw2l1au18C2SAGXdRlPSxeaRyRaZVZ2meIH0l7jobvRCIeMWMYCVN+MsULMmHDHeDU
-	 hgUaa8BQIhEAA==
-Message-ID: <32f61b72-9346-4ac7-b225-c7fce45f0785@kernel.org>
-Date: Sun, 23 Jun 2024 14:09:57 +0200
+	 In-Reply-To:Content-Type; b=eKvBqbUGtC17FL2mLkKrazRkes0blpHw3ilxQcWtNgn5bSE/qP9If7n0y7m8AeqDrJeU7qfMHFjZYStmDwMtuLnm4C2ej4tujoPdn5Ow8WRVeCmK3FYiK5L+n6aEKGgnZc93fWvsUEiZ8+TUD5ptacdxiUEn0XTHtbC0tSGcQTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpsz6t1719144718tnr1oj4
+X-QQ-Originating-IP: lvSdtWzGw74y0pIOzFRPYLJbPCgAP1nJPyiEmIdlvOc=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Sun, 23 Jun 2024 20:11:55 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12654803974381824126
+Message-ID: <9A5C6ACA074B094A+171f5286-c19d-4a9f-ac27-b4506e468227@radxa.com>
+Date: Sun, 23 Jun 2024 21:11:55 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,80 +46,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add support for Radxa ROCK Pi E
- v3.0
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Subject: Re: [PATCH 1/3] dt-bindings: arm: rockchip: Add Radxa ROCK Pi E v3.0
+To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
 References: <20240623120016.82990-1-naoki@radxa.com>
- <20240623120016.82990-3-naoki@radxa.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <059eec26-b7ca-4bd0-9e63-cfceffc4a777@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240623120016.82990-3-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <059eec26-b7ca-4bd0-9e63-cfceffc4a777@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpsz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-On 23/06/2024 14:00, FUKAUMI Naoki wrote:
-> ROCK Pi E v3.0 is newer version of ROCK Pi E v1.2x. Changes are
-> 
-> - Upgrade DDR3 to DDR4
-> - Elevate eMMC connector to onboard eMMC
-> - Update silkscreen to ROCK PI E V3.0
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts | 10 ++++++++++
->  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 10 ++++++++++
->  2 files changed, 20 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+Hi
 
-And how did you test it if you cannot build it?
+On 6/23/24 21:08, Krzysztof Kozlowski wrote:
+> On 23/06/2024 14:00, FUKAUMI Naoki wrote:
+>> Add devicetree binding for the Radxa ROCK Pi E v3.0 board.
+>>
+>> Radxa ROCK Pi E v3.0 is a single-board computer based on the Rockchip
+>> RK3328 SoC with a compact form factor.
+>>
+>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> 
+> Isn't this v2 of something? What changed here? Provide detailed
+> changelog per each patch (see submitting patches).
+
+this patch set are for adding new board.
+please discard previous patch set.
 
 Best regards,
-Krzysztof
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Best regards,
+> Krzysztof
+> 
+> 
 
 
