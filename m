@@ -1,145 +1,161 @@
-Return-Path: <devicetree+bounces-78977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB37913CF2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:02:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87994913CFA
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:08:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 774ED1F22BD0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:02:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33A9C1F21CD1
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD0D18307F;
-	Sun, 23 Jun 2024 17:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74C7183068;
+	Sun, 23 Jun 2024 17:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j3sAIs2a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ko/Xgd1+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97ED8BE7;
-	Sun, 23 Jun 2024 17:02:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE2FC8F5B;
+	Sun, 23 Jun 2024 17:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719162165; cv=none; b=QoGCibrtqUc26yxKg6sBc3gmukP9Zc9lHRUiK/AGEP1G6bkSJ7gsINIatWfDpDjwkPMq7N9RlIpd0YZkqv5r/sc6WvzdoVq7LiZtLm61zPzvoaF4T0GA+V5AAARX6VIYPBU+/9YF5FwlKncDwyQIDBQ4YyJ4FZcN0VmcOfBBpvg=
+	t=1719162489; cv=none; b=JY31W580aXTmW4y4i7JtJ42CjwNtp0uoavheVYz7qpw9HO3cz659wvxRO0zljP5/ayzOHanrLzVZl+5U3Xz7cdxDnBAAHECuFYZDmOzdXRBhlGzym8TVDi6KCTtDCgEvVGoISXe/BR5Ap/aYL5BbvX4sRfCeHxd95x3t/Yt2Yvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719162165; c=relaxed/simple;
-	bh=zfODlBOh97OBvCy1FrENRxxZBTPeLPsVTYAwdmU+/oU=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=h71PRgB1OZiVMwqnLu7PHdfsgO6pXp1raHMnNcZbsVDRXLNsQ6HzdSHgY7QEHWI/icHGqS2fNSlUSRg2NsXq+0Kc5a1nEPg46q1llFwNOjWEbsWfBjT+gNK9eUH8czDwqV9664WGCBjhJgjBXekEEaesIjhLHz9J3u2iH4fj91M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j3sAIs2a; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719162164; x=1750698164;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=zfODlBOh97OBvCy1FrENRxxZBTPeLPsVTYAwdmU+/oU=;
-  b=j3sAIs2alwmF/9yEHKMjbVK3x8zNlfxhIvhqLrTyGX6oLD2qNMrAD1N6
-   UnYxP//VSDEb9Bys7eqHb9NAJU2QbnMzIQkbpysywnXDUD48o/PsQ99hO
-   dYdgSpsN9zBoEYKqWSJ2zk4i0RqF++/HHDF/1z2pcPqEP8aKom+OndRxo
-   r2B8SySyK+32qqoBjNgbd3xgtZ/CQUOw/0fz/0ZeXTxZaGPLWBUdTKh/e
-   CytIFFeKhwkJmW0xBwQJtraAuBezGf0JwLIvOP2zF6uC1EzNa0jleduFB
-   XoNxAUpjBeKQDkFTnnpcpUYzUgXr2VxeiLKG6dNhwGu52teND7OovyXZt
-   Q==;
-X-CSE-ConnectionGUID: yWGVQgyFSP+14i5oxWsq/A==
-X-CSE-MsgGUID: ZWGR+xlPRQa4f3zl9OuhVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="26721859"
-X-IronPort-AV: E=Sophos;i="6.08,260,1712646000"; 
-   d="scan'208";a="26721859"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2024 10:02:43 -0700
-X-CSE-ConnectionGUID: tzYSooFGRHKN41oXEJJ4tw==
-X-CSE-MsgGUID: lgVTm9aTTAiZOiOe5cfh4g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,260,1712646000"; 
-   d="scan'208";a="42972002"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.55])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2024 10:02:39 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Sun, 23 Jun 2024 20:02:35 +0300 (EEST)
-To: daire.mcnamara@microchip.com
-cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-    conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com, 
-    robh@kernel.org, bhelgaas@google.com, LKML <linux-kernel@vger.kernel.org>, 
-    linux-riscv@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v4 1/3] PCI: microchip: Fix outbound address translation
- tables
-In-Reply-To: <20240621112915.3434402-2-daire.mcnamara@microchip.com>
-Message-ID: <395f27f6-d263-71d3-acbd-b1872bc48fa3@linux.intel.com>
-References: <20240621112915.3434402-1-daire.mcnamara@microchip.com> <20240621112915.3434402-2-daire.mcnamara@microchip.com>
+	s=arc-20240116; t=1719162489; c=relaxed/simple;
+	bh=O64q/2QrlOK51NlMxYf1EIbVDMzus2wZpPQLOTEYW9g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qThynngrzXZNxM8uxC8OyxVOSCoOrt6XYZuw16yjJeKevOsLEBp33R7UWesVjxU/jzDXXtEZSum8Xpf/4lws035lQ48G8HjOL7aJ4+Ie/qkaT/CwCT7JrpPwaSJZsVfE8Kjx3gYAv56bDHAC75YVAdnIA67XLa/0kabqEknWf7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ko/Xgd1+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 584B0C4AF0D;
+	Sun, 23 Jun 2024 17:08:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719162489;
+	bh=O64q/2QrlOK51NlMxYf1EIbVDMzus2wZpPQLOTEYW9g=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Ko/Xgd1+l2fiV5rq4r09a4Dkk9F6qo8JCMRAq0MUjdKJRPNa0OQzGbMb1mHz4h9F8
+	 9ffKTf/Au6njmky/2JceHhV0vSPKQjO0+dMt36RgIYJqtNT9UZ8jyCqoFUQjaxe1Ut
+	 +qDozt2EtOKXlwoESicyoJWJFrZ7Nt2DmKlnbyytXV7YRXA6tJCANsnRahMyPfUlFq
+	 7SDZI1AVuiLGdcP4TpX4yB6EPP7G6CNMAfRmEDoHXXEvzWdfweqdJcLO645/CsRpx6
+	 SwapBd4DoKEm9wphuAOBjb8Ga18XuvrjcK0o/1NdZbjKe0qazH/u4BCLzTBsPsr02H
+	 IEIKOUwLb/A8Q==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a6fe617966fso115193566b.1;
+        Sun, 23 Jun 2024 10:08:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVx/+NW9hMeC+bZ7OgXURPIU8RQ6w2F3BuPAPHlmzBpVcrAUbI4B2s4UYV/xXFjtoyKrXGs5sYl9BgSskVuvCV7QegrxWCCrgFJKlfZI3yWUglyYSCXcdRW4U3KBWqyC5QGL+UF+416NQ==
+X-Gm-Message-State: AOJu0YwN50VdGObYK3QBjSAmSOr0T8G4gFeRLDEpEfL3RRmKlrOZO0hU
+	3bLmfHni2AODvuZaZIP+OTQpLb/7cO+C2oUdTI0zNcbfsYtN0+TXu+8L/i3Kr8I6+HFcdn4j36U
+	feAMzataIqX7AIXd2HdisSC6Veyk=
+X-Google-Smtp-Source: AGHT+IHqh5ECCo6rxNTnv13OnXMEvfR0HrFz5MxeNxK4Xo02Q+cUP1gdI3z8FF4DzmwkiDXEFxF1vKM9WwQcQqIkPjU=
+X-Received: by 2002:a17:906:c014:b0:a6f:11c9:f349 with SMTP id
+ a640c23a62f3a-a7245b6484cmr159368566b.23.1719162487792; Sun, 23 Jun 2024
+ 10:08:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+References: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
+ <20240410-unwoven-march-299a9499f5f4@spud> <20240619-hammock-drum-04bfc16a8ef6@spud>
+In-Reply-To: <20240619-hammock-drum-04bfc16a8ef6@spud>
+From: Guo Ren <guoren@kernel.org>
+Date: Mon, 24 Jun 2024 01:07:55 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTRYpDLij1aQoftz6ZqEgXDrfhNA39KiFVrwm7qc4WH6Fg@mail.gmail.com>
+Message-ID: <CAJF2gTRYpDLij1aQoftz6ZqEgXDrfhNA39KiFVrwm7qc4WH6Fg@mail.gmail.com>
+Subject: Re: (subset) [PATCH RESEND v8 0/6] riscv: add initial support for
+ Canaan Kendryte K230
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, Yangyu Chen <cyy@cyyself.name>, 
+	Conor Dooley <conor.dooley@microchip.com>, Damien Le Moal <dlemoal@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Dan Carpenter <dan.carpenter@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 21 Jun 2024, daire.mcnamara@microchip.com wrote:
+On Wed, Jun 19, 2024 at 6:45=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Wed, Apr 10, 2024 at 11:30:25AM +0100, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > On Mon, 08 Apr 2024 00:26:58 +0800, Yangyu Chen wrote:
+> > > K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add initi=
+al
+> > > support for it to allow more people to participate in building driver=
+s
+> > > to mainline for it.
+> > >
+> > > This kernel has been tested upon factory SDK [1] with
+> > > k230_evb_only_linux_defconfig and patched mainline opensbi [2] to ski=
+p
+> > > locked pmp and successfully booted to busybox on initrd with this log=
+ [3].
+> > >
+> > > [...]
+> >
+> > Applied to riscv-dt-for-next, thanks!
+> >
+> > [1/6] dt-bindings: riscv: Add T-HEAD C908 compatible
+> >       https://git.kernel.org/conor/c/64cbc46bb854
+> > [2/6] dt-bindings: add Canaan K230 boards compatible strings
+> >       https://git.kernel.org/conor/c/b065da13ea9c
+> > [3/6] dt-bindings: timer: Add Canaan K230 CLINT
+> >       https://git.kernel.org/conor/c/b3ae796d0a4f
+> > [4/6] dt-bindings: interrupt-controller: Add Canaan K230 PLIC
+> >       https://git.kernel.org/conor/c/db54fda11b13
+> > [5/6] riscv: dts: add initial canmv-k230 and k230-evb dts
+> >       https://git.kernel.org/conor/c/5db2c4dc413e
+>
+> After some discussion on the k1 thread
+> (https://lore.kernel.org/all/ZnEOU7D00J8Jzy-1@xhacker/, https://lore.kern=
+el.org/all/ZnA6pZLkI2StP8Hh@xhacker/)
+> I am going to drop this series. It's not very useful in the current
+> state and there's not really been any interest from people in getting
+> the platform to a more complete state. Jisheng made some good points in
+> the k1 thread about the missing clock controller stuff, and I think I'm
+> going to make having basic things like clocks and where applicable
+> resets and pinctrl the minimum requirement for the platforms I'm looking
+> after.
+Here is the k230 clock driver based on Linux-6.6:
+https://github.com/ruyisdk/linux-xuantie-kernel/commit/196242fd9b9b4a191dab=
+0c7c3c5bf851ed857d8d
 
-> From: Daire McNamara <daire.mcnamara@microchip.com>
-> 
-> On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
-> three general-purpose Fabric Interface Controller (FIC) buses that
-> encapsulate an AXI-M interface. That FIC is responsible for managing
-> the translations of the upper 32-bits of the AXI-M address. On MPFS,
-> the Root Port driver needs to take account of that outbound address
-> translation done by the parent FIC bus before setting up its own
-> outbound address translation tables.  In all cases on MPFS,
-> the remaining outbound address translation tables are 32-bit only.
-> 
-> Limit the outbound address translation tables to 32-bit only.
-> 
-> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe controller driver")
-> 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> ---
->  drivers/pci/controller/pcie-microchip-host.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
-> index 137fb8570ba2..853adce24492 100644
-> --- a/drivers/pci/controller/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/pcie-microchip-host.c
-> @@ -933,7 +933,7 @@ static int mc_pcie_init_irq_domains(struct mc_pcie *port)
->  
->  static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  				 phys_addr_t axi_addr, phys_addr_t pci_addr,
-> -				 size_t size)
-> +				 u64 size)
->  {
->  	u32 atr_sz = ilog2(size) - 1;
->  	u32 val;
-> @@ -983,7 +983,8 @@ static int mc_pcie_setup_windows(struct platform_device *pdev,
->  		if (resource_type(entry->res) == IORESOURCE_MEM) {
->  			pci_addr = entry->res->start - entry->offset;
->  			mc_pcie_setup_window(bridge_base_addr, index,
-> -					     entry->res->start, pci_addr,
-> +					     entry->res->start & 0xffffffff,
-> +					     pci_addr,
->  					     resource_size(entry->res));
->  			index++;
->  		}
-> @@ -1117,9 +1118,8 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	int ret;
->  
->  	/* Configure address translation table 0 for PCIe config space */
-> -	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start,
-> -			     cfg->res.start,
-> -			     resource_size(&cfg->res));
-> +	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & 0xffffffff,
-> +			     0, resource_size(&cfg->res));
->  
->  	/* Need some fixups in config space */
->  	mc_pcie_enable_msi(port, cfg->win);
+pinctrl:
+https://github.com/ruyisdk/linux-xuantie-kernel/commit/baf26b6622c9de2ff64a=
+6ed58eeeb98c8b2c828b
 
-I had some comments for this patch too none of which are addressed by the 
-the v4?
+No reset driver.
 
--- 
- i.
+Most of the k230 drivers are under Linux-5.10, and we are porting them
+into the newest version of Linux, which takes time.
 
+So, if the clock & punctual drivers mentioned above could satisfy the
+minimum requirements for the platforms, we will update the version of
+this series as a supplement.
+
+Is that okay?
+
+>
+> I've thrown these patches into my tree:
+> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=3D=
+k230-basic
+>
+> I do have one of these boards, but I'm fairly limited at the moment betwe=
+en
+> the various linux-related and work demands on my time, so it's pretty
+> unlikely that I'll do anything with it myself.
+>
+> Thanks,
+> Conor.
+
+
+
+--=20
+Best Regards
+ Guo Ren
 
