@@ -1,99 +1,199 @@
-Return-Path: <devicetree+bounces-79058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B0F913F3D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 01:28:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3331913F45
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 01:55:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25BB01C20D27
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 23:28:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BAC8B20C4B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 23:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FFA185E6A;
-	Sun, 23 Jun 2024 23:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330DB1850A7;
+	Sun, 23 Jun 2024 23:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ALpDcG7+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g5jAv67v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAAE6441D;
-	Sun, 23 Jun 2024 23:27:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0893459B71;
+	Sun, 23 Jun 2024 23:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719185280; cv=none; b=aGCT5HmfbrEx702O9BOanE4tKE3B8XLmNTF6EblvCszEVNvMrfXxfKZtB4yXSpFCxqZj4lIwmRjKlPUYrTI6owJ/YtTZUmsCft4jhgX5ZVf7qZdGAaUIXgackMzCZMZ3A/UbkiyIxxTps4MJRZYU1zuY1iqCoLYtIQXS7ecIjZc=
+	t=1719186915; cv=none; b=eO5uYba6tFXpyNc1BNhoV/f5dIwAS7Zjry5ThD6o4lyOCBtsASp3w1mIBodCNAYsuFrUuRbSIXdHlc8CbNZOzN9kRd/714nSFyoXtTnB2PS7MVIBhv6NpVCA2RgLpsGd3FYPnMNXE5ZZv0bIphH+m6wAnghW9R0+g2IIEiqLB0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719185280; c=relaxed/simple;
-	bh=eWWq3t3HfbKaxtJ0zQ/fI0UjnlssE/dRNNLLP6Lszs8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r/0DfZEgThl7my3zGQTi++heBZnU1AP6ckZokelyTQwc6752xlhX+s8jp850s8HXSChuSzbo40xaR55c0Y6QI1yxwi7TUS2Rig7Yfzla5f/J0N1tpAy1IbXh2tHa6ElAzwkTRZt1PISZ0sNH2U+2q7pRgZVGjEJq4ClkztP/Q00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ALpDcG7+; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-52cdf9f934fso1224291e87.1;
-        Sun, 23 Jun 2024 16:27:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719185277; x=1719790077; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eWWq3t3HfbKaxtJ0zQ/fI0UjnlssE/dRNNLLP6Lszs8=;
-        b=ALpDcG7+mkEV0e/acnyNLwdXnu0plJfCy8+cxFFMVr2ZjYDWg5l77V/5j/OnwN/N+/
-         FJ1oc3bnHlbqlYwqfUk9VkGcTdT1PnijuqRATqH7HowJHhqReJhTGxpeGIAAKVuSqfjz
-         pPmhSA+s4uJmBCnSh490rQDkqhQzpyax/o1s72zOtiy6dRKmjYpGbMkTRUf3LXICtBWZ
-         qYYb/9+qDs7Qli7CySrI2DrenU8WlbyQ0IvIsZxCSXEVaE1g9FQ2BwoXewNFRzKLDafd
-         zDn4N2zf7OVhV0pFA/4pQCvmrNTTxK1xODwvY3SM8sR7nk3J9epX6d5dNk52t6d358ck
-         qVnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719185277; x=1719790077;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eWWq3t3HfbKaxtJ0zQ/fI0UjnlssE/dRNNLLP6Lszs8=;
-        b=Z4tTgV2Fe/WPOhgMylgiTGySKSXS9FARMQ77dfTBpP2+8wBpuSEg734st3/q2I8jiQ
-         J34ELZwH/BiOOc8m1jAbxgiewkwHbrm/RGpaqvq0ROcrvXQy4Zkszm7mCy42R5rncV3y
-         5003gNCGICS8xbSWE8Jh5VHc5QyPfItk18oYAuOWXmD5SAn2qzjz5OaT6CVTPf+QpTLX
-         a97f4VjntrMnSBQbCudKwmdkq0zy7sxeKRzRxwl0SASflByV//GjeLkO+h8cGKS0ZaaY
-         JJOn8f2cZdKGw8eoZH3YhuZN1sq6KczCB9CoZpNpdPOHmGpmJ4gDxX5tf6iAkFLn2wh/
-         LYbw==
-X-Forwarded-Encrypted: i=1; AJvYcCW3Icjoy7R1TfgCYR99Iy0HDF/8YyvqNvqfyHHGHp4FOMQlkurezLFsfweehC2TASIlyKLczYcg/lQq+ypVJmWV2MqoHMfPATk44ZRCMBePSPvJ7HiRlEdek6VSR8Lq3PZarmeofmLyyD12eU6pvTsiL71ZrBhPOb3OxLnDxtKdYN3sYnr4Mh/dz4NfXEF8SqEqOU5jk1lrig3JuZiIzBTlxVuhNg==
-X-Gm-Message-State: AOJu0YwRmXnMF9X0V2i/U9WZXnMdyxW07I4KX4jcQHmDag4qCtdX3cqe
-	TmPWWMk3ez9dDnPMs++eHb7JrZpWVIfQJULqTWyh2c5YKIVLLTBgsfMY2O/GMaqmfRxgTWcAPFT
-	mYqbkl9tIfBCt67iPJxGDCMfmQa+Jrw==
-X-Google-Smtp-Source: AGHT+IHmk0cNmgfbsDw55NsnwCavsqqs+T3FNO9NZ88yr7hhF0OUdZbcKFzMr24a1mqeF2WlQwQYDDX7Xq0EF22Zvvc=
-X-Received: by 2002:a05:6512:39c6:b0:52b:c0b1:ab9e with SMTP id
- 2adb3069b0e04-52ce063d750mr2702595e87.5.1719185276757; Sun, 23 Jun 2024
- 16:27:56 -0700 (PDT)
+	s=arc-20240116; t=1719186915; c=relaxed/simple;
+	bh=81hwNvTIa/Ag38uYWhJDzLVrzAFW2Zxai7kcOQEcDNc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=htcwTA9FlQaqVFLjluPzyNxOfj2zvTcMwXXiw4aZz/0O/7RY2n8iyjSaiTOLT+HRiXO/xKL1sQykNLErNBNc3NKwjLJEKdkj+d8Wr76tVAiPTcAOxdwO1/UhToGiy6BgrLv5ewHWNYvrrmrNivasIWBZOwFQr/EOVWfpgozaz9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g5jAv67v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0A1CC2BD10;
+	Sun, 23 Jun 2024 23:55:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719186914;
+	bh=81hwNvTIa/Ag38uYWhJDzLVrzAFW2Zxai7kcOQEcDNc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g5jAv67vjVEP9beXTZJ2VtFY/JZmkiHXE6HYzUdolob6miv7+1wM8B8mU4LoA3FPN
+	 40vd34sorRQ29Y5JfoOBPPJRUlkW1J0/ksS706WZn29s0ahAPGMjJg+wjt85GEGKY0
+	 6oxWuKoKksSVNIyaCOsN9JsNfDwHjAS8hkFoZRz980OKwP77fmsWD4YZF6tCugszNo
+	 a/NgRcS0p6opj6K8QiwVEsC6pI3LQXKemuMQv0SE/goMcQD7SAYOysZ4KwjiaUbcq1
+	 Mc7csvNUMpHJ41kTK3kIvJ7V+F9k/O3fo8GPYGVwPKomqDW/pgiun/yOCL7wnb/CPt
+	 TuogvmCaOsUng==
+Date: Mon, 24 Jun 2024 01:55:10 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com
+Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <Zni13uFslHz5R6Ns@lore-desk>
+References: <cover.1719159076.git.lorenzo@kernel.org>
+ <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+ <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240621-b4-sc7180-camss-v1-0-14937929f30e@gmail.com>
- <20240621-b4-sc7180-camss-v1-5-14937929f30e@gmail.com> <3660e37e-2716-4d9f-a9cf-b69568d4e77c@linaro.org>
- <CADgMGSva0_DjYX0QVFL+i3YXmrPAuVa4gQVa-DNHCwg-UA3VNw@mail.gmail.com> <51e95bad-1caa-4dd4-b319-7bde11a13f58@linaro.org>
-In-Reply-To: <51e95bad-1caa-4dd4-b319-7bde11a13f58@linaro.org>
-From: george chan <gchan9527@gmail.com>
-Date: Mon, 24 Jun 2024 07:27:44 +0800
-Message-ID: <CADgMGSvp8EmdmQf1pNOEsYwZHA7Ve+uSrUS-sRJKRGKamWYwgw@mail.gmail.com>
-Subject: Re: [PATCH 5/6] media: qcom: camss: Add sc7180 resources
-To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Z8+Orxv1Mp7S3hrH"
+Content-Disposition: inline
+In-Reply-To: <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
+
+
+--Z8+Orxv1Mp7S3hrH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 24, 2024 at 6:14=E2=80=AFAM Bryan O'Donoghue
-<bryan.odonoghue@linaro.org> wrote:
-> Yes but what we are saying here is you should have two patches. One
-> patch to add the resources and a separate patch to add extended error
-> messaging.
+> > +static int airoha_fe_set_pse_oq_rsv(struct airoha_eth *eth,
+> > +				    u32 port, u32 queue, u32 val)
+> > +{
+> > +	u32 orig_val, tmp, all_rsv, fq_limit;
+> > +	const u32 pse_port_oq_id[] =3D {
+> > +		PSE_PORT0_QUEUE,
+> > +		PSE_PORT1_QUEUE,
+> > +		PSE_PORT2_QUEUE,
+> > +		PSE_PORT3_QUEUE,
+> > +		PSE_PORT4_QUEUE,
+> > +		PSE_PORT5_QUEUE,
+> > +		PSE_PORT6_QUEUE,
+> > +		PSE_PORT7_QUEUE,
+> > +		PSE_PORT8_QUEUE,
+> > +		PSE_PORT9_QUEUE,
+> > +		PSE_PORT10_QUEUE
+> > +	};
+>=20
+> > +static void airoha_fe_oq_rsv_init(struct airoha_eth *eth)
+> > +{
+> > +	int i;
+> > +
+> > +	/* hw misses PPE2 oq rsv */
+> > +	airoha_fe_set(eth, REG_FE_PSE_BUF_SET,
+> > +		      PSE_DEF_RSV_PAGE * PSE_PORT8_QUEUE);
+> > +
+> > +	for (i =3D 0; i < PSE_PORT0_QUEUE; i++)
+> > +		airoha_fe_set_pse_oq_rsv(eth, 0, i, 0x40);
+> > +	for (i =3D 0; i < PSE_PORT1_QUEUE; i++)
+> > +		airoha_fe_set_pse_oq_rsv(eth, 1, i, 0x40);
+> > +
+> > +	for (i =3D 6; i < PSE_PORT2_QUEUE; i++)
+> > +		airoha_fe_set_pse_oq_rsv(eth, 2, i, 0);
+> > +
+> > +	for (i =3D 0; i < PSE_PORT3_QUEUE; i++)
+> > +		airoha_fe_set_pse_oq_rsv(eth, 3, i, 0x40);
+>=20
+> Code like this is making me wounder about the split between MAC
+> driver, DSA driver and DSA tag driver. Or if it should actually be a
+> pure switchdev driver?
 
-Sure, v2 is available with split patches for sure.
+airoha_eth driver implements just MAC features (FE and QDMA). Currently we =
+only
+support the connection to the DSA switch (GDM1). EN7581 SoC relies on mt753=
+0 driver
+for DSA (I have not posted the patch for mt7530 yet, I will do after airoha=
+_eth
+ones).
+
+>=20
+> If there some open architecture documentation for this device?
+>=20
+> What are these ports about?
+
+airoha_fe_oq_rsv_init() (we can improve naming here :) is supposed to confi=
+gure
+hw pre-allocated memory for each queue available in Packet Switching Engine
+(PSE) ports. PSE ports are not switch ports, but SoC internal ports used to
+connect PSE to different modules. In particular, we are currently implement=
+ing
+just the two connections below:
+- CDM1 (port0) connects PSE to QDMA1
+- GDM1 (port1) connects PSE to MT7530 DSA switch
+
+In the future we will post support for GDM2, GDM3 and GDM4 ports that are
+connecting PSE to exteranl PHY modules.
+
+>=20
+> > +static void airoha_qdma_clenaup_rx_queue(struct airoha_queue *q)
+>=20
+> cleanup?
+
+ack, I will fix it.
+
+>=20
+> > +static int airoha_dev_open(struct net_device *dev)
+> > +{
+> > +	struct airoha_eth *eth =3D netdev_priv(dev);
+> > +	int err;
+> > +
+> > +	if (netdev_uses_dsa(dev))
+> > +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+> > +	else
+> > +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+>=20
+> Does that imply both instances of the GMAC are not connected to the
+> switch? Can one be used with a PHY?
+
+The check above is used to support configuration where MT7530 DSA switch mo=
+dule
+is not loaded (I tested this configuration removing the MT7530 DSA switch f=
+rom
+board dts and resetting the switch). Since for the moment we just support G=
+DM1
+port (PSE port connected to the switch) we can probably assume it is always=
+ the
+case and remove this check. In the future we will need this configuration t=
+o support
+GDM2 or GDM3 (PSE port connected to external phy modules). Do you prefer to
+always set GDM1_STAG_EN_MASK for the moment?
+
+Regards,
+Lorenzo
+
+>=20
+> 	Andrew
+
+--Z8+Orxv1Mp7S3hrH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZni13gAKCRA6cBh0uS2t
+rHWVAP9G9tnRvO/z/Pk+kj9q9+Hb52RRDPHJPzHdZ4NeNNyaAwD+OdKe16mUiEHX
+g7cRgz5mSCl3+48FnP/UcWk1ZE6ZfQE=
+=0MTD
+-----END PGP SIGNATURE-----
+
+--Z8+Orxv1Mp7S3hrH--
 
