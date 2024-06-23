@@ -1,77 +1,131 @@
-Return-Path: <devicetree+bounces-78851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486289138D2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 09:54:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B080B9138DB
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:02:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE1761F21210
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 07:54:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2B681C20B24
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCD5288A4;
-	Sun, 23 Jun 2024 07:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACA43D0D0;
+	Sun, 23 Jun 2024 08:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="Kuc4qm+R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615941EB25
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 07:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C58417C77;
+	Sun, 23 Jun 2024 08:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719129276; cv=none; b=kJyP+IMb3jc4y9ukWyBtu4h4D20ywWs9ZMrtlrImS6sfXvb4lDSHKLm1qCuELRCLeWi5914D2zIbxpIPzZ+puQB3FPcnFCl+7UUcZTCdqCZ+I0VssFQ9IZeotRmvK4j14ZAAdLKDhbTVztFZZ/ohGHgBGpJq707emGiLzynxU8g=
+	t=1719129726; cv=none; b=hxp27fIreJAAiqlZaHHd5+4VPzTEmCPyw4U2PacmLd8XYhi7pwMsFvP4LnWjjTsABcuWicCwYCPN0V0j5S5iTFPpo4FEwdQFtcW5w2vp/M9kUA7kSZe8tt9QH91hUmpoF1nBxrZpfeBp4mjgKjH6oYjq8mSITHfAtqODkdevfkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719129276; c=relaxed/simple;
-	bh=cuUthcKqup0Ja7UwBpAxGNK81p+k1Tv/YvPqAtzwdVA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TUUTSagss1k9sKqO70crMHvJD26oPQcCKLtp+ma8L30lDZ4WXD7EFm9hUVjUUE+L52phbWmMan+ITHoKDgtDZHI2WrNoPotrWBNcumc/ISxDc90jBTwjzuO2RqY+rTb4SGf93wZwA7NlnT/36Nj1w+HDXvx7Q6zHOCpmNMjb6vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45N7rSgi005540;
-	Sun, 23 Jun 2024 16:53:29 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH] arm64: dts: rockchip: add dts for Radxa ROCK Pi E v3.0
-Date: Sun, 23 Jun 2024 16:53:18 +0900
-Message-ID: <20240623075318.80492-1-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1719129726; c=relaxed/simple;
+	bh=hy2ki87r3CsdFd2uUj+s2wvNocOXNjMZAbPN3I53JH0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TO6Azge1E8ltBil4n/QJVhuuIqlfOpPa/LIlvrTL0364ktaTOWiOliLrbRf6LXyXh7tt3Ff44aBfxF2Zlm+UCIt6pms7o/KnJYSzzg7zwUIbJJiM3wvVPpn1enh03QwqdcuhqPpBB7Svhk3FGMJWV/qi4RJDE2pDhQmquizmUl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=Kuc4qm+R; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1719129714; bh=hy2ki87r3CsdFd2uUj+s2wvNocOXNjMZAbPN3I53JH0=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=Kuc4qm+RLkfMTLfmABd/NF5FdG4goJqKSizgr8Rh95Nv+/dZdA991kg8WfyO3gNc6
+	 +2ReQTYUQd0zLBsoIx2NnvRL+BYtOn83yOvQGtwEs+oThlrW18iyYiKwChHbrVGBv5
+	 3wT9N6tYQpJLkVOqIpvtliVhHaYF9QMqsSky42A0=
+Date: Sun, 23 Jun 2024 10:01:54 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Jacobe Zang <jacobe.zang@wesion.com>
+Cc: "arend.vanspriel@broadcom.com" <arend.vanspriel@broadcom.com>, 
+	"kvalo@kernel.org" <kvalo@kernel.org>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>, 
+	"bhelgaas@google.com" <bhelgaas@google.com>, "minipli@grsecurity.net" <minipli@grsecurity.net>, 
+	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>, 
+	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"heiko@sntech.de" <heiko@sntech.de>, Nick Xie <nick@khadas.com>, 
+	"efectn@protonmail.com" <efectn@protonmail.com>, "jagan@edgeble.ai" <jagan@edgeble.ai>, 
+	"dsimic@manjaro.org" <dsimic@manjaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 3/3] net: wireless: brcmfmac: Add support for AP6275P
+Message-ID: <ksxio3vzlz4rqcwvmtthskv6lqt33ejzjes557rwnkzex2oihk@52ueay5cwuub>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Jacobe Zang <jacobe.zang@wesion.com>, "arend.vanspriel@broadcom.com" <arend.vanspriel@broadcom.com>, 
+	"kvalo@kernel.org" <kvalo@kernel.org>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>, 
+	"bhelgaas@google.com" <bhelgaas@google.com>, "minipli@grsecurity.net" <minipli@grsecurity.net>, 
+	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>, 
+	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"heiko@sntech.de" <heiko@sntech.de>, Nick Xie <nick@khadas.com>, 
+	"efectn@protonmail.com" <efectn@protonmail.com>, "jagan@edgeble.ai" <jagan@edgeble.ai>, 
+	"dsimic@manjaro.org" <dsimic@manjaro.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20240620020015.4021696-1-jacobe.zang@wesion.com>
+ <20240620020015.4021696-4-jacobe.zang@wesion.com>
+ <fro2xcwsnvbxmpszny6g2p36z4zwoq4kegmpvww4twxir5piez@a3c2nbwitmab>
+ <TYZPR03MB700154AE39D44B8D166344BF80CB2@TYZPR03MB7001.apcprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TYZPR03MB700154AE39D44B8D166344BF80CB2@TYZPR03MB7001.apcprd03.prod.outlook.com>
 
-Radxa ROCK Pi E v3.0 has DDR4 SDRAM instead of DDR3 SDRAM.
+Hi Jacobe,
 
-for Linux, this change doesn't make any difference from a device tree
-POV. but, for bootloader (U-Boot TPL), it makes a difference.
+On Sun, Jun 23, 2024 at 02:21:39AM GMT, Jacobe Zang wrote:
+> > Any reason to strip info about origin of the patch, my SoB and
+> > present this work as your own?
+> 
+> Sincerely express my apology to Ondrej. It's really my mistake. After getting
+> your permission if I could submit the patches. I jsut think if the author and
+> submitter is not the same person is strange so I changed it. Next tiem I will
+> avoid this mistake. Apologize again.
+> 
+> 
+> > I sincerely hope this is just a rookie mistake so please carefully read
+> the URL below:
+> 
+> > https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+> 
+> Thanks for the guidance Arend. After reading the document I realized what a stupid mistake I made.
+> 
+> BTW I have another question, except the SoB of the real author, should I also post the original link in commit message?
 
-bootloader needs a separeted dts for v3, so I add new dts for it.
-dtb can be shared between v3 and prior, so I don't touch Makefile.
+I suggest keeping at least this part:
 
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts | 3 +++
- 1 file changed, 3 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
+> Partially copied from https://lore.kernel.org/all/c7b331edd65b66521a6605177d654e55051568a3.camel@toradex.com/
+> 
+> (No Signed-off-by provided in the email. The code looks like some
+> data copied probably from a vendor driver and adapted for the upstream
+> one.)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-new file mode 100644
-index 000000000000..956345274c12
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-@@ -0,0 +1,3 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+#include "rk3328-rock-pi-e.dts"
--- 
-2.43.0
+I'm not the complete author of the patch either. I just figured out why
+just adding device/chip IDs was not enough compared to what Marcel Ziswiler
+tried and expanded the patch from his email, to make it work.
 
+People using baords with AP6275P (eg. I did my debugging on QuartzPro64) will
+also be interested in how to get the firmware for AP6275P, and there are some
+hints for that in the above link, too. (FW filename that is in the patch for the
+driver doesn't match FW name as distributed by eg. SparkLAN, which makes it
+harder to find it just based on FW name from the code)
+
+Although it would be nice to have the firmware available in linux-firmware.
+
+Kind regards,
+	o.
+
+> ---
+> Best Regards
+> Jacobe
 
