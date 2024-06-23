@@ -1,118 +1,145 @@
-Return-Path: <devicetree+bounces-78976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3024E913CEA
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 18:53:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB37913CF2
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:02:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E7C81C20929
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:53:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 774ED1F22BD0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0EE18307B;
-	Sun, 23 Jun 2024 16:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD0D18307F;
+	Sun, 23 Jun 2024 17:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gSAzkC06"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j3sAIs2a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E4C1822D4
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 16:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97ED8BE7;
+	Sun, 23 Jun 2024 17:02:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719161613; cv=none; b=k9u+I1akjsinhrwkAIoXaWCwEn77XuuEKLAnVmMxGvu7Y39MZV4disflVcb3Tgeppm95XtCow9+JBCTBC5UGIygTRGpS1mmnK9fxYSKm2J+ia8DOK3REgx4NvWv7d6MrHmhILvRI0nOmOra91OwEkHPoFQ6haTvsswkUGQzP3wo=
+	t=1719162165; cv=none; b=QoGCibrtqUc26yxKg6sBc3gmukP9Zc9lHRUiK/AGEP1G6bkSJ7gsINIatWfDpDjwkPMq7N9RlIpd0YZkqv5r/sc6WvzdoVq7LiZtLm61zPzvoaF4T0GA+V5AAARX6VIYPBU+/9YF5FwlKncDwyQIDBQ4YyJ4FZcN0VmcOfBBpvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719161613; c=relaxed/simple;
-	bh=KyWRegzptSMMOx41yFwqW7+4+E0eCtotr/Zmr1iBINc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZioPVy1G7laSoqeH7HXQ+0jGsWLxPqJw/2iCS0TK3642xQmNjAzSLFVCPrek5JZUmeXMahkchZcTTa1sMrWjeJFNPnNLnGQO6EE+Uawz9R85Jez4wcqGgnxNnQeZgdQjHx/FsJGXe0pa++Ypo/lHwMWEDVdAt9OOFDG19NMZhq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gSAzkC06; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-421f4d1c057so30582725e9.3
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 09:53:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719161611; x=1719766411; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Whsw22CVzG+AEJuA+lPSpYe6KJu2sy9QKywWti8n5dw=;
-        b=gSAzkC065Z2anRxXHsnUbaCEuwSb1LZoK5LtXNgwBv5r2STIn1Gent/oYpEtyLmXky
-         Vr+BJ3l9xbDoaN5kRoWdOHrjM/fIq3oWWRGp7TUOR9SzK/wb9u02DXKDybNOpbpOvzRE
-         YxBzcqw30igaV/vZP2qXXz2gZrLU0oUkdYCfVZrCFY55yGXcznwKq0Ul+opq9ejrr+IK
-         RHa+EiMZZaWyXwW7q8qZ1YiEX583SN6M2Zz681ygw9KShCFtKh5lxZQv4UqzVS2gqZT3
-         NZfIBjDq2mDJL8GE/1ZQV8fI8DuV1j0VGTvoQIQDZR4SW41leJt3tTOuvUVQvyLagh7A
-         gqug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719161611; x=1719766411;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Whsw22CVzG+AEJuA+lPSpYe6KJu2sy9QKywWti8n5dw=;
-        b=Gg6+NzfOmE312QQ12PR+qkvWf7nHQPpMatKTmS9vv1qvL6dkzu7TVBcR7FUt0dSUz0
-         89yntEWGO3ho+00+BjfvHwEAjoP2dwlphxkLEmj6M8V5pGbiD15IyGxN2n+osUtYFkXf
-         MI4kJq8+FGuH82G7I/iL/jz3t+LzKvsAG7DlNQg9oB0IKpvDBbgiC4uIz5JL3CKVMPR5
-         q8WIuOlX754jtsZu01EsxY/HXj1R7WUx7O4i2IZwwGCMSyTx00gBjiXlaQGN4dZO3Hk2
-         M+c3QtTCOoQM07ihL3a07cVbfYw8qMwUu+kDYIIkbJzNzyqnQKpSUoumLeoxptyDD1N/
-         R8bg==
-X-Forwarded-Encrypted: i=1; AJvYcCVQ25qQ7pxeD1vMjfhkQ4uKdlpUTqEbvPpfhfPiJCrOxjDKX6eYIc/xWH5wo609zCYSBReDdn0HPQISj6LaMKrySplSOWh9JA+X9g==
-X-Gm-Message-State: AOJu0YyOAYjPBg8kPQ20unfhtJZVLtB2PUPSXMsP3NvqgHL/knYnSexz
-	MI+PqagwComDhDd91+Jt0bHCcjXfySpOMV57SwJUMSWS5T8ovcut
-X-Google-Smtp-Source: AGHT+IE9yH+wIWIpe34XkBs0GwYW8sI8C+AfF4fj0IIrlwcHW/UJhNAXwDFIFbpvoN6eQI8dxBNJcw==
-X-Received: by 2002:a05:600c:340a:b0:421:7caa:7a6f with SMTP id 5b1f17b1804b1-4248b9cfaa6mr29146885e9.31.1719161610621;
-        Sun, 23 Jun 2024 09:53:30 -0700 (PDT)
-Received: from morpheus.home.roving-it.com (8.c.1.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::1c8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4247d0bea05sm144835555e9.18.2024.06.23.09.53.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 09:53:30 -0700 (PDT)
-From: Peter Robinson <pbrobinson@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Enable PinePhone Pro vibrator
-Date: Sun, 23 Jun 2024 17:53:22 +0100
-Message-ID: <20240623165326.1273944-3-pbrobinson@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240623165326.1273944-1-pbrobinson@gmail.com>
-References: <20240623165326.1273944-1-pbrobinson@gmail.com>
+	s=arc-20240116; t=1719162165; c=relaxed/simple;
+	bh=zfODlBOh97OBvCy1FrENRxxZBTPeLPsVTYAwdmU+/oU=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=h71PRgB1OZiVMwqnLu7PHdfsgO6pXp1raHMnNcZbsVDRXLNsQ6HzdSHgY7QEHWI/icHGqS2fNSlUSRg2NsXq+0Kc5a1nEPg46q1llFwNOjWEbsWfBjT+gNK9eUH8czDwqV9664WGCBjhJgjBXekEEaesIjhLHz9J3u2iH4fj91M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j3sAIs2a; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1719162164; x=1750698164;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=zfODlBOh97OBvCy1FrENRxxZBTPeLPsVTYAwdmU+/oU=;
+  b=j3sAIs2alwmF/9yEHKMjbVK3x8zNlfxhIvhqLrTyGX6oLD2qNMrAD1N6
+   UnYxP//VSDEb9Bys7eqHb9NAJU2QbnMzIQkbpysywnXDUD48o/PsQ99hO
+   dYdgSpsN9zBoEYKqWSJ2zk4i0RqF++/HHDF/1z2pcPqEP8aKom+OndRxo
+   r2B8SySyK+32qqoBjNgbd3xgtZ/CQUOw/0fz/0ZeXTxZaGPLWBUdTKh/e
+   CytIFFeKhwkJmW0xBwQJtraAuBezGf0JwLIvOP2zF6uC1EzNa0jleduFB
+   XoNxAUpjBeKQDkFTnnpcpUYzUgXr2VxeiLKG6dNhwGu52teND7OovyXZt
+   Q==;
+X-CSE-ConnectionGUID: yWGVQgyFSP+14i5oxWsq/A==
+X-CSE-MsgGUID: ZWGR+xlPRQa4f3zl9OuhVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="26721859"
+X-IronPort-AV: E=Sophos;i="6.08,260,1712646000"; 
+   d="scan'208";a="26721859"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2024 10:02:43 -0700
+X-CSE-ConnectionGUID: tzYSooFGRHKN41oXEJJ4tw==
+X-CSE-MsgGUID: lgVTm9aTTAiZOiOe5cfh4g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,260,1712646000"; 
+   d="scan'208";a="42972002"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.55])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2024 10:02:39 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Sun, 23 Jun 2024 20:02:35 +0300 (EEST)
+To: daire.mcnamara@microchip.com
+cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com, 
+    robh@kernel.org, bhelgaas@google.com, LKML <linux-kernel@vger.kernel.org>, 
+    linux-riscv@lists.infradead.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v4 1/3] PCI: microchip: Fix outbound address translation
+ tables
+In-Reply-To: <20240621112915.3434402-2-daire.mcnamara@microchip.com>
+Message-ID: <395f27f6-d263-71d3-acbd-b1872bc48fa3@linux.intel.com>
+References: <20240621112915.3434402-1-daire.mcnamara@microchip.com> <20240621112915.3434402-2-daire.mcnamara@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 
-The PinePhone Pro has a vibrator attached via GPIO so
-lets enable it.
+On Fri, 21 Jun 2024, daire.mcnamara@microchip.com wrote:
 
-Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
+> three general-purpose Fabric Interface Controller (FIC) buses that
+> encapsulate an AXI-M interface. That FIC is responsible for managing
+> the translations of the upper 32-bits of the AXI-M address. On MPFS,
+> the Root Port driver needs to take account of that outbound address
+> translation done by the parent FIC bus before setting up its own
+> outbound address translation tables.  In all cases on MPFS,
+> the remaining outbound address translation tables are 32-bit only.
+> 
+> Limit the outbound address translation tables to 32-bit only.
+> 
+> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe controller driver")
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> ---
+>  drivers/pci/controller/pcie-microchip-host.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
+> index 137fb8570ba2..853adce24492 100644
+> --- a/drivers/pci/controller/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/pcie-microchip-host.c
+> @@ -933,7 +933,7 @@ static int mc_pcie_init_irq_domains(struct mc_pcie *port)
+>  
+>  static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>  				 phys_addr_t axi_addr, phys_addr_t pci_addr,
+> -				 size_t size)
+> +				 u64 size)
+>  {
+>  	u32 atr_sz = ilog2(size) - 1;
+>  	u32 val;
+> @@ -983,7 +983,8 @@ static int mc_pcie_setup_windows(struct platform_device *pdev,
+>  		if (resource_type(entry->res) == IORESOURCE_MEM) {
+>  			pci_addr = entry->res->start - entry->offset;
+>  			mc_pcie_setup_window(bridge_base_addr, index,
+> -					     entry->res->start, pci_addr,
+> +					     entry->res->start & 0xffffffff,
+> +					     pci_addr,
+>  					     resource_size(entry->res));
+>  			index++;
+>  		}
+> @@ -1117,9 +1118,8 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  	int ret;
+>  
+>  	/* Configure address translation table 0 for PCIe config space */
+> -	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start,
+> -			     cfg->res.start,
+> -			     resource_size(&cfg->res));
+> +	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & 0xffffffff,
+> +			     0, resource_size(&cfg->res));
+>  
+>  	/* Need some fixups in config space */
+>  	mc_pcie_enable_msi(port, cfg->win);
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index fbaf0202df632..8c2a4aaa635d0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -137,6 +137,12 @@ vcc1v8_codec: vcc1v8-codec-regulator {
- 		vin-supply = <&vcc3v3_sys>;
- 	};
- 
-+	vibrator {
-+		compatible = "gpio-vibrator";
-+		enable-gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		vcc-supply = <&vcc3v3_sys>;
-+	};
-+
- 	wifi_pwrseq: sdio-wifi-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		clocks = <&rk818 1>;
+I had some comments for this patch too none of which are addressed by the 
+the v4?
+
 -- 
-2.45.2
+ i.
 
 
