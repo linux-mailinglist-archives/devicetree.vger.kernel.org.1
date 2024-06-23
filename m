@@ -1,97 +1,71 @@
-Return-Path: <devicetree+bounces-78995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01780913DBD
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 21:34:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF0A913DC1
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 21:42:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 783B8B20C83
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:34:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94CB1281E77
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD75F1849E6;
-	Sun, 23 Jun 2024 19:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496A6183099;
+	Sun, 23 Jun 2024 19:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tfsM3j57"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="BmR84q8J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F312118412C
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 19:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6E244C86;
+	Sun, 23 Jun 2024 19:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719171270; cv=none; b=YLCWQAK7BJlNyTVkrbKBYKeqdKKwupLnOB/3oVBRA45F4iN79zF8rG6fsk6XWJBdMfn9GRT1et+PpEvRVfClxvXVQWvvUxbNTecvtR8xuHe1Cv40/t8xSGqXkxBOOSvUF0DCA79V3Af3Q6zKJfoRLrt7SeK2qlQFC5fbc+eipnA=
+	t=1719171760; cv=none; b=aVufSlRvJrMtyUlPJ9KHiq3fz1DWKRjjVNpziXigGV8ErJPcOpe9ploqkMCNMLIHHLbA/rjGBRCukbMe/aYk/+4zuBk4t1dk7BujMsj3D4T2sK/y1uC4jUHZy/EzCozyMWOuX1bB5t7HiyCbd0yumblF0HYObdx7ItNCtpDooVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719171270; c=relaxed/simple;
-	bh=Tbmq0IFLnKr0bANjE49Gic1OtLpkRgBbXr/3ROpVyLM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IGdAGJq12hruHyUt9UPE5exVW+jv0blFAMpKrOCS9iZYanq0Rt628ccw9IftRfuWtmOvITwvhokwfN4AT1qVbEhgOrSPgPpRvif+P/wLD1/6spd0/prTCFaqCZUHrOssD8N/b06PVFL9wE57StJ8QS7OYneUvmBYldSy6Mj/Ans=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tfsM3j57; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52cdbc20faeso2144622e87.1
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 12:34:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719171267; x=1719776067; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iDaFCIv9yP8iEYUX+Yf8rcMTPFjNoAdph08aEYT9HUg=;
-        b=tfsM3j57KmLunAvOAye2e/9SdfYh4BRNTtCcZZ6BgBlVWcN9vvjgnkmw/EPsrj25QL
-         KjlwWTOaG1aRzMHjDeE/3bbzNxlj5wImtV7mjv//jPefHCEIq+BYTo9Dcyn4JhBLq90Y
-         88q44OGAIA9EDaYhUBPzvknutn+H8GP3JHAA19oZ9GlRh4R/sFxaOlgIpxRNHImC/odv
-         5R81tdMbvJLzBZKNZ2idLFb9PODFb4pq5qtenoNQMEajdirqGBAwVNVlsKBNyEENTDbY
-         L6q4TSRt/6xTD9NR24vCSw1/yX3oGcCCoiTZL3Ri6XQGu/qtwPXdHyoLNk8anKu2aPy/
-         od9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719171267; x=1719776067;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iDaFCIv9yP8iEYUX+Yf8rcMTPFjNoAdph08aEYT9HUg=;
-        b=FYEZzdXnxpu3jJq6IYO4IISi9rhRpw3frkIC12nOwv2GJfkC1npF8ggqjPDXJwM3Om
-         MQMCMxtl+ajxrmQ0tdr0SCik/Qwp4rl/OXSEzLRqX7Qt5eoQiZx+JuOrj7PzXDk7XBBE
-         Su37CyCJEhHimo/e7Ir0ljls9xb6B+xWMvwCGRWzr7zn81NXt00LKaneiKspHtj5L6Sz
-         EHFsMC1arCoWOhQbfGH6KZXbxz5DPOhFUoCibDhj1PLy2Ubz9qUTPUq1iC3dKXsTqlme
-         FSZxaH5NL0faLmEQpP/5Dm50DiNRtdgp4Vq4qWh1gDyahgbwEcDrBDCMuPuPODJDMvPe
-         3Ang==
-X-Forwarded-Encrypted: i=1; AJvYcCXI6I6iQ0pyeIQow9ubR+Xq3cJOzCc8Kn6bQS6aeoAZDyX8mdiku8OCbK8+gx2ZhfRK+QQwQsaJbDxhfTKpezryB5QY8SzE5JOdqQ==
-X-Gm-Message-State: AOJu0Yz0/QOKwTwIiSt6+2V3cveWgK3RkEze1XbmXQlPc5kJ6dUahp+n
-	QCkf/EFqALnQExHBCOljv8aOdrloNgyLEH40Nwf6GbEepxUY4BC8yx1ALHktnPo=
-X-Google-Smtp-Source: AGHT+IFiF4v5vQQ8+INAB3JrDali3WgslfxwWLouELwfpZN6txtwJoppt3sxXUoF77ksqCi2N31WFw==
-X-Received: by 2002:a05:6512:1151:b0:52c:e6e8:7a91 with SMTP id 2adb3069b0e04-52ce6e87b8fmr457502e87.4.1719171266809;
-        Sun, 23 Jun 2024 12:34:26 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4248179d1fdsm114756015e9.7.2024.06.23.12.34.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 12:34:26 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1719171760; c=relaxed/simple;
+	bh=qBy6E0Lt5lm0+EGGL1s5KUxPNyFltjn6X4AitXHZDp0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cDV5fI0YFQQ2tiDnAJGHUAPpnlzh80pSF8pjZjOw7vyBeeRYfQzops2Cb9VneCsw/ZSjcJet/YJKlf82IEZ1elXs8vOZP7GZbd9aKQW8VQgEzqbaDzGdKgYrBU158b0Df0McucCUHW6nGbQkdLq54t9XCysjygyqsraj+kgc8EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=BmR84q8J; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id F0A11866F6;
+	Sun, 23 Jun 2024 21:42:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1719171756;
+	bh=tF4ZX0gxmH3srM1ImeZD/IcaP1acA+OK16igdhxP9jo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BmR84q8JHI3yiyz6aQrqOuQggZzAdp+2pU+4FXWVPJZ1KEX892oKfwWLWjUFuNbpE
+	 5Dg+Qx7OOiXqQzZtnAieW0Qvy8py8ezhOPmFgZ7P/6Yz1XN47BE9H+8IbS3x4Rs4H9
+	 mHDD15jWKvCdPKGsqnBOCnSW6nvtY+KOx9dsDXEN5H0vYjGccwbsltVMameqEOQQ0/
+	 bCPcOsI/0DbsiMazjgpSkI3YfkSr4vAMzLfLA1BD0td61ebSWJ8OBZ3APamJd2k+/7
+	 5B2f8+6pdKcy06qfxEzQ8qU+y0VWNsV5/avtiYc5O26p2sGuYbazYkhU7cPskSB6te
+	 kgxtkbZ321WGQ==
+From: Marek Vasut <marex@denx.de>
+To: netdev@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Andrew Lunn <andrew@lunn.ch>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rob Clark <robdclark@gmail.com>,
-	Sean Paul <sean@poorly.run>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	linux-arm-msm@vger.kernel.org,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8150-mtp: drop incorrect amd,imageon
-Date: Sun, 23 Jun 2024 21:34:20 +0200
-Message-ID: <20240623193420.333735-2-krzysztof.kozlowski@linaro.org>
+	kernel@dh-electronics.com
+Subject: [net-next,PATCH] dt-bindings: net: realtek,rtl82xx: Document known PHY IDs as compatible strings
+Date: Sun, 23 Jun 2024 21:41:37 +0200
+Message-ID: <20240623194225.76667-1-marex@denx.de>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240623193420.333735-1-krzysztof.kozlowski@linaro.org>
-References: <20240623193420.333735-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,50 +73,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-The SM8150 MTP board does not have magically different GPU than the
-SM8150, so it cannot use amd,imageon compatible, also pointed by
-dtbs_check:
+Extract known PHY IDs from Linux kernel realtek PHY driver
+and convert them into supported compatible string list for
+this DT binding document.
 
-  sm8150-mtp.dtb: gpu@2c00000: compatible: 'oneOf' conditional failed, one must be fixed:
-    ['qcom,adreno-640.1', 'qcom,adreno', 'amd,imageon'] is too long
-    'qcom,adreno-640.1' does not match '^qcom,adreno-[0-9a-f]{8}$'
-    'qcom,adreno-640.1' does not match '^amd,imageon-200\\.[0-1]$'
-    'amd,imageon' was expected
-
-The incorrect amd,imageon compatible was added in commit f30ac26def18
-("arm64: dts: qcom: add sm8150 GPU nodes") to the SM8150 and later moved
-to the SM8150 MTP board in commit 1642ab96efa4 ("arm64: dts: qcom:
-sm8150: Don't start Adreno in headless mode") with an intention to allow
-headless mode.  This should be solved via proper driver quirks, not fake
-compatibles.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
-
-This change depends on previous driver support, unless we do not care
-because MTP is a development platform, not a product.
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: kernel@dh-electronics.com
+Cc: netdev@vger.kernel.org
 ---
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 5 -----
- 1 file changed, 5 deletions(-)
+ .../bindings/net/realtek,rtl82xx.yaml         | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index 286350ac7751..256a1ba94945 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -355,11 +355,6 @@ &gmu {
- };
+diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+index bb94a2388520b..8db4d66f1a961 100644
+--- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
++++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+@@ -18,6 +18,30 @@ allOf:
+   - $ref: ethernet-phy.yaml#
  
- &gpu {
--	/*
--	 * NOTE: "amd,imageon" makes Adreno start in headless mode, remove it
--	 * after display support is added on this board.
--	 */
--	compatible = "qcom,adreno-640.1", "qcom,adreno", "amd,imageon";
- 	status = "okay";
- };
- 
+ properties:
++  compatible:
++    enum:
++      - ethernet-phy-id0000.8201
++      - ethernet-phy-id001c.c800
++      - ethernet-phy-id001c.c816
++      - ethernet-phy-id001c.c838
++      - ethernet-phy-id001c.c840
++      - ethernet-phy-id001c.c848
++      - ethernet-phy-id001c.c849
++      - ethernet-phy-id001c.c84a
++      - ethernet-phy-id001c.c862
++      - ethernet-phy-id001c.c878
++      - ethernet-phy-id001c.c880
++      - ethernet-phy-id001c.c910
++      - ethernet-phy-id001c.c912
++      - ethernet-phy-id001c.c913
++      - ethernet-phy-id001c.c914
++      - ethernet-phy-id001c.c915
++      - ethernet-phy-id001c.c916
++      - ethernet-phy-id001c.c942
++      - ethernet-phy-id001c.c961
++      - ethernet-phy-id001c.cad0
++      - ethernet-phy-id001c.cb00
++
+   realtek,clkout-disable:
+     type: boolean
+     description:
 -- 
 2.43.0
 
