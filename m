@@ -1,142 +1,112 @@
-Return-Path: <devicetree+bounces-78900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E6A8913A30
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 13:56:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8EB913A3A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 13:59:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BBDB1C20BBD
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:56:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FDF8B2093E
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 11:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D04D14885D;
-	Sun, 23 Jun 2024 11:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311E3146588;
+	Sun, 23 Jun 2024 11:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bok5LuwG"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ODPOqDDi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C63F13D8B0;
-	Sun, 23 Jun 2024 11:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 050C21474D8
+	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 11:59:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719143791; cv=none; b=QxJpOjO1sxcGf8kLth87bRDRx08r42GL85T6TBSo05GwWUSYZpjuU9JM3pw5CN3ntguqcqVpmJ9hm5fRCo2uNJSyXwfth5mKei+4+m1rmRdugENbLVjx7kzHQ2L4NLRAJsfJANzt1OHYnjQOpRfOY3auLRt7MpAO3diUvBcYlUg=
+	t=1719143982; cv=none; b=jeFABCJnInmalVwPMisQhvMCpwoFgz2YywzkXZvQgpVhxPDe4ks0yKVYaiUOQUERq986G2y5959T0OiOOCZioP8bUhUyilRpPkIDWilqD8Y/pUPS4jJZ91O1HS2CwSTQNZZv1bXc1GFQzghF+QUIAFdeiVCoiqhKl28Nj+cuGmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719143791; c=relaxed/simple;
-	bh=uAE600xiIb96iQh6+8HJfPoX0sEcN+urA1yZyZSUwak=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I7qQXlTl86oVipiPoEMaFHo8/Ug4x9T5WCP+cP8Ey0DFlT0C4YFgymGhbYQvCv946lb8B0nzQ21DROdckJQRhl6mlOlAP9FEnrMk+4GYY7JlJec/6lDVyHVDzsKSTOXrwac/rbr38Cizxc0KPV4JA/pHFPl9FFy86vRja64iTlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bok5LuwG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D518C2BD10;
-	Sun, 23 Jun 2024 11:56:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719143790;
-	bh=uAE600xiIb96iQh6+8HJfPoX0sEcN+urA1yZyZSUwak=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Bok5LuwGFAuOhddobD0Tbr0GcIEaiE5Udl6xD7GL/9nvHYg0adQAMxTk3HzDGrfgQ
-	 dcr50SNN7gbxh5bXiwtb204S/dkqCVA+zvAmii6DrTxW2UhQtwe0ZseToBZ/1+oY4i
-	 yUUakUiu85WUSDRA2jgRbR7FIVPe6kLG1kAmgxf0bbPcj4VsXu1mUWILZbLIOPLLrV
-	 A2Dd33VvislCEH1vV6KS7qmhWgC2dHSvz1HeVTRULwY+l3O+nqNyR83mZpPdH1A3kR
-	 wBRgiRIlQSeBTAA61JHsH/jOUc4C7riWNIfVHx9VAgycpOfotQyW0sNfrjNM88ygKJ
-	 /2dgeDW/OLOWg==
-Date: Sun, 23 Jun 2024 12:56:21 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Yasin Lee <yasin.lee.x@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- yasin.lee.x@outlook.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] iio: proximity: Add driver support for TYHX's
- HX9023S capacitive proximity sensor
-Message-ID: <20240623125621.07d1617c@jic23-huawei>
-In-Reply-To: <20240621-add-tyhx-hx9023s-sensor-driver-v6-3-65196a9020f1@gmail.com>
-References: <20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com>
-	<20240621-add-tyhx-hx9023s-sensor-driver-v6-3-65196a9020f1@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1719143982; c=relaxed/simple;
+	bh=pqBUdKp/JntHDfKCTbup3xB/TNkbzKI8UQNWRi4EfTI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=doOiRBmbj0i1rxJw0b1WZHGVNlrvHwTigaN2CkPU9Qrt825j1L9bWhaetsCv5SzoYjuAXsYi/Fnmkf8HxijInbGNy0PdkSMVcgGgsaUWrtuqn3IN6nBft88Zw/aBc4wZEXKGqiV/+xtbnXez1HDyXgRhuoTC89TMnnFZoNri4Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ODPOqDDi; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1719143978;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Eit2nOI5mdTDLIy/1lxlB+WC2Bc8iIghH1Bk3+quVmI=;
+	b=ODPOqDDiAOOgcO8SQCpgeMxgopL7/xxvKAfR/YPNyZF6/JyTSa73MxNyhfLUCBoipOtGFa
+	Sivq40H0FRoIhAUCFUNqZ8dCNM25Yr6vUGi8pabXa05deyWcicikk/hPl/XAe9q9ZXhc9q
+	CLhRRdSXaBZLraw48Qc4SJB2Z7GyTlkPjlikqtZfraVHx11lO4GRWgooWx29S843W8XEzc
+	bWOPK1w3qXc7r5OEFOE41FaHb1iy4qL8toKz11INFyMKzMzc0maIOzgd9CYrv4x6q7YSbD
+	i1OdNTNlbN+M0WlzAxle82ksjnTKjL+Q9qyM3RV6pDk4jKSA80I7S2Xwx0sRWQ==
+Date: Sun, 23 Jun 2024 13:59:37 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: add dts for Radxa ROCK Pi E v3.0
+In-Reply-To: <2659620.bgRvk7e4E5@diego>
+References: <20240623075318.80492-1-naoki@radxa.com>
+ <8da8e56a-e24f-4b56-9861-df55369c984f@kernel.org>
+ <9941941CA3B1175A+26e42825-e100-44b7-a565-f1a86ca3fff8@radxa.com>
+ <2659620.bgRvk7e4E5@diego>
+Message-ID: <57ee9d6967b339aa054e4e697e112b28@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Fri, 21 Jun 2024 15:40:51 +0800
-Yasin Lee <yasin.lee.x@gmail.com> wrote:
+Hello Heiko,
 
-> A SAR sensor from NanjingTianyihexin Electronics Ltd.
+On 2024-06-23 12:43, Heiko Stübner wrote:
+> Am Sonntag, 23. Juni 2024, 10:18:58 CEST schrieb FUKAUMI Naoki:
+>> On 6/23/24 17:07, Krzysztof Kozlowski wrote:
+>> > On 23/06/2024 09:53, FUKAUMI Naoki wrote:
+>> >> Radxa ROCK Pi E v3.0 has DDR4 SDRAM instead of DDR3 SDRAM.
+>> >>
+>> >> for Linux, this change doesn't make any difference from a device tree
+>> >> POV. but, for bootloader (U-Boot TPL), it makes a difference.
+>> >
+>> > What difference?
+>> 
+>> U-Boot TPL initialize DDR SDRAM.
+>> 
+>> https://github.com/RadxaNaoki/u-boot/commit/16d823eb95fe311c82a8ebb31570b59b1c59c43b#diff-03ce6c241f5db74ae87d4d8654bfef5eeb5bc42a9f1ff3cc828b70b3b2ac51d2R4
+>> https://github.com/RadxaNaoki/u-boot/commit/16d823eb95fe311c82a8ebb31570b59b1c59c43b#diff-31b80303774e7c10b527fb2dbc704b82e6c5ccdc6d53dd4f65861309ce0e7413R4
+>> 
+>> there is 1 letter difference, ddr"3" and ddr"4".
+>> 
+>> >> bootloader needs a separeted dts for v3, so I add new dts for it.
+>> >> dtb can be shared between v3 and prior, so I don't touch Makefile.
+>> >
+>> > I don't understand. If you have the same DTB then you do not need second
+>> > DTS.
+>> 
+>> 2nd dts is for bootloader. it's not needed for Linux.
 > 
-> The device has the following entry points:
+> but _what_ is this different dt needed for. If it is unchanged from the
+> first one, why can't you reference that one in u-boot?
 > 
-> Usual frequency:
-> - sampling_frequency
-> 
-> Instant reading of current values for different sensors:
-> - in_proximity0_raw
-> - in_proximity1_raw
-> - in_proximity2_raw
-> - in_proximity3_raw
-> - in_proximity4_raw
-> and associated events in events/
-> 
-> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+> Similar to Krzysztof, I don't see _why_ you need a separate devicetree
+> at all.
 
-Hi Yasin,
+Please see the U-Boot patch submission [1] for more details.  Anyway,
+I think in this case we'll need a rather full-fledged support for a new
+board version, because that's what it actually is.
 
-Some good reviews in already for this version, so I only took a quick look
-this time. It seems to be in a reasonable state now.
-
-Jonathan
-
-> diff --git a/drivers/iio/proximity/hx9023s.c b/drivers/iio/proximity/hx9023s.c
-> new file mode 100644
-> index 000000000000..1d8cb9a05d8a
-> --- /dev/null
-> +++ b/drivers/iio/proximity/hx9023s.c
->
-> +struct hx9023s_data {
-> +	struct iio_trigger *trig;
-> +	struct regmap *regmap;
-> +	unsigned long chan_prox_stat;
-> +	unsigned long chan_read;
-> +	unsigned long chan_event;
-> +	unsigned long ch_en_stat;
-> +	unsigned long chan_in_use;
-> +	unsigned int prox_state_reg;
-> +	bool trigger_enabled;
-> +
-> +	struct {
-> +		__le16 channels[HX9023S_CH_NUM];
-> +		s64 ts __aligned(8);
-> +	} buffer;
-> +
-> +	struct mutex mutex;
-
-Add a comment explaining the data this mutex is protecting
-(that may be in this structure, or for example on the device)
-
-> +	struct hx9023s_ch_data ch_data[HX9023S_CH_NUM];
-> +};
-
-
-> +
-> +static int hx9023s_sample(struct hx9023s_data *data)
-> +{
-...
-> +
-> +	for (i = 0; i < HX9023S_CH_NUM; i++) {
-> +		value = get_unaligned_le16(&rx_buf[i * data_size + 1]);
-> +		value = sign_extend32(value, 15);
-> +		data->ch_data[i].lp = 0;
-> +		data->ch_data[i].diff = 0;
-> +		if (data->ch_data[i].sel_lp == true)
-> +			data->ch_data[i].lp = value;
-> +		if (data->ch_data[i].sel_diff == true)
-> 
-Run checkpatch.pl --strict and it will probably moan about these.
-if (data->ch_data[i].sel_diff) is the same thing so just use that.
-
+[1] 
+https://lore.kernel.org/u-boot/20240623041542.50137-1-naoki@radxa.com/
 
