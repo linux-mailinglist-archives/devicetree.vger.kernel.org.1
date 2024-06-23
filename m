@@ -1,95 +1,119 @@
-Return-Path: <devicetree+bounces-78876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D7191399A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:43:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D81E91399E
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 12:47:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6DC21C208E0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:43:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57B72B20F99
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AAFE12C526;
-	Sun, 23 Jun 2024 10:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE603F8E2;
+	Sun, 23 Jun 2024 10:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=nils.rothaug@gmx.de header.b="arM/7TKV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2733563D
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 10:43:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F9479CC;
+	Sun, 23 Jun 2024 10:47:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719139398; cv=none; b=T+uUIWtyW2xMULjtygG9EIpcI93AzXfnGwStg2XYTQMpRl0OWfOfK69e+vtlv3usz04m1E33YMuFjhdQ3TnqnqRS/IVKHc8nSUfAtA2DvSPrrlxgrW00SjQlIuwDLAV1hB4SO7yEFhcELjtrs9qYb4MiuzmBybh/+LbGIEcJ5m0=
+	t=1719139625; cv=none; b=VreRfTkLMF4GDPyeAOfzzKvYjHSdCV+zZBNx/m4hd1oAlqx4uL59SqYAWlXvt5q2Kl1gVXCZhuiyko9FLV7/N+9+fTrgZ+CxRFRAM4EHWIEUje6+3bRseRodIwN3OrBUGqgQ9wIJZc0ftCc4uISWDj6AcNDchsd8cC2y16ZMUr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719139398; c=relaxed/simple;
-	bh=4wfkUv6vQF4+/X466wRdVQ9KNz8K4e6RiePoLEiu5SM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WdNeonK4b+v+njKIHA2c1ESnzOOBCj1bJ00mTRKE0830j/mBT9k0230GD/jFxBT8TESEBTobRwS/6BlwCvyzBi442tAp9ndIrlU3dUp+3UKKutC9G2II0s3eei8wwNhJxofPk2KV9wcYaPB4CkBcK535dqR4xD0tSFgT6ONbFXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a87.versanet.de ([83.135.90.135] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sLKgY-0007zH-6m; Sun, 23 Jun 2024 12:43:02 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: add dts for Radxa ROCK Pi E v3.0
-Date: Sun, 23 Jun 2024 12:43:00 +0200
-Message-ID: <2659620.bgRvk7e4E5@diego>
-In-Reply-To: <9941941CA3B1175A+26e42825-e100-44b7-a565-f1a86ca3fff8@radxa.com>
-References:
- <20240623075318.80492-1-naoki@radxa.com>
- <8da8e56a-e24f-4b56-9861-df55369c984f@kernel.org>
- <9941941CA3B1175A+26e42825-e100-44b7-a565-f1a86ca3fff8@radxa.com>
+	s=arc-20240116; t=1719139625; c=relaxed/simple;
+	bh=SGB6kMl4DzxVbloZdG4kTLuxyUdkNElMEEG0irB3xhw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Zd2LfF6FC1O+Fk0se0w8JmYFzZo2N8WpwcsZZhlXZiFLCfwbF43Z/U4HtOwfQBr59LnFn5N5dQr51iGIt3qf3cFAVZloTipjAYQH2RbY0LroIiPuCq2ChqEwl/sEcGHTBvdLvDKRI5BpmjUFCsWF70dCrv64wr7v89wgnv4boTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=nils.rothaug@gmx.de header.b=arM/7TKV; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1719139616; x=1719744416; i=nils.rothaug@gmx.de;
+	bh=qXSH1Y6FKtoMVwohjHLa1lmjMgeSyY8TbL9uw1woyCU=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=arM/7TKVUHOaRB4effSQMr7TX5FBqEeQIZh86hXNZ4TEM2K2v46yd4rg9C6xoNhC
+	 XICcMw1gMy2Nm//ptyTY5RrTZKXes3zEEZKPNV8KXVvxZDcR0dHVk3QaxsoaKqqbi
+	 3cseEG+yIKQj5UeAtc23JTlNbrzojclyL6FSwA42nLVunPZpYZROSzaqJI6/NsOfO
+	 rY+4hWOPD95CYirsj2ega/LlIFJpHjKDpIRwPAn7HV0K+c8MhhAQuE8ZCaLqAJK0J
+	 vWKivEvAlQ9lN83MYSw+8ouKWrYCkMQW+ri/X/xaei2C3iZbR1tcf2KX/Ms9Y0uao
+	 eNDE+EM5lm6MHdNquQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from nilsr-VirtualBox ([83.78.44.59]) by mail.gmx.net (mrgmx005
+ [212.227.17.184]) with ESMTPSA (Nemesis) id 1N9Mta-1sON8V3yL6-00usFb; Sun, 23
+ Jun 2024 12:46:56 +0200
+From: Nils Rothaug <nils.rothaug@gmx.de>
+To: hverkuil@xs4all.nl
+Cc: sean@mess.org,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	mchehab@kernel.org,
+	nils.rothaug@gmx.de
+Subject: [PATCH v2 0/5] media: em28xx: Add support for MyGica UTV3, its IR remote, and its tuner
+Date: Sun, 23 Jun 2024 12:46:42 +0200
+Message-Id: <20240623104647.7697-1-nils.rothaug@gmx.de>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:h3NJSZdZweBAlZgwboPxMQIhMDC8tIHF1bPdeKdtDZ/h5RUF5K1
+ Ys/niVOumUlqfnIi9odwE9QqU3kMzZdXyUMHuc9Oj5Ki/xJjX3srSU5we8iyna6RUsYUtrV
+ G/2WqZECyFCS9vtp1y9FZ7CroomGKUHT20KOQ9OibhMC1vFtoWauTJllZ6qwSR7yqhFBjkS
+ hM1hzy5dwFmTbuUavaKBw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:FgG8s57O1QM=;xjomLhBxrzx/IUt2CE363TyHqap
+ IozSuMLqu88X7PXZ8ckIlnZC7K83WG1BnMbSyYbR50DmBilgJ+/5dQxi58L7btxjnjSoQ0p0r
+ e/nTIOOg914BWcuTakFiBtmFFC31uVJBgp30P7jgKUlI3Ce+ZWxHb/vOVw5YOLBlLbc7Eunjo
+ v36nU1WwvlwzN3GLOC80nk3+jqUdRIQCn3iwRTPXaoJs7YU7ohxpWh64j8Dfmo7JHcUJjqHIa
+ u+Mn5boseJZKwnnHgNDuCtfG8HL99tUHKSczLR7Gb/meye/ADiBm0MiOAPwwa0tU6o5INw9r6
+ 79+LH6QKtTfAo7YK54mnEF2b+lCxKuvGDgLEj+Z2EJrSRf0arX0PeuTYRfK32/qZEmlb8hTIw
+ ZfNfMQAHIyFy8VJGtnV//AOw9Djwnhsm6bNUSxCx/YjtEVxt2npDMXaPnSzNgnjXGCISn27p1
+ /P8i7wFXdk0kJomTfZoGIrqQg1sf8XERg0KVVHwcMykGBaYVsUoM1fYGhF1thA3nYVD1qLD8J
+ ZTMvWFZ4mk3huFgOtACR0LID0ResEUhbv3y67KBdTkHRqapewDIgmC2FCQjeBR3Bi919uVMBS
+ MyrD5Jh8bg6gXnopODM2tzPYvK9UL9TVaFMyn1U+0OhB2BqqIJbUzQ8/cGGRueb6arDnvNhDV
+ rnJ531frVo1Cca5wgbZZfF4AC9U5h6DLEXpeRKa8CSEV/7CzatC97/8F7cU8KEcsc3Zw6dfRa
+ 2K/23tRuK5TE6kZAw5YrGeJVQdvJt3XDAs5ZphLbn3CrBKaQjs51hyeU/MCKSB4OOO1UzDsTb
+ jjc71pxF2P79LJrG+aJDlD9cO0tf6wS4rl2dM6WrXmcqw=
 
-Hi,
+Changes in v2:
+	1. Split v1 patch 4 and rc changes from v1 patch 2 as
+	   recommended by hverkuil@xs4all.nl
+	2. Patch 1: Drop empty line to fix checkpatch warning per
+	   feedback from hverkuil@xs4all.nl
+	3. Patch 4: Fix indentation in em28xx-cards.c line 2614
+	4. Patch 5: Fix comment per feedback from hverkuil@xs4all.nl
 
-Am Sonntag, 23. Juni 2024, 10:18:58 CEST schrieb FUKAUMI Naoki:
-> On 6/23/24 17:07, Krzysztof Kozlowski wrote:
-> > On 23/06/2024 09:53, FUKAUMI Naoki wrote:
-> >> Radxa ROCK Pi E v3.0 has DDR4 SDRAM instead of DDR3 SDRAM.
-> >>
-> >> for Linux, this change doesn't make any difference from a device tree
-> >> POV. but, for bootloader (U-Boot TPL), it makes a difference.
-> > 
-> > What difference?
-> 
-> U-Boot TPL initialize DDR SDRAM.
-> 
-> https://github.com/RadxaNaoki/u-boot/commit/16d823eb95fe311c82a8ebb31570b59b1c59c43b#diff-03ce6c241f5db74ae87d4d8654bfef5eeb5bc42a9f1ff3cc828b70b3b2ac51d2R4
-> https://github.com/RadxaNaoki/u-boot/commit/16d823eb95fe311c82a8ebb31570b59b1c59c43b#diff-31b80303774e7c10b527fb2dbc704b82e6c5ccdc6d53dd4f65861309ce0e7413R4
-> 
-> there is 1 letter difference, ddr"3" and ddr"4".
-> 
-> >> bootloader needs a separeted dts for v3, so I add new dts for it.
-> >> dtb can be shared between v3 and prior, so I don't touch Makefile.
-> > 
-> > I don't understand. If you have the same DTB then you do not need second
-> > DTS.
-> 
-> 2nd dts is for bootloader. it's not needed for Linux.
+Nils Rothaug (5):
+  media: tuner-simple: Add support for Tena TNF931D-DFDR1
+  media: rc: add keymap for MyGica UTV3 remote
+  media: dt-bindings: rc: add rc-mygica-utv3
+  media: em28xx: Add support for MyGica UTV3
+  media: em28xx: Set GPIOs for non-audio boards when switching input
 
-but _what_ is this different dt needed for. If it is unchanged from the
-first one, why can't you reference that one in u-boot?
+ .../admin-guide/media/em28xx-cardlist.rst     |  8 +++
+ .../admin-guide/media/tuner-cardlist.rst      |  2 +
+ .../devicetree/bindings/media/rc.yaml         |  1 +
+ drivers/media/rc/keymaps/Makefile             |  1 +
+ drivers/media/rc/keymaps/rc-mygica-utv3.c     | 69 +++++++++++++++++++
+ drivers/media/tuners/tuner-types.c            | 21 ++++++
+ drivers/media/usb/em28xx/em28xx-cards.c       | 52 ++++++++++++++
+ drivers/media/usb/em28xx/em28xx-core.c        |  3 +-
+ drivers/media/usb/em28xx/em28xx.h             |  1 +
+ include/media/rc-map.h                        |  1 +
+ include/media/tuner.h                         |  1 +
+ 11 files changed, 159 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/media/rc/keymaps/rc-mygica-utv3.c
 
-Similar to Krzysztof, I don't see _why_ you need a separate devicetree
-at all.
-
-
-Heiko
-
+=2D-
+2.34.1
 
 
