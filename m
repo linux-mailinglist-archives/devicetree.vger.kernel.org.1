@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-78983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F23913D34
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:22:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A422913D36
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 19:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 394641C2151F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:22:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23BE7283DE4
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 17:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC85185088;
-	Sun, 23 Jun 2024 17:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D51185096;
+	Sun, 23 Jun 2024 17:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oIGKP1fw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gyx+BauD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BB8185085
-	for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 17:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFA41849C0;
+	Sun, 23 Jun 2024 17:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719163317; cv=none; b=UggRoQtUubZ/ifN2ZGI4CcLVMrTCmKHrEXmPz4wNdK1DW0Y01Qqs1HmfhWf0mh9Xpa3oTgXaU6fAgF72EV24T5HT7dJ3Ta9oDnViXXy/IwxdzQd3wqcBtwIMK8CXBu5utzK3WmzjwVvhdoN7D7Y9U6QRQCfJIjppIpenets+RP4=
+	t=1719163319; cv=none; b=JrfkFrTktSR14KUqqTwk3D3AiKhd1JOHi6EFpUcjBbIGqin1fftQN8je6n3CCZT0XvstYyhZM8e0zMjXOwBMgrPIlZhjtYo6Y2h0SmkvtvIMizjiIzPsK9bjY709V8a9JP88jsKfWCkDCjU2HxvhvCHftMsVK8TluUJMgaqamug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719163317; c=relaxed/simple;
-	bh=4Z+DdY/AmZkeRi1o/ATZw3inl/MJjwIZjOmrWyVhK2M=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=pyb8M8Vqoa9MpMhR7ksd6PHzRCCbMwdkEh8dXx2V2IiBlgT0aruEOHyaF284rn0xTBTM4lSJ2wC6MH3wEvAukPpd+yDRJfJTFahftoWAacRjisE2J+rmkTiN+NdE+xoDvfOFqT+iWFaeO8QzYGTbs9ng1Pke24VERG4qEDPbagw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oIGKP1fw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA0B0C4AF0B;
-	Sun, 23 Jun 2024 17:21:55 +0000 (UTC)
+	s=arc-20240116; t=1719163319; c=relaxed/simple;
+	bh=W0fyAXBDQvBbwqWtC76vrRtS6ahvHxH9EXi7zXrEP2o=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Lj+nEc+rbCMO1MV7PeC9spltGJ+NROshDjGMPbvSOf5NLyCM0lYPDb7wpWGNmB6CWg3RcS9CLk6ic+pBtwXiuKaSnzKilnFCiKsvxTsNtvzsvFGURvQTSnk4CxHnrZpqheU5os8nW4Ca42SaRqCPsstntVmK5uyrfoyIdqGSRrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gyx+BauD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E685C32786;
+	Sun, 23 Jun 2024 17:21:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719163316;
-	bh=4Z+DdY/AmZkeRi1o/ATZw3inl/MJjwIZjOmrWyVhK2M=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=oIGKP1fw89bYksXVYKyrZ2ZMZtAdLGYBrF0TUvAE6YWzckKJDh79T9VC8R5YsHXU6
-	 /IJIiQz4rHXhmYCwsFYRF1N0+nFxfDSQhYhALpTmRQJj+fr7ofw/z5aToDsGMi5Cs/
-	 JL+3xMwEtJy/gVLCb6xFM6MzVMDg/CmpS8qXhFcVZ45iD+50wUoBJaIHF8924Jh17w
-	 aUTUEs2vp1Pb8uxXBvDD6w1BloyvlKKIguMApkpakI0zgklVDg9ZOj7TtKT+m4Ll9G
-	 Mx7adBw3Va0AfyTXwk8MTQDw3r+JhuEXezz4b7+/u5qoFFjG45FssuCFmb1qvtzRiG
-	 fVr3SWoybDlPQ==
+	s=k20201202; t=1719163319;
+	bh=W0fyAXBDQvBbwqWtC76vrRtS6ahvHxH9EXi7zXrEP2o=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=Gyx+BauD16I88JCXfEbgt3ZevHVHsPzl1uXo3xbGNHiGmPDw8aFxfBps4itjMWRMw
+	 e7z06/EbMAEAVcUGYh8MMRCOtCPu5YwClNLky90LXkB+YSZ0SHbN3eWXxGO6JVNfBn
+	 5sXSngHtbgI3BCeW3UX6ZXcceEIAGx6uKTsP0r36tRNRW/m/Zidn2NC6kFd38upWrx
+	 gZZv1jwFTMNBfO52EEesaeh99MZM5QXG7ElOIe6topnbDT0HDRNFESW54WPe7zo1Rz
+	 Zxdpk75qimh80ePfcM/ASvJZrYiWxFWE9tVKvVgFeIZzaoy0zxo+9kCeic1PaB8h8F
+	 ki7tu0q368d2A==
 From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Linux-ALSA <alsa-devel@alsa-project.org>, devicetree@vger.kernel.org, 
- Khanh Le <khanh.le.xr@renesas.com>
-In-Reply-To: <87jzilwxxd.wl-kuninori.morimoto.gx@renesas.com>
-References: <87jzilwxxd.wl-kuninori.morimoto.gx@renesas.com>
-Subject: Re: [PATCH v3 0/2] ASoC: Add ak4619 codec support
-Message-Id: <171916331542.350242.5751102725550795286.b4-ty@kernel.org>
-Date: Sun, 23 Jun 2024 18:21:55 +0100
+To: lgirdwood@gmail.com, linux-sound@vger.kernel.org, 
+ patches@opensource.cirrus.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ Paul Handrigan <paulha@opensource.cirrus.com>
+In-Reply-To: <20240619145056.1379266-1-paulha@opensource.cirrus.com>
+References: <20240619145056.1379266-1-paulha@opensource.cirrus.com>
+Subject: Re: [PATCH v4 0/2] Cirrus Logic Family of ADCs
+Message-Id: <171916331710.350242.10084902644118560395.b4-ty@kernel.org>
+Date: Sun, 23 Jun 2024 18:21:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,13 +61,14 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14-dev-d4707
 
-On Wed, 19 Jun 2024 00:58:39 +0000, Kuninori Morimoto wrote:
-> This is v3 patch-set for ak4619 driver.
-> It was created by Khanh, and I updated/adjusted to upstream.
-> It was tested on Renesas V4M GrayH
+On Wed, 19 Jun 2024 09:50:53 -0500, Paul Handrigan wrote:
+> This patchset provides ASoC support for the latest family
+> of Cirrus Logic multichannel, high performance audio ADCs.
+> The devices that are supported are CS5302 (2 channel ADC),
+> CS5304 (4 channel ADC), and CS5308 (8 channel ADC).
 > 
-> Link: https://lore.kernel.org/r/877ceotnrg.wl-kuninori.morimoto.gx@renesas.com
-> Link: https://lore.kernel.org/r/87frtb3x4k.wl-kuninori.morimoto.gx@renesas.com
+> v4 changes:
+> - Remove regmap volatile_reg callback since it is not needed.
 > 
 > [...]
 
@@ -78,10 +78,10 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: Add ak4619 codec support
-      commit: d6bb39fe4fa077883a409f6eaca569ce61a28a94
-[2/2] ASoC: dt-bindings: ak4619: Add initial DT binding
-      commit: 6469267afed4ffb9d16ce8c44a2b518b9b31c215
+[1/2] ASoC: dt-bindings: cirrus,cs530x: Add initial DT binding
+      commit: 0e2407ae89b340c385afdca1e1c61dd651ae6b35
+[2/2] ASoC: cs530x: Support for cs530x ADCs
+      commit: 2884c29152c098c32e0041061f8327bcdb4e0697
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
