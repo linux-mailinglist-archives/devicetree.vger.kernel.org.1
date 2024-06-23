@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-78949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEE6913BC3
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:29:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A9DC913BC5
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 16:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9E23282A66
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:29:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E56991F21B39
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 14:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D68C6181B9D;
-	Sun, 23 Jun 2024 14:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496111802C4;
+	Sun, 23 Jun 2024 14:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4LBuvU2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DqBVCtSf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67FC181B95;
-	Sun, 23 Jun 2024 14:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3291EB25;
+	Sun, 23 Jun 2024 14:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719152931; cv=none; b=EVO3cnVw0EIDZNz9jgRaa2aVkFHSroc39mT/pa7aNf+gUV6P8ZkkqR53jb3sCvi9thYoCB00P1gmF1Nb9GopWLT8SYBYUL7f2AgRjyiKj67YeOpaC6uGTFBQTfk3iEBkuZYlyGmCwfmDs27LsGQzMpJtbxeAnW5DhBm9X4YpFLQ=
+	t=1719153027; cv=none; b=Mr+LjSZdd6YGXly3ZilnTT/xfeEvlslvpAuR5UVpplaMqpY8w8LnHt5pY4AIxmscpiqLTqB/6ViQdIKPHjw/BBHBUQmQ3WRw2OZ9up2EaHfy/rj2UzX2ThqPorJDfUK6ETbpzj8tSx3M7kMCiKnYQ6oc4bYVagrwEyxgZ0oqHeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719152931; c=relaxed/simple;
-	bh=Sulj6itbUy1+3flZsGKJFwDIPDo/5t5fG9SM8cDRLXA=;
+	s=arc-20240116; t=1719153027; c=relaxed/simple;
+	bh=JeDwnT/5o/t4SulflNylysZnroxPO1yMnY77AG2371A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qNgRfmTktEpbcNIPkAK96g1lX2XQkEPFPLnxkDv534VTbRRjKE4v1IG2+R8VNpLNm+jt5Ix1Z9NeCHCHCoRgbjaku7UiQWqfeJ4RPdThPIqP9nOxroJsd13HATtyXxyLi8y9PTJWuTwYqhEqix0BMf9RJOEcM0D+a8zghVtHTzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4LBuvU2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A24DC4AF09;
-	Sun, 23 Jun 2024 14:28:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=q4lTO5ZIF2bnBMjQxBRlWrVJfJPiRhfuQeHM4Sczgly9AWYgC3wQBKU2JcacinaVdjN2q9wSmuqKaO/y+VXwm4VerHx4SAL3iX0ctzxZ2ycw2P6x7nHX7b0cARhTMrr6VY/bgGgnWhgvmKuKdnlNP361ZzvNT2ic53FFl8H3Bz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DqBVCtSf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16F8AC2BD10;
+	Sun, 23 Jun 2024 14:30:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719152931;
-	bh=Sulj6itbUy1+3flZsGKJFwDIPDo/5t5fG9SM8cDRLXA=;
+	s=k20201202; t=1719153026;
+	bh=JeDwnT/5o/t4SulflNylysZnroxPO1yMnY77AG2371A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V4LBuvU2L8KFoo9rqzupRNRGujfrxnLr4CjlR4b7fHmg49dDe5pg0ynnt8uDzSQaD
-	 84ybbtcn6R7eCva+jUY4s32uA+l1412H5s2PG4BokSAmlD8vgVdT4mNe2JD55rKlOO
-	 2I9ILbaIlmssDlHdBMQmX00o+1O3usgpfVyLK0cF0UHCUGQy22xUW+l+TGVLIJTYY6
-	 1vwJ/JiiQqb1D+qedznhfSKHC9wSgW+RAaLPoAVjFPscmaLjkRaHAO2HCnqZEn62k2
-	 I5VMCAT7tq+gewbvy8KaxVZY4vdx0bElZ91E1iJZj5uuuqTYvm0UgCnbFpole4qQIG
-	 TC8a8iB9aoqsw==
-Date: Sun, 23 Jun 2024 15:28:46 +0100
+	b=DqBVCtSf3tjapxospQEitqB5uuhOSm4oGAc1Ni+y2Rys1edgdAKLj+JaB08lprST1
+	 qkSXfGGjdWmXUJYlykuN9lXzjiip2fWrWNUAPz4ImJLoJHSA8HpJtIZ2LE4+OalJCI
+	 GlTRVLwec7QN9icUAXUX0iGUPiINVHC39FO+lSGRiTaNLxwz1/sfjXjRDPyg3PoYWg
+	 oUYVz+xJN9I61XouX9Xx1R95LKe60Q7wlmsIn5yahzXiI8/fTs/cda70Iw0yRpuJhH
+	 YSKZauQfLmiNFP31GxuOTSCJ4eMwOfZp3/WNu+1aPIpyD5iOUcCfvZlVe3mGT/M6gt
+	 0+BrPo78XOR0g==
+Date: Sun, 23 Jun 2024 15:30:22 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-sunxi@lists.linux.dev,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-riscv@lists.infradead.org,
-	Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: sram: sunxi-sram: Add regulators child
-Message-ID: <20240623-whoops-campsite-f395e64aa054@spud>
-References: <20240622150731.1105901-1-wens@kernel.org>
- <20240622150731.1105901-2-wens@kernel.org>
- <171907415897.1042829.2907756455868106157.robh@kernel.org>
- <CAGb2v66MptRCWnSyJ6B1g=E9rHh0MUac1kPw56rTO6So9_Qqow@mail.gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Kaustabh Chakraborty <kauschluss@disroot.org>,
+	linux-iio@vger.kernel.org, denis.ciocca@st.com,
+	devicetree@vger.kernel.org, linus.walleij@linaro.org,
+	robh+dt@kernel.org
+Subject: Re: [PATCH v5 2/2] dt-bindings: iio: st-sensors: add LIS2DS12
+ accelerometer
+Message-ID: <20240623-lure-rubber-27c1f8f7ec66@spud>
+References: <20240622123520.39253-1-kauschluss@disroot.org>
+ <20240622123520.39253-2-kauschluss@disroot.org>
+ <20240623110305.5d961052@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,74 +61,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PYdSiDCKQjnV17er"
+	protocol="application/pgp-signature"; boundary="N3AVEEhuL/WRSAO2"
 Content-Disposition: inline
-In-Reply-To: <CAGb2v66MptRCWnSyJ6B1g=E9rHh0MUac1kPw56rTO6So9_Qqow@mail.gmail.com>
+In-Reply-To: <20240623110305.5d961052@jic23-huawei>
 
 
---PYdSiDCKQjnV17er
-Content-Type: text/plain; charset=utf-8
+--N3AVEEhuL/WRSAO2
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jun 23, 2024 at 12:46:53AM +0800, Chen-Yu Tsai wrote:
-> Hi,
+On Sun, Jun 23, 2024 at 11:03:05AM +0100, Jonathan Cameron wrote:
+> On Sat, 22 Jun 2024 18:03:46 +0530
+> Kaustabh Chakraborty <kauschluss@disroot.org> wrote:
 >=20
-> On Sun, Jun 23, 2024 at 12:36=E2=80=AFAM Rob Herring (Arm) <robh@kernel.o=
-rg> wrote:
-> >
-> >
-> > On Sat, 22 Jun 2024 23:07:29 +0800, Chen-Yu Tsai wrote:
-> > > From: Samuel Holland <samuel@sholland.org>
-> > >
-> > > Some sunxi SoCs have in-package regulators controlled by a register in
-> > > the system control MMIO block. Allow a child node for this regulator
-> > > device in addition to SRAM child nodes.
-> > >
-> > > Signed-off-by: Samuel Holland <samuel@sholland.org>
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> > > ---
-> > >  .../allwinner,sun4i-a10-system-control.yaml   | 28 +++++++++++++++++=
-++
-> > >  1 file changed, 28 insertions(+)
-> > >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/sram/allwinner,sun4i-a10-system-control.example.dtb: syscon@3000000: regul=
-ators@3000150: False schema does not allow {'compatible': ['allwinner,sun20=
-i-d1-system-ldos'], 'reg': [[50331984, 4]], 'ldoa': {'regulator-min-microvo=
-lt': [[1800000]], 'regulator-max-microvolt': [[1800000]]}, 'ldob': {'regula=
-tor-name': ['vcc-dram'], 'regulator-min-microvolt': [[1500000]], 'regulator=
--max-microvolt': [[1500000]]}}
-> >         from schema $id: http://devicetree.org/schemas/sram/allwinner,s=
-un4i-a10-system-control.yaml#
-> > Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-contr=
-ol.example.dtb: /example-1/syscon@3000000/regulators@3000150: failed to mat=
-ch any schema with compatible: ['allwinner,sun20i-d1-system-ldos']
->=20
-> I'm not seeing this error locally. The binding in question for
-> 'allwinner,sun20i-d1-system-ldos' was merged in v6.10-rc1 in commit
-> 622bab188484 ("regulator: dt-bindings: Add Allwinner D1 system LDOs").
+> > LIS2DS12 is an accelerometer by STMicroelectronics. It is identifiable =
+by
+> > its WhoAmI value 0x43.
+> >=20
+> > Its register interface is not compatible with existing parts. For examp=
+le:
+> >=20
+> > - The full-scale values are present in register 0x20, in bits 2 and 3
+> >   (mask 0x0c). Most other supported sensors have the register address s=
+et
+> >   to 0x21, 0x23, 0x24, or 0x25. There is one sensor setting though
+> >   (bearing WhoAmI 0x3b) which has it's address set to 0x20, but the mas=
+k is
+> >   set to 0x20, not 0x0c.
+> >=20
+> > - The full-scale values 2G, 4G, 8G, and 16G correspond to the register
+> >   values 0x00, 0x02, 0x03, 0x01 respectively. None of the sensor settin=
+gs
+> >   have the value 0x01 associated with 16G.
+> >=20
+> > Add the compatible string without any fallback.
+> >=20
+> > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Given the only requested change was this description and everyone seemed
+> happy with it in previous thread, I'll pick this series up now.
 
-I only tried on top of linux-next from a few days ago, but it didn't
-reproduce for me there. I think you're okay.
+ye, fine in my books. I should've prob acked explicitly when I assented
+to the wording on the previous version.
 
---PYdSiDCKQjnV17er
+--N3AVEEhuL/WRSAO2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZngxHgAKCRB4tDGHoIJi
-0sQfAQD96o8owCYguj4oHa7KmlpJsdqfVpD8THbceykVdkgOCQEAvFs1R5+NCrZj
-g40NpcmkL+upFSNv5M1M1F/4aKz+kw0=
-=9opE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZngxfgAKCRB4tDGHoIJi
+0prlAP9WTLKrzFB6YvuKX+72fa1nL+hHQqEIJZPBPwETp0JN8wEA52l724nen/9Z
+htbZbuUUNvAmtYwn1ng3PA1CE2wZcwM=
+=+j52
 -----END PGP SIGNATURE-----
 
---PYdSiDCKQjnV17er--
+--N3AVEEhuL/WRSAO2--
 
