@@ -1,214 +1,195 @@
-Return-Path: <devicetree+bounces-78809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B260C913718
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 02:50:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BE32913750
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 04:21:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0992F2834AE
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 00:50:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15E5D1F223A3
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 02:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914A6372;
-	Sun, 23 Jun 2024 00:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KdO49J39"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3767C6FCB;
+	Sun, 23 Jun 2024 02:21:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2116.outbound.protection.outlook.com [40.107.117.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34B728EB;
-	Sun, 23 Jun 2024 00:50:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719103818; cv=none; b=dOOnteDNKUAhLAp7ltFuH5GfHotpclpshz71hx8khMcLZl10jZQZNUAF4nrIE+2dJ0SZLfwOwSqC1V6Tf7ju4WM8daz91KRAjQ/HjhSgHFvwuCLXUrCmv9fPCWG/jE+RRQrRS2oSDMnd4XfWboQXkkSYmSSWWwRWEV5kD4NZmpU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719103818; c=relaxed/simple;
-	bh=WZD3oXNEQD6KnVSKu3IdpGaipLswzf6qmCl2awNBVL0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KWMOdSfONts+iOPb1dBGBGXNmEmSaCvac/pemHB4+6mcQD+6CVtZLM5V9kaphdmZA5E/gnOlAfreBTVAJNW61V8vjOjm9kTtIBuXzW6B3/u/0AI1S3F4T9kwEi0eEOkRhU/B/O7VVuio02gz6mum/U5GJiH+HEDP1cD83GOt3ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KdO49J39; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5b53bb4bebaso1862016eaf.0;
-        Sat, 22 Jun 2024 17:50:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719103816; x=1719708616; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=plQu2k+3AcRQXXZ9L/gcrksDp81HqnIUamR+O4Jb5js=;
-        b=KdO49J39+ajPdgKdJ9jNX0TUV38uYdBvHYgKYrkcU//Z7CKMCoxwkB9YT5zsmYnL3p
-         1GCF16CfR6TMDhmQu1GkckMIg15a8zbKE9BxU+q0P0fIWKar0GfJvkwJbaA/kdeuei6f
-         nHWL/X4gglvt4YusvdfvFFiBRhyG366L8zoQnGiDWGWiYh7TvCk3c5uD474qr3bhGyR/
-         6IwvmTF1uyZub+O40PMIrRJRFEnImg9WRTnOPTG6g6+v12edAtLQLMdQ/9T1I+Z9PmMR
-         j5B+rX0pZ2w7lVTCzU0MG99cj5Ut7EZsSveqOU2qmwD1s8ohEy2O9rb188CjUIIGyKre
-         5B/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719103816; x=1719708616;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=plQu2k+3AcRQXXZ9L/gcrksDp81HqnIUamR+O4Jb5js=;
-        b=VH/PoulE9ABnd2CoOjMrc6xctVOOdls6UJ9mxOUGEzt76icr2Ra1CSi9n2lBZw5YbX
-         tnI5M9qvc6Z2PtwiyDrtRS9eREskKodPyOoPVZCZ2wbHxp+74+Pj0UbtDkbcAjCbO/mx
-         EJ12qsbbzljnWlRrYDo11drQKdtFermwIB8IayNPkD6tCPN4j53zCuxQle4oC0N1yMDa
-         0+jZx8i+3XcCSyUMeZrl751UPNjc7xQdLJMMr7JAuBUJi31yAZ7QXcjmfSopnopOHIVG
-         2ghR2pg9vIM34KqD2KKQ3Xx8tAWrrEv6xgcuFBNHGdi13iLYoo7nC4WIrQLCy4aK9xnN
-         NlBw==
-X-Forwarded-Encrypted: i=1; AJvYcCW3PjGQw7fEQhlZdudd7Cg8nCWoDLrZi1vZPza2hhsCRGzRnyYRRo9QdfvdoUQuN78PuBbuGEWpRBEeDFzg3Ku75Ik4sn6i7pkaP49WxpgYzFCRELprql3r4gBHd+5YOO4HdJJGwOab3YpsiBVWPrh4NubXa1PDR60Ns5ah4GcfU3vIvQ==
-X-Gm-Message-State: AOJu0YxGNrUMJ1UqGpPpG7staVJFEoSZqCV3oggAJccvr2uRmgm6aeMp
-	/6DwwZ1nRd3M56peMCuKb4jgnYde0qsCtgLWm0/qG7w9FkbLujkWZZh4/C2kMPk=
-X-Google-Smtp-Source: AGHT+IE6SplIWQi3JIjMjst1N12JyTJpXFKtMRkSPLMxy3BlUHUCG5ZkOfRgys5fxbhvd8OKC90NVw==
-X-Received: by 2002:a05:6359:7b12:b0:1a2:3952:470f with SMTP id e5c5f4694b2df-1a239524b13mr145160455d.11.1719103815645;
-        Sat, 22 Jun 2024 17:50:15 -0700 (PDT)
-Received: from [192.168.50.11] ([123.139.251.61])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c7e53e0760sm5953358a91.20.2024.06.22.17.50.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Jun 2024 17:50:15 -0700 (PDT)
-Message-ID: <bf328875-2ccf-4fcd-ad6f-685a1800f13c@gmail.com>
-Date: Sun, 23 Jun 2024 08:50:07 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524042F5A;
+	Sun, 23 Jun 2024 02:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.116
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719109308; cv=fail; b=PzQJKFvSWlF3jM6bydZ/KPXb7ihS3xKw6rk3mziP96wbjtUIlBcG22XNwo6jVqPs8ITSbv4cHXoACrfstfyClYWHZVnYbLoFhf29S5Nj8SjKdhZAEWpCrV1AoFp8UvhX8JCv7OJvds3wL0teiAbGfS88An6DNpZsFto1ebjtMtQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719109308; c=relaxed/simple;
+	bh=a5CXsmIt6J/B60XAPDbiGAWk+Sz4cw/QF4BaSm+sNaw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=fKaJMTfHlGIpPS+4fDxEBAYmkaHjkUu2/LkP/zOevKYbqj20ymUzD1+fEeOdYJLGli5yOvuSJhT70NmH/gi5K9KjGotw/NNEXMC8mc99MxZ6KH0IHHwSklkXF+J2gs0sYwoqSVFj8dWzthK8v3sOT+qZXJBR9YXbFbWgggS2Pjc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.117.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lUFzaB5/d2EmrMgXJOxwPVakQ7Xyzcy3oeFHQWpUmQTOgi++WYKZCuX/x+sV7bjOTwuBVfC4DM7aDk31C5SMCo+82xoq6uYbQJjMmPllz9zR9f4cQVhKh1uV2+Gs802sVdw6VbsGk5QmGCrhEb7ptLqVu5ZmtHdbtNvNfiVeju7+2S8+J+pUj7g7zjFYBlaybyJmDjLcxpPVgwisvSQBRde5e3TDhbQ2KkfJT3zdi9WkQg3UZ546Ub17lUHuzWGUNeqNKHny2V/S2rvXYlj39NHc1eWLNjhsHHJrnFnNmPRi66cNEzMrZlFuh1peedsjzaAvQK4kARtCNvM3kghBow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a5CXsmIt6J/B60XAPDbiGAWk+Sz4cw/QF4BaSm+sNaw=;
+ b=edFQDRVjmo/Lj4c6JtWb8UOblFyLvqYXSQv5Ynn7jz630e34OLfB/98egafl4I7vubHrk3TCy1nYDyxVP/w0wVn9ed9p/OTduPn1DlUDjpDBK+1cL+z//L9bM1oA0aInkxQ+uEjC3Cwz8cr8eti2YXPkos1LGjrBnoauHSC4zAhpV/jpJMoVOhrj83fPjJBlUZyVGqebbWAQoMprbtS9QjAWo0mztZHnzKFX5StIGhWfBPXhlEKRZIE42t54qLmc4x/9uKgLiVFzkdvwPuKd/z1KzgIGKMnQbhYGFoSxowG6H7uWz0kplMLIAR7NleOCA5I+7XMVhQNJ8k9RlMOVvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
+ by SEZPR03MB6959.apcprd03.prod.outlook.com (2603:1096:101:9e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.38; Sun, 23 Jun
+ 2024 02:21:39 +0000
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7698.024; Sun, 23 Jun 2024
+ 02:21:39 +0000
+From: Jacobe Zang <jacobe.zang@wesion.com>
+To: =?iso-8859-2?Q?Ond=F8ej_Jirman?= <megi@xff.cz>
+CC: "arend.vanspriel@broadcom.com" <arend.vanspriel@broadcom.com>,
+	"kvalo@kernel.org" <kvalo@kernel.org>, "duoming@zju.edu.cn"
+	<duoming@zju.edu.cn>, "bhelgaas@google.com" <bhelgaas@google.com>,
+	"minipli@grsecurity.net" <minipli@grsecurity.net>,
+	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+	"brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>,
+	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"heiko@sntech.de" <heiko@sntech.de>, Nick Xie <nick@khadas.com>,
+	"efectn@protonmail.com" <efectn@protonmail.com>, "jagan@edgeble.ai"
+	<jagan@edgeble.ai>, "dsimic@manjaro.org" <dsimic@manjaro.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
+	<linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 3/3] net: wireless: brcmfmac: Add support for AP6275P
+Thread-Topic: [PATCH v1 3/3] net: wireless: brcmfmac: Add support for AP6275P
+Thread-Index: AQHawrWkSZjILdfElUC6XOD5DUOw1rHS7xyAgAGnXp8=
+Date: Sun, 23 Jun 2024 02:21:39 +0000
+Message-ID:
+ <TYZPR03MB700154AE39D44B8D166344BF80CB2@TYZPR03MB7001.apcprd03.prod.outlook.com>
+References: <20240620020015.4021696-1-jacobe.zang@wesion.com>
+ <20240620020015.4021696-4-jacobe.zang@wesion.com>
+ <fro2xcwsnvbxmpszny6g2p36z4zwoq4kegmpvww4twxir5piez@a3c2nbwitmab>
+In-Reply-To: <fro2xcwsnvbxmpszny6g2p36z4zwoq4kegmpvww4twxir5piez@a3c2nbwitmab>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB7001:EE_|SEZPR03MB6959:EE_
+x-ms-office365-filtering-correlation-id: 65198ea4-1916-4e53-b573-08dc932b3713
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230037|366013|376011|7416011|1800799021|38070700015;
+x-microsoft-antispam-message-info:
+ =?iso-8859-2?Q?+P9aQxqiB8YckZNSbz7yk9eq6BZVbzGA/9m16anB9DH8nWWo5fj9zMWuGQ?=
+ =?iso-8859-2?Q?Cnkz2/OkiGMXq2MKagNm7+F+Dwkq0uLKLnI/lTn2Sck+8MU8RZQTNN9EWn?=
+ =?iso-8859-2?Q?4AeWh2LfnBbFJ6NEMn2HW5T17jsakpTtvYh6mDWnK+X8/NW15X2Et0Jcs7?=
+ =?iso-8859-2?Q?FCHMDsSk4UynIUPzzjagQu60BmKdsr4uSJINuK9zHxr9SUQ+JQz7BxfXDp?=
+ =?iso-8859-2?Q?/WGY4kIPsYrZNKK0Xa3/WzQq9Lb1Or5C0GjIHONP29RsmBWL/QlDuiWhom?=
+ =?iso-8859-2?Q?2RBlhfVU0Hvw/6VeARQZ8XPqjaS93HU0A1FL+bxJukE0tDsuhEno6u6Sw9?=
+ =?iso-8859-2?Q?GXe06iSBIKlnTFFjos6+bZyVR96BJqFoxAD4qrd+EPoL6PmJmhYXHE/pQ+?=
+ =?iso-8859-2?Q?ZMVY+9bQnImBuFtQpb+CQ+R3hoPs6GR238V7xZhnpm35ZvHSFhmC/E8IZd?=
+ =?iso-8859-2?Q?Q4NJwvlmfTXcFpGgZV/mRbcvSZcD9oPhcfyx210DI4rFjWy/Yudr/b3aIN?=
+ =?iso-8859-2?Q?rD2PNdodMM7A3gv0IEjFKW7nLHYPROXkXY/SROEg2XDgOT7Lu5WP8Iv2lv?=
+ =?iso-8859-2?Q?ZF00Eqnf6H9kJle6fknICv7Z3oVkHFHcFBAgg4blrjlPXMXtW1zoX5s/IY?=
+ =?iso-8859-2?Q?ReGVM84VDM7FlXZzgocjtycQTdlxNYyuzSIyINcV2OCaodW76SlkPMXVky?=
+ =?iso-8859-2?Q?tcIVmUo3RS5bi7nMDHpZ4l7Dhy4+B31h55JpKJJvMjCYgGQCix/HPgxAsy?=
+ =?iso-8859-2?Q?E6Ul7iAjzrjxBNwp7gMqVYGMirwOB5m5FRpPs/upK2PSCqndgLM5zgkFAy?=
+ =?iso-8859-2?Q?YEpms98nPQP3ZNRW7GYw/N8W3/e7oKXmKY0IUugk4wTl52t2WXL832f6G1?=
+ =?iso-8859-2?Q?1iEqyhpjIaby0CLx729ZhS9AcCxf0rEeQxnO4zcmHejoVVKP9xxsMR4XbW?=
+ =?iso-8859-2?Q?foUw9iPrwO9BFJsKdMRAMwkkzY/kLEuyfFkZVTUVsiSq3yCmYcga08kRI8?=
+ =?iso-8859-2?Q?rwe9ip7FxFOOrLoBqQZbryVl9vpOA+/ChNKiya1u9mRXcA0u6FZQ2+prDk?=
+ =?iso-8859-2?Q?gq+jG6Xfm2zCWv1lVD5dh5uQeZ7YbxPRK8GxHKjfZd25R7mnzsUZLLXMbt?=
+ =?iso-8859-2?Q?Dpr76QQvDT14u9ICC5K8O22N6CEzrm/Nhyt40bIIf2GIJCzv8Z19jo+qMq?=
+ =?iso-8859-2?Q?oQxRX+JRKUv4ItDteMnspVgDApc4dwnnmSlzoA1girtwz5PlgpwZnD64ob?=
+ =?iso-8859-2?Q?yIUTKiKwWSWOb+vGM+RzPu/buO4pklZgO2gIi+89VammtYlWSgqpkUtyU4?=
+ =?iso-8859-2?Q?NcGCGiPIhSRBUlLpVxm9uLJJ/m8i2OqDGrul18+83g7mE36SGS99fcZ3W1?=
+ =?iso-8859-2?Q?XIGwdDdl4t?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(376011)(7416011)(1800799021)(38070700015);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?2T0GhOv8LpeAV1n0UJzP71hgaIM0WGN7qnP0MJcaqKPcbAP44FOarCGgyi?=
+ =?iso-8859-2?Q?clHK1OHmNfQMFbs4UVv/+k05/1qcghDpOl6qNTgYdlxAkPGD4zQfuyeiTr?=
+ =?iso-8859-2?Q?GnrUq4lyAjwngC8IJAmcYcRKN3Dto/zT2eCX1kMBTtJH6kf5SIXDEZQ/kC?=
+ =?iso-8859-2?Q?wQdSL+j8a5MLvd+QvYPu/O1NRkdF2sZTHjuXtSc2lpxDLsHM1pWO61/E4w?=
+ =?iso-8859-2?Q?Gs/f0YsKmT0yfOc8RZkU5C+bs3Gm8u7k9pdGs5DUoXjzfsc8qqumTtKBlw?=
+ =?iso-8859-2?Q?nJKuFA58qSTws/jWMo2gi1Eb+0OKXfx0YIOgS9LIGMoG5chzgCjZHBkgt0?=
+ =?iso-8859-2?Q?kyrCNMtM5niTIQnQCdTqKRZ+1fSyFYt/trmbtsDXHQXQjN+BR61w/Ek2ep?=
+ =?iso-8859-2?Q?SV1ECEu5v66dzeolb34yq2xaqb/rjiF24Ny3INSH9UiAUlv4X2REHOeTEO?=
+ =?iso-8859-2?Q?wbWjH4qvJfAEtbX+cGBdOAoQoCdqRs6qA03xv5XdWpzW4sSUoFBOMTGlJw?=
+ =?iso-8859-2?Q?7MX40n7bD/1m6PabVmO50DkDHfkG+95/WQvdzp0lPg0Kk8DmIhQ9EcWNL/?=
+ =?iso-8859-2?Q?KF7/74rsdrHIJLoq1Z3CO3pkxWiLvSHbj6KYrZSshJkCBOXtk28qcB9R5t?=
+ =?iso-8859-2?Q?/p46BesAHUIPmecKXmREMKA+MhhPuqKpurKwH0Lr6KgLPhaB0ad0FuV0UE?=
+ =?iso-8859-2?Q?5XONoBqIthyckTPLCJToocvg3WbrSbsoUzRebne/WmsQA30h/sJQF4V0Xe?=
+ =?iso-8859-2?Q?Ig/ceIMCusq2fJueqXjLou0VDYqUAPO6qFyin8sACPdFZWnPi0kvR0fgZA?=
+ =?iso-8859-2?Q?+ORkIfCCQIbpx8m33o+3KZQ0cuQ4+if4M8ienuSWpPF39rPKkXqx1Ol2HA?=
+ =?iso-8859-2?Q?/LtN7OSNjds1fWFYUDvT8xYQUge+cSRU+7juxkuGj0tJmj6NIpurl29wkA?=
+ =?iso-8859-2?Q?PQsl6lajuadQyJE0fhmC0onLtCx+8Utb/pUvXfhEnhcGgN8vMTPec3otCc?=
+ =?iso-8859-2?Q?/ZIFY22EgPa07SP80EdBDWf0apbcE6ZElZ4pyZxtZ7uXB//YVDjmSIo32D?=
+ =?iso-8859-2?Q?59fiTNR3xB8Ay0jmkR8iZquv5lC1tikeQKpiqKZ8mfV7lp8u1GTEcrQfWY?=
+ =?iso-8859-2?Q?qk32pAG3rYFwJig7C9ynfBLGxtubVk/TM8qYvsiAJQCTFSJ0ryzoWHDRct?=
+ =?iso-8859-2?Q?fkFQZoKhWUsrlRD6XlNTiRBNE21RPPLNNUmiQIgoGXF8Yp1Y3vGNc01tPu?=
+ =?iso-8859-2?Q?lruo0JjRsKq7T5h3zjLh71zxwFoXJEQCdcULCk9/d023B8GkwgLzhnX3Ef?=
+ =?iso-8859-2?Q?vFcysyYm/m38ZTWjxsnT4N74EU5Th3AmiyqCBvNo9xDblZeDUmlmAuNu+a?=
+ =?iso-8859-2?Q?OyQ1IUzUnz+t+75De/RsjHruvdAecJNZ3pT4yPBI0yRioXpx4vyLattl/0?=
+ =?iso-8859-2?Q?lLE1VvHc1EPgzSo2D63SShct/acijgs+riVud6KRzPWbiiNkD8qjEwtGtL?=
+ =?iso-8859-2?Q?4LVzaCOi8M0bjlEwAjcW7hhziUveiR0zZXQPdEh1VjTg6qmoTM9gBzl6rV?=
+ =?iso-8859-2?Q?Z0CE47gzT3c5lAomEsIywPGy8S6kt4/ifLlKYibdml8Q+7JwLg7zjntVyl?=
+ =?iso-8859-2?Q?9GDcYjBsVFmHiK5gAVVDNUhWbQsZgFmH85?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
-To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com>
- <20240621-add-tyhx-hx9023s-sensor-driver-v6-2-65196a9020f1@gmail.com>
- <d35f5eba-abb4-4924-89d6-0beb878a0bf7@kernel.org>
- <385a7a64-fc76-4655-bc7f-d89d00b053d5@gmail.com>
- <20240622-superjet-dusk-cfd19f899cc2@spud>
- <26db1f7b-bde9-43a5-8c9b-4323ccfc59cf@gmail.com>
- <3541cd63-882b-4b91-871a-7d0385e12957@kernel.org>
-Content-Language: en-US
-From: Yasin Lee <yasin.lee.x@gmail.com>
-In-Reply-To: <3541cd63-882b-4b91-871a-7d0385e12957@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65198ea4-1916-4e53-b573-08dc932b3713
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2024 02:21:39.6253
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6dtdgPWT4WDK7WKKX/zEaRa+tAtZflqoHSM2RqoTxbjwXs7pVfVctWmtOkxXM88zaPxFMI23oJS1yMbZzAzBUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6959
 
-
-On 2024/6/23 02:04, Krzysztof Kozlowski wrote:
-> On 22/06/2024 14:35, Yasin Lee wrote:
->> On 2024/6/22 18:51, Conor Dooley wrote:
->>> On Sat, Jun 22, 2024 at 01:56:42PM +0800, Yasin Lee wrote:
->>>> On 2024/6/21 18:12, Krzysztof Kozlowski wrote:
->>>>
->>>> Hi ,Krzysztof
->>>> Thank you for your reply. I have some questions inline.
->>>>
->>>> Best regards,
->>>> Yasin
->>>>
->>>>> On 21/06/2024 09:40, Yasin Lee wrote:
->>>>>> A capacitive proximity sensor
->>>>>>
->>>>>> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
->>>>>> ---
->>>>>>     .../bindings/iio/proximity/tyhx,hx9023s.yaml       | 115 +++++++++++++++++++++
->>>>>>     1 file changed, 115 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..beca70ce7609
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/iio/proximity/tyhx,hx9023s.yaml
->>>>>> @@ -0,0 +1,115 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/iio/proximity/tyhx,hx9023s.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: TYHX HX9023S capacitive proximity sensor
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Yasin Lee <yasin.lee.x@gmail.com>
->>>>>> +
->>>>>> +description: |
->>>>>> +  TYHX HX9023S proximity sensor. Datasheet can be found here:
->>>>>> +    http://www.tianyihexin.com/ueditor/php/upload/file/20240614/1718336303992081.pdf
->>>>>> +
->>>>>> +allOf:
->>>>>> +  - $ref: /schemas/iio/iio.yaml#
->>>>> Which part of iio.yaml binding do you use here? I cannot find anything,
->>>>> so this looks wrong.	
->>>>>
->>>> I will remove this reference.
->>>>
->>>>
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    const: tyhx,hx9023s
->>>>>> +
->>>>>> +  reg:
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  interrupts:
->>>>>> +    description:
->>>>>> +      Generated by device to announce preceding read request has finished
->>>>>> +      and data is available or that a close/far proximity event has happened.
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  vdd-supply: true
->>>>>> +
->>>>>> +  "#address-cells":
->>>>>> +    const: 1
->>>>>> +
->>>>>> +  "#size-cells":
->>>>>> +    const: 0
->>>>>> +
->>>>>> +patternProperties:
->>>>>> +  "^channel@[0-4]$":
->>>>>> +    $ref: /schemas/iio/adc/adc.yaml
->>>>>> +    type: object
->>>>>> +
->>>>>> +    properties:
->>>>>> +      reg:
->>>>>> +        minimum: 0
->>>>>> +        maximum: 4
->>>>>> +        description: The channel number.
->>>>>> +
->>>>>> +      input-channel:
->>>>> Isn't this duplicating single-channel property?
->>>>>
->>>>> Where is this property defined (which common schema)?
->>>>>
->>>> |input-channel| is indeed intended for single-ended configuration, but I
->>>> couldn't find a definition
->>>>
->>>> or reference for |single-channel| anywhere. If possible, should I rename
->>>> |input-channel| to |single-channel|?
->>> Single-channel is new, it should be the next branch of the iio tree and
->>> in linux-next.
->> Hi Conor，
->>
->> Thank you for informing me. I plan to temporarily add a prefix to this
->> attribute to distinguish it and update it in the future. Is this the
->> correct approach?
-> No, because there is no need. You are supposed to work on maintainer
-> tree (linux-next works usually as well).
->
-> Best regards,
-> Krzysztof
-
-Hi Krzysztof,
-
-Understood, Thank you for the reply, I will reference single-channel 
-directly as I do with diff-channel.
-
-Best regards，
-
-Yasin
-
+> Any reason to strip info about origin of the patch, my SoB and=0A=
+> present this work as your own?=0A=
+=0A=
+Sincerely express my apology to Ondrej. It's really my mistake. After getti=
+ng your permission if I could submit the patches. I jsut think if the autho=
+r and submitter is not the same person is strange so I changed it. Next tie=
+m I will avoid this mistake. Apologize again.=0A=
+=0A=
+=0A=
+> I sincerely hope this is just a rookie mistake so please carefully read=
+=0A=
+the URL below:=0A=
+=0A=
+> https://www.kernel.org/doc/html/latest/process/submitting-patches.html=0A=
+=0A=
+Thanks for the guidance Arend. After reading the document I realized what a=
+ stupid mistake I made.=0A=
+=0A=
+BTW I have another question, except the SoB of the real author, should I al=
+so post the original link in commit message?=0A=
+=0A=
+---=0A=
+Best Regards=0A=
+Jacobe=
 
