@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-78856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-78857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470469138EF
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:09:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D65E39138F2
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 10:11:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12CC2281BE8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:09:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 069FE1C204AB
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jun 2024 08:11:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F144C5A0F4;
-	Sun, 23 Jun 2024 08:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43B65A7A0;
+	Sun, 23 Jun 2024 08:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZoHaplOR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UMF/434e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C131C6EB55;
-	Sun, 23 Jun 2024 08:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A5249633;
+	Sun, 23 Jun 2024 08:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719130184; cv=none; b=kSjN2EzoZBWZAJm6813evcebUIBqml9mJFNiw19ibUW4BmI9lmoefpPg4zaGDpa5hJKKHxQ6nwnA8foyI6oW8GCta6PcgtlOF5r9OsWJb2/7dz8DOGa7c7rARe/EZHmU1C7NcX16rSA06OmuviTnfFfZ/b7aMBhMggBBR0ocg+4=
+	t=1719130285; cv=none; b=rAeWxVqX/01JsyyT9oQxbwrYUUxWLLYTRRbcslQjLJAUdHrTnqzkNAoanmH5t6ixzagAnYBCaAqiLEYN9I3ENRWCQ6gj7AZWQosIBzm9r7QTIgCScci2m01piOYW6CBqMtwkcOPnu3mKE1qC0a5+uowrSRyAFPrHeXsz1MwOB/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719130184; c=relaxed/simple;
-	bh=8G5ZgzbV0vjNrCMg3A32EmuZwZksI7exlwTcjhzWUZ8=;
+	s=arc-20240116; t=1719130285; c=relaxed/simple;
+	bh=CMYRryZFEx+lHsmaSAwggmsgSfJxW0d5r/9nGe0X6/c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HAwrO8RCCw7Rki5z2oZLSo0by2lSF9zMRgwppl9UWbx9Sr6N0D95XSlC5LMXRsnK8TlFFVfZtn42MF2afl+K4grqTTi0eRrF/6CgD4opNFXjNOVLr7ZogjgWQsZmWEjth28KMa1nB/sJ6/08VddWTB7/zc1Q5coiqOJFStIzwiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZoHaplOR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE5CDC2BD10;
-	Sun, 23 Jun 2024 08:09:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WzSDjtQsjdDw0Gd52L/9RRRbYzFRLB3XQkwnFsOw/z1iATG92+D87K9FRpFtCywWuSzEEk0zX/Ns4+KaaHfDjVSq1x9YX+NJkk/9lTlBLHaSeHoVRJP563IdRQqvw/a1EjvXEjW5wwjHYWwPl/q7D3J/iMk46g2sOxR58g0h7Mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UMF/434e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2519C2BD10;
+	Sun, 23 Jun 2024 08:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719130184;
-	bh=8G5ZgzbV0vjNrCMg3A32EmuZwZksI7exlwTcjhzWUZ8=;
+	s=k20201202; t=1719130285;
+	bh=CMYRryZFEx+lHsmaSAwggmsgSfJxW0d5r/9nGe0X6/c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZoHaplORax60W+WkzsW2UPl643GGKfxk6QD4+9qTRurtj9WidUWjh+oFeSoq8aI72
-	 e429PDQOkI+pdi5aeYpYuf5HM6omm/lEkmFoBPU8j5w3fToUz8O7Y8o1tinyTZ4kU+
-	 GCLNaP++pS9mcu3cbdlheitGgKKQOpOi8tCOziE8hgGiqF6OHHpggTbjlfpHjrdZpW
-	 HC70oSEUw/omaVh0MDNn/CA6FIdX4ZR9/2y9IwMTOVICvROcRRerx5nJouBYZW3soB
-	 6HqHUmTICLnZW+PhP9VIXdljE7l7wALd4NLAeRzJqIisvaDQ+hZqBSDPmm0qAYIB29
-	 cb4WQMTs++GhQ==
-Message-ID: <59459f7a-846c-4988-a0f0-a64be217dbee@kernel.org>
-Date: Sun, 23 Jun 2024 10:09:35 +0200
+	b=UMF/434eoJ3N8G40EchpP4JF047+QtLeySAi4Rpw0y2D0flMIOjhoABeatgrucadi
+	 G0L6ZNXqbwqU2CO1c4XHaVW7kJiF3gN4f44I0yxgsmup8BW0lG+F7JBkAXNht0K5nU
+	 J2/No/MfSJExlbO69dSsY8i4xSisyl1nrMehyfckHjAvojGYyVAuJynT8h5jHgGyIq
+	 X2MvwFSgWhr5wlfcJ3rYrEBh7kQ4i8VGYdo7e6jTt+cyxDqE0ac/7Q7jjaWUcA8wuq
+	 /d0U3JMSYPfppXhIGAyUSLwZLbPpAcf4jld/qgVgLHy+fbyrgDlv8v9627VP8KcAfU
+	 jz+QztvzZaumQ==
+Message-ID: <c2cd4e38-edc4-46f3-bbeb-0a761104fce9@kernel.org>
+Date: Sun, 23 Jun 2024 10:11:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: msm: dsi-phy-28nm: Document msm8937
- compatible
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240623-dsi-v1-0-4ab560eb5bd9@gmail.com>
- <20240623-dsi-v1-3-4ab560eb5bd9@gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: net: fman: remove ptp-timer from
+ required list
+To: Frank Li <Frank.Li@nxp.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
+ Madalin Bucur <madalin.bucur@nxp.com>,
+ "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240621170000.2289596-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,19 +108,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240623-dsi-v1-3-4ab560eb5bd9@gmail.com>
+In-Reply-To: <20240621170000.2289596-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/06/2024 01:25, Barnabás Czémán wrote:
-> The MSM8937 SoC uses a slightly different 28nm dsi phy. Add a new
-> compatible for it.
+On 21/06/2024 19:00, Frank Li wrote:
+> IEEE1588(ptp) is optional feature for network. Remove it from required
+> list to fix below CHECK_DTBS warning.
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: ethernet@f0000: 'ptp-timer' is a required property
 > 
-> Signed-off-by: Barnabás Czémán <trabarni@gmail.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+>  Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml | 1 -
 
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
