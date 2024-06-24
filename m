@@ -1,173 +1,106 @@
-Return-Path: <devicetree+bounces-79452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D95915508
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:07:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E4591551E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:11:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3B541C21F46
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:07:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 226F11F23F24
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BEB419EEAE;
-	Mon, 24 Jun 2024 17:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4AC19EEB7;
+	Mon, 24 Jun 2024 17:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYM5g7GW"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="LOQzn95F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE991EA87;
-	Mon, 24 Jun 2024 17:07:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570C61EA87;
+	Mon, 24 Jun 2024 17:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719248851; cv=none; b=j1yjlI/T2sOE/lpM0gNWgGop4CEnoKpQdrMgGMTLOwPJF1ooJ/A+25MJdPl/V1YRMMnUQkAVeuw8b6Fb3GzaiS4S0GQPo71XKv+xwzvWUagl21mtMYJ7Ll2fMdTyMRSBZoVZFB+KhjHGN7QZg43p+E3R3vMs+JgDuv1KspupiTs=
+	t=1719249088; cv=none; b=U9N2gi4GwfNFxUE5GV1aJkbXTeLcbmJhcz3Sen+BVPRJWOdEAaOkvE/rwEKXpCiKxyWTrvcONCuqYOsQ/4yqKxdlRaMzxEyFvqynSH72IOYCeIGrAwLHu4sBl1+5jJqCg3rAozJhV3lqBrDTtcGEzB/lk6hUiow34Yo2uYusDR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719248851; c=relaxed/simple;
-	bh=xVjgbxgIL6BdkCx5ma5KcWzBtgfiKZ7zaKg5Ec62yS0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UvYzEhAWpTUQOcNa8JXgefsBLTF9DKtpN88wfCXgUlsP2+5i+KO/H1LB6AZAjH0SX0tyZlaUEWvasn+NsdKoUeP23x1fFBc3SJmvDfHAo3y7DiVSFfGxieZaYN1QL2WxicUx2c6PR9UUxIqh/hXdIixMuy+hXIs9KSGXXD6151w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYM5g7GW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF49AC2BBFC;
-	Mon, 24 Jun 2024 17:07:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719248850;
-	bh=xVjgbxgIL6BdkCx5ma5KcWzBtgfiKZ7zaKg5Ec62yS0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lYM5g7GWxzB6c3iSoA/1v+VC4k5KN3q6bmB/o7J0uIcfPxuXTLLEaesMKs9/KZAX1
-	 kE770aoUUViwYqw34Ibhh4KMup0tKxx9pfGAa4oZ/HEDaYPF/l8rSznmLKjzvTUHmF
-	 p7sssG/whKSVdSA89NeEKmoFLWg3xJd8SbOy4dmSFUDlClOnGzSgJ7Hbrsl3LqWM0J
-	 LuBUCv/B4XMOKU/xf9XQbE0gfSWcxmhdzihvh8qz9mdQTbDnx/G/4BVNBUFC4jKC/l
-	 DmEoJE5bgoMYuEVfYN2vYLXcFu4fYMXDxxuzYCIk3ePLwouS4M5PdPGOBYj65kOTie
-	 Z5k+qna58BsSA==
-Date: Mon, 24 Jun 2024 18:07:26 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas@t-8ch.de>
-Subject: Re: [PATCH v5 1/2] dt-bindings: power: supply: add support for
- MAX17201/MAX17205 fuel gauge
-Message-ID: <20240624-risk-sixtyfold-3b5f82833615@spud>
-References: <20240621125744.363564-1-dima.fedrau@gmail.com>
- <20240621125744.363564-2-dima.fedrau@gmail.com>
+	s=arc-20240116; t=1719249088; c=relaxed/simple;
+	bh=aXXT46SUGpiJ27fZUeOgMf5lZkDl9JQ5BySNUsfBIy0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G35YIWZPWkLCT7Aokf+GzeD0rUkh6I88/CIrikRGAWsUH+++BDjjPJLc7genudEJzaJk9hmXnoybR7vQB5vLnsUk/59t2FLWrDkOfBLqfkhU1YBkwzmkRE0D/JcNNjBUZInDk5JkUezSND+ClUUsvp8Nm4ufJhn4tEg2JIspTus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=LOQzn95F; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 36DF61BF203;
+	Mon, 24 Jun 2024 17:11:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1719249078;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=cbq+IRDjaXI3n18CSkRfCToz7wao508HEFXD7HtdFds=;
+	b=LOQzn95Fd2nYfNo6AEWfDttJbKX5hiNjfxAXVjsdZMqv2HfwoaS/h6voCJIITx+1WD4IuM
+	Y2xnhslNCADv0pFF7Hzj+kVsbifxwRAghOXOevy3iKT7NUyFfva88n00G5LRy787T+JkJu
+	iOkrqgv4XjwHv5LfHY5KN4oLgynuo9xrMuseUpgl+0mgHJo+iZ7G+Bw+uPCvVbD+evka9M
+	hWYrCAcCLDoy0b/IdA8sGeZQdb4EGbtnkOlUEa728UPA1NIo8pCGyFYhr20t/6oupnF5Mb
+	R6y+mLGjcHNsZvA+mRzsZMUyeZOt7mfh+0mJdCrxhasFO5o6ngf5a8bQ7YF+Qg==
+Message-ID: <a17f35ae-5376-458a-b7b5-9dbefd843b40@arinc9.com>
+Date: Mon, 24 Jun 2024 20:11:10 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="c4ZUpTGjldgbfpX4"
-Content-Disposition: inline
-In-Reply-To: <20240621125744.363564-2-dima.fedrau@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Minor grammar
+ fixes
+To: Conor Dooley <conor@kernel.org>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, andrew@lunn.ch,
+ f.fainelli@gmail.com, olteanv@gmail.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>
+References: <20240624025812.1729229-1-chris.packham@alliedtelesis.co.nz>
+ <704f4b95-2aed-4b76-87cb-83002698471c@arinc9.com>
+ <20240624-radiance-untracked-29369921c468@spud>
+ <68961d4f-10d8-4769-94d3-92ce709aa00a@arinc9.com>
+ <20240624-supernova-obedient-3a2ba2a42188@spud>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20240624-supernova-obedient-3a2ba2a42188@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
+On 24/06/2024 20.02, Conor Dooley wrote:
+> On Mon, Jun 24, 2024 at 07:59:48PM +0300, Arınç ÜNAL wrote:
+>> On 24/06/2024 19.29, Conor Dooley wrote:
+>>> On Mon, Jun 24, 2024 at 10:00:25AM +0300, Arınç ÜNAL wrote:
+>>>> On 24/06/2024 05.58, Chris Packham wrote:
+> 
+>>>>>       and the switch registers are directly mapped into SoC's memory map rather than
+>>>>>       using MDIO. The DSA driver currently doesn't support MT7620 variants.
+>>>>>       There is only the standalone version of MT7531.
+>>>>> -  Port 5 on MT7530 has got various ways of configuration:
+>>>>> +  Port 5 on MT7530 supports various configurations:
+>>>>
+>>>> This is a rewrite, not a grammar fix.
+>>>
+>>> In both cases "has got" is clumsy wording,
+>>
+>> We don't use "have/has" on the other side of the Atlantic often.
+> 
+> Uh, which side do you think I am from?
 
---c4ZUpTGjldgbfpX4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jun 21, 2024 at 02:57:43PM +0200, Dimitri Fedrau wrote:
-> Adding documentation for MAXIMs MAX17201/MAX17205 fuel gauge.
->=20
-> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
-> ---
->  .../bindings/power/supply/maxim,max1720x.yaml | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,=
-max1720x.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max1720=
-x.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
-> new file mode 100644
-> index 000000000000..dc3e0e7cb2ce
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max1720x.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/maxim,max1720x.yaml#
-
-s/1720x/17201/ both here, the title and in the filename please.
-With that changed,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim MAX1720x fuel gauge
-> +
-> +maintainers:
-> +  - Dimitri Fedrau <dima.fedrau@gmail.com>
-> +
-> +allOf:
-> +  - $ref: power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: maxim,max17201
-> +      - items:
-> +          - enum:
-> +              - maxim,max17205
-> +          - const: maxim,max17201
-> +
-> +  reg:
-> +    items:
-> +      - description: ModelGauge m5 registers
-> +      - description: Nonvolatile registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: m5
-> +      - const: nvmem
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      fuel-gauge@36 {
-> +        compatible =3D "maxim,max17201";
-> +        reg =3D <0x36>, <0xb>;
-> +        reg-names =3D "m5", "nvmem";
-> +        interrupt-parent =3D <&gpio0>;
-> +        interrupts =3D <31 IRQ_TYPE_LEVEL_LOW>;
-> +      };
-> +    };
-> --=20
-> 2.39.2
->=20
-
---c4ZUpTGjldgbfpX4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnmnzgAKCRB4tDGHoIJi
-0sJuAP4oa/nY+pl3xEPLYrrj7PVV/pGENjWvjklF0u403a1vWgD/d5QZLRwuI4KV
-VJW28K/aQ3STiD4yBgZusbMsdusRlwU=
-=twk9
------END PGP SIGNATURE-----
-
---c4ZUpTGjldgbfpX4--
+Who would call it clumsy to use "have" and "got" together for possession...
+Must be an Irishman! :D
 
