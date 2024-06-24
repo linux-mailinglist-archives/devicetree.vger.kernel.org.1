@@ -1,161 +1,103 @@
-Return-Path: <devicetree+bounces-79137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5959141E5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:21:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA7169141EC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:29:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1B7A1C2203F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:21:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CC99B23A06
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E295E17BA2;
-	Mon, 24 Jun 2024 05:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDDE317C6B;
+	Mon, 24 Jun 2024 05:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="YPVRZZfy"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="TQdFP/Sk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f202.google.com (mail-yb1-f202.google.com [209.85.219.202])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FA2A1401C
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:21:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D11617BA2
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719206501; cv=none; b=T0Gkowv/Z/bTpoVgRmsvhN+gh7XqHI1Te5X7kw9THXoxkMDq2RlP/NDTmMQuq0QNTzyIqR0LL1ddsKfB/1/OtWFhxeaJpSPLSm5WfdM3xX4SoN6F8/ki0H8RYKcJiaqSZQspQ106xBkIWUDIbuUGyC7t+lpmFsQ5v7ssr1YnDj0=
+	t=1719206944; cv=none; b=tGdJZR+/dvGZ9Uex/hlKG9b8vH6uqzBy31wyh+3DmuA4T7UVTs8TL88hykvOsrAFXuZjOOOuzWKhRnEg2/MDKjuwNfmobba/Q6e6RDoDm6P6uIOwFksjskds8lXJF59KThHHtxQCALZk6R+cf0/4T0i0HuRytT9p53KJUeq8KEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719206501; c=relaxed/simple;
-	bh=OY5b1Ggd3joKj5pX4/idm+tD9G3lsLgLiaGEWIKtYz8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=QVOLVkbBbVP06MsUUO2KdsCQHrQNBtbXexfiIHMxsoG2wGdYozR27mCHIyF3N72ba2NZNlhJoRvXc5cDVv+GqwM0bwdNJgsOLM/WfitpdZywZC6/O55alr0av+9P9PqWUbydGdjnVwk/hx5WmnTCd4pKp6lVyILhki6RTKMZ/mE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=YPVRZZfy; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 137302C0A5C;
-	Mon, 24 Jun 2024 17:21:37 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1719206497;
-	bh=OY5b1Ggd3joKj5pX4/idm+tD9G3lsLgLiaGEWIKtYz8=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=YPVRZZfyU5Rx07BO6sGyiceubU5pqHmOjzEsHt3/aUpfkvOMmVCmbfQzNRD35wNGf
-	 mRlWaLzy72VktAu2YadYR4e3ea8YNhMBJh+h7XsE0j9SF9awSKMimGXTwhuQIA+D/O
-	 GAjgmLdSa4xHRN0NCCFf7L0vcxus7iYo11s6cvAAHJvyGHh3tlT++f8TpZKFRvI6ee
-	 7S2KQQozAUDhWy49Zgoptw3QA4+tN1e1EzOt5fyBLOlM5LNq2QXvaDZtVvW5GY6LlF
-	 hh2cJ/jbRRC2tlnsNtDNaj0RNmMgxhYQqoKFAdnqxWx1M/mfV5SB+TEYZIzoKYCGWH
-	 yMOCq3UNIKnDw==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B667902610000>; Mon, 24 Jun 2024 17:21:37 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1544.11; Mon, 24 Jun 2024 17:21:36 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
- SMTP Server (TLS) id 15.0.1497.48; Mon, 24 Jun 2024 17:21:36 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.011; Mon, 24 Jun 2024 17:21:36 +1200
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Krzysztof Kozlowski <krzk@kernel.org>, "tglx@linutronix.de"
-	<tglx@linutronix.de>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "tsbogend@alpha.franken.de"
-	<tsbogend@alpha.franken.de>, "daniel.lezcano@linaro.org"
-	<daniel.lezcano@linaro.org>, "paulburton@kernel.org" <paulburton@kernel.org>,
-	"peterz@infradead.org" <peterz@infradead.org>, "mail@birger-koblitz.de"
-	<mail@birger-koblitz.de>, "bert@biot.com" <bert@biot.com>, "john@phrozen.org"
-	<john@phrozen.org>, "sander@svanheule.net" <sander@svanheule.net>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, "kabel@kernel.org"
-	<kabel@kernel.org>, "ericwouds@gmail.com" <ericwouds@gmail.com>
-Subject: Re: [PATCH v2 4/8] dt-bindings: timer: Add schema for
- realtek,otto-timer
-Thread-Topic: [PATCH v2 4/8] dt-bindings: timer: Add schema for
- realtek,otto-timer
-Thread-Index: AQHaxdUT70y18GNyjU2Cd/YSeK4JbLHVjweAgAAI6AA=
-Date: Mon, 24 Jun 2024 05:21:36 +0000
-Message-ID: <052a4bdb-88fe-4891-a69c-0d90c610d816@alliedtelesis.co.nz>
-References: <20240624012300.1713290-1-chris.packham@alliedtelesis.co.nz>
- <20240624012300.1713290-5-chris.packham@alliedtelesis.co.nz>
- <d65648d6-4e2b-4009-b0e0-7d1f9a926eb7@kernel.org>
-In-Reply-To: <d65648d6-4e2b-4009-b0e0-7d1f9a926eb7@kernel.org>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9386FAE2B7F22D438C9101F4D379748F@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1719206944; c=relaxed/simple;
+	bh=0+fyQK71jkBlGLbSI/zi67aQXYcSRdX3nV9zuMy/sn8=;
+	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
+	 To:Cc:Content-Type; b=USZ6VgJdt+b4IAKC7RmazpnzJ7pRaHV825krcW1ZAuajj5ncB1sKv1RCl3O1m6XY9xJvbu/JTekaU3URcjelbznOSiSM6MfBdGim1/V9zdvqkc8FeVotTKfgt9V7CPM0VMELFIqI/QuaYmlrWo7i8lbbhMxsOEN0qDnrDBO/a9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=TQdFP/Sk; arc=none smtp.client-ip=209.85.219.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com
+Received: by mail-yb1-f202.google.com with SMTP id 3f1490d57ef6-dff1eb1c1fcso6771113276.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 22:29:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1719206941; x=1719811741; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=f4tc+MA3MrEgfJuTL6XyEK1sgKVL7uhnnRi/knhicvs=;
+        b=TQdFP/SkPrXkpWdcN5zUpDEGealyOwB0xYjD1dGTS/4AlAP3znZrz8SSKcudIzqeax
+         4AHaoMPHBupytvTmcowXDPipw8CqiKiN2BmBmvGdmXNeD1mWILoSzBhVyd/Jbg73Sj9T
+         5+CfSYeTYQBbAPX3exF7R4boC3iCr2NCjvrHAMKs4YZsKLdXF5wqQQVyktd/b9lw7Yvr
+         GPOA9HSk0DR47HErpDkhjebdAWBH4LaOOAwlIcl6seYmHbqCgqP5VolrZtGRgRAIYGpb
+         5Y21oN7GzbJUlhoba5rd9lUUI3bWn1u3GjdEuTlPkD+uCr2ieE//tRom2O7g3kn7LP7m
+         g0CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719206941; x=1719811741;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f4tc+MA3MrEgfJuTL6XyEK1sgKVL7uhnnRi/knhicvs=;
+        b=u1EwM24SIZ6zBTn1g35KCDTl7V5eL/5KiVcUyDHyGIZxlWAh3/ZUdpioiDlvezXI2+
+         zqib3EnSyM94YydRovENA6PPneEId8BJJyro7oiJPQPnR1MQbqrOCYz8d80qBWNmTq6K
+         B/rdLVeoGWkl+qwTq49gmceCfXRf2TftgMrGhzuZEH8vpOzpOqLraXt107s3Njbv27dj
+         ffpXapP4K3JPVxMmQTFALvY3rYN1aldUEE6kAqnkX4a7QiU3rw7rDgYWtRsBk4k8eft5
+         5Y3/tOO8+G1uC7RSZmdKTgB0nXOpdcunGLxSv4wG7H+6pDQndVbzugZyP25U8CoZzbHQ
+         dX5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUOToQZmYUJoGZuaDIhY8er6n8pfPycjKvRibZxG2XC7+npOaUj8kr0OIqpCKMhHwB2Q/c/U8Ri613OjBrBfo10jJhNZT53FPpjKQ==
+X-Gm-Message-State: AOJu0YzIt+LzlQ97q/Slrr2miKHE7Y01QGEiwZ5/NTcqyhA4IKs9Hbdk
+	LU9C6wZerhitDLOVLn+dUarEIjgsUudMIdCfgTXwqqdfZe34q0b2+Si9LVl7itnvQEgt3epSCQu
+	oNINiRDvEp1tQakKnO+35uvpnOw==
+X-Google-Smtp-Source: AGHT+IGUgV5rE7AVWD7sfm4jkV4ITjzyYp8qAWL+Hn5XiyhVcilJx1WZCNrB1TylF/AIQIHyiuXzZGueB4wXgIgApaY=
+X-Received: from aniketm.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:3387])
+ (user=aniketmaurya job=sendgmr) by 2002:a05:6902:2d03:b0:dfd:da3f:ad1c with
+ SMTP id 3f1490d57ef6-e02fa3aa814mr386252276.4.1719206941209; Sun, 23 Jun 2024
+ 22:29:01 -0700 (PDT)
+Date: Mon, 24 Jun 2024 05:28:48 +0000
+In-Reply-To: <20240611171600.1105124-1-aniketmaurya@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=66790261 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=T1WGqf2p2xoA:10 a=gEfo2CItAAAA:8 a=OqrPyMiAPZdSGt2y27EA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
+Mime-Version: 1.0
+References: <20240611171600.1105124-1-aniketmaurya@google.com>
+X-Mailer: git-send-email 2.45.2.741.gdbec12cfda-goog
+Message-ID: <20240624052851.1030799-1-aniketmaurya@google.com>
+Subject: [PATCH v2 0/3] i3c: dw: Add apb clk
+From: Aniket <aniketmaurya@google.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Jeremy Kerr <jk@codeconstruct.com.au>, 
+	Joel Stanley <joel@jms.id.au>, Billy Tsai <billy_tsai@aspeedtech.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Aniket <aniketmaurya@google.com>
+Content-Type: text/plain; charset="UTF-8"
 
-DQpPbiAyNC8wNi8yNCAxNjo0OSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gMjQv
-MDYvMjAyNCAwMzoyMiwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IEFkZCB0aGUgZGV2aWNldHJl
-ZSBzY2hlbWEgZm9yIHRoZSByZWFsdGVrLG90dG8tdGltZXIgcHJlc2VudCBvbiBhIG51bWJlcg0K
-Pj4gb2YgUmVhbHRlayBTb0NzLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0g
-PGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4+IC0tLQ0KPj4NCj4+IE5vdGVz
-Og0KPj4gICAgICBDaGFuZ2VzIGluIHYyOg0KPj4gICAgICAtIFVzZSBzcGVjaWZpYyBjb21wYXRp
-YmxlDQo+IFdoZXJlPyBJIGRvIG5vdCBzZWUgY2hhbmdlcy4NCg0KSW4gdjEgaXQgd2FzIHJ0bDkz
-MHgtdGltZXIsIEkndmUgdXBkYXRlZCBpdCB0byBydGw5MzAyLXRpbWVyDQoNCj4+ICAgICAgLSBS
-ZW1vdmUgdW5uZWNlc3NhcnkgbGFiZWwNCj4+ICAgICAgLSBSZW1vdmUgdW51c2VkIGlycSBmbGFn
-cyAoaW50ZXJydXB0IGNvbnRyb2xsZXIgaXMgb25lLWNlbGwpDQo+PiAgICAgIC0gU2V0IG1pbkl0
-ZW1zIGZvciByZWcgYW5kIGludGVycnVwdHMgYmFzZWQgb24gY29tcGF0aWJsZQ0KPj4NCj4+ICAg
-Li4uL2JpbmRpbmdzL3RpbWVyL3JlYWx0ZWssb3R0by10aW1lci55YW1sICAgIHwgNjYgKysrKysr
-KysrKysrKysrKysrKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgNjYgaW5zZXJ0aW9ucygrKQ0KPj4g
-ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Rp
-bWVyL3JlYWx0ZWssb3R0by10aW1lci55YW1sDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aW1lci9yZWFsdGVrLG90dG8tdGltZXIueWFtbCBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aW1lci9yZWFsdGVrLG90dG8tdGlt
-ZXIueWFtbA0KPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IGluZGV4IDAwMDAwMDAwMDAwMC4u
-MTNlYTdhYTk0NmZlDQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvdGltZXIvcmVhbHRlayxvdHRvLXRpbWVyLnlhbWwNCj4+IEBAIC0w
-LDAgKzEsNjYgQEANCj4+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5
-IE9SIEJTRC0yLUNsYXVzZSkNCj4+ICslWUFNTCAxLjINCj4+ICstLS0NCj4+ICskaWQ6IGh0dHA6
-Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3RpbWVyL3JlYWx0ZWssb3R0by10aW1lci55YW1sIw0K
-Pj4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1s
-Iw0KPj4gKw0KPj4gK3RpdGxlOiBSZWFsdGVrIE90dG8gU29DcyBUaW1lci9Db3VudGVyDQo+PiAr
-DQo+PiArZGVzY3JpcHRpb246DQo+PiArICBSZWFsdGVrIFNvQ3Mgc3VwcG9ydCBhIG51bWJlciBv
-ZiB0aW1lcnMvY291bnRlcnMuIFRoZXNlIGFyZSB1c2VkDQo+PiArICBhcyBhIHBlciBDUFUgY2xv
-Y2sgZXZlbnQgZ2VuZXJhdG9yIGFuZCBhbiBvdmVyYWxsIENQVSBjbG9ja3NvdXJjZS4NCj4+ICsN
-Cj4+ICttYWludGFpbmVyczoNCj4+ICsgIC0gQ2hyaXMgUGFja2hhbSA8Y2hyaXMucGFja2hhbUBh
-bGxpZWR0ZWxlc2lzLmNvLm56Pg0KPj4gKw0KPj4gK3Byb3BlcnRpZXM6DQo+PiArICAkbm9kZW5h
-bWU6DQo+PiArICAgIHBhdHRlcm46ICJedGltZXJAWzAtOWEtZl0rJCINCj4+ICsNCj4+ICsgIGNv
-bXBhdGlibGU6DQo+PiArICAgIGl0ZW1zOg0KPj4gKyAgICAgIC0gZW51bToNCj4+ICsgICAgICAg
-ICAgLSByZWFsdGVrLHJ0bDkzMDItdGltZXINCj4+ICsgICAgICAtIGNvbnN0OiByZWFsdGVrLG90
-dG8tdGltZXINCj4+ICsNCj4+ICsgIHJlZzoNCj4+ICsgICAgbWF4SXRlbXM6IDUNCj4gTm90aGlu
-ZyBpbXByb3ZlZC4NCj4NCj4+ICsNCj4+ICsgIGNsb2NrczoNCj4+ICsgICAgbWF4SXRlbXM6IDEN
-Cj4+ICsNCj4+ICsgIGludGVycnVwdHM6DQo+PiArICAgIG1heEl0ZW1zOiA1DQo+IE5vdGhpbmcg
-aW1wcm92ZWQuDQo+DQo+PiArDQo+PiArYWxsT2Y6DQo+PiArICAtIGlmOg0KPj4gKyAgICAgIHBy
-b3BlcnRpZXM6DQo+PiArICAgICAgICBjb21wYXRpYmxlOg0KPj4gKyAgICAgICAgICBjb250YWlu
-czoNCj4+ICsgICAgICAgICAgICBjb25zdDogcmVhbHRlayxydGw5MzAyLXRpbWVyDQo+PiArICAg
-IHRoZW46DQo+PiArICAgICAgcHJvcGVydGllczoNCj4+ICsgICAgICAgIHJlZzoNCj4+ICsgICAg
-ICAgICAgbWluSXRlbXM6IDINCj4+ICsgICAgICAgIGludGVycnVwdHM6DQo+PiArICAgICAgICAg
-IG1pbkl0ZW1zOiAyDQo+IE5vLCB0aGF0J3MganVzdCBpbmNvcnJlY3QuIFlvdSBkbyBub3QgaGF2
-ZSBtb3JlIHRoYW4gb25lIHZhcmlhbnQsIHNvIGl0DQo+IGlzIGp1c3QgMiBpdGVtcy4gT3IgNSBp
-dGVtcywgbm90IDItNS4NCg0KSSd2ZSBiZWVuIHRvbGQgaW4gdGhlIHBhc3QgdGhhdCB0aGUgZGV2
-aWNlLXRyZWUgc2hvdWxkIGRlc2NyaWJlIHRoZSANCmhhcmR3YXJlLiBXaGljaCBpbiB0aGlzIGNh
-c2UgaGFzIDUgdGltZXJzLiBCdXQgSSdtIGFsc28gdG9sZCB0byBnaXZlIA0KdGhlbSBuYW1lcyB3
-aGljaCBJIHN0cnVnZ2xlIHRvIGRvIGJlY2F1c2Ugc29tZSBvZiB0aGVtIGFyZW4ndCB1c2VkLg0K
-DQpTbyBkbyB5b3Ugd2FudCBzb21ldGhpbmcgbGlrZSB0aGlzOg0KDQpjbG9ja3M6DQogwqDCoMKg
-IGl0ZW1zOg0KIMKgwqDCoCDCoMKgwqAgLSBkZXNjcmlwdGlvbjogQ1BVMCBldmVudCBjbG9jaw0K
-IMKgwqDCoCDCoMKgwqAgLSBkZXNjcmlwdGlvbjogc3lzdGVtIGNsb2NrIHNvdXJjZQ0KIMKgwqDC
-oCDCoMKgwqAgLSBkZXNjcmlwdGlvbjogdW51c2VkDQogwqDCoMKgIMKgwqDCoCAtIGRlc2NyaXB0
-aW9uOiB1bnVzZWQNCiDCoMKgwqAgwqDCoMKgIC0gZGVzY3JpcHRpb246IHVudXNlZA0KDQppbnRl
-cnJ1cHRzOg0KIMKgwqDCoCBpdGVtczoNCiDCoMKgwqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOiBD
-UFUwIGV2ZW50IGNsb2NrIGludGVycnVwdA0KIMKgwqDCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246
-IHN5c3RlbSBjbG9jayBzb3VyY2UgaW50ZXJydXB0DQogwqDCoMKgwqDCoMKgwqAgLSBkZXNjcmlw
-dGlvbjogdW51c2VkDQogwqDCoMKgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogdW51c2VkDQogwqDC
-oMKgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogdW51c2VkDQoNCj4NCj4NCj4gQmVzdCByZWdhcmRz
-LA0KPiBLcnp5c3p0b2YNCj4NCj4=
+These patches add APB clk aka pclk to the dw i3c driver
+and the binding doc. Also move to _enabled clk_get APIs.
+
+Aniket (3):
+  dt-bindings: i3c: dw: Add apb clock binding
+  i3c: dw: Add optional apb clock
+  i3c: dw: Use new *_enabled clk APIs
+
+ .../bindings/i3c/snps,dw-i3c-master.yaml          | 11 ++++++++++-
+ drivers/i3c/master/dw-i3c-master.c                | 15 +++++----------
+ drivers/i3c/master/dw-i3c-master.h                |  1 +
+ 3 files changed, 16 insertions(+), 11 deletions(-)
+
+-- 
+2.45.2.741.gdbec12cfda-goog
+
 
