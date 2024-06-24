@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-79368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8CE91500C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:36:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E663915020
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:39:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E261E1F20F02
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:36:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B4EAB22E55
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FBB519AD52;
-	Mon, 24 Jun 2024 14:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C788F19CD19;
+	Mon, 24 Jun 2024 14:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="D4Qg4kWO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pJwZ1dMT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C97019AA7E
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 14:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9479819CD12;
+	Mon, 24 Jun 2024 14:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719239808; cv=none; b=JxP9NuNbhQK0+2RjrIF3TvP24nQPlShpVnE8aM0+XB/oMwuwETiQjy9g/bx11BP2Ov/IQSc7VXPMOjDRzKVFmRuHkdBjO9Cv55YnDNGTOnOtvaLBpQRM3NVObX9zUmmvnAsX2FRW1y2iRh2iSVXhiPVgR+LO5p8T1FaM5VRcPGA=
+	t=1719239892; cv=none; b=qbsB6Mp1xoCOOlyfDZuwaxwSQyUvus8mkJ3mVfdgKBdCV7Qz7uga4GuJ+rAQKl+WS0AtTwvMLrrtk+cRtobAHfF3OlyBCeVoc5gZavLfScoVvCUVFrmtdb1v3UH8Cq/OeglVIJT8FOKo9l80ZYwIHPZXM6bo27I6VfP7UekDWzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719239808; c=relaxed/simple;
-	bh=wggDE/bgRHa1L4mODGwspiGnIRUUi8LE6HqPBbnBW1w=;
+	s=arc-20240116; t=1719239892; c=relaxed/simple;
+	bh=6N04oReBSNGcXT8RvWlMnkgFlIgW+zDsiQskdOqixuQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TwetPA111SK3RahFnVZOOSd7XcfQ40nouq/VG2KZFl7smK9Bf+881z/W7lmVElmq719krUm6PQ2iuIvqZHP91M3ve/8a1wgBx5g/rA8D+faWI7LxKDcCkACGRtQhFi9mMh/8+XyofApIge/1EiJO3okCMYi6VJtX/rsry+l61H4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=D4Qg4kWO; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-25cc6962c24so1934987fac.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 07:36:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719239805; x=1719844605; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bv7pX3A7e0aATefTLSH8Hc9sIVLTEzJJ10hAyVPLd4s=;
-        b=D4Qg4kWOMTyXlMutlJzC7nJPcQ8Xchp+bLyQAo7/b4CoIgTwRh6xctArKTEpTMpFAd
-         So3i7k/sLXj7KMHdwCdkxmFZlEtL6gwpqsmh2dEVYX37Pr1H+TJcmLD/mfBDVpLzZ4qC
-         cRNZSkfnXrlKesXqYyuslEBwByN/gQFYxkty6aU1C0FBjdv06Re4kLda4tI6RWhgP7fT
-         3VqmzvZqBH4Wqrci+HYSNXA/a7dkxemWZKpUCwVnp9MFbnSmVkA2ORTj5MuwGLjMoINz
-         AAE1G1COvnoe25qhhMpMyO5nSTGUr7stPU6ip7DbHFAMaeM3HWtxvdmp8PNlJ8nXy7vT
-         ItOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719239805; x=1719844605;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bv7pX3A7e0aATefTLSH8Hc9sIVLTEzJJ10hAyVPLd4s=;
-        b=WoKlvQu7H33FPKVvCpCCakjOfMh1oONidD01mW+ldKJfFdN+qX1dQbJFUvqcp5Kzky
-         uFNrGD2ZDy7H58nBMI6FKUxyGfyy7rjL6XwdTmrfp27yABqZgidEvudE0NEyKDceXDfy
-         cafd0koOiRywSuWXpU3jTK41OjfpD4D2cQiT80bF2DtKvednEz+15c5LP+Q4aoZFQw1M
-         zIIXRrEhkOrz7haqa5ILoPAndTBEqVskDJBsIXK9ew7znnF7Rzc/9GZLW+D218VmrRfV
-         SHkuOfVyLgUrdg4VMKQP0qTBBunS/+O/PIZIeYSIjwC440SU4IeYhxEiCv6kgW07Ov7d
-         WloA==
-X-Forwarded-Encrypted: i=1; AJvYcCW6gIDDtr+U99xFIG4mZRmUB36PJ3MvCYePQhXTWex+Ie6vUzwVI0epvlOoDw48KOOx8+c/Fc2U9jB0HxhGC8WKv2FeYEnh3wbSfg==
-X-Gm-Message-State: AOJu0YzEpzYL+LMWDN2svLLRn6fpQyRUkyoiYvI+jqbfX+NcxBM7ao61
-	uxczfC7rsodct+JI3jdO7sopyMkYYHNfXQwGa207YWnI/GdVOS3xAAAv79lc9ZQ=
-X-Google-Smtp-Source: AGHT+IHwuPQplsBX8FrXFbl4eyzFRD7RhUchQKz0/ngb6Hz3DMqC+czTWLIPmE8rnu0aE5J8JeEIEw==
-X-Received: by 2002:a05:6870:b4a4:b0:254:b6f0:21b6 with SMTP id 586e51a60fabf-25d06bb45d2mr4708448fac.10.1719239804925;
-        Mon, 24 Jun 2024 07:36:44 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25cd4941a11sm1895787fac.9.2024.06.24.07.36.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jun 2024 07:36:44 -0700 (PDT)
-Message-ID: <204e6729-d5b0-4d44-85d5-e8de7541b689@baylibre.com>
-Date: Mon, 24 Jun 2024 09:36:43 -0500
+	 In-Reply-To:Content-Type; b=cQrYpFn+lWsXhzUU/9hs6fjZYZpExujTZ5ya19q9O8H0b0s+1o2LB3n0kPWYpLNqxTxOo62MNuzNalqmUkRg6+66U3OTm0OIOOxHS0sHPk7zIegTsCcmvaVlYiIiL8fwlot3rtiggL7jJh9BuOwp0osRP/o59rOFEvY5UeE9uGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pJwZ1dMT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C62FC2BBFC;
+	Mon, 24 Jun 2024 14:38:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719239892;
+	bh=6N04oReBSNGcXT8RvWlMnkgFlIgW+zDsiQskdOqixuQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pJwZ1dMTVutMSKBjWOKtAuh08NdO3hT6+aU/0z/Ld19pAKQW1kF7eW/3J4lTD1ztM
+	 1rbSbdfcpszxOG2tsgbc8A01/X8uM6YkTDz8MqMv1lvFJmV/ZTJvdi0Cq9cbF8NeWB
+	 gGNT72i5LdqsgzgnSfuXVx3Gh7f5eKZXurZXLOm+Ycc2iI0XJAJpHh8+yfHGfe4Fhu
+	 oK2FnfOx0x2shx6OTG93fVLRj4UWC29oFOLznPXlsg2csxdvu5PwV3cZZGTYSXiMBV
+	 nt9wjR17TzBlBHBMioHZxavTLZXTMZCyMQFRQ5Jm42h8vuMpFsfVMmiAd4POKnJf+M
+	 w0KJz4AOLk/Sg==
+Message-ID: <3bb6bf45-2a3e-4ed8-86f3-f0480af622d5@kernel.org>
+Date: Mon, 24 Jun 2024 16:38:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,211 +50,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: iio: adc: add AD4695 and similar ADCs
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20240617-iio-adc-ad4695-v2-0-63ef6583f25d@baylibre.com>
- <20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com>
- <187da75c-9af3-42a9-b31e-be731aaf63d2@baylibre.com>
- <20240623173911.7ea5d518@jic23-huawei>
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: Add x1e80100 LPASS AUDIOCC
+ reset controller
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240624-x1e-swr-reset-v2-0-8bc677fcfa64@linaro.org>
+ <20240624-x1e-swr-reset-v2-1-8bc677fcfa64@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240623173911.7ea5d518@jic23-huawei>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240624-x1e-swr-reset-v2-1-8bc677fcfa64@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 6/23/24 11:39 AM, Jonathan Cameron wrote:
-> On Tue, 18 Jun 2024 14:29:10 -0500
-> David Lechner <dlechner@baylibre.com> wrote:
+On 24/06/2024 15:32, Srinivas Kandagatla wrote:
+> X1E80100 LPASS (Low Power Audio Subsystem) Audio clock controller
+> provides reset support when it is under the control of Q6DSP.
 > 
->> On 6/17/24 2:53 PM, David Lechner wrote:
->>> Add device tree bindings for AD4695 and similar ADCs.
->>>
->>> Signed-off-by: David Lechner <dlechner@baylibre.com>
->>> ---
->>>   
->> ...
->>
->>> +
->>> +  interrupts:
->>> +    minItems: 1
->>> +    items:
->>> +      - description:
->>> +          Signal coming from the BSY_ALT_GP0 or GP3 pin that indicates a busy
->>> +          condition.
->>> +      - description:
->>> +          Signal coming from the BSY_ALT_GP0 or GP2 pin that indicates an alert
->>> +          condition.
->>> +
->>> +  interrupt-names:
->>> +    minItems: 1
->>> +    items:
->>> +      - const: busy
->>> +      - const: alert
->>> +  
->>
->> Since the interrupt can come from two different pins, it seems like we would
->> need an extra property to specify this. Is there a standard way to do this?
->>
->> Otherwise I will add something like:
->>
->> adi,busy-on-gp3:
->>   $ref: /schemas/types.yaml#/definitions/flag
->>   description:
->>     When present, the busy interrupt is coming from the GP3 pin, otherwise
->>     the interrupt is coming from the BSY_ALT_GP0 pin.
->>    
->> adi,alert-on-gp2:
->>   $ref: /schemas/types.yaml#/definitions/flag
->>   description:
->>     When present, the alert interrupt is coming from the GP2 pin, otherwise
->>     the interrupt is coming from the BSY_ALT_GP0 pin.
-> Cut and paste?  Or it ends up on the same pin as the bsy? In which case that's
-> a single interrupt and it's up to software to decide how to use. I'll guess
-> it comes on GP1?
-
-This is not a typo. The BSY_ALT_GP0 is a multi-purpose pin. The actual function
-of the pin isn't selected explicitly, but rather there is an order of priority
-(Table 25 in the datasheet).
-
-Also, there are two packages the chip can come in, LFCSP and WLCSP. The former
-only has GP0 and not GP1/2/3.
-
-My thinking was that if both interrupts are provided in the DT and neither
-adi,busy-on-gp3 or adi,alert-on-gp2 is given, then the driver would use
-a shared interrupt and only allow enabling one function alert or busy
-at a time.
-
->>
+> Add x1e80100 compatible to the existing sc8280xp as these reset
+> controllers have same reg layout and compatible.
 > 
-> More interrupt names.  We shouldn't restrict someone wiring all 4 if they want
-> to - we'll just use 2 that we choose in the driver.
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml      | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
 > 
-> interrupt-names
->   minItems: 1
->   items:
->     - const: busy-gp0
->     - const: busy-gp1
->     - const: alert-gp2
->     - cosnt: alert-gp1
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
+> index 3326dcd6766c..c33bf4c5af7d 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
+> @@ -18,10 +18,13 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - qcom,sc8280xp-lpassaudiocc
+> -      - qcom,sc8280xp-lpasscc
+> -
+> +    oneOf:
+> +      - enum:
+> +          - qcom,sc8280xp-lpassaudiocc
+> +          - qcom,sc8280xp-lpasscc
+> +      - items:
+> +          - const: qcom,x1e80100-lpassaudiocc
+> +          - const: qcom,sc8280xp-lpassaudiocc
 
-This would actually need to be:
+Please keep here blank line. With this:
 
-interrupt-names
-  minItems: 1
-  items:
-    - const: busy-gp0
-    - const: busy-gp3
-    - const: alert-gp0
-    - cosnt: alert-gp2
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Or would it need to be this since there are two possible signals on the
-same pin rather than trying to mess with a shared interrupt?
-(Note: if both alert and busy are enabled at the same time on GP0, we
-will only get the alert signal and busy signal is masked).
-
-interrupt-names
-  minItems: 1
-  items:
-    - const: alert-busy-gp0
-    - const: busy-gp3
-    - cosnt: alert-gp2
-
-> 
-> T   
->>
->>> +
->>> +patternProperties:
->>> +  "^channel@[0-9a-f]$":
->>> +    type: object
->>> +    $ref: adc.yaml
->>> +    unevaluatedProperties: false
->>> +    description:
->>> +      Describes each individual channel. In addition the properties defined
->>> +      below, bipolar from adc.yaml is also supported.
->>> +
->>> +    properties:
->>> +      reg:
->>> +        maximum: 15
->>> +
->>> +      diff-channels:
->>> +        description:
->>> +          Describes inputs used for differential channels. The first value must
->>> +          be an even numbered input and the second value must be the next
->>> +          consecutive odd numbered input.
->>> +        items:
->>> +          - minimum: 0
->>> +            maximum: 14
->>> +            multipleOf: 2
->>> +          - minimum: 1
->>> +            maximum: 15
->>> +            not:
->>> +              multipleOf: 2  
->>
->> After some more testing, it turns out that I misunderstood the datasheet and
->> this isn't actually fully differential, but rather pseudo-differential.
->>
->> So when pairing with the next pin, it is similar to pairing with the COM pin
->> where the negative input pin is connected to a constant voltage source.
-> 
-> Ok. I'm curious, how does it actually differ from a differential channel?
-> What was that test?  It doesn't cope with an actual differential pair and needs
-> a stable value on the negative?
-
-In my initial testing, since I was only doing a direct read, I was using
-constant voltages. But when I started working on buffered reads, then I
-saw noisy data when using a fully differential (antiphase) signal.
-
-This chip uses a multiplexer for channel so when an odd number pin is used
-as the positive input (paired with REFGND or COM), it goes through one
-multiplexer, but when an odd number pin is used as the negative input
-it goes through the other multiplexer - the same one as REFGND and COM.
-
-And burred in the middle of a paragraph on page 34 of 110 of the datasheet
-is the only place in the entire datasheet where it actually says this is
-a pseudo differential chip.
-
-> 
->>
->>> +
->>> +      single-channel:
->>> +        minimum: 0
->>> +        maximum: 15
->>> +
->>> +      common-mode-channel:
->>> +        description:
->>> +          Describes the common mode channel for single channels. 0 is REFGND
->>> +          and 1 is COM. Macros are available for these values in
->>> +          dt-bindings/iio/adi,ad4695.h.
->>> +        minimum: 0
->>> +        maximum: 1
->>> +        default: 0  
->>
->> So I'm thinking the right thing to do here go back to using reg and the INx
->> number and only have common-mode-channel (no diff-channels or single-channel).
->>
->> common-mode-channel will need to be changed to allow INx numbers in addition
->> to COM and REFGND.
->>
->> This means that [PATCH v2 1/4] "dt-bindings: iio: adc: add common-mode-channel
->> dependency" would be wrong since we would be using common-mode-channel without
->> single-channel.
->>
->> It also means we will need an optional in1-supply: true for all odd numbered
->> inputs.
-> Ok. I'm not totally sure I see how this comes together but will wait for v3 rather
-> than trying to figure it out now.
-> 
-> Jonathan
-> 
+>    reg:
+>      maxItems: 1
+>  
 > 
 
-It should end up like other pseudo differential chips we have done recently.
-I've got it worked out, so you'll be seeing it soon enough anyway.
+Best regards,
+Krzysztof
+
 
