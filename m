@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-79107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE708914132
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 06:40:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A0B91413C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 06:47:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BD991F22BA3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 04:40:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D5B4281705
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 04:47:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F46D502;
-	Mon, 24 Jun 2024 04:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6853ECA6B;
+	Mon, 24 Jun 2024 04:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mItXLxHL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r4Cvt1O3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61FBCA64;
-	Mon, 24 Jun 2024 04:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA8810F7;
+	Mon, 24 Jun 2024 04:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719204019; cv=none; b=K8xtUca2PlgeyqdL6iSBdOh0QT2jAZvi2dEcrIcGZ3g32rdrBvr3K6c9yHKq3qy+JSm+XQkHiyvwUC/d7sQwS7DcGUIHi5hSif026hfvXHMqnZj7zUEm00O9MFshQtUPwpJzh77f2zWt3xD89SIRJi3Co5aVCRqVCZCin78zits=
+	t=1719204424; cv=none; b=mDvwVrn+Ehp0pO+pyXXaZOdp6P7qv901Vmp65kzCWejmKi4QoBOVOcriztMXuIvesz36wruPDqTv6K6uxJYfxOEhN7xwrg1r+Vz0E5vVeLgYyD2NWcOLW7t/o5v/rICxed/nzKiMBQ04T+NQC51Cb2liO0QLyYXt+NJSdllboww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719204019; c=relaxed/simple;
-	bh=RENMatYIOIThS86qc+aiIQklu9vpGy+F1mjAhxEgZps=;
+	s=arc-20240116; t=1719204424; c=relaxed/simple;
+	bh=Zea9RsIa+T0i+Pkcf8g23nQDkknyPGDg3QGeblfUbMU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L4o47rh47/5rHTDO+Ve+PrYkhEYdgzewbo1t8TfoOfoHEL4c+MulKw1eNh5w/vdGwBwyV/waFcnUiDW8FrdfTD8XIZ2VuitaRtW+pskF+SKs1mtF/4k7csy5E1raByzyo9VMRoDIdH7P3O9gTA4sSTG201jKApAqKK5Z+9eZUKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mItXLxHL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1675EC2BBFC;
-	Mon, 24 Jun 2024 04:40:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AZ+S+HAnt0SRuUC8YlTrFr9+ieSVNojPbQ7Ket2xRZGsCl7fGV8N4ZqfsVhPdn/wizTEf36yq+IPyM5phCnBXYnw/LXnMnHWL+nttlFu8m4mpLbv5Tavqmn045o+RsOIKs8towWC2qVGn6Gi41VQUb8um1Goyplt3oiVX1yBH40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r4Cvt1O3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59D22C2BBFC;
+	Mon, 24 Jun 2024 04:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719204019;
-	bh=RENMatYIOIThS86qc+aiIQklu9vpGy+F1mjAhxEgZps=;
+	s=k20201202; t=1719204423;
+	bh=Zea9RsIa+T0i+Pkcf8g23nQDkknyPGDg3QGeblfUbMU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mItXLxHLdJH9QhCDD+I+EcNaaq1PpYRrBM9CEStHj+tvyNNdQZnzLuC8ja4x5kcAP
-	 l0FexydNeftx0/TxPiiauhXS3NJlUV7ZazHW/oBr3V1hhZSmVmwDn6Qkpj3fYIElsZ
-	 W60w7E8MAFAykSZ457xZUlSL4Mi2tnLnag/e7nZIKamQdTecl9tA/nqsGlxkDVqrIG
-	 ZhDPJfebrxceD/0b7LtUVAmfvZyROvp+BwZ2n9A8F8qOpFdqFePUv/bXAgRIiyN4dP
-	 q/D1SfWXptvO1YrnEfqKcxDr/BztcVRRe+Ib46Cf1X0A+Z5eMVNl89M6ol4n5u/E8B
-	 spKF1hs68SYXQ==
-Message-ID: <50f3befe-44e4-45bb-9f85-b15fc2209ee2@kernel.org>
-Date: Mon, 24 Jun 2024 06:40:13 +0200
+	b=r4Cvt1O3Knu6rEmcpo1rjullj3hNl8GMGSDucfMI3qxj2aPVmMAp4l4zn/yokI5jV
+	 wMh7yeFIQXkCTNhseZjfooGFWPt2ukhrpMSUzi5OACganUHMNqrMC3WfRKt2167yFg
+	 iaaRXPq3FAuQ4j3GG2Lt0luVjeAJN8BSjCkO+sJIQa1MZC8VwLkh7MESHlmeKqrVHG
+	 hUZAK+2g+8k+xBpuzxJoTz8gejey/Bnl0TA5wrlbNEv/DbZ/LY361lDuWhIgPpWnNG
+	 8CWjk0LYKl3lJtmNCx1f9ClN70rQuHBwYcDkYb3ScBJXTSbPcfFSgHuYBWMvO5msaQ
+	 A7ejX//8OnZBA==
+Message-ID: <8dabf3d1-2d23-4adc-a804-2b7aa5fe16e9@kernel.org>
+Date: Mon, 24 Jun 2024 06:46:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: phy: qcom,qmp-usb: fix spelling error
-To: YijieYang <quic_yijiyang@quicinc.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: quic_tengfan@quicinc.com, quic_aiquny@quicinc.com,
- quic_jiegan@quicinc.com, kernel@quicinc.com, stable@vger.kernel.org
-References: <20240624021916.2033062-1-quic_yijiyang@quicinc.com>
+Subject: Re: [PATCH] arm: dts: aspeed: Use standard 'i2c' bus node name
+To: Joel Stanley <joel@jms.id.au>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20240531193115.3814887-1-robh@kernel.org>
+ <CACPK8Xes5vp+3YpQ3L5ix=LaDv7oWtqGFVc8moQf4D+o3rnLjg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,20 +104,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240624021916.2033062-1-quic_yijiyang@quicinc.com>
+In-Reply-To: <CACPK8Xes5vp+3YpQ3L5ix=LaDv7oWtqGFVc8moQf4D+o3rnLjg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/06/2024 04:19, YijieYang wrote:
-> From: Yijie Yang <quic_yijiyang@quicinc.com>
+On 24/06/2024 03:55, Joel Stanley wrote:
+> On Sat, 1 Jun 2024 at 05:01, Rob Herring (Arm) <robh@kernel.org> wrote:
+>>
+>> The standard node name for I2C buses is 'i2c'.
 > 
-> Correct the spelling error, changing 'com' to 'qcom'.
+> Unfortunately this can't be merged, as it will break userspace. There
+> is a lot of code out there that looks up devices based on the device
+> tree node path:
 > 
-> Cc: stable@vger.kernel.org
-> Fixes: f75a4b3a6efc ("dt-bindings: phy: qcom,qmp-usb: Add QDU1000 USB3 PHY")
-> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+> https://github.com/openbmc/phosphor-state-manager/blob/3c1351cc2b63178876ef68f4107c9804d2e17dcc/meson.options#L140
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Eh, thanks for sharing.
+
+That's totally stupid user-space. The sysfs path to /sys/devices, or
+some grep by compatible, would be fine, but iterating over firmware/DT
+is just wrong.
+
+Reminds me USB and ChromeOS. They could fix their userspace, so probably
+folks here can as well. I filled a bug.
 
 Best regards,
 Krzysztof
