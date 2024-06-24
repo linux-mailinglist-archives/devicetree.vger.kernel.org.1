@@ -1,110 +1,92 @@
-Return-Path: <devicetree+bounces-79408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB69915347
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:17:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B30D791535B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0724E1F2161E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:17:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DB39281421
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6254E19DF52;
-	Mon, 24 Jun 2024 16:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rTHyXUPJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32D219E7FB;
+	Mon, 24 Jun 2024 16:20:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35DEF19DF45;
-	Mon, 24 Jun 2024 16:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABBB19D8BB;
+	Mon, 24 Jun 2024 16:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719245867; cv=none; b=eMGogyPZLjL7niEsu7fplLjbhomA75obqjOrMq6rUoBMAPpiXTBy8JkW+O86M+0R02RNTb/lPLCJWhvwArSk2WndiOR1KHTbIkJtNGOy3fAlAPfqZme4tcdCayUThh/1XekdtXDsHee9IplioCdVg3aBueApDXncYxfoEgLA47Y=
+	t=1719246034; cv=none; b=Izt/H44Pl+JI9QewOXcNmyq7Ao70wZM4gHiIJxzrxTgjfZo0ilPiO671JhZ0xxr0VPtas30CVVaU36rHws5jWTCnUKzBYgckaz3Cu2luDdvRTld34r7FG0GHOybjBZl1q8UeiR0JhLYRkNplYzg/ALI6avovdl22wMNJMAI+SSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719245867; c=relaxed/simple;
-	bh=8wg+IgQ4PaKNBqjTBMybjMI9WUgplFxqmpCdUCJCerc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jZtBq710k/IF2xZ+2QrY/N7wfLrgPCs+5Wq8JDN7fO4fdBGXgXDCBV4KuEJKLe10v5v/+jALaBHvprBFi2B4u9Wb4UMFgigGNQ04q0MDFPbG6ITjGG/31Fjwl2jNcwzBhvkZErfrjAACHEEsQtKjEDLZeCHhNw3mw5df7fDKi6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rTHyXUPJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE446C2BBFC;
-	Mon, 24 Jun 2024 16:17:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719245866;
-	bh=8wg+IgQ4PaKNBqjTBMybjMI9WUgplFxqmpCdUCJCerc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rTHyXUPJB2WXXfwDpSYPM7otSVvfo8wpUGPIgc7LbX2ZW75OfcFUvpOPDpD5zYz2p
-	 YUDax538+SoQ46n6+tv0dvyniBtnHgaPmFE/TxDf/XyMLR+5HknKY87m1dp+z8rNk1
-	 gPEaAkYd16I0XWyiTI4hB7hHchjMtJt/IFkqsYe2zebLcUbLxtiIQEtNtD2n38Cr6h
-	 ufb67Z6o8klqPwJlma0ograCtjlt7gcvlbN7uvK04OaKUKBtiUt68wyOK3P7YMV8dz
-	 DW48EhClqI7XhjD5qCC5AJdBQyEUJUyNgETWs00wLUFaaDNFomzXci3sww/dp1j6X8
-	 p4+w6BpcnN5yA==
-Date: Mon, 24 Jun 2024 17:17:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v6 2/6] dt-bindings: iio: adc: ad7192: Update clock config
-Message-ID: <20240624-backpedal-reviving-97c8d582222a@spud>
-References: <20240624124941.113010-1-alisa.roman@analog.com>
- <20240624124941.113010-3-alisa.roman@analog.com>
+	s=arc-20240116; t=1719246034; c=relaxed/simple;
+	bh=JsgoWkpxxFib+5mLxRHfM+q+sPT/9XjgfpB6NE/RmH8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DUZF0xNBWiNK2OZCs+k4tnKXGYqEygdhXW3i6Rs/dLRQY61r5jBjWy9dXP3jpY6tKo9fLEpJC/daWRXZdDbI8hw7dh91Gt/s7+vkf9oRV7Y/iGoA8w3TXdItyykYX0oNRWkMZez1vG/FtuDz2cJZNiPQ9fdudqDcYJnTBHF+Ck0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6a.versanet.de ([83.135.91.106] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sLmQY-0001wn-VT; Mon, 24 Jun 2024 18:20:23 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Alexey Charkov <alchark@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Chen-Yu Tsai <wens@kernel.org>
+Subject: Re: (subset) [PATCH v5 0/8] RK3588 and Rock 5B dts additions: thermal, OPP and fan
+Date: Mon, 24 Jun 2024 18:20:12 +0200
+Message-Id: <171924573799.612064.3075817964360702437.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
+References: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="omsOYQBq1QY2vkXw"
-Content-Disposition: inline
-In-Reply-To: <20240624124941.113010-3-alisa.roman@analog.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Mon, 17 Jun 2024 22:28:50 +0400, Alexey Charkov wrote:
+> This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
+> active cooling on Radxa Rock 5B via the provided PWM fan.
+> 
+> Some RK3588 boards use separate regulators to supply CPUs and their
+> respective memory interfaces, so this is handled by coupling those
+> regulators in affected boards' device trees to ensure that their
+> voltage is adjusted in step.
+> 
+> [...]
 
---omsOYQBq1QY2vkXw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks!
 
-On Mon, Jun 24, 2024 at 03:49:37PM +0300, Alisa-Dariana Roman wrote:
-> There are actually 4 configuration modes of clock source for AD719X
-> devices. Either a crystal can be attached externally between MCLK1 and
-> MCLK2 pins, or an external CMOS-compatible clock can drive the MCLK2
-> pin. The other 2 modes make use of the 4.92MHz internal clock.
->=20
-> To configure external clock as either a crystal or a CMOS-compatible
-> clock, changing the register settings is necessary. Therefore, add clock
-> name xtal alongside mclk. By selecting one or the other, the register is
-> configured.
->=20
-> The presence of an external clock source is optional, not required. When
-> both clocks and clock-names properties are present, an external clock
-> source is used. If the intention is to use the internal clock, both
-> properties should be absent. Modify required properties accordingly.
->=20
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+[5/8] arm64: dts: rockchip: Add CPU/memory regulator coupling for RK3588
+      commit: 0ba0560982bc8d0c3fb3ca209fd0ed29f81402ac
+[6/8] arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
+      commit: 276856db91b46eaa7a4c19226c096a9dc899a3e9
+[7/8] arm64: dts: rockchip: Add OPP data for CPU cores on RK3588j
+      commit: 667885a6865832eb0678c7e02e47a3392f177ecb
+[8/8] arm64: dts: rockchip: Split GPU OPPs of RK3588 and RK3588j
+      commit: a7b2070505a2a09ea65fa0c8c480c97f62d1978d
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
---omsOYQBq1QY2vkXw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnmcJQAKCRB4tDGHoIJi
-0h3aAQCInM/tqZw1VmACMY/akNf5ilQCas16+g+ecxOMWKdA5QD/UkC9eqbbM6o7
-HnyuUnbaF1oFodqRVFT7GzXHhY1KZg0=
-=wLu0
------END PGP SIGNATURE-----
-
---omsOYQBq1QY2vkXw--
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
