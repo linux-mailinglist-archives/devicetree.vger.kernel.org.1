@@ -1,133 +1,141 @@
-Return-Path: <devicetree+bounces-79121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 948FC91419C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:03:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E9091419A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:02:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A60E2845B6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:03:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77D8DB224E3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FEBA1426C;
-	Mon, 24 Jun 2024 05:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0F611187;
+	Mon, 24 Jun 2024 05:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f91aen9r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kh6S+/pj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC8111187;
-	Mon, 24 Jun 2024 05:03:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1BA15E86
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719205416; cv=none; b=fw9y3Q4OFHAWjJWUGx/urAPT1R6OF5zq6zNdY3MAhQIfLfqHkUHEQlAzyzgXFz9T254jNsIh+Omr3o3JbpcjyxnzTe0ESOQ4uII270VVNLX/4M7li0g2+UiRKnBCEGzZHgTYu5ZergQ4i7d4T47cNgMMYXbZfya0BmJRQgFLCPo=
+	t=1719205373; cv=none; b=MXj6NWS7b6TgWBZVDN1L/xTBlfT88LFxW2UM6iGP8s3o7NWuJJUlIq0AYvEy4JHLWkhA7I0rs+u8jySZ+8SDI/9V8g+/ivogllV1o6x3pQAxiXr9DbNav+Rbqjy2+PJBEvq+0Z75xuiVUQ/AZcG0njlPIz6DPv5Cz3bNbjh6jgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719205416; c=relaxed/simple;
-	bh=CcC4Zuz/drcO8nWpmJRJKrsKuh7xi6r8YElcifeiaDs=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YymAJ63XjvTfcdqvmqR2BE19eQXv7W6eQ6IHfoI3FZyQNuzOYseX9tyLdjBAf+2xmmomORTp6KeVyf/ply2yD4pqDd74iQSdweXnP+u1isNIqWDB5zFY6JXRQTByHOVGE1v7ntrjofzoV2NV4g2lLqwbDq+PY0LzlruL5/yMsig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=f91aen9r; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45NMhakO027950;
-	Mon, 24 Jun 2024 05:03:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=P0HbXYdemLq06rk6Ds6aLV
-	ie97k5l+YMqAL/6d90F94=; b=f91aen9rtexmRpXxlFQYx+Iw3AY+B3Nu1UZLqV
-	RFaQsAj76veKejBNKBzgaD18/DYx6HiO9kV+RZG+yitJ2QXxkK7FKRe2qKGm2WDm
-	BcyJElYC9MABA9E9vZ/cMKfc2DveS1kUdeDnDXfLUXb836/istWM+V/6koDXqSCp
-	R9eJ1LAgbE6thePIO2uqXvXOauk/RupLUbIt4gLfQwuZ2jv0sJCm8XtnUX+6ISoO
-	nb6qtjoG3dIm9Xv+3YQfExSIKi8Q+dUFlxVehIpc4jZTP0/7G4rnk67n/RKxXck7
-	XCxjAjslgSxnyeohEt7dI4ltEhPKmlywgjPFPmfmT4o1kdlA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywqceaprw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Jun 2024 05:03:25 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45O53OxL019489
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Jun 2024 05:03:24 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 23 Jun 2024 22:03:17 -0700
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <angelogioacchino.delregno@collabora.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>, <quic_sibis@quicinc.com>,
-        <abel.vesa@linaro.org>, <otto.pflueger@abscue.de>,
-        <quic_rohiagar@quicinc.com>, <quic_varada@quicinc.com>,
-        <luca@z3ntu.xyz>, <quic_ipkumar@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: [PATCH v2 0/7] Enable CPR for IPQ9574
-Date: Mon, 24 Jun 2024 10:32:47 +0530
-Message-ID: <20240624050254.2942959-1-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1719205373; c=relaxed/simple;
+	bh=nYR+viUkjFt7rbGagv83DdTL2tcBQCTFE+Pj6gjMcZI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Srx4ZCVXjNA77j3bgokNbrwkm1V95IhUmxl6sewUObTpj5cZAZNqeqrHfwYLGJTlUfjkV3X8XgAlLIT2CmVorWF4/vZTZF5zhgQ8+f4CFQebqHXnvfgZNkf3BAP6P6kNINg/VtpLPAH4Cy0iluyr7+kTnMCTEKzpqJTe08fsh1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kh6S+/pj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F85C2BBFC;
+	Mon, 24 Jun 2024 05:02:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719205372;
+	bh=nYR+viUkjFt7rbGagv83DdTL2tcBQCTFE+Pj6gjMcZI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Kh6S+/pjHbeDpRMEr8HDnwERGmuDkoo6+6jkEUZ1hNSYeR5lzar4Gug/FZK+436zm
+	 pvz5sXlr/6r0DOiVIb+2hPf90u5j1Jlzd0clHDF/AxgpgZF3Kq/k6jmW1kme6jbgb7
+	 bdqMHR3Y6HCrxQltzNPINalC13rAnPHsDz2lVNtF9J/RkQZB7pxsGvaAAEZ194Tqnf
+	 2FUWlMoVYOl2ePsDsMzXLYvcI9lpovvZPyIztkM57gnM5sAkJ6kiFVcHng16XedIon
+	 PR15S7wGdR7ppLYh8Mr1MAOPlTiuF6B4BV0ODTQeVp3mb3I8a0Z5NfnAr8C0RwTT4j
+	 CUsRRhFGvUw7Q==
+Message-ID: <1de6979a-7291-48c1-bcd6-c5d1a757d3a3@kernel.org>
+Date: Mon, 24 Jun 2024 07:02:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pP0kyQlm5ieUY3B2qZpBzAeJ90cB0D7E
-X-Proofpoint-ORIG-GUID: pP0kyQlm5ieUY3B2qZpBzAeJ90cB0D7E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-24_04,2024-06-21_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- mlxscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 spamscore=0
- suspectscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406240038
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa ROCK Pi E
+ v3.0
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240623201415.3205-1-naoki@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240623201415.3205-1-naoki@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This series tries to enable CPR on IPQ9574, that implements
-CPRv4. Since [1] is older, faced few minor issues. Those are
-addressed in [2].
+On 23/06/2024 22:14, FUKAUMI Naoki wrote:
+> Add devicetree binding for the Radxa ROCK Pi E v3.0 board.
+> 
+> Radxa ROCK Pi E v3.0 is a single-board computer based on the Rockchip
+> RK3328 SoC with a compact form factor.
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> 
+> Changes in v3:
+> - none
+> Changes in v2:
+> - none
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index eca0a42eb384..53ca61c47b76 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -779,6 +779,11 @@ properties:
+>            - const: radxa,rockpi-e
+>            - const: rockchip,rk3328
+>  
+> +      - description: Radxa ROCK Pi E v3.0
+> +        items:
+> +          - const: radxa,rockpi-e-v3
 
-dt_binding_check and dtbs_check passed.
+Just make it enum with previous entry.
 
-Depends:
-	[1] https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org/T/
-	[2] https://github.com/quic-varada/cpr/commits/konrad/
-
-v2: Fix Signed-off-by order in 2 patches
-    Update constraints in qcom,cpr3.yaml
-    Add rbcpr_clk_src registration
-    Add Reviewed-by to one of the patches
-    Not adding Acked-by as the file has changed
-
-Varadarajan Narayanan (7):
-  dt-bindings: power: rpmpd: Add IPQ9574 power domains
-  dt-bindings: soc: qcom: cpr3: Add bindings for IPQ9574
-  pmdomain: qcom: rpmpd: Add IPQ9574 power domains
-  dt-bindings: clock: Add CPR clock defines for IPQ9574
-  clk: qcom: gcc-ipq9574: Add CPR clock definition
-  soc: qcom: cpr3: Add IPQ9574 definitions
-  dts: arm64: qcom: ipq9574: Enable CPR
-
- .../devicetree/bindings/power/qcom,rpmpd.yaml |   1 +
- .../bindings/soc/qcom/qcom,cpr3.yaml          |  35 +++
- arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 269 ++++++++++++++++--
- drivers/clk/qcom/gcc-ipq9574.c                |  39 +++
- drivers/pmdomain/qcom/cpr3.c                  | 137 +++++++++
- drivers/pmdomain/qcom/rpmpd.c                 |  19 ++
- include/dt-bindings/clock/qcom,ipq9574-gcc.h  |   2 +
- include/dt-bindings/power/qcom-rpmpd.h        |   3 +
- 8 files changed, 488 insertions(+), 17 deletions(-)
-
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
