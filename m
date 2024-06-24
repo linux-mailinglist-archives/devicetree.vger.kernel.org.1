@@ -1,177 +1,113 @@
-Return-Path: <devicetree+bounces-79459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A63D91557F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:38:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 284B89155A0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:43:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1686E283635
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:38:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A93ACB22045
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6CAF19EEC4;
-	Mon, 24 Jun 2024 17:38:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75C019EEDD;
+	Mon, 24 Jun 2024 17:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DyIPANmI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B45FC08;
-	Mon, 24 Jun 2024 17:37:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EB919EEC6;
+	Mon, 24 Jun 2024 17:43:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719250680; cv=none; b=Nwuma+y/j/qQXlli4m7419GP8XRhJxu2dgACyM/pfiDNKm+EWzsZxOVmaKAU3IkG7G4lBFa6rnC2iaJPy83JY9UID831/7bLrG5fIg2bpQ3JqMYh9TQnjVXsh9kxeEop3LtFCvbjgrym43KmU4qgQ8LYbzvmRUAbDuF/PfEKgDE=
+	t=1719251013; cv=none; b=ljTeVs/L1tSM6K8ETpUmDiPh623wUknlSeFjwN/aaOFojJtpWpXWsKe64YV1bZoXByi7WVhfJ0I/4zIk0lej91lA6IDqOWQdzolhuiiPnUh7LCD8LhsxB1+Kq6KBK09LPY47G5p2JbJGPDmTK9+Vg935Yu40sM7GVMh3XuPNOAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719250680; c=relaxed/simple;
-	bh=hKek7vAN+H1Rl0A+SO7nDTHqRgCZcC5LuCBveazv6cc=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LArhbQqBmR5ky330xOEmjgrJuGJi+GTu2Eh72gs4WGOB5wymusr9o9DgRjJIJ/lteWksDh9C1NmeqkyBZqareQrBvUz8Jdn/trCM/wzDBAvFMLdWR9bajyq+0/GkmaKZzdqG4YzHCBf3DUJWzu7ptRmq4wZ5dQab18vnSqzq9QA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4W7FXG15BPz6K6KJ;
-	Tue, 25 Jun 2024 01:37:18 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 4F8E8140A70;
-	Tue, 25 Jun 2024 01:37:54 +0800 (CST)
-Received: from localhost (10.203.174.77) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 24 Jun
- 2024 18:37:53 +0100
-Date: Mon, 24 Jun 2024 18:37:53 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "Paller, Kim Seer" <KimSeer.Paller@analog.com>, Jonathan Cameron
-	<jic23@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
-	<linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, David Lechner <dlechner@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, "Hennerich, Michael"
-	<Michael.Hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	<noname.nuno@gmail.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
-Message-ID: <20240624183753.0000218c@Huawei.com>
-In-Reply-To: <20240624-untracked-molasses-31e8769dddd3@spud>
-References: <20240619064904.73832-1-kimseer.paller@analog.com>
-	<20240619064904.73832-5-kimseer.paller@analog.com>
-	<20240619-vanity-crowd-24d93dda47b8@spud>
-	<20240623144339.6a5087cf@jic23-huawei>
-	<PH0PR03MB71419D55571B07479B4F4FB8F9D42@PH0PR03MB7141.namprd03.prod.outlook.com>
-	<20240624-untracked-molasses-31e8769dddd3@spud>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1719251013; c=relaxed/simple;
+	bh=IfldlGFHsAMQVMoyS6SUigsG7AKmsKv1tHCFvAVq7Z4=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=rrBngAjFa0Z8Z3hyEw0x1AmbPUZeI6380jBzPXqdnwxVSHDLtEDPWKEUSQFG9Lsu2Zh/Z4oTFP+GwDU+qkNKOrIZgXARRt+aom0UKlrXjzeZStnWsR677+R5/DZpiVF+gGpPOc7UXQxwszoquv1ILF1pAHaHLOlLRgRG7gwiDiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DyIPANmI; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57d20d89748so4374811a12.0;
+        Mon, 24 Jun 2024 10:43:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719251010; x=1719855810; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L+lSKICwKIdtSkK9lQl+OJqVa8pdF3gRpXCDKOHiiJ8=;
+        b=DyIPANmIsDq8zzZDRbj+V907ZFKeRiVySatr86djumi2zvPd0zzjaJTKzJilOvWGT/
+         7rYUCEV6Du/pyUhPe+waEpkq1sDDFdUfLxqes39neMBQafq5+ZKnimKd6z0I21XfosUd
+         0qruixkOSef2GcC5afv/Jb0dDrqyKu0F5LBSNEte9nQTzO1P4zYG0rGC3akarbkFWkVf
+         FD9QNAsOlNJ28LYaLSpJ9QnH+brN/bZCYZN4N3yKVN/VOKAiD2t/GE/ikOlG5xl4cMXJ
+         ENzSxjYOFE+PPG7Wtoh77ZV37tTN2rAsmZh2CuqSVfrOdA+u6V0Q/3BzczEpARBsFnOS
+         +0Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719251010; x=1719855810;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=L+lSKICwKIdtSkK9lQl+OJqVa8pdF3gRpXCDKOHiiJ8=;
+        b=oRYnxh7GPZuUty7uOKZEgIu78YQZrKajiAnT5YMFPwM5KN+lQ3GGf3ayKcmBJuYe6n
+         yhOwIbOyjHb1XD+rpM4ssBrp3vBlG1AxNyHS2ehNi8tTZA3Ioyri9DLchgQSJlvf3Rvs
+         mnDCLaAUejG5GhDL1ED/CqmJrdrb5PlU1MIwX2JYkZhfXPpAu19GS7QSSrGBKd0AgfXB
+         QHajGsexzsA1LtjZ1I1Hya9MnxcFXrbQQe0IQFtTf4vXfMCmaWDZzCreuB9wVFQF6jBP
+         OvUb3elBBRUd1+8vXdgGkNF4EUbFsW8OG2hgIAfeHKzL+OEb39zY0v80NcqV3v2xl0Fi
+         NMcA==
+X-Forwarded-Encrypted: i=1; AJvYcCXL5Emt58v8B1bqWbX1i4DnUVCNtNabPs3Relze+iuAsgDR52RPjbD34UbbQqvtBPXkguNY8puf2EjHkbHGG/k3gq6x7B7tMWgypdRtMvMV4CssoqHEta4Lnw5x9vVzvxZIjMeuzGwXSg==
+X-Gm-Message-State: AOJu0YzjYQYSavaQa6mFu9Ko8plLWzOwSSMxj/rAu6xWifor9kMrgmw/
+	dWvBKUH53cOxaSbLno3E64mNxMliV7yVnBbQ+z2U1KrZ/+8MMfAx
+X-Google-Smtp-Source: AGHT+IFRm8WW9olx0Eld72eMp/pkrAuCiI9962yug8FqjUKRgG78eHmwQkGVhlbFo3Exv938w+Aofw==
+X-Received: by 2002:a05:6402:270c:b0:57d:6079:3916 with SMTP id 4fb4d7f45d1cf-57d607939edmr2112010a12.26.1719251010277;
+        Mon, 24 Jun 2024 10:43:30 -0700 (PDT)
+Received: from ?IPV6:2a02:a449:4071:1:32d0:42ff:fe10:6983? (2a02-a449-4071-1-32d0-42ff-fe10-6983.fixed6.kpn.net. [2a02:a449:4071:1:32d0:42ff:fe10:6983])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57d3040f003sm4944936a12.29.2024.06.24.10.43.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jun 2024 10:43:30 -0700 (PDT)
+Message-ID: <55d302e5-c018-4b93-84c1-8cf75162e939@gmail.com>
+Date: Mon, 24 Jun 2024 19:43:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+User-Agent: Mozilla Thunderbird
+From: Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] ARM: dts: rockchip: rk3036: add #sound-dai-cells to hdmi
+ node
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 24 Jun 2024 18:00:24 +0100
-Conor Dooley <conor@kernel.org> wrote:
+'#sound-dai-cells' is required to properly interpret
+the list of DAI specified in the 'sound-dai' property,
+so add them to the 'hdmi' node for 'rk3036.dtsi'.
 
-> On Mon, Jun 24, 2024 at 03:26:26PM +0000, Paller, Kim Seer wrote:
-> >=20
-> >  =20
-> > > -----Original Message-----
-> > > From: Jonathan Cameron <jic23@kernel.org>
-> > > Sent: Sunday, June 23, 2024 9:44 PM
-> > > To: Conor Dooley <conor@kernel.org>
-> > > Cc: Paller, Kim Seer <KimSeer.Paller@analog.com>; linux-
-> > > kernel@vger.kernel.org; linux-iio@vger.kernel.org; devicetree@vger.ke=
-rnel.org;
-> > > David Lechner <dlechner@baylibre.com>; Lars-Peter Clausen
-> > > <lars@metafoo.de>; Liam Girdwood <lgirdwood@gmail.com>; Mark Brown
-> > > <broonie@kernel.org>; Dimitri Fedrau <dima.fedrau@gmail.com>; Krzyszt=
-of
-> > > Kozlowski <krzk+dt@kernel.org>; Rob Herring <robh@kernel.org>; Conor
-> > > Dooley <conor+dt@kernel.org>; Hennerich, Michael
-> > > <Michael.Hennerich@analog.com>; Nuno S=E1 <noname.nuno@gmail.com>
-> > > Subject: Re: [PATCH v4 4/5] dt-bindings: iio: dac: Add adi,ltc2672.ya=
-ml
-> > >=20
-> > > [External]
-> > >=20
-> > > On Wed, 19 Jun 2024 18:57:59 +0100
-> > > Conor Dooley <conor@kernel.org> wrote:
-> > >  =20
-> > > > On Wed, Jun 19, 2024 at 02:49:03PM +0800, Kim Seer Paller wrote: =20
-> > > > > +patternProperties:
-> > > > > +  "^channel@[0-4]$":
-> > > > > +    type: object
-> > > > > +    additionalProperties: false
-> > > > > +
-> > > > > +    properties:
-> > > > > +      reg:
-> > > > > +        description: The channel number representing the DAC out=
-put =20
-> > > channel. =20
-> > > > > +        maximum: 4
-> > > > > +
-> > > > > +      adi,toggle-mode:
-> > > > > +        description:
-> > > > > +          Set the channel as a toggle enabled channel. Toggle op=
-eration =20
-> > > enables =20
-> > > > > +          fast switching of a DAC output between two different D=
-AC codes =20
-> > > without =20
-> > > > > +          any SPI transaction.
-> > > > > +        type: boolean
-> > > > > +
-> > > > > +      adi,output-range-microamp:
-> > > > > +        description: Specify the channel output full scale range.
-> > > > > +        enum: [3125000, 6250000, 12500000, 25000000, 50000000, =
-=20
-> > > 100000000, =20
-> > > > > +               200000000, 300000000] =20
-> > > >
-> > > > IIO folks, is this sort of thing common/likely to exist on other DA=
-Cs? =20
-> > >=20
-> > > Fair point. It is probably time to conclude this is at least moderate=
-ly common
-> > > and generalize it - which will need a dac.yaml similar to the one we =
-have for
-> > > ADCs in adc/adc.yaml.  That will need to make this a per channel node=
- property
-> > > (same as the adc ones). =20
-> >=20
-> > Should I proceed with generalizing common DAC properties in this series=
- and does =20
->=20
-> I think so, yes.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rockchip/rk3036.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Yes, that would great.
+diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+index 04af224005f8..96279d1e02fe 100644
+--- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+@@ -402,6 +402,7 @@ hdmi: hdmi@20034000 {
+ 		rockchip,grf = <&grf>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hdmi_ctl>;
++		#sound-dai-cells = <0>;
+ 		status = "disabled";
 
->=20
-> > this mean somehow removing these common properties from existing DAC bi=
-ndings? =20
->=20
-> I think that that one is up to Jonathan.
-
-We can deprecate them.  At somepoint we can remove them form the documented=
- bindings
-but we will need to keep them in drivers forever (which won't be costly in =
-this case).
-
-Jonathan
-
->=20
-> > > I'd also expect it to always take 2 values. In many cases the first w=
-ill be 0 but
-> > > that is fine.
-> > >=20
-> > > Jonathan =20
-> >  =20
->=20
+ 		ports {
+--
+2.39.2
 
 
