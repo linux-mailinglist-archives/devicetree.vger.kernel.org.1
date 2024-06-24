@@ -1,291 +1,192 @@
-Return-Path: <devicetree+bounces-79377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74D39915056
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:44:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5979150D8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:52:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951D61C222F3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:44:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81144285EDD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A6219B5A9;
-	Mon, 24 Jun 2024 14:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F5A1A00EC;
+	Mon, 24 Jun 2024 14:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="IRsKQ6H1";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="jk4EMgrW"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="olr4n3fz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2054.outbound.protection.outlook.com [40.107.104.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A24B19AD7A;
-	Mon, 24 Jun 2024 14:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719240214; cv=none; b=UY/7vUvWcVnmPmAn4t5j78JDDTUHnKJCeiWKhU9hMQj9+5AL0Lk0GBwZmZCzECSEeuFApuK6/3Ev2C3C26i3d+IHTkf4AcIi/AaGJmitdYmy3oMaJjW6xP12Saitd9WUlZimgaNFN3NLeRTehzxXdzc6Hl2flp7G5ffMcyNVwT8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719240214; c=relaxed/simple;
-	bh=1SKSoOMhg7m2wPI9pt+PWfCBpswdUm7hmP5RYsLmTfc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mo2sgSXigcLWNC5nkUt7nDPOegQsoWSonJ7Mg2VgQL8LH7LjGngP2WIZXaQQ9klgUamX/iTZrVcNSjJcuBrdxVXo+ln/Sb4Uufu50Ba7bwCbOYKIBK+lmNk49AOFrWfDqRwJeJ9j4dJWh466crBEFolk4+dxtO+PcIW0be4Uwz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=IRsKQ6H1; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=jk4EMgrW; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 59E8C138026D;
-	Mon, 24 Jun 2024 10:43:32 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 24 Jun 2024 10:43:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1719240212;
-	 x=1719326612; bh=e9kgzW91s3NM6KzJBaFLJbx250V/XTQ4VKPxIhZw0rU=; b=
-	IRsKQ6H1gVpdYKNY/b+EBPAaKg7VXCRTRLa+NHtv+f4RJ51xrF7JA52eilFk7SGW
-	EXHmXDKNVJEZWy78IBeNJo5M6Uw9GRMAAijw1xuaN3bEQb66LaUhoJx5WwIK7yHj
-	MQ6CCDFwtbMjxXeIYM+CFy2n3iAXLRUTT6XrY35x2n5PR8zxovGi53eA+h8XKTki
-	fJlPOsseUOS8blhONmEMCEeelIs5pAH05Agvv9K2KuiVPKbyYPk7HAIF9abOUmmB
-	Dck8W2oia+FYxzbK0hkbUuVTC2uhFO+EsOVuUuQpT6fS+s/MLBWEjsF499YbdvnS
-	j4Jo/ceAffYnsEhhcSPZZg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719240212; x=
-	1719326612; bh=e9kgzW91s3NM6KzJBaFLJbx250V/XTQ4VKPxIhZw0rU=; b=j
-	k4EMgrWjYEo4nCijydeCSpXeY2/mUaB+4Jhh/ZapPTp/TdM/E7G78YKdtrSHFDY9
-	bzaoGTOH2PWlJNOI+ZNm7HntkEOwmuc0IFnFd4ZkgOE4Uj1qOBYvPgkTnRUYn8Wg
-	9Zn3mKx7T4zhS5Vgz/RK9iySLriwwupRAdM7GzoM1JsSMeHWy6x374IT6qpQAVld
-	B/bK2+uxUiWkYiNMFl8CM32fo+/MjGxM9LFE+dEnBg2Mq59RHPUZGf3NYjyUcKWI
-	eulVI790OKP1JzkSglxz+yNQlzyXaKq0NTYV/phz985KCmKi87513kAFGQBmy/uY
-	60fbJktdGibICN602rZxw==
-X-ME-Sender: <xms:FIZ5ZvSzg85xGwV7YkT-I5KGU2UAAlzRw2Nz6DluFu_A0fYY7NJEgw>
-    <xme:FIZ5ZgzzpgYN-uwtXmiroz1cgtAejLLC4vBT6umKQTHGQu3MwWfehygglL_l0xF1E
-    gsA3wS-Q3Xx6CqMkV4>
-X-ME-Received: <xmr:FIZ5Zk2c4kEo1pBhAeQehi9jH9XgjqW9MEiugYIomMOeOPCmbYTEMRlSWpR9HdqOXr6CvcNSzNOaYImG_nQJEKqz0A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeeguddgkedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhk
-    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
-    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehiefgueev
-    uedtfefhheegkeevtdelueeukeevfeduhefhhfejfffggeffleefgeenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggv
-    rhhluhhnugesrhgrghhnrghtvggthhdrshgv
-X-ME-Proxy: <xmx:FIZ5ZvAmyccxDs_EoXXk1Hi0iJZA7A06HFfjFlLzSkEJT96Ln5sNdQ>
-    <xmx:FIZ5Zoj4JAvfCqTQ5xdXJAQGhJp-o_VaefJsfrZhnxjSpj-Nc2_Gmg>
-    <xmx:FIZ5ZjqeToSNMRGEQAow4wErITPn9f8kY1-LHTX3K1FkzyPM-8NI2w>
-    <xmx:FIZ5ZjgMt5OIG4UOKNdtd4JD1d-2pE1aGyUGWX07m2lLs16goiqKMQ>
-    <xmx:FIZ5Zta8WkzqWhrjzUmgqcz_2TGgz0M-FyPBFnf_icrvzm3Xp_x5TYQp>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 24 Jun 2024 10:43:31 -0400 (EDT)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH v4 5/5] arm64: dts: renesas: r8a779h0: Add family fallback for VIN IP
-Date: Mon, 24 Jun 2024 16:41:08 +0200
-Message-ID: <20240624144108.1771189-6-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240624144108.1771189-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20240624144108.1771189-1-niklas.soderlund+renesas@ragnatech.se>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EF219FA97;
+	Mon, 24 Jun 2024 14:47:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719240440; cv=fail; b=ik9r/7ozwbeyy6wrIOQYA2gx/Q5Fk2k1TngNLpBLs+p+BATp6O1PjZLfJeEzJakGSzOkW0kjvYAKWQf9JjoaPJfUVCLgIXCpCabVyyyoI9sNPtCJ8zoCFjJn+8GKdc8l5czzBEfnBkMMNJfQTGf+Yn/jEccSvTqvzcyyMsGRUE8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719240440; c=relaxed/simple;
+	bh=z6Hf1Yp+zK72VPsyGMaXPxWDTrjoGe5jqMYtJoUZKKE=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=EFl7CM9X2kYJeJKxZelAWurxE0QtlMhlTjpSkR+QI1oIoUs64lUcCjbCl7Xk+z62iAE0NDVeR7rg7dyoESCo4oINX6b5+/9KyJRMMCQ5fY0QNAxXVzk1GVTtRS4VrCnaKmnrI/2aSvmTWngbHViyBJ4k5zEChBD9pHTi5P107jw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=olr4n3fz; arc=fail smtp.client-ip=40.107.104.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CySzgmODrCgbgn66BSWr9xR84ErmyIxIc69Qn54diwybvW+lag2e6jeffXUpAzYRdUeyvmglEXap+0T2LEDbNd6ktZuTnXv2jwy1uGebiPIK5mhcuuC77rO0Y1flzIMKc8rMRb+pGFeooh2Vn7uZqIYGLqvhG/5U2by5H4mIkLm7R5NphK2hDE8oJMO8aFSiIQmV9jVT+zqWzXL9MxdTY9QHm5FUAbUFZBrj0VFSpTWHEDCQ6sIOuIwb3+2zZKv4EyNpTsoJ10N5Y8QBO9BH/Woi/MNuABGPMAb6/C/xOxYCfynwebnVOr0YwEkEQ3rN0WGsQpdap9i3eFaIQ2xQPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UKf58Qp+Q/d2Kpho8jxSODsXI1kyXdz+P/2HpUfmq1c=;
+ b=F48Gol0FWDWnzSforxtC810CPBmvpPpC7mMAJV0RJbAsmRPZ2Vjx7m80h/3igbIfFstmQkNDQtYCz0i2zt6/H+q8sir1Lo7QVz9pUADVeHa+ChQTI0ywvjTcDTwy6sFuyJX9dXvWgShkzp+terWujaoTXgR1jLcTkSjFYb8OqsONKCg1mSFRLJTFS/qLiBk/NxBLi8nG6Q3LySwT/7fqLYU1fRNA4Au0j77KWryYMTJb97QnvCIUjK+GBYKOgOQSu31vqS9ErStb9p9JOA0xkDKtVSIVy6eDzItpr3Z6onPuqz3wrMJQTieQxeAqQp5qedTkmFsE27Zn5N9eEBD9iA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UKf58Qp+Q/d2Kpho8jxSODsXI1kyXdz+P/2HpUfmq1c=;
+ b=olr4n3fzUf2qkR41GIXWkwKNoH3hTD/KhRSXZC2HFRIk6xqWAY/dXyv6o9Nn0LMQgL6NKdHuGLO/ld8lt2xboxXy4DJ9fA77JYZ496+Iq2U4jKgSlA9AS9UoXZ9I+K1kFHn6HhBgT8oNBby2/5q5Vq77esG3wASc++zbGBpleX8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI0PR04MB10253.eurprd04.prod.outlook.com (2603:10a6:800:23e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.26; Mon, 24 Jun
+ 2024 14:47:15 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7698.020; Mon, 24 Jun 2024
+ 14:47:15 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: netdev@vger.kernel.org
+Cc: Frank.Li@nxp.com,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	edumazet@google.com,
+	imx@lists.linux.dev,
+	krzk+dt@kernel.org,
+	kuba@kernel.org,
+	linux-kernel@vger.kernel.org,
+	madalin.bucur@nxp.com,
+	pabeni@redhat.com,
+	richardcochran@gmail.com,
+	robh@kernel.org,
+	sean.anderson@seco.com,
+	yangbo.lu@nxp.com
+Subject: [PATCH 1/1] MAINTAINERS: Change fsl-fman.yaml to fsl,fman.yaml
+Date: Mon, 24 Jun 2024 10:46:55 -0400
+Message-Id: <20240624144655.801607-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0299.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::34) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10253:EE_
+X-MS-Office365-Filtering-Correlation-Id: 878b04ea-1dc8-4110-6d0f-08dc945c89c0
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230037|366013|52116011|7416011|376011|1800799021|38350700011;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?4PaM6gtN/ZdpDbcaFmJC5aEshU+flnHjNgcIlMZZklEm6pgPZAp9hOKg5CqY?=
+ =?us-ascii?Q?4uGOx87q2K1lfTgvl7vlA8At6zpM3zdO9ZmG6C1CB6Cq7IbhZm0MPHcqUn1G?=
+ =?us-ascii?Q?LcncVFZpi9Hu17hwNDkRSg3911G6eKvoW3QE8riVGXbZmaAv72wCy6C6SreG?=
+ =?us-ascii?Q?DN7s6M5e+HfegZItEb3gWGPRg21gk9UBLpKFgHAU1+2191EcC0TPJZaMy3g2?=
+ =?us-ascii?Q?zbrBy1CYxuofacsR4CniXpNlCrTqBB9/KcI+iesjv6AJCPxj1Q+NDUA4XyRT?=
+ =?us-ascii?Q?Mm+qIoatb4DKofXdEgUz/ERfpYGpxMKkY+o7UD28SFfFz2Vr1M5B5YOFB7jE?=
+ =?us-ascii?Q?ARnMA5oiQLAWA5F8g8tWXIs6Yi6yUvHHQwVmyo7fVPY1Z0XXgypbT2cTpcHy?=
+ =?us-ascii?Q?pi2fpSNUFAPgGA4LI/1PG0wkKk57Fy456Dx/xqop2xgUJ8VUOoPlux6/eaP8?=
+ =?us-ascii?Q?tFRBt4TqsjWmAk2ogSEhZE7SVCURleWNngevIZh3S8d+5U8hY9UpK386X/EU?=
+ =?us-ascii?Q?Kw5pHCorpTyoCItB3tp0xZTz/vPkhX/zfA6EnnzxP1uPZYVp5MzcCvoauA+4?=
+ =?us-ascii?Q?PUHc5psl2n7IscGA4Awd/W8DOqFq3RCRrtRQgYyG8nIBPd7LeAV4ER3JtN1N?=
+ =?us-ascii?Q?iIbEyTGQ0eaI6Vfe2bgACWy4lPeBBdz/4i4t6ygCdH8ovqQsUQU4Rix+ar5c?=
+ =?us-ascii?Q?k+6KU9TCzVWp7iy6SWgYTBXi1muUyA9o+j8lp8DDz9UtkV/ZtjMTtm19tsL5?=
+ =?us-ascii?Q?SmFhk6FnZOX/GLU1MWer7n4IVUpKqTeekzF0IdtOzii0buJ8qBi5M6klsnQv?=
+ =?us-ascii?Q?t0nFB7t2B0EIPMJzbEYYNwANjrJYeqHJZGzERlRVjgJ3iM7lCXaeMNUC60Pg?=
+ =?us-ascii?Q?8FDVmiYg1ml4vBn6RYTlkvpGaaWpnMmsp+eodYNZyU0CkQT6iJIqL4jwL2QZ?=
+ =?us-ascii?Q?LR1hvnugS17LcUSDjZd/o2kS7hlZfIN8D5FBYCuCFqcyp2KJDRPQGjkOtriJ?=
+ =?us-ascii?Q?39d8nifFRTmTA1G3DyqeMyDQwVCGFWtzYFGe3jA6KDdtnu5wBixURWs7kxNT?=
+ =?us-ascii?Q?rUL+bDKdyBg3Rjonm9yFUMU573KBXABXmXVz0Q3NEnaQ92bUA9Jpq7beWWYh?=
+ =?us-ascii?Q?eVd4sa+nuZLUgmKX+NxpNPV2ll2eH+dGLyrlOvCtviCiWuC1wuC4trgGqgwk?=
+ =?us-ascii?Q?z/A24GyWNmugrQIbbCTaAHTg/wfduRMwWTiB08i0vE87r0pRsN1oEk+HoESA?=
+ =?us-ascii?Q?Exi/PgXxlBJJ3FoclzD5gtHxgJFIOZR29Pp61z/mC5YuwEu4ljVHBdeDlT2l?=
+ =?us-ascii?Q?P+GKvUTcJYilNJui/pn0uTWB?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(52116011)(7416011)(376011)(1800799021)(38350700011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?VvZTebiFLsczoa10Zkv+PTJnQtZpU3mJWrSRBz1dfIP8uigaTv8rVjMZSn57?=
+ =?us-ascii?Q?3qwVgEBiCyelh+MPbBFbFQMsVsl2YhilYzl9TSGdlhohQ4953YX31be8RsyD?=
+ =?us-ascii?Q?xFApP1VYY2IO32Aw2z1KzHQv4MEWoJHEkT/2HGjhKjmksaTZBWPSzs/LncIp?=
+ =?us-ascii?Q?UVTjLo6FRgMuvLjvNAhalD+yBzfBhVDiNZBvmKaTRk0G0OZWbqUaXx7P1y5z?=
+ =?us-ascii?Q?/v2q1pATT3pfH1tli5FrAgQK04XQyidaI0flWgBFbTOYfeJAx9WQ+BD0Rnz0?=
+ =?us-ascii?Q?z1ZAf7UG9VmK/VRve1LgNdUhPPHfEAmWJFb9Y9eOb8CkMBKo3aZkL1gZ+aho?=
+ =?us-ascii?Q?XT6Wh7ZxoBc2IvEKEnrwuFlywn34xe42lmNRwQNiZyCMz5rC7jaAGYQzGrJc?=
+ =?us-ascii?Q?wFgH6LTbMGjycBhXq3GbgqA3Y4ijal007IrVaXujGo+n+VKnnjfsVS2kGKc8?=
+ =?us-ascii?Q?YxBxVjqGOZnTrhv6VwZsY3YEphmzTrNLvtyRZjlHiuW71pweYfaDcFB3atR+?=
+ =?us-ascii?Q?8yR6YrP8bOeQfOyiHaAdbIvOnE4RraT5dkzCV/YSoMVsQHJIbJ5gh9RdUukZ?=
+ =?us-ascii?Q?apR2LEgM7T9sZZt1ODcz5/GlxYIQYHwvvLyj3hFR1WtHkItDB0SphvZtgiQo?=
+ =?us-ascii?Q?4XV2D1oef06t3vthfYrWzRLe1WlNkGVc2o1a0xSXIoR+lVUbox2WWLFgS5GN?=
+ =?us-ascii?Q?M8PwKV6wxiTYQ4BsIBclyCgFZvEl91YYV7q+gLtJVS335bLn18Imbna5UwJs?=
+ =?us-ascii?Q?ivlD5sHu2xtTmh+2M1OH+f8mXOQlg6Haf+gsXDn12eWPmtS8b3B5kAoJRFWt?=
+ =?us-ascii?Q?5x4hfCBzB69r1PEHcgBYRbmcPP1Gjjxb0mEO32o41gNjCTB0EcS0YJmO87Bj?=
+ =?us-ascii?Q?5pkymPMmamZqo/W+a9WJARqKzupkPOWmIWL3cmW2nEZgVe76P32eb8utSgC0?=
+ =?us-ascii?Q?qjf2wmGuN6nXFx7LoCYIR+0lgBlbl7sD1odSPZknKWxND7WAstPgvKPFBl4Y?=
+ =?us-ascii?Q?v12Q7EzNAk7jB0C8dlP34iVbXjvtQmqUzrAnJ+XIXXg4wUhAz6kS/4s0r9dY?=
+ =?us-ascii?Q?taCtTBkgBxG0GdT69faz7NeUIXu/tqzzVd/nbSrQ/6kGHKMCAz++4ONXwpjx?=
+ =?us-ascii?Q?Xe6hy8rkTkkFzA6OjvSX5z42YdlVkapILGfEI1ikg3APpY0a2Hs4ciKZCEtV?=
+ =?us-ascii?Q?PA3LofZMd1rdnvtqaEsDzJB/Yj4yYEhr9+qgASKTJOiH/c9vP9Ae5gxiZOQC?=
+ =?us-ascii?Q?iQJRj3aUWqwIaD1F63m7VYLayA6xqBl+0/hL7CxvNxaAM/75VeHgz4U+SGc2?=
+ =?us-ascii?Q?YDxUqZ3l5B7gue0dhlhj6RWVQljDhctwooGgkuMRwNk19W6yR+ZC5Fu4l+Fl?=
+ =?us-ascii?Q?guWsUluyzCnqcLdjFh5KlNXmveKiNvzujC2NGAZ0G3dZus1JqNqSnv5gOtH4?=
+ =?us-ascii?Q?MFSFGX9h+oTqPpIL7d56gKvsI3NUbszHCEHVJsriVfZBSMq5Ms93moDrd3hu?=
+ =?us-ascii?Q?zgBdKLcNqqoQv7O6N1yIkAIAnn7218pzvP8GUNDUGI3Ui47TYrbOQF9FVLta?=
+ =?us-ascii?Q?IHgRbFKRY5N2dhZ/NfoAT0u6WLUhM+TvSruKyJu9?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 878b04ea-1dc8-4110-6d0f-08dc945c89c0
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2024 14:47:15.3208
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VsMsnoM54dksKoBrRMMj/W991PDNhM2Z8UjsDK095KPeOykyyQx1Qk7A8arwY5NfL5QIJyg23bTcOCDM1TeZtA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10253
 
-The usage of the V4M VIN bindings where merged before the bindings where
-approved. At that time the family fallback compatible where not part of
-the bindings, add them.
+fsl-fman.yaml is typo. "-" should be ",". Fix below warning.
 
-Fixes: 2bb78d9fb7c9 ("arm64: dts: renesas: r8a779h0: Add video capture nodes")
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/net/fsl-fman.yaml
+
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202406211320.diuZ3XYk-lkp@intel.com/
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
-* Changes since v3
-- New in v4.
----
- arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 48 +++++++++++++++--------
- 1 file changed, 32 insertions(+), 16 deletions(-)
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-index 400169fe4a1a..989f567a8ba1 100644
---- a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-@@ -945,7 +945,8 @@ msiof5: spi@e6c28000 {
- 		};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 807feae089c4d..7da4c469c14d4 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8874,7 +8874,7 @@ M:	Madalin Bucur <madalin.bucur@nxp.com>
+ R:	Sean Anderson <sean.anderson@seco.com>
+ L:	netdev@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/net/fsl-fman.yaml
++F:	Documentation/devicetree/bindings/net/fsl,fman.yaml
+ F:	drivers/net/ethernet/freescale/fman
  
- 		vin00: video@e6ef0000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef0000 0 0x1000>;
- 			interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 730>;
-@@ -973,7 +974,8 @@ vin00isp0: endpoint@0 {
- 		};
- 
- 		vin01: video@e6ef1000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef1000 0 0x1000>;
- 			interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 731>;
-@@ -1001,7 +1003,8 @@ vin01isp0: endpoint@0 {
- 		};
- 
- 		vin02: video@e6ef2000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef2000 0 0x1000>;
- 			interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 800>;
-@@ -1029,7 +1032,8 @@ vin02isp0: endpoint@0 {
- 		};
- 
- 		vin03: video@e6ef3000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef3000 0 0x1000>;
- 			interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 801>;
-@@ -1057,7 +1061,8 @@ vin03isp0: endpoint@0 {
- 		};
- 
- 		vin04: video@e6ef4000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef4000 0 0x1000>;
- 			interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 802>;
-@@ -1085,7 +1090,8 @@ vin04isp0: endpoint@0 {
- 		};
- 
- 		vin05: video@e6ef5000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef5000 0 0x1000>;
- 			interrupts = <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 803>;
-@@ -1113,7 +1119,8 @@ vin05isp0: endpoint@0 {
- 		};
- 
- 		vin06: video@e6ef6000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef6000 0 0x1000>;
- 			interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 804>;
-@@ -1141,7 +1148,8 @@ vin06isp0: endpoint@0 {
- 		};
- 
- 		vin07: video@e6ef7000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef7000 0 0x1000>;
- 			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 805>;
-@@ -1169,7 +1177,8 @@ vin07isp0: endpoint@0 {
- 		};
- 
- 		vin08: video@e6ef8000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef8000 0 0x1000>;
- 			interrupts = <GIC_SPI 537 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 806>;
-@@ -1197,7 +1206,8 @@ vin08isp1: endpoint@1 {
- 		};
- 
- 		vin09: video@e6ef9000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6ef9000 0 0x1000>;
- 			interrupts = <GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 807>;
-@@ -1225,7 +1235,8 @@ vin09isp1: endpoint@1 {
- 		};
- 
- 		vin10: video@e6efa000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6efa000 0 0x1000>;
- 			interrupts = <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 808>;
-@@ -1253,7 +1264,8 @@ vin10isp1: endpoint@1 {
- 		};
- 
- 		vin11: video@e6efb000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6efb000 0 0x1000>;
- 			interrupts = <GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 809>;
-@@ -1281,7 +1293,8 @@ vin11isp1: endpoint@1 {
- 		};
- 
- 		vin12: video@e6efc000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6efc000 0 0x1000>;
- 			interrupts = <GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 810>;
-@@ -1309,7 +1322,8 @@ vin12isp1: endpoint@1 {
- 		};
- 
- 		vin13: video@e6efd000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6efd000 0 0x1000>;
- 			interrupts = <GIC_SPI 542 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 811>;
-@@ -1337,7 +1351,8 @@ vin13isp1: endpoint@1 {
- 		};
- 
- 		vin14: video@e6efe000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6efe000 0 0x1000>;
- 			interrupts = <GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 812>;
-@@ -1365,7 +1380,8 @@ vin14isp1: endpoint@1 {
- 		};
- 
- 		vin15: video@e6eff000 {
--			compatible = "renesas,vin-r8a779h0";
-+			compatible = "renesas,vin-r8a779h0",
-+				     "renesas,rcar-gen4-vin";
- 			reg = <0 0xe6eff000 0 0x1000>;
- 			interrupts = <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 813>;
+ FREESCALE QORIQ PTP CLOCK DRIVER
 -- 
-2.45.2
+2.34.1
 
 
