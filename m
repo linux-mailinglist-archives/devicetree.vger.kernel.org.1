@@ -1,67 +1,82 @@
-Return-Path: <devicetree+bounces-79329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF1A914DE2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:05:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F4B914DEC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:06:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C2091F243B7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:05:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEA111C22162
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F2D513D52B;
-	Mon, 24 Jun 2024 13:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3758713DDB5;
+	Mon, 24 Jun 2024 13:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="JNp8fFva"
+	dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b="1gJjEIM0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDB813D51D;
-	Mon, 24 Jun 2024 13:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A7113D88E
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 13:06:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719234339; cv=none; b=BCaL9dEmWhsZ5vBRZAqRgHeor+L2cW8qkSco2Po/KP/gf124Df2fMZwMHNFfpzLnEUqea+/a/+cMkurP96sHdh57GlATakwaPr0WI7gRLnDR34iwbKhLcY0I9LsfZQQ1+ziAy2g9V7LwD7zxU1iXX/M+YGgH55pCFeUGjrQthuk=
+	t=1719234374; cv=none; b=mny/8K1SjnzlpbWEE1zTzHiFVYLWgOnXWtsej+Qsdw9gOF9ViAHJkZ9EJx8bCTWA+FtgERomT721CVzmOWad9iYfDXjHKKPMKILccq1L+fVj/y4z0Qo7T5SF/XUwsySeQLX1p45Mp6T8nxo2qOsGbOIeKisznkx4CRcxrHHPDaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719234339; c=relaxed/simple;
-	bh=XubHluMUetbsqVcqSe1xjdc8HQcoEAft3CSnyTemeYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JjxCHvJaxStNaziRH/s0jzRKsFrhNBTEv6VcorwvuLHIYUbEmL3BabnCLqFIrM/TfpUg+re6uZ2yuK6GR/DTz3VWJUHFTwaEW3DFj+aixSL5ufVqnK9MumVpH8ffniAMrc81sm5I6KZx/FGtYD2Ss0B8sDXNEIsqF3ZgvN9dajc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=JNp8fFva; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=8ES+o6uth+0UfsJo/siXuwMApIvXtCBkdQt4vYTqMIQ=; b=JNp8fFvao7URJrbqwOlBwYn6y5
-	GozdC3Q9Nrb5gnrzF4Uxv6hObi5gbCsruYtj5HjBBYcVDlzEPQsOL1fhTXLVLvp1+kYfvAKd7guSq
-	UeSQhCJ6Sud3rVD/qveoZGlrwPRjJj29XYM/XwBT8Olk2f8EnHfMKG7gK77RB1rzWpcs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sLjNo-000qj1-KU; Mon, 24 Jun 2024 15:05:20 +0200
-Date: Mon, 24 Jun 2024 15:05:20 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com
-Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <e9ae143c-e72f-419b-b4da-2f603a4ccec0@lunn.ch>
-References: <cover.1719159076.git.lorenzo@kernel.org>
- <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
- <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
- <Zni13uFslHz5R6Ns@lore-desk>
+	s=arc-20240116; t=1719234374; c=relaxed/simple;
+	bh=ex+7rt4pI1Xvmjbse0OMdVHPQn7ofhcny9ssr3PsAmI=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PRBUsUhljdScNrF8xKb5V4mjTTu+gZlCJ5pXe1jYZ8vkI35fmBNSr1AqLNxm9WV3NyP81t/7vmIcv7MjBrhSss/TjM4DN09/YPE63dygFGq3lQBuIDSIoQ0dJgK05U4irteLeRL+RLvAl3kOm0rXYmRsTPQychHXSCHStTNkVmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk; spf=pass smtp.mailfrom=remote-tech.co.uk; dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b=1gJjEIM0; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=remote-tech.co.uk
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a724b4f1218so160670866b.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 06:06:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=remote-tech-co-uk.20230601.gappssmtp.com; s=20230601; t=1719234369; x=1719839169; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NvHQSEsF8s98aDBqYQPy5qb2e+DikeQTdgIkHVK8CO4=;
+        b=1gJjEIM0RTWKvkfAyan+/yzlnQSQTTvI/747gjv6h6XkHmn98rj7gj6kOKjeJvdSLk
+         RcYKZI0cRBoJaLVCFKSO5FvonRkJwP/61DUBf3lScTCf1ZO+wdpBDKAPk8rHFkLWK/iE
+         /3EbJJG8NVrrMg2T6bpvz9l7voKl6om5UBOD8sY36Pn9mp43dGKVVrarKpoevZa3TgrR
+         HResjoFvpzHyGevCkuirJlsFNsPhi+6u/MPc7Wu1+IIDKOdAHFaNX/sEDMIq7t3YpYmB
+         Z2wUbitAw/pX6aUOlzs1lsVtTp/4lOPyGS+wdtpWyVT4HWLIC15rRf2Bx8YKgupt9Rgi
+         +jNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719234369; x=1719839169;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NvHQSEsF8s98aDBqYQPy5qb2e+DikeQTdgIkHVK8CO4=;
+        b=oFsBikWWPV9OC3HB2EgCR8y2aQxj8Jf6A3uJuyBC4BNzznOUAEZrFm9sLpGiIvOELX
+         g417UKjFLi/gyQD3Uj/+LHqdNSkW/hwXeuxFhmPstq+g7qfKc0q9qND6zW+L5IEO8RKG
+         vLpuhUh3WPpSi9N6hHUfXpbae6Jh9KJy1LTN1NuOFKPsRLXwjLdHC9td9Towik4g7pdT
+         BCcSmO7iJPyiBkfQyJEhTDjF+jgJapH2LlI15E+ecCMb46lxeFhp0gzVJODg0ETLtkiy
+         T8AeV6IYjmFLJBJk7vgrukHjwC1YJgvFudIxqxhrXxJfeFfmhBQM7ElDFiT93TINCM2V
+         mUog==
+X-Forwarded-Encrypted: i=1; AJvYcCWgNj/6V+EdERCYYYlLDOMdZs7ob0apnj6TTgfULgiWlFQKEK3WXbm3oqUXArQV3e1yvbiNwaEOs7CPu8K6oatKEmBCKAycc83vbQ==
+X-Gm-Message-State: AOJu0YyS36EXm2FU0LlEIFohANr234fGJH5B70HPD+vkx+P/SFhlAIHu
+	k2Z5OFpvi9yIDWA+FJg2LbaskTqcSknz3Y7Yoy3aKBpTc0+HQE89rOHqQL7obUvKQFlobN6Idcc
+	zQCFtnIqhNwAFbaKtY5M4WQPhiOzHIatiXsd9JRqMBrvhFtcwPAVvmO2M2eIVpVEvAkUzGwcIEy
+	ekAlJ4quu09zeWfyxu63YfWnNvFibUkxaLfHyhp3JU
+X-Google-Smtp-Source: AGHT+IHLYhIo10rbRWz1dfrBxzGxpNEXMT580cBsYCelbQrN06els0yuR7g8+LyMgd9+sd/SRxin2w==
+X-Received: by 2002:a17:907:c78e:b0:a6f:bc02:a008 with SMTP id a640c23a62f3a-a7242c4de49mr335996166b.4.1719234369354;
+        Mon, 24 Jun 2024 06:06:09 -0700 (PDT)
+Received: from admins-Air ([2a02:810d:aec0:2a54:f136:1973:486:27b7])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7240f37b16sm251177566b.109.2024.06.24.06.06.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jun 2024 06:06:08 -0700 (PDT)
+Date: Mon, 24 Jun 2024 15:06:02 +0200
+From: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+To: pavel@ucw.cz, lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: Add LED1202 LED Controller
+Message-ID: <ZnlvOuvMQmJFrfSX@admins-Air>
+References: <ZniNdGgKyUMV-hjq@admins-Air>
+ <7a080980-a247-4d17-88f7-19899379e1a1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,82 +85,158 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Zni13uFslHz5R6Ns@lore-desk>
+In-Reply-To: <7a080980-a247-4d17-88f7-19899379e1a1@kernel.org>
 
-> > > +static void airoha_fe_oq_rsv_init(struct airoha_eth *eth)
-> > > +{
-> > > +	int i;
-> > > +
-> > > +	/* hw misses PPE2 oq rsv */
-> > > +	airoha_fe_set(eth, REG_FE_PSE_BUF_SET,
-> > > +		      PSE_DEF_RSV_PAGE * PSE_PORT8_QUEUE);
-> > > +
-> > > +	for (i = 0; i < PSE_PORT0_QUEUE; i++)
-> > > +		airoha_fe_set_pse_oq_rsv(eth, 0, i, 0x40);
-> > > +	for (i = 0; i < PSE_PORT1_QUEUE; i++)
-> > > +		airoha_fe_set_pse_oq_rsv(eth, 1, i, 0x40);
-> > > +
-> > > +	for (i = 6; i < PSE_PORT2_QUEUE; i++)
-> > > +		airoha_fe_set_pse_oq_rsv(eth, 2, i, 0);
-> > > +
-> > > +	for (i = 0; i < PSE_PORT3_QUEUE; i++)
-> > > +		airoha_fe_set_pse_oq_rsv(eth, 3, i, 0x40);
+On Mon, Jun 24, 2024 at 07:02:12AM +0200, Krzysztof Kozlowski wrote:
+> On 23/06/2024 23:02, Vicentiu Galanopulo wrote:
+> > The LED1202 is a 12-channel low quiescent current LED driver with:
+> >   * Supply range from 2.6 V to 5 V
+> >   * 20 mA current capability per channel
+> >   * 1.8 V compatible I2C control interface
+> >   * 8-bit analog dimming individual control
+> >   * 12-bit local PWM resolution
+> >   * 8 programmable patterns
 > > 
-> > Code like this is making me wounder about the split between MAC
-> > driver, DSA driver and DSA tag driver. Or if it should actually be a
-> > pure switchdev driver?
+> > Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+> > ---
+> > 
+> > Changes in v2:
+> >   - renamed label to remove color from it
+> >   - add color property for each node
+> >   - add function and function-enumerator property for each node
 > 
-> airoha_eth driver implements just MAC features (FE and QDMA). Currently we only
-> support the connection to the DSA switch (GDM1). EN7581 SoC relies on mt7530 driver
-> for DSA (I have not posted the patch for mt7530 yet, I will do after airoha_eth
-> ones).
+> Fix your email setup, because your broken or non-existing threading
+> messes with review process. See:
+> 
+> b4 diff '<ZniNdGgKyUMV-hjq@admins-Air>'
+> Grabbing thread from
+> lore.kernel.org/all/ZniNdGgKyUMV-hjq@admins-Air/t.mbox.gz
+> Checking for older revisions
+> Grabbing search results from lore.kernel.org
+>   Added from v1: 1 patches
+> ---
+> Analyzing 3 messages in the thread
+> Looking for additional code-review trailers on lore.kernel.org
+> Preparing fake-am for v1: dt-bindings: leds: Add LED1202 LED Controller
+> ERROR: v1 series incomplete; unable to create a fake-am range
+> ---
+> Could not create fake-am range for lower series v1
+> 
 > 
 > > 
-> > If there some open architecture documentation for this device?
+> >  .../devicetree/bindings/leds/st,led1202.yml   | 162 ++++++++++++++++++
+> >  1 file changed, 162 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/leds/st,led1202.yml
+> 
+> yaml, not yml
+ok, will change
+> 
 > > 
-> > What are these ports about?
+> > diff --git a/Documentation/devicetree/bindings/leds/st,led1202.yml b/Documentation/devicetree/bindings/leds/st,led1202.yml
+> > new file mode 100644
+> > index 000000000000..1484b09c8eeb
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/st,led1202.yml
+> > @@ -0,0 +1,162 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/st,led1202.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ST LED1202 LED controllers
+> > +
+> > +maintainers:
+> > +  - Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+> > +
+> > +description:
+> > +  The LED1202 is a 12-channel low quiescent current LED controller
+> > +  programmable via I2C; The output current can be adjusted separately
+> > +  for each channel by 8-bit analog and 12-bit digital dimming control.
+> > +
+> > +  Datasheet available at
+> > +  https://www.st.com/en/power-management/led1202.html
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - st,led1202
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^led@[0-9a-f]+$":
+> > +    type: object
+> > +    $ref: common.yaml#
+> > +    unevaluatedProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 11
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/leds/common.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        led-controller@58 {
+> > +            compatible = "st,led1202";
+> > +            reg = <0x58>;
+> > +            address-cells = <1>;
+> > +            size-cells = <0>;
+> > +
+> > +            led@0 {
+> > +                reg = <0>;
+> > +                label = "led1";
+> > +                function = LED_FUNCTION_STATUS;
+> > +                color = <LED_COLOR_ID_RED>;
+> > +                function-enumerator = <1>;
+> > +                active = <1>;
 > 
-> airoha_fe_oq_rsv_init() (we can improve naming here :) is supposed to configure
-> hw pre-allocated memory for each queue available in Packet Switching Engine
-> (PSE) ports. PSE ports are not switch ports, but SoC internal ports used to
-> connect PSE to different modules. In particular, we are currently implementing
-> just the two connections below:
-> - CDM1 (port0) connects PSE to QDMA1
-> - GDM1 (port1) connects PSE to MT7530 DSA switch
+> This did not improve. First, which binding defines this field?
 > 
-> In the future we will post support for GDM2, GDM3 and GDM4 ports that are
-> connecting PSE to exteranl PHY modules.
+it's a new field I added, but if you would like for me to use another
+please advise.
+Depending on this value, the enabled/disabled bit is set in the
+appropriate register, and the led appears with the label name in sysfs.
+Hope this extra info helps in helping me pick the appropiate binding. 
 
-I've not looked at the datasheet yet, but maybe add some ASCII art
-diagram of the architecture in the commit message, or even a .rst file
-somewhere under Documentation. It is hard to get the big picture
-looking at just the code, and only the MAC driver without all the
-other parts.
+> Second this was never tested.
+>
+are you referring to the automated test done by the kernel test robot?
 
-> > > +static int airoha_dev_open(struct net_device *dev)
-> > > +{
-> > > +	struct airoha_eth *eth = netdev_priv(dev);
-> > > +	int err;
-> > > +
-> > > +	if (netdev_uses_dsa(dev))
-> > > +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
-> > > +	else
-> > > +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
-> > 
-> > Does that imply both instances of the GMAC are not connected to the
-> > switch? Can one be used with a PHY?
+ 
+> Third, where did you give me any chance to reply to your comment before
+> posting new version?
 > 
-> The check above is used to support configuration where MT7530 DSA switch module
-> is not loaded (I tested this configuration removing the MT7530 DSA switch from
-> board dts and resetting the switch). Since for the moment we just support GDM1
-> port (PSE port connected to the switch) we can probably assume it is always the
-> case and remove this check. In the future we will need this configuration to support
-> GDM2 or GDM3 (PSE port connected to external phy modules). Do you prefer to
-> always set GDM1_STAG_EN_MASK for the moment?
+I think I have a wrong understanding of the process or mutt client is missconfigured
+or missued on my side.
+I've been replying to your emails in the mutt client, but sending the patches with
+mutt -H.
+But the changes you mentioned related to function on color, I don't know what should have happend there.. 
+I sent a v2 with the changes you indicated.
 
-If it will be needed, then keep it. But it is the sort of thing which
-raises questions, so its good to explain it, either in the commit
-message, or in the code.
+Thanks,
+Vicentiu
 
-	Andrew
+> 
+> Best regards,
+> Krzysztof
+> 
 
