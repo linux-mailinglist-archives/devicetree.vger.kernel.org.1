@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-79111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E79E914169
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 06:52:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B6591416D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 06:53:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC1511F21CC2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 04:52:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E61E28391E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 04:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF91710A3E;
-	Mon, 24 Jun 2024 04:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C615DDDC;
+	Mon, 24 Jun 2024 04:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qK9Ys0zM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WccOrnJk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC32134B0;
-	Mon, 24 Jun 2024 04:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F85D15E86;
+	Mon, 24 Jun 2024 04:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719204650; cv=none; b=C0ptP6hBmyaVWFY4y8UbISoygX7KzaU+RMv9MMAjKfEsbVRJ1q3pBK/g/2HgdEYuBgVbemzPMm/ft9H/bta6cBn8V4/Jh53KWqXWU8CljliHUuB5AFaLvBoy7ix1TMWkheilDJ78rFZFVaNiwGYSPyU/GPCsBKUCxhU2lhvH1gY=
+	t=1719204784; cv=none; b=aWtdD4EBCfei9+T5lJurvFGQcvaRqvZQ6LGN6q9+QZaNBjCrPhy83n5Ka+FhtSHsYt1rfj+3Jc0X4YxvC84M7aLk42tr5JhUhgcPt7AaY3eDTbV1bTKOrB3vGf1IuXQ7LtnGGGBcf+XgZc1HO6FEyUivIqhTSnd+mALn9aUvyh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719204650; c=relaxed/simple;
-	bh=anvON/7PhdFa1y/dcRxrpcNX8GrzeLRauiobURj3oig=;
+	s=arc-20240116; t=1719204784; c=relaxed/simple;
+	bh=CM0gyn7aeKkVe7mpP1FYr6joZa5sUcvkQm+5NjiLodM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JUzsvAQkSYtucvauRHltG7/d1UoAYrfMIbSjo2MODfXWLKz0jS354un9t8a7y5MKyD0s6q24ykyj01EtD+j9ns/Stm0gSsLlcz65gPHCynb7SvNMtVrtGUNksL6rBPpqHU1awuLRPKUYmmlVow6chFpcNCdDVKTm3Hx11gs39zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qK9Ys0zM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09A29C32782;
-	Mon, 24 Jun 2024 04:50:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=H1bmfm9V3VFgTqY87ZU0fevBrM+egJvbMJGhnyge3DBJIoLftCyDwf7KBVjDvAxjsh6msCaYbrYpbDOnbK2CR+ihhsocfkTrBNWHVVQxSYCDXeO4F29lYMd8LGyZNYPPCqpfmPJylgeuheNWtbNkixdRMSOy2fUQTzGgskdFmeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WccOrnJk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84149C2BBFC;
+	Mon, 24 Jun 2024 04:52:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719204650;
-	bh=anvON/7PhdFa1y/dcRxrpcNX8GrzeLRauiobURj3oig=;
+	s=k20201202; t=1719204783;
+	bh=CM0gyn7aeKkVe7mpP1FYr6joZa5sUcvkQm+5NjiLodM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qK9Ys0zMVDo4J9J0k4zNOxQGXKU/T07zhgY92tPG4DIGyDuJsMJS9SJ0QY7xazfUZ
-	 aeL92fHMAS71cUQTw9QXY2BjknOiF7Wz7xpKs08h9zgPmG7AW/r7K/vSxunpRWQEnP
-	 aVQln+zwpyj0CLPymt+w5Okujdirolw5RkSDo0eoM5IAveUH78eQewpvvUNF65+Za6
-	 NxM7/1SvF8lLmaybrtjQ1k8WVsLcfx6RSgG/3Jja4bEasMPR/39pssM3OF5lQ4nycD
-	 2Ze+EmvD8Il+vxZN7jHtcvVdIki7/8yKeMccTHOWfrugFrZ2+HXuQCJAFol1aS+jwA
-	 umHJDDRgNFsLA==
-Message-ID: <6a205780-48e7-4efd-b6ab-caf35c216cba@kernel.org>
-Date: Mon, 24 Jun 2024 06:50:42 +0200
+	b=WccOrnJkg+uS4KZkLDdsc/2NcVrgSvV887CTPORgpKglS9+6nnoqaiwDvp7X+9fxz
+	 2xKLOH2J8RMDoxngMovYFLRUAPMd5ifaPdQzrBm4GykDiV7wajZnKE2kdQGJkh01Ys
+	 QmqsXakvErT/E7d7PuqE/NoI0nXPaqKxGoGc+BEhm1abfFWnamWvyQG/x0bWJ0OZXH
+	 4OxPc4Al8XXn9A8SHIB+plXskl25xhYqW+sB32JcP70bN+ekWV9Sow+aZBQmpAFC0e
+	 3BUtZ5IUmwxmxrwIQkBWoc1F9XjGNcDA+5tityb7bbNPdyB1boteYDkibxw+OUa3nU
+	 do5XnlLYs+Hsg==
+Message-ID: <4c6cf4a5-6f4e-4a1d-8a4a-d720409852e8@kernel.org>
+Date: Mon, 24 Jun 2024 06:52:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] dt-bindings: interrupt-controller:
- realtek,rtl-intc: Add rtl9300-intc
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, tglx@linutronix.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tsbogend@alpha.franken.de, daniel.lezcano@linaro.org, paulburton@kernel.org,
- peterz@infradead.org, mail@birger-koblitz.de, bert@biot.com,
- john@phrozen.org, sander@svanheule.net
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org, kabel@kernel.org, ericwouds@gmail.com
-References: <20240624012300.1713290-1-chris.packham@alliedtelesis.co.nz>
- <20240624012300.1713290-6-chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH 3/7] dt-bindings: arm: qcom: add OnePlus 8 series
+To: Caleb Connolly <caleb@postmarketos.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
+ <20240624-oneplus8-v1-3-388eecf2dff7@postmarketos.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,65 +113,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240624012300.1713290-6-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20240624-oneplus8-v1-3-388eecf2dff7@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/06/2024 03:22, Chris Packham wrote:
-> Add a compatible string for the interrupt controller found on the
-> rtl930x SoCs. The interrupt controller has registers for VPE1 so these
-> are added as a second reg cell.
+On 24/06/2024 03:30, Caleb Connolly wrote:
+> Add bindings for the OnePlus 8, 8 Pro, and 8T devices.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v2:
->     - Set reg:maxItems to 2 to allow for VPE1 registers on the rtl9300. Add
->       a condition to enforce the old limit on other SoCs.
->     - Connor and Krzysztof offered acks on v1 but I think the changes here
->       are big enough to void those.
-> 
->  .../interrupt-controller/realtek,rtl-intc.yaml  | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
-> index fb5593724059..ff2f2acea87e 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
-> @@ -25,6 +25,7 @@ properties:
->        - items:
->            - enum:
->                - realtek,rtl8380-intc
-> +              - realtek,rtl9300-intc
->            - const: realtek,rtl-intc
->        - const: realtek,rtl-intc
->          deprecated: true
-> @@ -35,7 +36,8 @@ properties:
->      const: 1
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    interrupts:
->      minItems: 1
-> @@ -71,6 +73,19 @@ allOf:
->      else:
->        required:
->          - interrupts
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: realtek,rtl9300-intc
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 2
+> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
 
-Just like in v1. You need to describe the items.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
