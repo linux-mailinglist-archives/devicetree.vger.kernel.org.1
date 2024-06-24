@@ -1,105 +1,139 @@
-Return-Path: <devicetree+bounces-79366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87377914FED
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:29:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A79915007
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:35:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B797C1C2192F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:29:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 748CE1C21F4B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C2B143C5C;
-	Mon, 24 Jun 2024 14:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0209519AD45;
+	Mon, 24 Jun 2024 14:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jtbH4R6e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c34BiL8k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271A73EA72;
-	Mon, 24 Jun 2024 14:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41B81E533;
+	Mon, 24 Jun 2024 14:35:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719239383; cv=none; b=p9Let3bWXjir1B2eqP+JppEjLg17MdymzOmo1VZMX3mqSkOXghFpJMhPwh4NJElkLYnLwZnHA+rOz11aMo66KgWPeVGfZuCghwUT+iRZxH6f19d9uizpOUQErqeioB7bAmskRlNsMW8UeTsV7LwpfFkvISADFqEIoNYvHvSVv1g=
+	t=1719239726; cv=none; b=HwbixsYFj8h65TXER4hKIwcl04JY8gHqY+YjP1ZcnYKP8tC0qqpnaZw0cjZILb4SRhohRosNYuu+4sMU2K+H4EcMRbLMzA8U+4g8bWtg6iI4ZEkMVlKj6Xi5+rDHD3z47117q0+6vC/h/6x3SB/5O9D5DIw5yGUyxgGpdAjUWgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719239383; c=relaxed/simple;
-	bh=WY5hYIC0PNBIF7V8uvQgCP/BsotrkH9mINLicqCn9KU=;
+	s=arc-20240116; t=1719239726; c=relaxed/simple;
+	bh=nWmktSg+88kQ1yVIxWO07YeCbZEQqFAeFwKfadIN5NE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UrxQBA9HZMoj8ksJof244qmqqrCBYUK5djFdE/CrSY34f7HU9eSHWXyk651DYY2JXGxeSzjlkvj46VCH1RLLKJBBZU4odBucMJ3BF8WgZtCPp3TSkz+PhQHIZ4Ppk4u+tvlkxqU/oCb/6wognwytvx9VRnAEdBWXJ9M9Irnj5qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jtbH4R6e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8311C2BBFC;
-	Mon, 24 Jun 2024 14:29:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FOFTwuAk4R6VT8xMO41bC0RyoQh+6hk+vFFL4lr9zmfiMwfsTNnDHMwW7CfIc7cJYJu473ru13YnXrslk1PK+GAzDE135EMLDHBCYcQj24qAq3yGuTGNz8Jg4Sq1cDT/9cVS3mVl7a/nCArnu79d8y9f9DyZcGc/W1mCAY5To/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c34BiL8k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02F0FC2BBFC;
+	Mon, 24 Jun 2024 14:35:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719239382;
-	bh=WY5hYIC0PNBIF7V8uvQgCP/BsotrkH9mINLicqCn9KU=;
+	s=k20201202; t=1719239726;
+	bh=nWmktSg+88kQ1yVIxWO07YeCbZEQqFAeFwKfadIN5NE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jtbH4R6erQHvxOESUyXymA1LgB5ktOLpoVxTKUyEfXFZ3uEmZlLbYO6Y844Pnw6Fw
-	 +vNRCjwE2Late2zqXvnQy8HJW8EEPI5Ex9Ylj1BEg937YUS1LqU8Qx4Jj2jUi9jU6O
-	 Zhc2ClLLmLz14F30q3Vul601mxtP1fOPy/XQ6oug56MbucpGGN81v1BcOaFlupKNSf
-	 nMb/J4sVeU8bGBVYlo10LiKxjke+u7RK4O6ZugQgXhmk9uBmDsQ0nW9zgVGIlwBmd0
-	 2Yq84f0XsWMVrBIvrtTmpDDCCnvz5MulsiJrrrUl8TSlz2pMIR/akbLDLxA4+CMxAP
-	 RnZOcAVC7w/5Q==
-Date: Mon, 24 Jun 2024 15:29:37 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Witold Sadowski <wsadowski@marvell.com>
-Cc: linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pthombar@cadence.com
-Subject: Re: [PATCH v9 4/9] spi: cadence: Add Marvell SDMA operations
-Message-ID: <67123003-9987-492f-b9ab-718e5dab0acc@sirena.org.uk>
-References: <20240619141716.1785467-1-wsadowski@marvell.com>
- <20240619141716.1785467-5-wsadowski@marvell.com>
+	b=c34BiL8k8Oc2mfT3KTkZ2QvZ9C7de6z1/RGViSIVCbWwQuc3atXHVyb9aamwU/H7J
+	 BpgpEIZBxZzxhuJREjaylp3bUc9/Fq9jSKPJ8q+gQKZlZNSCDveb4ii93xuBZj08g9
+	 d17WkoI0JtMVGBMsMMKBMrQGJlQdUgDgAwueqDGFgpTqIq5PYsO0bGyzfmuJewnTXw
+	 W5QLAb3RoCnWbI4Mplvkq+Ez5AEibE0xXFlGDLNl1+R2iWb+s8MKBavRmgZasZ8A7h
+	 YkWBBWDaDjlaxnYydWV2vh+E8FtWPXpjiJpzEXhVNBmaES5yIsUTAAxijWEJt3StZe
+	 Ppc6s11rG2Cyg==
+Date: Mon, 24 Jun 2024 08:35:24 -0600
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: iio: adc: add AD4695 and similar ADCs
+Message-ID: <20240624143524.GA3520322-robh@kernel.org>
+References: <20240617-iio-adc-ad4695-v2-0-63ef6583f25d@baylibre.com>
+ <20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com>
+ <171865982439.3455065.3692466445202658610.robh@kernel.org>
+ <993ef797-51e8-4a57-adf3-1599d9fccba6@baylibre.com>
+ <20240618-hexagram-clamp-e716d5bcaa12@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0y4A91JLAVwHzarg"
-Content-Disposition: inline
-In-Reply-To: <20240619141716.1785467-5-wsadowski@marvell.com>
-X-Cookie: Allow 6 to 8 weeks for delivery.
-
-
---0y4A91JLAVwHzarg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240618-hexagram-clamp-e716d5bcaa12@spud>
 
-On Wed, Jun 19, 2024 at 07:17:10AM -0700, Witold Sadowski wrote:
+On Tue, Jun 18, 2024 at 07:00:03PM +0100, Conor Dooley wrote:
+> On Mon, Jun 17, 2024 at 05:06:29PM -0500, David Lechner wrote:
+> > On 6/17/24 4:30 PM, Rob Herring (Arm) wrote:
+> > > 
+> > > On Mon, 17 Jun 2024 14:53:13 -0500, David Lechner wrote:
+> > >> Add device tree bindings for AD4695 and similar ADCs.
+> > >>
+> > >> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > >> ---
+> > >>
+> > >> v2 changes:
+> > >> * Drop *-wlcsp compatible strings
+> > >> * Don't use fallback compatible strings
+> > >> * Reword supply descriptions
+> > >> * Use standard channel properties instead of adi,pin-pairing
+> > >> * Fix unnecessary | character
+> > >> * Fix missing blank line
+> > >> * Add header file with common mode channel macros
+> > >> ---
+> > >>  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 290 +++++++++++++++++++++
+> > >>  MAINTAINERS                                        |  10 +
+> > >>  include/dt-bindings/iio/adi,ad4695.h               |   9 +
+> > >>  3 files changed, 309 insertions(+)
+> > >>
+> > > 
+> > > My bot found errors running 'make dt_binding_check' on your patch:
+> > > 
+> > > yamllint warnings/errors:
+> > > 
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml: single-channel: missing type definition
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml: common-mode-channel: missing type definition
+> > > 
+> > > doc reference errors (make refcheckdocs):
+> > > 
+> > > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240617-iio-adc-ad4695-v2-2-63ef6583f25d@baylibre.com
+> > > 
+> > > The base for the series is generally the latest rc1. A different dependency
+> > > should be noted in *this* patch.
+> > > 
+> > > If you already ran 'make dt_binding_check' and didn't see the above
+> > > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > > date:
+> > > 
+> > > pip3 install dtschema --upgrade
+> > > 
+> > > Please check and re-submit after running the above command yourself. Note
+> > > that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> > > your schema. However, it must be unset to test all examples with your schema.
+> > > 
+> > 
+> > I think the problem is that I don't have a well-known commit as the
+> > base-commit in my cover letter (oversight on my part).
+> 
+> I think for his bot it needs, as written above, to be "in *this* patch".
+> I'm not sure if that's to allow for manual review, or something the bot
+> does automagically however.
 
-> +static void m_ioreadq(void __iomem  *addr, void *buf, int len)
-> +{
-> +	u64 tmp_buf;
-> +
-> +	while (len) {
-> +		tmp_buf = readq(addr);
-> +		memcpy(buf, &tmp_buf, len > 8 ? 8 : len);
-> +		len = len > 8 ? len - 8 : 0;
-> +		buf += 8;
-> +	}
-> +}
+I used to do manual review before sending, but then I added 
+co-maintainers that review patches before the bot emails got sent out. 
+So now they are sent out as run without review and dependencies aren't 
+dealt with at all.
 
-Wouldn't it be more efficient and readable to only do the memcpy() for
-the trailing bytes and just do this memcpy() for the final word?
+But yes, put something in this patch to say failures are expected 
+because of a dependency.
 
---0y4A91JLAVwHzarg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ5gtEACgkQJNaLcl1U
-h9A91wf+MfWKw9rvsqrhvI5pJMUZJBxkHyv12uRMYD//3txZMDXLldRBBJoRqfIA
-amkaXeXG2LOqZD78edIt8x7fMRcMr3UYd4kXbtEkkRYPYlN3E30TObWWGWAJFQQA
-1Tch/oj5V/ohbLTK3hePmDqx1PsNWomMrxJECYOB7ZY1q8jQ6TObDdC7Gk7Q9Sw0
-AMWnIZZw8+eii1uMrBoSd5G4YjuMqMztoQy4nu7s5T0QhwWQIaa11Qfi8dK86ucL
-zj4uy/MxflSFzE8BFFBW0TRFn7+tw0r2uw26JXSXRCUX5XLtsroW+mbSm3mPMlEl
-Rtl58AgfCIW0OltjGxwuyqDLVHTTyw==
-=Pj+p
------END PGP SIGNATURE-----
-
---0y4A91JLAVwHzarg--
+Rob
 
