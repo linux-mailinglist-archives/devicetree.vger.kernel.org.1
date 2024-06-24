@@ -1,296 +1,187 @@
-Return-Path: <devicetree+bounces-79076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D86913FCC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 03:24:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A423913FFE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 03:30:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EA0CB21B9F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 01:24:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8FDF28385B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 01:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 103D517C79;
-	Mon, 24 Jun 2024 01:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E01635;
+	Mon, 24 Jun 2024 01:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="wwS6LGoY"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="cG9qQc0P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A76EAC7
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 01:23:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57066139D
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 01:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719192198; cv=none; b=eEF2LIrZ7vefyneXy3LlWyq5HI6e76wVFyA0279L7G99EWTyWy3KSYb29wj0/kbDoqnNrEJ+WMctApI4kUPaW9D9uP4obHeqb6/fkhqqw75aS69LxOuUo83LlGlBWK2vzYvHpvd9HUEBFlW32gbcj0DuUZESZevaBIsO9/M3svk=
+	t=1719192643; cv=none; b=Ovnca4dsUS7raesLvIA+A1C0suDvD/2blIQMeOxjXhNBn4vO5L//5PJ9b1YyphzWMPa14xYDOCkXcu23clAwltrP8tCV9rBrI3M1XeKPL8vPwycwmyO/yf/Ea4oai3omScStt2LFd5viqXQfiMx1cenhibGvtJjIZjcH/VHbslA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719192198; c=relaxed/simple;
-	bh=pZ3kJvyDsz0CkfpuJLw99tu1PndX3crZKmTmSnWuplk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AdwxvOScXjtS6Ac86ue2gX2jM+yEtie4Bws0s9Si20XGmkqyILJFRhEiFzXkhj4UANVEee79BcpH0SxkbrAUpo4ARvtpxuEenqdUkLqvbeIqBtyIlfml/M1ndDlIAE+RBEmn1/rdJQV5600X48rwGuNa/GQuzIlevXHHIvNpEIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=wwS6LGoY; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 067CA2C09B5;
-	Mon, 24 Jun 2024 13:23:10 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1719192190;
-	bh=KRRtnGUVLtgTf5B+yn8CVCgPF0u41rVrOBKi+rnH6nk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=wwS6LGoYmbLV3jxG4kcOLD0799BtQATXIyq9k4kaJ8R+JLMhRYpG/qoCZ3PwE21UI
-	 eL3FJEw1Mxt8Mi4ZNoeFzdVh8eDHeLM+8H6FFiZcAb+oDJkosAKtCkJd3JjxcRVq4X
-	 SV8mLIgBX3Jg1HxiF1hl+IFq7DTAWZKd4jqc+XNK+Tw/Kg3hh291Q8AHrxQei4qVqW
-	 MwyWTjjS72zZp5oaHEy/mtNMXe1zW4aKEIVHBgsnzL46ejIr/acFcF13C4QNPOyBsJ
-	 e+9LeLUBTUIRCnO2yccTj/e+UmwDObd+6JzeT521sBC41tDjqaEVx4HCubOVtFGqzW
-	 r+Hlhi95wLf8A==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B6678ca7d0008>; Mon, 24 Jun 2024 13:23:09 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 4ECB013EE8E;
-	Mon, 24 Jun 2024 13:23:09 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 4ACB9280AE5; Mon, 24 Jun 2024 13:23:09 +1200 (NZST)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: tglx@linutronix.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	daniel.lezcano@linaro.org,
-	paulburton@kernel.org,
-	peterz@infradead.org,
-	mail@birger-koblitz.de,
-	bert@biot.com,
-	john@phrozen.org,
-	sander@svanheule.net
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	kabel@kernel.org,
-	ericwouds@gmail.com,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2 8/8] mips: dts: realtek: Add RTL9302C board
-Date: Mon, 24 Jun 2024 13:23:00 +1200
-Message-ID: <20240624012300.1713290-9-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240624012300.1713290-1-chris.packham@alliedtelesis.co.nz>
-References: <20240624012300.1713290-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1719192643; c=relaxed/simple;
+	bh=gJySDeHNzUMmgMAkltwdLfTj/QGlTPa+btmCWyagxfQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=amAntngabGDE7/O3uDBT3h5o0EfrFMuIPv9pG2+uhqJiH0hfd9ql0PMC6ChPQ7fxcTI1pSw+bOQ+NeoSkBQLVlQ0dXPh5ZK56k+VEB5Y321rlrUve5XjR6IycRpBt+f9/zoppGWvcD65ajcd/xM6CVNHap/n/h4KkVD6a7NwJV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=cG9qQc0P; arc=none smtp.client-ip=95.215.58.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Envelope-To: dmitry.torokhov@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1719192638;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=DPiqlmEdz+huNfaROcH5raunMQ5usV08vHBbUzlLmCw=;
+	b=cG9qQc0PZkl1dB6yVj+jn2lK8UicsWZM3D0LzvIOEwSfgetD6G6UHfBP9xvG5qwJjzTpOE
+	SD8sCVfLf5vUHl15aOBk99CqC+LdoBNUBGKLdyNnAffz2IZ+1COr6HSPuqzVfQX/niD3wT
+	nX7IBe14b0YS7NyPbJF7awojtTrhHLxSDz48MqCuIYyzILGt9sdK9K3KUgH8rFvGLsFBUZ
+	Edu9xHVjD6NNRZCXFDZDsK8FEE5bOAmc6tfs1NHfuj0g3I8NIkqz42roKZsAIz/hHaPw79
+	8vAjFg4uOoXn2p69zdu+sTlbQQzGrUoxjGKF8M1QaLtZM/RVKXhBETQgcWKeYw==
+X-Envelope-To: dri-devel@lists.freedesktop.org
+X-Envelope-To: quic_jesszhan@quicinc.com
+X-Envelope-To: linux-input@vger.kernel.org
+X-Envelope-To: rydberg@bitmath.org
+X-Envelope-To: konrad.dybcio@linaro.org
+X-Envelope-To: andersson@kernel.org
+X-Envelope-To: linux-arm-msm@vger.kernel.org
+X-Envelope-To: frieder.hannenheim@proton.me
+X-Envelope-To: caleb@postmarketos.org
+X-Envelope-To: ~postmarketos/upstreaming@lists.sr.ht
+X-Envelope-To: tzimmermann@suse.de
+X-Envelope-To: maarten.lankhorst@linux.intel.com
+X-Envelope-To: airlied@gmail.com
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: devicetree@vger.kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: daniel@ffwll.ch
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: mripard@kernel.org
+X-Envelope-To: neil.armstrong@linaro.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Caleb Connolly <caleb@postmarketos.org>
+Subject: [PATCH 0/7] qcom: initial support for the OnePlus 8T
+Date: Mon, 24 Jun 2024 03:30:24 +0200
+Message-Id: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=6678ca7d a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T1WGqf2p2xoA:10 a=FkagyKZCYwirPjr5IuAA:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADDMeGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDMyMj3fy81IKc0mILXXMLCwMD0+Rkc5PEVCWg8oKi1LTMCrBR0bG1tQD
+ oLMmyWgAAAA==
+To: Caleb Connolly <caleb@postmarketos.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Frieder Hannenheim <frieder.hannenheim@proton.me>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3628;
+ i=caleb@postmarketos.org; h=from:subject:message-id;
+ bh=gJySDeHNzUMmgMAkltwdLfTj/QGlTPa+btmCWyagxfQ=;
+ b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBmeMw76xnu21LktGELVLl8li5pECNHzaMxmAwP6
+ 3ccGaTDegKJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZnjMOwAKCRAFgzErGV9k
+ tqQQEACBEGnd4APKL/QmKXVWbTeiHSqyBBlpUqUsLFCuLkIgqz1g/qO33s+Uk7oN0ifamwnTAMt
+ hVlzvjklOWa6tnNYRQSVOPxhzVgmnDvwbq+8nc8ff+3BMY0hZYP9UXheV0nHzZ8zIj8lQ/zOI+y
+ osjh6iPfuVO26LPZgj2S7fW/oSqIwacRIxwjL7DFfDHVIpzIQABtpXTh8qPMK4x32wuMAQJGBZH
+ FTGREQApSbvnmg+oed8D33ziLu1OHjjE1ykNh6Q2qLQJ2/UbKs/GkhnxjSUdsjJMQxuGVe5o4Qn
+ 3CkVhtGhkKxDx8pJAyLMzOyWRU+JtOGz2kZydbbbOqjNFIuSFAPEdky2AmMRBIiEOl131iAzrpl
+ x22qsL5q+I7k8wNd02Gymb/O//t/kGgoJTDEPE3txQ1Of00+WKRRr4dcyc6FKcipp4RyBZxodQv
+ 1z8V0H8tQEfPBirbvqtTMUDo9AxJvAN+6B9TOXoI/oKo3fMMGlchJzogywy6TlE1Zum4rUO63Rt
+ 5oKCdhC3qEftaUSrwvTq40uSu5209j/ozkYdjywKf0XQ7s6u50bTZuOHPIHdrL7Q5POeXDfKI+2
+ +2/eCExf4ogNYGzk7qbI14/+vq+p786SeLnlfadUuPlyrGYppiLulb39ysN/VYt3wE3z9jyS74e
+ pobjEGbxdnYHrkw==
+X-Developer-Key: i=caleb@postmarketos.org; a=openpgp;
+ fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
+X-Migadu-Flow: FLOW_OUT
 
-Add support for the RTL930x SoC and the RTL9302C reference board.
+Add bindings for the SM8250 OnePlus devices, a common devicetree,
+touchscreen and display drivers, and a dts for the OnePlus 8T (kebab).
 
-The RTL930x family of SoCs are Realtek switches with an embedded MIPS
-core (800MHz 34Kc). Most of the peripherals are similar to the RTL838x
-SoC and can make use of many existing drivers.
+The OnePlus 8 series is made up of 3 flagship smartphones from 2019,
+featuring the Qualcomm X55 5G PCIe modem.
 
-Add in full DSA switch support is still a work in progress.
+This series introduces initial support for the 8T, adding drivers for
+the 1080x2400 120Hz DSC panel and the Synaptics TCM Oncell touchscreen.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+The panel driver suffers from similar limitations to the LG SW43408
+panel found on the Pixel 3, namely that after toggling the reset GPIO it
+is not possible to get the panel into a working state.
+
+Given the apparent prevelance of this issue, particularly with DSC
+panels, I believe this is a bug in the core DSI code, and not a device
+or panel specific issue. I think it is still useful to accept these
+panel drivers into upstream since, from a users perspective, the panel
+is fully functional just by leaving the reset GPIO alone and keeping the
+regulator on. The only (theoretical) downside is worse battery life,
+which is a small price to pay for a working display.
+
+The Synaptics TCM Oncell touchscreens are a new generation of Synaptics
+controllers with a totally incompatible firmware compared to the older
+rmi4 touchscreens. A new driver is written which currently only supports
+the S3908 controller found on the OnePlus 8T. Downstream vendor drivers
+suggest that the controller supports custom touch report configuration,
+one can define the exact bit packing of the touch reports, however the
+combination of controller and firmware available on this device does not
+allow for programming in cusotm configs, so for simplicity this initial
+driver uses a hardcoded bit packing to decode the touch reports.
+
+With this series, the OnePlus 8T can boot up to GNOME shell, connect to
+a wifi network and browse the web with GPU acceleration.
+
+The touchscreen driver included here is loosely based on a previous
+attempt by Frieder Hannenheim which can be found below.
+
+Link: https://lore.kernel.org/lkml/20240327214643.7055-1-friederhannenheim@riseup.net/
+
 ---
+Caleb Connolly (7):
+      dt-bindings: panel: document Samsung AMB655X
+      dt-bindings: input: touchscreen: document synaptics TCM oncell
+      dt-bindings: arm: qcom: add OnePlus 8 series
+      drm: mipi: add mipi_dsi_generic_write_multi_type()
+      drm/panel: add driver for samsung amb655x
+      Input: touchscreen: add Synaptics TCM oncell S3908
+      arm64: dts: qcom: add OnePlus 8T (kebab)
 
-Notes:
-    Changes in v2:
-    - Use specific compatibles instead of rtl930x
-    - Remove unnecessary irq flags (interrupt controller is one-cell)
-    - Remove earlycon
-    - Name clocks as recommended in dt schema
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   3 +
+ .../bindings/display/panel/samsung,amb655x.yaml    |  59 ++
+ .../input/touchscreen/syna,tcm-oncell.yaml         |  66 ++
+ MAINTAINERS                                        |  14 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ .../arm64/boot/dts/qcom/sm8250-oneplus-common.dtsi | 866 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250-oneplus-kebab.dts  |  36 +
+ drivers/gpu/drm/drm_mipi_dsi.c                     |  40 +
+ drivers/gpu/drm/panel/Kconfig                      |   9 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-samsung-amb655x.c      | 420 ++++++++++
+ drivers/input/touchscreen/Kconfig                  |  11 +
+ drivers/input/touchscreen/Makefile                 |   1 +
+ drivers/input/touchscreen/synaptics_tcm_oncell.c   | 617 +++++++++++++++
+ include/drm/drm_mipi_dsi.h                         |  16 +
+ 15 files changed, 2160 insertions(+)
+---
+change-id: 20240622-oneplus8-788005cc74ae
+base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
 
- arch/mips/boot/dts/realtek/Makefile     |  1 +
- arch/mips/boot/dts/realtek/rtl9302c.dts | 73 +++++++++++++++++++++++
- arch/mips/boot/dts/realtek/rtl930x.dtsi | 79 +++++++++++++++++++++++++
- 3 files changed, 153 insertions(+)
- create mode 100644 arch/mips/boot/dts/realtek/rtl9302c.dts
- create mode 100644 arch/mips/boot/dts/realtek/rtl930x.dtsi
-
-diff --git a/arch/mips/boot/dts/realtek/Makefile b/arch/mips/boot/dts/rea=
-ltek/Makefile
-index fba4e93187a6..8b991c6a5d6f 100644
---- a/arch/mips/boot/dts/realtek/Makefile
-+++ b/arch/mips/boot/dts/realtek/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-y	+=3D cisco_sg220-26.dtb
-+dtb-y	+=3D rtl9302c.dtb
-diff --git a/arch/mips/boot/dts/realtek/rtl9302c.dts b/arch/mips/boot/dts=
-/realtek/rtl9302c.dts
-new file mode 100644
-index 000000000000..67adcc472da2
---- /dev/null
-+++ b/arch/mips/boot/dts/realtek/rtl9302c.dts
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/dts-v1/;
-+
-+#include "rtl930x.dtsi"
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/thermal/thermal.h>
-+
-+/ {
-+	compatible =3D "realtek,rtl9302c", "realtek,rtl9302-soc";
-+	model =3D "RTL9302C Development Board";
-+
-+	memory@0 {
-+		device_type =3D "memory";
-+		reg =3D <0x0 0x8000000>;
-+	};
-+
-+	chosen {
-+		stdout-path =3D "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status =3D "okay";
-+};
-+
-+&spi0 {
-+	status =3D "okay";
-+	flash@0 {
-+		compatible =3D "jedec,spi-nor";
-+		reg =3D <0>;
-+		spi-max-frequency =3D <10000000>;
-+
-+		partitions {
-+			compatible =3D "fixed-partitions";
-+			#address-cells =3D <1>;
-+			#size-cells =3D <1>;
-+
-+			partition@0 {
-+				label =3D "u-boot";
-+				reg =3D <0x0 0xe0000>;
-+				read-only;
-+			};
-+			partition@e0000 {
-+				label =3D "u-boot-env";
-+				reg =3D <0xe0000 0x10000>;
-+			};
-+			partition@f0000 {
-+				label =3D "u-boot-env2";
-+				reg =3D <0xf0000 0x10000>;
-+				read-only;
-+			};
-+			partition@100000 {
-+				label =3D "jffs";
-+				reg =3D <0x100000 0x100000>;
-+			};
-+			partition@200000 {
-+				label =3D "jffs2";
-+				reg =3D <0x200000 0x100000>;
-+			};
-+			partition@300000 {
-+				label =3D "runtime";
-+				reg =3D <0x300000 0xe80000>;
-+			};
-+			partition@1180000 {
-+				label =3D "runtime2";
-+				reg =3D <0x1180000 0xe80000>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/mips/boot/dts/realtek/rtl930x.dtsi b/arch/mips/boot/dts=
-/realtek/rtl930x.dtsi
-new file mode 100644
-index 000000000000..f271940f82be
---- /dev/null
-+++ b/arch/mips/boot/dts/realtek/rtl930x.dtsi
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-+
-+#include "rtl83xx.dtsi"
-+
-+/ {
-+	compatible =3D "realtek,rtl9302-soc";
-+
-+	cpus {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+
-+		cpu@0 {
-+			device_type =3D "cpu";
-+			compatible =3D "mips,mips34Kc";
-+			reg =3D <0>;
-+			clocks =3D <&baseclk 0>;
-+			clock-names =3D "cpu";
-+		};
-+	};
-+
-+	baseclk: clock-800mhz {
-+		compatible =3D "fixed-clock";
-+		#clock-cells =3D <0>;
-+		clock-frequency =3D <800000000>;
-+	};
-+
-+	lx_clk: clock-175mhz {
-+		compatible =3D "fixed-clock";
-+		#clock-cells =3D <0>;
-+		clock-frequency  =3D <175000000>;
-+	};
-+};
-+
-+&soc {
-+	intc: interrupt-controller@3000 {
-+		compatible =3D "realtek,rtl9300-intc", "realtek,rtl-intc";
-+		reg =3D <0x3000 0x18>, <0x3018 0x18>;
-+		interrupt-controller;
-+		#interrupt-cells =3D <1>;
-+
-+		interrupt-parent =3D <&cpuintc>;
-+		interrupts =3D <2>, <3>, <4>, <5>, <6>, <7>;
-+	};
-+
-+	spi0: spi@1200 {
-+		compatible =3D "realtek,rtl8380-spi";
-+		reg =3D <0x1200 0x100>;
-+
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+	};
-+
-+	timer0: timer@3200 {
-+		compatible =3D "realtek,rtl9302-timer", "realtek,otto-timer";
-+		reg =3D <0x3200 0x10>, <0x3210 0x10>, <0x3220 0x10>,
-+		    <0x3230 0x10>, <0x3240 0x10>;
-+
-+		interrupt-parent =3D <&intc>;
-+		interrupts =3D <7>, <8>, <9>, <10>, <11>;
-+		clocks =3D <&lx_clk>;
-+	};
-+};
-+
-+&uart0 {
-+	/delete-property/ clock-frequency;
-+	clocks =3D <&lx_clk>;
-+
-+	interrupt-parent =3D <&intc>;
-+	interrupts =3D <30>;
-+};
-+
-+&uart1 {
-+	/delete-property/ clock-frequency;
-+	clocks =3D <&lx_clk>;
-+
-+	interrupt-parent =3D <&intc>;
-+	interrupts =3D <31>;
-+};
-+
---=20
-2.45.2
+// Caleb (they/them)
 
 
