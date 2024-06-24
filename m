@@ -1,89 +1,108 @@
-Return-Path: <devicetree+bounces-79493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A87915818
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:37:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4451915820
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:40:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B3FE1C20EDF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:37:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7017C1F26DE8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07991A0716;
-	Mon, 24 Jun 2024 20:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD541A08B1;
+	Mon, 24 Jun 2024 20:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqZu5+jW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oFf4xeeL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766C719F464;
-	Mon, 24 Jun 2024 20:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E5A1A08AF;
+	Mon, 24 Jun 2024 20:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719261460; cv=none; b=SPxDFvGvp+EGrjjui4MgV04q/tUoRj4ijNjcG4fW1ZdO79vboSJ4ylTRnVS4YMwuDyqIRdGMfV4sLBRkgRlsXX3Tc3QGhs4vNHLS9jugwBmPoMCIue3zVDz+bCrYz/BfltQE+dqKAxTxZHCl8+oDKZPyB6ug29V2hLRSqtoB/Ak=
+	t=1719261643; cv=none; b=JXbdS1j3xEzNfAPsIDDhZSdGmYX34eFCfh0tj2ECVj1NSR5TQjmFXI3RCgQPOjW41Y+mmC8G4cdYuuS3ydqQ2dtenPiZh9V0KHieD+/ICjN/F7q5lvfhwRecDq2XVxmbBohFAbzFas7IOnttBGrvuiVDViA6vkYLau5PJ629DBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719261460; c=relaxed/simple;
-	bh=4d7T6+euO4Jf5/pqXj2ahpf0LXQbq2D9+js6pa3Ys5c=;
+	s=arc-20240116; t=1719261643; c=relaxed/simple;
+	bh=HKHNjN12ghdanNjkpEpORPJCe/LeiaO7ZQFLm/IYZGI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hh8cTL3+Yc/Dtvlyz36AMzfb6s9iI213OS1ZKoWgo7wr9tiBV5K06jyaSsaMkdwunoGFjtrImCCMvnknH80l3TZnwiu3FbDp+mMjsPH7reRcVYNrg8EIZZGXYqV5/MBodYWQ0ao56RUGH1/oKS5+xJ8cGKt5+8T1z0ao9zHbXu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqZu5+jW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEA9CC2BBFC;
-	Mon, 24 Jun 2024 20:37:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tawGBcYSCTQzwY+MO442vhSn1NlpmQIBW1hvBpD4U4bDnjKjI3DE3t7GOC6+AhbiQiYMgEse39qEq2F5LCus/XsMXKvTIo5y0WYTADQtQDkHV6uocXsXxKttWyg7JFuCE3tj2koV/NROrNE8oWT8S0FlsOldkQyialFKK28QcSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oFf4xeeL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B10AC2BBFC;
+	Mon, 24 Jun 2024 20:40:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719261460;
-	bh=4d7T6+euO4Jf5/pqXj2ahpf0LXQbq2D9+js6pa3Ys5c=;
+	s=k20201202; t=1719261642;
+	bh=HKHNjN12ghdanNjkpEpORPJCe/LeiaO7ZQFLm/IYZGI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aqZu5+jW4cutRb0RA+kDjk+v1FjtPQfv8BnJyck7sIlRjJlpIGfiTGW4vT1vg+N3m
-	 AB5AODAuQjpbwXjz/XaR8itvH4tMwQ2rJNsNfQ9emk5uo2XLFPbexM9omwJPAomDKe
-	 0qNkVVYShRIffBaEDGY0/6h39oRXFM3GBd7ONVNklQpOATjBLrs8dX8Jcw9seuLps9
-	 p15KCZ2deG4sA/9qxfuPgNPaH5PCZMI+0tOH/Dca5LQuC5D4DTJQzGKMNKAtosQe5x
-	 +BMlkmfT9+2iAzWc6wrxMD8bhzTtfyjpnxmLn3SaCXtuYnLujc1LO2nfr6LRu5dYcF
-	 nU8ay5ICL3hXQ==
-Date: Mon, 24 Jun 2024 14:37:38 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: mfd: Explain lack of child dependency in
- simple-mfd
-Message-ID: <171926144609.373838.11321058105570847753.robh@kernel.org>
-References: <20240623134600.115098-1-krzysztof.kozlowski@linaro.org>
+	b=oFf4xeeL4k9sn/LrwNkV8wU0k/8bvCXvTg8J1It92zmlMz0GGWeI4K0YXclivemlX
+	 BfwuzPtHnzow81aSVsFGyQyfK0ACOe4RMOn3b6WjMtSBvQdf27D3/s9iHNsXlubd3Y
+	 7irgaOqdrnXra1FSplPt8d1t6lMzdV/V4ioQHteSjsyqxVL10FrB8kzb//TYckIjDD
+	 JKq+y/Wi/JSreT59/65IPFsRTrpVCPwsNGitM0flyQnrT2vvb2gbP5JKffeYejV4Zu
+	 1S4ziI/pSocxLMoKCZnh9vGJyMz1bxbfKDCWx3UI1Bi8CBCUlreK0v1FCbVkqPYZmO
+	 bXwt334UpzoQw==
+Date: Mon, 24 Jun 2024 14:40:41 -0600
+From: Rob Herring <robh@kernel.org>
+To: Caleb Connolly <caleb@postmarketos.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 3/7] dt-bindings: arm: qcom: add OnePlus 8 series
+Message-ID: <20240624204041.GA375582-robh@kernel.org>
+References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
+ <20240624-oneplus8-v1-3-388eecf2dff7@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240623134600.115098-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240624-oneplus8-v1-3-388eecf2dff7@postmarketos.org>
 
-
-On Sun, 23 Jun 2024 15:46:00 +0200, Krzysztof Kozlowski wrote:
-> Common mistake of usage of 'simple-mfd' compatible is a dependency of
-> children on resources acquired and managed by the parent, e.g. clocks.
-> Extend the simple-mfd documentation to cover this case.
+On Mon, Jun 24, 2024 at 03:30:27AM +0200, Caleb Connolly wrote:
+> Add bindings for the OnePlus 8, 8 Pro, and 8T devices.
 > 
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
 > ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Changes in v2:
-> 1. Rephrase the paragraph, as discussed with Lee.
-> 2. Add Rb tag.
-> ---
->  Documentation/devicetree/bindings/mfd/mfd.txt | 15 ++++++++-------
->  1 file changed, 8 insertions(+), 7 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index d839691a900c..a41eeb8c3fc5 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -986,8 +986,11 @@ properties:
+>            - enum:
+>                - qcom,qrb5165-rb5
+>                - qcom,sm8250-hdk
+>                - qcom,sm8250-mtp
+> +              - oneplus,kebab
+> +              - oneplus,instantnoodle
+> +              - oneplus,instantnoodlep
+
+Which one is which device in the commit msg? I can only guess that 'p' 
+here corresponds to Pro. A comment after the compatibles would help.
+
+>                - sony,pdx203-generic
+>                - sony,pdx206-generic
+>                - xiaomi,elish
+>                - xiaomi,pipa
 > 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+> -- 
+> 2.45.0
+> 
 
