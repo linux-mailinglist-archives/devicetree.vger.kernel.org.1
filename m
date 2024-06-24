@@ -1,98 +1,87 @@
-Return-Path: <devicetree+bounces-79492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A849915813
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:34:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A87915818
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42F802892F1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:34:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B3FE1C20EDF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:37:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06671A08B0;
-	Mon, 24 Jun 2024 20:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07991A0716;
+	Mon, 24 Jun 2024 20:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ioCSjRgP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqZu5+jW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40981A0701;
-	Mon, 24 Jun 2024 20:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766C719F464;
+	Mon, 24 Jun 2024 20:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719261280; cv=none; b=cBdDTDgGfTaID1sUGKI6xextl1prL+zvjsaDOkb2VmAaLUfcwlqAlaZx9bC1sbhgzESSufafK3YOyXFNhEON3hqv92D+stbzOgWZMlMWt7S6VJxmpFq2of41uXtJcGZK5lm/bSEfDqKbFcLiYpamedM+OWgnmZxatk9NHZbQSew=
+	t=1719261460; cv=none; b=SPxDFvGvp+EGrjjui4MgV04q/tUoRj4ijNjcG4fW1ZdO79vboSJ4ylTRnVS4YMwuDyqIRdGMfV4sLBRkgRlsXX3Tc3QGhs4vNHLS9jugwBmPoMCIue3zVDz+bCrYz/BfltQE+dqKAxTxZHCl8+oDKZPyB6ug29V2hLRSqtoB/Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719261280; c=relaxed/simple;
-	bh=fnYnt1cm4H5OJFjouGeyQRwAXFsct3WiYlfwxAclM7M=;
+	s=arc-20240116; t=1719261460; c=relaxed/simple;
+	bh=4d7T6+euO4Jf5/pqXj2ahpf0LXQbq2D9+js6pa3Ys5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C5I3CnTHxYwIvp5sVM/OdrC8c7kItt/OWnKoR7NCMBdYXYEgLUNcTQTnADc+3VO1wTkmg6sFJGTS5hjxyY7hpab26x7IuZF3SEK6zK8xUIasU/f+/GZyk95F0NJ2TwWNcOcMl3ljTtlsLKRxGeHZ6RyjerrhHXV62FK9xNy4pqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ioCSjRgP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0985FC2BBFC;
-	Mon, 24 Jun 2024 20:34:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hh8cTL3+Yc/Dtvlyz36AMzfb6s9iI213OS1ZKoWgo7wr9tiBV5K06jyaSsaMkdwunoGFjtrImCCMvnknH80l3TZnwiu3FbDp+mMjsPH7reRcVYNrg8EIZZGXYqV5/MBodYWQ0ao56RUGH1/oKS5+xJ8cGKt5+8T1z0ao9zHbXu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqZu5+jW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEA9CC2BBFC;
+	Mon, 24 Jun 2024 20:37:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719261280;
-	bh=fnYnt1cm4H5OJFjouGeyQRwAXFsct3WiYlfwxAclM7M=;
+	s=k20201202; t=1719261460;
+	bh=4d7T6+euO4Jf5/pqXj2ahpf0LXQbq2D9+js6pa3Ys5c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ioCSjRgPVmkWKAYfMEnQcKe2/Nw1+gJNjjLMabDjfApiT5h25BtImV/0c+b2S74sk
-	 oGZKI2CPMFm9e7d+xNuB1iQlMlvxZg5gbQWchcAwiZBwh9ix7+Yz0PC2SCCbF7T/CR
-	 DSTk8ZYyI3v6h27WbV3p6FkqkoJz59JF72kem1iGXRY6e9CnUAQfSPK1qedsunc/j0
-	 pZUjufoWbx/gWXDcl8nqogJAgkW/ibbVxYU5mmNJBvz79ZrPmw+EX/i9sKH6tr9UUc
-	 ARldhrSFACNmx0YyJ8Ka+UlDGMwu9AUJCJh8wjjafgADmQaqViA6Sdp74krJhShOHy
-	 6sqlgIdo+tGMA==
-Date: Mon, 24 Jun 2024 14:34:38 -0600
+	b=aqZu5+jW4cutRb0RA+kDjk+v1FjtPQfv8BnJyck7sIlRjJlpIGfiTGW4vT1vg+N3m
+	 AB5AODAuQjpbwXjz/XaR8itvH4tMwQ2rJNsNfQ9emk5uo2XLFPbexM9omwJPAomDKe
+	 0qNkVVYShRIffBaEDGY0/6h39oRXFM3GBd7ONVNklQpOATjBLrs8dX8Jcw9seuLps9
+	 p15KCZ2deG4sA/9qxfuPgNPaH5PCZMI+0tOH/Dca5LQuC5D4DTJQzGKMNKAtosQe5x
+	 +BMlkmfT9+2iAzWc6wrxMD8bhzTtfyjpnxmLn3SaCXtuYnLujc1LO2nfr6LRu5dYcF
+	 nU8ay5ICL3hXQ==
+Date: Mon, 24 Jun 2024 14:37:38 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Orson Zhai <orsonzhai@gmail.com>, linux-arm-kernel@lists.infradead.org,
-	Lee Jones <lee@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 3/7] dt-bindings: soc: intel: lgm-syscon: Move to
- dedicated schema
-Message-ID: <171926127659.368668.12236897236768555715.robh@kernel.org>
-References: <20240616-dt-bindings-mfd-syscon-split-v2-0-571b5850174a@linaro.org>
- <20240616-dt-bindings-mfd-syscon-split-v2-3-571b5850174a@linaro.org>
+Cc: devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: mfd: Explain lack of child dependency in
+ simple-mfd
+Message-ID: <171926144609.373838.11321058105570847753.robh@kernel.org>
+References: <20240623134600.115098-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240616-dt-bindings-mfd-syscon-split-v2-3-571b5850174a@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240623134600.115098-1-krzysztof.kozlowski@linaro.org>
 
 
-On Sun, 16 Jun 2024 15:19:23 +0200, Krzysztof Kozlowski wrote:
-> intel,lgm-syscon is not a simple syscon device - it has children - thus
-> it should be fully documented in its own binding.
+On Sun, 23 Jun 2024 15:46:00 +0200, Krzysztof Kozlowski wrote:
+> Common mistake of usage of 'simple-mfd' compatible is a dependency of
+> children on resources acquired and managed by the parent, e.g. clocks.
+> Extend the simple-mfd documentation to cover this case.
 > 
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
 > ---
 > 
-> Context might depend on patch in Lee's MFD tree:
-> https://lore.kernel.org/all/171828959006.2643902.8308227314531523435.b4-ty@kernel.org/
-> and also further patches here depend on this one.
+> Changes in v2:
+> 1. Rephrase the paragraph, as discussed with Lee.
+> 2. Add Rb tag.
 > ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml  |  1 -
->  .../bindings/soc/intel/intel,lgm-syscon.yaml       | 56 ++++++++++++++++++++++
->  2 files changed, 56 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/mfd/mfd.txt | 15 ++++++++-------
+>  1 file changed, 8 insertions(+), 7 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
