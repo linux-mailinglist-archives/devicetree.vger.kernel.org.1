@@ -1,282 +1,260 @@
-Return-Path: <devicetree+bounces-79429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2D189153E5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:33:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E2E9153E8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FF591C211DB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:33:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B01F3286ABA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64BE119D8AE;
-	Mon, 24 Jun 2024 16:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB38619DF93;
+	Mon, 24 Jun 2024 16:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gBghK/v9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD6619DF88;
-	Mon, 24 Jun 2024 16:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E7119DF84
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 16:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719246789; cv=none; b=BkG0cmLfoxuJT8aP0k1EEEPrm9PosjqPOls1xBQyBnoye7P+uEXD+JxoE7yJgswBHVwMS7D2HrnCGN43teSqxqb9R6y9jDjH79CpWM8BG4BodJ9JaV8AC2Wz1s7o305oevfPPPFgfwT01zS7W44pGVH0w055ps1SWh+C7kgUSqw=
+	t=1719246802; cv=none; b=hN9QVyaT6AgsaiwKcAeaakxYdj1aXp2y2GBd6F2BdUyBETrvrHwdLdjg+Tny/un2T4p9wQ1rGK/0BclpLLjduk1Vhm4YUeGCstOSGDpFFHWKVOABERU9No1N8MBjI+pTsoeZOGZt6rul5Qty8nfgpa3nOOgflEySCQliAgCgJik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719246789; c=relaxed/simple;
-	bh=c9NJn3OyE8j1Fxu219eU6Xer72XLaFw99gXvlRWNiFQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i+Bo72xxBW8/Yt6EBUVJbnDLkMoPAY3QwYBU2OpA40TaCYxH4f6juJPZHGad5YFG6eP6vMPOs1BDVzGNYMGioc2/iDTYUnh+WRUp0Z/FzNbpo2iaiy+K/1NUfwrwKyq3dIG99kp39C12vPtg1SSFODImCnddKueFYtlBVcmn8Ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 78979DA7;
-	Mon, 24 Jun 2024 09:33:29 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A1E43F6A8;
-	Mon, 24 Jun 2024 09:33:02 -0700 (PDT)
-Date: Mon, 24 Jun 2024 17:32:59 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Corentin Labbe <clabbe.montjoie@gmail.com>, Herbert Xu
- <herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] crypto: sun8i-ce - wrap accesses to descriptor
- address fields
-Message-ID: <20240624173259.16bc6cd3@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v6724rJ19-LEQHuMvfU5SsrECKYwUxRyE7vQTdnb39Ubjw@mail.gmail.com>
-References: <20240616220719.26641-1-andre.przywara@arm.com>
-	<20240616220719.26641-3-andre.przywara@arm.com>
-	<CAGb2v6724rJ19-LEQHuMvfU5SsrECKYwUxRyE7vQTdnb39Ubjw@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1719246802; c=relaxed/simple;
+	bh=dw+lzWNyQHqSYe5A61ozjs3tY/hYPkWhexWQJPWeyQA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KiXHLsNckVERS2YVeY03ssfcSowrOPdEmLhMK3/h9umwJfB271tCdujDeuOPxW/UouQkNeIT3Yu6pcGNJHJCOtddB8Yo8w97dtVmHBRQZmiL/OeRJcfq6M8Eg2Bg0Ik+/BIr/K9WIBOYyZQo+L8FiI/TPPpOacRoHhKYiis/D5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gBghK/v9; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dfb05bcc50dso3940040276.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 09:33:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719246799; x=1719851599; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GUwpeaNUdZ/Eg74Mr1NNiwSTPXp+vSE1N8cO2JJRSw8=;
+        b=gBghK/v9qoRR5FxKHv01iskMEQxSLpP3NLrEM8d7svy4EtylbGpbd/UXxKfr4NwQjH
+         vL6dE87vbtAAtt3XxKDi+qjrvNba/G8HoVkx6m3qKNl8F1i/ArO8har/C+s7nwvNyryT
+         Jso/mKNPHAR4v8Rv3+XIvKcIX3Cme3iSP0B5QgvVPm3qHwXzsKMjIXmN0AG9WYadIPnp
+         ER/puSf2SD7+iAZt7g/i8sPCtPsKXEtHIAPXBlrD0FtlDs6Y0K/q2pHDGhjHIVhKDlRO
+         dxHka5oPKT2sCsxKplDmAV639nnCGrHPO4rz4daw+/XiyXEWGbfchI+hm3095IjdySz2
+         ek6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719246799; x=1719851599;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GUwpeaNUdZ/Eg74Mr1NNiwSTPXp+vSE1N8cO2JJRSw8=;
+        b=tHVIsk3DE87MAlQF5BvNQUFQx46eOCE05M9PnlvkaCOHmn+hqOhMP1ZoQm3HfAhosU
+         H4+pJbniAk4dmJ78ebb0TjmghZETqIGcsBZyiCq9XuVwn4JdaYudoR8Z20PbnCWEcUQj
+         gYi8UzSNtg6TbpcbS+NlI9bwLD4GPw0nHSzft0Z0GzQxvrzxBgNWKtZhyPwpCoTFQSDK
+         9LI7Yv15RGMC+eKUK2Z6avqKOCdzRnm1WqovD0U9osVgR3ghIuHyMvOATb4E6gRvxo+t
+         9M5pIe4sQWnpwJhRH6/ypv0/e3wbrl+vSJS+lXowP7JXiUWhzX/PbsdzCjmGujOfsiD2
+         9arA==
+X-Forwarded-Encrypted: i=1; AJvYcCUwbN4Hz9KH1o0MvVnh4j0KNi9lBxwRM7V/I2vaPMyKB7QMuuswmMd7bTEP60ajX7REceeDqplSFIOQVNYo9LjtV7DznA8FeEs04A==
+X-Gm-Message-State: AOJu0Yyq6XhDWkMAikX6QN6T/4oQ0juIdDDpa7PHwPFciKUOnHKn0bWw
+	EgmwpMlD6tSuk6hh6PnXdS91+OmfxHj3X/1YFh/Ag40Hp6tQ9s9ZtrKzgqxWGOunDlspwMPdVTI
+	Vq8ziGkJDhBIgchYH+tJavjp3J97qpNMkfLxBVg==
+X-Google-Smtp-Source: AGHT+IGsIHX1h777STxuAZY31c+MOswbbakLfpx8XYYTWe0uWHoumP4q/sTkA3EgMHwZ+5QbasMECc9ZR7Ny0JU6I5Y=
+X-Received: by 2002:a25:a041:0:b0:e02:ab25:44aa with SMTP id
+ 3f1490d57ef6-e0303fc108bmr4211387276.47.1719246799196; Mon, 24 Jun 2024
+ 09:33:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20240624141926.5250-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240624141926.5250-4-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <zvkl2wyqp3iem4ln4qkbhgvxafsfn5wkkmqwhufabm2gqs3eqw@vmqs3lx72ekk> <CAD=FV=V9tjY-g=w1Dwj+9oiTWfku8Bt48OUPJqYUqZaJrY8C1Q@mail.gmail.com>
+In-Reply-To: <CAD=FV=V9tjY-g=w1Dwj+9oiTWfku8Bt48OUPJqYUqZaJrY8C1Q@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 24 Jun 2024 19:33:06 +0300
+Message-ID: <CAA8EJprQD2_yL95wX5S5Gp-Fb-JdwdB3gKNC9VUZtmaaier6VQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] drm/panel: panel-jadard-jd9365da-h3: use wrapped
+ MIPI DCS functions
+To: Doug Anderson <dianders@google.com>
+Cc: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>, dmitry.torokhov@gmail.com, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	jikos@kernel.org, benjamin.tissoires@redhat.co, hsinyi@google.com, 
+	jagan@edgeble.ai, neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 21 Jun 2024 22:53:47 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
+On Mon, 24 Jun 2024 at 19:31, Doug Anderson <dianders@google.com> wrote:
+>
+> Hi,
+>
+> On Mon, Jun 24, 2024 at 8:27=E2=80=AFAM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Mon, Jun 24, 2024 at 10:19:24PM GMT, Zhaoxiong Lv wrote:
+> > > Remove conditional code and always use mipi_dsi_dcs_*multi() wrappers=
+ to
+> > > simplify driver's init/enable/exit code.
+> > >
+> > > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.c=
+om>
+> > > ---
+> > >  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 793 +++++++++-------=
+--
+> > >  1 file changed, 390 insertions(+), 403 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drive=
+rs/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > > index a9c483a7b3fa..e836260338bf 100644
+> > > --- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > > +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+> > > @@ -19,17 +19,13 @@
+> > >  #include <linux/of.h>
+> > >  #include <linux/regulator/consumer.h>
+> > >
+> > > -#define JD9365DA_INIT_CMD_LEN                2
+> > > -
+> > > -struct jadard_init_cmd {
+> > > -     u8 data[JD9365DA_INIT_CMD_LEN];
+> > > -};
+> > > +struct jadard;
+> > >
+> > >  struct jadard_panel_desc {
+> > >       const struct drm_display_mode mode;
+> > >       unsigned int lanes;
+> > >       enum mipi_dsi_pixel_format format;
+> > > -     const struct jadard_init_cmd *init_cmds;
+> > > +     int (*init)(struct jadard *jadard);
+> > >       u32 num_init_cmds;
+> > >  };
+> > >
+> > > @@ -50,46 +46,33 @@ static inline struct jadard *panel_to_jadard(stru=
+ct drm_panel *panel)
+> > >
+> > >  static int jadard_enable(struct drm_panel *panel)
+> > >  {
+> > > -     struct device *dev =3D panel->dev;
+> > >       struct jadard *jadard =3D panel_to_jadard(panel);
+> > > -     struct mipi_dsi_device *dsi =3D jadard->dsi;
+> > > -     int err;
+> > > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->ds=
+i };
+> > >
+> > >       msleep(120);
+> > >
+> > > -     err =3D mipi_dsi_dcs_exit_sleep_mode(dsi);
+> > > -     if (err < 0)
+> > > -             DRM_DEV_ERROR(dev, "failed to exit sleep mode ret =3D %=
+d\n", err);
+> > > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> > >
+> > > -     err =3D  mipi_dsi_dcs_set_display_on(dsi);
+> > > -     if (err < 0)
+> > > -             DRM_DEV_ERROR(dev, "failed to set display on ret =3D %d=
+\n", err);
+> > > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> > >
+> > > -     return 0;
+> > > +     return dsi_ctx.accum_err;
+> > >  }
+> > >
+> > >  static int jadard_disable(struct drm_panel *panel)
+> > >  {
+> > > -     struct device *dev =3D panel->dev;
+> > >       struct jadard *jadard =3D panel_to_jadard(panel);
+> > > -     int ret;
+> > > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->ds=
+i };
+> > >
+> > > -     ret =3D mipi_dsi_dcs_set_display_off(jadard->dsi);
+> > > -     if (ret < 0)
+> > > -             DRM_DEV_ERROR(dev, "failed to set display off: %d\n", r=
+et);
+> > > +     mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> > >
+> > > -     ret =3D mipi_dsi_dcs_enter_sleep_mode(jadard->dsi);
+> > > -     if (ret < 0)
+> > > -             DRM_DEV_ERROR(dev, "failed to enter sleep mode: %d\n", =
+ret);
+> > > +     mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> > >
+> > > -     return 0;
+> > > +     return dsi_ctx.accum_err;
+> > >  }
+> > >
+> > >  static int jadard_prepare(struct drm_panel *panel)
+> > >  {
+> > >       struct jadard *jadard =3D panel_to_jadard(panel);
+> > > -     const struct jadard_panel_desc *desc =3D jadard->desc;
+> > > -     unsigned int i;
+> > >       int ret;
+> > >
+> > >       ret =3D regulator_enable(jadard->vccio);
+> > > @@ -109,13 +92,9 @@ static int jadard_prepare(struct drm_panel *panel=
+)
+> > >       gpiod_set_value(jadard->reset, 1);
+> > >       msleep(130);
+> > >
+> > > -     for (i =3D 0; i < desc->num_init_cmds; i++) {
+> > > -             const struct jadard_init_cmd *cmd =3D &desc->init_cmds[=
+i];
+> > > -
+> > > -             ret =3D mipi_dsi_dcs_write_buffer(dsi, cmd->data, JD936=
+5DA_INIT_CMD_LEN);
+> >
+> > This function usesd mipi_dsi_dcs_write_buffer()...
+> >
+> > > -             if (ret < 0)
+> > > -                     return ret;
+> > > -     }
+> > > +     ret =3D jadard->desc->init(jadard);
+> > > +     if (ret)
+> > > +             return ret;
+> > >
+> > >       return 0;
+> >
+> > [...]
+> >
+> > > +static int radxa_display_8hd_ad002_init_cmds(struct jadard *jadard)
+> > > +{
+> > > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->ds=
+i };
+> > > +
+> > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x00);
+> >
+> > ... while your code uses mipi_dsi_dcs_write_seq_multi(), which
+> > internally calls mipi_dsi_generic_write_multi(). These two function use
+> > different packet types to send the payload. To be conservatite, please
+> > use mipi_dsi_dcs_write_buffer_multi().
+>
+> Are you certain about this? I see that mipi_dsi_dcs_write_seq_multi()
+> is just a wrapper on mipi_dsi_dcs_write_buffer_multi(). Specifically,
+> I see:
 
-Hi,
+I see, I was looking at mipi_dsi_generic_write_seq_multi() instead.
+Please excuse me.
 
-> On Mon, Jun 17, 2024 at 6:08=E2=80=AFAM Andre Przywara <andre.przywara@ar=
-m.com> wrote:
-> >
-> > The Allwinner H616 (and later) SoCs support more than 32 bits worth of
-> > physical addresses. To accommodate the larger address space, the CE task
-> > descriptor fields holding addresses are now encoded as "word addresses",
-> > so take the actual address divided by four.
-> > This is true for the fields within the descriptor, but also for the
-> > descriptor base address, in the CE_TDA register.
-> >
-> > Wrap all accesses to those fields in a function, which will do the
-> > required division if needed. For now this in unused, so there should be
-> > no change in behaviour.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com> =20
->=20
-> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Thanks for that!
+>
+> #define mipi_dsi_dcs_write_seq_multi(ctx, cmd, seq...)                  \
+>   do {                                                            \
+>     static const u8 d[] =3D { cmd, seq };                     \
+>     mipi_dsi_dcs_write_buffer_multi(ctx, d, ARRAY_SIZE(d)); \
+>   } while (0)
+>
+> Certainly I could be confused...
+>
 
-> though you need to fix up the reported sparse warning in sun8i_ce_run_tas=
-k().
 
-Yeah, that turned out to be a nasty one, and uncovered an actual big
-endian bug.
-I dropped your R-b from v2 (in your inbox after testing), since I split up
-the function and used a different variant for this one writel() caller. So
-if you are happy with the changes in sun8i-ce.h and sun8i-ce-core.c: the
-other files just use the renamed function name and didn't change otherwise.
 
-Cheers,
-Andre
-
->=20
-> > ---
-> >  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c |  8 ++++----
-> >  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c   |  3 ++-
-> >  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c   |  6 +++---
-> >  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c   |  6 +++---
-> >  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c   |  2 +-
-> >  drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h        | 10 ++++++++++
-> >  6 files changed, 23 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c b/driv=
-ers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-> > index de50c00ba218f..3a5674b1bd3c0 100644
-> > --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-> > +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-> > @@ -190,7 +190,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_en=
-gine *engine, void *async_req
-> >                 err =3D -EFAULT;
-> >                 goto theend;
-> >         }
-> > -       cet->t_key =3D cpu_to_le32(rctx->addr_key);
-> > +       cet->t_key =3D sun8i_ce_desc_addr(ce, rctx->addr_key);
-> >
-> >         ivsize =3D crypto_skcipher_ivsize(tfm);
-> >         if (areq->iv && crypto_skcipher_ivsize(tfm) > 0) {
-> > @@ -208,7 +208,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_en=
-gine *engine, void *async_req
-> >                         err =3D -ENOMEM;
-> >                         goto theend_iv;
-> >                 }
-> > -               cet->t_iv =3D cpu_to_le32(rctx->addr_iv);
-> > +               cet->t_iv =3D sun8i_ce_desc_addr(ce, rctx->addr_iv);
-> >         }
-> >
-> >         if (areq->src =3D=3D areq->dst) {
-> > @@ -236,7 +236,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_en=
-gine *engine, void *async_req
-> >
-> >         len =3D areq->cryptlen;
-> >         for_each_sg(areq->src, sg, nr_sgs, i) {
-> > -               cet->t_src[i].addr =3D cpu_to_le32(sg_dma_address(sg));
-> > +               cet->t_src[i].addr =3D sun8i_ce_desc_addr(ce, sg_dma_ad=
-dress(sg));
-> >                 todo =3D min(len, sg_dma_len(sg));
-> >                 cet->t_src[i].len =3D cpu_to_le32(todo / 4);
-> >                 dev_dbg(ce->dev, "%s total=3D%u SG(%d %u off=3D%d) todo=
-=3D%u\n", __func__,
-> > @@ -251,7 +251,7 @@ static int sun8i_ce_cipher_prepare(struct crypto_en=
-gine *engine, void *async_req
-> >
-> >         len =3D areq->cryptlen;
-> >         for_each_sg(areq->dst, sg, nr_sgd, i) {
-> > -               cet->t_dst[i].addr =3D cpu_to_le32(sg_dma_address(sg));
-> > +               cet->t_dst[i].addr =3D sun8i_ce_desc_addr(ce, sg_dma_ad=
-dress(sg));
-> >                 todo =3D min(len, sg_dma_len(sg));
-> >                 cet->t_dst[i].len =3D cpu_to_le32(todo / 4);
-> >                 dev_dbg(ce->dev, "%s total=3D%u SG(%d %u off=3D%d) todo=
-=3D%u\n", __func__,
-> > diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c b/driver=
-s/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-> > index 0408b2d5d533b..89ab3e08f0697 100644
-> > --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-> > +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-> > @@ -172,7 +172,8 @@ int sun8i_ce_run_task(struct sun8i_ce_dev *ce, int =
-flow, const char *name)
-> >         writel(v, ce->base + CE_ICR);
-> >
-> >         reinit_completion(&ce->chanlist[flow].complete);
-> > -       writel(ce->chanlist[flow].t_phy, ce->base + CE_TDQ);
-> > +       writel(sun8i_ce_desc_addr(ce, ce->chanlist[flow].t_phy),
-> > +              ce->base + CE_TDQ);
-> >
-> >         ce->chanlist[flow].status =3D 0;
-> >         /* Be sure all data is written before enabling the task */
-> > diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c b/driver=
-s/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c
-> > index ee2a28c906ede..a710ec9aa96f1 100644
-> > --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c
-> > +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-hash.c
-> > @@ -403,7 +403,7 @@ int sun8i_ce_hash_run(struct crypto_engine *engine,=
- void *breq)
-> >
-> >         len =3D areq->nbytes;
-> >         for_each_sg(areq->src, sg, nr_sgs, i) {
-> > -               cet->t_src[i].addr =3D cpu_to_le32(sg_dma_address(sg));
-> > +               cet->t_src[i].addr =3D sun8i_ce_desc_addr(ce, sg_dma_ad=
-dress(sg));
-> >                 todo =3D min(len, sg_dma_len(sg));
-> >                 cet->t_src[i].len =3D cpu_to_le32(todo / 4);
-> >                 len -=3D todo;
-> > @@ -414,7 +414,7 @@ int sun8i_ce_hash_run(struct crypto_engine *engine,=
- void *breq)
-> >                 goto theend;
-> >         }
-> >         addr_res =3D dma_map_single(ce->dev, result, digestsize, DMA_FR=
-OM_DEVICE);
-> > -       cet->t_dst[0].addr =3D cpu_to_le32(addr_res);
-> > +       cet->t_dst[0].addr =3D sun8i_ce_desc_addr(ce, addr_res);
-> >         cet->t_dst[0].len =3D cpu_to_le32(digestsize / 4);
-> >         if (dma_mapping_error(ce->dev, addr_res)) {
-> >                 dev_err(ce->dev, "DMA map dest\n");
-> > @@ -445,7 +445,7 @@ int sun8i_ce_hash_run(struct crypto_engine *engine,=
- void *breq)
-> >         }
-> >
-> >         addr_pad =3D dma_map_single(ce->dev, buf, j * 4, DMA_TO_DEVICE);
-> > -       cet->t_src[i].addr =3D cpu_to_le32(addr_pad);
-> > +       cet->t_src[i].addr =3D sun8i_ce_desc_addr(ce, addr_pad);
-> >         cet->t_src[i].len =3D cpu_to_le32(j);
-> >         if (dma_mapping_error(ce->dev, addr_pad)) {
-> >                 dev_err(ce->dev, "DMA error on padding SG\n");
-> > diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c b/driver=
-s/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c
-> > index 80815379f6fc5..f030167f95945 100644
-> > --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c
-> > +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-prng.c
-> > @@ -132,10 +132,10 @@ int sun8i_ce_prng_generate(struct crypto_rng *tfm=
-, const u8 *src,
-> >         cet->t_sym_ctl =3D cpu_to_le32(sym);
-> >         cet->t_asym_ctl =3D 0;
-> >
-> > -       cet->t_key =3D cpu_to_le32(dma_iv);
-> > -       cet->t_iv =3D cpu_to_le32(dma_iv);
-> > +       cet->t_key =3D sun8i_ce_desc_addr(ce, dma_iv);
-> > +       cet->t_iv =3D sun8i_ce_desc_addr(ce, dma_iv);
-> >
-> > -       cet->t_dst[0].addr =3D cpu_to_le32(dma_dst);
-> > +       cet->t_dst[0].addr =3D sun8i_ce_desc_addr(ce, dma_dst);
-> >         cet->t_dst[0].len =3D cpu_to_le32(todo / 4);
-> >         ce->chanlist[flow].timeout =3D 2000;
-> >
-> > diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c b/driver=
-s/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c
-> > index 9c35f2a83eda8..465c1c512eb85 100644
-> > --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c
-> > +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-trng.c
-> > @@ -77,7 +77,7 @@ static int sun8i_ce_trng_read(struct hwrng *rng, void=
- *data, size_t max, bool wa
-> >         cet->t_sym_ctl =3D 0;
-> >         cet->t_asym_ctl =3D 0;
-> >
-> > -       cet->t_dst[0].addr =3D cpu_to_le32(dma_dst);
-> > +       cet->t_dst[0].addr =3D sun8i_ce_desc_addr(ce, dma_dst);
-> >         cet->t_dst[0].len =3D cpu_to_le32(todo / 4);
-> >         ce->chanlist[flow].timeout =3D todo;
-> >
-> > diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h b/drivers/cry=
-pto/allwinner/sun8i-ce/sun8i-ce.h
-> > index 93d4985def87a..8fa58f3bb7f86 100644
-> > --- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-> > +++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-> > @@ -149,6 +149,7 @@ struct ce_variant {
-> >         bool hash_t_dlen_in_bits;
-> >         bool prng_t_dlen_in_bytes;
-> >         bool trng_t_dlen_in_bytes;
-> > +       bool needs_word_addresses;
-> >         struct ce_clock ce_clks[CE_MAX_CLOCKS];
-> >         int esr;
-> >         unsigned char prng;
-> > @@ -241,6 +242,15 @@ struct sun8i_ce_dev {
-> >  #endif
-> >  };
-> >
-> > +static inline __le32 sun8i_ce_desc_addr(struct sun8i_ce_dev *dev,
-> > +                                       dma_addr_t addr)
-> > +{
-> > +       if (dev->variant->needs_word_addresses)
-> > +               return cpu_to_le32(addr / 4);
-> > +
-> > +       return cpu_to_le32(addr);
-> > +}
-> > +
-> >  /*
-> >   * struct sun8i_cipher_req_ctx - context for a skcipher request
-> >   * @op_dir:            direction (encrypt vs decrypt) for this request
-> > --
-> > 2.39.4
-> > =20
-
+--=20
+With best wishes
+Dmitry
 
