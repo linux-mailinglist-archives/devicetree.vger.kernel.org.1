@@ -1,321 +1,120 @@
-Return-Path: <devicetree+bounces-79319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB57914A31
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:35:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90019914B01
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:50:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 483C4B20C05
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:34:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 320731F242F3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2435A13C671;
-	Mon, 24 Jun 2024 12:34:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D900E13CAA3;
+	Mon, 24 Jun 2024 12:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VQKGa16B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IEOvaOYh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463AD1E4AE
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 12:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 330F413C8E8;
+	Mon, 24 Jun 2024 12:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719232493; cv=none; b=jDbImDnEKJWR2hBEfDnJSF28Ib74sCb5TXYNWeUP/YgPZVBEQq9zK5x31jrpngfRAakpXAqQZ88OwmGQLRZtKBZ0LJvVWvclPX/XIuZr7vA+AOWWDPbSjCpBPPo312UVcvuZ7XjGPn21QnHYfFvOMi0z6hjnuTcLE2OsvYBqL7o=
+	t=1719233404; cv=none; b=Jdvh49Dy9EQSz8rtJn9ra9KB6fTuUZXRCG5WbVPCQ1zPcRBmNwNCZJpoDJ+InoV/0/2Ina2RcIh/ZYyIaA9JEU0k8Sfvl03n001VlEFsM13c+ZmaRFp5BqRiLJki5ZSjgWXuV/YpRF4B5C78z0nOlHOhwv0mTileT8pexZ3AEuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719232493; c=relaxed/simple;
-	bh=5f0/UoGx6xaywRoX9Pa4HI10K9jFxVdu6pAJ0tGudJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AvNsdgzLT//tITHwNyed1jcW5pAbNaHMglWt12lz8LNjhxKPmYcWDO8/vokKTKpYCp4mKykkWY2xlFpJwJqK6A8xmdlcnMJNxlQf3X2no0bWIVm8jh7j6T8jhPHUwFHqenvEmJ1V3fwnBVOGIC8kPzL7wFmldlV1Z3p7QJZfizA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VQKGa16B; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a6fe81a5838so177465266b.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:34:51 -0700 (PDT)
+	s=arc-20240116; t=1719233404; c=relaxed/simple;
+	bh=LlD7I6/pjywuSMhSXawgkM+HR5f/d4MMCMlGcT05+3k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ogi2b6Tiw647M0Ul5P4DSOL9p7WwH4vR19kPJWJ1H71au0M6/kA+e7QV2Ak2G0ExGVo2nd/mlFZI6WeAn+7QcJ1a9uogLOqEzPE9xFeRk/yLy2v6SjAMyDMmQsMT5Cy+PIz7XqgGd4WcDSNItSxaZunVf49+DnrbnH2OLMRq68k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IEOvaOYh; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52cd87277d8so2625945e87.2;
+        Mon, 24 Jun 2024 05:50:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719232490; x=1719837290; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T6mu5FL/2KlapxSCeQ/DGjboe5sy2JfXpFVHbsPe+7s=;
-        b=VQKGa16BAXYLVBbkG18H0v2Ccnje4zrb75x8fenRbds+FOkpBxv/RyQXv/Md5C9bNU
-         FWiwwi7WsNSQOrWK3y0DpD3SSrZi/bwNgN4Q9DFIcItkVG7gmSGJWlY6MAkvc+snevVs
-         1YR6UIeOpL2P1XYaNm4xVrDsftL88bcOqrpet/5wqmXNv24zGMarDAEcBloHVz60UsNl
-         ofAJ/mZXz7eElMmOnwlYRPyz9zO2Ykxsqu30Ebg+NJ9JXYYMJM8P0ISWoG/J+EJQHgwM
-         be6k+pRGzgAsMBP2XmjNYM5a3nMeQaA+NQjYYEqIxCIStHrP6N5Iwbgiti0oN3B8ei1m
-         Aybw==
+        d=gmail.com; s=20230601; t=1719233401; x=1719838201; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HlcYgPsud4Nd776nRkjr0CZ1auzWK784DbKxqK8ksAY=;
+        b=IEOvaOYhHL6EsQBaNMJ7MzT8Yp16DvZvueyRMRRd23KGzdIwNptOnqhUzctY4h9c8C
+         Y/vK5HWzsnlwUw9Qh0sWaJShhj2An8PDaFu0eo0b9vHWAtX1bXaPLFv8w4iev4YkR6u5
+         GQOb2FSvEFXMS62eyce40Vy2GOLbFstqPwsJVyCbC0jFmcoHMHZecFOPSZJTswRFCfZB
+         qAbVuc7xgjO9akTFfZsaxJYlKaIgwVYh4nK/rx4Csz4BxgZmqpbfuip5BtnpjlUHg9l5
+         XC1SnqjGeMli6/Ta4jrrIpWoUUqjfm4TRdf97uXr5xTaGkmUC+IvUOl+tWA87Bwqu5if
+         vMXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719232490; x=1719837290;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T6mu5FL/2KlapxSCeQ/DGjboe5sy2JfXpFVHbsPe+7s=;
-        b=HC9vfIhLrdMZtUNf0JrMGQhrD+jiLmU+diSsUN6ckfWWD/OXjVYiRxVY941NC7eIzN
-         oqbfVvikX31uXinEFBi7R13pOkNEG39eBE9gox+JrY15jvEbzCnSoiZEnrcZxrWvXN9k
-         /sB3YnnIEN5yqzPzTa+5OIZXH3PA2p7OVOMcuYtpCcbuSGHRYebDzH0Egkh0gqyvQRAN
-         Z4NHJJZ1nPGbN7uUiNTI4k9YtmfllwVE5ApWORX2nbEu6vEYchfyot8D8LAl5ffKX953
-         a1ct/QAvW2pe/Q9kvxFCdTcf+S9W2Ck8Vhbu1tmSUz9R/mbMDCwuLClpNeZytEa0CrAW
-         6p/g==
-X-Forwarded-Encrypted: i=1; AJvYcCXRDzS0Gp/ph2xiTK9KyveZbOp+AldPDg7MN9nH29LJNSR974jKTQBuOdv6sGLvLplbtEhVBknP1c6p06e1vInNi9FNy4RE46y2ww==
-X-Gm-Message-State: AOJu0YwZXbrmX7wdH75G1YoK2R/HmuFAyvObp/shXk2cSH04dqArg2ru
-	VyYv546rZgumOhqbc+1rJ9UCpqiY94U40mmpFlS9wIoBogobfykH/P2Zuqam4Cc=
-X-Google-Smtp-Source: AGHT+IHhqhonX6NXyzCrMbfxJmbvAwRvtzOkWNJuPKmWWYJ0JpIp7FmdDe+Qp1r7MvCKUIDvI8XH+g==
-X-Received: by 2002:a17:907:c301:b0:a6f:5f5d:e924 with SMTP id a640c23a62f3a-a7245b4c9bcmr369118666b.6.1719232489511;
-        Mon, 24 Jun 2024 05:34:49 -0700 (PDT)
-Received: from ?IPV6:2a02:8109:aa0d:be00::52af? ([2a02:8109:aa0d:be00::52af])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a72452140e0sm209539866b.217.2024.06.24.05.34.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jun 2024 05:34:49 -0700 (PDT)
-Message-ID: <5d5eaabc-8a85-4d1f-bf2e-cb2594005a39@linaro.org>
-Date: Mon, 24 Jun 2024 14:34:48 +0200
+        d=1e100.net; s=20230601; t=1719233401; x=1719838201;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HlcYgPsud4Nd776nRkjr0CZ1auzWK784DbKxqK8ksAY=;
+        b=aIvTqcNyZLmXDZgYsyqBt8AykstARjlJAF9C7h04vuWxiHZ+rSOsEBCM/oaDftPyYp
+         835+74N9XzbPs62sDC5UpHY875BJ8e+vW9KyNyZhWaTIKgrCmRIHdNM3iNi+yL2UzJew
+         S07OnNnwgQU5e0fBWEWkLwg5oh59+JOsqXA4eid89iI26Hno+mwCpxYa2xLz3pbl8nH4
+         EaFGv55aWjte+IMSyNn/pzz+fn/yz+ldZ9ByC0rNHf9BzfXDscvIcfPlEjLEYiEQmXlW
+         s9psEOYSbhsK174sYK0S72bTzHroNLNfWE8jKmuWwjaxDKMRwRytNdKX2KK7+hZVLR6N
+         V8FA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUSu6W/wT2uS+FEfGOCJ4/qPfM/lbYsF2M2Y3KTz5A/PEZV7pDweqjj6RwOiTJXI7MVsCGBPm5nxH+8BgU/4xb8ufxxTNpqB0XHEpkn2S97n6T3NdoW10Pvq4mk7KjujX7eB9rrWpXgsN4VhoAWXyCp+e47soBFvvz/d6zbdTR7yczHw==
+X-Gm-Message-State: AOJu0YyvwaExiGvHBdEpYHLy4jBw+7ZrOW/BR6ongqvwWVweMfIPeZvL
+	lI+xuWalLVXLIwtDDYv5kGltM/EGwCNOnGkL+wsWqs9yN+jdNOdX
+X-Google-Smtp-Source: AGHT+IEvU9jLflOR3HhDPuOmbxjiN4CV0nc67vU9AQemjdEf4OtCXn61GBvDbmxYBSGg8J5mSGqMsw==
+X-Received: by 2002:a05:6512:4884:b0:52c:896f:930d with SMTP id 2adb3069b0e04-52ce18613d1mr2593801e87.57.1719233400881;
+        Mon, 24 Jun 2024 05:50:00 -0700 (PDT)
+Received: from spiri.. ([5.14.146.128])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4247d208b60sm174127905e9.37.2024.06.24.05.49.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jun 2024 05:50:00 -0700 (PDT)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: [PATCH v6 0/6] iio: adc: ad7192: Improvements
+Date: Mon, 24 Jun 2024 15:49:35 +0300
+Message-Id: <20240624124941.113010-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: prefer host mode on dev boards
-To: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240624-b4-rb2-fixes-v1-0-8d763ee4e42e@linaro.org>
- <20240624-b4-rb2-fixes-v1-3-8d763ee4e42e@linaro.org>
- <8411fee8-7e09-421a-a52b-487acd3a3e24@linaro.org>
-Content-Language: en-US
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <8411fee8-7e09-421a-a52b-487acd3a3e24@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+Dear everyone,
+
+Thank you very much for your feedback!
+
+The series is based on testing branch, since the initial first commit
+was applied there.
+
+Here is the upgraded series. Please consider applying the commits in
+order!
+
+Conor, please note that I didn't add your Reviewed-by tag, since I
+modified that commit in this series.
+
+Kind regards,
+Alisa-Dariana Roman.
+
+v5 -> v6
+	add my SoB to David's commit
+	add restrictions to the bindings patches and also modify their
+commit messages
+
+v5: https://lore.kernel.org/all/20240618142138.520192-1-alisa.roman@analog.com/
 
 
-On 24/06/2024 14:28, neil.armstrong@linaro.org wrote:
-> On 24/06/2024 14:23, Caleb Connolly wrote:
->> Generally, when given the choice these boards should prefer host mode
->> since they're SBCs. When attached to a laptop (which is host-only) they
->> should still fall back to peripheral mode.
-> 
-> It's really not what I observed on sm8550/sm8650 QRD/HDK, as the power
-> is setup for peripheral by the bootloader and without an actual UCSI/PD
-> negociation it would only be functionnal as peripheral mode.
-> 
-> So this is definitely untrue on sm8450/sm8550/sm8650 HDK/QRD/MTP.
-
-Hmm, yeah in that case this change could break U-Boot.
-
-Let me re-send and split out the rb1/2 since those are much more clear cut.
-> 
-> Neil
-> 
->>
->> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 1 +
->>   arch/arm64/boot/dts/qcom/qrb2210-rb1.dts     | 4 ++++
->>   arch/arm64/boot/dts/qcom/qrb4210-rb2.dts     | 4 ++++
->>   arch/arm64/boot/dts/qcom/sm8150-hdk.dts      | 1 +
->>   arch/arm64/boot/dts/qcom/sm8350-hdk.dts      | 4 ++++
->>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts      | 1 +
->>   arch/arm64/boot/dts/qcom/sm8550-hdk.dts      | 4 ++++
->>   arch/arm64/boot/dts/qcom/sm8550-mtp.dts      | 4 ++++
->>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts      | 4 ++++
->>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts      | 4 ++++
->>   arch/arm64/boot/dts/qcom/sm8650-mtp.dts      | 4 ++++
->>   arch/arm64/boot/dts/qcom/sm8650-qrd.dts      | 4 ++++
->>   12 files changed, 39 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts 
->> b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index c4cde4328e3d..bac4ed5874b6 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -657,8 +657,9 @@ &usb_1 {
->>   &usb_1_dwc3 {
->>       dr_mode = "otg";
->>       usb-role-switch;
->> +    role-switch-default-mode = "host";
->>   };
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts 
->> b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
->> index e19790464a11..bece4896ca23 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
->> @@ -593,8 +593,12 @@ &uart4 {
->>   &usb {
->>       status = "okay";
->>   };
->> +&usb_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_dwc3_hs {
->>       remote-endpoint = <&pm4125_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts 
->> b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> index 1c7de7f2db79..17d36f0ef5ab 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> @@ -661,8 +661,12 @@ &uart4 {
->>   &usb {
->>       status = "okay";
->>   };
->> +&usb_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_dwc3_hs {
->>       remote-endpoint = <&pmi632_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts 
->> b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
->> index bac08f00b303..fe548d795490 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
->> @@ -695,8 +695,9 @@ &usb_2 {
->>   &usb_1_dwc3 {
->>       dr_mode = "otg";
->>       usb-role-switch;
->> +    role-switch-default-mode = "host";
->>   };
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pm8150b_hs_in>;
->> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts 
->> b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
->> index e031ad4c19f4..20d5c54cfcf9 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
->> @@ -847,8 +847,12 @@ &ufs_mem_phy {
->>   &usb_1 {
->>       status = "okay";
->>   };
->> +&usb_1_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts 
->> b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->> index a754b8fe9167..ebafcbe6859e 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
->> @@ -1098,8 +1098,9 @@ &usb_1 {
->>   &usb_1_dwc3 {
->>       dr_mode = "otg";
->>       usb-role-switch;
->> +    role-switch-default-mode = "host";
->>   };
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts 
->> b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
->> index e0dc03a97771..1efda478b7b9 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
->> @@ -1252,8 +1252,12 @@ &ufs_mem_phy {
->>   &usb_1 {
->>       status = "okay";
->>   };
->> +&usb_1_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts 
->> b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
->> index 26dfca0c3e05..7b05932f9c36 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
->> @@ -945,8 +945,12 @@ &ufs_mem_phy {
->>   &usb_1 {
->>       status = "okay";
->>   };
->> +&usb_1_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts 
->> b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> index 361b0792db4f..744bdc846e70 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> @@ -1211,8 +1211,12 @@ &ufs_mem_phy {
->>   &usb_1 {
->>       status = "okay";
->>   };
->> +&usb_1_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts 
->> b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
->> index 092b78fd8a3b..f07a56583e7d 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
->> @@ -1300,8 +1300,12 @@ &ufs_mem_phy {
->>   &usb_1 {
->>       status = "okay";
->>   };
->> +&usb_1_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts 
->> b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
->> index d6f91580ba8d..1a9a31423af4 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
->> @@ -839,8 +839,12 @@ &ufs_mem_phy {
->>   &usb_1 {
->>       status = "okay";
->>   };
->> +&usb_1_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts 
->> b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
->> index bd60c2770da2..031b7ada8eb1 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
->> @@ -1285,8 +1285,12 @@ &ufs_mem_phy {
->>   &usb_1 {
->>       status = "okay";
->>   };
->> +&usb_1_dwc3 {
->> +    role-switch-default-mode = "host";
->> +};
->> +
->>   &usb_1_dwc3_hs {
->>       remote-endpoint = <&pmic_glink_hs_in>;
->>   };
->>
-> 
-
--- 
-// Caleb (they/them)
 
