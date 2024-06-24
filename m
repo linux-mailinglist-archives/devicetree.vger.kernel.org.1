@@ -1,111 +1,146 @@
-Return-Path: <devicetree+bounces-79282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1816D914874
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:22:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55BEC914877
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:23:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6FAF1F24039
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:22:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA6D2B243D9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3CF139CFF;
-	Mon, 24 Jun 2024 11:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75E781386B3;
+	Mon, 24 Jun 2024 11:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QuCakSZD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zu3kIjxz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3794513957E
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 11:22:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF264130A79
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 11:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719228153; cv=none; b=VI76is556mNbZCiz+5CncpM0XCBGkAyd1/SePBgQlMcvysaHx/Lo0pK2grzXe629RRF7tIXdgVKD5i4nUlclh25SWmJAKI+EYQO6k2YbAnoE5R+jwZRZ5RbFEdOu5rxeT2enhMF+A2Wf49OpZW8IKgqu3j3wvMpdlX57gK7gk/c=
+	t=1719228186; cv=none; b=Y/QK1FJFuEwRLlpxL9cWgMMEwBHsD3+6IX7w2Fy0Wn18f8tCTKSFQQb7p/FADiqtpvV8WxSGLP36QaGzreTJBoEv1slyrwLJyzZsH74xxKIzrOdTC3BF9MQlVIa5AyWUzjBu5ll0r2Wwyr7rGc3TeU8ycd+IukS1HplgL923OkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719228153; c=relaxed/simple;
-	bh=tj/iTCzjdXvi/zfbFIrmimPnpDiaDxpS/wGQiHsbX3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h6ZrxhPTHj1D24l757OxdHzDhGa8aN2vZ3Wzu6HMtFaSQXzlwz9Hdi/Gp6qYVmeLGV2A4z1zA9L29+d5lVedMbWELdaDmEWSdnISiRcoZwgqujblzU0SuzSSVVPIM1lf/5jNwlKY8Eg5RGTE1VgwNo2QHXo17AxFZkXDST51Bxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QuCakSZD; arc=none smtp.client-ip=209.85.208.182
+	s=arc-20240116; t=1719228186; c=relaxed/simple;
+	bh=S4Oa3Fi8IQljVdEYLI5O8zdfZsxp5YbWq8vVORk/zlM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Jn3kn/i+eg36CD4vwIb4i+ZPIbqGsp8A8Cqrl3/+9wLZTMwFtcBChrzrpFnLYaAozY13pM4lkWlD/Xh5zfm0EF+POoq77vlWpxEeeYysXZwLLNuEygBrCWOiRBnzU/esOYMkzn98t1onoFxv7KrM3f+Gzq713nm+TgSB74FTU7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zu3kIjxz; arc=none smtp.client-ip=209.85.161.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2eabd22d3f4so51894871fa.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 04:22:31 -0700 (PDT)
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5c1a6daa04bso2205620eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 04:23:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719228150; x=1719832950; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gWZ/zkTzOz+4RUMc7GXfG9YQuN8dDai+AXES1QteZ/E=;
-        b=QuCakSZD1Nb6EUBu88msViSAVa7Kf/lGdqZ/5e+eTARfPfvkmVvFs3dXTolZMDLy2v
-         ftZiFe3HM8n4HOPK/R2kLuP7ulqJW8BFxZ7lf8OXAy1R2nikjUjqnp4EQGng3QoxAXBL
-         qv7IutSeLituCvkwX3WmKRgPS/0pfZI03I7ViumYAdoz4ENrihHdxKJXUu8np7ObDTKA
-         RMYEg0i+T769qcHseKVU1LHcqw0uxYw7krTeRjBF2eNXKV/Swp7Lj1sjUmdnmseqT/mc
-         M2WwiuJFZjC3OLUEY9VCNkmNbBs2b+Z8sx7WM83UbDcX4+hiEdccGsZbfMDriU2t7oJP
-         cZPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719228150; x=1719832950;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1719228184; x=1719832984; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gWZ/zkTzOz+4RUMc7GXfG9YQuN8dDai+AXES1QteZ/E=;
-        b=k07z7DmOPmWAUxn9qWAWm6qes0IbJak7VtHGwNnJPtY7KwBpwtKMVPigq1ncLOXE9p
-         BAAsL+rwTNP3YKsalul6/DqvRGwydBx0MYp4HjDHSSlrG2krsf/5uNqNX52S7zlsprik
-         tkoQIaUephA+oq/4J0TPde6oWXRvvnN7rq1tlCbX5IEjAbmpIiYzRfzAm8bl5UbHbJS2
-         2K2M+R4Av/gskZd67DB1TztnmT4GjDe5Zkg1lfTMQCPmeTDLzUyOpMKq7n8ffdiL5JuI
-         okmFPuocuW/I7AYTphkqoIWgpU4M1j10aBWzvwfeAQJJLtTlMH6lYqWjcLbsDh2Se2ll
-         qLwA==
-X-Forwarded-Encrypted: i=1; AJvYcCXQZQnxtDC8T8snB5AK9NuJHLQGLw7ddhZ57yqO7uUWiu3Q/VdnUQ7zxOOf+0yw/6NR6MGQ/yQFRgvb8GceKQYIUmTiqCmg19/PAA==
-X-Gm-Message-State: AOJu0YyPXtlPh8ORmL5arwAElURwXJa6DiWp+InY7E8IcPVWch36ErPx
-	13BED+HKVTdOSkLVt3ceZ1AdUHiibqsw+ujHwskmcPNw6c5oBhwYIp34Wcpc3Kc=
-X-Google-Smtp-Source: AGHT+IEdzIJ3YjVg/cE36iG6t1bmSvgUzscBQ4gPJYkUm80mgCexRGGdLZEulw/LZtp3Pn6VrM7qhw==
-X-Received: by 2002:a2e:97d6:0:b0:2ec:5172:dbbc with SMTP id 38308e7fff4ca-2ec5b2844damr27182781fa.5.1719228150408;
-        Mon, 24 Jun 2024 04:22:30 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec520fc3b9sm7800581fa.114.2024.06.24.04.22.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 04:22:30 -0700 (PDT)
-Date: Mon, 24 Jun 2024 14:22:28 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: x1e80100: Add soundwire controller
- resets
-Message-ID: <mzcofsmnqkxgxarcbxh2gqtdusyzpxr4edjcpurerurzape7da@4dky45iy5iph>
-References: <20240624-x1e-swr-reset-v1-0-da326d0733d4@linaro.org>
- <p6ooqgfwld7stzevozs7huztputc7vpc7652wx6rvg4cly5mj5@fwrzeu6alhgq>
- <ea57a3a1-1037-4d59-a384-50c98e1f9387@linaro.org>
+        bh=u30lLX5MsP/IKxn1NfwcAHsSmZJS+FIZz7/OFIlaO7I=;
+        b=Zu3kIjxzOftbaS3NAFWR008Jt3PeySACnJTg9Mo7KISu4z+38omBIFJvQyN++lv7cB
+         zU0dAVDZs14c8ST/sK65k9V3nxxHPyq3Avm16Upe1dQjbaYvj8xrF8ZrY2TFCnnWDJ+V
+         80Z9WBWkYVYcysLKNPrAistos06qhS5o6UZxaxOxKcKhJig5CTTgXwBEK0SSJCjqhbUM
+         WpprSZV0Nj1nhIK6sdCd/mdHnjekAtUazD6Zgfbof4AQwlf6cJ+nu9krgbZGJY024tJC
+         gbZgKtR2LdKjt1FglyrDKbvAxwApN0OG6Pq+WQu/gfmTErf4WW6MEv8+ASXQ9TvGUXYW
+         /vEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719228184; x=1719832984;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=u30lLX5MsP/IKxn1NfwcAHsSmZJS+FIZz7/OFIlaO7I=;
+        b=RG04q+FaBIKIse5Q5yTXZuGSICE0jCNYtoMyT9k+m0A0PqEvw9JxD3wIO1ibvOcOPp
+         fIXyfkyq1Zsbyj0fBR8qhNKu3pnqDbWORrdRZHZk2DkSuLJ8Cemwty1dsQjouSjoiFBI
+         SGdphTzVTkYkdxMept5Q8r188wK8TcAyQrRc6W8sIBkEdrpWZmUhOvsGUwKpYVLGmaWu
+         9PLENvwK0muw3rOSzZkA7idipOk1CLgZNkXe5d4WTdsxxToDGHWgFie4S4tHmWdZDhry
+         huNJK4oFAyEE1pK+eAcWRx3/vNUXmCUSto8F3978JAf+us2OjYQBXEAAgil2gPuXqtty
+         rsVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUToihAxGrIVD4BOqNtLxH756I9YlDDYzQdVhZe4XVJGSS0LrGoDfRdfKLe+4cNuPmxWITS07cqtnbmw6Vf99IBPMdv2KLrWHT5qA==
+X-Gm-Message-State: AOJu0YzNae5IADIR/j0Mh1BdQUbpvqomgYh959nwNOOG4Ao9/LVffZs8
+	kzOILAwFseNCxFD0pVtL+SqCKw9+9feGORZwthv/Hb4DRKnVxwbYqvjV+rFTRqbhkxy4+Mcqerl
+	51/kFziAZhHCpy/Hg0Lesf8KGt//3XvqmnnCOmA==
+X-Google-Smtp-Source: AGHT+IEMLOPKjw5oHjHxY0zCeeuDJx6nBikXHAv0mrWk60i33NBz4cPxYEwhe+RUgp41xs0jTLpfBU3mUf65mTiLoME=
+X-Received: by 2002:a4a:345d:0:b0:5bb:3ab6:94d8 with SMTP id
+ 006d021491bc7-5c1eed472c1mr4618521eaf.6.1719228184148; Mon, 24 Jun 2024
+ 04:23:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ea57a3a1-1037-4d59-a384-50c98e1f9387@linaro.org>
+References: <20240617-usb-phy-gs101-v3-0-b66de9ae7424@linaro.org> <20240617-usb-phy-gs101-v3-3-b66de9ae7424@linaro.org>
+In-Reply-To: <20240617-usb-phy-gs101-v3-3-b66de9ae7424@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 24 Jun 2024 12:22:53 +0100
+Message-ID: <CADrjBPod9w5L_SNFCa8+=kzasnf8g6MmGC6m9E+kF8spu37Z8w@mail.gmail.com>
+Subject: Re: [PATCH v3 3/6] phy: exynos5-usbdrd: convert core clocks to clk_bulk
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, kernel-team@android.com, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 24, 2024 at 12:11:08PM GMT, Srinivas Kandagatla wrote:
-> 
-> 
-> On 24/06/2024 12:08, Dmitry Baryshkov wrote:
-> > On Mon, Jun 24, 2024 at 11:55:29AM GMT, Srinivas Kandagatla wrote:
-> > > Soundwire resets are missing in the existing dts, add resets for all the 4
-> > > instances of Soundwire controllers (WSA, WSA2, RX, TX).
-> > > 
-> > > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > 
-> > Could you please point out the driver changes?
-> If you mean, soundwire controller driver, it already has the reset support.
+Hi Andr=C3=A9,
 
-No, I was looking for audiocc drivers.
+On Mon, 17 Jun 2024 at 17:45, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> Using the clk_bulk APIs, the clock handling for the core clocks becomes
+> much simpler. No need to check any flags whether or not certain clocks
+> exist or not. Further, we can drop the various handles to the
+> individual clocks in the driver data and instead simply treat them all
+> as one thing.
+>
+> So far, this driver assumes that all platforms have a clock "ref". It
+> also assumes that the clocks "phy_pipe", "phy_utmi", and "itp" exist if
+> the platform data "has_common_clk_gate" is set to true. It then goes
+> and individually tries to acquire and enable and disable all the
+> individual clocks one by one. Rather than relying on these implicit
+> clocks and open-coding the clock handling, we can just explicitly spell
+> out the clock names in the different device data and use that
+> information to populate clk_bulk_data, allowing us to use the clk_bulk
+> APIs for managing the clocks.
+>
+> As a side-effect, this change highlighted the fact that
+> exynos5_usbdrd_phy_power_on() forgot to check the result of the clock
+> enable calls. Using the clk_bulk APIs, the compiler now warns when
+> return values are not checked - therefore add the necessary check
+> instead of silently ignoring failures and continuing as if all is OK
+> when it isn't.
+>
+> For consistency, also change a related dev_err() to dev_err_probe() in
+> exynos5_usbdrd_phy_clk_handle() to get consistent error message
+> formatting.
+>
+> Finally, exynos5_usbdrd_phy_clk_handle() prints an error message in all
+> cases as necessary (except for -ENOMEM). There is no need to print
+> another message in its caller (the probe() function), and printing
+> errors during OOM conditions is usually discouraged. Drop the
+> duplicated message in exynos5_usbdrd_phy_probe().
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
 
--- 
-With best wishes
-Dmitry
+Reviewed-by:  Peter Griffin <peter.griffin@linaro.org>
+and
+Tested-by: Peter Griffin <peter.griffin@linaro.org>
+
+Tested using my Pixel 6 pro device. USB comes up and it is possible to
+use adb from the host computer to the phone.
+
+regards,
+
+Peter
+
+[..]
 
