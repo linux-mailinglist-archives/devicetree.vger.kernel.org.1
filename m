@@ -1,83 +1,79 @@
-Return-Path: <devicetree+bounces-79390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7269151D2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:16:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9557D915230
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:26:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD52228795A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:16:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A9DA1F22F59
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36C419D8AB;
-	Mon, 24 Jun 2024 15:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4323819B3ED;
+	Mon, 24 Jun 2024 15:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D5HhcE4r"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VijO23Xe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2179619DF4A
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 15:15:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0668143743;
+	Mon, 24 Jun 2024 15:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719242127; cv=none; b=riWqpHQ9KfYoOWFTpPOVuYZVeq4DrzaPH+p4NRXmVIlbvHVUJySLEermw+9L3pWQKxUsJS+oEclp4Dfg7U6vwVOAZYH3EcwvmNUZ6PGMYObDyVeaJ9xDE1mu8QwvhADsgPttTcWpOa/gzlxzID6sWRrEGEuNw1LFHIZGYAJXJOc=
+	t=1719242775; cv=none; b=UiPjM+wat4oH1xmiJLJaYhVg56Ysl8SuXg2yt6I8oLuycte1KXJiTcXEzdPX9+yWgcZGBeQ7qU0g9Cyd60PTPWOEMvasmZ69NrbAMQsgi4erMF8vgd5NSiqzro6EJnjOgY0hOBcEejRUykZou4XsChTFTmPNIsIR6fINGbusT9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719242127; c=relaxed/simple;
-	bh=GAsy1hrmvNMsy+al1UKDpEJrsqmugZd4+qdldQYyXSA=;
+	s=arc-20240116; t=1719242775; c=relaxed/simple;
+	bh=isSO8zhhTRh50IY8MzHYeg7mqSDdC0WjmZifBVHz8uA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bVCj6kDWYLOlv907RLWpUY25EZO305Fst5fMLcX1giIkS6QgSu1XCi2WbpXZU9YQ9omIVODYcxX90Ctrj8Dyye6ggAEgFNgdrGhazFUV8GqZPI6b7F8CNl48cwk1q3Tf2HxTMqAnnrSANNdN5EKDKGchs6cE23BSzdB6JsXZSko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D5HhcE4r; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52cdfb69724so2073582e87.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 08:15:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719242124; x=1719846924; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9gDB4H9hEb1ddKk08sFFh7SUVmxRRs8hMx/zYwxqCrw=;
-        b=D5HhcE4rUbkgNTrPuWdRxMLlER6URmvc3dLoO6U6qqBUQwnNhdG7kSwtyAt/NQhF1C
-         QExawB1ot4Y2idWTFDFCKFGRdFZuJgiuIaE9ztLe4ypsdUIjltLvofV3oCz0uCoacJLF
-         ml9Tp0ex1SJJtM7P+KA0N+Kqe7N1OJkwo0WzqDDrUz+0ewnxMvn40QnIAzK1Kqa3+aJL
-         M2Ki/dSRqgfgf/0qlhga0fPGrnQCHs1f2ec/omb3UaH1VXN3/Z34uVVvznJAdT3XZ5MR
-         wvUGILo5/ZhJhPT8P0eK2jYrwozzp9KjKg7U4GcY/8FFN2t8Hn04QRr2ONMH64VitNtj
-         HwsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719242124; x=1719846924;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9gDB4H9hEb1ddKk08sFFh7SUVmxRRs8hMx/zYwxqCrw=;
-        b=LFuxxGcGJJ5JSjQ6mHqABu20vzhcQXVRDzoVJAxWhLW5/i5CbDsGAtbLokAG+Qw8GK
-         UmdHGJQ4Z4yAQdCoS+qTp93VcFhlZh7RApXZb/uhPF+cTaGzmeiY/Oc30RjkwVIP3/1S
-         xTJihOudOYTxWeL/Aj+qGZNas7bzpjxiXOmsPP/hlo30zlLECZQMAv0yXCDZCVsYofQz
-         3DC/xv70hBgjnPJTV62xKQjymugi5hcAddPpeBrqDumdRH+uArAWM4XMIA2UMFABktS1
-         FeOvEXhmqYfgZhH8xhNbVRKQIefPqDtDAo1AhJg5xDg19SArmBHUEpS/U9COGSKRuYLh
-         2aVA==
-X-Forwarded-Encrypted: i=1; AJvYcCVp7UyxNq1cgmD9foH9Jt0fQcojBlCHkKJ3sMFrozDMew5VHIo5VGkwLQ4VWc2nZSma4SITTYv4VmOZVELJqIWC1lfM+7iB7QokwA==
-X-Gm-Message-State: AOJu0YxXuKWqqoosaP23tN2MsGi8EfyWxW+0JMCWyIUHbvdNNXkpffog
-	PnZFbzKdolz930uEr+VnIwdHHgauR8lWmtFZQ/yxvf/lfEbfTv6CgERr7VIzKzU=
-X-Google-Smtp-Source: AGHT+IGewbbtNYBe9HGO4cnqDGWmxOyzFNvsNZLeojJsAjYmh08AcYDCbzTBurLxo6pTj/6Sf3tmPg==
-X-Received: by 2002:a05:6512:55c:b0:52c:d9c6:f934 with SMTP id 2adb3069b0e04-52ce18356e5mr2814162e87.18.1719242124247;
-        Mon, 24 Jun 2024 08:15:24 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd63b46ecsm1004471e87.10.2024.06.24.08.15.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 08:15:23 -0700 (PDT)
-Date: Mon, 24 Jun 2024 18:15:22 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] arm64: dts: qcom: x1e80100: Add soundwire
- controller resets
-Message-ID: <2lnbogqx2mxgyn47vgnbp4ameydjq6ajuauklgzslmfinpmnk5@ez2sz3nyd3wj>
-References: <20240624-x1e-swr-reset-v2-0-8bc677fcfa64@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uZcXoZ/27Xv5kcTmQ0UyIFJ5QxuroTFQ3erPOxH2CDN6GbDEH3GJxS9HRny1VyGz9ydHw/JhUiTLkUHdbfrv8Ul01MVhdZi7gwQdXjOigQK8hzM0EkquE5z6tpZW5Q2o4wgzRTp4WNH2T1VbbCQKIPyYjpb8f7CSlPAncFQADeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VijO23Xe; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1719242773; x=1750778773;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=isSO8zhhTRh50IY8MzHYeg7mqSDdC0WjmZifBVHz8uA=;
+  b=VijO23XeQdHuqBk/bOxGnDNS5fJ30MTMnISas4Nf9ThVoPHzlLQr+KYh
+   /MS29T+wtySyvg32GHcVT7UgbUVU0pECdSQNcRnIJNM3+Bp6GSS12IQN0
+   3/RIOfUcHbdjFl/MjeFxXgEWQcy2tKqhsyAqvrrtClwT6GKAua4U7Al0P
+   +SCNLnMR1o6PTkQ3QZFM79bGeVUOyky96i0ukmHl5/YXC3Z0218S5sVfW
+   G5bRcuSIMLp6hvYPPkorovfJDnWu95wODHXNgO4gaKyMaoYJIOmqKzyjg
+   /KNxFgjksXW49su6SmTZEH42JZzcsJP/9cYZNtFeXaUMft0hGUkRRjvIg
+   w==;
+X-CSE-ConnectionGUID: AXM3aFJJSNCWlIoH+6jZ5g==
+X-CSE-MsgGUID: D81VaETdStux1FGGe1bZrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="33761068"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
+   d="scan'208";a="33761068"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2024 08:26:12 -0700
+X-CSE-ConnectionGUID: LYvArBnUSNK9f8uZoAK7xg==
+X-CSE-MsgGUID: fnlpJt5WR3+nJBl3QPMjtg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
+   d="scan'208";a="43418208"
+Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 24 Jun 2024 08:26:10 -0700
+Received: from kbuild by 68891e0c336b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sLla3-000DQe-2H;
+	Mon, 24 Jun 2024 15:26:07 +0000
+Date: Mon, 24 Jun 2024 23:25:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] media: dt-bindings: Add description of OmniVision
+ OG01A1B image sensor
+Message-ID: <202406242352.HSKkjAv2-lkp@intel.com>
+References: <20240620124745.1265011-2-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,24 +82,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240624-x1e-swr-reset-v2-0-8bc677fcfa64@linaro.org>
+In-Reply-To: <20240620124745.1265011-2-vladimir.zapolskiy@linaro.org>
 
-On Mon, Jun 24, 2024 at 02:32:35PM GMT, Srinivas Kandagatla wrote:
-> Soundwire resets are missing in the existing dts, add resets for all the 4
-> instances of Soundwire controllers (WSA, WSA2, RX, TX).
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
-> Changes in v2:
-> - fixed dt bindings.
-> - Link to v1: https://lore.kernel.org/r/20240624-x1e-swr-reset-v1-0-da326d0733d4@linaro.org
+Hi Vladimir,
 
-Thanks!
+kernel test robot noticed the following build warnings:
 
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on sailus-media-tree/master krzk-dt/for-next robh/for-next linus/master v6.10-rc5 next-20240621]
+[cannot apply to sailus-media-tree/streams]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Vladimir-Zapolskiy/media-dt-bindings-Add-description-of-OmniVision-OG01A1B-image-sensor/20240624-161554
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240620124745.1265011-2-vladimir.zapolskiy%40linaro.org
+patch subject: [PATCH 1/3] media: dt-bindings: Add description of OmniVision OG01A1B image sensor
+reproduce: (https://download.01.org/0day-ci/archive/20240624/202406242352.HSKkjAv2-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202406242352.HSKkjAv2-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+   Warning: Documentation/devicetree/bindings/sound/fsl-asoc-card.txt references a file that doesn't exist: Documentation/devicetree/bindings/sound/fsl,asrc.txt
+   Warning: Documentation/gpu/amdgpu/display/display-contributing.rst references a file that doesn't exist: Documentation/GPU/amdgpu/display/mpo-overview.rst
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/media/i2c/og01a1b.yaml
+   Using alabaster theme
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
