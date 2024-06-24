@@ -1,107 +1,351 @@
-Return-Path: <devicetree+bounces-79314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B109149C6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:24:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A409149D4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:29:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E7DC1F21AA5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:24:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BC271F22FCA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AE313B7AE;
-	Mon, 24 Jun 2024 12:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E3D13C3C4;
+	Mon, 24 Jun 2024 12:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EIBxER7U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b2yeBJGT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C40DD137C2A;
-	Mon, 24 Jun 2024 12:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14A724503C
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 12:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719231887; cv=none; b=ZNJG3IRqv0qmY+iC6v3CQfRfmFNaFmYe8nPYANl8RBLbJj2mUjkx56bGcbHOGtbKdCp9BGw3DOd1t8Ne7nw5sO6Kfcryxi54JIeI+Lnze9OoWdTlVEEyh5kWxJy2rYa5LKDOYqjvEU9rZukB0YCVXNyoiFZAHvWqjSEos4NyKT4=
+	t=1719232141; cv=none; b=QyQh6nm+D5ZF8J9j7cAyGR4PPcvspWePI9aDQ59v6RCVYPLo1qe1zWfDmNsZMAxtOK20ijMI0krwdlWg95LwhzsYX+gNrSqFlbhp5BIdRbuRRFK4WZLgeUu0w7gn3TiZAe1H8ayqHLAhC+nnQiqVrcK+WhP2PSG05ui3bo7e4oU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719231887; c=relaxed/simple;
-	bh=MhXPY4jkPeEgToke4ZZxebjQj4gyU5p56kP7/FrJt7A=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=oljJaa4shv+jY9nc0/csLs+VD9mcYBZSrpPCg9Vs8Kaz+KQFKmMht67fOqMtBybSuP3DI6lLG8l7LlxJpbEYsOBilvtrp1OehfGK9Q1gYQSdLXf6UV7NPZbw+OXhNl87FZorlIN03WRFlU/YKjlt0Vsg18XDnj9BA9rMohVdsIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EIBxER7U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BB59C2BBFC;
-	Mon, 24 Jun 2024 12:24:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719231887;
-	bh=MhXPY4jkPeEgToke4ZZxebjQj4gyU5p56kP7/FrJt7A=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=EIBxER7Unnl7GxAws+lCzwVlzTfi+xvvaUhhkNVEleBUFCUT+qqqJXeRINkCEUerf
-	 jyRJz0QCf/ymPvUCKSsY74N2dFAl8uP83Dg9Wj2PxsBLC+41qPmrVO9a0CwK2/yIh8
-	 OdS7pmVLQRRcRf7DE116a43k/ROEmojOOgwtpgbiOjbuz07Mc+Kzh6+Bho4vIFKA8x
-	 JwfA5vPF/uQvOlARjQAFKktC/orAzkp3rC64Mc76mcDaqk9PXgJoCTKGLJeM8NUPWb
-	 yG/7mJ54dPI2kKAREvMzIdR4p06MnXE5GaEdohCJuPLdXcV8eivdCgo/5oWTEGo2if
-	 7AnLuxB5016dg==
-Date: Mon, 24 Jun 2024 06:24:45 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1719232141; c=relaxed/simple;
+	bh=dcN/II1fB3fyBONDBLLZCk8gdNXtHdSeIRew0TrKi3k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Y2g0zJrGn5T3Dat/pegNOgEMYFETvhdAnaU/RidJDijQ0ik+rC968WURMU7SuK/A/q7MNEJmbFrKGOBSs9AQOmsgcmobey+LIdlsAjbmy+Q7XJUdSAWgDSf34yqrQi/lNYpOPq90tEvrVaAaOoeWs+aX7/m3CjTUQN/Xiz7SFuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b2yeBJGT; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4217d808034so35321085e9.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:28:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719232136; x=1719836936; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WlA9v9E5rLW5BJwlAwnue18OC9Ckv8XqZKHkE4uzM1k=;
+        b=b2yeBJGTAu39mVOwmwqbg0Cha+H/MpnZ0ZzvUWX6VloEoDx1mdRvMQfOiwQZxMbfBo
+         hDHd7s3av82V4qh7yLouUYIG0C4H1NR9c+IwoQsDcWmhuZv1PW+dwsiSXCm2Nx0pLXOs
+         MwW2E/VK6pS7xy0OSa4lpYP3fNWfXKYCBM4RhoCn0Yc9y05SQ2lD8Hy9t+k+h+mmm3Jy
+         1SKAqObU6gpgNcM5x4D1du0iAaYn4Gsfxm2e+y/IyVGgk7N4uNXylLPb9Co92+QMm3gN
+         hH2x5ga6ox8/r7MFgxRcrvEGs7G9JymKvbtI7Bz0+CXLjTN4xpIA6rqgvEWGTalx5jDK
+         R2SQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719232136; x=1719836936;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WlA9v9E5rLW5BJwlAwnue18OC9Ckv8XqZKHkE4uzM1k=;
+        b=g8FU7QGKLE5Vfl+2S8uLM/8qJy+xE2mDbPrOC1gX8Ur2JtGb/9S/n3cumP9gV/QSty
+         iZbuoDT8dDQYOFobbjSNl10IP+CZ1XhgL/iZ+0a9N8dyHwLmgpCFnerUaaskp7oyDowH
+         VXNdQjIt+c66W7n01wO8j5iY3pCGaaOuwVet9cGG8nmFNgYqsRMsUC2Nl3XUCpydUBUb
+         2z6+M68DXzw4Giy6G6OIMS/zoAn0WLNJkJCQsTL5woH7J9CQVmHLpfy49vSTSPWWgBZb
+         e1bcC9CylLWdUoboCDn0+CCAzh55tsDQu5xuZyTGXqoCiHpdYDhdXmqUu0enR8/vfkTT
+         wpPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVUPrSMOrT35pJCLsb+koC3dOI68pFFM6NRsmmuhPcFYEI1A976RQnMqac+rhrASm5gQArjKFOdNDxA8CyZyGp1/xAqS6GpJW8beQ==
+X-Gm-Message-State: AOJu0YxjmMYTcTrnX8GOdRb9XvHIU4nKnAfRbWhXqKGhJjv4JWPEtOie
+	nAE2bgjpaux2nSWCgGCavnvgiDfnEuZuovwwsOB/cR7BunzYUq5UZl3HnxW2BI0=
+X-Google-Smtp-Source: AGHT+IFQq9CtT8zvEAVl3kDetfKcCoUO3QW3012KAC6heV8LSZ52bUALK/vq7HT2wbCGe8+eSAMpNA==
+X-Received: by 2002:a05:600c:5116:b0:424:9728:25d6 with SMTP id 5b1f17b1804b1-424972827bemr7690355e9.0.1719232136009;
+        Mon, 24 Jun 2024 05:28:56 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:cf01:774b:55fd:ab74? ([2a01:e0a:982:cbb0:cf01:774b:55fd:ab74])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366387cf523sm9950693f8f.25.2024.06.24.05.28.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jun 2024 05:28:55 -0700 (PDT)
+Message-ID: <8411fee8-7e09-421a-a52b-487acd3a3e24@linaro.org>
+Date: Mon, 24 Jun 2024 14:28:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thippeswamy Havalige <thippesw@amd.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
- devicetree@vger.kernel.org, bharat.kumar.gogada@amd.com, 
- conor+dt@kernel.org, lpieralisi@kernel.org, bhelgaas@google.com, 
- kw@linux.com, krzk+dt@kernel.org
-In-Reply-To: <20240624110755.133625-2-thippesw@amd.com>
-References: <20240624110755.133625-1-thippesw@amd.com>
- <20240624110755.133625-2-thippesw@amd.com>
-Message-Id: <171923188592.3023374.12489554300919408758.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: xilinx-xdma: Add schemas for
- Xilinx QDMA PCIe Root Port Bridge
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: prefer host mode on dev boards
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240624-b4-rb2-fixes-v1-0-8d763ee4e42e@linaro.org>
+ <20240624-b4-rb2-fixes-v1-3-8d763ee4e42e@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240624-b4-rb2-fixes-v1-3-8d763ee4e42e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 24/06/2024 14:23, Caleb Connolly wrote:
+> Generally, when given the choice these boards should prefer host mode
+> since they're SBCs. When attached to a laptop (which is host-only) they
+> should still fall back to peripheral mode.
 
-On Mon, 24 Jun 2024 16:37:54 +0530, Thippeswamy Havalige wrote:
-> Add YAML devicetree schemas for Xilinx QDMA Soft IP PCIe Root Port Bridge.
+It's really not what I observed on sm8550/sm8650 QRD/HDK, as the power
+is setup for peripheral by the bootloader and without an actual UCSI/PD
+negociation it would only be functionnal as peripheral mode.
+
+So this is definitely untrue on sm8450/sm8550/sm8650 HDK/QRD/MTP.
+
+Neil
+
 > 
-> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
+> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 > ---
->  .../devicetree/bindings/pci/xlnx,xdma-host.yaml    | 41 ++++++++++++++++++++--
->  1 file changed, 39 insertions(+), 2 deletions(-)
+>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 1 +
+>   arch/arm64/boot/dts/qcom/qrb2210-rb1.dts     | 4 ++++
+>   arch/arm64/boot/dts/qcom/qrb4210-rb2.dts     | 4 ++++
+>   arch/arm64/boot/dts/qcom/sm8150-hdk.dts      | 1 +
+>   arch/arm64/boot/dts/qcom/sm8350-hdk.dts      | 4 ++++
+>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts      | 1 +
+>   arch/arm64/boot/dts/qcom/sm8550-hdk.dts      | 4 ++++
+>   arch/arm64/boot/dts/qcom/sm8550-mtp.dts      | 4 ++++
+>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts      | 4 ++++
+>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts      | 4 ++++
+>   arch/arm64/boot/dts/qcom/sm8650-mtp.dts      | 4 ++++
+>   arch/arm64/boot/dts/qcom/sm8650-qrd.dts      | 4 ++++
+>   12 files changed, 39 insertions(+)
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pci/xlnx,xdma-host.example.dts:55.31-79.15: Warning (pci_bridge): /example-0/soc/axi-pcie@80000000: node name is not "pci" or "pcie"
-Documentation/devicetree/bindings/pci/xlnx,xdma-host.example.dtb: Warning (unit_address_format): Failed prerequisite 'pci_bridge'
-Documentation/devicetree/bindings/pci/xlnx,xdma-host.example.dtb: Warning (pci_device_reg): Failed prerequisite 'pci_bridge'
-Documentation/devicetree/bindings/pci/xlnx,xdma-host.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'pci_bridge'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/xlnx,xdma-host.example.dtb: axi-pcie@80000000: $nodename:0: 'axi-pcie@80000000' does not match '^pcie?@'
-	from schema $id: http://devicetree.org/schemas/pci/xlnx,xdma-host.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/xlnx,xdma-host.example.dtb: axi-pcie@80000000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'device_type' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/xlnx,xdma-host.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240624110755.133625-2-thippesw@amd.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index c4cde4328e3d..bac4ed5874b6 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -657,8 +657,9 @@ &usb_1 {
+>   
+>   &usb_1_dwc3 {
+>   	dr_mode = "otg";
+>   	usb-role-switch;
+> +	role-switch-default-mode = "host";
+>   };
+>   
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> index e19790464a11..bece4896ca23 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> @@ -593,8 +593,12 @@ &uart4 {
+>   &usb {
+>   	status = "okay";
+>   };
+>   
+> +&usb_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_dwc3_hs {
+>   	remote-endpoint = <&pm4125_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> index 1c7de7f2db79..17d36f0ef5ab 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> @@ -661,8 +661,12 @@ &uart4 {
+>   &usb {
+>   	status = "okay";
+>   };
+>   
+> +&usb_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_dwc3_hs {
+>   	remote-endpoint = <&pmi632_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+> index bac08f00b303..fe548d795490 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+> @@ -695,8 +695,9 @@ &usb_2 {
+>   
+>   &usb_1_dwc3 {
+>   	dr_mode = "otg";
+>   	usb-role-switch;
+> +	role-switch-default-mode = "host";
+>   };
+>   
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pm8150b_hs_in>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> index e031ad4c19f4..20d5c54cfcf9 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
+> @@ -847,8 +847,12 @@ &ufs_mem_phy {
+>   &usb_1 {
+>   	status = "okay";
+>   };
+>   
+> +&usb_1_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> index a754b8fe9167..ebafcbe6859e 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> @@ -1098,8 +1098,9 @@ &usb_1 {
+>   
+>   &usb_1_dwc3 {
+>   	dr_mode = "otg";
+>   	usb-role-switch;
+> +	role-switch-default-mode = "host";
+>   };
+>   
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> index e0dc03a97771..1efda478b7b9 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> @@ -1252,8 +1252,12 @@ &ufs_mem_phy {
+>   &usb_1 {
+>   	status = "okay";
+>   };
+>   
+> +&usb_1_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> index 26dfca0c3e05..7b05932f9c36 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> @@ -945,8 +945,12 @@ &ufs_mem_phy {
+>   &usb_1 {
+>   	status = "okay";
+>   };
+>   
+> +&usb_1_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> index 361b0792db4f..744bdc846e70 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> @@ -1211,8 +1211,12 @@ &ufs_mem_phy {
+>   &usb_1 {
+>   	status = "okay";
+>   };
+>   
+> +&usb_1_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> index 092b78fd8a3b..f07a56583e7d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> @@ -1300,8 +1300,12 @@ &ufs_mem_phy {
+>   &usb_1 {
+>   	status = "okay";
+>   };
+>   
+> +&usb_1_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> index d6f91580ba8d..1a9a31423af4 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> @@ -839,8 +839,12 @@ &ufs_mem_phy {
+>   &usb_1 {
+>   	status = "okay";
+>   };
+>   
+> +&usb_1_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+> index bd60c2770da2..031b7ada8eb1 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+> @@ -1285,8 +1285,12 @@ &ufs_mem_phy {
+>   &usb_1 {
+>   	status = "okay";
+>   };
+>   
+> +&usb_1_dwc3 {
+> +	role-switch-default-mode = "host";
+> +};
+> +
+>   &usb_1_dwc3_hs {
+>   	remote-endpoint = <&pmic_glink_hs_in>;
+>   };
+>   
+> 
 
 
