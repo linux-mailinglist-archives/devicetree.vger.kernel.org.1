@@ -1,112 +1,116 @@
-Return-Path: <devicetree+bounces-79500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C51A3915868
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 23:00:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 919AE91586B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 23:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CD422874AF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 21:00:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E5D61F26E01
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 21:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793AC1A08C3;
-	Mon, 24 Jun 2024 21:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB6749650;
+	Mon, 24 Jun 2024 21:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UUR2uRlp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C5119B5AA
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 21:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B70FBEF;
+	Mon, 24 Jun 2024 21:02:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719262805; cv=none; b=ndHgyIkoWrQAdO2Y41zs1YKgcVW8ZQAoMDruF1KlLVt3cfa/an74C3c+Za6xClUdF5JiXCGpby59LvxAV//VE9CcIwcn5N1vcrqCjhtHoAwYsxzYLbE6FoH+QxWYHBj1ST9WAZ6xLD1pi3oopJoBHHIAV/ZCmN0UvM04Ok8qYwo=
+	t=1719262922; cv=none; b=fMq0+HxWqCbot/E2lY5OjL119ruuS1MqV0WQPucxqPL4EzlUtpNny1LI1OVvidFo7mvXc0CyM2kPTzO6k0RkvsmFWWAy/0j72EPfj8D8shWMdvFv4ej2Dmzl2XrBN5YXmtrS58/jJ0O4jo/gpH2xqDW3ot10pvuDCo+cdZm9iR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719262805; c=relaxed/simple;
-	bh=pWoIHrIFY+44YQ7YuXy9b0X9iYuIVNJuJhhzDRZ4hpc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=omSYcPVaqQJFE00XAc+pYNuQk7KtgubMqwjXzvujJV1KPEWPQY9wGD0M1xr1jBtysNnIqdajZBPjmLgpPINeKLlRRWOh6aZMsZPTTCvnCxQsB7tCOiVXMQKTbD4Ud9C5nP14pjfumKsi9X2r6cfMH5EeLiHCo1fiKMxR+oITejo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtp84t1719262748tbi7i2id
-X-QQ-Originating-IP: +awYDE9pSAPTm9wZ+7UUEevq+ygT6nzyRZX8CRB7ni0=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 25 Jun 2024 04:59:05 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3610672459738816953
-Message-ID: <92475F697AAA5E9E+02e882f2-6ec7-417c-9210-229fd9a652b2@radxa.com>
-Date: Tue, 25 Jun 2024 05:59:05 +0900
+	s=arc-20240116; t=1719262922; c=relaxed/simple;
+	bh=rvvBVnTHEEzHKhjgXbOAJVsRmGU99H3KQBF7g04WdhE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pmktUziFph1NFFBwqWRa3AUkcYkfVKIuUfja2SvBL2+etMWT0yConB3TalO+YlOgZ9nCrRwsOOVwFMDR8IwJ8yvypmp3v4uHzDThij2BOrX+JUd7UpCQ60pDl4FMrLqsYpcL4vQcT+bZoluuCzEMI583KxOCda/B7zLKxaEHJfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UUR2uRlp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B6CC2BBFC;
+	Mon, 24 Jun 2024 21:02:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719262921;
+	bh=rvvBVnTHEEzHKhjgXbOAJVsRmGU99H3KQBF7g04WdhE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UUR2uRlp5ABwUnI5/d5ts7U/DGQ1OTmAph7cOSw6x38hFnbtjQR2RprASVmqSMQ47
+	 yj25++1QmiiMNbl0A/hHZ/39dhGWBJTuiSrbpw2f3zFFtl5+VAGmlLDxEFJBLnH3NC
+	 z8cve5iuY11kSH2gIkP5Uexx39FKeSjCKruIw066rm7liptb+Ex7CgfJnCEJ4dLolo
+	 p7nBrOzUOfuJy8Jye4tSitZPByQVV4fdpo8+TxkDAfk/tMo3j9Z4sLD3WVGDwn+kol
+	 RMT5/ol2XCNo9Q4Qx0xVmOvYSOyiU/U14OgEb4hHOE81pYgO2RhDVoHFoNjrDYl9Ym
+	 cLKf8giSYvjDA==
+Date: Mon, 24 Jun 2024 15:02:00 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Mark Brown <broonie@kernel.org>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, Kuldeep Singh <kuldeep.singh@nxp.com>
+Subject: Re: [PATCH v4 2/3] spi: dt-bindings: fsl-dspi: Convert to yaml format
+Message-ID: <171926291748.413012.792839544759127895.robh@kernel.org>
+References: <20240624-ls_qspi-v4-0-3d1c6f5005bf@nxp.com>
+ <20240624-ls_qspi-v4-2-3d1c6f5005bf@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa ROCK Pi E
- v3.0
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20240623201415.3205-1-naoki@radxa.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20240623201415.3205-1-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240624-ls_qspi-v4-2-3d1c6f5005bf@nxp.com>
 
-Hello everyone who read/reply my patch series,
 
-I'm sorry. I wasted your precious time.
-
-Jonas Karlman suggested simple way completed in u-boot
- 
-https://patchwork.ozlabs.org/project/uboot/patch/20240624204529.34742-1-naoki@radxa.com/
-
-any change in linux kernel side is not required anymore.
-please
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-On 6/24/24 05:14, FUKAUMI Naoki wrote:
-> Add devicetree binding for the Radxa ROCK Pi E v3.0 board.
+On Mon, 24 Jun 2024 14:55:28 -0400, Frank Li wrote:
+> Convert dt-binding spi-fsl-dspi.txt to yaml format.
+> Use part Vladimir Oltean's work at of
+> https://lore.kernel.org/linux-spi/20221111224651.577729-1-vladimir.oltean@nxp.com/
 > 
-> Radxa ROCK Pi E v3.0 is a single-board computer based on the Rockchip
-> RK3328 SoC with a compact form factor.
+> Additional changes during convert:
+> - compatible string "fsl,ls1028a-dspi" can be followed by
+> fsl,ls1021a-v1.0-dspi.
+> - Change "dspi0@4002c000" to "spi@4002c000" in example.
+> - Reorder properties in example.
+> - Use GIC include in example.
+> - Deprecated fsl,spi-cs-sck-delay and fsl,spi-sck-cs-delay by use common SPI
+> property.
+> - Use compatible string 'jedec,spi-nor' in example.
+> - Split peripheral part to fsl,dspi-peripheral-props.yaml.
+> - Remove 'interrupts' and 'pinctrl' from required list.
+> - Update 'bus-num' description.
+> - Update 'spi-num-chipselects' description by add "cs-gpios don't count
+> against this number".
+> - Remove 'big-endian' description.
 > 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> Co-developed-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> Co-developed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > 
-> Changes in v3:
-> - none
-> Changes in v2:
-> - none
 > ---
->   Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->   1 file changed, 5 insertions(+)
+> Change from v3 to v4
+> - Add Co-developed-by and Signed-off-by from Kuldeep and Vladimir
+> - Remove 'interrupts' and 'pinctrl' from required list
+> - Update 'bus-num' descripton.
+> - Update 'spi-num-chipselects' description by add "cs-gpios don't count
+> against this number".
+> - Remove 'big-endian' description.
+> ---
+>  .../bindings/spi/fsl,dspi-peripheral-props.yaml    |  30 ++++++
+>  .../devicetree/bindings/spi/fsl,dspi.yaml          | 103 +++++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-fsl-dspi.txt       |  65 -------------
+>  .../bindings/spi/spi-peripheral-props.yaml         |   1 +
+>  MAINTAINERS                                        |   2 +-
+>  5 files changed, 135 insertions(+), 66 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index eca0a42eb384..53ca61c47b76 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -779,6 +779,11 @@ properties:
->             - const: radxa,rockpi-e
->             - const: rockchip,rk3328
->   
-> +      - description: Radxa ROCK Pi E v3.0
-> +        items:
-> +          - const: radxa,rockpi-e-v3
-> +          - const: rockchip,rk3328
-> +
->         - description: Radxa ROCK Pi N8
->           items:
->             - const: radxa,rockpi-n8
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
