@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-79140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196139141EF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:29:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C33C79141F1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:29:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50DE31C22004
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:29:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 778681F2465E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:29:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E7918042;
-	Mon, 24 Jun 2024 05:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C406217BA7;
+	Mon, 24 Jun 2024 05:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="PQ3P2j6F"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Y5iseQFR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
+Received: from mail-yb1-f202.google.com (mail-yb1-f202.google.com [209.85.219.202])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 559EF1BC40
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47FC118C05
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719206959; cv=none; b=BDcfPVxF/YVa+ZWpej/z1yL/gEKcbrSLzS+oL6b/WPYuwdNwfWu0YIg4z04nEnhAEv5P5AyPuR02SLSIpSGTS0QttqXtamjmjNnpP9BnNHxtYs2b3kOeUJjVek69113gpnml4Kw9KD5SacoCi9Sr4A01XNKfsIPqjvu/LWCdldI=
+	t=1719206964; cv=none; b=BCwDzH4S3rrMVOw9OedkV+MyfauDQbjeJraZRrSOQcCGcqGORXig86Fni2wmZQnqhblNYb8HXLBcIG5UBlduSgdhDO6UwQSfE/dlSA30gpICGBElsNcwiKAL8NVo+qbktoH1obfBDV66k5ImN0hDOwleC8KQYBsrBa+9tuDn79k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719206959; c=relaxed/simple;
-	bh=8InZIp7y2zwsO4oF6fUGa/AKQ9soRf44nwDuYbc/fZQ=;
+	s=arc-20240116; t=1719206964; c=relaxed/simple;
+	bh=50twyfEJ8ALTho3pL+ku6E2q/cus4h8CQVXWkBsgJ4o=;
 	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=DhV0c9UnTy9dCjxyV+cumv9b5/psArKTcJ1BZGp6WrcNZ+fVr0KtCuIw/SbqXc5wBe0t5eA+Bn+yKmlgCAD25zwGSUGNNkeavz8uIYBEKI/yBFAgFnpcCqciQeR1s9dHi8gIuMSmk2KfDE64iFyA+qAXYMa8Jc8hKPZME6GEtqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=PQ3P2j6F; arc=none smtp.client-ip=209.85.128.202
+	 To:Cc:Content-Type; b=ejo/FTGh20+0U/kC6moMrwmlFkFMfGdda12sxmltxpKbNMZ75e8Z0Ia+KarTw9tn4zfu8HNND5tKZ/xBdU0VpcxMaK0pYdChNozeX80j1icos3PljA7BBMmpSbEXWwrPXRZlsT6n335MBAe8g+nvAh2QAPCkt++E+k2hU1bVjM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Y5iseQFR; arc=none smtp.client-ip=209.85.219.202
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com
-Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-63c418df767so86361487b3.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 22:29:18 -0700 (PDT)
+Received: by mail-yb1-f202.google.com with SMTP id 3f1490d57ef6-df771b5e942so7329552276.2
+        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 22:29:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1719206957; x=1719811757; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1719206962; x=1719811762; darn=vger.kernel.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=z1lDGMLBKOZjPQERPgHQ2A9MuACw0+8pMDHkdqTSITw=;
-        b=PQ3P2j6FIp0z8UcrJEeANyB+43hqZROi1TVjPCGiCDykbWkrECMQZa/XNyQQVGZ44j
-         LFd25UKETZLW8rUilZDBhizUUOMer+WB06a+OAeEG+qWamwbTuQSEdY4gKCKpxE+zvCX
-         DBeWtWYGrsjNjx3hPTw9G7W8zzqFPG6s/GYkD+dx48qJVj9HF2lXXtvhhgLR5mlhbQHF
-         TVosdzXF8TVlUUObLVO7EAWlDJfeT60n6GsGLRFzb2o6B+PtEsWVHTIonQnOOTaKVxWM
-         1Hb5la7muxAemVE9Ac9vy4QcGTqftkV8JhTgTqD71Y0v3tLXRa/bjadhM+MAW2UZth8q
-         iUCg==
+        bh=P1I8I99l7a+8VVN3a7Xt/piq3f28W3MFZ3VnliaJyPU=;
+        b=Y5iseQFRU1iKk+YleCi7794DESJI6bmBUHk0J+kVJ2aoxLqJJb0U/sxiQhzriiZsM4
+         FXgnWCKy/cwa7O70CGqcDjMAGuO4fXLKYSUL8+zREOivnsn7FPQfjgWMeq7Jx8nCOOOv
+         GtjxFzrCrPWmIEU4bqRm7jSdVTXPTOlo21/1B5WVJWFREvr9lq3xgZvtj64aBXvXUhYE
+         EuV7HqhsCXVzoCStfQVJDLxv2abbOUKqxSm4AR6JbWJ2szgOBuiL2B+3Ey8ArPByDsQw
+         6IaOLegT93Oxw+Jx8hI+sGHLXQJBPkSXpCbWbITvUqMlBSMq3WZdv8K1DgWB6a3QEE/W
+         Hsdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719206957; x=1719811757;
+        d=1e100.net; s=20230601; t=1719206962; x=1719811762;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z1lDGMLBKOZjPQERPgHQ2A9MuACw0+8pMDHkdqTSITw=;
-        b=ggve5ho2D6GZRMJyt7vYwXe4yZv4lgDCJVrQzQ23MD7xcB+0Wypy4IcyTKKuWZF9QX
-         uB6Sm7FCm9tCOI5uZMHd7QPEYFTqBr7inzI4O40w8SF/7CSHTuXkvO5aPj0UAQx4/Dpm
-         4N2rYUQjKL5JNFEELGYcQCQZglOWcvrPSmXvo6RtXLzZYC9qRTSgQpA0a0k+nD7NSNNR
-         vf67rz1CzA7JHiwEcPhJbfv1UTgAUVQBuo5/LQSB1wOnj/CjFDEkpajlV659o2p3gd0P
-         XHZ/SlnHRCrAoN+YrxT47QD/tUtHOiTFfDtbcp8O6eiTrVZ3anm7QBHI4/BYVS2QAaiD
-         Xecg==
-X-Forwarded-Encrypted: i=1; AJvYcCU1RQ8vm8wIt9g0Gj/CwsC5LqFeh6S38WakSVTQfnFvDMReg4LeFPAClNGXyZfu3le6LoWkzxez/r9cxciUg5nSkftuFGW62qDueg==
-X-Gm-Message-State: AOJu0YxqJ9QJo2FJydHl0r+StJH5gkXRW/z6EaApaj5Sd7ZKHru7N3Lp
-	juWfHA6VgrceyPHbL9/kJEnDo1LmYa9iLXz8QkNsFt5GV1GcByVwO5psC774Kqwx1J4j1C/5AqH
-	ZwxQFVXjva2bsQHRP3OpQf7EEgg==
-X-Google-Smtp-Source: AGHT+IFg4S5f43LgnXGlfi54t9Ut10DZcSLiBehSOlBVrIz63/P6FEWtc9+rMh5c0FMT9ZFPAyecpjuZbGRYntXsAoc=
+        bh=P1I8I99l7a+8VVN3a7Xt/piq3f28W3MFZ3VnliaJyPU=;
+        b=MkEn7HLHXadIv3DxWezkzpnFgOWq/nJUsnRtAidYHiCk9Xcr3ddUg2m6jHSp3icQqu
+         n7nhEbF4fcoUJ9RBzTPyPP9AeV2On4Z9h92X8reY9jcAgGTzglLYQM35GiKAvh4jYkqQ
+         URR6BjwRxSmFgQ4+GYfAnahGqjR4na6+D86WlNs3qqCoZ9yc/TOcwbYXbCP8DfLyhkTM
+         pqFBhrzOPyneQGe7c+tvFwUX8xg7KPWmofWXIKPRWgLStJNGOXsv/o7kseY56qaDKEnz
+         eQkgyuGb/azaD6gRxJTBdzJSg5GNEdMI/+0XaBKa4gmHR856YoKYgekr9pFDItFTyGoJ
+         UqVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVtfiq7FolLWF3lIRrw5VrjA0twq3MqY9XL5ze3HQAf9k43xhmtLTnDtOLoMi5PC9FresKZkzI2smkBX26VeD+4TCqMtmm2l4Ti+w==
+X-Gm-Message-State: AOJu0Yxt9LPmN3GrTKhS+wVxhncW/Y7ER7EqRocfWDUSii5mC3A6vkjh
+	8kzcu+2u3LJuaYw10JMx2+VFyZ+YogzZR73o0r9Oi+xmjDhz/rfHU187YnzxQ/bjXS2qC9skHaD
+	Q2tJ3JTe45Jw8ySXdR5360bV5eg==
+X-Google-Smtp-Source: AGHT+IFYTSVOMsLqJVDUxHQ8GFvdZHqCOqKjAi9xCBAxDVenSvN+E7dc9z9/aa2vq33ZomTzPFE3OUf1TIIi5BohR5k=
 X-Received: from aniketm.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:3387])
- (user=aniketmaurya job=sendgmr) by 2002:a25:c747:0:b0:e02:6dcf:e9b2 with SMTP
- id 3f1490d57ef6-e0303d64058mr25487276.0.1719206957343; Sun, 23 Jun 2024
- 22:29:17 -0700 (PDT)
-Date: Mon, 24 Jun 2024 05:28:50 +0000
+ (user=aniketmaurya job=sendgmr) by 2002:a05:6902:1146:b0:e02:c619:732 with
+ SMTP id 3f1490d57ef6-e0301098e9emr11043276.8.1719206962420; Sun, 23 Jun 2024
+ 22:29:22 -0700 (PDT)
+Date: Mon, 24 Jun 2024 05:28:51 +0000
 In-Reply-To: <20240624052851.1030799-1-aniketmaurya@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,8 +74,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 References: <20240611171600.1105124-1-aniketmaurya@google.com> <20240624052851.1030799-1-aniketmaurya@google.com>
 X-Mailer: git-send-email 2.45.2.741.gdbec12cfda-goog
-Message-ID: <20240624052851.1030799-3-aniketmaurya@google.com>
-Subject: [PATCH v2 2/3] i3c: dw: Add optional apb clock
+Message-ID: <20240624052851.1030799-4-aniketmaurya@google.com>
+Subject: [PATCH v2 3/3] i3c: dw: Use new *_enabled clk APIs
 From: Aniket <aniketmaurya@google.com>
 To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Jeremy Kerr <jk@codeconstruct.com.au>, 
 	Joel Stanley <joel@jms.id.au>, Billy Tsai <billy_tsai@aspeedtech.com>, 
@@ -84,70 +84,70 @@ Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, Aniket <aniketmaurya@google.com>
 Content-Type: text/plain; charset="UTF-8"
 
-Besides the core clock, IP also has an apb interface clock.
-Add an optional hook for the same and appropriately enable/disable.
+Move to "enabled" variant of clk_get APIs. It takes care
+of enable and disable calls during the probe and remove.
 
 Signed-off-by: Aniket <aniketmaurya@google.com>
 ---
- drivers/i3c/master/dw-i3c-master.c | 12 ++++++++++++
- drivers/i3c/master/dw-i3c-master.h |  1 +
- 2 files changed, 13 insertions(+)
+ drivers/i3c/master/dw-i3c-master.c | 21 ++-------------------
+ 1 file changed, 2 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-index 77a2a1c3fd1d..41cdfd6741e3 100644
+index 41cdfd6741e3..37092b8e964f 100644
 --- a/drivers/i3c/master/dw-i3c-master.c
 +++ b/drivers/i3c/master/dw-i3c-master.c
-@@ -1470,12 +1470,20 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
+@@ -1466,11 +1466,11 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
+ 	if (IS_ERR(master->regs))
+ 		return PTR_ERR(master->regs);
+ 
+-	master->core_clk = devm_clk_get(&pdev->dev, NULL);
++	master->core_clk = devm_clk_get_enabled(&pdev->dev, NULL);
  	if (IS_ERR(master->core_clk))
  		return PTR_ERR(master->core_clk);
  
-+	master->pclk = devm_clk_get_optional(&pdev->dev, "pclk");
-+	if (IS_ERR(master->pclk))
-+		return PTR_ERR(master->pclk);
-+
- 	master->core_rst = devm_reset_control_get_optional_exclusive(&pdev->dev,
- 								    "core_rst");
+-	master->pclk = devm_clk_get_optional(&pdev->dev, "pclk");
++	master->pclk = devm_clk_get_optional_enabled(&pdev->dev, "pclk");
+ 	if (IS_ERR(master->pclk))
+ 		return PTR_ERR(master->pclk);
+ 
+@@ -1479,14 +1479,6 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
  	if (IS_ERR(master->core_rst))
  		return PTR_ERR(master->core_rst);
  
- 	ret = clk_prepare_enable(master->core_clk);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(master->pclk);
- 	if (ret)
- 		goto err_disable_core_clk;
+-	ret = clk_prepare_enable(master->core_clk);
+-	if (ret)
+-		return ret;
+-
+-	ret = clk_prepare_enable(master->pclk);
+-	if (ret)
+-		goto err_disable_core_clk;
+-
+ 	reset_control_deassert(master->core_rst);
  
-@@ -1520,6 +1528,8 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
+ 	spin_lock_init(&master->xferqueue.lock);
+@@ -1528,11 +1520,6 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
  err_assert_rst:
  	reset_control_assert(master->core_rst);
  
-+	clk_disable_unprepare(master->pclk);
-+
- err_disable_core_clk:
- 	clk_disable_unprepare(master->core_clk);
- 
-@@ -1533,6 +1543,8 @@ void dw_i3c_common_remove(struct dw_i3c_master *master)
+-	clk_disable_unprepare(master->pclk);
+-
+-err_disable_core_clk:
+-	clk_disable_unprepare(master->core_clk);
+-
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(dw_i3c_common_probe);
+@@ -1542,10 +1529,6 @@ void dw_i3c_common_remove(struct dw_i3c_master *master)
+ 	i3c_master_unregister(&master->base);
  
  	reset_control_assert(master->core_rst);
- 
-+	clk_disable_unprepare(master->pclk);
-+
- 	clk_disable_unprepare(master->core_clk);
+-
+-	clk_disable_unprepare(master->pclk);
+-
+-	clk_disable_unprepare(master->core_clk);
  }
  EXPORT_SYMBOL_GPL(dw_i3c_common_remove);
-diff --git a/drivers/i3c/master/dw-i3c-master.h b/drivers/i3c/master/dw-i3c-master.h
-index 8cb617b8147e..50c38e790c0e 100644
---- a/drivers/i3c/master/dw-i3c-master.h
-+++ b/drivers/i3c/master/dw-i3c-master.h
-@@ -36,6 +36,7 @@ struct dw_i3c_master {
- 	void __iomem *regs;
- 	struct reset_control *core_rst;
- 	struct clk *core_clk;
-+	struct clk *pclk;
- 	char version[5];
- 	char type[5];
- 	bool ibi_capable;
+ 
 -- 
 2.45.2.741.gdbec12cfda-goog
 
