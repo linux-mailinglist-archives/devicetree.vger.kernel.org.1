@@ -1,275 +1,219 @@
-Return-Path: <devicetree+bounces-79483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CDA291578D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:06:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6442F915787
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:05:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D71EC1F211F6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:06:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABC002838A5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796D919FA95;
-	Mon, 24 Jun 2024 20:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A803819E7F8;
+	Mon, 24 Jun 2024 20:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="LFBnTCbn";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="TDem+zt2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fv8xUNAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E6B19E7F8;
-	Mon, 24 Jun 2024 20:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E806E19D08F;
+	Mon, 24 Jun 2024 20:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719259566; cv=none; b=ccMsB1s1Kh/U1URJvcT6XDThAW+tHMOQzzUWDhBBTih/JFtTuda5AF2QPCi3x8X/vjtdBbTgcdqq8mccUMP9K68yR5qZGhb6tlMhPV6MH0U/N2zRoSvYzkoTi6cNyLjJMh+d7oAxsBaVNp0Erfelh3Oh8rjiWnyL6JDPx6ArwNA=
+	t=1719259528; cv=none; b=aJ6B8cy9HTsF8yIE+MSfN2mN3j10vMQFdo7neytNM8sy7hl9s49YP83ksWjVq1+xpMUZsLWgTtTgN7zrNfhNk+VJWfQQZF0OGdSeZ68Fi0IsEgIq8n7VWwIe5k/HJiUgWF+lYoiIhifsNMyo6wa4xmtOJfKH+No/jMig3/hECu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719259566; c=relaxed/simple;
-	bh=9qomBob0fR2P8jrN+7om1adwcHmZcjFfFJa7riJwUqs=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=hNqbRjqoywHlgNapdEIfzZUSvyf3IjUMGDyKggXNk3gL59wLtVb8uCN0tbOuCKEhPeXJNDkThPbSPvNMNu/hl76Q0UsqsKeXK2eG8d15hFDARx0p2AYioNc6jSDWlxxinNqMjwEu5RI2+JCcTj81M5CneZNhZb1RqU/slBIP4cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=LFBnTCbn; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=TDem+zt2; arc=none smtp.client-ip=103.168.172.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.nyi.internal (Postfix) with ESMTP id CE9FD138026B;
-	Mon, 24 Jun 2024 16:05:59 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Mon, 24 Jun 2024 16:05:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm1; t=1719259559; x=1719345959; bh=kMCQDF+NK4
-	+6zwlcz9UrfDi3Y8gNAgLfB+D2xGxb8TY=; b=LFBnTCbnhMmRpk5j1bi8Bp7qhM
-	d3YKR92LnQREyvmtKuzTSJv5Zcc+XnzbMJA/F/cWfLyAPwpRXuqBrZGBDoEE8mCM
-	8hbVtHvcU+siIjufemtdgMYfFstAVYHGwUunw3lEAdNOp3wHSGpVnAdP8wHcyJdq
-	dOt2jOUchGFEJAPUaWGJICA7i3fz6bF0ccewp/Tz1BfK/YrFIgi9I4qps86mRZ0j
-	LFz2ApPa0N+Y5SbIePOyhYKCAyrRP24pddCoQa9RKWv3uUCOuGfSQy7qBqHSf42W
-	j1ZldY+OttqqmjoBOoJHbAROi8X1YnWWy1tT8qEQHDCfC0dYyu7bldsP9Ppw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1719259559; x=1719345959; bh=kMCQDF+NK4+6zwlcz9UrfDi3Y8gN
-	AgLfB+D2xGxb8TY=; b=TDem+zt2IuxwzB7BENlA2Wavkv55R9h8CWFOLqKc6iLd
-	t9F31AaW1Zzp+e8X41MUYuDYReLNpMdjTkl004LEC3L2AyE0BLb47BOMXnbyna+T
-	QlepLAAF+Q+lbjMqOOWl2G/8O0WKWlRlcM6Frd+RTosWETFGDYBJC839iayCxu3E
-	rXWt+Ojzq/zXhkqMYtFnx7TgXECq7WEWlt/UgsQJ0tl1Hg57ezrkQHFkMq45YFWF
-	tMfAWvtWJWkkgSCSG1NgOqu3ssDkCCYM1kNUi+aTB9bwi4DB+93lywpJxpZzMczu
-	FaqHvCequ5jmR5M/EnvIJJt5MNEYi4vae+33o2p/pw==
-X-ME-Sender: <xms:ptF5ZpmfrbKbYxll2bXLgyWQqYa-K_GmvXNV8efIQn9PrECBO-Mtcg>
-    <xme:ptF5Zk2GUiifbNNAGhDIKy8nJLsg8mhs3rjJcQaegzBrVfaLEiOBHU3duHXbI6CYk
-    we-mgO5AldBYYEAkyA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeeguddgudegjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:ptF5Zvq0KNybY6mRfXdG5yUZ1CkatYfK_1wIi7-1fZg4I4bXe70jvw>
-    <xmx:ptF5ZpkWSTd02Wy-mQtUKU3lWChWNexIR2EoGc6VeYnK0EiHGte-tg>
-    <xmx:ptF5Zn3Zu_MDlECZjF0skKVTCECNkRwkm_aEzKVQaDVdkzLx75VlqA>
-    <xmx:ptF5ZouEhPKfPc68z4OU-3N4j3iOk9FOtRVZuS127nqye4WzAFG8EA>
-    <xmx:p9F5Zll6j6AiXlnbHnGeYK3GmoHM3zWnNYkMxl2V3gLHUI1gRkDur6xd>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id B92E6B60092; Mon, 24 Jun 2024 16:05:58 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-538-g1508afaa2-fm-20240616.001-g1508afaa
+	s=arc-20240116; t=1719259528; c=relaxed/simple;
+	bh=MyuLxVa9djGmJjwYX9q2rqv9NPBaa87X9GdSAeU8RdQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=nxI0hfjZCBMqkAMdrN68AwzV+HKBP3U6l+6RFp8BLhfmfCBBMwVkaJp8Y2Ul4GjT9OcgC95YdGyEKFZlpWt1vSosVIn0TVHznB8sp4ABFvEJZ4dwXNkM3qjv4olBzZ77so90ED+SvJ0pbVApaB1vNhcifQb5uYsFT6gQoYdaY0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fv8xUNAp; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a7241b2fe79so242654066b.1;
+        Mon, 24 Jun 2024 13:05:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719259525; x=1719864325; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZSb7Ej4Ntq/nF2qlOXQSXh23B09xXPUbc9p3HR70r/g=;
+        b=Fv8xUNApPXw4WYwvkq3pVoDmN0J17KRxTFpMODzavzHT6QwkgoPAjMZmDx2G2wJG2v
+         m4AjTz/BDbqSgi8q0kEPgnrrcmiynyvk/9mV4OLcknQhmG/7VcdeELn7Ni2GMO7wMe8/
+         eKBjS/57Y11XTj/QBysOMWdz9YGB4cS2rl10tjKUp8IrYf44wzMoCi1/uMn4SB7uwLqb
+         DkwclW1xN14591/KBfiUtYkb16zuoOGdSZbY6Iavdu+nlVEOUMBf1LGoo1M/TqPp6lVp
+         i6LFGt3Ey3jsBNudnthZifw7uw31W3xAcaqM9gAlgstyHbKbizcE+LSmJHqGmc3b2a/b
+         JG8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719259525; x=1719864325;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZSb7Ej4Ntq/nF2qlOXQSXh23B09xXPUbc9p3HR70r/g=;
+        b=jjKci6FUPhpsD3yP/eVUT29T5u/1SJm4xIQYgFWfgCTuS/jQb/FsFMGQagJ/4e5ipv
+         ewY9e2eYXEyQAz5wp+7K9fg9zaSxZrX6aSrHwVDslBBCkxui4jFJ1VI7K2DKvk7TbiDL
+         6oXceLBXMvnO5z+v6UKuRR4kZ8mwBBLOBoNZHfaCOCDHAawGGEtWYe4x8lygEIvVC8uY
+         u1lwFRLZTTbwboTveAMHPX/rw150npbgHGv5C0nXqvqJPae3ihoXpd8LLXvMLFDfKTbg
+         6JuiuqW/+mDahzZm/FOoJxDXia/kF5Qzu3ZRv4m9Brhf1Y+pzJPW4XtJHisez73cMdDG
+         MHtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVq/Co5Ko7VjRCt7bui8iaLD/PZ3+ZGx+6JpafuSJzXj/7laq+pkzYLDQjzvqCaxrmztCzq2B8kvHPmqEkUEM/SmY5zPHC418DWpEtSsfmYin1BH1kSX3fjFK2MLxgmI4loMO4CmK4fHWqUTDRXjZ/nAwFGNfoTQ56KrWbX8UlwAg3VHkHHGhsu/zhjscc3HhymtoscDk2cTV6DuxoQQ6H+
+X-Gm-Message-State: AOJu0YxVeVYZvrE9FYxz/s37cT1I3u78F8mcRQ2A+ddmCVeoI9HiM4RL
+	66YqFO9Em+APumOOHTai4dAbUhMZEJcoF0UjLpUexPlq/DWw71GO
+X-Google-Smtp-Source: AGHT+IEJRX6HByuxz940DKiakW8YDHAVFH4n++RFvUajH74pVeumXtNekgcQOaQlowfS4l15IQeGtw==
+X-Received: by 2002:a17:907:c98a:b0:a6f:d082:a2c1 with SMTP id a640c23a62f3a-a7242d2ab88mr360503066b.71.1719259524873;
+        Mon, 24 Jun 2024 13:05:24 -0700 (PDT)
+Received: from ?IPV6:2a01:c23:c07d:2d00:ad78:a407:846a:969b? (dynamic-2a01-0c23-c07d-2d00-ad78-a407-846a-969b.c23.pool.telefonica.de. [2a01:c23:c07d:2d00:ad78:a407:846a:969b])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a7248825d4bsm217402866b.207.2024.06.24.13.05.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jun 2024 13:05:24 -0700 (PDT)
+Message-ID: <9183dfda-d3f3-4fa1-9a4b-c6edeb30482d@gmail.com>
+Date: Mon, 24 Jun 2024 22:06:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <2d74f9c1-2b46-4544-a9c2-aa470ce36f80@app.fastmail.com>
-In-Reply-To: 
- <f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo@kernel.org>
-References: <cover.1718696209.git.lorenzo@kernel.org>
- <f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo@kernel.org>
-Date: Mon, 24 Jun 2024 22:05:38 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Lorenzo Bianconi" <lorenzo@kernel.org>, Netdev <netdev@vger.kernel.org>
-Cc: "Felix Fietkau" <nbd@nbd.name>, lorenzo.bianconi83@gmail.com,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>, "Conor Dooley" <conor@kernel.org>,
- linux-arm-kernel@lists.infradead.org, "Rob Herring" <robh+dt@kernel.org>,
- krzysztof.kozlowski+dt@linaro.org, "Conor Dooley" <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, "Catalin Marinas" <catalin.marinas@arm.com>,
- "Will Deacon" <will@kernel.org>, upstream@airoha.com,
- "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
- benjamin.larsson@genexis.eu, linux-clk@vger.kernel.org,
- "Ratheesh Kannoth" <rkannoth@marvell.com>,
- "Sunil Goutham" <sgoutham@marvell.com>, "Andrew Lunn" <andrew@lunn.ch>
-Subject: Re: [PATCH v2 net-next 2/2] net: airoha: Introduce ethernet support for EN7581
- SoC
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] i2c: smbus: Support DDR5 SPD EEPROMs
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Guenter Roeck <linux@roeck-us.net>, Armin Wolf <W_Armin@gmx.de>,
+ linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?Q?Ren=C3=A9_Rebe?=
+ <rene@exactcode.de>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
+ <linux@weissschuh.net>, Stephen Horvath <s.horvath@outlook.com.au>
+References: <20240604040237.1064024-1-linux@roeck-us.net>
+ <20240604040237.1064024-6-linux@roeck-us.net>
+ <c939b0c7-2c8c-4cf1-8d5c-9309ce0b371a@gmx.de>
+ <txliuvufu6muqucno2uex2q6xvnveozpjzahx7zryqlvvvzrs7@flv2zztine6r>
+ <a7e38754-ff1a-4e15-99b2-4785827efc83@roeck-us.net>
+ <ib6p4ivqdn56l3jzzarsoeijjhwak33bmqvj2qiddbhxdqzchk@txl4gdslx4gq>
+ <79f406ae-cfc9-48bb-9c80-20f998c40b69@roeck-us.net>
+ <veggn7y6qeeqx2dsmjykktudpwifnt5xzxcx5ulfglkgtq574p@f5dzhj4otjgl>
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Autocrypt: addr=hkallweit1@gmail.com; keydata=
+ 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
+In-Reply-To: <veggn7y6qeeqx2dsmjykktudpwifnt5xzxcx5ulfglkgtq574p@f5dzhj4otjgl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 18, 2024, at 09:49, Lorenzo Bianconi wrote:
-> Add airoha_eth driver in order to introduce ethernet support for
-> Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
-> en7581-evb networking architecture is composed by airoha_eth as mac
-> controller (cpu port) and a mt7530 dsa based switch.
-> EN7581 mac controller is mainly composed by Frame Engine (FE) and
-> QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
-> functionalities are supported now) while QDMA is used for DMA operation
-> and QOS functionalities between mac layer and the dsa switch (hw QoS is
-> not available yet and it will be added in the future).
-> Currently only hw lan features are available, hw wan will be added with
-> subsequent patches.
->
-> Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+On 12.06.2024 18:19, Wolfram Sang wrote:
+> 
+> CCing Heiner...
+> 
+>>>>> Yes, maybe this could be simplified to "(LP)DDR memory types"
+>>>>>
+>>>>
+>>>> I rephrased it to "Only works for (LP)DDR memory types up to DDR5".
+>>>
+>>> Thanks!
+>>>
+>>>> How about "Only works on systems with 1 to 8 memory slots" ?
+>>>
+>>> This is a question for Heiner. I'd think it is is still correct, but I
+>>> don't know exactly.
+>>>
+>>
+>> My interpretation was that it should work if the DIMMs are connected to
+>> multiplexed I2C busses, but probably not if they are connected to
+>> different adapters. The error message in that case is a bit misleading,
+>> though, because it claims that "More than 8 memory slots on a single bus",
+>> which isn't necessarily the case. For example, it should be perfectly valid
+>> to have up to 24 DIMMs in this system.
+>>
+>> i2c-0/name:SMBus PIIX4 adapter port 0 at 0b00
+>> i2c-1/name:SMBus PIIX4 adapter port 2 at 0b00
+>> i2c-2/name:SMBus PIIX4 adapter port 1 at 0b20
+>>
+>> ... but I guess that is a question for someone with such a system to answer.
+>>
+>> Ultimately the handling of systems with more than 8 memory slots will need
+>> to be updated at some point. On my systems, with 'i2c: piix4: Register SPDs'
+>> applied, I see
+>>
+>> i2c i2c-0: 4/4 memory slots populated (from DMI)
+>>     [my system is running 6.6.y which still generates that message]
+>> i2c i2c-0: Successfully instantiated SPD at 0x50
+>> i2c i2c-0: Successfully instantiated SPD at 0x51
+>> i2c i2c-0: Successfully instantiated SPD at 0x52
+>> i2c i2c-0: Successfully instantiated SPD at 0x53
+>> i2c i2c-1: 4/4 memory slots populated (from DMI)
+>> i2c i2c-2: 4/4 memory slots populated (from DMI)
+>>
+>> meaning the function is called for each adapter (which makes sense).
+>> However, the code counting the DIMMs doesn't really take the adapter
+>> into account, meaning adapters 1 and 2 are still probed even though
+>> all DIMMs were already instantiated from adapter 0.
+>>
+>> On a system with more than 8 DIMMs connected to different piix4 adapters
+>> (without mux) we'd probably see something like
+>>
+>> i2c i2c-0: More than 8 memory slots on a single bus, contact i801 maintainer ...
+>> i2c i2c-1: More than 8 memory slots on a single bus, contact i801 maintainer ...
+>> i2c i2c-2: More than 8 memory slots on a single bus, contact i801 maintainer ...
+>>
+>> which wouldn't be very helpful. I think the main problem may be that
+>> the i801 driver implements sub-adapters as muxes, but the piix4 driver
+>> doesn't do (or need) that. The message is also i801 centric which doesn't
+>> apply anymore after 'i2c: piix4: Register SPDs' is applied.
+>>
+>> However, I would not want to even try changing that code without access
+>> to a system using piix4 and supporting more than 8 memory slots.
+>>
+>> Thanks,
+>> Guenter
+>>
+>>
 
-I noticed a few small things that you may want to improve:
+It seems Intel systems never have more than one i801 SMBUS adapter,
+therefore systems with more than 8 memory slots have to use muxing.
+The current code was developed for the Intel use case, and therefore
+doesn't consider that a system may have dedicated SMBUS controllers
+per 8 memory slots. So support for this scenario has to be added.
 
-> +static void airoha_qdma_set_irqmask(struct airoha_eth *eth, int index,
-> +				    u32 clear, u32 set)
-> +{
-> +	unsigned long flags;
-> +
-> +	if (WARN_ON_ONCE(index >= ARRAY_SIZE(eth->irqmask)))
-> +		return;
-> +
-> +	spin_lock_irqsave(&eth->irq_lock, flags);
-> +
-> +	eth->irqmask[index] &= ~clear;
-> +	eth->irqmask[index] |= set;
-> +	airoha_qdma_wr(eth, REG_INT_ENABLE(index), eth->irqmask[index]);
-> +
-> +	spin_unlock_irqrestore(&eth->irq_lock, flags);
-> +}
-
-spin_lock_irqsave() is fairly expensive here, and it doesn't
-actually protect the register write since that is posted
-and can leak out of the spinlock.
-
-You can probably just remove the lock and instead do the mask
-with atomic_cmpxchg() here.
-
-> +
-> +		dma_sync_single_for_device(dev, e->dma_addr, e->dma_len, dir);
-> +
-> +		val = FIELD_PREP(QDMA_DESC_LEN_MASK, e->dma_len);
-> +		WRITE_ONCE(desc->ctrl, cpu_to_le32(val));
-> +		WRITE_ONCE(desc->addr, cpu_to_le32(e->dma_addr));
-> +		val = FIELD_PREP(QDMA_DESC_NEXT_ID_MASK, q->head);
-> +		WRITE_ONCE(desc->data, cpu_to_le32(val));
-> +		WRITE_ONCE(desc->msg0, 0);
-> +		WRITE_ONCE(desc->msg1, 0);
-> +		WRITE_ONCE(desc->msg2, 0);
-> +		WRITE_ONCE(desc->msg3, 0);
-> +
-> +		wmb();
-> +		airoha_qdma_rmw(eth, REG_RX_CPU_IDX(qid), RX_RING_CPU_IDX_MASK,
-> +				FIELD_PREP(RX_RING_CPU_IDX_MASK, q->head));
-
-The wmb() between the descriptor write and the MMIO does nothing
-and can probably just be removed here, a writel() already contains
-all the barriers you need to make DMA memory visible before the
-MMIO write.
-
-If there is a chance that the device might read the descriptor
-while it is being updated by you have not written to the
-register, there should be a barrier before the last store to
-the descriptor that sets a 'valid' bit. That one can be a
-cheaper dma_wmb() then.
-
-> +static irqreturn_t airoha_irq_handler(int irq, void *dev_instance)
-> +{
-> +	struct airoha_eth *eth = dev_instance;
-> +	u32 intr[ARRAY_SIZE(eth->irqmask)];
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(eth->irqmask); i++) {
-> +		intr[i] = airoha_qdma_rr(eth, REG_INT_STATUS(i));
-> +		intr[i] &= eth->irqmask[i];
-> +		airoha_qdma_wr(eth, REG_INT_STATUS(i), intr[i]);
-> +	}
-
-This looks like you send an interrupt Ack to each
-interrupt in order to re-arm it, but then you disable
-it again. Would it be possible to leave the interrupt enabled
-but defer the Ack until the napi poll function is completed?
-
-> +	if (!test_bit(DEV_STATE_INITIALIZED, &eth->state))
-> +		return IRQ_NONE;
-> +
-> +	if (intr[1] & RX_DONE_INT_MASK) {
-> +		airoha_qdma_irq_disable(eth, QDMA_INT_REG_IDX1,
-> +					RX_DONE_INT_MASK);
-> +		airoha_qdma_for_each_q_rx(eth, i) {
-> +			if (intr[1] & BIT(i))
-> +				napi_schedule(&eth->q_rx[i].napi);
-> +		}
-> +	}
-
-Something seems wrong here, but that's probably just me
-misunderstanding the design: if all queues are signaled
-through the same interrupt handler, and you then do
-napi_schedule() for each queue, I would expect them to
-just all get run on the same CPU.
-
-If you have separate queues, doesn't that mean you also need
-separate irq numbers here so they can be distributed to the
-available CPUs?
-
-> +		val = FIELD_PREP(QDMA_DESC_LEN_MASK, len);
-> +		if (i < nr_frags - 1)
-> +			val |= FIELD_PREP(QDMA_DESC_MORE_MASK, 1);
-> +		WRITE_ONCE(desc->ctrl, cpu_to_le32(val));
-> +		WRITE_ONCE(desc->addr, cpu_to_le32(addr));
-> +		val = FIELD_PREP(QDMA_DESC_NEXT_ID_MASK, index);
-> +		WRITE_ONCE(desc->data, cpu_to_le32(val));
-> +		WRITE_ONCE(desc->msg0, cpu_to_le32(msg0));
-> +		WRITE_ONCE(desc->msg1, cpu_to_le32(msg1));
-> +		WRITE_ONCE(desc->msg2, cpu_to_le32(0xffff));
-> +
-> +		e->skb = i ? NULL : skb;
-> +		e->dma_addr = addr;
-> +		e->dma_len = len;
-> +
-> +		wmb();
-> +		airoha_qdma_rmw(eth, REG_TX_CPU_IDX(qid), TX_RING_CPU_IDX_MASK,
-> +				FIELD_PREP(TX_RING_CPU_IDX_MASK, index));
-
-Same as above with the wmb().
-
-> +static int airoha_rx_queues_show(struct seq_file *s, void *data)
-> +{
-> +	struct airoha_eth *eth = s->private;
-> +	int i;
-> +
-...
-> +static int airoha_xmit_queues_show(struct seq_file *s, void *data)
-> +{
-> +	struct airoha_eth *eth = s->private;
-> +	int i;
-> +
-
-Isn't this information available through ethtool already?
-
-> b/drivers/net/ethernet/mediatek/airoha_eth.h
-> new file mode 100644
-> index 000000000000..fcd684e1418a
-> --- /dev/null
-> +++ b/drivers/net/ethernet/mediatek/airoha_eth.h
-> @@ -0,0 +1,793 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2024 Lorenzo Bianconi <lorenzo@kernel.org>
-> + */
-> +
-> +#define AIROHA_MAX_NUM_RSTS		3
-> +#define AIROHA_MAX_NUM_XSI_RSTS		4
-
-If your driver only has a single .c file, I would suggest moving all the
-contents of the .h file into that as well for better readability.
-
-      Arnd 
 
