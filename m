@@ -1,201 +1,159 @@
-Return-Path: <devicetree+bounces-79265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D879147EE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CD191480C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFAB11C2153F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:56:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33C761C220EC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 564CF13A3E3;
-	Mon, 24 Jun 2024 10:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387E1137769;
+	Mon, 24 Jun 2024 11:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aDrUVMsX"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="sdfAoNsK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2057.outbound.protection.outlook.com [40.107.243.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6BA137C34
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 10:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719226556; cv=none; b=JePaUJOsJv2tIzBbK2hG6NEwHrnDz1xa16QtFvFsbJ9NRWmxZCxpwuOR74HDQRKCy6CMIT+3wFruSYB+ThkZeu/0GHopTEHFS3MootVZXtdID7E9goyyBIx6O5C4zZp190knwSg7FvFOVU4ciOaJIx4zp/O1SLZcGZ4iETgqwP0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719226556; c=relaxed/simple;
-	bh=eN0nSauQHWzcpR3ztkX7wbxGkq9GOgpa8mxkvBiq8XY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=byedk9eK4pz7iXWiEHfdcNgVQMAmtpw27VAw8KFQKmMSv2iSn4fRNxJazhd1GU72H6pIAPgXVzRJwWKNkyYfipCU+OGMKlIZLvwPw0Nhc3j6cTf0qxFnXNqn/3dONuj5rPEcHrInnVhpWj6ZxCM5ZdZxB5iw+0ZJyIrpyki9MWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aDrUVMsX; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52ce674da85so846833e87.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 03:55:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719226553; x=1719831353; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vw7X1i/YW4Fd35XXIuhTMVk8l2VygEA6NsiqdF81ctI=;
-        b=aDrUVMsX1+kHXl5UtWe7xBUKNqU39cZNvksQ4eOzByM/DmdmsrRlmikQ1Zz5L54F8l
-         9yGVn3TKN7Y/5O5IlrgI8JEuJ5YVkVPx6J4Mcf0ITWkivzSJvXMotoWYH0eItpQ/Vuf4
-         tQzAIHsOfu6qR2gPlCazXzt8QJr0S6oeqyvoddQDLowIFU4w3VckvAShdCxz3x8zwSSl
-         tf/fFU8pw9eYLrwb/fPJujwFt1qy/y0z9KzR9cQDZHFD3n8nBPl/AHxVR4T9Ala7CRiQ
-         45HO6oC690QXMVNymWukxaoWfWZMkbHipBBzFwfU87704B9jlFQWMKmt5KBLAd8BvJnW
-         ZtUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719226553; x=1719831353;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vw7X1i/YW4Fd35XXIuhTMVk8l2VygEA6NsiqdF81ctI=;
-        b=eVRIS+1TVRLLqTHys0Y5wZLfL6VaIprHQ/JpTW5ifF6gHBAmCMpthcjOPUKYItlq5r
-         pHNwHswfBv9kavnUl6JtTK7Vr5JOdFrp9EqTVNJDSqsKWdHk6ezGQwb8sAN8XIBhDyv7
-         dM6vAEEf9iEPAHuCZzcZtnrwIx4VzZQe7mMJylhRZAhkzuhntEbu/KLShS/pe0u3tm9p
-         Jc01BFTtuzAiHIxeQa8aLst1bvU/gSgrBSyrJwEcRgdVT0PqHo6bZrufBN18OE5fVhA0
-         prAdeLJ/T7EPkr+KJxFL4SCd7/Igj1c3344+it7709DSUhNNmxJEv8FqjzADy9a/E36o
-         h94w==
-X-Forwarded-Encrypted: i=1; AJvYcCUXbNHP2KW86nYs1tyLlQdW7zhTJrTEThWFtVmig3QsTvRdaARn2IFEPnVvlPFJiyfg7/iXSbl4SdfEGgu0qiTSozu5AEMsNYLT6Q==
-X-Gm-Message-State: AOJu0YyK4t8Q0CZynTBxUSbrug2bllVJLJlXZ6TtI+XbAol+eUGSJTek
-	XXg4Jl2bJo9RZ47YfYpGJnXKUa4Cbp1SF/EYEAsF5SPxTJQ/dJQOfKLQUdFKyfc=
-X-Google-Smtp-Source: AGHT+IHOcp5tf8fAOVkV5QK6fvlUJTLkRoDLcluVbNV8P6vD+BtVUiFlh40iHx6m5tkPhE9cC23jFQ==
-X-Received: by 2002:a05:6512:1cb:b0:52c:dd59:6784 with SMTP id 2adb3069b0e04-52ce183c00bmr3375347e87.40.1719226552761;
-        Mon, 24 Jun 2024 03:55:52 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4247d208b6bsm172479595e9.32.2024.06.24.03.55.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 03:55:51 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Date: Mon, 24 Jun 2024 11:55:32 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: x1e80100: add soundwire controller
- resets
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97727137753;
+	Mon, 24 Jun 2024 11:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719227286; cv=fail; b=XYnvdt5Q93pz9cVaZ/HM5/Yb3b/t0/rgTAmTNwtYe9J/R/47j2N7DGl8v4Av5VvTyRY9I81ulpfglVwwAgZUvZAZY/MbqV23AY6vj3kYiWG/hgY4cgy6/0dM9/v6R71PvUbQCQYKELYdq1T/wleQWSAoo5Vpku9fJH89sLawCoo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719227286; c=relaxed/simple;
+	bh=ldSr8n/6t6+7cU1NLJhmTy/OZYzJJfGvKxRumQu/+l8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W9HZIC9jUXsSeHqMbIBGUGYL9ZUxjd3ZFdneg0kTN96xxBdFplPV5OdIM9/i/nRW9AJywpPklxycaSYK9WgsESiU3/9qJPOW+K4B0QGE2W3MF+v2m/hpSHWLR8ZGVjiy9Zi6rdS1dLC1f+jhv8fD3tJaiUsn1WPwsFzaobWy43I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=sdfAoNsK; arc=fail smtp.client-ip=40.107.243.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nkfaYZKSafque+NAF+latO7OoHMVAS9xKLDexosrsCjtcHUZOQhTJiwHT8eLx+wUNeSDtK31zGEefSwf5ieK91zsR89Q9V3MoWetzzP8vErGeJ3UEby6QvK7DK2/5eR52Hd0nb4/rjIST+Th1gHQRrDPjl8k8yCDZafwEF5dq0AVRgzwRg2/tGPTsHctl2M+CwCf+k9V0p6pLnXhPqdLpKSDqZNB0yruEvg0PQU6mORevoU8tzWW713+sv1aHG4STe4Zz6CwZ38h4M6vO/XfrHz2hbiERois8p4gTP7GrWSOmbuBJDDzo4wQhyb0MIWxfBjWFd63ZekEbqw5sBppdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Hvso3/X6AUqqRquNnZnjSNR7EFPfVLWUVXjHPHcVjqM=;
+ b=Nd3uLtRDqmAN4fSeNL62wX9jePC2oV1guGJQXNIazTd4HkOS3EEwz1fGa7ONjLUm+TTWJjtpYMKdDJj5L/OgRwStJk3SqTaMHTSVFwtFAnZP2SH9ijtgHHOzVX1/6yQs26AYqtPr+4cxZsSD3bm3Fphq2awLX06GKtgzQ8RR6xWW83F+sA+IiKeW5CM/vcBLJ6qNOlEF6jYlnUKuNN3XEG/WR1EIfH4uVVfH5kHenLl198KR/8Vu4RC8QCa28S8UbhJCuer+0HO8mx3/ACzmxtaFmDY4qtebeGDQjr92MInd0X1qovybrpn2/hPKPbVXCpmJhZQtU2AWJvgBx8cQxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hvso3/X6AUqqRquNnZnjSNR7EFPfVLWUVXjHPHcVjqM=;
+ b=sdfAoNsK847wFuXRE1wKihcUUSzk3VAwIygYzIUe767LNeUqN3WRynrP5uArDoXt7kcv63SX0QCT0ZbX5S+1aoZtbcDgY2q8O5eCa0AfnOJvo2Eyg8hO+Xe8SkcQSxBz6+00HnwyI1NTod88l/wq5QihP40JrQ6P5rREOKfkiS8=
+Received: from BN8PR16CA0011.namprd16.prod.outlook.com (2603:10b6:408:4c::24)
+ by IA0PR12MB8349.namprd12.prod.outlook.com (2603:10b6:208:407::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.26; Mon, 24 Jun
+ 2024 11:08:02 +0000
+Received: from BN3PEPF0000B06D.namprd21.prod.outlook.com
+ (2603:10b6:408:4c:cafe::3c) by BN8PR16CA0011.outlook.office365.com
+ (2603:10b6:408:4c::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.38 via Frontend
+ Transport; Mon, 24 Jun 2024 11:08:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN3PEPF0000B06D.mail.protection.outlook.com (10.167.243.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7741.0 via Frontend Transport; Mon, 24 Jun 2024 11:08:01 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 24 Jun
+ 2024 06:08:01 -0500
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 24 Jun 2024 06:07:58 -0500
+From: Thippeswamy Havalige <thippesw@amd.com>
+To: <bhelgaas@google.com>, <kw@linux.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <lpieralisi@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <bharat.kumar.gogada@amd.com>, "Thippeswamy
+ Havalige" <thippesw@amd.com>
+Subject: [PATCH 0/2] Add support for Xilinx XDMA Soft IP as Root Port
+Date: Mon, 24 Jun 2024 16:37:53 +0530
+Message-ID: <20240624110755.133625-1-thippesw@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240624-x1e-swr-reset-v1-3-da326d0733d4@linaro.org>
-References: <20240624-x1e-swr-reset-v1-0-da326d0733d4@linaro.org>
-In-Reply-To: <20240624-x1e-swr-reset-v1-0-da326d0733d4@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2919;
- i=srinivas.kandagatla@linaro.org; h=from:subject:message-id;
- bh=eN0nSauQHWzcpR3ztkX7wbxGkq9GOgpa8mxkvBiq8XY=;
- b=owEBbQGS/pANAwAKAXqh/VnHNFU3AcsmYgBmeVC0etr46PFmqC8tcv68s/rrRR9NINlx8eGLk
- Ko5+v6MPriJATMEAAEKAB0WIQQi509axvzi9vce3Y16of1ZxzRVNwUCZnlQtAAKCRB6of1ZxzRV
- Nz/HCACTQTILhlLBUNy/vu+8U+Rv3PS2fuTGx5AyFGtUyb/on0bVtUxUkxvNT1aN2aLxhLaB7Jm
- mMKqd8F9a31VGal1C41nY1XztbOoTBafahLkCv6pk0VYqHDAmiujSV+sCxWiofG3xocAlSwh01p
- tYTg6Lg0i2QTGUNR6ZNLpISHyk4G2lOznGBbuQZDJxDr9ay0QxE9UIYxSRfQavFkcMaEUMmbB3M
- T7PXm4sYj4Bx9rH+5YUYfCfjHsQZ2SZIFDHNR1dfSnlxtG/3rdrbL3E6dO4eLd3AsNdFqEmn5TV
- TRyPEclDSP/+R69ZvPVxAuIYvtOkyNe52jKX0v3c4AsPPXU8
-X-Developer-Key: i=srinivas.kandagatla@linaro.org; a=openpgp;
- fpr=ED6472765AB36EC43B3EF97AD77E3FC0562560D6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: thippesw@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B06D:EE_|IA0PR12MB8349:EE_
+X-MS-Office365-Filtering-Correlation-Id: e6b3b7a9-af5d-4ac4-4542-08dc943dea07
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230037|376011|82310400023|36860700010|1800799021;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?3iSptv4GFeTu/TY+bnAe1YV/Bp7TYOzkTnior1HMQSI9sOjMs3rSauLux0cG?=
+ =?us-ascii?Q?sMRWCgnEod2ZMSF0V+BFYnyIm03UCQhG5yA3JhAQLc/SvVLTJmGzm4QiGq2Q?=
+ =?us-ascii?Q?U0p6Kj8weQBxJUeYLedITzdrQRLlOC37SIg2TmZAbs4rzYLdkbPRwK3JLgDY?=
+ =?us-ascii?Q?eAxdLRuOi3TlGa/e09CDy9dqQIxpdUo6w7WSKTItezp8/izEedP/FLyIlj6K?=
+ =?us-ascii?Q?9j9NuOgUhg7r9OO0GaxY1Zd1c1su0DlcmbZfpDB43U0h7YUtsrtXgcWDT+SK?=
+ =?us-ascii?Q?SBnJ/0yT7hzE5faZ/rqy8JEmWaE/6RuL1nNnKJT5Cv8kkgbOI/9UcBcEcbfn?=
+ =?us-ascii?Q?VoNDiBsIL4FGg9xYeumPR7WSXplWfZkacDduHH9C/BP5SL7652ght8LeCmhD?=
+ =?us-ascii?Q?r3L5DnCtBm3IXKOOU2ttUxn/rFJkCXvS+sSQBk0rukv60xuBmlveCyzzojZv?=
+ =?us-ascii?Q?5ErrSy0EGbdRJC6nbpHR8a6XMJ6DlQOc+RHP5MK8qIpzCLJs9/anYMdPGPEX?=
+ =?us-ascii?Q?9sVBJF5sEZQo6Bhymvel3fqkAHKDZcWejYQ9CYFKhEqjnS5Q/pj6YWaQszt0?=
+ =?us-ascii?Q?ZZis0/gLy0QF6ruAVTxMWquGidXr0ffb/nwcjNlc5y0IMTVq27iE+y4dduN3?=
+ =?us-ascii?Q?dq5qgcvXJHa94+zwz5H19ssaZxf0v1C2cDKA6f1LMu1sQZbb/9DEvyzVPDKZ?=
+ =?us-ascii?Q?286M/prNDVTcI/v4LMWx+2brTume58F3ioeVE+zYEj93j3s3972WHF6J7IOp?=
+ =?us-ascii?Q?GEWbHAkuK7E2iGNJ0S6wWBRAK3BTt7xJ7kqGBngAbR9vz7SooEwIbnnfcyFR?=
+ =?us-ascii?Q?Z6dn+YrlD/y8RI86oSbEiW7xn2UvvOqD8kGLSO7c4wErvI86l96+elvv8WLg?=
+ =?us-ascii?Q?Gh6r3b51q0FpCcYHp1S2BwxYpRIpPCDjXN+rYWBTRMCp894JirL3VrRrHHCu?=
+ =?us-ascii?Q?wzWEhOkqfEcpeSyyORfnbsijpXtu0NWvh5MZj6bJYCePgMdghDFk6B0for8R?=
+ =?us-ascii?Q?LGcmOhJDcOTj0YtFqMBhGJBIoZwaiOvBF7Z2Msbtdkz7R0OfL3eOY1VIzQUo?=
+ =?us-ascii?Q?v/h3zjXMIUThAOYUyg+AMNcUFCX9GjquQGftKoRqLN8xnSyqF+JCucAwIVF0?=
+ =?us-ascii?Q?9pg78R7+iAON3L5VNVYvShG8WNQtm7gX8o/OE16iIx+lywPGlgbU+tvWzhaG?=
+ =?us-ascii?Q?z3dA/J4/0VnVZzXkCd3ZrtTeR0HUEX2u/UkV9YcrnFDm12KFSF0S1u7y4rFj?=
+ =?us-ascii?Q?IUWrz4vf2RgkdCrkbTaDF75UPVKK76L/YhsBz0CBQamcuLT18/aoWqyAZvIi?=
+ =?us-ascii?Q?WSqH2nfT+FNkVsH0t3e/RTqnZ5nGahTYvRrskV1KQMHqC+OwDald/1MYIuna?=
+ =?us-ascii?Q?8ToxMvWrP17868WvCJ3DETy4A5TYHKYMAebX5STXhgHlUJKhFg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230037)(376011)(82310400023)(36860700010)(1800799021);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2024 11:08:01.9403
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6b3b7a9-af5d-4ac4-4542-08dc943dea07
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B06D.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8349
 
-Soundwire controllers (WSA, WSA2, RX, TX) require reset lines to enable
-switching clock control from hardware to software.
+This series of patch add support for Xilinx QDMA Soft IP as Root Port.
 
-Add them along with the reset control providers.
+The Xilinx QDMA Soft IP support's 32 bit and 64bit BAR's.
+As Root Port it supports MSI and legacy interrupts.
 
-Without this reset we might hit fifo under/over run when we try to write to
-soundwire device registers.
+Thippeswamy Havalige (2):
+  dt-bindings: PCI: xilinx-xdma: Add schemas for Xilinx QDMA PCIe Root
+    Port Bridge
+  PCI: xilinx-xdma: Add Xilinx QDMA Root Port driver
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 09fd6c8e53bb..fa28dbdd1419 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sc8280xp-lpasscc.h>
- #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
- #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
- #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
-@@ -3177,6 +3178,8 @@ swr3: soundwire@6ab0000 {
- 
- 			pinctrl-0 = <&wsa2_swr_active>;
- 			pinctrl-names = "default";
-+			resets = <&lpass_audiocc LPASS_AUDIO_SWR_WSA2_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 
- 			qcom,din-ports = <4>;
- 			qcom,dout-ports = <9>;
-@@ -3225,6 +3228,8 @@ swr1: soundwire@6ad0000 {
- 			pinctrl-0 = <&rx_swr_active>;
- 			pinctrl-names = "default";
- 
-+			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 			qcom,din-ports = <1>;
- 			qcom,dout-ports = <11>;
- 
-@@ -3289,6 +3294,8 @@ swr0: soundwire@6b10000 {
- 
- 			pinctrl-0 = <&wsa_swr_active>;
- 			pinctrl-names = "default";
-+			resets = <&lpass_audiocc LPASS_AUDIO_SWR_WSA_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 
- 			qcom,din-ports = <4>;
- 			qcom,dout-ports = <9>;
-@@ -3309,6 +3316,13 @@ swr0: soundwire@6b10000 {
- 			status = "disabled";
- 		};
- 
-+		lpass_audiocc: clock-controller@6b6c000 {
-+			compatible = "qcom,x1e80100-lpassaudiocc", "qcom,sc8280xp-lpassaudiocc";
-+			reg = <0 0x06b6c000 0 0x1000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		swr2: soundwire@6d30000 {
- 			compatible = "qcom,soundwire-v2.0.0";
- 			reg = <0 0x06d30000 0 0x10000>;
-@@ -3318,6 +3332,8 @@ swr2: soundwire@6d30000 {
- 				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "core", "wakeup";
- 			label = "TX";
-+			resets = <&lpasscc LPASS_AUDIO_SWR_TX_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 
- 			pinctrl-0 = <&tx_swr_active>;
- 			pinctrl-names = "default";
-@@ -3474,6 +3490,13 @@ data-pins {
- 			};
- 		};
- 
-+		lpasscc: clock-controller@6ea0000 {
-+			compatible = "qcom,x1e80100-lpasscc", "qcom,sc8280xp-lpasscc";
-+			reg = <0 0x06ea0000 0 0x12000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		lpass_ag_noc: interconnect@7e40000 {
- 			compatible = "qcom,x1e80100-lpass-ag-noc";
- 			reg = <0 0x7e40000 0 0xE080>;
+ .../devicetree/bindings/pci/xlnx,xdma-host.yaml    | 41 +++++++++++++++-
+ drivers/pci/controller/pcie-xilinx-dma-pl.c        | 56 ++++++++++++++++++++--
+ 2 files changed, 92 insertions(+), 5 deletions(-)
 
 -- 
-2.25.1
+1.8.3.1
 
 
