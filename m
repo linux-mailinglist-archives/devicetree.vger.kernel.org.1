@@ -1,112 +1,97 @@
-Return-Path: <devicetree+bounces-79469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37B291562A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:03:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A9C1915633
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:06:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A7341F214F6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:03:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 858181C20B99
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD07619D8B2;
-	Mon, 24 Jun 2024 18:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC641B950;
+	Mon, 24 Jun 2024 18:06:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m09CcqNY"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="xibedBFt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BEA4182B2;
-	Mon, 24 Jun 2024 18:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33F119D081;
+	Mon, 24 Jun 2024 18:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719252206; cv=none; b=RM+a//4BYsS0hpAu4g5vDtH5V/bBHJuIUhnlt9Ue/+EICKQ9YVjuSq6vYxwhnKd5Olk+wtAFFuJJzJ0l5qtL1z9SvcI+hgLNWcgYZahgR+AF6lM6Mw0H0DF1/E4O3bweu941wuxvq8OdVY66uFUDT3HN113Vq2xqurIgJtbjGTc=
+	t=1719252385; cv=none; b=XAnbYun+Bf4F+NP+IczlgFiB4JBhscpamkfLD1BXJwr/GaGYDTtpIQuEFWYUPs9CPl4Gi8Kcg+jvJ2JKBpmiNiD5fpp6NCSIDEKoF1xdMinPNBKaAbSSSmAHrM3nK3ixfozvx3zFQrnifxKoaFogbXbQYsodpnegbPVTxTF8v2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719252206; c=relaxed/simple;
-	bh=asm52OWDftS+lyFr+LMKyFJAkBcFCq2hCyMjZAWHKIg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V4lFtyFVNz4c7+RuRUOPl/GbR9rfH2iZe7EQuaKezcgpX1u4Za/4dEBy9AyzbjcCMz6D+lX4mNTyd86m5TgICc8C2TC3RrgT1g5c5+KsIP/yMRmwRQwj49UW7H2ytcjmm/4zaoxYChLiDmwAruhYr9s9eU7RyhKFDcdlIv9PHkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m09CcqNY; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4421cbba106so32618231cf.2;
-        Mon, 24 Jun 2024 11:03:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719252204; x=1719857004; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2pUaocMSsxJ5LjjEsnYP7jxj3QfqcMM8ZONVfrm8rtQ=;
-        b=m09CcqNYsjUyz7H9BFlAW5xpr/3s6M5D9s6CqoRhR24FnACIchqQqDr1rdo4S8Xo20
-         NnpOumunlOTalTlL9xNinR/A5/ckAUA7CkwKuBOpA1vU+vrLpXHFcoLCXyc6V7ufBfod
-         chKL+VQM+fRgt/R5pN/leM/s5L+ejFJlsqkZhsbJevXeL/bUVwrykuSLCXIWCny1odSG
-         yVDBWD5PDHjekg0hGYgNUggaIUrVKSaCn/8NisEsLlLW6riFcxMdpiHf1mGsc6jTOHV9
-         p9XOC6tbnuyg03iVdlwia/yIB+E/nLvIib6TbPe2tSbiBCaV2dpxsUhZ/DPpp1zZ5tQJ
-         WCvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719252204; x=1719857004;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2pUaocMSsxJ5LjjEsnYP7jxj3QfqcMM8ZONVfrm8rtQ=;
-        b=TxjrL3w7twaJ8xAF1vjo464lSCsdcOvTQwCKGlBJKPNL//eaHsFkhEslqpqY2uANd6
-         0JMIjSgYRGqK7WwsU689HM46AM+R8r36uO+3cHoWMzhVcQR7gBK7xE0dmXBoi9v2uOwK
-         FsowZgLjT7bQAVFopSihzMNOVXTQQ9UZbf/OO97O0V2lYfqv+fNki9rt1JqsliDBIa1l
-         udkjKzBDoHWK3TgYWqJzltuO2HtC1CEiXG/ERA4haE26HJ0iUQoGKW+o1afuVbUjCgt2
-         0iZbRCCDXcrv5fc6rgwMhbv0jg8njOFSMuXEqmDHqlsFfC6ECjDx+A2q+WIdqBJw//NF
-         JwQw==
-X-Forwarded-Encrypted: i=1; AJvYcCWNb5L+b4+3u+3Y5T/YiipoisaVPHsVWY61uGHGHE6QNvDFnA4+kUGA7q6dASDBNGjnoSxg/bo8mlL9rimZZjoyG5/xx4NdTvvr+FMOhz+zLaxddOLrSXeedrI8CMX6HYOac4HDlvZ56A==
-X-Gm-Message-State: AOJu0Yx4iVohA3Ja9XVmF6ieJCPws07PBPVwwjb7nD6sHWeZIkARPpsw
-	khwT3P/Mlc5Vy3nX0kuiBMEkHYas1HoB9aq02CPlQSmDvPbigsnB5Sv5cEPU4EDjX7Hbf8l1J8A
-	71GbQ6BQjAT5NuiOTgtEPy3xeNpY=
-X-Google-Smtp-Source: AGHT+IFO8I58PN4h1470uYhz00UihsCRoEeapPW6BWGVinHzOdAIibcD2ehHGZtef6GQQE0Ko3zTuBjLkhxyvplJDvE=
-X-Received: by 2002:a05:622a:553:b0:441:57ec:61e4 with SMTP id
- d75a77b69052e-444d9388193mr65550061cf.47.1719252203930; Mon, 24 Jun 2024
- 11:03:23 -0700 (PDT)
+	s=arc-20240116; t=1719252385; c=relaxed/simple;
+	bh=2xU3M2GqnP8ukgos/00S7G2Z2rMdQNuSueB24ZYjk00=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=LnGQPJdvnrlXrR1u8BVuVIUz/XRtbswOu+dagLt4mVIj4d4wHXzEBPOo/96wUmikWGoQvHAbi5u5Q3zsmTXZgIUZWVpS5U1BGnR5kHJ/X37I/rJ1mwA+h5rgbVmFsxbPa2xr9EW3OrswiX+9/JphXA+T7H7F2F12skP6SXGYTuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=xibedBFt; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org>
- <ba9d41461f5d56947d7851473637722b@manjaro.org> <CABjd4YziNk1NJb6p+AxAVK0CR7igE3-6h-sN4MEWwyoW2qaKfw@mail.gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1719252380;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tCy+hRmCRW5AO/hvJe9xg4i+qzJBreY+fC5iGKmnDJg=;
+	b=xibedBFtXNM7aHmHNwmzvGHYjglaqn2uCn+wqMVRdkGBAdys5HGPgIEY7PE87bovwoF/mQ
+	Cea1tJOoVBGcoRGicxPSGgE847H46H1VVWC2nBL9t6wlhhllsal/w/xNqqfQC/iabRaC7l
+	PKA0hAo/9AYLR6dfFS8Zg7VUs+zzlduScdLKgSCgiO39m93rH0Ao81sNNZpIF3IXqQJFZq
+	sJziTxYaxVtkuFQRnjqQHXE+yoTO48BpHpROT4fRHYZSDN39aUTNShJxu+b+SWqRsdGaSM
+	U3QoWBjnHjtHLNA3EfpHw2+YZHp21xXYg1Y679CXP5g85rQ0TPhwtJcNV/q3yw==
+Date: Mon, 24 Jun 2024 20:06:19 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Delete the SoC variant dtsi for
+ RK3399Pro
 In-Reply-To: <CABjd4YziNk1NJb6p+AxAVK0CR7igE3-6h-sN4MEWwyoW2qaKfw@mail.gmail.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 24 Jun 2024 22:03:12 +0400
-Message-ID: <CABjd4YzWc6GPkDAbVGLaBCHBX26m97Mf1YVKriMVJYX8iy0LYQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Delete the SoC variant dtsi for RK3399Pro
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+References: <4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org>
+ <ba9d41461f5d56947d7851473637722b@manjaro.org>
+ <CABjd4YziNk1NJb6p+AxAVK0CR7igE3-6h-sN4MEWwyoW2qaKfw@mail.gmail.com>
+Message-ID: <84e5719fad4d405bf188ee86d12bb251@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Mon, Jun 24, 2024 at 9:59=E2=80=AFPM Alexey Charkov <alchark@gmail.com> =
-wrote:
->
-> On Mon, Jun 24, 2024 at 9:55=E2=80=AFPM Dragan Simic <dsimic@manjaro.org>=
- wrote:
-> >
-> > Hello all,
-> >
-> > Just checking, are there any comments on this patch?  Is there somethin=
-g
-> > more I can do to have it accepted?
->
-> Hi Dragan,
->
+Hello Alexey,
+
+On 2024-06-24 19:59, Alexey Charkov wrote:
+> On Mon, Jun 24, 2024 at 9:55 PM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> Just checking, are there any comments on this patch?  Is there 
+>> something
+>> more I can do to have it accepted?
+> 
 > Heiko has already applied it quietly a couple of days ago [1], and
 > also merged the v5 thermal and OPP code that I rebased on top of this
 > patch of yours.
 
-Oops, that was about a different patch, sorry. But still thanks a lot
-to Heiko and Dragan :)
+Yes, I saw that already, but this patch is a different one, it's about
+deleting the redundant .dtsi for RK3399Pro. :)
 
-Best regards,
-Alexey
+Regarding your v5, I've had some health issues, so I unfortunately 
+haven't
+managed to review it and test in detail yet.  I'll do that as soon as 
+possible,
+and I'll come back with any comments I might have.
+
+> [1] 
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=for-next&id=def88eb4d8365a4aa064d28405d03550a9d0a3be
 
