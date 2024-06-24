@@ -1,146 +1,134 @@
-Return-Path: <devicetree+bounces-79161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1FB914310
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:01:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D067914333
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:10:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD1CE284B73
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:01:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26AE51F20F99
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7F4538DD2;
-	Mon, 24 Jun 2024 07:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C82C10A1F;
+	Mon, 24 Jun 2024 07:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="maGnPLBh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CWy3qw4C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B6D2EAE1;
-	Mon, 24 Jun 2024 07:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F583AC2B;
+	Mon, 24 Jun 2024 07:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719212464; cv=none; b=ZSucAQGsrEhSZ5Dkre4wHWBn/ztIDgHg/+l65MWYGo9NC3B5gZmbzq6cAbyn9jOLi9yTNRi88SuDeLM+SyJIm2LC4InfzW3buxgo20pDcPIH9c6kSoXp8S0Y7+Ttxtp6aBUNd1TxzYBKOk/ufGM+Fqzb5UzZ9I0sgetQcOyzECo=
+	t=1719213014; cv=none; b=UFU67thfp60dpX8d3sInNSh1nrYzzP8M4AjePbI0Wgm8/uXMGnfmkwvDA4VMZ+oYIE1RtmY3eMueZxE3OPADXHrD/Y8yJK0nfx3ov1HpDu252oAV6lAvf1O3H9j5ImwnZWyDKyd96kq2/fwPoewLzOw4bB36fAJ8TyaBeNLSsGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719212464; c=relaxed/simple;
-	bh=t0PxgEC6IJB2/OC++qZP4aNCPyTZC6dwIhUnM/Z799s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gIMJ/AbCKh7snQl7Q13yKMAuAWw7DKMOVzVHVeJV+oPv3c9/5Xeau9uGFMQyBCpcBpX4OLfTzndSpXHZdYzr3NT6sk4ZrAPs+euSxuKbkt8pio6jqZhnlusVZe1JN6zrxeJxNYVe+e3S0wGMQ+GZECxI/gpo0J37bk2OqIM2eWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=maGnPLBh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02BA2C2BBFC;
-	Mon, 24 Jun 2024 07:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719212464;
-	bh=t0PxgEC6IJB2/OC++qZP4aNCPyTZC6dwIhUnM/Z799s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=maGnPLBhS6GLTTrWPaNAsJcmvnSwbVahnrgqKGKE7uX12smJYBZbSZ6q9MZKomNlw
-	 X/DCuIumh4CNAP+l40NBOVcL1l7R9oxEhV5s4iOGYYwtA7HX1M+I1naSM7yy2fBn6C
-	 KZGHf1rBFhgNPggwwxM5bjgzSobTUudw1QoTWurfi7VeiPWFrNPsHg4D4JTWLaDLmR
-	 ZBYjVoWzwYkP4c/q0wSAfPFPueajHaoStGB3Yfvc9HCJNdmvx2rQIH4HnKLIRmP/MV
-	 fckx8yQeGqaUwY1z8SPWp9PV0RozD7DkXze1FQV2HbR8hy1+CrcQsCdIj3ShkGpOtk
-	 oeERESos6oqXQ==
-Message-ID: <4c3d4437-4c24-4db3-855d-f2ba7d0c6f8a@kernel.org>
-Date: Mon, 24 Jun 2024 09:00:56 +0200
+	s=arc-20240116; t=1719213014; c=relaxed/simple;
+	bh=HBCjUsYTDIVsStQ42c/crGHKv/Sq5eTsiD6VzI41u04=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IdKoTuzKEtri86cZdWlvUzsQb74kSfJNZ923kte3VHnTJId6zcI6OHsiVQY1+1rtDs+mkmCJon42KlvOEAR2UkwjA75YOlFwQ7GS+F08RABYbl1fvMNCUTLyy/r1nSuROm0GbGfSSrGNc9J8e/p2Ca9fO6jjEOpljBLLkSwr+VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CWy3qw4C; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-57d0699fd02so2031771a12.0;
+        Mon, 24 Jun 2024 00:10:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719213011; x=1719817811; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O4qDW7s+qlBBL2Paxw11bXPIks8QSc7Gri0w+bcYvP8=;
+        b=CWy3qw4CQ3C/EPqY4uHyBqBPfacTglQCTX7N8sz+Z/rBjWKsmsZz5a7gVOB08v+NqG
+         k01GtNO6raVyFUs4vhbpufhVKEVEt5/pYvJQd8UKvgDtrEhrDWnmgCmB7aA4xgazdGy8
+         TXms4q2owVdfDQyQRwKG9qErwsYT4xKeH7xTwU0NqsL1SF8O10RfH2whqYKSnudYgMug
+         2ZzusuttlZvpBz+dlEfBqJ6H+rDEuQ/Vyn1rrHWkeEm7SjB1qED8a3w9NIqsYmmNYXH1
+         fYFuNMolgcSSLonUuj6MPovEcrF9fyBVcw6617k+qhJwKDVzN05yblJj4OUzotW2HlZr
+         zO4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719213011; x=1719817811;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O4qDW7s+qlBBL2Paxw11bXPIks8QSc7Gri0w+bcYvP8=;
+        b=QH56x7gqPs2s9Hoacl/2XOq5Kfl6Gt5XNIl2SJNgRvjrpgARyOzG7URazeMIsqOzXN
+         N1jp4h0sxSE/4f4oeAqO1ioEUyknNzEI7+Mn9Gab2dahUiJSYfnjBvKOyTt1vB3kkLmU
+         Azh+44iMLquxdzGTwWIFyUIO7eQ43gBiBe03eEvE8sGkDlv+mka8DdcdQoVhcXvkDRKu
+         hRRAQqsuUmspPEcgH+r2hDKzRg0EGruhPaK3jtEculaBgydk/bmp91RCcMwhSOa3K03l
+         HBvASm0jChrW5bKAEnuRDLnECTLucYAGi/3edGswugK7N9qhA63d2dKLxgds1Nb4estU
+         Cb+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWZhHo7Hjz9oI6hG8qzY7XJe1eY4cZaB7qMMF5Ua++w3ZmTOTiktrFjyzTypJG2i3K4M2lNBw97xPSspCQQS17SGuxM3+Xkg1kZNSSeLFs3ZRl5pWUVIdwkMsPlr4CjUNVJTuFRPlXGv5l49Qq/Yy4tl9gkkYdTIfRWOXGSVbzcpXxlUQ==
+X-Gm-Message-State: AOJu0YxBzoPekA53Mpj+rFgEULqWeil3Pp7uSu4QIOQU1pgpLNFrgt/C
+	L7qkPLBXiOWEGkbWFn2w+camObT1Swdko0h+OHxYun9wQLEuwe7XCeLq4RTnM+V7A3Oq3EbWSjd
+	ijFOabl8zicFuQIkqo3AyYLaddW0=
+X-Google-Smtp-Source: AGHT+IGCwvm4fU7C/inQehbuThRxMqiaMf+6I5oQHFjehZBe1jdhyTY9kV3vEF5IWV0jJ4w9Ll+EXIMb8Mo0zTpqh7Q=
+X-Received: by 2002:a50:d697:0:b0:57d:3df:f881 with SMTP id
+ 4fb4d7f45d1cf-57d4bd5a1femr3013313a12.3.1719213010929; Mon, 24 Jun 2024
+ 00:10:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe
- the ath11k on QCA6390
-To: Kalle Valo <kvalo@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org, ath12k@lists.infradead.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240605122106.23818-2-brgl@bgdev.pl>
- <171862259099.4124983.18069958656274980613.kvalo@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <171862259099.4124983.18069958656274980613.kvalo@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240620054024.43627-2-kanakshilledar@gmail.com> <d613221e-f026-400a-acec-921ef110ac29@kernel.org>
+In-Reply-To: <d613221e-f026-400a-acec-921ef110ac29@kernel.org>
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+Date: Mon, 24 Jun 2024 12:39:58 +0530
+Message-ID: <CAGLn_=t+GyhGvtfXO=VmXB6iC3XAsAexOpqGt6AWdMNW15Lf8g@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: i2c: nxp,lpc1788-i2c: convert to dt schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vladimir Zapolskiy <vz@mleia.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 17/06/2024 13:09, Kalle Valo wrote:
-> Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-> 
->> Add a PCI compatible for the ATH11K module on QCA6390 and describe the
->> power inputs from the PMU that it consumes.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> 
-> 2 patches applied to ath-next branch of ath.git, thanks.
+On Thu, Jun 20, 2024 at 4:27=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 20/06/2024 07:40, Kanak Shilledar wrote:
+> > Convert the NXP I2C controller for LPC2xxx/178x/18xx/43xx
+> > to newer DT schema. Created DT schema based on the .txt file
+> > which had `compatible`, `reg`, `interrupts`, `clocks`,
+> > `#address-cells` and `#size-cells` as required properties.
+> >
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+>
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-frequency:
+> > +    description: the desired I2C bus clock frequency in Hz
+> > +    default: 100000
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+>
+> These should not be required, because you can have an enabled I2C
+> controller without children in DT.
 
-Hi Kalle,
+You suggest removing the address cells and size cells from the
+required properties?
+I saw a few i2c dt-bindings and these had the address cells and size
+cells in the required
+property.
+>
+>
+> Best regards,
+> Krzysztof
 
-Are you sure your tree is properly fed to linux-next? I cannot find
-these patches in linux-next and above repo is not listed in Next/Trees.
-
-Every maintainer tree should (IMHO: *MUST*) be fed to linux-next.
-
-You will also get LKP coverage for free, unless your tree is there due
-to scanning korg.
-
-Please look at slides here and implement at least linux-next (although I
-also encourage to opt-in to transparency log and LKP):
-https://lpc.events/event/17/contributions/1498/
-
-Best regards,
-Krzysztof
-
+Thanks and Regards,
+Kanak Shilledar
 
