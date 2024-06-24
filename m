@@ -1,96 +1,89 @@
-Return-Path: <devicetree+bounces-79062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DECAB913F90
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 02:35:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F48D913FA0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 03:05:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 669D1B218DC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 00:35:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 609141C20A91
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 01:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3C61361;
-	Mon, 24 Jun 2024 00:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33921396;
+	Mon, 24 Jun 2024 01:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="RXWdII/z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4B2646;
-	Mon, 24 Jun 2024 00:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 334222107;
+	Mon, 24 Jun 2024 01:05:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719189311; cv=none; b=cs1c3uIcjs/YTFwSt6mrOdh9nWA5VCeZU1PMBHo0TjKDC60MjmwLYh2uhYPDGKsn+6/CNQ2oUD2x4UqZrKOobIlbqtNXjxIYN/wrUz5SQbtlUlLomUc0Z8nLLIYTXXgnBd3fLE75TDpNjGfW02WrrVEsDEYHnevLLiJ3+hr5JMY=
+	t=1719191125; cv=none; b=CKLRDQZ4Wx2+OYNGhc3bnsxkvPe4tgiKrnR0Miwqowlww5Fg1lVCuoHUrlidzijvUlYfuWZxDlTYYKI5XCZ7pd6cKZZTazjMHpGlV4/3R7XxPSAWowYp7b4vCIBQo1aDp+zPIrziQSv+K6++h5jl5VNi1NbkV2+mPLKIUl8cd18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719189311; c=relaxed/simple;
-	bh=3lSzublKdlhnIF8lHSe7BLk/CTyH+T1oOQ9ZcOTKUOs=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	 In-Reply-To:Content-Type; b=DjrXMqEkL8v7MHPOYpAcKOdEw7wz/1eSUNHCRZQJDYbGakdBRzbk27qfIYMS5TZn58kdZzfEbFD+Yiv9DWBD52A2n8mFbqUEGEhiPqC8CQuilqv/hzewXEVULzXYJ74c+bYRjn93bXu8cWoGua6oTpxDUiSoZ0wXY++47DEh550=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.163.174])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4W6prd0wKlznX5W;
-	Mon, 24 Jun 2024 08:34:57 +0800 (CST)
-Received: from kwepemd500014.china.huawei.com (unknown [7.221.188.63])
-	by mail.maildlp.com (Postfix) with ESMTPS id 9CBEC1400D6;
-	Mon, 24 Jun 2024 08:34:59 +0800 (CST)
-Received: from [10.67.121.2] (10.67.121.2) by kwepemd500014.china.huawei.com
- (7.221.188.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.34; Mon, 24 Jun
- 2024 08:34:59 +0800
-Message-ID: <6678BF32.10609@hisilicon.com>
-Date: Mon, 24 Jun 2024 08:34:58 +0800
-From: Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	s=arc-20240116; t=1719191125; c=relaxed/simple;
+	bh=9E8DTzg+OwcBRU6TbLdG+sxmbaLnRszqiEzQCtNxO7o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=h/2Ibr4afYQJufJqMgGvKY37FjpeqdfAmw164aIJ4Wu2DbwkLA4hvRL5T65DBEEkGsE050RcewuXKV2vBh8qlq0vIHTG5uUocP13HKnHNDJNdmVJ/1PZA9H15iYoZdfaFAMW/fNTY64uNll/9eGBabebBAe9Qc85s1gQoz1PNf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=RXWdII/z; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-79-194.adl-adc-lon-bras32.tpg.internode.on.net [118.210.79.194])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E023A2009F;
+	Mon, 24 Jun 2024 09:05:19 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1719191121;
+	bh=9E8DTzg+OwcBRU6TbLdG+sxmbaLnRszqiEzQCtNxO7o=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=RXWdII/zWOenRm89XgtvdUf1jC335eY6OUP7rn0qevUrlEJI18g94jfeW+Cmqpubg
+	 mg7Hd5L4P49ld/EqsdLGeR1WJ5wkvC09TxlmLbIMeaOZK6uAlDp7PerOKY5Y0zxQnF
+	 dmR29ZXoygVlSU4eYywjpIeeqDXVw9luvszpluhuK0fFYwlUf+w5wWrbu553Su6A6j
+	 d94MDaPWExwcom0MZ+A1YDTHI7AZhAYsRQVBpXI3N7qMyJtqpw0LhougqElg/TMreT
+	 CmW+yQ8oREbMYokELVu4Pr82/Yp6iHbQhPaSbQT7Cy3U0OF44tCLPxQsrtUW5T9nRt
+	 UkXL+CTdMDvTQ==
+Message-ID: <25f3b4cf773f2757ec134b0e82f59a483eed28c5.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: aspeed,ast2600-pinctrl:
+ add NCSI group
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Potin Lai <potin.lai.pt@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>,  linux-aspeed@lists.ozlabs.org,
+ openbmc@lists.ozlabs.org,  linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Patrick Williams <patrick@stwcx.xyz>, Cosmo
+ Chou <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Mon, 24 Jun 2024 10:35:19 +0930
+In-Reply-To: <CAGfYmwWp2dayGvySdYvU+nmtxZ-x3PPW_j69ZoBD4mxzPMQAzg@mail.gmail.com>
+References: <20240620084337.3525690-1-potin.lai.pt@gmail.com>
+	 <20240620084337.3525690-2-potin.lai.pt@gmail.com>
+	 <cb55efedaef63e4580c11415aa2e29606edcaf9f.camel@codeconstruct.com.au>
+	 <CAGfYmwWp2dayGvySdYvU+nmtxZ-x3PPW_j69ZoBD4mxzPMQAzg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Carvalho Chehab <mchehab+huawei@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-CC: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: hisilicon: document hi3660-usb3-otg-bc
-References: <20240518204443.122586-1-krzysztof.kozlowski@linaro.org> <171914563307.48201.2100106894701016613.b4-ty@linaro.org>
-In-Reply-To: <171914563307.48201.2100106894701016613.b4-ty@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- kwepemd500014.china.huawei.com (7.221.188.63)
 
-Hi Krzysztof,
+On Fri, 2024-06-21 at 16:53 +0800, Potin Lai wrote:
+> On Fri, Jun 21, 2024 at 8:46=E2=80=AFAM Andrew Jeffery
+> <andrew@codeconstruct.com.au> wrote:
+>=20
+> > Can we also do this for RMII{1,2}RCLKO (and in the driver patch as
+> > well)?
+> >=20
+> The power of RMII{1,2} is 1.8v, which does not meet NCSI requirements.
 
-On 2024/6/23 20:27, Krzysztof Kozlowski wrote:
-> 
-> On Sat, 18 May 2024 22:44:42 +0200, Krzysztof Kozlowski wrote:
->> Add dedicated bindings for the Hisilicon Kirin 960 USB OTG Syscon,
->> to fully document the block and also fix dtbs_check warning:
->>
->>   hi3660-hikey960.dtb: usb3_otg_bc@ff200000: compatible: ['syscon', 'simple-mfd'] is too short
->>
->>
-> 
-> One month waiting, so I'll take this one as well.
-> 
-> Applied, thanks!
+Ah, thanks for catching that.
 
-Fine to me.
-Thanks!
-
-Best Regards,
-Wei
-
-> 
-> [1/2] dt-bindings: soc: hisilicon: document hi3660-usb3-otg-bc
->       https://git.kernel.org/krzk/linux-dt/c/7613195d37d69ff92c9bc55599037615212ce19c
-> [2/2] arm64: dts: hisilicon: hi3660: add dedicated hi3660-usb3-otg-bc compatible
->       https://git.kernel.org/krzk/linux-dt/c/bc9ec165d066af29661ece91f9cbf74e18ec0a5a
-> 
-> Best regards,
-> 
+Andrew
 
