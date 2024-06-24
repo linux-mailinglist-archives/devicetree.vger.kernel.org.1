@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-79400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD1C9152AC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:41:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A357B9152B4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:42:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3D1EB207E3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:41:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D47DB1C212E9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5236619CCFB;
-	Mon, 24 Jun 2024 15:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB7619CD14;
+	Mon, 24 Jun 2024 15:41:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96991DA21;
-	Mon, 24 Jun 2024 15:41:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F9719D077;
+	Mon, 24 Jun 2024 15:41:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719243672; cv=none; b=bI3eFJ+xahV/KwadhM3EuPIdhPRZxnQWIyAwhT0Q6yT8xnSuxyHwj2pPkObEsFeXlu9oLiCDmk3HoWoKCDVpvFkQDVR0lUDNMBYBqcewqeJPNIfV+DiKvGXZ9vj653PGIt8RGEdjgjYx+aQbnd/9tg9QRzeGU6gQZEdki4XZGyM=
+	t=1719243710; cv=none; b=eIv2j73BcB/zsLuGJ3xvS3Z1+cXDNkU26u6Z/PYZPDJhOVpEmyKQjHBU8KCJ9W0jXX0j95FElRXMtI18EQja6azrxFJTNPGBRJ5V6Flab0PDzhV1yIHNW94/QzdTHungAKSCTSY0E4SYuDx515QHtI7eRBAuFVTNq0J4nf4ffS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719243672; c=relaxed/simple;
-	bh=N4Kf7Wuxy/4F/YKVzwXuyiruxJFedNgB2d/xx3ewM1w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hvzsmxgFnFeEbaYWfX5AQIyuw8ssMqCTlJY8GVltqwMntnbrUJe/wzkdExzFQSopV1LoB0/bBR/+7e6pTNkfDqBhjrcyBze/squ2tffnRrLEL0OPbTYI0LAMYgLggGkIts4diiWXJiCJT1eTPld7NCaZsYGbtUatRMzCOORdF5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-645808a3294so7296797b3.3;
-        Mon, 24 Jun 2024 08:41:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719243669; x=1719848469;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YyyZLKfbybyoHW1pomgo1ltrgcPpRsjdS5hXpqQgAyU=;
-        b=q7svj8yzhICghkVRJhNZFsC4mfAnDLiaB60k3m4AAIBfD7hrKnsgol3PHoQvHMg20L
-         lVs4zeIEpvBI7v5IVOiqQoTtq6vDmx+JnEuCsR44UOcdZZXAYmOyIcbIcOWMeUi2dpWn
-         jzOC8cP9xF8AWF1Ni4iM5FD/MY6P87xgYDEzKwaAFZ45urYe+UbX7MU3MYemYLHTOijN
-         Suy+msLx6/iv7Hp7U5D5Z0Hg28eKQbSxgG8h1PzlhQt45BEDR1I79G83pAP+a+yBVueA
-         HTBHZjkBbFN82o5apgY2Gd+lm3Z0XvbkXAmiL3DZMwSIJff1HcrwDHpE8BT9bWk1tb/p
-         lDiA==
-X-Forwarded-Encrypted: i=1; AJvYcCUoevDyO3cnQVdJjk/40KR242wiv89dSL7iH6V2lDqP3goOaMmrwOZ2MrOz/JdNDUN8rBXO6Rg451qxDmuEZA0bejeunySFhICSKWJkssNRJhB85/ke3oL5jX0LiuMtKopVtwvaQWadIHXFzKxHD0JSKGEYSMhlROgfwsgroWbAOOV3IiaKrFpOCiqJ0TXWFc2YKuZkDn2FkR00kcWfkiw8lS9IivUG9SKPHYj5J7AII3D36Pvp0wv8QS2fiDC/nCVd
-X-Gm-Message-State: AOJu0YxODiwArWQEpAauriTHgtFTioRvi1/oKmqwI5Cm2nxDS5um210L
-	StyOo3Fyz43lVgoXc5Lz78Tl9Nnpqs1Fh65lFEjBrVXp0n9cCFMVIIMrpNra
-X-Google-Smtp-Source: AGHT+IHOF6I9BBSjYho30m6qIXh6XBnnpsOwooEsiBDSNpOIZzhhPjm7NCumeBH8UBtWc7pntCLGdg==
-X-Received: by 2002:a0d:c3c2:0:b0:631:3c7c:f766 with SMTP id 00721157ae682-64340ea9a89mr48626827b3.34.1719243668622;
-        Mon, 24 Jun 2024 08:41:08 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-63f14c26102sm29111467b3.75.2024.06.24.08.41.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jun 2024 08:41:08 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e02c4983bfaso4279281276.2;
-        Mon, 24 Jun 2024 08:41:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCULCC3ncAztxjHXNng8H6X/tsccXlHwsbkdc3kdWK49cofZO4Yg1ta3VTPw3wK9jdyw5pncPE/S+Ab3292bnwcncirwKAF/Yx6QidYAQPR8gcXZ/7sohZg0TKDj2Vn5dILLN+RcCmrUizSLfZ6OT8MXjVdQHvRxd2vs/aero3PmvRAtsh4+NluDA4wvcJe2xoI8Y44vhd0qkMK5HxIWuzfREXzJc0/I+lI6S6IZ4PuKTKFcT0HLrMzsSg9HWJYURGt9
-X-Received: by 2002:a25:b11f:0:b0:dff:3028:4631 with SMTP id
- 3f1490d57ef6-e0300f86570mr5309852276.33.1719243668079; Mon, 24 Jun 2024
- 08:41:08 -0700 (PDT)
+	s=arc-20240116; t=1719243710; c=relaxed/simple;
+	bh=3dz1GFXIvgH5i6DZjwGNKWeBzYGIWxh02+vy/2Ekez0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kpvdlEZdkdz7Qe71SRdi/2q+uVAcKAQ4qisRuHD8tTLkKsSNFjAIFTUhEbXh/3hvVmmKVqlBFTuGZ10NTaKcr31OXcrqLjW1Z2NzI6bnRvHEsQTvAfzBZT479tq2mN5+egFulauqiolx8qaAZf8+1Bf2pz5ky6ss2OIX1fudrzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A71DDA7;
+	Mon, 24 Jun 2024 08:42:12 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9DD2D3F73B;
+	Mon, 24 Jun 2024 08:41:44 -0700 (PDT)
+Date: Mon, 24 Jun 2024 16:41:42 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	"Mark Rutland" <mark.rutland@arm.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	Shivendra Pratap <quic_spratap@quicinc.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	<linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v5 3/4] firmware: psci: Read and use vendor reset types
+Message-ID: <ZnmTtmZB8epgbUTN@bogus>
+References: <20240617-arm-psci-system_reset2-vendor-reboots-v5-0-086950f650c8@quicinc.com>
+ <20240617-arm-psci-system_reset2-vendor-reboots-v5-3-086950f650c8@quicinc.com>
+ <20240619135143.kr2tx4ynxayc5v3a@bogus>
+ <20240619080933071-0700.eberman@hu-eberman-lv.qualcomm.com>
+ <20240620162547309-0700.eberman@hu-eberman-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240621112303.1607621-1-claudiu.beznea.uj@bp.renesas.com> <20240621112303.1607621-9-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240621112303.1607621-9-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 24 Jun 2024 17:40:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdULaO2dH_wrcM5P6=rDYzRXcMSGfVsBz3okWPGjOsMN4A@mail.gmail.com>
-Message-ID: <CAMuHMdULaO2dH_wrcM5P6=rDYzRXcMSGfVsBz3okWPGjOsMN4A@mail.gmail.com>
-Subject: Re: [PATCH 08/12] dt-bindings: i2c: renesas,riic: Document the
- R9A08G045 support
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	wsa+renesas@sang-engineering.com, linux-renesas-soc@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240620162547309-0700.eberman@hu-eberman-lv.qualcomm.com>
 
-Hi Claudiu,
+On Thu, Jun 20, 2024 at 04:37:09PM -0700, Elliot Berman wrote:
+> Hi Sudeep and Sebastian,
+> 
+> On Wed, Jun 19, 2024 at 08:28:06AM -0700, Elliot Berman wrote:
+> > On Wed, Jun 19, 2024 at 02:51:43PM +0100, Sudeep Holla wrote:
+> > > On Mon, Jun 17, 2024 at 10:18:09AM -0700, Elliot Berman wrote:
+> > > > SoC vendors have different types of resets and are controlled through
+> > > > various registers. For instance, Qualcomm chipsets can reboot to a
+> > > > "download mode" that allows a RAM dump to be collected. Another example
+> > > > is they also support writing a cookie that can be read by bootloader
+> > > > during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
+> > > > vendor reset types to be implemented without requiring drivers for every
+> > > > register/cookie.
+> > > > 
+> > > > Add support in PSCI to statically map reboot mode commands from
+> > > > userspace to a vendor reset and cookie value using the device tree.
+> > > > 
+> > > > A separate initcall is needed to parse the devicetree, instead of using
+> > > > psci_dt_init because mm isn't sufficiently set up to allocate memory.
+> > > > 
+> > > > Reboot mode framework is close but doesn't quite fit with the
+> > > > design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
+> > > > be solved but doesn't seem reasonable in sum:
+> > > >  1. reboot mode registers against the reboot_notifier_list, which is too
+> > > >     early to call SYSTEM_RESET2. PSCI would need to remember the reset
+> > > >     type from the reboot-mode framework callback and use it
+> > > >     psci_sys_reset.
+> > > >  2. reboot mode assumes only one cookie/parameter is described in the
+> > > >     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
+> > > >     cookie.
+> > > >  3. psci cpuidle driver already registers a driver against the
+> > > >     arm,psci-1.0 compatible. Refactoring would be needed to have both a
+> > > >     cpuidle and reboot-mode driver.
+> > > >
+> > > 
+> > > I need to think through it but when you first introduced the generic
+> > > Documentation/devicetree/bindings/power/reset/reboot-mode.yaml bindings
+> > > I also looked at drivers/power/reset/reboot-mode.c
+> > > 
+> > > I assumed this extension to that binding would reuse the same and
+> > > PSCI would just do reboot_mode_register(). I didn't expect to see these
+> > > changes. I might have missing something but since the bindings is still
+> > > quite generic with additional cells that act as additional cookie for
+> > > reboot call, I still think that should be possible.
+> > > 
+> > > What am I missing here then ?
+> > > 
+> > 
+> > Right, if that was only thing to "solve" to make it easy to use
+> > reboot-mode framework, I agree we should update reboot mode framework to
+> > work with the additional cells. There are a few other issues I mention
+> > above which, when combined, make me feel that PSCI is different enough
+> > from how reboot mode framework works that we shouldn't try to make PSCI
+> > work with the framework. Issues #1 and #2 are pretty easy to solve
+> > (whether they should be solved is different); I'm not sure a good
+> > approach to issue #3.
+> > 
+> 
+> Does the reasoning I mention in the commit text make sense why PSCI should
+> avoid using the reboot-mode.c framework?
 
-On Fri, Jun 21, 2024 at 1:23=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible with
-> the version available on Renesas RZ/V2H (R9A09G075). Most of the IP
-> variants that the RIIC driver is working with supports fast mode plus.
-> However, it happens that on the same SoC to have IP instatiations that
-> support fast mode plus as well as IP instantiation that doesn't support
-> it. For this, introduced the renesas,riic-no-fast-mode-plus property.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Sorry, I completely missed to see that you had already answered those
+in your commit message. As mentioned earlier I haven't looked at the
+reboot mode framework completely yet, so I can't comment on it yet.
 
-Thanks for your patch!
+I don't want to be blocker though if others are happy with this.
 
-> --- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
-> @@ -25,6 +25,10 @@ properties:
->                - renesas,riic-r9a07g054  # RZ/V2L
->            - const: renesas,riic-rz      # RZ/A or RZ/G2L
->
-> +      - items:
-> +          - const: renesas,riic-r9a08g045   # RZ/G3S
-> +          - const: renesas,riic-r9a09g057
-> +
-
-LGTM.
-
->        - const: renesas,riic-r9a09g057   # RZ/V2H(P)
->
->    reg:
-> @@ -66,6 +70,10 @@ properties:
->    resets:
->      maxItems: 1
->
-> +  renesas,riic-no-fast-mode-plus:
-> +    description: specifies if fast mode plus is not supported
-> +    type: boolean
-> +
-
-Do you really need this?
-The bus' clock-frequency property should take into account the combined
-capabilities of all of controller, target, and wiring.  It is up to the
-DTS writer to validate that all timing conditions are met.
-
->  required:
->    - compatible
->    - reg
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--
+Regards,
+Sudeep
 
