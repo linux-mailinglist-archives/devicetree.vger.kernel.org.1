@@ -1,113 +1,110 @@
-Return-Path: <devicetree+bounces-79460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284B89155A0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:43:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1945A9155B1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:47:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A93ACB22045
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:43:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C32241F245D9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75C019EEDD;
-	Mon, 24 Jun 2024 17:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A494A19F47F;
+	Mon, 24 Jun 2024 17:46:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DyIPANmI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jz2MvtqR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EB919EEC6;
-	Mon, 24 Jun 2024 17:43:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA9513DDC4;
+	Mon, 24 Jun 2024 17:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719251013; cv=none; b=ljTeVs/L1tSM6K8ETpUmDiPh623wUknlSeFjwN/aaOFojJtpWpXWsKe64YV1bZoXByi7WVhfJ0I/4zIk0lej91lA6IDqOWQdzolhuiiPnUh7LCD8LhsxB1+Kq6KBK09LPY47G5p2JbJGPDmTK9+Vg935Yu40sM7GVMh3XuPNOAk=
+	t=1719251197; cv=none; b=Ec1OlCRXiXtOtamuEia44reIuBZmQLMOkXb+SQjGVNQO+CvuL1xFybvZ+0syK547GJMXzSVB1ngKZPgZam6fHuuwTLtmnRLLKaVF6jYpmY+Sm3vk0IDHepGV0Lhs9q2+RriEIKMlab1+52Gsm7enzcdL7UxKIlS4RBkcg01yS9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719251013; c=relaxed/simple;
-	bh=IfldlGFHsAMQVMoyS6SUigsG7AKmsKv1tHCFvAVq7Z4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=rrBngAjFa0Z8Z3hyEw0x1AmbPUZeI6380jBzPXqdnwxVSHDLtEDPWKEUSQFG9Lsu2Zh/Z4oTFP+GwDU+qkNKOrIZgXARRt+aom0UKlrXjzeZStnWsR677+R5/DZpiVF+gGpPOc7UXQxwszoquv1ILF1pAHaHLOlLRgRG7gwiDiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DyIPANmI; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57d20d89748so4374811a12.0;
-        Mon, 24 Jun 2024 10:43:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719251010; x=1719855810; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L+lSKICwKIdtSkK9lQl+OJqVa8pdF3gRpXCDKOHiiJ8=;
-        b=DyIPANmIsDq8zzZDRbj+V907ZFKeRiVySatr86djumi2zvPd0zzjaJTKzJilOvWGT/
-         7rYUCEV6Du/pyUhPe+waEpkq1sDDFdUfLxqes39neMBQafq5+ZKnimKd6z0I21XfosUd
-         0qruixkOSef2GcC5afv/Jb0dDrqyKu0F5LBSNEte9nQTzO1P4zYG0rGC3akarbkFWkVf
-         FD9QNAsOlNJ28LYaLSpJ9QnH+brN/bZCYZN4N3yKVN/VOKAiD2t/GE/ikOlG5xl4cMXJ
-         ENzSxjYOFE+PPG7Wtoh77ZV37tTN2rAsmZh2CuqSVfrOdA+u6V0Q/3BzczEpARBsFnOS
-         +0Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719251010; x=1719855810;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=L+lSKICwKIdtSkK9lQl+OJqVa8pdF3gRpXCDKOHiiJ8=;
-        b=oRYnxh7GPZuUty7uOKZEgIu78YQZrKajiAnT5YMFPwM5KN+lQ3GGf3ayKcmBJuYe6n
-         yhOwIbOyjHb1XD+rpM4ssBrp3vBlG1AxNyHS2ehNi8tTZA3Ioyri9DLchgQSJlvf3Rvs
-         mnDCLaAUejG5GhDL1ED/CqmJrdrb5PlU1MIwX2JYkZhfXPpAu19GS7QSSrGBKd0AgfXB
-         QHajGsexzsA1LtjZ1I1Hya9MnxcFXrbQQe0IQFtTf4vXfMCmaWDZzCreuB9wVFQF6jBP
-         OvUb3elBBRUd1+8vXdgGkNF4EUbFsW8OG2hgIAfeHKzL+OEb39zY0v80NcqV3v2xl0Fi
-         NMcA==
-X-Forwarded-Encrypted: i=1; AJvYcCXL5Emt58v8B1bqWbX1i4DnUVCNtNabPs3Relze+iuAsgDR52RPjbD34UbbQqvtBPXkguNY8puf2EjHkbHGG/k3gq6x7B7tMWgypdRtMvMV4CssoqHEta4Lnw5x9vVzvxZIjMeuzGwXSg==
-X-Gm-Message-State: AOJu0YzjYQYSavaQa6mFu9Ko8plLWzOwSSMxj/rAu6xWifor9kMrgmw/
-	dWvBKUH53cOxaSbLno3E64mNxMliV7yVnBbQ+z2U1KrZ/+8MMfAx
-X-Google-Smtp-Source: AGHT+IFRm8WW9olx0Eld72eMp/pkrAuCiI9962yug8FqjUKRgG78eHmwQkGVhlbFo3Exv938w+Aofw==
-X-Received: by 2002:a05:6402:270c:b0:57d:6079:3916 with SMTP id 4fb4d7f45d1cf-57d607939edmr2112010a12.26.1719251010277;
-        Mon, 24 Jun 2024 10:43:30 -0700 (PDT)
-Received: from ?IPV6:2a02:a449:4071:1:32d0:42ff:fe10:6983? (2a02-a449-4071-1-32d0-42ff-fe10-6983.fixed6.kpn.net. [2a02:a449:4071:1:32d0:42ff:fe10:6983])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57d3040f003sm4944936a12.29.2024.06.24.10.43.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jun 2024 10:43:30 -0700 (PDT)
-Message-ID: <55d302e5-c018-4b93-84c1-8cf75162e939@gmail.com>
-Date: Mon, 24 Jun 2024 19:43:29 +0200
+	s=arc-20240116; t=1719251197; c=relaxed/simple;
+	bh=7Ro/6yue2aS0LQJnIFiNpr5UaZHO/IJXTOrf6chLrpQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A1/6Q3Hxhh0EHjvSYKc/d3GV95Y1wKCE2YVysTNjc9XZjC2IbKJSwv2CQRe8btsUpj59E58SGGVCCXEA/3m/IvxUREjoU6J3pJTXNUj9COMSvWiqZEoD35uVPJfkq3VcIZ8PbivGvUEZJ7BTh5wThZ1dF21hl94ezVtObdIPTWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jz2MvtqR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B93C2BBFC;
+	Mon, 24 Jun 2024 17:46:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719251197;
+	bh=7Ro/6yue2aS0LQJnIFiNpr5UaZHO/IJXTOrf6chLrpQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jz2MvtqRvRnHGPh5x1SrJNCTfQN8bP1qFS4zUHYvmvq72MTiOZYnCpT21YCU/Dv14
+	 sO49F+03tKL7goy0RM0h4suaZVc3dkZaBVlBGD6XXHcHfj2HZa6SlZNclAFOgdgjfO
+	 au4AkLDvpKMpu+XMLDkJsnDTrgg28k4TPpGNOb3GcJny7C/yZinFXHe0YpNISNvRXr
+	 FXYTurVTtbtDLCA3DZDUdXlSI9qH5HpX8L+eMqfslr+JQKm6UOCkyNGpPnCvwu8LqR
+	 dbw/Gp1xe4NLnLp2H6YW+1QO3UQzr1rFO01pWK6/aAScvu81luHZDkAMW9sGseMd0E
+	 ++s+lZQSU7wjg==
+Date: Mon, 24 Jun 2024 11:46:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	devicetree@vger.kernel.org, Jun Wu <jun.wu@arm.com>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: cpus: Add new Cortex and Neoverse names
+Message-ID: <20240624174635.GA17664-robh@kernel.org>
+References: <20240618160450.3168005-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] ARM: dts: rockchip: rk3036: add #sound-dai-cells to hdmi
- node
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240618160450.3168005-1-andre.przywara@arm.com>
 
-'#sound-dai-cells' is required to properly interpret
-the list of DAI specified in the 'sound-dai' property,
-so add them to the 'hdmi' node for 'rk3036.dtsi'.
+On Tue, Jun 18, 2024 at 05:04:50PM +0100, Andre Przywara wrote:
+> Add compatible strings for the Arm Cortex-A725 and Cortex-A925 CPUs, as
+> well as new Neoverse cores: Arm Neoverse N3, Neoverse V2, Neoverse V3,
+> and Neoverse V3AE.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rockchip/rk3036.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+This patch is fine, but the PMU compatibles are needed too.
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
-index 04af224005f8..96279d1e02fe 100644
---- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
-@@ -402,6 +402,7 @@ hdmi: hdmi@20034000 {
- 		rockchip,grf = <&grf>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hdmi_ctl>;
-+		#sound-dai-cells = <0>;
- 		status = "disabled";
-
- 		ports {
---
-2.39.2
-
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> index cc5a21b47e26a..f308ff6c3532e 100644
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -147,6 +147,7 @@ properties:
+>        - arm,cortex-a710
+>        - arm,cortex-a715
+>        - arm,cortex-a720
+> +      - arm,cortex-a725
+>        - arm,cortex-m0
+>        - arm,cortex-m0+
+>        - arm,cortex-m1
+> @@ -161,10 +162,15 @@ properties:
+>        - arm,cortex-x2
+>        - arm,cortex-x3
+>        - arm,cortex-x4
+> +      - arm,cortex-x925
+>        - arm,neoverse-e1
+>        - arm,neoverse-n1
+>        - arm,neoverse-n2
+> +      - arm,neoverse-n3
+>        - arm,neoverse-v1
+> +      - arm,neoverse-v2
+> +      - arm,neoverse-v3
+> +      - arm,neoverse-v3ae
+>        - brcm,brahma-b15
+>        - brcm,brahma-b53
+>        - brcm,vulcan
+> -- 
+> 2.25.1
+> 
 
