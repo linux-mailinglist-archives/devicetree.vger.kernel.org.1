@@ -1,191 +1,188 @@
-Return-Path: <devicetree+bounces-79188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89E39144B2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:26:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4939144ED
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:33:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D75D284F73
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 08:26:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F1AF285513
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 08:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F139469953;
-	Mon, 24 Jun 2024 08:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="PSjCgbe5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853E161FD8;
+	Mon, 24 Jun 2024 08:33:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2094.outbound.protection.outlook.com [40.107.255.94])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAE94CB2B
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 08:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719217498; cv=none; b=MdkMZ+VAPT8ZVE0KsY0RypE/1Y3TTklsokaca3At+1/6ssRMXehx81czBRL8fZd1Xsono4HgUh0hUl6bvdlLtdBokgfrqJS+oiIKYUaVqhCy2IzqRJH5L6LLnnQhmAxbXw3M5zpvvaN6+HZsBHr24GjKsE83XdNmq5Fjjjj+TLg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719217498; c=relaxed/simple;
-	bh=gDacbADE2SAmVHz0VzwJCGPbVzzt3W6DAEZWHfwk23E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SoNvVQnaHnVzYgF0iDm4q1jMHnZT7upNfO/fy7rbGODDiPMakcCdiAG0ZrZSiUkVPMWQH4Kanw3UFM57kRPFljViZu0o+HZNmVZa7Vi0bKgkGxyBL3/EqdcawNKacs3s6VRmfyY2j4s4cKuwStmLaL94MQeLWO8h2ivcjsHXd1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=PSjCgbe5; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42111cf2706so5115455e9.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 01:24:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1719217495; x=1719822295; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eHo51wuTRWiZIUYTemkhy4Fril3hMcATqvGkIagVwG8=;
-        b=PSjCgbe5yjz480PPzbxGmp8Jtyjoac9Pa/KyMQLmgii24PWKgwCMEn7QIc1HPhrhwJ
-         EDHXU21TR1mm75uJZ0TXsk/s+gPPZLyIQPrn7WowdOc5A72lnThflt/6ZYvgarP9eyCz
-         KDgGLKMD8aEHfIvtFKPCldsPaDQOjHrdsSfjgTyOL4Zhv3obbWRNfwQvpSrDZfqYgL/X
-         HN8GlDZmGFo9TsHvXMoonZTkGnOo361RzIWvTElJ98KIVOBEt5QnhgUFfrt/K0VnbHfk
-         3T5LiaQNc2WiSigK8oz3wgNRpzaCJQP0n6uKbDsoo5XTRX9iMxrltwDNqQILePIY0IQ3
-         vCAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719217495; x=1719822295;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eHo51wuTRWiZIUYTemkhy4Fril3hMcATqvGkIagVwG8=;
-        b=H/1bRE3vycNIdX/hDmS/7oDCRvlYfRdr8TpjBSQPuHYMi2XJisyxiGc4gRhaROEoIt
-         KM7qt3BqBiS5aubGMx0kVBZTR2NU2svYUZFyNkXQjn6pVKl2kgESXAga1/gigUZsebeD
-         aFcVVbUWYp4ZdbpSeDDm7RRu97cryO4A5ECwxWRZTIe+KgmDMxObn6cagRzwdEbVDZyf
-         9+dj7OXHvquekbUST8u2KpN7/eSNTdGRSlXwwtyo/4EapGPASs6YfSjLzOMKNj+3hSGY
-         /3IOtjZ6OI8iMdePus74xLM/fmbJnMKPMJRdrzPhvYSb5ycIgExbC9Wo3GPTKYQPlyPU
-         XQMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUVTjGayv/aMlEhhwZ+/BnOl6gc7PFKqh0cEQ8Do+pm8LFL5/mhC+cP6ctUS5bWxOevJ7Jgjy9oKdISAsZIUwmWco+z4LEc2meffA==
-X-Gm-Message-State: AOJu0Yzm+CUibldSh52DnUZSqJABBf19EwPs05b2MSCZeejLcTdsEuP2
-	M0JZqeEsGpRtdcww0iqcO0N2VsZoLx1M70gP/tzLiEblSN0RkI/qLLRIugRl4j0=
-X-Google-Smtp-Source: AGHT+IHaJqmXxJcpAch8t7UdkOLrlv66b+VvjpHMvaM58a6QzEHIYabq9XOGzMv9in4jtgUGn43mVw==
-X-Received: by 2002:a05:600c:3b11:b0:424:8810:78b5 with SMTP id 5b1f17b1804b1-42488107bb0mr40633265e9.0.1719217494632;
-        Mon, 24 Jun 2024 01:24:54 -0700 (PDT)
-Received: from [192.168.61.172] ([37.166.182.152])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4247101a955sm175619005e9.0.2024.06.24.01.24.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jun 2024 01:24:54 -0700 (PDT)
-Message-ID: <c59a8897-34a1-4dc3-b68b-35dddf55c937@rivosinc.com>
-Date: Mon, 24 Jun 2024 10:24:51 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0D04F201;
+	Mon, 24 Jun 2024 08:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719218001; cv=fail; b=PRrSR4ObhLAUYd1Wj3bQ97+x2ZK3eY09s64s9FAp3woHzeotTCYIrwwPdzRBGamC0q+J7myYS2g143/lvx9o6G5nl2CAiEPZxVEak6XRfuXAvCTRR8hV0w8b4+Vp0w414d7nGaG2qByzBlQVxJ2n2vRhItLf2khgBPR8uZaLy6w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719218001; c=relaxed/simple;
+	bh=RaWIrPpGDqK76+dka/ch7shcVxoPOSSjninfcOn76Us=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=BQMykbkq4y9FJ3dX0s5ORQ6GQJJ1D8lvyhmk4Zez/1RwsGdNUNP2yEvYiEjITwTcPPlRtjgLVqGYKv6CDNUk7wGBw8rVMpGziiPrj6FrPgVjJ5j6KjfnxBM/sWsLXeUOluV6zNTiD/eleBRqAfA4VF94w3cRuC7yi8h2mBScXzI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.255.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OMcowJOcnNe4Ce7iepwMnllFj59IxExOW241mZAeXE9zVPa/pBEzKt64neqFFhYsTQi9UfjSjjATSrUdTzR1OdpfYMT/+iUzJ89omF+MJyhLfzFmZ8GIY0k7bqn+Fpq7tAcbC2Y14gawzBOJZBNy7vaLU1E7+ySCooem4ukQZGfkLdI8zgilCjDXl/8xLErAdDTw5QMFMTXxohqHlqD+95Biu4qH7z25RgLzz8ecQ/WA9MRPTo+xCOZQXBhybrzinkfP9UBdh7H5PubnAU5TDeZrwR75Zm4mbO4K/IEVpMySdznqItfzIg4+oyS1I11yTMusQ6gdPAKGqBHE+qUF4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5B9GNLv3iCObu0ZXCbN+fc4XX45FayZVQUJd5FEvZaI=;
+ b=fp9eGU6Wb1cMD34Xy9yrOIR69B2maLo0q9NKAYU0Mh9JZQvdINiz6pKMVdel4Ws2+/6+0I8hMYUOe9CA148yprNqmQEK0rKGo7SGwGmdGso+yeoTWIoXinlQ7ZQ4mL7MSuk3EVQuPlxE6/mj/qnPczVALvOBX7sARNZ0s6dbfzgKS9FcRwse9P/lfTXdiZzx9Dm/IU5W9k/3Xaxo5CNWq9A5ahzpBgRdiV8kxwUC2kMsJfvd/YnNheUmu/gI/bf8FVqXCfwmhiD/2sfuEqL4cBSOpGZME7uCogS3y0Bhjo/Q3bPEu0IY7UwKz7Ee5mT/AE8vGPTaO5S6RqhmkSTExg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
+ by SG2PR03MB6456.apcprd03.prod.outlook.com (2603:1096:4:1c4::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.26; Mon, 24 Jun
+ 2024 08:33:10 +0000
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7698.024; Mon, 24 Jun 2024
+ 08:33:09 +0000
+From: Jacobe Zang <jacobe.zang@wesion.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de
+Cc: nick@khadas.com,
+	efectn@protonmail.com,
+	jagan@edgeble.ai,
+	dsimic@manjaro.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jacobe Zang <jacobe.zang@wesion.com>
+Subject: [PATCH v4 0/2] arm64: dts: Add board support for Khadas Edge2
+Date: Mon, 24 Jun 2024 16:32:34 +0800
+Message-Id: <20240624083236.1401673-1-jacobe.zang@wesion.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0107.apcprd02.prod.outlook.com
+ (2603:1096:4:92::23) To TYZPR03MB7001.apcprd03.prod.outlook.com
+ (2603:1096:400:26a::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 08/16] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
-To: Conor Dooley <conor@kernel.org>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
- Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kvm@vger.kernel.org,
- kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20240619113529.676940-1-cleger@rivosinc.com>
- <20240619113529.676940-9-cleger@rivosinc.com>
- <20240623-cornbread-preteen-4ec287aa165c@spud>
-Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20240623-cornbread-preteen-4ec287aa165c@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|SG2PR03MB6456:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09c6f427-825c-44f9-e1aa-08dc9428470e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230037|1800799021|366013|376011|7416011|52116011|38350700011;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?kiCpCLqjlid74EQbAa/H1x3SRIkItT5uegjvcR0DxghCEZhM+F8EA+fNfO1z?=
+ =?us-ascii?Q?3wSLnNCoW+h7GcUTvJcys+61Fx4Mh2TtBlZmJuWVLgLzzzIjO9V/bPYvnJDR?=
+ =?us-ascii?Q?+rmxeYOzZ9ui+BhEmBCluoX0+aVLfDTTANBzzGB/gym+P4PixXGLynPeOd/6?=
+ =?us-ascii?Q?NHT22m5ne+mNAvtO/DF6HW76iaSLq2CrHVHyhe/wDTrvQAyvTTygkfhC3adL?=
+ =?us-ascii?Q?KpNdJGVZB+Jrq78hQkLpXAodELMtof4h6NJ5lc0t1pTzPA3CiNRDTwgc/EzC?=
+ =?us-ascii?Q?4obKgouJE7EH6h3vIqHJyZKvOqToZWos4f3N7Zobiu0GPWIFrkTJIobDCmwI?=
+ =?us-ascii?Q?v7+cbVvRDiuY2URUfKlQTbg7BNDDGj+b8ulm2NTpO81ExWZT/OiGjTOnivT7?=
+ =?us-ascii?Q?kyy4nrvfgz9uC0g46cVpKYh9JxvHas450xZBpUt5D6b9hImQu1YiQ8WLc9BL?=
+ =?us-ascii?Q?3SDRITeJWUNDwZynb97aw6JbiRQ9k9lGGM9vmHYt7GB80YikmibtrVCNap0Y?=
+ =?us-ascii?Q?S07NpojpqBjwQGwGAQBvktlzfQFkZc9CKRD9qdcOM0GN6IOsIp05ygyu8ith?=
+ =?us-ascii?Q?ygm8OimgnkLxsNY1VWHQBbwc78R6ROmpVAG1LRutNy4bYetvywldL3jXF+IH?=
+ =?us-ascii?Q?P55AZ0c2ZtpoMYxomnH3dey2aH94tIAsuvev1pEL4uLFExyyK46+j6zHfc0r?=
+ =?us-ascii?Q?diJmPpWhZ7RMfiWMS7CpO5oFFc4scNce6MFcu9Cqtev4Z0FtSU2FG7rMnCIQ?=
+ =?us-ascii?Q?xbx8l+rChW7A+ZKfuTT2gtn8PeVziPSXg8XOhP+9kpqUSEFEbWxmRGxGEKK6?=
+ =?us-ascii?Q?IdNys11UxU0XS4LpfN82/9dwd+m2ZAbkWIAlNzsxr2fCA77Y57npuw/+xsZy?=
+ =?us-ascii?Q?Ch4NyBDxtuGWtFJQvWhh8BdkDqEpCyVjvtRnVJheN5R1Y40SBv7K2UhDjWX9?=
+ =?us-ascii?Q?DJ97WDOy9xEte5GlIQCfGIlVSi6caaptZYkHQBk7Lfg+N1whx5KOVgaw0u8m?=
+ =?us-ascii?Q?ORJv14JqMZsk/W0FgQOMD1xizHzHD4sR/MdNDima7yrshfvjFfYPGgIkC7/V?=
+ =?us-ascii?Q?2Tsjvcg5fuzLwb0nR6Wv8HoGSA3PDqjfrw0qNpQKz5QMuVb/hOMFngjvyhc6?=
+ =?us-ascii?Q?9F7rTMfaeq2abTXawW33UIeI/A7OuMNoV6DxZVUxOak0tgD+ignsR2Vaofwb?=
+ =?us-ascii?Q?+7unWmjgPogthUwxVmPtZq/bMVnx3B95e8xKfR7x3t54T57BSJ2Nz0ylxEkT?=
+ =?us-ascii?Q?oNo6kI7qsc5USiRY6PdNdXXhu4PbZGh+S1GkyjcjqyePzpCBuCryqLA3gPB6?=
+ =?us-ascii?Q?c/Djm0MzQsuGCgIlv21hARF4?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(366013)(376011)(7416011)(52116011)(38350700011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qD8NmXYOkrCzwRHEGXM1jGP4xEBbEBMtmKi8Foe2iTopy4mzB/+BMQu9Ld5o?=
+ =?us-ascii?Q?hsfpieuESVO7QPgHfIemTgL4IinFbzf+JCx5XGj7w+H5Nyjjpmeb4toD6kYD?=
+ =?us-ascii?Q?GGBboAdJpP2LVgOAv17Me1OGXzvtg2srvk+rjHLSS1xo2KDIS2KfuK0Ld17S?=
+ =?us-ascii?Q?e7VwSPuFshZ1Z3JhDHt1pNrvmxrWLmVdmR8cmE3ERb0hqRymq1gCqXN3AdtX?=
+ =?us-ascii?Q?RtxQ4aN/+lVc0ihkJGlkvuAvbcE5K2FfwgtOdIqH8LUWbYSogIoHW3xoK3NK?=
+ =?us-ascii?Q?muGX1ITyUIoY8egTy6iTjZpHkQkRiEPH/wNRema9B5osDTN8s4lymqWueC2I?=
+ =?us-ascii?Q?/Ghj3UtlV30K6N1NeMxMErMoJvOBbrhz9t6Fs0HuWcrqzuGYEE07q5pKvLmb?=
+ =?us-ascii?Q?WrWxTh6wIwAI6RN6/AlHt9zNzqsT1m6IxeDD3+YdaJd+6OsfQf1dP5JziXyE?=
+ =?us-ascii?Q?uEidCcTmO47gNi/KVVwp/EQVgUUq8RKWEQe8wPkciUI+RZuYyWPt3n6bpFQ4?=
+ =?us-ascii?Q?cavqI1vnHr/wZsEb9pFC64kcfk6cL8gEwQ5dGITLQdHdN5UU3dVPc+cOEPSF?=
+ =?us-ascii?Q?xqZhA3O2XOfzxwcSqZw8z+DbcCXI0XiDwNZp+Kz97m4MhTLC/QcORsnsJED9?=
+ =?us-ascii?Q?ALCBpg+vV3Atrlo2fdamB/qV8EmpKp5l41+v19h1P8w2NdQcXPuE+WNXMS7n?=
+ =?us-ascii?Q?UFONcZENp1s/sUkD21ui5Oi4hfOx8OIFPxbBjjsgQT3pLwhprIAfIu5CkfHE?=
+ =?us-ascii?Q?HRhlAMHFE84u2rXEhF+RbPdZMHEU6RTpXY/6fUAdwkbZvwca/OXq/s4scjNx?=
+ =?us-ascii?Q?IwZ2GlGP8wWB1uSjJGA77aSS3h2TTVx7/ONHQB/ohYlAkss50sGR3mRWEpJV?=
+ =?us-ascii?Q?lv/qA4V86EIQtLR3AOk58w3NlCyfLIY/ToXsTzYwjAa4ownU6q8HGFIr1OMF?=
+ =?us-ascii?Q?bLSYd/bZojar75eXei4m+BAwlXECSvPKJxGm1+Je6HGZigZEkX5ylcQo215W?=
+ =?us-ascii?Q?Xz6DEPbkWrodeMm5yg+qG4bktxAPH/XND0IIKQO+cCXaR+hsv6dg9zHGolj6?=
+ =?us-ascii?Q?JhJZ9a8gOX2VzxHwQ+Z7bSrxQMLBPB8KYHS9dVaVXvf2KaDFntn6eLl0q6cr?=
+ =?us-ascii?Q?dIuZlEjSFtWN0Gi047CLbq9ro4OeD3M6nTY1kEjs6VwORW6+ooE1UH9T1Lyu?=
+ =?us-ascii?Q?EPmqu/KcatCVCCH73NH67snNqvwF0nmRcZqeb3ERqc3RL0xUFU5hS99n2pUR?=
+ =?us-ascii?Q?cjmB623ezYP14Gkmu709X+ojlkTPOr3qRBsjhG5JI+AEjsgioHuF67eTQhf5?=
+ =?us-ascii?Q?3ip/RF1ZTxyd9GJN2Jq2puvTiJpQRpSFvJLvjkEGGWeAgwNAnTw6Ne/Y8uVH?=
+ =?us-ascii?Q?UOIZFPpRfsyQe4qetkotWJjzf210YQevH2dOBijZnYmlregh6CeJG4oxDi/F?=
+ =?us-ascii?Q?WRWwQqEAsb7JDGS/OnA5JKZ5PCFwB5UVgmMXvDAr38twHvUgrQuG+01JdB0f?=
+ =?us-ascii?Q?aBKVzVRasW7Z/sAEn0t2DbikzBzzmPUtxvzO6MHs9H87apQsmUXG01X6NXl8?=
+ =?us-ascii?Q?YYvB68o0MeyHSpyjtQbzgp0pSSL00a/2ghM8e9zP?=
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09c6f427-825c-44f9-e1aa-08dc9428470e
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2024 08:33:09.3624
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RyB/0WrYWsjcugfJAqmyUxVWgbxSUUOmtiP2eOv2iSqXKajo88+ZSUTTDp/Vju+9ccQXEw+jSsSkXN/llNC1JQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB6456
 
+These patches add board support as following:
 
+ - 2x TYPE-C port
+ - BCM43438 bluetooth
 
-On 23/06/2024 17:42, Conor Dooley wrote:
-> On Wed, Jun 19, 2024 at 01:35:18PM +0200, Clément Léger wrote:
->> The Zc* standard extension for code reduction introduces new extensions.
->> This patch adds support for Zca, Zcf, Zcd and Zcb. Zce, Zcmt and Zcmp
->> are left out of this patch since they are targeting microcontrollers/
->> embedded CPUs instead of application processors.
->>
->> Signed-off-by: Clément Léger <cleger@rivosinc.com>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>  arch/riscv/include/asm/hwcap.h |  4 +++
->>  arch/riscv/kernel/cpufeature.c | 55 +++++++++++++++++++++++++++++++++-
->>  2 files changed, 58 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
->> index 18859277843a..b12ae3f2141c 100644
->> --- a/arch/riscv/include/asm/hwcap.h
->> +++ b/arch/riscv/include/asm/hwcap.h
->> @@ -87,6 +87,10 @@
->>  #define RISCV_ISA_EXT_ZVE64F		78
->>  #define RISCV_ISA_EXT_ZVE64D		79
->>  #define RISCV_ISA_EXT_ZIMOP		80
->> +#define RISCV_ISA_EXT_ZCA		81
->> +#define RISCV_ISA_EXT_ZCB		82
->> +#define RISCV_ISA_EXT_ZCD		83
->> +#define RISCV_ISA_EXT_ZCF		84
->>  
->>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
->>  
->> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
->> index a3af976f36c9..aa631fe49b7c 100644
->> --- a/arch/riscv/kernel/cpufeature.c
->> +++ b/arch/riscv/kernel/cpufeature.c
->> @@ -111,6 +111,9 @@ static int riscv_ext_zicboz_validate(const struct riscv_isa_ext_data *data,
->>  
->>  #define __RISCV_ISA_EXT_DATA(_name, _id) _RISCV_ISA_EXT_DATA(_name, _id, NULL, 0, NULL)
->>  
->> +#define __RISCV_ISA_EXT_DATA_VALIDATE(_name, _id, _validate) \
->> +			_RISCV_ISA_EXT_DATA(_name, _id, NULL, 0, _validate)
->> +
->>  /* Used to declare pure "lasso" extension (Zk for instance) */
->>  #define __RISCV_ISA_EXT_BUNDLE(_name, _bundled_exts) \
->>  	_RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, \
->> @@ -122,6 +125,37 @@ static int riscv_ext_zicboz_validate(const struct riscv_isa_ext_data *data,
->>  #define __RISCV_ISA_EXT_SUPERSET_VALIDATE(_name, _id, _sub_exts, _validate) \
->>  	_RISCV_ISA_EXT_DATA(_name, _id, _sub_exts, ARRAY_SIZE(_sub_exts), _validate)
->>  
->> +static int riscv_ext_zca_depends(const struct riscv_isa_ext_data *data,
-> 
-> It's super minor, but my OCD doesn't like this being called "depends"
-> when the others are all called "validate".
+Changes in v4:
+ - Add SoB tags for original developer.
 
-Ok, let's make a deal. You review patch 14/16 and I'll make the machine
-part of you happy and call this function validate ;)
+ - Link to v3: https://patchwork.kernel.org/project/linux-rockchip/cover/20240620014536.4019524-1-jacobe.zang@wesion.com/
 
-Thanks,
+Changes in v3:
+ - Strip Wi-Fi patch, commit it with PCI driver together.
+ - Removed CPU frequency patch because it won't be needed.
+ - Revert HDMI patch, waiting for the previous commit to be merged.
 
-Clément
+ - Link to v2: https://patchwork.kernel.org/project/linux-rockchip/cover/20240617071112.3133101-1-jacobe.zang@wesion.com/
 
-> 
->> +				 const unsigned long *isa_bitmap)
->> +{
->> +	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA))
->> +		return 0;
->> +
->> +	return -EPROBE_DEFER;
->> +}
->> +static int riscv_ext_zcd_validate(const struct riscv_isa_ext_data *data,
->> +				  const unsigned long *isa_bitmap)
->> +{
->> +	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) &&
->> +	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_d))
->> +		return 0;
->> +
->> +	return -EPROBE_DEFER;
->> +}
->> +
->> +static int riscv_ext_zcf_validate(const struct riscv_isa_ext_data *data,
->> +				  const unsigned long *isa_bitmap)
->> +{
->> +	if (IS_ENABLED(CONFIG_64BIT))
->> +		return -EINVAL;
->> +
->> +	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) &&
->> +	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_f))
->> +		return 0;
->> +
->> +	return -EPROBE_DEFER;
->> +}
+Changes in v2:
+ - Removed unrelated parts in Wi-Fi patch.
+ - Fix indent error in USB-C patch.
+
+ - Link to v1: https://patchwork.kernel.org/project/linux-rockchip/cover/20240617030537.3112356-1-jacobe.zang@wesion.com/
+
+Jacobe Zang (2):
+  arm64: dts: rockchip: Add USB-C to Khadas Edge 2
+  arm64: dts: rockchip: Add bluetooth rfkill to Khadas Edge2
+
+ .../dts/rockchip/rk3588s-khadas-edge2.dts     | 127 +++++++++++++++++-
+ 1 file changed, 126 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
