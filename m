@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-79401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A357B9152B4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:42:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC9F9152CC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:45:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D47DB1C212E9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:42:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8E371F230FA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB7619CD14;
-	Mon, 24 Jun 2024 15:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C05419B59E;
+	Mon, 24 Jun 2024 15:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="dcQ8TEPx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F9719D077;
-	Mon, 24 Jun 2024 15:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F33D1D53C;
+	Mon, 24 Jun 2024 15:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719243710; cv=none; b=eIv2j73BcB/zsLuGJ3xvS3Z1+cXDNkU26u6Z/PYZPDJhOVpEmyKQjHBU8KCJ9W0jXX0j95FElRXMtI18EQja6azrxFJTNPGBRJ5V6Flab0PDzhV1yIHNW94/QzdTHungAKSCTSY0E4SYuDx515QHtI7eRBAuFVTNq0J4nf4ffS0=
+	t=1719243934; cv=none; b=gBS5jQj+F4QoBduGBeWy9jE9sUGWSaoqBANBM5ZX1/vSPsHheEBs1QZ4c5mr5Vf0/k3HXPjprXkM4RQkKkfouS0QEk+oUT5ph46Hjj86au6sTolZqBuEVi+2Uc8GbZ83qPWDROcCnOfrtdEYzOmBXBq7Ou0Wro1L4G92eA6am9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719243710; c=relaxed/simple;
-	bh=3dz1GFXIvgH5i6DZjwGNKWeBzYGIWxh02+vy/2Ekez0=;
+	s=arc-20240116; t=1719243934; c=relaxed/simple;
+	bh=799YMxd9vz4cMeKpJH6A+kUY4JEBuJNS62CFJsW+cE0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kpvdlEZdkdz7Qe71SRdi/2q+uVAcKAQ4qisRuHD8tTLkKsSNFjAIFTUhEbXh/3hvVmmKVqlBFTuGZ10NTaKcr31OXcrqLjW1Z2NzI6bnRvHEsQTvAfzBZT479tq2mN5+egFulauqiolx8qaAZf8+1Bf2pz5ky6ss2OIX1fudrzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A71DDA7;
-	Mon, 24 Jun 2024 08:42:12 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9DD2D3F73B;
-	Mon, 24 Jun 2024 08:41:44 -0700 (PDT)
-Date: Mon, 24 Jun 2024 16:41:42 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	"Mark Rutland" <mark.rutland@arm.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-	Melody Olvera <quic_molvera@quicinc.com>,
-	Shivendra Pratap <quic_spratap@quicinc.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	<linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH v5 3/4] firmware: psci: Read and use vendor reset types
-Message-ID: <ZnmTtmZB8epgbUTN@bogus>
-References: <20240617-arm-psci-system_reset2-vendor-reboots-v5-0-086950f650c8@quicinc.com>
- <20240617-arm-psci-system_reset2-vendor-reboots-v5-3-086950f650c8@quicinc.com>
- <20240619135143.kr2tx4ynxayc5v3a@bogus>
- <20240619080933071-0700.eberman@hu-eberman-lv.qualcomm.com>
- <20240620162547309-0700.eberman@hu-eberman-lv.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KFN0XJ29OGNMgArek536SeiV2v03bw22lAvDhY0REw+SNfZVsttZrEyg1FnQxRf00lGXpnmQuEPixtzdroOvk3hXkKBCPPl8Ls3pXJ0BY+xBQrDweqj5WnV31U/SrZhbxwErlo5uDuZL+z6ahPe691pGY3Hf8j+wQNoQabshKRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=dcQ8TEPx; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MG4bQ1XP6apgYZwLIAFbYd1TLI/2JMcgF2WW1hKHj48=; b=dcQ8TEPxd5poTH/Oldi1Q3J6Db
+	9ZUYqPRncRD0Mxb8f7roUFt5ZbyazEa4Q07b0vi7v2FReTGlNEc+lQVUaet7Jk1RP9dctvwHMwE1r
+	xBqhFLyCHUJXqsrCMYDDNkNf085VkoRG8zNsgYIyv6yI1vaisIET8zyU0WsnKb0Aa+8I=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sLlse-000rdp-68; Mon, 24 Jun 2024 17:45:20 +0200
+Date: Mon, 24 Jun 2024 17:45:20 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org,
+	nbd@nbd.name, lorenzo.bianconi83@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	conor@kernel.org, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com, rkannoth@marvell.com,
+	sgoutham@marvell.com
+Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <4a39fa50-cffc-4f0c-a442-b666b024ba34@lunn.ch>
+References: <cover.1719159076.git.lorenzo@kernel.org>
+ <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+ <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
+ <b023dfb3-ca8e-4045-b0b1-d6e498961e9c@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,76 +69,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240620162547309-0700.eberman@hu-eberman-lv.qualcomm.com>
+In-Reply-To: <b023dfb3-ca8e-4045-b0b1-d6e498961e9c@genexis.eu>
 
-On Thu, Jun 20, 2024 at 04:37:09PM -0700, Elliot Berman wrote:
-> Hi Sudeep and Sebastian,
-> 
-> On Wed, Jun 19, 2024 at 08:28:06AM -0700, Elliot Berman wrote:
-> > On Wed, Jun 19, 2024 at 02:51:43PM +0100, Sudeep Holla wrote:
-> > > On Mon, Jun 17, 2024 at 10:18:09AM -0700, Elliot Berman wrote:
-> > > > SoC vendors have different types of resets and are controlled through
-> > > > various registers. For instance, Qualcomm chipsets can reboot to a
-> > > > "download mode" that allows a RAM dump to be collected. Another example
-> > > > is they also support writing a cookie that can be read by bootloader
-> > > > during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
-> > > > vendor reset types to be implemented without requiring drivers for every
-> > > > register/cookie.
-> > > > 
-> > > > Add support in PSCI to statically map reboot mode commands from
-> > > > userspace to a vendor reset and cookie value using the device tree.
-> > > > 
-> > > > A separate initcall is needed to parse the devicetree, instead of using
-> > > > psci_dt_init because mm isn't sufficiently set up to allocate memory.
-> > > > 
-> > > > Reboot mode framework is close but doesn't quite fit with the
-> > > > design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
-> > > > be solved but doesn't seem reasonable in sum:
-> > > >  1. reboot mode registers against the reboot_notifier_list, which is too
-> > > >     early to call SYSTEM_RESET2. PSCI would need to remember the reset
-> > > >     type from the reboot-mode framework callback and use it
-> > > >     psci_sys_reset.
-> > > >  2. reboot mode assumes only one cookie/parameter is described in the
-> > > >     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
-> > > >     cookie.
-> > > >  3. psci cpuidle driver already registers a driver against the
-> > > >     arm,psci-1.0 compatible. Refactoring would be needed to have both a
-> > > >     cpuidle and reboot-mode driver.
-> > > >
-> > > 
-> > > I need to think through it but when you first introduced the generic
-> > > Documentation/devicetree/bindings/power/reset/reboot-mode.yaml bindings
-> > > I also looked at drivers/power/reset/reboot-mode.c
-> > > 
-> > > I assumed this extension to that binding would reuse the same and
-> > > PSCI would just do reboot_mode_register(). I didn't expect to see these
-> > > changes. I might have missing something but since the bindings is still
-> > > quite generic with additional cells that act as additional cookie for
-> > > reboot call, I still think that should be possible.
-> > > 
-> > > What am I missing here then ?
-> > > 
+On Mon, Jun 24, 2024 at 01:01:44AM +0200, Benjamin Larsson wrote:
+> Hi,
+> > Code like this is making me wounder about the split between MAC
+> > driver, DSA driver and DSA tag driver. Or if it should actually be a
+> > pure switchdev driver?
 > > 
-> > Right, if that was only thing to "solve" to make it easy to use
-> > reboot-mode framework, I agree we should update reboot mode framework to
-> > work with the additional cells. There are a few other issues I mention
-> > above which, when combined, make me feel that PSCI is different enough
-> > from how reboot mode framework works that we shouldn't try to make PSCI
-> > work with the framework. Issues #1 and #2 are pretty easy to solve
-> > (whether they should be solved is different); I'm not sure a good
-> > approach to issue #3.
+> > If there some open architecture documentation for this device?
 > > 
+> > What are these ports about?
+> > 
+> > > +static int airoha_dev_open(struct net_device *dev)
+> > > +{
+> > > +	struct airoha_eth *eth = netdev_priv(dev);
+> > > +	int err;
+> > > +
+> > > +	if (netdev_uses_dsa(dev))
+> > > +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+> > > +	else
+> > > +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+> > Does that imply both instances of the GMAC are not connected to the
+> > switch? Can one be used with a PHY?
+> > 
+> > 	Andrew
 > 
-> Does the reasoning I mention in the commit text make sense why PSCI should
-> avoid using the reboot-mode.c framework?
+> https://mirror2.openwrt.org/docs/MT7981B_Wi-Fi6_Platform_Datasheet_Open_V1.0.pdf
+> 
+> page 107 (text for 9.1.1 is relevant but not a complete match). In the
+> EN7581 case there is a 5 port switch in the place of GMAC1 (one switch port
+> is connected to GDM1).
 
-Sorry, I completely missed to see that you had already answered those
-in your commit message. As mentioned earlier I haven't looked at the
-reboot mode framework completely yet, so I can't comment on it yet.
+The typical DSA architecture is that the SoC MAC is connected to a
+switch MAC port. You say here, the switch is directly connected to the
+GGM1. So there is no GMAC involved? If there is no MAC, you don't need
+a MAC driver.
 
-I don't want to be blocker though if others are happy with this.
+It seems more likely there is a GMAC, and the SGMII interface, or
+something similar is connected to the switch?
 
---
-Regards,
-Sudeep
+	Andrew
+
 
