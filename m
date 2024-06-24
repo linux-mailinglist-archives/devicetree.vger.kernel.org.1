@@ -1,82 +1,250 @@
-Return-Path: <devicetree+bounces-79412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8801C915359
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:21:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1084D915375
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76BD61C2012A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:21:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 844EC1F213FE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B39619E7C7;
-	Mon, 24 Jun 2024 16:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A96A19DF7C;
+	Mon, 24 Jun 2024 16:22:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ng+jfuf/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5261A19D8BB;
-	Mon, 24 Jun 2024 16:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C51719DF63;
+	Mon, 24 Jun 2024 16:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719246031; cv=none; b=Z6c+m8mkIFHRji9KMlRp8kTXnUk6GYTaVvsekkIeH0lvH8TJYpSfR9vHGKtv74F3YzEJsRHSgqJYKNV9hS/4SdD0/3bvybA+rajGFtkG8a9g8lcxrlVppFySmeiDEt/fhEu+KV9JfW4Ki5z+6fg2IZEw+q3vqnmT5DcWso2rLu4=
+	t=1719246131; cv=none; b=NYgvzaFd+DBYs+5KZnMxsAR5PTOgYdZR5BzeRyKvu5n5EYaMcX7oHUjpbg6FQaYEbrjhr5jtBlLB413OkJzl25A171n4rOwGFiZC/0aKf3b3cPG00gMUNBIcF4RPbftRlSKLscnPOnS+b/qoJJ4hItecgH7OXRVgDQOcGCcWLJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719246031; c=relaxed/simple;
-	bh=RKCRIRXniq1aPuUFeyToJ5cqXZib9LZUEvgH2O0YBUo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z3z8+jxRRkGJshebTyDcG0jOFZwwKVfdZUWOZoYcxV1ZlhP+9sbezHQCkzxdBUVh5dSFStjGWm/9kEE62Vj1F9uoV1efEF47jIh7mw8oHfzLAw3YtcngJgcnxyS+2r4Ith1NpuABzsZGPEGxxNXYCB9InsrqPS08f7UCaZd6+8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b6a.versanet.de ([83.135.91.106] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sLmQc-0001wn-KC; Mon, 24 Jun 2024 18:20:26 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
-	Trevor Woerner <twoerner@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH] arm64: dts: rockchip: add gpio-line-names to radxa-zero-3
-Date: Mon, 24 Jun 2024 18:20:21 +0200
-Message-Id: <171924573799.612064.9218736887561595244.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240620013301.33653-1-twoerner@gmail.com>
-References: <20240620013301.33653-1-twoerner@gmail.com>
+	s=arc-20240116; t=1719246131; c=relaxed/simple;
+	bh=zMvz+Gv9NvgZTcXSP4I7e3sdMcxBeebAk4b31+F0GTg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IlsmYCaTYKxDBumEU4Yx2p0NF1V//dSLVPonsm4X1TtQAEJWpKWia/HCXR3crVD4kEN57TLZjVV6/BytJD4qM7XiQHkHkthR0k9q8EQIreMW3hph1fcTlQWpg2/o4q+ahmMF2UADlcAjE9WHQggMnd8WqmeBUDO2aVKCA4621SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ng+jfuf/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8E6BC4AF0C;
+	Mon, 24 Jun 2024 16:22:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719246130;
+	bh=zMvz+Gv9NvgZTcXSP4I7e3sdMcxBeebAk4b31+F0GTg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ng+jfuf/zTupMgZ/PhIAT97RdB6bNRW8KuJ7R1puj32MOV1LRwwtTsAMuY3W2axtD
+	 LDKyjupLi8XpW/2q2w3um/sTmlEQnPkDFmhCHugo10uGXXvmChXC8Yh6wy2OoS1mjs
+	 kP56+v3/L1iNus3AVKz5zgTpOqHn2UcbuHvXObXO2Zdc5rL5RB1D+LdNt1WVHY7pvl
+	 gvnQcxpCuTzWkKoMcQKucc8G+vnFpK9mJQCwDXLPXRWrLwRNaJuGFOHtuTGRw3wZw1
+	 0lWmpX51uuhA+F3+eodURxPVaqz0U3s/LkW2WKI6Zy6QYs4xOSUAPSn/v/DmpePCsM
+	 J5KIr2t+eNa8Q==
+Date: Mon, 24 Jun 2024 17:22:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, arnd@arndb.de,
+	durai.manickamkr@microchip.com, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Hari.PrasathGE@microchip.com,
+	Balamanikandan.Gunasundar@microchip.com,
+	Nayabbasha.Sayed@microchip.com, Dharma.B@microchip.com,
+	Varshini.Rajendran@microchip.com, Balakrishnan.S@microchip.com,
+	Charan.Pedumuru@microchip.com
+Subject: Re: [PATCH 4/5] dt-bindings: gpio: convert Atmel GPIO to json-schema
+Message-ID: <20240624-divinity-gonad-e30bb4554403@spud>
+References: <20240624100431.191172-1-manikandan.m@microchip.com>
+ <20240624100431.191172-5-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MdphJjn9xsPu5pcS"
+Content-Disposition: inline
+In-Reply-To: <20240624100431.191172-5-manikandan.m@microchip.com>
 
-On Wed, 19 Jun 2024 21:32:49 -0400, Trevor Woerner wrote:
-> Add names to the pins of the general-purpose expansion header as given
-> in the Radxa documentation[1] following the conventions in the kernel[2]
-> to make it easier for users to correlate pins with functions when using
-> utilities such as 'gpioinfo'.
-> 
-> [1] https://docs.radxa.com/en/zero/zero3/hardware-design/hardware-interface
-> [2] https://www.kernel.org/doc/Documentation/devicetree/bindings/gpio/gpio.txt
-> 
-> [...]
 
-Applied, thanks!
+--MdphJjn9xsPu5pcS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1/1] arm64: dts: rockchip: add gpio-line-names to radxa-zero-3
-      commit: f7c742cbe664ebdedc075945e75443683d1175f7
+On Mon, Jun 24, 2024 at 03:34:30PM +0530, Manikandan Muralidharan wrote:
+> Convert the Atmel GPIO controller binding document to DT schema format
+> using json-schema.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+This should mention that there are additional compatible strings added.
+>=20
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+>  .../bindings/gpio/atmel,at91rm9200-gpio.yaml  | 78 +++++++++++++++++++
+>  .../devicetree/bindings/gpio/gpio_atmel.txt   | 31 --------
+>  2 files changed, 78 insertions(+), 31 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/atmel,at91rm92=
+00-gpio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio_atmel.txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpio/atmel,at91rm9200-gpio=
+=2Eyaml b/Documentation/devicetree/bindings/gpio/atmel,at91rm9200-gpio.yaml
+> new file mode 100644
+> index 000000000000..3ace7ba687fc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/atmel,at91rm9200-gpio.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/atmel,at91rm9200-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip GPIO controller (PIO)
+> +
+> +maintainers:
+> +  - Manikandan Muralidharan <manikandan.m@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - atmel,at91sam9x5-gpio
+> +              - microchip,sam9x60-gpio
+> +          - const: atmel,at91rm9200-gpio
+
+This is definitely wrong, cos it disallows having
+"atmel,at91rm9200-gpio" on it's own.
+
+> +      - items:
+> +          - enum:
+> +              - microchip,sam9x7-gpio
+> +          - const: microchip,sam9x60-gpio
+> +          - const: atmel,at91rm9200-gpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +  gpio-line-names: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  "#gpio-lines":
+> +    description:
+> +      Number of gpio, 32 by default if absent
+
+default: 32
+
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/at91.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    pioA: gpio@fffff400 {
+
+The label here isn't needed.
+
+Thanks,
+Conor.
+
+> +            compatible =3D "atmel,at91rm9200-gpio";
+> +            reg =3D <0xfffff400 0x200>;
+> +            interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH 1>;
+> +            #gpio-cells =3D <2>;
+> +            gpio-controller;
+> +            interrupt-controller;
+> +            #interrupt-cells =3D <2>;
+> +            clocks =3D <&pmc PMC_TYPE_PERIPHERAL 2>;
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio_atmel.txt b/Docu=
+mentation/devicetree/bindings/gpio/gpio_atmel.txt
+> deleted file mode 100644
+> index 29416f9c3220..000000000000
+> --- a/Documentation/devicetree/bindings/gpio/gpio_atmel.txt
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -* Atmel GPIO controller (PIO)
+> -
+> -Required properties:
+> -- compatible: "atmel,<chip>-gpio", where <chip> is at91rm9200 or at91sam=
+9x5.
+> -- reg: Should contain GPIO controller registers location and length
+> -- interrupts: Should be the port interrupt shared by all the pins.
+> -- #gpio-cells: Should be two.  The first cell is the pin number and
+> -  the second cell is used to specify optional parameters to declare if t=
+he GPIO
+> -  is active high or low. See gpio.txt.
+> -- gpio-controller: Marks the device node as a GPIO controller.
+> -- interrupt-controller: Marks the device node as an interrupt controller.
+> -- #interrupt-cells: Should be two. The first cell is the pin number and =
+the
+> -  second cell is used to specify irq type flags, see the two cell descri=
+ption
+> -  in interrupt-controller/interrupts.txt for details.
+> -
+> -optional properties:
+> -- #gpio-lines: Number of gpio if absent 32.
+> -
+> -
+> -Example:
+> -	pioA: gpio@fffff200 {
+> -		compatible =3D "atmel,at91rm9200-gpio";
+> -		reg =3D <0xfffff200 0x100>;
+> -		interrupts =3D <2 4>;
+> -		#gpio-cells =3D <2>;
+> -		gpio-controller;
+> -		#gpio-lines =3D <19>;
+> -		interrupt-controller;
+> -		#interrupt-cells =3D <2>;
+> -	};
+> -
+> --=20
+> 2.25.1
+>=20
+
+--MdphJjn9xsPu5pcS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnmdLAAKCRB4tDGHoIJi
+0gfJAP43jmnUWzp4jHeAuoDgfOKxum6Vx7HG8U8ROvnUwO0DpwD9E4g40LqyDENj
+/oRX8/bfq4Od5JJyEuqmzXV00QCQNAc=
+=rC3a
+-----END PGP SIGNATURE-----
+
+--MdphJjn9xsPu5pcS--
 
