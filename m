@@ -1,91 +1,109 @@
-Return-Path: <devicetree+bounces-79480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D6A691574E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 21:41:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB85D915762
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 21:49:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA8B728106F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:41:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 140D71C213E0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483341A01CE;
-	Mon, 24 Jun 2024 19:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEBF18509C;
+	Mon, 24 Jun 2024 19:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJodd4Bj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07361A00D6;
-	Mon, 24 Jun 2024 19:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8BE1EB56;
+	Mon, 24 Jun 2024 19:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719258069; cv=none; b=QKaxCSGwvaPyXNERb8b7KieHWVAerH5VGrVZ2wn7q4PCTQIitoO8QctuRcnOMY0Uknzm6vian+JTlrEz06sme+Y7wajYgn0jswEyFXiFNhLFpoKUp3krLC8nxBRFZxLQSGgtPU36iKWrnoNLUB3tiQG5phh4NBNwShV8GW0vokk=
+	t=1719258555; cv=none; b=gOJ/+3leijZoCMWb1Dn5a8MOmgxasH+MXPPsFOvGiLjj4gkRmr0ngI7938LX+oWtHCW9lCWFVwqLR+lCrgzMi+9dMePxV2G4xdihAXLstwaa+SxXsD9+Z4/8DS6p6lQ3k/LKqGGY1lmDCNR21cUSdsfKjqcdm3DYPIgk3ucB3vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719258069; c=relaxed/simple;
-	bh=/HQHefx5ixps2RIsdDJ0RMHxpXiXTb6YPJOtWT56png=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sHxZtTBw6K0CRhPAT1MgasPe7Ge4qrBoPuzi3WgDEKspGmGvUSV3GvIe9c9wZ8lNmMIJqDXVRAUFpyyU5rw1/JpLk05QN78/oRQ57jqlqKQ2TlIl673nZT33AR5paqwwTmvFuBjmjUBM1+fSlsbZHAdFFNUPNmELDrH6zTlbr4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b6a.versanet.de ([83.135.91.106] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sLpYg-0003zr-Kf; Mon, 24 Jun 2024 21:40:58 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Alexey Charkov <alchark@gmail.com>, Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: rockchip: Delete the SoC variant dtsi for RK3399Pro
-Date: Mon, 24 Jun 2024 21:40:57 +0200
-Message-ID: <4778243.neEnAmRlxL@diego>
-In-Reply-To: <84e5719fad4d405bf188ee86d12bb251@manjaro.org>
-References:
- <4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org>
- <CABjd4YziNk1NJb6p+AxAVK0CR7igE3-6h-sN4MEWwyoW2qaKfw@mail.gmail.com>
- <84e5719fad4d405bf188ee86d12bb251@manjaro.org>
+	s=arc-20240116; t=1719258555; c=relaxed/simple;
+	bh=bitaMLMQKsPB3ypqXTwY23B+hxKKZ4D/Ve0iLG51d5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cBNo9zCRX5eGL5ufxeQpuEr8RhhIXWgjyTjM0GtQ82pse4xd3Dbw05O5Rv/mBI1wpSnzEx4ULNqcLJ7g0CWPaYIO4Amo7JI6cSkIN1KczKkTuJLNLRnuB+AZ5VKKg+dQ288Y1tdu0oabMqe05vAS2efH/HigsysPwwci7SEZZho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJodd4Bj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2FF3C2BBFC;
+	Mon, 24 Jun 2024 19:49:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719258554;
+	bh=bitaMLMQKsPB3ypqXTwY23B+hxKKZ4D/Ve0iLG51d5s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rJodd4Bj7XmE4r73Uerxpla8Ds2P5QYdoxcVeQeWSe7jZIfQy6lKO56KXk08RRW/F
+	 VArZXItIkBweO64cxcM3TqbNU2Mj4mVsi0DZobeptHoLngqaYf00REqt07n07uOjVq
+	 PVRn0cnv6Ne1Zm/+V+v9n9Cvd1m+AlIB4VxKusZ8KEJiVZn/Kg2gFxtqp68df+IyeA
+	 auhYCDfsVgnBwwQwh2YGi38vtHPod06QnYV4PNcR5KYRqdsiugy5HMJZm5nfK5bEcE
+	 79B/Z35swG/Wz12mtoxv9X0S9mRB+AqRgfWoUR5XOer5KZPyKRetXrRp7pjTxPHbP3
+	 RKPnooTR3wc1A==
+Date: Mon, 24 Jun 2024 13:49:13 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andrei Simion <andrei.simion@microchip.com>
+Cc: brgl@bgdev.pl, krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, arnd@arndb.de, gregkh@linuxfoundation.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: eeprom: at24: Add at24,mac02e4 and
+ at24,mac02e6
+Message-ID: <20240624194913.GA267989-robh@kernel.org>
+References: <20240621121340.114486-1-andrei.simion@microchip.com>
+ <20240621121340.114486-4-andrei.simion@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240621121340.114486-4-andrei.simion@microchip.com>
 
-Am Montag, 24. Juni 2024, 20:06:19 CEST schrieb Dragan Simic:
-> Hello Alexey,
->=20
-> On 2024-06-24 19:59, Alexey Charkov wrote:
-> > On Mon, Jun 24, 2024 at 9:55=E2=80=AFPM Dragan Simic <dsimic@manjaro.or=
-g>=20
-> > wrote:
-> >> Just checking, are there any comments on this patch?  Is there=20
-> >> something
-> >> more I can do to have it accepted?
-> >=20
-> > Heiko has already applied it quietly a couple of days ago [1], and
-> > also merged the v5 thermal and OPP code that I rebased on top of this
-> > patch of yours.
->=20
-> Yes, I saw that already, but this patch is a different one, it's about
-> deleting the redundant .dtsi for RK3399Pro. :)
+On Fri, Jun 21, 2024 at 03:13:40PM +0300, Andrei Simion wrote:
+> Update regex check and add pattern to match both EEPROMs.
 
-thanks for the reminder, somehow I overlooked this one in my patchrun
-today.
+The subject is wrong as 'at24' is not the vendor.
 
-> Regarding your v5, I've had some health issues, so I unfortunately=20
-> haven't
-> managed to review it and test in detail yet.  I'll do that as soon as=20
-> possible,
-> and I'll come back with any comments I might have.
+> 
+> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+> ---
+> v1 -> v2:
+> - change patter into "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$" to keep simpler
+> ---
+>  Documentation/devicetree/bindings/eeprom/at24.yaml | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> index 3c36cd0510de..f914ca37ceea 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -18,7 +18,7 @@ select:
+>    properties:
+>      compatible:
+>        contains:
+> -        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> +        pattern: "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$"
+>    required:
+>      - compatible
+>  
+> @@ -37,8 +37,8 @@ properties:
+>        - allOf:
+>            - minItems: 1
+>              items:
+> -              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$"
+> -              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> +              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[a-z0-9]+|spd)$"
+> +              - pattern: "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$"
 
-if you have comments, please send follow-up patches :-)
+Are these devices available from multiple vendors? If not, I think I'd 
+add specific compatible strings with the right vendor rather than adding 
+to this pattern. It's rather loosely defined because that's what was in 
+use already.
 
-
-
+Rob
 
