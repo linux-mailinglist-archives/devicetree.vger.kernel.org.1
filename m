@@ -1,140 +1,124 @@
-Return-Path: <devicetree+bounces-79291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E3AC9148DB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:34:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC98C9148E7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:36:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9C92B24E0F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:34:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63E661F226C6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FF413A3F4;
-	Mon, 24 Jun 2024 11:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50304125D6;
+	Mon, 24 Jun 2024 11:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IG2uhkfG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fs1a3Edh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19AF513B2B2
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 11:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB6F441D;
+	Mon, 24 Jun 2024 11:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719228848; cv=none; b=VEZozcC1JIvMoBGpTiMHWNt5dTaGK1sJh5CCHL1mS+u4HrmYT3jiLTy9Ohcy+FOAZEknJs/kONoJe9Us9JtHp50g5vcUCazzjHlyW8gKu0zgZ73UMf+Dk1OFdYO/ZVnrsDiIcDjcivWerRhx1R951saUhGJFthL79WR07Hc0RhM=
+	t=1719229012; cv=none; b=homAW8ZIlBmAkdixhNSAsDwZHOU7pES695EDkl1FxLzfQLqh6UHCVSR9numGRgnSutrlLdaoenK2sCoIwNnAmnfVHiH5kP1GRQYF2aV0zFDmnxltDA7RL7UB3ggKgfgR/p2D3924NY0NeuevcQq0ilbl+451vfIi4SVd4wx4/oU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719228848; c=relaxed/simple;
-	bh=/R5v62rxRpq5wDTVHnRxA1Nb98uRg0f9j8o1HaA4ybo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jAy8JEz6zo3bCmuAXoykJJPGqaNBOYJgcES1WGybWVCVicxlc8Bv4qt3P91NBGUBV1aSeQjG8r6msQCQGRjN4/DUC1PpDXtVaDqsLJNL8LAhWMj4kmIM0FzPWCn+NDwVrZ9QhrO6EOM1yQrW1IWgOo8TMG1P48yjx5ZC2bV1bFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IG2uhkfG; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-630640c1e14so42354947b3.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 04:34:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719228846; x=1719833646; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=upAAWkKErsbFK09qz0Z6svT+EppDhxsUTeUV4G/KK1k=;
-        b=IG2uhkfG2oc+X4a+J86ParFNW+Vf2HYV5/BIa+lu36YV9nEuxvxA4w70syTcjD/RWY
-         W4IDPc7EFZZOhi3y2zdZkNN6uooJ985IFY5mPhteVHw53QF5pm6g2KOs2X3cfCxcWDpu
-         EF2bypBcCphOpY3mKhWx8mUbOqp6MtQoe5xrPewPghlYezS9ofvFoFupbYixW7rJBo+D
-         om5oCXxJgGWaiKlpWHo3JiNXtqogTvCNJ5D+n12JjsAAl3TrDGZly4BzondbixLEJqCt
-         6aAbJLB1gIc8e7Dmoxw1Gp4il1wxSSz36/N0iScFXM73rUhoG7gAD/fvfWyjTSKu7BJC
-         yIvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719228846; x=1719833646;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=upAAWkKErsbFK09qz0Z6svT+EppDhxsUTeUV4G/KK1k=;
-        b=I5iO4f80rUNr44EIXXThs4J9EtnEbflvjFWYMKMxIev+Lfqml3fj29yISw/st4pfy0
-         50jaNsW7+1qp+XwLy7gPd+NJfG4kKAiLLV9xIglGmy1Nivl8wX5aZme63jdDnxvNNpNk
-         Nd321XNaVRjby4JfYABeMdH/G3vmKR2GFqmGmn4VMMISDi685K8kGAFCjWhKnGNUe0td
-         XkwX9sY4N9x4uNIAy/JTkYK4d7vUv9y2q47fMKoK5bhQfWgI/YnQ0iobhnkzDSONyvEd
-         NfNLdK7/qI429SYNje5ONmqE1rN9JvrVeZBWLaiJVioroVvY4P7MV0Fwy/lFAYoeDY+V
-         FiYA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCRWVo6DOKxTc59FWH+f9plE2XFUTnGDilkbELa+DNdQs4RRz5OOSRZ19RqPt2QYihUdoItrKI9ci++/PljiSHm6FzFxSudM4N6A==
-X-Gm-Message-State: AOJu0YzTSmwSUWFFSztSvjVPMq7H2WRokcA4SabDDKFoPt3I+WEV95F6
-	4d9W6GAp/dJ6PXSbr3FY04AgWFrofPM2vucwijaA0CAQ0SXXpEHdE898e14rnS2XI49hdMqPRdF
-	qonfHz8L13aPbhe37Bq+t3pKkRQILwnT4HIo7Iw==
-X-Google-Smtp-Source: AGHT+IH5Z8/tuCn40/rJtcdV8GxLSpREk/lqsQMXN8cW6J/sXP4inSC19be2plWZfK17N4VZno+uTzXn3dQ/uoLjDag=
-X-Received: by 2002:a81:8387:0:b0:61a:d4ea:b856 with SMTP id
- 00721157ae682-643ac323d0dmr37721917b3.40.1719228846022; Mon, 24 Jun 2024
- 04:34:06 -0700 (PDT)
+	s=arc-20240116; t=1719229012; c=relaxed/simple;
+	bh=lR0PzG4ixFdQ38hTJIOzj3Q1Wxe16kfOx4o/RhqED5Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VgXfwzsHuKOOyxXtaNwicN974DU9KOWFNts+4fhWGwZ9uuuBUB2QwcfONA8vVNgxll4NhLF2UoCAA1J3qGHndicXluhZVQYhmQlM4ivCT95A9JRA8P0/QkSUOTA8uaDqh6ybfOllYlLq6LSlnHskSupqZBN8qYDMj4sUX7Wvi8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fs1a3Edh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3AB8C2BBFC;
+	Mon, 24 Jun 2024 11:36:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719229011;
+	bh=lR0PzG4ixFdQ38hTJIOzj3Q1Wxe16kfOx4o/RhqED5Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Fs1a3Edhvwp6DAiNN9GOzcgb0E1MX1cztiCzXkZPX+H+M0abnzVvF56dYDtQxxvam
+	 E8TMgwFYCyK5zvJz+4HqYmO+QjiQ8zNLmta6vo67YyZDHI2GxhiAdDFObEkFvmo5e0
+	 8Kze73Ek99p4pqPsdltw0trY7Bwic+kYhrPK0m/JOoEhGcwPInuqKaEuqJJdePWrs9
+	 Slkos7RtTJzeYPgipsDxVyyWTzQ11+os2Ue9D/kEPbd1gM5gpSZ72oIWh/aU2St0HF
+	 bDPZLSJSlb4V+ZScB8aaAQUr28d5bAgA/wllEZRdL7MJPLgDPSlmHjtu17OObSR7fF
+	 iiJYfCLELykSQ==
+Message-ID: <165a77fe-c437-4d34-a214-0404c72279f1@kernel.org>
+Date: Mon, 24 Jun 2024 13:36:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
- <ufc7sq5s5nymjncp5w2446dq5xcmmqbmsuubhpo2fxtsz5dpgg@xtqtmmsio6sr> <722dab04-03f9-49ce-9c7c-4a3a9f898fc9@postmarketos.org>
-In-Reply-To: <722dab04-03f9-49ce-9c7c-4a3a9f898fc9@postmarketos.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 24 Jun 2024 14:33:54 +0300
-Message-ID: <CAA8EJpqVjkRKWoDfJ=Ga19=gn7i9N-bym+O-TadE819ziJXhoA@mail.gmail.com>
-Subject: Re: [PATCH 0/7] qcom: initial support for the OnePlus 8T
-To: Caleb Connolly <caleb@postmarketos.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Henrik Rydberg <rydberg@bitmath.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, 
-	Frieder Hannenheim <frieder.hannenheim@proton.me>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: PCI: xilinx-cpm: Fix ranges property to
+ avoid overlapping of bridge register and 32-bit BAR addresses
+To: Thippeswamy Havalige <thippesw@amd.com>, bhelgaas@google.com,
+ kw@linux.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lpieralisi@kernel.org
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bharat.kumar.gogada@amd.com
+References: <20240624111022.133780-1-thippesw@amd.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240624111022.133780-1-thippesw@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 24 Jun 2024 at 14:33, Caleb Connolly <caleb@postmarketos.org> wrote:
->
->
->
-> On 24/06/2024 07:18, Dmitry Baryshkov wrote:
-> > On Mon, Jun 24, 2024 at 03:30:24AM GMT, Caleb Connolly wrote:
-> >> Add bindings for the SM8250 OnePlus devices, a common devicetree,
-> >> touchscreen and display drivers, and a dts for the OnePlus 8T (kebab).
-> >>
-> >> The OnePlus 8 series is made up of 3 flagship smartphones from 2019,
-> >> featuring the Qualcomm X55 5G PCIe modem.
-> >>
-> >> This series introduces initial support for the 8T, adding drivers for
-> >> the 1080x2400 120Hz DSC panel and the Synaptics TCM Oncell touchscreen.
-> >>
-> >> The panel driver suffers from similar limitations to the LG SW43408
-> >> panel found on the Pixel 3, namely that after toggling the reset GPIO it
-> >> is not possible to get the panel into a working state.
-> >
-> > Just to point it out: this is no longer true for SW43408. The panel
-> > wakes up and works after toggling the reset. It seems, there is an issue
-> > with one of the regulators, but not with the reset and/or panel startup.
->
-> Hmm ok, I've heard mixed reports then, I should try it out myself again.
+On 24/06/2024 13:10, Thippeswamy Havalige wrote:
+> The current configuration had non-prefetchable memory overlapping with
+> bridge registers by 64KB from base address. This patch fixes the 'ranges'
+> property in the device tree by adjusting the non-prefetchable memory
+> addresses beyond the 64KB mark to prevent conflicts. 
+> 
+> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
+> ---
 
-During MAD24 we have seen an issue with the regulators, when the panel
-doesn't wake up. But resetting the panel works.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->
-> I'll update the cover letter to reflect this. Thanks.
-> >
-> >> Given the apparent prevelance of this issue, particularly with DSC
-> >> panels, I believe this is a bug in the core DSI code, and not a device
-> >> or panel specific issue. I think it is still useful to accept these
-> >> panel drivers into upstream since, from a users perspective, the panel
-> >> is fully functional just by leaving the reset GPIO alone and keeping the
-> >> regulator on. The only (theoretical) downside is worse battery life,
-> >> which is a small price to pay for a working display.
-> >>
-> >
+Best regards,
+Krzysztof
 
-
-
--- 
-With best wishes
-Dmitry
 
