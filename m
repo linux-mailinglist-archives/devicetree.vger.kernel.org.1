@@ -1,129 +1,98 @@
-Return-Path: <devicetree+bounces-79424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5125B9153A0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:26:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAB7F9153CA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82F591C231AF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:26:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 281EF1C235C8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DD019E7EE;
-	Mon, 24 Jun 2024 16:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1826F19E7EC;
+	Mon, 24 Jun 2024 16:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Zez7tI6q"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="eF8/XYVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4EA19E7E2;
-	Mon, 24 Jun 2024 16:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6CEA19E7E1;
+	Mon, 24 Jun 2024 16:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719246307; cv=none; b=A5ip511682hN8wehktsJlI6K+K1xo/8oG6Cd4+SlR8BSkEhNHB52nkLVa0OOigE7FUT6r+dLlCF2XV53v2Xko/t0BLx97l8f/uMdS8jm6dZiVB0zVkGWYpCeI2Wq1CYQtAtf/FdIMZfxlRdv1u7+GXmvqYQyVc5up9dIND1uOUo=
+	t=1719246491; cv=none; b=oH5yo2g32hTAaW2JFO12TDB3nS430gFU1dymcft9fynqpJVF3OgxhhqLHzycZzUeLbBPCwVEqWrkjtH5v6lGRvjYzBbVtd8N0J3WS+5S4hLqvcGoYZciIscqnlxkwCGxa4FsCVxv6JwjeEWwnyt91wlNJ4VAazTx9hb4MRVyc7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719246307; c=relaxed/simple;
-	bh=fbCoAVw5u4SsXGsY9Q4TwtAMZSfeZ8xtbvxJxzRDzEQ=;
-	h=From:Date:To:cc:Subject:Message-ID:MIME-Version:Content-Type; b=AGbJnL3xsktQvlZNW8g6Ppcx3g3JCGgEWyhjKlo8dNKj2KBo+IIGlD/6aLTZaHquL4EkkpzODjGLLd2Xzz7TY7xVzeu3o73Wiu4EypZnaP3+IAUcr2mRhOl12ipk8MFx96BNpb3o/kIy1lDhYXLD5UqqNxFPpDcPtRWDIMfHzwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Zez7tI6q; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719246306; x=1750782306;
-  h=from:date:to:cc:subject:message-id:mime-version;
-  bh=fbCoAVw5u4SsXGsY9Q4TwtAMZSfeZ8xtbvxJxzRDzEQ=;
-  b=Zez7tI6qo7n3L2ZjSbUbAi3SEDZQ3M/KSo7HG9UmNBxHKJ2hvOU8NlZo
-   95yJO/a1SmzqJOThzaSJqGshwcBu9Gw0X2vSpaS2V5+/JamaoKKSBCk0S
-   dAKMpndlu54k5eWYpwRh0BYI/VHpB3VFMQUkSnltXmd/mHmZ1RG1UxP+3
-   u4yzJyk7wGP5KFW7NdtD5+D4hwkWlMVwqh2Lx6zKWInBlCxwxA/3TTSb4
-   GKiuIlKRxODQgBidnT5xt759xBc+a2oCGsSUJXhobvvMsh4mkufG62G1V
-   7vG6yYSRRa/mg6mhmJOhUPQ2Akk5vB2l/01/7cfFX5QvMLQ3BXFgijCZS
-   w==;
-X-CSE-ConnectionGUID: 0c8P+Sn9QjieRCW7DaNIVA==
-X-CSE-MsgGUID: 6LIcOikfSwazQoxZ6v868g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="16356537"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
-   d="scan'208";a="16356537"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2024 09:25:05 -0700
-X-CSE-ConnectionGUID: g4niJvsaQbGtyeXmdH28uw==
-X-CSE-MsgGUID: hqDaBJICQkeSfs4KYI8E2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
-   d="scan'208";a="48520499"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.61])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2024 09:25:00 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Mon, 24 Jun 2024 19:24:55 +0300 (EEST)
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-    Sebastian Reichel <sre@kernel.org>, 
-    Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-    Hans de Goede <hdegoede@redhat.com>, 
-    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-    Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, 
-    linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [GIT PULL RESEND] Immutable branch between pdx86 lenovo c630 branch,
- power/supply and USB
-Message-ID: <e42fb2e9-81d4-4e40-ff3a-f9d6a46d03f9@linux.intel.com>
+	s=arc-20240116; t=1719246491; c=relaxed/simple;
+	bh=JXedkQbeFM/RywiYZABiZ6G9sfYpi6PxI3HPVYh8h1A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W9tIF5eN4Vn/Bvcc7yvyk1ik8yeW9IoI8gG9d1QtVAGqpY0fqbsN4hmU5kMrES7/VkviQjwwUpTFsKPu2UedXYXm4WVBZUV8lynIk2R/p6LFpUxooT2G2ZyVkKeVePbhOQ+tfB2wcvk/zXc2LpKhl3Nxt4qhxb/CHmf3HEXlM9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=eF8/XYVU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBC48C32789;
+	Mon, 24 Jun 2024 16:28:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1719246490;
+	bh=JXedkQbeFM/RywiYZABiZ6G9sfYpi6PxI3HPVYh8h1A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eF8/XYVUaZoFZJVATYQd2GfE67L+AtFCAA7fytVcaX2+4ZY+AAj17xhHxHrMlVxXb
+	 6uc+vHFXB6irM411OPvS9BZxcOtJjrAs2Ys/IGR5h7TWAjrRVH84QjuEBnYfkDSrxH
+	 z6nyhf15bacVbR2KMc1GZNKGwr+eKKhPyncAlsAc=
+Date: Mon, 24 Jun 2024 18:28:07 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+	platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [GIT PULL RESEND] Immutable branch between pdx86 lenovo c630
+ branch, power/supply and USB
+Message-ID: <2024062440-guide-knoll-94d0@gregkh>
+References: <e42fb2e9-81d4-4e40-ff3a-f9d6a46d03f9@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e42fb2e9-81d4-4e40-ff3a-f9d6a46d03f9@linux.intel.com>
 
-Hi,
+On Mon, Jun 24, 2024 at 07:24:55PM +0300, Ilpo Järvinen wrote:
+> Hi,
+> 
+> This is v2 of the lenovo c630 IB branch with the build fix for non-ARM64 
+> platforms (built on top of the commits in the previous IB PR). Resent with 
+> full Subject line.
+> 
+> The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+> 
+>   Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git tags/platform-drivers-x86-ib-lenovo-c630-v6.11-2
+> 
+> for you to fetch changes up to 13bbe1c83bc401c2538c758228d27b4042b08341:
+> 
+>   platform/arm64: build drivers even on non-ARM64 platforms (2024-06-24 18:22:15 +0300)
 
-This is v2 of the lenovo c630 IB branch with the build fix for non-ARM64 
-platforms (built on top of the commits in the previous IB PR). Resent with 
-full Subject line.
+So was the first one rewritten?  Or is this just the second patch on
+top of the previous one?
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+confused,
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git tags/platform-drivers-x86-ib-lenovo-c630-v6.11-2
-
-for you to fetch changes up to 13bbe1c83bc401c2538c758228d27b4042b08341:
-
-  platform/arm64: build drivers even on non-ARM64 platforms (2024-06-24 18:22:15 +0300)
-
-----------------------------------------------------------------
-Immutable branch between pdx86 lenovo c630 branch, power/supply and USB
-subsystems due for the v6.11 merge window.
-
-platform-drivers-x86-ib-lenovo-c630-v6.11-2:
-  v6.10-rc1 + platform-drivers-x86-lenovo-c630
-for merging into the power/supply and USB subsystems for v6.11.
-
-----------------------------------------------------------------
-Bjorn Andersson (1):
-      dt-bindings: platform: Add Lenovo Yoga C630 EC
-
-Dmitry Baryshkov (2):
-      platform: arm64: add Lenovo Yoga C630 WOS EC driver
-      platform/arm64: build drivers even on non-ARM64 platforms
-
- .../bindings/platform/lenovo,yoga-c630-ec.yaml     |  83 ++++++
- drivers/platform/Makefile                          |   2 +-
- drivers/platform/arm64/Kconfig                     |  14 +
- drivers/platform/arm64/Makefile                    |   1 +
- drivers/platform/arm64/lenovo-yoga-c630.c          | 291 +++++++++++++++++++++
- include/linux/platform_data/lenovo-yoga-c630.h     |  44 ++++
- 6 files changed, 434 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/platform/lenovo,yoga-c630-ec.yaml
- create mode 100644 drivers/platform/arm64/lenovo-yoga-c630.c
- create mode 100644 include/linux/platform_data/lenovo-yoga-c630.h
+greg k-h
 
