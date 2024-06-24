@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-79294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21C7A9148FC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:42:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79DD5914914
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:45:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B0DE1C21CB8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:42:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE0C71F24A3E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:45:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1201F13B2A5;
-	Mon, 24 Jun 2024 11:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C317613A3F4;
+	Mon, 24 Jun 2024 11:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j1M/szUJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aOntQANw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0228A139D03
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 11:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8768513775A;
+	Mon, 24 Jun 2024 11:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719229320; cv=none; b=o8NDwoBrPaBYt1RY01hp8TOjgkyCXPuSC+LcJtAajxE17rsYdMF/hkUfbWmAWbJPjxsc28/sejitNDVEuIqjNFAZOoATX+ueSpAmL8B0lCG1dc4Xw+TQWO0q0IvrGf+KKfFcCZxokfYeMiHaVnXH1NkCaptzTtFtGyVUDA0JuO8=
+	t=1719229543; cv=none; b=lFeQkHvj9UvTCDGwrnPRxJY00ux7luk6PeDs6BWLFqVLd8ywEkMEV/swGmmqxGwi5njcZ7/5I9iIzqoxYqkNytCYHbbaWWu8lnBeDiMAKC5nQaoaVuyLSm6qYDxQwdtjRBy7bvFEKM2OKzqrOj+msLbEH7csz5tthaKSsGpNe4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719229320; c=relaxed/simple;
-	bh=C028/nFsGE40ydlmB9BxdAJi/8hIWgLolYvN+o5rEZ8=;
+	s=arc-20240116; t=1719229543; c=relaxed/simple;
+	bh=BsVFyM8P7Q9wi01V+K41RxfR0R5bZXohxwKnTM9eyMM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b4E1q0oOBB6PLr1NFMqYNMRGa6ewPGVXDAE2CQ+xvSmyjdo0U9LnvSf3eYjAEfCyiwf1OTj24lO50yrRpoGNfWtgbRqL2Bt93H+1iJeRqfmoXozo3LVXmu6s92+gGCx0/gog3R1EiUxbkXxeFOXD2DYyNj7QlJnlrMtwxm6ESpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j1M/szUJ; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-35f090093d8so2909253f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 04:41:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719229315; x=1719834115; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T+jjro0681AEOFwhkhNhmaTtx8v0fmEZR11zlZ878gA=;
-        b=j1M/szUJ04JfmiXtzdUpbWOEGaymaHvffYUh0YgExeQe/9M5BcubEpewCPEuRVnJHy
-         d4NKbBIZFZgxkllY1Ie/chYOeZ5I/9G1YhKZ65eInOnAlx+EI77AuDYC5EqV8Ux+TnlB
-         /xyT5hHkn9nYwirYWVGZJQwikhxHQWkSBp0xaumLPdJjyxmfhHUnsecK6bEk+705gCcv
-         d0gvnxECWQ8fwtRCjWnjwzFLL17ItksMD3VG8pLpDtJBv5+Pitd/M4/jqwgaAW8nClJb
-         HAP9cNzgz8EROKUXAdwVpR6aKWusBVrH2qG/nK8ywxuDV2ZNTil55BWgf8Mah2lWHxVv
-         +nyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719229315; x=1719834115;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T+jjro0681AEOFwhkhNhmaTtx8v0fmEZR11zlZ878gA=;
-        b=jsjyig/ECchldWIKA/TCizQ5CEc25uLHOm8/ZLxDFQuKtWnf5uJyAfovJf46GuPTSM
-         tytV1LMJtquqvFf7HbpRMpnb/xN42iKnP/FuLq8cV96y3GUClMtk87yLqUU7a73gF/T2
-         qj5kdo3Zat35urAwQEJeeYF8/1YWcjXKBLKQjSNs2Q6smTefwlZy1nZNqnVwfdNm34vD
-         coFPemBFbOgVj8OjIVHRSFyhE3HD0d84Te/LHC5l9vf+AuS7Jf3P1iHBuQQdoVh4lGT9
-         Lm55dDx2SS5c+Nsc93gKJmFp5Th3biM6XWJabLdm+hXq3NCjzFey23Ql2EzybAG2XuKI
-         ueNA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfW6mj59sEHcaIJw0P7a+Q6J1iZB4bPyP8Hbs5CzGZb7qnzsDxDxgHGuvduX9G1ci/feFFsBrv/HIGkiyV7ahHHcHFBT87Tr/uoA==
-X-Gm-Message-State: AOJu0Yzp8unWKBgKY4NWZ0sx/uUxPDTfvUxvunvRw7WeDTvFbKXC4SOl
-	BsihTrNb4FK5xMO3QAvQm/Sb+jbpgZ0jChrwESxs7agrqLRWXFEbCN0gnhc2GnY=
-X-Google-Smtp-Source: AGHT+IHoGgWxVHYl9o9oDPZVH7R7MNNhC1mYVS4z9J3EY4whsBbRpKDAVx2h9mKJ84IvNeAFF6eWqA==
-X-Received: by 2002:a05:6000:1545:b0:366:e8cf:ef6d with SMTP id ffacd0b85a97d-366e8cff117mr4375611f8f.55.1719229315261;
-        Mon, 24 Jun 2024 04:41:55 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3663a8c7c6esm9839416f8f.103.2024.06.24.04.41.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jun 2024 04:41:54 -0700 (PDT)
-Message-ID: <55bee27a-e4c8-4e4f-ac62-a581f46662ef@linaro.org>
-Date: Mon, 24 Jun 2024 12:41:53 +0100
+	 In-Reply-To:Content-Type; b=Mk0gadGWs22c6oe2NUN+BLYq2sYKJe1XqrtwyvdkbG5mAe1RZnOvh90Xf7B51jQKguea9aC4fDT/wA8tlE27uRAW/BfbJNS1GhkCOo+I4Jh5QzFPLYlBKH/iGF/8/ln2kL+ls7aNyWr+7hZbUVg23J8L5LVlYr+3hzmrIHKCcCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aOntQANw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB6F0C2BBFC;
+	Mon, 24 Jun 2024 11:45:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719229543;
+	bh=BsVFyM8P7Q9wi01V+K41RxfR0R5bZXohxwKnTM9eyMM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aOntQANw8KVLcFVfAi+Ahs7/LaOK1Tyj0Hy5VpurNllM5jo5tqMeElcSFLmPYw7E0
+	 ZVWDWVkjSqC0gejvdubgpb7XodwAUFhPSwQZiMEysPYpvOYKR2jIuBXyez/z1b5M+5
+	 QF6ex8qSQ1QcjOI52qnxzUTqOFXpFTTyEpSWF2d68XTI+PU5RX0FXZpL6PEiopYTF+
+	 rVh6GMIhSOL1SrCK980/y6xd/3KeZrZiiv7NL3M5Pt4KO/QwM+/EZc/e6fFOp94FCr
+	 VQPJ42WFaOgIBKi/Be5fk7p9ekxrc3AvOCQrh/V5be0Bn0ZDtbOhW/YkprYDRyeJaY
+	 fVMiDw954IPIA==
+Message-ID: <608b8673-a7d3-4a93-8719-841e451e7ddc@kernel.org>
+Date: Mon, 24 Jun 2024 13:45:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,47 +50,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: x1e80100: Add soundwire controller
- resets
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240624-x1e-swr-reset-v1-0-da326d0733d4@linaro.org>
- <p6ooqgfwld7stzevozs7huztputc7vpc7652wx6rvg4cly5mj5@fwrzeu6alhgq>
- <ea57a3a1-1037-4d59-a384-50c98e1f9387@linaro.org>
- <mzcofsmnqkxgxarcbxh2gqtdusyzpxr4edjcpurerurzape7da@4dky45iy5iph>
+Subject: Re: [PATCH v2 4/5] dt-bindings: net: wireless: brcm4329-fmac: add
+ clock description.
+To: Jacobe Zang <jacobe.zang@wesion.com>, arend.vanspriel@broadcom.com
+Cc: kvalo@kernel.org, duoming@zju.edu.cn, bhelgaas@google.com,
+ minipli@grsecurity.net, linux-wireless@vger.kernel.org,
+ brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, megi@xff.cz,
+ robh@kernel.org, efectn@protonmail.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, heiko@sntech.de, nick@khadas.com, jagan@edgeble.ai,
+ dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240624081906.1399447-1-jacobe.zang@wesion.com>
+ <20240624081906.1399447-5-jacobe.zang@wesion.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <mzcofsmnqkxgxarcbxh2gqtdusyzpxr4edjcpurerurzape7da@4dky45iy5iph>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240624081906.1399447-5-jacobe.zang@wesion.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 24/06/2024 10:19, Jacobe Zang wrote:
+> Add clocks and clock-names for brcm4329-fmac.
 
+Which devices have this clock? All? You now mention driver, but this is
+a binding so please describe hardware.
 
-On 24/06/2024 12:22, Dmitry Baryshkov wrote:
-> On Mon, Jun 24, 2024 at 12:11:08PM GMT, Srinivas Kandagatla wrote:
->>
->>
->> On 24/06/2024 12:08, Dmitry Baryshkov wrote:
->>> On Mon, Jun 24, 2024 at 11:55:29AM GMT, Srinivas Kandagatla wrote:
->>>> Soundwire resets are missing in the existing dts, add resets for all the 4
->>>> instances of Soundwire controllers (WSA, WSA2, RX, TX).
->>>>
->>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>
->>> Could you please point out the driver changes?
->> If you mean, soundwire controller driver, it already has the reset support.
+Subject: drop full stops. In every patch.
+
 > 
-> No, I was looking for audiocc drivers.
-
-drivers/clk/qcom/lpasscc-sc8280xp.c needs no changes, other then the 
-dt-bindings changes that i will fix in v2.
-
---srini
+> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> ---
+>  .../bindings/net/wireless/brcm,bcm4329-fmac.yaml         | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> index e564f20d8f415..b9e39a62c3b32 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -121,6 +121,15 @@ properties:
+>        NVRAM. This would normally be filled in by the bootloader from platform
+>        configuration data.
+>  
+> +  clocks:
+> +    description: phandle to the clock connected on rtc clock line.
+
+Drop redundant parts, like "phandle to the".  Just use items with
+description instead of above and maxItems.
+
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description: Names of the supplied clocks.
+
+Drop description, completely redundant.
+
+> +    items:
+> +      - const: 32k
+
+32k? That's the name of the clock? In the datasheet?
+
+> +
+>  required:
+>    - compatible
+>    - reg
+
+Best regards,
+Krzysztof
+
 
