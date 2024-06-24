@@ -1,214 +1,230 @@
-Return-Path: <devicetree+bounces-79327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0634C914B7A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:51:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D43FD914DD9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:04:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1977284424
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:51:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C06321C224A7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D51D13D28D;
-	Mon, 24 Jun 2024 12:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD69C13D50C;
+	Mon, 24 Jun 2024 13:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="WJ/RQJfB";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="p9X2j/tE"
+	dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="hZbOtX4y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A41913D283;
-	Mon, 24 Jun 2024 12:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719233459; cv=none; b=pv4RAgqVdx8RYl8uAHPpshOB00/DqCxv8sdkmPS7sp4FvOqiURGQM23t+CKyqJ9MUmuYd+dIkFSTXqKdOfUnjFI91bBO+Jzi15EPr4F+4iX6pukF/TygPhoYOMTAtQXTbZapuYpNGJzJhwHYEx5CiV6skWehJocEMsfJ9LjPnVs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719233459; c=relaxed/simple;
-	bh=ctgdbibK8qrLhLFxlOx5o8uHstHifivnCLU13AWTmrE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PPgVWcyM1jnAdpRtZvSSvCY7f01XTU7tZCIpFeDpsCPJ6hX2IzC2FrY1OAYt+yJjelkNcqRXCbq7MewTzelRxrlF9BNr6ShHx5KxB3AXc2EDknQnVTt8Awalu1FhPpHJ0z/8QhhDP9W6T480nnFu8lIKeJkrm25W/FeH6y4hWT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=WJ/RQJfB; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=p9X2j/tE; arc=none smtp.client-ip=103.168.172.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 63A5511401F9;
-	Mon, 24 Jun 2024 08:50:55 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 24 Jun 2024 08:50:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1719233455;
-	 x=1719319855; bh=9FKXmuvvtTgyfmM9iIXbD4I6XveTrAqwbHf7eAJPzeA=; b=
-	WJ/RQJfBzVG+D1l1abELjvfM15tekG+OvYJULPqA7glFAyn9Ki9M7eIbbCgkqDgw
-	EyvW0uicQnxj2didcqlARlZWoYPbD4W1JZNSRTikspJEsHVGRYoAAXiHoNm86tu2
-	N8e5k170sVxT/tBRcd2Jt2sFOTMb6484zoMVL9VR1ASbkm23373HgKsqusY4ZUWS
-	qWZDcEl5Ckg+bEYDXK+H0kz+jswaK582fAA5vYldfafHoorgUlMXhAKEuT2+5WUZ
-	OeBA1lg9f6oJkNLCrxXrPB2/rW5IwoNgfakDGtELizy6vgT2ss3YvLeSNZr5Z4bN
-	TlRwU2IRwROMTXbMDqSMhA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719233455; x=
-	1719319855; bh=9FKXmuvvtTgyfmM9iIXbD4I6XveTrAqwbHf7eAJPzeA=; b=p
-	9X2j/tEKvIgXxWq+49RD+mftOE8bcSBlNfLuHJY7Rkh97CFFHZKix/mNy8hzCfCV
-	GRW+PVv+FC8ijhU3JX3NcxQmftsg+5VFSCmC6gmSqW5a8NHKqh6/dheD7tcZWxzs
-	9wFCfVwVzpjie84qUF347CA8k925yxYW4hT0T3AlxCpLsDZPAvdn8gzID856eQDC
-	m6Ql4kkfcwB9moPaMlZohQAb9VRq9UEIfvb4gLUk9l9ynX29SchQhCBBfD4g2AO2
-	b07m52xFvVP/kVQzhCjwNyP38p4BE5nTE5WQnJ6XM8YfiLaS78CIuIVjPSQk1T+H
-	2X1V2Dg+bSQ3yJb8oPYlw==
-X-ME-Sender: <xms:rmt5Ztctwiz3F8K08roz7edH-UYbOO2PhBF1ygaF-KVEGdKnOX3CNg>
-    <xme:rmt5ZrPKBoCFA9c7IRyK_q6cftM3TtGWIoXayv_bO_sIe-XJavBZWeDo4eL5Ysjdi
-    Ry1CqbiQjtRGdhDse4>
-X-ME-Received: <xmr:rmt5Zmh4ZatvTyIS3NCVW6h0OLhDFSZKKxpEWPC3wNULkHyFfhj4BX0WPL8q5hjnHqKGG0BEspqwg98PE7iJwPbd0EmOuxA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeeguddgheeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhk
-    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
-    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeektedvvdev
-    jeeijeduffetjeffueeufffffeejfedvffetueevtdfffeetheektdenucffohhmrghinh
-    epvghmsggvugguvgguqdhrvggtihhpvghsrdhorhhgnecuvehluhhsthgvrhfuihiivgep
-    tdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhguod
-    hrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:rmt5Zm8gJZnI95QddetA_G2OshXS-ckEJabWiGwnbBSoJnm8sYYLaQ>
-    <xmx:rmt5ZptNivSZ2Et8MBNxLMgNN-xJKAC56aEGP9KW6dA6PIfjPrPGEg>
-    <xmx:rmt5ZlHpZtYBqU40-RM51xI2l9brak1o4zjxxLrdN-o8dvmimqE-Xw>
-    <xmx:rmt5ZgOvuYYoOVPsM-8WUrFqeOWmduVt_MzyDTbfcJzmeOxFNVa-TA>
-    <xmx:r2t5ZiF2i7z5WJXWHVEordjDKDBzTF0GctwGKzdB_5ELUtyU79ICxYou>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 24 Jun 2024 08:50:54 -0400 (EDT)
-Date: Mon, 24 Jun 2024 14:50:51 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
- V4M
-Message-ID: <20240624125051.GC3655345@ragnatech.se>
-References: <20240619153559.1647957-1-niklas.soderlund+renesas@ragnatech.se>
- <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
- <20240619-passage-iodine-9f944b26a30d@spud>
- <20240619185607.GT382677@ragnatech.se>
- <20240619204321.GU382677@ragnatech.se>
- <20240620-gating-coherent-af984389b2d7@spud>
- <20240620172237.GA3623951@ragnatech.se>
- <CAMuHMdUaWMiQ_wrmX14uwkeU1D_55ehmJD8+GZ4eydWfw4Mi-Q@mail.gmail.com>
- <20240624092029.GB3655345@ragnatech.se>
- <20240624-rented-danger-300652ab8eeb@wendy>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B73C13A3F4;
+	Mon, 24 Jun 2024 13:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.156.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719234240; cv=fail; b=RakwlRWQ/ZznUkzAldIVOv5gy2XotFOR68t+DCeF9n60qtmynWV5K1vJ9RXX6jAg7i3sd2QBF+we8vpcgVAGK4HvDP0kMEnWmgP7qzu18bJZOWzqUgzVkJf3p3BJv/Cef4mlGWBMKvGCwwUoJ/M1EoKDJuTIxgNeaj4SAVbjPPI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719234240; c=relaxed/simple;
+	bh=lwyS2M1c33vlRmMkoSyMMIujdxkqYSPP4AW45TAFstY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=r3VvuWv5tc99haH+DpPfqc+/tYf3Ioq/KBUrxQ7GAnK3oc79tMmO4pMfxogNmVioVZebNThPj/gdz18LZ9rl6/ZrWyYh6N+xl1w9mlMu2XYrPwfJhHGlnWkXPev4EyU1F03N5KLYfSo4LFt85YTdJTpDINGBPQys14vf/251Xe4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=hZbOtX4y; arc=fail smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45O8Aek8010638;
+	Mon, 24 Jun 2024 06:03:28 -0700
+Received: from nam02-dm3-obe.outbound.protection.outlook.com (mail-dm3nam02lp2040.outbound.protection.outlook.com [104.47.56.40])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3ywx4gct9m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Jun 2024 06:03:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oOuo3GLIcDnKho1MQQGxL39+zfDa2VZRoejOoBws0NQeywijua7jQllGO6SGolljI8V1ki5MrJLt0dc6g45Qthy98X9Rwgnc3TKgCf8DGJWuUAZfpV3Jn1iqKSiHc8oPvp/Mu5SiNNyx+P+pg0/EMHYWmpxzQ9ARp/yuseRZuzgQSqZN/YOgm9RykEOdHibmBe6MEKk3VBwLd+wpmU2UY4nSJV+750jxhxpZhAiqsTJshcMS9cCeBzBaTPrI96a9O4ur/EHrvm8jkOVsYhMzli/eB+AWESKJlxD0z761ybh+3gLmCuDO8nt2M96YojKbFGTw1G//zmdbiW/sSlE8iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OosPbmtxmTNXmOA5+nrVE0/A8FRMZSNnewoHdLfPIMc=;
+ b=b9qdALLWrLqrt5z54pYw0n2yeep7qOSFcToR90lXTSnWfv70wpAftqGa66evNw1piOef90RZOIS86e+pDrYFDBMB2N85AftxhjJf4jE8vz3d1IGPAjxNqXZ/9+aFn2F8/fuo2jagaFyF4mZBVyrX7zkXrBPzBGgNw+Xs1JUSPmo33nziw9/QHXoD1zk+jnYJWfNqmr/R9KrcQg1v2MXJVvBApO0wGWKpf/G2L+StqWWvkfB+RGlUxLEhVgsdXYSpOC3tG+j19iEOPg/59OWsknS4OqLc+7aXDnTop7JRmJVmt+TiLkgQTuoxQ9RWN1aiO+XCebmrWiO7pgaKweK0Pw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OosPbmtxmTNXmOA5+nrVE0/A8FRMZSNnewoHdLfPIMc=;
+ b=hZbOtX4yaV876Sa2DQceqT9epmEmZSA6dt/ClSCzOv8hF0knz4CwefCfRCLv1krDfE1DiAVhHMxnK3QGQrBTI+OlWBojtypN0V6L0GcaoTrEJbuFAmtHW+e+3DW1M5Ae6ttgfGWp8VwYCcaJPmDtwmIx3m8DSRGWmzY2Az1u5oA=
+Received: from BY3PR18MB4737.namprd18.prod.outlook.com (2603:10b6:a03:3c8::7)
+ by MW3PR18MB3547.namprd18.prod.outlook.com (2603:10b6:303:2e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.27; Mon, 24 Jun
+ 2024 13:03:23 +0000
+Received: from BY3PR18MB4737.namprd18.prod.outlook.com
+ ([fe80::1598:abb8:3973:da4e]) by BY3PR18MB4737.namprd18.prod.outlook.com
+ ([fe80::1598:abb8:3973:da4e%5]) with mapi id 15.20.7698.025; Mon, 24 Jun 2024
+ 13:03:23 +0000
+From: Sunil Kovvuri Goutham <sgoutham@marvell.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>,
+        "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>
+CC: "nbd@nbd.name" <nbd@nbd.name>,
+        "lorenzo.bianconi83@gmail.com"
+	<lorenzo.bianconi83@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org"
+	<kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "conor@kernel.org" <conor@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org"
+	<robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "catalin.marinas@arm.com"
+	<catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "upstream@airoha.com" <upstream@airoha.com>,
+        "angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>,
+        "benjamin.larsson@genexis.eu"
+	<benjamin.larsson@genexis.eu>,
+        Ratheesh Kannoth <rkannoth@marvell.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Subject: RE: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Thread-Topic: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Thread-Index: AQHaxjbl8d7sSKYfkE2iCFYLYzqmfQ==
+Date: Mon, 24 Jun 2024 13:03:23 +0000
+Message-ID: 
+ <BY3PR18MB4737D3B6C1CA79E3FFDCCDEBC6D42@BY3PR18MB4737.namprd18.prod.outlook.com>
+References: <cover.1719159076.git.lorenzo@kernel.org>
+ <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+In-Reply-To: 
+ <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY3PR18MB4737:EE_|MW3PR18MB3547:EE_
+x-ms-office365-filtering-correlation-id: db97ea32-b3c1-40e5-bfd7-08dc944e07a9
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230037|366013|1800799021|376011|7416011|38070700015;
+x-microsoft-antispam-message-info: 
+ =?us-ascii?Q?EOC1nogOuuSgNuL8rid69GqzFT1ohe9AbGGE4n/0fUw9wzSiEWWgCwaXPQFo?=
+ =?us-ascii?Q?yvS1Qm/qeJOdHqF/7PrFXOpqIqaYP94Ic4T4aNGq/3NIw3xsSelHU4aLNLqB?=
+ =?us-ascii?Q?hYZ5SweNK4wWYklMHqRoeALNsXV45sgB3/GHc6Myr00kM8I73JEgvBFLi70d?=
+ =?us-ascii?Q?blnASKeXNYWDSS77decOvqxykgIaaE+Eu1dNbrEoPeMDUj8Xaxb0RgeE17gf?=
+ =?us-ascii?Q?p5th/d/OtTJHXp6Wi0BPAlgvHa8Hxkg1qw5YPfXT7Ns1Zjzq27ppdyCXha7u?=
+ =?us-ascii?Q?JUSqAUNH02RV5kjnOXQJcvB0QIXZAN+lVs2S7lcAptl8XOXJI4t/jGnjDayG?=
+ =?us-ascii?Q?gwgsHiqe+JYkhNtSEjUfU5y9ZWiT39BmW+8q4aVnLyHTct8kVdryhh7rvPV2?=
+ =?us-ascii?Q?a/wkkeqCpC2800Zg8KdJv3Ipxo7qgbDEx7ZoxiyU3sSAHVxxsCUV3R5GqA1A?=
+ =?us-ascii?Q?wEeljeVaCA5SedVguIFH7Qmb1JbdfRRmD2SmTsPr4+EDahlugkp+O8jbHxmb?=
+ =?us-ascii?Q?cpDt0X4W5KH5+btSTQL+u6QVGEtiHCuuF2UlSsVrhKrzAe7z7uZzwXvtJScs?=
+ =?us-ascii?Q?dMw3LkfDtBzQyI4cTXuFqTwAfWQk0AfRF4Fl3QdkrVHWwRS6mRIH21LaxGCM?=
+ =?us-ascii?Q?2NUdQ638r8HF5cG4ZyHvjWG87rfJv/gmpyhC/Rtlnz0xsTOlsR4Tn40roZcE?=
+ =?us-ascii?Q?7ZYQXe0CjFXFNMAGPfKJuOly/B/qZnNszc7eJ4yh16gpi7i0wLZLqZgA36a4?=
+ =?us-ascii?Q?rxhfIWkeucUAhie4P6IO1SGvHN9Fg4A9pe3zy8+LR+Wy1d5i7YDCm8srVAJj?=
+ =?us-ascii?Q?hVopBNlcCyhF0/50zPwZ+GvZ+8A3wLNw4ZwEpU+/Z0NCtGMCZjz8/nipsMjH?=
+ =?us-ascii?Q?1j+wSGIp1Ou9emI+vdHHnV0JqWFHiSVcrSQtXQcccVcCyAop9aWuXpaVs81D?=
+ =?us-ascii?Q?A0MP4f1UIG86d9B0LDzk0Of+yqwMylxfXkzUjDn/xW26dRbMu+yMJ/TvSTox?=
+ =?us-ascii?Q?eXzOhYxzt2qpcY3UDheKxn6gKMNO04kDpuRZAo2VlnYVDdJTOBpRmfN6sfrg?=
+ =?us-ascii?Q?FjNKlE6He2SnfREwMscV1fqZ7PBIQCS26moZP7WFvpRnybM2vqYjh7LCHtZa?=
+ =?us-ascii?Q?+Uzv7WIEvaul3R4XpkpBwx+fvXX8Mnwp08vsClbpj6IQ0AMrZTco3acoj7s6?=
+ =?us-ascii?Q?xZLyf8jQ+UxaMMF+lS0/fO/nS4E+WTo//RjFmGC0zRorbwQj1OdOAqqBNxNO?=
+ =?us-ascii?Q?VTZ7iK+Fk62mPpHBqxwnFRH2qxWDnEkmTx3cFD0v71O7q/+y5WlHS7/Tlsnt?=
+ =?us-ascii?Q?mR7pEaLeBA4zcw+Soqlqj3th2JzY8+NHGoFLmLEF+G4QeiulwA4eCbKqg+Bj?=
+ =?us-ascii?Q?zIo9akA=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY3PR18MB4737.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(1800799021)(376011)(7416011)(38070700015);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?auxD6uhihwF5+74EjMNzAkn0uCemp0yFn2jYsAH7BVx3IV/LVtJKGXce4D12?=
+ =?us-ascii?Q?GCQjVuguxHtXHaxYu0sPKy6n6JgK4I1gJ3kxO34pw8srv+o0IhCgrr8Q4tNM?=
+ =?us-ascii?Q?wMu08f0QAqF5dlUaKK3UoBPXskHqMKoDEekqsd2D8fGkez5EvSNtumcMrtVL?=
+ =?us-ascii?Q?QV67E/Uh17Vv5NEraqpSvehztSghiHyv4iouuWCI3uuDng46ALc3CPWkvXS5?=
+ =?us-ascii?Q?qUxfNw109R6RVwh01MyGfW6VDasInDQ4BFA4dSxMLGIUXwmi+nAJhZyWbFfl?=
+ =?us-ascii?Q?4y3dJ66IQIjPYnVhhnVRIzF/OFQHe/ee90fejrTXLgGGHrDgDJKwn6dknW/E?=
+ =?us-ascii?Q?6sh81lrj18BlPx7fuxZJKFkX1eQGyK9YK1/+sxAusg3YAAe2GTIX6g5lKDOW?=
+ =?us-ascii?Q?THEuDPQLUQBK4fwhDC/M4aRtJOe/w+x5tCh0qZLVC3MAixrWKcp1lpvarhSZ?=
+ =?us-ascii?Q?yJVnMhD8HF6U6glFu2ipyDEjdz3qboVlmjjHsf8clqIrM/45zRaDnWHbrvrb?=
+ =?us-ascii?Q?KCFz0mML2toErk5XOh3mYo/i1wZlqLOn2m9dcMH8VbIJx+IKZLrSm377pOxw?=
+ =?us-ascii?Q?rz0JKJtlfF59NzpJvx9TUdPv5mCUIyNBicpGcwMy2pjiJn/AJnAQP11rrtb0?=
+ =?us-ascii?Q?u8NtMc6nAO+PoHuPdpHGAut0+2r2kh1ULw+nzGnFzhcfldFAuLrfsUEY6Jmb?=
+ =?us-ascii?Q?pkYEo75gkuYBLQFpTa8Nvyuvh9HoCxoIuRHJmj01dy6ZE6WUNsBlmgaVJELI?=
+ =?us-ascii?Q?Xn/vE28XAXUWJnvWk5+AD94H/gxLzc4Y6L/y7xGfZQHZi0UQMrgjB4uOXKnN?=
+ =?us-ascii?Q?8HN6+gj8HLYNg9QDb2MxOUbHEKWqqaYjNKLEOuaU15CfP0BkcQlWBKvuNEzV?=
+ =?us-ascii?Q?B9chd+8rQOeTUWF3AZmVBTzam6MHiDjt/T9Js3dkZWhr7tJdFDGf8BeXjhie?=
+ =?us-ascii?Q?tDDIWAVgbJ1Nrh3bAUyQKddHkCHKl24EG+iXvoSPS91r4wP6oaINxLeJMl/z?=
+ =?us-ascii?Q?0AC3C0o488ead7sBH8xk1FIWCK6qOvDzq3kgEQ1YhHW9OzyOcpujq+FmrZCF?=
+ =?us-ascii?Q?F5NA6tQmO3m+ZPFjntCx8+HOzmW8JsZ2q1EwHa8NB3dQ+HR76UKE0gBli3e9?=
+ =?us-ascii?Q?edzgK+vm18yI6Xbk3vj1yp66x+E7ll6ptPURGqHJ5L57b6Nhi3+kIlcipFmI?=
+ =?us-ascii?Q?GXRevP5V1DZmWtTsAWh9/Tnne0/p+yIdtYKhqIXLgt9QjKcODQk7GFiGdLEf?=
+ =?us-ascii?Q?dZlVBV0k/+a0EH1VfO1ojWFqqJRAqm2M08YhU5yLliINUCNQRBpRlj97Euwo?=
+ =?us-ascii?Q?GhKiUY8yQlDHxcbX84pVktYroni/zqLpS/0CXkyFVQqXI8MaX7vXuxkKpwN8?=
+ =?us-ascii?Q?TmdveFh+PmcHfVymm4y1aGdDWVeNmIFHonxp/VbWIdAkqdsiJS1TKYDjI1PV?=
+ =?us-ascii?Q?covrDt8upQo0pd0HoNiaS9Luyhdy2ytwghwwyQ/u/wtVntiU5t8SKcme5B5E?=
+ =?us-ascii?Q?kC/kIqR2Tep8t8aUz2DXsFY/tce0O7IuymgUOSCoQD4s9zZvIphOJI+hJzRP?=
+ =?us-ascii?Q?xfH5HOiPXysCjqPpXbf2p0ZhlDdwoWDokKSpFbhl?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240624-rented-danger-300652ab8eeb@wendy>
+X-OriginatorOrg: marvell.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY3PR18MB4737.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db97ea32-b3c1-40e5-bfd7-08dc944e07a9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2024 13:03:23.6338
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jnrZKTEt6J6eHm58SmelnSuwGm68MbJQffoB39m28UEN1xnH6bGUuRN3NqB8Hfg6lK/2CERBxi4Y8MdFNm/PcA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR18MB3547
+X-Proofpoint-GUID: AtMF61kJ5nDsg7oU-wye55oQZnWLDlT7
+X-Proofpoint-ORIG-GUID: AtMF61kJ5nDsg7oU-wye55oQZnWLDlT7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-24_09,2024-06-24_01,2024-05-17_01
 
-On 2024-06-24 11:36:40 +0100, Conor Dooley wrote:
-> On Mon, Jun 24, 2024 at 11:20:29AM +0200, Niklas Söderlund wrote:
-> > Hi Conor,
-> > 
-> > On 2024-06-21 09:21:24 +0200, Geert Uytterhoeven wrote:
-> > > Hi Niklas,
-> > > 
-> > > On Thu, Jun 20, 2024 at 7:22 PM Niklas Söderlund
-> > > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > > On 2024-06-20 17:27:00 +0100, Conor Dooley wrote:
-> > > > > > +      - items:
-> > > > > > +          - enum:
-> > > > > >                - renesas,vin-r8a779g0 # R-Car V4H
-> > > > > > +              - renesas,vin-r8a779h0 # R-Car V4M
-> > > > > > +          - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
-> > > > > >
-> > > > > > If so I can see that working as I could still fix any issues that come
-> > > > > > from differences between V4H and V4M if needed. If so do you think it
-> > > > > > best to add this in two different patches? One to add the
-> > > > > > renesas,rcar-gen4-vin fallback (which will also need DTS updates to fix
-> > > > > > warnings from exciting users of V4H not listing the gen4 fallback) and
-> > > > > > one to add V4M?
-> > > > >
-> > > > >
-> > > > > I would just do:
-> > > > > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > > > index 5539d0f8e74d..22bbad42fc03 100644
-> > > > > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > > > @@ -54,6 +54,9 @@ properties:
-> > > > >                - renesas,vin-r8a77995 # R-Car D3
-> > > > >                - renesas,vin-r8a779a0 # R-Car V3U
-> > > > >                - renesas,vin-r8a779g0 # R-Car V4H
-> > > > > +      - items:
-> > > > > +          - const: renesas,vin-r8a779h0 # R-Car V4L2
-> > > > > +          - const: renesas,vin-r8a779g0 # R-Car V4H
-> > > >
-> > > > @Geert: What do you think about this? This would be a first use-case for
-> > > > compatibles crossing SoC DTS files that I know of. I'm a bit uneasy
-> > > > going down this road.
-> > > 
-> > > Me too ;-)
-> > > 
-> > > > Would this not also effect the existing users of renesas,vin-r8a779g0
-> > > > which would now need something similar to what you propose below with a
-> > > > list of SoC compatibles and a fallback.
-> > > >
-> > > > >
-> > > > >    reg:
-> > > > >      maxItems: 1
-> > > > >
-> > > > > Which requires no driver or dts changes. That could become:
-> > > > >       - items:
-> > > > >           - enum:
-> > > > >               - renesas,vin-r8a779h0 # R-Car V4L2
-> > > > >               - renesas,vin-r8a779i0 # R-Car R4P17
-> > > > >           - const: renesas,vin-r8a779g0 # R-Car V4H
-> > > >
-> > > > FWIW, on Gen2 where fallback es where useful compared to Gen3 we did
-> > > > this with "renesas,rcar-gen2-vin".
-> > > 
-> > > We do know there are differences (albeit probably small) among the R-Car
-> > > Gen4 VIN implementations, so I am reluctant to add a family-specific
-> > > compatible value.  Typically we only use a family-specific compatible
-> > > value if the IP cores are known (or better, assumed ;-) to be identical.
-> > > 
-> > > And sometimes our assumptions turn out to be wrong...
-> > > See slides 25-33 (last two for the numbers) of my talk at ER2019
-> > > https://embedded-recipes.org/2019/talks/herd-your-socs-become-a-matchmaker/
-> > 
-> > Do Geert's slides help to explain the R-Car perspective on why a 
-> > family-specific fallback compatible might not be desirable, and why the 
-> > SoC specific one is proposed? 
-> 
-> IIRC, it was you that wanted to use a "family-specific" fallback, I
-> don't understand what you want from me. If you look back at even the
-> context in this email, you can see you suggesting one and my counter
-> point.
+>Add airoha_eth driver in order to introduce ethernet support for
+>Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
+>en7581-evb networking architecture is composed by airoha_eth as mac
+>controller (cpu port) and a mt7530 dsa based switch.
+>EN7581 mac controller is mainly composed by Frame Engine (FE) and
+>QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
+>functionalities are supported now) while QDMA is used for DMA operation
+>and QOS functionalities between mac layer and the dsa switch (hw QoS is
+>not available yet and it will be added in the future).
+>Currently only hw lan features are available, hw wan will be added with
+>subsequent patches.
+>
+>Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+>Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>---
+>
+>+
+>+static int airoha_qdma_rx_process(struct airoha_queue *q, int budget)
+>+{
+......................
+>+		skb->ip_summed =3D CHECKSUM_UNNECESSARY;
 
-Sorry that I'm spreading my confusion around and taking up your time.  
-I'm trying to understand if Geert's reply helped outline why a single 
-SoC specific compatible is being used here, if so I was hoping a revised 
-commit message would make this solution acceptable.  
+Unconditionally setting UNNECESSARY for all pkts.
+Does HW reports csum errors ?
 
-If not I will try to summaries the issue and the different proposals so 
-we can find a design that works and address some of the confusion before 
-sending a new version.
+Thanks,
+Sunil.
 
--- 
-Kind Regards,
-Niklas Söderlund
 
