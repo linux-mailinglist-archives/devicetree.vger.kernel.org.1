@@ -1,104 +1,93 @@
-Return-Path: <devicetree+bounces-79308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE29914995
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:15:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA3E914F25
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317301F24197
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:15:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BDB4282DD8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9170613C3D6;
-	Mon, 24 Jun 2024 12:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84874140383;
+	Mon, 24 Jun 2024 13:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cP4mIub4"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="kkg3iz3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE0413B7BC
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 12:14:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD98013E04D;
+	Mon, 24 Jun 2024 13:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719231284; cv=none; b=Mgg7TcGSx2/db/T2iApYmaXg02bBxo4ppXYZafbAJ3GM5Se1deIhy7rBuxyUIn8YuTmwpDs4LWV9yeaB3dAI2QLJBDE9S0An/UwwwZKV3nzwjFGB1aH0GI4seMXFAGy4Yhk6F3nIf5TFQARKp0LdDoTWdZv4UZOdf8/eFDZgalU=
+	t=1719237113; cv=none; b=WEPFzuZyQM2LPSwgcnZ4I18TnHXTOkcAeyWGdWvXampwiLSfzvMEosmj3sHqLZJf7n9onK7LIEshbfjliaCL5/n1aSu9vKUfcCX33ppQQtl4ilgcfVviUQKSHP2k6l1K0ztbLGTAu3E4i8c+9Smck56FeksB9gPO6FsLTIh7Iu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719231284; c=relaxed/simple;
-	bh=Gxw2i4Bpr72gUzRUH2vzyv7nhpA9aEHobxKpIugQ5rs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F0jjHM6USse8xNqOqPimAEUO+/+QgtzGb3AigktA0c8kY0KS8IGc8+buTDQzaP5SfdJzyWLne4Kol7w4e7s6Fc+TPq8hDJQgqdGnzvIBzqfH39477At7BXU9TrEO/UbfxtcgbnJzipnGa1WNuF2NNqPStwQOeW2IbQD8JCuGNZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cP4mIub4; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-63bdb089ffdso32409047b3.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:14:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719231282; x=1719836082; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=O6E+NAhE24Vj48sHTkPAWal2XlcL94IcwqY5bFeQzKs=;
-        b=cP4mIub408806pBH2sxYcAfwmuOH1nSgoD0fY8zlYItZ5JEgpMnXAT1AS0lK89Z9OR
-         vcIU672cAgxYBedP4URuGMzu57+V7V+uYL62BvD6KU82IYws4OiA0fve1D9q32u/UhvM
-         EDu03/BhW6UUQiHPko38SJLPcvmiNx9Ccf6oScquWR8LG0q7i1EHrBpK9kFWm3pkOflC
-         WjsLkzzELnpX+lAbz5mzzNZL1V2aQQIWF4rREs6U7Omy323C3i3duNOllrWJHrBOOaxp
-         XkOzPmNiO6Mr1oH2nTfeSSLLa8z1J58/p8v5ZzFlvgrgD5AlXhPD662i5lt6POcBL7SR
-         fwpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719231282; x=1719836082;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=O6E+NAhE24Vj48sHTkPAWal2XlcL94IcwqY5bFeQzKs=;
-        b=XnfHb54ZXtNTy3EFxh2vJi6wTJ4VGaVHn+sVYnVXIOWYQ9SO6/4Tdpq92tIYcCvsbQ
-         ghpaCwa7AurzdIT9rK40lNogo9LYSSUWCS8Tofvdfez0b0j/4tfjRRj2sFQmEDerYX5f
-         7DMlAHSpX2DP3dmkUHPZdSchEP4YccBCyjUMeNIyuMDHrfpMIQyK4iBAHeKt39sGFzw/
-         FLhrwAx6M6uZyASnwmHENAQo9JpaLPosY9R3SfK2nPoL/mo43bHDil2Ridd1V9+81F7o
-         dgs2q3/1KmQc8Pj6sgXeTYmzdFo6f2X9RH4p7WqUF2Bok07KWNdgnDlmsmEUyRW4jeKM
-         H0Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCVrdCNLdm5xKcE+CDLCfkNtySUcQr5uNFOj4leZx8sSuO8X4ayNlfG3/LNVNwGwz9rJ63f1xeRxKX7qODZhyNPlLS9Ageq4n68ceA==
-X-Gm-Message-State: AOJu0YweecJgjI6HMgdC9oRlvt7tBaoUAM/MRTGPW2C+jq+Ca/m/QIco
-	erTs5f4ugdJzRHQq2iXklPX0hOrRAMY55dzVECsd+uOBDD76F9yoJS2Ihln1kO/OvNwN8rjFkvZ
-	Gzbqrn4nwnwssHlZ2qa6rUb2FdVMGNpKyYVHaXA==
-X-Google-Smtp-Source: AGHT+IGQBENYbZC777XGeY3LRTT13xLRxI3cxE38AzllJFwU6q6lBrNDEero0nGMghNsKnGC0bcbVv2XlJykDr+2mZA=
-X-Received: by 2002:a81:a803:0:b0:632:7161:d16c with SMTP id
- 00721157ae682-643409d7f16mr38317587b3.28.1719231282038; Mon, 24 Jun 2024
- 05:14:42 -0700 (PDT)
+	s=arc-20240116; t=1719237113; c=relaxed/simple;
+	bh=ibg0OLXyWOZolWbWFU/ynqVEUdwhaQbCT9GwDymCcis=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mI67+DeVb0DbWG/IhVrc5plTU+UX4GsSf0NX+IJPxr9hedMDvPkhm736bOMHlqTwsWRlqDIT9lF2WePUYD/hUAUWn6R0UqRP82AJpvIl5QS9GFlKtpqdWQaoiJpA17+CLPGe6eH5hRT99Rk95fTh69LhMfxvvqub68a8jOKL+9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=kkg3iz3Q; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id E914E8837A;
+	Mon, 24 Jun 2024 15:51:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1719237103;
+	bh=zQBOVmzO9SvkgEQ9JVsBSxZIt7i40lv4/ThnV63YjfY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kkg3iz3QEsjt1e6/0VIQfqDZGOjS4rEGeN6q5NZqenrqrTR5W7+wmBy2h92LYEu9s
+	 ntMPNFbarb4dOYwGtxCSiDOlpa4Zt7W0+eeQ9SVLoNhyqd5qOmX+xrvtstxTe3SwQE
+	 aiFCwg+J3dchY7zme1f4ywX1FQSfrtALKk8idi9T699+q9XDdxdIbVwwAAhWUxbsf6
+	 5AVBqb5QnB33mLUTRAv3rcVuaHAFunfHZ8pJIZ/BGletWayAvZ5qAH+j7ImoS3IelV
+	 t1ItP8tzalAlrlTN2Lya3Go3pLVOnhMmZb2wKNCjHOEui4IL9R3zHWl6Ha2QBpeqj/
+	 pOqL6/Qjkd1KQ==
+Message-ID: <7006a500-9e2d-4cb9-b328-14b19931d5fa@denx.de>
+Date: Mon, 24 Jun 2024 14:22:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624120849.2550621-2-caleb.connolly@linaro.org>
-In-Reply-To: <20240624120849.2550621-2-caleb.connolly@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 24 Jun 2024 15:14:29 +0300
-Message-ID: <CAA8EJpp-qCFtPiSVe-+UbYB2BDKH5U3=x+qS_Xb1zn=Pesxmxw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: add resets for sdhc_1
-To: Caleb Connolly <caleb.connolly@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Alexey Klimov <alexey.klimov@linaro.org>, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next,PATCH v3 1/2] dt-bindings: net: add STM32MP25
+ compatible in documentation for stm32
+To: Christophe Roullier <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240624071052.118042-1-christophe.roullier@foss.st.com>
+ <20240624071052.118042-2-christophe.roullier@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20240624071052.118042-2-christophe.roullier@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, 24 Jun 2024 at 15:09, Caleb Connolly <caleb.connolly@linaro.org> wrote:
->
-> These are documented and supported everywhere, but not described in DT.
-> Add them.
->
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+On 6/24/24 9:10 AM, Christophe Roullier wrote:
+> New STM32 SOC have 2 GMACs instances.
+> GMAC IP version is SNPS 5.30
+> 
+> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
--- 
-With best wishes
-Dmitry
+Reviewed-by: Marek Vasut <marex@denx.de>
 
