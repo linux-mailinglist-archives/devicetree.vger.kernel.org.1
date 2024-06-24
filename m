@@ -1,174 +1,320 @@
-Return-Path: <devicetree+bounces-79298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6886191492C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:53:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C571F914940
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C44F6B20762
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:53:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78050285A9C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0910813B294;
-	Mon, 24 Jun 2024 11:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F93D13B58A;
+	Mon, 24 Jun 2024 11:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CLrmS8iz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EsQ3nAEs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43A01799F;
-	Mon, 24 Jun 2024 11:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A55132120;
+	Mon, 24 Jun 2024 11:59:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719230001; cv=none; b=lnYahfb0pldzusu7avR75+5EZG2ozLscamestlTLTmWVIdxExgispjPK2Z5qn8m2ZPUYY69jedtlaq7vhD5X9q+NghG/z/Lfag920gJACkNWauLLvi1GVB0kFjWEZDDUA5T77XNZLIybiIjKABWDSToIbMC6dXv6NnV0IbEB3uo=
+	t=1719230397; cv=none; b=K0AzzyyatuL7Q5VWbCbUvdzD1T3W83FvyD4arqJfjiK3lgNK7t7K0jtVQG12XENozsv8evL+wtzEX8kSehmiocPXLt+Y4xB00LgDNoubKwkzLJ2GUK0J5CinL+DNmWtAFjbz5JGH2s5Agu7T0jn3axHHJbrnrTq1hEpJRzNKbQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719230001; c=relaxed/simple;
-	bh=X3LUVF9n/Lh0ZRmeZ1J5tDM8TML65BM16E6Zc4Ii/d8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kyZSYBk7L8cQwUTrik9BujxISSRUb0hhG8lSmmgXVXsyIJNEJDWQp1a0S9yijllWHUQGOXqVW/DCezgsb8V15amJwGSSohcb0VrvKXEM/G5l37ivtHoam0utJFKmhQHzIRkv43szre3zu2pivJ8lYnixqsLuH3fr9zdBNDClYHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CLrmS8iz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8269BC2BBFC;
-	Mon, 24 Jun 2024 11:53:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719230001;
-	bh=X3LUVF9n/Lh0ZRmeZ1J5tDM8TML65BM16E6Zc4Ii/d8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CLrmS8izec1PLujYjvTR4p9BjHHaiwHbZLiPzCs0rBbIGuJOIAp3/jdhaDeb/i3Ul
-	 vEYrNFWAzGqw7kANXB1/HdKZeFCRgcV2w8oFN8d0sqQJ2kYL2UPeT0S9A3tQ2iWGOF
-	 xwqhaXjY8Meu5nkhoK0jwtH38JX3ILLxpJwleQXAHmQN3DHlyif5AuLhiBFUqE6/X8
-	 orr3kYpuriduh5D8k92XWxb3wxBXFz5J81raJIW/yXqYDGihFEGWwlurwgiR/pqVNF
-	 xplT/OHEwWu9/MJTTkLyhWZYdz+BWaduzhXSOv4FyjpTZX5OnAfP8MKSyZP16zHyDb
-	 gPhNLUwPwnViw==
-Message-ID: <6d8f80a0-d67a-416e-b395-7a33b539682e@kernel.org>
-Date: Mon, 24 Jun 2024 13:53:15 +0200
+	s=arc-20240116; t=1719230397; c=relaxed/simple;
+	bh=mrw/F4Ya6RFfXo3J5jULK+03oRfHGgdK5t/Zq4Kh1Sw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tweQxnUNciLCZ+TA1BNYYn2crN++rT/rL/5wseO8MPACo1CJTZhELUKZs3Te7khPGxYb5RxBhpscvJmoka9wnY7iVbhb8EaBvrIR9k5KiMZT5nQMi/48J0MaTzR1U3rfpDYQ89dWtoiJYTsSj7bjySh6kGhkWfIbFWZTcayp7Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EsQ3nAEs; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-70b2421471aso2935512a12.0;
+        Mon, 24 Jun 2024 04:59:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719230395; x=1719835195; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Iwu8kUHGKGcTymQuxe9Xnw/0GaQZONNbqIunVMZstL8=;
+        b=EsQ3nAEsfqLXckj9hw3+adU+Ng333QxyTjiBrEgHqxGiq2aKW24apdJW9XM5Hzwwf6
+         /ifTNCI2smZYF+GndV/3cXAKdgakX+KZKdL3UAVBQfcih4T07u4igR/Qx+kax2U5cPIN
+         BQjPia9oryfcvAbMU6b7rqAEjk8lJI9lxg4DtXk49hTwatMtKurl09NTqEHW14n5eNsF
+         KbvyRX3iZuUJinQOf7ZqvZQ6xVWRmjT38pt8KTebVTT7rWlE0yX3boyFbzFJnYzEUGRw
+         JehO9sj1pVFIoaIPISMWJY1UPK13oJfiL4Nd2IzWC/GPXL4v4SRBFNPsfu5UCNuHoKTa
+         SQbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719230395; x=1719835195;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Iwu8kUHGKGcTymQuxe9Xnw/0GaQZONNbqIunVMZstL8=;
+        b=LlrWFVwFjd5jW14AdEGdBr2N87xIeuPgQ7eqtHoDist4bZviQ64kscVtjyjqDlioYz
+         WBFysJL3y4sycWbxZm/XgJxfc5rv7XwFqw8cIl0Ke0CuEsGenvhm0eJ2u7DMyJfQzsJQ
+         5cKyf32F9aEgJYIHxP2ddytsg+4gXXANiuZEnj5qFshKgVv9jz/3hNjgcWpfyQjvsVTn
+         cXLzbz/18cXOtzn75u63JYX+cyJ+qDLg0TA4TyyY2/h9IY8px/4UMu7/2OERvC1HANy1
+         /GK8iVFg67epnLEQoz6lUVAtNbfQB0Ap3KRRE5pOhGoHHv16LuCcon5P3tB6fcloJjdI
+         +Rsg==
+X-Forwarded-Encrypted: i=1; AJvYcCXPZVt2OYSCOXKYHcBLY7JHSXDlZqogSH6wijc35WXSz8Fb07AOQXL5RSnJ0LepCR/Cpu8EnSVhB/x8V+4GrGz8EmxnWESTay0g1QuhPoSUVAYId+rfdMdKpnruIytty5Z5m2JN
+X-Gm-Message-State: AOJu0Yyjss1+8HBom6xbwuAWaBM5Mex1rqQ9rmuOx2UrQM165C7gfC+z
+	klKok/9P1F+7ASHaN1G5gL/PAvQuaCQT07QK4c30pCMmBEDek8+PZdCoemyYn7jOmpsENGkSLYG
+	0ltaTB2igm8N3ocZ4VIhPpg1KOQA=
+X-Google-Smtp-Source: AGHT+IHB5YT5XqnR4lG46K5RH2swPEZn3XC4R+DJ+LKw1MjUenLgfADqv67Pq44U3Ej0iYW+3M14k/7z/ckqAY4N/XU=
+X-Received: by 2002:a17:90a:604e:b0:2bd:f1d5:8e3e with SMTP id
+ 98e67ed59e1d1-2c86146c80emr2850938a91.35.1719230394874; Mon, 24 Jun 2024
+ 04:59:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] arm64: dts: rockchip: Add USB-C to Khadas Edge 2
-To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de
-Cc: nick@khadas.com, efectn@protonmail.com, jagan@edgeble.ai,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240624083236.1401673-1-jacobe.zang@wesion.com>
- <20240624083236.1401673-2-jacobe.zang@wesion.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240624083236.1401673-2-jacobe.zang@wesion.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240623170933.63864-1-aford173@gmail.com> <3f970d67-5f14-428e-b8ea-02c62e1b5f82@kernel.org>
+In-Reply-To: <3f970d67-5f14-428e-b8ea-02c62e1b5f82@kernel.org>
+From: Adam Ford <aford173@gmail.com>
+Date: Mon, 24 Jun 2024 06:59:43 -0500
+Message-ID: <CAHCN7xKTnbDec2uJu0vJMY-NMTDvhb=C_FPM+5QeDNBwwRgZeA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: davinci_emac: Convert to yaml version
+ from txt
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, woods.technical@gmail.com, 
+	aford@beaconembedded.com, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adam Ford <aford@gmail.com>, netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 24/06/2024 10:32, Jacobe Zang wrote:
-> Khadas Edge 2 has 2x Type-C port. One just supports PD and
-> controlled by MCU. The other one supports PD, DP Alt mode and DRD. This
-> commit adds support for DRD.
-> 
-> Co-developed-by: Muhammed Efe Cetin <efectn@protonmail.com>
-> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> ---
->  .../dts/rockchip/rk3588s-khadas-edge2.dts     | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-> index dbddfc3bb4641..8c0bc675690dd 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-> @@ -6,6 +6,7 @@
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/pinctrl/rockchip.h>
->  #include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/usb/pd.h>
->  #include "rk3588s.dtsi"
->  
->  / {
-> @@ -112,6 +113,18 @@ vcc5v0_sys: vcc5v0-sys-regulator {
->  		regulator-max-microvolt = <5000000>;
->  	};
->  
-> +	vbus5v0_typec: vbus5v0-typec-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vbus5v0_typec";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		enable-active-high;
-> +		gpio = <&gpio3 RK_PA4 GPIO_ACTIVE_HIGH>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&typec5v_pwren>;
-> +	};
-> +
->  	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vcc_1v1_nldo_s3";
-> @@ -224,6 +237,56 @@ regulator-state-mem {
->  &i2c2 {
->  	status = "okay";
->  
-> +	usbc0: usb-typec@22 {
-> +		compatible = "fcs,fusb302";
-> +		reg = <0x22>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <RK_PB5 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usbc0_int>;
-> +		vbus-supply = <&vbus5v0_typec>;
-> +		status = "okay";
+On Mon, Jun 24, 2024 at 12:07=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 23/06/2024 19:09, Adam Ford wrote:
+> > The davinci_emac is used by several devices which are still maintained,
+> > but to make some improvements, it's necessary to convert from txt to ya=
+ml.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/davinci_emac.txt b/D=
+ocumentation/devicetree/bindings/net/davinci_emac.txt
+> > deleted file mode 100644
+> > index 5e3579e72e2d..000000000000
+> > --- a/Documentation/devicetree/bindings/net/davinci_emac.txt
+> > +++ /dev/null
+> > @@ -1,44 +0,0 @@
+> > -* Texas Instruments Davinci EMAC
+> > -
+> > -This file provides information, what the device node
+> > -for the davinci_emac interface contains.
+> > -
+> > -Required properties:
+> > -- compatible: "ti,davinci-dm6467-emac", "ti,am3517-emac" or
+> > -  "ti,dm816-emac"
+> > -- reg: Offset and length of the register set for the device
+> > -- ti,davinci-ctrl-reg-offset: offset to control register
+> > -- ti,davinci-ctrl-mod-reg-offset: offset to control module register
+> > -- ti,davinci-ctrl-ram-offset: offset to control module ram
+> > -- ti,davinci-ctrl-ram-size: size of control module ram
+> > -- interrupts: interrupt mapping for the davinci emac interrupts source=
+s:
+> > -              4 sources: <Receive Threshold Interrupt
+> > -                       Receive Interrupt
+> > -                       Transmit Interrupt
+> > -                       Miscellaneous Interrupt>
+> > -
+> > -Optional properties:
+> > -- phy-handle: See ethernet.txt file in the same directory.
+> > -              If absent, davinci_emac driver defaults to 100/FULL.
+> > -- ti,davinci-rmii-en: 1 byte, 1 means use RMII
+> > -- ti,davinci-no-bd-ram: boolean, does EMAC have BD RAM?
+> > -
+> > -The MAC address will be determined using the optional properties
+> > -defined in ethernet.txt.
+> > -
+> > -Example (enbw_cmc board):
+> > -     eth0: emac@1e20000 {
+> > -             compatible =3D "ti,davinci-dm6467-emac";
+> > -             reg =3D <0x220000 0x4000>;
+> > -             ti,davinci-ctrl-reg-offset =3D <0x3000>;
+> > -             ti,davinci-ctrl-mod-reg-offset =3D <0x2000>;
+> > -             ti,davinci-ctrl-ram-offset =3D <0>;
+> > -             ti,davinci-ctrl-ram-size =3D <0x2000>;
+> > -             local-mac-address =3D [ 00 00 00 00 00 00 ];
+> > -             interrupts =3D <33
+> > -                             34
+> > -                             35
+> > -                             36
+> > -                             >;
+> > -             interrupt-parent =3D <&intc>;
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/net/davinci_emac.yaml b/=
+Documentation/devicetree/bindings/net/davinci_emac.yaml
+> > new file mode 100644
+> > index 000000000000..4c2640aef8a1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/davinci_emac.yaml
+>
+> Filename matching compatible format. Missing vendor prefix. Underscores
+> are not used in names or compatibles.
 
-Was it disabled anywhere?
+Thank you for the review.
 
+Would a proper name be ti,davinci-emac.yaml?
 
-Best regards,
-Krzysztof
+>
+>
+> > @@ -0,0 +1,111 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/davinci_emac.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Texas Instruments Davici EMAC
+> > +
+> > +maintainers:
+> > +  - Adam Ford <aford@gmail.com>
+> > +
+> > +description:
+> > +  Ethernet based on the Programmable Real-Time Unit and Industrial
+> > +  Communication Subsystem.
+> > +
+> > +allOf:
+> > +  - $ref: ethernet-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+>
+>
+> That's just enum, no need for items here.
+>
+> > +      - enum:
+> > +          - ti,davinci-dm6467-emac # da850
+> > +          - ti,dm816-emac
+> > +          - ti,am3517-emac
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    minItems: 4
+>
+> You need to list and describe the items.
+>
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: ick
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  local-mac-address: true
+>
+> Drop
+>
+> > +  mac-address: true
+>
+> Drop
+>
+> You miss top-level $ref to appropriate schema.
+>
+> > +
+> > +  syscon:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: a phandle to the global system controller on
+> > +      to enable/disable interrupts
+>
+> Drop entire property. There was no such property in old binding and
+> nothing explains why it was added.
 
+The am3517.dtsi emac node has a syscon, so I didn't want to break it.
+I'll take a look to see what the syscon node on the am3517 does.  I
+struggle with if statements in yaml, but if it's necessary for the
+am3517, can we keep it if I elaborate on it in the commit message?
+>
+> > +
+> > +  ti,davinci-ctrl-reg-offset:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Offset to control register
+> > +
+> > +  ti,davinci-ctrl-mod-reg-offset:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Offset to control module register
+> > +
+> > +  ti,davinci-ctrl-ram-offset:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Offset to control module ram
+> > +
+> > +  ti,davinci-ctrl-ram-size:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Size of control module ram
+> > +
+> > +  ti,davinci-rmii-en:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > +    description:
+> > +      RMII enable means use RMII
+> > +
+> > +  ti,davinci-no-bd-ram:
+> > +    type: boolean
+> > +    description:
+> > +      Enable if EMAC have BD RAM
+> > +
+> > +additionalProperties: false
+>
+> Look at example-schema. This goes after required, although anyway should
+> be unevaluatedProperties after adding proper $ref.
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - ti,davinci-ctrl-reg-offset
+> > +  - ti,davinci-ctrl-mod-reg-offset
+> > +  - ti,davinci-ctrl-ram-offset
+> > +  - ti,davinci-ctrl-ram-size
+> > +
+> > +examples:
+> > +  - |
+> > +    eth0: ethernet@220000 {
+>
+> Drop label.
+>
+> > +      compatible =3D "ti,davinci-dm6467-emac";
+> > +      reg =3D <0x220000 0x4000>;
+> > +      ti,davinci-ctrl-reg-offset =3D <0x3000>;
+> > +      ti,davinci-ctrl-mod-reg-offset =3D <0x2000>;
+> > +      ti,davinci-ctrl-ram-offset =3D <0>;
+> > +      ti,davinci-ctrl-ram-size =3D <0x2000>;
+> > +      local-mac-address =3D [ 00 00 00 00 00 00 ];
+> > +      interrupts =3D <33>, <34>, <35>,<36>;
+> > +      clocks =3D <&psc1 5>;
+> > +      power-domains =3D <&psc1 5>;
+> > +      status =3D "disabled";
+>
+> Drop. It cannot be disabled, otherwise what would be the point of this
+> example?
+
+Sorry, I copy-pasted this from the da850.dtsi node.  I'll remove the
+label and the status line.
+>
+>
+> Best regards,
+> Krzysztof
+>
 
