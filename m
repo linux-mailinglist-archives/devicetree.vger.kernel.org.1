@@ -1,194 +1,238 @@
-Return-Path: <devicetree+bounces-79339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A45914E20
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:14:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AC6914E37
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:18:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8C392810A3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:14:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E50D4281088
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC6413D610;
-	Mon, 24 Jun 2024 13:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD3313D61B;
+	Mon, 24 Jun 2024 13:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pBUDf713"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="HnqYxMWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95FA153389;
-	Mon, 24 Jun 2024 13:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E346413B58C;
+	Mon, 24 Jun 2024 13:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719234879; cv=none; b=QCCFILb1XHntt5Y3M2EnOPYM7GaSAjFkLmHi8C02j/I6sROOqM6Pk9oZWwB7cKz2Y3l6AzA4Bl4uBxehA1SN4HVPThDrzt0w+W64Xt1oCqoRsZn5bmbPTGAs11b3qhtdQLPQUWa/oO9IFV/+Wfm7UpYpVLuvDpMQqKAtIn18BkY=
+	t=1719235099; cv=none; b=KNRO9S3X8QxEhHHRL8F8rro4jCvGyszPpGJ9xMsndMVSb4IlU8GN9AE6CT/q8h5dIw36/6vVoWOSM1RAkJaAP1xWiISYR7r/hPvTqDogY709zYtVnXc2DJ8RBUm1+f3BvSqbZcH4GWAxpaSuKoVk+PkaUFdEZXWnEOlZekfDxp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719234879; c=relaxed/simple;
-	bh=hWNaWrPpdbV9TanGy2wQEruPknSvEpTLlJ+o+tyefZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j5rxt2FTT9wN09b5FMYnnpXaQinYqWSLOohEH+yoCv++X1PGQFOVJ8KzO4C+fZsSOLzhtG7iGi7XLd9fgb1BPKMTrzFzwyei13/fLwRWEgXh3KVSy/DYmTE5TxNB3A5PKfnZbvrj57k7Qq+J7aB26sEWzK1EHvcmDY7wwjZ2ZLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pBUDf713; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 882F3C2BBFC;
-	Mon, 24 Jun 2024 13:14:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719234879;
-	bh=hWNaWrPpdbV9TanGy2wQEruPknSvEpTLlJ+o+tyefZU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pBUDf713NrvwXOjtaM1kIwLqyIwrjLr3idjpOqTi3xh6pwmgH8Oss50pyG56XMqog
-	 nR1UcHmfbWaW8WhQ00U1drIzbawhPKoPgLTbA738vKQMbiCH7SD7e6qM7v4VoD7mKl
-	 ObRWeh2MaKsjJik6XP96U8fkodlTOJ0s6LHMe5WDObkp2u1XXTRoe1FXUHbohUHzrT
-	 lbuu+DWSdW7t26DgJRtHctEnoKKCmHqGc6cCjuNiaikuFgyMzC2St5/m6mKG5fz1IA
-	 cvfuPGT2/pw4dSMqyxbgaG985erbiR3jsYhyKId3HS9AgCaM9escQhBbWLRBI4oWqu
-	 XhREMtwMEwJiw==
-Date: Mon, 24 Jun 2024 15:14:35 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com
-Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <ZnlxO2yAxkkkejU-@lore-desk>
-References: <cover.1719159076.git.lorenzo@kernel.org>
- <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
- <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
- <Zni13uFslHz5R6Ns@lore-desk>
- <e9ae143c-e72f-419b-b4da-2f603a4ccec0@lunn.ch>
+	s=arc-20240116; t=1719235099; c=relaxed/simple;
+	bh=A9P/HsgWON9b6a+Ar7LTr0tdOVopG8sdhzWFS1p8pDc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PKk8s4htvhTT3XPAyfy6qHW4fbe86t0iH4TyeiMrY5633pSRgMDeqK++AOCeir9osGS07vsGRFUejSaX429edq8QCtKnJsvRAPcfcDvfr483Da+NbvZLsZnLLxR4RjVBWcSH6WBUyAXqBc1Ix2mLWjvq3o9rC8kixwAkVfvE52c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=HnqYxMWn; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1719235096; x=1750771096;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=A9P/HsgWON9b6a+Ar7LTr0tdOVopG8sdhzWFS1p8pDc=;
+  b=HnqYxMWnnV1OzyJpXM99AgG6sTwidwQLr+NF8rqCgCJ+C+2pxwTbHUJP
+   y01bwdcwbEDNOePGxq13A35HAIWot32U/5Txn6sk20gEWlCAI1wu9G3td
+   CoQ/66NfhW3L5PTHvYrKB6J7SmQIvhdA//g8DGRkxjK+ZHIFRnHdrQT+m
+   6KHft6LbiDyQGyTzegi67WDr5P6rfPIVjY++tkgSTPhVKrrbftHJUnZ0W
+   5JA4GFm3pGu5hNUuSsMJ2DZ04oebwBVUP3WtZyaYZb+vYsmdHDFxakCO6
+   KLvyzsOrvJMlRsknraR/Qo7nQ/SkhvqXEYITG2x70qNRceY+Y0RxaC+lp
+   g==;
+X-CSE-ConnectionGUID: rcCcXvSkTourhvc341HEpw==
+X-CSE-MsgGUID: /2xm8AUkT6aloMkXWUmxQQ==
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
+   d="asc'?scan'208";a="195811847"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Jun 2024 06:18:11 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 24 Jun 2024 06:18:03 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 24 Jun 2024 06:18:00 -0700
+Date: Mon, 24 Jun 2024 14:17:46 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?=
+	<niklas.soderlund+renesas@ragnatech.se>
+CC: Conor Dooley <conor@kernel.org>, Geert Uytterhoeven
+	<geert@linux-m68k.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Laurent
+ Pinchart <laurent.pinchart@ideasonboard.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
+ V4M
+Message-ID: <20240624-upstate-shale-505e754431c9@wendy>
+References: <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
+ <20240619-passage-iodine-9f944b26a30d@spud>
+ <20240619185607.GT382677@ragnatech.se>
+ <20240619204321.GU382677@ragnatech.se>
+ <20240620-gating-coherent-af984389b2d7@spud>
+ <20240620172237.GA3623951@ragnatech.se>
+ <CAMuHMdUaWMiQ_wrmX14uwkeU1D_55ehmJD8+GZ4eydWfw4Mi-Q@mail.gmail.com>
+ <20240624092029.GB3655345@ragnatech.se>
+ <20240624-rented-danger-300652ab8eeb@wendy>
+ <20240624125051.GC3655345@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gaFNliSXRBvSyy0T"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wcejodDkY53dGgEf"
 Content-Disposition: inline
-In-Reply-To: <e9ae143c-e72f-419b-b4da-2f603a4ccec0@lunn.ch>
+In-Reply-To: <20240624125051.GC3655345@ragnatech.se>
 
-
---gaFNliSXRBvSyy0T
-Content-Type: text/plain; charset=us-ascii
+--wcejodDkY53dGgEf
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-> > > > +static void airoha_fe_oq_rsv_init(struct airoha_eth *eth)
-> > > > +{
-> > > > +	int i;
-> > > > +
-> > > > +	/* hw misses PPE2 oq rsv */
-> > > > +	airoha_fe_set(eth, REG_FE_PSE_BUF_SET,
-> > > > +		      PSE_DEF_RSV_PAGE * PSE_PORT8_QUEUE);
-> > > > +
-> > > > +	for (i =3D 0; i < PSE_PORT0_QUEUE; i++)
-> > > > +		airoha_fe_set_pse_oq_rsv(eth, 0, i, 0x40);
-> > > > +	for (i =3D 0; i < PSE_PORT1_QUEUE; i++)
-> > > > +		airoha_fe_set_pse_oq_rsv(eth, 1, i, 0x40);
-> > > > +
-> > > > +	for (i =3D 6; i < PSE_PORT2_QUEUE; i++)
-> > > > +		airoha_fe_set_pse_oq_rsv(eth, 2, i, 0);
-> > > > +
-> > > > +	for (i =3D 0; i < PSE_PORT3_QUEUE; i++)
-> > > > +		airoha_fe_set_pse_oq_rsv(eth, 3, i, 0x40);
+On Mon, Jun 24, 2024 at 02:50:51PM +0200, Niklas S=C3=B6derlund wrote:
+> On 2024-06-24 11:36:40 +0100, Conor Dooley wrote:
+> > On Mon, Jun 24, 2024 at 11:20:29AM +0200, Niklas S=C3=B6derlund wrote:
+> > > Hi Conor,
 > > >=20
-> > > Code like this is making me wounder about the split between MAC
-> > > driver, DSA driver and DSA tag driver. Or if it should actually be a
-> > > pure switchdev driver?
-> >=20
-> > airoha_eth driver implements just MAC features (FE and QDMA). Currently=
- we only
-> > support the connection to the DSA switch (GDM1). EN7581 SoC relies on m=
-t7530 driver
-> > for DSA (I have not posted the patch for mt7530 yet, I will do after ai=
-roha_eth
-> > ones).
-> >=20
+> > > On 2024-06-21 09:21:24 +0200, Geert Uytterhoeven wrote:
+> > > > Hi Niklas,
+> > > >=20
+> > > > On Thu, Jun 20, 2024 at 7:22=E2=80=AFPM Niklas S=C3=B6derlund
+> > > > <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > > > > On 2024-06-20 17:27:00 +0100, Conor Dooley wrote:
+> > > > > > > +      - items:
+> > > > > > > +          - enum:
+> > > > > > >                - renesas,vin-r8a779g0 # R-Car V4H
+> > > > > > > +              - renesas,vin-r8a779h0 # R-Car V4M
+> > > > > > > +          - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
+> > > > > > >
+> > > > > > > If so I can see that working as I could still fix any issues =
+that come
+> > > > > > > from differences between V4H and V4M if needed. If so do you =
+think it
+> > > > > > > best to add this in two different patches? One to add the
+> > > > > > > renesas,rcar-gen4-vin fallback (which will also need DTS upda=
+tes to fix
+> > > > > > > warnings from exciting users of V4H not listing the gen4 fall=
+back) and
+> > > > > > > one to add V4M?
+> > > > > >
+> > > > > >
+> > > > > > I would just do:
+> > > > > > diff --git a/Documentation/devicetree/bindings/media/renesas,vi=
+n.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > > index 5539d0f8e74d..22bbad42fc03 100644
+> > > > > > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > > > > @@ -54,6 +54,9 @@ properties:
+> > > > > >                - renesas,vin-r8a77995 # R-Car D3
+> > > > > >                - renesas,vin-r8a779a0 # R-Car V3U
+> > > > > >                - renesas,vin-r8a779g0 # R-Car V4H
+> > > > > > +      - items:
+> > > > > > +          - const: renesas,vin-r8a779h0 # R-Car V4L2
+> > > > > > +          - const: renesas,vin-r8a779g0 # R-Car V4H
+> > > > >
+> > > > > @Geert: What do you think about this? This would be a first use-c=
+ase for
+> > > > > compatibles crossing SoC DTS files that I know of. I'm a bit unea=
+sy
+> > > > > going down this road.
+> > > >=20
+> > > > Me too ;-)
+> > > >=20
+> > > > > Would this not also effect the existing users of renesas,vin-r8a7=
+79g0
+> > > > > which would now need something similar to what you propose below =
+with a
+> > > > > list of SoC compatibles and a fallback.
+> > > > >
+> > > > > >
+> > > > > >    reg:
+> > > > > >      maxItems: 1
+> > > > > >
+> > > > > > Which requires no driver or dts changes. That could become:
+> > > > > >       - items:
+> > > > > >           - enum:
+> > > > > >               - renesas,vin-r8a779h0 # R-Car V4L2
+> > > > > >               - renesas,vin-r8a779i0 # R-Car R4P17
+> > > > > >           - const: renesas,vin-r8a779g0 # R-Car V4H
+> > > > >
+> > > > > FWIW, on Gen2 where fallback es where useful compared to Gen3 we =
+did
+> > > > > this with "renesas,rcar-gen2-vin".
+> > > >=20
+> > > > We do know there are differences (albeit probably small) among the =
+R-Car
+> > > > Gen4 VIN implementations, so I am reluctant to add a family-specific
+> > > > compatible value.  Typically we only use a family-specific compatib=
+le
+> > > > value if the IP cores are known (or better, assumed ;-) to be ident=
+ical.
+> > > >=20
+> > > > And sometimes our assumptions turn out to be wrong...
+> > > > See slides 25-33 (last two for the numbers) of my talk at ER2019
+> > > > https://embedded-recipes.org/2019/talks/herd-your-socs-become-a-mat=
+chmaker/
 > > >=20
-> > > If there some open architecture documentation for this device?
-> > >=20
-> > > What are these ports about?
+> > > Do Geert's slides help to explain the R-Car perspective on why a=20
+> > > family-specific fallback compatible might not be desirable, and why t=
+he=20
+> > > SoC specific one is proposed?=20
 > >=20
-> > airoha_fe_oq_rsv_init() (we can improve naming here :) is supposed to c=
-onfigure
-> > hw pre-allocated memory for each queue available in Packet Switching En=
-gine
-> > (PSE) ports. PSE ports are not switch ports, but SoC internal ports use=
-d to
-> > connect PSE to different modules. In particular, we are currently imple=
-menting
-> > just the two connections below:
-> > - CDM1 (port0) connects PSE to QDMA1
-> > - GDM1 (port1) connects PSE to MT7530 DSA switch
-> >=20
-> > In the future we will post support for GDM2, GDM3 and GDM4 ports that a=
-re
-> > connecting PSE to exteranl PHY modules.
+> > IIRC, it was you that wanted to use a "family-specific" fallback, I
+> > don't understand what you want from me. If you look back at even the
+> > context in this email, you can see you suggesting one and my counter
+> > point.
 >=20
-> I've not looked at the datasheet yet, but maybe add some ASCII art
-> diagram of the architecture in the commit message, or even a .rst file
-> somewhere under Documentation. It is hard to get the big picture
-> looking at just the code, and only the MAC driver without all the
-> other parts.
+> Sorry that I'm spreading my confusion around and taking up your time.
 
-ack, I will do my best :)
+I don't care if non-native speakers of English say confusing things,
+don't worry about that.
 
+> I'm trying to understand if Geert's reply helped outline why a single=20
+> SoC specific compatible is being used here, if so I was hoping a revised=
+=20
+> commit message would make this solution acceptable. =20
 >=20
-> > > > +static int airoha_dev_open(struct net_device *dev)
-> > > > +{
-> > > > +	struct airoha_eth *eth =3D netdev_priv(dev);
-> > > > +	int err;
-> > > > +
-> > > > +	if (netdev_uses_dsa(dev))
-> > > > +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
-> > > > +	else
-> > > > +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
-> > >=20
-> > > Does that imply both instances of the GMAC are not connected to the
-> > > switch? Can one be used with a PHY?
-> >=20
-> > The check above is used to support configuration where MT7530 DSA switc=
-h module
-> > is not loaded (I tested this configuration removing the MT7530 DSA swit=
-ch from
-> > board dts and resetting the switch). Since for the moment we just suppo=
-rt GDM1
-> > port (PSE port connected to the switch) we can probably assume it is al=
-ways the
-> > case and remove this check. In the future we will need this configurati=
-on to support
-> > GDM2 or GDM3 (PSE port connected to external phy modules). Do you prefe=
-r to
-> > always set GDM1_STAG_EN_MASK for the moment?
->=20
-> If it will be needed, then keep it. But it is the sort of thing which
-> raises questions, so its good to explain it, either in the commit
-> message, or in the code.
+> If not I will try to summaries the issue and the different proposals so=
+=20
+> we can find a design that works and address some of the confusion before=
+=20
+> sending a new version.
 
-ack, I will add it in v4
+These devices look, for all intents and purposes, to be compatible. If
+they're not, *say* what is not compatible about them. Don't just say
+"ohh there might be, but they're small", say exactly what - because your
+driver makes them look compatible. It looks compatible with the a0 as
+well... The vibe that comes across here is of being "afraid" of having
+fallback compatibles that reference other SoCs - which is totally normal
+for other vendors, not that there are any differences in programming
+model between the VIN instances on these devices.
 
-Regards,
-Lorenzo
+Thanks,
+Conor.
 
->=20
-> 	Andrew
-
---gaFNliSXRBvSyy0T
+--wcejodDkY53dGgEf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnlxOwAKCRA6cBh0uS2t
-rLAcAP0TZ4SmPSOYdAipm/w/6nxNNN3oeqZPkNWcEiN3sorJOQD/Z2gU/LcXKBFE
-trXO0WHHjTAgVPPBiyOn0KB0uGbUbQI=
-=saWx
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnlx+QAKCRB4tDGHoIJi
+0lRgAQCL24c+EjR8gJrl3ulZy9rnsIt1id468BrNImvnBZLBwgD/a1gy1vCrm9eZ
+GQXN9AeUSh1MTwvDsVuEiH5xQyOaIgI=
+=diKT
 -----END PGP SIGNATURE-----
 
---gaFNliSXRBvSyy0T--
+--wcejodDkY53dGgEf--
 
