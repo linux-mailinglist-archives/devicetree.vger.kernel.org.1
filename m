@@ -1,101 +1,129 @@
-Return-Path: <devicetree+bounces-79522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C3A915A59
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 01:23:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D2A915A60
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 01:28:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B8181C22255
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 23:23:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7829F1F22F1F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 23:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0F01A2C03;
-	Mon, 24 Jun 2024 23:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF851A2C0C;
+	Mon, 24 Jun 2024 23:28:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nLHODb/E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06671A255B;
-	Mon, 24 Jun 2024 23:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B880D1A0731;
+	Mon, 24 Jun 2024 23:28:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719271386; cv=none; b=ZBQ7UH5+Pb4iaw33GOYlbijxcaBckzSZWpFaUGm5HFEER6Sn3vrXnlIfEL8ORzlup6nrQJRb4l6kFuugQC9jOkqwB0k8EbehcjjmFScPslRg9fLa0y2c2Ji2a6ZMYxd5sXrqKrEpr7xr65fdlhtQTPF8rN0Cyct1arDhpzaK9Ho=
+	t=1719271684; cv=none; b=T2uNWopw/VFrtyVIU2HLdwOvNq/UoSwCo1S41Vy5vM3neyyOAwo0Ff5p2sSHUF+vD4Ja+fjKa5ZA2ccgUckXSXUCBEpZJJ5vFSu8fE0sZAWvUni1tvE2P6DYmXCikmGN1UDgDU07qzP04dLjOo3Si6+cG0G5XGmJ4V/p6dEWQlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719271386; c=relaxed/simple;
-	bh=KvmbdydXpOos6pQj7PzGDoZI5wEE4oJZr9Q2b/564JQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gupMK45ntUXGFSlWju8WgkU4yFGSRZP7dUB0EDKh15XFj8bWHdtRat3K7pn2foZ1ou12FmdvScHN8ks/SNl0z732xE4dttG/2JYXoNGsQJ1qsjX9fHywqhmAWg5tONPxLBCVRCVcHNQoN3zv7qHky2ziTYA9NaO6hgIZYaYtPvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 687B7DA7;
-	Mon, 24 Jun 2024 16:23:29 -0700 (PDT)
-Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8797A3F766;
-	Mon, 24 Jun 2024 16:23:02 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Corentin Labbe <clabbe.montjoie@gmail.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S . Miller" <davem@davemloft.net>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Ryan Walklin <ryan@testtoast.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	linux-crypto@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: allwinner: h616: add crypto engine node
-Date: Tue, 25 Jun 2024 00:21:10 +0100
-Message-Id: <20240624232110.9817-5-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.39.4
-In-Reply-To: <20240624232110.9817-1-andre.przywara@arm.com>
-References: <20240624232110.9817-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1719271684; c=relaxed/simple;
+	bh=xNxO4J+rVkZVl73erQQXo/4Ljf1gi+GV0ARmHcEM6s8=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Cm4X+V+E7TMcaGsA3pRdg4vCHY3k5ucXy5ZU6US+QgHlW3BZ3ILAmc2HiZCsLpGUjrVGnV7OyPncPh+9/vr8GFIxCWIiDx8bot/rC7Z1UqPYS7HruehbrbMelGB9b7WbmcVLPptO5JtI0dsjqz0wJ8Y42nlHG6j555bR2ETlZ20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nLHODb/E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 250C6C2BBFC;
+	Mon, 24 Jun 2024 23:28:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719271684;
+	bh=xNxO4J+rVkZVl73erQQXo/4Ljf1gi+GV0ARmHcEM6s8=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=nLHODb/Ei5wCYkdsZB+9cur3yZh/KxbyIXgAoDeLIqKI2IJvf/Rzol1EkHhLrqEDs
+	 d6uJim/FvGXXKxM0yyln0uE0eIT6ArypZxb3XQ4UyS5MIJPYvUvSf2/P4F+POHjJ19
+	 l2slEA+nyjzcaa0Fk9AZJ/I7R2O0TR1E7oTYllDXd00r1yY68459Nf8MHXSnO2qt2r
+	 Hv0Keeyg0s8SHzmzyD3xnt2ly2vtI7kmq33spv4/PA61eet/WiJ5sYSmpOocvzV0aD
+	 OP2cKh/7liPl/FD6cforqYlOU1KvBR+xv1XGlxzMYpgmOC0otyKanvEl161l92TbU8
+	 yGbb0w7DwbA0w==
+Date: Mon, 24 Jun 2024 17:28:02 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, 
+ linux-doc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240624-iio-adc-ad4695-v3-1-a22c302f06bf@baylibre.com>
+References: <20240624-iio-adc-ad4695-v3-0-a22c302f06bf@baylibre.com>
+ <20240624-iio-adc-ad4695-v3-1-a22c302f06bf@baylibre.com>
+Message-Id: <171927168292.812030.284414420636530087.robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: add AD4695 and similar
+ ADCs
 
-The Allwinner H616 SoC contains a crypto engine very similar to the H6
-version, but with all base addresses in the DMA descriptors shifted by
-two bits. This requires a new compatible string.
-Also the H616 CE relies on the internal osciallator for the TRNG
-operation, so we need to reference this clock.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On Mon, 24 Jun 2024 17:01:53 -0500, David Lechner wrote:
+> Add device tree bindings for AD4695 and similar ADCs.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> 
+> Note, this may trigger a DT build warning "common-mode-channel: missing
+> type definition" if the builder doesn't include the recently added
+> common-mode-channel property [1]. This should be safe to ignore (passes
+> make dt_binding_check locally).
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=testing&id=d86deaec1c5b0fb60c3619e8d2ae7a1d722fd2ad
+> 
+> v3 changes:
+> * Change interrupts to be per pin instead of per signal.
+> * Drop diff-channels and single-channel properties.
+> * Odd numbered pins added to common-mode-channel property enum.
+> * REFGND and COM values changes to avoid confusion with pin numbers.
+> * Add inX-supply properties for odd numbed input pins.
+> 
+> v2 changes:
+> * Drop *-wlcsp compatible strings
+> * Don't use fallback compatible strings
+> * Reword supply descriptions
+> * Use standard channel properties instead of adi,pin-pairing
+> * Fix unnecessary | character
+> * Fix missing blank line
+> * Add header file with common mode channel macros
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    | 256 +++++++++++++++++++++
+>  MAINTAINERS                                        |  10 +
+>  include/dt-bindings/iio/adi,ad4695.h               |   9 +
+>  3 files changed, 275 insertions(+)
+> 
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 921d5f61d8d6a..187663d45ed72 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -113,6 +113,16 @@ soc {
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0x0 0x40000000>;
- 
-+		crypto: crypto@1904000 {
-+			compatible = "allwinner,sun50i-h616-crypto";
-+			reg = <0x01904000 0x1000>;
-+			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>,
-+				 <&ccu CLK_MBUS_CE>, <&rtc CLK_IOSC>;
-+			clock-names = "bus", "mod", "ram", "trng";
-+			resets = <&ccu RST_BUS_CE>;
-+		};
-+
- 		syscon: syscon@3000000 {
- 			compatible = "allwinner,sun50i-h616-system-control";
- 			reg = <0x03000000 0x1000>;
--- 
-2.39.4
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml: common-mode-channel: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240624-iio-adc-ad4695-v3-1-a22c302f06bf@baylibre.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
