@@ -1,540 +1,156 @@
-Return-Path: <devicetree+bounces-79222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A578591465B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:25:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7789914668
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:27:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C86CB1C20978
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:25:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B4E3B20B08
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:27:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A9A130A73;
-	Mon, 24 Jun 2024 09:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC45F130E40;
+	Mon, 24 Jun 2024 09:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8Mof4R4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rCdV0sY7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5917A13049E;
-	Mon, 24 Jun 2024 09:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9928E18E29;
+	Mon, 24 Jun 2024 09:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719221125; cv=none; b=Ut3NFOtyjDRYaY/SPO37OzZYHvCl9MfgpKPdtx0bCy/NM714H8FdG/UHGsp3/BXtJW+/rQ8hvR5oh4FY0jPYBxeuD48fLsbK5AzdUqTY1h7OKaRbJEJ3yEq0dM/vCr8QmqO2zRomSmzM2mfLMnggLnVOXo3g6lmHa+9Qhj0nscw=
+	t=1719221218; cv=none; b=Ez3rsReI5sCD1Kv6hmVXfihsg7lvKfH1T0GwnELMNfLq+gpM+ME1XAk0s9WmmnWhzg0on60p/hlf8j/y0BpPn0V9J03bnSufoMJbxp4tJvP1HRcb77jDd8PRFbCEqCiW41cp+sfKPURn5IbVw5ChrDRo7SvpVNEmb7507lW2k+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719221125; c=relaxed/simple;
-	bh=zzHhamkx2sqSS2kKDuOMTwalTDF7soRE2npOYSsjdjM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aXXnpbcwW1J8gwF4pO3OGhbjEW1WEZ8PlimNYehZVkEFIiY0urqrdSMu9CFnkVlN2H0gwJKc63Lf3e+EIRX9O/wdaG6OEaXnhKR1eKTokbTAvsXPp4LsIQ8NxJ6ZBjSy8sL6SAt7AZuwctUshZZ7zvbrJJslZiloTsQ5QcDgzKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8Mof4R4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DF9FC2BBFC;
-	Mon, 24 Jun 2024 09:25:24 +0000 (UTC)
+	s=arc-20240116; t=1719221218; c=relaxed/simple;
+	bh=eaF1Ms4GXRyu67whAqmZKIEKby5/FfQsbLSCx8IYARM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LjGvLyJHRNvUzmDPUi9keUGYR17oho9j0XrJtnboiOEj0kAV307vMhFTc7StG4Kd1fRZWUk0eR5zI9aN7RueIS/n8CsDWRY7G2VQKs6gDPaKecU0na8cunwFCvuRlWMU5oOSIlF1RjDJ0U0dV5hhTKUH0LRY7EQJNAk4r7VB8vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rCdV0sY7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D6DDC2BBFC;
+	Mon, 24 Jun 2024 09:26:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719221124;
-	bh=zzHhamkx2sqSS2kKDuOMTwalTDF7soRE2npOYSsjdjM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O8Mof4R4APWPEuz6DnAmjEIT01LOjZNWjc9x08jZrDeMMb4y77hZ4Pg7R+KoxWL7a
-	 SKoIFTD7W4LUyM45CJcTQSnTTVKnrHdLqc+IR2O8XxzdrGjeQIQHqyTJrny+HrUi2M
-	 /TfHjRniFuSLkzNckm/JOG2CBb8EzWPce+aitYzT+psGXZSSQf+A/Wz2UPcDaJTjSy
-	 IIbOEglXmvxSb8fJRVVhw/bfZvD5jbS5bBYyuKA4PhV08xeN7sFLDRhPQMu3lEzNAv
-	 FAOzvVd6mw2ZQXTlzIBLjGJKzL0VUehUTZMLF44Rmn0v3ML78GOJnZgk45yrCmxSUV
-	 Qla5j3oDSNyvA==
-Date: Mon, 24 Jun 2024 11:25:21 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Keith Zhao <keith.zhao@starfivetech.com>
-Cc: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org" <rfoss@kernel.org>, 
-	"Laurent.pinchart@ideasonboard.com" <Laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	"airlied@gmail.com" <airlied@gmail.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>, 
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "hjc@rock-chips.com" <hjc@rock-chips.com>, 
-	"heiko@sntech.de" <heiko@sntech.de>, "andy.yan@rock-chips.com" <andy.yan@rock-chips.com>, 
-	Xingyu Wu <xingyu.wu@starfivetech.com>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	Jack Zhu <jack.zhu@starfivetech.com>, Shengyang Chen <shengyang.chen@starfivetech.com>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 03/10] drm/rockchip:hdmi: migrate to use inno-hdmi
- bridge driver
-Message-ID: <20240624-tomato-mosquito-of-tornado-c01c77@houat>
-References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
- <20240521105817.3301-4-keith.zhao@starfivetech.com>
- <20240522-opalescent-orchid-worm-2996ad@houat>
- <NTZPR01MB1050EA346F8F3284BFC5AD5BEECB2@NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn>
+	s=k20201202; t=1719221218;
+	bh=eaF1Ms4GXRyu67whAqmZKIEKby5/FfQsbLSCx8IYARM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rCdV0sY7CpwwdFer21Ar31wlr8IwX5w2GD+eXu4tJRq3tOnyZtCNclODT+hf7fvQO
+	 shFpwf79paeXyUQVE9MZZ/jmR2lo5ujSxYZKvB3BFepj3bduGbVxCTlSbFIlgZSj/b
+	 6kkXcVKWBC9//pgetPXLlIaU7QgX9LCfHilad9T0Cls7g80KaQ4GCORLmxQcdLlYvo
+	 BdpVaKWQA4HBmFBKiRz5Ad4R7YS0P+5V0n+wgk1ifu44GJh85C7tb8T+5y2IyDXTh5
+	 a8kmLw7wVKrsZdyDq1pM3EAnAAmIWBQg0mv7rFvD1xOnYX37qyZWdWDDc+GtQg1F0f
+	 Oh+9CG5rCujVQ==
+Message-ID: <c4e17f42-2ad2-4979-983b-5f1e2a0b1ed8@kernel.org>
+Date: Mon, 24 Jun 2024 11:26:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7eqgua22whoeilog"
-Content-Disposition: inline
-In-Reply-To: <NTZPR01MB1050EA346F8F3284BFC5AD5BEECB2@NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe
+ the ath11k on QCA6390
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org, ath12k@lists.infradead.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240605122106.23818-2-brgl@bgdev.pl>
+ <171862259099.4124983.18069958656274980613.kvalo@kernel.org>
+ <4c3d4437-4c24-4db3-855d-f2ba7d0c6f8a@kernel.org> <871q4mk8fw.fsf@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <871q4mk8fw.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 24/06/2024 11:15, Kalle Valo wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> writes:
+> 
+>> On 17/06/2024 13:09, Kalle Valo wrote:
+>>> Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>>>
+>>>> Add a PCI compatible for the ATH11K module on QCA6390 and describe the
+>>>> power inputs from the PMU that it consumes.
+>>>>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+>>>
+>>> 2 patches applied to ath-next branch of ath.git, thanks.
+>>
+>> Hi Kalle,
+>>
+>> Are you sure your tree is properly fed to linux-next? I cannot find
+>> these patches in linux-next and above repo is not listed in Next/Trees.
+> 
+> ath.git is not included in linux-next builds. To my knowledge wireless
+> and wireless-next trees are the only trees from the wireless subsystem
+> which are included, all driver trees are not. But Jeff and I are talking
+> about including ath.git to linux-next.
 
---7eqgua22whoeilog
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for confirming. There is not much to "talk". Just send one email.
+There is no single issue stopping you from being in linux-next. The only
+work/caveat is when wireless-next cherry-picks your patches instead of
+git pull, but even then you can arrange with Stephen to opt-out from
+emails about duplicated commits.
 
-On Sun, Jun 23, 2024 at 07:17:14AM GMT, Keith Zhao wrote:
-> Hi Maxime=EF=BC=9A
->=20
->=20
-> > -----Original Message-----
-> > From: Maxime Ripard <mripard@kernel.org>
-> > Sent: 2024=E5=B9=B45=E6=9C=8822=E6=97=A5 15:25
-> > To: Keith Zhao <keith.zhao@starfivetech.com>
-> > Cc: andrzej.hajda@intel.com; neil.armstrong@linaro.org; rfoss@kernel.or=
-g;
-> > Laurent.pinchart@ideasonboard.com; jonas@kwiboo.se;
-> > jernej.skrabec@gmail.com; maarten.lankhorst@linux.intel.com;
-> > tzimmermann@suse.de; airlied@gmail.com; daniel@ffwll.ch; robh@kernel.or=
-g;
-> > krzk+dt@kernel.org; conor+dt@kernel.org; hjc@rock-chips.com;
-> > heiko@sntech.de; andy.yan@rock-chips.com; Xingyu Wu
-> > <xingyu.wu@starfivetech.com>; p.zabel@pengutronix.de; Jack Zhu
-> > <jack.zhu@starfivetech.com>; Shengyang Chen
-> > <shengyang.chen@starfivetech.com>; dri-devel@lists.freedesktop.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org
-> > Subject: Re: [PATCH v4 03/10] drm/rockchip:hdmi: migrate to use inno-hd=
-mi
-> > bridge driver
-> >=20
-> > Hi,
-> >=20
-> > On Tue, May 21, 2024 at 06:58:10PM GMT, keith wrote:
-> > > Add the ROCKCHIP inno hdmi driver that uses the Inno DesignWare HDMI
-> > > TX bridge and remove the old separate one.
-> > >
-> > > Signed-off-by: keith <keith.zhao@starfivetech.com>
-> > > ---
-> > >  drivers/gpu/drm/rockchip/Kconfig              |    1 +
-> > >  drivers/gpu/drm/rockchip/Makefile             |    2 +-
-> > >  drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c |  517 ++++++++
-> > >  .../{inno_hdmi.h =3D> inno_hdmi-rockchip.h}     |   45 -
-> > >  drivers/gpu/drm/rockchip/inno_hdmi.c          | 1073 ---------------=
---
-> > >  5 files changed, 519 insertions(+), 1119 deletions(-)  create mode
-> > > 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
-> > >  rename drivers/gpu/drm/rockchip/{inno_hdmi.h =3D> inno_hdmi-rockchip=
-=2Eh}
-> > > (85%)  delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.c
-> > >
-> > > diff --git a/drivers/gpu/drm/rockchip/Kconfig
-> > > b/drivers/gpu/drm/rockchip/Kconfig
-> > > index 1bf3e2829cd0..cc6cfd5a30d6 100644
-> > > --- a/drivers/gpu/drm/rockchip/Kconfig
-> > > +++ b/drivers/gpu/drm/rockchip/Kconfig
-> > > @@ -74,6 +74,7 @@ config ROCKCHIP_DW_MIPI_DSI
-> > >
-> > >  config ROCKCHIP_INNO_HDMI
-> > >  	bool "Rockchip specific extensions for Innosilicon HDMI"
-> > > +	select DRM_INNO_HDMI
-> > >  	help
-> > >  	  This selects support for Rockchip SoC specific extensions
-> > >  	  for the Innosilicon HDMI driver. If you want to enable diff --git
-> > > a/drivers/gpu/drm/rockchip/Makefile
-> > > b/drivers/gpu/drm/rockchip/Makefile
-> > > index 3ff7b21c0414..4b2d0cba8db3 100644
-> > > --- a/drivers/gpu/drm/rockchip/Makefile
-> > > +++ b/drivers/gpu/drm/rockchip/Makefile
-> > > @@ -12,7 +12,7 @@ rockchipdrm-$(CONFIG_ROCKCHIP_ANALOGIX_DP) +=3D
-> > > analogix_dp-rockchip.o
-> > >  rockchipdrm-$(CONFIG_ROCKCHIP_CDN_DP) +=3D cdn-dp-core.o cdn-dp-reg.o
-> > >  rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI) +=3D dw_hdmi-rockchip.o
-> > >  rockchipdrm-$(CONFIG_ROCKCHIP_DW_MIPI_DSI) +=3D
-> > dw-mipi-dsi-rockchip.o
-> > > -rockchipdrm-$(CONFIG_ROCKCHIP_INNO_HDMI) +=3D inno_hdmi.o
-> > > +rockchipdrm-$(CONFIG_ROCKCHIP_INNO_HDMI) +=3D inno_hdmi-rockchip.o
-> > >  rockchipdrm-$(CONFIG_ROCKCHIP_LVDS) +=3D rockchip_lvds.o
-> > >  rockchipdrm-$(CONFIG_ROCKCHIP_RGB) +=3D rockchip_rgb.o
-> > >  rockchipdrm-$(CONFIG_ROCKCHIP_RK3066_HDMI) +=3D rk3066_hdmi.o diff
-> > > --git a/drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
-> > > b/drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
-> > > new file mode 100644
-> > > index 000000000000..69d0e913e13b
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
-> > > @@ -0,0 +1,517 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (C) Fuzhou Rockchip Electronics Co.Ltd
-> > > + *    Zheng Yang <zhengyang@rock-chips.com>
-> > > + *    Yakir Yang <ykk@rock-chips.com>
-> > > + */
-> > > +
-> > > +#include <linux/irq.h>
-> > > +#include <linux/clk.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/err.h>
-> > > +#include <linux/hdmi.h>
-> > > +#include <linux/mod_devicetable.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/mutex.h>
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +#include <drm/bridge/inno_hdmi.h>
-> > > +#include <drm/drm_atomic.h>
-> > > +#include <drm/drm_atomic_helper.h>
-> > > +#include <drm/drm_edid.h>
-> > > +#include <drm/drm_of.h>
-> > > +#include <drm/drm_probe_helper.h>
-> > > +#include <drm/drm_simple_kms_helper.h>
-> > > +
-> > > +#include "rockchip_drm_drv.h"
-> > > +
-> > > +#include "inno_hdmi-rockchip.h"
-> > > +
-> > > +#define INNO_HDMI_MIN_TMDS_CLOCK  25000000U
-> > > +
-> > > +struct rk_inno_hdmi {
-> > > +	struct rockchip_encoder encoder;
-> > > +	struct inno_hdmi inno_hdmi;
-> > > +	struct clk *pclk;
-> > > +	struct clk *refclk;
-> > > +};
-> > > +
-> > > +static struct inno_hdmi *rk_encoder_to_inno_hdmi(struct drm_encoder
-> > > +*encoder) {
-> > > +	struct rockchip_encoder *rkencoder =3D to_rockchip_encoder(encoder);
-> > > +	struct rk_inno_hdmi *rk_hdmi =3D container_of(rkencoder, struct
-> > > +rk_inno_hdmi, encoder);
-> > > +
-> > > +	return &rk_hdmi->inno_hdmi;
-> > > +}
-> > > +
-> > > +enum {
-> > > +	CSC_RGB_0_255_TO_ITU601_16_235_8BIT,
-> > > +	CSC_RGB_0_255_TO_ITU709_16_235_8BIT,
-> > > +	CSC_RGB_0_255_TO_RGB_16_235_8BIT,
-> > > +};
-> > > +
-> > > +static const char coeff_csc[][24] =3D {
-> > > +	/*
-> > > +	 * RGB2YUV:601 SD mode:
-> > > +	 *   Cb =3D -0.291G - 0.148R + 0.439B + 128
-> > > +	 *   Y  =3D 0.504G  + 0.257R + 0.098B + 16
-> > > +	 *   Cr =3D -0.368G + 0.439R - 0.071B + 128
-> > > +	 */
-> > > +	{
-> > > +		0x11, 0x5f, 0x01, 0x82, 0x10, 0x23, 0x00, 0x80,
-> > > +		0x02, 0x1c, 0x00, 0xa1, 0x00, 0x36, 0x00, 0x1e,
-> > > +		0x11, 0x29, 0x10, 0x59, 0x01, 0x82, 0x00, 0x80
-> > > +	},
-> > > +	/*
-> > > +	 * RGB2YUV:709 HD mode:
-> > > +	 *   Cb =3D - 0.338G - 0.101R + 0.439B + 128
-> > > +	 *   Y  =3D 0.614G   + 0.183R + 0.062B + 16
-> > > +	 *   Cr =3D - 0.399G + 0.439R - 0.040B + 128
-> > > +	 */
-> > > +	{
-> > > +		0x11, 0x98, 0x01, 0xc1, 0x10, 0x28, 0x00, 0x80,
-> > > +		0x02, 0x74, 0x00, 0xbb, 0x00, 0x3f, 0x00, 0x10,
-> > > +		0x11, 0x5a, 0x10, 0x67, 0x01, 0xc1, 0x00, 0x80
-> > > +	},
-> > > +	/*
-> > > +	 * RGB[0:255]2RGB[16:235]:
-> > > +	 *   R' =3D R x (235-16)/255 + 16;
-> > > +	 *   G' =3D G x (235-16)/255 + 16;
-> > > +	 *   B' =3D B x (235-16)/255 + 16;
-> > > +	 */
-> > > +	{
-> > > +		0x00, 0x00, 0x03, 0x6F, 0x00, 0x00, 0x00, 0x10,
-> > > +		0x03, 0x6F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10,
-> > > +		0x00, 0x00, 0x00, 0x00, 0x03, 0x6F, 0x00, 0x10
-> > > +	},
-> > > +};
-> > > +
-> > > +static struct inno_hdmi_phy_config rk3036_hdmi_phy_configs[] =3D {
-> > > +	{  74250000, 0x3f, 0xbb },
-> > > +	{ 165000000, 0x6f, 0xbb },
-> > > +	{      ~0UL, 0x00, 0x00 }
-> > > +};
-> > > +
-> > > +static struct inno_hdmi_phy_config rk3128_hdmi_phy_configs[] =3D {
-> > > +	{  74250000, 0x3f, 0xaa },
-> > > +	{ 165000000, 0x5f, 0xaa },
-> > > +	{      ~0UL, 0x00, 0x00 }
-> > > +};
-> > > +
-> > > +static int inno_hdmi_find_phy_config(struct inno_hdmi *hdmi,
-> > > +				     unsigned long pixelclk)
-> > > +{
-> > > +	const struct inno_hdmi_phy_config *phy_configs =3D
-> > hdmi->plat_data->phy_configs;
-> > > +	int i;
-> > > +
-> > > +	for (i =3D 0; phy_configs[i].pixelclock !=3D ~0UL; i++) {
-> > > +		if (pixelclk <=3D phy_configs[i].pixelclock)
-> > > +			return i;
-> > > +	}
-> > > +
-> > > +	DRM_DEV_DEBUG(hdmi->dev, "No phy configuration for pixelclock %lu\n=
-",
-> > > +		      pixelclk);
-> > > +
-> > > +	return -EINVAL;
-> > > +}
-> > > +
-> > > +static void inno_hdmi_standby(struct inno_hdmi *hdmi) {
-> > > +	inno_hdmi_sys_power(hdmi, false);
-> > > +
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_DRIVER, 0x00);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_PRE_EMPHASIS, 0x00);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_CHG_PWR, 0x00);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_SYS_CTL, 0x15); };
-> > > +
-> > > +static void inno_hdmi_power_up(struct inno_hdmi *hdmi,
-> > > +			       unsigned long mpixelclock)
-> > > +{
-> > > +	struct inno_hdmi_phy_config *phy_config;
-> > > +	int ret =3D inno_hdmi_find_phy_config(hdmi, mpixelclock);
-> > > +
-> > > +	if (ret < 0) {
-> > > +		phy_config =3D hdmi->plat_data->default_phy_config;
-> > > +		DRM_DEV_ERROR(hdmi->dev,
-> > > +			      "Using default phy configuration for TMDS rate %lu",
-> > > +			      mpixelclock);
-> > > +	} else {
-> > > +		phy_config =3D &hdmi->plat_data->phy_configs[ret];
-> > > +	}
-> > > +
-> > > +	inno_hdmi_sys_power(hdmi, false);
-> > > +
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_PRE_EMPHASIS,
-> > phy_config->pre_emphasis);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_DRIVER,
-> > phy_config->voltage_level_control);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_SYS_CTL, 0x15);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_SYS_CTL, 0x14);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_SYS_CTL, 0x10);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_CHG_PWR, 0x0f);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_SYNC, 0x00);
-> > > +	hdmi_writeb(hdmi, HDMI_PHY_SYNC, 0x01);
-> > > +
-> > > +	inno_hdmi_sys_power(hdmi, true);
-> > > +};
-> > > +
-> > > +static void inno_hdmi_reset(struct inno_hdmi *hdmi) {
-> > > +	u32 val;
-> > > +	u32 msk;
-> > > +
-> > > +	hdmi_modb(hdmi, HDMI_SYS_CTRL, m_RST_DIGITAL,
-> > v_NOT_RST_DIGITAL);
-> > > +	udelay(100);
-> > > +
-> > > +	hdmi_modb(hdmi, HDMI_SYS_CTRL, m_RST_ANALOG,
-> > v_NOT_RST_ANALOG);
-> > > +	udelay(100);
-> > > +
-> > > +	msk =3D m_REG_CLK_INV | m_REG_CLK_SOURCE | m_POWER | m_INT_POL;
-> > > +	val =3D v_REG_CLK_INV | v_REG_CLK_SOURCE_SYS | v_PWR_ON |
-> > v_INT_POL_HIGH;
-> > > +	hdmi_modb(hdmi, HDMI_SYS_CTRL, msk, val);
-> > > +
-> > > +	inno_hdmi_standby(hdmi);
-> > > +}
-> > > +
-> > > +static int inno_hdmi_config_video_csc(struct inno_hdmi *hdmi) {
-> > > +	struct drm_connector *connector =3D &hdmi->connector;
-> > > +	struct drm_connector_state *conn_state =3D connector->state;
-> > > +	struct inno_hdmi_connector_state *inno_conn_state =3D
-> > > +					to_inno_hdmi_conn_state(conn_state);
-> > > +	int c0_c2_change =3D 0;
-> > > +	int csc_enable =3D 0;
-> > > +	int csc_mode =3D 0;
-> > > +	int auto_csc =3D 0;
-> > > +	int value;
-> > > +	int i;
-> > > +
-> > > +	/* Input video mode is SDR RGB24bit, data enable signal from extern=
-al */
-> > > +	hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL1, v_DE_EXTERNAL |
-> > > +		    v_VIDEO_INPUT_FORMAT(VIDEO_INPUT_SDR_RGB444));
-> > > +
-> > > +	/* Input color hardcode to RGB, and output color hardcode to RGB888=
- */
-> > > +	value =3D v_VIDEO_INPUT_BITS(VIDEO_INPUT_8BITS) |
-> > > +		v_VIDEO_OUTPUT_COLOR(0) |
-> > > +		v_VIDEO_INPUT_CSP(0);
-> > > +	hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL2, value);
-> > > +
-> > > +	if (inno_conn_state->enc_out_format =3D=3D HDMI_COLORSPACE_RGB) {
-> > > +		if (inno_conn_state->rgb_limited_range) {
-> > > +			csc_mode =3D CSC_RGB_0_255_TO_RGB_16_235_8BIT;
-> > > +			auto_csc =3D AUTO_CSC_DISABLE;
-> > > +			c0_c2_change =3D C0_C2_CHANGE_DISABLE;
-> > > +			csc_enable =3D v_CSC_ENABLE;
-> > > +
-> > > +		} else {
-> > > +			value =3D v_SOF_DISABLE | v_COLOR_DEPTH_NOT_INDICATED(1);
-> > > +			hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
-> > > +
-> > > +			hdmi_modb(hdmi, HDMI_VIDEO_CONTRL,
-> > > +				  m_VIDEO_AUTO_CSC | m_VIDEO_C0_C2_SWAP,
-> > > +				  v_VIDEO_AUTO_CSC(AUTO_CSC_DISABLE) |
-> > > +				  v_VIDEO_C0_C2_SWAP(C0_C2_CHANGE_DISABLE));
-> > > +			return 0;
-> > > +		}
-> > > +	} else {
-> > > +		if (inno_conn_state->colorimetry =3D=3D HDMI_COLORIMETRY_ITU_601)
-> > {
-> > > +			if (inno_conn_state->enc_out_format =3D=3D
-> > HDMI_COLORSPACE_YUV444) {
-> > > +				csc_mode =3D CSC_RGB_0_255_TO_ITU601_16_235_8BIT;
-> > > +				auto_csc =3D AUTO_CSC_DISABLE;
-> > > +				c0_c2_change =3D C0_C2_CHANGE_DISABLE;
-> > > +				csc_enable =3D v_CSC_ENABLE;
-> > > +			}
-> > > +		} else {
-> > > +			if (inno_conn_state->enc_out_format =3D=3D
-> > HDMI_COLORSPACE_YUV444) {
-> > > +				csc_mode =3D CSC_RGB_0_255_TO_ITU709_16_235_8BIT;
-> > > +				auto_csc =3D AUTO_CSC_DISABLE;
-> > > +				c0_c2_change =3D C0_C2_CHANGE_DISABLE;
-> > > +				csc_enable =3D v_CSC_ENABLE;
-> > > +			}
-> > > +		}
-> > > +	}
-> > > +
-> > > +	for (i =3D 0; i < 24; i++)
-> > > +		hdmi_writeb(hdmi, HDMI_VIDEO_CSC_COEF + i,
-> > > +			    coeff_csc[csc_mode][i]);
-> > > +
-> > > +	value =3D v_SOF_DISABLE | csc_enable |
-> > v_COLOR_DEPTH_NOT_INDICATED(1);
-> > > +	hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
-> > > +	hdmi_modb(hdmi, HDMI_VIDEO_CONTRL, m_VIDEO_AUTO_CSC |
-> > > +		  m_VIDEO_C0_C2_SWAP, v_VIDEO_AUTO_CSC(auto_csc) |
-> > > +		  v_VIDEO_C0_C2_SWAP(c0_c2_change));
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int inno_hdmi_setup(struct inno_hdmi *hdmi,
-> > > +			   struct drm_display_mode *mode)
-> > > +{
-> > > +	struct drm_display_info *display =3D &hdmi->connector.display_info;
-> > > +	unsigned long mpixelclock =3D mode->clock * 1000;
-> > > +
-> > > +	/* Mute video and audio output */
-> > > +	hdmi_modb(hdmi, HDMI_AV_MUTE, m_AUDIO_MUTE | m_VIDEO_BLACK,
-> > > +		  v_AUDIO_MUTE(1) | v_VIDEO_MUTE(1));
-> > > +
-> > > +	/* Set HDMI Mode */
-> > > +	hdmi_writeb(hdmi, HDMI_HDCP_CTRL,
-> > > +		    v_HDMI_DVI(display->is_hdmi));
-> > > +
-> > > +	inno_hdmi_config_video_timing(hdmi, mode);
-> > > +
-> > > +	inno_hdmi_config_video_csc(hdmi);
-> > > +
-> > > +	if (display->is_hdmi)
-> > > +		inno_hdmi_config_video_avi(hdmi, mode);
-> > > +
-> > > +	/*
-> > > +	 * When IP controller have configured to an accurate video
-> > > +	 * timing, then the TMDS clock source would be switched to
-> > > +	 * DCLK_LCDC, so we need to init the TMDS rate to mode pixel
-> > > +	 * clock rate, and reconfigure the DDC clock.
-> > > +	 */
-> > > +	inno_hdmi_i2c_init(hdmi, mpixelclock);
-> > > +
-> > > +	/* Unmute video and audio output */
-> > > +	hdmi_modb(hdmi, HDMI_AV_MUTE, m_AUDIO_MUTE | m_VIDEO_BLACK,
-> > > +		  v_AUDIO_MUTE(0) | v_VIDEO_MUTE(0));
-> > > +
-> > > +	inno_hdmi_power_up(hdmi, mpixelclock);
-> > > +
-> > > +	return 0;
-> > > +}
-> > >
-> >=20
-> > It's kind of a general comment, but I don't think that's the right abst=
-raction. You
-> > should create a inno_hdmi bridge that allows to supplement some of the =
-atomic
-> > hooks, but not reimplement them entirely each time.
-> >=20
-> > You can have a look at how dw-hdmi does it for example. Also, why do yo=
-u still
-> > need the encoder and connectors?
-> >=20
-> Hi Maxime=EF=BC=9A
-> This series of patches does not consider referencing bridge ,
-> just split the public interface based on the current structure (encoder +=
- connector),=20
-> and then make it into a public API.=20
-> The next step is to implement the driver code of the public part based on=
- the bridge architecture.
+Of course this is not specific to Ath - as you said - all wireless
+sub-trees should be fixed. It's really odd that these are not in linux-next.
 
-I'm not sure what you have in mind, but I stand by what I was saying
-previously. SoC-specific drivers shouldn't have code to handle the
-common part of the bridge, it should be the other way around: the common
-part should add hooks to handle the SoC-specific parts.
+Best regards,
+Krzysztof
 
-> By the way, does the current situation require the introduction of the ne=
-xt_bridge concept?
-> dw-hdmi attach:
-> static int dw_hdmi_bridge_attach(struct drm_bridge *bridge,
-> 				 enum drm_bridge_attach_flags flags)
-> {
-> 	struct dw_hdmi *hdmi =3D bridge->driver_private;
->=20
-> 	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
-> 		return drm_bridge_attach(bridge->encoder, hdmi->next_bridge,
-> 					 bridge, flags);
->=20
-> 	return dw_hdmi_connector_create(hdmi);
-> }
->=20
-> For inno hdmi , I want to define it like this , will it be ok?
-> static int inno_bridge_attach(struct drm_bridge *bridge,
-> 				 enum drm_bridge_attach_flags flags)
-> {
-> 	......
->=20
-> 	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) {
-> 		DRM_ERROR("Fix bridge driver to make connector optional!");
-> 		return -EINVAL;
-> 	}
->=20
-> 	return 0;
-> }
-> ......
-> And then , create the connector outside of bridge:
-> 	ret =3D drm_bridge_attach(encoder, &hdmi->bridge, NULL, 0);
-> 	if (ret)
-> 		return ret;
->=20
-> 	hdmi->connector =3D drm_bridge_connector_init(drm, encoder);
-> 	if (IS_ERR(hdmi->connector)) {
-> 		dev_err(dev, "Unable to create bridge connector\n");
-> 		ret =3D PTR_ERR(hdmi->connector);
-> 		return ret;
-> 	}
-
-Yes, it looks reasonable as long as you don't break old drivers.
-
-Maxime
-
---7eqgua22whoeilog
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZnk7gQAKCRDj7w1vZxhR
-xeQuAQC/bNSjUtPUn5rw/CkAORZqINfxlg2OcRrWhcpVanD1FgEAlZb6CxKNcTRY
-iD7vdCR46AF7/gr2QeRY/g9s722xxAA=
-=fM4N
------END PGP SIGNATURE-----
-
---7eqgua22whoeilog--
 
