@@ -1,135 +1,171 @@
-Return-Path: <devicetree+bounces-79289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EDE39148CF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:33:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 887EE9148D4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:33:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F5DDB24279
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:33:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 094F61F23631
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D290513A252;
-	Mon, 24 Jun 2024 11:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B73B13B2AF;
+	Mon, 24 Jun 2024 11:33:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="mxK9HyWv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SIj/pJ8S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B70441D
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 11:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B861213A879
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 11:33:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719228784; cv=none; b=nqYKZZm+WNGqe/xbu4afL9t0lz8iRhPds7La2g98Is8P/LBF27IjPLIJKjUNJuicqfplu0Bu2GT63w2eBa9RevGNo59HUpMLa5/2kb3NJc0oHR4m2o9JCoFWZ/FKBl8DNUwehuvTaN8ghcmAzXqqxUZToW/BYvEYPec2zBsge5Q=
+	t=1719228804; cv=none; b=P+pIxsgxZWQ7xPMdlAU/WbHdMzRnwG+SOil3fxUhJz6QxT3oYqdzM/wlgKDBEWd+DyRwuh45J2D96dqwg0Qjda4XdA1de+gW8Qb/mOMaFfR6JI9wyVeA8bYXd4jk90l4wwO8dnJVWeMK2sAjIgEfW/raIsx6qG7ZXfizjHH4ldg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719228784; c=relaxed/simple;
-	bh=i0UpEvQZYO12T8KBC7z/GmNe7URjhVyNHlyByV/Als0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g2voc7YYvSievQ0oowJ1G8FekoSZJNJciGTxG2a/6sltZoFdx/Bj0SXtIWCTTD2/KG195vqFYFUhWBlVVyPCvfKB+cY2JpxK1QvaLA/OwFFvk0gtbIEZRWAoveVnhM0eTcPdMzZ0GifQ7v+ax5Dhnwz1AEQ5R3BkATeyjdAL/9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=mxK9HyWv; arc=none smtp.client-ip=95.215.58.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-X-Envelope-To: dmitry.baryshkov@linaro.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1719228780;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=75G0OkMLqe4Ot81fVo3yHPQqIVOtvkVsPdLFfHdHxi0=;
-	b=mxK9HyWvmS3iBkmkN7bcMVsuwKw67DmtU8BUB2NPcnLqlEwsdLKfveCmxmqp2668iGbrli
-	11g6N4344Xx1ZvsMI2GOy8/o7yuvtFs4XI37pLLScINHpZPtBJvHJ/blxWbKxbjJ+jUvV2
-	dxkxhbKkCLsA5vYw/3jT4n4R811pP0N41G3O68iWpo1nMayZ4TCs3lttEd2wq64K2CAS8n
-	Pzzq4w60g3XFeGNAe3+2NuWwqY4f6jYa32QZwfdZ+2WN6+SY0J7Vpwk+nLOZJwn5zJfuMK
-	SKSJ6pe++v8mrOxsJVl/zkxKCNzMK2l0cxn7dldmqG1QQQ2XJX+ONL533TdSnw==
-X-Envelope-To: neil.armstrong@linaro.org
-X-Envelope-To: quic_jesszhan@quicinc.com
-X-Envelope-To: airlied@gmail.com
-X-Envelope-To: daniel@ffwll.ch
-X-Envelope-To: maarten.lankhorst@linux.intel.com
-X-Envelope-To: mripard@kernel.org
-X-Envelope-To: tzimmermann@suse.de
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: dmitry.torokhov@gmail.com
-X-Envelope-To: andersson@kernel.org
-X-Envelope-To: konrad.dybcio@linaro.org
-X-Envelope-To: rydberg@bitmath.org
-X-Envelope-To: dri-devel@lists.freedesktop.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: linux-input@vger.kernel.org
-X-Envelope-To: linux-arm-msm@vger.kernel.org
-X-Envelope-To: ~postmarketos/upstreaming@lists.sr.ht
-X-Envelope-To: frieder.hannenheim@proton.me
-Message-ID: <722dab04-03f9-49ce-9c7c-4a3a9f898fc9@postmarketos.org>
-Date: Mon, 24 Jun 2024 13:32:57 +0200
+	s=arc-20240116; t=1719228804; c=relaxed/simple;
+	bh=aHBMPXZbuIaqHeB85khV05HlP6Xqj7t2FeSE5qthS3c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ama0DbzqkVaH9pmZXXySzGQWIyZqORbcvPLo0Dx8oGXfXpMYgVuot69T2ZiwgtLdQxvWj0lodjmRcyqtN0QE8QY/cHbWLNa7Jno+UnLzJxQ3TF66zvzkYtUpGYKkSQlHnymhEBLZ38rQrscTPI+MM0Zr5FJ8sGQgKY0r3QQiuFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SIj/pJ8S; arc=none smtp.client-ip=209.85.161.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5c204600d49so274166eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 04:33:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719228800; x=1719833600; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=odpMfJJZ8NPTYLZvgutefDIcMfEDKS6u2cQ2F9qXb2A=;
+        b=SIj/pJ8SkjXrkKdG2Em6ZbdDd369mqHkAvh9JRfRXorWP4boLiTDpqN6/5k/O5Pna3
+         /Bo+IJ6tuCVaNe2JIRoEcLpJ6WH3mKD4aeVhc0aOmFJ7FsmPoNJLmk7GfU8JOsINKkDA
+         4Rp/fh2Vts/VDujxCty2aXC1mKRanXhgkQAX1X2tt/mtY9m1Wh9DzK8EWLVvZTQyQtfR
+         A/dftmLhd7svPTOrtWjJWwMEZOV+MYBuSsTyc44EhmJA9E/3hX+PsT/qn68eXFGnpqx+
+         OMi1MzKdqul0bdYrI1QYVkX8sbnxaP3wRu3PdstempmOFZQGP9+AbfW47/2QhokMf1AZ
+         dbhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719228801; x=1719833601;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=odpMfJJZ8NPTYLZvgutefDIcMfEDKS6u2cQ2F9qXb2A=;
+        b=EIrNDwXhRXIRtcpcbj7MdS97/VCNQbsZ93MUA29vYiMdsAeAn8XAPF0AsVfSD2QGJB
+         VKCjdNHgivqQawxgyIajCTj8uFPLV4FhvkL41ymoDKxYGAbMgGpz+VuyyhK/I4oIaUxn
+         AryH865jXwVwZVCTUI2XMH1HVgUxAur9gfEufxG9DYfvUoFYdxal1oKUIFAAN4Q3oKwc
+         nIHCBt0iXW9i9WeJ9h285RxWHnhtxDpfTQlkSWRtqPneVssKrNP4i4TDVoH5Q6XMPTQX
+         Pd9yVck4/fS5Qt7oR2Kbd4EHhOZk1hQ8G7Jevt/LuUXbCS+LzQrPLUto9llgsZE81l+8
+         kPxg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBbfSgv0Y38xTZ23SwRIWaqvWTdsoB5I8uGJYdIrNzxXA8uvVeirnVGwx2cGE/maVXixJgZaaiCaAx4KkYPlXKvXf2+70RGiwfDg==
+X-Gm-Message-State: AOJu0Yz9LuyzF/Nff2hbVP6aqvKq592CxKDGQa+bBYEeOidKsGeNp94z
+	WxhF7q3gknavQkoQa8ByeEKbhTPavW71BPYQTc8iAWKK5WXGkLmaSAEcs6c/bhKqR+LZqknSeL7
+	mOHDpKHS3Fic4AcDUHzA7Mf+FJ3D0kf1N+0wD6Q==
+X-Google-Smtp-Source: AGHT+IGmvLU2Uh+ee6D/ZczJ3wgdd7eqWxvkUL1HgsQRsgH4xuQIXM0iyYoA9GudXgodjHC0GIwB+1yLti8wulJ2M18=
+X-Received: by 2002:a4a:870d:0:b0:5c1:ae16:acb3 with SMTP id
+ 006d021491bc7-5c1eb76906fmr4738478eaf.0.1719228800566; Mon, 24 Jun 2024
+ 04:33:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/7] qcom: initial support for the OnePlus 8T
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Henrik Rydberg <rydberg@bitmath.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Frieder Hannenheim <frieder.hannenheim@proton.me>
-References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
- <ufc7sq5s5nymjncp5w2446dq5xcmmqbmsuubhpo2fxtsz5dpgg@xtqtmmsio6sr>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Caleb Connolly <caleb@postmarketos.org>
-In-Reply-To: <ufc7sq5s5nymjncp5w2446dq5xcmmqbmsuubhpo2fxtsz5dpgg@xtqtmmsio6sr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <20240617-usb-phy-gs101-v3-0-b66de9ae7424@linaro.org> <20240617-usb-phy-gs101-v3-6-b66de9ae7424@linaro.org>
+In-Reply-To: <20240617-usb-phy-gs101-v3-6-b66de9ae7424@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 24 Jun 2024 12:33:09 +0100
+Message-ID: <CADrjBPrg6_3FhD=2W8X=yaSrTMbmcfjRo3HVo1LyHVcUM8P=0g@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] phy: exynos5-usbdrd: support Exynos USBDRD 3.1
+ combo phy (HS & SS)
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, kernel-team@android.com, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Andr=C3=A9,
 
+On Mon, 17 Jun 2024 at 17:45, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> Add support for the Exynos USB 3.1 DRD combo phy, as found in Exynos 9
+> SoCs like Google GS101. It supports USB SS, HS and DisplayPort.
+>
+> In terms of UTMI+, this is very similar to the existing Exynos850
+> support in this driver. The difference is that this combo phy supports
+> both UTMI+ (HS) and PIPE3 (SS). It also supports DP alt mode.
+>
+> The number of ports for UTMI+ and PIPE3 can be determined using the
+> LINKPORT register (which also exists on Exynos E850).
+>
+> For SuperSpeed (SS) a new SS phy is in use and its PIPE3 interface is
+> new compared to Exynos E850, and also very different from the existing
+> support for older Exynos SoCs in this driver.
+>
+> The SS phy needs a bit more configuration work and register tuning for
+> signal quality to work reliably, presumably due to the higher
+> frequency, e.g. to account for different board layouts. Additionally,
+> power needs to be enabled before writing to the SS phy registers.
+>
+> This commit adds the necessary changes for USB HS and SS to work.
+> DisplayPort is out of scope in this commit.
+>
+> Notes:
+> * For the register tuning, exynos5_usbdrd_apply_phy_tunes() has been
+>   added with the appropriate data structures to support tuning at
+>   various stages during initialisation. Since these are hardware
+>   specific, the platform data is supposed to be populated accordingly.
+>   The implementation is loosely modelled after the Samsung UFS PHY
+>   driver.
+>
+>   There is one tuning state for UTMI+, PTS_UTMI_POSTINIT, to execute
+>   after init and generally intended for HS signal tuning, as done in
+>   this commit.
+>
+>   PTS_PIPE3_PREINIT PTS_PIPE3_INIT PTS_PIPE3_POSTINIT
+>   PTS_PIPE3_POSTLOCK are tuning states for PIPE3. In the downstream
+>   driver, preinit differs by Exynos SoC, and postinit and postlock
+>   are different per board. The latter haven't been implemented for
+>   gs101 here, because downstream doesn't use them on gs101 either.
+>
+> * Signal lock acquisition for SS depends on the orientation of the
+>   USB-C plug. Since there currently is no infrastructure to chain
+>   connector events to both the USB DWC3 driver and this phy driver, a
+>   work-around has been added in
+>   exynos5_usbdrd_usbdp_g2_v4_pma_check_cdr_lock() to check both
+>   registers if it failed in one of the orientations.
+>
+> * Equally, we can only establish SS speed in one of the connector
+>   orientations due to programming differences when selecting the lane
+>   mux in exynos5_usbdrd_usbdp_g2_v4_pma_lane_mux_sel(), which really
+>   needs to be dynamic, based on the orientation of the connector.
+>
+> * As is, we can establish a HS link using any cable, and an SS link in
+>   one orientation of the plug, falling back to HS if the orientation is
+>   reversed to the expectation.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+>
+> ---
 
-On 24/06/2024 07:18, Dmitry Baryshkov wrote:
-> On Mon, Jun 24, 2024 at 03:30:24AM GMT, Caleb Connolly wrote:
->> Add bindings for the SM8250 OnePlus devices, a common devicetree,
->> touchscreen and display drivers, and a dts for the OnePlus 8T (kebab).
->>
->> The OnePlus 8 series is made up of 3 flagship smartphones from 2019,
->> featuring the Qualcomm X55 5G PCIe modem.
->>
->> This series introduces initial support for the 8T, adding drivers for
->> the 1080x2400 120Hz DSC panel and the Synaptics TCM Oncell touchscreen.
->>
->> The panel driver suffers from similar limitations to the LG SW43408
->> panel found on the Pixel 3, namely that after toggling the reset GPIO it
->> is not possible to get the panel into a working state.
-> 
-> Just to point it out: this is no longer true for SW43408. The panel
-> wakes up and works after toggling the reset. It seems, there is an issue
-> with one of the regulators, but not with the reset and/or panel startup.
+Reviewed-by:  Peter Griffin <peter.griffin@linaro.org>
+and
+Tested-by: Peter Griffin <peter.griffin@linaro.org>
 
-Hmm ok, I've heard mixed reports then, I should try it out myself again.
+Tested using my Pixel 6 pro device. USB comes up and it is possible to
+use adb from the host computer to the phone.
 
-I'll update the cover letter to reflect this. Thanks.
-> 
->> Given the apparent prevelance of this issue, particularly with DSC
->> panels, I believe this is a bug in the core DSI code, and not a device
->> or panel specific issue. I think it is still useful to accept these
->> panel drivers into upstream since, from a users perspective, the panel
->> is fully functional just by leaving the reset GPIO alone and keeping the
->> regulator on. The only (theoretical) downside is worse battery life,
->> which is a small price to pay for a working display.
->>
-> 
+regards,
+
+Peter
+
+[..]
 
