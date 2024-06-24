@@ -1,211 +1,81 @@
-Return-Path: <devicetree+bounces-79381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13D3915118
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:57:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0D5915134
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:59:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FBB01C24633
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:57:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 361202867F2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7425B19D89D;
-	Mon, 24 Jun 2024 14:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cmb9ihPT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B4019B3C4;
+	Mon, 24 Jun 2024 14:58:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A6619D897
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 14:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F305719B59D
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 14:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719240863; cv=none; b=dT0+Mdo9Zv7O+pd1sgo4RQi8AP43P4iT3vnRO/c04wP/DiJEMfkF6drUJ4EKlbGkVVQXcItl6VbHRBqlbwtTdqANEcO9pv+J0SRw55YYfwKgUDxbHpAu5ZwU/hkuowRAio0t1PKDhNdlWOiEsuec+Zp8W+Zqy1m2jydT9/50qoI=
+	t=1719241116; cv=none; b=AkAyPHe/WFL2QKfFNz/IAwugliD5SFjMpYf7GEnKBZsqcBQFnpBDbrGFofzLvfBsIr2MAxZadGSrJq23zsA1DyBu7SSyqthp2Lthlup2lS/NPa4i2Cc6nF21qOqYBlEsygN4iHKwrXxvFKPmv6Cvb9pfheNIywqfj3cJ2clGMsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719240863; c=relaxed/simple;
-	bh=LZEqFfpmjMqfmTtignQSW0nEmvz3KJ0wK4kDIt7qkho=;
+	s=arc-20240116; t=1719241116; c=relaxed/simple;
+	bh=RArBktljEKwDlCnZSNGaVWC21dpHR+SM2Tgckwc4dYg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lYd7Ywq2/na4yM8ZM6QrvwHeRBM1qxACKmkJJwVKo/8IPLgUoIibroj9WUAoq2AxrwboFGKghvm4tA2uwyaErFTjwz6jL9KI6A8D4GkdMEKDd/AT53TbQLhqSQQrAwbcFxTnqFQBPRmRt4zg4YgchOnbtRT5411TtkmA8116iXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cmb9ihPT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 811F3C32789;
-	Mon, 24 Jun 2024 14:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719240862;
-	bh=LZEqFfpmjMqfmTtignQSW0nEmvz3KJ0wK4kDIt7qkho=;
-	h=From:List-Id:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cmb9ihPTOePnjIFkV0sSefcVDq/Dz6+c6PryMar03K0rN5dwKWoIA1WG86rYahP9R
-	 7otUhJo6oIklRsSlgz26wrYx94HURoOTiWkfbSXoa07K84Vee8v1gtdWqDNpPN+yN/
-	 GcojLixaBwP3/lXWtpli4itXfYlez9zPNnXmQ/F/QQUoF/2HJP+uI9fDq+ChUgLJHv
-	 n9ktPFkuWrBHtJXDRzAVjHyeoDgWPbHZ487I2UMfvrOnnsYXs2eZNlbzhIXQpBkDc4
-	 WxXa/JyDjrlGUbaaQDXbnhhdkGEQCu3mYpHvuKpmnwI5PayNIUeqBMwjZIqWUWya+R
-	 v1mcKIMLHuYUQ==
-From: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	soc@kernel.org,
-	Thomas Gleixner <tglx@linutronix.de>
-Cc: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: interrupt-controller: convert marvell,mpic binding to YAML
-Date: Mon, 24 Jun 2024 16:53:55 +0200
-Message-ID: <20240624145355.8034-3-kabel@kernel.org>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240624145355.8034-1-kabel@kernel.org>
-References: <20240624145355.8034-1-kabel@kernel.org>
+	 MIME-Version:Content-Type; b=dcPOlwo6Orm4PCw2YAEhEFFNl+4RF3MbVVhnt8VeSrsMqjBdkDfds6M9ODmRL7OtT+LMSCr7DnwlMllMxLZUawTyjHwcidzhJWD7wx/Be9nOdFXaCowpBMSDvFtIOHNS5e1NbrPA/i+q2wuJyAlwEyU6kv1KlbM5sW52Z59aO2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6a.versanet.de ([83.135.91.106] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sLl9C-00019N-TS; Mon, 24 Jun 2024 16:58:22 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki <naoki@radxa.com>
+Cc: chris.obbard@collabora.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-rockchip@lists.infradead.org, robh@kernel.org,
+ sebastian.reichel@collabora.com
+Subject:
+ Re: [PATCH 3/3] arm64: dts: rockchip: change spi-max-frequency for Radxa ROCK
+ 3C
+Date: Mon, 24 Jun 2024 16:58:21 +0200
+Message-ID: <2557120.Y4W8hZkJsM@diego>
+In-Reply-To: <DBE7B5A56069764A+b5680896-bc71-4af8-9d56-bd6828595e74@radxa.com>
+References:
+ <20240623023329.1044-3-naoki@radxa.com>
+ <20240623040409.1756986-1-amadeus@jmu.edu.cn>
+ <DBE7B5A56069764A+b5680896-bc71-4af8-9d56-bd6828595e74@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Convert the marvell,mpic device-tree binding to YAML. Add myself as
-maintainer.
+Am Sonntag, 23. Juni 2024, 06:24:56 CEST schrieb FUKAUMI Naoki:
+> Hi,
+> 
+> Thank you very much for your comment!
+> 
+> On 6/23/24 13:04, Chukun Pan wrote:
+> > Hi,
+> >> SPI NOR flash chip may vary, so use safe(lowest) spi-max-frequency.
+> > 
+> > I don't think a fixes tag is needed, because there is no documentation
+> > for this. See also (sfc part):
+> > https://lore.kernel.org/lkml/d7de2213-8dd2-42ec-9a30-a569ac71be3e@kwiboo.se/
+> 
+> I see, I'll remove fixes tag in v2.
+> btw, is this change reasonable(acceptable)?
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- .../marvell,armada-370-xp-mpic.txt            | 38 -----------
- .../interrupt-controller/marvell,mpic.yaml    | 63 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 64 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
+it is, also no need to resend, I just dropped the Fixes tag myself
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt b/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
-deleted file mode 100644
-index 5fc03134a999..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Marvell Armada 370, 375, 38x, XP Interrupt Controller
-------------------------------------------------------
--
--Required properties:
--- compatible: Should be "marvell,mpic"
--- interrupt-controller: Identifies the node as an interrupt controller.
--- msi-controller: Identifies the node as an PCI Message Signaled
--  Interrupt controller.
--- #interrupt-cells: The number of cells to define the interrupts. Should be 1.
--  The cell is the IRQ number
--
--- reg: Should contain PMIC registers location and length. First pair
--  for the main interrupt registers, second pair for the per-CPU
--  interrupt registers. For this last pair, to be compliant with SMP
--  support, the "virtual" must be use (For the record, these registers
--  automatically map to the interrupt controller registers of the
--  current CPU)
--
--Optional properties:
--
--- interrupts: If defined, then it indicates that this MPIC is
--  connected as a slave to another interrupt controller. This is
--  typically the case on Armada 375 and Armada 38x, where the MPIC is
--  connected as a slave to the Cortex-A9 GIC. The provided interrupt
--  indicate to which GIC interrupt the MPIC output is connected.
--
--Example:
--
--        mpic: interrupt-controller@d0020000 {
--              compatible = "marvell,mpic";
--              #interrupt-cells = <1>;
--              #address-cells = <1>;
--              #size-cells = <1>;
--              interrupt-controller;
--              msi-controller;
--              reg = <0xd0020a00 0x1d0>,
--                    <0xd0021070 0x58>;
--        };
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml b/Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
-new file mode 100644
-index 000000000000..616a41c87352
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/marvell,mpic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell Armada 370, 375, 38x, 39x, XP Interrupt Controller
-+
-+maintainers:
-+  - Marek Behún <kabel@kernel.org>
-+
-+description: |
-+  The top-level interrupt controller on Marvell Armada 370 and XP. On these
-+  platforms it also provides inter-processor interrupts.
-+
-+  On Marvell Armada 375, 38x and 39x this controller is wired under ARM GIC.
-+
-+  Provides MSI handling for the PCIe controllers.
-+
-+properties:
-+  compatible:
-+    const: marvell,mpic
-+
-+  reg:
-+    items:
-+      - description: main registers
-+      - description: per-cpu registers
-+
-+  interrupts:
-+    items:
-+      - description: |
-+          Parent interrupt on platforms where MPIC is not the top-level
-+          interrupt controller.
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+  msi-controller: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - msi-controller
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    interrupt-controller@20a00 {
-+        compatible = "marvell,mpic";
-+        reg = <0x20a00 0x2d0>, <0x21070 0x58>;
-+        interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+        msi-controller;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2ca8f35dfe03..17f1ea1eacf3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2211,6 +2211,7 @@ F:	Documentation/ABI/testing/sysfs-firmware-turris-mox-rwtm
- F:	Documentation/devicetree/bindings/bus/moxtet.txt
- F:	Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
- F:	Documentation/devicetree/bindings/gpio/gpio-moxtet.txt
-+F:	Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
- F:	Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
- F:	Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
- F:	drivers/bus/moxtet.c
--- 
-2.44.2
 
 
