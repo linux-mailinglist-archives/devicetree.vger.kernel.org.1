@@ -1,130 +1,141 @@
-Return-Path: <devicetree+bounces-79371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED4F691502E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:41:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A93915040
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:43:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F67AB23844
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:41:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36E09284F31
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 14:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FEB319B599;
-	Mon, 24 Jun 2024 14:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A138319AD90;
+	Mon, 24 Jun 2024 14:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kthgy1mr"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="DIDGi5DW";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="vu+5iuzj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh8-smtp.messagingengine.com (fhigh8-smtp.messagingengine.com [103.168.172.159])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50EA819B3CE;
-	Mon, 24 Jun 2024 14:40:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F39148849;
+	Mon, 24 Jun 2024 14:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719240023; cv=none; b=mQI9JvlkF01xhj7a5KSTqvpk0ygb2LZbMKla7+acC8Vflq/EBlt3veBq8UTrUl1G5ACyX8Mo3XhazcFfMTBQSOH4OreBXtZgIviWLClv7ZXs8qsLNs6Y/YRtOUZIDj8maJgYz2iNvc+7rVwtjkktVFcPfA5yomCfanZeT9bSOnc=
+	t=1719240206; cv=none; b=EChWarNNZA6J35gs+Avs+mz8ZF5lxxumYR51a+Ofel7P7PPBPDbGyU8QVnTPbH8KAjerWw/CnZ4ATDkiQLPclND421b/7FDmJ8JdMIel0YzIenCqLtqTTvyB9G/blzhNX6lANaYNHIKA8QVn15C8jzjeKTNf8jgoqGfwsWbE9Ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719240023; c=relaxed/simple;
-	bh=LghOPF/jBzOKdRQhWCjLMPt9wHaq5KBkLu8Li8xh22Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QXCrdn40JjOH7KIFwjDHo8yRcPSMG86vmBYyNCbHzd8PICg/4gUwGRLumz+MxNgdubzJynwxY6ZdaC/UZgjx9vW0pqQUDT2E5w++fza4Nf64GoEWI6A8ceDt5MQNFyDsyoeAfZlFQ98sIQkOvxsKh3sZ6GzN0+c4y5WQT2iwkiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kthgy1mr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C9B3C2BBFC;
-	Mon, 24 Jun 2024 14:40:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719240022;
-	bh=LghOPF/jBzOKdRQhWCjLMPt9wHaq5KBkLu8Li8xh22Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Kthgy1mraYMHo8kgPH0n4nZR6eKlPkAHwYrXrCDtoyJ7FWDddIlZwy/7doXrfOqoR
-	 KiYt9yqzQYfK20z1ZHivh2fuGEtJMemdboUsRe6sTcJ9RH5dddOS7oxxeSC4kgni22
-	 no5d82UomUaGW5+PjLI9/BBEQE/Vzq05QpvkWOfBUUOKEWKetLllRjrH6aFm7OB1FK
-	 1Rp0WiZOuuzLdG86HCZxtiuhzS0tLysPFq85s9h1JgdjX5ys36dtQjXhWI+bzdr6Au
-	 XPdF06+uqR4sR0VTLdxC2tXKvpg74NkHF6zYcI9VgJJ3sCWXvLj07jny8TXz6xbp10
-	 W/4oUA87sAawA==
-Message-ID: <7466d857-5ed0-433b-bf3d-525b40939b78@kernel.org>
-Date: Mon, 24 Jun 2024 16:40:15 +0200
+	s=arc-20240116; t=1719240206; c=relaxed/simple;
+	bh=2i8CvIfWueteq+RiyyDoWTxNLGDT4inf912od4bVtHA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Iv3uvybNuRMMAj5k7gjrTTVU81UpRQVR793E9A4Dzq4IfH4Cg1hA01f0406b1k0YuQyphvfGtdGbkTANZmkknBBzD3VUAwZbexIYvgy+IrItyTpYqXlRcIO8vt7yjrsGyU5hiefYb9vy5OAZzz0bCtswo+dg2aorTiWUp5GBB2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=DIDGi5DW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=vu+5iuzj; arc=none smtp.client-ip=103.168.172.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 03D75114010E;
+	Mon, 24 Jun 2024 10:43:22 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Mon, 24 Jun 2024 10:43:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1719240201; x=1719326601; bh=+i
+	w/gkjYFx12UBDnI1BpM/8ug8Cqs7Dpl7CEgkW7Hw8=; b=DIDGi5DWdW8HODpmpK
+	wzFP/JaXw81kVd5Aj9Gek8VwPfN17qx4Qx8gLDZ2/dCtrwy/+Kd1rl33Ns9D6L4q
+	HVCE10fvJefulgzgOw+qtgAwycuYhpNr7iFtbOI1wcOiif8KjQrO5jPbc1W4kB3Q
+	v7DZkwu6v6mEk+g1njHw7H+LBz0KTc7JrYw4Uuqht60KjfvqF2nQqTfcY3I606/u
+	chAyy8xtWy35qJMQlzF9QiT/FeFRC9VbVBWoQRMClv2hvsdmH5pPU0RgR9LDylzB
+	1aq85YhIXcYIpC4ZPtg3r91y6i1rXcnU5VeEJtmZ2f4rrayfJjMO2aWnxGoquRAC
+	3Z6Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; t=1719240201; x=1719326601; bh=+iw/gkjYFx12U
+	BDnI1BpM/8ug8Cqs7Dpl7CEgkW7Hw8=; b=vu+5iuzjleq7EUOUi2/H9HTO8d5xs
+	mCyLdhnEA/E9d1hmb8lEf1Zof69vv48fE8hfTeyH/JABO9+wvVsTpah4U29kNtLz
+	9goeciTsEsC9GNdadgTx5y2+Rzyu075SDXXx06rHIHA4poZYjDjs+XCqyjHdWK8F
+	P9xwUt1xx/n+jPo/IRBrZYAG2yVwRu8iOh8Wys8FSValyeoeQeKLdHUnjPnG1Xn1
+	AM1HTHeU1LLYWw8GCfwGKZPpM2C2r0+spO5zN7OUPgzISDkHAkSw9NJowtN7WJSD
+	RWSDJoceWI7IZxbWzU2ShB23QUMs7KmSyd5Vho0etdBIG+kRRZTNeBZKg==
+X-ME-Sender: <xms:CYZ5Zk_qNCLXgMNbCcu4d8cHfSTBsJ4WSfl5Nx1q9RdrdMW7Y6BOGw>
+    <xme:CYZ5ZsvZ1OUbLBVa1tbsuDpP-juIeZF9dUb_x0mE6TgPM1FLnxsev7hjWsoyyxoLN
+    wrxPjOwdsfllLqJo40>
+X-ME-Received: <xmr:CYZ5ZqB10d-qArIovpPLGobcvCilrptJ4yQrwV4yoWvq0izIQfG5e9VQXj9V0vb2pBk6kY2v0BxSe6Qx216e-uvP-Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeeguddgkedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
+    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehudelteetkefg
+    ffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfeetgeenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhl
+    uhhnugesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:CYZ5ZkdBQPBH8UctjuZ8-8dILpZo3Tpox7RTAz6b9TJqYPDlBtObcA>
+    <xmx:CYZ5ZpNZuQHMp_QtYBM-MaJxGHlWTLjf81EXT2Zrl5C9fzBqO0Sn-g>
+    <xmx:CYZ5ZunRz9DsVIzX2ztGxOZbPJwFpqwncwru6fEq-nG-s9R_e_8ulw>
+    <xmx:CYZ5ZrtHfaLLKqZC4cXuRIyXoPVf4MhX90ITuFw9_QbiciKLe6iujA>
+    <xmx:CYZ5ZqF2xSmzUOPFCA1hJ9GxfmJ0nXSR18HDPI4lg8GO7dnYX72REHmf>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 24 Jun 2024 10:43:20 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v4 0/5] rcar-vin: Add support for R-Car V4M
+Date: Mon, 24 Jun 2024 16:41:03 +0200
+Message-ID: <20240624144108.1771189-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: x1e80100: add soundwire
- controller resets
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240624-x1e-swr-reset-v2-0-8bc677fcfa64@linaro.org>
- <20240624-x1e-swr-reset-v2-3-8bc677fcfa64@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240624-x1e-swr-reset-v2-3-8bc677fcfa64@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/06/2024 15:32, Srinivas Kandagatla wrote:
-> Soundwire controllers (WSA, WSA2, RX, TX) require reset lines to enable
-> switching clock control from hardware to software.
-> 
-> Add them along with the reset control providers.
-> 
-> Without this reset we might hit fifo under/over run when we try to write to
-> soundwire device registers.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hello,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series adds bindings and support to rcar-vin for R-Car V4M by the 
+means of adding a Gen4 family fallback compatible.
 
-Best regards,
-Krzysztof
+Previous versions of this series added V4M support like done for VIN 
+since the first Gen3 device, by the use of only a single SoC specific 
+compatible value. This was done as in Gen3 almost every new device 
+differed from the others and a family fallback was not very useful.
+
+For the two Gen4 devices with a video capture pipeline currently 
+documented the VIN instances are very similar and a family fallback can 
+be used. This however requires updating existing DTS files for V4H to 
+add this new family fallback. This is done in a backward compatible way 
+and the driver retains the compatible value for V4H.
+
+See individual patches for changes since previous version.
+
+Niklas Söderlund (5):
+  dt-bindings: media: renesas,vin: Add Gen4 family fallback
+  arm64: dts: renesas: r8a779g0: Add family fallback for VIN IP
+  media: rcar-vin: Add family compatible for R-Car Gen4 family
+  dt-bindings: media: renesas,vin: Add binding for V4M
+  arm64: dts: renesas: r8a779h0: Add family fallback for VIN IP
+
+ .../bindings/media/renesas,vin.yaml           |  4 ++
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     | 48 ++++++++++++-------
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi     | 48 ++++++++++++-------
+ .../platform/renesas/rcar-vin/rcar-core.c     | 23 +++++----
+ 4 files changed, 79 insertions(+), 44 deletions(-)
+
+-- 
+2.45.2
 
 
