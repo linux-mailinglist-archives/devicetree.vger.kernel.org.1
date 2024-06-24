@@ -1,116 +1,108 @@
-Return-Path: <devicetree+bounces-79485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21C99157D6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:20:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1E69157E6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:23:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AB42287D29
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:20:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B6C1B22B8E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1311A01DC;
-	Mon, 24 Jun 2024 20:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18031A01AD;
+	Mon, 24 Jun 2024 20:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kG4UjMzW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddr2JY4W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E6A262A3;
-	Mon, 24 Jun 2024 20:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F29262A3;
+	Mon, 24 Jun 2024 20:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719260409; cv=none; b=i7YgcLZ/Kxsgm2Ow5YinNVytx85HfD4nQIAHzYQ6NUWGodqwLeg/IcxdE8vPZA6mE1TGoHyv89jZuLUXxkhFHH1CdOMwUL9Vqgb4BrX9m8yfdP3QLprqZHukOFAGmM38ugt6cgXSPx6yPvgCOvVoaCGbkzAkc5TyQh1I78Xbe64=
+	t=1719260575; cv=none; b=qQan26zUfMCKkI4rl+psN5vJSyncR5V4xr+S8gaybnLESdPizuOy9kUvUiP6eUuNA1J7ydvaSztFkomeuAx8xPWWaDy6dV0GicohwNYO1SCMG9x9M+Me5Dhn1KMNek1SwdkNX85O0sy7iNcKMbbs5erTLiHs+anNUlKXBFH0TEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719260409; c=relaxed/simple;
-	bh=tAbvRsIY1ZRGz3ZBltZKorbmqsymD3xAmW5bX7SWz0w=;
+	s=arc-20240116; t=1719260575; c=relaxed/simple;
+	bh=A/zQRlEpO+0XlJNbjsusRjw/4ZyJOMZILl5/J9OwYc0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ksbiB8MYlu8NozWk3zyvU9mdRIOucCrlnynCflZ+/H0rS5l0RX+SFGALSJA08HZLFLnPWR2RlXmWOV0IcY4LRP6JQhup1g8JLnWWZ6kjbu5dqdbUn6Xj/5Yrt3QEffksawdWpSlBHe8EbuyrvTqdUqCDzQtNhHrCGxqd095ONQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kG4UjMzW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A344C2BBFC;
-	Mon, 24 Jun 2024 20:20:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nhD4UJSUVuMYrRX94jDlM7KskajZ6NIVKqLhIgzsIO0l6crQEGVUUrDPZOPRem10mKy3SejmLm9oWcyUyb02em5HqiaeOwZSo62wcXpe9yMjJFoGe6rmLsdmxRlOR3JgTXbU6C6O6vWnTFX5RCpuJL6odxg4hSHUO+P2BeYRGhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddr2JY4W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2038C2BBFC;
+	Mon, 24 Jun 2024 20:22:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719260409;
-	bh=tAbvRsIY1ZRGz3ZBltZKorbmqsymD3xAmW5bX7SWz0w=;
+	s=k20201202; t=1719260575;
+	bh=A/zQRlEpO+0XlJNbjsusRjw/4ZyJOMZILl5/J9OwYc0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kG4UjMzWgKqQiuAL6L8kJJl0l9QgfrYuqk1lu/FNf9omEVFDKK62+iwEcEHbfhrIw
-	 xu33wFmB95HERgacLucs8oOP5WnzpzKfKgbMvgG297XDsCIvphRvaUzGMsDF+RK+C/
-	 MwhLHecaZwfYujomPDGhMfMCqSG0b3UkGBt0s136Y+TcLGwHf4X6G9zUPIPNW/tZv1
-	 XmtTFlwKypGF01Kk7qcAM/ULUbdjpq7C7X9iQ6LWqkHKvognZpBkqzSa0q5PUc2zCD
-	 G/FdHO+oRsGHdqZKe93u4gT4H9VaCQk2gNE0EsPBxcE4vPdEBatKwlORhVEoW5XdQC
-	 iCNxw3D7xS1Jg==
-Date: Mon, 24 Jun 2024 14:20:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
+	b=ddr2JY4WUSLLjAikiqIr/HMXtEVJZMG3qGxeC3ee7PxQULHLxNtsQio6ov3/BrZqP
+	 zlo+W8k0eMJlrUyADp/oypITQhZS5+JGMRdkFvbXeP8/PFa9C1XIP602UHcJcy637r
+	 BJ82w+ofKD/S7XJZfSdR5V2C3SRu5lzboedq0dtNTrTQYu4E3wwKq8B8mhOntnZgOt
+	 GKDS2Yq2hXlQGVkTG59sK7LrskGO07aqCWZmV71hZZlch6nWir6vpWouILWCsEON6x
+	 oeAupQ6230Wivh+K4xqcXvKe7C+14OCd7ExcPrkG/cK80XxllEay2camk+CiMao6vo
+	 8BPrBumu5dnRQ==
+Date: Mon, 24 Jun 2024 14:22:53 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
 	linux-kernel@vger.kernel.org,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/9] Revert "dt-bindings: reset: mobileye,eyeq5-reset:
- add bindings"
-Message-ID: <20240624202007.GA333492-robh@kernel.org>
-References: <20240620-mbly-olb-v3-0-5f29f8ca289c@bootlin.com>
- <20240620-mbly-olb-v3-2-5f29f8ca289c@bootlin.com>
- <171890801579.3178249.13779438329936311446.robh@kernel.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	kanakshilledar111@protonmail.com,
+	Thomas Gleixner <tglx@linutronix.de>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [RESEND v4 1/2] dt-bindings: interrupt-controller:
+ riscv,cpu-intc: convert to dtschema
+Message-ID: <171926057171.343236.712031903649658549.robh@kernel.org>
+References: <20240615021507.122035-1-kanakshilledar@gmail.com>
+ <20240615021507.122035-2-kanakshilledar@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <171890801579.3178249.13779438329936311446.robh@kernel.org>
+In-Reply-To: <20240615021507.122035-2-kanakshilledar@gmail.com>
 
-On Thu, Jun 20, 2024 at 12:26:57PM -0600, Rob Herring (Arm) wrote:
-> 
-> On Thu, 20 Jun 2024 19:30:54 +0200, Théo Lebrun wrote:
-> > Switch from one sub-node per functionality in the system-controller to a
-> > single node representing the entire OLB instance. This is the
-> > recommended approach for controllers handling many different
-> > functionalities; it is a single controller and should be represented by
-> > a single devicetree node.
-> > 
-> > The reset bindings is removed and all properties will be described by:
-> > soc/mobileye/mobileye,eyeq5-olb.yaml
-> > 
-> > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  .../bindings/reset/mobileye,eyeq5-reset.yaml       | 43 ----------------------
-> >  1 file changed, 43 deletions(-)
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/sound/st,stm32-sai.example.dtb: /example-0/sai@4400b000/audio-controller@4400b004: failed to match any schema with compatible: ['st,stm32-sai-sub-a']
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dtb: /example-0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
-> Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: failed to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
-> Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.example.dtb: /example-1/syscon@20e00000: failed to match any schema with compatible: ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
-> Documentation/devicetree/bindings/clock/milbeaut-clock.example.dtb: /example-2/serial@1e700010: failed to match any schema with compatible: ['socionext,milbeaut-usio-uart']
-> Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.example.dtb: /example-0/peripheral-controller@8a20000/phy@850: failed to match any schema with compatible: ['hisilicon,hi3798cv200-combphy']
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/stm32/st,mlahb.example.dtb: ahb@38000000: Unevaluated properties are not allowed ('reg' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/arm/stm32/st,mlahb.yaml#
 
-Not sure what happened here, but this can be ignored.
+On Sat, 15 Jun 2024 07:45:03 +0530, Kanak Shilledar wrote:
+> Convert the RISC-V Hart-Level Interrupt Controller (HLIC) to newer
+> DT schema, Created DT schema based on the .txt file which had
+> `compatible`, `#interrupt-cells` and `interrupt-controller` as
+> required properties.
+> Changes made with respect to original file:
+> - Changed the example to just use interrupt-controller instead of
+> using the whole cpu block
+> - Changed the example compatible string.
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
+> ---
+> Changes in v4:
+> - Change DCO email to @gmail.com
+> Changes in v3:
+> - Remove reference to `interrupt-controller` in `riscv/cpus.yaml`.
+> Changes in v2:
+> - Update the maintainers list.
+> - Add reference to `interrupt-controller` in `riscv/cpus.yaml`.
+> - Update compatible property with the reference in `cpus.yaml`.
+> - Include description for '#interrupt-cells' property.
+> - Change '#interrupt-cells' property to have `const: 1` as per the
+> text binding.
+> - Fixed the warning thrown by `/renesas/r9a07g043f01-smarc.dtb`.
+> ---
+>  .../interrupt-controller/riscv,cpu-intc.txt   | 52 -------------
+>  .../interrupt-controller/riscv,cpu-intc.yaml  | 73 +++++++++++++++++++
+>  2 files changed, 73 insertions(+), 52 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+> 
 
-Rob
+Applied, thanks!
+
 
