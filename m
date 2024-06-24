@@ -1,100 +1,150 @@
-Return-Path: <devicetree+bounces-79353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2A0914F2F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:52:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28635914F43
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:55:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A70AF2836DA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:52:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59F301C2202E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B2B5140E3C;
-	Mon, 24 Jun 2024 13:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="YQLAgVj5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E13E21422D0;
+	Mon, 24 Jun 2024 13:55:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C4F140399;
-	Mon, 24 Jun 2024 13:52:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BEB113A894;
+	Mon, 24 Jun 2024 13:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719237157; cv=none; b=HgdkAQiTFUa57ouxChEeuXyGSt3PFTmxItLqI2wr5yJuAYQLmD6nTMIGAD9GrjQFJx5rL8gxKDHu/SpE8L7v8AiVzBNBcNt9XnQ7SSGQKXOiQjlKJqdBLeoR7zNxrdkoo293A/anpbrBKLzVQ2bd0HBp7DF/bgts8ncaRMPrbxM=
+	t=1719237322; cv=none; b=CEavXy0Pw4sUbIoWMWlUEp3ZTo9UmtSV8p67ITmvkAIocDxawyur7dV8YMg4RND57zr01uux8JDVeUhi3eyGaJTrCgH83YKMwMoPsFy6pdNA2dLM1Cny6DcH8BrO9k9dULY6tTo2WFn0w5DyCW3wuKpDRKCIDpE+3JJorHgKwJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719237157; c=relaxed/simple;
-	bh=8D9fEVi/qdwD0qRfLW8p9zkJnY9H20kJ0GevCBULIyw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y0EwRPfwRzIUQEmG5QuWIqoaLBYmhhj3lLzpvO5bS9sgtWhupIhNBbH9/r40bS7vtFXVYIFxzYkc4MJEn+ZGWQ3deaP+whTkfR0rHG/bFRgiMGk7H3DYOCLCSIJVeNo332CIdFV7JYQOF2wStpVnqdONE60uOMY/l1rgdMjFxDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=YQLAgVj5; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=W6LOzw6hb+XYQO888bOfZ/p7AYY/He9tqOE7LkaBWHs=; b=YQLAgVj5EKnCX9L5pKECZ+87dy
-	HS/JqNuqWvIa6rez1e7VFQqWmhWyG/XIRcsnGUYQweFyJTipybYWncAENsknV5h0n6cAaZdbJgXKP
-	mQjr5IEMWJ2lKu9dtx/EGJqjDWkBYMyUI5e+Dm9HL37wUMDR0dec5LRWYbjJK8Ao1unM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sLk7M-000r6m-Sn; Mon, 24 Jun 2024 15:52:24 +0200
-Date: Mon, 24 Jun 2024 15:52:24 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Marek Vasut <marex@denx.de>
-Cc: netdev@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Joakim Zhang <qiangqing.zhang@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, kernel@dh-electronics.com
-Subject: Re: [net-next,PATCH] dt-bindings: net: realtek,rtl82xx: Document
- known PHY IDs as compatible strings
-Message-ID: <bad5be97-d2fa-4bd4-9d89-ddf8d9c72ec0@lunn.ch>
-References: <20240623194225.76667-1-marex@denx.de>
- <cc539292-0b76-46b8-99b3-508b7bc7d94d@lunn.ch>
- <085b1167-ed94-4527-af0f-dc7df2f2c354@denx.de>
+	s=arc-20240116; t=1719237322; c=relaxed/simple;
+	bh=BZFUuflI2rt5qDzRo1hJ9iNczov2fZ28ct7WuAUVQZU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dNaMpIKRuJzEsnRz7yRWX3kKt4m+8zpI6EOi2vZb5vl4EntWjQhnmTRRaevV6UOoh6r5eHOAoLU4GBSehlW316TKKdSOhQ6n6Y7OhW0zMy2J2YKDa+L/jvwJ6iSQ1+yhZr9LAbaB2wpbjfTMEw7ozOKNUbuv1YW0vPF7k2O3F2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-63036fa87dbso34394657b3.1;
+        Mon, 24 Jun 2024 06:55:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719237319; x=1719842119;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=86JZrQvm++3Ut9SWrAYYU+OyHNvZFlbwr3DIXcudg9E=;
+        b=KDiFa/0G26eJTMFX124afEwx6x2LbdzzpqW4vJvVgT+TZgJ5x73ACPOsIdwsRjFL5l
+         Y6h2E5TVlmfiC/Bz3+Ls4upLrS3T4SznBdTv8whJbunNPjXvuzkhWy9I6aS4xsXAGJ2i
+         85u3XSjDAg1rynjg8rCKOxAe77d+I1J3uENxU0a27fgh0gby+2nnk7oXfX7FkXeLuH8g
+         2dv/l2AREhsZs3VUa7bZlNg3CI37sZKSLeIQ/qulPdz0chIg0Qac16LJPKslVHDHUCn2
+         TpHalJeMBubUs/1ig5M9CK3kvxi+xDMDZyEXhqO80Ya5flpNiLZW8AEu6JkagltWD7xp
+         MIdA==
+X-Forwarded-Encrypted: i=1; AJvYcCVzCnJ6wNV0bngXbsqESSi5Ahxsu8jmyWstRQxyos4K/TTIktR786TBkUnIIQjMpa3oBtzgaOWB63Qf1LbR9ktL86O0+8px37UdArI2km5XZKKO58det0ybyJGzFm6Xkl8ToKj2ec97BVMKX4sYb/uBbu5nlYPItoLaX+POxU8ukGhJ5iCjtnB42CYf7J+VkxmcD/sK4rrpy+7JryseS7EvMLlhl+B12A==
+X-Gm-Message-State: AOJu0YylOMuExREgIJ4BBPZxTPDanuSQZWVEtcIBUvwuEYV/PZJa2Eo0
+	z+RMVYsVCjxKOEItT6kIj+8DPu6gjlCBjlhveqZ/g6FzOk4UIQe5vf2L12ex
+X-Google-Smtp-Source: AGHT+IHZTjk2LJYgW/me3bBQBc74ptlMmaYYFi/pk94B8+07T3oyZmjgYSQf1dQzbA9uF/7BRBSAFA==
+X-Received: by 2002:a81:d809:0:b0:61b:153:8d98 with SMTP id 00721157ae682-6424c9eea51mr34621717b3.21.1719237319360;
+        Mon, 24 Jun 2024 06:55:19 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-63f12699541sm27799567b3.66.2024.06.24.06.55.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jun 2024 06:55:18 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-63bce128c70so31207627b3.0;
+        Mon, 24 Jun 2024 06:55:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWr6D8PWeQu59XCJqHFykQ3SrKiCZNpH/pMzwQdxQkFVV98Q6SPCADELX/ImpG4x3lqQiQqLBInqZsXQU08t2tg9mlQq9bvIBUk9BS+lcmowQeKVqowkN0nrTi8+F6kY3HgNu9qdsabPwvWx8CL85sTnbStQhM8s4ChrkS3/lVjVEnDa5kEGdER4lmrINDzm6xtJVpskDtSvz+daZy0qIE4USZtneZG/Q==
+X-Received: by 2002:a81:8d4d:0:b0:631:399f:2e87 with SMTP id
+ 00721157ae682-6424bf5370emr31660657b3.16.1719237318457; Mon, 24 Jun 2024
+ 06:55:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <085b1167-ed94-4527-af0f-dc7df2f2c354@denx.de>
+References: <cover.1716974502.git.geert+renesas@glider.be>
+In-Reply-To: <cover.1716974502.git.geert+renesas@glider.be>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 24 Jun 2024 15:55:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWQo6y+6Be1cu=3qRuQ5BDB6_8is0C6T0eVgvHkN+8fJA@mail.gmail.com>
+Message-ID: <CAMuHMdWQo6y+6Be1cu=3qRuQ5BDB6_8is0C6T0eVgvHkN+8fJA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/8] Add R-Car fuse support
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 24, 2024 at 01:52:49AM +0200, Marek Vasut wrote:
-> On 6/23/24 10:00 PM, Andrew Lunn wrote:
-> > >     - $ref: ethernet-phy.yaml#
-> > >   properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - ethernet-phy-id0000.8201
-> > 
-> > I'm not sure that one should be listed. It is not an official ID,
-> > since it does not have an OUI. In fact, this is one of the rare cases
-> > where actually listing a compatible in DT makes sense, because you can
-> > override the broken hardware and give a correct ID in realtek address
-> > space.
-> 
-> Hmmm, so, shall I drop this ID or keep it ?
-> 
-> I generally put the PHY IDs into DT so the PHY drivers can correctly handle
-> clock and reset sequencing for those PHYs, before the PHY ID registers can
-> be read out of the PHY.
+On Wed, May 29, 2024 at 11:29=E2=80=AFAM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> R-Car Gen3/Gen4 SoCs contain fuses indicating hardware support or
+> hardware parameters.  Unfortunately the various SoCs require different
+> mechanisms to read the state of the fuses:
+>   - On R-Car Gen3, the fuse monitor registers are in the middle of the
+>     Pin Function Controller (PFC) register block,
+>   - On R-Car V3U and S4-8, the E-FUSE non-volatile memory is accessible
+>     through a separate register block in the PFC,
+>   - On R-Car V4H and V4M, the E-FUSE non-volatile memory is accessible
+>     through the second register block of OTP_MEM.
+>
+> This patch series adds support for all 3 variants.  It provides an
+> in-kernel API to read the fuses' states, as well as userspace access
+> through the nvmem subsystem and sysfs:
+>   - R-Car Gen3:    /sys/bus/platform/devices/rcar_fuse/fuse/nvmem
+>   - R-Car V3U/S4:  /sys/bus/platform/devices/e6078800.fuse/fuse/nvmem
+>   - R-Car V4H/V4M: /sys/bus/platform/devices/e61be000.otp/fuse/nvmem
+>
+> This has been tested on R-Car H3 ES2.0, M3-W and M3-W+, M3-N, V3M, V3H
+> and V3H2, D3, E3, V3U, S4-8 ES1.0 and ES1.2, V4H, and V4M.
+>
+> For SoCs where E-FUSE is accessed through the PFC, it is not clear from
+> the documentation if any PFC module clock needs to be enabled for fuse
+> access.  According to experiments on R-Car S4-8, the module clock and
+> reset only impact the GPIO functionality of the PFC, not the pinmux or
+> fuse monitor functionalities.  So perhaps the clock/power-domains/resets
+> properties should be dropped from the DT bindings and DTS, as well as
+> the Runtime PM handling from the driver?
+>
+> Changes compared to v1[1]:
+>   - Drop RFC state and broaden audience,
+>   - Fix typo in one-line summary,
+>   - Add Reviewed-by.
+>
+> Thanks for your comments!
+>
+> [1] https://lore.kernel.org/r/cover.1714642390.git.geert+renesas@glider.b=
+e
+>
+> Geert Uytterhoeven (8):
+>   dt-bindings: fuse: Document R-Car E-FUSE / PFC
+>   dt-bindings: fuse: Document R-Car E-FUSE / OTP_MEM
+>   soc: renesas: Add R-Car fuse driver
+>   pinctrl: renesas: Add R-Car Gen3 fuse support
+>   arm64: dts: renesas: r8a779a0: Add E-FUSE node
+>   arm64: dts: renesas: r8a779f0: Add E-FUSE node
+>   arm64: dts: renesas: r8a779g0: Add OTP_MEM node
+>   arm64: dts: renesas: r8a779h0: Add OTP_MEM node
 
-Are there any in kernel .dts files using it? We could add it, if it is
-needed to keep the DT validation tools are happy. But we should also
-be deprecating this compatible, replacing it with one allocated from
-realteks range.
+I plan to queue these in renesas-devel/pinctrl for v6.11.
 
-	 Andrew
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
