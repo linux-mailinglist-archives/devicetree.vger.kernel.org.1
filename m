@@ -1,156 +1,230 @@
-Return-Path: <devicetree+bounces-79243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC4F491471F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:10:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D60FF914728
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2DE11F2106D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:10:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A0462843CA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C819136647;
-	Mon, 24 Jun 2024 10:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503DB13665F;
+	Mon, 24 Jun 2024 10:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LepGv7H7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lw0znWnr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0AE3BBF2;
-	Mon, 24 Jun 2024 10:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D4F5380F;
+	Mon, 24 Jun 2024 10:14:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719223828; cv=none; b=AldWKZxRENdvTTXPruAiZrMesAZYK19oBnTnK6jGQwOVnPjxWTy5QqpX4jE/+Qxb2UucefcCVbng8/+OjsFYuePWWb1HKurmCzAq4IOPZygXIIjhA6+lc8nHIzOkgQGWkqXFXbuOfF69sMe9Xsi6f5MDJh1JWynay7H4jwscnmw=
+	t=1719224092; cv=none; b=hRkZz5cDLvbXeGlNNswwfPIjLTXaZHr38haG9Ww6sEstL/Rb8FKzJQmCNN6bTiHkmDLKjpk9DenlBXsfQQ+uq7ReaDAL490gQ8knZ/zH1+MPc8Vb9RO4WyLNN3zaDsHkLCaIfjEL9FVxcV+pSoR9X5eJAYZ7MPttRRz2bHl7wto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719223828; c=relaxed/simple;
-	bh=scVGa1MRN1RkfvP96gtjMP9mba8xgHdiodS6IHhTUHM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G7btT33PxXodgfELpbB9A27RbKLkkST5QkolZmdEhOKjcs/xTQu7Kog+dwM+Vg++MrMYi2bLsELsgEgefouY1xnvFtM7au5/0yfFbKuexADz6ggXIf8217JrRUQisJzPig5koRZ9WeSfq6QIIznxZaVQ5RZFAW/GoQkQG7frTp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LepGv7H7; arc=none smtp.client-ip=209.85.214.181
+	s=arc-20240116; t=1719224092; c=relaxed/simple;
+	bh=RE24KLqID2EC6vA+5KK6hVTlaj0wsAEo2phM0U2W/ug=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PZyhlpmD33AunyKotF+V8YdC4p3f0unp0hcV/VriL2jAVW1ifpwxAWpWhrxMnTrTyfAZrFpk38zrUTy53dTLu+EYjNJgUPVRBhrag9dhPNQ2MQ5d/kTfrMhC9NgjKBPw1kHsQfnny4adQ7/2miu1Bp3poIq/NeCuPFHQ4Ylge3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lw0znWnr; arc=none smtp.client-ip=209.85.216.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1f9cd92b146so32190125ad.3;
-        Mon, 24 Jun 2024 03:10:26 -0700 (PDT)
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2c84df0e2f4so945254a91.1;
+        Mon, 24 Jun 2024 03:14:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719223826; x=1719828626; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EmkWOq+vi8o8UsVtQJBxJjgPpIFiVV6OClCfC0Rntuo=;
-        b=LepGv7H7Qg1s99YK/HYc66KOE6vreIdAvFo9Fdo3xghF/zh0BolREiOTV7588h4WU9
-         lDZcr+qAle66DmlAkWGbCba3z9hckJ9RZ1EhypPI8zOFdcuo5b3KB0bZKFSEt5cL+c6e
-         WBYZTIppjLhyl+R2ICU+MI14i6fpBjT2k0syFjjTGHVtASGw+4ZiPq4VkoQqkNExOhdh
-         d3SiXWBk13KMjBHm6S3YrV9Y8oBpGRwxFGZ3YRnyxlAQeyUw4EM5CW2pIvuoHDvoxB3Y
-         Xu6d/TqPzl2vfHZoqkKFS8Vze95tqzbi65vyrhwUNR6yUCVb8uOpXonckSnZasMqcUpP
-         awFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719223826; x=1719828626;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1719224090; x=1719828890; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EmkWOq+vi8o8UsVtQJBxJjgPpIFiVV6OClCfC0Rntuo=;
-        b=w8zuPd9WolwDaAmfoe4v8rZH+ZWetM61hyOZwuHwQJ5Td8d4CDJgzDjx32tpdPNMPa
-         K+Hj1JuaZHgLumAsKoaypZ+yin6lH7pS3jIKJSxCbphirTBgHWnT57m3eIXLZnwe6sdb
-         xC8KtUt408lSET2Qj79GtnVb9SZqqruBbaxC4qBtzwqUlZ+q0TpclKB49dyEi83bgVg5
-         53N8E6R+0NUQ5FBM1qoP2Um0Y3E5Lz/pOf3RNiI/s5j33Qyt3dwT6rcDTz6HDetmwek7
-         yp8B33uDwjySCYzxqw8BIzO2YAk3ThcSfns6OXVTef5nfwMDl5j3OD7Nvzd+fFbXYpKi
-         lkgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUMnV0nEAVLFMEULUMXUOwo22kY6uuxmmPhzl0SlZI7RWuVy/LD/5k7eIE2NfXxj3eDqRij0biaARHj1zw+fhyjrxPijV1SLKjE7KSmMNadH8QemvbmR+qB3IrpcRbHnMOJXOwdy1+BTaTVjgyaQDTrm+yDvM7GeZKRPgRzB5xuHpRVj9JU
-X-Gm-Message-State: AOJu0YydoZo9d0LvN+Gw5PR5Cav0wV3ISzNICVBgqU5nBdLRcMfBGjdz
-	u5Maoip7CW7cdgeHJr6ziXBXEYzzEIOFd36vYdgJ+TEDDDonRLNOoa/yVm6+
-X-Google-Smtp-Source: AGHT+IExyh9XY/uAa+ex+R6L6mnS7JnlV6BzaNmrYWFmyNLbz/1fEXQThjdEUJIyuRW+0lmscIB6Pg==
-X-Received: by 2002:a17:902:ce82:b0:1fa:1ebb:eb79 with SMTP id d9443c01a7336-1fa1ebbeee9mr64889935ad.58.1719223826247;
-        Mon, 24 Jun 2024 03:10:26 -0700 (PDT)
-Received: from ux-UP-WHL01 (mailgw01.goodix.com. [45.117.96.243])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb3c5ec7sm59033725ad.141.2024.06.24.03.10.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 03:10:25 -0700 (PDT)
-Date: Mon, 24 Jun 2024 18:10:20 +0800
-From: Charles Wang <charles.goodix@gmail.com>
-To: dmitry.torokhov@gmail.com, dan.carpenter@linaro.org, conor@kernel.org,
-	robh@kernel.org
-Cc: dianders@chromium.org, krzk+dt@kernel.org, jikos@kernel.org,
-	bentiss@kernel.org, hbarnor@chromium.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/2] HID: add initial support for Goodix HID-over-SPI
- touchscreen
-Message-ID: <ZnlGDCcNch475wWA@ux-UP-WHL01>
-References: <20240618084455.1451461-1-charles.goodix@gmail.com>
+        bh=hCbtAJmIzGDqUkK6LAUHtM0hWFXhplCtNg6zF/80eAQ=;
+        b=lw0znWnrgnfl9Wvu7DCm6Hag+M+v3uDqn6Kq5Q9JInPvrxcShMlNNNh63E6CS1yB8P
+         ji5wXL0OM8kZIXOSVnfadLt01MLPBwqmQWqh2tL4WJSgJYGhf/FH3ujib7cF8/l3qEHg
+         GIHV8TNg+m3PsFnTQ4a/cU+W54k3sWASp5YlUS635sZcN6Nhk8zZcr81ZqZQmiLCmrmu
+         xIGmUV3WNypm3797TTO9S9jiHwT8S0EU2CMhiqaQMJMjBxDB1nRkj8d2gFd/k/RXPpFc
+         EaOILeEK6ojd4bPf1YSCohMSXrFgEtEsrWUSNHRdYdn8yEukYqo9iLd0dYL745dABa9y
+         x2CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719224090; x=1719828890;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hCbtAJmIzGDqUkK6LAUHtM0hWFXhplCtNg6zF/80eAQ=;
+        b=AIaIlT1FHw4rGPcBTJTzat1RGtJNsnpmEvA3SGLtV4g09AwDTvZ4QRIqdd/UcJ3WHb
+         SthRdAqfJpn3EIBokFmOTTjbK2qjqu3RV6PgTlcJSelbK+HlwrwgFfxYHwBVT+6HTxuU
+         3YYpcMvqvC65YlYLV7nc2gYrh8MF5h3IU9YzVDknlJFFqe4NYqx9zvWwm324HOlNUisP
+         JihKfO6nsk5qmDj2OmB+mKxaCI05UoONLSd7ptL0bcKCpgUM5ZsVT6UYjFgiPKz0hGbq
+         c+rWzUTiWFSPvDkYxZfDiki5Na3bTJO3eyWrM2CTzwlv8vqpmdEV1V5mUx4Oi7zvjVxF
+         VWeA==
+X-Forwarded-Encrypted: i=1; AJvYcCXjTa12iRcmvmMVwcelucEsVV8340JQNkUOtKlKPQGG4mm6wRmKD60+P9vuU0jQBpNIDhuh/BW1LOuX9lkJkG/9RodXEOdMO0JvX6E0hWqzE3ex5hs8OkXGAOiz9kUJcd699wcepgNhOrcvgKzltTPzRwPUuXKWMPc/QOCMtncf0QEOxA==
+X-Gm-Message-State: AOJu0YyWJte3k68h89SRp0s2H9QjRMf0Z3cCmMdfK6/YpcctuN4CA9xk
+	xqcz6HdZQqdAxMOJbLReB2479jxj4DDYx7eAPB9++0pwhx0vcAIrp8ZRffS1NFiRwRUdrTlhg3o
+	G2nf20peXzuUD/HmP8JFdokPIXCQ=
+X-Google-Smtp-Source: AGHT+IFzFiRLl/5gFSYk5S5BLFBGj4iF9pD+4XnLnZj+Li7/qTVD4bPy+jBR9mZRCKfO0rRQBbb3vKQ9sQxLTuXyYO8=
+X-Received: by 2002:a17:90b:d85:b0:2c3:2f5a:17d4 with SMTP id
+ 98e67ed59e1d1-2c8a232c548mr46096a91.4.1719224089949; Mon, 24 Jun 2024
+ 03:14:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240618084455.1451461-1-charles.goodix@gmail.com>
+References: <20240623124507.27297-2-shresthprasad7@gmail.com> <62c05c34-0b69-4091-8c3a-d0b8befa9150@kernel.org>
+In-Reply-To: <62c05c34-0b69-4091-8c3a-d0b8befa9150@kernel.org>
+From: Shresth Prasad <shresthprasad7@gmail.com>
+Date: Mon, 24 Jun 2024 15:44:37 +0530
+Message-ID: <CAE8VWiLXS1gsxjk7aK335QtZJk7Se+k5VsFzmUpQHfaVJnKa7g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: dma: mv-xor-v2: Convert to dtschema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, skhan@linuxfoundation.org, 
+	javier.carrasco.cruz@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Gentle ping...
+On Mon, Jun 24, 2024 at 10:47=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 23/06/2024 14:45, Shresth Prasad wrote:
+> > Convert txt bindings of Marvell XOR v2 engines to dtschema to allow
+> > for validation.
+> >
+> > Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+> > ---
+> > Tested against `marvell/armada-7040-db.dtb`, `marvell/armada-7040-mocha=
+bin.dtb`
+> > and `marvell/armada-8080-db.dtb`
+> >
+> >  .../bindings/dma/marvell,xor-v2.yaml          | 69 +++++++++++++++++++
+> >  .../devicetree/bindings/dma/mv-xor-v2.txt     | 28 --------
+> >  2 files changed, 69 insertions(+), 28 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/dma/marvell,xor-v=
+2.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/dma/mv-xor-v2.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml =
+b/Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml
+> > new file mode 100644
+> > index 000000000000..3d7481c1917e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/marvell,xor-v2.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dma/marvell,xor-v2.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Marvell XOR v2 engines
+> > +
+> > +maintainers:
+> > +  - Vinod Koul <vkoul@kernel.org>
+>
+> Should be rather platform maintainer.
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    contains:
+>
+> This cannot be unspecific. Drop contains.
+>
+> > +      enum:
+> > +        - marvell,armada-7k-xor
+> > +        - marvell,xor-v2
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: DMA registers location and length
+> > +      - description: global registers location and length
+>
+> Drop "location and length", redundant.
+>
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: core
+> > +      - const: reg
+>
+> This does not match number of items in clocks:
 
-On Tue, Jun 18, 2024 at 04:44:52PM +0800, Charles Wang wrote:
-> This patch introduces a new driver to support the Goodix GT7986U
-> touch controller. This device is not compatible with Microsoft's
-> HID-over-SPI protocol and therefore needs to implement its own
-> flavor. The data reported is packaged according to the HID
-> protocol but uses SPI for communication to improve speed. This
-> enables the device to transmit not only coordinate data but also
-> corresponding raw data that can be accessed by user-space programs
-> through the hidraw interface. The raw data can be utilized for
-> functions like palm rejection, thereby improving the touch experience.
-> 
-> Key features:
-> - Device connection confirmation and initialization
-> - IRQ-based event reporting to the input subsystem
-> - Support for HIDRAW operations (GET_REPORT and SET_REPORT)
-> 
-> Signed-off-by: Charles Wang <charles.goodix@gmail.com>
-> ---
-> Changes in v5:
-> - Add additional descriptive information to the dt-binding file.
-> - Fixed build warnings reported by kernel test robot.
-> 
-> Changes in v4:
-> - Allocate memory based on the report information.
-> - Added a new function goodix_get_event_report() to retrieve report data,
->   reducing memory copy operations and avoiding the use of reg_rw_lock.
-> - Add low power control operations.
-> - Implemented power management operations.
-> - Introduced GOODIX_HID_STARTED to record the current device operating state.
-> - Add OF match table.
-> 
-> Changes in v3:
-> - Renamed the driver file to hid-goodix-spi.c.
-> - Mentioned in the commit message that this implementation is not compatible with
->   Microsoft's HID-over-SPI protocol.
-> - Modified the driver to fetch the GOODIX_HID_REPORT_ADDR from device properties.
-> - Add a lock to prevent concurrent hid feature request operations.
-> - Optimized the SPI read/write functions by reducing the number of malloc calls.
-> 
-> Changes in v2:
-> - Fixed build warnings reported by kernel test robot
-> 
-> ---
-> Charles Wang (2):
->   HID: hid-goodix: Add Goodix HID-over-SPI driver
->   dt-bindings: input: Goodix SPI HID Touchscreen
-> 
->  .../bindings/input/goodix,gt7986u.yaml        |  72 ++
->  drivers/hid/Kconfig                           |   6 +
->  drivers/hid/Makefile                          |   1 +
->  drivers/hid/hid-goodix-spi.c                  | 811 ++++++++++++++++++
->  4 files changed, 890 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
->  create mode 100644 drivers/hid/hid-goodix-spi.c
-> 
-> -- 
-> 2.43.0
-> 
+I'm not sure what you mean, the original txt stated that `clock-names`
+is only required if there are two `clocks`.
 
-Thanks
-Charles
+>
+> > +
+> > +  msi-parent:
+> > +    description:
+> > +      Phandle to the MSI-capable interrupt controller used for
+> > +      interrupts.
+> > +    maxItems: 1
+> > +
+> > +  dma-coherent: true
+>
+> This was not present in the binding and commit msg did not explain why
+> this is needed. Are devices really DMA coherent?
 
+Sorry about that, I added this because all the nodes I looked at
+contained `dma-coherent`.
 
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - msi-parent
+> > +  - dma-coherent
+> > +
+> > +if:
+>
+> Put it under allOf: in this place.
+>
+> > +  required:
+> > +    - clocks
+>
+> This does not work and does not make much sense. Probably you want to
+> list the items per variant?
+>
+>
+> > +  properties:
+> > +    clocks:
+> > +      minItems: 2
+> > +      maxItems: 2
+>
+> Instead list and describe the items.
+>
+
+I did it this way to allow for `clock-names` to only be required if there
+are two `clocks` present. Is there another way I should be doing this?
+
+> > +then:
+> > +  required:
+> > +    - clock-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    xor0@6a0000 {
+> > +        compatible =3D "marvell,armada-7k-xor", "marvell,xor-v2";
+>
+> This totally does not match your binding.
+>
+> Please, read example-schema, other bindings, my old talks and other
+> resources before doing conversions, so we can avoid such trivial
+> mistakes. You enumerated compatibles (enum), but here have a list. A
+> list is not an enumeration, obviously...
+
+Right, thank you for your feedback.
+I'll most certainly read up more on this more.
+
+Regards,
+Shresth
 
