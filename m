@@ -1,195 +1,131 @@
-Return-Path: <devicetree+bounces-79215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B52A914630
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:22:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88A5F91463C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADC8B1C20869
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:21:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DF041F2158E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87E8135A6C;
-	Mon, 24 Jun 2024 09:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A733B1304B1;
+	Mon, 24 Jun 2024 09:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="fTTnRYee";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="KcZWrq+x"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IoL1TrH4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfout5-smtp.messagingengine.com (wfout5-smtp.messagingengine.com [64.147.123.148])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22A2135A51;
-	Mon, 24 Jun 2024 09:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE024962B;
+	Mon, 24 Jun 2024 09:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719220839; cv=none; b=VGqftYiJeiCyMj1M+NjCZbLxj4PhWnOmxMptXlZiUFRUxNaTVXsOti+T/o7c+FYfKvsZhQ6ZAd7rRB/Q5NKYsiafAWMlOzLEoKfxXak48858KKyFAiOz5fV4d8YlVs+Gx5FVCYkNgl32SqzL7rZ1XcV5KXQmWdXyoFXkru2bvak=
+	t=1719220975; cv=none; b=QYKlxXGSzN/wC+iQ3xLOFN1se6F4Y/B8i3OVp/Wm3hPDneoDyCzIZrFPDX8w5GsL5wpRC/EPAkVPTneH3/jCCxnlVnr2ikuZvh2+mfw047OpZPNld2H0Cav3iqyQ8U3vhnDiP9I/elrLYHgE8LlG4g6wGmAHVqQoEbqevPl3cqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719220839; c=relaxed/simple;
-	bh=sW9SQrbW5JnZk06M/S+/X1T80z64+P3/2u2YWrpgdCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bG8gKgbDmufZdfQZx6ptbV8rUCadbNyXWFIV+Skk4UPaxfvJvISlXCQ684gP+BViMcEgX3//EsJM0cpxJDlTWz0IHVJUH95tk46JniSbtrg1HbitYOr8toR/J6lolmq24UorqjniN7eCzaqYBKlWeVPQTOP/J+qOwiUX7HBTloc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=fTTnRYee; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=KcZWrq+x; arc=none smtp.client-ip=64.147.123.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.west.internal (Postfix) with ESMTP id B76D71C000AF;
-	Mon, 24 Jun 2024 05:20:33 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Mon, 24 Jun 2024 05:20:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1719220833;
-	 x=1719307233; bh=37OfLm6VCPnaJmLAriLSXlifTiuF5IemwSKkKUym/Yc=; b=
-	fTTnRYee86mIIVMb69V9OiiihYcZXxZjHkavUHsk3hC2AaSlOuaBGaN++DDnLZrS
-	1SfuJvX0R1w7CpM2AI88qfRZi4+vm+28bjsbqAvaXScOymWyGfiM7YuSK2CYO9KD
-	K5LCX23rGhR8IR/iMUpA9UUYKq/zW4IlQ+01DpjkJ6kjvbOocRLgeBnwRIfNQ3ac
-	RPmp+xZUOqV+xs3NgnsqwWBibr6EEGLbirXTWZJRTivW2EYzMQ7neV963U0KiVr8
-	RMC7CqxQSPCnYx8OlHgCH1zjjBUVmhCQKLgcI51Lg39oz2sbWQC2jBQcTqIqW1HZ
-	46Lp23DLDHn7oZxNitZcDw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719220833; x=
-	1719307233; bh=37OfLm6VCPnaJmLAriLSXlifTiuF5IemwSKkKUym/Yc=; b=K
-	cZWrq+x9ukc3Orf64Ssa1ERXAWKD7zTR/NGvO57tL/D0Qg5tk1LXypz/Q24ktwZy
-	mWBaeCCYqJavk3P6tD924emUZG0K8gZJwTOLZ1qVmi2gyCKizdfFGVAFJsO8AgF0
-	FKtNa7EEjdSVXh8HqyGIt1Ac8wb4UUeB7iVsmG5ihwFNdNpGdjXiSPEAO0VnKahe
-	pSnL3x3LLdHlmq0pEZHmPwTZAZBaycnfhScb8JKo9z5bKsqiDC742bpCcUntrYqX
-	8SJHOYs+0ULA/XTP27ba8lGsP1KAHLA1QslkN7Zdw8WoLFrC17lgrRQ+KFJHWdzr
-	gfdmannJHWTN7ZCGpCeog==
-X-ME-Sender: <xms:YTp5ZoUAkSA35KaF1upLfdjVjJ5gOlSydCbhZlIgL1WE_bEMG6BKAg>
-    <xme:YTp5ZsnSxjy0bKCDcTphXjfNyJHmAZFX-YKp8cCF3e4_waOn5FX42AIZtxjQkcRoC
-    W46yF48PYLKiHlmUdE>
-X-ME-Received: <xmr:YTp5ZsattBis6e-8pmpcko0n7KzBF46UFX6AuAEZl1i7rG46UzZ0sc_xaQ15B2Yh9orGJPBpmoGBH5S8EesgIf2YRblevDA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeeguddgudehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhk
-    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
-    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeektedvvdev
-    jeeijeduffetjeffueeufffffeejfedvffetueevtdfffeetheektdenucffohhmrghinh
-    epvghmsggvugguvgguqdhrvggtihhpvghsrdhorhhgnecuvehluhhsthgvrhfuihiivgep
-    tdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhguod
-    hrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:YTp5ZnVNeQReKgUpoWjV8o_aSbPqkqnAPWUD04ss2z0khs3oIUccXw>
-    <xmx:YTp5ZindXP3j54d_Pxo4DwOd8ev2kF0pebTJZf3IYf5LGLT8ZROJlg>
-    <xmx:YTp5Zsec7z8FYuyvyooCm3ASFRufMMDcMzXFofvLkHtCJytPRNG1xg>
-    <xmx:YTp5ZkEc8gu4ch7b13PrKDcAVUv-rIU1PF2j9erT9ObRcV-jrJ-nZg>
-    <xmx:YTp5Zkdv0gOAlfZwvTw0-wAv2kO-i8g4lGw1hEQlETOT-YhIBXHWZyJ8>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 24 Jun 2024 05:20:32 -0400 (EDT)
-Date: Mon, 24 Jun 2024 11:20:29 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Conor Dooley <conor@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
- V4M
-Message-ID: <20240624092029.GB3655345@ragnatech.se>
-References: <20240619153559.1647957-1-niklas.soderlund+renesas@ragnatech.se>
- <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
- <20240619-passage-iodine-9f944b26a30d@spud>
- <20240619185607.GT382677@ragnatech.se>
- <20240619204321.GU382677@ragnatech.se>
- <20240620-gating-coherent-af984389b2d7@spud>
- <20240620172237.GA3623951@ragnatech.se>
- <CAMuHMdUaWMiQ_wrmX14uwkeU1D_55ehmJD8+GZ4eydWfw4Mi-Q@mail.gmail.com>
+	s=arc-20240116; t=1719220975; c=relaxed/simple;
+	bh=pb4dJYrX+EYdLrFBrcuHPdxLJ2u1So+g002Ovutj+K8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BtBvZsGaDORABST1IwnQ98T9zVDZGOrJJ6TdQJAnFuBGagQAHLIIDJioDpRX2aNof3B3NfLN1fuvKOIOsfxDoGR1A7VIa9HMiYxgFT9PJbrKvjE0CAlcLhcD1JkY/a59KKfJofMmswxcBVfEA+4F5frmf3u5m1z/sDEMDpWBAUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IoL1TrH4; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45O8Yw8S023765;
+	Mon, 24 Jun 2024 09:22:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=SveVDdHXQrYh36L1Fs+xWc
+	IgpyTuBhMg+dmlDbSz+eI=; b=IoL1TrH4CtR6kU9DDlHfqQ6Qeh6BIvOWmYxiej
+	0MnrZkyQVXKoZvsPIke2RVrhBkqMG7WOIP4KRveinNwRDpkvSCgM1TCLb4jFLACI
+	jslie8LwtBMx/rfs1i/yCbV/LVdRabVogH6krjewnnd8IHBqZyOUrWj6RpLx0/ue
+	DZUMlLhqcWGsMawVyDZ9aDnFFO+OelJtpcd0gmLUfuLPqhFqgsiqeLnBjnRn7EqM
+	grJSdsqMLRmzAP+kgLOoUfg8GOFMXqB2QA1I9w6zk/gkczvYVC7fFmNl/g0/ysyC
+	0clU719LHCo/paakzjYA0ZARHx1azDrCrio5FkmIl3+6Pf2A==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywqshk55j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Jun 2024 09:22:49 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45O9Mmpm028042
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Jun 2024 09:22:48 GMT
+Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 24 Jun 2024 02:22:43 -0700
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <djakov@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <dmitry.baryshkov@linaro.org>, <srinivas.kandagatla@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+        <quic_sibis@quicinc.com>, <conor+dt@kernel.org>,
+        <abel.vesa@linaro.org>
+Subject: [PATCH V3 0/4] arm64: dts: qcom: x1e80100: Enable bwmon support
+Date: Mon, 24 Jun 2024 14:52:10 +0530
+Message-ID: <20240624092214.146935-1-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUaWMiQ_wrmX14uwkeU1D_55ehmJD8+GZ4eydWfw4Mi-Q@mail.gmail.com>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zkuZ6O4SJTWci8y5kBBIBFt6ZaMRZ76Z
+X-Proofpoint-GUID: zkuZ6O4SJTWci8y5kBBIBFt6ZaMRZ76Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-24_08,2024-06-21_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ bulkscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ mlxscore=0 impostorscore=0 mlxlogscore=972 priorityscore=1501 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2406240075
 
-Hi Conor,
+This patch series enables bwmon support on X1E80100 SoCs.
 
-On 2024-06-21 09:21:24 +0200, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Thu, Jun 20, 2024 at 7:22 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > On 2024-06-20 17:27:00 +0100, Conor Dooley wrote:
-> > > > +      - items:
-> > > > +          - enum:
-> > > >                - renesas,vin-r8a779g0 # R-Car V4H
-> > > > +              - renesas,vin-r8a779h0 # R-Car V4M
-> > > > +          - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
-> > > >
-> > > > If so I can see that working as I could still fix any issues that come
-> > > > from differences between V4H and V4M if needed. If so do you think it
-> > > > best to add this in two different patches? One to add the
-> > > > renesas,rcar-gen4-vin fallback (which will also need DTS updates to fix
-> > > > warnings from exciting users of V4H not listing the gen4 fallback) and
-> > > > one to add V4M?
-> > >
-> > >
-> > > I would just do:
-> > > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > index 5539d0f8e74d..22bbad42fc03 100644
-> > > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> > > @@ -54,6 +54,9 @@ properties:
-> > >                - renesas,vin-r8a77995 # R-Car D3
-> > >                - renesas,vin-r8a779a0 # R-Car V3U
-> > >                - renesas,vin-r8a779g0 # R-Car V4H
-> > > +      - items:
-> > > +          - const: renesas,vin-r8a779h0 # R-Car V4L2
-> > > +          - const: renesas,vin-r8a779g0 # R-Car V4H
-> >
-> > @Geert: What do you think about this? This would be a first use-case for
-> > compatibles crossing SoC DTS files that I know of. I'm a bit uneasy
-> > going down this road.
-> 
-> Me too ;-)
-> 
-> > Would this not also effect the existing users of renesas,vin-r8a779g0
-> > which would now need something similar to what you propose below with a
-> > list of SoC compatibles and a fallback.
-> >
-> > >
-> > >    reg:
-> > >      maxItems: 1
-> > >
-> > > Which requires no driver or dts changes. That could become:
-> > >       - items:
-> > >           - enum:
-> > >               - renesas,vin-r8a779h0 # R-Car V4L2
-> > >               - renesas,vin-r8a779i0 # R-Car R4P17
-> > >           - const: renesas,vin-r8a779g0 # R-Car V4H
-> >
-> > FWIW, on Gen2 where fallback es where useful compared to Gen3 we did
-> > this with "renesas,rcar-gen2-vin".
-> 
-> We do know there are differences (albeit probably small) among the R-Car
-> Gen4 VIN implementations, so I am reluctant to add a family-specific
-> compatible value.  Typically we only use a family-specific compatible
-> value if the IP cores are known (or better, assumed ;-) to be identical.
-> 
-> And sometimes our assumptions turn out to be wrong...
-> See slides 25-33 (last two for the numbers) of my talk at ER2019
-> https://embedded-recipes.org/2019/talks/herd-your-socs-become-a-matchmaker/
+V3:
+* Pickup Rb's and Tb's from the list.
+* Drop OPP table from the required property list. [Konrad/Krzysztof]
+* Update commit message describing the race condition. [Bjorn]
+* Update comment in the bwmon driver. [Dmitry]
+* Add a comment describing which cluster each bwmon instance belongs to. [Konrad]
 
-Do Geert's slides help to explain the R-Car perspective on why a 
-family-specific fallback compatible might not be desirable, and why the 
-SoC specific one is proposed? 
+V2:
+* Allow for opp-tables to be optional on X1E cpu-bwmon instances. [Konrad]
+* Drop Rb from Krzysztof due to more bindings changes.
+* Use explicit request/free irq and add comments regarding the race
+  introduced when adding the IRQF_SHARED flag. [Krzysztof/Dmitry]
+* Use consistent numbering of the opps across instances. [Shiv]
+* Use ICC_TAG_ACTIVE_ONLY instead of magic numbers. [Konrad]
+* Drop fastrpc enablement patch. [Bjorn]
+
+tag: next-20240621
+base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
+
+Sibi Sankar (4):
+  dt-bindings: interconnect: qcom,msm8998-bwmon: Remove opp-table from
+    the required list
+  dt-bindings: interconnect: qcom,msm8998-bwmon: Add X1E80100 BWMON
+    instances
+  soc: qcom: icc-bwmon: Allow for interrupts to be shared across
+    instances
+  arm64: dts: qcom: x1e80100: Add BWMONs
+
+ .../interconnect/qcom,msm8998-bwmon.yaml      |   3 +-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi        | 123 ++++++++++++++++++
+ drivers/soc/qcom/icc-bwmon.c                  |  12 +-
+ 3 files changed, 134 insertions(+), 4 deletions(-)
 
 -- 
-Kind Regards,
-Niklas Söderlund
+2.34.1
+
 
