@@ -1,101 +1,96 @@
-Return-Path: <devicetree+bounces-79253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1CF9147B4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:42:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D90BE9147AF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 12:41:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AB5B1C20FEC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:42:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D825283FC6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967F8136E2A;
-	Mon, 24 Jun 2024 10:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80291369A3;
+	Mon, 24 Jun 2024 10:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gWqpFYDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28121369AF
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 10:42:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA831805E;
+	Mon, 24 Jun 2024 10:41:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719225723; cv=none; b=qpqPDpqwFjlPIAxcSWzl3dFsQB2XDY4HVi1yXoASssOoXQm0DxxRKdKvW9nC4WJ1ME74zLp+jinXs7YWdfC5uS3nfQYDtDSctWlE3DKpPP+ockKlCuookNVa0UXsWP3rH0UosNM08g9tjhhmjpAOnnFZd+DgCVNXBPMy0m5K11U=
+	t=1719225698; cv=none; b=JOEjGPkrrWSxys955eSrndrKU8un98BlQbxaaHEKmyFDMI08h8SBa57ZXBEB5tzWtZABJqrR8qtiAXzd1ZAXBiGhGXjYgw4erpDfbY70CVee6DE1lzCRekc0T8nBpW/8x9s8zfKH9vYkyEfvhRIMDKY1Zx9NlYCMZ6z3lILSnLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719225723; c=relaxed/simple;
-	bh=K5h1ll4g5EHbAF8MSV+3Z+Mts5ZdfjQbz+k9PT4nmK8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hln9oWc6sqUTMMI30CiAK/WfoidIs/FDhyDo9UTsTiFzU9+fYVFiJwjfuoAPL+fXJtVAgTeojLogwoyhGSbl5a3tezd4k/vsL7jBw7rjIdyivhewq8C2bQ33285eWEZUpmsk371i8qy5CJQqEl35e+/dIdZqrvtTP5nVwsRFgIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=milkv.io; spf=none smtp.mailfrom=milkv.io; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=milkv.io
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=milkv.io
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 45OAdw5a009984;
-	Mon, 24 Jun 2024 19:40:01 +0900
-From: FUKAUMI Naoki <naoki@milkv.io>
-To: kernel@esmil.dk
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        FUKAUMI Naoki <naoki@milkv.io>
-Subject: [PATCH v2 4/4] riscv: dts: starfive: enable heartbeat LED for StarFive VisionFive 2
-Date: Mon, 24 Jun 2024 19:39:25 +0900
-Message-ID: <20240624103925.946-4-naoki@milkv.io>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240624103925.946-1-naoki@milkv.io>
-References: <20240624103925.946-1-naoki@milkv.io>
+	s=arc-20240116; t=1719225698; c=relaxed/simple;
+	bh=ch79Gc4lN+MutdQw3n21VfhYB3S+xxQl2Zt4rck1GkA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=t5VhB/AkmhiJHcoJQ8xzlATIrZkTqfO/VsvnL8ReHvHr18XKd05UXifSKdKs1LdvAaltnecTaaTsRpbtfSJdIl/n84v1jb93ZUIsZ1BvqOPKHnzKvf75vqUpNhGaTftJKPO3fxEBlBgwWjI3LLIrBWPDXQy9V3Z09aRBV0YEX/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gWqpFYDC; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1719225695;
+	bh=ch79Gc4lN+MutdQw3n21VfhYB3S+xxQl2Zt4rck1GkA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=gWqpFYDCfjvsjIxpdYoqJpYMFePdYu47YNMg3K4l/AUDHd8A23uwWl64X5O4iDOHc
+	 E5OYq3/6gqNItJDl5zXdTv8vv78WsCRrf9aeCN1lHYx1HVanCRNXdBF1Uu4URzdKNg
+	 L7heeD4swiWxLHea7QUT2S0qFejToBON+x6JQzrm2T2o5l39Yf1QTUl0cDcCNVN6QN
+	 2KMrtGHesVp3RBU9EtOVbgm0O+iqAPW5f/aF4M94Ivjel1t+ceFsi4qQbgAI/2TNVl
+	 /LEPdt8wgRnN/9YRkQvo/URgo6SeXHcYQAPYBC3ELicoJpGf2V896rHW6nHy8Tz4jT
+	 1U4qTlTgT2iKw==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 920BB37804C6;
+	Mon, 24 Jun 2024 10:41:34 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240131084043.3970576-1-wenst@chromium.org>
+References: <20240131084043.3970576-1-wenst@chromium.org>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8183-pico6: Fix wake-on-X
+ event node names
+Message-Id: <171922569452.118951.6374702543431403561.b4-ty@collabora.com>
+Date: Mon, 24 Jun 2024 12:41:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-StarFive VisionFive 2 has a green LED to show system load[1]. This
-patch enables a green LED as a heartbeat LED.
+On Wed, 31 Jan 2024 16:40:41 +0800, Chen-Yu Tsai wrote:
+> The wake-on-bt and wake-on-wlan nodes don't have a button- or event-
+> prefix that the gpio-keys binding requires.
+> 
+> Fix up the node names to satisfy the binding. While at it, also fix up
+> the GPIO overriding structure for the wake-on-wlan node. Instead of
+> referencing the gpio-keys node and then open coding the node, add a
+> label for the event node, and use that to reference and override the
+> GPIO settings.
+> 
+> [...]
 
-Signed-off-by: FUKAUMI Naoki <naoki@milkv.io>
+Applied to v6.10-next/dts64, thanks!
 
-[1] https://github.com/starfive-tech/linux/blob/a61d1d826ca3060fd76ab31d37c691fc09b52fc0/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi#L79
+[1/1] arm64: dts: mediatek: mt8183-pico6: Fix wake-on-X event node names
+      commit: 754e69efd5012248786c47c83d6204599feb315e
 
-Changes in v2:
-- new
----
- .../dts/starfive/jh7110-starfive-visionfive-2.dtsi  | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Cheers,
+Angelo
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 9d70f21c86fc..e5808268fe8c 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -5,12 +5,25 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
- #include "jh7110-common.dtsi"
- 
- / {
- 	aliases {
- 		ethernet1 = &gmac1;
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
- };
- 
- &gmac1 {
--- 
-2.43.0
 
 
