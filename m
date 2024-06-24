@@ -1,169 +1,209 @@
-Return-Path: <devicetree+bounces-79395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4406915268
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA3A915277
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68B6B1F24206
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:31:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D38441F21137
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008B519CCE6;
-	Mon, 24 Jun 2024 15:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE0D19B5A7;
+	Mon, 24 Jun 2024 15:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Np5jKcQT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aiyRn8Bg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2844F19B3CE;
-	Mon, 24 Jun 2024 15:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BED513D51A;
+	Mon, 24 Jun 2024 15:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719243069; cv=none; b=t43wwyp1zreNeErg9nNBiDOY5O9GE3tQL1cdzjIdrHcYVfP9LeUANCELoHUwkeDO015CszSjS3LKq8Ia9AFk1k+1UwSt0es1kFzqH903pq4IzIBAGW8LpXnLO9ltCQi5ffEw86IOQCDAahnGPXnMzTMagFf6Kto/0pwUjecDpv8=
+	t=1719243183; cv=none; b=aYzNgPnBdbcdMMzyfODJ7aUADZ/VhigOH/fi+fvkD8UM6MnaJ6STI29rBXxhU/H9BErPF/vbeNdxOCTz4mUGb0zSQe8A5zYf4CgM8+yHfzjrRg01za29EPH4yVEApmv1KekB2Ud1a944UqrRjp5mm6WZtlZoyiH7Lxl5zNHAS+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719243069; c=relaxed/simple;
-	bh=Gj1ET0gnfPT9VVrwaIAa4qFWM+9FJ5WfJJ8Gaj9uoFQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rG7jQXWnrqFPCSmaB3rPhKsk8S/ihYoCyP2VP2vHea52oVquvJtS56UObe6dW7EgAKG2R6XYcOocsqp/vMtdTCcQ/TI8jDOha3F1CLZ+wfYDuLgo/r3n/7Pa8PDUT4Zh5HBAcJHndMWwtIK+pvti5NNPUpgzqxo2yiCPzM4KDCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Np5jKcQT; arc=none smtp.client-ip=209.85.208.178
+	s=arc-20240116; t=1719243183; c=relaxed/simple;
+	bh=DZmNeV5KMbw0fJFkmSqqwSQCu3vdZLMdmAW23xCADuw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lZBsz+l8UMcWo6VLWVsk6IwLNsWpN03u4nVqrGBFV9dwmZVKQn8/4jY4ENRa/eK0JZ/6IXHk9w6VbVrrrN88N6gfLebdy/PUAQ3Ek1u6NUU/bu1BS5J9DgYKUDSSZBSKfVoPBREQSIVDqVyvJNm7fM2HlpHih2JTMb7T0r15Z+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aiyRn8Bg; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ec1620a956so53917731fa.1;
-        Mon, 24 Jun 2024 08:31:07 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-421a1b834acso36633995e9.3;
+        Mon, 24 Jun 2024 08:33:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719243066; x=1719847866; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Gj1ET0gnfPT9VVrwaIAa4qFWM+9FJ5WfJJ8Gaj9uoFQ=;
-        b=Np5jKcQT3VicLmEeHbQATDn8nHhS56TAafc7WIztXw9MUD50bLFAIPlHKGwgncYl9M
-         OLudoD2yFOv255gfGjZUr6VSeR9EuPFONBBDJ6/gIfFGNheCYOn/RKGb3HJ4n4ryA7HV
-         pa8yzbokjvh23G7IouuQueF59W5CEBRJgcxqYDPnq/t+RNImeCHVAikOpNQuxP904cC0
-         LY1JYgeKOWjBV/8loNsQWoo1n+d1LFiM6kJsplnxkm6C6xvcMLVJpBu0SbNTtumXonBf
-         IYJkHZYeT65llHmlRU68xzwgtrQ4RzJR4fePabJQVzvndesL84GpU+nSoaK4RBUfOUID
-         SGIg==
+        d=gmail.com; s=20230601; t=1719243180; x=1719847980; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6U//+RVgIeCqwJ3C0P4UhiQlBybFgyaT6cUeM3+sifM=;
+        b=aiyRn8Bgcf3XYMUUare4uqHTqsL/3J33NcMQgyPrr7T0Co75uHMvVMOJvtJZlq04Ks
+         AxlL8wrpTVZeuyCOc0R3NDoYWPbaucqFc8+0OrdPzQX0CaS+mRN0ez2581PLvgeUO23u
+         ssoJ98aTpOjPp8SOXOVowz2xjdanlhTzkDncBu+e6+bYN4zMSZfuutjMdXT3qh5QYK8E
+         SM6Yt2hqQEJqMRRI5TZjfsKbapJkqo1B8yGrbLe6QbjBYV7GZ2xWDFAXOo1IQZNHcooL
+         UoyTP29YLmOHZV376sE3u30xn0dXSO1W4FWODk4ZyPq7/Qdp6/z35WKISzGkZmRPkFis
+         Cv3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719243066; x=1719847866;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Gj1ET0gnfPT9VVrwaIAa4qFWM+9FJ5WfJJ8Gaj9uoFQ=;
-        b=hbogdj5gNsxc5n3wUTcpZa8ot7P/33ezWI1WwU5eIeFY/Lr4CXTg5Ck8U8HfiDe5hS
-         Hsv/6vArqfSldsSUP6/4Cs9+h9Ej2qYGjSKBYiAiELFpaTMdfO+HIhLmiiQD1zlPujl5
-         LwXNVZ0DnvOq6mtmEm9qZ1LGMBdyUoU/EWM88quweG8uPXTFYQXBCtGro2+ytzhepYnP
-         FbmYy9imd3GjDpNqEgJiounU0TE479j9gFcS/Gc9TdiZ875qCotOpRLLF4jcT5ZcEAI6
-         Sm7d39ZYn9eV+h/G38r3dobBi9hrfCVPjRqujVf4EfdneXSPy3qVPqGQMisQwZ+rDklW
-         UULA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1mWyLVmIzOFZeBKSaL48HuBmIjS1fJbQ16e56dFQ9A6B2l24xq9YVp3iDOlm+sD3dwxxq/UubjdhK9RrbcgxSe8A1xdMJ8BTQ46PCrwLi3oo2wZIOAkkNXNWRwx2b7+jx5yJ2u45l8BHi1Oqalx5/VyWbuFC9PwlJh3OTqD9QIfzYZrWPXQpHT8z/43MtpcIK9iSG8R/y69+hbJZCe9HanMFBlnuOhVN3uxjmkrO+EyTGBxUu+zzaH7PkGLuPG6aACF10cStb5/ECOg0WB/qqBlfiPaC+Lz7t1FUQ/KQQXNfOnvx1dhrfCHxH8Hcn4/yGRsqoJUuB79Uct0Fva+Fn11rEKfYTHtYV7EnXO48Kgfm07KYX
-X-Gm-Message-State: AOJu0YziUeJ4sGwa0ZUUiyZIjMoiBxULtra7D9VGImc5Q9+1S3YS1VNJ
-	j+/HTusVLx8CWfAyOolPXVmbeZdd1ZuvNYm8pFRf3i/eys/M/V4a5r/XzysX9PlW3jhpWEjZUX3
-	LfiBIkml/PDqSVv7YgPgI3GA79TQ=
-X-Google-Smtp-Source: AGHT+IGOXIoT1yyvzTU3Ej6Jnd5fItzJypxgtcq3Cn2K/G/HW2nUFkGYBhoo/Zo5wXa3klvOARHm0We8kMgwI5CBPKQ=
-X-Received: by 2002:a2e:720b:0:b0:2ec:4096:4bc6 with SMTP id
- 38308e7fff4ca-2ec5b318000mr28549631fa.7.1719243066027; Mon, 24 Jun 2024
- 08:31:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719243180; x=1719847980;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6U//+RVgIeCqwJ3C0P4UhiQlBybFgyaT6cUeM3+sifM=;
+        b=cESaVtgI6bAGSrxhgW8WVpRzULxJMutbVuGBZkWJ+7CLw2B228eVUubJNdB8DluOGM
+         v4eGGZ8ElSHfZgHd6/SFkH6KIONOm9Qn2vNEaSoF1/rLPxzp7jxvGx8MWaCf9nfO7xHh
+         bYCFlBFDPSTh/Xef0KOIkJ5sTBLM8kvYp2Ni2Qslwmte0lvmwuWYNFkakxREHOTVqe3L
+         u4vaAhimAK7Ih2gPrX6fVCsl8+eMn7K/P9rUN84A4EE8ieJyDNS1Gmxg2K9oRKOr5skG
+         VTnbnRhH1h7kmnhoe9+g3Anj6rAEo9SDEpIXHLFaqETYMbG45gSzitjkPifpLPXLmBJH
+         aVng==
+X-Forwarded-Encrypted: i=1; AJvYcCVQskUMXHFlFKm3rbyKqeALm/qfgy/MfNW8SiqDP0CWXA9JjQbGlYTIJGYFDRuxlczInia94DnQeRzj3XH50LBwfyq9zwZNV8fShh7Qqcm1ljfILZq+x2iKo6ua46NikcPptteDnuZPJgBh1WSVOEDaDH7kMIKRga15mjfc0glBiov9nG4IsMymaxA=
+X-Gm-Message-State: AOJu0Yy7Ds1XUv0yIvWH8VboB1koC5W/pzu5gyDokk2kb57AKiH3aKpG
+	WDNyi9B88WT0o/cIVKoh9LxbfWeoLuUlpCLbhjoCSh41t2GGKwM1
+X-Google-Smtp-Source: AGHT+IH9lAE3Ie72o1Yzk5aEFfBESLdttaf7f0TNeWYlZKqM2Ef+bfLUVu9ISy+M7sV+m2VuJmxGSg==
+X-Received: by 2002:a05:600c:49a5:b0:423:499:a1e6 with SMTP id 5b1f17b1804b1-4248cc585d7mr35037265e9.29.1719243180149;
+        Mon, 24 Jun 2024 08:33:00 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:c315:5cc8:bc92:639])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424817b6121sm138294675e9.27.2024.06.24.08.32.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jun 2024 08:32:59 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-mmc@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/3] Add SD/MMC support for Renesas RZ/V2H(P) SoC
+Date: Mon, 24 Jun 2024 16:32:26 +0100
+Message-Id: <20240624153229.68882-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240605123850.24857-1-brgl@bgdev.pl> <171889385036.4585.6482250630135606154.git-patchwork-notify@kernel.org>
- <0b144517-4cc5-4c23-be57-d6f5323690ec@163.com> <CAMRc=Mf2C4ywa+wQ6pcq5RtehQD00dDhzvS6sDcD8tAn=UypUA@mail.gmail.com>
- <33c7587b-83a4-4be7-b00a-d30874df8c22@163.com>
-In-Reply-To: <33c7587b-83a4-4be7-b00a-d30874df8c22@163.com>
-From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date: Mon, 24 Jun 2024 11:30:53 -0400
-Message-ID: <CABBYNZ+X+_RfZ-fVGrBHhAdbneU+613nx1NTw7+e8ep4JtF6nQ@mail.gmail.com>
-Subject: Re: [PATCH v9 0/2] pwrseq: introduce the subsystem and first driver
-To: Lk Sii <lk_sii@163.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, patchwork-bot+bluetooth@kernel.org, marcel@holtmann.org, 
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	kvalo@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	lgirdwood@gmail.com, broonie@kernel.org, catalin.marinas@arm.com, 
-	will@kernel.org, bhelgaas@google.com, saravanak@google.com, 
-	geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org, 
-	m.szyprowski@samsung.com, elder@linaro.org, srinivas.kandagatla@linaro.org, 
-	gregkh@linuxfoundation.org, abel.vesa@linaro.org, mani@kernel.org, 
-	lukas@wunner.de, dmitry.baryshkov@linaro.org, amit.pundir@linaro.org, 
-	wuxilin123@gmail.com, linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	linux-pm@vger.kernel.org, bartosz.golaszewski@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Fri, Jun 21, 2024 at 5:05=E2=80=AFAM Lk Sii <lk_sii@163.com> wrote:
->
-> On 2024/6/21 14:36, Bartosz Golaszewski wrote:
-> > On Fri, Jun 21, 2024 at 3:14=E2=80=AFAM Lk Sii <lk_sii@163.com> wrote:
-> >>
-> >>
-> >>
-> >> On 2024/6/20 22:30, patchwork-bot+bluetooth@kernel.org wrote:
-> >>> Hello:
-> >>>
-> >>> This series was applied to bluetooth/bluetooth-next.git (master)
-> >>> by Bartosz Golaszewski <bartosz.golaszewski@linaro.org>:
-> >>>
-> >> Hi luiz,
-> >>
-> >> i am curious why Bartosz is able to merge his changes into bluetooth
-> >> development tree bluetooth-next directly.
-> >>
-> >
-> > This conversation is getting progressively worse...
-> >
-> >> 1)
-> >> his changes should belong to *POWER* scope instead of *Bluetooth*
-> >> obviously, however, there are *NOT* any SOB tag from either power and
-> >> bluetooth maintainer. these changes currently only have below Acked-by
-> >> and Signed-off-by tags:
-> >>
-> >> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> >> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >>
-> >
-> > It's a new subsystem that has been discussed and reviewed for months
-> > and thoroughly tested. Please refer to the cover letter under v8
-> > linked in this thread. It's not related to power-management or
-> > power-supply, it's its own thing but IMO the best place to put it is
-> > under drivers/power/. And I will maintain it.
-> >
-> >> 2)
-> >> his changes have not merged into linus mainline tree yet.
-> >>
-> >
-> > This is why they are in next! They are scheduled to go in during the
-> > upcoming merge window. But since changes belong in multiple trees, we
-> > need a cross-tree merge.
-> >
-> >> 3)
-> >> perhaps, it is safer to pull his changes from linus mainline tree when
-> >> merged than to merge into bluetooth-next firstly.
-> >>
-> >
-> > It's not safer at all, why would spending less time in next be safer?
-> >
-> it seems this patch serial(new subsystem) does not depend on bluetooth
-> and also does not belong to bluetooth subsystem, but have been contained
-> by tip of bluetooth tree.
->
-> why not follow below merging produce?
-> 1) you send this patch serials to Linus to merge within linus mainline tr=
-ee
-> 2) luiz then pull your changes from linus mainline tree.
+Hi All,
 
-This was discussed already, but in case you didn't follow if we need
-to incorporate changes earlier we can't really wait the merge window
-for the changes to be merged first into the Linus tree. Anyway Bartosz
-is the maintainer of Power Sequence subsystem, and several others
-drivers, so I think it is safe to trust his judgment here.
+This patch series aims to add SD/MMC support for Renesas RZ/V2H(P) SoC.
+
+Below is the sample usage of using internal regulator:
+
+SoC DTSI node:
+sdhi1: mmc@15c10000 {
+        compatible = "renesas,sdhi-r9a09g057";
+        reg = <0x0 0x15c10000 0 0x10000>;
+        interrupts = <GIC_SPI 737 IRQ_TYPE_LEVEL_HIGH>,
+                        <GIC_SPI 738 IRQ_TYPE_LEVEL_HIGH>;
+        clocks = <&cpg CPG_MOD 167>,
+                        <&cpg CPG_MOD 169>,
+                        <&cpg CPG_MOD 168>,
+                        <&cpg CPG_MOD 170>;
+        clock-names = "core", "clkh", "cd", "aclk";
+        resets = <&cpg 168>;
+        power-domains = <&cpg>;
+        status = "disabled";
+
+        vqmmc_sdhi1: vqmmc-regulator {
+                regulator-compatible = "vqmmc-r9a09g057-regulator";
+                regulator-name = "sdhi1-vqmmc-regulator";
+                regulator-min-microvolt = <1800000>;
+                regulator-max-microvolt = <3300000>;
+                status = "disabled";
+        };
+};
+
+* Example of SDHI1 while using internal regulator:
+** Board DTS:
+&sdhi1 {
+        pinctrl-0 = <&sdhi1_pins>;
+        pinctrl-1 = <&sdhi1_pins>;
+        pinctrl-names = "default", "state_uhs";
+        renesas,sdhi-use-internal-regulator;
+        vmmc-supply = <&reg_3p3v>;
+        vqmmc-supply = <&vqmmc_sdhi1>;
+        bus-width = <4>;
+        sd-uhs-sdr50;
+        sd-uhs-sdr104;
+        status = "okay";
+};
+
+&vqmmc_sdhi1 {
+	status = "okay";
+};
+
+
+* Example of SDHI1 while using GPIO regulator while internal regulator is present:
+** Board DTS:
+vccq_sdhi1: regulator-vccq-sdhi1 {
+        compatible = "regulator-gpio";
+        regulator-name = "SDHI1 VccQ";
+        regulator-min-microvolt = <1800000>;
+        regulator-max-microvolt = <3300000>;
+        gpios = <&pinctrl RZG2L_GPIO(10, 2) GPIO_ACTIVE_HIGH>;
+        gpios-states = <0>;
+        states = <3300000 0>, <1800000 1>;
+};
+
+&sdhi1 {
+        pinctrl-0 = <&sdhi1_pins>;
+        pinctrl-1 = <&sdhi1_pins>;
+        pinctrl-names = "default", "state_uhs";
+        vmmc-supply = <&reg_3p3v>;
+        vqmmc-supply = <&vccq_sdhi1>;
+        bus-width = <4>;
+        sd-uhs-sdr50;
+        sd-uhs-sdr104;
+        status = "okay";
+};
+
+v2->v3
+- Renamed vqmmc-r9a09g057-regulator object to vqmmc-regulator
+- Added regulator-compatible property for vqmmc-regulator
+- Added 'renesas,sdhi-use-internal-regulator' DT property
+- Included RB tags for patch 2/3
+- Moved regulator info to renesas_sdhi_of_data instead of quirks
+- Added support to configure the init state of regulator
+- Added function pointers to configure regulator
+- Added REGULATOR_CHANGE_VOLTAGE mask
+
+v1->v2
+- Dropped regulator core API changes
+- Updated DT binding
+- Now controlling PWEN bit via regultor api
+
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240605074936.578687-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
+  mmc: tmio: Use MMC core APIs to control the vqmmc regulator
+  mmc: renesas_sdhi: Add support for RZ/V2H(P) SoC
+
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml |  30 +++-
+ drivers/mmc/host/renesas_sdhi.h               |  13 ++
+ drivers/mmc/host/renesas_sdhi_core.c          |  93 +++++++++++
+ drivers/mmc/host/renesas_sdhi_internal_dmac.c | 150 ++++++++++++++++++
+ drivers/mmc/host/tmio_mmc.h                   |   5 +
+ drivers/mmc/host/tmio_mmc_core.c              |   7 +-
+ 6 files changed, 293 insertions(+), 5 deletions(-)
+
+-- 
+2.34.1
+
 
