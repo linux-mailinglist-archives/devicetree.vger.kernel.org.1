@@ -1,223 +1,102 @@
-Return-Path: <devicetree+bounces-79444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998F09154BD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:49:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FBE9154CE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EFF6283D2C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:49:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 743611C2350F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA2219E825;
-	Mon, 24 Jun 2024 16:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E04619E7F7;
+	Mon, 24 Jun 2024 16:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDuNkAqF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kkl8d41X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C571919E819;
-	Mon, 24 Jun 2024 16:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5511C1428F1;
+	Mon, 24 Jun 2024 16:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719247741; cv=none; b=LrM1xqhtpKqXqZotq8Unbi/HhcOPt93AlSDJ89pLz5binZl97YGYH8EqglLAuwYlw5tP2LW5tpc0LfZB7Vvv1Km/L7aSQ9gQyCfmNey9DsXFkwxZ3CCE22qph1pP95Y5geM+n/Gp54Z43xXvqLXuOm4EqPo8lL4OVzmvF9+Dgbg=
+	t=1719247790; cv=none; b=h+KARC7TxBa6Sw9Q2rWXpnj8wMoS5/TQZbt54CBV/DSksMPr04g/b78AwPYCpt3gF2I1oKpR/QmqGPrAZgVm0zV0LUCR4a7GJueNf02qdsBQssJkP9217aIg5JbbJY3CZGrByzh94gTRPT0tNXs5zeV0LqMySo3usiDV5vD4vrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719247741; c=relaxed/simple;
-	bh=7EIjVKwobYxuhKEgtOIhJ9Tg39QihhVL1irIwcz75/g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FvNvtwUYosSeayovbF0lF6bwN3vL2R0mtKGYgxCobaXO1wliJ7RM6KjIDoCF+kAl9KIXC7cTbsPX3AIY/8XBFXwMu+OixJiair+Ki2J0HDX1rKaw/t3AoX2D1loOuZB/+d3j+kWpyipugs7sKD38p6HvNRhudOIQNpZaHOg4MLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDuNkAqF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C50CC4AF0D;
-	Mon, 24 Jun 2024 16:48:58 +0000 (UTC)
+	s=arc-20240116; t=1719247790; c=relaxed/simple;
+	bh=+Bra0RkgrfLsP5dCznByNggwiEedk6z502yzyiYly4w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RfX9sCGhW5sL96znPBwyCrmiwZ/6tr//W0Q8QCqfh0YfJdFYW/SyJCEDRsWIApLDOnFsBdaj9JJIAyIe5Nz/rV7miZUl5vJ+nI/UUGA7JkphABVMaYAT7TD+PL/AaX4w21UOVDbG0ZZm7hzgZ9XPWYc5no4Y+QSsn5yd58ii5yI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kkl8d41X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFBB4C32789;
+	Mon, 24 Jun 2024 16:49:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719247741;
-	bh=7EIjVKwobYxuhKEgtOIhJ9Tg39QihhVL1irIwcz75/g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FDuNkAqFjP6H0PMV65mMsXcQTZqp7Yc5hB9Vav1a59LWaGP2baR9wKX1cKnpYKIJP
-	 65IXF7dazTdLnRbR05apDZcbYNMYxsmEm2ahd5tu7wv2Fn7FZXwm1FNB5P5YvNwA+T
-	 d9JHTpvpL7rB96puSoeAlTRpOewu9NuKOSsG8l9jQqFBhYcONhOm/j1ZvWIO23ao37
-	 9HiJ/bWJ1YCxp+APH7D5ez2Cg8cSvKsBENSVMPr5Vf7QO0gnqLSufsqffWpBlP6JhN
-	 JO6BqGgpNWEWkFSDV917FfwleFozoPy7OX01s9TzaFZ/2w5NtI0945dDGFK+Ft0FNd
-	 R+i+PjXjoDG0Q==
-Date: Mon, 24 Jun 2024 17:48:56 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v3 2/5] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-Message-ID: <20240624-buffalo-unison-fad374066b0e@spud>
-References: <20240617-imx-se-if-v3-0-a7d28dea5c4a@nxp.com>
- <20240617-imx-se-if-v3-2-a7d28dea5c4a@nxp.com>
- <20240617-control-calamari-317f59c4eb09@spud>
- <AM9PR04MB86049915593D86599C67975F95CE2@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20240618-antonym-tabloid-8f721ee752a5@wendy>
- <AM9PR04MB8604F9A6B01C3794CAAAF36C95D42@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	s=k20201202; t=1719247789;
+	bh=+Bra0RkgrfLsP5dCznByNggwiEedk6z502yzyiYly4w=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Kkl8d41XOwb9BjhSgBGRLCQCfLDAuvg3Hm7CYMeIkzBdAjG2iBgyElxV2L1yM2Wnq
+	 Kb+kNk4vAq3PSuTpYYD/3167N53SPw8w9/DMSgFKotWWUVz2P0vBQD7qnf2/uEQ+ZL
+	 +Gi62HzRYlm5czV6AsqqaMZONPbhJPQB/NkgKnlXiwDwuyu+uz/ghMobcGFzfVmifh
+	 NoUIvxEbXLoChAnbhwkYh82L/hj/pzPT88Lx4cHafYT5MooH1haDbmA2U+bvhKcBw0
+	 9PXjebkliKQgNRUm32rNjDDBZDBCs6Z7qwspM9HcOn1LGiw2ToJwsq3znNXA2WV7FV
+	 HeGuOa3GyraBw==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52cd8897c73so3270263e87.2;
+        Mon, 24 Jun 2024 09:49:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWJvjF7l0Usexly4goPofcZ/WB8Chn6GiKJX+EUvfyQypuIZnwCW2YprOcAKd7Ob5NpGQhFcrxQmC3pP7GYzGSZedGQry9X2JPWrnmrEJznUd2tQg23YTgRQvTj56Y7Ld5od2Vw6843Jw==
+X-Gm-Message-State: AOJu0YxLQ3vHuExA1gT1E04X58x0EykFfQvsaOOdAUnEaws86yK6r8Q4
+	iB21bHvt2O0lctBruuOL7ZoM9JYmxVhgbsOVOmVGXrUpt8L5M+DSx5TDXTQCd8j2vLVj6jWqltD
+	CQ5YghhKomcIPjKD5o/SW2eqWXw==
+X-Google-Smtp-Source: AGHT+IG0pBeW8ebE64VNR8DbL8ZdFf3AuTbc+Rvh/5EBZWs+PPolPm48g7EKW1XADebn7CulWGPww1Kogwh3acIjYUs=
+X-Received: by 2002:a19:7518:0:b0:52c:da8c:fdf3 with SMTP id
+ 2adb3069b0e04-52ce183503emr2724071e87.17.1719247788246; Mon, 24 Jun 2024
+ 09:49:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tq5e8PI+/1dzunEp"
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8604F9A6B01C3794CAAAF36C95D42@AM9PR04MB8604.eurprd04.prod.outlook.com>
-
-
---tq5e8PI+/1dzunEp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240531193115.3814887-1-robh@kernel.org> <CACPK8Xes5vp+3YpQ3L5ix=LaDv7oWtqGFVc8moQf4D+o3rnLjg@mail.gmail.com>
+ <8dabf3d1-2d23-4adc-a804-2b7aa5fe16e9@kernel.org>
+In-Reply-To: <8dabf3d1-2d23-4adc-a804-2b7aa5fe16e9@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 24 Jun 2024 10:49:34 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+L6tKw+OzYVHSyou3eW5s7OChEbwqPe=qtQkRW=B+y-w@mail.gmail.com>
+Message-ID: <CAL_Jsq+L6tKw+OzYVHSyou3eW5s7OChEbwqPe=qtQkRW=B+y-w@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: aspeed: Use standard 'i2c' bus node name
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Joel Stanley <joel@jms.id.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 24, 2024 at 01:46:19PM +0000, Pankaj Gupta wrote:
-> Thanks Conor, for the help.
->=20
-> Sorry to miss out this mail reply.
->=20
-> > -----Original Message-----
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> > Sent: Tuesday, June 18, 2024 4:50 PM
-> > To: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > Cc: Conor Dooley <conor@kernel.org>; Jonathan Corbet <corbet@lwn.net>;
-> > Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
-> > Conor Dooley <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>;
-> > Sascha Hauer <s.hauer@pengutronix.de>; Pengutronix Kernel Team
-> > <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Rob Herring
-> > <robh+dt@kernel.org>; Krzysztof Kozlowski
-> > <krzysztof.kozlowski+dt@linaro.org>; linux-doc@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.dev=
-; linux-
-> > arm-kernel@lists.infradead.org
-> > Subject: Re: [EXT] Re: [PATCH v3 2/5] dt-bindings: arm: fsl: add imx-se=
--fw
-> > binding doc
-> >=20
-> > On Tue, Jun 18, 2024 at 10:58:47AM +0000, Pankaj Gupta wrote:
-> > > > From: Conor Dooley <conor@kernel.org> On Mon, Jun 17, 2024 at
-> > > > 12:59:40PM +0530, Pankaj Gupta wrote:
-> > > > > The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X
-> > > > > etc., creates an embedded secure enclave within the SoC boundary
-> > > > > to enable features like:
-> > > > > - HSM
-> > > > > - SHE
-> > > > > - V2X
-> > > > >
-> > > > > Secure-Enclave(s) communication interface are typically via
-> > > > > message unit, i.e., based on mailbox linux kernel driver. This
-> > > > > driver enables communication ensuring well defined message
-> > > > > sequence protocol between Application Core and enclave's firmware.
-> > > > >
-> > > > > Driver configures multiple misc-device on the MU, for multiple
-> > > > > user-space applications, to be able to communicate over single MU.
-> > > > >
-> > > > > It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
-> > > > >
-> > > > > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 160
-> > > > +++++++++++++++++++++
-> > > > >  1 file changed, 160 insertions(+)
-> > > > >
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
-> > > > > b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..60ad1c4a3dfa
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
-> > > > > @@ -0,0 +1,160 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML
-> > > > > +1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/firmware/fsl,imx-se.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: NXP i.MX HW Secure Enclave(s) EdgeLock Enclave
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Pankaj Gupta <pankaj.gupta@nxp.com>
-> > > > > +
-> > > > > +description: |
-> > > > > +  NXP's SoC may contain one or multiple embedded secure-enclave
-> > > > > +HW
-> > > > > +  IP(s) like i.MX EdgeLock Enclave, V2X etc. These NXP's HW IP(s)
-> > > > > +  enables features like
-> > > > > +    - Hardware Security Module (HSM),
-> > > > > +    - Security Hardware Extension (SHE), and
-> > > > > +    - Vehicular to Anything (V2X)
-> > > > > +
-> > > > > +  Communication interface to the secure-enclaves is based on the
-> > > > > + messaging unit(s).
-> > > > > +
-> > > > > +properties:
-> > > > > +  $nodename:
-> > > > > +    pattern: "^[0-9a-z]*-if@[0-9a-f]+$"
-> > > >
-> > > > Just "firmware@<hex>" please.
-> > > >
-> > >
-> > > Modified as per your suggestion,
-> > > -    pattern: "^[0-9a-z]*-if@[0-9a-f]+$"
-> > > +    pattern: "^[0-9a-z]*-if@<hex>"
-> >=20
-> > Firstly, that's not even what I said verbatim, which I could understand=
-=2E <hex>
-> > isn't even a valid bit of regex for this.
-> > What I want to see is something like: "^firmware@[0-9a-f]+$"
->=20
-> These nodes define the interfaces(-if) to the "secure enclave" FW(-fw).
-> Will replace "-if", with "-fw".
->=20
-> There are multiple NXP IP(s) for secure enclave(s):
-> - EdgeLock Enclave (ele)
-> - Vehicular to anything (v2x)
-> - SECO (seco)
->=20
-> Having "ele-fw" helps identify the FW IP name.
+On Sun, Jun 23, 2024 at 10:47=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 24/06/2024 03:55, Joel Stanley wrote:
+> > On Sat, 1 Jun 2024 at 05:01, Rob Herring (Arm) <robh@kernel.org> wrote:
+> >>
+> >> The standard node name for I2C buses is 'i2c'.
+> >
+> > Unfortunately this can't be merged, as it will break userspace. There
+> > is a lot of code out there that looks up devices based on the device
+> > tree node path:
+> >
+> > https://github.com/openbmc/phosphor-state-manager/blob/3c1351cc2b631788=
+76ef68f4107c9804d2e17dcc/meson.options#L140
+>
+> Eh, thanks for sharing.
+>
+> That's totally stupid user-space. The sysfs path to /sys/devices, or
+> some grep by compatible, would be fine, but iterating over firmware/DT
+> is just wrong.
 
-If you need to indentify it, just use a label. "ele-if" or "ele-fw" is
-not a generic node name.
+Agreed, but Greg (and maybe it is actually documented somewhere) will
+tell you that /sys/devices or /sys/bus/ paths are not ABI. /sys/class
+is the ABI path.
 
->=20
-> Will it be fine to use:
-> -    pattern: "^[0-9a-z]*-if@[0-9a-f]+$"
-> +   pattern: "^[0-9a-z]*-fw@[0-9a-f]+$"
->=20
-> or
->=20
-> -    pattern: "^[0-9a-z]*-if@[0-9a-f]+$"
-> +   pattern: "^[0-9a-z]*-firmware@[0-9a-f]+$"
-
-No, just use firmware please.
-
-Thanks,
-Conor.
-
---tq5e8PI+/1dzunEp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnmjdwAKCRB4tDGHoIJi
-0r+gAQCyiiV0vjrfFRaz1N5YBIUMo8wNM+UMu8VCKySqxgd/AwD9GOcXAgTuK+Wj
-eugyHt5D3w4H38UNyDR/kO1WrqflYQo=
-=71M8
------END PGP SIGNATURE-----
-
---tq5e8PI+/1dzunEp--
+Rob
 
