@@ -1,83 +1,82 @@
-Return-Path: <devicetree+bounces-79441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CD099154A0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:46:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E12229154A3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18DB02868CA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:46:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E7911C21411
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5E619DF8F;
-	Mon, 24 Jun 2024 16:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495DA19E824;
+	Mon, 24 Jun 2024 16:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="3ogjcxXN"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="1zaXE/2O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D04F142659
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 16:45:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C768B2F24
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 16:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719247555; cv=none; b=p01AEdZ64trqjEB0PYgy+VS2O6+rmk9KdVjw00k8mmClBrq3Q9yHjzn+157s56YvbRKpZpPvgGXKxRNC8OIfuuCoIq3LHnyUukrKjM7p0zX+5z+PbDsFjTPn50vgraFptSSf6MzSM1tm1fhnE040HGKrZ0/DCMdATBnIsACe3Xk=
+	t=1719247577; cv=none; b=eajudGTSGntoTrfNPbaBxLZQhEFNg/d/at9nTQtE8qgd0bM2qACxgjXje66B7FIY1hFqtd0EC7T2HzXuv7ErEVkvvf4FmiBP/xmEDnkZJi7flLhtoVU/MfttAMwnuMSGezlIcnFEdHEx8Beh/6dhdXspGSNh4yb4Zva339A+1Ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719247555; c=relaxed/simple;
-	bh=7/UnMHPZIxjL9awIurtHTiLV/VlW7wM/jMEjkX1eNeM=;
+	s=arc-20240116; t=1719247577; c=relaxed/simple;
+	bh=j3mtCDro6szPMoGWAAjyIwhY8Z8hnROYefTX4WK/Chc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OJY6B9wELC8jqTQK6xR/h5dvalF0Py5VG60vehiyDXQekxmHvMS6zSyLaxm8K93eTaGcaaMIMXfbISmJ7k4Q0VpjQGwPf3dujTmgbvFnFytz6LZJtz8dH42Ek/GP7bTNvi+cC+jGxzoPFULpYcIdKtw+RnKMqjB0Vp8anhkVs3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=3ogjcxXN; arc=none smtp.client-ip=209.85.160.171
+	 To:Cc:Content-Type; b=F9PdN4vB+TCKRNh/HbGKRNHMevZiOviNQvyzs+cQ0SwKAut9y4WrgKgRX7k5bl5oQnbDj30c3Rthz1nqJqKDQzkgvMunrSp7+T7PQJ+Gw0ZonOQiDpeWSX3GkPl3szC/wC2Or2+atTxYma+q8daE0FkKtEDLiilnBz4Gm9enVoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=1zaXE/2O; arc=none smtp.client-ip=209.85.160.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-443586c2091so851cf.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 09:45:52 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-443586c2091so1121cf.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 09:46:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1719247551; x=1719852351; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1719247575; x=1719852375; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=x7+3fE/z2eqo4JMbpyr9vRiW9tYZPuPhGSl35o712FI=;
-        b=3ogjcxXN14bUGay6oho4/NorxroLuhgDnP5z5r1vDpuDz9WldrzX5thCSI7/tCqbkR
-         x2Wc1Xe8wJHCKKFxH31hAm38ePs7YyjWLVGc2iJYUFQTLUuvf96rn/57Rn2lj8doGAhz
-         Ps+/764tXkciiuKblDQGZubejmedD1muKUN6rbCzilFQky0T0P7h4wapkZDE1z6qi6tj
-         432RptRrP20IYC/POnlHzUkKTZhnwdM56BlPIDy4L/UaNyB4Z7iFD0KEeIQXW1UNeHif
-         3Io0PFpmkTTdoqIo8PWxWG509P2w1JoFXgMXvJZsgPc/JiF39/KeTOcKtM6pV6GUZazn
-         xwew==
+        bh=AMSaelTgm9+gZJLzvg/KOZGEZUTdUOqVskLSww0Rudo=;
+        b=1zaXE/2OmbLVH3YFlvHlhrCUNdqVIEoEgQbgiPzkP7DCI5I4nTGOH50t/YuZSEK9qi
+         HpcuI0bwf2BrNnccQ6Wc1aM+E+IELLJpNWRQcVLw4p72m1WlDz0cuZxqhBv0D+1b3rZl
+         vF/qOHLKcfCTSYSeUm7825gwkfw73ef5h+fItFYtr117Km0c1M4PF19F4GGcwvu19ko2
+         /TWa5T59en6SS4doQGbtMd77MEkjYgMm/Ufu2F9i/gyEiAtUmPZUqdkxBRisHFR2sYtX
+         DSyFsx8MNNngg9oyskxOsFXEH3QXHnkhb9MZETW5pZIiV8uorpsG24CRAE4GFqX9bh5T
+         +T9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719247551; x=1719852351;
+        d=1e100.net; s=20230601; t=1719247575; x=1719852375;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=x7+3fE/z2eqo4JMbpyr9vRiW9tYZPuPhGSl35o712FI=;
-        b=UAFMJANEJpNqG4PyqQjndILUkApJ1eLDHgpWZuKbOtWTpwFC/iV1W/POCxruxN0d35
-         04kIGAhwoHag4zncXr7lqx0Pr67Ro8TyIqAtpElbMJtgKNN7By4ZSmFlSwwbSjFtcjfV
-         /5C6jEYAc+YlYkcdN7Xn4hmzD6gHi4OSm6mkFn5KeRRI8JZHkqOWtunHb7JF/cyQGuKO
-         BPYp0ueBpPBbZwLpU2gBQPtKT5I7DuI0xjfVeuBQnMFMuJ1CZaWineFsrAu14EPAdx9Y
-         VEb7BMt8PWkS7pqfYBzQP1n7bbHsF2tMKNc5w7vHGsF9D2qKZgvNTkMwU/64ABVQqK36
-         i6ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWOeNyC1RXrU/vsRUJrvIhagL1Og/lo86aHWVz9wO3qiU5k/FffugBmv+8xroob08vqcEojnvt/KBSVYXug6M1kDQC4FA1Z7/IcmQ==
-X-Gm-Message-State: AOJu0Yy3Mf6mvmsQPLDxltC3lsc2AxORIybIaG6M0oOJN9cYZE8Spkyi
-	KVHfVogWmoUFSZFXf+iKCsonvPwlvBXjy8dfFSqkevHOWBS5BePld77JT2Fi8PDSfUWbzwt1BaY
-	9h1lZy5xQUqORXS6nLHYM0McpFe7w+jNotyUf
-X-Google-Smtp-Source: AGHT+IFaxMpEm2LuOUeg0YWpZpls4eMoSSiEoi4Mw3USzXJofjJV3Rc5g2Eg/oubpc2kMeXq42i1kSjw/vsIL8qpsQs=
-X-Received: by 2002:ac8:5748:0:b0:444:cdc4:fef5 with SMTP id
- d75a77b69052e-444ce38fbebmr6032061cf.27.1719247551241; Mon, 24 Jun 2024
- 09:45:51 -0700 (PDT)
+        bh=AMSaelTgm9+gZJLzvg/KOZGEZUTdUOqVskLSww0Rudo=;
+        b=KxXiGSon2FVpy0Qk0bHwaqvEp/hjuUhpv3iNNJmTy4GgbKiB3pNi4hNorbd0MNDQkq
+         Y5Xwk98qVhUr2dIVmcoghP+hSn6vfmD94uq0LeU2cTnEvBNMLjYK46vMWW6HHO0qTwPK
+         0Maum71AAJjbcoe+ZK9T5J9AR0ISDhokWr6cvnXGdBXEI/54dinF+VU5pu1JcTXo37Q0
+         5G1XjVCYa7y0tlC6jlavDlXgxhqaLKpDciRmZ+peruiDXYwI+V1ALY2kMErQquF1NPjg
+         KBq0MTl7c3Y05nhL0JJDzwRMrujOy0JWT30odn4Rrx7kgFj8C7X1TAyeBmSMk8zG3MD0
+         prUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWT09+d61ywaRWhSe6FSQsvb8dFpctCn1rZH/5/xJyN5xeVa+R1TLpMHwLIF0I2oBvbmIpFtRPG2jaPygCijd7mYefwM6aPLRmZLQ==
+X-Gm-Message-State: AOJu0Yyi1HqYbiAvJq538WuvJar61YbYT0um43KSz478L9msg1U0RYmz
+	cZziWYmKuQLB/AqyTLF7ZJ4iTtZ8mEq5kQJYpEBcWQYZ+hW/4bsUxQJ2dYQNYrs7vqCd8oHSvbU
+	+wysz/jLhxHn8zHHBw4yC2rPyuvYJ1o+iUxPw
+X-Google-Smtp-Source: AGHT+IFjApab6MaKv6PsrlmopTYXcXjrUWTT++GwSbVbvFdm1I8gzP3WA9e+zP+3yfQBYNCgLHo0PSNfLdJekbpatUs=
+X-Received: by 2002:a05:622a:83:b0:441:54bb:50eb with SMTP id
+ d75a77b69052e-444ce39fd5dmr5217641cf.28.1719247574572; Mon, 24 Jun 2024
+ 09:46:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624141926.5250-1-lvzhaoxiong@huaqin.corp-partner.google.com> <20240624141926.5250-5-lvzhaoxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240624141926.5250-5-lvzhaoxiong@huaqin.corp-partner.google.com>
+References: <20240624141926.5250-1-lvzhaoxiong@huaqin.corp-partner.google.com> <20240624141926.5250-6-lvzhaoxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240624141926.5250-6-lvzhaoxiong@huaqin.corp-partner.google.com>
 From: Doug Anderson <dianders@google.com>
-Date: Mon, 24 Jun 2024 09:45:39 -0700
-Message-ID: <CAD=FV=Wcn7GGhdOCS3BOZj2AX1N3SCG5psco-4X75yO83DkpRg@mail.gmail.com>
-Subject: Re: [PATCH v5 4/5] drm/panel: jd9365da: Support for kd101ne3-40ti
- MIPI-DSI panel
+Date: Mon, 24 Jun 2024 09:46:03 -0700
+Message-ID: <CAD=FV=XsRrB_Y=_rTTDhvzQPwxr+_LuY-YUjfm5H7mY8YgxG0w@mail.gmail.com>
+Subject: Re: [PATCH v5 5/5] drm/panel: jd9365da: Add the function of adjusting orientation
 To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
 Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
@@ -93,56 +92,23 @@ Hi,
 On Mon, Jun 24, 2024 at 7:21=E2=80=AFAM Zhaoxiong Lv
 <lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
 >
-> The K&d kd101ne3-40ti is a 10.1" WXGA TFT-LCD panel, use
-> jd9365da controller,which fits in nicely with the existing
-> panel-jadard-jd9365da-h3 driver.Hence,we add a new compatible
-> with panel specific config.
->
-> Although they have the same control IC, the two panels are different,
-> and the timing will be slightly different, so we added some variables
-> in struct jadard_panel_desc to control the timing.
+> This driver does not have the function to adjust the orientation,
+> so this function is added.
 >
 > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
 > ---
 > Changes between V5 and V4:
-> -  1. Add a "_ms" suffix to the variables.
-> -  2. Use more "_multi" in the enable/disable function
-> -  3. Use mipi_dsi_dcs_write_seq_multi() in the init() function.
+> - 1. Change dev_err() to dev_err_probe().
 >
-> V4:https://lore.kernel.org/all/20240620080509.18504-4-lvzhaoxiong@huaqin.=
+> V4:https://lore.kernel.org/all/20240620080509.18504-5-lvzhaoxiong@huaqin.=
 corp-partner.google.com/
 >
 > Changes between V4 and V3:
-> -  1. Use mipi_dsi_msleep.
-> -  2. Adjust the ".clock" assignment format.
-> -  3. Adjust "compatible" positions to keep the list sorted.
->
-> V3:https://lore.kernel.org/all/20240614145510.22965-4-lvzhaoxiong@huaqin.=
-corp-partner.google.com/
->
-> Changes between V3 and V2:
-> -  1. Give up creating a new driver and re-add K&d kd101ne3-40ti
-> -     configuration to the panel-jadard-jd9365da-h3.c driver.
->
-> V2:https://lore.kernel.org/all/20240601084528.22502-3-lvzhaoxiong@huaqin.=
-corp-partner.google.com/
->
-> Changes between V2 and V1:
-> -  1. Use the new mipi_dsi_dcs_write_seq_multi() function.
-> -  2. Modify Move mipi_dsi_dcs_set_display_off() and mipi_dsi_dcs_enter_s=
-leep_mode() to disable(),
-> -  and drop kingdisplay_panel_enter_sleep_mode().
-> -  3. If prepare fails, disable GPIO before regulators.
-> -  4. This function drm_connector_set_panel_orientation() is no longer us=
-ed. Delete it.
-> -  5. Drop ".shutdown =3D kingdisplay_panel_shutdown".
+> - No changes.
 >
 > ---
->  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 277 ++++++++++++++++++
->  1 file changed, 277 insertions(+)
-
-It still seems weird to me that the other variants of the same panel
-don't need similar delays, but the code looks fine to me now:
+>  drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
