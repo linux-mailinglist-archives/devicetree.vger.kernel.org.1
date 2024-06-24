@@ -1,100 +1,116 @@
-Return-Path: <devicetree+bounces-79484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59DA89157C7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:19:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C21C99157D6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:20:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A8DD1F21309
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:19:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AB42287D29
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4261A01DC;
-	Mon, 24 Jun 2024 20:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1311A01DC;
+	Mon, 24 Jun 2024 20:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="bh4tqL67"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kG4UjMzW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9063B298
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 20:18:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E6A262A3;
+	Mon, 24 Jun 2024 20:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719260335; cv=none; b=NuW6AmrpoZ13IV1kG5jIVuXxIrpOadfv9UvxP1Y+bzGHy7E8oQZSVrGgunLrCQGpwYRXafQgY/R9L6zJJ8STS7+9XnVArsLemF+qEHi/eJRjOFOQcrJV/eEiucekjyF7NAYvJgbS22tcDMhDqy1qou4Kjb/UZSAi7n4CIStNT90=
+	t=1719260409; cv=none; b=i7YgcLZ/Kxsgm2Ow5YinNVytx85HfD4nQIAHzYQ6NUWGodqwLeg/IcxdE8vPZA6mE1TGoHyv89jZuLUXxkhFHH1CdOMwUL9Vqgb4BrX9m8yfdP3QLprqZHukOFAGmM38ugt6cgXSPx6yPvgCOvVoaCGbkzAkc5TyQh1I78Xbe64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719260335; c=relaxed/simple;
-	bh=CYPMKzKXzPtEKhl5KLn1rsXOXuPsd77VL4h50H+aCL0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bYO7GrYAPrEtU3JcLD47YSWaJRrKby0LNkeeSAKuJniztojAjYweuk6Bulho8HqHt3zOb7rGwKcZhvw9Jg+lD87oaEvSjtTeFnMwFR4kdHTI6KBrIspDEspIiEbNMCcHj7tspYUaUUK+WkKbzbv3ID73JaulEm3kpjc93uo11CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=bh4tqL67; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a725d756d41so158010066b.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 13:18:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1719260332; x=1719865132; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CYPMKzKXzPtEKhl5KLn1rsXOXuPsd77VL4h50H+aCL0=;
-        b=bh4tqL67qwrLSvvomB0GYyaZRmfZ8C7/jtMJQbLXq+rTsGgIZuiWYFNpH++Al2dWQe
-         hbXXTwtmc/nJTyFciBIUyb/nFVP2i0yZv+cRV/AdaaBu5l+jIqgrzOhqtdqss228H7/9
-         i8h6A8Ur0MSfXq7LyHaH1OyNoZINRlrNnrD1blCrAB47CY7g8CVSdW+lyEBneNDoMjXe
-         W5zbLbwk2DQZz+HxdsIKlagFzxlicQN+NmlsCNiyY+6v5KtMiBtt3Enem/giGaJqHjpw
-         C+m8Ls3NamUo4rAwDvC3+9fqEAkj692/nhnSK8M6U0ZFwGzggR/PeALd2V1pYOe2ovRV
-         +0Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719260332; x=1719865132;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CYPMKzKXzPtEKhl5KLn1rsXOXuPsd77VL4h50H+aCL0=;
-        b=agTl4/PlCWqWV7Q+P6TTkCxdWSQvsf7NoCibnQ5gP+e6N5JRMf3XwI1RGxvv5Tnstp
-         cu6vSMR3hQdXpLDTV4/c+TrpcD6zBOX4xT2jFI9eEPLKqNn+5djGWqoAx8pqRtT0Tkat
-         gHatHKggYU9T0wQpH83GHwVjhLlqM374rujz+aZhtzWx1I/C80HYlT3JXhyrE2diB6u8
-         afjO1M1tX9T0CFQiF1gblNbcqg6Q9Olz8xwkl9dbkc/UbXmXWWBTaGZ8jYsdJUVaHSAk
-         Ov/5wN51l4WDCgyT30c+AWn7OZzOFKB2Y+a9otWtToAWe52g3QBM03PSFHYCoLuY9PvS
-         Wb1A==
-X-Forwarded-Encrypted: i=1; AJvYcCWBw6wSA4MJB7UFJyx9Z3DfENoMWE/Nmlar3TW5rextxafhlAxpHlcvoxwemRemuS8aEVO/zraROv4sglcM35C5y4WwgQ4bIDbhWQ==
-X-Gm-Message-State: AOJu0YwbNdke3fkMbfvDLntB+68wVrORorN09LcJZ6WfDcaZsLdLNdZ6
-	2hySFXE2TqoUiiAdZ06A82Z5dTQhIpazgp7425Ay/2U/H+6Inrnc7+O3wyzWmQb2SlQ6d7Dnssd
-	zQrDVRJUBJHYZIq+/PzqBhNn89smIXRZXtX2cGA==
-X-Google-Smtp-Source: AGHT+IHYKa/ycS20058DIxTuE4TPZj+Ne6GJbbNiJ5FbYcQC6EiSPJWgGfnJ/EyOzoXs+/hcdQEshUVAiI2Wx8GhYRs=
-X-Received: by 2002:a17:907:8b91:b0:a6f:6df5:a264 with SMTP id
- a640c23a62f3a-a70275ea47emr586904366b.1.1719260332160; Mon, 24 Jun 2024
- 13:18:52 -0700 (PDT)
+	s=arc-20240116; t=1719260409; c=relaxed/simple;
+	bh=tAbvRsIY1ZRGz3ZBltZKorbmqsymD3xAmW5bX7SWz0w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ksbiB8MYlu8NozWk3zyvU9mdRIOucCrlnynCflZ+/H0rS5l0RX+SFGALSJA08HZLFLnPWR2RlXmWOV0IcY4LRP6JQhup1g8JLnWWZ6kjbu5dqdbUn6Xj/5Yrt3QEffksawdWpSlBHe8EbuyrvTqdUqCDzQtNhHrCGxqd095ONQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kG4UjMzW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A344C2BBFC;
+	Mon, 24 Jun 2024 20:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719260409;
+	bh=tAbvRsIY1ZRGz3ZBltZKorbmqsymD3xAmW5bX7SWz0w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kG4UjMzWgKqQiuAL6L8kJJl0l9QgfrYuqk1lu/FNf9omEVFDKK62+iwEcEHbfhrIw
+	 xu33wFmB95HERgacLucs8oOP5WnzpzKfKgbMvgG297XDsCIvphRvaUzGMsDF+RK+C/
+	 MwhLHecaZwfYujomPDGhMfMCqSG0b3UkGBt0s136Y+TcLGwHf4X6G9zUPIPNW/tZv1
+	 XmtTFlwKypGF01Kk7qcAM/ULUbdjpq7C7X9iQ6LWqkHKvognZpBkqzSa0q5PUc2zCD
+	 G/FdHO+oRsGHdqZKe93u4gT4H9VaCQk2gNE0EsPBxcE4vPdEBatKwlORhVEoW5XdQC
+	 iCNxw3D7xS1Jg==
+Date: Mon, 24 Jun 2024 14:20:07 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-kernel@vger.kernel.org,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/9] Revert "dt-bindings: reset: mobileye,eyeq5-reset:
+ add bindings"
+Message-ID: <20240624202007.GA333492-robh@kernel.org>
+References: <20240620-mbly-olb-v3-0-5f29f8ca289c@bootlin.com>
+ <20240620-mbly-olb-v3-2-5f29f8ca289c@bootlin.com>
+ <171890801579.3178249.13779438329936311446.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240619113529.676940-1-cleger@rivosinc.com> <20240619113529.676940-15-cleger@rivosinc.com>
-In-Reply-To: <20240619113529.676940-15-cleger@rivosinc.com>
-From: Evan Green <evan@rivosinc.com>
-Date: Mon, 24 Jun 2024 13:18:16 -0700
-Message-ID: <CALs-HssLx_AZ_pBDECfVH7REoSkyz-=bECPYDeNZkfe59DdBGQ@mail.gmail.com>
-Subject: Re: [PATCH v7 14/16] riscv: hwprobe: export Zcmop ISA extension
-To: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Anup Patel <anup@brainfault.org>, 
-	Shuah Khan <shuah@kernel.org>, Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <171890801579.3178249.13779438329936311446.robh@kernel.org>
 
-On Wed, Jun 19, 2024 at 4:41=E2=80=AFAM Cl=C3=A9ment L=C3=A9ger <cleger@riv=
-osinc.com> wrote:
->
-> Export Zcmop ISA extension through hwprobe.
->
-> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <cleger@rivosinc.com>
+On Thu, Jun 20, 2024 at 12:26:57PM -0600, Rob Herring (Arm) wrote:
+> 
+> On Thu, 20 Jun 2024 19:30:54 +0200, Théo Lebrun wrote:
+> > Switch from one sub-node per functionality in the system-controller to a
+> > single node representing the entire OLB instance. This is the
+> > recommended approach for controllers handling many different
+> > functionalities; it is a single controller and should be represented by
+> > a single devicetree node.
+> > 
+> > The reset bindings is removed and all properties will be described by:
+> > soc/mobileye/mobileye,eyeq5-olb.yaml
+> > 
+> > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  .../bindings/reset/mobileye,eyeq5-reset.yaml       | 43 ----------------------
+> >  1 file changed, 43 deletions(-)
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/sound/st,stm32-sai.example.dtb: /example-0/sai@4400b000/audio-controller@4400b004: failed to match any schema with compatible: ['st,stm32-sai-sub-a']
+> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dtb: /example-0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq8074-wcss-pil']
+> Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: failed to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
+> Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.example.dtb: /example-1/syscon@20e00000: failed to match any schema with compatible: ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
+> Documentation/devicetree/bindings/clock/milbeaut-clock.example.dtb: /example-2/serial@1e700010: failed to match any schema with compatible: ['socionext,milbeaut-usio-uart']
+> Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.example.dtb: /example-0/peripheral-controller@8a20000/phy@850: failed to match any schema with compatible: ['hisilicon,hi3798cv200-combphy']
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/stm32/st,mlahb.example.dtb: ahb@38000000: Unevaluated properties are not allowed ('reg' was unexpected)
+> 	from schema $id: http://devicetree.org/schemas/arm/stm32/st,mlahb.yaml#
 
-Reviewed-by: Evan Green <evan@rivosinc.com>
+Not sure what happened here, but this can be ignored.
+
+Rob
 
