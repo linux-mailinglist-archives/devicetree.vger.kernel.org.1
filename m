@@ -1,218 +1,161 @@
-Return-Path: <devicetree+bounces-79136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4D659141E3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:21:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5959141E5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF159B224D7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:21:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1B7A1C2203F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAEFB17BA7;
-	Mon, 24 Jun 2024 05:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E295E17BA2;
+	Mon, 24 Jun 2024 05:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZQsdcnfB"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="YPVRZZfy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB58F1401C
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FA2A1401C
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719206484; cv=none; b=eb1fQrkFgch4jFsONAKZ7LcZi8CoDZO06OO7yW1pzGNlbFGmAD18fDv1ja8WgFFcEhNdlXTrByM92jt8ULsBcNaKRlb6Kbux841FlFsGp1FbfQZc48kSE3y9yZQ5QMbGUF+5LaEDOpks2S5SsMTO3i6m31VFa6s6VMdbRaVpVoo=
+	t=1719206501; cv=none; b=T0Gkowv/Z/bTpoVgRmsvhN+gh7XqHI1Te5X7kw9THXoxkMDq2RlP/NDTmMQuq0QNTzyIqR0LL1ddsKfB/1/OtWFhxeaJpSPLSm5WfdM3xX4SoN6F8/ki0H8RYKcJiaqSZQspQ106xBkIWUDIbuUGyC7t+lpmFsQ5v7ssr1YnDj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719206484; c=relaxed/simple;
-	bh=JiRbCTrVtsSCGPNd6tmirF5cOqSpGwp1bx+HJw156uE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LFOAVapkoqUeurLAxbq1M/KZq+WOJrYfhMAAwQOru8lEBfaZgZAPYWygzzyjHTU3IA6xsS2k8y+9aVVqXSOaeIUKkB5DGM4cfPOmlAl4sTltGuVrmxFM3C2sQwZZ0kXkFddLIc3LOwOmqAkdrVyvzG9o8ioyP7VCPww5tPHiGOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZQsdcnfB; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ec59193468so9148251fa.1
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 22:21:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719206481; x=1719811281; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2MGm9hgBQiIaonwYDgBJ0aXBhWFo2f3cLhGxXka39iM=;
-        b=ZQsdcnfBwd4N1kAEKfAFOU/fNUOfJ7vQ7b8QbgSdSk951y8D/I7JxuLP+yppvhY9is
-         eM1nSBnfDkhYzIUspiX96aHuc1JzhmXPEe+bQJCvFuHBKGAOFosNMOkSjJr9YiTUDNfg
-         UY5vmLKyw1z+9SrehMhvYsShqUS3eCC2ZHFeMIpc1bxSzrYQCafHwSde/SjVysNpU8Qy
-         F+lEZLLcJ4bi+16hBiHVClaEYwh1ru0JITszAZxbRphKp73+MP9ioRWmusHzLHQ8GrWZ
-         xDO8Y7w69kQ0h/4AODoZ22QcT5FAf2NH0l5IydYOQaEWR15k7HueFk/Kx6boGLLHHCK9
-         YXBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719206481; x=1719811281;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2MGm9hgBQiIaonwYDgBJ0aXBhWFo2f3cLhGxXka39iM=;
-        b=hAadtnmmlwI1KPvnGvoO3L5AzTkPEm0gBpqWEX6j7fN1kEoPd1FvSUGiwSAJlUTNI5
-         63XfDTTyVwEZR0G0uCgUpgfXxovrakHF35obrJBRHGLzURQAy5YTVRo1xWa+EnHrn9/C
-         McUDROuaWitx6Jqal4zORM6sVh4jD9ax6iyR4mRNoNqgmJFEqD+Sn7T36/Zwjfqw3ap6
-         ZM5vb8AgNcQ8rzexcUaScCi/9CYLI9E9+9pj0ExgUC0fgwf2WnITjF8CDaESdbJDvYfL
-         2JlCEx0/VXss4EgwHU9DNIxlZPFtRE441mDPHg0IOi9PWlcDiypu4GKQhWyHloR3ttHU
-         Z3YQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVgumWFPkJ9fXv900CxJazMVLJwkynfFohB9F3odRxjEPEgPYabW747laCb0wUdHCIrMLPaRvaCfQl9JolP0ORzHsMXPSdQKYusxg==
-X-Gm-Message-State: AOJu0YzyhppyTlRY5zO9DbPhe97oqcJmUwOdrwzrHL89ubNefZi04rtL
-	Ibh/7TWRrmLpidDjO366Rb9Bs9GMtqkyNbj5Kzg4U6+0DF7HY3DsVVQD1xqDIDY=
-X-Google-Smtp-Source: AGHT+IH+EF6ZVxgix/33CGJs1LcRlM58jSDEP6hH4S/kepamdqtcu83VYx7sjlT8qvi+UsLClCqQ1A==
-X-Received: by 2002:a2e:9f08:0:b0:2ec:3c7e:3b3d with SMTP id 38308e7fff4ca-2ec56be6b08mr10787131fa.26.1719206481012;
-        Sun, 23 Jun 2024 22:21:21 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec4d7e7906sm8868841fa.121.2024.06.23.22.21.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jun 2024 22:21:20 -0700 (PDT)
-Date: Mon, 24 Jun 2024 08:21:19 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Caleb Connolly <caleb@postmarketos.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Henrik Rydberg <rydberg@bitmath.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 4/7] drm: mipi: add mipi_dsi_generic_write_multi_type()
-Message-ID: <jbxk6uo3q2ddwthtc5et6gquiofgywnwh6e5kwpqe7pvglgbfg@k3djx6owef2t>
-References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
- <20240624-oneplus8-v1-4-388eecf2dff7@postmarketos.org>
+	s=arc-20240116; t=1719206501; c=relaxed/simple;
+	bh=OY5b1Ggd3joKj5pX4/idm+tD9G3lsLgLiaGEWIKtYz8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QVOLVkbBbVP06MsUUO2KdsCQHrQNBtbXexfiIHMxsoG2wGdYozR27mCHIyF3N72ba2NZNlhJoRvXc5cDVv+GqwM0bwdNJgsOLM/WfitpdZywZC6/O55alr0av+9P9PqWUbydGdjnVwk/hx5WmnTCd4pKp6lVyILhki6RTKMZ/mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=YPVRZZfy; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 137302C0A5C;
+	Mon, 24 Jun 2024 17:21:37 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1719206497;
+	bh=OY5b1Ggd3joKj5pX4/idm+tD9G3lsLgLiaGEWIKtYz8=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=YPVRZZfyU5Rx07BO6sGyiceubU5pqHmOjzEsHt3/aUpfkvOMmVCmbfQzNRD35wNGf
+	 mRlWaLzy72VktAu2YadYR4e3ea8YNhMBJh+h7XsE0j9SF9awSKMimGXTwhuQIA+D/O
+	 GAjgmLdSa4xHRN0NCCFf7L0vcxus7iYo11s6cvAAHJvyGHh3tlT++f8TpZKFRvI6ee
+	 7S2KQQozAUDhWy49Zgoptw3QA4+tN1e1EzOt5fyBLOlM5LNq2QXvaDZtVvW5GY6LlF
+	 hh2cJ/jbRRC2tlnsNtDNaj0RNmMgxhYQqoKFAdnqxWx1M/mfV5SB+TEYZIzoKYCGWH
+	 yMOCq3UNIKnDw==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B667902610000>; Mon, 24 Jun 2024 17:21:37 +1200
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1544.11; Mon, 24 Jun 2024 17:21:36 +1200
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
+ SMTP Server (TLS) id 15.0.1497.48; Mon, 24 Jun 2024 17:21:36 +1200
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.011; Mon, 24 Jun 2024 17:21:36 +1200
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "tglx@linutronix.de"
+	<tglx@linutronix.de>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "tsbogend@alpha.franken.de"
+	<tsbogend@alpha.franken.de>, "daniel.lezcano@linaro.org"
+	<daniel.lezcano@linaro.org>, "paulburton@kernel.org" <paulburton@kernel.org>,
+	"peterz@infradead.org" <peterz@infradead.org>, "mail@birger-koblitz.de"
+	<mail@birger-koblitz.de>, "bert@biot.com" <bert@biot.com>, "john@phrozen.org"
+	<john@phrozen.org>, "sander@svanheule.net" <sander@svanheule.net>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, "kabel@kernel.org"
+	<kabel@kernel.org>, "ericwouds@gmail.com" <ericwouds@gmail.com>
+Subject: Re: [PATCH v2 4/8] dt-bindings: timer: Add schema for
+ realtek,otto-timer
+Thread-Topic: [PATCH v2 4/8] dt-bindings: timer: Add schema for
+ realtek,otto-timer
+Thread-Index: AQHaxdUT70y18GNyjU2Cd/YSeK4JbLHVjweAgAAI6AA=
+Date: Mon, 24 Jun 2024 05:21:36 +0000
+Message-ID: <052a4bdb-88fe-4891-a69c-0d90c610d816@alliedtelesis.co.nz>
+References: <20240624012300.1713290-1-chris.packham@alliedtelesis.co.nz>
+ <20240624012300.1713290-5-chris.packham@alliedtelesis.co.nz>
+ <d65648d6-4e2b-4009-b0e0-7d1f9a926eb7@kernel.org>
+In-Reply-To: <d65648d6-4e2b-4009-b0e0-7d1f9a926eb7@kernel.org>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9386FAE2B7F22D438C9101F4D379748F@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240624-oneplus8-v1-4-388eecf2dff7@postmarketos.org>
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=66790261 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=T1WGqf2p2xoA:10 a=gEfo2CItAAAA:8 a=OqrPyMiAPZdSGt2y27EA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22
+X-SEG-SpamProfiler-Score: 0
 
-On Mon, Jun 24, 2024 at 03:30:28AM GMT, Caleb Connolly wrote:
-> Some panels like the Samsung AMB655X use long write commands for all
-> non-standard messages and do not work when trying to use the appropriate
-> command type.
-> 
-> Support these panels by introducing a new helper to send commands of a
-> specific type, overriding the normal rules.
-> 
-> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
-> ---
->  drivers/gpu/drm/drm_mipi_dsi.c | 40 ++++++++++++++++++++++++++++++++++++++++
->  include/drm/drm_mipi_dsi.h     | 16 ++++++++++++++++
->  2 files changed, 56 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_mipi_dsi.c b/drivers/gpu/drm/drm_mipi_dsi.c
-> index a471c46f5ca6..d0fee0498d91 100644
-> --- a/drivers/gpu/drm/drm_mipi_dsi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dsi.c
-> @@ -819,8 +819,48 @@ void mipi_dsi_generic_write_multi(struct mipi_dsi_multi_context *ctx,
->  	}
->  }
->  EXPORT_SYMBOL(mipi_dsi_generic_write_multi);
->  
-> +/**
-> + * mipi_dsi_generic_write_type() - transmit data using a generic write packet of
-
-This doesn't match the name of the function.
-
-> + * a specific type
-> + * @dsi: DSI peripheral device
-> + * @type: data type of the packet
-> + * @payload: buffer containing the payload
-> + * @size: size of payload buffer
-> + *
-> + * This function will automatically choose the right data type depending on
-> + * the payload length.
-> + *
-> + * Return: The number of bytes transmitted on success or a negative error code
-> + * on failure.
-> + */
-> +ssize_t mipi_dsi_generic_write_multi_type(struct mipi_dsi_multi_context *ctx,
-> +					  u8 type, const void *payload, size_t size)
-
-write_type_multi. Or maybe write_raw_multi.
-
-> +{
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	struct mipi_dsi_msg msg = {
-> +		.channel = dsi->channel,
-> +		.tx_buf = payload,
-> +		.tx_len = size,
-> +		.type = type,
-> +	};
-> +	ssize_t ret;
-> +
-> +	if (ctx->accum_err)
-> +		return 0;
-> +
-> +	ret = mipi_dsi_device_transfer(dsi, &msg);
-> +	if (ret < 0) {
-> +		ctx->accum_err = ret;
-> +		dev_err(&dsi->dev, "sending generic data %*ph failed: %zd\n",
-> +			(int)size, payload, ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(mipi_dsi_generic_write_multi_type);
-> +
->  /**
->   * mipi_dsi_generic_read() - receive data using a generic read packet
->   * @dsi: DSI peripheral device
->   * @params: buffer containing the request parameters
-> diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
-> index 71d121aeef24..a5d949e695d4 100644
-> --- a/include/drm/drm_mipi_dsi.h
-> +++ b/include/drm/drm_mipi_dsi.h
-> @@ -287,8 +287,10 @@ ssize_t mipi_dsi_generic_write(struct mipi_dsi_device *dsi, const void *payload,
->  int mipi_dsi_generic_write_chatty(struct mipi_dsi_device *dsi,
->  				  const void *payload, size_t size);
->  void mipi_dsi_generic_write_multi(struct mipi_dsi_multi_context *ctx,
->  				  const void *payload, size_t size);
-> +ssize_t mipi_dsi_generic_write_multi_type(struct mipi_dsi_multi_context *ctx, u8 type,
-> +				    const void *payload, size_t size);
->  ssize_t mipi_dsi_generic_read(struct mipi_dsi_device *dsi, const void *params,
->  			      size_t num_params, void *data, size_t size);
->  
->  #define mipi_dsi_msleep(ctx, delay)	\
-> @@ -432,8 +434,22 @@ void mipi_dsi_dcs_set_tear_on_multi(struct mipi_dsi_multi_context *ctx,
->  		static const u8 d[] = { cmd, seq };                     \
->  		mipi_dsi_dcs_write_buffer_multi(ctx, d, ARRAY_SIZE(d)); \
->  	} while (0)
->  
-> +/**
-> + * mipi_dsi_dcs_write_long - transmit a DCS long command with payload
-> + * @dsi: DSI peripheral device
-> + * @cmd: Commands
-> + * @seq: buffer containing data to be transmitted
-> + */
-> +#define mipi_dsi_dcs_write_long(ctx, cmd, seq...)                          \
-
-foo_multi
-
-> +	do {                                                               \
-> +		static const u8 d[] = { cmd, seq };                        \
-> +		mipi_dsi_generic_write_multi_type(ctx,                     \
-> +						  MIPI_DSI_DCS_LONG_WRITE, \
-> +						  d, ARRAY_SIZE(d));       \
-> +	} while (0)
-> +
->  /**
->   * struct mipi_dsi_driver - DSI driver
->   * @driver: device driver model driver
->   * @probe: callback for device binding
-> 
-> -- 
-> 2.45.0
-> 
-
--- 
-With best wishes
-Dmitry
+DQpPbiAyNC8wNi8yNCAxNjo0OSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gMjQv
+MDYvMjAyNCAwMzoyMiwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IEFkZCB0aGUgZGV2aWNldHJl
+ZSBzY2hlbWEgZm9yIHRoZSByZWFsdGVrLG90dG8tdGltZXIgcHJlc2VudCBvbiBhIG51bWJlcg0K
+Pj4gb2YgUmVhbHRlayBTb0NzLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0g
+PGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4+IC0tLQ0KPj4NCj4+IE5vdGVz
+Og0KPj4gICAgICBDaGFuZ2VzIGluIHYyOg0KPj4gICAgICAtIFVzZSBzcGVjaWZpYyBjb21wYXRp
+YmxlDQo+IFdoZXJlPyBJIGRvIG5vdCBzZWUgY2hhbmdlcy4NCg0KSW4gdjEgaXQgd2FzIHJ0bDkz
+MHgtdGltZXIsIEkndmUgdXBkYXRlZCBpdCB0byBydGw5MzAyLXRpbWVyDQoNCj4+ICAgICAgLSBS
+ZW1vdmUgdW5uZWNlc3NhcnkgbGFiZWwNCj4+ICAgICAgLSBSZW1vdmUgdW51c2VkIGlycSBmbGFn
+cyAoaW50ZXJydXB0IGNvbnRyb2xsZXIgaXMgb25lLWNlbGwpDQo+PiAgICAgIC0gU2V0IG1pbkl0
+ZW1zIGZvciByZWcgYW5kIGludGVycnVwdHMgYmFzZWQgb24gY29tcGF0aWJsZQ0KPj4NCj4+ICAg
+Li4uL2JpbmRpbmdzL3RpbWVyL3JlYWx0ZWssb3R0by10aW1lci55YW1sICAgIHwgNjYgKysrKysr
+KysrKysrKysrKysrKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgNjYgaW5zZXJ0aW9ucygrKQ0KPj4g
+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Rp
+bWVyL3JlYWx0ZWssb3R0by10aW1lci55YW1sDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aW1lci9yZWFsdGVrLG90dG8tdGltZXIueWFtbCBi
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy90aW1lci9yZWFsdGVrLG90dG8tdGlt
+ZXIueWFtbA0KPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IGluZGV4IDAwMDAwMDAwMDAwMC4u
+MTNlYTdhYTk0NmZlDQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvdGltZXIvcmVhbHRlayxvdHRvLXRpbWVyLnlhbWwNCj4+IEBAIC0w
+LDAgKzEsNjYgQEANCj4+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5
+IE9SIEJTRC0yLUNsYXVzZSkNCj4+ICslWUFNTCAxLjINCj4+ICstLS0NCj4+ICskaWQ6IGh0dHA6
+Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3RpbWVyL3JlYWx0ZWssb3R0by10aW1lci55YW1sIw0K
+Pj4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1s
+Iw0KPj4gKw0KPj4gK3RpdGxlOiBSZWFsdGVrIE90dG8gU29DcyBUaW1lci9Db3VudGVyDQo+PiAr
+DQo+PiArZGVzY3JpcHRpb246DQo+PiArICBSZWFsdGVrIFNvQ3Mgc3VwcG9ydCBhIG51bWJlciBv
+ZiB0aW1lcnMvY291bnRlcnMuIFRoZXNlIGFyZSB1c2VkDQo+PiArICBhcyBhIHBlciBDUFUgY2xv
+Y2sgZXZlbnQgZ2VuZXJhdG9yIGFuZCBhbiBvdmVyYWxsIENQVSBjbG9ja3NvdXJjZS4NCj4+ICsN
+Cj4+ICttYWludGFpbmVyczoNCj4+ICsgIC0gQ2hyaXMgUGFja2hhbSA8Y2hyaXMucGFja2hhbUBh
+bGxpZWR0ZWxlc2lzLmNvLm56Pg0KPj4gKw0KPj4gK3Byb3BlcnRpZXM6DQo+PiArICAkbm9kZW5h
+bWU6DQo+PiArICAgIHBhdHRlcm46ICJedGltZXJAWzAtOWEtZl0rJCINCj4+ICsNCj4+ICsgIGNv
+bXBhdGlibGU6DQo+PiArICAgIGl0ZW1zOg0KPj4gKyAgICAgIC0gZW51bToNCj4+ICsgICAgICAg
+ICAgLSByZWFsdGVrLHJ0bDkzMDItdGltZXINCj4+ICsgICAgICAtIGNvbnN0OiByZWFsdGVrLG90
+dG8tdGltZXINCj4+ICsNCj4+ICsgIHJlZzoNCj4+ICsgICAgbWF4SXRlbXM6IDUNCj4gTm90aGlu
+ZyBpbXByb3ZlZC4NCj4NCj4+ICsNCj4+ICsgIGNsb2NrczoNCj4+ICsgICAgbWF4SXRlbXM6IDEN
+Cj4+ICsNCj4+ICsgIGludGVycnVwdHM6DQo+PiArICAgIG1heEl0ZW1zOiA1DQo+IE5vdGhpbmcg
+aW1wcm92ZWQuDQo+DQo+PiArDQo+PiArYWxsT2Y6DQo+PiArICAtIGlmOg0KPj4gKyAgICAgIHBy
+b3BlcnRpZXM6DQo+PiArICAgICAgICBjb21wYXRpYmxlOg0KPj4gKyAgICAgICAgICBjb250YWlu
+czoNCj4+ICsgICAgICAgICAgICBjb25zdDogcmVhbHRlayxydGw5MzAyLXRpbWVyDQo+PiArICAg
+IHRoZW46DQo+PiArICAgICAgcHJvcGVydGllczoNCj4+ICsgICAgICAgIHJlZzoNCj4+ICsgICAg
+ICAgICAgbWluSXRlbXM6IDINCj4+ICsgICAgICAgIGludGVycnVwdHM6DQo+PiArICAgICAgICAg
+IG1pbkl0ZW1zOiAyDQo+IE5vLCB0aGF0J3MganVzdCBpbmNvcnJlY3QuIFlvdSBkbyBub3QgaGF2
+ZSBtb3JlIHRoYW4gb25lIHZhcmlhbnQsIHNvIGl0DQo+IGlzIGp1c3QgMiBpdGVtcy4gT3IgNSBp
+dGVtcywgbm90IDItNS4NCg0KSSd2ZSBiZWVuIHRvbGQgaW4gdGhlIHBhc3QgdGhhdCB0aGUgZGV2
+aWNlLXRyZWUgc2hvdWxkIGRlc2NyaWJlIHRoZSANCmhhcmR3YXJlLiBXaGljaCBpbiB0aGlzIGNh
+c2UgaGFzIDUgdGltZXJzLiBCdXQgSSdtIGFsc28gdG9sZCB0byBnaXZlIA0KdGhlbSBuYW1lcyB3
+aGljaCBJIHN0cnVnZ2xlIHRvIGRvIGJlY2F1c2Ugc29tZSBvZiB0aGVtIGFyZW4ndCB1c2VkLg0K
+DQpTbyBkbyB5b3Ugd2FudCBzb21ldGhpbmcgbGlrZSB0aGlzOg0KDQpjbG9ja3M6DQogwqDCoMKg
+IGl0ZW1zOg0KIMKgwqDCoCDCoMKgwqAgLSBkZXNjcmlwdGlvbjogQ1BVMCBldmVudCBjbG9jaw0K
+IMKgwqDCoCDCoMKgwqAgLSBkZXNjcmlwdGlvbjogc3lzdGVtIGNsb2NrIHNvdXJjZQ0KIMKgwqDC
+oCDCoMKgwqAgLSBkZXNjcmlwdGlvbjogdW51c2VkDQogwqDCoMKgIMKgwqDCoCAtIGRlc2NyaXB0
+aW9uOiB1bnVzZWQNCiDCoMKgwqAgwqDCoMKgIC0gZGVzY3JpcHRpb246IHVudXNlZA0KDQppbnRl
+cnJ1cHRzOg0KIMKgwqDCoCBpdGVtczoNCiDCoMKgwqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOiBD
+UFUwIGV2ZW50IGNsb2NrIGludGVycnVwdA0KIMKgwqDCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246
+IHN5c3RlbSBjbG9jayBzb3VyY2UgaW50ZXJydXB0DQogwqDCoMKgwqDCoMKgwqAgLSBkZXNjcmlw
+dGlvbjogdW51c2VkDQogwqDCoMKgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogdW51c2VkDQogwqDC
+oMKgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogdW51c2VkDQoNCj4NCj4NCj4gQmVzdCByZWdhcmRz
+LA0KPiBLcnp5c3p0b2YNCj4NCj4=
 
