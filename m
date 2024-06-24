@@ -1,108 +1,88 @@
-Return-Path: <devicetree+bounces-79494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4451915820
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:40:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8863491582F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7017C1F26DE8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:40:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3DEC1C2256A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 20:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD541A08B1;
-	Mon, 24 Jun 2024 20:40:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E4F1A070A;
+	Mon, 24 Jun 2024 20:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oFf4xeeL"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jFYUUNwq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E5A1A08AF;
-	Mon, 24 Jun 2024 20:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9E94437A
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 20:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719261643; cv=none; b=JXbdS1j3xEzNfAPsIDDhZSdGmYX34eFCfh0tj2ECVj1NSR5TQjmFXI3RCgQPOjW41Y+mmC8G4cdYuuS3ydqQ2dtenPiZh9V0KHieD+/ICjN/F7q5lvfhwRecDq2XVxmbBohFAbzFas7IOnttBGrvuiVDViA6vkYLau5PJ629DBQ=
+	t=1719261890; cv=none; b=DCH5H3pF4rjBMPN4Jry92yheSDk36V1Cak1u51JREi4ui+rlj3bfC290wdPYz0NTqlNwI/kYl22z3KL+KMjl5oEMA9qssODVPVTSXgN8pfST/v7hXUcWb9vJupFA0a/f6iq1Q7UG6RRfQiEjKh6YkQNi8o7SvfyiSlF1nrO3pew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719261643; c=relaxed/simple;
-	bh=HKHNjN12ghdanNjkpEpORPJCe/LeiaO7ZQFLm/IYZGI=;
+	s=arc-20240116; t=1719261890; c=relaxed/simple;
+	bh=eHfa78mG60gILDC24WGZEF3l8z/sFIEF7Yd38KV/jJg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tawGBcYSCTQzwY+MO442vhSn1NlpmQIBW1hvBpD4U4bDnjKjI3DE3t7GOC6+AhbiQiYMgEse39qEq2F5LCus/XsMXKvTIo5y0WYTADQtQDkHV6uocXsXxKttWyg7JFuCE3tj2koV/NROrNE8oWT8S0FlsOldkQyialFKK28QcSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oFf4xeeL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B10AC2BBFC;
-	Mon, 24 Jun 2024 20:40:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AQerRGkFCL7+Jl9HJca/95VfE7LAKisAqTQLfGUyHz9JYoykMP9ryLqSX5jjkGx9Ax0XLNFs6mR52RAyQe2CkUgI0frDcmUqYDT92AfTV4fsKMIHt1Y4C4DX3sWnAmHcAMt48JKveNtx+fhsNiXcwBcdd0EmU4fYMUfMVzBI+HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jFYUUNwq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55FD3C2BBFC;
+	Mon, 24 Jun 2024 20:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719261642;
-	bh=HKHNjN12ghdanNjkpEpORPJCe/LeiaO7ZQFLm/IYZGI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oFf4xeeL4k9sn/LrwNkV8wU0k/8bvCXvTg8J1It92zmlMz0GGWeI4K0YXclivemlX
-	 BfwuzPtHnzow81aSVsFGyQyfK0ACOe4RMOn3b6WjMtSBvQdf27D3/s9iHNsXlubd3Y
-	 7irgaOqdrnXra1FSplPt8d1t6lMzdV/V4ioQHteSjsyqxVL10FrB8kzb//TYckIjDD
-	 JKq+y/Wi/JSreT59/65IPFsRTrpVCPwsNGitM0flyQnrT2vvb2gbP5JKffeYejV4Zu
-	 1S4ziI/pSocxLMoKCZnh9vGJyMz1bxbfKDCWx3UI1Bi8CBCUlreK0v1FCbVkqPYZmO
-	 bXwt334UpzoQw==
-Date: Mon, 24 Jun 2024 14:40:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Caleb Connolly <caleb@postmarketos.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	s=k20201202; t=1719261889;
+	bh=eHfa78mG60gILDC24WGZEF3l8z/sFIEF7Yd38KV/jJg=;
+	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
+	b=jFYUUNwquV08xxBYLYnqwGyFG6YL9GjrtVPj3+Qx8+imSaae7G/4ylO2kX1Vc+Kz1
+	 /DWVYQDZ3qUIyd0YSmI/RYYcJcRlPimAqwKxMYYtoBXuTWacp+XQWWHrwtzOcGOEHb
+	 Z4s9SJHfWN0+2SGXcYwgbWfdSg+lbRkBaP0QLR5u+FMA0HHYE/MZKJ7YkQFKRCwsLA
+	 KmncvggLQbi/HCbH+24HdACu918GxEPO8R0qcWW4TwGt+uw80SadNqNuRdTsbmgvLw
+	 kSa9sKvYEkIOhqNK+XLyn31oWtxXDU/SmnD3sH853abfl23eDGUoCRtPGBZqAdtlYy
+	 IEFIsXlyhL4zQ==
+Date: Mon, 24 Jun 2024 14:44:48 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc: devicetree@vger.kernel.org, soc@kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	linux-arm-kernel@lists.infradead.org,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 3/7] dt-bindings: arm: qcom: add OnePlus 8 series
-Message-ID: <20240624204041.GA375582-robh@kernel.org>
-References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
- <20240624-oneplus8-v1-3-388eecf2dff7@postmarketos.org>
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: interrupt-controller: convert
+ marvell,mpic binding to YAML
+Message-ID: <171926188565.385337.12451824082953031796.robh@kernel.org>
+References: <20240624145355.8034-1-kabel@kernel.org>
+ <20240624145355.8034-3-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240624-oneplus8-v1-3-388eecf2dff7@postmarketos.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240624145355.8034-3-kabel@kernel.org>
 
-On Mon, Jun 24, 2024 at 03:30:27AM +0200, Caleb Connolly wrote:
-> Add bindings for the OnePlus 8, 8 Pro, and 8T devices.
+
+On Mon, 24 Jun 2024 16:53:55 +0200, Marek Behún wrote:
+> Convert the marvell,mpic device-tree binding to YAML. Add myself as
+> maintainer.
 > 
-> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
+> Signed-off-by: Marek Behún <kabel@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../marvell,armada-370-xp-mpic.txt            | 38 -----------
+>  .../interrupt-controller/marvell,mpic.yaml    | 63 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 64 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index d839691a900c..a41eeb8c3fc5 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -986,8 +986,11 @@ properties:
->            - enum:
->                - qcom,qrb5165-rb5
->                - qcom,sm8250-hdk
->                - qcom,sm8250-mtp
-> +              - oneplus,kebab
-> +              - oneplus,instantnoodle
-> +              - oneplus,instantnoodlep
 
-Which one is which device in the commit msg? I can only guess that 'p' 
-here corresponds to Pro. A comment after the compatibles would help.
+Applied, thanks!
 
->                - sony,pdx203-generic
->                - sony,pdx206-generic
->                - xiaomi,elish
->                - xiaomi,pipa
-> 
-> -- 
-> 2.45.0
-> 
 
