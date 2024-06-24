@@ -1,208 +1,115 @@
-Return-Path: <devicetree+bounces-79517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CFD79159DB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 00:27:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A79915A53
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 01:23:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54DF928489A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 22:27:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AB58B23C23
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 23:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627C01A0B03;
-	Mon, 24 Jun 2024 22:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dTVF9WDP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607A91A0B18;
+	Mon, 24 Jun 2024 23:22:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A4273454;
-	Mon, 24 Jun 2024 22:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624A71A08DF;
+	Mon, 24 Jun 2024 23:22:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719268071; cv=none; b=ikmWSDhsz6gnnU4yjuqifvKnK8PXwyx0foTR6RwKpm3E9tm5ETKl1csSerGkNgxou8Q87YpzXLeRc+9arvptykUe2uCbNmtMfK1c5Nbis+dHQgtTFb/HrEeprC8Kpm4qXYk6TIZq4nXCi+6tmFm31fNZhxYfZgvCczD7Ma9w/qM=
+	t=1719271379; cv=none; b=RHNaWutjx6iS2G2ytMBKvLVCzFcQDO0dRAn26yyoU9wz77QUN1j/hESXTHM6S5Ck/72VtUe04D0My8OOyZPh3+5zFMNyLQ+xKJYOObu3Acl7hndTcq2He0PgBWzQ8ueY7yh4WECVbR4FIo72KyvfilmTfwfWfZpT21aWklynO3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719268071; c=relaxed/simple;
-	bh=3tBXMnVdJtF6HYG+GYIwRFDVlIVNQNp37p1A2WjbPec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AgTy98xfWC4sOeaAghI3qcnWgYhPkm4qiiGWfnKTgmow8f1lZES4hLI1S2RuzMHaeJVaktO6jf2RpXe51luWOd8CJ6Q/Rq6dK5RbOPY2S49lvqZX5MlXyxrKtUEQ6FTNZT6FAGy53kqIVH8Y1ArznK0IyJmcG5knaKrhgb0JLJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dTVF9WDP; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-363bbd51050so3859167f8f.0;
-        Mon, 24 Jun 2024 15:27:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719268068; x=1719872868; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=35sYl9K/ORXM1x/6zIhMbEdYZNSt6JD+mOFZG+4VxFQ=;
-        b=dTVF9WDPxozw7wmvOvtJ4tebC/VB23M2at+TmCLvsS1a6CocDT9GRtPyHwpV7bQaLu
-         kddMjbxZ67ho8b7nteZnIFBjXp1nsGkpBbCS1dGC88HXIfxAgltDBDAD6AwPIKYtc/z7
-         eaoRbSKdZo0qlfPpPGILOtqOCLVBxt6m0tnQ1MyXqT59lAvPgOF1xOOiqW2VHsxbQ1Qy
-         pN2qhrdhtaQvQUpSn7kVSaB4t9hSMMVVbxd9Z+SlO/e6pcLh1fOKxnxe8hvLLg0EZ2od
-         97eexgpdM9iNwGB/u/US/9xCErUDn7ytVm05amUmo0qK44v/nxjl9ou2l4Ft86fqNk6K
-         l2og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719268068; x=1719872868;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=35sYl9K/ORXM1x/6zIhMbEdYZNSt6JD+mOFZG+4VxFQ=;
-        b=sAFZM5usQNJR4wivTaoUdfRfeJ8ntKmfHuYIzxsvzjs8qI7fhLUVxJfic/rtOfWgQ4
-         o/dpyMAAC/ymzNq3DY9WV44eWpyl2WT874e46jO9lavyHHWpVf9oW/ILsrgEGgPZ2BzY
-         iLrFFW1oVFxaI87OSDmUASehkG+ooD/YKplv8Ffz/lVcpT4JRGJh7/qSHbiODdhi18qe
-         kX3xEyIKOfVUz+XarQbl6O3qYfzlZLrgUV1notnGg4ePEFLi2S0dWNF04XvHrbOBiPh9
-         YU//ZQ1PuH/xJ019kRMJDqIuOtZK4nb/fXQLeEYob5Ns1SRiDi5qV6Olbv6ElSFGa1MO
-         OQIw==
-X-Forwarded-Encrypted: i=1; AJvYcCXZArFFceCduVqt94AOCW4ZCgxgOBcNvYM/yTZSgUOIrspXybg7ZocSH1g4beH/61RhRV0j9LAuyVzDpAxz+09IXA/7KBOezfsLf3VPqy7TuafDshLLc1dAkoNclZLtJlfAInJvdZDkv6wKKEZAVL10A4Jnewv5Zoo4JP8q5wGYvBtxSw==
-X-Gm-Message-State: AOJu0Yw+ovTAfTvGtR+y6CNV6YhTaxOYaTk8j5g+FOpeSeD18sV8hO6p
-	4ElCVoGRHE1i1Ey7OoarPBQdiN+00A7dOzFnpNHaOkabilYFUxpr
-X-Google-Smtp-Source: AGHT+IEMV86qBKjtTRO9I/8HtY+xnZlcd5tLts38wCLKE/SFMz1NzVCGnCwWzuy9hf0NDXq4vqQJWw==
-X-Received: by 2002:a05:6000:b0f:b0:360:91c2:56fd with SMTP id ffacd0b85a97d-366e4f00b78mr4522844f8f.49.1719268067724;
-        Mon, 24 Jun 2024 15:27:47 -0700 (PDT)
-Received: from [192.168.0.31] (84-115-213-103.cable.dynamic.surfer.at. [84.115.213.103])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366389b88easm11214117f8f.39.2024.06.24.15.27.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jun 2024 15:27:46 -0700 (PDT)
-Message-ID: <cf06ea77-c8b0-4476-94d1-32171c96f22f@gmail.com>
-Date: Tue, 25 Jun 2024 00:27:45 +0200
+	s=arc-20240116; t=1719271379; c=relaxed/simple;
+	bh=gx8lPkWP+9JgErCy4sCFE3lnCJKIhgwZvD53YmMj9Lc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DwCtw696OrizHqaFixCQHPEj1y168X+ILA/RBXBfXQoAuIVSCiRtRcNK0CnYH666iPcayJqkiuwE/1T3nqi/KF7+BHU7tVPR1AvGaraY9C0WRy/IXSldQID1E2ioPVKMuxTaZVhvzkJXu46JhCFg3SKosXZV7+hMxIcQzR/Ykqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 565C8339;
+	Mon, 24 Jun 2024 16:23:20 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 760F33F766;
+	Mon, 24 Jun 2024 16:22:53 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Corentin Labbe <clabbe.montjoie@gmail.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S . Miller" <davem@davemloft.net>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Ryan Walklin <ryan@testtoast.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	linux-crypto@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/4] crypto: sun8i-ce: add Allwinner H616 support
+Date: Tue, 25 Jun 2024 00:21:06 +0100
+Message-Id: <20240624232110.9817-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.39.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] iio: light: ROHM BH1745 colour sensor
-To: Mudit Sharma <muditsharma.info@gmail.com>, jic23@kernel.org,
- lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
-Cc: ivan.orlov0322@gmail.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240624215543.459797-1-muditsharma.info@gmail.com>
- <20240624215543.459797-2-muditsharma.info@gmail.com>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20240624215543.459797-2-muditsharma.info@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/06/2024 23:55, Mudit Sharma wrote:
-> Add support for BH1745, which is an I2C colour sensor with red, green,
-> blue and clear channels. It has a programmable active low interrupt
-> pin. Interrupt occurs when the signal from the selected interrupt
-> source channel crosses set interrupt threshold high or low level.
-> 
-> Interrupt source for the device can be configured by enabling the
-> corresponding event and interrupt latch is always enabled when setting 
-> up interrupt.
-> 
-> Add myself as the maintainer for this driver in MAINTAINERS.
-> 
-> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
-> Reviewed-by: Ivan Orlov <ivan.orlov0322@gmail.com>
-> Reviewed-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> ---
+This is an update to the H616 crypto engine support, with the sparse
+warning fixed and the accrued tags added.
+========================
 
-Hi Mudit, some minor comments inline form my side.
+This series adds support for the crypto engine in the Allwinner H616
+SoC. The IP and its capabilities are very similar to the H6, with the
+major difference of the DMA engine supporting 34 bit wide addresses.
+This is achieved by just shifting every address by 2 bits in the DMA
+descriptors; Allwinner calls this "word addresses".
+Patch 2/4 adds support for this by wrapping every address access in a
+function that does the shift as needed. Patch 1/4 adds the new
+compatible string to the binding, patch 3/4 adds that string to the
+driver and enables the address shift for it. The final patch 4/4 adds
+the DT node to the SoC .dtsi. Since this is an internal peripheral,
+it's always enabled.
 
-...
+Corentin's cryptotest passed for me, though I haven't checked how fast
+it is and if it really brings an advantage performance-wise, but maybe
+people find it useful to offload that from the CPU cores.
+One immediate advantage is the availability of the TRNG device, which
+helps to feed the kernel's entropy pool much faster - typically before
+we reach userland. Without the driver this sometimes takes minutes, and
+delays workloads that rely on the entropy pool.
 
-> +
-> +struct bh1745_data {
-> +	/*
-> +	 * Lock to prevent device setting update or read before related
+Please have a look and comment!
 
-typo: calculations. I would recommend you to use checkpatch.pl
---codespell to cach such typos.
+Cheers,
+Andre
 
-> +	 * caluculations or event push are completed
-> +	 */
-> +	struct mutex lock;
-> +	struct regmap *regmap;
-> +	struct i2c_client *client;
-> +	struct iio_trigger *trig;
-> +	struct iio_gts gts;
-> +	u8 int_src;
-> +};
-> +
+Changelog v1 ... v2:
+- fix sparse warning by treating writel() call differently (2/4)
+- add Acks, R-b and Tested-by: tags
 
-...
+Andre Przywara (4):
+  dt-bindings: crypto: sun8i-ce: Add compatible for H616
+  crypto: sun8i-ce - wrap accesses to descriptor address fields
+  crypto: sun8i-ce - add Allwinner H616 support
+  arm64: dts: allwinner: h616: add crypto engine node
 
-> +static int bh1745_int_time_to_us(int val, int val2)
-> +{
-> +	for (u8 i = 0; i < ARRAY_SIZE(bh1745_int_time); i++) {
-> +		if (val == bh1745_int_time[i][0] && val2 == bh1745_int_time[i][1])
-> +			return bh1745_int_time_us[i];
+ .../bindings/crypto/allwinner,sun8i-ce.yaml   |  2 ++
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 +++++++
+ .../allwinner/sun8i-ce/sun8i-ce-cipher.c      |  8 +++---
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-core.c | 28 ++++++++++++++++++-
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-hash.c |  6 ++--
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-prng.c |  6 ++--
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-trng.c |  2 +-
+ drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h  | 15 ++++++++++
+ 8 files changed, 65 insertions(+), 12 deletions(-)
 
-Nit: unnecessary blank line before a close brace.
-
-> +
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-...
-
-> +static int bh1745_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val, int *val2, long mask)
-> +{
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +	int value;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW: {
-> +		iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-
-Missing scope indentation.
-
-> +		ret = regmap_bulk_read(data->regmap, chan->address, &value, 2);
-> +		if (ret)
-> +			return ret;
-> +		*val = value;
-> +
-> +		return IIO_VAL_INT;
-> +		}
-> +		unreachable();
-> +	}
-> +
-
-...
-
-> +static int bh1745_set_trigger_state(struct iio_trigger *trig, bool state)
-> +{
-> +	int ret;
-
-Why is value initialized here? If regmap returns an error, you will not
-use value anyway. I caught my eye because it is initialized here, and
-not in the other functions where you use the same pattern.
-
-> +	int value = 0;
-> +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-> +	struct bh1745_data *data = iio_priv(indio_dev);
-> +
-> +	guard(mutex)(&data->lock);
-> +	if (state) {
-> +		ret = regmap_read(data->regmap, BH1745_INTR, &value);
-> +		if (ret)
-> +			return ret;
-> +		// Latch is always set when enabling interrupt
-> +		value |= BH1745_INT_ENABLE |
-> +			FIELD_PREP(BH1745_INT_SIGNAL_LATCHED, 1) |
-> +			FIELD_PREP(BH1745_INT_SOURCE_MASK, data->int_src);
-> +		return regmap_write(data->regmap, BH1745_INTR, value);
-> +	}
-> +
-> +	return regmap_write(data->regmap, BH1745_INTR, value);
-> +}
-
-
-Best regards,
-Javier Carrasco
+-- 
+2.39.4
 
 
