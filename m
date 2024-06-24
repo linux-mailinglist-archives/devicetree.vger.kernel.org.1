@@ -1,109 +1,127 @@
-Return-Path: <devicetree+bounces-79438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3ECC915480
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:40:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19DE8915488
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:42:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 599181F22AF0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:40:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B2621C2094C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA7519E7D2;
-	Mon, 24 Jun 2024 16:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B43E19E7F0;
+	Mon, 24 Jun 2024 16:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Iw2w4Y8W"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hqtWE61H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28A319E820
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 16:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DE619E7EA
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 16:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719247207; cv=none; b=cIVw4ux0AKyG80nAQuAjnrBg0fiLeSi0nOlvkI/YAU/AoOlFc2DOxJtTa9hpcUpXWNC9eMPmEAd26NJjLhLYOuIRCa9o/bh18fYTj01fH0cv+H6K04/W+sp/PlAcoQlmiOLk6SS6umg5wdpF3s/b5OBTXDL8+0U6sA3Grcgssok=
+	t=1719247361; cv=none; b=BAfvB8Lqwq730B1c3sbHiCtTSszit2kdnBxUiIIS3IukuSE7OFy8uMEOh5uTy4ZT+uHfO6DuYJlb0sUlBT5SWydLfSQIwwi/oFvmBNK8FRMEUtknyQys1w/asC3ehTBgywcvvgenv1GjIkwiGAscD1ZTyIBn9eHFEzk9/rGcKC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719247207; c=relaxed/simple;
-	bh=bTHn335s8B1w66yFq/+OI5bVTKkN+nzUp2gyrYEy47I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gtT8vCAWwm/EIRqw/MLmf3J8W17HRO2lspjDKNbRkuQhY1CizU4tBtaWLI6av8QNLi2ONeSwkgNYksI0wgcwVrDIqObD9hYPZpQhmp/y2TGnMuHNDhl6/y6miMbDiNyOBcjUdVfn2gt3Smk3+uNRJateoOaImofu0OhS33DDvVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Iw2w4Y8W; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-44056f72257so1721cf.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 09:40:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1719247205; x=1719852005; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GZ+xnyCLREi74xq4k4heuccoqe9gphJLidfi9eaePRI=;
-        b=Iw2w4Y8WoxrwImRWC82vcBkWwThBcO9ba0j1ecw/0tWFvBNJiNCQrGZVNT5Ssp6iK/
-         Ou/l0kbFfslk34uT1j62W3eFaggnD9QGj3Nbp3JnR3p8+EspoR5P1ELUJcmH5q0qWSfs
-         oOus0EUT4zobcqvn3PYm4yjjyfh/bzjY7wIifQNfKVmI9m7ohPmeWTmpp+s6TEJ8swLy
-         dS/Y74eyiPqEq+7hAO/2RvgxGkoT8pNdO3BQqFzi5a3ToBXY0zJ4NKZZROzOyTFN5Pvz
-         UwRbmqOPHQbyo+lncpjyadAmSPLyrBF9CO8EfZdVu4oPH/mjAYq9gxYMYOV+I8PY63s8
-         oE9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719247205; x=1719852005;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GZ+xnyCLREi74xq4k4heuccoqe9gphJLidfi9eaePRI=;
-        b=jQf/AYFHq7E/igdfaMPSi4LrS+JN2U28qX9W96d8pQU7nXI7DBljZfgPmL8pNbZsrm
-         QpmKdlD6eUtZokM2KlhkG5M2C4KH7eu3IygomOqpQ9NSFkC9elnwDA44gQ/Uj6tX5av/
-         uFndDf26vQi4Q7oUy7TNDdWKNTYtoUJa7Wug73K6HTywc7RrcEp8ZZlA+gu7CoAsKcDw
-         jYOtcG+1AvSoIn2WQI8CFI4quS0Cz5JggEMC1p/Wttu6VaNHof/CvFy785dv5ecuyD1x
-         PrsSXKQdXPyIW+3hoVtUWhdtsTb4Bodmgu94UxzvL56RY+ZaACNejF4Q5oj0KUwU4hFn
-         YJ0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWwGHq9KqTeJwp8580WygpoXsD+XAlraHZdfs6yE8cmfFez0k6yDwL8I8fDkikre+4MB3UwNUYFTBzNCWJu7kUCSiZbzujK8HppzA==
-X-Gm-Message-State: AOJu0YyHmJPypDQZK9FTzwIp815ap4UJ0+HgYCpjNBNvnO7gUiVWsIxG
-	JUoWWzwvKD32XjGYJFd1G77NLtdeQFc2IABw6f+dvFQLgDSfNCrjvufiVxUBWwLrgGPtORVFjtR
-	eUY5sd9k+75r6Vi+sXgWR9lNjX97wR7FZqScV
-X-Google-Smtp-Source: AGHT+IFixPe77lWinjbn1l+sNnJv5Ui/C76Vx2CtkIRfQjKNjmI2FCb1bmRnLWcIP8e3ucRsKkrRobHHIY0Ljuz5GjU=
-X-Received: by 2002:a05:622a:109:b0:444:a760:55de with SMTP id
- d75a77b69052e-444ce34a3b1mr5027131cf.24.1719247204577; Mon, 24 Jun 2024
- 09:40:04 -0700 (PDT)
+	s=arc-20240116; t=1719247361; c=relaxed/simple;
+	bh=M6JLWLum6NeubGv21wEYN0yfBEAq1Kwlx9HKuXir0Jk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IuLiT+xvW8+wJNfIMVlh39N1VtVnxOeN3XLA/MvfM71cSI9hfSr2itxZ97RBk3YGbSmQw2b/IE1puJW8sRFO3pkP0Hb5XRFxiLmiGOgtxg/g8MN2WC/Bm0CMp+QfNweI0RlLIkNbrOGNu+W69DGcTQuvL+3JRGtFrJOf9ucxZ+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hqtWE61H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB271C2BBFC;
+	Mon, 24 Jun 2024 16:42:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719247361;
+	bh=M6JLWLum6NeubGv21wEYN0yfBEAq1Kwlx9HKuXir0Jk=;
+	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
+	b=hqtWE61HI8b5LWbad9/Jjk6N2hqgPAmadpitO6SrnuVmlT53ceqS0lqwQ/QsKDNQY
+	 1SaIz2YL5m7XsyNt/s2sZcePQcV3CpTNbyl3YnMV3p2H0gseRfuY4Lep8TrqvGj1Sm
+	 VkeY/l1OnNUiH4TSzMKMbDIZFoPFtFySxQZwK+jP6VBgaAFeDvEzt1ybP3b+Obrp6c
+	 4ScY7R99SmS0hntAcdzCpRC+Hr8Sr31GHYi0j+x6AF4d8bekrQ5Fbfh/GB5BS+ROv9
+	 UO43/48/csls7djLAjYxEjkLTvH+hRrAZ/afIER163Eq2wtHQ/n+l2Be2tZJXu8opg
+	 FIcRzfNjxbwJw==
+Date: Mon, 24 Jun 2024 17:42:36 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	soc@kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2 2/2] dt-bindings: interrupt-controller: convert
+ marvell,mpic binding to YAML
+Message-ID: <20240624-glucose-error-270164cbd584@spud>
+References: <20240624145355.8034-1-kabel@kernel.org>
+ <20240624145355.8034-3-kabel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624141926.5250-1-lvzhaoxiong@huaqin.corp-partner.google.com> <20240624141926.5250-4-lvzhaoxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240624141926.5250-4-lvzhaoxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Mon, 24 Jun 2024 09:39:53 -0700
-Message-ID: <CAD=FV=XNS6sq1nuynDqU6gvfVa5pyBzVKPSiboEEYsTbwvV9fQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/5] drm/panel: panel-jadard-jd9365da-h3: use wrapped
- MIPI DCS functions
-To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
-	benjamin.tissoires@redhat.co, hsinyi@google.com, jagan@edgeble.ai, 
-	neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
-	dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/zwfOdrJRt9PPGPO"
+Content-Disposition: inline
+In-Reply-To: <20240624145355.8034-3-kabel@kernel.org>
+
+
+--/zwfOdrJRt9PPGPO
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Mon, Jun 24, 2024 at 04:53:55PM +0200, Marek Beh=FAn wrote:
 
-On Mon, Jun 24, 2024 at 7:21=E2=80=AFAM Zhaoxiong Lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
->
-> +static int radxa_display_8hd_ad002_init_cmds(struct jadard *jadard)
-> +{
-> +       struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->dsi =
-};
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/marve=
+ll,mpic.yaml b/Documentation/devicetree/bindings/interrupt-controller/marve=
+ll,mpic.yaml
+> new file mode 100644
+> index 000000000000..616a41c87352
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/marvell,mpic=
+=2Eyaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/marvell,mpic.yam=
+l#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x00);
+> +title: Marvell Armada 370, 375, 38x, 39x, XP Interrupt Controller
+> +
+> +maintainers:
+> +  - Marek Beh=FAn <kabel@kernel.org>
+> +
+> +description: |
 
-nit: could you convert the hex from UPPERCASE to lowercase in this
-patch. As an example, 0xE0 above should be 0xe0.
+If you end up respinning, both |s from descriptions can be dropped, but
+those are relatively minor and the conversion looks okay to me.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Other than that nit, this looks OK to me:
+Thanks,
+Conor.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> +  interrupts:
+> +    items:
+> +      - description: |
+> +          Parent interrupt on platforms where MPIC is not the top-level
+> +          interrupt controller.
+
+--/zwfOdrJRt9PPGPO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnmh/AAKCRB4tDGHoIJi
+0tqoAQC88PjCZzUFf6ALmF0ZmdFXZ41b5cukc0TsEELT6eQZ4gEApS0umNdL/Vd0
+aXI/w57uSippcFJJFRCPioCXvdLbTQ4=
+=HrKw
+-----END PGP SIGNATURE-----
+
+--/zwfOdrJRt9PPGPO--
 
