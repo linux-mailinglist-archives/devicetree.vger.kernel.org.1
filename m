@@ -1,145 +1,261 @@
-Return-Path: <devicetree+bounces-79099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDD59140B4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 04:58:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F62E9140E5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 06:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89AF02837B3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 02:58:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 227211C2112F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 04:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF2779CF;
-	Mon, 24 Jun 2024 02:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="Dsy541Ir"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0FB79E1;
+	Mon, 24 Jun 2024 04:02:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97079D502
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 02:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A8D8376;
+	Mon, 24 Jun 2024 04:02:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719197901; cv=none; b=VBTIgs1wUxsynwZt82CcNwc4c6SWV8DXZpnTp7Cv+XM6OO0FgU2wIwLoWyiIQNNebvdjx0Z5/O8+h0oE01NB6a0In4Py92aeAPXd7haEaA2wBFbWeuD0h9Qp3Z+li79LQTXOiwKmvvAWXmIvzxbwX31B/ivM88NKLaBBaxXZ+ck=
+	t=1719201779; cv=none; b=tj0LYav/2kdjm1r3m+ff6SL+6KCMOUVY+yRccKmZ+acRwh1dUE7EGDsuLI1fpaxJCEK3ex5/LVQ3gj0kiIllG1CMpCiG95D591jNN8c00zv4SgD3PLByQXrN3nGUQtvfLUHbDSdpFety9Av4KwsT5TnR7U198/qouKNq2RAMk90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719197901; c=relaxed/simple;
-	bh=HZyeTSDoU90HYd90Rp+PLPJE+pmstpL+du0vTcZ7ASU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KDEyJpwc0iVFps0d6QvTv38ovO6xP29mmfwBFh5jNzVwd3zcXVQWrKiqCgVaUqIl2ktZVtNUw8vFvXSfwNNf0GI68I3TOLluxFILb2J/CDhxvatQePmjWrHY2wlONw6Q7xbviv4sGycHKNFygcnlMyVKomrtG1dcEFmW1HamiJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=Dsy541Ir; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 5B07C2C044B;
-	Mon, 24 Jun 2024 14:58:16 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1719197896;
-	bh=b4PPIWnSntGbucOj7Qa3cqUKyDG1tJZ+G6Ih4WCPC9Q=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Dsy541IrOR2d7+JHSboOJseQcChjXtH3AMCiKMq/ThI06AZChRzDre90/ueGy6KEG
-	 nsOn7SRhoHvUxK93974Deux6kurnivArLz4klNMtvcLV4WPdr4u71BcDP2U/gOb7Aj
-	 rM8eM5tSI3XKwjZ/HlvlDgYO1GQhdqLIImm346mFCtbymD4i3h2RKOwMGZfrlV2keb
-	 ztf+57xL7DMaQPrpQg1Nvy35UGvbldS7RLsSewP5zVXr58G6D+tOBNdr4SIp7bur6s
-	 hB1dPqg6KXosTFLvORaImFOoA1fCvoo+ljQ3/Iqm7EtXVhVx2hEhUcf4YJWZWdjryq
-	 cOq312Bfe3BDQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B6678e0c80000>; Mon, 24 Jun 2024 14:58:16 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 2856013ED63;
-	Mon, 24 Jun 2024 14:58:16 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 228A9280AE5; Mon, 24 Jun 2024 14:58:16 +1200 (NZST)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: andrew@lunn.ch,
-	f.fainelli@gmail.com,
-	olteanv@gmail.com
-Cc: netdev@vger.kernel.org,
+	s=arc-20240116; t=1719201779; c=relaxed/simple;
+	bh=ohUxX1PvWv6zwsoCgYQIQEDysh4aaTx6J6uvF2CJn9E=;
+	h=From:To:Subject:Date:Message-Id; b=RimOash39jyZnWjOiiDeyvruP6+cx3tL/gUxWm3IIk9UlMm8gYYQ2Xf0wR5yK569Q81VqZ1KueS4jYZEjeHiSlYTjjq7b1CcuyP9mbUi698wB9AqnvAU45SpeMuhNvGI6gNhmxw/oY2wUEpoZ6C5RMfEuIXnNFdv+LiZuyvx0jE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B755A2000BA;
+	Mon, 24 Jun 2024 05:56:32 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3A08920134F;
+	Mon, 24 Jun 2024 05:56:32 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C41BC183C309;
+	Mon, 24 Jun 2024 11:56:28 +0800 (+08)
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: p.zabel@pengutronix.de,
+	abelvesa@kernel.org,
+	peng.fan@nxp.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	marex@denx.de,
+	linux-clk@vger.kernel.org,
+	imx@lists.linux.dev,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>
-Subject: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Minor grammar fixes
-Date: Mon, 24 Jun 2024 14:58:11 +1200
-Message-ID: <20240624025812.1729229-1-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.45.2
+	linux-kernel@vger.kernel.org,
+	shengjiu.wang@gmail.com
+Subject: [PATCH v9] reset: imx8mp-audiomix: Add AudioMix Block Control reset driver
+Date: Mon, 24 Jun 2024 11:39:05 +0800
+Message-Id: <1719200345-32006-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=CvQccW4D c=1 sm=1 tr=0 ts=6678e0c8 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=T1WGqf2p2xoA:10 a=Mc0CNVgLlbBwIVVfR90A:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
 
-Update the mt7530 binding with some minor updates that make the document
-easier to read.
+Add support for the resets on i.MX8MP Audio Block Control module,
+which includes the EARC PHY software reset and EARC controller
+software reset. The reset controller is created using the auxiliary
+device framework and set up in the clock driver.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
+changes in v9:
+- only send this commits because others have been applied
+- remove depends on in config
+- add spin lock
+- call iounmmap()
 
-Notes:
-    I was referring to this dt binding and found a couple of places where
-    the wording could be improved. I'm not exactly a techical writer but
-    hopefully I've made things a bit better.
+changes in v8:
+https://lore.kernel.org/linux-arm-kernel/27ea1bf7de6f349426fcd7ddb056a1adfae47c73.camel@pengutronix.de/T/
 
- .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml        | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/reset/Kconfig                 |   7 ++
+ drivers/reset/Makefile                |   1 +
+ drivers/reset/reset-imx8mp-audiomix.c | 128 ++++++++++++++++++++++++++
+ 3 files changed, 136 insertions(+)
+ create mode 100644 drivers/reset/reset-imx8mp-audiomix.c
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.ya=
-ml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-index 1c2444121e60..6c0abb020631 100644
---- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-@@ -22,16 +22,16 @@ description: |
-=20
-   The MT7988 SoC comes with a built-in switch similar to MT7531 as well =
-as four
-   Gigabit Ethernet PHYs. The switch registers are directly mapped into t=
-he SoC's
--  memory map rather than using MDIO. The switch got an internally connec=
-ted 10G
-+  memory map rather than using MDIO. The switch has an internally connec=
-ted 10G
-   CPU port and 4 user ports connected to the built-in Gigabit Ethernet P=
-HYs.
-=20
--  MT7530 in MT7620AN, MT7620DA, MT7620DAN and MT7620NN SoCs has got 10/1=
-00 PHYs
-+  MT7530 in MT7620AN, MT7620DA, MT7620DAN and MT7620NN SoCs have 10/100 =
-PHYs
-   and the switch registers are directly mapped into SoC's memory map rat=
-her than
-   using MDIO. The DSA driver currently doesn't support MT7620 variants.
-=20
-   There is only the standalone version of MT7531.
-=20
--  Port 5 on MT7530 has got various ways of configuration:
-+  Port 5 on MT7530 supports various configurations:
-=20
-     - Port 5 can be used as a CPU port.
-=20
---=20
-2.45.2
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 7112f5932609..509f70e5c4c0 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -91,6 +91,13 @@ config RESET_IMX7
+ 	help
+ 	  This enables the reset controller driver for i.MX7 SoCs.
+ 
++config RESET_IMX8MP_AUDIOMIX
++	tristate "i.MX8MP AudioMix Reset Driver"
++	select AUXILIARY_BUS
++	default CLK_IMX8MP
++	help
++	  This enables the reset controller driver for i.MX8MP AudioMix
++
+ config RESET_INTEL_GW
+ 	bool "Intel Reset Controller Driver"
+ 	depends on X86 || COMPILE_TEST
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index fd8b49fa46fc..a6796e83900b 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -14,6 +14,7 @@ obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
+ obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
+ obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
+ obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
++obj-$(CONFIG_RESET_IMX8MP_AUDIOMIX) += reset-imx8mp-audiomix.o
+ obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
+ obj-$(CONFIG_RESET_K210) += reset-k210.o
+ obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
+diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
+new file mode 100644
+index 000000000000..6e3f3069f727
+--- /dev/null
++++ b/drivers/reset/reset-imx8mp-audiomix.c
+@@ -0,0 +1,128 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Copyright 2024 NXP
++ */
++
++#include <linux/auxiliary_bus.h>
++#include <linux/device.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_address.h>
++#include <linux/reset-controller.h>
++
++#define EARC			0x200
++#define EARC_RESET_MASK		0x3
++
++struct imx8mp_audiomix_reset {
++	struct reset_controller_dev rcdev;
++	spinlock_t lock; /* protect register read-modify-write cycle */
++	void __iomem *base;
++};
++
++static struct imx8mp_audiomix_reset *to_imx8mp_audiomix_reset(struct reset_controller_dev *rcdev)
++{
++	return container_of(rcdev, struct imx8mp_audiomix_reset, rcdev);
++}
++
++static int imx8mp_audiomix_reset_assert(struct reset_controller_dev *rcdev,
++					unsigned long id)
++{
++	struct imx8mp_audiomix_reset *priv = to_imx8mp_audiomix_reset(rcdev);
++	void __iomem *reg_addr = priv->base;
++	unsigned int mask, reg;
++	unsigned long flags;
++
++	mask = BIT(id);
++	spin_lock_irqsave(&priv->lock, flags);
++	reg = readl(reg_addr + EARC);
++	writel(reg & ~mask, reg_addr + EARC);
++	spin_unlock_irqrestore(&priv->lock, flags);
++
++	return 0;
++}
++
++static int imx8mp_audiomix_reset_deassert(struct reset_controller_dev *rcdev,
++					  unsigned long id)
++{
++	struct imx8mp_audiomix_reset *priv = to_imx8mp_audiomix_reset(rcdev);
++	void __iomem *reg_addr = priv->base;
++	unsigned int mask, reg;
++	unsigned long flags;
++
++	mask = BIT(id);
++	spin_lock_irqsave(&priv->lock, flags);
++	reg = readl(reg_addr + EARC);
++	writel(reg | mask, reg_addr + EARC);
++	spin_unlock_irqrestore(&priv->lock, flags);
++
++	return 0;
++}
++
++static const struct reset_control_ops imx8mp_audiomix_reset_ops = {
++	.assert   = imx8mp_audiomix_reset_assert,
++	.deassert = imx8mp_audiomix_reset_deassert,
++};
++
++static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
++				       const struct auxiliary_device_id *id)
++{
++	struct imx8mp_audiomix_reset *priv;
++	struct device *dev = &adev->dev;
++	int ret;
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	spin_lock_init(&priv->lock);
++
++	priv->rcdev.owner     = THIS_MODULE;
++	priv->rcdev.nr_resets = fls(EARC_RESET_MASK);
++	priv->rcdev.ops       = &imx8mp_audiomix_reset_ops;
++	priv->rcdev.of_node   = dev->parent->of_node;
++	priv->rcdev.dev	      = dev;
++	priv->rcdev.of_reset_n_cells = 1;
++	priv->base            = of_iomap(dev->parent->of_node, 0);
++	if (!priv->base)
++		return -ENOMEM;
++
++	dev_set_drvdata(dev, priv);
++
++	ret = devm_reset_controller_register(dev, &priv->rcdev);
++	if (ret)
++		goto out_unmap;
++
++	return 0;
++
++out_unmap:
++	iounmap(priv->base);
++	return ret;
++}
++
++static void imx8mp_audiomix_reset_remove(struct auxiliary_device *adev)
++{
++	struct imx8mp_audiomix_reset *priv = dev_get_drvdata(&adev->dev);
++
++	iounmap(priv->base);
++}
++
++static const struct auxiliary_device_id imx8mp_audiomix_reset_ids[] = {
++	{
++		.name = "clk_imx8mp_audiomix.reset",
++	},
++	{ }
++};
++MODULE_DEVICE_TABLE(auxiliary, imx8mp_audiomix_reset_ids);
++
++static struct auxiliary_driver imx8mp_audiomix_reset_driver = {
++	.probe		= imx8mp_audiomix_reset_probe,
++	.remove		= imx8mp_audiomix_reset_remove,
++	.id_table	= imx8mp_audiomix_reset_ids,
++};
++
++module_auxiliary_driver(imx8mp_audiomix_reset_driver);
++
++MODULE_AUTHOR("Shengjiu Wang <shengjiu.wang@nxp.com>");
++MODULE_DESCRIPTION("Freescale i.MX8MP Audio Block Controller reset driver");
++MODULE_LICENSE("GPL");
+-- 
+2.34.1
 
 
