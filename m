@@ -1,137 +1,191 @@
-Return-Path: <devicetree+bounces-79180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7697A91448C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:21:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E89E39144B2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A79581C20FD0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 08:21:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D75D284F73
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 08:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 756464D5AA;
-	Mon, 24 Jun 2024 08:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F139469953;
+	Mon, 24 Jun 2024 08:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mSQ+Giru"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="PSjCgbe5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997C14AECE
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 08:21:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAE94CB2B
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 08:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719217278; cv=none; b=Z6e7Cv7LJZh6v3IXYQFIf8azvi5zXpRfp9Zcbv3g5Pao9tjHs0FQLb/1ic6PFwjDAeWm5Qo0yHLIsPU0/b+uOJe9gXCxEd7PsFO4fwarXzjw9kUdgK3rxpVQNYIdqv8mnXz4+nHtqpszqSAgB/zNn4ykvwhgW3dLWHGEWJ081Bg=
+	t=1719217498; cv=none; b=MdkMZ+VAPT8ZVE0KsY0RypE/1Y3TTklsokaca3At+1/6ssRMXehx81czBRL8fZd1Xsono4HgUh0hUl6bvdlLtdBokgfrqJS+oiIKYUaVqhCy2IzqRJH5L6LLnnQhmAxbXw3M5zpvvaN6+HZsBHr24GjKsE83XdNmq5Fjjjj+TLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719217278; c=relaxed/simple;
-	bh=aXKsAl6poCZsD5YEtZcnymdeghAP24SIm0L6smSVRsQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=b+Dv0KEOblV7UluMb3CfeO+0d1r7YB8/B6U1gWqCMUIoYgEnD/JmRggJUIDtCSJ+/7LRwtGYBPNho5eHeS31NUBU6wOh7ZmW1W7ZAsSa+7cZjmQZ5rtnjXadoBQ8PXrKTAa9d5ahliOOVcwM/XSLZyN/2fJ3+bF6WfQd6so7Hkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mSQ+Giru; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ec0f3b9cfeso46605571fa.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 01:21:16 -0700 (PDT)
+	s=arc-20240116; t=1719217498; c=relaxed/simple;
+	bh=gDacbADE2SAmVHz0VzwJCGPbVzzt3W6DAEZWHfwk23E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SoNvVQnaHnVzYgF0iDm4q1jMHnZT7upNfO/fy7rbGODDiPMakcCdiAG0ZrZSiUkVPMWQH4Kanw3UFM57kRPFljViZu0o+HZNmVZa7Vi0bKgkGxyBL3/EqdcawNKacs3s6VRmfyY2j4s4cKuwStmLaL94MQeLWO8h2ivcjsHXd1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=PSjCgbe5; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42111cf2706so5115455e9.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 01:24:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719217275; x=1719822075; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S5VAOdkKdhcM8gT/1OHnhyjoCTyfpHHr5f/6gNRJOW8=;
-        b=mSQ+GiruqG0KUAy+6L4fSe/37lEFtrHEieaR03ZlWXYWgluxWp0kIQmQnCx9X6JoKx
-         8hFCXX/QURUZdMgwoiKMeKyivNLqOxfb643IvadBfY7SAVyjir5ez6dopfOtowe6doYE
-         deIi97WLNW6xO8SWveJVgUrY+AiUrTB9HdAG/efzISmGS59wHokLkPPD2YJrXc+Kevwr
-         hQtHTF+q96sN6RhCzH10VR4JjxMn8EW4OtypgpnMiPWrqhuSu6Mvgq4Yo6PzSWXS9Lsf
-         LxEQYzznyfe8rJsRzGGfPhrFaoJyuvCI7dlpqO+CNc2SQtSaMSGAFUqapr7ult75vQCZ
-         voOQ==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1719217495; x=1719822295; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eHo51wuTRWiZIUYTemkhy4Fril3hMcATqvGkIagVwG8=;
+        b=PSjCgbe5yjz480PPzbxGmp8Jtyjoac9Pa/KyMQLmgii24PWKgwCMEn7QIc1HPhrhwJ
+         EDHXU21TR1mm75uJZ0TXsk/s+gPPZLyIQPrn7WowdOc5A72lnThflt/6ZYvgarP9eyCz
+         KDgGLKMD8aEHfIvtFKPCldsPaDQOjHrdsSfjgTyOL4Zhv3obbWRNfwQvpSrDZfqYgL/X
+         HN8GlDZmGFo9TsHvXMoonZTkGnOo361RzIWvTElJ98KIVOBEt5QnhgUFfrt/K0VnbHfk
+         3T5LiaQNc2WiSigK8oz3wgNRpzaCJQP0n6uKbDsoo5XTRX9iMxrltwDNqQILePIY0IQ3
+         vCAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719217275; x=1719822075;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S5VAOdkKdhcM8gT/1OHnhyjoCTyfpHHr5f/6gNRJOW8=;
-        b=V2qg75yqtrWvV9NidV8A3GzGIqUxQO6gnJ8w18GLob08GZTdrL2Aoh96X7iJy8Z16Z
-         Qj5XI2wWtPLreMOBeQR4KrUkFQG/synR0swJXpCTovU6q4gcYB3qjJzKDpPJbiryhCSp
-         0qCXa+q1gznR6A+U8n7EOR9kGq/BfNsMTGJalxCS7R1Hw+G5KKc6xDo17mde+e2jEEXm
-         AoeUcCtAUvbUXf0WTtJsXAEnBECSU2GTpZr8N+wXGO9T6T1tUxXI4TKd6WZrTKf+nXGr
-         /CXi6obcBPdkmY8JHZhygVT9CHuSKJfwUrCff4cQ6iysJHn72mhAoG+aAgvnm0/xCyY7
-         zd8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVLe6au+REdb4Zb4OJOallM8bN8zlmea4Qu7gCF2TkbL4g+lGvBGFpxhF/GE+c2RknVA3iQ3MiAEDW/u7MiA30Qz+EteQaAS1bqhQ==
-X-Gm-Message-State: AOJu0YxsxTH2rXdOo/HmoPnUZCDnyBV0nYZX9Mj66Zv1O14KtOIov5F1
-	hU95sWxqNg3sc/VyQyPtClY8Pf89G3khLM4Oh7q6Czbw5xGHTJ4jBOJBvXxEhco=
-X-Google-Smtp-Source: AGHT+IFOM1tvmn28vCqfxsQmam8sAFtMLs0nKzQtQ0TNetL1dlK2e9z8H40izII7f+ZCOzp5EYKRJw==
-X-Received: by 2002:ac2:5617:0:b0:52c:b606:2b2 with SMTP id 2adb3069b0e04-52ce0673b84mr2508868e87.46.1719217274315;
-        Mon, 24 Jun 2024 01:21:14 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4248179d8e0sm132450205e9.3.2024.06.24.01.21.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 01:21:13 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Christian Hewitt <christianshewitt@gmail.com>
-Cc: Emanuel Strobel <emanuel.strobel@yahoo.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240622140112.2609534-1-christianshewitt@gmail.com>
-References: <20240622140112.2609534-1-christianshewitt@gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: add dream vendor prefix
-Message-Id: <171921727347.3499124.419809659570327061.b4-ty@linaro.org>
-Date: Mon, 24 Jun 2024 10:21:13 +0200
+        d=1e100.net; s=20230601; t=1719217495; x=1719822295;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eHo51wuTRWiZIUYTemkhy4Fril3hMcATqvGkIagVwG8=;
+        b=H/1bRE3vycNIdX/hDmS/7oDCRvlYfRdr8TpjBSQPuHYMi2XJisyxiGc4gRhaROEoIt
+         KM7qt3BqBiS5aubGMx0kVBZTR2NU2svYUZFyNkXQjn6pVKl2kgESXAga1/gigUZsebeD
+         aFcVVbUWYp4ZdbpSeDDm7RRu97cryO4A5ECwxWRZTIe+KgmDMxObn6cagRzwdEbVDZyf
+         9+dj7OXHvquekbUST8u2KpN7/eSNTdGRSlXwwtyo/4EapGPASs6YfSjLzOMKNj+3hSGY
+         /3IOtjZ6OI8iMdePus74xLM/fmbJnMKPMJRdrzPhvYSb5ycIgExbC9Wo3GPTKYQPlyPU
+         XQMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVTjGayv/aMlEhhwZ+/BnOl6gc7PFKqh0cEQ8Do+pm8LFL5/mhC+cP6ctUS5bWxOevJ7Jgjy9oKdISAsZIUwmWco+z4LEc2meffA==
+X-Gm-Message-State: AOJu0Yzm+CUibldSh52DnUZSqJABBf19EwPs05b2MSCZeejLcTdsEuP2
+	M0JZqeEsGpRtdcww0iqcO0N2VsZoLx1M70gP/tzLiEblSN0RkI/qLLRIugRl4j0=
+X-Google-Smtp-Source: AGHT+IHaJqmXxJcpAch8t7UdkOLrlv66b+VvjpHMvaM58a6QzEHIYabq9XOGzMv9in4jtgUGn43mVw==
+X-Received: by 2002:a05:600c:3b11:b0:424:8810:78b5 with SMTP id 5b1f17b1804b1-42488107bb0mr40633265e9.0.1719217494632;
+        Mon, 24 Jun 2024 01:24:54 -0700 (PDT)
+Received: from [192.168.61.172] ([37.166.182.152])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4247101a955sm175619005e9.0.2024.06.24.01.24.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jun 2024 01:24:54 -0700 (PDT)
+Message-ID: <c59a8897-34a1-4dc3-b68b-35dddf55c937@rivosinc.com>
+Date: Mon, 24 Jun 2024 10:24:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 08/16] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+ Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kvm@vger.kernel.org,
+ kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240619113529.676940-1-cleger@rivosinc.com>
+ <20240619113529.676940-9-cleger@rivosinc.com>
+ <20240623-cornbread-preteen-4ec287aa165c@spud>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20240623-cornbread-preteen-4ec287aa165c@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
 
-On Sat, 22 Jun 2024 14:01:10 +0000, Christian Hewitt wrote:
-> Add a vendor prefix for Dream Property GmbH
+
+On 23/06/2024 17:42, Conor Dooley wrote:
+> On Wed, Jun 19, 2024 at 01:35:18PM +0200, Clément Léger wrote:
+>> The Zc* standard extension for code reduction introduces new extensions.
+>> This patch adds support for Zca, Zcf, Zcd and Zcb. Zce, Zcmt and Zcmp
+>> are left out of this patch since they are targeting microcontrollers/
+>> embedded CPUs instead of application processors.
+>>
+>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>  arch/riscv/include/asm/hwcap.h |  4 +++
+>>  arch/riscv/kernel/cpufeature.c | 55 +++++++++++++++++++++++++++++++++-
+>>  2 files changed, 58 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+>> index 18859277843a..b12ae3f2141c 100644
+>> --- a/arch/riscv/include/asm/hwcap.h
+>> +++ b/arch/riscv/include/asm/hwcap.h
+>> @@ -87,6 +87,10 @@
+>>  #define RISCV_ISA_EXT_ZVE64F		78
+>>  #define RISCV_ISA_EXT_ZVE64D		79
+>>  #define RISCV_ISA_EXT_ZIMOP		80
+>> +#define RISCV_ISA_EXT_ZCA		81
+>> +#define RISCV_ISA_EXT_ZCB		82
+>> +#define RISCV_ISA_EXT_ZCD		83
+>> +#define RISCV_ISA_EXT_ZCF		84
+>>  
+>>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>>  
+>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+>> index a3af976f36c9..aa631fe49b7c 100644
+>> --- a/arch/riscv/kernel/cpufeature.c
+>> +++ b/arch/riscv/kernel/cpufeature.c
+>> @@ -111,6 +111,9 @@ static int riscv_ext_zicboz_validate(const struct riscv_isa_ext_data *data,
+>>  
+>>  #define __RISCV_ISA_EXT_DATA(_name, _id) _RISCV_ISA_EXT_DATA(_name, _id, NULL, 0, NULL)
+>>  
+>> +#define __RISCV_ISA_EXT_DATA_VALIDATE(_name, _id, _validate) \
+>> +			_RISCV_ISA_EXT_DATA(_name, _id, NULL, 0, _validate)
+>> +
+>>  /* Used to declare pure "lasso" extension (Zk for instance) */
+>>  #define __RISCV_ISA_EXT_BUNDLE(_name, _bundled_exts) \
+>>  	_RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, \
+>> @@ -122,6 +125,37 @@ static int riscv_ext_zicboz_validate(const struct riscv_isa_ext_data *data,
+>>  #define __RISCV_ISA_EXT_SUPERSET_VALIDATE(_name, _id, _sub_exts, _validate) \
+>>  	_RISCV_ISA_EXT_DATA(_name, _id, _sub_exts, ARRAY_SIZE(_sub_exts), _validate)
+>>  
+>> +static int riscv_ext_zca_depends(const struct riscv_isa_ext_data *data,
 > 
+> It's super minor, but my OCD doesn't like this being called "depends"
+> when the others are all called "validate".
+
+Ok, let's make a deal. You review patch 14/16 and I'll make the machine
+part of you happy and call this function validate ;)
+
+Thanks,
+
+Clément
+
 > 
-
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
-
-[1/3] dt-bindings: add dream vendor prefix
-      https://git.kernel.org/amlogic/c/4132d13bfcdb3551b0d1a6a74e2063351b4bfcaa
-[2/3] dt-bindings: arm: amlogic: add support for Dreambox One/Two
-      https://git.kernel.org/amlogic/c/96cf7ca12bdcd44fcfdca74e56389c40ae47a7b1
-[3/3] arm64: dts: meson: add initial support for Dreambox One/Two
-      https://git.kernel.org/amlogic/c/83a6f4c62cb12aa902043fc1910fdbe483193f3c
-
-These changes has been applied on the intermediate git tree [1].
-
-The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+>> +				 const unsigned long *isa_bitmap)
+>> +{
+>> +	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA))
+>> +		return 0;
+>> +
+>> +	return -EPROBE_DEFER;
+>> +}
+>> +static int riscv_ext_zcd_validate(const struct riscv_isa_ext_data *data,
+>> +				  const unsigned long *isa_bitmap)
+>> +{
+>> +	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) &&
+>> +	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_d))
+>> +		return 0;
+>> +
+>> +	return -EPROBE_DEFER;
+>> +}
+>> +
+>> +static int riscv_ext_zcf_validate(const struct riscv_isa_ext_data *data,
+>> +				  const unsigned long *isa_bitmap)
+>> +{
+>> +	if (IS_ENABLED(CONFIG_64BIT))
+>> +		return -EINVAL;
+>> +
+>> +	if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) &&
+>> +	    __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_f))
+>> +		return 0;
+>> +
+>> +	return -EPROBE_DEFER;
+>> +}
 
