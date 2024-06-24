@@ -1,127 +1,195 @@
-Return-Path: <devicetree+bounces-79419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48DA915379
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:23:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA48915383
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:24:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F720285D32
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:23:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB5211F21068
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEDEE19DFA1;
-	Mon, 24 Jun 2024 16:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA9D19F48A;
+	Mon, 24 Jun 2024 16:22:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eM1bwwsT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FIzhx9HX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394A119DF63;
-	Mon, 24 Jun 2024 16:22:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F9A19D8B3;
+	Mon, 24 Jun 2024 16:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719246142; cv=none; b=gqi7fvyXdJfLUYsMl7xl3DI0qVyVtazZ4qix4isDZ7CkIXw9mWC64f0bVHM/QLTmrqB0mzaC08dyJePjDlo+tUxu7jHX0Nx2ZJOPmKCSv9inCI9iwbP4Vt1c9Gw10iJko02O/XmAiGugPqirON8ez+Fr+QtOvLCB7MsTDwGOfCg=
+	t=1719246153; cv=none; b=kOBdMpl8i1KJ4OvstCcQlTKd8OE9I6VVcDLq6mrDkoLCjfDmEa3YIhQJ4glOCdalnt5fQkQ7bx42lCKjvrgo0ROamCVLpB+3vWV35dmKbQXSImcj6w4m+IztcALlCYfZAADYwkib56q0orjKKZlhypmkbzuJ3TIhuuIR9gOfj1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719246142; c=relaxed/simple;
-	bh=F4+Y3cxc/O7I9mHF0Tndy0UmovZrdLKD0A9V49BygtI=;
-	h=From:Date:To:cc:Subject:Message-ID:MIME-Version:Content-Type; b=nXuhygwfx39l/+x6EXaXsu9NiDpgW/cMVlwcgNSdCs0BLg2UTUhyjYOTdHJpgt5S7SmYu7VDib7+3qkZOHxmnDaeWqrt99RCmo2wEyTnzZjuNM2gmnMvfASUoSbDkgVghPeLKuek2q2p2jJNAEqxKWyWwUHjOAk6qNIN8ywPV5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eM1bwwsT; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719246142; x=1750782142;
-  h=from:date:to:cc:subject:message-id:mime-version;
-  bh=F4+Y3cxc/O7I9mHF0Tndy0UmovZrdLKD0A9V49BygtI=;
-  b=eM1bwwsTyLz961F2i2fWFMs5Hb7hpZ9n4YTirz3ZQh6RIYb0fU3ksSum
-   yDbVs2hm0ICAIhyADK8r5BmuVdz0S4NxRlzhbMBijqMfkOkJFyNgvw/Qq
-   5j5romH4MvkBS2vNpqXHeCT5CoFbdOyxemb3E4LbiRoDkt9f6NZ8WofOw
-   8ewXKJikSv0OWIpF6fUgMZzkarYbxq/JWfeOuLZ72GppjLMOOccpuWfxf
-   t6SgnsErOJxOT5oyUTfG93coGsOLtOYQJr+9CRBwIZya7+R8sESG4MY99
-   I4eNumFEid/GhJVURymVoxQ10/glSZaUjry0GY2UQ6cvP9ig9RzPe6EEs
-   Q==;
-X-CSE-ConnectionGUID: JA7CPWkbRBaIRtwIdsSpUg==
-X-CSE-MsgGUID: psOO9gwFS72skdqjCSkJLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="27637272"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
-   d="scan'208";a="27637272"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2024 09:22:21 -0700
-X-CSE-ConnectionGUID: BYOU9KmYQaW5pzZiTrNtkw==
-X-CSE-MsgGUID: 0uzXkmujTjyvFcGh+4A4Pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
-   d="scan'208";a="47721812"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.61])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2024 09:22:14 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Mon, 24 Jun 2024 19:22:10 +0300 (EEST)
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-    Sebastian Reichel <sre@kernel.org>, 
-    Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-    Hans de Goede <hdegoede@redhat.com>, 
-    Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-    Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, 
-    linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: branch between pdx86 lenovo c630 branch, power/supply and USB
-Message-ID: <0986fbac-7fba-56ea-cabb-c040ae12a795@linux.intel.com>
+	s=arc-20240116; t=1719246153; c=relaxed/simple;
+	bh=4ZpMxaS5rdfRlRw6hjeOyoKnW3JWpq9baxrtUfKgVS8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rV6Z06h/elzopM+76aefMrBiXmG81xvHxS7VW0fAb8AHgB7nKra15gX5SzF+J+tX9OpGvf6ECHQC9vvXtvko1ISM3HnZ4MNXajHRf5HnWMOcmeAfXkSSxrkXkxoICNWuB7VcjdQDMNpfUzuCyXkwB+fmNaSZ2Dh+6bA1EOhvJG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FIzhx9HX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26A6EC2BBFC;
+	Mon, 24 Jun 2024 16:22:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719246152;
+	bh=4ZpMxaS5rdfRlRw6hjeOyoKnW3JWpq9baxrtUfKgVS8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FIzhx9HXY95Sq2hWDaUrCNwGyoj8pJglygTG3nl5gwJqJ/pS5mY6cPjhSeaKiEKNl
+	 baGQrKCVsZ/ZooIt3jMgaiRZc4DjgDlIzgshHfNcxE1SAS4vtLzO8Bd1HMrGOupcrc
+	 dWW90SK3VeDPtD+wYKSMpHaY3SWGwzD5C6+Nhb4iGPbFINPprCf7M2vSunXYzqpvbH
+	 ZTLnyYX3N0PK+QHdT0+i6R4n7rtgPNlMOOUP33DprtiOcR+ugZMVxPbL53zG43evrB
+	 i7c3F0TGtsBUavzAKrgpqmrpAGbJc47Qjq7tpUDZfZ968OslI1/pK6+XdefVb0fDsR
+	 oq5uRpo3L4HYw==
+Date: Mon, 24 Jun 2024 18:22:28 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com
+Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <ZnmdRIXoZ_Unt8sg@lore-desk>
+References: <cover.1719159076.git.lorenzo@kernel.org>
+ <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+ <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
+ <Zni13uFslHz5R6Ns@lore-desk>
+ <e203100f-7bdd-4512-8a05-9a33476db488@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ZDUgRKanLZnz6KNf"
+Content-Disposition: inline
+In-Reply-To: <e203100f-7bdd-4512-8a05-9a33476db488@lunn.ch>
 
-Hi,
 
-This is v2 of the lenovo c630 IB branch with the build fix for non-ARM64 
-platforms (built on top of the commits in the previous IB PR).
+--ZDUgRKanLZnz6KNf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
+> On Mon, Jun 24, 2024 at 01:55:10AM +0200, Lorenzo Bianconi wrote:
+> > > > +static int airoha_fe_set_pse_oq_rsv(struct airoha_eth *eth,
+> > > > +				    u32 port, u32 queue, u32 val)
+> > > > +{
+> > > > +	u32 orig_val, tmp, all_rsv, fq_limit;
+> > > > +	const u32 pse_port_oq_id[] =3D {
+> > > > +		PSE_PORT0_QUEUE,
+> > > > +		PSE_PORT1_QUEUE,
+> > > > +		PSE_PORT2_QUEUE,
+> > > > +		PSE_PORT3_QUEUE,
+> > > > +		PSE_PORT4_QUEUE,
+> > > > +		PSE_PORT5_QUEUE,
+> > > > +		PSE_PORT6_QUEUE,
+> > > > +		PSE_PORT7_QUEUE,
+> > > > +		PSE_PORT8_QUEUE,
+> > > > +		PSE_PORT9_QUEUE,
+> > > > +		PSE_PORT10_QUEUE
+> > > > +	};
+> > >=20
+> > > > +static void airoha_fe_oq_rsv_init(struct airoha_eth *eth)
+> > > > +{
+> > > > +	int i;
+> > > > +
+> > > > +	/* hw misses PPE2 oq rsv */
+> > > > +	airoha_fe_set(eth, REG_FE_PSE_BUF_SET,
+> > > > +		      PSE_DEF_RSV_PAGE * PSE_PORT8_QUEUE);
+> > > > +
+> > > > +	for (i =3D 0; i < PSE_PORT0_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 0, i, 0x40);
+> > > > +	for (i =3D 0; i < PSE_PORT1_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 1, i, 0x40);
+> > > > +
+> > > > +	for (i =3D 6; i < PSE_PORT2_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 2, i, 0);
+> > > > +
+> > > > +	for (i =3D 0; i < PSE_PORT3_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 3, i, 0x40);
+> > >=20
+> > > Code like this is making me wounder about the split between MAC
+> > > driver, DSA driver and DSA tag driver. Or if it should actually be a
+> > > pure switchdev driver?
+> >=20
+> > airoha_eth driver implements just MAC features (FE and QDMA). Currently=
+ we only
+> > support the connection to the DSA switch (GDM1). EN7581 SoC relies on m=
+t7530 driver
+> > for DSA (I have not posted the patch for mt7530 yet, I will do after ai=
+roha_eth
+> > ones).
+> =20
+> > airoha_fe_oq_rsv_init() (we can improve naming here :) is supposed to c=
+onfigure
+> > hw pre-allocated memory for each queue available in Packet Switching En=
+gine
+> > (PSE) ports. PSE ports are not switch ports, but SoC internal ports use=
+d to
+> > connect PSE to different modules. In particular, we are currently imple=
+menting
+> > just the two connections below:
+> > - CDM1 (port0) connects PSE to QDMA1
+> > - GDM1 (port1) connects PSE to MT7530 DSA switch
+> >=20
+> > In the future we will post support for GDM2, GDM3 and GDM4 ports that a=
+re
+> > connecting PSE to exteranl PHY modules.
+>=20
+> Is the PSE involved in WiFi? When you come to implement NAT offload,
+> etc, will that depend on the PSE?
+>=20
 
-  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+Frame Engine architecture (Packet Switching Engine - PSE + Packet Processing
+Engine - PPE) is similar to mtk_eth_soc driver (but register map and QDMA l=
+ayer
+are different). FE is used to define offload traffic rules (e.g. forwarding
+between GDM interfaces or NAT rules).  Even in mtk_eth_soc frame engine cod=
+ebase
+is part of MAC driver. So far we do not support offloading rules, but we wi=
+ll
+do in the future. In order to support WiFI offload rules, FE requires a dif=
+ferent
+module/driver (NPU) similar to WED for mtk_eth_soc.
+The mac - switch architecture is the same to the one used for MT7988a [0].
+So far we support we support just gmac0 (that is connected to the switch).
+In the future I will add support for gmac1 as well.
 
-are available in the Git repository at:
+Regards,
+Lorenzo
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git tags/platform-drivers-x86-ib-lenovo-c630-v6.11-2
+[0] https://git.openwrt.org/?p=3Dopenwrt/openwrt.git;a=3Dblob;f=3Dtarget/li=
+nux/mediatek/files-6.6/arch/arm64/boot/dts/mediatek/mt7988a.dtsi;h=3D9ad068=
+fe05fc52bf1edc28d7dba4e162f30a0eb8;hb=3DHEAD
 
-for you to fetch changes up to 13bbe1c83bc401c2538c758228d27b4042b08341:
+> Figure 9-1 of MT7981B_Wi-Fi6_Platform_Datasheet_Open_V1.0.pdf clearly
+> shows the PSE outside of the GMAC. I'm just wondering if the PSE
+> should be a driver, or library, of its own, which is then shared by
+> users, rather than being embedded in the MAC driver?
 
-  platform/arm64: build drivers even on non-ARM64 platforms (2024-06-24 18:22:15 +0300)
 
-----------------------------------------------------------------
-Immutable branch between pdx86 lenovo c630 branch, power/supply and USB
-subsystems due for the v6.11 merge window.
+>=20
+>        Andrew
 
-platform-drivers-x86-ib-lenovo-c630-v6.11-2:
-  v6.10-rc1 + platform-drivers-x86-lenovo-c630
-for merging into the power/supply and USB subsystems for v6.11.
+--ZDUgRKanLZnz6KNf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-----------------------------------------------------------------
-Bjorn Andersson (1):
-      dt-bindings: platform: Add Lenovo Yoga C630 EC
+-----BEGIN PGP SIGNATURE-----
 
-Dmitry Baryshkov (2):
-      platform: arm64: add Lenovo Yoga C630 WOS EC driver
-      platform/arm64: build drivers even on non-ARM64 platforms
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnmdRAAKCRA6cBh0uS2t
+rMlmAP47F4WR3g5V41OqUkOJCurFJ6mLtMJb3XqtcyEd7WyTtQD/cig/9RMqs2pV
+Yvf98MUzi5MT5vlmlw/zATKLgR8PyAk=
+=xY2O
+-----END PGP SIGNATURE-----
 
- .../bindings/platform/lenovo,yoga-c630-ec.yaml     |  83 ++++++
- drivers/platform/Makefile                          |   2 +-
- drivers/platform/arm64/Kconfig                     |  14 +
- drivers/platform/arm64/Makefile                    |   1 +
- drivers/platform/arm64/lenovo-yoga-c630.c          | 291 +++++++++++++++++++++
- include/linux/platform_data/lenovo-yoga-c630.h     |  44 ++++
- 6 files changed, 434 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/platform/lenovo,yoga-c630-ec.yaml
- create mode 100644 drivers/platform/arm64/lenovo-yoga-c630.c
- create mode 100644 include/linux/platform_data/lenovo-yoga-c630.h
+--ZDUgRKanLZnz6KNf--
 
