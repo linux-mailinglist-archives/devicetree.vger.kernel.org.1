@@ -1,137 +1,194 @@
-Return-Path: <devicetree+bounces-79338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B1DC914E17
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:12:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A45914E20
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:14:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 030D31F240BE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:12:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8C392810A3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:14:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427B113D608;
-	Mon, 24 Jun 2024 13:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC6413D610;
+	Mon, 24 Jun 2024 13:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKTPnkA6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pBUDf713"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1557C13BAFA;
-	Mon, 24 Jun 2024 13:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95FA153389;
+	Mon, 24 Jun 2024 13:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719234763; cv=none; b=gkHMGBLcIKCRuMjkb66qVQ1gR6NX3yuzeYzYcfm8DoONX+yg18B4LSCac5Hahd9ifj5f3qCfutVj6rcvy6cG5GHRvpbT2XLnUT9PyxnQDpGl1WE4ascyBsWtTzYMZGyUKG4uY2+dYdAFrA1JehWkH26Ul/4QGxQtJLIe26P1g98=
+	t=1719234879; cv=none; b=QCCFILb1XHntt5Y3M2EnOPYM7GaSAjFkLmHi8C02j/I6sROOqM6Pk9oZWwB7cKz2Y3l6AzA4Bl4uBxehA1SN4HVPThDrzt0w+W64Xt1oCqoRsZn5bmbPTGAs11b3qhtdQLPQUWa/oO9IFV/+Wfm7UpYpVLuvDpMQqKAtIn18BkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719234763; c=relaxed/simple;
-	bh=2mE8N0SMEnhp4hkWmIEYdfl5cvb0kXGMIWoYMNPOqdw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lyUGWlxBH4Y/GMOZaeG6rNdnaJVa4LVqQHmh6XOc22g/3AwHKB7BBv2nfpxhePRdv8/mJbuFonmMbSGGbF9oI3sdsFDbGUJIcC9qSshVubaGe0WXDnf/XE1mA+PrmRyxbc50ghHIK2STP9pQQmVAg8Fpd+KVW0QwIdV6OW68Brg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKTPnkA6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4F91C2BBFC;
-	Mon, 24 Jun 2024 13:12:38 +0000 (UTC)
+	s=arc-20240116; t=1719234879; c=relaxed/simple;
+	bh=hWNaWrPpdbV9TanGy2wQEruPknSvEpTLlJ+o+tyefZU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j5rxt2FTT9wN09b5FMYnnpXaQinYqWSLOohEH+yoCv++X1PGQFOVJ8KzO4C+fZsSOLzhtG7iGi7XLd9fgb1BPKMTrzFzwyei13/fLwRWEgXh3KVSy/DYmTE5TxNB3A5PKfnZbvrj57k7Qq+J7aB26sEWzK1EHvcmDY7wwjZ2ZLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pBUDf713; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 882F3C2BBFC;
+	Mon, 24 Jun 2024 13:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719234762;
-	bh=2mE8N0SMEnhp4hkWmIEYdfl5cvb0kXGMIWoYMNPOqdw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BKTPnkA6i768AOiUIPu1jG5gyCNbJdF+j6kAFGHdPMREpB0z5EumhpifwXEKekaFj
-	 WmLYX+exyDSkismdclECqiKZIwPTbAmSqwq9KNvzbVv+50pM9r+Ym7f6yxfShFNTER
-	 aQIk+Q3C7NijTw4NsgKPMpp55TX0lA6c9Rv8GkGtINUxYYsfcFUH36xuta77glu8Fw
-	 p1BcMyy4zzYypfSGuPJWexn1nFN/HIQaFFQxILyxqVug9qGXjCv3Ab+d6iub92TSPR
-	 5u7+9eqb1C/TuJaFpVbJYfwihR5ovenBa1gOHpQmnvtIT9vFomjF14+Bnq7u8ntR27
-	 jQN+YjCaiFh6w==
-Message-ID: <9ecfca41-b4f2-4f37-adb9-35bf64e03266@kernel.org>
-Date: Mon, 24 Jun 2024 15:12:36 +0200
+	s=k20201202; t=1719234879;
+	bh=hWNaWrPpdbV9TanGy2wQEruPknSvEpTLlJ+o+tyefZU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pBUDf713NrvwXOjtaM1kIwLqyIwrjLr3idjpOqTi3xh6pwmgH8Oss50pyG56XMqog
+	 nR1UcHmfbWaW8WhQ00U1drIzbawhPKoPgLTbA738vKQMbiCH7SD7e6qM7v4VoD7mKl
+	 ObRWeh2MaKsjJik6XP96U8fkodlTOJ0s6LHMe5WDObkp2u1XXTRoe1FXUHbohUHzrT
+	 lbuu+DWSdW7t26DgJRtHctEnoKKCmHqGc6cCjuNiaikuFgyMzC2St5/m6mKG5fz1IA
+	 cvfuPGT2/pw4dSMqyxbgaG985erbiR3jsYhyKId3HS9AgCaM9escQhBbWLRBI4oWqu
+	 XhREMtwMEwJiw==
+Date: Mon, 24 Jun 2024 15:14:35 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
+	sgoutham@marvell.com
+Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
+ for EN7581 SoC
+Message-ID: <ZnlxO2yAxkkkejU-@lore-desk>
+References: <cover.1719159076.git.lorenzo@kernel.org>
+ <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+ <2752c453-cabd-4ca0-833f-262b221de240@lunn.ch>
+ <Zni13uFslHz5R6Ns@lore-desk>
+ <e9ae143c-e72f-419b-b4da-2f603a4ccec0@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: i2c: nxp,lpc1788-i2c: convert to dt
- schema
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: kernel test robot <lkp@intel.com>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240624121421.549010-2-kanakshilledar@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240624121421.549010-2-kanakshilledar@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gaFNliSXRBvSyy0T"
+Content-Disposition: inline
+In-Reply-To: <e9ae143c-e72f-419b-b4da-2f603a4ccec0@lunn.ch>
 
-On 24/06/2024 14:14, Kanak Shilledar wrote:
-> Convert the NXP I2C controller for LPC2xxx/178x/18xx/43xx
-> to newer DT schema. Created DT schema based on the .txt file
-> which had `compatible`, `reg`, `interrupts`, `clocks`,
-> `#address-cells` and `#size-cells` as required properties.
-> 
-> Additional changes to the original .txt binding
-> - added maintainer from the MAINTAINERS file.
-> - added resets property required by the corresponding DTS files.
-> 
-> Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
-> Reported-by: kernel test robot <lkp@intel.com>
 
-Drop, nothing was reported here.
+--gaFNliSXRBvSyy0T
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Closes: https://lore.kernel.org/oe-kbuild-all/202406200223.QexMAKqr-lkp@intel.com/
+> > > > +static void airoha_fe_oq_rsv_init(struct airoha_eth *eth)
+> > > > +{
+> > > > +	int i;
+> > > > +
+> > > > +	/* hw misses PPE2 oq rsv */
+> > > > +	airoha_fe_set(eth, REG_FE_PSE_BUF_SET,
+> > > > +		      PSE_DEF_RSV_PAGE * PSE_PORT8_QUEUE);
+> > > > +
+> > > > +	for (i =3D 0; i < PSE_PORT0_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 0, i, 0x40);
+> > > > +	for (i =3D 0; i < PSE_PORT1_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 1, i, 0x40);
+> > > > +
+> > > > +	for (i =3D 6; i < PSE_PORT2_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 2, i, 0);
+> > > > +
+> > > > +	for (i =3D 0; i < PSE_PORT3_QUEUE; i++)
+> > > > +		airoha_fe_set_pse_oq_rsv(eth, 3, i, 0x40);
+> > >=20
+> > > Code like this is making me wounder about the split between MAC
+> > > driver, DSA driver and DSA tag driver. Or if it should actually be a
+> > > pure switchdev driver?
+> >=20
+> > airoha_eth driver implements just MAC features (FE and QDMA). Currently=
+ we only
+> > support the connection to the DSA switch (GDM1). EN7581 SoC relies on m=
+t7530 driver
+> > for DSA (I have not posted the patch for mt7530 yet, I will do after ai=
+roha_eth
+> > ones).
+> >=20
+> > >=20
+> > > If there some open architecture documentation for this device?
+> > >=20
+> > > What are these ports about?
+> >=20
+> > airoha_fe_oq_rsv_init() (we can improve naming here :) is supposed to c=
+onfigure
+> > hw pre-allocated memory for each queue available in Packet Switching En=
+gine
+> > (PSE) ports. PSE ports are not switch ports, but SoC internal ports use=
+d to
+> > connect PSE to different modules. In particular, we are currently imple=
+menting
+> > just the two connections below:
+> > - CDM1 (port0) connects PSE to QDMA1
+> > - GDM1 (port1) connects PSE to MT7530 DSA switch
+> >=20
+> > In the future we will post support for GDM2, GDM3 and GDM4 ports that a=
+re
+> > connecting PSE to exteranl PHY modules.
+>=20
+> I've not looked at the datasheet yet, but maybe add some ASCII art
+> diagram of the architecture in the commit message, or even a .rst file
+> somewhere under Documentation. It is hard to get the big picture
+> looking at just the code, and only the MAC driver without all the
+> other parts.
 
-Drop.
+ack, I will do my best :)
 
-*With* two issues above fixed:
+>=20
+> > > > +static int airoha_dev_open(struct net_device *dev)
+> > > > +{
+> > > > +	struct airoha_eth *eth =3D netdev_priv(dev);
+> > > > +	int err;
+> > > > +
+> > > > +	if (netdev_uses_dsa(dev))
+> > > > +		airoha_fe_set(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+> > > > +	else
+> > > > +		airoha_fe_clear(eth, REG_GDM1_INGRESS_CFG, GDM1_STAG_EN_MASK);
+> > >=20
+> > > Does that imply both instances of the GMAC are not connected to the
+> > > switch? Can one be used with a PHY?
+> >=20
+> > The check above is used to support configuration where MT7530 DSA switc=
+h module
+> > is not loaded (I tested this configuration removing the MT7530 DSA swit=
+ch from
+> > board dts and resetting the switch). Since for the moment we just suppo=
+rt GDM1
+> > port (PSE port connected to the switch) we can probably assume it is al=
+ways the
+> > case and remove this check. In the future we will need this configurati=
+on to support
+> > GDM2 or GDM3 (PSE port connected to external phy modules). Do you prefe=
+r to
+> > always set GDM1_STAG_EN_MASK for the moment?
+>=20
+> If it will be needed, then keep it. But it is the sort of thing which
+> raises questions, so its good to explain it, either in the commit
+> message, or in the code.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ack, I will add it in v4
 
-Best regards,
-Krzysztof
+Regards,
+Lorenzo
 
+>=20
+> 	Andrew
+
+--gaFNliSXRBvSyy0T
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZnlxOwAKCRA6cBh0uS2t
+rLAcAP0TZ4SmPSOYdAipm/w/6nxNNN3oeqZPkNWcEiN3sorJOQD/Z2gU/LcXKBFE
+trXO0WHHjTAgVPPBiyOn0KB0uGbUbQI=
+=saWx
+-----END PGP SIGNATURE-----
+
+--gaFNliSXRBvSyy0T--
 
