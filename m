@@ -1,291 +1,159 @@
-Return-Path: <devicetree+bounces-79509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B12B91591B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 23:36:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39812915930
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 23:45:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CBD91C20DD3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 21:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A92291F24452
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 21:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D939B1A0AE9;
-	Mon, 24 Jun 2024 21:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D722B1311A7;
+	Mon, 24 Jun 2024 21:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vXEP8cIh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lscD1rUp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8041A08DA
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 21:36:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AC7B4962C;
+	Mon, 24 Jun 2024 21:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719264980; cv=none; b=LTUkYhgikm9Y5EFG3t3+TdCc1xG99QdZJ0FkYHaIXw5OiLYl2fLRSO1+r+bvgiCi9hM/QZZk5KwovJjeFD5lIhV1yGKIIljrIKRcjWp72APRlP+QIac9/mECXIpAyWXiBhOkmHOxOHuUirHyiXoXMX2dDPGz9M2G30k4Azxs0KM=
+	t=1719265548; cv=none; b=kJ4YFCL5B9n3AwQWbUQeDTseaxodVG2RlgWuo661ePsTlr1Aux9BO+/508yZm/HDVJwkIX2mnFZa59yWqh38GEliJEpOlBWbz8ykAy9EGZawz16FsmC11wsMyEGVx7ejAmWduy67Wu8/UMb2sIynWZkX56hq5avbwFi+JAxADgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719264980; c=relaxed/simple;
-	bh=gr0fn3ly5YlCf0sPq6whIbS+AGRd0PdQpxgdyN33ZbA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sS5Dr2GU+56+aeaDB5mugOODyeqbHrcaWqw7YhTN/dJLrC551sT++aVc/JFW09a6RQSVI1RaKe+H7uiUTgsmveaVBABch2R1JpdSEO2oepXz0nEfs2p80k065ACMxyD+oHU9s767tPRX5rR1yQqy686an6b0HAPD62lfD5KHhfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vXEP8cIh; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-48f463dbbd2so892288137.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 14:36:18 -0700 (PDT)
+	s=arc-20240116; t=1719265548; c=relaxed/simple;
+	bh=5LDOUY5x0WIdNRBUPnBNwAdwzAxdcTUC+9ltGMgcDz8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EWchOw3CwyfQbZCfC0GUqnl8Nszlw+Q17Dhz/4ZSu1hkoJwuv6qNGz+qxZklZJL+F8zcsf30g4e8kEFd0vFH28veE/oM+14+HnhrfkiHLOwMeybq/4ASb9cn5xRUSlayxN2jiX1OJ1KFqIszdyN9gpw3WjZxvD58UrPrvZXJ/hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lscD1rUp; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-363bd55bcc2so4046361f8f.2;
+        Mon, 24 Jun 2024 14:45:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719264978; x=1719869778; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xKq29T9GzFzk14rirSzhrbJdI0z6ZTXvSPHWL0fuZH0=;
-        b=vXEP8cIhZsqBTAvNIONAcrJGLtv9pK5vVFhV7T61YlHEcZTLiEZ7M5lxSqLyw2PvBf
-         rdUZKJWdreL6kGjmOh9FQVRlvwzDMA8iRHOyaY2Z86sZhju+/wAGx3Nzj5yxd85Mwgs5
-         kSqcpe3rhYknMbF1+FQjh4N7wF3BhDmc3qUPvZqXjoU683ovuvbwo7YaywE9jR94xSof
-         fGuQCCdO2REUCr5RJSmIqNKoEtbhIl5ppLKdlMJ3cYoCCVP0pkvmJ4XcDgoEq3nL263T
-         KFPlUfGldRGyQDhegxWPftmmFnRbjkoVouyV/BZZ3SBpr5XJrYb18k8ksWQSf2IrkwAh
-         vE7w==
+        d=gmail.com; s=20230601; t=1719265545; x=1719870345; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BPPDvN7v6IiPVFVviCh6dtINUu1WsSok2eDdprbo4Ic=;
+        b=lscD1rUpUDEzrjwp3Iycpv2avGpTiwpo5fxcaZF3G4dKBs7EMLw9CmijAkwTdvH9Qd
+         7bbMdF7LqWAyN6OtgN3Jyhol/FldtwZpu6bOCdRwW4LmQobMchXqx5J7C731AV7BXgvc
+         YOvuhfvRBdKINkX5o3jiAb8r9AuQbeMorT+Di9rwPo82hs/tswNNeseeinstL0rKtuP5
+         iaVmCcb5dpWIp1zYIANeFI+AX7y3yr32hCnGxhxfBSTBnyOv3CXBeqY3ekl/ngxe6IpH
+         /1yIZRV7jhMxM6cZkJuTURjdIVMzC86ujzebDTK4Kz6YugDEBJFD+GJfC3luEC0NrfxV
+         JRKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719264978; x=1719869778;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xKq29T9GzFzk14rirSzhrbJdI0z6ZTXvSPHWL0fuZH0=;
-        b=XH6JPzVtiw7KbXERQFwAPSlJxawJwYx1OLa/MEQ00rnmqVBOJTBN6rKP/Cli/2RPke
-         O5/shUPE0sNfl1n+1NabVHJPB+/2VFK1023/zLC3+KsoII6OPOR3hLKz5abWIZW/7amD
-         twoGjMQjiQVxeNrjn5oWsApe6HLcxFTG0SWNCniwjaIRF+8NhYExNM8jxrRpP0NNuEd+
-         B6vfkQAMX0HrvuCv/YfovqjHWjv3xrONlCuHCF4dDVWkJKvlejZB5DilBDMn1jWcsuTf
-         N0J5S4htdFVdUk0hmeEoEbSvVD7x4bcl5WXkJrlpDD4wPxivKZpDKVjh82R2onAaxoiE
-         liFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUIKSGsHwsK1dVx0M/wOOJ9tTeVrjOasiQpU5XN/JgoZrDIxHi9B8640WWltzrpOdMtWN8sAL0k5oIJJ0oXmLE7YKfa2qIPPRagQw==
-X-Gm-Message-State: AOJu0Yywwd2oommc8ZKsJyOsWeUqUbVdID9qJ1g28ztbKGUdH5CVY9zx
-	KyJToCwwsYBL3PRO+DPCz9DZBA70mf2akotnYpVqqPGHTtMEjj19yTneLD2xr1KnEiLdUCoxhbL
-	vcQB2Vq8n9Ko4IfdGf92cFmnjWzAbVBeSvwf0qw==
-X-Google-Smtp-Source: AGHT+IHDbAm/AEof88fnWBqJ3pSHQTc4fkKO/4dtiaiSTKiB81NDfTn/ep2HTRXzpz93dGP4RpuBdkpiEmJm3pqGyQ0=
-X-Received: by 2002:a05:6102:2276:b0:48f:392a:f891 with SMTP id
- ada2fe7eead31-48f4c0dcd51mr5580751137.21.1719264977853; Mon, 24 Jun 2024
- 14:36:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719265545; x=1719870345;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BPPDvN7v6IiPVFVviCh6dtINUu1WsSok2eDdprbo4Ic=;
+        b=xIfeAmrkGOUvQPIxJqAZ3L3snzYgt81xg01vx/oUSMTsqMPTwwLiTDhpz1RBftM5+3
+         hTW2fl8Ia6+1ojs3PwPgIyNQ6QnP+7245qoWimzGSIvaqIuo1d4bHSdTH6x5/pR+PYfs
+         y400V92tMoAUZb35P2womyItFQVyoS2VZMJ5UZ2HlZQkbgernFLzVMRCV8ofB4kRpghc
+         SxyMzwS+vpPCW56/7E8M7CA5AD5q0cJho0E1ImNVMzKU6eYaFPk17GsfSXXvtAhr+Y6d
+         1ryU7D7lRdy3ErMnwVY0TsmuddXwDZ1d64XOnxQUsugFiV9D3xOJjlbOIH0DuwneS3/2
+         UH9w==
+X-Forwarded-Encrypted: i=1; AJvYcCXnZCnWp66mYLUNbvf+Ppl5qiJok7SMvGMYl5jJAG8bW91Ups1KLcQpSLSWVgM242C+wSNPDAa8i/5NLMLLbV+fzNlDU1h9qi652arAvC8zoF1XQq9TIHJRIiBPx0eAL1doEsmSpbCNYc8ZwJZW9wet3EiOkubh5RfFy8LQ+qG95BTGed16G357J3GgFH2W32X2DW9UVBF9dHhZzECxnPOFJA==
+X-Gm-Message-State: AOJu0YzOcslpTbKFaA9Me1l6Y3P2pAdn/HDanMTV1EKlKIsY/kLaP+iS
+	+0g7ak/1Wfib23GEUKsyDctTVyOlaJGQ0tvy/wyl9p/rObL04z8+
+X-Google-Smtp-Source: AGHT+IHomXUaIVhT/771lPLn9rwX6XcDNC8dy89avGpfMRSOgnyNEQVProIVICbppqDUT8SI6DtKJg==
+X-Received: by 2002:a5d:400a:0:b0:363:107d:8385 with SMTP id ffacd0b85a97d-366e94cbca0mr4071088f8f.34.1719265545301;
+        Mon, 24 Jun 2024 14:45:45 -0700 (PDT)
+Received: from [192.168.0.31] (84-115-213-103.cable.dynamic.surfer.at. [84.115.213.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366383f65easm11118821f8f.23.2024.06.24.14.45.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jun 2024 14:45:43 -0700 (PDT)
+Message-ID: <3a16dc06-81df-4493-bac6-216e9c6ea16e@gmail.com>
+Date: Mon, 24 Jun 2024 23:45:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240612-sm4250-lpi-v4-0-a0342e47e21b@linaro.org> <20240612-sm4250-lpi-v4-2-a0342e47e21b@linaro.org>
-In-Reply-To: <20240612-sm4250-lpi-v4-2-a0342e47e21b@linaro.org>
-From: Alexey Klimov <alexey.klimov@linaro.org>
-Date: Mon, 24 Jun 2024 22:36:07 +0100
-Message-ID: <CANgGJDqJZ-qUB4XOTEhRQrzim_-ecf6evbM=zz4SiEKMSBObzQ@mail.gmail.com>
-Subject: Re: [PATCH v2 v4 2/2] pinctrl: qcom: Introduce SM4250 LPI pinctrl driver
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] hwmon: (ltc2992) Use
+ fwnode_for_each_available_child_node_scoped()
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>, linux-acpi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20240523-fwnode_for_each_available_child_node_scoped-v2-0-701f3a03f2fb@gmail.com>
+ <20240523-fwnode_for_each_available_child_node_scoped-v2-3-701f3a03f2fb@gmail.com>
+ <20240526144851.493dd3f2@jic23-huawei>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <20240526144851.493dd3f2@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Srini,
+On 26/05/2024 15:48, Jonathan Cameron wrote:
+> On Thu, 23 May 2024 17:47:16 +0200
+> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+> 
+>> The scoped version of the fwnode_for_each_available_child_node() macro
+>> automates object recfount decrement, avoiding possible memory leaks
+>> in new error paths inside the loop like it happened when
+>> commit '10b029020487 ("hwmon: (ltc2992) Avoid division by zero")'
+>> was added.
+>>
+>> The new macro removes the need to manually call fwnode_handle_put() in
+>> the existing error paths and in any future addition. It also removes the
+>> need for the current child node declaration as well, as it is internally
+>> declared.
+>>
+>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> 
+> This looks like another instances of the lack of clarify about 
+> what device_for_each_child_node[_scoped]() guarantees about node availability.
+> On DT it guarantees the node is available as ultimately calls
+> of_get_next_available_child()
+> 
+> On ACPI it doesn't (I think).
+> For swnode, there isn't an obvious concept of available.
+> 
+> It would be much better if we reached some agreement on this and
+> hence could avoid using the fwnode variants just to get the _available_ form
+> as done here.  Or just add the device_for_each_available_child_node[_scoped]()
+> and call that in almost all cases.
+> 
+> In generic code, do we ever want to walk unavailable child nodes?
+> 
+> Jonathan
+> 
 
-On Sat, 22 Jun 2024 at 17:49, Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
->
-> Add support for the pin controller block on SM4250 Low Power Island.
->
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  drivers/pinctrl/qcom/Kconfig                    |   9 +
->  drivers/pinctrl/qcom/Makefile                   |   1 +
->  drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c | 236 ++++++++++++++++++++++++
->  3 files changed, 246 insertions(+)
->
-> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-> index 24619e80b2cc..dd9bbe8f3e11 100644
-> --- a/drivers/pinctrl/qcom/Kconfig
-> +++ b/drivers/pinctrl/qcom/Kconfig
-> @@ -68,6 +68,15 @@ config PINCTRL_SC7280_LPASS_LPI
->           Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
->           (Low Power Island) found on the Qualcomm Technologies Inc SC7280 platform.
->
-> +config PINCTRL_SM4250_LPASS_LPI
-> +       tristate "Qualcomm Technologies Inc SM4250 LPASS LPI pin controller driver"
-> +       depends on ARM64 || COMPILE_TEST
-> +       depends on PINCTRL_LPASS_LPI
-> +       help
-> +         This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-> +         Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
-> +         (Low Power Island) found on the Qualcomm Technologies Inc SM4250 platform.
-> +
->  config PINCTRL_SM6115_LPASS_LPI
->         tristate "Qualcomm Technologies Inc SM6115 LPASS LPI pin controller driver"
->         depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index e2e76071d268..eb04297b6388 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -43,6 +43,7 @@ obj-$(CONFIG_PINCTRL_SDM845) += pinctrl-sdm845.o
->  obj-$(CONFIG_PINCTRL_SDX55) += pinctrl-sdx55.o
->  obj-$(CONFIG_PINCTRL_SDX65) += pinctrl-sdx65.o
->  obj-$(CONFIG_PINCTRL_SDX75) += pinctrl-sdx75.o
-> +obj-$(CONFIG_PINCTRL_SM4250_LPASS_LPI) += pinctrl-sm4250-lpass-lpi.o
->  obj-$(CONFIG_PINCTRL_SM4450) += pinctrl-sm4450.o
->  obj-$(CONFIG_PINCTRL_SM6115) += pinctrl-sm6115.o
->  obj-$(CONFIG_PINCTRL_SM6115_LPASS_LPI) += pinctrl-sm6115-lpass-lpi.o
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c
-> new file mode 100644
-> index 000000000000..2d2c636a3e20
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-sm4250-lpass-lpi.c
-> @@ -0,0 +1,236 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020, 2023 Linaro Ltd.
-> + */
-> +
-> +#include <linux/gpio/driver.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "pinctrl-lpass-lpi.h"
-> +
-> +enum lpass_lpi_functions {
-> +       LPI_MUX_dmic01_clk,
-> +       LPI_MUX_dmic01_data,
-> +       LPI_MUX_dmic23_clk,
-> +       LPI_MUX_dmic23_data,
-> +       LPI_MUX_dmic4_clk,
-> +       LPI_MUX_dmic4_data,
-> +       LPI_MUX_ext_mclk0_a,
-> +       LPI_MUX_ext_mclk0_b,
-> +       LPI_MUX_ext_mclk1_a,
-> +       LPI_MUX_ext_mclk1_b,
-> +       LPI_MUX_ext_mclk1_c,
-> +       LPI_MUX_i2s1_clk,
-> +       LPI_MUX_i2s1_data,
-> +       LPI_MUX_i2s1_ws,
-> +       LPI_MUX_i2s2_clk,
-> +       LPI_MUX_i2s2_data,
-> +       LPI_MUX_i2s2_ws,
-> +       LPI_MUX_i2s3_clk,
-> +       LPI_MUX_i2s3_data,
-> +       LPI_MUX_i2s3_ws,
-> +       LPI_MUX_qup_io_00,
-> +       LPI_MUX_qup_io_01,
-> +       LPI_MUX_qup_io_05,
-> +       LPI_MUX_qup_io_10,
-> +       LPI_MUX_qup_io_11,
-> +       LPI_MUX_qup_io_25,
-> +       LPI_MUX_qup_io_21,
-> +       LPI_MUX_qup_io_26,
-> +       LPI_MUX_qup_io_31,
-> +       LPI_MUX_qup_io_36,
-> +       LPI_MUX_qua_mi2s_data,
-> +       LPI_MUX_qua_mi2s_sclk,
-> +       LPI_MUX_qua_mi2s_ws,
-> +       LPI_MUX_slim_clk,
-> +       LPI_MUX_slim_data,
-> +       LPI_MUX_sync_out,
-> +       LPI_MUX_swr_rx_clk,
-> +       LPI_MUX_swr_rx_data,
-> +       LPI_MUX_swr_tx_clk,
-> +       LPI_MUX_swr_tx_data,
-> +       LPI_MUX_swr_wsa_clk,
-> +       LPI_MUX_swr_wsa_data,
-> +       LPI_MUX_gpio,
-> +       LPI_MUX__,
-> +};
-> +
-> +static const struct pinctrl_pin_desc sm4250_lpi_pins[] = {
-> +       PINCTRL_PIN(0, "gpio0"),
-> +       PINCTRL_PIN(1, "gpio1"),
-> +       PINCTRL_PIN(2, "gpio2"),
-> +       PINCTRL_PIN(3, "gpio3"),
-> +       PINCTRL_PIN(4, "gpio4"),
-> +       PINCTRL_PIN(5, "gpio5"),
-> +       PINCTRL_PIN(6, "gpio6"),
-> +       PINCTRL_PIN(7, "gpio7"),
-> +       PINCTRL_PIN(8, "gpio8"),
-> +       PINCTRL_PIN(9, "gpio9"),
-> +       PINCTRL_PIN(10, "gpio10"),
-> +       PINCTRL_PIN(11, "gpio11"),
-> +       PINCTRL_PIN(12, "gpio12"),
-> +       PINCTRL_PIN(13, "gpio13"),
-> +       PINCTRL_PIN(14, "gpio14"),
-> +       PINCTRL_PIN(15, "gpio15"),
-> +       PINCTRL_PIN(16, "gpio16"),
-> +       PINCTRL_PIN(17, "gpio17"),
-> +       PINCTRL_PIN(18, "gpio18"),
-> +       PINCTRL_PIN(19, "gpio19"),
-> +       PINCTRL_PIN(20, "gpio20"),
-> +       PINCTRL_PIN(21, "gpio21"),
-> +       PINCTRL_PIN(22, "gpio22"),
-> +       PINCTRL_PIN(23, "gpio23"),
-> +       PINCTRL_PIN(24, "gpio24"),
-> +       PINCTRL_PIN(25, "gpio25"),
-> +       PINCTRL_PIN(26, "gpio26"),
-> +};
+Hi,
 
-This doesn't probe() on qrb4210 RB2 for me with the following trace:
+if I did not miss anything, the discussion about the convenience of the
+fwnode_for_each_available_child_node_scoped() macro stalled without a
+clear outcome.
 
-[   10.709014] ------------[ cut here ]------------
-[   10.719085] WARNING: CPU: 1 PID: 56 at
-drivers/pinctrl/qcom/pinctrl-lpass-lpi.c:446
-lpi_pinctrl_probe+0x308/0x388 [pinctrl_lpass_lpi]
-[   10.719108] Modules linked in: btqca qrtr btbcm qcom_q6v5_pas
-libarc4 qcom_pil_info llcc_qcom bluetooth snd_soc_sm8250 ocmem
-qcom_q6v5 snd_soc_qcom_sdw cfg80211 drm_exec qcom_sysmon
-snd_soc_qcom_common gpu_sched crct10dif_ce qcom_common soundwire_bus
-ecdh_generic qcom_glink_smem pinctrl_sm4250_lpass_lpi qcom_pmic_tcpm
-drm_dp_aux_bus ecc mdt_loader qcom_wdt pinctrl_lpass_lpi
-drm_display_helper qmi_helpers tcpm dispcc_sm6115 rfkill gpucc_sm6115
-aux_hpd_bridge qcom_usb_vbus_regulator nvmem_qcom_spmi_sdam
-qcom_spmi_temp_alarm qcom_pbs qcom_pon qcom_spmi_adc5 qcom_vadc_common
-spi_geni_qcom gpi qcom_stats icc_bwmon qcom_rng qcrypto authenc
-phy_qcom_qmp_usbc display_connector rpmsg_ctrl libdes typec rpmsg_char
-phy_qcom_qusb2 drm_kms_helper rmtfs_mem socinfo i2c_gpio fuse drm
-backlight dm_mod ip_tables x_tables ipv6
-[   10.719238] CPU: 1 PID: 56 Comm: kworker/u33:0 Not tainted
-6.10.0-rc2-00012-ge45ddb1f8d34-dirty #7
-[   10.719245] Hardware name: Qualcomm Technologies, Inc. QRB4210 RB2 (DT)
-[   10.719250] Workqueue: events_unbound deferred_probe_work_func
-[   10.719265] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[   10.719271] pc : lpi_pinctrl_probe+0x308/0x388 [pinctrl_lpass_lpi]
-[   10.719278] lr : lpi_pinctrl_probe+0x44/0x388 [pinctrl_lpass_lpi]
-[   10.719284] sp : ffff80008035bb40
-[   10.719286] x29: ffff80008035bb40 x28: 0000000000000000 x27: 0000000000000000
-[   10.719294] x26: ffff7eea83029428 x25: ffffa0c480a67510 x24: ffff7eea83be5800
-[   10.719301] x23: ffff7eea83be5810 x22: 0000000000000000 x21: ffffa0c480a64030
-[   10.719308] x20: ffff7eea83be5810 x19: ffff7eea89e59880 x18: ffffffffffffffff
-[   10.719315] x17: 0000000000000000 x16: ffffa0c4f34949a4 x15: ffff80008035b7f0
-[   10.719321] x14: ffffffffffffffff x13: 006c7274636e6970 x12: 2e30303030633761
-[   10.719329] x11: 0101010101010101 x10: ffffa0c4f4b28ff2 x9 : 0000000000000008
-[   10.719335] x8 : 0000000000000008 x7 : ffffa0c4f3cfa640 x6 : 0000000000000020
-[   10.719342] x5 : 0000000000000020 x4 : 0000000000000000 x3 : ffffa0c480a67448
-[   10.719348] x2 : ffffa0c480a67468 x1 : ffff7eea838b8000 x0 : 000000000000001b
-[   10.719357] Call trace:
-[   10.719361]  lpi_pinctrl_probe+0x308/0x388 [pinctrl_lpass_lpi]
-[   10.719369]  platform_probe+0x68/0xc4
-[   10.719378]  really_probe+0xbc/0x29c
-[   10.719384]  __driver_probe_device+0x78/0x12c
-[   10.719390]  driver_probe_device+0xd8/0x15c
-[   10.719395]  __device_attach_driver+0xb8/0x134
-[   10.719401]  bus_for_each_drv+0x88/0xe8
-[   10.719407]  __device_attach+0xa0/0x190
-[   10.719412]  device_initial_probe+0x14/0x20
-[   10.719418]  bus_probe_device+0xac/0xb0
-[   10.719423]  deferred_probe_work_func+0x88/0xc0
-[   10.719429]  process_one_work+0x150/0x294
-[   10.719439]  worker_thread+0x2f8/0x408
-[   10.719445]  kthread+0x110/0x114
-[   10.719452]  ret_from_fork+0x10/0x20
-[   10.719459] ---[ end trace 0000000000000000 ]---
-[   10.719589] qcom-sm4250-lpass-lpi-pinctrl a7c0000.pinctrl: probe
-with driver qcom-sm4250-lpass-lpi-pinctrl failed with error -22
+At this point there are multiple users of both
+fwnode_for_each_child_node() and fwnode_for_each_available_child_node(),
+and I wonder how many of them use the non-scoped version for a different
+reason than not having/knowing the _available_ variant back then.
 
+Maybe touching that now could turn into regressions if someone is just
+ignoring that some nodes are actually disabled. Their bad, but still
+painful. But maybe there is a better reason to have both macros I don't
+know.
 
-[...]
+As I am still interested in this matter for new users that only want to
+iterate over available nodes, and I want to have a scoped solution, I
+would like to revive this discussion.
 
-Thanks,
-Alexey
+Thanks and best regards,
+Javier Carrasco
 
