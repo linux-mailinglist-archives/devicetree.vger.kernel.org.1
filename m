@@ -1,201 +1,233 @@
-Return-Path: <devicetree+bounces-79346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02FEE914ED1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:36:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5940E914EF6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:43:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 273741C20310
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:36:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C2CA1C221CB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 13:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088451442FC;
-	Mon, 24 Jun 2024 13:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6ABB13DBAD;
+	Mon, 24 Jun 2024 13:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UiCUyehH"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XzyWoDE9";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Ji7jBq/4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319DA13F432
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 13:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B13813DB88;
+	Mon, 24 Jun 2024 13:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719235966; cv=none; b=j4DUfsLuC0wTlBGrbgcOYz/kBAEdltYk2lZsJEkqAC3/IMNSgWXoFJLqg9rYb9V9Jt2Rj1NP0X0LN1i/EN45WjatcP0zKbO0oFInf2TVkao9tGxLjHkkTy4JesJg+rNLgDYCqaQzcm/0jK1PXrdLbsojnfA/K8FQWu+ERNhWHHE=
+	t=1719236587; cv=none; b=qsphMfwonZHicIdJw4t44hvp3vAFmH1tD8j7HOplcmPbOHr0uG/cgOoWC8V3kbKTfmhjm3Rh6RXVTDIVrz6Lv2ZBwhKFWwCdozHbz+Z5e9unO12NPR795Zs+VmYXJXY89dmK78fLPfmEVlff5pEHeMlpaxKoV11UXtTntCsDD7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719235966; c=relaxed/simple;
-	bh=eN0nSauQHWzcpR3ztkX7wbxGkq9GOgpa8mxkvBiq8XY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=e8WStRqKrCHlm7c4tcZUTDfzeGVAVhJj9+eN1MgW6KL78Ow7XpB0fWmq/z/i5+e/RTwXbREnrSRKNknjgarpwK9AIsgzPjEh/Emqf+DOLplD1BUzo5A/3QldAWEda+kMwXJ0z16ERmPOflbwQWymkLZ7mmCzLU3dqZLkj4CrCaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UiCUyehH; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3636c572257so3711613f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 06:32:44 -0700 (PDT)
+	s=arc-20240116; t=1719236587; c=relaxed/simple;
+	bh=I8476btsLqg4aJAeSSDebyL6wpge2aBm0eFLnaYE2hY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W7uNbPe36044OKHVfRlCcn4AyRNL5WJMyM0hEP/7VpI3m+uFmvdqgbr/yHK6YEWcg33gAB8mjaaMGT5oH4kH6JSo7B5+GVgJjlUyGb1PSQ3j+7x3MFEWnsW+AfG4NFunmjdRVc4/AdZ3eZMiS2LkSSc2vTuPm0fNt/YfIq46UeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=XzyWoDE9; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Ji7jBq/4 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719235963; x=1719840763; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vw7X1i/YW4Fd35XXIuhTMVk8l2VygEA6NsiqdF81ctI=;
-        b=UiCUyehHlVF3QlOkt8YxF14puKwa6UVXy0HIxiX7wbcTLoAqw4zDkzeekPAICiNGVc
-         bdp1iNkoibhZdJHT/iqsPu5XirS5R1MFjOR9BM6nfOllzM7qKgHFR2GV6+8JMNv9USjE
-         DW/yqmbHRBQ/8NDbOyMHCGXATu0fHwb8QD3w7Ii0bXOnHTJ2sOvL9yRwo83tMmerhDse
-         w+VGVaV1mih9GJoRvI9TupNig9gH+dI0ns9Lz4m9lNjRSxv2H3KW1ssS5EC+dkQYXXKR
-         WsnDEb/0tOHhYVjkQki5Sg28cyoI4AgJ9pAXbSnUfhTNA9CoR9nROvoREqWKdLiStjvo
-         r1gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719235963; x=1719840763;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vw7X1i/YW4Fd35XXIuhTMVk8l2VygEA6NsiqdF81ctI=;
-        b=IjW368B+GMEiNxdd99MMTW7TrIX2/Pw5RXobtrMcpE15147+qwKCgf9YpRmauMdiJG
-         rjOJ2jYjwdLNxRa0Gm6ShmDQJgorCA0HeTVU24wc0i2FaBtiTrxp/JkgFvbZ8M2sPurk
-         suMRMDcQ++nuWfLubQdhuHOK9pbpIEkqROQSLq0HCHFq187SxRiGbkkL7PaVucACULV8
-         iOzQH9sbcl3wKgm+wrZ954UUYFi8iXr41WoqiR+huHAcKj1vpj3pKrHgvB1LBnjQi8++
-         2lyNH5VZg/I34nCEl3ZgVSEymR/QU75Q6mBZswoRZaLY8SsWxSlmwTftBM2BaAUEhKWP
-         K/nA==
-X-Forwarded-Encrypted: i=1; AJvYcCWCiWT6lSsxK6cJOQ0XOWFRnxkRHU8VIrP6q1/nTE5eCXjaXUV6y62GpBXn5QSbEQjcS9lAUTTQy0jOjZzL9yaloLeDDwK881iGkQ==
-X-Gm-Message-State: AOJu0YykRNZJ/NLil5SVoREGsJVwE6HFBRMz6k+vNQ/CN+rXlsyZtlrm
-	VcUlN7F8NKHZVtxbf+zmXMdpl3Igo9iNs8mOmTVlV5Ae7wHYTVuq7ZQ3mRZE+rw=
-X-Google-Smtp-Source: AGHT+IEgSlC8kOk4n5zGcYbrm4UVR+/pKyMI2r0uK52iKU9PJF96Pp4Mxxo/Cfh0h6Le8yNYvftc8w==
-X-Received: by 2002:adf:f84e:0:b0:35e:ebe7:de43 with SMTP id ffacd0b85a97d-366e9499cacmr3125369f8f.21.1719235963682;
-        Mon, 24 Jun 2024 06:32:43 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366f7406f4dsm1888274f8f.114.2024.06.24.06.32.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 06:32:43 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Date: Mon, 24 Jun 2024 14:32:38 +0100
-Subject: [PATCH v2 3/3] arm64: dts: qcom: x1e80100: add soundwire
- controller resets
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1719236584; x=1750772584;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=2DPHEkgZ7R75Xt+0qmmV1YKtyxYw1BQWMR5WZofqK1Q=;
+  b=XzyWoDE90Zb95RWtxwgC29LgqlWvk4nAESZVuiogoPdCH5gaXhwrAPZM
+   PHYnXgab0a3x2c5jIpDzkVrSaKSUQkBYTnFbRnkyotp2ui7ax5m6T1J1U
+   m+rYvSJaiciC4BasmCyt+GXM1eerm3iP080J5QvdbxlTrzTbHTmLp7HG+
+   NraZFPQGvFM2OZEcyGoNqZMoHkpWUQ9v+nFQYd08+jVyKyuQfDVAwTy0B
+   hlK7LX8A8CD04NcIRjnvxsHaPIsHXx/eWGRPLFoaMr1hQz2iyk8vsEFLg
+   E9iwadPiTTaHTOMwn7DlbmLCUzMZbwgbQAJw1a1EFBaRZY+TC7cuD8BIN
+   A==;
+X-CSE-ConnectionGUID: wY/cFS7CQ56DOqf3NYz12Q==
+X-CSE-MsgGUID: H3t8Ipp5QT6b/JoFLHFnRw==
+X-IronPort-AV: E=Sophos;i="6.08,262,1712613600"; 
+   d="scan'208";a="37554370"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 24 Jun 2024 15:43:01 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8D72A16747D;
+	Mon, 24 Jun 2024 15:42:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1719236577;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=2DPHEkgZ7R75Xt+0qmmV1YKtyxYw1BQWMR5WZofqK1Q=;
+	b=Ji7jBq/41bMdkMDoOq/Z4Ac7GQYB6gz80EiXxEwzlvYJ+ZB6YOfkONVgIX3ZbO1cw/n84k
+	z/7DSb0eD622sgOnfIJ50oUz1pGJYGuMO3A4DUeEcev6UDSr7igANNBwzr7GANr+GbW7M1
+	BUEQRkq1+I+EpdoNJztrAkZswSmZkMWCeTH20AFCWwuok2lpsK1nY0rwKhMYQzx6VoCAgR
+	PRBjPWjLwJUMszK1kvizZUf90Np/h2RzpzAC4vh6tEN6GVjO5mU1c61CjE2RhUERdyO2xR
+	tr9VXaWKUctMTmIEoi0H4USgEFAqBYIDvq6lRC7WFfPsH2y905YXj702Mox2vQ==
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am642-tqma64xxl-mbax4xxl: add PRU Ethernet support
+Date: Mon, 24 Jun 2024 15:42:35 +0200
+Message-ID: <20240624134235.202243-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240624-x1e-swr-reset-v2-3-8bc677fcfa64@linaro.org>
-References: <20240624-x1e-swr-reset-v2-0-8bc677fcfa64@linaro.org>
-In-Reply-To: <20240624-x1e-swr-reset-v2-0-8bc677fcfa64@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2919;
- i=srinivas.kandagatla@linaro.org; h=from:subject:message-id;
- bh=eN0nSauQHWzcpR3ztkX7wbxGkq9GOgpa8mxkvBiq8XY=;
- b=owEBbQGS/pANAwAKAXqh/VnHNFU3AcsmYgBmeXV3JmURE/5lysOEoqtpbe95ged/33DXxhuI2
- 4zfPndTSOiJATMEAAEKAB0WIQQi509axvzi9vce3Y16of1ZxzRVNwUCZnl1dwAKCRB6of1ZxzRV
- NyRZB/9jIVWgTzLtdOV1vvd9C6m8ZdWzEiZwaINjLMXUxmzQNXLVdfwEs/wUfn+P54aCLEjEbky
- +lBO0MJ+MUnwDQ44QfxkX633WqFSV0ce3XiRqAf3QNwAAzLgPyUdjFjEwD1jJwo1Q3DSBAc8nuy
- SvPw657GNW5W+tMkkOFSVR8pKFuTVvDJ8cV25fmJBZHLAd6JrMd/y/Ae9KgQg25DdXurCyXyGC5
- ymG1grMxf3EAHxd+l4Cx3UHEBhX4eHV5OlX5GnysFocqt4U7hZFxfM5XzN0bLzo0ALW7PZHD/KX
- PWjDs9fyoLWEar2C8/sCC8UhlIeGX/KIF9xq+cu2zEhJjIgy
-X-Developer-Key: i=srinivas.kandagatla@linaro.org; a=openpgp;
- fpr=ED6472765AB36EC43B3EF97AD77E3FC0562560D6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Soundwire controllers (WSA, WSA2, RX, TX) require reset lines to enable
-switching clock control from hardware to software.
+Add PRU Ethernet controller and PHY nodes, as it was previously done for
+the AM64x EVM Device Trees.
 
-Add them along with the reset control providers.
-
-Without this reset we might hit fifo under/over run when we try to write to
-soundwire device registers.
-
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 09fd6c8e53bb..fa28dbdd1419 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sc8280xp-lpasscc.h>
- #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
- #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
- #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
-@@ -3177,6 +3178,8 @@ swr3: soundwire@6ab0000 {
- 
- 			pinctrl-0 = <&wsa2_swr_active>;
- 			pinctrl-names = "default";
-+			resets = <&lpass_audiocc LPASS_AUDIO_SWR_WSA2_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 
- 			qcom,din-ports = <4>;
- 			qcom,dout-ports = <9>;
-@@ -3225,6 +3228,8 @@ swr1: soundwire@6ad0000 {
- 			pinctrl-0 = <&rx_swr_active>;
- 			pinctrl-names = "default";
- 
-+			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 			qcom,din-ports = <1>;
- 			qcom,dout-ports = <11>;
- 
-@@ -3289,6 +3294,8 @@ swr0: soundwire@6b10000 {
- 
- 			pinctrl-0 = <&wsa_swr_active>;
- 			pinctrl-names = "default";
-+			resets = <&lpass_audiocc LPASS_AUDIO_SWR_WSA_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 
- 			qcom,din-ports = <4>;
- 			qcom,dout-ports = <9>;
-@@ -3309,6 +3316,13 @@ swr0: soundwire@6b10000 {
- 			status = "disabled";
- 		};
- 
-+		lpass_audiocc: clock-controller@6b6c000 {
-+			compatible = "qcom,x1e80100-lpassaudiocc", "qcom,sc8280xp-lpassaudiocc";
-+			reg = <0 0x06b6c000 0 0x1000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		swr2: soundwire@6d30000 {
- 			compatible = "qcom,soundwire-v2.0.0";
- 			reg = <0 0x06d30000 0 0x10000>;
-@@ -3318,6 +3332,8 @@ swr2: soundwire@6d30000 {
- 				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "core", "wakeup";
- 			label = "TX";
-+			resets = <&lpasscc LPASS_AUDIO_SWR_TX_CGCR>;
-+			reset-names = "swr_audio_cgcr";
- 
- 			pinctrl-0 = <&tx_swr_active>;
- 			pinctrl-names = "default";
-@@ -3474,6 +3490,13 @@ data-pins {
- 			};
- 		};
- 
-+		lpasscc: clock-controller@6ea0000 {
-+			compatible = "qcom,x1e80100-lpasscc", "qcom,sc8280xp-lpasscc";
-+			reg = <0 0x06ea0000 0 0x12000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		lpass_ag_noc: interconnect@7e40000 {
- 			compatible = "qcom,x1e80100-lpass-ag-noc";
- 			reg = <0 0x7e40000 0 0xE080>;
+v2:
+- Dropped binding change patch
+- Moved prueth device node to DTS toplevel, matching the AM64x EVM
+- Update firmware filenames to match EVM
 
+ .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts    | 98 +++++++++++++++++++
+ 1 file changed, 98 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+index 1f4dc5ad1696a..204f5e48a9c63 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+@@ -24,6 +24,8 @@ / {
+ 
+ 	aliases {
+ 		ethernet0 = &cpsw_port1;
++		ethernet1 = &icssg1_emac0;
++		ethernet2 = &icssg1_emac1;
+ 		i2c1 = &mcu_i2c0;
+ 		mmc1 = &sdhci1;
+ 		serial0 = &mcu_uart0;
+@@ -71,6 +73,66 @@ led-1 {
+ 		};
+ 	};
+ 
++	icssg1_eth: icssg1-eth {
++		compatible = "ti,am642-icssg-prueth";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pru_icssg1_rgmii1_pins>, <&pru_icssg1_rgmii2_pins>;
++		interrupt-parent = <&icssg1_intc>;
++		interrupts = <24 0 2>, <25 1 3>;
++		interrupt-names = "tx_ts0", "tx_ts1";
++		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
++		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
++		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
++		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
++			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
++			    "rx0", "rx1";
++		sram = <&oc_sram>;
++		firmware-name = "ti-pruss/am64x-sr2-pru0-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-rtu0-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-txpru0-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-pru1-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-rtu1-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-txpru1-prueth-fw.elf";
++		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
++		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
++				      <2>,
++				      <2>,
++				      <2>,	/* MII mode */
++				      <2>,
++				      <2>;
++		ti,mii-g-rt = <&icssg1_mii_g_rt>;
++		ti,mii-rt = <&icssg1_mii_rt>;
++		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
++
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			icssg1_emac0: port@0 {
++				reg = <0>;
++				phy-handle = <&icssg1_phy0c>;
++				phy-mode = "rgmii-id";
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++
++			icssg1_emac1: port@1 {
++				reg = <1>;
++				phy-handle = <&icssg1_phy03>;
++				phy-mode = "rgmii-id";
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++		};
++	};
++
+ 	fan0: pwm-fan {
+ 		compatible = "pwm-fan";
+ 		pinctrl-names = "default";
+@@ -154,6 +216,42 @@ &epwm5 {
+ 	status = "okay";
+ };
+ 
++&icssg1_mdio {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pru_icssg1_mdio_pins>;
++	status = "okay";
++
++	/* phy-mode is fixed up to rgmii-rxid by prueth driver to account for
++	 * the SoC integration, so the only rx-internal-delay and no
++	 * tx-internal-delay is set for the PHYs.
++	 */
++
++	icssg1_phy03: ethernet-phy@3 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0x3>;
++		reset-gpios = <&main_gpio1 47 GPIO_ACTIVE_LOW>;
++		reset-assert-us = <1000>;
++		reset-deassert-us = <1000>;
++		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
++	};
++
++	icssg1_phy0c: ethernet-phy@c {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0xc>;
++		reset-gpios = <&main_gpio1 51 GPIO_ACTIVE_LOW>;
++		reset-assert-us = <1000>;
++		reset-deassert-us = <1000>;
++		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
++	};
++};
++
++
+ &main_gpio0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_gpio0_digital_pins>,
 -- 
-2.25.1
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
 
