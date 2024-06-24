@@ -1,106 +1,130 @@
-Return-Path: <devicetree+bounces-79453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E4591551E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:11:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D6C915546
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 19:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 226F11F23F24
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:11:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C63991C22315
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4AC19EEB7;
-	Mon, 24 Jun 2024 17:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C79813D633;
+	Mon, 24 Jun 2024 17:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="LOQzn95F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SVcOEXFP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570C61EA87;
-	Mon, 24 Jun 2024 17:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96204179AA;
+	Mon, 24 Jun 2024 17:25:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719249088; cv=none; b=U9N2gi4GwfNFxUE5GV1aJkbXTeLcbmJhcz3Sen+BVPRJWOdEAaOkvE/rwEKXpCiKxyWTrvcONCuqYOsQ/4yqKxdlRaMzxEyFvqynSH72IOYCeIGrAwLHu4sBl1+5jJqCg3rAozJhV3lqBrDTtcGEzB/lk6hUiow34Yo2uYusDR0=
+	t=1719249948; cv=none; b=EX/excZCE7znd/N3SzbUOghaETRK7VBwDHT1TLSSpYfyM6GLfkZ/REYHAR4Hrb5wuqIWB9wBnym37ROtvuIt8Ohayuzh393jFImX10VrX69+ZZAW5Ss9FMqkCLto+P63HncZZbavrbecDnnCu9oJSD5RNYt2xO5fsWTTtO4S48g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719249088; c=relaxed/simple;
-	bh=aXXT46SUGpiJ27fZUeOgMf5lZkDl9JQ5BySNUsfBIy0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G35YIWZPWkLCT7Aokf+GzeD0rUkh6I88/CIrikRGAWsUH+++BDjjPJLc7genudEJzaJk9hmXnoybR7vQB5vLnsUk/59t2FLWrDkOfBLqfkhU1YBkwzmkRE0D/JcNNjBUZInDk5JkUezSND+ClUUsvp8Nm4ufJhn4tEg2JIspTus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=LOQzn95F; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 36DF61BF203;
-	Mon, 24 Jun 2024 17:11:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1719249078;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cbq+IRDjaXI3n18CSkRfCToz7wao508HEFXD7HtdFds=;
-	b=LOQzn95Fd2nYfNo6AEWfDttJbKX5hiNjfxAXVjsdZMqv2HfwoaS/h6voCJIITx+1WD4IuM
-	Y2xnhslNCADv0pFF7Hzj+kVsbifxwRAghOXOevy3iKT7NUyFfva88n00G5LRy787T+JkJu
-	iOkrqgv4XjwHv5LfHY5KN4oLgynuo9xrMuseUpgl+0mgHJo+iZ7G+Bw+uPCvVbD+evka9M
-	hWYrCAcCLDoy0b/IdA8sGeZQdb4EGbtnkOlUEa728UPA1NIo8pCGyFYhr20t/6oupnF5Mb
-	R6y+mLGjcHNsZvA+mRzsZMUyeZOt7mfh+0mJdCrxhasFO5o6ngf5a8bQ7YF+Qg==
-Message-ID: <a17f35ae-5376-458a-b7b5-9dbefd843b40@arinc9.com>
-Date: Mon, 24 Jun 2024 20:11:10 +0300
+	s=arc-20240116; t=1719249948; c=relaxed/simple;
+	bh=9Fx3y+RGQy5iRyY0sJLMaqHk/ggeCACEEGValnaOj0Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YsTfMLufsTPG2fXQp26Q9pcO19loIRQs399Aq5lMesjPvGtU90C3WmkYXATD9QyS/+reIIgVMzHHfrybHo7GvBd/IWDTgrQyuqkGj4lVjviAyuzdLUEBwanpYwRb+NkX07oo5PxyoPCUj45PtM9s8S1GIhjWguVRyheJQYOljKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SVcOEXFP; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-35f2c9e23d3so3502577f8f.0;
+        Mon, 24 Jun 2024 10:25:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719249944; x=1719854744; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZwYx+K0nxCDlnHLtM/XdT9LfiVrp+4LlfN2T0Y5wLUc=;
+        b=SVcOEXFPon7oIs9ZtxSNPVxpbNx/l40igf+0pIZOeLZFnIS7qfX9zM04IXlfpa+1cV
+         id4vPn5Ak56XDBCznBiBcOORFqx2SH7/251EB6oscB4dFFgZmUZ0Ts84hMN9QJ1lbAXG
+         fi/mLnPaTk66yURcoGUNlbYV03CmERLeM7iEmxNslMZpQRh7OSw3I9S3kj8LyqsWLWvx
+         OYGjEiyN2HWvML56Sja5O0fyU9ozrIYesKaFZu5s4QSn3SBwschHPFiuagHxBBRfii/v
+         kQJ3Ouqx+Eb7xH8kG7V5vsSo/39K618c1xoB1TrmB4dAz+R3KSjhTNFD68EZCzZqF2Wp
+         3Ygg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719249944; x=1719854744;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZwYx+K0nxCDlnHLtM/XdT9LfiVrp+4LlfN2T0Y5wLUc=;
+        b=pVA0WJ9M+U7AJY1iYl0+6cayNOeAE7uZc698nVlGd+JPHWRMC0AVfb+7ZKfvucGXsu
+         FVRwgmLamaLAgoc+vuPpltaEDW7w+gpVxnMUw7fzPiLJUIaAN7zhsnP6Awpkz9D4BFdI
+         dNo8Pk+IlRz/vkU79iaJNgudSelb3brxHaS4wnoP2BGj+XcU7KO6wGQ2BSv5YC2H8sFY
+         KTpdFUfS1lkVr4SofXA2EZXbDmFzUmPYIciNd1pl0UAeOI88WOoLNzmn2qDmkZdugZHp
+         +OvoGSqC+91A5Gsl6sb+nmhWDRXK6WZV+cjLSnX01Ur+aTLr8sOMrcRx86Nra2aK8J1t
+         wAdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXk7qlw/vsFShXltg0HdD8cyX55Dn6tewq8VcfJ5HrPpD8cP2lAR+e6WnbKMVfaAvIlzd8NuQ1uyoqheAIdffrhsYqIvERv5dWgSzKl1AZcfgwx4eIFwfujN4vXvuJ9AMYFkUFUh0++99jxNHTrRXi+sN+ULwsFOQqeYpg1DVXMkYPXPl5kYPVyYIT1
+X-Gm-Message-State: AOJu0YyyOBcf7Do5aBlhfsbxAI3khUtjlWWYHOBfzBYptVz4JTq3FX+I
+	Q4P35S0D++2x+Hb2JytsKl2GphvJ31k1siHlmClMeEfZkPSipfuz
+X-Google-Smtp-Source: AGHT+IFkzKy+9AeZbOpeQzkp2YulpP7jLkEFBqErOwd8SMABngm6nh1c8sOJjfkkJVerJr/Rxcf98Q==
+X-Received: by 2002:adf:eac8:0:b0:363:337a:3e0 with SMTP id ffacd0b85a97d-366e325ba0cmr5812582f8f.1.1719249943875;
+        Mon, 24 Jun 2024 10:25:43 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:c315:5cc8:bc92:639])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42481921f16sm140555005e9.41.2024.06.24.10.25.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jun 2024 10:25:43 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/2] Add Watchdog Timer driver for Renesas RZ/V2H(P) SoC
+Date: Mon, 24 Jun 2024 18:25:07 +0100
+Message-Id: <20240624172509.106912-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Minor grammar
- fixes
-To: Conor Dooley <conor@kernel.org>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, andrew@lunn.ch,
- f.fainelli@gmail.com, olteanv@gmail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>
-References: <20240624025812.1729229-1-chris.packham@alliedtelesis.co.nz>
- <704f4b95-2aed-4b76-87cb-83002698471c@arinc9.com>
- <20240624-radiance-untracked-29369921c468@spud>
- <68961d4f-10d8-4769-94d3-92ce709aa00a@arinc9.com>
- <20240624-supernova-obedient-3a2ba2a42188@spud>
-Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20240624-supernova-obedient-3a2ba2a42188@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
 
-On 24/06/2024 20.02, Conor Dooley wrote:
-> On Mon, Jun 24, 2024 at 07:59:48PM +0300, Arınç ÜNAL wrote:
->> On 24/06/2024 19.29, Conor Dooley wrote:
->>> On Mon, Jun 24, 2024 at 10:00:25AM +0300, Arınç ÜNAL wrote:
->>>> On 24/06/2024 05.58, Chris Packham wrote:
-> 
->>>>>       and the switch registers are directly mapped into SoC's memory map rather than
->>>>>       using MDIO. The DSA driver currently doesn't support MT7620 variants.
->>>>>       There is only the standalone version of MT7531.
->>>>> -  Port 5 on MT7530 has got various ways of configuration:
->>>>> +  Port 5 on MT7530 supports various configurations:
->>>>
->>>> This is a rewrite, not a grammar fix.
->>>
->>> In both cases "has got" is clumsy wording,
->>
->> We don't use "have/has" on the other side of the Atlantic often.
-> 
-> Uh, which side do you think I am from?
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Who would call it clumsy to use "have" and "got" together for possession...
-Must be an Irishman! :D
+Hi All,
+
+This patch series aims to add WDT support to Renesas RZ/V2H(P)
+SoC.
+
+v1->v2
+- Included RB tag for binding patch
+- Fixed review comments from Claudiu
+- Stopped using PM runtime calls in restart handler
+- Dropped rstc deassert from probe
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  dt-bindings: watchdog: renesas,wdt: Document RZ/V2H(P) SoC
+  watchdog: Add Watchdog Timer driver for RZ/V2H(P)
+
+ .../bindings/watchdog/renesas,wdt.yaml        |  17 +-
+ drivers/watchdog/Kconfig                      |   8 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/rzv2h_wdt.c                  | 251 ++++++++++++++++++
+ 4 files changed, 276 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/watchdog/rzv2h_wdt.c
+
+-- 
+2.34.1
+
 
