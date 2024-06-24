@@ -1,145 +1,173 @@
-Return-Path: <devicetree+bounces-79204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FB691458A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E75E914591
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 10:59:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5EAF1C21EF9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 08:58:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 710B91C213BD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 08:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B809127E0F;
-	Mon, 24 Jun 2024 08:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120E612DDB3;
+	Mon, 24 Jun 2024 08:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tW6dTo48"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="m11yaG0n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F667F7FB
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 08:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60110127E0F;
+	Mon, 24 Jun 2024 08:59:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719219508; cv=none; b=WuP9VjU3o8MivdBYrjwMIyTCMrgj9xj2tC4wuZj0a9ckXCc8CcVzxHbTqf2Zjxenay+i8NFtp1YQWD9nqllm8UD10YdT0XK543nqAqvatxde66UFUo4km8J9pDuVHklQZPi1lsP1ObSMYBzq3LBsxmZG0rIDjdNgbqERJlDj588=
+	t=1719219542; cv=none; b=b7npSDLEervaInblWRgVcAj1DkrNEiWf5UYhnJD0O/vJooUN6i0vA3TGxcvvF2NRHAc4xSpxRWsdnxTJqrBWcDCBwdptdrQOfdx7bYd2P2rRt8/VFIYIb3Jxs7lf7Ii2Q5hNRPzbGhcLgBm3WHgC41buC07lQJQ6eHm0ozArntk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719219508; c=relaxed/simple;
-	bh=HhbGnewHH9Uu5MACNtsI7hL6taZoEp9t874dm8z0TXU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=tw17IvvJzdQEvqgn6ZueNxyCpv+jwjPRe1lLrmQP9Jt3Il7IPsE2bg0fYPLDyOfujs5z1gYM1rD5njmikF1S49rH4ZIeImIrlvXH93C12fetL77xfGnzaarq269N6/QzG4/pyoabfqdKzPIOTF9g5ywrk341GJFSpTNkPNjPEzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tW6dTo48; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-424798859dfso33922635e9.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 01:58:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719219505; x=1719824305; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tVw8ud05vNai0bHEiiP1EC9bB93mXMciruGH+Ndm/CY=;
-        b=tW6dTo48s93OT29kM2qx0s+08LFy1oLrXICImp7lSHLwwCkcZggOy8vkpb5ZnLsK16
-         BhWbKvXHzXWcm/OYaHB8RsjEqXCXZEliVVypAYuXUedNXE2R/VHhN+ebW2prSf+/3dAP
-         dUhcobL6VE0ZsBDUnWdaw2PIgnEO90Yqs3A/Z5ndDbyum/M2IdKZFsNx5EZqYcoiT0zV
-         cec3hr20XJlfHjhPKoGjkrkIGTjbJMyPD+BubbcoAR11dYiiyrQ9NqqA2WcUPS6RdF+O
-         Snd6pwbbvGHcoWRUa+2U5N2+XswYerOpHMZWTMEEcn2mAfCJPX5VnBBaaCDoTh6zNoo9
-         9tLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719219505; x=1719824305;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tVw8ud05vNai0bHEiiP1EC9bB93mXMciruGH+Ndm/CY=;
-        b=q2civqHH76GE+3ivI9HkgWE8sVm+8xXlOY822ku1cjm/BffknmRfd9NW5su3Vz0jo2
-         qWXBoioDcfHwodjCe/2wNgQHT85nOM8WZYo9H1KniT6xsZYdVBxluDvSy09I7a3UXB3H
-         HoeOiUAasObANalXwNphc3kTYWpRa+uuPXDMIebDO5ez9boA6g2fLc3Cp70cA0SuE2fI
-         qjchrMSDMIU6MZ7zyAO5IcN7EKLJApsJz0bEq3faGegZPxF4eg9Ctxv6r8UwsM98PIBa
-         z32dtIZo/4lVX7pAdvemnxZ2C2IXvE6D2if9CQD8rB4hUDq46ON2ITXB0P0+LAjDIacl
-         3LxA==
-X-Forwarded-Encrypted: i=1; AJvYcCW0/b+ZYAZVZdVxOAeUy9sFOJSQVcNs/rND7e0ma3jhwz5GUTACxbJst7prI2zL+R2oLNF58dYTtllA5NHS75DNSVEwzypF7KScJQ==
-X-Gm-Message-State: AOJu0Yz/fj4rMw00ZzqDo68uLioznBy7SdjiaMr/dohX68j4w1ohTsfx
-	s7uL21EYwN9dRkhNu1O3nyYbimQZLXPavdvcgFx1lHxpXAmfhZkox9HV0rvFYAQ=
-X-Google-Smtp-Source: AGHT+IGNkagBrvsH8nOB+3/sE84TJcZvnooSGwYbnRolWo4YrTDq+wywjT/bpCQT52wRLGxrKi6PLg==
-X-Received: by 2002:adf:eac1:0:b0:354:fa57:a0c5 with SMTP id ffacd0b85a97d-366e94d572emr2539787f8f.38.1719219504534;
-        Mon, 24 Jun 2024 01:58:24 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3663a2f696csm9465642f8f.82.2024.06.24.01.58.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 01:58:24 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 24 Jun 2024 10:58:23 +0200
-Subject: [PATCH] dt-bindings: usb: dwc2: switch to unevaluatedProperties
+	s=arc-20240116; t=1719219542; c=relaxed/simple;
+	bh=ZhfCAPfqgNYy4IYD6ThGSxHwosZDfswjwRJxbI1mGxc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mD93EdrJ8l+igbB7RIW5oXwc5OcrxIZq5m2Jy0XdsQdpnnsKfmy6Vl+iBO8yUPkX4pE3FH+ry5Z8ouad+LAd8YfwalwxwC7yFsKqku9uQ9OWasK3ftPExqleyQSiEdL0K6qWlSn+K7obGkPYI70uo+TH26bFKj152CW6df1Ygqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=m11yaG0n; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45O8ZNbe032231;
+	Mon, 24 Jun 2024 08:58:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tGJtOpqBIGwTpmqQINRRFGfIw6RK45oXzRRb9w2IWoI=; b=m11yaG0nDIuS5Krw
+	Bayzb5INXKll0yrr2GsQX3lY2jzaMm1n90OSi8vp8NRGwU6fVLV9BNEUzuYwS1ti
+	KejjfTlEiSX3B/O79Bft69+WyLaCc05yiQXjfAJeQT33BK3fJNCiR0bIXD2tDxJX
+	QDE/BJJ64ZqYtz3sUoeyPBrM45Qn+aN2rf1vydpyerZF+HxsjzIP5o5KIdzWrtOg
+	wWImQF5QiXDCOWJQumNSSRf3v6UkkJerIalIdphIOKgbFspH8qfc4gNe68i79z2A
+	vTcL5URMSmCarWm+laQ2SHiRqXHcYBKwdMXc/A4e9datDnP8XEruo6E16baeTLhY
+	Ec1FGg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywppv31xy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Jun 2024 08:58:57 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45O8wuKr006141
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Jun 2024 08:58:56 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Jun
+ 2024 01:58:51 -0700
+Message-ID: <2f238fe4-aa67-b311-7c76-a67359587268@quicinc.com>
+Date: Mon, 24 Jun 2024 14:28:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V2 2/3] soc: qcom: icc-bwmon: Allow for interrupts to be
+ shared across instances
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <djakov@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <srinivas.kandagatla@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
+        <abel.vesa@linaro.org>
+References: <20240618154306.279637-1-quic_sibis@quicinc.com>
+ <20240618154306.279637-3-quic_sibis@quicinc.com>
+ <d4f3rlk3jgqegxvto2b6vyemspommtsbs3ixqgan2rmknet3je@ohonicqa2iqy>
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <d4f3rlk3jgqegxvto2b6vyemspommtsbs3ixqgan2rmknet3je@ohonicqa2iqy>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240624-topic-amlogic-upstream-bindings-fixes-dwc2-subnodes-v1-1-f2544f21f594@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAC41eWYC/x3MSwrDMAxF0a0EjStwTAihWykd+CO7gsY2VpIWQ
- vZe0dHjwOOeINSZBO7DCZ0OFq5FMd4GCC9XMiFHNVhjJzPbCbfaOKBb3zXr7k22Tm5FzyVyyYK
- JvyQYP8Gi7L7UqErLMlvjgxuTAy23Tv+bhh/P6/oBAjE9UIUAAAA=
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1352;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=HhbGnewHH9Uu5MACNtsI7hL6taZoEp9t874dm8z0TXU=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmeTUvQBX+/LL0KlvF0sk7F0SSU5OmhhuAGnzX8N5y
- gZRcjZaJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZnk1LwAKCRB33NvayMhJ0dH1D/
- wN+F67QwUrO7hcPZhIIB8xWI4gDnTe5WcXxYlGwTCdk7OrsYQUDlSZKFfreq6W/jvYYt0mDkWb61qE
- gVr/nl2sTPvbio5eNJr8ORJ/2LOmom9dfsSuIkQp49kjVD8R8N4qtrCUpJ1ZFsqZl/Hby0vTzmsnZy
- kJnPZ7pUtfD1UhbW/j/o+bkkH475mZ5wtszKqnDF1ssq+QW3JAvt+iAuRCzC4c8P/WhM0k4yFzqEgg
- 3EzAMUCQVtHHhDrLXDmNjByEUYxSGUbCTzi8/jUAGbBX4Jb54sdWE3hGAbWsiqrdrUa5whagxlfOW3
- Iq4c/ryt9iZ4uP+5aWGWyVvPWOm21ILGrBKKkTk4K2LDeDsfHpwI3SF4zNUga7/AZBAH2WZL9a7EY5
- yTOzafSYSTSjCpVT0f3Z5BrG4aFJLnz9DcCr80KV9ScbJtKM9N9FutPaov/LPt+Iw/K9NKvUgDMFgt
- SYcCqmjIr+K4CKZ3SkCSHrx352AGj5h3UgK5FGu1YMHlaKrzbM6t6nrNDjLep2bbKCqUEjxKm18Lrz
- uddCgVJ1lcN/XAmkJUJf3aOR3Dp9dxodPvjnZQdhtA1XhH2fX8qYnAfEltbwNjl0acGrobX1YUXmXH
- EQJ5YxF/crwZ42n+1fjk7/CD4FHHWleFeQyKHdmGBT7XVa3N9CENNO+jkGFA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: eqOtmyj0__tdEnBSUJFI07Tw83tklCfV
+X-Proofpoint-ORIG-GUID: eqOtmyj0__tdEnBSUJFI07Tw83tklCfV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-24_08,2024-06-21_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ clxscore=1015 priorityscore=1501 mlxlogscore=999 mlxscore=0 adultscore=0
+ lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2406240071
 
-Define "unevaluatedProperties" instead of "additionalProperties"
-to allow properties from common schemas but still disallow undefined
-properties.
 
-This allow defining a device subnode and fixes:
-meson-gxbb-odroidc2.dtb: usb@c9100000: '#address-cells', '#size-cells', 'hub@1' do not match any of the regexes: 'p
-inctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas/usb/dwc2.yaml#
 
-Fixes: bb88dbbee2c9 ("dt-bindings: usb: dwc2: Add reference to usb-drd.yaml")
-Fixes: 54bd6c9a3b7b ("dt-bindings: usb: dwc2: document TPL support")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- Documentation/devicetree/bindings/usb/dwc2.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 6/19/24 00:25, Dmitry Baryshkov wrote:
+> On Tue, Jun 18, 2024 at 09:13:05PM GMT, Sibi Sankar wrote:
+>> The multiple BWMONv4 instances available on the X1E80100 SoC use the
+>> same interrupt number. Mark them are shared to allow for re-use across
+>> instances. Handle the ensuing race introduced by relying on bwmon_disable
+>> to disable the interrupt and coupled with explicit request/free irqs.
+>>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+>>
+>> v2:
+>> * Use explicit request/free irq and add comments regarding the race
+>>    introduced when adding the IRQF_SHARED flag. [Krzysztof/Dmitry]
+>>
+>>   drivers/soc/qcom/icc-bwmon.c | 14 +++++++++++---
+>>   1 file changed, 11 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/icc-bwmon.c b/drivers/soc/qcom/icc-bwmon.c
+>> index fb323b3364db..4a4e28b41509 100644
+>> --- a/drivers/soc/qcom/icc-bwmon.c
+>> +++ b/drivers/soc/qcom/icc-bwmon.c
+>> @@ -781,9 +781,10 @@ static int bwmon_probe(struct platform_device *pdev)
+>>   	bwmon->dev = dev;
+>>   
+>>   	bwmon_disable(bwmon);
+>> -	ret = devm_request_threaded_irq(dev, bwmon->irq, bwmon_intr,
+>> -					bwmon_intr_thread,
+>> -					IRQF_ONESHOT, dev_name(dev), bwmon);
+>> +
+>> +	/* SoCs with multiple cpu-bwmon instances can end up using a shared interrupt line */
+> 
+> ... using devm_ here might result in the IRQ handler being executed
+> after bwmon_disable in bwmon_remove()
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-index 4f36a22aa6d7..a5f2e3442a0e 100644
---- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-@@ -188,7 +188,7 @@ required:
-   - clocks
-   - clock-names
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
+Ack
 
----
-base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
-change-id: 20240624-topic-amlogic-upstream-bindings-fixes-dwc2-subnodes-f88620bca1fa
+> 
+>> +	ret = request_threaded_irq(bwmon->irq, bwmon_intr, bwmon_intr_thread,
+>> +				   IRQF_ONESHOT | IRQF_SHARED, dev_name(dev), bwmon);
+>>   	if (ret)
+>>   		return dev_err_probe(dev, ret, "failed to request IRQ\n");
+>>   
+>> @@ -798,6 +799,13 @@ static void bwmon_remove(struct platform_device *pdev)
+>>   	struct icc_bwmon *bwmon = platform_get_drvdata(pdev);
+>>   
+>>   	bwmon_disable(bwmon);
+>> +
+>> +	/*
+>> +	 * Handle the race introduced, when dealing with multiple bwmon instances
+>> +	 * using a shared interrupt line, by relying on bwmon_disable to disable
+>> +	 * the interrupt and followed by an explicit free.
+>> +	 */
+> 
+> This sounds more like a part of the commit message. The comment before
+> request_threaded_irq() should be enough.
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+Ack
 
+-Sibi
+
+> 
+>> +	free_irq(bwmon->irq, bwmon);
+>>   }
+>>   
+>>   static const struct icc_bwmon_data msm8998_bwmon_data = {
+>> -- 
+>> 2.34.1
+>>
+> 
 
