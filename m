@@ -1,112 +1,181 @@
-Return-Path: <devicetree+bounces-79226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 627D491469A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:45:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0305491469D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:46:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9B0B1F243B6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:45:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F6EE1F24467
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06B5133406;
-	Mon, 24 Jun 2024 09:45:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E8713213F;
+	Mon, 24 Jun 2024 09:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NgvfWOkm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rHXq0BT5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCC35380F
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 09:45:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E3212F592;
+	Mon, 24 Jun 2024 09:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719222332; cv=none; b=fhyL/MeDrXk70lA9ep/KSaynG4XtWj7bvtV5PRS6p4umR8FXC6A4azLGqrJrS82w6yJ9SD+ompH5bvzENYSh4RnZLwtfEhee1R4AzUeIq21Hj8XrIhMJkmivO32ikbJ6o+vwP48erM9r1pR2BS7/dP5sskpytVEo0hZn5GcB9EA=
+	t=1719222344; cv=none; b=X2tZmRW8RlbHgqZ8h/Fxsk/KtnimA9/gYZIWe1YoRc5UdhRCrDnWIvurQwovBKNeoUJxNqEi7G8w2xOgm2SDyihOYx7c3WMcRv27pCB1qBozpF0YOAkEMg4q6yRE09F5krZn4csOUrIyWWizWiNlWc3pyemKlwbj20GVmNZaCcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719222332; c=relaxed/simple;
-	bh=KN6Xy95DA/76ttyjaLKHOHB4qSMJ672x9Oas7+ljqL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lt37MLsErUFipegBY0nlq4q/b3AEzuzUV4NAzIO1zkUw7LFi6HQ60NFiXdAgDLbINbeRJbgfAfS3BvWhZL6OtBFqxb6yCiy62IMB1AgrcVoS4lxWOp005E97OI8zmZhjI6rfw7etJMuztvV28BSFvkLg2SF+QRcWplf5klTE9WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NgvfWOkm; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ec52fbb50cso19962531fa.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 02:45:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719222328; x=1719827128; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=R2T+vB30li/O7omHwMEYULiIVM5Yoc0a3cav+xwX2TM=;
-        b=NgvfWOkmDjCsKMcGA3jmGKn850a8PJWa3z17+DFU7VGRRj8a7S3WOaNFYf4qfAugxH
-         EcgHYwYvfFA+flOgytHVOPhnFTRFtq6cd7/OlWfIRyDjJuyIhuwhgGU4XVlBfGhpEDVs
-         djv47AzgB2d4LhfyoqxMOE2Hj9Hc47lQsq5irMCshUkjSSCZJyjMnZUPMp6VqmSY6Pw4
-         DGqlvupucKVTBfypvlB1nvLy9XrhTzaY6jcs1X5uqj4N3yfdLKqZi9tKoIM00Qlk1rCr
-         DDio7ksusP7cJJf8sKvh4Js8ZowZDMkJBQjUBiiEIuhPjZVR/8lYdGD5yCRfbx83sniv
-         L6eQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719222328; x=1719827128;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R2T+vB30li/O7omHwMEYULiIVM5Yoc0a3cav+xwX2TM=;
-        b=j8yDj1mL20Gli5oYM3WYnm7uqdYoVXVWMzt5nEonw7k5cA1JeseGaN1d1qb1UzkOzV
-         pkaf8JCcdMw0hX5npB0ALUxRkyPWWhRLGKL8wb4c3w1UPvFj74q3OyJqgmeRJD2+7AuR
-         WmT3g+pRi8GLTbQO/B+F7IW9mVFTZjuX7hROv3lyZnPeQCJWbg/iTtdJq+m8/oRuzll3
-         06HkeBGryCaOuNFFhZxtMo8yrqNPlgs2V9Hq9qTuFZ2JStCfx9xATDnZ6F65uBKapTBX
-         9HDyCbyPzqnyWOYbJABpyCMeDsj4rBYAp8eEMbW/Bdx2/potRAJcMAfwfD6rD1eiJS6z
-         5R3w==
-X-Forwarded-Encrypted: i=1; AJvYcCXfB2xsrBYGeWmkOMn7EjKFOI09zVkzUiVL/PmSknsIwDbbQ1TB3iHsRrlPITgc/TaXUUinR3QeGFyruNo0rFRF/vl+J8v5zcBLAQ==
-X-Gm-Message-State: AOJu0YzgLVtlr4qgNPcVGOzw+JNgLh+EyPqYMFwKnv9B8aQrsXN7smlZ
-	ttGymskeNDdAkHM5dzv+oWdHK5YmYT88w6Vr7mh/ghIx75O2gpeqOfxyTtSu+Oo=
-X-Google-Smtp-Source: AGHT+IGs0sNNK7EbrMz9guyDVqQqxo6nu9BzMy8MfIzoVO8+KKxTpquIJqx9InsStNttCSY2VbCeIQ==
-X-Received: by 2002:ac2:4c86:0:b0:52c:deae:b8fa with SMTP id 2adb3069b0e04-52ce18321afmr2477186e87.3.1719222327875;
-        Mon, 24 Jun 2024 02:45:27 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ceb804334sm42225e87.183.2024.06.24.02.45.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 02:45:27 -0700 (PDT)
-Date: Mon, 24 Jun 2024 12:45:26 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org, quic_rgottimu@quicinc.com, 
-	quic_kshivnan@quicinc.com, conor+dt@kernel.org, abel.vesa@linaro.org
-Subject: Re: [PATCH V3 3/4] soc: qcom: icc-bwmon: Allow for interrupts to be
- shared across instances
-Message-ID: <qld47ryqxciamnz6jmdqtad4s4cemcl2r6kpsd5gst5ccwa5ma@4ej2gzk2vce7>
-References: <20240624092214.146935-1-quic_sibis@quicinc.com>
- <20240624092214.146935-4-quic_sibis@quicinc.com>
+	s=arc-20240116; t=1719222344; c=relaxed/simple;
+	bh=13d/ilyNNAuNPFJQyhVbyEzEDPGUkVOOt5eLEDKdv1E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Fewj1Gd2MJtappjBD6aL0sJn8ILSiE22diPMezUaBMnr3i45G9ZFiWilSUFXCMc7Pu3o5R6N0BHHd5I4s4C2USjIk5cjtMS9MBVmH/kj9VuAmrBd6L5ee2VsLaaTzCJeqx3WQJQlLYLedwv8R28sYtAqra9udX457plZ2QbEDP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rHXq0BT5; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45O9jZdB117440;
+	Mon, 24 Jun 2024 04:45:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719222335;
+	bh=8O89IBLwiQrWcMfXqNuDgSbw45ubGzoaPk3beQnyx24=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=rHXq0BT5/n0explM07rlrvqo7sEUtgtcGPYgr6uOGDqlZDMXE7pTFnsD/7Qw/vtO5
+	 9M4FCAT+fczZDz4gQ8fspHA1F1P+RvOKyYXD+XWAJhYPOMGfq2sudmyKMw4PZg6cz5
+	 E6Omoxd6Y2fYX1Z3fJtsLLIhOg6Hy0+ycTHME1DU=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45O9jZiu002810
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 24 Jun 2024 04:45:35 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
+ Jun 2024 04:45:35 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 24 Jun 2024 04:45:35 -0500
+Received: from [172.24.227.55] (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.55])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45O9jVBO005521;
+	Mon, 24 Jun 2024 04:45:32 -0500
+Message-ID: <b3587597-0b0b-493e-baa7-16f9b87231be@ti.com>
+Date: Mon, 24 Jun 2024 15:15:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240624092214.146935-4-quic_sibis@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j722s-evm: Enable analog audio
+ support
+To: Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
+        <nm@ti.com>, <robh@kernel.org>, <j-luthra@ti.com>, <u-kumar1@ti.com>
+CC: <kristo@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+References: <20240612051246.41117-1-j-choudhary@ti.com>
+ <cfab6475-9224-44a6-b140-59f6ec243ab1@ti.com>
+Content-Language: en-US
+From: Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <cfab6475-9224-44a6-b140-59f6ec243ab1@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Jun 24, 2024 at 02:52:13PM GMT, Sibi Sankar wrote:
-> The multiple BWMONv4 instances available on the X1E80100 SoC use the
-> same interrupt number. Mark them are shared to allow for re-use across
-> instances.
+Hello Vignesh,
+
+On 22/06/24 12:06, Vignesh Raghavendra wrote:
 > 
-> Using IRQF_SHARED coupled with devm_request_threaded_irq implies that
-> the irq can still trigger during/after bwmon_remove due to other active
-> bwmon instances. Handle this race by relying on bwmon_disable to disable
-> the interrupt and coupled with explicit request/free irqs.
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
+> On 12/06/24 10:42, Jayesh Choudhary wrote:
+> [...]
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+>> index bf3c246d13d1..426ae3e8a839 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+>> @@ -105,6 +105,16 @@ vdd_sd_dv: regulator-TLV71033 {
+>>   			 <3300000 0x1>;
+>>   	};
+>>   
+>> +	vcc_3v3_aud: regulator-vcc3v3 {
+>> +		/* Output of LM5140 */
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vcc_3v3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>>   	vsys_io_1v8: regulator-vsys-io-1v8 {
+>>   		compatible = "regulator-fixed";
+>>   		regulator-name = "vsys_io_1v8";
+>> @@ -122,6 +132,35 @@ vsys_io_1v2: regulator-vsys-io-1v2 {
+>>   		regulator-always-on;
+>>   		regulator-boot-on;
+>>   	};
+>> +
+>> +	codec_audio: sound {
+>> +		compatible = "simple-audio-card";
+>> +		simple-audio-card,name = "J722S-EVM";
+>> +		simple-audio-card,widgets =
+>> +			"Headphone",	"Headphone Jack",
+>> +			"Line",		"Line In",
+>> +			"Microphone",	"Microphone Jack";
+>> +		simple-audio-card,routing =
+>> +			"Headphone Jack",	"HPLOUT",
+>> +			"Headphone Jack",	"HPROUT",
+>> +			"LINE1L",		"Line In",
+>> +			"LINE1R",		"Line In",
+>> +			"MIC3R",		"Microphone Jack",
+>> +			"Microphone Jack",	"Mic Bias";
+>> +		simple-audio-card,format = "dsp_b";
+>> +		simple-audio-card,bitclock-master = <&sound_master>;
+>> +		simple-audio-card,frame-master = <&sound_master>;
+>> +		simple-audio-card,bitclock-inversion;
+>> +
+>> +		simple-audio-card,cpu {
+>> +			sound-dai = <&mcasp1>;
+>> +		};
+>> +
+>> +		sound_master: simple-audio-card,codec {
+>> +			sound-dai = <&tlv320aic3106>;
+>> +			clocks = <&audio_refclk1>;
+>> +		};
+>> +	};
+>>   };
+>>   
+>>   &main_pmx0 {
+> 
+> [...]
+> 
+>> +&main_conf {
+>> +	audio_refclk1: clock@82e4 {
+>> +		compatible = "ti,am62-audio-refclk";
+>> +		reg = <0x82e4 0x4>;
+>> +		clocks = <&k3_clks 157 18>;
+>> +		assigned-clocks = <&k3_clks 157 18>;
+>> +		assigned-clock-parents = <&k3_clks 157 33>;
+>> +		#clock-cells = <0>;
+>> +	};
+> 
+> 
+> Shouldn't this be in a SoC level dtsi? If the clock selection is based
+> on board design, the only move the assigned-clocks* to board file and
+> keep the rest in SoC level files.
 > 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Ok.
+I will need to rebase on top of Siddharth's patches[0] which I see are
+now merged.
+Will do that and roll v3.
 
+[0]: 
+https://lore.kernel.org/all/20240615081600.3602462-4-s-vadapalli@ti.com/
 
--- 
-With best wishes
-Dmitry
+Thanks,
+Jayesh
+
+> 
+>> +};
+> 
 
