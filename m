@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-79223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7789914668
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:27:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B18491466F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B4E3B20B08
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:27:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10F651F21589
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC45F130E40;
-	Mon, 24 Jun 2024 09:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910F7130E44;
+	Mon, 24 Jun 2024 09:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rCdV0sY7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YcDwi5IB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9928E18E29;
-	Mon, 24 Jun 2024 09:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659F67FD;
+	Mon, 24 Jun 2024 09:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719221218; cv=none; b=Ez3rsReI5sCD1Kv6hmVXfihsg7lvKfH1T0GwnELMNfLq+gpM+ME1XAk0s9WmmnWhzg0on60p/hlf8j/y0BpPn0V9J03bnSufoMJbxp4tJvP1HRcb77jDd8PRFbCEqCiW41cp+sfKPURn5IbVw5ChrDRo7SvpVNEmb7507lW2k+s=
+	t=1719221342; cv=none; b=oEIAbTyCnr40pUyix0D+d4BgToMwgVlu3UOt3RhAvzX8OdwdU8vjJSlIR5tNGhlLRLSgxQK28OVJGJsAUaCb/f5FHIUWLFQ0aHXuertvQ1fHKSBaONlFuVHHhuTO6AqNN2J6BUNBdoYFOKtnGKv4jiiNCzS9alGVOdjArUzykmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719221218; c=relaxed/simple;
-	bh=eaF1Ms4GXRyu67whAqmZKIEKby5/FfQsbLSCx8IYARM=;
+	s=arc-20240116; t=1719221342; c=relaxed/simple;
+	bh=wzE//TtjjVemlfDh7j31Tvqmi0bXKE3RaQ/TmnqrQgo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LjGvLyJHRNvUzmDPUi9keUGYR17oho9j0XrJtnboiOEj0kAV307vMhFTc7StG4Kd1fRZWUk0eR5zI9aN7RueIS/n8CsDWRY7G2VQKs6gDPaKecU0na8cunwFCvuRlWMU5oOSIlF1RjDJ0U0dV5hhTKUH0LRY7EQJNAk4r7VB8vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rCdV0sY7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D6DDC2BBFC;
-	Mon, 24 Jun 2024 09:26:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tLM+CvaZMwjFKaN/c+UHcT9o6JZAUjjumt3Wq8qbtuE9YNu/NwwrShzZn/MgZ9HQp1U81SJ5fyl/cVB/KwEw42Abb+dg0iE6kvtbrtKcwAmawO/8xNOhkIedP80M4hG6HJQpemPfe56cZUBWMebTgtuypMVepwuRtR2yvBLllXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YcDwi5IB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7242C32782;
+	Mon, 24 Jun 2024 09:28:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719221218;
-	bh=eaF1Ms4GXRyu67whAqmZKIEKby5/FfQsbLSCx8IYARM=;
+	s=k20201202; t=1719221341;
+	bh=wzE//TtjjVemlfDh7j31Tvqmi0bXKE3RaQ/TmnqrQgo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rCdV0sY7CpwwdFer21Ar31wlr8IwX5w2GD+eXu4tJRq3tOnyZtCNclODT+hf7fvQO
-	 shFpwf79paeXyUQVE9MZZ/jmR2lo5ujSxYZKvB3BFepj3bduGbVxCTlSbFIlgZSj/b
-	 6kkXcVKWBC9//pgetPXLlIaU7QgX9LCfHilad9T0Cls7g80KaQ4GCORLmxQcdLlYvo
-	 BdpVaKWQA4HBmFBKiRz5Ad4R7YS0P+5V0n+wgk1ifu44GJh85C7tb8T+5y2IyDXTh5
-	 a8kmLw7wVKrsZdyDq1pM3EAnAAmIWBQg0mv7rFvD1xOnYX37qyZWdWDDc+GtQg1F0f
-	 Oh+9CG5rCujVQ==
-Message-ID: <c4e17f42-2ad2-4979-983b-5f1e2a0b1ed8@kernel.org>
-Date: Mon, 24 Jun 2024 11:26:50 +0200
+	b=YcDwi5IBtQrxMAGBzdn/jIHcTSrP3Obo0t0+YVmNZUT+/63rdY6ILemDp0Zg7mca2
+	 aBhyR77ucc5DrvFwrNr6jlEm/beaQwZIrYT9FLFg5ojYfqTIfx/eFQslQWt23C62/w
+	 2R0eDHBiFjk+42ljwJhEX1gf46kNWONQuUghMjjDcQOA6TEB4ElvTIgu79e2l+yzcl
+	 aR49BUwJZBu686q4Rt3N5pTXY18rRPRsDup+JqWKV84gWPffhb72IEhC6HbtNKCAVa
+	 Mb815ImVAQ/KjmtK66XzlTzT/dOVkONVrsR+xO4+R7fjo58RNgyimvIl8T7NAIDQyg
+	 Di3apLQVBqABQ==
+Message-ID: <1ad3429c-0bad-4662-bc9d-b912f88e7b3a@kernel.org>
+Date: Mon, 24 Jun 2024 11:28:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] dt-bindings: net: wireless: qcom,ath11k: describe
- the ath11k on QCA6390
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org, ath12k@lists.infradead.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240605122106.23818-2-brgl@bgdev.pl>
- <171862259099.4124983.18069958656274980613.kvalo@kernel.org>
- <4c3d4437-4c24-4db3-855d-f2ba7d0c6f8a@kernel.org> <871q4mk8fw.fsf@kernel.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: ad402: fix thermal zone node name
+To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240624-topic-amlogic-upstream-bindings-fixes-dts-round-2-v1-1-0a21f456eb8d@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,43 +105,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <871q4mk8fw.fsf@kernel.org>
+In-Reply-To: <20240624-topic-amlogic-upstream-bindings-fixes-dts-round-2-v1-1-0a21f456eb8d@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/06/2024 11:15, Kalle Valo wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> writes:
+On 24/06/2024 10:59, Neil Armstrong wrote:
+> Fixes the following:
+> thermal-zones: 'soc_thermal' does not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
 > 
->> On 17/06/2024 13:09, Kalle Valo wrote:
->>> Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->>>
->>>> Add a PCI compatible for the ATH11K module on QCA6390 and describe the
->>>> power inputs from the PMU that it consumes.
->>>>
->>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->>>
->>> 2 patches applied to ath-next branch of ath.git, thanks.
->>
->> Hi Kalle,
->>
->> Are you sure your tree is properly fed to linux-next? I cannot find
->> these patches in linux-next and above repo is not listed in Next/Trees.
+> Fixes: 593ab951232b ("arm64: dts: amlogic: ad402: setup thermal-zones")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> ath.git is not included in linux-next builds. To my knowledge wireless
-> and wireless-next trees are the only trees from the wireless subsystem
-> which are included, all driver trees are not. But Jeff and I are talking
-> about including ath.git to linux-next.
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
+> index 6883471a93b4..0d92f5253b64 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
+> @@ -86,7 +86,7 @@ vddio_1v8: regulator-vddio-1v8 {
+>  	};
+>  
+>  	thermal-zones {
+> -		soc_thermal: soc_thermal {
+> +		soc_thermal: soc-thermal {
 
-Thanks for confirming. There is not much to "talk". Just send one email.
-There is no single issue stopping you from being in linux-next. The only
-work/caveat is when wireless-next cherry-picks your patches instead of
-git pull, but even then you can arrange with Stephen to opt-out from
-emails about duplicated commits.
+I was fixing all underscores... but then mentioned above commit
+re-introduced them.
 
-Of course this is not specific to Ath - as you said - all wireless
-sub-trees should be fixed. It's really odd that these are not in linux-next.
+Some fixes need to be done more than once to stick. :)
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
