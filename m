@@ -1,237 +1,242 @@
-Return-Path: <devicetree+bounces-79405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538AF91530B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 17:59:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E94915338
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:13:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89C90B22FA5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 15:59:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45DC4283742
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:13:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DF119D886;
-	Mon, 24 Jun 2024 15:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAC419D8A4;
+	Mon, 24 Jun 2024 16:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XlusyNJJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fJLWckyJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB8413E024;
-	Mon, 24 Jun 2024 15:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D10F12FF84;
+	Mon, 24 Jun 2024 16:13:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719244762; cv=none; b=B9Qx6PupXbEeew1cAnM29v4Lkd39G58xKKMJsGSp0RFUzZBt6ft/4JAL9ETT/PFHAewQqLWz+HUKuC5db7JUgbywfWMBIW32A9IOoTip9ZQg3/eSAL1A6d/XC7O/DMIZVlerATDwemgTkoVI6GgaXQ2UsF2c76sQIZS06nwaNc8=
+	t=1719245630; cv=none; b=ceiMYsxSqgkAUtcEbWKLjX76BrVJblCgFleJASEQB6A7ZYVMr/WK4h/o7shD37oJp4EVC5luGKWMk57f+ye3H1W/ccM+U/cwXaBFm1c9LZlmCYKdxUhkBQ2ELN4wFGN2PSnNnF4Ha5zZawovIPuxhTNS+gtXH0qgY275ie7FjQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719244762; c=relaxed/simple;
-	bh=QlQRvDcovkaqiX8QqFySm0UK0zjk+X4pV/Gqh9lAUKw=;
+	s=arc-20240116; t=1719245630; c=relaxed/simple;
+	bh=DgVVOPk1ZkKbKxb3mtBrBTehxOzldRGgUCcC7y0SrK4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f3ooo/Qavil769PzToAmsKJeUt64t3wufee7OPLUL7ah+gprS+WrJ+WSVtAJLBiBNStD6QWL7rrdjVCxSmYC8BcwocXEbZ5H4nzXbwRombtTPXg53gEs0vVHiwY7wzsNyR1ReCZGRydBxD/vKe+oF5ZYORhc+RsWOqibpXWdwvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XlusyNJJ; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719244760; x=1750780760;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QlQRvDcovkaqiX8QqFySm0UK0zjk+X4pV/Gqh9lAUKw=;
-  b=XlusyNJJSw2vMjvZu2ili2gJD4Tl7SE6C44UiI5DV2zl6JI7hcUoBJhQ
-   pTY9dD/lx3y+XV2leJlZ7+IRO+GHFaIukusIGLOHV399syT3JIHLsr4dc
-   EQkzxnb1w05t0qiV9rYR0CeuBTg3P6hoaADAvJSxQO9n762SsKFGXKWzo
-   U6Zh1IJnvY8o8AgnbiHxnpRo4s0v8jvevHKElMa8YrG4TAPGgvEye3EGN
-   8aUWf53W71ReZlt/7GAhxOXb+CuQzwod9xnE0sR8xFaEUef2BbzgSDpFa
-   5rV7rZKHgfKqLHhRtodWTbvDwZ/DgWvJWVVDdjp0AnkFiJSs2nU86ynY2
-   g==;
-X-CSE-ConnectionGUID: I7VCghcQTBa9GvgBS1ZkAQ==
-X-CSE-MsgGUID: VQF00/VcSgyMrWi6bn5jZw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="12217240"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
-   d="scan'208";a="12217240"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2024 08:59:19 -0700
-X-CSE-ConnectionGUID: 2WFT4yrcS/2ZExSil8CO7w==
-X-CSE-MsgGUID: PmxySSG9T56qxAQRuQp3RA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; 
-   d="scan'208";a="43422423"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 24 Jun 2024 08:59:14 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sLm63-000DUN-2g;
-	Mon, 24 Jun 2024 15:59:11 +0000
-Date: Mon, 24 Jun 2024 23:58:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, nbd@nbd.name,
-	lorenzo.bianconi83@gmail.com, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	conor@kernel.org, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, linux-clk@vger.kernel.org,
-	rkannoth@marvell.com, sgoutham@marvell.com, andrew@lunn.ch
-Subject: Re: [PATCH v2 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <202406242337.21CXNZvT-lkp@intel.com>
-References: <f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lb8k9ZH1qQXz+wQM/TsTe/NbcywqSeNdC214W7+OUwrtYa+7sYHVbeDi3T1GiqiyT68vc6pS7Qtc3KtlKLygek8Xo07zE1FyPYdQAYro2ArfNsDjkQyoYCyLXMJklnMw3hmcLbm3UjZxqnAz0WqcO1CAd4qv5v/QRmOH+2Uo/58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fJLWckyJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E518EC2BBFC;
+	Mon, 24 Jun 2024 16:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719245629;
+	bh=DgVVOPk1ZkKbKxb3mtBrBTehxOzldRGgUCcC7y0SrK4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fJLWckyJQvmvD9adz4fDH22WUxDxxW5rX2aLB9mnyJ00mtIOIocl5Z4dVPqPkKqcB
+	 yTD+WBJ9Bl5oU/eVHvQP/qiN5lM0zRT/cqY1W43/TrgydV3lcm6xowsD14pk0vcxwN
+	 uA9WXIICT4mYNiLJpaSKgtXFlW0DniqPU1acehpnupzkJ6UB7msyBunSneIQqu+oq/
+	 jJaRQn1tg9TsdJlVjtruiWiLR/JRmz3PvxBzeaB0vqctRF8BHUaNFVXYuZf+T0bYvY
+	 Am+yH4ATOc0Q5PowenOWyfBBvNUX0xR3Sj+jqVvkjrlj0/Kjh2m0y5FfkQOTiPXSFK
+	 cnR0F7LZaMACw==
+Date: Mon, 24 Jun 2024 17:13:44 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dimitri Fedrau <dima.fedrau@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Subject: Re: [PATCH v4 3/5] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+Message-ID: <20240624-handled-swimwear-94ed97b123cc@spud>
+References: <20240619064904.73832-1-kimseer.paller@analog.com>
+ <20240619064904.73832-4-kimseer.paller@analog.com>
+ <20240619-left-usable-316cbe62468a@spud>
+ <PH0PR03MB7141FB5DFBCA46C727FA9605F9D42@PH0PR03MB7141.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="w16K0kP6Co5gYb/H"
 Content-Disposition: inline
-In-Reply-To: <f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo@kernel.org>
+In-Reply-To: <PH0PR03MB7141FB5DFBCA46C727FA9605F9D42@PH0PR03MB7141.namprd03.prod.outlook.com>
 
-Hi Lorenzo,
 
-kernel test robot noticed the following build warnings:
+--w16K0kP6Co5gYb/H
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on net-next/main]
+On Mon, Jun 24, 2024 at 03:13:56PM +0000, Paller, Kim Seer wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: Thursday, June 20, 2024 1:57 AM
+> > To: Paller, Kim Seer <KimSeer.Paller@analog.com>
+> > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org;
+> > devicetree@vger.kernel.org; Jonathan Cameron <jic23@kernel.org>; David
+> > Lechner <dlechner@baylibre.com>; Lars-Peter Clausen <lars@metafoo.de>;
+> > Liam Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
+> > Dimitri Fedrau <dima.fedrau@gmail.com>; Krzysztof Kozlowski
+> > <krzk+dt@kernel.org>; Rob Herring <robh@kernel.org>; Conor Dooley
+> > <conor+dt@kernel.org>; Hennerich, Michael
+> > <Michael.Hennerich@analog.com>; Nuno S=E1 <noname.nuno@gmail.com>
+> > Subject: Re: [PATCH v4 3/5] dt-bindings: iio: dac: Add adi,ltc2664.yaml
+> >=20
+> > [External]
+> >=20
+> > On Wed, Jun 19, 2024 at 02:49:02PM +0800, Kim Seer Paller wrote:
+> > > Add documentation for ltc2664.
+> > >
+> > > Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> > > Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> > > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> > > ---
+> > >  .../bindings/iio/dac/adi,ltc2664.yaml         | 167 ++++++++++++++++=
+++
+> > >  MAINTAINERS                                   |   8 +
+> > >  2 files changed, 175 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> > > b/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> > > new file mode 100644
+> > > index 000000000000..be37700e3b1f
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
+> > > @@ -0,0 +1,167 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/dac/adi,ltc2664.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Analog Devices LTC2664 DAC
+> > > +
+> > > +maintainers:
+> > > +  - Michael Hennerich <michael.hennerich@analog.com>
+> > > +  - Kim Seer Paller <kimseer.paller@analog.com>
+> > > +
+> > > +description: |
+> > > +  Analog Devices LTC2664 4 channel, 12-/16-Bit, +-10V DAC
+> > > +
+> > > +https://www.analog.com/media/en/technical-documentation/data-sheets/2
+> > > +664fa.pdf
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - adi,ltc2664
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  spi-max-frequency:
+> > > +    maximum: 50000000
+> > > +
+> > > +  vcc-supply:
+> > > +    description: Analog Supply Voltage Input.
+> > > +
+> > > +  v-pos-supply:
+> > > +    description: Positive Supply Voltage Input.
+> > > +
+> > > +  v-neg-supply:
+> > > +    description: Negative Supply Voltage Input.
+> > > +
+> > > +  iovcc-supply:
+> > > +    description: Digital Input/Output Supply Voltage.
+> > > +
+> > > +  ref-supply:
+> > > +    description:
+> > > +      Reference Input/Output. The voltage at the REF pin sets the fu=
+ll-scale
+> > > +      range of all channels. If not provided the internal reference =
+is used and
+> > > +      also provided on the VREF pin.
+> > > +
+> > > +  reset-gpios:
+> > > +    description:
+> > > +      Active-low Asynchronous Clear Input. A logic low at this level=
+-triggered
+> > > +      input clears the part to the reset code and range determined b=
+y the
+> > > +      hardwired option chosen using the MSPAN pins. The control regi=
+sters are
+> > > +      cleared to zero.
+> > > +    maxItems: 1
+> > > +
+> > > +  adi,manual-span-operation-config:
+> > > +    description:
+> > > +      This property must mimic the MSPAN pin configurations. By tyin=
+g the
+> > MSPAN
+> > > +      pins (MSP2, MSP1 and MSP0) to GND and/or VCC, any output range=
+ can
+> > be
+> > > +      hardware-configured with different mid-scale or zero-scale res=
+et options.
+> > > +      The hardware configuration is latched during power on reset fo=
+r proper
+> > > +      operation.
+> > > +        0 - MPS2=3DGND, MPS1=3DGND, MSP0=3DGND (+-10V, reset to 0V)
+> > > +        1 - MPS2=3DGND, MPS1=3DGND, MSP0=3DVCC (+-5V, reset to 0V)
+> > > +        2 - MPS2=3DGND, MPS1=3DVCC, MSP0=3DGND (+-2.5V, reset to 0V)
+> > > +        3 - MPS2=3DGND, MPS1=3DVCC, MSP0=3DVCC (0V to 10, reset to 0=
+V)
+> > > +        4 - MPS2=3DVCC, MPS1=3DGND, MSP0=3DGND (0V to 10V, reset to =
+5V)
+> > > +        5 - MPS2=3DVCC, MPS1=3DGND, MSP0=3DVCC (0V to 5V, reset to 0=
+V)
+> > > +        6 - MPS2=3DVCC, MPS1=3DVCC, MSP0=3DGND (0V to 5V, reset to 2=
+=2E5V)
+> > > +        7 - MPS2=3DVCC, MPS1=3DVCC, MSP0=3DVCC (0V to 5V, reset to 0=
+V, enables
+> > SoftSpan)
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> >=20
+> > Can you explain why this property is required, when below there's one t=
+hat sets
+> > the ranges in microvolts? Isn't the only new information that this prov=
+ides the
+> > reset values (in a few cases that it is not 0).
+> > What am I missing?
+>=20
+> For specifying output range and reset options without relying on software=
+ initialization
+> routines, and also for enabling the softspan feature, I think this proper=
+ty seems essential.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-net-airoha-Add-EN7581-ethernet-controller/20240618-182217
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/f146a6f58492394a77f7d159f3c650a268fbe489.1718696209.git.lorenzo%40kernel.org
-patch subject: [PATCH v2 net-next 2/2] net: airoha: Introduce ethernet support for EN7581 SoC
-config: arm64-randconfig-r121-20240623 (https://download.01.org/0day-ci/archive/20240624/202406242337.21CXNZvT-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project ad79a14c9e5ec4a369eed4adf567c22cc029863f)
-reproduce: (https://download.01.org/0day-ci/archive/20240624/202406242337.21CXNZvT-lkp@intel.com/reproduce)
+The portion of this information that is duplicated below I do not think
+should reappear in this property.
+Really the only additional information is the reset values being at 50%
+of the range and the SoftSpan
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406242337.21CXNZvT-lkp@intel.com/
+--w16K0kP6Co5gYb/H
+Content-Type: application/pgp-signature; name="signature.asc"
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/net/ethernet/mediatek/airoha_eth.c:1328:45: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __sum16 [usertype] check @@     got restricted __be16 [usertype] @@
-   drivers/net/ethernet/mediatek/airoha_eth.c:1328:45: sparse:     expected restricted __sum16 [usertype] check
-   drivers/net/ethernet/mediatek/airoha_eth.c:1328:45: sparse:     got restricted __be16 [usertype]
->> drivers/net/ethernet/mediatek/airoha_eth.c:1787:27: sparse: sparse: symbol 'of_airoha_match' was not declared. Should it be static?
+-----BEGIN PGP SIGNATURE-----
 
-vim +1328 drivers/net/ethernet/mediatek/airoha_eth.c
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnmbOAAKCRB4tDGHoIJi
+0mouAQDzsVsipg/3w2VG+hknkSbjckhNz5CqLEQ8NOBuG1kDCAEAv6ufhDKmdcyu
+7Vpu2g6CSOzzkHDSkLJwqM59OjpWRw8=
+=5rtG
+-----END PGP SIGNATURE-----
 
-  1303	
-  1304	static netdev_tx_t airoha_dev_xmit(struct sk_buff *skb,
-  1305					   struct net_device *dev)
-  1306	{
-  1307		struct skb_shared_info *sinfo = skb_shinfo(skb);
-  1308		struct airoha_eth *eth = netdev_priv(dev);
-  1309		int i, qid = skb_get_queue_mapping(skb);
-  1310		u32 nr_frags, msg0 = 0, msg1;
-  1311		u32 len = skb_headlen(skb);
-  1312		struct netdev_queue *txq;
-  1313		struct airoha_queue *q;
-  1314		void *data = skb->data;
-  1315		u16 index;
-  1316	
-  1317		if (skb->ip_summed == CHECKSUM_PARTIAL)
-  1318			msg0 |= FIELD_PREP(QDMA_ETH_TXMSG_TCO_MASK, 1) |
-  1319				FIELD_PREP(QDMA_ETH_TXMSG_UCO_MASK, 1) |
-  1320				FIELD_PREP(QDMA_ETH_TXMSG_ICO_MASK, 1);
-  1321	
-  1322		/* TSO: fill MSS info in tcp checksum field */
-  1323		if (skb_is_gso(skb)) {
-  1324			if (skb_cow_head(skb, 0))
-  1325				goto error;
-  1326	
-  1327			if (sinfo->gso_type & (SKB_GSO_TCPV4 | SKB_GSO_TCPV6)) {
-> 1328				tcp_hdr(skb)->check = cpu_to_be16(sinfo->gso_size);
-  1329				msg0 |= FIELD_PREP(QDMA_ETH_TXMSG_TSO_MASK, 1);
-  1330			}
-  1331		}
-  1332	
-  1333		msg1 = FIELD_PREP(QDMA_ETH_TXMSG_FPORT_MASK, DPORT_GDM1) |
-  1334		       FIELD_PREP(QDMA_ETH_TXMSG_METER_MASK, 0x7f);
-  1335	
-  1336		if (WARN_ON_ONCE(qid >= ARRAY_SIZE(eth->q_tx)))
-  1337			qid = 0;
-  1338	
-  1339		q = &eth->q_tx[qid];
-  1340		if (WARN_ON_ONCE(!q->ndesc))
-  1341			goto error;
-  1342	
-  1343		spin_lock_bh(&q->lock);
-  1344	
-  1345		nr_frags = 1 + sinfo->nr_frags;
-  1346		if (q->queued + nr_frags > q->ndesc) {
-  1347			/* not enough space in the queue */
-  1348			spin_unlock_bh(&q->lock);
-  1349			return NETDEV_TX_BUSY;
-  1350		}
-  1351	
-  1352		index = q->head;
-  1353		for (i = 0; i < nr_frags; i++) {
-  1354			struct airoha_qdma_desc *desc = &q->desc[index];
-  1355			struct airoha_queue_entry *e = &q->entry[index];
-  1356			skb_frag_t *frag = &sinfo->frags[i];
-  1357			dma_addr_t addr;
-  1358			u32 val;
-  1359	
-  1360			addr = dma_map_single(dev->dev.parent, data, len,
-  1361					      DMA_TO_DEVICE);
-  1362			if (unlikely(dma_mapping_error(dev->dev.parent, addr)))
-  1363				goto error_unmap;
-  1364	
-  1365			index = (index + 1) % q->ndesc;
-  1366	
-  1367			val = FIELD_PREP(QDMA_DESC_LEN_MASK, len);
-  1368			if (i < nr_frags - 1)
-  1369				val |= FIELD_PREP(QDMA_DESC_MORE_MASK, 1);
-  1370			WRITE_ONCE(desc->ctrl, cpu_to_le32(val));
-  1371			WRITE_ONCE(desc->addr, cpu_to_le32(addr));
-  1372			val = FIELD_PREP(QDMA_DESC_NEXT_ID_MASK, index);
-  1373			WRITE_ONCE(desc->data, cpu_to_le32(val));
-  1374			WRITE_ONCE(desc->msg0, cpu_to_le32(msg0));
-  1375			WRITE_ONCE(desc->msg1, cpu_to_le32(msg1));
-  1376			WRITE_ONCE(desc->msg2, cpu_to_le32(0xffff));
-  1377	
-  1378			e->skb = i ? NULL : skb;
-  1379			e->dma_addr = addr;
-  1380			e->dma_len = len;
-  1381	
-  1382			wmb();
-  1383			airoha_qdma_rmw(eth, REG_TX_CPU_IDX(qid), TX_RING_CPU_IDX_MASK,
-  1384					FIELD_PREP(TX_RING_CPU_IDX_MASK, index));
-  1385	
-  1386			data = skb_frag_address(frag);
-  1387			len = skb_frag_size(frag);
-  1388		}
-  1389	
-  1390		q->head = index;
-  1391		q->queued += i;
-  1392	
-  1393		txq = netdev_get_tx_queue(dev, qid);
-  1394		netdev_tx_sent_queue(txq, skb->len);
-  1395		skb_tx_timestamp(skb);
-  1396	
-  1397		if (q->ndesc - q->queued < q->free_thr)
-  1398			netif_tx_stop_queue(txq);
-  1399	
-  1400		spin_unlock_bh(&q->lock);
-  1401	
-  1402		return NETDEV_TX_OK;
-  1403	
-  1404	error_unmap:
-  1405		for (i--; i >= 0; i++)
-  1406			dma_unmap_single(dev->dev.parent, q->entry[i].dma_addr,
-  1407					 q->entry[i].dma_len, DMA_TO_DEVICE);
-  1408	
-  1409		spin_unlock_bh(&q->lock);
-  1410	error:
-  1411		dev_kfree_skb_any(skb);
-  1412		dev->stats.tx_dropped++;
-  1413	
-  1414		return NETDEV_TX_OK;
-  1415	}
-  1416	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--w16K0kP6Co5gYb/H--
 
