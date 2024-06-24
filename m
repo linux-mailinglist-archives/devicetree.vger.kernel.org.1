@@ -1,154 +1,288 @@
-Return-Path: <devicetree+bounces-79141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33C79141F1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:29:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0930E9141F7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 07:31:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 778681F2465E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:29:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0217E1F248FD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 05:31:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C406217BA7;
-	Mon, 24 Jun 2024 05:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F681401B;
+	Mon, 24 Jun 2024 05:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Y5iseQFR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hdkbigkC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f202.google.com (mail-yb1-f202.google.com [209.85.219.202])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47FC118C05
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:29:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A0D1429A
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 05:31:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719206964; cv=none; b=BCwDzH4S3rrMVOw9OedkV+MyfauDQbjeJraZRrSOQcCGcqGORXig86Fni2wmZQnqhblNYb8HXLBcIG5UBlduSgdhDO6UwQSfE/dlSA30gpICGBElsNcwiKAL8NVo+qbktoH1obfBDV66k5ImN0hDOwleC8KQYBsrBa+9tuDn79k=
+	t=1719207085; cv=none; b=LVBSZ0/Rwr7VufCBjMBs3KNdXgGAcFjqjCJIaKhlOTch81QL21u8oqb0aHvNkvbXNqUV39VffVV0UZJasPZGwAV9EBvXBdKkbMyAzDq90aauHfFowZFbSE8ihJVg8nB3uksLMvgaWJuyDjrXC/ceSeWUbKxmWh4Ndoi69j8xbHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719206964; c=relaxed/simple;
-	bh=50twyfEJ8ALTho3pL+ku6E2q/cus4h8CQVXWkBsgJ4o=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=ejo/FTGh20+0U/kC6moMrwmlFkFMfGdda12sxmltxpKbNMZ75e8Z0Ia+KarTw9tn4zfu8HNND5tKZ/xBdU0VpcxMaK0pYdChNozeX80j1icos3PljA7BBMmpSbEXWwrPXRZlsT6n335MBAe8g+nvAh2QAPCkt++E+k2hU1bVjM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Y5iseQFR; arc=none smtp.client-ip=209.85.219.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aniketmaurya.bounces.google.com
-Received: by mail-yb1-f202.google.com with SMTP id 3f1490d57ef6-df771b5e942so7329552276.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 22:29:23 -0700 (PDT)
+	s=arc-20240116; t=1719207085; c=relaxed/simple;
+	bh=mC6YmdP6iUZsMpkTlQTL5Lttmys4aoXQHGhQ9fwz4Bo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LVsQucHoIfK4AFebjeWlmSnMgiN9e8Z6xVb/5yH3D7ugHDJCkUjL8SAbi2U6bvO5V9Iii3TZSzUnOw8I0zOKj0Usd0tIjYQ4psHErPdHLOAI5idbS7YKB07W3OCiyeFWoYKdnbw1jTfWKAOeELLPbbIykij78XEfixUU3DvicEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hdkbigkC; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52cd717ec07so2819726e87.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Jun 2024 22:31:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1719206962; x=1719811762; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=P1I8I99l7a+8VVN3a7Xt/piq3f28W3MFZ3VnliaJyPU=;
-        b=Y5iseQFRU1iKk+YleCi7794DESJI6bmBUHk0J+kVJ2aoxLqJJb0U/sxiQhzriiZsM4
-         FXgnWCKy/cwa7O70CGqcDjMAGuO4fXLKYSUL8+zREOivnsn7FPQfjgWMeq7Jx8nCOOOv
-         GtjxFzrCrPWmIEU4bqRm7jSdVTXPTOlo21/1B5WVJWFREvr9lq3xgZvtj64aBXvXUhYE
-         EuV7HqhsCXVzoCStfQVJDLxv2abbOUKqxSm4AR6JbWJ2szgOBuiL2B+3Ey8ArPByDsQw
-         6IaOLegT93Oxw+Jx8hI+sGHLXQJBPkSXpCbWbITvUqMlBSMq3WZdv8K1DgWB6a3QEE/W
-         Hsdg==
+        d=linaro.org; s=google; t=1719207080; x=1719811880; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oEeMqLzWPtuHbd7DMdLxKIfGpNKakGZfL/lhpzQLB6U=;
+        b=hdkbigkCrZQHwPxv77Co/+CRs2dOzi8OLAaMYGGP8Jzv4Z/ZGhI3TFTPYgqfTDe2cw
+         VOH/wTl9DgD9FuyJ/WtsRSFPVkyPaIJKIT4EQ3QY6+QUbeb/R3jPesAEVImJvWfZ9IJA
+         lJXEGSDEX2MMcXdhWnAZLePGYQ8xlDrXfiAx8GIAcRGVDwZJl9YKMA4aJ0UgfecUB2LV
+         +lTXFMIirsRRGnOAzQI/4PV9lMOty3V8ailkKpAomA+VxHj8vR/fz+bjhLRwacV6++hq
+         NpuH6LBfvWdL515CvKyIghjEjEemFg1FhHqPDEFJEZJRdsIQd9lctvBnWa85EXuj0/sd
+         2Cig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719206962; x=1719811762;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P1I8I99l7a+8VVN3a7Xt/piq3f28W3MFZ3VnliaJyPU=;
-        b=MkEn7HLHXadIv3DxWezkzpnFgOWq/nJUsnRtAidYHiCk9Xcr3ddUg2m6jHSp3icQqu
-         n7nhEbF4fcoUJ9RBzTPyPP9AeV2On4Z9h92X8reY9jcAgGTzglLYQM35GiKAvh4jYkqQ
-         URR6BjwRxSmFgQ4+GYfAnahGqjR4na6+D86WlNs3qqCoZ9yc/TOcwbYXbCP8DfLyhkTM
-         pqFBhrzOPyneQGe7c+tvFwUX8xg7KPWmofWXIKPRWgLStJNGOXsv/o7kseY56qaDKEnz
-         eQkgyuGb/azaD6gRxJTBdzJSg5GNEdMI/+0XaBKa4gmHR856YoKYgekr9pFDItFTyGoJ
-         UqVA==
-X-Forwarded-Encrypted: i=1; AJvYcCVtfiq7FolLWF3lIRrw5VrjA0twq3MqY9XL5ze3HQAf9k43xhmtLTnDtOLoMi5PC9FresKZkzI2smkBX26VeD+4TCqMtmm2l4Ti+w==
-X-Gm-Message-State: AOJu0Yxt9LPmN3GrTKhS+wVxhncW/Y7ER7EqRocfWDUSii5mC3A6vkjh
-	8kzcu+2u3LJuaYw10JMx2+VFyZ+YogzZR73o0r9Oi+xmjDhz/rfHU187YnzxQ/bjXS2qC9skHaD
-	Q2tJ3JTe45Jw8ySXdR5360bV5eg==
-X-Google-Smtp-Source: AGHT+IFYTSVOMsLqJVDUxHQ8GFvdZHqCOqKjAi9xCBAxDVenSvN+E7dc9z9/aa2vq33ZomTzPFE3OUf1TIIi5BohR5k=
-X-Received: from aniketm.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:3387])
- (user=aniketmaurya job=sendgmr) by 2002:a05:6902:1146:b0:e02:c619:732 with
- SMTP id 3f1490d57ef6-e0301098e9emr11043276.8.1719206962420; Sun, 23 Jun 2024
- 22:29:22 -0700 (PDT)
-Date: Mon, 24 Jun 2024 05:28:51 +0000
-In-Reply-To: <20240624052851.1030799-1-aniketmaurya@google.com>
+        d=1e100.net; s=20230601; t=1719207080; x=1719811880;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oEeMqLzWPtuHbd7DMdLxKIfGpNKakGZfL/lhpzQLB6U=;
+        b=XAd7bFRWYisTlO51RHhEFBFG0X2rui5moViayok69LnpbIE30YYDIBf4r1LvFp5hxZ
+         ISVY41MwDfsGecSNi7HK8GpB5pYKoZ69VzFrb2ucmhWhVQfmGpApIpTmESPkg8Vd6OVv
+         yn1v/7pj+4izzgoYxBtDGPo2CvYQ070frYzq0o4jlOvuS8Vaxcubokni1HdTEo2+CbMl
+         2i2l3v0XQ2pDvmeDnkkcXWfyxql7Aguj2JaYTjewGbpOoFmqE0jb5RG4+oGZkPyGodb7
+         +cJ+zBWuKGEI5xGZhYG9nM1L2H6GwyqTHH8dCMwod4htcqVnSpBCOAI/GXdc1Im5SIzB
+         yBxA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5N0Ydw2GjSoioZSNG5/srrXqATHmaTQcvu28KRd86WolLUvRBxDZpInvLAVjrFQuNpsYaPc3Ss11vqFjjXoGtuHXS99mfYhOyWw==
+X-Gm-Message-State: AOJu0Yzrs7wQHAbvxsZGKWMe0sI7ctcb4SJh8AHyrUjbyszP6p/v4ZUF
+	QWSYy01aQ68bmYeJAFQotYdOsshSu5TFYQf7H2DXl4Zhtw8iC3+tsU5LfdhQJDI=
+X-Google-Smtp-Source: AGHT+IGDR4WXp3BrtdW/oZ54TDqH52mJ/FrYWjDaLO9Oi22YZv6nU3DEUmhIjwPYW7xV1aybF8+z8Q==
+X-Received: by 2002:ac2:5e83:0:b0:52c:e41a:b666 with SMTP id 2adb3069b0e04-52ce41ab71fmr1575041e87.7.1719207080428;
+        Sun, 23 Jun 2024 22:31:20 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd810d633sm864075e87.165.2024.06.23.22.31.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Jun 2024 22:31:19 -0700 (PDT)
+Date: Mon, 24 Jun 2024 08:31:18 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Caleb Connolly <caleb@postmarketos.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Henrik Rydberg <rydberg@bitmath.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 5/7] drm/panel: add driver for samsung amb655x
+Message-ID: <mnxpybk4nqdyp2xo22dxbprtxt5v6spr2ax4p3vrpwafqcbonv@ga4o2xxtkkov>
+References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
+ <20240624-oneplus8-v1-5-388eecf2dff7@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20240611171600.1105124-1-aniketmaurya@google.com> <20240624052851.1030799-1-aniketmaurya@google.com>
-X-Mailer: git-send-email 2.45.2.741.gdbec12cfda-goog
-Message-ID: <20240624052851.1030799-4-aniketmaurya@google.com>
-Subject: [PATCH v2 3/3] i3c: dw: Use new *_enabled clk APIs
-From: Aniket <aniketmaurya@google.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Jeremy Kerr <jk@codeconstruct.com.au>, 
-	Joel Stanley <joel@jms.id.au>, Billy Tsai <billy_tsai@aspeedtech.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Aniket <aniketmaurya@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240624-oneplus8-v1-5-388eecf2dff7@postmarketos.org>
 
-Move to "enabled" variant of clk_get APIs. It takes care
-of enable and disable calls during the probe and remove.
+On Mon, Jun 24, 2024 at 03:30:29AM GMT, Caleb Connolly wrote:
+> This is a 1080x2400 120hz panel used on the OnePlus 8T. It uses DSC but
+> uses non-standard DCS commands.
 
-Signed-off-by: Aniket <aniketmaurya@google.com>
----
- drivers/i3c/master/dw-i3c-master.c | 21 ++-------------------
- 1 file changed, 2 insertions(+), 19 deletions(-)
+Please add a note regarding the panel using long packets for all the
+commands.
 
-diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-index 41cdfd6741e3..37092b8e964f 100644
---- a/drivers/i3c/master/dw-i3c-master.c
-+++ b/drivers/i3c/master/dw-i3c-master.c
-@@ -1466,11 +1466,11 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
- 	if (IS_ERR(master->regs))
- 		return PTR_ERR(master->regs);
- 
--	master->core_clk = devm_clk_get(&pdev->dev, NULL);
-+	master->core_clk = devm_clk_get_enabled(&pdev->dev, NULL);
- 	if (IS_ERR(master->core_clk))
- 		return PTR_ERR(master->core_clk);
- 
--	master->pclk = devm_clk_get_optional(&pdev->dev, "pclk");
-+	master->pclk = devm_clk_get_optional_enabled(&pdev->dev, "pclk");
- 	if (IS_ERR(master->pclk))
- 		return PTR_ERR(master->pclk);
- 
-@@ -1479,14 +1479,6 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
- 	if (IS_ERR(master->core_rst))
- 		return PTR_ERR(master->core_rst);
- 
--	ret = clk_prepare_enable(master->core_clk);
--	if (ret)
--		return ret;
--
--	ret = clk_prepare_enable(master->pclk);
--	if (ret)
--		goto err_disable_core_clk;
--
- 	reset_control_deassert(master->core_rst);
- 
- 	spin_lock_init(&master->xferqueue.lock);
-@@ -1528,11 +1520,6 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
- err_assert_rst:
- 	reset_control_assert(master->core_rst);
- 
--	clk_disable_unprepare(master->pclk);
--
--err_disable_core_clk:
--	clk_disable_unprepare(master->core_clk);
--
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(dw_i3c_common_probe);
-@@ -1542,10 +1529,6 @@ void dw_i3c_common_remove(struct dw_i3c_master *master)
- 	i3c_master_unregister(&master->base);
- 
- 	reset_control_assert(master->core_rst);
--
--	clk_disable_unprepare(master->pclk);
--
--	clk_disable_unprepare(master->core_clk);
- }
- EXPORT_SYMBOL_GPL(dw_i3c_common_remove);
- 
+Also the cover letter had a mention of the panel not fully comming up
+after being reset, is that still true? If so, it should be mentioned in
+the commit message too.
+
+> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
+> ---
+>  MAINTAINERS                                   |   7 +
+>  drivers/gpu/drm/panel/Kconfig                 |   9 +
+>  drivers/gpu/drm/panel/Makefile                |   1 +
+>  drivers/gpu/drm/panel/panel-samsung-amb655x.c | 420 ++++++++++++++++++++++++++
+>  4 files changed, 437 insertions(+)
+
+
+
+> +static int samsung_amb655x_on(struct samsung_amb655x *amb655x)
+> +{
+> +	struct drm_dsc_picture_parameter_set pps;
+> +	struct mipi_dsi_device *dsi = amb655x->dsi;
+> +	struct mipi_dsi_multi_context ctx = { .dsi = dsi };
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	drm_dsc_pps_payload_pack(&pps, &amb655x->dsc);
+> +
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_buffer_multi(&ctx, &pps, sizeof(pps));
+> +	mipi_dsi_dcs_write_long(&ctx, 0x9d, 0x01);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0xa5, 0xa5);
+> +
+> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+
+_multi. Shouldn't it be a long package too?
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	usleep_range(11000, 12000);
+
+mipi_dsi_msleep() or add mipi_dsi_usleep_range().
+
+> +	ret = mipi_dsi_dcs_set_column_address(dsi, 0x0000, 1080 - 1);
+
+_multi, adding the function as required
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set column address: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = mipi_dsi_dcs_set_page_address(dsi, 0x0000, 2400 - 1);
+
+_multi
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set page address: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* FD Setting */
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xd5, 0x8d);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb0, 0x0a);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xd5, 0x05);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0xa5, 0xa5);
+> +
+> +	/* FFC Function */
+> +	mipi_dsi_dcs_write_long(&ctx, 0xfc, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb0, 0x01);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xe4, 0xa6, 0x75, 0xa3);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xe9,
+> +			       0x11, 0x75, 0xa6, 0x75, 0xa3, 0x4b, 0x17, 0xac,
+> +			       0x4b, 0x17, 0xac, 0x00, 0x19, 0x19);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xfc, 0xa5, 0xa5);
+> +	msleep(61);
+
+mipi_dsi_msleep
+
+> +
+> +	/* Dimming Setting */
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb0, 0x06);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb7, 0x01);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb0, 0x05);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb7, 0x13);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb0, 0x01);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xb7, 0x4c);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0xa5, 0xa5);
+> +
+> +	mipi_dsi_dcs_write_long(&ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x20);
+> +
+> +	/* refresh rate Transition */
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0x5a, 0x5a);
+> +	/* 60 Hz */
+> +	//mipi_dsi_dcs_write_long(&ctx, 0x60, 0x00);
+> +	/* 120 Hz */
+> +	mipi_dsi_dcs_write_long(&ctx, 0x60, 0x10);
+> +
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0xa5, 0xa5);
+> +
+> +	/* ACL Mode */
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_long(&ctx, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
+> +	mipi_dsi_dcs_write_long(&ctx, 0xf0, 0xa5, 0xa5);
+> +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x20);
+
+_multi
+
+> +	msleep(110);
+
+mipi_dsi_msleep()
+
+> +
+> +	/* Enable backlight */
+> +	mipi_dsi_dcs_write_long(&ctx, 0x9F, 0x5A, 0x5A);
+> +	mipi_dsi_dcs_set_display_on(dsi);
+
+_multi
+
+> +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_ENTER_NORMAL_MODE);
+
+_multi
+
+> +	mipi_dsi_dcs_write_long(&ctx, 0x9F, 0xA5, 0xA5);
+> +
+> +	return ctx.accum_err;
+> +}
+> +
+> +static int samsung_amb655x_off(struct samsung_amb655x *amb655x)
+> +{
+> +	struct mipi_dsi_device *dsi = amb655x->dsi;
+> +	struct mipi_dsi_multi_context ctx = { .dsi = dsi };
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	mipi_dsi_dcs_write_long(&ctx, 0x9f, 0x5a, 0x5a);
+> +
+> +	ret = mipi_dsi_dcs_set_display_on(dsi);
+
+_multi
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display on: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(20);
+
+mipi_dsi_msleep
+
+> +
+> +	ret = mipi_dsi_dcs_set_display_off(dsi);
+
+_multi
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display off: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(20);
+
+mipi_dsi_msleep
+> +
+> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+
+_multi
+
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	mipi_dsi_dcs_write_long(&ctx, 0x9f, 0xa5, 0xa5);
+> +	msleep(150);
+> +
+> +	return ctx.accum_err;
+> +}
+> +
+
 -- 
-2.45.2.741.gdbec12cfda-goog
-
+With best wishes
+Dmitry
 
