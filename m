@@ -1,92 +1,111 @@
-Return-Path: <devicetree+bounces-79214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB1E91460D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:18:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B52A914630
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 11:22:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58D531F210AB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:18:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADC8B1C20869
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 09:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4D5130492;
-	Mon, 24 Jun 2024 09:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87E8135A6C;
+	Mon, 24 Jun 2024 09:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="dQMmv2nS"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="fTTnRYee";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="KcZWrq+x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from wfout5-smtp.messagingengine.com (wfout5-smtp.messagingengine.com [64.147.123.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3116E18E29;
-	Mon, 24 Jun 2024 09:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22A2135A51;
+	Mon, 24 Jun 2024 09:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719220724; cv=none; b=bRY0x6KCovi4Oy1L7jW17dkuXGAWvOoHmAHU1nUdrlDVmJOERR6Uu0B7I7zuLBdbQJvahIQQE9+39Z8PLjV1BAe5Jdc0N0xBmCAQjVAd6gyVtm2EjRMMtt6r+GZsK8agT8dZz0EVnL0D4CS1oBtnHbdrZ3eV8xQgmwrQlzITk70=
+	t=1719220839; cv=none; b=VGqftYiJeiCyMj1M+NjCZbLxj4PhWnOmxMptXlZiUFRUxNaTVXsOti+T/o7c+FYfKvsZhQ6ZAd7rRB/Q5NKYsiafAWMlOzLEoKfxXak48858KKyFAiOz5fV4d8YlVs+Gx5FVCYkNgl32SqzL7rZ1XcV5KXQmWdXyoFXkru2bvak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719220724; c=relaxed/simple;
-	bh=8z0Me58ofAkCeMYK+RbmJRN1l1eSvoaq0OwoETOXuEI=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=ZnG3uKj+9SbIjBAkqgVIA3u/5/TkvGMnzh+cWslOIcOXg8spGjrsbb17HY8cLCrYJQJ6c7+Cyo4ahVq4h6K/+kDlJ+oX6zgTbKm5dR00FiJLSJblcEcoxZwih0JLqJpzu5/IxJTRmWwuTHlx8gYMn+P8Hsm6uZyJOZF3rn/c3gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=dQMmv2nS; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id B63739C3240;
-	Mon, 24 Jun 2024 05:18:39 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id HR5yBegFxqJ5; Mon, 24 Jun 2024 05:18:38 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 492A09C5B61;
-	Mon, 24 Jun 2024 05:18:38 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 492A09C5B61
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1719220718; bh=4JOrFwNYAzMjJc3yCOi7qIx5d2JoABbFOVFqt1WuodE=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=dQMmv2nSrtJBDMOLXfbnYdr0xEsQ+JPCN2ISsqaHfK0rFiK0iVxB7g3L69NRikKSF
-	 tFs9D3pn8s8IrJT0B8gBXrghZesBG0biCOcu54hq0wciU5P0mB0DqJzghiLCD4GHdP
-	 AMp+VJD/fXUB64TKqeZowTL1e2NWWAuHvxalaXKz4yMRxBqj6XRpaaeL019JzRMbrc
-	 Xt8NUIaDhSAFLqFQU9ufuJqullhXIzBF96BK6f0WwRh5+a+5XdxVEesD20tbVhIBld
-	 Lafq1lysngw69xaWD5/bUlPMWd5pYLunOPrmkZ7Vg8a9GBKgukkSz1IH2wvpn6Cm74
-	 c6Y3zVSYLCvIA==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id VquOXrQmnN-2; Mon, 24 Jun 2024 05:18:38 -0400 (EDT)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id E46679C3240;
-	Mon, 24 Jun 2024 05:18:37 -0400 (EDT)
-Date: Mon, 24 Jun 2024 05:18:37 -0400 (EDT)
-From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, 
-	Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
-	Takashi Iwai <tiwai@suse.com>, 
-	shengjiu wang <shengjiu.wang@gmail.com>, 
-	Xiubo Lee <Xiubo.Lee@gmail.com>, 
-	Nicolin Chen <nicoleotsuka@gmail.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	linux-sound <linux-sound@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, imx <imx@lists.linux.dev>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	alsa-devel <alsa-devel@alsa-project.org>, 
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
-	Philip-Dylan Gleonec <philip-dylan.gleonec@savoirfairelinux.com>
-Message-ID: <1048207382.1714780.1719220717882.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <42b32958-89ee-43b6-96d1-f3e18c7d8955@kernel.org>
-References: <20240620132511.4291-1-elinor.montmasson@savoirfairelinux.com> <20240620132511.4291-8-elinor.montmasson@savoirfairelinux.com> <17a0efe3-72fa-4d13-b3b0-90e6640308f3@kernel.org> <1566099232.1714447.1719219107779.JavaMail.zimbra@savoirfairelinux.com> <42b32958-89ee-43b6-96d1-f3e18c7d8955@kernel.org>
-Subject: Re: [PATCHv5 7/9] ASoC: dt-bindings: imx-audio-spdif: remove
- binding
+	s=arc-20240116; t=1719220839; c=relaxed/simple;
+	bh=sW9SQrbW5JnZk06M/S+/X1T80z64+P3/2u2YWrpgdCE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bG8gKgbDmufZdfQZx6ptbV8rUCadbNyXWFIV+Skk4UPaxfvJvISlXCQ684gP+BViMcEgX3//EsJM0cpxJDlTWz0IHVJUH95tk46JniSbtrg1HbitYOr8toR/J6lolmq24UorqjniN7eCzaqYBKlWeVPQTOP/J+qOwiUX7HBTloc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=fTTnRYee; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=KcZWrq+x; arc=none smtp.client-ip=64.147.123.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfout.west.internal (Postfix) with ESMTP id B76D71C000AF;
+	Mon, 24 Jun 2024 05:20:33 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 24 Jun 2024 05:20:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1719220833;
+	 x=1719307233; bh=37OfLm6VCPnaJmLAriLSXlifTiuF5IemwSKkKUym/Yc=; b=
+	fTTnRYee86mIIVMb69V9OiiihYcZXxZjHkavUHsk3hC2AaSlOuaBGaN++DDnLZrS
+	1SfuJvX0R1w7CpM2AI88qfRZi4+vm+28bjsbqAvaXScOymWyGfiM7YuSK2CYO9KD
+	K5LCX23rGhR8IR/iMUpA9UUYKq/zW4IlQ+01DpjkJ6kjvbOocRLgeBnwRIfNQ3ac
+	RPmp+xZUOqV+xs3NgnsqwWBibr6EEGLbirXTWZJRTivW2EYzMQ7neV963U0KiVr8
+	RMC7CqxQSPCnYx8OlHgCH1zjjBUVmhCQKLgcI51Lg39oz2sbWQC2jBQcTqIqW1HZ
+	46Lp23DLDHn7oZxNitZcDw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719220833; x=
+	1719307233; bh=37OfLm6VCPnaJmLAriLSXlifTiuF5IemwSKkKUym/Yc=; b=K
+	cZWrq+x9ukc3Orf64Ssa1ERXAWKD7zTR/NGvO57tL/D0Qg5tk1LXypz/Q24ktwZy
+	mWBaeCCYqJavk3P6tD924emUZG0K8gZJwTOLZ1qVmi2gyCKizdfFGVAFJsO8AgF0
+	FKtNa7EEjdSVXh8HqyGIt1Ac8wb4UUeB7iVsmG5ihwFNdNpGdjXiSPEAO0VnKahe
+	pSnL3x3LLdHlmq0pEZHmPwTZAZBaycnfhScb8JKo9z5bKsqiDC742bpCcUntrYqX
+	8SJHOYs+0ULA/XTP27ba8lGsP1KAHLA1QslkN7Zdw8WoLFrC17lgrRQ+KFJHWdzr
+	gfdmannJHWTN7ZCGpCeog==
+X-ME-Sender: <xms:YTp5ZoUAkSA35KaF1upLfdjVjJ5gOlSydCbhZlIgL1WE_bEMG6BKAg>
+    <xme:YTp5ZsnSxjy0bKCDcTphXjfNyJHmAZFX-YKp8cCF3e4_waOn5FX42AIZtxjQkcRoC
+    W46yF48PYLKiHlmUdE>
+X-ME-Received: <xmr:YTp5ZsattBis6e-8pmpcko0n7KzBF46UFX6AuAEZl1i7rG46UzZ0sc_xaQ15B2Yh9orGJPBpmoGBH5S8EesgIf2YRblevDA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeeguddgudehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhk
+    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
+    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeektedvvdev
+    jeeijeduffetjeffueeufffffeejfedvffetueevtdfffeetheektdenucffohhmrghinh
+    epvghmsggvugguvgguqdhrvggtihhpvghsrdhorhhgnecuvehluhhsthgvrhfuihiivgep
+    tdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhguod
+    hrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
+X-ME-Proxy: <xmx:YTp5ZnVNeQReKgUpoWjV8o_aSbPqkqnAPWUD04ss2z0khs3oIUccXw>
+    <xmx:YTp5ZindXP3j54d_Pxo4DwOd8ev2kF0pebTJZf3IYf5LGLT8ZROJlg>
+    <xmx:YTp5Zsec7z8FYuyvyooCm3ASFRufMMDcMzXFofvLkHtCJytPRNG1xg>
+    <xmx:YTp5ZkEc8gu4ch7b13PrKDcAVUv-rIU1PF2j9erT9ObRcV-jrJ-nZg>
+    <xmx:YTp5Zkdv0gOAlfZwvTw0-wAv2kO-i8g4lGw1hEQlETOT-YhIBXHWZyJ8>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 24 Jun 2024 05:20:32 -0400 (EDT)
+Date: Mon, 24 Jun 2024 11:20:29 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Conor Dooley <conor@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: renesas,vin: Add binding for
+ V4M
+Message-ID: <20240624092029.GB3655345@ragnatech.se>
+References: <20240619153559.1647957-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240619153559.1647957-2-niklas.soderlund+renesas@ragnatech.se>
+ <20240619-passage-iodine-9f944b26a30d@spud>
+ <20240619185607.GT382677@ragnatech.se>
+ <20240619204321.GU382677@ragnatech.se>
+ <20240620-gating-coherent-af984389b2d7@spud>
+ <20240620172237.GA3623951@ragnatech.se>
+ <CAMuHMdUaWMiQ_wrmX14uwkeU1D_55ehmJD8+GZ4eydWfw4Mi-Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,61 +113,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4581)
-Thread-Topic: ASoC: dt-bindings: imx-audio-spdif: remove binding
-Thread-Index: ewOgNpthlCv+G0hUX/mmtwgvLix7HA==
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdUaWMiQ_wrmX14uwkeU1D_55ehmJD8+GZ4eydWfw4Mi-Q@mail.gmail.com>
 
-From: "Krzysztof Kozlowski" <krzk@kernel.org>
-Sent: Monday, 24 June, 2024 10:55:31
-> On 24/06/2024 10:51, Elinor Montmasson wrote:
->> From: "Krzysztof Kozlowski" <krzk@kernel.org>
->> Sent: Sunday, 23 June, 2024 13:09:33
->>> On 20/06/2024 15:25, Elinor Montmasson wrote:
->>>> imx-audio-spdif was merged into the fsl-asoc-card driver, and therefore
->>>> removed.
->>>
->>> So what happens with all existing users (e.g. DTS)? They become
->>> invalid/not supported?
->> 
->> 
->> Next commits, 8/9 and 9/9, update all DTS files that currently use
->> the "fsl,imx-audio-spdif" compatible.
+Hi Conor,
+
+On 2024-06-21 09:21:24 +0200, Geert Uytterhoeven wrote:
+> Hi Niklas,
 > 
-> You mean in-tree. I mean all users, in- and out-of-tree. Other projects.
-
-Oh you're right
-
->> From the users point of view, currently configured spdif audio cards
->> will behave just the same.
->> 
->> 
->>> After quick look, I do not see backwards compatibility in the driver and
->>> above commit msg tells me nothing about ABI break.
->> 
->> 
->> For the next version I will state in this commit message the upcoming
->> modifications to DTS
->> and compatibility, why it will be done, and that support for existing DTS is not
->> dropped.
->> 
->> Previous `imx-spdif` driver used the dummy codec instead of
->> using declared spdif codecs. It was discussed in previous version of this
->> contribution
->> that using the dummy codec isn't good practice. So one to one backward
->> compatibility
->> isn't really possible.
+> On Thu, Jun 20, 2024 at 7:22 PM Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > On 2024-06-20 17:27:00 +0100, Conor Dooley wrote:
+> > > > +      - items:
+> > > > +          - enum:
+> > > >                - renesas,vin-r8a779g0 # R-Car V4H
+> > > > +              - renesas,vin-r8a779h0 # R-Car V4M
+> > > > +          - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
+> > > >
+> > > > If so I can see that working as I could still fix any issues that come
+> > > > from differences between V4H and V4M if needed. If so do you think it
+> > > > best to add this in two different patches? One to add the
+> > > > renesas,rcar-gen4-vin fallback (which will also need DTS updates to fix
+> > > > warnings from exciting users of V4H not listing the gen4 fallback) and
+> > > > one to add V4M?
+> > >
+> > >
+> > > I would just do:
+> > > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > index 5539d0f8e74d..22bbad42fc03 100644
+> > > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > > @@ -54,6 +54,9 @@ properties:
+> > >                - renesas,vin-r8a77995 # R-Car D3
+> > >                - renesas,vin-r8a779a0 # R-Car V3U
+> > >                - renesas,vin-r8a779g0 # R-Car V4H
+> > > +      - items:
+> > > +          - const: renesas,vin-r8a779h0 # R-Car V4L2
+> > > +          - const: renesas,vin-r8a779g0 # R-Car V4H
+> >
+> > @Geert: What do you think about this? This would be a first use-case for
+> > compatibles crossing SoC DTS files that I know of. I'm a bit uneasy
+> > going down this road.
 > 
-> Heh, that's not good. This is improvement, cleanup. While it is
-> important and useful, it should also not break existing users.
+> Me too ;-)
+> 
+> > Would this not also effect the existing users of renesas,vin-r8a779g0
+> > which would now need something similar to what you propose below with a
+> > list of SoC compatibles and a fallback.
+> >
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > >
+> > > Which requires no driver or dts changes. That could become:
+> > >       - items:
+> > >           - enum:
+> > >               - renesas,vin-r8a779h0 # R-Car V4L2
+> > >               - renesas,vin-r8a779i0 # R-Car R4P17
+> > >           - const: renesas,vin-r8a779g0 # R-Car V4H
+> >
+> > FWIW, on Gen2 where fallback es where useful compared to Gen3 we did
+> > this with "renesas,rcar-gen2-vin".
+> 
+> We do know there are differences (albeit probably small) among the R-Car
+> Gen4 VIN implementations, so I am reluctant to add a family-specific
+> compatible value.  Typically we only use a family-specific compatible
+> value if the IP cores are known (or better, assumed ;-) to be identical.
+> 
+> And sometimes our assumptions turn out to be wrong...
+> See slides 25-33 (last two for the numbers) of my talk at ER2019
+> https://embedded-recipes.org/2019/talks/herd-your-socs-become-a-matchmaker/
 
+Do Geert's slides help to explain the R-Car perspective on why a 
+family-specific fallback compatible might not be desirable, and why the 
+SoC specific one is proposed? 
 
-Should I introduce then the use of the dummy codec in `fsl-asoc-card` to
-assure backward compatibility at least for a time ?
-With maybe warning messages in code to indicate that spdif codecs drivers
-should be declared and used in the future ?
-
-
-Best regards,
-Elinor Montmasson
+-- 
+Kind Regards,
+Niklas Söderlund
 
