@@ -1,260 +1,315 @@
-Return-Path: <devicetree+bounces-79430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07E2E9153E8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:33:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8422F9153F7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 18:34:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B01F3286ABA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:33:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A61B71C22EE2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jun 2024 16:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB38619DF93;
-	Mon, 24 Jun 2024 16:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6BFE19E7DE;
+	Mon, 24 Jun 2024 16:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gBghK/v9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BZ1FBJ+d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E7119DF84
-	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 16:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5717519E7D4
+	for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 16:33:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719246802; cv=none; b=hN9QVyaT6AgsaiwKcAeaakxYdj1aXp2y2GBd6F2BdUyBETrvrHwdLdjg+Tny/un2T4p9wQ1rGK/0BclpLLjduk1Vhm4YUeGCstOSGDpFFHWKVOABERU9No1N8MBjI+pTsoeZOGZt6rul5Qty8nfgpa3nOOgflEySCQliAgCgJik=
+	t=1719246837; cv=none; b=ii0mBzW+P1qKWXkKybJcF0Iwoe7L9ewrJDqY19gVqW37JSrougy4ZTj+6PeC1GW6hkynoTbLmULIOoT9Hj5tjUEqpBuYdyBaDlfrZVGQNo8fhmmg83n1KhbfOSM8ARv8wGBWrfqimCq0PP/AEW0gpINWxA7cEyyVyWzzk1gH1HM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719246802; c=relaxed/simple;
-	bh=dw+lzWNyQHqSYe5A61ozjs3tY/hYPkWhexWQJPWeyQA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KiXHLsNckVERS2YVeY03ssfcSowrOPdEmLhMK3/h9umwJfB271tCdujDeuOPxW/UouQkNeIT3Yu6pcGNJHJCOtddB8Yo8w97dtVmHBRQZmiL/OeRJcfq6M8Eg2Bg0Ik+/BIr/K9WIBOYyZQo+L8FiI/TPPpOacRoHhKYiis/D5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gBghK/v9; arc=none smtp.client-ip=209.85.219.178
+	s=arc-20240116; t=1719246837; c=relaxed/simple;
+	bh=ePLTU3MVmoYysngJOsWhUdOR/IkiiLLf0YE6F/whMG8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=B7/cLYqaI0kQZDyzTSW7IIApl+rG2tVFJMpswul9TBP9CbPQW57pk2m+0JfFHdzdYRVy4wQjpDK8+dS+tTvVgBnI//kEpEcrvlAl6nByIGr/8oS3w7ffXaoAiPtSGZkwLqJymFZ5wwJ25ldbr6s6vs+lBE1wQzszSIJJQ5L1jSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BZ1FBJ+d; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dfb05bcc50dso3940040276.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 09:33:20 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4230366ad7bso49990035e9.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 09:33:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719246799; x=1719851599; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GUwpeaNUdZ/Eg74Mr1NNiwSTPXp+vSE1N8cO2JJRSw8=;
-        b=gBghK/v9qoRR5FxKHv01iskMEQxSLpP3NLrEM8d7svy4EtylbGpbd/UXxKfr4NwQjH
-         vL6dE87vbtAAtt3XxKDi+qjrvNba/G8HoVkx6m3qKNl8F1i/ArO8har/C+s7nwvNyryT
-         Jso/mKNPHAR4v8Rv3+XIvKcIX3Cme3iSP0B5QgvVPm3qHwXzsKMjIXmN0AG9WYadIPnp
-         ER/puSf2SD7+iAZt7g/i8sPCtPsKXEtHIAPXBlrD0FtlDs6Y0K/q2pHDGhjHIVhKDlRO
-         dxHka5oPKT2sCsxKplDmAV639nnCGrHPO4rz4daw+/XiyXEWGbfchI+hm3095IjdySz2
-         ek6A==
+        d=linaro.org; s=google; t=1719246833; x=1719851633; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wPB8AEXrk7JwEaJcT35joxIm2q6uTszDlsxeaOMhunQ=;
+        b=BZ1FBJ+diHtsu4FKfuuOAYgBEO2Z74kwQcW6bvP2YZU8K5ptRJ7Koi9jU2FJ7mDrIS
+         72IFxi5XSOKnxr8VzXr0UzoxU/qHvpQv9t+P7gjsjNs9bHkIqr8M8JcMKYgIjddY1/2y
+         XooiQfa1kTzEvUAu81pUWpUy5PJJkJxJFHWEikJWzWrcACmoV+cN2yR5ym8NQNOPzTTN
+         2+GF4TbKLUBUb+z31IKolvSFg6PZkfkLBzIF058bc+6LeJKKlsYrH0HqO2mAZ99uiAAC
+         8rcU3Nrv1r7/Pae6V1pEBapiWE/UE/INnBfMvC1LhdDgYjkDKHVO9crsM1mdYnHemM2s
+         ZycQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719246799; x=1719851599;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GUwpeaNUdZ/Eg74Mr1NNiwSTPXp+vSE1N8cO2JJRSw8=;
-        b=tHVIsk3DE87MAlQF5BvNQUFQx46eOCE05M9PnlvkaCOHmn+hqOhMP1ZoQm3HfAhosU
-         H4+pJbniAk4dmJ78ebb0TjmghZETqIGcsBZyiCq9XuVwn4JdaYudoR8Z20PbnCWEcUQj
-         gYi8UzSNtg6TbpcbS+NlI9bwLD4GPw0nHSzft0Z0GzQxvrzxBgNWKtZhyPwpCoTFQSDK
-         9LI7Yv15RGMC+eKUK2Z6avqKOCdzRnm1WqovD0U9osVgR3ghIuHyMvOATb4E6gRvxo+t
-         9M5pIe4sQWnpwJhRH6/ypv0/e3wbrl+vSJS+lXowP7JXiUWhzX/PbsdzCjmGujOfsiD2
-         9arA==
-X-Forwarded-Encrypted: i=1; AJvYcCUwbN4Hz9KH1o0MvVnh4j0KNi9lBxwRM7V/I2vaPMyKB7QMuuswmMd7bTEP60ajX7REceeDqplSFIOQVNYo9LjtV7DznA8FeEs04A==
-X-Gm-Message-State: AOJu0Yyq6XhDWkMAikX6QN6T/4oQ0juIdDDpa7PHwPFciKUOnHKn0bWw
-	EgmwpMlD6tSuk6hh6PnXdS91+OmfxHj3X/1YFh/Ag40Hp6tQ9s9ZtrKzgqxWGOunDlspwMPdVTI
-	Vq8ziGkJDhBIgchYH+tJavjp3J97qpNMkfLxBVg==
-X-Google-Smtp-Source: AGHT+IGsIHX1h777STxuAZY31c+MOswbbakLfpx8XYYTWe0uWHoumP4q/sTkA3EgMHwZ+5QbasMECc9ZR7Ny0JU6I5Y=
-X-Received: by 2002:a25:a041:0:b0:e02:ab25:44aa with SMTP id
- 3f1490d57ef6-e0303fc108bmr4211387276.47.1719246799196; Mon, 24 Jun 2024
- 09:33:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719246833; x=1719851633;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wPB8AEXrk7JwEaJcT35joxIm2q6uTszDlsxeaOMhunQ=;
+        b=iprj8GfI6lUvmlKV4wIm7aB49zy6hoVnIhYT0iYZWB504dGFjVJP2TJ+7JxtTurY7H
+         ZDId5Rt4DQQgRgz+Stva5CfZKCLiEOp4FW/pKanTTSN7JuMJ4O9gkRe4c/D5/Ps7uAa0
+         Wp1Tq1xBJO/E0kg0yEfzoymi2ThO7ljSZVHn+kOYgzd6zffFl2l4gPRorZMFWLYDbvlX
+         wtsy7pEiGS6e+Dl9GaFIFnWhSI7KviNhV0DH1pGq1NV/aOrNsUIipL3O3wIrD6J5SIFp
+         6HmlG5AkLVkdCjnYFKtln+8yVgwjcJzfsrzDhnefdxnZCXUeBPzGhSX8f6M2rmNvwuQ2
+         9uhg==
+X-Forwarded-Encrypted: i=1; AJvYcCWv40zsTnP+qyN0zi/0w7oww1VZKyvM6oJgzzGzMlR0rdMze/ZDpFbhHFqL9rt7jADxxqrQ2mQ0OYnMxnFjeCAPFADpdzHZDWpFqA==
+X-Gm-Message-State: AOJu0YzmzEn8yY65XhRxzeoq27URIkIh/3n8NESlzWpQ5SWkHOFW2Pz3
+	E2Ty21KULY+Y6be4nxdgkj9mdkRhNyeChqShzZpVT+ykss6uQUSvcxx6JcE4jCA=
+X-Google-Smtp-Source: AGHT+IH6aHHAbz234y/LW0+FZWOgpjse2wJCMDlHm5Bpni+PpOamfKNE1xxUNOAddUF+INn4Tv6ruw==
+X-Received: by 2002:a05:600c:354f:b0:424:798a:f803 with SMTP id 5b1f17b1804b1-4248cc586f7mr42319465e9.30.1719246833492;
+        Mon, 24 Jun 2024 09:33:53 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4247d0c5179sm177636375e9.26.2024.06.24.09.33.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jun 2024 09:33:52 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Date: Mon, 24 Jun 2024 17:33:41 +0100
+Subject: [PATCH] arm64: dts: qcom: x1e80100-qcp: add audio support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624141926.5250-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240624141926.5250-4-lvzhaoxiong@huaqin.corp-partner.google.com>
- <zvkl2wyqp3iem4ln4qkbhgvxafsfn5wkkmqwhufabm2gqs3eqw@vmqs3lx72ekk> <CAD=FV=V9tjY-g=w1Dwj+9oiTWfku8Bt48OUPJqYUqZaJrY8C1Q@mail.gmail.com>
-In-Reply-To: <CAD=FV=V9tjY-g=w1Dwj+9oiTWfku8Bt48OUPJqYUqZaJrY8C1Q@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 24 Jun 2024 19:33:06 +0300
-Message-ID: <CAA8EJprQD2_yL95wX5S5Gp-Fb-JdwdB3gKNC9VUZtmaaier6VQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/5] drm/panel: panel-jadard-jd9365da-h3: use wrapped
- MIPI DCS functions
-To: Doug Anderson <dianders@google.com>
-Cc: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>, dmitry.torokhov@gmail.com, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jikos@kernel.org, benjamin.tissoires@redhat.co, hsinyi@google.com, 
-	jagan@edgeble.ai, neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240624-qcp-audio-v1-1-323a6b5e1fe5@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAOSfeWYC/x2NQQ6CQAxFr0K6tglOihqvYlwMbZEunIGOGhLC3
+ R1Yvvz381Yo6qYF7s0Krj8rllOF86kBHmN6KZpUhtAGai+BcOYJ41csowgF4quQdjeofh+LYu8
+ x8bg/Zs5vHLJj0uWz75PrYMvRejy37Q9Lq67eewAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4810;
+ i=srinivas.kandagatla@linaro.org; h=from:subject:message-id;
+ bh=ePLTU3MVmoYysngJOsWhUdOR/IkiiLLf0YE6F/whMG8=;
+ b=owEBbQGS/pANAwAKAXqh/VnHNFU3AcsmYgBmeZ/w0SYAwP1bn1baA4OosqYp1rsFUYRiDgylo
+ /pEOKZFvwaJATMEAAEKAB0WIQQi509axvzi9vce3Y16of1ZxzRVNwUCZnmf8AAKCRB6of1ZxzRV
+ N3ehB/4gGk4RmImocaqA2JjLsDWZT0MqnyPqT0cRzlL9rXXJ7kYZjhP9bY/HKzi1JFSuaLBFM4z
+ 8BKJgndZ9MUKf0wvkVOA5+B8+jzcwPt1HUv10ANE55KLRL755To/6SASUTTZ/Rkk3zRxJsmm3gA
+ ouaTk32WimG3jPD/5sssGAf60qiRdB6STOMes1gicrZEFOoHun/3OVzduH84B3bW2ODCmRR5urV
+ GZqvmfBm44A60/nYbi30SWsWgkNxCi8mQHe3oEXdoeYzAo/SAgZePwfhsgeHls7ifoZiKm73JqH
+ gmvkONPp3HwU2OEPmGlb26+oEBT3ng1ug1lHNx1Gh9jDOFSW
+X-Developer-Key: i=srinivas.kandagatla@linaro.org; a=openpgp;
+ fpr=ED6472765AB36EC43B3EF97AD77E3FC0562560D6
 
-On Mon, 24 Jun 2024 at 19:31, Doug Anderson <dianders@google.com> wrote:
->
-> Hi,
->
-> On Mon, Jun 24, 2024 at 8:27=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Mon, Jun 24, 2024 at 10:19:24PM GMT, Zhaoxiong Lv wrote:
-> > > Remove conditional code and always use mipi_dsi_dcs_*multi() wrappers=
- to
-> > > simplify driver's init/enable/exit code.
-> > >
-> > > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.c=
-om>
-> > > ---
-> > >  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 793 +++++++++-------=
---
-> > >  1 file changed, 390 insertions(+), 403 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drive=
-rs/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> > > index a9c483a7b3fa..e836260338bf 100644
-> > > --- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> > > +++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-> > > @@ -19,17 +19,13 @@
-> > >  #include <linux/of.h>
-> > >  #include <linux/regulator/consumer.h>
-> > >
-> > > -#define JD9365DA_INIT_CMD_LEN                2
-> > > -
-> > > -struct jadard_init_cmd {
-> > > -     u8 data[JD9365DA_INIT_CMD_LEN];
-> > > -};
-> > > +struct jadard;
-> > >
-> > >  struct jadard_panel_desc {
-> > >       const struct drm_display_mode mode;
-> > >       unsigned int lanes;
-> > >       enum mipi_dsi_pixel_format format;
-> > > -     const struct jadard_init_cmd *init_cmds;
-> > > +     int (*init)(struct jadard *jadard);
-> > >       u32 num_init_cmds;
-> > >  };
-> > >
-> > > @@ -50,46 +46,33 @@ static inline struct jadard *panel_to_jadard(stru=
-ct drm_panel *panel)
-> > >
-> > >  static int jadard_enable(struct drm_panel *panel)
-> > >  {
-> > > -     struct device *dev =3D panel->dev;
-> > >       struct jadard *jadard =3D panel_to_jadard(panel);
-> > > -     struct mipi_dsi_device *dsi =3D jadard->dsi;
-> > > -     int err;
-> > > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->ds=
-i };
-> > >
-> > >       msleep(120);
-> > >
-> > > -     err =3D mipi_dsi_dcs_exit_sleep_mode(dsi);
-> > > -     if (err < 0)
-> > > -             DRM_DEV_ERROR(dev, "failed to exit sleep mode ret =3D %=
-d\n", err);
-> > > +     mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> > >
-> > > -     err =3D  mipi_dsi_dcs_set_display_on(dsi);
-> > > -     if (err < 0)
-> > > -             DRM_DEV_ERROR(dev, "failed to set display on ret =3D %d=
-\n", err);
-> > > +     mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> > >
-> > > -     return 0;
-> > > +     return dsi_ctx.accum_err;
-> > >  }
-> > >
-> > >  static int jadard_disable(struct drm_panel *panel)
-> > >  {
-> > > -     struct device *dev =3D panel->dev;
-> > >       struct jadard *jadard =3D panel_to_jadard(panel);
-> > > -     int ret;
-> > > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->ds=
-i };
-> > >
-> > > -     ret =3D mipi_dsi_dcs_set_display_off(jadard->dsi);
-> > > -     if (ret < 0)
-> > > -             DRM_DEV_ERROR(dev, "failed to set display off: %d\n", r=
-et);
-> > > +     mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-> > >
-> > > -     ret =3D mipi_dsi_dcs_enter_sleep_mode(jadard->dsi);
-> > > -     if (ret < 0)
-> > > -             DRM_DEV_ERROR(dev, "failed to enter sleep mode: %d\n", =
-ret);
-> > > +     mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-> > >
-> > > -     return 0;
-> > > +     return dsi_ctx.accum_err;
-> > >  }
-> > >
-> > >  static int jadard_prepare(struct drm_panel *panel)
-> > >  {
-> > >       struct jadard *jadard =3D panel_to_jadard(panel);
-> > > -     const struct jadard_panel_desc *desc =3D jadard->desc;
-> > > -     unsigned int i;
-> > >       int ret;
-> > >
-> > >       ret =3D regulator_enable(jadard->vccio);
-> > > @@ -109,13 +92,9 @@ static int jadard_prepare(struct drm_panel *panel=
-)
-> > >       gpiod_set_value(jadard->reset, 1);
-> > >       msleep(130);
-> > >
-> > > -     for (i =3D 0; i < desc->num_init_cmds; i++) {
-> > > -             const struct jadard_init_cmd *cmd =3D &desc->init_cmds[=
-i];
-> > > -
-> > > -             ret =3D mipi_dsi_dcs_write_buffer(dsi, cmd->data, JD936=
-5DA_INIT_CMD_LEN);
-> >
-> > This function usesd mipi_dsi_dcs_write_buffer()...
-> >
-> > > -             if (ret < 0)
-> > > -                     return ret;
-> > > -     }
-> > > +     ret =3D jadard->desc->init(jadard);
-> > > +     if (ret)
-> > > +             return ret;
-> > >
-> > >       return 0;
-> >
-> > [...]
-> >
-> > > +static int radxa_display_8hd_ad002_init_cmds(struct jadard *jadard)
-> > > +{
-> > > +     struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D jadard->ds=
-i };
-> > > +
-> > > +     mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xE0, 0x00);
-> >
-> > ... while your code uses mipi_dsi_dcs_write_seq_multi(), which
-> > internally calls mipi_dsi_generic_write_multi(). These two function use
-> > different packet types to send the payload. To be conservatite, please
-> > use mipi_dsi_dcs_write_buffer_multi().
->
-> Are you certain about this? I see that mipi_dsi_dcs_write_seq_multi()
-> is just a wrapper on mipi_dsi_dcs_write_buffer_multi(). Specifically,
-> I see:
+Add audio support to QCP platform which includes 2 x Speakers
+Headset Mic and Headset support.
 
-I see, I was looking at mipi_dsi_generic_write_seq_multi() instead.
-Please excuse me.
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 155 ++++++++++++++++++++++++++++++
+ 1 file changed, 155 insertions(+)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+index b045b7bac9e0..02d30c0ada80 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+@@ -19,6 +19,32 @@ aliases {
+ 		serial0 = &uart21;
+ 	};
+ 
++	wcd938x: audio-codec {
++		compatible = "qcom,wcd9385-codec";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&wcd_default>;
++
++		qcom,micbias1-microvolt = <1800000>;
++		qcom,micbias2-microvolt = <1800000>;
++		qcom,micbias3-microvolt = <1800000>;
++		qcom,micbias4-microvolt = <1800000>;
++		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
++		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
++		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
++		qcom,rx-device = <&wcd_rx>;
++		qcom,tx-device = <&wcd_tx>;
++
++		reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
++
++		vdd-buck-supply = <&vreg_l15b_1p8>;
++		vdd-rxtx-supply = <&vreg_l15b_1p8>;
++		vdd-io-supply = <&vreg_l15b_1p8>;
++		vdd-mic-bias-supply = <&vreg_bob1>;
++
++		#sound-dai-cells = <1>;
++	};
++
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+@@ -127,6 +153,66 @@ linux,cma {
+ 		};
+ 	};
+ 
++	sound {
++		compatible = "qcom,x1e80100-sndcard";
++		model = "X1E80100-QCP";
++		audio-routing = "SpkrLeft IN", "WSA WSA_SPK1 OUT",
++				"SpkrRight IN", "WSA WSA_SPK2 OUT",
++				"IN1_HPHL", "HPHL_OUT",
++				"IN2_HPHR", "HPHR_OUT",
++				"AMIC2", "MIC BIAS2",
++				"TX SWR_INPUT1", "ADC2_OUTPUT";
++
++		wcd-playback-dai-link {
++			link-name = "WCD Playback";
++
++			cpu {
++				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
++			};
++
++			codec {
++				sound-dai = <&wcd938x 0>, <&swr1 0>, <&lpass_rxmacro 0>;
++			};
++
++			platform {
++				sound-dai = <&q6apm>;
++			};
++		};
++
++		wcd-capture-dai-link {
++			link-name = "WCD Capture";
++
++			cpu {
++				sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
++			};
++
++			codec {
++				sound-dai = <&wcd938x 1>, <&swr2 1>, <&lpass_txmacro 0>;
++			};
++
++			platform {
++				sound-dai = <&q6apm>;
++			};
++		};
++
++		wsa-dai-link {
++			link-name = "WSA Playback";
++
++			cpu {
++				sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
++			};
++
++			codec {
++				sound-dai = <&left_spkr>, <&right_spkr>,
++					    <&swr0 0>, <&lpass_wsamacro 0>;
++			};
++
++			platform {
++				sound-dai = <&q6apm>;
++			};
++		};
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 
+@@ -520,6 +606,16 @@ vreg_l3j_0p8: ldo3 {
+ 	};
+ };
+ 
++&lpass_tlmm {
++	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
++		pins = "gpio12";
++		function = "gpio";
++		drive-strength = <16>;
++		bias-disable;
++		output-low;
++	};
++};
++
+ &mdss {
+ 	status = "okay";
+ };
+@@ -638,6 +734,57 @@ &smb2360_2_eusb2_repeater {
+ 	vdd3-supply = <&vreg_l8b_3p0>;
+ };
+ 
++&swr0 {
++	status = "okay";
++
++	pinctrl-0 = <&wsa_swr_active>, <&spkr_01_sd_n_active>;
++	pinctrl-names = "default";
++
++	/* WSA8845, Left Speaker */
++	left_spkr: speaker@0,0 {
++		compatible = "sdw20217020400";
++		reg = <0 0>;
++		#sound-dai-cells = <0>;
++		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
++		sound-name-prefix = "SpkrLeft";
++		vdd-1p8-supply = <&vreg_l15b_1p8>;
++		vdd-io-supply = <&vreg_l12b_1p2>;
++	};
++
++	/* WSA8845, Right Speaker */
++	right_spkr: speaker@0,1 {
++		compatible = "sdw20217020400";
++		reg = <0 1>;
++		#sound-dai-cells = <0>;
++		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
++		sound-name-prefix = "SpkrRight";
++		vdd-1p8-supply = <&vreg_l15b_1p8>;
++		vdd-io-supply = <&vreg_l12b_1p2>;
++	};
++};
++
++&swr1 {
++	status = "okay";
++
++	/* WCD9385 RX */
++	wcd_rx: codec@0,4 {
++		compatible = "sdw20217010d00";
++		reg = <0 4>;
++		qcom,rx-port-mapping = <1 2 3 4 5>;
++	};
++};
++
++&swr2 {
++	status = "okay";
++
++	/* WCD9385 TX */
++	wcd_tx: codec@0,3 {
++		compatible = "sdw20217010d00";
++		reg = <0 3>;
++		qcom,tx-port-mapping = <2 2 3 4>;
++	};
++};
++
+ &tlmm {
+ 	gpio-reserved-ranges = <33 3>, /* Unused */
+ 			       <44 4>, /* SPI (TPM) */
+@@ -679,6 +826,14 @@ wake-n-pins {
+ 		       bias-pull-up;
+ 	       };
+ 	};
++
++	wcd_default: wcd-reset-n-active-state {
++		pins = "gpio191";
++		function = "gpio";
++		drive-strength = <16>;
++		bias-disable;
++		output-low;
++	};
+ };
+ 
+ &uart21 {
 
->
-> #define mipi_dsi_dcs_write_seq_multi(ctx, cmd, seq...)                  \
->   do {                                                            \
->     static const u8 d[] =3D { cmd, seq };                     \
->     mipi_dsi_dcs_write_buffer_multi(ctx, d, ARRAY_SIZE(d)); \
->   } while (0)
->
-> Certainly I could be confused...
->
+---
+base-commit: 781025f172e19ca5682d7bfc5243e7aa74c4977f
+change-id: 20240624-qcp-audio-dd424c7d4e58
 
+Best regards,
+-- 
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-
---=20
-With best wishes
-Dmitry
 
