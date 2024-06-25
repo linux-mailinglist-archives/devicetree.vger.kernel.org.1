@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-79738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DA491692B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 15:40:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1347C91693E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 15:44:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9954C1F28946
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 13:40:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFEA6286703
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 13:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF8D15FCE9;
-	Tue, 25 Jun 2024 13:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7971667DA;
+	Tue, 25 Jun 2024 13:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rlLSLdq3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ha33VICF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC35158A00;
-	Tue, 25 Jun 2024 13:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BCCB161915;
+	Tue, 25 Jun 2024 13:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719322846; cv=none; b=ioDRk43B4JRjt68vpgK6pIqIVcw8adF6Qyv6/UE36hLHK+V7TMnKI8JqK7OywpNyIn7u1VI44CD1Zr02knk1RI14tS1Cc+ykCw6CxoiHeWcgZXMVmc5o2zFXMVH5c8PQSV8L8qg9QidISE3ckQ1IavJorZ5U0SgPHXZAO7wloCI=
+	t=1719323050; cv=none; b=kuUigrhzQ7viE+20hNFw5dokREgfW9KmQJSIPiU/yHXlG/hLJxUrKwUUOzo0KB7W64T9dsQepsEJER2yWvsYVH0UhJonyHpDUlpswv+obZqSAF2+2cVVxxuzRYWtQ9htORz6IFHKjj7gpMAnEvhFat+Iaz2SSwMwx24zkPMDuLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719322846; c=relaxed/simple;
-	bh=qqL9H/PknuuatuNzziRQ+FebZ99lyT6kuZqHItV5Ww4=;
+	s=arc-20240116; t=1719323050; c=relaxed/simple;
+	bh=qQWHcYlUDLhXU8vkBrdqxz/UtKXK1E/0XxX62Qh+A5c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f04Wuq/S+toSgELV522YvqeVir0IJJDEVyfooY65gIvWkhvlYLYKnT6QRs8KmpTgnsHqYHCjNES4ttrKil2Q8XSRGFp+EDGV1sEeuLO31I0Ekvl2Qu8LYLpL4BVBkyyt5gbb9KpvhXrZQ7E015uujXFBvRouWAi/MtXpKEl88Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rlLSLdq3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64798C32781;
-	Tue, 25 Jun 2024 13:40:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JeWgV8ypTs8SeRbGFJCsW2lJhSkpu0ptsDSadq10KrW6G/QMPk22KkbHktWnkA2gWYxOVq4+W79KsyIZHJ36gXnNdUN30LeFqFLJSnPUzBIdarDuk0IVePm/ZwcfzDdMd1j/rWi2pwGFsauq/Fkvi7c7BSkc6Af70QzQVoIN7XA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ha33VICF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA04BC32786;
+	Tue, 25 Jun 2024 13:44:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719322845;
-	bh=qqL9H/PknuuatuNzziRQ+FebZ99lyT6kuZqHItV5Ww4=;
+	s=k20201202; t=1719323049;
+	bh=qQWHcYlUDLhXU8vkBrdqxz/UtKXK1E/0XxX62Qh+A5c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rlLSLdq3twIEHLzTSuumicRspbGsq/HY45vpRM5l1iDd42JNHj/JPRXVsNTG6i9nE
-	 VjMgEFYUWIq+H5aVURxEHilrCoRuIDNwUhaJUPJsE5E3cb4keNM5X7FDC1sqPC5sxa
-	 iMmnvY4WRB17y67/vZVdnV2y9FR+9lGOm+495pytrGeU0Hn4OyyXURhdrTSaykp+Z9
-	 G3b8yv0EM2ZKqarIqJ1cXDqzKJfcpbVMRA9ng0L3ot0yNuBAxwFH+UFKb88r6wiXFY
-	 msm+Sz+SCqFAAN2GAwnJ76RpudNLrSLhhTR2lpWI11KP25rwIjkhHlMhr0MiDPxDNT
-	 S2ysIKZOzcWNg==
-Message-ID: <61c1eb8b-b8fd-4e9e-b0fc-27ce1c2eb2b1@kernel.org>
-Date: Tue, 25 Jun 2024 15:40:39 +0200
+	b=ha33VICFx8Cl6rQrGCxAALxVpGPzCRJMpS4FzY6a94Ws0zp+ey1rwAV/Hr65ShuAD
+	 G7qV7JNjQPDrKi/HgcO02Tkfl+XqQlhkbOxrDkZOTs88pA2Huw9TH+VVSZXShbKfky
+	 OTbtY7X3e99NXlY20Hu08LwMzFDBzF0rfoocpTqTyMWAa/8uNdqbKh6ub9VFhxBy4o
+	 +RvXHoY+bTvJq3HOgp+8GnK7bkarCXmuEI7PxztysV7edk1/sEJDe02WZZLVY9K+dV
+	 UWeUKIwKnrtKEn1TQXHiK434fS2FNmqHjv9+aA9SeCE9w+h6+UXsuNdpfsL3oOHn18
+	 YkxEQR0hPFA9w==
+Message-ID: <5c9ab5bf-95f2-4195-8797-335010223aac@kernel.org>
+Date: Tue, 25 Jun 2024 15:44:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] clk: imx93: Drop macro IMX93_CLK_END
-To: Pengfei Li <pengfei.li_1@nxp.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, abelvesa@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, ping.bai@nxp.com,
- ye.li@nxp.com, peng.fan@nxp.com, aisheng.dong@nxp.com, frank.li@nxp.com,
- kernel@pengutronix.de, festevam@gmail.com, linux-clk@vger.kernel.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240625175147.94985-1-pengfei.li_1@nxp.com>
- <20240625175147.94985-2-pengfei.li_1@nxp.com>
- <39bcab8b-ed9c-4da9-b1ee-32dbfb2a23a4@kernel.org>
- <ZnqfIudepX4sH4oL@pengfei-OptiPlex-Tower-Plus-7010>
+Subject: Re: [PATCH v6 03/16] dt-bindings: mfd: mediatek: Add codec property
+ for MT6357 PMIC
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v6-0-f754ec1a7634@baylibre.com>
+ <20240226-audio-i350-v6-3-f754ec1a7634@baylibre.com>
+ <cd190d35-1658-43d8-9606-5e73257bbf3a@linaro.org>
+ <95bab90f-b196-4e79-bb88-7fd534cca721@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,96 +119,68 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZnqfIudepX4sH4oL@pengfei-OptiPlex-Tower-Plus-7010>
+In-Reply-To: <95bab90f-b196-4e79-bb88-7fd534cca721@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/06/2024 12:43, Pengfei Li wrote:
-> On Tue, Jun 25, 2024 at 09:44:42AM +0200, Krzysztof Kozlowski wrote:
->> On 25/06/2024 19:51, Pengfei Li wrote:
->>> IMX93_CLK_END was previously defined in imx93-clock.h to
->>> indicate the number of clocks, but it is not part of the
->>> ABI, so it should be dropped.
+On 25/06/2024 11:23, Alexandre Mergnat wrote:
+> 
+> 
+> On 21/06/2024 17:00, Krzysztof Kozlowski wrote:
+>> On 19/06/2024 16:46, Alexandre Mergnat wrote:
+>>> Add the audio codec sub-device. This sub-device is used to set the
+>>> optional voltage values according to the hardware.
+>>> The properties are:
+>>>    - Setup of microphone bias voltage.
+>>>    - Setup of the speaker pin pull-down.
 >>>
->>> Now, the driver gets the number of clks by querying the
->>> maximum index in the clk array. Due to the discontinuity
->>> in the definition of clk index, with some gaps present,
->>> the total count cannot be obtained by summing the array
->>> size.
+>>> Also, add the audio power supply property which is dedicated for
+>>> the audio codec sub-device.
 >>>
->>> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
+>>> Signed-off-by: Alexandre Mergnat<amergnat@baylibre.com>
 >>> ---
->>>  drivers/clk/imx/clk-imx93.c | 25 +++++++++++++++++++++----
->>>  1 file changed, 21 insertions(+), 4 deletions(-)
+>>>   .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 33 ++++++++++++++++++++++
+>>>   1 file changed, 33 insertions(+)
 >>>
->>> diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
->>> index c6a9bc8ecc1f..68c929512e16 100644
->>> --- a/drivers/clk/imx/clk-imx93.c
->>> +++ b/drivers/clk/imx/clk-imx93.c
->>> @@ -257,6 +257,20 @@ static const struct imx93_clk_ccgr {
->>>  static struct clk_hw_onecell_data *clk_hw_data;
->>>  static struct clk_hw **clks;
->>>  
->>> +static int imx_clks_get_num(void)
->>> +{
->>> +	u32 val = 0;
->>> +	int i;
+>>> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+>>> index 37423c2e0fdf..d95307393e75 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
+>>> @@ -37,6 +37,32 @@ properties:
+>>>     "#interrupt-cells":
+>>>       const: 2
+>>>   
+>>> +  vaud28-supply:
+>>> +    description: 2.8 volt supply phandle for the audio codec
 >>> +
->>> +	for (i = 0; i < ARRAY_SIZE(root_array); i++)
->>> +		val = max_t(u32, val, root_array[i].clk);
->>> +
->>> +	for (i = 0; i < ARRAY_SIZE(ccgr_array); i++)
->>> +		val = max_t(u32, val, ccgr_array[i].clk);
->>> +
->>> +	return val + 1;
->>> +}
->>> +
->>>  static int imx93_clocks_probe(struct platform_device *pdev)
->>>  {
->>>  	struct device *dev = &pdev->dev;
->>> @@ -264,14 +278,17 @@ static int imx93_clocks_probe(struct platform_device *pdev)
->>>  	const struct imx93_clk_root *root;
->>>  	const struct imx93_clk_ccgr *ccgr;
->>>  	void __iomem *base, *anatop_base;
->>> +	int clks_num;
->>>  	int i, ret;
->>>  
->>> +	clks_num = imx_clks_get_num();
->>> +
->>>  	clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data, hws,
->>> -					  IMX93_CLK_END), GFP_KERNEL);
->>> +					  clks_num), GFP_KERNEL);
->>>  	if (!clk_hw_data)
->>>  		return -ENOMEM;
->>>  
->>> -	clk_hw_data->num = IMX93_CLK_END;
->>> +	clk_hw_data->num = clks_num;
->>
->> Why so complicated code instead of pre-processor define or array size?
->>
->> Best regards,
->> Krzysztof
->>
->>
+>>> +  audio-codec:
+>>> +    type: object
+>> Still not much improved. You do not have any resources there, so these
+>> should go to the parent node.
 > 
 > Hi Krzysztof,
 > 
-> Thanks for the comment, here are some of our thoughts.
+> vaud28-supply seems to be a mistake that I forward port.
+> In the V4, AFAII, your feedback [1] suggested me to move the vaud28-supply from the "audio-codec" 
+> sub-node to the parent node, which for me is the "pmic" (mfd), because the property is considered as 
+> power-supply.
 > 
-> Regarding the predefined method, it's easy to forget to update the macro definition when adding some new clocks to
-> imx93-clock.h in the future.
-
-Somehow most developers in most platforms can do it... Anyway, that
-would be build time detectable so no problem at all.
-
+>      pwrap {
+>          pmic {
+>              ...
+>              audio-codec {
+>                  ...
 > 
-> Also, we cannot use the array size method in this scenario, as some unnecessary clocks have been removed in the past,
-> resulting in discontinuous definitions of clock indexes. This means that the maximum clock index can be larger than
-> the allocated clk_hw array size. At this point, using the maximum index to access the clk_hw array will result in an
-> out of bounds error.
+> Hardware side, vaud28-supply is the output of PMIC-regulator subsystem, and AVDD28 is the input of 
+> PMIC-audio-codec subsystem. Then:
+> - The property name is wrong and must be change to AVDD28, which is a consumer (power input), not a 
+> power-supply. => description: 2.8 volt power input for microphones (AU_VIN0, AU_VIN1, AU_VIN2)
+> - IMHO, move this property to the next parent (pwrap) isn't consistent. It should be moved back to 
+> Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml (Done in the V4) into audio-codec 
+> substystem, beside mediatek,micbias0-microvolt
 
-You mix bindings with array entries. That's independent or just clock
-drivers are broken.
+I don't understand why do we talk again about supply. My comment was not
+under the supply.
 
 Best regards,
 Krzysztof
