@@ -1,133 +1,95 @@
-Return-Path: <devicetree+bounces-79819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E3E0916EA1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62713916EA9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:59:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AD122887D3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:58:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F0352895EB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF51176AAC;
-	Tue, 25 Jun 2024 16:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0468C17837A;
+	Tue, 25 Jun 2024 16:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Df3iGoIj"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="q8Sqjgkm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E7B176231
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 16:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C17D176231;
+	Tue, 25 Jun 2024 16:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719334674; cv=none; b=O9wgTOqnnT19GjS98RlIWsoxdnDx3DjB2GyZIc1n9BG/ZuwEmr67CKSKiOpUP5udNo++5cCQv6+VCL+AmVefE9aQNxVjn4gl9PS7hKn0Z+XiCHYHSAnBu2SREbZ9X9mHNje6hEBWwH8uQnE8U3lrBfgdUEddeI5AkDXEjdwlywQ=
+	t=1719334748; cv=none; b=WvBV/hJ/LhbASsc6BPiwFSed1A9n9ZqT65RNhP3Lr79uVlzTkBxs7Ekjfu/LrDzGBfET3liiCcyP52/G+R7fZYkHbETP+zJVHEJBmOxFLeHxKTO4UaV3tx2c1/ys0BIpQPk8phaDLDu2LZ+dL5SXqTJE5I9E5WXLz5nykVg9qKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719334674; c=relaxed/simple;
-	bh=XTKwc6WsHqDFL2V3ZkDy5nradEps2Vi9RgsZOcLaSJ8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sMZBmUdOp4GjuLt8CqCY4d8g0rzDbA7mc9tVsC5UtPTSOY9umCNvO4Y8HjUNIit/Y+hOpirtJ49uogk9Es1ZKweTXNKJsFomAAEvcjPzMEtXngTUdBvmuMoJvxRIwEPZXt2/NelDswam2m1bWPMVG1QyoCpNDPI+8Mct3661hLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Df3iGoIj; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52ce6a9fd5cso2268870e87.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 09:57:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719334671; x=1719939471; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JyVXj4bWgaYvRknSa5lJyMkjZU/JIisl8Ay4LG2mAhw=;
-        b=Df3iGoIjnw4+MHExiIWctqE5Ex08iFa10kzLlOUQqo6a7aefN7kOYeoEYBdP8g7gOC
-         lKLL/e5e4cCJyF0EmDa9/Qsg5sAcnX8hytDFTMWxEMFb56y9xZePSKcTEQ8kqyJ4o04x
-         M8MaUSeFCA+0vPz33WvJdSUwlnvUiUB6p87/qyM5+FRtTgdtIrA2Dw5jJh5DUaEaYM9F
-         hI6isbTf/7ijzf8zhLZLh9wJaUWSn+pOempm2My5UchcQj8GDUHZ9Fv4Rf/neHzRFsCc
-         b0GmdUf4T9rFjAtpFmy1ehQS9kxmPT+xempId0M6umwx4nyrlOQAqOliuIrwCVg4COZJ
-         9Czw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719334671; x=1719939471;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JyVXj4bWgaYvRknSa5lJyMkjZU/JIisl8Ay4LG2mAhw=;
-        b=q2DBR0+bDGlZWq2BhOOfNgyBbHJrUZ0NMs0puy+qF0KUYKPxtxSiKBMu9idzTcXroz
-         YP9WtE4ALJEgrPAzjJp6kQnKES+XgkhWnDZQRXBPcueiX0ZgmoQDjhjgKmefVpif0vP9
-         yDA9YVfIS7YaZto/u88Jw8K7XWZMIKdRvpx/EgI2t0edS4pMca7mkbzyyJ+QBTg25phL
-         XTPlkhj8p+v9lXii6TyJE+h7Ugj5FxY4hNuD9O4Ur4s0L90ZEA+qVK37nBClXEZWJgGm
-         kirxSDXyxdXlIsW8Wb48LsB8Msm2+4AawDn7b9v0BgQYMGvqHifUHLnhewWmlN2La243
-         VMGw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1lusnvvZNJ7fYzpDW5D7Bel/7yCuEbbt7SqF4FvGaT0p803XRxb3KLguQ+B8yIDnE77JTn1gOfRRfLlMTuCoeyuExwmB9CAZ59w==
-X-Gm-Message-State: AOJu0Yy8l3jRuYU5Xyhj1knHXNZlBO9J6SLRUAXI/w+LicQ74U8uVlyG
-	6Oh7btlcPJx7GUJFykhb7cImtSHpwAujuq5dNLpaLU7yf5AHj6hIA4sIrNuPX/E=
-X-Google-Smtp-Source: AGHT+IGTV29hsOIqeDCHH2orasV8fV1XlLYvRt5g7BFjuE7tm9jJmD/m1TAz3dbQze32DSkd4dHSKg==
-X-Received: by 2002:a05:6512:158f:b0:52c:d9a3:58af with SMTP id 2adb3069b0e04-52ce185cf66mr5892393e87.49.1719334671344;
-        Tue, 25 Jun 2024 09:57:51 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cf1918e14sm215392e87.235.2024.06.25.09.57.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jun 2024 09:57:50 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Sean Paul <sean@poorly.run>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1719334748; c=relaxed/simple;
+	bh=5qIOOAHvfAeqOEqFJk5OafZk8hgaDep0cVZ3ujVYezs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VeQX0ayAtlGJPVlQvOPaKEW0A6WktGWa1/WcLfbdGazLZ1X5/gpyG2fNKCpwryxLRSpbJuJyBqNrRbfFtTo/Syx/aWK0v/tOW5h/xDi0g4LojLe34Ax3MHzSr3cqfDM6aZyR/L4Km6ZbKMoU6eEw4iQm5sKYxZ3bOGPWKYJyFPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=q8Sqjgkm; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 71CF81F929;
+	Tue, 25 Jun 2024 18:58:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1719334735;
+	bh=IJrbabNzzBhzaeJkC2PMJ7DZ5x3aT19bK8M4kEef8AY=; h=From:To:Subject;
+	b=q8SqjgkmfCwcsM+l5Y5mU8tNqLXP3CDky56Zt4Qzae/FiY4ek98/49rK3XoM4wyu2
+	 r4HI/vWIRvOwkdrrZPQPtz9dXDKD5meMaDUGH/0kg6Z8JYrM5YCrPvi1B4JZhtFNf7
+	 Kq49EXwBz16C4CmWreSdQkh5OylYFhzV2wwTKWL6E3IDx94K9eF/ATQtDMI0/atluN
+	 g5VdXNLNZI+WYLmp8KdnxX+noVF8i4k+2JvcfvY7fqdXnUIN3q6nZJPoRyyHUlwHCN
+	 YBikm+/4Vx1/lUsg17go1VzmlNKkVC8+VAtvuetwy609/MJfElcYyj93501y/cRGUs
+	 MJCq+Tl2NiDfw==
+Date: Tue, 25 Jun 2024 18:58:51 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v2 0/4] dt-bindings: display/msm/gpu: few cleanups
-Date: Tue, 25 Jun 2024 19:57:50 +0300
-Message-Id: <171933466183.1441256.5006913345206572060.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240623-qcom-adreno-dts-bindings-driver-v2-0-9496410de992@linaro.org>
-References: <20240623-qcom-adreno-dts-bindings-driver-v2-0-9496410de992@linaro.org>
+	Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: k3-am625-verdin: enable nau8822 pll
+Message-ID: <20240625165851.GA26676@francesco-nb>
+References: <20240418105730.120913-1-andrejs.cainikovs@gmail.com>
+ <20240425135610.6c6ysoejefuazm63@privatize>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240425135610.6c6ysoejefuazm63@privatize>
 
+Hello Nishanth, Vignesh,
 
-On Sun, 23 Jun 2024 22:02:59 +0200, Krzysztof Kozlowski wrote:
-> Changes since v1:
-> 1. Add tags
-> 2. New patches #3 and #4
-> 3. Drop previous patch "dt-bindings: display/msm/gpu: constrain
->    reg/reg-names per variant", because I need to investigate more.
-> 
-> v1: dt-bindings: display/msm/gpu: constrain reg/reg-names per variant
-> 
+On Thu, Apr 25, 2024 at 08:56:10AM -0500, Nishanth Menon wrote:
+> On 12:57-20240418, Andrejs Cainikovs wrote:
 > [...]
+> 
+> > Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
 
-Applied, thanks!
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-[1/4] dt-bindings: display/msm/gpu: constrain clocks in top-level
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/d6c7c411be78
-[2/4] dt-bindings: display/msm/gpu: define reg-names in top-level
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/c808ece19640
-[3/4] dt-bindings: display/msm/gpu: simplify compatible regex
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/6d69f8d37c85
-[4/4] dt-bindings: display/msm/gpu: fix the schema being not applied
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/399af57ccca2
+> > ---
+> > This patch requires https://lore.kernel.org/all/20240409121719.337709-1-andrejs.cainikovs@gmail.com/ to be applied,
+> > if not the audio will just stop working because no code will ever enable the required clock to the codec.
+> 
+> Thanks. lets wait for the dependency patch to be merged to master, and
+> once done, please resubmit this patch. I am going to guess for the next
+> cycle.
 
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Would you mind picking up this patch? The dependency is now merged and
+this should apply cleanly. I can also resend if needed, just let me
+know.
+
+Francesco
+
+
 
