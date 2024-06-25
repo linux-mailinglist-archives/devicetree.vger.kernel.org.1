@@ -1,153 +1,271 @@
-Return-Path: <devicetree+bounces-79551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B5CC915C14
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 04:13:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F330915C3B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 04:31:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C530E1F220E7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 02:12:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 776641C20DC5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 02:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B48374F1;
-	Tue, 25 Jun 2024 02:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4C527442;
+	Tue, 25 Jun 2024 02:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o9bhcA56"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="moVfdSRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A4F1CA87;
-	Tue, 25 Jun 2024 02:12:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F4845018;
+	Tue, 25 Jun 2024 02:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719281573; cv=none; b=elZgZPkButgBb6Iekc4WW9GoXyTq7DplTrVuDP6Ft+3ihke2EkOFDpgzNvaoJxxJaw7OrUsUG2XNmLqT0tbSv/x76Qf886sU8dGCJNiOYynE0KDa+TbbDZoD3jMFRbdPoJKwo8rWY7SRjk+jlerEsTeH3EOX4dRPnZpobZvUdP4=
+	t=1719282683; cv=none; b=lJzA/Tg76y9e+91XhpZ5b0wO62BZLdhm99h+qvIKY/TsiQ32ZORDpNk07uGUc8xp2RyzQHGQds/lDnGD9AjhKeC3uWqscVwhOwgS7sErSNjnZwrEZoDsoYjarKNIeVa5sVnfsUkw008KGAr6ehrltbqZXbEgkoev+U6lpRfE7Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719281573; c=relaxed/simple;
-	bh=zEb+7jUTnpPDgL8XOtInDEisCizA4EONVseNOeyk4jo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kDLcgyWgqgMjPisOKBCS9rwDHKhdW4ncKalabgDxqJud8JJJEdxQnpiLFoUFwOV3BHIiyGgGy+1JnjndZ1ELPvAm8nMFK6iM1qsFquOb+sWof2g0SkM0tA8yLvnRZUOtvZPHiahesiYzlBAFkkehDQ0XJlu/qTFhqHT7FHBbSYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o9bhcA56; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45OIfuTA031942;
-	Tue, 25 Jun 2024 02:12:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=dbZHrYJd/1iSj/Un5JYJPB
-	/0IbbBuVdpQP3hqoiLc4M=; b=o9bhcA56LZdCx2/9/oUH8mcDwC/dCpY6U7BWyS
-	NU12yebrNsEe6U75zbgSKdaHRNOF6HReKqInak/lk6a+gxKmQNc4vEphoXYqcfnm
-	9zn+tqzKxrRJCE+YBuOmE7gTT/KMaNnhdylCbXscKlF1EllMVYh79dkg7ylAgbGl
-	9upIO2ELMuvceTeRQcS4jzIzeG7idGGdkzhlLo+c4xmUagU966ytwt6+39O78bhO
-	QEWxLX93xFcVP0wExlSJf3XOtF9KLXqZ1iK5YwoSu+0C7XsxkX/lamcldnFj+CAN
-	aQM0YBnGU+CdhE/VB3ljmMy+x740jYIrBxkp93LVKAOvn9Kg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywppv53g2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Jun 2024 02:12:38 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45P2Ca9K016792
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Jun 2024 02:12:36 GMT
-Received: from jiegan-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 24 Jun 2024 19:12:29 -0700
-From: Jie Gan <quic_jiegan@quicinc.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang
-	<quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Song Chai
-	<quic_songchai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>,
-        <quic_yijiyang@quicinc.com>, <quic_yuanjiey@quicinc.com>,
-        <quic_liuxin@quicinc.com>, <quic_yanzl@quicinc.com>,
-        <quic_xinlon@quicinc.com>, <quic_xueqnie@quicinc.com>,
-        <quic_sijiwu@quicinc.com>
-Subject: [PATCH] Coresight: Set correct cs_mode for TPDM to fix disable issue
-Date: Tue, 25 Jun 2024 10:12:12 +0800
-Message-ID: <20240625021212.1443304-1-quic_jiegan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1719282683; c=relaxed/simple;
+	bh=/1DNDeOKg177bS8nmSRJq7/0hF6aKB2PsUcmK2wMrIA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=r1cfhhkHADfg6NP2bXwfBeus1GZaPqIWqF+D+SyRr5KMFSKoUXZTtmM1s/erNAJckv4gUxD1EBMwsYDJ8w/2Ks3GJg2oqp1UIbdg7dXGCHENlec6sYVyDgugq5fVdfe7fRfxrNi6o4CxVLBZzAAydiu2DKoXcK5ZTsjHyFzrNaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=moVfdSRj; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7066cba4ebbso1653710b3a.3;
+        Mon, 24 Jun 2024 19:31:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719282681; x=1719887481; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jBw7lNH2ym/ZMOFBd98xTuLuYzJbUvYI5f6jVXCpiB0=;
+        b=moVfdSRjghp36/oZDQf1hBhCO1k3canxyyDHsmJ5rhKnQbzy9J6tNSl76ayaAVr0Zu
+         9gwFibIIyiLjQnb6bKO+SQoBBEKbLKhT1PDVmcdjwIfgxasDmj7Elk/Oo4FornacWDV2
+         IXJ2TqLAeYeRMO9MtmzNXk5OXBnU2qrMj0K7X1KbgGgChTcRsMGWncQMy+e9UT/WxxXd
+         qnTJlKJctYKoyoBp6GwqG7StawHKQtbUgj1OoqAuay2eow2ws/3bpX6QV/Q6e9VVn4zc
+         SYkSLQA0HdZog1EHrQOCHKd7NbvgHPVphvt0UkiqiGMOHhIr7nyl4fCziD6h8j7T4VJJ
+         TEQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719282681; x=1719887481;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jBw7lNH2ym/ZMOFBd98xTuLuYzJbUvYI5f6jVXCpiB0=;
+        b=m2vrFaRGlQ7FI4WRbweVc71qwDLRo4IBgxx5uS/xauB3kCDoHsgNBYkUMsUtv5CzIu
+         zFUibDCikDIXkSmRKl7+yudbpRRXoygsVCQEkiR7H1QyqahYP099NQM/AFTdHldrd4s3
+         enBwldvQzhNEemSEo/1evXXWCAFf/PFMX/snZd0NW2xTsXKQUeBzHn3biLTBWJfCeMQW
+         VmdW+5Pr94lMC3kfLho8j4ScuJnfqJKDY+sE8F1JFcC+D2QNbzEwHXXWSYXAn2KnXr3E
+         ZGuzd9hfFQrXgi6n6GD6TJ3UX2aRsx1An92iYkm/FRuLO7uutTWYX4kKHHuehvL07nHC
+         JHXA==
+X-Forwarded-Encrypted: i=1; AJvYcCU26WHoikSMyQVD8r6oL69TPnMjqyRHwuK4j39tUAtWX05CsPCxMHSFifqjQeodayo0CjM96t8al0RE9+s+haJdfmO+l/y3l1RCongBlookmaRmFWbSBsJ0C0M6x6tnfhpNhPXayyk3
+X-Gm-Message-State: AOJu0YzZQsOpUgCOXK+bSPgaD1eLoFsEkJGwExWVhPrqhJbBvByJ38JI
+	ihKSE2Jv0zjwMgPyLuqyPej/2ayhMSNm2X2iZGAei5Wr2OY9wgcb
+X-Google-Smtp-Source: AGHT+IF+VB6cd1uxmBnpN7QTXctaq1LDfIpWfLlJmUqc1L+ycpkdhGBF/a7Jy2FU9YTlkowDnFuURg==
+X-Received: by 2002:a05:6a00:80f7:b0:706:68ff:2bce with SMTP id d2e1a72fcca58-7066e4e6825mr5761481b3a.2.1719282681025;
+        Mon, 24 Jun 2024 19:31:21 -0700 (PDT)
+Received: from [127.0.1.1] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70677949b97sm3582945b3a.140.2024.06.24.19.31.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jun 2024 19:31:20 -0700 (PDT)
+From: Yasin Lee <yasin.lee.x@gmail.com>
+Subject: [PATCH v7 0/3] iio: proximity: Add TYHX HX9023S sensor driver
+Date: Tue, 25 Jun 2024 10:15:09 +0800
+Message-Id: <20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TWm0AB9-P3ksuzcce7YIaMuRuSK0qjc9
-X-Proofpoint-ORIG-GUID: TWm0AB9-P3ksuzcce7YIaMuRuSK0qjc9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-24_22,2024-06-24_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- clxscore=1015 priorityscore=1501 mlxlogscore=999 mlxscore=0 adultscore=0
- lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
- definitions=main-2406250016
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC0oemYC/5WQsW6DMBRFfyXyXCM/g22cKZjQrVXVjlUHEptgN
+ WBkU4so4t9LyFR1qDqe967Ole4VBeOtCWi7uSJvog3W9QuIhw06tnV/MtjqhRElNCMcOK61xuO
+ lnXA7SULTgIPpg/NYexuNx0bog0kPjWGSo0UyeNPYaS14/1i4tWF0/rL2xex2RW/P4uUV6JPKg
+ QCV+xxyoqCUTKZFXhGRF9mjorsfsaSvu8FroMngnU7c13h27jM5ug7dWiL7bVZ8TwoFNONCipK
+ LijJVZGX1TzNfzfc5KPw1R+SYYM5A8np5kwZ2p66257tunudvtdYse4ABAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, Yasin Lee <yasin.lee.x@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Conor Dooley <conor@kernel.org>, 
+ Alexandru Ardelean <aardelean@baylibre.com>, 
+ Andy Shevchenko <andy.shevchenko@gmail.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1719282672; l=7636;
+ i=yasin.lee.x@gmail.com; s=20240616; h=from:subject:message-id;
+ bh=/1DNDeOKg177bS8nmSRJq7/0hF6aKB2PsUcmK2wMrIA=;
+ b=jA6y6xDqaKas7tKSyIupdILLo+cnTsaeTpI2xldY/G0dHGKYT8W6iQFBsQPefeJIWLlUXZPNo
+ wEU9v7mWSYwCTVEUcR5yrzdw1KO4aOOpedE1VrO5W0SZ+Ww4hTTQ1QG
+X-Developer-Key: i=yasin.lee.x@gmail.com; a=ed25519;
+ pk=BU85jOyDTb45hxm+MZA26zg/m26xjGZhLgKrPSRtySI=
 
-The coresight_disable_source_sysfs function should verify the
-mode of the coresight device before disabling the source.
-However, the mode for the TPDM device is always set to
-CS_MODE_DISABLED, resulting in the check consistently failing.
-As a result, TPDM cannot be properly disabled.
-
-To fix the issue:
-Configure CS_MODE_SYSFS/CS_MODE_PERF during the enablement of TPDM.
-Configure CS_MODE_DISABLED during the disablement of TPDM.
-
-Fixes: 1f5149c7751c("coresight: Move all sysfs code to sysfs file")
-Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
 ---
- drivers/hwtracing/coresight/coresight-tpdm.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changes in v7:
 
-diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-index a9708ab0d488..90a5105f6199 100644
---- a/drivers/hwtracing/coresight/coresight-tpdm.c
-+++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-@@ -449,6 +449,11 @@ static int tpdm_enable(struct coresight_device *csdev, struct perf_event *event,
- 		return -EBUSY;
- 	}
- 
-+	if (!coresight_take_mode(csdev, mode)) {
-+		spin_unlock(&drvdata->spinlock);
-+		return -EBUSY;
-+	}
-+
- 	__tpdm_enable(drvdata);
- 	drvdata->enable = true;
- 	spin_unlock(&drvdata->spinlock);
-@@ -506,6 +511,7 @@ static void tpdm_disable(struct coresight_device *csdev,
- 	}
- 
- 	__tpdm_disable(drvdata);
-+	coresight_set_mode(csdev, CS_MODE_DISABLED);
- 	drvdata->enable = false;
- 	spin_unlock(&drvdata->spinlock);
- 
+**tyhx,hx9023s.yaml:**
+
+- Removed the unused reference to iio.yaml
+- Removed the `input-channel` property and switched to inheriting the `single-channel` property from adc.yaml
+- Sorted the items in the `required` list
+
+**hx9023s.c:**
+
+- Header Files Section:
+  - Added `<linux/cleanup.h>`
+  - Removed `<linux/delay.h>`
+  - Replaced `<linux/math.h>` with `<linux/math64.h>`
+- Register Initialization:
+  - Deleted the `struct hx9023s_addr_val_pair`
+  - Changed the type of `hx9023s_reg_init_list` to `struct reg_sequence`
+  - Deleted the `hx9023s_reg_init` function and used `regmap_multi_reg_write` for register initialization in `probe`
+- struct hx9023s_ch_data:
+  - Added a comment to the member `mutex` explaining the data it protects
+- Function hx9023s_sample:
+  - Fixed the error related to `hx9023s_data_lock` calls
+- Function hx9023s_property_get:
+  - Added boundary protection for `reg`
+- Function hx9023s_id_check:
+  - Optimized the function
+- Function hx9023s_probe:
+  - Changed the call to `devm_iio_device_register` to `return devm_iio_device_register()`
+- Functions hx9023s_suspend and hx9023s_resume:
+  - Added `guard(mutex)(&data->mutex)`
+- Code Check:
+  - Ran `checkpatch.pl --strict` and fixed the identified issues
+- Link to v6: https://lore.kernel.org/r/20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com
+
+Changes in v6:
+
+**vendor-prefixes.yaml:**
+
+- Formatted the description in the commit
+
+**tyhx,hx9023s.yaml:**
+
+- Added a link to the DataSheet
+- Added `#address-cells` and `#size-cells`
+- Removed the following properties:
+  - `channel-in-use`
+  - `channel-positive`
+  - `channel-negative`
+- Corrected the reference path to `adc.yaml`
+- Inherited `diff-channels` from `adc.yaml` as differential channels
+- Added `input-channel` property as a single-ended configuration channel
+- Made `vdd-supply` a required option
+- Used the generic name `proximity` instead of the chip name in the DTS example
+
+**hx9023s.c:**
+
+- Removed the following headers:
+  - `#include <linux/acpi.h>`
+  - `#include <linux/byteorder/generic.h>`
+  - `#include <linux/kernel.h>`
+- Added `#include <asm/byteorder.h>`
+- Updated some macro names:
+  - `HX9023S_DATA_2BYTES` ---> `HX9023S_2BYTES`
+  - `HX9023S_DATA_3BYTES` ---> `HX9023S_3BYTES`
+  - `HX9023S_DATA_BYTES_MAX` ---> `HX9023S_BYTES_MAX`
+- Added the following macro definitions:
+  - `#define HX9023S_POS 0x03`
+  - `#define HX9023S_NEG 0x02`
+  - `#define HX9023S_NOT_CONNECTED 16`
+  - `#define HX9023S_GLOBAL_CTRL0 0x00`
+- `struct hx9023s_ch_data`:
+  - Added comments explaining the members `raw`, `lp`, `bl`, `diff`
+  - Changed the type of struct member `thre` from `int` to `unsigned int`
+  - Removed member `cs_position`
+  - Changed the type of `struct buffer` member `channels[HX9023S_CH_NUM]` from `__be16` to `__le16`
+  - Moved `struct hx9023s_ch_data ch_data` to the bottom
+- Updated comments in the array `hx9023s_reg_init_list`:
+  - Changed `adc` to `ADC`, `avg` to `average`, and `osr` to `OSR`
+  - Provided a more detailed comment for the register `HX9023S_RAW_BL_RD_CFG`
+- `struct regmap_config hx9023s_regmap_config`:
+  - Added `.rd_type` member
+  - Changed `.cache_type` from `REGCACHE_RBTREE` to `REGCACHE_MAPLE`
+- Bugfix: The function `hx9023s_data_lock` now only operates on one bit instead of two
+- `hx9023s_ch_cfg` function:
+  - Replaced magic characters with meaningful macro definitions
+  - Changed byte concatenation operations to use `put_unaligned_le16`
+- Reviewed each function and made the following changes:
+  - Some returns now directly return `regmap_read/write()`
+  - For single-byte write operations, changed from `regmap_bulk_write(,,,1)` to `regmap_write(,,)`
+  - Changed the type of loop variable `i` to `unsigned`
+- `hx9023s_write_far_debounce` and `hx9023s_write_near_debounce` functions:
+  - Removed magic numbers and optimized the code
+- `hx9023s_get_thres_near` and `hx9023s_get_thres_far` functions:
+  - Used intermediate variables for readability and simplified the code logic
+- `hx9023s_set_thres_near` and `hx9023s_set_thres_far` functions:
+  - Optimized the logic and simplified the code
+- `hx9023s_get_prox_state` function:
+  - Changed the return value type to `int`
+- `hx9023s_data_select` function:
+  - Changed the return value type to `int`
+- `hx9023s_sample` function:
+  - Added intermediate variables for better readability
+- `hx9023s_ch_en` function:
+  - Optimized the code logic to reduce line count
+- `hx9023s_property_get` function:
+  - Rewritten due to DTS changes, and calls `fwnode_handle_put` on error to prevent memory leaks
+- `hx9023s_get_proximity` function:
+  - Added error handling logic for data
+- `hx9023s_get_samp_freq` function:
+  - Used macro definitions from `units.h` instead of specific numbers for frequency calculation
+- `hx9023s_set_samp_freq` function:
+  - Used macro definitions from `units.h` instead of specific numbers for frequency calculation
+- `hx9023s_write_raw` function:
+  - Changed the type of local variable `dir` to `unsigned`
+- `hx9023s_write_event_config` function:
+  - Replaced `set_bit` and `clear_bit` with `__assign_bit`
+- `hx9023s_trigger_handler` function:
+  - Added error handling logic for data; fixed uninitialized variable `i` bug
+- `hx9023s_buffer_preenable` function:
+  - Fixed uninitialized variable `channel` bug
+- Added `hx9023s_id_check` function
+- `hx9023s_probe` function:
+  - Returns directly on `devm_iio_device_alloc` error, without logging; removed `fsleep`
+- `hx9023s_resume` function:
+  - Calls `hx9023s_interrupt_enable` only when `data->trigger_enabled` is true
+- Removed `hx9023s_acpi_match`
+- Link to v5: https://lore.kernel.org/linux-iio/SN7PR12MB8101B6D0AB1246797C67E25BA4CE2@SN7PR12MB8101.namprd12.prod.outlook.com/
+
+Changes in v5:
+- I have addressed all the issues mentioned in the email responses.
+  Additionally, regarding the IIO-related header files, I have checked and found no unused headers.
+- Link to v4: https://lore.kernel.org/linux-iio/SN7PR12MB810129D8180B1C9593A8E078A4FB2@SN7PR12MB8101.namprd12.prod.outlook.com/
+
+Changes in v4:
+- Removed hardware-irrelevant properties from dt-bindings, retaining only channel configuration
+  related `channel-positive` and `channel-negative`. Grouped by channel.
+  Retained `channel-in-use` as it is hardware-related.
+- Removed redundant register definitions.
+- Reorganized `struct hx9023s_data`, extracting channel-related attributes
+  into a new `struct hx9023s_ch_data`.
+- Optimized bit operation related code.
+- Replaced `of_` versions with generic firmware parsing functions.
+- Fixed other issues mentioned in the email feedback.
+- Link to v3: https://lore.kernel.org/linux-iio/20240602152638.2c674930@jic23-huawei/
+
+---
+Yasin Lee (3):
+      dt-bindings: vendor-prefixes: add tyhx
+      dt-bindings: iio: proximity: Add TYHX HX9023S
+      iio: proximity: Add driver support for TYHX's HX9023S capacitive proximity sensor
+
+ .../bindings/iio/proximity/tyhx,hx9023s.yaml       |  107 ++
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ drivers/iio/proximity/Kconfig                      |   14 +
+ drivers/iio/proximity/Makefile                     |    1 +
+ drivers/iio/proximity/hx9023s.c                    | 1131 ++++++++++++++++++++
+ 5 files changed, 1255 insertions(+)
+---
+base-commit: 0291f73eaa59fe0dbb715fa405bb47a1d8206e0e
+change-id: 20240616-add-tyhx-hx9023s-sensor-driver-e7dbe3bfe596
+
+Best regards,
 -- 
-2.34.1
+Yasin Lee <yasin.lee.x@gmail.com>
 
 
