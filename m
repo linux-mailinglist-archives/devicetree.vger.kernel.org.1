@@ -1,40 +1,54 @@
-Return-Path: <devicetree+bounces-79840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22015917079
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 20:45:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A903D9170DB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 21:06:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7EC41F21532
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:45:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 287D7B25620
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 19:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004EE17D35B;
-	Tue, 25 Jun 2024 18:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C429F17A932;
+	Tue, 25 Jun 2024 19:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CJsacGD7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D7D17D353;
-	Tue, 25 Jun 2024 18:44:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12FDB1DDF8;
+	Tue, 25 Jun 2024 19:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719341051; cv=none; b=mw9bNE1T8v5/dwvktoLJz7ashQQg1+xxHuDJc3IV/lfOKqNJTliRahbNijk/VKbWH3lbR0RPFda82bMw5K+Isb+Oy/E5m5CSHvw0wHP+aX1RUzh2Jp/KnRiIE1uXb/Z3VR2UORROqEPjmarXUUnpdk90Y9aL14tvWYuuqzn5FNM=
+	t=1719342389; cv=none; b=VJz6WjwQU8T1cMUPHFz2voE8YBmTaOjOOqh9LdaeEze+DI4Ny47Bdrc0LcR8s5GLhGq8NxiJObhBLzOhtMj9Nnda9d1oOZKUq3OVxdWhJvv92bAA2PrZvn6FQEnjKRIC4ce42CMiM7vZZ4jRubiPR26muDFzH8IC7/QzCGjpD1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719341051; c=relaxed/simple;
-	bh=hohhvTJMwbP+pwz9eCrw5mTIHit6f9kP1oYy87iud3I=;
+	s=arc-20240116; t=1719342389; c=relaxed/simple;
+	bh=3419DJzdZjN7cGJzNeVl5//+1l7h8MfcMUN586NHXPw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WXBD50Jk8MLbZbxjpiBEXVtNkWI3jnOH5mj8d61WLwQA2ckb/2WQLoJ/RMu1e+IvKHfx0WcimeoY4MLzNZxCYEYHf6bS+GRoqo1hvSIJyxRnsG7398r+nA5IGfgweTpWG3Qf/8j4c6+iyDA0iuoYaEUrlxD0yyuYk9VFK4SgkTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D1AF6339;
-	Tue, 25 Jun 2024 11:44:33 -0700 (PDT)
-Received: from [10.57.73.131] (unknown [10.57.73.131])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2B5193F73B;
-	Tue, 25 Jun 2024 11:44:06 -0700 (PDT)
-Message-ID: <4db1945e-ec8c-4e96-90fc-cd5386a9d6b4@arm.com>
-Date: Tue, 25 Jun 2024 19:44:04 +0100
+	 In-Reply-To:Content-Type; b=H8gzHn7Z0TyRtjrwqtPRJwCQsHLs6CDvXQkyG0Th8r3Pktpu+U55uHAonCaoHOXFUre9dHLM+5BxPbiKfMTeMtR/mqmKT0KlBDsS6FSzYELAOPrJDBw4YYTk11GjlpAKpOy2J3U+g01aF/yoPASNAgFdIbCLauiG9wi9CoXJ4A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CJsacGD7; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 0AB1F87C83;
+	Tue, 25 Jun 2024 21:06:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1719342385;
+	bh=/naqhY3LcDG7y5oYJVUmeYxTSnE3WTaYZEi9XGbY0U0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CJsacGD7O8fwjBKfZfx48Ui1i2eL7tKaT7TV+uScDee1vNvHuRNDRm0uxSb/Vxbyp
+	 ZG98lbn7dPeGGhjduBS01ndP77EIQBTAeosZ2GXoFdc90H2ZTYDV+GUaagmxtYA24Y
+	 d7Zo5hIW/0q++dk8WvtB/S2HbRyjq8vQ2f9BkhV8tOpdWCuwgyNhF5rgYTPxwUt1N5
+	 ZTbSPfviaMoR59XWN6HttOpouObdZn7ODAprvpS5N+qacUciQZQdJ2X0VBPYt8IXYI
+	 l05ktv+Ou1pbRWMP2MrvEj7RQYa7Y8bXQN+WLuFxDn8tkcw5PT/o/xC8KSKLUkEguw
+	 35uu5tAR+T/ag==
+Message-ID: <f492d4e3-5762-405d-bb35-49918b0bed07@denx.de>
+Date: Tue, 25 Jun 2024 20:44:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,70 +56,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] OF: Simplify of_iommu_configure()
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Jean-Philippe Brucker <jean-philippe@linaro.org>
-References: <cover.1718994350.git.robin.murphy@arm.com>
- <0dc14431c8a495e1135fc1d9c4500d4cb96b4e39.1718994350.git.robin.murphy@arm.com>
- <CAHp75VdnoOyKYbaNtr_UKn9NMSzXR1Syn9W7u0qtLgGuwYX6-Q@mail.gmail.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <CAHp75VdnoOyKYbaNtr_UKn9NMSzXR1Syn9W7u0qtLgGuwYX6-Q@mail.gmail.com>
+Subject: Re: [net-next,PATCH] dt-bindings: net: realtek,rtl82xx: Document
+ known PHY IDs as compatible strings
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Joakim Zhang <qiangqing.zhang@nxp.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ kernel@dh-electronics.com
+References: <20240623194225.76667-1-marex@denx.de>
+ <cc539292-0b76-46b8-99b3-508b7bc7d94d@lunn.ch>
+ <085b1167-ed94-4527-af0f-dc7df2f2c354@denx.de>
+ <bad5be97-d2fa-4bd4-9d89-ddf8d9c72ec0@lunn.ch>
+ <246afe9f-3021-4d59-904c-ae657c3be9b9@denx.de>
+ <de304f76-d697-4c35-858d-fdd747b1bea3@lunn.ch>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <de304f76-d697-4c35-858d-fdd747b1bea3@lunn.ch>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On 2024-06-22 11:23 pm, Andy Shevchenko wrote:
-> On Fri, Jun 21, 2024 at 8:47 PM Robin Murphy <robin.murphy@arm.com> wrote:
+On 6/25/24 3:17 PM, Andrew Lunn wrote:
+>> git grep ethernet-phy-id0000.8201 on current next-20240624 says no.
 >>
->> We no longer have a notion of partially-initialised fwspecs existing,
->> and we also no longer need to use an iommu_ops pointer to return status
->> to of_dma_configure(). Clean up the remains of those, which lends itself
->> to clarifying the logic around the dma_range_map allocation as well.
-> 
-> ...
-> 
->> +       if (!err && dev->bus)
->> +               err = iommu_probe_device(dev);
+>>> We could add it, if it is
+>>> needed to keep the DT validation tools are happy. But we should also
+>>> be deprecating this compatible, replacing it with one allocated from
+>>> realteks range.
 >>
->> +       if (err && err != -EPROBE_DEFER)
->> +               dev_dbg(dev, "Adding to IOMMU failed: %d\n", err);
+>> I think we should drop from the bindings after all, I will prepare a V2 like
+>> that, OK ?
 > 
-> Hmm... I'm wondering if dev_err_probe() can be used here.
+> Yes, please drop it.
 
-It's still possible to have other errors here benignly [1] (however 
-questionable the underlying reason), and this has always been a 
-dev_dbg(), it's just getting shuffled around again. The aim here is to 
-carry on removing cruft to work towards getting rid of this 
-iommu_probe_device() call altogether since it's fundamentally wrong, so 
-I'm not inclined to add anything new or spend too much effort polishing 
-code I still want to delete.
-
->>          return err;
-> 
-> ...
-> 
->> +       dev_dbg(dev, "device is%sbehind an iommu\n",
->> +               !ret ? " " : " not ");
-> 
-> Why not a positive test?
-
-Again, mostly because that's how it was written in 2014, same reason I'm 
-not deduplicating the redundant space despite it still being the tiniest 
-bit irritating. If you make me think about it, though, I suppose when 
-both outcomes are otherwise equally weighted it does seems natural to 
-consider "success" before "failure", thus the condition tests for success.
-
-Thanks,
-Robin.
-
-[1] 
-https://lore.kernel.org/linux-iommu/bbmhcoghrprmbdibnjum6lefix2eoquxrde7wyqeulm4xabmlm@b6jy32saugqh/
+Done in V2, thanks.
 
