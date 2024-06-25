@@ -1,187 +1,129 @@
-Return-Path: <devicetree+bounces-79658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9364091643F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 11:55:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E2FA91646D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 11:57:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 246671F2182D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:55:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFDC91C236A6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A61149C4F;
-	Tue, 25 Jun 2024 09:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9134214A08B;
+	Tue, 25 Jun 2024 09:57:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EXCPIaQI"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Q8BwNeJi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D7A14A4D9
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 09:55:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29B151465A8
+	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 09:57:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719309316; cv=none; b=UxDEx2BwQc5Cz+1PswqrExrymw65x4h9CPBCoyHHqiXSwq3vGJvirzCpEXtjZlpnHmCLXBjPGglGeFMRL2ajoLInzOhWrDb8R5g/shUApr1WAFT3lepLaI/EGVqU3JRUNPw9J0eOFkkzhNDk4wVUZeXE+42+mX5oUxHv0dUuxmY=
+	t=1719309433; cv=none; b=UNdOtBUBDqoBFuX0MDLo1gqSOJAOucfTDmW60p8BkI+BJXTeuKPSCNWfoMvg76DG5lkFHiOa528LkNBGRj2D6/ND62yfYx3Kyibrb92gXymOa/cHot9w/nkkQ8Nytks+BpPi7y6oKQOjudYL7vZDL4DAmJmTmkJsHWsAhfI9e8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719309316; c=relaxed/simple;
-	bh=QifjxGOTD6YmbzK6tF1G/6UDoDPfpn9s2Ye+w9Qa+bY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=KqMHMKLEEX3hM601Sg8uW1dhe/vEPOfc2IPbv0k+EGMfA+lkbLIQwhoSzDLLwFsLnMnkcIAcp5G1d08yrplY9RJYGojQqTWTwCYwSl7RcYrXs7in7gbXrFXT0AYzy36T8rp+dkveTFTBdHMwBbsJppwfFyv/HgMErNNlXC3yVdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EXCPIaQI; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ebec2f11b7so57861321fa.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 02:55:14 -0700 (PDT)
+	s=arc-20240116; t=1719309433; c=relaxed/simple;
+	bh=7OhOcEoC2/OIsLcMb4NkqN+LajE+kQwwBjp6vqC8DeY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RUSlGZBebBcx+wLsC1Uh0bkQPBK1VAqEv5l7LDJTqas7ucX01ubIsve/myEGwlPuwoLU82ZYlTYzXJFbbxF3X/jkEFihXdssAPhOEO1z2et96AzdFfL6KRNu6/KIjAMyupilIj5Rx3fJGLbkmZ/Ej+3wTq3dWrpCgC3aPjKLsaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Q8BwNeJi; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70667943931so1961655b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 02:57:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719309313; x=1719914113; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kECwLGxqId1Ov65xGDMi5MpX17DgpZQ+tjYQbJXb13M=;
-        b=EXCPIaQI+PeTknmbvvR9ZbjjXXCNJfeLng8145FRTKzyGfXEfsrSfacQld7nowfRxv
-         pXdiko5Nbd9p9/1hmEiy37nFhb5w6hesJ4YwcM7jV8pe22kUWJ+jfTX5fRG9N7VV07LG
-         afcJUbBhxYIibjT/tTx1hoy3c99nJZwjiEdPNaOTP1Fa5sdBEMlzVTekSlBRdQwI4K5P
-         xWKduk1H3upYIIpJZfmuPLjLORIKiXlIT1dV+eYiAtfb4Q2X+diBQFgMp0qyhevBSBGO
-         e+RF3WdH/EsGXuCXw8/75MWx24Fp88/Tn4TrD3FuJZkevTtGHy0XZc/Jp2kgVHXzUQqd
-         tuHA==
+        d=chromium.org; s=google; t=1719309431; x=1719914231; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qF1YJYptXWfDBxwzTIeTgvB7dEj4RfJtD5/KNTKFabM=;
+        b=Q8BwNeJiHBqZ7W5KiMVBs4DrEUaG4ht77jVeIBojyiaIo+WluUncdxFfrrG9Qylelv
+         XrXifIyk+KifNFuK8Xhi22C7fH+7d9KKvOyXGkgAEDwjG0GdeBy7iLpxLGJ6y2R1wfeM
+         SpvFwYU0yy6PGjv4Key5pnc5JiFjJQdxxeqFI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719309313; x=1719914113;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kECwLGxqId1Ov65xGDMi5MpX17DgpZQ+tjYQbJXb13M=;
-        b=kxZ5kI7nKufy3DbE0iwK3t20I8j6x6FHo7fSwrRthzHXNRQlXW8sHdXmnzMiPwHFcN
-         mbTSwMPLfxulCM8I04LQtYG7fiBeJT7eFeLExBV1d6YkvAN1s3FxsXZZuX4qUF/EpJHd
-         77M2Ke/f4ByZ3EpresocOVYnO7aXK25sBG6RE/iLsztwg62IhjCTQFkUhmqgDQ6GGdpJ
-         LP31Ndo4EqnrjsjiMOxoPtY0nBo1hc7uIzur0o9cSN11aRg4+pejmlmdsUfuh7498bW1
-         HkWrfkM3s1cWm1Uu36Dzo+vHmdHi4bUOpkPI9kFnllxgbaPsjUiRJkdgQBllZVdez6lA
-         djBw==
-X-Forwarded-Encrypted: i=1; AJvYcCUTu+4/xH0HfXDp/WAk0s53HvW6aqutb05z5SZemG5Bglb5Np/1aEygJG2sVHtnl8k2pi4XcvuR99o5f3LUAlrlNw1/S+VCJPxkLA==
-X-Gm-Message-State: AOJu0YxuHEM51fQyjqfckZ6cLxnfK8eKRwJmIn8SzDpQOHvx2+60F1GK
-	rEZiceyR0M283LOoRao1egYyvPHx9MoOmwWR+McUi2C5mADSF8fLraR/0YcOMtM=
-X-Google-Smtp-Source: AGHT+IFMwMhvOphtvO8C5EwWqvnT9WcF0/GsSlyeQT++HVrdddjTsK1XMZKeXdCDezbgFmejez8wQg==
-X-Received: by 2002:a2e:2d12:0:b0:2ec:3180:d4f7 with SMTP id 38308e7fff4ca-2ec5b3460f7mr36941741fa.26.1719309312317;
-        Tue, 25 Jun 2024 02:55:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bd71:2ff1:592d:f52a? ([2a01:e0a:982:cbb0:bd71:2ff1:592d:f52a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424817b53f2sm172394305e9.25.2024.06.25.02.55.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jun 2024 02:55:11 -0700 (PDT)
-Message-ID: <ac0216ae-22c1-459e-829d-80233dd1b586@linaro.org>
-Date: Tue, 25 Jun 2024 11:55:10 +0200
+        d=1e100.net; s=20230601; t=1719309431; x=1719914231;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qF1YJYptXWfDBxwzTIeTgvB7dEj4RfJtD5/KNTKFabM=;
+        b=BIv4SQTGYPmldXj32erGYAXkwY1k7aBaIV9tAEfLo8MCH0mkwXZKpSsmz6lagdc3Qv
+         U95rrYkHcWstizRaPNZm9PuMS5evwhJVzi3tzYKHEmK53EFgvI0DY/sQi1uoATxRqDiK
+         sPCQUVt086DA/SDdHKDfN0F2HGQuxjlkBxu5O4/PnpdvCfQ+itFHjKhjgOYyYD9yEoI6
+         9pE7lqVs9ghqZcL/mlKwqQGkZdY24+7ukjKkIl5pFWqwpCAk+CVJloIV/xaqiFsUeiPS
+         gT4NKRqYxJWZ2nhC8OW0WFv3QY0C33Vu3aKa0aQylrHp7m5uGA/wrpTORHrhmWTyYg/5
+         B8Sw==
+X-Forwarded-Encrypted: i=1; AJvYcCUPDFfyg0oxvqMEyOncU04FwAtWYGhsSOKpbIEo+avAhslXledS+6SC1yXF6DAN5UjajsmD1ucfFYmeBqKYwZnu3YofAF+A5eZZUg==
+X-Gm-Message-State: AOJu0YywSeHsh63asiPaqd7sib0Gg7HD/OPNfMgoBYPzWplPvKGUCkii
+	PPJBnZwPM83r89/rk5o2zZT5sOa++ydG1gQJEzFZlqZjRpowVovw7g2e6Oac8g==
+X-Google-Smtp-Source: AGHT+IHpPnnOVZu547p/nqZZHcdZDYKUwYH9Z0EG/miyFDAKG8tkNavHDYu9ST2rn8SZoZX4/BKRwQ==
+X-Received: by 2002:a05:6a20:b906:b0:1b6:6d41:7bd5 with SMTP id adf61e73a8af0-1bcf7e7664dmr5586707637.15.1719309431324;
+        Tue, 25 Jun 2024 02:57:11 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:ea5a:67dd:bd1e:edef])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb32b8absm77094295ad.117.2024.06.25.02.57.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jun 2024 02:57:10 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: mediatek: mt8183-kukui-jacuzzi: Simplify DSI endpoint replacement
+Date: Tue, 25 Jun 2024 17:57:04 +0800
+Message-ID: <20240625095705.3474713-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.45.2.741.gdbec12cfda-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: amlogic: ad402: fix thermal zone node name
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240624-topic-amlogic-upstream-bindings-fixes-dts-round-2-v1-1-0a21f456eb8d@linaro.org>
- <1ad3429c-0bad-4662-bc9d-b912f88e7b3a@kernel.org>
- <4c4c7840-917e-4d00-b8a4-b97a01ca2e6a@linaro.org>
- <20240625095210.mnwer2d3bc5wkits@CAB-WSD-L081021>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240625095210.mnwer2d3bc5wkits@CAB-WSD-L081021>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/06/2024 11:53, Dmitry Rokosov wrote:
-> Hello Neil and Krzysztof,
-> 
-> Before posting any commit I've running dt_binding_check and dtbs_check.
-> Which target should highlight the errors like mentioned in this fix?
-> Please advise what I'm doing wrong.
-> 
-> My commands:
-> 
-> $ /usr/bin/make ARCH=arm64 INSTALL_MOD_PATH=$ROOT/out/$TARGET/target CROSS_COMPILE="$ROOT/out/$TARGET/host/bin/aarch64-buildroot-linux-gnu-" DEPMOD=$ROOT/out/$TARGET/host/sbin/depmod INSTALL_MOD_STRIP=1 -C $ROOT/out/$TARGET/build/linux-custom dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/example_device.yaml
-> $ /usr/bin/make ARCH=arm64 INSTALL_MOD_PATH=$ROOT/out/$TARGET/target CROSS_COMPILE="$ROOT/out/$TARGET/host/bin/aarch64-buildroot-linux-gnu-" DEPMOD=$ROOT/out/$TARGET/host/sbin/depmod INSTALL_MOD_STRIP=1 -C $ROOT/out/$TARGET/build/linux-custom dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/example_device.yaml
+Currently the Jacuzzi dtsi file redeclares the full DSI endpoint tree
+from the DSI controller just to replace the remote endpoint. This is
+not necessary since the local endpoint already has a label that can be
+referenced. This will also confusion when the inherited layout is
+changed.
 
-Thus should work, but I use:
-make ARCH=arm64 DTBS_CHECK=y $(cd arch/arm64/boot/dts; find amlogic/ -name "*.dts" | sed "s/dts/dtb/")
+Replace the redeclared DSI endpoint tree with a label reference.
 
-to only check amlogic dtbs.
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ .../boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi     | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
 
-Neil
-
-> 
-> On Mon, Jun 24, 2024 at 11:45:51AM +0200, Neil Armstrong wrote:
->> On 24/06/2024 11:28, Krzysztof Kozlowski wrote:
->>> On 24/06/2024 10:59, Neil Armstrong wrote:
->>>> Fixes the following:
->>>> thermal-zones: 'soc_thermal' does not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
->>>>           from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
->>>>
->>>> Fixes: 593ab951232b ("arm64: dts: amlogic: ad402: setup thermal-zones")
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
->>>>    arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts | 2 +-
->>>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
->>>> index 6883471a93b4..0d92f5253b64 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
->>>> +++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
->>>> @@ -86,7 +86,7 @@ vddio_1v8: regulator-vddio-1v8 {
->>>>    	};
->>>>    	thermal-zones {
->>>> -		soc_thermal: soc_thermal {
->>>> +		soc_thermal: soc-thermal {
->>>
->>> I was fixing all underscores... but then mentioned above commit
->>> re-introduced them.
->>
->> Sorry about that, I'm removing all dtbs check errors, so I'll be able to spot
->> this before merging anything now !
->>
->>>
->>> Some fixes need to be done more than once to stick. :)
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> >
->>> Best regards,
->>> Krzysztof
->>>
->>
->> Thanks,
->> Neil
-> 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+index fa4ab4d2899f..783c333107bc 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+@@ -91,16 +91,11 @@ cros_ec_pwm: pwm {
+ 
+ &dsi0 {
+ 	status = "okay";
+-	/delete-property/#size-cells;
+-	/delete-property/#address-cells;
+ 	/delete-node/panel@0;
+-	ports {
+-		port {
+-			dsi_out: endpoint {
+-				remote-endpoint = <&anx7625_in>;
+-			};
+-		};
+-	};
++};
++
++&dsi_out {
++	remote-endpoint = <&anx7625_in>;
+ };
+ 
+ &i2c0 {
+-- 
+2.45.2.741.gdbec12cfda-goog
 
 
