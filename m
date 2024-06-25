@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-79876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E694F91730C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 23:11:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A25291730B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 23:11:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A9ED284D51
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 21:11:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C7A01C22C94
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 21:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08F6180A82;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C08180A70;
 	Tue, 25 Jun 2024 21:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="H4JKwoKk"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="ETN+9ron"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C7817F513
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 21:09:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 832191802A1
+	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 21:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719349788; cv=none; b=ND5YNuoxR3LjBcvfie1HU7q7b5SNLjNPiN0dyh113m/zhnlensNFTWqZkKNs9KvFV/MXIXudR2MP09zmJmnMw37pIKzIyjYnMzD6vtuHAB/ToxohrpreNBcaEimLvjFvR30oIhTzg6uZAa82/j/TwK7CIYsW/GtHaH5kijN0Ec4=
+	t=1719349788; cv=none; b=sGAdp1mlxlud09Mfx004jbOODDoG7NyXPH5jsCh2N77iGGp9pir7VoZ+EDT/rxvijJI9A5MtTZJhptTzqcnDysun6FqFaNfjvXVJT+xLmlL9QRRbQkYQ6GVyXdky2Ctglldu0BhiDPTU0J4arwuJHRMfdcK+tnT7EaM7GvG2940=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1719349788; c=relaxed/simple;
-	bh=cWVQnk23k2xUpcy9wkE1ZXToJfYCrEIqFTtRKHxTzaU=;
+	bh=8kggMz8/f5qLIIFTpBmmCwqfpW6kBNPlwqErd1brQz4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TJ3Tf+5S6oxzWYWFYmGQB6sjhlzUoAX+8v95KiveMtXeQXGbRopQs1/Xz+JE9XEGWj1Xecfo5Wj2P54rDb3K+6Bk67a6yMo0LTHmBILmfWng3jgE4DnFXlc4+sjXGcQX0rpl8yepNCQ6hRdqKOkEWLKOKfgRdLJF6p1drwKtSVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=H4JKwoKk; arc=none smtp.client-ip=209.85.214.173
+	 MIME-Version; b=uVRI4V7jjlEbWgZu+HVB45pvQjG8KJjpjMm5au2J740+1QhmEbHAqNDZrESSALWqqhXDONdMbisVEtX2+la6Bf6AldzLy0JpDrYG3yqKZnk1v1gUV0yga2V5nguMglJfwRIOVj6WLwQU2oX6ml3ub23ZyVu6yQS5FG1Zvw3GqZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=ETN+9ron; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1f9fb3ca81bso26207005ad.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 14:09:43 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1fa07e4f44eso31658355ad.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 14:09:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1719349783; x=1719954583; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1719349785; x=1719954585; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9RHKmejM9a0vevYfMOXCLHoYWj48ZdPOlbThmmBhK0Q=;
-        b=H4JKwoKkd49yaD/f186mEfjWCLbvNn/hP06C2Lq4x2d1+YNSbf2E5qwgX7z1SafPxX
-         qEGRSs1OGj6jF1Vo1+iG/GbINtIzJFiezqFA7C7CD1TzFtWBiiHhEBHItVThEoY4n4RF
-         e1bWFqDZ0+x1+Jotyvz+e8u4zN/kNMnc03wyQ3Z7rp48ZCYJKqHvAyPZjJW/m6qw5bpW
-         /7tmKPIe8tEZNNg7Geo8G+nio+80ycOpIIB7TzQx8ZyrLNp36uqROXsqVWZsAiXJcBQT
-         ual0y4+ABo/4L/ZOqm9bZc/lPeMuNM/rmu4oALAwWF9gfOWQgZ4eU4mTmj1IzhYN/cNX
-         4MZw==
+        bh=Icm6uA8wnqdys37A8Kzf4AV1ey+zBIexi2g5XJMtDfE=;
+        b=ETN+9ron5pDf+ZaVOyk7cfDIWkD7OUCrykg1p3fHA2yl2dpK/zFlon91oH1BOQolsV
+         bXL7Xog4R1PBUJu1zMq5mt2EwLdNY1rzOzuv3qwSqgAtzj/F0dWziXCFzkV4mfu3tBSk
+         fTa2BqBMIKa7auzsZxzZsKHBav6OZP5U3zrpEhZ9DOK+Et0rUh5CZzqB5I9rhOnQKFaL
+         f3Q5yPSjkcxdLYOXEWJI7EIi4OMeToqnt6+flj122tKpfa0aYHKRxglHUEWU6mr9T4UZ
+         7aQyQMy/2rQkvlhOVPL/MtfsQGARvJ7EK1rwNEwQkREEmX+Ki1lvAcbKWLEVEi6tEnwN
+         06eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719349783; x=1719954583;
+        d=1e100.net; s=20230601; t=1719349785; x=1719954585;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9RHKmejM9a0vevYfMOXCLHoYWj48ZdPOlbThmmBhK0Q=;
-        b=sKnNN600Yk+H84aHV6kCE4M1I7ROFqCyCbd7qp8J8p9wEqpZuQSoESD6R9aVV5N/Ld
-         SndvY6TsKWPL3j8wl/ohMd3DYqS35gCQqnflon75/ZoRAeTEiDtGqDQ+rqAF1Mu3cYcQ
-         LHN/7L37gPJkEVFL9CdvzQtZy8p8hnt1qrLJfjQKGlegpL01Ug+iMqt6KIzIRmpxN3Mv
-         HmDvUVSLT44uzytdukDyhAgfSyIOgkYRekUUtT5/Bv6nOAq+mftBQxZ9dIWJEOXtKwR5
-         qcb3HXt79Jpip8B+pmzqDyXJc9WgVccWbvEa/MfLhJ4US9byne+UDAshOxJxQI5G3DQH
-         5h1Q==
-X-Gm-Message-State: AOJu0YwR7qS0+lDf5tx2B8iLNuRWpdZRTxifYbkMovk4Ih/0kAftizfA
-	QAhiAcPzXdi0fgPfjLjmmHg1brA2V14yvBqWWOQE/5x142rEqt70768wHpZcoqI=
-X-Google-Smtp-Source: AGHT+IH/DMRd777ZSRsWNFii7RZFNgZupCFLnI/6nswVeiRDaQZIaz+Y8uQB+pMOl2GL7EuQdKoZrw==
-X-Received: by 2002:a17:902:c943:b0:1fa:2210:4562 with SMTP id d9443c01a7336-1fa23fd8a00mr103679455ad.29.1719349782852;
-        Tue, 25 Jun 2024 14:09:42 -0700 (PDT)
+        bh=Icm6uA8wnqdys37A8Kzf4AV1ey+zBIexi2g5XJMtDfE=;
+        b=EZsw4dCzQhyPobKhErne2SCHH+CKf/EDS5cBnryik5TN5aJKnchf3JBxS/nmtgA+u2
+         kzIgy19EwH7lTGI92L/C7GMkPArMGN2lpZEsbbuVLDM9+hOEyfAt9f+xxFzXBKo8GDBy
+         88xKVgN79msLseHTbhNYEgc8GI2l0aFZP1z8QhTddVttPXMAPFrZWq9Hrxa3G2lAC+7f
+         9rZ1YcoM5g+wjLRuQE03P4X9yc6V0W+U/wDS44uZvWT2Dt85Bg8if8Fq64rxdm3voxpQ
+         Pq2zuK3Sq858TLfsvxg6V+MDQSSzEn1CmStuIEDlyGJtYHuff/O4Ml89NWMtldhOEqK5
+         YVEw==
+X-Gm-Message-State: AOJu0YwFl+z+ew4fUXv22t9VlX8JHC48YtutGhCF4j4ihRo0g6i5NTsO
+	VjLkjB0MTn2JgCPF9vVDYdPhmv5joO1emyWk1JzT2vXI7o2BGIEJ13MGsoqK11Y=
+X-Google-Smtp-Source: AGHT+IHthtdLPOXBG6B10DrZ39vkgS4mJz07lhPLTxOAb1nTigmUhpXbFgrxYa8MQ6WsjtQ9WbY67w==
+X-Received: by 2002:a17:903:32ce:b0:1fa:643:f424 with SMTP id d9443c01a7336-1fa238e46ddmr113134855ad.14.1719349784670;
+        Tue, 25 Jun 2024 14:09:44 -0700 (PDT)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb328f57sm85873455ad.110.2024.06.25.14.09.41
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb328f57sm85873455ad.110.2024.06.25.14.09.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jun 2024 14:09:42 -0700 (PDT)
+        Tue, 25 Jun 2024 14:09:44 -0700 (PDT)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	linux-riscv@lists.infradead.org
@@ -81,9 +81,9 @@ Cc: devicetree@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
 	Samuel Holland <samuel.holland@sifive.com>
-Subject: [PATCH v2 04/10] riscv: Add support for userspace pointer masking
-Date: Tue, 25 Jun 2024 14:09:15 -0700
-Message-ID: <20240625210933.1620802-5-samuel.holland@sifive.com>
+Subject: [PATCH v2 05/10] riscv: Add support for the tagged address ABI
+Date: Tue, 25 Jun 2024 14:09:16 -0700
+Message-ID: <20240625210933.1620802-6-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.44.1
 In-Reply-To: <20240625210933.1620802-1-samuel.holland@sifive.com>
 References: <20240625210933.1620802-1-samuel.holland@sifive.com>
@@ -95,229 +95,334 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-RISC-V supports pointer masking with a variable number of tag bits
-(which is called "PMLEN" in the specification) and which is configured
-at the next higher privilege level.
+When pointer masking is enabled for userspace, the kernel can accept
+tagged pointers as arguments to some system calls. Allow this by
+untagging the pointers in access_ok() and the uaccess routines. The
+uaccess routines must peform untagging in software because U-mode and
+S-mode have entirely separate pointer masking configurations. In fact,
+hardware may not even implement pointer masking for S-mode.
 
-Wire up the PR_SET_TAGGED_ADDR_CTRL and PR_GET_TAGGED_ADDR_CTRL prctls
-so userspace can request a lower bound on the  number of tag bits and
-determine the actual number of tag bits. As with arm64's
-PR_TAGGED_ADDR_ENABLE, the pointer masking configuration is
-thread-scoped, inherited on clone() and fork() and cleared on execve().
+Since the number of tag bits is variable, untagged_addr_remote() needs
+to know what PMLEN to use for the remote mm. Therefore, the pointer
+masking mode must be the same for all threads sharing an mm. Enforce
+this with a lock flag in the mm context, as x86 does for LAM. The flag
+gets reset in init_new_context() during fork(), as the new mm is no
+longer multithreaded.
+
+Unlike x86, untagged_addr() gets pmlen from struct thread_info instead
+of a percpu variable, as this both avoids context switch overhead and
+loads the value more efficiently.
 
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
 Changes in v2:
- - Rebase on riscv/linux.git for-next
- - Add and use the envcfg_update_bits() helper function
- - Inline flush_tagged_addr_state()
+ - Implement untagged_addr_remote()
+ - Restrict PMLEN changes once a process is multithreaded
 
- arch/riscv/Kconfig                 | 11 ++++
- arch/riscv/include/asm/processor.h |  8 +++
- arch/riscv/include/asm/switch_to.h | 11 ++++
- arch/riscv/kernel/process.c        | 99 ++++++++++++++++++++++++++++++
- include/uapi/linux/prctl.h         |  3 +
- 5 files changed, 132 insertions(+)
+ arch/riscv/include/asm/mmu.h         |  7 +++
+ arch/riscv/include/asm/mmu_context.h |  6 +++
+ arch/riscv/include/asm/thread_info.h |  3 ++
+ arch/riscv/include/asm/uaccess.h     | 58 +++++++++++++++++++++--
+ arch/riscv/kernel/process.c          | 69 +++++++++++++++++++++++++++-
+ 5 files changed, 136 insertions(+), 7 deletions(-)
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index b94176e25be1..8f9980f81ea5 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -505,6 +505,17 @@ config RISCV_ISA_C
+diff --git a/arch/riscv/include/asm/mmu.h b/arch/riscv/include/asm/mmu.h
+index 947fd60f9051..361a9623f8c8 100644
+--- a/arch/riscv/include/asm/mmu.h
++++ b/arch/riscv/include/asm/mmu.h
+@@ -26,8 +26,15 @@ typedef struct {
+ 	unsigned long exec_fdpic_loadmap;
+ 	unsigned long interp_fdpic_loadmap;
+ #endif
++#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
++	unsigned long flags;
++	u8 pmlen;
++#endif
+ } mm_context_t;
  
- 	  If you don't know what to do here, say Y.
++/* Lock the pointer masking mode because this mm is multithreaded */
++#define MM_CONTEXT_LOCK_PMLEN	0
++
+ #define cntx2asid(cntx)		((cntx) & SATP_ASID_MASK)
+ #define cntx2version(cntx)	((cntx) & ~SATP_ASID_MASK)
  
-+config RISCV_ISA_POINTER_MASKING
-+	bool "Smmpm, Smnpm, and Ssnpm extensions for pointer masking"
-+	depends on 64BIT
-+	default y
-+	help
-+	  Add support for the pointer masking extensions (Smmpm, Smnpm,
-+	  and Ssnpm) when they are detected at boot.
-+
-+	  If this option is disabled, userspace will be unable to use
-+	  the prctl(PR_{SET,GET}_TAGGED_ADDR_CTRL) API.
-+
- config RISCV_ISA_SVNAPOT
- 	bool "Svnapot extension support for supervisor mode NAPOT pages"
- 	depends on 64BIT && MMU
-diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-index 0838922bd1c8..4f99c85d29ae 100644
---- a/arch/riscv/include/asm/processor.h
-+++ b/arch/riscv/include/asm/processor.h
-@@ -194,6 +194,14 @@ extern int set_unalign_ctl(struct task_struct *tsk, unsigned int val);
- #define RISCV_SET_ICACHE_FLUSH_CTX(arg1, arg2)	riscv_set_icache_flush_ctx(arg1, arg2)
- extern int riscv_set_icache_flush_ctx(unsigned long ctx, unsigned long per_thread);
+diff --git a/arch/riscv/include/asm/mmu_context.h b/arch/riscv/include/asm/mmu_context.h
+index 7030837adc1a..62a9f76cf257 100644
+--- a/arch/riscv/include/asm/mmu_context.h
++++ b/arch/riscv/include/asm/mmu_context.h
+@@ -20,6 +20,9 @@ void switch_mm(struct mm_struct *prev, struct mm_struct *next,
+ static inline void activate_mm(struct mm_struct *prev,
+ 			       struct mm_struct *next)
+ {
++#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
++	next->context.pmlen = 0;
++#endif
+ 	switch_mm(prev, next, NULL);
+ }
+ 
+@@ -29,6 +32,9 @@ static inline int init_new_context(struct task_struct *tsk,
+ {
+ #ifdef CONFIG_MMU
+ 	atomic_long_set(&mm->context.id, 0);
++#endif
++#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
++	clear_bit(MM_CONTEXT_LOCK_PMLEN, &mm->context.flags);
+ #endif
+ 	return 0;
+ }
+diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/asm/thread_info.h
+index 5d473343634b..cd355f8a550f 100644
+--- a/arch/riscv/include/asm/thread_info.h
++++ b/arch/riscv/include/asm/thread_info.h
+@@ -60,6 +60,9 @@ struct thread_info {
+ 	void			*scs_base;
+ 	void			*scs_sp;
+ #endif
++#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
++	u8			pmlen;
++#endif
+ };
+ 
+ #ifdef CONFIG_SHADOW_CALL_STACK
+diff --git a/arch/riscv/include/asm/uaccess.h b/arch/riscv/include/asm/uaccess.h
+index 72ec1d9bd3f3..153495997bc1 100644
+--- a/arch/riscv/include/asm/uaccess.h
++++ b/arch/riscv/include/asm/uaccess.h
+@@ -9,8 +9,56 @@
+ #define _ASM_RISCV_UACCESS_H
+ 
+ #include <asm/asm-extable.h>
++#include <asm/cpufeature.h>
+ #include <asm/pgtable.h>		/* for TASK_SIZE */
  
 +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
-+/* PR_{SET,GET}_TAGGED_ADDR_CTRL prctl */
-+long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg);
-+long get_tagged_addr_ctrl(struct task_struct *task);
-+#define SET_TAGGED_ADDR_CTRL(arg)	set_tagged_addr_ctrl(current, arg)
-+#define GET_TAGGED_ADDR_CTRL()		get_tagged_addr_ctrl(current)
-+#endif
-+
- #endif /* __ASSEMBLY__ */
- 
- #endif /* _ASM_RISCV_PROCESSOR_H */
-diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
-index 9685cd85e57c..94e33216b2d9 100644
---- a/arch/riscv/include/asm/switch_to.h
-+++ b/arch/riscv/include/asm/switch_to.h
-@@ -70,6 +70,17 @@ static __always_inline bool has_fpu(void) { return false; }
- #define __switch_to_fpu(__prev, __next) do { } while (0)
- #endif
- 
-+static inline void envcfg_update_bits(struct task_struct *task,
-+				      unsigned long mask, unsigned long val)
++static inline unsigned long __untagged_addr(unsigned long addr)
 +{
-+	unsigned long envcfg;
++	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM)) {
++		u8 pmlen = current->thread_info.pmlen;
 +
-+	envcfg = (task->thread.envcfg & ~mask) | val;
-+	task->thread.envcfg = envcfg;
-+	if (task == current)
-+		csr_write(CSR_ENVCFG, envcfg);
++		/* Virtual addresses are sign-extended; physical addresses are zero-extended. */
++		if (IS_ENABLED(CONFIG_MMU))
++			return (long)(addr << pmlen) >> pmlen;
++		else
++			return (addr << pmlen) >> pmlen;
++	}
++
++	return addr;
 +}
 +
- static inline void __switch_to_envcfg(struct task_struct *next)
++#define untagged_addr(addr) ({						\
++	unsigned long __addr = (__force unsigned long)(addr);		\
++	(__force __typeof__(addr))__untagged_addr(__addr);		\
++})
++
++static inline unsigned long __untagged_addr_remote(struct mm_struct *mm, unsigned long addr)
++{
++	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM)) {
++		u8 pmlen = mm->context.pmlen;
++
++		/* Virtual addresses are sign-extended; physical addresses are zero-extended. */
++		if (IS_ENABLED(CONFIG_MMU))
++			return (long)(addr << pmlen) >> pmlen;
++		else
++			return (addr << pmlen) >> pmlen;
++	}
++
++	return addr;
++}
++
++#define untagged_addr_remote(mm, addr) ({				\
++	unsigned long __addr = (__force unsigned long)(addr);		\
++	mmap_assert_locked(mm);						\
++	(__force __typeof__(addr))__untagged_addr_remote(mm, __addr);	\
++})
++
++#define access_ok(addr, size) likely(__access_ok(untagged_addr(addr), size))
++#else
++#define untagged_addr(addr) (addr)
++#endif
++
+ /*
+  * User space memory access functions
+  */
+@@ -130,7 +178,7 @@ do {								\
+  */
+ #define __get_user(x, ptr)					\
+ ({								\
+-	const __typeof__(*(ptr)) __user *__gu_ptr = (ptr);	\
++	const __typeof__(*(ptr)) __user *__gu_ptr = untagged_addr(ptr); \
+ 	long __gu_err = 0;					\
+ 								\
+ 	__chk_user_ptr(__gu_ptr);				\
+@@ -246,7 +294,7 @@ do {								\
+  */
+ #define __put_user(x, ptr)					\
+ ({								\
+-	__typeof__(*(ptr)) __user *__gu_ptr = (ptr);		\
++	__typeof__(*(ptr)) __user *__gu_ptr = untagged_addr(ptr); \
+ 	__typeof__(*__gu_ptr) __val = (x);			\
+ 	long __pu_err = 0;					\
+ 								\
+@@ -293,13 +341,13 @@ unsigned long __must_check __asm_copy_from_user(void *to,
+ static inline unsigned long
+ raw_copy_from_user(void *to, const void __user *from, unsigned long n)
  {
- 	asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0",
+-	return __asm_copy_from_user(to, from, n);
++	return __asm_copy_from_user(to, untagged_addr(from), n);
+ }
+ 
+ static inline unsigned long
+ raw_copy_to_user(void __user *to, const void *from, unsigned long n)
+ {
+-	return __asm_copy_to_user(to, from, n);
++	return __asm_copy_to_user(untagged_addr(to), from, n);
+ }
+ 
+ extern long strncpy_from_user(char *dest, const char __user *src, long count);
+@@ -314,7 +362,7 @@ unsigned long __must_check clear_user(void __user *to, unsigned long n)
+ {
+ 	might_fault();
+ 	return access_ok(to, n) ?
+-		__clear_user(to, n) : n;
++		__clear_user(untagged_addr(to), n) : n;
+ }
+ 
+ #define __get_kernel_nofault(dst, src, type, err_label)			\
 diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-index e4bc61c4e58a..dec5ccc44697 100644
+index dec5ccc44697..7bd445dade92 100644
 --- a/arch/riscv/kernel/process.c
 +++ b/arch/riscv/kernel/process.c
-@@ -7,6 +7,7 @@
-  * Copyright (C) 2017 SiFive
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/cpu.h>
- #include <linux/kernel.h>
- #include <linux/sched.h>
-@@ -171,6 +172,10 @@ void flush_thread(void)
- 	memset(&current->thread.vstate, 0, sizeof(struct __riscv_v_ext_state));
+@@ -173,8 +173,10 @@ void flush_thread(void)
  	clear_tsk_thread_flag(current, TIF_RISCV_V_DEFER_RESTORE);
  #endif
-+#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
-+	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
-+		envcfg_update_bits(current, ENVCFG_PMM, ENVCFG_PMM_PMLEN_0);
-+#endif
+ #ifdef CONFIG_RISCV_ISA_POINTER_MASKING
+-	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
++	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM)) {
+ 		envcfg_update_bits(current, ENVCFG_PMM, ENVCFG_PMM_PMLEN_0);
++		current->thread_info.pmlen = 0;
++	}
+ #endif
  }
  
- void arch_release_task_struct(struct task_struct *tsk)
-@@ -233,3 +238,97 @@ void __init arch_task_cache_init(void)
- {
- 	riscv_v_setup_ctx_cache();
- }
-+
+@@ -204,6 +206,12 @@ int copy_thread(struct task_struct *p, const struct kernel_clone_args *args)
+ 	unsigned long tls = args->tls;
+ 	struct pt_regs *childregs = task_pt_regs(p);
+ 
 +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
-+static bool have_user_pmlen_7;
-+static bool have_user_pmlen_16;
++	/* Ensure all threads in this mm have the same pointer masking mode. */
++	if (p->mm && (clone_flags & CLONE_VM))
++		set_bit(MM_CONTEXT_LOCK_PMLEN, &p->mm->context.flags);
++#endif
 +
-+long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
-+{
-+	unsigned long valid_mask = PR_PMLEN_MASK;
-+	struct thread_info *ti = task_thread_info(task);
-+	unsigned long pmm;
-+	u8 pmlen;
+ 	memset(&p->thread.s, 0, sizeof(p->thread.s));
+ 
+ 	/* p->thread holds context to be restored by __switch_to() */
+@@ -243,10 +251,16 @@ void __init arch_task_cache_init(void)
+ static bool have_user_pmlen_7;
+ static bool have_user_pmlen_16;
+ 
++/*
++ * Control the relaxed ABI allowing tagged user addresses into the kernel.
++ */
++static unsigned int tagged_addr_disabled;
 +
-+	if (is_compat_thread(ti))
+ long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
+ {
+-	unsigned long valid_mask = PR_PMLEN_MASK;
++	unsigned long valid_mask = PR_PMLEN_MASK | PR_TAGGED_ADDR_ENABLE;
+ 	struct thread_info *ti = task_thread_info(task);
++	struct mm_struct *mm = task->mm;
+ 	unsigned long pmm;
+ 	u8 pmlen;
+ 
+@@ -277,6 +291,14 @@ long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
+ 			return -EINVAL;
+ 	}
+ 
++	/*
++	 * Do not allow the enabling of the tagged address ABI if globally
++	 * disabled via sysctl abi.tagged_addr_disabled, if pointer masking
++	 * is disabled for userspace.
++	 */
++	if (arg & PR_TAGGED_ADDR_ENABLE && (tagged_addr_disabled || !pmlen))
 +		return -EINVAL;
 +
-+	if (arg & ~valid_mask)
-+		return -EINVAL;
+ 	if (pmlen == 7)
+ 		pmm = ENVCFG_PMM_PMLEN_7;
+ 	else if (pmlen == 16)
+@@ -284,7 +306,22 @@ long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
+ 	else
+ 		pmm = ENVCFG_PMM_PMLEN_0;
+ 
++	if (!(arg & PR_TAGGED_ADDR_ENABLE))
++		pmlen = 0;
 +
-+	pmlen = FIELD_GET(PR_PMLEN_MASK, arg);
-+	if (pmlen > 16) {
-+		return -EINVAL;
-+	} else if (pmlen > 7) {
-+		if (have_user_pmlen_16)
-+			pmlen = 16;
-+		else
-+			return -EINVAL;
-+	} else if (pmlen > 0) {
-+		/*
-+		 * Prefer the smallest PMLEN that satisfies the user's request,
-+		 * in case choosing a larger PMLEN has a performance impact.
-+		 */
-+		if (have_user_pmlen_7)
-+			pmlen = 7;
-+		else if (have_user_pmlen_16)
-+			pmlen = 16;
-+		else
-+			return -EINVAL;
++	if (mmap_write_lock_killable(mm))
++		return -EINTR;
++
++	if (test_bit(MM_CONTEXT_LOCK_PMLEN, &mm->context.flags) && mm->context.pmlen != pmlen) {
++		mmap_write_unlock(mm);
++		return -EBUSY;
 +	}
 +
-+	if (pmlen == 7)
-+		pmm = ENVCFG_PMM_PMLEN_7;
-+	else if (pmlen == 16)
-+		pmm = ENVCFG_PMM_PMLEN_16;
-+	else
-+		pmm = ENVCFG_PMM_PMLEN_0;
+ 	envcfg_update_bits(task, ENVCFG_PMM, pmm);
++	task->mm->context.pmlen = pmlen;
++	task->thread_info.pmlen = pmlen;
 +
-+	envcfg_update_bits(task, ENVCFG_PMM, pmm);
-+
-+	return 0;
-+}
-+
-+long get_tagged_addr_ctrl(struct task_struct *task)
-+{
-+	struct thread_info *ti = task_thread_info(task);
-+	long ret = 0;
-+
-+	if (is_compat_thread(ti))
-+		return -EINVAL;
-+
-+	switch (task->thread.envcfg & ENVCFG_PMM) {
-+	case ENVCFG_PMM_PMLEN_7:
-+		ret |= FIELD_PREP(PR_PMLEN_MASK, 7);
-+		break;
-+	case ENVCFG_PMM_PMLEN_16:
-+		ret |= FIELD_PREP(PR_PMLEN_MASK, 16);
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+static bool try_to_set_pmm(unsigned long value)
-+{
-+	csr_set(CSR_ENVCFG, value);
-+	return (csr_read_clear(CSR_ENVCFG, ENVCFG_PMM) & ENVCFG_PMM) == value;
-+}
-+
-+static int __init tagged_addr_init(void)
-+{
-+	if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
-+		return 0;
++	mmap_write_unlock(mm);
+ 
+ 	return 0;
+ }
+@@ -297,6 +334,13 @@ long get_tagged_addr_ctrl(struct task_struct *task)
+ 	if (is_compat_thread(ti))
+ 		return -EINVAL;
+ 
++	if (task->thread_info.pmlen)
++		ret = PR_TAGGED_ADDR_ENABLE;
 +
 +	/*
-+	 * envcfg.PMM is a WARL field. Detect which values are supported.
-+	 * Assume the supported PMLEN values are the same on all harts.
++	 * The task's pmlen is only set if the tagged address ABI is enabled,
++	 * so the effective PMLEN must be extracted from envcfg.PMM.
 +	 */
-+	csr_clear(CSR_ENVCFG, ENVCFG_PMM);
-+	have_user_pmlen_7 = try_to_set_pmm(ENVCFG_PMM_PMLEN_7);
-+	have_user_pmlen_16 = try_to_set_pmm(ENVCFG_PMM_PMLEN_16);
-+
-+	return 0;
-+}
-+core_initcall(tagged_addr_init);
-+#endif	/* CONFIG_RISCV_ISA_POINTER_MASKING */
-diff --git a/include/uapi/linux/prctl.h b/include/uapi/linux/prctl.h
-index 35791791a879..6e84c827869b 100644
---- a/include/uapi/linux/prctl.h
-+++ b/include/uapi/linux/prctl.h
-@@ -244,6 +244,9 @@ struct prctl_mm_map {
- # define PR_MTE_TAG_MASK		(0xffffUL << PR_MTE_TAG_SHIFT)
- /* Unused; kept only for source compatibility */
- # define PR_MTE_TCF_SHIFT		1
-+/* RISC-V pointer masking tag length */
-+# define PR_PMLEN_SHIFT			24
-+# define PR_PMLEN_MASK			(0x7fUL << PR_PMLEN_SHIFT)
+ 	switch (task->thread.envcfg & ENVCFG_PMM) {
+ 	case ENVCFG_PMM_PMLEN_7:
+ 		ret |= FIELD_PREP(PR_PMLEN_MASK, 7);
+@@ -315,6 +359,24 @@ static bool try_to_set_pmm(unsigned long value)
+ 	return (csr_read_clear(CSR_ENVCFG, ENVCFG_PMM) & ENVCFG_PMM) == value;
+ }
  
- /* Control reclaim behavior when allocating memory */
- #define PR_SET_IO_FLUSHER		57
++/*
++ * Global sysctl to disable the tagged user addresses support. This control
++ * only prevents the tagged address ABI enabling via prctl() and does not
++ * disable it for tasks that already opted in to the relaxed ABI.
++ */
++
++static struct ctl_table tagged_addr_sysctl_table[] = {
++	{
++		.procname	= "tagged_addr_disabled",
++		.mode		= 0644,
++		.data		= &tagged_addr_disabled,
++		.maxlen		= sizeof(int),
++		.proc_handler	= proc_dointvec_minmax,
++		.extra1		= SYSCTL_ZERO,
++		.extra2		= SYSCTL_ONE,
++	},
++};
++
+ static int __init tagged_addr_init(void)
+ {
+ 	if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+@@ -328,6 +390,9 @@ static int __init tagged_addr_init(void)
+ 	have_user_pmlen_7 = try_to_set_pmm(ENVCFG_PMM_PMLEN_7);
+ 	have_user_pmlen_16 = try_to_set_pmm(ENVCFG_PMM_PMLEN_16);
+ 
++	if (!register_sysctl("abi", tagged_addr_sysctl_table))
++		return -EINVAL;
++
+ 	return 0;
+ }
+ core_initcall(tagged_addr_init);
 -- 
 2.44.1
 
