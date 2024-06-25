@@ -1,234 +1,189 @@
-Return-Path: <devicetree+bounces-79620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58ED991609C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 787629160E9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C5181C21A5E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:05:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BC5F1C22775
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1101146D7E;
-	Tue, 25 Jun 2024 08:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63538147C90;
+	Tue, 25 Jun 2024 08:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="n7r9Qbig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2106.outbound.protection.outlook.com [40.107.215.106])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38DCC145A0B;
-	Tue, 25 Jun 2024 08:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.106
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719302696; cv=fail; b=ZJG0UZ3+Pvwmymc31oEuHTZKyROb3UwOnTxOwnk/mp9m8/VVM4rqZ66H9byO3NAWuRsV6FuooeN+uip2IMXupgyg2CesSNnwdiUCvLIS3QXXxxSitkxcBMjtK6ZgZ6qFH45TeSYbWl64JUhVEY9wTSn44hgucdLFRtbjCzqeVIU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719302696; c=relaxed/simple;
-	bh=9wbwainGNPXTd8qpx8tBhCor0IX1504EGhMzCqkYWME=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=DFSYYUbMFfvnGE22LcAsPoEGb5W70ixocrSsRzTM9WwF1NWlh/rjPfNppVfLuHFQxoMpllkscuM/GP8dmvOw2V8krCJFKOsOXZGGsBFdP04YW+JXMFoa9vW0CRxD7WQGgY9ieBQyBBc/Pq9q6Pg1sXUD1cP1JcPbQObx1ZfebRM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.215.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oQSp2SEkCsIYs4LxnirynNRyukeu0+H4AnuTa8xdXlDscZ+EsSrhMLs9WU/lv2wxQ5n7oG+NTel1VezpmJKsXGGFOagda8iwQ2yqkalG4e7mU3S6ukhQoqbHcru39yE2hlHw9zZrv//wZ8VYhYqocRqMNCB8QqlyJDUpbYBIFew4Z/KmnKqL/i6kcf/bmremgYfUS78n2Qp1bV5O0b77qDwp2/i84ii6wyTVuu2EheiZa4Y7RgaHmrQkNiFOZbDUL+/Tntrhw3HWzUY6Ujpa41y8873KL+UR+ov4LJlxRs1bWrSdG4SiGi6FvXc7Dzt4CWXb5IwXZeK+oP48K7Zyug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9wbwainGNPXTd8qpx8tBhCor0IX1504EGhMzCqkYWME=;
- b=V13ZMEQkw0Ak2aTvP1slhyibh3TRupC+I+Izo4Nahg9ua49EJryjkPiICDBOaTRCG5fR2SDQ6olhO1mBb97T2ANOkeXbLa6A8tEJvNQnUxGkbIrvoPZWvkyI7/Yq+a01sXyc1VR4flfLH5vlBKfo/oXsWv2CVXeT3Hxy8Yv1XRnfTkCNp5Z9Jf4AbbDrjRbcl8+8rlbE54F08DzDmNuPCvR8BAMQN7fdmynBLgG3eOynMnCIgTQsB9WK02G4DWv6D42qXTTK4Wsw0m8WuPkpbGV75RXQ6bVVbUPNhUFgjgA1u7NpA2MygYpptzeBSAqhenAwycuS0h2PpKRU8BE08g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
- dkim=pass header.d=wesion.com; arc=none
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
- by SEYPR03MB7480.apcprd03.prod.outlook.com (2603:1096:101:142::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.30; Tue, 25 Jun
- 2024 08:04:48 +0000
-Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
- ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7698.025; Tue, 25 Jun 2024
- 08:04:47 +0000
-From: Jacobe Zang <jacobe.zang@wesion.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, "arend.vanspriel@broadcom.com"
-	<arend.vanspriel@broadcom.com>
-CC: "kvalo@kernel.org" <kvalo@kernel.org>, "duoming@zju.edu.cn"
-	<duoming@zju.edu.cn>, "bhelgaas@google.com" <bhelgaas@google.com>,
-	"minipli@grsecurity.net" <minipli@grsecurity.net>,
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>,
-	"brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>,
-	"megi@xff.cz" <megi@xff.cz>, "robh@kernel.org" <robh@kernel.org>,
-	"efectn@protonmail.com" <efectn@protonmail.com>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"heiko@sntech.de" <heiko@sntech.de>, Nick Xie <nick@khadas.com>,
-	"jagan@edgeble.ai" <jagan@edgeble.ai>, "dsimic@manjaro.org"
-	<dsimic@manjaro.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
-	<linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/5] arm64: dts: rockchip: Add AP6275P wireless support
- to Khadas Edge 2
-Thread-Topic: [PATCH v2 1/5] arm64: dts: rockchip: Add AP6275P wireless
- support to Khadas Edge 2
-Thread-Index: AQHaxg/hc6qZ2pXlVU2sUa/trZv6q7HWzcQAgAFPx8w=
-Date: Tue, 25 Jun 2024 08:04:47 +0000
-Message-ID:
- <TYZPR03MB7001D4DE507C919802B2F7F380D52@TYZPR03MB7001.apcprd03.prod.outlook.com>
-References: <20240624081906.1399447-1-jacobe.zang@wesion.com>
- <20240624081906.1399447-2-jacobe.zang@wesion.com>
- <258459b8-549b-4a63-8d33-76c9631483f1@kernel.org>
-In-Reply-To: <258459b8-549b-4a63-8d33-76c9631483f1@kernel.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wesion.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB7001:EE_|SEYPR03MB7480:EE_
-x-ms-office365-filtering-correlation-id: be169834-4924-4652-f1e1-08dc94ed7b76
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230037|366013|376011|7416011|1800799021|38070700015;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?RLj/LFIROvYZHN5H9lAZ1a0pif+p2Z+ujvjrIiguntrK4MPtQ9337UFmco?=
- =?iso-8859-1?Q?c12BiJc5Xrd/zbAK6UgSU0Qj5S8E79w+sFmwqIUeyZe6fEFmgWLXGqf6Ow?=
- =?iso-8859-1?Q?TgQtjKmzap/Oewwl+huV7Xet/03Vi1J6W4kpW+49MWmFmlzmrmnUmtKcSc?=
- =?iso-8859-1?Q?duDf9PyHzrs/wqzQpU6BsGEfjmE/zSvdrxrEtNFoZlBTi7kNKm6SXLnBCM?=
- =?iso-8859-1?Q?7vKau75CUysQHOSrMAwIJfDoCgBxCvAHge9aufwoURBt+jdF0eXpCih1jW?=
- =?iso-8859-1?Q?nvEVbbbf74LIrshNck2LtXAos9Z+CFMn9+Y9UhyGIaxsWtQq1NbRshwLnF?=
- =?iso-8859-1?Q?k2FhMfZuZNr+2NqSP1Q3qaVr8/oIm+r1Norl+fzY81tbysF3GyhkgGkD9b?=
- =?iso-8859-1?Q?gmgH3Igh/8QTI01YzM+usGijTR9xK6zCY/nSfsaSRCgRvl3MofJEEdGwpf?=
- =?iso-8859-1?Q?UVfr34lBfjy1LjQsaHkF5PY/2IzcrOUOMSfxf4LoFWpbPkTYRRe9nzRpsU?=
- =?iso-8859-1?Q?ghGTGrXf0s5Yvp70FWxXLZJ0AbQCKcffyB4D+NprpzFO1LsC0vAMGf3AO5?=
- =?iso-8859-1?Q?eSTuqI6w1t0gTMzkcABqH5Fw/GfIMecDbvg1fQm9r2E6YzIICFJNXPpNCC?=
- =?iso-8859-1?Q?WJVbGdGbO+3XFKEY/WvbNN640gXom/S5OEP0D7nj4cG5OYxs5VyUWoZ5rl?=
- =?iso-8859-1?Q?8rCa/OWkbTgf0IH3f6swHBrv3i/DnrDZbCf2QmLoEBKVI1mZa4eeK/iHhr?=
- =?iso-8859-1?Q?8JrQ8DOGJhzstZhPVxnlgyOvrF7lqJTGWx39k/LlvgqWj1RB0L1Tq6Gt8I?=
- =?iso-8859-1?Q?zgzMkVDUeC8J4JLPoG8fvww8EOzUg7TeFDD8/1LqUHemXSbQSla/nx9XWU?=
- =?iso-8859-1?Q?VByorQNDOKMrzCDaus93OJsX2DCFqLyEu6tv3elwLoo/TCjRAT2M1OBgMo?=
- =?iso-8859-1?Q?OlUQfU24Tx5IS5Cryp343mM/RNEOmTNuXJr43T4pdEkvMou0vB7SWx81fp?=
- =?iso-8859-1?Q?czQ9iPaNpZr54bWx9uVrTvZk5ylwbwe8gl8kkrljBUd84iBp2DvWIFth9f?=
- =?iso-8859-1?Q?rEX0baoNP75rQXBvLJgRFWU5vvDKdyz4vFyU8q7iLCSaCFae5NdEJw4FKv?=
- =?iso-8859-1?Q?7Ef3pc62kwoYThwmEC2wqSVuSaH3JjlTd2VNiUpLm6PPE3ZauCZ9GRhScn?=
- =?iso-8859-1?Q?O40wZxscbvaQf+LekvRiTHwfIeWeeb3pVJ6nxQaupW2u/F4TFWEmmqoAno?=
- =?iso-8859-1?Q?Qvs03PDu7cTzIsWLw+pyQm3xPfvVrLgKFXpiVIZBhcLz+yCNTxRrXV2Q6e?=
- =?iso-8859-1?Q?sn0YVyiduePlCgpGD6k7wl0LBgaHgUpF2q9lgGrq5wp9DRsAMipfcDAecM?=
- =?iso-8859-1?Q?ruk67esvWNW/BntTTQtYCbhf6B614yKf6j4hHtXfTrIohe9qyPWuE=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(366013)(376011)(7416011)(1800799021)(38070700015);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?Gh5czEkRlkkP/Fgk5cOyW3LXBmafQEApPvn3w6JBN2lXEp9Z22+hyanML2?=
- =?iso-8859-1?Q?nuuEro7jMUL/Bo+G7E5K5AZQPwHQ/TJgkQgJYujL41uwsEzFspO7TMckB7?=
- =?iso-8859-1?Q?rQbIdfQKIcrf1K929/rNuDVDAzZecEjm1phIvy4z5ZMbskIjqzBQNtNcKL?=
- =?iso-8859-1?Q?OpTTrl4Exhy6o8zT9ssME/EH89jC45GHcuQ/50Mn9I66Kj+qVZoiiT5pKl?=
- =?iso-8859-1?Q?UM59LUNh+C0rhBycPgEk3/aGDy2pscgFrKNXrcOMWBWxl/JzA0PevpbEmy?=
- =?iso-8859-1?Q?tPXkiZOlvI7/OHqKiU/RyrkLcw055Ly+/19rcVztrfhb9C9h/ZD4UDX/F0?=
- =?iso-8859-1?Q?O/geegZEoanylmxdtLN6LJxzZmJgCMRNzkNTKS1Ba27WOxyTiXnUM8dfEb?=
- =?iso-8859-1?Q?wLct5kBzF0ZX20wbyM/50Sn/NmKoTZJZ0OG35ythJq8QiO26XFLcPproIV?=
- =?iso-8859-1?Q?6KHQOtRfFnnAgFH4ZTtYIA9wlNuMnO0w0UEEOAYwa+F4dwpUNLZphBylWZ?=
- =?iso-8859-1?Q?IEzqckH3C49zCC2hG3HNvntyYyprPM6KqD34JTNIeLfiIQ96vofE9TZNeY?=
- =?iso-8859-1?Q?jig+6hlHLMt7OMzpnBhbtVUhM/6XuemLeWQT0LMcDsJtULpbtzKtRTzLsj?=
- =?iso-8859-1?Q?lN+GNWxnn+XwP/XrIOzV4/Ut5bkZ5QXIywYDIee/euYUA5a0dEbLx73OjY?=
- =?iso-8859-1?Q?vpIBsxI3x8cbEWIDiBcz96uyq/PxcZDziy5vmvoGPN/odTXMOGNsvhSeBn?=
- =?iso-8859-1?Q?Z+apbGcSWHcXH8XEfzzZiZF03aJ6qjJ/ixxWjM9bGdyC9nBusTvA1d4q1y?=
- =?iso-8859-1?Q?D4gMitEipyqtPmMvs/uIfaERslah8dcbuvhQ0PKdlKcyRRtlBK8HNaXHSv?=
- =?iso-8859-1?Q?PAZfwB3AwJJYYggtW6dZ6XAUkJly/aT3PWP6Im0maklEo3qAmVItD2fdaJ?=
- =?iso-8859-1?Q?oPgOrY8aSv9MxqVz3dklwCG6ZngqtjmO13qHMZHfBvJS8PwyQEqr14cEOX?=
- =?iso-8859-1?Q?XIm8dnfUCSvDJPMrVJ1c9+aAH2s7qYmTQhjVe/RUqylQY3IiVT+unI1bIW?=
- =?iso-8859-1?Q?bZ+1t4xch5VdOgzWMOCO8kVPGoyHG78N6vMIyaMPVhkdJJDktM1Vjw/ZMq?=
- =?iso-8859-1?Q?VeNJ8ufic/vuTJByPnvQPUhS+gAiU2wacO6ZycPqBSOxpcg1e3H2udhn7I?=
- =?iso-8859-1?Q?91cyRxvHRU2xq5tLw9bpz0Da1iYxhXHJEW2i+POBE2yvKs9HCewY3J5vGE?=
- =?iso-8859-1?Q?5VsUgKVWT8I29vrdrsaadSMD5TmeFytv7BgbuNsLcLQgnBXK97XU6FfKMr?=
- =?iso-8859-1?Q?zZlM9kb4kPUhzXolSewlxySAA17ASU+ulf7TkLM495qfTdwItILdCXoJSr?=
- =?iso-8859-1?Q?FJ/IeqJJgAjnubk3uH/H/w2f6JNE+K9bjb6w68y0dV8Om4XG2rD9r3DC4P?=
- =?iso-8859-1?Q?lRh+4whl388OWdSZ+ED+Clw57UsC+9SpumWIOf+jftKMcn/7ToQIfIEBbq?=
- =?iso-8859-1?Q?PnI8efIeqO2vY04+70XJvqWzS8RYyQG97+xOnjcBrD1na26qrCJKQhC09V?=
- =?iso-8859-1?Q?g30t9d0Ft6PBPqXMnn081af5sC8K+WqTW0t0O3HkDoaJhpy85WxBHXCbb1?=
- =?iso-8859-1?Q?ECe4Gv17XVWLlviSzjl3jOBdjALqJTDi9X?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FBC145FFE;
+	Tue, 25 Jun 2024 08:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719303444; cv=none; b=DnsNFPI5R1I5ZCUwTmCIxp0L7U44wVcDCE8P/+E9+gEIRog3LHwa69/lhFodfgGNJkRRIhfYUYT7w6ti4PysZS20wNbgY7iApYQRwXqfgZQ+JR729hEkEfu6ZJArGauSIaXxIiHsDgH9tgsvRUqHF6uSM2+2IbR6xHv9TDZL49c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719303444; c=relaxed/simple;
+	bh=ahZ1IlNJOXPgTay/HQbIBcXi0SqZxQBnKXQRaaKDpsk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pjvpCc+DYjHRPl1hSUGKiXJMJ6ek76d17hij5bMHH/z8gWDl1gFpSqMtRQEnIVQgcBGXnOxL+ntnY9eSyFrYHn3U2THRp3iCUkrzv0bDNy9CWFNQ8Gm4d5S8dcwrtjDcvYW8YyhLX+gUg/g2tHH6D0FwW58I0k66fttjqGB8WtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=n7r9Qbig; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 62B741BF207;
+	Tue, 25 Jun 2024 08:17:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1719303440;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hE2xd4QxwpEy7QXL+lAVyTmTgN2X6yquzmQ2NM2E7EA=;
+	b=n7r9QbigIrXH9yhC12MrdNMh8FOIviHrg/M7D7taN3J5qjffT7qhqfSij2fkEgaElePZR3
+	71r0Xk6IOOK/8CuoSmrK9Y0yFTUowXl+b7Tqr4SSN+6AQbdIbEt+yYwYm8XLoSDLXuabgU
+	zCmZWv7tPmeulD7/jT+hf+EUBp3Cf50uJA+kiihV4JVCf1o9oWkbQdFYTTk9AGQOSexuRg
+	/4D9UWAVsbh8dgpmU2hwJWTcTzikN6MHMFN3khnQjmuNiw44LY1dox1njbN3L/vNXNyiwQ
+	FLizrA4peUFyyotRF62XAfZDBigiWXY8HHecPFHSrAq1iLllTQU70zEiIJ5b4g==
+Message-ID: <bb7e9cae-d627-4f38-9da2-b40fb3c349fe@arinc9.com>
+Date: Tue, 25 Jun 2024 11:17:09 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: wesion.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: be169834-4924-4652-f1e1-08dc94ed7b76
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2024 08:04:47.8865
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aLzcv40eSWkx4a91zcHShIJkbozJjIC2cXPbeCQQ257BCFWXVFpXKJDank52aRf7uNMRz1nWYfZ3MULx/e1FNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7480
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+To: Linux regressions mailing list <regressions@lists.linux.dev>,
+ Paolo Abeni <pabeni@redhat.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
+ Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+References: <20240516204847.171029-1-linux@fw-web.de>
+ <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
+ <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
+ <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
+ <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
+ <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
+ <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
+ <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
+ <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
+ <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
+ <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
+ <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
+ <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
+ <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
+ <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
+ <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
+ <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
+ <7a2ea06b-ae4e-4374-82c2-4de4184e06c3@arinc9.com>
+ <40035548-c76b-4b0d-915f-c513eaadbc5d@leemhuis.info>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <40035548-c76b-4b0d-915f-c513eaadbc5d@leemhuis.info>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts b/arc=
-h/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts=0A=
->> index 3b6286461a746..f674deb6f7da8 100644=0A=
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts=0A=
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts=0A=
->> @@ -356,6 +356,22 @@ &pcie2x1l2 {=0A=
->>=A0=A0=A0=A0=A0=A0=A0 reset-gpios =3D <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;=
-=0A=
->>=A0=A0=A0=A0=A0=A0=A0 vpcie3v3-supply =3D <&vcc3v3_pcie_wl>;=0A=
->>=A0=A0=A0=A0=A0=A0=A0 status =3D "okay";=0A=
->> +=0A=
->> +=A0=A0=A0=A0 pcie@0,0 {=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D <0x400000 0 0 0 0>;=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #address-cells =3D <3>;=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 #size-cells =3D <2>;=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ranges;=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 device_type =3D "pci";=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 bus-range =3D <0x40 0x4f>;=0A=
->=0A=
->Isn't bus-range a property of PCI host bridge, so the parent? This is a=0A=
->PCI device, right?=0A=
->=0A=
->> +=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 wifi: wifi@0,0 {=0A=
->=0A=
->Binding does not say anything about this. Rockchip PCI controller is the=
-=0A=
->PCI host bridge, isn't it? Then the pci@0,0 is the child, so what is this?=
-=0A=
-=0A=
-The host bridge is the parent of pcie@0,0. And pcie@0,0 is Bridge1, so the=
-=0A=
-wifi@0,0 as a device under the Bridge1.=0A=
-=0A=
->=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 reg =3D <0=
-x410000 0 0 0 0>;=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 clocks =3D=
- <&hym8563>;=0A=
->> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 clock-name=
-s =3D "32k";=0A=
->=0A=
->1. Bindings are before the users.=0A=
->2. Where is the compatible? Are you sure this validates?=0A=
-=0A=
-Before, the compatible is "pci14e4,449d", but when I checkpatch the warning=
-=0A=
-said that "pci14e4" was not documented, so I remove the compatible which =
-=0A=
-doesn't affect the Wi-Fi function. I have tried to add "pci14e4" to =0A=
-vendor-prefixes.yaml but was refused. So whether should I add the compatibl=
-e =0A=
-with warning? =0A=
-=0A=
-References: =0A=
-https://lore.kernel.org/all/20220629155956.1138955-15-nfraprado@collabora.c=
-om/=0A=
-=0A=
----=0A=
-Best Regards=0A=
-Jacobe=
+On 25/06/2024 09.57, Linux regression tracking (Thorsten Leemhuis) wrote:
+> On 25.06.24 08:17, Arınç ÜNAL wrote:
+>> On 25/06/2024 08.56, Linux regression tracking (Thorsten Leemhuis) wrote:
+>>> On 17.06.24 13:08, Arınç ÜNAL wrote:
+>>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis)
+>>>> wrote:
+>>>> [...]
+>>>> I've submitted a patch series that fixes the regression. Angelo argued
+>>>> against the way the regression is fixed. I've very clearly argued
+>>>> back why
+>>>> I find Angelo's approach wrong. There's been no response back. I don't
+>>>> understand why reverting the patch is the likely outcome
+>>>
+>>> Long story short: because that how things like that are handled in the
+>>> Linux kernel project, as Linus wants it like that. See some of the
+>>> quotes from https://docs.kernel.org/process/handling-regressions.html
+>>> for details.
+>>>
+>>>> whilst the
+>>>> standing argument points towards applying the said patch series. If a
+>>>> revert happens before this discussion with Angelo finalises, this
+>>>> will set
+>>>> a precedent that will tell maintainers that they can have their way
+>>>> by just
+>>>> not replying to the ongoing discussions.
+>>>>
+>>>> That said, the decision of resolving the regression by either
+>>>> reverting the
+>>>> patch or applying the patch series shall not depend on whether or not
+>>>> Angelo is pleased but rather there're no counter-arguments left on the
+>>>> points brought, meaning the decision shall be made depending on the
+>>>> argument that stands.
+>>>>
+>>>> Therefore, I suggest that unless Angelo responds back with a
+>>>> counter-argument in the window of a week or two, as you've described, my
+>>>> patch series shall be applied.
+>>>
+>>> It looks more and more like we are stuck here (or was there progress and
+>>> I just missed it?) while the 6.10 final is slowly getting closer. Hence:
+>>
+>> There hasn't been progress at all. I believe I have clearly described the
+>> way out of this issue.
+>>
+>>> AngeloGioacchino, should we ask the net maintainers to revert
+>>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
+>>> device tree") for now to resolve this regression? Reminder, there is
+>>> nothing wrong with that commit per se afaik, it just exposes a problem
+>>> that needs to be fixed first before it can be reapplied.
+>>
+>> Are you suggesting the patch shall be reverted first, then the DT patch
+>> applied, then the reverted patch applied back?
+> 
+> Yeah.
+> 
+>> If only one of the first two
+>> steps were done, it would fix the regression so I don't understand why go
+>> through this tedious process when we can quite simply apply the DT patch to
+>> resolve the regression.
+> 
+> Which DT patch do you mean here? Your series or the one from Frank at
+> the start of the thread (the one you seems to be unhappy about iirc, but
+> I might be wrong there)?
+
+My series, as arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts needs to be
+addressed too to resolve the regression.
+
+> 
+> Anyway, to answer the statement: because the maintainers that would have
+> to accept the DT patch to resolve the problem apparently are not happy
+> with it -- and nobody seems to be working on providing patches that make
+> them happy which are also acceptable at this point of the devel cycle;
+> so as it looks like currently to prevent the regression from entering
+> 6.10 reverting the net change is the only option left.
+
+I've already made my case regarding the situation with the DT patch. I
+can't provide new patches because Angelo did not acknowledge my points yet.
+I maintain the net driver and I too won't be happy with a revert on the
+driver.
+
+> 
+>> Keep in mind that I maintain the MT7530 DSA subdriver and the company I
+>> work with has got boards that uses the functionality the commit
+>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
+>> device tree") brings.
+> 
+> Don't see a revert as setback at all, that's just normal for the kernel.
+> I'm not the one that will decide about this anyway. And everyone
+> involved afaics would like to prevent a revert. But it seems more and
+> more likely that we are not getting there in time for the 6.10 release
+> (or ideally -rc6 or -rc7 to allow some testing, as last-minute reverts
+> can cause new problems).
+
+I am still calling for the simple procedure of applying the DT patch to
+resolve the regression.
+
+Arınç
 
