@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-79778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2287D916D30
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 17:35:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B130916D40
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 17:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D091528C690
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 15:35:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 258CC1F21421
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 15:39:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B26216F90D;
-	Tue, 25 Jun 2024 15:34:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 110A016D4C4;
+	Tue, 25 Jun 2024 15:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VfxKrQVm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ViykpSLU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C28816D4D7;
-	Tue, 25 Jun 2024 15:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96E3157461;
+	Tue, 25 Jun 2024 15:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719329693; cv=none; b=iEgj5mfva85FQ48dOwhmd1L/mpJ36/iSRDbfCR+wgnghBJl2YjxRCqGNeBLFUOZGuYfG00CpVOwiwSBxwV3wJAwmaL4GgX2KAmcTgDauzfrAilbZloGmxCYgS5EPmWeKtMLJyNriGy+mQZr3y6eO+aDCFrOXa3zlqg/vXvszV0A=
+	t=1719329941; cv=none; b=pdd6lb9V9PFub3OzGXwarMjU1NYxDHuiSPxGhjn/m5zK5KWLnlvElERkUViKyifgw6MR7bmXRh9Pszox1+7rB6gIDXb53aVqstlkGA+O1JFDocMkSu6bf0BiwmeFcmHuJsvGqvEZcRff1tXdf1LPO2YmpXlOkF5bX9asGAfPPsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719329693; c=relaxed/simple;
-	bh=gTk+23CWObg9MzmcWZm2zgAuR93E18j1kHQXDncw/IQ=;
+	s=arc-20240116; t=1719329941; c=relaxed/simple;
+	bh=dUBsdZ1Ffp2FMc8opFAfAMlgqjXCdPeVDof+n2Ao34Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LKH80D59xxPnfJsZJAJa4a8Knn8yIveOMUr4HEcpPnEkWkwPTfCWhPbVT3HOuunu6s17IunIaLyM0eI6kQnwhUUMiSh4BTwSAyP81NhmoA+NGyn/beHH5oPZdFCFqUqc1k8n7R45eD4HKNoEWaYdT6eYChOBX9hAFyJ5BPCHyOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VfxKrQVm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C156C32781;
-	Tue, 25 Jun 2024 15:34:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i9QP03/FAI/OWnHwCAjUEBC/qS/GiPU5qnnuZis4UTqwyysDs7/aJQPm3U0g2gTYF/o43yQxmRYZWUfFEr/zqObiIz/5FEavfNqTu9Z/hjsXpbdyFl1Lr5QA0psa4aExSjQXS6NEeRzaCB+86nODrvaZ7QKQWRdWn5pu8tDfwJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ViykpSLU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53D80C32781;
+	Tue, 25 Jun 2024 15:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719329692;
-	bh=gTk+23CWObg9MzmcWZm2zgAuR93E18j1kHQXDncw/IQ=;
+	s=k20201202; t=1719329940;
+	bh=dUBsdZ1Ffp2FMc8opFAfAMlgqjXCdPeVDof+n2Ao34Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VfxKrQVmEXHydhg2JMRrdJksEl6mtPFVm1kZLokSsoYnP1rNV8IlH9tx2fSogMisE
-	 sMhyI1skUjSjWMRGDKZOZUU3pmObIITZ3DV08N2h52FUWpdbmXwCI41ac5XGRepXCJ
-	 FOKhc+aDyTX//lJwTg1QTqpCY8G952KcXyhiLJ6V8Kbxb6zVPT2ZNjDNd6dHSyE3d7
-	 lBtROSdEWVmX5N2XvRvbMaapRSw60+4yn2KmbeNJEwKEJjpvE1Ujrb01qr4yGvPaip
-	 PAX/e/YH22qMIFhmpVFmYXuqG2pcEJrKBopcQ5UaRRksqi0xDDHwr5WBvg4GPmugr8
-	 v9jmL1plGrtxA==
-Date: Tue, 25 Jun 2024 16:34:48 +0100
+	b=ViykpSLUv2GTcqmbjuZsojeUGxHop0KOWrf2OnFQ7ZrbICC81/11nMvpCVoBUFF+0
+	 xDXqOywcAxC1tVMBaTdM3SbVBtnM8jvOiLPshqrDViDb+MQmu+m35T/bGV9TFw0ZTC
+	 uulPfbaM5nHYmBP3/wIGcOk8UcuAuAa2d7SFAx4HWaa/wCw3BCBU5CdqHGlhqYvyb7
+	 RwAva+6x0pmvRgnXvTdBZKy8E6jIbpK43TjncXo2JIGCZ06CADlWT8i40n4JtXKmsa
+	 nzn5K0CyjIvePAa1YBlpaDkZpRzffkzNVObIdC3Jan+uLT9+c3t4M0o/rmuLzxiKRA
+	 jSEHQfJc1UYfw==
+Date: Tue, 25 Jun 2024 16:38:55 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: fabrice.gasnier@foss.st.com, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+To: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: megi@xff.cz, javierm@redhat.com, neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: iio: add sigma delta modulator
- backend
-Message-ID: <20240625-babied-skies-0722dbdfc524@spud>
-References: <20240625150717.1038212-1-olivier.moysan@foss.st.com>
- <20240625150717.1038212-6-olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 3/4] dt-bindings: display: himax-hx8394: Add Microchip
+ AC40T08A MIPI Display panel
+Message-ID: <20240625-handbook-shifting-33a4e2afafed@spud>
+References: <20240625090853.343176-1-manikandan.m@microchip.com>
+ <20240625090853.343176-4-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,48 +62,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="koaKMre3ntrtIL26"
+	protocol="application/pgp-signature"; boundary="Oc/mUvdTE/WRO0dB"
 Content-Disposition: inline
-In-Reply-To: <20240625150717.1038212-6-olivier.moysan@foss.st.com>
+In-Reply-To: <20240625090853.343176-4-manikandan.m@microchip.com>
 
 
---koaKMre3ntrtIL26
+--Oc/mUvdTE/WRO0dB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 25, 2024 at 05:07:13PM +0200, Olivier Moysan wrote:
-> Add documentation of device tree bindings to support
-> sigma delta modulator backend in IIO framework.
+On Tue, Jun 25, 2024 at 02:38:52PM +0530, Manikandan Muralidharan wrote:
+> Add compatible string for the Microchip's AC40T08A MIPI Display
+> panel.This panel uses a Himax HX8394 display controller.
 >=20
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+>  .../devicetree/bindings/display/panel/himax,hx8394.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394=
+=2Eyaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> index 017cb19ed64f..d547df794b3b 100644
+> --- a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+> @@ -24,6 +24,7 @@ properties:
+>        - enum:
+>            - hannstar,hsd060bhw4
+>            - powkiddy,x55-panel
+> +          - microchip,ac40t08a-mipi-panel
 
-I don't review bindings for a job, I can only reliably get to look at
-my mail queue in the evenings, please give me a chance to reply to you
-before you submit a new version.
+Please add this in alphabetical order.
 
-> +$id: http://devicetree.org/schemas/iio/adc/sd-modulator-backend.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sigma delta modulator backend
+>        - const: himax,hx8394
+> =20
+>    reg:
+> --=20
+> 2.25.1
+>=20
 
-Same comments about filename and title apply here as the previous
-version. "TI $foo Sigma Delta Modulator" and drop the reference to back
-ends or the pretence of being generic.
-
-Thanks,
-Conor.
-
---koaKMre3ntrtIL26
+--Oc/mUvdTE/WRO0dB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrjmAAKCRB4tDGHoIJi
-0sNBAQCP50UL3FxvbZG06MZSx6eP+Y3JyhmEoK0Mk9xWXPPCzgD+OeI3SdHYwF20
-IctMHlmMqzaZ5Wbb1FsV3kP+AprUiww=
-=bzse
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrkjwAKCRB4tDGHoIJi
+0lHLAP4jPvghkIWyNWvSSHInLh0BBhPbvHViDgxeqPURF0crywEArnZvEXID4+LU
+fgUf9SVoX5nVOaaAAh4C17iUASQfBgw=
+=WeoJ
 -----END PGP SIGNATURE-----
 
---koaKMre3ntrtIL26--
+--Oc/mUvdTE/WRO0dB--
 
