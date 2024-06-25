@@ -1,286 +1,273 @@
-Return-Path: <devicetree+bounces-79785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAEF916D86
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 17:53:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20655916DA1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3CFD28516E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 15:53:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 946551F21C97
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5CC16FF59;
-	Tue, 25 Jun 2024 15:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5321214A091;
+	Tue, 25 Jun 2024 16:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="Fn9LtyJP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RBiZLdzF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2077.outbound.protection.outlook.com [40.107.113.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225CA156654;
-	Tue, 25 Jun 2024 15:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.113.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719330819; cv=fail; b=RqiUh/Rk8QJlELuZ3+m3xPh8Igh/kGq1GEt8Dny9pFCaow/q7OkSi+8hK6V455dwB1GYMnlz6r0ru18vegVV5v3zh6JDUep0nfMPfvRL4W+eFtJo7Ctwgr3SvOHiTHxPumvyPw7xMlMULD/ZxeRZscgu5ZpnpqHSKmNCTGWDHmI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719330819; c=relaxed/simple;
-	bh=7bxvQhRldn+VgAKPvJU/uv63vfCAeXxIXmSUeIY0rkI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=G2RXuwYdKtWxK805zR+DXCzW6xf9dkHKmfePAVVxDRCChSr1jZqJwA5dJ/Q2sFtu4TiXV5b34o1rpnOCwqICQafF0QD/UjXEcQmKjtL8F4b6sLjr6RmcVBvRFoHcfcr7iaE3FOKeYRs+KrVwRGvyKzJxN/AkLjLiEYH9nKVzwDI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=Fn9LtyJP; arc=fail smtp.client-ip=40.107.113.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mBbY2bmU3WaTdfrTS/jZnCp0WhCR3zV0gOrW2sIkp4clyEdUslU3xYaAgDMAqCqPjUVGvrOq02lriBETOxhcKRTwsxkFq2Aam+eWMKh42Boer2w/Rak9V3slW4ds0MvSLrrYR6TMykkbTgFrrhhkDOf6xv6MsDDezamdMOzhMMdGKAFt+04fgpVnj3LxcNGvDmOjSsboGN1RHCR3/qCosvcDs3beJiKKEgGBXR1dPTX92jTSBu/yypmSfIGFw6lQD/baMt49V6qgeibqtndfPpRcY24tbdXg5sFHN8RH27/mnPZvyODbe9tHMk3G2uWurgNPDCgIUuMGRoRsydbj6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pRfHeExoHRYcFuq5ZEiIR/m0jNmS2iMNFkKVcRtD8sA=;
- b=OTqfVNGD/AbvMFbZtxoOUbCMIYaiuatZ0RPe0BoEEfP7mzA+7s4jG5mmxC53+Pl5ZgrrwIIgfoJwvdqhBIuaxXGiK4/qfA5UzNpi+ahkWn0S9T6KrQTNOjmDa/ci4VFfSPf34TmFKZpLxj/IrsqJd70oPBqoS4uWHmpbeIxrYd1UMUja2sO5nlGWlclogruz7+ZNI5kJ/roUHkkUD2V0sP33ldkMRKRUV1L435sRpApTraopyEQVPqUJGVZQiKiZgOcs/pQP8q9ROzdBowaaKdiLWF7mwcZK/h/jcZtITJHLoBKBvldfdAg/YlPPE3+ZdKlTq8SzxPHmo7B9llZ9bQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pRfHeExoHRYcFuq5ZEiIR/m0jNmS2iMNFkKVcRtD8sA=;
- b=Fn9LtyJPa9zIPSGlQXJcQ0JLPHrZ3iFrH29A1p8PqBso1dPyqH58MCUByIWwe/e81HBpXsTWD/6K4PvFrQG+Zud3jWo3HNy4tOyix/FmSysWIeCwXkB6FS4uDhNCUX5DzBMH/sQkuT2LPlPy7Yfwcu107M6kEU2fTnzdwfleAHE=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by OS3PR01MB6856.jpnprd01.prod.outlook.com (2603:1096:604:117::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.32; Tue, 25 Jun
- 2024 15:53:28 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%4]) with mapi id 15.20.7698.025; Tue, 25 Jun 2024
- 15:53:28 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>, Chris Brandt
-	<Chris.Brandt@renesas.com>, "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"geert+renesas@glider.be" <geert+renesas@glider.be>, "magnus.damm@gmail.com"
-	<magnus.damm@gmail.com>, "mturquette@baylibre.com" <mturquette@baylibre.com>,
-	"sboyd@kernel.org" <sboyd@kernel.org>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "wsa+renesas@sang-engineering.com"
-	<wsa+renesas@sang-engineering.com>
-CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Claudiu.Beznea
-	<claudiu.beznea@tuxon.dev>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: RE: [PATCH v2 04/12] i2c: riic: Use pm_runtime_resume_and_get()
-Thread-Topic: [PATCH v2 04/12] i2c: riic: Use pm_runtime_resume_and_get()
-Thread-Index: AQHaxvlYh4jiRKyfj0yWu87XUamtbLHYoIVQ
-Date: Tue, 25 Jun 2024 15:53:27 +0000
-Message-ID:
- <TY3PR01MB11346F03386D05D608041DE8D86D52@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
- <20240625121358.590547-5-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240625121358.590547-5-claudiu.beznea.uj@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS3PR01MB6856:EE_
-x-ms-office365-filtering-correlation-id: e808602c-50d4-4fce-9123-08dc952ef459
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230038|366014|376012|7416012|1800799022|921018|38070700016;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?t9yw2VRFanl02XZsgpfxv4Xgv3/UfEXhfmetLI/GdGupzv8CteBUck4sUoeV?=
- =?us-ascii?Q?CdLmSErOFtwpq07M59Dwe7+mh1hjE7ijco5dZy8B4w1ePMzWp2rkeO1n8mXK?=
- =?us-ascii?Q?SyrFnntv7VCZRsvrP1CZHHU9nKxTpG+Sy3XpremsbI1IIiGyKWFSgwqYTuBP?=
- =?us-ascii?Q?sHlLj7VMfFlYOMwL6v2tojv4YyEd3QAvX8dIeceRadid9oNjjAzwi4L/G7vd?=
- =?us-ascii?Q?5DtdLzhexBMFYl5XbulL5exsoA1/IkW2aq418OjgoaMj6jBdOYy7BTGCHacW?=
- =?us-ascii?Q?Uj/0Zs1lVviEbsCHe5YOa3lknm+TLy/jb3Fw4Tg1x0u4QK0j7vIeztvNOiXf?=
- =?us-ascii?Q?emiAT2XYVfBfwYIrR40UIXiY7zaPRqtTlQnNwALfX2cyYSl1HBXui+cYLj1X?=
- =?us-ascii?Q?7Iu9omqR7ko8iQKOKZ7RT70bu0VcI40hwYxzEPcVEfWRtL6xJ6Q9SUmT99V9?=
- =?us-ascii?Q?b3PrlpL++k02sJOvnUs31os93XGZBHu4EmVTgDrc/UB3/NPS85I+nDQnji3Z?=
- =?us-ascii?Q?HL9TseCDCUA0ekNKYahWfIXmnYS/fzRMNCC1lhDGEYALYY1Lf2ilG8Ebj9AU?=
- =?us-ascii?Q?SIfadkUO7yX5zLa+kjTJt7/I5jAuR/RESyqeB0qkWLjIVVSj9BIY55GfBkAc?=
- =?us-ascii?Q?30M/RIsU2wBfhEFmuzZA7abuPuInwqqSrBJF+NN2JfTNSmM+apUrvTuRPAW1?=
- =?us-ascii?Q?WTOy7uj06ve1CvtoXWqNcnMFPp6w89gtG+QiBGXNKqwgwV2JSdnzPI8VYG5C?=
- =?us-ascii?Q?e8ZOY6UJJfJsh4mMnUJC9UoUoISJjpLOWlZ5WAZiuQQcKCyMaoZzn7f6oMJ+?=
- =?us-ascii?Q?jAF5SvRkaaccS+mfe5tN5OwqI/EDFUj1anzlQH8wUS2ZXeADOthcd9+n6WlH?=
- =?us-ascii?Q?HNn1+d3+YnEPXRJORpxwYiDEYHHteanyZZbUsqdY0CwV5mg0RkC3ThWmQMY4?=
- =?us-ascii?Q?nF7+BmghllP/H88SYmPgl2YhNrZGVGAxqFycS7/A4TBYY1NzK4UBRqRjUm7t?=
- =?us-ascii?Q?NQ1g8je9nqNTP6xXze9y07Ym9B35CJ235iI75/4zXuW4XnkZA9je9eRfefbM?=
- =?us-ascii?Q?q/HkNOyOeuE4C06539vGmPwWgE6FaVpXIBT35c8JtQscV8iwKfjFrE8YwF8h?=
- =?us-ascii?Q?rTMCpBMpHi8J1IOlturDez8e5V556FdDfxEvC5jMflI8CkELVDMlPsDIKGKH?=
- =?us-ascii?Q?Ei9FQslCciFeUyFgQdCG/9lOZs+ge5Pkfld2zGIgcG8atoh8CqsWAsKUqYAi?=
- =?us-ascii?Q?Yi8/NYY/m6wkEqrQrYCbIdWcj5S+8oTnqW7Xz0xUHxBlmRElkop0oyo0jHcO?=
- =?us-ascii?Q?q+Xyz5yqZpCekMU6iua7rf3wAaaGfroKgnYFh+lZPSdEDg+4pPHZOzVsXEKk?=
- =?us-ascii?Q?mT92Y6OEuOXOuxEk3o05SEtOsBtiq+7C6ZDD5RbYlkBQkKV6LN7qH+vvW293?=
- =?us-ascii?Q?tn8x1q0n+/I=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230038)(366014)(376012)(7416012)(1800799022)(921018)(38070700016);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?6IoIu12XaAygH2pUVL9fIs22PsYfjFFF+Er8LSsdGqgZ7ywhADcDiHEnNMBK?=
- =?us-ascii?Q?bFmAWxdgjFwsYkIxuoaum3MmKal3XZ7uulUKTD/62tk5QK0Uz3jlyyxAn/h8?=
- =?us-ascii?Q?SCxtSj2O6+e7B58/W16jkm0ANZBFd0kizb9MKvmBFz88dVI55UetUIUqmYq/?=
- =?us-ascii?Q?ms5mLokH0D7gyaVy5UySmRRrXqD8lAtr5Som2KmJsxfnUwZy8tsAWVXStJd6?=
- =?us-ascii?Q?OkyK+otLzkxHsDMvfHVyKhjm/6GLMOaGsnjOGQrge/jrp2h/ysrWG/eP3Rsr?=
- =?us-ascii?Q?FtG0Pyn838DIeUBpwCIBMpgHWVfbh4e9y4Tnk2pOkTWrXJHe1GmSg8hGixNz?=
- =?us-ascii?Q?gHhMoW4Sfhx8ooxnPr6v2Io0iouA7GvKGh8/DKscBqBXMnnAow8bygcV6qg8?=
- =?us-ascii?Q?XcpBK84R6O5jv+AOYn95fl4vhz/MsLNIIN18H2Q+46ez65dSx0Dwbflawoif?=
- =?us-ascii?Q?gHOH5Xgvh5oKH+54n6iHTiz3AUXz/8IcchTbQzaV+nd+JvSzlUE8DDI2/k1b?=
- =?us-ascii?Q?5xXh2DMG4YzwduUfeIeHM4sWmGJp61Ri3WOMoU5f04ZutsU63pRg8fxnhY5T?=
- =?us-ascii?Q?m5HeqEAGpfqZ2ObSrrPiLyBtMWyViRVPUx3gGwd9PlP+c479nAhU7HSxNj2m?=
- =?us-ascii?Q?6n6NXqwjU6r/oDMfvlVubOfuI2Z/BPk1BM+2/ykILEH7Fmac5MPSFSFCl74m?=
- =?us-ascii?Q?aVia2OU1uaVJY0TODA2E0/VDO9BUHTkTVGFlOTRWIJGEC1SKT7bxCuwdPC0k?=
- =?us-ascii?Q?ufYCLCxek2UcC3viWfNIrCgXxhEgx3BoTSjsuiGhyrGEXCCxicXmMLrhwaap?=
- =?us-ascii?Q?gXRoyjyMpFxySCuJAcjI3wZWc/EruYy13+/NafxWeJArFR1ZnjX8S73peOl6?=
- =?us-ascii?Q?5klS36NFFQzBieQJenucfTVskLyj2B6PlWCXlENK6btTpl3vjPTjoDPHIenE?=
- =?us-ascii?Q?xG9LivYe356Yyo4jiRnV2HTzs0KotN13ChcTi35B8XdMOMv5w4e43dzwXS/o?=
- =?us-ascii?Q?loeQHP6r1Ppce85F/eLpWTKGCazXWLdyPzB17P9qilAt5sf04VUtA9HMJ2uX?=
- =?us-ascii?Q?iaWqRTndHiWZ5xYym6XWJjc+fuPhIOlX0FtErksi9TrRCAnbWxQvad3W1Q9/?=
- =?us-ascii?Q?K70zAJdbYdKTzDW6duNabUvUL5UGWrHP+BDTtcqaswLELkxgvLmT8wbMhu5t?=
- =?us-ascii?Q?N7cW+2ky3eB17PaeG3KAharvecxmzSCagXoBRnzp2sGiJL32QcybXz5pOIYW?=
- =?us-ascii?Q?w1qlhmhc8nPjzfcguFX1K2D9MFVox8QRhFiejQ3KAVUlicVcE/2ED0r5Lp1r?=
- =?us-ascii?Q?G+VOYzlCJZP++ZMonE1zQezZWyluUNDFWPrIASCOyy4zqPHTOlCF+TN8O6FW?=
- =?us-ascii?Q?Npa1/fevTl0/nEnKSmkhLX0gXAr5YkRY2TcM9PKPW8aHrCZ4RjiEhf2mJO6F?=
- =?us-ascii?Q?FaVw/y+LtaQt4Z5zwcMPUzcCyD6mmn/255EhDKtPKMs+X4VI0lESfkYFT5ii?=
- =?us-ascii?Q?qFirRvNBPZQXz71YPAlplOPeDXeG8Na9Lbl3x5XJFF89FYfH1OR+dK5udz2n?=
- =?us-ascii?Q?NuvanrSbD8j94TTMqaderEhKBew9ntfMYzMS9DXBf9vDCWzyvuvudq4fgqAQ?=
- =?us-ascii?Q?ug=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3241E880;
+	Tue, 25 Jun 2024 16:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719331351; cv=none; b=ZI14ZW1KXvnrao5DUG5cxw/ORY1QgxdKI0QrSfvzXN63x7skL5zZtljuxw9W2Q9zf702yZsYDLZrqRFJy+mLSuE2EXytT3enuIjddeOtWKvaceW4oEqA+9URnh22qjmR89RybiIQ8bx6jeiCT92Mk0f65EXvUhtwj/n1Wg0spNQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719331351; c=relaxed/simple;
+	bh=w3MjqKvXOCvfTZZTK3seK4G6ECGT2Vpba6LHoB4jzT0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KAEyxnxxGGVoxbvCOm7BeS51A5V6tAQyZ353anBZCVYRq4CvczwQgZxOqXZ6w0x/MIF6oxGo7BSy2i5LQm7jc3vAwrUsO808HzWYtvBQYqKmpgPUX859QQ6FSdmgI9UBKNx9tM11bs19tRG70K6vyYL/GQJ6vuYuE+pEoaioObo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RBiZLdzF; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-7182a634815so2801883a12.3;
+        Tue, 25 Jun 2024 09:02:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719331349; x=1719936149; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7/Ah6KTr4qN3qklceLjaouWh+axRQgCE/MoqHAZqywg=;
+        b=RBiZLdzFJivWBHwfCCRiXYccdu1W+uXJHW+bwbpSjrvrCqIaCv3RzfeOScxZuBpUuq
+         DJxFCncoCJyWWLwmiIMbi8Rl+9XItfvjnl1i0SgVXTnf+lueDbDfkEkfUvi14hlo9Wk9
+         RgaRtjq9yyYDhal8Qo73Jxt0rgSsxCUD8IM+I+oK3XoPiHtMJIqrHsQOZVUWHt/0rz8w
+         jVNRC7/9UVL/7G5dR0oWsKThdv8ToNOHxpeiMF3x+cjlqLCdOK/OK9Akr8Vw9dV0hHkG
+         6wLEBhdfFil68LTH/L2GoiWHnvOvCo1Kjg38ciKeF1OZWJuzYrNshyzjCswkEr4DT1Kk
+         rtDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719331349; x=1719936149;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7/Ah6KTr4qN3qklceLjaouWh+axRQgCE/MoqHAZqywg=;
+        b=upi3b2AeroVeuUv/f4ME0DedmruvoV3ksdrYzEI/QY3+OtkOyRp6mH2NYhLKX1NKxC
+         9GDlFwZSLNeJsY2kxaz4vD7i5RbcAlai4d/Ubp3+A9K8iPjEqi0XO77fd18uEpQATKOr
+         bFsS3/IxB5H1YVy/7qdcQbHR57viRQhGOQsQ9f1fQMsWMnt47H9qXedPhzOZXFwUwCxY
+         q5daQDpmlHpYJ7gqOcfQrFBiYqYPKyuV1h2fxd8328LYtUxj+2fRUUh7gHbcpvlARBfN
+         P1rY0LQRrMhxp0y6ETlpZJ8LZ3GFkzFXphTC4v4WJaeF8cZWVMUHcab0XZHE49NnaopP
+         Zl5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXWcfYS7XbhTTiIPbrL37FuaVbkwDjj/2Wtw94NlX4aTNMmu1DR7OCxoejz5ECM4bdvDBwYG1m8XlGgr5w8UtFobJ9xz3XuqMaQ2sgguuYf7wJdXrjvvbpYJCs553l1lCT99d8PafMt
+X-Gm-Message-State: AOJu0Yxqj0FoxNC7n8XVgbSNdRv2ymp2Ixxy+2IPB2ONAy/iKQA3th5T
+	F7fYjOfGDwWpTcJUhAqk0yl5SQXYY9EhQEBzMObzycYQnu89z/vN
+X-Google-Smtp-Source: AGHT+IGPTkSzRYvBzIr+SMsEB/iIU++4/A74QqzdXyJKZuSG3QMsFFZKdvVJlpS/UwCRCg8LA6flyA==
+X-Received: by 2002:a17:90b:3bce:b0:2c4:dc4d:83da with SMTP id 98e67ed59e1d1-2c86127e1a0mr6482780a91.10.1719331348755;
+        Tue, 25 Jun 2024 09:02:28 -0700 (PDT)
+Received: from [127.0.1.1] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c7e5af9de9sm10904009a91.37.2024.06.25.09.02.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jun 2024 09:02:28 -0700 (PDT)
+From: Yasin Lee <yasin.lee.x@gmail.com>
+Subject: [PATCH v8 0/3] iio: proximity: Add TYHX HX9023S sensor driver
+Date: Tue, 25 Jun 2024 23:58:51 +0800
+Message-Id: <20240625-add-tyhx-hx9023s-sensor-driver-v8-0-0c224e3bddbc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e808602c-50d4-4fce-9123-08dc952ef459
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2024 15:53:27.9986
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: M2BsNoo+K34yFGKsgnQlJIUDmSVqFQS2TrZFMEaT9TupJnzlNLpuNQFSy/E1fzE2M1N94BZzTv9WqR21qrnkWNLAQGz+rHCyzXI1125LfiI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6856
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADvpemYC/5XQPW+DMBAG4L8Sea6Rz+CvTgFCt1ZVO1YdIDbBa
+ sDIpogo4r+X0KGNOkQd37vT80p3RsF4awK635yRN6MN1nVLkHcbtG/K7mCw1UtGlNCEcOC41Bo
+ Pp2bCzaQIjQMOpgvOY+3taDw2QlcmrmrDFEcL0ntT22kteHtfcmPD4Pxp7RuTyxS9PonnF6CPm
+ QQCVO0kSJJBrpiKU1kQIdPkIaPbq7OoK9vea6BR752O3OdwdO4j2rsWXVpG9lfO+I6kGdCECyV
+ yLgrKsjTJi3/KfJW/30Hh1jtGjgnmDBQvlzWpYXtoS3v84cRvjt3kxMJVoDmrKAUJV9w8z1+ej
+ ThjzwEAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, Yasin Lee <yasin.lee.x@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1719331341; l=7866;
+ i=yasin.lee.x@gmail.com; s=20240616; h=from:subject:message-id;
+ bh=w3MjqKvXOCvfTZZTK3seK4G6ECGT2Vpba6LHoB4jzT0=;
+ b=zBgWgigGUBMPkeSMgmVf3SMy8YYzewWJMECKwREQ2GuxLbyIijb0xgUwGPgTqzeJO/4kfu9+t
+ OLyOoAZOOksD5yUc1G/sR3E4iMHscAz7Y2AAsprNcC6fl1QjjlSw1yY
+X-Developer-Key: i=yasin.lee.x@gmail.com; a=ed25519;
+ pk=BU85jOyDTb45hxm+MZA26zg/m26xjGZhLgKrPSRtySI=
 
-Hi Claudiu,
+Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+---
+Changes in v8:
+- Removed incorrect tags from the commit messages 
+- Removed duplicate properties in the dt-binding.
+- Link to v7: https://lore.kernel.org/r/20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com
 
-> -----Original Message-----
-> From: Claudiu <claudiu.beznea@tuxon.dev>
-> Sent: Tuesday, June 25, 2024 1:14 PM
-> Subject: [PATCH v2 04/12] i2c: riic: Use pm_runtime_resume_and_get()
->=20
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->=20
-> pm_runtime_get_sync() may return with error. In case it returns with erro=
-r
-> dev->power.usage_count needs to be decremented.
-> dev->pm_runtime_resume_and_get()
-> takes care of this. Thus use it.
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->=20
-> Changes in v2:
-> - delete i2c adapter all the time in remove
->=20
->  drivers/i2c/busses/i2c-riic.c | 30 ++++++++++++++++++++++++------
->  1 file changed, 24 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/i2c/busses/i2c-riic.c b/drivers/i2c/busses/i2c-riic.=
-c index
-> 83e4d5e14ab6..002b11b020fa 100644
-> --- a/drivers/i2c/busses/i2c-riic.c
-> +++ b/drivers/i2c/busses/i2c-riic.c
-> @@ -113,6 +113,8 @@ struct riic_irq_desc {
->  	char *name;
->  };
->=20
-> +static const char * const riic_rpm_err_msg =3D "Failed to runtime
-> +resume";
-> +
->  static inline void riic_writeb(struct riic_dev *riic, u8 val, u8 offset)=
-  {
->  	writeb(val, riic->base + riic->info->regs[offset]); @@ -133,10 +135,14 =
-@@ static int
-> riic_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
->  	struct riic_dev *riic =3D i2c_get_adapdata(adap);
->  	struct device *dev =3D adap->dev.parent;
->  	unsigned long time_left;
-> -	int i;
-> +	int i, ret;
->  	u8 start_bit;
->=20
-> -	pm_runtime_get_sync(dev);
-> +	ret =3D pm_runtime_resume_and_get(dev);
-> +	if (ret) {
-> +		dev_err(dev, riic_rpm_err_msg);
+Changes in v7:
 
-As at the moment we don't know how to reproduce this error condition
-Can we use WARN_ON_ONCE() instead to catch detailed error condition here??
+**tyhx,hx9023s.yaml:**
 
-Cheers,
-Biju
+- Removed the unused reference to iio.yaml
+- Removed the `input-channel` property and switched to inheriting the `single-channel` property from adc.yaml
+- Sorted the items in the `required` list
 
-> +		return ret;
-> +	}
->=20
->  	if (riic_readb(riic, RIIC_ICCR2) & ICCR2_BBSY) {
->  		riic->err =3D -EBUSY;
-> @@ -301,6 +307,7 @@ static const struct i2c_algorithm riic_algo =3D {
->=20
->  static int riic_init_hw(struct riic_dev *riic, struct i2c_timings *t)  {
-> +	int ret;
->  	unsigned long rate;
->  	int total_ticks, cks, brl, brh;
->  	struct device *dev =3D riic->adapter.dev.parent; @@ -379,7 +386,11 @@ s=
-tatic int
-> riic_init_hw(struct riic_dev *riic, struct i2c_timings *t)
->  		 t->scl_fall_ns / (1000000000 / rate),
->  		 t->scl_rise_ns / (1000000000 / rate), cks, brl, brh);
->=20
-> -	pm_runtime_get_sync(dev);
-> +	ret =3D pm_runtime_resume_and_get(dev);
-> +	if (ret) {
-> +		dev_err(dev, riic_rpm_err_msg);
-> +		return ret;
-> +	}
->=20
->  	/* Changing the order of accessing IICRST and ICE may break things! */
->  	riic_writeb(riic, ICCR1_IICRST | ICCR1_SOWP, RIIC_ICCR1); @@ -498,11 +5=
-09,18 @@ static void
-> riic_i2c_remove(struct platform_device *pdev)  {
->  	struct riic_dev *riic =3D platform_get_drvdata(pdev);
->  	struct device *dev =3D &pdev->dev;
-> +	int ret;
->=20
-> -	pm_runtime_get_sync(dev);
-> -	riic_writeb(riic, 0, RIIC_ICIER);
-> -	pm_runtime_put(dev);
->  	i2c_del_adapter(&riic->adapter);
-> +
-> +	ret =3D pm_runtime_resume_and_get(dev);
-> +	if (ret) {
-> +		dev_err(dev, riic_rpm_err_msg);
-> +	} else {
-> +		riic_writeb(riic, 0, RIIC_ICIER);
-> +		pm_runtime_put(dev);
-> +	}
-> +
->  	pm_runtime_disable(dev);
->  }
->=20
-> --
-> 2.39.2
->=20
+**hx9023s.c:**
+
+- Header Files Section:
+  - Added `<linux/cleanup.h>`
+  - Removed `<linux/delay.h>`
+  - Replaced `<linux/math.h>` with `<linux/math64.h>`
+- Register Initialization:
+  - Deleted the `struct hx9023s_addr_val_pair`
+  - Changed the type of `hx9023s_reg_init_list` to `struct reg_sequence`
+  - Deleted the `hx9023s_reg_init` function and used `regmap_multi_reg_write` for register initialization in `probe`
+- struct hx9023s_ch_data:
+  - Added a comment to the member `mutex` explaining the data it protects
+- Function hx9023s_sample:
+  - Fixed the error related to `hx9023s_data_lock` calls
+- Function hx9023s_property_get:
+  - Added boundary protection for `reg`
+- Function hx9023s_id_check:
+  - Optimized the function
+- Function hx9023s_probe:
+  - Changed the call to `devm_iio_device_register` to `return devm_iio_device_register()`
+- Functions hx9023s_suspend and hx9023s_resume:
+  - Added `guard(mutex)(&data->mutex)`
+- Code Check:
+  - Ran `checkpatch.pl --strict` and fixed the identified issues
+- Link to v6: https://lore.kernel.org/r/20240621-add-tyhx-hx9023s-sensor-driver-v6-0-65196a9020f1@gmail.com
+
+Changes in v6:
+
+**vendor-prefixes.yaml:**
+
+- Formatted the description in the commit
+
+**tyhx,hx9023s.yaml:**
+
+- Added a link to the DataSheet
+- Added `#address-cells` and `#size-cells`
+- Removed the following properties:
+  - `channel-in-use`
+  - `channel-positive`
+  - `channel-negative`
+- Corrected the reference path to `adc.yaml`
+- Inherited `diff-channels` from `adc.yaml` as differential channels
+- Added `input-channel` property as a single-ended configuration channel
+- Made `vdd-supply` a required option
+- Used the generic name `proximity` instead of the chip name in the DTS example
+
+**hx9023s.c:**
+
+- Removed the following headers:
+  - `#include <linux/acpi.h>`
+  - `#include <linux/byteorder/generic.h>`
+  - `#include <linux/kernel.h>`
+- Added `#include <asm/byteorder.h>`
+- Updated some macro names:
+  - `HX9023S_DATA_2BYTES` ---> `HX9023S_2BYTES`
+  - `HX9023S_DATA_3BYTES` ---> `HX9023S_3BYTES`
+  - `HX9023S_DATA_BYTES_MAX` ---> `HX9023S_BYTES_MAX`
+- Added the following macro definitions:
+  - `#define HX9023S_POS 0x03`
+  - `#define HX9023S_NEG 0x02`
+  - `#define HX9023S_NOT_CONNECTED 16`
+  - `#define HX9023S_GLOBAL_CTRL0 0x00`
+- `struct hx9023s_ch_data`:
+  - Added comments explaining the members `raw`, `lp`, `bl`, `diff`
+  - Changed the type of struct member `thre` from `int` to `unsigned int`
+  - Removed member `cs_position`
+  - Changed the type of `struct buffer` member `channels[HX9023S_CH_NUM]` from `__be16` to `__le16`
+  - Moved `struct hx9023s_ch_data ch_data` to the bottom
+- Updated comments in the array `hx9023s_reg_init_list`:
+  - Changed `adc` to `ADC`, `avg` to `average`, and `osr` to `OSR`
+  - Provided a more detailed comment for the register `HX9023S_RAW_BL_RD_CFG`
+- `struct regmap_config hx9023s_regmap_config`:
+  - Added `.rd_type` member
+  - Changed `.cache_type` from `REGCACHE_RBTREE` to `REGCACHE_MAPLE`
+- Bugfix: The function `hx9023s_data_lock` now only operates on one bit instead of two
+- `hx9023s_ch_cfg` function:
+  - Replaced magic characters with meaningful macro definitions
+  - Changed byte concatenation operations to use `put_unaligned_le16`
+- Reviewed each function and made the following changes:
+  - Some returns now directly return `regmap_read/write()`
+  - For single-byte write operations, changed from `regmap_bulk_write(,,,1)` to `regmap_write(,,)`
+  - Changed the type of loop variable `i` to `unsigned`
+- `hx9023s_write_far_debounce` and `hx9023s_write_near_debounce` functions:
+  - Removed magic numbers and optimized the code
+- `hx9023s_get_thres_near` and `hx9023s_get_thres_far` functions:
+  - Used intermediate variables for readability and simplified the code logic
+- `hx9023s_set_thres_near` and `hx9023s_set_thres_far` functions:
+  - Optimized the logic and simplified the code
+- `hx9023s_get_prox_state` function:
+  - Changed the return value type to `int`
+- `hx9023s_data_select` function:
+  - Changed the return value type to `int`
+- `hx9023s_sample` function:
+  - Added intermediate variables for better readability
+- `hx9023s_ch_en` function:
+  - Optimized the code logic to reduce line count
+- `hx9023s_property_get` function:
+  - Rewritten due to DTS changes, and calls `fwnode_handle_put` on error to prevent memory leaks
+- `hx9023s_get_proximity` function:
+  - Added error handling logic for data
+- `hx9023s_get_samp_freq` function:
+  - Used macro definitions from `units.h` instead of specific numbers for frequency calculation
+- `hx9023s_set_samp_freq` function:
+  - Used macro definitions from `units.h` instead of specific numbers for frequency calculation
+- `hx9023s_write_raw` function:
+  - Changed the type of local variable `dir` to `unsigned`
+- `hx9023s_write_event_config` function:
+  - Replaced `set_bit` and `clear_bit` with `__assign_bit`
+- `hx9023s_trigger_handler` function:
+  - Added error handling logic for data; fixed uninitialized variable `i` bug
+- `hx9023s_buffer_preenable` function:
+  - Fixed uninitialized variable `channel` bug
+- Added `hx9023s_id_check` function
+- `hx9023s_probe` function:
+  - Returns directly on `devm_iio_device_alloc` error, without logging; removed `fsleep`
+- `hx9023s_resume` function:
+  - Calls `hx9023s_interrupt_enable` only when `data->trigger_enabled` is true
+- Removed `hx9023s_acpi_match`
+- Link to v5: https://lore.kernel.org/linux-iio/SN7PR12MB8101B6D0AB1246797C67E25BA4CE2@SN7PR12MB8101.namprd12.prod.outlook.com/
+
+Changes in v5:
+- I have addressed all the issues mentioned in the email responses.
+  Additionally, regarding the IIO-related header files, I have checked and found no unused headers.
+- Link to v4: https://lore.kernel.org/linux-iio/SN7PR12MB810129D8180B1C9593A8E078A4FB2@SN7PR12MB8101.namprd12.prod.outlook.com/
+
+Changes in v4:
+- Removed hardware-irrelevant properties from dt-bindings, retaining only channel configuration
+  related `channel-positive` and `channel-negative`. Grouped by channel.
+  Retained `channel-in-use` as it is hardware-related.
+- Removed redundant register definitions.
+- Reorganized `struct hx9023s_data`, extracting channel-related attributes
+  into a new `struct hx9023s_ch_data`.
+- Optimized bit operation related code.
+- Replaced `of_` versions with generic firmware parsing functions.
+- Fixed other issues mentioned in the email feedback.
+- Link to v3: https://lore.kernel.org/linux-iio/20240602152638.2c674930@jic23-huawei/
+
+---
+Yasin Lee (3):
+      dt-bindings: vendor-prefixes: add tyhx
+      dt-bindings: iio: proximity: Add TYHX HX9023S
+      iio: proximity: Add driver support for TYHX's HX9023S capacitive proximity sensor
+
+ .../bindings/iio/proximity/tyhx,hx9023s.yaml       |   93 ++
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ drivers/iio/proximity/Kconfig                      |   14 +
+ drivers/iio/proximity/Makefile                     |    1 +
+ drivers/iio/proximity/hx9023s.c                    | 1131 ++++++++++++++++++++
+ 5 files changed, 1241 insertions(+)
+---
+base-commit: 1231e065edd236295c31904fe760117551608efa
+change-id: 20240616-add-tyhx-hx9023s-sensor-driver-e7dbe3bfe596
+
+Best regards,
+-- 
+Yasin Lee <yasin.lee.x@gmail.com>
 
 
