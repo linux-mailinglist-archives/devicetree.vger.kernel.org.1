@@ -1,112 +1,114 @@
-Return-Path: <devicetree+bounces-79725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC106916820
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:39:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27F5091685B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:50:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19CF41C241C7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:39:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD8A11F2452A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2919B15F3F0;
-	Tue, 25 Jun 2024 12:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F42156646;
+	Tue, 25 Jun 2024 12:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="rZm/GF8E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QcXmLz0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7B7158D97;
-	Tue, 25 Jun 2024 12:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DED149DF4;
+	Tue, 25 Jun 2024 12:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719319163; cv=none; b=FJs37uMJR1veSep7VfFtca2fDnqdLSgtzIGxBigO8LsP6TgZ0XX/al4Lj8fIu8yP2rO6Fzhl3pIrgpEBUnJGmb2KpgKbazJlFbuKVGw4V3Uag7w0emzmsVYSYOwAX5RuZOpc3VG/m7jMx2eeNZlK5dC/f+Nw4TcNlvd2c6JKVHM=
+	t=1719319824; cv=none; b=NHvUb4mvDeByxDz22lJPkETrClTjm6QZpr4cksBurKv2yDY1H+DTDKlYrOpfqBBYra5REM1XJrfmZ3Re79QcSD7GT0CJDAUSyAF/jgo8ulBY8YXv9sktWyRU05uIzWJw9Yg6Ad5zI1YIARo4kcbdK/C9mhPkXBn/6NHUprJFzB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719319163; c=relaxed/simple;
-	bh=jiUij3wRRe5sE48zPdwi6+NvzYyJIr+GpOYj/SVthjg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DvWGTfu+fn5CpbhtCAfQBGK6aAJPijXglliwoPCuxw68mTox3uwP1JGBk5AXo7j5Bvw9dGS/Ccezgcu9JjTLBFVG4soDS1+MkryqYjS7GixI7SomWZV+Nh07+XaGsN7fw2CU2OT8RimyM6xPZ2yFPtRcvGNHAMxr17vJn+WmuQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rZm/GF8E; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1719319161; x=1750855161;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=jiUij3wRRe5sE48zPdwi6+NvzYyJIr+GpOYj/SVthjg=;
-  b=rZm/GF8E4s75sf8xPqLUD8iefmYRmSs7h8ni/x0w4joSnAamdJ6XESRW
-   rz6he4zEqJYcyj5NrdYOyJtuBt3u979rUWKD9NLxfAIHYUuWW/Q0ZJfzS
-   v4iYN9ic8ngJc5SvP+gc4rqnOmVo2KoK19DNYp/29P1b2bBOQa07J7++q
-   neWauSPGCZxqP3VU9EM081U6pcBw0EXUCxmgKgznsGbCi3twK/4uqqfK/
-   HJ6rUXMaCDTec4nQXZaVPCY1YrCIqlMQbvASiAF4SYLMbjYtlYl65ouEW
-   4aHE5yB3UlZsMsda5mJVLR+XOc7AntBVeFNRhPn3NsHZ0aHZO4FA/NlB9
-   g==;
-X-CSE-ConnectionGUID: mB3BUqYURGm5J5zo6AMIVA==
-X-CSE-MsgGUID: f/MOvR+eT6+IIPo7csmNhw==
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; 
-   d="scan'208";a="195864242"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Jun 2024 05:39:13 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 25 Jun 2024 05:38:52 -0700
-Received: from daire-X570.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 25 Jun 2024 05:38:50 -0700
-From: <daire.mcnamara@microchip.com>
-To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <conor.dooley@microchip.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-	<robh@kernel.org>, <bhelgaas@google.com>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <daire.mcnamara@microchip.com>,
-	<ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH v5 3/3] dt-bindings: PCI: microchip,pcie-host: allow dma-noncoherent
-Date: Tue, 25 Jun 2024 13:38:45 +0100
-Message-ID: <20240625123845.3747764-4-daire.mcnamara@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240625123845.3747764-1-daire.mcnamara@microchip.com>
-References: <20240625123845.3747764-1-daire.mcnamara@microchip.com>
+	s=arc-20240116; t=1719319824; c=relaxed/simple;
+	bh=s/7FiJi0GYLkjQ80S4lqlm3cUD3LaT7XZxvXN7svSLM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EH/YESIL9BHJVhBAHyTBn3qvrA6VPLtIF1SF0bFdK3Uvz0utkMfX2mo+8xjaMs9sfmPpUGFrQKR8dfP7g0oU9EXUjYtorxfZW+og7NNXF96Jlxiqfc0mo1jykEYIqDloxy+ax40WWbavuM4A+cJUzhL8cxXts7LWB/Q+S1jY9iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QcXmLz0F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86EB7C32786;
+	Tue, 25 Jun 2024 12:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719319824;
+	bh=s/7FiJi0GYLkjQ80S4lqlm3cUD3LaT7XZxvXN7svSLM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QcXmLz0F9HMBbpD9AlMywFuHfaXoGktzYxKA5zWvJfhikRVK4r5RSpODDuwq8Jqqd
+	 s0ZYKfQ/d5Zwz5QPhc+wSZ8NVnoe5f2dFSJcLx+wiqTGZ3N8hkqOwkQIUqqV9NaE41
+	 z53ioDhHQrjZTxcpBoYmlNeR7b+lMGdngquXFLn0zbFenVtlot61kstgtroVyfQWHW
+	 b9s/NBtENC7InhSWB1lroKiu6mdgvQ8bryusPh0Rxuex8nc0mPRf7Yp3AvdEE3MpC2
+	 rAki5Y/LiVngw9G/PXuQn4Ut6tQXZhKzo1Nb8UWXq9c/jfF77xhKb1IWO1sR4o8eKa
+	 pFQTO7Pg8ggfA==
+Date: Tue, 25 Jun 2024 13:50:17 +0100
+From: Mark Brown <broonie@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
+	gustavoars@kernel.org, henryc.chen@mediatek.com,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com,
+	wenst@chromium.org, amergnat@baylibre.com, djakov@kernel.org
+Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
+Message-ID: <2e8a9cf2-2bc0-45d8-b6c1-e3a9441d5641@sirena.org.uk>
+References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
+ <f7b4cd98-1acf-4f6b-a7e0-57419abadba1@collabora.com>
+ <57cf8f9f-4320-4c55-a9f8-a4c1facabfe8@sirena.org.uk>
+ <39ed7b8c-b19a-40de-9b30-a731ac83ad20@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Ck+ggcwV/Ot1gS3W"
+Content-Disposition: inline
+In-Reply-To: <39ed7b8c-b19a-40de-9b30-a731ac83ad20@collabora.com>
+X-Cookie: Results vary by individual.
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-PolarFire SoC may be configured in a way that requires non-coherent DMA
-handling. On RISC-V, buses are coherent by default & the dma-noncoherent
-property is required to denote buses or devices that are non-coherent.
+--Ck+ggcwV/Ot1gS3W
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Tue, Jun 25, 2024 at 01:58:57PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 25/06/24 12:25, Mark Brown ha scritto:
+> > On Tue, Jun 25, 2024 at 10:32:30AM +0200, AngeloGioacchino Del Regno wrote:
 
-diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-index f7a3c2636355..c84e1ae20532 100644
---- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-@@ -52,6 +52,8 @@ properties:
-     items:
-       pattern: '^fic[0-3]$'
- 
-+  dma-noncoherent: true
-+
-   interrupts:
-     minItems: 1
-     items:
--- 
-2.34.1
+> > > The main issue here is that the main soc/mediatek dvfsrc binding
+> > > dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
+> > > does use the others, so I can't pick this one without the others being present
+> > > or the validation obviously fails.
 
+> > I can't tell what you want from me here.
+
+> I'm asking you to pick the regulator patches :-)
+
+>    dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
+>    regulator: Remove mtk-dvfsrc-regulator.c
+>    regulator: Add refactored mtk-dvfsrc-regulator driver
+
+Is there no interdependency with the rest of the series?  There was in
+some earlier version at least I think.  If I reviewed the patches it's
+because I wasn't expecting to apply them.
+
+--Ck+ggcwV/Ot1gS3W
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ6vQgACgkQJNaLcl1U
+h9AbYgf/URHedtcxPh/nFTezG0aVe4h2eu4bJNpWaI0S7OfNW4LJT4EhtiuCuSPh
+BdAb2NA7AisSvcgOgZrIjD3COYnanTj/6j3pDfiV/YC3lCJoz+mv1TptT2kQxujQ
+nPJbzRAtsIl24RsI8sSC2B1MWsddf44E6RAfcYnlV8YDWQua9BxfLyCdEuG+gjmb
++y5YK9glKhbAzHsaUjMkzn+BjHE147scOlb7u00uD61WrN94O2Q83guy2+sybO0y
+Km6bYffp60vo0ebFLyJCTIfYEqeUAEvWw4v13TAZU7uBlHgr231EptnRd2gXLMLg
++WFplgSdJIzqSEsoZostEfIqw0bfgA==
+=t/8Q
+-----END PGP SIGNATURE-----
+
+--Ck+ggcwV/Ot1gS3W--
 
