@@ -1,121 +1,113 @@
-Return-Path: <devicetree+bounces-79626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C155F916135
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:30:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4070391613E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:31:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2704EB24539
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:30:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C11661F24441
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:31:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60839148FEB;
-	Tue, 25 Jun 2024 08:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490081487D5;
+	Tue, 25 Jun 2024 08:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NHu4xP1f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j1Rr4tfF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEA2148853;
-	Tue, 25 Jun 2024 08:29:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE69F1474A0;
+	Tue, 25 Jun 2024 08:31:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719304183; cv=none; b=U3/DoiKu5oAWlruGsdw/amEwNX/eX8pm2H/YujmO7thiCMGJ9WWcFidlqDc8aptR70MHnXoLhPOfdGzx1hXxN8ggJ454B46elAVvkLOJdBpV1er3m4ty2J/dZVm1Nr00CHgh8J/suWweC+N2iGkkL2uPv1hmg+BLrqyR490Hzp8=
+	t=1719304282; cv=none; b=uI1ViZwci1KPnFSK3LFZ6TWaX7iC2hJV9eohk3eCuEIr3+7hbicQeMnCEuRl+emh/ZxtZgx5K5BIxHDdr8+ugPXMfimaBncJaBNU8Ij6uLqnT4oqFTP5jh1Vbe8F1AxGLtdrXRBXE4lSg0x7CeY2/sW6yh7h6TDARtaFFiqSqQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719304183; c=relaxed/simple;
-	bh=jmxYxe636/BiZ693P1S0stgdVUD6CUIUfhLFVMiJmcU=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Be3xx6esbYXGenoePu+ldbTCsG+4FXv+N9aKAifHwyATnfIbtcKfc9uVFjR6az/3Cq1K2s4m+3V1WBcVIIJ+cxvbWUdUjB2iTsVGQfT0pfOdtBMr67sSrO+c8Y/n3lpQd4TQ8q/KeD31HXok1HkFgIV0VjC2jCHHMgcGIgOO1l8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NHu4xP1f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59DD2C32786;
-	Tue, 25 Jun 2024 08:29:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719304182;
-	bh=jmxYxe636/BiZ693P1S0stgdVUD6CUIUfhLFVMiJmcU=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=NHu4xP1fAgOTkdA/COgPuAKfp6H2M4ONNfdDc0gJNUxYQFrM8Tv+INxOmFSkbiNwh
-	 /nEmidwPX313K/bndn2W7jE/9wf8PIUmD7FlW4K4ffHchE6cZguETn0z60BLyj1b/N
-	 sztUFPE4wJBfznr1yY2r+3nZD/6FVTWjABw4k9iMsXblmeZylo7k/BuM5YtDBeWLZq
-	 VBmTvMFOOcnsbjZhiZH6o8MUlFi/y7Thy23/+fsTssXI/fWROnpacThyTZlqYOn5Dm
-	 8WNVZ/yqFHzpaMSrh2CYVyqH5QNarGfV5CjgyMp0Nuh5xnG5CVoX1ztMyZqJALcwSz
-	 V+q5waUulGulQ==
-Date: Tue, 25 Jun 2024 02:29:41 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1719304282; c=relaxed/simple;
+	bh=xUg0rQqgunv3C6E1wc77h0goZpObVGnyK7NbTOiHJ90=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e5hwFvJ6Z7/iW/ojZQkyTtjqdskQk6rfUJjzKeoQd7ickTtqeqp5U3dsz2DxKtFJR15dwvMRiXpzwBepsr265b30c4fIn9b/hQu3GiOlPuzSbvvT1OeUIsgMRwJImgAwF8z93WthY6puBruE8uYMLFKSmw7cggb9ngHsB/ZtmU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j1Rr4tfF; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7066a3229f4so1992425b3a.2;
+        Tue, 25 Jun 2024 01:31:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719304280; x=1719909080; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=soJUFs1bdM/i3y67PY3b9MKyzoy5nB0Fdohm8CoWotY=;
+        b=j1Rr4tfFwcEXRnOG0GxDXK6j7Lvgdgpyo+JAgeOPZRBko6vRdN+Y9y17BFJtPXiGsi
+         k8XZc85tQMMKJIxmnUOtlb48/lJq9fTdPXEbFStIkhXxdjCYsEB0Wr9V12ebZfAZq0zn
+         mj3mig8GVSUalSPLQ9ZAJr5NxcX56mGMMd0EN+QgghG0ra6URUfEuE8ApkJbDy72AZWI
+         nlmnlv+vLNILMSXAQTDTR7ND2+6pZbZuWrtVCjT9qLPh1DI34wEEfUKY0bMbr+aMjDUp
+         fD5n+X2wKXlmt6WUx7Aeu72mzQULsCr+UfB8sOrXUEu6frxCRJbm5lhdbmcIPkyeApTw
+         2lqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719304280; x=1719909080;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=soJUFs1bdM/i3y67PY3b9MKyzoy5nB0Fdohm8CoWotY=;
+        b=ViBUNUyzC8xRGDs1FKfL1sIP9jVYNec04/RLXyljtFh+t11ZTfpbFdKNf6he3MaYKA
+         3HuqBC1AK3YA06Yz9lJswl3xCptD5Nc3Fkr3UtMCKaiyRBvfe7AKiLD3ETMhNX6ICAMA
+         6fAPTdt9tESMdGBc93BZeBUkpRDhb82mfOQerHYfDpNKOXNehM9sHSBIvJU1M3tBuIsH
+         7tbUlukjL+sotBjvPIxvpEPjBdezymTMXMSIHFOgnPujOk8f1gy+dPaGhRMkHU+fKXdj
+         +fGFYsCKr/oWYTiIf1M2ihqwsulAAjdL3exF5XSlCEWhycfEET6fAB/Fjq3M3LKWsED+
+         +8PQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWzWHaAJTzR1aJIWDjumdDCnJPiP8TFjiUE6eisRFjsdeeOVwK7ef1mbwQQyX7k/JuTjNeUi8RKOj8S87c9KpyiMvKEsg1sNQnXA6LnY1nu6uiTWw3wKux3t+TN4c3JBOQPaqwGPIWy
+X-Gm-Message-State: AOJu0Yxw5PpStmeZH5FcJWj9mR12OhM0AmMeHOq9bmt0mK11GaJBkLkF
+	pS3ROo+P9vAY7tKs/RaBAxB5cn/doykZsa38lIbZJ3U8Gwy8D26b
+X-Google-Smtp-Source: AGHT+IE+0bMo+J8hu+dF5oaFvw/zMgYPwTxFLomzmLZUQHmj67yX0huPHaBSHAKh6ZnMEJLfuOq21A==
+X-Received: by 2002:a05:6a20:8422:b0:1b5:8552:3922 with SMTP id adf61e73a8af0-1bcf7e32860mr7623809637.3.1719304279829;
+        Tue, 25 Jun 2024 01:31:19 -0700 (PDT)
+Received: from [100.90.230.39] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c7e55db329sm10094084a91.26.2024.06.25.01.31.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jun 2024 01:31:19 -0700 (PDT)
+Message-ID: <30600f33-71bf-4abd-9de6-1c7c07e94d77@gmail.com>
+Date: Tue, 25 Jun 2024 16:31:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Devi Priya <quic_devipriy@quicinc.com>
-Cc: dmitry.baryshkov@linaro.org, netdev@vger.kernel.org, arnd@arndb.de, 
- krzk+dt@kernel.org, nfraprado@collabora.com, m.szyprowski@samsung.com, 
- neil.armstrong@linaro.org, konrad.dybcio@linaro.org, 
- linux-arm-msm@vger.kernel.org, conor+dt@kernel.org, sboyd@kernel.org, 
- linux-arm-kernel@lists.infradead.org, geert+renesas@glider.be, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, will@kernel.org, 
- andersson@kernel.org, mturquette@baylibre.com, u-kumar1@ti.com, 
- catalin.marinas@arm.com, richardcochran@gmail.com, 
- linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
-In-Reply-To: <20240625070536.3043630-5-quic_devipriy@quicinc.com>
-References: <20240625070536.3043630-1-quic_devipriy@quicinc.com>
- <20240625070536.3043630-5-quic_devipriy@quicinc.com>
-Message-Id: <171930418133.2076741.5571224940926459410.robh@kernel.org>
-Subject: Re: [PATCH V4 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
- reset definitions
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/3] dt-bindings: vendor-prefixes: add tyhx
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com>
+ <20240625-add-tyhx-hx9023s-sensor-driver-v7-1-b1d65b221811@gmail.com>
+ <8ce23bc6-e742-4851-9a26-ca2ab947005d@kernel.org>
+Content-Language: en-US
+From: Yasin Lee <yasin.lee.x@gmail.com>
+In-Reply-To: <8ce23bc6-e742-4851-9a26-ca2ab947005d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-On Tue, 25 Jun 2024 12:35:33 +0530, Devi Priya wrote:
-> Add NSSCC clock and reset definitions for ipq9574.
-> 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Changes in V4:
-> 	- Added GCC_NSSCC_CLK source to the clocks
-> 	- Added support for interconnects and interconnect-names as the NoC
-> 	  clocks are being enabled via interconnect.
-> 
->  .../bindings/clock/qcom,ipq9574-nsscc.yaml    |  75 +++++++++
->  .../dt-bindings/clock/qcom,ipq9574-nsscc.h    | 152 ++++++++++++++++++
->  .../dt-bindings/reset/qcom,ipq9574-nsscc.h    | 134 +++++++++++++++
->  3 files changed, 361 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
->  create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
-> 
+On 2024/6/25 13:50, Krzysztof Kozlowski wrote:
+> On 25/06/2024 04:15, Yasin Lee wrote:
+>> Add vendor prefix for NanjingTianyihexin Electronics Ltd.
+>> http://www.tianyihexin.com
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> This is the only one which could actually happen, but still after 15
+> fake tags I don't trust you. Where was it given?
+>
+> Best regards,
+> Krzysztof
 
-My bot found errors running 'make dt_binding_check' on your patch:
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dts:26.26-27 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240625070536.3043630-5-quic_devipriy@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Sorry, I think I misunderstood the meaning of these tags. I will remove 
+all of them.
 
 
