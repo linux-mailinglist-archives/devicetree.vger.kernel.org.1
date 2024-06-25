@@ -1,140 +1,126 @@
-Return-Path: <devicetree+bounces-79910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2229D917435
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 00:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9283091746B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 00:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFFB51F23BC3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 22:29:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C09A1F24B11
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 22:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94BC17E918;
-	Tue, 25 Jun 2024 22:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1737017FAAA;
+	Tue, 25 Jun 2024 22:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aHIBw3DB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mg532DEp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E27617E905;
-	Tue, 25 Jun 2024 22:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8D717FAA0;
+	Tue, 25 Jun 2024 22:51:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719354544; cv=none; b=lRLgrbZ/+i8ofiZ9DUYt0OSJt4GMsLPzhoHJ/X5TtTmLph2ype4Tm9MQ2aJwT6EaFRXz+vtjCfii9YLrpj6lwJeSP7FrpgCsj87ptZTjpeek2M913vcHz4Iwj7sLGFmh6ePznLIG7KFKfXLfM5bqBD4A/Wc/jqG/nny8T5fO23I=
+	t=1719355890; cv=none; b=EIOAAoaL+v9NT89208SHE5JgJk4OiFFsYysWnZ40NG9yY7PTQxi1mVYkcA5DOtUwT2NOEzYIZTfja6PgCnbq1cqGX0SEZAJuii9T8lUnqE17UPUHfzkUA/PRJN8rax0GIEpIn/hT2acvovp2ksW2vzyh8yn1owSJ6wpBSgrlu6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719354544; c=relaxed/simple;
-	bh=+L/emvVgtDd3ULOJoo20PaysUqptsWugNLJKhSGnCkg=;
+	s=arc-20240116; t=1719355890; c=relaxed/simple;
+	bh=jmVxUGP2wgHlH5PGgGw/MkCtBLhGZ+aIfigrOSdtbbE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N9xY9Hpih9mjZ7Ip6VPGC7OL0QIgFTRkTY0NzRH7cbZi4NG0U46xFjs897PTGMpgaYRXl7TndyaaWMqKR+lj3t1vyAUAnQI52Cw8/a6cqnZ4ni62Gs0BzfpDM8EmAxfcYlfB0DWLUrtJEkz6PR/rlDns0h3XaS4Fy9Bbs+F4oJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aHIBw3DB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0F0AC32781;
-	Tue, 25 Jun 2024 22:29:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=t/r8yeoJ0ACM0ww7HsfwMPxCsVFiDC0nEw6clZXt+maBgm2fC5g25pV3DbtzMM7/zZRWWONGcWpyzNQASKyJW0wPs3ik2WDzx+qv+jjTRmXPmQwwgZC7jPDe+VdXdOUQ4X+lH60CbHz2WtfsT5JajEb+p0YUs5PFxD5YZ+DAC1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mg532DEp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 115E8C4AF09;
+	Tue, 25 Jun 2024 22:51:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719354544;
-	bh=+L/emvVgtDd3ULOJoo20PaysUqptsWugNLJKhSGnCkg=;
+	s=k20201202; t=1719355889;
+	bh=jmVxUGP2wgHlH5PGgGw/MkCtBLhGZ+aIfigrOSdtbbE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aHIBw3DBgsgjmcpsG44SasdTK/47SLheszc2AagGPy/V7LIt+KIuH7AKrKN0mdQ4m
-	 v/86HnwE7/KWPAzxgOoR5hd/JrDeNRp9OvGbCb53WyGFL4HooYtZJcZIp7AkX2QJaT
-	 +vHjK7JhSOiOAkpK9K/Uyzwtlo1NR5gjQek9RAJpOZqYT6fUx1Eow01E9Q9ijR15CZ
-	 38Zdrwgb2Jm2MNu4wtYm/QCdZo2set9VEJc9HQaVddLzXwUicN4X+XaslvpbMn/EO5
-	 WLDZHpj95vw9bZc+CTbvXsK9O1YX/XaWex8fqU8mdI6PeHJvGwff4q5XmL1qsCihxt
-	 HbV5Mb4qb0ZXA==
-Date: Tue, 25 Jun 2024 16:29:02 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
+	b=mg532DEpIcDg24k1+ZRFtGIP14dLvDqfezYhlPBpCwOo/vYyJ6/+qh/utJzpDojON
+	 +x6n0zqf55Wrt4hzU362RxbCZVI0O8fymXLbHsHoA2Tb4PmgQok6tFGExp7gSOuKcl
+	 UoIBJoOazo6vMysvsMU0KylCDriqL+VDND8/T61UVa/YNBqJAQZMgBn1TLuyFuPGb6
+	 Wn7xhD9Ezr+GZqTTw7ynPD4NC4HmAax/9PuzhduOh3gRyz6JF1/apKDenjYk6ExxEv
+	 LIzRiyUqEb/vOpMCC5ggKsIHT7I7ccRq3f1bEGfzfs84/I7E9JOZNiDI/JPqKTCAbE
+	 SGrvMOYhoyTZQ==
+Date: Tue, 25 Jun 2024 16:51:27 -0600
+From: Rob Herring <robh@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>,
-	linux-gpio@vger.kernel.org,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Guenter Roeck <linux@roeck-us.net>, linux-pwm@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>, linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	linux-watchdog@vger.kernel.org, linux-iio@vger.kernel.org,
-	Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-i2c@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	linux-clk@vger.kernel.org, Dong Aisheng <aisheng.dong@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+Cc: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Abel Vesa <abelvesa@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-	Zhang Rui <rui.zhang@intel.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: drop stale Anson Huang from maintainers
-Message-ID: <171935453992.325655.11101198917545671907.robh@kernel.org>
-References: <20240617065828.9531-1-krzysztof.kozlowski@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Akhil P Oommen <quic_akhilpo@quicinc.com>
+Subject: Re: [PATCH] dt-bindings: display/msm/gmu: fix the schema being not
+ applied
+Message-ID: <20240625225127.GA361957-robh@kernel.org>
+References: <20240623125930.110741-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240617065828.9531-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240623125930.110741-1-krzysztof.kozlowski@linaro.org>
 
+On Sun, Jun 23, 2024 at 02:59:30PM +0200, Krzysztof Kozlowski wrote:
+> dtschema v2024.4, v2024.5 and maybe earlier do not select device nodes for
 
-On Mon, 17 Jun 2024 08:58:28 +0200, Krzysztof Kozlowski wrote:
-> Emails to Anson Huang bounce:
+That should be just since db9c05a08709 ("validator: Rework selecting 
+schemas for validation") AKA the 6x speed up in v2024.04.
+
+> given binding validation if the schema contains compatible list with
+> pattern and a const fallback.  This leads to binding being a no-op - not
+> being applied at all.  Issue should be fixed in the dtschema but for now
+> add a work-around do the binding can be used against DTS validation.
+
+The issue is we only look at the first compatible. I'm testing out a fix 
+and will apply it tomorrow assuming no issues. With that, I don't think 
+we should apply this patch.
+
 > 
->   Diagnostic-Code: smtp; 550 5.4.1 Recipient address rejected: Access denied.
-> 
-> Add IMX platform maintainers for bindings which would become orphaned.
-> 
-> Acked-by: Uwe Kleine-König <ukleinek@kernel.org>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Acked-by: Peng Fan <peng.fan@nxp.com>
-> Acked-by: Wolfram Sang <wsa+renesas@sang-engineering.com> # for I2C
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
 > ---
 > 
-> Changes in v2:
-> 1. Add acks/Rbs.
-> 2. Change clock maintainers to Abel Vesa and Peng Fan.
-> 3. Change iio/magnetometer maintainer to Jonathan.
+> Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>
 > ---
->  .../devicetree/bindings/arm/freescale/fsl,imx7ulp-sim.yaml    | 4 +++-
->  Documentation/devicetree/bindings/clock/imx6q-clock.yaml      | 3 ++-
->  Documentation/devicetree/bindings/clock/imx6sl-clock.yaml     | 3 ++-
->  Documentation/devicetree/bindings/clock/imx6sll-clock.yaml    | 3 ++-
->  Documentation/devicetree/bindings/clock/imx6sx-clock.yaml     | 3 ++-
->  Documentation/devicetree/bindings/clock/imx6ul-clock.yaml     | 3 ++-
->  Documentation/devicetree/bindings/clock/imx7d-clock.yaml      | 1 -
->  Documentation/devicetree/bindings/clock/imx8m-clock.yaml      | 3 ++-
->  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml      | 4 +++-
->  Documentation/devicetree/bindings/gpio/gpio-mxs.yaml          | 1 -
->  Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml      | 4 +++-
->  .../devicetree/bindings/iio/magnetometer/fsl,mag3110.yaml     | 2 +-
->  .../devicetree/bindings/memory-controllers/fsl/mmdc.yaml      | 4 +++-
->  Documentation/devicetree/bindings/nvmem/imx-iim.yaml          | 4 +++-
->  Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml        | 4 +++-
->  Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml        | 4 +++-
->  Documentation/devicetree/bindings/pwm/imx-tpm-pwm.yaml        | 4 +++-
->  Documentation/devicetree/bindings/pwm/mxs-pwm.yaml            | 1 -
->  Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml      | 4 +++-
->  Documentation/devicetree/bindings/thermal/imx-thermal.yaml    | 1 -
->  Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml | 4 +++-
->  Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml  | 4 +++-
->  Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml   | 4 +++-
->  .../devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml         | 4 +++-
->  24 files changed, 52 insertions(+), 24 deletions(-)
+>  .../devicetree/bindings/display/msm/gmu.yaml         | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-
-Applied, thanks!
-
+> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> index b3837368a260..8d1b515f59ec 100644
+> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> @@ -17,6 +17,18 @@ description: |
+>    management and support to improve power efficiency and reduce the load on
+>    the CPU.
+>  
+> +# dtschema does not select nodes based on pattern+const, so add custom select
+> +# as a work-around:
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - qcom,adreno-gmu
+> +          - qcom,adreno-gmu-wrapper
+> +  required:
+> +    - compatible
+> +
+>  properties:
+>    compatible:
+>      oneOf:
+> -- 
+> 2.43.0
+> 
 
