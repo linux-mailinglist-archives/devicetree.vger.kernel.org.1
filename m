@@ -1,168 +1,116 @@
-Return-Path: <devicetree+bounces-79559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 986A3915D81
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 05:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 474C7915D98
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 06:27:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A4A41F2227E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 03:55:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB77E1F2266E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 04:27:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE776DD0D;
-	Tue, 25 Jun 2024 03:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB6113A87C;
+	Tue, 25 Jun 2024 04:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtN0VewR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IKP2aFKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B4538F9A;
-	Tue, 25 Jun 2024 03:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 034F813A253;
+	Tue, 25 Jun 2024 04:26:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719287747; cv=none; b=FQfN3ZwAmYRHmN113f16gcnNU5rZRbE2TxWx/kcKjRhFC1bLa/QrfUWkcSFvGoxdt5T9F/69HARoCZVwrwqjPxDmiesHFM3M6n6S4Zp1RZvxtbjEhDLYp8Lk8TeAsCTNEhoxlzEzbrJ5UdCZ/P7JBdtBiw0YeQYlRZzoo6FxXc4=
+	t=1719289615; cv=none; b=KwLdDPR+qn4g/ActmO2JZEESiQX8qyQF5m2b2X+ApgmeiRAiAvj1AzjRR8ZA1OJo7FSsuOJDrFZX3+lm8akTPSjcYKeI4XijckVfcWWlMvsvq/jPmHfwtQt3cQqumeeKMB68QnUt9oIVPvKewUeZn1VrcJ7puTJ563QEcTGi99k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719287747; c=relaxed/simple;
-	bh=cQaTKnbbQKLHRvFAP0Ke1Gk/g4E7YkyDRfUGaWmHRtE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oijSYpHdvkeMT79VsTCC43Ke45rdKrONP5RZ6ERA3Lrudbg0mDTKIAwAzbJx9MhXE0iz81TVG/TdsshN/KgJ7BZzg3eE6qvNMabv8uq+Z6KmR3InzGtb9+sUpNz/6gQiyL8UdiRCOPj6a6G1WUrLD1cbS/I8uIA704DRpzlrqis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtN0VewR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E2F8C4AF0A;
-	Tue, 25 Jun 2024 03:55:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719287747;
-	bh=cQaTKnbbQKLHRvFAP0Ke1Gk/g4E7YkyDRfUGaWmHRtE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=CtN0VewRu6rSd7ETBhqeZb9oIsW9ianhZG2gpxnYGznwuXP6NtkFzCg5rxnrb2g/B
-	 pJrKZLJD/VQ0nTodyJ9MpaCAh0W4ks3FJH8NXNvWMcTaN9btIhwfGA1UUR3cPYZcMp
-	 g3c2CcGNzpHMqNc7Vgdu83ca8t4kcXR6xn1Va9kde3fhATTwrJcAAWrrSGJmWayEdk
-	 NBw58IY6QicXI3wst7P/9PdWdNa7Za8w9sq1yXGWxgxTSwTYdZn3rERWGDB2XYrcRq
-	 HiOmCArbD1ig07LK8oX6/wOd7p9wvNX+NtNQslosF0Odp95WOaJOwAlK4NxjqoYDrn
-	 dC4OyGwAjuLnA==
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a7241b2fe79so277218866b.1;
-        Mon, 24 Jun 2024 20:55:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVELi1U2ZzYHaIaeu40DE0bOdnicn5jxmVjPjF8FaEnopWIa/HHwn+ETBZmOjT3qaxnjlFU/9rf+LnEaZRE6eJVtX5wgburaGMQVia+YDFvdtDAiUbFBeN2oZx6Wu279ssadk0J3pBwjA==
-X-Gm-Message-State: AOJu0Yy/J3vP4oC/mYrcY4wF1xXHQS5w4HUsHVoyfw2j/VuHklsWOWq2
-	IM0rMWZMMGeNaS7QSDrQtruptawdMaNwUiZVH58uZetvD8JTvxT1gLybaRAPnrplqoAlKi6Bu3T
-	ApFmlsPuqy41t4rSC6PgVBpzURio=
-X-Google-Smtp-Source: AGHT+IFpMrmDvhxYYpFAqoCj+v/ziYjdVaIIAkZShbx9udkdSPZQ9vpFAE6n7C6kUJa0fixtVlDWWvqsRB4url4vpsw=
-X-Received: by 2002:a17:906:bcf3:b0:a6e:fb9b:6769 with SMTP id
- a640c23a62f3a-a7242d2ac25mr496698666b.75.1719287745662; Mon, 24 Jun 2024
- 20:55:45 -0700 (PDT)
+	s=arc-20240116; t=1719289615; c=relaxed/simple;
+	bh=ngh9di9YBwGCpDip0VXhG5NC6zupRVpU4kXqowfdV6U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hBuIgFZVo28pHbnm9CnlznFWtyisI2RQ7GcpQFPDdW8u7l2VYzmmRFwW2UgP8k+3/xn0Qh/BwZmqUjTK3cntr+1x3mVNnNz+7CEfDMeTTDbfKgitPC/F/LR4HwtZJZNu8IXZR8ZdyEqDi/luuDHRVuKRrIIHMPHDWy3Jz7IQiaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IKP2aFKg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45OIUsb2024767;
+	Tue, 25 Jun 2024 04:26:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	rYFqU0H/VyUp2ne+cOQ2385R1oRcm4cDigTTCRrLIDw=; b=IKP2aFKgahJxegvl
+	a9kBuhjVlRb/JESUo9cBmpOQWHOVLUQX6J1VJpvk44DYBXjQ7kCFGZdSY/9MIzhA
+	Rqdqx8wMNJfIQX20n3O3WlpFpp7bTUATn+1Ss3cu3Uz3RSi0tihM2DmPkMkut4Rg
+	ZeCG+3i9oni+8xkJrUv8x/45CT3zf7dMJpx7qCCYOv5L1KhwBFLGEIXphnDokdcW
+	5ssine/NLhIFzGnEKcTZsAxOD9OYeFlo50r6nhvysOBtTaozjyeDqkKOV4a/BasR
+	46z9W7D4wbVNyxTuu7RRzNCdFpHu4MYqd7GXhrx9qURVgbTQ2P/NzpdNdFhlSkJJ
+	9UvOrQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywqshne55-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Jun 2024 04:26:11 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45P4QB7K004892
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Jun 2024 04:26:11 GMT
+Received: from [10.151.37.150] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Jun
+ 2024 21:26:05 -0700
+Message-ID: <070cee1c-e19c-45de-a3c3-a1b8feda0e9a@quicinc.com>
+Date: Tue, 25 Jun 2024 09:55:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
- <20240410-unwoven-march-299a9499f5f4@spud> <20240619-hammock-drum-04bfc16a8ef6@spud>
- <CAJF2gTRYpDLij1aQoftz6ZqEgXDrfhNA39KiFVrwm7qc4WH6Fg@mail.gmail.com> <20240623-graveyard-consonant-97eff0f11808@spud>
-In-Reply-To: <20240623-graveyard-consonant-97eff0f11808@spud>
-From: Guo Ren <guoren@kernel.org>
-Date: Tue, 25 Jun 2024 11:55:32 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTS_KkQjyQPubc2+naYiammLjN8jJyptGtCe8Z56MAmT2A@mail.gmail.com>
-Message-ID: <CAJF2gTS_KkQjyQPubc2+naYiammLjN8jJyptGtCe8Z56MAmT2A@mail.gmail.com>
-Subject: Re: (subset) [PATCH RESEND v8 0/6] riscv: add initial support for
- Canaan Kendryte K230
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-riscv@lists.infradead.org, Yangyu Chen <cyy@cyyself.name>, 
-	Conor Dooley <conor.dooley@microchip.com>, Damien Le Moal <dlemoal@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Dan Carpenter <dan.carpenter@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/8] remoteproc: qcom: Add PRNG proxy clock
+To: Krzysztof Kozlowski <krzk@kernel.org>, <sboyd@kernel.org>,
+        <andersson@kernel.org>, <bjorn.andersson@linaro.org>,
+        <david.brown@linaro.org>, <devicetree@vger.kernel.org>,
+        <jassisinghbrar@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <mark.rutland@arm.com>,
+        <mturquette@baylibre.com>, <ohad@wizery.com>, <robh@kernel.org>,
+        <sricharan@codeaurora.org>
+CC: <gokulsri@codeaurora.org>
+References: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
+ <20240621114659.2958170-2-quic_gokulsri@quicinc.com>
+ <cd0533b8-bb47-4c68-b970-6bad4204c636@kernel.org>
+Content-Language: en-US
+From: Gokul Sriram P <quic_gokulsri@quicinc.com>
+In-Reply-To: <cd0533b8-bb47-4c68-b970-6bad4204c636@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: BYyeMRgIUy4mtMKn2ju_fg_qowXYRlCk
+X-Proofpoint-GUID: BYyeMRgIUy4mtMKn2ju_fg_qowXYRlCk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-25_01,2024-06-24_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ bulkscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ mlxscore=0 impostorscore=0 mlxlogscore=948 priorityscore=1501 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2406140001
+ definitions=main-2406250032
 
-On Mon, Jun 24, 2024 at 1:32=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
+
+On 6/21/2024 8:39 PM, Krzysztof Kozlowski wrote:
+> On 21/06/2024 13:46, Gokul Sriram Palanisamy wrote:
+>>   
+>> -static int q6v5_wcss_init_clock(struct q6v5_wcss *wcss)
+>> +static int ipq8074_init_clock(struct q6v5_wcss *wcss)
+>> +{
+>> +	int ret;
+>> +
+>> +	wcss->prng_clk = devm_clk_get(wcss->dev, "prng");
+> Missing binding.
+   Thanks. Will address and post this in new series.
+> Best regards,
+> Krzysztof
 >
-> On Mon, Jun 24, 2024 at 01:07:55AM +0800, Guo Ren wrote:
-> > On Wed, Jun 19, 2024 at 6:45=E2=80=AFPM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > On Wed, Apr 10, 2024 at 11:30:25AM +0100, Conor Dooley wrote:
-> > > > From: Conor Dooley <conor.dooley@microchip.com>
-> > > >
-> > > > On Mon, 08 Apr 2024 00:26:58 +0800, Yangyu Chen wrote:
-> > > > > K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add i=
-nitial
-> > > > > support for it to allow more people to participate in building dr=
-ivers
-> > > > > to mainline for it.
-> > > > >
-> > > > > This kernel has been tested upon factory SDK [1] with
-> > > > > k230_evb_only_linux_defconfig and patched mainline opensbi [2] to=
- skip
-> > > > > locked pmp and successfully booted to busybox on initrd with this=
- log [3].
-> > > > >
-> > > > > [...]
-> > > >
-> > > > Applied to riscv-dt-for-next, thanks!
-> > > >
-> > > > [1/6] dt-bindings: riscv: Add T-HEAD C908 compatible
-> > > >       https://git.kernel.org/conor/c/64cbc46bb854
-> > > > [2/6] dt-bindings: add Canaan K230 boards compatible strings
-> > > >       https://git.kernel.org/conor/c/b065da13ea9c
-> > > > [3/6] dt-bindings: timer: Add Canaan K230 CLINT
-> > > >       https://git.kernel.org/conor/c/b3ae796d0a4f
-> > > > [4/6] dt-bindings: interrupt-controller: Add Canaan K230 PLIC
-> > > >       https://git.kernel.org/conor/c/db54fda11b13
-> > > > [5/6] riscv: dts: add initial canmv-k230 and k230-evb dts
-> > > >       https://git.kernel.org/conor/c/5db2c4dc413e
-> > >
-> > > After some discussion on the k1 thread
-> > > (https://lore.kernel.org/all/ZnEOU7D00J8Jzy-1@xhacker/, https://lore.=
-kernel.org/all/ZnA6pZLkI2StP8Hh@xhacker/)
-> > > I am going to drop this series. It's not very useful in the current
-> > > state and there's not really been any interest from people in getting
-> > > the platform to a more complete state. Jisheng made some good points =
-in
-> > > the k1 thread about the missing clock controller stuff, and I think I=
-'m
-> > > going to make having basic things like clocks and where applicable
-> > > resets and pinctrl the minimum requirement for the platforms I'm look=
-ing
-> > > after.
-> > Here is the k230 clock driver based on Linux-6.6:
-> > https://github.com/ruyisdk/linux-xuantie-kernel/commit/196242fd9b9b4a19=
-1dab0c7c3c5bf851ed857d8d
-> >
-> > pinctrl:
-> > https://github.com/ruyisdk/linux-xuantie-kernel/commit/baf26b6622c9de2f=
-f64a6ed58eeeb98c8b2c828b
-> >
-> > No reset driver.
-> >
-> > Most of the k230 drivers are under Linux-5.10, and we are porting them
-> > into the newest version of Linux, which takes time.
-> >
-> > So, if the clock & punctual drivers mentioned above could satisfy the
-> > minimum requirements for the platforms, we will update the version of
-> > this series as a supplement.
-> >
-> > Is that okay?
->
-> I don't understand how that changes anything, these are all out of tree
-> drivers based on an old kernel. I know that there are drivers for a lot
-> of the peripherals that are in-use in the vendor tree etc. What I am
-> looking to happen, before I apply patches for the k230, is that the clock
-> dt-bindings will have landed in linux-next - and ideally the pinctrl ones
-> too.
-Okay, clock & pinctrl, the reply is clear to me. Thx.
-
->
-> Thanks,
-> Conor.
-
-
-
---=20
-Best Regards
- Guo Ren
 
