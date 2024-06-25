@@ -1,94 +1,116 @@
-Return-Path: <devicetree+bounces-79771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D974916CFF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 17:27:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 773D1916D20
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 17:33:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC679282FED
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 15:27:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A95DA1C20DCA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 15:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F88516D4CC;
-	Tue, 25 Jun 2024 15:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDAC16D4D5;
+	Tue, 25 Jun 2024 15:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eb4+N3l/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="olCwcuEj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DB549629;
-	Tue, 25 Jun 2024 15:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E279D2F5;
+	Tue, 25 Jun 2024 15:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719329206; cv=none; b=gv/O7BYn3TFe6+Ic7ZdzParsF8q3DukecgHhLFEKTzGTL4yzNMdrP4MF8F6tAAWNYMbfQI6zMNNqHxY13pm69EFlGAEcdou8UMVWfEZOBbQt/Y4uUM17oHeK9r5NKOFhHNLIsierEjY0eWXNiaujZcYW8K6kIEdrQ0ycLYrxCpE=
+	t=1719329611; cv=none; b=ROxLNIIf9ZpW5aqmxQwhyo82OLKDM2JlfeI707SMGyHglcBQ2x76zPhxsb2/Usgr9/NuREWdVHBdvoJimS8ZnSbJIxzutC+cj6rL1xaIwfgIMQF+xQHTLP+O8jbWDQEST2R6NUyKDqZd0CogJexdwnXrRw6PJ+ENPTfxDCgAXtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719329206; c=relaxed/simple;
-	bh=i21U0kKDJmZcg+9RnGOSZEPcabKWNuu9gG+cDI+RMG4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iaee0OYAySr3VfGpiuzjMTeWdMuRjWpYxYrgts7bRpOYfgdWtJmbGXpfVplF7A7NxszCWV9H5XdOWgKQ+UBBKCGwxZruHja9ujPvcMamoK555JV0lIUKD8C+O4T3kIKOYEmP3MZK73wyAP7txBRJ/N9Ma9rNTtiOJpTfh4sb/eM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eb4+N3l/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1F16C32781;
-	Tue, 25 Jun 2024 15:26:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719329205;
-	bh=i21U0kKDJmZcg+9RnGOSZEPcabKWNuu9gG+cDI+RMG4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=eb4+N3l/QJ0r6w2kZA6JrQlLnsCesvhVsul01ikKYK4tZnXcbnJ6a+EcbSswuB3Hn
-	 CQuGouLcLTiYtqCjFmz8RmIJu4Y+hrRptVk4ZipCfXndQGoFqGmhn2gXWNc6tb2rgP
-	 xZ8dg7uA/MKWymW0st4Y8+HxMORsjIAhm40sX5JjWtLptpQdO4n4swCJgwbtesM38U
-	 txB6K5Jw5o967OBiauv+wfAAO87/x8ysWALqRPi8XjFR7Dj0qsEhrd4XN/aylcozBK
-	 tvo2MyN/U9n/V6w+FRxuuJuclRGlCOJEylAQTo90mOSHOjeEyDzg94l9YnTMDYAv/S
-	 P4D+/apjpIZRw==
-Date: Tue, 25 Jun 2024 08:26:44 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: netdev@vger.kernel.org, conor+dt@kernel.org, davem@davemloft.net,
- devicetree@vger.kernel.org, edumazet@google.com, imx@lists.linux.dev,
- krzk+dt@kernel.org, linux-kernel@vger.kernel.org, madalin.bucur@nxp.com,
- pabeni@redhat.com, richardcochran@gmail.com, robh@kernel.org,
- sean.anderson@seco.com, yangbo.lu@nxp.com
-Subject: Re: [PATCH 1/1] MAINTAINERS: Change fsl-fman.yaml to fsl,fman.yaml
-Message-ID: <20240625082644.52fdbdd9@kernel.org>
-In-Reply-To: <20240624144655.801607-1-Frank.Li@nxp.com>
-References: <20240624144655.801607-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1719329611; c=relaxed/simple;
+	bh=QvNvFEHoBwEH1VIOqHQAmQ3EV4Rb4HeDRHpL5s+dJTY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gZjz/Pf1mwhaNhLTTS9DEwBUFpqRQ6FySDjnT1QmUotbb9mOuR8fxyrqFrc4YqM/aPCDp7QCuIfOLxzPIrUnZrXEwhhup8KU6reDN0bF2yuyCdfl181hKtK+t+JJqcrRGUoFYbJEs3ymP2+r0BxMbeHjVD/pjDvtEcbK7iN8nYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=olCwcuEj; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45PFXMX1056299;
+	Tue, 25 Jun 2024 10:33:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719329602;
+	bh=k4HXMomJZKq9jOBnN7r4GjioLYvEZzxX1ikda9RKXHY=;
+	h=From:To:CC:Subject:Date;
+	b=olCwcuEjs63v0XImKFLQN0NUXapMLxqgQ5mTB+fYD/+p91xkVUJm0EHnzMcP0Sxn+
+	 ViN5YfwZwA48HbH/PNdxKJ9R2PTzEn92yVUx4NzBt0POZKpn1xOE5m3LCB9GZGfnR4
+	 kKvIef0ZwGbFL8IL1UxCgc2ed0eMJ2oCjomKTAas=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45PFXM2b011722
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 25 Jun 2024 10:33:22 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
+ Jun 2024 10:33:22 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 25 Jun 2024 10:33:22 -0500
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45PFXMMm113821;
+	Tue, 25 Jun 2024 10:33:22 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 45PFXLmm017355;
+	Tue, 25 Jun 2024 10:33:22 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Suman Anna <s-anna@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Santosh
+ Shilimkar <ssantosh@kernel.org>, Nishanth Menon <nm@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <srk@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        MD Danish Anwar
+	<danishanwar@ti.com>
+Subject: [PATCH v3 0/2] Add documentation for PA_STATS and MAINTAINERS entry for ti,pruss.yaml
+Date: Tue, 25 Jun 2024 21:03:14 +0530
+Message-ID: <20240625153319.795665-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 24 Jun 2024 10:46:55 -0400 Frank Li wrote:
-> fsl-fman.yaml is typo. "-" should be ",". Fix below warning.
-> 
-> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/net/fsl-fman.yaml
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202406211320.diuZ3XYk-lkp@intel.com/
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  MAINTAINERS | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 807feae089c4d..7da4c469c14d4 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8874,7 +8874,7 @@ M:	Madalin Bucur <madalin.bucur@nxp.com>
->  R:	Sean Anderson <sean.anderson@seco.com>
->  L:	netdev@vger.kernel.org
->  S:	Maintained
-> -F:	Documentation/devicetree/bindings/net/fsl-fman.yaml
-> +F:	Documentation/devicetree/bindings/net/fsl,fman.yaml
->  F:	drivers/net/ethernet/freescale/fman
->  
->  FREESCALE QORIQ PTP CLOCK DRIVER
+Hi,
 
-Already fixed by commit 568ebdaba6370, thanks!
+This series adds documentation for PA_STATS in dt-bindings file ti,pruss.yaml.
+This bindings file doesn't have a MAINTAINERS entry. This series add the
+MAINTAINERS entry for this file as well.
+
+Changes since v2:
+*) Added RB tag of Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> to
+   patch 2/2
+*) Added patch 1/2 to the series as the binding file is orphan.
+
+v2 https://lore.kernel.org/all/20240529115149.630273-1-danishanwar@ti.com/
+
+MD Danish Anwar (2):
+  MAINTAINERS: Add entry for ti,pruss.yaml to TI KEYSTONE MULTICORE
+    NAVIGATOR DRIVERS
+  dt-bindings: soc: ti: pruss: Add documentation for PA_STATS support
+
+ .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 20 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 21 insertions(+)
+
+
+base-commit: 62c97045b8f720c2eac807a5f38e26c9ed512371
 -- 
-pw-bot: nap
+2.34.1
+
 
