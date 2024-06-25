@@ -1,122 +1,124 @@
-Return-Path: <devicetree+bounces-79815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69521916E6A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:50:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 240B6916EB1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 19:00:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FB4D1F22BAD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:50:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2FA91F219FE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 17:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66F3017625C;
-	Tue, 25 Jun 2024 16:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 151AA16F0F4;
+	Tue, 25 Jun 2024 17:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QpGoMeOi"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="lKZFGi00"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB45175570;
-	Tue, 25 Jun 2024 16:49:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71E41494D9;
+	Tue, 25 Jun 2024 17:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719334186; cv=none; b=S/Cr8oOMzdpgEV+svmsHbHqKdY5wsogcguXzRygzuzLPv4gma9tnu9GkETY8psIQswhZ6ZSLgqWYecS/MBSJtzPrH+LrqRqpidRqlYIgHyYX7bphK+iDCaZkmEPWJHxS7BOOju9HubG8sSvpKX4Nkfj4VPSfOPYGC07FSmKwzhc=
+	t=1719334825; cv=none; b=k7FLxLp4Y/RGoK9hRxJiIQHauoaZwm00xbjSBJWwW6lgwK39S0Fp8dTC+oJLlfsFAw4OmQvzoPbG3it6IJsfttGI4OKFon9m55+lyfJlVXyyw7ifM44GrXvmCtcSt3uLE41oDPVoYBAAA1Qyw3Ixd6H7U9r635dQfuLzdr3pq8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719334186; c=relaxed/simple;
-	bh=dqKVb4iDPrREF0TJ5hpRxUHj9GSVMmTywTOYP9KMAAw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tr6V0dOv4zIKIAoYVPtoHZL0PNfPxNWdi3wnT859Ockm/wwj2ZKARi/ozTXX9fgUo+7bFK9VguTaTorl3LaPQLFEUy1qdxrpYYc44m63BtjXkEkqa0w/2Jy5rHqXNDBLQvlDr7BoYpoTjgfwyfcXzqqfpybM74B0FqtPMGpRva0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QpGoMeOi; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45PGnLJ3106823;
-	Tue, 25 Jun 2024 11:49:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719334161;
-	bh=e+PxibB+O5GhU5C92Wr/IByOYRbQppvPEhHwTlzzld8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=QpGoMeOiTlr9w7Sz08YfUVBO+BmJarEy9u5AkuWWvsok4VbXVdUEBL2K7ViuOvfmI
-	 /zYkFheyQmpQoy4vMWimNdS5V2tEZBA4mBetO/Lt0J3MuDV42eOS1HLazCdhFlnZ9J
-	 JAxxKqLUb5Wv6Cs+BzUZbBnmXkC7CNQloo4bSev8=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45PGnLqL074280
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 25 Jun 2024 11:49:21 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
- Jun 2024 11:49:20 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 25 Jun 2024 11:49:20 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45PGnKas053654;
-	Tue, 25 Jun 2024 11:49:20 -0500
-Message-ID: <6ebc89dc-fbb3-4073-8b1b-cd413907ebf8@ti.com>
-Date: Tue, 25 Jun 2024 11:49:20 -0500
+	s=arc-20240116; t=1719334825; c=relaxed/simple;
+	bh=7zGkmCGwedhVhDlUUqPb+kRA9524NAzODRiWSHPQgVc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qKqUEyEnj//j/qfi0U+RTj1fjcjDo+KXA/yazqR5HfEgtmdz7wZEvtRXR+ZJEInUDcySL7ff8fLc2/z1OXh3D9qLHfX2HPjZGPIc20ooayuBeKqhqMXLBQ7SRF+paZh60C1fKmM6yJh5t6NRPbw3PL8xiPVat9W7r8V9UTeWgRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=lKZFGi00; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+X-Virus-Scanned: SPAM Filter at disroot.org
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1719334357; bh=7zGkmCGwedhVhDlUUqPb+kRA9524NAzODRiWSHPQgVc=;
+	h=From:To:Cc:Subject:Date;
+	b=lKZFGi00vOR3gge+h8j+BPt5adPxE55XO0ejK31HCF8KVMgYyHPN3gq6cqXGgS9s1
+	 kK+yMrqDXc+S73KKLziI6P/nmIY/GtFsNPIABdpPTwdQeRogl0+nzuq2DRJuWe8Ckb
+	 sR03DlR/ylMIf+0vB7iGNTTYj00zPAP4ZZnvNcVlVs3fb5McfBHxZ08ayJDZ7mFDhR
+	 YVHeOK9ttegmAVKnGAIDMQAzS93YfyK9FdTX8w2P9QLdt5PKk3Ix9UyM5v96YN8/v6
+	 o5pOCgS2vzAhtl3/AVsjc9oR1axLaNFtOvDBiXBcFpZgSgz/+YBX1I1VwgYWEB7Om3
+	 WwSKfSOnbRW7w==
+To: linux-iio@vger.kernel.org,
+	jic23@kernel.org
+Cc: devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 1/2] iio: light: stk3310: add support for stk3013
+Date: Tue, 25 Jun 2024 22:21:05 +0530
+Message-ID: <20240625165122.231182-1-kauschluss@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: am654-serdes-ctrl: Add
- simple-mfd to compatible items
-To: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jan
- Kiszka <jan.kiszka@siemens.com>, Tony Lindgren <tony@atomide.com>,
-        Nishanth
- Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240625164528.183107-1-afd@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240625164528.183107-1-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On 6/25/24 11:45 AM, Andrew Davis wrote:
-> This node contains a child which is only probed if simple-mfd is in the
-> compatible list. Add this here.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
+Add support for Sensortek's STK3013 in the driver. The part bears the
+product ID 0x31.
 
-This patch depends on https://www.spinics.net/lists/kernel/msg5253666.html
+As seen in [1], Sensortek lists STK3013 as a proximity sensor. But it
+has been experimentally observed that they do have ambient light sensing
+capabilities. Furthermore, [2] implements a proximity and ambient light
+sensor driver for STK3x1x devices, which is also indicative of the fact
+that these parts are also ambient light sensors.
 
-Andrew
+[1] https://www.sensortek.com.tw/index.php/en/products/optical-sensor/
+[2] https://android.googlesource.com/kernel/msm.git/+/e6dfa4641d88201e8019be19ff557e5d2cf4572f
 
->   .../devicetree/bindings/soc/ti/ti,am654-serdes-ctrl.yaml       | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-serdes-ctrl.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-serdes-ctrl.yaml
-> index a10a3b89ae05e..94b36943a50ff 100644
-> --- a/Documentation/devicetree/bindings/soc/ti/ti,am654-serdes-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-serdes-ctrl.yaml
-> @@ -14,6 +14,7 @@ properties:
->       items:
->         - const: ti,am654-serdes-ctrl
->         - const: syscon
-> +      - const: simple-mfd
->   
->     reg:
->       maxItems: 1
-> @@ -31,7 +32,7 @@ additionalProperties: false
->   examples:
->     - |
->       clock@4080 {
-> -        compatible = "ti,am654-serdes-ctrl", "syscon";
-> +        compatible = "ti,am654-serdes-ctrl", "syscon", "simple-mfd";
->           reg = <0x4080 0x4>;
->   
->           mux-controller {
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+ drivers/iio/light/stk3310.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/iio/light/stk3310.c b/drivers/iio/light/stk3310.c
+index e3470d6743ef..003e7c1473d7 100644
+--- a/drivers/iio/light/stk3310.c
++++ b/drivers/iio/light/stk3310.c
+@@ -35,6 +35,7 @@
+ #define STK3310_STATE_EN_ALS			BIT(1)
+ #define STK3310_STATE_STANDBY			0x00
+ 
++#define STK3013_CHIP_ID_VAL			0x31
+ #define STK3310_CHIP_ID_VAL			0x13
+ #define STK3311_CHIP_ID_VAL			0x1D
+ #define STK3311A_CHIP_ID_VAL			0x15
+@@ -84,6 +85,7 @@ static const struct reg_field stk3310_reg_field_flag_nf =
+ 				REG_FIELD(STK3310_REG_FLAG, 0, 0);
+ 
+ static const u8 stk3310_chip_ids[] = {
++	STK3013_CHIP_ID_VAL,
+ 	STK3310_CHIP_ID_VAL,
+ 	STK3311A_CHIP_ID_VAL,
+ 	STK3311S34_CHIP_ID_VAL,
+@@ -700,6 +702,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(stk3310_pm_ops, stk3310_suspend,
+ 				stk3310_resume);
+ 
+ static const struct i2c_device_id stk3310_i2c_id[] = {
++	{ "STK3013" },
+ 	{ "STK3310" },
+ 	{ "STK3311" },
+ 	{ "STK3335" },
+@@ -708,6 +711,7 @@ static const struct i2c_device_id stk3310_i2c_id[] = {
+ MODULE_DEVICE_TABLE(i2c, stk3310_i2c_id);
+ 
+ static const struct acpi_device_id stk3310_acpi_id[] = {
++	{"STK3013", 0},
+ 	{"STK3310", 0},
+ 	{"STK3311", 0},
+ 	{}
+@@ -716,6 +720,7 @@ static const struct acpi_device_id stk3310_acpi_id[] = {
+ MODULE_DEVICE_TABLE(acpi, stk3310_acpi_id);
+ 
+ static const struct of_device_id stk3310_of_match[] = {
++	{ .compatible = "sensortek,stk3013", },
+ 	{ .compatible = "sensortek,stk3310", },
+ 	{ .compatible = "sensortek,stk3311", },
+ 	{ .compatible = "sensortek,stk3335", },
+-- 
+2.45.2
+
 
