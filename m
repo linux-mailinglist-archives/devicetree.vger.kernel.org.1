@@ -1,96 +1,87 @@
-Return-Path: <devicetree+bounces-79609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A52B915FCA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:15:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E14915FD7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:18:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB0DE1C2287A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:15:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AB1E2833F4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5BB7146D6A;
-	Tue, 25 Jun 2024 07:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3FB1465B7;
+	Tue, 25 Jun 2024 07:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VKYtymj+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aPKVLKOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48F6144312;
-	Tue, 25 Jun 2024 07:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C3673463
+	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 07:18:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719299716; cv=none; b=Y1mQ6NviKTMxlhRuzRHuQqncIeGOHunJsG2eFFKvYeWZSawgWQ2bm7W5Ex6GQaY2dDOf87eGz9lv4KqLrRuHh6aWmSRiE6fSl+c1YOv1QiaZbUrVjqyF5R8x/uT3Zq4jGnhT4W2eC3lZFwii0EOQqwtW1+MLUWAQLvIg4R9M2gI=
+	t=1719299918; cv=none; b=Ltl6Y6w1PDeiK0gqCmXnRNYMhW6TJIGFu+IqhltUwZ/bRyP1FGIzBJkZzEOPw6xrDdwSbvkJLwvyV/6/EZMrhOFaQ0t8IovIVKFpdjiZZhpdzCPNPwtVH4DMzo8WqMhut5rrstsdKdSJWXAho+n6aZzpFKqUWXcul1yhYAptaD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719299716; c=relaxed/simple;
-	bh=ldH74kf1TVm9pXlxKP+Hotg4oim3Y9gMDH1tkw50CeU=;
+	s=arc-20240116; t=1719299918; c=relaxed/simple;
+	bh=Q9aaqWkdpjzN6oNKqxXIk1Upl4PEiadLzSNkI7yVFv8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a32yf1DxLHmsCyEdupBgbQgumTdz2oH4ynpOZOnFR40IH3RaMN5j21pSmUf8LZ2GkSFg5pXqnxwNJ4q+BmQ87UnnlrqmcM52f8hALlc/NBl+l1HjG3/5l52pY0k5mBBqVYD7zIiS5JGTd2EXhaCK/bQCFqyYEPGTADZTRpR03g8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VKYtymj+; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3608e6d14b6so3464175f8f.0;
-        Tue, 25 Jun 2024 00:15:14 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i8LUd/4uQscHIb5IyB+u6NQjcQJRP4ctMTQ7o6wP9kS+ISqpwegteZFZhCOMa7BxxEr2LvCVNOXP5C0u2NfDC6rpcMDhRnHTikMVtZtGOFKb0KWP1fGiwgbqLoNmQ1WDwHGpvktuBMKpYs6gO1v5i576X9xVWbV+Q7inY/f6vis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aPKVLKOd; arc=none smtp.client-ip=209.85.210.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6f9a4f9923aso2881095a34.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 00:18:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719299713; x=1719904513; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719299916; x=1719904716; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JySqkATRPlYLkNhd+lYESHv1lkNC/LIuMH3yqfbsSJ0=;
-        b=VKYtymj+5Dze+em8Wpa6EX2i447iNQiiCWWYyKEzt+ndVlrB/DuvbaWMFPX/VOP6j8
-         sl2pki5lTjnfdAi8BNaM8rR9561NMfs/F79C8BhEETM/iyoE0pDvE9KF5fUkVO0G6RIh
-         OjidP6R1sv5Y89J5YwXGAiY8kOWhAK5W0Cdh85Z1guP6BSK1kUi73943T59HALrx272X
-         ZYDkQom+2XZAkPmmMVexycKQT4L6rXNtlyVDMSDuwd14sw8nQGjFgHQX+RK2QsOUgl84
-         ZkMEES1HWXb4HLeoDxlxNZIpgErxPmyPoMY3JQjoH8vkmLIvAPRlD0sixouN4fPbUA/T
-         DeBQ==
+        bh=hHh/S8cNaHU04bGjGURJd/BeCLnI4R/2BlT6C5Hhde4=;
+        b=aPKVLKOd6KN1LKnfUe7+kmSgBOvDGk7L6DLJaL2aTbKHu94m6xdTSsKkg/fBqDmqua
+         uMS0QDm1zghPpfP0ryFZvQmlGB5zSmvw2J6OlEizCFsSLf2M1WZsq9VUJTb7bk0hH3XF
+         cUFRLV8oW0dEArmW4h5C235JDIsV3RdgnUeyxSpPyfqh+f9rzhzv5yAo/E2uz9KU1fp+
+         nc6UtCbNiQ8ys1onRSFi5N3UOGJXuCEMdztBdwTEdux4IgKpnuesoHPBbdrxO/i9awR1
+         BFc9k0+TSDguRYXPvs5iHbAmBVu3w7ENqcj+7vhTaU4SpZwTym8cm0IvvftIbJl3r6i4
+         M5bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719299713; x=1719904513;
+        d=1e100.net; s=20230601; t=1719299916; x=1719904716;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JySqkATRPlYLkNhd+lYESHv1lkNC/LIuMH3yqfbsSJ0=;
-        b=cMsTt2YsZ/wbiHDbt88YsFao26Rp0ZDoAoGtQEEUzkTEHfZ+4s8dXrzSdbKz0B/Oc9
-         yRoqiRqDL+zd7R2+lE0Yct4RgrFxYGdII+6hrbq8zLTop+SdyDx/pkPdeCX24s9htRoW
-         ElPbyAKhU+YfsKgLbw3UVLMEPQnDr5Ew6iZModnqmDBNsZBt+WaHfYz4NpdcXfnlcFgB
-         Oxrb8laSpnEfQBHiNsy7Tc2vsAcoWhhfX+OvNUa4dydKdWE3/iDzCb8Qd+ES2L9fhnGR
-         QDMli0Dj+R9eKznF5bYG7ubjiTv28HA1cw3xK38ag4JPZ23FR4Nga2dRhcbFfzhTaw5r
-         BRsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVROI5RkRsJG3k+R0wvjXo1U66OkaC3GcuR/8QBZi2LvBCs/8m0lD+GUDYgeSAuEIIeOnEgw79Z0/sQroUaz8XCJTZLciuyq70+L413VHQPDAkR3eOmTE1EvmFTh+8W019uT93/oIMXzdhzqxeRamcIwYFAekTFnLkMoNemyrW+hg==
-X-Gm-Message-State: AOJu0Yyqj5r5HX5nI02JiUCT6Xyx/6Kidkwx3nURJPmeWmbaK5cH/cRT
-	rJH2IU6ppIGKjZsuMxRxRn0Ee3iuIsnispEuTRK9PesvjcukFyYW
-X-Google-Smtp-Source: AGHT+IEEbVK4uKqf4sQIA/jL4J3G03Si2HpSOHfkFWkWR7fwfWJ3/XR56egnedWU+oaQoTsc42xjlQ==
-X-Received: by 2002:adf:e649:0:b0:35f:119a:14c7 with SMTP id ffacd0b85a97d-366e965ff49mr4161102f8f.69.1719299712727;
-        Tue, 25 Jun 2024 00:15:12 -0700 (PDT)
-Received: from skbuf ([188.25.55.166])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3663ada128dsm12110656f8f.117.2024.06.25.00.15.10
+        bh=hHh/S8cNaHU04bGjGURJd/BeCLnI4R/2BlT6C5Hhde4=;
+        b=skgNFGvUbl1BQROxEzUKkOf2Ewq80lyr0CfFINB3fdUxbMfTFnbf0d8WPWzC9MRPly
+         58ecnatqkjjabEx+RMYbT6T4jDWlhR+b21uwsUb47rn8av7LMJ7lbnIoGc5j9lCVxrE7
+         MWqxLxVeuGplPpY6MLynx/bcez+XtCfCOw+A/XzZqdhcJn5w0j+gSU3tTVUOghLT5kaF
+         rMp4oPopIimdawy6e7XkwOBv/n9igA1s8o+CO69tEHQoQLNYfbQvfAhH9OT0GOe/0V7u
+         ErriX9BfazjG6gfNFF5r03m+EGK9BeZafQ0TiDISrz1RGKbKzYWRcwNf1tZq9+TBB20s
+         H0Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCVjBaXYH/8zk1fwRdBFgKqR/nDtFdfgVBbx+gh3ec4qIcuKG2y8/KBMv8Vya7BKol5ON0ED6IvA3w5TcrMDtS78uCiu7xfEPMGA6w==
+X-Gm-Message-State: AOJu0YwH0EQUuca2oNzXfLlHn1p63vjw92VS89VbTPVixa9LvTnm3gvi
+	SkLdGC1fmrCF9K7xQOKD0sgY77Q8uO7qcTHTmaMFubeSyqaWkj6V9xJM/IHMTfY=
+X-Google-Smtp-Source: AGHT+IFJP2Y5fe1lv0CnAImMG19RMAXOmGCb/Qw0VT9HgcFIG6KLeaCD3KKMlw7qfAX/uV1m95oM9Q==
+X-Received: by 2002:a05:6870:638c:b0:259:89a5:440d with SMTP id 586e51a60fabf-25cfce010dcmr7970832fac.15.1719299916103;
+        Tue, 25 Jun 2024 00:18:36 -0700 (PDT)
+Received: from localhost ([122.172.82.13])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7069b36b540sm520256b3a.66.2024.06.25.00.18.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jun 2024 00:15:11 -0700 (PDT)
-Date: Tue, 25 Jun 2024 10:15:09 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: andrew@lunn.ch, f.fainelli@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+        Tue, 25 Jun 2024 00:18:35 -0700 (PDT)
+Date: Tue, 25 Jun 2024 12:48:33 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Bryan Brattlof <bb@ti.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Lee Jones <lee@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v2] dt-bindings: net: dsa: mediatek,mt7530: Minor wording
- fixes
-Message-ID: <20240625071509.pwo4qmnvlf4ooqez@skbuf>
-References: <20240624211858.1990601-1-chris.packham@alliedtelesis.co.nz>
- <20240624211858.1990601-1-chris.packham@alliedtelesis.co.nz>
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Vibhore Vardhan <vibhore@ti.com>,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Dhruva Gole <d-gole@ti.com>
+Subject: Re: [PATCH v3 0/5] Update OPP table and add entries for AM62Ax &
+ AM62Px SoCs
+Message-ID: <20240625071833.lbtkcu6ubcxsyts2@vireshk-i7>
+References: <20240621-ti-opp-updates-v3-0-d857be6dac8b@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,15 +90,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240624211858.1990601-1-chris.packham@alliedtelesis.co.nz>
- <20240624211858.1990601-1-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20240621-ti-opp-updates-v3-0-d857be6dac8b@ti.com>
 
-On Tue, Jun 25, 2024 at 09:18:57AM +1200, Chris Packham wrote:
-> Update the mt7530 binding with some minor updates that make the document
-> easier to read.
+On 21-06-24, 11:39, Bryan Brattlof wrote:
+> Hello Everyone
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
+> This series starts off the process of updating the OPP decoding tables 
+> to align with the new speed grade schemes for TI's AM62Ax and AM62Px SoC 
+> families.
+> 
+> Following this update is the updated binding and the OPPv2 entries we 
+> will be using for the SoC including the 1.4GHz frequency for our 
+> reference boards when the VDD_CORE allows.
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+> Bryan Brattlof (5):
+>       cpufreq: ti: update OPP table for AM62Ax SoCs
+>       cpufreq: ti: update OPP table for AM62Px SoCs
+
+Applied above patches. Thanks.
+
+-- 
+viresh
 
