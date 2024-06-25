@@ -1,181 +1,129 @@
-Return-Path: <devicetree+bounces-79791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23973916DB8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:06:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9DC8916DCB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A31651F244E9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:06:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6CB28274F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C23A171669;
-	Tue, 25 Jun 2024 16:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815DE14C59C;
+	Tue, 25 Jun 2024 16:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="TbpO7cCF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qv8Bx59N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-252.mail.qq.com (out162-62-57-252.mail.qq.com [162.62.57.252])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5387514C59C;
-	Tue, 25 Jun 2024 16:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.252
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580A71CABB;
+	Tue, 25 Jun 2024 16:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719331565; cv=none; b=docRSgrlyfwVgvcmDWniBfX1NQ+tsKRt7wS2n6qai1F3CP5xy07n/gE/ATwlvSY4opPKfmCijGsR5uc72GMJ6jj5P9PmyeigXH81VHf4VT5mgVULSBl3OwQY9s/dKQRSIFsI0BCtzj0tXXnBjjnEdIBOIlkkeGaoMklCf4WvhYQ=
+	t=1719331857; cv=none; b=NaI1TxBWPBSLmbBS3chhNUSbawBVyDKJQvtub/q6RyDz8bsEOCpFLG1xWDO7Ik1ExdqpZ4Fs3KPoACDpAYTUecW+1x+NU2n/Ci8wQ5sRDBJvoG91P908F9l1nn49ITzG6sVVY58nPaYubhSdjmgEMH5XtZWG8FmgY8Wt1vK/UJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719331565; c=relaxed/simple;
-	bh=1Qv0d+LigROQRA3MvAbMgGCOZbrrUmwvp4w7rjburvc=;
-	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
-	 Date:Cc:References:To; b=GpWxoGuqzqqRp4H05SEOAH2UqRa7QAmJXVBMTXNyeARhkJ1Jc39RQ3UcmNkZ3vQQW+h4Eae/7yI2+YSc9eGUkjskN6FEVewdotHIr1C6LEDo2iq5lDNgcmrsLsH67zlqz3GDjjl5si7oC/fINps7EbfiT86nVej8dkvJ/ss0K24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=TbpO7cCF; arc=none smtp.client-ip=162.62.57.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1719331551; bh=DFA9ATURDnDHmT+JTZbTU4zjVWWw3GnhqNiNhKiKk5E=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To;
-	b=TbpO7cCF8xZubDRe0KJq5OeVG1SjmuktMKWbYEtusuKmeNABjdCNRQaITqz22S86A
-	 CR9G9NIW0OrK9qUNGYFqy5Cw7P6Jl+dM+8z7GpxBjqxodqGmsiTAoNWdaHGnRQM++m
-	 Ei+/NB/DAOr4/pbu7cZVumk2588FkGO7AwrmamcM=
-Received: from smtpclient.apple ([2408:8207:18a1:c8b0:f5fa:3cc7:251d:184a])
-	by newxmesmtplogicsvrsza15-1.qq.com (NewEsmtp) with SMTP
-	id 1251260D; Wed, 26 Jun 2024 00:04:37 +0800
-X-QQ-mid: xmsmtpt1719331477t7a5x97rd
-Message-ID: <tencent_B61C9F718362BC42F61A8BF95A046BB44D09@qq.com>
-X-QQ-XMAILINFO: NfHsM/dq2nWI8qGjggedwfiwSv+7cxrMVxIdxyxZk5tawVnqa9TJNjGTXSdokx
-	 yRygcOG6PkSKP7UlCCBYRTQWZnKZdsMDCs+ppB8n2diKK2Re283eWXa+EBw8Z1JUvBVSnYZ/WHbJ
-	 mOnIibbT3pBxrvC/tIWArW4jXso5Mrks3yLoMUK0jhEJlKw/HHlHtC0hyVCpTELbDz7uq4XGhXLd
-	 5QM+UoXxjraNPcJi9qiMxAd/vDmm/vpjhTlFNtQ1QXFav3JfpqFqaChk/DdQgKdg/tQvYlOetAZB
-	 ZxG9zY5rB5qNtZUvYzM14PCqj1VUItdSYvW74cBpI1y6ZKv4Kwkn/k/YIHb9sJnSuJ2QXbziikJE
-	 JzeoM3uncUGJHBdJt7GxXROxgZofkyDh9k3KbBfLQQvy0M+4TEtxGiOaTSXJR4/8epICblISBjNP
-	 2BG6OkfvAK+iQmNLOKzPWKs5z8/9Bl8S+9wxJ2xvIZL6H4C2Kazk4Hy93A+s8dgtgxkJHlgtkl66
-	 3IL9MoNMLQhB4C0EQQD/yIaKzwyjW6Zi11IH7ThOrj3kbi8u+v07LDlz2Y8yAz6AayJAIB+iO6kw
-	 XU/SF8Hff3X9XCnKFnYT8BccVR9RRw8WgdYRgATcbhp8H8hZxXKghscMTsYTwTH3+SnHhP3VRcs6
-	 n4eUWJWMzKX5is9MPeBl2ehaMl4cWPeSvmrJWBHD330lm9rSVFg47npfOrPB4t3Pdm4Mn+YX5SWG
-	 R/XZa7rGWiP20prkCrB8lLLFp9g7XOKTHHC2PCsNfIe6A1IjJHbJF7zMDLBgQ6IH8AaY87Uv76xl
-	 GgIiZDI9lP/U+bh2cY/IKLlwrViEUR59GF5M2q1+Ph2ZownIi8vj6r0FMDWqyqulSaloGDx/qKLq
-	 TSsQTdf8ScaWEwRJqiWZpQ8cnCW1FdSh1vCz8CIG+93x8T01gaLIa/eweYo4Wxy1Hp8+nRkmLXB2
-	 JWfUHTL12RzVaTIIutEgjwTf0ERBtUX7vZkxgcvwi7tjfdJHNT4w8cRmrsZPN3XAPzXVE+taY=
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1719331857; c=relaxed/simple;
+	bh=z8HswIvlQx7OU8ilJWOJ4zvCY+3qACFutDcOZeef8Ys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U81nZv1i4IvOf1tz4hEsHvHP57iWAqXaFfgrFqBQxbeoQO9hoeV3oh0jVXJH9DABbcEeJau7NvkQoQvn7OugMTHwya3FryikA/QXWnsKMA/6lhr6eAwWt8REhxiRkC7jRz6qMHiilBIqO8NL6A96759EZbTCYo5UN/I5BfnNoyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qv8Bx59N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7963BC32781;
+	Tue, 25 Jun 2024 16:10:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719331856;
+	bh=z8HswIvlQx7OU8ilJWOJ4zvCY+3qACFutDcOZeef8Ys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qv8Bx59NIiTNVrL1XrPJ0UUqqJl0/uDAY0EcYnpt7MF23VrL3+V2Hqbw8bR0Gm8XP
+	 8eRQMyKVM2GbOcrPj/8MI2uXuNAATdEQSi4J7gFWIL7DvXzM14qrmwC5ORvpDTWr8x
+	 5KUmY1DcBxnTY9U7L3u+TXwOQx5sf4EfqkHzVhebwErtZf9/y5MMPH2FpVjg/D8Dwa
+	 7EhDJTSeQZ5caBXLkVp33AfuUlUarHS+nWXJnv6+1nzch9Uf3mo9WIQIwVeIUhV9gD
+	 9ArIrzlCaBdtM+wuAVehh5lpA1tC5RZEk1+gYP9ykAO1AOe20+CFhiR2xHe1ONMYbm
+	 0gl4ZqPeVEoeg==
+Date: Tue, 25 Jun 2024 17:10:52 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+	Diogo Ivo <diogo.ivo@siemens.com>
+Subject: Re: [PATCH 3/4] dt-bindings: soc: ti: am645-system-controller: add
+ child nodes used by main domain
+Message-ID: <20240625-stuffed-outgrow-702e37622fc6@spud>
+References: <cover.1719210050.git.jan.kiszka@siemens.com>
+ <52848094062ea55b0063e6fc37f27e6ed5035aa8.1719210050.git.jan.kiszka@siemens.com>
+ <20240624-hula-fever-74499b22784d@spud>
+ <0e0a9627-0e5c-4c39-b1f2-98f8095ba8c5@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
-Subject: Re: (subset) [PATCH RESEND v8 0/6] riscv: add initial support for
- Canaan Kendryte K230
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <20240619-hammock-drum-04bfc16a8ef6@spud>
-Date: Wed, 26 Jun 2024 00:04:22 +0800
-Cc: linux-riscv@lists.infradead.org,
- Conor Dooley <conor.dooley@microchip.com>,
- Damien Le Moal <dlemoal@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Dan Carpenter <dan.carpenter@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- Guo Ren <guoren@kernel.org>,
- devicetree@vger.kernel.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="HzLaPnRGBBlzqSMg"
+Content-Disposition: inline
+In-Reply-To: <0e0a9627-0e5c-4c39-b1f2-98f8095ba8c5@siemens.com>
+
+
+--HzLaPnRGBBlzqSMg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-OQ-MSGID: <FA81E124-32CF-4158-AA34-1EA0B603B027@cyyself.name>
-References: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
- <20240410-unwoven-march-299a9499f5f4@spud>
- <20240619-hammock-drum-04bfc16a8ef6@spud>
-To: Conor Dooley <conor@kernel.org>
-X-Mailer: Apple Mail (2.3774.600.62)
 
-
-
-> On Jun 19, 2024, at 18:45, Conor Dooley <conor@kernel.org> wrote:
+On Mon, Jun 24, 2024 at 10:23:37PM +0200, Jan Kiszka wrote:
+> On 24.06.24 18:24, Conor Dooley wrote:
+> > On Mon, Jun 24, 2024 at 08:20:49AM +0200, Jan Kiszka wrote:
+> >> From: Jan Kiszka <jan.kiszka@siemens.com>
+> >>
+> >> Expand bindings to cover both the MCU and the main usage of the AM654
+> >> system controller.
+> >>
+> >> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> >> ---
+> >>  .../soc/ti/ti,am654-system-controller.yaml    | 29 +++++++++++++++++++
+> >>  1 file changed, 29 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-=
+controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-=
+controller.yaml
+> >> index e79803e586ca..0eec807f38df 100644
+> >> --- a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-control=
+ler.yaml
+> >> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-control=
+ler.yaml
+> >> @@ -34,6 +34,35 @@ patternProperties:
+> >>      type: object
+> >>      $ref: /schemas/phy/ti,phy-gmii-sel.yaml#
+> >> =20
+> >> +  "^mux-controller$":
+> >> +    type: object
+> >> +    description:
+> >> +      This is the SERDES lane control mux.
+> >=20
+> > Where is this object described?
+> >=20
 >=20
-> On Wed, Apr 10, 2024 at 11:30:25AM +0100, Conor Dooley wrote:
->> From: Conor Dooley <conor.dooley@microchip.com>
->>=20
->> On Mon, 08 Apr 2024 00:26:58 +0800, Yangyu Chen wrote:
->>> K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add =
-initial
->>> support for it to allow more people to participate in building =
-drivers
->>> to mainline for it.
->>>=20
->>> This kernel has been tested upon factory SDK [1] with
->>> k230_evb_only_linux_defconfig and patched mainline opensbi [2] to =
-skip
->>> locked pmp and successfully booted to busybox on initrd with this =
-log [3].
->>>=20
->>> [...]
->>=20
->> Applied to riscv-dt-for-next, thanks!
->>=20
->> [1/6] dt-bindings: riscv: Add T-HEAD C908 compatible
->>      https://git.kernel.org/conor/c/64cbc46bb854
->> [2/6] dt-bindings: add Canaan K230 boards compatible strings
->>      https://git.kernel.org/conor/c/b065da13ea9c
->> [3/6] dt-bindings: timer: Add Canaan K230 CLINT
->>      https://git.kernel.org/conor/c/b3ae796d0a4f
->> [4/6] dt-bindings: interrupt-controller: Add Canaan K230 PLIC
->>      https://git.kernel.org/conor/c/db54fda11b13
->> [5/6] riscv: dts: add initial canmv-k230 and k230-evb dts
->>      https://git.kernel.org/conor/c/5db2c4dc413e
->=20
-> After some discussion on the k1 thread
-> (https://lore.kernel.org/all/ZnEOU7D00J8Jzy-1@xhacker/, =
-https://lore.kernel.org/all/ZnA6pZLkI2StP8Hh@xhacker/)
-> I am going to drop this series. It's not very useful in the current
-> state and there's not really been any interest from people in getting
-> the platform to a more complete state. Jisheng made some good points =
-in
-> the k1 thread about the missing clock controller stuff, and I think =
-I'm
-> going to make having basic things like clocks and where applicable
-> resets and pinctrl the minimum requirement for the platforms I'm =
-looking
-> after.
->=20
-> I've thrown these patches into my tree:
-> =
-https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=3Dk=
-230-basic
->=20
-> I do have one of these boards, but I'm fairly limited at the moment =
-between
-> the various linux-related and work demands on my time, so it's pretty
-> unlikely that I'll do anything with it myself.
->=20
+> Nowhere so far - I've only followed the pattern in
+> mfd/ti,j721e-system-controller.yaml. Would adding "ref:
+> /schemas/mux/reg-mux.yaml" be enough?
 
-OK. I understand about this. I do some initial support for K230
-only for my evaluation purpose and propose this tree to provide
-information for others to boot up a minimal kernel and also have
-another patch [1] to have a USB node so we will able to run a distro
-like Debian over NFS rootfs by USB ethernet which is on canmv k230
-board.
+I think that would be okay, yea
 
-But I want to say I may have no time to do further driver development.
-I have done this for my evaluation purpose to get some performance
-metrics on real RVV chips for research usage since I=E2=80=99m a Ph.D.
-student focused on computer architecture. I have to devote my time
-to my research work.
+--HzLaPnRGBBlzqSMg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If anyone wants to do some further driver development, please don=E2=80=99=
-t
-hesitate to do so. Don=E2=80=99t imagine I may be doing this, so you may
-do duplicate work. I=E2=80=99m too busy to do that.
+-----BEGIN PGP SIGNATURE-----
 
-[1] =
-https://lore.kernel.org/linux-riscv/tencent_E9B853316D217B8D1E7CDF8288DA5E=
-8ED908@qq.com/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrsDAAKCRB4tDGHoIJi
+0kWxAP964V9Lk0QTCjeBj4XYhp9yppMMx1ApO1OCrtpbBjq5pQD7BKYT/UgapUTg
+PuhFZNyuMFXVagzZCesfL56uD9PAOw8=
+=ql76
+-----END PGP SIGNATURE-----
 
-Thanks,
-Yangyu Chen
-
-> Thanks,
-> Conor.
-
+--HzLaPnRGBBlzqSMg--
 
