@@ -1,143 +1,108 @@
-Return-Path: <devicetree+bounces-79759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB48916B3F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:57:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73715916B42
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:57:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C1791C225B3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:57:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E16C4B2732D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C6116F0EA;
-	Tue, 25 Jun 2024 14:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6847316F833;
+	Tue, 25 Jun 2024 14:55:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c5Rf+4Xw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE9D16D4C8;
-	Tue, 25 Jun 2024 14:54:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A62216C840;
+	Tue, 25 Jun 2024 14:55:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719327295; cv=none; b=Ne9vt3I0U2vL9Vb5rp+8B76/i8R26vbjAozvffg2Gn4wwRSFlm7jz8xH6PD1lzrrER5pqfRTiHPCzyYv3P8KO0SDAMDCftK3ne1liyKvcB268WOZcHkwmQSuC8rKKGhG7Zqzxp0FATTDxMd7oSGlrqK0QLBIY6BHYNZX8datEQk=
+	t=1719327324; cv=none; b=nkQDWQHxcqIq2Ydpi4R/IO8EgRJCN57M0tBxQ4I/bLkEy7fpzRqos8hXOhKb8raWWy8JCMEn4BjWruTRZHuNmFQXfuH7zTnB6SfyuIwg2pX6Wt/sjs1lX8ZFqAaMCi+MAv/4F46dHY+RXJji6CxB+Fow2UEEhHWyWBJbPtz0Xl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719327295; c=relaxed/simple;
-	bh=3rtPKYOOveHd/ARhrCQb9r9Lhm1DNbXyLmJaYkZwo24=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QgjiT8CL3ukPLEfAD24z95uTjFZZrjxJQKdulImEurDezhYwQPxSDizC+wsJd0L/PS01OCFFJ67mcjNYs9unc+NU7igfKngEsS7G4pxUX1l0L3D39BbRAbUrCGBiA+GcHHf1+nzLJOmg8PLmD2HDal554NGe1jow+QJzH+aYrPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-645808a3294so19269127b3.3;
-        Tue, 25 Jun 2024 07:54:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719327291; x=1719932091;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q1bc/+AE+hdXh7sh8QJ2NzxJSopu94WFQ3wm93AcRUU=;
-        b=EglHN7SbQKkI5CHrWu7Q+ovLijXF/TmCay8kJLKhhhpZxiWoDoympVTW3EPQ1BJML6
-         j4dTUHcrqfuvlcOtMYT9RWi9eDAVWBpf74Mj92FXSTiOY1xeKPD45exwAJyAV/+1M7I9
-         3W665k6nxosdWZfvLazn7xlgqu88odS9RV6ywr0ncBETe+F20F22R1HkIuR+LFHiQ5nv
-         UlxCLHsUJWGFXDvtFY/jwWf2PIygqPD1596PHmwEbXZhVj8QFMJlRApPOHi8nCdHsDbz
-         c9+Pvt9eknHB42jbCvU6AAC6tNp1EBvhTUUWOjeN/tFpBsHKXpIYoEagxPDm1hdnYrat
-         S3Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCURqKbKawGF6b3TeY5OSv0Yol81BTWlW2p809VHC+4ufZLXKKuIYLqTCM9NpOsAR/m3nqLc/A9c3AH4GrzexmBsQBl8Y+Z+/F2S0+sgy/Rj1WGziK2SK6eYHCxWkM00LiUE7S9GLQAU+WrAqcZ5
-X-Gm-Message-State: AOJu0YwQB/uoBMb7KlwB0OjLRaUDJrWYDgH3qoNPGneU8wDzIBZYfZWS
-	kDdvd9nMLysTvNOilS0DXjLb5EgIN3IYZGHuVjdYAswWfvd7Ja81nCLhGmGB
-X-Google-Smtp-Source: AGHT+IHq8AOfkusm9NNS0y/HrqzAs24XHU37COyEUUz6wO/ZrJNrnrzK9sPEM2W1DW1BniKYF8EayA==
-X-Received: by 2002:a81:f203:0:b0:62c:f82b:553f with SMTP id 00721157ae682-6433eaf2c0emr73673877b3.31.1719327291015;
-        Tue, 25 Jun 2024 07:54:51 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-63f154d5d90sm34565067b3.106.2024.06.25.07.54.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jun 2024 07:54:50 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-63174692a02so52736917b3.0;
-        Tue, 25 Jun 2024 07:54:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUbnW5C28wtGxX7bBhPcnsmtJTdfghTinSQhHm3vKVDeznJVRY/+710oqTVfXzYiDMxDi8bvgsb5dZWpm3qVLRtfFjr+ZtFDSXdqpE/+VA2ugkoCgg40CNebFiCxTKE6YC3kThAxoTv78WGFBPb
-X-Received: by 2002:a0d:e382:0:b0:618:2f6d:ca80 with SMTP id
- 00721157ae682-6433dd74200mr82795787b3.12.1719327290521; Tue, 25 Jun 2024
- 07:54:50 -0700 (PDT)
+	s=arc-20240116; t=1719327324; c=relaxed/simple;
+	bh=66tqkQVIjQ3KifxJzurd/IM9a92dtSlu7LD3ir/MsYY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WHelOPlrFe2kj8kyh5RloHTgr1+oWOH17tsstEtd19Mbb3lpxbH8KgYm71LImH2x0BI8UvXmbfd94aCJG70FnwFjv2OuUDNHRjyvDx7W0E3mt97H85CvG7/TAURjE4j/INOCexED3FRDG63hnjWV4uyw0HbfyZhRrYVImvB1uJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c5Rf+4Xw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 293CBC32786;
+	Tue, 25 Jun 2024 14:55:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719327323;
+	bh=66tqkQVIjQ3KifxJzurd/IM9a92dtSlu7LD3ir/MsYY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c5Rf+4Xw8E6hHZ+Orx/3Jw0L6hsHClLa8LH5YCUFGwvRYqzR3vrI23ejTfOMTvnBw
+	 DK0c40J/Aa98/W+ijABbMyIXE/q3nvCldvthZ6kG2O0+bbxNahvOUGwlWe1qTjTIb9
+	 A6o6UW+fzfLf14WrYR6KmY1Je1wLej+bW/hws8/4Ayg9OL0QtVpQ4fLLGJAiWlnMy3
+	 5BL2VHQKSrVx3A6qIwEjE8zJbLBHkNunqRwilT6a56uB85YXDpIjKygs+Lx7hCOcZ1
+	 l3V/3MAq7BrDemnZfX+5gOvrFMU+dOTxZKFHX12641cjBDNFH/Eu6e1M9FzQfBAcoz
+	 dqmOE6ljF9EJw==
+Date: Tue, 25 Jun 2024 15:55:17 +0100
+From: Mark Brown <broonie@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
+	gustavoars@kernel.org, henryc.chen@mediatek.com,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com,
+	wenst@chromium.org, amergnat@baylibre.com, djakov@kernel.org
+Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
+Message-ID: <8b34897a-416a-4ff4-82a8-c37849d706ec@sirena.org.uk>
+References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
+ <f7b4cd98-1acf-4f6b-a7e0-57419abadba1@collabora.com>
+ <57cf8f9f-4320-4c55-a9f8-a4c1facabfe8@sirena.org.uk>
+ <39ed7b8c-b19a-40de-9b30-a731ac83ad20@collabora.com>
+ <2e8a9cf2-2bc0-45d8-b6c1-e3a9441d5641@sirena.org.uk>
+ <f855f6ec-f0f7-467a-9823-d19706574408@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240625133008.2638902-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240625133008.2638902-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 25 Jun 2024 16:54:38 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVXGP_x1aoTqCfYo=axnEqGCncJ-HRckqzwNjX1+wxf9w@mail.gmail.com>
-Message-ID: <CAMuHMdVXGP_x1aoTqCfYo=axnEqGCncJ-HRckqzwNjX1+wxf9w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk: ethernet: Define AVB1
- and AVB2 PHY
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ybfvhfwy3rgiDyzm"
+Content-Disposition: inline
+In-Reply-To: <f855f6ec-f0f7-467a-9823-d19706574408@collabora.com>
+X-Cookie: Results vary by individual.
 
-Hi Niklas,
 
-On Tue, Jun 25, 2024 at 3:31=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Align with other Renesas SoCs and use the specific compatible for the
-> PHYs connected to AVB1 and AVB2, Marvell 88Q2110/QFN40. This allows
-> software to identify the PHY model at any time, regardless of the state
-> of the PHY reset line.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+--ybfvhfwy3rgiDyzm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for your patch!
+On Tue, Jun 25, 2024 at 04:51:56PM +0200, AngeloGioacchino Del Regno wrote:
 
-> --- a/arch/arm64/boot/dts/renesas/white-hawk-ethernet.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/white-hawk-ethernet.dtsi
-> @@ -27,7 +27,8 @@ mdio {
->                 reset-post-delay-us =3D <4000>;
->
->                 avb1_phy: ethernet-phy@0 {
-> -                       compatible =3D "ethernet-phy-ieee802.3-c45";
-> +                       compatible =3D "ethernet-phy-id002b.0980",
-> +                                    "ethernet-phy-ieee802.3-c22";
->                         reg =3D <0>;
->                         interrupt-parent =3D <&gpio6>;
->                         interrupts =3D <3 IRQ_TYPE_LEVEL_LOW>;
-> @@ -49,7 +50,8 @@ mdio {
->                 reset-post-delay-us =3D <4000>;
->
->                 avb2_phy: ethernet-phy@0 {
-> -                       compatible =3D "ethernet-phy-ieee802.3-c45";
-> +                       compatible =3D "ethernet-phy-id002b.0980",
-> +                                    "ethernet-phy-ieee802.3-c22";
->                         reg =3D <0>;
->                         interrupt-parent =3D <&gpio5>;
->                         interrupts =3D <4 IRQ_TYPE_LEVEL_LOW>;
+> The interdependency is for soc/mediatek commits, which depend on:
+>  - Interconnect commits (which Georgi picked already); and
+>  - Regulator commits
 
-Originally, I added explicit ethernet-phy-id* compatible values because
-Linux does not deassert the reset line before trying to read the PHY
-ID, hence failing.  Have you checked if this is still the case after
-introducing the mdio subnode?  I'd rather not add the explicit IDs,
-as board manufacturers may change the PHY revision or even the PHY
-model without notice.
+So the regulator stuff works without the interconnect and vice versa, no
+build deps or anything?
 
-You can find my original test procedure, using kexec or bind/rebind, at
-https://lore.kernel.org/cover.1631174218.git.geert+renesas@glider.be/.
+> And... you reviewed the patch in the previous merge window :-)
 
-Gr{oetje,eeting}s,
+I simply don't provide tags for things I expect to go via my tree.
 
-                        Geert
+--ybfvhfwy3rgiDyzm
+Content-Type: application/pgp-signature; name="signature.asc"
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+-----BEGIN PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ62lQACgkQJNaLcl1U
+h9AudAf/W50XJ088Y6eXx3Vma3D22WxaI/Uw4qotmwWBWYHpqgxdEOOCvgf2FFjK
+yF1i60d2zIF+vBTMm3jXo0NMBUxW+8M+60MOsDvZS0POPxkdko2+MOt8NfJlPpnO
+16wz8lIR+oc1YFphmh4o3bgjsxXwbzyjVskjs0bBOWGRNllftiKZMUgQdg/aCbQu
+grhS1n1AEKA7Q13ahMWrwh39gkRn51t3KPmAdwhy9j70XCHgSaNALEj7vOYIVnPR
+QTPQn8bldlUAjUEmXdcL5Hgz1T1aRCOQAM019+IqWGTv8NPTi94IrWojfBZ02swb
+4thLhUOHqd8mP01SIQjYM20dQOaW3w==
+=lhMt
+-----END PGP SIGNATURE-----
+
+--ybfvhfwy3rgiDyzm--
 
