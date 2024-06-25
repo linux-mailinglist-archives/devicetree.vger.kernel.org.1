@@ -1,153 +1,210 @@
-Return-Path: <devicetree+bounces-79634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74DB9161A9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:51:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51F2B9161D3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 11:02:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2900AB21460
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:51:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AEED281700
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10B8148832;
-	Tue, 25 Jun 2024 08:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S2JST7Gt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFB7146A81;
+	Tue, 25 Jun 2024 09:02:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590591474A0;
-	Tue, 25 Jun 2024 08:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463FD13B5B9;
+	Tue, 25 Jun 2024 09:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719305495; cv=none; b=R0iVpYtgS0NgqmhhdjExNwTz/Q4pcpsoT3NmyWg2oFiI+pFKVBvo33PDrkp/VfZMmJ6juCp34Lz0hlvUUM/ilQun/buky4RKxFj5v3yqT9Z7LoZn7cmuygpfJOSzgmmPIuNieIX171mMRrZ9OvSmfk7lFstBL65mOoa3vhLdGZM=
+	t=1719306153; cv=none; b=BxDy66AoNjMETy9yx875v3O4y1blLjoJMA0qwwq0jszKMQ4+PIyoMVpXbp/joqMUkaWpr32nRqVFkN4PfBE/ZtyPN+yqpY2xVt0PQXTeHpBqMk8feHn8DFZM6NqPE1RU3pTSY9jFrkbuEPCg5l5t1CTXRRz9edYbZBvd8/XmFz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719305495; c=relaxed/simple;
-	bh=J7W6jQQOq6oMCiMWpafdMRKX7RlHQIMkt8NcZBcjKOk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XuESg7BWMno+4rTp7xKkjKkfMdNLASpSduIDNpSEb0a9viV23qk7Z5EpebdgR+RlMDZdTiSuGgQvkCWK9n18OOd0H3bH43cxVLKm/Jv9ZDEKzyoiV+lv3F38csndGt53r5HLN6lHTjZAhFsnqH6iWu2VLz1piWPBa8c0RLkkLb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S2JST7Gt; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719305492;
-	bh=J7W6jQQOq6oMCiMWpafdMRKX7RlHQIMkt8NcZBcjKOk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S2JST7Gtm+r4PcCve+QDN4GXwgH8RYiAG870eilIPav2n3x4SlVt+Lm1R+3ADFdTb
-	 iSOhePfe6weu4x/WNfuo8HTjZA7EeP9PMNW9IGckoUJRWp+jksOOHjfmxD+raBBPi9
-	 MaEhWi5sXVg+XKrtY5rPBKlkPPx43SSP5rx1xBvte8IjgZvBoo+5gk31oQol8rBhyq
-	 lgjc6Em6c+7ARiHDEUxwSRtwk/3DFxJgikGbpaj9hb/XHBchFMCKRmZ7E/Orp6Y/y4
-	 R94oswSbt3e8dBu7W5ybEe+Eq09WnWs5TRrlKHOFhQ/IUV35i82dPGiPza0aMJkBHr
-	 /9pH1mbAdHrzw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A6353378045F;
-	Tue, 25 Jun 2024 08:51:31 +0000 (UTC)
-Message-ID: <9c498e37-df8b-469e-818a-9b1c9f2b1a3c@collabora.com>
-Date: Tue, 25 Jun 2024 10:51:31 +0200
+	s=arc-20240116; t=1719306153; c=relaxed/simple;
+	bh=ASZ8xOSjjqC+LhheUMjLPYNKajs/uctV6iGDq7+TGxU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uBhmomPPzcE8PVkWx9GDfg9llG5+LJ0vlyHhBzuuCe+MNQeDvF8CxyoQiF5GA9fW0jTenRF57dIJBrPShHAFn5u/Dvoqfket5FkiP9OPwM4sZGgd6tMbznaushC5I3X3ItAR00KpTOh0g+cChh++zdezkKptYn8xqq+gf0s3OXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-643acefd1afso23055097b3.2;
+        Tue, 25 Jun 2024 02:02:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719306149; x=1719910949;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YIzRRfzG616FLF9ULAjDP/LqW5dqR/4YxaSzimcvAZ8=;
+        b=gmHFlL+5vO1aV1wT2D9ZiMlYVDplp3q+vll/L97Mx8j8L5X1bGR9ufkt+xeHvWcyFa
+         8ZftiYQPDjl6Gx28C7AFj3Gou9N3Tg/ZxNlg3jJV1TaMRYR4oqS7h+sRbT/3RfYJb7hC
+         OJky7pCNfhgb+SZLO5wseETMiYF+bBr2R0ZmSGL5LtvLrHyWa6DQZgc7t4XkCesAldZr
+         SldWAhpHBfobZoB3hpbEK4HL7r05KPs3BFnJpDqOh+3NXE+L08Ew+ZRp94GkVbiIjOF2
+         AIZ5cw77o1yFDMatS2s3AVB3sjcBrkotuWT4rWq3wSKdZs6dU8eK4OI7x0GQa0MN17K2
+         ZpJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWcWGjoeQ+wut22qEWsF6QWH09kue8GEBn8zWu88EB1090l20gPcW5oW0Y7rpbwwE23grq7c7xWFKUwP0RTHcCj6oiplMvH7H6l9yo1f5APiNoO5QuER71IphYcxQo9gjJc4K6k/YVwYoDznch/+RJrIPwgHoRz4Gb+rCxRULQJpErC2ppA8pjGgTjDkzmhW0JfCz1cx/ae/2fxxu0uFpjiB+hBYmDl
+X-Gm-Message-State: AOJu0YxauWseDfu6FVJd77HIfOZfEHbg7Jaiqi8Q8LzLPICxH9V56PfH
+	UcUOMedJJXBjePh8tFFAC9MaYZEwUz8Yfx3cKZXP/rUedMl5A/MKRH5lhgVJ
+X-Google-Smtp-Source: AGHT+IFja/+t+hqqgYPMOtipvErUAJlB78kWbLOsnCpsPIEWfYBUW30qmuW/6cw+KKa4wE9I8/8jyQ==
+X-Received: by 2002:a05:690c:729:b0:643:50c3:ce1b with SMTP id 00721157ae682-64350c3d6d6mr62345647b3.4.1719306148570;
+        Tue, 25 Jun 2024 02:02:28 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-63f1107db11sm34223017b3.6.2024.06.25.02.02.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jun 2024 02:02:28 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dfe81d54db9so4873769276.2;
+        Tue, 25 Jun 2024 02:02:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWL4hDOZRnQyKBEzxqG5GmdPS95MpgDTur/QKREN6xQv81u2TzFYO2eFLq2WxV4fQWgqewRWM1KNwBrbgk3WaNsGlDMy1gE092GNm8LdckBh7KcIcquQnK8DQIWSakZexWX5MuOd5ouBI8eubhlvN7/ZeCQcj75bE4u5ips8bw+Qi5HDUvaofzqJOCHvvaQX+Q8yDB0q76QlI6uqfulFNGGAVUxBFnc
+X-Received: by 2002:a25:bf89:0:b0:dff:2f48:5a85 with SMTP id
+ 3f1490d57ef6-e0300f50333mr6792788276.8.1719306147744; Tue, 25 Jun 2024
+ 02:02:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: Linux regressions mailing list <regressions@lists.linux.dev>,
- Paolo Abeni <pabeni@redhat.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
- Frank Wunderlich <linux@fw-web.de>, =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?=
- <arinc.unal@arinc9.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <a29dd7d1-40a8-4c88-99aa-651a3305b640@arinc9.com>
- <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
- <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
- <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
- <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
- <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
- <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
- <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
- <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
- <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240624153229.68882-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240624153229.68882-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdU0r+B_Jmh7E6sopRbfzzX7DtZKpY=Xte2vLDC-ORwdVA@mail.gmail.com> <CA+V-a8uhb1Visg9jUV-Te3ZHkfdRonM08s823RYa6k=KAHYgQw@mail.gmail.com>
+In-Reply-To: <CA+V-a8uhb1Visg9jUV-Te3ZHkfdRonM08s823RYa6k=KAHYgQw@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 25 Jun 2024 11:02:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUkcJFv3JRUSpgEd4_zTd9dxD9e96JjxSco4tNU-rv6wA@mail.gmail.com>
+Message-ID: <CAMuHMdUkcJFv3JRUSpgEd4_zTd9dxD9e96JjxSco4tNU-rv6wA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 25/06/24 07:56, Linux regression tracking (Thorsten Leemhuis) ha scritto:
-> On 17.06.24 13:08, Arınç ÜNAL wrote:
->> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis) wrote:
->> [...]
->> I've submitted a patch series that fixes the regression. Angelo argued
->> against the way the regression is fixed. I've very clearly argued back why
->> I find Angelo's approach wrong. There's been no response back. I don't
->> understand why reverting the patch is the likely outcome
-> 
-> Long story short: because that how things like that are handled in the
-> Linux kernel project, as Linus wants it like that. See some of the
-> quotes from https://docs.kernel.org/process/handling-regressions.html
-> for details.
-> 
->> whilst the
->> standing argument points towards applying the said patch series. If a
->> revert happens before this discussion with Angelo finalises, this will set
->> a precedent that will tell maintainers that they can have their way by just
->> not replying to the ongoing discussions.
->>
->> That said, the decision of resolving the regression by either reverting the
->> patch or applying the patch series shall not depend on whether or not
->> Angelo is pleased but rather there're no counter-arguments left on the
->> points brought, meaning the decision shall be made depending on the
->> argument that stands.
->>
->> Therefore, I suggest that unless Angelo responds back with a
->> counter-argument in the window of a week or two, as you've described, my
->> patch series shall be applied.
-> 
-> It looks more and more like we are stuck here (or was there progress and
-> I just missed it?) while the 6.10 final is slowly getting closer. Hence:
-> 
-> AngeloGioacchino, should we ask the net maintainers to revert
-> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
-> device tree") for now to resolve this regression? Reminder, there is
-> nothing wrong with that commit per se afaik, it just exposes a problem
-> that needs to be fixed first before it can be reapplied.
-> 
+Hi Prabhakar,
 
-To be clear on this: I asked for the commit to be fixed such that it guarantees
-backwards compatibility with older device trees.
+On Tue, Jun 25, 2024 at 10:47=E2=80=AFAM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Tue, Jun 25, 2024 at 7:57=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Mon, Jun 24, 2024 at 5:33=E2=80=AFPM Prabhakar <prabhakar.csengg@gma=
+il.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to tha=
+t
+> > > of the R-Car Gen3, but it has some differences:
+> > > - HS400 is not supported.
+> > > - It supports the SD_IOVS bit to control the IO voltage level.
+> > > - It supports fixed address mode.
+> > >
+> > > To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a09g=
+057'
+> > > compatible string is added.
+> > >
+> > > A 'vqmmc-regulator' object is introduced to handle the power enable (=
+PWEN)
+> > > and voltage level switching for the SD/MMC.
+> > >
+> > > Additionally, the 'renesas,sdhi-use-internal-regulator' flag is intro=
+duced
+> > > to indicate that an internal regulator is used instead of a
+> > > GPIO-controlled regulator. This flag will help configure the internal
+> > > regulator and avoid special handling when GPIO is used for voltage
+> > > regulation instead of the SD_(IOVS/PWEN) pins.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> > > ---
+> > > v2->v3
+> > > - Renamed vqmmc-r9a09g057-regulator object to vqmmc-regulator
+> > > - Added regulator-compatible property for vqmmc-regulator
+> > > - Added 'renesas,sdhi-use-internal-regulator' property
+> >
+> > Thanks for the update!
+> >
+> > > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > @@ -204,6 +207,31 @@ allOf:
+> > >          sectioned off to be run by a separate second clock source to=
+ allow
+> > >          the main core clock to be turned off to save power.
+> > >
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: renesas,sdhi-r9a09g057
+> > > +    then:
+> > > +      properties:
+> > > +        renesas,sdhi-use-internal-regulator:
+> > > +          $ref: /schemas/types.yaml#/definitions/flag
+> > > +          description:
+> > > +            Flag to indicate internal regulator is being used instea=
+d of GPIO regulator.
+> >
+> > Do you really need this?
+> For cases where the status is okay for the regulator but still the
+> user has phandle for the GPIO regulator or shall I drop this case?
 
-If no fix comes, then I guess that we should ask them to revert this commit
-until a fix is available.
+I think that case can be ignored.
+The regulator subnode would be disabled by default in the .dtsi, right?
 
-I don't like this situation, either, btw.
+> > The status of the regulator subnode already indicates this.
+> You mean to use of_device_is_available() ?
 
-Ciao!
-Angelo
+Exactly. I.e. only register the regulator when it is enabled.
 
-> Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
-> --
-> Everything you wanna know about Linux kernel regression tracking:
-> https://linux-regtracking.leemhuis.info/about/#tldr
-> If I did something stupid, please tell me, as explained on that page.
-> 
-> #regzbot poke
+> > > +
+> > > +        vqmmc-regulator:
+> > > +          type: object
+> > > +          description: VQMMC SD regulator
+> > > +          $ref: /schemas/regulator/regulator.yaml#
+> > > +          unevaluatedProperties: false
+> > > +
+> > > +          properties:
+> > > +            regulator-compatible:
+> > > +              pattern: "^vqmmc-r9a09g057-regulator"
+> > > +
+> > > +      required:
+> > > +        - vqmmc-regulator
+> >
+> > I'm not 100% sure this works correctly: does the checker complain if
+> > a required subnode is disabled? Note that I haven't checked that.
+> >
+> Here is the experiment which I tried and the checker didnt complain,
+>
+> &sdhi1 {
+>     status =3D "okay";
+> };
+>
+> &vqmmc_sdhi1 {
+>     status =3D "disabled";
+> };
 
+OK, thanks for checking!
+
+> But the above is still a valid case where the user wants to use a GPIO
+> regulator?
+
+Yes it is.
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
