@@ -1,238 +1,173 @@
-Return-Path: <devicetree+bounces-79573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C314915E27
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:31:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A95D915E2D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:34:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A70E51F22724
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 05:31:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4F831F2272B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 05:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C11145A04;
-	Tue, 25 Jun 2024 05:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C49145A14;
+	Tue, 25 Jun 2024 05:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LDVdHOge"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Bcz5M/EZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C696C6F066
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 05:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4872D600;
+	Tue, 25 Jun 2024 05:34:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719293462; cv=none; b=srYrqcp3CTi5x6J2Vyb4zOgSyfmvRM+bgbl5Zm4cCbHJ0RPnJQOfTI2P4RB44k+oHyN+jr51fsYeifYaiKiF2jrR0WJMFQVo2xbpnz/jgKcaUTQiKh296XNcZ4p2DubquTQAlAMXn8t0HL5Z0Mgi1SOXIiyahP2KQuGquy4TlA0=
+	t=1719293665; cv=none; b=D0LnZzLNYADATDrV+17vHuMaotgsbfd68Vbnwb/zYtWC6wYhJPXqxkz9y9trzC3jjiI3fPKOQv3zbeVeYQyhjijJIr7HSnhTasTFOhUGUGg415LF0ae/jDKmqF2OcqFVNGlllWbYygtAbHHu8/gbzDPhym9X4o9XIleG8+jSf/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719293462; c=relaxed/simple;
-	bh=EWg0LszmD2FWUuf5dzncr0aHObfLW2WZLpSUkktkRp4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=im9A1e96j4KtpXj3a7GXVbvOLNh4wTcAJEm+NMLzeEBP9m2aSjF5PpUx8YD9004TZpVDPhi3QzuFUZ3kJ77vpp5Z9BsALKoa2NzjWFShVJ4rd87R7elJlmuJf2ivQ65ipulXVkadpRuYl/8q/J3zcPYUHD8/Mqbmn8vMy041fxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LDVdHOge; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-4ef7c2e6bcbso70166e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 22:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719293458; x=1719898258; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fH4xT6oKyRDlJ/9SAo1hScjTVdx2cvP+qkd1fBGGz6Q=;
-        b=LDVdHOge/K728smVwmsifzsiRrOkTbjXd1DB6kBdx4QW5YRADu11ckkMxLN+8QEmes
-         CI0FR61oRK15ab/lpi2FZoxhwHVMgVkgx+Ly6IQE2BIfipkO0vHDPMu+dAdhGo6MhA5f
-         VWvWyIeUcMoMu8lZMkdgPco1DsAosm4uBHfPqYvm7nRNEHaTY4qhFOVUKOUSzePOrpEM
-         sfxUxqg8pSKRk9ZDr45UMNfpBF3502UuJSq52ci87zezGuskXV3juiSt62HCgo01KClH
-         YxDwGzlEJ4Pbj8mUmcyys9izuvoBHEWhkPO2/yGdX74pwYRc0C7wE/wlpuyxD1bt8gp2
-         7K1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719293458; x=1719898258;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fH4xT6oKyRDlJ/9SAo1hScjTVdx2cvP+qkd1fBGGz6Q=;
-        b=xK9cGNM4AXrfvtt1WJfD1BdG2RwUTst/THnzXCn4AAhJRRAQzhoCit+KjnUgbY4ess
-         xRMBiVsEdjNMuQa3CykcrbV7OtDECWtvFG9kvKJSaG6B4T5xjLMKMVxWVwpAn2vYspNq
-         9ymTsLUlDW6rzBXyOdHEUOD/FDYLlh9900BJdRTe5xdvxB3n5k+Od33Ngda78oYzbCOl
-         OzPuN2DnfFn8CKbxFskLa0ajMQZGSed/ZbrLrlRgGK+jrgb5mOzi7FTzEmRSSARtla6Y
-         8bVjfGP7otcuWkAx9OCpWFMEP8BoCQQMy9MEgChUww+8rBdRLgyeOuOHumxPgOwKucyA
-         5Jkg==
-X-Forwarded-Encrypted: i=1; AJvYcCWkRgcmOhR/N5HDvIfWMcDKAZCrCAmR3EFULnNuWGEI+suVdJvnPC1Qap3jZI+7OEresfo9OBiPj3LFAXCLgHNW/QYkHsCDeSzFLw==
-X-Gm-Message-State: AOJu0YyEyqlzFoQBmKHKE7En3F897AqqHKSAFoo0aV6CIv08fzV1O1JT
-	CvJdleE3iaLUfyFyPYozEmiXHKVkaeNwu9AsIbNohCOw9SjaMEFTG6aPW0XaTn19PcYDb375ujj
-	el3XSV96SSxkIXzLT8EYe20C/Sih3FvWV8sDR8A==
-X-Google-Smtp-Source: AGHT+IF1mvfwo/UQmf3qvzPkzrgA++cDgEF4wvUt2ZNU0MSeSH5sybGDUJbRd4oF+QdtPNEJrw7NC382zZONIdEp1yg=
-X-Received: by 2002:a05:6122:4f85:b0:4eb:2012:f5ed with SMTP id
- 71dfb90a1353d-4ef612cdf88mr6901984e0c.1.1719293458411; Mon, 24 Jun 2024
- 22:30:58 -0700 (PDT)
+	s=arc-20240116; t=1719293665; c=relaxed/simple;
+	bh=WG61A8AegrCQ2sc9776tr4hXXzDrdIphGqwVreN11vE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Fi4DHCb8wR0J9dDhHRepkoHNH0lkDNX+IBofxudPC5US9mnGExj+2814oto7o4pKgAmxg3CPJKZfuY/iE4HvH4yj5VfvbAFiCztjgGB60GSSgyYy8IiHp/R/geNSlMOIRucvQkC8VyuU4UiBIdtx4zCCJmx48q8HY+zFN5Pu4Tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Bcz5M/EZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45OHV4VN001863;
+	Tue, 25 Jun 2024 05:33:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LoKPufBWxhxMKygsmQzlMm1MysiDrvGUFIj3Sx6alRk=; b=Bcz5M/EZoERI0SHa
+	Oa2t3IRNPR9crE6GxO4NTIO/+PyK2rMfZL7D279z2R/nUHLEI0VCvX5mBQE3mjGN
+	TU5VzEaG1AXRILyYBLZfFhom4uBDZc6fcNtg091qQz33NJ6s6RAnUBs/KjDF/t8u
+	ZGNud6P6OmOatMFLuAWgOhYyVvQ74N2OmTprCbKVy3EKrZsexiln5kbU7/YRrkUw
+	uEP5WK3dWpbNX196uDLMN34rEITAdNOMWdBcjS6nIZ2+wKkb6RdVwyH58trY/jtU
+	WCgUeUm460oZXScKfFwO8ATZJZMVbsXES3U0WjzY9Vdvu1a0/D+q9SAB7Y7J1pSk
+	9BuAgQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywmaewt41-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Jun 2024 05:33:39 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45P5XcS6015993
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Jun 2024 05:33:38 GMT
+Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Jun
+ 2024 22:33:33 -0700
+Message-ID: <73cb638e-4982-49a2-ba79-0e78402b59ad@quicinc.com>
+Date: Tue, 25 Jun 2024 11:03:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624124941.113010-1-alisa.roman@analog.com> <20240624124941.113010-4-alisa.roman@analog.com>
-In-Reply-To: <20240624124941.113010-4-alisa.roman@analog.com>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Tue, 25 Jun 2024 08:30:47 +0300
-Message-ID: <CA+GgBR9V=SqeA2fbeBDUO=Cr1s6GTbq6_779uQmiKCF2EjkHBg@mail.gmail.com>
-Subject: Re: [PATCH v6 3/6] iio: adc: ad7192: Update clock config
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	Michael Hennerich <michael.hennerich@analog.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jun 24, 2024 at 3:50=E2=80=AFPM Alisa-Dariana Roman
-<alisadariana@gmail.com> wrote:
->
-
-Hello,
-
-A few comments inline.
-
-> There are actually 4 configuration modes of clock source for AD719X
-> devices. Either a crystal can be attached externally between MCLK1 and
-> MCLK2 pins, or an external CMOS-compatible clock can drive the MCLK2
-> pin. The other 2 modes make use of the 4.92MHz internal clock.
->
-> Removed properties adi,int-clock-output-enable and adi,clock-xtal were
-> undocumented. Use cleaner alternative of configuring external clock by
-> using clock names mclk and xtal.
-
-Should we keep the old properties for backwards compatibility?
-While I like the new approach, the downside is that someone upgrades
-the kernel and may run into issues with their board, because one of
-these properties went away.
-
->
-> Removed functionality of AD7192_CLK_INT_CO restored in complementary
-> patch.
->
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
->  drivers/iio/adc/ad7192.c | 56 ++++++++++++++++++++--------------------
->  1 file changed, 28 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
-> index 334ab90991d4..940517df5429 100644
-> --- a/drivers/iio/adc/ad7192.c
-> +++ b/drivers/iio/adc/ad7192.c
-> @@ -396,25 +396,37 @@ static inline bool ad7192_valid_external_frequency(=
-u32 freq)
->                 freq <=3D AD7192_EXT_FREQ_MHZ_MAX);
->  }
->
-> -static int ad7192_clock_select(struct ad7192_state *st)
-> +static const char *const ad7192_clock_names[] =3D {
-> +       "xtal",
-> +       "mclk"
-
-Just a thought; no strong opinion.
-Maybe add a short comment about these being "clock_sel" values
-AD7192_CLK_EXT_MCLK1_2 & AD7192_CLK_EXT_MCLK2 ?
-This is mostly due to the "st->clock_sel =3D AD7192_CLK_EXT_MCLK1_2 +
-ret;" logic (which is fine)
-Before, this change, it would
-
-> +};
-> +
-> +static int ad7192_clock_setup(struct ad7192_state *st)
->  {
->         struct device *dev =3D &st->sd.spi->dev;
-> -       unsigned int clock_sel;
-> -
-> -       clock_sel =3D AD7192_CLK_INT;
-> +       int ret;
->
-> -       /* use internal clock */
-> -       if (!st->mclk) {
-> -               if (device_property_read_bool(dev, "adi,int-clock-output-=
-enable"))
-> -                       clock_sel =3D AD7192_CLK_INT_CO;
-> +       ret =3D device_property_match_property_string(dev, "clock-names",
-> +                                                   ad7192_clock_names,
-> +                                                   ARRAY_SIZE(ad7192_clo=
-ck_names));
-> +       if (ret < 0) {
-> +               st->clock_sel =3D AD7192_CLK_INT;
-> +               st->fclk =3D AD7192_INT_FREQ_MHZ;
-
-Since this is a new function, an early return can be added here.
-This would make the else statement redundant, and the function would
-have less indentation.
-
-So, something like:
-if (ret < 0) {
-         st->clock_sel =3D AD7192_CLK_INT;
-         st->fclk =3D AD7192_INT_FREQ_MHZ;
-         return 0;
-}
-
-st->clock_sel =3D AD7192_CLK_EXT_MCLK1_2 + ret;
-
-st->mclk =3D devm_clk_get_enabled(dev, ad7192_clock_names[ret]);
-if (IS_ERR(st->mclk))
-...................
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/8] remoteproc: qcom: Add PRNG proxy clock
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <sboyd@kernel.org>, <andersson@kernel.org>, <bjorn.andersson@linaro.org>,
+        <david.brown@linaro.org>, <devicetree@vger.kernel.org>,
+        <jassisinghbrar@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <mark.rutland@arm.com>,
+        <mturquette@baylibre.com>, <ohad@wizery.com>, <robh@kernel.org>,
+        <sricharan@codeaurora.org>, <gokulsri@codeaurora.org>
+References: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
+ <20240621114659.2958170-2-quic_gokulsri@quicinc.com>
+ <chi3pzh5ss3mivnhs3qeoen5hsecfcgzaj6qnrgxantvinrri2@bxsbmpufuqpe>
+Content-Language: en-US
+From: Gokul Sriram P <quic_gokulsri@quicinc.com>
+In-Reply-To: <chi3pzh5ss3mivnhs3qeoen5hsecfcgzaj6qnrgxantvinrri2@bxsbmpufuqpe>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YINY9aTmPeiUpakPTSs3nRPKSnHLlcMl
+X-Proofpoint-GUID: YINY9aTmPeiUpakPTSs3nRPKSnHLlcMl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-25_02,2024-06-24_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 spamscore=0 bulkscore=0 phishscore=0 malwarescore=0
+ clxscore=1015 mlxscore=0 lowpriorityscore=0 priorityscore=1501
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2406140001 definitions=main-2406250040
 
 
->         } else {
-> -               if (device_property_read_bool(dev, "adi,clock-xtal"))
-> -                       clock_sel =3D AD7192_CLK_EXT_MCLK1_2;
-> -               else
-> -                       clock_sel =3D AD7192_CLK_EXT_MCLK2;
-> +               st->clock_sel =3D AD7192_CLK_EXT_MCLK1_2 + ret;
-> +
-> +               st->mclk =3D devm_clk_get_enabled(dev, ad7192_clock_names=
-[ret]);
-> +               if (IS_ERR(st->mclk))
-> +                       return dev_err_probe(dev, PTR_ERR(st->mclk),
-> +                                            "Failed to get mclk\n");
-> +
-> +               st->fclk =3D clk_get_rate(st->mclk);
-> +               if (!ad7192_valid_external_frequency(st->fclk))
-> +                       return dev_err_probe(dev, -EINVAL,
-> +                                            "External clock frequency ou=
-t of bounds\n");
->         }
->
-> -       return clock_sel;
-> +       return 0;
->  }
->
->  static int ad7192_setup(struct iio_dev *indio_dev, struct device *dev)
-> @@ -1275,21 +1287,9 @@ static int ad7192_probe(struct spi_device *spi)
->         if (ret)
->                 return ret;
->
-> -       st->fclk =3D AD7192_INT_FREQ_MHZ;
-> -
-> -       st->mclk =3D devm_clk_get_optional_enabled(dev, "mclk");
-> -       if (IS_ERR(st->mclk))
-> -               return PTR_ERR(st->mclk);
-> -
-> -       st->clock_sel =3D ad7192_clock_select(st);
-> -
-> -       if (st->clock_sel =3D=3D AD7192_CLK_EXT_MCLK1_2 ||
-> -           st->clock_sel =3D=3D AD7192_CLK_EXT_MCLK2) {
-> -               st->fclk =3D clk_get_rate(st->mclk);
-> -               if (!ad7192_valid_external_frequency(st->fclk))
-> -                       return dev_err_probe(dev, -EINVAL,
-> -                                            "External clock frequency ou=
-t of bounds\n");
-> -       }
-> +       ret =3D ad7192_clock_setup(st);
-> +       if (ret)
-> +               return ret;
->
->         ret =3D ad7192_setup(indio_dev, dev);
->         if (ret)
-> --
-> 2.34.1
->
->
+On 6/22/2024 2:38 AM, Dmitry Baryshkov wrote:
+> On Fri, Jun 21, 2024 at 05:16:52PM GMT, Gokul Sriram Palanisamy wrote:
+>> PRNG clock is needed by the secure PIL, support for the same
+>> is added in subsequent patches.
+> Which 'same'?
+> What is 'secure PIL'?
+   will elaborate in the updated version.
+   To answer your question, secure PIL is signed PIL image which only 
+TrustZone can authenticate and load.
+>> Signed-off-by: Nikhil Prakash V <quic_nprakash@quicinc.com>
+>> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
+>> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+>> ---
+>>   drivers/remoteproc/qcom_q6v5_wcss.c | 65 +++++++++++++++++++++--------
+>>   1 file changed, 47 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
+>> index 94f68c919ee6..366b19cbd994 100644
+>> --- a/drivers/remoteproc/qcom_q6v5_wcss.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_wcss.c
+>> @@ -91,19 +91,6 @@ enum {
+>>   	WCSS_QCS404,
+>>   };
+>>   
+>> -struct wcss_data {
+>> -	const char *firmware_name;
+>> -	unsigned int crash_reason_smem;
+>> -	u32 version;
+>> -	bool aon_reset_required;
+>> -	bool wcss_q6_reset_required;
+>> -	const char *ssr_name;
+>> -	const char *sysmon_name;
+>> -	int ssctl_id;
+>> -	const struct rproc_ops *ops;
+>> -	bool requires_force_stop;
+>> -};
+>> -
+>>   struct q6v5_wcss {
+>>   	struct device *dev;
+>>   
+>> @@ -128,6 +115,7 @@ struct q6v5_wcss {
+>>   	struct clk *qdsp6ss_xo_cbcr;
+>>   	struct clk *qdsp6ss_core_gfmux;
+>>   	struct clk *lcc_bcr_sleep;
+>> +	struct clk *prng_clk;
+>>   	struct regulator *cx_supply;
+>>   	struct qcom_sysmon *sysmon;
+>>   
+>> @@ -151,6 +139,21 @@ struct q6v5_wcss {
+>>   	struct qcom_rproc_ssr ssr_subdev;
+>>   };
+>>   
+>> +struct wcss_data {
+>> +	int (*init_clock)(struct q6v5_wcss *wcss);
+>> +	int (*init_regulator)(struct q6v5_wcss *wcss);
+>> +	const char *firmware_name;
+>> +	unsigned int crash_reason_smem;
+>> +	u32 version;
+>> +	bool aon_reset_required;
+>> +	bool wcss_q6_reset_required;
+>> +	const char *ssr_name;
+>> +	const char *sysmon_name;
+>> +	int ssctl_id;
+>> +	const struct rproc_ops *ops;
+>> +	bool requires_force_stop;
+>> +};
+> Move this back and use forward-declaration of struct q6v5_wcss.
+   sure. Will update.
+>> +
+>>   static int q6v5_wcss_reset(struct q6v5_wcss *wcss)
+>>   {
+>>   	int ret;
 
