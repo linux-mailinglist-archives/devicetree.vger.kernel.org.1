@@ -1,148 +1,193 @@
-Return-Path: <devicetree+bounces-79629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47361916157
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:33:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5129161E2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 11:07:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E38FD1F215B2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:33:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5E422818B1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7F411487DC;
-	Tue, 25 Jun 2024 08:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JQgg1H47"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 747AB148FF6;
+	Tue, 25 Jun 2024 09:07:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2104.outbound.protection.partner.outlook.cn [139.219.146.104])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA7214831E;
-	Tue, 25 Jun 2024 08:32:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719304355; cv=none; b=WtzEX5FITpNJkxbwvYAQ7se1uGb+/eQxc9KfpACV2yKsQzLM/nJ7VPzPHQ48cM8+GBL5b/AKF7M5RS1e4fqI8R+SCxlthxh9z8uK35cTYeOJ58d47wcvF8bH5jm0qkZZE9EmoCAMHbXNsT8Z8usH/rQez3F5VHu9sQHKhyZ/9tA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719304355; c=relaxed/simple;
-	bh=hi3MSzsE8nwxCxFsphtLi2390SmR1eVJsA70Ej66c/E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=or7uStE8nEazMnayfYURmtHac3QzXu3nK8ZvLCxTuc0mNSeEvloGl3k3K7sRCiUHittFAo0DMJ9JEumsX2FKBAZQIeg2GzqZRrH91HCaf5oYcU/Qgj+ambY/OuG+8zZDp1MiJk5eTj4cmbK306XtrKNu5ud2c+NIGMwN137lAkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JQgg1H47; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719304352;
-	bh=hi3MSzsE8nwxCxFsphtLi2390SmR1eVJsA70Ej66c/E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JQgg1H471/eyWzk12iOuyhV+nOj3YKnA13h9EuESkv8cHr1d88Xp6y3NI+CoBrnqB
-	 zIGXMh+ADemAqOCuZeMjhc7hd22M87WllhIGQnITdrmUlf+X1p5e+BES1t4WUeSBNg
-	 MuseE456LrBeSN/rrQJhymIAYXLOYdsZLnX8bKcmEBpoUkDYhAyFOJMr+WGNtXz6l3
-	 gFCrHntDw317dKhswm9wnlsKQFYLOFpkRlGshtabuY/+Qs61o54itTx3D+r1PAmlf4
-	 X3LhJfMYQqLXY3acCgVqPxBsXl3IkkMGHaAhJMpDLRMQ5NrKj87owcX7b3j2G9YOSc
-	 ixID8iBYdOYDg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 31E95378045F;
-	Tue, 25 Jun 2024 08:32:31 +0000 (UTC)
-Message-ID: <f7b4cd98-1acf-4f6b-a7e0-57419abadba1@collabora.com>
-Date: Tue, 25 Jun 2024 10:32:30 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A1C148FFA;
+	Tue, 25 Jun 2024 09:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.104
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719306436; cv=fail; b=rsczfpanzqmNlaMZ+Wpn0DFhF2s3y081y9Z9bwaeh0gcjVp3aXHklm97mDUEX+81AbunuNWil8YvMAfK0G0tV9EXkXtgszZjiGBBCtl0PBOmX4OO3xsvMwMYXCZW3aly1e3J730TkVXi83qU1s3nhIEQugoicsL0gbWqUAqQ7Ws=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719306436; c=relaxed/simple;
+	bh=B0BS3+NgjhwRO9sW2/vXlQRPjWokhtoEnZ0cTgY3YSw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=rrP0Y8f6GK6CoHMhs4xgWZ1+rzAchHNmIT3sLCgAdwQSl1ZOjDDNBLcgWN35XzvafHzvJgMXE7YpZ35EISjX9nUj4FFhx11eCWgjs7JFhGEjgkg8pFYC9JMS9PB77NorBCbxrHZouvrfLCYeQyHtrIrHKE7dpSXHA+/YM77kqxw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.104
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dipOAadrQ3X84u4d2LQiov0OunnqiGApz92nCM7VpzpvRdfzS8kHDIS8Weih4Xy26RVFphx1rnXb2jHrnSi7zjcGS0pxW+PhL3y96+QE4KQ5ijwRXgMc2dk1w6qB80rjSlMoPC8SLOMNFkyq8uK1SlZTwYnA9qJofeDOdJbgzj1fmNxkNpLbQoS+fFTd0S9ertFSjbewWJtUoU6vxngvYkihkCAZtfybRvyZxMBUseAfo7xZbBcIXyj05DTZTk74/pqU3/JgArbydG0Bh0hsepu9z0xXFW28tOc4GlGQ+gHK5nJxw4EyATY3dghoyJPeUFNwChsTY3h/DsjPa0u0vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B0BS3+NgjhwRO9sW2/vXlQRPjWokhtoEnZ0cTgY3YSw=;
+ b=FWqwPx15mRdLgP1Sb9lxMkXeXF7S6sd3gk2Rd36SG6YjZAmGbQJLDV745b7BO2RMUZ1WtzQNwHuRhy7xxbFxgtqJzBP6p3Onu85+YDYTXXOyO35sGlauww5RwLFu7IF6wvsFyDR10TZ7kqUpKNJC1V+CJ48SCYqUxxdem4JPWyZgYVxRRDjrOxRKvwtgrxvFk/S2w7mXO/OeoG4+barobe7tdnPpRPoGnpiCbai6D9/9A33qcbCys4UgiPDAO1EimSL/QGmI7jeqD/tKr19VuhuXOq0b0Phlg+47G5/n2eXJEY0/mTFvO7OqkQW1DcPhTtva/rfDEO51Wh3voN10hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:1::6) by NTZPR01MB1020.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.37; Tue, 25 Jun
+ 2024 08:32:49 +0000
+Received: from NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn
+ ([fe80::47b8:45b2:ce25:9c34]) by
+ NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn ([fe80::47b8:45b2:ce25:9c34%3])
+ with mapi id 15.20.7698.025; Tue, 25 Jun 2024 08:32:49 +0000
+From: Keith Zhao <keith.zhao@starfivetech.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org"
+	<rfoss@kernel.org>, "Laurent.pinchart@ideasonboard.com"
+	<Laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>,
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+	"mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de"
+	<tzimmermann@suse.de>, "airlied@gmail.com" <airlied@gmail.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "hjc@rock-chips.com" <hjc@rock-chips.com>,
+	"heiko@sntech.de" <heiko@sntech.de>, "andy.yan@rock-chips.com"
+	<andy.yan@rock-chips.com>, Xingyu Wu <xingyu.wu@starfivetech.com>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, Jack Zhu
+	<jack.zhu@starfivetech.com>, Shengyang Chen
+	<shengyang.chen@starfivetech.com>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v4 04/10] drm/vs: Add hardware funcs for vs.
+Thread-Topic: [PATCH v4 04/10] drm/vs: Add hardware funcs for vs.
+Thread-Index: AQHaqyrCpZvO4/uSGEiTh57WFeY1YLGiKtEAgCsaiBCACMKCAIACUqHw
+Date: Tue, 25 Jun 2024 08:32:49 +0000
+Message-ID:
+ <NTZPR01MB1050031B004FD13D167DE3C4EED52@NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn>
+References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
+ <20240521105817.3301-5-keith.zhao@starfivetech.com>
+ <24bxty2zmlmrjmfi2qtfolkea3acghbhmkxnkxmcroovsz57jq@q5ynybr65z7f>
+ <NTZPR01MB105049A5A7FD4ECAAECFC403EECB2@NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn>
+ <ogrcyxroz77zu6raq3lzmjt2k72uxxeayseyhvkivtsxn2kfix@ioupv56oa6lc>
+In-Reply-To: <ogrcyxroz77zu6raq3lzmjt2k72uxxeayseyhvkivtsxn2kfix@ioupv56oa6lc>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: NTZPR01MB1050:EE_|NTZPR01MB1020:EE_
+x-ms-office365-filtering-correlation-id: d7d57373-d7c5-4f93-38ac-08dc94f1659a
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230037|1800799021|366013|41320700010|7416011|38070700015;
+x-microsoft-antispam-message-info:
+ n0jBUFoRc1y6gluUAEf+IPPcO+dnbXypMCrTQ+3JlgFrpu+eCgkX60w2+vurUYEup8d2N/Epwbc/6RIdIFAgYgk9BlKT7QIz02h12xkG3LU/kg7zm9PX+wWNglTIFy8GxwMdmELAL8wpaj3jNCBXmPZT33Qf1Ks7o/9B/ockk3fHf10PvSwIY1tZoU/a326v+KLeENfgEjg8o949ku+MEWySw5H5Jzyge7Sa3j7q4hEFeS+/M2nApvCWbea0xoMocRvwEHNuf0/z9rH1HU9JUovQGphqfK0hx8wB+Qe7qtNntte1rme4hBHbrj72MO7qIodLev1txBKc4ToPw+UR8MK1FVE45y/Utnd2RILcaorkyQxDKsyQbBd/w1gLtS/4stbTs76coSOwVncVxFKsUR1vqCSINkIGHWRHcOWXL9JojrhecedEibznhn/JbkkmG2qPmLj5L75khAbyOxdqyOPsUwxlW9YC7ToofL0gA3lR1S/HYmN+xyBNYFCK1VTsLb1vP5thm7wIO6sZpSkeyOhMyfiylYeZEhiD141epI7XVWduj/+PCIomWsemWMp8P85QNNCCNhWaupFaeF8T1bPka/Y3HIlQZT6ot1qSLAjI0prM3090D2sKhhqLNSTY
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(366013)(41320700010)(7416011)(38070700015);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ WH4+4KhWKhLcW84fRe65EMFmgp6gZFXkzMULPQGb6XNO/LK9xAbRLxqNr8mQ3QGbvgc9LHlw0RspwmkPbTcVvEycopJPAxprIfTKk8gD8Kl9FoHZ9TAXOhxekKv0ByPJdhAgCv9NI7mZk9d1VFfuj83yrdTgc1iCspR6aEaBMUW+Ts7GpJ9EIg3bBbzNuCPJ8Au9kp5XaCog+CLyrMwbzKsYfBjHeCQng+wC0JkAjv7HhadNVJJmTQDyM8ixNW7G59okf+U9is4NIJQg/rFkCPcXxQ7fO2uJlI8Itj1mL1nbzdwNP1rsKv0sp7PX1kSH2J5IrpNnjDFqS3mvi3YFVuVtotNCbFjRwx/J9WO95sXEbirURc8cBJsOzLiuLCzpi4ayzTVwqreW2tE0G8PMmxio+3ZHRIvKASCCe09Qlgg=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
-To: broonie@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
- gustavoars@kernel.org, henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com, wenst@chromium.org, amergnat@baylibre.com,
- djakov@kernel.org
-References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7d57373-d7c5-4f93-38ac-08dc94f1659a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2024 08:32:49.2215
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WW5F/nEmbQqa/7r4Vtr6aKtXtq+ZJuHP6day9lLWMBS7MvUCa4HSwnN7pAqzPFa8sQjAoRp5+CCyqOlCrTo6NRnABeND4XqtiI8oNPBnlbE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1020
 
-Il 10/06/24 10:57, AngeloGioacchino Del Regno ha scritto:
-> Changes in v6:
->   - Fixed build with clang (thanks Nathan!)
->   - Removed unused mtk_rmw() macro in mtk-dvfsrc.c
->   - Added MODULE_DESCRIPTION() to mtk-dvfsrc-regulator.c
-> 
-
-...
-
-> 
-> AngeloGioacchino Del Regno (7):
->    dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
-
-Mark, I assume that this series is ok from your perspective, since this has got
-your acks and r-b -- but in order to pick the soc/mediatek stuff I need all of
-the dependent bindings to be in as well .. and this includes the regulator one!
-
-The main issue here is that the main soc/mediatek dvfsrc binding
-dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
-does use the others, so I can't pick this one without the others being present
-or the validation obviously fails.
-
-So... gentle ping :-)
-
-Thanks,
-Angelo
-
->    dt-bindings: interconnect: Add MediaTek EMI Interconnect bindings
->    dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
->    soc: mediatek: Add MediaTek DVFS Resource Collector (DVFSRC) driver
->    regulator: Remove mtk-dvfsrc-regulator.c
->    regulator: Add refactored mtk-dvfsrc-regulator driver
->    interconnect: mediatek: Add MediaTek MT8183/8195 EMI Interconnect
->      driver
-> 
->   .../interconnect/mediatek,mt8183-emi.yaml     |  51 ++
->   .../mediatek,mt6873-dvfsrc-regulator.yaml     |  43 ++
->   .../soc/mediatek/mediatek,mt8183-dvfsrc.yaml  |  83 +++
->   drivers/interconnect/Kconfig                  |   1 +
->   drivers/interconnect/Makefile                 |   1 +
->   drivers/interconnect/mediatek/Kconfig         |  29 +
->   drivers/interconnect/mediatek/Makefile        |   5 +
->   drivers/interconnect/mediatek/icc-emi.c       | 153 +++++
->   drivers/interconnect/mediatek/icc-emi.h       |  40 ++
->   drivers/interconnect/mediatek/mt8183.c        | 143 +++++
->   drivers/interconnect/mediatek/mt8195.c        | 339 +++++++++++
->   drivers/regulator/mtk-dvfsrc-regulator.c      | 248 ++++----
->   drivers/soc/mediatek/Kconfig                  |  11 +
->   drivers/soc/mediatek/Makefile                 |   1 +
->   drivers/soc/mediatek/mtk-dvfsrc.c             | 545 ++++++++++++++++++
->   .../interconnect/mediatek,mt8183.h            |  23 +
->   .../interconnect/mediatek,mt8195.h            |  44 ++
->   include/linux/soc/mediatek/dvfsrc.h           |  36 ++
->   include/linux/soc/mediatek/mtk_sip_svc.h      |   3 +
->   19 files changed, 1666 insertions(+), 133 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,mt8183-emi.yaml
->   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6873-dvfsrc-regulator.yaml
->   create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8183-dvfsrc.yaml
->   create mode 100644 drivers/interconnect/mediatek/Kconfig
->   create mode 100644 drivers/interconnect/mediatek/Makefile
->   create mode 100644 drivers/interconnect/mediatek/icc-emi.c
->   create mode 100644 drivers/interconnect/mediatek/icc-emi.h
->   create mode 100644 drivers/interconnect/mediatek/mt8183.c
->   create mode 100644 drivers/interconnect/mediatek/mt8195.c
->   create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
->   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8183.h
->   create mode 100644 include/dt-bindings/interconnect/mediatek,mt8195.h
->   create mode 100644 include/linux/soc/mediatek/dvfsrc.h
-> 
-
-
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRG1pdHJ5IEJhcnlzaGtv
+diA8ZG1pdHJ5LmJhcnlzaGtvdkBsaW5hcm8ub3JnPg0KPiBTZW50OiAyMDI05bm0NuaciDI05pel
+IDQ6NTENCj4gVG86IEtlaXRoIFpoYW8gPGtlaXRoLnpoYW9Ac3RhcmZpdmV0ZWNoLmNvbT4NCj4g
+Q2M6IGFuZHJ6ZWouaGFqZGFAaW50ZWwuY29tOyBuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnOyBy
+Zm9zc0BrZXJuZWwub3JnOw0KPiBMYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb207IGpv
+bmFzQGt3aWJvby5zZTsNCj4gamVybmVqLnNrcmFiZWNAZ21haWwuY29tOyBtYWFydGVuLmxhbmto
+b3JzdEBsaW51eC5pbnRlbC5jb207DQo+IG1yaXBhcmRAa2VybmVsLm9yZzsgdHppbW1lcm1hbm5A
+c3VzZS5kZTsgYWlybGllZEBnbWFpbC5jb207DQo+IGRhbmllbEBmZndsbC5jaDsgcm9iaEBrZXJu
+ZWwub3JnOyBrcnprK2R0QGtlcm5lbC5vcmc7IGNvbm9yK2R0QGtlcm5lbC5vcmc7DQo+IGhqY0By
+b2NrLWNoaXBzLmNvbTsgaGVpa29Ac250ZWNoLmRlOyBhbmR5LnlhbkByb2NrLWNoaXBzLmNvbTsg
+WGluZ3l1IFd1DQo+IDx4aW5neXUud3VAc3RhcmZpdmV0ZWNoLmNvbT47IHAuemFiZWxAcGVuZ3V0
+cm9uaXguZGU7IEphY2sgWmh1DQo+IDxqYWNrLnpodUBzdGFyZml2ZXRlY2guY29tPjsgU2hlbmd5
+YW5nIENoZW4NCj4gPHNoZW5neWFuZy5jaGVuQHN0YXJmaXZldGVjaC5jb20+OyBkcmktZGV2ZWxA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGlu
+dXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZy
+YWRlYWQub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjQgMDQvMTBdIGRybS92czogQWRkIGhh
+cmR3YXJlIGZ1bmNzIGZvciB2cy4NCj4gDQo+IEhpIEtlaXRoLA0KPiANCj4gT24gU3VuLCBKdW4g
+MjMsIDIwMjQgYXQgMDc6MTY6NDdBTSBHTVQsIEtlaXRoIFpoYW8gd3JvdGU6DQo+ID4gPiBPbiBU
+dWUsIE1heSAyMSwgMjAyNCBhdCAwNjo1ODoxMVBNICswODAwLCBrZWl0aCB3cm90ZToNCj4gPiA+
+ID4gK30NCj4gPiA+ID4gKw0KPiA+ID4gPiArc3RhdGljIGlubGluZSB2b2lkIGRjX3NldF9jbGVh
+cihzdHJ1Y3QgZGNfaHcgKmh3LCB1MzIgcmVnLCB1MzINCj4gPiA+ID4gK3NldCwgdTMyIGNsZWFy
+KSB7DQo+ID4gPiA+ICsJdTMyIHZhbHVlID0gZGNfcmVhZChodywgcmVnKTsNCj4gPiA+ID4gKw0K
+PiA+ID4gPiArCXZhbHVlICY9IH5jbGVhcjsNCj4gPiA+ID4gKwl2YWx1ZSB8PSBzZXQ7DQo+ID4g
+PiA+ICsJZGNfd3JpdGUoaHcsIHJlZywgdmFsdWUpOw0KPiA+ID4NCj4gPiA+IHJlZ21hcF91cGRh
+dGVfYml0cz8NCj4gPg0KPiA+IHJlZ21hcF91cGRhdGVfYml0cyBmb2xsb3dzIDQgc3RlcHM6DQo+
+ID4NCj4gPiAx44CBcmV0ID0gX3JlZ21hcF9yZWFkKG1hcCwgcmVnLCAmb3JpZyk7IC4uLi4uLi4u
+Lg0KPiA+DQo+ID4gMuOAgXRtcCA9IG9yaWcgJiB+bWFzazsNCj4gPiAz44CBdG1wIHw9IHZhbCAm
+IG1hc2s7DQo+ID4gLi4uLi4uDQo+ID4gNOOAgXJldCA9IF9yZWdtYXBfd3JpdGUobWFwLCByZWcs
+IHRtcCk7DQo+ID4gSWYgdGhlIHZhbHVlIG91dCBvZiBtYXNrIHJhbmdlDQo+ID4gSXQgd2lsbCBq
+dXN0IGNsZWFyIHRoZSBtYXNrIGJpcg0KPiA+DQo+ID4gZGNfc2V0X2NsZWFyIHdpbGwgZG8gY2xl
+YXIgYW5kIHNldCB3aXRob3V0IGxpbWl0Lg0KPiA+DQo+ID4gTWF5YmUgdGhlIG5hbWUgc2hvdWxk
+IGJlIGRjX2NsZWFyX3NldA0KPiANCj4gVGhpcyBpcyBub3QgcmVhbGx5IGJldHRlci4gcmVnbWFw
+X3VwZGF0ZV9iaXRzKCkgaGFzIGNsZWFyIHNlbWFudGljcyBvZiB1cGRhdGluZyBhDQo+IHZhbHVl
+IGluIHRoZSBmaWVsZCB0aGF0IGlzIGRlZmluZWQgYnkgYSBtYXNrLiBZb3UgZnVuY3Rpb24gaXMg
+anVzdCBjbGVhcmluZyBzb21lIGJpdHMNCj4gYW5kIHNldHRpbmcgb3RoZXIgYml0cy4gSXQncyBu
+b3Qgb2J2aW91cyB3aGV0aGVyIGl0IGlzIGEgbWFzayBhbmQgdmFsdWUsIHNldmVyYWwNCj4gY29u
+Y3VycmVudCBmbGFncyBvciBzb21ldGhpbmcgZWxzZS4NCj4gDQo+IEV2ZW4gaWYgeW91IGFyZSBu
+b3QgZ29pbmcgdG8gc3dpdGNoIHRvIHJlZ21hcHMgKHlvdSBkb24ndCBoYXZlIHRvKSwgcGxlYXNl
+IHVzZQ0KPiBtYXNrICYgdmFsdWUgaW5zdGVhZC4NCj4gDQpPayBnb3QgaXQNCj4gPiAJCX0NCj4g
+PiA+ID4gK3N0YXRpYyB2b2lkIGxvYWRfcmdiX3RvX3l1dihzdHJ1Y3QgZGNfaHcgKmh3LCB1MzIg
+b2Zmc2V0LCBzMTYNCj4gPiA+ID4gKyp0YWJsZSkNCj4gPiA+DQo+ID4gPiBJcyB0aGVyZSBhbnkg
+cmVhc29uIHdoeSBsb2FkX3JnYl90b195dXYgZGlmZmVycyBmcm9tIHR3byBvdGhlcg0KPiA+ID4g
+ZnVuY3Rpb25zPw0KPiA+ID4NCj4gPiBsb2FkX3JnYl90b195dXYgbWF0Y2hlcyBjcnRjcw0KPiA+
+DQo+ID4gbG9hZF95dXZfdG9fcmdiIG1hdGNoZXMgcGxhbmVzDQo+ID4gbG9hZF9yZ2JfdG9fcmdi
+IG1hdGNoZXMgcGxhbmVzDQo+IA0KPiBUaGVuIHRoZXNlIGZ1bmN0aW5zIHNob3VsZCBoYXZlIHRo
+YXQgcmVmbGVjdGVkIGluIHRoZWlyIG5hbWVzIChhbmQgYWxzbw0KPiBkb2N1bWVudGVkLCB3aHkp
+LiBJZiB0aGUgQ1NDIHByb2dyYW1taW5nIGludGVyZmFjZSBpcyBzaW1pbGFyLCBwbGVhc2Ugc3Bs
+aXQgdGhlDQo+IGltcGxlbWVudGF0aW9uIHRvIGhhdmUgY29tbW9uIGNvZGUgYW5kIGRpZmZlcmVu
+dCBkYXRhIHRvIGJlIHVzZWQgZm9yDQo+IHByb2dyYW1taW5nLg0KPiANCk9rIGdvdCBpdA0KDQo+
+ID4gdGhlIGNvZWZmaWNpZW50KHRhYmxlKSBpcyBkaWZmIGJldHdlZW4gbG9hZF9yZ2JfdG9feXV2
+IGFuZA0KPiA+IGxvYWRfeXV2X3RvX3JnYg0KPiANCj4gPiA+ID4gK3ZvaWQgcGxhbmVfaHdfdXBk
+YXRlX3NjYWxlKHN0cnVjdCB2c19kYyAqZGMsIHN0cnVjdCBkcm1fcmVjdA0KPiA+ID4gPiArKnNy
+Yywgc3RydWN0DQo+ID4gPiBkcm1fcmVjdCAqZHN0LA0KPiA+ID4gPiArCQkJICAgdTggaWQsIHU4
+IGRpc3BsYXlfaWQsIHVuc2lnbmVkIGludCByb3RhdGlvbik7IHZvaWQNCj4gPiA+ID4gK3BsYW5l
+X2h3X3VwZGF0ZV9ibGVuZChzdHJ1Y3QgdnNfZGMgKmRjLCB1MTYgYWxwaGEsIHUxNg0KPiA+ID4g
+cGl4ZWxfYmxlbmRfbW9kZSwNCj4gPiA+ID4gKwkJCSAgIHU4IGlkLCB1OCBkaXNwbGF5X2lkKTsN
+Cj4gPiA+DQo+ID4gPiBDb3VsZCB5b3UgcGxlYXNlIHNldHRsZSBvbiBhIHNpbmdsZSBwcmVmaXgg
+Zm9yIGFsbCB5b3VyIGZ1bmN0aW9uIG5hbWVzPw0KPiA+ID4gSWRlYWxseSBpdCBzaG91bGQgYmUg
+Y2xvc2UgdG8gdGhlIGRyaXZlciBuYW1lLiBJdCdzIGhhcmQgdG8NCj4gPiA+IHVuZGVyc3RhbmQg
+dGhhdCB0aGUgZnVuY3Rpb24gY29tZXMgZnJvbSB0aGUgdmVyaXNpbGljb24gZHJpdmVyIGlmDQo+
+ID4gPiBpdHMgbmFtZSBzdGFydHMgZnJvbSBkY18gb3IgZXNwZWNpYWxseSB3aXRoIHBsYW5lXy4N
+Cj4gPiBZZXMgIHN0YXJ0aW5nIHdpdGggcGxhbmVfIGlzIG5vdCBhIGdvb2QgaWRlYSAsaSB3aWxs
+IGFkZCB2c18gXyAsDQo+ID4gdGhhbmtzDQo+ID4gPg0KPiA+ID4gSSdkIHN0cm9uZ2x5IHN1Z2dl
+c3QgdG8gc3RvcCBkZWZpbmluZyBhbnl0aGluZyBvdXRzaWRlIG9mIHRoZQ0KPiA+ID4gc2VsZWN0
+ZWQNCj4gPiBJIGRvbid0IHF1aXRlIHVuZGVyc3RhbmQgd2hhdCAidGhlIHNlbGVjdGVkIiBtZWFu
+cywgSSBob3BlIHlvdSBjYW4NCj4gPiBmaWxsIGluIHNvbWUgc3BlY2lmaWMgZGV0YWlscyBhYm91
+dCBpdCBUaGFua3MNCj4gDQo+ICJ0aGUgc2VsZWN0ZWQgdnNfIG5hbWVzcGFjZSIuIFNvIHByZWZp
+eCBhbGwgZnVuY3Rpb24gbmFtZXMgYW5kIGFsbCBzdHJ1Y3R1cmVzDQo+IHdpdGggdnNfDQpPaywg
+Z290IGl0Lg0KPiANCj4gDQo+IC0tDQo+IFdpdGggYmVzdCB3aXNoZXMNCj4gRG1pdHJ5DQo=
 
