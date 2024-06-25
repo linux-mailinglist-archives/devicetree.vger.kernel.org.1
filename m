@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-79792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DC8916DCB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:11:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABA3A916DD6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:15:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6CB28274F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:11:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 340E41F217ED
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815DE14C59C;
-	Tue, 25 Jun 2024 16:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EB5C170837;
+	Tue, 25 Jun 2024 16:15:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qv8Bx59N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZnfgTCyr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580A71CABB;
-	Tue, 25 Jun 2024 16:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13BD3170827;
+	Tue, 25 Jun 2024 16:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719331857; cv=none; b=NaI1TxBWPBSLmbBS3chhNUSbawBVyDKJQvtub/q6RyDz8bsEOCpFLG1xWDO7Ik1ExdqpZ4Fs3KPoACDpAYTUecW+1x+NU2n/Ci8wQ5sRDBJvoG91P908F9l1nn49ITzG6sVVY58nPaYubhSdjmgEMH5XtZWG8FmgY8Wt1vK/UJU=
+	t=1719332107; cv=none; b=bJsoB9idfv/oAIa+tSn/J0CWictgk9FXjEXlzbPOMmTJCYE8zCEuo6Gq/k4rvWIow9gmZfkJLsdif+QTOZF422hwoeV/yEz1IUZCOEurZCG33RT3FudoTr7wAAYRxPr8j7FFecKOWoU8Rm7Oa2rRLYf1aB56TWRxS5wCrq2apiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719331857; c=relaxed/simple;
-	bh=z8HswIvlQx7OU8ilJWOJ4zvCY+3qACFutDcOZeef8Ys=;
+	s=arc-20240116; t=1719332107; c=relaxed/simple;
+	bh=XQohTkrMk3w4JsHXkU/yJh/3BOrnzSPrBLO6SVzxBHU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U81nZv1i4IvOf1tz4hEsHvHP57iWAqXaFfgrFqBQxbeoQO9hoeV3oh0jVXJH9DABbcEeJau7NvkQoQvn7OugMTHwya3FryikA/QXWnsKMA/6lhr6eAwWt8REhxiRkC7jRz6qMHiilBIqO8NL6A96759EZbTCYo5UN/I5BfnNoyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qv8Bx59N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7963BC32781;
-	Tue, 25 Jun 2024 16:10:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sixheB1FlidzIdV9b4RaXAe78fmQaFVD2g15qFTjokaCdTKGuV6bqLvH50X9CIMCtRkB6FgKl45a/2OdQsr7VDHn6cNMNjIAm0uZtP8YAZRiYVl3ijTN3nOql1XQqfaYZz8EES3jLRoaKkAp+duAeaojOL7NlkpPyHVHotgh0Zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZnfgTCyr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D24F1C32781;
+	Tue, 25 Jun 2024 16:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719331856;
-	bh=z8HswIvlQx7OU8ilJWOJ4zvCY+3qACFutDcOZeef8Ys=;
+	s=k20201202; t=1719332106;
+	bh=XQohTkrMk3w4JsHXkU/yJh/3BOrnzSPrBLO6SVzxBHU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qv8Bx59NIiTNVrL1XrPJ0UUqqJl0/uDAY0EcYnpt7MF23VrL3+V2Hqbw8bR0Gm8XP
-	 8eRQMyKVM2GbOcrPj/8MI2uXuNAATdEQSi4J7gFWIL7DvXzM14qrmwC5ORvpDTWr8x
-	 5KUmY1DcBxnTY9U7L3u+TXwOQx5sf4EfqkHzVhebwErtZf9/y5MMPH2FpVjg/D8Dwa
-	 7EhDJTSeQZ5caBXLkVp33AfuUlUarHS+nWXJnv6+1nzch9Uf3mo9WIQIwVeIUhV9gD
-	 9ArIrzlCaBdtM+wuAVehh5lpA1tC5RZEk1+gYP9ykAO1AOe20+CFhiR2xHe1ONMYbm
-	 0gl4ZqPeVEoeg==
-Date: Tue, 25 Jun 2024 17:10:52 +0100
+	b=ZnfgTCyrXOezzPIysx6VazlMHDnu5Ix5DQFtaxQyv0kSoO2aOKkA7wyWg0usE1Zrb
+	 pzNFQ6/NTB7nnE/Am9/EmLnqQyb8IudDMSa4efPW0u+TeR3zlbZbSXpd2pJZ43uYic
+	 zGYhumaBwhuFNTezi85P4c1E6pRAbuXDoJmkzpmq+iDcrr5SOOXrFCIBEHLx2yF1yu
+	 O8jmrupZ0xmmLYzp8HgNk7DM4ob42SWGxCbZTHtVwnWmi5vbjpbxcTJ2gL9Xu7FPt5
+	 /pxG+hxNCJ6r2GwmHJWbSFwP23aUstQ8jwsh9x9/bws+b+EoO5x/PA1humux+m6Xq0
+	 9iuME81K3Orhw==
+Date: Tue, 25 Jun 2024 17:15:01 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-	Diogo Ivo <diogo.ivo@siemens.com>
-Subject: Re: [PATCH 3/4] dt-bindings: soc: ti: am645-system-controller: add
- child nodes used by main domain
-Message-ID: <20240625-stuffed-outgrow-702e37622fc6@spud>
-References: <cover.1719210050.git.jan.kiszka@siemens.com>
- <52848094062ea55b0063e6fc37f27e6ed5035aa8.1719210050.git.jan.kiszka@siemens.com>
- <20240624-hula-fever-74499b22784d@spud>
- <0e0a9627-0e5c-4c39-b1f2-98f8095ba8c5@siemens.com>
+To: Andrei.Simion@microchip.com
+Cc: robh@kernel.org, brgl@bgdev.pl, krzk+dt@kernel.org, conor+dt@kernel.org,
+	Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, arnd@arndb.de, gregkh@linuxfoundation.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: eeprom: at24: Add at24,mac02e4 and
+ at24,mac02e6
+Message-ID: <20240625-satisfy-froth-decbe11ba388@spud>
+References: <20240621121340.114486-1-andrei.simion@microchip.com>
+ <20240621121340.114486-4-andrei.simion@microchip.com>
+ <20240624194913.GA267989-robh@kernel.org>
+ <53820e28-f512-4129-9a17-a549ef664755@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,65 +63,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HzLaPnRGBBlzqSMg"
+	protocol="application/pgp-signature"; boundary="AJI6S4BF4a0FtQ1K"
 Content-Disposition: inline
-In-Reply-To: <0e0a9627-0e5c-4c39-b1f2-98f8095ba8c5@siemens.com>
+In-Reply-To: <53820e28-f512-4129-9a17-a549ef664755@microchip.com>
 
 
---HzLaPnRGBBlzqSMg
+--AJI6S4BF4a0FtQ1K
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 24, 2024 at 10:23:37PM +0200, Jan Kiszka wrote:
-> On 24.06.24 18:24, Conor Dooley wrote:
-> > On Mon, Jun 24, 2024 at 08:20:49AM +0200, Jan Kiszka wrote:
-> >> From: Jan Kiszka <jan.kiszka@siemens.com>
-> >>
-> >> Expand bindings to cover both the MCU and the main usage of the AM654
-> >> system controller.
-> >>
-> >> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> >> ---
-> >>  .../soc/ti/ti,am654-system-controller.yaml    | 29 +++++++++++++++++++
-> >>  1 file changed, 29 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-=
-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-=
-controller.yaml
-> >> index e79803e586ca..0eec807f38df 100644
-> >> --- a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-control=
-ler.yaml
-> >> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-control=
-ler.yaml
-> >> @@ -34,6 +34,35 @@ patternProperties:
-> >>      type: object
-> >>      $ref: /schemas/phy/ti,phy-gmii-sel.yaml#
-> >> =20
-> >> +  "^mux-controller$":
-> >> +    type: object
-> >> +    description:
-> >> +      This is the SERDES lane control mux.
+On Tue, Jun 25, 2024 at 07:33:18AM +0000, Andrei.Simion@microchip.com wrote:
+> On 24.06.2024 22:49, Rob Herring wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
 > >=20
-> > Where is this object described?
+> > On Fri, Jun 21, 2024 at 03:13:40PM +0300, Andrei Simion wrote:
+> >> Update regex check and add pattern to match both EEPROMs.
 > >=20
+> > The subject is wrong as 'at24' is not the vendor.
+> >
 >=20
-> Nowhere so far - I've only followed the pattern in
-> mfd/ti,j721e-system-controller.yaml. Would adding "ref:
-> /schemas/mux/reg-mux.yaml" be enough?
+> My mistake. It needs to be atmel,24mac02e4 and atmel,24mac02e6.
+>=20
+> >>
+> >> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+> >> ---
+> >> v1 -> v2:
+> >> - change patter into "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$" to keep sim=
+pler
+> >> ---
+> >>  Documentation/devicetree/bindings/eeprom/at24.yaml | 10 +++++++---
+> >>  1 file changed, 7 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Docu=
+mentation/devicetree/bindings/eeprom/at24.yaml
+> >> index 3c36cd0510de..f914ca37ceea 100644
+> >> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> >> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> >> @@ -18,7 +18,7 @@ select:
+> >>    properties:
+> >>      compatible:
+> >>        contains:
+> >> -        pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> >> +        pattern: "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$"
+> >>    required:
+> >>      - compatible
+> >>
+> >> @@ -37,8 +37,8 @@ properties:
+> >>        - allOf:
+> >>            - minItems: 1
+> >>              items:
+> >> -              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|rene=
+sas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$"
+> >> -              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+> >> +              - pattern: "^(atmel|catalyst|microchip|nxp|ramtron|rene=
+sas|rohm|st),(24(c|cs|lc|mac)[a-z0-9]+|spd)$"
+> >> +              - pattern: "^atmel,(24(c|cs|mac)[a-z0-9]+|spd)$"
+> >=20
+> > Are these devices available from multiple vendors? If not, I think I'd
+> > add specific compatible strings with the right vendor rather than adding
+> > to this pattern. It's rather loosely defined because that's what was in
+> > use already.
+> >
+>=20
+> So, would you like me to keep how it was before:  "^atmel,(24(c|cs|mac)[0=
+-9]+|spd)$" and  "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(=
+24(c|cs|lc|mac)[0-9]+|spd)$"
+> and to add only:=20
+> - items:
+>  pattern: mac02e4$
+> - items:
+>  pattern: mac02e6$
+> ?
+>=20
+> Or would you like me to add to "the special cases that don't conform to t=
+he above pattern. Each requires a standard at24 model as fallback."  area?
 
-I think that would be okay, yea
+I think the suggestion is to explicitly add these two devices down at the
+bottom instead of adding to the regex. The first hunk I think in this
+patch needs to remain a regex.
 
---HzLaPnRGBBlzqSMg
+--AJI6S4BF4a0FtQ1K
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrsDAAKCRB4tDGHoIJi
-0kWxAP964V9Lk0QTCjeBj4XYhp9yppMMx1ApO1OCrtpbBjq5pQD7BKYT/UgapUTg
-PuhFZNyuMFXVagzZCesfL56uD9PAOw8=
-=ql76
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrtBQAKCRB4tDGHoIJi
+0nAGAP9c9ahF3KKPYkzc54SeH548SMqi21zBcYKc6rYUGCosVAEAnUfWuzDnMMEq
+cxqJ7Z/xgXL8YmgJR7ul3OSa490w/gY=
+=lw1j
 -----END PGP SIGNATURE-----
 
---HzLaPnRGBBlzqSMg--
+--AJI6S4BF4a0FtQ1K--
 
