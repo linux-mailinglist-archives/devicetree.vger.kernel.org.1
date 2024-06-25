@@ -1,114 +1,136 @@
-Return-Path: <devicetree+bounces-79726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F5091685B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:50:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7073E916871
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:57:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD8A11F2452A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:50:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0C9C1C22495
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F42156646;
-	Tue, 25 Jun 2024 12:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124FC158875;
+	Tue, 25 Jun 2024 12:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QcXmLz0F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vr3uC17Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DED149DF4;
-	Tue, 25 Jun 2024 12:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2581157A6C;
+	Tue, 25 Jun 2024 12:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719319824; cv=none; b=NHvUb4mvDeByxDz22lJPkETrClTjm6QZpr4cksBurKv2yDY1H+DTDKlYrOpfqBBYra5REM1XJrfmZ3Re79QcSD7GT0CJDAUSyAF/jgo8ulBY8YXv9sktWyRU05uIzWJw9Yg6Ad5zI1YIARo4kcbdK/C9mhPkXBn/6NHUprJFzB0=
+	t=1719320267; cv=none; b=Bhrl37u3XJh7z8iRXJERiUoaIMocUYhqBoCNz02fv3xKp8fXhE9zIUZiWZfT91EOg9xSHzwGixJpJjj5uS0kOyCHC88vok+YFfUenqsbUlazDS7qGRRTDFTTd0O5bYLiJOqShsj2vdsd4Fdk9kIm8HE/TbRAlu5mEmYdBmvU+Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719319824; c=relaxed/simple;
-	bh=s/7FiJi0GYLkjQ80S4lqlm3cUD3LaT7XZxvXN7svSLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EH/YESIL9BHJVhBAHyTBn3qvrA6VPLtIF1SF0bFdK3Uvz0utkMfX2mo+8xjaMs9sfmPpUGFrQKR8dfP7g0oU9EXUjYtorxfZW+og7NNXF96Jlxiqfc0mo1jykEYIqDloxy+ax40WWbavuM4A+cJUzhL8cxXts7LWB/Q+S1jY9iY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QcXmLz0F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86EB7C32786;
-	Tue, 25 Jun 2024 12:50:20 +0000 (UTC)
+	s=arc-20240116; t=1719320267; c=relaxed/simple;
+	bh=8FjEfbKwtHs29b/F3+jeLz+Oj9YY9vwp9uEARtWGWBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tmhdcwtLXj1REDS/CXi6bQIzCIcrlM5wQjcW+p+uKrHOK/mdghqoFx4BlXRN91YxMOVtcxgQbVweLcV8IJ60uRRE6dLMqtt0woqFqLhzNOJguiF0zFMAg5z4xKs2R50J+O/9+HkJyyoCTx3vI8UiQoL2urGwkKINUV+pdONxxqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vr3uC17Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C2FBC32786;
+	Tue, 25 Jun 2024 12:57:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719319824;
-	bh=s/7FiJi0GYLkjQ80S4lqlm3cUD3LaT7XZxvXN7svSLM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QcXmLz0F9HMBbpD9AlMywFuHfaXoGktzYxKA5zWvJfhikRVK4r5RSpODDuwq8Jqqd
-	 s0ZYKfQ/d5Zwz5QPhc+wSZ8NVnoe5f2dFSJcLx+wiqTGZ3N8hkqOwkQIUqqV9NaE41
-	 z53ioDhHQrjZTxcpBoYmlNeR7b+lMGdngquXFLn0zbFenVtlot61kstgtroVyfQWHW
-	 b9s/NBtENC7InhSWB1lroKiu6mdgvQ8bryusPh0Rxuex8nc0mPRf7Yp3AvdEE3MpC2
-	 rAki5Y/LiVngw9G/PXuQn4Ut6tQXZhKzo1Nb8UWXq9c/jfF77xhKb1IWO1sR4o8eKa
-	 pFQTO7Pg8ggfA==
-Date: Tue, 25 Jun 2024 13:50:17 +0100
-From: Mark Brown <broonie@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
-	gustavoars@kernel.org, henryc.chen@mediatek.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org, amergnat@baylibre.com, djakov@kernel.org
-Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
-Message-ID: <2e8a9cf2-2bc0-45d8-b6c1-e3a9441d5641@sirena.org.uk>
-References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
- <f7b4cd98-1acf-4f6b-a7e0-57419abadba1@collabora.com>
- <57cf8f9f-4320-4c55-a9f8-a4c1facabfe8@sirena.org.uk>
- <39ed7b8c-b19a-40de-9b30-a731ac83ad20@collabora.com>
+	s=k20201202; t=1719320266;
+	bh=8FjEfbKwtHs29b/F3+jeLz+Oj9YY9vwp9uEARtWGWBI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Vr3uC17ZhkpqcSWJvNiJUWFK+rkc3Ko8id7GdLGQyMRMifjJre45H4J7BNjV/UF2s
+	 RJYK8WL5Negda5G3rEkBkHskbRA4uhXgeeRLYgdxWcpQTa1vZG3wn2tmUSR8lxMpeQ
+	 ZHRW1mVxSed4Kng6/WhTZZAZEh6aKo/NH/X9GaG4VjMKZnXL1yfQ0Mj3Z5iDi4dfgk
+	 vH0o1XAyCAd/kpiU7aXKFqzVG/PkteoUOHAX8GM+BnA3XcbKOgSXHSdcsXZVQNdL8K
+	 CcKfJSyQiPjhOcBn3+uThqn6U9odPMvYtXtgI2UV2B0kuKhWJgce31qQUHtfHmmY/4
+	 rRUcx7skwABkA==
+Message-ID: <3e816509-a12b-4658-85f4-c0d0037c6a64@kernel.org>
+Date: Tue, 25 Jun 2024 15:57:38 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Ck+ggcwV/Ot1gS3W"
-Content-Disposition: inline
-In-Reply-To: <39ed7b8c-b19a-40de-9b30-a731ac83ad20@collabora.com>
-X-Cookie: Results vary by individual.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/7] arm64: dts: qcom: sdm845: Add DT nodes for the
+ TBUs
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc: will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
+ iommu@lists.linux.dev, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+ robdclark@gmail.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ quic_cgoldswo@quicinc.com, quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
+ quic_sudaraja@quicinc.com
+References: <20240417133731.2055383-1-quic_c_gdjako@quicinc.com>
+ <20240417133731.2055383-6-quic_c_gdjako@quicinc.com>
+ <CAA8EJppcXVu72OSo+OiYEiC1HQjP3qCwKMumOsUhcn6Czj0URg@mail.gmail.com>
+ <CAA8EJpr3GYimirDz39f4n-3hDAxFWzo+9fdY6MAuxaNguouVFg@mail.gmail.com>
+Content-Language: en-US
+From: Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <CAA8EJpr3GYimirDz39f4n-3hDAxFWzo+9fdY6MAuxaNguouVFg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 25.06.24 10:50, Dmitry Baryshkov wrote:
+> On Fri, 14 Jun 2024 at 21:05, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+>>
+>> On Wed, 17 Apr 2024 at 16:39, Georgi Djakov <quic_c_gdjako@quicinc.com> wrote:
+>>>
+>>> Add the device-tree nodes for the TBUs (translation buffer units) that
+>>> are present on the sdm845 platforms. The TBUs can be used debug the
+>>> kernel and provide additional information when a context faults occur.
+>>>
+>>> Describe the all registers, clocks, interconnects and power-domain
+>>> resources that are needed for each of the TBUs.
+>>>
+>>> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+>>
+>> This patch now prevents interconnect drivers from hitting the sync
+>> state on SDM845.
+>> The TBU driver is enabled only when the ARM_SMMU_QCOM_DEBUG is
+>> enabled, which is not a typical case on a normal system:
+> 
+> Georgi, before I start acting like a bull in a china shop and sending
+> reverts, any update from your side?
 
---Ck+ggcwV/Ot1gS3W
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hi Dmitry!
+Thanks for the report! We can easily add status = "disabled" to the DT
+nodes, but please give me some time to take a look what would be the best
+way to handle this, as i was out last week and now i am still catching up.
 
-On Tue, Jun 25, 2024 at 01:58:57PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 25/06/24 12:25, Mark Brown ha scritto:
-> > On Tue, Jun 25, 2024 at 10:32:30AM +0200, AngeloGioacchino Del Regno wrote:
+BR,
+Georgi
 
-> > > The main issue here is that the main soc/mediatek dvfsrc binding
-> > > dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
-> > > does use the others, so I can't pick this one without the others being present
-> > > or the validation obviously fails.
+> 
+>>
+>> [   26.209151] qnoc-sdm845 1500000.interconnect: sync_state() pending
+>> due to 150c5000.tbu
+>> [   26.217228] qnoc-sdm845 1620000.interconnect: sync_state() pending
+>> due to 150c5000.tbu
+>> [   26.229926] qnoc-sdm845 1500000.interconnect: sync_state() pending
+>> due to 150c9000.tbu
+>> [   26.238008] qnoc-sdm845 1620000.interconnect: sync_state() pending
+>> due to 150c9000.tbu
+>> [   26.249068] qnoc-sdm845 1740000.interconnect: sync_state() pending
+>> due to 150cd000.tbu
+>> [   26.257127] qnoc-sdm845 1740000.interconnect: sync_state() pending
+>> due to 150d1000.tbu
+>> [   26.265159] qnoc-sdm845 1740000.interconnect: sync_state() pending
+>> due to 150d5000.tbu
+>> [   26.273189] qnoc-sdm845 1500000.interconnect: sync_state() pending
+>> due to 150d9000.tbu
+>> [   26.281206] qnoc-sdm845 1620000.interconnect: sync_state() pending
+>> due to 150d9000.tbu
+>> [   26.289203] qnoc-sdm845 1500000.interconnect: sync_state() pending
+>> due to 150dd000.tbu
+>> [   26.297196] qnoc-sdm845 1620000.interconnect: sync_state() pending
+>> due to 150dd000.tbu
+>> [   26.305201] qnoc-sdm845 1500000.interconnect: sync_state() pending
+>> due to 150e1000.tbu
+>> [   26.313207] qnoc-sdm845 1620000.interconnect: sync_state() pending
+>> due to 150e1000.tbu
+> 
 
-> > I can't tell what you want from me here.
-
-> I'm asking you to pick the regulator patches :-)
-
->    dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
->    regulator: Remove mtk-dvfsrc-regulator.c
->    regulator: Add refactored mtk-dvfsrc-regulator driver
-
-Is there no interdependency with the rest of the series?  There was in
-some earlier version at least I think.  If I reviewed the patches it's
-because I wasn't expecting to apply them.
-
---Ck+ggcwV/Ot1gS3W
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ6vQgACgkQJNaLcl1U
-h9AbYgf/URHedtcxPh/nFTezG0aVe4h2eu4bJNpWaI0S7OfNW4LJT4EhtiuCuSPh
-BdAb2NA7AisSvcgOgZrIjD3COYnanTj/6j3pDfiV/YC3lCJoz+mv1TptT2kQxujQ
-nPJbzRAtsIl24RsI8sSC2B1MWsddf44E6RAfcYnlV8YDWQua9BxfLyCdEuG+gjmb
-+y5YK9glKhbAzHsaUjMkzn+BjHE147scOlb7u00uD61WrN94O2Q83guy2+sybO0y
-Km6bYffp60vo0ebFLyJCTIfYEqeUAEvWw4v13TAZU7uBlHgr231EptnRd2gXLMLg
-+WFplgSdJIzqSEsoZostEfIqw0bfgA==
-=t/8Q
------END PGP SIGNATURE-----
-
---Ck+ggcwV/Ot1gS3W--
 
