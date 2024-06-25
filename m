@@ -1,120 +1,103 @@
-Return-Path: <devicetree+bounces-79660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45182916489
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 11:58:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF809164B9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F050B1F21341
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:58:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E9661C23253
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6E0149C4F;
-	Tue, 25 Jun 2024 09:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF3714A089;
+	Tue, 25 Jun 2024 10:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dyihsoCC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0BjG071"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67871465A8;
-	Tue, 25 Jun 2024 09:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6953E149C41;
+	Tue, 25 Jun 2024 10:00:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719309507; cv=none; b=aEdhx490gdUbR24KdkjPwNqlsoA07v/dy5kTYCH+M428sxS2N0tfVYku4Eoo8gLbLk0AvJonS1SPxfFQkPp0mCgDI0iNMDqMpcb37H7mSuICPG1dZh73Nx/D9sPN3MXxBlMQwhSc8BbxKLR5E3zFxrOsfQ4wt+cE95wa4Y9tYIE=
+	t=1719309632; cv=none; b=JBjw56NsO5eYYLdkeWHuNsXR7yvcn1N9lA0FcX1krLPuSMc6SYvBfA1ltZ2s8SIKLpaKhjfGzAe8ICJnU1SaXBLLM1ArCh14XGAR211dqfbcMlEyPhpe0HuYyo2/kb4RL9b0mszr0u1uQEHAgCDPYbjcOWnKRVvv56uoMohmdgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719309507; c=relaxed/simple;
-	bh=mCh1S/zv9T0LxQ/VIDcjCSxK47VDHa4Fq1mKhnurmw0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ep3otG1+B3AOmCYHaX74kzKqR1/QYU0pCpVWVu9zCrIVkD/blsYlCsRtBANZv9IAm66aD5Llbyh5lGg0TltTbgIqTOxk19fTejeUIIthn1g3E0BjcUGUM6waMpnIoP2HDePVEYsprKWexnZ4smNpS+cgN+3xHUivP+754Jp+QP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dyihsoCC; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45P9w5eh120857;
-	Tue, 25 Jun 2024 04:58:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719309485;
-	bh=YYbaCGjM9Dz35Gz2eCP629JCL3wzQ9QkaGDO7vlRNiw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=dyihsoCCCqu88Ov04PV/ubjbfy5rjw9UbR+YKkzhASXR28FggaBWmZ7QFwwt3BPgz
-	 vlcFY8Bt3BTIiu0IQsQSiLzwsSJJn4v0QrCqa1LCNJ61e1lw0OKX4Z9Zdk/i4Ez1m6
-	 AIIcpExV26lMFCEFrea+xv+MnzKs2Ewt+cNrvYVE=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45P9w4GO124382
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 25 Jun 2024 04:58:05 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
- Jun 2024 04:58:04 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 25 Jun 2024 04:58:04 -0500
-Received: from [172.24.227.248] (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.248])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45P9vxvl093913;
-	Tue, 25 Jun 2024 04:58:00 -0500
-Message-ID: <76d816b4-6a20-4cda-8552-cfd07203a4d2@ti.com>
-Date: Tue, 25 Jun 2024 15:27:59 +0530
+	s=arc-20240116; t=1719309632; c=relaxed/simple;
+	bh=DhuCZNKDAvoxF5E2kVpU185CoWKjC9CR1dMA3XS5PfA=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=g2Q3LHdV4RY6JLheZs+MbiogNVR0+Cv9NzdJV/CYASbk9zYdJsleWQomAwTRt5BpNWQ4myC4f+SEJabUaB6sm6Vl1OThUHZPTD5waNahYJ6mDSKckBLwpS5ZV37/iCaG3+1ffrRbRa0q77iKegtuG/fG1zrJ7zOnYVMxMS8Qra0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0BjG071; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EA4F0C32786;
+	Tue, 25 Jun 2024 10:00:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719309632;
+	bh=DhuCZNKDAvoxF5E2kVpU185CoWKjC9CR1dMA3XS5PfA=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=g0BjG071QPIFIc9GiibZw1nkStLzz0jRWakJ1w4BRcdh8DVZb00EdEiZ90qMctWv/
+	 zBNL5M99djTiTAuoJUIfi0fOwM6L8eQrsXhASb7nS4hYO1t80raLLzz89C8dQz1ker
+	 11eu+io/s9Z/0Y8EsVg7vBzsPNZCes8Hf/bxTV36Rw+6q7x5EGXoVlEeN4/0Bh3FUR
+	 gL2xH44SIi1iNPyUTuO8ZWGNYycTLytc87BNOYBB3E0araccIbJ2FhD9URd9rLXDof
+	 KpwwMBvjoCGwx/HYSag7n8PpKlsTQC8cxtIPZS0ZN7yJHLFNm6zBJK4yNMtM/Aqdfo
+	 xvWvt2X40g5yA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D64F1C54BD4;
+	Tue, 25 Jun 2024 10:00:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j784s4-main: Add McASP nodes
-To: Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
-        <nm@ti.com>, <j-luthra@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20240619095253.290552-1-j-choudhary@ti.com>
- <20240619095253.290552-2-j-choudhary@ti.com>
- <f9f5178b-1e94-489b-8e71-43b814b7252a@ti.com>
-Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <f9f5178b-1e94-489b-8e71-43b814b7252a@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v7 0/4] net: macb: WOL enhancements
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171930963187.32121.3291379970254335785.git-patchwork-notify@kernel.org>
+Date: Tue, 25 Jun 2024 10:00:31 +0000
+References: <20240621045735.3031357-1-vineeth.karumanchi@amd.com>
+In-Reply-To: <20240621045735.3031357-1-vineeth.karumanchi@amd.com>
+To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux@armlinux.org.uk, vadim.fedorenko@linux.dev, andrew@lunn.ch,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, git@amd.com
 
-Hello Vignesh!
+Hello:
 
-On 25/06/24 14:01, Vignesh Raghavendra wrote:
+This series was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
+
+On Fri, 21 Jun 2024 10:27:31 +0530 you wrote:
+> - Add provisioning for queue tie-off and queue disable during suspend.
+> - Add support for ARP packet types to WoL.
+> - Advertise WoL attributes by default.
+> - Extend MACB supported WoL modes to the PHY supported WoL modes.
+> - Deprecate magic-packet property.
 > 
+> Changes in V7:
+> - change cpu_to_be32p() to be32_to_cpu(), eliminating unneeded conversions.
 > 
-> On 19/06/24 15:22, Jayesh Choudhary wrote:
->> Add McASP 0-4 instances and keep them disabled as several required
->> properties are missing as they are board specific.
->>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 80 ++++++++++++++++++++++
->>   1 file changed, 80 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> index fd3d3344efbe..96085dc7bc18 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> @@ -2617,4 +2617,84 @@ dss_ports: ports {
->>   			 */
->>   		};
->>   	};
->> +
->> +	mcasp0: mcasp@2b00000 {
->> +		compatible = "ti,am33xx-mcasp-audio";
->> +		reg = <0x0 0x02b00000 0x0 0x2000>,
->> +		      <0x0 0x02b08000 0x0 0x1000>;
-> 
-> 			^^ Should be 0x00 (elsewhere as well) to be inline with rest of the file
+> [...]
 
-Will fix the padding.
+Here is the summary with links:
+  - [net-next,v7,1/4] net: macb: queue tie-off or disable during WOL suspend
+    https://git.kernel.org/netdev/net-next/c/759cc793ebfc
+  - [net-next,v7,2/4] net: macb: Enable queue disable
+    https://git.kernel.org/netdev/net-next/c/3650a8cc5b34
+  - [net-next,v7,3/4] net: macb: Add ARP support to WOL
+    https://git.kernel.org/netdev/net-next/c/0cb8de39a776
+  - [net-next,v7,4/4] dt-bindings: net: cdns,macb: Deprecate magic-packet property
+    https://git.kernel.org/netdev/net-next/c/783bfe279e54
 
-Warm Regards,
--Jayesh
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
