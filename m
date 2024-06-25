@@ -1,90 +1,139 @@
-Return-Path: <devicetree+bounces-79541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61328915B87
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 03:15:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E2B3915B9D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 03:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B7EA1C21560
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 01:14:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28088B21FAC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 01:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEEB1095B;
-	Tue, 25 Jun 2024 01:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DE114005;
+	Tue, 25 Jun 2024 01:23:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="A4CF6qCJ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="M9xgx79/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BB015AF6;
-	Tue, 25 Jun 2024 01:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42182182D8;
+	Tue, 25 Jun 2024 01:23:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719278098; cv=none; b=kZ3AChF5XYiiGsAkARt6MP0YOc+9Kag+X6WBU4eqIOxyNf0ZUeKY+I5mt77brfj1fGX4rdimLU2Gf/Pucw8sO6Uoqk+rbMrV/xRhlZkicm5dFEodRwqO5ZBpD2ouAS4WOdgLiuE+jZ3/74p3uI7iXZKnsfAq6Ge11J/QNk0IBqs=
+	t=1719278629; cv=none; b=VymUI0BJ7Rzt7O0pyUuxtGwZ53HYWrzWiOpW//QHMlA15SwAseoqBfN5uiWMPbgnqSlTxg29w/ZWLZjcWa3Sf7kAkNhSWt6YFYuVYYJtCFW/OBsEuCxqwXfKUp2DwJDIYkvIFHzIN8auw1xNVNYoIq24+a20qw00SLljYUJPXPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719278098; c=relaxed/simple;
-	bh=eV0yzaFqlIC8vZu0Zx3OR7xNW0La5ndN7NeSp+FsvTI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uktlwh5BH4K/pMGOn1HbCNBtsksXqdGcgV05oSJQ5wzAFvOcf/KcxuqOHbz4FFe8ir+D02Ul7xSynv17dYGbhkKOQDjMU7V/CSKpMlBui9Imbt4zH2k5w0wx6zjK3L0vi0pZuFPDYkDXZ9A1A4ZjANgctPnJvylEAxCcQDt3V+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1fa2ea1c443so15661445ad.0;
-        Mon, 24 Jun 2024 18:14:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719278096; x=1719882896;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=58+IK4nz8S7JUb3W06qCngcSuzQ69kddYUFOVpCLfY8=;
-        b=ZnL3CXBbuSH0Tepf/BpiYI8NgAgDJaNpdkCcSEMZh0gz/bIr68yqPFMCByVTc0+wAs
-         4vlSQ+kqxakZ2xzXgZTR8k4eRdKlb3HjjIzcYXjvVM0kbIe712FxM6uLN/j7Glz2dEIh
-         Io3ZpJ5RcUazTNw4dfhFOw98sEA1HCBdWhJd9Fdd6a7QeRxeg8h5n+tMPBF+uXW4Qvpx
-         sIMVoDDA4hxBCvaI5fotW502F54F2j17+8tlpPa5I7vMEQQnSJlKbNLu+jsXJgecOykT
-         oWLu0Ej8UKStDk2ow2LTYQ372yYlcdHycpUifQ5kAqVxqknwV0K8XT9oF+BQeJhc2/Ql
-         HYYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXPMD0Zyd4vT/QO0Oy1JcZNyCfqCC221eYrrOwvmhvJOvdOGnmUjUA4gO1DzL3lBnyKKYGtm4Xz2QrkUiCIn6ba63OP0nQcj7MuGEopnXx4JGQb6Im+xpPGOZNPBoejToiNJ809FapVYtLX34t/7ro/xhKJHXOHgegFl5GLhL3hXnyRjg==
-X-Gm-Message-State: AOJu0YyfRLbefWK9jFz3zawSmZ7687AN0NRxOM78lqwAPsrTn+u5cGin
-	w2lSFfawNSfT9TMHicR/WYC2Gtse5Ddq1HuFe/ajNRRCNWM8cQt6
-X-Google-Smtp-Source: AGHT+IFSxNNpL4rNjWmswcHmrpd1agEl7SBJjG/npPx3p9kTghopQIoFmVYxjUiv0CqGXjDen0tZCA==
-X-Received: by 2002:a17:902:d4d2:b0:1f7:3a4:f66f with SMTP id d9443c01a7336-1fa23ef7c2cmr71053545ad.43.1719278096395;
-        Mon, 24 Jun 2024 18:14:56 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9f1e2fe37sm66296225ad.69.2024.06.24.18.14.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jun 2024 18:14:55 -0700 (PDT)
-Date: Tue, 25 Jun 2024 10:14:54 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Thippeswamy Havalige <thippesw@amd.com>
-Cc: bhelgaas@google.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, bharat.kumar.gogada@amd.com
-Subject: Re: [PATCH] dt-bindings: PCI: xilinx-cpm: Fix ranges property to
- avoid overlapping of bridge register and 32-bit BAR addresses
-Message-ID: <20240625011454.GA431470@rocinante>
-References: <20240624111022.133780-1-thippesw@amd.com>
+	s=arc-20240116; t=1719278629; c=relaxed/simple;
+	bh=k0UV4smMFdKTrbqG+8T8q5l5jDmrPdEZxzOndE7NGnM=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=Vcf1llXFFC1Na5z2mSXjUqBZLMKs3JeZTlfWCrqbE9eIU5G+1MVdmW2IrgOlI0zFnLirSGAi18Yr0F3luF9uExi6dCKjxOc+tyxMrHYMQEbPlTXVvBu6RVH6dQvZavNsR8iy4E8+OE7dHJHxAXycUyLFMIwDgzsHhhgvOLnWxTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=A4CF6qCJ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=M9xgx79/; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 5B2E41140214;
+	Mon, 24 Jun 2024 21:23:46 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Mon, 24 Jun 2024 21:23:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1719278626; x=
+	1719365026; bh=ys+1zZVloT/gls+QxuvRvXMQGJI5jghGSzU2+KtdtYU=; b=A
+	4CF6qCJiFWrx49ZQFRT+kEC4JaidhvO/7xFwzqpd4NUxFxKPT0Q8bKksDRNiyp2K
+	t7MFm6e6YbZK24H+r1xPphM4abeni+HFb49otomGtVZ6DK+iCM/AlcJzLjurxOFJ
+	c6PBlmIoph0kbavmOFwTdQ7lj/kn5UxUuToNSdbqG7hR2NBhWzC2oQYEAv9ilXRu
+	GKAgZIFdur2ke6+srbnDyPYayKtfYXIwYDU5JGBIPu6BbMOW7hO5REL46JDf7k+4
+	Ega2WU7vPDbhm+gbHZPz49MeWkCT/l16cpO60HMWb610bS+YJJza+8P5XGaYIQgw
+	J+QTN+DiRsSHw8IgWvbqQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1719278626; x=1719365026; bh=ys+1zZVloT/gls+QxuvRvXMQGJI5
+	jghGSzU2+KtdtYU=; b=M9xgx79/tc5kCutE8JV0ubl7LaAWxnkyMqX03MwlHRUj
+	+dRd1GMJf4ypkFpw8H0sZnU2jdBRpvyBhsdz1xQkxZADpRTQg4wjyDLFjEBUlHXg
+	iQA5w/63dgfuV9ZVexXfIhq5ilmUFY2z5YhC4RSYvY+z/d7vIpImFNIQXCsCpn6K
+	Up5PNU3YJLlxB5L4+fI5myLgLIBG7Y05IYqBvaTmtMmmaz8Jdm28tuOueWgS3uni
+	u1sSEvaN7hXiG8ltVX3jBRf00E7KnUpk5yc9pgonTKuQt9Egrgvj4RRth71BvQiV
+	hLwN/O1plO/eCRUPru5NhB7gvQ/uOUUqEKceMcN9HA==
+X-ME-Sender: <xms:IBx6ZjCtc13Ox7Rrx12BNLUTSe0X2OMR-7EgW4EmQtAwlDaGX4Mb8A>
+    <xme:IBx6Zpj5D0jhCsV0ig4jFSlDJ0TunCkNXEUk6mk-SQsHrD-uxjfeBWtHQwE1OSbA4
+    olEoJjFQTScjDYPuA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrfeegvddggeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
+    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
+    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
+    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
+X-ME-Proxy: <xmx:IRx6ZuktjOgjetPyTMtvj7GYcOKv3ICn1NotCnSstMwhufd5ujalwA>
+    <xmx:IRx6ZlxOnprEij5IaOuCaqtLzMPaudzaD4pZQoNfUxRXF2DRaUoN7A>
+    <xmx:IRx6ZoTJ4VDn4LtjqykkfIHWmZu8uTc-Ub7rw_9of6KNHwtnFGkqFg>
+    <xmx:IRx6ZoYBxglP6Uxgm_hX9YuOwhdQ8S0uUkYqYqjhb6rlDhjvD5joJw>
+    <xmx:Ihx6ZhSoIjiEg_VNW90Q1_wsy1IN40yMoByg5CqZ_bd0QJfdaFAYKtO7>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id C0238A6007A; Mon, 24 Jun 2024 21:23:44 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-538-g1508afaa2-fm-20240616.001-g1508afaa
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240624111022.133780-1-thippesw@amd.com>
+Message-Id: <df6acd0f-e947-4994-b477-0ced838262a4@app.fastmail.com>
+In-Reply-To: <20240625012804.27e55708@minigeek.lan>
+References: <20240620113150.83466-1-ryan@testtoast.com>
+ <20240620113150.83466-15-ryan@testtoast.com>
+ <20240625012804.27e55708@minigeek.lan>
+Date: Tue, 25 Jun 2024 13:23:24 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Andre Przywara" <andre.przywara@arm.com>
+Cc: "Maxime Ripard" <mripard@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "David Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Chris Morgan" <macroalpha82@gmail.com>,
+ "John Watts" <contact@jookia.org>, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 14/23] drm: sun4i: de2/de3: refactor mixer initialisation
+Content-Type: text/plain
 
-Hello,
+Hi Andre,
 
-> The current configuration had non-prefetchable memory overlapping with
-> bridge registers by 64KB from base address. This patch fixes the 'ranges'
-> property in the device tree by adjusting the non-prefetchable memory
-> addresses beyond the 64KB mark to prevent conflicts. 
+On Tue, 25 Jun 2024, at 12:28 PM, Andre Przywara wrote:
 
-Applied to dt-bindings, thank you!
+Thanks for the review!
 
-[1/1] dt-bindings: PCI: xilinx-cpm: Fix overlapping of bridge register and 32-bit BAR addresses
-      https://git.kernel.org/pci/pci/c/f55aed050631
 
-	Krzysztof
+>>  		regmap_write(mixer->engine.regs, SUN50I_MIXER_CDC1_EN, 0);
+>> -	} else {
+>> +
+>
+> That seems to add an extra line, which shouldn't be here.
+
+This was intentional to add some whitespace between the block of register writes and the next if/then block, but happy to remove delete if that is the style preference.
+
+>
+> Verified that the rest is indeed just a code move, from below into a
+> separate function. So with the two minor bits above fixed:
+>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+>
+
+Thanks again!
+
+Ryan
 
