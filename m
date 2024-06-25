@@ -1,121 +1,96 @@
-Return-Path: <devicetree+bounces-79717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDCA89167AA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:24:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD279167B6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:25:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D947B26D4A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:24:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B519D1F23F1C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD8C16FF49;
-	Tue, 25 Jun 2024 12:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mx+EakFC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA17163AA7;
+	Tue, 25 Jun 2024 12:24:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6872A158D76;
-	Tue, 25 Jun 2024 12:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BDB158A23;
+	Tue, 25 Jun 2024 12:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719318078; cv=none; b=NuHSF9obkE1Sp45V9Fzhy9Joc1xSC8fXzKxwrz6CilrWKbbQb63YtpEBwN2tt/9k1DY5XV263QQz3Ya8mb4YMuDM6cR4wS8l2UFipEpFv1tHVr0BrZUzbVMsUjKjfmeV9q4k2iA5C2k1o88p/HDjYKCYsxmpZK4M+hsVgo/F+tc=
+	t=1719318259; cv=none; b=bex+yw++H1p7su9DIjOiTEXk8J+e5zxQ3D2sjOFsU52XbcAK0Ug2kzhvYdDxiH/QLnBOU05SnDB1AQlm3qc5lU2dogPG2ciQtdctFOYOb3HB0ODoqFwdQet0CGxHh4jcGMoei2J4kJPnJp44nb1hMEMNkrcagxBjZjffam6bIW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719318078; c=relaxed/simple;
-	bh=nV568M/o+uaGVPHuxQfi90HA4xiTwKDWfMmadnEC2ws=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=g0SXMov7D+HaxqTqou3rcYc+IsOvlZbC8I0aUxM+AoXxTb1Y10H6W0B749zvgMDe7D9juHq2NCwwxTaTvVyzLNylC/LmAQQDALiPpWRnRhWObAkx7v6MbfhQEvx4HhT/E+vQnRSMgPYvX0OgqgnJ/f9V4vlcE5dj2KCuEg+NFxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mx+EakFC; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-706642b4403so2177981b3a.1;
-        Tue, 25 Jun 2024 05:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719318077; x=1719922877; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rPpPQPrSFdxwRiFvGPyzNU87S8im5iQckUTLujqJKDw=;
-        b=Mx+EakFCkySzobDEsFXlVd3K/V4SANLCy7FVGRYOB1WqqVDB/flW3+kvF0yQrjhZ+j
-         ZJaHPHLjYCJ7xTkyFRc9zDzx+CcKHtHn0VOm6ODNHw/Psy0WHozApjyUaGbAYt7HniRE
-         arSSYhlKpbB9VFdzvKD7BPFcIESYFCC2L2ZNuuPUQ2q2dj2f/+1TOpzOlgyNEveWDnDo
-         noAJZSSghJl58Xx13ZXbT61JFl6SXyHxvDltnKO8JYIjnfGhtEsgLIbrhQaA3JIwVo0B
-         9RUa5uJTtSndSSN87OZCTyx2Cc6XfazRHvHhHc3t5LAJK7Su8chbmvoXn5hCbZS7fZk+
-         i1bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719318077; x=1719922877;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rPpPQPrSFdxwRiFvGPyzNU87S8im5iQckUTLujqJKDw=;
-        b=RJzDYq2FSlZq9lh0m0UVVoEDq8hmmK5nIrPdUhgcvnyXEp32Dfk/COhbiwcyY0fe0v
-         wqgERdX59agjALVLW7H3RFDlrs6+6wZRblJHp5w70j3k9L8PMRw0i5PZs4MSBCFuUx+X
-         4VHxYe45BrY7+kE4xXF+N5CgMrx8AZFEB771SlWfRLzZkoA+UTjhl0jerJlJRJXgXwgx
-         GOcBKJbALg2pA8zpT5NTdaW38J7eCWxmHYgHE4C/93hBqUrfur4idrDZzmTZZIkhf8XP
-         XRROA+PGT7KcCz+J7JES8WZGkQUdQx/DCDffdsFAUMZFFP3miWh0L7lw+cFvMOtl1urG
-         6sYA==
-X-Forwarded-Encrypted: i=1; AJvYcCVF2ea5/KKDi6b/X26GUYEf91fuRcnc8Jb5n5Y5DliuxNIDI1RrB7JkhMqQK1wWmkjR/6un/7N2/zDO57Y+qTLOGtB91gqZNvR3Nyw4yTLbuoVSSAasvEf9qW3njiJryhdkRPXm0ttaDQ==
-X-Gm-Message-State: AOJu0Yy7wgQpuXzdGtkV9zzUBD3JUuMGt9jt9YJ9VpF18Di65+910+/G
-	t6TUXsKDQshfY1KOmJteQKpjfGAimp4XjN3gBzPrSa0MSmJaG73w
-X-Google-Smtp-Source: AGHT+IH45w9VIPw2Adgujbb05Hh7fQwfR4efuZfljK39HStJbVTuQ21UuyqEOGETLUCEErof/GhyMg==
-X-Received: by 2002:a05:6a21:339a:b0:1bd:199a:6347 with SMTP id adf61e73a8af0-1bd199a652bmr4424258637.5.1719318076674;
-        Tue, 25 Jun 2024 05:21:16 -0700 (PDT)
-Received: from obliging-System-Product-Name.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70650e312e4sm7978146b3a.0.2024.06.25.05.21.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jun 2024 05:21:16 -0700 (PDT)
-From: Yang Chen <yangchen.openbmc@gmail.com>
-To: joel@jms.id.au,
-	andrew@codeconstruct.com.au,
-	patrick@stwcx.xyz,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Jerry.Lin@quantatw.com,
-	yangchen.openbmc@gmail.com
-Subject: [PATCH 17/17] ARM: dts: aspeed: minerva: add ltc4287 device
-Date: Tue, 25 Jun 2024 20:18:35 +0800
-Message-Id: <20240625121835.751013-18-yangchen.openbmc@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240625121835.751013-1-yangchen.openbmc@gmail.com>
-References: <20240625121835.751013-1-yangchen.openbmc@gmail.com>
+	s=arc-20240116; t=1719318259; c=relaxed/simple;
+	bh=giefgP2BDi2t9Tlx2H690cP72Am6QSuiC2MbqOp4STs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LH/psTgs/fpfDoOq3NKFrjUFFRh67k2BnxNCVZznPNc4zkF7ONChMV0b19ZtLNuB2olbOLTK7VBxHmzj93BeIuiEdB+AdaWaVLASoIYst2udke6FlbAGFeAeDjNS/+/joAPjAYySBXov64iimjZt9xAmmX/7jXYSvGMDYI6REPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB724DA7;
+	Tue, 25 Jun 2024 05:24:41 -0700 (PDT)
+Received: from [10.1.37.50] (FVFF763DQ05P.cambridge.arm.com [10.1.37.50])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D620F3F766;
+	Tue, 25 Jun 2024 05:24:12 -0700 (PDT)
+Message-ID: <2e78b732-aed7-4de5-b5ac-0da5b78af342@arm.com>
+Date: Tue, 25 Jun 2024 13:24:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] Coresight: Set correct cs_mode for TPDM to fix disable
+ issue
+Content-Language: en-GB
+To: Jie Gan <quic_jiegan@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>,
+ Song Chai <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ andersson@kernel.org, quic_yijiyang@quicinc.com, quic_yuanjiey@quicinc.com,
+ quic_liuxin@quicinc.com, quic_yanzl@quicinc.com, quic_xinlon@quicinc.com,
+ quic_xueqnie@quicinc.com, quic_sijiwu@quicinc.com
+References: <20240625021212.1443304-1-quic_jiegan@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20240625021212.1443304-1-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Enable LTC4287 device on i2c-0.
+On 25/06/2024 03:12, Jie Gan wrote:
+> The coresight_disable_source_sysfs function should verify the
+> mode of the coresight device before disabling the source.
+> However, the mode for the TPDM device is always set to
+> CS_MODE_DISABLED, resulting in the check consistently failing.
+> As a result, TPDM cannot be properly disabled.
+> 
+> To fix the issue:
+> Configure CS_MODE_SYSFS/CS_MODE_PERF during the enablement of TPDM.
+> Configure CS_MODE_DISABLED during the disablement of TPDM.
+> 
+> Fixes: 1f5149c7751c("coresight: Move all sysfs code to sysfs file")
 
-Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+That looks like the wrong commit. This was a problem since the original
+TPDM driver. I would say :
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-index 288d4ba06b99..896e84cd03de 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-@@ -165,6 +165,12 @@ power-monitor@41 {
- 		shunt-resistor = <1000>;
- 	};
- 
-+	power-monitor@44 {
-+		compatible = "lltc,ltc4287";
-+		reg = <0x44>;
-+		shunt-resistor-micro-ohms = <2000>;
-+	};
-+
- 	power-monitor@43 {
- 		compatible = "infineon,xdp710";
- 		reg = <0x43>;
--- 
-2.34.1
+Fixes: b3c71626a933 ("Coresight: Add coresight TPDM source driver")
+
+> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+
+Otherwise, the patch looks good to me.
+
+Please could you also fixup "dummy" source driver in a separate patch.
+
+Suzuki
 
 
