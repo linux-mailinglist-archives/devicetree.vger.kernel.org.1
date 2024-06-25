@@ -1,52 +1,76 @@
-Return-Path: <devicetree+bounces-79621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787629160E9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:17:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1189160F4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:20:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BC5F1C22775
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:17:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E3281C21883
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:20:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63538147C90;
-	Tue, 25 Jun 2024 08:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F81D146D78;
+	Tue, 25 Jun 2024 08:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="n7r9Qbig"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zDEqWpDK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FBC145FFE;
-	Tue, 25 Jun 2024 08:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30647145FFE
+	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 08:20:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719303444; cv=none; b=DnsNFPI5R1I5ZCUwTmCIxp0L7U44wVcDCE8P/+E9+gEIRog3LHwa69/lhFodfgGNJkRRIhfYUYT7w6ti4PysZS20wNbgY7iApYQRwXqfgZQ+JR729hEkEfu6ZJArGauSIaXxIiHsDgH9tgsvRUqHF6uSM2+2IbR6xHv9TDZL49c=
+	t=1719303612; cv=none; b=DWFq0l3hVPBoCIz9pkP0pXN2UH/d36UPynqziIaYgCwSlG7HdujU5CGFxPXqax1fkFRZR/bj34pEe2+p+WB/6LxRkRfIn9nx8wVDtzeaLZr65XWS7oFGdBQusbY+YO6i2oMpqJ1ID3PkiFzk3OCEg4stEcuTH2nofBH35k67ZRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719303444; c=relaxed/simple;
-	bh=ahZ1IlNJOXPgTay/HQbIBcXi0SqZxQBnKXQRaaKDpsk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pjvpCc+DYjHRPl1hSUGKiXJMJ6ek76d17hij5bMHH/z8gWDl1gFpSqMtRQEnIVQgcBGXnOxL+ntnY9eSyFrYHn3U2THRp3iCUkrzv0bDNy9CWFNQ8Gm4d5S8dcwrtjDcvYW8YyhLX+gUg/g2tHH6D0FwW58I0k66fttjqGB8WtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=n7r9Qbig; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 62B741BF207;
-	Tue, 25 Jun 2024 08:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-	t=1719303440;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hE2xd4QxwpEy7QXL+lAVyTmTgN2X6yquzmQ2NM2E7EA=;
-	b=n7r9QbigIrXH9yhC12MrdNMh8FOIviHrg/M7D7taN3J5qjffT7qhqfSij2fkEgaElePZR3
-	71r0Xk6IOOK/8CuoSmrK9Y0yFTUowXl+b7Tqr4SSN+6AQbdIbEt+yYwYm8XLoSDLXuabgU
-	zCmZWv7tPmeulD7/jT+hf+EUBp3Cf50uJA+kiihV4JVCf1o9oWkbQdFYTTk9AGQOSexuRg
-	/4D9UWAVsbh8dgpmU2hwJWTcTzikN6MHMFN3khnQjmuNiw44LY1dox1njbN3L/vNXNyiwQ
-	FLizrA4peUFyyotRF62XAfZDBigiWXY8HHecPFHSrAq1iLllTQU70zEiIJ5b4g==
-Message-ID: <bb7e9cae-d627-4f38-9da2-b40fb3c349fe@arinc9.com>
-Date: Tue, 25 Jun 2024 11:17:09 +0300
+	s=arc-20240116; t=1719303612; c=relaxed/simple;
+	bh=QVq4HM7y2dnXQGL6NEAuXEayijUuHVo9Mn2wpAEGeSQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=ub+xWfpdKDIhX+DOeltetrOu5k+cAbH8IdxaOSu8XDAqaJl2o2uCf8X8ZFMp+OjdMKhN7Qem+nblTleLNEKUJngDPPiz7FT0oXn0ajM6VGriW3z4ejTPTpWUIpP+li+/XIzqSe96B4WucJwqSStvGQEc0KOVMaCTURPkHTmFmcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zDEqWpDK; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52cdcd26d61so3320713e87.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 01:20:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719303609; x=1719908409; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EWCiwD2F7GvS6ILidCuuM+NWtCPTY//mkBwwHB/PAwU=;
+        b=zDEqWpDKsacFqeQFvEa1y1hGqzOtIyhdpD35XN51wSZ6hYBRccLuV8mHjbmzYAHuGg
+         dyRyTEr5B4Kz5OEE/Ig+dAdokNwx/oC2vw2PGujYoiGUIE3K8oyG/spOHd3+D7allKv1
+         mOWtSpEiAIdnDe5O9syyyCcd2cUK7BMp18to1vkNtUFRD5FxyEhyMDRqBQZm/gO/9SM2
+         kilrBAUJUly5hntEhdSNqMk5omt4h5N4zk5wBthDP29g4SqDZ0WclM6P8TPgkiSBMTtR
+         y7gpltdmNbhOqGK+7sodl7J8R7FWlgc5uW0VqZZPB/FYvnUXq2ZoIp7SyoVmtoJpCyMO
+         Rs8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719303609; x=1719908409;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EWCiwD2F7GvS6ILidCuuM+NWtCPTY//mkBwwHB/PAwU=;
+        b=cBtFwCcFDHExJxEOcTh2BexReqWoonuXr2hzN5OxGAXCM+SVqUR+Axl0XiFu5/qf2i
+         qcOzplgfroWQeii588MK96oRtw52vyqLqmXuGTJpB7iJl9oWgAvDxk3kC+FpbmQ3lp3t
+         bIG/eyJ2kAXSV+s2r91c0nH0nFD8xi9XrAGKIUvV8GHr8I05Aw5KvRkVjEr8CQ1TiUBL
+         2AuP6FqkU4gCKdehLaegkh6IB++y6jc+3mthCVl6u2xUTJZ0RxRSjYsQj64xXEnJRp2b
+         E4ugI0iCwMb78uvEMXr/RXK7fuBAQDJ5aHLCcg8WnKqLLMaKSKJSHbmKI6CqnQlaCvza
+         8eJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU4xjD7/QaXVCnD9j3PplWAzZgS44/tEzbfPelF627rysZJRI8XonM1Y3+NOX9Po4gHO18Me/NiIXF83emXnCwniY1v6o6+5P2s9w==
+X-Gm-Message-State: AOJu0YykBjDgPxFlQFYsTRyNhOMtaey1i90c7qp7+QrbdtaWj9Cr26uB
+	mWRO+i7zld6Y+CnDxVS/YlrMNUENuufShH7nZW8LF1BbUX7zJG0XRxM8HxevAjk=
+X-Google-Smtp-Source: AGHT+IGschyJIRrjSGV8MI/uUMMke9I7XA20tehM3rxh0wtEbI4ylJlNZVV28a0dcLcxUWKiEyqonQ==
+X-Received: by 2002:ac2:4838:0:b0:52b:c27c:ea1f with SMTP id 2adb3069b0e04-52ce185faa8mr3407033e87.55.1719303606782;
+        Tue, 25 Jun 2024 01:20:06 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:bd71:2ff1:592d:f52a? ([2a01:e0a:982:cbb0:bd71:2ff1:592d:f52a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424817b5ca0sm161908245e9.24.2024.06.25.01.20.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jun 2024 01:20:06 -0700 (PDT)
+Message-ID: <2e22734e-6577-445d-af5e-846dbcce076e@linaro.org>
+Date: Tue, 25 Jun 2024 10:20:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,136 +78,149 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
-To: Linux regressions mailing list <regressions@lists.linux.dev>,
- Paolo Abeni <pabeni@redhat.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Daniel Golle <daniel@makrotopia.org>, frank-w@public-files.de,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-References: <20240516204847.171029-1-linux@fw-web.de>
- <5AEE5668-0C8E-4EE4-A398-66CB99DF5650@public-files.de>
- <43aacd9d-b851-4100-8ccc-878ac6ae10f8@leemhuis.info>
- <698cf562-1ca9-4aa3-be7e-a1474b612c5b@leemhuis.info>
- <0cba095c-3d55-416a-a7ad-b359129731cf@arinc9.com>
- <714da201-654b-4183-8e5e-8ff0b64fe621@leemhuis.info>
- <2cac4cf68304e81abffbd9ff0387ee100323c2b7.camel@redhat.com>
- <b49c801c-6628-40a6-8294-0876d8871ba7@leemhuis.info>
- <e92c3ca0-c9be-44ac-a4fc-57ca5ebedbc5@leemhuis.info>
- <1807a142-1534-4fa4-ad4b-d1c03af014c2@arinc9.com>
- <58d8ddea-71cc-427a-94cc-a95f6bce61d2@collabora.com>
- <16e9c06e-9908-455d-a387-614fefe5bcf8@arinc9.com>
- <5e87d31c-b059-4f9a-93f7-dc87465ed14a@collabora.com>
- <4416ef22-78cc-4ce5-b61d-69ff0903811e@arinc9.com>
- <bd6b6929-d34d-4bd5-9cb0-bc8fe850ee46@leemhuis.info>
- <af561268-9793-4b5d-aa0f-d09698fd6fb0@arinc9.com>
- <750a60a6-4585-4bd2-97be-cf944e51fbdb@leemhuis.info>
- <7a2ea06b-ae4e-4374-82c2-4de4184e06c3@arinc9.com>
- <40035548-c76b-4b0d-915f-c513eaadbc5d@leemhuis.info>
-Content-Language: en-US
-From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <40035548-c76b-4b0d-915f-c513eaadbc5d@leemhuis.info>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: Lockdep broken on x1e80100
+To: Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20230208190200.2966723-1-abel.vesa@linaro.org>
+ <ZnpoAVGJMG4Zu-Jw@hovoldconsulting.com> <ZnpzuhXqSLPkpkhn@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <ZnpzuhXqSLPkpkhn@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
+Content-Transfer-Encoding: 7bit
 
-On 25/06/2024 09.57, Linux regression tracking (Thorsten Leemhuis) wrote:
-> On 25.06.24 08:17, Arınç ÜNAL wrote:
->> On 25/06/2024 08.56, Linux regression tracking (Thorsten Leemhuis) wrote:
->>> On 17.06.24 13:08, Arınç ÜNAL wrote:
->>>> On 17/06/2024 11:33, Linux regression tracking (Thorsten Leemhuis)
->>>> wrote:
->>>> [...]
->>>> I've submitted a patch series that fixes the regression. Angelo argued
->>>> against the way the regression is fixed. I've very clearly argued
->>>> back why
->>>> I find Angelo's approach wrong. There's been no response back. I don't
->>>> understand why reverting the patch is the likely outcome
->>>
->>> Long story short: because that how things like that are handled in the
->>> Linux kernel project, as Linus wants it like that. See some of the
->>> quotes from https://docs.kernel.org/process/handling-regressions.html
->>> for details.
->>>
->>>> whilst the
->>>> standing argument points towards applying the said patch series. If a
->>>> revert happens before this discussion with Angelo finalises, this
->>>> will set
->>>> a precedent that will tell maintainers that they can have their way
->>>> by just
->>>> not replying to the ongoing discussions.
->>>>
->>>> That said, the decision of resolving the regression by either
->>>> reverting the
->>>> patch or applying the patch series shall not depend on whether or not
->>>> Angelo is pleased but rather there're no counter-arguments left on the
->>>> points brought, meaning the decision shall be made depending on the
->>>> argument that stands.
->>>>
->>>> Therefore, I suggest that unless Angelo responds back with a
->>>> counter-argument in the window of a week or two, as you've described, my
->>>> patch series shall be applied.
->>>
->>> It looks more and more like we are stuck here (or was there progress and
->>> I just missed it?) while the 6.10 final is slowly getting closer. Hence:
+On 25/06/2024 09:37, Abel Vesa wrote:
+> On 24-06-25 08:47:29, Johan Hovold wrote:
+>> On Wed, Feb 08, 2023 at 09:01:53PM +0200, Abel Vesa wrote:
+>>> This patchset adds support for the eUSB2 repeater found in pmic PM8550B,
+>>> used along with SM8550. Since there is no dedicated generic framework
+>>> for eUSB2 repeaters, the most appropriate subsystem to model it is the
+>>> generic phy. This patchset also adds support for such repeater to the
+>>> eUSB2 PHY found in SM8550. Basically, the eUSB2 PHY will have its own
+>>> "phy" which is actually a repeater.
 >>
->> There hasn't been progress at all. I believe I have clearly described the
->> way out of this issue.
+>> The decision to model the repeater as a PHY unfortunately breaks lockdep
+>> as you now have functions like phy_init() calling phy_init() for a
+>> second PHY (the repeater, see splat below).
 >>
->>> AngeloGioacchino, should we ask the net maintainers to revert
->>> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
->>> device tree") for now to resolve this regression? Reminder, there is
->>> nothing wrong with that commit per se afaik, it just exposes a problem
->>> that needs to be fixed first before it can be reapplied.
+> 
+> This was reported by Bjorn off-list a couple of months ago. I did check
+> it then and the order is perfectly fine. The solution here should be to
+> use mutex_lock_nested in the PHY framework. This would allow supporting
+> chain-linked PHYs. The possibility of moving out the repeater out of PHY
+> was also discussed. Unfortunately, I didn't have the bandwidth to
+> circle back and properly investigate and fix it.
+
+Well technically it's a PHY, and moving out from PHY will basically duplicate
+the PHY core code... so we should rather make sure we can call phy code from
+phy callbacks safely.
+
+Neil
+
+> 
+>> As long as the locks are always taken in the same order there should be
+>> no risk for a deadlock, but can you please verify that and add the
+>> missing lockdep annotation so that lockdep can be used on platforms like
+>> x1e80100 (e.g. to prevent further locking issues from being introduced)?
 >>
->> Are you suggesting the patch shall be reverted first, then the DT patch
->> applied, then the reverted patch applied back?
-> 
-> Yeah.
-> 
->> If only one of the first two
->> steps were done, it would fix the regression so I don't understand why go
->> through this tedious process when we can quite simply apply the DT patch to
->> resolve the regression.
-> 
-> Which DT patch do you mean here? Your series or the one from Frank at
-> the start of the thread (the one you seems to be unhappy about iirc, but
-> I might be wrong there)?
+>> Johan
+>>
+>>
+>> [    8.613248] ============================================
+>> [    8.669073] WARNING: possible recursive locking detected
+>> [    8.669074] 6.10.0-rc5 #122 Not tainted
+>> [    8.669075] --------------------------------------------
+>> [    8.669075] kworker/u50:0/77 is trying to acquire lock:
+>> [    8.669076] ffff5cae8733ecf8 (&phy->mutex){+.+.}-{3:3}, at: phy_init+0x4c/0x12c
+>> [    8.669087]
+>>                 but task is already holding lock:
+>> [    8.669088] ffff5cae8a056cf8 (&phy->mutex){+.+.}-{3:3}, at: phy_init+0x4c/0x12c
+>> [    8.669092]
+>>                 other info that might help us debug this:
+>> [    8.669092]  Possible unsafe locking scenario:
+>>
+>> [    8.669093]        CPU0
+>> [    8.669093]        ----
+>> [    8.669094]   lock(&phy->mutex);
+>> [    8.669095]   lock(&phy->mutex);
+>> [    8.669097]
+>>                  *** DEADLOCK ***
+>>
+>> [    8.669097]  May be due to missing lock nesting notation
+>>
+>> [    8.669097] 4 locks held by kworker/u50:0/77:
+>> [    8.669099]  #0: ffff5cae80010948 ((wq_completion)events_unbound){+.+.}-{0:0}, at: process_one_work+0x1a4/0x638
+>> [    8.669108]  #1: ffff800080333de0 (deferred_probe_work){+.+.}-{0:0}, at: process_one_work+0x1cc/0x638
+>> [    8.669112]  #2: ffff5cae854038f8 (&dev->mutex){....}-{3:3}, at: __device_attach+0x38/0x1d4
+>> [    8.669117]  #3: ffff5cae8a056cf8 (&phy->mutex){+.+.}-{3:3}, at: phy_init+0x4c/0x12c
+>> [    8.669121]
+>>                 stack backtrace:
+>> [    8.669122] CPU: 9 PID: 77 Comm: kworker/u50:0 Not tainted 6.10.0-rc5 #122
+>> [    8.669124] Hardware name: Qualcomm CRD, BIOS 6.0.231221.BOOT.MXF.2.4-00348.1-HAMOA-1 12/21/2023
+>> [    8.669125] Workqueue: events_unbound deferred_probe_work_func
+>> [    8.669128] Call trace:
+>> [    8.669129]  dump_backtrace+0x9c/0x11c
+>> [    8.870384]  show_stack+0x18/0x24
+>> [    8.870386]  dump_stack_lvl+0x90/0xd0
+>> [    8.870391]  dump_stack+0x18/0x24
+>> [    8.870393]  print_deadlock_bug+0x25c/0x348
+>> [    8.870396]  __lock_acquire+0x10a4/0x2064
+>> [    8.870399]  lock_acquire.part.0+0xc8/0x20c
+>> [    8.870401]  lock_acquire+0x68/0x84
+>> [    8.870403]  __mutex_lock+0x98/0x428
+>> [    8.870407]  mutex_lock_nested+0x24/0x30
+>> [    8.870410]  phy_init+0x4c/0x12c
+>> [    8.870412]  qcom_snps_eusb2_hsphy_init+0x54/0x420 [phy_qcom_snps_eusb2]
+>> [    8.870416]  phy_init+0xe0/0x12c
+>> [    8.870418]  dwc3_core_init+0x484/0x1214
+>> [    8.870421]  dwc3_probe+0xe54/0x171c
+>> [    8.870424]  platform_probe+0x68/0xd8
+>> [    8.870426]  really_probe+0xc0/0x388
+>> [    8.870427]  __driver_probe_device+0x7c/0x160
+>> [    8.870429]  driver_probe_device+0x40/0x114
+>> [    8.870430]  __device_attach_driver+0xbc/0x158
+>> [    8.870432]  bus_for_each_drv+0x84/0xe0
+>> [    8.870433]  __device_attach+0xa8/0x1d4
+>> [    8.870435]  device_initial_probe+0x14/0x20
+>> [    8.870436]  bus_probe_device+0xb0/0xb4
+>> [    8.870437]  deferred_probe_work_func+0xa0/0xf4
+>> [    8.870439]  process_one_work+0x224/0x638
+>> [    8.870441]  worker_thread+0x268/0x3a8
+>> [    8.870442]  kthread+0x124/0x128
+>> [    8.870443]  ret_from_fork+0x10/0x20
 
-My series, as arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts needs to be
-addressed too to resolve the regression.
-
-> 
-> Anyway, to answer the statement: because the maintainers that would have
-> to accept the DT patch to resolve the problem apparently are not happy
-> with it -- and nobody seems to be working on providing patches that make
-> them happy which are also acceptable at this point of the devel cycle;
-> so as it looks like currently to prevent the regression from entering
-> 6.10 reverting the net change is the only option left.
-
-I've already made my case regarding the situation with the DT patch. I
-can't provide new patches because Angelo did not acknowledge my points yet.
-I maintain the net driver and I too won't be happy with a revert on the
-driver.
-
-> 
->> Keep in mind that I maintain the MT7530 DSA subdriver and the company I
->> work with has got boards that uses the functionality the commit
->> 868ff5f4944aa9 ("net: dsa: mt7530-mdio: read PHY address of switch from
->> device tree") brings.
-> 
-> Don't see a revert as setback at all, that's just normal for the kernel.
-> I'm not the one that will decide about this anyway. And everyone
-> involved afaics would like to prevent a revert. But it seems more and
-> more likely that we are not getting there in time for the 6.10 release
-> (or ideally -rc6 or -rc7 to allow some testing, as last-minute reverts
-> can cause new problems).
-
-I am still calling for the simple procedure of applying the DT patch to
-resolve the regression.
-
-Arınç
 
