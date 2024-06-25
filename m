@@ -1,161 +1,111 @@
-Return-Path: <devicetree+bounces-79664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5438E916526
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:20:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B43E0916535
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 12:25:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 774D51C21C07
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:20:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2CFC1C21B9C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B177B14A4DC;
-	Tue, 25 Jun 2024 10:19:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E9214A088;
+	Tue, 25 Jun 2024 10:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="L/qxmsN9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sV06yI4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D717014A4C9
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 10:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79C6145FF4;
+	Tue, 25 Jun 2024 10:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719310762; cv=none; b=Cu0qpbel/a3kjK6/O1AjlLyZBet8kMO5aGNe9dEAQJCSHbm/bCmSBhtiM/ouCZq9MDQyO8p8iyNmkiNsE+idTbmm+a8SCdfW1xClOS5I8+0296vLwvGry/QlVpnsFrNwmkEpwtQYgG2ZY/gSL0R31qO4YZDa96NSMZ9h4TX1TnY=
+	t=1719311132; cv=none; b=LbNWYaQK04y2fJCCp3IADKolsNE4KeWFcfdLVUIJbOqa48wfB/jxhJq14Wo/wLDbamEkXxI0HzYmpkdO+MTtruNaQjjkrnJRwS4QUpTZK+UO9QzJNa9WJdi+RhyXe6UMZylkynBFEMoPvl+zadQB4DWQ8NjsLu5UynUUDKZIphY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719310762; c=relaxed/simple;
-	bh=8OPDctfvuC9BxpIbhEk7MshqYOmXZXxn59puCcy8xCI=;
+	s=arc-20240116; t=1719311132; c=relaxed/simple;
+	bh=BtjWR+gEmc49VtSTIaCGRyr5H0C8Qccd3WQsIc/9xUo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KoG320YS92ljLBzdHcraZ4tLK+exT+lIMSY5qHCfly8V6P02J0//B4zOr42vGiv97zLTvZJKJZ2lHItsDzbIvwCVxW28T5myNJEMYzYrY33YYyAjGdBGkssoiJFNqfJyMY1ZlE7Jo1VHNBL1we+RKClKehx/8KgkWwOYQOozyJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=L/qxmsN9; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ec6635aa43so14162321fa.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 03:19:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1719310759; x=1719915559; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=e4j7Av8Nq59GpAFUJYmcgApSr33u/5sSai5UJj1fYMw=;
-        b=L/qxmsN9iWN1FoO6iZWD4DzOaHUfNedNaAiAY/o2GHmDKJuFHeiaEjslPDYLF380fE
-         CgROcxUX5ixrHaCULnWPF7zpJ+jjSCoPJbIccH0LqdG4SyqMl/Mshv/z3s0EFQ9YnuVT
-         zH1TggYqamWz4U6xSRDVihzWWx1IpdKOOMmMz6gfwy0sbQU1jE/ptRZALGH8sUdW1K1A
-         5Xfk0DVje1oKiMZp6lqnp+WXmUh8+7L1r4WwF8eV0/xq/ZEleGG4+cel8OSMTW5OBXes
-         FgK/KprpkSEUELdymOcyvzVqVPpOVxI+9NMR+JldpBqqUPWyRAP3j59V541uF3ZQBSfv
-         6p7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719310759; x=1719915559;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e4j7Av8Nq59GpAFUJYmcgApSr33u/5sSai5UJj1fYMw=;
-        b=KYUGzj+TqXyX2CoukLfV8fJlf5LrUiYhLX2m2P97GjpdstRTUQEoI+Fg595JgtKgac
-         cm209n50gVEdL41dQ5gE6ObtqGNVlLlwwa93GRsuuwxsMW7ZNWvWw+cG8QuPWNY0IXZX
-         8JBKHYWBAb8vtkwS871561uB+gcBkbMFIL2No7pEtMdy/nTbcQz8/pizKy/q3PuZCr/i
-         jFEC/oqqOOO2cMhhYNktD8Rfk7L9VRkZQN8L6lp06Zdo1qUkCeZ5ZjNIgu7gU6HJLCTx
-         VPy50tmImx0p2Jh5N80sxDV/s3PqEGoP0/AMn4Eg0cACE4vzL74byk6fHtFCB8nicJQY
-         qYPA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFmryPwXYhv2/dgzHDeL9fxMrfPFRwTkj9qojShnPG9pRL+A6Un+Kp0T3Oe8yXzpozug1+RsROtVpLlDRP37mitgkYDXQfpr9pgA==
-X-Gm-Message-State: AOJu0Yw2uLfdbBmfJNMMlSseuPsOBhzySFlF2ci8wcyqsaN+IXycWdbk
-	V75debCeL6cuibXOU8ikIOHyDMI/sDJuiyG75G5/GoNE59jVHXT8SATXfNSoQoA=
-X-Google-Smtp-Source: AGHT+IHW4ivi9v86O85GxGwVRU8LzjOJfbe+LC73TyIg8LE7Mbff3CySVIzVfV1boeAtnfeBaCShnQ==
-X-Received: by 2002:a2e:9495:0:b0:2ec:440c:4e1c with SMTP id 38308e7fff4ca-2ec57967bcemr43276741fa.11.1719310758595;
-        Tue, 25 Jun 2024 03:19:18 -0700 (PDT)
-Received: from localhost ([185.71.170.219])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424817a9f11sm164326695e9.18.2024.06.25.03.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jun 2024 03:19:18 -0700 (PDT)
-Date: Tue, 25 Jun 2024 12:19:16 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, 
-	Conor Dooley <conor.dooley@microchip.com>, Anup Patel <apatel@ventanamicro.com>, 
-	Yong-Xuan Wang <yongxuan.wang@sifive.com>, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	kvm-riscv@lists.infradead.org, kvm@vger.kernel.org, greentime.hu@sifive.com, 
-	vincent.chen@sifive.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] dt-bindings: riscv: Add Svade and Svadu Entries
-Message-ID: <20240625-6fb62d7ea4b9f6106e27e149@orel>
-References: <CAK9=C2XH7-RdVpojX8GNW-WFTyChW=sTOWs8_kHgsjiFYwzg+g@mail.gmail.com>
- <40a7d568-3855-48fb-a73c-339e1790f12f@ghiti.fr>
- <20240621-viewless-mural-f5992a247992@wendy>
- <edcd3957-0720-4ab4-bdda-58752304a53a@ghiti.fr>
- <20240621-9bf9365533a2f8f97cbf1f5e@orel>
- <20240621-glutton-platonic-2ec41021b81b@spud>
- <20240621-a56e848050ebbf1f7394e51f@orel>
- <20240621-surging-flounder-58a653747e1d@spud>
- <20240621-8422c24612ae40600f349f7c@orel>
- <20240622-stride-unworn-6e3270a326e5@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jIzprul97qvN85gTVi+tqkVGo8Di2x2S/ZD5zy8Yl2AyyuM27t6e2Gtu78E2NsOd4LlqJJRoEoR4MqoTll/DRQrPnOhMb9/FKg6PZD28oDUXl5DMOQhSmCG+VRc3IijFKNeBW8ZK7ZmGsM48vpBazYVn8uulG0V4oF5zeU07f/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sV06yI4F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57878C32781;
+	Tue, 25 Jun 2024 10:25:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719311131;
+	bh=BtjWR+gEmc49VtSTIaCGRyr5H0C8Qccd3WQsIc/9xUo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sV06yI4F3RaAzDzqwrxh6gxUv8cK+xRlvTpZIbM/sOGaVNSuodtK/oe5ge9iVOteP
+	 GTxxIAgW8EbUGv0gXDsw/J+Jonpt/WC2Gy+OqWpIoKUl6Ua8WKkhdiXz9hPLxVMu+o
+	 cct/GUbgBihxs16kVJjebCJDMBRA8dUX2OAmhAgXmcNlhnvNci8GUmXJYcv0GDRPtg
+	 IxmQy1ZTFXDXXrFkj6sX1D0/TDABypZQx3CEY2aswzvo7d4y3BA/TsNKNv+/z4hFcs
+	 ILMG4ciMdK16vZWcBKjhQ/i865dSTNzInqL8/nap4BKNGfYmqhe3BqgQlozm5CZMLo
+	 ACJKjip0Nr1BQ==
+Date: Tue, 25 Jun 2024 11:25:24 +0100
+From: Mark Brown <broonie@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
+	gustavoars@kernel.org, henryc.chen@mediatek.com,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com,
+	wenst@chromium.org, amergnat@baylibre.com, djakov@kernel.org
+Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
+Message-ID: <57cf8f9f-4320-4c55-a9f8-a4c1facabfe8@sirena.org.uk>
+References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
+ <f7b4cd98-1acf-4f6b-a7e0-57419abadba1@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="HtLS8F6gqzyPaPXW"
+Content-Disposition: inline
+In-Reply-To: <f7b4cd98-1acf-4f6b-a7e0-57419abadba1@collabora.com>
+X-Cookie: Results vary by individual.
+
+
+--HtLS8F6gqzyPaPXW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240622-stride-unworn-6e3270a326e5@spud>
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 22, 2024 at 01:01:30PM GMT, Conor Dooley wrote:
-> On Fri, Jun 21, 2024 at 05:08:01PM +0200, Andrew Jones wrote:
-> > On Fri, Jun 21, 2024 at 03:58:18PM GMT, Conor Dooley wrote:
-> > > On Fri, Jun 21, 2024 at 04:52:09PM +0200, Andrew Jones wrote:
-> > > > On Fri, Jun 21, 2024 at 03:04:47PM GMT, Conor Dooley wrote:
-> > > > > On Fri, Jun 21, 2024 at 03:15:10PM +0200, Andrew Jones wrote:
-> > > > > > On Fri, Jun 21, 2024 at 02:42:15PM GMT, Alexandre Ghiti wrote:
-> > > 
-> > > > > > I understand the concern; old SBI implementations will leave svadu in the
-> > > > > > DT but not actually enable it. Then, since svade may not be in the DT if
-> > > > > > the platform doesn't support it or it was left out on purpose, Linux will
-> > > > > > only see svadu and get unexpected exceptions. This is something we could
-> > > > > > force easily with QEMU and an SBI implementation which doesn't do anything
-> > > > > > for svadu. I hope vendors of real platforms, which typically provide their
-> > > > > > own firmware and DTs, would get this right, though, especially since Linux
-> > > > > > should fail fast in their testing when they get it wrong.
-> > > > > 
-> > > > > I'll admit, I wasn't really thinking here about something like QEMU that
-> > > > > puts extensions into the dtb before their exact meanings are decided
-> > > > > upon. I almost only ever think about "real" systems, and in those cases
-> > > > > I would expect that if you can update the representation of the hardware
-> > > > > provided to (or by the firmware to Linux) with new properties, then updating
-> > > > > the firmware itself should be possible.
-> > > > > 
-> > > > > Does QEMU have the this exact problem at the moment? I know it puts
-> > > > > Svadu in the max cpu, but does it enable the behaviour by default, even
-> > > > > without the SBI implementation asking for it?
-> > > > 
-> > > > Yes, because QEMU has done hardware A/D updating since it first started
-> > > > supporting riscv, which means it did svadu when neither svadu nor svade
-> > > > were in the DT. The "fix" for that was to ensure we have svadu and !svade
-> > > > by default, which means we've perfectly realized Alexandre's concern...
-> > > > We should be able to change the named cpu types that don't support svadu
-> > > > to only have svade in their DTs, since that would actually be fixing those
-> > > > cpu types, but we'll need to discuss how to proceed with the generic cpu
-> > > > types like 'max'.
-> > > 
-> > > Correct me please, since I think I am misunderstanding: At the moment
-> > > QEMU does A/D updating whether or not the SBI implantation asks for it,
-> > > with the max CPU. The SBI implementation doesn't understand Svadu and
-> > > won't strip it. The kernel will get a DT with Svadu in it, but Svadu will
-> > > be enabled, so it is not a problem.
-> > 
-> > Oh, of course you're right! I managed to reverse things some odd number of
-> > times (more than once!) in my head and ended up backwards...
-> 
-> I mean, I've been really confused about this whole thing the entire
-> time, so ye..
-> 
-> Speaking of QEMU, what happens if I try to turn on svade and svadu in
-> QEMU? It looks like there's some handling of it that does things
-> conditionally based !svade && svade, but I couldn't tell if it would do
-> what we are describing in this thread.
+On Tue, Jun 25, 2024 at 10:32:30AM +0200, AngeloGioacchino Del Regno wrote:
 
-It'll use exception mode, but {m,h}envcfg.ADUE is still provided to allow
-software to switch to hardware updating when FWFT exists. So I think we're
-good to go.
+> Mark, I assume that this series is ok from your perspective, since this h=
+as got
+> your acks and r-b -- but in order to pick the soc/mediatek stuff I need a=
+ll of
+> the dependent bindings to be in as well .. and this includes the regulato=
+r one!
+>=20
+> The main issue here is that the main soc/mediatek dvfsrc binding
+> dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
+> does use the others, so I can't pick this one without the others being pr=
+esent
+> or the validation obviously fails.
+>=20
+> So... gentle ping :-)
 
-Thanks,
-drew
+I can't tell what you want from me here.
+
+--HtLS8F6gqzyPaPXW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ6mxMACgkQJNaLcl1U
+h9BI1Af7BjpHZjz2dcjVv0813GPAdnKjHAGhVhRvlIhqpTpKTUhV9kb4NaCW3WA8
+WcTOuGzqXUetqxmyeIWpMFtNVeqdieIIuUfdUlMGWpTFKs+B+TEDi62ErAUlWCNd
+3xQZMy9y9glGhigclS7EAFIcMF8eRSp/rNX0B9UD8fi9IAJMMeqBqojRam0XfAII
+UT4XL/p1HG9l16q8Oo3VMAaTCh3kkgVNp/uTWMkZzeccIGDAUS0paMDbGCWnCjiH
+A5hI1uZsXMJx6TtJf2Fkoxry7a4PleBULaXS0HM92gWwpYdqINQsFr0bn9/Lw1oc
+gPxF2FlxpRXTYEQn++SXScXX8tJVAw==
+=emPb
+-----END PGP SIGNATURE-----
+
+--HtLS8F6gqzyPaPXW--
 
