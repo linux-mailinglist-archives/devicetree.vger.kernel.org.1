@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-79804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E63916E16
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:26:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04223916E1E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:28:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 215C61F28077
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:26:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 344831C21188
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5CF172790;
-	Tue, 25 Jun 2024 16:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C41172BB5;
+	Tue, 25 Jun 2024 16:28:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JkB/j2V2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CJXlPnm4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DBA172BB5;
-	Tue, 25 Jun 2024 16:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688A016FF59;
+	Tue, 25 Jun 2024 16:28:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719332801; cv=none; b=jiWLIpAlWlR/pVXyLzrhDqsgJ3i4n4u09q0O/Jtm4GUiVzALU11pnkahLn8wxbm0W5W8CsbeTf57epuWQvCYlF3jPpDov3YkluklAGCO0RFcJaZXoDnlss1JODS4hZ/N8BCPRsfnfHo2hbTLn+JqXBc6UfHAUuBYeqMmf1wRlkU=
+	t=1719332904; cv=none; b=DAFFulxCoZeimdApvnIZ6nNL40FaC5wltBuZ1GNMJchWcNQ2/M729jlpoBWciYRUo2DlqTKEQLU25/wJInj6GT/+DiomLu36BajwWiMEyrTNFK/4EbbEycl2yWaVr/MT12yFA9WJN/q/GcDyM0rCueRV2VGj+hxR+fgsniVHGlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719332801; c=relaxed/simple;
-	bh=k4FmAIrTJcBCRz+b2v73feqo0jByBWdFWEdwWR0gKjY=;
+	s=arc-20240116; t=1719332904; c=relaxed/simple;
+	bh=lAIs47e6ByHYRlE7lmHPomaMZB8KF4axXzIUJBIBYLo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aRrBUvKYy4bTpMOr3ZDInUw5Xr0Pm9nVQIKh3PRIVjr4g9XueVxlTMqwR2zXyYsUho5i9ux8sB/MZXyo25coR7TZQX3XKo67JjiDGsJXU5J5pYmH9z4Sf3SNKhPRKAsCaWWiJA0X+UsWNwAh8DcLIsP4ypONh+nrYLHaTFNvr90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JkB/j2V2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93FCEC32781;
-	Tue, 25 Jun 2024 16:26:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fbgLlBPsInzYmS3/NB8fYe+ouRH4KNeQfNRgb1oUSsHWpp/oW3L/TCnHEjPzOjqIH/vcX+opqnpZaWuuBA0ALr5pHaasypyXwQpwxk0BI999XbGzmhcD99QQCNu3hzBCeqdfWWRuRfexgFGGUl5DvO91BPllBB390PQe0tJ7QfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CJXlPnm4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E10C32781;
+	Tue, 25 Jun 2024 16:28:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719332801;
-	bh=k4FmAIrTJcBCRz+b2v73feqo0jByBWdFWEdwWR0gKjY=;
+	s=k20201202; t=1719332903;
+	bh=lAIs47e6ByHYRlE7lmHPomaMZB8KF4axXzIUJBIBYLo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JkB/j2V2bOXzEZqM4yTCc1N7D7VxaouKFlBiM74XLTaFihJxLpo9efylmQ7DfyFI0
-	 Elzj3g88aQm7az0dEsH/a1P6BRuezr3MEgux7NM5P5o7Pruh3JR1Ams/ayWZ5BUB4/
-	 F63DBf3RvAQoJ/SABUy+nRSbGgiORlvWaBycVPsA4XrWqPVASD8IQR3TleVLTUsHgW
-	 oEMvudWyi9zK1EVxgfMeATVwnMlGxKlkDf5QetU9MIGCq/VUhdzgtEeXLnlEdc/R0T
-	 fLhzpL55DHfP64PXQJQCP7GZ0dyw6MwUqb4RZ6t7ZCAFwYWUyBKjSKc/DAECR3hvez
-	 PXKdsLVHxUEsg==
-Date: Tue, 25 Jun 2024 17:26:36 +0100
+	b=CJXlPnm4ygfkvjOnFFFCYnppxIXN6d9PYrUKRRwL9RmzlRbSpGiwCjgzCY7TQJ5bm
+	 kqn8MOaRckqZHSAaDFB8Zrra+W1lq/dWU1/YLFFlsOtuNKubErqQ5tS8P1ixEYd6e1
+	 xq3HYeDY/gZZAqRNOjTHH2bJWK/ATlAk6tfq8x4CGrVHyh8RaIQ+7WDcVeFbqFpYL5
+	 G7GkhdWv0tucl7PX20VmLcjQtL4DnQZa5V66fshWOhiRuwYyuY2JPgKji51YOMvU5C
+	 bB0jWlbFHfDEPYJRfglQ0s5in46GgN9meIXPgL9czaf4abi7GfZbYrFJ88wTbDobvv
+	 wQjL44nbEuaMA==
+Date: Tue, 25 Jun 2024 17:28:18 +0100
 From: Conor Dooley <conor@kernel.org>
-To: daire.mcnamara@microchip.com
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com
-Subject: Re: [PATCH v5 2/3] PCI: microchip: Fix inbound address translation
- tables
-Message-ID: <20240625-charter-hardcover-36e9a2739cd8@spud>
-References: <20240625123845.3747764-1-daire.mcnamara@microchip.com>
- <20240625123845.3747764-3-daire.mcnamara@microchip.com>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+	p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v2 08/12] dt-bindings: i2c: renesas,riic: Document the
+ R9A08G045 support
+Message-ID: <20240625-agreement-harpist-f3b31646da40@spud>
+References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240625121358.590547-9-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,55 +64,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DjaEz/ZbS4TcTu5m"
+	protocol="application/pgp-signature"; boundary="onrf8GZp/AhiDHmN"
 Content-Disposition: inline
-In-Reply-To: <20240625123845.3747764-3-daire.mcnamara@microchip.com>
+In-Reply-To: <20240625121358.590547-9-claudiu.beznea.uj@bp.renesas.com>
 
 
---DjaEz/ZbS4TcTu5m
+--onrf8GZp/AhiDHmN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 25, 2024 at 01:38:44PM +0100, daire.mcnamara@microchip.com wrot=
-e:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
+On Tue, Jun 25, 2024 at 03:13:54PM +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >=20
-> On Microchip PolarFire SoC the PCIe Root Port can be behind one of three
-> general purpose Fabric Interface Controller (FIC) buses that encapsulates
-> an AXI-S bus. Depending on which FIC(s) the Root Port is connected
-> through to CPU space, and what address translation is done by that FIC,
-> the Root Port driver's inbound address translation may vary.
+> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible with
+> the version available on Renesas RZ/V2H (R9A09G075).
 >=20
-> For all current supported designs and all future expected designs,
-> inbound address translation done by a FIC on PolarFire SoC varies
-> depending on whether PolarFire SoC in operating in dma-coherent mode or
-> dma-noncoherent mode.
->=20
-> The setup of the outbound address translation tables in the root port
-> driver only needs to handle these two cases.
->=20
-> Setup the inbound address translation tables to one of two address
-> translations, depending on whether the rootport is marked as dma-coherent=
- or
-> dma-noncoherent.
->=20
-> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe contro=
-ller driver")
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---DjaEz/ZbS4TcTu5m
+--onrf8GZp/AhiDHmN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrvvAAKCRB4tDGHoIJi
-0j+MAQDkxF2nwyRlgf9MjhSnnVS8WtmKLlm6bY1IaYNMFB96qgD9Ep4rd4/dRqvj
-ICIMqDSrZqRmjvPAfcOsawdwwrcGSgw=
-=VsVS
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrwIgAKCRB4tDGHoIJi
+0m5HAPoD67GiW5fhQfJmviBDT7WelIDnDqFiU973Bes4rt/6GQEA+fR4hnwPzuWX
+JLyNSh+JtY1uL5zYDybaiIfMBdJ6Ggk=
+=RU4D
 -----END PGP SIGNATURE-----
 
---DjaEz/ZbS4TcTu5m--
+--onrf8GZp/AhiDHmN--
 
