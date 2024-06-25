@@ -1,201 +1,181 @@
-Return-Path: <devicetree+bounces-79636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8C39161DD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 11:06:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 196859161F2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 11:09:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 740E51C21144
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:06:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A0D01F25EF8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA70148FEC;
-	Tue, 25 Jun 2024 09:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E7F1494BF;
+	Tue, 25 Jun 2024 09:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iKzXMMww"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CWfaSLo1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A632146587;
-	Tue, 25 Jun 2024 09:06:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C8381494A4;
+	Tue, 25 Jun 2024 09:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719306371; cv=none; b=pJgqRkBvalf1JBrPHzLX75MDUzc7qy4mk8xVXKjoB9iSLWYr0hTWHHmfO5Sm7arcUpFB/reQfh9HDjv/MwO29FwKQ0536zlFhLtTRttjGiCF9VR//fm/pnK4t6z4A5xrq2GuVqkb1zG+X2fg5g/eIOnx5U2zjgGbUa4Q1NeiCUI=
+	t=1719306491; cv=none; b=k+TiUvcp9ytIJ8sPwzVxQWdvf9ju9tIyQGL4nZZuIKWgD9TmfELsZTrWNDe9BJh8uIZZfS0yE33MTrOU7qjlosHmuVadDqOhPnGRjRPZtPyEj635lEU3IS+NxY3DArOGspzJoyR5QQIOQzVIbvwLgV+ihVXOXL5IfCBztE5/G2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719306371; c=relaxed/simple;
-	bh=Knfy7pk5oCoyG732I22F7r6g+Du9zIivLnWi+ONxeQg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uCPIBZsHUR259vPA2WpCYfSE+2FjqyEYKWXHyaEffa454hoRwl+fNtr5i8R3zA9oDeUqEX+ZQFt6tEcN1NCRDzKwWzcItvdRCc+b97FTWizJYUz4Uy4qC4pK7gYgaAY5K19H4QsnFQ3YUD4tEKxLfQVMRsQa/1sA9vDBZo6T+9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iKzXMMww; arc=none smtp.client-ip=209.85.216.42
+	s=arc-20240116; t=1719306491; c=relaxed/simple;
+	bh=SEWBQUoZ7P8jkFskPK7Gv4C8r4RGvfOAgyM1UkPx54g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UNWsMrQIm5qp2GhhH2iOocwouKj9Y689mM9GXwr2XkIXSC80BwBr6zUd6gX1ZFwSvaWuOvy2/aDPoRMqtD/YS1AJQxpdfgRP6elAijRbCxSMDR85I/aqj12WbUzCdNWgRU/FWPd0PBalzLMLh+CIctmerlJ//nqBfNJ0Mb9z5Hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CWfaSLo1; arc=none smtp.client-ip=209.85.222.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2c825f0b381so2766269a91.1;
-        Tue, 25 Jun 2024 02:06:10 -0700 (PDT)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-80f551808e0so1391055241.1;
+        Tue, 25 Jun 2024 02:08:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719306369; x=1719911169; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8iJpu43SeKgD/NY+VN2xJJpKQ81U6RpzTSBbiliY1DE=;
-        b=iKzXMMww3N61C40BqBWh8JQnzpRu8i0iXu2XOfqIdYdvo/osjjr3PI55trfo0z8bn9
-         Lcj0UkbKlhPCFE8iR/Ygo9DjKJwDehzAFzIQwmsFS+D8Q9BBMhPGsbAcwxS2vJSXpeXU
-         8x0QlcjAD0NKkcPujgO3FnG1AtVuZxy9kWj7BWjxs/4HmWkJBf9JUxMvEI+lNY+s701l
-         XMSRqb3AAlifBSyqmuK13rd1Nj2PmwhKUDCo0XhCl6uzwk0iu77KHcY7083fAXvgM+0b
-         qeN3Aq9zTFjQk3ZcjpOxUlp+tbmfaYrQ8QZiHmwsPHMvyktixZBCNtHX5ZowhuUGXfL2
-         1wng==
+        d=gmail.com; s=20230601; t=1719306488; x=1719911288; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0vB6dv/uw7lUtFFyv1iClQz2bRsrGe4g7MjZsks8EP0=;
+        b=CWfaSLo19GjERcSCA49sRECTfGd7bG9/Wqkgj/RrbyLN+LWAy2OEuIoIBfqTn09iCh
+         TnsfgAvP4QOiP6qgoGk/OO8Ak0j0xKpLT8gQisCHHAqfMpl0/WDmWcOcgtVU7xfac7k/
+         hT9bajVG5r9ZWTXNCPFAq7KotcsrdpeAgRSbYx6Qc8XbHoga+ys61j97EIAqXqwPHHBQ
+         +Rbl4frhzXssfFkvqaMmEKtZq+eW3C1bW2fQp2CtfS8aEO69Do8oJcn/+Wes9895WZhk
+         JDs6rDrPcKj243I9q+IKRMen4pJKLUYCVCM6ql/0UR231HFKcqVewWdQ7pnOZwDc5ovn
+         uLhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719306369; x=1719911169;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8iJpu43SeKgD/NY+VN2xJJpKQ81U6RpzTSBbiliY1DE=;
-        b=hqMQMgshFcOWfo0ZRVRmqfog9eMM5gKWHNs1BowUNBjtCLYr6YHTCJj8NWztVjLZdo
-         KlF8/pg4ftGP+8um10c+EoDkVW8bBmeM5xLk7qUfB7c+lBtEUmnh57WG5bENN41RF1Aj
-         42y5Et39ScpARdM/HbUZWrluHAx9OPqp/UKzu08r3rvmaLCu834xcrVqT0ge9XcYb6uX
-         OQ6eqzTf1u5G6uNCjBxYs3i5waxq2fzS/H0FHWiny6qALcEpH/6Qr+ADPFYb+iTDgImX
-         fz+rjdvxgizCkx9P089B8Sa6esM2dw6pgPvZwXsfFxBU/AqQorkoxEAtB+ar+oz+OqLT
-         +GSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUqtgo87dhXdh2El+84h1JDMwRZeXMp4offYREZImTRl9jzlUs+XLcjShRMHMQJkjAkC/phLHIPndJ7uC5P03fMSdaOrCNMPwGtzqFyMyaZK3D0YS5YQfwNNnh/kv/8k637xGJbmmTj
-X-Gm-Message-State: AOJu0YxfBxcuyG/iPW9Q40tbXnXW2JYZXvR4tpdFUz6zCQq0ElfsZdZ1
-	GodpZOUnTBoKHT4KNTgZvsoayizbllCNknnYCLwO9lpC9PNb+o7NHxUqUefRe4gQ5ptMNP8=
-X-Google-Smtp-Source: AGHT+IG+BfpVKq98hBn15FXBDPyS9ohXVtM3GJzdP15+BiWM1MXbjiQzR08Usoj/c860KnLf3bDtQA==
-X-Received: by 2002:a17:90b:2345:b0:2c2:d6cf:f4d2 with SMTP id 98e67ed59e1d1-2c85051a295mr6338859a91.26.1719306369475;
-        Tue, 25 Jun 2024 02:06:09 -0700 (PDT)
-Received: from [100.90.230.39] ([45.32.86.188])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c819a7a557sm8289100a91.15.2024.06.25.02.06.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jun 2024 02:06:08 -0700 (PDT)
-Message-ID: <b704f7a4-7eca-4b49-b96e-8414b52190b1@gmail.com>
-Date: Tue, 25 Jun 2024 17:05:58 +0800
+        d=1e100.net; s=20230601; t=1719306488; x=1719911288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0vB6dv/uw7lUtFFyv1iClQz2bRsrGe4g7MjZsks8EP0=;
+        b=EZ4scuOd/IZPDXwuBj2qZiqs+k7Wce9W33Ev9/4hnEp429fpQPEQr0tJW2gUrUGYE0
+         DfCQd2vwRj6KeOAkywGduDt+zg5PZIWcCHuxDumLXMtCnpVxNiZ7FkxG+QQHWcKkLf5V
+         kanZEYWvltv/G2ucWZcLUW7OTj6MkjmpExaA3BRvrTkZQKwYqnRgQLgEfcb4LeSCtNZn
+         tejK8vPTFQVcWXp9iOfMfqQtsuDh8GDqkU7z9jWcws7Z8DXYxbioZ3+bi1rEelnOlO0j
+         vJUo+b0TZKoWDssN42kPNeh+XFGmsHbeOGavuKu8bX/A57EYW2dXVJifvcth9QE+k1Aj
+         zZ5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWEt4K6yqBXqid6UFfr+thIzktPqJk24/pS4INTosgC/2NrEGCJVnT5SVtw8oIpr+8GxvDTNi5ZmlMxnp36Wc6thhjbsqHtHpED9K+rbSEjMgZwTlTFseetGw4/8Z2Vv809PuwV+xt7n/Ju9mdFSu9Qiicv0FcbzHwGtSkMSy1EJLsa17dZzwL6QkBq3bs0C64ly1KLlRHPvaeTlViLFHDcSulpWgXi
+X-Gm-Message-State: AOJu0YzZcHQ75dhDW31Mu73J+MkyKCWqXrJnC/vTAtGwz508rdEjgTGy
+	Xp+BYW3vyGro3ADHkhqK2uKk/bZtw2bKUV8mkDrjQUW6c9KjvyrQ+gWZHtY0iPLNFn1Fgwwy0zh
+	p4mQYHb38zhmt4AqyBO+AuFR5Rzo=
+X-Google-Smtp-Source: AGHT+IEPkvu7Ma8dMRJoojx4z4jjbeIyB9PnWNm5uMVryrc0YvBpEpJ9eNGjDXhSynwmmXdXhSgkvNiJZIzG1Vd4uyQ=
+X-Received: by 2002:a05:6122:7ce:b0:4ef:5db8:fe15 with SMTP id
+ 71dfb90a1353d-4ef6d829d18mr5835586e0c.9.1719306488344; Tue, 25 Jun 2024
+ 02:08:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, Conor Dooley <conor@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com>
- <20240625-add-tyhx-hx9023s-sensor-driver-v7-2-b1d65b221811@gmail.com>
- <d77a4777-d282-4004-895a-7809abf68130@kernel.org>
-Content-Language: en-US
-From: Yasin Lee <yasin.lee.x@gmail.com>
-In-Reply-To: <d77a4777-d282-4004-895a-7809abf68130@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240624153229.68882-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240624153229.68882-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdU0r+B_Jmh7E6sopRbfzzX7DtZKpY=Xte2vLDC-ORwdVA@mail.gmail.com>
+ <CA+V-a8uhb1Visg9jUV-Te3ZHkfdRonM08s823RYa6k=KAHYgQw@mail.gmail.com> <CAMuHMdUkcJFv3JRUSpgEd4_zTd9dxD9e96JjxSco4tNU-rv6wA@mail.gmail.com>
+In-Reply-To: <CAMuHMdUkcJFv3JRUSpgEd4_zTd9dxD9e96JjxSco4tNU-rv6wA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 25 Jun 2024 10:07:13 +0100
+Message-ID: <CA+V-a8vZyU+hpeaxWLUbZ5VA0K4S0wZV+XA8vhsebkSHDuzyZw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Geert,
 
-On 2024/6/25 13:48, Krzysztof Kozlowski wrote:
-> On 25/06/2024 04:15, Yasin Lee wrote:
->> A capacitive proximity sensor
->>
->> Acked-by: Conor Dooley <conor@kernel.org>
->> Acked-by: Jonathan Cameron <jic23@kernel.org>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> What? How did this happen? Where - provide lore links to prove it?
+On Tue, Jun 25, 2024 at 10:02=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
 >
-> NAK
+> Hi Prabhakar,
 >
-
-My mistake.  I will remove all of them.
-
-
->> Reported-by： "Rob Herring (Arm)" <robh@kernel.org>
-> No, drop.
-
-
-Got it.
-
-
+> On Tue, Jun 25, 2024 at 10:47=E2=80=AFAM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> > On Tue, Jun 25, 2024 at 7:57=E2=80=AFAM Geert Uytterhoeven <geert@linux=
+-m68k.org> wrote:
+> > > On Mon, Jun 24, 2024 at 5:33=E2=80=AFPM Prabhakar <prabhakar.csengg@g=
+mail.com> wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to t=
+hat
+> > > > of the R-Car Gen3, but it has some differences:
+> > > > - HS400 is not supported.
+> > > > - It supports the SD_IOVS bit to control the IO voltage level.
+> > > > - It supports fixed address mode.
+> > > >
+> > > > To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a0=
+9g057'
+> > > > compatible string is added.
+> > > >
+> > > > A 'vqmmc-regulator' object is introduced to handle the power enable=
+ (PWEN)
+> > > > and voltage level switching for the SD/MMC.
+> > > >
+> > > > Additionally, the 'renesas,sdhi-use-internal-regulator' flag is int=
+roduced
+> > > > to indicate that an internal regulator is used instead of a
+> > > > GPIO-controlled regulator. This flag will help configure the intern=
+al
+> > > > regulator and avoid special handling when GPIO is used for voltage
+> > > > regulation instead of the SD_(IOVS/PWEN) pins.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
+om>
+> > > > ---
+> > > > v2->v3
+> > > > - Renamed vqmmc-r9a09g057-regulator object to vqmmc-regulator
+> > > > - Added regulator-compatible property for vqmmc-regulator
+> > > > - Added 'renesas,sdhi-use-internal-regulator' property
+> > >
+> > > Thanks for the update!
+> > >
+> > > > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > > @@ -204,6 +207,31 @@ allOf:
+> > > >          sectioned off to be run by a separate second clock source =
+to allow
+> > > >          the main core clock to be turned off to save power.
+> > > >
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        compatible:
+> > > > +          contains:
+> > > > +            const: renesas,sdhi-r9a09g057
+> > > > +    then:
+> > > > +      properties:
+> > > > +        renesas,sdhi-use-internal-regulator:
+> > > > +          $ref: /schemas/types.yaml#/definitions/flag
+> > > > +          description:
+> > > > +            Flag to indicate internal regulator is being used inst=
+ead of GPIO regulator.
+> > >
+> > > Do you really need this?
+> > For cases where the status is okay for the regulator but still the
+> > user has phandle for the GPIO regulator or shall I drop this case?
 >
->> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+> I think that case can be ignored.
+> The regulator subnode would be disabled by default in the .dtsi, right?
 >
->> +
->> +patternProperties:
->> +  "^channel@[0-4]$":
->> +    $ref: /schemas/iio/adc/adc.yaml
->> +    type: object
->> +
->> +    properties:
->> +      reg:
->> +        minimum: 0
->> +        maximum: 4
->> +        description: The channel number.
->> +
->> +      single-channel: true
->> +
->> +      diff-channels: true
->> +
->> +    oneOf:
->> +      - required:
->> +          - single-channel
->> +      - required:
->> +          - diff-channels
->> +
->> +    required:
->> +      - reg
-> ... and now you should see that you duplicated adc.yaml. This should be
-> just:
+Yes, agreed.
+
+> > > The status of the regulator subnode already indicates this.
+> > You mean to use of_device_is_available() ?
 >
-> +patternProperties:
-> +  "^channel@[0-4]$":
-> +    $ref: /schemas/iio/adc/adc.yaml
-> +    type: object
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 4
-> +        description: The channel number.
+> Exactly. I.e. only register the regulator when it is enabled.
 >
->
->
-> Best regards,
-> Krzysztof
+Okay I'll use of_device_is_available() and drop the
+'renesas,sdhi-use-internal-regulator' property.
 
-
-Hi Krzysztof,
-
-Thanks for your reply.
-
-I have done the verification. "single-channel: true"and "diff-channels: 
-true" are necessary. Removing them will cause dt_binding_check to report 
-an error. Only oneOf can be removed. The de-duplicated code is as follows:
-
-patternProperties:
-   "^channel@[0-4]$":
-     $ref: /schemas/iio/adc/adc.yaml
-     type: object
-     unevaluatedProperties: false
-
-     properties:
-       reg:
-         minimum: 0
-         maximum: 4
-         description: The channel number.
-
-       single-channel: true
-
-       diff-channels: true
-
-     required:
-       - reg
-
-     additionalProperties: false
-
-
-Best regards,
-
-Yasin
-
+Cheers,
+Prabhakar
 
