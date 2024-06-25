@@ -1,222 +1,176 @@
-Return-Path: <devicetree+bounces-79810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93A7916E54
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1E6916E55
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:44:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDAB51C22163
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:44:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E05C1C223F6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1327C175567;
-	Tue, 25 Jun 2024 16:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86AEB175570;
+	Tue, 25 Jun 2024 16:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JghGX+/U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FA9174EC6
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 16:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F416174EC6;
+	Tue, 25 Jun 2024 16:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719333855; cv=none; b=UhlSBcbDcwdF9FEFOVqBX0DHcXrwGc/cJ+bExuNWT9QXfKlOzzaYsW08zCtTrIvuagB0K6Wa+2no8od2tQ6rv4QkFhFsthB7UBhAoI4czCCkviGYEujhByF+/TZ6N+JuR2GwC+fZfRaM0i5j5uf9Vu26YCH/9Af3MDc6i9AotVI=
+	t=1719333857; cv=none; b=NWBpRgvr8hW0GHhbvzASNjBj7u4mI0k6EdZTBzrOf/lhFlK/aH3xIgzw4dCCpydgOWPIv/W2ZPx7FAHb3X4WcDStlTJa4UkLBSNbrg+2uvISb6bkX8D2jrczPcUVUQCdwpwxeF+Ah/Mo3vguQJ+m8j0DFq7jnlIc/WkwH+Wk/9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719333855; c=relaxed/simple;
-	bh=nKrl7sM93O9EWrHximZQSUQ8Bl3TAr6+dKdYtNySfSE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XTHgQYzTVUZOdslhZBkB8jEz0YvQkPtDtT/lNCVgMX+u4DHm6RYVcpChp1s47jqOrimm3MsDe6uONEbp1zhskzGMSeMbPejvzGMfjiAnjKT0lUXS1OkgowOEbTnCAYc8KVTJBcfW14wCUd2KNF2sfaJnIrSPOylPMh2SpRUhrfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-	by ns.iliad.fr (Postfix) with ESMTP id 3729B20BAD;
-	Tue, 25 Jun 2024 18:38:34 +0200 (CEST)
-Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
-	by ns.iliad.fr (Postfix) with ESMTP id 23EF520757;
-	Tue, 25 Jun 2024 18:38:34 +0200 (CEST)
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Date: Tue, 25 Jun 2024 18:38:13 +0200
-Subject: [PATCH v2 2/2] drm/bridge: add support for TI TDP158
+	s=arc-20240116; t=1719333857; c=relaxed/simple;
+	bh=nJLIEHYA4IU5CnCUPRio4UDoGJzwTZVSu8wm5K4Cqlg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sDCf9VwFpHoXXZPFL5ntWucPa+2M/8oI+aad34u2JbeFtd0KszZlYabUx0+OFLstGvhHNvNoGrINJhMZWWWEo5Tl3KIQgyVI+o9E5nJU80KM/Kui9a26MSR8E2RfRvX841Hvo+vHYeBWrdI32LJXnNfvdJwKc6k/lRCxBUQUVlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JghGX+/U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C65BC32781;
+	Tue, 25 Jun 2024 16:44:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719333857;
+	bh=nJLIEHYA4IU5CnCUPRio4UDoGJzwTZVSu8wm5K4Cqlg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JghGX+/UzSZZ9grhsU4TnutrVjZDSoPsy7SAf2wvic+MK21kl13z6o5UAUb+raiEz
+	 /foEtHGQZ5Su2iWL4nLIMqJr2anlULd3PHcIDt8od+bu2A+gsUffbxNC61eJrs0Aa2
+	 UJH6V0m2xOCN1VdhlMaAqIcZfj63X3FekS53UVfmSPv6AkKIjs52zAGsMy5ejwoXRm
+	 OMTtyuD05m8FujTRkvJztXkKB7S3SevAxnLj10UP6KtY+3Jz7ESvsbGmuWRSsx4Dy3
+	 c3Cmw2qVJi1dZF6/Q2YKvUv2vOD7S1PIfmaZqpUqbWyr36/MtKYpebgWoKY45hDWUN
+	 OLj6Uf4pLd6zA==
+Date: Tue, 25 Jun 2024 17:44:12 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	devicetree@vger.kernel.org,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: (subset) [PATCH RESEND v8 0/6] riscv: add initial support for
+ Canaan Kendryte K230
+Message-ID: <20240625-stumbling-fraternal-f7b0a9394d85@spud>
+References: <tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com>
+ <20240410-unwoven-march-299a9499f5f4@spud>
+ <20240619-hammock-drum-04bfc16a8ef6@spud>
+ <tencent_B61C9F718362BC42F61A8BF95A046BB44D09@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240625-tdp158-v2-2-a3b344707fa7@freebox.fr>
-References: <20240625-tdp158-v2-0-a3b344707fa7@freebox.fr>
-In-Reply-To: <20240625-tdp158-v2-0-a3b344707fa7@freebox.fr>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Marc Gonzalez <mgonzalez@freebox.fr>
-X-Mailer: b4 0.13.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TyYuCF/ln5ypIBL+"
+Content-Disposition: inline
+In-Reply-To: <tencent_B61C9F718362BC42F61A8BF95A046BB44D09@qq.com>
 
-The TI TDP158 is an AC-Coupled HDMI signal to TMDS Redriver supporting
-DVI 1.0 and HDMI 1.4b and 2.0b output signals.
 
-The default settings work fine for our use-case.
+--TyYuCF/ln5ypIBL+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- drivers/gpu/drm/bridge/Kconfig     |   6 +++
- drivers/gpu/drm/bridge/Makefile    |   1 +
- drivers/gpu/drm/bridge/ti-tdp158.c | 103 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 110 insertions(+)
+On Wed, Jun 26, 2024 at 12:04:22AM +0800, Yangyu Chen wrote:
+>=20
+>=20
+> > On Jun 19, 2024, at 18:45, Conor Dooley <conor@kernel.org> wrote:
+> >=20
+> > On Wed, Apr 10, 2024 at 11:30:25AM +0100, Conor Dooley wrote:
+> >> From: Conor Dooley <conor.dooley@microchip.com>
+> >>=20
+> >> On Mon, 08 Apr 2024 00:26:58 +0800, Yangyu Chen wrote:
+> >>> K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add initi=
+al
+> >>> support for it to allow more people to participate in building drivers
+> >>> to mainline for it.
+> >>>=20
+> >>> This kernel has been tested upon factory SDK [1] with
+> >>> k230_evb_only_linux_defconfig and patched mainline opensbi [2] to skip
+> >>> locked pmp and successfully booted to busybox on initrd with this log=
+ [3].
+> >>>=20
+> >>> [...]
+> >>=20
+> >> Applied to riscv-dt-for-next, thanks!
+> >>=20
+> >> [1/6] dt-bindings: riscv: Add T-HEAD C908 compatible
+> >>      https://git.kernel.org/conor/c/64cbc46bb854
+> >> [2/6] dt-bindings: add Canaan K230 boards compatible strings
+> >>      https://git.kernel.org/conor/c/b065da13ea9c
+> >> [3/6] dt-bindings: timer: Add Canaan K230 CLINT
+> >>      https://git.kernel.org/conor/c/b3ae796d0a4f
+> >> [4/6] dt-bindings: interrupt-controller: Add Canaan K230 PLIC
+> >>      https://git.kernel.org/conor/c/db54fda11b13
+> >> [5/6] riscv: dts: add initial canmv-k230 and k230-evb dts
+> >>      https://git.kernel.org/conor/c/5db2c4dc413e
+> >=20
+> > After some discussion on the k1 thread
+> > (https://lore.kernel.org/all/ZnEOU7D00J8Jzy-1@xhacker/, https://lore.ke=
+rnel.org/all/ZnA6pZLkI2StP8Hh@xhacker/)
+> > I am going to drop this series. It's not very useful in the current
+> > state and there's not really been any interest from people in getting
+> > the platform to a more complete state. Jisheng made some good points in
+> > the k1 thread about the missing clock controller stuff, and I think I'm
+> > going to make having basic things like clocks and where applicable
+> > resets and pinctrl the minimum requirement for the platforms I'm looking
+> > after.
+> >=20
+> > I've thrown these patches into my tree:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=
+=3Dk230-basic
+> >=20
+> > I do have one of these boards, but I'm fairly limited at the moment bet=
+ween
+> > the various linux-related and work demands on my time, so it's pretty
+> > unlikely that I'll do anything with it myself.
+> >=20
+>=20
+> OK. I understand about this. I do some initial support for K230
+> only for my evaluation purpose and propose this tree to provide
+> information for others to boot up a minimal kernel and also have
+> another patch [1] to have a USB node so we will able to run a distro
+> like Debian over NFS rootfs by USB ethernet which is on canmv k230
+> board.
+>=20
+> But I want to say I may have no time to do further driver development.
+> I have done this for my evaluation purpose to get some performance
+> metrics on real RVV chips for research usage since I=E2=80=99m a Ph.D.
+> student focused on computer architecture. I have to devote my time
+> to my research work.
 
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index c621be1a99a89..0859f85cb4b69 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -368,6 +368,12 @@ config DRM_TI_DLPC3433
- 	  It supports up to 720p resolution with 60 and 120 Hz refresh
- 	  rates.
- 
-+config DRM_TI_TDP158
-+	tristate "TI TDP158 HDMI/TMDS bridge"
-+	depends on OF
-+	help
-+	  Texas Instruments TDP158 HDMI/TMDS Bridge driver
-+
- config DRM_TI_TFP410
- 	tristate "TI TFP410 DVI/HDMI bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 7df87b582dca3..3daf803ce80b6 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -32,6 +32,7 @@ obj-$(CONFIG_DRM_I2C_ADV7511) += adv7511/
- obj-$(CONFIG_DRM_TI_DLPC3433) += ti-dlpc3433.o
- obj-$(CONFIG_DRM_TI_SN65DSI83) += ti-sn65dsi83.o
- obj-$(CONFIG_DRM_TI_SN65DSI86) += ti-sn65dsi86.o
-+obj-$(CONFIG_DRM_TI_TDP158) += ti-tdp158.o
- obj-$(CONFIG_DRM_TI_TFP410) += ti-tfp410.o
- obj-$(CONFIG_DRM_TI_TPD12S015) += ti-tpd12s015.o
- obj-$(CONFIG_DRM_NWL_MIPI_DSI) += nwl-dsi.o
-diff --git a/drivers/gpu/drm/bridge/ti-tdp158.c b/drivers/gpu/drm/bridge/ti-tdp158.c
-new file mode 100644
-index 0000000000000..b65132e3598fc
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/ti-tdp158.c
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright 2024 Freebox SAS
-+ */
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <linux/i2c.h>
-+
-+struct tdp158 {
-+	struct drm_bridge bridge;
-+	struct drm_bridge *next;
-+	struct gpio_desc *enable; // Operation Enable - pin 36
-+	struct regulator *vcc; // 3.3V
-+	struct regulator *vdd; // 1.1V
-+};
-+
-+static void tdp158_enable(struct drm_bridge *bridge, struct drm_bridge_state *prev)
-+{
-+	int err;
-+	struct tdp158 *tdp158 = bridge->driver_private;
-+
-+	if ((err = regulator_enable(tdp158->vcc)))
-+		pr_err("%s: vcc: %d", __func__, err);
-+
-+	if ((err = regulator_enable(tdp158->vdd)))
-+		pr_err("%s: vdd: %d", __func__, err);
-+
-+	gpiod_set_value_cansleep(tdp158->enable, 1);
-+}
-+
-+static void tdp158_disable(struct drm_bridge *bridge, struct drm_bridge_state *prev)
-+{
-+	struct tdp158 *tdp158 = bridge->driver_private;
-+
-+	gpiod_set_value_cansleep(tdp158->enable, 0);
-+	regulator_disable(tdp158->vdd);
-+	regulator_disable(tdp158->vcc);
-+}
-+
-+static int tdp158_attach(struct drm_bridge *bridge, enum drm_bridge_attach_flags flags)
-+{
-+	struct tdp158 *tdp158 = bridge->driver_private;
-+	return drm_bridge_attach(bridge->encoder, tdp158->next, bridge, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-+}
-+
-+static const struct drm_bridge_funcs tdp158_bridge_funcs = {
-+	.attach = tdp158_attach,
-+	.atomic_enable = tdp158_enable,
-+	.atomic_disable = tdp158_disable,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
-+
-+static int tdp158_bridge_probe(struct i2c_client *client)
-+{
-+	struct tdp158 *tdp158;
-+	struct device *dev = &client->dev;
-+
-+	tdp158 = devm_kzalloc(dev, sizeof(*tdp158), GFP_KERNEL);
-+	if (!tdp158)
-+		return -ENOMEM;
-+
-+	tdp158->next = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(tdp158->next))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->next), "next");
-+
-+	tdp158->vcc = devm_regulator_get(dev, "vcc");
-+	if (IS_ERR(tdp158->vcc))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->vcc), "vcc");
-+
-+	tdp158->vdd = devm_regulator_get(dev, "vdd");
-+	if (IS_ERR(tdp158->vdd))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->vdd), "vdd");
-+
-+	tdp158->enable = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(tdp158->enable))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->enable), "enable");
-+
-+	tdp158->bridge.of_node = dev->of_node;
-+	tdp158->bridge.funcs = &tdp158_bridge_funcs;
-+	tdp158->bridge.driver_private = tdp158;
-+
-+	return devm_drm_bridge_add(dev, &tdp158->bridge);
-+}
-+
-+static const struct of_device_id tdp158_bridge_match_table[] = {
-+	{ .compatible = "ti,tdp158" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tdp158_bridge_match_table);
-+
-+static struct i2c_driver tdp158_bridge_driver = {
-+	.probe = tdp158_bridge_probe,
-+	.driver = {
-+		.name = "tdp158-bridge",
-+		.of_match_table = tdp158_bridge_match_table,
-+	},
-+};
-+module_i2c_driver(tdp158_bridge_driver);
-+
-+MODULE_DESCRIPTION("TI TDP158 driver");
-+MODULE_LICENSE("GPL");
+And thanks, in particular, for doing the initial k230 work. We've got
+something that boots without having to use the vendor extensions which
+is great :)
 
--- 
-2.34.1
+>=20
+> If anyone wants to do some further driver development, please don=E2=80=
+=99t
+> hesitate to do so. Don=E2=80=99t imagine I may be doing this, so you may
+> do duplicate work. I=E2=80=99m too busy to do that.
+>=20
+> [1] https://lore.kernel.org/linux-riscv/tencent_E9B853316D217B8D1E7CDF828=
+8DA5E8ED908@qq.com/
 
+
+--TyYuCF/ln5ypIBL+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrz3AAKCRB4tDGHoIJi
+0sQWAQDfn54lFkCjyP8U5q1lfs/UhLsBZGHTbF1RRKKxih1jDwD/YuoQA5ibTmej
+bxDLvE1+f2tDcTdTX+L/rwmEH0gRyAI=
+=SDQ6
+-----END PGP SIGNATURE-----
+
+--TyYuCF/ln5ypIBL+--
 
