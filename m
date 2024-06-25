@@ -1,144 +1,173 @@
-Return-Path: <devicetree+bounces-79618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFEF916064
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:51:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D607916076
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 09:53:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D457EB222B6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:51:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B1B92824DD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB888147C9B;
-	Tue, 25 Jun 2024 07:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VS38ITQi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24054146D68;
+	Tue, 25 Jun 2024 07:53:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2109.outbound.protection.outlook.com [40.107.215.109])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490021474CB
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 07:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719301853; cv=none; b=J0BbmAkgkrz6bWZWcC/eYe1uKqOBxQMyN7GADbO85IKUv6TtB9n9cWhOfnKAjBM/sfYNcZ/BcSIrCuisgYd18WeciItTdLhWgJj+DJKVyKX2rmUNqIQc6YSVR6Pr5NdIccwvafDqkHO+2v3s1Xq23BzQ46nliiwCAT9yHd91hbk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719301853; c=relaxed/simple;
-	bh=8jxcS8tRiE+LFLUa/aufartj472cje7N8ZY+g8JTF0k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=owlFwsAX/XsAn5PpMKKXuKaKJSolouTmYBA43u0N4KR54qtyZf4jxZuCG4vG+DU+9vjWr1bxMknC+SjRr6KN+k1waW2TckfieBrXLnLmuqETHK9klt9TzFYjMAjXLy85eDuT8+617Prmx5+xUyGqHt6kvSFYLqiHZg4AozQpl08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VS38ITQi; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dfecd065b0aso4261200276.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 00:50:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719301851; x=1719906651; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0RTZZV3+tH/geYdSF4ruzYz0JFAprmpnlQN133kk76E=;
-        b=VS38ITQiRMwGC1+u/9xemE1zv0NLpgbDMwRTLRxiMb4baqTlOmR5E/+p7Rlcbtdkye
-         ujeL7Kdhm4bwY8izNNZSApnCuyR6itlpnMJ03fCJ03Dl5+fvl+n5VphuOuS4X60N1SFA
-         JbHpFuEjgSFQJLWMIm9SLKHHViUZKBDJWY/O9byjUr0Ew92kvgL/EpuJJ84Dc5ORUQxc
-         5ZRNftUEKaq8CDNS2qCxIKhB+mhZCHpQrXq0EUqctGSIfsS1y73w8jFq6QwWE2T4FlPW
-         GPL54RT2YxRfuuIAmAEm0DOHsfFjUUAG7S7YsuWKpcwa4bM0JusdTjOGO0yjcgHaHard
-         qM/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719301851; x=1719906651;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0RTZZV3+tH/geYdSF4ruzYz0JFAprmpnlQN133kk76E=;
-        b=CI0qNxIL2KHydfSVOpkRz4pjjSF0+i1ALZSpY54T/iRMVv98JTIela0rd9o3WlcvNH
-         ygD6sfgP9EGJqKWQ5MukZBcrBsSwkTd6a9rbOGDikkYWjZ09DdS3Z+O4DDTJsQhMBBrj
-         Drq5n0j5zsCMJ7RWC/G55V1G3IixkvnXGVdpit2aP0/dCBussZKUwMIBe/tHV7HoowYE
-         4i8wv7bIbNnFMqMchCoGZjQOSJ8ZpybvcPWZHeC9mV6sbJzxH05p+mc8mjTUd29WgbI8
-         +OuOx923+pRN4t6VLIg/jTZDqnVOMTPn+D+j3FuF91YPULPHElF5yZvsB4VnqtCfo5ce
-         3Q7g==
-X-Forwarded-Encrypted: i=1; AJvYcCXHgOwiH2HN/3CfRvtbqW+NWlnyJu0L0c9wt/O1GAJNTBYMH1Ti9nQiSl22zAx/vtrhJsNoCZRwAaU9amt72lUvJ13YizU42lSDrw==
-X-Gm-Message-State: AOJu0YzXhU9pohSc8Uc4F1LrUMYOTswYk05fz2fcpq3ov9XB2KyxfcVf
-	TFboLG9LV8F/cewdC0BE01nJzI5/qJqFFwSA7H4MT8GZpBQbqvvs9w3JTs9rRnXZ3zqVAhpCFUI
-	GctvPvrdJWQFgxbVPUor6xPcCXEWTy31GXxdwBPBlEmBJ6cA0J5A=
-X-Google-Smtp-Source: AGHT+IGQ3OTSR0KC1/SpE/IADAGxFrimSZmnBj4lcnGkw++5Ft8jUp7w1CXLdHosE9cv9AXQbpTdIr7RsWD+lOF76b4=
-X-Received: by 2002:a25:dc0c:0:b0:dfe:2488:c056 with SMTP id
- 3f1490d57ef6-e02fc29d8d8mr7663761276.23.1719301851256; Tue, 25 Jun 2024
- 00:50:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9C3144312;
+	Tue, 25 Jun 2024 07:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.109
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719302033; cv=fail; b=TR5RztqogEyqa4t7VM1r/Z2RHUkcb+9l4usx7Cn0usIbFHa0im2AIbRXZWgGWBvghktASpqHss6Nt0oJY2gRnne8zmiyjXhP0oYpRuL2VTeHYPCiAnEo9A/ZpON91cuIrcqncG6Zh+yCymwVfcqqCh5LYAalCm0Wl3RhyxCSmFc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719302033; c=relaxed/simple;
+	bh=dljJ+Gt7fB8EcglUinbyAEOPYyBXdGF7ZpjghIyFwdo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pMaFJYp+SjsBQ/51r9hzMXtwF0f27ZkrPEkm0sLirxAJAWW07tSJmTXbBLTD1p5QVdSUNHUD3RiBx6oCqGgkNlDB8mhg2ikrsKb1Q1z7Abjh9HljsWDvSjiypD9ZU8McVNmYg6uZyoTMWQ98U85oLhgeHzR8L8ftwt51aku4SWU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.215.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Goa/6BOxy4XGm++FPqesu6AEB3/HYPC3SSOu/kkmTyveKF2dPdoFQID4MzpS7njiuULg/bYGKSlKHXxXtupuoFrqb4vcp6EgXdHeng6E6VGYUDZGG5YdDZk9MvotuTboFKjrM9s5+VKtf+/5bqwWZoQp9SWkDkIoN0LRU5S/ENcTMWzMi+Ftsdv5aiZWuR58YjAQQKdzyJBR9kBGpCiymQ2aDdqO5arLVuksIPcXM9qKWlvhak6nrtqCzVQORRMrC3nhq+OUn7xSjsL8KWQuhX7++TYCXkurulzWfAg/FVYhOaTvWlyVj7uqTt/MNbCmnldazh/X3ktgMfwFRWQXuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dljJ+Gt7fB8EcglUinbyAEOPYyBXdGF7ZpjghIyFwdo=;
+ b=cbJAvjEpajMjQHjlZTYM4Va/LpEgX+wRWIrQnF8web23Uu4KEh81xs56kwXJfZOZWC48fUBuRIpONofdRb00rqesMXq855lhtBhGJMZsJWMlsvmV+8054mKOpLiMWyLdPsi92v52GEqDvLFya4qXfsblVYu8M4Q2/fkNytQX1nmZE6/bRPoG+uI48yYLumo+lcDvo/11miKVTpV9r50aFZPQSoRGt+gKbkb5O9+Aynyo6zxCvsBQFNPwkgdOXDn/hN3nJypV5dRqH9jREPEBTbuJDg48l0j5TfGRyiiktr/eFZR+5SbDNQUCJ59O1w4YFDYrRG5xGDqSB8BVpgKjVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
+ by TYSPR03MB7783.apcprd03.prod.outlook.com (2603:1096:400:411::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.26; Tue, 25 Jun
+ 2024 07:53:46 +0000
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7698.025; Tue, 25 Jun 2024
+ 07:53:45 +0000
+From: Jacobe Zang <jacobe.zang@wesion.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "heiko@sntech.de"
+	<heiko@sntech.de>
+CC: Nick Xie <nick@khadas.com>, "efectn@protonmail.com"
+	<efectn@protonmail.com>, "jagan@edgeble.ai" <jagan@edgeble.ai>,
+	"dsimic@manjaro.org" <dsimic@manjaro.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
+	<linux-rockchip@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] arm64: dts: rockchip: Add USB-C to Khadas Edge 2
+Thread-Topic: [PATCH v4 1/2] arm64: dts: rockchip: Add USB-C to Khadas Edge 2
+Thread-Index: AQHaxhEm0XqG3IVev02025ly93CghrHWzg6AgAFO5eA=
+Date: Tue, 25 Jun 2024 07:53:45 +0000
+Message-ID:
+ <TYZPR03MB700141F5448D61A000D588AB80D52@TYZPR03MB7001.apcprd03.prod.outlook.com>
+References: <20240624083236.1401673-1-jacobe.zang@wesion.com>
+ <20240624083236.1401673-2-jacobe.zang@wesion.com>
+ <6d8f80a0-d67a-416e-b395-7a33b539682e@kernel.org>
+In-Reply-To: <6d8f80a0-d67a-416e-b395-7a33b539682e@kernel.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB7001:EE_|TYSPR03MB7783:EE_
+x-ms-office365-filtering-correlation-id: 0f07a6cc-f587-408f-30ee-08dc94ebf099
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230037|1800799021|366013|376011|7416011|38070700015;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?9XDQlGmy1dC2c1bhoGZ7KNooYB47Kz/4in5fBOUNgOzDFx1O8ozJlmXHhV?=
+ =?iso-8859-1?Q?aprXyQ0zH2fP+Oe0LVACbe3wlicNAQwmvM/P0a8ZO+DgBmhR5QdeWSncU3?=
+ =?iso-8859-1?Q?98ieO41Y6jEIwoN0GD6bM3B8ggYSXHCyAwSLVHJnby196P8yOP9cKq02j6?=
+ =?iso-8859-1?Q?3UfJt0rwSar5BsOsnexiuIiutMY9zhfzFjkELeO3bYDOqhOWH17A/xMcKx?=
+ =?iso-8859-1?Q?Bah9qK559M/4Yx2PVcYquby678UsKgNxC7ETXK208EopMokWcmlh9JQlkf?=
+ =?iso-8859-1?Q?hPz/Uj9OYGY6vUxvLEcTYJ+X6dAv8gePHqSnbam5UAj8p+UKvW/vydpnZK?=
+ =?iso-8859-1?Q?BowuymecDYfKdS8AZzFErjGHuhW0jlcAIeB8TT9UxTYYp6Ti9lpCaGf/C7?=
+ =?iso-8859-1?Q?Qnnmi0xbWFENuWABmAZdOySKn0F+lCTeJmbvAyrOzZmiDkYByhiS40u3jy?=
+ =?iso-8859-1?Q?dYRrsOgcF6y1qbZT9K259WWYtKxlVtTMGiqOvyIZbwtwBu9tTe5QEOyd/t?=
+ =?iso-8859-1?Q?H8xlBY8SvaqGaDqIxLEvxdmJEo98WmWh8c6cpLVj9iQO2MTozRWk18W+bi?=
+ =?iso-8859-1?Q?pTYoj0sXdvG8jwexNBeiCbFeFlG7BmHXtfH3XPBk2okWQ8SsgZl9u/gMyJ?=
+ =?iso-8859-1?Q?yxaA1fMyL+FY6lRxXREVsC+fRobZWT3664x05YrIejqagWFM+GLnAbyw6I?=
+ =?iso-8859-1?Q?LjS/BJVCMlWEV6EDcopzfZ3imyl3jlj0WsdSvsLeephPesTspwN8uhbsH3?=
+ =?iso-8859-1?Q?gPKstyIEZ+CPgiewZjDAUKtgKaG5iR1iVbstTUzjdptwGDgKdGmsSe2ygL?=
+ =?iso-8859-1?Q?ZTxgPZiYwBglOLxHSiPkfKSou/hQ3pdbmF9MTWbAxu2LQygB7tpl1F57xt?=
+ =?iso-8859-1?Q?681xI+c4JPt30Ox+fDQWfeGuc+wgEBcWqgIKfe1j3vJ9UzmNDGln36KOfN?=
+ =?iso-8859-1?Q?1X3sRZ/IVYf49ZUogtMZhLFh2SysgQALfOXuN1oLhaCuSZ02ly3Um1iGOF?=
+ =?iso-8859-1?Q?bC99ifdRH9MjttfLSWBEt33DY2rYrjopvX7cM33pXRMNmEjldmYmq6iejU?=
+ =?iso-8859-1?Q?eDJ6sQiMC7Eo/VDfo2ii45Dpzqy2YJSnCJch8oPd7f221tlhXeJGU8jTF4?=
+ =?iso-8859-1?Q?2BzG5SsFiv6QGANc7P9JMKZpPz6OWX4ePf9iBkAoC3GSsGEpa+bN+ZkE/D?=
+ =?iso-8859-1?Q?B4rPmGNhI3CyAo1MtLhD2TdviaccchGAKIr717myhxMIFuRZBCjIwD37FB?=
+ =?iso-8859-1?Q?5XWUQm5AAtEwRUgtOSOTgumizapY3p1LUXxEBpLi/lu0/qoRr/G63DW8EP?=
+ =?iso-8859-1?Q?kITKkW/vvSz3bCb8OM67mRFkxcVk4DyHchV4BMm+vhJ6JWEwmSRdul/y/x?=
+ =?iso-8859-1?Q?/e62Ue5SB3Dbaw4DPMnJme3ZBlg+n6VWOigYBVkaV5kYITMe7ha1ZMA1f8?=
+ =?iso-8859-1?Q?SA1pGVx53dYhJKoRT6YiK4BJMdsQjrBO1mDcig=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230037)(1800799021)(366013)(376011)(7416011)(38070700015);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?X20hlBD+bP3eIdP6R7xsMyFC/dCquK3kY56yLzgrK4d2jmqFWmuP2+7lsK?=
+ =?iso-8859-1?Q?CV+JmzmeB8m3PQePkAEhjA39YAct0hs6zDpfHUvIdoCXjUrl78Vhigsq2M?=
+ =?iso-8859-1?Q?4qj9EOifLNKZvj1JOXqWFIh9UjGRuMzj+TKmesJC5IbNjVsyG/muHz673V?=
+ =?iso-8859-1?Q?I6kdOacHeURzKR9taugi8gJS2dglh1+PO2E61Evd0/5xUghTWSheP1Z9bO?=
+ =?iso-8859-1?Q?b44ZdoeT8XhEzwNfLtEZK+3Oug96wuXWv9VYOAd3Tl6d5+a2mcQAY+RHsl?=
+ =?iso-8859-1?Q?njrBA17c36xrW3t40wVTMbuK8toz7ynfy6rE+vynje5/G2H7veBABLo8dR?=
+ =?iso-8859-1?Q?gGziwLTWpA9FK+92SWVGXENVu1pwNcAOWANdZ+O3qchu5E+KL6s9ams6Fu?=
+ =?iso-8859-1?Q?JP8wWQyoGJCZfvNMHmPtCA3fgxTRgJTXn3d23xvuP7MVQVJmGvZUtPI4iS?=
+ =?iso-8859-1?Q?WHB5ZDRP1ahhi8UgTqJE2DypOOdIx5mEbVCBxzMY+Y+SiMasiZ4DkX0LEW?=
+ =?iso-8859-1?Q?T2bsUWPUnxHmpPkE/3fEMPqM5LmxCYXkb/gkPaWJBrd7XK3XdF1fksDnze?=
+ =?iso-8859-1?Q?6V4VwfggNHzD1qqN1MeEGh5abq76RNwWuVeTwpyix10mAJqIg0ZZDlyakj?=
+ =?iso-8859-1?Q?F9iNdRsgMn/FfVcpAL1+umr3zXnS0yAkXjzkjixNPNCi0SJX+SWvcgPFre?=
+ =?iso-8859-1?Q?NdbsOL8wld7WcfIgHZq7mIyEPG9Hzinmm6QNZBiWzxqrwIt5XfACqpmrI/?=
+ =?iso-8859-1?Q?5v5q0F9Ye6pXmNlEtr7uLRI4OoOwqfiUaum1WJEpNUg3uvUCU7x4YYbf4X?=
+ =?iso-8859-1?Q?aogh/PmFX5s6YyzpJXa+ksRwB0bmE7jawbZm6Tv3wllp14iuzxI36HRXXY?=
+ =?iso-8859-1?Q?x+3SX48XQricVad1Dijzn0R2VNLdEmVM92dw44KlHYWOccHmyZtaBDpqiL?=
+ =?iso-8859-1?Q?EN55U5Zyb3Vq8+NIzV6iEpy8yXvJv4178mR57dRsfdBJ9KBMKaug92PALB?=
+ =?iso-8859-1?Q?5mgn4aVPjJUeFFsoJz7MbUsXS0mB5su/hCH1WRiDAJuaxTcfxtbect2kY+?=
+ =?iso-8859-1?Q?N4Bgn9fHYeq2AqgPgqq3aadjMi+OVRSRPTeMnTXLOPcOAWOONQo2mIyv4Q?=
+ =?iso-8859-1?Q?BFixT2VD3C2ZMKhBaqxX1Qb+HztIto6GNcdj8HNE1xuxPqpbq8cWiFC9fG?=
+ =?iso-8859-1?Q?rpzoWc77STBE8iOYsYrL0glzvxZGTNR/dVKMzOVeSdckrGlJMuhtcXnZ7W?=
+ =?iso-8859-1?Q?8x8uiWQEEc2anx4JZhzhZvRWUZJbkFzG8fnB0w/SBk1zl+X0eJUlPyO4NC?=
+ =?iso-8859-1?Q?bzHyq+KlXyyr8iPGrtXHpoHdWjWiUDzfVuYmfkMTu18ZAZI2dvl7Lph9ek?=
+ =?iso-8859-1?Q?AJejll6zP6GBeltBM7G5y14dsiSw2MxZ3Prce56McKlITq9wuHNthobkp5?=
+ =?iso-8859-1?Q?IRLgop8z0ALFEBmb3u5h0J0zz3HGqiJ2ysYrJmnW3e4IXm4akDq6ocYjp+?=
+ =?iso-8859-1?Q?+w1STps4oFWaY7P0vr9bduPZ/8BgzlKldCCZ9Ngi4CHg3KDFzCYehnbZSn?=
+ =?iso-8859-1?Q?H3xt3Ew3RAS7fPW/aakEXvtcmcS7V6XmG2zfG8c1++veyu7dIOcA0adwYD?=
+ =?iso-8859-1?Q?Dr8ZQ0DMDNv8vTUynx9L9Zb20HIWGKWRTP?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240417133731.2055383-1-quic_c_gdjako@quicinc.com>
- <20240417133731.2055383-6-quic_c_gdjako@quicinc.com> <CAA8EJppcXVu72OSo+OiYEiC1HQjP3qCwKMumOsUhcn6Czj0URg@mail.gmail.com>
-In-Reply-To: <CAA8EJppcXVu72OSo+OiYEiC1HQjP3qCwKMumOsUhcn6Czj0URg@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 25 Jun 2024 10:50:40 +0300
-Message-ID: <CAA8EJpr3GYimirDz39f4n-3hDAxFWzo+9fdY6MAuxaNguouVFg@mail.gmail.com>
-Subject: Re: [PATCH v8 5/7] arm64: dts: qcom: sdm845: Add DT nodes for the TBUs
-To: Georgi Djakov <quic_c_gdjako@quicinc.com>
-Cc: will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, 
-	iommu@lists.linux.dev, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, robdclark@gmail.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com, 
-	quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com, 
-	djakov@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f07a6cc-f587-408f-30ee-08dc94ebf099
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2024 07:53:45.4137
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MUoeriOkoL42mAQa7cYnpP2lYNPj/2JwL5T17VoNf7p/XwyJ/gsXyTjsBeP9B238FFXZ6xgciBToQRvmIOHPKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7783
 
-On Fri, 14 Jun 2024 at 21:05, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Wed, 17 Apr 2024 at 16:39, Georgi Djakov <quic_c_gdjako@quicinc.com> wrote:
-> >
-> > Add the device-tree nodes for the TBUs (translation buffer units) that
-> > are present on the sdm845 platforms. The TBUs can be used debug the
-> > kernel and provide additional information when a context faults occur.
-> >
-> > Describe the all registers, clocks, interconnects and power-domain
-> > resources that are needed for each of the TBUs.
-> >
-> > Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
->
-> This patch now prevents interconnect drivers from hitting the sync
-> state on SDM845.
-> The TBU driver is enabled only when the ARM_SMMU_QCOM_DEBUG is
-> enabled, which is not a typical case on a normal system:
-
-Georgi, before I start acting like a bull in a china shop and sending
-reverts, any update from your side?
-
->
-> [   26.209151] qnoc-sdm845 1500000.interconnect: sync_state() pending
-> due to 150c5000.tbu
-> [   26.217228] qnoc-sdm845 1620000.interconnect: sync_state() pending
-> due to 150c5000.tbu
-> [   26.229926] qnoc-sdm845 1500000.interconnect: sync_state() pending
-> due to 150c9000.tbu
-> [   26.238008] qnoc-sdm845 1620000.interconnect: sync_state() pending
-> due to 150c9000.tbu
-> [   26.249068] qnoc-sdm845 1740000.interconnect: sync_state() pending
-> due to 150cd000.tbu
-> [   26.257127] qnoc-sdm845 1740000.interconnect: sync_state() pending
-> due to 150d1000.tbu
-> [   26.265159] qnoc-sdm845 1740000.interconnect: sync_state() pending
-> due to 150d5000.tbu
-> [   26.273189] qnoc-sdm845 1500000.interconnect: sync_state() pending
-> due to 150d9000.tbu
-> [   26.281206] qnoc-sdm845 1620000.interconnect: sync_state() pending
-> due to 150d9000.tbu
-> [   26.289203] qnoc-sdm845 1500000.interconnect: sync_state() pending
-> due to 150dd000.tbu
-> [   26.297196] qnoc-sdm845 1620000.interconnect: sync_state() pending
-> due to 150dd000.tbu
-> [   26.305201] qnoc-sdm845 1500000.interconnect: sync_state() pending
-> due to 150e1000.tbu
-> [   26.313207] qnoc-sdm845 1620000.interconnect: sync_state() pending
-> due to 150e1000.tbu
-
--- 
-With best wishes
-Dmitry
+> Was it disabled anywhere?=0A=
+=0A=
+This patch aims to enable the DRD function of Type-C port. So need to enabl=
+e in DTS.=0A=
+=0A=
+---=0A=
+Best Regards=0A=
+Jacobe=
 
