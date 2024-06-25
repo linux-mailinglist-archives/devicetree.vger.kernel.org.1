@@ -1,144 +1,196 @@
-Return-Path: <devicetree+bounces-79631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A1CD916174
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:37:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7074D91619B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 10:48:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56876284E68
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:37:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDCC428716C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C551487DC;
-	Tue, 25 Jun 2024 08:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406DD1494C2;
+	Tue, 25 Jun 2024 08:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nEjjU/Ft"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RZTW9Lqp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194D218E1F;
-	Tue, 25 Jun 2024 08:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F04149011;
+	Tue, 25 Jun 2024 08:47:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719304674; cv=none; b=ib6KLIPgO16a2Id5uAa8UIf/ypiyBVwG1ZVZHpiX3BMuYZ1TKUDF/RGIVFRjuxTW+eaCUliLiNLC6QCCjgq0fChHHZJj2//5L2EUTOLcdGXExto/6NFiaaspu14gKLg7lKZRx0lHuqKkawy/Lvpv3OVtwckgpwqvgQtq96ueCkc=
+	t=1719305272; cv=none; b=leTCJ8HUpE27tCaVAA/sWmrXqgGrAIOLzh6nPUoTogsDSDQ4ZmkzpVtMTDYX5btsDwu/OM255Ieqqw4fdeTzR2YQ5l5oXBsDsFkGspnGQkDE8ApJv+qMnFuD8/+BMnhYL7wECdpbsN+q619ZWXAJG6XOVtXx36V+OcZMhRhet6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719304674; c=relaxed/simple;
-	bh=aqe5UuDktWE8cVCx+ZXLizURsrkeHlz4k8KCFjKPz8A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DdpuXzE4nGG7FHcEGeFKPH9cAXlP8rVJX47vW6K1R8snuEDmoChELgK4A+1kxkv8wmQ/igSVL9ZRzXCjAkrSwrOVU5VxlRDp8prJ9KlU3EkDFad00Y+X+VG0PPSWOsJuvwcVmPTC2UIkxguLAlmbmtnTCg546gtf19RlT49z2yA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nEjjU/Ft; arc=none smtp.client-ip=209.85.210.181
+	s=arc-20240116; t=1719305272; c=relaxed/simple;
+	bh=So6QwmI/MgLmUF3flwvaM8Bf8+yW1a5lQaEMjRlwTLY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T5iJcr2Q8DlhGe8oXOgq94WssqQz30AfEThxyDPPUXsJEhu1YAfrA3+3Pep1ipkUmQsJQEYVd/BAp1YvtuG1uDyQNZpx3Jb8PnFG0xdiSerHU68yhOKJhEMRkGe49tstjtYpDrGdXoknEM7GI85YyuwKwWCX1jzSNYLBXA3VyDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RZTW9Lqp; arc=none smtp.client-ip=209.85.222.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-70685ab8fb1so1489325b3a.2;
-        Tue, 25 Jun 2024 01:37:52 -0700 (PDT)
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-80f6cc81a93so2120588241.1;
+        Tue, 25 Jun 2024 01:47:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719304672; x=1719909472; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aqe5UuDktWE8cVCx+ZXLizURsrkeHlz4k8KCFjKPz8A=;
-        b=nEjjU/FttUqMt6fB9CBAPqHQAUsMbsDPhcB//COadLr7fY2hpagaZcN/feDIcyw2yy
-         s/0WAAMYUBO5qcZcb18n/Zaf54G96qJXiqVQoy5go/wM1kmrqwQehBCMMMstSRJFO/VS
-         3zgyIgW88TXLijoQZywoBBd0Cmu98jUkjCavQ9pqAZ5aLY46tAmvAUd3ZQ0TYozWrFAW
-         s5Mgz+6wiE4iclQVOniWiykaMqBTEVBT5yCnos1sRCdrRNMYnBV2+K13CeKsAkIyM1nz
-         l8xx6PwDdyRb0p48DF9inykfZY33tkiYYWkdzzHKYJT4Ho1fYFuKOCZG1irz6A2Ei/1e
-         NZkg==
+        d=gmail.com; s=20230601; t=1719305269; x=1719910069; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fMvXnn9zXEzw3+jkV6vLmQsIDPwVmACDgr8EUxhiawE=;
+        b=RZTW9LqpyL7jsJbh2EAACJ8/JWzFnz2qahZPbhUuyQclfE4cEC0U/38DxSrArnPqGX
+         yTToANKWNzW31K98O+DyXnr1BlUdxORxrtZ4JRXjRcsEBVT9I41C1XIm4ybHO6UJW+hV
+         +Z10K4qwwCjNxzKi/9AJSW9YZdIMCok8jN5SnzUbcsIsqeE7nImCtZcy0COD9qPpX6Mc
+         BdHimrkMRg9yXA9F/oOol1drtcBHvijCsd5/lvL+3lTpdMWJvF//6OLVNzlEyKv/tPc8
+         a3SkVX6nr6VCT4MVlRQk8yOPvVenI7rqCBeWzN8MAVBxyeb7zRHK0P9C3uZgKuCoXmv8
+         aZnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719304672; x=1719909472;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aqe5UuDktWE8cVCx+ZXLizURsrkeHlz4k8KCFjKPz8A=;
-        b=fEcD1Wvf7kU5wkz4zj3aQys8s8w+55z0jnWUoXieTXEnOTDL2/0YmFyqTZrrOGLwAm
-         URSVPn9fg4NxpT3KeJKB6eaFS64FP/2kkYB85vfot21AG/6E63q7BXYG5pvwNKcsQTRq
-         RqXVVRHdYClslGIvRzTtrZWr+sAiLoy+27B/CdvKzpLxm62tvRaBSFNd7lPHUI/IW579
-         1NKZ7JOL3PulFivTaXWneeg3TYEd1rre2OftEiczBvj5eTVjNdgpYgkxWnhsC7gIxAt6
-         oNUJEPYmJUi5O8k4UyxQyim90bt2cX85XMCYoZkBdpdeZo/S3qn3JwnTS0pwYND9VUqP
-         X5Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGkJsIWyoLzEaBiRHAJ1FmADOFcdfhxPUWPDXRClTJmzQ/YSdxiuCQShkaOIhqb7BKqKsKd82xepeNITyQiR5iAvvd2fngzDSXoD9Gyr6FEF7SMJot2xiNY0YPfRHZW2elGX1P1O4c
-X-Gm-Message-State: AOJu0YwGyWMVwutBvEU9D1NIWc7LEI1G+R8g/zatGhilfxsr0G/INGCD
-	17CdlYNzJv0gurxzKRJBD5H6VrBOooqXAG+q3lM8R3tniFebLC1S
-X-Google-Smtp-Source: AGHT+IHxK34+4RmFCf0yNPduRafMt1Gs10g9dDrYbCiVjpbNUZTalur5wjXKnJdnV2n+p+pu+B+Axg==
-X-Received: by 2002:a05:6a00:2f0a:b0:706:5b64:f1fb with SMTP id d2e1a72fcca58-706745d43b4mr6433396b3a.17.1719304672349;
-        Tue, 25 Jun 2024 01:37:52 -0700 (PDT)
-Received: from [100.90.230.39] ([45.32.86.188])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-70651299ca9sm7551624b3a.155.2024.06.25.01.37.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jun 2024 01:37:51 -0700 (PDT)
-Message-ID: <d0e006c2-4c27-4bf0-aa88-720e42baa66e@gmail.com>
-Date: Tue, 25 Jun 2024 16:37:40 +0800
+        d=1e100.net; s=20230601; t=1719305269; x=1719910069;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fMvXnn9zXEzw3+jkV6vLmQsIDPwVmACDgr8EUxhiawE=;
+        b=BhAioGBkw2Lf8LcMuSzjGJUFUjbFziZkGFD96aWq/BAKvYexImBqZc1kxp/N/rH5Ci
+         f4lwzEm/48wGhIvYTbQkRvTIJb4Ud7hJQRc0K8RSFTvYbi/60Pwwb8Klxeg19pwg9xYV
+         5Yh4HJiRiP9u4Ij2irzOXiV2wW7+jT/0+B4kTN2yKVcgPGRj7l2CgaKxRcJxInPx+cnb
+         x42F/Z7/Yg315JYIh0LVP20XA3l6ARYjGd+vKdfurtPaDFlqUAl253nIIees5suiqHZn
+         wJdOjXKdxLUZIxkU+h1HaOAc+ACufy6i5yMGqIitBcNz2cWY0pz73Do+92FOnF/4FWid
+         FPkA==
+X-Forwarded-Encrypted: i=1; AJvYcCXtlebp2JU7XW/YLWYH2MIH9IqgHS4KLi4EoSDwa58zmJp4iEob3Xp1wmki4s+fsmZj4PdJFuog795Fw1jeR1C8HOTtdZLBt8Tozu233XGe6GXGtwS6r1iP7ouAul+jVSxO26SVkUFCZ1AngMEp6mgD+01gUI4IenDi2ZWIlKAKjwwMSaebf2Fi2sYK3kmQXXXg5axS7/gN8Q3AEjoEOJoTLtAKX2re
+X-Gm-Message-State: AOJu0Yw9fn3ZucPwLiJqyg9bMITTmKj7KPRnMPGit8RZUmW4mjSOv/B6
+	cCvAOodFBB3kJV31L9podiM52UhNmoVNVYrqCAKyZJIVJvWrnvoviflP30Kv/yNXIjQz27mW8Yz
+	XI+rNim1lRFF/SA1ZHrqZG2VCmqA=
+X-Google-Smtp-Source: AGHT+IHe/ogTl+oOtusu+EGCKy7sJnEYaptfEU5/7z1LV5OQwmufiKxuyWUdXTSdbMZjOzsPd0IW1ArpjQ4rMwv3SNY=
+X-Received: by 2002:a05:6122:4127:b0:4ee:244:b0ab with SMTP id
+ 71dfb90a1353d-4ef6508a088mr6675566e0c.2.1719305269452; Tue, 25 Jun 2024
+ 01:47:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] iio: proximity: Add driver support for TYHX's
- HX9023S capacitive proximity sensor
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, Alexandru Ardelean <aardelean@baylibre.com>,
- Andy Shevchenko <andy.shevchenko@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-References: <20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com>
- <20240625-add-tyhx-hx9023s-sensor-driver-v7-3-b1d65b221811@gmail.com>
- <12457a9b-dd84-4033-bd9a-bd69e2e6cbf2@kernel.org>
-Content-Language: en-US
-From: Yasin Lee <yasin.lee.x@gmail.com>
-In-Reply-To: <12457a9b-dd84-4033-bd9a-bd69e2e6cbf2@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240624153229.68882-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240624153229.68882-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdU0r+B_Jmh7E6sopRbfzzX7DtZKpY=Xte2vLDC-ORwdVA@mail.gmail.com>
+In-Reply-To: <CAMuHMdU0r+B_Jmh7E6sopRbfzzX7DtZKpY=Xte2vLDC-ORwdVA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 25 Jun 2024 09:46:54 +0100
+Message-ID: <CA+V-a8uhb1Visg9jUV-Te3ZHkfdRonM08s823RYa6k=KAHYgQw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Geert,
 
-On 2024/6/25 13:49, Krzysztof Kozlowski wrote:
-> On 25/06/2024 04:15, Yasin Lee wrote:
->> A SAR sensor from NanjingTianyihexin Electronics Ltd.
->>
->> The device has the following entry points:
->>
->> Usual frequency:
->> - sampling_frequency
->>
->> Instant reading of current values for different sensors:
->> - in_proximity0_raw
->> - in_proximity1_raw
->> - in_proximity2_raw
->> - in_proximity3_raw
->> - in_proximity4_raw
->> and associated events in events/
->>
->> Acked-by: Alexandru Ardelean <aardelean@baylibre.com>
->> Acked-by: Andy Shevchenko <andy.shevchenko@gmail.com>
->> Acked-by: Jonathan Cameron <jic23@kernel.org>
->> Acked-by: "Uwe Kleine-König" <u.kleine-koenig@pengutronix.de>
-> Drop fake tags.
+Thank you for the review.
+
+On Tue, Jun 25, 2024 at 7:57=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
 >
->> Reported-by： Dan Carpenter <dan.carpenter@linaro.org>
->> Closes: https://lore.kernel.org/r/202405170824.uhEslLI0-lkp@intel.com/
->> Closes: https://lore.kernel.org/r/202406142001.swm6CU40-lkp@intel.com/
->> Reported-by： kernel test robot <lkp@intel.com>
-> Drop fake tags.
+> Hi Prabhakar,
 >
->> Closes: https://lore.kernel.org/oe-kbuild-all/202406171946.qe83Tde0-lkp@intel.com/
->> Closes: https://lore.kernel.org/oe-kbuild-all/202406081148.j9y5W5Ru-lkp@intel.com/
->> Closes: https://lore.kernel.org/oe-kbuild-all/202405310327.5dCrF4gX-lkp@intel.com/
->> Closes: https://lore.kernel.org/oe-kbuild-all/202405310010.dSPEpCuu-lkp@intel.com/
->> Closes: https://lore.kernel.org/oe-kbuild-all/202405300812.jv99FywV-lkp@intel.com/
-> Drop fake bug reports.
+> On Mon, Jun 24, 2024 at 5:33=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to that
+> > of the R-Car Gen3, but it has some differences:
+> > - HS400 is not supported.
+> > - It supports the SD_IOVS bit to control the IO voltage level.
+> > - It supports fixed address mode.
+> >
+> > To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a09g05=
+7'
+> > compatible string is added.
+> >
+> > A 'vqmmc-regulator' object is introduced to handle the power enable (PW=
+EN)
+> > and voltage level switching for the SD/MMC.
+> >
+> > Additionally, the 'renesas,sdhi-use-internal-regulator' flag is introdu=
+ced
+> > to indicate that an internal regulator is used instead of a
+> > GPIO-controlled regulator. This flag will help configure the internal
+> > regulator and avoid special handling when GPIO is used for voltage
+> > regulation instead of the SD_(IOVS/PWEN) pins.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v2->v3
+> > - Renamed vqmmc-r9a09g057-regulator object to vqmmc-regulator
+> > - Added regulator-compatible property for vqmmc-regulator
+> > - Added 'renesas,sdhi-use-internal-regulator' property
 >
+> Thanks for the update!
 >
+> > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > @@ -204,6 +207,31 @@ allOf:
+> >          sectioned off to be run by a separate second clock source to a=
+llow
+> >          the main core clock to be turned off to save power.
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: renesas,sdhi-r9a09g057
+> > +    then:
+> > +      properties:
+> > +        renesas,sdhi-use-internal-regulator:
+> > +          $ref: /schemas/types.yaml#/definitions/flag
+> > +          description:
+> > +            Flag to indicate internal regulator is being used instead =
+of GPIO regulator.
 >
-> Best regards,
-> Krzysztof
+> Do you really need this?
+For cases where the status is okay for the regulator but still the
+user has phandle for the GPIO regulator or shall I drop this case?
 
+> The status of the regulator subnode already indicates this.
+You mean to use of_device_is_available() ?
 
-Got it. I will drop them all
+>
+> > +
+> > +        vqmmc-regulator:
+> > +          type: object
+> > +          description: VQMMC SD regulator
+> > +          $ref: /schemas/regulator/regulator.yaml#
+> > +          unevaluatedProperties: false
+> > +
+> > +          properties:
+> > +            regulator-compatible:
+> > +              pattern: "^vqmmc-r9a09g057-regulator"
+> > +
+> > +      required:
+> > +        - vqmmc-regulator
+>
+> I'm not 100% sure this works correctly: does the checker complain if
+> a required subnode is disabled? Note that I haven't checked that.
+>
+Here is the experiment which I tried and the checker didnt complain,
 
+&sdhi1 {
+    status =3D "okay";
+};
 
+&vqmmc_sdhi1 {
+    status =3D "disabled";
+};
+
+But the above is still a valid case where the user wants to use a GPIO
+regulator?
+
+Cheers,
+Prabhakar
 
