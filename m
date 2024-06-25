@@ -1,108 +1,129 @@
-Return-Path: <devicetree+bounces-79760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73715916B42
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:57:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C2EC916B49
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E16C4B2732D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:57:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 477B6283A05
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 14:57:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6847316F833;
-	Tue, 25 Jun 2024 14:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617AC17083B;
+	Tue, 25 Jun 2024 14:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c5Rf+4Xw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jurz5huX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A62216C840;
-	Tue, 25 Jun 2024 14:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9DE16FF3D
+	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 14:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719327324; cv=none; b=nkQDWQHxcqIq2Ydpi4R/IO8EgRJCN57M0tBxQ4I/bLkEy7fpzRqos8hXOhKb8raWWy8JCMEn4BjWruTRZHuNmFQXfuH7zTnB6SfyuIwg2pX6Wt/sjs1lX8ZFqAaMCi+MAv/4F46dHY+RXJji6CxB+Fow2UEEhHWyWBJbPtz0Xl8=
+	t=1719327406; cv=none; b=ej+uHB7Z3inJ5kz8xGqlHCJEndToaI8oOkHZey+kkZ38k22t4blKtoAZ9eJVC4rp+tv5uVogvErgaMSafL6U0XPgA7t7gj01RDI2AmLeXLE/huzeUAvdnWUeClE05WBWUA1DIX7sGuTaOLH90fJRpUmacQ6R1EyOm44KjOe0RJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719327324; c=relaxed/simple;
-	bh=66tqkQVIjQ3KifxJzurd/IM9a92dtSlu7LD3ir/MsYY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WHelOPlrFe2kj8kyh5RloHTgr1+oWOH17tsstEtd19Mbb3lpxbH8KgYm71LImH2x0BI8UvXmbfd94aCJG70FnwFjv2OuUDNHRjyvDx7W0E3mt97H85CvG7/TAURjE4j/INOCexED3FRDG63hnjWV4uyw0HbfyZhRrYVImvB1uJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c5Rf+4Xw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 293CBC32786;
-	Tue, 25 Jun 2024 14:55:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719327323;
-	bh=66tqkQVIjQ3KifxJzurd/IM9a92dtSlu7LD3ir/MsYY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c5Rf+4Xw8E6hHZ+Orx/3Jw0L6hsHClLa8LH5YCUFGwvRYqzR3vrI23ejTfOMTvnBw
-	 DK0c40J/Aa98/W+ijABbMyIXE/q3nvCldvthZ6kG2O0+bbxNahvOUGwlWe1qTjTIb9
-	 A6o6UW+fzfLf14WrYR6KmY1Je1wLej+bW/hws8/4Ayg9OL0QtVpQ4fLLGJAiWlnMy3
-	 5BL2VHQKSrVx3A6qIwEjE8zJbLBHkNunqRwilT6a56uB85YXDpIjKygs+Lx7hCOcZ1
-	 l3V/3MAq7BrDemnZfX+5gOvrFMU+dOTxZKFHX12641cjBDNFH/Eu6e1M9FzQfBAcoz
-	 dqmOE6ljF9EJw==
-Date: Tue, 25 Jun 2024 15:55:17 +0100
-From: Mark Brown <broonie@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, lgirdwood@gmail.com, keescook@chromium.org,
-	gustavoars@kernel.org, henryc.chen@mediatek.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	wenst@chromium.org, amergnat@baylibre.com, djakov@kernel.org
-Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
-Message-ID: <8b34897a-416a-4ff4-82a8-c37849d706ec@sirena.org.uk>
-References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
- <f7b4cd98-1acf-4f6b-a7e0-57419abadba1@collabora.com>
- <57cf8f9f-4320-4c55-a9f8-a4c1facabfe8@sirena.org.uk>
- <39ed7b8c-b19a-40de-9b30-a731ac83ad20@collabora.com>
- <2e8a9cf2-2bc0-45d8-b6c1-e3a9441d5641@sirena.org.uk>
- <f855f6ec-f0f7-467a-9823-d19706574408@collabora.com>
+	s=arc-20240116; t=1719327406; c=relaxed/simple;
+	bh=02g7vk5T0e5Z8v8ECJYlSOWilAyou2KtRz8Usdht4A4=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hBj/K97rTc9GtT2uh4vgNTkj7wHJghqrL50LXlOLSfwVN0z5WCEbST06/YRYqXK08SO4247zw7iDoK8AeYYfjyHhmnfhRw3g7DqZkDFDnatnM5ijne+fqhRyuUKtk0fMuI7osF0Yi7/MbGWS5Wn3RtzN7To/DJFKVWwZJK5MoCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jurz5huX; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52cdb0d8107so5016077e87.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 07:56:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719327403; x=1719932203; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YoReR8WhxNYuufCEGKkuq94jgMfndxltW+YaaMCsVj4=;
+        b=Jurz5huXlVavTgzwnPoRxb1Vdd98CJ+o81snlBedO1GEHXHC4IqIc4FlF1Pqm7t9XK
+         nXP/G+69srDmRgHGjZPja5SWx0MYnge4/omm0j1h8YPF41wKhTkUOKZM+AE/022wMhgw
+         B+YjwEWFT7BwIEQAN4p5I5GXH3I7/Q/HZxenDXtGG+BogDWaAyeG/rHajDcBl/2EzdAM
+         JBPHkOwsq4XWuUks70ZvXa3C//3egqt61yeKNrgWyBnvN+BxvkO7y81D1f8P2UboSroS
+         Bv6KYpFjfB5+QZwaod94jiqEdSgTL7tVh/U1TsntUCNo5VR/weCvdvpbvhCkqCqAKrBE
+         uPcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719327403; x=1719932203;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YoReR8WhxNYuufCEGKkuq94jgMfndxltW+YaaMCsVj4=;
+        b=Y71Ws/bLU29UrUOSVvHvXtr+McA6e6pYuVcZvLCX4L0WFRcQzSNcDe+ChdCWclbaUw
+         rrCb1KAbL3AeC+94WwG5w6EWKOyxFXPe+26tZOK0HAkuPor0Nd4NWWKLBBqthXg5WHYY
+         dW/9mXDqVBdLjOIKdtcjGvuFmzAjUY0ZJr+6+3YFc6XZ4r6yLyr30ZXqAr8RMXHfnX8N
+         FwsDGO5N+ard7zFj8C495rffxX7QRKRn7vhUir5A16NY7iCP7CkvmK6+41zquNqhbxqG
+         Q7Ot8JOovki+I34BReXAAlQYxfNLPg1HtjD4AlH17QoqQhT/aeuvf5CI72TA9VWoasvo
+         1kfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWn58ZpBkUbQ7VI2cbEyoYYXkJM5oX8vxDOWoete5NC9d5q1mQNPbYYL2MPNXDXnslelNADkk7qAUALigjq8iq0y0YgZWEabpZ/QA==
+X-Gm-Message-State: AOJu0YwAX/dcUIfRMjGT8wleOsWZPukvDodHoIDBImXHwGLsLOOfwbwS
+	EE9hL+Tw6TkCljY3kGmNHqb+FI2IzSvXT9jLYh59HaMbXr6A1RW4JEKQkFU5ewc=
+X-Google-Smtp-Source: AGHT+IFXgEFFBEekYez/olxWlhZlgktM2joEiS7S4E8YauuUuTtTSsmoGuQvl2CGNP1XEWUsmnVA2Q==
+X-Received: by 2002:a05:6512:3c82:b0:52c:dbe6:f5f9 with SMTP id 2adb3069b0e04-52cdf7e6735mr7608853e87.12.1719327401997;
+        Tue, 25 Jun 2024 07:56:41 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd641f655sm1257321e87.162.2024.06.25.07.56.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jun 2024 07:56:41 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	=?UTF-8?q?Barnab=C3=A1s=20Cz=C3=A9m=C3=A1n?= <trabarni@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Daniil Titov <daniilt971@gmail.com>
+Subject: Re: [PATCH v2 0/4] MSM8937 MDP/DSI PHY enablement
+Date: Tue, 25 Jun 2024 17:56:39 +0300
+Message-Id: <171932736812.1437673.1282826360877883479.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240623-dsi-v2-0-a0ca70fb4846@gmail.com>
+References: <20240623-dsi-v2-0-a0ca70fb4846@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ybfvhfwy3rgiDyzm"
-Content-Disposition: inline
-In-Reply-To: <f855f6ec-f0f7-467a-9823-d19706574408@collabora.com>
-X-Cookie: Results vary by individual.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
---ybfvhfwy3rgiDyzm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Sun, 23 Jun 2024 22:30:35 +0200, Barnabás Czémán wrote:
+> This patch series adds support for the MDP and DSI PHY as found on the
+> MSM8937 platform.
+> 
+> 
 
-On Tue, Jun 25, 2024 at 04:51:56PM +0200, AngeloGioacchino Del Regno wrote:
+Applied, thanks!
 
-> The interdependency is for soc/mediatek commits, which depend on:
->  - Interconnect commits (which Georgi picked already); and
->  - Regulator commits
+[1/4] dt-bindings: display/msm: qcom, mdp5: Add msm8937 compatible
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/c94dc5feb494
+[2/4] drm/msm/mdp5: Add MDP5 configuration for MSM8937
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/13099cb03f98
+[3/4] dt-bindings: msm: dsi-phy-28nm: Document msm8937 compatible
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/60bdbaaf1220
+[4/4] drm/msm/dsi: Add phy configuration for MSM8937
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/2df0161959d1
 
-So the regulator stuff works without the interconnect and vice versa, no
-build deps or anything?
-
-> And... you reviewed the patch in the previous merge window :-)
-
-I simply don't provide tags for things I expect to go via my tree.
-
---ybfvhfwy3rgiDyzm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ62lQACgkQJNaLcl1U
-h9AudAf/W50XJ088Y6eXx3Vma3D22WxaI/Uw4qotmwWBWYHpqgxdEOOCvgf2FFjK
-yF1i60d2zIF+vBTMm3jXo0NMBUxW+8M+60MOsDvZS0POPxkdko2+MOt8NfJlPpnO
-16wz8lIR+oc1YFphmh4o3bgjsxXwbzyjVskjs0bBOWGRNllftiKZMUgQdg/aCbQu
-grhS1n1AEKA7Q13ahMWrwh39gkRn51t3KPmAdwhy9j70XCHgSaNALEj7vOYIVnPR
-QTPQn8bldlUAjUEmXdcL5Hgz1T1aRCOQAM019+IqWGTv8NPTi94IrWojfBZ02swb
-4thLhUOHqd8mP01SIQjYM20dQOaW3w==
-=lhMt
------END PGP SIGNATURE-----
-
---ybfvhfwy3rgiDyzm--
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
