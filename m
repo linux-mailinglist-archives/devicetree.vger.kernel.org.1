@@ -1,100 +1,117 @@
-Return-Path: <devicetree+bounces-79805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04223916E1E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:28:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B84916E2E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:34:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 344831C21188
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:28:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43F432838E8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C41172BB5;
-	Tue, 25 Jun 2024 16:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA26C172BBF;
+	Tue, 25 Jun 2024 16:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CJXlPnm4"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="l2EvxNj/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688A016FF59;
-	Tue, 25 Jun 2024 16:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEA514A0B8;
+	Tue, 25 Jun 2024 16:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719332904; cv=none; b=DAFFulxCoZeimdApvnIZ6nNL40FaC5wltBuZ1GNMJchWcNQ2/M729jlpoBWciYRUo2DlqTKEQLU25/wJInj6GT/+DiomLu36BajwWiMEyrTNFK/4EbbEycl2yWaVr/MT12yFA9WJN/q/GcDyM0rCueRV2VGj+hxR+fgsniVHGlI=
+	t=1719333274; cv=none; b=ZxQXrWFTM85bKb1RIQ3v7PKAGQlkY+PV2F1ofv1xJIyMWoqCgLYMwYuYkrr0nT2j/Q67CUwgl4Zoiuv62FtMJuAKWv+s8B13Xp6cO7irbgKjT2yFk2UNnal0eWcQ7JPpgKLVzqX52TcgTCOb8xF2uuZGW6ISgiqdkKHJsCg0dIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719332904; c=relaxed/simple;
-	bh=lAIs47e6ByHYRlE7lmHPomaMZB8KF4axXzIUJBIBYLo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fbgLlBPsInzYmS3/NB8fYe+ouRH4KNeQfNRgb1oUSsHWpp/oW3L/TCnHEjPzOjqIH/vcX+opqnpZaWuuBA0ALr5pHaasypyXwQpwxk0BI999XbGzmhcD99QQCNu3hzBCeqdfWWRuRfexgFGGUl5DvO91BPllBB390PQe0tJ7QfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CJXlPnm4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E10C32781;
-	Tue, 25 Jun 2024 16:28:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719332903;
-	bh=lAIs47e6ByHYRlE7lmHPomaMZB8KF4axXzIUJBIBYLo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CJXlPnm4ygfkvjOnFFFCYnppxIXN6d9PYrUKRRwL9RmzlRbSpGiwCjgzCY7TQJ5bm
-	 kqn8MOaRckqZHSAaDFB8Zrra+W1lq/dWU1/YLFFlsOtuNKubErqQ5tS8P1ixEYd6e1
-	 xq3HYeDY/gZZAqRNOjTHH2bJWK/ATlAk6tfq8x4CGrVHyh8RaIQ+7WDcVeFbqFpYL5
-	 G7GkhdWv0tucl7PX20VmLcjQtL4DnQZa5V66fshWOhiRuwYyuY2JPgKji51YOMvU5C
-	 bB0jWlbFHfDEPYJRfglQ0s5in46GgN9meIXPgL9czaf4abi7GfZbYrFJ88wTbDobvv
-	 wQjL44nbEuaMA==
-Date: Tue, 25 Jun 2024 17:28:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
-	p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v2 08/12] dt-bindings: i2c: renesas,riic: Document the
- R9A08G045 support
-Message-ID: <20240625-agreement-harpist-f3b31646da40@spud>
-References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
- <20240625121358.590547-9-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1719333274; c=relaxed/simple;
+	bh=yRbrl8pBo6hmUcs39DQUAtO1CFgz2Vf67wvVIsA4nh0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MTnZjV4i2eN1hkfM4N+NAJKyD9ukr18KEHmH9VX/WzUlB8V0nrQEfm1ODP1+UPewuHjCBsGN5XqnM+ZiGMaNp1/4YGIJmu+0GZqyeUinE8GadJdTH0xX9cWf/0SbwgYk1Z6Asqf3/fF2Jp6yGbAcOUjXMVB7tZNlMjf86ujQzaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=l2EvxNj/; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 396D8FF803;
+	Tue, 25 Jun 2024 16:34:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1719333270;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=lQcRzQLnkaoL4wQYeJunaQ65bdPeTfuBgWQEOy5uOio=;
+	b=l2EvxNj/BT8ncbykHU91+LRRiUzl33lqWsvlnnM4JkFyhh55Iftxu8T539KpXS/vCTv8np
+	hLMSBio9L9ApDHU5iw9ud2Ly0lkOgG5yDaLKnwet7/1BHan6kIReJRIshUqymxxriU91fM
+	RCoA6AVahsPAPVX1m8tlGpNzhugGODLwdblnhchPqbVV851VrHTpzRCWq+5AX5Fuwdrkew
+	JYeeBIO7Fq+00JENHd5RrSlggUYOpK/keIpOrhfnsEYtahun4655uE5TXlggSlEcH7GdAB
+	FmUQi8dNMnlWoBGzgo1A4ZBmSb8HTAeHyfBLAvKLR/Sv3YIxXw5DXaOhLguzlQ==
+Message-ID: <12446d57-8a88-472d-845a-58ee603cedcc@arinc9.com>
+Date: Tue, 25 Jun 2024 19:34:23 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="onrf8GZp/AhiDHmN"
-Content-Disposition: inline
-In-Reply-To: <20240625121358.590547-9-claudiu.beznea.uj@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Minor grammar
+ fixes
+To: Conor Dooley <conor@kernel.org>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, andrew@lunn.ch,
+ f.fainelli@gmail.com, olteanv@gmail.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>
+References: <20240624025812.1729229-1-chris.packham@alliedtelesis.co.nz>
+ <704f4b95-2aed-4b76-87cb-83002698471c@arinc9.com>
+ <20240624-radiance-untracked-29369921c468@spud>
+ <68961d4f-10d8-4769-94d3-92ce709aa00a@arinc9.com>
+ <20240624-supernova-obedient-3a2ba2a42188@spud>
+ <a17f35ae-5376-458a-b7b5-9dbefd843b40@arinc9.com>
+ <20240625-surfboard-massive-65f7f1f61f0d@spud>
+Content-Language: en-US
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20240625-surfboard-massive-65f7f1f61f0d@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
 
+On 25/06/2024 19.16, Conor Dooley wrote:
+> On Mon, Jun 24, 2024 at 08:11:10PM +0300, Arınç ÜNAL wrote:
+>> On 24/06/2024 20.02, Conor Dooley wrote:
+>>> On Mon, Jun 24, 2024 at 07:59:48PM +0300, Arınç ÜNAL wrote:
+>>>> On 24/06/2024 19.29, Conor Dooley wrote:
+>>>>> On Mon, Jun 24, 2024 at 10:00:25AM +0300, Arınç ÜNAL wrote:
+>>>>>> On 24/06/2024 05.58, Chris Packham wrote:
+>>>
+>>>>>>>        and the switch registers are directly mapped into SoC's memory map rather than
+>>>>>>>        using MDIO. The DSA driver currently doesn't support MT7620 variants.
+>>>>>>>        There is only the standalone version of MT7531.
+>>>>>>> -  Port 5 on MT7530 has got various ways of configuration:
+>>>>>>> +  Port 5 on MT7530 supports various configurations:
+>>>>>>
+>>>>>> This is a rewrite, not a grammar fix.
+>>>>>
+>>>>> In both cases "has got" is clumsy wording,
+>>>>
+>>>> We don't use "have/has" on the other side of the Atlantic often.
+>>>
+>>> Uh, which side do you think I am from?
+>>
+>> Who would call it clumsy to use "have" and "got" together for possession...
+>> Must be an Irishman! :D
+> 
+> Okay, I was just making sure you weren't accusing me of being
+> American...
 
---onrf8GZp/AhiDHmN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Wouldn't be a bigger insult than calling you British anyway. :D
 
-On Tue, Jun 25, 2024 at 03:13:54PM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->=20
-> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible with
-> the version available on Renesas RZ/V2H (R9A09G075).
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---onrf8GZp/AhiDHmN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrwIgAKCRB4tDGHoIJi
-0m5HAPoD67GiW5fhQfJmviBDT7WelIDnDqFiU973Bes4rt/6GQEA+fR4hnwPzuWX
-JLyNSh+JtY1uL5zYDybaiIfMBdJ6Ggk=
-=RU4D
------END PGP SIGNATURE-----
-
---onrf8GZp/AhiDHmN--
+Arınç
 
