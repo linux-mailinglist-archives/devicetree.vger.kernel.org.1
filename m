@@ -1,158 +1,127 @@
-Return-Path: <devicetree+bounces-79589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 595DB915F0D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:47:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3786915F17
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 08:54:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A340282B85
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 06:47:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3E701C2266D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 06:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53562146581;
-	Tue, 25 Jun 2024 06:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C0514659D;
+	Tue, 25 Jun 2024 06:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F7hE66ck"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WD8d0zBn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F95414600C;
-	Tue, 25 Jun 2024 06:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AE0146583;
+	Tue, 25 Jun 2024 06:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719298043; cv=none; b=nNDSQrH1t67j0HkViH8fhzP9043bg2B7QLo0oA1ykt0qLMAx0tHDRa6nIxiU7RgPlkMrUcGw2i7mjJ2VkIRh2q0ZJCggOJ4OuInHoG+imDRRbxowyNy2mMyI7h+t6cIyDEowfgUEYLprFuZu0uvOsaF7FWxJDdbQAtlDTUyo9kI=
+	t=1719298458; cv=none; b=jjyQRNnqqUC0XP7e7iV715KXvVtrpjASgSlvKz0Uth0zUE1DFW6MXEAbhIgWxrSrZMPLdow58RUHiTa6PqK127oWQrjShD4AjP7SKOqFIz3JteZ9xju1P49tnNcJRfpsoIZJZe0DQ6XJoKdo7s09mqBWbir5H7YyYdOh3HcEa9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719298043; c=relaxed/simple;
-	bh=pJJu5s9KBxupbvcL1lu1+U5fHpLZ++eVwWUD05uzpPs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I7NxSDMnCNxFAlDnKwv/UnXzs9Op90Qc5XQcTKQvTsu6+L35H5Dq4PjFc1qbIEMELNSjexxSP5cL4xLKuPoxzwD+UsL/ySIEEDX3z5A0VfYDLGhFlfFfKNeMnrQYAqWvqKSZdcgWU9t9zqk1uQEuQY2b/3FxyFM1yiovN8YdkZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F7hE66ck; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4FDAC32781;
-	Tue, 25 Jun 2024 06:47:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719298042;
-	bh=pJJu5s9KBxupbvcL1lu1+U5fHpLZ++eVwWUD05uzpPs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F7hE66ckoIiNZDCC/BKpdORZyZ1F8SNYkxPHAs62E7ZzqtjWc3vUgNK5qodSyTktz
-	 sF+vVkvwAs5vCg4puoKPidU8+M4B9A7cmR8a1d8Je/6fKZLew2cEA3BRTwP4v5ami0
-	 GHHk1ybDEUctvr8faom0P1IGGUwMBKulUeGeea/+hBD5fykd5KyEL2n2BzRWl7lXUT
-	 qkfYt+cOSuHTRaNFgRabcSyV6TgxMpkacyqQPUxgvcib/F825ihOkaWROgK8c3rBBQ
-	 8ltpBPkGZWHekBvobIfeUAMUKMzn2H4ul1JECtfBbxYL3WLy5bwDrYWxMhCuRjlJuq
-	 9AKgHzD8B8Nmw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sLzxh-000000008Oq-47Ci;
-	Tue, 25 Jun 2024 08:47:30 +0200
-Date: Tue, 25 Jun 2024 08:47:29 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	"vkoul@kernel.org" <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Lockdep broken on x1e80100 (was: Re: [PATCH v5 0/7] sm8550: Add
- support for eUSB2 repeater)
-Message-ID: <ZnpoAVGJMG4Zu-Jw@hovoldconsulting.com>
-References: <20230208190200.2966723-1-abel.vesa@linaro.org>
+	s=arc-20240116; t=1719298458; c=relaxed/simple;
+	bh=GLy9r6s4JKJPpiiGmmqfmYHHn2czjjzX19kmNfcD+c8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iO1kcNvNrDHiQJBw86lOyhll/YkSetikmdoSs2ZGqeyT1oY8mCbYsGT28fD/2eUpyEUAVYLltPGzTISYGcLaDo3TNLyS8ievpNrVYch6r0zlAYg05PeuxIKksHeHMeq7w2GdqmopOl9BhMu0HKVW3Zun1yaNAqLJtAUVf965GUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WD8d0zBn; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1719298455; x=1750834455;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GLy9r6s4JKJPpiiGmmqfmYHHn2czjjzX19kmNfcD+c8=;
+  b=WD8d0zBntm5tISZ0ENQRj5NrCMiEuTAtCvMxD5GuRdXfUII0BfBHM4oE
+   QwP4Vjdcxdf2goPhJZ27dyYWxNadUD0f+PiZ1E03L5nejjY8Aqmj+it4M
+   f3nWJLlVTNjBu3irXVsRd4GWqq6e+9fMgfd3/sbXSXPEdUt9miZ38Ask3
+   iSeWi2HF6v2QHQ6afyPlM38IOqp/GzwobKaI6+gdDOKaIfBI7Ao62St/a
+   P+2xWeWKFfSQnLhBFsPPt8SdpV9b/OcUyMfDFLNbeVzdnM65p+EtPMR58
+   HnH9Y2p/9GQoimx1q9dk5r0JNAbBxPMrd7oAgGOXoaiJ9v9EY/hh0teXz
+   A==;
+X-CSE-ConnectionGUID: KXhBoKx+S7moHFrVMENI0g==
+X-CSE-MsgGUID: /nUaxC2FQSKFDYiv18kmpg==
+X-IronPort-AV: E=Sophos;i="6.08,263,1712646000"; 
+   d="asc'?scan'208";a="259332112"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Jun 2024 23:54:14 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 24 Jun 2024 23:53:34 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 24 Jun 2024 23:53:32 -0700
+Date: Tue, 25 Jun 2024 07:53:23 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Yasin Lee <yasin.lee.x@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	<yasin.lee.x@outlook.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>, Conor Dooley
+	<conor@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v7 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
+Message-ID: <20240625-basis-greedily-483c1518026a@wendy>
+References: <20240625-add-tyhx-hx9023s-sensor-driver-v7-0-b1d65b221811@gmail.com>
+ <20240625-add-tyhx-hx9023s-sensor-driver-v7-2-b1d65b221811@gmail.com>
+ <d77a4777-d282-4004-895a-7809abf68130@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fgvME+BqevhmvgA1"
 Content-Disposition: inline
-In-Reply-To: <20230208190200.2966723-1-abel.vesa@linaro.org>
+In-Reply-To: <d77a4777-d282-4004-895a-7809abf68130@kernel.org>
 
-On Wed, Feb 08, 2023 at 09:01:53PM +0200, Abel Vesa wrote:
-> This patchset adds support for the eUSB2 repeater found in pmic PM8550B,
-> used along with SM8550. Since there is no dedicated generic framework
-> for eUSB2 repeaters, the most appropriate subsystem to model it is the
-> generic phy. This patchset also adds support for such repeater to the
-> eUSB2 PHY found in SM8550. Basically, the eUSB2 PHY will have its own
-> "phy" which is actually a repeater.
+--fgvME+BqevhmvgA1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The decision to model the repeater as a PHY unfortunately breaks lockdep
-as you now have functions like phy_init() calling phy_init() for a
-second PHY (the repeater, see splat below).
+On Tue, Jun 25, 2024 at 07:48:52AM +0200, Krzysztof Kozlowski wrote:
+> On 25/06/2024 04:15, Yasin Lee wrote:
+> > A capacitive proximity sensor
+> >=20
+> > Acked-by: Conor Dooley <conor@kernel.org>
 
-As long as the locks are always taken in the same order there should be
-no risk for a deadlock, but can you please verify that and add the
-missing lockdep annotation so that lockdep can be used on platforms like
-x1e80100 (e.g. to prevent further locking issues from being introduced)?
+And I _never_ provide tags with my kernel.org address in them, so this
+didn't happen either :)
 
-Johan
+> > Acked-by: Jonathan Cameron <jic23@kernel.org>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> What? How did this happen? Where - provide lore links to prove it?
+>=20
+> NAK
+>=20
+> > Reported-by=EF=BC=9A "Rob Herring (Arm)" <robh@kernel.org>
+>=20
+> No, drop.
+>=20
+> > Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
 
+--fgvME+BqevhmvgA1
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[    8.613248] ============================================
-[    8.669073] WARNING: possible recursive locking detected
-[    8.669074] 6.10.0-rc5 #122 Not tainted
-[    8.669075] --------------------------------------------
-[    8.669075] kworker/u50:0/77 is trying to acquire lock:
-[    8.669076] ffff5cae8733ecf8 (&phy->mutex){+.+.}-{3:3}, at: phy_init+0x4c/0x12c
-[    8.669087]
-               but task is already holding lock:
-[    8.669088] ffff5cae8a056cf8 (&phy->mutex){+.+.}-{3:3}, at: phy_init+0x4c/0x12c
-[    8.669092]
-               other info that might help us debug this:
-[    8.669092]  Possible unsafe locking scenario:
+-----BEGIN PGP SIGNATURE-----
 
-[    8.669093]        CPU0
-[    8.669093]        ----
-[    8.669094]   lock(&phy->mutex);
-[    8.669095]   lock(&phy->mutex);
-[    8.669097]
-                *** DEADLOCK ***
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnppVgAKCRB4tDGHoIJi
+0rwlAQDc2qSV0UY7uzZfVUDuRlAFNt1Sz25uc4OoBh7Dr1XagQEA/AVHBJbsfot4
+xaq7sqPUXc3M51vzcFyUStEEyZMCgAw=
+=V3J8
+-----END PGP SIGNATURE-----
 
-[    8.669097]  May be due to missing lock nesting notation
-
-[    8.669097] 4 locks held by kworker/u50:0/77:
-[    8.669099]  #0: ffff5cae80010948 ((wq_completion)events_unbound){+.+.}-{0:0}, at: process_one_work+0x1a4/0x638
-[    8.669108]  #1: ffff800080333de0 (deferred_probe_work){+.+.}-{0:0}, at: process_one_work+0x1cc/0x638
-[    8.669112]  #2: ffff5cae854038f8 (&dev->mutex){....}-{3:3}, at: __device_attach+0x38/0x1d4
-[    8.669117]  #3: ffff5cae8a056cf8 (&phy->mutex){+.+.}-{3:3}, at: phy_init+0x4c/0x12c
-[    8.669121]
-               stack backtrace:
-[    8.669122] CPU: 9 PID: 77 Comm: kworker/u50:0 Not tainted 6.10.0-rc5 #122
-[    8.669124] Hardware name: Qualcomm CRD, BIOS 6.0.231221.BOOT.MXF.2.4-00348.1-HAMOA-1 12/21/2023
-[    8.669125] Workqueue: events_unbound deferred_probe_work_func
-[    8.669128] Call trace:
-[    8.669129]  dump_backtrace+0x9c/0x11c
-[    8.870384]  show_stack+0x18/0x24
-[    8.870386]  dump_stack_lvl+0x90/0xd0
-[    8.870391]  dump_stack+0x18/0x24
-[    8.870393]  print_deadlock_bug+0x25c/0x348
-[    8.870396]  __lock_acquire+0x10a4/0x2064
-[    8.870399]  lock_acquire.part.0+0xc8/0x20c
-[    8.870401]  lock_acquire+0x68/0x84
-[    8.870403]  __mutex_lock+0x98/0x428
-[    8.870407]  mutex_lock_nested+0x24/0x30
-[    8.870410]  phy_init+0x4c/0x12c
-[    8.870412]  qcom_snps_eusb2_hsphy_init+0x54/0x420 [phy_qcom_snps_eusb2]
-[    8.870416]  phy_init+0xe0/0x12c
-[    8.870418]  dwc3_core_init+0x484/0x1214
-[    8.870421]  dwc3_probe+0xe54/0x171c
-[    8.870424]  platform_probe+0x68/0xd8
-[    8.870426]  really_probe+0xc0/0x388
-[    8.870427]  __driver_probe_device+0x7c/0x160
-[    8.870429]  driver_probe_device+0x40/0x114
-[    8.870430]  __device_attach_driver+0xbc/0x158
-[    8.870432]  bus_for_each_drv+0x84/0xe0
-[    8.870433]  __device_attach+0xa8/0x1d4
-[    8.870435]  device_initial_probe+0x14/0x20
-[    8.870436]  bus_probe_device+0xb0/0xb4
-[    8.870437]  deferred_probe_work_func+0xa0/0xf4
-[    8.870439]  process_one_work+0x224/0x638
-[    8.870441]  worker_thread+0x268/0x3a8
-[    8.870442]  kthread+0x124/0x128
-[    8.870443]  ret_from_fork+0x10/0x20
+--fgvME+BqevhmvgA1--
 
