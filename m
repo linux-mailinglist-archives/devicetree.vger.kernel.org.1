@@ -1,134 +1,108 @@
-Return-Path: <devicetree+bounces-79794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF29F916DD9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:16:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFC8916DE1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:20:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A51891F217E6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:16:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFCC8B24597
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86AA616D323;
-	Tue, 25 Jun 2024 16:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MH4ljJVj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB55E170847;
+	Tue, 25 Jun 2024 16:20:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5956814A0B8;
-	Tue, 25 Jun 2024 16:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B7816D323
+	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 16:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719332180; cv=none; b=fr1F+mU22GMQDdiiHYYWvhGw/OaygRNHoO/j61ilCA5sJxDdc90DvlnLDottiR71nhVkZdo71rOmlV2hmh+V/8I56f8LeLpUOK56rnad9QbvFCbCPuwvwGPgbYJisSmcfi3L2I5u/JOr1jf3+ExhCGdIsaKgFKNdLeuQ16/Ra4A=
+	t=1719332428; cv=none; b=AVzrCfd3e12HIIEUoy68Z5pHBBWh6+XnfZ1Ls0nVRHsaQND6nYIzSLigmUWOQ6HiNUh+e2+WURKQMAL24MWNnE8lfF51Zt7eR82et+rseORPb2NyyS/Gtc96H8mwpLJ+DiFTFxIfT/IMNSkzks+Umz3OReqhNtsmYwsyWIFDlBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719332180; c=relaxed/simple;
-	bh=1WVXoygUO2k28Qdke15vXqnojvrYTkH/M/tMYcvDbZM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wv4E639V/hR3N+VxmSzy2RIPqWC9STYdttDtYEbuYmQFbzQNJzD8wfhe1C2ORYQO5Qr9EOXX0RlcvIwggG0zRZVFGVQ1RcjHrHWaGX4XyS7bY491TuXju5mbfOrX5hgV5ObdcmbvCaxe/9jAC3I7AzthMV+bek9tremSvcHv+Vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MH4ljJVj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 925F2C32781;
-	Tue, 25 Jun 2024 16:16:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719332179;
-	bh=1WVXoygUO2k28Qdke15vXqnojvrYTkH/M/tMYcvDbZM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MH4ljJVjO0hDppiYoO3Ajxdamtx2V5hR0j6h9kP7L3ZMFiT1oIAja7uu0eZknV8Xm
-	 +nAg0KCl6DYiUKh//lTYuYyWjNGl1FKgtvL5fUlY1ALJ5hubRWHFekGQVwfV6O8zIC
-	 MVt9kpIVL158Zf8Y8Q1f9gOYpKd98WSnSZAddFeeEr8byc5xDBzfITEbRO14dmWQOI
-	 Gl1g86L4S0bsaMIwi5jrUkQVp4JP+2CLOkBt/yUrh0ne9tfrgzbS0N5ePb4MtO+M+q
-	 k4CSz2yrqD0wm8U8h9ibgRHOCiqDitKrLFu3M+A6/f3XAmIXluMXZRcAssybE5bJ7L
-	 slsk8fUTAApEA==
-Date: Tue, 25 Jun 2024 17:16:13 +0100
-From: Conor Dooley <conor@kernel.org>
-To: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, andrew@lunn.ch,
-	f.fainelli@gmail.com, olteanv@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH] dt-bindings: net: dsa: mediatek,mt7530: Minor grammar
- fixes
-Message-ID: <20240625-surfboard-massive-65f7f1f61f0d@spud>
-References: <20240624025812.1729229-1-chris.packham@alliedtelesis.co.nz>
- <704f4b95-2aed-4b76-87cb-83002698471c@arinc9.com>
- <20240624-radiance-untracked-29369921c468@spud>
- <68961d4f-10d8-4769-94d3-92ce709aa00a@arinc9.com>
- <20240624-supernova-obedient-3a2ba2a42188@spud>
- <a17f35ae-5376-458a-b7b5-9dbefd843b40@arinc9.com>
+	s=arc-20240116; t=1719332428; c=relaxed/simple;
+	bh=b6/vKsj/PibxcS/6bXxbHOv4LLMxUEm/FlwcfPbufZY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VpSM1xUr1o9pNFvKdeuQ/WJt4wZeWemmN7c/PkaZFLDytY0gwsXTNS/kostM56ZBrah7pBqC3VBydEEfKhl+wENDk+mL5LlmuY+tbFMN4KCMI6+cnhTlqiebwHHa/6QSN1AyPSl5fVWdvBgE0daw24GRYQGaAOAtuMjRAo1ovIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ec6635aa43so18643421fa.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 09:20:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719332422; x=1719937222;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9MwUhJ3rsg2znZ8HeUs9/evcb9sqY2gLgQOBc97ax+M=;
+        b=s5y9XMCM1rL/y45Aovc3RUrZ/2SnXalAvzAXm3e2e3pBM+WPCOYo8g/BwfGA2G5cCc
+         eduRVBErAnuOy9YcrOcxRAR8WgMyy6O0wzgaUeUL/LMkEsl+yolmhd0bPShJF1Lb/LyA
+         Php+DWtphrmqwhpryuogkkIDoGHMst0kPnd3bdDLb+zYQtOvnEmgKSjS2kUJTi/lDWW7
+         jX/B06PhDPYAEH4obF0p3efFpIdwlzNxx742HMNV7dBusJX6uuNAIrkpFrlqB4Lb2kUK
+         cXPpcUIqRkSpmw2r6jHsLOI5fNid2w5hdILyI91ISHeXtqRGmkd9RASmdeLAJZsbNH7S
+         ApPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUJhe3JyVvtF0u+DB6dB8fIzmv6tnp3VsZUJOyDgK0Gpct/yuB6mM7EAo4Ixg01RxaM4ynLdpeoJWTIMBam5A4w7zfJ4IsSmGNuPA==
+X-Gm-Message-State: AOJu0YwOroCDgizPtjPS2O7ZUlxEZBuYuHoX1cuIGBSje5PahWVArE/e
+	vkC8cfa/c3xvjjwUWSvCRR3dwo6i3rfk6lpSl6uqm/YwSK/oSCwWvydxBGXn
+X-Google-Smtp-Source: AGHT+IEDflnw2TZIzPaiZJFrhHmJgzcLfB/z4cpGxL1CS4KOn9yVYVf4LbeWplgkbALjda0K/QCFIg==
+X-Received: by 2002:a2e:8ed0:0:b0:2ec:839c:b659 with SMTP id 38308e7fff4ca-2ec839d37a2mr3795261fa.41.1719332421971;
+        Tue, 25 Jun 2024 09:20:21 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com. [209.85.208.182])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec4d60133csm12474731fa.15.2024.06.25.09.20.20
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jun 2024 09:20:21 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2eaa89464a3so66435241fa.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 09:20:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWsklAd+mwwKzLqu8KggfPNcsvpLlJeFOcDFfn4mwl0TxODoo02LOk1bTwb4+bDpbaGboMqjrfgqbbF7PgTOaOVX+REqqvsZw7IbQ==
+X-Received: by 2002:a2e:b0f3:0:b0:2ec:5785:ee94 with SMTP id
+ 38308e7fff4ca-2ec579fefd8mr53735441fa.52.1719332420352; Tue, 25 Jun 2024
+ 09:20:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="eBPkurhNpOKh5uH9"
-Content-Disposition: inline
-In-Reply-To: <a17f35ae-5376-458a-b7b5-9dbefd843b40@arinc9.com>
-
-
---eBPkurhNpOKh5uH9
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20240616224056.29159-1-andre.przywara@arm.com> <ZnqyDLMzND_qJiOl@8bytes.org>
+In-Reply-To: <ZnqyDLMzND_qJiOl@8bytes.org>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Wed, 26 Jun 2024 00:20:08 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64M_trcaXzef6=rbWZY-r_sv=bvoHngUeDVWjx+AXTy7g@mail.gmail.com>
+Message-ID: <CAGb2v64M_trcaXzef6=rbWZY-r_sv=bvoHngUeDVWjx+AXTy7g@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] iommu: sun50i: Add Allwinner H616 support
+To: Joerg Roedel <joro@8bytes.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>, 
+	Philippe Simons <simons.philippe@gmail.com>, iommu@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 24, 2024 at 08:11:10PM +0300, Ar=C4=B1n=C3=A7 =C3=9CNAL wrote:
-> On 24/06/2024 20.02, Conor Dooley wrote:
-> > On Mon, Jun 24, 2024 at 07:59:48PM +0300, Ar=C4=B1n=C3=A7 =C3=9CNAL wro=
-te:
-> > > On 24/06/2024 19.29, Conor Dooley wrote:
-> > > > On Mon, Jun 24, 2024 at 10:00:25AM +0300, Ar=C4=B1n=C3=A7 =C3=9CNAL=
- wrote:
-> > > > > On 24/06/2024 05.58, Chris Packham wrote:
-> >=20
-> > > > > >       and the switch registers are directly mapped into SoC's m=
-emory map rather than
-> > > > > >       using MDIO. The DSA driver currently doesn't support MT76=
-20 variants.
-> > > > > >       There is only the standalone version of MT7531.
-> > > > > > -  Port 5 on MT7530 has got various ways of configuration:
-> > > > > > +  Port 5 on MT7530 supports various configurations:
-> > > > >=20
-> > > > > This is a rewrite, not a grammar fix.
-> > > >=20
-> > > > In both cases "has got" is clumsy wording,
-> > >=20
-> > > We don't use "have/has" on the other side of the Atlantic often.
-> >=20
-> > Uh, which side do you think I am from?
->=20
-> Who would call it clumsy to use "have" and "got" together for possession.=
-=2E.
-> Must be an Irishman! :D
+Hi Joerg,
 
-Okay, I was just making sure you weren't accusing me of being
-American...
+On Tue, Jun 25, 2024 at 8:03=E2=80=AFPM Joerg Roedel <joro@8bytes.org> wrot=
+e:
+>
+> On Sun, Jun 16, 2024 at 11:40:51PM +0100, Andre Przywara wrote:
+> >  .../bindings/iommu/allwinner,sun50i-h6-iommu.yaml |  7 ++++++-
+> >  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi    |  9 +++++++++
+> >  drivers/iommu/sun50i-iommu.c                      | 15 +++++++++++++--
+> >  3 files changed, 28 insertions(+), 3 deletions(-)
+>
+> Applied, thanks.
 
---eBPkurhNpOKh5uH9
-Content-Type: application/pgp-signature; name="signature.asc"
+Could you back out the last patch? I'd like to take it through the sunxi
+tree, which already has other H616 device tree patches.
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnrtTQAKCRB4tDGHoIJi
-0ogdAPsGgI16OjIEcRoR3/W3g7mWhBrsC6mYOu/EK0bHwPMgaAEA1ed2WNJBKEvH
-EIhgp/sU0bgFgyUSln6h4c1Gh70zUA4=
-=xwkj
------END PGP SIGNATURE-----
-
---eBPkurhNpOKh5uH9--
+Thanks
+ChenYu
 
