@@ -1,260 +1,241 @@
-Return-Path: <devicetree+bounces-79575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF56915E35
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:37:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B26915E59
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 07:48:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 349631C2253F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 05:37:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76CE11C22576
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 05:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90A9E145A18;
-	Tue, 25 Jun 2024 05:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDDB6139D1A;
+	Tue, 25 Jun 2024 05:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DRw8OwgA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EWe1fDYS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41CA2D600;
-	Tue, 25 Jun 2024 05:37:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27CB3101D5
+	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 05:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719293849; cv=none; b=f6qIJSAwjxPIP6abvUe4/VK5jjfRWUKG4jbFYX6FpnmVKT3vugTF8VbIZNELpvi3EbEFqXd0TqDvqEmjFdUUIVbO+GzfQc5mylzvyzK85rM2wGsO/2iJWGzAepazqI19LkZFQd2aIpIltVZnw1UCWwVr3E01F+3hkVYBxdD0DaM=
+	t=1719294521; cv=none; b=awudN5hkWJC5b1jyoOYrxJy8lZ40n9TN8Ne3KpRLQwQV430LZWYV1iz7IKbCtU2eoQihRPOV2MAu512p02ceNKZjR93a1Of7oEY4dBwy7OrB2UhjWFEsR7TjT3hRs4zlmH5TiLlm38r48qmuW2+bX7NwouwnvDnLxs9V7cUjUWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719293849; c=relaxed/simple;
-	bh=cauvOpeOY7unR2tmunCYMVLbA/ysI24kHKGPp6WVlZY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=oeW6jbrKNKBSxGBmNdIKZtcjwxpeddPBzsBMpg8Y0wVROf/15ICASdnzr/g1ADRKGOVoBeNjREQwtCsiUH4V5ICiO9qCJuTlgPjBZQRFLaOUc+LabJDuGl+W51MOPI3NuE2EpZLVw9NKLyB84xwYR4BIiRC7wEKgLsOFMwtdB6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DRw8OwgA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45OIflgE029121;
-	Tue, 25 Jun 2024 05:36:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BexPgGDf9tJcoYbSBZCn4jDSoJkFnKshV1VCnWPxvKo=; b=DRw8OwgAEefdoy9y
-	g6k7PfKR6IzZmqP3kY4/rdQCMoEQQEEVJ2tscYweeLuCx+o0lMg02sQpigCwOru1
-	/mKzHa5ddOO8lPJ/QJME6Qhyb+njN97W3zQ65xuuFgYzPibxwshKBe+s4ha3xdbo
-	HHCSaLSvQMYd/NPJHEM80Zj5gGfjJx7UsAHxtZaTt5HH6tJdYsWIRuY9yeI5sZb1
-	kNte9BI0pfF0i1yV3TBQC8uZks4hAOX3TCbh4S9aqK4p9r2Vd56jTZdhEgQoyNBf
-	GyNlPVTMopsf82JwOsVHkRHWYkQL6yaUb2NeOAWMZR3IZCcekXaJ1FNJrS8BU4mx
-	fQG7Gg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywq075e2m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Jun 2024 05:36:46 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45P5aj55003688
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Jun 2024 05:36:45 GMT
-Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Jun
- 2024 22:36:40 -0700
-Message-ID: <b664d24b-79b7-4ba2-8d93-22ef481b52cd@quicinc.com>
-Date: Tue, 25 Jun 2024 11:06:37 +0530
+	s=arc-20240116; t=1719294521; c=relaxed/simple;
+	bh=xppm1IlJiR0IQb3avLdxzMXwKw8ZgE4wqgotWbJ92BY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fDBtprD+1vGElX69NSBWV7FN3XKi0AJyKcCPKiOwMKjsrVYsoleZ0/LyBXZCR93MhSUpEY9YDZIBp7vkH/ySbOXmQ18mvs7ASiNV0MdYtG5TiATMKHokpgYrdUf2xjzlIvsvf2gay+fxQAaYHx1pEKDkbA1UChyZKllgJ1iz2rE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=EWe1fDYS; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4ee01a60497so105976e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jun 2024 22:48:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719294518; x=1719899318; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DNdi7aqLPaDq7mcCmj8ltEqqTcHmeKwm+6qNaCHj4kw=;
+        b=EWe1fDYSo5w1cxqR5ykkopRifQgwC2n6RyvunvGZ1C06EfCn8SVzkdiEACNvfDoNFd
+         LjuC4u6bMSInoQ1apdOmrs9Hqhocawa5YgAkya4xrbWqe2Xxr5lribhUW3kLAD/oXMvT
+         uVoU/IkduMkho9Z+0tOePD1SLkfaYnb/p83fMImgbyoxKcZEoQOvt7s/hFssdVaUqtU7
+         F/r0sozYF+dUc89GWRy5n78z9vBrkjFe/Yorfg5Z3ys7y9boghxdjR3EZxzhDA80uKHu
+         bBj1SC1Y7mHPyZcyOFcY+pTwL1jz8/keiXEZYuEV2QQ0D5dNnmFgMkWw38R7zcqQFZ9T
+         t0JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719294518; x=1719899318;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DNdi7aqLPaDq7mcCmj8ltEqqTcHmeKwm+6qNaCHj4kw=;
+        b=RAppTrV682/2wMK/8F1y8ZV4Mt6nsrfWy+ZHrjiTEKj/f4sRYk+2WEs9lvmbx0UYy5
+         RPyGWrRtlY+Qu0bVnCCTZ8dh0Kc7y11qe5vSgf8zJm24fiF5PRrCjhpCdhFdze/BjWLX
+         z7WdvTfgUVGrvvUoLW4RacbGso+jEg2PGVzU7SowMyhnnfOehYWJaFy52xxp83UJHDLo
+         YlERMfBL7qpRY8/2K/f8cHgXljoa3QSna7gUCX6olLcXgXt9UKRREuSOAusFnQF2Mc3H
+         djgNyv/AiCWB8+Qxw1zYbEIIMACbkwPcEmZrld+fy92X4aDPI0Fe+CxxBCbAsV/wz+eT
+         0OpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5E1dKMv3dLl04A3KPCMKqBhdO+eQ1CQU+YXd7SFuxDrTJJhHVIafEI9Knr9HdLcXYi5bqvkrR6Tdp36VkQBE47R2KMH0GWbxO2Q==
+X-Gm-Message-State: AOJu0Yz4/H4fssMzgBWe3tOA7MsCZOcifN4HfdEa5jC20Ow2VJnHvMpr
+	RTbeJdmn6OnwmMn3ZoFDfLFIO/FOKeS8YyIBNR4SfSNja9hrye1gI7cAFHoAqJnKZJZqXSBu5ia
+	zC7AIX5IQU0jgsmNe7tZWujgUH9VSFhje2Sge3A==
+X-Google-Smtp-Source: AGHT+IFKwEk98CWPI13i8+UFNMNJSNvpOC7aR/wyV/ooeLBJqqZgrEl0oorrEdQDYcopzfyLeyNKh0H0AicGfqcpk8w=
+X-Received: by 2002:a05:6102:50a2:b0:48d:aced:abff with SMTP id
+ ada2fe7eead31-48f46c146c1mr7490671137.1.1719294518060; Mon, 24 Jun 2024
+ 22:48:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/8] remoteproc: qcom: Add secure PIL support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <sboyd@kernel.org>, <andersson@kernel.org>, <bjorn.andersson@linaro.org>,
-        <david.brown@linaro.org>, <devicetree@vger.kernel.org>,
-        <jassisinghbrar@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <mark.rutland@arm.com>,
-        <mturquette@baylibre.com>, <ohad@wizery.com>, <robh@kernel.org>,
-        <sricharan@codeaurora.org>, <gokulsri@codeaurora.org>
-References: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
- <20240621114659.2958170-3-quic_gokulsri@quicinc.com>
- <mew7kifravbescnenvstmebfxkbpwdnarmagh6v4a2hqnbrxc6@cepyqz4vgum6>
-Content-Language: en-US
-From: Gokul Sriram P <quic_gokulsri@quicinc.com>
-In-Reply-To: <mew7kifravbescnenvstmebfxkbpwdnarmagh6v4a2hqnbrxc6@cepyqz4vgum6>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: nO58bK77J79TQiWeULGJPV1f2fZrDPgO
-X-Proofpoint-GUID: nO58bK77J79TQiWeULGJPV1f2fZrDPgO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-25_02,2024-06-24_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
- mlxscore=0 spamscore=0 mlxlogscore=999 adultscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406250042
+References: <20240624124941.113010-1-alisa.roman@analog.com> <20240624124941.113010-6-alisa.roman@analog.com>
+In-Reply-To: <20240624124941.113010-6-alisa.roman@analog.com>
+From: Alexandru Ardelean <aardelean@baylibre.com>
+Date: Tue, 25 Jun 2024 08:48:26 +0300
+Message-ID: <CA+GgBR8r_W9X0hROUEw-xePyKAhOTBjJtf=cHbfWfvUUfk5j_g@mail.gmail.com>
+Subject: Re: [PATCH v6 5/6] iio: adc: ad7192: Add clock provider
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Michael Hennerich <michael.hennerich@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 6/22/2024 2:47 AM, Dmitry Baryshkov wrote:
-> On Fri, Jun 21, 2024 at 05:16:53PM GMT, Gokul Sriram Palanisamy wrote:
->> IPQ8074 uses secure PIL. Hence, adding the support for the same.
-> See Documentation/process/submitting-patches.rst
-   Thanks. Will add detailed description.
->> Signed-off-by: Nikhil Prakash V <quic_nprakash@quicinc.com>
->> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
->> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->> ---
->>   drivers/remoteproc/qcom_q6v5_wcss.c | 43 +++++++++++++++++++++++++++--
->>   1 file changed, 40 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/remoteproc/qcom_q6v5_wcss.c b/drivers/remoteproc/qcom_q6v5_wcss.c
->> index 366b19cbd994..e45e79d80238 100644
->> --- a/drivers/remoteproc/qcom_q6v5_wcss.c
->> +++ b/drivers/remoteproc/qcom_q6v5_wcss.c
->> @@ -18,6 +18,7 @@
->>   #include <linux/regulator/consumer.h>
->>   #include <linux/reset.h>
->>   #include <linux/soc/qcom/mdt_loader.h>
->> +#include <linux/firmware/qcom/qcom_scm.h>
->>   #include "qcom_common.h"
->>   #include "qcom_pil_info.h"
->>   #include "qcom_q6v5.h"
->> @@ -86,6 +87,9 @@
->>   #define TCSR_WCSS_CLK_ENABLE	0x14
->>   
->>   #define MAX_HALT_REG		3
->> +
->> +#define WCNSS_PAS_ID		6
->> +
->>   enum {
->>   	WCSS_IPQ8074,
->>   	WCSS_QCS404,
->> @@ -134,6 +138,7 @@ struct q6v5_wcss {
->>   	unsigned int crash_reason_smem;
->>   	u32 version;
->>   	bool requires_force_stop;
->> +	bool need_mem_protection;
-> needs
+On Mon, Jun 24, 2024 at 3:51=E2=80=AFPM Alisa-Dariana Roman
+<alisadariana@gmail.com> wrote:
 >
->>   
->>   	struct qcom_rproc_glink glink_subdev;
->>   	struct qcom_rproc_ssr ssr_subdev;
->> @@ -152,6 +157,7 @@ struct wcss_data {
->>   	int ssctl_id;
->>   	const struct rproc_ops *ops;
->>   	bool requires_force_stop;
->> +	bool need_mem_protection;
-> needs
-   Thanks. Will update.
->>   };
->>   
->>   static int q6v5_wcss_reset(struct q6v5_wcss *wcss)
->> @@ -251,6 +257,15 @@ static int q6v5_wcss_start(struct rproc *rproc)
->>   
->>   	qcom_q6v5_prepare(&wcss->q6v5);
->>   
->> +	if (wcss->need_mem_protection) {
->> +		ret = qcom_scm_pas_auth_and_reset(WCNSS_PAS_ID);
->> +		if (ret) {
->> +			dev_err(wcss->dev, "wcss_reset failed\n");
->> +			return ret;
->> +		}
->> +		goto wait_for_reset;
->> +	}
-> Use if/else instead of a goto.
-
-   sure. Will update.
-
+> Internal clock of AD719X devices can be made available on MCLK2 pin. Add
+> clock provider to support this functionality.
 >
->> +
->>   	/* Release Q6 and WCSS reset */
->>   	ret = reset_control_deassert(wcss->wcss_reset);
->>   	if (ret) {
->> @@ -285,6 +300,7 @@ static int q6v5_wcss_start(struct rproc *rproc)
->>   	if (ret)
->>   		goto wcss_q6_reset;
->>   
->> +wait_for_reset:
-> This is more like wait_for_start
-   yes, this looks more appropriate. Will update. Thanks.
->>   	ret = qcom_q6v5_wait_for_start(&wcss->q6v5, 5 * HZ);
->>   	if (ret == -ETIMEDOUT)
->>   		dev_err(wcss->dev, "start timed out\n");
->> @@ -718,6 +734,15 @@ static int q6v5_wcss_stop(struct rproc *rproc)
->>   	struct q6v5_wcss *wcss = rproc->priv;
->>   	int ret;
->>   
->> +	if (wcss->need_mem_protection) {
->> +		ret = qcom_scm_pas_shutdown(WCNSS_PAS_ID);
->> +		if (ret) {
->> +			dev_err(wcss->dev, "not able to shutdown\n");
->> +			return ret;
->> +		}
->> +		goto pas_done;
->> +	}
-> if/else. Or abstract this to functions.
-   sure. Will update appropriately.
->> +
->>   	/* WCSS powerdown */
->>   	if (wcss->requires_force_stop) {
->>   		ret = qcom_q6v5_request_stop(&wcss->q6v5, NULL);
->> @@ -742,6 +767,7 @@ static int q6v5_wcss_stop(struct rproc *rproc)
->>   			return ret;
->>   	}
->>   
->> +pas_done:
->>   	clk_disable_unprepare(wcss->prng_clk);
->>   	qcom_q6v5_unprepare(&wcss->q6v5);
->>   
->> @@ -765,9 +791,15 @@ static int q6v5_wcss_load(struct rproc *rproc, const struct firmware *fw)
->>   	struct q6v5_wcss *wcss = rproc->priv;
->>   	int ret;
->>   
->> -	ret = qcom_mdt_load_no_init(wcss->dev, fw, rproc->firmware,
->> -				    0, wcss->mem_region, wcss->mem_phys,
->> -				    wcss->mem_size, &wcss->mem_reloc);
->> +	if (wcss->need_mem_protection)
->> +		ret = qcom_mdt_load(wcss->dev, fw, rproc->firmware,
->> +				    WCNSS_PAS_ID, wcss->mem_region,
->> +				    wcss->mem_phys, wcss->mem_size,
->> +				    &wcss->mem_reloc);
->> +	else
->> +		ret = qcom_mdt_load_no_init(wcss->dev, fw, rproc->firmware,
->> +					    0, wcss->mem_region, wcss->mem_phys,
->> +					    wcss->mem_size, &wcss->mem_reloc);
->>   	if (ret)
->>   		return ret;
->>   
->> @@ -1035,6 +1067,9 @@ static int q6v5_wcss_probe(struct platform_device *pdev)
->>   	if (!desc)
->>   		return -EINVAL;
->>   
->> +	if (desc->need_mem_protection && !qcom_scm_is_available())
->> +		return -EPROBE_DEFER;
->> +
->>   	rproc = devm_rproc_alloc(&pdev->dev, pdev->name, desc->ops,
->>   				 desc->firmware_name, sizeof(*wcss));
->>   	if (!rproc) {
->> @@ -1048,6 +1083,7 @@ static int q6v5_wcss_probe(struct platform_device *pdev)
->>   
->>   	wcss->version = desc->version;
->>   	wcss->requires_force_stop = desc->requires_force_stop;
->> +	wcss->need_mem_protection = desc->need_mem_protection;
->>   
->>   	ret = q6v5_wcss_init_mmio(wcss, pdev);
->>   	if (ret)
->> @@ -1111,6 +1147,7 @@ static const struct wcss_data wcss_ipq8074_res_init = {
->>   	.wcss_q6_reset_required = true,
->>   	.ops = &q6v5_wcss_ipq8074_ops,
->>   	.requires_force_stop = true,
->> +	.need_mem_protection = true,
->>   };
->>   
->>   static const struct wcss_data wcss_qcs404_res_init = {
->> -- 
->> 2.34.1
->>
+
+Just a question that should be addressed by the failing of the
+clock-provider registration.
+With that addressed:
+
+Reviewed-by: Alexandru Ardelean <aardelean@baylibre.com>
+
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> ---
+>  drivers/iio/adc/ad7192.c | 89 ++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>
+> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
+> index 940517df5429..90763c14679d 100644
+> --- a/drivers/iio/adc/ad7192.c
+> +++ b/drivers/iio/adc/ad7192.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+>  #include <linux/device.h>
+>  #include <linux/kernel.h>
+>  #include <linux/slab.h>
+> @@ -201,6 +202,7 @@ struct ad7192_chip_info {
+>  struct ad7192_state {
+>         const struct ad7192_chip_info   *chip_info;
+>         struct clk                      *mclk;
+> +       struct clk_hw                   int_clk_hw;
+>         u16                             int_vref_mv;
+>         u32                             aincom_mv;
+>         u32                             fclk;
+> @@ -401,6 +403,88 @@ static const char *const ad7192_clock_names[] =3D {
+>         "mclk"
+>  };
+>
+> +static struct ad7192_state *clk_hw_to_ad7192(struct clk_hw *hw)
+> +{
+> +       return container_of(hw, struct ad7192_state, int_clk_hw);
+> +}
+> +
+> +static unsigned long ad7192_clk_recalc_rate(struct clk_hw *hw,
+> +                                           unsigned long parent_rate)
+> +{
+> +       return AD7192_INT_FREQ_MHZ;
+> +}
+> +
+> +static int ad7192_clk_output_is_enabled(struct clk_hw *hw)
+> +{
+> +       struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
+> +
+> +       return st->clock_sel =3D=3D AD7192_CLK_INT_CO;
+> +}
+> +
+> +static int ad7192_clk_prepare(struct clk_hw *hw)
+> +{
+> +       struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
+> +       int ret;
+> +
+> +       st->mode &=3D ~AD7192_MODE_CLKSRC_MASK;
+> +       st->mode |=3D AD7192_CLK_INT_CO;
+> +
+> +       ret =3D ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
+> +       if (ret)
+> +               return ret;
+> +
+> +       st->clock_sel =3D AD7192_CLK_INT_CO;
+> +
+> +       return 0;
+> +}
+> +
+> +static void ad7192_clk_unprepare(struct clk_hw *hw)
+> +{
+> +       struct ad7192_state *st =3D clk_hw_to_ad7192(hw);
+> +       int ret;
+> +
+> +       st->mode &=3D ~AD7192_MODE_CLKSRC_MASK;
+> +       st->mode |=3D AD7192_CLK_INT;
+> +
+> +       ret =3D ad_sd_write_reg(&st->sd, AD7192_REG_MODE, 3, st->mode);
+> +       if (ret)
+> +               return;
+> +
+> +       st->clock_sel =3D AD7192_CLK_INT;
+> +}
+> +
+> +static const struct clk_ops ad7192_int_clk_ops =3D {
+> +       .recalc_rate =3D ad7192_clk_recalc_rate,
+> +       .is_enabled =3D ad7192_clk_output_is_enabled,
+> +       .prepare =3D ad7192_clk_prepare,
+> +       .unprepare =3D ad7192_clk_unprepare,
+> +};
+> +
+> +static int ad7192_register_clk_provider(struct ad7192_state *st)
+> +{
+> +       struct device *dev =3D &st->sd.spi->dev;
+> +       struct clk_init_data init =3D {};
+> +       int ret;
+> +
+> +       if (!IS_ENABLED(CONFIG_COMMON_CLK))
+> +               return 0;
+> +
+> +       init.name =3D devm_kasprintf(dev, GFP_KERNEL, "%s-clk",
+> +                                  fwnode_get_name(dev_fwnode(dev)));
+> +       if (!init.name)
+> +               return -ENOMEM;
+> +
+> +       init.ops =3D &ad7192_int_clk_ops;
+> +
+> +       st->int_clk_hw.init =3D &init;
+> +       ret =3D devm_clk_hw_register(dev, &st->int_clk_hw);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
+> +                                          &st->int_clk_hw);
+> +}
+> +
+>  static int ad7192_clock_setup(struct ad7192_state *st)
+>  {
+>         struct device *dev =3D &st->sd.spi->dev;
+> @@ -412,6 +496,11 @@ static int ad7192_clock_setup(struct ad7192_state *s=
+t)
+>         if (ret < 0) {
+>                 st->clock_sel =3D AD7192_CLK_INT;
+>                 st->fclk =3D AD7192_INT_FREQ_MHZ;
+> +
+> +               ret =3D ad7192_register_clk_provider(st);
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret,
+> +                                            "Failed to register clock pr=
+ovider\n");
+
+A question here: do we want to fail the probe of this driver when it
+cannot register a clock provider?
+Or should we ignore it?
+No preference from my side.
+
+>         } else {
+>                 st->clock_sel =3D AD7192_CLK_EXT_MCLK1_2 + ret;
+>
+> --
+> 2.34.1
+>
+>
 
