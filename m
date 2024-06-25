@@ -1,160 +1,196 @@
-Return-Path: <devicetree+bounces-79797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E1A916DE7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:21:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD52916DEF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 18:22:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF6221F249B6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:21:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67D2E283732
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jun 2024 16:22:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0123D171E7D;
-	Tue, 25 Jun 2024 16:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C39D171E41;
+	Tue, 25 Jun 2024 16:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="fS4b1QOw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kgDzJGYh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2F8170835
-	for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 16:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5992F17082D;
+	Tue, 25 Jun 2024 16:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719332491; cv=none; b=PetYn3N0sXUbIZV4kpOuR9b4vsCFIBBplbAJzvxAEytsgqYHgAm0Sl40f+6tVfLDsT7GlaQTD7CSyWJjETBZAYHbnrW8WjTYADxYrQofRQpxIVP+H1ZRT+ygpKkeScDWwGVL2UQTxxrRgw3+TXuO1nQ2wTVH+5UenCgAFypM7Ec=
+	t=1719332543; cv=none; b=cemuWuaTmbQQ5vWwrvOexgfFmNDwPxmavh8iihHpLjQj1Wy1ERzQjHwMEmVaT6pa18puySL6JfAQclkW7bfmdw45tP7Twns99Oo7V5MG8BL7LobaVK1Ob/iNZkV7hvEnR3BUL6KeUCmExjdgZW/OQfs9VZ+JoRD/lU37nn7OexQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719332491; c=relaxed/simple;
-	bh=CqABDJyIvigPOHjeJkgCNT3v9E386/0PkbPOtvexrmk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VCi5NrHsGRgMm3vOXqQIgq4rCeM0+e5ca3BaSaGjYZXr22RUFW0x9gl7fL36LCusA01Z8jp6q7/ddoMHPouEgJJQvw008rHKLkHoymo5do/tZybPzSoc3VWo8xTUu2vFyeJ3vtbCyoOAg67QdbCUh99TxXVBN8EZ59fRSpcUavI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=fS4b1QOw; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dff36345041so5741140276.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 09:21:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1719332489; x=1719937289; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qb2E6wZdQOD4FpB99oMUsAKBgWpj20AwfW8pSsc6D5k=;
-        b=fS4b1QOwgMlQUSHPstioQam5Mc1zkmTwNGxybwB+TmbBaqEULmHCf5adr5a5aFqaIB
-         JzDnfVj4Uj0WLgHnSKH8yxlwfyEKIeMqzESqglDVlxVF5ZWjsqmg0aJlCLquwuIkdSP0
-         2fUR+fdp18dONH7HpSpt38Lxv3BV0p9ra4Tx0q9EN5OpaRv4ZEik7RV3TWGn5LTmu8Qc
-         sHpehnSNLOEKeYgJpwjqY9jKGcdyI/CpU8mUTpzvfIXQX5KeWh2Mc+w1xfnpcjsbwjLu
-         XdrTuLW/u/C9Ca5jfT9BT2eRDv4TUYsAdTdQBdFVzO0veB/cI6ox86isdXLXFM/mWl8/
-         /FTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719332489; x=1719937289;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qb2E6wZdQOD4FpB99oMUsAKBgWpj20AwfW8pSsc6D5k=;
-        b=w8gKRuTcuQbhqOHGBEf6kRp294XRYb0Ic63W8prUhK7wY81abxILMz/KHRfMa/X3vv
-         ZA7DnymeBrAjrn2vqez3YQi3Czg/qIlQ6LnQQ0zLg/lV5BtVBX3ffAbvodbC5V6LkUwY
-         zyDn0L6bwvcIPM0yJtrYsAb7S9myYjLvhwGS2oVpuesJBmQ8Syl47ur7T8Wz9KwAntSw
-         lLsZYJf1iCyDkCV3lkKIV+8ASkZ3WyjNWSl2TlQc+VnTA/T3F8LsUN9PueZVbN6gzueA
-         /759N0ZsJNwKpLJSFp1fsaFqnoVu6xqrCGULCmUsLrNFn9fTZw9T2H2af3AMYn2Firwi
-         2KBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBxttkzORYGKilsmz/9ZHjgUu1A9BmS3xqdmxJ21vuz5bX6oNP+SzEPo+PCS0X1/o0xEWI1bT2daeBCp8U6GmbXfAQu6VSZdMR9g==
-X-Gm-Message-State: AOJu0YyWwcoYHgBtgu8FbqAUa/727Py5IM0+kdlrYtNuha5f7w3z/0vL
-	HJVEyhG0EkF0bCQiX4+TXS94pv+P0U51LmHcVmcHytrixqfYhXEiILksshOuAMz6v/0nmUT099u
-	VPMBYRdHSLIMJCtgXznssOw3ZxCvl3x+2hNYO4w==
-X-Google-Smtp-Source: AGHT+IFvJFRMGLkvlz90nUmrwbH4uLb1Am8e4l5s0tWHQCH+l8Gv5Qv98MQC7wZStmOIUJKeQ6T13TtnSRScfn8cC/s=
-X-Received: by 2002:a25:28b:0:b0:e02:bd27:ffa0 with SMTP id
- 3f1490d57ef6-e0303ff97e2mr7397168276.47.1719332489288; Tue, 25 Jun 2024
- 09:21:29 -0700 (PDT)
+	s=arc-20240116; t=1719332543; c=relaxed/simple;
+	bh=akzr2Tcmr8hvoXCrldFTf3vxOcOP1rC3e1w/56iBGCw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rx89qVRU7DaJMdhzioxKerS3Wil5hHQTO+D+beAX7vzjFbNuD26ixI60neMpbgUtwZ90Xmk1tjyOVMKR8sx39ZKqHRRts6mIpnHda+tqdybFZtQOxXMWaWOWTw2H2sp1kThWna2szv8yLpjMYS1Q++Vt479esCU7jtvaOQoYSQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kgDzJGYh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8676DC32781;
+	Tue, 25 Jun 2024 16:22:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719332542;
+	bh=akzr2Tcmr8hvoXCrldFTf3vxOcOP1rC3e1w/56iBGCw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kgDzJGYhBaKcP6lEFjj4Tas4lTM4uNMNjxCcJSfTfs7MGHnesN9d6V0ysjucd8ApJ
+	 oGsYgeiLYVUa2J5vjhepCeohL/GNZjw7XkXjWHaYssoEdRIhI2n7uODbb8iBMwyEqX
+	 4S57r7ji7tpfhAJcbpsLJY34qc4ZNUCjdN9MVMn1g88vg6Tk+pRScjFqmoIxmueID9
+	 r4VRe56YSCVllR1HdOYWbROv/2LVmyhvDR7V4/VcP66FC1vZTZ9Q+9cNvSMdrdbsdn
+	 wrR0GQFivlLs3qkoVNHJ9F0yODORAVaO98ansY5enl0Y2V3pUPM9LcJMkkXNN4/SKr
+	 qq+kKY/VEPUYw==
+Date: Tue, 25 Jun 2024 17:22:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
+	linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ukleinek@kernel.org,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
+Message-ID: <20240625-oppressor-scaling-5713b4719a89@spud>
+References: <20240528225638.1211676-1-chris.packham@alliedtelesis.co.nz>
+ <20240528225638.1211676-2-chris.packham@alliedtelesis.co.nz>
+ <20240529-faucet-vending-3e330f8eb67b@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240524182702.1317935-1-dave.stevenson@raspberrypi.com>
- <20240524182702.1317935-2-dave.stevenson@raspberrypi.com> <20240528063332.GA30051@lst.de>
-In-Reply-To: <20240528063332.GA30051@lst.de>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Tue, 25 Jun 2024 17:21:12 +0100
-Message-ID: <CAPY8ntDuKjD08Q0Y8uukpd7ep85y2qoGDv8hPFxu3QPmL8+wew@mail.gmail.com>
-Subject: Re: [PATCH 01/18] dma-direct: take dma-ranges/offsets into account in
- resource mapping
-To: Christoph Hellwig <hch@lst.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Vinod Koul <vkoul@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Vladimir Murzin <vladimir.murzin@arm.com>, Phil Elwell <phil@raspberrypi.com>, 
-	Stefan Wahren <wahrenst@gmx.net>, Serge Semin <Sergey.Semin@baikalelectronics.ru>, 
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="R3N5fZNUTuh/Iu6H"
+Content-Disposition: inline
+In-Reply-To: <20240529-faucet-vending-3e330f8eb67b@wendy>
 
-Hi Christoph
 
-Sorry for the delay in coming back to you.
+--R3N5fZNUTuh/Iu6H
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 28 May 2024 at 07:33, Christoph Hellwig <hch@lst.de> wrote:
->
-> On Fri, May 24, 2024 at 07:26:45PM +0100, Dave Stevenson wrote:
-> > From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> >
-> > A basic device-specific linear memory mapping was introduced back in
-> > commit ("dma: Take into account dma_pfn_offset") as a single-valued offset
-> > preserved in the device.dma_pfn_offset field, which was initialized for
-> > instance by means of the "dma-ranges" DT property. Afterwards the
-> > functionality was extended to support more than one device-specific region
-> > defined in the device.dma_range_map list of maps. But all of these
-> > improvements concerned a single pointer, page or sg DMA-mapping methods,
-> > while the system resource mapping function turned to miss the
-> > corresponding modification. Thus the dma_direct_map_resource() method now
-> > just casts the CPU physical address to the device DMA address with no
-> > dma-ranges-based mapping taking into account, which is obviously wrong.
-> > Let's fix it by using the phys_to_dma_direct() method to get the
-> > device-specific bus address from the passed memory resource for the case
-> > of the directly mapped DMA.
->
-> My memory is getting a little bad, but as dma_direct_map_resource is
-> mostly used for (non-PCIe) peer to peer transfers, any kind of mapping
-> from the host address should be excluded.
+Uwe,
 
-Could you elaborate on mapping from the host address being excluded?
-On BCM283x DMA address != CPU physical address, so some mapping has to occur.
+On Wed, May 29, 2024 at 08:58:41AM +0100, Conor Dooley wrote:
+> On Wed, May 29, 2024 at 10:56:36AM +1200, Chris Packham wrote:
+> > Add fan child nodes that allow describing the connections for the
+> > ADT7475 to the fans it controls. This also allows setting some
+> > initial values for the pwm duty cycle and frequency.
+> >=20
+> > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> > ---
+> >=20
+> > Notes:
+> >     I realise there is still some discussion about how to express the
+> >     frequency and duty cycle. I have a personal preference for using he=
+rtz
+> >     for the frequency and 0-255 for the duty cycle but if the consensus=
+ is
+> >     to express these things some other way I'm fine with doing some mat=
+h.
+>=20
+> Probably worth carrying a link to it here:
+> https://lore.kernel.org/all/4de798f3-069e-4028-a5b5-5e6a639277e3@alliedte=
+lesis.co.nz/
+>=20
+> I asked Uwe to take a look & it's on his todo list.
 
-Robin Murphy directed us at dma_map_resource() in [1], and referenced
-this patch as necessary because dma_map_resource() didn't currently
-use dma-ranges mappings.
-Mark Brown also hadn't corrected/objected to the statement that
-dma_map_resource() was the correct call when I was querying how to
-tackle this historic mismatch in [2].
+This is an attempt to bump this up on your todo list a bit!
 
-I'll happily defer to the experts on DMA (I would never classify
-myself as such), but I'm not clear on the direction you want here.
+Thanks,
+Conor.
 
-[1] https://lore.kernel.org/lkml/ee19a95d-fe1e-4f3f-bc81-bdef38475469@arm.com/
-[2] https://lore.kernel.org/linux-arm-kernel/CAPY8ntBua=wPVUj+SM0WGcUL0fT56uEHo8YZUTMB8Z54X_aPRw@mail.gmail.com/T/
+> >    =20
+> >     Changes in v4:
+> >     - 0 is not a valid frequency value
+> >     Changes in v3:
+> >     - Use the pwm provider/consumer bindings
+> >     Changes in v2:
+> >     - Document 0 as a valid value (leaves hardware as-is)
+> >=20
+> >  .../devicetree/bindings/hwmon/adt7475.yaml    | 25 ++++++++++++++++++-
+> >  1 file changed, 24 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/hwmon/adt7475.yaml b/Doc=
+umentation/devicetree/bindings/hwmon/adt7475.yaml
+> > index 051c976ab711..bfef4c803bf7 100644
+> > --- a/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> > +++ b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> > @@ -51,6 +51,15 @@ properties:
+> >        enum: [0, 1]
+> >        default: 1
+> > =20
+> > +  "#pwm-cells":
+> > +    const: 4
+> > +    description: |
+> > +      Number of cells in a PWM specifier.
+> > +      - 0: The pwm channel
+> > +      - 1: The pwm frequency in hertz - 11, 14, 22, 29, 35, 44, 58, 88=
+, 22500
+> > +      - 2: PWM flags 0 or PWM_POLARITY_INVERTED
+> > +      - 3: The default pwm duty cycle - 0-255
+> > +
+> >  patternProperties:
+> >    "^adi,bypass-attenuator-in[0-4]$":
+> >      description: |
+> > @@ -81,6 +90,10 @@ patternProperties:
+> >        - smbalert#
+> >        - gpio
+> > =20
+> > +  "^fan-[0-9]+$":
+> > +    $ref: fan-common.yaml#
+> > +    unevaluatedProperties: false
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -89,11 +102,12 @@ additionalProperties: false
+> > =20
+> >  examples:
+> >    - |
+> > +    #include <dt-bindings/pwm/pwm.h>
+> >      i2c {
+> >        #address-cells =3D <1>;
+> >        #size-cells =3D <0>;
+> > =20
+> > -      hwmon@2e {
+> > +      pwm: hwmon@2e {
+> >          compatible =3D "adi,adt7476";
+> >          reg =3D <0x2e>;
+> >          adi,bypass-attenuator-in0 =3D <1>;
+> > @@ -101,5 +115,14 @@ examples:
+> >          adi,pwm-active-state =3D <1 0 1>;
+> >          adi,pin10-function =3D "smbalert#";
+> >          adi,pin14-function =3D "tach4";
+> > +        #pwm-cells =3D <4>;
+> > +
+> > +        fan-0 {
+> > +          pwms =3D <&pwm 0 22500 PWM_POLARITY_INVERTED 255>;
+> > +        };
+> > +
+> > +        fan-1 {
+> > +          pwms =3D <&pwm 2 22500 PWM_POLARITY_INVERTED 255>;
+> > +        };
+> >        };
+> >      };
+> > --=20
+> > 2.45.1
+> >=20
 
-> (dma_direct_map_resource in general is a horrible interface and I'd
-> prefer everyone to switch to the map_sg based P2P support, but we
-> have plenty of users for it unfortunately)
 
-Is that applicable for mapping device addresses with DMA_DEV_TO_MEM or
-DMA_MEM_TO_DEV transfers?
-Example use case on BCM283x is HDMI audio where the HDMI driver should
-be passing in the CPU physical address of the audio FIFO, and that
-needs to be mapped to the DMA address for the DMA controller. How do I
-get a sglist for the peripheral address?
 
-As noted in the cover letter for this series, if this isn't the
-approved mechanism, then please let me know what is.
+--R3N5fZNUTuh/Iu6H
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Many thanks
-  Dave
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnruugAKCRB4tDGHoIJi
+0kFRAQCZIrHaisIz4R0cjPl4ENnCGHKMXBh7j/mC8rYE/KB85wD/RTIZIcVxwnp3
+vJJ40zdLuhvyve24lm/u4nEf90mDYwc=
+=rn/M
+-----END PGP SIGNATURE-----
+
+--R3N5fZNUTuh/Iu6H--
 
