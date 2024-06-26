@@ -1,145 +1,148 @@
-Return-Path: <devicetree+bounces-80039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC74917B0C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:34:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C854917B1E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:39:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D0A01F23299
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:34:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEADB1C238EB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C8A15F316;
-	Wed, 26 Jun 2024 08:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E861662E3;
+	Wed, 26 Jun 2024 08:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzWnw1BG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PRGZL1rb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FE9144D1D;
-	Wed, 26 Jun 2024 08:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3145213B78F;
+	Wed, 26 Jun 2024 08:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719390881; cv=none; b=O3fDq3pHaBH46b/zQC4Fcr5VurksifB3s93mBEChc3etkTKeI4YA5Of3X2nqCFuxw3lUfKTEE/8RQeuJprDBFiouYLG7EgS2oETNnP7LGLRIpFZP1roJqh/TyarXgUqp/NqjtIqi+AAaTgYFvEeVARuc9qGuPTity/P1/zHnnwA=
+	t=1719391143; cv=none; b=s5LaJnsutxwKDeO9J9qfl/C7cqIVTHzCYbkqGrI3wS/KEYMX/DMquQJlbbey8cEwPHF9lQVDYVM7xe0txQcp9eoJp6biKXyy2/pGGPyQdjde3MHchmER3Jhjvc8rZX1iwHfiC4j/1n5xTr/DVYr9UmIEPBfAUzX3IcaZEfRgqbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719390881; c=relaxed/simple;
-	bh=xBoNb+oucNRvx18Qte8FmaDQkUGbw1rD8O/lpKaCdsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fEkYSjxCUoLu2NV9pKIdhBp9fvm0l3Mqq4e2TwiQyjEhXjzFUldrXZLaQr4SBZFHa33EvE1VerB5jlLvj3nSeC3sakJ7O9KPtAFe0HXlHbOoVopQ+GZmSNH8IW6plG7tuID7n9w4jRwiHL5bwcKyOHePwp775W15+Ite93p/x7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fzWnw1BG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9265FC2BD10;
-	Wed, 26 Jun 2024 08:34:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719390881;
-	bh=xBoNb+oucNRvx18Qte8FmaDQkUGbw1rD8O/lpKaCdsQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fzWnw1BGeYY9Y8ukyOiLMfNSkpoB6ms7tQCOyjqHiNeKKXvS46yv57YIXntGWDCSA
-	 +wOMg2jISjrqSvrt9fdRM9kQLsz17PmWtnvGIG4COHV/ZScLeoDbr36jtP2WyIHtk0
-	 EFa7s9TvnMBRI3dIPw5pNY+MJ9rOpbrZCZh0U+lVcLNgGCL3EUjwRcvVdB7LlZT3OL
-	 AViHQbHz2Cgb7p54BTa/hJZbQiKLvFvKS9Lf6od2dvEiCQSlNDDMHPt5vfJHSn2qCp
-	 QfkQTJbzr9BtF6US+z99WldBORrixoYxjRXZpkFqCP7iWxOlSSq18Wvh3Z4/481FTc
-	 /u8wo+QoPMhYg==
-Message-ID: <9fae9adb-1b78-4f7d-94c5-6aed661ec614@kernel.org>
-Date: Wed, 26 Jun 2024 10:34:35 +0200
+	s=arc-20240116; t=1719391143; c=relaxed/simple;
+	bh=eQ7DYSWRsKYuWOqaM71snLYfv7LNhzAnFyoiCIARR44=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TTkP/+rB7VsZRqnn8Am+1z6vHySeX8zwudOzrNJWrOdeAr6Y1t+h1R3NlFDij0zp2Ct65SB0Z/xG3VrHuc32ulPHDRJb83H42PmjTs1swGQlx6GaoZqAvF8gEjvscXfPQcUA7jP5QVm/7el2t0nUdljTr9Nf8G6OaWvO84q3xt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PRGZL1rb; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ebe0a81dc8so84903921fa.2;
+        Wed, 26 Jun 2024 01:39:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719391140; x=1719995940; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WGLAE0d0WBAYFA6fR6mw4wvQZZ2LgjwEPVknt+snP7o=;
+        b=PRGZL1rbAc2f+l1SmG+B/xGH9gsjKg2wtSQqFWqStPihuF3fzOu5hqvALEar1j87Ul
+         gm2GzxaG1447zHVCoMUnSF3V3FB97xeQhNevmodSUQYBcqYWgMFnHPndpeEMqeG/4QqM
+         kuRbtvO0Vv72jxLqGM2KegxiGuRBk+PpDyWaaeE12JS7xyPNGIdi+SPU0mgGAX6QL7qw
+         nPlF4GaIq7wp0yD0ZKArzy6o2MFAbzRf/jmmCDhCg26IiMIueNR/tOIwLecJP+QAzCKw
+         851z5xchiezbcIc+0QS/b539ci9so3dbZ3phl9vHW27GasEnIeZaWhew05madzKnYwYc
+         Eh0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719391140; x=1719995940;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WGLAE0d0WBAYFA6fR6mw4wvQZZ2LgjwEPVknt+snP7o=;
+        b=bXf8vIW+g/TgrXbgZAJ8Q2xCD9hMcHwP3ZZXKsaT1KPe99Dh6qbAeJ36q1R+YcrIYt
+         BAH/tk241HXh9IsAp74nUQ9pKAl32Q3B8hfctAA/oTa+cwAQPEDGmGQPR8uRUZHcnYD5
+         4K1f1rXbGUSsp1XTmxHGwZAVroDd9kK6NOTzT/0+43bEkEXdRXMcG+YfzxcPO2rfNPBx
+         Q/p1aUFs7px9gEhKGxqeCzcxNO6o0ySrokNU5tdL7rAPdueajsnyZoaVsLpwmZMTbWIW
+         7KoXgKaiw6mK2BLnzddg8F3VIm5YaGYWOuq2tK1jedAgu5MaMuUUUGUSjpaTxYI1WQX/
+         tr2w==
+X-Forwarded-Encrypted: i=1; AJvYcCWtD9n+qpRU8LjHvuVRijwCHzcal6b/E27un+1zsscNOKUHtzAQQMo/m9Jk43dLpX4sWJ66JP/D8QpIxzMPM8MAd7WoulLSQkt2Lvs6T3fu5jqw2a8qIBkWobmEs9SGYBHHmRKceYzzxQsMAM8DiBiDpXKKv/3eUYWIO9we7Jto4AKwxbPEH+AI1k1KPPM4CU35GXfyM9C43Qf/c2eIqZkMwdViEA==
+X-Gm-Message-State: AOJu0YyrBlb9Lk2DrQdWZZD0o1lsT9sd7AY9nTlYFxhNNxw1nP0vNmpg
+	rJBBWsqXG1xlBZXmfYWMBjvRckchYseGW67hdU4B4yKEt7QlmUgjq9iaJvWNaZadxUdShRspgLg
+	svMws8r07OrvNtCRSBWsx2KvgQ3U=
+X-Google-Smtp-Source: AGHT+IFmzqdhWA4H/PFBpAsMCQ7oBjaNqKmMkRUMmk/443vBy5nciueE4td8WvvWnEiPZVl/uR6rjE5UTFEojjBaap8=
+X-Received: by 2002:a2e:7a0a:0:b0:2ec:63f:fe91 with SMTP id
+ 38308e7fff4ca-2ec5b357921mr68729601fa.38.1719391140191; Wed, 26 Jun 2024
+ 01:39:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/3] dt-bindings: iio: proximity: Add TYHX HX9023S
-To: Yasin Lee <yasin.lee.x@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, yasin.lee.x@outlook.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20240625-add-tyhx-hx9023s-sensor-driver-v8-0-0c224e3bddbc@gmail.com>
- <20240625-add-tyhx-hx9023s-sensor-driver-v8-2-0c224e3bddbc@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240625-add-tyhx-hx9023s-sensor-driver-v8-2-0c224e3bddbc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240624-b4-sc7180-camss-v3-0-89ece6471431@gmail.com>
+ <20240624-b4-sc7180-camss-v3-1-89ece6471431@gmail.com> <c33dde93-2c3a-4a00-93ee-e4de303c9057@kernel.org>
+ <CADgMGSvN=uAW7z1dpETGVRewzDG=K2MAtzOkhK7xAcskU_oeZg@mail.gmail.com>
+ <0a35f0bd-ceec-487f-b9fd-ae9698b74048@kernel.org> <CADgMGSt9Hu5Ciq=ndMTaVK23Y_ixTVtTuSfy4hJkJooFH2uv9Q@mail.gmail.com>
+In-Reply-To: <CADgMGSt9Hu5Ciq=ndMTaVK23Y_ixTVtTuSfy4hJkJooFH2uv9Q@mail.gmail.com>
+From: george chan <gchan9527@gmail.com>
+Date: Wed, 26 Jun 2024 16:38:48 +0800
+Message-ID: <CADgMGSv+x2Z9FsWTHW0auttvpdfNDnOPxiJhXnUaW3yQczN_Ag@mail.gmail.com>
+Subject: Re: [PATCH RFT v3 1/5] dt-bindings: media: camss: Add qcom,sc7180-camss
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25/06/2024 17:58, Yasin Lee wrote:
-> A capacitive proximity sensor
-> 
-> Signed-off-by: Yasin Lee <yasin.lee.x@gmail.com>
+On Wed, Jun 26, 2024 at 4:17=E2=80=AFPM george chan <gchan9527@gmail.com> w=
+rote:
+>
+> On Wed, Jun 26, 2024 at 3:15=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> > Keep the list in "required:" in the same order as the list in "properti=
+es:".
+>
+> ok gotcha
+btw, i checked  "required:" and "properties:" are aligned, both of
+them are in ascending order. I am wondering if you are talking about
+two things, 1st one is to align both property, and 2nd is having the
+ordering like below. Plz confirm.
 
+required:
+  - compatible
+  - reg
+  - reg-names
+  - interrupt-names
+  - interrupts
+  - clock-names
+  - clocks
+  - iommus
+  - power-domains
+  - power-domain-names
+  - vdda-phy-supply
+  - vdda-pll-supply
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
-
-This should be clear:
-*Tag is "received", when provided in a message replied to you on the
-mailing list.*
-
-Best regards,
-Krzysztof
-
+> > >> BTW, I asked for subject to keep only one, first "media" prefix:
+> > >>         "Subject: just one media (first). "
+> > >> but you kept the second "media".
+> > >
+> > > Sorry I can't get it. Could you choose one?
+> > >
+> > > _ORIGINAL_
+> > > dt-bindings: media: camss: Add qcom,sc7180-camss
+> >
+> > No, original was different. Go back to your first posting. I asked to
+> > remove one media and keep only one - the first. I did not ask to
+> > re-shuffle the prefixes.
+> Yes, let me sum it up
+>
+> v1 title is w.r.t
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240222-b4-cams=
+s-sc8280xp-v6-1-0e0e6a2f8962@linaro.org/
+> then extra "camss" pre-fix keyword and "binding" post-fix is not needed.
+> v2 wrongly remove all prefixes and correctly removed post-fix
+> v3 added correct prefix, removed redundancy "camss" prefixes but
+> changelog still refer to old sc8280xp style
+>
+> The title now should be fine. So I will modify the changelog only.
+>
+> So there are 2 todo items as above. Other than above, all review items
+> are addressed. Plz confirm.
 
