@@ -1,133 +1,119 @@
-Return-Path: <devicetree+bounces-80258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5F99183FC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:27:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE18B91842D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D420E284BAE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:27:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 171E81C21A15
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDD91862B4;
-	Wed, 26 Jun 2024 14:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460CD185E7B;
+	Wed, 26 Jun 2024 14:29:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427F4185E56
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:26:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD11918508A
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719412011; cv=none; b=p/uoVcxLQOWgxqfJt7PIYuABoO5c/G3ejW5s/N89wKBsSZYeO49/u72wxzzs/lXrGJ5rXn4e+pixQLHtwiIZMrI6OmxsB9yq5Tend1POYz5ag14PJlIyQvcJLqGfqrRenb+G5hhz8B8jrOoDWANWClgibuEHMb9osVtICQi0moE=
+	t=1719412146; cv=none; b=DqLcafU1FRvLuxOcBYz1cbYue3+CfyF+kUVjSoSCTbz5afZMconOCOwmnPnhI+1bjrQW2QmnEo/M9FacHwRFlLAOqaDEpoXd7i+n0XPB3XWYUuhjG+IHCJYVf/38G0nZwPwveoVpvtzV5DmrLE0TJ44OGxsfXsnqSRGtz65qHMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719412011; c=relaxed/simple;
-	bh=whpbwhrEakapp6ARSx28pzKavWRe8tqJgMqKz0U+2F4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=NxMjo7dfhSjzOmseUUSxQelGL9SFphSxadYLSf8yYHjRc2krvsFfSInhMUtLcZ6W5r1Y5oztOTjHB9sYWfWjQcyIgoMEjBFyM/fAQLpKB8df62/l+4/2n2w4vdyb7BLQvKmcSBa+ZhVxFnvF170CWMrNoTpG6m3ON36iAzG1Its=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sMTbk-0005JO-FP; Wed, 26 Jun 2024 16:26:48 +0200
-From: Philipp Zabel <p.zabel@pengutronix.de>
-Date: Wed, 26 Jun 2024 16:26:48 +0200
-Subject: [PATCH] Input: exc3000 - add EXC81W32 support
+	s=arc-20240116; t=1719412146; c=relaxed/simple;
+	bh=JwPTLjjZ+9T6XnvQwRWqV5eSCwCeNAY4JQUdu96bdXw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hirYy6YgQ88UAPxt9y6k+gRc6Gd3KmEwXqJFh6m7xyJUjzvxrWxsQHmt0zkYGm2/rfGPThlnA2SXltvkE7NZKPAiBqlYwucNll0wY7C00SSux98XLNF4gQL+Jv2bhIch6KB9PPTG2B4peo9zZa+DhVIOxEjZ0misJtZu0Gdio38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6a.versanet.de ([83.135.91.106] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sMTdl-0004SS-Rs; Wed, 26 Jun 2024 16:28:53 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Alex Bee <knaerzche@gmail.com>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Sugar Zhang <sugar.zhang@rock-chips.com>,
+ Conor Dooley <conor+dt@kernel.org>, inux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 0/4] Add LBA3368 board
+Date: Wed, 26 Jun 2024 16:28:52 +0200
+Message-ID: <1865378.ucjEoNaZvj@diego>
+In-Reply-To: <171940790685.2950756.7239158796460093682.robh@kernel.org>
+References:
+ <20240623090116.670607-1-knaerzche@gmail.com>
+ <171940790685.2950756.7239158796460093682.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240626-input-exc3000-exc81w32-v1-1-ac42d3b87aff@pengutronix.de>
-X-B4-Tracking: v=1; b=H4sIACclfGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDMyMz3cy8gtIS3dSKZGMDAwMQbWFYbmyka2oBhEmJJomWFmlKQM0FRal
- pmRVgg6Nja2sB/rBwSWgAAAA=
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
- Philipp Zabel <p.zabel@pengutronix.de>
-X-Mailer: b4 0.14-dev
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-This adds support for EXC81W32 controllers.
+Am Mittwoch, 26. Juni 2024, 15:25:12 CEST schrieb Rob Herring (Arm):
+> 
+> On Sun, 23 Jun 2024 11:01:12 +0200, Alex Bee wrote:
+> > This series aims to add support for RK3368 based LBA3368 industrial board
+> > form Neardi. The device tree currently only contains entries for which both
+> > bindings and linux driver exists and is expected to be exended in future.
+> > 
+> > NB: checkpatch throws me a warning that no venddor-prefix for "usb5e3"
+> > exists - which is true - but "usb5e3,610" has a valid binding.
+> > 
+> > Changes in v2:
+> >  - board DT property re-ordering / fixes
+> > 
+> > Link to v1:
+> >  https://lore.kernel.org/all/20240621134030.243646-1-knaerzche@gmail.com/
+> > 
+> > Alex Bee (4):
+> >   dt-bindings: vendor-prefixes: Add Neardi Technology
+> >   dt-bindings: arm: rockchip: Add Neardi LBA3368
+> >   arm64: dts: rockchip: Add sound-dai-cells for RK3368
+> >   arm64: dts: rockchip: Add Neardi LBA3368 board
+> > 
+> >  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+> >  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >  .../boot/dts/rockchip/rk3368-lba3368.dts      | 661 ++++++++++++++++++
+> >  arch/arm64/boot/dts/rockchip/rk3368.dtsi      |   3 +
+> >  5 files changed, 672 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3368-lba3368.dts
+> > 
+> > --
+> > 2.45.2
+> > 
+> > 
+> > 
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y rockchip/rk3368-lba3368.dtb' for 20240623090116.670607-1-knaerzche@gmail.com:
+> 
+> arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: /i2c@ff660000/codec@1c: failed to match any schema with compatible: ['realtek,rt5640']
+> arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: /mbox@ff6b0000: failed to match any schema with compatible: ['rockchip,rk3368-mailbox']
 
-Tested with firmware reported as type "PCAP81X32 Series",
-model "Orion_0183_1019", fw_version "8001280G".
+both of those are still in their .txt format, so not yet converted
+to yaml.
 
-Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
----
- .../devicetree/bindings/input/touchscreen/eeti,exc3000.yaml        | 1 +
- drivers/input/touchscreen/exc3000.c                                | 7 +++++++
- 2 files changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml b/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml
-index 9dc25d30a0a8..c299838e2680 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.yaml
-@@ -18,6 +18,7 @@ properties:
-       - eeti,exc3000
-       - eeti,exc80h60
-       - eeti,exc80h84
-+      - eeti,exc81w32
-   reg:
-     const: 0x2a
-   interrupts:
-diff --git a/drivers/input/touchscreen/exc3000.c b/drivers/input/touchscreen/exc3000.c
-index a4030cc9ff60..2e77cfb63f32 100644
---- a/drivers/input/touchscreen/exc3000.c
-+++ b/drivers/input/touchscreen/exc3000.c
-@@ -53,6 +53,7 @@ enum eeti_dev_id {
- 	EETI_EXC3000,
- 	EETI_EXC80H60,
- 	EETI_EXC80H84,
-+	EETI_EXC81W32,
- };
- 
- static struct eeti_dev_info exc3000_info[] = {
-@@ -68,6 +69,10 @@ static struct eeti_dev_info exc3000_info[] = {
- 		.name = "EETI EXC80H84 Touch Screen",
- 		.max_xy = SZ_16K - 1,
- 	},
-+	[EETI_EXC81W32] = {
-+		.name = "EETI EXC81W32 Touch Screen",
-+		.max_xy = SZ_16K - 1,
-+	},
- };
- 
- struct exc3000_data {
-@@ -441,6 +446,7 @@ static const struct i2c_device_id exc3000_id[] = {
- 	{ "exc3000", EETI_EXC3000 },
- 	{ "exc80h60", EETI_EXC80H60 },
- 	{ "exc80h84", EETI_EXC80H84 },
-+	{ "exc81w32", EETI_EXC81W32 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, exc3000_id);
-@@ -450,6 +456,7 @@ static const struct of_device_id exc3000_of_match[] = {
- 	{ .compatible = "eeti,exc3000", .data = &exc3000_info[EETI_EXC3000] },
- 	{ .compatible = "eeti,exc80h60", .data = &exc3000_info[EETI_EXC80H60] },
- 	{ .compatible = "eeti,exc80h84", .data = &exc3000_info[EETI_EXC80H84] },
-+	{ .compatible = "eeti,exc81w32", .data = &exc3000_info[EETI_EXC81W32] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, exc3000_of_match);
-
----
-base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-change-id: 20240626-input-exc3000-exc81w32-58585ba4a98f
-
-Best regards,
--- 
-Philipp Zabel <p.zabel@pengutronix.de>
 
 
