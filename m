@@ -1,152 +1,140 @@
-Return-Path: <devicetree+bounces-79984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA27D9178AF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:14:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F26A9178CA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:19:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3493C1F22CF7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:14:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B083A1C21A59
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498ED14B965;
-	Wed, 26 Jun 2024 06:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3833414D29D;
+	Wed, 26 Jun 2024 06:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oCsNrdPn"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="entcXhZ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D01112FF96
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 06:14:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9747E13CFBC
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 06:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719382458; cv=none; b=gAnltz+iAOMYd04wp4IeIgaGe8NSJ3SD9wrcBESZSh0yET+vUm1Iqz8QcJroQBxyi5PmRLtluIzSdrE0qZMI8+DJzxR8qdLSxe4drfzY6acj5a5SYCyT6qAf/ZxR90M2Axrga95WobHWHSDwgN/r1lARxfeIxRv62TNUOEgAxKc=
+	t=1719382750; cv=none; b=f3krX1s0ZI8aL0myX+ixQBtEugI3vrjP29v96saXGnPio8rpXi9sD4xugBseBa/mB6MZTHzEQaG8IlJIu/AEqi3B+u/FPkx6rW93Unj5WqCNGPDTHJNTCohsZ8NCeeApWzDyCfDX3XZUhoWaCCaPb/3lC7IEulz51dlTM+OeE6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719382458; c=relaxed/simple;
-	bh=WGd4AsHHHAKOzxnmtiUcoZvGsiI213HQOzoaaZf3ovs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CIiQs4Cn8Fhm+DiVMWqW9MjFOhr9f3IFH8T6GVbSNIkg/x4jAXdYlxdB+Fg+65T5Z5QxaifknAw0Q+VQ+EbcUVsWzUWwJk8JWPyCoN0bkde4OT+7x1JNHMvzD5g1UWcwpkE8pMg24eI9G92dtUAgHV650IOYgaACv7aO61LtSSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oCsNrdPn; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a72467989d5so25363166b.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 23:14:16 -0700 (PDT)
+	s=arc-20240116; t=1719382750; c=relaxed/simple;
+	bh=RQgSOJkMb9wk/66oDuy8ptZw9rvSHU+xcTyKg1i/qb4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ale85ymA0WczSPfWWSXcZ3Mmyglp3mnU71QmEuWW25cjGn52BGJ2CVTIw7Keo9bgxQIij4ZWQ8UMhUiyH+NwVQNclIAwBERB7ZP0mc/cEnXd7GYa62MgQE0zmANIZ13Nx/eCiT8JiIY6NIoNGXfD+1E+u41x3G4a102K2h06Fb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=entcXhZ6; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-366df217347so3465828f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 23:19:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719382455; x=1719987255; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P68vjv5P5fTQyUzXQMtlC4ydEFa3hgGxJKTbgujUek0=;
-        b=oCsNrdPnj5hMVbLGKe8YlXJzzic3QC5VmOY+MtONc3smcr4KOba0rAsbzBHLU0InpM
-         KW8P38YPaoAOCiYXhkxs6OvtpS4Lty5FyN2CmYEArYIbn1b+rvP09vAnUmB/EvSVGMtl
-         xH5SEF7gWCb5iEqbMhlmtdf0qKlWvPN5qt9v25D2UEqIVPDMq8V8w+HVvWRvqmZqGCif
-         I/pGSeHV5rdRULDumqKnnAdvNRFFSp6aeZnUG2pLIMST38nkJDAYAlVvUeU5E/wJ78RG
-         8tZuAzhq1o4XmCsdIoX6ZyZpVaNZ4TcW1hHDB0ReoYDtoNMGg+FtcDbb03uDdP9F4wJ8
-         XIOA==
+        d=tuxon.dev; s=google; t=1719382747; x=1719987547; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hkDCCBpCvvJAl1mues32HQC3JjD1PKnxT92s3ylApLc=;
+        b=entcXhZ6g5YpyCxPkyEcOiNTr1piy+QzhF14cuLNh2BHyrIpS/r3CxO54Ite4pE9Yk
+         Eb8CLiveJarL9Jj9I/gb62edkiYoc2Cfifx7w1PAmscVkutI0jRZO4lwBYv8j9b1MEm7
+         v3SZVUDhFY8I1UW4w/lEQXKs/95iEEG6ABestoDT0ZX5Wi+8ucC6hQ1o5f+z0u6MD24o
+         /17fO/vv1DbgASJtJDBdh/1ohxjOGqKCWNVXUvqxqS8nyqjdXgBaLOTIJdl0x1OAjLo3
+         UAU76e+1pz1Cudyr82pc52n3r7UU+fYwrVfbVQkW4jrvVApjhpSuEJVBIOWYIqbC+VeZ
+         aVYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719382455; x=1719987255;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P68vjv5P5fTQyUzXQMtlC4ydEFa3hgGxJKTbgujUek0=;
-        b=pPJqNKnBunXaibkKaIYi7DyrO09VwjntRVMdahyIWrsL2MaEu2Vc3hsfj8Ofvys0aa
-         qbbC4V8S5WnHygmyP9lOOC/TIu+LEfEzcVI1E61dsHRao/hUNriVSd83LGW9x4X2Ip60
-         PY/a/FL7iNoPYocpStY7sP1gK6aVc6NiurpTfkuRYOCkwWSnIJEOT4IgVu01R3FZJSw/
-         I6KINEXtQ3mim9KOnquqpWCHfbvchKb+FvXvlYHzqrDuq9TyrwFgPUOpufBGIgh/PO1z
-         fl9Fa/v07WNko+yWdVir1UO5Xe/9BLsYI5TYYn8FmBtEjQ1V2dDn+2Mo1x5JXDk9ewjV
-         bI/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUyeDI3iFj4E5v4ZsHZHfCLj64Ln2g9bwDS+guePKwCguv+BRpv4Ijh1r1sL1kR+CDpKg8bXcBcCvXa+aB+6oj3pBMvRlRGrI0Ptg==
-X-Gm-Message-State: AOJu0YygkmvSPXHdb/XtMEDK2v05VqSHdg8j4oSWwWC1Avm6D3mTs2bH
-	MpWDOD3WTRrPtgA9hcCu8DPGYvJOxOhPu82G9yQmcDfaSVWwJYO76yj5zuiYcfQu1i7S6Iolj9k
-	pYgfKGb749PYt5IbOlSMn+oiXvl3+2TFgh7JdhA==
-X-Google-Smtp-Source: AGHT+IHFrAZDhVdGptSc44l74KYpkoXPmWFwKAgqD9iIY1egI+hz1d/5rPoCQHY/mWyFFxrbbPr/3PvyyHvAFloZ1tM=
-X-Received: by 2002:a17:906:8315:b0:a6f:e2a0:b5df with SMTP id
- a640c23a62f3a-a6fe2a0b6fbmr729513766b.7.1719382454861; Tue, 25 Jun 2024
- 23:14:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719382747; x=1719987547;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hkDCCBpCvvJAl1mues32HQC3JjD1PKnxT92s3ylApLc=;
+        b=en58R62WpR55m6veZhYlPH4jhimBK1TnS20nPs/org3HEWLAgTvxguugW8GF5zTLfM
+         pYXksSZ+2mFaaG5dFJEzv+qCPczZsh/6QnvTU5E5fVrmS5Uk/YB19r80BeGS6ZkzK5XR
+         fIB/o0PW1wLEJGXMq2Is9Kn3sUaVtbdC62etDTE1GlJgceFOWc0DTjR//W1f8IBFOUj0
+         l5Hu12iSTxGYMZUQvIlhHQwfZ/eWZXZ3ybvL1EJmlANAD74+Rw0mdiQ3xSz2YDDfOEs8
+         e/d//Rd/Y/EFY9hLXGnLXaQxRQpgSODMr+i5j9vZmdm9EFJ/e3QypteVimK44qGhV/rb
+         sQZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJEd+dR8uy5I6Fx7hzoZxCpmDjLc6DAmAFXa/7kqtoS1XXjEXztaf6VKD0n5nM6/WKFBeDdUFAaMlXtAUmBTw2Llrq8/t6q+QKJw==
+X-Gm-Message-State: AOJu0Yzi/ZVFVIoAh4q6T9H8F7B82E53xOy8+Cun69n3BjfgkSV3G/Qf
+	IsCZS49H6myAm43qQmZy1LMGfGzpApNPqZyPQkYTYfo0GRe1Frx0qOb50atPf7Gapr/JGeCgQvG
+	a
+X-Google-Smtp-Source: AGHT+IElg9j81NmwVS1BHYzIBgjJfkqTeofPf8r35hmT1PYbcAE7HyZz9tEX7CppD5OTfr/qatZgzQ==
+X-Received: by 2002:a5d:64c4:0:b0:366:f64b:289 with SMTP id ffacd0b85a97d-366f64b03f8mr5631215f8f.33.1719382746927;
+        Tue, 25 Jun 2024 23:19:06 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.70])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3663a8c7499sm14792850f8f.90.2024.06.25.23.19.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jun 2024 23:19:06 -0700 (PDT)
+Message-ID: <dda01e59-3172-449c-9f2f-574a82b94a4f@tuxon.dev>
+Date: Wed, 26 Jun 2024 09:19:05 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1719351923.git.marcelo.schmitt@analog.com> <072d74af9fc624490b84a1d001039424e572e827.1719351923.git.marcelo.schmitt@analog.com>
-In-Reply-To: <072d74af9fc624490b84a1d001039424e572e827.1719351923.git.marcelo.schmitt@analog.com>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Wed, 26 Jun 2024 09:14:02 +0300
-Message-ID: <CA+GgBR9S7q32i-1ehNAgLHim66-Ud=PajgTSczBSJ5LUZdA7cA@mail.gmail.com>
-Subject: Re: [PATCH v5 4/7] spi: spi-axi-spi-engine: Add support for MOSI idle configuration
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: broonie@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
-	corbet@lwn.net, marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jun 26, 2024 at 12:55=E2=80=AFAM Marcelo Schmitt
-<marcelo.schmitt@analog.com> wrote:
->
-> Implement MOSI idle low and MOSI idle high to better support peripherals
-> that request specific MOSI behavior.
->
-
-One minor nitpick.
-Feel free to ignore, if there won't be a re-spin.
-
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
->  drivers/spi/spi-axi-spi-engine.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/spi/spi-axi-spi-engine.c b/drivers/spi/spi-axi-spi-e=
-ngine.c
-> index 0aa31d745734..5a88d31ca758 100644
-> --- a/drivers/spi/spi-axi-spi-engine.c
-> +++ b/drivers/spi/spi-axi-spi-engine.c
-> @@ -41,6 +41,7 @@
->  #define SPI_ENGINE_CONFIG_CPHA                 BIT(0)
->  #define SPI_ENGINE_CONFIG_CPOL                 BIT(1)
->  #define SPI_ENGINE_CONFIG_3WIRE                        BIT(2)
-> +#define SPI_ENGINE_CONFIG_SDO_IDLE_HIGH                BIT(3)
->
->  #define SPI_ENGINE_INST_TRANSFER               0x0
->  #define SPI_ENGINE_INST_ASSERT                 0x1
-> @@ -132,6 +133,10 @@ static unsigned int spi_engine_get_config(struct spi=
-_device *spi)
->                 config |=3D SPI_ENGINE_CONFIG_CPHA;
->         if (spi->mode & SPI_3WIRE)
->                 config |=3D SPI_ENGINE_CONFIG_3WIRE;
-> +       if (spi->mode & SPI_MOSI_IDLE_HIGH)
-> +               config |=3D SPI_ENGINE_CONFIG_SDO_IDLE_HIGH;
-> +       if (spi->mode & SPI_MOSI_IDLE_LOW)
-> +               config &=3D ~SPI_ENGINE_CONFIG_SDO_IDLE_HIGH;
->
->         return config;
->  }
-> @@ -646,6 +651,9 @@ static int spi_engine_probe(struct platform_device *p=
-dev)
->
->         host->dev.of_node =3D pdev->dev.of_node;
->         host->mode_bits =3D SPI_CPOL | SPI_CPHA | SPI_3WIRE;
-> +       if (ADI_AXI_PCORE_VER_MAJOR(version) >=3D 1 &&
-> +           ADI_AXI_PCORE_VER_MINOR(version) >=3D 3)
-> +               host->mode_bits |=3D  SPI_MOSI_IDLE_LOW | SPI_MOSI_IDLE_H=
-IGH;
-
-There's a second space after the assignment.
-               host->mode_bits |=3D<2 spaces here>SPI_MOSI_IDLE_LOW |
-SPI_MOSI_IDLE_HIGH;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/9] pinctrl: renesas: rzg2l: Clean up and refactor OEN
+ read/write functions
+Content-Language: en-US
+To: Paul Barker <paul.barker.ct@bp.renesas.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240611113204.3004-1-paul.barker.ct@bp.renesas.com>
+ <20240611113204.3004-3-paul.barker.ct@bp.renesas.com>
+ <CAMuHMdXe8aaweQJ2=V7ksKTqcJCnqewKhSrrO4h7X924Vbk-_Q@mail.gmail.com>
+ <6416f18e-f4cd-41da-9b46-b3b1f67d7170@bp.renesas.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <6416f18e-f4cd-41da-9b46-b3b1f67d7170@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
->         host->bits_per_word_mask =3D SPI_BPW_RANGE_MASK(1, 32);
->         host->max_speed_hz =3D clk_get_rate(spi_engine->ref_clk) / 2;
->         host->transfer_one_message =3D spi_engine_transfer_one_message;
-> --
-> 2.43.0
->
->
+
+On 25.06.2024 22:56, Paul Barker wrote:
+> On 17/06/2024 13:02, Geert Uytterhoeven wrote:
+>> Hi Paul,
+>>
+>> On Tue, Jun 11, 2024 at 1:33 PM Paul Barker
+>> <paul.barker.ct@bp.renesas.com> wrote:
+>>> -static u8 rzg3s_pin_to_oen_bit(u32 offset, u8 pin, u8 max_port)
+>>> +static u32 rzg3s_read_oen(struct rzg2l_pinctrl *pctrl, u32 caps, unsigned int _pin)
+>>>  {
+>>> -       if (pin)
+>>> -               pin *= 2;
+>>> +       u32 port = RZG2L_PIN_ID_TO_PORT(_pin);
+>>> +       u8 pin = RZG2L_PIN_ID_TO_PIN(_pin);
+>>
+>> It's OK to use RZG2L_PIN_ID_TO_PIN() unconditionally, as RZ/G3S does
+>> not have any dedicated pins with the OEN capability, right?
+> 
+> I thought about this a bit and came to the conclusion that no, it's not
+> ok.
+> 
+> For RZ/G2L, only mux'd pins have OEN capability (Ethernet TXC/TX_CLK
+> only).
+> 
+> For RZ/G3S, OEN capability also exists on XSPI/OCTA pins which are
+> dedicated pins. We don't currently support OEN for these pins in the
+> driver, but we should put a check in place now to be safe.
+
+Just my preference: I would avoid adding code that is not currently used or
+cannot be properly tested.
+
+Thank you,
+Claudiu Beznea
+
+> I've done
+> this in v3 which I'm about to send...
+> 
+> Thanks,
+> 
 
