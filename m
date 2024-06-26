@@ -1,116 +1,156 @@
-Return-Path: <devicetree+bounces-80239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4EB91828F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:35:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD31E9182B3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:38:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 681A61F25D3D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:35:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F214FB2889F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3A31836F6;
-	Wed, 26 Jun 2024 13:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54FD184113;
+	Wed, 26 Jun 2024 13:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZWzHept0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wxa9yFad"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2244E181326;
-	Wed, 26 Jun 2024 13:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A418B1836F6;
+	Wed, 26 Jun 2024 13:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719408896; cv=none; b=DT7HchrUAJ9rCWctGnht43OEUARHva1s0xSA5nrwKpQF+pyNDj0LAeSJ6m57VMaf2+prg6wFrZVSJTMMrd1oTQzJO9EWmIc+oIpt716UE24ttnIlCdkTG1+XIVm9Igl1KYyAJorn8g2S4xhb0f3IVisCJznbJOEC0xkJE9qJU4c=
+	t=1719408920; cv=none; b=Qj41v9xu4beXdYahmO/72nO8BGJldhJ9dA5yfeOTpzwjRdafboKYdvttWG4fDZNitOTNEPfiByQXKiJLbO5ZXZB3jMc8thHME5EHrjxSHmQJyF/CzEyKQ54tjf0IvtPLu5PxDmowX9qGK/IzyMwiL5WJp2URBNtoSttuu7NLl8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719408896; c=relaxed/simple;
-	bh=Gn4Pli2kvWj3GVbjuWpohIcu4iNuEX1X1zc4/G39S+Q=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=fIPcGxSuOxTctBiUN21Gd3Sph/waeVxCbkJ+Lx7ZCInvciC+cMLVPJHOd7pHhoU2lV8wQw/q2Mo2seSj4WJ5b/tH9MakCFlIYwb/91D/YTifY6zH/H0LSedHEvz4GzkHKmCf9d7bmh3FfXLydoVnNxJO28VwTBAhK57Cz6JwKg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZWzHept0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D4B2C2BD10;
-	Wed, 26 Jun 2024 13:34:55 +0000 (UTC)
+	s=arc-20240116; t=1719408920; c=relaxed/simple;
+	bh=CTJIO7yYyY8DK9qEV5bs974GSy53WZt/sJEXIpo1M4A=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=nhrB4FoaEtlqCrl6tALCVlgDwtZYJveDwekdJve2A7GyWNODSqcuGz1Tw8osDKnH1Xehq+r1tANV2iDy84T/UlZygree8ch7EVIz7UofBUcozRO8ga8qyaCv/flKjadctElJ6BcSe3o4ajYKmjM26vjvmt5TtsEWXuQWA0al6Xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wxa9yFad; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64083C2BD10;
+	Wed, 26 Jun 2024 13:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719408895;
-	bh=Gn4Pli2kvWj3GVbjuWpohIcu4iNuEX1X1zc4/G39S+Q=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ZWzHept09Wt38QVjeaNvs16nDFLFZ9zPjbteSM3NNSK7rwC9vqpgyhCDXusg+RY6X
-	 TAhAv1Uy2Yq8wp436x1fkcxTlzIra6/gZuqxMG9qawKmRizY2N9Hgvt5+ObQpXAVg3
-	 wzGpr1EpbKKyua4N9fHYebbuGtI0RQaVIBSLjoRIQVM6X1oEcrNLmxr9jxfjV6pyq2
-	 2TogYvzvKh7sQAlhqceppGnC4f2GPN/FnPQ1Oy2WIdJj2eTmYZnwLybTJK5JOc4yAv
-	 8S32Xjxiwq09ryWVY2NipV4K2rsfvPOvDlwyJya2HcOXTmf+B+XB5IhTvOwqoyMowO
-	 8V1Pyh/uf71ig==
-Date: Wed, 26 Jun 2024 07:34:54 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1719408920;
+	bh=CTJIO7yYyY8DK9qEV5bs974GSy53WZt/sJEXIpo1M4A=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=Wxa9yFad55mqxZHXlWzqSA6WOX6N/eQfC2fdh5ed7jnMqAaPcUQ1/2LYbcHLLNn8w
+	 6UGQIq56Ggmazr+prYiYr70/1/rFjJIC2wps8AnUbpVdERm4Mb79lFeBc57O+FdJsg
+	 5BTtl3M78QEz/VVCo23SnL+ED2/RsHXIxVnLnWpW5m+9Dv2sV/uU54rxd6GC/Wu10P
+	 vJCT6p3DPa4BaJ7Mt4UFWk9c9/+qwVt5Tp9TYudV6TYlKGz5UIqX275ElxrXAQd+4m
+	 Gf7v9kp68bkvJhewtJPDtSNSV/+6U+6pXocFs14HwHl9Oe0Ljhl1c3kX2uqfcRl26j
+	 hqqQywmgqxx4g==
+Message-ID: <d7117060-734a-4f8b-bb05-a9a9473a53d1@kernel.org>
+Date: Wed, 26 Jun 2024 15:35:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
- quic_vbadigan@quicinc.com, Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Jingoo Han <jingoohan1@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pci@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, quic_nitegupt@quicinc.com, 
- quic_skananth@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
-References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
- <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
-Message-Id: <171940889433.2971707.8511570213525065770.robh@kernel.org>
-Subject: Re: [PATCH RFC 1/7] dt: bindings: add qcom,qps615.yaml
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: fsl,xcvr: Adjust the number of
+ interrupts
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <1719291415-1168-1-git-send-email-shengjiu.wang@nxp.com>
+ <1719291415-1168-2-git-send-email-shengjiu.wang@nxp.com>
+ <293fb3d5-9b77-4321-8b31-d060cf96565d@kernel.org>
+ <CAA+D8AMQv_=X3hC5uQbrDBN0EGo3U6EToGFVjUYcOVHpf5b=aQ@mail.gmail.com>
+ <549edfff-24a5-403f-b35e-8929cc14c81f@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <549edfff-24a5-403f-b35e-8929cc14c81f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Wed, 26 Jun 2024 18:07:49 +0530, Krishna chaitanya chundru wrote:
-> qps615 is a driver for Qualcomm PCIe switch driver which controls
-> power & configuration of the hardware.
-> Add a bindings document for the driver.
+On 26/06/2024 11:34, Krzysztof Kozlowski wrote:
+>>>>      items:
+>>>>        - description: WAKEUPMIX Audio XCVR Interrupt 1
+>>>>        - description: WAKEUPMIX Audio XCVR Interrupt 2
+>>>> +      - description: SPDIF wakeup interrupt from PHY
+>>>>      minItems: 1
+>>>>
+>>>>    clocks:
+>>>> @@ -88,6 +89,7 @@ required:
+>>>>    - dma-names
+>>>>
+>>>>  allOf:
+>>>> +  - $ref: dai-common.yaml#
+>>>>    - if:
+>>>>        properties:
+>>>>          compatible:
+>>>> @@ -112,7 +114,7 @@ allOf:
+>>>>      else:
+>>>>        properties:
+>>>>          interrupts:
+>>>> -          maxItems: 1
+>>>> +          maxItems: 3
+>>>
+>>> I have doubts this was tested. The existing example should fail,
+>>> although I did not see any reports. Not sure why.
+>>
+>> it is tested, because the minItems is 1. so the example can pass
+>>
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  .../devicetree/bindings/pci/qcom,qps615.yaml       | 73 ++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
-> 
+> That's a very unexpected change in dtschema. It indeed passes, but is
+> not correct. Why interrupts are flexible? This should be constrained.
+> Let's wait for Rob's confirmation that this is not a bug in dtschema.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Yep we need here minItems as well, so this is strictly constrained or
+please explain why this should be flexible.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pci/qcom,qps615.yaml:70:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/pci/qcom,qps615.example.dts'
-Documentation/devicetree/bindings/pci/qcom,qps615.yaml:70:1: found a tab character where an indentation space is expected
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/pci/qcom,qps615.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/pci/qcom,qps615.yaml:70:1: found a tab character where an indentation space is expected
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,qps615.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240626-qps615-v1-1-2ade7bd91e02@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
