@@ -1,103 +1,134 @@
-Return-Path: <devicetree+bounces-79973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC65C91782A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:31:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF4E8917843
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:46:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6504B1F21B54
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 05:31:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BC99B22D15
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 05:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C4013A88A;
-	Wed, 26 Jun 2024 05:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D429D13C8F9;
+	Wed, 26 Jun 2024 05:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="V6EVfghT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hUEBLhv4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 765C12F5E;
-	Wed, 26 Jun 2024 05:31:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246B6A48;
+	Wed, 26 Jun 2024 05:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719379871; cv=none; b=KzBTW5PZaVLQWse2H4xpdngJ0Q2gv8ZKq3blYigaTJNy4IIoQhgK/HPzCkmc6CGpaQ+V+aHN7X2CTFLbIBr307qDWciMtHTHmtrMNpuBZybIVQE08fN1VoECbco7cBR6NPa24Y/44S27WY3k5WrD2pl+5F+zTKnGE6q4Qyj9Lrw=
+	t=1719380784; cv=none; b=XgphRYeE+d2/QML7Yvh2Xza0e12YL9VLHJuGIFwS8co0zymG+uyQFez7yvJT2tgNuVBVc8bXQ2b/V0aWEQ+3MQO4Qjy2iP5BjesOa/WE4mbZCMhFN0FLBpCCU7SwHRt/hbgZySS9y9SCDdMzJCfw2F2+bHRhJXFBIae8GTWV0w8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719379871; c=relaxed/simple;
-	bh=NIIeRlWHaxb09V9dg0z4qNkA9Cj1y8ioeds9a+gbdOY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QFghx+3a//apixCgkZo0hd4Z876VQUHFa3Wz+GhgtQuJBQnKultMKFjOd7zcmz/iTiF3O9OWo27AucUOyLgoHQFYQnB6h9Vt88AZ0EsAsliyJvHGYkRaAPjBZ5FZEtfG7YRK1C6e0P6a/9tT2+1GFJgBQ6mVBC1vfn3qqZZSjG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=V6EVfghT; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from pecola.lan (unknown [159.196.93.152])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 11F26200EE;
-	Wed, 26 Jun 2024 13:31:04 +0800 (AWST)
+	s=arc-20240116; t=1719380784; c=relaxed/simple;
+	bh=QWXrZWXXTVJTd9LZgMr466gJ/DYBUPEheTAJm7xvudc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e/GLJ0s5g0PqirhP181CJZO6KcItyEaBF+GUZAf7yoDFyNYKehGqUM0vtr/aj3xWdXHcEa45qSgyGiPGRoa18T8PItImhdX3NSpPe+5f+1Y3q50J09bN0eWSBUkxCZhk2bdbbAbMhf3XKc3ypwxcJYtGb+6Shdhc44oseUmWXl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hUEBLhv4; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ec4eefbaf1so53863311fa.1;
+        Tue, 25 Jun 2024 22:46:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1719379865;
-	bh=NIIeRlWHaxb09V9dg0z4qNkA9Cj1y8ioeds9a+gbdOY=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=V6EVfghTHDYqGTpn9rV2DeCzb7jid9YDiNqslxOtmFb334Bf6lz+HvLz2UaW7xErs
-	 0w42Zuj8mtkbxxO988asuqmkpQV5K1KeEqjAAvuTVljsNY75yPZ100zG4KCcGls2p/
-	 pq7DTjetBT8h8F4BvKX88G6LlSofEFbDYeGVSS+bT124fFkednk7Oe/XgW+JJsLzUr
-	 T+AYOHo4fmXl6GFZXHHqqTw85xOE0UmTUN+wo9apNsneiOjA9kFrnS0nstNmMUa1hR
-	 x/gGi5BAC6Lxbsefro46+tqQT3xO23L9q7gKjqcJ+BtMIVD+cRwx4CCB0bbzmQeqdf
-	 /4ANhcRlmcPuA==
-Message-ID: <e28ba03d1df1c0c5aec987411c40e44fc351ce0d.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 1/2] dt-bindings: i3c: dw: Add property to select IBI ops
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: Aniket <aniketmaurya@google.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Joel Stanley <joel@jms.id.au>, Billy Tsai
- <billy_tsai@aspeedtech.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Wed, 26 Jun 2024 13:31:03 +0800
-In-Reply-To: <20240626052238.1577580-2-aniketmaurya@google.com>
-References: <20240626052238.1577580-1-aniketmaurya@google.com>
-	 <20240626052238.1577580-2-aniketmaurya@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1719380781; x=1719985581; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QSB3BTIzSPzX7DCyduN3KYVksS6dE06yAl0SpQD8nwg=;
+        b=hUEBLhv4OaMA1nV7CMWc6JL2S3IVthyuggJ+T1ikgd687YmIgGPPnbCcLc4kIZDCJE
+         beKvwA8eip/ifsEZq1X+iPuE2AB4TvKb7W1bsZw7RlW9sKBaO+smIt9pvQqEdgnPglKS
+         2xCaGhV4z+nTulkdGROTT5NaqvieZ6HWihvqlZi2ZV39tJjul7qCCHUr6TDJPB2QbNWE
+         +neyPy9rMyrjK0WSbbAXHXpgwonbnUPU7ovqjU32YyGPEO3WRJLoa7yYHi+SY0tzGyCT
+         0hdEnz2us4KggKE8EUDk8/kqMhYSuPnHvdMk2zZIkSC97GbJiMOCggM9b0XCX+hhhdzT
+         orGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719380781; x=1719985581;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QSB3BTIzSPzX7DCyduN3KYVksS6dE06yAl0SpQD8nwg=;
+        b=gHi23wxlWJEO76k5jVX0USs9oOo3NfcZ38FU9XCGDFF1qah42Ul8jAjzVbsoBB0SIp
+         C65InBpeimsfxgnPHu3Vf2S0gkrDxGSV+MV/jIOCtDpV7I0jT1KC91lGtbRjM0lIJ34+
+         PpYJ5+ruIuuj50V5YTA2FhMexzqwMT1nyLRPw9yH4r7R6nlDk1dyqAWVe7FtamhVlqtN
+         qHOSKic35QirqX8wlD7bwDd435Xij7Nxbw4DEqMftYGspXgAfg5oy2m6wE+poB3/MVAU
+         NTndyq623/AFe/DxtI64hTQ/G9klpcbo5/0AB54ReGSR4cpV7UhAI1MATMh3BwpRMvWk
+         xJog==
+X-Forwarded-Encrypted: i=1; AJvYcCXGw2rwLIgBmqgPrv5TAxH9/+459gzAl3454Lf7AfNIqSlrRoK44CbM4sS3u2QsqhGB0hOdn428MoSJmOeDdlk9eiYkHI1x43UTPP2KCVmWPGjbwnZ46Rkm1rg+61+ufUzV/E1jvKiiHf0hVRw8ULwcbDD0VS58H/CbqYJSbYi5hrctyfgHbRgmDNX8NGk88fWREphy6iC+FOmWHnqDeVvJ3lXdZQ==
+X-Gm-Message-State: AOJu0YzvB6zGM8psrdcnbH/cy40oTnGrFxuA1babwEffnCYZ0FxmJ/kE
+	lL6zOwhN78aZukuxg3RHb5qvdK6Om1xYDqOzrZTeRAHJMYCI28uoZVkN0RbmuVbfqFa//ebs5q1
+	sg+G/QdcNIcdtBlMe9xeeYIdTTCs=
+X-Google-Smtp-Source: AGHT+IFpWX0NPzvu65s1n+ek73NwrFfQFyjSECjKUTt714nna469hEmm05axgbn+rQ3sHDqAkDQPMlbu41qjw7daXd4=
+X-Received: by 2002:a2e:9b55:0:b0:2eb:d9a3:2071 with SMTP id
+ 38308e7fff4ca-2ec5b3e358dmr53538951fa.50.1719380780963; Tue, 25 Jun 2024
+ 22:46:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240624-b4-sc7180-camss-v3-0-89ece6471431@gmail.com>
+ <20240624-b4-sc7180-camss-v3-1-89ece6471431@gmail.com> <3e55d482-2732-46cb-906f-62f0e722b7a5@linaro.org>
+In-Reply-To: <3e55d482-2732-46cb-906f-62f0e722b7a5@linaro.org>
+From: george chan <gchan9527@gmail.com>
+Date: Wed, 26 Jun 2024 13:46:07 +0800
+Message-ID: <CADgMGSv6-J3re9w2wqTdxd=y-t=APVP4MA72h+0J8M6gzd=wPQ@mail.gmail.com>
+Subject: Re: [PATCH RFT v3 1/5] dt-bindings: media: camss: Add qcom,sc7180-camss
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Aniket,
+On Wed, Jun 26, 2024 at 7:32=E2=80=AFAM Bryan O'Donoghue
+<bryan.odonoghue@linaro.org> wrote:
+>
+> On 24/06/2024 13:13, George Chan via B4 Relay wrote:
+> > From: George Chan <gchan9527@gmail.com>
+> >
+> > Add bindings for qcom,sc7180-camss in order to support the camera
+> > subsystem for sm7125 as found in the Xiaomi Redmi 9 Pro cellphone.
+> >
+> > Signed-off-by: George Chan <gchan9527@gmail.com>
+> > ---
+> >   .../bindings/media/qcom,sc7180-camss.yaml          | 328 ++++++++++++=
++++++++++
+> >   1 file changed, 328 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-camss.=
+yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-camss.yaml
+> > new file mode 100644
+> > index 000000000000..58ffa4944857
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/qcom,sc7180-camss.yaml
+> > @@ -0,0 +1,328 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/qcom,sc7180-camss.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Camera SubSystem
+> > +
+> > +maintainers:
+> > +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>
+> Please add yourself here.
+>
+> Other than that
+>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-> Use this property to select IBI related ops in the base platform
-> driver. Otherwise the driver defaults to return EINVAL for any IBI
-> requests.
-
-[...]
-
-> --- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> +++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> @@ -25,6 +25,10 @@ properties:
-> =C2=A0=C2=A0 interrupts:
-> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
-> =C2=A0
-> +=C2=A0 ibi-capable:
-> +=C2=A0=C2=A0=C2=A0 description: Set to select IBI ops.
-> +=C2=A0=C2=A0=C2=A0 type: boolean
-> +
-
-Wouldn't the compatible string select whether the hardware instance
-supports IBI or not?
-
-I'd imagine that each specific synthesis of the DW IP would imply
-corresponding hardware settings, and so would warrant its own compatible
-value.
-
-Maybe one for the DT folks: would this work better as individual
-properties? Is there a policy here?
-
-Cheers,
-
-
-Jeremy
+Would you please be the maintainer afterward? I foresee that there
+will be difficulties maintaining it my side in the long run.
 
