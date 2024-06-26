@@ -1,130 +1,200 @@
-Return-Path: <devicetree+bounces-80287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619E9918516
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:01:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C814091851E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:02:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD7581F24222
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:01:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E2B81F2321F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21C9188CBF;
-	Wed, 26 Jun 2024 15:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F2D18756E;
+	Wed, 26 Jun 2024 15:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="h3d+/SII";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="WN5HbpQj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KRE7ME/f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fallback2.i.mail.ru (fallback2.i.mail.ru [79.137.243.68])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23AD4187572;
-	Wed, 26 Jun 2024 15:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B385A186E33;
+	Wed, 26 Jun 2024 15:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719414033; cv=none; b=p75VVfUx01JRf8Y7uiBwnWoxNNjpoRz6yf+gC9SIniMxE3L4AdgwtPEwm4BFX6Ugailga4IIJzACyvzNWXHYWj997h6gkLJ7Syku840knxGj4SwpzmfWAapcnmJGmf19vPXIZ4cH/R7T8qH1TKS8tK8m+BPrHK2vYMcHGioE26A=
+	t=1719414125; cv=none; b=KVzj6QPNUb6Hhn2kgxJ8ESbTxoTIgD1fGv+OBOvyZSUmP7F3WD/by7qfEfW0Bk1C+E6+e1MsibPGgLQEeAKiOXCbI8RyxuC71a5xjxQnW1k1DSJkV6AmKnZFmwq1VRl5kU/NNL3VBskaKsoyh5KTJOG2ue6jAgWh+AX2tCy7DV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719414033; c=relaxed/simple;
-	bh=CCYJOjVFV72eQ++meXn+5CmTr90D7pypumqlYRG0TRU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l+rGo2kQkFgJSP+a/L/pxyyuvA0kuGY5GwbCG/M4dUxOjrFK2SYXHAwGEwRRanfnTrY3X0mHF7mRRUvzbhhTkXoaPzW3Vx01O7qMqCMSG1w2s930VSmvSqTu/Vq0qLbiQLLDiWwea3IpLuzA2rye6gHZYXUrxjxCqsSdjvVCgWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inbox.ru; spf=pass smtp.mailfrom=inbox.ru; dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b=h3d+/SII; dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b=WN5HbpQj; arc=none smtp.client-ip=79.137.243.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inbox.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inbox.ru
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
-	h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=tYxOvltrA30hHNMLKHjnacM9wzigGdQlst2vhd5Nm7Q=;
-	t=1719414031;x=1719504031; 
-	b=h3d+/SIIGoyN4tSm3TAUkZ/qvb8jV17uJ8KPPyhEg6jTmajYy+tS1OyNv78tLF8hch9TDs9xsHbGIVIuXQeuPfYinBnOJMTZeh/zuWwphJx30BIbflAV+Q7hmiAHTK4t2hJScg2B7x3G+N1AHpR5mB0P1zLpaz3AdTph5P+s4kSMYrFGoiGd2Sz0ouvmMv/gF2cW45wrPayKXoI4uNc9E7uNYiC1hf1rCNlARDFxdW/6W1Lll7KvdqkJWeVvzz6cFk6ThG7sD5aIdlVvTnkEHeYJjdjM00nRNAANkUrjEhdPnMLeJ1X1t/9mILE3yvjJiNgO5qr0K9eXwNuuPcEgpw==;
-Received: from [10.12.4.20] (port=60720 helo=smtp44.i.mail.ru)
-	by fallback2.i.mail.ru with esmtp (envelope-from <fido_max@inbox.ru>)
-	id 1sMU8H-00CY2K-Fw; Wed, 26 Jun 2024 18:00:25 +0300
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru;
-	s=mail4; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
-	X-Cloud-Ids:Disposition-Notification-To;
-	bh=tYxOvltrA30hHNMLKHjnacM9wzigGdQlst2vhd5Nm7Q=; t=1719414025; x=1719504025; 
-	b=WN5HbpQjae2HA+K4462tBXN24Rowh9aCzRi/7HEliMDvDNXo9XvcDjV4d/rbyJdqxko561gev51
-	kwaVJicZpmCIUmr2QrrY7W9oEiENONy7gYz8ZqYGC+NTSYFU61foF1vV3kraoxhLhwd2mQILQn6uH
-	iTbrlFb7j2ZVbpme5Vbd2NeuQ7n7SZnC4H/dc9yeijIFGWQk3xvYEitVulv2sol/Cu66PNWlTCQIT
-	5suGdI7hE3wPFBciRaJjtf05BHiS8tQpjnXFjYs342Wz9z88p3qtsuoYaHpuL0JFf+JYtJUaJ2Hqq
-	IZ0al93qCvwCCEZPaM7fy7/3RD9i4NCTDW6w==;
-Received: by exim-smtp-84f7fbf7d8-c7c8k with esmtpa (envelope-from <fido_max@inbox.ru>)
-	id 1sMU7z-000000007Ow-0VC7; Wed, 26 Jun 2024 18:00:07 +0300
-From: Maxim Kochetkov <fido_max@inbox.ru>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	John Hsu <KCHSU0@nuvoton.com>
-Cc: Maxim Kochetkov <fido_max@inbox.ru>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Subject: [PATCH 2/2] ASoC: dt-bindings: nau8824: Add master clock handling
-Date: Wed, 26 Jun 2024 17:59:30 +0300
-Message-ID: <20240626145931.25122-3-fido_max@inbox.ru>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240626145931.25122-1-fido_max@inbox.ru>
-References: <20240626145931.25122-1-fido_max@inbox.ru>
+	s=arc-20240116; t=1719414125; c=relaxed/simple;
+	bh=fgMMM7pNiJxo+jmp2NMUAPW1f/KDpo2M0f8YCbewTSs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l7QKGj6Y0kbbUOT8+s+PB8gFlvT9KWhav/L1//A2NbuMNQLMO8LFrBLJJPqpMGccfkooJgBsbKZRU/wKtYnzFl6vdMsfuV6S8pkqIjX1Nna+ASEv3GflKLts05eUfq/J7rNl9nC/raO9U6G4pDadT5n/DPF6yZNXqnC7U+K1zFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KRE7ME/f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0EEC116B1;
+	Wed, 26 Jun 2024 15:01:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719414125;
+	bh=fgMMM7pNiJxo+jmp2NMUAPW1f/KDpo2M0f8YCbewTSs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KRE7ME/fBH+rbV9VoOpFrdt/9Cgtz2ZR+BfinfbTIX1tSU/RRBahafOnNoWtz42bi
+	 pCOzSDwAKYAELnpfMZ9xdmKXf+R3YjRZAnGAM+KMvTjX+HQ+LVDJRumjecPyaKq4hq
+	 NmEvtNv9E8wU9Uq/LPUchAvcltjsGl4/LV6+wwA5hBTrk+/cpX9NDepTnDqKtC/5vO
+	 yB6Lo9UWW9aa1JRPp22W4158dneYTX1oZdV1wnPgYWu8+XvjWU47Mgq591MmXCJU+s
+	 tXh7g6T5VZVELUps3bxEDexzxn89ZPqDVWT/BOVaL3qaQNjhgI7tyZq1elvvjneAIw
+	 9WfHskj4MX+0A==
+Date: Wed, 26 Jun 2024 10:01:31 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, quic_vbadigan@quicinc.com, quic_skananth@quicinc.com, 
+	quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 1/7] dt: bindings: add qcom,qps615.yaml
+Message-ID: <4ivdeyp74faiztnrimxtdvslf4kcnmxd3omx2255pdfl27v55e@w7otowwnfeah>
+References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
+ <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailru-Src: smtp
-X-7564579A: B8F34718100C35BD
-X-77F55803: 4F1203BC0FB41BD99270B3E0DC24D31FA5E152DC617FFDC37660A00524814A67182A05F5380850401D703743B63DBF763DE06ABAFEAF6705794202B1EA8E8611A349DC5573309D5528006A18B89A766F
-X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE78CB87876C5D626D4EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F790063752AC809489EC5B9C8638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D8E5F31A6B4056F61658B7FB142A6C5770A26E9AE8CE7D4B9320879F7C8C5043D14489FFFB0AA5F4BFA417C69337E82CC2CC7F00164DA146DAFE8445B8C89999728AA50765F79006377C70927E34808485389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC89E541A154B51D14BF6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA7E827F84554CEF5019E625A9149C048EE9ECD01F8117BC8BEE2021AF6380DFAD18AA50765F790063735872C767BF85DA227C277FBC8AE2E8BDCE939D40DBB93CA75ECD9A6C639B01B4E70A05D1297E1BBCB5012B2E24CD356
-X-C1DE0DAB: 0D63561A33F958A52D7602D3FBE782CE5002B1117B3ED696CCB26F4170AF7D3FC66B2B37046EC955823CB91A9FED034534781492E4B8EEADB71243024C627CEAC79554A2A72441328621D336A7BC284946AD531847A6065A17B107DEF921CE79BDAD6C7F3747799A
-X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF467B3235B4E0BC29CC6E057EFA32E7B6585E8C317849DBA961A7401D5F07184C711F655CCE117FA3443676941C84C1C83D57CA240CBA9F4AA654F9AD099EF804D2032A9D9A44A225146D90F64BF3396102C26D483E81D6BEEB84411BD425175970A7FB4ED9620804ADE12199CE9660BE
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojLaF05p8kWoriMAkFf19jVQ==
-X-Mailru-Sender: 689FA8AB762F7393C6D0B12EA33CAA9BDE1D5D6BB9FC814B0534B403F2BB02FE65B72C4B0EFCDFDD90DE4A6105A3658D481B2AED7BCCC0A49AE3A01A4DD0D55C6C99E19F044156F45FEEDEB644C299C0ED14614B50AE0675
-X-Mras: Ok
-X-7564579A: B8F34718100C35BD
-X-77F55803: 6242723A09DB00B44D426FEC3FC5D1C73B55CE1B3528F6AC808063995AD4E39D049FFFDB7839CE9EA0123DB20CD7599CD6FA0DA965E278DDB0F16C3871DCC2080D4276C549D21D09
-X-7FA49CB5: 0D63561A33F958A570279B4CDC907CB85CFBE178A8A02B1A87108CC2C650B8C4CACD7DF95DA8FC8BD5E8D9A59859A8B65FF0BFC5AEE34BE6CC7F00164DA146DAFE8445B8C89999728AA50765F7900637889750A55773577B389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC8BA7556051D6825FBF6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA775ECD9A6C639B01B78DA827A17800CE76515C59FC18CEA6D731C566533BA786AA5CC5B56E945C8DA
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojLaF05p8kWopqBG7QJrW1Xg==
-X-Mailru-MI: 8000000000000800
-X-Mras: Ok
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
 
-Use master clock "mclk" if provided through device tree.
+On Wed, Jun 26, 2024 at 06:07:49PM GMT, Krishna chaitanya chundru wrote:
+> qps615 is a driver for Qualcomm PCIe switch driver which controls
+> power & configuration of the hardware.
+> Add a bindings document for the driver.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  .../devicetree/bindings/pci/qcom,qps615.yaml       | 73 ++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,qps615.yaml b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
+> new file mode 100644
+> index 000000000000..f090683f9e2f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/qcom,pcie-qps615.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm QPS615 PCIe switch
+> +
+> +maintainers:
+> +  - Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> +
+> +description: |
+> +  Qualcomm QPS615 PCIe switch has one upstream and three downstream
+> +  ports. One of the downstream ports is used as endpoint device of
+> +  Ethernet MAC. Other two downstream ports are supposed to connect
+> +  to external device.
 
-Signed-off-by: Maxim Kochetkov <fido_max@inbox.ru>
----
- .../devicetree/bindings/sound/nuvoton,nau8824.yaml        | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Hopefully this isn't the only possible use of QPS615, so I'd suggest
+that you omit the rbg3gen2-specific integration details from this
+binding. In other words, describe the QPS615, not the QPS615 in rb3gen2.
 
-diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml
-index 3dbf438c3841..232dc16a94a3 100644
---- a/Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml
-+++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml
-@@ -23,6 +23,14 @@ properties:
-   '#sound-dai-cells':
-     const: 0
- 
-+  clocks:
-+    items:
-+      - description: The phandle of the master clock to the CODEC
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+
-   interrupts:
-     maxItems: 1
- 
--- 
-2.45.2
+> +
+> +  The power controlled by the GPIO's, if we enable the GPIO's the
+> +  power to the switch will be on.
+> +
+> +  The QPS615 PCIe switch is configured through I2C interface before
+> +  PCIe link is established.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - pci1179,0623
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: |
 
+'|' means "preserve formatting", but there's nothing here to preserve,
+please drop it.
+
+> +      Phandle to the vdd input voltage which are fixed regulators which
+> +      in are mapped to the GPIO's.
+
+The binding for a regulator consumer should not document how the
+providing regulator is implemented. Only thing to describe here it which
+"supply pin" this refers to, which turns this into "vdd input" or "vdd
+pin supply" (if that's what the datasheet call this pin on the QPS615)
+and as such you can drop the description because the name of the
+property already states that.
+
+> +
+> +  switch-i2c-cntrl:
+
+I'd prefer you call it "i2c-adapter" or perhaps "i2c-bus", because it's
+not "the switch controller".
+
+> +    description: |
+> +      phandle to i2c controller which is used to configure the PCIe
+> +      switch.
+
+"Reference to the i2c adapter/bus used to configure the QPS615"
+
+But I wonder if this somehow should be described on the particular i2c
+bus and be referenced from here instead.
+
+It's not obvious how to describe these components that sits on two
+different busses - although I believe this binding refers to the
+"configuration interface" sitting on the i2c bus, abut it's described on
+the PCIe bus as it relates to power sequencing.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - switch-i2c-cntrl
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pcie {
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +
+> +        pcie@0 {
+> +            device_type = "pci";
+> +            reg = <0x0 0x0 0x0 0x0 0x0>;
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            ranges;
+> +
+> +            bus-range = <0x01 0xff>;
+> +
+> +            qps615@0 {
+> +                compatible = "pci1179,0623";
+> +                reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +
+> +                vdd-supply = <&vdd>;
+> +		switch-i2c-cntrl = <&foo>;
+
+Indentation looks off here.
+
+Regards,
+Bjorn
+
+> +            };
+> +        };
+> +    };
+> 
+> -- 
+> 2.42.0
+> 
 
