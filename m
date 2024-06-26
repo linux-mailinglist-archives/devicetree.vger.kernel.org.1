@@ -1,176 +1,114 @@
-Return-Path: <devicetree+bounces-80426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EFEC918E69
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:28:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A4E918E9E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:33:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B20DD1C21E73
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:28:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ABB5B20BFE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:33:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F8E190680;
-	Wed, 26 Jun 2024 18:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5FF190072;
+	Wed, 26 Jun 2024 18:33:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JyvVrjta"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LE1p9Ura"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502046E613
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 18:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E514B6E611;
+	Wed, 26 Jun 2024 18:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719426479; cv=none; b=OebQAbSuN/RpfddfRlV/QaGx77xiXlOB97pii3p6o/y/v/kxn8sL+h8asnUefUBV0KFnHBZ3vWYVDhIcvHn0adIwOxqdHjO8PM/U1KsyuLoB3chLuHADuy1jQVCo90ARZL7gArpK2vCK2lA0m8D8XcnVMCj3SLzyRMho6krTvtA=
+	t=1719426816; cv=none; b=rNobE/ucDlaplC6JfWDaRW00fRICusqHOPKBHC6GynEPhMVraTZYI4jaD0ZP2akpHookju05YF085XEH7xdnnBQwh8Eecy5G+xbnlndjrJmAWcH2dRHRHbP/PrSNn32wKqk/2aFGjuR5zFPeZPWMJK+fUN7JWPeHr11Wdag6/rM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719426479; c=relaxed/simple;
-	bh=a6FzYWv69DsUbCcBb7bvimOb4Ei4H97bwUuQjSB9wu8=;
+	s=arc-20240116; t=1719426816; c=relaxed/simple;
+	bh=o09GXnpjsFOG/B4MyelvtaeHS7etd7sZdVKlPp3iYpM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kjYtYGZY5Je8EVbvRoueMTMnQmt8IJYYacBIHdNJX1ro1g040sbItii11qD7STT2Zszvue+UoV2WliJxJZJPBVk+rsFaFJmBZHFl+Y1kXDlhX7hvQj9mL4xvzvKVe9Ldj0dJ4X4ezrDwbcpx9kpVlti5U9AqBFVg0Naf4YXaarc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JyvVrjta; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cdea1387eso4802939e87.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:27:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719426475; x=1720031275; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MhjXcHw7FVgAMx0G+RWSt5aInx19NHmALWCSrJmelhw=;
-        b=JyvVrjtaFBtcFzvH/BcJz602aL3zYT1+4fl0KXdYklkl2AObikm/xP/6biIK8Y+aFE
-         PM476zp1Gk9L3NkKNFRRnmlNqizktwFmmrDKo7itloahqhu0ptFKUh0vlY9aRKWXDVQS
-         ZVHAIzTEdTAOH3KwksydTU7RFA5aRexp9e7tIHY1zA6zGd4836yLIEfwwvE+XLCBFsV5
-         Wm/DkrxUajCoGh2wg25vyV15xn5QXfrfzgpx6oXkvzlndVWv2yib1aA/Db8JOEMbZNEN
-         c3WQpo/OjssEdoAnDVSYPYAlNFLoBunhRFx5a3gBYJxV07AFX10fujF8icjyQFRvylr+
-         Gbhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719426475; x=1720031275;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MhjXcHw7FVgAMx0G+RWSt5aInx19NHmALWCSrJmelhw=;
-        b=kdfxk/3tGoRbIYULFDL8b00cnarnQZJ+ll8b6pvL1Ehp028UHXEVYzS/Yr2pclnQnf
-         Szc9+50JAGSmnG6jkPqoFhiFaL7vcA14b64VDiia33gUfjZmStKmn7JspAHYAmpdAON3
-         lM4db6EDq99uVFYBzEvEHnahjf2NWyQkI5UnA0sa67ifN3HhvpgETKC2yD68WpK6HAa2
-         tejuYOXpPIbmSN54yPuUmgZMTgxUN8NH4LaSFnLYupyIBG2lZKTYUiUw8nwqkeHBF8ok
-         wKTIGFm4Vyh5amDyMukKShc4NIduXHdUef/U9CFSbE7ePCh5cy3nAEfX4UJZjmuM/mmn
-         alQA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaDm/YmiNdgfr0kR2rcu7Dn/J41U165JyZwsdoEaufVCy6iTcZV+w9Wms3WgMQ624cZ/S4aJ2rzpTaAHOESwJE2A6N9v4MenMArw==
-X-Gm-Message-State: AOJu0Yw/yCIWRXnwOAzWp2PbPKw/CgRxYLdAy9Rd+32WvJ8fmJoL7DbM
-	zw78fGJHqm93NnAlDdZ6SBNBbFu04bg3z/gduJQ7e8b77fOmn7tuR6h0fLY4mVs=
-X-Google-Smtp-Source: AGHT+IEJzRobCNsozOhRUGtRUeSLzudKYYFc/XMfCSoTuQ29oqcRq+W9SXYZmI9jbvdiC8PxtjAIDQ==
-X-Received: by 2002:a05:6512:3b0c:b0:52c:e393:6634 with SMTP id 2adb3069b0e04-52ce3937b27mr9047836e87.33.1719426475569;
-        Wed, 26 Jun 2024 11:27:55 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cddee9029sm1380868e87.152.2024.06.26.11.27.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 11:27:54 -0700 (PDT)
-Date: Wed, 26 Jun 2024 21:27:53 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	angelogioacchino.delregno@collabora.com, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, ilia.lin@kernel.org, rafael@kernel.org, 
-	viresh.kumar@linaro.org, ulf.hansson@linaro.org, quic_sibis@quicinc.com, 
-	otto.pflueger@abscue.de, neil.armstrong@linaro.org, luca@z3ntu.xyz, abel.vesa@linaro.org, 
-	danila@jiaxyga.com, quic_ipkumar@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 8/9] soc: qcom: cpr3: Add IPQ9574 definitions
-Message-ID: <txid2b47zhnuknz35xaosfctuojrnrskcjehhqmyqubuxdimqj@7q7pzxlavk6k>
-References: <20240626104002.420535-1-quic_varada@quicinc.com>
- <20240626104002.420535-9-quic_varada@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=D9C4gstL6ZWzMKH05nmKFbele3yM2j+OGOFAd2i8TPxwsFhaqi3b7UMwcHGy1YmmBXMb9b/ao80w7S8bCOUXUUFtEdOMLLh/B9kZjNjKescfzeXTPmeEoCgX2uTIOZc+6gWD2jlcCHfNcYS8NGZo9fmy8/ftYKNTEFBISbt3+wQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LE1p9Ura; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA98AC116B1;
+	Wed, 26 Jun 2024 18:33:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719426815;
+	bh=o09GXnpjsFOG/B4MyelvtaeHS7etd7sZdVKlPp3iYpM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LE1p9UraOdoM7EHN0tXCR28oH36+Qt1/pOZ2UZf0JjjbXNwdUJBULMHzfU6+hmNrF
+	 ZnJAfnl+GhbGQr0MXhq5ZxzLHYQwZucSCbUnilySKRfElv8OMFM1r3Ija+BG8xpDoz
+	 QK9dtLSiJAExR7y0mr11lzBkviZC8SESK15YrBQ1eR5SJ5giM4CEjVUAaTwuwLj3nH
+	 mKwg93MYBWizB5qkF7eI/14Rgvj9jAjzKmbL0IeLxUYXqtPbBuT+KNurAIvUiq2/1f
+	 9FRzLkAubcaMbI0sMSApf7FJ/k/Bw+EtFdnzpoLDC8H2SOH3XH9IfpjniKWyajEaT5
+	 SDyL8QUS+M4Ew==
+Date: Wed, 26 Jun 2024 19:33:29 +0100
+From: Mark Brown <broonie@kernel.org>
+To: James Ogletree <James.Ogletree@cirrus.com>
+Cc: James Ogletree <jogletre@opensource.cirrus.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Jeff LaBundy <jeff@labundy.com>,
+	"patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	David Rhodes <drhodes@opensource.cirrus.com>
+Subject: Re: [PATCH v11 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
+Message-ID: <d48eb42d-69a9-4a17-8b18-0294cb9fa9c7@sirena.org.uk>
+References: <20240605135249.361082-1-jogletre@opensource.cirrus.com>
+ <20240605135249.361082-6-jogletre@opensource.cirrus.com>
+ <a85e09d6-d8eb-4c60-ae83-b4dbf875a926@sirena.org.uk>
+ <D3F6F68D-5921-49A3-AFC3-E280597E7DE3@cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Xh2op0woHKopXM/o"
+Content-Disposition: inline
+In-Reply-To: <D3F6F68D-5921-49A3-AFC3-E280597E7DE3@cirrus.com>
+X-Cookie: Results vary by individual.
+
+
+--Xh2op0woHKopXM/o
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240626104002.420535-9-quic_varada@quicinc.com>
 
-On Wed, Jun 26, 2024 at 04:10:01PM GMT, Varadarajan Narayanan wrote:
-> From: Praveenkumar I <quic_ipkumar@quicinc.com>
-> 
-> Add thread, scaling factor, CPR descriptor defines to enable CPR
-> on IPQ9574.
-> 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v3: Fix patch author
->     Included below information in cover letter
-> v2: Fix Signed-off-by order
-> Depends:
-> 	[1] https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org/T/
-> 	[2] https://github.com/quic-varada/cpr/commits/konrad/
-> ---
->  drivers/pmdomain/qcom/cpr3.c | 137 +++++++++++++++++++++++++++++++++++
->  1 file changed, 137 insertions(+)
-> 
-> diff --git a/drivers/pmdomain/qcom/cpr3.c b/drivers/pmdomain/qcom/cpr3.c
-> index c28028be50d8..66c8a4bd9adc 100644
-> --- a/drivers/pmdomain/qcom/cpr3.c
-> +++ b/drivers/pmdomain/qcom/cpr3.c
+On Wed, Jun 26, 2024 at 06:25:12PM +0000, James Ogletree wrote:
 
-> +
-> +static const struct cpr_desc ipq9574_cpr_desc = {
-> +	.cpr_type = CTRL_TYPE_CPR4,
+> Thank you very much for the review.
 
-So, is it CPR4 or CPRh?
+> I believe I need your Ack on patch 1/5 of this series as well:
 
-> +	.num_threads = 1,
-> +	.apm_threshold = 850000,
-> +	.apm_crossover = 880000,
-> +	.apm_hysteresis = 0,
-> +	.cpr_base_voltage = 700000,
-> +	.cpr_max_voltage = 1100000,
-> +	.timer_delay_us = 5000,
-> +	.timer_cons_up = 0,
-> +	.timer_cons_down = 0,
-> +	.up_threshold = 2,
-> +	.down_threshold = 2,
-> +	.idle_clocks = 15,
-> +	.count_mode = CPR3_CPR_CTL_COUNT_MODE_ALL_AT_ONCE_MIN,
-> +	.count_repeat = 1,
-> +	.gcnt_us = 1,
-> +	.vreg_step_fixed = 12500,
-> +	.vreg_step_up_limit = 1,
-> +	.vreg_step_down_limit = 1,
-> +	.vdd_settle_time_us = 34,
-> +	.corner_settle_time_us = 6,
-> +	.reduce_to_corner_uV = true,
-> +	.hw_closed_loop_en = false,
-> +	.threads = (const struct cpr_thread_desc *[]) {
-> +		&ipq9574_thread_silver,
+> https://lore.kernel.org/linux-input/20240620161745.2312359-2-jogletre@opensource.cirrus.com/
 
-If it's silver, where is gold or bronze?
+I don't see why?
 
-> +	},
-> +};
-> +
-> +static const struct cpr_acc_desc ipq9574_cpr_acc_desc = {
-> +	.cpr_desc = &ipq9574_cpr_desc,
-> +};
-> +
->  static const int sdm630_gold_scaling_factor[][CPR3_RO_COUNT] = {
->  	/* Same RO factors for all fuse corners */
->  	{
-> @@ -2828,6 +2964,7 @@ static void cpr_remove(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id cpr3_match_table[] = {
-> +	{ .compatible = "qcom,ipq9574-cprh", .data = &ipq9574_cpr_acc_desc },
->  	{ .compatible = "qcom,msm8998-cprh", .data = &msm8998_cpr_acc_desc },
->  	{ .compatible = "qcom,sdm630-cprh", .data = &sdm630_cpr_acc_desc },
->  	{ }
-> -- 
-> 2.34.1
-> 
+Please include human readable descriptions of things like commits and
+issues being discussed in e-mail in your mails, this makes them much
+easier for humans to read especially when they have no internet access.
+I do frequently catch up on my mail on flights or while otherwise
+travelling so this is even more pressing for me than just being about
+making things a bit easier to read.
 
--- 
-With best wishes
-Dmitry
+--Xh2op0woHKopXM/o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ8XvkACgkQJNaLcl1U
+h9DwtQf/YQ/Vby2L69tzDGcijjycSn+Ot0kxxYByNY+7xPrkkvDTh7ovgHolqgXD
+sedw/43IpoVxlgSN4YCc73Un6FrPPn9OhFrrlFurnWCDvGmzy4ynihvSBKHsrM6d
+o8SJRWblgtg3bhCJfAkdLplBcNbNywx4nIiq/OEhC3dTYWyTW8krmvtRwiRF4i5i
+4GgkCpji7SH1E0xR0TtoIOFJuM8xzyXORmVEHarOPf/nwDXaxLoE2OCDoqxyMJS2
+AdjGPBED2llN+IpqvKQEOwfiUp8bYTU5UA3xwvam2SWRjUh9nHfmCTAvEI7Sx7Wz
+HYdnsrRQ6uS9FpYOtKWIsSw3TH1g6A==
+=1lFq
+-----END PGP SIGNATURE-----
+
+--Xh2op0woHKopXM/o--
 
