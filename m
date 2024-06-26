@@ -1,180 +1,142 @@
-Return-Path: <devicetree+bounces-80141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4631917E4C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 12:39:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 746D9917E5E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 12:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8B911C23E38
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:39:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0E601C20823
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621EB176ADD;
-	Wed, 26 Jun 2024 10:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 301D7176FD8;
+	Wed, 26 Jun 2024 10:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bqXvXjUP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W3QMCs7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE1A15EFC8;
-	Wed, 26 Jun 2024 10:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220821662F2;
+	Wed, 26 Jun 2024 10:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719398345; cv=none; b=cxREeFvx682/dIgLE+RREeDJBq8vuAOrR7eDisimnmCnRJQ4KUEkqbx8vzQSacO00Bat47wdShK47fYqmY653DI197JhxVE4KBJU1TXs/OVWePZPr3c/apA6Mprfipd58HYAPJmkzwTsevG5Eg270Xlz4hEO8Fdsb1z5KssFeNI=
+	t=1719398450; cv=none; b=Rn0MUAzz3dXwbTpIY6mDohlUHgZ+PeQ+hBOKJm2ZXZTicUpsFzdsWEgu2ZZ4tYy2VRTixbMKXmpDEnmZH5ihRbSrPtIvafILNk21mQYl8n5kMT+Ipxh2Ljxp9nnAeXPMxwJc9BRBEmqITZjGeSLlV4ZGvr+f5mLHnVrEXJk3TAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719398345; c=relaxed/simple;
-	bh=uXUtR1lw1Q8bbbvkSe1QTPqgXYBuKxKOObcsywhWxbM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZF3mw+soytbQIzjEPCgBsjv9ZKDNvSBjHweqOOby0XN8qUlhj9uV2otPsoeVJR2qatCxE6wjZnzjHC1MSlHJsVVZvqOqIwgB1XvpRwaF3657CbXBu0BPhCKDZ3UHgipan0uo2qbCGQmV4AH9LrqpDmiALQ/esEA8py/ioXaN58c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bqXvXjUP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C369CC2BD10;
-	Wed, 26 Jun 2024 10:39:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719398344;
-	bh=uXUtR1lw1Q8bbbvkSe1QTPqgXYBuKxKOObcsywhWxbM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bqXvXjUPEBzqpnCDjC6Yo+nzbhkmLatElGz7oAEaXttTbf5TaPPaEemU8CkXTcyX1
-	 nT9lNVxKSvi8KQWC2eP68MEaSMHte0kPgE3+qgOQDPxKIYTq7y8eiiOP5NPBEzq7Lk
-	 ZbBoK+avtgIZKDCtiKp1oG6Si06OdQk++5X4/GO7JmG11Vsc5n0wNxkvbPjBuCRyV/
-	 LKyhfVaXPvuNtlovFzwoslfug5cMVvYQ6eTz/jAqkf+/iZjDRLh5jSDYx3AiJpt2Kd
-	 50G1ZdyEVfsajdIolwuIWXm75PNuUZiR7KTB5YCFmiAcJ/y4/FmpEHacAlGc8A4tJA
-	 tfa5rvdFOtoeg==
-Date: Wed, 26 Jun 2024 11:38:57 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Christophe Roullier <christophe.roullier@foss.st.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Marek Vasut <marex@denx.de>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next,PATCH v7 2/8] net: stmmac: dwmac-stm32: Separate out
- external clock rate validation
-Message-ID: <755275e3-b95a-44c0-941e-beb5dde65982@sirena.org.uk>
-References: <20240611083606.733453-1-christophe.roullier@foss.st.com>
- <20240611083606.733453-3-christophe.roullier@foss.st.com>
+	s=arc-20240116; t=1719398450; c=relaxed/simple;
+	bh=zCRL9/gXXtpPFsNeeqMdUUs3CU4qGSxZACUdLNNnGtw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ua8+RqLlW5v8UWbLGnDiH7+J/5s6yP8z3v8s+NsEn7UgZlpCC1S/PLdwuPnjJ5gmBvB0c6v8jsjG5thuG/IUhqI4kC5svdI/mxrrkyoQQAUo4iumQdsemhmEwdIABvPqk+DYfF3EcC/ap0fcHmfFGHxUImzPNq2GGj4x5dWP3UU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W3QMCs7G; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45Q6j2a6020260;
+	Wed, 26 Jun 2024 10:40:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=dboRyQmNRvfH2Gc3HMujl+
+	eIW25tKRzlWNS6UNEYayw=; b=W3QMCs7Gl2a9x3bVIUo1DB8ACr/3MJGWap43c2
+	eXtakJSB/lskHAt0dp0VRCsYjLIF+qeo2TuDYyyESpELgfdIC70L8AyCO/YjLg47
+	s4nHqFFSC4IufzcphyBk5Kg0VMyk1pIP3HMU7jGRo+f3kxa09b2IJaQ/0BP7YEG5
+	ZbX7UU6kWomoeXJ/8flSTJbYh1PR7ml8JAy+8JHPRBzDdA7CRGtCfUFM4WqjPRvb
+	ZRMuLnr/wG92ZHnxrWoytHReqhBw4sosOiXwYmn09D4gqe6uWo2Nid+yIY0Z9WEA
+	AprVBprhshqxnWSRfyiqookSzN4rkO5inevqpjwjZGjpz2dQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywp6ys9dt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Jun 2024 10:40:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45QAeXQL029081
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Jun 2024 10:40:33 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 26 Jun 2024 03:40:26 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <angelogioacchino.delregno@collabora.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <ilia.lin@kernel.org>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <ulf.hansson@linaro.org>,
+        <quic_sibis@quicinc.com>, <otto.pflueger@abscue.de>,
+        <neil.armstrong@linaro.org>, <luca@z3ntu.xyz>, <abel.vesa@linaro.org>,
+        <danila@jiaxyga.com>, <quic_varada@quicinc.com>,
+        <quic_ipkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v3 0/9] Enable CPR for IPQ9574
+Date: Wed, 26 Jun 2024 16:09:53 +0530
+Message-ID: <20240626104002.420535-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5VPZsyVafG4kC2P8"
-Content-Disposition: inline
-In-Reply-To: <20240611083606.733453-3-christophe.roullier@foss.st.com>
-X-Cookie: Many a family tree needs trimming.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3bOWaSWhFbyXxF5Olo9uPfalRHmYkpnj
+X-Proofpoint-ORIG-GUID: 3bOWaSWhFbyXxF5Olo9uPfalRHmYkpnj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-26_05,2024-06-25_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
+ phishscore=0 adultscore=0 mlxscore=0 suspectscore=0 malwarescore=0
+ clxscore=1011 lowpriorityscore=0 spamscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2406260081
 
+This series tries to enable CPR on IPQ9574, that implements
+CPRv4. Since [1] is older, faced few minor issues. Those are
+addressed in [2].
 
---5VPZsyVafG4kC2P8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+dt_binding_check and dtbs_check passed.
 
-On Tue, Jun 11, 2024 at 10:36:00AM +0200, Christophe Roullier wrote:
-> From: Marek Vasut <marex@denx.de>
->=20
-> Pull the external clock frequency validation into a separate function,
-> to avoid conflating it with external clock DT property decoding and
-> clock mux register configuration. This should make the code easier to
-> read and understand.
+Depends:
+	[1] https://lore.kernel.org/lkml/20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org/T/
+	[2] https://github.com/quic-varada/cpr/tree/4de50be55a89eb29ab0d40d3fcfe9aa7a9ccf910
 
-For the past few days networking has been broken on the Avenger 96, a
-stm32mp157a based platform.  The stm32-dwmac driver fails to probe:
+v3: Fix patch authorship for 2 patches
+    Include CPR3 file changes done to Konrad's patches in https://github.com/quic-varada/cpr/commits/konrad/
+    Change url for [2] to skip the cpr3 file changes
 
-<6>[    1.894271] stm32-dwmac 5800a000.ethernet: IRQ eth_wake_irq not found
-<6>[    1.899694] stm32-dwmac 5800a000.ethernet: IRQ eth_lpi not found
-<6>[    1.905849] stm32-dwmac 5800a000.ethernet: IRQ sfty not found
-<3>[    1.912304] stm32-dwmac 5800a000.ethernet: Unable to parse OF data
-<3>[    1.918393] stm32-dwmac 5800a000.ethernet: probe with driver stm32-dw=
-mac failed with error -75
+v2: Fix Signed-off-by order in 2 patches
+    Update constraints in qcom,cpr3.yaml
+    Add rbcpr_clk_src registration
+    Add Reviewed-by to one of the patches
+    Not adding Acked-by as the file has changed
+Praveenkumar I (2):
+  pmdomain: qcom: rpmpd: Add IPQ9574 power domains
+  soc: qcom: cpr3: Add IPQ9574 definitions
 
-which looks a bit odd given the commit contents but I didn't look at the
-driver code at all.
+Varadarajan Narayanan (7):
+  soc: qcom: cpr3: Fix 'acc_desc' usage
+  cpufreq: qcom-nvmem: Add genpd names to match_data_kryo
+  dt-bindings: power: rpmpd: Add IPQ9574 power domains
+  dt-bindings: soc: qcom: cpr3: Add bindings for IPQ9574
+  dt-bindings: clock: Add CPR clock defines for IPQ9574
+  clk: qcom: gcc-ipq9574: Add CPR clock definition
+  dts: arm64: qcom: ipq9574: Enable CPR
 
-Full boot log here:
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |   1 +
+ .../bindings/soc/qcom/qcom,cpr3.yaml          |  35 +++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 269 ++++++++++++++++--
+ drivers/clk/qcom/gcc-ipq9574.c                |  39 +++
+ drivers/cpufreq/qcom-cpufreq-nvmem.c          |   1 +
+ drivers/pmdomain/qcom/cpr3.c                  | 145 +++++++++-
+ drivers/pmdomain/qcom/rpmpd.c                 |  19 ++
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h  |   2 +
+ include/dt-bindings/power/qcom-rpmpd.h        |   3 +
+ 9 files changed, 493 insertions(+), 21 deletions(-)
 
-   https://lava.sirena.org.uk/scheduler/job/467150
+-- 
+2.34.1
 
-A working equivalent is here:
-
-   https://lava.sirena.org.uk/scheduler/job/466518
-
-A bisection identified this commit as being responsible, log below:
-
-git bisect start
-# status: waiting for both good and bad commits
-# bad: [0fc4bfab2cd45f9acb86c4f04b5191e114e901ed] Add linux-next specific f=
-iles for 20240625
-git bisect bad 0fc4bfab2cd45f9acb86c4f04b5191e114e901ed
-# status: waiting for good commit(s), bad commit known
-# good: [3d9217c41c07b72af3a5c147cb82c75f757f4200] Merge branch 'for-linux-=
-next-fixes' of https://gitlab.freedesktop.org/drm/misc/kernel.git
-git bisect good 3d9217c41c07b72af3a5c147cb82c75f757f4200
-# bad: [5699faecf4e2347f81eea62db0455feb4d794537] Merge branch 'master' of =
-git://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git
-git bisect bad 5699faecf4e2347f81eea62db0455feb4d794537
-# good: [ba73da675606373565868962ad8c615f175662ed] Merge branch 'fs-next' o=
-f linux-next
-git bisect good ba73da675606373565868962ad8c615f175662ed
-# bad: [7e7c714a36a5b10e391168e7e8145060e041ea12] Merge branch 'af_unix-rem=
-ove-spin_lock_nested-and-convert-to-lock_cmp_fn'
-git bisect bad 7e7c714a36a5b10e391168e7e8145060e041ea12
-# good: [93d4e8bb3f137e8037a65ea96f175f81c25c50e5] Merge tag 'wireless-next=
--2024-06-07' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wire=
-less-next
-git bisect good 93d4e8bb3f137e8037a65ea96f175f81c25c50e5
-# bad: [4314175af49668ab20c0d60d7d7657986e1d0c7c] Merge branch 'net-smc-IPP=
-ROTO_SMC'
-git bisect bad 4314175af49668ab20c0d60d7d7657986e1d0c7c
-# good: [811efc06e5f30a57030451b2d1998aa81273baf8] net/tcp: Move tcp_inboun=
-d_hash() from headers
-git bisect good 811efc06e5f30a57030451b2d1998aa81273baf8
-# good: [5f703ce5c981ee02c00e210d5b155bbbfbf11263] net: hsr: Send superviso=
-ry frames to HSR network with ProxyNodeTable data
-git bisect good 5f703ce5c981ee02c00e210d5b155bbbfbf11263
-# bad: [6c3282a6b296385bee2c383442c39f507b0d51dd] net: stmmac: add select_p=
-cs() platform method
-git bisect bad 6c3282a6b296385bee2c383442c39f507b0d51dd
-# bad: [404dbd26322f50c8123bf5bff9a409356889035f] net: qrtr: ns: Ignore ENO=
-DEV failures in ns
-git bisect bad 404dbd26322f50c8123bf5bff9a409356889035f
-# bad: [c60a54b52026bd2c9a88ae00f2aac7a67fed8e38] net: stmmac: dwmac-stm32:=
- Clean up the debug prints
-git bisect bad c60a54b52026bd2c9a88ae00f2aac7a67fed8e38
-# bad: [582ac134963e2d5cf6c45db027e156fcfb7f7678] net: stmmac: dwmac-stm32:=
- Separate out external clock rate validation
-git bisect bad 582ac134963e2d5cf6c45db027e156fcfb7f7678
-# good: [8a9044e5169bab7a8edadb4ceb748391657f0d7f] dt-bindings: net: add ST=
-M32MP13 compatible in documentation for stm32
-git bisect good 8a9044e5169bab7a8edadb4ceb748391657f0d7f
-# first bad commit: [582ac134963e2d5cf6c45db027e156fcfb7f7678] net: stmmac:=
- dwmac-stm32: Separate out external clock rate validation
-
---5VPZsyVafG4kC2P8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ778EACgkQJNaLcl1U
-h9ApQgf/eYGmuq6nGIDNbNykExuz3/YU9CjXnBZJCLyUoHxI/mxSZPa584xjxF0z
-+0lz32f4hLSUwSrA3K/zdI1JkJLrExE1l2JrvqFWojtpIF29Trxdf4wgYQVqGvEs
-b4bf9vn4DoxvboLXQzVJtr5OJHPYJfWbZOGXqblBmQYiCTKHT+P+dI8Wn4dmiQH5
-7OH9jJ37JKuyOOTJQNtY8mZCSze+Po+sHCXKoOnwONT8PhoyXC5solI8/OxTlPYV
-LXwbpIsSu9jc3siubqUvW3LmzPn1TrCT8hD79IIye3g3aLaCYAqVfZgdsH/ahziU
-fAViHxwJVN/1dK25wZ9rERUrutFHxg==
-=B+gE
------END PGP SIGNATURE-----
-
---5VPZsyVafG4kC2P8--
 
