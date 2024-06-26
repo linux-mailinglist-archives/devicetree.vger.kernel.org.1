@@ -1,125 +1,302 @@
-Return-Path: <devicetree+bounces-80095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35855917C85
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:30:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C1A917C8E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:33:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4305281C28
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:30:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AF211C22D99
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:33:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D30516B38F;
-	Wed, 26 Jun 2024 09:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1533516C438;
+	Wed, 26 Jun 2024 09:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RtaAOCf7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F04Prc8d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7CF16A92B;
-	Wed, 26 Jun 2024 09:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19CED166302
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 09:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719394207; cv=none; b=mUFBMiucS4OhOfBBdN8RPYa/4XMEVZkuDSpAgIYamlYjzawwOHEDzQqr9fnhqXUf8oOKlWFI6BlsF3avtiWmM4k1+UYwaoQmnPIPMSAWuguDcY4HoJB0zHJ3UPsKDNSMuoPxiUBmQVneAubHf+m6PgLuR0AjkkREMDbdw+VGfp8=
+	t=1719394419; cv=none; b=aW8U6AlsAJ0Dk6v3ntUZ0GEMMeFoSMX+c8JY1rXOCv6vLDzVmBsiNwHFur++Xrh2P/akzlRk+3w6SbyP1/mTW1DqJ1yaRVd+AUICQYg97Pt3gcVL2jMjPz/ysXWosoDbgS0OqHHJQitITv/1gpTceuoMBKc+uYt8/08+yOn8v6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719394207; c=relaxed/simple;
-	bh=cZWxBSiO/iJGBZwpSi/BIu0JIjVhS5+evAWr+FNRzAc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VEAPo6jwSv8UDZibUgvTKTThJ3Ct2xJh+De5SHeRr2hedi3tErA8PcGE6PLus0zWCJnILsyNk1sejmmOrG+TQRGP5Jum8MYnboOBkmH8yq7BigMIQzy3OQ3ykvkYG5R0qTEt8X1YAuEaEiWXL6n31NH0jrPVI6UcOsv4reFwEKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RtaAOCf7; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7065a2f4573so3602420b3a.2;
-        Wed, 26 Jun 2024 02:30:05 -0700 (PDT)
+	s=arc-20240116; t=1719394419; c=relaxed/simple;
+	bh=Lw31CT6E16u6PZq7YxoteCCn7cdyfNmsPxMeXXhNSmU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=mfg/fstPVh7iVx9KIwY7LLrrsbZCmvGvjbYqOWX7vT/qk290D6JJtmkPVfjrjajFLAG3qqqgmw0wtKDmGi3IsDjoPTex/iKG0aPCTf8j2zO8UK+lREUTlgfURtr6XAArAFQ3jZmR79jDuHq4K2VJRszUiv4zwxlxwT4l0cNlGzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F04Prc8d; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ed5ac077f5so6483151fa.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 02:33:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719394205; x=1719999005; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cZWxBSiO/iJGBZwpSi/BIu0JIjVhS5+evAWr+FNRzAc=;
-        b=RtaAOCf7sC5ghNqVGbMwmiL10Mzj/wV32XVrjireguf9QwyoXRNipbky92szYRwxtP
-         kg5hYfosY95WJMm5p5kHrmDfWkK3JNcowzD6jHZzWLGEYnUdW7a1L1AgfghogRVxEPBB
-         z4vjvRuSUHQBGXrCUdI+Mwq7qGA6qE+o9ndksEb9800c2W5OPuHhfMuxJnLo+LZYmdXN
-         16Am1qcyDrpY4NMYWiMIdK+BNrtgLMfuh0Tz6nZWYoLMsO7BPcrHfhM6itKkk0oy/LXC
-         Ke/35esOTUoo2cAPTuetOitHzck2AXkMKgK8nS33cfFA1OyjHfq/P7U1WEeYh6GdbJnV
-         7vIA==
+        d=linaro.org; s=google; t=1719394414; x=1719999214; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oHVqwG7CV7dXA+zoW6ktcBpM8EFPhI/ooPQVV0T1bws=;
+        b=F04Prc8dAq/s+ShhePW/S48UYL9Or7SkUhBZyBkcAp0Wo0MJWQ9RSAu4dU3EpPZi+l
+         K5NeYeq+CJRCzrDr9zN4e1FZ6OGQY91nR8WjVclmq6TcUv41WCQuE659XCLYHfyp66Rl
+         dqXICYtmbx6coN9k1sprTp6IBEeAJH9tSBsT1vmg4O05CilXZiZ2PQswhmbnYXQQHNtb
+         J2YYBT1MVu7YlBLJQ+SsW20ZAg0vjiAi5Ne6yZQWjQyxAQmQEbLqzO4CxXCPRpFgwOjL
+         MdV+uq0n/YTNchl7b8GOZ4UmUUBMqnq5kcJmRXNtw3+XC03VTR/Ku7SW6Yha7wrm+0q9
+         kRrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719394205; x=1719999005;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cZWxBSiO/iJGBZwpSi/BIu0JIjVhS5+evAWr+FNRzAc=;
-        b=LFPjYgXRHb9tv+yPFUNInYsmYfmLcOGVpOyXJoXNCKoMOoBfo1agChzs3q7Hn/N8J1
-         6kwWJnvQYd5d7xOSz6x+lw5JHCYDRL7VFvZEN3e0EZIDLeyEoXAzUkj/p/RcLvjdrCdm
-         FP6M/20Vbj2/AU9CM9+cqhsH+H/lnTiUbyBC9HCrCHer7mPP8PzY1p6xGDAa/vwt0wCA
-         IQJNI+bOlXdNRVwFFY/S8QZqyhgF3vXIac0rV3yFORDoB3VzMw0rmxRK4If54SzTuWc3
-         Qlo/ahuiinEgpR4Wa9umrPhUq4+DF6HxCCpVKspuNZJjdx4ET38Dw+cNSfykKtLBtUGF
-         Q2mQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUqB+74t+uJ4MluXOZynXkmLW+blnqEnWpWW3oORpTOgvOK58nDiO6J5O7OA12NndwC/8euc1lTUF2DYliJU/Di5ra+iHbgSsOBy1cgCrQQo4rdWGj5oBdjIQlfDktDrj0sJ2oF70FMZlMI3z7P82SmUnyqf917cb8Xrq9h8o2x0p+OhRnF
-X-Gm-Message-State: AOJu0Yyqo4b8g1gdlRb8TEQJB4ceyrCDMUCR0C0Kk0BQLy4NBOeknFTP
-	Y8ff1QxZOENk0aDx7vsbaXXrBpT6joScxJN0eK2wzv4rOzRXjKUrduX8jXkJcpQ=
-X-Google-Smtp-Source: AGHT+IHZLTWWWiK7JVATb724zAbQNSxCuFklY5BX1h7VZKH4cXhxSYQMi7uVau7fHMxpC0LqHr2cAg==
-X-Received: by 2002:a05:6a00:2d5:b0:706:5aee:b987 with SMTP id d2e1a72fcca58-706746b601bmr7122207b3a.22.1719394205361;
-        Wed, 26 Jun 2024 02:30:05 -0700 (PDT)
-Received: from localhost.localdomain ([221.220.128.96])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7068998497esm4994220b3a.15.2024.06.26.02.29.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 02:30:04 -0700 (PDT)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: detlev.casanova@collabora.com
-Cc: andy.yan@rock-chips.com,
-	benjamin.gaignard@collabora.com,
-	boris.brezillon@collabora.com,
-	conor+dt@kernel.org,
-	daniel.almeida@collabora.com,
-	devicetree@vger.kernel.org,
-	didi.debian@cknow.org,
-	dsimic@manjaro.org,
-	ezequiel@vanguardiasur.com.ar,
-	gregkh@linuxfoundation.org,
-	heiko@sntech.de,
-	hverkuil-cisco@xs4all.nl,
-	jonas@kwiboo.se,
-	knaerzche@gmail.com,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-staging@lists.linux.dev,
-	mchehab@kernel.org,
-	nicolas.dufresne@collabora.com,
-	paul.kocialkowski@bootlin.com,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com
-Subject: Re: [PATCH v3 4/4] arm64: dts: rockchip: Add rkvdec2 Video Decoder on rk3588(s)
-Date: Wed, 26 Jun 2024 17:29:55 +0800
-Message-Id: <20240626092955.530229-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240620142532.406564-5-detlev.casanova@collabora.com>
-References: <20240620142532.406564-5-detlev.casanova@collabora.com>
+        d=1e100.net; s=20230601; t=1719394414; x=1719999214;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=oHVqwG7CV7dXA+zoW6ktcBpM8EFPhI/ooPQVV0T1bws=;
+        b=b/tJ2vVzTGkkE3H9eqklNyVGzinmgcygCPdrOP6ow6R/0mfquCA4aL242gMFEPucLj
+         NxxhmIQs4mfLuIP+nlszti57MtNV38C8D+SMDH4/aEfrg/vScl5pMU+WjyFLEJzFw5cj
+         Noo8w79f7WyyDupDpnfiDXRgHys8CCz9/Wdb2132ymXCOzRocK1qc3ygyInkSPxIVM4o
+         j4prKDSzdgFJbLRAw15ALeVM8C6Btn2TQXbMjPeuVOD/Nd0U5OOLOQbG4G4a95lOAq93
+         flwmaLch/l3I9ueBuAphhhkBkO4WdMDb/OJ6gv5n5L2bHdorLjjqZp3gvIoj7XFINT3c
+         lGfg==
+X-Forwarded-Encrypted: i=1; AJvYcCXTaI8IdEaz4zUmQUhxszTbcCfxyQBiwEFenDiAxBfgFu8Uv49AsHziK5BFVabHxWaLs5/Q0yCAvn/CNKi2KSCDeNTLE0AueI3Z5w==
+X-Gm-Message-State: AOJu0YyvD1n4FBkS9azpHzVGzQBMjQf0roE8pt30Xta4TRGe0191NgkX
+	Zf8c4eHsXARQnbFpw4cFcyJt3oxBNLsDz/DNXhuvCnCO6tc+tkl7P+L8XWRi4Fs=
+X-Google-Smtp-Source: AGHT+IEelKYvWkYkyGr0G2EaNvwR0FAUSvgDKm3EKmHTbMJ03MKsE2AiTc+5ces06NxmFaYADpd5IQ==
+X-Received: by 2002:a2e:9a8b:0:b0:2ec:5843:2fbd with SMTP id 38308e7fff4ca-2ec594d0425mr60201951fa.41.1719394413834;
+        Wed, 26 Jun 2024 02:33:33 -0700 (PDT)
+Received: from ?IPV6:2a01:cb1c:fcf:4600:a281:d23c:1a8b:ab6? ([2a01:cb1c:fcf:4600:a281:d23c:1a8b:ab6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8245da9sm18776015e9.1.2024.06.26.02.33.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 02:33:33 -0700 (PDT)
+Message-ID: <041cbf33-9fce-4f72-be90-23bc7d215b10@linaro.org>
+Date: Wed, 26 Jun 2024 11:33:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 4/6] drm/msm/a7xx: Initialize a750 "software fuse"
+To: Connor Abbott <cwabbott0@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jun Nie <jun.nie@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+References: <20240430-a750-raytracing-v3-0-7f57c5ac082d@gmail.com>
+ <20240430-a750-raytracing-v3-4-7f57c5ac082d@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240430-a750-raytracing-v3-4-7f57c5ac082d@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-I just confirmed that this driver also works for rk356x. I tested it on
-orangepi3b with kernel 6.9, and chromium can decode 4K H264 video with
-hardware acceleration.
+On 30/04/2024 12:43, Connor Abbott wrote:
+> On all Qualcomm platforms with a7xx GPUs, qcom_scm provides a method to
+> initialize cx_mem. Copy this from downstream (minus BCL which we
+> currently don't support). On a750, this includes a new "fuse" register
+> which can be used by qcom_scm to fuse off certain features like
+> raytracing in software. The fuse is default off, and is initialized by
+> calling the method. Afterwards we have to read it to find out which
+> features were enabled.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
+> ---
+>   drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 91 ++++++++++++++++++++++++++++++++-
+>   drivers/gpu/drm/msm/adreno/adreno_gpu.h |  2 +
+>   2 files changed, 92 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> index cf0b1de1c071..52b080206090 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+> @@ -10,6 +10,7 @@
+>   
+>   #include <linux/bitfield.h>
+>   #include <linux/devfreq.h>
+> +#include <linux/firmware/qcom/qcom_scm.h>
+>   #include <linux/pm_domain.h>
+>   #include <linux/soc/qcom/llcc-qcom.h>
+>   
+> @@ -1686,7 +1687,8 @@ static int a6xx_zap_shader_init(struct msm_gpu *gpu)
+>   		       A6XX_RBBM_INT_0_MASK_RBBM_HANG_DETECT | \
+>   		       A6XX_RBBM_INT_0_MASK_UCHE_OOB_ACCESS | \
+>   		       A6XX_RBBM_INT_0_MASK_UCHE_TRAP_INTR | \
+> -		       A6XX_RBBM_INT_0_MASK_TSBWRITEERROR)
+> +		       A6XX_RBBM_INT_0_MASK_TSBWRITEERROR | \
+> +		       A6XX_RBBM_INT_0_MASK_SWFUSEVIOLATION)
+>   
+>   #define A7XX_APRIV_MASK (A6XX_CP_APRIV_CNTL_ICACHE | \
+>   			 A6XX_CP_APRIV_CNTL_RBFETCH | \
+> @@ -2356,6 +2358,27 @@ static void a6xx_fault_detect_irq(struct msm_gpu *gpu)
+>   	kthread_queue_work(gpu->worker, &gpu->recover_work);
+>   }
+>   
+> +static void a7xx_sw_fuse_violation_irq(struct msm_gpu *gpu)
+> +{
+> +	u32 status;
+> +
+> +	status = gpu_read(gpu, REG_A7XX_RBBM_SW_FUSE_INT_STATUS);
+> +	gpu_write(gpu, REG_A7XX_RBBM_SW_FUSE_INT_MASK, 0);
+> +
+> +	dev_err_ratelimited(&gpu->pdev->dev, "SW fuse violation status=%8.8x\n", status);
+> +
+> +	/*
+> +	 * Ignore FASTBLEND violations, because the HW will silently fall back
+> +	 * to legacy blending.
+> +	 */
+> +	if (status & (A7XX_CX_MISC_SW_FUSE_VALUE_RAYTRACING |
+> +		      A7XX_CX_MISC_SW_FUSE_VALUE_LPAC)) {
+> +		del_timer(&gpu->hangcheck_timer);
+> +
+> +		kthread_queue_work(gpu->worker, &gpu->recover_work);
+> +	}
+> +}
+> +
+>   static irqreturn_t a6xx_irq(struct msm_gpu *gpu)
+>   {
+>   	struct msm_drm_private *priv = gpu->dev->dev_private;
+> @@ -2384,6 +2407,9 @@ static irqreturn_t a6xx_irq(struct msm_gpu *gpu)
+>   	if (status & A6XX_RBBM_INT_0_MASK_UCHE_OOB_ACCESS)
+>   		dev_err_ratelimited(&gpu->pdev->dev, "UCHE | Out of bounds access\n");
+>   
+> +	if (status & A6XX_RBBM_INT_0_MASK_SWFUSEVIOLATION)
+> +		a7xx_sw_fuse_violation_irq(gpu);
+> +
+>   	if (status & A6XX_RBBM_INT_0_MASK_CP_CACHE_FLUSH_TS)
+>   		msm_gpu_retire(gpu);
+>   
+> @@ -2525,6 +2551,61 @@ static void a6xx_llc_slices_init(struct platform_device *pdev,
+>   		a6xx_gpu->llc_mmio = ERR_PTR(-EINVAL);
+>   }
+>   
+> +static int a7xx_cx_mem_init(struct a6xx_gpu *a6xx_gpu)
+> +{
+> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+> +	struct msm_gpu *gpu = &adreno_gpu->base;
+> +	u32 fuse_val;
+> +	int ret;
+> +
+> +	if (adreno_is_a750(adreno_gpu)) {
+> +		/*
+> +		 * Assume that if qcom scm isn't available, that whatever
+> +		 * replacement allows writing the fuse register ourselves.
+> +		 * Users of alternative firmware need to make sure this
+> +		 * register is writeable or indicate that it's not somehow.
+> +		 * Print a warning because if you mess this up you're about to
+> +		 * crash horribly.
+> +		 */
+> +		if (!qcom_scm_is_available()) {
+> +			dev_warn_once(gpu->dev->dev,
+> +				"SCM is not available, poking fuse register\n");
+> +			a6xx_llc_write(a6xx_gpu, REG_A7XX_CX_MISC_SW_FUSE_VALUE,
+> +				A7XX_CX_MISC_SW_FUSE_VALUE_RAYTRACING |
+> +				A7XX_CX_MISC_SW_FUSE_VALUE_FASTBLEND |
+> +				A7XX_CX_MISC_SW_FUSE_VALUE_LPAC);
+> +			adreno_gpu->has_ray_tracing = true;
+> +			return 0;
+> +		}
+> +
+> +		ret = qcom_scm_gpu_init_regs(QCOM_SCM_GPU_ALWAYS_EN_REQ |
+> +					     QCOM_SCM_GPU_TSENSE_EN_REQ);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/*
+> +		 * On a750 raytracing may be disabled by the firmware, find out
+> +		 * whether that's the case. The scm call above sets the fuse
+> +		 * register.
+> +		 */
+> +		fuse_val = a6xx_llc_read(a6xx_gpu,
+> +					 REG_A7XX_CX_MISC_SW_FUSE_VALUE);
+> +		adreno_gpu->has_ray_tracing =
+> +			!!(fuse_val & A7XX_CX_MISC_SW_FUSE_VALUE_RAYTRACING);
+> +	} else {
+> +		if (adreno_is_a740(adreno_gpu)) {
+> +			/* Raytracing is always enabled on a740 */
+> +			adreno_gpu->has_ray_tracing = true;
+> +		}
+> +
+> +		if (qcom_scm_is_available())
+> +			return qcom_scm_gpu_init_regs(QCOM_SCM_GPU_ALWAYS_EN_REQ);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +
+>   #define GBIF_CLIENT_HALT_MASK		BIT(0)
+>   #define GBIF_ARB_HALT_MASK		BIT(1)
+>   #define VBIF_XIN_HALT_CTRL0_MASK	GENMASK(3, 0)
+> @@ -3094,6 +3175,14 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>   		return ERR_PTR(ret);
+>   	}
+>   
+> +	if (adreno_is_a7xx(adreno_gpu)) {
+> +		ret = a7xx_cx_mem_init(a6xx_gpu);
+> +		if (ret) {
+> +			a6xx_destroy(&(a6xx_gpu->base.base));
+> +			return ERR_PTR(ret);
+> +		}
+> +	}
+> +
+>   	if (gpu->aspace)
+>   		msm_mmu_set_fault_handler(gpu->aspace->mmu, gpu,
+>   				a6xx_fault_handler);
+> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> index 77526892eb8c..4180f3149dd8 100644
+> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> @@ -182,6 +182,8 @@ struct adreno_gpu {
+>   	 */
+>   	const unsigned int *reg_offsets;
+>   	bool gmu_is_wrapper;
+> +
+> +	bool has_ray_tracing;
+>   };
+>   #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
+>   
+> 
 
-Here is the devicetree patch for rk356x:
-https://github.com/amazingfate/build/blob/4c3564bc82b8963246450d3ebe1ad93965e7c22f/patch/kernel/archive/rockchip64-6.9/rk356x-add-rkvdec2-support.patch
+This patch break GPU init on SM8450-HDK and SM8550-HDK, call to
+qcom_scm_gpu_init_regs(QCOM_SCM_GPU_ALWAYS_EN_REQ) returns -5.
 
-Please ignore the change of vpu's compatiable string change. I did that to
-disable its 1080p h264 hantro g1 decoder.
+On which device did you test this ?
 
-Best regards,
-Jianfeng
+Neil
 
