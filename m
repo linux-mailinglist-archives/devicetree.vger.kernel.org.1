@@ -1,87 +1,86 @@
-Return-Path: <devicetree+bounces-80169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FF9917F76
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:20:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 345FC917F79
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:20:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99BFA1F211A1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 984E0B20C6E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2998F17B405;
-	Wed, 26 Jun 2024 11:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0485917798C;
+	Wed, 26 Jun 2024 11:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="iGiyZGdG";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="kZdrlyCw"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="GCrS5zcG";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Lp/amTog"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh3-smtp.messagingengine.com (fhigh3-smtp.messagingengine.com [103.168.172.154])
+Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8860213AD11
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610BD13AD11
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719400823; cv=none; b=ZYZxhpNBI5uxeWYpRUfFmVeZsVsdnThDnRrP51jdIMWCJBfOoeS12Mda2E+2h1UDdfwBgJuHDpLfXyYcmqgqJFIVHxHOe2e/hTFRRrrSG9DPCacJQc7IKiyn0+AxUzUefDvDsPXbQ6W0XCpn7A2P9IV/BNa+GD31VSD/PIMxucE=
+	t=1719400827; cv=none; b=K0KM39WFiP2xnfyk5kBwsvZpnC58xEWY7X3wOWPqfAZRBUOhRmyq+DiQpYbDBvfCtKQXAcPzopyk2zsaYiqQc4so/3tV7Xt0WIDkOKOg3fCNQnqOe4NC7KnR4/RQAxZUzNFmEYB6m7pXkKvSdb83NCJfjA0tElCcLoDm7Rrwx/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719400823; c=relaxed/simple;
-	bh=Njq5BUNnusti/ai3nbKEY+KKl9/U8hgK5yIHPBDEHqc=;
+	s=arc-20240116; t=1719400827; c=relaxed/simple;
+	bh=0Br/66WApTUYsO6scoRq9wXBrWXClm3RUpiTyHeVw/I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tyUNaN8u5leLUKckseTFdQ3slFXtGlpQUR+s6Gh/x8X1io+QZJyNV2Ph0RDBkvgmef4ax9KILDGHlK6e+QFZ8cSWGwzSuNDbo4gV6mRg0QqKhTog15kAc+e9v3fICix2ErVMUJJT6WH8Gt8JCujFOCJBVg71ImfqVoKqNA5HZPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=iGiyZGdG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=kZdrlyCw; arc=none smtp.client-ip=103.168.172.154
+	 MIME-Version; b=YKShQT9IJnSd23/+9D0tU08vBbKoDsU4GUgtjCJBiPchQ7SJyPH3nPJdZ+AtivUVIn2Plwd+xyDj+MDbXqPt/jcnRveM2M/2ygGgYzwWNo1TN5q1uZM+0mwWAGqohvbfikXdPBvRZ45FIutA58BJz+MUwX9L8gqbGn0ywA4LK+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=GCrS5zcG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Lp/amTog; arc=none smtp.client-ip=103.168.172.150
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 9469A11403AC;
-	Wed, 26 Jun 2024 07:20:20 -0400 (EDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfout.nyi.internal (Postfix) with ESMTP id 816C7138064C;
+	Wed, 26 Jun 2024 07:20:25 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 26 Jun 2024 07:20:20 -0400
+  by compute5.internal (MEProxy); Wed, 26 Jun 2024 07:20:25 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
 	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
 	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1719400820; x=
-	1719487220; bh=mLhz5wRdgvFejfKmkJJkTxium3mP7xD0GeXwlaQILgc=; b=i
-	GiyZGdGkV9RMY43IFTaYixXd0kj7qDIwUk8EpSbinrSVI2HfAnQjuDYDSpWH64RS
-	qPyz1jMhc3C5YKh/X/hOwSGCo8EGcRHiU1kukumEG7MyRzbmAJpfhZx2zLXpfACp
-	u/iAT+Z0gdF1npK1+NOXfFKs6lhet4M88L3tlzwkQtsr40qTF+8pNooNZfGNSQrr
-	ssuuRIf3AsdS5+flYFKjg/XTTW7HCaWEAk/LGtc+oDbkILdIkqDJuvQqC7rKAkoo
-	hxTxFRZXvcM581rPO/MVNcP+mzNuRPOGcoRug3hu4TrK97NJYButyLsqN+pHGoRH
-	gKHlqfU7maFDNIxKXvyTQ==
+	:reply-to:subject:subject:to:to; s=fm2; t=1719400825; x=
+	1719487225; bh=fLdvwwcsYb9JRo3Q4xJ9d/5JJI6LAb+qSfIJ5GbyH9Y=; b=G
+	CrS5zcGRCpASvIpEnepR0tjpkxqEK75Ozye7AsAOwRRLnhmvxLtw1dI0gXn5NS8e
+	DkGeFkDnaLbXdcISlLsNrRNWGi0OprnPQyEYC5PjpDSNNbrNNeLSNUrHpZ4O+Yfl
+	tEuXCeG+0iNOugE+rNcz/iZbqq7bxX70pu4R3sD+4/CDDP7Z1CI5MTTjDbroxpDI
+	h4yDf5edZKJLU1AFMERQkh61hCT1M+7MuGsgl30iJyyKcvE6JAvnuypljkwWHV96
+	bSVZS2kcaOL9N2PVmHq29jF1jfI3UTM8fAKbsWc8Spg+2GuMZK0xe93nvuuffLQt
+	lNGGxbF9kbQrODWEXBoaA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
 	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719400820; x=
-	1719487220; bh=mLhz5wRdgvFejfKmkJJkTxium3mP7xD0GeXwlaQILgc=; b=k
-	ZdrlyCwC+We2PSW8F1pE4ASHY/fUWdrNeVppMKq3QRQky2E4yCrB6xQmbURXewPs
-	6PX1Lhc1MmmcFmks1v8FlsM/ikTlJLi/nuF9zCU3XZT40HNaS7zmGSaLULGWqSVC
-	16K/F656lSbmvh8sJiiRlb4at43HWXsBQbhDov4QeVEh/DmUMVrcSMeIPn8fM00z
-	McWyfUEFq1K7QkFi4zJxyQdGj28WWQ5mxqalcz5fVg/R4eumO/HANfS59Hiy5P+q
-	DLNjDO4A+457jaIOJiJD3e2TCI4eO1zHBYWBe68wphxyvYNDmqnDSSvBn4Y+zNEA
-	SBLVHfYGjbKVdpZw8hlcw==
-X-ME-Sender: <xms:dPl7Zrtc5J8dBcEh-hHr-bZjxMEUTZtNeQ8m-2CI3xVgqkc-5eJ60Q>
-    <xme:dPl7ZseZ5S2sDTejtMyujQ5rSwAcVVieOnSprVyIoVJFgMRC6MiEy7sDr57rAqkch
-    QlnApwWNz0qMCpWqQ>
-X-ME-Received: <xmr:dPl7Zuybvx-8yzgz7IuidPFmDOh2MEQf2WkGb64R_ayK73klHGx8FcVLGu3RyhhGLM5Auu_tWP6dQchomoMbCJW2D_iBFXSTacbXsz6uhJ8rFwnM>
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719400825; x=
+	1719487225; bh=fLdvwwcsYb9JRo3Q4xJ9d/5JJI6LAb+qSfIJ5GbyH9Y=; b=L
+	p/amTogvbHZ04JwwMLo9OSDjM5/23YDwYDHi+9LWjkGKxr9yHXOcQzuwUAR3n850
+	WlinSmcQOF4SFvundxTPrn+oubiZ5alnuSzJ1LUfLAMu8qPTbzWCtZdIVvG7qFEz
+	KAJWplZVkUt9w9ycO6IaxnX0ClY6aycsNMqkWBxHkwo5kMnfA4unCDUMDVOO4jEg
+	6b+ETGDlUN7bwocXv/aNQf9i+bVWCT4w7pwRmGw46o6BAfUNHkIzODkVOkiRqc0k
+	0l4XsRaW89hAAUr4EPX3gvDSDBMmUmR2Qw7dTh58Hc5GBd0RPe3xbWLFE9bu49ru
+	yB/gzWxPxcaNLpTbjKW4A==
+X-ME-Sender: <xms:efl7Zj-BxGDRWonQjo-9gO2wXl5HmtNXMI4TSfbvlnwlkiGTSO2XJQ>
+    <xme:efl7Zvu908_-LTZeTiMoHF3WDD20a__KtQt_TlJerCpc_lA80EUUODCfB58ydXaGd
+    i9zyqFofUHe5AIvqQ>
+X-ME-Received: <xmr:efl7ZhC-m37tPFsu3NKUebA6fBQtJub78OUxlx597rj9fBAEwp0f_LzidLZBw8kaG10z3dPpjwog5Nrx1KC6ISb79ncCVyDrudG8o1LyGEpB1mIk>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrtddvgdeflecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefthigrnhcu
     hggrlhhklhhinhcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecuggftrfgrth
-    htvghrnhepfeffhfdujeekfeffffevgfffleelveegieekvddtheefieegvdejffejueek
-    gefgnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghs
-    thdrtghomh
-X-ME-Proxy: <xmx:dPl7ZqPXHlXpM6iC8eBsA0a5Ri0BI563l_fWD4EOEh9X_JzUYTKkNQ>
-    <xmx:dPl7Zr8GZlRkM3EVjVKqYYRV6ZhpJXEJOScNcZYQWtltxk-0CTfJXg>
-    <xmx:dPl7ZqUVe_R82tMLl4U7o-u0tadmhiZVCcer94DMZc9vj5x3uJapWQ>
-    <xmx:dPl7ZscGlCo6xNWDFk7pT93xkHsuylNUFjxNjCecuB3_xrT24vXKBA>
-    <xmx:dPl7ZjO844cFc6X37XtymTscCoirdeTPrlwnXFmOJrAI8wYg4IGf-TK8>
+    htvghrnhepffehieffgedtgfffjeetveegfeekleeileekveeuteffteetudffveegieei
+    heetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprh
+    ihrghnsehtvghsthhtohgrshhtrdgtohhm
+X-ME-Proxy: <xmx:efl7Zve4tTCKWJZXj6-eV97Gz4NFTIv3a0u9o0nmi_6zYixahgKO5A>
+    <xmx:efl7ZoNvhfPEF7UOOupfUXKG2Bugpb8kbgovhId_hD6wU0mTXbBe3g>
+    <xmx:efl7ZhnJqnmMmAv_XM3xs2BfBRnsUQBue2CYUVhh1ZRJMPmaVMCrOg>
+    <xmx:efl7ZiunDcKWTzIoQ24xbW7vb_Aq2iPDt4ctCcFcYYhSKGPaoTEACA>
+    <xmx:efl7ZtdvsrzO0UHe86y6SmVcBBW04dXE4YLXO9_Pj7kWiBmZOPe9MoW1>
 Feedback-ID: idc0145fc:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 26 Jun 2024 07:20:15 -0400 (EDT)
+ 26 Jun 2024 07:20:20 -0400 (EDT)
 From: Ryan Walklin <ryan@testtoast.com>
 To: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org
@@ -99,9 +98,9 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	Hironori KIKUCHI <kikuchan98@gmail.com>,
 	Chris Morgan <macroalpha82@gmail.com>,
 	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8 panel
-Date: Wed, 26 Jun 2024 23:17:48 +1200
-Message-ID: <20240626112005.248576-2-ryan@testtoast.com>
+Subject: [PATCH 2/3] drm: panel: nv3052c: Correct WL-355608-A8 panel compatible
+Date: Wed, 26 Jun 2024 23:17:49 +1200
+Message-ID: <20240626112005.248576-3-ryan@testtoast.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240626112005.248576-1-ryan@testtoast.com>
 References: <20240626112005.248576-1-ryan@testtoast.com>
@@ -113,59 +112,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unknown
-OEM used in a number of handheld gaming devices made by Anbernic.
-Previously committed using the OEM serial without a vendor prefix,
-however the preference is to use the integrating device vendor and name
-where the OEM is unknown.
+As per the previous dt-binding commit, update the WL-355608-A8 panel
+compatible to reflect the the integrating device vendor and name.
 
-Alter the filename and compatible string to reflect the convention.
-
-Fixes: f08aac40639c ("drm: panel: nv3052c: Add WL-355608-A8 panel")
 Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 ---
- .../{wl-355608-a8.yaml => anbernic,rg35xx-panel.yaml}     | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
- rename Documentation/devicetree/bindings/display/panel/{wl-355608-a8.yaml => anbernic,rg35xx-panel.yaml} (81%)
+ drivers/gpu/drm/panel/panel-newvision-nv3052c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml b/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-panel.yaml
-similarity index 81%
-rename from Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml
-rename to Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-panel.yaml
-index 397c26be9bda5..a7d5ad0f29389 100644
---- a/Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-panel.yaml
-@@ -1,10 +1,10 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/display/panel/wl-355608-a8.yaml#
-+$id: http://devicetree.org/schemas/display/panel/anbernic,rg35xx-panel.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: WL-355608-A8 3.5" (640x480 pixels) 24-bit IPS LCD panel
-+title: Anbernic RG35XX (WL-355608-A8) 3.5" 640x480 24-bit IPS LCD panel
- 
- maintainers:
-   - Ryan Walklin <ryan@testtoast.com>
-@@ -15,7 +15,7 @@ allOf:
- 
- properties:
-   compatible:
--    const: wl-355608-a8
-+    const: anbernic,rg35xx-panel
- 
-   reg:
-     maxItems: 1
-@@ -41,7 +41,7 @@ examples:
-         #size-cells = <0>;
- 
-         panel@0 {
--            compatible = "wl-355608-a8";
-+            compatible = "anbernic,rg35xx-panel";
-             reg = <0>;
- 
-             spi-3wire;
+diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
+index ee0ce271205e3..cee40269d9bb8 100644
+--- a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
++++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
+@@ -925,7 +925,7 @@ MODULE_DEVICE_TABLE(spi, nv3052c_ids);
+ static const struct of_device_id nv3052c_of_match[] = {
+ 	{ .compatible = "leadtek,ltk035c5444t", .data = &ltk035c5444t_panel_info },
+ 	{ .compatible = "fascontek,fs035vg158", .data = &fs035vg158_panel_info },
+-	{ .compatible = "wl-355608-a8", .data = &wl_355608_a8_panel_info },
++	{ .compatible = "anbernic,rg35xx-panel", .data = &wl_355608_a8_panel_info },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, nv3052c_of_match);
 -- 
 2.45.2
 
