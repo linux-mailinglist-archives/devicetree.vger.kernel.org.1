@@ -1,154 +1,151 @@
-Return-Path: <devicetree+bounces-79934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 365F9917621
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 04:26:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD28917658
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 04:50:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E69FF284769
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 02:26:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 621711C21C3A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 02:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87CC1D53F;
-	Wed, 26 Jun 2024 02:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RAGqc0U4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6825E3B1A1;
+	Wed, 26 Jun 2024 02:50:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF4C3C463;
-	Wed, 26 Jun 2024 02:26:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F6614A81;
+	Wed, 26 Jun 2024 02:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719368788; cv=none; b=ose8Hj33BScpR0z1xDoEZe0DIEeryhQrhfnB95pB0Br2s6AFPLKkq1UcoItJZICJMGlWp9ihItLjSDzAnIADvYJjmZ4mtYql7LfjQg1ckX+Z9TlGldjCLj7/8lldmm+6mxF2IAQE3aBOsh/UdgDNQKj/ygCWx4e1dYxkmJLyvo4=
+	t=1719370226; cv=none; b=ZpFFQQaFwyIIkOi+t7HuA9sJVa98HZH0BndkTt4YjXPkOjLehWOrf5yi9VdQK0CfZiikU6QODrn35eMaNHiLbU0P/EPQXX3m33XlN+9alOmkaQy8durLx6/C+0vSx43EN14zWVPp1fvyhsMCuEyZIBhP13D3wa/dstzzjouZHrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719368788; c=relaxed/simple;
-	bh=2IH3vs5vfdoTfuI7fwaFWDiJ6u84pkj3MfXxTxsoavU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XbZ1xNrPsrp1MNXnoY8dxiah4CTYp/dib2balmZl5gInGADPw0fX9yCeNwlVGS2s9FkTUQGUSB4VzU71d8/kdSYrbi7Pr7bh7xnMU1JdzrMkINmOkDG009LcrCWHPyw1/4KWreHIAz3Yr3n9JC0udCsq3oH3VGWwUZHpWKMof2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RAGqc0U4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45PGUkCw007960;
-	Wed, 26 Jun 2024 02:26:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	98ObzfEly/d4Nr2Nilamu/lbiOrA4bHdu/SU/01hHw4=; b=RAGqc0U4SNcmuUfm
-	pR8JODtTYZv/kCMsnv1Mgw+NqFZoiy+xcusAT5xNvsFxjMeOOm5HAtid9qWvV2wV
-	dl3acqFCK56hVqRt620bOW/TTZBL3d+hxbJ+OJ637vkH/SSsIdI/weyAZDxAy2Jc
-	qU35DUvk6lE2quobb3I5M2OmMeQvcHXZHmsJM4EQ/ceOUJZ4Tdi2qPA1QC7iKaHu
-	A6r5Z8qWyFwmsyPC25yFup6tUuPBWW13CYFqWPfGE7MyCls4dzsDbyigb9bfdyRn
-	ppkHf9YRHpPAYEZSJvllL19qUnkWd0jHyftAIPBxC7jYCRfEETgwul/2sNdR/RPg
-	qabCSQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywnjs048e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Jun 2024 02:26:09 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45Q2Q8Ta016764
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Jun 2024 02:26:08 GMT
-Received: from jiegan-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 25 Jun 2024 19:26:02 -0700
-From: Jie Gan <quic_jiegan@quicinc.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang
-	<quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Song Chai
-	<quic_songchai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>,
-        <quic_yijiyang@quicinc.com>, <quic_yuanjiey@quicinc.com>,
-        <quic_liuxin@quicinc.com>, <quic_yanzl@quicinc.com>,
-        <quic_xinlon@quicinc.com>, <quic_xueqnie@quicinc.com>,
-        <quic_sijiwu@quicinc.com>
-Subject: [PATCH 2/2] Coresight: Set correct cs_mode for dummy source to fix disable issue
-Date: Wed, 26 Jun 2024 10:25:37 +0800
-Message-ID: <20240626022537.1887219-2-quic_jiegan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240626022537.1887219-1-quic_jiegan@quicinc.com>
-References: <20240626022537.1887219-1-quic_jiegan@quicinc.com>
+	s=arc-20240116; t=1719370226; c=relaxed/simple;
+	bh=77erm8a/7YTFfct96pxM7WPGDKzSxCqwnSfvAF6MVvY=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=pT1VqVCIjkZ8xua4FoeefpV2lCFML3eQ+UsIARo0DRORsgK48It8QqQzSdr4pvxsgcwAz1TKPfiaQAJ1YpHVVJwJKybokJXeYkEXoBUQ4FytGxhTucMAtdzbHBvjG/07mzQtS80jprfcz5Scw2lRURvNAs2vlOmr+S9MCmA1Jtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.97.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sMIjE-000000005qQ-1zt7;
+	Wed, 26 Jun 2024 02:49:48 +0000
+Date: Wed, 26 Jun 2024 03:49:42 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Christian Brauner <brauner@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Christian Heusel <christian@heusel.eu>,
+	Min Li <min15.li@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Hannes Reinecke <hare@suse.de>,
+	Mikko Rapeli <mikko.rapeli@linaro.org>, Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Li Zhijian <lizhijian@fujitsu.com>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Subject: [PATCH v3 0/4] block: preparations for NVMEM provider
+Message-ID: <cover.1719368448.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bkU8TDUeP1c1lm08F-ipyxkpp4QL5PSm
-X-Proofpoint-ORIG-GUID: bkU8TDUeP1c1lm08F-ipyxkpp4QL5PSm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-26_01,2024-06-25_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 mlxscore=0 suspectscore=0 adultscore=0 mlxlogscore=999
- impostorscore=0 bulkscore=0 malwarescore=0 spamscore=0 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2406140001 definitions=main-2406260018
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The coresight_disable_source_sysfs function should verify the
-mode of the coresight device before disabling the source.
-However, the mode for the dummy source device is always set to
-CS_MODE_DISABLED, resulting in the check consistently failing.
-As a result, dummy source cannot be properly disabled.
+On embedded devices using an eMMC it is common that one or more (hw/sw)
+partitions on the eMMC are used to store MAC addresses and Wi-Fi
+calibration EEPROM data.
 
-Configure CS_MODE_SYSFS/CS_MODE_PERF during the enablement.
-Configure CS_MODE_DISABLED during the disablement.
+Typically the NVMEM framework is used to have kernel drivers read and
+use binary data from EEPROMs, efuses, flash memory (MTD), ...
 
-Fixes: 9d3ba0b6c056 ("Coresight: Add coresight dummy driver")
-Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+Using references to NVMEM bits in Device Tree allows the kernel to
+access and apply e.g. the Ethernet MAC address, which can be a requirement
+for userland to come up (e.g. for nfsroot).
+
+The goal of this series is to prepare the block subsystem to allow for
+the implementation of an NVMEM provider similar to other types of
+non-volatile storage, so the same approach already used for EEPROMs, MTD
+(raw flashes) and UBI-managed NAND can also be used for devices storing
+those bits on an eMMC.
+
+Define a device tree schema for block devices and partitions on them,
+which (similar to how it now works also for UBI volumes) can be matched
+by one or more properties.
+
+Also add a simple notification API for other subsystems to be notified
+about additions and removals of block devices, which is going to be used
+by the block-backed NVMEM provider.
+
+Overall, this enables uniform handling across practially all flash
+storage types used for this purpose (MTD, UBI, and soon also MMC or and
+in future maybe also other block devices).
 ---
- drivers/hwtracing/coresight/coresight-dummy.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes since v2 sent on May 30th 2024 [1] addressing comments from
+Hauke Mehrtens (https://patchwork.kernel.org/comment/25892133/)
+ - Check length of UUID and PARTNAME.
+ - Remove forgotten fallback to get 'partitions' subnode from parent.
+   It is no longer needed and was a left over from earlier development.
+ - Split series into 3 parts, one for each affected subsystem. This is
+   the first part covering only the changes needed in the block
+   subsystem. The second part adds the actual nvmem provider to
+   drivers/nvmem/, the third part is going to make use of it for MMC
+   block devices and cover changes in drivers/mmc.
 
-diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/hwtracing/coresight/coresight-dummy.c
-index ac70c0b491be..dab389a5507c 100644
---- a/drivers/hwtracing/coresight/coresight-dummy.c
-+++ b/drivers/hwtracing/coresight/coresight-dummy.c
-@@ -23,6 +23,9 @@ DEFINE_CORESIGHT_DEVLIST(sink_devs, "dummy_sink");
- static int dummy_source_enable(struct coresight_device *csdev,
- 			       struct perf_event *event, enum cs_mode mode)
- {
-+	if (!coresight_take_mode(csdev, mode))
-+		return -EBUSY;
-+
- 	dev_dbg(csdev->dev.parent, "Dummy source enabled\n");
- 
- 	return 0;
-@@ -31,6 +34,7 @@ static int dummy_source_enable(struct coresight_device *csdev,
- static void dummy_source_disable(struct coresight_device *csdev,
- 				 struct perf_event *event)
- {
-+	coresight_set_mode(csdev, CS_MODE_DISABLED);
- 	dev_dbg(csdev->dev.parent, "Dummy source disabled\n");
- }
- 
+Changes since v1 sent on March 21st 2024 [2]:
+ - introduce notifications for block device addition and removal for
+   in-kernel users. This allows the nvmem driver to be built as a module
+   and avoids using class_interface and block subsystem internals as
+   suggested in https://patchwork.kernel.org/comment/25771998/ and
+   https://patchwork.kernel.org/comment/25770441/
+
+This series has previously been submitted as RFC on July 19th 2023[3]
+and most of the basic idea did not change since. Another round of RFC
+was submitted on March 5th 2024[4].
+
+[1]: https://patchwork.kernel.org/project/linux-block/list/?series=857192
+[2]: https://patchwork.kernel.org/project/linux-block/list/?series=837150&archive=both
+[3]: https://patchwork.kernel.org/project/linux-block/list/?series=767565
+[4]: https://patchwork.kernel.org/project/linux-block/list/?series=832705
+
+Daniel Golle (4):
+  dt-bindings: block: add basic bindings for block devices
+  block: partitions: populate fwnode
+  block: add support for notifications
+  block: add new genhd flag GENHD_FL_NVMEM
+
+ .../bindings/block/block-device.yaml          | 22 +++++
+ .../devicetree/bindings/block/partition.yaml  | 51 +++++++++++
+ .../devicetree/bindings/block/partitions.yaml | 20 +++++
+ block/Kconfig                                 |  6 ++
+ block/Makefile                                |  1 +
+ block/blk-notify.c                            | 88 +++++++++++++++++++
+ block/partitions/core.c                       | 40 +++++++++
+ include/linux/blkdev.h                        | 10 +++
+ 8 files changed, 238 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/block/block-device.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partition.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partitions.yaml
+ create mode 100644 block/blk-notify.c
+
 -- 
-2.34.1
-
+2.45.2
 
