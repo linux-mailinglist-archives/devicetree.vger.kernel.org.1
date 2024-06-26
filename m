@@ -1,177 +1,186 @@
-Return-Path: <devicetree+bounces-80451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476359198EA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 22:23:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22AA89198F0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 22:24:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78E861C21CCB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:23:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB8C92840B8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE8A1922DA;
-	Wed, 26 Jun 2024 20:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922C719149F;
+	Wed, 26 Jun 2024 20:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b="GQ2a9n5E"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DW1Oi/nF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8EA01332A1
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 20:23:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2AF18EFE4;
+	Wed, 26 Jun 2024 20:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719433398; cv=none; b=iLu+e/hTusF/oBehxtMUh2HNMXHASZQfxH6skXAa9z0MTz4NQdD6LutZsmnHuHuXKQyQukqAC7IWRvzp6Uazd7W7TXk3e00c41tUGHtRZfzoEZpBEBo4Ij8bVJqjHuQPmPlmijVEFZNwVn+GT0o5vjl3WeJyOFVDxH4ON8GK89U=
+	t=1719433459; cv=none; b=GghBP05CQ45VpsYqiC5YXcpxMIAxoE+RBYJGwe8YSR6vcDIUeFxpoJWXni8z8PLEHzrHT98s6TEvrVecHVfM5HvctTbGzjFNf6LQ6KYBh/jaHUA3YtTAo8vSRPAQ6itNfLwKFvJZ1GcRNsRbU3pSJR0FsSb0wEgrQ/ENAsCY1ao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719433398; c=relaxed/simple;
-	bh=pjaYCE9P3KcLxKQVApYlU5lmhCHt4CpxTxocoZolkXw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RsLGWR5srL8pi9Oysf7bbYvc0D3eKZSfqRxQNQd1VO9RD5n4xuynE+RtaJNsa5KEOUWFzz3i/VpBbvJNdbEOPloa4Ukk3aNOLuEVtzhN2kr9OeS++m7CRYCt8zLZmnCy2DgUMvMPRGVQ6UoMHSWtxhzyakzJ9NNMSmFIfYohYH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk; spf=pass smtp.mailfrom=kernel.dk; dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b=GQ2a9n5E; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel.dk
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2c7aafe3094so1244788a91.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 13:23:16 -0700 (PDT)
+	s=arc-20240116; t=1719433459; c=relaxed/simple;
+	bh=VlhpXSfAVou5sh76Hv3DtQZtocT0c0PaKtd6sTC5CZw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZXCdqMGhdhypER6u+W3FyGhCQbpAaZM7PK5CsiBf14zOcI2pxfoA7XkB1lYMMg5C7t6DSXlfGeT7Lx5FokOO/ryWfcDyJ/kFR+7NICF4QRu3PKzUo+avjD0Iq5FQz7l5QjikSkBgtEusAwl6x9zAxrXxiIfX6k0VoYv1wmZp7IQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DW1Oi/nF; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-36532d177a0so4502800f8f.2;
+        Wed, 26 Jun 2024 13:24:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kernel-dk.20230601.gappssmtp.com; s=20230601; t=1719433396; x=1720038196; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iIcm1wgz2PYFRvSTmfKBCviM4vc4rUoi0KEFtYyxgkk=;
-        b=GQ2a9n5E14Rox3b1vGNF9B9BApqx6cRB2VqEgOBQdL98y0JowbptMH6W0WW8g/je4K
-         upUhgi4PV1n1Qe1hFULEGF33J8B3rbBe/oq3HjYpxWmbtG0V+RnXxPv/GS0QcgVnDEmK
-         QkxS3/Mja24xc95yzlkWp+FUAb29hHXjduHrz/wKPbGK4OXERit8GwHz56d+iBsXDYJY
-         YXBIojPq5zjFTsEGS2QSgWOYIikfTDG+p/OaPBRqhDv9pFauIZjMiBqd0sED6M0XOgNi
-         5/0a00JTHyBsInXQ+Y25VZ+lrMb6c3GTjI4jhrYVLYnxF4QXNHpciW9F8Xw8EYfGN4Vb
-         W1PA==
+        d=gmail.com; s=20230601; t=1719433456; x=1720038256; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bsME3C7Vr7+mXe6LCLwvVlRdoJqCu5kuUY6joBwriJI=;
+        b=DW1Oi/nF3WQs6iJK6DxjQN5TE4cOyF5/zmXNagcAcb57BNPvyqk22Nz2k66pc+Bnf9
+         fsaTueQi5aUQudGoN7tGHw25G5SjI5H2DaPU1NCXdSWeumlV5hOQyqgTWauQkn6Qtlen
+         +tfUdXEUKCsLvfcDErwFFM8LaWDt9kl5nqXLVhG2kCYd6WvOFuAhR/1ZQ7ubzu34zQ1W
+         j/wM+HAMEp66tF9ECgRHWhQlYUH7UCJzk1TXas3TZpwO9csWtVxU/yH6KR5bHt/PBehh
+         u0l5WZ4UNAEQhT5ORrWSaZs3ih6hyTIHCqou5E4gox5h7pKJdPEow0OMo987DA2c+9I/
+         yNGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719433396; x=1720038196;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iIcm1wgz2PYFRvSTmfKBCviM4vc4rUoi0KEFtYyxgkk=;
-        b=EMx6/xK8s/BoZmxrjA+kFy1jN/+ILsfkO145jW+8a2hPTrWTkJdqtXEYRKO9pW+6+8
-         KJEf/yUfus+gidqCGPO18jECCkKzUjrf3QQqOyh5ai3OXrNcNim5WDHqJEPZbJzuKvch
-         EfSY/WWVQQyPeXqXyBvfnl06Pj+M5O7HKvPjr4GqDFj6E0PNfEdt3X0vrYLX2V0t2hE/
-         cgEr9kdoeXmepxBq1FNT6ApR0xCKOD4Awven1ft+175yrKBUL4OWW3fofdCPm8+henca
-         scZkQK5xsfwoemRiv9uo/Ydq+0GR/iTJvk6cQgeZVsh+NNMzzVEM6mCFmCg/WSB4IdsV
-         x7Vg==
-X-Forwarded-Encrypted: i=1; AJvYcCXGdWCENOGe0NFhYJyuC/y0l+en3yN47Z9TllPM7xSOFgQt5+o/ZkVWN5N6wWZCBLdpck4FYsdtUkrEQWxRqxSKdvNqQQYZieGn1g==
-X-Gm-Message-State: AOJu0YziETMOyTDjKxO1aKk6175IXx2Q9zBJbx72VhjwPvbq8CJR9eYy
-	tRfTRmGf7VGZc26GEN9xRrOi32Nr7bvFlWzNIFXi+PrPhvxfh2iR+zpX9ZQVoE8=
-X-Google-Smtp-Source: AGHT+IFUV/CC3j75a0T0PXjx4ENsuqkALCaXlO0FPDNbASuOiUQMX2EszVxk+ODevu1oCp9dGOE/SQ==
-X-Received: by 2002:a17:90b:e90:b0:2bf:eddc:590b with SMTP id 98e67ed59e1d1-2c84599bf83mr12008481a91.1.1719433396219;
-        Wed, 26 Jun 2024 13:23:16 -0700 (PDT)
-Received: from [192.168.1.150] ([198.8.77.157])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c8d808f874sm2095000a91.50.2024.06.26.13.23.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 13:23:15 -0700 (PDT)
-Message-ID: <f533a5d6-94da-4ede-8d9f-e40df2425698@kernel.dk>
-Date: Wed, 26 Jun 2024 14:23:13 -0600
+        d=1e100.net; s=20230601; t=1719433456; x=1720038256;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bsME3C7Vr7+mXe6LCLwvVlRdoJqCu5kuUY6joBwriJI=;
+        b=B/HNs/y5FF4ZFmpS6+f8dqzu65FJ5NNxgxZBdCLmfRkMWCdCbs1u7yNO/D3cHWQqVp
+         x2Tx9G4nl1pX2ClgyNQPrSreAj7HoheZXALoNpmKklrC6lf7zCMJFZqltpQs8kGVPJBf
+         YbmL8k36gtl//18Ogvws7eSJmkssY4dFTZkcDNx/RGUmLLcMyZjt3jy+CIbJUBl6OHiz
+         ZWFI+71+8/xzM81+FfqNTplvq2gQRCWhGI0xA6CHr3UdDIaDkKhluXuOvQC885pALaOw
+         sFWSTAHDQAOYpcvKEbx9v3B89CaYAmihTc5wiMMXbHxJjnNpsUPbRkWbAd/Q6WAQlnZc
+         db2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXsi24THbt2e1tgHnB/tYlryEfIJ+KnluEUbnOnu1yjQB8bZ/O4TpqSD4vf+O/jABDMC3ra1oJSVuUQ/IvJeqlMh4qFjOWGUrX2MFAIhcc6XfMYdovyffbFFRoa8a+HLdMRuqVOmgvfIJljqv6ElC43CpMeoFKY3+c9zb21mtjNuZmYLQ==
+X-Gm-Message-State: AOJu0YwIZP7aIwZC6nNeHPbFrstKcEJci3aVSUwHEkRlv1kwXb5UJ7Cj
+	dRpv9Ej+AwxWLb30sxXmsmTNhAsYIwzJq2x1BXNJuynWAKnbf6KKn0chsQ==
+X-Google-Smtp-Source: AGHT+IFuEDZNAkJbslUvjSwHyMCpevFNCq8h7B05L4Zk905GkK9klbDhtBZcPP7vaQBfe1NKER+rsA==
+X-Received: by 2002:a5d:5f49:0:b0:366:f84b:a9eb with SMTP id ffacd0b85a97d-366f84bac02mr6284099f8f.32.1719433455917;
+        Wed, 26 Jun 2024 13:24:15 -0700 (PDT)
+Received: from localhost.localdomain ([105.235.128.80])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3663a2f8268sm16630315f8f.79.2024.06.26.13.24.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 13:24:15 -0700 (PDT)
+From: Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	jason-ch chen <Jason-ch.Chen@mediatek.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Yassine Oudjana <y.oudjana@protonmail.com>,
+	Yassine Oudjana <yassine.oudjana@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 0/2] MediaTek MT6735 main clock and reset drivers
+Date: Wed, 26 Jun 2024 21:24:03 +0100
+Message-ID: <20240626202406.846961-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] block: add support for notifications
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
- Christian Brauner <brauner@kernel.org>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- Al Viro <viro@zeniv.linux.org.uk>, Li Lingfeng <lilingfeng3@huawei.com>,
- Christian Heusel <christian@heusel.eu>, Min Li <min15.li@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Hannes Reinecke <hare@suse.de>, Mikko Rapeli <mikko.rapeli@linaro.org>,
- Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Li Zhijian <lizhijian@fujitsu.com>,
- "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-block@vger.kernel.org
-References: <cover.1719368448.git.daniel@makrotopia.org>
- <609f654800583feb016d96d9c3fc2f029f0f460a.1719368448.git.daniel@makrotopia.org>
- <58cc9e3a-bb69-4205-9f11-d262f811ea9a@kernel.dk>
- <ZnxyQgYyM31Xq2xV@makrotopia.org>
-Content-Language: en-US
-From: Jens Axboe <axboe@kernel.dk>
-In-Reply-To: <ZnxyQgYyM31Xq2xV@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 6/26/24 1:55 PM, Daniel Golle wrote:
-> Hi Jens,
-> 
-> thanks a lot for the review!
-> 
-> On Wed, Jun 26, 2024 at 01:46:50PM -0600, Jens Axboe wrote:
->> On 6/25/24 8:51 PM, Daniel Golle wrote:
->>> +static int blk_call_notifier_add(struct device *dev)
->>> +{
->>> +	struct blk_device_list *new_blkdev;
->>> +
->>> +	new_blkdev = kmalloc(sizeof(*new_blkdev), GFP_KERNEL);
->>> +	if (!new_blkdev)
->>> +		return -ENOMEM;
->>> +
->>> +	new_blkdev->dev = dev;
->>> +	mutex_lock(&blk_notifier_lock);
->>> +	list_add_tail(&new_blkdev->list, &blk_devices);
->>> +	raw_notifier_call_chain(&blk_notifier_list, BLK_DEVICE_ADD, dev);
->>> +	mutex_unlock(&blk_notifier_lock);
->>> +
->>> +	return 0;
->>> +}
->>
->> Nit: redundant newline.
-> 
-> I'll remove the newline before the 'return' statement then, right?
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-Yup
+These patches are part of a larger effort to support the MT6735 SoC family in
+mainline Linux. More patches (unsent or sent and pending review or revision) can
+be found here[1].
 
->>> +device_initcall(blk_notifications_init);
->>> diff --git a/include/linux/blkdev.h b/include/linux/blkdev.h
->>> index b2f1362c4681..8d22ba03e3e1 100644
->>> --- a/include/linux/blkdev.h
->>> +++ b/include/linux/blkdev.h
->>> @@ -1687,4 +1687,12 @@ static inline bool bdev_can_atomic_write(struct block_device *bdev)
->>>  
->>>  #define DEFINE_IO_COMP_BATCH(name)	struct io_comp_batch name = { }
->>>  
->>> +
->>> +#ifdef CONFIG_BLOCK_NOTIFIERS
->>
->> #if defined(CONFIG_BLOCK_NOTIFIERS)
->>
->>> +#define BLK_DEVICE_ADD		1
->>> +#define BLK_DEVICE_REMOVE	2
->>> +void blk_register_notify(struct notifier_block *nb);
->>> +void blk_unregister_notify(struct notifier_block *nb);
->>> +#endif
->>
->> Surely these helpers should have a !CONFIG_BLOCK_NOTIFIERS failure case
->> definition? Either that, or dummies. As it stands, any caller would need
->> to check if it's enabled or not.
-> 
-> Makes sense. I'll add dummies to the header and always define
-> the macros for notification types.
+This series adds support for the main clock and reset controllers on the
+Mediatek MT6735 SoC:
+- apmixedsys (global PLLs)
+- topckgen (global divisors and muxes)
+- infracfg (gates and resets for infrastructure blocks)
+- pericfg (gates and resets for peripherals)
 
-Exactly
+MT6735 has other more specialized clock/reset controllers, support for which is
+not included in this series:
+- mfgcfg (GPU)
+- imgsys (camera)
+- mmsys (display)
+- vdecsys (video decoder)
+- vencsys (video encoder)
+- audsys (audio)
 
-> Note that what I'm planning to do is to have the block nvmem provider
-> select CONFIG_BLOCK_NOTIFIERS in Kconfig, as without that it simply
-> won't work at all.
+Changes since v3:
+- Squash DT binding patches.
+- Use mtk_clk_simple_probe/mtk_clk_simple_remove for topckgen.
+- Add MODULE_DEVICE_TABLE in all drivers.
+Changes since v2:
+- Add "CLK_" prefix to infracfg and pericfg clock definitions to avoid possible
+  clashes with reset bindings.
+- Replace "_RST" suffix with "RST_" prefix to maintain consistency with clock
+  bindings.
+- Use macros to define clocks.
+- Abandon mtk_clk_simple_probe/mtk_clk_simple_remove in favor of custom
+  functions in apmixedsys and topckgen drivers for the time being. 
+- Capitalize T in MediaTek in MODULE_DESCRIPTION.
+Changes since v1:
+- Rebase on some pending patches.
+- Move common clock improvements to a separate series.
+- Use mtk_clk_simple_probe/remove after making them support several clock types
+  in said series.
+- Combine all 4 drivers into one patch, and use one Kconfig symbol for all
+  following a conversation seen on a different series[2].
+- Correct APLL2 registers in apmixedsys driver (were offset backwards by 0x4).
+- Make irtx clock name lower case to match the other clocks.
 
-Right, but then someone else uses them for something else, and then
-we'll need it anyway.
+[1] https://gitlab.com/mt6735-mainline/linux/-/commits/mt6735-staging
+[2] https://lore.kernel.org/linux-mediatek/CAGXv+5H4gF5GXzfk8mjkG4Kry8uCs1CQbKoViBuc9LC+XdHH=A@mail.gmail.com/
+
+Yassine Oudjana (2):
+  dt-bindings: clock: Add MediaTek MT6735 clock and reset bindings
+  clk: mediatek: Add drivers for MediaTek MT6735 main clock and reset
+    drivers
+
+ .../arm/mediatek/mediatek,infracfg.yaml       |   8 +-
+ .../arm/mediatek/mediatek,pericfg.yaml        |   1 +
+ .../bindings/clock/mediatek,apmixedsys.yaml   |   4 +-
+ .../bindings/clock/mediatek,topckgen.yaml     |   4 +-
+ MAINTAINERS                                   |  16 +
+ drivers/clk/mediatek/Kconfig                  |   9 +
+ drivers/clk/mediatek/Makefile                 |   1 +
+ drivers/clk/mediatek/clk-mt6735-apmixedsys.c  | 138 ++++++
+ drivers/clk/mediatek/clk-mt6735-infracfg.c    |  79 ++++
+ drivers/clk/mediatek/clk-mt6735-pericfg.c     |  92 ++++
+ drivers/clk/mediatek/clk-mt6735-topckgen.c    | 394 ++++++++++++++++++
+ .../clock/mediatek,mt6735-apmixedsys.h        |  16 +
+ .../clock/mediatek,mt6735-infracfg.h          |  25 ++
+ .../clock/mediatek,mt6735-pericfg.h           |  37 ++
+ .../clock/mediatek,mt6735-topckgen.h          |  79 ++++
+ .../reset/mediatek,mt6735-infracfg.h          |  31 ++
+ .../reset/mediatek,mt6735-pericfg.h           |  31 ++
+ 17 files changed, 960 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-infracfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-pericfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6735-topckgen.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-apmixedsys.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-infracfg.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-pericfg.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt6735-topckgen.h
+ create mode 100644 include/dt-bindings/reset/mediatek,mt6735-infracfg.h
+ create mode 100644 include/dt-bindings/reset/mediatek,mt6735-pericfg.h
 
 -- 
-Jens Axboe
+2.45.1
 
 
