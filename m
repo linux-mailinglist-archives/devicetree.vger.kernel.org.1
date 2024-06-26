@@ -1,163 +1,314 @@
-Return-Path: <devicetree+bounces-80293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEBC5918530
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:04:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C9791854B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:08:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85DAD1F271FC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:04:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1A96B2D568
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45A2188CB4;
-	Wed, 26 Jun 2024 15:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC4E188CB9;
+	Wed, 26 Jun 2024 15:04:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bNPnBeeE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PAvEfs+R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FA00188CAF
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6FF185E52;
+	Wed, 26 Jun 2024 15:04:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719414262; cv=none; b=aTDHPO+aqE6Wx0NXg/+bCwpuciW1Ch6bX9w2nxEy/aFG73RmVXj8Zw/w8EyA16CEnXi3Pv1yJf9pZqUhRr4gU4Epv4mj6KslTYQekmI5VWSXeF52XZSMIzjuna5U2Lu/Oh6MJQreoc8OgAdv/XWsvcRDylq4a/mJQfbqPQGNMoc=
+	t=1719414264; cv=none; b=idEUqSwafOXFuF2ai6s6dfB22iFwSBvZEV4VwHRsEuQXx/aQz4J+LV7RjMVzrn5nmcuxG7K54c5H/LrGGp7yxoHVwknr0dCA2nWj27UFCZWrZM4wXEU/JlrB14uuFj+WI7uO9rD7GoLSksv16IihicJa830jwLUm3QP1r/4jqbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719414262; c=relaxed/simple;
-	bh=F+OX7nwgZv+3Cbs88EmNsVb+Kjr0FQe87JnPvA5YTv4=;
+	s=arc-20240116; t=1719414264; c=relaxed/simple;
+	bh=LvSjkiMtpfF+JoR7xWPevIfICzed4j3soaPcrthxPJs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g/3meh14RdzcNRSg5RAuDdGXWMRl+nifKhH2w/r8NPhKDgFTqics8txkn18aSUuN/L2oljS78/2BXs5jIq5qmSdYCmUz3t34X8BR+PsYNTjorqKMgJkuEgyPb7lDHNr/LI2qH6hGgFY4Ja+1txQ3ncbynM6l5LUxe179PP/yYvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bNPnBeeE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91E50C116B1;
-	Wed, 26 Jun 2024 15:04:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ANfpTY8mJk5c51b6jAC93Hs5VI2UvnjcRFxEtJ6mPMiKaZP6wg9yHuYbLbVPlcSactb/a5O2xTqFZFYjq5kRHcOyZEPK5Vb1GHyG0ItTX+mETU+3OC1mglt6bkfuMg+hVmBz7JisauEdZ+eqqsEP+u4PXNjWVfLjceg0rEzASbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PAvEfs+R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E6D1C2BD10;
+	Wed, 26 Jun 2024 15:04:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719414262;
-	bh=F+OX7nwgZv+3Cbs88EmNsVb+Kjr0FQe87JnPvA5YTv4=;
+	s=k20201202; t=1719414264;
+	bh=LvSjkiMtpfF+JoR7xWPevIfICzed4j3soaPcrthxPJs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bNPnBeeEv6UawQvlEeAVrQBlj+WgNi1Vm+KfPuLyREROT7eIhUBOttxsvWJAWVh6i
-	 2bO2kBo3cujXXCudxpRXSpEgpBB9BzaSYjGVZJd+43D/lct8OLQpHLctrfkOtovajx
-	 JaNaLkQuV2JUYsy/zz+YQBN+A8RdAeNNYn+/BoW1BdTYpmqQz3rV4En5zTsLqaalhS
-	 giLSrqIDKzvwqlpuTHxJrVxtImp5Dia4J3ivJ8T5yaH8xr6U0eKDTrPGnpfQw+TRHg
-	 ZbzQ5qUVlNP/+o2ql/newyDpnQ3XkOCo53Be5pU7a0xPJLZuvs7tQftl84mcSVmGE3
-	 zd3gwMtF+JUfw==
-Date: Wed, 26 Jun 2024 17:04:19 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hironori KIKUCHI <kikuchan98@gmail.com>, Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8
- panel
-Message-ID: <20240626-loyal-squirrel-of-charisma-4e784f@houat>
-References: <20240626112005.248576-1-ryan@testtoast.com>
- <20240626112005.248576-2-ryan@testtoast.com>
- <a4d33da3-2a2a-48ce-874d-95a5889f2f1f@linaro.org>
+	b=PAvEfs+R8vToV4fGpUki2wtbg5kBVoLFrVZh15RJvRjs0XHv0NX1QXjYRE0PyhRGV
+	 5frEpP7UXI1j35Cm/fjmi0EfY8itKiHVvMi5uWao4eibXg24+ClJIpdx1b8F0q/Xrv
+	 sCnNoOxQUJvcvpX6WZwaKveGz5l+TynaBMXgiauYrAm+g4QWEVWdbksyW19B/TROdM
+	 tD85klHfANxVNRdiwv5YMcS+g7FKS67VrCYNPsDXuW1FqZt58CZdJB5yWYlpMNJDSt
+	 KRBMAoFpNQb8AvHNbvTIvEzQHw7CyDRT5uenKZi83/iFbEK5awnp7ydP2ltPFN8VZp
+	 xTVenNqCkw21A==
+Date: Wed, 26 Jun 2024 08:04:21 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: robh@kernel.org, broonie@kernel.org, catalin.marinas@arm.com,
+	conor@kernel.org, devicetree@vger.kernel.org, hch@lst.de,
+	iommu@lists.linux.dev, kernel@quicinc.com,
+	linux-kernel@vger.kernel.org, m.szyprowski@samsung.com,
+	oe-kbuild-all@lists.linux.dev, robin.murphy@arm.com,
+	saravanak@google.com, will@kernel.org
+Subject: Re: [PATCH v2] of: reserved_mem: Restructure code to call reserved
+ mem init functions earlier
+Message-ID: <20240626150421.GA3664@fedora-macbook-air-m2>
+References: <202406181626.126X1Nbz-lkp@intel.com>
+ <20240620001027.2326275-1-quic_obabatun@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="t4mtuqwwn5yvkujw"
-Content-Disposition: inline
-In-Reply-To: <a4d33da3-2a2a-48ce-874d-95a5889f2f1f@linaro.org>
-
-
---t4mtuqwwn5yvkujw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240620001027.2326275-1-quic_obabatun@quicinc.com>
 
-On Wed, Jun 26, 2024 at 02:25:54PM GMT, Neil Armstrong wrote:
-> On 26/06/2024 13:17, Ryan Walklin wrote:
-> > The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unknown
-> > OEM used in a number of handheld gaming devices made by Anbernic.
-> > Previously committed using the OEM serial without a vendor prefix,
-> > however the preference is to use the integrating device vendor and name
-> > where the OEM is unknown.
-> >=20
-> > Alter the filename and compatible string to reflect the convention.
-> >=20
-> > Fixes: f08aac40639c ("drm: panel: nv3052c: Add WL-355608-A8 panel")
-> > Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> > ---
-> >   .../{wl-355608-a8.yaml =3D> anbernic,rg35xx-panel.yaml}     | 8 ++++-=
----
-> >   1 file changed, 4 insertions(+), 4 deletions(-)
-> >   rename Documentation/devicetree/bindings/display/panel/{wl-355608-a8.=
-yaml =3D> anbernic,rg35xx-panel.yaml} (81%)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/panel/wl-355608-=
-a8.yaml b/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-p=
-anel.yaml
-> > similarity index 81%
-> > rename from Documentation/devicetree/bindings/display/panel/wl-355608-a=
-8.yaml
-> > rename to Documentation/devicetree/bindings/display/panel/anbernic,rg35=
-xx-panel.yaml
-> > index 397c26be9bda5..a7d5ad0f29389 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-p=
-anel.yaml
-> > @@ -1,10 +1,10 @@
-> >   # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >   %YAML 1.2
-> >   ---
-> > -$id: http://devicetree.org/schemas/display/panel/wl-355608-a8.yaml#
-> > +$id: http://devicetree.org/schemas/display/panel/anbernic,rg35xx-panel=
-=2Eyaml#
-> >   $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > -title: WL-355608-A8 3.5" (640x480 pixels) 24-bit IPS LCD panel
-> > +title: Anbernic RG35XX (WL-355608-A8) 3.5" 640x480 24-bit IPS LCD panel
-> >   maintainers:
-> >     - Ryan Walklin <ryan@testtoast.com>
-> > @@ -15,7 +15,7 @@ allOf:
-> >   properties:
-> >     compatible:
-> > -    const: wl-355608-a8
-> > +    const: anbernic,rg35xx-panel
-> >     reg:
-> >       maxItems: 1
-> > @@ -41,7 +41,7 @@ examples:
-> >           #size-cells =3D <0>;
-> >           panel@0 {
-> > -            compatible =3D "wl-355608-a8";
-> > +            compatible =3D "anbernic,rg35xx-panel";
->=20
-> Can it be more specific ? because there's a lot of rg35xx defined in bind=
-ings:
->  anbernic,rg351m
->  anbernic,rg351v
->  anbernic,rg353p
->  anbernic,rg353ps
->  anbernic,rg353v
->  anbernic,rg353vs
->  anbernic,rg35xx-2024
->  anbernic,rg35xx-plus
->  anbernic,rg35xx-h
+On Wed, Jun 19, 2024 at 05:10:27PM -0700, Oreoluwa Babatunde wrote:
+> After all the reserved memory regions have been added to the
+> reserved_mem array, a region specific initialization function is called
+> on each of reserved memory regions in a loop to initialize them.
+> 
+> With recent changes made to allow the reserved_mem array be dynamically
+> allocated, the cma reserved memory regions are not initialized until
+> after the page tables are setup. This causes the warning seen in the
+> dump stack below:
+> 
+> 	WARNING: CPU: 0 PID: 1 at mm/memory.c:2789 __apply_to_page_range+0x360/0x380
+> 	CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.10.0-rc1-00007-ga46cccb0ee2d #1
+> 	Hardware name: Generic DT based system
+> 	Call trace:
+> 	unwind_backtrace from show_stack+0x18/0x1c
+> 	show_stack from dump_stack_lvl+0x54/0x68
+> 	dump_stack_lvl from __warn+0x74/0x114
+> 	__warn from warn_slowpath_fmt+0x13c/0x1c0
+> 	warn_slowpath_fmt from __apply_to_page_range+0x360/0x380
+> 	__apply_to_page_range from apply_to_page_range+0x24/0x2c
+> 	apply_to_page_range from __alloc_from_contiguous+0xc4/0x158
+> 	__alloc_from_contiguous from cma_allocator_alloc+0x3c/0x44
+> 	cma_allocator_alloc from arch_dma_alloc+0x128/0x2b4
+> 	arch_dma_alloc from dma_alloc_attrs+0x90/0x150
+> 	dma_alloc_attrs from drm_gem_dma_create+0xa4/0x13c
+> 	drm_gem_dma_create from drm_gem_dma_create_with_handle+0x24/0xac
+> 	drm_gem_dma_create_with_handle from drm_gem_dma_dumb_create+0x44/0x50
+> 	drm_gem_dma_dumb_create from drm_client_framebuffer_create+0x9c/0x164
+> 	drm_client_framebuffer_create from drm_fbdev_dma_helper_fb_probe+0x84/0x23c
+> 	drm_fbdev_dma_helper_fb_probe from __drm_fb_helper_initial_config_and_unlock+0x2e4/0x4f8
+> 	__drm_fb_helper_initial_config_and_unlock from drm_fbdev_dma_client_hotplug+0x74/0xb8
+> 	drm_fbdev_dma_client_hotplug from drm_client_register+0x5c/0x98
+> 	drm_client_register from aspeed_gfx_probe+0x278/0x3c0
+> 	aspeed_gfx_probe from platform_probe+0x60/0xb8
+> 	platform_probe from really_probe+0xd4/0x3b4
+> 	really_probe from __driver_probe_device+0x90/0x1dc
+> 	__driver_probe_device from driver_probe_device+0x38/0xd0
+> 	driver_probe_device from __driver_attach+0x118/0x1dc
+> 	__driver_attach from bus_for_each_dev+0x84/0xd4
+> 	bus_for_each_dev from bus_add_driver+0xec/0x1f0
+> 	bus_add_driver from driver_register+0x84/0x11c
+> 	driver_register from do_one_initcall+0x84/0x1c8
+> 	do_one_initcall from kernel_init_freeable+0x1a4/0x230
+> 	kernel_init_freeable from kernel_init+0x1c/0x138
+> 	kernel_init from ret_from_fork+0x14/0x28
+> 	Exception stack(0x9f015fb0 to 0x9f015ff8)
+> 	5fa0:                                     00000000 00000000 00000000 00000000
+> 	5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+> 	5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+> 	---[ end trace 0000000000000000 ]---
+> 	aspeed_gfx 1e6e6000.display: [drm] fb0: aspeed-gfx-drmd frame buffer device
+> 
+> Hence, restructure the code to initialize the regions as soon as each
+> of them are added to the reserved_mem array.
+> 
+> Fixes: a46cccb0ee2d ("of: reserved_mem: Restruture how the reserved memory regions are processed")
+> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
 
-Yeah, if we have an identified model name, we should probably use that,
-with a comment that we couldn't figure out what the vendor was and thus
-went for anbernic.
+This resolves the warning that I see and I see no other warnings
+introduced in any of my virtual boot tests.
 
-Maxime
+Tested-by: Nathan Chancellor <nathan@kernel.org>
 
---t4mtuqwwn5yvkujw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZnwt8gAKCRDj7w1vZxhR
-xRDnAQCMx43OxkqwG3/vkdOb81oKGeBhGroIw3cdcOsszTTWEQD+PMzSpXjljuse
-4bnwlOEKGpK3uQFvafaN29bhrcRUoQE=
-=1Wid
------END PGP SIGNATURE-----
-
---t4mtuqwwn5yvkujw--
+> ---
+> v2:
+> - Fix kernel-doc for of_init_reserved_mem_node() in response to the
+>   below warning from v1:
+>   https://lore.kernel.org/all/202406181626.126X1Nbz-lkp@intel.com/
+> 
+> v1:
+>   https://lore.kernel.org/all/20240617193357.3929092-1-quic_obabatun@quicinc.com/
+> 
+>  drivers/of/fdt.c             |  2 +-
+>  drivers/of/of_private.h      |  2 +-
+>  drivers/of/of_reserved_mem.c | 83 +++++++++++++++++++++---------------
+>  3 files changed, 50 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 9cde2abd2fc0..ea2dff0478c7 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1239,7 +1239,7 @@ void __init unflatten_device_tree(void)
+>  	unittest_unflatten_overlay_base();
+>  
+>  	/* initialize the reserved memory regions */
+> -	of_init_reserved_mem();
+> +	of_scan_reserved_mem_reg_nodes();
+>  }
+>  
+>  /**
+> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+> index 01b33c4b1e9f..7412aed903df 100644
+> --- a/drivers/of/of_private.h
+> +++ b/drivers/of/of_private.h
+> @@ -181,7 +181,7 @@ static inline struct device_node *__of_get_dma_parent(const struct device_node *
+>  #endif
+>  
+>  int fdt_scan_reserved_mem(void);
+> -void of_init_reserved_mem(void);
+> +void of_scan_reserved_mem_reg_nodes(void);
+>  
+>  bool of_fdt_device_is_available(const void *blob, unsigned long node);
+>  
+> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> index eb54490a0a11..b31001728866 100644
+> --- a/drivers/of/of_reserved_mem.c
+> +++ b/drivers/of/of_reserved_mem.c
+> @@ -97,6 +97,8 @@ static void __init alloc_reserved_mem_array(void)
+>  	reserved_mem = new_array;
+>  }
+>  
+> +static void __init of_init_reserved_mem_node(struct reserved_mem *rmem);
+> +
+>  /*
+>   * of_reserved_mem_save_node() - save fdt node for second pass initialization
+>   */
+> @@ -115,6 +117,12 @@ static void __init of_reserved_mem_save_node(struct device_node *node, const cha
+>  	rmem->base = base;
+>  	rmem->size = size;
+>  
+> +	/*
+> +	 * Run the region specific initialization function for the rmem
+> +	 * node.
+> +	 */
+> +	of_init_reserved_mem_node(rmem);
+> +
+>  	reserved_mem_count++;
+>  	return;
+>  }
+> @@ -201,6 +209,8 @@ static int __init __fdt_reserved_mem_check_root(unsigned long node)
+>  	return 0;
+>  }
+>  
+> +static void __init __rmem_check_for_overlap(void);
+> +
+>  /**
+>   * of_scan_reserved_mem_reg_nodes() - Store info for the "reg" defined
+>   * reserved memory regions.
+> @@ -211,7 +221,7 @@ static int __init __fdt_reserved_mem_check_root(unsigned long node)
+>   * size are all stored in the reserved_mem array by calling the
+>   * of_reserved_mem_save_node() function.
+>   */
+> -static void __init of_scan_reserved_mem_reg_nodes(void)
+> +void __init of_scan_reserved_mem_reg_nodes(void)
+>  {
+>  	struct device_node *node, *child;
+>  	phys_addr_t base, size;
+> @@ -222,6 +232,13 @@ static void __init of_scan_reserved_mem_reg_nodes(void)
+>  		return;
+>  	}
+>  
+> +	/*
+> +	 * Before moving forward, allocate the exact size needed for the
+> +	 * reserved_mem array and copy all previously saved contents
+> +	 * into the new array if successful.
+> +	 */
+> +	alloc_reserved_mem_array();
+> +
+>  	for_each_child_of_node(node, child) {
+>  		int ret = 0;
+>  		const char *uname;
+> @@ -246,6 +263,8 @@ static void __init of_scan_reserved_mem_reg_nodes(void)
+>  		if (size)
+>  			of_reserved_mem_save_node(child, uname, base, size);
+>  	}
+> +	/* check for overlapping reserved regions */
+> +	__rmem_check_for_overlap();
+>  }
+>  
+>  static int __init __reserved_mem_alloc_size(unsigned long node, const char *uname);
+> @@ -526,44 +545,38 @@ static void __init __rmem_check_for_overlap(void)
+>  }
+>  
+>  /**
+> - * of_init_reserved_mem() - allocate and init all saved reserved memory regions
+> + * of_init_reserved_mem_node() - Initialize a saved reserved memory region.
+> + * @rmem: reserved_mem object of the memory region to be initialized.
+> + *
+> + * This function is used to call the region specific initialization
+> + * function on the rmem object passed as an argument. The rmem object
+> + * will contain the base address, size, node name, and device_node of
+> + * the reserved memory region to be initialized.
+>   */
+> -void __init of_init_reserved_mem(void)
+> +static void __init of_init_reserved_mem_node(struct reserved_mem *rmem)
+>  {
+> -	int i;
+> -
+> -	alloc_reserved_mem_array();
+> -
+> -	of_scan_reserved_mem_reg_nodes();
+> +	int err;
+> +	bool nomap;
+> +	struct device_node *node = rmem->dev_node;
+>  
+> -	/* check for overlapping reserved regions */
+> -	__rmem_check_for_overlap();
+> +	nomap = of_property_present(node, "no-map");
+>  
+> -	for (i = 0; i < reserved_mem_count; i++) {
+> -		struct reserved_mem *rmem = &reserved_mem[i];
+> -		struct device_node *node = rmem->dev_node;
+> -		int err = 0;
+> -		bool nomap;
+> -
+> -		nomap = of_property_present(node, "no-map");
+> -
+> -		err = __reserved_mem_init_node(rmem);
+> -		if (err != 0 && err != -ENOENT) {
+> -			pr_info("node %s compatible matching fail\n", rmem->name);
+> -			if (nomap)
+> -				memblock_clear_nomap(rmem->base, rmem->size);
+> -			else
+> -				memblock_phys_free(rmem->base, rmem->size);
+> -		} else {
+> -			phys_addr_t end = rmem->base + rmem->size - 1;
+> -			bool reusable = of_property_present(node, "reusable");
+> -
+> -			pr_info("%pa..%pa (%lu KiB) %s %s %s\n",
+> -				&rmem->base, &end, (unsigned long)(rmem->size / SZ_1K),
+> -				nomap ? "nomap" : "map",
+> -				reusable ? "reusable" : "non-reusable",
+> -				rmem->name ? rmem->name : "unknown");
+> -		}
+> +	err = __reserved_mem_init_node(rmem);
+> +	if (err != 0 && err != -ENOENT) {
+> +		pr_info("node %s compatible matching fail\n", rmem->name);
+> +		if (nomap)
+> +			memblock_clear_nomap(rmem->base, rmem->size);
+> +		else
+> +			memblock_phys_free(rmem->base, rmem->size);
+> +	} else {
+> +		phys_addr_t end = rmem->base + rmem->size - 1;
+> +		bool reusable = of_property_present(node, "reusable");
+> +
+> +		pr_info("%pa..%pa (%lu KiB) %s %s %s\n",
+> +			&rmem->base, &end, (unsigned long)(rmem->size / SZ_1K),
+> +			nomap ? "nomap" : "map",
+> +			reusable ? "reusable" : "non-reusable",
+> +			rmem->name ? rmem->name : "unknown");
+>  	}
+>  }
+>  
+> -- 
+> 2.34.1
+> 
 
