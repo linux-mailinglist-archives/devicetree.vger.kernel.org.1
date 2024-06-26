@@ -1,494 +1,1194 @@
-Return-Path: <devicetree+bounces-80433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BDAD919835
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 21:19:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC6D919855
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 21:38:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F149D1F22B2E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:19:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DF64281229
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919351922CF;
-	Wed, 26 Jun 2024 19:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358BD1922DC;
+	Wed, 26 Jun 2024 19:38:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="nO8oJUXo"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Q/pyGdbr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-43166.protonmail.ch (mail-43166.protonmail.ch [185.70.43.166])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2087.outbound.protection.outlook.com [40.107.105.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A561922CD;
-	Wed, 26 Jun 2024 19:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.166
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719429549; cv=none; b=hbCCrOo9cc4aTP0BgRHU2UGXJVoXux7eKOBI6R7qEI4X7UgLRSRLIU5HxlUyaf357GzGZ3sX1+OYt7Wm7e/2XqkXGaHouaFRkpk4jksi9ukvnwO2Ofcwl5QhADF5Y0Z6Lh4T3bTav6sLNDH/3QEoSIu543kz7FGx0GfoheIsdZk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719429549; c=relaxed/simple;
-	bh=CbsbesbedkdvgaVLp7Dfq6vM0ZrJls+SyMP7D4LHH4c=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DZ/WsUQ1h8nZsG9p4SOuO95kxo1oiGI7t5q5ydz1EQUlkWE+HR93+GWDEOge9d40GL3smSLPfoJwqFow8ZRntYSwSBdBVgH5rJu8FeIB/2EGCrKl8oT1AxdCK6JnKlVB633Aj2OAgVe+GS66eR/tNoVhJGY3AwdboCU7G51dobs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=nO8oJUXo; arc=none smtp.client-ip=185.70.43.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1719429539; x=1719688739;
-	bh=5fMzBhMyZaHVcgK7c1w3ROxZuwAg3rpj5KZaLS2xYw8=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=nO8oJUXoDGX47cqp/S+WP5xY+FeiKid4+btTNe/dX1evx/+vZtkKw5tWbm3N6iN5M
-	 ac//+fLnI2hw7/B1nLK01uA8qT1vAKz0hutkRyPvEIkBvjYImSyRFAUZMYy1+tpeNk
-	 OHxHtOFCpi3ZyU8xoWVifPhBZ5K3Z7FIaHz1QtUORevt20tAEmieRaH2yXrSE6frZr
-	 qGccEaWwmZn9ohfw9THNq3oGvNtJLAwVanOZl1rwil4DUBsFQnlF7B8X9qJ/rUqKJ7
-	 temmIA6cFWN2X3NnsNIQKXS/Xe303ZD/cWYizTfgkI5xpa9dIgC/IbSkMO6FaNQOgv
-	 ykp9XZKlkunyw==
-Date: Wed, 26 Jun 2024 19:18:56 +0000
-To: linux-kernel@vger.kernel.org
-From: Raymond Hackley <raymondhackley@protonmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH 2/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial device tree
-Message-ID: <20240626191829.280611-3-raymondhackley@protonmail.com>
-In-Reply-To: <20240626191829.280611-1-raymondhackley@protonmail.com>
-References: <20240626191829.280611-1-raymondhackley@protonmail.com>
-Feedback-ID: 49437091:user:proton
-X-Pm-Message-ID: 7a9091a228470fb0fa29e8c7ce40c529a18f61d0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D3919069C;
+	Wed, 26 Jun 2024 19:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.87
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719430696; cv=fail; b=V+ysysxF2g9u9zM7UyNdFfFoDbHhsN8MfgcaxKZbRxneuz/lYv84rh3UC1QdBPdSBa3izq26wWHm5N88IwP34GQ4fQmAZcOi8JlwO9RUk1qZZYma/zIYNfRChLZ3oTKTscq+CaHMlcc+6xHsMQMYhmXar6qBKZM9MDbBp6pBNe4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719430696; c=relaxed/simple;
+	bh=vhzhifNhAOIeUwjPRofv2LvX21weXF6kcq0vItZE3Us=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=h+umJvUU9kT6FblYhTs1I9EpqXU07sm//4DA3hH4C00maF1b1MRBF8/DadqQVjG1EnEtdizbsXFySq+cGpYt5icR0X1x+FI4wKgX4fgtyjNVbLlbL6flCQGjZASgHFmYspaJ7R+ZrOZmpvTinWV1vl3hh9k4Gl6m2LH30ZHVxDU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Q/pyGdbr; arc=fail smtp.client-ip=40.107.105.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lPs/zZFJGC58VqHof9sOEdwlnPj/6UEam0wiqFhxbvlk9pu6uAJqbNygvFpUzZamr0Gg3WA/2OACRoCyTi/3szXVAs+osAqkGB2xw4O4kWIdXfaS8BydMQaXia6TVytfJtXoeFVjzNcck7jcyZLprvYgh5db2+kRCMvdFLrgotgxvVEraOyufFulD2Ayi/bzlj+UAiYI0H6vAmEk0YFxhfq2PFJwlmp6OK8TgKnNXDOtOf+twEjcbyC1t81KAWAxmd2bBSPTUOl394Hs/KMCeJbMhuxURii6v1ZLcgFkmqL85pWRU8HA/8LU7LSAADEvRqzlS5tKobjCji77Gt8PFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SFN68IGaoFysME8Evdy+x7LdxHg+Fh2cVWTtUEQ1yDU=;
+ b=NFYkTW910ShAIPICXD22Tr9EuXlMmeSZIuNikRria/8zzTFB0fMUFE9SZoD2zQ6wShsYXYbkn+/j1arHewyjkyQ4LGAJ4ESCCsljBgprZdd9xlVQ8OMHCGWuqjTVMrUSoNBYTEG0XBEBsrb+ENGDUMoeKMabKMxVXbzYQxCFr8Thdfw4Fxa9Lfyhftr9IPkbXTuqwDQN4n5rcPLQMShqrx7lFxJu/D01JtimEFgNFaTnNgiBxbdBHGbN51zMjkz/E1F/0ecOUeNBkAcfxstzZnPhdd9i36TGgV7LRCGzyqstRNicDt/VCLbrmPk4SvhCLIbyipzxYe6iR/yQOEW99g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SFN68IGaoFysME8Evdy+x7LdxHg+Fh2cVWTtUEQ1yDU=;
+ b=Q/pyGdbr/f8CkaW5Ct34x2XzgncyGzwFGof5RhYo1kLo/HiLgCu81nWDp7t1bJVBrP6w2pwWtHb0MoO6MsAUOXcPIOD588VCsO+1CiAa1VfgwW3sgvfLunLQdGxK8adYCY5NgrvcxLLX2XVYzEWZ1VhrZ7cNL243zqNFwfO6rV8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8505.eurprd04.prod.outlook.com (2603:10a6:20b:40a::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.35; Wed, 26 Jun
+ 2024 19:38:09 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7698.025; Wed, 26 Jun 2024
+ 19:38:09 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: robh@kernel.org
+Cc: Frank.Li@nxp.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH v2 1/1] dt-bindings: soc: fsl: Convert q(b)man-* to yaml format
+Date: Wed, 26 Jun 2024 15:37:53 -0400
+Message-Id: <20240626193753.2088926-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0203.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::28) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8505:EE_
+X-MS-Office365-Filtering-Correlation-Id: 19487d05-7f81-4868-c5ab-08dc96178216
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230038|376012|1800799022|52116012|366014|38350700012;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?mbrJwh529hg4A34zqjPT2osbR/BFGx9rEBuLaAqjw+B6vf5AF8yg10nFOxYv?=
+ =?us-ascii?Q?Hrj8OPMzltcnUc/Tv42khKZ2m1lX8ptzgZf9Nl5IXRUf9Bt3MusU54LnrHUb?=
+ =?us-ascii?Q?OGhrz8JYiGQeqsuA/n4ktF7frOTng7wfny425WKK5wLkMvhfMyWr0NewjVgN?=
+ =?us-ascii?Q?Pr59lti24VEyl1EtiIftQNqx4p/Ha7WkBeKJArlZpH1m1ftYv1O1lo5zq0sA?=
+ =?us-ascii?Q?JWLQRuHoON8boF3/C+JYvbsxTHP7w61yarDwPPdP6fY59MxjPM+7maW3H354?=
+ =?us-ascii?Q?HcMvaaHidKCFbaIaovUEpx5OCt8+aeettqP2QkbF4IJpi1Pbb/CXtyYJG1gP?=
+ =?us-ascii?Q?HovAhgmmJEO4HRmHZk5PeI10LX8FcTgBMRqJNaLIcJvHWfYBtZezSOEqe1Z/?=
+ =?us-ascii?Q?0FbB7AW0FIVqDB8g/Jbuc+kj4/1eialptlVZXbycLSasHkyl3nCsQKW/ltcW?=
+ =?us-ascii?Q?OK9ztXQuTmIsQIaYaNormFc4QzHaIboCnT5M9OFBuTLx666N+vYXwjv/j8WY?=
+ =?us-ascii?Q?21PRpY6UnEgUj8xVsnbadyEEjhD+m5Lg+fu6pGEpq5CHHR/nt6MZYzvIzcJz?=
+ =?us-ascii?Q?+rp5HzkZbalvF1qjRDft1JlYtxOhU1hKB6CZEiRksIdYZkrqzvzCzokvzYSq?=
+ =?us-ascii?Q?zeD9HoLOEyJ1paX3lXMQe5sW9PhVevyr4ciRmpGnxFxwEJVB9T5ODuNOSeel?=
+ =?us-ascii?Q?c5hve3WOOscNyMdJF5nFQ10aZ0tmlsqKsyUZ0lQ7ZyRD4CACNiEDKe87saHm?=
+ =?us-ascii?Q?oPXa5W4aMisKHOf3mHRxXSqoBknG7kFGB8+SGZa4Eut62G8yvEc4sj5SQEh2?=
+ =?us-ascii?Q?dJ++9i83WghpqYqDF0FzWpG1R9QStLvGQBGn7vZ0jNe64NB4b3K0pW7I/+3C?=
+ =?us-ascii?Q?vPlwjxQaHBYT/jYBThJqEf2oDdEfZSiyuvmIj80CdXvQMT3J3lciHSN19j/R?=
+ =?us-ascii?Q?2NN2N/5ElXII2eppqyJOiqAbjNgUhFg8fIXOZoe4xaoWXeETH9cXJgUHqes0?=
+ =?us-ascii?Q?3waYTA42B4kgQ9ckO8uBF/+HohIKlC81YltQtnq6ZNNGqHdrgT1We+m1gjrq?=
+ =?us-ascii?Q?0efdXfq4tcknWy/clz9+yjv37JDMWxuFPOGXphBsOjK9WcqFfM/PBDgdw3oV?=
+ =?us-ascii?Q?79yj8KeqxwRqOgbgnm9IRoJ4KsyPnH/LLT2P9VJ0kZY+sHJI6s11k2M+v+4/?=
+ =?us-ascii?Q?v4xOo+NESqxA0mqBJ3VCXGwPuSHt25GCeiWOx9dtsq/rtrxBWrYT08UsRTq2?=
+ =?us-ascii?Q?O4Do8CImjxdzCVo+mS3ggFKuFBAFc08H+kPhiP+LWvdxaKU/sTOcpPgFTZAE?=
+ =?us-ascii?Q?JfKYomMCkmg/Vvws4hokUzIz?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230038)(376012)(1800799022)(52116012)(366014)(38350700012);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?wWVAbTQfdua3Nh04zFplbQQYxzqX2Iyzx+dlGX4HLod/evdqaQv2YqnwVSCm?=
+ =?us-ascii?Q?5G0JvjkJUx16YWbFAgZmqTGbjihZs1gjXDSglLc6jyQK9c3O+FOpTnwpzpvA?=
+ =?us-ascii?Q?tkjzpMwjuACqZMD+ZnP8Z/NIuWSWmeA/Xxlk3OHYI7mhYL017v3ULXOqLNxE?=
+ =?us-ascii?Q?YCQ7gAs6CQVbmZoVeWGXQ6e+/iGGR/ouw92b25B0g6nU7hUg77bLruoK86bT?=
+ =?us-ascii?Q?JwM7TJfBzwtHjwf4Yb6yDKucG7ts89nJFH0fnP7d1sxPe7zw3UL13SMJIPwn?=
+ =?us-ascii?Q?TT2GTGk4nA6s1i+uUfwxMDT/Hlx+r6vOWMY2SQqlkjn07zhR9C+UGcf7JrxW?=
+ =?us-ascii?Q?i1CS/Mw+zIUKf0AMukvk7zdxSgLKQzcsxREZi+XqZfaj6ampfK30hm2GXKWi?=
+ =?us-ascii?Q?LHsnxdjIvvUemKppnPF/dT87IoU8D8b6Xw26V/iB9pxjpbzEAwaTCgUIhiIQ?=
+ =?us-ascii?Q?5ct6uqwxePATxDCp0sxC1PzFn6BOCSYcKiSUTSbTuI1QfgS5W6K3rVHIOKH9?=
+ =?us-ascii?Q?RPQplzlJVe3z5QTq/kda60uQKvHB+2ltIw7uCBMAxsxyhm0ED2UWAjRsfZ40?=
+ =?us-ascii?Q?YJYIY9eDab/DfITRcQNC/jZL2vu1YkN3RewvnCyUtYUte0rI+gwHJo5c6X5W?=
+ =?us-ascii?Q?0alqtox7yQsWSJVy0C7A33dVixvtyFdUpSfvpxbIYWmDs544a4LS4wNG7oUw?=
+ =?us-ascii?Q?kB4640qGpyfyQoPLnO02ZE9JZAFqp7dNFp+kuEdg5kWRoqzPPtNyggSELqwb?=
+ =?us-ascii?Q?FifUNhX5Q+VOTAdCv9IBoT/MR011afYjMLVQYj6IwskLLf78n3gseuFIJ1UX?=
+ =?us-ascii?Q?tXOkkU6Yl54t8H7I3jflUf5Q7haTsNc2JMQUBpr9HsLBoMVl35NNgvFq7irk?=
+ =?us-ascii?Q?a9galdRp05KoBqrOLB8cB9vNHhFkidgW5bq71ybzbURXowwG/+S+qFXAR7gw?=
+ =?us-ascii?Q?73e/qF/wF7zJDeXao49YpHOWZGN0nuAma88We8kW3MssyDrwEtH9qawkQkik?=
+ =?us-ascii?Q?LXtmlHmPHiPcoeRZ5cmPqYRLy3SadlOyQOIVJzGJgRG8Z1KAo61zoH0widvR?=
+ =?us-ascii?Q?/4O8U17UuaT2zLKad2hWvV1k1D4PbDIsLhrVeqMz3SS0/K3/lRMYbCJDfCQx?=
+ =?us-ascii?Q?sY5+keEHhnE1kT08fnB/7XPp9U+TJMAMfj4InQEAkdm93M1SE4zY+kziweJy?=
+ =?us-ascii?Q?W53Pi5eAEd/aivyYdWHc+tkJAQ1CHNhWAurMNAr0/6LIFH6r10ACFsyrTQyw?=
+ =?us-ascii?Q?+3b63tbX8N/l4MV4q1eCviUhlZ5JBQu8aKRlnwKHE0FBc1l1aZMHO1XXDtIs?=
+ =?us-ascii?Q?yfTqavi7yexpNEyDe+Wgs9SPPnKzzrn4lzNJ5tG2iasUzy+JoH3vXVHQr7zV?=
+ =?us-ascii?Q?l3BAfTB3nQF0xtkZ1xbzmfDUd0l6Mox81jz88sSU1rgeeauNoNHGpShx36IQ?=
+ =?us-ascii?Q?LdyhY1R2YrjtfBMdn8kWoAyZSVU+QVdZF7UrmkHnvOi/oLbiyXy3t7KKB+DF?=
+ =?us-ascii?Q?cahLdt5XvVG/QgUUP0FVQw5riqkNTBrZKdDaIImJ68meoSqZdE7ptU9U//yK?=
+ =?us-ascii?Q?/E9Am/wIfSI8RHQCe6yPfB6Cev3NAfUoS6XGq73o?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19487d05-7f81-4868-c5ab-08dc96178216
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 19:38:09.3935
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hv9wIjTzKkO2rz4KGUFZYVV2kTg+xj+Rn02d9pOf6AoIk/h+3tmta9l9rwgfHRlQHEwb66ND5fvekipFytklwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8505
 
-Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
-other Samsung devices based on MSM8226 with only a few minor differences.
+Convert qman, bman, qman-portals, bman-portals to yaml format.
 
-The device trees contain initial support with:
- - GPIO keys
- - Regulator haptic
- - SDHCI (internal and external storage)
- - UART (on USB connector via the TI TSU6721 MUIC)
- - Regulators
- - Touchscreen
- - Accelerometer
+Additional Change for fsl,q(b)man-portal:
+- Only keep one example.
+- Add fsl,qman-channel-id property.
+- Use interrupt type macro.
+- Remove top level qman-portals@ff4200000 at example.
 
-Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+Additional change for fsl,q(b)man:
+- Fixed example error.
+- Remove redundent part, only keep fsl,qman node.
+- Change memory-regions to memory-region.
+- fsl,q(b)man-portals is not required property
+
+Additional change for fsl,qman-fqd.yaml:
+- Fixed example error.
+- Only keep one example.
+- Ref to reserve-memory.yaml
+- Merge fsl,bman reserver memory part
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- arch/arm/boot/dts/qcom/Makefile               |   1 +
- .../dts/qcom/qcom-msm8226-samsung-ms013g.dts  | 386 ++++++++++++++++++
- 2 files changed, 387 insertions(+)
- create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
+Change from v1 to v2
+- fix typo chang
+- fix typo porta
+- Add | for reg description
+- wrap to 80 for reg descritption
+- memory-region set maxItems: 2
+- fix regex parttern
+- drop  See clock-bindings.txt
+- "see reserved-memory.yaml" change to
+"see reserved-memory/reserved-memory.yaml in dtschema project"
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makef=
-ile
-index 9a25b24ea119..26bce5e7ec7b 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_QCOM) +=3D \
- =09qcom-msm8226-microsoft-dempsey.dtb \
- =09qcom-msm8226-microsoft-makepeace.dtb \
- =09qcom-msm8226-microsoft-moneypenny.dtb \
-+=09qcom-msm8226-samsung-ms013g.dtb \
- =09qcom-msm8226-samsung-s3ve3g.dtb \
- =09qcom-msm8660-surf.dtb \
- =09qcom-msm8905-nokia-argon.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts b/arch/=
-arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
+- A strange thing in fsl,qman-fqd.yaml, if example compatible string
+change to fsl,qman-fqd, dt_binding_check report below error.
+	qman-fqd: False schema does not allow {'compatible': ['fsl,qman-fqd'], 'size': [[4194304]], 'alignment': [[4194304]], 'no-map': True, '$nodename': ['qman-fqd']}
+
+but I replace "fsl,qman-fqd" with "abc", it pass check.
+---
+ .../bindings/soc/fsl/bman-portals.txt         |  56 ------
+ .../devicetree/bindings/soc/fsl/bman.txt      | 137 -------------
+ .../bindings/soc/fsl/fsl,bman-portal.yaml     |  52 +++++
+ .../devicetree/bindings/soc/fsl/fsl,bman.yaml |  83 ++++++++
+ .../bindings/soc/fsl/fsl,qman-fqd.yaml        |  69 +++++++
+ .../bindings/soc/fsl/fsl,qman-portal.yaml     | 110 +++++++++++
+ .../devicetree/bindings/soc/fsl/fsl,qman.yaml |  93 +++++++++
+ .../bindings/soc/fsl/qman-portals.txt         | 134 -------------
+ .../devicetree/bindings/soc/fsl/qman.txt      | 187 ------------------
+ 9 files changed, 407 insertions(+), 514 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/fsl/bman-portals.txt
+ delete mode 100644 Documentation/devicetree/bindings/soc/fsl/bman.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,bman-portal.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,bman.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman-portal.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,qman.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/fsl/qman-portals.txt
+ delete mode 100644 Documentation/devicetree/bindings/soc/fsl/qman.txt
+
+diff --git a/Documentation/devicetree/bindings/soc/fsl/bman-portals.txt b/Documentation/devicetree/bindings/soc/fsl/bman-portals.txt
+deleted file mode 100644
+index 2a00e14e11e02..0000000000000
+--- a/Documentation/devicetree/bindings/soc/fsl/bman-portals.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-QorIQ DPAA Buffer Manager Portals Device Tree Binding
+-
+-Copyright (C) 2008 - 2014 Freescale Semiconductor Inc.
+-
+-CONTENTS
+-
+-	- BMan Portal
+-	- Example
+-
+-BMan Portal Node
+-
+-Portals are memory mapped interfaces to BMan that allow low-latency, lock-less
+-interaction by software running on processor cores, accelerators and network
+-interfaces with the BMan
+-
+-PROPERTIES
+-
+-- compatible
+-	Usage:		Required
+-	Value type:	<stringlist>
+-	Definition:	Must include "fsl,bman-portal-<hardware revision>"
+-			May include "fsl,<SoC>-bman-portal" or "fsl,bman-portal"
+-
+-- reg
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Two regions. The first is the cache-enabled region of
+-			the portal. The second is the cache-inhibited region of
+-			the portal
+-
+-- interrupts
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Standard property
+-
+-EXAMPLE
+-
+-The example below shows a (P4080) BMan portals container/bus node with two portals
+-
+-	bman-portals@ff4000000 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		compatible = "simple-bus";
+-		ranges = <0 0xf 0xf4000000 0x200000>;
+-
+-		bman-portal@0 {
+-			compatible = "fsl,bman-portal-1.0.0", "fsl,bman-portal";
+-			reg = <0x0 0x4000>, <0x100000 0x1000>;
+-			interrupts = <105 2 0 0>;
+-		};
+-		bman-portal@4000 {
+-			compatible = "fsl,bman-portal-1.0.0", "fsl,bman-portal";
+-			reg = <0x4000 0x4000>, <0x101000 0x1000>;
+-			interrupts = <107 2 0 0>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/fsl/bman.txt b/Documentation/devicetree/bindings/soc/fsl/bman.txt
+deleted file mode 100644
+index 48eed140765b0..0000000000000
+--- a/Documentation/devicetree/bindings/soc/fsl/bman.txt
++++ /dev/null
+@@ -1,137 +0,0 @@
+-QorIQ DPAA Buffer Manager Device Tree Bindings
+-
+-Copyright (C) 2008 - 2014 Freescale Semiconductor Inc.
+-
+-CONTENTS
+-
+-	- BMan Node
+-	- BMan Private Memory Node
+-	- Example
+-
+-BMan Node
+-
+-The Buffer Manager is part of the Data-Path Acceleration Architecture (DPAA).
+-BMan supports hardware allocation and deallocation of buffers belonging to pools
+-originally created by software with configurable depletion thresholds. This
+-binding covers the CCSR space programming model
+-
+-PROPERTIES
+-
+-- compatible
+-	Usage:		Required
+-	Value type:	<stringlist>
+-	Definition:	Must include "fsl,bman"
+-			May include "fsl,<SoC>-bman"
+-
+-- reg
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Registers region within the CCSR address space
+-
+-The BMan revision information is located in the BMAN_IP_REV_1/2 registers which
+-are located at offsets 0xbf8 and 0xbfc
+-
+-- interrupts
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Standard property. The error interrupt
+-
+-- fsl,bman-portals
+-	Usage:		Required
+-	Value type:	<phandle>
+-	Definition:	Phandle to this BMan instance's portals
+-
+-- fsl,liodn
+-	Usage:		See pamu.txt
+-	Value type:	<prop-encoded-array>
+-	Definition:	PAMU property used for static LIODN assignment
+-
+-- fsl,iommu-parent
+-	Usage:		See pamu.txt
+-	Value type:	<phandle>
+-	Definition:	PAMU property used for dynamic LIODN assignment
+-
+-	For additional details about the PAMU/LIODN binding(s) see pamu.txt
+-
+-Devices connected to a BMan instance via Direct Connect Portals (DCP) must link
+-to the respective BMan instance
+-
+-- fsl,bman
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Description:	List of phandle and DCP index pairs, to the BMan instance
+-			to which this device is connected via the DCP
+-
+-BMan Private Memory Node
+-
+-BMan requires a contiguous range of physical memory used for the backing store
+-for BMan Free Buffer Proxy Records (FBPR). This memory is reserved/allocated as
+-a node under the /reserved-memory node.
+-
+-The BMan FBPR memory node must be named "bman-fbpr"
+-
+-PROPERTIES
+-
+-- compatible
+-	Usage:		required
+-	Value type:	<stringlist>
+-	Definition:	PPC platforms: Must include "fsl,bman-fbpr"
+-			ARM platforms: Must include "shared-dma-pool"
+-				       as well as the "no-map" property
+-
+-The following constraints are relevant to the FBPR private memory:
+-	- The size must be 2^(size + 1), with size = 11..33. That is 4 KiB to
+-	  16 GiB
+-	- The alignment must be a muliptle of the memory size
+-
+-The size of the FBPR must be chosen by observing the hardware features configured
+-via the Reset Configuration Word (RCW) and that are relevant to a specific board
+-(e.g. number of MAC(s) pinned-out, number of offline/host command FMan ports,
+-etc.). The size configured in the DT must reflect the hardware capabilities and
+-not the specific needs of an application
+-
+-For additional details about reserved memory regions see reserved-memory.txt
+-
+-EXAMPLE
+-
+-The example below shows a BMan FBPR dynamic allocation memory node
+-
+-	reserved-memory {
+-		#address-cells = <2>;
+-		#size-cells = <2>;
+-		ranges;
+-
+-		bman_fbpr: bman-fbpr {
+-			compatible = "shared-mem-pool";
+-			size = <0 0x1000000>;
+-			alignment = <0 0x1000000>;
+-			no-map;
+-		};
+-	};
+-
+-The example below shows a (P4080) BMan CCSR-space node
+-
+-	bportals: bman-portals@ff4000000 {
+-		...
+-	};
+-
+-	crypto@300000 {
+-		...
+-		fsl,bman = <&bman, 2>;
+-		...
+-	};
+-
+-	bman: bman@31a000 {
+-		compatible = "fsl,bman";
+-		reg = <0x31a000 0x1000>;
+-		interrupts = <16 2 1 2>;
+-		fsl,liodn = <0x17>;
+-		fsl,bman-portals = <&bportals>;
+-		memory-region = <&bman_fbpr>;
+-	};
+-
+-	fman@400000 {
+-		...
+-		fsl,bman = <&bman, 0>;
+-		...
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,bman-portal.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,bman-portal.yaml
 new file mode 100644
-index 000000000000..27ea9f0bf870
+index 0000000000000..8dce75bebff9b
 --- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-ms013g.dts
-@@ -0,0 +1,386 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+
-+/dts-v1/;
-+
-+#include "qcom-msm8226.dtsi"
-+#include "pm8226.dtsi"
-+
-+/delete-node/ &smem_region;
-+
-+/ {
-+=09model =3D "Samsung Galaxy Grand 2";
-+=09compatible =3D "samsung,ms013g", "qcom,msm8226";
-+=09chassis-type =3D "handset";
-+
-+=09aliases {
-+=09=09mmc0 =3D &sdhc_1; /* SDC1 eMMC slot */
-+=09=09mmc1 =3D &sdhc_2; /* SDC2 SD card slot */
-+=09=09serial0 =3D &blsp1_uart3;
-+=09};
-+
-+=09chosen {
-+=09=09stdout-path =3D "serial0:115200n8";
-+=09};
-+
-+=09reserved-memory {
-+=09=09smem_region: smem@fa00000 {
-+=09=09=09reg =3D <0x0fa00000 0x100000>;
-+=09=09=09no-map;
-+=09=09};
-+=09};
-+
-+=09gpio-hall-sensor {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-0 =3D <&gpio_hall_sensor_default>;
-+=09=09pinctrl-names =3D "default";
-+
-+=09=09label =3D "GPIO Hall Effect Sensor";
-+
-+=09=09event-hall-sensor {
-+=09=09=09label =3D "Hall Effect Sensor";
-+=09=09=09gpios =3D <&tlmm 50 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,input-type =3D <EV_SW>;
-+=09=09=09linux,code =3D <SW_LID>;
-+=09=09=09linux,can-disable;
-+=09=09};
-+=09};
-+
-+=09gpio-keys {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-0 =3D <&gpio_keys_default>;
-+=09=09pinctrl-names =3D "default";
-+
-+=09=09label =3D "GPIO Buttons";
-+
-+=09=09button-volume-up {
-+=09=09=09label =3D "Volume Up";
-+=09=09=09gpios =3D <&tlmm 106 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,code =3D <KEY_VOLUMEUP>;
-+=09=09};
-+
-+=09=09button-volume-down {
-+=09=09=09label =3D "Volume Down";
-+=09=09=09gpios =3D <&tlmm 107 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,code =3D <KEY_VOLUMEDOWN>;
-+=09=09};
-+
-+=09=09button-home {
-+=09=09=09label =3D "Home Key";
-+=09=09=09gpios =3D <&tlmm 108 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,code =3D <KEY_HOMEPAGE>;
-+=09=09};
-+=09};
-+
-+=09haptic {
-+=09=09compatible =3D "regulator-haptic";
-+=09=09haptic-supply =3D <&reg_motor_vdd>;
-+=09=09min-microvolt =3D <3300000>;
-+=09=09max-microvolt =3D <3300000>;
-+=09};
-+
-+=09reg_motor_vdd: regulator-motor-vdd {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09regulator-name =3D "motor_vdd";
-+=09=09regulator-min-microvolt =3D <3300000>;
-+=09=09regulator-max-microvolt =3D <3300000>;
-+
-+=09=09gpio =3D <&tlmm 111 GPIO_ACTIVE_HIGH>;
-+=09=09enable-active-high;
-+
-+=09=09pinctrl-0 =3D <&motor_en_default>;
-+=09=09pinctrl-names =3D "default";
-+=09};
-+
-+=09reg_vdd_tsp_a: regulator-vdd-tsp-a {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09regulator-name =3D "tsp_3p3v";
-+=09=09regulator-min-microvolt =3D <3300000>;
-+=09=09regulator-max-microvolt =3D <3300000>;
-+
-+=09=09gpio =3D <&tlmm 31 GPIO_ACTIVE_HIGH>;
-+=09=09enable-active-high;
-+
-+=09=09pinctrl-0 =3D <&tsp_en_default>;
-+=09=09pinctrl-names =3D "default";
-+=09};
-+};
-+
-+&blsp1_i2c2 {
-+=09status =3D "okay";
-+
-+=09accelerometer@18 {
-+=09=09compatible =3D "bosch,bma255";
-+=09=09reg =3D <0x18>;
-+=09=09interrupts-extended =3D <&tlmm 64 IRQ_TYPE_EDGE_RISING>;
-+
-+=09=09vdd-supply =3D <&pm8226_l19>;
-+=09=09vddio-supply =3D <&pm8226_lvs1>;
-+
-+=09=09pinctrl-0 =3D <&accel_int_default>;
-+=09=09pinctrl-names =3D "default";
-+
-+=09=09mount-matrix =3D "0", "1", "0",
-+=09=09=09       "-1", "0", "0",
-+=09=09=09       "0", "0", "-1";
-+=09};
-+};
-+
-+&blsp1_i2c5 {
-+=09status =3D "okay";
-+
-+=09touchscreen@20 {
-+=09=09compatible =3D "zinitix,bt541";
-+
-+=09=09reg =3D <0x20>;
-+=09=09interrupts-extended =3D <&tlmm 17 IRQ_TYPE_EDGE_FALLING>;
-+
-+=09=09touchscreen-size-x =3D <720>;
-+=09=09touchscreen-size-y =3D <1280>;
-+
-+=09=09vcca-supply =3D <&reg_vdd_tsp_a>;
-+=09=09vdd-supply =3D <&pm8226_lvs1>;
-+
-+=09=09pinctrl-0 =3D <&tsp_int_default>;
-+=09=09pinctrl-names =3D "default";
-+=09};
-+};
-+
-+&blsp1_uart3 {
-+=09status =3D "okay";
-+};
-+
-+&rpm_requests {
-+=09regulators {
-+=09=09compatible =3D "qcom,rpm-pm8226-regulators";
-+
-+=09=09pm8226_s3: s3 {
-+=09=09=09regulator-min-microvolt =3D <1200000>;
-+=09=09=09regulator-max-microvolt =3D <1300000>;
-+=09=09};
-+
-+=09=09pm8226_s4: s4 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <2200000>;
-+=09=09};
-+
-+=09=09pm8226_s5: s5 {
-+=09=09=09regulator-min-microvolt =3D <1150000>;
-+=09=09=09regulator-max-microvolt =3D <1150000>;
-+=09=09};
-+
-+=09=09pm8226_l1: l1 {
-+=09=09=09regulator-min-microvolt =3D <1225000>;
-+=09=09=09regulator-max-microvolt =3D <1225000>;
-+=09=09};
-+
-+=09=09pm8226_l2: l2 {
-+=09=09=09regulator-min-microvolt =3D <1200000>;
-+=09=09=09regulator-max-microvolt =3D <1200000>;
-+=09=09};
-+
-+=09=09pm8226_l3: l3 {
-+=09=09=09regulator-min-microvolt =3D <750000>;
-+=09=09=09regulator-max-microvolt =3D <1350000>;
-+=09=09=09regulator-always-on;
-+=09=09};
-+
-+=09=09pm8226_l4: l4 {
-+=09=09=09regulator-min-microvolt =3D <1200000>;
-+=09=09=09regulator-max-microvolt =3D <1200000>;
-+=09=09};
-+
-+=09=09pm8226_l5: l5 {
-+=09=09=09regulator-min-microvolt =3D <1200000>;
-+=09=09=09regulator-max-microvolt =3D <1200000>;
-+=09=09};
-+
-+=09=09pm8226_l6: l6 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09=09regulator-always-on;
-+=09=09};
-+
-+=09=09pm8226_l7: l7 {
-+=09=09=09regulator-min-microvolt =3D <1850000>;
-+=09=09=09regulator-max-microvolt =3D <1850000>;
-+=09=09};
-+
-+=09=09pm8226_l8: l8 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09=09regulator-always-on;
-+=09=09};
-+
-+=09=09pm8226_l9: l9 {
-+=09=09=09regulator-min-microvolt =3D <2050000>;
-+=09=09=09regulator-max-microvolt =3D <2050000>;
-+=09=09};
-+
-+=09=09pm8226_l10: l10 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+
-+=09=09pm8226_l12: l12 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+
-+=09=09pm8226_l14: l14 {
-+=09=09=09regulator-min-microvolt =3D <2750000>;
-+=09=09=09regulator-max-microvolt =3D <2750000>;
-+=09=09};
-+
-+=09=09pm8226_l15: l15 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <3300000>;
-+=09=09};
-+
-+=09=09pm8226_l16: l16 {
-+=09=09=09regulator-min-microvolt =3D <3000000>;
-+=09=09=09regulator-max-microvolt =3D <3350000>;
-+=09=09};
-+
-+=09=09pm8226_l17: l17 {
-+=09=09=09regulator-min-microvolt =3D <2950000>;
-+=09=09=09regulator-max-microvolt =3D <2950000>;
-+
-+=09=09=09regulator-system-load =3D <200000>;
-+=09=09=09regulator-allow-set-load;
-+=09=09=09regulator-always-on;
-+=09=09};
-+
-+=09=09pm8226_l18: l18 {
-+=09=09=09regulator-min-microvolt =3D <2950000>;
-+=09=09=09regulator-max-microvolt =3D <2950000>;
-+=09=09};
-+
-+=09=09pm8226_l19: l19 {
-+=09=09=09regulator-min-microvolt =3D <2850000>;
-+=09=09=09regulator-max-microvolt =3D <3000000>;
-+=09=09};
-+
-+=09=09pm8226_l20: l20 {
-+=09=09=09regulator-min-microvolt =3D <3075000>;
-+=09=09=09regulator-max-microvolt =3D <3075000>;
-+=09=09};
-+
-+=09=09pm8226_l21: l21 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <2950000>;
-+=09=09};
-+
-+=09=09pm8226_l22: l22 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <3000000>;
-+=09=09};
-+
-+=09=09pm8226_l23: l23 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <3300000>;
-+=09=09};
-+
-+=09=09pm8226_l24: l24 {
-+=09=09=09regulator-min-microvolt =3D <1300000>;
-+=09=09=09regulator-max-microvolt =3D <1350000>;
-+=09=09};
-+
-+=09=09pm8226_l25: l25 {
-+=09=09=09regulator-min-microvolt =3D <1775000>;
-+=09=09=09regulator-max-microvolt =3D <2125000>;
-+=09=09};
-+
-+=09=09pm8226_l26: l26 {
-+=09=09=09regulator-min-microvolt =3D <1225000>;
-+=09=09=09regulator-max-microvolt =3D <1300000>;
-+=09=09};
-+
-+=09=09pm8226_l27: l27 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+
-+=09=09pm8226_l28: l28 {
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <2950000>;
-+=09=09};
-+
-+=09=09pm8226_lvs1: lvs1 {};
-+=09};
-+};
-+
-+&sdhc_1 {
-+=09vmmc-supply =3D <&pm8226_l17>;
-+=09vqmmc-supply =3D <&pm8226_l6>;
-+
-+=09bus-width =3D <8>;
-+=09non-removable;
-+
-+=09status =3D "okay";
-+};
-+
-+&sdhc_2 {
-+=09vmmc-supply =3D <&pm8226_l18>;
-+=09vqmmc-supply =3D <&pm8226_l21>;
-+
-+=09bus-width =3D <4>;
-+=09cd-gpios =3D <&tlmm 38 GPIO_ACTIVE_LOW>;
-+
-+=09pinctrl-0 =3D <&sdhc2_default_state &sdhc2_cd_default>;
-+=09pinctrl-names =3D "default";
-+
-+=09status =3D "okay";
-+};
-+
-+&tlmm {
-+=09accel_int_default: accel-int-default-state {
-+=09=09pins =3D "gpio64";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+=09=09pins =3D "gpio50";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-pull-up;
-+=09};
-+
-+=09gpio_keys_default: gpio-keys-default-state {
-+=09=09pins =3D "gpio106", "gpio107", "gpio108";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-pull-up;
-+=09};
-+
-+=09motor_en_default: motor-en-default-state {
-+=09=09pins =3D "gpio111";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09sdhc2_cd_default: sdhc2-cd-default-state {
-+=09=09pins =3D "gpio38";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09tsp_en_default: tsp-en-default-state {
-+=09=09pins =3D "gpio31";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09tsp_int_default: tsp-int-default-state {
-+=09=09pins =3D "gpio17";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+};
---=20
-2.39.2
-
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,bman-portal.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,bman-portal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QorIQ DPAA Queue Manager Portals
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description:
++  QorIQ DPAA Buffer Manager Portal
++
++  Portals are memory mapped interfaces to BMan that allow low-latency, lock-less
++  interaction by software running on processor cores, accelerators and network
++  interfaces with the BMan
++
++properties:
++  compatible:
++    oneOf:
++      - const: fsl,bman-portal
++      - items:
++          - enum:
++              - fsl,bman-portal-1.0.0
++              - fsl,ls1043a-bmap-portal
++              - fsl,ls1046a-bmap-portal
++          - const: fsl,bman-portal
++  reg:
++    items:
++      - description: the cache-enabled region of the portal
++      - description: the cache-inhibited region of the portal
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    bman-portal@0 {
++        compatible = "fsl,bman-portal-1.0.0", "fsl,bman-portal";
++        reg = <0x0 0x4000>, <0x100000 0x1000>;
++        interrupts = <105 IRQ_TYPE_EDGE_FALLING 0 0>;
++    };
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,bman.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,bman.yaml
+new file mode 100644
+index 0000000000000..e6f468264b8d4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,bman.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,bman.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QorIQ DPAA Buffer Manager
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description:
++  The Buffer Manager is part of the Data-Path Acceleration Architecture (DPAA).
++  BMan supports hardware allocation and deallocation of buffers belonging to
++  pools originally created by software with configurable depletion thresholds.
++  This binding covers the CCSR space programming model
++
++properties:
++  compatible:
++    oneOf:
++      - const: fsl,bman
++      - items:
++          - enum:
++              - fsl,ls1043a-bman
++              - fsl,ls1046a-bman
++          - const: fsl,bman
++
++  reg:
++    items:
++      - description: |
++          Registers region within the CCSR address space
++
++          The BMan revision information is located in the BMAN_IP_REV_1/2
++          registers which are located at offsets 0xbf8 and 0xbfc
++
++  interrupts:
++    items:
++      - description: The error interrupt
++
++  memory-region:
++    minItems: 1
++    maxItems: 2
++    description:
++      List of phandles referencing the BMan private memory
++      nodes (described below). The bman-fqd node must be
++      first followed by bman-pfdr node. Only used on ARM
++
++      Devices connected to a BMan instance via Direct Connect Portals (DCP) must link
++      to the respective BMan instance
++
++  fsl,bman-portals:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: ref fsl,bman-port.yaml
++
++  fsl,liodn:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      See pamu.txt, PAMU property used for static LIODN assignment
++
++  fsl,iommu-parent:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      See pamu.txt, PAMU property used for dynamic LIODN assignment
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    bman@31a000 {
++        compatible = "fsl,bman";
++        reg = <0x31a000 0x1000>;
++        interrupts = <16 IRQ_TYPE_EDGE_FALLING 1 2>;
++        fsl,liodn = <0x17>;
++        fsl,bman-portals = <&bportals>;
++        memory-region = <&bman_fbpr>;
++    };
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
+new file mode 100644
+index 0000000000000..de0b4ae740ff2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,qman-fqd.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QMan Private Memory Nodes
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description: |
++  QMan requires two contiguous range of physical memory used for the backing store
++  for QMan Frame Queue Descriptor (FQD) and Packed Frame Descriptor Record (PFDR).
++  This memory is reserved/allocated as a node under the /reserved-memory node.
++
++  BMan requires a contiguous range of physical memory used for the backing store
++  for BMan Free Buffer Proxy Records (FBPR). This memory is reserved/allocated as
++  a node under the /reserved-memory node.
++
++  The QMan FQD memory node must be named "qman-fqd"
++  The QMan PFDR memory node must be named "qman-pfdr"
++  The BMan FBPR memory node must be named "bman-fbpr"
++
++  The following constraints are relevant to the FQD and PFDR private memory:
++    - The size must be 2^(size + 1), with size = 11..29. That is 4 KiB to
++      1 GiB
++    - The alignment must be a muliptle of the memory size
++
++  The size of the FQD and PFDP must be chosen by observing the hardware features
++  configured via the Reset Configuration Word (RCW) and that are relevant to a
++  specific board (e.g. number of MAC(s) pinned-out, number of offline/host command
++  FMan ports, etc.). The size configured in the DT must reflect the hardware
++  capabilities and not the specific needs of an application
++
++  For additional details about reserved memory regions see
++  reserved-memory/reserved-memory.yaml in dtschema project.
++
++properties:
++  $nodename:
++    pattern: '^(qman-fqd|qman-pfdr|bman-fbpr)+$'
++
++  compatible:
++    enum:
++      - fsl,qman-fqd
++      - fsl,qman-pfdr
++      - fsl,bman-fbpr
++
++required:
++  - compatible
++
++allOf:
++  - $ref: reserved-memory.yaml
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    reserved-memory {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        qman-fqd {
++            compatible = "shared-dma-pool";
++            size = <0 0x400000>;
++            alignment = <0 0x400000>;
++            no-map;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,qman-portal.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,qman-portal.yaml
+new file mode 100644
+index 0000000000000..17016184143f2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,qman-portal.yaml
+@@ -0,0 +1,110 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,qman-portal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QorIQ DPAA Queue Manager Portals
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description:
++  Portals are memory mapped interfaces to QMan that allow low-latency, lock-less
++  interaction by software running on processor cores, accelerators and network
++  interfaces with the QMan
++
++properties:
++  compatible:
++    oneOf:
++      - const: fsl,qman-portal
++      - items:
++          - enum:
++              - fsl,ls1043-qman-portal
++              - fsl,ls1046-qman-portal
++              - fsl,qman-portal-1.2.0
++          - const: fsl,qman-portal
++
++  reg:
++    items:
++      - description: the cache-enabled region of the portal
++      - description: the cache-inhibited region of the portal
++
++  interrupts:
++    maxItems: 1
++
++  fsl,liodn:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: See pamu.txt. Two LIODN(s). DQRR LIODN (DLIODN) and Frame LIODN
++      (FLIODN)
++
++  fsl,iommu-parent:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: See pamu.txt.
++
++  fsl,qman-channel-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: qman channel id.
++
++  cell-index:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The hardware index of the channel. This can also be
++      determined by dividing any of the channel's 8 work queue
++      IDs by 8
++
++      In addition to these properties the qman-portals should have sub-nodes to
++      represent the HW devices/portals that are connected to the software portal
++      described here
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++patternProperties:
++  '^(fman0|fman1|pme|crypto)+$':
++    type: object
++    properties:
++      fsl,liodn:
++        description: See pamu.txt, PAMU property used for static LIODN assignment
++
++      fsl,iommu-parent:
++        description: See pamu.txt, PAMU property used for dynamic LIODN assignment
++
++      dev-handle:
++        $ref: /schemas/types.yaml#/definitions/phandle
++        description:
++          The phandle to the particular hardware device that this
++          portal is connected to.
++
++    additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    qman-portal@0 {
++        compatible = "fsl,qman-portal-1.2.0", "fsl,qman-portal";
++        reg = <0 0x4000>, <0x100000 0x1000>;
++        interrupts = <104 IRQ_TYPE_EDGE_FALLING 0 0>;
++        fsl,liodn = <1 2>;
++        fsl,qman-channel-id = <0>;
++
++        fman0 {
++            fsl,liodn = <0x21>;
++            dev-handle = <&fman0>;
++        };
++
++        fman1 {
++            fsl,liodn = <0xa1>;
++            dev-handle = <&fman1>;
++        };
++
++        crypto {
++            fsl,liodn = <0x41 0x66>;
++            dev-handle = <&crypto>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,qman.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,qman.yaml
+new file mode 100644
+index 0000000000000..501f06e190c42
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,qman.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/fsl/fsl,qman.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QorIQ DPAA Queue Manager
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description:
++  The Queue Manager is part of the Data-Path Acceleration Architecture (DPAA). QMan
++  supports queuing and QoS scheduling of frames to CPUs, network interfaces and
++  DPAA logic modules, maintains packet ordering within flows. Besides providing
++  flow-level queuing, is also responsible for congestion management functions such
++  as RED/WRED, congestion notifications and tail discards. This binding covers the
++  CCSR space programming model
++
++properties:
++  compatible:
++    oneOf:
++      - const: fsl,qman
++      - items:
++          - enum:
++              - fsl,ls1043a-qman
++              - fsl,ls1046a-qman
++          - const: fsl,qman
++  reg:
++    items:
++      - description: |
++          Registers region within the CCSR address space
++
++          The QMan revision information is located in the QMAN_IP_REV_1/2
++          registers which are located at offsets 0xbf8 and 0xbfc
++
++  interrupts:
++    items:
++      - description: The error interrupt
++
++  fsl,qman-portals:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: ref fsl,qman-port.yaml
++
++  fsl,liodn:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      See pamu.txt, PAMU property used for static LIODN assignment
++
++  fsl,iommu-parent:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      See pamu.txt, PAMU property used for dynamic LIODN assignment
++
++  clocks:
++    maxItems: 1
++    description:
++      Reference input clock. Its frequency is half of the platform clock
++
++  memory-region:
++    maxItems: 2
++    description:
++      List of phandles referencing the QMan private memory nodes (described
++      below). The qman-fqd node must be first followed by qman-pfdr node.
++      Only used on ARM Devices connected to a QMan instance via Direct Connect
++      Portals (DCP) must link to the respective QMan instance.
++
++  fsl,qman:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      List of phandle and DCP index pairs, to the QMan instance
++      to which this device is connected via the DCP
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    qman: qman@318000 {
++        compatible = "fsl,qman";
++        reg = <0x318000 0x1000>;
++        interrupts = <16 IRQ_TYPE_EDGE_FALLING 1 3>;
++        fsl,liodn = <0x16>;
++        fsl,qman-portals = <&qportals>;
++        memory-region = <&qman_fqd &qman_pfdr>;
++        clocks = <&platform_pll 1>;
++    };
+diff --git a/Documentation/devicetree/bindings/soc/fsl/qman-portals.txt b/Documentation/devicetree/bindings/soc/fsl/qman-portals.txt
+deleted file mode 100644
+index 5a34f3ab7bea3..0000000000000
+--- a/Documentation/devicetree/bindings/soc/fsl/qman-portals.txt
++++ /dev/null
+@@ -1,134 +0,0 @@
+-QorIQ DPAA Queue Manager Portals Device Tree Binding
+-
+-Copyright (C) 2008 - 2014 Freescale Semiconductor Inc.
+-
+-CONTENTS
+-
+-	- QMan Portal
+-	- Example
+-
+-QMan Portal Node
+-
+-Portals are memory mapped interfaces to QMan that allow low-latency, lock-less
+-interaction by software running on processor cores, accelerators and network
+-interfaces with the QMan
+-
+-PROPERTIES
+-
+-- compatible
+-	Usage:		Required
+-	Value type:	<stringlist>
+-	Definition:	Must include "fsl,qman-portal-<hardware revision>"
+-			May include "fsl,<SoC>-qman-portal" or "fsl,qman-portal"
+-
+-- reg
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Two regions. The first is the cache-enabled region of
+-			the portal. The second is the cache-inhibited region of
+-			the portal
+-
+-- interrupts
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Standard property
+-
+-- fsl,liodn
+-	Usage:		See pamu.txt
+-	Value type:	<prop-encoded-array>
+-	Definition:	Two LIODN(s). DQRR LIODN (DLIODN) and Frame LIODN
+-			(FLIODN)
+-
+-- fsl,iommu-parent
+-	Usage:		See pamu.txt
+-	Value type:	<phandle>
+-	Definition:	PAMU property used for dynamic LIODN assignment
+-
+-	For additional details about the PAMU/LIODN binding(s) see pamu.txt
+-
+-- cell-index
+-	Usage:		Required
+-	Value type:	<u32>
+-	Definition:	The hardware index of the channel. This can also be
+-			determined by dividing any of the channel's 8 work queue
+-			IDs by 8
+-
+-In addition to these properties the qman-portals should have sub-nodes to
+-represent the HW devices/portals that are connected to the software portal
+-described here
+-
+-The currently supported sub-nodes are:
+-	* fman0
+-	* fman1
+-	* pme
+-	* crypto
+-
+-These subnodes should have the following properties:
+-
+-- fsl,liodn
+-	Usage:		See pamu.txt
+-	Value type:	<prop-encoded-array>
+-	Definition:	PAMU property used for static LIODN assignment
+-
+-- fsl,iommu-parent
+-	Usage:		See pamu.txt
+-	Value type:	<phandle>
+-	Definition:	PAMU property used for dynamic LIODN assignment
+-
+-- dev-handle
+-	Usage:		Required
+-	Value type:	<phandle>
+-	Definition:	The phandle to the particular hardware device that this
+-			portal is connected to.
+-
+-EXAMPLE
+-
+-The example below shows a (P4080) QMan portals container/bus node with two portals
+-
+-	qman-portals@ff4200000 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		compatible = "simple-bus";
+-		ranges = <0 0xf 0xf4200000 0x200000>;
+-
+-		qman-portal@0 {
+-			compatible = "fsl,qman-portal-1.2.0", "fsl,qman-portal";
+-			reg = <0 0x4000>, <0x100000 0x1000>;
+-			interrupts = <104 2 0 0>;
+-			fsl,liodn = <1 2>;
+-			fsl,qman-channel-id = <0>;
+-
+-			fman0 {
+-				fsl,liodn = <0x21>;
+-				dev-handle = <&fman0>;
+-			};
+-			fman1 {
+-				fsl,liodn = <0xa1>;
+-				dev-handle = <&fman1>;
+-			};
+-			crypto {
+-				fsl,liodn = <0x41 0x66>;
+-				dev-handle = <&crypto>;
+-			};
+-		};
+-		qman-portal@4000 {
+-			compatible = "fsl,qman-portal-1.2.0", "fsl,qman-portal";
+-			reg = <0x4000 0x4000>, <0x101000 0x1000>;
+-			interrupts = <106 2 0 0>;
+-			fsl,liodn = <3 4>;
+-			cell-index = <1>;
+-
+-			fman0 {
+-				fsl,liodn = <0x22>;
+-				dev-handle = <&fman0>;
+-			};
+-			fman1 {
+-				fsl,liodn = <0xa2>;
+-				dev-handle = <&fman1>;
+-			};
+-			crypto {
+-				fsl,liodn = <0x42 0x67>;
+-				dev-handle = <&crypto>;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/fsl/qman.txt b/Documentation/devicetree/bindings/soc/fsl/qman.txt
+deleted file mode 100644
+index ee96afd2af721..0000000000000
+--- a/Documentation/devicetree/bindings/soc/fsl/qman.txt
++++ /dev/null
+@@ -1,187 +0,0 @@
+-QorIQ DPAA Queue Manager Device Tree Binding
+-
+-Copyright (C) 2008 - 2014 Freescale Semiconductor Inc.
+-
+-CONTENTS
+-
+-	- QMan Node
+-	- QMan Private Memory Nodes
+-	- Example
+-
+-QMan Node
+-
+-The Queue Manager is part of the Data-Path Acceleration Architecture (DPAA). QMan
+-supports queuing and QoS scheduling of frames to CPUs, network interfaces and
+-DPAA logic modules, maintains packet ordering within flows. Besides providing
+-flow-level queuing, is also responsible for congestion management functions such
+-as RED/WRED, congestion notifications and tail discards. This binding covers the
+-CCSR space programming model
+-
+-PROPERTIES
+-
+-- compatible
+-	Usage:		Required
+-	Value type:	<stringlist>
+-	Definition:	Must include "fsl,qman"
+-			May include "fsl,<SoC>-qman"
+-
+-- reg
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Registers region within the CCSR address space
+-
+-The QMan revision information is located in the QMAN_IP_REV_1/2 registers which
+-are located at offsets 0xbf8 and 0xbfc
+-
+-- interrupts
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Definition:	Standard property. The error interrupt
+-
+-- fsl,qman-portals
+-	Usage:		Required
+-	Value type:	<phandle>
+-	Definition:	Phandle to this QMan instance's portals
+-
+-- fsl,liodn
+-	Usage:		See pamu.txt
+-	Value type:	<prop-encoded-array>
+-	Definition:	PAMU property used for static LIODN assignment
+-
+-- fsl,iommu-parent
+-	Usage:		See pamu.txt
+-	Value type:	<phandle>
+-	Definition:	PAMU property used for dynamic LIODN assignment
+-
+-	For additional details about the PAMU/LIODN binding(s) see pamu.txt
+-
+-- clocks
+-	Usage:		See clock-bindings.txt and qoriq-clock.txt
+-	Value type:	<prop-encoded-array>
+-	Definition:	Reference input clock. Its frequency is half of the
+-			platform clock
+-- memory-regions
+-	Usage:		Required for ARM
+-	Value type:	<phandle array>
+-	Definition:	List of phandles referencing the QMan private memory
+-			nodes (described below). The qman-fqd node must be
+-			first followed by qman-pfdr node. Only used on ARM
+-
+-Devices connected to a QMan instance via Direct Connect Portals (DCP) must link
+-to the respective QMan instance
+-
+-- fsl,qman
+-	Usage:		Required
+-	Value type:	<prop-encoded-array>
+-	Description:	List of phandle and DCP index pairs, to the QMan instance
+-			to which this device is connected via the DCP
+-
+-QMan Private Memory Nodes
+-
+-QMan requires two contiguous range of physical memory used for the backing store
+-for QMan Frame Queue Descriptor (FQD) and Packed Frame Descriptor Record (PFDR).
+-This memory is reserved/allocated as a node under the /reserved-memory node.
+-
+-For additional details about reserved memory regions see reserved-memory.txt
+-
+-The QMan FQD memory node must be named "qman-fqd"
+-
+-PROPERTIES
+-
+-- compatible
+-	Usage:		required
+-	Value type:	<stringlist>
+-	Definition:	PPC platforms: Must include "fsl,qman-fqd"
+-			ARM platforms: Must include "shared-dma-pool"
+-				       as well as the "no-map" property
+-
+-The QMan PFDR memory node must be named "qman-pfdr"
+-
+-PROPERTIES
+-
+-- compatible
+-	Usage:		required
+-	Value type:	<stringlist>
+-	Definition:	PPC platforms: Must include "fsl,qman-pfdr"
+-			ARM platforms: Must include "shared-dma-pool"
+-				       as well as the "no-map" property
+-
+-The following constraints are relevant to the FQD and PFDR private memory:
+-	- The size must be 2^(size + 1), with size = 11..29. That is 4 KiB to
+-	  1 GiB
+-	- The alignment must be a muliptle of the memory size
+-
+-The size of the FQD and PFDP must be chosen by observing the hardware features
+-configured via the Reset Configuration Word (RCW) and that are relevant to a
+-specific board (e.g. number of MAC(s) pinned-out, number of offline/host command
+-FMan ports, etc.). The size configured in the DT must reflect the hardware
+-capabilities and not the specific needs of an application
+-
+-For additional details about reserved memory regions see reserved-memory.txt
+-
+-EXAMPLE
+-
+-The example below shows a QMan FQD and a PFDR dynamic allocation memory nodes
+-
+-	reserved-memory {
+-		#address-cells = <2>;
+-		#size-cells = <2>;
+-		ranges;
+-
+-		qman_fqd: qman-fqd {
+-			compatible = "shared-dma-pool";
+-			size = <0 0x400000>;
+-			alignment = <0 0x400000>;
+-			no-map;
+-		};
+-		qman_pfdr: qman-pfdr {
+-			compatible = "shared-dma-pool";
+-			size = <0 0x2000000>;
+-			alignment = <0 0x2000000>;
+-			no-map;
+-		};
+-	};
+-
+-The example below shows a (P4080) QMan CCSR-space node
+-
+-	qportals: qman-portals@ff4200000 {
+-		...
+-	};
+-
+-	clockgen: global-utilities@e1000 {
+-		...
+-		sysclk: sysclk {
+-			...
+-		};
+-		...
+-		platform_pll: platform-pll@c00 {
+-			#clock-cells = <1>;
+-			reg = <0xc00 0x4>;
+-			compatible = "fsl,qoriq-platform-pll-1.0";
+-			clocks = <&sysclk>;
+-			clock-output-names = "platform-pll", "platform-pll-div2";
+-		};
+-		...
+-	};
+-
+-	crypto@300000 {
+-		...
+-		fsl,qman = <&qman, 2>;
+-		...
+-	};
+-
+-	qman: qman@318000 {
+-		compatible = "fsl,qman";
+-		reg = <0x318000 0x1000>;
+-		interrupts = <16 2 1 3>
+-		fsl,liodn = <0x16>;
+-		fsl,qman-portals = <&qportals>;
+-		memory-region = <&qman_fqd &qman_pfdr>;
+-		clocks = <&platform_pll 1>;
+-	};
+-
+-	fman@400000 {
+-		...
+-		fsl,qman = <&qman, 0>;
+-		...
+-	};
+-- 
+2.34.1
 
 
