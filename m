@@ -1,114 +1,95 @@
-Return-Path: <devicetree+bounces-80427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A4E918E9E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:33:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BD9918EAD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:39:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ABB5B20BFE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:33:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0FF1282661
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5FF190072;
-	Wed, 26 Jun 2024 18:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65A619067D;
+	Wed, 26 Jun 2024 18:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LE1p9Ura"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FhLKg8hG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E514B6E611;
-	Wed, 26 Jun 2024 18:33:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780B719005C;
+	Wed, 26 Jun 2024 18:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719426816; cv=none; b=rNobE/ucDlaplC6JfWDaRW00fRICusqHOPKBHC6GynEPhMVraTZYI4jaD0ZP2akpHookju05YF085XEH7xdnnBQwh8Eecy5G+xbnlndjrJmAWcH2dRHRHbP/PrSNn32wKqk/2aFGjuR5zFPeZPWMJK+fUN7JWPeHr11Wdag6/rM=
+	t=1719427141; cv=none; b=M4PCa3rvPZVlOSsYdpD6DRqwZnVzFstH1LxHPArrvoZX4MpIq0u2juRJr37PPgolLnA5URlFXMwa+AlCDW1z5CB8/8NcLtzhuhItYv9+0Ny2Hs9fcxW0iN5dLgrx1zQrurM7wn9m/p2pg6SJvHXRxTgKkv//ML2xMD4ilxn2qxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719426816; c=relaxed/simple;
-	bh=o09GXnpjsFOG/B4MyelvtaeHS7etd7sZdVKlPp3iYpM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D9C4gstL6ZWzMKH05nmKFbele3yM2j+OGOFAd2i8TPxwsFhaqi3b7UMwcHGy1YmmBXMb9b/ao80w7S8bCOUXUUFtEdOMLLh/B9kZjNjKescfzeXTPmeEoCgX2uTIOZc+6gWD2jlcCHfNcYS8NGZo9fmy8/ftYKNTEFBISbt3+wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LE1p9Ura; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA98AC116B1;
-	Wed, 26 Jun 2024 18:33:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719426815;
-	bh=o09GXnpjsFOG/B4MyelvtaeHS7etd7sZdVKlPp3iYpM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LE1p9UraOdoM7EHN0tXCR28oH36+Qt1/pOZ2UZf0JjjbXNwdUJBULMHzfU6+hmNrF
-	 ZnJAfnl+GhbGQr0MXhq5ZxzLHYQwZucSCbUnilySKRfElv8OMFM1r3Ija+BG8xpDoz
-	 QK9dtLSiJAExR7y0mr11lzBkviZC8SESK15YrBQ1eR5SJ5giM4CEjVUAaTwuwLj3nH
-	 mKwg93MYBWizB5qkF7eI/14Rgvj9jAjzKmbL0IeLxUYXqtPbBuT+KNurAIvUiq2/1f
-	 9FRzLkAubcaMbI0sMSApf7FJ/k/Bw+EtFdnzpoLDC8H2SOH3XH9IfpjniKWyajEaT5
-	 SDyL8QUS+M4Ew==
-Date: Wed, 26 Jun 2024 19:33:29 +0100
-From: Mark Brown <broonie@kernel.org>
-To: James Ogletree <James.Ogletree@cirrus.com>
-Cc: James Ogletree <jogletre@opensource.cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Jeff LaBundy <jeff@labundy.com>,
-	"patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	David Rhodes <drhodes@opensource.cirrus.com>
-Subject: Re: [PATCH v11 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
-Message-ID: <d48eb42d-69a9-4a17-8b18-0294cb9fa9c7@sirena.org.uk>
-References: <20240605135249.361082-1-jogletre@opensource.cirrus.com>
- <20240605135249.361082-6-jogletre@opensource.cirrus.com>
- <a85e09d6-d8eb-4c60-ae83-b4dbf875a926@sirena.org.uk>
- <D3F6F68D-5921-49A3-AFC3-E280597E7DE3@cirrus.com>
+	s=arc-20240116; t=1719427141; c=relaxed/simple;
+	bh=8RC4RoOdepfw+QoKH1SDT3cAhXv1FTN2Q/e15hP70WA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=d0OfY82goySwkfBpUX9Uhhxq1B7Vw74HBo+euuJPE15wWInhXkbGh5EjZunLCJIwbil5v9yVAnHNHEmdkNrnbgJOFqmB7aywm5fmY67QQTrtBTsgMIhY7E5i5SHqREc8MwUNQsJzBZvZ8z49jD09zUoHFiumbVTOc4GIgFJ/XcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FhLKg8hG; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2c86869685aso663771a91.1;
+        Wed, 26 Jun 2024 11:39:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719427140; x=1720031940; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PlrWYffJsTAsz9VBvDLLrbP/qPvWI/3vn63/l/yn9OM=;
+        b=FhLKg8hG7Nmp+0o0hjXGerIFSVxmFtYuUGqaH71ubczfnxLdlWwzl7uUbVUO14xViI
+         vVEEehUeXLnRzoCoKHZuzqi6W6B6KCcsL7QBDDgOWDzlCLCeeRKReS40ianG27fICbMR
+         r372ycNfS5zNJu5vn81Em6bPMFxfKutBmFC73A/HrBBNsn1kcV7zFQqsLeySMyYk1b9p
+         xL34GMo2mVouYkYrYYEsza82hns9P6UIyRXuiuH0WrqQ7dGrbfXQjshCv8vCiX0wBtIz
+         YPdRT59j1uLF90/4SQaj2XamePeOinxJfZYMi5qGR1UZoDAfUh3ojFNK9UuYTLxhch8A
+         5KHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719427140; x=1720031940;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PlrWYffJsTAsz9VBvDLLrbP/qPvWI/3vn63/l/yn9OM=;
+        b=gHZ6z954drfx1NhjIHVFQlYt9HFQ7gzfYCoOoWlxkp/5dFo2UehB3bUqyQAA0UUMKv
+         czA+lwKe9VTDPDMQxoQa8XOW2P7GyF6jWZ/mn5AC2vOjhXbZ+TZaDZ3GECFMZnV1dIUv
+         +G16TkyHKKAbMOcT+7M9uPIN3iu7JTqlv2tLvnQ1lfgBh5w9EfuJevN1V6z+1rBHGiqK
+         FjfPQX3wlClhsMpX9bRpog+iu/oipRhJsRiD/ecNd9pNzf3fbdDzOfbOiQyByOqZ1VOO
+         P0/+LfC1rwVtg+rJ0+RtKu7RfmCrsvyzDua/X3nZt/AhMdMyUhGmYeLg5dAKYqOVWEaB
+         a6Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCXvsF6Ax38F6XiltJBokrHfe1qnDQMZwLIBsfAV4QXD0lxVOP+XjGGen6fnpfvlhk0MBzSy1aqdgx4t+EJgdFhTSBVrnh/P3zn95SyBRf77uyh6g0Hkan1TH0PXzmxz8rzhdRmm9k2kE7B4iBE4Fc1UQ+hUJX9H3oK/3tNUIpDyZg==
+X-Gm-Message-State: AOJu0YzEiNt++I8WnYDwFw1wpyMXD7OhhK0ALDHvRSD0enOf3U9z5Z/0
+	XHMBplQnszdksFD3Knap5dfMFByE+m+N95QFn3rg+IpR3HpVX+NVUmhg8kEHwcS3riN57dHaBK2
+	r2H5DbbvGICoyDSraMQsqTOBPV4I=
+X-Google-Smtp-Source: AGHT+IGzh7OgcwAD1W7O2ToIpYiNPYaELd/OyNMBI7wyg0Qn9LTacpa85jfZ+S1NzS3Y42emCNPSM0U7vxCnFynye4k=
+X-Received: by 2002:a17:90a:fa96:b0:2c7:dfb6:dbe9 with SMTP id
+ 98e67ed59e1d1-2c84298b2demr12120553a91.4.1719427139827; Wed, 26 Jun 2024
+ 11:38:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Xh2op0woHKopXM/o"
-Content-Disposition: inline
-In-Reply-To: <D3F6F68D-5921-49A3-AFC3-E280597E7DE3@cirrus.com>
-X-Cookie: Results vary by individual.
+References: <20240626162307.1748759-1-Frank.Li@nxp.com>
+In-Reply-To: <20240626162307.1748759-1-Frank.Li@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 26 Jun 2024 15:38:48 -0300
+Message-ID: <CAOMZO5CQHMzhvP9KqPahWdeVjBvqk758uY6wMzVO4oPrt=pECQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: net: convert enetc to yaml
+To: Frank Li <Frank.Li@nxp.com>
+Cc: krzk@kernel.org, conor+dt@kernel.org, davem@davemloft.net, 
+	devicetree@vger.kernel.org, edumazet@google.com, imx@lists.linux.dev, 
+	krzk+dt@kernel.org, kuba@kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org, pabeni@redhat.com, robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jun 26, 2024 at 1:25=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 
---Xh2op0woHKopXM/o
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> +examples:
+> +  - |
+> +    ierb@1f0800000 {
 
-On Wed, Jun 26, 2024 at 06:25:12PM +0000, James Ogletree wrote:
-
-> Thank you very much for the review.
-
-> I believe I need your Ack on patch 1/5 of this series as well:
-
-> https://lore.kernel.org/linux-input/20240620161745.2312359-2-jogletre@opensource.cirrus.com/
-
-I don't see why?
-
-Please include human readable descriptions of things like commits and
-issues being discussed in e-mail in your mails, this makes them much
-easier for humans to read especially when they have no internet access.
-I do frequently catch up on my mail on flights or while otherwise
-travelling so this is even more pressing for me than just being about
-making things a bit easier to read.
-
---Xh2op0woHKopXM/o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ8XvkACgkQJNaLcl1U
-h9DwtQf/YQ/Vby2L69tzDGcijjycSn+Ot0kxxYByNY+7xPrkkvDTh7ovgHolqgXD
-sedw/43IpoVxlgSN4YCc73Un6FrPPn9OhFrrlFurnWCDvGmzy4ynihvSBKHsrM6d
-o8SJRWblgtg3bhCJfAkdLplBcNbNywx4nIiq/OEhC3dTYWyTW8krmvtRwiRF4i5i
-4GgkCpji7SH1E0xR0TtoIOFJuM8xzyXORmVEHarOPf/nwDXaxLoE2OCDoqxyMJS2
-AdjGPBED2llN+IpqvKQEOwfiUp8bYTU5UA3xwvam2SWRjUh9nHfmCTAvEI7Sx7Wz
-HYdnsrRQ6uS9FpYOtKWIsSw3TH1g6A==
-=1lFq
------END PGP SIGNATURE-----
-
---Xh2op0woHKopXM/o--
+Node names should be generic.
 
