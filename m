@@ -1,262 +1,177 @@
-Return-Path: <devicetree+bounces-80450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFAE29198E2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 22:18:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 476359198EA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 22:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52C50B2230A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:18:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78E861C21CCB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE95192B69;
-	Wed, 26 Jun 2024 20:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE8A1922DA;
+	Wed, 26 Jun 2024 20:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mEN5zy1G"
+	dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b="GQ2a9n5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78B18F47;
-	Wed, 26 Jun 2024 20:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8EA01332A1
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 20:23:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719433123; cv=none; b=m4ZcN5hfhwQFnI4x2z5ARCgbvTrb1js40yp3BHVkMB1VwE685rOuy3Uej/jeFLtp+0YTklMxfHM7xWVADvPl52YCNBnu/X3KFP47shfGrSKZJBCfEIJoHCQ3mngEgE7AVcIOgj/u6hENgqDg5j/Rk5YUiPMjrF4CMzz/SLu09i4=
+	t=1719433398; cv=none; b=iLu+e/hTusF/oBehxtMUh2HNMXHASZQfxH6skXAa9z0MTz4NQdD6LutZsmnHuHuXKQyQukqAC7IWRvzp6Uazd7W7TXk3e00c41tUGHtRZfzoEZpBEBo4Ij8bVJqjHuQPmPlmijVEFZNwVn+GT0o5vjl3WeJyOFVDxH4ON8GK89U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719433123; c=relaxed/simple;
-	bh=ITvPR08yphsLqzI9JR2Udd1xbOVY8LrbEzY/pS3TJys=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OzvTxEemZ6hgRtinx0X6DUrma/PoB9BuSL+8yISNr40+THsOaE1titYzvuCnuRgTYVUtKv7nPSxU+sIIdPpJoiCZmNqNHnmjLMI6fVucPmn5ulOtRaF6j/LtudXIeqKzGSDwmDtfbyY2Bt1lLfuhH9yVm7qK//vaodwZQviIV0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mEN5zy1G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FBDC32789;
-	Wed, 26 Jun 2024 20:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719433122;
-	bh=ITvPR08yphsLqzI9JR2Udd1xbOVY8LrbEzY/pS3TJys=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mEN5zy1Gu+MgXMv4gGyLBUsRp8RS1X0V4JNwxeyLmiGRav1gNiZbOZpCwV0QJvbpW
-	 3lVAfE7GxSyFQ4RXa4kbi9MQLM3HM/7kpBl8cZ4Tw/qK0IuPRCgiY+nXw1KX8/Gv5y
-	 UQCG4mQ4DEVcg1QYgUAlhJkk+kxzLZLrIc7x/QbGvulKAmoMfj0Y9wZx32Rw+qnUP4
-	 Meb6DqwiBdov8OJ05BAFfaf4LCk46eJ1Ep3kgzkFeKmGZdarVFiX2Gu5x1sQM4OGB4
-	 +jXRsHeAXazuvuxKHlS0eLGRuFp9cLt3svD2KtllVawf6fhZB+girUkn2M/SL/LjdQ
-	 L+PFb23p89FVg==
-Date: Wed, 26 Jun 2024 21:18:35 +0100
-From: Simon Horman <horms@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo.bianconi83@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, rkannoth@marvell.com,
-	sgoutham@marvell.com, andrew@lunn.ch
-Subject: Re: [PATCH v3 net-next 2/2] net: airoha: Introduce ethernet support
- for EN7581 SoC
-Message-ID: <20240626201835.GD3104@kernel.org>
-References: <cover.1719159076.git.lorenzo@kernel.org>
- <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1719433398; c=relaxed/simple;
+	bh=pjaYCE9P3KcLxKQVApYlU5lmhCHt4CpxTxocoZolkXw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RsLGWR5srL8pi9Oysf7bbYvc0D3eKZSfqRxQNQd1VO9RD5n4xuynE+RtaJNsa5KEOUWFzz3i/VpBbvJNdbEOPloa4Ukk3aNOLuEVtzhN2kr9OeS++m7CRYCt8zLZmnCy2DgUMvMPRGVQ6UoMHSWtxhzyakzJ9NNMSmFIfYohYH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk; spf=pass smtp.mailfrom=kernel.dk; dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b=GQ2a9n5E; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel.dk
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2c7aafe3094so1244788a91.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 13:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernel-dk.20230601.gappssmtp.com; s=20230601; t=1719433396; x=1720038196; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iIcm1wgz2PYFRvSTmfKBCviM4vc4rUoi0KEFtYyxgkk=;
+        b=GQ2a9n5E14Rox3b1vGNF9B9BApqx6cRB2VqEgOBQdL98y0JowbptMH6W0WW8g/je4K
+         upUhgi4PV1n1Qe1hFULEGF33J8B3rbBe/oq3HjYpxWmbtG0V+RnXxPv/GS0QcgVnDEmK
+         QkxS3/Mja24xc95yzlkWp+FUAb29hHXjduHrz/wKPbGK4OXERit8GwHz56d+iBsXDYJY
+         YXBIojPq5zjFTsEGS2QSgWOYIikfTDG+p/OaPBRqhDv9pFauIZjMiBqd0sED6M0XOgNi
+         5/0a00JTHyBsInXQ+Y25VZ+lrMb6c3GTjI4jhrYVLYnxF4QXNHpciW9F8Xw8EYfGN4Vb
+         W1PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719433396; x=1720038196;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iIcm1wgz2PYFRvSTmfKBCviM4vc4rUoi0KEFtYyxgkk=;
+        b=EMx6/xK8s/BoZmxrjA+kFy1jN/+ILsfkO145jW+8a2hPTrWTkJdqtXEYRKO9pW+6+8
+         KJEf/yUfus+gidqCGPO18jECCkKzUjrf3QQqOyh5ai3OXrNcNim5WDHqJEPZbJzuKvch
+         EfSY/WWVQQyPeXqXyBvfnl06Pj+M5O7HKvPjr4GqDFj6E0PNfEdt3X0vrYLX2V0t2hE/
+         cgEr9kdoeXmepxBq1FNT6ApR0xCKOD4Awven1ft+175yrKBUL4OWW3fofdCPm8+henca
+         scZkQK5xsfwoemRiv9uo/Ydq+0GR/iTJvk6cQgeZVsh+NNMzzVEM6mCFmCg/WSB4IdsV
+         x7Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXGdWCENOGe0NFhYJyuC/y0l+en3yN47Z9TllPM7xSOFgQt5+o/ZkVWN5N6wWZCBLdpck4FYsdtUkrEQWxRqxSKdvNqQQYZieGn1g==
+X-Gm-Message-State: AOJu0YziETMOyTDjKxO1aKk6175IXx2Q9zBJbx72VhjwPvbq8CJR9eYy
+	tRfTRmGf7VGZc26GEN9xRrOi32Nr7bvFlWzNIFXi+PrPhvxfh2iR+zpX9ZQVoE8=
+X-Google-Smtp-Source: AGHT+IFUV/CC3j75a0T0PXjx4ENsuqkALCaXlO0FPDNbASuOiUQMX2EszVxk+ODevu1oCp9dGOE/SQ==
+X-Received: by 2002:a17:90b:e90:b0:2bf:eddc:590b with SMTP id 98e67ed59e1d1-2c84599bf83mr12008481a91.1.1719433396219;
+        Wed, 26 Jun 2024 13:23:16 -0700 (PDT)
+Received: from [192.168.1.150] ([198.8.77.157])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2c8d808f874sm2095000a91.50.2024.06.26.13.23.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 13:23:15 -0700 (PDT)
+Message-ID: <f533a5d6-94da-4ede-8d9f-e40df2425698@kernel.dk>
+Date: Wed, 26 Jun 2024 14:23:13 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <89c9c226ddb31d9ff3d31231e8f532a3e983363a.1719159076.git.lorenzo@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] block: add support for notifications
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+ Christian Brauner <brauner@kernel.org>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Al Viro <viro@zeniv.linux.org.uk>, Li Lingfeng <lilingfeng3@huawei.com>,
+ Christian Heusel <christian@heusel.eu>, Min Li <min15.li@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hannes Reinecke <hare@suse.de>, Mikko Rapeli <mikko.rapeli@linaro.org>,
+ Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Li Zhijian <lizhijian@fujitsu.com>,
+ "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-block@vger.kernel.org
+References: <cover.1719368448.git.daniel@makrotopia.org>
+ <609f654800583feb016d96d9c3fc2f029f0f460a.1719368448.git.daniel@makrotopia.org>
+ <58cc9e3a-bb69-4205-9f11-d262f811ea9a@kernel.dk>
+ <ZnxyQgYyM31Xq2xV@makrotopia.org>
+Content-Language: en-US
+From: Jens Axboe <axboe@kernel.dk>
+In-Reply-To: <ZnxyQgYyM31Xq2xV@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Jun 23, 2024 at 06:19:57PM +0200, Lorenzo Bianconi wrote:
-> Add airoha_eth driver in order to introduce ethernet support for
-> Airoha EN7581 SoC available on EN7581 development board (en7581-evb).
-> en7581-evb networking architecture is composed by airoha_eth as mac
-> controller (cpu port) and a mt7530 dsa based switch.
-> EN7581 mac controller is mainly composed by Frame Engine (FE) and
-> QoS-DMA (QDMA) modules. FE is used for traffic offloading (just basic
-> functionalities are supported now) while QDMA is used for DMA operation
-> and QOS functionalities between mac layer and the dsa switch (hw QoS is
-> not available yet and it will be added in the future).
-> Currently only hw lan features are available, hw wan will be added with
-> subsequent patches.
+On 6/26/24 1:55 PM, Daniel Golle wrote:
+> Hi Jens,
 > 
-> Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> thanks a lot for the review!
+> 
+> On Wed, Jun 26, 2024 at 01:46:50PM -0600, Jens Axboe wrote:
+>> On 6/25/24 8:51 PM, Daniel Golle wrote:
+>>> +static int blk_call_notifier_add(struct device *dev)
+>>> +{
+>>> +	struct blk_device_list *new_blkdev;
+>>> +
+>>> +	new_blkdev = kmalloc(sizeof(*new_blkdev), GFP_KERNEL);
+>>> +	if (!new_blkdev)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	new_blkdev->dev = dev;
+>>> +	mutex_lock(&blk_notifier_lock);
+>>> +	list_add_tail(&new_blkdev->list, &blk_devices);
+>>> +	raw_notifier_call_chain(&blk_notifier_list, BLK_DEVICE_ADD, dev);
+>>> +	mutex_unlock(&blk_notifier_lock);
+>>> +
+>>> +	return 0;
+>>> +}
+>>
+>> Nit: redundant newline.
+> 
+> I'll remove the newline before the 'return' statement then, right?
 
-Hi Lorenzo,
+Yup
 
-Some minor nits from my side.
+>>> +device_initcall(blk_notifications_init);
+>>> diff --git a/include/linux/blkdev.h b/include/linux/blkdev.h
+>>> index b2f1362c4681..8d22ba03e3e1 100644
+>>> --- a/include/linux/blkdev.h
+>>> +++ b/include/linux/blkdev.h
+>>> @@ -1687,4 +1687,12 @@ static inline bool bdev_can_atomic_write(struct block_device *bdev)
+>>>  
+>>>  #define DEFINE_IO_COMP_BATCH(name)	struct io_comp_batch name = { }
+>>>  
+>>> +
+>>> +#ifdef CONFIG_BLOCK_NOTIFIERS
+>>
+>> #if defined(CONFIG_BLOCK_NOTIFIERS)
+>>
+>>> +#define BLK_DEVICE_ADD		1
+>>> +#define BLK_DEVICE_REMOVE	2
+>>> +void blk_register_notify(struct notifier_block *nb);
+>>> +void blk_unregister_notify(struct notifier_block *nb);
+>>> +#endif
+>>
+>> Surely these helpers should have a !CONFIG_BLOCK_NOTIFIERS failure case
+>> definition? Either that, or dummies. As it stands, any caller would need
+>> to check if it's enabled or not.
+> 
+> Makes sense. I'll add dummies to the header and always define
+> the macros for notification types.
 
-...
+Exactly
 
-> diff --git a/drivers/net/ethernet/mediatek/airoha_eth.c b/drivers/net/ethernet/mediatek/airoha_eth.c
+> Note that what I'm planning to do is to have the block nvmem provider
+> select CONFIG_BLOCK_NOTIFIERS in Kconfig, as without that it simply
+> won't work at all.
 
-...
+Right, but then someone else uses them for something else, and then
+we'll need it anyway.
 
-> +#define airoha_fe_rr(eth, offset)		airoha_rr((eth)->fe_regs, (offset))
-> +#define airoha_fe_wr(eth, offset, val)		airoha_wr((eth)->fe_regs, (offset), (val))
-> +#define airoha_fe_rmw(eth, offset, mask, val)	airoha_rmw((eth)->fe_regs, (offset), (mask), (val))
-> +#define airoha_fe_set(eth, offset, val)		airoha_rmw((eth)->fe_regs, (offset), 0, (val))
-> +#define airoha_fe_clear(eth, offset, val)	airoha_rmw((eth)->fe_regs, (offset), (val), 0)
-> +
-> +#define airoha_qdma_rr(eth, offset)		airoha_rr((eth)->qdma_regs, (offset))
-> +#define airoha_qdma_wr(eth, offset, val)	airoha_wr((eth)->qdma_regs, (offset), (val))
-> +#define airoha_qdma_rmw(eth, offset, mask, val)	airoha_rmw((eth)->qdma_regs, (offset), (mask), (val))
-> +#define airoha_qdma_set(eth, offset, val)	airoha_rmw((eth)->qdma_regs, (offset), 0, (val))
-> +#define airoha_qdma_clear(eth, offset, val)	airoha_rmw((eth)->qdma_regs, (offset), (val), 0)
+-- 
+Jens Axboe
 
-nit: Please consider line-wrapping the above so lines are 80 columns wide
-     or less, which is still preferred in Networking code.
-
-     Flagged by checkpatch.pl --max-line-length=80
-
-...
-
-> +static netdev_tx_t airoha_dev_xmit(struct sk_buff *skb,
-> +				   struct net_device *dev)
-> +{
-> +	struct skb_shared_info *sinfo = skb_shinfo(skb);
-> +	struct airoha_eth *eth = netdev_priv(dev);
-> +	int i, qid = skb_get_queue_mapping(skb);
-> +	u32 nr_frags, msg0 = 0, msg1;
-> +	u32 len = skb_headlen(skb);
-> +	struct netdev_queue *txq;
-> +	struct airoha_queue *q;
-> +	void *data = skb->data;
-> +	u16 index;
-> +
-> +	if (skb->ip_summed == CHECKSUM_PARTIAL)
-> +		msg0 |= FIELD_PREP(QDMA_ETH_TXMSG_TCO_MASK, 1) |
-> +			FIELD_PREP(QDMA_ETH_TXMSG_UCO_MASK, 1) |
-> +			FIELD_PREP(QDMA_ETH_TXMSG_ICO_MASK, 1);
-> +
-> +	/* TSO: fill MSS info in tcp checksum field */
-> +	if (skb_is_gso(skb)) {
-> +		if (skb_cow_head(skb, 0))
-> +			goto error;
-> +
-> +		if (sinfo->gso_type & (SKB_GSO_TCPV4 | SKB_GSO_TCPV6)) {
-> +			tcp_hdr(skb)->check = cpu_to_be16(sinfo->gso_size);
-
-Probably we could do better with an appropriate helper - perhaps
-there is one I couldn't find one - but I think you need a cast here
-to keep Sparse happy.
-
-Something like this (completely untested!):
-
-			tcp_hdr(skb)->check =
-				(__force __sum16)cpu_to_be16(sinfo->gso_size);
-
-...
-
-> +static int airoha_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct net_device *dev;
-> +	struct airoha_eth *eth;
-> +	int err;
-> +
-> +	dev = devm_alloc_etherdev_mqs(&pdev->dev, sizeof(*eth),
-> +				      AIROHA_NUM_TX_RING, AIROHA_NUM_RX_RING);
-> +	if (!dev) {
-> +		dev_err(&pdev->dev, "alloc_etherdev failed\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	eth = netdev_priv(dev);
-> +	eth->net_dev = dev;
-> +
-> +	err = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
-> +	if (err) {
-> +		dev_err(&pdev->dev, "failed configuring DMA mask\n");
-> +		return err;
-> +	}
-> +
-> +	eth->fe_regs = devm_platform_ioremap_resource_byname(pdev, "fe");
-> +	if (IS_ERR(eth->fe_regs))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(eth->fe_regs),
-> +				     "failed to iomap fe regs\n");
-> +
-> +	eth->qdma_regs = devm_platform_ioremap_resource_byname(pdev, "qdma0");
-> +	if (IS_ERR(eth->qdma_regs))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(eth->qdma_regs),
-> +				     "failed to iomap qdma regs\n");
-> +
-> +	eth->rsts[0].id = "fe";
-> +	eth->rsts[1].id = "pdma";
-> +	eth->rsts[2].id = "qdma";
-> +	err = devm_reset_control_bulk_get_exclusive(&pdev->dev,
-> +						    ARRAY_SIZE(eth->rsts),
-> +						    eth->rsts);
-> +	if (err) {
-> +		dev_err(&pdev->dev, "failed to get bulk reset lines\n");
-> +		return err;
-> +	}
-> +
-> +	eth->xsi_rsts[0].id = "xsi-mac";
-> +	eth->xsi_rsts[1].id = "hsi0-mac";
-> +	eth->xsi_rsts[2].id = "hsi1-mac";
-> +	eth->xsi_rsts[3].id = "hsi-mac";
-> +	eth->xsi_rsts[4].id = "xfp-mac";
-> +	err = devm_reset_control_bulk_get_exclusive(&pdev->dev,
-> +						    ARRAY_SIZE(eth->xsi_rsts),
-> +						    eth->xsi_rsts);
-> +	if (err) {
-> +		dev_err(&pdev->dev, "failed to get bulk xsi reset lines\n");
-> +		return err;
-> +	}
-> +
-> +	spin_lock_init(&eth->irq_lock);
-> +	eth->irq = platform_get_irq(pdev, 0);
-> +	if (eth->irq < 0) {
-> +		dev_err(&pdev->dev, "failed reading irq line\n");
-
-Coccinelle says:
-
-.../airoha_eth.c:1698:2-9: line 1698 is redundant because platform_get_irq() already prints an error
-
-...
-
-> +const struct of_device_id of_airoha_match[] = {
-> +	{ .compatible = "airoha,en7581-eth" },
-> +	{ /* sentinel */ }
-> +};
-
-of_airoha_match appears to only be used in this file.
-If so, it should be static.
-
-Flagged by Sparse.
-
-> +
-> +static struct platform_driver airoha_driver = {
-> +	.probe = airoha_probe,
-> +	.remove_new = airoha_remove,
-> +	.driver = {
-> +		.name = KBUILD_MODNAME,
-> +		.of_match_table = of_airoha_match,
-> +	},
-> +};
-> +module_platform_driver(airoha_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Lorenzo Bianconi <lorenzo@kernel.org>");
-> +MODULE_DESCRIPTION("Ethernet driver for Airoha SoC");
-
-> diff --git a/drivers/net/ethernet/mediatek/airoha_eth.h b/drivers/net/ethernet/mediatek/airoha_eth.h
-> new file mode 100644
-> index 000000000000..f7b984be4d60
-> --- /dev/null
-> +++ b/drivers/net/ethernet/mediatek/airoha_eth.h
-> @@ -0,0 +1,793 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-The correct SPDX header comment style for .h (but not .c) files is /* ...  */
-
-https://docs.kernel.org/6.9/process/license-rules.html#license-identifier-syntax
-
-Flagged by checkpatch
-
-...
 
