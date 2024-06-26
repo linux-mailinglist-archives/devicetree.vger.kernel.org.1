@@ -1,222 +1,198 @@
-Return-Path: <devicetree+bounces-80385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B42918773
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:32:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3AF918761
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:29:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2679B268DD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:26:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E00071C20B96
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C249718EFF6;
-	Wed, 26 Jun 2024 16:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1854518F2C0;
+	Wed, 26 Jun 2024 16:29:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CMMUESjx"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="lQmoW3Cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2063.outbound.protection.outlook.com [40.107.103.63])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC7B18E748;
-	Wed, 26 Jun 2024 16:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719419160; cv=none; b=FYHPL6HrHkbl4oE37cQ8/C3COU6LdW8gHgVsyu4yvVAVpkJo56AsJbf/TZhtdzN3KSh/tXqpDMlVXvh33lC+jDcpqwnHW0fOm9jwmiVr4v9TJF24R6jVQAs9YdJONKO3fQIN4T+ZBWQ6h67ixmYdNjEXvQRjYGZeuiF13aZxwW0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719419160; c=relaxed/simple;
-	bh=gKweBeIdanDWX8TnnMo+y0bEyNudiUK+jx8cMWSHPWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iHo5+GXsGbPgp2x0/3muzVdnT/yG/o4zeWHInpR72kacpTn3Lm3gnRsEhb1aHAoEScFUC+T5qZzor0da71d3c4htKQIqlxB7DJXF7yTDz4HmOEew0C5bljeNmpIiQRLv8Iy0LUnBfPs6rwsTVnsBhwYjniNVzGdbeinp7SbM5vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CMMUESjx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DB09C116B1;
-	Wed, 26 Jun 2024 16:25:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719419160;
-	bh=gKweBeIdanDWX8TnnMo+y0bEyNudiUK+jx8cMWSHPWA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CMMUESjxdNxP0lG5BmRTdjjpHKXR4GWOstFlvJNQrqHGrr3G0iSgBMvBF0rdvkZ1I
-	 3GzU60izXaBEsncvI6uIXv7Cnk5UdWs4gm5xOeFwWeE9fXQQl5YbL/BXxcLbxPc5k+
-	 vqiIFILCusmAfBCkLjt0romOXlnI/LSCpdpYM2koMCHdWpuYf27juu07xrRNSGqRhf
-	 goFE4zCcbZcvhedEPMe9ucqJVBMkt1q+P5Ac+lqTe/rrkrBa2HQiPop51xdcDMwYdG
-	 Cb9+QdG3r02AzsxBT9PuPdYg/SG8vma136lCOyepOBAfal31jECE5x3zLC2kvnmii/
-	 AK/YIUDImEPKA==
-Date: Wed, 26 Jun 2024 17:25:55 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5122C14532F;
+	Wed, 26 Jun 2024 16:29:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.63
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719419395; cv=fail; b=K2jb1mD0ikqpQRukiimIoRbGSToMmxEMatjLATZWmWjEBK5vUcKnCl3EeiUeXmOF9b7JAku+iumYos7Bl2Lp86dodbX/53GnHFCL5u0vwHgXoIRPqLeJOUW1TG8pZQbc7jj8eL/hx/kaRAsLkp3U2REUyY5Mk6zdx4/InHa8j/0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719419395; c=relaxed/simple;
+	bh=eUeGOBGpzhiJgmEdRi332ihnrV6Um2OQD2geyDZ5NMU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=WiJivBxfZ7Za9WleUMk6SusnB8S8xd53+zxVvU+uGJ0XNKEftWdRz2vR1QtPfM1/o0r3eJh6bEDzrPKnITF8Cw7FXSbnEVN6Va7uYPAaB3QWnMD0mWGIB1TbyVl4VbJAA7pbj+c5q7MWw88hNw1cprZ7XBvAWR+qc18OeACr2tY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=lQmoW3Cj; arc=fail smtp.client-ip=40.107.103.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TWeCDIs+zmtsidTJ068gBcSR7R00eifL47TyCMgdBtP0oAHPS9m+eKGDwH8iwSgU8ldAFCr49NsRggaYUjQHLqK87ICmgKEQiuFqZZt2Ys06NIiXZSZf6sd/RS4d6tT+bl3Np5sOZguMI9s4tcUK9jQBHIx6K9ykraVCqrWDAAQHA3mJT0w8ZZL59dS2TxzwgMQ1hknky1W6r9M1mmB6TAChUuETk+SOjkXqstcWb3D7IwzSpRQQZjxlFyNbWhBh+fsL7SMpKNz2tRMNSLZgVmcueL8ydxu2bG8a9wvpP7eGnDxEEKQR013ara9mK1Eon17JdDewijC+V2ZTXTa7KQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UK46UDzalx1InLyEaZbfY4z4HsBd59Leru5iZslN0No=;
+ b=aAE00/ZxKVXcUOm5deen7DHG2BvPs+Ohh9C0UMgvN3MvR19IyossPkjj3AEH6l+YnUQc7Mq4nnbtCNuTPLTJyG21VZp0nu6G8z82GgYh9AudKqqTuJwEmei8vAvTWEOQyURa80duEym2zMGXG5HjoqjYhKS8eBKZ1ErjA76yPRIv93k3UbjoPBpKmEoExAPQ29VhCaEpHzEL12rXWwt6QF9aly8+v9/wu4jRbzZ/s1PNNyh/plfbDOEc99Y4hyH4Df3K2kaWM2USpGmArIQnCRy7YnZb0Twf1tqADfBa0w4PTnQ9v/iKVzWWifUH6xc8ZcHgxNwBmfvTTZidv8kDXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UK46UDzalx1InLyEaZbfY4z4HsBd59Leru5iZslN0No=;
+ b=lQmoW3CjSoUtJk6UUFwiFAss62azXRHVkJORSDzFgymMQ2wle64ahmE1HBlr/92mX6ueG5QuXifkG39osXYCsuKu5BkPGvZ/nZzFWqx3T8gfn/sFltQgbj2Wpx3lrfBw6t0DUk7BkvtkmQQe7pO65rfDGD/0rXMVqAZPmX/oBg4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS1PR04MB9584.eurprd04.prod.outlook.com (2603:10a6:20b:473::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.30; Wed, 26 Jun
+ 2024 16:29:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7698.025; Wed, 26 Jun 2024
+ 16:29:49 +0000
+Date: Wed, 26 Jun 2024 12:29:40 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: renesas,sdhi: Document
- RZ/V2H(P) support
-Message-ID: <20240626-vindicate-lemon-01754dbe1eb3@spud>
-References: <20240626132341.342963-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240626132341.342963-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	"open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>,
+	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: can: fsl,flexcan: add can-transceiver
+ for fsl,flexcan
+Message-ID: <ZnxB9FxYKxx5MZhx@lizhi-Precision-Tower-5810>
+References: <20240625203145.3962165-1-Frank.Li@nxp.com>
+ <12853a72-190f-4aeb-9a2f-4fdc42c9e4df@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <12853a72-190f-4aeb-9a2f-4fdc42c9e4df@kernel.org>
+X-ClientProxiedBy: BYAPR05CA0060.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::37) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="v7cgs3kd0EkKSpaY"
-Content-Disposition: inline
-In-Reply-To: <20240626132341.342963-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS1PR04MB9584:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2e1536e6-867a-4e2a-71e9-08dc95fd331e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230038|366014|52116012|376012|7416012|1800799022|38350700012;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?mnt30lKIJ5a25iiUFEcMAtVhKtW/X5wOrlkvpX7/lRP3FPr4vEEpZLBxrDf1?=
+ =?us-ascii?Q?AExPYiM3IYXnXOLpTRkHKw+75l1YBrhuqQLS8qXrtYQI/AP2kpnGyfxTWp5T?=
+ =?us-ascii?Q?HJAxDP2Q/wUKYkhkOlYaBJGX+QyTJLRg3rYiaVdGs5Kf4g/fwvAwAPSUD5Zd?=
+ =?us-ascii?Q?C2VqMliUkFORNopPR0ZjDpXZoEY5FRrCS8mhyoRjKExxqB6x9qzbvIApEh3B?=
+ =?us-ascii?Q?WEiK/lZrzABW0vH48SEgy2oZc6w8Qi1v7dPFfTUYs7mmUxCyNo5KSC6mJB0f?=
+ =?us-ascii?Q?tDUfGYBVBKr8/6s8/2ft6tVdDm1bPOYKA3eLORREAAVv8ZRpS89XiHgmqi86?=
+ =?us-ascii?Q?nMwW39HJWm3UEsYH199NMvNZiEmQ2DB3nxb3irpv5OKrGzOZ/WbRxtwKtBQo?=
+ =?us-ascii?Q?qmt/vZkaZ//RKxwfmephgpObjt1VosbM5P42tHaykzZEh896yHhpGwhoqOKG?=
+ =?us-ascii?Q?3WWOytdiiIn6OOgIeIwWkxT/kRxp3xIYRFEGjzq9QxEJJE9H4E5mgOiX57iN?=
+ =?us-ascii?Q?3eQcyLc5niYiaKwYf2QNnUOnPVLRkGP6zk60RUAOtXLV7VymU5JMk+U3umFa?=
+ =?us-ascii?Q?yYglyNfcA81rheRE2GD8VcOSg5DdB4IMaCNfYI+IRwWh3xGvOI93OPeEPMrK?=
+ =?us-ascii?Q?GjloYLuWBCGGN7g0VCuEYiRqG4RqHlgrVLOnQgrP03MrNzpMHzD43P0bOAas?=
+ =?us-ascii?Q?Fvt2jbOU/g4yfe9CqRuN3XM92SJdCKtcL4cPeHnpa9iO6obzYgfxZOj3+3dE?=
+ =?us-ascii?Q?Sn4wbYi4yDcVTyuBCeSPrVMPdE1HVAolDh0GtBXfIpimRbWtZ/crJYO0PmT/?=
+ =?us-ascii?Q?KfnXBps06gE2zekUAET52XkM0WfJxVUKQQF/XDTvdedAL7OrIT7NHHHtvLnu?=
+ =?us-ascii?Q?x5a2FyfvVFU4qjTi3qMuzGY1qTeUI6jU2celCPVxmbk99ybyIpwToX9HzxwB?=
+ =?us-ascii?Q?d1SmGq3w5Ywl0W1Icrphv4ZrENQE+vVyzgPdNT1qnX05CDQFrNciYxiKGF2r?=
+ =?us-ascii?Q?Cl+NkZu2kHJOfNj1+ZxYr2b5OyNOfHOAEgSulUiBu4NF5snI/WjmbjbofqPb?=
+ =?us-ascii?Q?V8QYgqrcqQVze3E5lVZXar2fevunjbHfyjtIrj1LmSWRVrRXAnnAA/AcQDAQ?=
+ =?us-ascii?Q?v1X1YcZ1xjPytfSdt9/APdlUHRHqmsq9bzyZMhCcv4759bCErDh9LKlAUhHi?=
+ =?us-ascii?Q?gQfRs2+/VPgyqkHcJTW9KLrzR/EiHa4Mh9BFdM5PhOb87RP6ICSH3NahlWCl?=
+ =?us-ascii?Q?P/bN2vJ7h/qCGvkitw2gj7adP8QgxpmmIiwNYwQjLKAt+b7RMiaJXaVgZCUM?=
+ =?us-ascii?Q?Zd/A6kJMrqK3Knr18YCtwtVlCYZvUORtDjROsYssiG0axU+lXqyG07uNSjQX?=
+ =?us-ascii?Q?pTkbHSa8UQQMYlPvRJR3P1JqxdaDmAACEhpzvz4rEw085x26VQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230038)(366014)(52116012)(376012)(7416012)(1800799022)(38350700012);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?NSwwPb+ge4oQc/8RmEuv733u4njpal/S2MdCMwaqAKIXqqcWYqr6kT42gykd?=
+ =?us-ascii?Q?IfbhUXvlqRJgII5scaPktYxRuP7g+4u3wzu3RT1fDOH31jmHya0g3aF2RQ+V?=
+ =?us-ascii?Q?uxk8xhvT2MfmQHLqRlaiMh+lILlqtrClFx9lUkE9Pa00l1+VBlnsWtA+7n/Y?=
+ =?us-ascii?Q?fyC0HjvPxUmxbRxPGLzjMfRZJISICTF+E5k2YLotYwymiEPGk0Lcvhcc1+hN?=
+ =?us-ascii?Q?ZO9Vcii5daIsDZXTz1sODbEeN8KghDl3rfXs+endiLIdFaKx6YpKmT0WTV5Y?=
+ =?us-ascii?Q?8/KjvAARLWjY9bjWhp0KIKuBEMhbuVh3l4ywbV1sgHRgcyp/ECnRG7WItmiA?=
+ =?us-ascii?Q?6m1PoMlyaWgdcsk+AraNVn+plooSzFyyji1RiOAVim6u7z3biKH1/ZyWmEIk?=
+ =?us-ascii?Q?COmYhfDIlyTvfw+PfnyF17sweTnfD7zWPueJzCV72NG1PGHCdgMQeoT/AH8D?=
+ =?us-ascii?Q?xzJifIn/N/A+k/FJ60MhDDZpPBWoB5FgOuE8dWplbA0EdpwfgmhZrD6jAdRX?=
+ =?us-ascii?Q?4hKXmxIZ8LBdUGIzNv8hMocPUHPK9TjAML0/9EaWMkI7YrAXtEgRUrkf+fiw?=
+ =?us-ascii?Q?gyWxquL5E4FmnVdfJx/ra7ure0EtTfn1CW4DLz7+jIfSsy8VT67DSQxMlZ+N?=
+ =?us-ascii?Q?oyXrldZXMtNMITv01bDsLveCHrMTX5mshegC6D9MB9uDbyxqbNFr7K8xYBsP?=
+ =?us-ascii?Q?MY/hZJcEyaiDj82H5XAkaC9UepQGM/e8yV6Lxv7fcUCTfKxnsFcYI99UDUrI?=
+ =?us-ascii?Q?ILoB1uXI2Lq8V/jGYaozHyLuFzwMmUdZW2rBDejlImTMcot8pWkFF9m8WHdf?=
+ =?us-ascii?Q?8/5b5mIXZtXidXosJlMyjXheEIPFNmipiHPdYLwYylRv+28M/lvqpAtqZzbY?=
+ =?us-ascii?Q?6xYjPuadn4VGBTm+OVTjLDPNC3gdfGVdV2gEOFPt6L0V0IzwqdmAh+A6oY8F?=
+ =?us-ascii?Q?QS2rnXcqqaxsIxc+0yzbhfG2gpnvOfgbYGjfMQp6ISZlYakBPBkTwIa+S2A5?=
+ =?us-ascii?Q?Vouwu0hTeUlNTuCP2he1lt27vLY4Hp1GtPYSPzuVDW+sypFyegKClDgllBwT?=
+ =?us-ascii?Q?ctSIRa7wLk5umG21Dx5GV+0bKjHQI+zwZFPnPgHkYnW4zH+3ewNuM4GKkXgV?=
+ =?us-ascii?Q?7JX0sbLFdRdkQzjV/QU0TKuk3zoMrUT6x6TBm7+n0pxu578zV3Y3cn3PSwTj?=
+ =?us-ascii?Q?5aoN+MCiDJCrZuIS+5kFOWCqlCxppF6tvG3p332RsYWbzjKONwPrOuDI5aPn?=
+ =?us-ascii?Q?bJhn5RMkO5NZhti69DUJtl6pZNwVohDERZG2F+t0wEkljN3ugzyyGaDEsTl/?=
+ =?us-ascii?Q?a167d+yfizDWUtpz2BAhv1QSD6lIbhio2rCyDbzHzv9KqxYG2x/Ye5oVvwQm?=
+ =?us-ascii?Q?WmtgRhwzHd8LwOQeM0qg896oo/xd2qffXMrZtgzgMonTyIWANZyEfKER8AIM?=
+ =?us-ascii?Q?aA5YlN3a9i9UmUIBeufPdKiWh00+xTZ/CtI1QAQHn4lrVUyPlUcvihUvhKYP?=
+ =?us-ascii?Q?mIayFsIJ2wpBLK1IFnh4b0lPdcTZNfZksA46FzbaAdpvRZxfWROwj4W7uSyf?=
+ =?us-ascii?Q?xnUbbJFbPkgtVZNbdbJk+wI3mZA1hUemE60tfzkW?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e1536e6-867a-4e2a-71e9-08dc95fd331e
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 16:29:49.7749
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2hbOmLxLB28zf22Y3r7pxd23mqwrVLDgYcQ/Be20H3wShhV4qY0zxCGh5xdx04mrX70kiAJzIgMXLbbAlJw3Ig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9584
 
+On Wed, Jun 26, 2024 at 10:19:56AM +0200, Krzysztof Kozlowski wrote:
+> On 25/06/2024 22:31, Frank Li wrote:
+> > Add 'can-transceiver' children node for fsl,flexcan to allow update
+> > can-transceiver property.
+> 
+> I don't understand.  Who and how updates can-transceiver property? What
+> is can-transceiver property (I assume you speak about something
+> different than child node)?
 
---v7cgs3kd0EkKSpaY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+can-transceiver is chhild node. dts like this
 
-On Wed, Jun 26, 2024 at 02:23:39PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to that
-> of the R-Car Gen3, but it has some differences:
-> - HS400 is not supported.
-> - It supports the SD_IOVS bit to control the IO voltage level.
-> - It supports fixed address mode.
->=20
-> To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a09g057'
-> compatible string is added.
->=20
-> A 'vqmmc-regulator' object is introduced to handle the power enable (PWEN)
-> and voltage level switching for the SD/MMC.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v3->v4
-> - Dropped 'renesas,sdhi-use-internal-regulator' property
-> - Moved 'vqmmc-regulator' to the top level
->=20
-> v2->v3
-> - Renamed vqmmc-r9a09g057-regulator object to vqmmc-regulator
-> - Added regulator-compatible property for vqmmc-regulator
-> - Added 'renesas,sdhi-use-internal-regulator' property
->=20
-> v1->v2
-> - Moved vqmmc object in the if block
-> - Updated commit message
-> ---
->  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 26 ++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Do=
-cumentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> index 3d0e61e59856..d632b67080bd 100644
-> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> @@ -18,6 +18,7 @@ properties:
->            - renesas,sdhi-r7s9210 # SH-Mobile AG5
->            - renesas,sdhi-r8a73a4 # R-Mobile APE6
->            - renesas,sdhi-r8a7740 # R-Mobile A1
-> +          - renesas,sdhi-r9a09g057 # RZ/V2H(P)
->            - renesas,sdhi-sh73a0  # R-Mobile APE6
->        - items:
->            - enum:
-> @@ -111,6 +112,15 @@ properties:
-> =20
->    max-frequency: true
-> =20
-> +  vqmmc-regulator:
-> +    type: object
-> +    description: VQMMC SD regulator
-> +    $ref: /schemas/regulator/regulator.yaml#
-> +    unevaluatedProperties: false
-> +    properties:
-> +      regulator-compatible:
-> +        pattern: "^vqmmc-r9a09g057-regulator"
+&can0 {                                                                                             
+        status = "okay";                                                                            
+                                                                                                    
+        can-transceiver {                                                                           
+                max-bitrate = <5000000>;                                                            
+        };                                                                                          
+};
 
-The regulator core seems to say this property is deprecated:
-	/**
-	 * of_regulator_match - extract multiple regulator init data from device t=
-ree.
-	 * @dev: device requesting the data
-	 * @node: parent device node of the regulators
-	 * @matches: match table for the regulators
-	 * @num_matches: number of entries in match table
-	 *
-	 * This function uses a match table specified by the regulator driver to
-	 * parse regulator init data from the device tree. @node is expected to
-	 * contain a set of child nodes, each providing the init data for one
-	 * regulator. The data parsed from a child node will be matched to a regul=
-ator
-	 * based on either the deprecated property regulator-compatible if present,
-                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Or, I can simple said
 
-What am I missing? I also don't really understand why you're allowing a
-pattern either, could you explain that?
+"Add 'can-transceiver' children node for fsl,flexcan."
 
-Cheers,
-Conor.
+'can-transceiver' should be common child node for CAN node.
 
-	 * or otherwise the child node's name. Note that the match table is modifi=
-ed
-	 * in place and an additional of_node reference is taken for each matched
-	 * regulator.
-	 *
-	 * Returns the number of matches found or a negative error code on failure.
-	 */
+Frank
 
-> +
->  allOf:
->    - $ref: mmc-controller.yaml
-> =20
-> @@ -118,7 +128,9 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: renesas,rzg2l-sdhi
-> +            enum:
-> +              - renesas,sdhi-r9a09g057
-> +              - renesas,rzg2l-sdhi
->      then:
->        properties:
->          clocks:
-> @@ -204,6 +216,18 @@ allOf:
->          sectioned off to be run by a separate second clock source to all=
-ow
->          the main core clock to be turned off to save power.
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,sdhi-r9a09g057
-> +    then:
-> +      required:
-> +        - vqmmc-regulator
-> +    else:
-> +      properties:
-> +        vqmmc-regulator: false
-> +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.34.1
->=20
-
---v7cgs3kd0EkKSpaY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnxBEwAKCRB4tDGHoIJi
-0ozzAP95IRJZ0EjXSMzIUOuDTe+fedfvuRyxrHG4fG2r2OSLZgD/Wm5+2S//908A
-8XyBYCJtQaABk/q1n+/AirgV8QeR+A8=
-=CARI
------END PGP SIGNATURE-----
-
---v7cgs3kd0EkKSpaY--
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
