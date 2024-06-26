@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-80024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465CE917A71
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:06:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB7E917A73
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:06:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6908B209B1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:06:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 377B1B21500
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D2115F318;
-	Wed, 26 Jun 2024 08:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E64D15F3E2;
+	Wed, 26 Jun 2024 08:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v53qFab9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="srNqJ4EW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5BA71B950
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 08:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7EA15EFC0
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 08:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719389184; cv=none; b=V2i7EYjHiM60RwhsA2AIISQtgilPi7Yi2rab/x5P2HdSQfIlyNjcFkUntNEp5RaWR6Gyy2R6Difl39ZZNfE5kagSqEup5iGdPJZDXB0BtKS/uwZEC/EJ9gvrm3QWc+P0y3J6NZmgk0dkdKdf9VjZZDcjdaytYYENG43UPzhccgE=
+	t=1719389211; cv=none; b=GKPRiWe5T/1i3xsY0yMVkDPrkGy+KBVPMqW9PnGDE/zSb+ObzNJLYckY96moSkUp8CnblRgFvmlID3vPMb2S5sWiABv5ntQDdeHh6/LCJhm48vH+a0qwKiWvv+8wv6t+iJ7ng33fHHqaO5k8GEnezbYg1f49Wa9vDGpM+fv4YbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719389184; c=relaxed/simple;
-	bh=rZXPd1DzRInhDRtcY9Tgs9kK+KUqmSnwIdKGxP4P9WU=;
+	s=arc-20240116; t=1719389211; c=relaxed/simple;
+	bh=qg/ZLjmnnXkbHNjaiPc4GkMr3awTO9l1G9H8oEvMCRI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m6oVkxY7cVVWGv9Bo0LmUMVbnyAyLB59ybda3kqaLDg9/RQfXEA+ELkfunM2jY3uEBHKKIphZd1BJAQtYO/J8/+hYdxw79HnaVaUVsoM1vP4c8M5XBxDZ4MOWpELn6GBY7LCXpvwQKAmc/PwbmrzE5Z6hI6rPIbt5yoeh1Dq8ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v53qFab9; arc=none smtp.client-ip=209.85.221.49
+	 In-Reply-To:Content-Type; b=qBhF1Mnn39/dG+A3VC3hraTQ8dthYnvcpV0b4RB04L5PU0tTEqMOQ8AobA3nxxEsf01OyMOX3CA73wfTjxL5moW4G0/nCH9vYIcfsuRktZmvDvcNETrVdj2+6i6U4ai8ThOlTLjqEP3HTmNEKcF12ny70lG4ov3XPJJtCJOFi3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=srNqJ4EW; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-364ff42999eso5088455f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 01:06:22 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ec0f3b9cfeso76206721fa.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 01:06:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719389181; x=1719993981; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719389208; x=1719994008; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=My9/g0GVPEXpaxxN/7a6H9LSpMIXap4+noEpDsopA0A=;
-        b=v53qFab9J7hu6GZOC3oRPMQ/dLqKFpU4Dw1p+Qd2hZj4/31cY9R0/dSJ3pyGqlxugQ
-         Z7nzNTR5JZOUv9NYzk36PbDSfjtCyNETliumHqxcpoYzqOLiMZGGF61MDTLl2atzH84f
-         FXO763A9Hk8f3jn/Plud/sn29b7k9F1u8Z4yICyDdVWmSxFryJHksqtg09/9UfSTxLV3
-         v2x/vIYzMfrhHTeuCw53ea6OyVGECwoUIfzpx81mc/i2PKEIjveqBearO+EBDX2eLAdr
-         UqzhugdYEIvFT623Pd9YQOe3jO/xPt8JTvSvd1ju5ytgHDOZuqluLKrZJ+eV7YwzYEFn
-         HHIw==
+        bh=qg/ZLjmnnXkbHNjaiPc4GkMr3awTO9l1G9H8oEvMCRI=;
+        b=srNqJ4EWteJ2uPb8qpfLOtHVjO9EGZMfym5QwguWklzFUFt0OYYJrsbrYgr0AsHrPJ
+         Bssv7ylH5vcPgFuUj9IWXwNRzcsaOhyHHdcAP2XuwkbGSvZWD05/Rtc7f9vSl7BH1DHB
+         O6F0M88nPeZxSUgm+1GqCQjuSsnBjir7lYZKnOKtl4W78d+069ndvzfhNfgWZLd2TqF6
+         LMmfHxDfEvdcPGVCZsEKAvApWq+2jMiF4eJEtzViv8mFA+bxYn1lqRPp5Y+fpdrspahY
+         EdbsTRpasEvcKXnuLLWK9Glpzl+P2qdNeU5kAl17yYmqa7fxQQhuE4mJkzvbP8lBj4An
+         A6hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719389181; x=1719993981;
+        d=1e100.net; s=20230601; t=1719389208; x=1719994008;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=My9/g0GVPEXpaxxN/7a6H9LSpMIXap4+noEpDsopA0A=;
-        b=CoJXteraL23VXhOSxOzFzSvJRpJ13NMe9JreZbxaNqPw+iYCTG9k0xSXzCdfocmpH4
-         vPAhNK33qiUouMSxEZcO4KdaCI7vMpMbJoGeo7XWNLH4T9N3e0xQuu9JnejIRfa8mf//
-         hui60bL0KJ01s0nRdmQHQy/2uW62aSSx7j+KsiGzO6QqwU3cvkB1eHZsVdNDxk/2G7qq
-         a4cA9eMH+eGaAdMsAIboCRwiIvICxbZ7EQOJRevpX7XgwL5Ro0LH/+MlZPfkUFg4O4wZ
-         qp36iiUmWvA9Q2gSyBVIpn1e6whJ5nCJnWuxGbPUqKtCfW6kG3dnq8TCvSkYL0TuxM5X
-         cQoA==
-X-Forwarded-Encrypted: i=1; AJvYcCXnQEvTidU4aqIsXz59LtPa/LAsxTTlUwbBKi3r4BK+HTEbajwV1f/Fdod0o5Q9J2dNJaR9AEX4sqcXSFnzUGwiDJD+rFX88nnBGQ==
-X-Gm-Message-State: AOJu0Yzt3pgyYu9NpJXI7YEOCudlp6FXnu4KJ8+Onq+Y/MeMMjS0d3tb
-	b9rPEggPQUf64b0UnAKK6elR5wB50I8HZGL4HuRJ9s1vsZwsgJUjZxhn4Hh0aI4=
-X-Google-Smtp-Source: AGHT+IFYPpmEMk0KFhlTbaqHeWEFWJ0uZm/Xuv/BxVjNUrlN6WksxTy7iVYi1YRdDVtylOESgx2QlQ==
-X-Received: by 2002:a5d:5f8f:0:b0:366:f50a:2061 with SMTP id ffacd0b85a97d-366f50a223amr7905774f8f.50.1719389181052;
-        Wed, 26 Jun 2024 01:06:21 -0700 (PDT)
+        bh=qg/ZLjmnnXkbHNjaiPc4GkMr3awTO9l1G9H8oEvMCRI=;
+        b=vlBHXc1x8uVz3GJj3ec8bQRG9b6AP+8IiJ/fVQMi5AQrgNUQl4/52DL/iPsb50NFpt
+         T4uOJjmBrLIWt1oHCn478iI8zDU89vng3HHOP5lsT0cD9XVV/QezIXhluBaw8vMXYcJZ
+         YCt4AZMAL0vIfQ63BL/wIGOUSX/S5OBrqlH9Q32bcqFLOP9u4declSpqTKvleCklZh0h
+         RqFEBdgYnLA4mkHXnQ7psceO13r0iQkH5TzIS/cjmFwW8vdNHhycED90N46ffd0mgw3y
+         8yt3MPC5LxoEFW2GDlFhm49M1grp8JLiOrSnni69tfFhnCLM1FpuFH1NE/CUoCKc3Q52
+         M8nA==
+X-Forwarded-Encrypted: i=1; AJvYcCWLlXB8i8EFWpIClvn1JSpZpfg0U6hJeb5Rr9zV8gBVU07mxb5nLjem4laxMjkeijGYnjFjvekqZieK7hwCFf4y4Lc6/xdGmeGwag==
+X-Gm-Message-State: AOJu0YwJ8QbTKsfXa6u8u0pmx+QTSkP0O7jgtLnGJbhT/s4C8Kh18SJ9
+	bmsRAr+FSgqUdLL4KafAw6Sgv5fEBg4G9qNZL2CtE+HE87N8ZOAl8pcQGZWdhrE=
+X-Google-Smtp-Source: AGHT+IG/kKwWJ6+3DNpbyGEnq3i9gk9FofbUd3EjDcubfw8Ioe5VISbAU0o/oXh1KTu50D03k0kQ7Q==
+X-Received: by 2002:a05:651c:209:b0:2eb:68d0:88be with SMTP id 38308e7fff4ca-2ec593d8595mr51997431fa.12.1719389204587;
+        Wed, 26 Jun 2024 01:06:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366388c40c3sm15083853f8f.30.2024.06.26.01.06.19
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8246828sm15753305e9.5.2024.06.26.01.06.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 01:06:20 -0700 (PDT)
-Message-ID: <c15045b4-2e5f-4fcc-b25c-76a5e4973e93@linaro.org>
-Date: Wed, 26 Jun 2024 10:06:18 +0200
+        Wed, 26 Jun 2024 01:06:44 -0700 (PDT)
+Message-ID: <07911285-d01c-4456-861a-825c1e9d65cd@linaro.org>
+Date: Wed, 26 Jun 2024 10:06:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: i3c: dw: Add property to select IBI ops
-To: Jeremy Kerr <jk@codeconstruct.com.au>, Aniket <aniketmaurya@google.com>,
+Subject: Re: [PATCH 2/2] i3c: dw: Select ibi ops for base platform driver
+To: Aniket <aniketmaurya@google.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Joel Stanley <joel@jms.id.au>, Billy Tsai <billy_tsai@aspeedtech.com>,
- Rob Herring <robh@kernel.org>,
+ Jeremy Kerr <jk@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
+ Billy Tsai <billy_tsai@aspeedtech.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240626052238.1577580-1-aniketmaurya@google.com>
- <20240626052238.1577580-2-aniketmaurya@google.com>
- <e28ba03d1df1c0c5aec987411c40e44fc351ce0d.camel@codeconstruct.com.au>
+ <20240626052238.1577580-3-aniketmaurya@google.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,50 +133,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e28ba03d1df1c0c5aec987411c40e44fc351ce0d.camel@codeconstruct.com.au>
+In-Reply-To: <20240626052238.1577580-3-aniketmaurya@google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 26/06/2024 07:31, Jeremy Kerr wrote:
-> Hi Aniket,
-> 
->> Use this property to select IBI related ops in the base platform
->> driver. Otherwise the driver defaults to return EINVAL for any IBI
->> requests.
-> 
-> [...]
-> 
->> --- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
->> +++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
->> @@ -25,6 +25,10 @@ properties:
->>    interrupts:
->>      maxItems: 1
->>  
->> +  ibi-capable:
->> +    description: Set to select IBI ops.
+On 26/06/2024 07:22, Aniket wrote:
+> The AST2600 platform driver can always select the IBI ops.
 
-What are IBI ops? Standard form letter:
+So it is deducible from compatible.
 
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
-
->> +    type: boolean
->> +
-> 
-> Wouldn't the compatible string select whether the hardware instance
-> supports IBI or not?
-> 
-> I'd imagine that each specific synthesis of the DW IP would imply
-> corresponding hardware settings, and so would warrant its own compatible
-> value.
-> 
-> Maybe one for the DT folks: would this work better as individual
-> properties? Is there a policy here?
-
-Usually if feature is specific to given hardware, e.g. always capable of
-foobar, then it can be deduced from compatible, so no need for new property.
 
 Best regards,
 Krzysztof
