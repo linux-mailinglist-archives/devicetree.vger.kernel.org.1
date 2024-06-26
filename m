@@ -1,124 +1,131 @@
-Return-Path: <devicetree+bounces-80490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04DE4919B07
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 01:08:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFAC6919B31
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 01:37:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE4801F21ABF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 23:08:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DAB31C21DB5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 23:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 270531940A9;
-	Wed, 26 Jun 2024 23:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99354193094;
+	Wed, 26 Jun 2024 23:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kw4BKMAp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Rkgxf0sq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F8C18FDCD;
-	Wed, 26 Jun 2024 23:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC7A173338;
+	Wed, 26 Jun 2024 23:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719443276; cv=none; b=JL6bo0dSp5kk7f3liU9LiBy1sSgoUrriuouHZaMhr/hQ4toLrUHW0gyZd/qW2vQKaS/1cRtBPij5Np08VdlfcqkwdRmO9N9nmfdD+uwnsHYfZ/12dZDEdN8dog4A9574NITzGYwVf9cK02bNgZuMDazSPUoKvW/YD/rTuWjcKt8=
+	t=1719445022; cv=none; b=DHdQsUImr3cQfErqY1ZPLONPDvtYnOR890el75KcR26tP2yJDfvkNt+QzmenN/E9jgBvumg4ZdNj2tfi8F/fm+sM50a/pj9dQjqpXIAQzxbDBgolGJbK0s5xsaHt2RrrnyOVW10n9Bv1CsujQjNh3fmT9D65GrcS972W+mWmiFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719443276; c=relaxed/simple;
-	bh=bGsS6QAH1iQGXflkC3m0fScbHj4wlKNAw4ntnVc0CEY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TT/PkaAn5TB8kMJYaIUfrKBa1XG2RdliFtiuB0ELSqsO24E7cI9/ocTMVpNPBZ+RV0DEeR8Fptyfxl9UsuBIhhjW15FTKqXv3G+9UdRXItlKR704Z+4lMHudvBfYlr+kQ1EwXUHzaEoGXx45f2pLLHNaI4+vcwLSwte746NaFIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kw4BKMAp; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719443274; x=1750979274;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bGsS6QAH1iQGXflkC3m0fScbHj4wlKNAw4ntnVc0CEY=;
-  b=Kw4BKMApq0+bZxmEbkuMjKQFa+DLnmaxZn0AV+Tb5SdsnipwcipGfbYH
-   JdFt+ndDARQbGgyGHIcFmImLqkKmpwMhCcekxK6QbYH6yIEsHyzDdn9iQ
-   hzPBsyMPgovVl9brocdX4BvFJQiT8kjn/LdxuSVcotDGEi6S3uA1KIVuK
-   CpaESrvv7w1Qt+gIi1xiRCmWcjibTYrQS3cM7OA6ENnC/DO2gGDSAQje1
-   6WMHdjpUj9HuiJwCbPHWIRKZKVi1y0GGOpD82AiHcXabpQPsyHlkVaI7Z
-   B8E7sCvKMdLlxOqsPA7zCXMO5k7J3XSEQM7R4R06Y5p5qNkqwfGeYlCNN
-   A==;
-X-CSE-ConnectionGUID: ls/XAyU1S7u1OvpoUMgOMA==
-X-CSE-MsgGUID: 0AWQRi/ETRKkzv3jJLpP9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="34078217"
-X-IronPort-AV: E=Sophos;i="6.08,268,1712646000"; 
-   d="scan'208";a="34078217"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jun 2024 16:07:53 -0700
-X-CSE-ConnectionGUID: V9jZL/3xQI6a9qnQu9Z9UQ==
-X-CSE-MsgGUID: LAfmfYIOQZ2TdpOB7fLhaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,268,1712646000"; 
-   d="scan'208";a="67390811"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 26 Jun 2024 16:07:49 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sMbjv-000Fe6-1J;
-	Wed, 26 Jun 2024 23:07:47 +0000
-Date: Thu, 27 Jun 2024 07:06:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] thermal: sti: depend on THERMAL_OF subsystem
-Message-ID: <202406270605.qodaWd4n-lkp@intel.com>
-References: <20240625-thermal-v2-2-bf8354ed51ee@gmail.com>
+	s=arc-20240116; t=1719445022; c=relaxed/simple;
+	bh=8nATUfVgfnAtccAMYf5wpnCtBa+BGHrF+hLR14/pxuQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=eG8TtxrgSndTAlx7s3sWxTlKzzPgeo4nZqg0cT0/mM3g30gwjaKDs4YYhV2XbTEGp0b7bLbe0z+h/dIbZQVF0kuO3RlsphJur1oBZq2YH0R1h9PQm7KsoAt0ASpf/hJez4zMWs4cqTaSg0ZgCox0NIt/IVtNh926KfT9GfV8Dcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Rkgxf0sq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45QAfRoo023296;
+	Wed, 26 Jun 2024 23:36:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DaIdwceZu4nuXnSsMGfpwT+4Ee0Fw8Smr8d9oxrxyU8=; b=Rkgxf0sqR3YuA6mM
+	UDGPCp47whsjqbycreP04dMX36OD1IGD7pTe6f+jMu/c1kILp9M2tgoAnVkpKFnC
+	+GyKonBL/X128PJ1pLKp1J/Yb0VUJHx+J0ZR4Iqt7ojD9PswvFtb7nxgt4FflfDG
+	xitQMnOOWiKbn52wQ2hLgipP01wQft83vyyY4nK0WKB7VHIfi04fxJWm3Qx2wxoH
+	sEbfvUSOtRNErI0TRoVJkpjSHpfTSJMx2/bY7pY3SF6uljsZgTPVDLasav4l8CZa
+	FJWGD2vOXhfPukhogJ9XR1hiT/yaOgyAcD27eU5YNJM+toRUPVlac9vBcNxaXNA4
+	FJ2urg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywpu1acss-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Jun 2024 23:36:11 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45QNaAPk025349
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Jun 2024 23:36:10 GMT
+Received: from [10.110.22.187] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Jun
+ 2024 16:36:07 -0700
+Message-ID: <81e97c36-e244-4e94-b752-b06334a06db0@quicinc.com>
+Date: Wed, 26 Jun 2024 16:36:06 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240625-thermal-v2-2-bf8354ed51ee@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] net: stmmac: Add interconnect support
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Vinod Koul <vkoul@kernel.org>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S.
+ Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>, <kernel@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>, <linux-arm-msm@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
+ <20240625-icc_bw_voting_from_ethqos-v2-2-eaa7cf9060f0@quicinc.com>
+ <4123b96c-ae1e-4fdd-aab2-70478031c59a@lunn.ch>
+Content-Language: en-US
+From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+In-Reply-To: <4123b96c-ae1e-4fdd-aab2-70478031c59a@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1FgnjLdabwM53gD29XBkYuQ--CMtzPEZ
+X-Proofpoint-ORIG-GUID: 1FgnjLdabwM53gD29XBkYuQ--CMtzPEZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-26_15,2024-06-25_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ clxscore=1015 malwarescore=0 lowpriorityscore=0 priorityscore=1501
+ adultscore=0 phishscore=0 mlxlogscore=755 bulkscore=0 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2406260174
 
-Hi Raphael,
 
-kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on 0fc4bfab2cd45f9acb86c4f04b5191e114e901ed]
+On 6/26/2024 6:07 AM, Andrew Lunn wrote:
+>> +	plat->axi_icc_path = devm_of_icc_get(&pdev->dev, "axi");
+>> +	if (IS_ERR(plat->axi_icc_path)) {
+>> +		ret = (void *)plat->axi_icc_path;
+> 
+> Casting	to a void * seems odd. ERR_PTR()?
+> 
+> 	Andrew
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Raphael-Gallais-Pou/thermal-st-switch-from-CONFIG_PM_SLEEP-guards-to-pm_sleep_ptr/20240626-090203
-base:   0fc4bfab2cd45f9acb86c4f04b5191e114e901ed
-patch link:    https://lore.kernel.org/r/20240625-thermal-v2-2-bf8354ed51ee%40gmail.com
-patch subject: [PATCH v2 2/3] thermal: sti: depend on THERMAL_OF subsystem
-config: arm64-kismet-CONFIG_ST_THERMAL-CONFIG_ST_THERMAL_MEMMAP-0-0 (https://download.01.org/0day-ci/archive/20240627/202406270605.qodaWd4n-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20240627/202406270605.qodaWd4n-lkp@intel.com/reproduce)
+The output of devm_of_icc_get is a pointer of type icc_path,
+i am getting below warning when i try to ERR_PTR instead of Void*
+as ERR_PTR will try to convert a long integer to a Void*.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406270605.qodaWd4n-lkp@intel.com/
+"warning: passing argument 1 of ‘ERR_PTR’ makes integer from pointer without a cast"
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for ST_THERMAL when selected by ST_THERMAL_MEMMAP
-   WARNING: unmet direct dependencies detected for ST_THERMAL
-     Depends on [n]: THERMAL [=y] && (ARCH_STI || ARCH_STM32 [=y]) && OF [=y] && THERMAL_OF [=n]
-     Selected by [y]:
-     - ST_THERMAL_MEMMAP [=y] && THERMAL [=y] && (ARCH_STI || ARCH_STM32 [=y]) && OF [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
