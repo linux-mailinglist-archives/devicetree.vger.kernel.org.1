@@ -1,92 +1,120 @@
-Return-Path: <devicetree+bounces-80381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFBF918723
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:18:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 815CA91872D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:19:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E01021C22852
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:18:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6EC51C20F7C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9D518F2EA;
-	Wed, 26 Jun 2024 16:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF1C18A929;
+	Wed, 26 Jun 2024 16:19:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBTbTprP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9901618EFEB
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 16:17:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1544D1849EF;
+	Wed, 26 Jun 2024 16:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719418674; cv=none; b=AV4FbfeLYZ4o6SPxgaXiwSuNRu3jKyH4/BxeBqqKCmSAfBYvI98QGq/8g/SGRvX6lQn9Khm1ZsxDfmuVyK5p81g2JHay7a5v3lrL/B0nppjQkCcGwvXhG9PDwrOFTsqZhR5ffiRteJFF02X7s4e7tRc5GBBQ4yV4STjgLNovdtU=
+	t=1719418791; cv=none; b=eKuYkVwRzBKHnd1ZcEO/eZjUAA4487gHB6Cd5TIJ4FDrRP03QELCAQXqieu6fappMl3b3+q0fe5sBfnq4ccaf8OAinyV839/RRae840THzC7mvwt9qnjQ4re3mpWnCxV77NWNRF8ScF+hP89pLj9tXy6kR5PDAXZKvUCct1TdBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719418674; c=relaxed/simple;
-	bh=6xEpTCipjd5Dbp4vZ1NqE6c+HKy1CSgrExRxmIBzOVU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=n8zprgeJDCMktPQUxQvH7qukQjR6lSxyMWL3kj+6tBlLjv7ZveeTAZrxBw1tnttmxRovXXxhFCYmdZ8UBFMUMFptPUbBWNcPCvxg+6ZN5CxgJ+Yp4OlVhQaUrUOydpMyAFknQ3YBN8QqFV1j1gRXvz5h050ZIfRBEgMbiLjMglQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1sMVL0-0008Im-3t; Wed, 26 Jun 2024 18:17:38 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: neil.armstrong@linaro.org,
-	quic_jesszhan@quicinc.com,
-	sam@ravnborg.org,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	thierry.reding@gmail.com
-Cc: kernel@pengutronix.de,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: display: simple: Add Jiangsu Smartwin SMMT043480272A-A19
-Date: Wed, 26 Jun 2024 18:17:12 +0200
-Message-Id: <20240626161714.4057983-1-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1719418791; c=relaxed/simple;
+	bh=BUh3Ifno2dFKujCDeYuJWfZRRg+3vWHuLYdKNNNbz/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RgE4RbHGC7goLwWf5AIZPNdDpEmP9E/FqghSUDUEES4wuKf89MhuCSkrF4vRvhX+jj0cUXC5dOpySD4me1sCLEthXcqmVeddQ26DyV/LOGP1d8z2jZhdXQ9ltT9SXryBRIrgVR+64i7QlEqB/JZ6Qo0aTXcskp0+NV9t9cbWRSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBTbTprP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C643C116B1;
+	Wed, 26 Jun 2024 16:19:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719418790;
+	bh=BUh3Ifno2dFKujCDeYuJWfZRRg+3vWHuLYdKNNNbz/s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bBTbTprPD0N7cG1vof5PeK8t/e/6l98FsFMZpzBnqytLVamav5mq0sJ7/0GG5zq/R
+	 r9A5JRlqGR8WgqN+ON3cJEgihK6ossxggV9gA1y3EbOw948C875mig51mUE2Exlb2w
+	 i6elRNwgTVQC7c0RXbe5LnuxXi8Z14hpwT0O0iNsptFl+O+WklsMn3ZdUQeyUATMAP
+	 5/8Zi1Ge9viEX/y1ALMs8xOaZ719GdWfIZWHDufeAFbojKgPiyIFHixkMN7sKzQoQK
+	 luRW2CkllVkSCqOgCyLcYKjgBzQO6BjCsf0cg1Low61AFIhy3CzhAuhSmt/j7Qcwi0
+	 gxwEaczpmALWg==
+Date: Wed, 26 Jun 2024 17:19:45 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Chris Zhong <zyw@rock-chips.com>,
+	Zhang Qing <zhangqing@rock-chips.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Furkan Kardame <f.kardame@manjaro.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	kernel@collabora.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: rk817: Fixup clocks and
+ reference dai-common
+Message-ID: <20240626-prozac-wrongness-3f432b67468e@spud>
+References: <20240622-rk809-fixes-v2-0-c0db420d3639@collabora.com>
+ <20240622-rk809-fixes-v2-1-c0db420d3639@collabora.com>
+ <20240622-exquisite-absently-e35b2cf335e3@spud>
+ <20240626154446.GD2504017@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ViRgtctp4xtl5K9D"
+Content-Disposition: inline
+In-Reply-To: <20240626154446.GD2504017@google.com>
 
-Add compatible to panel-simple for Jiangsu Smartwin Electronics
-SMMT043480272A-A19 4.3" 480x272 LCD-TFT panel.
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+--ViRgtctp4xtl5K9D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 5067f5c0a272..6fcb1ebb86f9 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -206,6 +206,8 @@ properties:
-       - innolux,p120zdg-bf1
-         # Innolux Corporation 7.0" WSVGA (1024x600) TFT LCD panel
-       - innolux,zj070na-01p
-+        # Jiangsu Smartwin Electronics 4.3" (480x272) TFT LCD panel
-+      - jianda,smmt043480272a-a19
-         # King & Display KD116N21-30NV-A010 eDP TFT LCD panel
-       - kingdisplay,kd116n21-30nv-a010
-         # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240) TFT LCD panel
--- 
-2.39.2
+On Wed, Jun 26, 2024 at 04:44:46PM +0100, Lee Jones wrote:
+> On Sat, 22 Jun 2024, Conor Dooley wrote:
+>=20
+> > On Sat, Jun 22, 2024 at 12:57:18AM +0300, Cristian Ciocaltea wrote:
+> > > Ensure 'clocks' property does not allow more than one item and add the
+> > > missing reference to dai-common schema.
+> > >=20
+> > > While at it, move 'clocks*' and '#sound-dai-cells' properties to keep
+> > > the list ordered alphabetically.
+> > >=20
+> > > Additionally, drop all useless/redundant descriptions.
+> > >=20
+> > > Fixes: 6c38ca03406e ("dt-bindings: mfd: rk808: Convert bindings to ya=
+ml")
+> > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >=20
+> > I'd argue that these should not all be the same commit, but w/e.
+>=20
+> Are you arguing that, or not? :)
 
+I said w/e and acked it, you can apply it!
+
+>=20
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--ViRgtctp4xtl5K9D
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnw/oQAKCRB4tDGHoIJi
+0gm7AP0f9bOQyJ6SVNBWC7D2GOSMWzC2XNP53cujm8o0SojWcwEA6L4vjn8dcnWK
+BiK/C/J6XQrOCndjkBTNhoVL9nRi2go=
+=i8sf
+-----END PGP SIGNATURE-----
+
+--ViRgtctp4xtl5K9D--
 
