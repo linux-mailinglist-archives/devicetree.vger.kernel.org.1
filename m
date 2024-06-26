@@ -1,277 +1,125 @@
-Return-Path: <devicetree+bounces-80187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCE2A917FD2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:35:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3058B917FE1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:39:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9260F283056
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:35:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 619161C23EBB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD0517F38D;
-	Wed, 26 Jun 2024 11:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05E617F399;
+	Wed, 26 Jun 2024 11:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="gCJjxy1o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aWl/tb+v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB62E148FE3
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BE716EB49;
+	Wed, 26 Jun 2024 11:39:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719401729; cv=none; b=JVGV8DML6TkhVR7PiSzOOeV03Nqm5AAXVdiNAOpS9aCAvomFhbTOP7+nXc1Au6dsfnY6NvDTpiDFWGsoQAlirAH/fDaP9ovLHWi9MM92foK+Z5GwEJnd7pkGFkWTtC3DBpi7rwKtoBmjh8h/B6GhLXThjcqP4H/hVhClJBaG+/c=
+	t=1719401969; cv=none; b=CkQYmc6WTcP9AAwgDGeyWUHOnhetdaWFcNwXokkyoPgApv1p5sfT9OiRdf8D0V/EBp3iAiJ8bq50hyjQvFtW9k7ZcSRXM8vARzMYvySqMQ9KcNJRdcV1nsWd2WfyVRJRzHBp5pF0EE4FNqfTrwZbpKmrLaGMU28oRRPjzvrrhxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719401729; c=relaxed/simple;
-	bh=hyCEHoesLhCWFkFT0KItSLwTn87rY2tULY67E7+fMl4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=giVnbEy7PVL7p0zpeJOFEy1ZcwQWAPnylFE727L/uhUXwRtXgHImy47iUo8qNZi2fIy7VjWdFffyFGdiltrEX3sHInEeecFESU7p99MuMeJdpf1OdgvNOcZcB4josn5vAyuHP7W/dThn71CSW83jC1xJZGO1vjB6N7kQqSeCwfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=gCJjxy1o; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2eabd22d3f4so80272551fa.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 04:35:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1719401726; x=1720006526; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/mJFymPAzvIBPbn3bkW2qZ+fHV3fI6ldQ7fFpZqC/oU=;
-        b=gCJjxy1oY7Ek4kfhPZ8avbRwAc8oXdNG4rjDNbIE3sdre4axOVGZlEorNzCYqAwv9O
-         Y7bZbL6OBTBVGjvYtA3xjpNdQ6eiABH2iwWyfX12Md4/h6snJ7lh+gIurPSX9YogTlIf
-         RP+MNvFenMyLuuu45eDZNxIMRW1xdg22mW+ws=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719401726; x=1720006526;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/mJFymPAzvIBPbn3bkW2qZ+fHV3fI6ldQ7fFpZqC/oU=;
-        b=a8aCfS25+52Icgk9MFJGpB7icuSLG6o9brI+VCiBf3/5y7Bvgys1kXPrgbohxjE+xG
-         FILlLJscuFCo609DzlyrzCk0oXx70GuC3KWcN9lDScZgFfpipRJC7StXpzqCMPaIYku+
-         z4RwKy0ioKWw9PrtHFHKiTuObCK3xQIZhx9uMPlnq/OYXHuZBn7ouCS1IVHC02b2j+27
-         x9eU4PjC1jtVlz6VpHbnAPqCSfJLu9VIYke+S1dAOqFqS4eDTkWDZVqnDBWzLS/fM5/1
-         toC10bhsr7g5ULm2vScqtBcqCF0iRngKOp7picHCB0/kVeCNafO25bF5lECVp5JZRrYB
-         wz/g==
-X-Forwarded-Encrypted: i=1; AJvYcCU+Nn41jSNi7sCe1eYKFgAgr9GWmcJqSxLv1Ub3e31zA9sEnkYMa/yRJrSCdGENV1q1aMhfrQlZ1x/Ye+ptjn59YIo7Mgiqq3CNiQ==
-X-Gm-Message-State: AOJu0YyEAi/PG6hlRfYAnB7zRnGXLmbO8eCAbQwPyTtUdHr25Oe5+5gN
-	u8UVhPAYNJPh1QcgNA3sTxc1ShQZm9w5eAkMuWVYDMd6TDmQQmxCtm+jpI7KNw==
-X-Google-Smtp-Source: AGHT+IEhRBScST3r7pZzgLHbZj5TxhkM/7oN9uGMn1u3NIcs55SmshQoc8PHpB3cJaLI2VPnXE/Otw==
-X-Received: by 2002:a2e:2a42:0:b0:2ec:5ff1:2283 with SMTP id 38308e7fff4ca-2ec5ff12435mr55150531fa.19.1719401725826;
-        Wed, 26 Jun 2024 04:35:25 -0700 (PDT)
-Received: from [10.178.66.211] ([192.19.176.219])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8245e7csm23063885e9.3.2024.06.26.04.35.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 04:35:25 -0700 (PDT)
-Message-ID: <17642213-388e-4585-8775-1db1db9b9707@broadcom.com>
-Date: Wed, 26 Jun 2024 12:35:23 +0100
+	s=arc-20240116; t=1719401969; c=relaxed/simple;
+	bh=kRkfCImJpphL61TsH/FPQu7ahWgxwiDMU+kKj3oKfq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uPDFlYiOkwbrgNNnZ4xOliz8/CVvslzCpuxAWjPaTYhPGknQyLaEQmLsWEeE6aLWj+7+TOCFiAh8E5Zu9TvxitStX/JPFt9anpWfGMaQVv9jl/tYrmb/CeuE3gzUgJM2uHvapCInqRrdpf5jcFNlzu8YlYU96KfQvPB9Wy4OOiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aWl/tb+v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28569C2BD10;
+	Wed, 26 Jun 2024 11:39:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719401969;
+	bh=kRkfCImJpphL61TsH/FPQu7ahWgxwiDMU+kKj3oKfq4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aWl/tb+vxw8Pi9z5FQkdyA+ZUUrJeTyoXu/zs68576s9PbfrwwqErNN4u6W3rv7ef
+	 k4OKJintgyK7M38PRG4Y5N7nQ8HB2W9h6A81Bs+N1PkhLvOF966rMyCiWSLE0wlbLB
+	 mJxEKZfISFn/UFftY8SNdg97AUeYZIhLTofLFSuF5Oo9JD0KCp880FoQyWv4VR4Vrd
+	 enL9VmlSYkRW6GMOYMh7vjJVrTTtQlV7Z0U8FunQMdY1pyiQTJiKtjgY3MnkagXDrP
+	 8Lcw/AyuZ53cxyW4mPqLMzQRWwqmw8NuiiJ/CWR7SyJpVQ3W6kbic5jU/LQgtsFzTq
+	 culDJGANHF0Xg==
+Date: Wed, 26 Jun 2024 12:39:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 4/5] dt-bindings: media: renesas,vin: Add binding for
+ V4M
+Message-ID: <20240626-enforced-flock-965380c1c1f0@spud>
+References: <20240624144108.1771189-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240624144108.1771189-5-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: interrupt-controller: Add bcm2712 MSI-X
- DT bindings
-To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
-References: <20240626104544.14233-1-svarbanov@suse.de>
- <20240626104544.14233-2-svarbanov@suse.de>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240626104544.14233-2-svarbanov@suse.de>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000001f27b7061bc969c5"
-
---0000000000001f27b7061bc969c5
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PaJQpqTPGDgXp5ks"
+Content-Disposition: inline
+In-Reply-To: <20240624144108.1771189-5-niklas.soderlund+renesas@ragnatech.se>
 
 
+--PaJQpqTPGDgXp5ks
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 26/06/2024 11:45, Stanimir Varbanov wrote:
-> Adds DT bindings for bcm2712 MSI-X interrupt peripheral controller.
-> 
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+On Mon, Jun 24, 2024 at 04:41:07PM +0200, Niklas S=F6derlund wrote:
+> Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
+> This device is compatible with the VIN module on the other Gen4 SoC,
+> V4H.
+
+Provided a family compatible like this actually makes sense, and is not
+just being done to appease my want of a fallback:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+>=20
+> Signed-off-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech.se>
 > ---
->   .../brcm,bcm2712-msix.yaml                    | 74 +++++++++++++++++++
->   1 file changed, 74 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
-> new file mode 100644
-> index 000000000000..ca610e4467d9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm2712-msix.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom bcm2712 MSI-X Interrupt Peripheral support
-> +
-> +maintainers:
-> +  - Stanimir Varbanov <svarbanov@suse.de>
-> +
-> +description: >
-> +  This interrupt controller is used to provide intterupt vectors to the
-> +  generic interrupt controller (GIC) on bcm2712. It will be used as
-> +  external MSI-X controller for PCIe root complex.
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - "brcm,bcm2712-mip-intc"
-> +  reg:
-> +    maxItems: 1
-> +    description: >
-> +      Specifies the base physical address and size of the registers
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
+> * Changes since v3
+> - State in commit message that device is compatible with the other Gen4
+>   device.
+> ---
+>  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/D=
+ocumentation/devicetree/bindings/media/renesas,vin.yaml
+> index c3ef4fde7baf..ec8a8d87dc24 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> @@ -56,6 +56,7 @@ properties:
+>        - items:
+>            - enum:
+>                - renesas,vin-r8a779g0 # R-Car V4H
+> +              - renesas,vin-r8a779h0 # R-Car V4M
+>            - const: renesas,rcar-gen4-vin # Generic R-Car Gen4
+> =20
+>    reg:
+> --=20
+> 2.45.2
+>=20
 
-Should we have some sort of an interrupt-map or interrupt-map-mask 
-property that defines the "linkage" between the inputs and the outputs? 
-This controller does not really sit at the top-level of the interrupt 
-tree as it feeds the ARM GIC, unfortunately this is not captured at all, 
-and it seems to require ad-hoc properties to establish the mapping, that 
-does not seem ideal.
--- 
-Florian
+--PaJQpqTPGDgXp5ks
+Content-Type: application/pgp-signature; name="signature.asc"
 
---0000000000001f27b7061bc969c5
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+-----BEGIN PGP SIGNATURE-----
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBG7GCXU6Ja/p+FR
-teG8omcZRdmTJTclVTWgBXxTWxFIMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDYyNjExMzUyNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDruzBOPGKGUUJMjB8eqA1Zo9X90pOS+mVR
-EiuR1i50lcYslCO/EA7cAqS9K97GHR2T2ubga7T+DKTdC9pb6OYmEIac6q85lh/h1+/2YIF890I8
-5BRKHuAuzhbPUehT11Wo5Diy/6OjXPP8lGXm00mCwh38uTzOYnJPaaSSJ9x3isZTqLVx82kTld1J
-CE0vOIfoXAUNHyJUgRT+BOWlJszKWv6P5rgDp+TJK8HWMn/dZ8XPN3NC1lo9ijHJbKHBQDAppFMQ
-TvIPrpugWAdn2cWRgp2vk1K6mIvq3PEaSDT6Ul7bKX9Pggi6KJOjRo4M/Q1oEhKet1WlsPfy/1QE
-vtC+
---0000000000001f27b7061bc969c5--
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnv97AAKCRB4tDGHoIJi
+0lPRAP9Vx/JmTh01rKVl3wFBQxCJ1/bTq3388l7pe4ZzEft51AEAvz1LmbYPgLUk
+64CUgQfDX9vQOoJStt3cCJYPoBa/ngI=
+=ilSc
+-----END PGP SIGNATURE-----
+
+--PaJQpqTPGDgXp5ks--
 
