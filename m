@@ -1,121 +1,117 @@
-Return-Path: <devicetree+bounces-80409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E26A918A4A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:46:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA16A918A53
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:48:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F7651C230C9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:46:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 802C71F22300
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B4F19006B;
-	Wed, 26 Jun 2024 17:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59DD8186E2A;
+	Wed, 26 Jun 2024 17:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="K7rO6ztX"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="vpFq88Qn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mout.web.de (mout.web.de [212.227.15.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A34218FDBF;
-	Wed, 26 Jun 2024 17:46:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24A3155A26;
+	Wed, 26 Jun 2024 17:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719423972; cv=none; b=GczYcb5YYQaOvxIM+3RCJWi29y8oFG9vwL4jIKLhqNmZJzux+iaToR0H5RXHmanxs+fo5Y6Fh+XR2lmO9Ob0Fov3l83kpaw8WkPYj+bOwPyuqX6aVEUMsVXcNOdyh1HhSqTLcOG11J9dZzkdUXd6/sXJ/PHD8ltW6dfW8GXvgzg=
+	t=1719424110; cv=none; b=lyCbaoraFNsQfJtWTvTK3cFJQ3uSCQlqypWieFl9/Yf83AfP6+07EB6+JTEAxeBvZ6jHKXvBrz/7ib8s7GdNVyOSEtAtYTO1lIfegFqECD1I+e6WSi2UBC5P+ittTBoxKUr5A7A9NTPphwnFSBb9iZx/eDnoYaq/fbDkNjrYrO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719423972; c=relaxed/simple;
-	bh=v0Vh4kAkmKCJro2vJe6FJUdsNe+J9F0n0qvBZYaqEMY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Pq2FrvaLJl03I8ax2tBrPdbw7Xiso2Rg1eQszWwmiVDjJ5mLSfvjN+nIVoBtKzBapQ1+Jvfrq3ViUXFNZ+QHRolf++xXjzp3Nn/+UiLsVird8Hh8Gcwo6OkKdlHZ2BIdTCt+l8mVW16VlaLhPyGA+rapkMNl9zldMt92e55GTCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=K7rO6ztX; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719423968;
-	bh=v0Vh4kAkmKCJro2vJe6FJUdsNe+J9F0n0qvBZYaqEMY=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=K7rO6ztXaBSACwy14eiHwe4hrwfzRq5yJy1iqhmvYCDKsiBoSHGcpTQfoZL32bfGs
-	 AlaBzTi8sk2IF8OyyAL8Wd6xq24K6CzLDz+/ozJ4gSKYCAhgkAcHqQsrwShLb93nzT
-	 /GgSMJnyEMBpAbpQ39/oULIfSMlGdNv3J+S/oqCZGaNfTgSLDIPIZhrXjnWjQKtDUx
-	 5QWDM2KjxIus5KQEbw4+dUpDHXBHU65TSQvHg5cVpLOjNq41x9l2qoxQgPM3O85R2d
-	 hTrPMYsJUXUNUoURTASSdK1rvxDARVMd/1VZLbCu5MiGMEwfEPmYwUA9qb0ambYCCc
-	 7vwcdDloLSu+A==
-Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5CF0A37810CD;
-	Wed, 26 Jun 2024 17:46:06 +0000 (UTC)
-Message-ID: <f04e25bf3c09c55049775e8f012cb653cb4682ba.camel@collabora.com>
-Subject: Re: [PATCH v7 6/6] arm64: dts: rockchip: Add VPU121 support for
- RK3588
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>, sebastian.reichel@collabora.com
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
- ezequiel@vanguardiasur.com.ar, frattaroli.nicolas@gmail.com,
- heiko@sntech.de,  kernel@collabora.com, krzk+dt@kernel.org,
- linkmauve@linkmauve.fr,  linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org,  linux-rockchip@lists.infradead.org,
- p.zabel@pengutronix.de, robh@kernel.org,  sigmaris@gmail.com,
- detlev.casanova@collabora.com
-Date: Wed, 26 Jun 2024 13:46:03 -0400
-In-Reply-To: <20240621092234.280171-1-liujianfeng1994@gmail.com>
-References: <20240618183816.77597-7-sebastian.reichel@collabora.com>
-	 <20240621092234.280171-1-liujianfeng1994@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
+	s=arc-20240116; t=1719424110; c=relaxed/simple;
+	bh=s35+qZTcqhwM8W3AinynCg6kiFRF8n8VyM1SZPYKXqw=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=ncc4/ucIM9cs40sd4jP53J/g+YYEl6xmyAMyo/rgPVdjFZvFgGXjgOw9ZXU4G1UoVoINA1bQ16MasKRYHJFux8OJ8diyuXHz2ycFTqFLk+FfE2Qm5Bkd4DLor9NCcDcwhCJGhRzP6tzHc+UcpFpfJAOr8aaSwtdU+tMR1bbQQuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=vpFq88Qn; arc=none smtp.client-ip=212.227.15.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1719424097; x=1720028897; i=markus.elfring@web.de;
+	bh=ckRm9hxi4SLgTfnZQvPFzAXNKifH/3B+TbZxccPOSOQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=vpFq88QnbNH7HmABo7mPWqDsYuyoVpVSdhObFfvIR9X2L4hKxModF4fvj+qmuct4
+	 UGGbQvc823sEgwSGcNK5DDbJ0jbjLMsNcjIZpt40GOrMvNT7KSZ77nCP+MxgMyjsp
+	 hIj2gRbNTSbqxWbP2JJkfzsCLWOwn3a8McPXZUpjfTuyFLc6OHeRsbxCHlijKwJyl
+	 GNt7m+VXTSOpNR2swCAuq2CGrhF9FrKTIkf3qSNo5ka3hrByiEy3tI+yPKTS2ZDGQ
+	 msctZq47Tvoze2jko6mK3Y5/7Fu1udGa86VsRDYmaSOtufEZRLmhdrzRzYWgZ/dIW
+	 Kcn8NTdAtHYKyI1Pqw==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N79RI-1sNiYf0i1E-00xIMV; Wed, 26
+ Jun 2024 19:48:17 +0200
+Message-ID: <db2d2cee-64d8-491d-b8a5-f0362ddc269a@web.de>
+Date: Wed, 26 Jun 2024 19:48:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+To: Christian Marangi <ansuelsmth@gmail.com>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>
+References: <20240620210401.22053-11-ansuelsmth@gmail.com>
+Subject: Re: [PATCH v7 10/20] leds: leds-lp55xx: Generalize led_brightness
+ function
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240620210401.22053-11-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Ey+tkCJX0xs2Ahlx0Ke1CKYmRvYbATtl65O1+zpFb+F2XLFr/fv
+ FlqwzFGNauBuiyxAh0BZoGf/3bxKEpAbS6kSTkCH2huMdcTAeo9vB3FYKt0kd5kuMzafdT8
+ VIrNFbkGyyostHbcJGhsM1GWh++Iukfjzy39cw66f+q4x0AkDVGSfYxagUkB6Fl9dptU+Ch
+ qvttwJ90jgeokGBRp+qfA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:l1iGpyGvBs4=;7BKbWR2rkr7FYKX7wZXDU40C0Ij
+ UtQYiP0pJsBPidm+sQgK7NrqSH51wEjn6zXI1c2OBVALaLFz0MDVInhFv+30ig6TGR565aQP9
+ +CEccUH33fxSFqUPRTDBqtDNKlvFyjVOldzZ01dtFbF+cvkB2wU4w2k6+zJrYjn1+Aqepew1Y
+ qtmYt3QQ07zfFF9cmyblKH/4LLUZVye6L6seVp3a1getIo1Et7LgadCF6jfLq36KgyZBoycM6
+ QAHDDR6psIzDygR1S9dQKgW1MBy4ZBaCEhofHD4+V4ltek1wad5ZsYnPZ9klDt+a9QGS1RCVh
+ uE6axgQq3mzP/VhJw/beU2LuZdP2MCYlMdie+lOV5MIBHYes8UG1YT45UMzvljAi3NoOSBV9Y
+ WV2pVjYZm/ji9YJKj66cIrubzl9v9opiJbi3LauHGX0QfGAU/QW037cXIiutxS0Gx3bgqju3B
+ 2yuHSgYgZo6x74HbzyLz7nQ8N/JqtdQfn7JQlJpoXGvzgnO+gJ8a8cw4aWyTkfS9V1ZBD0kT3
+ IdVNbqBw8AWfwpOe1aRajT2/xMhjo+hab+KgXV1Owz1P7kD73LcyjbfZsq/Bvq7HPmbaB6ovT
+ jZNVJfPXFVOW3gN6DGsXgHB+E0m5leeTAO1FKaxA7p1AZi0/WGrjhWqxSivGK3XbeYWK3pAVF
+ 0sN+V35IkQ9qTBzhL093sGak99KT6HjHT12EvvZQrO+K6X5uRiUNLJEntBgqEZGVGYcG6HJN7
+ mHnGIpUOuJVwIzmpyrUjXXjlZjEJQaWHLnEl6vKWFPQae0AkWCyyY/SaqYACvF7CxNF28/b4O
+ gYm8NoAX2llnvZ2eNy11Ob9yGV8zufN+D+2MJ627IiKKY=
 
-Hi Jianfeng,
+=E2=80=A6
+> +++ b/drivers/leds/leds-lp55xx-common.c
+> @@ -242,6 +242,20 @@ void lp55xx_firmware_loaded_cb(struct lp55xx_chip *=
+chip)
+=E2=80=A6
+> +int lp55xx_led_brightness(struct lp55xx_led *led)
+> +{
+=E2=80=A6
+> +	mutex_lock(&chip->lock);
+> +	ret =3D lp55xx_write(chip, cfg->reg_led_pwm_base.addr + led->chan_nr,
+> +			   led->brightness);
+> +	mutex_unlock(&chip->lock);
+> +	return ret;
+> +}
+=E2=80=A6
 
-Le vendredi 21 juin 2024 =C3=A0 17:22 +0800, Jianfeng Liu a =C3=A9crit=C2=
-=A0:
-> Hi Sebastian,
->=20
-> Detlev is working on rkvdec2 and gstreamer can't deal with two h264
+Would you become interested to apply a statement like =E2=80=9Cguard(mutex=
+)(&chip->lock);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.10-rc5/source/include/linux/mutex.h#L1=
+96
 
-Just to clarify, since you are right that it won't work well with GStreamer=
-. It
-does work with multiple decoders (it exposes them all), it is simply that i=
-t
-will randomly pick one when decoding, and it may not pick the best one.
-
-> stateless decoders. So it's better to disable h264 decoding feature of
-> this vpu121, just like what we have done for rk3399. If your multicore
-> patch can handle the jpeg enc node at fdb50000 with other VEPU121 nodes
-> properly, we can just use compatible string "rockchip,rk3399-vpu" instead
-> of "rockchip,rk3568-vpu".
-
-In the long term, I'd like to stop having to do "like downstream" and expos=
-e
-them all. I believe the fix is fairly straightforward in GStreamer. We need=
- to
-expose in the generated element the width/height ranges, and for H.264 the
-supported profiles and level. With that, we at least won't randomly fail at
-decoding 4K, and it should be good enough.
-
-For RK3588, which is a new SoC, its not a problem to upstream something tha=
-t
-does not work with existing userspace. It would only be a regression if we =
-where
-to enable VDPU121 on RK3399, as now updating linux would cause bugs with
-existing userspace.
-
-For users, it would be best if we get this sorted out in GStreamer by the t=
-ime
-we have a second decoder. Note that I have some vacation coming up this mon=
-th,
-so there might be extra delays. Yet, its logical to merge this (the "worst"
-decoder) first, since then randomly picking a better one won't be a regress=
-ion.
-
-Nicolas
+Regards,
+Markus
 
