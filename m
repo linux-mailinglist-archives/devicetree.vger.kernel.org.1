@@ -1,225 +1,95 @@
-Return-Path: <devicetree+bounces-80275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358B59184AC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:44:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 282229184B6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEF9A28AED3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:44:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D74CE28B4A6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DBF9186E2A;
-	Wed, 26 Jun 2024 14:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C07914AD0A;
+	Wed, 26 Jun 2024 14:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UiMYVNhQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kd1Go5Rw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1421862BE
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6636D45C07;
+	Wed, 26 Jun 2024 14:44:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719412973; cv=none; b=clQEK5DozQ2bR947Wt+6ptrbaB/1gHN/2HrOVWak0XcfKIaUuYaxz9cW7z1e5wZT8bj/+1E/H8NI7/9yK3xAz7KBnJ3DDHYKa2MPT+HskGPY7KZeCmW+6DAsjBDK3C/9OhYa2XZOADmB+An4n2MgkBLOtBep0yMSqndmAz+9SRI=
+	t=1719413089; cv=none; b=FjZd2H3aDGU3ycms+MAASmYhTEkXOHB4E480NUc23ghMqcypT5EmiFvA6U5H5knatuCyk/BzuTCJHvCvZ4Jg4wQgKMGMEN/cY+ctopFXWVBufExNibI7QMWls7d68VtTPixQTHaFhtcIFMsLlHmOCLxBvBBnfIKePzF8osRNsZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719412973; c=relaxed/simple;
-	bh=K7aP/eHDt4GdGK/74zQ1CLj8aftrYuNuSeKAYMxdWTc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A6qwNDdGcpKJQr6ZUv8D/GG6mdBMbXjX5tMy2xcfSsAP419rpbC3Edrm1luZ/lkV/YxldIBdz2b1H6S3twdqodC7c0iE46rOvMyCCvjw3RzFW2QYq23EuVaGdegqqLa1gvgqFPPmN97ZsnL9lnPJgH85MSInKz+eh+qfQ+Uu0Ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UiMYVNhQ; arc=none smtp.client-ip=209.85.161.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5c1a6685cd5so3278111eaf.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:42:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719412971; x=1720017771; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m6xILt2X5QE+PcAs6cHxc/Zb3Y2A3nIUAiSP4m+Ryi8=;
-        b=UiMYVNhQzajOc5BWpHQPZr3Q9zFr52rx34l1JfmC8cEyRwcSkC0p9V4TDsQW0Zl5CZ
-         +M+4uLyFZdMJ5BgZ83XzIhjGv8WDdCUHnirUjIDYoH/MWGDjOVre90BLooxMNKODWWvB
-         DkRzc09p8ZuU0SjsP3wDOn23Vq7+dixMH0D1XDABWqv26qEfX/gU0+YlZd1CGYCYSO0q
-         qVQBbyqYasUPTrhsX2Ql/VSQ1Uquz4dDkNrs1DgrmlSwdf8sBvNsDxVDae1oMp3SA4WO
-         kU1+vd35gfgHH3Baxcx3RBOq67Xw+bD3D33Jjn/z5TYJisukcfNNijrE0yxnr8TyK07I
-         Mm9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719412971; x=1720017771;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m6xILt2X5QE+PcAs6cHxc/Zb3Y2A3nIUAiSP4m+Ryi8=;
-        b=sBB5ptWpGAD2SJPw9Ib1g+lOhaQyT2AmHMkTx5Fps8MJ4GGtNBo3K/zExqlpTWpT/R
-         rpA3Jdp2DW1J92jjgTHUpPbKyoUe+jBhNr9YmK6CKXa8YcU2I8dPzfpHhvBkfo4kqj5y
-         69a0XWSQrNEmMAjA0efWGNctcXp2tVzxHcEiHmBfOoTA99L6Y7cYeOD6kZ5cTZwySy7F
-         SqsuSXJqj9R+rtPVk0K1HLMWrNnSO2KT5J6+v6MPY1oYufWxKrPMDnKCh6IzlA2ELE7i
-         RANJFldE2WfCdzu5eQOFemYtNGpuOAdb9nMmDG6AqvR7E5IPCOqGUrYyF/a+ye3cMfze
-         GZDg==
-X-Forwarded-Encrypted: i=1; AJvYcCVwsQuj7teM9P2OPuObn1o7zfGYF1Cxe4IMOBDJKL+loHKiWKAHTuudLc1abZJat702xjBb6AE2ZyX/TmeBb6IOv94cgWuA6IfJWg==
-X-Gm-Message-State: AOJu0YznE28DOv4IeU7UVfL7ZIQU2m+5wT5LRvDibpbRbe0ANEm7jrlb
-	P48+uhqKYL6+R3GiuR/q3+cDJHuhqk4OyIDxCjCLPoo3VPoYyp5U1bECEddWL5k=
-X-Google-Smtp-Source: AGHT+IHNFQQ5Jp0CR9h0pMLQqG7aefDgqmLSddqW/x1VdakRqiSbDrAgGJC5DBOjhlouQlhPHHmtaw==
-X-Received: by 2002:a4a:868d:0:b0:5bd:b695:5bf1 with SMTP id 006d021491bc7-5c1eedee62cmr10336148eaf.9.1719412971183;
-        Wed, 26 Jun 2024 07:42:51 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5c1d91e5f59sm2056578eaf.25.2024.06.26.07.42.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 07:42:50 -0700 (PDT)
-Message-ID: <d2649e69-4c71-4aa9-88e2-9d3f15549e1b@baylibre.com>
-Date: Wed, 26 Jun 2024 09:42:49 -0500
+	s=arc-20240116; t=1719413089; c=relaxed/simple;
+	bh=Hd7daRwxk/5b3ynTV/NWquiYpBPUHgnrHUul26N5148=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Sx+bS+HC5gyZdIg66xYj4c+G2ieY9DXO1bYKqWiekJCUJdoOEzVQ250N3C1Oq0DenlUIOpBCN1wMXq3dqDqPF5qlAVAdqha8g8TdvjHVUU6ZfipV0T1XvMmAECSjLd6i2Iq3Nt6XA84gxaofEiLiIzKGm4F4BcCf4TZf8oLiZb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kd1Go5Rw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC0F4C116B1;
+	Wed, 26 Jun 2024 14:44:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719413089;
+	bh=Hd7daRwxk/5b3ynTV/NWquiYpBPUHgnrHUul26N5148=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kd1Go5RwfdzjsxpX50Q9C9qSQyieHnReXq62iln9jiHWNngprPriaPPiH5p9rFDWv
+	 myL54IJMQqvbT77+L4meE1KgzHUTKkz+1OxqkhahEmIVYNVVi3HKNBzdIC0mFI0YIb
+	 hx3qtPIiKXIC55CrGozm9R5ndws8Y8kB6okk4+wHG/saou0S6eQ5PKUmgDze/+aAPm
+	 s9RzFS4e9B3DqswOaitVgzRkMnvMKyLJzQh+qEl37ax6kNoIag7Hjirk/+/Hfb68Yr
+	 0Jsuvx2Vn9l2iF4B+ceVjB1vfal7bduYMYh0DWgXB2YMZX07IgRXUtQPai7wayevmy
+	 fEWivTYdiaJBg==
+From: Michael Walle <mwalle@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Gunnar Dibbern <gunnar.dibbern@lht.dlh.de>
+Subject: [PATCH v2 0/2] drm/panel: initial support for the Ortustech COM35H3P70ULC
+Date: Wed, 26 Jun 2024 16:44:31 +0200
+Message-Id: <20240626144433.3097793-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] iio: adc: ad4695: Add driver for AD4695 and
- similar ADCs
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Ramona Gradinariu <ramona.gradinariu@analog.com>
-References: <20240624-iio-adc-ad4695-v3-0-a22c302f06bf@baylibre.com>
- <20240624-iio-adc-ad4695-v3-2-a22c302f06bf@baylibre.com>
- <f02cac02f9404bf6dcc5a8274b51d836960871ee.camel@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <f02cac02f9404bf6dcc5a8274b51d836960871ee.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 6/26/24 6:47 AM, Nuno Sá wrote:
-> Hi David,
-> 
-> minor stuff from me..
-> 
-> 
-> ...
-> 
->> +
->> +static int ad4695_write_chn_cfg(struct ad4695_state *st,
->> +				struct ad4695_channel_config *cfg)
->> +{
->> +	u32 mask = 0, val = 0;
->> +
->> +	mask |= AD4695_REG_CONFIG_IN_MODE;
->> +	val |= FIELD_PREP(AD4695_REG_CONFIG_IN_MODE, cfg->bipolar ? 1 : 0);
->> +
-> 
-> nit: don't need to OR the first assignments and so initializing the variables.
+Add initial support for the 480x640 DSI panel from Ortustech. The
+panel uses an Ilitek ILI9806E panel driver IC.
 
-:+1:
+v2:
+ - use drm_connector_helper_get_modes_fixed(), thanks Dmitry.
+ - slight header files cleanup
 
-> 
->> +	mask |= AD4695_REG_CONFIG_IN_PAIR;
->> +	val |= FIELD_PREP(AD4695_REG_CONFIG_IN_PAIR, cfg->pin_pairing);
->> +
->> +	mask |= AD4695_REG_CONFIG_IN_AINHIGHZ_EN;
->> +	val |= FIELD_PREP(AD4695_REG_CONFIG_IN_AINHIGHZ_EN, cfg->highz_en ? 1
->> : 0);
->> +
->> +	return regmap_update_bits(st->regmap, AD4695_REG_CONFIG_IN(cfg-
->>> channel),
->> +				  mask, val);
->> +}
->> +
->> +/**
->> + * ad4695_read_one_sample - Read a single sample using single-cycle mode
->> + * @st: The AD4695 state
->> + * @address: The address of the channel to read
->> + *
->> + * Upon return, the sample will be stored in the raw_data field of @st.
->> + *
->> + * Context: can sleep, must be called with iio_device_claim_direct held
->> + * Return: 0 on success, a negative error code on failure
->> + */
->> +static int ad4695_read_one_sample(struct ad4695_state *st, unsigned int
->> address)
->> +{
->> +	struct spi_transfer xfer[2] = { };
->> +	int ret;
->> +
->> +	ret = ad4695_set_single_cycle_mode(st, address);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/*
->> +	 * Setting the first channel to the temperature channel isn't
->> supported
->> +	 * in single-cycle mode, so we have to do an extra xfer to read the
->> +	 * temperature.
->> +	 */
->> +	if (address == AD4695_CMD_TEMP_CHAN) {
->> +		/* We aren't reading, so we can make this a short xfer. */
->> +		st->cnv_cmd2 = AD4695_CMD_TEMP_CHAN << 3;
->> +		xfer[0].bits_per_word = 8;
-> 
-> nit: isn't this the default?
+Michael Walle (2):
+  dt-bindings: display: panel: add Ilitek ili9806e panel controller
+  drm/panel: add Ilitek ILI9806E panel driver
 
-yes (looks like leftover from testing when I was trying 16 instead of 8)
+ .../display/panel/ilitek,ili9806e.yaml        |  63 +++
+ MAINTAINERS                                   |   5 +
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9806e.c | 402 ++++++++++++++++++
+ 5 files changed, 480 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
 
-> 
->> +		xfer[0].tx_buf = &st->cnv_cmd2;
->> +		xfer[0].len = 1;
->> +		xfer[0].cs_change = 1;
->> +		xfer[0].cs_change_delay.value = AD4695_T_CONVERT_NS;
->> +		xfer[0].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
->> +
->> +		/* Then read the result and exit conversion mode. */
->> +		st->cnv_cmd = AD4695_CMD_EXIT_CNV_MODE << 11;
->> +		xfer[1].bits_per_word = 16;
->> +		xfer[1].tx_buf = &st->cnv_cmd;
->> +		xfer[1].rx_buf = &st->raw_data;
->> +		xfer[1].len = 2;
->> +
->> +		return spi_sync_transfer(st->spi, xfer, 2);
->> +	}
->> +
-
-...
-
->> +
->> +static int ad4695_parse_channel_cfg(struct iio_dev *indio_dev)
->> +{
->> +	struct device *dev = indio_dev->dev.parent;
->> +	struct ad4695_state *st = iio_priv(indio_dev);
-> 
-> Why not passing in struct ad4695_state directly?
-
-Probably because that is how it was done in the ADI tree driver
-I started with. Changing it to two parameters would be fine.
-
-> 
-> ...
-> 
->>
->> +
->> +	/* Needed for debugfs since it only access registers 1 byte at a
->> time. */
->> +	ret = regmap_set_bits(st->regmap, AD4695_REG_SPI_CONFIG_C,
->> +			      AD4695_REG_SPI_CONFIG_C_MB_STRICT);
->> +	if (ret)
->> +		return ret;
->> +
-> 
-> Question... do we gain something but not doing the above? Because debugfs is
-> optional and always doing it even when it's not present looks unnecessary. 
-
-I haven't got to a place where we need to read or write a 2 byte register
-yet, so I'm not sure. My plan is to defer worrying about it until then
-and update this if necessary in a future patch when it actually makes a
-difference. But for now, this is harmless because we are only reading
-and writing single byte registers.
-
-> 
-> - Nuno Sá
-> 
+-- 
+2.39.2
 
 
