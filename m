@@ -1,137 +1,117 @@
-Return-Path: <devicetree+bounces-80250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA00918394
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:03:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81479183A1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:06:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E0A6B24A50
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:02:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30BD61C209CB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D967181CF3;
-	Wed, 26 Jun 2024 14:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E400518411D;
+	Wed, 26 Jun 2024 14:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZBkQzVU6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UH/K9cDp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7831755A;
-	Wed, 26 Jun 2024 14:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901441836F4
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719410530; cv=none; b=MW73D2K+nQGeTsXQr9ZGY23VJtCTp/fD5vpyn99326dz253hVFrFRAVM4RC/dw0fHBRwMKPDQKlBoGkH0k2sYTOnQnrMseKEnugpkflcFHp6RrVspnmFENHcRbkfdw/8gCUgjqRFBsMXBHlmGPb6CBlj88+u6z4WXhXj7RmbpLE=
+	t=1719410764; cv=none; b=TU93O1dGq47rQ/CsD7vrghtvZFw0BQLQW7EWIVCq8ayJ33gZ7WsznNw7kSxmxY4iUkd2eVyxzBKKt1D/uwhm60AVQzKcs1dh/4CVkrKi34sXG6gEszwXBdqLwwfUETXDH3ftOYpUQgi7kQXVxCSOhacC/nAHakG1m1+K+P2sKLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719410530; c=relaxed/simple;
-	bh=Z35Nb4vXzItDiHKF9HUk9/dMjwDwEL8AOUtpP0W3VFo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C0ejuvnAJOgWhAao8sc9xrBwmxfqw7wueUol2TGxJP0/i4rVPcAnj9bd3ka4LcN2ff0XxDeRsnxFFWdLSALStFHrdOI/VXUmJUZIX9KT+p/XK6FjLaaLoSrV46Fjzka6Jx4rNlvBqlZpUbfJYJOjguVR0JPT6GR94qjqF/0EB0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZBkQzVU6; arc=none smtp.client-ip=209.85.160.50
+	s=arc-20240116; t=1719410764; c=relaxed/simple;
+	bh=VwUcb8oWHH79Fw1umc4qTInN2W0N9pzMN345mM9hJmg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=p4WC+NtXj4EZ8SN58/C8eFHLrXtTauxccdxAE9Ein0TyinYXhpwXJbgcfRviTXzKQ7fy71B55vfRSH8y0+VGDjALM9RANeSTV3Yi3gD1qr6NErFq2zsnwcAihemyw/57CLmSzm0SI/5MH1W9iO37WjiyHHJf1GO494q22haWjDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UH/K9cDp; arc=none smtp.client-ip=209.85.215.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-2598001aae7so3301916fac.2;
-        Wed, 26 Jun 2024 07:02:08 -0700 (PDT)
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-71d125f2d96so481152a12.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:06:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719410528; x=1720015328; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WlX6ofd4eUvev3IitES3h0rQ2uet+ifDwXi5r0qMYlA=;
-        b=ZBkQzVU6G3pf8MZ780XnAl6zg5DwYcJdGNa0UE3qWQGW6TaKypn8JY3isFw8Ycju/i
-         DoQrSZfNAJMZUG/EI+jHtITKOExiuuQTN/5oLloCJ+g/avC3/znSaScM5RMjQ6lUIDLv
-         G23T+m8hriuNkF3ndi8el1mmdTUznEGiCOdBSbqJ//wDvsYFlXc1BvgnztjwhRNJI6yQ
-         tUVwnwfTw7SeHCFDGXQn+hvFU+FjFJ5YdhFMffp1QYurYwCQmZyPdPxGT0/d4PishLVN
-         dioLTrduwPxVRAgFG27abitNMzSpzDRfVW57s1H2kOsIomUqsvfysP8WxaVsp2cKNji1
-         vqog==
+        d=gmail.com; s=20230601; t=1719410763; x=1720015563; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7OZc4FZ1pwpi69cXkTAscSyoP+AIQrq+v1e5Lh+p53Y=;
+        b=UH/K9cDpb5i2xy4v2QODUSwhM3125rXOLbw9oZUwCmJ24ZYUQWMuHBz7szl7NfT1MQ
+         liXSxbg9Q4jYDWsZ6JtAHuieCyNpTXf/jagAp4EpEkQRfIEM0rJd9DVP6CH81mAbUn6T
+         Z/bCcXqnxZKrHn0Ml3pcVPXRqmUkpncs2EFClSjXKAipkjtFfPKsEjEIhaVKv90G0wu5
+         3cFzsypiqjagI75zn1iXGbQ4QKCwK3988j5NodPQnNaDMEImpX3615EaIZUSBqnVCknx
+         fSudrynJ7+dAQA8dWJlCbHJZf3bcFhCDqiAuXnwE2GmbWmktGRbJeaONm0/d2fY0d9r5
+         uPzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719410528; x=1720015328;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WlX6ofd4eUvev3IitES3h0rQ2uet+ifDwXi5r0qMYlA=;
-        b=QGunWQ0iR5DBIEJGwKIx8uDW2hKEeoQBi+x9fNEkZFtvVOh3PTVrAw6om4pSN/nPup
-         dMlG2AFUsA6qxbM7Yt140Bag8EKufGEnOhS+Rns3zDcg8fAb32ARBERxjrbc0LD1lwDj
-         tRlCdrog92HHkSK59Ff9aZqWd+MK8O1iq8zEG+fzTk0K3dY/RHd3Y06Dp0NNH8p896vB
-         LFuirzo7dNHMsNKwxLiLciPVnzqsJib/77pM74lpvMWPPNqBJ1TcAU68dD1KaRlRMiey
-         pSp0vAU3M2fM7zLCQqJmfr0Nc3Ajk9AlEu6lXqCxNU+krmbc4OQ+mFXP+XWti8MadVav
-         cJVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUiqVmwBt7JrlE57WURO3/yilEeHwZNhjbQKwdc+hQxPESe1RVVwe0SeMFNkd69KwIvNfeU0wHW39MXPNhfdCjlcRFXuAzvEvjrDrZet4S+cyDEp0kh58Bl25zSr2HLAgxV/C3GXeY1rA==
-X-Gm-Message-State: AOJu0YyIfU8Z3IUiBDnYYLYXwh8xKl5j+xM4Vp3UOhmGZFzeLiRPIeZG
-	UaOJSd6hIHzUpJXdR+NSGKwNeAvJtXqMWRmSq7EybMhEUl4wHzgBr/w1Kpi/GVPz5kSCLBjcUVH
-	aDH4C5gwbQgDJapUe6SD7K4xzhmCwGBzAwio=
-X-Google-Smtp-Source: AGHT+IH1IDVeSLxIl19iRxYfSks6SiF5dVhrO6anINHh6vSqqhiBjcUChgbTG/g2pFbZXYVvnqxQn3g8GL6UuLaG9dk=
-X-Received: by 2002:a05:6870:702a:b0:25b:3e23:e5e7 with SMTP id
- 586e51a60fabf-25d016724b7mr9830696fac.3.1719410528222; Wed, 26 Jun 2024
- 07:02:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1719410763; x=1720015563;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7OZc4FZ1pwpi69cXkTAscSyoP+AIQrq+v1e5Lh+p53Y=;
+        b=b8CBgTcFJ4dQMm61CMiZTb4a0wRQt4/ytwvj6sWgHrZEvQWTneZRZuyrEV+oUBFMKW
+         k5ZHaIwWVw3OShyeHmN2TEvd467vyIJaAa/WFkgznCaiEyqFf6GKyaz1IaMmBuNrGFnT
+         VoWpECsQ+VEoZU1S6uA5imeflBV9z9/RxriJ/Lq4jWJ1daltkIHGAx+S+0PqnsorMuFT
+         TeEfGHWBfJ0DFXdKOs9twxg/dJUF77I7wLr6R/i0xxyTJk53GVsEIvtLva5cQEGl/IBL
+         RvuYWKNYxadiVjd8dwM+8kLPbxEF+e4ioxMazmu/IrJg+mEJJmiBVXXaiHdtVo32u+14
+         Vobw==
+X-Forwarded-Encrypted: i=1; AJvYcCW4I1MwJi4j/W9pzKeq5sxDnp5GCyWha20abAxFgmhP9EwRt2FVlxWZeQPaTtdC4SF1miQPiB+FndvDlARh/bYUVi9h2v7VrlxpuQ==
+X-Gm-Message-State: AOJu0YwJoTRD7/6Jjgfqm1KSleplfYCu9HO/3+AFYfBV79ByY2XYvNSD
+	/jEiVq1v5P5E+3ucAQfNS/rJNXbT15BsNzW5CUJediIlx0hiIXkN
+X-Google-Smtp-Source: AGHT+IFuuZ3DHwIF7ceRJbn6bCnVZFhV28ZBi/KhPAy7/yf4Ap14MuOCehTYRr1CzctG46omNtILZg==
+X-Received: by 2002:a17:902:d4d0:b0:1f7:2576:7f88 with SMTP id d9443c01a7336-1fa0d832bf0mr142067255ad.6.1719410762727;
+        Wed, 26 Jun 2024 07:06:02 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:b7af:6ce5:5240:a687])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb3c8c01sm100059845ad.129.2024.06.26.07.06.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 07:06:02 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] arm64: dts: imx8qxp-mek: Pass memory-region to the DSP node
+Date: Wed, 26 Jun 2024 11:05:32 -0300
+Message-Id: <20240626140532.615857-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240626130332.929534-1-yangchen.openbmc@gmail.com> <CAL_JsqL-b==HMLJGd_e-43yZHjBFYrrLV5J2a=E2LSEck=ii6w@mail.gmail.com>
-In-Reply-To: <CAL_JsqL-b==HMLJGd_e-43yZHjBFYrrLV5J2a=E2LSEck=ii6w@mail.gmail.com>
-From: Yang Chen <yangchen.openbmc@gmail.com>
-Date: Wed, 26 Jun 2024 22:01:55 +0800
-Message-ID: <CALFa7M8bgVX_L30J72SqZ-0vzfezoJLtZHnKjL-dZki0kMJFoQ@mail.gmail.com>
-Subject: Re: [PATCH v1 00/17] Revise Facebook Minerva BMC DTS
-To: Rob Herring <robh@kernel.org>
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, patrick@stwcx.xyz, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jerry.Lin@quantatw.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 26, 2024 at 9:38=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Wed, Jun 26, 2024 at 7:05=E2=80=AFAM Yang Chen <yangchen.openbmc@gmail=
-.com> wrote:
-> >
-> > Revise the Linux device tree entry related to Facebook platform Minerva
-> > specific devices connected to the Aspeed AST2600 BMC.
-> >
-> > Changelog:
-> > - v1:
->
-> You already sent v1. This is v2.
-Hi Rob,
+From: Fabio Estevam <festevam@denx.de>
 
-I appreciate your reminder. Should I send another patch series and use v3?
+According to fsl,dsp.yaml, 'memory-region' is a required property.
 
-Thanks,
-Yang Chen
+Pass 'memory-region' to fix the following dt-schema warning:
 
->
-> >   - Modify the properties of spi to match the schema.
-> >
-> > Yang Chen (17):
-> >   ARM: dts: aspeed: minerva: change the address of tmp75
-> >   ARM: dts: aspeed: minerva: change aliases for uart
-> >   ARM: dts: aspeed: minerva: add eeprom on i2c bus
-> >   ARM: dts: aspeed: minerva: change RTC reference
-> >   ARM: dts: aspeed: minerva: enable mdio3
-> >   ARM: dts: aspeed: minerva: remove unused bus and device
-> >   ARM: dts: aspeed: minerva: Define the LEDs node name
-> >   ARM: dts: aspeed: minerva: Add adc sensors for fan board
-> >   ARM: dts: aspeed: minerva: add linename of two pins
-> >   ARM: dts: aspeed: minerva: enable ehci0 for USB
-> >   ARM: dts: aspeed: minerva: add tmp75 sensor
-> >   ARM: dts: aspeed: minerva: add power monitor xdp710
-> >   ARM: dts: aspeed: minerva: revise sgpio line name
-> >   ARM: dts: aspeed: minerva: Switch the i2c bus number
-> >   ARM: dts: aspeed: minerva: remove unused power device
-> >   ARM: dts: aspeed: minerva: add ltc4287 device
-> >   ARM: dts: aspeed: minerva: Add spi-gpio
-> >
-> >  .../aspeed/aspeed-bmc-facebook-minerva.dts    | 516 +++++++++++++-----
-> >  1 file changed, 373 insertions(+), 143 deletions(-)
-> >
-> > --
-> > 2.34.1
-> >
-> >
+imx8qxp-mek.dtb: dsp@596e8000: 'memory-region' is a required property
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+index cee13e58762c..936ba5ecdcac 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+@@ -63,6 +63,7 @@ sound-wm8960 {
+ };
+ 
+ &dsp {
++	memory-region = <&dsp_reserved>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.34.1
+
 
