@@ -1,129 +1,175 @@
-Return-Path: <devicetree+bounces-80420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461AC918E0D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:14:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D0C918E16
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65AF6B21149
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:14:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 924EBB21E82
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599F0190494;
-	Wed, 26 Jun 2024 18:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DB419066D;
+	Wed, 26 Jun 2024 18:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hr9JF10R"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MjrTedlA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9246C19048A
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 18:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B96C190480;
+	Wed, 26 Jun 2024 18:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719425648; cv=none; b=j79nV+jBdxZ2XwERmcQPI46Omd2DVk7SPBYWeOA14ZxCm9hVPtVM9nJZTsURlsuXvy/0qFx6xZX97jLsDKXYYXFqNIHOw8/DeBTx+OGxQeWOdY2NH4Ukh1Y0ADM+fWn7BSXN2y7TDUnPLT7AWfRK/gkuE2vj8tnBdZg1ZX8PzeE=
+	t=1719425709; cv=none; b=eMA4LhpMYxWSvH0sgSGtxILArHC9r3c2MrXh2ZSBsiCLmWr19JlIC0dvRMhbfsGwoJ9uTwt2m/svlRtUcWlEu7TzkjFmmXWhN5u1fXzyUeFmgU7hOqd1LWPlVBwfg4f9FJpAYFj+NU/c40gNFw8L/FImjheWchKBRhN9ggGJ/ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719425648; c=relaxed/simple;
-	bh=1zfWFg0hGp1JNJUfoZR3fDuVYNICs/moqP1qpkRSTWQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4UlhE3Z37sLe3C9pf2iCne1Q22wetUaBkBc0zZKaSFkzs6hnMBoXjAyCALuw+AZMQLXb9sc+dWs52VwzThJvgzeSr91Yg6sGB8glCYY/fjbSEDR3hPimQUHTUfmgnBa8P2R1sjSo1oLxQTwc3/pTdL2oILe3fJI5k9h625z6hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hr9JF10R; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ec1620a956so84343751fa.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719425645; x=1720030445; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Rw5DgJfkqmChrhZK+6AbToGg1Sd58IidOonSm8zsNc=;
-        b=Hr9JF10Rj2neZ06N0A91z4wBtfAfu7Nit9bg+5dDZI8jDkCxoceE3baZDVdn0rdUKe
-         GkFVkRekFaNyWiZN/nnM4YrPYeVASQRWLa0MOv4T699mh29fE9Ep2hT/rCJ9H4Gezi2S
-         S884pdn4tmB9T6jl8V3mHRVsaupe0aFjEj6YoVGqRbf3s+0KHYOwymw6BD/ni1y1c5fO
-         +JbZcxUfwQaD9QNrEuMGdO6YGNn042CwUiWrj05qWgEaZYYtgSZxdQLB6fpH8H7XmQzD
-         T1RRi3pPY3aD18Zr/szpd2PIXpVHKR2fBV41NhxhTyIETxSo9CWC0RPc1jmtMrBJVr9I
-         jEMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719425645; x=1720030445;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4Rw5DgJfkqmChrhZK+6AbToGg1Sd58IidOonSm8zsNc=;
-        b=nv7zCeRNHUBJilAOxmhW9ocSXQ9Vm8sKTOlNUe+CAYeree/v8s4LG6+MqdeKTYKaCa
-         8EOOwJBMpaonKxKUnkbFW/tJkqUGXfT0Ab/jAYOYJfdpobInb82mrQavYXG52Jp/svIb
-         OSX98oZwUyQl002sC6XD+bVc39omAtKd9Zr6+83DQPfeoBv751rGk5CODkDAE2mvxW1X
-         t3cW2z7f22uWl/dbO0eOUIWHFOFWmpsjC7rBe3pvfn7sfdGbl8rIUw+X8sMP853YlvMT
-         LnkhHKo1iUBvPWlN4q/3jLEyDjPThOF6oB7b67Q1N57ZCFwnXu1omcl73auB9CigqXoz
-         z7RA==
-X-Forwarded-Encrypted: i=1; AJvYcCVlBe3IqjYGB5dnhNE1UqqFCr4S9ILTyCWmbNda98qhc5/0SbqctsFqitSENfewlDpUA5p8lxiQEeglHEvrcpt+aJmE8iJQ4y7p3w==
-X-Gm-Message-State: AOJu0YxxWSm31MAZhEKZwkixFZSm2UE1LiAA62UoJsAb1xFT1QaBhoIf
-	c8vLj35zvofiWcB2nYfMpSJ5TN6mHuQ+MST68FxBHnTuww1Ua+EhEzH/2h95A5Q=
-X-Google-Smtp-Source: AGHT+IGRCK5IvIO9TLvRDM3DJP8mNy0jqc/vn+cLpORxslN2+hI26X0IxtdAO2AtmtUStvp0K/2qgg==
-X-Received: by 2002:a05:6512:ba1:b0:52c:88d7:ae31 with SMTP id 2adb3069b0e04-52ce185f67emr8532539e87.48.1719425644796;
-        Wed, 26 Jun 2024 11:14:04 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cec15c9f2sm695437e87.276.2024.06.26.11.14.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 11:14:03 -0700 (PDT)
-Date: Wed, 26 Jun 2024 21:14:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Devi Priya <quic_devipriy@quicinc.com>
-Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	konrad.dybcio@linaro.org, catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de, 
-	richardcochran@gmail.com, geert+renesas@glider.be, neil.armstrong@linaro.org, 
-	arnd@arndb.de, m.szyprowski@samsung.com, nfraprado@collabora.com, 
-	u-kumar1@ti.com, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
-Subject: Re: [PATCH V5 7/7] arm64: defconfig: Build NSS Clock Controller
- driver for IPQ9574
-Message-ID: <rlqrgopsormclb7indayxgv54cnb3ukitfoed62rep3r6dn6qh@cllnbscbcidx>
-References: <20240626143302.810632-1-quic_devipriy@quicinc.com>
- <20240626143302.810632-8-quic_devipriy@quicinc.com>
+	s=arc-20240116; t=1719425709; c=relaxed/simple;
+	bh=GM9Bp9vE+SryzooIvXB3q2sSjljn/yxJYmXfupsvIpU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=RhL8Zb1j0jI7rA/reHw5BLsT8R85VqgGXZtji+m0mu9/YUw+ikEMcPA/+TJNCan+z1pz6E0DhKmXyllKVWtWssHWU8s4YRAxs5HTTAep995x8FgRA7DNGL+vOPIoTKybiGO/XoW6sj331Vo5jyo+f1bxr0aZyRT+X4vmPysNTTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=MjrTedlA; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C8DD1B37;
+	Wed, 26 Jun 2024 20:14:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1719425678;
+	bh=GM9Bp9vE+SryzooIvXB3q2sSjljn/yxJYmXfupsvIpU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=MjrTedlAn6Kaslf3MztTe4lMWx4Q3a8kJIzvnSq70BGlOKWn38mV7FbKL+dhe7PP6
+	 OfKYbfZlQROLuerrkhL/vustT1GFgCCDCPBiOYaprwv6z+yrDz++zHwvDUKLvWQkna
+	 XNGwH0iKY9sNKjya5B/SueWwaN6hExFM8W32tHC4=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Linux Media Mailing List <linux-media@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v11 6/8] media: dt-bindings: Add bindings for Raspberry Pi PiSP Back End
+Date: Wed, 26 Jun 2024 20:14:36 +0200
+Message-ID: <20240626181440.195137-7-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240626181440.195137-1-jacopo.mondi@ideasonboard.com>
+References: <20240626181440.195137-1-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626143302.810632-8-quic_devipriy@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 26, 2024 at 08:03:02PM GMT, Devi Priya wrote:
-> NSSCC driver is needed to enable the ethernet interfaces and not
-> necessary for the bootup of the SoC, hence build it as a module.
+Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
+signal processor.
 
-It is used on this-and-that device.
+Datasheet:
+https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
 
-> 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->  Changes in V5:
-> 	- No change
-> 
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index dfaec2d4052c..40a5ea212518 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1300,6 +1300,7 @@ CONFIG_IPQ_GCC_5332=y
->  CONFIG_IPQ_GCC_6018=y
->  CONFIG_IPQ_GCC_8074=y
->  CONFIG_IPQ_GCC_9574=y
-> +CONFIG_IPQ_NSSCC_9574=m
->  CONFIG_MSM_GCC_8916=y
->  CONFIG_MSM_MMCC_8994=m
->  CONFIG_MSM_GCC_8994=y
-> -- 
-> 2.34.1
-> 
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Naushir Patuck <naush@raspberrypi.com>
+---
+ .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 64 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
 
--- 
-With best wishes
-Dmitry
+diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+new file mode 100644
+index 000000000000..1fc62a1d8eda
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
++
++maintainers:
++  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++
++description: |
++  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
++  processor that fetches images in Bayer or Grayscale format from DRAM memory
++  in tiles and produces images consumable by applications.
++
++  The full ISP documentation is available at
++  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - brcm,bcm2712-pispbe
++      - const: raspberrypi,pispbe
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        isp@880000  {
++             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
++             reg = <0x10 0x00880000 0x0 0x4000>;
++             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
++             clocks = <&firmware_clocks 7>;
++             iommus = <&iommu2>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 861ee24cc1f7..4f8126990da2 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18810,6 +18810,7 @@ M:	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+ L:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+ F:	include/uapi/linux/media/raspberrypi/
+
+ RC-CORE / LIRC FRAMEWORK
+--
+2.45.2
+
 
