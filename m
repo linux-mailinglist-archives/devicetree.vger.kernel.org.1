@@ -1,132 +1,107 @@
-Return-Path: <devicetree+bounces-80443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85CB59198A0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 21:58:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF749198B1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 22:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E54B1F218BE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:58:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD0BB1C221FA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251D51922FE;
-	Wed, 26 Jun 2024 19:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F297191473;
+	Wed, 26 Jun 2024 20:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mbCY+Gjv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8C01922E4;
-	Wed, 26 Jun 2024 19:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3769B6E5FD;
+	Wed, 26 Jun 2024 20:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719431908; cv=none; b=mR46wDLdKEu09ccWBWBVcWK7qS9szsK1WJ0xAiZq3uHGdHBrQ28h3FIAIdDnwI3BdtQEyqvgncDZvXQSTZwMaYRQgg+xMlkMRUemdYnvMCkXOSXZyHsHX6tcWSsmkyLSgRHFkBY1CXTxYckS09ce5ARKNXmQ/g5xEksTlUh7D1o=
+	t=1719432068; cv=none; b=qfDVHE2YSvUNweI4vwGwfhBaTMftuI8FETEsHrZOU46b78CjfWdmSEuSbOOdXHS3/GHaGOFtF73T2qMQJHwsMZpnmTv2WM4EXsWrpr8olYSQ2iCvA4sTbvKV8I64Yl79k7Voymg1Smi3wrkdlYYnUu0fbzGdgX20pqFA86034yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719431908; c=relaxed/simple;
-	bh=EyhqgFbzB9i7k5aZ3sB31jwPSxLd9I7EskaB7u0dibo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t2fSebk0rPbbdwqEly3I5BU7eBEDpebOxTRPhIF6LazcCNd6qqgNBrNdFPW0kx3plMRsXLoNLzHcWmzayIhwGC84lfWttpqxkGIASA4TGvEBuIpyI1AKlZP2I4CE+yRs7C2gRWAMhJ57KubdnSLKodf5+lfzsvpZf4MPj8w7p5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.97.1)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sMYmS-000000001kg-3CTF;
-	Wed, 26 Jun 2024 19:58:12 +0000
-Date: Wed, 26 Jun 2024 20:58:08 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Jens Axboe <axboe@kernel.dk>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
-	Christian Brauner <brauner@kernel.org>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>,
-	Min Li <min15.li@samsung.com>, Avri Altman <avri.altman@wdc.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Hannes Reinecke <hare@suse.de>,
-	Mikko Rapeli <mikko.rapeli@linaro.org>, Yeqi Fu <asuk4.q@gmail.com>,
-	Victor Shih <victor.shih@genesyslogic.com.tw>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Li Zhijian <lizhijian@fujitsu.com>,
-	"Ricardo B. Marliere" <ricardo@marliere.net>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] block: partitions: populate fwnode
-Message-ID: <Znxy0BJNTE79MrCq@makrotopia.org>
-References: <cover.1719368448.git.daniel@makrotopia.org>
- <afa870ec6ac1027561d1c002205ab1e05358a46c.1719368448.git.daniel@makrotopia.org>
- <2de992b3-d71c-40f2-ad68-76a9f48338d4@kernel.dk>
+	s=arc-20240116; t=1719432068; c=relaxed/simple;
+	bh=glv0zhkfQDHpCeQyICpkcWEDMR/NtMSV3UI7HiOKrfA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j+VWiLabYa5XuDJ+uK7xuHwcrx4dKNpj/h5BTzKvFIpUBOqY/G3RXHCxMql6rcNPBG7fh7jPmMCTjVt7Ek/QF8PLFPdL5u/QOUaS241Ud5lgHkVDBz01ryy83Yw5oZVu3guNTDlWSftC0dUNWCJwqpIJcpYmhPU1qRVDpolpTmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mbCY+Gjv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F5F4C116B1;
+	Wed, 26 Jun 2024 20:01:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719432067;
+	bh=glv0zhkfQDHpCeQyICpkcWEDMR/NtMSV3UI7HiOKrfA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=mbCY+GjvPYn9u0y4yRIUYiIGnB1TbBPxdGuQgl3xW85bM1txvfRWY5ETsSLS+uQV4
+	 t0wh5sANCRt5tWT8ESpmZz+NtYdH15jK4VbZ/xUiOuTMeUzdyKUUJtAYcEUMZfVFzk
+	 VEyN73fmH9Zlv4VP3yeINy16qROxKC6x3/il46pP0i6xrZIGz6HrY90sts8NaxFB5I
+	 I4OACUF78LXmD3iCxh6JKKoPfDHzbASonFfTprtZAUmB+nYChLouKwi9ZKQrrRrZ9w
+	 KjAVfq95pvK2b1vEqATJiACDHm2TJwtlls+adCizoqDNfE844m5AWb2NTYjSZJXHlJ
+	 uiroLScRaPgUQ==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] riscv: dts: starfive: add pcie1 on the star64
+Date: Wed, 26 Jun 2024 21:00:57 +0100
+Message-ID: <20240626-traverse-excitable-a1d9be38a9da@spud>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2de992b3-d71c-40f2-ad68-76a9f48338d4@kernel.dk>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1386; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=fR3lsSSUrtI77PnMbXDKn8XXJOG9pY1FI0PcA96yBWE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGk1xVUuAhbKUYedL+iqbUvj8ps6rW7R/ukT/URCszZ/v /n5ZVFHRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACbCEMbwi1kq7Jddg4v+h32T tk8R1Nq5yo+Lb7pd2an5U2OC2xhjTzIy/J+ftu3un2tqdyU8rtofLd/Vz3bsyon98/pkvy7w6vr Jxg4A
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 26, 2024 at 01:43:49PM -0600, Jens Axboe wrote:
-> On 6/25/24 8:50 PM, Daniel Golle wrote:
-> > diff --git a/block/partitions/core.c b/block/partitions/core.c
-> > index ab76e64f0f6c..f88829e254e6 100644
-> > --- a/block/partitions/core.c
-> > +++ b/block/partitions/core.c
-> > @@ -10,6 +10,8 @@
-> >  #include <linux/ctype.h>
-> >  #include <linux/vmalloc.h>
-> >  #include <linux/raid/detect.h>
-> > +#include <linux/property.h>
-> > +
-> >  #include "check.h"
-> >  
-> >  static int (*const check_part[])(struct parsed_partitions *) = {
-> > @@ -281,6 +283,42 @@ static ssize_t whole_disk_show(struct device *dev,
-> >  }
-> >  static const DEVICE_ATTR(whole_disk, 0444, whole_disk_show, NULL);
-> >  
-> > +static struct fwnode_handle *find_partition_fwnode(struct block_device *bdev)
-> > +{
-> > +	struct fwnode_handle *fw_parts, *fw_part;
-> > +	struct device *ddev = disk_to_dev(bdev->bd_disk);
-> > +	const char *partname, *uuid;
-> > +	u32 partno;
-> > +
-> > +	fw_parts = device_get_named_child_node(ddev, "partitions");
-> > +	if (!fw_parts)
-> > +		fw_parts = device_get_named_child_node(ddev->parent, "partitions");
-> > +
-> > +	if (!fw_parts)
-> > +		return NULL;
-> 
-> That last if check should to inside the previous one.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Actually the previous one should have been removed entirely. I somehow
-forgot to 'git add' that change.
+It was reported to me that the star64 actually /does/ have an exposed
+PCIe port, despite the commit message there. In my original conversation
+with Minda, they said that pcie1 was available there and pcie0 was not,
+but the v2 patch didn't actually add pcie1 on the star64.
 
-> 
-> > +	fwnode_for_each_child_node(fw_parts, fw_part) {
-> > +		if (!fwnode_property_read_string(fw_part, "uuid", &uuid) &&
-> > +		    (!bdev->bd_meta_info || strlen(uuid) > PARTITION_META_INFO_UUIDLTH ||
-> > +		     strncmp(uuid, bdev->bd_meta_info->uuid, PARTITION_META_INFO_UUIDLTH)))
-> > +			continue;
-> > +
-> > +		if (!fwnode_property_read_string(fw_part, "partname", &partname) &&
-> > +		    (!bdev->bd_meta_info || strlen(uuid) > PARTITION_META_INFO_VOLNAMELTH ||
-> > +		     strncmp(partname, bdev->bd_meta_info->volname,
-> > +			     PARTITION_META_INFO_VOLNAMELTH)))
-> > +			continue;
-> 
-> This is pretty hard to make sense of...
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+I think I'll just squash this in and fixup the commit message, since the
+patch is still at the top of my branch.
 
-I'll add comments explaining it. Or should I use another syntax, e.g. several
-nested if-clauses, instead?
+CC: Minda Chen <minda.chen@starfivetech.com>
+CC: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>,
+CC: Emil Renner Berthing <emil.renner.berthing@canonical.com
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+---
+ arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+index 2d41f18e0359..b720cdd15ed6 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
++++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+@@ -39,6 +39,10 @@ phy1: ethernet-phy@1 {
+ 	};
+ };
+ 
++&pcie1 {
++	status = "okay";
++};
++
+ &phy0 {
+ 	rx-internal-delay-ps = <1900>;
+ 	tx-internal-delay-ps = <1500>;
+-- 
+2.43.0
+
 
