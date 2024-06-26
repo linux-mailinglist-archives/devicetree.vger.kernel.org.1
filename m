@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-80480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C78249199D9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 23:39:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 701C5919A1C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 23:52:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4BCC1C21D97
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 21:39:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2563B281A2D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 21:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19CD0193098;
-	Wed, 26 Jun 2024 21:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E37919308E;
+	Wed, 26 Jun 2024 21:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wZN3Wfrj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y4vJZdyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E260191499
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 21:39:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8765180A7C
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 21:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719437964; cv=none; b=MKuW7jq+4lS8m0VP9p1is5V0eAmGH9cqaSpTWu/40C+jZUMWX5JPrRT2dI1cOPm0x6IOn5dBdewU1/PlKModPiXc5xAI6HWNCea713UmfEOyFdpOUqJ/kq+b7IDeyeQyMq3I3KgYhuHJwSlMqcV5C623OyhvwoFVB0mrCavtPVQ=
+	t=1719438730; cv=none; b=JpXY6i6l/iQyDO8ANgo1xGUYU4rcg29U5MNS/lMse0LQS+w7m9xy9AQpEL9kNp33Ew9ZAaSD0f6uBE05EWSkCSACP/HVj7kgMBRS9svGBbZuq4N/i0sskTfHff2pE4Y0jvA0NqKxfyycpEZRIjL46EPUxp8KtuoQBlcJWUsh1AU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719437964; c=relaxed/simple;
-	bh=33mMACKJg1itHjizVY8KDMXAd48Jw+lFkhVQuOQumQ8=;
+	s=arc-20240116; t=1719438730; c=relaxed/simple;
+	bh=Twt3Sm6ibvFAc9dg0Psyp0VpLNwcNtULJOXuU69/SZY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ulq8mahThxV55RjqI6nrwpP/zmY8twm5KJWQmxzNqXEDKJhBe999dTp4TvH3oVOHz0OyvEKuBHlsiZtZ1BnYyPBAuiRAj8/rOCSJ2el/tFv9VMpOGpnxX/8NiCqzIoGL+kHs3RUPYy6TwtmhpxmhhgZgcbDxRKzZUpaENV5K17k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wZN3Wfrj; arc=none smtp.client-ip=209.85.208.48
+	 In-Reply-To:Content-Type; b=H//Dx8vqLvIpNTjPsSiwDlsj6to9jCCGzEoZxb+z3rMpnuB5Co29SLLeHO6Pe50/XdsKrW6SeXCK2I2JkwTKgcSdnDhjOwq3KYSBclu/kbZ3z40ZUDIDv02Hti8Tg9aNQ75YVTmNLJUU/HsOKYfRZBboz2uTgWFKMPRJE8h43p8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y4vJZdyW; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-57d331cc9feso780937a12.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:39:22 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57d331cc9feso786257a12.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:52:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719437961; x=1720042761; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1719438727; x=1720043527; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7L7e5C1/vFl5s/Wn77Ses23ies+BIoOorCDyigrw8VM=;
-        b=wZN3WfrjSNduCWkxjRNnj91ipF3jsYNF080NlHgon5jUsO2ZtYqB448DzHndMX5UpP
-         J50jxsPqcCP9zy3qtCeJ18c+QGTQfaUAKjtZw0IixMBBEW9gTj63eoFNPxUUVD3MWxDa
-         VDpklkeuIU0bx27+DmlR4NPt/Jm2A5RRQIdw4e2374scsIz4ltIUVuIWmJQVfbbDkG5U
-         X/usqvfW1bQoGfyOoX6nn1XpILNm6Z3/UkvTmy9/CEz4zqNm5MMV09cP06nqfdT+hq26
-         5u93p+Zrn1/7IT9zE414qZ7iozbezDY0cLDzzjJiHDCJLjH1Y8cozHHtqJ2Eg9DUIVIR
-         tyFg==
+        bh=YE3RprsT9yRDoX4gwdoigkfM2CSBZvv3p/0dCbH2Hv8=;
+        b=Y4vJZdyWnaiDr1lk+jxTOP0YET+SbP7uiVnK+tJnI0W80qHsJkuxeEmOYLoN5GxRK2
+         h8UbysK8pGuF/aOPuvWEtMRbtYQtChmkh7ZeWr0Un2qYxl8p7R4nIxkBo0wK9oKL8i+P
+         ylcJEqqiSPk9RLFspc2buLc3eIHUY/rJvH0uxEbPTZoSpb1yTEWIGKLegzTmK0NnPnSR
+         J0dR8OBX/J5WmsFVtQaVJvfgajUPlcwVRqA9TrN5RcTcUvt8yQpxMGhEQqCYXmCPEaTr
+         CBaYa0ztKXAcueOYixIoVjoYAJrk3vrLMpKA+WoVyrUHe97xxeETvCGrZITRJRZJ8103
+         SvnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719437961; x=1720042761;
+        d=1e100.net; s=20230601; t=1719438727; x=1720043527;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7L7e5C1/vFl5s/Wn77Ses23ies+BIoOorCDyigrw8VM=;
-        b=asTv124JmqlUj/nWhC/fO3dyQNNE+0CK/M7bNAnP1NIOBWVfwX5ZLDgJafCuSxrock
-         23aLi9Ok9vl6LcE2vL0hNp1fWP4PMtcFXYQcTBLAmf06YB9ywF5pcIku9JP+3ZhVgBKQ
-         o0lzortrGhd+CwyI0TI/1cuVAWqkGGfOTSt4M9i3sUMUCLriXb7q+dD7NGhP5T0h+G8Z
-         hy2Yt0A50VZmK4SsCB1BqOgkbR8nQd0UCFFAlj1gxa+khdK9wB76V80WUqpxB1U41vdB
-         ha0kzpJt6opH6O0/EA15f9EoQZca5hAvbtTg0ona1vTF9VmE+Xq13LTSlM+bvLrN8ZpZ
-         tSXA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkpWUW6kc9UaZZu+IUz2OHnHDbUIwk4aKp/y4SnFiLm9A674qcsa240gai8QfP7zWEKp6Ti4RVdXQv/5Z7jyyqZamiEe9tNnO0Kw==
-X-Gm-Message-State: AOJu0YywWbAtr9bGoQokiElS98C0LbC+6LvMuJQ0TWZYVZ3/VBG1Ar+8
-	+c9pAjVMWYkgoUGiAsHAntJuJ4WDXzf8a3B4s9CQBPgSMTDpes5YGWmvj56JuPo=
-X-Google-Smtp-Source: AGHT+IGvq7E13DV9iNnVcdPiYH+SNAfpHIkr3zyoKHgWKaXG17u39y1+WTSsnYZulR9cqSdqq4pACg==
-X-Received: by 2002:a50:cc85:0:b0:57c:70b0:d541 with SMTP id 4fb4d7f45d1cf-57d4a28e5bcmr9805574a12.20.1719437960467;
-        Wed, 26 Jun 2024 14:39:20 -0700 (PDT)
+        bh=YE3RprsT9yRDoX4gwdoigkfM2CSBZvv3p/0dCbH2Hv8=;
+        b=H58f+KfixCb07jSin6HLKWZgOcBCKJI8b+beUnZoldLaL3VZbrx6q3Ky3oOuRamHaZ
+         8tuui4mm18vkZ+TIlRCcZJYNoRpAgPB2Xc7yzXtwU8MuPtF/xjxArgL5GtJfJvqR4+gg
+         QSdaMfcQqV/cdxk1STRkQl03szpEJausmtp/fsfeDeawlTyPjHNk1Rv8YGEKzwSOY+oH
+         /RpsiEiQr1G1PTUuVQbsFr4xPVFPIBvunk65YaIb7Np71WRv0hXcFpAZ5lm321wZUBw5
+         xrhxQFYeOY62hC+SMhVy22g68AfdyuIWC83ntjpp9nK2wH8lQq7Y583n8cX07YSBUTeB
+         q13g==
+X-Forwarded-Encrypted: i=1; AJvYcCXyogFmzTzndTDsEgGjUMgebJ2I1X5jeVBtZFz84XtUkJJbQzAfBoYRY0kjbgfqUuoCuADqngKnhaKPFSkHimiTcDR+w2X/l5ziiQ==
+X-Gm-Message-State: AOJu0YzzdV3JxNpZ1S59Z4MNffDOXvC8Nbplp06WeiXxWfE2MdsAXYtt
+	8F1gycI8oh5YIO9sUJmlNWU/WvrJzahcLqWMrPabphaIuSwHf65cs+TvupDikfI=
+X-Google-Smtp-Source: AGHT+IHXKih3yrKlJhMpJvkHBx6qYdd1mLPTf8ccO5adSdDeiKVGq4aFCbSdt0FphjxXXo9DCYrn3w==
+X-Received: by 2002:a50:bac3:0:b0:57c:7471:a0dd with SMTP id 4fb4d7f45d1cf-57d4a2815a6mr11210281a12.12.1719438727097;
+        Wed, 26 Jun 2024 14:52:07 -0700 (PDT)
 Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-584d0c9dbe6sm15489a12.16.2024.06.26.14.39.18
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-584d0c9f684sm26321a12.10.2024.06.26.14.52.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 14:39:19 -0700 (PDT)
-Message-ID: <20b5533a-25e9-447d-8138-7328088f8efe@linaro.org>
-Date: Wed, 26 Jun 2024 23:39:17 +0200
+        Wed, 26 Jun 2024 14:52:06 -0700 (PDT)
+Message-ID: <5021ca42-f8d8-4dff-b0e2-21c7f9d680fa@linaro.org>
+Date: Wed, 26 Jun 2024 23:52:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +77,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: x1e80100: Add gpu support
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: freedreno <freedreno@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240623110753.141400-1-quic_akhilpo@quicinc.com>
- <20240623110753.141400-4-quic_akhilpo@quicinc.com>
- <f5ef4e3c-66e8-4833-86bb-c38658b923ae@linaro.org>
- <20240626210420.uapn2dauiskluidq@hu-akhilpo-hyd.qualcomm.com>
+Subject: Re: [PATCH 2/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial
+ device tree
+To: Raymond Hackley <raymondhackley@protonmail.com>,
+ linux-kernel@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20240626191829.280611-1-raymondhackley@protonmail.com>
+ <20240626191829.280611-3-raymondhackley@protonmail.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
@@ -126,35 +124,67 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240626210420.uapn2dauiskluidq@hu-akhilpo-hyd.qualcomm.com>
+In-Reply-To: <20240626191829.280611-3-raymondhackley@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26.06.2024 11:04 PM, Akhil P Oommen wrote:
-> On Mon, Jun 24, 2024 at 03:57:35PM +0200, Konrad Dybcio wrote:
->>
->>
->> On 6/23/24 13:06, Akhil P Oommen wrote:
->>> Add the necessary dt nodes for gpu support in X1E80100.
->>>
->>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->>> ---
->>
->> [...]
->>
->>> +
->>> +				opp-1100000000 {
->>> +					opp-hz = /bits/ 64 <1100000000>;
->>> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
->>> +					opp-peak-kBps = <16500000>;
->>
->> No speedbins?
+On 26.06.2024 9:18 PM, Raymond Hackley wrote:
+> Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
+> other Samsung devices based on MSM8226 with only a few minor differences.
 > 
-> Coming soon! I am waiting for some confirmations on some SKU related
-> data. This is the lowest Fmax among all SKUs which we can safely enable
-> for now.
+> The device trees contain initial support with:
+>  - GPIO keys
+>  - Regulator haptic
+>  - SDHCI (internal and external storage)
+>  - UART (on USB connector via the TI TSU6721 MUIC)
+>  - Regulators
+>  - Touchscreen
+>  - Accelerometer
+> 
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+> ---
 
-Sounds good, thanks
+[...]
+
+> +	reserved-memory {
+
+'r' > 'g'
+
+> +		smem_region: smem@fa00000 {
+> +			reg = <0x0fa00000 0x100000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	gpio-hall-sensor {
+
+[...]
+
+> +&sdhc_1 {
+> +	vmmc-supply = <&pm8226_l17>;
+> +	vqmmc-supply = <&pm8226_l6>;
+
+At least vqmmc could use regulator-allow-set-load (this and below)
+
+> +
+> +	bus-width = <8>;
+> +	non-removable;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&sdhc_2 {
+> +	vmmc-supply = <&pm8226_l18>;
+> +	vqmmc-supply = <&pm8226_l21>;
+> +
+> +	bus-width = <4>;
+> +	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-0 = <&sdhc2_default_state &sdhc2_cd_default>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +};
 
 Konrad
 
