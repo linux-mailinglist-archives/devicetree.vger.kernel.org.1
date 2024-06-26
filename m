@@ -1,142 +1,133 @@
-Return-Path: <devicetree+bounces-80082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901EF917C25
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D1A917C27
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FAC9289FB7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:14:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1265128A2D9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5E71741E1;
-	Wed, 26 Jun 2024 09:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E7FC16A94B;
+	Wed, 26 Jun 2024 09:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="du5UO1w9"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="iUYE8TQE";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="TMI/WBn7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh2-smtp.messagingengine.com (fhigh2-smtp.messagingengine.com [103.168.172.153])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988D916849C;
-	Wed, 26 Jun 2024 09:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9C316A948
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 09:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719393033; cv=none; b=VW1T9ydLlnYxpWBkG9oQuSASp8QWwLkHdxhs4H437cxdYE+o8vSDH1lNg6c72aLzt2fTLVFSlo247YWscFmN1uccaigbHMnfmf4poTIZgxUpRf3SaXT1xsR5+puvRK4NfeDyhZTlGLp0liil2ilZDsdJ3+OjIh/ctEsincRHGmg=
+	t=1719393079; cv=none; b=IOGFh/6xR4c4maex0w5cO6HskRYX5/q0r23lRul0Z4opD4PpIECFBnbk1zK77fv9r7Iv+dKhbUTGbrXh8K1zQZhGbC6sJMVJTNkCQJ5PkOeH6FZqrMg6KiaaURoe0btVBFrqg/TljuAZ7pqDW4nx/MAltFa6UINacWRRqyMIJKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719393033; c=relaxed/simple;
-	bh=JS6LO9Za6A1VwgUd3O0lPnt0jSvno3I5PGTxGtTljj0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KeVzdnQ4j8pKD7Af/itrpGaTfMIKwP61YOcjzmiJX74IgtlyfWxqrv2mg/kJNV7E3zn0tUY2fg8EuBUKm7QXgHZz1JP4s8OszRh5hZKkEUePOPDtau1yLEQOAVFtIqi+2ugeazRddJgBn3WUtToCr5YEpn62WDWjnABHay/WA20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=du5UO1w9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05308C32789;
-	Wed, 26 Jun 2024 09:10:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719393032;
-	bh=JS6LO9Za6A1VwgUd3O0lPnt0jSvno3I5PGTxGtTljj0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=du5UO1w9wv4Pn+P+4A6b9UcZQv5Bs8yhvggxkR/UvBJQC9sEhNdLAeOCrS9ADxQe0
-	 jgTGnJeXcvopSisbEyGuoC0JWSd1QUq7jkia0xlhWoueMsvx4z3WMSlK7LOSQEQF/l
-	 JqPNmsLqMPbjhSH8i+waoVq0WCrjbiAoiopI9HLqDKu/cCfYHylHuIBjIPnsWPY2fq
-	 W6oRIPZxNr5WgzlX9kX2HcQTwB27Tl3y+GOE4MxUE6QQuGFw3FOCNaILZSP0cIFQqO
-	 o7k7BAoL11KmebS+ae+j+9H77S552l9FwBFplCotjlmOsIxfhMFtVQCeDG/DbGi76r
-	 vovUU7Yk9XKgQ==
-Message-ID: <cec73284-a442-4ad2-8a6e-7413bbc6d846@kernel.org>
-Date: Wed, 26 Jun 2024 11:10:25 +0200
+	s=arc-20240116; t=1719393079; c=relaxed/simple;
+	bh=1XgaL0ZJjZT740Vm65mI9H/lF8S7J1Gz9fJ+DAnK54M=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=EtXpQEJN3t589CDgZX1CWzHX6eWQrg+aqmdSnEtKAJ/5AQOoX2g+7Ny4q0yB36qcJorufC6t77knxnb0Y/hN7qN8CMzmdJ9XeELpO0WUFowCrKgEQLMlbvEa/rCFCrxZBKk5gsmwaFcwqYzxCsXeo+gbefh6m1mWK71ZMW1L5/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=iUYE8TQE; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=TMI/WBn7; arc=none smtp.client-ip=103.168.172.153
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id C2DE811401A5;
+	Wed, 26 Jun 2024 05:11:16 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Wed, 26 Jun 2024 05:11:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1719393076; x=
+	1719479476; bh=1XgaL0ZJjZT740Vm65mI9H/lF8S7J1Gz9fJ+DAnK54M=; b=i
+	UYE8TQE5etrwl1wQxvS6nkf76603/PVQ2aXBHyhSpyArSRRI/xLLdGD25gbLEErS
+	Bp7m4M4RO8D8dSRh0BUgmCdoceU7ysTIquuZYYVXcnzSZKEAdi1UmD+J+3z7QqRi
+	01+qLqmTRj6dUAyxyYxoQ19UL/uY3dlA/RPJZP2kR9nnCfEso2igyWiEYKyb5eiU
+	AERa7+cAk7ZXLD9NVaIz2SUnS+vehtSbmZi4TTG+w3CiFGM7Vd6rNWTbLQ/S1AFm
+	0MMyNZJk6rqyY6EtGCGN6lHMf70iMzavI75Stgaig7FxW7jKjZQJX1206EGOjle3
+	WaRaETVZvIIPj5X3LXT7g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1719393076; x=1719479476; bh=1XgaL0ZJjZT740Vm65mI9H/lF8S7
+	J1Gz9fJ+DAnK54M=; b=TMI/WBn7XtwV9EoqGrq5pdd3N00Fbk41ufBsSDqGaWoC
+	bpuePGYcQvFENfqdh8LqpmLHj4EZUP5l90OlUnfYV0e7laV5uWmHKtWE3dJ9uLf3
+	x3qP0//OqMofAX9TJKvNXIA+FF+i3xFPW342kJYYSwaz1O+XyfKIXFCsnB9gxyTJ
+	K/USSo+sfQH2dyjVz2hPhjisKHK0Mzvxo3a5ozUVkuotpWYIJRPl1e/xuFkiMHQy
+	xxmXKBOfC3fm9jXASToyxjpglgg5lJ8xcjprI5qAn0h51RycVkj7SJB4rgVaatSf
+	gvT+rmee/+TfD0ZHMD8uh0UZzC5upyaDff9wtE/Efw==
+X-ME-Sender: <xms:NNt7Zo_DMSJnB4_j_5hkfwZzs9Cm0Ty_kdO3CSPdp_CD7stZwxyqbg>
+    <xme:NNt7ZgvarNYEpDiwZMHQpLC4hYFOf7FfKcbH5_gD7jeO2ZOej1h39XI_ryj5gOu-B
+    cMi_smoxTKsbQhnWg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrtddvgdduvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfthigr
+    nhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtf
+    frrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefgteeu
+    veeiudeijeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehrhigrnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:NNt7ZuAQAzeu2LG8mSLaTXD1QiMdksbhysiLJnbUSr3K7Pcq6BHzzw>
+    <xmx:NNt7Zofb2kCrX66WcQo-53DFII9MEhttOaovItlUxFBRsGWze_vxUQ>
+    <xmx:NNt7ZtOGIu1bXp21_dRV1g6o3pIjx-Z9YHWm0YGABypS3B0xsvWDVQ>
+    <xmx:NNt7ZimWP8IN2Pze7HBpEpof_uowdDks6wzb2GWyQ2PaNWMh5yQf0Q>
+    <xmx:NNt7ZoGgpXBR5Cd7meVQZODGTmeLyrFjChaw0lAdduNRQfIkMZl5TaBH>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id EE254A6007A; Wed, 26 Jun 2024 05:11:15 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-538-g1508afaa2-fm-20240616.001-g1508afaa
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: arm: ti: Add bindings for PHYTEC AM62Ax
- based hardware
-To: Garrett Giordano <ggiordano@phytec.com>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- w.egorov@phytec.de
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-References: <20240625185402.1896623-1-ggiordano@phytec.com>
- <20240625185402.1896623-3-ggiordano@phytec.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240625185402.1896623-3-ggiordano@phytec.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Message-Id: <5f989c7d-fb70-4e13-a1e9-86fc6326d633@app.fastmail.com>
+In-Reply-To: <20240626-agate-ibex-of-effort-c72ebc@houat>
+References: <20240530211415.44201-1-ryan@testtoast.com>
+ <20240530211415.44201-3-ryan@testtoast.com>
+ <20240606-intelligent-aromatic-magpie-80a7a4@houat>
+ <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
+ <20240606-refreshing-cinnamon-ibex-a0fe73@houat>
+ <20240606-authentic-mongoose-9485904a91a1@spud>
+ <20240618-silky-holistic-oyster-bf59fe@houat>
+ <20240618-reverse-kinship-7f8df8c8e111@wendy>
+ <eb50b8d3-b56d-42b2-a277-02a255b2d6c0@linaro.org>
+ <20240626-agate-ibex-of-effort-c72ebc@houat>
+Date: Wed, 26 Jun 2024 21:10:54 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Maxime Ripard" <mripard@kernel.org>,
+ "Neil Armstrong" <neil.armstrong@linaro.org>
+Cc: "Conor Dooley" <conor.dooley@microchip.com>,
+ "Conor Dooley" <conor@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, "Jessica Zhang" <quic_jesszhan@quicinc.com>,
+ "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Hironori KIKUCHI" <kikuchan98@gmail.com>,
+ "Chris Morgan" <macroalpha82@gmail.com>,
+ "Andre Przywara" <andre.przywara@arm.com>, "John Watts" <contact@jookia.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
+Content-Type: text/plain
 
-On 25/06/2024 20:54, Garrett Giordano wrote:
-> Add devicetree bindings for AM62Ax based phyCORE-AM62A7 SoM
-> and phyBOARD-Lyra RDK.
-> 
-> Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
-> ---
+Hi Maxime,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, 26 Jun 2024, at 8:56 PM, Maxime Ripard wrote:
 
+> We're getting fairly late into the release cycle and I'd like to get it
+> fixed before the release. Can you send a patch to address it please?
 
----
+Sure, happy to. So to confirm add 'anbernic' to the vendor binding list and 'anbernic,wl-355608-a8' as the panel compatible?
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+Regards,
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
-
-Best regards,
-Krzysztof
-
+Ryan
 
