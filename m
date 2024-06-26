@@ -1,97 +1,453 @@
-Return-Path: <devicetree+bounces-80415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54DEF918DEF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:09:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 382D5918DF4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:10:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E9701C21164
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:09:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B83DF1F24052
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC493190073;
-	Wed, 26 Jun 2024 18:09:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598AE190471;
+	Wed, 26 Jun 2024 18:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwEJkGaf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zEHtUAuT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DCCA18F2F9;
-	Wed, 26 Jun 2024 18:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE03190076
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 18:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719425350; cv=none; b=XKjv+vmM6Um76b5HYQ2CrB7c77Nt29TCM16c903Fnw8B/3mnUfMLu0KIhy82g2VodxFl8bHuW7VHGKXg23UN8yfO90fumX3acshnJhtsfAxnjuy64r+l8/lsaHMRcAywMp31hG8tFvMoGp1OAUiyT5c9CXY9OJSq+BZ4/MMMbSg=
+	t=1719425404; cv=none; b=g3mtVsgOLWPXFvA30rHLlgq8b6vwRMXsywBxuXtnrLIae2ZclmasdjCWQWMMHrvvTRDVzWGGxpjFYFZJlJfCZfY+oMakU6y1wGjF2EOcQUI+xWQF/sOl3U+eQhL4JwSnOM0kQyNGYzQwXHZaR1y/ToRXL6aj/Qll1jmAx7q8q7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719425350; c=relaxed/simple;
-	bh=OIkZs3VeZCuVNt3eHWozE2UzABo9DPlNoyZ+9Vp070c=;
+	s=arc-20240116; t=1719425404; c=relaxed/simple;
+	bh=aqO6tXWPkXxHxARXl5niFMQ2chl6eKAK0DerFv+cqdU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i+WG49rKF/e3GGdrsBfLzPBdrXrSyGvwEwT/4h9t9IqyEbClgzT0eM1cOBPZPsjEL6vr1rj+Fxgk5I1S+4+0IjgoLdz0FoTo9zfZFCrYqbO4Gr1pWDGanzEmWw0K95zBeMp0R5jr+fA5bjQ0AU5B3Z6SB7tS5kINd13RmuotQBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwEJkGaf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC48DC32782;
-	Wed, 26 Jun 2024 18:09:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719425350;
-	bh=OIkZs3VeZCuVNt3eHWozE2UzABo9DPlNoyZ+9Vp070c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QwEJkGaf+PUD0GGvn7FveAj8khf4l8XN2CySBP0dr1NWvuziTaS0gJ2zTSm+oPa2S
-	 Rc5ukM22Y4fLgjQlmtcELAzz/16F1TKIiiv9BnD+69sQBuR7JXfk2vuRUUMMJRKmVz
-	 Un6pl+Y9nipd2IdSo92cgGK8IZKaab6cUv65sfCcW7Jf1SCeEr3YxMOiq8P4vkwnvd
-	 QKlpk/DqQ2LYWm0f34r86lRnoh+G4uPPEKiEXkOoyC+o+yuwFIHy6ajew3hF1GWPx0
-	 1GqsKO22cTzv99XMTltE9Bb30KtJwNmg5vkvPlCzGiG0FAuYO2pf9gDjcVAqYh4Q02
-	 vc2BL+xiokCZg==
-Date: Wed, 26 Jun 2024 19:09:03 +0100
-From: Mark Brown <broonie@kernel.org>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	lee@kernel.org, jeff@labundy.com, patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	David Rhodes <drhodes@opensource.cirrus.com>
-Subject: Re: [PATCH v11 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
-Message-ID: <a85e09d6-d8eb-4c60-ae83-b4dbf875a926@sirena.org.uk>
-References: <20240605135249.361082-1-jogletre@opensource.cirrus.com>
- <20240605135249.361082-6-jogletre@opensource.cirrus.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kWd04NYjzYg43/6m5/cgp6wuwwJoH13WMmRtkFg/3L0mzdaLhIEnUpk7IUn/3Nf1Hl8K0NXuwtSP+jB6iS1nLhHvIUf7Y9VvHF8Nt08ZSbgxQoHyd13A4qUfqwFInKfu+KY73UghKQ7bI3eiF2dZrorOch4HnIUO2rKU/zw7H64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zEHtUAuT; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52ce655ff5bso3421942e87.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:10:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719425400; x=1720030200; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MwI8HnQqswBve0leqtIjtCZs436AspF9fXJZ9wnULGU=;
+        b=zEHtUAuTiMVmLWWG1Ltgj6IPR/518lNQYsdxuoTqZkZchbCPPhtjOvYPeexUqAjNwX
+         0rSbVkbQBlYbS1tgz9f7nCFFnzQLA7GZ3+SaUqGUWp0uoxALzGFoDZO1gxRny0Zi8udM
+         ctVpdjVS619hAnBDIWpJzE19gTfhgxuUJx14/uhes5pwgh2a9TtygiXV6kIwDANy0g2u
+         Fn8iUDafrzMWG3fu/oQTg5B6q/b8RUQX9YbiyEMIsvaLdUqW02vB3n5oDjOChaXV1tHa
+         JReV8CegdrJGk61mre6AEhTRHEmCpOdlSEkHwUYmJulaPwTWt9L6oBWxAT4/aNIxf40t
+         vHcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719425400; x=1720030200;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MwI8HnQqswBve0leqtIjtCZs436AspF9fXJZ9wnULGU=;
+        b=Y/B4NLFWJuHenVlYCuYOa6a2emoIRlmdEuA2Yhl/39KT+elgMNWp6yghKVLkM7YhjN
+         Sl4luyz5e0dKJwkOFBOQEi5aWB6/8ioENl48vSTjbv5Uv2pOJU1ICpeFfqrq35qMbjRX
+         wIY9IHXiHQ63Q7Po1MyFNyn3XItgBtl3hZgtlcLu7R+tnfnNcDWuXMZzDOSutgryA9bK
+         QZkwG+Du9M9QpMdGYbjvdgcgJsCMiGxq94+qjlO1HT7tH554I5uCd+l7F7rnymb+B/o6
+         eU+rGFbAsf4FWpt/pb6tOo0yspPiVUVksvt/9GYN0BeTAIiJYRZS6Ymthp46llRCrYs1
+         500w==
+X-Forwarded-Encrypted: i=1; AJvYcCWxIwG94E0IMx9O0BhnsND5/si4E00JyRXWP9Hj1DhW0uMuA5aTrZmjbKhAJ04M/eE3VQmZB3xdLk4h9VaYmcC2qBP0IU+dEY0SOg==
+X-Gm-Message-State: AOJu0YxwfVewokc9qfJko9abfjjIvkpwuZ4XHORXcpKQTfhgzLMzHY4j
+	W64JOcnJL7Dz25eddYaIp053NVzWynCwMYErnTaX419C8TBmzvGI/Zm8nveZHA0=
+X-Google-Smtp-Source: AGHT+IEZDqNuQJkmwPnz58eiHwca1g4EbD8OnZL+sIoH+FY/q/yFSu/vJlZDBIym3wK/LWJvekp50g==
+X-Received: by 2002:ac2:4903:0:b0:52c:8df9:2e6f with SMTP id 2adb3069b0e04-52ce0641630mr8997602e87.42.1719425399187;
+        Wed, 26 Jun 2024 11:09:59 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd6432b35sm1637378e87.215.2024.06.26.11.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 11:09:58 -0700 (PDT)
+Date: Wed, 26 Jun 2024 21:09:57 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Jingoo Han <jingoohan1@gmail.com>, quic_vbadigan@quicinc.com, 
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 7/7] pci: pwrctl: Add power control driver for qps615
+Message-ID: <dnntqmjqamnifaziahlu6njlsfhjl3dpprjogrdgtqthdpoigk@wmtojmnsuvsv>
+References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
+ <20240626-qps615-v1-7-2ade7bd91e02@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8mEJd0CHi+B3bZ3f"
-Content-Disposition: inline
-In-Reply-To: <20240605135249.361082-6-jogletre@opensource.cirrus.com>
-X-Cookie: Results vary by individual.
-
-
---8mEJd0CHi+B3bZ3f
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240626-qps615-v1-7-2ade7bd91e02@quicinc.com>
 
-On Wed, Jun 05, 2024 at 01:52:49PM +0000, James Ogletree wrote:
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
+On Wed, Jun 26, 2024 at 06:07:55PM GMT, Krishna chaitanya chundru wrote:
+> QPS615 switch needs to configured after powering on and before
+> PCIe link was up.
+> 
+> As the PCIe controller driver already enables the PCIe link training
+> at the host side, stop the link training.
+> Otherwise the moment we turn on the switch it will participate in
+> the link training and link may come before switch is configured through
+> i2c.
+> 
+> The switch can be configured different ways like changing de-emphasis
+> settings of the switch, disabling unused ports etc and these settings
+> can vary from board to board, for that reason the sequence is taken
+> from the firmware file which contains the address of the slave, to address
+> and data to be written to the switch. The driver reads the firmware file
+> and parses them to apply those configurations to the switch.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  drivers/pci/pwrctl/Kconfig             |   7 +
+>  drivers/pci/pwrctl/Makefile            |   1 +
+>  drivers/pci/pwrctl/pci-pwrctl-qps615.c | 278 +++++++++++++++++++++++++++++++++
+>  3 files changed, 286 insertions(+)
+> 
+> diff --git a/drivers/pci/pwrctl/Kconfig b/drivers/pci/pwrctl/Kconfig
+> index f1b824955d4b..a419b250006d 100644
+> --- a/drivers/pci/pwrctl/Kconfig
+> +++ b/drivers/pci/pwrctl/Kconfig
+> @@ -14,4 +14,11 @@ config PCI_PWRCTL_PWRSEQ
+>  	  Enable support for the PCI power control driver for device
+>  	  drivers using the Power Sequencing subsystem.
+>  
+> +config PCI_PWRCTL_QPS615
+> +	tristate "PCI Power Control driver for QPS615"
+> +	select PCI_PWRCTL
+> +	help
+> +	  Enable support for the PCI power control driver for QPS615 and
+> +	  configures it.
+> +
+>  endmenu
+> diff --git a/drivers/pci/pwrctl/Makefile b/drivers/pci/pwrctl/Makefile
+> index d308aae4800c..ac563a70c023 100644
+> --- a/drivers/pci/pwrctl/Makefile
+> +++ b/drivers/pci/pwrctl/Makefile
+> @@ -4,3 +4,4 @@ obj-$(CONFIG_PCI_PWRCTL)		+= pci-pwrctl-core.o
+>  pci-pwrctl-core-y			:= core.o
+>  
+>  obj-$(CONFIG_PCI_PWRCTL_PWRSEQ)		+= pci-pwrctl-pwrseq.o
+> +obj-$(CONFIG_PCI_PWRCTL_QPS615)		+= pci-pwrctl-qps615.o
+> diff --git a/drivers/pci/pwrctl/pci-pwrctl-qps615.c b/drivers/pci/pwrctl/pci-pwrctl-qps615.c
+> new file mode 100644
+> index 000000000000..1f2caf5d7da2
+> --- /dev/null
+> +++ b/drivers/pci/pwrctl/pci-pwrctl-qps615.c
+> @@ -0,0 +1,278 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/firmware.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/pci-pwrctl.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/string.h>
+> +#include <linux/types.h>
+> +
+> +#include "../pci.h"
+> +
+> +struct qcom_qps615_pwrctl_i2c_setting {
+> +	u32 slv_addr;
+> +	u32 reg_addr;
+> +	u32 val;
+> +};
+> +
+> +struct qcom_qps615_pwrctl_ctx {
+> +	struct i2c_adapter *adapter;
+> +	struct pci_pwrctl pwrctl;
+> +	struct device_link *link;
+> +	struct regulator *vdd;
+> +};
+> +
+> +/* write 32-bit value to 24 bit register */
+> +static int qps615_switch_i2c_write(struct qcom_qps615_pwrctl_ctx *ctx, u32 slv_addr, u32 reg_addr,
+> +				   u32 reg_val)
+> +{
+> +	struct i2c_msg msg;
+> +	u8 msg_buf[7];
+> +	int ret;
+> +
+> +	msg.addr = slv_addr;
+> +	msg.len = 7;
+> +	msg.flags = 0;
+> +
+> +	/* Big Endian for reg addr */
+> +	msg_buf[0] = (u8)(reg_addr >> 16);
+> +	msg_buf[1] = (u8)(reg_addr >> 8);
+> +	msg_buf[2] = (u8)reg_addr;
+> +
+> +	/* Little Endian for reg val */
+> +	msg_buf[3] = (u8)(reg_val);
+> +	msg_buf[4] = (u8)(reg_val >> 8);
+> +	msg_buf[5] = (u8)(reg_val >> 16);
+> +	msg_buf[6] = (u8)(reg_val >> 24);
+> +
+> +	msg.buf = msg_buf;
+> +	ret = i2c_transfer(ctx->adapter, &msg, 1);
+> +	return ret == 1 ? 0 : ret;
+> +}
+> +
+> +/* read 32 bit value from 24 bit reg addr */
+> +static int qps615_switch_i2c_read(struct qcom_qps615_pwrctl_ctx *ctx, u32 slv_addr, u32 reg_addr,
+> +				  u32 *reg_val)
+> +{
+> +	u8 wr_data[3], rd_data[4] = {0};
+> +	struct i2c_msg msg[2];
+> +	int ret;
+> +
+> +	msg[0].addr = slv_addr;
+> +	msg[0].len = 3;
+> +	msg[0].flags = 0;
+> +
+> +	/* Big Endian for reg addr */
+> +	wr_data[0] = (u8)(reg_addr >> 16);
+> +	wr_data[1] = (u8)(reg_addr >> 8);
+> +	wr_data[2] = (u8)reg_addr;
+> +
+> +	msg[0].buf = wr_data;
+> +
+> +	msg[1].addr = slv_addr;
+> +	msg[1].len = 4;
+> +	msg[1].flags = I2C_M_RD;
+> +
+> +	msg[1].buf = rd_data;
+> +
+> +	ret = i2c_transfer(ctx->adapter, &msg[0], 2);
+> +	if (ret != 2)
+> +		return ret;
+> +
+> +	*reg_val = (rd_data[3] << 24) | (rd_data[2] << 16) | (rd_data[1] << 8) | rd_data[0];
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_qps615_pwrctl_init(struct qcom_qps615_pwrctl_ctx *ctx)
+> +{
+> +	struct device *dev = ctx->pwrctl.dev;
+> +	struct qcom_qps615_pwrctl_i2c_setting *set;
+> +	const struct firmware *fw;
+> +	const u8 *pos, *eof;
+> +	int ret;
+> +	u32 val;
+> +
+> +	ret = request_firmware(&fw, "qcom/qps615.bin", dev);
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
+Oh, what if any other board uses the same bridge? Do you expect that the
+rootfs is device-specific?
 
---8mEJd0CHi+B3bZ3f
-Content-Type: application/pgp-signature; name="signature.asc"
+> +	if (ret < 0) {
+> +		dev_err(dev, "firmware loading failed with ret %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (!fw) {
+> +		ret = -EINVAL;
+> +		goto err;
+> +	}
+> +
+> +	pos = fw->data;
+> +	eof = fw->data + fw->size;
+> +
+> +	while (pos < (fw->data + fw->size)) {
+> +		set = (struct qcom_qps615_pwrctl_i2c_setting *)pos;
+> +
+> +		ret = qps615_switch_i2c_write(ctx, set->slv_addr, set->reg_addr, set->val);
 
------BEGIN PGP SIGNATURE-----
+No! This makes no way for anybody to understand what is going on. Please
+write a proper driver, that defines registers and writes sensible data
+to those registers. Having a driver that writes data from the
+configuration file to the random registers is a no-go.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZ8WT4ACgkQJNaLcl1U
-h9Bt+Af9HBe54X4RVb20Y7bnquKBQ+YbOooZVqnUN2dSa1l0HdCs7CJR0llcRrKd
-BCA6oQIthd83emrxp01buNbaZ2pLOkZGIm+WAn9/jR8aHU8NcViLP3mSsaZf31Vz
-AETFhx5lfmLZrLFcz0Xi1an+tLvKD3auLxHw7Uyt936Y7pSJXB8I4mhWthPQ2jdI
-CRWT9/auz7Q8baFDr5ndlj8KznmUdL9a/8J1r/HhuXWmQg85GoxmhFJkFI/2SrPk
-kILmByXe5j7g2cudStW0HnTKy2Yn9j3vo16tydcrshecP3TUwxK/ie9TVNhqxg+Y
-amT1SSIWWnXdth5odVsUTo4ZnCMjSQ==
-=LRDI
------END PGP SIGNATURE-----
+> +		if (ret) {
+> +			dev_err(dev,
+> +				"I2c write failed for slv addr:%x at addr%x with val %x ret %d\n",
+> +				set->slv_addr, set->reg_addr, set->val, ret);
+> +			goto err;
+> +		}
+> +
+> +		ret = qps615_switch_i2c_read(ctx,  set->slv_addr, set->reg_addr, &val);
+> +		if (ret) {
+> +			dev_err(dev, "I2c read failed for slv addr:%x at addr%x ret %d\n",
+> +				set->slv_addr, set->reg_addr, ret);
+> +			goto err;
+> +		}
+> +
+> +		if (set->val != val) {
+> +			dev_err(dev,
+> +				"I2c read's mismatch for slv:%x at addr%x exp%d got%d\n",
+> +				set->slv_addr, set->reg_addr, set->val, val);
+> +			goto err;
+> +		}
+> +		pos += sizeof(struct qcom_qps615_pwrctl_i2c_setting);
+> +	}
+> +
+> +err:
+> +	release_firmware(fw);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_qps615_power_on(struct qcom_qps615_pwrctl_ctx *ctx)
+> +{
+> +	int ret;
+> +
+> +	ret = regulator_enable(ctx->vdd);
+> +	if (ret) {
+> +		dev_err(ctx->pwrctl.dev, "cannot enable vdda regulator\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = qcom_qps615_pwrctl_init(ctx);
+> +	if (ret)
+> +		regulator_disable(ctx->vdd);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_qps615_power_off(struct qcom_qps615_pwrctl_ctx *ctx)
+> +{
+> +	return regulator_disable(ctx->vdd);
+> +}
+> +
+> +static int qcom_qps615_pwrctl_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *node = pdev->dev.of_node;
+> +	struct qcom_qps615_pwrctl_ctx *ctx;
+> +	struct device_node *adapter_node;
+> +	struct pci_host_bridge *bridge;
+> +	struct i2c_adapter *adapter;
+> +	struct pci_bus *bus;
+> +
+> +	bus = pci_find_bus(of_get_pci_domain_nr(dev->parent->of_node), 0);
+> +	if (!bus)
+> +		return -ENODEV;
+> +
+> +	bridge = pci_find_host_bridge(bus);
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	adapter_node = of_parse_phandle(node, "switch-i2c-cntrl", 0);
+> +	if (adapter_node) {
+> +		adapter = of_get_i2c_adapter_by_node(adapter_node);
 
---8mEJd0CHi+B3bZ3f--
+Somebody didn't read the comment before of_get_i2c_adapter_by_node().
+
+> +		__free(adapter_node);
+> +		if (!adapter)
+> +			return dev_err_probe(dev, -EPROBE_DEFER,
+> +					     "failed to parse switch-i2c-cntrl\n");
+> +	}
+> +
+> +	ctx->pwrctl.dev = dev;
+> +	ctx->adapter = adapter;
+> +	ctx->vdd = devm_regulator_get(dev, "vdd");
+> +	if (IS_ERR(ctx->vdd))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->vdd),
+> +				     "failed to get vdd regulator\n");
+> +
+> +	ctx->link = device_link_add(&bridge->dev, dev, DL_FLAG_AUTOREMOVE_CONSUMER);
+> +
+> +	platform_set_drvdata(pdev, ctx);
+> +
+> +	bridge->ops->stop_link(bus);
+> +	qcom_qps615_power_on(ctx);
+> +	bridge->ops->start_link(bus);
+> +
+> +	return devm_pci_pwrctl_device_set_ready(dev, &ctx->pwrctl);
+> +}
+
+I'd suggest turning this into a driver which uses components to bind the
+PCIe power control part and the i2c clinet device. Then you can write
+the i2c client addresses as ussual.
+
+> +
+> +static const struct of_device_id qcom_qps615_pwrctl_of_match[] = {
+> +	{
+> +		.compatible = "pci1179,0623",
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, qcom_qps615_pwrctl_of_match);
+> +
+> +static int pci_pwrctl_suspend_noirq(struct device *dev)
+> +{
+> +	struct pci_bus *bus = pci_find_bus(of_get_pci_domain_nr(dev->parent->of_node), 0);
+> +	struct pci_host_bridge *bridge = pci_find_host_bridge(bus);
+> +	struct qcom_qps615_pwrctl_ctx *ctx = dev_get_drvdata(dev);
+> +
+> +	bridge->ops->stop_link(bus);
+> +	qcom_qps615_power_off(ctx);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pci_pwrctl_resume_noirq(struct device *dev)
+> +{
+> +	struct pci_bus *bus = pci_find_bus(of_get_pci_domain_nr(dev->parent->of_node), 0);
+> +	struct pci_host_bridge *bridge = pci_find_host_bridge(bus);
+> +	struct qcom_qps615_pwrctl_ctx *ctx = dev_get_drvdata(dev);
+> +
+> +	qcom_qps615_power_on(ctx);
+> +	bridge->ops->start_link(bus);
+> +
+> +	return 0;
+> +}
+> +
+> +static void qcom_qps615_pwrctl_remove(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct qcom_qps615_pwrctl_ctx *ctx = dev_get_drvdata(dev);
+> +
+> +	device_link_del(ctx->link);
+> +	pci_pwrctl_suspend_noirq(dev);
+> +}
+> +
+> +static const struct dev_pm_ops pci_pwrctl_pm_ops = {
+> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(pci_pwrctl_suspend_noirq, pci_pwrctl_resume_noirq)
+> +};
+> +
+> +static struct platform_driver qcom_qps615_pwrctl_driver = {
+> +	.driver = {
+> +		.name = "pwrctl-qps615",
+> +		.of_match_table = qcom_qps615_pwrctl_of_match,
+> +		.pm = &pci_pwrctl_pm_ops,
+> +	},
+> +	.probe = qcom_qps615_pwrctl_probe,
+> +	.remove_new = qcom_qps615_pwrctl_remove,
+> +};
+> +module_platform_driver(qcom_qps615_pwrctl_driver);
+> +
+> +MODULE_AUTHOR("Krishna chaitanya chundru <quic_krichai@quicinc.com>");
+> +MODULE_DESCRIPTION("Qualcomm QPS615 power control driver");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.42.0
+> 
+
+-- 
+With best wishes
+Dmitry
 
