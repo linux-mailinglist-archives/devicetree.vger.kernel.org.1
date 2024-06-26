@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-80028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C5F917AA4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:16:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFFB917AAF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:18:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1E77282D5B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:16:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBC3B1F21727
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF69215F400;
-	Wed, 26 Jun 2024 08:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CA215F400;
+	Wed, 26 Jun 2024 08:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O3I/Fu7x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="izV3PQ1V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F5B15B0E1;
-	Wed, 26 Jun 2024 08:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A4E1D699;
+	Wed, 26 Jun 2024 08:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719389768; cv=none; b=alvLhEos6H1xwrVsa9gFSFXa/i6Fk0LdFMn8KeqZRdr1V8GgPWHoDLUVW183AFuBBndvUiLpEVqaPR/VDT+Jz2xo0P4TVw0VXglQ5S6824S+e3jOGEujrifDX3GVa0jId1Ag4USx6/fdiog5NeV7QNOkgSLqsnMPnS/59srQpRM=
+	t=1719389881; cv=none; b=uc8XGq8I3VH/mgFoiW4JKM5h2Yv7bRjEoErmTUk7H06lMPvMcgo2clUAaCqx6R0EG+HBWeyyIo/3/SWn7KKiUJLpxBQEqebHy/424I9oN+TrLcbX0Nz3ZD3M4Sc9K2xHnt3E2sD5/8CE9AqJ+dB4MnTtOL0d5dl84o5iEDgsCQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719389768; c=relaxed/simple;
-	bh=cGF5wdV2kEPa5Pug7huBjL8X8L/Pc1BUyOY1sXqQ7Co=;
+	s=arc-20240116; t=1719389881; c=relaxed/simple;
+	bh=n6LQpTZniLWj96fcVDYP880SPoRh9yDjthbIkIjvARQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JWrffuJlir5exbhhYzhMT+IwkjWkfSEAlFqY5zVYt7Db8uvDhL/LZXi5lzROpJotB84hc1YzqpeAb9SkXnd/T8SW7LOtp9lV+ptmtWwzDK8PZ9kv2/WqbWJhyQG3707a9/x1+vby2zAjyO3d9ZztNz04nr9ZM2s8fjZZZR2A4XY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O3I/Fu7x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B261AC2BD10;
-	Wed, 26 Jun 2024 08:16:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RP0BPfHOwALI+2ln+rnWykagmMOMLgzcUeCrUfc8xrtrgR/5/22cGuDLvIplJCHoqwDQ6JBhnmU3bqqxlC5o0KvuZ9JLLdnMuBHZJtMOhzbSeV6m7t5k3oxdJiKnwOZ8W7RUl3NuD6GPEMcCRWT3p7BT9FMUhjRXQNCpmb/drRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=izV3PQ1V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5997BC2BD10;
+	Wed, 26 Jun 2024 08:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719389768;
-	bh=cGF5wdV2kEPa5Pug7huBjL8X8L/Pc1BUyOY1sXqQ7Co=;
+	s=k20201202; t=1719389880;
+	bh=n6LQpTZniLWj96fcVDYP880SPoRh9yDjthbIkIjvARQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O3I/Fu7xsi1Yp2PL1gXjw/hciFI5MliPVtzHV1FP5wfmGPvfAH0xIy9+AGmLXXNh6
-	 9M9fW3tsWn2m0vt46IURbmBKMAg7llM/LlyjKyEpyi9EhCo50WdpODedO2FdBNyZOE
-	 7kKtiIK0o4IXd5SUQSRMjysrIpURF884tp8RQSKHcyepNunC7cqPK0cGsXM/K0gL5a
-	 TaV2FM05l4FXQ4AxYPMoI3+AgGHSf0YV/q/tT/YLd2nXBJ78dD2GR1JUWq2VBx0Rsd
-	 6Z3FWYqjizit4s+5SWACVTpc/MLJrpQyh6tNZPYQETmUR3s56akAn92LMGDeC5bWMy
-	 IU0KZcAQktlLA==
-Message-ID: <226a9e91-5082-4311-9fc7-63bd91c0e3a7@kernel.org>
-Date: Wed, 26 Jun 2024 10:16:00 +0200
+	b=izV3PQ1Vu227dyoe74lzMQ3nOLACDoJw72OZcuNZWtmGUgBupMYRlVi3KbFUm52t6
+	 48u9O/g0V8fPA2FXfbFe5YMJ2irBYCZxPTFh3shjbN9iJEa7EkVUFeYxUpVSV0Uzd3
+	 eYTg+jSyvcDseYC8bS6NAzoPWHdYp4BbYng0qjUIOOrBg/oXNMoEaNQK2kJw6tS9cd
+	 T+hYTqBLbmfQYJnWcs2zyEnXkKRIu+qrOGja457PuVb+o6yzO4rL06B7jbtYFGaaYn
+	 snLhzmz9ugJ8gNN2lFeihJNjlzoeH08dLOJjxGTRTFTNghToZnZ+vqBkMxYU3xMvfm
+	 PxsOBSq+QZVxA==
+Message-ID: <327d6dd1-3f31-4b49-96f0-afd754eae086@kernel.org>
+Date: Wed, 26 Jun 2024 10:17:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next] dt-bindings: net: Define properties at top-level
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH 1/1] dt-bindings: ata: ahci-fsl-qoriq: add
+ fsl,ls1046a-ahci and fsl,ls1012a-ahci
+To: Frank Li <Frank.Li@nxp.com>, Damien Le Moal <dlemoal@kernel.org>,
+ Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240625215442.190557-2-robh@kernel.org>
+ <conor+dt@kernel.org>,
+ "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)"
+ <linux-ide@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240625205752.4007067-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,19 +107,50 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240625215442.190557-2-robh@kernel.org>
+In-Reply-To: <20240625205752.4007067-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/06/2024 23:54, Rob Herring (Arm) wrote:
-> Convention is DT schemas should define all properties at the top-level
-> and not inside of if/then schemas. That minimizes the if/then schemas
-> and is more future proof.
+On 25/06/2024 22:57, Frank Li wrote:
+> Add compatible string 'fsl,ls1046a-ahci' and 'fsl,ls1012a-ahci' compatible
+> string. Allow 'fsl,ls1012a-ahci' fallback to 'fsl,ls1043a-ahci'.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ls1046a ahci ecc disable bit is difference with other chips.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+>  .../devicetree/bindings/ata/fsl,ahci.yaml     | 19 ++++++++++++-------
+>  1 file changed, 12 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> index 162b3bb5427ed..a244bc603549d 100644
+> --- a/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> +++ b/Documentation/devicetree/bindings/ata/fsl,ahci.yaml
+> @@ -11,13 +11,18 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,ls1021a-ahci
+> -      - fsl,ls1043a-ahci
+> -      - fsl,ls1028a-ahci
+> -      - fsl,ls1088a-ahci
+> -      - fsl,ls2080a-ahci
+> -      - fsl,lx2160a-ahci
+> +    oneOf:
+> +      - items:
+> +          - const: fsl,ls1012a-ahci
+> +          - const: fsl,ls1043a-ahci
+> +      - enum:
+> +          - fsl,ls1021a-ahci
+> +          - fsl,ls1043a-ahci
+> +          - fsl,ls1046a-ahci
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where is the driver change for this?
+
+Your commit does not explain why you are doing it and without driver
+change adding new support it is not obvious. This probably applies to
+all your patches.
 
 Best regards,
 Krzysztof
