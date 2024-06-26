@@ -1,154 +1,150 @@
-Return-Path: <devicetree+bounces-80041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C507917B69
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:52:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD5B917B77
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:56:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FB682885BE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:52:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19E921C233B7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FFD8166310;
-	Wed, 26 Jun 2024 08:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7C6168487;
+	Wed, 26 Jun 2024 08:56:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="110qbHsx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jsPOgRhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE75EEC3
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 08:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44272160796;
+	Wed, 26 Jun 2024 08:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719391958; cv=none; b=p8dTtLYJxolgUHlOvrvRZZc5Y2rm4HwWg/Jabj5j/h7Y4mXrl0l0/rtGWPMVjMli+PSN5XIpxYjL/MSBe4baGxquRy4Arr9eTvR8LaUDZIbZ01jsfVEOr/5MGBv3XPTFK3FS3vLwpsfg0pmzZkwnMDm1RnUkDoNSU2/oBWsqiYk=
+	t=1719392181; cv=none; b=aFAU1a2v+NTU7DdlXQoQGIZ3ueyiue6k//1SSU5hSm/fUutn/NsvI45uKG0AVTQ8zJ1ywPfOWQr1ifozEkJ5BWaKCdxey/Cgo9eWJ+3q0tYR/Jz5NT4Azf7IQ/zRae+lvb/KxCUdd2VdKkO2pFhdIDXp1ERbNmhz67V2k33/Sis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719391958; c=relaxed/simple;
-	bh=TiZE0yXcJ7srnZOiYp3z1sAVGFfX8eOrc+2xwy3JGqQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Md/86DwMYW47sAA2uv2x6e6ZIjnZrtmXNH/5NaxG5xYoyM8a+BDdr70QOYlwgaZqBerMgY1S/N6AUA7fAwYThDaZ8KIYSoGwLV/7AyUQ+Dtq774xJcsG+GapLkokBkwDSNRk8FLbs7D2Vj5CdHwJG2fnP2lMbzPuM2kvYLl37SU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=110qbHsx; arc=none smtp.client-ip=209.85.160.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4450111d54dso186101cf.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 01:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1719391956; x=1719996756; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VdqyfAQH22fNsPG4ZSuANffNhA17gGQ/2s35bKca05I=;
-        b=110qbHsxjl9a35TXkJ0zsqdRDBJgovjJCvnvCp11gq0zNsSpgr4aavt9Qu9uL3BuJd
-         EYCUq/0w2Q+/82kVKvKvmwRY1bRHJKmGw/6ZZa864kJdrup4kksvTlbGT751lyT98rYi
-         YVfjOuKKc3YMaDPqmII9BYPcXJEG05fbj33ovgSdhexsF3I7LTqC0+H9fj0NADc4oAL1
-         r89rgOEI9FotJu0n9DLfzpzIsWI5UeVVoKkHxT8sO2MnME9f9UfJfLW+tC2N3lpQjPTz
-         ggTiYhu/f6G86hjTKALz+6jsh4+SK08dYffsscDgoDXUUAuQTEO51gSenNVW+xElkGR/
-         rLqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719391956; x=1719996756;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VdqyfAQH22fNsPG4ZSuANffNhA17gGQ/2s35bKca05I=;
-        b=sLOgTWRTVzcDQiOhbBHvIiPgGB0+LThT0LOESX/v8KXRJ5VuINc6ZnnWOeLCMz1/Yw
-         RfrqEjyk3Eprk6IbpP8IlE5w6+JLkZ3Wt9yD42/V5A/iwcst0hR4Av5EE8g+mWTn2Wg1
-         wvHAUrU+rTG52DHUOYuOrZpLp/fB6UpVQknysn4tycV/KR+duL58ZYQD3nfFCFd0xYTD
-         zR8RUUrxjaAq8hNlT2MJG2+hGXHVKBZX3VZBQXsqrRyt8f09lNZLDZTvsHGzEa6qlo+H
-         T5INTuvc/gxIJaqcXguFWDK448BNjeHkeNR0XSveSy6B/zbdzKZOe5Lwy6yQ1rgnbQZv
-         J3xA==
-X-Forwarded-Encrypted: i=1; AJvYcCUX+/Ow7SWajODzOxxgyfCY8O49thvz6Qj3J7BM6NbBeocWIwuKhhXQeTTxrsR1LdOswUeDuhheyttc1m2nD9kZnvOm28dj4n7P1A==
-X-Gm-Message-State: AOJu0YwL9FXTIL9XJi6iu37UYc5uwW6Ba5VZlydk67FsEPTWpH/2f6mE
-	Gwh/Ny2oyluFM9vLWoj2+vAuV9sP4/hkneVzaEPI/8KjUYocP5trJLQdjFcV7LcmPqIythJzclq
-	OWZNpHrNRdCz7KiPIT9KgZetEXNsoJkjFyOcC
-X-Google-Smtp-Source: AGHT+IGoW1st5jgyFmCNO3SQEDHLTOES20gkf1BUZidR2x+6HDeMctSqAK7jTHxc/JVAt40OQsfF5JwQda+XPTtf8f0=
-X-Received: by 2002:a05:622a:1345:b0:444:d637:305b with SMTP id
- d75a77b69052e-44504a965femr2544521cf.4.1719391955379; Wed, 26 Jun 2024
- 01:52:35 -0700 (PDT)
+	s=arc-20240116; t=1719392181; c=relaxed/simple;
+	bh=dSZbs4zl9ukhLuBXIUZ9GsWq2bMBg11lt49KZjjyyjA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n+fpXelKC0J6x/x6nj9t5r819VabzTSTXUph9QdKOCGEiL8Ime3qyqXK9RR9/NYkJrNShDFD5UgEXsKoA9BaOHpFuBaMKVBZtwFhVfaL6B2DO1IaL4jLc9e+mXFtOCt0g+B3PTAoqbGHfnXjJ/qvIfmP+3L2MvX4q00sucdEYfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jsPOgRhX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5898AC32789;
+	Wed, 26 Jun 2024 08:56:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719392180;
+	bh=dSZbs4zl9ukhLuBXIUZ9GsWq2bMBg11lt49KZjjyyjA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jsPOgRhXHiD9mGVaoH5XlYtvv+BcDiBmP6LRl9/Il3PaVOr9styPKZgklBQd9k4FZ
+	 o0vOzY8OLWmZU7pZfvPRb1EoGPTt+n2m5Pd+5NRgAEyT8mKS6X4EziOXGYN+fjAKin
+	 aNTmB96FUb/I2zJ0rWTXFhN+E8xOf+EUyP2pVFRXFo+rqgv6/NQS5tcr+WYuwXkEUh
+	 UwTi5touIgq4OyOOJw0TGIbrS2BzaY6vIzZDMF+3Cb0rvJYNpLiLQciYOCH6ZRr/kk
+	 7DE7rn3EYekF8FBwynnHMTiMkY9PsxKm57IcCl0flmbj8A4GqVPfjP7zWwc6kHPRlM
+	 0Ciku1p2S+VLA==
+Message-ID: <b66486dc-a1ee-48f8-85ec-f5bb53b50b08@kernel.org>
+Date: Wed, 26 Jun 2024 10:56:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240626052238.1577580-1-aniketmaurya@google.com>
- <20240626052238.1577580-2-aniketmaurya@google.com> <e28ba03d1df1c0c5aec987411c40e44fc351ce0d.camel@codeconstruct.com.au>
- <c15045b4-2e5f-4fcc-b25c-76a5e4973e93@linaro.org> <b4ba5fa7834fdfb1a1e26ff0e01b9bb235de63b5.camel@codeconstruct.com.au>
-In-Reply-To: <b4ba5fa7834fdfb1a1e26ff0e01b9bb235de63b5.camel@codeconstruct.com.au>
-From: "Aniket ." <aniketmaurya@google.com>
-Date: Wed, 26 Jun 2024 14:22:24 +0530
-Message-ID: <CAMmmMt25nkZTXXLCVGv1baf3azQR0kwbM8LP4EzCQKOPLUhbVQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: i3c: dw: Add property to select IBI ops
-To: Jeremy Kerr <jk@codeconstruct.com.au>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Joel Stanley <joel@jms.id.au>, 
-	Billy Tsai <billy_tsai@aspeedtech.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-i3c@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFT v3 1/5] dt-bindings: media: camss: Add
+ qcom,sc7180-camss
+To: george chan <gchan9527@gmail.com>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240624-b4-sc7180-camss-v3-0-89ece6471431@gmail.com>
+ <20240624-b4-sc7180-camss-v3-1-89ece6471431@gmail.com>
+ <c33dde93-2c3a-4a00-93ee-e4de303c9057@kernel.org>
+ <CADgMGSvN=uAW7z1dpETGVRewzDG=K2MAtzOkhK7xAcskU_oeZg@mail.gmail.com>
+ <0a35f0bd-ceec-487f-b9fd-ae9698b74048@kernel.org>
+ <CADgMGSt9Hu5Ciq=ndMTaVK23Y_ixTVtTuSfy4hJkJooFH2uv9Q@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CADgMGSt9Hu5Ciq=ndMTaVK23Y_ixTVtTuSfy4hJkJooFH2uv9Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Jeremy,
+On 26/06/2024 10:17, george chan wrote:
+> On Wed, Jun 26, 2024 at 3:15 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> Keep the list in "required:" in the same order as the list in "properties:".
+> 
+> ok gotcha
+> 
+>>>> BTW, I asked for subject to keep only one, first "media" prefix:
+>>>>         "Subject: just one media (first). "
+>>>> but you kept the second "media".
+>>>
+>>> Sorry I can't get it. Could you choose one?
+>>>
+>>> _ORIGINAL_
+>>> dt-bindings: media: camss: Add qcom,sc7180-camss
+>>
+>> No, original was different. Go back to your first posting. I asked to
+>> remove one media and keep only one - the first. I did not ask to
+>> re-shuffle the prefixes.
+> Yes, let me sum it up
+> 
+> v1 title is w.r.t
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240222-b4-camss-sc8280xp-v6-1-0e0e6a2f8962@linaro.org/
+> then extra "camss" pre-fix keyword and "binding" post-fix is not needed.
 
-> Aniket: the hardware you're dealing with there may need a new, specific
-> compatible property, which will dictate whether we enable IBIs in the
-> driver.
->
-> For cases where no other special behaviour is required, we can
-> represent this just as an entry in the OF match table.
+Where did I write anything about camss? I already said it twice that I
+meant "media".
 
-Actually I see that IBI support is always present in the HW(DW I3C
-IP). It's just that we have
-an option in SW to decide whether to populate function pointers for IBI or =
-not.
-So can we remove this selection of ops and always go with ibi ops?
+Best regards,
+Krzysztof
 
-Thanks,
-Aniket.
-
-On Wed, Jun 26, 2024 at 1:48=E2=80=AFPM Jeremy Kerr <jk@codeconstruct.com.a=
-u> wrote:
->
-> Hi Krysztof,
->
-> > > > +  ibi-capable:
-> > > > +    description: Set to select IBI ops.
-> >
-> > What are IBI ops? Standard form letter:
-> >
-> > You described the desired Linux feature or behavior, not the actual
-> > hardware.
->
-> In this case it is the actual hardware; my understanding is that the
-> gateware IP can be configured to support in-band-interrupts or not,
-> before being baked-in to hardware.
->
-> > > Wouldn't the compatible string select whether the hardware instance
-> > > supports IBI or not?
-> > >
-> > > I'd imagine that each specific synthesis of the DW IP would imply
-> > > corresponding hardware settings, and so would warrant its own
-> > > compatible
-> > > value.
-> > >
-> > > Maybe one for the DT folks: would this work better as individual
-> > > properties? Is there a policy here?
-> >
-> > Usually if feature is specific to given hardware, e.g. always capable
-> > of foobar, then it can be deduced from compatible, so no need for new
-> > property.
->
-> Sounds good.
->
-> Aniket: the hardware you're dealing with there may need a new, specific
-> compatible property, which will dictate whether we enable IBIs in the
-> driver.
->
-> For cases where no other special behaviour is required, we can
-> represent this just as an entry in the OF match table.
->
-> Cheers,
->
->
-> Jeremy
 
