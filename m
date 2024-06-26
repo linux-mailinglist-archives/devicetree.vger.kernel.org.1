@@ -1,145 +1,177 @@
-Return-Path: <devicetree+bounces-80105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2A0C917CC4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:43:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EAF8917CD0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D44F1F22CC5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:43:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7D412854C4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF7D16CD19;
-	Wed, 26 Jun 2024 09:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9E516A92F;
+	Wed, 26 Jun 2024 09:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nM05GUG/"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ruj6g2Sd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2092.outbound.protection.outlook.com [40.92.107.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB7416CD07
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 09:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719395006; cv=none; b=MHaHQpQ4kjdYa0inL4V+NXTT+ULDmrAfjq458B69BFbfZhSlE4blLj42VYpV8z6Tx2BtdE264Ur7x6v00e+Etf7j2eYb0lvyF889SioQZsF6pibDcIfZpH/RsEfnzViDclIizcY+OO7CSTSpXP+LEay325s+GOcUdT39sKuIaMc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719395006; c=relaxed/simple;
-	bh=23vsqplp7p0dTjJyFJ06exBE7rBzCFg/mwbt7R9Zt58=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DU1dI5/jUtxzzz2J6L2mCeqj2MzZJYa9w1MoYn9EIpQ/1brY1DjKVgP2KBNsHwiqGZeaAObkzbKDrU6qaoPVHkKro4swIvvvxnGkkA25zbLRkqLacoP33JM2D5YUg68Zcz07LXyzwxdzCNJ3hjGCZLtlEwAtpTqlnFnxErIznho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nM05GUG/; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a724e067017so434785166b.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 02:43:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719395003; x=1719999803; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=T7a7vAWfVEZEUomcIDZr7oOcprDh9VkDg31EMGUcI/E=;
-        b=nM05GUG/DfKCU4ydFbrfEIfNGJauiGZnCkLkK8VCRyKeUoj0StN3bcHggVWxnvCuVR
-         jDGZZzpL8nAozRmpS3OpRtngIHMcvjOXch531lbvG31vi1IXOc1t5XB9598O8ffxd+H7
-         gCwZza67VR3QmbTu7VL3ODM7SNXqCkqm/8CnhKP2r2+m2H0rP8ZZFYJNWboRsLL6qAI0
-         eYVCmdlPH5B3qv+r9EHJMO/djjkWDC6niJkId2Y/yMo5M88N7sgrYQfplXAw9I/iZDZZ
-         FOlplpS48iY5hxSlkuUeaZ5tcn9GyC+ZEgRatow9oo/c4mmuyx2QAgt5lVo1eGqG4qfu
-         puSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719395003; x=1719999803;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T7a7vAWfVEZEUomcIDZr7oOcprDh9VkDg31EMGUcI/E=;
-        b=PVDLCFxEiqxDdPf8d3okhs/s6r+5xfS3EGGB87zWbIsLHvAJx02VGQgfLiZPPMke4j
-         H84whI2PuqU7Utjf9Fy2xPp3E2JHRe5YX8YdTiehZtLoaOlINCkwt84LY/Lrv4BWHpDQ
-         5nTtIl+FzmJf66BH7sKWfl2NnUyYEtHoMnKhXmyKUQyE8N3bRXUDvSVNqUvAmzzelnkj
-         yZVscmbjpIZm2XLf62FGvl3OWo6wr9x6lQ3X3n2wXOnQt4iOx2j4xDidU7aAdxH4AnZA
-         10Rwopua8lXw7xf4aftzT3GOyL2yAkSYs6vWd9JXjRu7iQaVEnzqvtzoB0hAN41uNW4N
-         uGxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXgSev1nDy5KfuMwZViKqZOs+raURvIgQ7tK4+oSdQzx9LWPP5KvL2r2sPsGMf+bhrsPPs4xRpRM/a9J3oM/NsGRDZcWLWf9fwXeA==
-X-Gm-Message-State: AOJu0Yz4TnFHW1X2xfm41uCh50K+T1s+eD6rEMPfkvD5dqF54IlBK3+2
-	alTc4n+Dwg2lALKuL3o4hAKx3eQWTUYIbs2x2fOBAvJfklJvshdK5Ygb7Xg+gso=
-X-Google-Smtp-Source: AGHT+IEq0RJtYLiCqRoGI4aTI4VSTQHwfMrCezWO3XMrfrXZYmNqHKhZXM4w93fk2hA+LMUbY9zq2A==
-X-Received: by 2002:a17:906:35d4:b0:a6f:af96:1230 with SMTP id a640c23a62f3a-a7245b4cb88mr639074666b.1.1719395003280;
-        Wed, 26 Jun 2024 02:43:23 -0700 (PDT)
-Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a724491c8e1sm404787366b.38.2024.06.26.02.43.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 02:43:22 -0700 (PDT)
-Message-ID: <48ee8fc0-62fd-46e8-aaf9-5ad416706191@linaro.org>
-Date: Wed, 26 Jun 2024 11:43:20 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5AA149C52;
+	Wed, 26 Jun 2024 09:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719395189; cv=fail; b=HCQZPs7ld6ijOGsosMO9Y573wUd0giLcZJ7aSuHsxyYe76ICSK2RX/yjLDbOl79dUv/Bpm4TCnwGrSVlYNPr4CQ0H/VxwK6HbjnjXjngAuQDJZ4yqXCMQIs2G0iTfbsXpHxSWaoxaqTuIWV4Ja6ZUeZBhYLAzR5bl2zquDOyEAI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719395189; c=relaxed/simple;
+	bh=rgC22mU4WpI+vsvnrkjmVrU+AolHXTlpyzYGY3xDOdk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=kKeo9lnfX5lc8nhMd9/Ub8I34KVyTx0adTL7A29yQDCUuRWpScP/d1l690sw7an7dHRvniVDxszDx6f96q0ROuHtuQMRE2ZZ67YR7nyNb/8NuVpIhTtsdA2dsYzX+Zf5412qNNvwUxYXzy3KcqsEDKe5KwDZ5FQMI25LcIrBP0s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ruj6g2Sd; arc=fail smtp.client-ip=40.92.107.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Zu+An7Jio31ZrUbLh3IFJjaDEZpXiaM5Ws//eXqXcdf1hi3zJiQZxgrChYWwfQOCfNOEqlgIil1j0gdelkIKP2l0xPjM5tiQT6kXVHjValJmvlzc3UPOHlyfV8lsTFXt+gn8IwxPlGyjpipdH4ZLZRhgRNowltXIl3+KtLEA0UK3dh39gfwFus+BIU0vkTafao3sSsUX13HqOP4jUQT549jggECu/D82750UQo+V/ZK1Obz9DloeH6nfSbihPPM+TH7KA5frz0BjZShn0kL4440WZU3+6PAvUogDu2zuZI+5QqXdRn8KpKp1zZnbStdoT9Ey242uiPHSTCgZVdG31w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BNxlTTFtbMu++uEV7DguxSTE8gJD++FSui00LFxvrM4=;
+ b=Ahxuyxr1RzhuJ6J+Ic9dsy+T0e2oQgOvo6Va2fwSRVvEdV2o1ZhH6G/5kze3h9oqoRbBdDEHIl1SCHMzFQsUd7lnjmxMQ1PGKiYqr+vTjTi0fBPUdElL0erdvRDc+EQpw+2ChF3Ab3qPgwV1Ta5dtqbKUwMfBRaONkWR5//qsxbiu7vOkWe7FQK2antSsYlyROWFnhBAVHC0I2amruU/SUhSg9SBm5FJJvJiMRApzfLVHBPkxa/YY3by6M5P69qnFmOPFG+yaNxVtoNZeWXuFzk+U0NfX0G+judjGw4IYDGfAiugL5TuHINFMZwASa1tUid1S58whmO1VdTlY6CHuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BNxlTTFtbMu++uEV7DguxSTE8gJD++FSui00LFxvrM4=;
+ b=ruj6g2SdCRHsROvWuIkWH3fdiqmKPaC3a4hfehd9hJSmGkrR9hvs0hPEfGLzhPwQ03VxscHbvb2sZD9gY1QN5KLJLUy6p2otiN2RET6fc3GsiLeEQ/V3FKebOKfac9tyZQijxFY23B3Ltp+byBXnuyiJ3fFzXNIYjK8MeefMPMkzn1GTTCkrm+3A4+K4JSL+6uveVsza3v03ce4rZ8Zt5u+tmYCU8X9OPX9qq8NYRFeeSQeul3Juu8V4c9CNwekQ70C+fXtKsXBuc0wTwj7YqqMIeYCNDYDTo918TYKgjF76L1+Q9C6XYdbg4fmmnCWJv+TfT992YSCHiNIO/3sK6Q==
+Received: from SEYPR04MB6482.apcprd04.prod.outlook.com (2603:1096:101:be::7)
+ by KL1PR04MB6877.apcprd04.prod.outlook.com (2603:1096:820:cb::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.25; Wed, 26 Jun
+ 2024 09:46:20 +0000
+Received: from SEYPR04MB6482.apcprd04.prod.outlook.com
+ ([fe80::ca2b:8a48:a7ab:60e5]) by SEYPR04MB6482.apcprd04.prod.outlook.com
+ ([fe80::ca2b:8a48:a7ab:60e5%5]) with mapi id 15.20.7719.014; Wed, 26 Jun 2024
+ 09:46:20 +0000
+From: Noah Wang <noahwang.wang@outlook.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jdelvare@suse.com,
+	linux@roeck-us.net
+Cc: corbet@lwn.net,
+	Delphine_CC_Chiu@Wiwynn.com,
+	peteryin.openbmc@gmail.com,
+	javier.carrasco.cruz@gmail.com,
+	patrick.rudolph@9elements.com,
+	bhelgaas@google.com,
+	lukas@wunner.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	Noah Wang <noahwang.wang@outlook.com>
+Subject: [PATCH v5 1/2] dt-bindings: hwmon: Add MPS mp2891
+Date: Wed, 26 Jun 2024 17:46:00 +0800
+Message-ID:
+ <SEYPR04MB6482BC95D1242A5675FF9DAEFAD62@SEYPR04MB6482.apcprd04.prod.outlook.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <SEYPR04MB6482EE353C207DA6977C974DFAD62@SEYPR04MB6482.apcprd04.prod.outlook.com>
+References: <SEYPR04MB6482EE353C207DA6977C974DFAD62@SEYPR04MB6482.apcprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [cfuiPipfnhf43b78oMvvisFN6Z30J5aw]
+X-ClientProxiedBy: SI2PR01CA0005.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::23) To SEYPR04MB6482.apcprd04.prod.outlook.com
+ (2603:1096:101:be::7)
+X-Microsoft-Original-Message-ID:
+ <20240626094601.52298-1-noahwang.wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V6 2/5] mailbox: Add support for QTI CPUCP mailbox
- controller
-To: Sibi Sankar <quic_sibis@quicinc.com>, sudeep.holla@arm.com,
- cristian.marussi@arm.com, andersson@kernel.org, jassisinghbrar@gmail.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- dmitry.baryshkov@linaro.org
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, quic_rgottimu@quicinc.com,
- quic_kshivnan@quicinc.com, conor+dt@kernel.org, quic_nkela@quicinc.com,
- quic_psodagud@quicinc.com, abel.vesa@linaro.org
-References: <20240612124056.39230-1-quic_sibis@quicinc.com>
- <20240612124056.39230-3-quic_sibis@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240612124056.39230-3-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEYPR04MB6482:EE_|KL1PR04MB6877:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25fe060a-7420-4d6c-c5e6-08dc95c4d52c
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199026|3412199023|440099026|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	1NNoZIMO+vfS6XBfOnayw+u7aX5ASPWJQ0ryL0w06tjbPKd14KALIQXlc5DcpTlVaVhM9PutIXNU3KJEqebC4lYIxwRfZINm3yAdVIndPrNGp0Im00cfxVpZLU3k1KLwc/5T8BH3NTkZ4e/t7FqeXX8zZ7YzlWQyFr+fnTKYwA/jyy/ZFaIUzDtmDqaJ+ovWZ7nvV98QUFgpAxlOdPypG2Hk+aB+/hHAS3616d3/HVE/CVSisP9Mi4eTJurK7ftRcdX+vEwwL9pRINQDZRnEY+g7wfDttr6E1TsnaGdUrI9otyzmKXS9JtcXimKAcWPvnR48NpQ9vS+rHe87lv2vPje6NnhBcDCoqpk5qR3J/M3OwtCK6Nf+Y7oJoFKQ2mOERgerJv20GdMR6+pNLQejctprW0podOFXuSDgEmZIAO/ELcsCaeBD4Z5Md1vRhKOYbZrUjg+QWIDN6Gd9bhd7/EZziuiodLx71pnF1MKAIyjhxeAva83Qfwod4zJuCfinKdabSjpLXIzd4nYrL63AmBliwDY8LZm+WucsfAVYvcL5KXk59ZlSHF+kGWmVMf5Ppy2/D99uq7RWCDl1+flRxo8xsSjnWIbeVAtOHSTqVtjZl53KPmvBjY86IqFTPxJn
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?YkuL31zBQo1nKtoTpJx7MKV/mGEsIBggo/RU87YuX2MrK6acE7MLeeOmLbkq?=
+ =?us-ascii?Q?OiExa3aqS0pfxPsSsI1eSnxvuZbeMe8ug4O64uRWXL6aWTxkhMtViady1Zs5?=
+ =?us-ascii?Q?/X4gcEJWIm0XBJJCpe+H7KL0nEtfIBrs9DpNJVho1q9h38sYEjsqvJI99Nz6?=
+ =?us-ascii?Q?Vy8rdIHw91Ud35YUECbhZ7INAr9mPGDhpRU9lOteriJimcpVwPE2ZbKxSpTp?=
+ =?us-ascii?Q?scp137YvnnInYwt0Ncnuelj4o2WQqUeFXmqlSKHFrlBhO+A/nfd6fa+BZP90?=
+ =?us-ascii?Q?tVBYKCk8RlvKYDynToL4Qtc1/p3+Imqe3PLZ7uZ4HXYUIovhbdjwkA2m1HWs?=
+ =?us-ascii?Q?nhBiu2h8aXYJjV0Pkn1ZGseM3avZoy0k1fuB/YKNlim2ZFuZslDT4EUFP93a?=
+ =?us-ascii?Q?tbps88cvvm/bbKKgb4d9BEuG6ZSyCpLTXQq47B3Cuz3HjZ5ZVDD1sxRcJ6Y1?=
+ =?us-ascii?Q?woGxQWfDPe9AqybsUiAR+4xFqDkVBtPv8L5ataXvZ6cex6oFakzcSBfdUC2y?=
+ =?us-ascii?Q?cGDdx4CU+3HpkB5SrnpxSupns69MIw4uAfMXuWxpYYX47qfyqlkdJj2R7IN+?=
+ =?us-ascii?Q?RGmEO5mWVirr7p5T2gV+FTxjUiOLqWpVHsg3a+bYcVseiKMSTeUE7vttkRWS?=
+ =?us-ascii?Q?P/16AdT6DX0W3WJvcWjGC7BT1WYrJkxuG4hqPUK7OM24h8TM+4ZoJs2ugRHp?=
+ =?us-ascii?Q?pIGwqy5BfVoDLBomwDXxbFTD1MPREkvsW+WfowLPw6MDXodMoVE2BmbXrJb9?=
+ =?us-ascii?Q?JyPLw2C18tuGX1mZJdIE+N0KqWgZZ4qwySGhNF05QhU2eXFeIJgVTs3v8613?=
+ =?us-ascii?Q?lG3tvgTlYHCNUZYf0AWwm1RiM35vKJMQPN7J5OESNgVQCqhJnmoZBVfkLVgv?=
+ =?us-ascii?Q?B/LaxWHgKuOz6zoAB43j6DjtrwK/qx/5PtONN69xVT88VlA53DaJdfwAPSY4?=
+ =?us-ascii?Q?MzFTmEVqfvtWncabMkExL1wn/H+PelWTWvqYXuXhn7pU4wMEJK8EtCcW6gbp?=
+ =?us-ascii?Q?h4ha7VDSLm6kJX1Rl9oJnkismym1pSayU2IDxdVNDqpm1ihm4voyGNHRR6VC?=
+ =?us-ascii?Q?RvfHyl4jFX4eenvtef+AVhnW0Rnl9n3nbV9mhO6xMPkBUnyYmw6R8LzMdZJY?=
+ =?us-ascii?Q?YQqhYbXz4MibYWWs8loJCKWxaJmEW0llwjKwAC9Znat/MlY+TxRP9HKtlJ4q?=
+ =?us-ascii?Q?ofE9HiCokrlVvvOPs9EvWLw8+3deCuz4NLhtz8LE08v2DeLz/QYLk3gjIbN9?=
+ =?us-ascii?Q?Dx2k93kBiUZf7WEgfdXo?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25fe060a-7420-4d6c-c5e6-08dc95c4d52c
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR04MB6482.apcprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 09:46:20.4507
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR04MB6877
 
-On 12.06.2024 2:40 PM, Sibi Sankar wrote:
-> Add support for CPUSS Control Processor (CPUCP) mailbox controller,
-> this driver enables communication between AP and CPUCP by acting as
-> a doorbell between them.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
+Add support for MPS mp2891 controller
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Noah Wang <noahwang.wang@outlook.com>
+---
+v4 -> v5:
+    add Rob's Acked-by
 
-Konrad
+v3 -> v4:
+    add mp2891 in alpha order
+
+v2 -> v3:
+    move mp2891 dt-bindings to trivial devices
+
+v1 -> v2:
+    add mp2891 dt-bindings
+
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 0a419453d183..191d4c3e0ad6 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -286,6 +286,8 @@ properties:
+           - mps,mp2857
+             # Monolithic Power Systems Inc. multi-phase controller mp2888
+           - mps,mp2888
++            # Monolithic Power Systems Inc. multi-phase controller mp2891
++          - mps,mp2891
+             # Monolithic Power Systems Inc. multi-phase controller mp2971
+           - mps,mp2971
+             # Monolithic Power Systems Inc. multi-phase controller mp2973
+-- 
+2.25.1
+
 
