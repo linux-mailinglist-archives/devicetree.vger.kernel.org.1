@@ -1,189 +1,198 @@
-Return-Path: <devicetree+bounces-80305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AF9918569
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:11:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5317091856F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B342C1F28ACF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:11:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D5C4281D9F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBE01891DF;
-	Wed, 26 Jun 2024 15:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D7718A934;
+	Wed, 26 Jun 2024 15:12:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="o6YK7JSq"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="V+Kq4D3L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2080.outbound.protection.outlook.com [40.107.20.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD2B185E5F
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:11:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719414685; cv=fail; b=kauqtZMX4IEe85x6pGsZgxARHb0gvvecKxuVw2XZW3p+ereAKno1pOk5/uvLDsUURvteI3+Moj6+g0lJrbaG4TDh0yR/+ZZEwDMnbdrAg6dCfYQCF+uBe8v/RoIWAh0K/K2A/DdQCxQvAe3whQbejsUgVI1pZLzmtSCofLHXMxU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719414685; c=relaxed/simple;
-	bh=TvqqSNwvTkChGwl4SeNoHdCjiI3G6HRSalByyU3LOwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=YOYvkmCL1D+b2MJhocaYT/wWOWQOk4UNuEP2IuD5WP+lQ7qhyTlQA2AmsqaaNo4FvgCIRaBX31EDin+qxtHHz7Bf7urd/2f/dS7CsMP8CkwavVUeqWB3BzCNhQtJAWIH8l+q4zu65lzQMQkxd5DklNPZKF0+Hxw4xanX90cZcSY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=o6YK7JSq; arc=fail smtp.client-ip=40.107.20.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lUtQu7Nk2fJlvFgsqrDqPfk3La0hHVXttG97fYO6+NX2PKyQoZ5+AUmAb/gnW+/laNj2ZYGUQbncr8i28I09OUavJ364iS992in+qXmNDKS6FvKIV6Of7gwCZ0S7ZR+itxYgZ0mYvh5XprMyfqbGhlyyrrHT1TjtpwMC7J332OQ1Vss31v1EYkf0x5LS2OnR2F1vx1aoavnRyP1WPok/9M/Ss9AKAvChse03sceVL0G/s5MORv7VuuGJxHexqR+dMLLOS0nm3rX5cfaWo4/zJ+Y1UE+Lii654ivgy8AGMsbhRS3+6mjxqxRd0RdHV//oUMSJm2hRsc0/2sofN5Ojaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FzyreqNEaWRSLTF47124SbFBD0hQw2BOIIHihSYNk7A=;
- b=lhN/ydEHVV3vKVxNTQVdnty3Y+3FfMF4nIpthZnwQKu0/FKFm4rUISB8cn8RxYn7Kcd5eGGRtO54d3qH7sja72XMi0PZDFQQs2uOwRr6fWu8oTLbcbEWNUrzvpjZrscqx/RXLf24QMUKp3vImwB5cJOkYBzNl8pCW1ns5JZSkXFI+AdJI3aFtedUJLbjax2P68yIojBknwRGVIjNqR+SDvFKT/B14LMVlM20tbHrBT702h55R7ej+OKXEJPivMKp8A+Dc+DiqTGcbxTQFwp7eBvNR5RAm4KbX9zCnwL+w1jCnlErwIDYTpYV4WFVwUKqKCIyG8R2nkgj6BSr1IoTew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FzyreqNEaWRSLTF47124SbFBD0hQw2BOIIHihSYNk7A=;
- b=o6YK7JSqZHNURBMCda7QahHL6z5bQhBVC1DQeSh/ycEJKXWqU5v7xQ/lNAEl0TODZRYAzZ+QW1aJaEhSoVcEtjN+yqt7RbxbDzRR7vI437ovIgbQn/x15I3fYPmeYPecAhf6sjXo48LbfKDt9hi02AYWuHzfs0SVY7dkSjuzI+E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA1PR04MB10939.eurprd04.prod.outlook.com (2603:10a6:102:489::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.30; Wed, 26 Jun
- 2024 15:11:19 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7698.025; Wed, 26 Jun 2024
- 15:11:19 +0000
-Date: Wed, 26 Jun 2024 11:11:12 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] arm64: dts: imx8qxp-mek: Pass memory-region to the DSP
- node
-Message-ID: <ZnwvkHfhleg0ERl3@lizhi-Precision-Tower-5810>
-References: <20240626140532.615857-1-festevam@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626140532.615857-1-festevam@gmail.com>
-X-ClientProxiedBy: SJ0PR13CA0164.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5563D18A920
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:12:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719414769; cv=none; b=H4RivWioQM9N9JxQzo6TEKcnCIWOPYIQFCzlKWQHIWwWAIK9Gm6idcCL1AOsyh907mpu5dxCNNhnicMHKi9ldl5pdoDiRcidK9udDrV0l9xvN0AlfyvxoGzg/JW9+Ry7fDy0vOU7ayTrMDO7lHdNKEd25tYNwlnUYCbOPhbTI8E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719414769; c=relaxed/simple;
+	bh=ji9wlxtKwMxWXq1BEzbpjW+SobuU0R+NcWHJDJAG8YY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bPhAJO2yulZibcq0PYW0UlOszjatWwzHgMvMmtNSirYScv0lYqhhtlh05s6EYwnZbfRAVvuwjfQVISMUZJSrxyPNytMUssMs8ksa+WQ1N1y206sZ2Oycus1yUvgUNc+laWG5kQqGQUxBayJl/Fn7ig6/kJ31IXo1ayi3oEqYLSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=V+Kq4D3L; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ebec2f11b7so76064811fa.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 08:12:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1719414765; x=1720019565; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3C1oLQ+aqDrn6tGBImihLzkMhOaXEA1cLdKh4bi3OtE=;
+        b=V+Kq4D3LY6luvWLoHBWiw1tMYoCPk+xPMLUVtZryNou4j5Y9mQgnck4pgdcadMuZmH
+         9ueJKRuCnGjbYhP1Fw4VJGML5gJteALYwpuiY1NBbEsfkhVncRMlrQWa6PCW7m1BD9mG
+         T9MC5KFgSw7BY2V9bMDQn7XYHJDEvH/2Xfig/sfeVdln71ZNrQv4vrBCNJ9rP/2T1WE7
+         J/kzilDDEpQ+9qjAkT9hEPQjbJIfj8BzV704uA/KSayFpstwt154jWvdRrQD7bFe0Bwu
+         MUSCx42yZ+tdNh26wtVPkOzLW0/L8cpZsGFgeHTJz3YYz5a/79iX1Nk0euIU44bpzQJJ
+         AhZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719414765; x=1720019565;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3C1oLQ+aqDrn6tGBImihLzkMhOaXEA1cLdKh4bi3OtE=;
+        b=CgwgzPIfy+IftNa0kAXNdVcsISXG7pFCmdtQzIRej4Rf7JPMHjJlvCPCK3JqCcarf6
+         Ecm+JjpyzFNGkaL6O/xvYUwyPIq9g/L37IjsqN57YqBliMlOY01Du3jsIKA6vCXgg9UA
+         B/rvYIOLcblaxXsA0zSkh1XtyohGrElml+JNpTvDHPL98/5kjcMCRuJU52w9GYI6biAe
+         WYJ1yOQ0oiRq1pE1YzbD2E/gsfzQAbMHc5tfj49IDARbvcr3ebDO+w3PoHMHHTHLZEzc
+         /kyKWS0b9v+V6Qr14t1t+oztUVswCrstfRVjxZ1vlld7qwzV9U3iMOkK/6unVhcVLs87
+         BblA==
+X-Forwarded-Encrypted: i=1; AJvYcCXS60iS3Pnpq7YE6vgEq2Rjl0+DTqNNc0TSsPBmGQZg+FxA8oNPpS9FYzAUCTNZKKEQTQXtlkt1LKAxduBdTmZLOrjVwQI13qkZYA==
+X-Gm-Message-State: AOJu0YzI7dFh2VJ8sElqxvC9gml1xfkAmtKtlzvUz6l/dnO7JPNH9pTS
+	eZSM8lfTQ8y1ydeLeT0tv36iFlkckEHyjz3yLKmF2iIClWcmE5vwZW9CjdS80v/PpKMXl4wQsUy
+	OEJEd5JD5jCfhuZS74pzgO17QuTlrZpaN5GUSig==
+X-Google-Smtp-Source: AGHT+IHRyUNC6ZVXzXSpSRcK72OjcQYnCiP1oY+9P1xuHjKDTBgiszXyrmikiisVy7BQ6tcXwO3JPVl9Xr0Dq8EePVs=
+X-Received: by 2002:a2e:97c7:0:b0:2eb:e787:47ea with SMTP id
+ 38308e7fff4ca-2ec5b333198mr62069821fa.12.1719414765274; Wed, 26 Jun 2024
+ 08:12:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10939:EE_
-X-MS-Office365-Filtering-Correlation-Id: 945ca19c-490b-4227-989d-08dc95f23bd2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230038|366014|52116012|376012|1800799022|38350700012;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?qPtzl58oDmboQP0BTflqvAoCqRb14FACiUj21Ew7LVAE6llwUTOWd9Ebkb4w?=
- =?us-ascii?Q?ZRXWi7cZMUkywm9y8FmJ6z3mXoNR8mImpZoSwGjAyBu/yhkemWm3iEqNAI2L?=
- =?us-ascii?Q?Hk1fsqD5crKpRPRNb61IJLZPbFIBf+5r2wFlFwKk4iSsb3UjSz/8XI3h5Fxa?=
- =?us-ascii?Q?eG3csHpcSDD1DjHFeckvqQH08U3PkCcJkgRMAqGRAh9GgcOyMS7rtmk7HWi7?=
- =?us-ascii?Q?9hgCS1W7tscDVJsNljDYO0DvlHFvabzJW8sN2F2g6maUPqmqxJ2JghnG4wQ+?=
- =?us-ascii?Q?6yirkHHLUZVif153OQvgcdLrgM64gAmnmkPtnMBhNqchMh9TO6Istyfy7Kbn?=
- =?us-ascii?Q?XDOz5iUPR3ilPUaRu5uOxfL3FC7/qpFm5ooGaenxCPlkYtkm65YTwjjEUEkB?=
- =?us-ascii?Q?Ey6tLBMWwWmszt8vnOd8Cq33kq2KZojWyluaP3bUbt7hvupaM2yS/AO3AAEo?=
- =?us-ascii?Q?0/gymY/GCIQOJSykMIBYFYCFxfv/EE2SQe3Y647G0PslSE//cbjbBJq+8Bre?=
- =?us-ascii?Q?kbf1Ch4+S0EtrP93qqhLkEaIbGgfjvntMyAiVLmA0NJzzL7nGGDeFDj1BCxh?=
- =?us-ascii?Q?3iSk5EOaqHeikJ5/+3B3q9DHO9R7WESOJAGkhd7zpUb+5GRu7UCT5SsBfycy?=
- =?us-ascii?Q?HUEVghsRBiHanLeiYXKY482vl14npFoiMHHhavg/NbQONNWT5MIOYW1iz63T?=
- =?us-ascii?Q?ofzed6VSk5/AtFsEJx+50KF+8D8wA07UkWIEIA7gvK6aHYAE+hnSHTEmGe+c?=
- =?us-ascii?Q?gzZurHq5vO8h+/x17kIZjCNi8GN0arjtyo/5zuCZDH9dupT/i7ypSgOhwP4K?=
- =?us-ascii?Q?DgVTQUXuptoika4Y34k3Ygg9UCET8eA758FR8J1supPdh0Tmgxq/vZDMY6u3?=
- =?us-ascii?Q?b8efgPi6UVyYVtuhab9ySXFP0DK4klQqyDktraitE/TNQmC7UjDQKVkLMJ9m?=
- =?us-ascii?Q?q/wredeCMAplXtydlYKRid5OweLSIp/5OHtrY0FyW/mxu8FBu1mcXooVyJmu?=
- =?us-ascii?Q?ScX8p7IQNRNGZKLbeohsZEk5mwp/Jlw2I0dSIUdAZCSka4jdJWmKDGTmdHxc?=
- =?us-ascii?Q?h+aog1DdiVISe+CSz/UrN0aE3PCn3DBCV3/NlXUVVbZ/wrXZPdl8AyAisyhs?=
- =?us-ascii?Q?jZUQmMkV5YlV3yiHYHjAcIXYMoSWrpUngSslbw+Ow0YKaYXzj+55DAI5UAln?=
- =?us-ascii?Q?/Oqitcya1jsIErV6wj+c+jrYkOOQW/ZREK4Zobnj6X3YK8WxWZe/FDLiA+sP?=
- =?us-ascii?Q?2iP4+nPoJvRpHlH/GsAfOqfqsCAjkHka18oQ+3zUAhWuzjRAjzwf3D7k9HeR?=
- =?us-ascii?Q?kcsl6QJ3p4v0v9r9vVLSB0gRXSqDV070o8Vao9OJpSV+DyFYvyzMZ2+p0Y8+?=
- =?us-ascii?Q?DTICNuvbWMJaw3qFrjSUKwydi3iwAzDV1v+1rMXrLBfFuei1dA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230038)(366014)(52116012)(376012)(1800799022)(38350700012);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?qttsjSwRg32/JcLJX2kfa9EUbslUG4cpTYuwVboW2LFi9+LKDDVjZIdEIHzP?=
- =?us-ascii?Q?CbaU+B9xCAuYWsg185Aztfr7vn5HvtLaKVIzmgW/eXGceY/7aZ3k/uZWw33d?=
- =?us-ascii?Q?Al/PpGvUCeFJ+1UQNTUnAynUZ7dcAunWi5l2r/FnvKM4WOkxDukWMdH7sj5U?=
- =?us-ascii?Q?RNnCKepejAxrL02aYAn8BpDfync/l4CfVnmogK3ooR1Q3stccmnPwF1ZXgUf?=
- =?us-ascii?Q?9p9r4OAF9VvOsPc36tjHHhtL6gMGR0/2YmgRxp9rbqRDwR4Vcpu1bNwRCd7H?=
- =?us-ascii?Q?rOKr7zbRUQq0jOgBT6Al/7cj5GSaux/SKPhvQIbYU6Ab3tZzG32A7YztxSl1?=
- =?us-ascii?Q?tWjcyBmEQZ+SWNLFvxldjXB/2dBJmg/zzOte+t+1erKkMIKayFUPUZyKe4zR?=
- =?us-ascii?Q?8FrAwBLYzoiA509D4HrTDb+wGwePBYIbJIFzxSMPlDO8jfiAfckLxlXjucpa?=
- =?us-ascii?Q?JPBO99BOct+LN22tH8inyeshzO2Ge050PU8GZBcsUucrR5Lc17EO1Cn0qPr3?=
- =?us-ascii?Q?t0o3E2DQRdkjf3TAP2m4zAEXGPD3ozR3q92fj7NGAELNCORRDn/1rtEby1bL?=
- =?us-ascii?Q?Puq+1fH/VhWsb/NhNHIjmGrThUI36w0HU3QABOhAzU758xrnPKEt/2AMJ6bi?=
- =?us-ascii?Q?a5ydhxwDlJe9UxJPGBT7M31gO0xzYcNHaZ7/5mrQHSykGLptoCIDBwtDgofX?=
- =?us-ascii?Q?1ypKEpXwkRDwTH0Xu3wHagCw++DX4N6pJKJG6EMl7ojFSGsWBaFUJJnvbQSL?=
- =?us-ascii?Q?x0Frd/3Xh4pDCuOhEQR5kv+s8zevmkn8peOiVKwkWNxH7ukGFulx8R03ePGj?=
- =?us-ascii?Q?7y/xkNrnuCB8IhYefia27EEDqGWrHYazKerVZZnyHSbLM+WJPxTSfbRZQkAt?=
- =?us-ascii?Q?9Eh5hf8etgZGU4O387eIslMQadx+/PA1Nl7bWv8juhDhz6JsLwT9p4y3eAPd?=
- =?us-ascii?Q?0xlsfDRYePYXe9kRl623zaLgV0iw5+kOehWcmcBZluToV0V3nu6K8jQe80wU?=
- =?us-ascii?Q?gVBhe0rNwzJZtXd9JOZbsoVJ1ppZNzk0/JWBKgrzaC3ewkQEePAdYPETkWFM?=
- =?us-ascii?Q?KKCjQXLun9Emo58UsTOnK5IKpJ7t0ZJrPDvvcMUd8OdUrN9GYzbW3sWkEpot?=
- =?us-ascii?Q?I2Ny83vMOdEi2MC+PgPd2DdaiKpgmozbPauQyl+os4+cTqi4AE9yv9HeFuZZ?=
- =?us-ascii?Q?IR2s/uZ0JSHaz/s3JIXjwBzEHUzBrQNvDchVkFeZLVjR86nWb8ELmJO6abPt?=
- =?us-ascii?Q?sEktLxJCm4wGsueMB1aUPIBZ2REXNFU2W53koDmj2wX9oNN0ciUT3cnTk3RR?=
- =?us-ascii?Q?KjlYlz9L4niqYMAozal6hMS9w5+rjsHU+EXEJ96NUfzZz/giYplAvG8Pw+yg?=
- =?us-ascii?Q?Sg2QstAvGdWex/JVVKCP7CbD8kWC8pf7PCd0SJmD757tMvMe91gsx4eedjcm?=
- =?us-ascii?Q?sghC1MtrM++Y8X6jopu35++NikTzYZn2pIsH/eDZOW3O87m2YmFJNRTLt/eb?=
- =?us-ascii?Q?g+k/rQ+iQYCwlDM7jJ3RwWPabkuHiPou1aJmVYeq9flhP6SR/0NCtF0fpKmg?=
- =?us-ascii?Q?ASxWywN3j10u2ejezRYLjSmfYzLVHAan1Vm/l949?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 945ca19c-490b-4227-989d-08dc95f23bd2
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 15:11:19.8922
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ByXQlxObK0Hpwi9VmyQJCapqApDP2d8icYT0KTXZDsKRfqXWaESkZfSBld4+6if2MBwEAWkgGmKGsbjeTM+awg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10939
+References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com> <20240626-qps615-v1-3-2ade7bd91e02@quicinc.com>
+In-Reply-To: <20240626-qps615-v1-3-2ade7bd91e02@quicinc.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 26 Jun 2024 17:12:34 +0200
+Message-ID: <CAMRc=McuQ_UXaSafePSJqqRvDV_bMQfs-P_FeEBX6WzXyTfSSA@mail.gmail.com>
+Subject: Re: [PATCH RFC 3/7] pci: Change the parent of the platform devices
+ for child OF nodes
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, quic_vbadigan@quicinc.com, quic_skananth@quicinc.com, 
+	quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 26, 2024 at 11:05:32AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> According to fsl,dsp.yaml, 'memory-region' is a required property.
-> 
-> Pass 'memory-region' to fix the following dt-schema warning:
-> 
-> imx8qxp-mek.dtb: dsp@596e8000: 'memory-region' is a required property
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+On Wed, Jun 26, 2024 at 2:38=E2=80=AFPM Krishna chaitanya chundru
+<quic_krichai@quicinc.com> wrote:
+>
+> Currently the power control driver is child of pci-pci bridge driver,
+> this will cause issue when suspend resume is introduced in the pwr
+> control driver. If the supply is removed to the endpoint in the
+> power control driver then the config space access initaited by the
+> pci-pci bridge driver can cause issues like Timeouts.
+>
+> For this reason change the parent to controller from pci-pci bridge.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Newline before trailers please.
 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> index cee13e58762c..936ba5ecdcac 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> @@ -63,6 +63,7 @@ sound-wm8960 {
->  };
->  
->  &dsp {
-> +	memory-region = <&dsp_reserved>;
->  	status = "okay";
->  };
->  
-> -- 
-> 2.34.1
-> 
+>  drivers/pci/bus.c         | 5 +++--
+>  drivers/pci/pwrctl/core.c | 7 ++++++-
+>  2 files changed, 9 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
+> index 3e3517567721..eedab4aabd81 100644
+> --- a/drivers/pci/bus.c
+> +++ b/drivers/pci/bus.c
+> @@ -335,6 +335,7 @@ void __weak pcibios_bus_add_device(struct pci_dev *pd=
+ev) { }
+>  void pci_bus_add_device(struct pci_dev *dev)
+>  {
+>         struct device_node *dn =3D dev->dev.of_node;
+> +       struct pci_host_bridge *host =3D pci_find_host_bridge(dev->bus);
+>         int retval;
+>
+>         /*
+> @@ -356,9 +357,9 @@ void pci_bus_add_device(struct pci_dev *dev)
+>
+>         pci_dev_assign_added(dev, true);
+>
+> -       if (pci_is_bridge(dev)) {
+> +       if (pci_is_bridge(dev) && host) {
+
+I know I told you to check the return value of pci_find_host_bridge()
+in private but now after a second look I see it's just a multi-layer
+wrapper around container_of() and it looks like it cannot fail so -
+correct me if I'm wrong - this can be dropped after all.
+
+>                 retval =3D of_platform_populate(dev->dev.of_node, NULL, N=
+ULL,
+> -                                             &dev->dev);
+> +                                             host->dev.parent);
+>                 if (retval)
+>                         pci_err(dev, "failed to populate child OF nodes (=
+%d)\n",
+>                                 retval);
+> diff --git a/drivers/pci/pwrctl/core.c b/drivers/pci/pwrctl/core.c
+> index feca26ad2f6a..4c0d0f3b15f8 100644
+> --- a/drivers/pci/pwrctl/core.c
+> +++ b/drivers/pci/pwrctl/core.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/pci-pwrctl.h>
+>  #include <linux/property.h>
+>  #include <linux/slab.h>
+
+New line here, please.
+
+> +#include "../pci.h"
+>
+>  static int pci_pwrctl_notify(struct notifier_block *nb, unsigned long ac=
+tion,
+>                              void *data)
+> @@ -64,18 +65,22 @@ static int pci_pwrctl_notify(struct notifier_block *n=
+b, unsigned long action,
+>   */
+>  int pci_pwrctl_device_set_ready(struct pci_pwrctl *pwrctl)
+>  {
+> +       struct pci_bus *bus =3D pci_find_bus(of_get_pci_domain_nr(pwrctl-=
+>dev->parent->of_node), 0);
+>         int ret;
+>
+>         if (!pwrctl->dev)
+>                 return -ENODEV;
+>
+> +       if (!bus)
+> +               return -ENODEV;
+
+This - on the other hand - can fail, so the check if valid. Could you
+assign it and then test it in a single spot for better readability?
+
+Bart
+
+> +
+>         pwrctl->nb.notifier_call =3D pci_pwrctl_notify;
+>         ret =3D bus_register_notifier(&pci_bus_type, &pwrctl->nb);
+>         if (ret)
+>                 return ret;
+>
+>         pci_lock_rescan_remove();
+> -       pci_rescan_bus(to_pci_dev(pwrctl->dev->parent)->bus);
+> +       pci_rescan_bus(bus);
+>         pci_unlock_rescan_remove();
+>
+>         return 0;
+>
+> --
+> 2.42.0
+>
 
