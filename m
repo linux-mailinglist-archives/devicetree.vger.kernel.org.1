@@ -1,183 +1,168 @@
-Return-Path: <devicetree+bounces-80312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1CA19185B3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:26:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C23989185B7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:27:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E0921F27D3E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:26:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77E101F26FAB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F100918C327;
-	Wed, 26 Jun 2024 15:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBCC918A93B;
+	Wed, 26 Jun 2024 15:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="RbMWgwlT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qvvJEJL1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3AA18C326
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:26:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA502B2DA;
+	Wed, 26 Jun 2024 15:27:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719415575; cv=none; b=SZMayyXtNoHLifbAkWGPfEE/7UIna3P9HjIRr/NAJqq9EGoU0TMODYYNjae/dSgWLRb2wQ75ELy6b4X7WdYVq15SEATRXDKPtVtuUK9idyqKOKFM+1qoctGDGhJ4soTAZR8D8HIj8H6WmvcZ93oaOZX9+7kqniduCO1EzcKIbpU=
+	t=1719415634; cv=none; b=RL7Bzika7JZdXNBtsO7y/S2NfgLYIBLZMPZT9SB+YJ1pp77ivGEqpiUWnQvZbJHIWN6O65ThAuocpdb2ExlHnr1BWqK+kevJpop2pBs9pN7lDh9PmiIlYAyFtZkmPvXUA9h1R4cn957w5ZlDykT1L3BPKjj1nhEGA771fvzGiMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719415575; c=relaxed/simple;
-	bh=6jxwir0dwFVAw0BOjiVxhn0eDiqqCY3gy1asC5vDmsg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R60HV/xrd3BEN0+Id3iBmmd0AGjgYSf7Mp+O5p9qKy9WBGiuKFnwF2RtGcApQ33TVZtSTXmHSqqVDZwBoFu2sjQ0Z1RHUgYG0EGH/GXope+YSkzwrqd+F4KfuwrVdZbTsXTjJ4yyazC1YgkSyD+Hk7iTBklMxM5oHvUsGdY8MZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=RbMWgwlT; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42499b98d4cso17448775e9.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 08:26:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1719415571; x=1720020371; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IE+ZoOOI53p58bUMEo+gS3J9r8a6CVYxDRQKle6/oYI=;
-        b=RbMWgwlTT3nFgrML4Nox8Mv6COufYVDDBMyjL0EvVykbNpnxxJmcYqc6IrxyYLkuy9
-         wPvhA6ATTtfTMzmW90RfXZvqbRj3KBYtyuK+iBervl3FYX7csBAz0dRH28FuNEwEcKqX
-         lbXEosm8v7i0+1lHxRyzYXjnNS5qBOmXl2xlkGyRkvpvI8TgibrGGQKAj122Dbl1Itxx
-         kXVvU9ghO0hUU4TCX1bgc7QH7HycPOAeMWL0OAS/ktu/BmIVmGeyJl2iHGg0SNjvfHKc
-         CSp/BTqMiUFlkaVpy/2Kkhn+FtMOch7JPe9Yjsxmjl5kzueMg0GjTkpJCPYNTiMsWfUj
-         tN9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719415571; x=1720020371;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IE+ZoOOI53p58bUMEo+gS3J9r8a6CVYxDRQKle6/oYI=;
-        b=ot8//ijH28kBKZfOJKUgARGkz9TnLjruBfYzOBsy7PJH93afTLlkOQYl1f4bq+W2aL
-         RhwjvXxlert4CNfnM3eJwZsQW1UkvRy2vIlRCotcOoICUvTvobGBZ8AUVHdx+dHu8QLo
-         3h8xSYGrVYzNvF6O5bq3BwwJNsvVwwR6lRsshh/HGaZaGav8JHtN7yr7Cu+JFWsgU4vD
-         wp8y3IjDVfPjjhsB5WfE95fandmRmT8MCD4yLx6YapwmLngSuNA3PAbeoqtdcR4RN+l+
-         BPRjFkgd2eSUtjs1NAiLJqwZ9PbpQ5q02EF9pZx8nWsKopJBvE/bfko4lLOkEgcGg1e3
-         Nfgw==
-X-Forwarded-Encrypted: i=1; AJvYcCV8DA1EQ+EsK+BZ2++CcuFeNB0kh8RcsE6sTqIgQiz7OPpRhKgygpV5PC6HTchuimaeSc5NWO1/KSb8pQ1gNfOs1TTIM8DEB97Sdw==
-X-Gm-Message-State: AOJu0YwIrTbrRWbteoFiR2zTXDtjKawGC1fnsBGIpNYG+t1RAzH3P72a
-	jCPqmXwfYz9mh2CN+zjIsWLAPWW+6ZWJ/XrCibsCMOZ7ERo9Q6Xy6r8/9hLpe+4=
-X-Google-Smtp-Source: AGHT+IEGDHnLPK2eqJ44hAGV9u4g5ILwUSDhPg5bkam/EIvxbEYIuVvtY8uavBFyvxbUsaVObENX7g==
-X-Received: by 2002:a05:600c:158a:b0:424:b3cf:d704 with SMTP id 5b1f17b1804b1-424b3cfd940mr14270765e9.37.1719415571230;
-        Wed, 26 Jun 2024 08:26:11 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ec24:52e0:62d6:6a12:585c:d4e1? ([2a01:e34:ec24:52e0:62d6:6a12:585c:d4e1])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8264891sm30481115e9.25.2024.06.26.08.26.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 08:26:10 -0700 (PDT)
-Message-ID: <19167580-4e25-4820-90f1-2d03c7e9cb04@freebox.fr>
-Date: Wed, 26 Jun 2024 17:26:10 +0200
+	s=arc-20240116; t=1719415634; c=relaxed/simple;
+	bh=JgOdhfKoNF4gZsjDSQJd3zN1wwMai50AgDm2boUHMwY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=vEbLtCeqmMJRu4/hvrkHtIj/BKEXpYJvqnYZuLe9lk1frE1qdLOBBBY7mENL0xEGwfuG/8iR64gOjGxaKiuHxb/TRsLviPpnVCiWwxSBnlk7HBkzlwU00u7SiXsXeg5x705dKO/a90A6niZUdvG8oEPAByfdUnu4efOrrwBi1V0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qvvJEJL1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 302AFC116B1;
+	Wed, 26 Jun 2024 15:27:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719415634;
+	bh=JgOdhfKoNF4gZsjDSQJd3zN1wwMai50AgDm2boUHMwY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=qvvJEJL1PQMATVQudld62ezk/sGU5VALsZQ88gMUJfXYwd78OJ1KSjcCXtUEb+4Ou
+	 gUxtXGKUNqck1BU8kBQQjQegHi8oF00MTlLpH/wd6SXlgcWCiKJ/tY6tNB/6oW+FL4
+	 5Ugi3/42ACTF7gJT/2EhxXqMBMONML9GsXtBv6MpRKEBjzixZgzW4h5bxUTVcswW/X
+	 692fH9ZwsRfZ1MKnaxrPlWxJdHWUVf+qTXa0j2o0uP6N3Xob2iUykNJXm0lA8zd9ig
+	 2ve/a9TAR+c7M2SQlo2ADfGPLbLU/H9BI82rUuvb9qw+Xb8m5gpUN+sCxXA2MupN0c
+	 nfRNOBEcFrHoA==
+Date: Wed, 26 Jun 2024 10:27:12 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>
+Subject: Re: [PATCH 5/7] PCI: brcmstb: add phy_controllable flag
+Message-ID: <20240626152712.GA1467478@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/bridge: add support for TI TDP158
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <20240625-tdp158-v2-0-a3b344707fa7@freebox.fr>
- <20240625-tdp158-v2-2-a3b344707fa7@freebox.fr>
- <bgp36sjj5hvldl4tqtjt7q6eva553hkek55easqpugzhdmcjv2@uhafklf25rit>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <bgp36sjj5hvldl4tqtjt7q6eva553hkek55easqpugzhdmcjv2@uhafklf25rit>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626104544.14233-6-svarbanov@suse.de>
 
-On 26/06/2024 06:47, Dmitry Baryshkov wrote:
+Match the capitalization of the subject line, s/add/Add/ as in
+previous patch.
 
-> On Tue, Jun 25, 2024 at 06:38:13PM GMT, Marc Gonzalez wrote:
->
->> The TI TDP158 is an AC-Coupled HDMI signal to TMDS Redriver supporting
->> DVI 1.0 and HDMI 1.4b and 2.0b output signals.
->>
->> The default settings work fine for our use-case.
->>
->> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->> ---
->>  drivers/gpu/drm/bridge/Kconfig     |   6 +++
->>  drivers/gpu/drm/bridge/Makefile    |   1 +
->>  drivers/gpu/drm/bridge/ti-tdp158.c | 103 +++++++++++++++++++++++++++++++++++++
->>  3 files changed, 110 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
->> index c621be1a99a89..0859f85cb4b69 100644
->> --- a/drivers/gpu/drm/bridge/Kconfig
->> +++ b/drivers/gpu/drm/bridge/Kconfig
->> @@ -368,6 +368,12 @@ config DRM_TI_DLPC3433
->>  	  It supports up to 720p resolution with 60 and 120 Hz refresh
->>  	  rates.
->>  
->> +config DRM_TI_TDP158
->> +	tristate "TI TDP158 HDMI/TMDS bridge"
->> +	depends on OF
->> +	help
->> +	  Texas Instruments TDP158 HDMI/TMDS Bridge driver
+On Wed, Jun 26, 2024 at 01:45:42PM +0300, Stanimir Varbanov wrote:
+> Not all PCIe can control the phy block, add a flag
+> in config structure to take that fact into account.
 > 
-> Please run ./scripts/checkpatch.pl on your patch.
-
-Oops, sorry, will do.
-For the record, I did run:
-$ make -j16 dt_binding_check DT_SCHEMA_FILES=ti,tdp158.yaml
-
-
->> +	if ((err = regulator_enable(tdp158->vcc)))
->> +		pr_err("%s: vcc: %d", __func__, err);
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> ---
+>  drivers/pci/controller/pcie-brcmstb.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> - dev_err
-> - please expand error messages
-> - ERROR: do not use assignment in if condition
-
-simple-bridge.c uses DRM_ERROR, but it says:
-"NOTE: this is deprecated in favor of pr_err()"
-Hence, I used pr_err.
-Are you saying I need to record the dev,
-just to be able to call dev_err?
-
-
-> empty line
-
-Will do.
-
->> +	return drm_bridge_attach(bridge->encoder, tdp158->next, bridge, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/controller/pcie-brcmstb.c
+> index 4ca509502336..ff8e5e672ff0 100644
+> --- a/drivers/pci/controller/pcie-brcmstb.c
+> +++ b/drivers/pci/controller/pcie-brcmstb.c
+> @@ -224,6 +224,7 @@ enum pcie_type {
+>  struct pcie_cfg_data {
+>  	const int *offsets;
+>  	const enum pcie_type type;
+> +	bool phy_controllable;
+>  	void (*perst_set)(struct brcm_pcie *pcie, u32 val);
+>  	void (*bridge_sw_init_set)(struct brcm_pcie *pcie, u32 val);
+>  };
+> @@ -1301,11 +1302,17 @@ static int brcm_phy_cntl(struct brcm_pcie *pcie, const int start)
+>  
+>  static inline int brcm_phy_start(struct brcm_pcie *pcie)
+>  {
+> +	if (!pcie->cfg->phy_controllable)
+> +		return 0;
+> +
+>  	return pcie->rescal ? brcm_phy_cntl(pcie, 1) : 0;
+>  }
+>  
+>  static inline int brcm_phy_stop(struct brcm_pcie *pcie)
+>  {
+> +	if (!pcie->cfg->phy_controllable)
+> +		return 0;
+> +
+>  	return pcie->rescal ? brcm_phy_cntl(pcie, 0) : 0;
+>  }
+>  
+> @@ -1498,6 +1505,7 @@ static const int pcie_offsets_bmips_7425[] = {
+>  static const struct pcie_cfg_data generic_cfg = {
+>  	.offsets	= pcie_offsets,
+>  	.type		= GENERIC,
+> +	.phy_controllable = true,
+>  	.perst_set	= brcm_pcie_perst_set_generic,
+>  	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
+>  };
+> @@ -1505,6 +1513,7 @@ static const struct pcie_cfg_data generic_cfg = {
+>  static const struct pcie_cfg_data bcm7425_cfg = {
+>  	.offsets	= pcie_offsets_bmips_7425,
+>  	.type		= BCM7425,
+> +	.phy_controllable = true,
+>  	.perst_set	= brcm_pcie_perst_set_generic,
+>  	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
+>  };
+> @@ -1512,6 +1521,7 @@ static const struct pcie_cfg_data bcm7425_cfg = {
+>  static const struct pcie_cfg_data bcm7435_cfg = {
+>  	.offsets	= pcie_offsets,
+>  	.type		= BCM7435,
+> +	.phy_controllable = true,
+>  	.perst_set	= brcm_pcie_perst_set_generic,
+>  	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
+>  };
+> @@ -1519,6 +1529,7 @@ static const struct pcie_cfg_data bcm7435_cfg = {
+>  static const struct pcie_cfg_data bcm4908_cfg = {
+>  	.offsets	= pcie_offsets,
+>  	.type		= BCM4908,
+> +	.phy_controllable = true,
+>  	.perst_set	= brcm_pcie_perst_set_4908,
+>  	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
+>  };
+> @@ -1532,6 +1543,7 @@ static const int pcie_offset_bcm7278[] = {
+>  static const struct pcie_cfg_data bcm7278_cfg = {
+>  	.offsets	= pcie_offset_bcm7278,
+>  	.type		= BCM7278,
+> +	.phy_controllable = true,
+>  	.perst_set	= brcm_pcie_perst_set_7278,
+>  	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_7278,
+>  };
+> @@ -1539,6 +1551,7 @@ static const struct pcie_cfg_data bcm7278_cfg = {
+>  static const struct pcie_cfg_data bcm2711_cfg = {
+>  	.offsets	= pcie_offsets,
+>  	.type		= BCM2711,
+> +	.phy_controllable = true,
+>  	.perst_set	= brcm_pcie_perst_set_generic,
+>  	.bridge_sw_init_set = brcm_pcie_bridge_sw_init_set_generic,
+>  };
+> -- 
+> 2.43.0
 > 
-> No. Pass flags directly.
-
-Oh, just pass the flags argument here? OK.
-
-
->> +	tdp158->next = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> 
-> Missing `select DRM_PANEL_BRIDGE`
-
-OK.
-
->> +	if (IS_ERR(tdp158->next))
->> +		return dev_err_probe(dev, PTR_ERR(tdp158->next), "next");
-> 
-> This results in a cryptic message 'foo: ESOMETHING: next'. Please
-> expand.
-
-OK.
-
-Thanks for the in-depth review & suggestions.
-Will respin with fixes.
-
-Regards
-
 
