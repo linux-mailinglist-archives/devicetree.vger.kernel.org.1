@@ -1,139 +1,121 @@
-Return-Path: <devicetree+bounces-80164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF102917F12
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:01:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0126E917F14
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:02:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A42D21F21ACB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:01:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7FE21F21360
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FAF017C7AD;
-	Wed, 26 Jun 2024 11:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995E817C7B5;
+	Wed, 26 Jun 2024 11:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="y+hbQi6f";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="bTj1t/Rl"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="DJkv4B8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout7-smtp.messagingengine.com (fout7-smtp.messagingengine.com [103.168.172.150])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D2C178CEA
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C637A74BF2
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719399679; cv=none; b=qtAAw5iizV8P0X7mey589auz/EKS5suFZiPe86RinCy830QJFt8EinDZlpFXPCbrEFJ8LgkXoln/HdaSy4fFlgoyLrVD00VdEZ37NgdxQpaG2mNlTMWE0HwNAEU4kKkuEJo/2mxXEo0SvOcpovHSOVvX25uIIumSGd4zbZYzk/s=
+	t=1719399748; cv=none; b=mVszrGMNpg9ylVQTPxim0fh2RaSwQ8FqQseDXU7CKU4f+cEGt1a/FZ+YpoHAokv6QlNNdcHm34IZaqI7t4v4eJLeOSYZwz0HcUGohyTJEywbo3cjmaA4b8Furk9P0/k3JaOSqe0PXhtI5JJNuCvrYXT0LZ13gFivOuuCul6SN20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719399679; c=relaxed/simple;
-	bh=tHQZv3LwOlOQfPEOkudQ4Xb8DXXM6jz+6vSjfUu24is=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=DG2Y8yAL2q4oCMYW3/sPR6sdOHNZ0tUhh4FE86Yt//jCetmIyZRQ2eR1HPwFXC/Zg75quERSTmdFYhoh4tbsmOby4ywBEN4Gjfe676hOe2EwPqgFt0L5wL40bL3FRdFGtzU4oQHp6ylDxlNwyLVVSIKNuD7X8P1TV3qeStMTL4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=y+hbQi6f; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=bTj1t/Rl; arc=none smtp.client-ip=103.168.172.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.nyi.internal (Postfix) with ESMTP id C36871380616;
-	Wed, 26 Jun 2024 07:01:16 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Wed, 26 Jun 2024 07:01:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1719399676; x=
-	1719486076; bh=7LLzzLKumALaPFP/IGgEr7VN/xdA8f8Ws+em32VpKG0=; b=y
-	+hbQi6fy20SLHZLMqmFxy02tmoERLXEwCsNehwfEA4r7UpBzqp0jDn3mARwYsFoF
-	XB6jGt0g1O0Q9CGTdYLIl5b6nsn35V9DFZ/JG/pFjNmOE9PAItdTn45kBTawWR38
-	t/LRN47/xSlRzscP5rkt02KYhuO0AWBAPLWXQ90k1xvE+VQQ/qCDI8gZIPQf2w16
-	yOZvYTSbyRZObUsKitQSUJ1WK6pW5tYIH7ABnDMgNCautf++dGMHeaAMOGFFR14L
-	rKZ7lbFagaWf0hRdeNMaR+7iIof29B6lpbl+cm2htRVVwOyyNmxduUO2pJW4jxpv
-	1y48vMEYocxslHCI0vFCw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1719399676; x=1719486076; bh=7LLzzLKumALaPFP/IGgEr7VN/xdA
-	8f8Ws+em32VpKG0=; b=bTj1t/RlO6BrH5+pHDkSk4EVacpvGe15LaWuovt//DnH
-	JXVy+KtF0Yo6DpxYGgyBgaQVFlEaameJ3FLD0HJhlhRilIkgcSEF8xQIPnKTLSVx
-	t34iDPj3+ftIWqsx0GTbsFoZxxZXlnJbZo4YkzwHGa1teyungXH4spih4etnPgyp
-	X3zw7jeWbKeGbcRrwCl3FcNoFqI72zdM6Ndx72QOUUtd7QvvLldNxTUvuPePLybe
-	7DLVzhohMO4h5VEATyND2zo7aOygux7SenC8k3NKBnCMP0GnyGn/+ffTyrKjpRA5
-	j7OhlZsMylNwlC7q1/Z5y2gaDhey6znMT48uyyUePA==
-X-ME-Sender: <xms:-_R7ZpXsNBq6g0bVBgnU4dlNz7QWTy9KEQQ4jPeS5QbovCVpdwLDdA>
-    <xme:-_R7Zpm1aEwZzHPuRhb2NaMOOBUISA4zwlQL60ZfVB4CTFqGYPtQ-QDwf_JhIPq6Y
-    RWmIs0VNtoqVL1oKQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrtddvgdefhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfthigr
-    nhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtf
-    frrghtthgvrhhnpeejvddugeeijeehtedujeekffeiieeghfevieetkeejkefgveekvdei
-    tdetvdetudenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshht
-    rdgtohhm
-X-ME-Proxy: <xmx:-_R7ZlYgKapHe2zoCY-7vhmsA1yhxlQW2bw3ZPk0MmxIFQOJDwKl8w>
-    <xmx:-_R7ZsV0uw7PYzicxOibg0yGUFG0quaGkibUyPNUhKPCEem3jv8OBQ>
-    <xmx:-_R7Zjl6mWgMOj0zjX1vHXupoaNCdAEzv4KddXI5ACQ9X4OhyViozw>
-    <xmx:-_R7ZpfcmgiGRUvRth2J1x-yKsUDHYoQ9xAcKPt-d8RkGT4b6Fxd9g>
-    <xmx:_PR7Zmr9a66z9LYgEz8mvfS3TebovftlffJVmSj5vQdeEb8Ar0LwiaN->
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 7B2A4A6007A; Wed, 26 Jun 2024 07:01:15 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-538-g1508afaa2-fm-20240616.001-g1508afaa
+	s=arc-20240116; t=1719399748; c=relaxed/simple;
+	bh=iHKo5jSf/IdRTguJc6dSMvj0EoFBMTutpyv41hTOCGs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i9s0YUH7S9M3J9qXctJWeXg6kU1Af+sJlboLobXT2XyrtDR1gyvPj73VGzvzqIGr+s/8Vqm+XZW2YmBOYAkpObTmZxRaW8yFo4G0L4XzReDEu+mT49KZjY69l5W37Wm56IkWT7qGXXOzZv4JLbpRk/hwovGscf5mQcuWhqeOU0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=DJkv4B8W; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ebe0a81dc8so86747181fa.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 04:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1719399745; x=1720004545; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VDswRBBP2Qt3ekSLsvBri2VGbmBXgiH4bSSikEURQGY=;
+        b=DJkv4B8WUXXrUF4H/7lGJ7vjZ5dUtnQxDPWzL1BunBARWdnw0PHNMyRIvrRhQeJBZc
+         aZyoN8AusIj5ad67RN8kfG2yoASZaTEh2Dt+vpZFI1KPodR1RBiq2sDU1W3Fei6YJHpX
+         SDPENyRLpsYH/LCFoaFuOPauO0g8ApJ1SUfBTbfDl7zZ7esNKvR6LBTLMrWBGWKWgyal
+         55EZ2qCpdwbenMRWOPKlQhM0IjuXiVSGClcL5ay0O/43GH0BO3txKgvO6Zdl3Vn8mkJh
+         BBOtJ3hmeoXU2W9XMteA23v952u9Pba03qqCo8UyYzXQXIX8LHYLO53BXCW4VxnR+VWF
+         ifWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719399745; x=1720004545;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VDswRBBP2Qt3ekSLsvBri2VGbmBXgiH4bSSikEURQGY=;
+        b=u/ckVnnLyTAIu+sH3r9XI0ziBy91mt+wp83Q+53VEY4glP2FQOe8BxeOiyRfr04De3
+         Edqzr3vJapwTFRepheY9yZLsYv6lT3nWZhvIwKxBPYQMrQ2o8YJZcxM5jz2aHb7hqvNO
+         JU1fbj8GFPbTKRr/Wt7taKsVLee2A2oERPec9qE8sSsmV/BLyiWlqjsTvfDBa5PIEowR
+         /IrtkEcw/8dYruvlApNPGI/RYoKp0O+A91cUHwf9nNAXdJRwFXKioHEYrNnIQvMc0Xtw
+         UvC14kOH7Mj1lGisun0gygPxT6p+bR19WSMr1ZYc6TSy2wuKxgFNHdK7nBn64ppfep+A
+         UWMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRX89B+V8oTi34h/NwDkgp7VfHmybfGFdQZ2rHzd6f2lqQOGEWF6vquk8dc9gwaMmOHdu24eO0+HjrluFu7u0cU+Cm5yTiU0mhcw==
+X-Gm-Message-State: AOJu0Yxwu9byXpEq/9PpzcxsFdiYZv2+LorE3RgWx+mNe3LvuR7GjM0z
+	hGK9iLiqG6ZM4bhbBvgDg5k1x7QBtGGja4KBLJF9Jb5EdzcE8yhdz3gNHq+JwdW0IbWMYBXojtQ
+	uK4gyYKzAlto3XDLwQnrVwwj9/EohJ8nNN5KYcw==
+X-Google-Smtp-Source: AGHT+IHOZFXD0xS4qZO808BfSHcTBiGzJgw7SoL1DC7zM8qFILuyWWKJM3LJtdXgtfsaOsNad2MuzEsyatICH5an/Aw=
+X-Received: by 2002:a2e:854f:0:b0:2ec:49b5:50d5 with SMTP id
+ 38308e7fff4ca-2ec5b357a00mr72949841fa.41.1719399744869; Wed, 26 Jun 2024
+ 04:02:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <e1f21076-4562-42db-a621-e81ab309a52e@app.fastmail.com>
-In-Reply-To: <0c03b9ff-a1e7-495e-a294-198d9a6878ca@linaro.org>
-References: <20240530211415.44201-1-ryan@testtoast.com>
- <20240530211415.44201-3-ryan@testtoast.com>
- <20240606-intelligent-aromatic-magpie-80a7a4@houat>
- <2dc1fdec-7673-4462-abe1-fecf8e3e826b@linaro.org>
- <20240606-refreshing-cinnamon-ibex-a0fe73@houat>
- <20240606-authentic-mongoose-9485904a91a1@spud>
- <20240618-silky-holistic-oyster-bf59fe@houat>
- <20240618-reverse-kinship-7f8df8c8e111@wendy>
- <eb50b8d3-b56d-42b2-a277-02a255b2d6c0@linaro.org>
- <20240626-agate-ibex-of-effort-c72ebc@houat>
- <5f989c7d-fb70-4e13-a1e9-86fc6326d633@app.fastmail.com>
- <0c03b9ff-a1e7-495e-a294-198d9a6878ca@linaro.org>
-Date: Wed, 26 Jun 2024 23:00:55 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Maxime Ripard" <mripard@kernel.org>
-Cc: "Conor Dooley" <conor.dooley@microchip.com>,
- "Conor Dooley" <conor@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, "Jessica Zhang" <quic_jesszhan@quicinc.com>,
- "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Chris Morgan" <macroalpha82@gmail.com>,
- "Andre Przywara" <andre.przywara@arm.com>, "John Watts" <contact@jookia.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
-Content-Type: text/plain
+References: <20240625151430.34024-1-brgl@bgdev.pl> <20240625151430.34024-2-brgl@bgdev.pl>
+ <f4e055e6-8903-4bd0-96da-b5247678ad84@kernel.org>
+In-Reply-To: <f4e055e6-8903-4bd0-96da-b5247678ad84@kernel.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 26 Jun 2024 13:02:13 +0200
+Message-ID: <CAMRc=Mc5TX=bRpSDpAaMdcbR8rXgFi+aoWCWSn-co3tHeVb3rg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: add sa8775p-ride Rev 3
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 26 Jun 2024, at 9:16 PM, Neil Armstrong wrote:
-> Well anbernic is not the wl-355608-a8 panel manufaturer, so as Maxime 
-> is suggesting to use the
-> name of the device where the panel is found like 
-> anbernic,rg353v-panel-v2 as submitted
-> in 
-> https://lore.kernel.org/all/20230426143213.4178586-2-macroalpha82@gmail.com/
-Show quoted text
+On Wed, Jun 26, 2024 at 11:00=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 25/06/2024 17:14, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Document the compatible for revision 3 of the sa8775p-ride board.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Document=
+ation/devicetree/bindings/arm/qcom.yaml
+> > index ec1c10a12470..000037f4a712 100644
+> > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > @@ -895,6 +895,7 @@ properties:
+> >        - items:
+> >            - enum:
+> >                - qcom,sa8775p-ride
+> > +              - qcom,sa8775p-ride-r3
+>
+> The board is not compatible with earlier revision?
+>
 
-Understood thanks. I have no strong feelings either, using the device name is sensible. Will prepare a patch.
+In what way? Can you run the same DTB on both? Sure. Will ethernet
+work in both cases? No.
 
-Regards,
-
-Ryan 
-
-(apologies, replying-all this time)
+Bart
 
