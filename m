@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-80181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3258C917FB3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BBF4917FB7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:32:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54DFF1C21760
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:31:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EEC71C2224E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FEC17F38B;
-	Wed, 26 Jun 2024 11:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6335C17E911;
+	Wed, 26 Jun 2024 11:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="erRFAClU"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="WoeBexF1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA05178387
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA280178387
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719401487; cv=none; b=rShdLLFVh0hQgLxDqcAgLULt3Sy/ETi8MW73wgNSR9CHaAQfbdoADEtJSN8QduFiNyZvMxEWfV785pMeikJccRsPzGjctalj3W75C0oFplHzmzILudnqbTEwoH714RwTznc9WoiGaxw+aMQaMpmme3FN4owoYWt7RtP8ScQYgQM=
+	t=1719401520; cv=none; b=tP/AU0kHWs7iDcJOzT5+8Wo6V2uvlGANOhqKXYigyfN79/lnZwdqWBzSk7KpB2r81GuDAirXSZPNbFcRwjVZ3jWmeIgk9WT8wWBWQGRJj6WTmq4i9qdTlK0jWx5w1NS5SEYsf3zsL3PY3MlD8DcAxxibrmE7Sa3TNEevwuq2ov0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719401487; c=relaxed/simple;
-	bh=9xYlZ+ynlzCAUavSSd84Jmdp12EEMzGhyQUB47VfVTw=;
+	s=arc-20240116; t=1719401520; c=relaxed/simple;
+	bh=C9iPWVjX7UUSzT84Zb9aS9odSfeDu/qbKp4BFYP2oWo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L0M5hLrpfq7GkVlydtIdc5IsbWjW80z4qhtInQskT9EPVJ5L41/rofOSg/pTApaObVpfkj2HTNzpj72L+CfG/4DfEVZ5Kz5wpzZ1idy3S7Uom1neKCeQws5Bd5wsKL0aBUWWuZE+d/smroTmEY52MfIQXiHra852VCcuCSoNdgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=erRFAClU; arc=none smtp.client-ip=209.85.222.48
+	 In-Reply-To:Content-Type; b=dSA3OPUlfrJfx5gzfT82OZI/v9OImyB6MHO/GN6ma+KHexT+GzMciMBVzKiYEht9KJwhlVim979O/pAI/jKaoPRGx6um86k9+qQwpYUjjCWou9UMUckntE7acEgR0B9GEYBOa/1Pg2jNrIPP+FCup9PDLUww6k2j86HzPMxT6OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=WoeBexF1; arc=none smtp.client-ip=209.85.167.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-80f50dadadfso1805027241.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 04:31:24 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3c9cc681ee4so3400166b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 04:31:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1719401483; x=1720006283; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1719401518; x=1720006318; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TMrmY24KjZaeOpr5Eo1AMcDk2VHYVHu4XZFZNAlcmEw=;
-        b=erRFAClUnvcz4YDMdV7nRhC1qKs6IP0aIwdCGQRJmAEql4tY0h6LOehpoF5pUZcJxj
-         gbZd5HgNDeHzTrxoy4X+sr8KpKkkmHz3DYpBEhVqinN+CTHUZp1Hy6ilKIFfshel5noC
-         XazWC+dUTHiTU2UQVYfvUnNF+Jp2RVie6lmBU=
+        bh=cmyU3YVNGaOEnHe3RCClB7AYzFc5HaFNuTq0j2+IvaY=;
+        b=WoeBexF10U+fYf2zR1RChF7tri/EbrSyJFBsOQl+3fQZwVA84lsM3kq7Nc6bqHU7wV
+         L0L9BqerrazE3SwscAS3YQKx4XgmpEOn9j8VB8W5RsYccaZn3LIrq7w7jhKdSRfGUqh6
+         prORREEY/IEgPj8sSCxkvyhvewb6a/7i3dkjY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719401483; x=1720006283;
+        d=1e100.net; s=20230601; t=1719401518; x=1720006318;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=TMrmY24KjZaeOpr5Eo1AMcDk2VHYVHu4XZFZNAlcmEw=;
-        b=gjLO0nE9TjAvwGUvroaxGntnQOQLjh/nhiuaanRWYV3oStIjJNLtqpryigfPH3yM9o
-         xlZnS4dDrfpbxV6wDxVxfCU2CqWGTMM0liCBcv4QzvhZQ8AFo9R2Plu6ir/m7o6nNwy9
-         CjOqLJHaSST55wLtECmNPseZwPU0OKeh/rV0cW2ITc/yoGVy37b/5oPKtYZTlcODIQOO
-         hfuse0Ne0UQNHPj36LikftLS+1FBYPOHXN72v6cL40HD1un3Id2wnIxo9UoLyGD2fWRl
-         xqGbwqzLmRaD/bhZmwmmqs7CyEXnMrSeKwYmtOpFzTlKS9OyXfidrL41b4AZwVfB7TpW
-         +27A==
-X-Forwarded-Encrypted: i=1; AJvYcCXdH4TH4cqDWCuPAWiO3Z3DCFTLHBsjT1u1gJr4pVZT+o+VcnLJii87U8+Paj37L/ooBYRQP9EdJl7dZ/3PacsHSDpnXWYRX9QACw==
-X-Gm-Message-State: AOJu0YxSiMfFsOT/bPAoNIQi72N1AHbHmuXb7p8ADoDEQV95ERQpPUnQ
-	vZM++k5X1FQund+j3IvoKoo+rRo1zFak0ab4zEm+b1KVTZDkgZfDL2Uh+H3LPw==
-X-Google-Smtp-Source: AGHT+IG1WbmaYK7tAScwsNCXvXSVcxF5XxPSiv1CIo11s/FzBSqV+Sr5de8ApxEZMpawXpMQ1Wxo6A==
-X-Received: by 2002:a05:6102:2276:b0:48f:392a:f891 with SMTP id ada2fe7eead31-48f4c0dcd51mr9897775137.21.1719401483391;
-        Wed, 26 Jun 2024 04:31:23 -0700 (PDT)
+        bh=cmyU3YVNGaOEnHe3RCClB7AYzFc5HaFNuTq0j2+IvaY=;
+        b=uwm+x/6rmL0dP/MwCnZb+Kfpestr/7bSgxH2OqWaSt1b7EhlIUQz5C6UrcSHBBxNmn
+         aQE/MIdtiV65uilR/OSRF35EQiJNcwlFrkMiH7nbZxMfDV34/4Z6DOW8rkG/EYP/RSlz
+         KTTfsd1O1m8M5WNgcjt+CBx+sVvqabEB5/dCN5tEreiN+B7VgbNjWQXQgt7bQUINH/gQ
+         holE7izjdpD6pfmGr+/7oJ/Fb/6yQpTA5FWd5QMmPJ0jt6zlaWER7OJ4GAR0Fn9dxsYY
+         ehm07jle7SRD0sPUQ1D7fVd9BeSc+SUPMh8o2Klt/nkMNjq4x36ja0uVOoaDujvex6v1
+         0izQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9opG2kqZxkVQWTKlEbMhgJAHULC5n3K0ul6nPtXNnCFeDCUPxh/gr1zTPOTsAhqeltuqZsyLLAT4XteLpTSjYiyavH6xn1KU5sg==
+X-Gm-Message-State: AOJu0YxNepuwbPssHBEf1JYEHebQMOjnHfyN1tcq7ilTvKOtzJAM9D/S
+	/VY5ujmkZIRaIiPrhKUGbmY1ZIUhiUynxUOZLn12LjVudvopwXx4dxifqVF+gA==
+X-Google-Smtp-Source: AGHT+IH3f95ENZDkUhAYs4UNNyqaM+g9HS6Mh5HWegEs0YBAnOZlZvVgC/360ZA0kphxK8VufV35cg==
+X-Received: by 2002:a05:6808:210e:b0:3d5:60d1:bdcd with SMTP id 5614622812f47-3d560d1bf30mr2102030b6e.41.1719401517874;
+        Wed, 26 Jun 2024 04:31:57 -0700 (PDT)
 Received: from [10.178.66.211] ([192.19.176.219])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-444e0d07b28sm37861781cf.36.2024.06.26.04.31.19
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-444c2b3680csm66674351cf.6.2024.06.26.04.31.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 04:31:22 -0700 (PDT)
-Message-ID: <baa71bf0-49af-49c1-93c4-a4c647ca0f94@broadcom.com>
-Date: Wed, 26 Jun 2024 12:31:17 +0100
+        Wed, 26 Jun 2024 04:31:57 -0700 (PDT)
+Message-ID: <5bbf813f-9a7b-467b-a2c7-6bc21ea85ef8@broadcom.com>
+Date: Wed, 26 Jun 2024 12:31:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,8 +73,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: interrupt-controller: Add bcm2712 MSI-X
- DT bindings
+Subject: Re: [PATCH 0/7] Add PCIe support for bcm2712
 To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
@@ -89,7 +88,6 @@ Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
  Andrea della Porta <andrea.porta@suse.com>,
  Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
 References: <20240626104544.14233-1-svarbanov@suse.de>
- <20240626104544.14233-2-svarbanov@suse.de>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -123,99 +121,65 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240626104544.14233-2-svarbanov@suse.de>
+In-Reply-To: <20240626104544.14233-1-svarbanov@suse.de>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000aa586b061bc95a08"
+	boundary="000000000000b958b0061bc95cc5"
 
---000000000000aa586b061bc95a08
+--000000000000b958b0061bc95cc5
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
+Hi,
 
 On 26/06/2024 11:45, Stanimir Varbanov wrote:
-> Adds DT bindings for bcm2712 MSI-X interrupt peripheral controller.
+> This patchset aims to add bare minimum support for bcm2712
+> in brcmstb PCIe driver needed to support the peripherals from
+> RP1 south-bridge found in RPi5. In order to support RP1
+> PCIe endpoint peripherals a new interrupt controller is added.
+> The interrupt controller supports 64 interrupt sources which
+> are enough to handle 61 RP1 peripherals.
 > 
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> ---
->   .../brcm,bcm2712-msix.yaml                    | 74 +++++++++++++++++++
->   1 file changed, 74 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
+> Patch 1 is adding DT binding schema for the MIP interrupt
+> controller, patch 2 is adding relevant changes for PCIe
+> bcm2712 in yaml. Patch 3 adds MIP intterrupt cotroller driver.
+> Patches 4 and 5 are preparations for adding bcm2712 support in 6.
+> The last patch updates bcm2712 .dsti by adding pcie DT nodes.
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
-> new file mode 100644
-> index 000000000000..ca610e4467d9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm2712-msix.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom bcm2712 MSI-X Interrupt Peripheral support
-> +
-> +maintainers:
-> +  - Stanimir Varbanov <svarbanov@suse.de>
-> +
-> +description: >
-> +  This interrupt controller is used to provide intterupt vectors to the
-> +  generic interrupt controller (GIC) on bcm2712. It will be used as
-> +  external MSI-X controller for PCIe root complex.
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - "brcm,bcm2712-mip-intc"
-> +  reg:
-> +    maxItems: 1
-> +    description: >
-> +      Specifies the base physical address and size of the registers
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  msi-controller: true
-> +
-> +  brcm,msi-base-spi:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: The SGI number that MSIs start.
-> +
-> +  brcm,msi-num-spis:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: The number of SGIs for MSIs.
-> +
-> +  brcm,msi-offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Shift the allocated MSIs up by N.
-> +
-> +  brcm,msi-pci-addr:
-> +    $ref: /schemas/types.yaml#/definitions/uint64
-> +    description: MSI-X message address.
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +  - msi-controller
+> Few concerns about the implementation:
+>   - the connection between MIP interrupt-controller and PCIe RC is
+>     done through BAR1. The PCIe driver is parsing the msi_parent
+>     DT property in order to obtain few private DT properties like
+>     "brcm,msi-pci-addr" and "reg". IMO this looks hackish but I failed
+>     to find something better. Ideas?
+> 
+>   - in downstream RPi kernel "ranges" and "dma-ranges" DT properties
+>     are under an axi {} simple-bus node even that PCIe block is on CPU
+>     MMIO bus. I tried to merge axi {} in soc {} and the result could be
+>     seen on the last patch in this series, but I'm still not sure that
+>     it looks good enough.
+> 
+> This series has been functionally tested on OpenSUSE Tumbleweed with
+> downstream RP1 south-bridge PCIe endpoint driver implementation as
+> MFD by using ethernet which is part of it.
+> 
+> The series is based on Andrea's "Add minimal boot support for Raspberry Pi 5"
+> series.
+> 
+> Comments are welcome!
 
- From the implementation of the driver, it looks like all properties are 
-required, except for brcm,msi-offset which has a fallback to the value 0.
+We are just about submitting support for 7712 which is the sister chip 
+of 2712 and requires similar, if not identical types of changes to 
+pcie-brcmstb.c, would you mind reviewing that patch series when it gets 
+posted by Jim in the next few days, and base yours upon that one? It 
+does separate changes in a more atomic and a more reviewer friendly 
+rather than having one big commit modifying pcie-brcmstb.c
+
+Thanks.
 -- 
 Florian
 
---000000000000aa586b061bc95a08
+--000000000000b958b0061bc95cc5
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -286,15 +250,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIPjFjatO3FViD852
-arRCh1IzzJWpMmwIKzUEKxBI+J7tMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDYyNjExMzEyM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGR7Au8H2IH8IeD7
+fuJsgxO9865+zsInO35xqK+EpmScMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTI0MDYyNjExMzE1OFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCbkeqpkVucTGYewe2sEN/HMMVtYH9emDMh
-izPrz82ZXDcELttYaztqBpsU3/MOBhGjFK1r7BiubstNodJLTFGWak/wzpLPoxiM7JcbFAwpcgwz
-W60UJFwcJV8bXKIHqfhYG8tO9JiItUZowKSIpZBveYwNMz2L9Lbj5ojjhtVx+GwN0B554g5JO2Jb
-MIzwHgb3o+Cw2GYTDgaB1HwtqiVibSkJytDv2euyHbYJIAaC5LWK3DapBHcdD0xD4+v+oQvE3K0k
-b9KkuW6INM5FThB49OTDDNYNUGtbZEvWZb92gwT4ZvUHA/CmDLjHkmHdriRWO9XGhYuiK4V6AxT4
-0rwG
---000000000000aa586b061bc95a08--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQB9IsvuZjUm4L61GW6Vyd6+I0cvu5pXVnMd
+HPrTk3BRu7tuOqnhYSCKHkNsxOfUcvekv2zgBKxYoO/NRobZjq732HptarGAKioofKVhstPOh9IK
+svdA+pKJZMFNZQdapVSDWOpkLOb50T4p4P/NGzvD/SrOMpDif8tvcjplBnFTef0BNIZSlbXOwMNA
+nlRDoPbEZ0ekO9t0CEpTKMarEVO9EdVMVjebjr91XvpooZOHKddBE3W89nBJViAhu9mcCG/5VVWc
+L/i1qLYR7H3hmPCO/IDA9AyU345iJ1jQ8MIa5TjqE8R90YfN7AeFx/t3/Wr+mlIs09lyGx7V46cq
+E1Z/
+--000000000000b958b0061bc95cc5--
 
