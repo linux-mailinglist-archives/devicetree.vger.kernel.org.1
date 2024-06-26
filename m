@@ -1,209 +1,103 @@
-Return-Path: <devicetree+bounces-80086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF07917C2D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:15:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F066917C3E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:16:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6206828AA37
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:15:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2364928DD83
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC48C17B41C;
-	Wed, 26 Jun 2024 09:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F3F176AA6;
+	Wed, 26 Jun 2024 09:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="huIXkH71"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="X80dcg1w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D0516EB68;
-	Wed, 26 Jun 2024 09:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A704A176250
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 09:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719393174; cv=none; b=bBFsk/Udf/WfmqpdjhXMqeDSF31NgMeCNBJNbtgHD4RuhY0eRWe3PZ0z9uyZblf8xUIXhIMQDD/YDKG8jnJjcc/j47HnLo/vpmkCAxjPsCBVq8nr2lcvSHSNOV2MngBSw3lCrFT+8j6tMfiE8SvqH/LPGk+gTT4hZpMbEiMJ0/g=
+	t=1719393286; cv=none; b=ZjVBto0gXtUBe3FdDJadvMVPvJdzLkPPIk5zbqUY6U/dkMHcxnSjbqJRVOHBbVoi/N/uZIPbSvvbKO6nHCCp3HkPpzOcj5f3/PT7z5+g9R/zS2P3xXFRQJn67rREXAiOGmEUOSxGosBYs3RpdkSoeo0GTaStp6EGlz1I6rLjSTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719393174; c=relaxed/simple;
-	bh=qRy4tUMDP+Uxf64KBaFAJesy6ZVQGIcbefa8y1zH8ek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=of/gJU5O6gmDHpPfLUViw6pdxsWflPidaQSWX1NXhnmN2H4qTy2z5XebjcHMI/O6lxZvmpqQmQFr2Co56+u0AvO2eoh4lVHm3L1Im7dbdYF0ybchSQFaQCN/UsEAii/EtA/09cRUU/nvTgZpyJateozesGtGJIfK12KbYgz8IF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=huIXkH71; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F13DC2BD10;
-	Wed, 26 Jun 2024 09:12:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719393174;
-	bh=qRy4tUMDP+Uxf64KBaFAJesy6ZVQGIcbefa8y1zH8ek=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=huIXkH714nccd7u6UXnSxPFS9BLjkaTQHRbRCF9MeeQ14XucSjFxV0+GqCqpXjBLy
-	 AsQE66jxo1OQf6K+JOAy6dDrGU/OVUefIdvVAk6jiqN+soAw6a7r3Xfgdl8mr93LJX
-	 1LrlU0agu6md+Ai+FuY6GUqh5+W9dif+iPid7UmWNI9Pyfb7nYo71Ml4W6/A2GzpEh
-	 JpcpplmIyUPpB99ejbKeyHv2zqiwMdh9f/dGrAReyBpGsi1nkL97+nSl3sq3uUlbGq
-	 NfTQFqch2s8HGRFGct0rrJhc5IeOcoH3aw1B59aI2y1ISHiTa1q5JePP69N3ezAaTI
-	 eOR55AOf+uMtQ==
-Message-ID: <5dad1ef4-4dc8-4f36-9150-fbe8b388a6d7@kernel.org>
-Date: Wed, 26 Jun 2024 11:12:43 +0200
+	s=arc-20240116; t=1719393286; c=relaxed/simple;
+	bh=CqAYMziyoNuRluoEnLOJXX4U9aYsyGmmCsxq79X7UAc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tk1jt//0MkYl/jv7ZWqaaL8pji9bns4HuOhU2VEmAMQzK2EKfEbjEFq9Aa8xVkjmVO1msUHqxF+HXAr7Z/PTUBYH70/1AXEQaoaTWAOSoez0CGdpEJFnPop1kCELXb75kKOBGj2fp6N4eGrb2LyjwwHNHFvzwNoztQCpLWoUTzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=X80dcg1w; arc=none smtp.client-ip=209.85.160.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-444fdaed647so192311cf.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 02:14:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1719393283; x=1719998083; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CqAYMziyoNuRluoEnLOJXX4U9aYsyGmmCsxq79X7UAc=;
+        b=X80dcg1whLGJWvL9QdksAgv1mntYrW1ctcO+tSqfUwxdgGGyvUqO7/jUshFE2/6oab
+         tAajfm80GJxh3jB/9yawZi9YwRS1x97zoYmObBv4aE0AmHtK59WbfIS4bNs4mINFqVB9
+         Jh2GrGv4kOkuT1sHQc5+sYaGrgRDpIfZn3l5xCFy8gYnDf7ESJqovqMzBS+xJJv8xEUI
+         b/VQ9Myp7tz8ohFcElAMaiRJ93Qmy5pbyLUy51tBjXG1pOY3kxkkIPq/fHk1jUTxexE4
+         6LDH7KhuqrczDT18yVJg1qGG9yLQ39SSkaCxr+nIAuK2f3598xb0ehBxoc84GHRIGrNL
+         hQsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719393283; x=1719998083;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CqAYMziyoNuRluoEnLOJXX4U9aYsyGmmCsxq79X7UAc=;
+        b=TakSXslV2OXd6lOtoqBAduX0CMS8/P1m2hzc68YCyHqUg3hMhv1l8PVDmVF4lKivxB
+         mcQG56Y40aF5qe5cdpjmHIQBrLevPqly6kxwogfBSL0e9PHrEmghKENGJ8OozdvC+VWb
+         dYSwTPuLqKLD0dawMQjpCQzvky1O/WBcc0Kv6CcHq1IPz1FsL8zCi6bUVXLZUbjbOauv
+         MD09kNp4MSW5/Y3vH1/QQXTFe1VnCNct/1ZN/bnPmOFHs85nTPNhE88RMp0bZ/5IUuSi
+         SqJbO/cKT/4IyhKnpkE9jMPZeks1RHkIgDMvznjAGLev6OCXEt0hb7CQjG4UUfy7yHGA
+         DriA==
+X-Forwarded-Encrypted: i=1; AJvYcCXiIlTPMQ6BCKeaUne3UPXekz7CetIHYqtxlAVBGtnNRThYl6hqMdEXuVG+SXCLRILCy9s2FgNsSKDkYRrhLekKZzi9KraoEKaWMQ==
+X-Gm-Message-State: AOJu0Yy+AwTPaJI0zHixTECIY2VB/oWyBYsj6aa20o24JNq9WoFuyzgv
+	NWQbdo7U1KoVHRaSPRjEowR8ids0FLCpZ7ySiXZvrK/k0GgLLl3VQNPete3s2DpieNzbhotK7c2
+	3sEL8h6KiOht7h20EbaDWU61R78ILDpnje8kc
+X-Google-Smtp-Source: AGHT+IHkOrgqoJzL15wN5VWNjha40DP90+u/qO+zEEscGdt+igLxMIgnKhcvFKbglDydrmGy1fqEppkFSUrU9cbE+jE=
+X-Received: by 2002:a05:622a:58d:b0:43f:fbb0:b74 with SMTP id
+ d75a77b69052e-44542568768mr1806941cf.29.1719393283332; Wed, 26 Jun 2024
+ 02:14:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 03/16] dt-bindings: mfd: mediatek: Add codec property
- for MT6357 PMIC
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-References: <20240226-audio-i350-v6-0-f754ec1a7634@baylibre.com>
- <20240226-audio-i350-v6-3-f754ec1a7634@baylibre.com>
- <cd190d35-1658-43d8-9606-5e73257bbf3a@linaro.org>
- <95bab90f-b196-4e79-bb88-7fd534cca721@baylibre.com>
- <5c9ab5bf-95f2-4195-8797-335010223aac@kernel.org>
- <79811fff-4fdf-4121-9cea-6ed7e1329dad@baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <79811fff-4fdf-4121-9cea-6ed7e1329dad@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240626052238.1577580-1-aniketmaurya@google.com>
+ <20240626052238.1577580-2-aniketmaurya@google.com> <e28ba03d1df1c0c5aec987411c40e44fc351ce0d.camel@codeconstruct.com.au>
+ <c15045b4-2e5f-4fcc-b25c-76a5e4973e93@linaro.org> <b4ba5fa7834fdfb1a1e26ff0e01b9bb235de63b5.camel@codeconstruct.com.au>
+ <CAMmmMt25nkZTXXLCVGv1baf3azQR0kwbM8LP4EzCQKOPLUhbVQ@mail.gmail.com> <d256cd72ef2011c3bfd045b04fb6509d1ac827e9.camel@codeconstruct.com.au>
+In-Reply-To: <d256cd72ef2011c3bfd045b04fb6509d1ac827e9.camel@codeconstruct.com.au>
+From: "Aniket ." <aniketmaurya@google.com>
+Date: Wed, 26 Jun 2024 14:44:32 +0530
+Message-ID: <CAMmmMt3DZWA734iFGLxz7cj+hYiWgq5MDOrc_UJpYeaij+yywg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: i3c: dw: Add property to select IBI ops
+To: Jeremy Kerr <jk@codeconstruct.com.au>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Joel Stanley <joel@jms.id.au>, 
+	Billy Tsai <billy_tsai@aspeedtech.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-i3c@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 26/06/2024 10:30, Alexandre Mergnat wrote:
-> 
-> 
-> On 25/06/2024 15:44, Krzysztof Kozlowski wrote:
->> On 25/06/2024 11:23, Alexandre Mergnat wrote:
->>>
->>>
->>> On 21/06/2024 17:00, Krzysztof Kozlowski wrote:
->>>> On 19/06/2024 16:46, Alexandre Mergnat wrote:
->>>>> Add the audio codec sub-device. This sub-device is used to set the
->>>>> optional voltage values according to the hardware.
->>>>> The properties are:
->>>>>     - Setup of microphone bias voltage.
->>>>>     - Setup of the speaker pin pull-down.
->>>>>
->>>>> Also, add the audio power supply property which is dedicated for
->>>>> the audio codec sub-device.
->>>>>
->>>>> Signed-off-by: Alexandre Mergnat<amergnat@baylibre.com>
->>>>> ---
->>>>>    .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 33 ++++++++++++++++++++++
->>>>>    1 file changed, 33 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
->>>>> index 37423c2e0fdf..d95307393e75 100644
->>>>> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
->>>>> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml
->>>>> @@ -37,6 +37,32 @@ properties:
->>>>>      "#interrupt-cells":
->>>>>        const: 2
->>>>>    
->>>>> +  vaud28-supply:
->>>>> +    description: 2.8 volt supply phandle for the audio codec
->>>>> +
->>>>> +  audio-codec:
->>>>> +    type: object
->>>> Still not much improved. You do not have any resources there, so these
->>>> should go to the parent node.
->>>
->>> Hi Krzysztof,
->>>
->>> vaud28-supply seems to be a mistake that I forward port.
->>> In the V4, AFAII, your feedback [1] suggested me to move the vaud28-supply from the "audio-codec"
->>> sub-node to the parent node, which for me is the "pmic" (mfd), because the property is considered as
->>> power-supply.
->>>
->>>       pwrap {
->>>           pmic {
->>>               ...
->>>               audio-codec {
->>>                   ...
->>>
->>> Hardware side, vaud28-supply is the output of PMIC-regulator subsystem, and AVDD28 is the input of
->>> PMIC-audio-codec subsystem. Then:
->>> - The property name is wrong and must be change to AVDD28, which is a consumer (power input), not a
->>> power-supply. => description: 2.8 volt power input for microphones (AU_VIN0, AU_VIN1, AU_VIN2)
->>> - IMHO, move this property to the next parent (pwrap) isn't consistent. It should be moved back to
->>> Documentation/devicetree/bindings/mfd/mediatek,mt6357.yaml (Done in the V4) into audio-codec
->>> substystem, beside mediatek,micbias0-microvolt
->>
->> I don't understand why do we talk again about supply. My comment was not
->> under the supply.
-> 
-> Because your word are:
-> "
-> And now you should see how odd it looks. Supplies are part of entire
-> chip, not subblock, even if they supply dedicated domain within that chip.
-> 
-> That's why I asked to put it in the parent node.
-> "
-> 
-> My bad, I forgot to link you the old message in my previous answer [1]
-> 
-> [1] https://lore.kernel.org/all/6d21da37-8be7-467c-8878-d57af0b0201b@kernel.org/#t
+> > So can we remove this selection of ops and always go with ibi ops?
+>
+> Sounds fine to me, but I don't have direct experience with the non-
+> ast2600 uses of the dw core.
 
-And you implemented this, so why do we talk again about it? It is
-already solved, isn't it? Since previous version?
+I am using dw core directly through Synopsys virtualizer development
+kit(VDK) setup.
+I think it should be fine to always have the all ops supported in the
+SW as they are in HW.
+Shall I remove the ibi_capable property from the dw_i3c_master struct?
 
-Best regards,
-Krzysztof
-
+Thanks,
+Aniket.
 
