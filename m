@@ -1,137 +1,135 @@
-Return-Path: <devicetree+bounces-80234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158E6918252
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:26:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CF2D918270
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:31:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C34AB282A54
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:26:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27DF41F24C66
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484AA1822C2;
-	Wed, 26 Jun 2024 13:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EFCE17C7CD;
+	Wed, 26 Jun 2024 13:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DD8zcdxN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R7jeLE29"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF508825;
-	Wed, 26 Jun 2024 13:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB89E8825;
+	Wed, 26 Jun 2024 13:31:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719408360; cv=none; b=MUdmBWOH719KkJu0NCphKW+J4WXw+MCTdnrRD/ZcTmPP/IczKDEkLkRnBMu2XbJhCi8FGW55qW7jw6WV+P4Li/bwD3SU4IaS86Bg4mQs1q2fW8q+UvF1rqgHnYt+cOpC+jGVH04C8wxvmSLMpZmN/wekxGNkdDsTjDadZ8VL/C8=
+	t=1719408691; cv=none; b=rphFq5sT0Vm9KpnDcyetDrTH5vnCxVr3AZcFsYegk1I6Am3x3OTB3sWzpZ2y5ZjA04HkBxRv2vP6D9KiWF+061gT6scqrVDaeY4Lks1jdmzWLD68gI0hoG0JdvHFMIkuSF7lavN2TRgs+3TkDQDfVn0M6UgvxSRYli9gZL6FcIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719408360; c=relaxed/simple;
-	bh=a2MiMWPuYk0qvLgPHdbMbHteIsHggJW7MHoMbsZoJ6M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vbu6N6CfU22Q8V3BQLlo8SUGy9PABIjZMR3PfW21JRN9oyCM24wK3M3APd3AGdIwj59QdyNiHBHlW0JjG5Y3PV93E0tGpOUW0CydyVgKnYDx4AQj6DQ3o/5j/ajN2Y+Rt7yR8QNIuW7zDv7NNjSJViSPZlSu11uadebiLVhPC5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DD8zcdxN; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-701b0b0be38so5616703b3a.0;
-        Wed, 26 Jun 2024 06:25:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719408358; x=1720013158; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SNW8OiLwaA5mYn7mAT6eoqNNPmxPlZMg85u3cNG1HT8=;
-        b=DD8zcdxNYbXV2ZLeewPJ+dKYIlpaOOev4ybda3i3BHZ4Mh3oXby2LtB7Efm+KTx1sE
-         YbYsvrjgMFPjG2Ql6npZ5FBPc/7TOueJE7IeFynIY084TuRL67ZltXrgLjjDJt3NORuq
-         /jI79+A0iSvM+38lN0bTEgGb9o9myKu6jOP7KJ8e1QE1dj16j/vSGFvViPXO48LlpHQV
-         T9sZ3ahp016mzzW9T/dycBAVqsinDG1NrLDm+PqN1xXGyZUdwygePn99cjate35t4Ao5
-         KR3OnXxobwfPd4FR5nyfS9RpPaR7Y1XB91brJMfi9fQP3NZuFx2dxwTZgvKzTeZlOxHm
-         8a/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719408358; x=1720013158;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SNW8OiLwaA5mYn7mAT6eoqNNPmxPlZMg85u3cNG1HT8=;
-        b=RUQz8ANwqEUtHSKREwI1xG9HpcXX6tWfkF35n8yRhvdi0GkAAUmoiusdDCezAmqJVK
-         g2xIlf/LQHfzroGw75Kh7OIrSmcZtB/DXAO18rWcXJdbQO7Ps3UPdAEKOb830Cdxw6CJ
-         gFPkU1svyl981uaS0VQVq9kjef0S2AbgNDbhHWyWBfXSsMeszXf4viaeCrKc8CFOte/7
-         fh+dH2VFHIuss0HI4fVG+qEl8BBRlEE0NEcmO17ql4hPbGewK9FmpSY1gSy7PQOfOMqB
-         Bg3OaxYFZPJKMc+NAR5EtNpmQe/LYKTO6UGkCRWggzidr/6gliTJkUdsB1G6ku+WEUYK
-         Mw6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWXu0zHOcsIZFrz9oM++y2nntjqdxkh0uurjiafVEE17yjCEiHTj/Fm7b6o1C3a0/RRuKOeqqZIaI8y1kNhdOuPW0WoTJcGDqZdsOZWCc4i6kaHz9gjjoSQp/WQrl7iH7fj6B02S6rQNOFq0CXtuCjCpoRLzMJK1AiUeB4hwpA38ZgBhLPO5hYKwGsbdcGOdkEztlFAhgQnjnyr+AiiW3m8WFGn7upDQEieXdPaEkf/Sbg4a+YLjInwXA==
-X-Gm-Message-State: AOJu0YwuFG4W9LKh47btSUljeNsxt7hUy5OqIplfOV1U/Rq5hcfpYc8n
-	94caj8c9s9d9LI5f9mGpnA5XC1j705W2EZ6WMHaxA2E8Qpvh6Lzj
-X-Google-Smtp-Source: AGHT+IG5de0OBwkS5JyH2ZKjE30wVQboMcmfftyBXNzCUH06FbsrVWCi+AcSjERuzgX2Z6vD3Fna/w==
-X-Received: by 2002:a05:6a20:18b0:b0:1bd:28a3:20b3 with SMTP id adf61e73a8af0-1bd28a32238mr2879981637.21.1719408357797;
-        Wed, 26 Jun 2024 06:25:57 -0700 (PDT)
-Received: from localhost ([2804:30c:96b:f700:cc1d:c0ae:96c9:c934])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb3d8bd8sm99449385ad.209.2024.06.26.06.25.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 06:25:57 -0700 (PDT)
-Date: Wed, 26 Jun 2024 10:27:23 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Alexandru Ardelean <aardelean@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
-	corbet@lwn.net, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/7] spi: spi-axi-spi-engine: Add support for MOSI
- idle configuration
-Message-ID: <ZnwXO6vApHfkXyqx@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1719351923.git.marcelo.schmitt@analog.com>
- <072d74af9fc624490b84a1d001039424e572e827.1719351923.git.marcelo.schmitt@analog.com>
- <CA+GgBR9S7q32i-1ehNAgLHim66-Ud=PajgTSczBSJ5LUZdA7cA@mail.gmail.com>
+	s=arc-20240116; t=1719408691; c=relaxed/simple;
+	bh=qWRZjYdp6f0m7F2CPEnOeoB7wAZFdZxYUWa0DLizaZs=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=jkuuS4T6uq8vZMkKGyS1SMZQIbDzfjsT+SnXUP12vA/oT50OzJNcJxzl5MDZxSruTGbGpbVw9ae6h05JIxxuLGirLinyNJaA3M7dxMBhOAlpf1avMCJmIP262rhU6PjEl1FfWWtJCUYsW6KTzZDcBcDrwHPZqZlih49Fdahfjt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R7jeLE29; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F693C2BD10;
+	Wed, 26 Jun 2024 13:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719408690;
+	bh=qWRZjYdp6f0m7F2CPEnOeoB7wAZFdZxYUWa0DLizaZs=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=R7jeLE29XB+cvHIPvyIyRJcrkMxEW5ws6Wh4978oi2akpn6WdF5kDSjm/KjNozEkF
+	 nKuti987SfpPxl03XISvVyULKG4QjvWq6gHMIaFMWgSXsXM5+qxuDvU1c7XUeoOX6C
+	 9TjMHyBKwatoLS9wiVdVmFofbXQbREZVsORFi071mhIgtDJQJ9LcBan+yQTRjtEvlJ
+	 AcORB5oi1FFKTFcgl2xrpVJRKXyLAde9IGafuWemicR39ET+8CliOcZ9cSMy6NLTwr
+	 3zJavJcJAJ4wXiLb6qlX4d+sowu57kYbkzRJrwTvHtfmwO1s0hafO03xDWzi1mlPUP
+	 EliXnIUIqrw/A==
+Date: Wed, 26 Jun 2024 07:31:29 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+GgBR9S7q32i-1ehNAgLHim66-Ud=PajgTSczBSJ5LUZdA7cA@mail.gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Yang Chen <yangchen.openbmc@gmail.com>
+Cc: andrew@codeconstruct.com.au, patrick@stwcx.xyz, joel@jms.id.au, 
+ linux-arm-kernel@lists.infradead.org, Jerry.Lin@quantatw.com, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240625121835.751013-1-yangchen.openbmc@gmail.com>
+References: <20240625121835.751013-1-yangchen.openbmc@gmail.com>
+Message-Id: <171940832692.2961326.910026599869370818.robh@kernel.org>
+Subject: Re: [PATCH 00/17] Revise Facebook Minerva BMC DTS
 
-On 06/26, Alexandru Ardelean wrote:
-> On Wed, Jun 26, 2024 at 12:55 AM Marcelo Schmitt
-> <marcelo.schmitt@analog.com> wrote:
-> >
-> > Implement MOSI idle low and MOSI idle high to better support peripherals
-> > that request specific MOSI behavior.
-> >
-> 
-> One minor nitpick.
-> Feel free to ignore, if there won't be a re-spin.
-> 
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
-> >  drivers/spi/spi-axi-spi-engine.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-...
-> > @@ -646,6 +651,9 @@ static int spi_engine_probe(struct platform_device *pdev)
-> >
-> >         host->dev.of_node = pdev->dev.of_node;
-> >         host->mode_bits = SPI_CPOL | SPI_CPHA | SPI_3WIRE;
-> > +       if (ADI_AXI_PCORE_VER_MAJOR(version) >= 1 &&
-> > +           ADI_AXI_PCORE_VER_MINOR(version) >= 3)
-> > +               host->mode_bits |=  SPI_MOSI_IDLE_LOW | SPI_MOSI_IDLE_HIGH;
-> 
-> There's a second space after the assignment.
->                host->mode_bits |=<2 spaces here>SPI_MOSI_IDLE_LOW |
-> SPI_MOSI_IDLE_HIGH;
-ack
 
-thanks
+On Tue, 25 Jun 2024 20:18:18 +0800, Yang Chen wrote:
+> Revise the Linux device tree entry related to Facebook platform Minerva
+> specific devices connected to the Aspeed AST2600 BMC.
+> 
+> Yang Chen (17):
+>   ARM: dts: aspeed: minerva: change the address of tmp75
+>   ARM: dts: aspeed: minerva: Add spi-gpio
+>   ARM: dts: aspeed: minerva: change aliases for uart
+>   ARM: dts: aspeed: minerva: add eeprom on i2c bus
+>   ARM: dts: aspeed: minerva: change RTC reference
+>   ARM: dts: aspeed: minerva: enable mdio3
+>   ARM: dts: aspeed: minerva: remove unused bus and device
+>   ARM: dts: aspeed: minerva: Define the LEDs node name
+>   ARM: dts: aspeed: minerva: Add adc sensors for fan board
+>   ARM: dts: aspeed: minerva: add linename of two pins
+>   ARM: dts: aspeed: minerva: enable ehci0 for USB
+>   ARM: dts: aspeed: minerva: add tmp75 sensor
+>   ARM: dts: minerva: add power monitor xdp710
+>   ARM: dts: aspeed: minerva: revise sgpio line name
+>   ARM: dts: aspeed: minerva: Switch the i2c bus number
+>   ARM: dts: aspeed: minerva: remove unused power device
+>   ARM: dts: aspeed: minerva: add ltc4287 device
+> 
+>  .../aspeed/aspeed-bmc-facebook-minerva.dts    | 516 +++++++++++++-----
+>  1 file changed, 373 insertions(+), 143 deletions(-)
+> 
+> --
+> 2.34.1
 > 
 > 
-> >         host->bits_per_word_mask = SPI_BPW_RANGE_MASK(1, 32);
-> >         host->max_speed_hz = clk_get_rate(spi_engine->ref_clk) / 2;
-> >         host->transfer_one_message = spi_engine_transfer_one_message;
-> > --
-> > 2.43.0
-> >
-> >
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-facebook-minerva.dtb' for 20240625121835.751013-1-yangchen.openbmc@gmail.com:
+
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: /: spi-gpio: {'status': ['okay'], 'compatible': ['spi-gpio'], '#address-cells': 1, '#size-cells': 0, 'gpio-sck': [61, 203, 0], 'gpio-mosi': [61, 204, 0], 'gpio-miso': [61, 205, 0], 'num-chipselects': 1, 'cs-gpios': [[61, 200, 1]], 'tpmdev@0': {'compatible': ['infineon,slb9670', 'tcg,tpm_tis-spi'], 'spi-max-frequency': 33000000, 'reg': [[0]]}} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: spi-gpio: $nodename:0: 'spi-gpio' does not match '^spi(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: spi-gpio: gpio-sck: False schema does not allow [61, 203, 0]
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: spi-gpio: gpio-miso: False schema does not allow [61, 205, 0]
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: spi-gpio: gpio-mosi: False schema does not allow [61, 204, 0]
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: spi-gpio: 'sck-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: spi-gpio: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'gpio-miso', 'gpio-mosi', 'gpio-sck', 'tpmdev@0' were unexpected)
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dtb: tpmdev@0: $nodename:0: 'tpmdev@0' does not match '^tpm(@[0-9a-f]+)?$'
+	from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
+
+
+
+
+
 
