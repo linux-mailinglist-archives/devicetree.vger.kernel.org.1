@@ -1,156 +1,132 @@
-Return-Path: <devicetree+bounces-80240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD31E9182B3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:38:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D6A9182DB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:42:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F214FB2889F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:35:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85353B252E3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54FD184113;
-	Wed, 26 Jun 2024 13:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9556181B86;
+	Wed, 26 Jun 2024 13:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wxa9yFad"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LxeuTmCZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A418B1836F6;
-	Wed, 26 Jun 2024 13:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F58CD27A;
+	Wed, 26 Jun 2024 13:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719408920; cv=none; b=Qj41v9xu4beXdYahmO/72nO8BGJldhJ9dA5yfeOTpzwjRdafboKYdvttWG4fDZNitOTNEPfiByQXKiJLbO5ZXZB3jMc8thHME5EHrjxSHmQJyF/CzEyKQ54tjf0IvtPLu5PxDmowX9qGK/IzyMwiL5WJp2URBNtoSttuu7NLl8g=
+	t=1719409052; cv=none; b=uCnni3IpHsTUjd6Hp2lBMM1a945F/q6jzO1fMh5bofLuTsGjPed0Zzpwy4j4lRsWZvyzB+n06z2+YcjmWAP6WdpY+DszPTsaeMLwwztQR9eq30w9XLm0ZdR5JgZJ3RqAcDNgrP4bL1gvjr3LAwkxKZjj/X6F4zI5Uk8QD6BClmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719408920; c=relaxed/simple;
-	bh=CTJIO7yYyY8DK9qEV5bs974GSy53WZt/sJEXIpo1M4A=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=nhrB4FoaEtlqCrl6tALCVlgDwtZYJveDwekdJve2A7GyWNODSqcuGz1Tw8osDKnH1Xehq+r1tANV2iDy84T/UlZygree8ch7EVIz7UofBUcozRO8ga8qyaCv/flKjadctElJ6BcSe3o4ajYKmjM26vjvmt5TtsEWXuQWA0al6Xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wxa9yFad; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64083C2BD10;
-	Wed, 26 Jun 2024 13:35:15 +0000 (UTC)
+	s=arc-20240116; t=1719409052; c=relaxed/simple;
+	bh=As0Bh7KDJUH3zjAni78IqOcOnk5zwOW4rEU9qn+ia38=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b/HZanSJKvLiDXgrf+qGtPIO3TdfUYV1mPkAwb5kpQxQXfzU05CHX2WVc4kY70Xiten4QyimL+vvQRpZwoH0GjJGBf8T4t6sO46bVjgAWOK/TrO19rrVhTDHGEbmcMJxmSOVBsZjm+D/pQZ/IzL2iQz0xpyfY4DYlQaokTPnSW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LxeuTmCZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 354C1C4AF0A;
+	Wed, 26 Jun 2024 13:37:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719408920;
-	bh=CTJIO7yYyY8DK9qEV5bs974GSy53WZt/sJEXIpo1M4A=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=Wxa9yFad55mqxZHXlWzqSA6WOX6N/eQfC2fdh5ed7jnMqAaPcUQ1/2LYbcHLLNn8w
-	 6UGQIq56Ggmazr+prYiYr70/1/rFjJIC2wps8AnUbpVdERm4Mb79lFeBc57O+FdJsg
-	 5BTtl3M78QEz/VVCo23SnL+ED2/RsHXIxVnLnWpW5m+9Dv2sV/uU54rxd6GC/Wu10P
-	 vJCT6p3DPa4BaJ7Mt4UFWk9c9/+qwVt5Tp9TYudV6TYlKGz5UIqX275ElxrXAQd+4m
-	 Gf7v9kp68bkvJhewtJPDtSNSV/+6U+6pXocFs14HwHl9Oe0Ljhl1c3kX2uqfcRl26j
-	 hqqQywmgqxx4g==
-Message-ID: <d7117060-734a-4f8b-bb05-a9a9473a53d1@kernel.org>
-Date: Wed, 26 Jun 2024 15:35:12 +0200
+	s=k20201202; t=1719409052;
+	bh=As0Bh7KDJUH3zjAni78IqOcOnk5zwOW4rEU9qn+ia38=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=LxeuTmCZHUH/qbBAmhMOI4SSYSbx80xItazS3xwQke1kJkMGpDjfJMZaqVF9K7TtQ
+	 Adg+qffBvAfo+yBA/aNae7YyabkEceAFXtEed0ova8MZJ2/3FgiGh/JwDVogDW5Cnx
+	 TKiZ+nVcKvH462VwSINy0a4ql2F2R1DdYXJewiHT5+m1AHIKq6fTuDmu+0VROEGSvL
+	 4x88eI4pxk//IFE3wtrwzZG+rDrYvRSIe1k/EZ+ZZ/rhDgysgiJwUjNHzu7TRhiIJM
+	 etXd4nN56zWmHRihBRaXowHhI9WkyywS73vCAyJn25UaIxZy1DnWcjjXINPeA/MMYy
+	 jab068L7muXlA==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52cdf4bc083so6671357e87.2;
+        Wed, 26 Jun 2024 06:37:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUHB9dHZA/DAzJ9wJ/NcuWIm7gbStaCC01M1kAnczP+Q0po2JAg7u+EryttMK9Ut7GqWcGoRuUQn4kY6e93H+Ts3266FkRdaBGlHq+tlov2+SXLPQTupyOCYO3pWaf8ksYds1AxfNCFUA==
+X-Gm-Message-State: AOJu0YwuJS2+vRVXFCmlbcf3N9FockNNyLVoI3mQDbX/LKq5Fbpas2FY
+	+Ai8dCee4XLxQfCmbFjhuDkx8Lur8/URDQPUIRRJttBACEJ6ptcdtW4DfFsQSGCq5B8NZfwGM9K
+	LV32mwk5ymCCwPAvek+z40eOaFA==
+X-Google-Smtp-Source: AGHT+IEdo1EwuO6AMJ8bC+vU4ucHZMLDoHvU4PJwBzq73H4xZeA4eiWmU/5LP9RQuRzcWgNIUJTVvO7Jkop0LJ0ijJg=
+X-Received: by 2002:ac2:59c6:0:b0:529:ed29:dc94 with SMTP id
+ 2adb3069b0e04-52ce0641428mr8222345e87.44.1719409050558; Wed, 26 Jun 2024
+ 06:37:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: fsl,xcvr: Adjust the number of
- interrupts
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
- broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <1719291415-1168-1-git-send-email-shengjiu.wang@nxp.com>
- <1719291415-1168-2-git-send-email-shengjiu.wang@nxp.com>
- <293fb3d5-9b77-4321-8b31-d060cf96565d@kernel.org>
- <CAA+D8AMQv_=X3hC5uQbrDBN0EGo3U6EToGFVjUYcOVHpf5b=aQ@mail.gmail.com>
- <549edfff-24a5-403f-b35e-8929cc14c81f@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <549edfff-24a5-403f-b35e-8929cc14c81f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240626090744.174351-1-Delphine_CC_Chiu@wiwynn.com> <20240626090744.174351-4-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <20240626090744.174351-4-Delphine_CC_Chiu@wiwynn.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 26 Jun 2024 07:37:18 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+A_+P21raZKKKVxrXNfUt9hvFLghZs5LZSQBp1Jgp=dg@mail.gmail.com>
+Message-ID: <CAL_Jsq+A_+P21raZKKKVxrXNfUt9hvFLghZs5LZSQBp1Jgp=dg@mail.gmail.com>
+Subject: Re: [PATCH v9 03/26] ARM: dts: aspeed: yosemite4: Enable spi-gpio setting
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: patrick@stwcx.xyz, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 26/06/2024 11:34, Krzysztof Kozlowski wrote:
->>>>      items:
->>>>        - description: WAKEUPMIX Audio XCVR Interrupt 1
->>>>        - description: WAKEUPMIX Audio XCVR Interrupt 2
->>>> +      - description: SPDIF wakeup interrupt from PHY
->>>>      minItems: 1
->>>>
->>>>    clocks:
->>>> @@ -88,6 +89,7 @@ required:
->>>>    - dma-names
->>>>
->>>>  allOf:
->>>> +  - $ref: dai-common.yaml#
->>>>    - if:
->>>>        properties:
->>>>          compatible:
->>>> @@ -112,7 +114,7 @@ allOf:
->>>>      else:
->>>>        properties:
->>>>          interrupts:
->>>> -          maxItems: 1
->>>> +          maxItems: 3
->>>
->>> I have doubts this was tested. The existing example should fail,
->>> although I did not see any reports. Not sure why.
->>
->> it is tested, because the minItems is 1. so the example can pass
->>
-> 
-> That's a very unexpected change in dtschema. It indeed passes, but is
-> not correct. Why interrupts are flexible? This should be constrained.
-> Let's wait for Rob's confirmation that this is not a bug in dtschema.
+On Wed, Jun 26, 2024 at 3:08=E2=80=AFAM Delphine CC Chiu
+<Delphine_CC_Chiu@wiwynn.com> wrote:
+>
+> enable spi-gpio setting for spi flash
 
-Yep we need here minItems as well, so this is strictly constrained or
-please explain why this should be flexible.
+I don't see a flash device added.
 
+>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  .../aspeed/aspeed-bmc-facebook-yosemite4.dts   | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index dd88be47d1c8..effc2af636a4 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -53,6 +53,24 @@ iio-hwmon {
+>                                 <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7=
+>,
+>                                 <&adc1 0>, <&adc1 1>, <&adc1 7>;
+>         };
+> +
+> +       spi_gpio: spi-gpio {
+> +               compatible =3D "spi-gpio";
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +
+> +               gpio-sck =3D <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
+> +               gpio-mosi =3D <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>=
+;
+> +               gpio-miso =3D <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>=
+;
 
-Best regards,
-Krzysztof
+Not the right properties for GPIOS. Run 'make dtbs_check' on your DT files.
 
+> +               num-chipselects =3D <1>;
+> +               cs-gpios =3D <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
+> +
+> +               tpmdev@0 {
+
+tpm@0
+
+> +                       compatible =3D "tcg,tpm_tis-spi";
+> +                       spi-max-frequency =3D <33000000>;
+> +                       reg =3D <0>;
+> +               };
+> +       };
+>  };
+>
+>  &uart1 {
+> --
+> 2.25.1
+>
+>
 
