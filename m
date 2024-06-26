@@ -1,99 +1,171 @@
-Return-Path: <devicetree+bounces-80342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8F9918651
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:54:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51959918656
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:55:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D2101C208DC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:54:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5328BB22289
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3EED18C359;
-	Wed, 26 Jun 2024 15:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9ED18E74B;
+	Wed, 26 Jun 2024 15:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OXn8ynOx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZQ2DnBV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FAD518C344
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D736FEEDD;
+	Wed, 26 Jun 2024 15:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719417291; cv=none; b=plz9RQQ6XT0Y8q0D85rqtsLemorcahVeBcklqa+zP8aBdo4JQ0tSyvkt0d/kzcDABQBqzYgtai/P7K+gixbAL2ukTxnV6PD7G5jHkLa+BYc4rZBGW9E5g7eJogftZ9sNLmQ7qXrxRR11oCY2MoIkgbJjtOZVTO9fDs2fw3kNpXw=
+	t=1719417337; cv=none; b=K9ZeLcYB7981XWrJztu7g+HqE9/dd9Vdn8x7mnewF+t1t/zMNz7NiBAAUkW87zdBNb+lwO+0TXT5Tkasw1GCsHEBI/C+ddXDATUPkITgpupadc7tTzwBqRaP2QqLYoJZqltvuDCUteOzt9S2Nm8QOjoPmzQVJnHK1gM8pqCoYOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719417291; c=relaxed/simple;
-	bh=Pmt6yw2QfjaAHJ/AyGc3c2YuOWUVWZ5rwjfj71Vz0Xc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fMiLzA2gdmda38pgnhWWGDplPJ3A/iEIrPq5qdQ/PKZJSmFbaHOwtI7blZ9qi3MwUKoWP996r/XTYk0s5u+1ZCscBmz7RxDEVhwTGm7YC6da8UaqBxilb0XEmuA0ttbSiUmW3yWfUYe8dsJfPxZrnnD4fm4jVGSIG8ELqbDeOlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OXn8ynOx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3274C116B1;
-	Wed, 26 Jun 2024 15:54:48 +0000 (UTC)
+	s=arc-20240116; t=1719417337; c=relaxed/simple;
+	bh=aZhjheroGM3PhnAd8eVih56JfOOjzPFgLT/88yyoZpE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DA8PiR6gtzsKou9W57VNrdwoeKShYBvAK92MsD/EOR2Dy/09EXqUPaQVivTFps46D2XxPjLBqC83IbUSHOrKTAjDhBiknT8eWiGymZAY3KQrymcZNO2v3UlpH4sW3ONZGKr7vM510vydTWZi59CFxW8hUiym7I8MGaRPrWyUhfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZQ2DnBV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DFECC116B1;
+	Wed, 26 Jun 2024 15:55:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719417291;
-	bh=Pmt6yw2QfjaAHJ/AyGc3c2YuOWUVWZ5rwjfj71Vz0Xc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=OXn8ynOxEinjcQ9bEqyNDGm0dvHrpqN2AnByPyXp5cHD96pJ/SYvkKbnYlZ9dX5LZ
-	 +qgrSFrrrRX+oYDu6xXUM/tlxJ+plzpDhWuduBG1iC9O/6SOvucBEODt0hSLM3sa7+
-	 0NkI7qIB0FFI9C8VRKB9+gigWmT9NajFfQ/rMGWuhqo38zgO+rEwUIWm/lkhx60iWG
-	 2m6xoTijzXiFRFM7fbw03QXPrU8vMEA6ucJUjRaH8LLf5O+NiQHd8xxdQdWpWLa5qm
-	 nlR+JcAaXyK3CjsKI6vt65NpvnokL1Poby9F+yEPQltGOxM2U5hPwnk7W5C+Ad7tkN
-	 egfmkRIx055RQ==
+	s=k20201202; t=1719417336;
+	bh=aZhjheroGM3PhnAd8eVih56JfOOjzPFgLT/88yyoZpE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HZQ2DnBVDYfMqGSFTFT4EziRBaW0rA55SWt2gP9D2wnkXstId0laKpOMpq3PenGwj
+	 ojUA6s9LK6AD+OTNwqq5SWAj4x2yH3k8o40HtlNmZOE1ZoMgrgIYjdFX9d4PxUsgD/
+	 Y2Xq64DvLhoh7rCyaq2+cDH8xQi2uWxGiiifcaeN7TIwvljCkICGHJdvJRyM8NTVZ6
+	 /UAoctTCx8XpxBNKwYVZGI5Lc0DXDFEOK+AcLNdDLRMLpREH2tOcPfgAza2j1wb8P8
+	 RpiQg52ci5SMpyVShui2ai3Nxxopi/mRyjI9+Syk7jDitjj1ZCgmIY66QEub11GNWW
+	 7bxw6EoDG1vVA==
+Date: Wed, 26 Jun 2024 16:55:31 +0100
 From: Conor Dooley <conor@kernel.org>
-To: devicetree@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>
-Subject: [PATCH 2/2] MAINTAINERS: add cache binding directory to cache driver entry
-Date: Wed, 26 Jun 2024 16:54:17 +0100
-Message-ID: <20240626-rebate-hertz-6d944eee7dda@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240626-platter-scarcity-d503fda8a2fd@spud>
-References: <20240626-platter-scarcity-d503fda8a2fd@spud>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+	corbet@lwn.net, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 5/7] dt-bindings: iio: adc: Add AD4000
+Message-ID: <20240626-corny-haunt-c4b4e0bae170@spud>
+References: <cover.1719351923.git.marcelo.schmitt@analog.com>
+ <10678612efbbd97bb47a31f4a062607cf35b03f9.1719351923.git.marcelo.schmitt@analog.com>
+ <20240626-handbrake-mustang-38c2aab3f04b@spud>
+ <ZnwY4MqCYFKUNtL3@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=716; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=rVXReSx+1zFYYm0cDpk2rJlw7q+iUX/Eqzsosya4frs=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDGk1lssn8nppdN4R6lhvdLnCSy114pV5Z2QMMvdEe949v Ykn7+LRjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEyEvZiRYQeH6pIfG9PvTBNc k8pg8nbdh+8rT6xK1Uv6rvc8nIHx60ZGhsuuuytFRau2nLjDtym7/WKud+rRabu+LXh9bbmyGTv TdV4A
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WsUBhFv2b0Y63I3q"
+Content-Disposition: inline
+In-Reply-To: <ZnwY4MqCYFKUNtL3@debian-BULLSEYE-live-builder-AMD64>
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-The directory covering cache controller bindings has no MAINTAINER other
-than the fallback to myself, Rob and Krzysztof. Add it to the entry for
-the corresponding drivers.
+--WsUBhFv2b0Y63I3q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, Jun 26, 2024 at 10:34:24AM -0300, Marcelo Schmitt wrote:
+> On 06/26, Conor Dooley wrote:
+> > On Tue, Jun 25, 2024 at 06:55:03PM -0300, Marcelo Schmitt wrote:
+> > > Add device tree documentation for AD4000 series of ADC devices.
+> > >=20
+> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > > ---
+> > >  .../bindings/iio/adc/adi,ad4000.yaml          | 190 ++++++++++++++++=
+++
+> > >  MAINTAINERS                                   |   7 +
+> ...
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - const: adi,ad4000
+> > > +      - items:
+> > > +          - enum:
+> > > +              - adi,ad4004
+> > > +              - adi,ad4008
+> > > +          - const: adi,ad4000
+> >=20
+> > > +      - const: adi,ad4001
+> > > +      - items:
+> > > +          - enum:
+> > > +              - adi,ad4005
+> > > +          - const: adi,ad4001
+> >=20
+> > > +      - const: adi,ad4002
+> > > +      - items:
+> > > +          - enum:
+> > > +              - adi,ad4006
+> > > +              - adi,ad4010
+> > > +          - const: adi,ad4002
+> >=20
+> > > +      - const: adi,ad4003
+> > > +      - items:
+> > > +          - enum:
+> > > +              - adi,ad4007
+> > > +              - adi,ad4011
+> > > +          - const: adi,ad4003
+> >=20
+> > > +      - const: adi,ad4020
+> > > +      - items:
+> > > +          - enum:
+> > > +              - adi,ad4021
+> > > +              - adi,ad4022
+> > > +          - const: adi,ad4020
+> >=20
+> > > +      - const: adi,adaq4001
+> >=20
+> > > +      - const: adi,adaq4003
+> >=20
+> > I think some blank lines, maybe like the above, would go a long way with
+> > this list of compatibles.
+> >=20
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  spi-max-frequency:
+> > > +    maximum: 102040816 # for VIO > 2.7 V, 81300813 for VIO > 1.7 V
+> > > +
+> > > +  adi,sdi-pin:
+> > > +    $ref: /schemas/types.yaml#/definitions/string
+> > > +    enum: [ high, low, cs ]
+> >=20
+> >     enum: [ high, low, cs, sdi ]
+> >     default: sdi
+> >=20
+> > I'd do this, so that the default is documented in the binding, not in
+> > the description text.
+> >=20
+> > Otherwise, this looks good to me.
+>=20
+> Ack, will do.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c74fd2b70532..19d67bb04d0b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21503,6 +21503,7 @@ M:	Conor Dooley <conor@kernel.org>
- L:	linux-riscv@lists.infradead.org
- S:	Maintained
- T:	git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
-+F:	Documentation/devicetree/bindings/cache/
- F:	drivers/cache
- 
- STARFIRE/DURALAN NETWORK DRIVER
--- 
-2.43.0
+With those,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor.
+
+--WsUBhFv2b0Y63I3q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnw58wAKCRB4tDGHoIJi
+0iTxAQDZvlnSXLuFR5FfpYAXVuqG0jsGWFbU4Y8aZbmRMtE/NQD/dQkJmaR2py6B
+eySLOx9DCP6+56PfTnOXvKH2I4gm6gc=
+=LhQS
+-----END PGP SIGNATURE-----
+
+--WsUBhFv2b0Y63I3q--
 
