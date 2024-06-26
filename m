@@ -1,117 +1,189 @@
-Return-Path: <devicetree+bounces-80410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA16A918A53
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:48:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFA69918AE5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:52:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 802C71F22300
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:48:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B5531F2330E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59DD8186E2A;
-	Wed, 26 Jun 2024 17:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D96D190079;
+	Wed, 26 Jun 2024 17:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="vpFq88Qn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fp6IClgU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.3])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24A3155A26;
-	Wed, 26 Jun 2024 17:48:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8C0190050
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 17:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719424110; cv=none; b=lyCbaoraFNsQfJtWTvTK3cFJQ3uSCQlqypWieFl9/Yf83AfP6+07EB6+JTEAxeBvZ6jHKXvBrz/7ib8s7GdNVyOSEtAtYTO1lIfegFqECD1I+e6WSi2UBC5P+ittTBoxKUr5A7A9NTPphwnFSBb9iZx/eDnoYaq/fbDkNjrYrO8=
+	t=1719424310; cv=none; b=Ae8HRe3VhGtxLlm2Q4C4Gj5bVMlG3ZrKph+yqiv2uq3u4JXQNjCys+ssF6+/w3J23AJc8yrtH2JkDo6P3RG/21y5pyOOoQYU2Yp3T9e6iu0i9Y14SGIpoXq+i3Xryk5kuzqQQsf1lGDrfm7UseiOUovGlNQf+CMh9HOFryvC9W0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719424110; c=relaxed/simple;
-	bh=s35+qZTcqhwM8W3AinynCg6kiFRF8n8VyM1SZPYKXqw=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=ncc4/ucIM9cs40sd4jP53J/g+YYEl6xmyAMyo/rgPVdjFZvFgGXjgOw9ZXU4G1UoVoINA1bQ16MasKRYHJFux8OJ8diyuXHz2ycFTqFLk+FfE2Qm5Bkd4DLor9NCcDcwhCJGhRzP6tzHc+UcpFpfJAOr8aaSwtdU+tMR1bbQQuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=vpFq88Qn; arc=none smtp.client-ip=212.227.15.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1719424097; x=1720028897; i=markus.elfring@web.de;
-	bh=ckRm9hxi4SLgTfnZQvPFzAXNKifH/3B+TbZxccPOSOQ=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=vpFq88QnbNH7HmABo7mPWqDsYuyoVpVSdhObFfvIR9X2L4hKxModF4fvj+qmuct4
-	 UGGbQvc823sEgwSGcNK5DDbJ0jbjLMsNcjIZpt40GOrMvNT7KSZ77nCP+MxgMyjsp
-	 hIj2gRbNTSbqxWbP2JJkfzsCLWOwn3a8McPXZUpjfTuyFLc6OHeRsbxCHlijKwJyl
-	 GNt7m+VXTSOpNR2swCAuq2CGrhF9FrKTIkf3qSNo5ka3hrByiEy3tI+yPKTS2ZDGQ
-	 msctZq47Tvoze2jko6mK3Y5/7Fu1udGa86VsRDYmaSOtufEZRLmhdrzRzYWgZ/dIW
-	 Kcn8NTdAtHYKyI1Pqw==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.91.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1N79RI-1sNiYf0i1E-00xIMV; Wed, 26
- Jun 2024 19:48:17 +0200
-Message-ID: <db2d2cee-64d8-491d-b8a5-f0362ddc269a@web.de>
-Date: Wed, 26 Jun 2024 19:48:12 +0200
+	s=arc-20240116; t=1719424310; c=relaxed/simple;
+	bh=U6HpPBSY8P5Pzvook2HFO9PxASjQfsBIGnm0macVpuE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ydf2V9SiTu7Rs3wOG2TZDSTdBmznMfPcPYKafBVvmA2KRgRhTa5dDJ/vChXIaTupIw9Zn7bFRrSS9xk+zAJvsP20GALdSB7aRippd+yT+1+LA3DxpiIljOukgR0+JRnkQ+UzkOXly+4ZuKcTMqlYARf/WBWXIIXfwZ6WLViMvak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fp6IClgU; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2eaa89464a3so79771291fa.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 10:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719424305; x=1720029105; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FAZdGTk7c+/UeUa9h1az0pLQAHQQ1DT8dk5SUgRPldk=;
+        b=fp6IClgUBeyBVpBUAr/Ep0Z9LUopejqa6ucySEvlVkPeaR8F1NTrpKcEhEpvxR7Wdb
+         MusbLqbnrBONmgEFhyQYemsX+lpmwvt3l3XLo7pzt6hs85VKrwiwNQ1XMgUsYEUdLxzz
+         mH9Ho2IaaT+jxKk8Gwz9IMyFGXDFtMzfEUczADpGZiwr+UlUjIUObkOIq8RE0O4n5hm1
+         0tCAH8VH1GeM4SX+SN4eqYmJQL1cDOhgQh/HTVuutm4cuSr3VRRydwmLY32ZvvdHJp45
+         WXN4qVGpGf6tg4E3/OcKtGn9YOqsbFyLgB9i/Z4wQij+bfOmSNU/13DSsFU4V7xF49MJ
+         7E/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719424305; x=1720029105;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FAZdGTk7c+/UeUa9h1az0pLQAHQQ1DT8dk5SUgRPldk=;
+        b=dgAm47x6UBnYeG90GVLkjobN+f6rlSmKL7KoJMMRVaC4s/rV21eRU4qn9q/d79L9DV
+         56pcwlk3LjGizjG1SkVcdf2Am+V6JyC0pX9BHsE/gpue4bF1bEF1fvdJZUQq+JRH18mj
+         sK6TfcGxUUoNrQk6nTlhlnxEVFqKGVSaiO87MWRo0Il66RDNloSUqkSYKuXLQkgswj6u
+         Bur+7jSr+m1GmzjOkcyKWakbdWmK0mEtUHRWQuc1kF4Vqr3J5fM7/lmAM/uLquDVD4OY
+         w3kY6RiBXnP77GeLDpqkeKtleLdahjfUqxuMzoBthlm6noxmaM/gP9u4oS3T1KwLksAA
+         ousA==
+X-Forwarded-Encrypted: i=1; AJvYcCUYkkSYrnYoZ2BceY7apwLdJXqHBPZYkEHKSJv2ZvYR/I3JDaL2qcECn5q8zi/Q4lpAnVwJUsThvmIBDO1xfiU+ECFcdisMFCD8BQ==
+X-Gm-Message-State: AOJu0YzQEG9VWB5z+wmd84vfYb7hEGk6SBnzmPBRJktZstCldT893+fi
+	eBqWsvidpJLnqmqPmKj42nfZNMiUQ5EfxMk2tH7l4CIk+zintKzfPJdI4qCX+JE=
+X-Google-Smtp-Source: AGHT+IFSoBa3hNn7VZ8j/fymDz1W8BzHyOztv/TWTbsZhpyFaqy9xHiyV+cypP3cb7r0lPSTcGcf4Q==
+X-Received: by 2002:a2e:998e:0:b0:2ec:4d5b:3d03 with SMTP id 38308e7fff4ca-2ec579845dbmr74815321fa.31.1719424305512;
+        Wed, 26 Jun 2024 10:51:45 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec4d7e7906sm14973611fa.121.2024.06.26.10.51.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 10:51:44 -0700 (PDT)
+Date: Wed, 26 Jun 2024 20:51:42 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Jingoo Han <jingoohan1@gmail.com>, quic_vbadigan@quicinc.com, 
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 2/7] arm64: dts: qcom: qcs6490-rb3gen2: Add qps615
+ node
+Message-ID: <34pn6bnhbsx3mlqcvqdjcpepf4kr255jwnm64ksynxu5xnlrpg@hw3ks7n65r63>
+References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
+ <20240626-qps615-v1-2-2ade7bd91e02@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Christian Marangi <ansuelsmth@gmail.com>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
- Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20240620210401.22053-11-ansuelsmth@gmail.com>
-Subject: Re: [PATCH v7 10/20] leds: leds-lp55xx: Generalize led_brightness
- function
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240620210401.22053-11-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Ey+tkCJX0xs2Ahlx0Ke1CKYmRvYbATtl65O1+zpFb+F2XLFr/fv
- FlqwzFGNauBuiyxAh0BZoGf/3bxKEpAbS6kSTkCH2huMdcTAeo9vB3FYKt0kd5kuMzafdT8
- VIrNFbkGyyostHbcJGhsM1GWh++Iukfjzy39cw66f+q4x0AkDVGSfYxagUkB6Fl9dptU+Ch
- qvttwJ90jgeokGBRp+qfA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:l1iGpyGvBs4=;7BKbWR2rkr7FYKX7wZXDU40C0Ij
- UtQYiP0pJsBPidm+sQgK7NrqSH51wEjn6zXI1c2OBVALaLFz0MDVInhFv+30ig6TGR565aQP9
- +CEccUH33fxSFqUPRTDBqtDNKlvFyjVOldzZ01dtFbF+cvkB2wU4w2k6+zJrYjn1+Aqepew1Y
- qtmYt3QQ07zfFF9cmyblKH/4LLUZVye6L6seVp3a1getIo1Et7LgadCF6jfLq36KgyZBoycM6
- QAHDDR6psIzDygR1S9dQKgW1MBy4ZBaCEhofHD4+V4ltek1wad5ZsYnPZ9klDt+a9QGS1RCVh
- uE6axgQq3mzP/VhJw/beU2LuZdP2MCYlMdie+lOV5MIBHYes8UG1YT45UMzvljAi3NoOSBV9Y
- WV2pVjYZm/ji9YJKj66cIrubzl9v9opiJbi3LauHGX0QfGAU/QW037cXIiutxS0Gx3bgqju3B
- 2yuHSgYgZo6x74HbzyLz7nQ8N/JqtdQfn7JQlJpoXGvzgnO+gJ8a8cw4aWyTkfS9V1ZBD0kT3
- IdVNbqBw8AWfwpOe1aRajT2/xMhjo+hab+KgXV1Owz1P7kD73LcyjbfZsq/Bvq7HPmbaB6ovT
- jZNVJfPXFVOW3gN6DGsXgHB+E0m5leeTAO1FKaxA7p1AZi0/WGrjhWqxSivGK3XbeYWK3pAVF
- 0sN+V35IkQ9qTBzhL093sGak99KT6HjHT12EvvZQrO+K6X5uRiUNLJEntBgqEZGVGYcG6HJN7
- mHnGIpUOuJVwIzmpyrUjXXjlZjEJQaWHLnEl6vKWFPQae0AkWCyyY/SaqYACvF7CxNF28/b4O
- gYm8NoAX2llnvZ2eNy11Ob9yGV8zufN+D+2MJ627IiKKY=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626-qps615-v1-2-2ade7bd91e02@quicinc.com>
 
-=E2=80=A6
-> +++ b/drivers/leds/leds-lp55xx-common.c
-> @@ -242,6 +242,20 @@ void lp55xx_firmware_loaded_cb(struct lp55xx_chip *=
-chip)
-=E2=80=A6
-> +int lp55xx_led_brightness(struct lp55xx_led *led)
-> +{
-=E2=80=A6
-> +	mutex_lock(&chip->lock);
-> +	ret =3D lp55xx_write(chip, cfg->reg_led_pwm_base.addr + led->chan_nr,
-> +			   led->brightness);
-> +	mutex_unlock(&chip->lock);
-> +	return ret;
-> +}
-=E2=80=A6
+On Wed, Jun 26, 2024 at 06:07:50PM GMT, Krishna chaitanya chundru wrote:
+> QPS615 switch power is controlled by GPIO's. Once the GPIO's are
+> enabled, switch power will be on.
+> 
+> Make all GPIO's as fixed regulators and inter link them so that
+> enabling the regulator will enable power to the switch by enabling
+> GPIO's.
+> 
+> Enable i2c0 which is required to configure the switch.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 55 ++++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index a085ff5b5fb2..5b453896a6c9 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -511,6 +511,61 @@ vreg_bob_3p296: bob {
+>  			regulator-max-microvolt = <3960000>;
+>  		};
+>  	};
+> +
+> +	qps615_0p9_vreg: qps615-0p9-vreg {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "qps615_0p9_vreg";
+> +		gpio = <&pm8350c_gpios 2 0>;
+> +		regulator-min-microvolt = <1000000>;
+> +		regulator-max-microvolt = <1000000>;
+> +		enable-active-high;
+> +		regulator-enable-ramp-delay = <4300>;
+> +	};
+> +
+> +	qps615_1p8_vreg: qps615-1p8-vreg {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "qps615_1p8_vreg";
+> +		gpio = <&pm8350c_gpios 3 0>;
+> +		vin-supply = <&qps615_0p9_vreg>;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		enable-active-high;
+> +		regulator-enable-ramp-delay = <10000>;
+> +	};
+> +
+> +	qps615_rsex_vreg: qps615-rsex-vreg {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "qps615_rsex_vreg";
+> +		gpio = <&pm8350c_gpios 1 0>;
+> +		vin-supply = <&qps615_1p8_vreg>;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		enable-active-high;
+> +		regulator-enable-ramp-delay = <10000>;
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +};
+> +
+> +&pcie1 {
+> +	pcie@0 {
+> +		device_type = "pci";
+> +		reg = <0x0 0x0 0x0 0x0 0x0>;
+> +		#address-cells = <3>;
+> +		#size-cells = <2>;
+> +
+> +		bus-range = <0x01 0xff>;
+> +
+> +		qps615@0 {
+> +			compatible = "pci1179,0623";
+> +			reg = <0x1000 0x0 0x0 0x0 0x0>;
+> +			vdda-supply = <&qps615_rsex_vreg>;
+> +			switch-i2c-cntrl = <&i2c0>;
 
-Would you become interested to apply a statement like =E2=80=9Cguard(mutex=
-)(&chip->lock);=E2=80=9D?
-https://elixir.bootlin.com/linux/v6.10-rc5/source/include/linux/mutex.h#L1=
-96
+We already have proper bindings for I2C devices. The QPS615 obviously
+has and I2C device inside. Please add it to DT instead of referencing
+the whole bus.
 
-Regards,
-Markus
+> +		};
+> +	};
+>  };
+>  
+>  &gcc {
+> 
+> -- 
+> 2.42.0
+> 
+
+-- 
+With best wishes
+Dmitry
 
