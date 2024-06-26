@@ -1,155 +1,145 @@
-Return-Path: <devicetree+bounces-80284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC49918505
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:57:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5948291850B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEF971C216B0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:57:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 898D41C22C6A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646AC1862B2;
-	Wed, 26 Jun 2024 14:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182351862B7;
+	Wed, 26 Jun 2024 14:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="09ktxmMs"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="hqVCury/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C3D18629B
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09D1186294
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719413857; cv=none; b=WKnh76VMqSTsYiVq5FBKXRXb4knGv1TrmevQYhlA/0ckPHn8Gm+dkQiMFYBZLO8dKB6ZNoNzuLgX3E16mv7QUYtUzl7mZlr5uBVLLUXr3U8jv2hxutNXiF5C5W5UXzwxVJem40PlI6st45u3b639PceJdtONPrdhjp1mt+77/1A=
+	t=1719413913; cv=none; b=kz5O/jaoj4MWP9IXkv+OWja0u2jZkFiKT7ufezpTxXJaKvUtdSnels7D4WXNQBI4JpRoILpY3yut1VTXIOCMa1d7EKiTN+7jIZZc2Z63tcPCXpznxLHLE/5dJljWSwZxyZJZdQlC8LzuF713nhI8toLsS9IW3qsjnE/tYXH2FLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719413857; c=relaxed/simple;
-	bh=EyKIBf8rhtksttW3da6l2T13EshR1mCGrN9WMjFdm7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YMZtMKJ7nOUxfH8+ToVIdupNMHSYeERvhaR3ytpQann+CDlnOP0z2pGVHcH8YBsuL/C9d0zUT1KoIIYUq7L9QJK9C4YJV0sVFbL9SjOmR69vCitOfftgNj28ma8Ld30LLj1lhS/8yoN63Qijc+PhFNZuE4QXgfCPm5mZV+JXEk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=09ktxmMs; arc=none smtp.client-ip=209.85.161.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5c1d2f7ab69so2950340eaf.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:57:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719413854; x=1720018654; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ypUeuWdUwZsifKp2oQUDz0+C0S3QazinJXlQdPM0mDg=;
-        b=09ktxmMs/SkeTGiLL1TA1Andi+jM6Mi8vh9PaTQ5DJSIuGvZZ7vYokyRxj1cocsDNX
-         NjpdGtUkhuPdi0RR/YcWd6Zz57oX0v+fV0Fx9LIrX4KHop4SmmqhsiE0IhDc3zP91A6g
-         0q5lGmE1MeGc97Q1DuYrIrd+2HZjfm8pokx/n2tQWXDeAEjvepXBm/fUkl8nP27iA6Sq
-         NlXFpF9h2xefv07zV4Jvu/7FSkEA9zX2NMeRV7flwh0RfTM83j/xn6ujaD//J+sSWVLW
-         PUFDksbA215H8dD+04EytY73Lo0dWrZOv/+5vMhlPZ6GMFcSahNLtHtp7XzeLe/Bndys
-         ttRA==
+	s=arc-20240116; t=1719413913; c=relaxed/simple;
+	bh=I0D6e6Fg9mEuPCvMsSlvOuOX5/XCzgzm4K0nMEj8N7s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MCJ58LiCkgkbp0EdD3ut8Mov4/jL5poGfFopNfcRVsHaiSovtWeM1VIEkDpQcDIw+pzEWNayWOxAM/Bw3b0pwRtUjbpFB1Exz9EBv/QZZVpYpVnZ0Txr5whSXg0S6V7M+dR9o6PXZMfa37IRT9tk6l9hwnrlhC/kQ7VNU64KXgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=hqVCury/; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1719413910;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Aya9QIUU1dceOpRSHwLiYWRs5fBhpIvpFHsqd9ObPGw=;
+	b=hqVCury/LQW1aL/8KmtaUXBsFDVQnQ8vlQQhQzgF8hcEE2clW4InEuFa5NsEvwaZc+FcNq
+	FPpJ1VXIc+0IMqMBeXX1tfgyFMnT6E3RAJZRjv1Kr5RNCQZD1R0ydvnENKypYMWgb7HE+n
+	w75JcN7Okr4H9IIXB4U0ndLI4OBZ8DU=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-279-Y2cH6pljOMis_m5LB1WGKQ-1; Wed, 26 Jun 2024 10:58:28 -0400
+X-MC-Unique: Y2cH6pljOMis_m5LB1WGKQ-1
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6b50a228363so97263866d6.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:58:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719413854; x=1720018654;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ypUeuWdUwZsifKp2oQUDz0+C0S3QazinJXlQdPM0mDg=;
-        b=cP5NaGCgLEt5XSf8Wj/GzwP6HEfwWdfM9tkPJ60amJFxTAHf/fBQ7nHGcpM6iBb9TU
-         +1bl+v8p2nOky0w8GP/xGVgcaiZGNTsHSXWr+XEVbQtKEzHvblaZ+m1BbQnRcJ/YVKtl
-         bj3XTUZKpzJCL5Xmv6JgVdoUA9GnJ8gLgFy4FPBGw48gsdUHW1STZH9jeBdmD8cc38Pg
-         iw5rqddEYhKXRgaWR1exCLh2acbjziPdFutRUqxZrr9pv5p+j/pYfrsmitXzKdscv5mK
-         VKRKUy672CTSD1UvaGmqxxIl3DXAxTm4k/AGJq8BVUIUNUmFDMPhVikYt7PsC/3ABgH6
-         xMHg==
-X-Forwarded-Encrypted: i=1; AJvYcCUynghaSPDQrOMznqOZaT4lkY7mdsrq9Di5ihFNKEtNFI5P+xainvaL2GYBeshBPLFKXJOaQSpgKaTGkl1zPQirxNvwYiXoYlPj+A==
-X-Gm-Message-State: AOJu0YwtxK15Pp8mK9A1eDHF0nZGOY1rJTfqLKDlh25zZ29KJ/6fbQiH
-	ti2cVhu6OMJ5qbLPck4HJHoqPGsouZMBPeMa6xy/S3FxgvJwhvS1pDm4+lyYBhA7ESChtS4P3xJ
-	s
-X-Google-Smtp-Source: AGHT+IFp/xtG514LhEIAkgQ13lFdNrJwaUD90zQEQk5nJABH3gyJE/Xgli4KVJwoM64l7J2/7wDJ/g==
-X-Received: by 2002:a05:6870:d623:b0:25d:1c0:803e with SMTP id 586e51a60fabf-25d01c080aemr11700233fac.7.1719413854331;
-        Wed, 26 Jun 2024 07:57:34 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-25cd4c056a2sm2926159fac.53.2024.06.26.07.57.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 07:57:33 -0700 (PDT)
-Message-ID: <1d2cde40-ad55-4136-bc72-3d71515f7023@baylibre.com>
-Date: Wed, 26 Jun 2024 09:57:32 -0500
+        d=1e100.net; s=20230601; t=1719413908; x=1720018708;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Aya9QIUU1dceOpRSHwLiYWRs5fBhpIvpFHsqd9ObPGw=;
+        b=AR6YHUYDn/zto6FelL9GSqZj7S+vWMUf/9Vn2RxgDJ7VbUNuibuIy4PpDoMepDLyWl
+         LjWo+7pge194JwaAIOBwEhJ1hd5WaqY0KtGTIWP66BJ6V+W0jve7J7KjGODN07L+3Y9g
+         YYxTFFFWLQVOnuhP5aqofgs80SJYbQwyH8tyrJd/dtbznjC98O8bPrTxxwOup8ffuH4f
+         19fdtIRi0bwT456dgEjSiYtB+eGkiyvfKGYJmPR94ct6FJeES0g88vVhaV11DmAuZKOx
+         x1qs7bZI+jZwe8Rq0ju0LKX4nIX6mFNuvVYL4t4efh2U2L4+CsFwYleVIF3UJmh3xffg
+         Wf5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWOddEMkOSzg/rXhqTRnRRcqb47exlKYIu+YoTdbH5B2CP6Sv62aUTXxPXsUCcqgh5JbYegNecjJ/iwQYkeo9Q8kpK5Vp0G+IoRfw==
+X-Gm-Message-State: AOJu0Yxuvdw5Pf2iO75dKsVjVnnRonyJMBKWk0f+rV2dFARaiO9P9reN
+	1i6JHl6yUfqyZqWeP1Ecsdtar2lyK8Tjzcy3hc9lws8C9W8nCYqgkpa+VniDCf58cx8jRZ84X+9
+	AuUyt+x/1aKyR3h1WTxVViY1lwN86WUxgbtr7Rg5p1ZydnPkzH19rArVgGZc=
+X-Received: by 2002:ad4:424e:0:b0:6b4:fe0c:1a92 with SMTP id 6a1803df08f44-6b53bff41abmr121545766d6.43.1719413908143;
+        Wed, 26 Jun 2024 07:58:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG6nPLCGa2C50EKUtysGXYh0LMEa5egqmh4lDlG99IlgJl3jje0UqDxnnZntsdaxpPxTw2dxA==
+X-Received: by 2002:ad4:424e:0:b0:6b4:fe0c:1a92 with SMTP id 6a1803df08f44-6b53bff41abmr121545616d6.43.1719413907762;
+        Wed, 26 Jun 2024 07:58:27 -0700 (PDT)
+Received: from x1gen2nano ([2600:1700:1ff0:d0e0::f])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b531673e6esm42461056d6.85.2024.06.26.07.58.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 07:58:27 -0700 (PDT)
+Date: Wed, 26 Jun 2024 09:58:24 -0500
+From: Andrew Halaney <ahalaney@redhat.com>
+To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, kernel@quicinc.com, 
+	Andrew Lunn <andrew@lunn.ch>, linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] net: stmmac: Bring down the clocks to lower
+ frequencies when mac link goes down
+Message-ID: <qf4zl7qupkzbrb6ik4v4nkjct7tsh34cmoufy23zozcht5gch6@kvymsd2ue6cd>
+References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
+ <20240625-icc_bw_voting_from_ethqos-v2-3-eaa7cf9060f0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] spi: Enable controllers to extend the SPI protocol
- with MOSI idle configuration
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nuno.sa@analog.com, corbet@lwn.net, marcelo.schmitt1@gmail.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1719351923.git.marcelo.schmitt@analog.com>
- <add14694c64b574af742a5dcd5c9461e0ef5210a.1719351923.git.marcelo.schmitt@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <add14694c64b574af742a5dcd5c9461e0ef5210a.1719351923.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240625-icc_bw_voting_from_ethqos-v2-3-eaa7cf9060f0@quicinc.com>
 
-On 6/25/24 4:53 PM, Marcelo Schmitt wrote:
-> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
-> index e8e1e798924f..8e50a8559225 100644
-> --- a/include/linux/spi/spi.h
-> +++ b/include/linux/spi/spi.h
-> @@ -599,6 +599,12 @@ struct spi_controller {
->  	 * assert/de-assert more than one chip select at once.
->  	 */
->  #define SPI_CONTROLLER_MULTI_CS		BIT(7)
-> +	/*
-> +	 * The spi-controller is capable of keeping the MOSI line low or high
-> +	 * when not clocking out data.
-> +	 */
-> +#define SPI_CONTROLLER_MOSI_IDLE_LOW    BIT(8)  /* Can idle MOSI low */
-> +#define SPI_CONTROLLER_MOSI_IDLE_HIGH   BIT(9)  /* Can idle MOSI high */
-
-These two flags above are still not used anywhere and are redundant with
-the SPI_MOSI_IDLE_LOW/HIGH flags below so I don't think we should be adding
-these.
-
+On Tue, Jun 25, 2024 at 04:49:30PM GMT, Sagar Cheluvegowda wrote:
+> When mac link goes down we don't need to mainitain the clocks to operate
+> at higher frequencies, as an optimized solution to save power when
+> the link goes down we are trying to bring down the clocks to the
+> frequencies corresponding to the lowest speed possible.
+> 
+> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index ec7c61ee44d4..f0166f0bc25f 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -996,6 +996,9 @@ static void stmmac_mac_link_down(struct phylink_config *config,
+>  {
+>  	struct stmmac_priv *priv = netdev_priv(to_net_dev(config->dev));
 >  
->  	/* Flag indicating if the allocation of this struct is devres-managed */
->  	bool			devm_allocated;
-> diff --git a/include/uapi/linux/spi/spi.h b/include/uapi/linux/spi/spi.h
-> index ca56e477d161..ee4ac812b8f8 100644
-> --- a/include/uapi/linux/spi/spi.h
-> +++ b/include/uapi/linux/spi/spi.h
-> @@ -28,7 +28,8 @@
->  #define	SPI_RX_OCTAL		_BITUL(14)	/* receive with 8 wires */
->  #define	SPI_3WIRE_HIZ		_BITUL(15)	/* high impedance turnaround */
->  #define	SPI_RX_CPHA_FLIP	_BITUL(16)	/* flip CPHA on Rx only xfer */
-> -#define SPI_MOSI_IDLE_LOW	_BITUL(17)	/* leave mosi line low when idle */
-> +#define SPI_MOSI_IDLE_LOW	_BITUL(17)	/* leave MOSI line low when idle */
-> +#define SPI_MOSI_IDLE_HIGH	_BITUL(18)	/* leave MOSI line high when idle */
-
-The patch series that added SPI_MOSI_IDLE_LOW [1] also added it to spidev. Do
-we need to do the same for SPI_MOSI_IDLE_HIGH?
-
-Also, what is the plan for adding these flags to other SPI controllers. For
-example, the IMX controller in [1] sounds like it should also support 
-SPI_MOSI_IDLE_HIGH. And your comments on an earlier version of this series
-made it sound like Raspberry Pi is always SPI_MOSI_IDLE_LOW, so should
-have that flag.
-
-[1]: https://lore.kernel.org/linux-spi/20230530141641.1155691-1-boerge.struempfel@gmail.com/
-
+> +	if (priv->plat->fix_mac_speed)
+> +		priv->plat->fix_mac_speed(priv->plat->bsp_priv, SPEED_10, mode);
+> +
+>  	stmmac_mac_set(priv, priv->ioaddr, false);
+>  	priv->eee_active = false;
+>  	priv->tx_lpi_enabled = false;
+> @@ -1004,6 +1007,11 @@ static void stmmac_mac_link_down(struct phylink_config *config,
 >  
->  /*
->   * All the bits defined above should be covered by SPI_MODE_USER_MASK.
-> @@ -38,6 +39,6 @@
->   * These bits must not overlap. A static assert check should make sure of that.
->   * If adding extra bits, make sure to increase the bit index below as well.
->   */
-> -#define SPI_MODE_USER_MASK	(_BITUL(18) - 1)
-> +#define SPI_MODE_USER_MASK	(_BITUL(19) - 1)
->  
->  #endif /* _UAPI_SPI_H */
+>  	if (priv->dma_cap.fpesel)
+>  		stmmac_fpe_link_state_handle(priv, false);
+> +
+> +	stmmac_set_icc_bw(priv, SPEED_10);
+> +
+> +	if (priv->plat->fix_mac_speed)
+> +		priv->plat->fix_mac_speed(priv->plat->bsp_priv, SPEED_10, mode);
+
+
+I think you're doing this at the beginning and end of
+stmmac_mac_link_down(), is that intentional?
+
+I'm still curious if any of the netdev folks have any opinion on scaling
+things down like this on link down.
 
 
