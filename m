@@ -1,263 +1,142 @@
-Return-Path: <devicetree+bounces-80002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78F7B91797B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFB0917987
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:22:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F84128491B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:17:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A4DC283384
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6BB1598E9;
-	Wed, 26 Jun 2024 07:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A65159598;
+	Wed, 26 Jun 2024 07:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="wbjJLIHS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M441vDkn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F25145978;
-	Wed, 26 Jun 2024 07:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D8B1847;
+	Wed, 26 Jun 2024 07:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719386274; cv=none; b=LyR5PrUxJRbN/c0V/kpNYrq2xC3mGVWQtcr3nMYKTbEYFmwZJ4lmwWfCVDXqbbGrcvj6XsIFFn9ZgehXUfN5O6w8UJHKrXIdx8na5HuaztqPytDAswdr9PbTbAGGcyd8SKbNM3xkTugn4/tXIqV+Kjw7ElfL/W6hl+4hCx4I4wQ=
+	t=1719386548; cv=none; b=hTfbTOLk9Mtw6BuT+p6T+hv2ZrRi16OlQ3Ekjeg1NjNArtHR8FDHM4YzuJv/2JnhvlAm+ON88uD5jCAU5+zLLYka0PZKU/aMn03jCBKNzvu9B+I9hHrvBsnNdZSU8hLw/rAXw8u86Equ5K2k150slRhC18gAMhnj4fH+Q12cElY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719386274; c=relaxed/simple;
-	bh=NNwvsHzCjMXIwRySc9XDZBYK6afUB3U1wQUOdXPORNk=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=U0r2ykrgTnQDA0ZIM16NPomd77E2ff3bWL85X1gs7OyNvhhuXThY+LXPlCQVyk2oZcXBRX/b0kwraNhN5ah+VsjhXAVFrBxkmEz/4TuULLpWmRtkj+KL6RipXgJEfty58csBhuxiNEWz7HSyqdX4gi2Y61eBByNLr0tRQ/HPFkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=wbjJLIHS; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1719386272; x=1750922272;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=NNwvsHzCjMXIwRySc9XDZBYK6afUB3U1wQUOdXPORNk=;
-  b=wbjJLIHShhOc8nG0tLtmbbYUjfgTFadyBqWk4mjVdIf591UDcmzPCF1Q
-   4ZCIDX5QDsWTnKrDn+s6LFTCkjuTND4bBDXuwmWaGFYPv86C2r1HQCqhA
-   i40cdZmOfzvwY0ry1P04EzNjcnTrukrbuCjHbfI3L9bPRjWr3dqv4Z1Zc
-   rBQDdfzTpfB6lFioN+rvyeT16qm++TcPjH+WerhygjN5Bv3iBddx5Ueqr
-   ImfrxZSG90Hp5REb4PG1P0OkyuU1VpeoLb1h7ZA5bEg9ctUaoDm/Ec3gR
-   8QaXmYcTuLSn0qYOe3KJo7XVRwbKsgW5Jj8a5Ulmalih5o7/zB/tzkays
-   g==;
-X-CSE-ConnectionGUID: zmiLeBagSOCL5GSsV7txlw==
-X-CSE-MsgGUID: rYtxGmevRsiWMD2me9JSwQ==
-X-IronPort-AV: E=Sophos;i="6.08,266,1712646000"; 
-   d="scan'208";a="28486986"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Jun 2024 00:17:47 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 26 Jun 2024 00:17:15 -0700
-Received: from DEN-DL-M31857.microsemi.net (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 26 Jun 2024 00:17:09 -0700
-Message-ID: <f695618054232c5f43c2148c5e6551f3ab318792.camel@microchip.com>
-Subject: Re: [PATCH v2 18/19] mfd: Add support for LAN966x PCI device
-From: Steen Hegelund <steen.hegelund@microchip.com>
-To: Bjorn Helgaas <helgaas@kernel.org>, Andy Shevchenko
-	<andy.shevchenko@gmail.com>, Herve Codina <herve.codina@bootlin.com>
-CC: Simon Horman <horms@kernel.org>, Sai Krishna Gajula
-	<saikrishnag@marvell.com>, Thomas Gleixner <tglx@linutronix.de>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, Lee Jones <lee@kernel.org>, Arnd Bergmann
-	<arnd@arndb.de>, Horatiu Vultur <horatiu.vultur@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "Heiner
- Kallweit" <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen
-	<lars.povlsen@microchip.com>, Daniel Machon <daniel.machon@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Allan Nielsen
-	<allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Date: Wed, 26 Jun 2024 09:17:11 +0200
-In-Reply-To: <e85511af9db9de024b5065eeee77108be474f71e.camel@microchip.com>
-References: <20240621184923.GA1398370@bhelgaas>
-	 <e85511af9db9de024b5065eeee77108be474f71e.camel@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+	s=arc-20240116; t=1719386548; c=relaxed/simple;
+	bh=dDEYqs3Rdgi2+HOgiWUJgVkaqhGwL6aZWZJBSMLnYVo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lplbPbHGUunRHblRCMvfZwyCC7vJMsSg2ry6yueJ+v03eGj1IPzOuBbMGdvQbCDFMyvpbfu48+HzJUNmuZn6Lss0BvJPdlJEcfDaIJ8tJosd+WumH/e6JGU50ZTv3mhIkNR6gInX1JLqZAWP9rQ7jHO3ZnCksor1RvPIqzh2gk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M441vDkn; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1f44b45d6abso49597995ad.0;
+        Wed, 26 Jun 2024 00:22:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719386546; x=1719991346; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NZafoQO29/Q6rTFpDKnwzpgXx4sA7xg8AQOuO4ZCtag=;
+        b=M441vDknjuqA2FqUqruLf2bTwkm2G/cE2L/7YGrMSebPKclO5n/7bae/YkzZfsE/Q+
+         mOMmSEe9F/g3oIM8UiBG4RcGUmgqM0GZSLDbank9sXNx80gVa7Y0blyxhZ1xPB7zjIFv
+         Rfq3hg2cVCte46sO41zOriyOUS3vPPTFwgeF08mCc5KTTe2jomJjcLe3ZW6SgJ65l/me
+         vAjMhcwjMSMKSkKtfIXBMahv5sFl9wep1JHyANnnsWTTMPfyGeJHgqBoqAdXcmb9InEv
+         zxZjbONMxAhH/YhMuOmx0ukybrwD9dIZKdKEJBe6wrqM0XBLsrrrmiczpAtXJcYRxrGo
+         6QXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719386546; x=1719991346;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NZafoQO29/Q6rTFpDKnwzpgXx4sA7xg8AQOuO4ZCtag=;
+        b=uGT/9qhu3NjzXVEPsOmYddEKjWlJt2IsvEAWZht6TxpzFym8/GNyxuK0aoMvfun/QC
+         hbLGxXZGtdQmRd3Jgil1hSHTPott6DaGQVwXBZC0U1Yv0NNp581hyaqfWFQX65/+/MPW
+         afCBsxOPGYKgrQCNZUDbshW076aZA12CW/gcZctlmUntTKZN+JzyHWutXMzorTPZdd5F
+         UIvnNUqL/D7K4s8cLtvAnZOsVlfAaGVAdDPmPdLucujIZ2atWY1KCF1D6Y1xa4mS0n0h
+         /sYJ/ww12No1/yGlxzYEqGH20YSOvbF/pbUNt4QeD1GFNpkUpqR1ad38JTSsx0bkzUco
+         I0MQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVMUjI8A8vj5G+jscqHIqAKrXoHx06Yd8Xen5+jBfpFdPgQE7/G/q11rT/KXGHkpwpuDCfTQ9laA389NN0bU15Vjtkur1F0B/zivMtu4yRDw8QvfeFWvxtRPUMpbScfAQt8PvT0Ntnc3mFpe8F4LqZ3r7wYXNPoBd4uZhdZOsdiyx7K+ANZ1VAeKe95vP7tM7lCcX2eu0pvFAWHIYy0RJP67XI=
+X-Gm-Message-State: AOJu0YzXSEWXDlc7yAg3XbOJQxCwRB5w4swbsahr3FusKq9nSMCyV4yw
+	0blWSJ7i/RGX0j0tGF0q49cO3W2zDgWUcuKWISIBnUXf+s6b6LbttQuNyn6TjdnyXfUFDADnyO8
+	diwXQfJKpSX+xyftQTguysJTI3E4=
+X-Google-Smtp-Source: AGHT+IH+qObITWZHk6PebRCUNTXi41wyCtr2DAlpoYkzjXVb5qw2T6xxkPH71QWMWsXJrJcBuEKHCXgRVEJNz3EfFKs=
+X-Received: by 2002:a17:90b:4f49:b0:2c7:838d:e96b with SMTP id
+ 98e67ed59e1d1-2c8582318e9mr8990205a91.26.1719386545607; Wed, 26 Jun 2024
+ 00:22:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240620150122.1406631-1-amadeus@jmu.edu.cn> <20240620150122.1406631-2-amadeus@jmu.edu.cn>
+ <e3ad7b57-65dc-4262-b523-8bb81b60892b@gmail.com> <byjfbjwizdxbdyft5duxgkxxfvopi3usufcx26k65ekz4qgiuw@qdd67ebh4a4z>
+In-Reply-To: <byjfbjwizdxbdyft5duxgkxxfvopi3usufcx26k65ekz4qgiuw@qdd67ebh4a4z>
+From: Robert Marko <robimarko@gmail.com>
+Date: Wed, 26 Jun 2024 09:22:14 +0200
+Message-ID: <CAOX2RU55AENdibEBeatFDAFMmRM5Q1f2F96k1rTnU5fSAT32ew@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] clk: qcom: gcc-ipq6018: update sdcc max clock frequency
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Chukun Pan <amadeus@jmu.edu.cn>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Bjorn, and Herve,
+On Wed, 26 Jun 2024 at 06:03, Bjorn Andersson <andersson@kernel.org> wrote:
+>
+> On Sat, Jun 22, 2024 at 04:36:20PM GMT, Robert Marko wrote:
+> >
+> > On 20. 06. 2024. 17:01, Chukun Pan wrote:
+> > > The mmc controller of the IPQ6018 does not support HS400 mode.
+> > > So adjust the maximum clock frequency of sdcc to 200 MHz (HS200).
+> > >
+> > > Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> > > ---
+> > >   drivers/clk/qcom/gcc-ipq6018.c | 2 +-
+> > >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/clk/qcom/gcc-ipq6018.c b/drivers/clk/qcom/gcc-ipq6018.c
+> > > index 7e69de34c310..6c764e3e2665 100644
+> > > --- a/drivers/clk/qcom/gcc-ipq6018.c
+> > > +++ b/drivers/clk/qcom/gcc-ipq6018.c
+> > > @@ -1617,7 +1617,7 @@ static const struct freq_tbl ftbl_sdcc_apps_clk_src[] = {
+> > >     F(96000000, P_GPLL2, 12, 0, 0),
+> > >     F(177777778, P_GPLL0, 4.5, 0, 0),
+> > >     F(192000000, P_GPLL2, 6, 0, 0),
+> > > -   F(384000000, P_GPLL2, 3, 0, 0),
+> > > +   F(200000000, P_GPLL0, 4, 0, 0),
+> >
+> > Hi,
+> > Are you sure that 200MHz is even valid of a frequency, cause all IPQ SoC-s
+> > use 192MHz for the HS200 mode instead.
+> >
+>
+> If I'm parsing the docs correctly, 192MHz, 200MHz and 384MHz are a valid
+> frequencies for the clock output, but the SDCC expects to receive 200MHz.
+>
+> > I would just drop the 384MHz frequency as datasheet clearly states that
+> > HS400
+> > is not supported.
+> >
+>
+> I'll pick this patch as suggested. Please don't hesitate to send a
+> follow up patch according to this suggestion if it turns out to be a
+> better choice.
 
-Bill Mahany from Microchip has now been in contact with PCI-SIG, and
-has been able to get confirmation that Vendor ID 0x1055 is still
-belonging to Microchip even though this is not visible on their
-webpage.
+Since you have datasheet and 200MHz is a valid option that is fine
+by me.
 
-I have attached a snippet of the conversation.
-
-I hope this settles the matter of the Vendor ID 0x1055.
-
-Best Regards
-Steen
-
-=3D=3D=3D Copied from the conversation =3D=3D=3D
-
-   Hi Bill,
-   =20
-   Thank you for your email. We can confirm VID 4181 (1055 Hex) is
-   Microchip=E2=80=99s. This is not listed on the website because we are on=
-ly
-   able to list one VID per company.
-   =20
-   Please feel free to contact us if you have any questions.
-  =20
-   Best Regards,
-  =20
-   PCI-SIG Administration
-  =20
-   Main: 503-619-0569 | Fax: 503-644-6708
-   3855 SW 153rd Drive, Beaverton, OR 97003 USA
-   Email: administration@pcisig.com
-  =20
-  =20
-   =20
-   www.pcisig.com | Connect with us on LinkedIn and Twitter @pci_sig
-   =20
-   From: bill.mahany@microchip.com (administration)
-   <administration@pcisig.com>
-   Sent: Monday, June 24, 2024 11:07 AM
-   To: administration@pcisig.com
-   Subject: RE: vendor id missing from member companies list
-   =20
-   Hello once again.
-   =20
-   Please refer to the below. Could you please reverify that Microchip
-   Technology is still in control of 4181 (0x1055).
-   =20
-   Apparently, the lack of a search result for 4181 (0x1055) at
-   https://pcisig.com/membership/member-companiesis
-   Is still causing issues in the Linux community -
-   https://lore.kernel.org/all/20240621184923.GA1398370@bhelgaas/
-   =20
-   Thanks
-   =20
-   Bill Mahany
-   =20
-On Mon, 2024-06-24 at 13:46 +0200, Steen Hegelund wrote:
-> Hi Bjorn,
->=20
-> I am not sure what went wrong here.
->=20
-> I have seen that lspci lists 'Microchip / SMSC' for the 0x1055 Vendor
-> ID value and as mentioned previously there has been a number of
-> aquicisions over the years, so that the ID has been absorbed but not
-> necessarily re-registered.
->=20
-> Anyway I have started an investigation, so we can determine what
-> up/down in this.
->=20
-> I agree that for now this will have to be PCI_VENDOR_ID_EFAR, and I
-> will return with an update as soon as I know more.
->=20
-> Best Regards
-> Steen
->=20
-> On Fri, 2024-06-21 at 13:49 -0500, Bjorn Helgaas wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you
-> > know the content is safe
-> >=20
-> > On Fri, Jun 21, 2024 at 05:45:05PM +0200, Andy Shevchenko wrote:
-> > > On Thu, Jun 20, 2024 at 7:19=E2=80=AFPM Herve Codina
-> > > <herve.codina@bootlin.com> wrote:
-> > > > On Thu, 20 Jun 2024 18:43:09 +0200
-> > > > Herve Codina <herve.codina@bootlin.com> wrote:
-> > > > > On Thu, 20 Jun 2024 18:07:16 +0200
-> > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > > On Thu, Jun 20, 2024 at 5:56=E2=80=AFPM Herve Codina
-> > > > > > <herve.codina@bootlin.com> wrote:
-> > > > > > > On Wed, 5 Jun 2024 23:24:43 +0300
-> > > > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > > > > Mon, May 27, 2024 at 06:14:45PM +0200, Herve Codina
-> > > > > > > > kirjoitti:
-> >=20
-> > > > > > > > > +static struct pci_device_id lan966x_pci_ids[] =3D {
-> > > > > > > > > +=C2=A0=C2=A0 { PCI_DEVICE(0x1055, 0x9660) },
-> > > > > > > >=20
-> > > > > > > > Don't you have VENDOR_ID defined somewhere?
-> > > > > > >=20
-> > > > > > > No and 0x1055 is taken by PCI_VENDOR_ID_EFAR in pci-ids.h
-> > > > > > > but SMSC acquired EFAR late 1990's and MCHP acquired SMSC
-> > > > > > > in 2012
-> > > > > > > https://elixir.bootlin.com/linux/latest/source/drivers/net/et=
-hernet/microchip/lan743x_main.h#L851
-> > > > > > >=20
-> > > > > > > I will patch pci-ids.h to create:
-> > > > > > > =C2=A0 #define PCI_VENDOR_ID_SMSC PCI_VENDOR_ID_EFAR
-> > > > > > > =C2=A0 #define PCI_VENDOR_ID_MCHP PCI_VENDOR_ID_SMSC
-> > > > > > > As part of this patch, I will update lan743x_main.h to
-> > > > > > > remove its own #define
-> > > > > > >=20
-> > > > > > > And use PCI_VENDOR_ID_MCHP in this series.
-> > > > > >=20
-> > > > > > Okay, but I don't think (but I haven't checked) we have
-> > > > > > something like
-> > > > > > this ever done there. In any case it's up to Bjorn how to
-> > > > > > implement
-> > > > > > this.
-> > > >=20
-> > > > Right, I wait for Bjorn reply before changing anything.
-> > >=20
-> > > But we already have the vendor ID with the same value. Even if
-> > > the
-> > > company was acquired, the old ID still may be used. In that case
-> > > an
-> > > update on PCI IDs can go in a separate change justifying it. In
-> > > any
-> > > case, I would really want to hear from Bjorn on this and if
-> > > nothing
-> > > happens, to use the existing vendor ID for now to speed up the
-> > > series
-> > > to be reviewed/processed.
-> >=20
-> > We have "#define PCI_VENDOR_ID_EFAR 0x1055" in pci_ids.h, but
-> > https://pcisig.com/membership/member-companies?combine=3D1055=C2=A0show=
-s
-> > no
-> > results, so it *looks* like EFAR/SMSC/MCHP are currently squatting
-> > on
-> > that ID without it being officially assigned.
-> >=20
-> > I think MCHP needs to register 0x1055 with the PCI-SIG
-> > (administration@pcisig.com) if it wants to continue using it.
-> > The vendor is responsible for managing the Device ID space, so this
-> > registration includes the burden of tracking all the Device IDs
-> > that
-> > were assigned by EFAR and SMSC and now MCHP so there are no
-> > conflicts.
-> >=20
-> > I don't want to change the existing PCI_VENDOR_ID_EFAR, and I also
-> > don't want to add a PCI_VENDOR_ID_MCHP for 0x1055 until that ID has
-> > been registered with the PCI-SIG.
-> >=20
-> > So I propose that you use PCI_VENDOR_ID_EFAR for now, and if/when
-> > MCHP
-> > registers 0x1055 with PCI-SIG so it is unambiguously owned by MCHP,
-> > we
-> > can add "#define PCI_VENDOR_ID_MCHP PCI_VENDOR_ID_EFAR" or similar.
-> > As Andy points out, this would be a separate logical change in its
-> > own
-> > patch.
-> >=20
-> > Bjorn
->=20
-
+Regards,
+Robert
+>
+> Regards,
+> Bjorn
+>
+> > Regards,
+> > Robert
+> >
+> > >     { }
+> > >   };
 
