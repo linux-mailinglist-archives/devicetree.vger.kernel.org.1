@@ -1,182 +1,202 @@
-Return-Path: <devicetree+bounces-80335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A57918634
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:48:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE4C8918643
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:53:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C23D6285640
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:48:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDDC91C21981
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829A51862AB;
-	Wed, 26 Jun 2024 15:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3400118EFC3;
+	Wed, 26 Jun 2024 15:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I6KpqcSu"
+	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="RDqCEx7Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2114.outbound.protection.outlook.com [40.107.212.114])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D5018413F;
-	Wed, 26 Jun 2024 15:48:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719416917; cv=none; b=NNDpYSdTxy63p0Dvr8HlwMaRIy411MIyiGJPv/N2IKKneVuR/i48xkVMDZpPEkOBdDowYS4PqfCjmsNKtkwnqW3ilT5HRkNs8kjfibqr1FI/cXHsXZnVGVPXfgdmNw/1rX6TrsEtulIqQPSr0awv/P/dPOeC0fF4kS7/UwDHRIQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719416917; c=relaxed/simple;
-	bh=FzzowXyGnIPOeCOLkhjjrNoMLDhPzrwp81kcDqhZgHY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jUamhqEs/pLLpfXHJBRxfnxkpwrgQUnV72xJjJiDu3hv4VykX/69G+1AYwfiJxEnJoei2UyThX4wWXQ/Z4cxwiE5hkxIvtmoJBgTQ/wJMXZdV0H6JozHiM0XoRfWFX7bowWABEqHzxIR4LpwXvrzlF1linjHHx77DUVOfdOM8UQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I6KpqcSu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45QAfVJh029258;
-	Wed, 26 Jun 2024 15:48:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d6IzhZJiiJo63llI9ttpBLLWYn+B921/b5BIFdB4ok4=; b=I6KpqcSurNwiqzk6
-	ouHQCQgpIwR3DyHlAz9MgSsZSmY6GGDsYWGY/Q+gWw2HL0nDyiXHu+ekkKhX0fPy
-	y+zgw60VmUwXenlGAqAwjq5GT52j+84bDDnr0+KuKx+QBkv3uxWO8azl/aS7MV9d
-	DXbHLT+Y0WQBKB6gB8TVKmtf3bybnWeBBxZ31BLfCCtcdupVHOclQvZxeDgUJWV/
-	GMVGjAVbHpyhBrTZYjCUy2rJT/5vVVmlsGRLeYEtnjssa5N2mZGOtPtp1npmIjGK
-	VOupMS7N/eKtudLq/3OTcplTvaJkRpXqtMY+AYq+ZUWGI4SAKCB6XBiT9VuM4SJr
-	orw9/w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ywnm6sq84-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Jun 2024 15:48:14 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45QFmDkE018812
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Jun 2024 15:48:13 GMT
-Received: from [10.110.92.181] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Jun
- 2024 08:48:08 -0700
-Message-ID: <1c65ae7a-ac35-4c80-aa06-9ca921a7c919@quicinc.com>
-Date: Wed, 26 Jun 2024 08:48:02 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A447718E767;
+	Wed, 26 Jun 2024 15:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.114
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719417205; cv=fail; b=pYgoV/OpbSpt0AVT99BJ8Tz2fO/b3pKG8lmTcMz/I8KJ2ga7pO6xug2I4enE5GKkUdHB+Kvf6GUdcOM1bthrs0l4cLApcljhN1DN754/oGn+xfRRfVuEuVf2ULTIrh21ITpfXW2h51I0CgEQ9Dm55aWtsPNmp2APfCB8XBAg2Qc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719417205; c=relaxed/simple;
+	bh=j3jxeSYU4oHxNQfxt6Cx5KPFeIz/pKq/Xop72ejnH9Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=pjBrd0Dw9Bw+0wigcu8o6m7LjqugXINJBfRWfVBumfYdOijCOg0fbOHtbQRgGdC5+bmqpDtj1LUJ4b5ehmpvZEgrHwU3DFHQuc7MTBrn0nHMiCglsnHxqv1a48mDTT4gtsWI3KXVUXW6NSLqYI2aO8X0AYSZifAlnPDwmsNQfxU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=RDqCEx7Z; arc=fail smtp.client-ip=40.107.212.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lWw8LKI2mRZzEt5ccAj706xHGT1X8z5L35aM/azmgB7K0ErJ/uya6nStomeNc9Kq2a0kItCtJW/oHmYblu4qFJmAcpMNMoGWm5BDn1K6PnPcMRDNQ5mDKU7fsI3/GkUETeP1FA4F6EHFRMrUaq2YCX85TdhUwjJlYCUt8djO1PXUJCnSMxAmTK4zYQd7ziwIwgJNSipvvmW38HAzBGCvHLhPVkg2YRMz0I0KwHaBj8gIkbmK1Ym1moipEpQFIYZNBaHo0cduTZsNImm6Seg8jHZUdG/2/Fz0tWsi6reeW0y6JBCcEH5VtJkc+kM2IVQmSL4q4t1O0fihDwRPJkSCow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/GzxWTZAlaE9sSZPFpOubY3prboiJdxPooethzp3Aa0=;
+ b=iA1+dOSQ5xZjzqVV/GvY4vkd2tpHbYjjdGG7yKxjSA1QJzlpppZoD3Lf5w5v4M9prvA20KeT9skjPybjcy0bPBkhG1jBIUFiLf0Dqx/7bsCxXsDbV8eVLWVoZ3ONt8mlLVxEjG3yxPZyTY/HGusOkGaYK+bdj7EYBE/EyI4sWs7zsAbUmWvQvzbP7IEsgnqkS6v0ZpTrijDotTaz94j9aAHKxDTngULeClFbqN3K+yroGUigolbGsM7DSc1L+INX/o3GnFdH80UwwppHyUSabJhvSOFgJc0dT3NjY9LeDJAtOHCPTzL3bcTLcfvxRFLZ16LJQALyDzpxTKpfbhS4Aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
+ dkim=pass header.d=phytec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/GzxWTZAlaE9sSZPFpOubY3prboiJdxPooethzp3Aa0=;
+ b=RDqCEx7Za3lM+hYVv+Ka6G55KQ6LXDmLO3uCUTOkKnsSl1hIG6KSTH3ST3LcHTrvS/Peo3WZVRTmUGqYr5iZebjqwKecX0BLLOXfSlwU2gKyucJUzUvGVdpiyc3i3UCMwBrAlhQrICteN2PAuEspZdrUQ9S3NqK6xqTO/p2cs1g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.com;
+Received: from SJ2PR22MB4354.namprd22.prod.outlook.com (2603:10b6:a03:537::8)
+ by IA0PR22MB4564.namprd22.prod.outlook.com (2603:10b6:208:48f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.32; Wed, 26 Jun
+ 2024 15:53:13 +0000
+Received: from SJ2PR22MB4354.namprd22.prod.outlook.com
+ ([fe80::789c:e41e:1367:383d]) by SJ2PR22MB4354.namprd22.prod.outlook.com
+ ([fe80::789c:e41e:1367:383d%3]) with mapi id 15.20.7698.025; Wed, 26 Jun 2024
+ 15:53:13 +0000
+From: Garrett Giordano <ggiordano@phytec.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	kristo@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	w.egorov@phytec.de
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH v2 1/4] arm64: dts: ti: k3-am62a: Enable AUDIO_REFCLKx
+Date: Wed, 26 Jun 2024 08:52:41 -0700
+Message-Id: <20240626155244.3311436-1-ggiordano@phytec.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CH0PR08CA0030.namprd08.prod.outlook.com
+ (2603:10b6:610:33::35) To SJ2PR22MB4354.namprd22.prod.outlook.com
+ (2603:10b6:a03:537::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] of: reserved_mem: Restructure code to call reserved
- mem init functions earlier
-To: Rob Herring <robh@kernel.org>
-CC: <broonie@kernel.org>, <catalin.marinas@arm.com>, <conor@kernel.org>,
-        <devicetree@vger.kernel.org>, <hch@lst.de>, <iommu@lists.linux.dev>,
-        <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
-        <m.szyprowski@samsung.com>, <nathan@kernel.org>,
-        <oe-kbuild-all@lists.linux.dev>, <robin.murphy@arm.com>,
-        <saravanak@google.com>, <will@kernel.org>
-References: <202406181626.126X1Nbz-lkp@intel.com>
- <20240620001027.2326275-1-quic_obabatun@quicinc.com>
- <20240626151622.GA3139921-robh@kernel.org>
-Content-Language: en-US
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <20240626151622.GA3139921-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: g3TZyqMQhSuc0Ixry-udpwaVYhV5XTxF
-X-Proofpoint-ORIG-GUID: g3TZyqMQhSuc0Ixry-udpwaVYhV5XTxF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-26_07,2024-06-25_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 clxscore=1015 spamscore=0
- mlxscore=0 malwarescore=0 mlxlogscore=973 lowpriorityscore=0
- impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2406140001 definitions=main-2406260115
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR22MB4354:EE_|IA0PR22MB4564:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67fcb343-72f3-40ec-4f35-08dc95f815fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230038|366014|1800799022|52116012|376012|7416012|38350700012;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?g4n9QAYVzwY8lyE489KoTYQ+jDbTzCvQuoEdr/lp+tJDsNKpCT/dvEZv4dgd?=
+ =?us-ascii?Q?eFjuFsEVFPmk0RobTvIMkpzKct+PK+/ysBBpdNToPRFOOhAwnSUnQxcGkWXQ?=
+ =?us-ascii?Q?2sZfGnytJR65uIyP0f21pCqZrES4bX66muKTLBmUCOcQFWWsxXRRcyVprldK?=
+ =?us-ascii?Q?KqaPg9HFAU6SYbDjgInCi1QUIC4Sn3MAXZqaDT/kK8lmMXF9H2C2LDT04lcd?=
+ =?us-ascii?Q?uLn5PP0v0zwLH2pQlRiyTRw52n3fFr5xgsiAtkVlGhaxJ/z8rIxYA3qvDxqC?=
+ =?us-ascii?Q?97E44keSySnswDUKW7aCm3QHXtS6FCM6Dp1dnU86RfqrmEINtnZIGLBaiZwT?=
+ =?us-ascii?Q?04Uv7DCkGz1Dff4HbvKBKj31lNqsOLwzWdBsTCNLv0QtSLot4CMB1sqD8GhT?=
+ =?us-ascii?Q?eA2loMPFexEanZozueen2GTzR6t1YysuiWELazljzwlp8wGol/5wt06TffJy?=
+ =?us-ascii?Q?jBlNBWkWEEJej+xWhwVHCmwsqo2WtNJ7wP11TCBEj1W0V7U6jQ6aYZ8sReBZ?=
+ =?us-ascii?Q?RKj8eWE4W/jgI+nl5udB/SVhUs6L84Y4LhXFyoYuq/oVpzxuhd75pAyTMyD8?=
+ =?us-ascii?Q?7S4LoMMxnixhhqi6VJ0lgUn4MOqxU1an7iPqzHv+3+Pgfp7V393tG0dvhvv9?=
+ =?us-ascii?Q?BBVOs5/yBm8iKJ+DUFe3I04d9v/KiTapC/S/Z/UKg8rFHoroBBqreaucFX1M?=
+ =?us-ascii?Q?Ao95D66lnYTCFnOGahNIujhkj25eBVVlDeVum6cEXVVqothC6JqsECRNRocE?=
+ =?us-ascii?Q?MJ4bLu9eY1x9zd6mM2rt7erO0jg3kFVLi4ibi94hzYF4S1OL/s52zJVgc3Ji?=
+ =?us-ascii?Q?ZBAa205Ez+wLlvgXumf0lC0hvH5ObkdknAcixOhh69TGDwzhYRMVUxLAwGtI?=
+ =?us-ascii?Q?PyUgc7ZLRzF2f7pafB0GLHgDfi6zaJAgqYXYC072D9lepSc9EOSff1Rmlh/G?=
+ =?us-ascii?Q?srvhUha9yjpw4VpFIZRB2IDK7Xkv/jmrXifBiqWbEIu25Ky99WF8HV9v3QJo?=
+ =?us-ascii?Q?bZOj36sZYYDpWVUPQeGhS5Yk6zOAF7DYtUv6RaQs2fxf4bKXhcOaqWA6ENSx?=
+ =?us-ascii?Q?Ahj1c2M8273FOeu9LcAUE479F6XRWbZDLc8H6rGRVVir1jfw8drSMWCNaUal?=
+ =?us-ascii?Q?un1xrSc4rZFrJXVlrfiN9WSyamKmvY2GpMQPNJsaFpHuxylKj/m4Cg4uLfFJ?=
+ =?us-ascii?Q?koEZR2lWphpmCz8JWTpxxqxEljUkJAMJq2mKT7kFdWRDx1lUQrdD4arftDTx?=
+ =?us-ascii?Q?iwKw3Ut5B5wH343A/3telzhxvgZq5BNZSe4CLjESvLfgGxavevViEOvjLnG5?=
+ =?us-ascii?Q?sZNYfDAQeHb7vUoXQnhRkDrw?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR22MB4354.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230038)(366014)(1800799022)(52116012)(376012)(7416012)(38350700012);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?MbwmENupOtpbaNgdJIuDgJWhjJEhtw+b+WdHYyaXoo9SYz/X2IRG9Ee8D64m?=
+ =?us-ascii?Q?vr/Rktf3Bj+I4B8jQP1eY97iYxMtJylD/zUnc4u/qYKkvR84P3YzWzGdrhaB?=
+ =?us-ascii?Q?oT3X4IW3yu5CE27o9++Jm03MSvZlDtyy3Q/+jZxekawL4YNlxEeUxCcaI5Pe?=
+ =?us-ascii?Q?waIUc5AQ2OtN9jYzj/M6/zpwtO/I0abpp+mmU3BFIi6lcIqKRbhMn2LZ5xWP?=
+ =?us-ascii?Q?t2slkBy14yZcMOr81+y0yrWmTuXV/cqb2b51zg4OkqqeYn/jBbmG1q/6cHNP?=
+ =?us-ascii?Q?J2WTXbo/6cXbyyN39wyTTDANIJ7Lzop7hxN1qolghvoFDhXvMpf9dZM231ml?=
+ =?us-ascii?Q?CkkBbTLq3QblYITZFCynDLzouSh+wNU27sheqFB38vmJLUk3WXehHTN7jwdp?=
+ =?us-ascii?Q?uVvadHEIudBUUAH7gL8jnsWLosmzmYAWIKl3taOzOwDMXiJ1dZ5Z+GjNGG7N?=
+ =?us-ascii?Q?G+S5kxLcvXywzXBQMfY+j+jgZQRVDm8EXVIf0inqO55FfYqsTRdKNSsGr92Q?=
+ =?us-ascii?Q?XjQOnEI1ekr4mc3xDIKr/7UCuWTPomCOhjk7V+/o0jYly8uPog+snO+d6/Bs?=
+ =?us-ascii?Q?hGxoF+/Yeudppl0c5ZiQoFn55Dwlw0sn+nbGF0WVWsZ8p2kz8ztNOWLIThYS?=
+ =?us-ascii?Q?L0JhcZVOQ/bZ1imPrpBQKC7oDI0hYWdlv1BLtBeajQJdGpujLbkZwZFV0DOL?=
+ =?us-ascii?Q?vmFVWFfsgpdCcYYfE/XFnIDi3ZKoy2tBTRQFujl8tsiJfgtLBfWs4Pe9jB0f?=
+ =?us-ascii?Q?ZEqGEm0nyt1z2ZxTFO5d5CF3PoLtonlP/75qU/+fnTtwdcNDQ/6qo/aQ2zLB?=
+ =?us-ascii?Q?G8lBGosn5u9Wc76hcYkpJtY1xNhKIlO9Bs3XDb55xpski9rvJGqj61Z2Vn4C?=
+ =?us-ascii?Q?w12GM8dnJoDUAm87hoxTpCNj2I7wpLtT42p2sZK9TX3fJnekN3AXr3IN9db0?=
+ =?us-ascii?Q?aGEawugzvypfDJ4QDNiLCUMq2zDtZ6+um9nifB5QXpNfSaursBmlGTuBI5PV?=
+ =?us-ascii?Q?8NLeU0WD8SxhGcFAy45dI1VDhVwyvZlQ9YxvTwq4DzdNS/qP3h1Hd5Rd5Jtm?=
+ =?us-ascii?Q?50xXCNwKTkLEUe4vwItz3wCKNc/52Ev+a5Gfj2rjy4m0t8ceJqsKr+3fw2CC?=
+ =?us-ascii?Q?onSwK5GKPTohcE9GQKc1BB7QfLq+9feZIlhlK0RxVXLg97hRgpZCBRKfCj07?=
+ =?us-ascii?Q?+7/9vRxwf394lAg7RfnJ8ilkEC2cjrzS1KdLBGg++ULbHH/3a30mZvJG51iZ?=
+ =?us-ascii?Q?RHUjQBwixWdh+vk/D6r3TSfXpB8yNVeExfbSYwyPi0qLqGo2eMmbkV5+Lick?=
+ =?us-ascii?Q?f28F1CNgoqILubVTE6D3JCGWaS2flrY/CMw5m5OYTrWFD1eHazseM8k8hgmv?=
+ =?us-ascii?Q?TlGNlq3ctWcZW3LjgS6pUWsbpnpxTEyrikr/UhIWNNU2OoNpxxokJAthR80K?=
+ =?us-ascii?Q?4553RNaBurQVcAUNpmchV0LVvmBVDyXHPwnNw2QXbgYLxgHPjhY5B6vuoGB+?=
+ =?us-ascii?Q?x3sp3/bzAsPWE05dsslU4b59hKOtxJyGr6mBms/TNM/vRfHpiG0XWzzP9DUk?=
+ =?us-ascii?Q?sJ1AP3AENdAPkBa0168UEH1rsG4PLe6q5RRvOpND?=
+X-OriginatorOrg: phytec.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67fcb343-72f3-40ec-4f35-08dc95f815fc
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR22MB4354.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 15:53:13.4927
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FQhL+tImOEa5lxPg7pG+fcOrbfCmIYWMixraDkxXvjAj/ObcogYJ17qxgm/sL+3xu/8aYgA7XJEIR5OuE2qTRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR22MB4564
 
+On AM62a SoCs the AUDIO_REFCLKx clocks can be used as an input to
+external peripherals when configured through CTRL_MMR, so add the
+clock nodes.
 
-On 6/26/2024 8:16 AM, Rob Herring wrote:
-> On Wed, Jun 19, 2024 at 05:10:27PM -0700, Oreoluwa Babatunde wrote:
->> After all the reserved memory regions have been added to the
->> reserved_mem array, a region specific initialization function is called
->> on each of reserved memory regions in a loop to initialize them.
->>
->> With recent changes made to allow the reserved_mem array be dynamically
->> allocated, the cma reserved memory regions are not initialized until
->> after the page tables are setup. This causes the warning seen in the
->> dump stack below:
->>
->> 	WARNING: CPU: 0 PID: 1 at mm/memory.c:2789 __apply_to_page_range+0x360/0x380
->> 	CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.10.0-rc1-00007-ga46cccb0ee2d #1
->> 	Hardware name: Generic DT based system
->> 	Call trace:
->> 	unwind_backtrace from show_stack+0x18/0x1c
->> 	show_stack from dump_stack_lvl+0x54/0x68
->> 	dump_stack_lvl from __warn+0x74/0x114
->> 	__warn from warn_slowpath_fmt+0x13c/0x1c0
->> 	warn_slowpath_fmt from __apply_to_page_range+0x360/0x380
->> 	__apply_to_page_range from apply_to_page_range+0x24/0x2c
->> 	apply_to_page_range from __alloc_from_contiguous+0xc4/0x158
->> 	__alloc_from_contiguous from cma_allocator_alloc+0x3c/0x44
->> 	cma_allocator_alloc from arch_dma_alloc+0x128/0x2b4
->> 	arch_dma_alloc from dma_alloc_attrs+0x90/0x150
->> 	dma_alloc_attrs from drm_gem_dma_create+0xa4/0x13c
->> 	drm_gem_dma_create from drm_gem_dma_create_with_handle+0x24/0xac
->> 	drm_gem_dma_create_with_handle from drm_gem_dma_dumb_create+0x44/0x50
->> 	drm_gem_dma_dumb_create from drm_client_framebuffer_create+0x9c/0x164
->> 	drm_client_framebuffer_create from drm_fbdev_dma_helper_fb_probe+0x84/0x23c
->> 	drm_fbdev_dma_helper_fb_probe from __drm_fb_helper_initial_config_and_unlock+0x2e4/0x4f8
->> 	__drm_fb_helper_initial_config_and_unlock from drm_fbdev_dma_client_hotplug+0x74/0xb8
->> 	drm_fbdev_dma_client_hotplug from drm_client_register+0x5c/0x98
->> 	drm_client_register from aspeed_gfx_probe+0x278/0x3c0
->> 	aspeed_gfx_probe from platform_probe+0x60/0xb8
->> 	platform_probe from really_probe+0xd4/0x3b4
->> 	really_probe from __driver_probe_device+0x90/0x1dc
->> 	__driver_probe_device from driver_probe_device+0x38/0xd0
->> 	driver_probe_device from __driver_attach+0x118/0x1dc
->> 	__driver_attach from bus_for_each_dev+0x84/0xd4
->> 	bus_for_each_dev from bus_add_driver+0xec/0x1f0
->> 	bus_add_driver from driver_register+0x84/0x11c
->> 	driver_register from do_one_initcall+0x84/0x1c8
->> 	do_one_initcall from kernel_init_freeable+0x1a4/0x230
->> 	kernel_init_freeable from kernel_init+0x1c/0x138
->> 	kernel_init from ret_from_fork+0x14/0x28
->> 	Exception stack(0x9f015fb0 to 0x9f015ff8)
->> 	5fa0:                                     00000000 00000000 00000000 00000000
->> 	5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
->> 	5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
->> 	---[ end trace 0000000000000000 ]---
->> 	aspeed_gfx 1e6e6000.display: [drm] fb0: aspeed-gfx-drmd frame buffer device
->>
->> Hence, restructure the code to initialize the regions as soon as each
->> of them are added to the reserved_mem array.
->>
->> Fixes: a46cccb0ee2d ("of: reserved_mem: Restruture how the reserved memory regions are processed")
->> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
->> ---
->> v2:
->> - Fix kernel-doc for of_init_reserved_mem_node() in response to the
->>   below warning from v1:
->>   https://lore.kernel.org/all/202406181626.126X1Nbz-lkp@intel.com/
->>
->> v1:
->>   https://lore.kernel.org/all/20240617193357.3929092-1-quic_obabatun@quicinc.com/
->>
->>  drivers/of/fdt.c             |  2 +-
->>  drivers/of/of_private.h      |  2 +-
->>  drivers/of/of_reserved_mem.c | 83 +++++++++++++++++++++---------------
->>  3 files changed, 50 insertions(+), 37 deletions(-)
-> Applied.
->
-> In the future, do not send fixes or new versions as replies to previous 
-> threads. The default behavior of b4 is to apply v6 of the series because 
-> that is the 'newest' version.
->
-> Rob
-ack.
+Based on: Link: https://lore.kernel.org/lkml/20230807202159.13095-2-francesco@dolcini.it/
+Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Thank you!
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+index bf9c2d9c6439..2a6e333f752c 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+@@ -59,6 +59,24 @@ epwm_tbclk: clock-controller@4130 {
+ 			reg = <0x4130 0x4>;
+ 			#clock-cells = <1>;
+ 		};
++
++		audio_refclk0: clock-controller@82e0 {
++			compatible = "ti,am62-audio-refclk";
++			reg = <0x82e0 0x4>;
++			clocks = <&k3_clks 157 0>;
++			assigned-clocks = <&k3_clks 157 0>;
++			assigned-clock-parents = <&k3_clks 157 8>;
++			#clock-cells = <0>;
++		};
++
++		audio_refclk1: clock-controller@82e4 {
++			compatible = "ti,am62-audio-refclk";
++			reg = <0x82e4 0x4>;
++			clocks = <&k3_clks 157 10>;
++			assigned-clocks = <&k3_clks 157 10>;
++			assigned-clock-parents = <&k3_clks 157 18>;
++			#clock-cells = <0>;
++		};
+ 	};
+ 
+ 	dmss: bus@48000000 {
+-- 
+2.25.1
+
 
