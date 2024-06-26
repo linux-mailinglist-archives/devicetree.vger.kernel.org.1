@@ -1,417 +1,113 @@
-Return-Path: <devicetree+bounces-80256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1764F9183E3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:23:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0066B918537
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:05:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B77762835A3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:22:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2360E1C209F7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A6E1862B2;
-	Wed, 26 Jun 2024 14:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CD31891C4;
+	Wed, 26 Jun 2024 15:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NULgBZZa"
+	dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="b/vgqZOh";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b="u+8YAEo+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fallback1.i.mail.ru (fallback1.i.mail.ru [79.137.243.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137FC185E5F
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C499B185E52;
+	Wed, 26 Jun 2024 15:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719411757; cv=none; b=FSFnsZD6WfioO0ZRzj7uIxC0+8ygxWEMm4TcLBuYTUb5Ee37CajtE7myU/fEyBGtHXBuWvjtawKj7u41zeQfrgIPKCLAOPaBQwQPKbzb3/7hxmFlUJgwFux5h9trTnZK8tJAmJypTxEpEFzpR+V85tGoXOb7fSP4WvTPNXkvAac=
+	t=1719414301; cv=none; b=Us4fpORbh3soF05hokE40Kx4opUaAEgM4wX7BYCcbWdInWr+c4JqEy6h7bhdmS8oA8kjsVVBXp6UvfR+A87HkcgGq4aIlgE4rEDmmRqk4yn+v+LeNYpIBtpqo9RKmfI+PJCc0yMD/jrchNB6kLtZdmveSGnoMcgonzOdEjseqJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719411757; c=relaxed/simple;
-	bh=Z9aeJr6L8QTOAZdDkQPLI/iCoMWOZgWZfpRQG968Tew=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WpB3QWsD6ngJo2e75N/bAx9MwIgOItjHGZ90ZXOrBIZwUhu3lSI9zGIleg4lYGLBup1YeXNPeH8MY3fykKQA/clvpt/+fogu1u35CoVC0m1MrKaCyPmFDbB3A1s5Ej7T7oDpZEgKzJqAx80EUDxqK1zfglTiqpCC6Rxn/4S+5e4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NULgBZZa; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-424ad289949so7623335e9.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:22:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719411753; x=1720016553; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rwpzrw+8a9jskXuzzJFLsA7zHzZayXfGDHG3CFsewrw=;
-        b=NULgBZZaeJQi4yZrOgjAiLJt6Wuoa1TkEZai5UVAArqPE8AxcoXrrlVMPfogVnSAlK
-         RsxAa7lD7BwRvxgNdwBqTzozisk1nYL3gLB7QRvSLcXFlX1rGHEUaYwvzhQQVen5S+sg
-         EjRR2jgH1BD2NqwUNBwUFgRyAVTU4JLD8+Zn8o05NSEgoySh5YUmxpLONFZsABHwSM5F
-         XvFWOk0H2se4YKA8OurU31xn+cnL9Hf3rtksRXzJRx2V+h40IrO/tfe3bJaKlzc2MVj8
-         VTp0ipFRnue4AikUQ+P26eIsNTs9GOoHj5A+iPiddYsS1ekVyB0g3NnL3G7cX2JltMBT
-         RjdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719411753; x=1720016553;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rwpzrw+8a9jskXuzzJFLsA7zHzZayXfGDHG3CFsewrw=;
-        b=AWPyDicw/P2N2jc0252MQGPTWCjWfcpVWnIVex5pGe0AlEvtBWMtCttLWoTSxa4w6W
-         jWE6boSEpIG4varZTxXl8jD6nQG8TKPhllbKRRFVE00On6+0LLGuLgIwUX8n+64kPGJV
-         UguLMBCOKFSL3AV4Sj2vabyobVTwstLfotbaWsnJH+IruIXVPqHcrXjO/xsOa05spV/z
-         x9rvia9po/0lbaaNvowvH7/rr5n4hn042/plrwlt+nyfvH0R6ufWak8EIqj94nBqRDjK
-         8pNkdkZGLa+NHe2+cT6PDIlscyz2u9IUVhc0K8N/0qaFw/RGBsjWKgEkHdyIfl/Ql7Jb
-         gljw==
-X-Forwarded-Encrypted: i=1; AJvYcCVSNQ3Q52nlX22lNp32Ono21FKyi4MjgjPIeMrrxTypu2PKF31GBZu3wD5LNb40eKzLgQBA57QfQbdPcjGxFB1WFDlc4v1yp2I5Ag==
-X-Gm-Message-State: AOJu0YygYBRXf3H47y1JUrTTv5APvB1bGx2cfR0TBVDTEwjGaGGhGc5E
-	eepuFq2W0GLhUKti+DeiKuo/5ADSES+w0S57fpEPbQ6qhPjPFWxFBU7m5AraiFk=
-X-Google-Smtp-Source: AGHT+IG/zVNbdytUxpsnA6murZW7/z/3aHbXG+Dmjm/+e+zRYJz7j+BhZMDSlRfAtJ1/OJNNs+ud1Q==
-X-Received: by 2002:a05:600c:3510:b0:424:76d7:2cca with SMTP id 5b1f17b1804b1-4248b9363d3mr70141385e9.4.1719411753185;
-        Wed, 26 Jun 2024 07:22:33 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:7be7:aef1:af9e:fff6])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-424c823c28asm27141105e9.5.2024.06.26.07.22.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 07:22:32 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1719414301; c=relaxed/simple;
+	bh=ZGHpU2mK6LnO2Jxl+CqhYMo9BSGbEhn6NgP1Aqn63iA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mEvLdwHPcizOOG0261+MWl9o0TRJ0FWWkoNiR3xUY4yK8mT5S0ik8VfOUpLH6+KP/lM0d/8KV59OFTVpoXzJVlKhZhqwZrzdvh66V8j6g3mUMB9YNDw0qeNHIsexBuN1mHvIaMNi3fnvpHf5F5V1bVoUmn4HlpSFokHk9Tr6srA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inbox.ru; spf=pass smtp.mailfrom=inbox.ru; dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b=b/vgqZOh; dkim=pass (2048-bit key) header.d=inbox.ru header.i=@inbox.ru header.b=u+8YAEo+; arc=none smtp.client-ip=79.137.243.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inbox.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inbox.ru
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=kjIQc7jeZaVYEiwPdh4XTzlvgv05UxecfDBnXhnpxZk=;
+	t=1719414298;x=1719504298; 
+	b=b/vgqZOheM9//ZHR8V51X1j1Ft1UH+2+jIiSZuwCVV/NGI4wBGh406942xFzB/AfAGBAA2Qtk0foui/MLsL1AHMGN3DgiTiiWrqa8PH0LSg7Vu4Kw/VzwrQFkqsGEjTCBhGu5ms9/EZjDCpZZAAxqKgZGaTWLJsxdaNSVMluC3VdGKEb6lRjPt1a+8TYfWtHvslKhAqCiAf7Ew7PTqGFD+Q2g/esymJrLK+IK2AXDtwcRofmfDBf8TWmrWDS7CuZaJN7iEXcXFjLpXzJTjR+5XSbMf0GTQ7+6YI339DhNCennfgTcLtMbmrqWEMqY3IIGfbWxa7G8LOW47b2Te5Dkg==;
+Received: from [10.12.4.33] (port=54830 helo=smtp58.i.mail.ru)
+	by fallback1.i.mail.ru with esmtp (envelope-from <fido_max@inbox.ru>)
+	id 1sMTYd-00DxQ8-JA; Wed, 26 Jun 2024 17:23:35 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru;
+	s=mail4; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:
+	To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=kjIQc7jeZaVYEiwPdh4XTzlvgv05UxecfDBnXhnpxZk=; t=1719411815; x=1719501815; 
+	b=u+8YAEo+SBjZwwB1qeifq1z0FUcw1J+4mshgOFOTTbn2Ga+tyu3hGOIamb8COq3d/Of+WLzPj6x
+	/Dncna1lq8Q1G++sH8SWEnovKKlprrBZGLNUbpMmv/39O5GUhZZ8BPctUcIyW3SMjj1PfuBcdN83H
+	3ZpaC7wJMpnUmpSrurEdauXGSN9QANof7bk2+4Qr53GGGhU4pWPvMHAW2oipoG7OP+EaFpOtl8fIL
+	hzHP/OCVOdfDoOol7vp+FCpfHEiQpPAfaNbbh42uYviL9rjfFNfX+TYnfpqf7gp75D8Y1VHVac2i1
+	FoKsAo8w8TmsQVKY6fxnfIw9A+1PpKMHmdaA==;
+Received: by smtp58.i.mail.ru with esmtpa (envelope-from <fido_max@inbox.ru>)
+	id 1sMTYF-00000003pHy-2Etb; Wed, 26 Jun 2024 17:23:12 +0300
+From: Maxim Kochetkov <fido_max@inbox.ru>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2 3/3] drm/panel: add lincolntech lcd197 support
-Date: Wed, 26 Jun 2024 16:22:09 +0200
-Message-ID: <20240626142212.1341556-4-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240626142212.1341556-1-jbrunet@baylibre.com>
-References: <20240626142212.1341556-1-jbrunet@baylibre.com>
+	John Hsu <KCHSU0@nuvoton.com>
+Cc: Maxim Kochetkov <fido_max@inbox.ru>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Add master clock handling for nau8824
+Date: Wed, 26 Jun 2024 17:22:54 +0300
+Message-ID: <20240626142259.21608-1-fido_max@inbox.ru>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: 646B95376F6C166E
+X-77F55803: 4F1203BC0FB41BD99270B3E0DC24D31FE95A5D547D219D00F4630BB0E839A018182A05F538085040A96E5B031498B355A6D5EE0DB6E1EC8D905AF360A394B343B9143B39FE1528AA285C021E7E0FF4E2
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7E50EC9128971FD6EEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F790063727BBC20C3D5F36038638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D80545DA1402C0D37466CD5431CE238EE8E1B1733C77635C7120879F7C8C5043D14489FFFB0AA5F4BF176DF2183F8FC7C06030C3405640F6718941B15DA834481FA18204E546F3947CC2B5EEE3591E0D35F6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F790063706C07FE7DDBB4AB7389733CBF5DBD5E9B5C8C57E37DE458B9E9CE733340B9D5F3BBE47FD9DD3FB595F5C1EE8F4F765FC72CEEB2601E22B093A03B725D353964B0B7D0EA88DDEDAC722CA9DD8327EE4930A3850AC1BE2E7356436AE5DD6441DC7C4224003CC83647689D4C264860C145E
+X-87b9d050: 1
+X-C1DE0DAB: 0D63561A33F958A54D4E170ACA0FBF775002B1117B3ED696CCA99AE81B3A8E2A361FAC1196A180DE823CB91A9FED034534781492E4B8EEAD577AE849BCD98940C79554A2A72441328621D336A7BC284946AD531847A6065A17B107DEF921CE79BDAD6C7F3747799A
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF4AEE0A9E6E197997319919EFC76C0EF7A59577C50A0A7102C5FFF87E0D2C559D45CF0F9AF1251E13443676941C84C1C85CDCD43B5D3B8BF2236B3925D264D5F749DA116B25652720E4FDFA4A036B0C3902C26D483E81D6BEEB84411BD425175970A7FB4ED9620804ADE12199CE9660BE
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojLaF05p8kWoobqGKCNZ5mAA==
+X-Mailru-Sender: 689FA8AB762F7393C6D0B12EA33CAA9B750B0A609C864255A935B69EAD79682142167D3E90D87E6490DE4A6105A3658D481B2AED7BCCC0A49AE3A01A4DD0D55C6C99E19F044156F45FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B44D426FEC3FC5D1C73B55CE1B3528F6AC2526B97F9CA12610049FFFDB7839CE9EA0123DB20CD7599C748E1CA8E2C4DD4D88ED067FAA3FF502F0FCCC2CBAEF1B50
+X-7FA49CB5: 0D63561A33F958A5645FB26CEB28F4B5783517F84447E0CEDECA2EB4243E295ECACD7DF95DA8FC8BD5E8D9A59859A8B64071617579528AACCC7F00164DA146DAFE8445B8C89999728AA50765F79006379F47EB75722646729FA2833FD35BB23D2EF20D2F80756B5F868A13BD56FB6657A471835C12D1D977725E5C173C3A84C3B7CC44DA769F8E26CC7F00164DA146DA6F5DAA56C3B73B23C77107234E2CFBA522CA9DD8327EE4930A3850AC1BE2E735DD0078234547CCE7C4224003CC83647689D4C264860C145E
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojLaF05p8kWopvUSfYACKDvg==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
-Add support for the Lincoln Technologies LCD197 1080x1920 DSI panel.
+nau8824 has external MCLK pin. So add enable/disable external clock
+management.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/gpu/drm/panel/Kconfig                 |  11 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-lincolntech-lcd197.c  | 262 ++++++++++++++++++
- 3 files changed, 274 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-lincolntech-lcd197.c
+Maxim Kochetkov (2):
+  ASoC: codecs: nau8824: Add master clock handling
+  ASoC: dt-bindings: nau8824: Add master clock handling
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index bf4eadfe21cb..30206be56f68 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -328,6 +328,17 @@ config DRM_PANEL_LEADTEK_LTK500HD1829
- 	  24 bit RGB per pixel. It provides a MIPI DSI interface to
- 	  the host and has a built-in LED backlight.
- 
-+config DRM_PANEL_LINCOLNTECH_LCD197
-+	tristate "Lincoln Technologies lcd197 panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for lincolntech lcd197
-+	  TFT-LCD modules. The panel has a 1080x1920 resolution and uses
-+	  24 bit RGB per pixel. It provides a MIPI DSI interface to
-+	  the host.
-+
- config DRM_PANEL_LG_LB035Q02
- 	tristate "LG LB035Q024573 RGB panel"
- 	depends on GPIOLIB && OF && SPI
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 051b75b3df7b..7706ff9087d8 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -33,6 +33,7 @@ obj-$(CONFIG_DRM_PANEL_KHADAS_TS050) += panel-khadas-ts050.o
- obj-$(CONFIG_DRM_PANEL_KINGDISPLAY_KD097D04) += panel-kingdisplay-kd097d04.o
- obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
- obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
-+obj-$(CONFIG_DRM_PANEL_LINCOLNTECH_LCD197) += panel-lincolntech-lcd197.o
- obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
- obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
- obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
-diff --git a/drivers/gpu/drm/panel/panel-lincolntech-lcd197.c b/drivers/gpu/drm/panel/panel-lincolntech-lcd197.c
-new file mode 100644
-index 000000000000..032c542aab0f
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-lincolntech-lcd197.c
-@@ -0,0 +1,262 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 BayLibre, SAS
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_device.h>
-+#include <drm/drm_probe_helper.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct lincoln_lcd197_panel {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct regulator *supply;
-+	struct gpio_desc *enable_gpio;
-+	struct gpio_desc *reset_gpio;
-+};
-+
-+static inline
-+struct lincoln_lcd197_panel *to_lincoln_lcd197_panel(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct lincoln_lcd197_panel, panel);
-+}
-+
-+static int lincoln_lcd197_panel_prepare(struct drm_panel *panel)
-+{
-+	struct lincoln_lcd197_panel *lcd = to_lincoln_lcd197_panel(panel);
-+	struct mipi_dsi_multi_context ctx = { .dsi = lcd->dsi };
-+	int err;
-+
-+	gpiod_set_value_cansleep(lcd->enable_gpio, 0);
-+	err = regulator_enable(lcd->supply);
-+	if (err < 0)
-+		return err;
-+
-+	gpiod_set_value_cansleep(lcd->enable_gpio, 1);
-+	usleep_range(1000, 2000);
-+	gpiod_set_value_cansleep(lcd->reset_gpio, 1);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(lcd->reset_gpio, 0);
-+	msleep(50);
-+
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xb9, 0xff, 0x83, 0x99);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xd2, 0x55);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xb1, 0x02, 0x04, 0x70, 0x90, 0x01,
-+			       0x32, 0x33, 0x11, 0x11, 0x4d, 0x57, 0x56, 0x73,
-+			       0x02, 0x02);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xb2, 0x00, 0x80, 0x80, 0xae, 0x0a,
-+			       0x0e, 0x75, 0x11, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xb4, 0x00, 0xff, 0x04, 0xa4, 0x02,
-+			       0xa0, 0x00, 0x00, 0x10, 0x00, 0x00, 0x02, 0x00,
-+			       0x24, 0x02, 0x04, 0x0a, 0x21, 0x03, 0x00, 0x00,
-+			       0x08, 0xa6, 0x88, 0x04, 0xa4, 0x02, 0xa0, 0x00,
-+			       0x00, 0x10, 0x00, 0x00, 0x02, 0x00, 0x24, 0x02,
-+			       0x04, 0x0a, 0x00, 0x00, 0x08, 0xa6, 0x00, 0x08,
-+			       0x11);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xd3, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			       0x00, 0x18, 0x18, 0x32, 0x10, 0x09, 0x00, 0x09,
-+			       0x32, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			       0x00, 0x00, 0x11, 0x00, 0x02, 0x02, 0x03, 0x00,
-+			       0x00, 0x00, 0x0a, 0x40);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xd5, 0x18, 0x18, 0x18, 0x18, 0x21,
-+			       0x20, 0x18, 0x18, 0x19, 0x19, 0x19, 0x19, 0x18,
-+			       0x18, 0x18, 0x18, 0x03, 0x02, 0x01, 0x00, 0x2f,
-+			       0x2f, 0x30, 0x30, 0x31, 0x31, 0x18, 0x18, 0x18,
-+			       0x18, 0x18, 0x18);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xd6, 0x18, 0x18, 0x18, 0x18, 0x20,
-+			       0x21, 0x19, 0x19, 0x18, 0x18, 0x19, 0x19, 0x18,
-+			       0x18, 0x18, 0x18, 0x00, 0x01, 0x02, 0x03, 0x2f,
-+			       0x2f, 0x30, 0x30, 0x31, 0x31, 0x18, 0x18, 0x18,
-+			       0x18, 0x18, 0x18);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xbd, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xd8, 0x0a, 0xbe, 0xfa, 0xa0, 0x0a,
-+			       0xbe, 0xfa, 0xa0);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xd8, 0x0f, 0xff, 0xff, 0xe0, 0x0f,
-+			       0xff, 0xff, 0xe0);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xbd, 0x02);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xd8, 0x0f, 0xff, 0xff, 0xe0, 0x0f,
-+			       0xff, 0xff, 0xe0);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xe0, 0x01, 0x11, 0x1c, 0x17, 0x39,
-+			       0x43, 0x54, 0x51, 0x5a, 0x64, 0x6c, 0x74, 0x7a,
-+			       0x83, 0x8d, 0x92, 0x99, 0xa4, 0xa9, 0xb4, 0xaa,
-+			       0xba, 0xbe, 0x63, 0x5e, 0x69, 0x73, 0x01, 0x11,
-+			       0x1c, 0x17, 0x39, 0x43, 0x54, 0x51, 0x5a, 0x64,
-+			       0x6c, 0x74, 0x7a, 0x83, 0x8d, 0x92, 0x99, 0xa4,
-+			       0xa7, 0xb2, 0xa9, 0xba, 0xbe, 0x63, 0x5e, 0x69,
-+			       0x73);
-+	mipi_dsi_usleep_range(&ctx, 200, 300);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xb6, 0x92, 0x92);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xcc, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xbf, 0x40, 0x41, 0x50, 0x49);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xc6, 0xff, 0xf9);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xc0, 0x25, 0x5a);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, MIPI_DCS_SET_ADDRESS_MODE, 0x02);
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 120);
-+
-+	if (ctx.accum_err) {
-+		gpiod_set_value_cansleep(lcd->enable_gpio, 0);
-+		gpiod_set_value_cansleep(lcd->reset_gpio, 1);
-+		regulator_disable(lcd->supply);
-+	}
-+
-+	return ctx.accum_err;
-+}
-+
-+static int lincoln_lcd197_panel_unprepare(struct drm_panel *panel)
-+{
-+	struct lincoln_lcd197_panel *lcd = to_lincoln_lcd197_panel(panel);
-+	struct mipi_dsi_multi_context ctx = { .dsi = lcd->dsi };
-+
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
-+	mipi_dsi_usleep_range(&ctx, 5000, 6000);
-+	gpiod_set_value_cansleep(lcd->enable_gpio, 0);
-+	gpiod_set_value_cansleep(lcd->reset_gpio, 1);
-+	regulator_disable(lcd->supply);
-+
-+	return ctx.accum_err;
-+}
-+
-+static int lincoln_lcd197_panel_enable(struct drm_panel *panel)
-+{
-+	struct lincoln_lcd197_panel *lcd = to_lincoln_lcd197_panel(panel);
-+	struct mipi_dsi_multi_context ctx = { .dsi = lcd->dsi };
-+
-+	mipi_dsi_dcs_set_display_on_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 20);
-+
-+	return ctx.accum_err;
-+}
-+
-+static int lincoln_lcd197_panel_disable(struct drm_panel *panel)
-+{
-+	struct lincoln_lcd197_panel *lcd = to_lincoln_lcd197_panel(panel);
-+	struct mipi_dsi_multi_context ctx = { .dsi = lcd->dsi };
-+
-+	mipi_dsi_dcs_set_display_off_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 50);
-+
-+	return ctx.accum_err;
-+}
-+
-+static const struct drm_display_mode lcd197_mode = {
-+	.clock = 154002,
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 20,
-+	.hsync_end = 1080 + 20 + 6,
-+	.htotal = 1080 + 204,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 4,
-+	.vsync_end = 1920 + 4 + 4,
-+	.vtotal = 1920 + 79,
-+	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	.width_mm = 79,
-+	.height_mm = 125,
-+	.type = DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static int lincoln_lcd197_panel_get_modes(struct drm_panel *panel,
-+					  struct drm_connector *connector)
-+{
-+	return drm_connector_helper_get_modes_fixed(connector, &lcd197_mode);
-+}
-+
-+static const struct drm_panel_funcs lincoln_lcd197_panel_funcs = {
-+	.prepare = lincoln_lcd197_panel_prepare,
-+	.unprepare = lincoln_lcd197_panel_unprepare,
-+	.enable = lincoln_lcd197_panel_enable,
-+	.disable = lincoln_lcd197_panel_disable,
-+	.get_modes = lincoln_lcd197_panel_get_modes,
-+};
-+
-+static int lincoln_lcd197_panel_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct lincoln_lcd197_panel *lcd;
-+	struct device *dev = &dsi->dev;
-+	int err;
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = (MIPI_DSI_MODE_VIDEO |
-+			   MIPI_DSI_MODE_VIDEO_BURST);
-+
-+	lcd = devm_kzalloc(&dsi->dev, sizeof(*lcd), GFP_KERNEL);
-+	if (!lcd)
-+		return -ENOMEM;
-+
-+	mipi_dsi_set_drvdata(dsi, lcd);
-+	lcd->dsi = dsi;
-+
-+	lcd->supply = devm_regulator_get(dev, "power");
-+	if (IS_ERR(lcd->supply))
-+		return dev_err_probe(dev, PTR_ERR(lcd->supply),
-+				     "failed to get power supply");
-+
-+	lcd->enable_gpio = devm_gpiod_get(dev, "enable",
-+					  GPIOD_OUT_HIGH);
-+	if (IS_ERR(lcd->enable_gpio))
-+		return dev_err_probe(dev, PTR_ERR(lcd->enable_gpio),
-+				     "failed to get enable gpio");
-+
-+	lcd->reset_gpio = devm_gpiod_get(dev, "reset",
-+					  GPIOD_OUT_HIGH);
-+	if (IS_ERR(lcd->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(lcd->reset_gpio),
-+				     "failed to get reset gpio");
-+
-+	drm_panel_init(&lcd->panel, dev,
-+		       &lincoln_lcd197_panel_funcs, DRM_MODE_CONNECTOR_DSI);
-+
-+	err = drm_panel_of_backlight(&lcd->panel);
-+	if (err)
-+		return err;
-+
-+	drm_panel_add(&lcd->panel);
-+	err = mipi_dsi_attach(dsi);
-+	if (err)
-+		drm_panel_remove(&lcd->panel);
-+
-+	return err;
-+}
-+
-+static void lincoln_lcd197_panel_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct lincoln_lcd197_panel *lcd = mipi_dsi_get_drvdata(dsi);
-+	int err;
-+
-+	err = mipi_dsi_detach(dsi);
-+	if (err < 0)
-+		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", err);
-+
-+	drm_panel_remove(&lcd->panel);
-+}
-+
-+static const struct of_device_id lincoln_lcd197_of_match[] = {
-+	{ .compatible = "lincolntech,lcd197", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, lincoln_lcd197_of_match);
-+
-+static struct mipi_dsi_driver lincoln_lcd197_panel_driver = {
-+	.driver = {
-+		.name = "panel-lincolntech-lcd197",
-+		.of_match_table = lincoln_lcd197_of_match,
-+	},
-+	.probe = lincoln_lcd197_panel_probe,
-+	.remove = lincoln_lcd197_panel_remove,
-+};
-+module_mipi_dsi_driver(lincoln_lcd197_panel_driver);
-+
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_DESCRIPTION("Lincoln Technologies LCD197 panel driver");
-+MODULE_LICENSE("GPL");
+ .../bindings/sound/nuvoton,nau8824.yaml       |  8 +++++++
+ sound/soc/codecs/nau8824.c                    | 21 +++++++++++++++++--
+ sound/soc/codecs/nau8824.h                    |  1 +
+ 3 files changed, 28 insertions(+), 2 deletions(-)
+
 -- 
-2.43.0
+2.45.2
 
 
