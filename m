@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-80403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B621918838
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:08:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC8F918800
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18B241F230D2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:08:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC96C281663
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E2018FDD0;
-	Wed, 26 Jun 2024 17:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE57718FC81;
+	Wed, 26 Jun 2024 16:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="GwG5ktoo"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0p2RY6Ib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AC618FDCF;
-	Wed, 26 Jun 2024 17:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E67018F2DE
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 16:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719421701; cv=none; b=UYijYfnSHR6kL+v3h2dxFPgMaoFvAPa6Iv62kliMW6Q4HMdWgxCQGrvytieBHOyHq7vagqNorl4UYeNDSER/YmkUG2mmF22ExQV4aBksY7tgo/yX6rQ0x+V+a0aSqt2plArTBzgKgzyj9YfQ+8IK5lAAj7UgM/1EUbO04oPJA6w=
+	t=1719420986; cv=none; b=JemfnVN9G+Q10yRf/G8afQtTXzlugdlBqODiHqm6GsDZ4YNYhW5y9AEekC/UnF2qn2QBNcr72ZzR00T2/ViLMS20oKt8CU4a3lZmwFJFnRaAhq4MmQIcihU35W9U4T0zE+xYJAy+NrsCJHC071dTWExoRE6w/7diV7QuQy7ienw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719421701; c=relaxed/simple;
-	bh=SGevvtZtHXSqfwa5O6Io/8z9OukBGsmljDRlsnxtBz0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ABcEytpqW+JoA3+9QGA/aQYUcSyNhmqw177n11DYEEJVBTjZkGHK7+T04N0OdUeYzC/YI/G75RQII2OZEve4B5mbnIu2h+/AWc8C+92a79qKl09vMBxlScaIkcZGATJzl2nP18iS87+PA9WDX1uG9BrsDOAYjOdm8+aXNwwnSK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=GwG5ktoo; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45QF6dtB020557;
-	Wed, 26 Jun 2024 11:55:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=SGevvtZtHXSqfwa5O6Io/8z9OukBGsmljDRlsnxtBz0=; b=
-	GwG5ktooOqmPiqXtmcUv+jm6iTvBlPIRanFeX9fkyGizzgWS3ZOL2nJJLnQUwAgo
-	4Gf9G19fowwlsM95wALwsGdc8Oa8XWXFhJK6jxdUufGhTc9zB6j5TLJYwOsfBUdj
-	aQsFUK4Loothmx/iyTdct5KOqJzH2YfUIeLIxykLM2AkQcdKitHE3e0DUICQfnX3
-	7KeWGOoqqxy7t+92N45fasWcsS1w1OgygpgZISKCBoNhcWrvK2/oLd9hQWZQBoe4
-	irQ3PQc1v4bKqg77cti7rYTT9snx9bX1Dc8TWavwThytugTEm11RYnP1Zt8XhKAn
-	65iWwvGKtsqeQ7LXjykxOw==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 400nbdr4ky-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Jun 2024 11:55:48 -0500 (CDT)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 26 Jun
- 2024 17:55:46 +0100
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1544.9 via Frontend Transport; Wed, 26 Jun 2024 17:55:46 +0100
-Received: from [141.131.156.204] (macC02FN0GLMD6T.ad.cirrus.com [141.131.156.204])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 08D67820257;
-	Wed, 26 Jun 2024 16:55:43 +0000 (UTC)
-Message-ID: <9ece1e49-1753-4841-b8ed-252fdc8792c4@opensource.cirrus.com>
-Date: Wed, 26 Jun 2024 11:55:43 -0500
+	s=arc-20240116; t=1719420986; c=relaxed/simple;
+	bh=C6ME1IwOzHYbPTSz6neRG6o/tR0/cP7f8Fk4N4+jog8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XQ5BMd/nNWPyPorFIpt0iV+zu58mQLb87gkF2FxsUozxSu4qtjXPs4KWEFMYYmPYFMDViM3ItIx1xoSDQ97heKKG4ZWr7Wmb1elNRr0xKCy1mAxkhqXup2ODXapjfZ8sW23k9uZDaMjiZIOrh0XJT8/KJcw8CyxaqcKgmHEONnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0p2RY6Ib; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-700d27ef3e2so371512a34.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 09:56:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719420984; x=1720025784; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I9WF5q68ZePMbZuzgldrpeFkJQIx5++lavDIav1RipY=;
+        b=0p2RY6Ib4QhMldh0jnWYB2F0kkWudDGuERZHFFmfyT1JMI92a7Mk29ZB7rRauUui8c
+         ij0F4Poy2uieWIedtAdS3Hw8TzXBjm5RPiyyAJycucfW8xdItpXE1Tis1I+pGeQ+Q7Im
+         fULd/yQc+RvRYCF8mWIDYyBvSfkxm7k3UD+TdFEDJkdTTBd1vxUt77AFENFiqJP+4z5j
+         hkzKBjRYaXKaXDnANi/L4bofifxZgx3RBdUqMxJaIS4T5oTA2ol9ThEL7JMMQCc7b02U
+         jnp/or1ECaZySF6LyghxRfDyyIVFlq5pBtDXNUlLiQh1ytlV7FXI9Gnkcfr73NNcFNa2
+         TVhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719420984; x=1720025784;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I9WF5q68ZePMbZuzgldrpeFkJQIx5++lavDIav1RipY=;
+        b=k+GMD8MXtH2ji/XuBDVaCK52nUBhdW/EoP/C8xAiiI3vKQXNJS7f1OtImtj1QfEFsk
+         6shGhMlJlW0YDfgujzX/xy8H16OoGAPI7VwTOyVGa5lW+EvSFuk16WS6IQqJ3/n7h6H2
+         y3fusWXstRjcguJLbIvnWZFZOUKq+H3xxMl/Z/u4O60YCHy3QlIYtu1eLhekUM4GVMvx
+         KKqahfV6oeO2f3fcDsxvmL8luUqtGSe4S9xaPWBj0eLzGyGAqXJfCIBX/qPAzIrXLTZG
+         f86gh1SKadlRZJ+0NbbcOZVFUsQWpy8R4WdeIEXaIkpSbTpUf92tbUtwW15x1GXTQSac
+         vOJA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhJxrPnG54g4H2nfj0sSbTb3Ep0n6BTyvYPQoU92atzpGe9HonjclQX0s/uFjcOSG3rqFunYggq2NW9CFM3gvB0cZrgCRWAxJdQA==
+X-Gm-Message-State: AOJu0YyyB578nh7GH3kboA8RDsOHGVOvE01qEtnHwAjbUlQpALadijWE
+	SZJHLc6cfXG9nI8Q9+EkLcEujRJnKVM6sDkOGy+q5NbdQ97qJvQEZgQSTXKrzFY=
+X-Google-Smtp-Source: AGHT+IFIA6lVNQS4eN/SmzgcST24H2LTBlnYknBiU44VIzeZ3/EW6KKBtCIolqXn4UeVDoEoNyu3xw==
+X-Received: by 2002:a05:6830:1045:b0:6fa:17c9:1978 with SMTP id 46e09a7af769-700b12a888bmr12074802a34.30.1719420983632;
+        Wed, 26 Jun 2024 09:56:23 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7009c607e9esm1944499a34.45.2024.06.26.09.56.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 09:56:23 -0700 (PDT)
+Message-ID: <1db5d054-8cce-4cbf-a02c-6ba52791548f@baylibre.com>
+Date: Wed, 26 Jun 2024 11:56:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,44 +76,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v11 5/5] ASoC: cs40l50: Support I2S streaming to
- CS40L50
-To: James Ogletree <jogletre@opensource.cirrus.com>,
-        <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
-CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        David Rhodes
-	<drhodes@opensource.cirrus.com>
-References: <20240620161745.2312359-1-jogletre@opensource.cirrus.com>
- <20240620161745.2312359-6-jogletre@opensource.cirrus.com>
+Subject: Re: [PATCH v5 6/7] iio: adc: Add support for AD4000
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
+ lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, corbet@lwn.net, marcelo.schmitt1@gmail.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1719351923.git.marcelo.schmitt@analog.com>
+ <eb5f7b73bdf3ac89117e28f26ee3f54ba849163e.1719351923.git.marcelo.schmitt@analog.com>
 Content-Language: en-US
-From: "Rivera-Matos, Ricardo" <rriveram@opensource.cirrus.com>
-In-Reply-To: <20240620161745.2312359-6-jogletre@opensource.cirrus.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <eb5f7b73bdf3ac89117e28f26ee3f54ba849163e.1719351923.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: CdsLy3u3iXcBr8woWieeWVjkOpUNpx4p
-X-Proofpoint-GUID: CdsLy3u3iXcBr8woWieeWVjkOpUNpx4p
-X-Proofpoint-Spam-Reason: safe
 
-James,
+On 6/25/24 4:55 PM, Marcelo Schmitt wrote:
 
-On 6/20/24 11:17 AM, James Ogletree wrote:
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
->
-> The ASoC driver enables I2S streaming to the device.
->
-> Reviewed-by: David Rhodes <drhodes@opensource.cirrus.com>
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
+> +
+> +enum ad4000_sdi {
+> +	/* datasheet calls this "4-wire mode" (controller CS goes to ADC SDI!) */
 
-Reviewed-by: Ricardo Rivera-Matos <rriveram@opensource.cirrus.com>
+It looks like this comment was meant for AD4000_SDI_CS.
 
+> +	AD4000_SDI_MOSI,
+> +	/* datasheet calls this "3-wire mode" (not related to SPI_3WIRE!) */
+> +	AD4000_SDI_VIO,
+> +	AD4000_SDI_CS,
+> +};
+> +
+> +/* maps adi,sdi-pin property value to enum */
+> +static const char * const ad4000_sdi_pin[] = {
+> +	[AD4000_SDI_MOSI] = "",
+> +	[AD4000_SDI_VIO] = "high",
+> +	[AD4000_SDI_CS] = "cs",
+> +};
 
-Thanks for your contribution,
+Should we go ahead and add "low" here too even though it isn't supported
+yet? We could give a different error message in this case. (not supported
+mode vs. invalid value).
 
-Ricardo
+> +/*
+> + * This executes a data sample transfer for when the device connections are
+> + * in "3-wire" mode, selected when the adi,sdi-pin device tree property is
+> + * absent or set to "high". In this connection mode, the ADC SDI pin is
+> + * connected to MOSI or to VIO and ADC CNV pin is connected either to a SPI
+> + * controller CS or to a GPIO.
+> + * AD4000 series of devices initiate conversions on the rising edge of CNV pin.
+> + *
+> + * If the CNV pin is connected to an SPI controller CS line (which is by default
+> + * active low), the ADC readings would have a latency (delay) of one read.
+> + * Moreover, since we also do ADC sampling for filling the buffer on triggered
+> + * buffer mode, the timestamps of buffer readings would be disarranged.
+> + * To prevent the read latency and reduce the time discrepancy between the
+> + * sample read request and the time of actual sampling by the ADC, do a
+> + * preparatory transfer to pulse the CS/CNV line.
 
+This description doesn't sound quite correct. When st->turbo_mode is true
+the shorter delay will cause a read during conversion, so we would be 
+reading the sample from the previous conversion trigger, not the current one.
+
+The description sounds like this function always does a read during
+aquisition. So if that is the actual intent (and I agree it should be),
+maybe the best thing to do would be to just remove st->turbo_mode for
+now? Then we can add it back when we do SPI offload support that actually
+needs it to achieve max sample rate. Then the function will match the
+description as-is.
+
+st->turbo_mode is never set to true currently anyway. So removing it
+for now seems best.
+
+> + */
+> +static int ad4000_prepare_3wire_mode_message(struct ad4000_state *st,
+> +					     const struct iio_chan_spec *chan)
+> +{
+> +	unsigned int cnv_pulse_time = st->turbo_mode ? AD4000_TQUIET1_NS
+> +						     : AD4000_TCONV_NS;
+> +	struct spi_transfer *xfers = st->xfers;
+> +
+> +	xfers[0].cs_change = 1;
+> +	xfers[0].cs_change_delay.value = cnv_pulse_time;
+> +	xfers[0].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
+> +
+> +	xfers[1].rx_buf = &st->scan.data;
+> +	xfers[1].len = BITS_TO_BYTES(chan->scan_type.storagebits);
+> +	xfers[1].delay.value = AD4000_TQUIET2_NS;
+> +	xfers[1].delay.unit = SPI_DELAY_UNIT_NSECS;
+> +
+> +	spi_message_init_with_transfers(&st->msg, st->xfers, 2);
+> +
+> +	return devm_spi_optimize_message(st->spi, &st->msg);
+
+In the cover letter or after --- in this patch we should mention the
+dependency since this is a new API and depends on the tag from Mark.
+
+> +}
+> +
 
