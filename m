@@ -1,99 +1,189 @@
-Return-Path: <devicetree+bounces-80304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB87918561
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:11:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AF9918569
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19BF228F2F2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:11:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B342C1F28ACF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:11:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7291891D8;
-	Wed, 26 Jun 2024 15:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBE01891DF;
+	Wed, 26 Jun 2024 15:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="x5uAcgRS"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="o6YK7JSq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2080.outbound.protection.outlook.com [40.107.20.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FDA186283;
-	Wed, 26 Jun 2024 15:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719414659; cv=none; b=kz2jnqWBagmcJRBjI4y1LMLVFYUAou4p46rlDmACDtDdhnaczwgXByd7Fu8IOfA93wGpOZiN/a0Bi/++hauDekAPu23ah82RClpB6/3iwgcemXfzyvvN8AbwVjIPU6o4pbYkiMgq5W9D4c35DKi015pxlJXOklnRHxUzbQNc+Qw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719414659; c=relaxed/simple;
-	bh=FSmDhvFUJs9NsQfwLU6nxFJxJmU5Amm6j4FF1hXKJhs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sRGKrhMIZ8x221YY2iTyqPsa2dmbN6trbj5y0R4fs1L+Q/TD6YsQpDpFQieSZjMGdcQwGVr62z7EblThjdRtO0ggnmuyylr49d+RIThHpadJKUjVb292qcfjar0yUMKDGIVU6WReuXR7N07imb/QY0iDrgsSgn1Sh62Rb2sFfMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=x5uAcgRS; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5m14rGTG9LmbrjjJ/l2NwU7Y0IP12ob5tulLHsA6h8Y=; b=x5uAcgRSuDey6PsbTz4RgEk3QC
-	drc99olvsjw4sho1UzY7/RgPeU+6fqMXABv4CCYbvOHKAIvSvbybYg3tum5gjF2jlknX8p6SVbSQi
-	9aaPjlimypP6O7gE7ewL7dQEICSVKlTqAqjToRvGJSov3kD/jukiN1oByp9Y0KBMx+iE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sMUI7-0013Aj-CP; Wed, 26 Jun 2024 17:10:35 +0200
-Date: Wed, 26 Jun 2024 17:10:35 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Andrew Halaney <ahalaney@redhat.com>
-Cc: Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>, kernel@quicinc.com,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] net: stmmac: Bring down the clocks to lower
- frequencies when mac link goes down
-Message-ID: <d2bb85e4-fab5-49fe-aaf0-9d1bf2279e3d@lunn.ch>
-References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
- <20240625-icc_bw_voting_from_ethqos-v2-3-eaa7cf9060f0@quicinc.com>
- <qf4zl7qupkzbrb6ik4v4nkjct7tsh34cmoufy23zozcht5gch6@kvymsd2ue6cd>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD2B185E5F
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719414685; cv=fail; b=kauqtZMX4IEe85x6pGsZgxARHb0gvvecKxuVw2XZW3p+ereAKno1pOk5/uvLDsUURvteI3+Moj6+g0lJrbaG4TDh0yR/+ZZEwDMnbdrAg6dCfYQCF+uBe8v/RoIWAh0K/K2A/DdQCxQvAe3whQbejsUgVI1pZLzmtSCofLHXMxU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719414685; c=relaxed/simple;
+	bh=TvqqSNwvTkChGwl4SeNoHdCjiI3G6HRSalByyU3LOwo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=YOYvkmCL1D+b2MJhocaYT/wWOWQOk4UNuEP2IuD5WP+lQ7qhyTlQA2AmsqaaNo4FvgCIRaBX31EDin+qxtHHz7Bf7urd/2f/dS7CsMP8CkwavVUeqWB3BzCNhQtJAWIH8l+q4zu65lzQMQkxd5DklNPZKF0+Hxw4xanX90cZcSY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=o6YK7JSq; arc=fail smtp.client-ip=40.107.20.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lUtQu7Nk2fJlvFgsqrDqPfk3La0hHVXttG97fYO6+NX2PKyQoZ5+AUmAb/gnW+/laNj2ZYGUQbncr8i28I09OUavJ364iS992in+qXmNDKS6FvKIV6Of7gwCZ0S7ZR+itxYgZ0mYvh5XprMyfqbGhlyyrrHT1TjtpwMC7J332OQ1Vss31v1EYkf0x5LS2OnR2F1vx1aoavnRyP1WPok/9M/Ss9AKAvChse03sceVL0G/s5MORv7VuuGJxHexqR+dMLLOS0nm3rX5cfaWo4/zJ+Y1UE+Lii654ivgy8AGMsbhRS3+6mjxqxRd0RdHV//oUMSJm2hRsc0/2sofN5Ojaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FzyreqNEaWRSLTF47124SbFBD0hQw2BOIIHihSYNk7A=;
+ b=lhN/ydEHVV3vKVxNTQVdnty3Y+3FfMF4nIpthZnwQKu0/FKFm4rUISB8cn8RxYn7Kcd5eGGRtO54d3qH7sja72XMi0PZDFQQs2uOwRr6fWu8oTLbcbEWNUrzvpjZrscqx/RXLf24QMUKp3vImwB5cJOkYBzNl8pCW1ns5JZSkXFI+AdJI3aFtedUJLbjax2P68yIojBknwRGVIjNqR+SDvFKT/B14LMVlM20tbHrBT702h55R7ej+OKXEJPivMKp8A+Dc+DiqTGcbxTQFwp7eBvNR5RAm4KbX9zCnwL+w1jCnlErwIDYTpYV4WFVwUKqKCIyG8R2nkgj6BSr1IoTew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FzyreqNEaWRSLTF47124SbFBD0hQw2BOIIHihSYNk7A=;
+ b=o6YK7JSqZHNURBMCda7QahHL6z5bQhBVC1DQeSh/ycEJKXWqU5v7xQ/lNAEl0TODZRYAzZ+QW1aJaEhSoVcEtjN+yqt7RbxbDzRR7vI437ovIgbQn/x15I3fYPmeYPecAhf6sjXo48LbfKDt9hi02AYWuHzfs0SVY7dkSjuzI+E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA1PR04MB10939.eurprd04.prod.outlook.com (2603:10a6:102:489::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.30; Wed, 26 Jun
+ 2024 15:11:19 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7698.025; Wed, 26 Jun 2024
+ 15:11:19 +0000
+Date: Wed, 26 Jun 2024 11:11:12 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] arm64: dts: imx8qxp-mek: Pass memory-region to the DSP
+ node
+Message-ID: <ZnwvkHfhleg0ERl3@lizhi-Precision-Tower-5810>
+References: <20240626140532.615857-1-festevam@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626140532.615857-1-festevam@gmail.com>
+X-ClientProxiedBy: SJ0PR13CA0164.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <qf4zl7qupkzbrb6ik4v4nkjct7tsh34cmoufy23zozcht5gch6@kvymsd2ue6cd>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10939:EE_
+X-MS-Office365-Filtering-Correlation-Id: 945ca19c-490b-4227-989d-08dc95f23bd2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230038|366014|52116012|376012|1800799022|38350700012;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qPtzl58oDmboQP0BTflqvAoCqRb14FACiUj21Ew7LVAE6llwUTOWd9Ebkb4w?=
+ =?us-ascii?Q?ZRXWi7cZMUkywm9y8FmJ6z3mXoNR8mImpZoSwGjAyBu/yhkemWm3iEqNAI2L?=
+ =?us-ascii?Q?Hk1fsqD5crKpRPRNb61IJLZPbFIBf+5r2wFlFwKk4iSsb3UjSz/8XI3h5Fxa?=
+ =?us-ascii?Q?eG3csHpcSDD1DjHFeckvqQH08U3PkCcJkgRMAqGRAh9GgcOyMS7rtmk7HWi7?=
+ =?us-ascii?Q?9hgCS1W7tscDVJsNljDYO0DvlHFvabzJW8sN2F2g6maUPqmqxJ2JghnG4wQ+?=
+ =?us-ascii?Q?6yirkHHLUZVif153OQvgcdLrgM64gAmnmkPtnMBhNqchMh9TO6Istyfy7Kbn?=
+ =?us-ascii?Q?XDOz5iUPR3ilPUaRu5uOxfL3FC7/qpFm5ooGaenxCPlkYtkm65YTwjjEUEkB?=
+ =?us-ascii?Q?Ey6tLBMWwWmszt8vnOd8Cq33kq2KZojWyluaP3bUbt7hvupaM2yS/AO3AAEo?=
+ =?us-ascii?Q?0/gymY/GCIQOJSykMIBYFYCFxfv/EE2SQe3Y647G0PslSE//cbjbBJq+8Bre?=
+ =?us-ascii?Q?kbf1Ch4+S0EtrP93qqhLkEaIbGgfjvntMyAiVLmA0NJzzL7nGGDeFDj1BCxh?=
+ =?us-ascii?Q?3iSk5EOaqHeikJ5/+3B3q9DHO9R7WESOJAGkhd7zpUb+5GRu7UCT5SsBfycy?=
+ =?us-ascii?Q?HUEVghsRBiHanLeiYXKY482vl14npFoiMHHhavg/NbQONNWT5MIOYW1iz63T?=
+ =?us-ascii?Q?ofzed6VSk5/AtFsEJx+50KF+8D8wA07UkWIEIA7gvK6aHYAE+hnSHTEmGe+c?=
+ =?us-ascii?Q?gzZurHq5vO8h+/x17kIZjCNi8GN0arjtyo/5zuCZDH9dupT/i7ypSgOhwP4K?=
+ =?us-ascii?Q?DgVTQUXuptoika4Y34k3Ygg9UCET8eA758FR8J1supPdh0Tmgxq/vZDMY6u3?=
+ =?us-ascii?Q?b8efgPi6UVyYVtuhab9ySXFP0DK4klQqyDktraitE/TNQmC7UjDQKVkLMJ9m?=
+ =?us-ascii?Q?q/wredeCMAplXtydlYKRid5OweLSIp/5OHtrY0FyW/mxu8FBu1mcXooVyJmu?=
+ =?us-ascii?Q?ScX8p7IQNRNGZKLbeohsZEk5mwp/Jlw2I0dSIUdAZCSka4jdJWmKDGTmdHxc?=
+ =?us-ascii?Q?h+aog1DdiVISe+CSz/UrN0aE3PCn3DBCV3/NlXUVVbZ/wrXZPdl8AyAisyhs?=
+ =?us-ascii?Q?jZUQmMkV5YlV3yiHYHjAcIXYMoSWrpUngSslbw+Ow0YKaYXzj+55DAI5UAln?=
+ =?us-ascii?Q?/Oqitcya1jsIErV6wj+c+jrYkOOQW/ZREK4Zobnj6X3YK8WxWZe/FDLiA+sP?=
+ =?us-ascii?Q?2iP4+nPoJvRpHlH/GsAfOqfqsCAjkHka18oQ+3zUAhWuzjRAjzwf3D7k9HeR?=
+ =?us-ascii?Q?kcsl6QJ3p4v0v9r9vVLSB0gRXSqDV070o8Vao9OJpSV+DyFYvyzMZ2+p0Y8+?=
+ =?us-ascii?Q?DTICNuvbWMJaw3qFrjSUKwydi3iwAzDV1v+1rMXrLBfFuei1dA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230038)(366014)(52116012)(376012)(1800799022)(38350700012);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qttsjSwRg32/JcLJX2kfa9EUbslUG4cpTYuwVboW2LFi9+LKDDVjZIdEIHzP?=
+ =?us-ascii?Q?CbaU+B9xCAuYWsg185Aztfr7vn5HvtLaKVIzmgW/eXGceY/7aZ3k/uZWw33d?=
+ =?us-ascii?Q?Al/PpGvUCeFJ+1UQNTUnAynUZ7dcAunWi5l2r/FnvKM4WOkxDukWMdH7sj5U?=
+ =?us-ascii?Q?RNnCKepejAxrL02aYAn8BpDfync/l4CfVnmogK3ooR1Q3stccmnPwF1ZXgUf?=
+ =?us-ascii?Q?9p9r4OAF9VvOsPc36tjHHhtL6gMGR0/2YmgRxp9rbqRDwR4Vcpu1bNwRCd7H?=
+ =?us-ascii?Q?rOKr7zbRUQq0jOgBT6Al/7cj5GSaux/SKPhvQIbYU6Ab3tZzG32A7YztxSl1?=
+ =?us-ascii?Q?tWjcyBmEQZ+SWNLFvxldjXB/2dBJmg/zzOte+t+1erKkMIKayFUPUZyKe4zR?=
+ =?us-ascii?Q?8FrAwBLYzoiA509D4HrTDb+wGwePBYIbJIFzxSMPlDO8jfiAfckLxlXjucpa?=
+ =?us-ascii?Q?JPBO99BOct+LN22tH8inyeshzO2Ge050PU8GZBcsUucrR5Lc17EO1Cn0qPr3?=
+ =?us-ascii?Q?t0o3E2DQRdkjf3TAP2m4zAEXGPD3ozR3q92fj7NGAELNCORRDn/1rtEby1bL?=
+ =?us-ascii?Q?Puq+1fH/VhWsb/NhNHIjmGrThUI36w0HU3QABOhAzU758xrnPKEt/2AMJ6bi?=
+ =?us-ascii?Q?a5ydhxwDlJe9UxJPGBT7M31gO0xzYcNHaZ7/5mrQHSykGLptoCIDBwtDgofX?=
+ =?us-ascii?Q?1ypKEpXwkRDwTH0Xu3wHagCw++DX4N6pJKJG6EMl7ojFSGsWBaFUJJnvbQSL?=
+ =?us-ascii?Q?x0Frd/3Xh4pDCuOhEQR5kv+s8zevmkn8peOiVKwkWNxH7ukGFulx8R03ePGj?=
+ =?us-ascii?Q?7y/xkNrnuCB8IhYefia27EEDqGWrHYazKerVZZnyHSbLM+WJPxTSfbRZQkAt?=
+ =?us-ascii?Q?9Eh5hf8etgZGU4O387eIslMQadx+/PA1Nl7bWv8juhDhz6JsLwT9p4y3eAPd?=
+ =?us-ascii?Q?0xlsfDRYePYXe9kRl623zaLgV0iw5+kOehWcmcBZluToV0V3nu6K8jQe80wU?=
+ =?us-ascii?Q?gVBhe0rNwzJZtXd9JOZbsoVJ1ppZNzk0/JWBKgrzaC3ewkQEePAdYPETkWFM?=
+ =?us-ascii?Q?KKCjQXLun9Emo58UsTOnK5IKpJ7t0ZJrPDvvcMUd8OdUrN9GYzbW3sWkEpot?=
+ =?us-ascii?Q?I2Ny83vMOdEi2MC+PgPd2DdaiKpgmozbPauQyl+os4+cTqi4AE9yv9HeFuZZ?=
+ =?us-ascii?Q?IR2s/uZ0JSHaz/s3JIXjwBzEHUzBrQNvDchVkFeZLVjR86nWb8ELmJO6abPt?=
+ =?us-ascii?Q?sEktLxJCm4wGsueMB1aUPIBZ2REXNFU2W53koDmj2wX9oNN0ciUT3cnTk3RR?=
+ =?us-ascii?Q?KjlYlz9L4niqYMAozal6hMS9w5+rjsHU+EXEJ96NUfzZz/giYplAvG8Pw+yg?=
+ =?us-ascii?Q?Sg2QstAvGdWex/JVVKCP7CbD8kWC8pf7PCd0SJmD757tMvMe91gsx4eedjcm?=
+ =?us-ascii?Q?sghC1MtrM++Y8X6jopu35++NikTzYZn2pIsH/eDZOW3O87m2YmFJNRTLt/eb?=
+ =?us-ascii?Q?g+k/rQ+iQYCwlDM7jJ3RwWPabkuHiPou1aJmVYeq9flhP6SR/0NCtF0fpKmg?=
+ =?us-ascii?Q?ASxWywN3j10u2ejezRYLjSmfYzLVHAan1Vm/l949?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 945ca19c-490b-4227-989d-08dc95f23bd2
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 15:11:19.8922
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ByXQlxObK0Hpwi9VmyQJCapqApDP2d8icYT0KTXZDsKRfqXWaESkZfSBld4+6if2MBwEAWkgGmKGsbjeTM+awg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10939
 
-> I'm still curious if any of the netdev folks have any opinion on scaling
-> things down like this on link down.
+On Wed, Jun 26, 2024 at 11:05:32AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> According to fsl,dsp.yaml, 'memory-region' is a required property.
+> 
+> Pass 'memory-region' to fix the following dt-schema warning:
+> 
+> imx8qxp-mek.dtb: dsp@596e8000: 'memory-region' is a required property
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-It does make sense, in that there are no frames to process, so the
-clock can be reduced. But i also think it is a bit of a workaround for
-poor hardware design. Often you can tell the MAC the link is down, and
-it can shut down a lot more, and even turn all the clocks off.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-I also wounder if there are going to be any side effects of this. Some
-Ethernet MACs export a clock to the PHY. Is that clock going to
-change? I don't think it will, because we are changing to a valid MAC
-speed, not 0. So the PHY has to work at this speed clock.
-
-But to make it easier to find issues like this, open() should probably
-set the clocks to a low speed until the link is up. That way, if there
-are going to be problems, the link should never come up, as opposed to
-the link never comes up after being lost the first time...
-
-     Andrew
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> index cee13e58762c..936ba5ecdcac 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> @@ -63,6 +63,7 @@ sound-wm8960 {
+>  };
+>  
+>  &dsp {
+> +	memory-region = <&dsp_reserved>;
+>  	status = "okay";
+>  };
+>  
+> -- 
+> 2.34.1
+> 
 
