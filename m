@@ -1,168 +1,116 @@
-Return-Path: <devicetree+bounces-80238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2404691827F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB4EB91828F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:35:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5D541F21EA9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:33:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 681A61F25D3D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60828825;
-	Wed, 26 Jun 2024 13:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3A31836F6;
+	Wed, 26 Jun 2024 13:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G75Rmuus"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZWzHept0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D9DA181BBF;
-	Wed, 26 Jun 2024 13:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2244E181326;
+	Wed, 26 Jun 2024 13:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719408782; cv=none; b=CfSXvsH9ol2EXxAEN2SQTCYUJ2haQLqIEoYZvfnJ44euzUd67+nX/JTXtAIUED2Rs+NuQmWS8dKPE345dHWLN+1xVd6UMrhegIp+uQu3YVUfVNRCFCkm62MtbLNqka+bYKracY/26bf7BMWIfOwV+FqzkMfqIl/vRIiZaMwuYx0=
+	t=1719408896; cv=none; b=DT7HchrUAJ9rCWctGnht43OEUARHva1s0xSA5nrwKpQF+pyNDj0LAeSJ6m57VMaf2+prg6wFrZVSJTMMrd1oTQzJO9EWmIc+oIpt716UE24ttnIlCdkTG1+XIVm9Igl1KYyAJorn8g2S4xhb0f3IVisCJznbJOEC0xkJE9qJU4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719408782; c=relaxed/simple;
-	bh=BtIEJ29GmbJjobMmhUF/L75Shxh4CvTEph4ds53y3CE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hEOxo2KdYN1vK8iWuI9K5kG7AIsNcATQ8Y6Ua4L4AFt0vy4FwMWJuJNa5LtzFIFcHUXmFcZPjYgiSTGvssf0wh67OKTlMcdeG45e2/YZMU5n0mGwLbIOfQkLVE+l5hRt6vcttiwzcLFQ0MuQ3+eHWuYlND3Cen00h1xeshSrzn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G75Rmuus; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7066f68e22cso3082388b3a.2;
-        Wed, 26 Jun 2024 06:33:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719408780; x=1720013580; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=U4SpG465Zq0wFUQJD4T6CGPlHVUtjrzjJUeqwICCVB0=;
-        b=G75Rmuus+EXmc2Kii4VxerNR72vBNVLbomkr+hGZ1yn7wlbFSfOH8RWlVVCCNCJF8N
-         Prp66LhTMOlloXzJChjnZVsX6lCQMH2jMoIdLiAl0l1n7q7wbmJ82q+tpaQgS+IZuREY
-         BSJynVaWdpUF0lEfFe3+9uxfnXcI6A0hLBrwya48nPOu4zhOHYWMFCEklhKPC7UaIEsG
-         5aMh95Pd12pjKTylQgVqcP6p8fCr6uqrFk7LoAnIPUiUkATpC6VbEYxJdSxw/3zbSWDi
-         1P5ZNZW81Qe+eVVF1rJNvhczoMJfvk6kw9oWEfeKiwBu9/aoWpMG4FQy1Z7Y33cS/vU2
-         gdNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719408780; x=1720013580;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U4SpG465Zq0wFUQJD4T6CGPlHVUtjrzjJUeqwICCVB0=;
-        b=hsVJ/cE82dxFywRH4aNbAwebJukcgKy7WCwquA1YXffEUEnh2dFLgRpLFphGvOcS8s
-         ZPzUNstyLx7qBVdLmLzgDgwCfs9SZpvxAU6m8ZX0ZK59tLond4OQjE7CyM6HB+/ylyox
-         77cT6vymU2UcaFn8zb+iGA/FL20piIGD0UB5LSp8LvWyE/Hl+LCjUt2JwKj0Td+LP/dL
-         d0SUwSFXaqHmzPn2PEdLSbpJr10f9X6QserPgUyzy7DuATMR0UHioLzHuO2+ZMfbJCvn
-         w4MqFchbNWecUhJVJNVFyuT78AQ3lp6LZEQZO5oz1PbfWUZI2tN1mhdp6snunWBd0bGK
-         jC0g==
-X-Forwarded-Encrypted: i=1; AJvYcCVybCFrE22G1FwUKJXGfsYRIboJjB0STRTw3/Xb83szYHcBT/o9dbbKCRhA1pXhJxMhrzjg/KkrenpP6ZL0BuH0GUN8Vs/XA4rPwAoRJMXbDYrQIyUjt6cPf4cfW78omM5iguA/fiIcQmCgh2UpZ25tlwzyQOIgpOyPBO/7V7uwtYWqsNPq4PZXfRoB3QuzGJqVU1L5TEUaf+OfIqNDlrSRNCtM46ZMBZFqo2JjMxcOsbWsp8wYkGf/0g==
-X-Gm-Message-State: AOJu0YyN+Wp9qr0VcLBUHmvbtEkJGKUorjSaR/9cYTHYSP8msncvxipf
-	j3FdQAkomWQe1RxpBGiBfUySrzHyFuBVEHiJ4Y9uZYEuUTDA5dy6
-X-Google-Smtp-Source: AGHT+IER57KcsE5A6v0eX5mNYLuzZpa08lQwfGmIk/QpxqLOfeNqNB0VfK27wnjYzWXj4yOGmexT+g==
-X-Received: by 2002:aa7:9a1d:0:b0:706:6ad6:1866 with SMTP id d2e1a72fcca58-70671012a58mr10321399b3a.30.1719408780319;
-        Wed, 26 Jun 2024 06:33:00 -0700 (PDT)
-Received: from localhost ([2804:30c:96b:f700:cc1d:c0ae:96c9:c934])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-716bb22dffesm8796040a12.83.2024.06.26.06.32.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 06:32:59 -0700 (PDT)
-Date: Wed, 26 Jun 2024 10:34:24 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
-	corbet@lwn.net, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 5/7] dt-bindings: iio: adc: Add AD4000
-Message-ID: <ZnwY4MqCYFKUNtL3@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1719351923.git.marcelo.schmitt@analog.com>
- <10678612efbbd97bb47a31f4a062607cf35b03f9.1719351923.git.marcelo.schmitt@analog.com>
- <20240626-handbrake-mustang-38c2aab3f04b@spud>
+	s=arc-20240116; t=1719408896; c=relaxed/simple;
+	bh=Gn4Pli2kvWj3GVbjuWpohIcu4iNuEX1X1zc4/G39S+Q=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=fIPcGxSuOxTctBiUN21Gd3Sph/waeVxCbkJ+Lx7ZCInvciC+cMLVPJHOd7pHhoU2lV8wQw/q2Mo2seSj4WJ5b/tH9MakCFlIYwb/91D/YTifY6zH/H0LSedHEvz4GzkHKmCf9d7bmh3FfXLydoVnNxJO28VwTBAhK57Cz6JwKg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZWzHept0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D4B2C2BD10;
+	Wed, 26 Jun 2024 13:34:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719408895;
+	bh=Gn4Pli2kvWj3GVbjuWpohIcu4iNuEX1X1zc4/G39S+Q=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=ZWzHept09Wt38QVjeaNvs16nDFLFZ9zPjbteSM3NNSK7rwC9vqpgyhCDXusg+RY6X
+	 TAhAv1Uy2Yq8wp436x1fkcxTlzIra6/gZuqxMG9qawKmRizY2N9Hgvt5+ObQpXAVg3
+	 wzGpr1EpbKKyua4N9fHYebbuGtI0RQaVIBSLjoRIQVM6X1oEcrNLmxr9jxfjV6pyq2
+	 2TogYvzvKh7sQAlhqceppGnC4f2GPN/FnPQ1Oy2WIdJj2eTmYZnwLybTJK5JOc4yAv
+	 8S32Xjxiwq09ryWVY2NipV4K2rsfvPOvDlwyJya2HcOXTmf+B+XB5IhTvOwqoyMowO
+	 8V1Pyh/uf71ig==
+Date: Wed, 26 Jun 2024 07:34:54 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626-handbrake-mustang-38c2aab3f04b@spud>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ quic_vbadigan@quicinc.com, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pci@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, quic_nitegupt@quicinc.com, 
+ quic_skananth@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
+References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
+ <20240626-qps615-v1-1-2ade7bd91e02@quicinc.com>
+Message-Id: <171940889433.2971707.8511570213525065770.robh@kernel.org>
+Subject: Re: [PATCH RFC 1/7] dt: bindings: add qcom,qps615.yaml
 
-On 06/26, Conor Dooley wrote:
-> On Tue, Jun 25, 2024 at 06:55:03PM -0300, Marcelo Schmitt wrote:
-> > Add device tree documentation for AD4000 series of ADC devices.
-> > 
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
-> >  .../bindings/iio/adc/adi,ad4000.yaml          | 190 ++++++++++++++++++
-> >  MAINTAINERS                                   |   7 +
-...
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: adi,ad4000
-> > +      - items:
-> > +          - enum:
-> > +              - adi,ad4004
-> > +              - adi,ad4008
-> > +          - const: adi,ad4000
-> 
-> > +      - const: adi,ad4001
-> > +      - items:
-> > +          - enum:
-> > +              - adi,ad4005
-> > +          - const: adi,ad4001
-> 
-> > +      - const: adi,ad4002
-> > +      - items:
-> > +          - enum:
-> > +              - adi,ad4006
-> > +              - adi,ad4010
-> > +          - const: adi,ad4002
-> 
-> > +      - const: adi,ad4003
-> > +      - items:
-> > +          - enum:
-> > +              - adi,ad4007
-> > +              - adi,ad4011
-> > +          - const: adi,ad4003
-> 
-> > +      - const: adi,ad4020
-> > +      - items:
-> > +          - enum:
-> > +              - adi,ad4021
-> > +              - adi,ad4022
-> > +          - const: adi,ad4020
-> 
-> > +      - const: adi,adaq4001
-> 
-> > +      - const: adi,adaq4003
-> 
-> I think some blank lines, maybe like the above, would go a long way with
-> this list of compatibles.
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 102040816 # for VIO > 2.7 V, 81300813 for VIO > 1.7 V
-> > +
-> > +  adi,sdi-pin:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [ high, low, cs ]
-> 
->     enum: [ high, low, cs, sdi ]
->     default: sdi
-> 
-> I'd do this, so that the default is documented in the binding, not in
-> the description text.
-> 
-> Otherwise, this looks good to me.
 
-Ack, will do.
-Thanks
+On Wed, 26 Jun 2024 18:07:49 +0530, Krishna chaitanya chundru wrote:
+> qps615 is a driver for Qualcomm PCIe switch driver which controls
+> power & configuration of the hardware.
+> Add a bindings document for the driver.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+>  .../devicetree/bindings/pci/qcom,qps615.yaml       | 73 ++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pci/qcom,qps615.yaml:70:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/pci/qcom,qps615.example.dts'
+Documentation/devicetree/bindings/pci/qcom,qps615.yaml:70:1: found a tab character where an indentation space is expected
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/pci/qcom,qps615.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/pci/qcom,qps615.yaml:70:1: found a tab character where an indentation space is expected
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,qps615.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240626-qps615-v1-1-2ade7bd91e02@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
