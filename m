@@ -1,303 +1,337 @@
-Return-Path: <devicetree+bounces-80120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4BF917D42
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 12:05:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF1B917D47
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 12:07:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB766280D35
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:05:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CC361C21591
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A5016D9C0;
-	Wed, 26 Jun 2024 10:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PM6uiAao"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A03A1741D6;
+	Wed, 26 Jun 2024 10:07:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EA38003B;
-	Wed, 26 Jun 2024 10:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBB525774;
+	Wed, 26 Jun 2024 10:07:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719396347; cv=none; b=or3I2yMUuUsmms0SpOyBNB5EuLgr0g0DN0lhGkReg8TTMw7K43dUmLD3ZMk6KI7kEXh601DML7SaOZwiq7PhZDaycAyNpQXpEvwNXFC/WnAzAsuBjKG1RCquH8/CR7KsxM+aGUQfhCvMZuk0BZnapxyN4Z39fWZjx5a0WLx1MWA=
+	t=1719396428; cv=none; b=YSal+jDuQvJkrSIhCz6fim1yqVJzeGTGINtd3LGLTwLsMBDxLi2xn0yZX5AIhF/+gXyCRrOOtR3jVEmTmRehl28t/OOlSEwbp1eg4Duv3IUL/6gTu1PBpr48X2FxzTXZPCZQ+UqUm0kVAfjswuXie2sm7UQhR+zu0fwqLfTtwN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719396347; c=relaxed/simple;
-	bh=z3M8mEdJVPWR6v6jV/cfRegtN1SyT57XXI1u4yA9zyY=;
+	s=arc-20240116; t=1719396428; c=relaxed/simple;
+	bh=aR/97qeSbn18O3NS4bsqOWeOeOT+obXcoaLAykOPu1g=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dqiyuOA9WykgNbk3myEchzJU214l0BlX1UlLoDhYc2yMCj+f62tBu7u4gmkMUXGsA2PiCuXzKm08Q1JyxX/7vz8dxZSPqTorMUjFXhL3BaB3xHbP1StCLUuGo0md2BtcmI+i+jFgtj7vJhl+1b9r6Bi2XAJxMbUJaj3Kkg95V3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PM6uiAao; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=PUZr1mlLlRu62GlAPs4I6cs98nd8N3kHXp5VSFXAFTZaW2vEf/iB7jkA9rD2HIz40W2irvXSxg+YVxSjBjkUt2c2UzFdnYk8vRZaQZFaoThYjhir9R3uAGsTv8jl4JcC9uvcJ1yo1i6Cef+mUA+Lvup5hhzQzY2OTb9vcw6P4kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1f9cd92b146so50903705ad.3;
-        Wed, 26 Jun 2024 03:05:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719396345; x=1720001145; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ykrPcK/Irry8zoUOTi7Jl5zhAUchsKgA/28aNj59N9k=;
-        b=PM6uiAaonnvCAkILfgpibnUZ3OsiGJEsgMVoACcGAgkjAilnqT//lFrKp4ZHgscN9A
-         RjoDE3hQcUXUh5OVJ9C09EIk3SdTGqZGZjrehYrEiHAb6YDgZPtA2AiFnrVQuibGhkl2
-         cVDhd0kzQuyEUowAZVapFQPzwlhRM93+7sx/49Or1Mi2YvLWAzWXfftG/4HXJm2R0dg4
-         r92DfQJkAK0kUsMGelLdf6W8QylzItVxNhroQ73wPw7UegnfxcQr82bJ78mMAUK5blCk
-         ClX2p00k9Gp/AfO8QDejbdUNmhijjHIZe6CfUfVkiM+Nh07PoRRBVbqNLfSp4bbc15by
-         BjHQ==
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e02bda4aba3so6639581276.3;
+        Wed, 26 Jun 2024 03:07:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719396345; x=1720001145;
+        d=1e100.net; s=20230601; t=1719396425; x=1720001225;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ykrPcK/Irry8zoUOTi7Jl5zhAUchsKgA/28aNj59N9k=;
-        b=AwgWYENXzt/G4P4HJyo2uVzQuhNm9ig+Fy+DHrtgPaSAGwwiAd4shXbU80P0ofoAcI
-         AylzM/UmsLc1XaBoU7zNQJv7+d6LK1YND2ovbSFTGMH0vxUPy+xlhLg8t1TNvOtv/B8R
-         ZJuQVqNdH+NOkN8iBvQBKnojciw5Ygs+98q1sd1eN//JIvDjwCAGV98bFAs0YG4TVf9I
-         tgBh9mkOGHLeccTFBX7H6ZZPjI5jL4qlC+yCympfpFC2DUdKJDyS7DtG9l+g88fj7EU+
-         H4PqAqM3V84mzL4pmGEcBl4ELK0LcTw5Xq08omWuOQIIMzaaKRBClTDNfHpjdOyHES08
-         LQsw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgmWihBLgfwKva5rvUoTDdy0xkSPAvROXkvmV4u0JFFvs7crn6gDJuD70Ga1JfQYY7o7Vyd5YVSYcYQFmnWA6k7EBACWYHQrHnbwB28h9K3PK7dW0+sd5FUrtrn1yNAGFaFu6xIVmqH5c=
-X-Gm-Message-State: AOJu0YxreG69u3gINmgjgpqXPooWic8AtXIC4oEw7qUh0USzqPlPdzNq
-	Y8yL9e6hPilID7b5aL3V01zBG/w6L0602IPWv7naUPNVZaqJWCZ5TpjK/sUp6RN/yWDgP6gPpnH
-	mI0uMnenqxx2Hlt9tfMfun8H66wE=
-X-Google-Smtp-Source: AGHT+IEbDk7wHb0MmrtAj5JICBIPh3uCDiOdX9j47siTgRNnT9It2W7wT9Xg7W29VcOY+M8sdRaqqNdUtNXutejItdY=
-X-Received: by 2002:a17:90a:c78f:b0:2c8:e4a6:4229 with SMTP id
- 98e67ed59e1d1-2c8e4a64303mr310020a91.33.1719396345441; Wed, 26 Jun 2024
- 03:05:45 -0700 (PDT)
+        bh=SbcDecEpoCfuC6cxB+0B2qANyo8ssQBOCs0i1cC/tic=;
+        b=bWxxC69EGlWyvjvHp5EaIj1PTaFjFmZ0lpAfvb12h2rnifyCgR2vehaqrfgE0cBpWN
+         bZQpt91uWikz3qGckJMzjTiGdOLraQ/KJ2avTaU0iYXFnGVVWTRdQD8MrovuamAAPqCH
+         CKWSxqXvqRoS5pwwjDRXpgzR9boeGOt8WqU80nj8BzOAuxZwlmuIhEOcA8O4Q5nhuXpu
+         Q3ZVbV9EDQnicqvQcckpAJ2rCJqYnib99B+qNbGIr6ltYSbJY3nYjn8GGhtpMG2EgyVS
+         rSzZJTvYJSuon0byPpWUHP/1OgFQGA3/NiNoHtW+Uz3r6d0GU+MrYsxwfcXiPcdDOrYT
+         bYfg==
+X-Forwarded-Encrypted: i=1; AJvYcCWLaIUWwlPo+0OQxHP+DqUVQIWY10vX/ydE0Q5Q2SknrcrpXpW0TT2lzG2Ns+bwCQ9VIJCNPfU/LOvw0Gd40TbQmqvVmQKK0ZnK4ZeCSnq/eK9jQFQBa0QuJoYLd9SU409oalc4z3bwZT2mMehZ0NLWLW9VyQw23N4AxR9gr+OMEYQiQf31Zqwuf0hF/54pb6yKehHwRlCiGqMqlXBHJ16If9VJTXy2
+X-Gm-Message-State: AOJu0YzFNsr6BZo8lSi6PbUy8ebVLRYtGh6HaoA1zmhj0SLEm4Vu6mOe
+	BkIrp/eLDthhMaTN3NeJRjI9CyhoeUy3jGUhbPtayeo3WAkzYTZxUlCD+wkZ
+X-Google-Smtp-Source: AGHT+IGumklIXAna1x2FNMfdIwzRc3e+xnhGRUCODVFCZUtWexWpLOOyXq1Gz3EmuZf+mvfIYwD2/A==
+X-Received: by 2002:a05:6902:348:b0:dfb:b21:b5dc with SMTP id 3f1490d57ef6-e0303f5cf47mr10161891276.25.1719396424864;
+        Wed, 26 Jun 2024 03:07:04 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e02e65db5ecsm4274565276.62.2024.06.26.03.07.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 03:07:04 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-648b9d03552so1335657b3.2;
+        Wed, 26 Jun 2024 03:07:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWwldvCz5DFk/FgZ08OrB90pGkp/7sPEOkxNRuc8/WthZ3unMJgxKF9Z8hCPNaHuIME9ZDDp0Ry6FuoWq4vvYK60OQm2IhCWNZJwMgao/PbaFL/yCrBfrss5mStNZa9AKxerG43jUFv7JEvIx0nRdNaB62Pn131KhtM0WJwOBMi3ncNhTnuApWH1O+K52J91GjXl2wpJ7on6xSbGA3d0bclCcUl356a
+X-Received: by 2002:a05:690c:ecd:b0:632:5b24:c0c with SMTP id
+ 00721157ae682-643a990bee0mr114814987b3.5.1719396423455; Wed, 26 Jun 2024
+ 03:07:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240430-a750-raytracing-v3-0-7f57c5ac082d@gmail.com>
- <20240430-a750-raytracing-v3-4-7f57c5ac082d@gmail.com> <041cbf33-9fce-4f72-be90-23bc7d215b10@linaro.org>
-In-Reply-To: <041cbf33-9fce-4f72-be90-23bc7d215b10@linaro.org>
-From: Connor Abbott <cwabbott0@gmail.com>
-Date: Wed, 26 Jun 2024 11:05:33 +0100
-Message-ID: <CACu1E7Gx-cyJYPAjNrc2KOmoZT=f5c50u18HVB=cNzjjrDWjbg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] drm/msm/a7xx: Initialize a750 "software fuse"
-To: neil.armstrong@linaro.org
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+References: <20240610233221.242749-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240610233221.242749-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240610233221.242749-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 26 Jun 2024 12:06:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVOvdU4ajB_f9OtQ8ao0Aodg+Rb9eGTmbNGC8o+aW-hzg@mail.gmail.com>
+Message-ID: <CAMuHMdVOvdU4ajB_f9OtQ8ao0Aodg+Rb9eGTmbNGC8o+aW-hzg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 3/4] clk: renesas: Add family-specific clock driver
+ for RZ/V2H(P)
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jun Nie <jun.nie@linaro.org>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	freedreno@lists.freedesktop.org
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 26, 2024 at 10:33=E2=80=AFAM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> Hi,
->
-> On 30/04/2024 12:43, Connor Abbott wrote:
-> > On all Qualcomm platforms with a7xx GPUs, qcom_scm provides a method to
-> > initialize cx_mem. Copy this from downstream (minus BCL which we
-> > currently don't support). On a750, this includes a new "fuse" register
-> > which can be used by qcom_scm to fuse off certain features like
-> > raytracing in software. The fuse is default off, and is initialized by
-> > calling the method. Afterwards we have to read it to find out which
-> > features were enabled.
-> >
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
-> > ---
-> >   drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 91 ++++++++++++++++++++++++=
-++++++++-
-> >   drivers/gpu/drm/msm/adreno/adreno_gpu.h |  2 +
-> >   2 files changed, 92 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/ms=
-m/adreno/a6xx_gpu.c
-> > index cf0b1de1c071..52b080206090 100644
-> > --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> > +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> > @@ -10,6 +10,7 @@
-> >
-> >   #include <linux/bitfield.h>
-> >   #include <linux/devfreq.h>
-> > +#include <linux/firmware/qcom/qcom_scm.h>
-> >   #include <linux/pm_domain.h>
-> >   #include <linux/soc/qcom/llcc-qcom.h>
-> >
-> > @@ -1686,7 +1687,8 @@ static int a6xx_zap_shader_init(struct msm_gpu *g=
-pu)
-> >                      A6XX_RBBM_INT_0_MASK_RBBM_HANG_DETECT | \
-> >                      A6XX_RBBM_INT_0_MASK_UCHE_OOB_ACCESS | \
-> >                      A6XX_RBBM_INT_0_MASK_UCHE_TRAP_INTR | \
-> > -                    A6XX_RBBM_INT_0_MASK_TSBWRITEERROR)
-> > +                    A6XX_RBBM_INT_0_MASK_TSBWRITEERROR | \
-> > +                    A6XX_RBBM_INT_0_MASK_SWFUSEVIOLATION)
-> >
-> >   #define A7XX_APRIV_MASK (A6XX_CP_APRIV_CNTL_ICACHE | \
-> >                        A6XX_CP_APRIV_CNTL_RBFETCH | \
-> > @@ -2356,6 +2358,27 @@ static void a6xx_fault_detect_irq(struct msm_gpu=
- *gpu)
-> >       kthread_queue_work(gpu->worker, &gpu->recover_work);
-> >   }
-> >
-> > +static void a7xx_sw_fuse_violation_irq(struct msm_gpu *gpu)
-> > +{
-> > +     u32 status;
-> > +
-> > +     status =3D gpu_read(gpu, REG_A7XX_RBBM_SW_FUSE_INT_STATUS);
-> > +     gpu_write(gpu, REG_A7XX_RBBM_SW_FUSE_INT_MASK, 0);
-> > +
-> > +     dev_err_ratelimited(&gpu->pdev->dev, "SW fuse violation status=3D=
-%8.8x\n", status);
-> > +
-> > +     /*
-> > +      * Ignore FASTBLEND violations, because the HW will silently fall=
- back
-> > +      * to legacy blending.
-> > +      */
-> > +     if (status & (A7XX_CX_MISC_SW_FUSE_VALUE_RAYTRACING |
-> > +                   A7XX_CX_MISC_SW_FUSE_VALUE_LPAC)) {
-> > +             del_timer(&gpu->hangcheck_timer);
-> > +
-> > +             kthread_queue_work(gpu->worker, &gpu->recover_work);
-> > +     }
-> > +}
-> > +
-> >   static irqreturn_t a6xx_irq(struct msm_gpu *gpu)
-> >   {
-> >       struct msm_drm_private *priv =3D gpu->dev->dev_private;
-> > @@ -2384,6 +2407,9 @@ static irqreturn_t a6xx_irq(struct msm_gpu *gpu)
-> >       if (status & A6XX_RBBM_INT_0_MASK_UCHE_OOB_ACCESS)
-> >               dev_err_ratelimited(&gpu->pdev->dev, "UCHE | Out of bound=
-s access\n");
-> >
-> > +     if (status & A6XX_RBBM_INT_0_MASK_SWFUSEVIOLATION)
-> > +             a7xx_sw_fuse_violation_irq(gpu);
-> > +
-> >       if (status & A6XX_RBBM_INT_0_MASK_CP_CACHE_FLUSH_TS)
-> >               msm_gpu_retire(gpu);
-> >
-> > @@ -2525,6 +2551,61 @@ static void a6xx_llc_slices_init(struct platform=
-_device *pdev,
-> >               a6xx_gpu->llc_mmio =3D ERR_PTR(-EINVAL);
-> >   }
-> >
-> > +static int a7xx_cx_mem_init(struct a6xx_gpu *a6xx_gpu)
-> > +{
-> > +     struct adreno_gpu *adreno_gpu =3D &a6xx_gpu->base;
-> > +     struct msm_gpu *gpu =3D &adreno_gpu->base;
-> > +     u32 fuse_val;
-> > +     int ret;
-> > +
-> > +     if (adreno_is_a750(adreno_gpu)) {
-> > +             /*
-> > +              * Assume that if qcom scm isn't available, that whatever
-> > +              * replacement allows writing the fuse register ourselves=
-.
-> > +              * Users of alternative firmware need to make sure this
-> > +              * register is writeable or indicate that it's not someho=
-w.
-> > +              * Print a warning because if you mess this up you're abo=
-ut to
-> > +              * crash horribly.
-> > +              */
-> > +             if (!qcom_scm_is_available()) {
-> > +                     dev_warn_once(gpu->dev->dev,
-> > +                             "SCM is not available, poking fuse regist=
-er\n");
-> > +                     a6xx_llc_write(a6xx_gpu, REG_A7XX_CX_MISC_SW_FUSE=
-_VALUE,
-> > +                             A7XX_CX_MISC_SW_FUSE_VALUE_RAYTRACING |
-> > +                             A7XX_CX_MISC_SW_FUSE_VALUE_FASTBLEND |
-> > +                             A7XX_CX_MISC_SW_FUSE_VALUE_LPAC);
-> > +                     adreno_gpu->has_ray_tracing =3D true;
-> > +                     return 0;
-> > +             }
-> > +
-> > +             ret =3D qcom_scm_gpu_init_regs(QCOM_SCM_GPU_ALWAYS_EN_REQ=
- |
-> > +                                          QCOM_SCM_GPU_TSENSE_EN_REQ);
-> > +             if (ret)
-> > +                     return ret;
-> > +
-> > +             /*
-> > +              * On a750 raytracing may be disabled by the firmware, fi=
-nd out
-> > +              * whether that's the case. The scm call above sets the f=
-use
-> > +              * register.
-> > +              */
-> > +             fuse_val =3D a6xx_llc_read(a6xx_gpu,
-> > +                                      REG_A7XX_CX_MISC_SW_FUSE_VALUE);
-> > +             adreno_gpu->has_ray_tracing =3D
-> > +                     !!(fuse_val & A7XX_CX_MISC_SW_FUSE_VALUE_RAYTRACI=
-NG);
-> > +     } else {
-> > +             if (adreno_is_a740(adreno_gpu)) {
-> > +                     /* Raytracing is always enabled on a740 */
-> > +                     adreno_gpu->has_ray_tracing =3D true;
-> > +             }
-> > +
-> > +             if (qcom_scm_is_available())
-> > +                     return qcom_scm_gpu_init_regs(QCOM_SCM_GPU_ALWAYS=
-_EN_REQ);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +
-> >   #define GBIF_CLIENT_HALT_MASK               BIT(0)
-> >   #define GBIF_ARB_HALT_MASK          BIT(1)
-> >   #define VBIF_XIN_HALT_CTRL0_MASK    GENMASK(3, 0)
-> > @@ -3094,6 +3175,14 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device =
-*dev)
-> >               return ERR_PTR(ret);
-> >       }
-> >
-> > +     if (adreno_is_a7xx(adreno_gpu)) {
-> > +             ret =3D a7xx_cx_mem_init(a6xx_gpu);
-> > +             if (ret) {
-> > +                     a6xx_destroy(&(a6xx_gpu->base.base));
-> > +                     return ERR_PTR(ret);
-> > +             }
-> > +     }
-> > +
-> >       if (gpu->aspace)
-> >               msm_mmu_set_fault_handler(gpu->aspace->mmu, gpu,
-> >                               a6xx_fault_handler);
-> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/=
-msm/adreno/adreno_gpu.h
-> > index 77526892eb8c..4180f3149dd8 100644
-> > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> > @@ -182,6 +182,8 @@ struct adreno_gpu {
-> >        */
-> >       const unsigned int *reg_offsets;
-> >       bool gmu_is_wrapper;
-> > +
-> > +     bool has_ray_tracing;
-> >   };
-> >   #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
-> >
-> >
->
-> This patch break GPU init on SM8450-HDK and SM8550-HDK, call to
-> qcom_scm_gpu_init_regs(QCOM_SCM_GPU_ALWAYS_EN_REQ) returns -5.
->
-> On which device did you test this ?
->
-> Neil
+Hi Prabhakar,
 
-I tested on SM8650-HDK (with your DTS patches on top). kgsl does call
-this on SM8450/SM8550 [1], and doesn't swallow -EIO, which is why I
-thought it was safe. But looking more into it now, the commit message
-introducing it mentions the software fuse which is SM8650-only, so
-maybe they broke SM8550 when adding this for SM8650?
+On Tue, Jun 11, 2024 at 1:32=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add family-specific clock driver for RZ/V2H(P) SoCs.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> - Introduced family specific config option
+> - Now using register indexes for CLKON/CLKMON/RST/RSTMON
+> - Introduced PLL_CONF macro
+> - Dropped function pointer to get PLL_CLK1/2 offsets
+> - Added range check for core clks
+> - Dropped NULLified clocks check
+> - Updated commit description
 
-Connor
+Thanks for the update!
 
-[1] https://git.codelinaro.org/clo/le/platform/vendor/qcom/opensource/graph=
-ics-kernel/-/blob/gfx-kernel.le.0.0.r1-rel/adreno_gen7.c?ref_type=3Dheads#L=
-915.
+> --- /dev/null
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
+
+> +/**
+> + * struct rzv2h_cpg_priv - Clock Pulse Generator Private Data
+> + *
+> + * @rcdev: Reset controller entity
+> + * @dev: CPG device
+> + * @base: CPG register block base address
+> + * @clks: Array containing all Core and Module Clocks
+> + * @num_core_clks: Number of Core Clocks in clks[]
+> + * @num_mod_clks: Number of Module Clocks in clks[]
+> + * @num_resets: Number of Module Resets in info->resets[]
+> + * @num_hw_resets: Number of resets supported by HW
+> + * @last_dt_core_clk: ID of the last Core Clock exported to DT
+> + * @info: Pointer to platform data
+> + */
+> +struct rzv2h_cpg_priv {
+> +       struct reset_controller_dev rcdev;
+> +       struct device *dev;
+> +       void __iomem *base;
+> +
+> +       struct clk **clks;
+> +       unsigned int num_core_clks;
+> +       unsigned int num_mod_clks;
+> +       unsigned int num_resets;
+> +       unsigned int num_hw_resets;
+
+This is not really used, so please drop it.
+
+> +       unsigned int last_dt_core_clk;
+> +
+> +       const struct rzv2h_cpg_info *info;
+> +};
+
+> +static struct clk
+> +*rzv2h_cpg_clk_src_twocell_get(struct of_phandle_args *clkspec,
+> +                              void *data)
+> +{
+> +       unsigned int clkidx =3D clkspec->args[1];
+> +       struct rzv2h_cpg_priv *priv =3D data;
+> +       struct device *dev =3D priv->dev;
+> +       const char *type;
+> +       int range_check;
+> +       struct clk *clk;
+> +
+> +       switch (clkspec->args[0]) {
+> +       case CPG_CORE:
+> +               type =3D "core";
+> +               if (clkidx > priv->last_dt_core_clk) {
+> +                       dev_err(dev, "Invalid %s clock index %u\n", type,=
+ clkidx);
+> +                       return ERR_PTR(-EINVAL);
+> +               }
+> +               clk =3D priv->clks[clkidx];
+> +               break;
+> +
+> +       case CPG_MOD:
+> +               type =3D "module";
+> +               range_check =3D 15 - (clkidx % 16);
+> +               if (range_check < 0 || clkidx >=3D priv->num_mod_clks) {
+
+range_check is never negative
+(leftover from sparse number space?)
+
+> +                       dev_err(dev, "Invalid %s clock index %u\n", type,
+> +                               clkidx);
+> +                       return ERR_PTR(-EINVAL);
+> +               }
+> +               clk =3D priv->clks[priv->num_core_clks + clkidx];
+> +               break;
+> +
+> +       default:
+> +               dev_err(dev, "Invalid CPG clock type %u\n", clkspec->args=
+[0]);
+> +               return ERR_PTR(-EINVAL);
+> +       }
+> +
+> +       if (IS_ERR(clk))
+> +               dev_err(dev, "Cannot get %s clock %u: %ld", type, clkidx,
+> +                       PTR_ERR(clk));
+> +       else
+> +               dev_dbg(dev, "clock (%u, %u) is %pC at %lu Hz\n",
+> +                       clkspec->args[0], clkspec->args[1], clk,
+> +                       clk_get_rate(clk));
+> +       return clk;
+> +}
+
+> +/**
+> + * struct mod_clock - Module clock
+> + *
+> + * @hw: handle between common and hardware-specific interfaces
+> + * @off: register offset
+> + * @bit: ON/MON bit
+> + * @monoff: monitor register offset
+> + * @monbit: montor bit
+> + * @priv: CPG private data
+> + */
+> +struct mod_clock {
+> +       struct clk_hw hw;
+> +       u8 on_index;
+> +       u8 on_bit;
+> +       u16 mon_index;
+> +       u8 mon_bit;
+
+I noticed clock on and clock mon bits are related.
+Clock on bits use only the lower 16 bits in a register, while clock
+monitor bits use all 32 bits, hence:
+
+    mon_index =3D on_index / 2
+    mon_bit =3D (on_index % 2) * 16 + on_bit
+
+Except for clocks without monitor bits, and for CGC_SPI_clk_spi and
+CGC_SPI_clk_spix2, which share an on-bit, but have separate mon-bits.
+So you cannot use these formulas.
+
+Reset bits do not have such a relationship, as resets marked reserved
+are skipped in the reset monitoring bit range.
+
+
+> +       struct rzv2h_cpg_priv *priv;
+> +};
+> +
+> +#define to_mod_clock(_hw) container_of(_hw, struct mod_clock, hw)
+> +
+> +static int rzv2h_mod_clock_endisable(struct clk_hw *hw, bool enable)
+> +{
+> +       struct mod_clock *clock =3D to_mod_clock(hw);
+> +       unsigned int reg =3D GET_CLK_ON_OFFSET(clock->on_index);
+> +       struct rzv2h_cpg_priv *priv =3D clock->priv;
+> +       u32 bitmask =3D BIT(clock->on_bit);
+> +       struct device *dev =3D priv->dev;
+> +       u32 value;
+> +       int error;
+> +
+> +       dev_dbg(dev, "CLK_ON 0x%x/%pC %s\n", reg, hw->clk,
+> +               enable ? "ON" : "OFF");
+> +
+> +       value =3D bitmask << 16;
+> +       if (enable)
+> +               value |=3D bitmask;
+> +
+> +       writel(value, priv->base + reg);
+> +
+> +       if (!enable)
+> +               return 0;
+> +
+> +       reg =3D GET_CLK_MON_OFFSET(clock->mon_index);
+
+What if a clock does not have a clock monitor bit?
+Clock bits in registers CPG_CLKON_22 and later do not have corresponding
+clock monitor bits.
+
+> +       bitmask =3D BIT(clock->mon_bit);
+> +       error =3D readl_poll_timeout_atomic(priv->base + reg, value,
+> +                                         value & bitmask, 0, 10);
+> +       if (error)
+> +               dev_err(dev, "Failed to enable CLK_ON %p\n",
+> +                       priv->base + reg);
+> +
+> +       return error;
+> +}
+
+> --- /dev/null
+> +++ b/drivers/clk/renesas/rzv2h-cpg.h
+
+> +/**
+> + * struct rzv2h_cpg_info - SoC-specific CPG Description
+> + *
+> + * @core_clks: Array of Core Clock definitions
+> + * @num_core_clks: Number of entries in core_clks[]
+> + * @last_dt_core_clk: ID of the last Core Clock exported to DT
+> + * @num_total_core_clks: Total number of Core Clocks (exported + interna=
+l)
+> + *
+> + * @mod_clks: Array of Module Clock definitions
+> + * @num_mod_clks: Number of entries in mod_clks[]
+> + * @num_hw_mod_clks: Number of Module Clocks supported by the hardware
+> + *
+> + * @resets: Array of Module Reset definitions
+> + * @num_resets: Number of entries in resets[]
+> + * @num_hw_resets: Number of resets supported by the hardware
+> + *
+> + * @crit_mod_clks: Array with Module Clock IDs of critical clocks that
+> + *                 should not be disabled without a knowledgeable driver
+> + * @num_crit_mod_clks: Number of entries in crit_mod_clks[]
+> + */
+> +struct rzv2h_cpg_info {
+> +       /* Core Clocks */
+> +       const struct cpg_core_clk *core_clks;
+> +       unsigned int num_core_clks;
+> +       unsigned int last_dt_core_clk;
+> +       unsigned int num_total_core_clks;
+> +
+> +       /* Module Clocks */
+> +       const struct rzv2h_mod_clk *mod_clks;
+> +       unsigned int num_mod_clks;
+> +       unsigned int num_hw_mod_clks;
+> +
+> +       /* Resets */
+> +       const struct rzv2h_reset *resets;
+> +       unsigned int num_resets;
+> +       unsigned int num_hw_resets;
+
+This is not really used, so please drop it.
+
+> +
+> +       /* Critical Module Clocks that should not be disabled */
+> +       const unsigned int *crit_mod_clks;
+> +       unsigned int num_crit_mod_clks;
+> +};
+> +
+> +#endif /* __RENESAS_RZV2H_CPG_H__ */
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
