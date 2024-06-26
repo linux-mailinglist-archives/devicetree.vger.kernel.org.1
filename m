@@ -1,107 +1,100 @@
-Return-Path: <devicetree+bounces-80112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C78B917CF9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:52:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 535FE917D3C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 12:05:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB0A4285944
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:52:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F3081C21C8B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3EC15FA73;
-	Wed, 26 Jun 2024 09:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B634B179658;
+	Wed, 26 Jun 2024 10:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OkdD7vi6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vm9YDRV5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B62C16EB64;
-	Wed, 26 Jun 2024 09:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287DA176229
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 10:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719395558; cv=none; b=KrxcJgASDPCVsAsAot/BrFydsg0LPxs0TnObPHWETpym4yeXmBMx8rpFgDBNg+uU2diioIZa+oeNpkT2d7k+J7+i39lfYMlg69lqBqMj+1n8QWPA1mhQUn69lUPxtBkzstEvBt5ekGEJzvnqQAXmpWA7pLwc2LX+bCPp6C5jP/s=
+	t=1719396282; cv=none; b=mzxdzJ35VtJk9IT8R2+DYfFy1P298G2+i8cZkxPSewuHjOGBz/C0kMxlAw1tkAo8/tNzcGA0wUEe3BCW9nmxdaNRJe/lIvdrykfL/00lYf6hI3oB1U9t22Qkndk+mck/X4inHVfREkNxkkYROnOlkM1PNG1paAKRXb1VtJa8j/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719395558; c=relaxed/simple;
-	bh=CEq0I4obOCCO8SDIqFJqvRzxXub/VRZBECmqxp4hfnI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=dnpiKvDGrcPSEpaC8wbdzI5hEDlPx+SVAp5gCHkmjt8OQbSV8fPO5ihO20lAIoIRc+03HgAPMVIjJg8gwpoW1rF1xOPqpMDhWfjc90D+bKxDnvKsjNGHegwaUduxExCTtYn3Xux43GkcHZOUYJJpz6H4DdARNW4iePrh+5XiGMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OkdD7vi6; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57d20d89748so15332a12.0;
-        Wed, 26 Jun 2024 02:52:36 -0700 (PDT)
+	s=arc-20240116; t=1719396282; c=relaxed/simple;
+	bh=wAGGb9nbphDH5JrB+dXV+rNYOi9vDVjsKxMqqIkjMOo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o7Gt4l0hydvdfOlMZ2WJliOmb4uVwbDONre7jrgYZLhL5fBX0QRdc9KE3BPnO0arHoM5wWpUq41SM+anpHpOiafuHfISEimSuu1cdp+cIbYaks/Rwk/O1wulvWA8/By7QqDYyfVtIRphVuQ0sT0uR67nPr0sVKUKqElzsEp86AM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vm9YDRV5; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52cdb0d8107so6165228e87.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 03:04:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719395555; x=1720000355; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=CEq0I4obOCCO8SDIqFJqvRzxXub/VRZBECmqxp4hfnI=;
-        b=OkdD7vi6jDuRlQZtzJfFNuEFGkvs/0pvEg8wheVaJShjap6kLB2gR6nnBYECHyN9nv
-         OWQ2P2p6FOZ8jjb0gDfiR2DaF5A7R1r1E93CQnElHeT3DtApKBZr0YqBOwN4TWzBvQcy
-         8SuytFtxSCGihEoUv06HAU06lLs2r+MJmR2CHdnNI/ij4vlcIPF/fr22rjTD3pTHgZnR
-         x2GSQgtmS7MdAAQhA19uD0Te7Fu8tBhVedTSjK/hpPaZxiIUI28Pi1iSjqH3ta0odbtH
-         zbwAEgiEJbw2eC1vDK6SZf2wx95T6NjTIlYKek48Pq3faj1NoRlK5W4IS7bwA32uyQfD
-         910A==
+        d=linaro.org; s=google; t=1719396279; x=1720001079; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wAGGb9nbphDH5JrB+dXV+rNYOi9vDVjsKxMqqIkjMOo=;
+        b=Vm9YDRV57apSpdpp2wA7uSKyGiEwLBYtVRur3DGKAp77cCw+WDcvD0FA/TaDRCoplK
+         6pRKFxp9qnqV75TNYYQJ6TmKYs7g7Ko8PHDiEqiaaTvIbuN00z/ge7qrkr6pWiKw3pR5
+         4bUESsqQFPIAK0MAEBgFWOxY/2D7Cxm7lK5b0yra7obIu+BQg/Bhgke0CLETntZ2Z629
+         he6V1deADExy63yvUQG6cwWraJOnaJoIOARtNcLqWMBVrMBqFU1K3Nuf/l8krGMUjwFS
+         DnYO/3zcpcxQ+6tCM76ORfH14adqkp9CHbY+fGgVYGW4e8DyYg2WBPedlx68t5uJ3xyD
+         XW1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719395555; x=1720000355;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CEq0I4obOCCO8SDIqFJqvRzxXub/VRZBECmqxp4hfnI=;
-        b=NhtFcVMXPkgsghBceeIwE8ZJgoQOAAL3ns5AEzVdd/Fdm7dDweGTYh786p8YzLgUKe
-         H7/b+0jZ8n/+IdqFDM5qilvbx4Cl0Bj4VeodyRaFCfKB534wIskwIBo1mW48xTEPebEs
-         l8oZxdBNID5tfWNdM0BE7Ew76Qq0IWCq4Wx+U1jH0YsppuD0+vblrzX+uQyKs3f4Q82D
-         4X66V27qm4IlL/kIpv8g8Njtk4rhPf9wpBUcZ2NJdTh7zcGp1ExUTkXEUlpae8aPDlgb
-         05Obsi2SpNPeyZ8TKPemmB7IUnXQVwb/G6MSEebR00zjY+8lYEgaqFk+I+B/dRoxBFUi
-         Gj4g==
-X-Forwarded-Encrypted: i=1; AJvYcCXWolENHOLIN5XzBv78xKlnLEFw0eMvgieUiqhsjD3U9te3J0/cFQu3oXReUa7B7pTetKIueCdzXbGxEn5Dwj8o65n3oHXjD+DURy+iNSWkP19yIGPcHJSomNsgL0BwQkM7yLwFtH/AZi9YTAb6UH9iItyYi9AVgrkkC+3UD9F8uQFbvp4YXiF7O/njmSeSbyFWYa/p5bbSjswPAcBAHg==
-X-Gm-Message-State: AOJu0YxhW2/Y9eDZPXbJskeQHytw5vSRYJh2VmA7L4w1ILK6+cNA7sp3
-	2yABdJ16AQDYZO1cZB4rMrCieCMsHX4DuxuEpt4rwVgsbX6BUKJQ
-X-Google-Smtp-Source: AGHT+IHZHZAuMSxNZX/7yuNeqKyYjSrBmf8AQf3qeuhIfvJ9aUUoROOka1S/xZ1I9jo+Uu5hNsle6A==
-X-Received: by 2002:a50:cd98:0:b0:57c:5f58:58c8 with SMTP id 4fb4d7f45d1cf-57d4a03f239mr6272523a12.40.1719395554678;
-        Wed, 26 Jun 2024 02:52:34 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57d30535010sm6984785a12.59.2024.06.26.02.52.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 02:52:34 -0700 (PDT)
-Message-ID: <80a421342f645fef27fb99c6dc2fa4617239014b.camel@gmail.com>
-Subject: Re: [PATCH v5 4/7] spi: spi-axi-spi-engine: Add support for MOSI
- idle configuration
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org, 
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-  nuno.sa@analog.com, dlechner@baylibre.com, corbet@lwn.net, 
- marcelo.schmitt1@gmail.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 26 Jun 2024 11:56:25 +0200
-In-Reply-To: <072d74af9fc624490b84a1d001039424e572e827.1719351923.git.marcelo.schmitt@analog.com>
-References: <cover.1719351923.git.marcelo.schmitt@analog.com>
-	 <072d74af9fc624490b84a1d001039424e572e827.1719351923.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+        d=1e100.net; s=20230601; t=1719396279; x=1720001079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wAGGb9nbphDH5JrB+dXV+rNYOi9vDVjsKxMqqIkjMOo=;
+        b=XQDw2ctfSXTI0FaIF48nW10mZ+jgI5f1DsNzFvYzsSmMHPL69I7rw5vB8V69r05nD1
+         YQLvRPezNIghecmBdr3LVSyShVWmCi8hNZKsU0komrc4C+LI5UYlO0zrSv3vC/tRRorW
+         xnDTLlVb/g4Ig5MYZa2RBpnpnizGl9zn5mPxn6jpez3eln3wIjCEz+f8mvWe+UnSTD1g
+         mxP6vaMEt76tlQrm9lDKFavKD3YuHxuNYOVU1G3eLRdI9fYHljhK8ooUy2h83M/UYkZG
+         6WYO8MfhXLH/06HIePn27618qRUQZwoYsiWp3baY5J5QTQ2Gi8uMBsnO9tPZHSqwnSE2
+         VdfA==
+X-Forwarded-Encrypted: i=1; AJvYcCXkOCZBmyN6nhob7r+ENz0hrVHVfmCKIje5p+aUesoxcVFdX5w5w+JQyC7ITgZDvMNS1LqmEgL+XdXEUCvEZOKIhK6USc7q5QiuEQ==
+X-Gm-Message-State: AOJu0YwDG64vDrjdWofyVeDJv8pcjXJqkyIFeKbqp/85nwDs1ttzi9XQ
+	/aWkdNhHgtG0YwueJisBudYAWcILxzEhsGBx67Tm8qAM0zVFxrOflI47dRwX4wiDct6NoYy4IgU
+	0opBwM+gA7NJ3M0kLPfMpT2pxRe2YC4j90Q9s9uJeUA55MPka
+X-Google-Smtp-Source: AGHT+IH7rPG5U6OeXEnbgIj889fPheKL56AlWQLK2rD9EiaTdNPfPLg1zeaf3Y7+S07mnQaIGk8RVTc0mfDwCJd1S0g=
+X-Received: by 2002:ac2:456b:0:b0:52c:df6e:9517 with SMTP id
+ 2adb3069b0e04-52cdf7e66dfmr6847985e87.11.1719396277395; Wed, 26 Jun 2024
+ 03:04:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240612-sm4250-lpi-v4-0-a0342e47e21b@linaro.org>
+In-Reply-To: <20240612-sm4250-lpi-v4-0-a0342e47e21b@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 26 Jun 2024 12:04:26 +0200
+Message-ID: <CACRpkdZyupZmV+e=L0KR8ospH9P=wdUrMFvBnGXyfhLhW3-=PQ@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] pinctrl: qcom: add sm4250 lpi pinctrl
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, alexey.klimov@linaro.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2024-06-25 at 18:54 -0300, Marcelo Schmitt wrote:
-> Implement MOSI idle low and MOSI idle high to better support peripherals
-> that request specific MOSI behavior.
->=20
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
+On Sat, Jun 22, 2024 at 6:49=E2=80=AFPM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
 
-Acked-by: Nuno Sa <nuno.sa@analog.com>
+> Add support for sm4250 lpi pinctrl.
+>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
+No major protests against v4 so patches applied!
 
-
+Yours,
+Linus Walleij
 
