@@ -1,142 +1,210 @@
-Return-Path: <devicetree+bounces-80412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14668918DA1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:56:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAE3A918DA7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:56:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21116B2439E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:56:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FACF2829D4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF82190467;
-	Wed, 26 Jun 2024 17:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10356190069;
+	Wed, 26 Jun 2024 17:56:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fd95CG1f"
+	dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="e1T6aAMQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA5D190461;
-	Wed, 26 Jun 2024 17:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA4F18F2E4
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 17:56:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719424559; cv=none; b=QslqlSdGUGFtuI7Z/W20XG6AS2WYEdzhzsTwoyYSX46B/APRpJQXP7g1Y2RXNAIRMS2K5KwJPxZiR28nvYIGHb7vGWqCvB4t7ncDkcagVvnTq5mx+oKgGdogPelduH/Pr6O5FGeayT8fevkd6UUQiHuRj7Cf+nvpKuBoeKt2BSY=
+	t=1719424611; cv=none; b=aZcyU4pCrrHilfgLjOJubI3lifY70GC4t1ZC2e6zDDTdIVyEqNt5n9sMJpsHUu/2PrGDFEoStR2kGCq04OzBlxFdml6X4i/5vdKOJAXhuiMEsLWERyfzmokWDvxNerbMd2eKBErTHe6ou1RYjtzeIdd3HQOE3BKR5Oco50V0PSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719424559; c=relaxed/simple;
-	bh=/nn9cXzOLqdpmvpMkRXeiT4dOqNiKFz+DhAQVxCofeA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=fJvZC4R0TZk0OGAky/jN+ljabcNowOcM7hjvexRr+qx98fmc9+Gaoc6s0qVySmLmREGpauO2TFONTYJuxq6S0FkA+neqFWTtZ7UOtxfBzIItmkYFh89EPZGSPzwEzs27J2pNlxAzfPdOHrZMzH8tVfJLG7wlhLxSYkjuRwOZoyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fd95CG1f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98507C116B1;
-	Wed, 26 Jun 2024 17:55:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719424558;
-	bh=/nn9cXzOLqdpmvpMkRXeiT4dOqNiKFz+DhAQVxCofeA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=fd95CG1fxVYNa+qAXFNsD6e8Nr9YO9Tqe/f5xGi4hvJIBewDKCPFbpZzID5W4p0qQ
-	 vgT3iR2c16aU7u+6e9p7eA9tUj9T3/osuDUTewfXw8BQr8Ci5NdT6baVbzknnKNRKk
-	 4xsKCHWxcF01jIw9NIJ70jSne1fdXHIsEiNHRnOLdfABvrE2At9FcrxAu/hLzs8Zr+
-	 uimtaFqGIcVFzwKTBuUW6uBZr1fdHvotEtV2/xf6zlgrDgS7kyRPgtKrlc99hjz05N
-	 6yM9dQZRtnRDoIZKzVFPZX8fJdPY/9znKVkOj2/QpvJzdnWVM4aQyWLPlcIau9XRtw
-	 V89A5qUWYfHHA==
-Date: Wed, 26 Jun 2024 11:55:57 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1719424611; c=relaxed/simple;
+	bh=Ot4v4xZ8mAcGHfBbEgU+l8sAbosxzZ/IErDZEAPeSQg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mVArniH+1r/C78bXrunrY4mKUKgj/Twf/079Pr9f8o4KFsBqSKcAqEepmhEYaHrKX0QqPZumNASzSM/sn+PPuZwNSxJ++z8rCUfxFod1u4KC+2QpgPxORxYUjr6BddCO6sew5sd8vmdz7Ti+cP+8b4jGeIAU9fRS/TgYJFpGnOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch; spf=none smtp.mailfrom=ffwll.ch; dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b=e1T6aAMQ; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ffwll.ch
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ec89b67bc0so1743901fa.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 10:56:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google; t=1719424607; x=1720029407; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9ZM4co7+zgQAd1qBwWCVAAvV8TVVgRW2ezKZ6IWngwg=;
+        b=e1T6aAMQYWZpd9vQyBhcD5kRot3hGvWhA3k4dsONVc2gn4Ms8QSEHDSuF8J4WxgwY3
+         +ctR+GrhJLtcqnpeHwXoJzGl2jIZxY5/Vox/GLQtNztSyQqigMa2BgB3az6Kj5s+/5qj
+         EkZNjm1qC5sYvDlyYMrhsKbzWJGEsUdOxP6Js=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719424607; x=1720029407;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9ZM4co7+zgQAd1qBwWCVAAvV8TVVgRW2ezKZ6IWngwg=;
+        b=bZn7RSIvbMuqFf4dBX+i0gs2HRFtaAJY+uEUVSFCnLDR8hNqLzxIyS0uQqRzpo9WcE
+         btXQMHi2SJGT+DJSfdyhfj0lFRYSrhesRfm5h755cWnMYi5m+EWDXTx9OiOaM/LujQDy
+         J1ymJlo04iRAG+nIwAThtPShUZyNCGRG7vMhXMriJ5NQeNx8t4yLDgUjLI32HeMpeJDS
+         4+b5dLcfLortW5tvDhZvhg+xazy2fISwcBE55xObnmz7oCOTmjUOgaT7foPLwEz5ducK
+         V5gy4iLCKmRn/a/vQJxOYQqVvjIul3Q3pRtGz+i0j6OBjNphTRhQtiHZQdz9tTOcyqj3
+         yqsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUrGJ2NrP1jRt32vAZbXX3YtmOtx+gnrLifmOhk6oTp7D7q8vgi2NSkg37qC7uPL7qtELr0SRSSIkq4+xbAxanwqVYI3Z4ufq7o1g==
+X-Gm-Message-State: AOJu0YxU//2h3FmFF0rNcym7EhWWO4gcHMiAJt04O7C9l6ZA6MVwmROu
+	T+rlAxJE/F9Dw33oM4Hi/sDTLSjoRuRZ21rLmf+M4Tvy92VlW0+K8t0sLq9p/Dg=
+X-Google-Smtp-Source: AGHT+IHpT050wLlCJMuYquS/RZZlwvPNrgj194MZbf2u4dKv3AnFWfObCpyKJAMPQnTOJYHQGnJJZA==
+X-Received: by 2002:a2e:9903:0:b0:2ec:4176:dcaf with SMTP id 38308e7fff4ca-2ec54ce1c2bmr76783881fa.3.1719424605371;
+        Wed, 26 Jun 2024 10:56:45 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c84245f0sm34437855e9.33.2024.06.26.10.56.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 10:56:44 -0700 (PDT)
+Date: Wed, 26 Jun 2024 19:56:42 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	Yong Wu =?utf-8?B?KOWQtOWLhyk=?= <Yong.Wu@mediatek.com>,
+	"sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+	"mripard@kernel.org" <mripard@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"jstultz@google.com" <jstultz@google.com>,
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Jianjiao Zeng =?utf-8?B?KOabvuWBpeWnoyk=?= <Jianjiao.Zeng@mediatek.com>,
+	"willy@infradead.org" <willy@infradead.org>,
+	Kuohong Wang =?utf-8?B?KOeOi+Wci+m0uyk=?= <kuohong.wang@mediatek.com>,
+	"quic_vjitta@quicinc.com" <quic_vjitta@quicinc.com>,
+	"pavel@ucw.cz" <pavel@ucw.cz>,
+	"robin.murphy@arm.com" <robin.murphy@arm.com>,
+	"contact@emersion.fr" <contact@emersion.fr>,
+	"logang@deltatee.com" <logang@deltatee.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>,
+	"jkardatzke@google.com" <jkardatzke@google.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
+	"benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+	"tjmercier@google.com" <tjmercier@google.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"joakim.bech@linaro.org" <joakim.bech@linaro.org>,
+	"ppaalanen@gmail.com" <ppaalanen@gmail.com>,
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
+	Youlin Pei =?utf-8?B?KOijtOWPi+aelyk=?= <youlin.pei@mediatek.com>
+Subject: Re: [PATCH v5 2/9] scatterlist: Add a flag for the restricted memory
+Message-ID: <ZnxWWtdShekGSUif@phenom.ffwll.local>
+Mail-Followup-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	Yong Wu =?utf-8?B?KOWQtOWLhyk=?= <Yong.Wu@mediatek.com>,
+	"sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+	"mripard@kernel.org" <mripard@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"jstultz@google.com" <jstultz@google.com>,
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Jianjiao Zeng =?utf-8?B?KOabvuWBpeWnoyk=?= <Jianjiao.Zeng@mediatek.com>,
+	"willy@infradead.org" <willy@infradead.org>,
+	Kuohong Wang =?utf-8?B?KOeOi+Wci+m0uyk=?= <kuohong.wang@mediatek.com>,
+	"quic_vjitta@quicinc.com" <quic_vjitta@quicinc.com>,
+	"pavel@ucw.cz" <pavel@ucw.cz>,
+	"robin.murphy@arm.com" <robin.murphy@arm.com>,
+	"contact@emersion.fr" <contact@emersion.fr>,
+	"logang@deltatee.com" <logang@deltatee.com>,
+	"jkardatzke@google.com" <jkardatzke@google.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
+	"benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
+	"tjmercier@google.com" <tjmercier@google.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"joakim.bech@linaro.org" <joakim.bech@linaro.org>,
+	"ppaalanen@gmail.com" <ppaalanen@gmail.com>,
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
+	Youlin Pei =?utf-8?B?KOijtOWPi+aelyk=?= <youlin.pei@mediatek.com>
+References: <20240515112308.10171-1-yong.wu@mediatek.com>
+ <20240515112308.10171-3-yong.wu@mediatek.com>
+ <98721904-003d-4d0d-8cfe-1cecdd59ce01@amd.com>
+ <779ce30a657754ff945ebd32b66e1c644635e84d.camel@mediatek.com>
+ <cef8f87d-edab-41d8-8b95-f3fc39ad7f74@amd.com>
+ <1050c44512374031d1349b5dced228d0efc3fbde.camel@mediatek.com>
+ <3104b765-5666-44e4-8788-f1b1b296fe17@amd.com>
+ <98c11bad7f40bcc79ed7a2039ddb3a46f99908f5.camel@mediatek.com>
+ <75dc1136-7751-4772-9fa7-dd9124684cd2@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev, pabeni@redhat.com, krzk@kernel.org, 
- krzk+dt@kernel.org, kuba@kernel.org, edumazet@google.com, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, davem@davemloft.net
-In-Reply-To: <20240626162307.1748759-1-Frank.Li@nxp.com>
-References: <20240626162307.1748759-1-Frank.Li@nxp.com>
-Message-Id: <171942455738.3889614.10016713539480187733.robh@kernel.org>
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: convert enetc to yaml
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <75dc1136-7751-4772-9fa7-dd9124684cd2@amd.com>
+X-Operating-System: Linux phenom 6.8.9-amd64 
 
-
-On Wed, 26 Jun 2024 12:23:07 -0400, Frank Li wrote:
-> Convert enetc device binding file to yaml. Split to 3 yaml files,
-> 'fsl,enetc.yaml', 'fsl,enetc-mdio.yaml', 'fsl,enetc-ierb.yaml'.
+On Wed, Jun 26, 2024 at 12:49:02PM +0200, Christian König wrote:
+> Am 26.06.24 um 10:05 schrieb Jason-JH Lin (林睿祥):
+> > > > I think I have the same problem as the ECC_FLAG mention in:
+> > > > > > https://lore.kernel.org/linux-media/20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org/
+> > > > > > I think it would be better to have the user configurable private
+> > > > information in dma-buf, so all the drivers who have the same
+> > > > requirement can get their private information from dma-buf directly
+> > > > and
+> > > > no need to change or add the interface.
+> > > > > > What's your opinion in this point?
+> > >  > Well of hand I don't see the need for that.
+> > > > What happens if you get a non-secure buffer imported in your secure
+> > > device?
+> > 
+> > We use the same mediatek-drm driver for secure and non-secure buffer.
+> > If non-secure buffer imported to mediatek-drm driver, it's go to the
+> > normal flow with normal hardware settings.
+> > 
+> > We use different configurations to make hardware have different
+> > permission to access the buffer it should access.
+> > 
+> > So if we can't get the information of "the buffer is allocated from
+> > restricted_mtk_cma" when importing the buffer into the driver, we won't
+> > be able to configure the hardware correctly.
 > 
-> Additional Changes:
-> - Add pci<vendor id>,<production id> in compatible string.
-> - Ref to common ethernet-controller.yaml and mdio.yaml.
-> - Remove fixed-link part.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v1 to v2
-> - renamee file as fsl,enetc-mdio.yaml, fsl,enetc-ierb.yaml, fsl,enetc.yaml
-> - example include pcie node
-> ---
->  .../bindings/net/fsl,enetc-ierb.yaml          |  35 ++++++
->  .../bindings/net/fsl,enetc-mdio.yaml          |  53 ++++++++
->  .../devicetree/bindings/net/fsl,enetc.yaml    |  50 ++++++++
->  .../devicetree/bindings/net/fsl-enetc.txt     | 119 ------------------
->  4 files changed, 138 insertions(+), 119 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc-ierb.yaml
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,enetc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/fsl-enetc.txt
-> 
+> Why can't you get this information from userspace?
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Same reason amd and i915/xe also pass this around internally in the
+kernel, it's just that for those gpus the render and kms node are the same
+driver so this is easy.
 
-yamllint warnings/errors:
+But on arm you have split designs everywhere and dma-buf import/export, so
+something else is needed. And neither current kms uapi nor
+protocols/extensions have provisions for this (afaik) because it works on
+the big gpus, and on android it's just hacked up with backchannels.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc-mdio.example.dtb: pcie@1f0000000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc-mdio.example.dtb: pcie@1f0000000: 'device_type' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc-mdio.example.dtb: pcie@1f0000000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc-mdio.example.dtb: pcie@1f0000000: reg: [[1, 4026531840], [0, 1048576]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc-mdio.example.dtb: pcie@1f0000000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'mdio@0,3' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc-mdio.example.dtb: pcie@1f0000000: 'device_type' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc-mdio.example.dtb: pcie@1f0000000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc.example.dtb: pcie@1f0000000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc.example.dtb: pcie@1f0000000: 'device_type' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc.example.dtb: pcie@1f0000000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc.example.dtb: pcie@1f0000000: reg: [[1, 4026531840], [0, 1048576]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc.example.dtb: pcie@1f0000000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'ethernet@0,0' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc.example.dtb: pcie@1f0000000: 'device_type' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/fsl,enetc.example.dtb: pcie@1f0000000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+So yeah essentially I think we probably need something like this, as much
+as it sucks. I see it somewhat similar to handling pcip2pdma limitations
+in the kernel too.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240626162307.1748759-1-Frank.Li@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Not sure where/how it should be handled though, and maybe I've missed
+something around protocols, in which case I guess we should add some
+secure buffer flags to the ADDFB2 ioctl.
+-Sima
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 
