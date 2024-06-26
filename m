@@ -1,156 +1,119 @@
-Return-Path: <devicetree+bounces-79958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBCF917769
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:33:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A70F91779A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:50:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1B311F2366C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 04:33:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 253A3282BC6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 04:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8665013D255;
-	Wed, 26 Jun 2024 04:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8D913A88A;
+	Wed, 26 Jun 2024 04:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RFI+a1Ca"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NDvzdFfg";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rdDcWB8l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2AF13D2A4
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 04:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B2213B2B1;
+	Wed, 26 Jun 2024 04:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719376291; cv=none; b=eaMuInA9RHavQ3hA7xACiVwcSl8//7B6q26EMZLRzMr53X75iSxwwvQFz83rnXsziZXx4ZuFGr5qRPbbMLC4gtYfbB7r/gSfFGZFa1aExtjC7DTlxDh4DJANrblZtHfZLXxTTcUx3zXzZGdkDIBrH4Wfs+RUCc0VnHUwUJL7+fM=
+	t=1719377415; cv=none; b=Kv8XmjHUz9RfFXvBJD34ie1vVqYCpUOF13kZum7U74hB5OmovUzUEM640NqcKmIBThqvP2T6wUOQIZc67dXktL6aERQQjdUw619Plj9xtbPWypi/3fg2PpMbz9x7WJKNy3DQ+TUmuOrKv1rHo1fvVmMcGvJusnsXWVJMFKNgBIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719376291; c=relaxed/simple;
-	bh=adfuNxru1U6BeAy7pQ0mgIrjzsGqUpk7soP+iYRkcEo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LL5gWSWspXY+5E0BqFzSiHfRm+XAYi/3PxRsHOKm62l5JPV9nnxvrJwSHBwJ3b3wExbeekBqHXqF+gTeX7VmraqwHFt4KzypyTWq+Juh4o5KjnkhDkbtEw8ndI834Th+9215Q67nPmgic1E0NsTXXShINVByTCQN6GglB1Uawco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RFI+a1Ca; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ec61eeed8eso32798871fa.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 21:31:29 -0700 (PDT)
+	s=arc-20240116; t=1719377415; c=relaxed/simple;
+	bh=JNT6n7gJQS1ekI8Tauqvdq8JctJu4XPq5pK/wqzf1n0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=h8mnn/wXnudMQwpa6XFGdW7/VjAXnJxu0INZHPf5tfXuUNjbg9HBEqagMXlR8f0f5RPb86q3Ig+0dKyy8lAfK/j5JOmN5PkpFCi71RGPGU2JJNpji/Ji5lo72kgWvf/qwQ1IpNt/o8EXX6aEhPalou7KQnYhP38+kNPCBCKFIIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=NDvzdFfg; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rdDcWB8l reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719376288; x=1719981088; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qDMOY6eglp03mIp9Xp9m5yyz1aKQNtppCZRvZo0tS5E=;
-        b=RFI+a1CasWZa+RskgS+lmPtq0DDZcIc7pvm3d88xNl35yMzs98bGuh5pn9sHIlJo+G
-         ER977FKHvff0gzOXIXvii3U1vJYen3YIUwViih6ULy7RaFqekE/xUARQCtFVAys54AnF
-         oZhPXU9x5rAGnl26x70uYMNjEwROnXg6GtxHhK2LC1wRSOoFfLhtFYuZMStxZBjRQdVO
-         MlzvGaBQBAVXy0N51I04KTV4GCbCHpJXyylgIG5+w/aWMa1BAtoPieqf2MvLQOgWBf9T
-         8mdbEYhmggKVuUzxO0SsSo8JkMzoYabMb7qWh5JTuw0zeFlcBsCPeE2QSrrj8yD7fZyR
-         jAsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719376288; x=1719981088;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qDMOY6eglp03mIp9Xp9m5yyz1aKQNtppCZRvZo0tS5E=;
-        b=f2u5hpuLz/B2SsnkYXcpACbiPUnH/GCCw2BmvtOKJ8aJnYTKTZL2rtE4urWSBhuPRh
-         dF7IWeFWtRE+fM+P4HBOMwntix21ZJZRU41+f1Llu18x8jb7g4HlTs56ZJ2NF+eQjP3Q
-         UqEhPjFy7piFy+h1TIw0W9iltfdyY7J6CaR9IAcChfZYAKs1gtSJ/jFqWogpM1mC7erF
-         b7TPgaexPpKhRUwZjGQG1VpotODY36+MCfPdtbh4adgcqOkzKZCq0Qgmc/N+5tuqREui
-         GDVP84ohEEYH3sqdIkViLuNcqNlrLXxNfozgylHeE3kjMt/PekokC7YPlmpORQwrIHHC
-         7USw==
-X-Forwarded-Encrypted: i=1; AJvYcCWuXapkY0F+s05+NbzoQVCZSnplXmwm5IC5gitshCK8u4jGR8RTg3TH/y8ZPO9vD2XHm/mGeclM7GkvbZNOLPI/7ArcB65ok7b/KA==
-X-Gm-Message-State: AOJu0YyNTrusYIWnY9iBg8XijkUmsgWRE64yoEZ9w3qinFNDQgLpj61I
-	YYsnpbAxXIokSsNVk4m5ch/LXJTo0WsVZMI/aizFG4TtoeS8jyUzYqt6tuHHnvg=
-X-Google-Smtp-Source: AGHT+IEJDJbJ0nmjp0FdUDEdV4/Bu3Xu/XaM3QtCeSYzxL+1CRkCFEiMq1C2y/BjX9CIR2z91E+1Wg==
-X-Received: by 2002:a2e:9684:0:b0:2ec:53a8:4b3e with SMTP id 38308e7fff4ca-2ec5b387fcamr53011001fa.38.1719376287461;
-        Tue, 25 Jun 2024 21:31:27 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ec67316e57sm4088891fa.103.2024.06.25.21.31.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jun 2024 21:31:27 -0700 (PDT)
-Date: Wed, 26 Jun 2024 07:31:25 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Akhil P Oommen <quic_akhilpo@quicinc.com>
-Subject: Re: [PATCH] dt-bindings: display/msm/gmu: fix the schema being not
- applied
-Message-ID: <vuzzs5xd2zacpamln7apyhnxebg3xadkagzheg5cz2fnuj2ggc@lancgcviktpy>
-References: <20240623125930.110741-1-krzysztof.kozlowski@linaro.org>
- <20240625225127.GA361957-robh@kernel.org>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1719377411; x=1750913411;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=PyotQWY+vhDeX6zc3eagaZBEBtHJTWwRgB86lW0uB1w=;
+  b=NDvzdFfgYVIrEFL3Yx1gkL8Kqxl24R+jEeZKjA9jaYDmtYfSkebrSHUG
+   5QWT2Ydf9RN8yLxnAv3Hu3m6Mu5Eb5pBKCkyqtXEaxTPdh9DkCjBkudpK
+   cNr/JoqvcWtnGz3HBV5/gJEZalJLvmreO70SaIyyNWYfWezH+s7Hplgfs
+   JEH2mcerrEbrp23H8R2kGmVk/g9BPFoZ3RVou3XVEBeQ+CWCPDYkrISC9
+   BMre/gCtg3QITB+Woc6ZcMWGJuxvY8DkF3JaJMq8Hcc5gV4qVxVdkK6Q+
+   CKUnX9NBtoJF63qHPOWai5KiagxkcyYKKwTHKyufi33MhD4RhXpP0ELeO
+   Q==;
+X-CSE-ConnectionGUID: DLYO0bOJRn2SOU8zwygVtg==
+X-CSE-MsgGUID: T0XYMbzOSD+5UwkLbT618Q==
+X-IronPort-AV: E=Sophos;i="6.08,265,1712613600"; 
+   d="scan'208";a="37587111"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 26 Jun 2024 06:50:08 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E05AA160B1D;
+	Wed, 26 Jun 2024 06:50:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1719377404; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=PyotQWY+vhDeX6zc3eagaZBEBtHJTWwRgB86lW0uB1w=;
+	b=rdDcWB8lWIRAgWyjinUmEWXwvz9SmJcSwajwy05Ce7f9lnN/rqniTBbeombDvIYH6V8Gxc
+	JImMfVAnEtyoI6yTyrpO9F+nh1XATBvEBC0osYqXqtcln7+4d4hygY14t31F1Xgv5bqBsQ
+	0DnZQbxSIQ+BH7i9aAGupoS8zZT12FuvoWWEigRD+//j4s/rsWdLThLP6yWAg34urpcAvd
+	BNoahIUjyAz9pRX7TVfnXT+dQoGpPcafV+pVXq7LPRdSkFrTn3f7rOsI9dUtC2k2OBZwhk
+	/aBka9jlMkGmeyuXXUzGYBJOoehgghp+OzfwVY+6urL2GwnUjv79D834IY9vYA==
+From: Paul Gerber <paul.gerber@ew.tq-group.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>
+Cc: Paul Gerber <paul.gerber@ew.tq-group.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: display: simple: Add AUO G104STN01 panel
+Date: Wed, 26 Jun 2024 06:36:27 +0200
+Message-ID: <20240626044727.2330191-1-paul.gerber@ew.tq-group.com>
+X-Mailer: git-send-email 2.44.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240625225127.GA361957-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Jun 25, 2024 at 04:51:27PM GMT, Rob Herring wrote:
-> On Sun, Jun 23, 2024 at 02:59:30PM +0200, Krzysztof Kozlowski wrote:
-> > dtschema v2024.4, v2024.5 and maybe earlier do not select device nodes for
-> 
-> That should be just since db9c05a08709 ("validator: Rework selecting 
-> schemas for validation") AKA the 6x speed up in v2024.04.
-> 
-> > given binding validation if the schema contains compatible list with
-> > pattern and a const fallback.  This leads to binding being a no-op - not
-> > being applied at all.  Issue should be fixed in the dtschema but for now
-> > add a work-around do the binding can be used against DTS validation.
-> 
-> The issue is we only look at the first compatible. I'm testing out a fix 
-> and will apply it tomorrow assuming no issues. With that, I don't think 
-> we should apply this patch.
+Add AUO G104STN01 10.4" LCD-TFT LVDS panel compatible string.
 
-I think we ended up picking up the next iteration of the patch, but we
-can probably land a revert later.
+Signed-off-by: Paul Gerber <paul.gerber@ew.tq-group.com>
+---
 
-> 
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > ---
-> > 
-> > Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> > ---
-> >  .../devicetree/bindings/display/msm/gmu.yaml         | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> > index b3837368a260..8d1b515f59ec 100644
-> > --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> > +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-> > @@ -17,6 +17,18 @@ description: |
-> >    management and support to improve power efficiency and reduce the load on
-> >    the CPU.
-> >  
-> > +# dtschema does not select nodes based on pattern+const, so add custom select
-> > +# as a work-around:
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - qcom,adreno-gmu
-> > +          - qcom,adreno-gmu-wrapper
-> > +  required:
-> > +    - compatible
-> > +
-> >  properties:
-> >    compatible:
-> >      oneOf:
-> > -- 
-> > 2.43.0
-> > 
+Tested on TQ MBa8MPxL with TQMa8MPxL.
 
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 5067f5c0a272..8d75284845db 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -64,6 +64,8 @@ properties:
+         # AU Optronics Corporation 10.4" (800x600) color TFT LCD panel
+       - auo,g104sn02
+         # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
++      - auo,g104stn01
++        # AU Optronics Corporation 10.4" (800x600) color TFT LCD panel
+       - auo,g121ean01
+         # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
+       - auo,g156xtn01
 -- 
-With best wishes
-Dmitry
+2.44.1
+
 
