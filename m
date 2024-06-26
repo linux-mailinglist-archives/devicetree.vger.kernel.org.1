@@ -1,214 +1,472 @@
-Return-Path: <devicetree+bounces-80053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46284917BBB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:07:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 770A6917BDF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 11:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F102B283308
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:07:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053F21F241BD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:09:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84D8716A956;
-	Wed, 26 Jun 2024 09:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB41176256;
+	Wed, 26 Jun 2024 09:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E6XZ/z1Z"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="bmvXPQco"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2086.outbound.protection.outlook.com [40.107.255.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C86415F33A;
-	Wed, 26 Jun 2024 09:07:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719392849; cv=none; b=mTn98hhB0FK9AwDZzUKrug/LcNUlRJhkpC5xOiluJZHpP/62nN/s4QS1Qsz66uM7Nup7SKnyIPvX4pPGnZ3Fw0sJwoN811tft5HhHSutEaBqPGIYoQLcHThxVVtqVmItIJyylscoaz28Q9+IIq9IuFNnYVOZBpTyBaS9anjFr1k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719392849; c=relaxed/simple;
-	bh=Vef46PKEnj+c20gxbE0Uu58kS6RdxRRCUeDVUuJMjso=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=km82hDP/r0N3FrQqCJy9wdHVKI6j/5HmQp0rRhyUDqaQ1BEdgVBIYK+cqK/eAC8KcM14iMMSJwTdCZu4ayvQQ5v/xBwit2jc8OIw1zqIS0m8Xvzkdg1h6qwCg2qi0shAKph5q9bft7svQSQjNeIX5J9FKfGq/1Wm8SMGGhM5JGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E6XZ/z1Z; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52cd87277d8so4868519e87.2;
-        Wed, 26 Jun 2024 02:07:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719392846; x=1719997646; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=76/161HoTumb+iDrdbol7NJLj3KBEjm/AeLJQvuGQYM=;
-        b=E6XZ/z1ZNeF2Ss0WOEfCd4s1EJF9pjBH5N3hUKRSHhQrUfJQ0ELSBT7oHYdmC81oW0
-         kBsHCNf8gkT0+qW7IrNKYXM7R3eYGXkXBlDdxqzKgdg99HACDFyrQvufhnT67prkfjoX
-         OnKt1V5nrpXfUN1+q5xx/7ELGNeqocGTrWqtwrz+lbOIiKyGsKgkX551KJRqZKalGitr
-         dLjddjOQcDe4D4XomgDRyKgNMU6O82QMul+jo3JVaLYxkFTHRhyk1H8K3ED5nNArBGwW
-         SvWjG/6CTxhbXKezErJXE/ASak8YG0BRLy3vCdcTvnha5YY51CBgv1y9DllnzTClFAQC
-         O3Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719392846; x=1719997646;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=76/161HoTumb+iDrdbol7NJLj3KBEjm/AeLJQvuGQYM=;
-        b=srAiVKSKsaJWJ2YgttVkbvLFq32g9GmjAqM6Qz+JXvm6yZ1NRfC3JFXwiUoKkClKk2
-         b48Vw2lmlsaUOp8OUHqe8cojxnYtSdMV856ysYxIalE8kbqBY0Vngre9BSGpQY+nIq2i
-         8oa0ORHXgADoEfMtoqID8RlOaLRT+dzSWD9l6YGeZax8nCREUxOEnLkNAj+O7VpbJCyg
-         o9jDeaOSDdXHB8pTyTxVY9Trip2tmdi/8smjTXxxagvNLCnNGpcJw5XAC45QZUVFVJlN
-         IbvYR84mndUl158wZm/S90JB4J9AzX6Qy9pzDl/Tt0n4sbIP6XJTVA5ad7Km7q7v/fgP
-         d9oQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFglCX73AxZGiJ8d1uAVW595GLrCmRzfOapfgnTCgX9De7TYggq7hLTCBFU1wrbfAalPjMHk1yUFPHosYNSmQnTnrE5I0acCPmrkA6dLSc4NbdH1ZvFePwUdIRdo3YsajpTW+jgchTMqJ1hklPwdT/Ms3pjYUFxxEgddo3k5lzue+3ULQT4PiY
-X-Gm-Message-State: AOJu0YzxKjHxLT+q/7tmAa4DngzTWp54eR5gHayqeKuU4S82JiStEApC
-	Xc33jC6R6fpa/P5d1E9XxwExW/FbA8Sl2EThf6nJ3LjmjizuKT2bY2c8Yw==
-X-Google-Smtp-Source: AGHT+IFZmB6mGtubKzB8dHrJhQUZN+wpPbJjxQUSSxefcinOlw8QmfoZ2F+jKhN6CWJaO6QMqWqLEg==
-X-Received: by 2002:a05:6512:3450:b0:52c:dea8:7ca0 with SMTP id 2adb3069b0e04-52ce185cf71mr5655473e87.55.1719392844938;
-        Wed, 26 Jun 2024 02:07:24 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd? ([2a10:a5c0:800d:dd00:8cfe:d6e7:6701:9dfd])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cd84b23d9sm1455429e87.202.2024.06.26.02.07.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 02:07:24 -0700 (PDT)
-Message-ID: <8d964b3f-e2d0-44b2-bece-92380b8c9a5d@gmail.com>
-Date: Wed, 26 Jun 2024 12:07:22 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7944F1741D1;
+	Wed, 26 Jun 2024 09:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.86
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1719392910; cv=fail; b=pBddZ3r028x5Lhfi7FjLXK3mkn+hbKbB5cN1blVEZkg/+22hU3IJvlLFf+fg49L2hmb+k2u9PLV1fHiJ306ySJNz1UA31LwAGSWwRS4pMpHBcgX4Ada4jVZkJeqH/aZs+LsoyaMGVfI1ONWEjBqmWvtZqmD6odQBAe/tPobHhF0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1719392910; c=relaxed/simple;
+	bh=9rqdb3bweZo+DREd0kHWSfrwaBZM0bC0snPT9FyLXh0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=USEwvIJnPKODpU1gXN26C3DAqlC46mrp0a9NKn5OUoHrN1nZXT/61ZerLoytZf7w0WIECAHiSMtPP7cj0HsPeY6YfirN2CMLtfPW22KL0aWpAAwrZv5hhAKtpUJbGazWmyKRnl9JQzmqPeMbCwMcQQcb4/XQyZKmBco50M3qNqQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=bmvXPQco; arc=fail smtp.client-ip=40.107.255.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LbcC49Zpzc+RkPeG6SKV1uN7MBNweVoRbz1EM6Dk/nCOji+dcdmVokPJOUdhLpXp5driSwiSTTafe6yvKORXnmzbNfd/jKY7pGfHZYbeLPYX0LK/4RQAI/XtDtCiltMJMeNFHjGue58/5akTPveadRbTr1XesSthStzCYns2OTzXH5ESes3QAAystC0DyqFokXCzQFBKsmlC9/zhsjusZBkb5WWS8Gc+PKe8Sgcw+YX69nFp/dK38ENJMflCarlclyNWdmAiYvigydiqE2xCcb5/sCAaB1SK5kIVLbmcwN7SAyDsC5NkGXSLoR/i0mAW//PpGNiXYdyepSI2HeVwzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QB96pUAHPYpne52+aZSEHu32dSiQWPF5XIERkA9QsJk=;
+ b=VyWQF9b/w5bq/fooj2wXp9+uF/02y6mGAF3tZql3Di7hBUcA8SPznW6cbfEPDCvuYL7OHYBwrujKhZc2RmstPLKMLZfM0Z9qX99PZ17teXYut/QLT8EvUKF5tpi86VIsqOYO0/xdZ/2Z9yU6qV5bu9UB1sEzi2GHdau3VEBL2PQoC4xMjzYHBsB/1f4IsNz0QpG+dw8ufBxmq/lhtB+zS+ckPHLv/VuHl9v6XwxY8KBTLwrVPz9fC/jAoCowpL2Mw8QsMaUK+G4ZfxizMa6SPZQBV5Pl+XSD8dVeVN+cWaGGwrBlplkMwjw+uYz/AGP0hu6ZOVo9g3XjhyIkNlQCdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QB96pUAHPYpne52+aZSEHu32dSiQWPF5XIERkA9QsJk=;
+ b=bmvXPQco5EVQwja1LBcHThFuK1UjUmXuu7z0PqFycs9tjZheDQJ9YQ0/RrJQKXXaS3oHv0w2F2Vo2CGrAM38KX/GhDEpCZBmfh8ZMjMy+Y39TeJ+yhsfs5uh66uRjHsavlDs4rqhRwn6AMp9yPrsgBBI4OYk6a4rQzXf2xAOMt5uhRMlgvBEjWXbNYHiKaSHwJ4JUT1QMWW8RqWxy+uVYUByWRAQtiBQSST9woood9xkNK/DfjH/wbflaVyI4ZOZsqLJOex2wieZnzO3elPb/Y0jkU8uw01TDCQlKtueUmQRgHYUt/eMlsm+oFWGl8FNNQnvqi9UcrNN/9+7W/4NSA==
+Received: from KL1PR02CA0018.apcprd02.prod.outlook.com (2603:1096:820:c::23)
+ by TYZPR04MB8022.apcprd04.prod.outlook.com (2603:1096:405:ab::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.22; Wed, 26 Jun
+ 2024 09:08:24 +0000
+Received: from HK2PEPF00006FB4.apcprd02.prod.outlook.com
+ (2603:1096:820:c:cafe::68) by KL1PR02CA0018.outlook.office365.com
+ (2603:1096:820:c::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7719.22 via Frontend
+ Transport; Wed, 26 Jun 2024 09:08:24 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB4.mail.protection.outlook.com (10.167.8.10) with Microsoft SMTP
+ Server id 15.20.7677.15 via Frontend Transport; Wed, 26 Jun 2024 09:08:24
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v9 07/26] ARM: dts: aspeed: yosemite4: Add gpio pca9506
+Date: Wed, 26 Jun 2024 17:07:23 +0800
+Message-Id: <20240626090744.174351-8-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240626090744.174351-1-Delphine_CC_Chiu@wiwynn.com>
+References: <20240626090744.174351-1-Delphine_CC_Chiu@wiwynn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/6] Support ROHM BD96801 Scalable PMIC
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <cover.1718356964.git.mazziesaccount@gmail.com>
- <20240620143859.GM3029315@google.com>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240620143859.GM3029315@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB4:EE_|TYZPR04MB8022:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 2d64fd3f-17af-48e0-e01c-08dc95bf88bd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230038|82310400024|36860700011|1800799022|376012|7416012;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Xz3X8UJcL/cfhHHhd1REirEE6rzduHyHDZB/uppj+tw6XXzxRm3nW6TdJV1v?=
+ =?us-ascii?Q?QzRnwLvs1x2KpCvFMkX7Ko2d7kuMSJARoiPDV3JGPxAPmXfUJXWoUVXjxfwj?=
+ =?us-ascii?Q?g2W9TpJWEZsoZZmc1DukAp91R5wClzXWHqbjtHSxgl2I3vNR3AiKccMH8LKN?=
+ =?us-ascii?Q?aecK/1Q3CaR8GJsEQSLAXkjdtVom6yx/Xccx09g1Q5LU1pBv0g8kHFqMRmEe?=
+ =?us-ascii?Q?T8redg0D9vAhSyxYBsehslN9jF2de3eXaAZaKG0Fu93wRnIC2s9Fc8YTCoY8?=
+ =?us-ascii?Q?vb7Sg5hM5Tb6T3V7yTUOjmSGKB+Fn6A8fddn17NezbjnxuGCsXqM+pFTqejE?=
+ =?us-ascii?Q?3xyN5h2BJgjONGOfU+/m3RiIcGVrRBAsMTmS661udjO/5eDXxFpLPCxuIrCa?=
+ =?us-ascii?Q?gL7FiVhxAEu+vriVbiFchjo/xoEAYFlGvOMjHqCpVl175JWVQceTK+sLFA1t?=
+ =?us-ascii?Q?EUrk7wOEbOEQmxQkSlWAakAmuUwcKZn/cc2ehxN9vOkCNhxGFpg/j9bEXb1S?=
+ =?us-ascii?Q?8d8lbaIgwK1x0wBErWcRT8KlJrpz35RTiHcVldttffU4W38z7CjmRAkkUY2+?=
+ =?us-ascii?Q?QjaUwNv1+RFlhdx4YCpcqHfWLgWnCZV45r6xGWcnCYbg3tJwMv44/vW4uviF?=
+ =?us-ascii?Q?eKpgSH9s8ztT4jjboVXu7lZWXLzDddo0uJyQYbED4gynbSnx8Hu6Wbb7BaeF?=
+ =?us-ascii?Q?Oqp6iW6bar/p/SqVgL1MEPubTYQpud0fqVLkGdtTiAAsKRNt+V3GO/WdPjo4?=
+ =?us-ascii?Q?RIDh65Fqu4db2pKmcbSNxBonQgteQvaNh4qoHlce/lpYOeKE6Eg28n7ZlZUY?=
+ =?us-ascii?Q?Tr3s8NQWq6qmZyemmoSHxMRGUMu+YUpu7dv4dJz6/LMRMjFKCWjKi1hRJsMW?=
+ =?us-ascii?Q?Pxx3kZI7EdTJhNijHNqg2UE0cIa+rMRTskNxih3Q3jko+yE1q3XAjEWcOkXc?=
+ =?us-ascii?Q?pyGGWsTRfjqlv/E9H6FDcR0mliCYucwOu99usHtbATtC5pApgbefEfhvtizz?=
+ =?us-ascii?Q?bnyOvt4HARBVH8pyKYglacI6eruWq6a7SYatrQFOi6WzHFh/kNR2FDYP/O7C?=
+ =?us-ascii?Q?DwdEZj5Ce8AXAHFG8fMv3+b9MqXunfd2wUKbjEHh4HET+DZPHLb+rZNS1eQt?=
+ =?us-ascii?Q?DZWSffaUMp11beE/i/bN4V/J42Zw3V+gKRMOtUkoxwxQACcsoQZm44yjWX1a?=
+ =?us-ascii?Q?9SnDxdos5UiTJdWKImIfGhdsDz+ug66NnwPaU/ofKuKHDc2VTid/yOSglCkw?=
+ =?us-ascii?Q?rmDeGBF6CP7PBFGsiD70YtYZbbsrr+uC8mLNENf+pZDqN9+Zo6CrGg2Ddo40?=
+ =?us-ascii?Q?xeuFWnivZ1dayj2/qoacQ+JWSsOd1KpHPhFQq3/JPqUsERLGVF0mFnPlTWNH?=
+ =?us-ascii?Q?t0IRP7JwmimPGsBtf7fn16sV/88FZiWU7lPhYjB7JREo8443gw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230038)(82310400024)(36860700011)(1800799022)(376012)(7416012);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2024 09:08:24.3017
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d64fd3f-17af-48e0-e01c-08dc95bf88bd
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB4.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB8022
 
-On 6/20/24 17:38, Lee Jones wrote:
-> On Fri, 14 Jun 2024, Matti Vaittinen wrote:
-> 
->> Support ROHM BD96801 Scalable PMIC
->>
->> The ROHM BD96801 is automotive grade PMIC, intended to be usable in
->> multiple solutions. The BD96801 can be used as a stand-alone, or together
->> with separate 'companion PMICs'. This modular approach aims to make this
->> PMIC suitable for various use-cases.
->>
->> This series brings only limited support. The more complete set of
->> features was sent in the RFC:
->> https://lore.kernel.org/lkml/cover.1712058690.git.mazziesaccount@gmail.com/
->>
->> The v3: implemented also support for ERRB interrupt and setting a name
->> suffix to IRQ domains. That work was postponed and will be continued
->> after some unrelated changes to irqdomain code are completed as
->> discussed here:
->> https://lore.kernel.org/all/87plst28yk.ffs@tglx/
->>
->> Revision history still tries to summarize changes from the RFC for the
->> reviewers.
->>
->> Revision history:
->> v3 => v4:
->>   - Drop patches 7 to 10 (inclusive) until preparatory irqdomain changes
->>     are done.
->>   - Cleanups as suggested by Lee.
->> 	- Change the regulator subdevice name. (MFD and regulators).
->> 	- Minor styling in MFD driver
->>
->> v2 => v3: Mostly based on feedback from Thomas Gleixner
->> 	- Added acks from Krzysztof and Mark
->> 	- Rebased on v6.10-rc2
->> 	- Drop name suffix support for legacy IRQ domains (both
->> 	  irqdomain and regmap)
->> 	- Improve the commit message for patch 7/10
->>
->> v1 => v2:
->> 	- Add support for setting a name suffix for fwnode backed IRQ domains.
->> 	- Add support for setting a domain name suffix for regmap-IRQ.
->> 	- Add handling of ERRB IRQs.
->> 	- Small fixes based on feedback.
->>
->> RFCv2 => v1:
->> 	- Drop ERRB IRQ from drivers (but not DT bindings).
->> 	- Drop configuration which requires STBY - state.
->> 	- Fix the register lock race by moving it from the regulator
->> 	  driver to the MFD driver.
->>
->> RFCv1 => RFCv2:
->> 	- Tidying code based on feedback form Krzysztof Kozlowski and
->> 	  Lee Jones.
->> 	- Documented undocumented watchdog related DT properties.
->> 	- Added usage of the watchdog IRQ.
->> 	- Use irq_domain_update_bus_token() to work-around debugFS name
->> 	  collision for IRQ domains.
->>
->> ---
->>
->>
->> Matti Vaittinen (6):
->>    dt-bindings: ROHM BD96801 PMIC regulators
->>    dt-bindings: mfd: bd96801 PMIC core
->>    mfd: support ROHM BD96801 PMIC core
->>    regulator: bd96801: ROHM BD96801 PMIC regulators
->>    watchdog: ROHM BD96801 PMIC WDG driver
->>    MAINTAINERS: Add ROHM BD96801 'scalable PMIC' entries
->>
->>   .../bindings/mfd/rohm,bd96801-pmic.yaml       | 173 ++++
->>   .../regulator/rohm,bd96801-regulator.yaml     |  63 ++
->>   MAINTAINERS                                   |   4 +
->>   drivers/mfd/Kconfig                           |  13 +
->>   drivers/mfd/Makefile                          |   1 +
->>   drivers/mfd/rohm-bd96801.c                    | 273 ++++++
->>   drivers/regulator/Kconfig                     |  12 +
->>   drivers/regulator/Makefile                    |   2 +
->>   drivers/regulator/bd96801-regulator.c         | 908 ++++++++++++++++++
->>   drivers/watchdog/Kconfig                      |  13 +
->>   drivers/watchdog/Makefile                     |   1 +
->>   drivers/watchdog/bd96801_wdt.c                | 416 ++++++++
->>   include/linux/mfd/rohm-bd96801.h              | 215 +++++
->>   include/linux/mfd/rohm-generic.h              |   1 +
->>   14 files changed, 2095 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
->>   create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96801-regulator.yaml
->>   create mode 100644 drivers/mfd/rohm-bd96801.c
->>   create mode 100644 drivers/regulator/bd96801-regulator.c
->>   create mode 100644 drivers/watchdog/bd96801_wdt.c
->>   create mode 100644 include/linux/mfd/rohm-bd96801.h
-> 
-> allmodconfig and allyesconfig builds fail with:
-> 
->    make[5]: *** No rule to make target 'drivers/regulator/da903x.o', needed by 'drivers/regulator/built-in.a'.
->    make[5]: Target 'drivers/regulator/' not remade because of errors.
+Add gpio pca9506 I/O expander for yv4 use
 
-Bummer!
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+---
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 252 ++++++++++++++++++
+ 1 file changed, 252 insertions(+)
 
-There is unrelated change in the Makefile. I must've messed up a rebase! 
-Sorry! I'll send new version with corrected Makefile - latest early next 
-week. (I suppose new version is appropriate instead of a follow-up as 
-this breaks the build).
-
-Thanks for the heads-up Lee!
-
-Yours,
-	-- Matti
-
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index f0f714c7bc77..33dcb2451ae3 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -175,6 +175,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -193,6 +221,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -211,6 +267,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -229,6 +313,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -247,6 +359,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -265,6 +405,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -283,6 +451,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -301,6 +497,34 @@ mctp@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 	};
+ 
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@24 {
++		compatible = "nxp,pca9506";
++		reg = <0x24>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
+ 	power-sensor@40 {
+ 		compatible = "adi,adm1281";
+ 		reg = <0x40>;
+@@ -690,6 +914,34 @@ ipmb@10 {
+ 		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+ 		i2c-protocol;
+ 	};
++
++	gpio@20 {
++		compatible = "nxp,pca9506";
++		reg = <0x20>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@21 {
++		compatible = "nxp,pca9506";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@22 {
++		compatible = "nxp,pca9506";
++		reg = <0x22>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	gpio@23 {
++		compatible = "nxp,pca9506";
++		reg = <0x23>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
+ };
+ 
+ &i2c14 {
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.25.1
 
 
