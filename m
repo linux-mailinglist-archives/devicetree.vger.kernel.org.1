@@ -1,115 +1,128 @@
-Return-Path: <devicetree+bounces-80033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19853917ABE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:19:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A352C917AC8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2F9B1F23846
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:19:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16738B26C52
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:20:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BE916131C;
-	Wed, 26 Jun 2024 08:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FA2160796;
+	Wed, 26 Jun 2024 08:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="N3WVX5Pm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MUS4sgYY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B461607BD;
-	Wed, 26 Jun 2024 08:18:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50224149C4E;
+	Wed, 26 Jun 2024 08:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719389920; cv=none; b=WjB+vz3Tk54IB/lO7wk7u4g2VdORaezooDm//UwxdApfZsaqtAj8iIgtUzQbcLyijnxQN/l5cIwkusCxNUlHH+B0hBHdp54YG2ls1mCjvdyoD3wCdMsHb+N5zhZ1+qMwxfjRiqlVrgjJOA33bd7U4YqvHpL5xyraU8MRzkRXwxw=
+	t=1719390004; cv=none; b=teqjwoZRF7t9obGvi9n4FnhFfPeTalSDZf48i9ooFUk5C+X5vJRSxDteyupUQTrcNKXqwYI32A0NkIZUyBDNf5pDYlhhGAJe5Q1beg0Kf6EBVCBQkGgkULTpUiSEQiOmfB04JdF8pqEz6PJalh107BJc7UchgenJ+c5wXTCkSTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719389920; c=relaxed/simple;
-	bh=tLqxjdvKncjvyf03Lhs0i9bSG7lfZSHlzhwH58h2wN0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Ihb4A9Th0qdGjafePAHgy56VlBMiC/JmrI50Y2Flk8VP/R2+97DGDR3jKYdQO8VpTkwABP/pdYca21AOkcmxYajF2yLVtN5V+ZZJWfzu1oXa6wsR0Zd3Hf706g/4Fme8BRU3PJG2VqECKvFHIWUcPbUHourOjVU6sdVM2M7zDPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=N3WVX5Pm; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from pecola.lan (unknown [159.196.93.152])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 423DC200EE;
-	Wed, 26 Jun 2024 16:18:31 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1719389913;
-	bh=tLqxjdvKncjvyf03Lhs0i9bSG7lfZSHlzhwH58h2wN0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=N3WVX5PmAnQAqeowtVcZ488EtThGN08BtJWVXcoy22JwMyw501suKxzDx8T7zKjM2
-	 tdVm4H7Pn1oMa3vej7VwUHZPgHzwfS9Lk9oWPVMo8IlmlR2FTpTHH6D5zEM2Sv00dj
-	 CPGGtYnzPHAHQpkBQ15TjkVeopHfXc6ozGXDY4xqdmxDhQPRH08C9tDsosQ9ASuBei
-	 wsWQlDxHPsZo9T23leb7BrD3BSUb4HQ8K3wdJwJbfIpEg0wLCDBDY4koSuJFhIDI7y
-	 TqzW0Ekk7zslyVwI7j3EhZ2n8ItW+kkEz0lyxR9peXgGTZDEagg9R+05/nm13gjsKq
-	 4/9zy4Y+pwlfQ==
-Message-ID: <b4ba5fa7834fdfb1a1e26ff0e01b9bb235de63b5.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 1/2] dt-bindings: i3c: dw: Add property to select IBI ops
-From: Jeremy Kerr <jk@codeconstruct.com.au>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Aniket
- <aniketmaurya@google.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>,  Joel Stanley <joel@jms.id.au>, Billy Tsai
- <billy_tsai@aspeedtech.com>, Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Wed, 26 Jun 2024 16:18:31 +0800
-In-Reply-To: <c15045b4-2e5f-4fcc-b25c-76a5e4973e93@linaro.org>
-References: <20240626052238.1577580-1-aniketmaurya@google.com>
-	 <20240626052238.1577580-2-aniketmaurya@google.com>
-	 <e28ba03d1df1c0c5aec987411c40e44fc351ce0d.camel@codeconstruct.com.au>
-	 <c15045b4-2e5f-4fcc-b25c-76a5e4973e93@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1719390004; c=relaxed/simple;
+	bh=j/ywYji9fCX+Xr7Rt0OjtBLx1A3Se9EU1/A/Czg1tgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RLoXV27cIEwcDbq8SFtoKBcL7Djc7augLa2MoaDQviKQ8LToYPY3PSUw87NEcX84UhGAp7G+QHZWoHXSodbRIjUfTxt8ZkeZuEFpra4UiHisRGf5nXm0Z8NBnB7GdoFDUmZ+rLlCBP4Y3S2D59Td1L3ovQ4HPrtcTxalEZokK5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MUS4sgYY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5E53C32789;
+	Wed, 26 Jun 2024 08:19:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719390003;
+	bh=j/ywYji9fCX+Xr7Rt0OjtBLx1A3Se9EU1/A/Czg1tgU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MUS4sgYYHp8UscBOZXPT9JY4x5dSd/6GsIb6snpPIJL6tcBNpcYuf/1SS1VeKMQod
+	 72V6Q0yzNFJ2uBxHGkprxG/REtg+AqgOwdqrmF6EKBRf0zzGGImkwd/f2ayO+gip45
+	 BWqE4xDiEGxUoDVo5C0tD0ZoDt2DU2BQZXg4WZivh3IoSFz4OvLD6KiREQmfL4LyV3
+	 4bXjTdHzSHQV0b68C4Ly1EBHq98sXhpeKkp8wtHVuJ8BI2aeZu3/Ky8GYO/pEhhSYb
+	 Juv98fh6WSz9HgFM+GWWG/msYbqXMm2OAq4WmqPcQ6H0Es1Yq8ZHUoolgRdg54Yt8U
+	 pJV/AgPqAI9gA==
+Message-ID: <12853a72-190f-4aeb-9a2f-4fdc42c9e4df@kernel.org>
+Date: Wed, 26 Jun 2024 10:19:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] dt-bindings: can: fsl,flexcan: add can-transceiver
+ for fsl,flexcan
+To: Frank Li <Frank.Li@nxp.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>,
+ "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240625203145.3962165-1-Frank.Li@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240625203145.3962165-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krysztof,
+On 25/06/2024 22:31, Frank Li wrote:
+> Add 'can-transceiver' children node for fsl,flexcan to allow update
+> can-transceiver property.
 
-> > > +=C2=A0 ibi-capable:
-> > > +=C2=A0=C2=A0=C2=A0 description: Set to select IBI ops.
->=20
-> What are IBI ops? Standard form letter:
->=20
-> You described the desired Linux feature or behavior, not the actual
-> hardware.
-
-In this case it is the actual hardware; my understanding is that the
-gateware IP can be configured to support in-band-interrupts or not,
-before being baked-in to hardware.
-
-> > Wouldn't the compatible string select whether the hardware instance
-> > supports IBI or not?
-> >=20
-> > I'd imagine that each specific synthesis of the DW IP would imply
-> > corresponding hardware settings, and so would warrant its own
-> > compatible
-> > value.
-> >=20
-> > Maybe one for the DT folks: would this work better as individual
-> > properties? Is there a policy here?
->=20
-> Usually if feature is specific to given hardware, e.g. always capable
-> of foobar, then it can be deduced from compatible, so no need for new
-> property.
-
-Sounds good.
-
-Aniket: the hardware you're dealing with there may need a new, specific
-compatible property, which will dictate whether we enable IBIs in the
-driver.
-
-For cases where no other special behaviour is required, we can
-represent this just as an entry in the OF match table.
-
-Cheers,
+I don't understand.  Who and how updates can-transceiver property? What
+is can-transceiver property (I assume you speak about something
+different than child node)?
 
 
-Jeremy
+Best regards,
+Krzysztof
+
 
