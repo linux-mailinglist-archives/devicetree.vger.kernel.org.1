@@ -1,92 +1,145 @@
-Return-Path: <devicetree+bounces-79992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD0F91790D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:35:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC69917922
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75D691F21B9F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:35:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53022B2202F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55E51332A1;
-	Wed, 26 Jun 2024 06:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC6914F125;
+	Wed, 26 Jun 2024 06:46:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="wI+R+oMZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H/mMMK/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9ED10F4;
-	Wed, 26 Jun 2024 06:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D208F1FBB;
+	Wed, 26 Jun 2024 06:46:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719383718; cv=none; b=OTYYRvZeIjIXG/us0xbXKknZBj+dk63leWy+hfuADSDYVHZLnOghU+wYH0fPPdki3WhNR0Di8IJ/wsQvUS7jMGssYgNrUdBQwQFhJzRa4/evYHqA9e0aL1Fb49Q2d9So+Ulhpxf1zVGNgsXZv/6pLJfWoHxgLtTYycYP5MyO/+8=
+	t=1719384409; cv=none; b=EAihJT130SfLxqJ1gha/GgxBdd3TXgiQ/vo29QP8Kc3yE+/KxdkcwZmeTLcyUITUYW7oj0MhaGqsEojdSWieB7nPibhqb6xTtGeu+1xs6DpVr+nhV3fhNSKxk3wITA1tzRWY28badj1bsGv0znE+EulPYe8bYuL9+qCkU7n5hFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719383718; c=relaxed/simple;
-	bh=oVQnVRh7Hjiwa/vBY5JjF7UZQPoxdlWHcd07dzJeauI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l5D8c1orOiI73JOjidBJz4qILSE/xySOKwpm+/hnj/28NTQul3V+EekMGmX3SdMlArHU2Rg4ZYB3J3d6tnr/yGhWvwj+ZhhxSZ0UZkqa54SBQe0Ceob6TKf6xh6oVhrIVDmpk3WgK0EddRPimklzFQg+gPmNrhW/mNUZW6xfC4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=wI+R+oMZ; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id B10951F9C6;
-	Wed, 26 Jun 2024 08:35:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1719383711;
-	bh=2bQvCiVU8Eu/kfnaC/zVKXhsgqWeoaoM4SwjWSgpRlY=; h=From:To:Subject;
-	b=wI+R+oMZbaQ2HQEE7C3NEbJV77Iy3dTo7H2IzjOPP42xAROivTiqagm81U7tuplAv
-	 N318AavglIRqFLh0WcBSoMmLSU8Fd24jAMHEnV4B/P5dzKgJ/0Ghq24NOQIT9jhKUA
-	 Z+x+MuedE/mimQ6ZxwTmCskLr4ilybpd2gu9n0CKrld/sBpwp+P6mupfcLu/wRTXhz
-	 GE5l2W2dfY9wAIe4N/kMLeOeJ4XQzRctsr45RQmVt4O0s3Vh5lDmm5oDoCgMLcn+ms
-	 cA1xLbsR7/k4Y2sRbhw4bv2+VolrDzVPTgI9cbBTazni79iwDeFVwSyN2Xb+0eIaTN
-	 1VnnmmCEngnEw==
-Date: Wed, 26 Jun 2024 08:35:06 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christian Eggers <ceggers@arri.de>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: eeprom: at25: add  fujitsu,mb85rs256
- compatible
-Message-ID: <20240626063506.GA4324@francesco-nb>
-References: <20240612092934.12282-1-francesco@dolcini.it>
+	s=arc-20240116; t=1719384409; c=relaxed/simple;
+	bh=FZTOzozogmr7TZZJCLtIJkQYkzVg1Wm9YnnKljC/zrs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pNtmbnnpxiFg3QuApvSNS56HM/oAewO1vp/vxdjwcePwPRxyQN7T1bwQWht0IVjxSJYoPFQkVeExGvsr2e0RL8tlYpJaaw1HkTYA5pJlKeC50zRUgTJZv+e4B00p1dYU0xKhyjNDo4FFX3O/LaDalfoc/sszOJYcU7sCZ4+lpsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H/mMMK/b; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ebed33cb65so70940291fa.2;
+        Tue, 25 Jun 2024 23:46:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719384406; x=1719989206; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q26pjNvtJ7W0Ces++s0wabZem58LqWFTT4ckqRgALHQ=;
+        b=H/mMMK/bdKOBjUu2mOI8m10tZt8AlSCCOO1awI/FpG5+7A7nyqJfC4Zgbx1D4ZaR/t
+         0pV6WMGEK1LQkRAL9yqdPPJEMaoFhpB6LHCPzNhUcQquS7zmNRu7bhq+S0KHAX847m2l
+         9OlMic9PLAcr6KSZci/W2E5nswMFyn2tRPZpKQdzPHAcIClkuF8/fI2sYU35IczxozuF
+         8v4ehw/dPp55uLLsFUcubAoTtA4DEpJiG5yOWTs5IrnCOid9mfO7PW6iVD0cJPw63kt+
+         hRxjpBl2BBTF8mPQGQcvb7Qh0l3VDnaiUTYG3c8EMuE5XOACgG/zWrLSSXeET7FthCQ8
+         WtMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719384406; x=1719989206;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q26pjNvtJ7W0Ces++s0wabZem58LqWFTT4ckqRgALHQ=;
+        b=CYjqmgyn6hXrdlNl6TQUV71u+UhR3l3ofMW2Ya+xhtXU2p2CA+cpt3OIkDRscTAKeM
+         oSfJ+0/6bcmCcr/lfAotQEWLy7mM6LvHOpzKcpctbvKalxwPrzqhTgv5Ekj8LP9cblQ5
+         dW3P83qCix/UJykMF9aRjOsZIeumoyA874tGnBzaEP9Y+rxmrjLkYLz/Jh798tW13C3c
+         Qr8QTZMx6N3QyLfhrufeHsZB6gFS/E3aJWUkKVHtS0KdXxdn05nXgIEOCiN9ij46CCbU
+         mwSCPrhqFh97cBc2p0NCN1J7WRCL6Aswlvcj36V+EQ9wp6d0+gkpJHTFc7IjaxX65RJv
+         rabA==
+X-Forwarded-Encrypted: i=1; AJvYcCV9FC81WKp7g1dm0IedLESjnNOZj+a/TKNfdknfw6DurR/2Jcu9yUDoCdBOxNnqxtFPpjl7T7uyM5NNul1Ss36GvMn6fLlzDmSEpjrhZIr1j4vHcSa8cYP7AcAhbgQGpiLlohhDJ//A7vSjrA/HZkxXW2Oudv7H6hdHlel/7TJBOMyENZ7cD3LxFlVUWJOjtsSgnqEd3N8kIoxlu6LoRuig+kNWrQ==
+X-Gm-Message-State: AOJu0YxlGOnAW4jVapzYifZGBLQg2S5vAI2J5DFROdP/ph79mH1pPVHg
+	0BnbrHltfcEi44hj9vEfy3pKXWO7S25jy2GE5i1FPLuhNsqPX4/kypQpMSSSkt4qRYTxb/eB/9z
+	19/V2Ne8O074lwcei5YnTU+ZP8LI=
+X-Google-Smtp-Source: AGHT+IFX5qBtmcXnkr5ljh/wUoeyOwS9xDWP0nBbkYxzNnn3HPX5omlAFS6wmNDeBHunBH1ypcxqoZ9oG8xm1tPDuFM=
+X-Received: by 2002:a2e:8797:0:b0:2ec:4db2:abf2 with SMTP id
+ 38308e7fff4ca-2ec5936fb5cmr72143671fa.34.1719384405760; Tue, 25 Jun 2024
+ 23:46:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240612092934.12282-1-francesco@dolcini.it>
+References: <20240624-b4-sc7180-camss-v3-0-89ece6471431@gmail.com>
+ <20240624-b4-sc7180-camss-v3-1-89ece6471431@gmail.com> <c33dde93-2c3a-4a00-93ee-e4de303c9057@kernel.org>
+In-Reply-To: <c33dde93-2c3a-4a00-93ee-e4de303c9057@kernel.org>
+From: george chan <gchan9527@gmail.com>
+Date: Wed, 26 Jun 2024 14:46:32 +0800
+Message-ID: <CADgMGSvN=uAW7z1dpETGVRewzDG=K2MAtzOkhK7xAcskU_oeZg@mail.gmail.com>
+Subject: Re: [PATCH RFT v3 1/5] dt-bindings: media: camss: Add qcom,sc7180-camss
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Rob,
+On Wed, Jun 26, 2024 at 2:12=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 24/06/2024 14:13, George Chan via B4 Relay wrote:
+> > From: George Chan <gchan9527@gmail.com>
+> >
+> > Add bindings for qcom,sc7180-camss in order to support the camera
+> > subsystem for sm7125 as found in the Xiaomi Redmi 9 Pro cellphone.
+>
+>
+> ...
+>
+> > +
+> > +required:
+> > +  - clock-names
+> > +  - clocks
+> > +  - compatible
+>
+> Nothing improved here.
+>
+> I asked you at v2 to go through all comments and respond to each of them
+> or implement each of them.
+>
+>>> Keep the list ordered, the same as list properties.
+I am a bit confused. Is it by ascending order or by particular order
+like below the same ordering to the example node?
+required:
+  - compatible
+  - reg
+  - reg-names
+  - clock-names
+  - clocks
 
-On Wed, Jun 12, 2024 at 11:29:34AM +0200, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> The fujitsu,mb85rs256 is a 256 Kbit SPI memory FRAM in the same family
-> as the two existing fujitsu,mb85rs* compatibles and at25 compatible.
-> 
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
-> No changes in the driver is required for this to be used, a device tree
-> file using it will come in a later step. Sending to minimize work
-> slowdown because of TI DT maintainer requirements on DT bindings, see
-> https://lore.kernel.org/all/469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org/
-> for more details.
-> ---
->  Documentation/devicetree/bindings/eeprom/at25.yaml | 1 +
+> BTW, I asked for subject to keep only one, first "media" prefix:
+>         "Subject: just one media (first). "
+> but you kept the second "media".
 
-Are you going to pick this patch? From what I can see in the past
-it was either you or gregkh to apply patches to this file, however
-gregkh is not in cc: here.
+Sorry I can't get it. Could you choose one?
 
-Francesco
+_ORIGINAL_
+dt-bindings: media: camss: Add qcom,sc7180-camss
 
+_PREFERED_
+media: camss: dt-bindings: Add qcom,sc7180-camss
+
+_OR_
+dt-bindings: media: Add qcom,sc7180-camss
+
+>
+>
+> Best regards,
+> Krzysztof
+>
 
