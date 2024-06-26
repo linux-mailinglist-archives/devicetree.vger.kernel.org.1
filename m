@@ -1,137 +1,168 @@
-Return-Path: <devicetree+bounces-80233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE1991824A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:25:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C4191823F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:24:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EE1C1C21E91
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:25:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E742DB22C43
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7201836DD;
-	Wed, 26 Jun 2024 13:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A48DE1802D9;
+	Wed, 26 Jun 2024 13:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EXyXNWNo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y4oCauRW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A841822F3;
-	Wed, 26 Jun 2024 13:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1BB1E51F;
+	Wed, 26 Jun 2024 13:24:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719408316; cv=none; b=ZccrZgGIk4McNaMSuQs9Dx4WlIrebeBQlFZTVSa72oujB3/6KZgIFmgfVjvrNqNu4TxwdnM30E5brLB6LbNBVwib3A52THmaKmGXHSvuFp37SQ9H3IMv2+svtT2EeNEh27QdSBRlVgZqi0CG9ND7HHP16oqNiQl78NBsIdGZOzE=
+	t=1719408269; cv=none; b=ZO2gDOj7RGPgvzYZPhfQzvxxY7d5bj1hB0ZNGQTkX2UiLHDx4BJTIv8BJQ5xEXxWudlZr9ejrQtwCdWrhlPKBy2IEz+Af1XVdXkJYbyApce+h5JqZxIwKvCQDurEujRuURVReayLUzF+EGlQMy7IvzVIZhB8KCm9opfytYEOB6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719408316; c=relaxed/simple;
-	bh=EGit2F4HKLGhDNiVHa9AMMoIirVo0tUW+pFwmlWOOG4=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=awx8+TCQl5Jm9LhKJ3vecgwTW7WafqYBbs9uU55nHYtS4GHs6tibpRlp4zeZAu3COdbMYEHnI6oOxn4OoK9AMwx1Eu/D67qv/9cz+RfkrV5xr3vy4l7v7YNG7thY8Ae4jvsGxkQ4Zo73QAmZfwk9vWgp3RSlW2vxr3bHgcqMXvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EXyXNWNo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C1B5C2BD10;
-	Wed, 26 Jun 2024 13:25:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719408316;
-	bh=EGit2F4HKLGhDNiVHa9AMMoIirVo0tUW+pFwmlWOOG4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=EXyXNWNod6EqpAqfmrmiFgNdiuCFX/Pgutt4Tgsm4VOJYzoh2p7naEqWVArXxbU64
-	 iVyB7J/NDaoqaLm65W2gPcnStDTzZe4vVoFbNlhmCw8fNxvwEwfesOraQvfJ29Byl4
-	 rxsE7imU4Ie9lDENJzZWClHQJuLcH4K2YH3Q4sWQV3o0NGZ/+1hw6rQHT8gn5u+ZWY
-	 01C4eilyiokLcDmFAbMVF8No3KXyqule+Uus9tg9i7x2Bzyhrdsdcyf/YWrewWB+c3
-	 M+HOtjSAj/sZckt2hxV4uFgOYDFFP3pQRywH+uTY+lE8k7oRqRmqf1nceYSrMp/xa8
-	 +wFrY8lw6wdVw==
-Date: Wed, 26 Jun 2024 07:25:14 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1719408269; c=relaxed/simple;
+	bh=jQ2TN6oLIfbGe9ZASxWBipgw5mEcx0wqxbmo17h+xJg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lWM3xAZojfmUbLf4q2w4JMqQ5hEPE4Xd+s6zHWdvWMRN5EOO+SX5tPontnz1fp3nVm5f2/LXPwJ078orWsbf8TRqk500Mq8204fbLZFeiPixQVNn8MecsijcID0QYTPt+u00TeWa2sXGDLDvVRkHGZG5V4mkMcwqyv6uvgRiVDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y4oCauRW; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1f9b52ef481so54610195ad.1;
+        Wed, 26 Jun 2024 06:24:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719408267; x=1720013067; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bLAtvvsYw1jar8biIujMee7AuEZKGq0togFn4n6p6bg=;
+        b=Y4oCauRWiLohbkfXUdUCNhp5MjcdQo95zlNej9KTs7BFF1VUpbgdAi6el3LSQYEE/Q
+         KucCUSyh5pbhiQNF6B1Zj4cGon9Pj1SA0xukeST35wJIskJw1w8m9YmwzZsMS4svhvht
+         pVn2a7zIkkwV3xG+SrrN9oJ0mHpTFKXmxBgIaci8DPz5gvo8tNP7cRaPAca90BlFuSyR
+         NdUYM1mRTm4CCvtxwmeKW9wIjjV26W93pdkPM8vH5KhFXe2ztAsP3x5g9mmXpc+rOFXM
+         4KulL/uzhjNabmhNIOIRH+5xfewYZ50pQiofspNif/N7wuVQh+UtK8mDHwYci6FV3kz7
+         1T9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719408267; x=1720013067;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bLAtvvsYw1jar8biIujMee7AuEZKGq0togFn4n6p6bg=;
+        b=pQuTBFsYe0xOdtBnsYLop35caLTmxkjurW5Pk1rABRgWxVF1cbfhHVezWh4JGdSUqg
+         egKEivIvbv4imcKRxx0p+odV6rX4LlIYljaAzqDatptj/wtAx8CK5ARTsXcP5gH0SfIl
+         w3RBuY6SruPyeaP7J/IepuodgI6DK8Rs9Q5zVR7Yo0J9rapNxzXu/I8qoa+lcFpVbyot
+         SkH+xnlhOYuhvx8fw09f4taFqkgeJWjfLqduCXQzACSxzh88Pw7hnemVZCqkBExQB/60
+         WJMbRW1oGFDNZoZ3sRDj/jMFHsNdNrBf8zrVCdKFyFH0vZkn2U8a6RmoK9VQZ3E4cul6
+         Y+Pw==
+X-Forwarded-Encrypted: i=1; AJvYcCXkvN3zns3lj9MfG/uDvXF4EQRdRvsTFk1s7rQJMUgHPclEhi9u3adQJp3TCD/uI2gjdNv/u4P/V82uvuOAvYpJb2y5UhDxnevk/GnV6ipGIhkspuXyan93QxjKff9Yx5JFoXVBQP50HWDHvtVTuh6bsJzrVDGCoomS812p196UVhLamJvniBdwbPIxWUC+BcFVNdaM3isj4wUW6wZHa4FvFDlJGa67zCh9a0GpcNRYHD2jS+s28D+3aQ==
+X-Gm-Message-State: AOJu0Yw3L3YNKXauPJlxi23MnPrAQuNsZ6fJsZqPLGn4qe32XFIdlgnK
+	4haebOv8FFD3KClOykZ5n0OOLLjbalzRjga5RFN/J2eWhKNd1vj7
+X-Google-Smtp-Source: AGHT+IHgyOORbCN2R5XDtWhRTSrn+ht2d38zXOnrDqPLV2TOIQjmmMg+Vm9SwTXZGIZ+iNTTrFAUAQ==
+X-Received: by 2002:a17:902:d511:b0:1fa:3428:53c1 with SMTP id d9443c01a7336-1fa342859b8mr96777385ad.43.1719408267299;
+        Wed, 26 Jun 2024 06:24:27 -0700 (PDT)
+Received: from localhost ([2804:30c:96b:f700:cc1d:c0ae:96c9:c934])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f9eb3c5cb0sm99505355ad.130.2024.06.26.06.24.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 06:24:26 -0700 (PDT)
+Date: Wed, 26 Jun 2024 10:25:52 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Alexandru Ardelean <aardelean@baylibre.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+	corbet@lwn.net, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 6/7] iio: adc: Add support for AD4000
+Message-ID: <ZnwW4Pf1OS8KjkVp@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1719351923.git.marcelo.schmitt@analog.com>
+ <eb5f7b73bdf3ac89117e28f26ee3f54ba849163e.1719351923.git.marcelo.schmitt@analog.com>
+ <CA+GgBR9E2EMeqAXJ=b7jMnJgd4FXZPNm-LYEe-=aKZhJBkFNNw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nikita Travkin <nikita@trvn.ru>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
- phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Anton Bambura <jenneron@postmarketos.org>, 
- Cristian Cozzolino <cristian_ci@protonmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20240623-msm8916-lg-initial-v1-0-6fbcf714d69b@trvn.ru>
-References: <20240623-msm8916-lg-initial-v1-0-6fbcf714d69b@trvn.ru>
-Message-Id: <171940791013.2950956.14057690637549910661.robh@kernel.org>
-Subject: Re: [PATCH 0/3] Introduce msm8916 based LG devices
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+GgBR9E2EMeqAXJ=b7jMnJgd4FXZPNm-LYEe-=aKZhJBkFNNw@mail.gmail.com>
 
-
-On Sun, 23 Jun 2024 14:26:29 +0500, Nikita Travkin wrote:
-> This series introduces two msm8916-based LG devices:
+On 06/26, Alexandru Ardelean wrote:
+> On Wed, Jun 26, 2024 at 12:56 AM Marcelo Schmitt
+> <marcelo.schmitt@analog.com> wrote:
+> >
+> > Add support for AD4000 series of low noise, low power, high speed,
+> > successive approximation register (SAR) ADCs.
+> >
 > 
-> - LG Leon LTE (c50)
-> - LG LG K10 (m216)
+> Hello :)
+
+Hey Alexandru, nice to hear from you.
+
 > 
-> The devices only have basic support for now.
+> Looks good overall.
+> Just a few comments.
+> The only one where I am not sure is about the enum-to-string mapping.
+> If that's fine, we can leave this unchanged (from my side).
 > 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
-> Anton Bambura (1):
->       arm64: dts: qcom: msm8916-lg-c50: add initial dts for LG Leon LTE
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > ---
+> >  MAINTAINERS              |   1 +
+> >  drivers/iio/adc/Kconfig  |  12 +
+> >  drivers/iio/adc/Makefile |   1 +
+> >  drivers/iio/adc/ad4000.c | 711 +++++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 725 insertions(+)
+> >  create mode 100644 drivers/iio/adc/ad4000.c
+> >
+...
+> > +enum ad4000_sdi {
+> > +       /* datasheet calls this "4-wire mode" (controller CS goes to ADC SDI!) */
+> > +       AD4000_SDI_MOSI,
+> > +       /* datasheet calls this "3-wire mode" (not related to SPI_3WIRE!) */
+> > +       AD4000_SDI_VIO,
+> > +       AD4000_SDI_CS,
+> > +};
+> > +
+> > +/* maps adi,sdi-pin property value to enum */
+> > +static const char * const ad4000_sdi_pin[] = {
+> > +       [AD4000_SDI_MOSI] = "",
 > 
-> Cristian Cozzolino (1):
->       arm64: dts: qcom: msm8916-lg-m216: Add initial device tree
+> Maybe I missed a previous comment.
+> And I'm also a little fuzzy on the details here, but in the DT this
+> property has "high", "low", "cs".
+> Is "low" the default if unspecified?
+> Or should this string be "low"?
+
+The default is to have MOSI connected to ADC SDI pin which was empty adi,sdi-pin
+dt property in v5.
+Will make the defalut explicit as "sdi" as suggested in dt-binding review.
+
 > 
-> Nikita Travkin (1):
->       dt-bindings: arm: qcom: Add msm8916 based LG devices
+> > +       [AD4000_SDI_VIO] = "high",
+> > +       [AD4000_SDI_CS] = "cs",
+> > +};
+> > +
+...
+> > +
+> > +       st->gain_milli = 1000;
+> > +       if (chip->has_hardware_gain) {
+> > +               if (device_property_present(dev, "adi,gain-milli")) {
 > 
->  Documentation/devicetree/bindings/arm/qcom.yaml |   2 +
->  arch/arm64/boot/dts/qcom/Makefile               |   2 +
->  arch/arm64/boot/dts/qcom/msm8916-lg-c50.dts     | 140 +++++++++++++
->  arch/arm64/boot/dts/qcom/msm8916-lg-m216.dts    | 251 ++++++++++++++++++++++++
->  4 files changed, 395 insertions(+)
-> ---
-> base-commit: f76698bd9a8ca01d3581236082d786e9a6b72bb7
-> change-id: 20240621-msm8916-lg-initial-8d4a399ec3c2
+> Only if there is another version, it may be neat to reduce indentation
+> here (a bit).
+> Something like:
+>         if (chip->has_hardware_gain &&
+>             device_property_present(dev, "adi,gain-milli")) {
 > 
-> Best regards,
-> --
-> Nikita Travkin <nikita@trvn.ru>
+>         }
 > 
-> 
-> 
+looks good, will do.
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y qcom/msm8916-lg-c50.dtb qcom/msm8916-lg-m216.dtb' for 20240623-msm8916-lg-initial-v1-0-6fbcf714d69b@trvn.ru:
-
-arch/arm64/boot/dts/qcom/msm8916-lg-c50.dtb: /soc@0/audio-codec@771c000: failed to match any schema with compatible: ['qcom,msm8916-wcd-digital-codec']
-arch/arm64/boot/dts/qcom/msm8916-lg-m216.dtb: /soc@0/audio-codec@771c000: failed to match any schema with compatible: ['qcom,msm8916-wcd-digital-codec']
-arch/arm64/boot/dts/qcom/msm8916-lg-m216.dtb: /soc@0/i2c@78b9000/touchscreen@34: failed to match any schema with compatible: ['melfas,mip4_ts']
-arch/arm64/boot/dts/qcom/msm8916-lg-c50.dtb: /soc@0/power-manager@b088000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-arch/arm64/boot/dts/qcom/msm8916-lg-c50.dtb: /soc@0/power-manager@b098000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-arch/arm64/boot/dts/qcom/msm8916-lg-c50.dtb: /soc@0/power-manager@b0a8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-arch/arm64/boot/dts/qcom/msm8916-lg-c50.dtb: /soc@0/power-manager@b0b8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-arch/arm64/boot/dts/qcom/msm8916-lg-m216.dtb: /soc@0/power-manager@b088000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-arch/arm64/boot/dts/qcom/msm8916-lg-m216.dtb: /soc@0/power-manager@b098000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-arch/arm64/boot/dts/qcom/msm8916-lg-m216.dtb: /soc@0/power-manager@b0a8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-arch/arm64/boot/dts/qcom/msm8916-lg-m216.dtb: /soc@0/power-manager@b0b8000: failed to match any schema with compatible: ['qcom,msm8916-acc']
-
-
-
-
-
+Thanks
 
