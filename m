@@ -1,223 +1,152 @@
-Return-Path: <devicetree+bounces-79983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-79984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42DB09178AA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:13:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA27D9178AF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:14:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 652B21C215E6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:13:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3493C1F22CF7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 06:14:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D2914AD0A;
-	Wed, 26 Jun 2024 06:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498ED14B965;
+	Wed, 26 Jun 2024 06:14:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="l2KHR/DW"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oCsNrdPn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C243814A61B
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 06:13:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D01112FF96
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 06:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719382428; cv=none; b=VqK0YhQB5EWupVaz+GC3idGTwcLUjoX90pGAuxFeDP4Tatprth2PCsJKdwWACFsC6AOGnQZPjQwKHk0WbB+c4Y/ECq4/ljZcNBp5rdSnD8KttqrnEYqQQzyedNo9TZTAplYIjEoWAjOVa14Ej3IE8qjaPpIuCzy6dYzPUAfJzPk=
+	t=1719382458; cv=none; b=gAnltz+iAOMYd04wp4IeIgaGe8NSJ3SD9wrcBESZSh0yET+vUm1Iqz8QcJroQBxyi5PmRLtluIzSdrE0qZMI8+DJzxR8qdLSxe4drfzY6acj5a5SYCyT6qAf/ZxR90M2Axrga95WobHWHSDwgN/r1lARxfeIxRv62TNUOEgAxKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719382428; c=relaxed/simple;
-	bh=BJtQ9l+V2WAR5BzRXmZ0v9xaywUqO0Ckllr4TBtCJU8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sJjEBSol5Yxk5KdvWSrByE/fnj/OJYYlM9h6KBQkUMQ66NnmRZp99cBaw8YN5ImFAbP361oDA1iOUfAUrUSq0MGOtXksUUMzgP04xoeaCZUxnHqSatQwpU6QAGqDa4J3UV5YEof3J+IBjPYC2He+LNrWugwSGBYavAwnNI/qo28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=l2KHR/DW; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-424aa70fbc4so6085715e9.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 23:13:46 -0700 (PDT)
+	s=arc-20240116; t=1719382458; c=relaxed/simple;
+	bh=WGd4AsHHHAKOzxnmtiUcoZvGsiI213HQOzoaaZf3ovs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CIiQs4Cn8Fhm+DiVMWqW9MjFOhr9f3IFH8T6GVbSNIkg/x4jAXdYlxdB+Fg+65T5Z5QxaifknAw0Q+VQ+EbcUVsWzUWwJk8JWPyCoN0bkde4OT+7x1JNHMvzD5g1UWcwpkE8pMg24eI9G92dtUAgHV650IOYgaACv7aO61LtSSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oCsNrdPn; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a72467989d5so25363166b.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jun 2024 23:14:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1719382425; x=1719987225; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3MYj1syjPNYZBySDVupnxlkb67gyc3eu/jDgMDAJ8cA=;
-        b=l2KHR/DWvmu3ZJJm7LyULj0+2SWeZjDRcYCUdV3x0MuunR04zGf+UCeZzW6HDqtRXc
-         Nllno76v51jDC5wMjhCKeJss/d3gD5Z7lrZCuN4vlzT9F9K4qBd3cyw3aF64KlTNUYj5
-         wXPRrBstOB7vhRaOHG3uMotE05PY4XTXgHBr6LSd4jP8Wm4Jz6pVlz74A7YZ1Aa37gCG
-         GihMrtUDHAoa8J/Shutxe22fgPe+Mr7kr9NWqQ8D8Se94s9I2HBbjWtdoH8ZmwIpxEa1
-         WeIA3U+hi/10hvmZLrxbxS1YHcMW4PcjRimqxbr/1NW/g9sg7WyfZbA7cxu7kO93wGt5
-         PSbA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1719382455; x=1719987255; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P68vjv5P5fTQyUzXQMtlC4ydEFa3hgGxJKTbgujUek0=;
+        b=oCsNrdPnj5hMVbLGKe8YlXJzzic3QC5VmOY+MtONc3smcr4KOba0rAsbzBHLU0InpM
+         KW8P38YPaoAOCiYXhkxs6OvtpS4Lty5FyN2CmYEArYIbn1b+rvP09vAnUmB/EvSVGMtl
+         xH5SEF7gWCb5iEqbMhlmtdf0qKlWvPN5qt9v25D2UEqIVPDMq8V8w+HVvWRvqmZqGCif
+         I/pGSeHV5rdRULDumqKnnAdvNRFFSp6aeZnUG2pLIMST38nkJDAYAlVvUeU5E/wJ78RG
+         8tZuAzhq1o4XmCsdIoX6ZyZpVaNZ4TcW1hHDB0ReoYDtoNMGg+FtcDbb03uDdP9F4wJ8
+         XIOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719382425; x=1719987225;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3MYj1syjPNYZBySDVupnxlkb67gyc3eu/jDgMDAJ8cA=;
-        b=Tx8CfqgSO9v44qBzUbzUZzEhxIONnE9V0QE4saozgYmGFtf4olZkbvGE+wmvBiyFkA
-         +2G9rAU/BvNuXMxryj05x3lL98afQW6r8777L40WBXLwaFXA8udV5heDj7HCQ37jvqk7
-         bHuu1J1EaD24t5ulA+sC4MKZTMZ9EQUzIBb7s9Pjlr4qGzm1vJ/+NwmKIMTOAU+C0rE9
-         GgO31fSlwk5a6sI/OSMoJzOrdqm2HIRiZ/V/dLO60N6zaVmzcFn3dl6AYm2ERfr2WO0A
-         PcKd6r5KtNI0x+TglvZGHvpJ8WyBLPdZi4OLNCpGmcC+rvDsQ8PxxxD1YhB8FuRB+fdc
-         GJVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzm8yBF9EhgYU/DFtvV40w4VEMU3xKF3L5IehKZ+urEEiQRgOk5Rhi3nKgB/HjQ6Xz2HaGNzovKsUruzCzm8YYw32kUUxVTfNj8Q==
-X-Gm-Message-State: AOJu0YwY9i8eMj5c2vinFLtAAunCE/dxgWZRaCG3479qZd6WymQ822iO
-	ozjlMrT09Mp/8Y/YRiShWscUCdUBLeKIKr7pj2zryjBg4uqKaZ8IHhYw5lhOpfs=
-X-Google-Smtp-Source: AGHT+IHbF71gbIghJoYKFbrg4W+yIrq0Ui8qDFkKVSeUFQObkIKWpiU0iUTb4PgiFnvihuycMlGCFw==
-X-Received: by 2002:a5d:4689:0:b0:35f:275c:fb63 with SMTP id ffacd0b85a97d-366e948fa5emr7116687f8f.25.1719382424899;
-        Tue, 25 Jun 2024 23:13:44 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.70])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-366f466979dsm7064166f8f.7.2024.06.25.23.13.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jun 2024 23:13:44 -0700 (PDT)
-Message-ID: <14167607-e67b-4627-99f0-6e99acc7f880@tuxon.dev>
-Date: Wed, 26 Jun 2024 09:13:42 +0300
+        d=1e100.net; s=20230601; t=1719382455; x=1719987255;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P68vjv5P5fTQyUzXQMtlC4ydEFa3hgGxJKTbgujUek0=;
+        b=pPJqNKnBunXaibkKaIYi7DyrO09VwjntRVMdahyIWrsL2MaEu2Vc3hsfj8Ofvys0aa
+         qbbC4V8S5WnHygmyP9lOOC/TIu+LEfEzcVI1E61dsHRao/hUNriVSd83LGW9x4X2Ip60
+         PY/a/FL7iNoPYocpStY7sP1gK6aVc6NiurpTfkuRYOCkwWSnIJEOT4IgVu01R3FZJSw/
+         I6KINEXtQ3mim9KOnquqpWCHfbvchKb+FvXvlYHzqrDuq9TyrwFgPUOpufBGIgh/PO1z
+         fl9Fa/v07WNko+yWdVir1UO5Xe/9BLsYI5TYYn8FmBtEjQ1V2dDn+2Mo1x5JXDk9ewjV
+         bI/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUyeDI3iFj4E5v4ZsHZHfCLj64Ln2g9bwDS+guePKwCguv+BRpv4Ijh1r1sL1kR+CDpKg8bXcBcCvXa+aB+6oj3pBMvRlRGrI0Ptg==
+X-Gm-Message-State: AOJu0YygkmvSPXHdb/XtMEDK2v05VqSHdg8j4oSWwWC1Avm6D3mTs2bH
+	MpWDOD3WTRrPtgA9hcCu8DPGYvJOxOhPu82G9yQmcDfaSVWwJYO76yj5zuiYcfQu1i7S6Iolj9k
+	pYgfKGb749PYt5IbOlSMn+oiXvl3+2TFgh7JdhA==
+X-Google-Smtp-Source: AGHT+IHFrAZDhVdGptSc44l74KYpkoXPmWFwKAgqD9iIY1egI+hz1d/5rPoCQHY/mWyFFxrbbPr/3PvyyHvAFloZ1tM=
+X-Received: by 2002:a17:906:8315:b0:a6f:e2a0:b5df with SMTP id
+ a640c23a62f3a-a6fe2a0b6fbmr729513766b.7.1719382454861; Tue, 25 Jun 2024
+ 23:14:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/12] i2c: riic: Use pm_runtime_resume_and_get()
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Chris Brandt <Chris.Brandt@renesas.com>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240625121358.590547-1-claudiu.beznea.uj@bp.renesas.com>
- <20240625121358.590547-5-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB11346F03386D05D608041DE8D86D52@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TY3PR01MB11346F03386D05D608041DE8D86D52@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1719351923.git.marcelo.schmitt@analog.com> <072d74af9fc624490b84a1d001039424e572e827.1719351923.git.marcelo.schmitt@analog.com>
+In-Reply-To: <072d74af9fc624490b84a1d001039424e572e827.1719351923.git.marcelo.schmitt@analog.com>
+From: Alexandru Ardelean <aardelean@baylibre.com>
+Date: Wed, 26 Jun 2024 09:14:02 +0300
+Message-ID: <CA+GgBR9S7q32i-1ehNAgLHim66-Ud=PajgTSczBSJ5LUZdA7cA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/7] spi: spi-axi-spi-engine: Add support for MOSI idle configuration
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: broonie@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
+	corbet@lwn.net, marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi, Biju,
+On Wed, Jun 26, 2024 at 12:55=E2=80=AFAM Marcelo Schmitt
+<marcelo.schmitt@analog.com> wrote:
+>
+> Implement MOSI idle low and MOSI idle high to better support peripherals
+> that request specific MOSI behavior.
+>
 
-On 25.06.2024 18:53, Biju Das wrote:
-> Hi Claudiu,
-> 
->> -----Original Message-----
->> From: Claudiu <claudiu.beznea@tuxon.dev>
->> Sent: Tuesday, June 25, 2024 1:14 PM
->> Subject: [PATCH v2 04/12] i2c: riic: Use pm_runtime_resume_and_get()
->>
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> pm_runtime_get_sync() may return with error. In case it returns with error
->> dev->power.usage_count needs to be decremented.
->> dev->pm_runtime_resume_and_get()
->> takes care of this. Thus use it.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v2:
->> - delete i2c adapter all the time in remove
->>
->>  drivers/i2c/busses/i2c-riic.c | 30 ++++++++++++++++++++++++------
->>  1 file changed, 24 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/i2c/busses/i2c-riic.c b/drivers/i2c/busses/i2c-riic.c index
->> 83e4d5e14ab6..002b11b020fa 100644
->> --- a/drivers/i2c/busses/i2c-riic.c
->> +++ b/drivers/i2c/busses/i2c-riic.c
->> @@ -113,6 +113,8 @@ struct riic_irq_desc {
->>  	char *name;
->>  };
->>
->> +static const char * const riic_rpm_err_msg = "Failed to runtime
->> +resume";
->> +
->>  static inline void riic_writeb(struct riic_dev *riic, u8 val, u8 offset)  {
->>  	writeb(val, riic->base + riic->info->regs[offset]); @@ -133,10 +135,14 @@ static int
->> riic_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
->>  	struct riic_dev *riic = i2c_get_adapdata(adap);
->>  	struct device *dev = adap->dev.parent;
->>  	unsigned long time_left;
->> -	int i;
->> +	int i, ret;
->>  	u8 start_bit;
->>
->> -	pm_runtime_get_sync(dev);
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret) {
->> +		dev_err(dev, riic_rpm_err_msg);
-> 
-> As at the moment we don't know how to reproduce this error condition
-> Can we use WARN_ON_ONCE() instead to catch detailed error condition here??
+One minor nitpick.
+Feel free to ignore, if there won't be a re-spin.
 
-[1] states "So, naturally, use of WARN_ON() is also now discouraged much of
-the time". I've go with dev_err() or something similar.
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+>  drivers/spi/spi-axi-spi-engine.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/spi/spi-axi-spi-engine.c b/drivers/spi/spi-axi-spi-e=
+ngine.c
+> index 0aa31d745734..5a88d31ca758 100644
+> --- a/drivers/spi/spi-axi-spi-engine.c
+> +++ b/drivers/spi/spi-axi-spi-engine.c
+> @@ -41,6 +41,7 @@
+>  #define SPI_ENGINE_CONFIG_CPHA                 BIT(0)
+>  #define SPI_ENGINE_CONFIG_CPOL                 BIT(1)
+>  #define SPI_ENGINE_CONFIG_3WIRE                        BIT(2)
+> +#define SPI_ENGINE_CONFIG_SDO_IDLE_HIGH                BIT(3)
+>
+>  #define SPI_ENGINE_INST_TRANSFER               0x0
+>  #define SPI_ENGINE_INST_ASSERT                 0x1
+> @@ -132,6 +133,10 @@ static unsigned int spi_engine_get_config(struct spi=
+_device *spi)
+>                 config |=3D SPI_ENGINE_CONFIG_CPHA;
+>         if (spi->mode & SPI_3WIRE)
+>                 config |=3D SPI_ENGINE_CONFIG_3WIRE;
+> +       if (spi->mode & SPI_MOSI_IDLE_HIGH)
+> +               config |=3D SPI_ENGINE_CONFIG_SDO_IDLE_HIGH;
+> +       if (spi->mode & SPI_MOSI_IDLE_LOW)
+> +               config &=3D ~SPI_ENGINE_CONFIG_SDO_IDLE_HIGH;
+>
+>         return config;
+>  }
+> @@ -646,6 +651,9 @@ static int spi_engine_probe(struct platform_device *p=
+dev)
+>
+>         host->dev.of_node =3D pdev->dev.of_node;
+>         host->mode_bits =3D SPI_CPOL | SPI_CPHA | SPI_3WIRE;
+> +       if (ADI_AXI_PCORE_VER_MAJOR(version) >=3D 1 &&
+> +           ADI_AXI_PCORE_VER_MINOR(version) >=3D 3)
+> +               host->mode_bits |=3D  SPI_MOSI_IDLE_LOW | SPI_MOSI_IDLE_H=
+IGH;
 
-Thank you,
-Claudiu Beznea
+There's a second space after the assignment.
+               host->mode_bits |=3D<2 spaces here>SPI_MOSI_IDLE_LOW |
+SPI_MOSI_IDLE_HIGH;
 
-[1] https://lwn.net/Articles/969923/
 
-> 
-> Cheers,
-> Biju
-> 
->> +		return ret;
->> +	}
->>
->>  	if (riic_readb(riic, RIIC_ICCR2) & ICCR2_BBSY) {
->>  		riic->err = -EBUSY;
->> @@ -301,6 +307,7 @@ static const struct i2c_algorithm riic_algo = {
->>
->>  static int riic_init_hw(struct riic_dev *riic, struct i2c_timings *t)  {
->> +	int ret;
->>  	unsigned long rate;
->>  	int total_ticks, cks, brl, brh;
->>  	struct device *dev = riic->adapter.dev.parent; @@ -379,7 +386,11 @@ static int
->> riic_init_hw(struct riic_dev *riic, struct i2c_timings *t)
->>  		 t->scl_fall_ns / (1000000000 / rate),
->>  		 t->scl_rise_ns / (1000000000 / rate), cks, brl, brh);
->>
->> -	pm_runtime_get_sync(dev);
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret) {
->> +		dev_err(dev, riic_rpm_err_msg);
->> +		return ret;
->> +	}
->>
->>  	/* Changing the order of accessing IICRST and ICE may break things! */
->>  	riic_writeb(riic, ICCR1_IICRST | ICCR1_SOWP, RIIC_ICCR1); @@ -498,11 +509,18 @@ static void
->> riic_i2c_remove(struct platform_device *pdev)  {
->>  	struct riic_dev *riic = platform_get_drvdata(pdev);
->>  	struct device *dev = &pdev->dev;
->> +	int ret;
->>
->> -	pm_runtime_get_sync(dev);
->> -	riic_writeb(riic, 0, RIIC_ICIER);
->> -	pm_runtime_put(dev);
->>  	i2c_del_adapter(&riic->adapter);
->> +
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret) {
->> +		dev_err(dev, riic_rpm_err_msg);
->> +	} else {
->> +		riic_writeb(riic, 0, RIIC_ICIER);
->> +		pm_runtime_put(dev);
->> +	}
->> +
->>  	pm_runtime_disable(dev);
->>  }
->>
->> --
->> 2.39.2
->>
-> 
+>         host->bits_per_word_mask =3D SPI_BPW_RANGE_MASK(1, 32);
+>         host->max_speed_hz =3D clk_get_rate(spi_engine->ref_clk) / 2;
+>         host->transfer_one_message =3D spi_engine_transfer_one_message;
+> --
+> 2.43.0
+>
+>
 
