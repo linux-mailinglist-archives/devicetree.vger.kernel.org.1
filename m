@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-80281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 561D5918504
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:57:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C140D9184F2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:55:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDBE7B22146
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:53:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 776EB28DA84
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51925181CF3;
-	Wed, 26 Jun 2024 14:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8006186284;
+	Wed, 26 Jun 2024 14:54:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="cTSGVcDo"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="arXtvvLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C3F1755A
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:53:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227311836F9
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 14:54:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719413606; cv=none; b=g0NnZPjgOVm6KmDQimTz+vDV4jbykP+aWViPEpoa5jdEn4ll58/ugNFCjRTqiLT+gxBDVLwvwhr5Y/Svx58uY5Hy+YeluFam6TWzQDnEgynQR5PBV5JGEfDjOFTyzj6MpLwFaC+iAKrTjUxBhDwB0T5MTKENT8lUgLbTiIeJMBI=
+	t=1719413695; cv=none; b=dsaKY829J7q1Tm8VTu+jVuGolbCXUW9mQJlTMhHvrjwyEEpV4Hkp9j5rMznxrzcOz8IWqDs3BManJ6G7v+o99uRx9ajSNLvlIcKMUncrB2HSUxrgLiJ7FkG4/6d+3dm4nDvILaPg2ZK9esu3QeJZtYw49U+FjHJCsZpk2ljtpBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719413606; c=relaxed/simple;
-	bh=hyNxaFzPXWFBRg+/6WUFhFSPBWdIIx4INvH/NCiLLHo=;
+	s=arc-20240116; t=1719413695; c=relaxed/simple;
+	bh=ToVPHIWzkFAgSpb6L6E/HYsaFQq0ccl5RG4nq4ckWes=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fk9A2KQfUkPsREB5k7gavfUzRtYVgkHR8CUv1MspuWN0HT1gR31WlDG6Qx/o+qp6Jvy1VHbcS+VoIUTAHLs/VBlsgDTJOcyeAesKvGv0HPm32tW9eOXETfa3nNNYsBZS9bksTeEyVm8HSCmaFBi/+ddmGeMubgpx93f3G3xtLmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=cTSGVcDo; arc=none smtp.client-ip=170.10.129.124
+	 Content-Type:Content-Disposition:In-Reply-To; b=RdeyPo7EAgUR5KuexTo/C/meldop7U65MmK49ITmJbk6TavjSvi0YUSYnQGJvX1nkjF+2f7sJ+ILgR0xR0/Y/0fTLoW3QdBa8B5zQLgba5e/2rzW/kwjYY+WHFHAr/d9qGflMCmCsyYV2FOFRw28mmbHKarPf2cJk10iB+niYKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=arXtvvLW; arc=none smtp.client-ip=170.10.133.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1719413602;
+	s=mimecast20190719; t=1719413693;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YrKnBGUsXzxltAg01s3o4kyy9jXBJCa6pgwUhoUuJvY=;
-	b=cTSGVcDodSCMAccboGHIlvqPYL6DVyPZFkLRgCF5OWUr8oUcTV9+vRElREwl/JIXtZMJYn
-	zdYxgo3bZmWLiitOjLKxRgnjj7lwJDCag220EjT/hU1dM1q0wqTbd13DukARV36gah0aTn
-	DfhINmRyIJF+PdB1zCBcKFqkW6Bknlw=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=//2/DtIq0ARa2uL83ir1t16NVZrzvNrg5uroU1ouOJc=;
+	b=arXtvvLWs+ar8iRaggjwEAU7s232EA3QciFGWjuTf0RdQebeMyEXaQrXah24q9x7yyHoHM
+	o+uf8ozgNIe72YAJOk/aJOZMFHTGvzjWT440Im8GPwjdiRTGi3Wg0KetT1TR91XNxPoM/H
+	FGs0oZd5O2mni9Gv74f3uR5pWCh0iXo=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-553-Bz2vMWPtMFKUZR5jdfZ5wg-1; Wed, 26 Jun 2024 10:53:21 -0400
-X-MC-Unique: Bz2vMWPtMFKUZR5jdfZ5wg-1
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-79d5509f112so83824285a.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:53:21 -0700 (PDT)
+ us-mta-156-zWGVTMvNMcmBuv8PHfUj5A-1; Wed, 26 Jun 2024 10:54:51 -0400
+X-MC-Unique: zWGVTMvNMcmBuv8PHfUj5A-1
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6b51725a7ebso101797406d6.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:54:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719413600; x=1720018400;
+        d=1e100.net; s=20230601; t=1719413691; x=1720018491;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YrKnBGUsXzxltAg01s3o4kyy9jXBJCa6pgwUhoUuJvY=;
-        b=aQw20VdxC629jrTSKKh2KLJBlbzBQvvqCQ9E+HMo/j6okO4DU+s0Y+uJmXLUkU4MOm
-         J9Neo04h9UdBWScfRs7KZE+nhM6s8xVYEWaMrn39Lvjfx//qL0blQr+GggAVWouXeTOS
-         A+ivmFDpR/K0YhLhEGhQmwVh/QY1IBIzQa7CxYvckMmF9dU/T/IHuOkcWdihGOHywMY9
-         5V7c+c44vquziWjSIf/xcAJs0L1Q8y+bKw1Ru8NX1VEH/KqrxgT6nDsbvj/vHKqRLTwH
-         v8p/xiL85I8auVAQa5vSamiop3fVTc4XfAA8454RiSlOqjv5qE+FnONHN3RjWL1x1xHI
-         3ELw==
-X-Forwarded-Encrypted: i=1; AJvYcCUJFN/RMlegqwGQbBh8kz5uxbLuuYd673FzBdVcfl9dh57yhCqM858o7DAxQwQ6zHQCI8+vnEGP6vGw1qIVxO1zzYSubgwekD35WQ==
-X-Gm-Message-State: AOJu0YxIDd21e0VetS8r9yY5Tur+yV/7U0JUFlXHn7f311ljg5bd3xII
-	dL3CYT2PBDirLDXdL8vdEO8r6YMNS7VK8I5U5AwLLW3/zdyQ7vpvW38LXhKRlRk057146yUlsjk
-	/7xUHwtclrItns5PtvX3BFwlLG+qI5wK3ipnPZT6Fxg0pJ+k5//R4lZP/xlA=
-X-Received: by 2002:a05:620a:1998:b0:79d:5414:68d2 with SMTP id af79cd13be357-79d54146b12mr159312285a.44.1719413599695;
-        Wed, 26 Jun 2024 07:53:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE7rWL9/p+Lnv9AbO8zaoMmKP9NuiF/Sz5Kmi1mA7Vt5rgp/9627GpolyqUJFKWM3RKg3m/gg==
-X-Received: by 2002:a05:620a:1998:b0:79d:5414:68d2 with SMTP id af79cd13be357-79d54146b12mr159308585a.44.1719413599165;
-        Wed, 26 Jun 2024 07:53:19 -0700 (PDT)
+        bh=//2/DtIq0ARa2uL83ir1t16NVZrzvNrg5uroU1ouOJc=;
+        b=HrYHOWybed/qEIb5/tYuV33qTPEBrX7b+I3JdXwGsAH+77LvIxyp7MnH2G40nLxVJT
+         pF3Us26BEUaqdSFuea/X5qt6KouAanFpLRjDn0IuEXm5R3QCpP5+KsqA+s+cTg/K41+6
+         oxU2XangTChRnXnKwLYWDlJs1qwSBI0jm0nSmNpaUqEDM1G7QaZGTA8Tdk7ieI2iw6rd
+         iyJvj4TI9muugJUaKE1yg97xGCIDBww7l1DXrCAF8eVPhTzaHgsk3Oh019bgOOWcOjHw
+         88IQb3U6zptx8EsRVSCCFzsgEBdz4dcYRzKjfdGhupDt+Vkj7eVQeiEpXru24ORpdxAT
+         Od8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWmS2oFoIE7semCvgfgnNo4Rq1zXFNMx/lo3ePWGE89XKMuy7cltxSyAVUeOoJhWFZUPDotsg921GjaKBMJDw3u9cgovq3kTSLZPA==
+X-Gm-Message-State: AOJu0Yy+C+NExUlFGiVaRA5QxOki+W1slJJa4d/Xr+HNbJofUH2wG124
+	JforfxTYwOMifocIygUhWu5ejKR5TqapGK0hdvS9U/UzaHe3T+dm6aB7V0s2o4ELxPw9YfNFmyv
+	tfpQs/z0cXUVVOh8HtlZcMgJ0dqFhzde476aOLja75ICXlvfYc3hcuP8K05U=
+X-Received: by 2002:a0c:8d8e:0:b0:6b5:4bf8:57f0 with SMTP id 6a1803df08f44-6b54bf859b1mr86412216d6.48.1719413691345;
+        Wed, 26 Jun 2024 07:54:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH2KWuzVgP6gdLOaQfx8FcyTgNfdnV8FG80Y5HA1R10pLIJSc4H3+AKQ0TSGSjJssFCY/jspw==
+X-Received: by 2002:a0c:8d8e:0:b0:6b5:4bf8:57f0 with SMTP id 6a1803df08f44-6b54bf859b1mr86412086d6.48.1719413690987;
+        Wed, 26 Jun 2024 07:54:50 -0700 (PDT)
 Received: from x1gen2nano ([2600:1700:1ff0:d0e0::f])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-79bce89a5d5sm505133885a.19.2024.06.26.07.53.17
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6b51ef54b40sm54996006d6.114.2024.06.26.07.54.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 07:53:18 -0700 (PDT)
-Date: Wed, 26 Jun 2024 09:53:16 -0500
+        Wed, 26 Jun 2024 07:54:50 -0700 (PDT)
+Date: Wed, 26 Jun 2024 09:54:48 -0500
 From: Andrew Halaney <ahalaney@redhat.com>
 To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
 Cc: Vinod Koul <vkoul@kernel.org>, 
@@ -85,11 +85,10 @@ Cc: Vinod Koul <vkoul@kernel.org>,
 	Andrew Lunn <andrew@lunn.ch>, linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
 	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: qcom: ethernet: Add
- interconnect properties
-Message-ID: <q2ou73goc2pgrmx7xul4z7zrqo4zylh3nd2ldxw5vnz2z4fnkf@axbse4awc6lf>
+Subject: Re: [PATCH v2 2/3] net: stmmac: Add interconnect support
+Message-ID: <owkerbnbenzwtnu2kbbas5brhnak2e37azxtzezmw3hb6mficq@ffpqrqglmp4c>
 References: <20240625-icc_bw_voting_from_ethqos-v2-0-eaa7cf9060f0@quicinc.com>
- <20240625-icc_bw_voting_from_ethqos-v2-1-eaa7cf9060f0@quicinc.com>
+ <20240625-icc_bw_voting_from_ethqos-v2-2-eaa7cf9060f0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,44 +97,107 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240625-icc_bw_voting_from_ethqos-v2-1-eaa7cf9060f0@quicinc.com>
+In-Reply-To: <20240625-icc_bw_voting_from_ethqos-v2-2-eaa7cf9060f0@quicinc.com>
 
-On Tue, Jun 25, 2024 at 04:49:28PM GMT, Sagar Cheluvegowda wrote:
-> Add documentation for the interconnect and interconnect-names
-> properties required when voting for AHB and AXI buses.
+On Tue, Jun 25, 2024 at 04:49:29PM GMT, Sagar Cheluvegowda wrote:
+> Add interconnect support to vote for bus bandwidth based
+> on the current speed of the driver.This change adds support
+> for two different paths - one from ethernet to DDR and the
+> other from Apps to ethernet.
+
+"APPS" is a qualcomm term, since you're trying to go the generic route
+here maybe just say CPU to ethernet?
+
+> Vote from each interconnect client is aggregated and the on-chip
+> interconnect hardware is configured to the most appropriate
+> bandwidth profile.
 > 
 > Suggested-by: Andrew Halaney <ahalaney@redhat.com>
 > Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/net/ethernet/stmicro/stmmac/stmmac.h          |  1 +
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     |  8 ++++++++
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 12 ++++++++++++
+>  include/linux/stmmac.h                                |  2 ++
+>  4 files changed, 23 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> index 6672327358bc..b7e2644bfb18 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> @@ -63,6 +63,14 @@ properties:
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> index b23b920eedb1..56a282d2b8cd 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> @@ -21,6 +21,7 @@
+>  #include <linux/ptp_clock_kernel.h>
+>  #include <linux/net_tstamp.h>
+>  #include <linux/reset.h>
+> +#include <linux/interconnect.h>
+>  #include <net/page_pool/types.h>
+>  #include <net/xdp.h>
+>  #include <uapi/linux/bpf.h>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index b3afc7cb7d72..ec7c61ee44d4 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -985,6 +985,12 @@ static void stmmac_fpe_link_state_handle(struct stmmac_priv *priv, bool is_up)
+>  	}
+>  }
 >  
-
-Does it make sense to make these changes in snps,dwmac.yaml since you're
-trying to do this generically for stmmac? I don't poke bindings super
-often so might be a silly question, the inheritance of snps,dwmac.yaml
-into the various platform specific bindings (qcom,ethqos.yaml) would
-then let you define it once in the snps,dwmac.yaml right?
-
->    dma-coherent: true
->  
-> +  interconnects:
-> +    maxItems: 2
+> +static void stmmac_set_icc_bw(struct stmmac_priv *priv, unsigned int speed)
+> +{
+> +	icc_set_bw(priv->plat->axi_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
+> +	icc_set_bw(priv->plat->ahb_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
+> +}
 > +
-> +  interconnect-names:
-> +    items:
-> +      - const: axi
-> +      - const: ahb
-
-Sorry to bikeshed, and with Krzysztof's review on this already its
-probably unnecessary, but would names like cpu-mac and mac-mem be
-more generic / appropriate? I see that sort of convention a lot in the
-other bindings, and to me those read really well and are understandable.
+>  static void stmmac_mac_link_down(struct phylink_config *config,
+>  				 unsigned int mode, phy_interface_t interface)
+>  {
+> @@ -1080,6 +1086,8 @@ static void stmmac_mac_link_up(struct phylink_config *config,
+>  	if (priv->plat->fix_mac_speed)
+>  		priv->plat->fix_mac_speed(priv->plat->bsp_priv, speed, mode);
+>  
+> +	stmmac_set_icc_bw(priv, speed);
+> +
+>  	if (!duplex)
+>  		ctrl &= ~priv->hw->link.duplex;
+>  	else
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index 54797edc9b38..e46c94b643a3 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -642,6 +642,18 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+>  		dev_dbg(&pdev->dev, "PTP rate %d\n", plat->clk_ptp_rate);
+>  	}
+>  
+> +	plat->axi_icc_path = devm_of_icc_get(&pdev->dev, "axi");
+> +	if (IS_ERR(plat->axi_icc_path)) {
+> +		ret = (void *)plat->axi_icc_path;
+> +		goto error_hw_init;
+> +	}
+> +
+> +	plat->ahb_icc_path = devm_of_icc_get(&pdev->dev, "ahb");
+> +	if (IS_ERR(plat->ahb_icc_path)) {
+> +		ret = (void *)plat->ahb_icc_path;
+> +		goto error_hw_init;
+> +	}
+> +
+>  	plat->stmmac_rst = devm_reset_control_get_optional(&pdev->dev,
+>  							   STMMAC_RESOURCE_NAME);
+>  	if (IS_ERR(plat->stmmac_rst)) {
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index f92c195c76ed..385f352a0c23 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -283,6 +283,8 @@ struct plat_stmmacenet_data {
+>  	struct reset_control *stmmac_rst;
+>  	struct reset_control *stmmac_ahb_rst;
+>  	struct stmmac_axi *axi;
+> +	struct icc_path *axi_icc_path;
+> +	struct icc_path *ahb_icc_path;
+>  	int has_gmac4;
+>  	int rss_en;
+>  	int mac_port_sel_speed;
+> 
+> -- 
+> 2.34.1
+> 
 
 
