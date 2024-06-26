@@ -1,186 +1,164 @@
-Return-Path: <devicetree+bounces-80404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEDE918928
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:11:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E75809189FD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:20:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6D53282BAE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:11:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A224C2821DE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E381418FC8B;
-	Wed, 26 Jun 2024 17:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73181836DD;
+	Wed, 26 Jun 2024 17:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S49eW3O4"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="W0jDPlNh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B12913AA4C;
-	Wed, 26 Jun 2024 17:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FAD017FAAE
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 17:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719421881; cv=none; b=oQqXPHT3Lyv9coJY6XhWiOO4h2XX23Dv/15uphjDSSwOPsN1NmybtpW+MrZ1VQzH3zgl7SZ6cCY06plvgQMdDcYVtnviOSXCrPuGHmb6cHRt4p5vfZWzQC2DHRaxoHy09W5qhdWh6lGamuZL26XXa09mW2p4uOWcYk+EioFZxYQ=
+	t=1719422452; cv=none; b=XrHyRYKOuqt56C968UgjZ2o6qd5xFwk3w/jNFu3bUk9eIn4+T/cHCZ780jlFVxxdi86tCsYZHRe6DhSxxieRU4zAhYikogds1lpGMVKZOW6uhpLLVriJBaC/TKFL5m+tkENtTsXNbVrEbqyNacXT5kaVbAUgIlgTbxQXhA/dOoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719421881; c=relaxed/simple;
-	bh=VETDa7WGPPP0WRkkjP/Fo+N4DNsrXTJSc+J9H4gVkbQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dsWigSDN19URFVnlrGhdSnO3oSuAgl3nr79Er56y8aQmrNQcNyfkpDncuMdRD6qT7JNcSmnzywNA/3FqdTMTpUuudTcpuIOsK7rLa3RKsUPWusgaXw33S37sJLQY32f4rhLvrNEGtyZVaZBIvHTRDl3c2aCvA9YgJqoXoVCWOhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S49eW3O4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F32E3C4AF09;
-	Wed, 26 Jun 2024 17:11:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719421881;
-	bh=VETDa7WGPPP0WRkkjP/Fo+N4DNsrXTJSc+J9H4gVkbQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S49eW3O4mxG51Uk8cltbhcBzHUi6HSxpdpSaP6HqrPV2X3QIzpe0n24OsFa++bM4S
-	 aVL05SNzpOS/QQu8B91fv8OP0DxMrbeNesRJ+SrVkerf6QPmtYlHKFWKktZUqcmA0M
-	 HdY7HJjMTLDNG4vAPR6QHTrDlQXlTY5KeOB7r6w+hpereXaC5rhrNDEPn23USTqdOJ
-	 /bNxoy+8ajurCwE02jNqIQAomfueuXXEQtFtEJqK1+R0OaM6/9sQtzan7BCUSay9jU
-	 gITnnalinQbTLg1r7Cvboj3ANkf8nY2XjOxI9DGocS0KC8iJ+Bqw70PZIqRg5dzQK8
-	 uei85S1kaz2Qg==
-Date: Wed, 26 Jun 2024 12:11:11 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, quic_vbadigan@quicinc.com, quic_skananth@quicinc.com, 
-	quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 2/7] arm64: dts: qcom: qcs6490-rb3gen2: Add qps615
- node
-Message-ID: <7ntqpz2saju2wwgndnc5sykibrfiystqh4e7fabfwkkcyko5tp@vhorsxlyvgf6>
-References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
- <20240626-qps615-v1-2-2ade7bd91e02@quicinc.com>
+	s=arc-20240116; t=1719422452; c=relaxed/simple;
+	bh=0VjJhtfeImDqcdqAytdo9VgW3YEziZJw24cXXxu7Pog=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gcm7tD/KfUOYLOq/14N9l0VxI6KNy/Osbvuo4c/Y3KJFaMly/XCCFhjMtuICuKoSZQlwjY7dMd9nOYvJqYRuQ9ExTAnmkX4KkjozOJFUJk+5tMwKp9N5f5Y6hGsyjQ8JTApRv+/zLFtKY74Dclxo4dR/H8rNiDCKYyZNSOtqny8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=W0jDPlNh; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52cf4ca8904so2455902e87.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 10:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1719422448; x=1720027248; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6NVC3h/r5CxQGiQoMko3UXhyNRT0ZVRT3wiwtwfZ0XI=;
+        b=W0jDPlNhVW/KqES6F97VhhcOcvgdXp3zR88pSXYN0j75XsZGk0yQsEmdYEVeU5O/+I
+         hCASzgDTtTHnDktFpt/j/miTtWQh91jav6dlx0k72RAStXQlzypuKwF5r3Al4idyO3YI
+         +y+M4zLGv9ueGar9hmozzJfObc9bHEHWY3TdhBKAPtRefBWTwKjqSyz99Dvjq/THabkE
+         RTmbBhRM8xQok1xLEv49eBNNuYHM6bUFEjZkN5vpg/Bk0IdhfjikOseWHGdAsNNf0rol
+         ZhcJ8T9mjoCqvPv00XwBFVJ/9DpxpQ2OxypyEOZbFzHiwkKJ559Ht1D3pN/7OehjGKQL
+         Vjaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719422448; x=1720027248;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6NVC3h/r5CxQGiQoMko3UXhyNRT0ZVRT3wiwtwfZ0XI=;
+        b=TNf8Cg9kU9m+P6DdGEV5mAsYKeMw1nppE0YdX4CzNdXJTuIDeJHHXJn5RIzRrhUV1k
+         ojACnfUnF42Pi0BkKJ5KJ9yYEIM1/6xt6h6JTOxBX/pweEps3Zb6FboGatTfr2ua5vrX
+         vUfdLZm0eFWgTZR0i+bUc8kgQYhr+CtvNMZKqrJWecBzw328P1FIlOcfY0Xr+eBaEymW
+         jbQt1RZOiWIo3GMp9vfmw7yW73fhI5wIGUsgD3cLjYAjCMkijjEsbc9Fu7u0jMhSk0jV
+         W3fOVFe7JYKfc8zzlvFW9lO3Sdhy/F2AAxBQNfkwzCdKK9MRwnCAXameXsrKHSUQxoHr
+         /Zjw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGFzSwRGw8L5k6rKwGgx4/ht+NwPibiBBgIFVYi4rY+Pl4COBBxKiDYzt9tIzkd2A/1kUNB++YIDVUUI3VJIITrzLaIA025Y3x7w==
+X-Gm-Message-State: AOJu0YzmHg7xOCw+6dMjEGfe0gQxrybpYdzj2/jcXA5pV5PTBu/BEQ9q
+	tIVAYA/L69sUB6CuY/6c8OXxoGUY5KLMtbNF8+tEg6adVKunYO+aj1vhrKtDvts=
+X-Google-Smtp-Source: AGHT+IH8lQXkrfaoMLO7z1BOzyFcNoXKirkCLXuh1M/JBUyRJC5bVpoJYH0Ed4faS5pI20VcoPjQlw==
+X-Received: by 2002:a19:5f5e:0:b0:52c:da1b:a613 with SMTP id 2adb3069b0e04-52ce0680acemr7217629e87.65.1719422447858;
+        Wed, 26 Jun 2024 10:20:47 -0700 (PDT)
+Received: from ?IPV6:2a01:e34:ec24:52e0:62d6:6a12:585c:d4e1? ([2a01:e34:ec24:52e0:62d6:6a12:585c:d4e1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8272bd5sm31898095e9.28.2024.06.26.10.20.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 10:20:47 -0700 (PDT)
+Message-ID: <d2012a93-911c-403e-b1c5-f01916a3200e@freebox.fr>
+Date: Wed, 26 Jun 2024 19:20:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626-qps615-v1-2-2ade7bd91e02@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: add TI TDP158
+To: Conor Dooley <conor@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20240625-tdp158-v2-0-a3b344707fa7@freebox.fr>
+ <20240625-tdp158-v2-1-a3b344707fa7@freebox.fr>
+ <20240626-blah-unseated-6cab234bae61@spud>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <20240626-blah-unseated-6cab234bae61@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 26, 2024 at 06:07:50PM GMT, Krishna chaitanya chundru wrote:
-> QPS615 switch power is controlled by GPIO's. Once the GPIO's are
-> enabled, switch power will be on.
+On 26/06/2024 18:08, Conor Dooley wrote:
+
+> On Tue, Jun 25, 2024 at 06:38:12PM +0200, Marc Gonzalez wrote:
+>
+>> The TI TDP158 is an HDMI to TMDS Redriver.
+>>
+>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>> ---
+>>  .../bindings/display/bridge/ti,tdp158.yaml         | 48 ++++++++++++++++++++++
+>>  1 file changed, 48 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+>> new file mode 100644
+>> index 0000000000000..b687699e2ba80
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI TDP158 HDMI to TMDS Redriver
+>> +
+>> +maintainers:
+>> +  - Arnaud Vrac <avrac@freebox.fr>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ti,tdp158
+>> +
+>> +  reg:
+>> +    description: I2C address of the device
+>> +
+>> +  enable-gpios:
+>> +    description: GPIO controlling bridge enable
+>> +
+>> +  vcc-supply:
+>> +    description: Power supply 3.3V
+>> +
+>> +  vdd-supply:
+>> +    description: Power supply 1.1V
 > 
-> Make all GPIO's as fixed regulators and inter link them so that
-> enabling the regulator will enable power to the switch by enabling
-> GPIO's.
-> 
-> Enable i2c0 which is required to configure the switch.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 55 ++++++++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index a085ff5b5fb2..5b453896a6c9 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -511,6 +511,61 @@ vreg_bob_3p296: bob {
->  			regulator-max-microvolt = <3960000>;
->  		};
->  	};
-> +
-> +	qps615_0p9_vreg: qps615-0p9-vreg {
+> Are these supplies not also required? Surely the device needs the power
+> to function?
 
-Keep nodes sorted by address, node name, then label.
+Maybe if the hamsters spin fast enough in their wheels,
+these supplies won't be required? :)
 
-Perhaps name the nodes "regulator-<name>" to group static regulators
-together.
+The reason I hesitated to mark them as required,
+is because the HW engineer told us that on our board
+they were connected to a power line that is shared
+between several functional blocks.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "qps615_0p9_vreg";
+I suppose that's not a reason?
 
-Is this the name used for the output of the regulator in the schematics?
+Required means "device doesn't work if they're not connected" ?
 
-> +		gpio = <&pm8350c_gpios 2 0>;
+Regards
 
-Replace that 0 with GPIO_ACTIVE_HIGH.
-
-> +		regulator-min-microvolt = <1000000>;
-> +		regulator-max-microvolt = <1000000>;
-> +		enable-active-high;
-> +		regulator-enable-ramp-delay = <4300>;
-> +	};
-> +
-> +	qps615_1p8_vreg: qps615-1p8-vreg {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "qps615_1p8_vreg";
-> +		gpio = <&pm8350c_gpios 3 0>;
-> +		vin-supply = <&qps615_0p9_vreg>;
-
-This makes me curious, &qps615_0p9_vreg provides 1V, which we feed into
-another regulator (which typically would be an LDO) to provide 1.8V...
-
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		enable-active-high;
-> +		regulator-enable-ramp-delay = <10000>;
-> +	};
-> +
-> +	qps615_rsex_vreg: qps615-rsex-vreg {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "qps615_rsex_vreg";
-> +		gpio = <&pm8350c_gpios 1 0>;
-> +		vin-supply = <&qps615_1p8_vreg>;
-
-...which is then fed to another LDO(?) which provides 1.8V.
-
-Please double check the schematics and make sure this represents what's
-on the board. Feel free to ping me offline and I can help review the
-schematics.
-
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		enable-active-high;
-> +		regulator-enable-ramp-delay = <10000>;
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	clock-frequency = <100000>;
-> +	status = "okay";
-> +};
-> +
-> +&pcie1 {
-> +	pcie@0 {
-> +		device_type = "pci";
-> +		reg = <0x0 0x0 0x0 0x0 0x0>;
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +
-> +		bus-range = <0x01 0xff>;
-> +
-> +		qps615@0 {
-> +			compatible = "pci1179,0623";
-> +			reg = <0x1000 0x0 0x0 0x0 0x0>;
-> +			vdda-supply = <&qps615_rsex_vreg>;
-
-I presume you didn't "make qcom/qcs6490-rb3gen2.dtb CHECK_DTBS=1" this,
-as "vdda-supply" is not listed as a valid supply in the binding (also
-the driver is looking for vdd-supply...)
-
-Regards,
-Bjorn
-
-> +			switch-i2c-cntrl = <&i2c0>;
-> +		};
-> +	};
->  };
->  
->  &gcc {
-> 
-> -- 
-> 2.42.0
-> 
 
