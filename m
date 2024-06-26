@@ -1,148 +1,154 @@
-Return-Path: <devicetree+bounces-80040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C854917B1E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:39:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C507917B69
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 10:52:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEADB1C238EB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:39:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FB682885BE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 08:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E861662E3;
-	Wed, 26 Jun 2024 08:39:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FFD8166310;
+	Wed, 26 Jun 2024 08:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PRGZL1rb"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="110qbHsx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3145213B78F;
-	Wed, 26 Jun 2024 08:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE75EEC3
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 08:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719391143; cv=none; b=s5LaJnsutxwKDeO9J9qfl/C7cqIVTHzCYbkqGrI3wS/KEYMX/DMquQJlbbey8cEwPHF9lQVDYVM7xe0txQcp9eoJp6biKXyy2/pGGPyQdjde3MHchmER3Jhjvc8rZX1iwHfiC4j/1n5xTr/DVYr9UmIEPBfAUzX3IcaZEfRgqbQ=
+	t=1719391958; cv=none; b=p8dTtLYJxolgUHlOvrvRZZc5Y2rm4HwWg/Jabj5j/h7Y4mXrl0l0/rtGWPMVjMli+PSN5XIpxYjL/MSBe4baGxquRy4Arr9eTvR8LaUDZIbZ01jsfVEOr/5MGBv3XPTFK3FS3vLwpsfg0pmzZkwnMDm1RnUkDoNSU2/oBWsqiYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719391143; c=relaxed/simple;
-	bh=eQ7DYSWRsKYuWOqaM71snLYfv7LNhzAnFyoiCIARR44=;
+	s=arc-20240116; t=1719391958; c=relaxed/simple;
+	bh=TiZE0yXcJ7srnZOiYp3z1sAVGFfX8eOrc+2xwy3JGqQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TTkP/+rB7VsZRqnn8Am+1z6vHySeX8zwudOzrNJWrOdeAr6Y1t+h1R3NlFDij0zp2Ct65SB0Z/xG3VrHuc32ulPHDRJb83H42PmjTs1swGQlx6GaoZqAvF8gEjvscXfPQcUA7jP5QVm/7el2t0nUdljTr9Nf8G6OaWvO84q3xt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PRGZL1rb; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ebe0a81dc8so84903921fa.2;
-        Wed, 26 Jun 2024 01:39:01 -0700 (PDT)
+	 To:Cc:Content-Type; b=Md/86DwMYW47sAA2uv2x6e6ZIjnZrtmXNH/5NaxG5xYoyM8a+BDdr70QOYlwgaZqBerMgY1S/N6AUA7fAwYThDaZ8KIYSoGwLV/7AyUQ+Dtq774xJcsG+GapLkokBkwDSNRk8FLbs7D2Vj5CdHwJG2fnP2lMbzPuM2kvYLl37SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=110qbHsx; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4450111d54dso186101cf.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 01:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719391140; x=1719995940; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1719391956; x=1719996756; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WGLAE0d0WBAYFA6fR6mw4wvQZZ2LgjwEPVknt+snP7o=;
-        b=PRGZL1rbAc2f+l1SmG+B/xGH9gsjKg2wtSQqFWqStPihuF3fzOu5hqvALEar1j87Ul
-         gm2GzxaG1447zHVCoMUnSF3V3FB97xeQhNevmodSUQYBcqYWgMFnHPndpeEMqeG/4QqM
-         kuRbtvO0Vv72jxLqGM2KegxiGuRBk+PpDyWaaeE12JS7xyPNGIdi+SPU0mgGAX6QL7qw
-         nPlF4GaIq7wp0yD0ZKArzy6o2MFAbzRf/jmmCDhCg26IiMIueNR/tOIwLecJP+QAzCKw
-         851z5xchiezbcIc+0QS/b539ci9so3dbZ3phl9vHW27GasEnIeZaWhew05madzKnYwYc
-         Eh0g==
+        bh=VdqyfAQH22fNsPG4ZSuANffNhA17gGQ/2s35bKca05I=;
+        b=110qbHsxjl9a35TXkJ0zsqdRDBJgovjJCvnvCp11gq0zNsSpgr4aavt9Qu9uL3BuJd
+         EYCUq/0w2Q+/82kVKvKvmwRY1bRHJKmGw/6ZZa864kJdrup4kksvTlbGT751lyT98rYi
+         YVfjOuKKc3YMaDPqmII9BYPcXJEG05fbj33ovgSdhexsF3I7LTqC0+H9fj0NADc4oAL1
+         r89rgOEI9FotJu0n9DLfzpzIsWI5UeVVoKkHxT8sO2MnME9f9UfJfLW+tC2N3lpQjPTz
+         ggTiYhu/f6G86hjTKALz+6jsh4+SK08dYffsscDgoDXUUAuQTEO51gSenNVW+xElkGR/
+         rLqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719391140; x=1719995940;
+        d=1e100.net; s=20230601; t=1719391956; x=1719996756;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WGLAE0d0WBAYFA6fR6mw4wvQZZ2LgjwEPVknt+snP7o=;
-        b=bXf8vIW+g/TgrXbgZAJ8Q2xCD9hMcHwP3ZZXKsaT1KPe99Dh6qbAeJ36q1R+YcrIYt
-         BAH/tk241HXh9IsAp74nUQ9pKAl32Q3B8hfctAA/oTa+cwAQPEDGmGQPR8uRUZHcnYD5
-         4K1f1rXbGUSsp1XTmxHGwZAVroDd9kK6NOTzT/0+43bEkEXdRXMcG+YfzxcPO2rfNPBx
-         Q/p1aUFs7px9gEhKGxqeCzcxNO6o0ySrokNU5tdL7rAPdueajsnyZoaVsLpwmZMTbWIW
-         7KoXgKaiw6mK2BLnzddg8F3VIm5YaGYWOuq2tK1jedAgu5MaMuUUUGUSjpaTxYI1WQX/
-         tr2w==
-X-Forwarded-Encrypted: i=1; AJvYcCWtD9n+qpRU8LjHvuVRijwCHzcal6b/E27un+1zsscNOKUHtzAQQMo/m9Jk43dLpX4sWJ66JP/D8QpIxzMPM8MAd7WoulLSQkt2Lvs6T3fu5jqw2a8qIBkWobmEs9SGYBHHmRKceYzzxQsMAM8DiBiDpXKKv/3eUYWIO9we7Jto4AKwxbPEH+AI1k1KPPM4CU35GXfyM9C43Qf/c2eIqZkMwdViEA==
-X-Gm-Message-State: AOJu0YyrBlb9Lk2DrQdWZZD0o1lsT9sd7AY9nTlYFxhNNxw1nP0vNmpg
-	rJBBWsqXG1xlBZXmfYWMBjvRckchYseGW67hdU4B4yKEt7QlmUgjq9iaJvWNaZadxUdShRspgLg
-	svMws8r07OrvNtCRSBWsx2KvgQ3U=
-X-Google-Smtp-Source: AGHT+IFmzqdhWA4H/PFBpAsMCQ7oBjaNqKmMkRUMmk/443vBy5nciueE4td8WvvWnEiPZVl/uR6rjE5UTFEojjBaap8=
-X-Received: by 2002:a2e:7a0a:0:b0:2ec:63f:fe91 with SMTP id
- 38308e7fff4ca-2ec5b357921mr68729601fa.38.1719391140191; Wed, 26 Jun 2024
- 01:39:00 -0700 (PDT)
+        bh=VdqyfAQH22fNsPG4ZSuANffNhA17gGQ/2s35bKca05I=;
+        b=sLOgTWRTVzcDQiOhbBHvIiPgGB0+LThT0LOESX/v8KXRJ5VuINc6ZnnWOeLCMz1/Yw
+         RfrqEjyk3Eprk6IbpP8IlE5w6+JLkZ3Wt9yD42/V5A/iwcst0hR4Av5EE8g+mWTn2Wg1
+         wvHAUrU+rTG52DHUOYuOrZpLp/fB6UpVQknysn4tycV/KR+duL58ZYQD3nfFCFd0xYTD
+         zR8RUUrxjaAq8hNlT2MJG2+hGXHVKBZX3VZBQXsqrRyt8f09lNZLDZTvsHGzEa6qlo+H
+         T5INTuvc/gxIJaqcXguFWDK448BNjeHkeNR0XSveSy6B/zbdzKZOe5Lwy6yQ1rgnbQZv
+         J3xA==
+X-Forwarded-Encrypted: i=1; AJvYcCUX+/Ow7SWajODzOxxgyfCY8O49thvz6Qj3J7BM6NbBeocWIwuKhhXQeTTxrsR1LdOswUeDuhheyttc1m2nD9kZnvOm28dj4n7P1A==
+X-Gm-Message-State: AOJu0YwL9FXTIL9XJi6iu37UYc5uwW6Ba5VZlydk67FsEPTWpH/2f6mE
+	Gwh/Ny2oyluFM9vLWoj2+vAuV9sP4/hkneVzaEPI/8KjUYocP5trJLQdjFcV7LcmPqIythJzclq
+	OWZNpHrNRdCz7KiPIT9KgZetEXNsoJkjFyOcC
+X-Google-Smtp-Source: AGHT+IGoW1st5jgyFmCNO3SQEDHLTOES20gkf1BUZidR2x+6HDeMctSqAK7jTHxc/JVAt40OQsfF5JwQda+XPTtf8f0=
+X-Received: by 2002:a05:622a:1345:b0:444:d637:305b with SMTP id
+ d75a77b69052e-44504a965femr2544521cf.4.1719391955379; Wed, 26 Jun 2024
+ 01:52:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240624-b4-sc7180-camss-v3-0-89ece6471431@gmail.com>
- <20240624-b4-sc7180-camss-v3-1-89ece6471431@gmail.com> <c33dde93-2c3a-4a00-93ee-e4de303c9057@kernel.org>
- <CADgMGSvN=uAW7z1dpETGVRewzDG=K2MAtzOkhK7xAcskU_oeZg@mail.gmail.com>
- <0a35f0bd-ceec-487f-b9fd-ae9698b74048@kernel.org> <CADgMGSt9Hu5Ciq=ndMTaVK23Y_ixTVtTuSfy4hJkJooFH2uv9Q@mail.gmail.com>
-In-Reply-To: <CADgMGSt9Hu5Ciq=ndMTaVK23Y_ixTVtTuSfy4hJkJooFH2uv9Q@mail.gmail.com>
-From: george chan <gchan9527@gmail.com>
-Date: Wed, 26 Jun 2024 16:38:48 +0800
-Message-ID: <CADgMGSv+x2Z9FsWTHW0auttvpdfNDnOPxiJhXnUaW3yQczN_Ag@mail.gmail.com>
-Subject: Re: [PATCH RFT v3 1/5] dt-bindings: media: camss: Add qcom,sc7180-camss
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-media@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20240626052238.1577580-1-aniketmaurya@google.com>
+ <20240626052238.1577580-2-aniketmaurya@google.com> <e28ba03d1df1c0c5aec987411c40e44fc351ce0d.camel@codeconstruct.com.au>
+ <c15045b4-2e5f-4fcc-b25c-76a5e4973e93@linaro.org> <b4ba5fa7834fdfb1a1e26ff0e01b9bb235de63b5.camel@codeconstruct.com.au>
+In-Reply-To: <b4ba5fa7834fdfb1a1e26ff0e01b9bb235de63b5.camel@codeconstruct.com.au>
+From: "Aniket ." <aniketmaurya@google.com>
+Date: Wed, 26 Jun 2024 14:22:24 +0530
+Message-ID: <CAMmmMt25nkZTXXLCVGv1baf3azQR0kwbM8LP4EzCQKOPLUhbVQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: i3c: dw: Add property to select IBI ops
+To: Jeremy Kerr <jk@codeconstruct.com.au>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Joel Stanley <joel@jms.id.au>, 
+	Billy Tsai <billy_tsai@aspeedtech.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-i3c@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 26, 2024 at 4:17=E2=80=AFPM george chan <gchan9527@gmail.com> w=
-rote:
->
-> On Wed, Jun 26, 2024 at 3:15=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> > Keep the list in "required:" in the same order as the list in "properti=
-es:".
->
-> ok gotcha
-btw, i checked  "required:" and "properties:" are aligned, both of
-them are in ascending order. I am wondering if you are talking about
-two things, 1st one is to align both property, and 2nd is having the
-ordering like below. Plz confirm.
+Hi Jeremy,
 
-required:
-  - compatible
-  - reg
-  - reg-names
-  - interrupt-names
-  - interrupts
-  - clock-names
-  - clocks
-  - iommus
-  - power-domains
-  - power-domain-names
-  - vdda-phy-supply
-  - vdda-pll-supply
+> Aniket: the hardware you're dealing with there may need a new, specific
+> compatible property, which will dictate whether we enable IBIs in the
+> driver.
+>
+> For cases where no other special behaviour is required, we can
+> represent this just as an entry in the OF match table.
 
-> > >> BTW, I asked for subject to keep only one, first "media" prefix:
-> > >>         "Subject: just one media (first). "
-> > >> but you kept the second "media".
-> > >
-> > > Sorry I can't get it. Could you choose one?
-> > >
-> > > _ORIGINAL_
-> > > dt-bindings: media: camss: Add qcom,sc7180-camss
+Actually I see that IBI support is always present in the HW(DW I3C
+IP). It's just that we have
+an option in SW to decide whether to populate function pointers for IBI or =
+not.
+So can we remove this selection of ops and always go with ibi ops?
+
+Thanks,
+Aniket.
+
+On Wed, Jun 26, 2024 at 1:48=E2=80=AFPM Jeremy Kerr <jk@codeconstruct.com.a=
+u> wrote:
+>
+> Hi Krysztof,
+>
+> > > > +  ibi-capable:
+> > > > +    description: Set to select IBI ops.
 > >
-> > No, original was different. Go back to your first posting. I asked to
-> > remove one media and keep only one - the first. I did not ask to
-> > re-shuffle the prefixes.
-> Yes, let me sum it up
+> > What are IBI ops? Standard form letter:
+> >
+> > You described the desired Linux feature or behavior, not the actual
+> > hardware.
 >
-> v1 title is w.r.t
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240222-b4-cams=
-s-sc8280xp-v6-1-0e0e6a2f8962@linaro.org/
-> then extra "camss" pre-fix keyword and "binding" post-fix is not needed.
-> v2 wrongly remove all prefixes and correctly removed post-fix
-> v3 added correct prefix, removed redundancy "camss" prefixes but
-> changelog still refer to old sc8280xp style
+> In this case it is the actual hardware; my understanding is that the
+> gateware IP can be configured to support in-band-interrupts or not,
+> before being baked-in to hardware.
 >
-> The title now should be fine. So I will modify the changelog only.
+> > > Wouldn't the compatible string select whether the hardware instance
+> > > supports IBI or not?
+> > >
+> > > I'd imagine that each specific synthesis of the DW IP would imply
+> > > corresponding hardware settings, and so would warrant its own
+> > > compatible
+> > > value.
+> > >
+> > > Maybe one for the DT folks: would this work better as individual
+> > > properties? Is there a policy here?
+> >
+> > Usually if feature is specific to given hardware, e.g. always capable
+> > of foobar, then it can be deduced from compatible, so no need for new
+> > property.
 >
-> So there are 2 todo items as above. Other than above, all review items
-> are addressed. Plz confirm.
+> Sounds good.
+>
+> Aniket: the hardware you're dealing with there may need a new, specific
+> compatible property, which will dictate whether we enable IBIs in the
+> driver.
+>
+> For cases where no other special behaviour is required, we can
+> represent this just as an entry in the OF match table.
+>
+> Cheers,
+>
+>
+> Jeremy
 
