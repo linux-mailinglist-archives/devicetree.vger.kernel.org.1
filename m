@@ -1,175 +1,154 @@
-Return-Path: <devicetree+bounces-80421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D0C918E16
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:15:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEAC4918E2A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 924EBB21E82
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:15:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C2C9B20A6F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 18:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DB419066D;
-	Wed, 26 Jun 2024 18:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748FE19048F;
+	Wed, 26 Jun 2024 18:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MjrTedlA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fbYU32NS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B96C190480;
-	Wed, 26 Jun 2024 18:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B407419047F
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 18:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719425709; cv=none; b=eMA4LhpMYxWSvH0sgSGtxILArHC9r3c2MrXh2ZSBsiCLmWr19JlIC0dvRMhbfsGwoJ9uTwt2m/svlRtUcWlEu7TzkjFmmXWhN5u1fXzyUeFmgU7hOqd1LWPlVBwfg4f9FJpAYFj+NU/c40gNFw8L/FImjheWchKBRhN9ggGJ/ls=
+	t=1719426109; cv=none; b=DJb96+45gfnlfLe4qG3uVkgWzw1GDQABPt8EqSRudiA0Z259tGvtbnX1mA55of/LCy0K9tNCMUMqE3IRE4y1If797/n+BHersozdyCl8SAav8qrdm53dVvMOumJx2RcZIwP25cnR78TxdqP+/FDZVsqME/VrwZ6LFxDa14VTUe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719425709; c=relaxed/simple;
-	bh=GM9Bp9vE+SryzooIvXB3q2sSjljn/yxJYmXfupsvIpU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RhL8Zb1j0jI7rA/reHw5BLsT8R85VqgGXZtji+m0mu9/YUw+ikEMcPA/+TJNCan+z1pz6E0DhKmXyllKVWtWssHWU8s4YRAxs5HTTAep995x8FgRA7DNGL+vOPIoTKybiGO/XoW6sj331Vo5jyo+f1bxr0aZyRT+X4vmPysNTTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=MjrTedlA; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C8DD1B37;
-	Wed, 26 Jun 2024 20:14:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1719425678;
-	bh=GM9Bp9vE+SryzooIvXB3q2sSjljn/yxJYmXfupsvIpU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MjrTedlAn6Kaslf3MztTe4lMWx4Q3a8kJIzvnSq70BGlOKWn38mV7FbKL+dhe7PP6
-	 OfKYbfZlQROLuerrkhL/vustT1GFgCCDCPBiOYaprwv6z+yrDz++zHwvDUKLvWQkna
-	 XNGwH0iKY9sNKjya5B/SueWwaN6hExFM8W32tHC4=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Linux Media Mailing List <linux-media@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v11 6/8] media: dt-bindings: Add bindings for Raspberry Pi PiSP Back End
-Date: Wed, 26 Jun 2024 20:14:36 +0200
-Message-ID: <20240626181440.195137-7-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240626181440.195137-1-jacopo.mondi@ideasonboard.com>
-References: <20240626181440.195137-1-jacopo.mondi@ideasonboard.com>
+	s=arc-20240116; t=1719426109; c=relaxed/simple;
+	bh=6TYIPbPS4R6iweSpc2w1PZdKid1Wu6t/ISBPYdapvbM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJ65M+/D4R9UmVrXtsNHd9knrndsSqOnzVvEhl6g6yKrFK761phXrtM39PdFYj7aXxqCb4Vp+7VIDF48qz/n2X3Z1PwlVoMxxHC8uKWvoEjGxvDeJF4wJNNNkhYHcUWWXsl7vX3OIy7v8ySnmX3ToKIMxwyQmm+M4yDsLLLwARc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fbYU32NS; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52cd80e55efso9560377e87.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 11:21:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719426106; x=1720030906; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=//MpmAILITzcKEizX/9gxPn9UDOA+9PRAYCNpg/DcRs=;
+        b=fbYU32NSCLChz93v6SvxehylSi91JXAVA0I7Iz1fvcq4LbVVs0mRyRCVxAprAv+RbP
+         CuDSPKJ2O+HNwe6zIGFI/4FRgcWsRDmexIGuneZtraj2I/E83LDkGyt1V0fG152OF262
+         5QjVOBCkf+IY5iKtLh7EdKXnSEwoQoukGmxL8gzBzLuAPX9bumVYy9kf5PwcVyA6M9j4
+         ECGDc+f1sRMqrvDHyvh8lSmAxE4PT5k0TfKOS4KadOMH9JP3SI8j4t6hPYogXGGcgE3U
+         q9KrzxTt+Hxcb8hqs2Rdap/JwqcyA2EsF2F8Tde/adb8HGOLQV8ezYVCEbUVV+U064on
+         ZyBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719426106; x=1720030906;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=//MpmAILITzcKEizX/9gxPn9UDOA+9PRAYCNpg/DcRs=;
+        b=mqppHOmwl8CSM3ZTT+F/JFPoztqsQRqP94w9nLpeVEEaGJ/AwMSwDr1zSQHU7W0T10
+         aZNUx0EyOFBCk5BULbcH3fsV3dBJJdH/Wxd0VigY+dqvS2eeZEtuTbR14qHd5DBE6Wkm
+         b8iXjk9RDyPvEt5UaFhCSK0Emr1C0X/ho1ymfNV2RpwO5Z/5FLU0aufG0cvAvGQViRpa
+         P1elj1zsIwpMIiSITVZ0nBgUPbfO2MDP1+0wPvDm/jBMFn/xeYCGUe2JLxiaD9Bc3LK6
+         WkrXNWvqRlDZAjP1fSVL5IvnOBR5/kJjYf5yXtSu5hedwX4gw8CWeNqhsSzKiLb6WS/6
+         Q2sg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0H0lLY/2FGyZrHpkBzp+KKwjlIQ0NLKE0nXGTJvW9bz9c9+Ch0Rb0kfRO0NTeCb7Bljm+Aaqz45xJbzDeBH1ezDxEqDm98pOkkw==
+X-Gm-Message-State: AOJu0YwOTrjIs9clDJiEUf3X+fqJMrncFlYmb4S62JMcwzSFAYCHwHFR
+	PYUuhCzeOyuCoT45uomIEZRJhe+hRpbr96P7bJsqRXO+Qj/eE5hQcKCIkAV1nVc=
+X-Google-Smtp-Source: AGHT+IHJ4p//CH+AaNp/ZmyKwZ/tji9Ag3MV6cZw2C1QzU/zz+/aY3hOnCofp3e1KT6QUiZEBrnMNA==
+X-Received: by 2002:a05:6512:308c:b0:52c:c9e4:3291 with SMTP id 2adb3069b0e04-52ce185ce9amr11764612e87.60.1719426105827;
+        Wed, 26 Jun 2024 11:21:45 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52cdcdb981esm1450255e87.122.2024.06.26.11.21.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jun 2024 11:21:45 -0700 (PDT)
+Date: Wed, 26 Jun 2024 21:21:43 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	angelogioacchino.delregno@collabora.com, andersson@kernel.org, konrad.dybcio@linaro.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, ilia.lin@kernel.org, rafael@kernel.org, 
+	viresh.kumar@linaro.org, ulf.hansson@linaro.org, quic_sibis@quicinc.com, 
+	otto.pflueger@abscue.de, neil.armstrong@linaro.org, luca@z3ntu.xyz, abel.vesa@linaro.org, 
+	danila@jiaxyga.com, quic_ipkumar@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 1/9] soc: qcom: cpr3: Fix 'acc_desc' usage
+Message-ID: <jgboqj56nfeuv7qmi34chan46u5urdxyezqhfmqdq3clvcv2k6@k7aktead5qbk>
+References: <20240626104002.420535-1-quic_varada@quicinc.com>
+ <20240626104002.420535-2-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240626104002.420535-2-quic_varada@quicinc.com>
 
-Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
-signal processor.
+On Wed, Jun 26, 2024 at 04:09:54PM GMT, Varadarajan Narayanan wrote:
+> cpr3 code assumes that 'acc_desc' is available for SoCs
+> implementing CPR version 4 or less. However, IPQ9574 SoC
+> implements CPRv4 without ACC. This causes NULL pointer accesses
+> resulting in crashes. Hence, check is 'acc_desc' is populated
+> before using it.
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  drivers/pmdomain/qcom/cpr3.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pmdomain/qcom/cpr3.c b/drivers/pmdomain/qcom/cpr3.c
+> index c7790a71e74f..c28028be50d8 100644
+> --- a/drivers/pmdomain/qcom/cpr3.c
+> +++ b/drivers/pmdomain/qcom/cpr3.c
+> @@ -2399,12 +2399,12 @@ static int cpr_pd_attach_dev(struct generic_pm_domain *domain,
+>  		if (ret)
+>  			goto exit;
+>  
+> -		if (acc_desc->config)
+> +		if (acc_desc && acc_desc->config)
+>  			regmap_multi_reg_write(drv->tcsr, acc_desc->config,
+>  					       acc_desc->num_regs_per_fuse);
+>  
+>  		/* Enable ACC if required */
+> -		if (acc_desc->enable_mask)
+> +		if (acc_desc && acc_desc->enable_mask)
+>  			regmap_update_bits(drv->tcsr, acc_desc->enable_reg,
+>  					   acc_desc->enable_mask,
+>  					   acc_desc->enable_mask);
+> @@ -2676,7 +2676,7 @@ static int cpr_probe(struct platform_device *pdev)
+>  	desc = data->cpr_desc;
+>  
+>  	/* CPRh disallows MEM-ACC access from the HLOS */
+> -	if (!data->acc_desc && desc->cpr_type < CTRL_TYPE_CPRH)
+> +	if (!data->acc_desc && desc->cpr_type < CTRL_TYPE_CPR4)
+>  		return -EINVAL;
+>  
+>  	drv = devm_kzalloc(dev, sizeof(*drv), GFP_KERNEL);
+> @@ -2703,7 +2703,7 @@ static int cpr_probe(struct platform_device *pdev)
+>  
+>  	mutex_init(&drv->lock);
+>  
+> -	if (desc->cpr_type < CTRL_TYPE_CPRH) {
+> +	if (desc->cpr_type < CTRL_TYPE_CPR4) {
 
-Datasheet:
-https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+This is incorrect. This disables ACC usage for CPR4, while GFX CPR on
+MSM8998 (which is CPR4) seems to use ACC.
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Naushir Patuck <naush@raspberrypi.com>
----
- .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+>  		np = of_parse_phandle(dev->of_node, "qcom,acc", 0);
+>  		if (!np)
+>  			return -ENODEV;
+> -- 
+> 2.34.1
+> 
 
-diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-new file mode 100644
-index 000000000000..1fc62a1d8eda
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
-+
-+maintainers:
-+  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+
-+description: |
-+  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
-+  processor that fetches images in Bayer or Grayscale format from DRAM memory
-+  in tiles and produces images consumable by applications.
-+
-+  The full ISP documentation is available at
-+  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm2712-pispbe
-+      - const: raspberrypi,pispbe
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        isp@880000  {
-+             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
-+             reg = <0x10 0x00880000 0x0 0x4000>;
-+             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-+             clocks = <&firmware_clocks 7>;
-+             iommus = <&iommu2>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 861ee24cc1f7..4f8126990da2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18810,6 +18810,7 @@ M:	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
- L:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
- F:	include/uapi/linux/media/raspberrypi/
-
- RC-CORE / LIRC FRAMEWORK
---
-2.45.2
-
+-- 
+With best wishes
+Dmitry
 
