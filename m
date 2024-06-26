@@ -1,154 +1,171 @@
-Return-Path: <devicetree+bounces-80445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B19A9198B9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 22:08:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2B49198C0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 22:09:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E093DB21E69
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:08:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F9241C21F35
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 20:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82B61922FF;
-	Wed, 26 Jun 2024 20:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59021193061;
+	Wed, 26 Jun 2024 20:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VH+TO8KE"
+	dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b="ZuQnqL3N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0126A190679;
-	Wed, 26 Jun 2024 20:08:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DFD7192B7A
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 20:09:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719432497; cv=none; b=OAgW+CiECtjUEP2ivWhlWUJ4w89iOSiuqdIm1ANoWoIh5jl3OEDxZjLuD8zr6yFlrl0Fbuic9U6Y+66TfesTHC+IBGODIW+fM0K0QFACRtYMk3+JABAmwGtIHKllYrUm1p5a3x3K5WBVB2MfFya5Hh+cCOt7Rze2F1Bo+1XFQpI=
+	t=1719432571; cv=none; b=U4IcIH6vsTcllQDntQ2Qt7YRqiJzmfvykkGs8j/1QTaEaMI8LPzCCuzMGIKsPFeUhk8ltI2m5wlfpD2ZK4BLvnohtK+4FnsP1NuwqQBep5ccDDdYHkSn5MbMghPW1/9kYr2OxMzf0vp0/WH/6V2g3tas26rBAg1XViR/65wYPlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719432497; c=relaxed/simple;
-	bh=34iE4Kd0i79Uf2wd56kMut6u4yfbhKLiopiMlYYMjV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sGKIIeM/+kDlRaGJy7tgyom8kn9tDUTVPKPL2/VC4+lieoOlewvInGrqunMmDj6yZ7Ca2Z5egRpUjPi+BgiTWaV+5ShwZdVRYVVIdP7H7rvjtsY04XuKZ1kUKCUFGBefQkiUq8GiR8LMG2i9XT5dDtw+hi+hKqSftgRI1dd90Y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VH+TO8KE; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719432495; x=1750968495;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=34iE4Kd0i79Uf2wd56kMut6u4yfbhKLiopiMlYYMjV4=;
-  b=VH+TO8KEiEv+R+vwIwSZux7s2VqSmJ//dFSNP/YWqd207TmYj1HISgGf
-   oinDmEjczzYOkS2hS7g6WuQuoQep5y0uQY1f/j9sb5l27UKM6NbayXi+5
-   qQFv03262SSw5rRL08UJj72oqvn+3wPetfnj/lhUVyY6Bsk0nirgItD75
-   HSQodH+aWy0NeCEiwhR5FjaF2hdWL3COC4leoSYutoXBOh3x38GcNuu7E
-   T0P7cBDASC9KYtCn8d24U1FbwDAzMQZC0j+Wwx1G9VGogPSBmRrBRR53i
-   rwR16NspL5qyjan/muzG66apvPR1DfB6zIo9MclUVElB/PxPIXJuiPhFx
-   g==;
-X-CSE-ConnectionGUID: iPeFRtJyTGSaM48nnMloRw==
-X-CSE-MsgGUID: 7esaBPKxS7emstR81l09Hw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="39035196"
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; 
-   d="scan'208";a="39035196"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jun 2024 13:08:14 -0700
-X-CSE-ConnectionGUID: cJPws76DSayq6aMCeXO0ww==
-X-CSE-MsgGUID: MwXZkQTkSXOZLtyzkLmqsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; 
-   d="scan'208";a="44535212"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 26 Jun 2024 13:08:11 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sMYw4-000FWd-2C;
-	Wed, 26 Jun 2024 20:08:08 +0000
-Date: Thu, 27 Jun 2024 04:07:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thippeswamy Havalige <thippesw@amd.com>, bhelgaas@google.com,
-	kw@linux.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michal.simek@amd.com, linux-arm-kernel@lists.infradead.org,
-	bharat.kumar.gogada@amd.com,
-	Thippeswamy Havalige <thippesw@amd.com>
-Subject: Re: [PATCH 2/2] PCI: xilinx-xdma: Add Xilinx QDMA Root Port driver
-Message-ID: <202406270344.9nOuTH5k-lkp@intel.com>
-References: <20240624104239.132159-3-thippesw@amd.com>
+	s=arc-20240116; t=1719432571; c=relaxed/simple;
+	bh=WQSAWrkLj4K2WmJ8sjI4muU+NasCNdjh36VyrdZLgjc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Lyg7jOaSrpY2ycZJB2mfsv1gfhyq74T1He2epHqIlezKGK0NxuSe9eNCZEW1e1UzTlJc4WM7i/gVGDfltBI8jMVZGJfjwcTtfK/Sq8ONbi/UwjdJTiJgC8/+jbKjsZi9LjL25Vbj1pnKsQ1FCfCepy3d1KNfhYUvIbhYBIi2xUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk; spf=pass smtp.mailfrom=kernel.dk; dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b=ZuQnqL3N; arc=none smtp.client-ip=209.85.166.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel.dk
+Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3772749962dso854915ab.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 13:09:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kernel-dk.20230601.gappssmtp.com; s=20230601; t=1719432568; x=1720037368; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XFoBjCaXOuAuWDxpGYUmcGmS4rl71MBSo9IrE9Xx5Dc=;
+        b=ZuQnqL3NOOwKAVZeFtlKVibvHrgKMkwRvjWf2xU4Q8rbKaarFxs2oeN3bNsh4UHrb4
+         EO29YP4nj+tcsiJ5oOrOEvKfFEuTFxjlDrJfC7cO1mlTjIRsEX5T8iFviDC7AUKFthRb
+         UzFMDjfH2zudIQzR9vAXFbe5zQuWRcyiwUPoGobzIrD/EBe9zqvLWAbqwbQ63+9ASxSk
+         6/1tvuUOSoiZ/LWLlzpGpoN5GDJFzIVsJ0vkkVpcd9bDjAhwuVu8ThrGLYxmtIedJe7S
+         BRu8iLQf1enj+aypNuQR3DIoAEf//c+4p5KYDvY6YG6HTxB2zcXVE0JchYeLTwKqJ8WD
+         i/WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719432568; x=1720037368;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XFoBjCaXOuAuWDxpGYUmcGmS4rl71MBSo9IrE9Xx5Dc=;
+        b=iTklw/Une4BWgPohA75lIWsKzQhYvsLmoJe+/auqmYHGqBdZLx6Aye+gDOaz4SLvXV
+         UgxSKHi5L5+/D20AN/2yyAriK5xthxC2K2GsVENl4lp0MAsOoNeyYn3ci4Ww81ImmLxn
+         spVroixnlcO2rmcN/9BtVdsinYcocM7nWvb2LKyhJ9W/u+XKRnD49erdJvJadAfLDTta
+         SoF6jAbott2iIb2umNAqCCy7/bBJ2TvSXkYF9MbAbSRLkQeU69ElilYeK6+FKqChevSc
+         28I/wgG6QG/1aNmP22XArngmRGEq6hVXLebndwgeVgwOu+ls04mhsY12JJy509uUWbqg
+         /oZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVXjnb890qBbuLi2hxov+RqeFoHSyjhEOY333iwh3b0WnRoAf9zrPvmPZsScnQhl3yayC8aQXGpENSFH2bZtp4xDXpK+AiVO/eg+w==
+X-Gm-Message-State: AOJu0Yz6vNXl8diZxpZuj3MwlFdK/NnoqyyTWmTTe9OSPeprYJfUvRT7
+	9klomJCuxcl/qxHYTwkyixwZjeLqpw39scCqHZeIeYH6o7KBI43hTKbdpThPqMo=
+X-Google-Smtp-Source: AGHT+IFd8ycHFY0EV3fQ/ysqJ31z0UTdeJK8CX1EFtFBpVl3MeFi4xbYR0M2X9flhqcvpPKYIGhIkg==
+X-Received: by 2002:a05:6e02:13a5:b0:376:3918:c50 with SMTP id e9e14a558f8ab-37639180e02mr150373115ab.0.1719432567747;
+        Wed, 26 Jun 2024 13:09:27 -0700 (PDT)
+Received: from [192.168.1.150] ([198.8.77.157])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-71acc0424cfsm5855973a12.26.2024.06.26.13.09.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 13:09:26 -0700 (PDT)
+Message-ID: <1233bf3c-335c-497a-ba08-cd52362f3723@kernel.dk>
+Date: Wed, 26 Jun 2024 14:09:24 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240624104239.132159-3-thippesw@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] block: partitions: populate fwnode
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Felix Fietkau <nbd@nbd.name>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+ Christian Brauner <brauner@kernel.org>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Al Viro <viro@zeniv.linux.org.uk>, Li Lingfeng <lilingfeng3@huawei.com>,
+ Christian Heusel <christian@heusel.eu>, Min Li <min15.li@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hannes Reinecke <hare@suse.de>, Mikko Rapeli <mikko.rapeli@linaro.org>,
+ Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Li Zhijian <lizhijian@fujitsu.com>,
+ "Ricardo B. Marliere" <ricardo@marliere.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-block@vger.kernel.org
+References: <cover.1719368448.git.daniel@makrotopia.org>
+ <afa870ec6ac1027561d1c002205ab1e05358a46c.1719368448.git.daniel@makrotopia.org>
+ <2de992b3-d71c-40f2-ad68-76a9f48338d4@kernel.dk>
+ <Znxy0BJNTE79MrCq@makrotopia.org>
+Content-Language: en-US
+From: Jens Axboe <axboe@kernel.dk>
+In-Reply-To: <Znxy0BJNTE79MrCq@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Thippeswamy,
+On 6/26/24 1:58 PM, Daniel Golle wrote:
+> On Wed, Jun 26, 2024 at 01:43:49PM -0600, Jens Axboe wrote:
+>> On 6/25/24 8:50 PM, Daniel Golle wrote:
+>>> diff --git a/block/partitions/core.c b/block/partitions/core.c
+>>> index ab76e64f0f6c..f88829e254e6 100644
+>>> --- a/block/partitions/core.c
+>>> +++ b/block/partitions/core.c
+>>> @@ -10,6 +10,8 @@
+>>>  #include <linux/ctype.h>
+>>>  #include <linux/vmalloc.h>
+>>>  #include <linux/raid/detect.h>
+>>> +#include <linux/property.h>
+>>> +
+>>>  #include "check.h"
+>>>  
+>>>  static int (*const check_part[])(struct parsed_partitions *) = {
+>>> @@ -281,6 +283,42 @@ static ssize_t whole_disk_show(struct device *dev,
+>>>  }
+>>>  static const DEVICE_ATTR(whole_disk, 0444, whole_disk_show, NULL);
+>>>  
+>>> +static struct fwnode_handle *find_partition_fwnode(struct block_device *bdev)
+>>> +{
+>>> +	struct fwnode_handle *fw_parts, *fw_part;
+>>> +	struct device *ddev = disk_to_dev(bdev->bd_disk);
+>>> +	const char *partname, *uuid;
+>>> +	u32 partno;
+>>> +
+>>> +	fw_parts = device_get_named_child_node(ddev, "partitions");
+>>> +	if (!fw_parts)
+>>> +		fw_parts = device_get_named_child_node(ddev->parent, "partitions");
+>>> +
+>>> +	if (!fw_parts)
+>>> +		return NULL;
+>>
+>> That last if check should to inside the previous one.
+> 
+> Actually the previous one should have been removed entirely. I somehow
+> forgot to 'git add' that change.
+> 
+>>
+>>> +	fwnode_for_each_child_node(fw_parts, fw_part) {
+>>> +		if (!fwnode_property_read_string(fw_part, "uuid", &uuid) &&
+>>> +		    (!bdev->bd_meta_info || strlen(uuid) > PARTITION_META_INFO_UUIDLTH ||
+>>> +		     strncmp(uuid, bdev->bd_meta_info->uuid, PARTITION_META_INFO_UUIDLTH)))
+>>> +			continue;
+>>> +
+>>> +		if (!fwnode_property_read_string(fw_part, "partname", &partname) &&
+>>> +		    (!bdev->bd_meta_info || strlen(uuid) > PARTITION_META_INFO_VOLNAMELTH ||
+>>> +		     strncmp(partname, bdev->bd_meta_info->volname,
+>>> +			     PARTITION_META_INFO_VOLNAMELTH)))
+>>> +			continue;
+>>
+>> This is pretty hard to make sense of...
+> 
+> I'll add comments explaining it. Or should I use another syntax, e.g. several
+> nested if-clauses, instead?
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus linus/master v6.10-rc5 next-20240625]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Thippeswamy-Havalige/dt-bindings-PCI-xilinx-xdma-Add-schemas-for-Xilinx-QDMA-PCIe-Root-Port-Bridge/20240626-052852
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20240624104239.132159-3-thippesw%40amd.com
-patch subject: [PATCH 2/2] PCI: xilinx-xdma: Add Xilinx QDMA Root Port driver
-config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20240627/202406270344.9nOuTH5k-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240627/202406270344.9nOuTH5k-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406270344.9nOuTH5k-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/pci/controller/pcie-xilinx-dma-pl.c:130: warning: Function parameter or struct member 'cfg_base' not described in 'pl_dma_pcie'
->> drivers/pci/controller/pcie-xilinx-dma-pl.c:130: warning: Function parameter or struct member 'variant' not described in 'pl_dma_pcie'
-
-
-vim +130 drivers/pci/controller/pcie-xilinx-dma-pl.c
-
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  101  
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  102  /**
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  103   * struct pl_dma_pcie - PCIe port information
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  104   * @dev: Device pointer
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  105   * @reg_base: IO Mapped Register Base
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  106   * @irq: Interrupt number
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  107   * @cfg: Holds mappings of config space window
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  108   * @phys_reg_base: Physical address of reg base
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  109   * @intx_domain: Legacy IRQ domain pointer
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  110   * @pldma_domain: PL DMA IRQ domain pointer
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  111   * @resources: Bus Resources
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  112   * @msi: MSI information
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  113   * @intx_irq: INTx error interrupt number
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  114   * @lock: Lock protecting shared register access
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  115   */
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  116  struct pl_dma_pcie {
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  117  	struct device			*dev;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  118  	void __iomem			*reg_base;
-21ff31dc400101 Thippeswamy Havalige 2024-06-24  119  	void __iomem			*cfg_base;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  120  	int				irq;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  121  	struct pci_config_window	*cfg;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  122  	phys_addr_t			phys_reg_base;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  123  	struct irq_domain		*intx_domain;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  124  	struct irq_domain		*pldma_domain;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  125  	struct list_head		resources;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  126  	struct xilinx_msi		msi;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  127  	int				intx_irq;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  128  	raw_spinlock_t			lock;
-21ff31dc400101 Thippeswamy Havalige 2024-06-24  129  	const struct xilinx_pl_dma_variant   *variant;
-8d786149d78c77 Thippeswamy Havalige 2023-10-03 @130  };
-8d786149d78c77 Thippeswamy Havalige 2023-10-03  131  
+Maybe some kind of helpers for these instead, with comments? Nobody can
+read the above.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jens Axboe
+
 
