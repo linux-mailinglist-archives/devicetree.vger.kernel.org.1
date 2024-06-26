@@ -1,260 +1,137 @@
-Return-Path: <devicetree+bounces-80249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32B291836D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:55:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA00918394
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 16:03:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC210282F32
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:55:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E0A6B24A50
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACAF184106;
-	Wed, 26 Jun 2024 13:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D967181CF3;
+	Wed, 26 Jun 2024 14:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZTSlvyvh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZBkQzVU6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7DA913CFBC;
-	Wed, 26 Jun 2024 13:55:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7831755A;
+	Wed, 26 Jun 2024 14:02:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719410147; cv=none; b=u9TfYwJ4/zshoYCgJ91eAjVnlPqyLFrzPI/1+WHSqz2y4MpwVHHGuAfx+eTG7+4KGkyPrkh7MsNt27RD+pZ9NoZgi+CopixC4z9O8Twhia3H43i3PP9kiLWWkdHGT+sqxqPVi4e025NZeXCsz4x+RL8RJ2lxQaPfrbpfN9zUG30=
+	t=1719410530; cv=none; b=MW73D2K+nQGeTsXQr9ZGY23VJtCTp/fD5vpyn99326dz253hVFrFRAVM4RC/dw0fHBRwMKPDQKlBoGkH0k2sYTOnQnrMseKEnugpkflcFHp6RrVspnmFENHcRbkfdw/8gCUgjqRFBsMXBHlmGPb6CBlj88+u6z4WXhXj7RmbpLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719410147; c=relaxed/simple;
-	bh=xrcpgoNgxm8C0Kb/r4R1lvvcHBnUSjrEZGydptIEOxE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=Ay/VEHRYZUrCrcz8nSc6CkfU9c+r9sec0wEXWROZLNhVo9Mv/x0YxbsXg7yBrUkZMtAA+QnfYb8IlTHIKYM7Wr0KpBEbfmOBbg0W/Hmj6fgCPmT9eta0xsrdXHE5hJXfOySs1JpYyvJ65I271dviFliXe9e+5OnOj8xR5pB5CJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZTSlvyvh; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 11D77FF80B;
-	Wed, 26 Jun 2024 13:55:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1719410142;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zHHpcdUDLggegxHApua1aann/FKTPhiRh3POfuR1lgs=;
-	b=ZTSlvyvh5zkjPhU7ABPitVfc+ymxhXAB+dFOn3XkM4WDiGZSZcLzos9RfubbU7R8FuuFWq
-	tQWKkGpJq5veA0MQZ2DTH/tJRU6JXzBVTnWEjtbEY01A9sYvq4iy/S7VRLZ6epythFq5as
-	tfHrGKvthedApjlvHBFi7jZY8en0+sZpD9v9SclEOCE2PWsi6Uv0ujDCeSeIKbzWraS3AX
-	GjhNzp0RfasxejYxpUrTVPrk6I7zI9iQNnTIKT5+XaHN3OGW3QDJvT8X0XruGkO+4eqjMN
-	2OhZ7wSk3Rax7C1JBvViN8Bc3iI3MuBdB5SgscoyA0IMFHYl3wrFJbofndrBWA==
+	s=arc-20240116; t=1719410530; c=relaxed/simple;
+	bh=Z35Nb4vXzItDiHKF9HUk9/dMjwDwEL8AOUtpP0W3VFo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C0ejuvnAJOgWhAao8sc9xrBwmxfqw7wueUol2TGxJP0/i4rVPcAnj9bd3ka4LcN2ff0XxDeRsnxFFWdLSALStFHrdOI/VXUmJUZIX9KT+p/XK6FjLaaLoSrV46Fjzka6Jx4rNlvBqlZpUbfJYJOjguVR0JPT6GR94qjqF/0EB0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZBkQzVU6; arc=none smtp.client-ip=209.85.160.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-2598001aae7so3301916fac.2;
+        Wed, 26 Jun 2024 07:02:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719410528; x=1720015328; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WlX6ofd4eUvev3IitES3h0rQ2uet+ifDwXi5r0qMYlA=;
+        b=ZBkQzVU6G3pf8MZ780XnAl6zg5DwYcJdGNa0UE3qWQGW6TaKypn8JY3isFw8Ycju/i
+         DoQrSZfNAJMZUG/EI+jHtITKOExiuuQTN/5oLloCJ+g/avC3/znSaScM5RMjQ6lUIDLv
+         G23T+m8hriuNkF3ndi8el1mmdTUznEGiCOdBSbqJ//wDvsYFlXc1BvgnztjwhRNJI6yQ
+         tUVwnwfTw7SeHCFDGXQn+hvFU+FjFJ5YdhFMffp1QYurYwCQmZyPdPxGT0/d4PishLVN
+         dioLTrduwPxVRAgFG27abitNMzSpzDRfVW57s1H2kOsIomUqsvfysP8WxaVsp2cKNji1
+         vqog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719410528; x=1720015328;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WlX6ofd4eUvev3IitES3h0rQ2uet+ifDwXi5r0qMYlA=;
+        b=QGunWQ0iR5DBIEJGwKIx8uDW2hKEeoQBi+x9fNEkZFtvVOh3PTVrAw6om4pSN/nPup
+         dMlG2AFUsA6qxbM7Yt140Bag8EKufGEnOhS+Rns3zDcg8fAb32ARBERxjrbc0LD1lwDj
+         tRlCdrog92HHkSK59Ff9aZqWd+MK8O1iq8zEG+fzTk0K3dY/RHd3Y06Dp0NNH8p896vB
+         LFuirzo7dNHMsNKwxLiLciPVnzqsJib/77pM74lpvMWPPNqBJ1TcAU68dD1KaRlRMiey
+         pSp0vAU3M2fM7zLCQqJmfr0Nc3Ajk9AlEu6lXqCxNU+krmbc4OQ+mFXP+XWti8MadVav
+         cJVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUiqVmwBt7JrlE57WURO3/yilEeHwZNhjbQKwdc+hQxPESe1RVVwe0SeMFNkd69KwIvNfeU0wHW39MXPNhfdCjlcRFXuAzvEvjrDrZet4S+cyDEp0kh58Bl25zSr2HLAgxV/C3GXeY1rA==
+X-Gm-Message-State: AOJu0YyIfU8Z3IUiBDnYYLYXwh8xKl5j+xM4Vp3UOhmGZFzeLiRPIeZG
+	UaOJSd6hIHzUpJXdR+NSGKwNeAvJtXqMWRmSq7EybMhEUl4wHzgBr/w1Kpi/GVPz5kSCLBjcUVH
+	aDH4C5gwbQgDJapUe6SD7K4xzhmCwGBzAwio=
+X-Google-Smtp-Source: AGHT+IH1IDVeSLxIl19iRxYfSks6SiF5dVhrO6anINHh6vSqqhiBjcUChgbTG/g2pFbZXYVvnqxQn3g8GL6UuLaG9dk=
+X-Received: by 2002:a05:6870:702a:b0:25b:3e23:e5e7 with SMTP id
+ 586e51a60fabf-25d016724b7mr9830696fac.3.1719410528222; Wed, 26 Jun 2024
+ 07:02:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20240626130332.929534-1-yangchen.openbmc@gmail.com> <CAL_JsqL-b==HMLJGd_e-43yZHjBFYrrLV5J2a=E2LSEck=ii6w@mail.gmail.com>
+In-Reply-To: <CAL_JsqL-b==HMLJGd_e-43yZHjBFYrrLV5J2a=E2LSEck=ii6w@mail.gmail.com>
+From: Yang Chen <yangchen.openbmc@gmail.com>
+Date: Wed, 26 Jun 2024 22:01:55 +0800
+Message-ID: <CALFa7M8bgVX_L30J72SqZ-0vzfezoJLtZHnKjL-dZki0kMJFoQ@mail.gmail.com>
+Subject: Re: [PATCH v1 00/17] Revise Facebook Minerva BMC DTS
+To: Rob Herring <robh@kernel.org>
+Cc: joel@jms.id.au, andrew@codeconstruct.com.au, patrick@stwcx.xyz, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Jerry.Lin@quantatw.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 26 Jun 2024 15:55:40 +0200
-Message-Id: <D2A00Y4TJYTS.1RMR2FSNW7KQ2@bootlin.com>
-Subject: Re: [PATCH v3 7/9] reset: eyeq: add platform driver
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Linus Walleij" <linus.walleij@linaro.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Lee Jones" <lee@kernel.org>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.17.0
-References: <20240620-mbly-olb-v3-0-5f29f8ca289c@bootlin.com>
- <20240620-mbly-olb-v3-7-5f29f8ca289c@bootlin.com>
- <e2f129fc42d26cde50e1de0bc80ef0db51b7f693.camel@pengutronix.de>
-In-Reply-To: <e2f129fc42d26cde50e1de0bc80ef0db51b7f693.camel@pengutronix.de>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello Philipp,
-
-On Tue Jun 25, 2024 at 11:17 AM CEST, Philipp Zabel wrote:
-> On Do, 2024-06-20 at 19:30 +0200, Th=C3=A9o Lebrun wrote:
-> > Add Mobileye EyeQ reset controller driver, for EyeQ5, EyeQ6L and EyeQ6H
-> > SoCs. Instances belong to a shared register region called OLB and gets
-> > spawned as auxiliary device to the platform driver for clock.
-> >=20
-> > There is one OLB instance for EyeQ5 and EyeQ6L. There are seven OLB
-> > instances on EyeQ6H; three have a reset controller embedded:
-> >  - West and east get handled by the same compatible.
-> >  - Acc (accelerator) is another one.
-> >=20
-> > Each instance vary in the number and types of reset domains.
-> > Instances with single domain expect a single cell, others two.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  MAINTAINERS                |   1 +
-> >  drivers/reset/Kconfig      |  14 ++
-> >  drivers/reset/Makefile     |   1 +
-> >  drivers/reset/reset-eyeq.c | 563 +++++++++++++++++++++++++++++++++++++=
-++++++++
+On Wed, Jun 26, 2024 at 9:38=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> Should this be called reset-eyeq-olb or reset-eyeq5, in case a
-> different eyeq driver will have to be added in the future?
-
-What about keeping reset-eyeq for the simplicity of it and using
-reset-eyeq7 for a theoretical future driver that gets used by EyeQ7 and
-above? Or any other revision.
-
-Else it can be reset-eyeq5. OLB might be a concept that gets reused with
-different reset blocks inside (meaning reset-eyeq-olb wouldn't
-distinguish). You tell me if keeping *-eyeq is fine.
-
-> >  4 files changed, 579 insertions(+)
-> >=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index f386e9da2cd0..36f4001c7f51 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -14931,6 +14931,7 @@ F:	arch/mips/boot/dts/mobileye/
-> >  F:	arch/mips/configs/eyeq5_defconfig
-> >  F:	arch/mips/mobileye/board-epm5.its.S
-> >  F:	drivers/clk/clk-eyeq5.c
-> > +F:	drivers/reset/reset-eyeq5.c
+> On Wed, Jun 26, 2024 at 7:05=E2=80=AFAM Yang Chen <yangchen.openbmc@gmail=
+.com> wrote:
+> >
+> > Revise the Linux device tree entry related to Facebook platform Minerva
+> > specific devices connected to the Aspeed AST2600 BMC.
+> >
+> > Changelog:
+> > - v1:
 >
-> See above, and this should match the actual file name.
+> You already sent v1. This is v2.
+Hi Rob,
+
+I appreciate your reminder. Should I send another patch series and use v3?
+
+Thanks,
+Yang Chen
+
 >
-> Adding the MAINTAINERS change in the driver patches makes these patches
-> depend on each other. Otherwise they could be applied independently. Do
-> you intend this series to be merged together in one tree?
-
-I'd prefer splitting it indeed.
-
-I had thought there were two reasons the patches were interdependent:
-1. MAINTAINERS file entries.
-2. Kconfig: "depends on COMMON_CLK_EYEQ".
-
-About (1): what about creating a new patch that only touches
-MAINTAINERS? It would be taken as part of clk maybe (it contains the
-platform driver that instantiates the other auxdevs)?
-
-About (2): Kconfig doesn't complain the symbol doesn't exist so it looks
-like a non-issue.
-
-> >  F:	include/dt-bindings/clock/mobileye,eyeq5-clk.h
-> > =20
-> >  MODULE SUPPORT
-> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> > index 85b27c42cf65..b79c18b75674 100644
-> > --- a/drivers/reset/Kconfig
-> > +++ b/drivers/reset/Kconfig
-> > @@ -66,6 +66,20 @@ config RESET_BRCMSTB_RESCAL
-> >  	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 =
-on
-> >  	  BCM7216.
-> > =20
-> > +config RESET_EYEQ
-> > +	bool "Mobileye EyeQ reset controller"
-> > +	depends on COMMON_CLK_EYEQ
->
-> Is this a real dependency? It seems to compile just fine without it.
-> Please allow building under COMPILE_TEST without COMMON_CLK_EYEQ set.
-
-Not really. This made potential users notice they want the
-clk driver if they want this reset driver. I forgot
-handling test builds (ie COMPILE_TEST).
-
-Next revision will look like:
-
-config RESET_EYEQ
-	bool "Mobileye EyeQ reset controller"
-	depends on AUXILIARY_BUS
-	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
-	default MACH_EYEQ5 || MACH_EYEQ6H
-	help: ...
-
-[...]
-
-> > +
-> > +#include <linux/array_size.h>
-> > +#include <linux/auxiliary_bus.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bits.h>
-> > +#include <linux/bug.h>
-> > +#include <linux/cleanup.h>
-> > +#include <linux/container_of.h>
-> > +#include <linux/device.h>
-> > +#include <linux/err.h>
-> > +#include <linux/errno.h>
-> > +#include <linux/init.h>
-> > +#include <linux/io.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/lockdep.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
->
-> Not needed, this being an aux driver now. Please check the other
-> headers as well.
-
-Looking at the diff, <linux/platform_device.h> is the only one.
-
-[...]
-
-> > +static int eqr_probe(struct auxiliary_device *adev,
-> > +		     const struct auxiliary_device_id *id)
-> > +{
-> > +	const struct of_device_id *match;
-> > +	struct device *dev =3D &adev->dev;
-> > +	struct eqr_private *priv;
-> > +	unsigned int i;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * We are an auxiliary device of clk-eyeq. We do not have an OF node =
-by
-> > +	 * default; let's reuse our parent's OF node.
-> > +	 */
-> > +	WARN_ON(dev->of_node);
-> > +	device_set_of_node_from_dev(dev, dev->parent);
-> > +	if (!dev->of_node)
-> > +		return -ENODEV;
-> > +
-> > +	/*
-> > +	 * Using our newfound OF node, we can get match data. We cannot use
-> > +	 * device_get_match_data() because it does not match reused OF nodes.
-> > +	 */
-> > +	match =3D of_match_node(dev->driver->of_match_table, dev->of_node);
-> > +	if (!match || !match->data)
-> > +		return -ENODEV;
-> > +
-> > +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	priv->data =3D match->data;
-> > +	priv->base =3D dev_get_platdata(dev);
->
->   drivers/reset/reset-eyeq.c:437:20: warning: incorrect type in assignmen=
-t (different address spaces)
->   drivers/reset/reset-eyeq.c:437:20:    expected void [noderef] __iomem *=
-base
->   drivers/reset/reset-eyeq.c:437:20:    got void *
->
-> I'd wrap this in a struct or explicitly cast to (void __iomem *) here.
-
-I'll cast to void iomem pointer explicitely.
-
-Thanks for the review Philipp,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+> >   - Modify the properties of spi to match the schema.
+> >
+> > Yang Chen (17):
+> >   ARM: dts: aspeed: minerva: change the address of tmp75
+> >   ARM: dts: aspeed: minerva: change aliases for uart
+> >   ARM: dts: aspeed: minerva: add eeprom on i2c bus
+> >   ARM: dts: aspeed: minerva: change RTC reference
+> >   ARM: dts: aspeed: minerva: enable mdio3
+> >   ARM: dts: aspeed: minerva: remove unused bus and device
+> >   ARM: dts: aspeed: minerva: Define the LEDs node name
+> >   ARM: dts: aspeed: minerva: Add adc sensors for fan board
+> >   ARM: dts: aspeed: minerva: add linename of two pins
+> >   ARM: dts: aspeed: minerva: enable ehci0 for USB
+> >   ARM: dts: aspeed: minerva: add tmp75 sensor
+> >   ARM: dts: aspeed: minerva: add power monitor xdp710
+> >   ARM: dts: aspeed: minerva: revise sgpio line name
+> >   ARM: dts: aspeed: minerva: Switch the i2c bus number
+> >   ARM: dts: aspeed: minerva: remove unused power device
+> >   ARM: dts: aspeed: minerva: add ltc4287 device
+> >   ARM: dts: aspeed: minerva: Add spi-gpio
+> >
+> >  .../aspeed/aspeed-bmc-facebook-minerva.dts    | 516 +++++++++++++-----
+> >  1 file changed, 373 insertions(+), 143 deletions(-)
+> >
+> > --
+> > 2.34.1
+> >
+> >
 
