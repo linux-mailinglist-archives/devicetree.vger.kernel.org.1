@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-80014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC409179D2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:36:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A94F59179D9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 166E21C20AE6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:36:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC8D91C20363
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:38:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A51E15A4AF;
-	Wed, 26 Jun 2024 07:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5947815AADB;
+	Wed, 26 Jun 2024 07:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K45oxu5T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZwfq4xZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42081FBB;
-	Wed, 26 Jun 2024 07:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6861FBB;
+	Wed, 26 Jun 2024 07:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719387403; cv=none; b=PXArgNTsyvtcG+vhXtfxdZ/PE+pbe+aqgJ/rfbuk0hVdkHZOmC5mxAZIIqdfRnPxYK/wYDkrz5yGNn/nahCdIPP5vOKPcajd0oopeR45PJAssn5sQYujUfN6Ssqhwqw2AcXIZSqyCkyzabCiUESWMkVcxoE3npMmkDs9+s0m8A0=
+	t=1719387513; cv=none; b=rDw6KECsMcbB6+geau8KGHR4qgnXN2dTQZBCO5OJOCNqF6P76yfbE45s/9n5qHU2dq2az1ww78gijtYyBvtxa+rUozurfGQwZ9p+Y0fSYUNIHiD+b+eWjnW0UIKoonhW7hdMWOMf4HIWJwPzeqJByR7wbjGIwVP0g7UA6M4Z4LQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719387403; c=relaxed/simple;
-	bh=BOFd+RDHZhDpVP8QzGCCbA/vWy0qbNyIJACj4mi9gBE=;
+	s=arc-20240116; t=1719387513; c=relaxed/simple;
+	bh=JNBOnj4uAS3UltBRLVJm4v/SvBP7W6Kd+PdEmIgMzTg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gK4IeSmH4srrBF4yEHAwKA7rOQycI7dbPT09PEyX4rENCrn1+YLNsgrijUTXJQrnoRgF+8ZfoWl4Yd3xh/lqgt7n6F9wWNPqRuTgNvFChGQTjxsrHfbLTTA5BAiaUsvy5Ux0ZgpqDCPOzW6TPDzVYajI7aDnx2XAmsAHAcv+Svc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K45oxu5T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 972FAC2BD10;
-	Wed, 26 Jun 2024 07:36:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SvNGIlvM1gGVfLiUwfoLzVr/anfWKkG+6E7WFY9N4kX3mIYNoopH5cEvAjp2ylIsjcU+aDSqE2Yn6bawY/AV5XuTaQ4WqyHgrwCV4l4+042Ta2ceeKSVMU2sacslJ0BEGia8182hdu+WxhR7iTll8g8sOfBOD2105fEvm9YQUFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rZwfq4xZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28679C2BD10;
+	Wed, 26 Jun 2024 07:38:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719387403;
-	bh=BOFd+RDHZhDpVP8QzGCCbA/vWy0qbNyIJACj4mi9gBE=;
+	s=k20201202; t=1719387512;
+	bh=JNBOnj4uAS3UltBRLVJm4v/SvBP7W6Kd+PdEmIgMzTg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K45oxu5TKdxzevro5K7XdlOAZkwCoBbP/1+VBIAJED8NgV+TnWDDTKcD7++6rEoWe
-	 zGNBGDyW2qZmNkuot2AvfI7owqbRrPCduzO1pg+zQ8fzsYEdm8qiJ/GgmTiV6MVfag
-	 OFihy922HpgObgkjZeDaV3dUKZL13gDvY2H/mK4RtnFSOlv5ZEjrjA/A3HjOs4TJWO
-	 DPQXJPzyjwvHpqcpAv4ZeYgKBVKHjJZ5ftCGnte9+vPzp2f1BAxFbNlpRvplqP2tXa
-	 JaEA7DdXrLRYDNlFl1k+lfSmFaLz7qUfAepL98sU6tKDBtq6QV4gVxtOpU5FhJLl6W
-	 hqc1NW3Fw6qlw==
-Message-ID: <8dbe4a2d-3d25-460a-8fa1-3511d315a901@kernel.org>
-Date: Wed, 26 Jun 2024 09:36:36 +0200
+	b=rZwfq4xZKu/euAceNj9yiiH+cbZ366dRCK2LSpBeZllYSzwZRt+8CukhY+AswUh19
+	 2648grrAetJiizJtEN0lOtOSxYrgq90jufJJFXCzR4/c+xQC74FAd6iMSoC+xtVKij
+	 rnMZn4ckTsFkhHg9nuHu1vUDEs0NVPRzMbuf89l2JoJSAm0C8M78Yid41gTUhXvysV
+	 e9eCaTvwGutiExrnCHHJyEZq6f7+2RqPH0+ef4KdB2l6nqREdt6uDt6s05h8Yo3SdT
+	 y/191RIzQQNOv8erYKP/TcycjVQjUji0YC7Jr55hz0zXnzF3pNDo38ISYxaF2OnzmP
+	 xAGxCF0tddlWw==
+Message-ID: <13e294dd-27e9-4464-b9ed-2b319e757849@kernel.org>
+Date: Wed, 26 Jun 2024 09:38:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add AUO G104STN01 panel
-To: Paul Gerber <paul.gerber@ew.tq-group.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240626044727.2330191-1-paul.gerber@ew.tq-group.com>
+Subject: Re: [PATCH v2] dt-bindings: net: dsa: mediatek,mt7530: Minor wording
+ fixes
+To: Conor Dooley <conor@kernel.org>,
+ Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>
+References: <20240624211858.1990601-1-chris.packham@alliedtelesis.co.nz>
+ <20240625-battle-easiness-7ac3e81c2d6a@spud>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,36 +113,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240626044727.2330191-1-paul.gerber@ew.tq-group.com>
+In-Reply-To: <20240625-battle-easiness-7ac3e81c2d6a@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/06/2024 06:36, Paul Gerber wrote:
-> Add AUO G104STN01 10.4" LCD-TFT LVDS panel compatible string.
+On 25/06/2024 18:00, Conor Dooley wrote:
+> On Tue, Jun 25, 2024 at 09:18:57AM +1200, Chris Packham wrote:
+>> Update the mt7530 binding with some minor updates that make the document
+>> easier to read.
+>>
+>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> ---
+>>
+>> Notes:
+>>     I was referring to this dt binding and found a couple of places where
+>>     the wording could be improved. I'm not exactly a techical writer but
+>>     hopefully I've made things a bit better.
+>>     
+>>     Changes in v2:
+>>     - Update title, this is not just fixing grammar
+>>     - Add missing The instead of changing has to have
+>>
 > 
-> Signed-off-by: Paul Gerber <paul.gerber@ew.tq-group.com>
+> I don't really want to ack this, a 4th ack for some wording that has
+> no impact on the binding itself just seems so utterly silly to me...
+> Instead I've spent more time writing how silly I think it is than
+> hitting the ack macro would take :)
 
+But look how many reviews/acks it got :). If you acked this, the patch
+would have like 4 tags!
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+If only complex patches get so much attention... :)
 
 Best regards,
 Krzysztof
