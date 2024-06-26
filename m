@@ -1,55 +1,73 @@
-Return-Path: <devicetree+bounces-80018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14EC89179FD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:43:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E10C917A03
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 09:46:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 465E41C219BA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:43:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9EA0282040
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 07:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2ED15B55D;
-	Wed, 26 Jun 2024 07:43:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289E115CD4D;
+	Wed, 26 Jun 2024 07:46:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PFzJch1v"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="PDRuAxX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC331155316;
-	Wed, 26 Jun 2024 07:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C25F153803
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 07:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719387827; cv=none; b=hWHlyxg0lpm66Po/YQQYVaAtQYz2KwbVE0Hqe3QruLeh6YSouV7hSnymHMaewv37TLoTx3f+SCmGU3gkBF+yKHpsHYUP1jDRwxhmsBl5GtqSrkbxaSyr2nRncSHheBKz9FnRbegPKFyZlOh7kVRUWWlzO/qHsIM8aFtg/EwU2hc=
+	t=1719387966; cv=none; b=GXffasZMTpvIrzahpwqgQYWHo+lDpQ8ge5t7MvaQ7VzCYhIFRz0auQQ2yxi8zTvt3aRop1ryAeP4oLpj0s7toCcy99ebEv2kmIZqfE0kBcseMl5X7ApQgxD+P+P8zG03kduchdxloaQqilg3SOGlWT8sRKW31ZoMJZcq1f7CQa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719387827; c=relaxed/simple;
-	bh=QVwwwwWJMC02wU6Kl7A1QxNTL8rAbcV54YrqF8y2+Iw=;
+	s=arc-20240116; t=1719387966; c=relaxed/simple;
+	bh=+S/ZylBo7OkDhqSowKwWFObaRLnN9nAxnObxD0rGb+Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UmsNrd4/YBsP2Mj+LSyEUNKEw5oR1x5Ivz+KxC74GBLb15lIv98ZxuVdTjziNG0HW+a5jnYzPUsXGKkAmGj3eh+8WCCmYUr6P8Pqzm3F7HB7qVJp9tlkOihpWqER1KWRqcRschpcV2kH15nBSRw1mAD4ifztmEIIgkou2BwAJJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PFzJch1v; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719387818;
-	bh=QVwwwwWJMC02wU6Kl7A1QxNTL8rAbcV54YrqF8y2+Iw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PFzJch1vLYzrVQ7JPoyPNhbYxtzjzkfkQTYjt7iZJcbUYagAeEd+Jcz+mRS4N4k+C
-	 7K44jeaYtTEURxDJMY+W9T2/97ED6LuC6VwGz30ZoH/oLS0ZmalwssH275HWYqMFUn
-	 Fef+DZbZCzxpstdzVXYzJxq0IitWai9W+kgOLXK5hFLR4ZGmq5py6Os7DkmP//VEdL
-	 039i81SnuMfSn3i/64BU46IYb2OSMqdRrhkDpxWlcnJbEPJnuD5HlS4GwlJ23IYTZL
-	 XBgBQ0/nDEEe9QBAKzNoyiJb0DeHS+0eIOQvEmmAwd2jLYFkEC3gt0pVh5v37tcJHw
-	 U20c01voSopKw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 571C137821B7;
-	Wed, 26 Jun 2024 07:43:37 +0000 (UTC)
-Message-ID: <4541415f-0e6d-438f-a7b3-0c29c196e432@collabora.com>
-Date: Wed, 26 Jun 2024 09:43:36 +0200
+	 In-Reply-To:Content-Type; b=fEQ88RrYQt2EJ2+eOJHG94PrBR5ZSFsYNkLRX7m3V4+ChmutnAw0Sie712NhVmD9dzcjsxBvsLAex3iTeCKZQ8inyi0blzIrB+Nu5p9V6w4p5e+SMU5th/a6kbqekIU+4ancTVHNQYIGYv9PcZhc147Z2z/9eHSO+n/eA+02DkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=PDRuAxX5; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52cdf579dd2so3869331e87.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 00:46:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1719387962; x=1719992762; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6nCZo+jWMRZ6cgUq9Mxe++DtYRLBTMuxAvEuWj2mzpc=;
+        b=PDRuAxX5PEoFRCnLtzb8Qail2JRo6XlJkOioQfY/45Q2Pe5Q4H1J/Zu/9KyxNujnRg
+         S2J0xUcVG4F+oPIm4+Eu5LhVZAYM5/fLmUMAhuzLqeTy2ImN1BIrqO4aFYIdDLNui4Ee
+         zQwemIPBseh0/06zstorqGL/VsXG0M2rI5dIFNewRRQ+MN4PyT+wGyhK3+hg98tvrBf2
+         Kjm82niL0hF4Qi1ELGQKJACSn83OG1GjL5s6SuIM5WoCHD+9AX/c1sNt/uOr1n/dWFfU
+         aPE+pPHRQPFLSxyks5E72AX50YoeEwEQaoLgAOcnFB0JxhNyMd1pAuBqXBcOVL6kbRkv
+         xG1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719387962; x=1719992762;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6nCZo+jWMRZ6cgUq9Mxe++DtYRLBTMuxAvEuWj2mzpc=;
+        b=i3DYbqO+vGydV0mGHqQ5yQKyYAkE+lSJ4EZfr/KbM8nS7gG/dgNSxBsnOTc1bKxKj0
+         VOVMheKPGSf2wdzak43wEr0XoNuQUcITSG5eEgqOhKSgg2dzcr0WrTVCTaOobmw8oVQH
+         pbBf6J4MDSlW8JjE8Ib8mh1hwsDCTyN0UwtD44ZANQI5T0VsMHjlb1X8f7Xl2OV9o2aP
+         RRitQSVOVOnHRh6GsGoi5FcWBgskg1hbSYlhs4Aw1Wpo+NXEd0hD1Z8mer2JHk/PWj/H
+         sypdTp2kaNT+VdfTaVbq9Xtf3soWhGtXTW/oiSGQOO8kL6tMj81FGL6Au5oRp+kbyJtC
+         Oe5w==
+X-Gm-Message-State: AOJu0YxCsb6c8x1EedyzFn74Yu84SOOgDJUJaSYeXDn/+OIsskHcUJc1
+	PWmG98KrAvUw6vK4+MvIIDBJR9tZ9lP+FnAtzIg0hqVIjiNwNbIn3sczlZ40M5I=
+X-Google-Smtp-Source: AGHT+IGQX0elEmsIgSgrE2SLocb/u9Th6sLY7fmx7i7FDBNC/6k6+LF/g+fLJC0OABw8GNYDkrkA2Q==
+X-Received: by 2002:a05:6512:138a:b0:52c:f521:b1c6 with SMTP id 2adb3069b0e04-52d3ad9e8efmr2137151e87.30.1719387961780;
+        Wed, 26 Jun 2024 00:46:01 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.70])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8246b1dsm15205005e9.6.2024.06.26.00.46.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jun 2024 00:46:00 -0700 (PDT)
+Message-ID: <76fc0a6c-b20c-4ae0-bb4f-0023cb66962a@tuxon.dev>
+Date: Wed, 26 Jun 2024 10:45:59 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,75 +75,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and
- Regulator knobs
-To: Mark Brown <broonie@kernel.org>, djakov@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, lgirdwood@gmail.com, gustavoars@kernel.org,
- henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com, wenst@chromium.org, amergnat@baylibre.com,
- Kees Cook <kees@kernel.org>
-References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
- <171934124556.1173981.12014605377517424760.b4-ty@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 2/3] mmc: tmio: Use MMC core APIs to control the vqmmc
+ regulator
 Content-Language: en-US
-In-Reply-To: <171934124556.1173981.12014605377517424760.b4-ty@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ linux-mmc@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240624153229.68882-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240624153229.68882-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20240624153229.68882-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 25/06/24 20:47, Mark Brown ha scritto:
-> On Mon, 10 Jun 2024 10:57:28 +0200, AngeloGioacchino Del Regno wrote:
->> Changes in v6:
->>   - Fixed build with clang (thanks Nathan!)
->>   - Removed unused mtk_rmw() macro in mtk-dvfsrc.c
->>   - Added MODULE_DESCRIPTION() to mtk-dvfsrc-regulator.c
->>
->> Changes in v5:
->>   - Fixed Kconfig dependencies in interconnect
->>   - Fixed module build for dvfsrc and interconnect
->>
->> [...]
-> 
-> Applied to
-> 
-
-Thanks Mark, appreciated :-)
-
-Cheers
-
->     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-> 
-> Thanks!
-> 
-> [1/7] dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
->        commit: b147ae7ae5141cb10c520d372ecabb2c520210c4
-> [5/7] regulator: Remove mtk-dvfsrc-regulator.c
->        commit: cd102850e32c145661c6a0640dc6c5feba11af72
-> [6/7] regulator: Add refactored mtk-dvfsrc-regulator driver
->        commit: d2ea920a4092b3c0a6a004b93ce198ca37455d90
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> Thanks,
-> Mark
-> 
 
 
+On 24.06.2024 18:32, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Use the mmc_regulator_enable_vqmmc() and mmc_regulator_disable_vqmmc() APIs
+> to enable/disable the vqmmc regulator.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>\
 
+Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com> # on RZ/G3S
+
+> ---
+> v2->v3
+> - Included RB tags
+> 
+> v1->v2
+> - New patch
+> ---
+>  drivers/mmc/host/tmio_mmc_core.c | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/tmio_mmc_core.c b/drivers/mmc/host/tmio_mmc_core.c
+> index 93e912afd3ae..2ec1a74c85bc 100644
+> --- a/drivers/mmc/host/tmio_mmc_core.c
+> +++ b/drivers/mmc/host/tmio_mmc_core.c
+> @@ -897,8 +897,8 @@ static void tmio_mmc_power_on(struct tmio_mmc_host *host, unsigned short vdd)
+>  	 * It seems, VccQ should be switched on after Vcc, this is also what the
+>  	 * omap_hsmmc.c driver does.
+>  	 */
+> -	if (!IS_ERR(mmc->supply.vqmmc) && !ret) {
+> -		ret = regulator_enable(mmc->supply.vqmmc);
+> +	if (!ret) {
+> +		ret = mmc_regulator_enable_vqmmc(mmc);
+>  		usleep_range(200, 300);
+>  	}
+>  
+> @@ -911,8 +911,7 @@ static void tmio_mmc_power_off(struct tmio_mmc_host *host)
+>  {
+>  	struct mmc_host *mmc = host->mmc;
+>  
+> -	if (!IS_ERR(mmc->supply.vqmmc))
+> -		regulator_disable(mmc->supply.vqmmc);
+> +	mmc_regulator_disable_vqmmc(mmc);
+>  
+>  	if (!IS_ERR(mmc->supply.vmmc))
+>  		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, 0);
 
