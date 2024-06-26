@@ -1,293 +1,260 @@
-Return-Path: <devicetree+bounces-80247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F63C9182D0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:42:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F32B291836D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:55:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A489B1C2048F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:42:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC210282F32
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 13:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B670D18309C;
-	Wed, 26 Jun 2024 13:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACAF184106;
+	Wed, 26 Jun 2024 13:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CaWmclw/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZTSlvyvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6FC1E890;
-	Wed, 26 Jun 2024 13:42:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7DA913CFBC;
+	Wed, 26 Jun 2024 13:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719409325; cv=none; b=VvmT2SzNJ4OrZcifJ/zBnEpyxypfaUDoP4qIBWW1E/yDEXl8VO4Q6G1XvAX7d+VyVdB6Ev4MsCokXphr4y/QxgylQ3rVSuCFFHso9y2AQgZT0Hdkem1eK/lspcafq+cw1TFi/qP5d54T4GApP5yY+XO6Kdm9nCRXzbvpy1yEkLA=
+	t=1719410147; cv=none; b=u9TfYwJ4/zshoYCgJ91eAjVnlPqyLFrzPI/1+WHSqz2y4MpwVHHGuAfx+eTG7+4KGkyPrkh7MsNt27RD+pZ9NoZgi+CopixC4z9O8Twhia3H43i3PP9kiLWWkdHGT+sqxqPVi4e025NZeXCsz4x+RL8RJ2lxQaPfrbpfN9zUG30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719409325; c=relaxed/simple;
-	bh=7sY4DvBd+42DdRB69MfJg/sYGx3Q0KlzO7+txFWMzJU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Td/Gz28LDNGeUsZUZ5a8kfEKVOd9g740G5G2pTDwFA5/AUR/OyXL3j+b4u475/k3Rar0sf4BzbTGLuuud44zNgLbmTmTLiynrDnmYOJH5STdzmNo0+4V0fQ/Llo70oZ7c0ZfEQe087BQeVuzzV+VPBGUaNg37qN2vUTf4olz8mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CaWmclw/; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4248e28de9eso30264645e9.2;
-        Wed, 26 Jun 2024 06:42:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719409322; x=1720014122; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=L8BeqKvtu81yy7xc7ZCBkEW2RL3ioT7E1XvmV51sVYE=;
-        b=CaWmclw/UTJxSlVK/6jV9/foo+GaNsUBLDPOXlwpot1cJDeHAy5doaorh/lrUSBJpl
-         zWaJhAkRpEBGBwShgPGuFPM17FmSvTDyX18G1xshkgcA2nZoMcvWylrgiTihseGTh+e8
-         MFXlxBvRs9RmMCCEY+q3Kh3jq9MrZ0+34F3yZr5hNibxgtI+hS4QZ0nVwWfBj+YF6Fkk
-         Xyfn/08J3wtLNSIWMYhLk5W40sZ1MsUvskCsKXKY2XHRbUpaXkqVbbYG3SjpFofGjs8t
-         Kglg1KDVPtPFkvtdNKKqI1ADQ2JigLQTP1TgSjxqrzmy6H/Ngpj21qb4WLzFmPujoa/U
-         lkWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719409322; x=1720014122;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L8BeqKvtu81yy7xc7ZCBkEW2RL3ioT7E1XvmV51sVYE=;
-        b=tYQ97cqB+SOIdetHS2AzvlMRHjyRLwCJXLbK4M5uqJNUXisgw5weySG4EpvaUDbolY
-         H64amBSAeIkwZvBkOwUue3A0tfteMaHL3VQ7e8f6Tzc01k3TN+uzTkexrfQMQIAKAZJt
-         UIkke/UC9Dnq+4q5UTjxz+mBa6Ex4BGsLDi5CkQWUr1lqnLl4+kWXNSmIagrVo4MuhtE
-         BmA5ilH8pNjb6OtTfieXFLUO7TdHpb50sNkH1LaNHeDtPCN8VrXrxqPXcOBkzfSVF70w
-         B8mCdHL7HsUjJ07sR/jQLOs65d5PYOgM4btujFWbAAJQ8QUsIz0qVoEnuJnHAddhIc7U
-         GOtw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMXzvzyo6WOIp3wDlaSpz/WAk8IF50oqpEoRGahRFfysp1nsW5jwSI39zmS1kkuqMUDe4djv4p736V6Xumg2ayc14MRlVcSH1Y2Iifijb+04BQWTxz1CFwpFoK+C0WsjeKDttfCmSJxqPe0TVJGmQ6nTEHzBih23mAD/nr7IpDHtEyBL8wQrs/wki+/4rU8Ml3xLCtk9poAZsttmvLCy31ibqjKGWg3Wdr0Ql46AbB55JERnUY4xTqwA==
-X-Gm-Message-State: AOJu0YzLlkP/TZkmbPbxKv2dBHSgGo3iCiRcALgvExvaPfqKc7uGvAJj
-	fJNFm+Xxw2On42+uP09lVccJDfJ9m2+aYSQIGdWHcmaV3Z96mUWJ
-X-Google-Smtp-Source: AGHT+IFMOO8EMlp6gEGvgRVvAXSflnqACiSa0Ac1BeE9fhjDlq2n0Dhu0CRIp9CRhdx6gtpsSsSfyQ==
-X-Received: by 2002:a05:6000:4020:b0:366:e991:b9ac with SMTP id ffacd0b85a97d-366e991ba88mr7840059f8f.14.1719409321919;
-        Wed, 26 Jun 2024 06:42:01 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:ee59:d953:f148:40ba? (p200300f6ef1cc500ee59d953f14840ba.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:ee59:d953:f148:40ba])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3663a2f694asm15865447f8f.77.2024.06.26.06.42.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 06:42:01 -0700 (PDT)
-Message-ID: <53ae33f72d2326a58db3bcf629fc522db3acf550.camel@gmail.com>
-Subject: Re: [PATCH v5 6/7] iio: adc: Add support for AD4000
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, broonie@kernel.org, 
- lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-  nuno.sa@analog.com, dlechner@baylibre.com, corbet@lwn.net, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org,  linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Wed, 26 Jun 2024 15:45:52 +0200
-In-Reply-To: <ZnwU3MovTWfrovrE@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1719351923.git.marcelo.schmitt@analog.com>
-	 <eb5f7b73bdf3ac89117e28f26ee3f54ba849163e.1719351923.git.marcelo.schmitt@analog.com>
-	 <f6dc458f759c47154eee16354c807c020028512e.camel@gmail.com>
-	 <ZnwU3MovTWfrovrE@debian-BULLSEYE-live-builder-AMD64>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 
+	s=arc-20240116; t=1719410147; c=relaxed/simple;
+	bh=xrcpgoNgxm8C0Kb/r4R1lvvcHBnUSjrEZGydptIEOxE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=Ay/VEHRYZUrCrcz8nSc6CkfU9c+r9sec0wEXWROZLNhVo9Mv/x0YxbsXg7yBrUkZMtAA+QnfYb8IlTHIKYM7Wr0KpBEbfmOBbg0W/Hmj6fgCPmT9eta0xsrdXHE5hJXfOySs1JpYyvJ65I271dviFliXe9e+5OnOj8xR5pB5CJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZTSlvyvh; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 11D77FF80B;
+	Wed, 26 Jun 2024 13:55:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1719410142;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zHHpcdUDLggegxHApua1aann/FKTPhiRh3POfuR1lgs=;
+	b=ZTSlvyvh5zkjPhU7ABPitVfc+ymxhXAB+dFOn3XkM4WDiGZSZcLzos9RfubbU7R8FuuFWq
+	tQWKkGpJq5veA0MQZ2DTH/tJRU6JXzBVTnWEjtbEY01A9sYvq4iy/S7VRLZ6epythFq5as
+	tfHrGKvthedApjlvHBFi7jZY8en0+sZpD9v9SclEOCE2PWsi6Uv0ujDCeSeIKbzWraS3AX
+	GjhNzp0RfasxejYxpUrTVPrk6I7zI9iQNnTIKT5+XaHN3OGW3QDJvT8X0XruGkO+4eqjMN
+	2OhZ7wSk3Rax7C1JBvViN8Bc3iI3MuBdB5SgscoyA0IMFHYl3wrFJbofndrBWA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 26 Jun 2024 15:55:40 +0200
+Message-Id: <D2A00Y4TJYTS.1RMR2FSNW7KQ2@bootlin.com>
+Subject: Re: [PATCH v3 7/9] reset: eyeq: add platform driver
+Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Philipp Zabel" <p.zabel@pengutronix.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
+ <sboyd@kernel.org>, "Linus Walleij" <linus.walleij@linaro.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Lee Jones" <lee@kernel.org>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.17.0
+References: <20240620-mbly-olb-v3-0-5f29f8ca289c@bootlin.com>
+ <20240620-mbly-olb-v3-7-5f29f8ca289c@bootlin.com>
+ <e2f129fc42d26cde50e1de0bc80ef0db51b7f693.camel@pengutronix.de>
+In-Reply-To: <e2f129fc42d26cde50e1de0bc80ef0db51b7f693.camel@pengutronix.de>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Wed, 2024-06-26 at 10:17 -0300, Marcelo Schmitt wrote:
-> On 06/26, Nuno S=C3=A1 wrote:
-> > On Tue, 2024-06-25 at 18:55 -0300, Marcelo Schmitt wrote:
-> > > Add support for AD4000 series of low noise, low power, high speed,
-> > > successive approximation register (SAR) ADCs.
-> > >=20
-> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > > ---
-> > > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > =C2=A0drivers/iio/adc/Kconfig=C2=A0 |=C2=A0 12 +
-> > > =C2=A0drivers/iio/adc/Makefile |=C2=A0=C2=A0 1 +
-> > > =C2=A0drivers/iio/adc/ad4000.c | 711 ++++++++++++++++++++++++++++++++=
-+++++++
-> > > =C2=A04 files changed, 725 insertions(+)
-> > > =C2=A0create mode 100644 drivers/iio/adc/ad4000.c
-> > >=20
->=20
+Hello Philipp,
 
-...
-
+On Tue Jun 25, 2024 at 11:17 AM CEST, Philipp Zabel wrote:
+> On Do, 2024-06-20 at 19:30 +0200, Th=C3=A9o Lebrun wrote:
+> > Add Mobileye EyeQ reset controller driver, for EyeQ5, EyeQ6L and EyeQ6H
+> > SoCs. Instances belong to a shared register region called OLB and gets
+> > spawned as auxiliary device to the platform driver for clock.
 > >=20
-> > nit: you could reduce the scope of the above prepare functions...
->=20
-> Not sure I got what you mean with this comment Nuno.
-> Would it be preferable to prepare the 3-wire/4-wire transfers within the
-> switch
-> cases in probe?
->=20
-
-These functions are only called from probe() right? So they could closer to=
- the
-probe function. Anyways a nitpick comment :)
-
-...
-
->=20
+> > There is one OLB instance for EyeQ5 and EyeQ6L. There are seven OLB
+> > instances on EyeQ6H; three have a reset controller embedded:
+> >  - West and east get handled by the same compatible.
+> >  - Acc (accelerator) is another one.
 > >=20
+> > Each instance vary in the number and types of reset domains.
+> > Instances with single domain expect a single cell, others two.
 > >=20
-> > iio_device_claim_direct_scoped()?
->=20
-> I had iio_device_claim_direct_scoped() in v4 but was asked to use a local
-> lock to protect the read modify write cycle here.
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  MAINTAINERS                |   1 +
+> >  drivers/reset/Kconfig      |  14 ++
+> >  drivers/reset/Makefile     |   1 +
+> >  drivers/reset/reset-eyeq.c | 563 +++++++++++++++++++++++++++++++++++++=
+++++++++
+>
+> Should this be called reset-eyeq-olb or reset-eyeq5, in case a
+> different eyeq driver will have to be added in the future?
+
+What about keeping reset-eyeq for the simplicity of it and using
+reset-eyeq7 for a theoretical future driver that gets used by EyeQ7 and
+above? Or any other revision.
+
+Else it can be reset-eyeq5. OLB might be a concept that gets reused with
+different reset blocks inside (meaning reset-eyeq-olb wouldn't
+distinguish). You tell me if keeping *-eyeq is fine.
+
+> >  4 files changed, 579 insertions(+)
 > >=20
-> > > +		if (ret < 0)
-> > > +			return ret;
-> > > +
-> > > +		mutex_lock(&st->lock);
-> >=20
-> > guard()?
->=20
-> This guard() stuff is somewhat new to me.
-> Will check out if can use it here.
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index f386e9da2cd0..36f4001c7f51 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -14931,6 +14931,7 @@ F:	arch/mips/boot/dts/mobileye/
+> >  F:	arch/mips/configs/eyeq5_defconfig
+> >  F:	arch/mips/mobileye/board-epm5.its.S
+> >  F:	drivers/clk/clk-eyeq5.c
+> > +F:	drivers/reset/reset-eyeq5.c
+>
+> See above, and this should match the actual file name.
+>
+> Adding the MAINTAINERS change in the driver patches makes these patches
+> depend on each other. Otherwise they could be applied independently. Do
+> you intend this series to be merged together in one tree?
 
-should be doable...=20
+I'd prefer splitting it indeed.
 
->=20
-> >=20
-> > > +		ret =3D ad4000_read_reg(st, &reg_val);
-> > > +		if (ret < 0)
-> > > +			goto err_unlock;
-> > > +
-> > > +		span_comp_en =3D val2 =3D=3D st->scale_tbl[1][1];
-> > > +		reg_val &=3D ~AD4000_CFG_SPAN_COMP;
-> > > +		reg_val |=3D FIELD_PREP(AD4000_CFG_SPAN_COMP,
-> > > span_comp_en);
-> > > +
-> > > +		ret =3D ad4000_write_reg(st, reg_val);
-> > > +		if (ret < 0)
-> > > +			goto err_unlock;
-> > > +
-> > > +		st->span_comp =3D span_comp_en;
-> > > +err_unlock:
-> > > +		iio_device_release_direct_mode(indio_dev);
-> > > +		mutex_unlock(&st->lock);
-> > > +		return ret;
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > > +}
-> > > +
-> ...
-> > > +
-> > > +static int ad4000_probe(struct spi_device *spi)
-> > > +{
-> > > +	const struct ad4000_chip_info *chip;
-> > > +	struct device *dev =3D &spi->dev;
-> > > +	struct iio_dev *indio_dev;
-> > > +	struct ad4000_state *st;
-> > > +	int ret;
-> > > +
-> > > +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
-> > > +	if (!indio_dev)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	chip =3D spi_get_device_match_data(spi);
-> > > +	if (!chip)
-> > > +		return -EINVAL;
-> > > +
-> > > +	st =3D iio_priv(indio_dev);
-> > > +	st->spi =3D spi;
-> > > +
-> > > +	ret =3D devm_regulator_get_enable(dev, "vdd");
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret, "Failed to enable VDD
-> > > supply\n");
-> > > +
-> > > +	ret =3D devm_regulator_get_enable(dev, "vio");
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret, "Failed to enable VIO
-> > > supply\n");
-> >=20
-> > devm_regulator_bulk_get_enable()? Do we have any ordering constrains?
->=20
-> No ordering constraints, but vdd and vio are optional while ref is requir=
-ed
-> and
-> we need to get the voltage of ref.
-> devm_regulator_bulk_get_enable_read_voltage()? and discard vdd and vio
-> voltages?
+I had thought there were two reasons the patches were interdependent:
+1. MAINTAINERS file entries.
+2. Kconfig: "depends on COMMON_CLK_EYEQ".
 
-Hmmm, vdd and vio do not look like optional to me :). Anyways I meant
-devm_regulator_bulk_get_enable() only for vdd and vio and still treat ref
-separately.
+About (1): what about creating a new patch that only touches
+MAINTAINERS? It would be taken as part of clk maybe (it contains the
+platform driver that instantiates the other auxdevs)?
 
->=20
-> >=20
-> > > +
-> > > +	ret =3D devm_regulator_get_enable_read_voltage(dev, "ref");
-> > > +	if (ret < 0)
-> > > +		return dev_err_probe(dev, ret,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to get ref regulator
-> > > reference\n");
-> > > +	st->vref_mv =3D ret / 1000;
-> > > +
-> > > +	st->cnv_gpio =3D devm_gpiod_get_optional(dev, "cnv",
-> > > GPIOD_OUT_HIGH);
-> > > +	if (IS_ERR(st->cnv_gpio))
-> > > +		return dev_err_probe(dev, PTR_ERR(st->cnv_gpio),
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to get CNV GPIO");
-> > > +
-> > > +	ret =3D device_property_match_property_string(dev, "adi,sdi-pin",
-> > > +						=C2=A0=C2=A0=C2=A0 ad4000_sdi_pin,
-> > > +						=C2=A0=C2=A0=C2=A0
-> > > ARRAY_SIZE(ad4000_sdi_pin));
-> > > +	if (ret < 0 && ret !=3D -EINVAL)
-> > > +		return dev_err_probe(dev, ret,
-> > > +				=C2=A0=C2=A0=C2=A0=C2=A0 "getting adi,sdi-pin property
-> > > failed\n");
-> > > +
-> > > +	/* Default to usual SPI connections if pin properties are not
-> > > present
-> > > */
-> > > +	st->sdi_pin =3D ret =3D=3D -EINVAL ? AD4000_SDI_MOSI : ret;
-> > > +	switch (st->sdi_pin) {
-> > > +	case AD4000_SDI_MOSI:
-> > > +		indio_dev->info =3D &ad4000_reg_access_info;
-> > > +		indio_dev->channels =3D &chip->reg_access_chan_spec;
-> > > +
-> > > +		/*
-> > > +		 * In "3-wire mode", the ADC SDI line must be kept high
-> > > when
-> > > +		 * data is not being clocked out of the controller.
-> > > +		 * Request the SPI controller to make MOSI idle high.
-> > > +		 */
-> > > +		spi->mode |=3D SPI_MOSI_IDLE_HIGH;
-> > > +		ret =3D spi_setup(spi);
-> > > +		if (ret < 0)
-> > > +			return ret;
-> > > +
-> > > +		ret =3D ad4000_prepare_3wire_mode_message(st, indio_dev-
-> > > > channels);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +
-> > > +		ret =3D ad4000_config(st);
-> > > +		if (ret < 0)
-> > > +			dev_warn(dev, "Failed to config device\n");
-> > > +
-> >=20
-> > Should this be a warning? Very suspicious :)
->=20
-> This devices have some many possible wiring configurations.
-> I didn't want to fail just because reg access fail.
-> Maybe ADC SDI was wired to VIO but dt don't have adi,sdi-pin =3D "high".
-> Reg access will fail but sample read should work.
+About (2): Kconfig doesn't complain the symbol doesn't exist so it looks
+like a non-issue.
 
-Well, to me that really is a configuration failure and we should treat it a=
-s
-such. If we are in the so called "reg_access_info" which I read as "we can
-access registers", failing to do so should be treated as an error.=20
+> >  F:	include/dt-bindings/clock/mobileye,eyeq5-clk.h
+> > =20
+> >  MODULE SUPPORT
+> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> > index 85b27c42cf65..b79c18b75674 100644
+> > --- a/drivers/reset/Kconfig
+> > +++ b/drivers/reset/Kconfig
+> > @@ -66,6 +66,20 @@ config RESET_BRCMSTB_RESCAL
+> >  	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 =
+on
+> >  	  BCM7216.
+> > =20
+> > +config RESET_EYEQ
+> > +	bool "Mobileye EyeQ reset controller"
+> > +	depends on COMMON_CLK_EYEQ
+>
+> Is this a real dependency? It seems to compile just fine without it.
+> Please allow building under COMPILE_TEST without COMMON_CLK_EYEQ set.
 
-So, setting scale would also fail and we then have a broken interface :)
+Not really. This made potential users notice they want the
+clk driver if they want this reset driver. I forgot
+handling test builds (ie COMPILE_TEST).
 
-- Nuno S=C3=A1
->=20
+Next revision will look like:
+
+config RESET_EYEQ
+	bool "Mobileye EyeQ reset controller"
+	depends on AUXILIARY_BUS
+	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
+	default MACH_EYEQ5 || MACH_EYEQ6H
+	help: ...
+
+[...]
+
+> > +
+> > +#include <linux/array_size.h>
+> > +#include <linux/auxiliary_bus.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/bug.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/container_of.h>
+> > +#include <linux/device.h>
+> > +#include <linux/err.h>
+> > +#include <linux/errno.h>
+> > +#include <linux/init.h>
+> > +#include <linux/io.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/lockdep.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/of.h>
+> > +#include <linux/platform_device.h>
+>
+> Not needed, this being an aux driver now. Please check the other
+> headers as well.
+
+Looking at the diff, <linux/platform_device.h> is the only one.
+
+[...]
+
+> > +static int eqr_probe(struct auxiliary_device *adev,
+> > +		     const struct auxiliary_device_id *id)
+> > +{
+> > +	const struct of_device_id *match;
+> > +	struct device *dev =3D &adev->dev;
+> > +	struct eqr_private *priv;
+> > +	unsigned int i;
+> > +	int ret;
+> > +
+> > +	/*
+> > +	 * We are an auxiliary device of clk-eyeq. We do not have an OF node =
+by
+> > +	 * default; let's reuse our parent's OF node.
+> > +	 */
+> > +	WARN_ON(dev->of_node);
+> > +	device_set_of_node_from_dev(dev, dev->parent);
+> > +	if (!dev->of_node)
+> > +		return -ENODEV;
+> > +
+> > +	/*
+> > +	 * Using our newfound OF node, we can get match data. We cannot use
+> > +	 * device_get_match_data() because it does not match reused OF nodes.
+> > +	 */
+> > +	match =3D of_match_node(dev->driver->of_match_table, dev->of_node);
+> > +	if (!match || !match->data)
+> > +		return -ENODEV;
+> > +
+> > +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > +	if (!priv)
+> > +		return -ENOMEM;
+> > +
+> > +	priv->data =3D match->data;
+> > +	priv->base =3D dev_get_platdata(dev);
+>
+>   drivers/reset/reset-eyeq.c:437:20: warning: incorrect type in assignmen=
+t (different address spaces)
+>   drivers/reset/reset-eyeq.c:437:20:    expected void [noderef] __iomem *=
+base
+>   drivers/reset/reset-eyeq.c:437:20:    got void *
+>
+> I'd wrap this in a struct or explicitly cast to (void __iomem *) here.
+
+I'll cast to void iomem pointer explicitely.
+
+Thanks for the review Philipp,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
