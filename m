@@ -1,91 +1,86 @@
-Return-Path: <devicetree+bounces-80318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E169185CA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:29:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D2EA9185D1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DFCD1F27ECA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:29:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B23731F262CA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABA318F2F3;
-	Wed, 26 Jun 2024 15:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595FD18C333;
+	Wed, 26 Jun 2024 15:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q0G6ftgT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hgjI3B92"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3FD318F2EE;
-	Wed, 26 Jun 2024 15:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2837418A95A;
+	Wed, 26 Jun 2024 15:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719415695; cv=none; b=oG2Ialg1SSl4XoZzxrP/oj68ZL+VV8wJ9yvgtaIvnXl4hadBM7cnTJkU9FS8o9TNhe8YMC4UVWDj1BJ2UgiuZIQACRyXdFMTcitROrsWD+8p/413O1E3ERjZntOaXfORTAAeseOsbM3f27BHnZ8BADfcYjWK14LgPONIKJbVPRw=
+	t=1719415774; cv=none; b=MNoJqAvDmCKMLL2p1WwOtFF6MlrqJBIW06+ifX7CwX7FUPgVhG+iG0eyfz5v8y0TZphrWa7QnXw4oNKzsKymp9R8S3gvcnooUOyJhlZ7n5fD6FodGlnQV15q0GYavz92XNdGaP27dGz4luRbQAGw1rsUEYfmFYypuk4OX8/lUug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719415695; c=relaxed/simple;
-	bh=tFhf50VxgCVDRMaLLZ7bIRAbv+PYecT8vC7dzG/iSmw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nQEIO4BNA4ZWyRSpIkoj2XfvpC8Osm9GNFASPJpMwdwUT61h2ygZFtwG/2d1d3Vcw9DmJY2Dgt2rBgWNeQfIeJrC8/pGdSn3yoJ5Lg0ZT9rdzfHWigOfMc42GEQdaxkRjcdNe2UTs66DCHCm6M92/0iBhqJ/nNnRmpa0UOMZmFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q0G6ftgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA0FBC32782;
-	Wed, 26 Jun 2024 15:28:12 +0000 (UTC)
+	s=arc-20240116; t=1719415774; c=relaxed/simple;
+	bh=tn+0wc0SWf+K7ShAbsHDVu8PM/PzdESvEuUAgQX5AYE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Vr1zW1JlWt+nvLBaiTIzdiicOPMjqpCGlUktFsm7d+3EbDa5a5cRcwmRanJ5695TjEW5lfKp0btH9SYUOZjRGwjU3EF76RKvekL4Pz3Qf8iymBF+18QPcq2gM9XssLeFiRljLWdsXeDT0lnICNVQyC+YaFhYwT/30fO0j3XSZOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hgjI3B92; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 703C5C116B1;
+	Wed, 26 Jun 2024 15:29:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719415694;
-	bh=tFhf50VxgCVDRMaLLZ7bIRAbv+PYecT8vC7dzG/iSmw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q0G6ftgTuTPQqoEuVcoCvm920j7zLNyTQC8JVpkH/ImDnIvXzYKt/Y9nRTHZpaG5X
-	 LtdZisRgt8DcsKabOWn7WLEDL302SH2YPt2oLRJzj2CgElllX8AuiL2+ZhR2snNE7U
-	 1Waa3zQuHUoAgwhs20d23TbvuSD8N/qBYEXtpft1wEoQq+F6vuqWrr/kW1Dmj32EoL
-	 heXvcXAABFM5UN7KDExCLwrhYSsEVatxkTd8kljusdvU9ZPTzkbdAK79TprcDuwXB6
-	 ke7yztkXBdWHMYcqr4wSyYCtAoJkskTazgOnsbHCxUc+zVJ2k4ofgSKwfcHpQw8enh
-	 bhb+VdB4MAXOQ==
-Date: Wed, 26 Jun 2024 16:28:10 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alex Vdovydchenko <keromvp@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=k20201202; t=1719415773;
+	bh=tn+0wc0SWf+K7ShAbsHDVu8PM/PzdESvEuUAgQX5AYE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=hgjI3B927W4sKIv97HF4xJVonGiMTt++c17owxPWvBYRP253LM63PZugPYSfouOl4
+	 ya6CUFpx4gSUZR8CWHXU/DTcnwbBaF8/sQCiHgAg0qkM0r+v1gMRW9qHqi7AVnb93t
+	 oRjGcGjT58tu8bXFy7PiDO9hc9K7itrZzrWTznatV+9WngMKSeLB7R5xll7RW4BA63
+	 j3zgwNJiYxY3qDvbVn7Bl0JPPx2o6b6MPrPKHKIG6hYbtlSYwOl6K5K0HuG0lCWqQC
+	 McQLUc8XmCPqouXXgxBhjJLyqEbz7dJEkguy/lkylXAJ2c1JY0s9TIkOhQV3HfQE3s
+	 IpZNCBBBd+A9w==
+Date: Wed, 26 Jun 2024 10:29:31 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alex Vdovydchenko <xzeol@yahoo.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add MPS mp5920
-Message-ID: <20240626-fox-turbofan-2043195a11f5@spud>
-References: <20240626142439.1407175-1-xzeol@yahoo.com>
- <20240626142439.1407175-2-xzeol@yahoo.com>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>, quic_vbadigan@quicinc.com,
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 0/7] PCI: enable Power and configure the QPS615 PCIe
+ switch
+Message-ID: <20240626152931.GA1467524@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ziKWwK8V1pwVfHbP"
-Content-Disposition: inline
-In-Reply-To: <20240626142439.1407175-2-xzeol@yahoo.com>
-
-
---ziKWwK8V1pwVfHbP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
 
-On Wed, Jun 26, 2024 at 05:24:33PM +0300, Alex Vdovydchenko wrote:
-> Add support for MPS mp5920 controller
->=20
-> Signed-off-by: Alex Vdovydchenko <xzeol@yahoo.com>
+On Wed, Jun 26, 2024 at 06:07:48PM +0530, Krishna chaitanya chundru wrote:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Krishna chaitanya chundru (7):
+>       dt: bindings: add qcom,qps615.yaml
+>       arm64: dts: qcom: qcs6490-rb3gen2: Add qps615 node
+>       pci: Change the parent of the platform devices for child OF nodes
+>       pci: Add new start_link() & stop_link function ops
+>       pci: dwc: Add support for new pci function op
+>       pci: qcom: Add support for start_link() & stop_link()
+>       pci: pwrctl: Add power control driver for qps615
 
---ziKWwK8V1pwVfHbP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnwzigAKCRB4tDGHoIJi
-0gPrAP4iXQJRtv9v0s2wMtpjVIcMPJdlLGSlQXH8nD7fj0YTtgEAxDK9HUJhqu0m
-tAYNYPucDMSaWwbgwI4LGf5noOIWoQQ=
-=Dnxc
------END PGP SIGNATURE-----
-
---ziKWwK8V1pwVfHbP--
+Take a look at the git history of the files you update and match the
+style.  s/pci/PCI/, for instance.
 
