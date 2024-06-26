@@ -1,184 +1,128 @@
-Return-Path: <devicetree+bounces-80326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786129185FB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:37:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31267918607
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 17:39:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2DFC1F212ED
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:37:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 624011C21362
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 15:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1915E18C34F;
-	Wed, 26 Jun 2024 15:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD89118C34A;
+	Wed, 26 Jun 2024 15:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zpd9IUO2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlsXJL/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25BD318C32C
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896A216CD12
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 15:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719416248; cv=none; b=ONSTTrqrnTgFuQRS5jGHx01MG6tf+m/7O2AwdfXm2c4pWMxCzcwCXMCS+PrXA01W1yP2iDbKMlzm1h6f+Z0QKvYIZNvQr3eHteCVSm3txlI3RPT9QNz5UYRIREGSZp+A4835R8MYIjBN14SX8l89CYxSonfqUATY41rEtU2a+0g=
+	t=1719416336; cv=none; b=qWOLPxRwJvN/4SNIHRIQpUrpedUfxswAIK+6li3W7TGu/xGbUHWSIzQl2nsD10j54QyZ9uvMr5Y6frQ08kcdOdZHs8DMYzB1IRHqSlWCxsl51VSh5pahF8f3lri4qXD0QmY/e9pajeSxgjQD4j6krl8AX1rBuob89Xb8c2VFkqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719416248; c=relaxed/simple;
-	bh=678pGV40+eNWwnUvVfwueDmC3NvGqTCmHbiiJ4Q2GF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B3jIUHX/8zVmk/EoKU1AnHYCZr77JwkEP3TcX0hG3Bz1tdzCLiKorwlcITy/C43G0Q9ob/fTWAEp1CnucM7U+BUlakwzHKNoeQAp1vBuysDnhwK8Bmwm+y1Xm+qGBK0yw35wdS05BhJ5qGG1jLc/P5he2SZT/7e2OKzkd/F0znU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zpd9IUO2; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57cbc66a0a6so656589a12.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 08:37:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719416243; x=1720021043; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/M8ZGHQaunzKdqcWije298Gp484PNbRhdghRixdYcfI=;
-        b=zpd9IUO2Ee4u0v1D0JmKCUYJz0vl59GDx2CSQ6N97yVh4IOyngm4F8L5wRaS6Z5pjP
-         QHaffQgLAiQ1vre1BKmD7H1XId/HdEbevDwOzhUk4B+f74rtRqEW+K2BEiL6XlEDejrI
-         +9BxxLxbiMulCY2YhVXu2VlrUMn7/G/nead6H6w/A914JBhAZHMYTMxMp/eDjJvuQxOK
-         CPGXdeYINNiuvsAG7b7n5QZrHUd+DiHSJjAtM27Cxus9YvsFvb3rVfAdDkqwhpT28RFl
-         fVAp7pmyiwOhEsvG8oT4mlewo2ZWyeRzwoGq6G+87rEv8CPfWUq3zdNNta6H7WB8/g9G
-         d4Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719416243; x=1720021043;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/M8ZGHQaunzKdqcWije298Gp484PNbRhdghRixdYcfI=;
-        b=hdPjYhQ3nl2NFl4ckUh46WNvF/zXQsE5PihZs36WB07sOW8HlZz6rjll4s/5r6gKbH
-         S7YpjOvrYd8cgfsTUGtvPZyTfe8eh60Tg2FoFb4MdrW5oz4sBPJpzTkNGLatA7EXukJ8
-         IhrfLrs4rS01jLeG9B8eJH5IeaJI5S3orLaVJYJDl+NVdQpqkVgoQUCj/abDT8fDE9S6
-         m8Ijf1p8o5g3OaFiAWJ5/rsSiKU8cqQ1b2NYINelR/wY2pKSN+DFXgVxHP92arQqqJZg
-         UpR8OZiM4W3QRRweF896B9/Qos6cJYfTaIEEgC7UGqFZyu//Rq8+M0jltUPd3tUnw8bd
-         f/UA==
-X-Forwarded-Encrypted: i=1; AJvYcCUac6N6y1cxaivdYYGIH2tAYymcQF2jP61/PyiSV5s1n11O8R6VxJflDiofLMWKjasJa1H01twz6DG1CNemj1r7YZZ9eGpDc7maWA==
-X-Gm-Message-State: AOJu0YzaO2Vb4NEIRHTr8OKjkvMEMZ9IZcJwXG2zVTtLkNTbkdc7TtSR
-	7HpzdyuzXd4dV1uPBO3yk+RimVyR3B5iDWhf46m6T8Orx/icy7/bfJdEC2efMjk=
-X-Google-Smtp-Source: AGHT+IEqQeAazDOngYL3KT5BxpGqqJf5DSXST78jR3z4Ny3CbZ3jxLYwqV0Iiwe/FZ4+iYRvfmlsNQ==
-X-Received: by 2002:a50:c004:0:b0:57d:3ef8:614d with SMTP id 4fb4d7f45d1cf-5847c38c72cmr3776a12.20.1719416243091;
-        Wed, 26 Jun 2024 08:37:23 -0700 (PDT)
-Received: from [192.168.215.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57d3040f3e0sm7280865a12.25.2024.06.26.08.37.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 08:37:22 -0700 (PDT)
-Message-ID: <0b60cd30-3337-46a0-87ca-4c75b7f1ef29@linaro.org>
-Date: Wed, 26 Jun 2024 17:37:19 +0200
+	s=arc-20240116; t=1719416336; c=relaxed/simple;
+	bh=b15Hg210z4EL1SOAWGuFlnF2GxD3SazHyJ2VDPmInEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IN/ih4NXWeOyrpX4oxhdSzaO4Y9RmCP1rOz2jfaNZaBl44XGLoAMynu2IxI9vIAFPxGi+0A399dXHRm+vJIssAIJeGWWac11QW2g/2yOO9tN7Kb7hHhLV/k+vQoVUQfe3eZ8P9QUwWOhTaj0855czg62h9FforGCrYh20P/WOac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlsXJL/m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11F20C116B1;
+	Wed, 26 Jun 2024 15:38:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719416336;
+	bh=b15Hg210z4EL1SOAWGuFlnF2GxD3SazHyJ2VDPmInEk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KlsXJL/moHiFFn2jx7dIHhNN7zdPay+XnxCl1s8uk13N0AKzXG8Ah+mBaArx1lI5Y
+	 WNSmGHQ1tyjqSNpnKSepSB0yc/Xn9RCY/lpJoNSJbP7SdXOEh7oWee5FZ7CImYUap8
+	 enTic8LswQTv+qC9SM+5K4Oa5qRmW1X+vm/O49tGMPYB5ZfYYDkRZ59BlgEFjI41ql
+	 qP1i8XHFELskhshRpneNzOwyUxr501u2QERkmTyWVLiadlcGbGJxvWUFzZ1NK5Re9K
+	 fGAcR907XY8wySLmd7I/b8RGC6UYpRhAEDCMiVwwhNqqLl1ZV8HQXGJkkzSaHTl43P
+	 fg1rbeXyfy3Qw==
+Date: Wed, 26 Jun 2024 16:38:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: display: panel: correct Anbernic RG35XX
+ panel example
+Message-ID: <20240626-duo-outage-1601a51239b9@spud>
+References: <20240626112005.248576-1-ryan@testtoast.com>
+ <20240626112005.248576-4-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 7/7] pci: pwrctl: Add power control driver for qps615
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>
-Cc: quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
- quic_nitegupt@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
- <20240626-qps615-v1-7-2ade7bd91e02@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240626-qps615-v1-7-2ade7bd91e02@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dgzzThEjxvXjkW+/"
+Content-Disposition: inline
+In-Reply-To: <20240626112005.248576-4-ryan@testtoast.com>
 
-On 26.06.2024 2:37 PM, Krishna chaitanya chundru wrote:
-> QPS615 switch needs to configured after powering on and before
-> PCIe link was up.
-> 
-> As the PCIe controller driver already enables the PCIe link training
-> at the host side, stop the link training.
-> Otherwise the moment we turn on the switch it will participate in
-> the link training and link may come before switch is configured through
-> i2c.
-> 
-> The switch can be configured different ways like changing de-emphasis
-> settings of the switch, disabling unused ports etc and these settings
-> can vary from board to board, for that reason the sequence is taken
-> from the firmware file which contains the address of the slave, to address
-> and data to be written to the switch. The driver reads the firmware file
-> and parses them to apply those configurations to the switch.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+
+--dgzzThEjxvXjkW+/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jun 26, 2024 at 11:17:50PM +1200, Ryan Walklin wrote:
+> make dt_bindings_check reports that sck-gpios and num-chipselects are
+> required for spi nodes, therefore add these to the example.
+>=20
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+
+huh, are you sure it does? It doesn't for me...
+
 > ---
-
-[...]
-
-> +static int qcom_qps615_pwrctl_init(struct qcom_qps615_pwrctl_ctx *ctx)
-> +{
-> +	struct device *dev = ctx->pwrctl.dev;
-> +	struct qcom_qps615_pwrctl_i2c_setting *set;
-> +	const struct firmware *fw;
-> +	const u8 *pos, *eof;
-> +	int ret;
-> +	u32 val;
+>  .../bindings/display/panel/anbernic,rg35xx-panel.yaml          | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/anbernic,rg3=
+5xx-panel.yaml b/Documentation/devicetree/bindings/display/panel/anbernic,r=
+g35xx-panel.yaml
+> index a7d5ad0f29389..610601c1594f3 100644
+> --- a/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-pan=
+el.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-pan=
+el.yaml
+> @@ -40,6 +40,9 @@ examples:
+>          #address-cells =3D <1>;
+>          #size-cells =3D <0>;
+>=20
+> +        sck-gpios =3D <&pio 8 9 GPIO_ACTIVE_HIGH>; // PI9
+> +        num-chipselects =3D <1>;
 > +
-> +	ret = request_firmware(&fw, "qcom/qps615.bin", dev);
+>          panel@0 {
+>              compatible =3D "anbernic,rg35xx-panel";
+>              reg =3D <0>;
+> --=20
+> 2.45.2
+>=20
 
-Is this driver only going to serve one model of the device, that will use
-this specific firmware file, ever?
+--dgzzThEjxvXjkW+/
+Content-Type: application/pgp-signature; name="signature.asc"
 
-In other words, is QPS615 super special and no other chip like it will be
-ever made?
+-----BEGIN PGP SIGNATURE-----
 
-[...]
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZnw2CgAKCRB4tDGHoIJi
+0k4WAQCeFXubyWEYxMjUj+AKDeIHuh6tr43Hf8kr8IKu+uA9eAD7BTMhbmysri3Z
+AfDfVCH099k/ebvZ6nNr9HGEFAFjows=
+=qKYB
+-----END PGP SIGNATURE-----
 
-> +
-> +	bridge->ops->stop_link(bus);
-
-This is turbo intrusive. What if there are more devices on this bus?
-
-Konrad
+--dgzzThEjxvXjkW+/--
 
