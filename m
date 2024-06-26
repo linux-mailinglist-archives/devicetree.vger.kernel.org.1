@@ -1,123 +1,73 @@
-Return-Path: <devicetree+bounces-80430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 642D4919759
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 21:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8673C91982D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 21:18:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7565280845
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:17:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39AB028374D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 19:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B23618C341;
-	Wed, 26 Jun 2024 19:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D1518A936;
+	Wed, 26 Jun 2024 19:18:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bdF6c38Q"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="Xv9hF0/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-40137.protonmail.ch (mail-40137.protonmail.ch [185.70.40.137])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD674149C57
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 19:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBBB5149C57
+	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 19:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.137
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719429441; cv=none; b=B4jEZdo8ViarUvDWO3CVthOIMx5gZltlKYYTUerVgbOGkrK4eWxwZmQs3E9UtH+wH5MKVD1beExinXeeABb/qg0xsJGYj2m8fZx1CmNQKiCpchaqVWgvi1tIYI9dbiqkD0vioYi8MelB0rKHSp6zBAbjM3EqUMwQ2a5NukTr76Y=
+	t=1719429528; cv=none; b=SoU4zqJ/ev4qKLKSKH3q5KGZeLfeSrSRb7r7kWRi3/zIGYkmMH5G6zAWOzG2zH7OnIT6JqzSHPdSngj5Kd07Q7jx5wGMigI5SvHhzsbrGf2f5lAdzWZERbfvb/NxnOEos644luKgWYL3k1wUIXT3icata01AZCGAVwU+HPueUoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719429441; c=relaxed/simple;
-	bh=wZPdg1xi4qRyJlyk7LfqlaJ7fDLSDBw9fw7OGRNwYl8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FGUSGNr7vkImLYySOCR7NIeXN8L7ozGnMivKP7/jg4e6WWS3F6F2cupSNY5CYzzBgsLtS4lMsRDpmRnBx8Jlk7We0AM+I6y3bkntaP/9IxZ1ZKE9fnXnGndmxWi0uFBbit2dPJz54klElEqxxUf63GI8VOLEpHhOd7F6dW7HuC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bdF6c38Q; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52bbf73f334so5745131e87.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 12:17:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719429438; x=1720034238; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XI3lZHAHMpMacrGr7sZ7TIX64kTZg51b8AujnGsu14Q=;
-        b=bdF6c38QBUdDjQCXET6Ae6XTz9eVDupe6JNWAxfkoLAy9v6hr0ZSWlAjvaA52Bi987
-         eA86ed5YG9ThpMRAaVIx67Pq1oKjVjFhaYXm18G4A5ipD0oEqlvgW+LwhC4DaXF3SAkB
-         E/pxdVjtDGJUMcRbBBp0xutTR/hgBU9udoeWZxLHkgk/NEIEQ6QxRpjmxyp+68G+KU6M
-         c/u6oTK61jxogveuRB4lhNVEI0WEvWULNBAJIvkjxVfiervIQlzdkWT0UrChocMIzyCd
-         XhgYZMghHlrFJEqLXYRv7tAbkO8DoMAMvjxzcZH68j7kSvIL00R5G/CsX02/pAvsO3ai
-         ZbEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719429438; x=1720034238;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XI3lZHAHMpMacrGr7sZ7TIX64kTZg51b8AujnGsu14Q=;
-        b=KueL7M3U5IWSpGeEPmssdn17BJaDEa+YOPWT+4IV6IZQjXjn369KQb3OQbCbY9ydK8
-         iEX4eiKLgTS9Eoq/xcF5x+NBJTk3bLaJ04U3kEUHdetBaY4Zjlp2hh2ww+OtWK3me2DO
-         OYlPD7ly0t/HRjt536eKImwZWVLwuEv+gq2Vnw2HXHsp0K1Pq3J5dqLUAUh7UqpA1Y04
-         IFr/N0ETup6D35RxeobwIPsPLdLq224Ty+nm8j97i8yXGmfjLTaWpUxbbzjVqX+/9RiY
-         UCWr4sSUtXI1mJgujxqXEx9qRtwGD5R/u3kVM7ht8BvsDuLTTVXePjn7CHFiUNl3DC9M
-         RlNA==
-X-Forwarded-Encrypted: i=1; AJvYcCUp8xGtpaq+38Cj1UTFAE76kKQJVYSazQj3huxeD9oe6reKLiP+bb8xQyzbORAv8FmoNrDeHj+An0mFuhk6/EZzxMWabV/+Eq1jIg==
-X-Gm-Message-State: AOJu0Yy7Y/2TW6U4g7+aQblyUeeaHBVHk9XPQhwvw/JsYLQ/sWBpooYZ
-	xAcsV7PtAHfz2572jh0U2y7aOB1lrbZKDVl6PLSwuwMpIzNZX7hAr0TUeAKvWKk=
-X-Google-Smtp-Source: AGHT+IHV/jft8RtNZmUB7mEGILVCEPrignxw3W0VzQYDTf1gbiJqRpR7V0F3dldHCqlThMgWvlblJQ==
-X-Received: by 2002:a05:6512:60b:b0:52c:c5c4:43d2 with SMTP id 2adb3069b0e04-52cdf8209b9mr8426942e87.47.1719429437950;
-        Wed, 26 Jun 2024 12:17:17 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52ce663d1d6sm1018227e87.157.2024.06.26.12.17.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jun 2024 12:17:17 -0700 (PDT)
-Date: Wed, 26 Jun 2024 22:17:15 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Gokul Sriram P <quic_gokulsri@quicinc.com>
-Cc: sboyd@kernel.org, andersson@kernel.org, bjorn.andersson@linaro.org, 
-	david.brown@linaro.org, devicetree@vger.kernel.org, jassisinghbrar@gmail.com, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, mark.rutland@arm.com, mturquette@baylibre.com, ohad@wizery.com, 
-	robh@kernel.org, sricharan@codeaurora.org, gokulsri@codeaurora.org
-Subject: Re: [PATCH v9 1/8] remoteproc: qcom: Add PRNG proxy clock
-Message-ID: <ga5kczcyn3dqoky4525c74rr7dct5uizun2smvyx3p3u6z6vtm@5vshoozpttod>
-References: <20240621114659.2958170-1-quic_gokulsri@quicinc.com>
- <20240621114659.2958170-2-quic_gokulsri@quicinc.com>
- <chi3pzh5ss3mivnhs3qeoen5hsecfcgzaj6qnrgxantvinrri2@bxsbmpufuqpe>
- <73cb638e-4982-49a2-ba79-0e78402b59ad@quicinc.com>
+	s=arc-20240116; t=1719429528; c=relaxed/simple;
+	bh=TDgFK+R1DEpZpTk44rT4e1nUk9ZsMMOlU+Edg0FTZnI=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=KwwA3951WgKCwURcjWYjH2tyZJpyUzbS9v4UB+v7+oQHaBs/QENEOh7C0Or33eCjDSHZPVXQgKwa13G0FfvhGzuHvGx8Istsc5uHNVtsTVViDoLlwkMf1eA72Q19oNVKrXwKhw3SRfHZ4cWCoo04Rvl3CA66BEaboW73dbccopw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=Xv9hF0/Q; arc=none smtp.client-ip=185.70.40.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1719429521; x=1719688721;
+	bh=TDgFK+R1DEpZpTk44rT4e1nUk9ZsMMOlU+Edg0FTZnI=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=Xv9hF0/QMmdC16t6h3Uu5SdDnse1xrsmuq1U9HSr6pJLQ78E0Arib2J18GgO4mJ7G
+	 Bzfzc3nVBkcM/mbRlv/Y4L1HDZYNIi8LfmwDW4Od9Fu07hVCqKqoeMA0TgHOJdeTcj
+	 fJcuVJFEO3bfs8pZbcZEDMpj/puL3iCdXQMu/P+ZTbHXJCo6EYiRioM1niIPMh5I+a
+	 u8kXhv7QrccI1z3MyIHjHVaC1kDyHRhcetM7Kjnx5ZRV4DspiLaZUYgkIiMwDNyc7D
+	 WBWpSe4ZsHD9bvjx5O2Aov4QqiHAbv7z4j4OLS/3sEcHO62fi3r7GCEtvaay4rxvwu
+	 tv/s/t15AM1Gw==
+Date: Wed, 26 Jun 2024 19:18:37 +0000
+To: linux-kernel@vger.kernel.org
+From: Raymond Hackley <raymondhackley@protonmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH 0/2] ARM: dts: qcom-msm8226-samsung-ms013g: Add initial device tree
+Message-ID: <20240626191829.280611-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
+X-Pm-Message-ID: 47ed34d9c1588f142ed6687bde98e9385d4c64f0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <73cb638e-4982-49a2-ba79-0e78402b59ad@quicinc.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 25, 2024 at 11:03:30AM GMT, Gokul Sriram P wrote:
-> 
-> On 6/22/2024 2:38 AM, Dmitry Baryshkov wrote:
-> > On Fri, Jun 21, 2024 at 05:16:52PM GMT, Gokul Sriram Palanisamy wrote:
-> > > PRNG clock is needed by the secure PIL, support for the same
-> > > is added in subsequent patches.
-> > Which 'same'?
-> > What is 'secure PIL'?
->   will elaborate in the updated version.
->   To answer your question, secure PIL is signed PIL image which only
-> TrustZone can authenticate and load.
+Samsung Galaxy Grand 2 is a phone based on MSM8226. It's similar to the
+other Samsung devices based on MSM8226 with only a few minor differences.
 
-Fine. So, the current driver can not load WCSS firmware on IPQ8074, is
-that correct? Or was there some kind of firmware interface change? The
-driver was added in 2018, so I can only hope that at that point it
-worked. Could you please explain, what happened?
+The device trees contain initial support with:
+ - GPIO keys
+ - Regulator haptic
+ - SDHCI (internal and external storage)
+ - UART (on USB connector via the TI TSU6721 MUIC)
+ - Regulators
+ - Touchscreen
+ - Accelerometer
 
-> > > Signed-off-by: Nikhil Prakash V <quic_nprakash@quicinc.com>
-> > > Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> > > Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> > > ---
-> > >   drivers/remoteproc/qcom_q6v5_wcss.c | 65 +++++++++++++++++++++--------
-> > >   1 file changed, 47 insertions(+), 18 deletions(-)
-
-
--- 
-With best wishes
-Dmitry
 
