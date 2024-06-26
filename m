@@ -1,196 +1,187 @@
-Return-Path: <devicetree+bounces-80199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63DD49180EE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:26:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADE0918101
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 14:38:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53FD3B23D4D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 12:26:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FD3C1C2163D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jun 2024 12:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FCE181B80;
-	Wed, 26 Jun 2024 12:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45A9516CD35;
+	Wed, 26 Jun 2024 12:38:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="szgq4nuA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n0y3RmNr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD24317E911
-	for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 12:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E60D53B;
+	Wed, 26 Jun 2024 12:38:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719404762; cv=none; b=fv3b3OKFEbjUcqea2i29A6AYP8vu8cRPQGbOp9N/nvuUWBz/S5bMk9PXHvXD4DutY3uwTHeCK0/po2Hq8LlYwmjtqeB5VljIhOF0z/Pkjxcu6rIt6rBemuvib5pzxJeaFAV/hAv4q3AIpClWNin9Rlav6YRp//eq7Ef7ea49o+U=
+	t=1719405493; cv=none; b=BWK8I+jedCRvX3R+jTbucXLSERoBhqBvmIGsh1RK5y7KuYlHTpQ/GFmEj5qerHXnB872/7fCbVCIubmao9JMDiXIeiF3pWlGyv7XX+vbsFi7g14hfPCi9vaF8TekPYnesHz95EljaVtSUcSfRLH5E6LbEuRsfe9kuHzhvTBc2nQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719404762; c=relaxed/simple;
-	bh=JC0QDA5ncgu3lzjAjbN4t7wNvjzxIr+tPt3bsoXpsDM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qlZq0enXQQRMy5K2cvmu1rqYZVmvybvMgUVBWVWIcUIGPF+cExQfL2Mx+b6JFWhvZbyx7AMb4upfl2RC17C1GQTCri9s89pT6bxutUZE7Td4LF6YtS+X6uSDrkmG+4a7ITMij0swzxvGW8VxKoTXVkR/hFYDZh6K3GlQggEOBVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=szgq4nuA; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4249196a361so24907965e9.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jun 2024 05:26:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1719404759; x=1720009559; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fobPrBfxir7ssftZ7iNjyMP1Za2983l3LWtveC8izJ8=;
-        b=szgq4nuA1pVOznEYL/k0dx25ncstIukPSOMpBh0YkV47n2yiOvXho0Ikufw9imDpFM
-         2Bv0knK8NqEeh5FWQzCNJAaKbmVr8HDZcIeN19PVrI8Ru8+510YPJjDqFfp2WWbCenTG
-         S9FukYq5hYzrsptdBHmnq2QUexferVBaO2CUSMTVSyyQROEqzWEFiR9rxU6i32R5nGCj
-         wQKAm96Ay7gvqqCEcMPiUEPuh5I+gNcFDke8CAFBeHIiZtunxLaSuuqT7tSqQbiHj2Kx
-         9DP/NMexv4UiGdkf7l9LSXiCOBDcbvflIoVMUcjmNqVSD7cbkWYv/oY1ywQaJPxRjyAW
-         Wwsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719404759; x=1720009559;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fobPrBfxir7ssftZ7iNjyMP1Za2983l3LWtveC8izJ8=;
-        b=IxYzIQE7g5/UDDsVQZZPDWq2Z7LCex5WZLKAa17Zwmspq/yPlGaZJhFt1PSuRS91Cq
-         bLeC29EmecUvdYhbEPjy3zx4BVuWKXlNTj2j0RHRL3l0+kVc0aOrLSVavN5xHK51lmD8
-         OdJcP5q5mQ5YY/GJMLLHY2YUyJ1zP5gQYV/EAGHSRYTf4Z6OpZlBT1H/RQAxg3xqOXGW
-         2xAUVcWghedF7qohWM91jFkXwJz58GJmG3njCa/yE8Si6LcMWoaG60HJjv9dqBFsDrgL
-         JJ2TH9ljFYkWhwCyrplI2rYZx5MYFWntXoeaiDfyfWRHVAjb1uEURqvrkZXp5Z3Z7YX7
-         2hJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBpHUeQrNzlRxq6U5EMXSwWdyjGRAR3fMS0H3gXthfAZyg8aqaypAmuLoUJPUNHhVRg7Pnzg78n2p9XWYAX4eYxooLeMEC6PnchQ==
-X-Gm-Message-State: AOJu0YwTs31Xu0OE6SfVxiIwFdj9pA/aZA0VcEyafzOsv3S1yovpuxGD
-	Csz1Co/2cBkRHS8Nc6TXfeBjeW4RxUNb0EekNFnpkVhY0HK8InB2dMGN9UStL2k=
-X-Google-Smtp-Source: AGHT+IEto1DLJQeEIPlrwSQLqooZfqyUEPmtJDY9zUBYQrPThRyN6dWE4aV4qDpi+2XCXbeKmzryZA==
-X-Received: by 2002:a05:600c:1d23:b0:424:7780:ffc3 with SMTP id 5b1f17b1804b1-4248cc177c7mr67428235e9.5.1719404758894;
-        Wed, 26 Jun 2024 05:25:58 -0700 (PDT)
-Received: from ?IPV6:2a01:cb1c:fcf:4600:a281:d23c:1a8b:ab6? ([2a01:cb1c:fcf:4600:a281:d23c:1a8b:ab6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c824ef19sm23865285e9.15.2024.06.26.05.25.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jun 2024 05:25:58 -0700 (PDT)
-Message-ID: <a4d33da3-2a2a-48ce-874d-95a5889f2f1f@linaro.org>
-Date: Wed, 26 Jun 2024 14:25:54 +0200
+	s=arc-20240116; t=1719405493; c=relaxed/simple;
+	bh=QI95BY7P5ffry8E75+8X2Nu1sYmep1coAT3CeCVp23s=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=NZkgpKGc8WqIqzJmbZfl3qOQD4Ir1E4Ph91zgcHKshLvczcXyDyXJduPkNumSXiUnEuFnOWumB8oVcRxlGkHdh705eWqFMmmMjrDvcQLGvbjyiJSkOhJqEn9jtpBaDFRb9QLoTqleApxrR11EhU584abPLP167L/0vIrGpp6t1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n0y3RmNr; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45QAfbs6016153;
+	Wed, 26 Jun 2024 12:37:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=kVkerdnbW8izeltyxqtyeM
+	ddKmGBDmuMuo/iyHHdP+Q=; b=n0y3RmNry4611Bti6RkLag+gbMMiNs8OlgC220
+	lICvRRvPs+Pu2JbNpDUMQHW0z6PJ2vSBlAA/EUB54lZ2zmL3CMS3R90pX0vlVLyf
+	iWUblRxKUSpAfFMqMh/yhe+sHaXKyJWk0clhwm068Z1cvZv6LB1Q/+vJcrYVOb25
+	BTIJI/SzGENHuvW/+UM1pjqzmuZf1o84oeVACA8i1/Fq01fNpDa3U160p9WYxiF2
+	3GaJypGCrdG5raQJijsb/w2catqWgeJAOfSQ6B+r2XIoxFgi08RRISdSP7iysUut
+	3TKgkeJD/NpH03UifI7r9SBi3qHUTsyzJFW1EVBMLENJ4F9w==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 400gcm8gf4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Jun 2024 12:37:57 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 45QCbu6p011629
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Jun 2024 12:37:56 GMT
+Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 26 Jun 2024 05:37:51 -0700
+From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: [PATCH RFC 0/7] PCI: enable Power and configure the QPS615 PCIe
+ switch
+Date: Wed, 26 Jun 2024 18:07:48 +0530
+Message-ID: <20240626-qps615-v1-0-2ade7bd91e02@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Rename WL-355608-A8
- panel
-To: Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg
- <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hironori KIKUCHI <kikuchan98@gmail.com>,
- Chris Morgan <macroalpha82@gmail.com>
-References: <20240626112005.248576-1-ryan@testtoast.com>
- <20240626112005.248576-2-ryan@testtoast.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240626112005.248576-2-ryan@testtoast.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJwLfGYC/12MsQ7CIBRFf6V5sxhAisapiYkf4Go6kAe1bxBaU
+ KJp+HcJo+O59+RskFwkl+DcbRBdpkTBVxC7DnA2/uEY2coguVRcS8XWJWnRs8kYjqi5xaOCKi/
+ RTfRpoTvcrhcY6zhTeoX4bfEs2vXfyYJxpk4oDtr0zlgc1jchedxjeMJYSvkBNO8cEKMAAAA=
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>,
+        Rob Herring <robh@kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>
+CC: <quic_vbadigan@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Krishna chaitanya chundru
+	<quic_krichai@quicinc.com>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1719405471; l=3225;
+ i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
+ bh=QI95BY7P5ffry8E75+8X2Nu1sYmep1coAT3CeCVp23s=;
+ b=n3duV+bozAKVlOFbHTuhupYhTAjmgO00d5BPvds8I34A67WeyETwN79dkEgyLaka6u9pMhKyB
+ 0wRDoTAKP/6D3jQo3Hl5lgVJ7hrXhFVo7nmwnvjdcD78Jq0vKb+NyK+
+X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MHRd72PLuQDDIqFmg5R2gu56KZJRHT5_
+X-Proofpoint-ORIG-GUID: MHRd72PLuQDDIqFmg5R2gu56KZJRHT5_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-06-26_07,2024-06-25_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ mlxlogscore=601 clxscore=1011 mlxscore=0 phishscore=0 impostorscore=0
+ adultscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2406260094
 
-On 26/06/2024 13:17, Ryan Walklin wrote:
-> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unknown
-> OEM used in a number of handheld gaming devices made by Anbernic.
-> Previously committed using the OEM serial without a vendor prefix,
-> however the preference is to use the integrating device vendor and name
-> where the OEM is unknown.
-> 
-> Alter the filename and compatible string to reflect the convention.
-> 
-> Fixes: f08aac40639c ("drm: panel: nv3052c: Add WL-355608-A8 panel")
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> ---
->   .../{wl-355608-a8.yaml => anbernic,rg35xx-panel.yaml}     | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
->   rename Documentation/devicetree/bindings/display/panel/{wl-355608-a8.yaml => anbernic,rg35xx-panel.yaml} (81%)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml b/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-panel.yaml
-> similarity index 81%
-> rename from Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml
-> rename to Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-panel.yaml
-> index 397c26be9bda5..a7d5ad0f29389 100644
-> --- a/Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/anbernic,rg35xx-panel.yaml
-> @@ -1,10 +1,10 @@
->   # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->   %YAML 1.2
->   ---
-> -$id: http://devicetree.org/schemas/display/panel/wl-355608-a8.yaml#
-> +$id: http://devicetree.org/schemas/display/panel/anbernic,rg35xx-panel.yaml#
->   $schema: http://devicetree.org/meta-schemas/core.yaml#
->   
-> -title: WL-355608-A8 3.5" (640x480 pixels) 24-bit IPS LCD panel
-> +title: Anbernic RG35XX (WL-355608-A8) 3.5" 640x480 24-bit IPS LCD panel
->   
->   maintainers:
->     - Ryan Walklin <ryan@testtoast.com>
-> @@ -15,7 +15,7 @@ allOf:
->   
->   properties:
->     compatible:
-> -    const: wl-355608-a8
-> +    const: anbernic,rg35xx-panel
->   
->     reg:
->       maxItems: 1
-> @@ -41,7 +41,7 @@ examples:
->           #size-cells = <0>;
->   
->           panel@0 {
-> -            compatible = "wl-355608-a8";
-> +            compatible = "anbernic,rg35xx-panel";
+QPS615 is the PCIe switch which has one upstream and three downstream
+ports. One of the downstream ports is used as endpoint device of Ethernet
+MAC. Other two downstream ports are supposed to connect to external
+device. One Host can connect to QPS615 by upstream port.
 
-Can it be more specific ? because there's a lot of rg35xx defined in bindings:
-  anbernic,rg351m
-  anbernic,rg351v
-  anbernic,rg353p
-  anbernic,rg353ps
-  anbernic,rg353v
-  anbernic,rg353vs
-  anbernic,rg35xx-2024
-  anbernic,rg35xx-plus
-  anbernic,rg35xx-h
+QPS615 switch power is controlled by the GPIO's. After powering on
+the switch will immediately participate in the link training. if the
+host is also ready by that time PCIe link will established. 
 
-Neil
+The QPS615 needs to configured certain parameters like de-emphasis,
+disable unused port etc before link is established. These settings
+vary from platform to platform.
 
->               reg = <0>;
->   
->               spi-3wire;
+As the controller starts link training before the probe of pwrctl driver,
+the PCIe link may come up before configuring the switch itself.
+To avoid this introduce two functions in pci_ops to start_link() &
+stop_link() which will disable the link training if the PCIe link is
+not up yet.
+
+Now PCI pwrctl device is the child of the pci-pcie bridge, if we want
+to enable the suspend resume for pwrctl device there may be issues
+since pci bridge will try to access some registers in the config which
+may cause timeouts or Un clocked access as the power can be removed in
+the suspend of pwrctl driver.
+
+To solve this make PCIe controller as parent to the pci pwr ctrl driver
+and create devlink between host bridge and pci pwrctl driver so that
+pci pwrctl driver will go suspend only after all the PCIe devices went
+to suspend.
+
+In pci pwrctl driver use stop_link() to keep the link in D3cold and
+start_link() to bring back link to D0.
+
+This series is developed on top the series:
+https://lore.kernel.org/lkml/20240612082019.19161-1-brgl@bgdev.pl/
+
+we are sending this series to get coments on the usage of stop_link
+and start_link which is being add in this series.
+
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+Krishna chaitanya chundru (7):
+      dt: bindings: add qcom,qps615.yaml
+      arm64: dts: qcom: qcs6490-rb3gen2: Add qps615 node
+      pci: Change the parent of the platform devices for child OF nodes
+      pci: Add new start_link() & stop_link function ops
+      pci: dwc: Add support for new pci function op
+      pci: qcom: Add support for start_link() & stop_link()
+      pci: pwrctl: Add power control driver for qps615
+
+ .../devicetree/bindings/pci/qcom,qps615.yaml       |  73 ++++++
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       |  55 ++++
+ drivers/pci/bus.c                                  |   5 +-
+ drivers/pci/controller/dwc/pcie-designware-host.c  |  19 ++
+ drivers/pci/controller/dwc/pcie-qcom.c             | 108 +++++++-
+ drivers/pci/pwrctl/Kconfig                         |   7 +
+ drivers/pci/pwrctl/Makefile                        |   1 +
+ drivers/pci/pwrctl/core.c                          |   7 +-
+ drivers/pci/pwrctl/pci-pwrctl-qps615.c             | 278 +++++++++++++++++++++
+ include/linux/pci.h                                |   2 +
+ 10 files changed, 541 insertions(+), 14 deletions(-)
+---
+base-commit: d737627471e5b3962eedae870aa0475d6c9bba18
+change-id: 20240624-qps615-faa0cc60dc74
+
+Best regards,
+-- 
+Krishna chaitanya chundru <quic_krichai@quicinc.com>
 
 
