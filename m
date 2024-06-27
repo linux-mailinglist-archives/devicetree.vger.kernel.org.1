@@ -1,125 +1,146 @@
-Return-Path: <devicetree+bounces-81062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D08691B2B3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 01:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 391C891B2C2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 01:31:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3757BB23156
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 23:28:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC7CFB22C36
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 23:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2E51A2C34;
-	Thu, 27 Jun 2024 23:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519C31A38E4;
+	Thu, 27 Jun 2024 23:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KgBGeOlU"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="XXz+a+a6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3461A2FA4
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 23:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD8E1A2C34;
+	Thu, 27 Jun 2024 23:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719530931; cv=none; b=kWHxgXsXuTo0yPOIz/oMpg0CoHKKEmighCudDSEEFvrVGuwnvTnIyrXjlz1qb69d3GXBmK03uZbDOsmg0l3Q80tUxHUgwWS/J+0YJSh4wts8UhX/HUfrXTbgZcMCFHLuzlLOOvWdFnsFXoSSDR4kF12K0uyT/rOvfRbBOOQJqrY=
+	t=1719531070; cv=none; b=d7cxEL4pEAa0C/xe2uWmtpmls5k2qWu+K/SeLJFQjpVoSurKeErljYFx3uQzOlehgQYA6Km+XFDAKKn5PBCPs7ufZxA4y1/fnBlzC/jDvhflDlREiyFAu83rRkqnPQkXTT6W0dtmvjal9cC80I1pFVxW0npo5JjheZeJ0AxD4qY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719530931; c=relaxed/simple;
-	bh=6EwIKOU1Dh5cgZC+rn6rFBOG6D4DD4V6YRDlIp+qNKg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QINFU8+eKQAQ57g8ZiOK/YGhe1n+4UvZ9yOMNFaLs1cSC+vVkCuqDfzAvXZ1IwI0QB8cu6MrQD+OkRgu3FoAQvLlLu3zS1ErmiV4lPoW+AUUVIWjdcFh7BqsBQQRJMJJ4I57t9TNTkTDfkzM2mIEsWtA6DTtT0YrdfjCYoOx/go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KgBGeOlU; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1719530929; x=1751066929;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6EwIKOU1Dh5cgZC+rn6rFBOG6D4DD4V6YRDlIp+qNKg=;
-  b=KgBGeOlUIamRi7reMp5+FhpMY4gyEQ65jw917PCV9+faPH8Y+60HmyYx
-   EQD+ZIanXllHGym0FR/tHGfkp9pjm0w9Uf9M5vx6AgXn2Irv5kG/6O9Ca
-   2PL44qEMSb//D5i903lTAWTq53xPDwW1TSv22B1x/n6GeVlK3aBh02ebz
-   T9yJ8sVSD+cqrTLJxwOO9FG98wiH1FAfcHaJcvDWVzxuufWTFQFaIC2ug
-   L/VNMYc3XkbSjJBbHsO9+HE0fDnauy+BPFXWvBdS0UWMl/FYLVbZyYLWK
-   EH7yKgxvIJYsGh9Bwxw0TtTpBXaN+rM9duMXEGBe/bftBWnJX2N35PmpE
-   w==;
-X-CSE-ConnectionGUID: x9KrIbZXSjaOJVmbC7IHgA==
-X-CSE-MsgGUID: Ax1VwgOuQzaS9xjk/2xc0w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="16825801"
-X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; 
-   d="scan'208";a="16825801"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2024 16:28:49 -0700
-X-CSE-ConnectionGUID: 3WzsxqeNT+SkXsm9y43Rhw==
-X-CSE-MsgGUID: wd47othBTGGPpHXIeWViYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; 
-   d="scan'208";a="75300930"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 27 Jun 2024 16:28:46 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sMyXk-000Gck-0X;
-	Thu, 27 Jun 2024 23:28:44 +0000
-Date: Fri, 28 Jun 2024 07:28:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add support for Radxa ROCK
- Pi E v3.0
-Message-ID: <202406280702.5pGvBTdS-lkp@intel.com>
-References: <20240623201415.3205-3-naoki@radxa.com>
+	s=arc-20240116; t=1719531070; c=relaxed/simple;
+	bh=AZoGkoAdsxulyS4+UxFUqv44sLLbuy9KS1D6OsoJqPs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GKy/TyE6qWVJthHcw/+98DHvFbVOV8fZJEb7XT6g1IlQPzj1unCqk2W94x+3uCWkcHeeG2RTmX7DcPmX1PGFAlfsrYlP0JlYJ6o5FH1SRsoP+QDnE4xQsIKnwcj8XaUTNll3QP81rAEO+ChlWEtpKlEjxCP6Y/ZpJa0r05YQy0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=XXz+a+a6; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 099118851E;
+	Fri, 28 Jun 2024 01:31:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1719531064;
+	bh=4fEHdJjs1SpcSe5ouDCWC+X86QN5baJmT2JoBwn5kNM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=XXz+a+a6WPc9a3RF+YxVadPdhfGlHM6FvYSjwE7dwwkeWH44Gr8QZBqpWnduXWGOY
+	 1H703t6Pr/L25f90tChHfkPJaCJ1liXbXLkq40GGwMPWX2nVD7LlFItY0NfqLrhnTX
+	 Ume6PDfiwL/Fm3cEbxj80uNrA+Sl58nzSWu4chalkYeV1OL5i0EfrdL+Pe1ziWQQsN
+	 hJ8iVg40jzs1haqmY9/+xMsmIQSup4H59zIlExSMJSqrIV6vIMPBEKOLbxWezHWcK9
+	 +3AkmxM4ZjLX3abL1XouAUiaAVW24VcZSt7RAZccvv0t7wWNyNUaEHC/p8XpqzfxAH
+	 CKyiOzn6JWNrg==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: imx8mp: Update Fast ethernet PHY MDIO addresses to match DH i.MX8MP DHCOM rev.200
+Date: Fri, 28 Jun 2024 01:30:09 +0200
+Message-ID: <20240627233045.80551-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240623201415.3205-3-naoki@radxa.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi FUKAUMI,
+The production DH i.MX8MP DHCOM SoM rev.200 uses updated PHY MDIO addresses
+for the Fast ethernet PHYs. Update the base SoM DT to cater for this change.
+Prototype rev.100 SoM was never publicly available and was manufactured in
+limited series, anything currently available is rev.200 or newer, so it is
+safe to update the DT this way.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+V2: Update the commit message, rev.100 SoM was a prototype that is not available
+---
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on next-20240627]
-[cannot apply to robh/for-next linus/master v6.10-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/FUKAUMI-Naoki/arm64-dts-rockchip-prepare-common-dtsi-for-Radxa-ROCK-Pi-E/20240625-214723
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20240623201415.3205-3-naoki%40radxa.com
-patch subject: [PATCH v3 3/3] arm64: dts: rockchip: add support for Radxa ROCK Pi E v3.0
-config: arm64-randconfig-051-20240628 (https://download.01.org/0day-ci/archive/20240628/202406280702.5pGvBTdS-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-dtschema version: 2024.6.dev2+g3b69bad
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240628/202406280702.5pGvBTdS-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406280702.5pGvBTdS-lkp@intel.com/
-
-dtcheck warnings: (new ones prefixed by >>)
-   arch/arm64/boot/dts/rockchip/rk3328.dtsi:732.17-740.5: Warning (graph_child_address): /vop@ff370000/port: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
->> arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: hdmi@ff3c0000: interrupts: [[0, 35, 4], [0, 71, 4]] is too long
-   	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
->> arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /phy@ff430000: failed to match any schema with compatible: ['rockchip,rk3328-hdmi-phy']
->> arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
->> arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
->> arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: ethernet@ff540000: Unevaluated properties are not allowed ('snps,rxpbl', 'snps,txpbl' were unexpected)
-   	from schema $id: http://devicetree.org/schemas/net/rockchip-dwmac.yaml#
->> arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: ethernet@ff550000: Unevaluated properties are not allowed ('snps,txpbl' was unexpected)
-   	from schema $id: http://devicetree.org/schemas/net/rockchip-dwmac.yaml#
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index 848df53c48685..4f7721a44daaa 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -110,14 +110,14 @@ mdio {
+ 		#size-cells = <0>;
+ 
+ 		/* Up to one of these two PHYs may be populated. */
+-		ethphy0f: ethernet-phy@0 { /* SMSC LAN8740Ai */
++		ethphy0f: ethernet-phy@1 { /* SMSC LAN8740Ai */
+ 			compatible = "ethernet-phy-id0007.c110",
+ 				     "ethernet-phy-ieee802.3-c22";
+ 			interrupt-parent = <&gpio3>;
+ 			interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+ 			pinctrl-0 = <&pinctrl_ethphy0>;
+ 			pinctrl-names = "default";
+-			reg = <0>;
++			reg = <1>;
+ 			reset-assert-us = <1000>;
+ 			reset-deassert-us = <1000>;
+ 			reset-gpios = <&ioexp 4 GPIO_ACTIVE_LOW>;
+@@ -156,14 +156,14 @@ mdio {
+ 		#size-cells = <0>;
+ 
+ 		/* Up to one PHY may be populated. */
+-		ethphy1f: ethernet-phy@1 { /* SMSC LAN8740Ai */
++		ethphy1f: ethernet-phy@2 { /* SMSC LAN8740Ai */
+ 			compatible = "ethernet-phy-id0007.c110",
+ 				     "ethernet-phy-ieee802.3-c22";
+ 			interrupt-parent = <&gpio4>;
+ 			interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+ 			pinctrl-0 = <&pinctrl_ethphy1>;
+ 			pinctrl-names = "default";
+-			reg = <1>;
++			reg = <2>;
+ 			reset-assert-us = <1000>;
+ 			reset-deassert-us = <1000>;
+ 			reset-gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
