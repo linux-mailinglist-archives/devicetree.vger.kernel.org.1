@@ -1,80 +1,105 @@
-Return-Path: <devicetree+bounces-80725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E999291A472
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:01:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8B791A47B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FCED1F232EC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:01:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEC1B281C74
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90364136653;
-	Thu, 27 Jun 2024 11:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53A3B143722;
+	Thu, 27 Jun 2024 11:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KqUpoyPq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7yK+jpR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6388C1F94A;
-	Thu, 27 Jun 2024 11:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA4D13E8B9;
+	Thu, 27 Jun 2024 11:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719486086; cv=none; b=e4VuyDE61rog+oQzK74+0x8y4zNVxEA3NiMSo55G1vQG56drEQujbAroRfHPl2v7vnbeGaZ8nGbq6c0TAyAqX+qzpwBpty4tRxWel3W9FsT2ybd9prgQpCoQH3z/7puMvzDzvVG24aTZ5QZ5tdDWrC18Yc5cJsQXNyHU43jg77Y=
+	t=1719486299; cv=none; b=nrk17BH5OARR6R8TK0ONtBUh0GRfbqFhC25PQSuQiq+aSeUJAOhjNcS0+p9z7rOV/iVIiA6o1RI+8VJHis19a06Bre/W2aW4GK1qpsicn4Kf+zSDZr5XMGry2vVafD9CQI0eWqA/GtaFXBJH3PQ4I+NYcQtk+Yzleiuewafnlkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719486086; c=relaxed/simple;
-	bh=XpS4P703igk3O8Ga/2LoeenBi8suYKyiHNWEM3es3+c=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d/uvlonhu8NUDU/IoCbZCB+M/9HV/MPqY/SQO1RKhz2loIUU8D1/75ezCYZC3ZAnxendmXMdXRYivyrXKcF6xGbe9+Fzi0R1jrOjzyC42hifkfp12TCzMUsbcT30zNKRIcY8+DRoRN/YZnEDqpJjYrsFRT/nnCmwQGlh6EwElSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KqUpoyPq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 615DFC32786;
-	Thu, 27 Jun 2024 11:01:22 +0000 (UTC)
+	s=arc-20240116; t=1719486299; c=relaxed/simple;
+	bh=8ZzDTsMOMidSBP3qxObEzRIVmzQAHImEyQbdHOCy2uc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pykq/mLyJuhNdUvEisOnRSLSbIXHssAGQEyPMPj+xkntZPqy/+8UDvhzD8yZixxMTguSazocdrNk4N8bTI5zisdlQ3QmEjkF/5uVvW0daOk2ZDqFOBgaTmGSep/zutGMJuQ3P63JAyhtBZVha4a7QZPs3jqKICIgUM3owsx4u40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L7yK+jpR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BE68C2BBFC;
+	Thu, 27 Jun 2024 11:04:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719486086;
-	bh=XpS4P703igk3O8Ga/2LoeenBi8suYKyiHNWEM3es3+c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KqUpoyPq+xyYY2f+baWNtrli5lqiNIU1jE9MLO2/EYg2hwkjdOY0Vm+VoSE5my5tL
-	 F1/E310fx5Ahvt1rJ56LHh1Wa6AURwatAhW+Q+3ytNuAFUu/8jDPThX81GWZtOXqFY
-	 sfOSCHiPkDzSwmOHDq/klnNGov4CuJy2swayUOcsh4R9gRm11Cde5rxR2HENO9F/GO
-	 ImGStPW3UFurh6NF7eYDLOubZU4ysWzCNkLeUcCKr0SUZB0MW1IN8beuu6Y8S+Czjz
-	 PYRELH/sZxd1DZhy3ZH6bLgbqomWFepL9EBfm9r6n7idmUeUoj4Eemhym1IMHrdh+J
-	 4rxOZ4yMGNuLw==
-Date: Thu, 27 Jun 2024 13:01:19 +0200
-From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, tsbogend@alpha.franken.de, daniel.lezcano@linaro.org,
- paulburton@kernel.org, peterz@infradead.org, mail@birger-koblitz.de,
- bert@biot.com, john@phrozen.org, sander@svanheule.net,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org, ericwouds@gmail.com
-Subject: Re: [PATCH v3 2/9] mips: dts: realtek: add device_type property to
- cpu node
-Message-ID: <20240627130119.5673aa68@dellmb>
-In-Reply-To: <20240627043317.3751996-3-chris.packham@alliedtelesis.co.nz>
-References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
-	<20240627043317.3751996-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1719486298;
+	bh=8ZzDTsMOMidSBP3qxObEzRIVmzQAHImEyQbdHOCy2uc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=L7yK+jpRDLdNv3MVlh1VRwYL4RusBLBp5pboX1jV1qD4oJ9yRMwb9JQw5ykdIbyBh
+	 1m7YtVhNVuBV6fjVgto2zxKGHLqTwzjuTiSNmI66HW4npVoSUtamChibJ+yYN3TXKX
+	 yagXOPLjLiUWg1DqN/pTM+C9/rX2jQuXloWQcYfSlun/sHtanmWG+NZf1nkffXdZoT
+	 hFXr4rYl/HmURE+cVOLj1xkDVzxsX+Iy1Xp55Kgq96kFRcNGv7+o9JOPMb2F6phXjP
+	 qBfrRENLrZ2CcaC1sw+JDI9iD5lN2F/tsHLTznsBJRd8U8GHbGtdIaJ8dfU3AcMWbF
+	 eEqC7yCng4lKw==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-clk@vger.kernel.org
+Cc: p.zabel@pengutronix.de,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: [PATCH v4 0/4] Add reset support to EN7581 clk driver
+Date: Thu, 27 Jun 2024 13:04:21 +0200
+Message-ID: <cover.1719485847.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, 27 Jun 2024 16:33:10 +1200
-Chris Packham <chris.packham@alliedtelesis.co.nz> wrote:
+Introduce reset-controller support to the Airoha EN7581 clock module.
 
-> Add device_type =3D "cpu" to the cpu node for the rtl838x SoC. This
-> resolves the following dtbs_check complaint:
->=20
->  cpus: cpu@0: 'cache-level' is a required property
->=20
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Changes since v3:
+- cosmetics and minor changes
+Changes since v2:
+- move reset io registers in a dedicated mapping since upcoming pinctrl driver
+  will need to map some registers in the adjacent region
+- drop patch 2/4
+- remove pcie reset open drain configuration since it will be managed by
+  upcoming pinctrl driver
+Changes since v1:
+- squash patch 1/5 and 2/5
+- introduce reset line mapping in order to take into account possible holes in
+  reset definitions
+- fix error path in en7523_clk_probe()
 
-Reviewed-by: Marek Beh=C3=BAn <kabel@kernel.org>
+Lorenzo Bianconi (4):
+  dt-bindings: clock: airoha: Add reset support to EN7581 clock binding
+  clk: en7523: Add reset-controller support for EN7581 SoC
+  clk: en7523: Remove pcie prepare/unpreare callbacks for EN7581 SoC
+  clk: en7523: Remove PCIe reset open drain configuration for EN7581
+
+ .../bindings/clock/airoha,en7523-scu.yaml     |  25 +-
+ drivers/clk/clk-en7523.c                      | 245 ++++++++++++++----
+ .../dt-bindings/reset/airoha,en7581-reset.h   |  66 +++++
+ 3 files changed, 281 insertions(+), 55 deletions(-)
+ create mode 100644 include/dt-bindings/reset/airoha,en7581-reset.h
+
+-- 
+2.45.2
+
 
