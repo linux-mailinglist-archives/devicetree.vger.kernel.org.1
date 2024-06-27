@@ -1,116 +1,185 @@
-Return-Path: <devicetree+bounces-80809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02CC891A747
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:07:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2461591A776
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:11:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D11B1F214B4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:07:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 481E51C23379
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C26186E55;
-	Thu, 27 Jun 2024 13:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8315F1891B6;
+	Thu, 27 Jun 2024 13:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QuP4ockh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ebmsRCjZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67DDB13F00A;
-	Thu, 27 Jun 2024 13:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C855C18755A;
+	Thu, 27 Jun 2024 13:10:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719493649; cv=none; b=dFRu+dOmIEF7TF9lzalZqmG9JGj5pYCgzG6gRqGVcjfUEkc8NEaicjZxBlQ5+XU6Yy0OToVUY2r3Hhite4Oh/5xEQ7L4NhzJ6LXw4BqA4Lbmvt6JJdWwJQCwWsjiMMWuL72aeJz+MTxwBAW9w68fL2N/bCMhzZNSYQszyu5EZZg=
+	t=1719493843; cv=none; b=eMIQxSWpz1IEVQ01ZhNqYOp/Wosw1vETy09vguX/yNwvHBS8gaNtloAuQ77loPt7v1EbsQq5mxxBKALRFECBQUEfADSMPmhCfy8oELuext0O7/8gg92OIA3W0mMFEBB9qmpgPXUbxnOLGaByJR7hAcNOBeCJlZ5oJya9q6X5BI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719493649; c=relaxed/simple;
-	bh=4eqenzlDJJmiVegcLr50fZF1d8Jb+JeLIA2EruftpKU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t2JdyUqJXzMiHQdEu2v1/WepD/dcj/PmF8iNlJdhGgPU7+ifQQYyLe8wOzaI88nx0/i2WA3/Tm2bFJD6cElVWkODSiJGvJk1uKxqo6mS/FeWgjBwvctl5EofVUruYNr/nfG5rlce2ZYT1z21eYDeXicsMXDZZhrmr+hvfpzG6cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QuP4ockh; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=XGLNCYj2BJRifwhxF86lhSp/yOk3DKS/Y+1DL0OAdQg=; b=QuP4ockh5YHBLYEwoZj5NEqkIO
-	QPRhs52wNmvvHeJEHgbxO64j9wBMvrt19XSNBvOz8cfXE+lF/iCh0oIBZhjaEPaE/KRv0u1iH416Y
-	S2oqly8fxynQd0MWSisU9i8Ptt73hMgEM+MFfAbzVi+0URiVktRSWCX+O0mPsKNz71Vk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sMoq5-0019vg-3G; Thu, 27 Jun 2024 15:07:01 +0200
-Date: Thu, 27 Jun 2024 15:07:01 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
-	Abhishek Chauhan <quic_abchauha@quicinc.com>,
-	Andrew Halaney <ahalaney@redhat.com>,
-	Jiawen Wu <jiawenwu@trustnetic.com>,
-	Mengyuan Lou <mengyuanlou@net-swift.com>,
-	Tomer Maimon <tmaimon77@gmail.com>, openbmc@lists.ozlabs.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 02/10] net: pcs: xpcs: Split up xpcs_create()
- body to sub-functions
-Message-ID: <adfbc8c2-f39e-4aee-a879-1ae992689882@lunn.ch>
-References: <20240627004142.8106-1-fancer.lancer@gmail.com>
- <20240627004142.8106-3-fancer.lancer@gmail.com>
+	s=arc-20240116; t=1719493843; c=relaxed/simple;
+	bh=d/dE21M/qcT0o8h8zEfeZGZ5ojzXnFzZ3wcWijq5zVI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=NTNOI5mwDuC1+8kfMVrtc/BZoN79VQJNPgaoPQfTUdoeaAuYvfnEz4z2wMY7CAYjAEnOB94YzgbGPNpsGKZH8cirDV9sJdVeDAn/QT8Y49mVZXmldGtAiQU2Nd6yXoXHL6Opu5RbkFrBPAeiIvRHxTPViYvzyqxN8KNnx7JwrbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ebmsRCjZ; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45RDAPF2024313;
+	Thu, 27 Jun 2024 08:10:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1719493825;
+	bh=nVLO8Lf5+Q64obBl7khRpJS2urQEzLuDJd3WPiVC3F0=;
+	h=From:Subject:Date:To:CC;
+	b=ebmsRCjZUceRDkLxKyxirmg1PpGMg3TgY3W7TEQaHKYZpCE8QsjSenegMlSz3RSGz
+	 Ka6ESTs47I/z3HuD4OHJqugINWLJDWx+h6Ulj6R0En8eACn43cCZXQ083hVoq5aHuM
+	 Vv9A1f45bFHk5ncoFkMxEmyEQscWyEJmcAJsve3o=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45RDAPas095606
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 27 Jun 2024 08:10:25 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Jun 2024 08:10:24 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Jun 2024 08:10:24 -0500
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.116])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45RDANCV038366;
+	Thu, 27 Jun 2024 08:10:24 -0500
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v2 00/13] media: cadence,ti: CSI2RX Multistream Support
+Date: Thu, 27 Jun 2024 18:39:55 +0530
+Message-ID: <20240627-multistream-v2-0-6ae96c54c1c3@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240627004142.8106-3-fancer.lancer@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKNkfWYC/1XMQQ6CMBCF4auQWVvTDgTUlfcwLFqYyiSWkrYSD
+ endrSQuXP6Ted8GkQJThEu1QaCVI/u5BB4qGCY930nwWBpQYiMRlXDPR+KYAmknrDG6tZaaTtd
+ QFksgy69du/Wlp/Low3vHV/W9/hz8c1YlpFCnuqPxrFoic018HLyDPuf8ARvOHdyjAAAA
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans
+ Verkuil <hverkuil-cisco@xs4all.nl>,
+        Vaishnav Achath <vaishnav.a@ti.com>,
+        Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        Changhuang Liang
+	<changhuang.liang@starfivetech.com>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        Julien Massot <julien.massot@collabora.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        Jai Luthra <j-luthra@ti.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2975; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=d/dE21M/qcT0o8h8zEfeZGZ5ojzXnFzZ3wcWijq5zVI=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBmfWSoPPOF7nOAMBe6Fb/GXTXvDTTdG5qRGFNjq
+ qbewBRU+7eJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZn1kqAAKCRBD3pH5JJpx
+ RfWUD/9X2ur34ScgVPkX4LGhKz9/padjTrJdTzYTtyto094E5RgyhuM8iyeZ6hKNq8WmYWOSzQD
+ u7oh41cSPIGVh0xN+HlXstraajV58EvkVCvEfZHD8TvZI0czJS9yuQhjyLL1o95vefrTLRcwIaE
+ FEsn8R4YklRX9567Y8D9/DJ4paG6nAh0CTETTDtWgXuDeT95powE6J9yRCNgLlixy0fjkOeJf/c
+ CLUB9CMJUuja/2UkoVNV7CM0QisXrd0g+T73DsBBVhYMbvm0oK2a09wNKpM0z1jCVEBcxBFyq+N
+ DWrRdiDTkbGGFnRQWsCdSIg2tQlbyMkAiOL027d+LZW4+0K1vGwdJ4Sf+sBgiGvidlZPTCOCOs6
+ 77WwT7q25IdzmK4tPqmSgQTN1DJ3z7AFVA4qojf1OUyq9wDWinvfvzSvtPZu0xH1z1GnONAaNWv
+ H55iIxsSAvarRuYRAQMwXdIkye/jYd/GtyRUnzKcWNQLmj1yfAhhw65ehVBdraxDls0FEXBcthK
+ RO0w02XvdSXpZIiXoAiBjMCfU5U+EuzhkGjHicrgMmsdRpl2rlBEqVIhuYSv/GlI7qgfTKh3OR8
+ FMqHqTT9nxnBinfiPI4NqZ3M6qTkSoTkuPfd/dbUF8KgY0Bq4cqvKz6+6Puq0tfzwUbBvxxv4R6
+ FzNi3sUrTlpCPrQ==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Jun 27, 2024 at 03:41:22AM +0300, Serge Semin wrote:
-> As an initial preparation before adding the fwnode-based DW XPCS device
-> support let's split the xpcs_create() function code up to a set of the
-> small sub-functions. Thus the xpcs_create() implementation will get to
-> look simpler and turn to be more coherent. Further updates will just touch
-> the new sub-functions a bit: add platform-specific device info, add the
-> reference clock getting and enabling.
-> 
-> The xpcs_create() method will now contain the next static methods calls:
-> 
-> xpcs_create_data() - create the DW XPCS device descriptor, pre-initialize
-> it' fields and increase the mdio device refcount-er;
-> 
-> xpcs_init_id() - find XPCS ID instance and save it in the device
-> descriptor;
-> 
-> xpcs_init_iface() - find MAC/PCS interface descriptor and perform
-> basic initialization specific to it: soft-reset, disable polling.
-> 
-> The update doesn't imply any semantic change but merely makes the code
-> looking simpler and more ready for adding new features support.
-> 
-> Note the xpcs_destroy() has been moved to being defined below the
-> xpcs_create_mdiodev() function as the driver now implies having the
-> protagonist-then-antagonist functions definition order.
-> 
-> Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
+This series adds multi-stream support for Cadence CSI2RX and TI CSI2RX
+Shim drivers.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+PATCH 1:	Runtime Power Management for Cadence CSI2RX
+PATCH 2-7:	Support multiple DMA contexts/video nodes in TI CSI2RX
+PATCH 8-9:	Use get_frame_desc to propagate virtual channel information
+		across Cadence and TI CSI-RX subdevs
+PATCH 10-12:	Use new multi-stream APIs across the drivers to support
+		multiplexed cameras from sources like UB960 (FPDLink)
+PATCH 13:	Optimize stream on by submitting all queued buffers to DMA
 
-    Andrew
+This applies on top of today's linux-next (next-20240626)
+(also tested rebase with media_stage.git master)
+
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Changes in v2:
+
+- Change the multi-camera capture architecture to be similar to that of
+  Tomi's RPi5 FE series, where the driver will wait for userspace to
+  start streaming on all "actively routed" video nodes before starting
+  streaming on the source. This simplifies things a lot from the HW
+  perspective, which might run into deadlocks due to a shared FIFO
+  between multiple DMA channels.
+
+- Drop a few fixes that were posted separately and are already merged
+- Fix dtschema warnings reported by Rob on [02/13]
+- Fix warnings for uninitialized `used_vc` variable in cdns-csi2rx.c
+- Return -EBUSY if someone updates routes for j721e-csi2rx subdev while
+  streaming
+- Only allow single-streams to be routed to the source pads (linked to
+  video nodes) of the j721e-csi2rx device
+- Squash the patches marked "SQUASH" in the v1 RFC series
+
+- Link to RFC (v1):
+  https://lore.kernel.org/r/20240222-multistream-v1-0-1837ed916eeb@ti.com
+
+---
+Jai Luthra (8):
+      dt-bindings: media: ti,j721e-csi2rx-shim: Support 32 dma chans
+      media: ti: j721e-csi2rx: separate out device and context
+      media: ti: j721e-csi2rx: add a subdev for the core device
+      media: ti: j721e-csi2rx: add support for processing virtual channels
+      media: cadence: csi2rx: Use new enable stream APIs
+      media: cadence: csi2rx: Enable multi-stream support
+      media: ti: j721e-csi2rx: add multistream support
+      media: ti: j721e-csi2rx: Submit all available buffers
+
+Jayshri Pawar (1):
+      media: cadence: csi2rx: Support runtime PM
+
+Pratyush Yadav (4):
+      media: ti: j721e-csi2rx: prepare SHIM code for multiple contexts
+      media: ti: j721e-csi2rx: allocate DMA channel based on context index
+      media: ti: j721e-csi2rx: get number of contexts from device tree
+      media: cadence: csi2rx: add get_frame_desc wrapper
+
+ .../bindings/media/ti,j721e-csi2rx-shim.yaml       |  39 +-
+ drivers/media/platform/cadence/cdns-csi2rx.c       | 440 +++++++++--
+ .../media/platform/ti/j721e-csi2rx/j721e-csi2rx.c  | 879 ++++++++++++++++-----
+ 3 files changed, 1071 insertions(+), 287 deletions(-)
+---
+base-commit: df9574a57d02b265322e77fb8628d4d33641dda9
+change-id: 20240221-multistream-fbba6ffe47a3
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
+
 
