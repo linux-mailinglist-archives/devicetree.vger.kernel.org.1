@@ -1,61 +1,72 @@
-Return-Path: <devicetree+bounces-80933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B30A491AC4F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:13:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 933A091AC66
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 18:16:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 615F71F264F4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:13:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A1C01F244BD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:16:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B655B199386;
-	Thu, 27 Jun 2024 16:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A32197A65;
+	Thu, 27 Jun 2024 16:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TvbP5fE0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hu1PvAP6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87944196D9E;
-	Thu, 27 Jun 2024 16:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E67125D5
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 16:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719504801; cv=none; b=LJcer+yqoyFyFDpfeBpYWlVpmxN92BwZO4A2U8R8O4+qrWeeiSQzLPcpwNE3CEZvXBqNlfOLT4uCTIDtxVP3WCwPrRiZ/nLPxycS9fZp6qX5hW28CIm58LTCfDf4LfCBd8rzEYY0JgxXKvnE9gFYfXGAck7XsWo/tIA9L2XVuxE=
+	t=1719504964; cv=none; b=tJ5GbVC3pvf0boaDKZdWOuZGKYHR6DkHr4sO+dJGID5Bm0h86O6rr0H9D+O63pEJwLQWrobFX2/6kffVVBwW3ehq9lAYsPkmdvw+g6aQP3WEh8qGtiuKvERkPK4UTuGJQeERPzlMDhb0s389zij2RT+qC0a1E18nWGP4W2SngVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719504801; c=relaxed/simple;
-	bh=Xy8p5tBdXTNSi+VSsPN5KrFq5OpVySTdyBhY1w8K56U=;
+	s=arc-20240116; t=1719504964; c=relaxed/simple;
+	bh=K7c7Tx/3He/q87nxZHcjEEng/1qj921BjrT9VEi1+Hs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GqlA4Mov2vsOzWfYI4cHZKpKsdVDebrX/xJ2Fe32kF4RkXmuEHeFDBtnH9/Bm5kLSDHEVsPWHduza64ecvDs6+jUtXLJrcknHMh1Ao4bio5IRwNy5KaZaDFV5y0gx0V1Zk8JFsWA3VUVeQZTXjBD/Ho1zQCdRhalir7MyU4IeQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TvbP5fE0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED6F0C2BBFC;
-	Thu, 27 Jun 2024 16:13:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qw4IJ2yaSb9wctAtXgO3KlTP95bGJYp5eikQRIVnZ2jYLkCYHZaKpsJ2mrAD/zowCcwLeM4KDN/HKB8jLDVeKoQ3ox5ZA7/fnmnYgWNaZfII5bGQAB3wC217kThXBtFiuve21e1UETXh+N7laT7GPkADWDCVULAWkwRkqP/S8RU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hu1PvAP6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C6AC2BBFC;
+	Thu, 27 Jun 2024 16:15:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719504801;
-	bh=Xy8p5tBdXTNSi+VSsPN5KrFq5OpVySTdyBhY1w8K56U=;
+	s=k20201202; t=1719504964;
+	bh=K7c7Tx/3He/q87nxZHcjEEng/1qj921BjrT9VEi1+Hs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TvbP5fE0s7bxXlV/ANoBDW1w2LV+dB4xnZkJcmTZhncZcXM6P2DzUFzoV2oUyLC3j
-	 QDVBT2UwKtx/3Ayl8GIil5t6RHhx1X0/0148KrUS627JT/Ad/08CLLw75ZlLU+gu/C
-	 YXVmozK+WaSkr09x9RARMyZIa17Ky23qmzzb8nCZu3u6Xvrt7rihqnRRPfH9X/aHkL
-	 5bX1ndfP5JOtyoT7RyELKraJSU034fjOrP94AeRFluzZueCrFid8ypTQdkt9dTbC/F
-	 dNtZXVE+kVfFkTFdcFgx5IgfoIOZX68oGI/POaobDlv6+J6Z3kgJK+qNO/yd1YD99L
-	 BUR/ueBnFowXw==
-Date: Thu, 27 Jun 2024 17:13:16 +0100
+	b=hu1PvAP6ZKVn0NLwjayviOkvW8z9WohVpCofjvKPM2XNBcoEXOFxaDSqRN4LK40pk
+	 WkKe59SHzoOeq/+ykXeFfp3pCIj9kbyhJr0ou2hc95d4f3aeutbzbmnngl9QrYNSvI
+	 IjL8Uxuy45qrXu1eQ7RNSPfXqVs2hbnwY6NhOYKxrXpnw/p3rhCXpDpEJBg/G1mqxn
+	 bkSdQ0gpxK/GVYsaiYFRpWNkQ7M33X1Y4leT7SnqYmUTGE6XmkS2149B7js2BjRKTj
+	 3plIuDo/xzIxR/qjDNnR+iz5gneAPR0+h/MM8eE6k6sL+XjPFrIvg9U8t/Z0QDgjbG
+	 qoKe3AaByLFWA==
+Date: Thu, 27 Jun 2024 17:15:57 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Olivier MOYSAN <olivier.moysan@foss.st.com>
-Cc: fabrice.gasnier@foss.st.com, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: iio: add sigma delta modulator
- backend
-Message-ID: <20240627-identity-enviable-4fda0b3a09c0@spud>
-References: <20240625150717.1038212-1-olivier.moysan@foss.st.com>
- <20240625150717.1038212-6-olivier.moysan@foss.st.com>
- <20240625-babied-skies-0722dbdfc524@spud>
- <eefc746a-2181-41da-b777-b077a4c19b77@foss.st.com>
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: add TI TDP158
+Message-ID: <20240627-headscarf-density-81bce4f05db4@spud>
+References: <20240625-tdp158-v2-0-a3b344707fa7@freebox.fr>
+ <20240625-tdp158-v2-1-a3b344707fa7@freebox.fr>
+ <20240626-blah-unseated-6cab234bae61@spud>
+ <d2012a93-911c-403e-b1c5-f01916a3200e@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,84 +74,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Qjo94KATqhmQaPj6"
+	protocol="application/pgp-signature"; boundary="51j+MB7mBaap5O9i"
 Content-Disposition: inline
-In-Reply-To: <eefc746a-2181-41da-b777-b077a4c19b77@foss.st.com>
+In-Reply-To: <d2012a93-911c-403e-b1c5-f01916a3200e@freebox.fr>
 
 
---Qjo94KATqhmQaPj6
+--51j+MB7mBaap5O9i
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 26, 2024 at 06:40:58PM +0200, Olivier MOYSAN wrote:
-> Hi Conor,
+On Wed, Jun 26, 2024 at 07:20:46PM +0200, Marc Gonzalez wrote:
+> On 26/06/2024 18:08, Conor Dooley wrote:
 >=20
-> On 6/25/24 17:34, Conor Dooley wrote:
-> > On Tue, Jun 25, 2024 at 05:07:13PM +0200, Olivier Moysan wrote:
-> > > Add documentation of device tree bindings to support
-> > > sigma delta modulator backend in IIO framework.
-> > >=20
-> > > Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> > On Tue, Jun 25, 2024 at 06:38:12PM +0200, Marc Gonzalez wrote:
+> >
+> >> The TI TDP158 is an HDMI to TMDS Redriver.
+> >>
+> >> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> >> ---
+> >>  .../bindings/display/bridge/ti,tdp158.yaml         | 48 +++++++++++++=
++++++++++
+> >>  1 file changed, 48 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tdp15=
+8.yaml b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> >> new file mode 100644
+> >> index 0000000000000..b687699e2ba80
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/display/bridge/ti,tdp158.yaml
+> >> @@ -0,0 +1,48 @@
+> >> +# SPDX-License-Identifier: GPL-2.0-only
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/display/bridge/ti,tdp158.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: TI TDP158 HDMI to TMDS Redriver
+> >> +
+> >> +maintainers:
+> >> +  - Arnaud Vrac <avrac@freebox.fr>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: ti,tdp158
+> >> +
+> >> +  reg:
+> >> +    description: I2C address of the device
+> >> +
+> >> +  enable-gpios:
+> >> +    description: GPIO controlling bridge enable
+> >> +
+> >> +  vcc-supply:
+> >> +    description: Power supply 3.3V
+> >> +
+> >> +  vdd-supply:
+> >> +    description: Power supply 1.1V
 > >=20
-> > I don't review bindings for a job, I can only reliably get to look at
-> > my mail queue in the evenings, please give me a chance to reply to you
-> > before you submit a new version.
-> >=20
+> > Are these supplies not also required? Surely the device needs the power
+> > to function?
 >=20
-> Sorry, the short review delay.
+> Maybe if the hamsters spin fast enough in their wheels,
+> these supplies won't be required? :)
 >=20
-> > > +$id: http://devicetree.org/schemas/iio/adc/sd-modulator-backend.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Sigma delta modulator backend
-> >=20
-> > Same comments about filename and title apply here as the previous
-> > version. "TI $foo Sigma Delta Modulator" and drop the reference to back
-> > ends or the pretence of being generic.
-> >=20
+> The reason I hesitated to mark them as required,
+> is because the HW engineer told us that on our board
+> they were connected to a power line that is shared
+> between several functional blocks.
 >=20
-> The logic here is the same as for the former sigma delta modulator driver.
-> (see discussion [1])
-> I mean introducing a generic and minimalist driver to support sd modulato=
-rs,
-> but not dedicated to a specific modulator. The ads1201 is chosen as a bas=
-ic
-> modulator here. But it is rather an arbitrary choice.
->=20
-> I agree "backend" reference is not really relevant here. I have to think
-> about a way to manage the coexistence of this sigma delta modulator driver
-> with its former version.
+> I suppose that's not a reason?
 
-To be blunt, I don't care about drivers! Well I do, but not in this
-particular context. You can absolutely have a driver that supports
-multiple backends or sigma delta modulators, but right now we are
-talking about a binding and this binding supports exactly one sigma
-delta modulator - and with an explicit compatible. In that context,
-presenting the binding as generic makes little sense.
+Then all of those blocks should have their supplies described in the
+devicetree! FWIW, if you don't put them in your dts, you'll get
+validation failures but the regulator core will produce dummy regulators
+so your driver should "just workTM". I'd suggest that you add the
+supplies though to these other functional blocks so that the OS can
+manage them properly.
 
-> [1] https://lore.kernel.org/all/6943aaf5-b580-0fd1-7a2e-b99f7a266388@st.c=
-om/
+> Required means "device doesn't work if they're not connected" ?
 
-Looking at this though, I question the binding more... The programming
-model of the device is identical as a backend or otherwise, so it
-shouldn't be getting a new compatible. Isn't this actually as simple as
-adding #io-backend-cells to the existing binding and using that to
-determine whether the device is being used as a backend or in isolation?
+Correct.
 
 Thanks,
 Conor.
 
---Qjo94KATqhmQaPj6
+
+--51j+MB7mBaap5O9i
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2PnAAKCRB4tDGHoIJi
-0o7EAQCyFBPYkFKusgKeZs1ud2wJm+9/kIQha/hizkDF8ymXQgD9EbUe6GulJhrb
-/0Pi6G9SFcNRfPkj1g69k9ejdJ84hAc=
-=6JuI
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZn2QPQAKCRB4tDGHoIJi
+0i6XAQChdyjhbaQztpw+CtTA1/jCwob7Fi1bMxWkvk9HlRCwTgEAvCKfze8ePxUC
+qM4DvTLH0GmtnZV0kZoAeKfijK9ngww=
+=+dA0
 -----END PGP SIGNATURE-----
 
---Qjo94KATqhmQaPj6--
+--51j+MB7mBaap5O9i--
 
