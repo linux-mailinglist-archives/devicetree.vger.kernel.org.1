@@ -1,99 +1,111 @@
-Return-Path: <devicetree+bounces-80714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFF691A401
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:38:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4DBC91A413
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:39:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB8D6283EC4
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:38:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F99C1F25E63
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3989413DDDF;
-	Thu, 27 Jun 2024 10:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53DF13DDDF;
+	Thu, 27 Jun 2024 10:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="T8f3RMfO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cX98TkMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4031386BF;
-	Thu, 27 Jun 2024 10:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4971386BF;
+	Thu, 27 Jun 2024 10:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719484682; cv=none; b=JMXFuavro87IC24BBmFO9momI2aP4ONacQ1Cgy59rPHjrDkBrbGdH1jDElBYKFbI+Wv9jtzmBzdXn65vUYFnnm0iUvuq0quF3w3PzJTqOAkb2LD3RbwZINBTEb3x774E63RhRDa5etwCWMhwukVvGzqcOVrx4g0zLGMMqV0FQbk=
+	t=1719484781; cv=none; b=STMVE++3gl38ZlXmtoVv2lNjI8mYiyKTIFHru8bF3x+iiFtahl0ShvHrs7vsBZYqLTEsx6dkyaMB4++I0X9/uumHHX+Sq9REhIrk8qNqMZKVQQnx50BZdkTzo3naZwxipz0ltgJVl7YCli/h4PtNwXsj4xLzD7PmPw98bVsaUD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719484682; c=relaxed/simple;
-	bh=J7HqGzCFxvM7WV0C+sFHgXvFU5LTNWgPqlRmG8ld9Bc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mn7qeDHK9U4luwr2mTHMq6LOGkMvEgvSlz/A5N5bp5a9sz7tM3YgKaitTYRlxBW9X8deP2Pc0Oe1J11HRVu3gsNqt3o4iciuD8rcdDL9JPMq+GndVHoRHtAz6vkz1cpdcs7MUH9ekCI8gehmlTrvRkddOSY7Sh7HKXXLZ5eAqOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=T8f3RMfO; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=9sxCIQg8fVr2efTR8sroAQlij2XuJ03C7PxfEvrRihE=;
-	b=T8f3RMfOBpTFk3XO4029KZALIhUqtMbPTWZnXxtrB8H7YZbSeIAh7fwXr/kosi
-	T+Bq4oC2xcx5bQRO9ER+K+ieawG1cpnf40Hp9M6FA+QMV+qzlc/F78BJdFgAjXsa
-	T+Kcl7+oOMyWp7GIJXrLyVRoG6YHVeTlzcUoCNZscCEQA=
-Received: from dragon (unknown [114.218.218.47])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3v2riQH1mnIwaAA--.25525S3;
-	Thu, 27 Jun 2024 18:37:24 +0800 (CST)
-Date: Thu, 27 Jun 2024 18:37:22 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, robh@kernel.org, shawnguo@kernel.org
-Subject: Re: [PATCH v2 00/13] arm64: dts: layerscaple: clean up some simple
- CHECK_WARNING
-Message-ID: <Zn1A4gcDpOArsSof@dragon>
-References: <20240626202533.2182846-2-Frank.Li@nxp.com>
- <20240626202809.2187404-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1719484781; c=relaxed/simple;
+	bh=AkpBiq6QZeCkJ2ClHXInJEXgeTHY7jWKyNdh3XWD5TA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f3pCTa99R6etBm5Vc8QjmSXmaBa4rddVpvsn94z7KNIrW/GGcEvQhboYTeHfIuA4OoywayqrON32jkXeXG7k7x607HECCXYnz4rzXddyV/6r+fG8WgxLcv5zFUrMAUoSvlfeArMm+Ht79upspMQrIexTcv3ggAMpnB1bwktXDMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cX98TkMG; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1719484778;
+	bh=AkpBiq6QZeCkJ2ClHXInJEXgeTHY7jWKyNdh3XWD5TA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cX98TkMGmatIeQULfWhOZfq2FjpRtak7sKXJiJSqbf9dJHSdOAnuGdZM8zQI1noMV
+	 tOGMq7ToTvFPMbbJAjPra82svkgAGTgM+/PZxJ5Svl303Ak4/LvURi8NAS5WLiEyOT
+	 YKbI9CxpBzEQx+qACcnBs1xWFln19SbOM6r9JNi8mk7oIae3Twu1GIi6SsdVyF9pd2
+	 CNLFBADqz0un4ihuzORpLjUHC7YIP7lrjvLZlnYGy/S8HzShuQhFVbXQ5W7kvO+VvT
+	 7sqIbTAdIcNSskvyuS7zhZtd8+aM/Ro1R07OWKyQU30o8HwZm1v+x1/bQ81As8lACU
+	 4bJPMia6C1Cgw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C3C4F3780029;
+	Thu, 27 Jun 2024 10:39:36 +0000 (UTC)
+Message-ID: <3d54c64b-e1cd-4034-b0dd-e5d6607c3ef1@collabora.com>
+Date: Thu, 27 Jun 2024 12:39:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240626202809.2187404-1-Frank.Li@nxp.com>
-X-CM-TRANSID:Mc8vCgD3v2riQH1mnIwaAA--.25525S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7AryfuryDAFWfCrWxZw1xGrg_yoW8Gr4UpF
-	Z7ZrWUKryIyr9Yg3WkZ3ZrJ34fG3y7tF45Jr1agr1qkr1Y9rnrWF9Y9F98WrWkGan2vay5
-	tF17XF4ktw1vvFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jVZXrUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCw0LZWZv-czt0AABss
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/7] dt-bindings: mfd: syscon: Split and enforce
+ documenting MFD children
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>,
+ Khuong Dinh <khuong@os.amperecomputing.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chuanhua Lei <lchuanhua@maxlinear.com>,
+ Rahul Tanwar <rtanwar@maxlinear.com>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
+ Nishanth Menon <nm@ti.com>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Conor Dooley
+ <conor.dooley@microchip.com>, Maxime Ripard <mripard@kernel.org>
+References: <20240627-dt-bindings-mfd-syscon-split-v4-0-dc6699a9f3e4@linaro.org>
+ <20240627-dt-bindings-mfd-syscon-split-v4-6-dc6699a9f3e4@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240627-dt-bindings-mfd-syscon-split-v4-6-dc6699a9f3e4@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 26, 2024 at 04:28:09PM -0400, Frank Li wrote:
-> Change from v1 to v2
-> - Combine some similar warning to one patch for difference ls chipes.
-> - Remove arm64: dts: layerscape: add '#power-control-cells' for rcpm
-> rcpm actually not power-controller, it is wakeup controller, need
-> better method to fix warning
-> - Add aux-bus fix
-> - Add pcie irq order fix
-> - Add rename to rtc fix
-> - Add thermal-node name fix
-> - Add q(b)man-portals node name fix
+Il 27/06/24 12:32, Krzysztof Kozlowski ha scritto:
+> Simple syscon nodes can be documented in common syscon.yaml, however
+> devices with simple-mfd compatible, thus with some children, should have
+> their own schema listing these children.  Such listing makes the binding
+> specific, allows better validation (so the incorrect child would not
+> appear in the simple-mfd node) and actually enforces repeated rule for
+> simple-mfd devices:
 > 
-> Frank Li (13):
->   arm64: dts: layerscape: rename node 'timer' as 'rtc'
->   arm64: dts: layerscape: add platform special compatible string for
->     gpio
->   arm64: dts: fsl-lx2160a: fix #address-cells for pinctrl-single
->   arm64: dts: fsl-ls1012a: remove property 'snps,host-vbus-glitches'
->   arm64: dts: layerscape: replace node name 'nor' with 'flash'
->   arm64: dts: layerscape: remove compatible string 'fsl,fman-xmdio' for
->     fman3
->   arm64: dts: layerscaple: add #dma-cells for qdma
->   arm64: dts: layerscape: rename node name "wdt" to "watchdog"
->   arm64: dts: layerscape: change pcie interrupt order
->   arm64: dts: layerscape: rename aux_bus to aux-bus
->   arm64: dts: fsl-ls1043a: remove unused clk-name at watchdog node
->   arm64: dts: fsl-ls1046a: rename thermal node name
->   arm64: dts: layerscape: rename b(q)man-portals to b(q)man-portals-bus
+>    "simple-mfd" is only for simple devices, where the children do not
+>    depend on the parent.
+> 
+> Currently the syscon+simple-mfd binding is quite broad and allows
+> any child or property, thus above rule cannot be enforced.
+> 
+> Split the syscon.yaml binding into:
+> 1. Common syscon properties, used potentially by many bindings.
+> 2. Simple syscon devices (NO simple-mfd!).
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied all, thanks!
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
 
 
