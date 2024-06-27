@@ -1,111 +1,91 @@
-Return-Path: <devicetree+bounces-80740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D7491A4E0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:18:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B2D091A4F1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 037D7280E24
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:18:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCB8A1C213EA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 11:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718E413E8B0;
-	Thu, 27 Jun 2024 11:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6376A14882B;
+	Thu, 27 Jun 2024 11:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tmpW9XsQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i6H3p7IJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4938F79FD;
-	Thu, 27 Jun 2024 11:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3535D13C9CA;
+	Thu, 27 Jun 2024 11:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719487078; cv=none; b=BroVCt/tRU6bYM4nwSiWUsgqsZFmARAvU4o6B5g01sz6eV+os6DU4jR0gij2YkiXJH/KWAi3j3Z+1QypF8J/nKDRmSLetk8oJyLNXMfbBhNaZtXzBFx8u/sysYfqDiX7R1NG9UkV5JPlzMuvISTCgujJhRyMPy9/1mk7ZLlYWMo=
+	t=1719487166; cv=none; b=aWx4GGDvx24aBXlIem/xtCoy12oM8Dl20S/VXYt6T41wPRheJ+Is5DZRxqLHMhWtomBtvaKxub+cLykRZatEFTzobyie/NcNx25ICOrWSIcuk56hNSh2RSWYnPK1yRDULAtWYTXaNzghm3/Rm2AAsD7YBIwd1dh9hgoDEqSs6vE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719487078; c=relaxed/simple;
-	bh=lYXCKK3L8/DSkekHvSq+N+Z2VYSpxXcAEISKHGObnxE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YWsQ4XpHIUpEBVfPDSzMkWLh3laQiygm8x314z8D/NM+yN19CuQaIyISHFBDzxCIUMDExPe5QmwXBC3r1pICs6fLxEa4YYPoRq/+5NugicOIouxDJto9RgUhVwzBwk8SjvzX+g7vMIyWleYKjk1Kk+Q8bb64a8w+0n6F8SHBwpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tmpW9XsQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 204E5C2BBFC;
-	Thu, 27 Jun 2024 11:17:54 +0000 (UTC)
+	s=arc-20240116; t=1719487166; c=relaxed/simple;
+	bh=H+6JGVxtpgGD00UkpFNftvQvgc/mwsJG9lc8OkK8T88=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FAaOwzIN7dZQWWX3HX0X7YN/1QEcYHLjD4c3XWhzgsz7eIqDXkA0S/98vwPDDAizMaLRrIx0+b2GyjmuLVriV4MXMGBDiu1WZ80C6LRIqmnlGNR+oRfdsQ0fKh3cDsbVVlqHQXdYvsvTX/TPcwXhG1+powPcTxYYc+W6s2aWflo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i6H3p7IJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8870FC2BBFC;
+	Thu, 27 Jun 2024 11:19:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719487077;
-	bh=lYXCKK3L8/DSkekHvSq+N+Z2VYSpxXcAEISKHGObnxE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=tmpW9XsQG/WwI+RcUrAMLEvl/Gih+sV+nymxc4UnjuU116Pgi8wCKIeG4SH1W9HUI
-	 dNj9asjQqMODOc0cEjFhcvs/F6rGg+En9yLuES52GXot1qw4QvlCLl11JMib6gJYcd
-	 WQhJMpK81xdBiKAmpfGeFyX7Z7wZ19IXHADiVQ3Sj1WB5PiIRQccC8DnqKfhJf+Zit
-	 8KSO+9JCZOyKsvTLlZzEzW0vsnXB4mmNB2ajjeHcSmfOYMpLlv78tPFo37lM77bUyk
-	 dTrd6sXOSuiErLWAehEebVLr2ZmzTA5lFhHX0/h5KJ4TOypIY+Ovl3HigBkb6kL8pW
-	 s2twWSv9FvthQ==
-From: Mark Brown <broonie@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, 
- Liam Girdwood <lgirdwood@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Biju Das <biju.das.au@gmail.com>, devicetree@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20240616105402.45211-1-biju.das.jz@bp.renesas.com>
-References: <20240616105402.45211-1-biju.das.jz@bp.renesas.com>
-Subject: Re: (subset) [PATCH v4 0/6] Add USB VBUS regulator for RZ/G2L
-Message-Id: <171948707484.56488.11243036600032850483.b4-ty@kernel.org>
-Date: Thu, 27 Jun 2024 12:17:54 +0100
+	s=k20201202; t=1719487166;
+	bh=H+6JGVxtpgGD00UkpFNftvQvgc/mwsJG9lc8OkK8T88=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=i6H3p7IJlZcQod0Na/20Vzrjp8tnU3M6Vk+Ye+BZp4lTcSEtn1RpHj+LoWTDPcYte
+	 t/qNOxum1leyWn5zoDiOwk8+Bkqilvy6dDSIUF+09Yz0rsU2lPkeGLRO0GGobHiPd5
+	 NgzkRtQX43kP7WoxQf8WUAQjmBXU40sFHcHzYsacihsHp/UTjOAjp8Xh8SF97DIwjT
+	 KmDKdUMWaBeGSC9aD5ur3Mg2DZB08UQGSvbWghKVaHmoLHRK0MPfsbq/Spq0pnpYSU
+	 lx34oKb3oKvP2xGdhn1Ar7KxZQQvW/aSHOFU94a9wm/dNdq77nNnPpFEgcWhnNvdlQ
+	 teXRgGTB+OOZw==
+Date: Thu, 27 Jun 2024 13:19:19 +0200
+From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, tsbogend@alpha.franken.de, daniel.lezcano@linaro.org,
+ paulburton@kernel.org, peterz@infradead.org, mail@birger-koblitz.de,
+ bert@biot.com, john@phrozen.org, sander@svanheule.net,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-mips@vger.kernel.org, ericwouds@gmail.com
+Subject: Re: [PATCH v3 8/9] mips: generic: add fdt fixup for Realtek
+ reference board
+Message-ID: <20240627131919.09b31c03@dellmb>
+In-Reply-To: <20240627043317.3751996-9-chris.packham@alliedtelesis.co.nz>
+References: <20240627043317.3751996-1-chris.packham@alliedtelesis.co.nz>
+	<20240627043317.3751996-9-chris.packham@alliedtelesis.co.nz>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14-dev-d4707
 
-On Sun, 16 Jun 2024 11:53:52 +0100, Biju Das wrote:
-> As per RZ/G2L HW manual, VBUS enable can be controlled by the VBOUT bit of
-> the VBUS Control Register(VBENCTL) register in the USBPHY Control. But
-> this IP is in the Reset block.
-> 
-> Reset driver exposes this register as regmap and instantiate the USB VBUS
-> regulator device. Consumers(phy device) can use regulator APIs to control
-> VBUS as controlling is done in the atomic context.
-> 
-> [...]
+On Thu, 27 Jun 2024 16:33:16 +1200
+Chris Packham <chris.packham@alliedtelesis.co.nz> wrote:
 
-Applied to
+> +static __init int realtek_add_initrd(void *fdt)
+> +{
+> +	int node, err;
+> +	u32 start, size;
+> +
+> +	node = fdt_path_offset(fdt, "/chosen");
+> +	if (node < 0) {
+> +		pr_err("/chosen node not found\n");
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+linux/printk.h
 
-Thanks!
+> +static const struct of_device_id realtek_of_match[] __initconst = {
+> +	{
+> +		.compatible = "realtek,rtl9302",
+> +	},
 
-[3/6] regulator: core: Add helper for allow HW access to enable/disable regulator
-      commit: 1cb7d29157603561af4c38535e936850ceb99f0f
-[4/6] regulator: Add Renesas RZ/G2L USB VBUS regulator driver
-      commit: 84fbd6198766336f627ba08f073fd9970729074e
+One line instead of three?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Marek
 
