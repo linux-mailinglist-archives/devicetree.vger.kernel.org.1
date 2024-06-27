@@ -1,114 +1,102 @@
-Return-Path: <devicetree+bounces-80969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA3491ADE0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:21:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 240BB91ADFD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:25:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B622B1F21347
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:21:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3BAC2852F3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:25:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F5B19A2B8;
-	Thu, 27 Jun 2024 17:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3592219EEB9;
+	Thu, 27 Jun 2024 17:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TpKj3Jx0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D9419A2AB;
-	Thu, 27 Jun 2024 17:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF2219AA60;
+	Thu, 27 Jun 2024 17:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719508867; cv=none; b=KidvbIOAK5VSA4dtDbpQw2AAGQmSgFjWUpHSpFYNQUq0Wq9x/5b4XPgH9kQ2BHlQvygDY+mLJQ2wP/SNGRJZibEHe+Ynow3I8rQIl0N8HggBxGu7TB/nfYPuhBYQu7Y50yq9CNrXujgxABe36qtvVJox5Ak/WGsBPyFXPJuZf9w=
+	t=1719508992; cv=none; b=ANnRq01ZlOFEtwqC0+xABgeHosPtI7sG4sbqgXP4di+Y/F05VZi/cM8usmd+xC3TdjehD68D1pw63p4loL89uOqI+Sej2GtOr6i9jzsup05Oys/bR871VN7s4WjCDG7SPprO32m9qnfuQ/4ckviVYvALO+/jOSN5fgstvHM388k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719508867; c=relaxed/simple;
-	bh=P1QwJjtYvoyfwLx04MhNy1NVdqSnjvkpW2/5csHOcDU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
-	 References:In-Reply-To; b=mTms4Tzrnn6kvXj1+DUoPPOQ8Yad8UM1XWR7LMmFCL1Oy5KAFhJr6buJzfsphEX+RplgQOExJkW4/lYn7j3m19MARgEFpU3Na1w+SxF5Cwwag9PtChVwpCQDoZ5rvNR/5fyasUw/8P5+MRSEOBEIv/UDlW3IXTHJJ58HeT4bTOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [IPv6:2a02:810b:4340:4ee9:4685:ff:fe12:5967])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 66B294CC;
-	Thu, 27 Jun 2024 19:21:03 +0200 (CEST)
+	s=arc-20240116; t=1719508992; c=relaxed/simple;
+	bh=SzSQXLn35CAVEqK1pP+0y8OHPEJi33g8wq6whDfJ2U0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sM70V/4b4qkezskYDUo0d5OWIRdgDpSn4KXikJKxBxpclajbFVAis618nYiwS80Lty91HKOTyJpjXG2GU5iiSxRno4qPNencXzpwH8hHSGoRR2pch+r1JeR39EwMWCiQg+3UVrW3TPvMxa8aH5fJJnPGqSq6poz5jO0iq+4HJqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TpKj3Jx0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8B79C4AF0D;
+	Thu, 27 Jun 2024 17:23:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719508991;
+	bh=SzSQXLn35CAVEqK1pP+0y8OHPEJi33g8wq6whDfJ2U0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=TpKj3Jx0kLyQULOjrQ1G1YFRj3Q5zw0TxQeZFCbz1LUqI0cZH7X2ToIdDC7LRIyMT
+	 YhMygxp+gNO5dEQkhOV16YQYCLNCiE8iAhdjPkvdtcQHjtIr0Ze9MfCAu1/oevYfRy
+	 rqeMQOmonwGgp8kFx7+jJLLdHIT3aXohVLGmwLLlm0qWBH1qBMRtZuzir/aLRLSQWG
+	 9pJjU0EPgubLlXW5/GWWdLU9FKwoDJDK2LGmirgx751gdNTpYpn14S5t9JGOpNOSUv
+	 NupAoq+lv2HnN0k4dOmcaHqRF9wFdpvbSQkWGeW9A3qtb9SWSnbbqeBtreXl07XD6W
+	 GbDASz5SfQSLQ==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52ce01403f6so5603548e87.0;
+        Thu, 27 Jun 2024 10:23:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUqf+QSpLVi9emHQnZ7v+heZ2klb79b9GvkC+7vG+4IBRxO3VihKKGRNqHUHILnBISr0IESqK8yDWfn3Jr8TXN95b9bieGsEbu1FW2K6USC0qu9bGJg2qx7lezyvVpm2Bn7F899skxx9A==
+X-Gm-Message-State: AOJu0YzRP8tQqoSo6YKP81Yio6tgE8C8wjzvEPnHkL1+krTaLSVVRNMV
+	COoYATMabWefukZpQC/8/vK/7EU9gJrEUzpYOby3flePvTtenbiSVc9l2hwcVeVb47G41N6bGh6
+	pkZtvYWGENPCfx/yq+0Vw+Pi0Qw==
+X-Google-Smtp-Source: AGHT+IHR1yCKB1utUU8LXu7iJHrZ0fIDsz546zcbjPZVWVy3CCLzPj5Ke4IQeyOr2Ol4d53PW2YtCuULHb69RX5R2yU=
+X-Received: by 2002:a05:6512:324a:b0:52c:9e25:978d with SMTP id
+ 2adb3069b0e04-52ce185e46amr7595359e87.45.1719508990016; Thu, 27 Jun 2024
+ 10:23:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20240626202533.2182846-1-Frank.Li@nxp.com> <20240626202533.2182846-8-Frank.Li@nxp.com>
+ <CAL_JsqJDOgGWqggWXE-_jv6oQW9nekxU-4Fui+2JFZ6DWUqLtg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJDOgGWqggWXE-_jv6oQW9nekxU-4Fui+2JFZ6DWUqLtg@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 27 Jun 2024 11:22:57 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ1X8rRfVrw0gGeiiQaK+9RekNFSHgXR3zhcNRNw5y9mQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ1X8rRfVrw0gGeiiQaK+9RekNFSHgXR3zhcNRNw5y9mQ@mail.gmail.com>
+Subject: Re: [PATCH v2 07/13] arm64: dts: layerscaple: add #dma-cells for qdma
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	"moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	imx@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 27 Jun 2024 19:21:03 +0200
-Message-Id: <D2AZ0QKTPY3B.1I48GLI90XD0P@kernel.org>
-Cc: <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Andrew Davis" <afd@ti.com>, "Ayush Singh" <ayush@beagleboard.org>,
- "Mark Brown" <broonie@kernel.org>, "Vaishnav M A"
- <vaishnav@beagleboard.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Derek Kiernan" <derek.kiernan@amd.com>, "Dragan Cvetic"
- <dragan.cvetic@amd.com>, "Arnd Bergmann" <arnd@arndb.de>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Nishanth Menon" <nm@ti.com>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>,
- "Andrew Lunn" <andrew@lunn.ch>, <jkridner@beagleboard.org>,
- <robertcnelson@beagleboard.org>
-Subject: Re: [PATCH v5 7/7] dts: ti: k3-am625-beagleplay: Add mikroBUS
-X-Mailer: aerc 0.16.0
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org> <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org> <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com>
-In-Reply-To: <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com>
 
-On Thu Jun 27, 2024 at 7:07 PM CEST, Andrew Davis wrote:
-> > +	mikrobus_boards {
-> > +		thermo_click: thermo-click {
-> > +			compatible =3D "maxim,max31855k", "mikrobus-spi";
+On Thu, Jun 27, 2024 at 11:17=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
 >
-> I might be missing something, but your solution cannot possibly be
-> to list every click board that could be connected (all 1500+ of them)
-> to every mikroBUS connector on every device's DT file..
+> On Wed, Jun 26, 2024 at 2:26=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote=
+:
+> >
+> > Add #dma-cells for qdma to fix below warning.
+> >         dma-controller@8380000: '#dma-cells' is a required property
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 +
+> >  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 1 +
+> >  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
+> >  3 files changed, 3 insertions(+)
 >
-> Each click board should have a single DTSO overlay file to describe the
-> click board, one per click board total. And then that overlay should
-> apply cleanly to any device that has a mikroBUS interface.
->
-> Which means you have not completely solved the fundamental problem of
-> abstracting the mikroBUS connector in DT. Each of these click device chil=
-d
-> nodes has to be under the parent connector node. Which means a phandle
-> to the parent node, which is not generically named. For instance
-> if my board has 2 connectors, I would have mikrobus0 and mikrobus1,
-> the click board's overlay would look like this:
->
-> /dts-v1/;
-> /plugin/;
->
-> &mikrobus0 {
-> 	status =3D "okay";
->
-> 	mikrobus_board {
-> 		thermo-click {
-> 			compatible =3D "maxim,max31855k", "mikrobus-spi";
-> 			spi-max-frequency =3D <1000000>;
-> 			pinctrl-apply =3D "spi_default";
-> 		};
-> 	};
-> };
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-If there should only be one DT overlay per click board, how would
-you apply that to to different connectors?
+Except for the typo in the subject...
 
-> I think this solution is almost there, but once you solve the above
-> issue, we could just apply the right overlay for our attached click
-> board ahead of time and not need the mikroBUS bus driver at all.
+Frank, while I appreciate the great number of reductions in DT
+warnings on FSL platforms you and others have been working on, your
+work is sloppy with issues you should find yourself.
 
-The bus driver would still be needed to do the enumeration of the
-children, no? And it could make the chip select translations etc. So
-you can use the normal bindings of these devices.
-
--michael
+Rob
 
