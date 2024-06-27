@@ -1,169 +1,106 @@
-Return-Path: <devicetree+bounces-80839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C34C91A85B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 15:53:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DBED91A890
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD6831C22561
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 13:53:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDC441C21759
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFFA1957ED;
-	Thu, 27 Jun 2024 13:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC0B13C90A;
+	Thu, 27 Jun 2024 14:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="chxmMBze"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JgA9pFmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15FF11946BB;
-	Thu, 27 Jun 2024 13:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E7D1E877;
+	Thu, 27 Jun 2024 14:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719496395; cv=none; b=TH98iKfXGgAOZ708aChznnVyXHilUc089R0nc/ybiOcrcYdtclwWWWvQmGSlvAJI4B8bj9QZRdw12ctKslCKNVRrJmz+peQzcNxImD7GSQAeA331eDcpDaAWPcOCceI/DtjydQtSijlIS41Skdsk7lEKlqUkqbLdOcVATnd//1Q=
+	t=1719496959; cv=none; b=ciVaMIh35Vh/Yqed2Wn8C2KJ/X4IBa+QBjpyB5bpbzejhtjdVebmKcmUC92yZH4qU1RiMOVdF7QGGur69yIVmPfm+FlFaA0moIRl6tww8jZSguYeSWP1onhdW1tfoGm4QrCVlJBgzdgSKjk8M4lNTrX67hEMZw8Cznl35LXVpMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719496395; c=relaxed/simple;
-	bh=mKgxZFERBkLeUE2nY35u5owDkA0UeUZU/3BEl4SzNH8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IwIAdVBAGkx00QDmjg6dUP7HYsPORkfYhka9MdRoJtFZ7C2rKkVrCY7e9btNK3x40CMtbVk6scAAcwhL2XZodFybeqJXhrgfBem++ZEgx5/bczYXPTJWVM1wGKKvn14TdA0shYXaQOu/iP7Suq9BuoKLc7pfH2GQIgadDInGd6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=chxmMBze; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719496392;
-	bh=mKgxZFERBkLeUE2nY35u5owDkA0UeUZU/3BEl4SzNH8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=chxmMBze7QEbuDf1i5ujeX+ucPi5EsGeeQUsojAcsx3/WZjSZ3omK2B1fE1oRS9S0
-	 7m35maflibi2jM2C+mZksYjRd6DstbZxkDZhdXCTnYLuMw2zoR/OBq3n3KHqipQlHa
-	 YUhTPGRjcFtypvPeW/FBFL+3rKpwceBcKKOMxYNx+t5nVo6XO5QUd/79+av4ONLZVH
-	 jomqckRPJAwDMYux7uTMY42nPVsPFt66WGXcX9mQjU+ccDhJtMtjY7F2mDfWn1xBDh
-	 k2Y9OICU1wku6HqFtUGOQPQcKceI1SV0D7SNAkI+ItU/ZXIkhWrcEg5xJdCK+ULuye
-	 /eQK+R9B3lY0w==
-Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2016E3781188;
-	Thu, 27 Jun 2024 13:53:10 +0000 (UTC)
-Message-ID: <0fe5ee653af4e7ecdf8a7a605e9e80c91011a53d.camel@collabora.com>
-Subject: Re: [PATCH v7 6/6] arm64: dts: rockchip: Add VPU121 support for
- RK3588
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: conor+dt@kernel.org, detlev.casanova@collabora.com, 
-	devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar, 
-	frattaroli.nicolas@gmail.com, heiko@sntech.de, kernel@collabora.com, 
-	krzk+dt@kernel.org, linkmauve@linkmauve.fr, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	p.zabel@pengutronix.de, robh@kernel.org, sebastian.reichel@collabora.com, 
-	sigmaris@gmail.com
-Date: Thu, 27 Jun 2024 09:53:01 -0400
-In-Reply-To: <20240627081310.583427-1-liujianfeng1994@gmail.com>
-References: <f04e25bf3c09c55049775e8f012cb653cb4682ba.camel@collabora.com>
-	 <20240627081310.583427-1-liujianfeng1994@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.2 (3.52.2-1.fc40) 
+	s=arc-20240116; t=1719496959; c=relaxed/simple;
+	bh=NlfmYxXweTu4GycRr5v1NpDz0wE5/WmiEEwdYxjqKyE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TusmO8m0MwBsgeIEYXYe60tCKIeHUdw8i1FDc8JkyfiolSIqBeA2mPk1JAPTZ+UbwsL8rSPbVBXg1XtNa4QLzk4YigDfh0Ju+E9TC6XuiIGQw6bkLZrb1JrkOiZcBDdBQATwMWzLKCLPX6ks1rnZTSUHoArcchi6jOiXNJfSXDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JgA9pFmC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C16A0C2BBFC;
+	Thu, 27 Jun 2024 14:02:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719496958;
+	bh=NlfmYxXweTu4GycRr5v1NpDz0wE5/WmiEEwdYxjqKyE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=JgA9pFmCzNcPyiCzHwyhgl7NadroOg386k75KRZcJPEBs3PRMBYa6Y/q7oJdFlnbP
+	 3jWJTseVKfvI0odYX/IqqaqrWGaGs7O9ztzA2735AZKSw5XoTaJzXOnP6o0cHZ+3lN
+	 O9eMp02B7xqd742eSNQd1bBqPavaGbHs+YEW7FqRT+DZERPv3ELlmMCMPV7Mxflxsl
+	 spzAXxT2WG7KeoxK/zo/NwYLFDScSuijtkrCCJY+ZDmlZOBMIyvrHKHY8Uz6OBrOMJ
+	 6aVQD7Zrh/81IJsYxvfaobmv0s6K23mf2FXWpKBZ7M2XuY/Zp0Xmm3cX5OC2Tk5Q2k
+	 F/uwRN7UlPx+w==
+Received: by wens.tw (Postfix, from userid 1000)
+	id D27F05FB64; Thu, 27 Jun 2024 22:02:36 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>
+Cc: Chen-Yu Tsai <wens@csie.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 0/5] iommu: sun50i: Add Allwinner H616 support
+Date: Thu, 27 Jun 2024 22:02:32 +0800
+Message-Id: <171949688960.1165598.14192419848748890768.b4-ty@csie.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240616224056.29159-1-andre.przywara@arm.com>
+References: <20240616224056.29159-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Le jeudi 27 juin 2024 =C3=A0 16:13 +0800, Jianfeng Liu a =C3=A9crit=C2=A0:
-> Hi Nicolas,
->=20
-> On Wed, 26 Jun 2024 13:46:03 -0400, Nicolas Dufresne wrote:
-> > Just to clarify, since you are right that it won't work well with GStre=
-amer. It
-> > does work with multiple decoders (it exposes them all), it is simply th=
-at it
-> > will randomly pick one when decoding, and it may not pick the best one.
->=20
-> I have tested rkvdec2 and vpu121 with gstreamer 1.24.2 on rk356x to decod=
-e
-> a 4K video, and gstreamer always fall with error:
-> "v4l2slh264dec0: Failed to configure H264 decoder".
-> I guess that's because 1080p vpu is at fdea0000 which is always
-> initialized earlier than rkvdec2 at fdf80200, so gstreamer will always
-> choose the 1080p decoder.
+From: Chen-Yu Tsai <wens@csie.org>
 
-I've never done any research, but that is plausible.
+On Sun, 16 Jun 2024 23:40:51 +0100, Andre Przywara wrote:
+> Version two of this series adds a check that no physical address larger
+> than 4GB makes it into the PTEs: the map_pages() function returns an
+> error and prints a warning into dmesg to give users a clue why this
+> failed. I haven't tested whether this really happens, or whether the
+> 32-bit DMA mask of the master devices already prevents this. In the
+> worst case this might fail on devices with 4GB of DRAM, but would always
+> work on smaller devices, which are arguably under bigger pressure to
+> find contiguous PA ranges. Changelog below.
+> ===========================================
+> 
+> [...]
 
-- Probe happen in address order, since DT are in address order
-- Media notes are assigned in probe order
-- GStreamer register the element in the same order in its registry
-- In adsence of a rank or capabilities to differentiate, the probe order is
-maintained.
+Applied to sunxi/dt-for-6.11 in sunxi/linux.git, thanks!
 
->=20
-> > In the long term, I'd like to stop having to do "like downstream" and e=
-xpose
-> > them all. I believe the fix is fairly straightforward in GStreamer. We =
-need to
-> > expose in the generated element the width/height ranges, and for H.264 =
-the
-> > supported profiles and level. With that, we at least won't randomly fai=
-l at
-> > decoding 4K, and it should be good enough.
->=20
-> Not only gstreamer, chromium also has similar issue. Chromium will only
-> check video resolution globally before starting to use one decoder: if
-> there is a 4K decoder detected before, it will mark 4K resolution as
-> supported. But when decoding videos, it will choose the first decoder
-> supporting profile like H264. So chromium may use a 1080p decoder to
-> decode a 4K video.
->=20
-> Chromium's code about v4l2 is complicated for me. I may create a bug abou=
-t
-> it. But chrome os doesn't support devices with multi v4l2 decoders like
-> rockchip's socs, I don't know if they have the motion to fix it quickly.
+[5/5] arm64: dts: allwinner: h616: add IOMMU node
+      https://git.kernel.org/sunxi/linux/c/0c85e2e377c3
 
-That's an interesting bug, which makes its more of less equal to GStreamer
-"unimplemented behaviour". Filing a bug is best indeed, ChromeOS team, who
-maintains this, is probably unaware as they don't have any SoC with multipl=
-e
-decoders. Even on PC side, their Chromebooks only ever have a single GPU, I
-haven't heard about any eGPU support either.
+FTR, I moved the IOMMU device node after the GIC node so the nodes are
+properly ordered.
 
->=20
-> > For RK3588, which is a new SoC, its not a problem to upstream something=
- that
-> > does not work with existing userspace. It would only be a regression if=
- we where
-> > to enable VDPU121 on RK3399, as now updating linux would cause bugs wit=
-h
-> > existing userspace.
->=20
-> There is an old soc just like RK3399: RK3328, which also has a 1080p
-> hantro h264 decoder and a 4K rkvdec h264 decoder. I guess less people car=
-e
-> about its mainline decoding with gstreamer/chromium so it still has 1080p
-> decoder enabled.
 
-What I meant by new/old, is supported mainline or not. But yes, on timeline=
-,
-there is many older SoC with dual decoders in the Rockchip line.
-
->=20
-> > For users, it would be best if we get this sorted out in GStreamer by t=
-he time
-> > we have a second decoder. Note that I have some vacation coming up this=
- month,
-> > so there might be extra delays. Yet, its logical to merge this (the "wo=
-rst"
-> > decoder) first, since then randomly picking a better one won't be a reg=
-ression.
->=20
-> Happy vacation days! I will also take a look at chromium's code to see if
-> I can fix it.
-
-Great, let's keep everyone on sync, I'm sure we can come up with something
-better then disabling the possibly useful hardware.
-
-Nicolas
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
