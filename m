@@ -1,62 +1,68 @@
-Return-Path: <devicetree+bounces-81051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-81053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACF7F91B202
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 00:12:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0739491B208
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jun 2024 00:13:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54D261F23DB1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:12:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2169D1C2163F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 22:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0570A1A08DA;
-	Thu, 27 Jun 2024 22:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5089B1A0B13;
+	Thu, 27 Jun 2024 22:12:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YmyHvdPa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJcrqOw3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CB8146D6D;
-	Thu, 27 Jun 2024 22:12:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224B21A0B0F;
+	Thu, 27 Jun 2024 22:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719526352; cv=none; b=QuPMAflwiB5aJV47yLRmGsIZG2+Hrnzs0RrKnmInpxZs12FRmPI+dr6Fss+ypHjTo8QyXkeMFYOIopoW3fPzcl8iq2Ux1ipxZuZT2Zvnv5AFTaNdhA/CXKVTYRs35qCtfmOa3FvPobnVKksFcdGCqfFcCRT0LTSG6bMEAnf7WTQ=
+	t=1719526377; cv=none; b=JYrvHW4iHj1hRHgPz5/8OCrsF1FOVgg/pxyJkfVLiRBq3kj/mt4QQ/E24vrzl0g+O5Y5yxNoTW2fd+4SKL3R3Ztm6TPQ1qrOqFjRhuPMtbEa3BFkmjRCxSdsg22hAbiW2HKJ8HR39n4z7A+NMkAu+4wIyCPqHRXAXLNMdK7CgmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719526352; c=relaxed/simple;
-	bh=HdBxQ46+P6eutUUkVuadiYIuHIQ1lkuJpOaAKGy90Ac=;
+	s=arc-20240116; t=1719526377; c=relaxed/simple;
+	bh=zEU06ccxlSi4KJtjT+ATfMzZpKaukNTo70MyRTgbSaI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PpnZwa4PdpMuVGJG2Tmk1111TQnRjMXpfOSwTyMK7AGIvcEF8cX7z3anSeA6IZZArS+pxOaKV4kddAdX0c32pPXyFc94TWJ2OySgCpScuO/DKCiPRYi85yibXlJNA+hhp7kxAtb/JFAL/g0HUX6quUQRMZatqjx0NoEFtC0NfmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YmyHvdPa; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6EC1EFF802;
-	Thu, 27 Jun 2024 22:12:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1719526348;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=An5BEZM8QiDYdH3dqXe26yVMRNsjCS+5IhvPPev7uZU=;
-	b=YmyHvdPaAmHd7NJs13uHNr7BxKk062IYv679uc9DFupHoLmaWhpNE2NEksbOFnj7sezzHK
-	R9QjGgMkYh0QbEZTpxXSbxWVIw8S4i9KyPL6fe2D5NLclX6dxZYBVAYPJclzaNGvIRi9xb
-	48uuN21ntvZgZlhW8uFI2w2lBb8/SxPzj9r2M28iMe2pFHntkaxdd3jo1cbLm1X3qPSywL
-	/pxrhR/AfZUcoKlDCtQLdfu2zffwwGv3g40vY/+D3BHIXsXs8Vey8uKgWXIrZWmjmmXQtX
-	D1dSPfcCUDOeapGfOUCQ9sria7xvA6LTbmkrA7Ecn0aW66GA6fyoAK+fSelFYw==
-Date: Fri, 28 Jun 2024 00:12:25 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Aniket <aniketmaurya@google.com>
-Cc: Jeremy Kerr <jk@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
-	Billy Tsai <billy_tsai@aspeedtech.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] i3c: dw: Add apb clk
-Message-ID: <20240627221225e3517e4e@mail.local>
-References: <20240611171600.1105124-1-aniketmaurya@google.com>
- <20240624052851.1030799-1-aniketmaurya@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=r0grgf2HReC+7+KPcEOMD9YPPhloVq3uhNz89z+s4b9czUCPYw9UgsoV4DZnjCFaQOkGfE1/Ra976p8atdMiP5diKOl2b+O1fKOyEcR38DIhHa0gIH8FPNt18CaEJaBgHTOWLi91i1N4dX6kkED3WFhjgO/fsK8uloAXhdJYbUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJcrqOw3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F8E0C2BBFC;
+	Thu, 27 Jun 2024 22:12:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719526376;
+	bh=zEU06ccxlSi4KJtjT+ATfMzZpKaukNTo70MyRTgbSaI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qJcrqOw3YtE/m++3cwXqHzHUknq9Flppdx6qaBv3/VpprcSaoeOE15oQoY4dhpKmu
+	 ZM9mGAIZ6X8qGNYI/dYu3l6VxCQBRRX0CeUuN3lmMGGwQe76iE9J37+maLg2hFRCsB
+	 L60iOfQ4rKQ/AACDLkQqpS0Z4k8g1zeSIVrHB9oSyZGj4pJz4aycVqRJVcnSD7kpWP
+	 0CSTO5yXNX81IG6DVV20pCz929470AQ65HqXMKHSRDlr6DPIjP7ZVF7mHF+i43pllK
+	 8HTTWJdjdMooADpIPNLu/piuVVS3LhDqkGdgKDcIYY8qISRFCDAVfM5eOrhTxXVFqc
+	 mNk+NPbtQQWiQ==
+Date: Thu, 27 Jun 2024 16:12:55 -0600
+From: Rob Herring <robh@kernel.org>
+To: Caleb Connolly <caleb@postmarketos.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 1/7] dt-bindings: panel: document Samsung AMB655X
+Message-ID: <20240627221255.GA649980-robh@kernel.org>
+References: <20240624-oneplus8-v1-0-388eecf2dff7@postmarketos.org>
+ <20240624-oneplus8-v1-1-388eecf2dff7@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,33 +71,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240624052851.1030799-1-aniketmaurya@google.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20240624-oneplus8-v1-1-388eecf2dff7@postmarketos.org>
 
-On 24/06/2024 05:28:48+0000, Aniket wrote:
-> These patches add APB clk aka pclk to the dw i3c driver
-> and the binding doc. Also move to _enabled clk_get APIs.
+On Mon, Jun 24, 2024 at 03:30:25AM +0200, Caleb Connolly wrote:
+> Describe the Samsung AMB655X panel. It has three supplies.
 > 
-> Aniket (3):
->   dt-bindings: i3c: dw: Add apb clock binding
->   i3c: dw: Add optional apb clock
->   i3c: dw: Use new *_enabled clk APIs
-
-You should reorder your patches to have 3/3 before 2/3, else you
-introduce code that you immediately remove.
-
+> Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
+> ---
+>  .../bindings/display/panel/samsung,amb655x.yaml    | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
->  .../bindings/i3c/snps,dw-i3c-master.yaml          | 11 ++++++++++-
->  drivers/i3c/master/dw-i3c-master.c                | 15 +++++----------
->  drivers/i3c/master/dw-i3c-master.h                |  1 +
->  3 files changed, 16 insertions(+), 11 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,amb655x.yaml b/Documentation/devicetree/bindings/display/panel/samsung,amb655x.yaml
+> new file mode 100644
+> index 000000000000..eb987d022a0d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,amb655x.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/samsung,amb655x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung AMB655X 1080x2400 120hz AMOLED panel
+> +
+> +maintainers:
+> +  - Caleb Connolly <caleb@postmarketos.org>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: samsung,amb655x
+
+'x' is not a wildcard is it? Those are generally not allowed.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: reset gpio, must be GPIO_ACTIVE_LOW
+
+blank line
+
+> +  vddio-supply: true
+> +  vdd-supply: true
+> +  avdd-supply: true
+> +  enable-gpios: true
+> +  port: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - avdd-supply
+> +  - vddio-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        panel@0 {
+> +            compatible = "samsung,ams495qa01";
+> +            reg = <0>;
+> +            reset-gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
+> +            vdd-supply = <&vcc_3v3>;
+> +
+> +            port {
+> +                mipi_in_panel: endpoint {
+> +                  remote-endpoint = <&mipi_out_panel>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
 > 
 > -- 
-> 2.45.2.741.gdbec12cfda-goog
+> 2.45.0
 > 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
