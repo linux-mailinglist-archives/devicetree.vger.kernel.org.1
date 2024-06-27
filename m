@@ -1,165 +1,87 @@
-Return-Path: <devicetree+bounces-80690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B1F491A382
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:10:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F91491A39C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:15:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2A971F233CE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:10:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 341D82832E2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 10:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3563613C67B;
-	Thu, 27 Jun 2024 10:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45FE13C80E;
+	Thu, 27 Jun 2024 10:15:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CScKeZZ9"
+	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="IAGwf+++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97767381C8;
-	Thu, 27 Jun 2024 10:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A7D481BA
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 10:15:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719483022; cv=none; b=rko4nCsl266Rr8Qd61O+6JKIBfusv56OTU72cV0E83MATYF1XGTLMxS3RSMxyu69zxeiknotgRN0U5PwSnjEXRCzokioYaapmNtBovA56Kpq5fZZS11PBCXGE7C4ysra0TIBpxgtORjQuXdZTq6FNBd3eYPYhqekiF5nZ9NNJ7c=
+	t=1719483347; cv=none; b=otAK6O2d/wcaks/D4DJEDlZdc1eMI1POZTB9oFxYuAztuSExYz52ppr+3xUSv+vDYfdCf6Ju0A5ZeQ+VAHWTTC682PYHCe8KAMOLxy7JuvkdnD5APmsa0u4v8Z9NJVbBOcsg1wAN5d3v09ZNJdKDaYec41gRmjsl5z+dp1wTF0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719483022; c=relaxed/simple;
-	bh=YKvSjQO0kBriuXHtpM5S2HDjrcI9aj+U9VFh4zoTZMg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PZOADgPZJLXg8ooaOOnzmp4Bk7zt7E19ExGl9WLMfwIgndkaRT3ZYXhzz9j3s1gJcblGbV5UQNONGTusqz5QiKmS0ormHyLpwafGe7dA9TVzyq88xtL/NrqT7lvLbHGxV8S7hnwbqgYfjzXGTAIgbiLdIulq5M6SHQLNkf+01JA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CScKeZZ9; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1719483018;
-	bh=YKvSjQO0kBriuXHtpM5S2HDjrcI9aj+U9VFh4zoTZMg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CScKeZZ9hJayTeQlGW/3Ok8Jm4GshJujZzcM6rXvkfujk1wULJ31eu/DM6dXCEV+c
-	 9Y8tFxvckIKBqnI3OBLFAsYpkUvnDXVZNYInGxb6E0MLL23CfrHvUzjiygG5HsOr7N
-	 Oj6cKI5BerncV4nnf38QoDXaU663019BIcIrXrOQbiUIEHLhnGrd3x8kX6Iegb0Zpm
-	 HDE/Ndh/ZzCPTogp+Gss7PAJxvmIKHinrwj6Y/iSZ1Dhs6wkXhwCjwJrKVb26IFZFo
-	 ytE9nyNJ2Uo7bLy77wrQD/AF1yjKiWsmfJuSwepAqnqcGml/wQMhh75SUmQayfts5L
-	 GcXTqREx2+Yww==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	s=arc-20240116; t=1719483347; c=relaxed/simple;
+	bh=ZF4PApED5GTf9Xbzl2eZmf+j4NHifHmVjrxijxTcJVA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JKVOkYwbmpAxGy/Wg2cgMcnZ8bT7tYA2lWf2b1Nbo3a27hMzDY0zdA3+nKrn7ImO28x6pPXJT6V9TJF+rdK+tSXWl1Ubzr0467x5M6TEYJz2OnxRUKa15euSl4D9WcgXM0TGdE5IhGuE+W7Uh3f7F9CefJhmyMukKOQdMTl8kBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=IAGwf+++; arc=none smtp.client-ip=85.214.250.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
+Received: from 8bytes.org (pd9fe9dd8.dip0.t-ipconnect.de [217.254.157.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 123B537810CD;
-	Thu, 27 Jun 2024 10:10:18 +0000 (UTC)
-Message-ID: <726f2ed3-675f-45e8-94f0-d392181e7f92@collabora.com>
-Date: Thu, 27 Jun 2024 12:10:17 +0200
+	by mail.8bytes.org (Postfix) with ESMTPSA id 780C11C89A2;
+	Thu, 27 Jun 2024 12:15:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1719483344;
+	bh=ZF4PApED5GTf9Xbzl2eZmf+j4NHifHmVjrxijxTcJVA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IAGwf+++n1ZgBtzeUMLgc+71IL4SER0tgkoElxgJV70inzhUqeiI2MOQN/Ay2/tas
+	 qJb05tuYRPtbhysJm9bFZJTb0prPGMNyLXIG594xIOhQYXq9GoOeEE70YdmjXOwwxK
+	 YfqHL/2+voHSPHMDnvpnNQfCqEwVpEiDslxzoytz5aKhT00pp53Q93UZJUkADwWzpu
+	 4X+aB4pe3/4oddIxjymHxFgIMvJf2UKfETRV5GvhzDTq0b/AxzM/+OgiZ+yx4bBKf1
+	 mprsFC4Au+PMcr/sh37E/4W3pjLq4vs4Qe1eH9F9Wcfvk2j7XqrBCHjb4FApLaMZgG
+	 A1qg05AwCtIAQ==
+Date: Thu, 27 Jun 2024 12:15:43 +0200
+From: Joerg Roedel <joro@8bytes.org>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Philippe Simons <simons.philippe@gmail.com>, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/5] iommu: sun50i: Add Allwinner H616 support
+Message-ID: <Zn07z2dxhXNmM2nx@8bytes.org>
+References: <20240616224056.29159-1-andre.przywara@arm.com>
+ <ZnqyDLMzND_qJiOl@8bytes.org>
+ <CAGb2v64M_trcaXzef6=rbWZY-r_sv=bvoHngUeDVWjx+AXTy7g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Aw: [PATCH v3 1/2] arm64: dts: mt7986: add dtbs with applied
- overlays for bpi-r3
-To: Frank Wunderlich <frank-w@public-files.de>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, Daniel Golle <daniel@makrotopia.org>,
- Rob Herring <robh+dt@kernel.org>, Frank Wunderlich <linux@fw-web.de>
-References: <20240608080530.9436-1-linux@fw-web.de>
- <20240608080530.9436-2-linux@fw-web.de>
- <trinity-82c94d49-2a78-4470-83cd-3c6747e01849-1719434738199@3c-app-gmx-bs52>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <trinity-82c94d49-2a78-4470-83cd-3c6747e01849-1719434738199@3c-app-gmx-bs52>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGb2v64M_trcaXzef6=rbWZY-r_sv=bvoHngUeDVWjx+AXTy7g@mail.gmail.com>
 
-Il 26/06/24 22:45, Frank Wunderlich ha scritto:
-> any suggestions? hoping it does no laying around so long as v2
-> 
+On Wed, Jun 26, 2024 at 12:20:08AM +0800, Chen-Yu Tsai wrote:
+> Could you back out the last patch? I'd like to take it through the sunxi
+> tree, which already has other H616 device tree patches.
 
-So you're trying to just test that the overlay is valid and can actually be
-overlaid to the base dts?
+Done. Removed "arm64: dts: allwinner: h616: add IOMMU node" from the
+IOMMU tree.
 
-I'm not sure that this is the right/best way... and I honestly have no time
-to check that *exactly right now*, even though that should be.
+Regards,
 
-I have to be convinced of what I'm doing before applying patches, and I know
-that this was sent a bit of time ago, but I really didn't have any time to
-dig into that... let's see if for some miracle I can do that for this cycle
-otherwise it's going to be the next one.
-
-I mean no disrespect to Rob who suggested this change, but I still want to
-check that on my own before picking it.
-
-Sorry about the delays
-
-Cheers,
-Angelo
-
-
-> regards Frank
-> 
-> 
->> Gesendet: Samstag, 08. Juni 2024 um 10:05 Uhr
->> Von: "Frank Wunderlich" <linux@fw-web.de>
->> An: "Matthias Brugger" <matthias.bgg@gmail.com>, "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
->> Cc: "Frank Wunderlich" <frank-w@public-files.de>, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, "Daniel Golle" <daniel@makrotopia.org>, "Rob Herring" <robh+dt@kernel.org>
->> Betreff: [PATCH v3 1/2] arm64: dts: mt7986: add dtbs with applied overlays for bpi-r3
->>
->> From: Frank Wunderlich <frank-w@public-files.de>
->>
->> Build devicetree binaries for testing overlays and providing users
->> full dtb without using overlays.
->>
->> Suggested-by: Rob Herring <robh+dt@kernel.org>
->> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->> ---
->> https://lore.kernel.org/all/CAL_JsqK_3xxD0DFwipXO85P=q=EYjUdjE1_8g1MKtvw3vVzx5A@mail.gmail.com/
->> https://lore.kernel.org/all/CAL_JsqJSi=kJSix=f3787ULZnaCy_Y26Phdhy5y9fat_vkDuUw@mail.gmail.com/
->>
->> v2:
->> make full dtbs multiline for better readability
->> ---
->>   arch/arm64/boot/dts/mediatek/Makefile | 21 +++++++++++++++++++++
->>   1 file changed, 21 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
->> index 37b4ca3a87c9..0ec5b904d35d 100644
->> --- a/arch/arm64/boot/dts/mediatek/Makefile
->> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->> @@ -15,6 +15,27 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtbo
->> +mt7986a-bananapi-bpi-r3-emmc-nand-dtbs := \
->> +	mt7986a-bananapi-bpi-r3.dtb \
->> +	mt7986a-bananapi-bpi-r3-emmc.dtbo \
->> +	mt7986a-bananapi-bpi-r3-nand.dtbo
->> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc-nand.dtb
->> +mt7986a-bananapi-bpi-r3-emmc-nor-dtbs := \
->> +	mt7986a-bananapi-bpi-r3.dtb \
->> +	mt7986a-bananapi-bpi-r3-emmc.dtbo \
->> +	mt7986a-bananapi-bpi-r3-nor.dtbo
->> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc-nor.dtb
->> +mt7986a-bananapi-bpi-r3-sd-nand-dtbs := \
->> +	mt7986a-bananapi-bpi-r3.dtb \
->> +	mt7986a-bananapi-bpi-r3-sd.dtbo \
->> +	mt7986a-bananapi-bpi-r3-nand.dtbo
->> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd-nand.dtb
->> +mt7986a-bananapi-bpi-r3-sd-nor-dtbs := \
->> +	mt7986a-bananapi-bpi-r3.dtb \
->> +	mt7986a-bananapi-bpi-r3-sd.dtbo \
->> +	mt7986a-bananapi-bpi-r3-nor.dtbo
->> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd-nor.dtb
->> +
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4.dtb
->> --
->> 2.34.1
->>
->>
-
+	Joerg
 
