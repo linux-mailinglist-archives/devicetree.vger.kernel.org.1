@@ -1,382 +1,131 @@
-Return-Path: <devicetree+bounces-80976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139B291AE7E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:51:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0850191AE81
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:51:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 932DC286626
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:51:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B12391F2418C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 17:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D6C19AA63;
-	Thu, 27 Jun 2024 17:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DA919AD7B;
+	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BsnHw6/v"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IIYJcPU9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E7619AA52;
-	Thu, 27 Jun 2024 17:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EBF19AA4B;
+	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719510650; cv=none; b=R+ucf0T0YctZP639Al76uK06P6eKjXd9EnRXP3in6+OQJetLhnXP8+JJQv31Nwd8isNr3nKMiy0y8VLkJid72hIpesdlMRiL9JERySRs6n2qkbPMkoQ1ag4uSqVKarAi8t7xCc7K5Co4gAUgYM3X5QKXFts76byzjxiSWjq3RRY=
+	t=1719510656; cv=none; b=TOB56bUYTvTazjWFAkdp/95aTqAMkPGA4FwgSUX19/AacbYBrGCWmIDMJ3z7xpUIg01pjxcfKhuv3L8UpXBsb6rkJXSdInlxXCq+cJ7twTnTej4Z9UEDq3Ggw4HZYNqH6lS79bvca5KkGqWswhZ1Nlshrdce94yhzMlM8dcOd5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719510650; c=relaxed/simple;
-	bh=5+DYVdc1jwyKqj2FJNNQADhhJwSaLk7vzyjnNgeWhY0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GlpYk5HcYpvPaMgwDgZDDB8vDaCsjPT4/wN8AGrvwyZ0VUTGTB6UWOSsYF1xG2/nfITdaIu0p1WgAw4FPbveKR7tmjZ+eMQV9DkhOcltOsmEYg0hy/s3ps5wC5vPxzQpLC3ClUPQ0QAVAkLwdG8+c9BLnuV5j4cV8BqiNohXZ2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BsnHw6/v; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45RHoP3c053304;
-	Thu, 27 Jun 2024 12:50:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719510625;
-	bh=W1+JEi//MuEReo+QxPN/FdpGCgmHxWEwWDiERGYqcxA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=BsnHw6/v62uADZitRC9WivEcPx+Y84in/FvbRxu5EJLI2N0XiOzHXaefV0D+NOIYS
-	 vXYvKgGIMP9lFDlf9/Sw97396Rx35v+0VJ6xJnGrbFvlb9Pp0CL14cXQJjUhOEY4Sa
-	 cUvOKExs868L2pyHCVrKZ2QxcEf4HKHS1oLRRnnU=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45RHoPtN011217
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 27 Jun 2024 12:50:25 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
- Jun 2024 12:50:25 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 27 Jun 2024 12:50:25 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45RHoOGn094898;
-	Thu, 27 Jun 2024 12:50:24 -0500
-Message-ID: <70f28343-6738-47f2-97b5-6afa96f1fbcc@ti.com>
-Date: Thu, 27 Jun 2024 12:50:24 -0500
+	s=arc-20240116; t=1719510656; c=relaxed/simple;
+	bh=gOn5wCkQoaz4jCvDxmaxx4Rr4gNeBfnRgSNDr4QSj8U=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=crIdX34rEGjhI68hNnRpmvhM1Zl7I6fzNJB1U1OvTklJr8ejRX5CyaJr2rzphzaMXu70emK5ggW6mAaezCn29sBB60rKNhuBdraZ8Y1Ewq0clqFrWsUlUApH1T7wp00MUvsdlUdBsiAKlo2PEdTLiqcWvI3VwpOEHrYC32GWwvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IIYJcPU9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8B55CC2BD10;
+	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1719510656;
+	bh=gOn5wCkQoaz4jCvDxmaxx4Rr4gNeBfnRgSNDr4QSj8U=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=IIYJcPU97Y+PRAS/+YU/5ccbncoZV1uCz57lAqil+V1ijTPByVKGTQFMqmdIktpow
+	 mgUXuwPMGB0hxBKAEtQcmsJRe0kgoK0G4CxAqoS4UnqOc+s7QEYIHK2kt44seSLDnZ
+	 Gh7dIhAcmLSHgaptDShKUVITRiz/vLPn0qdyGC0znkbWHWytZ7ePFuuj2lU7mHIg0F
+	 X0+78irzHOMSVd8cMwuP/4tg088CmEcvevRxvvPs6wzwg65cMt+rL64nQ95qH5Tx37
+	 GB4x63Y5pxbKsGJf0RlDoEvN+uEIHgUB3AusDoc3p6pdooB0KA3nJdCVz0InBkVSKv
+	 iBdVjZUdtNUDQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5FC7EC43445;
+	Thu, 27 Jun 2024 17:50:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 7/7] dts: ti: k3-am625-beagleplay: Add mikroBUS
-To: Ayush Singh <ayush@beagleboard.org>, Mark Brown <broonie@kernel.org>,
-        Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Derek Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Michael Walle
-	<mwalle@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, <jkridner@beagleboard.org>,
-        <robertcnelson@beagleboard.org>
-CC: <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org>
- <20240627-mikrobus-scratch-spi-v5-7-9e6c148bf5f0@beagleboard.org>
- <4e23ec81-b278-4f2b-815d-64ed9390ca55@ti.com>
- <cef08d49-a462-4167-8b9d-bf09e8aac92f@beagleboard.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <cef08d49-a462-4167-8b9d-bf09e8aac92f@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [PATCH v7 00/16] Add support for a few Zc* extensions,
+ Zcmop and Zimop
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <171951065638.6762.17635047001193885957.git-patchwork-notify@kernel.org>
+Date: Thu, 27 Jun 2024 17:50:56 +0000
+References: <20240619113529.676940-1-cleger@rivosinc.com>
+In-Reply-To: <20240619113529.676940-1-cleger@rivosinc.com>
+To: =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVnZXJAcml2b3NpbmMuY29tPg==?=@codeaurora.org
+Cc: linux-riscv@lists.infradead.org, corbet@lwn.net, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, anup@brainfault.org, shuah@kernel.org,
+ atishp@atishpatra.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
+ linux-kselftest@vger.kernel.org
 
-On 6/27/24 12:16 PM, Ayush Singh wrote:
-> 
-> On 6/27/24 22:37, Andrew Davis wrote:
->> On 6/27/24 11:26 AM, Ayush Singh wrote:
->>> DONOTMERGE
->>>
->>> Add mikroBUS connector and some mikroBUS boards support for Beagleplay.
->>> The mikroBUS boards node should probably be moved to a more appropriate
->>> location but I am not quite sure where it should go since it is not
->>> dependent on specific arch.
->>>
->>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
->>> ---
->>>   arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 94 +++++++++++++++++++++++---
->>>   1 file changed, 86 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>> index 70de288d728e..3f3cd70345c4 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>> @@ -38,6 +38,7 @@ aliases {
->>>           serial2 = &main_uart0;
->>>           usb0 = &usb0;
->>>           usb1 = &usb1;
->>> +        mikrobus0 = &mikrobus0;
->>>       };
->>>         chosen {
->>> @@ -227,6 +228,56 @@ simple-audio-card,codec {
->>>           };
->>>       };
->>>   +    mikrobus0: mikrobus-connector {
->>> +        compatible = "mikrobus-connector";
->>> +        pinctrl-names = "default", "pwm_default", "pwm_gpio",
->>> +                "uart_default", "uart_gpio", "i2c_default",
->>> +                "i2c_gpio", "spi_default", "spi_gpio";
->>> +        pinctrl-0 = <&mikrobus_gpio_pins_default>;
->>> +        pinctrl-1 = <&mikrobus_pwm_pins_default>;
->>> +        pinctrl-2 = <&mikrobus_pwm_pins_gpio>;
->>> +        pinctrl-3 = <&mikrobus_uart_pins_default>;
->>> +        pinctrl-4 = <&mikrobus_uart_pins_gpio>;
->>> +        pinctrl-5 = <&mikrobus_i2c_pins_default>;
->>> +        pinctrl-6 = <&mikrobus_i2c_pins_gpio>;
->>> +        pinctrl-7 = <&mikrobus_spi_pins_default>;
->>> +        pinctrl-8 = <&mikrobus_spi_pins_gpio>;
->>> +
->>> +        mikrobus-gpio-names = "pwm", "int", "rx", "tx", "scl", "sda",
->>> +                      "mosi", "miso", "sck", "cs", "rst", "an";
->>> +        mikrobus-gpios = <&main_gpio1 11 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 9 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 24 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 25 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 22 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 23 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 7 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 8 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 14 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 13 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 12 GPIO_ACTIVE_HIGH>,
->>> +                 <&main_gpio1 10 GPIO_ACTIVE_HIGH>;
->>> +
->>> +        spi-controller = <&main_spi2>;
->>> +        spi-cs = <0>;
->>> +        spi-cs-names = "default";
->>> +
->>> +        board = <&lsm6dsl_click>;
->>> +    };
->>> +
->>> +    mikrobus_boards {
->>> +        thermo_click: thermo-click {
->>> +            compatible = "maxim,max31855k", "mikrobus-spi";
->>
->> I might be missing something, but your solution cannot possibly be
->> to list every click board that could be connected (all 1500+ of them)
->> to every mikroBUS connector on every device's DT file..
-> 
-> 
-> I think you missed something. `mikrobus-boards` is not a child node of `mikrobus0`. See the `board` property in `mikrobus0`. That is what selects the board attached to the connector.
-> 
+Hello:
 
-That seems even worse.. That means the board file needs to know about the
-attached board, which is not how DT works. It describes hardware in a
-hierarchical/acyclic graph. For instance, take an I2C device, its node
-is a child of the I2C bus, and has phandle pointers to the IRQ it uses
-(or whatever else provider it needs). What you have here is like the
-I2C bus node phandle pointing to the connected child devices.
+This series was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@rivosinc.com>:
 
-> The `mikcrobus-boards` node itself should be moved to some independent location and included from a system that wants to support mikrobus boards. The connector will only have a phandle to the board (or boards in case a single mikroBUS board has 1 i2c and 1 spi sensor or some combination).
+On Wed, 19 Jun 2024 13:35:10 +0200 you wrote:
+> Add support for (yet again) more RVA23U64 missing extensions. Add
+> support for Zimop, Zcmop, Zca, Zcf, Zcd and Zcb extensions ISA string
+> parsing, hwprobe and kvm support. Zce, Zcmt and Zcmp extensions have
+> been left out since they target microcontrollers/embedded CPUs and are
+> not needed by RVA23U64.
 > 
+> Since Zc* extensions states that C implies Zca, Zcf (if F and RV32), Zcd
+> (if D), this series modifies the way ISA string is parsed and now does
+> it in two phases. First one parses the string and the second one
+> validates it for the final ISA description.
+> 
+> [...]
 
-How about providing the full/final example then (this series should be marked
-as RFC as it is now has missing parts). Move the click board node into a DTSO
-file and put that in a common location (click boards are common to all boards
-right, so lets say in drivers/of/click for now just for the RFC).
+Here is the summary with links:
+  - [v7,01/16] dt-bindings: riscv: add Zimop ISA extension description
+    https://git.kernel.org/riscv/c/a57b68bc315c
+  - [v7,02/16] riscv: add ISA extension parsing for Zimop
+    https://git.kernel.org/riscv/c/2467c2104f1f
+  - [v7,03/16] riscv: hwprobe: export Zimop ISA extension
+    https://git.kernel.org/riscv/c/36f8960de887
+  - [v7,04/16] RISC-V: KVM: Allow Zimop extension for Guest/VM
+    https://git.kernel.org/riscv/c/fb2a3d63efef
+  - [v7,05/16] KVM: riscv: selftests: Add Zimop extension to get-reg-list test
+    https://git.kernel.org/riscv/c/ca5446406914
+  - [v7,06/16] dt-bindings: riscv: add Zca, Zcf, Zcd and Zcb ISA extension description
+    https://git.kernel.org/riscv/c/e9f9946cad7b
+  - [v7,07/16] riscv: add ISA extensions validation callback
+    https://git.kernel.org/riscv/c/625034abd52a
+  - [v7,08/16] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
+    https://git.kernel.org/riscv/c/ba4cd855839d
+  - [v7,09/16] riscv: hwprobe: export Zca, Zcf, Zcd and Zcb ISA extensions
+    https://git.kernel.org/riscv/c/0ad70db5eb21
+  - [v7,10/16] RISC-V: KVM: Allow Zca, Zcf, Zcd and Zcb extensions for Guest/VM
+    https://git.kernel.org/riscv/c/d964e8f2ae65
+  - [v7,11/16] KVM: riscv: selftests: Add some Zc* extensions to get-reg-list test
+    https://git.kernel.org/riscv/c/d27c34a73514
+  - [v7,12/16] dt-bindings: riscv: add Zcmop ISA extension description
+    https://git.kernel.org/riscv/c/700556a73bc7
+  - [v7,13/16] riscv: add ISA extension parsing for Zcmop
+    https://git.kernel.org/riscv/c/164d644059cf
+  - [v7,14/16] riscv: hwprobe: export Zcmop ISA extension
+    https://git.kernel.org/riscv/c/fc078ea317cc
+  - [v7,15/16] RISC-V: KVM: Allow Zcmop extension for Guest/VM
+    https://git.kernel.org/riscv/c/29cf9b803e6e
+  - [v7,16/16] KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
+    https://git.kernel.org/riscv/c/e212d92d1a86
 
-> 
->>
->> Each click board should have a single DTSO overlay file to describe the
->> click board, one per click board total. And then that overlay should
->> apply cleanly to any device that has a mikroBUS interface.
-> 
-> 
-> Yes, that is the goal.
-> 
-> 
->>
->> Which means you have not completely solved the fundamental problem of
->> abstracting the mikroBUS connector in DT. Each of these click device child
->> nodes has to be under the parent connector node. Which means a phandle
->> to the parent node, which is not generically named. For instance
->> if my board has 2 connectors, I would have mikrobus0 and mikrobus1,
->> the click board's overlay would look like this:
->>
->> /dts-v1/;
->> /plugin/;
->>
->> &mikrobus0 {
->>     status = "okay";
->>
->>     mikrobus_board {
->>         thermo-click {
->>             compatible = "maxim,max31855k", "mikrobus-spi";
->>             spi-max-frequency = <1000000>;
->>             pinctrl-apply = "spi_default";
->>         };
->>     };
->> };
-> 
-> 
-> No, it will look as follows:
-> 
-> ```
-> 
-> &mikrobus0 {
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-           ^^^
-So same issue, what if I want to attach this click board
-to the second mikrobus connector on my board (i.e. mikrobus1),
-I'd have to modify the overlay.. Or have an overlay for every
-possible connector instance number.
 
->      status = "okay";
-> 
->      board = <&thermo-click>;
-> 
-> };
-> 
-> 
-> &mikrobus_board {
->          thermo-click {
->              compatible = "maxim,max31855k", "mikrobus-spi";
->              spi-max-frequency = <1000000>;
->              pinctrl-apply = "spi_default";
->          };
->    };
-> 
-> ```
-> 
-> 
->>
->> I think this solution is almost there, but once you solve the above
->> issue, we could just apply the right overlay for our attached click
->> board ahead of time and not need the mikroBUS bus driver at all.
-> 
-> 
-> Well, the driver is still needed because some things cannot be done generically in dt. Eg:
-> 
-> 1. SPI chipselect. Each connector will have different chipselect number mapped to CS pin. In fact a mikrobus board might use other pins like RST as chipselect as well.
-> 
-> 2. Using pins other than their intended purpose like GPIO.
-> 
-
-Then these are two things you'll need to solve. We can add
-these functions to the base DT/OF support if they are generic
-problems (which they are, other connectors/daughterboards have
-this same issue, RPi header, Seeed Grove connector, Sparkfun QWIIC
-headers, etc..).
-
-Andrew
-
-> 
->>
->> Andrew
->>
->>> +            spi-max-frequency = <1000000>;
->>> +            pinctrl-apply = "spi_default";
->>> +        };
->>> +
->>> +        lsm6dsl_click: lsm6dsl-click {
->>> +            compatible = "st,lsm6ds3", "mikrobus-spi";
->>> +            spi-max-frequency = <1000000>;
->>> +            pinctrl-apply = "spi_default";
->>> +        };
->>> +    };
->>>   };
->>>     &main_pmx0 {
->>> @@ -387,6 +438,18 @@ AM62X_IOPAD(0x01f0, PIN_OUTPUT, 5) /* (A18) EXT_REFCLK1.CLKOUT0 */
->>>           >;
->>>       };
->>>   +    mikrobus_pwm_pins_default: mikrobus-pwm-default-pins {
->>> +        pinctrl-single,pins = <
->>> +            AM62X_IOPAD(0x01a4, PIN_INPUT, 2) /* (B20) MCASP0_ACLKX.ECAP2_IN_APWM_OUT */
->>> +        >;
->>> +    };
->>> +
->>> +    mikrobus_pwm_pins_gpio: mikrobus-pwm-gpio-pins {
->>> +        pinctrl-single,pins = <
->>> +            AM62X_IOPAD(0x01a4, PIN_INPUT, 7) /* (B20) MCASP0_ACLKX.GPIO1_11 */
->>> +        >;
->>> +    };
->>> +
->>>       mikrobus_i2c_pins_default: mikrobus-i2c-default-pins {
->>>           pinctrl-single,pins = <
->>>               AM62X_IOPAD(0x01d0, PIN_INPUT_PULLUP, 2) /* (A15) UART0_CTSn.I2C3_SCL */
->>> @@ -394,6 +457,13 @@ AM62X_IOPAD(0x01d4, PIN_INPUT_PULLUP, 2) /* (B15) UART0_RTSn.I2C3_SDA */
->>>           >;
->>>       };
->>>   +    mikrobus_i2c_pins_gpio: mikrobus-i2c-gpio-pins {
->>> +        pinctrl-single,pins = <
->>> +            AM62X_IOPAD(0x01d0, PIN_INPUT, 7) /* (A15) UART0_CTSn.GPIO1_22 */
->>> +            AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
->>> +        >;
->>> +    };
->>> +
->>>       mikrobus_uart_pins_default: mikrobus-uart-default-pins {
->>>           pinctrl-single,pins = <
->>>               AM62X_IOPAD(0x01d8, PIN_INPUT, 1) /* (C15) MCAN0_TX.UART5_RXD */
->>> @@ -401,6 +471,13 @@ AM62X_IOPAD(0x01dc, PIN_OUTPUT, 1) /* (E15) MCAN0_RX.UART5_TXD */
->>>           >;
->>>       };
->>>   +    mikrobus_uart_pins_gpio: mikrobus-uart-gpio-pins {
->>> +        pinctrl-single,pins = <
->>> +            AM62X_IOPAD(0x01d8, PIN_INPUT, 7) /* (C15) MCAN0_TX.GPIO1_24 */
->>> +            AM62X_IOPAD(0x01dc, PIN_INPUT, 7) /* (E15) MCAN0_RX.GPIO1_25 */
->>> +        >;
->>> +    };
->>> +
->>>       mikrobus_spi_pins_default: mikrobus-spi-default-pins {
->>>           pinctrl-single,pins = <
->>>               AM62X_IOPAD(0x01b0, PIN_INPUT, 1) /* (A20) MCASP0_ACLKR.SPI2_CLK */
->>> @@ -410,6 +487,15 @@ AM62X_IOPAD(0x0198, PIN_INPUT, 1) /* (A19) MCASP0_AXR2.SPI2_D1 */
->>>           >;
->>>       };
->>>   +    mikrobus_spi_pins_gpio: mikrobus-spi-gpio-pins {
->>> +        pinctrl-single,pins = <
->>> +            AM62X_IOPAD(0x0194, PIN_INPUT, 7) /* (B19) MCASP0_AXR3.GPIO1_7 */
->>> +            AM62X_IOPAD(0x0198, PIN_INPUT, 7) /* (A19) MCASP0_AXR2.GPIO1_8 */
->>> +            AM62X_IOPAD(0x01ac, PIN_INPUT, 7) /* (E19) MCASP0_AFSR.GPIO1_13 */
->>> +            AM62X_IOPAD(0x01b0, PIN_INPUT, 7) /* (A20) MCASP0_ACLKR.GPIO1_14 */
->>> +        >;
->>> +    };
->>> +
->>>       mikrobus_gpio_pins_default: mikrobus-gpio-default-pins {
->>>           bootph-all;
->>>           pinctrl-single,pins = <
->>> @@ -630,8 +716,6 @@ &main_gpio0 {
->>>     &main_gpio1 {
->>>       bootph-all;
->>> -    pinctrl-names = "default";
->>> -    pinctrl-0 = <&mikrobus_gpio_pins_default>;
->>>       gpio-line-names = "", "", "", "", "",            /* 0-4 */
->>>           "SPE_RSTN", "SPE_INTN", "MIKROBUS_GPIO1_7",    /* 5-7 */
->>>           "MIKROBUS_GPIO1_8", "MIKROBUS_GPIO1_9",        /* 8-9 */
->>> @@ -804,15 +888,11 @@ it66121_out: endpoint {
->>>   };
->>>     &main_i2c3 {
->>> -    pinctrl-names = "default";
->>> -    pinctrl-0 = <&mikrobus_i2c_pins_default>;
->>>       clock-frequency = <400000>;
->>>       status = "okay";
->>>   };
->>>     &main_spi2 {
->>> -    pinctrl-names = "default";
->>> -    pinctrl-0 = <&mikrobus_spi_pins_default>;
->>>       status = "okay";
->>>   };
->>>   @@ -876,8 +956,6 @@ &main_uart1 {
->>>   };
->>>     &main_uart5 {
->>> -    pinctrl-names = "default";
->>> -    pinctrl-0 = <&mikrobus_uart_pins_default>;
->>>       status = "okay";
->>>   };
->>>
-> 
-> Ayush Singh
-> 
 
