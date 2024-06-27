@@ -1,124 +1,137 @@
-Return-Path: <devicetree+bounces-80847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DB291A909
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:18:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7743291A90F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:21:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9867C1C21E6F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:18:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 334DF2812FE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07CC4196C68;
-	Thu, 27 Jun 2024 14:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A8D195962;
+	Thu, 27 Jun 2024 14:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWYdTwXK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nHFXO7wB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05A1194C9E;
-	Thu, 27 Jun 2024 14:18:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C0C14A636;
+	Thu, 27 Jun 2024 14:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719497898; cv=none; b=PKR6so5oqWbJ8bDjN2UaBKEzexfnaOOOwyHOtttSHgW2BhX3TtSg5IEY+oxNnxxF1SAhP/kQmEHczODUiu1PBnwHaZIcv9d40acOVJZ3uZU7XIuStaJw7F+y8Xn/ovWQKk338iPencnS6tEGLcINe8MVvf/4SqygXPPwB5eScuo=
+	t=1719498083; cv=none; b=CwTzWBfgezO472iL22FqhtJAEnqQL1dYZBZDkuZNk6AQCUE7fe8WLkEK4nSmsTBQmm8NSvWeIk7t3Hb1RhLc7B1KlXKOfGAaADhgEp7rstQGw4SipE6osvcGeVWYC/EYaUQnhQ2gCMjaDiPxCFEitD38BbrxJMK6dN0oCq+uw4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719497898; c=relaxed/simple;
-	bh=XNnyFcoQgMDDX/PxDX53Ynh7kN7H7W+RKXPFoaWvh2c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HElEl1yUv4sUluGtxOFOlOMwC848n9fEogVeRJAzX4JhxbBxtoPLJkmhWVVQIxj8Tq+PIh1RTwm7oYymFTb29Ssu3iqP2tJdDfbH5nJmtsj3Oix8jOEqyXqnpkA1Gtz5u830A9gWVR4fRMF3uTPW+dNVYKvi858h/4rOFEFde48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWYdTwXK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3611CC32786;
-	Thu, 27 Jun 2024 14:18:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719497898;
-	bh=XNnyFcoQgMDDX/PxDX53Ynh7kN7H7W+RKXPFoaWvh2c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QWYdTwXKkDOamr4XA8OHoKSj/Jy45V+rH79a+asBY+KwDLn5IDaKRUy/jbZFzuqN7
-	 Dfaxk8ztOxMjpZTa7HoZAFJ7dHhdQn9747XqgckLAY35rUn3Ph3wDpZLdL5sayUebf
-	 QVIraMSe+weXLtr4N5rP9n6dQISNpYWEpm87rCgOJtO1LlIElOfSbrcbxq1GqWfnhh
-	 8C+7qqY+XkA60juDyaHukM6WWRf7q3Md7KjRUsTdRnpBj93+fum4b+eAjq3Z/7BF+W
-	 98rnQi7Lil4CEquc3pkEFr9i45CogtrPxmTVSlM9vNUjGGPlDAqTuiu69XVt+C4CCa
-	 JfbmZyuaysi+g==
-Message-ID: <f7da822a-cf96-4119-ad78-ff89754ffca2@kernel.org>
-Date: Thu, 27 Jun 2024 16:18:14 +0200
+	s=arc-20240116; t=1719498083; c=relaxed/simple;
+	bh=wFM5Kmk4PKgbdICFDwOvHvFB60JZ4ferC2yqrgNHkQY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pCqhBKAuJkMqrx1ZSNfZ/NJtGAZLSoSbdzrOLLJLiB7WoyxcedogpshyK4A0ISHwvDJS5ZU4lH6kdDA2909TjW71ifqKSmrQDCCaT7Hlfnc7HruMNUyBPT7AqY/uUkNRyvbF7/6/GlE94jG+yF+jSsVyf+lVf6PQtcHnOZ+3FPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nHFXO7wB; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ec1620a956so94986901fa.1;
+        Thu, 27 Jun 2024 07:21:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1719498080; x=1720102880; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BNKoH4rzJ344zkKbrOWrYDXvT+iIE/hfmaxUTk56nJM=;
+        b=nHFXO7wB3dq7QCCzmzkByek2umlrQGAnKj8VW5s78wnrFAQJJd46xZc3IqDtX8w5fw
+         INgj0ExpUpc2yqX/eqjOC4ZFH3a1kl3+tLn5p2TKoW+Ojlmoh+nc6UNiIWQ3HZG2OIFb
+         ijTUPM3R7Rg5gMUzOQlf/slBe6iVeE8kjtLSMxE4aOu/c5i/FtqBAwKnWCnvnMoa68GH
+         PXxjQs6zMOq9pzcDcp+tlubiweou/TFD5Qfpk8K0UbJTE6DdXFpExpEyzM5vTwLw2C5A
+         sk6H2OSdwTiSR/E6d/I42H7AmqixoQyOX7PDFoWMhwzL4TxS4jPX5MhJm0DEpXPIsUF6
+         4cng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719498080; x=1720102880;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BNKoH4rzJ344zkKbrOWrYDXvT+iIE/hfmaxUTk56nJM=;
+        b=Tkt7uoSfi3Q4Wrj/NXHFf1qf/yqxs5OS1kT/hkEC+QVat3cyvJ+9VCjhvUgBZzPRkz
+         LYNr8rWWssbWlaSWYWVWwYfLd1DOZlsfZK4gEIOYYTSWugOtkLxG43g/LxYZIhkN2a2d
+         voYuxq5d61H24z+MKleHIQ86a2VXQndSn+aEfVwtRyjDeKppx86DfCuVeWL2CJcYerXv
+         /OPiE3R/3RjYjEz8++VZP7TLkYaxXOhPa+OzjCA1a1C82yigjdIAc7qlirXi4IJao6ff
+         npDpJCrLedwbABdezzNQe0HD5Gsr1DPegEWx+7wRqdGgobing7L01XOdCbManP/5MMN9
+         ZkOg==
+X-Forwarded-Encrypted: i=1; AJvYcCXQMgyyiv9ux8wncnRsNNmhYEye8vKUtu9+PwaY5AO37iBJwaMaB8gc+qYMtc/UzqdSinumQt445NAVZ5BL5xUmNzRcJ7Nfu/7v3lLU4bLje7bwsIruRAylADmBWT/sh9gpFKZk0zthfsBc2xC97ARXHlADwr3UIT09M81c3xYFGg==
+X-Gm-Message-State: AOJu0Yw6hEtg+SzJzpBUARZl0QaCbel0+l9o5zMVbkD48oOJ1ELEo54F
+	fD7MCeQLkqEnF7P1XQe3ePMOZZ8hEZjoZ6BaHeVNGmkM+z8GfCXo
+X-Google-Smtp-Source: AGHT+IEHVOZ10FR3wZmTdwRxdIJLg1s0iN53vUF5fAbGXdSCMOMhDB4n8Z8vdnbYCxSJ4aGmRz1Ybw==
+X-Received: by 2002:ac2:5e79:0:b0:52c:dc0b:42cf with SMTP id 2adb3069b0e04-52ce18324e0mr7752453e87.9.1719498079833;
+        Thu, 27 Jun 2024 07:21:19 -0700 (PDT)
+Received: from mobilestation ([213.79.110.82])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e7676dd0esm50342e87.87.2024.06.27.07.21.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jun 2024 07:21:19 -0700 (PDT)
+Date: Thu, 27 Jun 2024 17:21:17 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Jose Abreu <Jose.Abreu@synopsys.com>, 
+	Vladimir Oltean <olteanv@gmail.com>, Florian Fainelli <f.fainelli@gmail.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Sagar Cheluvegowda <quic_scheluve@quicinc.com>, Abhishek Chauhan <quic_abchauha@quicinc.com>, 
+	Andrew Halaney <ahalaney@redhat.com>, Jiawen Wu <jiawenwu@trustnetic.com>, 
+	Mengyuan Lou <mengyuanlou@net-swift.com>, Tomer Maimon <tmaimon77@gmail.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 03/10] net: pcs: xpcs: Convert xpcs_id to
+ dw_xpcs_desc
+Message-ID: <2iwe4r3lgx3peufwuzdjhpqdxlbupwant72smia3fir2u5va64@ofbylcmizolx>
+References: <20240627004142.8106-1-fancer.lancer@gmail.com>
+ <20240627004142.8106-4-fancer.lancer@gmail.com>
+ <15754e63-be47-4847-8b61-af7f8a818a3c@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8650-qrd: add port mapping to
- speakers
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240627-topic-sm8650-upstream-was-port-mapping-v1-0-4700bcc2489a@linaro.org>
- <20240627-topic-sm8650-upstream-was-port-mapping-v1-3-4700bcc2489a@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240627-topic-sm8650-upstream-was-port-mapping-v1-3-4700bcc2489a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <15754e63-be47-4847-8b61-af7f8a818a3c@lunn.ch>
 
-On 27/06/2024 14:57, Neil Armstrong wrote:
-> Add appropriate mappings of Soundwire ports of WSA8845 speaker
-> to correctly map the Speaker ports to the WSA macro ports.
+On Thu, Jun 27, 2024 at 03:10:18PM +0200, Andrew Lunn wrote:
+> > -	for (i = 0; i < ARRAY_SIZE(xpcs_id_list); i++) {
+> > -		const struct xpcs_id *entry = &xpcs_id_list[i];
+> > +	for (i = 0; i < ARRAY_SIZE(xpcs_desc_list); i++) {
+> > +		const struct dw_xpcs_desc *entry = &xpcs_desc_list[i];
+> >  
+> >  		if ((xpcs_id & entry->mask) != entry->id)
+> >  			continue;
+> >  
+> > -		xpcs->id = entry;
+> > +		xpcs->desc = entry;
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+> Maybe rename entry to desc here?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Curiously to note that originally I had the same idea in mind and even
+implemented it in the first v2 version. But then decided to preserve
+the original name to signify that the pointer is a temporary
+variable pointing to the desc list entry.
 
-Best regards,
-Krzysztof
+Anyway I don't mind changing the name to desc especially seeing I need
+to resubmit the series anyway. Using the desc name here won't make
+thing less readable here, but will also provide a notion about the
+variable content.
 
+I'll change the name to "desc" in v4.
+
+> 
+> Otherwise
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+Thanks.
+
+-Serge(y)
+
+> 
+>     Andrew
 
