@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-80790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC58891A67D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:21:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FAB191A670
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:20:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 720B1284DD8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:21:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D97821F268C0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 12:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D379156885;
-	Thu, 27 Jun 2024 12:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7DE155C97;
+	Thu, 27 Jun 2024 12:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ARC3XNZD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ULwP3mfF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B518E15573B;
-	Thu, 27 Jun 2024 12:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC78155743
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 12:20:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719490857; cv=none; b=a2gDEpnMC9i4OjMTsqwdE9h08sNsInA8pzyOFOOgbL/Uw6EwB8KBjCGvXMqXJnWbmlEAB2AAz1MtCCUvR6dboB+T5s5FQ0QEX4jUFfRYu4UvZDL5q/MDK5jRuwieAq77lTnv3X5Eur9sxO9ZhcI51prdTrv1EK5+uQ3eYY5e/fg=
+	t=1719490822; cv=none; b=Sde+F0xOudqXyYO/HwVZcoHyGblg26vgX0gBRen5UW5ypUnI8m4KAglUTYqAl33aYgMFZCjUQNQahAaDYgoryXmhT7P7Oj0XkUVNP9ZQA8fqyBHZJhDYz1NKJBpLjOqY2LlXYPZT201p6CTH4Bge9dmIuNnd9xw9LBJ9MLD0a9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719490857; c=relaxed/simple;
-	bh=7N0odRzOw1ltNVEc/R/14XetuMEqhPMVC1+GvkLtPmA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DTHjaO3spjM4KSCDf9sWEn+zrdK3fM36O7sc3NDoXabtOt0zOy6DKEtRdkIeqDyFX9jnohXqYLqmTHmt2OpBHAMdkgdiTjqhb/Jq2XG+ElpjwHU+QGtlC0Xl4Biv7F74XZVZO7U9gOPJUSGnvCeQgeIpLQ3jUEj2g2zpRQgYhcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ARC3XNZD; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45R95ARN020835;
-	Thu, 27 Jun 2024 14:20:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	AGl8CVfDYYSZflNFW+9FeYoeCPrKt6+mzA+//qho8Gc=; b=ARC3XNZDq7mKTDtw
-	Rd/HVBSE9YxIXlVoQpeT+6Ype3wcHoIr888t2gA9qlKgLMhiKcjMRvnR/Zf4HPL8
-	pSDT/uWI/rQaNF85uvoNSDKw9LNUyhRphQHx82kdlySQg3R+qWm6C4bKFP4vgTYp
-	ZEZ9thnCiLNCdDICQHKES477pNEK4hO10przJi3OV4KkJ3enb1oLOQPOcdShUAD8
-	PRcWAU6eIzNUnkeFvULwpQQgcNW2m9Hdy22WtZFW811UtlVhtyviv0PB7vBmlNO+
-	+aEXimxg/WkGkY5+M6vLdwtxpTjKebOMtP0F+ZBWbntsfiWHNExqzG425KB6cuNX
-	VbPv/g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ywnxxngmu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Jun 2024 14:20:27 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 462774002D;
-	Thu, 27 Jun 2024 14:20:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CAA30218601;
-	Thu, 27 Jun 2024 14:19:08 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 27 Jun
- 2024 14:19:07 +0200
-Message-ID: <0b155f29-17d1-4863-be38-fb6c1dec4c31@foss.st.com>
-Date: Thu, 27 Jun 2024 14:19:07 +0200
+	s=arc-20240116; t=1719490822; c=relaxed/simple;
+	bh=u2/HAV/gDAWYYrxO+MtmBPhj4wnBMG1L0geWz37aGhk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oj/xOSzWF9E3Gyc3gjfvzG6xdmeXTwz71SY0bFU5sZ5YCVgq8tbSG2B2iPLxXUxGrkVBvUBhdAoF2lh+0K3brBlZLWzvElDNEwivFcthVzmnSchhBn7Rgyn02dfsDbthJln9ZmkoDHmnO4fvx2pzORvjCPG84n3orQ4XFQRGITQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ULwP3mfF; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52cdf579dd2so5508235e87.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 05:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1719490819; x=1720095619; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yhSivaXZKihoS605ifan7I9eYS7gJmggBMZ70sBGD/k=;
+        b=ULwP3mfFL7h9CrIK80pdfoYGF4PUeghXYcNIRv6UZaLqhjpZSfnpm57so3f9YUpoUq
+         VYU6XvNNosBWYurYNi67lcwwHSZwvoSKmex2fH3RdOi+YmhdBYLAQ+rvUi4KAjxzdW9K
+         gyBWG7itJTgBD/iwqqjQ3UVaOeAgnnRejjPWN3kgq7zHi6GoFby30MdVTjBmDsgYIuzc
+         oO6tSnEeKQNC3/wxU3sYo4HlPlDiWQnHD5/8qt6o/8TksGUP/ThOPGzN1IJa/dzbfk+s
+         /65vZmg0IdYIW/xSPaN2mfFGP3jAlROnLJ7DcwFzitt+nR6tKgSa87r9+O4ULqTY9dd7
+         Phzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1719490819; x=1720095619;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yhSivaXZKihoS605ifan7I9eYS7gJmggBMZ70sBGD/k=;
+        b=T2wsPXBxsVhs8db+/K8dzvP8WPGf3WmmhqETWR74tcIq21WVrmgWL9+v+TZUavjFxL
+         t/RqS+1JvNi0ZLBB0+l+HmF/4JWv4bO+O3ACznn4AOUjyaNwoUxYgvj5s0E5z/5ClBqd
+         /HoTMszJVbOOQVcfGxVNvJ7cWGOCkhTjBUoRAcCaO5O9sJwsKfIqMDynTvJbkePuIZBy
+         KotkUdKoutzp2yXaqHcCazM3FkCb67qefijoj3gNcjopr3YRutSBYgfNlziNL9Bp2RJG
+         pzvS30TP+AwwcjnCGDMy/f4T3uOG8+KHtYkEDiJe9q4H+zovUctk58o24tFZ//XRgpXc
+         GNAw==
+X-Forwarded-Encrypted: i=1; AJvYcCXYeIf/S1myaj2RFLbPkEqua2E6rZ2D97XAuiEcvaD7/T+aDhOSlTODmfL34lA+h7fBI3O7ieHQqTSrrVdYarFbIIlaDYuyJarY4g==
+X-Gm-Message-State: AOJu0Yy28/HtXsfM1DD1ypfnBYkAVifqGMJ9KO5eSHS1jQDTRP3oWWvC
+	IN15m2YDsB0+3GM56ALqvLUDNQLDZkEWakLo1XaZe6dTJ++FKPZtYdNiW5x4djM=
+X-Google-Smtp-Source: AGHT+IH4NLpzb67D/rvvNbEMdptd0qnGPx5LLkjSIOnw+1o5piYWPYgVjm09hta6ZrYoMHWqng745A==
+X-Received: by 2002:a05:6512:60b:b0:52c:c5c4:43d2 with SMTP id 2adb3069b0e04-52cdf8209b9mr9697972e87.47.1719490818637;
+        Thu, 27 Jun 2024 05:20:18 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-424c8424b43sm62692885e9.32.2024.06.27.05.20.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jun 2024 05:20:18 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] arm64: dts: qcom: sm8550-hdk: add port mapping to speakers
+Date: Thu, 27 Jun 2024 14:20:13 +0200
+Message-ID: <20240627122015.30945-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Series DTs to deliver Ethernet for STM32MP13
-To: Christophe Roullier <christophe.roullier@foss.st.com>,
-        "David S . Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Marek Vasut
-	<marex@denx.de>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240610080309.290444-1-christophe.roullier@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240610080309.290444-1-christophe.roullier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-27_06,2024-06-27_03,2024-05-17_01
+Content-Transfer-Encoding: 8bit
 
-Hi
+Add appropriate mappings of Soundwire ports of WSA8845 speaker.  This
+solves second (south) speaker sound distortions when playing audio.
 
-On 6/10/24 10:03, Christophe Roullier wrote:
-> STM32MP13 is STM32 SOC with 2 GMACs instances
->      GMAC IP version is SNPS 4.20.
->      GMAC IP configure with 1 RX and 1 TX queue.
->      DMA HW capability register supported
->      RX Checksum Offload Engine supported
->      TX Checksum insertion supported
->      Wake-Up On Lan supported
->      TSO supported
-> 
-> Christophe Roullier (3):
->    ARM: dts: stm32: add ethernet1 and ethernet2 support on stm32mp13
->    ARM: dts: stm32: add ethernet1/2 RMII pins for STM32MP13F-DK board
->    ARM: dts: stm32: add ethernet1 for STM32MP135F-DK board
-> 
->   arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 71 +++++++++++++++++++++
->   arch/arm/boot/dts/st/stm32mp131.dtsi        | 38 +++++++++++
->   arch/arm/boot/dts/st/stm32mp133.dtsi        | 31 +++++++++
->   arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 23 +++++++
->   4 files changed, 163 insertions(+)
-> 
-> 
-> base-commit: 28f961f9d5b7c3d9b9f93cc59e54477ba1278cf9
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Series applied on stm32-next.
+---
 
-regards
-Alex
+Bindings:
+https://lore.kernel.org/all/20240626-port-map-v1-3-bd8987d2b332@linaro.org/
+
+Can be applied independently, if bindings are fine.
+---
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+index e0dc03a97771..2e12219006c9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+@@ -1106,6 +1106,7 @@ north_spkr: speaker@0,0 {
+ 
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "SpkrLeft";
++		qcom,port-mapping = <1 2 3 7 10 13>;
+ 	};
+ 
+ 	/* WSA8845, Speaker South */
+@@ -1123,6 +1124,7 @@ south_spkr: speaker@0,1 {
+ 
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "SpkrRight";
++		qcom,port-mapping = <4 5 6 7 11 13>;
+ 	};
+ };
+ 
+-- 
+2.43.0
+
 
