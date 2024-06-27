@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-80994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AFAF91AF9E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:27:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E543D91AF9D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 21:27:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1C9F2845D2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:27:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95D6F2840C9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 19:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FBE219ADA4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D4D19AD55;
 	Thu, 27 Jun 2024 19:27:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C99A19AA56;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7364436C;
 	Thu, 27 Jun 2024 19:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719516466; cv=none; b=JhlaAGGVLPk2DXDw2m74FWVs5oGwKra3MDPUhtSWuF7w0AUCZEsnPqKKNy0EYimk6cGCbfT+mCINH1pkZ/086krkA270GNmha2Y3thMyoqiO6sqUgpZnK1g5V12+YNJXK3UmrC3jY4y1oWIO2AsNhnsUMaxRo6+VXi1id0BhuHA=
+	t=1719516466; cv=none; b=RuWhZ8zb0mPFSLrpd9PxiL6KEPlQaFf4pQZr+Ni6o/q9JJt4xL1459X+kQ0IPyHEMbZUzvSzzC6N7EirQuO7k6WsAobHnlqLDOLnvOTMf07zyOdZRx8s3+oGotEmcVqxYNMsFE2JfFj+Vcob6mIyZfS7/OKtZbBINZA0bOE9jAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1719516466; c=relaxed/simple;
-	bh=TTz5jvyFepWyRUancw86ATJ72rFaJ7NYD9OERcsxr7I=;
+	bh=+7gU5uk7EEkjDmCtEETo5hhP65fvh6Cf2cNQJ5yFuS4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d9bfSw0m+7TFM3TqR2flQawYdvRAK/avBc2UpAipZU94dRIu7oGU55T0AvDrNzR6jE2KptWfSxmJYF9WP3o8KO/WVWssY1+6xW0UojCM3CMspKpcypt8YU9vA0SHF/IWO9+GR93f4Ij/bkKjq5fcfc44pq3z0pwn9OuOqpdrP0Y=
+	 MIME-Version:Content-Type; b=nykgbRqpBsnx4DsSDQ1xPZ2H6Tq2IZSxu5GSoJBu1QTJP1k5HrZrg/w//lKiChLvnYsLXENrMQkCbY4IlKyFQ6mQfz2yfcqWFgg6gTvgTxftGa5Qdm9C+KZnC90wDszap1P1EYoJlGbNn27yJfbi6Oiwm2fN2m+ypU5hu7sdnbg=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
@@ -33,24 +33,23 @@ Received: from i53875b6a.versanet.de ([83.135.91.106] helo=phil.lan)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1sMumL-0000wK-5T; Thu, 27 Jun 2024 21:27:33 +0200
+	id 1sMumL-0000wK-Jz; Thu, 27 Jun 2024 21:27:33 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Dragan Simic <dsimic@manjaro.org>
+To: Johan Jonker <jbx6244@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	linux-kernel@vger.kernel.org,
-	robh+dt@kernel.org,
+	linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	alchark@gmail.com,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Delete the SoC variant dtsi for RK3399Pro
-Date: Thu, 27 Jun 2024 21:27:27 +0200
-Message-Id: <171951643516.1057727.11647703095785160366.b4-ty@sntech.de>
+Subject: Re: [PATCH v1] ARM: dts: rockchip: rk3036: add #sound-dai-cells to hdmi node
+Date: Thu, 27 Jun 2024 21:27:28 +0200
+Message-Id: <171951643515.1057727.8654296483792075000.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org>
-References: <4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org>
+In-Reply-To: <55d302e5-c018-4b93-84c1-8cf75162e939@gmail.com>
+References: <55d302e5-c018-4b93-84c1-8cf75162e939@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,27 +59,17 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Sun, 2 Jun 2024 08:25:38 +0200, Dragan Simic wrote:
-> The commit 587b4ee24fc7 ("arm64: dts: rockchip: add core dtsi file for
-> RK3399Pro SoCs") describes the RK3399Pro's PCI Express interface as the way
-> built-in NPU communicates with the rest of the SoC.  All available evidence
-> shows this not to be accurate, as described in detail below.  Moreover, the
-> rk3399pro.dtsi isn't used anywhere, so let's delete it.
+On Mon, 24 Jun 2024 19:43:29 +0200, Johan Jonker wrote:
+> '#sound-dai-cells' is required to properly interpret
+> the list of DAI specified in the 'sound-dai' property,
+> so add them to the 'hdmi' node for 'rk3036.dtsi'.
 > 
-> The publicly available schematics of the Radxa Rock Pi N10 carrier board [1]
-> and the Vamrs VMARC RK3399Pro SoM, [2] which put together form the currently
-> single supported RK3399Pro-based board, clearly show that the PCI Express x4
-> interface of this SoC is fully functional and actually not used by the SoC
-> to communicate with the built-in NPU.  In more detail, the VMARC SoM exports
-> the SoC's PCI Express interface at its board-to-board connector, and the Rock
-> Pi N10 routes it to an M.2 M-key slot with four PCI Express lanes.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Delete the SoC variant dtsi for RK3399Pro
-      commit: 40113edfe63310ad529700fca24f2ebd49ae09ea
+[1/1] ARM: dts: rockchip: rk3036: add #sound-dai-cells to hdmi node
+      commit: d45db4fcd3ae0d13191c8db00583f0bc49d9795d
 
 Best regards,
 -- 
