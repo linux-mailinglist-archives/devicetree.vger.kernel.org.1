@@ -1,149 +1,200 @@
-Return-Path: <devicetree+bounces-80841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7398491A8AE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:09:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A6891A8F1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 16:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 970A11C23781
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:09:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A347C288A1A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 14:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B21195B16;
-	Thu, 27 Jun 2024 14:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08E91197A83;
+	Thu, 27 Jun 2024 14:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MlUyZpFP"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QLMe9rA5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A68195B04;
-	Thu, 27 Jun 2024 14:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381C11946BB;
+	Thu, 27 Jun 2024 14:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719497385; cv=none; b=lTZ/8LEoivk1bxpF5IFWx3piigc9gZTYGqeT5AJo/cQg37l1VFzYBhNpJwC7f+rsUVSMtzNjbErDw4+W8k25PwdPnjSUOmcoM1kGR7Z8oI4tN5HxNHXoG6GXp8s4i36j4TAUpKcOsFThDVTQHtihWmrZsWvlC3hE/pVUtc8X6Vg=
+	t=1719497677; cv=none; b=G3YSuhQQXtzUmSz97ki8O5Ad572v4XXVTVq7X/XPVd86+M4tixzq18aAnw7XJawmnz+6C9O/d+KAnifA3zgbyEJXA+ocd082aRJeGrmBJ/aHS4odg4T/Va8363MpgtNiI8W5sSRfV8/pH9fk149S3BRwRg1antK9RI3lKgAW61I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719497385; c=relaxed/simple;
-	bh=bf8xtcKWz2ekG6ZG9mxbefmEIFpXZW0+JgN9tcZmwwM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=paldOtX9qfZOLIWtnRqYF1pxI3azKILlUXN1Qa2RnHhb5pl7OYhVrzL5ZIfJ0w1ALDN6izjvSKolAypA8Bh/YZYI/4SJekBpWDKFZcxgN+1yREMcFd6aNU1Oa699NFG3/XNbS4VGeaCAxy5yR05pDJy0EcF/l2EXeDURn72Eb1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MlUyZpFP; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52cdc4d221eso6645674e87.3;
-        Thu, 27 Jun 2024 07:09:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1719497382; x=1720102182; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WxbdUF3igWgZnkX8ezz96rfrkEDeMV7VPqBBzmY6B/M=;
-        b=MlUyZpFPVTOVzHrDuvOjfnbg3cLmBRJ0gEkdM+MxN5zlD571JklivsGrRhBsjkDxIL
-         4UF+ihPs367R2yOTmUuRz+/f22NmfSUSlo8PZWEz7m00TIHUAfwLHw1nj40BCoxbs20N
-         OCotgGIzDMkRicXfo9YzL3SoqvTPaSerYTy3pqgMNDgF4awJWFRl4WLe73F4PbtxlNEZ
-         tMC/ifWbx2iPsyXfwllQovjwHIthorBD8rPkKIKaNztAz/jAA8GyIfvF2sWduXkLzA1w
-         aWS4EOGSMQIuVKJcxlfcKjO/9X3o1M6vT7z9VVpB9nL9DCs3p1xcTmy7zjAfG63c1D/A
-         GB/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1719497382; x=1720102182;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WxbdUF3igWgZnkX8ezz96rfrkEDeMV7VPqBBzmY6B/M=;
-        b=SV67PJ08Ew+68I02f05I99qPTKnQM9cBQjbAyoYvcoBDOsTbqq9MbnVful0SzQ+6ll
-         ygspUiDGe8wT179h38Q834q7/jGQJdn4E6lMhEl5AY2KrvvqWyPfDodjH7bs22M2/xn2
-         hBNmyz204oKYk411TTY2Q9W+rq9ikIJ5d729kqJTRzjXWno38w8oX+gUD/iQB6B+hvwb
-         UxKN3x/UF3JIsgU4zxMAJcCPP3ISaGNwDrGD/sMC6FkwCOdPDtcnkPow1rqkM4s4R6VH
-         GhObRg2WKN6Num2M+XW0WW+rlWMHzyNR0dVcnB9/xwFxjQmOoDTOv01KbZpvnEKXsxRb
-         ovVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUrzzE/DZ66f0Z5DrI8NBg308AbgzZQ3pyq6KYsidcVtjfIReBtwlN/5RJqFUouGTQhOIkTEczfa1lAEkisF9a/7+XnVCNeNjSizTsYedHwBbc9FCSv5oUb/fWD8JIpwijVwc32Hh0QQkd81cIrHl5GUyvBdLA+O2PaEmYn8uGHkg==
-X-Gm-Message-State: AOJu0YzuXlB7KOkzrMPIkWDsGYmcMKOgUZbr2CaHCgvD93A/Rz17SdmV
-	IkXzMuhiKxEFHz5s2Nb11NWoHtz1Covc4lHsTP0GrBLXfY2jJ6Ra
-X-Google-Smtp-Source: AGHT+IGYnYpUx4D98KzvsoiC9IwR+Ky0CtunlggIok0VAdrIJJsUBpeuWypCrzdBCggYRccbsLhkLg==
-X-Received: by 2002:a05:6512:281:b0:52c:e10b:cb36 with SMTP id 2adb3069b0e04-52ce183add6mr8239966e87.33.1719497379045;
-        Thu, 27 Jun 2024 07:09:39 -0700 (PDT)
-Received: from mobilestation ([213.79.110.82])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52e71329529sm215060e87.293.2024.06.27.07.09.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jun 2024 07:09:38 -0700 (PDT)
-Date: Thu, 27 Jun 2024 17:09:36 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Jose Abreu <Jose.Abreu@synopsys.com>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Sagar Cheluvegowda <quic_scheluve@quicinc.com>, 
-	Abhishek Chauhan <quic_abchauha@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>, 
-	Jiawen Wu <jiawenwu@trustnetic.com>, Mengyuan Lou <mengyuanlou@net-swift.com>, 
-	Tomer Maimon <tmaimon77@gmail.com>, openbmc@lists.ozlabs.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 00/10] net: pcs: xpcs: Add memory-mapped
- device support
-Message-ID: <nct7rbh5w7nd4jneiqzwqpwv5gy6t7q2xobv74hqgilzpykzx5@v6l2aoh5fcaj>
-References: <20240627004142.8106-1-fancer.lancer@gmail.com>
- <20240627111034.nusgjux3lzf5s3bk@skbuf>
+	s=arc-20240116; t=1719497677; c=relaxed/simple;
+	bh=Iv+I+Ow8p470LpQJN8PJT/cepaTc+PVw2PkSObeSs5c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SyBl4TIDiGA88QGf32iu7ldoL0NlMvAuI64MZ9QPYqgtQ+zynQwLEHEztqs3wN+NUDUdkjpYt/DXbXnqfw4JYYB4fM5gLIgdn2uREW1shjEE90DYyd9v3y5f1tpL9E0YVJnZqbkpLCcaW/kxFYh4kiUag7mwphh11okh8NzGhW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QLMe9rA5; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-144-210.elisa-laajakaista.fi [91.158.144.210])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A43262A5;
+	Thu, 27 Jun 2024 16:14:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1719497649;
+	bh=Iv+I+Ow8p470LpQJN8PJT/cepaTc+PVw2PkSObeSs5c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QLMe9rA5R5E4C6HSycaPJhdJ4/CehWxTJc2uKxx5TSyFBF5fmFUUd2trKFonp9F1v
+	 FmDK7+tDAnC5lhCRgO4cqHSgp4fiZa+ipENMKN9J22jATQfZzgTGSd7LPIbFiz03c6
+	 toQOEYxFMp82ACrndGopxHpSjFCzcOxoR2QEV/F4=
+Message-ID: <09f66ad5-0d4f-4884-9deb-a342e91a6de6@ideasonboard.com>
+Date: Thu, 27 Jun 2024 17:14:29 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240627111034.nusgjux3lzf5s3bk@skbuf>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: display: ti,am65x-dss: Minor Cleanup
+To: Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+ Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
+References: <20240511193055.1686149-1-a-bhatia1@ti.com>
+ <20240511193055.1686149-2-a-bhatia1@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240511193055.1686149-2-a-bhatia1@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Vladimir
-
-On Thu, Jun 27, 2024 at 02:10:34PM +0300, Vladimir Oltean wrote:
-> Hi Sergey,
+On 11/05/2024 22:30, Aradhya Bhatia wrote:
+> Reduce tab size from 8 spaces to 4 spaces to make the bindings
+> consistent, and easy to expand.
 > 
-> This does not apply to net-next.
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>   .../bindings/display/ti/ti,am65x-dss.yaml     | 54 +++++++++----------
+>   1 file changed, 27 insertions(+), 27 deletions(-)
 > 
-> Applying: net: pcs: xpcs: Move native device ID macro to linux/pcs/pcs-xpcs.h
-> Applying: net: pcs: xpcs: Split up xpcs_create() body to sub-functions
-> Applying: net: pcs: xpcs: Convert xpcs_id to dw_xpcs_desc
-> Applying: net: pcs: xpcs: Convert xpcs_compat to dw_xpcs_compat
-> Applying: net: pcs: xpcs: Introduce DW XPCS info structure
-> Applying: dt-bindings: net: Add Synopsys DW xPCS bindings
-> Applying: net: pcs: xpcs: Add Synopsys DW xPCS platform device driver
-> Applying: net: pcs: xpcs: Add fwnode-based descriptor creation method
-> Applying: net: stmmac: Create DW XPCS device with particular address
-> Using index info to reconstruct a base tree...
-> M       drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
-> M       include/linux/stmmac.h
-> Checking patch drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c...
-> Checking patch drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c...
-> Checking patch include/linux/stmmac.h...
-> Applied patch drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c cleanly.
-> Applied patch drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c cleanly.
-> Applied patch include/linux/stmmac.h cleanly.
-> Falling back to patching base and 3-way merge...
-> error: Your local changes to the following files would be overwritten by merge:
->         drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
->         drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
->         include/linux/stmmac.h
-> Please commit your changes or stash them before you merge.
-> Aborting
-> error: Failed to merge in the changes.
-> Patch failed at 0009 net: stmmac: Create DW XPCS device with particular address
-> hint: Use 'git am --show-current-patch=diff' to see the failed patch
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index 55e3e490d0e6..399d68986326 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -142,32 +142,32 @@ examples:
+>       #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>   
+>       dss: dss@4a00000 {
+> -            compatible = "ti,am65x-dss";
+> -            reg =   <0x04a00000 0x1000>, /* common */
+> -                    <0x04a02000 0x1000>, /* vidl1 */
+> -                    <0x04a06000 0x1000>, /* vid */
+> -                    <0x04a07000 0x1000>, /* ovr1 */
+> -                    <0x04a08000 0x1000>, /* ovr2 */
+> -                    <0x04a0a000 0x1000>, /* vp1 */
+> -                    <0x04a0b000 0x1000>, /* vp2 */
+> -                    <0x04a01000 0x1000>; /* common1 */
+> -            reg-names = "common", "vidl1", "vid",
+> -                    "ovr1", "ovr2", "vp1", "vp2", "common1";
+> -            ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+> -            power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
+> -            clocks =        <&k3_clks 67 1>,
+> -                            <&k3_clks 216 1>,
+> -                            <&k3_clks 67 2>;
+> -            clock-names = "fck", "vp1", "vp2";
+> -            interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>;
+> -            ports {
+> -                    #address-cells = <1>;
+> -                    #size-cells = <0>;
+> -                    port@0 {
+> -                            reg = <0>;
+> -                            oldi_out0: endpoint {
+> -                                    remote-endpoint = <&lcd_in0>;
+> -                            };
+> -                    };
+> +        compatible = "ti,am65x-dss";
+> +        reg = <0x04a00000 0x1000>, /* common */
+> +              <0x04a02000 0x1000>, /* vidl1 */
+> +              <0x04a06000 0x1000>, /* vid */
+> +              <0x04a07000 0x1000>, /* ovr1 */
+> +              <0x04a08000 0x1000>, /* ovr2 */
+> +              <0x04a0a000 0x1000>, /* vp1 */
+> +              <0x04a0b000 0x1000>, /* vp2 */
+> +              <0x04a01000 0x1000>; /* common1 */
+> +        reg-names = "common", "vidl1", "vid",
+> +                "ovr1", "ovr2", "vp1", "vp2", "common1";
+> +        ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+> +        power-domains = <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
+> +        clocks =        <&k3_clks 67 1>,
+> +                        <&k3_clks 216 1>,
+> +                        <&k3_clks 67 2>;
+> +        clock-names = "fck", "vp1", "vp2";
+> +        interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>;
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            port@0 {
+> +                reg = <0>;
+> +                oldi_out0: endpoint {
+> +                    remote-endpoint = <&lcd_in0>;
+> +                };
+>               };
+> +        };
+>       };
 
-Argg, right! I forgot to port the Russell' latest series introduced
-the select_pcs() callback. Sorry for the inconvenience.
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-I'll get it merged in my repo (based on the kernel upstream tree with
-verious plat-specific fixes) and test it out again. Then I'll _make
-sure_ this time that the series is applicable onto the net-next tree
-before resubmitting.
+  Tomi
 
-Thanks,
--Serge(y)
-
-> 
-> Thanks,
-> Vladimir
 
