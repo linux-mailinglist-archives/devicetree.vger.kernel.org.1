@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-80584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-80585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7278F91A084
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EC7091A085
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 09:38:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A057D1C20F60
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:38:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDBE51C20F60
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jun 2024 07:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FB84206E;
-	Thu, 27 Jun 2024 07:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961294F20C;
+	Thu, 27 Jun 2024 07:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rlj0XlT7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8H4Oyky"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0409756440
-	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 07:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714B04206E
+	for <devicetree@vger.kernel.org>; Thu, 27 Jun 2024 07:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1719473896; cv=none; b=eZL8vyl+1pyuMHF5io6DJa22/hoWsnv1a1FBnSxm8wFDtK8bpQW4BS0l7El3APFrM2CpoVy5lFtO2cbWLOPBhD60gk07OVQXp5rKuTcLOCqQuOJC64wRg09iEEnXpWImnIW9iLnkDZ0C/bTIPvyJaQceV5AOJUaSFozI5uzrCyU=
+	t=1719473901; cv=none; b=ssvral8ldce5aKrorsnpZZ9bRAkxUfULJIXjGKwQEC7dzVh+hUmx6k2g88TYvZqeUUzBrQp9MjpCo7E488tgOgbF+XBsvjGQvfwgLM4v6UoIynjRzVt/H9Mf+owoVXtdG+AFQNL7AfGH6Pm3nFUhd5E2LM7Z8Rrhd43cKDf/9sA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1719473896; c=relaxed/simple;
-	bh=HKkOlCWwOBbYEqlZcUWNnWdmIR3qvHQZubSWBsRs9z8=;
+	s=arc-20240116; t=1719473901; c=relaxed/simple;
+	bh=ENCBuGAXKC9Grz2QNd2si+KNDs561YvlPXCEUcRR/TY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NEgVhdLn4n/KzJe9FWzMEe8/9GycjSOW1433iDIBJA0CmIOSI6f3dXNNwluG/bBdeYrerLloT17j40z93s95xZgFqUhad1g8K2nRiF9H9ZhoFaOzBriK0Grkdu73AXJ+Mmd7KdXNAeDfIqGTBk7ZldYYk8YBcx9CU3P4GRMMvLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rlj0XlT7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F81EC32786;
-	Thu, 27 Jun 2024 07:38:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Vskz2iF2RMHM2Vhd0JiU1OtUUrRqfRHNiaiF0a/R+2AX5/bT7bywGlKUsh1XqPbJBMGaPgC115JjBTqhJMSgfTd86HY+TPVlkmNaOZfIyec9z8glTAjEkWzXNEcPVvEK9YQVHExmK2fm2S0oRzCJS0KIAMYq2SQvq245vKbZBiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8H4Oyky; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB939C4AF07;
+	Thu, 27 Jun 2024 07:38:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1719473895;
-	bh=HKkOlCWwOBbYEqlZcUWNnWdmIR3qvHQZubSWBsRs9z8=;
+	s=k20201202; t=1719473901;
+	bh=ENCBuGAXKC9Grz2QNd2si+KNDs561YvlPXCEUcRR/TY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rlj0XlT7DO6z2p1gyskrsXoZtX1T0mBzRus7J9XG5gEGPIz7c4bQzNlnGhuLrCjzw
-	 5QRXQYCdcMumee0fi/PFvKGrTs80euvNLbTl4HSyhCCmv1GawkvyogB5Cw+edkO+Bm
-	 Ni/tkKO2/ARaubz4saVWCdeiykzrjLUzaUENkEHMt9AoZKjrN/RcqjmoTNAmy50dIE
-	 zlc1EdUZbnmFmvNkR2kJ6+d5jjOVKXG6S8AmM/g5BBK+V18a7dXsjJEWZ/rfljb89b
-	 1bQtNRENBUE6lnPUrUcm9EMJ5wqbSYuNXuSDbKsiUh8zGTAiW3KWDCKq8rN2efbmCb
-	 zIT5w+eSLs7Lg==
-Message-ID: <d0326a98-bfee-4a8e-ad24-c4ddf655a49b@kernel.org>
-Date: Thu, 27 Jun 2024 09:38:09 +0200
+	b=O8H4Oyky5Mv5IUUwzqw+PMwTI69nT6F5IsE5e+mrl/V9mM0UzEkgx9LWIs8wcX443
+	 6JuWper7KcidjZDC1JZDnhyzYVKIxY3KpYFOfYD7ow2/9o20Y0ex1BIKdBxHNTSWk4
+	 rIui/HNxbod+1u6vjjexT5+CeYje56zS2c2XEIn4Eh9abt7pBf38Yr1Apqt7JiHz5+
+	 uUJv68Z7JXOO4LK/A0V69lJKC8lIRg8JJnWR8knzO9LD5+CzvISbu7ero9TFLC5uAH
+	 p+iZRC1L8M/TjDt4T0yXX/CY5foF45mJS9Lh/w5h2aeq52iOevnkU3FMq/1BywE1IX
+	 67iHxYTTZsDAA==
+Message-ID: <44574fda-43e4-426a-8e50-3f28ead2d783@kernel.org>
+Date: Thu, 27 Jun 2024 09:38:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] MAINTAINERS: add microchip soc binding directory to
- microchip soc driver entry
+Subject: Re: [PATCH 2/2] MAINTAINERS: add cache binding directory to cache
+ driver entry
 To: Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org
 Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -62,6 +62,7 @@ Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
  Steen Hegelund <Steen.Hegelund@microchip.com>,
  Daniel Machon <daniel.machon@microchip.com>
 References: <20240626-platter-scarcity-d503fda8a2fd@spud>
+ <20240626-rebate-hertz-6d944eee7dda@spud>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,20 +108,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240626-platter-scarcity-d503fda8a2fd@spud>
+In-Reply-To: <20240626-rebate-hertz-6d944eee7dda@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 26/06/2024 17:54, Conor Dooley wrote:
 > From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> I noticed that there's technically not an explicit maintainer for this
-> directory, even if the files currently in it are covered by either the
-> Mircochip FPGA or AT91 entries. Add it to the entry covering the
-> corresponding driver directory.
+> The directory covering cache controller bindings has no MAINTAINER other
+> than the fallback to myself, Rob and Krzysztof. Add it to the entry for
+> the corresponding drivers.
 > 
 > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
